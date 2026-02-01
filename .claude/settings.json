@@ -1,0 +1,33 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(./otmux *)",
+      "Bash(./test.suite *)",
+      "Bash(./hiveMind *)",
+      "Bash(tmux *)",
+      "Bash(grep *)",
+      "Bash(sed *)",
+      "Bash(cat *)",
+      "Bash(head *)",
+      "Bash(tail *)",
+      "Bash(wc *)",
+      "Bash(sleep *)",
+      "Read(*)",
+      "Write(session/*)",
+      "Write(*.md)"
+    ]
+  },
+  "hooks": {
+    "PreCompact": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash \"$CLAUDE_PROJECT_DIR/.claude/hooks/pre-compress.sh\""
+          }
+        ]
+      }
+    ]
+  }
+}
