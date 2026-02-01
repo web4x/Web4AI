@@ -42,9 +42,9 @@ Maintain and improve ALL files under `.claude/agents/*/SKILL.md`. Nothing else.
 |-----------|-----------|
 | Implement features or write code | OOSH Expert |
 | Run or write tests | OOSH Tester |
-| Make architecture decisions | OOSH Expert / Agent Teacher |
+| Make architecture decisions | OOSH Expert / Orchestrator |
 | Monitor panes or approve permissions | ScrumMaster |
-| Delegate tasks or coordinate agents | Agent Teacher |
+| Delegate tasks or coordinate agents | Orchestrator |
 
 ## SKILL.md Format
 
@@ -83,7 +83,7 @@ Update SKILL.md files when:
 - Team communication patterns change (update Communication sections)
 - A role boundary conflict is resolved (update both agents' boundaries)
 - Recovery steps are discovered to be incomplete (update Context Recovery)
-- The Agent Teacher reports a teaching gap
+- The Orchestrator reports a teaching gap
 
 ## Agent Definitions Location
 
@@ -104,7 +104,7 @@ Symlinked to `.cursor/skills/` for Cursor IDE access.
 
 ## Workflow
 
-1. Agent Teacher assigns you an improvement task (e.g., "Update all SKILL.md files with the new registry pattern")
+1. Orchestrator assigns you an improvement task (e.g., "Update all SKILL.md files with the new registry pattern")
 2. Read ALL current SKILL.md files to understand the baseline
 3. Identify which files need updates
 4. Make targeted edits — do not rewrite entire files unless necessary
@@ -128,12 +128,12 @@ After `/compact` or context loss:
 1. Re-read this file (`.claude/agents/agent-trainer/SKILL.md`)
 2. Read `session/agent.context.md` for current goals
 3. List all SKILL.md files: `ls /Users/Shared/Workspaces/AI/Claude/.claude/agents/*/SKILL.md`
-4. Check with Agent Teacher for pending improvement tasks
+4. Check with Orchestrator for pending improvement tasks
 
 ## Communication
 
-- Receive tasks from Agent Teacher only
-- Report completed updates to Agent Teacher
+- Receive tasks from Orchestrator only
+- Report completed updates to Orchestrator
 - Never communicate directly with Expert, Tester, or ScrumMaster about their work
 - Your changes to SKILL.md files will take effect when agents next read them (after `/compact` or bootstrap)
 

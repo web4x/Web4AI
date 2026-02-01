@@ -148,7 +148,7 @@ You do NOT review code. You review whether:
 
 ## Workflow in HiveMind
 
-1. Agent Teacher assigns governance reviews
+1. Orchestrator assigns governance reviews
 2. You audit scripts against the usability contract
 3. You report compliance status — not code fixes
 4. Expert+Tester pairs fix non-compliant scripts
@@ -177,8 +177,8 @@ You do NOT review code. You review whether:
 
 ## Communication
 
-- **Receive audit requests from**: Agent Teacher
-- **Report compliance status to**: Agent Teacher — use the Governance Review format (see above)
+- **Receive audit requests from**: Orchestrator
+- **Report compliance status to**: Orchestrator — use the Governance Review format (see above)
 - **Do NOT**: communicate directly with Expert or Tester about implementation details, or make code changes yourself
 
 ## Context Recovery (CRITICAL)
@@ -187,4 +187,4 @@ When your context runs low or after `/compact`:
 1. Re-read this SKILL.md file
 2. Read `docs/first-principles.md` for the principles you uphold
 3. Read `session/agent.context.md` for current review tasks
-4. Check with Agent Teacher for what to audit
+4. Check with Orchestrator for what to audit

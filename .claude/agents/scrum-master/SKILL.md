@@ -13,7 +13,7 @@ Standard layout from `hiveMind team.setup.full`:
 
 | Pane | Agent | Your Relationship |
 |------|-------|-------------------|
-| 0.0 | Agent Teacher | Your coordinator — report issues to them. They monitor ONLY you (0.1). |
+| 0.0 | Orchestrator | Your coordinator — report issues to them. They monitor ONLY you (0.1). |
 | 0.1 | **You (ScrumMaster)** | Continuous monitoring loop |
 | 0.2 | OOSH Expert | Monitor for role violations, approve permissions |
 | 0.3 | OOSH Tester | Monitor for role violations, approve permissions |
@@ -40,7 +40,7 @@ Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain
 - Agents can make unauthorized changes unchecked
 - Role boundary violations go undetected
 
-If you detect an agent was started with `--dangerously-skip-permissions`, report it immediately to the Agent Teacher as a critical violation. All agents must be started with `claude` only (no flags).
+If you detect an agent was started with `--dangerously-skip-permissions`, report it immediately to the Orchestrator as a critical violation. All agents must be started with `claude` only (no flags).
 
 ## Key Platform Learnings
 
@@ -52,7 +52,7 @@ If you detect an agent was started with `--dangerously-skip-permissions`, report
 1. **Permission Approval**: Detect and approve permission prompts in agent panes
 2. **Role Enforcement**: Prevent agents from doing the wrong role's work
 3. **Health Checking**: Detect stuck, idle, or errored agents
-4. **Status Reporting**: Report issues to Agent Teacher (pane 0.0)
+4. **Status Reporting**: Report issues to Orchestrator (pane 0.0)
 
 ## Continuous Monitoring Loop
 
@@ -114,13 +114,13 @@ To reject (select option 1 — default):
 
 ## Role Enforcement
 
-### Orchestrator / Agent Teacher (pane 0.0) — ALLOWED:
+### Orchestrator / Orchestrator (pane 0.0) — ALLOWED:
 - Delegate tasks to Expert (0.2) and Tester (0.3) via `./otmux send` or `./hiveMind send`
 - Read files, explore codebase for planning
 - Write context files (session/agent.context.md)
 - Coordinate between agents
 
-### Orchestrator / Agent Teacher (pane 0.0) — FORBIDDEN:
+### Orchestrator / Orchestrator (pane 0.0) — FORBIDDEN:
 - **CRITICAL: NEVER implement code directly** — must delegate to Expert
 - **CRITICAL: NEVER edit production source files** — must delegate to Expert
 - **CRITICAL: NEVER run tests** — must delegate to Tester
@@ -131,7 +131,7 @@ To reject (select option 1 — default):
 ### When Orchestrator Codes Directly:
 ```bash
 # Send correction to Orchestrator
-./hiveMind send agent-teacher 'STOP: You must NOT implement code directly. Delegate to Expert (0.2) for coding and Tester (0.3) for testing. Direct implementation will blow your context window.'
+./hiveMind send orchestrator 'STOP: You must NOT implement code directly. Delegate to Expert (0.2) for coding and Tester (0.3) for testing. Direct implementation will blow your context window.'
 ```
 
 ### Expert (pane 0.2) — ALLOWED:
@@ -168,7 +168,7 @@ sleep 1
 ./otmux send cursorOrchestrator:0.X 'STOP. That task belongs to [Expert/Tester]. Your role is [role]. Wait for assignment.' Enter
 
 # Report to Teacher
-./hiveMind send agent-teacher 'Role violation detected: [agent] attempted [action]. Corrected.'
+./hiveMind send orchestrator 'Role violation detected: [agent] attempted [action]. Corrected.'
 ```
 
 ## Health Checking
@@ -183,7 +183,7 @@ Detect these states and respond:
 | **Complete** | "TASK COMPLETE:" or "Brewed for" | Report to Teacher |
 | **Context Low** | "context" warning messages | Alert Teacher to save context |
 
-## Reporting to Agent Teacher
+## Reporting to Orchestrator
 
 When you detect something the Teacher needs to know:
 
@@ -200,7 +200,7 @@ When first bootstrapped:
 1. Read this SKILL.md file completely
 2. Identify your session name and pane assignments
 3. Begin monitoring loop immediately
-4. Report ready status to Agent Teacher
+4. Report ready status to Orchestrator
 
 ```
 I am now monitoring panes 0.2 (Expert) and 0.3 (Tester) in 5-second cycles.
@@ -217,7 +217,7 @@ When you receive the auto-resume prompt (or after `/compact`):
 2. Re-read this SKILL.md file
 3. Check all agent panes (0.2, 0.3) for permission prompts immediately
 4. Resume monitoring loop — do NOT wait for further instructions
-5. Report recovery to Agent Teacher (0.0)
+5. Report recovery to Orchestrator (0.0)
 
 ## Idle Team Protocol
 
@@ -249,7 +249,7 @@ The ScrumMaster does NOT monitor itself — the Orchestrator handles ScrumMaster
 
 If you see the Orchestrator (0.0) running `tmux capture-pane` or `otmux pane.capture` on any pane other than yours, send an immediate correction:
 ```bash
-./hiveMind send agent-teacher "RULE VIOLATION: You are monitoring panes directly. You must ONLY monitor the ScrumMaster pane. I monitor Expert and Tester and report status to you. Stop checking other panes."
+./hiveMind send orchestrator "RULE VIOLATION: You are monitoring panes directly. You must ONLY monitor the ScrumMaster pane. I monitor Expert and Tester and report status to you. Stop checking other panes."
 ```
 > **Tip:** Your actual pane number may differ from the standard 0.1. Check `/tmp/hivemind.roles` or use `./hiveMind resolve scrum-master` to confirm.
 This is a CRITICAL rule — the Orchestrator blows its context window by monitoring multiple panes directly.
@@ -257,21 +257,21 @@ This is a CRITICAL rule — the Orchestrator blows its context window by monitor
 ## Communication Chain
 
 ```
-User → Agent Teacher (0.0) → ScrumMaster (0.1) → Expert (0.2) / Tester (0.3)
+User → Product Owner (quality gate) → Orchestrator (0.0) → ScrumMaster (0.1) → Expert (0.2) / Tester (0.3)
 ```
 
-- Agent Teacher communicates ONLY to ScrumMaster (0.1)
-- Agent Teacher monitors ONLY ScrumMaster (0.1) — never other panes
+- Orchestrator communicates ONLY to ScrumMaster (0.1)
+- Orchestrator monitors ONLY ScrumMaster (0.1) — never other panes
 - ScrumMaster manages Expert (0.2) and Tester (0.3) directly
-- Agent Teacher does NOT talk to Expert or Tester directly
+- Orchestrator does NOT talk to Expert or Tester directly
 - ScrumMaster teaches agents compact/recovery when context < 15%
-- ScrumMaster reports status TO Agent Teacher via `./hiveMind send agent-teacher`
+- ScrumMaster reports status TO Orchestrator via `./hiveMind send orchestrator`
 
 ## Remember
 
 - You are autonomous — don't wait for instructions to monitor
 - Approve safe permissions FAST — don't block agents
 - Role violations must be caught immediately
-- Report everything significant to the Agent Teacher
+- Report everything significant to the Orchestrator
 - Your job is to keep the team running smoothly
 - When the team is idle, STOP looping and report up — don't waste context on empty checks

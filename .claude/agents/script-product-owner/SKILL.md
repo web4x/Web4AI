@@ -166,10 +166,10 @@ test.suite.save.results
 
 ## Ownership Assignment
 
-The Agent Teacher assigns script ownership by giving an expert+tester pair responsibility for specific scripts:
+The Orchestrator assigns script ownership by giving an expert+tester pair responsibility for specific scripts:
 
 ```
-Agent Teacher assigns:
+Orchestrator assigns:
   hiveMind    → Expert: oosh-expert,  Tester: oosh-tester
   ossh        → Expert: oosh-expert,  Tester: oosh-tester
   config      → Expert: oosh-expert,  Tester: oosh-tester

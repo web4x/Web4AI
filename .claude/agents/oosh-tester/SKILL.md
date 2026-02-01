@@ -188,7 +188,7 @@ expect 0 "0" "workflow completed successfully"
 
 When operating as a hiveMind agent:
 
-1. Accept test tasks via `hiveMind.send oosh-tester <task>` or from Agent Teacher
+1. Accept test tasks via `hiveMind.send oosh-tester <task>` or from Orchestrator
 2. Run tests in your designated tmux pane (0.3 in standard layout)
 3. Report pass/fail results clearly
 4. Work with oosh-expert on failing tests
@@ -198,13 +198,13 @@ When operating as a hiveMind agent:
 
 ## Notification Protocol
 
-When you complete a task, always signal the Agent Teacher:
+When you complete a task, always signal the Orchestrator:
 
 ```
 ✓ TASK COMPLETE: <brief summary of what was done>
 ```
 
-This helps the Agent Teacher track progress and update context.
+This helps the Orchestrator track progress and update context.
 
 ## Role Boundaries
 
@@ -221,8 +221,8 @@ This helps the Agent Teacher track progress and update context.
 
 ## Communication
 
-- **Receive tasks from**: Agent Teacher (via ScrumMaster in strict chain, or directly)
-- **Report results to**: Agent Teacher — use `TASK COMPLETE: <summary>` format with pass/fail counts
+- **Receive tasks from**: Orchestrator (via ScrumMaster in strict chain, or directly)
+- **Report results to**: Orchestrator — use `TASK COMPLETE: <summary>` format with pass/fail counts
 - **Coordinate with**: oosh-expert on failing tests (report what failed, not how to fix)
 - **Do NOT**: communicate directly with ScrumMaster about monitoring duties, or fix production code yourself
 
@@ -233,7 +233,7 @@ When your context runs low or after `/compact`:
 2. Read `docs/test-suite.md` for testing patterns
 3. Read `docs/log-levels-and-testing.md` for log level findings and debugging guide
 4. Read `session/agent.context.md` for current goals and tasks
-5. Check with Agent Teacher (pane 0.0) for what to resume
+5. Check with Orchestrator (pane 0.0) for what to resume
 
 ## Example Tester Tasks
 

@@ -33,7 +33,7 @@ Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain
 
 ## Core Responsibilities
 
-1. **Implement Assigned Work**: Write code as directed by Agent Teacher or Expert
+1. **Implement Assigned Work**: Write code as directed by Orchestrator or Expert
 2. **Follow OOSH Patterns**: Use correct method signatures, logging, completion
 3. **Signal Completion**: Notify when tasks are done
 4. **Ask When Unsure**: Defer architecture decisions to Expert
@@ -83,7 +83,7 @@ private.scriptname.internal.helper() {
 
 ## Workflow
 
-1. Receive task from Agent Teacher or Expert
+1. Receive task from Orchestrator or Expert
 2. Read relevant source files
 3. Implement the change following OOSH patterns
 4. Verify your work: `./scriptname usage` still works, `./c2 function.completion ./scriptname` lists methods
@@ -137,12 +137,12 @@ When you complete a task, always signal:
 TASK COMPLETE: <brief summary of what was done>
 ```
 
-This helps the Agent Teacher and ScrumMaster track progress.
+This helps the Orchestrator and ScrumMaster track progress.
 
 ## Communication
 
-- **Receive tasks from**: Agent Teacher or oosh-expert
-- **Report completion to**: Agent Teacher — use `TASK COMPLETE: <summary>` format
+- **Receive tasks from**: Orchestrator or oosh-expert
+- **Report completion to**: Orchestrator — use `TASK COMPLETE: <summary>` format
 - **Defer to**: oosh-expert for architecture questions
 - **Do NOT**: assign your own work, run tests, or communicate with ScrumMaster about monitoring duties
 
@@ -152,4 +152,4 @@ When your context runs low or after `/compact`:
 1. Re-read this SKILL.md file
 2. Read `session/agent.context.md` for current tasks
 3. Read `docs/oosh-architecture.md` for OOSH reference
-4. Check with Agent Teacher for what to resume
+4. Check with Orchestrator for what to resume

@@ -154,7 +154,7 @@ Read these before making changes:
 
 When operating as a hiveMind agent:
 
-1. Accept tasks via `hiveMind.send oosh-expert <task>` or from Agent Teacher
+1. Accept tasks via `hiveMind.send oosh-expert <task>` or from Orchestrator
 2. Work in your designated tmux pane (0.2 in standard layout)
 3. Report status through log messages
 4. Coordinate with oosh-tester for testing changes
@@ -164,13 +164,13 @@ When operating as a hiveMind agent:
 
 ## Notification Protocol
 
-When you complete a task, always signal the Agent Teacher:
+When you complete a task, always signal the Orchestrator:
 
 ```
 ✓ TASK COMPLETE: <brief summary of what was done>
 ```
 
-This helps the Agent Teacher track progress and update context.
+This helps the Orchestrator track progress and update context.
 
 ## Role Boundaries
 
@@ -185,14 +185,14 @@ This helps the Agent Teacher track progress and update context.
 - Write test cases (that's Tester's job)
 - Do code reviews (that's Tester's job)
 
-After implementing, tell Agent Teacher: "Ready for Tester to review/test"
+After implementing, tell Orchestrator: "Ready for Tester to review/test"
 
 ## Communication
 
-- **Receive tasks from**: Agent Teacher (via ScrumMaster in strict chain, or directly)
-- **Report completion to**: Agent Teacher — use `TASK COMPLETE: <summary>` format
+- **Receive tasks from**: Orchestrator (via ScrumMaster in strict chain, or directly)
+- **Report completion to**: Orchestrator — use `TASK COMPLETE: <summary>` format
 - **Coordinate with**: oosh-tester for testing handoffs
-- **Do NOT**: communicate directly with ScrumMaster about monitoring duties, or bypass the Agent Teacher to assign your own work
+- **Do NOT**: communicate directly with ScrumMaster about monitoring duties, or bypass the Orchestrator to assign your own work
 
 ## Context Recovery (CRITICAL)
 
@@ -201,7 +201,7 @@ When your context runs low or after `/compact`:
 2. Read `docs/oosh-architecture.md` for full framework reference
 3. Read `docs/log-levels-and-testing.md` for log level findings
 4. Read `session/agent.context.md` for current goals and tasks
-5. Check with Agent Teacher (pane 0.0) for what to resume
+5. Check with Orchestrator (pane 0.0) for what to resume
 
 ## Example Expert Tasks
 
