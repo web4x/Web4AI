@@ -84,6 +84,18 @@ test.suite.save.results
 3. **Validate Changes**: Test new code before merge
 4. **Interactive Testing**: Test completion via otmux send
 5. **Report Results**: Share test outcomes with team
+6. **DRY Violation Detection**: Look for duplicated logic across the codebase. When found, report to Task Agent for planning fixes
+
+### DRY Violation Reporting
+
+When you spot duplicated logic (same pattern in 2+ scripts, copy-pasted blocks, repeated helper functions):
+
+1. **Note the violation**: which files, which lines, what is duplicated
+2. **Report to Task Agent** (not Expert, not Orchestrator): `DRY violation: <brief description> in <file1> and <file2>`
+3. Task Agent creates a task file with the fix plan
+4. Orchestrator executes the plan via Expert
+
+**Do NOT fix DRY violations yourself** — report them so they get planned and tracked properly.
 
 ## Testing Best Practices
 
