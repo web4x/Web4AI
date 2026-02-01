@@ -24,6 +24,12 @@ Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain
 
 **NEVER start Claude agents with `--dangerously-skip-permissions`.** The ScrumMaster handles all permission approvals. Skipping permissions removes role enforcement and safety boundaries. Start agents with `claude` only (no flags).
 
+## Named Sessions (MANDATORY)
+
+**Every Claude Code session MUST have a name matching your agent role.** No unnamed sessions allowed.
+
+Your session name: `agent-trainer`
+
 ## Core Responsibility
 
 Maintain and improve ALL files under `.claude/agents/*/SKILL.md`. Nothing else.
@@ -117,6 +123,8 @@ When you discover these patterns, ensure they are in ALL relevant SKILL.md files
 - **OOSH-Only Rule**: Never use raw tmux commands (`tmux send-keys`, `tmux capture-pane`, etc.). Always use `./otmux` and `./hiveMind` wrappers.
 - **No Skip Permissions**: Never use `--dangerously-skip-permissions`. ScrumMaster handles all approvals.
 - **Context Preservation**: At 20% context remaining, STOP work, save state to `session/agents/<role>.context.md`, run `/compact`.
+- **Save Before Compact**: NEVER run `/compact` without saving state first. Sequence is always STOP → SAVE → `/compact`.
+- **Named Sessions**: Every Claude Code session must have a name matching the agent role. No unnamed sessions.
 - **Bash 3.2 compatibility**: No `declare -A` on macOS. Use case-function lookups.
 - **Pane titles unreliable**: Claude Code overwrites tmux pane titles. Use `/tmp/hivemind.roles` registry.
 - **agentRoom exit codes unreliable**: Always grep output text, not exit codes.
@@ -136,6 +144,8 @@ When you discover these patterns, ensure they are in ALL relevant SKILL.md files
 3. **RUN** `/compact`
 
 Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
+
+**NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
 
 ## Context Recovery (CRITICAL)
 

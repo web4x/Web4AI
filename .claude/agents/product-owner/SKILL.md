@@ -24,6 +24,12 @@ Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain
 
 **NEVER start Claude agents with `--dangerously-skip-permissions`.** The ScrumMaster handles all permission approvals. When auditing, flag any use of `--dangerously-skip-permissions` in scripts or team setup as a governance violation.
 
+## Named Sessions (MANDATORY)
+
+**Every Claude Code session MUST have a name matching your agent role.** No unnamed sessions allowed.
+
+Your session name: `product-owner`
+
 ## First Principles
 
 These are non-negotiable. Every script, every method, every change must honour them.
@@ -194,6 +200,8 @@ You do NOT review code. You review whether:
 3. **RUN** `/compact`
 
 Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
+
+**NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
 
 ## Context Recovery (CRITICAL)
 

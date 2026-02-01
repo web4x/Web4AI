@@ -51,6 +51,12 @@ Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain
 
 **NEVER start Claude agents with `--dangerously-skip-permissions`.** The ScrumMaster handles all permission approvals. Skipping permissions removes role enforcement and safety boundaries. Start agents with `claude` only (no flags).
 
+## Named Sessions (MANDATORY)
+
+**Every Claude Code session MUST have a name matching your agent role.** No unnamed sessions allowed.
+
+Your session name: `oosh-expert`
+
 ## Key Platform Learnings
 
 - **Bash 3.2 on macOS**: No `declare -A` (associative arrays). Use case-function lookups instead (see `private.hiveMind.get.role.prompt()` as reference).
@@ -208,6 +214,8 @@ After implementing, tell Orchestrator: "Ready for Tester to review/test"
 3. **RUN** `/compact`
 
 Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
+
+**NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
 
 ## Context Recovery (CRITICAL)
 

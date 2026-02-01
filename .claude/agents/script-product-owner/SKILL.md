@@ -15,6 +15,10 @@ This is NOT a separate agent role. It defines the **ownership contract** that ev
 
 **NEVER use `--dangerously-skip-permissions`** in owned scripts or team setup. The ScrumMaster handles all permission approvals. Flag any usage as a governance violation during ownership audits.
 
+## Named Sessions (MANDATORY)
+
+**Every Claude Code session MUST have a name matching the agent role.** No unnamed sessions allowed. Agents performing ownership audits must use their own role-named session (e.g., `oosh-expert`, `product-owner`).
+
 ## Ownership = Expert + Tester
 
 Every script has two co-owners:
@@ -204,3 +208,5 @@ If any of 1-4 fail, the script is NOT properly owned and needs attention from it
 ## Context Preservation (MANDATORY)
 
 **All agents performing ownership audits must monitor context usage.** At 20% context remaining: STOP work, save state to `session/agents/<your-role>.context.md`, then run `/compact`. Do NOT wait until context is exhausted.
+
+**NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.

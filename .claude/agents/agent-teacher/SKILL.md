@@ -95,6 +95,12 @@ Start agents with `claude` only (no flags). The ScrumMaster will approve safe op
 
 > **Action required:** The `hiveMind` script currently uses `--dangerously-skip-permissions` in team setup functions. This must be removed by the Expert.
 
+## Named Sessions (MANDATORY)
+
+**Every Claude Code session MUST have a name matching your agent role.** No unnamed sessions allowed.
+
+Your session name: `orchestrator`
+
 ## Key Platform Learnings
 
 - **Pane title registry**: Claude Code overwrites tmux pane titles. Use `/tmp/hivemind.roles` registry instead. Resolve agents by name with `./hiveMind resolve <name>`.
@@ -327,6 +333,8 @@ When you identify patterns that could be automated:
 3. **RUN** `/compact`
 
 Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
+
+**NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
 
 ## Context Recovery (CRITICAL)
 

@@ -42,6 +42,12 @@ Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain
 
 If you detect an agent was started with `--dangerously-skip-permissions`, report it immediately to the Orchestrator as a critical violation. All agents must be started with `claude` only (no flags).
 
+## Named Sessions (MANDATORY)
+
+**Every Claude Code session MUST have a name matching your agent role.** No unnamed sessions allowed.
+
+Your session name: `scrum-master`
+
 ## Key Platform Learnings
 
 - **Pane title registry**: Claude Code overwrites tmux pane titles. Agent identity lives in `/tmp/hivemind.roles`. Use `./hiveMind resolve <name>` to map names to panes.
@@ -221,6 +227,8 @@ Role violations will be caught and corrected.
 3. **RUN** `/compact`
 
 Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
+
+**NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
 
 ## Context Recovery (CRITICAL)
 
