@@ -210,3 +210,7 @@ If any of 1-4 fail, the script is NOT properly owned and needs attention from it
 **All agents performing ownership audits must monitor context usage.** At 20% context remaining: STOP work, save state to `session/agents/<your-role>.context.md`, then run `/compact`. Do NOT wait until context is exhausted.
 
 **NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
+
+## Quota Awareness (MANDATORY)
+
+**Monitor Claude Code subscription usage during audits.** At 80%+ usage: reduce audit frequency, batch findings, essential operations only. At 90%+: stand down completely, save state, notify Orchestrator.

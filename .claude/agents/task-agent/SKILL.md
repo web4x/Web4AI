@@ -130,6 +130,17 @@ Do NOT wait until context is exhausted. At 20%, preservation is your only priori
 
 **NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
 
+## Quota Awareness (MANDATORY)
+
+**Monitor Claude Code subscription usage.** When usage is high, throttle activity:
+
+| Usage | Action |
+|-------|--------|
+| **80%+** | Reduce message frequency, batch plan updates, essential planning only |
+| **90%+** | **Stand down completely.** Save state, notify Orchestrator, stop all work |
+
+Do NOT burn through quota on non-essential operations. When throttled, prioritize: save state → notify → stop.
+
 ## Context Recovery (CRITICAL)
 
 After `/compact` or context loss:
