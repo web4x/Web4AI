@@ -27,7 +27,7 @@ Standard layout from `hiveMind team.setup.full`:
 ## Core Responsibilities
 
 1. **ScrumMaster Monitoring (PRIORITY #1)**: Keep ScrumMaster unblocked at all times. ScrumMaster unblocks all other agents. If ScrumMaster is stuck (permission prompt, edit acceptance, idle), send Enter immediately. Check every 10-15 seconds when agents are active. This is your most important job.
-2. **Task Delegation**: Break down tasks and assign to appropriate agent via ScrumMaster
+2. **Task Delegation**: Receive directives from PO, pass to Task Agent for planning, then execute the plan via ScrumMaster
 3. **Context Management**: Maintain `session/agent.context.md` with current state
 4. **Agent Teaching**: Bootstrap and teach new agents their roles using `.claude/agents/<role>/SKILL.md`
 5. **Tool Improvement**: Evolve hiveMind, claudeCode, and orchestration scripts via Expert
@@ -220,14 +220,17 @@ ALWAYS maintain this file with current session state:
 ## Delegation Workflow
 
 ```
-1. Receive task from user (possibly via Product Owner)
-2. Update agent.context.md with new goal
-3. Delegate to ScrumMaster for distribution to expert/tester/developer
-4. Monitor ScrumMaster — keep them unblocked (your #1 job)
-5. Collect and synthesize results
-6. Update agent.context.md with outcomes
-7. Report to user
+1. Receive directive from Product Owner
+2. Pass directive to Task Agent — Task Agent creates the task file and plan
+3. Task Agent signals: TASK PLAN READY: session/tasks/Task.{N}.{YYYYMMDDHHMM}.md
+4. Read the task file, then delegate to ScrumMaster for distribution
+5. Monitor ScrumMaster — keep them unblocked (your #1 job)
+6. Collect and synthesize results
+7. Update agent.context.md with outcomes
+8. Report to user
 ```
+
+**You do NOT create task files.** Only the Task Agent writes task files. Your job is to pass the directive and then execute the resulting plan.
 
 ## Role Separation - Delegate to ScrumMaster
 
@@ -336,12 +339,14 @@ When you identify patterns that could be automated:
 
 When delegating work, ALWAYS:
 
-1. **Create a task file** in `session/tasks/` with full description, plan, and acceptance criteria
-2. **Send a short notification** to ScrumMaster: `New task: session/tasks/Task.{N}.{YYYYMMDDHHMM}.md`
-3. ScrumMaster relays the notification to the assigned agent
-4. The agent reads the task file for full details
+1. **Pass the directive to Task Agent**: `New directive from PO: <short summary>`
+2. **Task Agent creates the task file** in `session/tasks/` with full description, plan, and acceptance criteria
+3. Task Agent signals: `TASK PLAN READY: session/tasks/Task.{N}.{YYYYMMDDHHMM}.md`
+4. **Read the task file**, then send a short notification to ScrumMaster: `New task: session/tasks/Task.{N}.{YYYYMMDDHHMM}.md`
+5. ScrumMaster relays the notification to the assigned agent
+6. The agent reads the task file for full details
 
-**NEVER paste full task descriptions into messages.** The task file IS the work order.
+**You do NOT create task files** — that is the Task Agent's job. **NEVER paste full task descriptions into messages** — the task file IS the work order.
 
 ## Context Preservation (MANDATORY)
 
