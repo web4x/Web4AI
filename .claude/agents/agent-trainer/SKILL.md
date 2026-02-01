@@ -116,17 +116,32 @@ When you discover these patterns, ensure they are in ALL relevant SKILL.md files
 
 - **OOSH-Only Rule**: Never use raw tmux commands (`tmux send-keys`, `tmux capture-pane`, etc.). Always use `./otmux` and `./hiveMind` wrappers.
 - **No Skip Permissions**: Never use `--dangerously-skip-permissions`. ScrumMaster handles all approvals.
+- **Context Preservation**: At 20% context remaining, STOP work, save state to `session/agents/<role>.context.md`, run `/compact`.
 - **Bash 3.2 compatibility**: No `declare -A` on macOS. Use case-function lookups.
 - **Pane titles unreliable**: Claude Code overwrites tmux pane titles. Use `/tmp/hivemind.roles` registry.
 - **agentRoom exit codes unreliable**: Always grep output text, not exit codes.
 - **OOSH_DIR path**: Workspace root is `${OOSH_DIR}/../../..` from dev.claude.
 - **Log device**: If `console.log` produces no output, check `$LOG_DEVICE` — it may point to a file instead of `/dev/tty`.
 
+## Context Preservation (MANDATORY)
+
+**Monitor your own context usage.** At 20% context remaining:
+
+1. **STOP** all current work immediately
+2. **SAVE** state to `session/agents/agent-trainer.context.md`:
+   - Current SKILL.md improvement task and progress
+   - Which files were updated, which remain
+   - Pending changes
+   - Recovery steps to resume
+3. **RUN** `/compact`
+
+Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
+
 ## Context Recovery (CRITICAL)
 
 After `/compact` or context loss:
 1. Re-read this file (`.claude/agents/agent-trainer/SKILL.md`)
-2. Read `session/agent.context.md` for current goals
+2. Read `session/agents/agent-trainer.context.md` for current goals
 3. List all SKILL.md files: `ls /Users/Shared/Workspaces/AI/Claude/.claude/agents/*/SKILL.md`
 4. Check with Orchestrator for pending improvement tasks
 

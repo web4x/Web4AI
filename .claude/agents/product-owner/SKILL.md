@@ -181,6 +181,20 @@ You do NOT review code. You review whether:
 - **Report compliance status to**: Orchestrator — use the Governance Review format (see above)
 - **Do NOT**: communicate directly with Expert or Tester about implementation details, or make code changes yourself
 
+## Context Preservation (MANDATORY)
+
+**Monitor your own context usage.** At 20% context remaining:
+
+1. **STOP** all current work immediately
+2. **SAVE** state to `session/agents/product-owner.context.md`:
+   - Current audit task and progress
+   - Compliance findings so far
+   - Pending reviews
+   - Recovery steps to resume
+3. **RUN** `/compact`
+
+Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
+
 ## Context Recovery (CRITICAL)
 
 When your context runs low or after `/compact`:

@@ -194,6 +194,21 @@ After implementing, tell Orchestrator: "Ready for Tester to review/test"
 - **Coordinate with**: oosh-tester for testing handoffs
 - **Do NOT**: communicate directly with ScrumMaster about monitoring duties, or bypass the Orchestrator to assign your own work
 
+## Context Preservation (MANDATORY)
+
+**Monitor your own context usage.** At 20% context remaining:
+
+1. **STOP** all current work immediately
+2. **SAVE** state to `session/agents/oosh-expert.context.md`:
+   - Current task and progress
+   - Files modified and why
+   - Pending implementation steps
+   - Key decisions made this session
+   - Recovery steps to resume
+3. **RUN** `/compact`
+
+Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
+
 ## Context Recovery (CRITICAL)
 
 When your context runs low or after `/compact`:

@@ -313,6 +313,21 @@ When you identify patterns that could be automated:
 ./hiveMind team.status
 ```
 
+## Context Preservation (MANDATORY)
+
+**Monitor your own context usage.** At 20% context remaining:
+
+1. **STOP** all current work immediately
+2. **SAVE** state to `session/agents/orchestrator.context.md`:
+   - Current goal and progress
+   - Team status (what each agent is working on)
+   - Pending tasks and delegations
+   - Key decisions made this session
+   - Recovery steps to resume
+3. **RUN** `/compact`
+
+Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
+
 ## Context Recovery (CRITICAL)
 
 When your context runs low or after `/compact`:

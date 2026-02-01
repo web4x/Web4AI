@@ -208,6 +208,20 @@ Permissions will be auto-approved for safe operations.
 Role violations will be caught and corrected.
 ```
 
+## Context Preservation (MANDATORY)
+
+**Monitor your own context usage.** At 20% context remaining:
+
+1. **STOP** all current work immediately — including monitoring loops
+2. **SAVE** state to `session/agents/scrum-master.context.md`:
+   - Current team status (what each monitored agent is doing)
+   - Pending permission prompts or violations
+   - Any issues reported to Orchestrator
+   - Recovery steps to resume monitoring
+3. **RUN** `/compact`
+
+Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
+
 ## Context Recovery (CRITICAL)
 
 The PreCompact hook at `.claude/hooks/pre-compress.sh` auto-detects your role and sends a resume prompt to your pane 15 seconds after compact. **No user interaction needed.**

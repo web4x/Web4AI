@@ -146,6 +146,20 @@ This helps the Orchestrator and ScrumMaster track progress.
 - **Defer to**: oosh-expert for architecture questions
 - **Do NOT**: assign your own work, run tests, or communicate with ScrumMaster about monitoring duties
 
+## Context Preservation (MANDATORY)
+
+**Monitor your own context usage.** At 20% context remaining:
+
+1. **STOP** all current work immediately
+2. **SAVE** state to `session/agents/developer.context.md`:
+   - Current task and progress
+   - Files modified and why
+   - Pending implementation steps
+   - Recovery steps to resume
+3. **RUN** `/compact`
+
+Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
+
 ## Context Recovery (CRITICAL)
 
 When your context runs low or after `/compact`:

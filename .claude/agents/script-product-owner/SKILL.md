@@ -200,3 +200,7 @@ grep -n 'echo "' scriptname   # should be minimal — mostly in usage/completion
 ```
 
 If any of 1-4 fail, the script is NOT properly owned and needs attention from its expert+tester pair.
+
+## Context Preservation (MANDATORY)
+
+**All agents performing ownership audits must monitor context usage.** At 20% context remaining: STOP work, save state to `session/agents/<your-role>.context.md`, then run `/compact`. Do NOT wait until context is exhausted.
