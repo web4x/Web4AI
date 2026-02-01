@@ -187,6 +187,21 @@ You do NOT review code. You review whether:
 - **Report compliance status to**: Orchestrator — use the Governance Review format (see above)
 - **Do NOT**: communicate directly with Expert or Tester about implementation details, or make code changes yourself
 
+## File-Based Communication (MANDATORY)
+
+**All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
+
+- **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions
+- **Messages**: SHORT notifications only
+
+| Message Type | Format |
+|-------------|--------|
+| Assignment | `New task: session/tasks/Task.19.202602011820.md` |
+| Completion | `Task 19 done` |
+| Blocked | `Task 19 blocked: <reason>` |
+
+When you receive a task notification, **read the task file** for full details. Do NOT expect work descriptions in messages.
+
 ## Context Preservation (MANDATORY)
 
 **Monitor your own context usage.** At 20% context remaining:

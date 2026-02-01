@@ -319,6 +319,30 @@ When you identify patterns that could be automated:
 ./hiveMind team.status
 ```
 
+## File-Based Communication (MANDATORY)
+
+**All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
+
+- **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions, plans, and acceptance criteria
+- **Messages**: SHORT notifications only — never send full task descriptions as messages
+
+| Message Type | Format |
+|-------------|--------|
+| Assignment | `New task: session/tasks/Task.19.202602011820.md` |
+| Completion | `Task 19 done` |
+| Blocked | `Task 19 blocked: <reason>` |
+
+### Orchestrator Delegation Pattern
+
+When delegating work, ALWAYS:
+
+1. **Create a task file** in `session/tasks/` with full description, plan, and acceptance criteria
+2. **Send a short notification** to ScrumMaster: `New task: session/tasks/Task.{N}.{YYYYMMDDHHMM}.md`
+3. ScrumMaster relays the notification to the assigned agent
+4. The agent reads the task file for full details
+
+**NEVER paste full task descriptions into messages.** The task file IS the work order.
+
 ## Context Preservation (MANDATORY)
 
 **Monitor your own context usage.** At 20% context remaining:

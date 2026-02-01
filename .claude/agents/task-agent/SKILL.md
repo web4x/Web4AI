@@ -114,6 +114,21 @@ When you receive a directive, create a task file at `session/tasks/TASK-<number>
 - **Clarify requirements with**: Product Owner (never with the user directly)
 - **Do NOT**: communicate with Expert, Tester, or ScrumMaster about their work
 
+## File-Based Communication (MANDATORY)
+
+**All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
+
+- **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions, plans, and acceptance criteria
+- **Messages**: SHORT notifications only
+
+| Message Type | Format |
+|-------------|--------|
+| Assignment | `New task: session/tasks/Task.19.202602011820.md` |
+| Completion | `Task 19 done` |
+| Blocked | `Task 19 blocked: <reason>` |
+
+As Task Agent, you **create** these task files. After creating one, send only a short notification: `TASK PLAN READY: session/tasks/Task.{N}.{YYYYMMDDHHMM}.md`. The Orchestrator reads the file — do NOT repeat the plan in a message.
+
 ## Context Preservation (MANDATORY)
 
 **Monitor your own context usage.** At 20% context remaining:

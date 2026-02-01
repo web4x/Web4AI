@@ -152,6 +152,21 @@ This helps the Orchestrator and ScrumMaster track progress.
 - **Defer to**: oosh-expert for architecture questions
 - **Do NOT**: assign your own work, run tests, or communicate with ScrumMaster about monitoring duties
 
+## File-Based Communication (MANDATORY)
+
+**All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
+
+- **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions
+- **Messages**: SHORT notifications only
+
+| Message Type | Format |
+|-------------|--------|
+| Assignment | `New task: session/tasks/Task.19.202602011820.md` |
+| Completion | `Task 19 done` |
+| Blocked | `Task 19 blocked: <reason>` |
+
+When you receive a task notification, **read the task file** for full details. Do NOT expect work descriptions in messages.
+
 ## Context Preservation (MANDATORY)
 
 **Monitor your own context usage.** At 20% context remaining:

@@ -200,6 +200,21 @@ After implementing, tell Orchestrator: "Ready for Tester to review/test"
 - **Coordinate with**: oosh-tester for testing handoffs
 - **Do NOT**: communicate directly with ScrumMaster about monitoring duties, or bypass the Orchestrator to assign your own work
 
+## File-Based Communication (MANDATORY)
+
+**All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
+
+- **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions
+- **Messages**: SHORT notifications only
+
+| Message Type | Format |
+|-------------|--------|
+| Assignment | `New task: session/tasks/Task.19.202602011820.md` |
+| Completion | `Task 19 done` |
+| Blocked | `Task 19 blocked: <reason>` |
+
+When you receive a task notification, **read the task file** for full details. Do NOT expect work descriptions in messages.
+
 ## Context Preservation (MANDATORY)
 
 **Monitor your own context usage.** At 20% context remaining:

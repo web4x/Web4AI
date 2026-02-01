@@ -126,11 +126,27 @@ When you discover these patterns, ensure they are in ALL relevant SKILL.md files
 - **Save Before Compact**: NEVER run `/compact` without saving state first. Sequence is always STOP → SAVE → `/compact`.
 - **Named Sessions**: Every Claude Code session must have a name matching the agent role. No unnamed sessions.
 - **Quota Awareness**: At 80%+ subscription usage, throttle activity. At 90%+, stand down completely.
+- **File-Based Communication**: Tasks in `session/tasks/`, messages are short notifications only. Never send full descriptions in messages.
 - **Bash 3.2 compatibility**: No `declare -A` on macOS. Use case-function lookups.
 - **Pane titles unreliable**: Claude Code overwrites tmux pane titles. Use `/tmp/hivemind.roles` registry.
 - **agentRoom exit codes unreliable**: Always grep output text, not exit codes.
 - **OOSH_DIR path**: Workspace root is `${OOSH_DIR}/../../..` from dev.claude.
 - **Log device**: If `console.log` produces no output, check `$LOG_DEVICE` — it may point to a file instead of `/dev/tty`.
+
+## File-Based Communication (MANDATORY)
+
+**All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
+
+- **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions
+- **Messages**: SHORT notifications only
+
+| Message Type | Format |
+|-------------|--------|
+| Assignment | `New task: session/tasks/Task.19.202602011820.md` |
+| Completion | `Task 19 done` |
+| Blocked | `Task 19 blocked: <reason>` |
+
+When you receive a task notification, **read the task file** for full details. Do NOT expect work descriptions in messages.
 
 ## Context Preservation (MANDATORY)
 

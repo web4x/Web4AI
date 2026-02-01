@@ -214,6 +214,23 @@ Permissions will be auto-approved for safe operations.
 Role violations will be caught and corrected.
 ```
 
+## File-Based Communication (MANDATORY)
+
+**All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
+
+- **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions
+- **Messages**: SHORT notifications only — never relay full task descriptions
+
+| Message Type | Format |
+|-------------|--------|
+| Assignment | `New task: session/tasks/Task.19.202602011820.md` |
+| Completion | `Task 19 done` |
+| Blocked | `Task 19 blocked: <reason>` |
+
+### ScrumMaster Relay Rule
+
+When Orchestrator sends a task notification, relay the **short notification only** to the assigned agent. The agent reads the task file themselves. Do NOT copy task descriptions into your messages — that wastes tokens and duplicates information.
+
 ## Context Preservation (MANDATORY)
 
 **Monitor your own context usage.** At 20% context remaining:
