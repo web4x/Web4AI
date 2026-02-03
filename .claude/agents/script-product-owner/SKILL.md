@@ -211,7 +211,7 @@ If any of 1-4 fail, the script is NOT properly owned and needs attention from it
 
 ## Context Preservation (MANDATORY)
 
-**All agents performing ownership audits must monitor context usage.** At 20% context remaining: STOP work, save state to `session/agents/<your-role>.context.md`, then run `/compact`. Do NOT wait until context is exhausted.
+**All agents performing ownership audits must monitor context usage.** At 20% context remaining: STOP work, save state to `session/agents/<your-role>.context.md` following the schema in `docs/context-schema.md`, then run `/compact`. Do NOT wait until context is exhausted.
 
 **NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
 

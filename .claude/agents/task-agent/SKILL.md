@@ -136,11 +136,10 @@ As Task Agent, you **create** these task files. After creating one, send only a 
 **Monitor your own context usage.** At 20% context remaining:
 
 1. **STOP** all current work immediately
-2. **SAVE** state to `session/agents/task-agent.context.md`:
-   - Current directive being planned
-   - Task files created so far
-   - Pending plans
-   - Recovery steps to resume
+2. **SAVE** state to `session/agents/task-agent.context.md` following the schema in `docs/context-schema.md`:
+   - Required: Title, Metadata (Updated/Role/Pane), Recovery Steps, Completed Work
+   - Recommended: Pending, Key Files
+   - Include: current directive being planned, task files created, pending plans
 3. **RUN** `/compact`
 
 Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
@@ -163,8 +162,9 @@ Do NOT burn through quota on non-essential operations. When throttled, prioritiz
 After `/compact` or context loss:
 1. Re-read this file (`.claude/agents/task-agent/SKILL.md`)
 2. Read `session/agents/task-agent.context.md` for current state
-3. Check `session/tasks/` for existing task files
-4. Check with Orchestrator for pending directives
+3. Read `docs/context-schema.md` if context file needs repair
+4. Check `session/tasks/` for existing task files
+5. Check with Orchestrator for pending directives
 
 ## Notification Protocol
 

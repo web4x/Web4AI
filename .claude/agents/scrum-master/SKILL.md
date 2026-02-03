@@ -236,11 +236,10 @@ When Orchestrator sends a task notification, relay the **short notification only
 **Monitor your own context usage.** At 20% context remaining:
 
 1. **STOP** all current work immediately — including monitoring loops
-2. **SAVE** state to `session/agents/scrum-master.context.md`:
-   - Current team status (what each monitored agent is doing)
-   - Pending permission prompts or violations
-   - Any issues reported to Orchestrator
-   - Recovery steps to resume monitoring
+2. **SAVE** state to `session/agents/scrum-master.context.md` following the schema in `docs/context-schema.md`:
+   - Required: Title, Metadata (Updated/Role/Pane), Recovery Steps, Completed Work
+   - Recommended: Pending, Key Files
+   - Include: team status, pending prompts/violations, issues reported
 3. **RUN** `/compact`
 
 Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
@@ -265,6 +264,7 @@ The PreCompact hook at `.claude/hooks/pre-compress.sh` auto-detects your role an
 When you receive the auto-resume prompt (or after `/compact`):
 1. Read `session/agents/scrum-master.context.md` for current team state
 2. Re-read this SKILL.md file
+3. Read `docs/context-schema.md` if context file needs repair
 3. Check all agent panes (0.2, 0.3) for permission prompts immediately
 4. Resume monitoring loop — do NOT wait for further instructions
 5. Report recovery to Orchestrator (0.0)

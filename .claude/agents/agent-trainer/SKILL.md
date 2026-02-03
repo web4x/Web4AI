@@ -127,6 +127,7 @@ When you discover these patterns, ensure they are in ALL relevant SKILL.md files
 - **Named Sessions**: Every Claude Code session must have a name matching the agent role. No unnamed sessions.
 - **Quota Awareness**: At 80%+ subscription usage, throttle activity. At 90%+, stand down completely.
 - **File-Based Communication**: Tasks in `session/tasks/`, messages are short notifications only. Never send full descriptions in messages.
+- **Context Schema**: Context files must follow `docs/context-schema.md`. Required: Title, Metadata, Recovery Steps, Completed Work.
 - **Bash 3.2 compatibility**: No `declare -A` on macOS. Use case-function lookups.
 - **Pane titles unreliable**: Claude Code overwrites tmux pane titles. Use `/tmp/hivemind.roles` registry.
 - **agentRoom exit codes unreliable**: Always grep output text, not exit codes.
@@ -153,11 +154,10 @@ When you receive a task notification, **read the task file** for full details. D
 **Monitor your own context usage.** At 20% context remaining:
 
 1. **STOP** all current work immediately
-2. **SAVE** state to `session/agents/agent-trainer.context.md`:
-   - Current SKILL.md improvement task and progress
-   - Which files were updated, which remain
-   - Pending changes
-   - Recovery steps to resume
+2. **SAVE** state to `session/agents/agent-trainer.context.md` following the schema in `docs/context-schema.md`:
+   - Required: Title, Metadata (Updated/Role/Pane), Recovery Steps, Completed Work
+   - Recommended: Pending, Key Files
+   - Include: current improvement task, files updated/remaining, pending changes
 3. **RUN** `/compact`
 
 Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
@@ -180,8 +180,9 @@ Do NOT burn through quota on non-essential operations. When throttled, prioritiz
 After `/compact` or context loss:
 1. Re-read this file (`.claude/agents/agent-trainer/SKILL.md`)
 2. Read `session/agents/agent-trainer.context.md` for current goals
-3. List all SKILL.md files: `ls /Users/Shared/Workspaces/AI/Claude/.claude/agents/*/SKILL.md`
-4. Check with Orchestrator for pending improvement tasks
+3. Read `docs/context-schema.md` if context file needs repair
+4. List all SKILL.md files: `ls /Users/Shared/Workspaces/AI/Claude/.claude/agents/*/SKILL.md`
+5. Check with Orchestrator for pending improvement tasks
 
 ## Communication
 

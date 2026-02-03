@@ -264,12 +264,10 @@ When you receive a task notification, **read the task file** for full details. D
 **Monitor your own context usage.** At 20% context remaining:
 
 1. **STOP** all current work immediately
-2. **SAVE** state to `session/agents/oosh-tester.context.md`:
-   - Current test task and progress
-   - Test results so far (pass/fail counts)
-   - Pending test runs
-   - Any failures reported to Orchestrator
-   - Recovery steps to resume
+2. **SAVE** state to `session/agents/oosh-tester.context.md` following the schema in `docs/context-schema.md`:
+   - Required: Title, Metadata (Updated/Role/Pane), Recovery Steps, Completed Work
+   - Recommended: Pending, Key Files
+   - Include: test results (pass/fail counts), pending test runs, failures reported
 3. **RUN** `/compact`
 
 Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
@@ -291,9 +289,10 @@ Do NOT burn through quota on non-essential operations. When throttled, prioritiz
 
 When your context runs low or after `/compact`:
 1. Re-read `.claude/agents/oosh-tester/SKILL.md` (this file)
-2. Read `docs/test-suite.md` for testing patterns
-3. Read `docs/log-levels-and-testing.md` for log level findings and debugging guide
-4. Read `session/agent.context.md` for current goals and tasks
+2. Read `session/agents/oosh-tester.context.md` for current goals and tasks
+3. Read `docs/context-schema.md` if context file needs repair
+4. Read `docs/test-suite.md` for testing patterns
+5. Read `docs/log-levels-and-testing.md` for log level findings and debugging guide
 5. Check with Orchestrator (pane 0.0) for what to resume
 
 ## Example Tester Tasks

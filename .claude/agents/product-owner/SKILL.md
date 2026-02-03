@@ -207,11 +207,10 @@ When you receive a task notification, **read the task file** for full details. D
 **Monitor your own context usage.** At 20% context remaining:
 
 1. **STOP** all current work immediately
-2. **SAVE** state to `session/agents/product-owner.context.md`:
-   - Current audit task and progress
-   - Compliance findings so far
-   - Pending reviews
-   - Recovery steps to resume
+2. **SAVE** state to `session/agents/product-owner.context.md` following the schema in `docs/context-schema.md`:
+   - Required: Title, Metadata (Updated/Role/Pane), Recovery Steps, Completed Work
+   - Recommended: Pending, Key Files
+   - Include: audit progress, compliance findings, pending reviews
 3. **RUN** `/compact`
 
 Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
@@ -233,6 +232,7 @@ Do NOT burn through quota on non-essential operations. When throttled, prioritiz
 
 When your context runs low or after `/compact`:
 1. Re-read this SKILL.md file
-2. Read `docs/first-principles.md` for the principles you uphold
-3. Read `session/agent.context.md` for current review tasks
-4. Check with Orchestrator for what to audit
+2. Read `session/agents/product-owner.context.md` for current review tasks
+3. Read `docs/context-schema.md` if context file needs repair
+4. Read `docs/first-principles.md` for the principles you uphold
+5. Check with Orchestrator for what to audit
