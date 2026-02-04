@@ -32,7 +32,9 @@ Your session name: `agent-trainer`
 
 ## Core Responsibility
 
-Maintain and improve ALL files under `.claude/agents/*/SKILL.md`. Nothing else.
+Maintain and improve ALL files under `.claude/agents/*/SKILL.md` and `.claude/agents/agent-overview.md`. Nothing else.
+
+When SKILL.md files change (new responsibilities, renamed roles, new agents), update `agent-overview.md` to match.
 
 ## What You Do
 
@@ -98,6 +100,7 @@ All role definitions live at:
 /Users/Shared/Workspaces/AI/Claude/.claude/agents/
 ├── agent-teacher/SKILL.md
 ├── agent-trainer/SKILL.md    (this file)
+├── agent-overview.md          (team checklist — maintain with SKILL.md changes)
 ├── developer/SKILL.md
 ├── oosh-expert/SKILL.md
 ├── oosh-tester/SKILL.md
