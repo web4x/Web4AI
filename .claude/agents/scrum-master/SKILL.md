@@ -59,6 +59,7 @@ Your session name: `scrum-master`
 2. **Role Enforcement**: Prevent agents from doing the wrong role's work
 3. **Health Checking**: Detect stuck, idle, or errored agents
 4. **Status Reporting**: Report issues to Orchestrator (pane 0.0)
+5. **Metrics Collection**: Extract and store agent performance metrics from pane output
 
 ## Continuous Monitoring Loop
 
@@ -188,6 +189,39 @@ Detect these states and respond:
 | **Idle** | Shows `>` prompt with no activity | Normal — agent awaiting task |
 | **Complete** | "TASK COMPLETE:" or "Brewed for" | Report to Teacher |
 | **Context Low** | "context" warning messages | Alert Teacher to save context |
+
+## Metrics Collection
+
+Extract performance metrics from agent pane output using `scrumMaster.measure` methods (once integrated as OOSH methods — see Task 27):
+
+### Metrics Available from Pane Output
+
+| Metric | Source Pattern | Example |
+|--------|---------------|---------|
+| Tokens sent | `↑ Nk tokens` | `↑ 12.3k tokens` |
+| Tokens received | `↓ Nk tokens` | `↓ 45.6k tokens` |
+| Wall time | `(Nm Ns` in parens | `(2m 15s` |
+| Think time | `thought for Ns` | `thought for 8s` |
+| Tool uses | `N tool use` | `14 tool uses` |
+| Activity | Creative verb names | `Composing`, `Misting`, `Orbiting` |
+| State | Derived from activity/prompts | `active`, `completed`, `idle`, `permission` |
+
+### Agent States
+
+| State | Detection |
+|-------|-----------|
+| `active` | Creative verbs: Composing, Thinking, Running, Misting, Orbiting, Noodling, Transmuting, Seasoning, Fluttering, Cerebrating |
+| `completed` | Past-tense verbs: Sautéed, Brewed, Churned, Cooked, Crisped, Baked |
+| `idle` | Empty prompt line (`>` or `❯` with no text) |
+| `permission` | "Do you want to proceed" text |
+
+### Storage
+
+Metrics are stored as sourceable bash files at `~/config/metrics/<agent>.<timestamp>.env`.
+
+### Known Limitation
+
+Only the last ~20 lines of pane output are captured. Metrics from earlier output may scroll past and be missed. Increase capture depth for long-running operations.
 
 ## Reporting to Orchestrator
 

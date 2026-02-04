@@ -128,6 +128,7 @@ When you discover these patterns, ensure they are in ALL relevant SKILL.md files
 - **Quota Awareness**: At 80%+ subscription usage, throttle activity. At 90%+, stand down completely.
 - **File-Based Communication**: Tasks in `session/tasks/`, messages are short notifications only. Never send full descriptions in messages.
 - **Context Schema**: Context files must follow `docs/context-schema.md`. Required: Title, Metadata, Recovery Steps, Completed Work.
+- **Pane Metrics**: ScrumMaster collects agent metrics (tokens, timing, state) from pane output. Prototype at `/tmp/measure_pane.sh`, integrating into scrumMaster as OOSH methods (Task 27).
 - **Bash 3.2 compatibility**: No `declare -A` on macOS. Use case-function lookups.
 - **Pane titles unreliable**: Claude Code overwrites tmux pane titles. Use `/tmp/hivemind.roles` registry.
 - **agentRoom exit codes unreliable**: Always grep output text, not exit codes.

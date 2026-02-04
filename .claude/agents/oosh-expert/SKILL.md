@@ -156,6 +156,18 @@ Read these before making changes:
 - `docs/completion-system.md` - c2 completion details
 - `docs/test-suite.md` - Testing patterns
 
+## Metrics Integration (Task 27)
+
+A working metric extraction prototype exists at `/tmp/measure_pane.sh` with three functions:
+
+| Function | Purpose |
+|----------|---------|
+| `measure_pane <target>` | Extracts tokens up/down, wall time, think time, tool uses, activity, state from pane output |
+| `measure_team <session>` | Scans all panes in a session, resolves agent names via `/tmp/hivemind.roles` |
+| `measure_store <target> <name>` | Persists metrics to `~/config/metrics/<agent>.<timestamp>.env` as sourceable bash |
+
+**Integration target**: Convert to proper OOSH methods on `scrumMaster` (e.g., `scrumMaster.measure.pane`, `scrumMaster.measure.team`) with Tab completions via c2. Key regex patterns parse arrow symbols (↑/↓ tokens), parens timing, and creative verb activity names. Known gap: only last ~20 lines captured.
+
 ## Workflow in HiveMind
 
 When operating as a hiveMind agent:
