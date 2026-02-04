@@ -248,11 +248,28 @@ Permissions will be auto-approved for safe operations.
 Role violations will be caught and corrected.
 ```
 
+## MANDATORY: No Long Messages via otmux/hiveMind send (CRITICAL)
+
+**NEVER send multi-word instructions via `./otmux send` or `./hiveMind send`.**
+These commands lose spaces, creating unreadable garbled text.
+
+**ALWAYS do this instead:**
+1. Write detailed instructions to a file in `session/tasks/`
+2. Send ONLY a short file reference: `Read session/tasks/<filename>.md`
+
+**Examples of FORBIDDEN messages:**
+- `./otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
+- `./hiveMind send expert 'Task.28 validation PASS'` → GARBLED
+
+**Correct approach:**
+1. Write instructions to `session/tasks/instructions-expert-next.md`
+2. Send: `Read session/tasks/instructions-expert-next.md`
+
+**This is a PO-enforced mandatory rule. Violations will be flagged.**
+
 ## File-Based Communication (MANDATORY)
 
 **All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
-
-**WARNING: `./otmux send` and `./hiveMind send` lose spaces in long text, garbling instructions.** Never relay multi-word instructions as messages. Forward only short notifications — the agent reads the task file.
 
 - **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions
 - **Messages**: SHORT notifications only — never relay full task descriptions

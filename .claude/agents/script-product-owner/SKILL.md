@@ -205,11 +205,29 @@ grep -n 'echo "' scriptname   # should be minimal — mostly in usage/completion
 
 If any of 1-4 fail, the script is NOT properly owned and needs attention from its expert+tester pair.
 
+## MANDATORY: No Long Messages via otmux/hiveMind send (CRITICAL)
+
+**NEVER send multi-word instructions via `./otmux send` or `./hiveMind send`.**
+These commands lose spaces, creating unreadable garbled text.
+
+**ALWAYS do this instead:**
+1. Write detailed instructions to a file in `session/tasks/`
+2. Send ONLY a short file reference: `Read session/tasks/<filename>.md`
+
+**Examples of FORBIDDEN messages:**
+- `./otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
+- `./hiveMind send expert 'Task.28 validation PASS'` → GARBLED
+
+**Correct approach:**
+1. Write instructions to `session/tasks/instructions-expert-next.md`
+2. Send: `Read session/tasks/instructions-expert-next.md`
+
+**This is a PO-enforced mandatory rule. Violations will be flagged.**
+
 ## File-Based Communication (MANDATORY)
 
 **All work is defined in task files, not in messages.** Task files at `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` contain full descriptions. Messages between agents are short notifications only: `New task: <path>`, `Task N done`, `Task N blocked: <reason>`.
 
-**WARNING: `./otmux send` and `./hiveMind send` lose spaces in long text, garbling instructions.** Always write details to task files.
 
 ## Context Preservation (MANDATORY)
 
