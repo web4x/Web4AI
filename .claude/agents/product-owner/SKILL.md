@@ -191,6 +191,8 @@ You do NOT review code. You review whether:
 
 **All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
 
+**WARNING: `./otmux send` and `./hiveMind send` lose spaces in long text, garbling instructions.** Never expect multi-word instructions via messages. Read the task file for full details.
+
 - **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions
 - **Messages**: SHORT notifications only
 

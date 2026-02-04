@@ -120,6 +120,8 @@ When you receive a directive, create a task file at `session/tasks/TASK-<number>
 
 **All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
 
+**WARNING: `./otmux send` and `./hiveMind send` lose spaces in long text, garbling instructions.** Always write plans to task files — send only short notifications.
+
 - **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions, plans, and acceptance criteria
 - **Messages**: SHORT notifications only
 

@@ -129,6 +129,7 @@ When you discover these patterns, ensure they are in ALL relevant SKILL.md files
 - **File-Based Communication**: Tasks in `session/tasks/`, messages are short notifications only. Never send full descriptions in messages.
 - **Context Schema**: Context files must follow `docs/context-schema.md`. Required: Title, Metadata, Recovery Steps, Completed Work.
 - **Pane Metrics**: ScrumMaster collects agent metrics (tokens, timing, state) from pane output. Prototype at `/tmp/measure_pane.sh`, integrating into scrumMaster as OOSH methods (Task 27).
+- **No Garbled Messages**: `./otmux send` and `./hiveMind send` lose spaces in long text. Always write details to task files, send only short notifications.
 - **Bash 3.2 compatibility**: No `declare -A` on macOS. Use case-function lookups.
 - **Pane titles unreliable**: Claude Code overwrites tmux pane titles. Use `/tmp/hivemind.roles` registry.
 - **agentRoom exit codes unreliable**: Always grep output text, not exit codes.
@@ -138,6 +139,8 @@ When you discover these patterns, ensure they are in ALL relevant SKILL.md files
 ## File-Based Communication (MANDATORY)
 
 **All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
+
+**WARNING: `./otmux send` and `./hiveMind send` lose spaces in long text, garbling instructions.** Never expect multi-word instructions via messages. Read the task file for full details.
 
 - **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions
 - **Messages**: SHORT notifications only

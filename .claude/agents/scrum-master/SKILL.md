@@ -252,6 +252,8 @@ Role violations will be caught and corrected.
 
 **All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
 
+**WARNING: `./otmux send` and `./hiveMind send` lose spaces in long text, garbling instructions.** Never relay multi-word instructions as messages. Forward only short notifications — the agent reads the task file.
+
 - **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions
 - **Messages**: SHORT notifications only — never relay full task descriptions
 

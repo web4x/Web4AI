@@ -326,6 +326,8 @@ When you identify patterns that could be automated:
 
 **All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
 
+**WARNING: `./otmux send` and `./hiveMind send` lose spaces in long text, garbling instructions.** Never send multi-word instructions as messages. Write details to task files, send only short notifications.
+
 - **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions, plans, and acceptance criteria
 - **Messages**: SHORT notifications only — never send full task descriptions as messages
 
