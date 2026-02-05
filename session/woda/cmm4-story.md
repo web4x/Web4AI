@@ -33,6 +33,7 @@
 | 11 | [The Loop That Closed](cmm4-journey.html) | First complete PDCA cycle. Tasks 46-48 all delivered while writer wrote Ch10. Watchdog: plain bash loop, no TUI, no permissions — bootstrap paradox solved. Interventions: 8→1. Task 47 fixed symptom not cause. |
 | 12 | [The Watchdog That Didn't Watch](cmm4-journey.html) | Watchdog died (stale PID) before first useful action. Scribe died and was relaunched. 8 interventions again. Fix reveals next failure. Tasks 49-50 filed immediately (not 7 chapters later). |
 | 13 | [The PDCA That Accelerated](cmm4-journey.html) | Filing speed: 7→2→0 chapter delay. Team delivers in 1-3 chapters. Bottleneck is willingness to file, not team capacity. Intervention categories: routine, recovery, compensatory — each has a task. |
+| 14 | [The Writer Becomes the Machine](cmm4-journey.html) | Scribe dead. Writer absorbs all duties — faster but blind. No O agent = no peer monitoring. Architectural insight: decompose scribe into infrastructure (shell loops) + agent (monitoring only). |
 
 ### CMM2: Repeatable (Chapters 20–29)
 

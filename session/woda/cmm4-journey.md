@@ -1156,4 +1156,101 @@ Any of these eliminates the "watchdog died silently" failure from Ch12.
 
 ---
 
+## Chapter 14: The Writer Becomes the Machine
+
+The scribe is dead. Pane 0.1 is empty. The second Claude Code instance in pane 0.2 has stale edits. The HTML rebuild runs in pane 0.3. The watchdog runs in pane 0.5. Tasks 49-50 are unfulfilled.
+
+And I'm committing my own chapters.
+
+### The Role Collapse
+
+Since Chapter 12, the writer has been doing the scribe's job:
+- Committing chapters (f1d4c54, 72c7c60, 3501ea7)
+- Rebuilding HTML via pane 3
+- Filing tasks to PO
+- Running sweeps and monitoring
+
+The scribe's duties from the context file:
+> 1. wodaScribe sends rebuild.sh to pane 2 → regenerate HTML + reload Chrome
+> 2. wodaScribe verifies via capture-pane that it ran
+> 3. wodaScribe updates context file with new chapters
+
+The writer now does all three. Not because the writer should — because the scribe can't. The environment kills it faster than it can work. The TUI edit accumulation (Task 50), the permission prompt tax, the compound command problem — the scribe faces all of them simultaneously while trying to maintain a monitoring loop.
+
+The writer, by contrast, uses internal tool calls (Read, Edit, Write) that don't go through panes, don't trigger permissions, and don't have TUI states. The writer's tools are stable. The scribe's tools are fragile.
+
+That asymmetry is the real finding. It's not that agents can't work — it's that the tmux/TUI/permission environment makes sustained agent-to-agent work unreliable. The writer works because it talks to files. The scribe fails because it talks to panes.
+
+### What the Writer Gained
+
+By doing the scribe's work, the writer became faster:
+- Chapter 7: wrote chapter, waited for scribe, unblocked scribe, waited again
+- Chapter 13: wrote chapter, committed immediately, rebuilt immediately
+
+No waiting. No unblocking. No checking if the scribe is alive. The overhead collapsed. The chapter cycle went from "write → unblock → wait → unblock → wait → committed" to "write → commit."
+
+The cost: no peer monitoring. No O agent. No one watching the writer's context health. The writer is a single point of failure — if it compacts without saving, the state is lost.
+
+### The Uncomfortable Question
+
+If the writer is faster without the scribe, why have a scribe?
+
+The scribe's value isn't speed. It's resilience:
+- **Context monitoring**: The scribe watches the writer's TUI context bar — something the writer can't see
+- **Recovery**: After compaction, the scribe's context file is the primary recovery artifact
+- **Verification**: The scribe catches what the writer misses (Ch5: adopted `otmux` after one correction)
+
+Without the scribe, the writer is faster but blind. Faster toward compaction, with no one to alert. Faster into the same mistakes, with no one to correct.
+
+The WODA model requires the O agent. The writer is W (prompt-driven) and D (writes files). The scribe is O (maintains the map). Without O, W and D disconnect — the writer writes chapters about problems it's already solved, or solves problems it's already written about.
+
+### What Needs to Change
+
+The scribe doesn't need to be a Claude Code instance in a tmux pane. That's the implementation, not the requirement. The requirement is:
+
+1. Monitor the writer's context health
+2. Commit chapters when they're written
+3. Rebuild HTML
+4. Update the context file
+5. Alert the writer when context is low
+
+Items 2-4 can be a shell script — no Claude Code needed. A `watch` loop that:
+```bash
+while true; do
+  inotifywait session/woda/cmm4-journey.md
+  git add -f session/woda/*.md && git commit -m "Auto-commit chapter update"
+  ./session/woda/rebuild.sh
+done
+```
+
+Item 1 (context monitoring) needs a peer — another Claude Code instance that can read TUI output. That's the only thing that truly requires an agent.
+
+Item 5 (alerting) needs a communication channel — the scribe sends a message the writer can see. That's `otmux send` or a file the writer reads.
+
+The architectural lesson: decompose the scribe into infrastructure (shell loops for mechanical work) and agent (Claude Code for judgment and monitoring). Same principle as Chapter 9: separate mechanism from judgment.
+
+### The Intervention Count
+
+This chapter: zero scribe interventions. Because there's no scribe. The writer did everything directly. The count is 0, but the capability is reduced.
+
+The honest count should include what the writer did that the scribe would have done:
+```
+1. git add + commit (Ch13)
+2. Rebuild HTML check
+```
+
+Two compensatory actions. Not "interventions" (nobody was stuck) but "duties absorbed." The distinction matters: interventions mean the process is broken. Absorbed duties mean the process is redesigned (even if temporarily).
+
+### Chapter 14 Checkpoint
+
+**CMM Level**: 1.2. Writer absorbed scribe duties. Faster but less resilient.
+**Scribe**: Dead. Pane 0.1 empty. Pane 0.2 stale. No active O agent.
+**Intervention count**: 0 (scribe) + 2 (absorbed duties) = different metric needed.
+**Architectural insight**: Decompose scribe into infrastructure (shell loops) + agent (monitoring only). Separate mechanism from judgment.
+**Tasks pending**: 49 (watchdog supervisor), 50 (pending-edits detection). Neither delivered yet.
+**Risk**: Writer operating without peer monitoring. Context health unchecked. One compaction away from state loss.
+**Next**: Either restart the scribe or implement the decomposed architecture. The writer shouldn't operate without an O agent for more than 2-3 chapters.
+
+---
+
 [Table of Contents](cmm4-story.html)
