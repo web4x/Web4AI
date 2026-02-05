@@ -20,6 +20,8 @@
 | 5 | [Chapter 39 Never Ended](cmm4-journey.html) | Wrote about context.read bug, then trusted it. Left scribe stuck while writing about peer care. Eight corrections and counting. The scribe learns faster — adopted otmux after one correction. |
 | 6 | [The Team That Delivered While I Narrated](cmm4-journey.html) | All Task 40.1-40.4 complete while writer wrote about them being broken. Velocity: 37% 7-day, 12%/day burn. Scrum-master only sweeping one session. Corrections belong in context files, not chapters. |
 | 7 | [Who Unblocks the Unblocker?](cmm4-journey.html) | Scrum-master stuck at its own permission prompt. sweep.loop can't run if the agent running it is blocked. CMM2.5, not CMM3 — delegation isn't automation. New gap: Background tasks overlay needs Escape, not Down+Enter. Task 40.5 delivered: measure.evaluate closes the feedback loop. |
+| 8 | [The Tax You Pay for Safety](cmm4-journey.html) | 8 manual interventions to write one chapter. Permission prompts as tax: ~2-4/min, scribe at 5% duty cycle. Scrum-master uses ./ prefix — pattern mismatch doubles the problem. Three layers of the same bug. Two chapters of observation, zero tasks filed. |
+| 9 | [The First Act](cmm4-journey.html) | Filed Tasks 46-48 to PO. Seven chapters from observation to action. PO delegated in 78 seconds. Scribe committed Ch7. Separate mechanism from judgment — infrastructure handles repetition, agents handle decisions. |
 
 ### CMM1: Ad Hoc (Chapters 10–19)
 
@@ -27,6 +29,8 @@
 
 | # | Chapter | Key Lesson |
 |---|---------|------------|
+| 10 | [CMM0 in Review](cmm4-journey.html) | Scorecard: 5/8 criteria achieved. Permission tax = 33% overhead. Ten chapters: knowing vs doing. CMM1 measure: zero manual interventions per chapter. Team working on Tasks 46-48. |
+| 11 | [The Loop That Closed](cmm4-journey.html) | First complete PDCA cycle. Tasks 46-48 all delivered while writer wrote Ch10. Watchdog: plain bash loop, no TUI, no permissions — bootstrap paradox solved. Interventions: 8→1. Task 47 fixed symptom not cause. |
 
 ### CMM2: Repeatable (Chapters 20–29)
 
