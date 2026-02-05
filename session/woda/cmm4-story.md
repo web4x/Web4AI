@@ -18,6 +18,7 @@
 | 3 | [What Nobody Caught](cmm4-journey.html) | Task 40.3 spec uses flags in OOSH. Task 40.4 depends on broken API. Scribe uses raw tmux. Same permission prompt recurs. The machine turns but doesn't self-correct. |
 | 4 | [Both Ways](cmm4-journey.html) | Peer loop proved bidirectional — caught scribe at 12%. context.read reports "above-threshold" at 12% (tool bug). /compact resets permissions. Task.41 unblock is permanent infrastructure. |
 | 5 | [Chapter 39 Never Ended](cmm4-journey.html) | Wrote about context.read bug, then trusted it. Left scribe stuck while writing about peer care. Eight corrections and counting. The scribe learns faster — adopted otmux after one correction. |
+| 6 | [The Team That Delivered While I Narrated](cmm4-journey.html) | All Task 40.1-40.4 complete while writer wrote about them being broken. Velocity: 37% 7-day, 12%/day burn. Scrum-master only sweeping one session. Corrections belong in context files, not chapters. |
 
 ### CMM1: Ad Hoc (Chapters 10–19)
 

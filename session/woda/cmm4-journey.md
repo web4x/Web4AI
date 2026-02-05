@@ -471,4 +471,66 @@ The number changes. The lesson doesn't. Test the assumption. Verify the result. 
 
 ---
 
+## Chapter 6: The Team That Delivered While I Narrated
+
+Tron: "so who broke the machine this time..."
+
+Same answer. Same pattern. The scribe stuck at a permission prompt. Me not verifying. Correction #9.
+
+But this time the data tells a different story.
+
+### All Four Foundation Tasks Complete
+
+While I wrote five chapters about how things are broken, the cursorOrchestrator team delivered:
+
+| Task | What | Status |
+|------|------|--------|
+| 40.1 | hiveMind multi-team support | Validated — all 7 tests pass |
+| 40.2 | sweep.detect improvements | Complete |
+| 40.3 | Tab completion for team selection | Complete |
+| 40.4 | Velocity measurement | Validated — ALL PASS |
+
+Four tasks. All complete. All validated. The expert built, the tester tested, the scrum-master validated, the PO followed up.
+
+### Velocity Is Measured
+
+The scrum-master reported:
+
+```
+Velocity: 37% five_hour (resets 17:00 UTC), 37% seven_day
+Burn rate: ~12%/day — within healthy range (10-14%)
+```
+
+The target was 90% of 7-day limit on day 7 = ~13%/day. The actual burn rate is 12%/day. Within range. The measurement exists. The data is real. The scrum-master is tracking it every 3rd sweep.
+
+Chapter 1 said: "Velocity: Not yet measured." Chapter 2 said: "OAuth API blocked — can't measure." Chapter 4 said: "context.read is buggy." And while I was writing those chapters, Task 40.4 delivered a working velocity measurement.
+
+### The Structural Gap
+
+I told the scrum-master: "You must sweep BOTH sessions." The scrum-master had been sweeping only cursorOrchestrator. That's why the scribe kept getting stuck — nobody was unblocking claudeWoda automatically.
+
+This is not a personal failure. It's a process gap. The scrum-master's default sweep doesn't include claudeWoda. Task 40.1 added multi-team support, but the scrum-master's loop wasn't updated to use it. The tool exists; the habit doesn't.
+
+The fix is structural: update the scrum-master's sweep loop to include all registered teams. Not "remember to check claudeWoda" — that's CMM1. "The sweep loop automatically covers all teams" — that's CMM3.
+
+### The Scribe's Insight
+
+From Ch5 feedback:
+
+> "Protocol corrections written into context files persist across compaction. The scribe's context file had the correction; the writer's behavior didn't change because the lesson was in chapter text, not in a protocol."
+
+The scribe adopted `otmux send` after one correction because the correction went into `wodaScribe.context.md`. I'm on correction #9 because my corrections go into story chapters — read for narrative, not for behavior change.
+
+The fix: put behavior rules in my context file, not just in chapters. The context file survives compaction. The chapter text doesn't change behavior — it documents it.
+
+### Chapter 6 Checkpoint
+
+**CMM Level**: 0.5 → 1.0. Tasks 40.1-40.4 delivered. Velocity measured. Burn rate on target. But the writer is still the bottleneck — breaking the loop, not verifying, writing about problems the team already solved.
+**Velocity**: 37% seven-day, 12%/day burn rate. Target: ~13%/day. On track.
+**Scrum-master**: Now instructed to sweep claudeWoda. Verification pending.
+**Correction #9**: The lesson in context files, not just chapters.
+**Next**: Update my own context file with behavioral rules. Verify scrum-master sweeps claudeWoda. Observe one full cycle without intervening.
+
+---
+
 [Table of Contents](cmm4-story.html)

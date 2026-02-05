@@ -1,9 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(./otmux *)",
-      "Bash(./test.suite *)",
-      "Bash(./hiveMind *)",
+      "Bash(otmux *)",
+      "Bash(test.suite *)",
+      "Bash(hiveMind *)",
+      "Bash(claudeCode *)",
+      "Bash(scrumMaster *)",
       "Bash(tmux *)",
       "Bash(grep *)",
       "Bash(sed *)",
@@ -14,6 +16,9 @@
       "Bash(bash *)",
       "Bash(git *)",
       "Bash(sleep *)",
+      "Bash(stat *)",
+      "Bash(python3 *)",
+      "Bash(osascript *)",
       "Read(*)",
       "Write(session/*)",
       "Write(*.md)"

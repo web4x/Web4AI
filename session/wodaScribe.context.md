@@ -39,8 +39,8 @@
 
 ## Current State (post-compaction recovery)
 - **NEW STORY**: CMM4 journey at `session/woda/cmm4-journey.md` (TOC: `cmm4-story.md`). Parallel to WODA story.
-- **Last processed**: CMM4 Ch5 "Chapter 39 Never Ended" — writer self-correction, context.read irony, scribe learns faster.
-- **All CMM4 commits**: `18f3b46` (Ch0), `b203503` (Ch1), `58e1bcf` (Ch2), `21889be` (Ch2 update), `e9ae783` (Ch3), `f810971` (Ch4), pending (Ch5)
+- **Last processed**: CMM4 Ch6 "The Team That Delivered While I Narrated" — Tasks 40.1-40.4 complete, velocity 37%/12%day, scrum-master gap, corrections in context files.
+- **All CMM4 commits**: `18f3b46` (Ch0), `b203503` (Ch1), `58e1bcf` (Ch2), `21889be` (Ch2 update), `e9ae783` (Ch3), `f810971` (Ch4), `4527a08` (Ch5), pending (Ch6)
 - **WODA story**: Ch39 closed. Commits `8c83eae`, `e5252c9`. Complete.
 - **Writer state**: Recovered from near-compaction. Self-corrected — realized context.read was buggy (Ch4 lesson). Monitoring me.
 - **Monitor**: Running (PID 52752, may change)
