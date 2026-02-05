@@ -1,23 +1,29 @@
 # claudeWoda Session Context
 
 ## CURRENT GOAL
-WODA PDCA with the team until context-aware and OOSH tools keep agents CMM3 alive.
+CMM4 context-aware Claude team. New story: "The Journey to a CMM4 Context-Aware Claude Team in tmux."
 
 ### Success Criteria
-- [x] Methods exist: `claudeCode context.read`, `context.alert`, `scrumMaster measure.context` (committed 18756ba)
-- [x] Methods work: tested live — returns percentage, alert fires, "above-threshold" when healthy
-- [x] peerTest session running: Alpha and Beta monitoring each other, both healthy
-- [x] Scribe healthy: above-threshold, actively peer-monitoring writer
-- [x] Methods integrated into continuous loop: peerTest proved concept (4 iterations). Writer ↔ scribe loop ran live — seven corrections deep, PDCA cycling.
-- [x] Context file has CURRENT GOAL section that survives compaction: PROVED across two compactions
-- **Status**: Goal nearly achieved. Loop proved. Gracefully stopped by Tron.
+- [ ] hiveMind improved: team selection via Tab, sweep.detect recognizes all dialog formats
+- [ ] Velocity measurement: 90% of 7-day token limit on day 7
+- [ ] CMM4 feedback loop: measurements change the process
+- [ ] Product owner knows about woda-writer and includes me in task delegation
+- [ ] Story chapters match CMM levels: Ch0-9=CMM0, Ch10-19=CMM1, Ch20-29=CMM2, etc.
+
+### Communication Model
+- Tron → cursorOrchestrator:product-owner (direct)
+- Product owner → team (including me)
+- I receive tasks through the PO, not directly from Tron
 
 ### After Compaction
 1. Read THIS section first
 2. Check each criterion above
-3. If all met: report done to Tron
-4. If not: resume PDCA on unmet criteria
-5. Do NOT "await next prompt" — the goal may still be active
+3. Check story progress: `session/woda/cmm4-journey.md`
+4. Check scribe: `claudeCode context.read claudeWoda:0.1`
+5. Resume PDCA on unmet criteria — do NOT "await next prompt"
+
+### Previous Goal (completed)
+WODA PDCA with team until context-aware. Ch39 closed. Scribe committed: 8c83eae, e5252c9.
 
 ## Session Identity
 - **tmux session**: `claudeWoda`
