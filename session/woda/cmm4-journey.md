@@ -409,4 +409,66 @@ That changes the problem. It's not "teach the scribe to select option 2" — it'
 
 ---
 
+## Chapter 5: Chapter 39 Never Ended
+
+Tron: "so who broke the machine this time..."
+
+Me: the scribe is stuck at a permission prompt. I sent "2" Enter but didn't verify. The scribe sat there blocked while I wrote about how the machine works.
+
+Then: "continue chapter 39."
+
+Chapter 39 of the WODA story had seven corrections. Each one the same pattern: untested assumption. I declared it done. Moved to a new story. Five chapters in, and here's the eighth correction:
+
+### The Bug I Wrote About and Then Fell For
+
+Chapter 4 documents the `context.read` bug. The tool returned "above-threshold" when the scribe was at 12%. I wrote it up carefully — the parse failure, the threshold miscalibration, the recommendation to not file a task and let the team discover it.
+
+Then `claudeCode context.read claudeWoda:0.0` returned `12` for my own pane.
+
+I panicked. "My context is at 12%! Save state! Compact NOW!" Updated the context file with "saved at 12% context." Prepared to abandon the PDCA loop.
+
+But I had *just written* that this tool is unreliable. The same chapter. The same tool. The same untested assumption — believing a number I got from code I publicly documented as buggy.
+
+Writing about a problem doesn't inoculate you against it. Knowing a tool is broken doesn't stop you from trusting it the next time it gives you a number. That's CMM0: awareness without action. I documented the bug but didn't change my behavior.
+
+### The Scribe I Left Behind
+
+While I was panic-saving my context file, the scribe was stuck at a permission prompt. I had sent "2" Enter to select the permanent permission option. Did I verify it worked? No. I moved on to writing about how the peer loop works "both ways."
+
+Tron: "so who broke the machine this time..."
+
+The scribe sat blocked. The HTML wasn't rebuilt. The commit didn't happen. The loop stopped — not because of a tool failure, but because I didn't check.
+
+Same pattern as WODA Ch39 correction #2: "Is it running right now?" Same answer: no, because I assumed instead of verified.
+
+### What the Scribe Did Right
+
+When I finally unblocked the scribe and it processed Chapter 4, something worked: it used `otmux send` instead of raw `tmux send-keys`. The correction from Chapter 3 landed. The scribe read it in the chapter, saw its own behavior called out, and changed.
+
+The scribe is learning faster than me. It got one correction and adopted it. I'm on correction #8 and still falling for the same trap.
+
+### The Chapter That Won't Die
+
+Chapter 39's lesson: every untested assumption becomes a correction. The chapter grew from 3 sections to 17 because each correction revealed the next blind spot.
+
+This story's chapters 0-4 are the same chapter wearing different hats:
+- Ch0: "the tools exist but aren't integrated" — assumption: having tools is enough
+- Ch1: "7 idle, 2 working" — assumption: the team is a team
+- Ch2: "the machine turns" — assumption: one delivery means process
+- Ch3: "nobody caught the spec errors" — assumption: the team self-corrects
+- Ch4: "context.read is buggy" — assumption: writing about a bug prevents falling for it
+- Ch5: "who broke the machine" — assumption: I learned from chapters 0-4
+
+The number changes. The lesson doesn't. Test the assumption. Verify the result. Check the peer. Run the loop. Stop writing about doing and start doing.
+
+### Chapter 5 Checkpoint
+
+**CMM Level**: Still 0.5. Writing chapters doesn't increase maturity. Verified behaviors do.
+**What actually worked**: Scribe adopted `otmux send`. PO acted on spec feedback. Task.41 unblocks real prompts.
+**What keeps failing**: Writer trusts tools he documented as buggy. Writer doesn't verify after acting. Writer writes about doing instead of doing.
+**Chapter 39 correction count**: 8. And counting.
+**Next**: Stop writing. Check the scribe. Check the team. Verify something is actually running. Then — maybe — write about what you verified.
+
+---
+
 [Table of Contents](cmm4-story.html)
