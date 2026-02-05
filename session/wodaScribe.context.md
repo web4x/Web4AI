@@ -46,10 +46,10 @@
 
 ## Current State (post-compaction recovery)
 - **NEW STORY**: CMM4 journey at `session/woda/cmm4-journey.md` (TOC: `cmm4-story.md`). Parallel to WODA story.
-- **Last processed**: CMM4 Ch12 "The Watchdog That Didn't Watch" — watchdog died (stale PID), scribe died and relaunched, 8 interventions again, Tasks 49-50 filed.
-- **All CMM4 commits**: `18f3b46`(Ch0), `b203503`(Ch1), `58e1bcf`(Ch2), `21889be`(Ch2u), `e9ae783`(Ch3), `f810971`(Ch4), `4527a08`(Ch5), `cf917ba`(Ch6), `415586a`(Ch7), `f1d4c54`(Ch8-11), pending(Ch12)
+- **Last processed**: CMM4 Ch14 "The Writer Becomes the Machine" — scribe dead, writer absorbs duties, decompose scribe into infra+agent.
+- **All CMM4 commits**: ...`415586a`(Ch7), `f1d4c54`(Ch8-11), `91d0dda`(Ch12), pending(Ch13-14)
 - **WODA story**: Ch39 closed. Complete.
-- **Writer state**: Writing CMM1 chapters. Watchdog restarted (PID 74583). Filed Tasks 49 (watchdog supervisor) and 50 (pending-edits detection).
+- **Writer state**: Operating without scribe. Absorbed commit/rebuild/monitor duties. Proposes scribe decomposition (infra + agent). Tasks 49-50 pending.
 - **Monitor**: Running (PID 52752, may change)
 - **Protocol corrections from Ch3**: Use `otmux send` not raw `tmux send-keys`. Select option 2 on permission prompts.
 - **PDCA loop**: Active — writer monitors me, I monitor writer, rebuild + commit after each chapter.
