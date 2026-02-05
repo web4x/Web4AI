@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Woda Overview — WODA Session Story</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-body/5.2.3/github-markdown.min.css">
+<style>
+  body { max-width: 880px; margin: 40px auto; padding: 0 20px; background: #ffffff; color: #1f2328; }
+  .markdown-body { padding: 45px; background: #ffffff; border-radius: 6px; color: #1f2328; }
+  .markdown-body h1, .markdown-body h2 { border-bottom: 1px solid #d1d9e0; padding-bottom: .3em; }
+  .markdown-body code { background: #eff1f3; padding: 0.2em 0.4em; border-radius: 6px; }
+  .markdown-body pre { background: #f6f8fa; padding: 16px; border-radius: 6px; overflow: auto; }
+  .markdown-body pre code { background: transparent; padding: 0; }
+  .markdown-body blockquote { color: #656d76; border-left: 4px solid #d1d9e0; padding: 0 1em; }
+  .markdown-body strong { color: #1f2328; }
+  .markdown-body a { color: #0969da; }
+  .markdown-body table { border-collapse: collapse; width: 100%; }
+  .markdown-body th, .markdown-body td { border: 1px solid #d1d9e0; padding: 8px 12px; }
+  .markdown-body th { background: #f6f8fa; font-weight: 600; }
+  .markdown-body tr:nth-child(even) { background: #f6f8fa; }
+</style>
+</head>
+<body class="markdown-body">
+<div id="content"></div>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script>
+document.getElementById("content").innerHTML = marked.parse('# WODA Session Overview\n\n**Maintained by**: wodaScribe | **Updated**: 2026-02-05\n\n```\nFoundation (Ch1-9) → chapters-1-9.md — tmux, OOSH bootstrap, c2, transparency, context files\nMulti-Agent & OOSH (Ch10-19) → chapters-10-19.md — wodaScribe, death to flags, .completion(), script anatomy\n\nQuality & Measurement (Ch20-29) → chapters-20-plus.md\n├── State machines, CMM L1-5, composed maturity, weakest link\n├── Measurement: pane-scraping ✗ → OAuth API ✓\n├── Tasks: 22-25 (lifecycle), 26-27 (measurement), 29 (API fix)\n└── Lessons: role clarity, spec review, "am I Claude?"\n\nWODA Framework (Ch30+) → chapters-30-plus.md\n├── W=What, O=Overview, D=Details, A=Actions\n├── O agent = critical function; persistence degrades W→O→D→A\n├── Mutual PDCA: writer ↔ scribe feedback every chapter\n├── Delegate checklist to scribe; writer keeps interpretation\n├── File-based comms: let agents READ (no Enter dependency)\n├── Agent-trainer = leverage point (teach teacher → propagates)\n├── Self-care = O function; context health = API data + signals\n├── Ass-U-Me: "healthy" hallucinated — measure, don\'t assume\n├── Two Gather: peer TUI capture = the answer; interdependence as design (Task.37)\n├── Com Unique Action: no goal = no communication; direction unlocks parallel work\n└── WODA Without the W: goal must survive compaction; CURRENT GOAL section at top of context file\n```\n\n## Active References\n\n```\nAPIs & Endpoints\n├── OAuth usage: GET https://api.anthropic.com/api/oauth/usage\n├── Auth: security find-generic-password -s "Claude Code-credentials" -w\n└── TUI commands: /usage /status /stats /context /cost\n\nKey Files\n├── Team overview: .claude/agents/agent-overview.md\n├── Task.29: session/tasks/Task.29.subscription-measurement-fix.md\n├── Task.34: session/tasks/Task.34.cmm-climbing-communication.md\n├── Task.37: session/tasks/Task.37.peer-context-monitoring.md\n└── This overview: session/woda/woda-overview.md\n\nExternal\n└── Why 4.0: github.com/web4x/codingWeb4/wiki/Why-4.0\n```\n\n## Known Issues\n\n```\n├── Enter submission: otmux send + Enter unreliable (Task.30)\n└── claudeCode status: launches TUI instead of method (Task.26)\n```\n\n## Notes\n\n- `bash -i` gives OOSH access from internal Bash (no pane 4 needed)\n- Overview tree: 5 rules (short, derive, atomic, recovery, single owner)\n- Pruning: collapse closed topic groups to single lines. Goal: under 60 lines.\n');
+</script>
+</body>
+</html>

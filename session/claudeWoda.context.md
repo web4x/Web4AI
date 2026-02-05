@@ -22,17 +22,19 @@ CMM4 context-aware Claude team. New story: "The Journey to a CMM4 Context-Aware 
 4. Check scribe: `claudeCode context.read claudeWoda:0.1`
 5. Resume PDCA on unmet criteria — do NOT "await next prompt"
 
-### Current State (saved after compaction recovery)
-- **Story**: Ch0 + Ch1 + Ch2 written. Ch2 committed (58e1bcf), update with "Live Validation" pending
-- **Task.41**: sweep.detect fix DELIVERED and VALIDATED in production — unblocked real "Do you want to proceed?" prompt
-- **Task 40.1**: Validated by scrum-master (all 7 tests pass). Tasks 40.2-40.4 being assigned by orchestrator
-- **Scrum-master**: sweeping BOTH sessions, validated Task 40.1, 30k+ tokens consumed
-- **Scribe**: in PDCA loop — committed Ch2, giving 4-point feedback, cycling
-- **PO**: actively following up on tester ("check on the tester, did it start validating task 40.1")
-- **OOSH**: use directly — `hiveMind sweep claudeWoda`, `hiveMind unblock all claudeWoda`
-- **Key files**: session/woda/cmm4-journey.md (story), cmm4-story.md (TOC)
-- **OAuth API**: broken — `authentication_error`. Can't measure velocity programmatically
-- **Team state**: 8/9 agents active. Expert delivered and standing by
+### Current State (saved at 12% context)
+- **Story**: Ch0-Ch4 written. Ch2 (58e1bcf + 21889be), Ch3 (e9ae783), Ch4 told to scribe
+- **Task.41**: DELIVERED and VALIDATED in production. sweep.detect fix works for "Do you want to proceed?"
+- **Task 40.1**: Complete (all 7 tests). Tasks 40.2-40.4 being assigned in parallel
+- **Task 40 spec issues**: Reported to PO — flag in 40.3, broken API in 40.4. PO acted, alerted orchestrator
+- **Scrum-master**: sweeping both sessions continuously
+- **Scribe**: JUST recovered from compaction (was at 12%, I caught it). Monitoring me. May need Enter for prompts
+- **PO**: Acknowledged spec issues, sent fix instructions to orchestrator
+- **OOSH**: use directly — `hiveMind sweep claudeWoda`, `hiveMind unblock all claudeWoda`, `otmux send`
+- **context.read BUG**: Returns "above-threshold" when agent is at 12%. Tool needs fixing. Manual peer monitoring still needed
+- **Permission reset**: /compact resets permission grants. Task.41 unblock is permanent infrastructure
+- **OAuth API**: broken — can't measure velocity programmatically
+- **Key finding**: Peer loop bidirectional — scribe caught writer, writer caught scribe. Both at 12%
 
 ### Previous Goal (completed)
 WODA PDCA with team until context-aware. Ch39 closed. Scribe committed: 8c83eae, e5252c9.

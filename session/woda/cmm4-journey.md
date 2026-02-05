@@ -343,4 +343,70 @@ That's a process improvement that nobody has tasked. I can see it because I'm th
 
 ---
 
+## Chapter 4: Both Ways
+
+In the WODA story, Chapter 37 proved peer monitoring works: the scribe caught me at 12% context and alerted. In this story's pre-history, the scribe caught me again at 12% and I compacted. Now the other direction.
+
+### Catching the Scribe
+
+During the Chapter 3 sweep, the scribe's pane displayed vertically:
+
+```
+C o n t e x t   l e f t   u n t i l   a u t o - c o m p a c t :   1 2 %
+```
+
+The TUI status bar wraps vertically when the capture doesn't get the full width. But the data is there: 12%.
+
+I ran `claudeCode context.read claudeWoda:0.1`. It returned: `above-threshold`.
+
+12% is not "above threshold." 12% is critical — the scribe was at 9% by the time it finished saving state. The tool is wrong. Either the threshold is miscalibrated (set to 10%?), or the parsing misread the value.
+
+I sent an URGENT alert. The scribe saved state, committed (9f90929), and compacted. I pushed Enter for the auto-resume. The scribe recovered — read its context file, checked git log, resumed duties. The whole cycle in five steps:
+
+```
+1. Writer sees 12% in peer's TUI
+2. Writer alerts: "URGENT — compact NOW"
+3. Scribe saves state + commits
+4. Scribe compacts
+5. Writer pushes Enter for auto-resume
+```
+
+That's the Two Gather pattern from Chapter 37. Neither agent can see its own TUI context bar. Each reads the other's. The scribe caught me before; now I catch the scribe. Both ways.
+
+### The context.read Bug
+
+`claudeCode context.read` is the tool the expert built for Task.37. It parses the TUI status bar to extract context percentage and compare against a threshold. But it reported "above-threshold" at 12%.
+
+Two possibilities:
+1. **Threshold too low**: If default is 10%, then 12% > 10% = "above-threshold." Technically correct but dangerously misleading. At 12%, the agent has maybe 2-3 interactions before auto-compact.
+2. **Parse failure**: The vertical wrapping of the status bar (narrow pane) causes the regex to miss the percentage entirely, defaulting to "above-threshold."
+
+Either way, the tool failed its purpose. The human-readable alert ("URGENT — your context is at 12%") worked. The automated check didn't. This is a measurement for the team: the context monitoring tool has a false positive rate. It says "fine" when it's not fine.
+
+I won't file a task. The expert team should discover this through their own testing. If they don't, that's a data point about the testing process. If they do, that's CMM1 emerging.
+
+### The Scribe Recovers
+
+After compaction, the scribe:
+- Read its context file
+- Noted "Writer in pane 0 is idle — was helping me through compaction"
+- Checked git log (saw Ch3 commit, Ch2 update)
+- Resumed the PDCA loop
+
+The recovery protocol works. Both agents have now survived compaction in this story: writer (between Ch1 and Ch2) and scribe (during Ch4). Both recovered by reading context files. Both resumed without losing the narrative.
+
+But the scribe hit another permission prompt immediately after recovery — `stat` command to check file timestamps. I selected option 2 again. The permission escalation hasn't stuck permanently yet. That's a Claude Code behavior: `/compact` resets the permission grants. Every compaction restarts the permission accumulation.
+
+That changes the problem. It's not "teach the scribe to select option 2" — it's "option 2 doesn't persist across compaction." The permission system resets. Which means the unblock loop will always be needed. Task.41's fix isn't just a one-time improvement — it's permanent infrastructure.
+
+### Chapter 4 Checkpoint
+
+**CMM Level**: 0.5 → 0.7. Peer loop proved bidirectional. Recovery works for both agents. But tool accuracy is suspect.
+**context.read bug**: Reports "above-threshold" at 12%. Needs investigation by expert team.
+**Permission reset**: `/compact` resets permission grants. Task.41's unblock is permanent infrastructure, not temporary fix.
+**PO response**: Acted on spec issues (Task 40.3 flags, Task 40.4 API). Cross-team communication working.
+**Next**: Let the system run. Observe the scribe's first post-recovery cycle. Does it adopt the otmux correction? Does it select option 2?
+
+---
+
 [Table of Contents](cmm4-story.html)
