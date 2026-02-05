@@ -13,7 +13,7 @@
 - **Pane 4** (`oosh.shell`): OOSH bash shell — live OOSH environment
 
 ## My Per-Prompt Protocol (8 steps from Ch39)
-1. Rebuild: `tmux send-keys -t claudeWoda:0.2 C-u './session/woda/rebuild.sh' Enter`
+1. Rebuild: `otmux send claudeWoda:0.2 C-u './session/woda/rebuild.sh' Enter` (OOSH, not raw tmux — Ch3/Ch14)
 2. Verify: check file timestamp (`stat -f '%Sm' session/woda/chapters-30-plus.html`) or capture pane 2
 3. Read new chapter content + verify TOC entry exists
 4. Update `claudeWoda.context.md` (add chapter to list + update count + last-update note)
@@ -37,21 +37,25 @@
 - Story has 39 chapters + 1 Intermission, split into TOC + 4 chapter files (Parts I–IV)
 - **Primary artifact**: `session/woda/woda-overview.md` — READ THIS FIRST after compaction
 
-## Current State
-- **Ch39 CLOSED**: Seven corrections in one chapter. PDCA loop ran live — writing and doing merged. Commit `8c83eae` (14 files, 4814 insertions). Tron: "goal nearly achieved."
-- **Main Claude state**: Writer wrapping up. Above-threshold. Loop gracefully stopping.
+## Current State (saved at 12% context)
+- **NEW STORY**: CMM4 journey at `session/woda/cmm4-journey.md` (TOC: `cmm4-story.md`). Parallel to WODA story.
+- **Last processed**: CMM4 Ch3 "What Nobody Caught" — spec gaps, raw tmux callout, permission option 2. Committed `e9ae783`.
+- **All CMM4 commits**: `18f3b46` (Ch0), `b203503` (Ch1), `58e1bcf` (Ch2), `21889be` (Ch2 update), `e9ae783` (Ch3)
+- **WODA story**: Ch39 closed. Commits `8c83eae`, `e5252c9`. Complete.
+- **Writer state**: Fresh after compaction, monitoring me, writing CMM4 chapters. Caught me at 12%.
 - **Monitor**: Running (PID 52752, may change)
-- **Overview at**: 59 lines (limit 60). No update needed for Ch39 — core lesson unchanged.
-- **CURRENT GOAL**: WODA PDCA until team context-aware. Status: NEARLY ACHIEVED — loop proved, all criteria verified across 2 compactions, gracefully stopped by Tron.
-- **Git**: Story files now tracked. First commit `8c83eae`. Protocol updated to 8 steps (commit added as step 6).
+- **Protocol corrections from Ch3**: Use `otmux send` not raw `tmux send-keys`. Select option 2 on permission prompts.
+- **PDCA loop**: Active — writer monitors me, I monitor writer, rebuild + commit after each chapter.
+- **CURRENT GOAL**: CMM4 journey. Team of 9 agents reaching CMM4. Velocity target 90% at day 7.
 
 ## Key Lessons
+- Use `otmux send` not raw `tmux send-keys` (OOSH principle — Ch3/Ch14)
+- Select option 2 on permission prompts (permanent allow, not one-time)
 - NEVER send keys to pane 0 in a loop (caused '2222' spam disaster)
-- Enter problem: send-keys Enter doesn't reliably submit in TUI
 - ACT when peer is stuck, don't just report to Tron
-- `bash -i` gives OOSH access from internal Bash (no pane 4 transport needed)
-- Mutual PDCA: writer ↔ scribe feedback every chapter (started Ch32)
-- Context health: report data (subscription API) + signals (no compaction warning), NOT "healthy"
+- Mutual PDCA: writer ↔ scribe feedback every chapter
+- Context health: report data + signals, NOT "healthy" (Ch36)
+- Writer caught me at 12% — peer loop works both ways
 
 ## Recovery Steps
 1. Read `session/woda/woda-overview.md` FIRST (55 lines, full orientation)
