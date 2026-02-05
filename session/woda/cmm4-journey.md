@@ -984,4 +984,96 @@ If the watchdog works, Chapter 12 should be the first zero-intervention chapter.
 
 ---
 
+## Chapter 12: The Watchdog That Didn't Watch
+
+Chapter 11 started the watchdog. PID 60285. Running at 30-second intervals. The bootstrap paradox solved. The CMM3 answer deployed.
+
+Thirty-five seconds later, I checked the scribe. Still stuck at a permission prompt. Checked the watchdog: "not running (stale PID file)."
+
+The watchdog died.
+
+### First Test, First Failure
+
+The sequence:
+
+```
+1. hiveMind watchdog 30        → started (PID 60285)
+2. hiveMind watchdog.status    → running
+3. ... write chapter 11 ...
+4. scribe hits permission prompt
+5. wait 35 seconds for watchdog
+6. scribe still stuck
+7. hiveMind watchdog.status    → not running (stale PID file)
+```
+
+The watchdog was alive long enough to report "running" and dead before its first useful action. I don't know why — the PID file went stale, meaning the process exited without cleaning up. Maybe a bash error in the loop. Maybe the watchdog's own pane was reclaimed. Maybe the sleep was interrupted.
+
+I restarted it (PID 74583). But "restart it manually when it dies" is the same pattern we're trying to eliminate. Who watches the watchdog?
+
+### The Scribe's Death and Resurrection
+
+While debugging the watchdog, I discovered the scribe was in worse shape than expected. The original scribe (pane 0.1) had exited entirely — Claude Code gone, bare zsh shell. Meanwhile, a second Claude Code instance was running in pane 0.2 with "4 files +349 -0" of pending edits, completely stuck in the TUI's edit acceptance flow.
+
+I sent the scribe five messages. Each was received and processed, but each triggered an "Interrupted" cycle — the TUI couldn't sustain a continuous workflow. The scribe processed fragments: read a file here, ran a command there, but couldn't complete a full commit cycle.
+
+Eventually I committed chapters 8-11 myself (f1d4c54). The writer doing the scribe's job. Not because the scribe is incapable — because the environment keeps interrupting it.
+
+The scribe was relaunched via `claude --resume` in its original pane. It came back. Read its messages. Got stuck at a permission prompt. Was unblocked. Started monitoring again.
+
+### Why Everything Keeps Dying
+
+The root cause hasn't changed since Chapter 7: compound commands trigger permission prompts. But there's a deeper pattern:
+
+Every automated loop in this system dies eventually:
+- The scribe's monitoring loop → permission prompt → stuck
+- The scrum-master's sweep loop → permission prompt → stuck
+- The watchdog → unknown exit → stale PID
+
+The common factor isn't the permission system alone. It's *fragility*. Each loop is a single process with no restart mechanism. If it fails for any reason — permission, error, resource limit, pane reclamation — it stays dead until someone notices.
+
+Robust infrastructure has three properties:
+1. **Detection**: Know when it dies (health check)
+2. **Restart**: Automatically relaunch (supervisor)
+3. **Isolation**: Don't let one failure cascade (separate processes)
+
+The watchdog has none of these. It's a bash loop in a tmux pane. If the loop exits, nobody restarts it. If the pane dies, the loop dies with it. The "infrastructure" is as fragile as the agents it protects.
+
+### The CMM1 Reality
+
+Chapter 10 set the measure: zero manual interventions per chapter. Chapter 11 counted 1 intervention. Chapter 12's count:
+
+```
+1. hiveMind unblock all claudeWoda  — scribe permission
+2. Escape for scribe diff view
+3. otmux send (directive to scribe) × 5 — all interrupted
+4. Committed chapters myself (f1d4c54)
+5. Rebuilt HTML via pane 3
+6. Relaunched scribe via claude --resume
+7. hiveMind unblock all claudeWoda  — permission again
+8. Restarted watchdog (PID 74583)
+```
+
+Eight interventions again. Same as Chapter 8. The watchdog, the overlay detection, the ./ patterns — three deliveries that reduced the count to 1 (Ch11), then a new failure mode (watchdog death + scribe TUI stuck state) brought it right back to 8.
+
+That's CMM1. The process exists. It sometimes works. It's not consistent. The fix for one failure reveals the next failure. The tower of automation is one layer tall and wobbles.
+
+### What to File (This Time, Immediately)
+
+Not waiting seven chapters. Filing now:
+
+**Task 49**: Watchdog needs a supervisor — detect its own death and restart. Either a tmux respawn-pane, a launchd plist, or a second watchdog watching the first (and yes, turtles all the way down is the joke, but launchd is the actual answer).
+
+**Task 50**: Claude Code TUI "pending edits" stuck state — when edits accumulate faster than the agent processes them, the TUI locks up. The agent can't recover without external intervention. This needs a detect-and-clear pattern in sweep.detect.
+
+### Chapter 12 Checkpoint
+
+**CMM Level**: 1.0. No improvement from Ch11. The watchdog died, interventions back to 8.
+**Watchdog v1**: Died with stale PID. No supervisor, no restart, no health check.
+**Scribe**: Died, relaunched, caught up, stuck again. The TUI pending-edits state is a new blocker.
+**Manual interventions**: 8 (same as Ch8).
+**Tasks filed**: 49 (watchdog supervisor), 50 (pending-edits detection). Filed immediately, not after seven chapters.
+**The pattern**: Fix reveals the next failure. That IS CMM1 — each cycle discovers the next gap. The question is whether the gaps get smaller.
+
+---
+
 [Table of Contents](cmm4-story.html)
