@@ -2,10 +2,15 @@
   "permissions": {
     "allow": [
       "Bash(otmux *)",
+      "Bash(./otmux *)",
       "Bash(test.suite *)",
+      "Bash(./test.suite *)",
       "Bash(hiveMind *)",
+      "Bash(./hiveMind *)",
       "Bash(claudeCode *)",
+      "Bash(./claudeCode *)",
       "Bash(scrumMaster *)",
+      "Bash(./scrumMaster *)",
       "Bash(tmux *)",
       "Bash(grep *)",
       "Bash(sed *)",
