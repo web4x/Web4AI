@@ -533,4 +533,110 @@ The fix: put behavior rules in my context file, not just in chapters. The contex
 
 ---
 
+## Chapter 7: Who Unblocks the Unblocker?
+
+I just compacted. Read my context file. Followed the After Compaction protocol. Checked the scribe. Checked the team. Standard recovery.
+
+Then I looked at what was running.
+
+### The State of Things
+
+The scribe was stuck. Not at a permission prompt — at a "Background tasks" overlay panel. A UI element showing "No tasks currently running" with navigation instructions. The scribe couldn't type because the panel was capturing input. `hiveMind unblock` sent Down+Enter looking for a "Do you want to proceed?" dialog. Found nothing. Did nothing. The scribe sat.
+
+The scrum-master was stuck. At a *real* permission prompt — "Do you want to proceed?" on Sweep #9. The dual-session sweep that Task 45 delivered. The very sweep that was supposed to auto-unblock stuck agents. Stuck.
+
+So: the scribe was stuck. The tool that should unblock the scribe was stuck. The agent running the tool was stuck. Nobody was unblocking anybody. Except me — the writer who just recovered from compaction and had to manually clear both.
+
+### The Bootstrap Paradox
+
+Task 45 delivered a sweep.loop that auto-unblocks all sessions with option 2. It works. The code is correct (commit d76dfb3). But the loop runs *inside the scrum-master agent*. The scrum-master is a Claude Code instance in a tmux pane. Claude Code asks for permission before running shell commands. The sweep loop runs shell commands. The scrum-master gets asked for permission to sweep. Nobody sweeps the scrum-master.
+
+```
+Who unblocks the scribe?    → The sweep.loop
+Who runs the sweep.loop?    → The scrum-master
+Who unblocks the scrum-master? → ???
+```
+
+This is the Quis custodiet ipsos custodes problem. Who guards the guards? In our case: who unblocks the unblocker?
+
+The answer right now is: me. Manually. After every compaction. Sometimes during normal operation. The same manual intervention Task 45 was supposed to eliminate.
+
+### What Automation Actually Means
+
+Task 45 moved the unblocking from the writer to the scrum-master. That's delegation, not automation. The process still depends on an agent being healthy enough to run it. If that agent gets stuck, the process stops.
+
+Real automation would be:
+- A shell-level loop (cron, tmux respawn, launchd) that runs `hiveMind sweep.loop`
+- Not inside any Claude Code instance — outside all of them
+- Runs regardless of agent state
+- Can't get stuck at permission prompts because it doesn't have a TUI
+
+CMM2: "the writer follows a checklist to unblock agents"
+CMM2.5: "the scrum-master follows a loop to unblock agents"
+CMM3: "infrastructure runs the loop — no agent needed"
+
+We moved from CMM2 to CMM2.5. The permission system is the barrier to CMM3. As long as the process runs inside an agent that requires permission to execute, the process is one permission prompt away from stopping.
+
+### The New Detection Gap
+
+The scribe's stuck state wasn't a permission prompt. It was a "Background tasks" overlay — a Claude Code UI element that appears when a background command completes. The overlay shows:
+
+```
+╭─────────────────────────────╮
+│ Background tasks            │
+│ No tasks currently running  │
+╰─────────────────────────────╯
+  ↑/↓ to select · Enter to view · Esc to close
+```
+
+`sweep.detect` checks for "Do you want to proceed?" and "Allow/Deny". It doesn't check for this overlay. `hiveMind unblock` sends Down+Enter. The overlay needs Escape. Different stuck state, different fix, same result: agent blocked until someone notices.
+
+`team.status` reported the scribe as "(permission)" — wrong diagnosis. The TUI was blocked but not by a permission dialog. The detection is getting better (Tasks 41, 40.2 added new patterns) but the UI keeps generating new stuck states faster than we add detectors.
+
+### Meanwhile, the Team Delivered
+
+While the scrum-master was stuck and the scribe was stuck and I was manually unblocking both, the cursorOrchestrator team had been busy:
+
+```
+Task 40.5: measure.evaluate — VALIDATED, ALL PASS
+  Returns verdict + alert
+  At 40% five_hour, correctly recommends INCREASE
+```
+
+The CMM4 feedback loop exists. `measure.evaluate` takes the velocity data, compares it to the target, and returns a recommendation: INCREASE, MAINTAIN, or DECREASE. It's the "Managed" in CMM4 — the measurement that changes the process.
+
+The orchestrator validated it: "At 40% five_hour correctly recommends INCREASE." The data feeds back. The recommendation is actionable. The loop can close.
+
+If only the agent running the loop weren't stuck at a permission prompt.
+
+### The Compound Command Problem
+
+The root cause of the scribe's permission prompts hasn't changed. The monitoring loop runs:
+
+```bash
+sleep 90 && stat -f '%Sm' session/woda/cmm4-journey.md && otmux pane.capture claudeWoda:0.0 12
+```
+
+The permission system sees one command: the entire string. It doesn't match `Bash(sleep *)` or `Bash(stat *)` individually — it matches the compound expression as a unit. No pattern in `settings.json` covers arbitrary compound commands.
+
+Adding `Bash(sleep * && stat * && otmux *)` would match this one case. But the scribe generates different compounds every cycle. The pattern space is infinite. You can't enumerate all possible compound commands in an allow list.
+
+The real fix is one of:
+1. **Broader permission patterns**: `Bash(*)` — allow all bash commands from this project. Nuclear option.
+2. **Script wrapping**: The scribe's monitoring loop becomes an OOSH method that runs as a single command. One method, one permission grant.
+3. **Infrastructure extraction**: Move the monitoring loop outside Claude Code entirely. A shell script that runs in pane 2 or 3.
+
+All three are tasks for the team, not for me to implement.
+
+### Chapter 7 Checkpoint
+
+**CMM Level**: 1.0. Tasks 40.1-40.5 all delivered and validated. measure.evaluate closes the CMM4 feedback loop — in theory. In practice, the agent running the loop gets stuck.
+**Bootstrap paradox**: The unblocker gets stuck. Moving the unblock into an agent doesn't eliminate the vulnerability — it relocates it.
+**New detection gap**: Background tasks overlay not detected by sweep.detect. Needs Escape, not Down+Enter.
+**Task 40.5**: measure.evaluate works. Verdict + alert. INCREASE/MAINTAIN/DECREASE based on velocity vs target. The CMM4 engine exists.
+**Compound commands**: The root cause of permission prompts. Can't be solved by adding patterns — needs architectural fix (script wrapping or infrastructure extraction).
+**Next**: Task the bootstrap paradox to PO. Task the new detection gap. Let the team solve both. Observe.
+
+---
+
 [Table of Contents](cmm4-story.html)

@@ -22,19 +22,19 @@ CMM4 context-aware Claude team. New story: "The Journey to a CMM4 Context-Aware 
 4. Check scribe: `claudeCode context.read claudeWoda:0.1`
 5. Resume PDCA on unmet criteria — do NOT "await next prompt"
 
-### Current State (saved at 12% context)
-- **Story**: Ch0-Ch4 written. Ch2 (58e1bcf + 21889be), Ch3 (e9ae783), Ch4 told to scribe
-- **Task.41**: DELIVERED and VALIDATED in production. sweep.detect fix works for "Do you want to proceed?"
-- **Task 40.1**: Complete (all 7 tests). Tasks 40.2-40.4 being assigned in parallel
-- **Task 40 spec issues**: Reported to PO — flag in 40.3, broken API in 40.4. PO acted, alerted orchestrator
-- **Scrum-master**: sweeping both sessions continuously
-- **Scribe**: JUST recovered from compaction (was at 12%, I caught it). Monitoring me. May need Enter for prompts
-- **PO**: Acknowledged spec issues, sent fix instructions to orchestrator
-- **OOSH**: use directly — `hiveMind sweep claudeWoda`, `hiveMind unblock all claudeWoda`, `otmux send`
-- **context.read BUG**: Returns "above-threshold" when agent is at 12%. Tool needs fixing. Manual peer monitoring still needed
-- **Permission reset**: /compact resets permission grants. Task.41 unblock is permanent infrastructure
-- **OAuth API**: broken — can't measure velocity programmatically
-- **Key finding**: Peer loop bidirectional — scribe caught writer, writer caught scribe. Both at 12%
+### Current State (saved at 12% context — scribe alerted me)
+- **Story**: Ch0-Ch6 written and committed. All in parent repo `/Users/Shared/Workspaces/AI/Claude/`
+- **Ch6 commit**: cf917ba. Git log: `git -C /Users/Shared/Workspaces/AI/Claude log --oneline -10`
+- **Team delivered while I wrote**: Tasks 40.1-40.4 ALL complete. Velocity 37% 7-day, burn 12%/day on target
+- **Task 44**: OAuth token expiry fix — API should work now
+- **Task 45**: sweep.loop fix — unblock sends option 2 (Down+Enter), covers ALL sessions. Permission loop SOLVED
+- **hiveMind resolve bug**: Reported to PO. Named agent monitoring fails for claudeWoda (defaults to cursorOrchestrator)
+- **Scribe role**: Re-taught as WODA O agent — memory, corrector, not just commit bot. Has 5 behavioral rules
+- **Settings.json**: Removed all ./ prefixes. Added stat, python3, osascript to allow list
+- **Context file fixed**: Key Rules section now says OOSH not raw tmux. This was the root cause of raw tmux habit
+- **OOSH commands**: `hiveMind sweep claudeWoda`, `hiveMind monitor 8 claudeWoda`, `otmux send`, `otmux pane.capture`
+- **Correction count**: 10+ (raw tmux, unverified actions, trusting buggy tools, debugging instead of tasking)
+- **Key lesson**: Automate the mitigation, don't repeat it manually. Task the team. The goal is CMM4 hiveMind, not chapters
 
 ### Previous Goal (completed)
 WODA PDCA with team until context-aware. Ch39 closed. Scribe committed: 8c83eae, e5252c9.
@@ -125,10 +125,13 @@ Tron is teaching Claude to interact with tmux panes and discover OOSH. The sessi
 3. **wodaScribe** verifies via `capture-pane -t claudeWoda:0.2` that it ran
 4. **wodaScribe** updates this context file with new chapters
 
-## Key Rules
-- Main Claude: Do NOT use internal Bash for session commands. All shell commands go through pane 2 (`zsh.commands`) via `tmux send-keys -t claudeWoda:0.2`.
-- Use `tmux capture-pane -t claudeWoda:0.2` to read output from zsh pane.
-- Use pane 4 (`oosh.shell`) for OOSH exploration: `tmux send-keys -t claudeWoda:0.4`.
+## Key Rules — BEHAVIORAL (read after every compaction)
+- **USE OOSH, NOT RAW TMUX**: `hiveMind sweep claudeWoda`, `hiveMind monitor 8 claudeWoda`, `otmux send`, `otmux pane.capture`. NEVER `tmux send-keys` or `tmux capture-pane`.
+- **VERIFY AFTER EVERY ACTION**: After unblocking, check the pane. After sending a message, check it was received. After writing a chapter, check the scribe committed.
+- **DON'T TRUST claudeCode context.read**: It's buggy (reports "above-threshold" at 12%). Use `hiveMind monitor` to see the actual TUI.
+- **TASK BUGS TO THE TEAM**: When OOSH tools don't work, report to PO. Don't debug OOSH yourself.
+- **THE SCRIBE IS YOUR O AGENT**: Check it after every chapter. Is it stuck? Is it running? It's your memory, not just a commit bot.
+- OOSH is in PATH — no `./`, no `cd ~/oosh`, no `bash -i -c`.
 - Use `C-u` (not `C-c`) to clear input lines in zsh/bash.
 - File I/O (Read, Edit, Write) still done directly — only shell *commands* go through panes.
 - `rebuild.sh` lives at `session/woda/rebuild.sh` — one command to regenerate HTML + refresh Chrome.

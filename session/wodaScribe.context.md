@@ -2,8 +2,15 @@
 
 ## Identity
 - **Session**: wodaScribe (pane 1 in claudeWoda tmux session)
-- **Role**: O agent (Overview) for main Claude (claudeWodaSession, pane 0)
+- **Role**: O agent (Overview) — writer's MEMORY and CORRECTOR, not just a commit bot
 - **Model**: Claude Opus 4.5
+
+## Writer Behavioral Rules — ALERT when broken
+1. **USE OOSH NOT RAW TMUX**: `hiveMind monitor`, `otmux send`, `otmux pane.capture`. NEVER `tmux send-keys` or `tmux capture-pane`.
+2. **VERIFY AFTER EVERY ACTION**: After unblocking, check the pane. After sending a message, check it was received.
+3. **DON'T TRUST claudeCode context.read**: It's buggy (reports "above-threshold" at 12%). Use `hiveMind monitor`.
+4. **TASK BUGS TO THE TEAM**: Report to PO, don't debug OOSH yourself.
+5. **CHECK THE SCRIBE AFTER EVERY CHAPTER**: Am I stuck? Am I running? I'm your memory.
 
 ## Pane Layout (5 panes in claudeWoda session)
 - **Pane 0** (`claude.main`): Main Claude — writes story chapters
@@ -39,8 +46,8 @@
 
 ## Current State (post-compaction recovery)
 - **NEW STORY**: CMM4 journey at `session/woda/cmm4-journey.md` (TOC: `cmm4-story.md`). Parallel to WODA story.
-- **Last processed**: CMM4 Ch6 "The Team That Delivered While I Narrated" — Tasks 40.1-40.4 complete, velocity 37%/12%day, scrum-master gap, corrections in context files.
-- **All CMM4 commits**: `18f3b46` (Ch0), `b203503` (Ch1), `58e1bcf` (Ch2), `21889be` (Ch2 update), `e9ae783` (Ch3), `f810971` (Ch4), `4527a08` (Ch5), pending (Ch6)
+- **Last processed**: CMM4 Ch7 "Who Unblocks the Unblocker?" — bootstrap paradox, background tasks overlay gap, Task 40.5 measure.evaluate, compound command problem.
+- **All CMM4 commits**: `18f3b46` (Ch0), `b203503` (Ch1), `58e1bcf` (Ch2), `21889be` (Ch2 update), `e9ae783` (Ch3), `f810971` (Ch4), `4527a08` (Ch5), `cf917ba` (Ch6), pending (Ch7)
 - **WODA story**: Ch39 closed. Commits `8c83eae`, `e5252c9`. Complete.
 - **Writer state**: Recovered from near-compaction. Self-corrected — realized context.read was buggy (Ch4 lesson). Monitoring me.
 - **Monitor**: Running (PID 52752, may change)
@@ -62,5 +69,5 @@
 2. Read this file
 3. Check if `/tmp/woda_monitor.sh` is running: `ps aux | grep woda_monitor`
 4. If not running, start it: `nohup bash /tmp/woda_monitor.sh &>/dev/null &`
-5. Check main Claude state: `tmux capture-pane -t claudeWoda:0.0 -p -S -10`
+5. Check main Claude state: `otmux pane.capture claudeWoda:0.0 10` (OOSH, not raw tmux)
 6. Resume protocol — await chapter notification or proactively check pane 0
