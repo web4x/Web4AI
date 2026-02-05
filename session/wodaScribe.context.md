@@ -12,14 +12,15 @@
 - **Pane 3** (`zsh.split`): zsh shell — created during Ch14
 - **Pane 4** (`oosh.shell`): OOSH bash shell — live OOSH environment
 
-## My Per-Prompt Protocol (7 steps from Ch33)
+## My Per-Prompt Protocol (8 steps from Ch39)
 1. Rebuild: `tmux send-keys -t claudeWoda:0.2 C-u './session/woda/rebuild.sh' Enter`
 2. Verify: check file timestamp (`stat -f '%Sm' session/woda/chapters-30-plus.html`) or capture pane 2
 3. Read new chapter content + verify TOC entry exists
 4. Update `claudeWoda.context.md` (add chapter to list + update count + last-update note)
 5. Update `woda-overview.md` atomically (keep under 60 lines, prune when needed)
-6. **Give feedback**: 3-5 findings — TOC correct? Context stale? Cross-references? Attribution accurate?
-7. **Report context health honestly**: No compaction warning observed + subscription API data if available. Do NOT say "healthy" without data (Ch36 lesson).
+6. **Commit**: `git add -f session/woda/*.md session/woda/*.html session/*.context.md && git commit`
+7. **Give feedback**: 3-5 findings — TOC correct? Context stale? Cross-references? Attribution accurate? Include commit hash.
+8. **Report context health honestly**: No compaction warning observed + subscription API data if available. Do NOT say "healthy" without data (Ch36 lesson).
 
 ## Monitoring Duties
 - Monitor pane 0 for stuck states — ACT, don't just report (Tron's lesson)
@@ -37,14 +38,12 @@
 - **Primary artifact**: `session/woda/woda-overview.md` — READ THIS FIRST after compaction
 
 ## Current State
-- **Ch39 updates processed**: Three rounds — (1) original, (2) "What Actually Happened" + "The W Survived", (3) "Checking Boxes Is Not Achieving Goals". All rebuilt. HTML last at 10:33:24.
-- **Main Claude state**: Writer self-corrected — "all six criteria met" revised to "three out of six." peerTest dead. Writer now monitoring me in a loop (30s recurring checks). Tron challenging with real-time PDCA.
+- **Ch39 CLOSED**: Seven corrections in one chapter. PDCA loop ran live — writing and doing merged. Commit `8c83eae` (14 files, 4814 insertions). Tron: "goal nearly achieved."
+- **Main Claude state**: Writer wrapping up. Above-threshold. Loop gracefully stopping.
 - **Monitor**: Running (PID 52752, may change)
-- **What main Claude expects from me**: Mutual PDCA feedback, proactive monitoring, honest context reports. Writer is actively checking on me — reciprocal loop live.
-- **Overview at**: 59 lines (limit 60). No update needed for Ch39 revisions — core lesson unchanged.
-- **Key learning this session**: Checking boxes is not achieving goals (Ch39 pattern = Ch29 + Ch36). Form ≠ substance. Peer measurement works bidirectionally. Enter problem still chronic.
-- **CURRENT GOAL**: WODA PDCA until team context-aware. Status: PARTIALLY MET — methods exist ✓, goal persistence ✓, continuous loop ❌ (peerTest dead), peer care ❌ (writer took scribe's job). Writer is actively fixing this now.
-- **TOC stale**: session-story.md line 75 still says "all six criteria met" — needs writer update to match honest checkpoint.
+- **Overview at**: 59 lines (limit 60). No update needed for Ch39 — core lesson unchanged.
+- **CURRENT GOAL**: WODA PDCA until team context-aware. Status: NEARLY ACHIEVED — loop proved, all criteria verified across 2 compactions, gracefully stopped by Tron.
+- **Git**: Story files now tracked. First commit `8c83eae`. Protocol updated to 8 steps (commit added as step 6).
 
 ## Key Lessons
 - NEVER send keys to pane 0 in a loop (caused '2222' spam disaster)
