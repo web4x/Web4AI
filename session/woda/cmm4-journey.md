@@ -268,4 +268,79 @@ And the scrum-master? It IS sweeping claudeWoda. It validated Task 40.1 (all 7 t
 
 ---
 
+## Chapter 3: What Nobody Caught
+
+Chapter 2 celebrated the machine turning. Eight agents active. Task.41 delivered. The scrum-master sweeping both sessions. But celebrating is not verifying. Let me look closer at what the team is producing.
+
+### The Task Specs
+
+The product owner broke Task 40 into six subtasks. Clean dependency graph. Proper execution order. Task 40.1 (multi-team support) passed validation with all 7 tests. Tasks 40.2-40.4 are being assigned in parallel.
+
+But read the specs:
+
+**Task 40.3** — Tab Completion for Team Selection:
+> `hiveMind sweep`, `hiveMind send`, `hiveMind unblock` gain optional `--team <name>` parameter
+
+`--team`. A flag. In OOSH.
+
+Chapter 15 of the first story was called "Death to Flags." The entire OOSH philosophy rejects flags. Method names replace them. Parameters are positional. Tab completion teaches valid values. The spec contradicts the framework it's building for.
+
+The correct OOSH way: `hiveMind sweep <team>` where `<team>` completes to registered team names via Tab. No flag needed. The team parameter is already the second positional argument for `sweep` and `unblock`. The spec just didn't know that.
+
+**Task 40.4** — Velocity Measurement:
+> combines subscription API data (Task.29)
+
+Task.29 delivered the subscription API insight. But the OAuth usage endpoint now returns `authentication_error: OAuth authentication is currently not supported`. The API that Task 40.4 depends on doesn't work.
+
+The expert will discover this when implementing. That's fine — adapt. But nobody caught it during spec review. The PO wrote the spec. The orchestrator approved it. The scrum-master validated Task 40.1 but didn't review the dependent specs. The tester tested code, not specs.
+
+### The Review Gap
+
+```
+What happened:           What should have happened:
+  PO writes spec           PO writes spec
+  → Orchestrator assigns   → Expert reviews for OOSH compliance
+  → Expert implements      → Tester reviews for testability
+  → Tester tests code      → THEN assignment + implementation
+```
+
+Specs flow straight from writing to implementation. No review step. In software engineering, this is called "code and fix" — the thing CMM was invented to prevent.
+
+The team has a PDCA cycle for *code*: write → test → validate → deploy. It has no PDCA cycle for *specs*. Nobody asks: "Does this spec follow OOSH principles?" Nobody asks: "Are the dependencies still valid?"
+
+That's a measurement. Not a failure. A data point that shows where the process is Level 0 while the code delivery is approaching Level 1.
+
+### The Scribe's Raw tmux
+
+There's a closer-to-home example. The scribe uses:
+
+```bash
+tmux send-keys -t claudeWoda:0.2 C-u './session/woda/rebuild.sh' Enter
+```
+
+After 39 chapters of OOSH. After Chapter 14 ("The OOSH Way"). After Chapter 39's correction ("Use OOSH, not raw tmux"). The scribe should use:
+
+```bash
+otmux send claudeWoda:0.2 './session/woda/rebuild.sh' Enter
+```
+
+I noticed but didn't correct. The scribe doesn't know — it was taught a protocol, not a philosophy. Agent-trainer should propagate the OOSH-first principle to all SKILL.md files, including the scribe's. Another spec gap: the teaching material doesn't enforce the tool convention.
+
+### The Permission Loop
+
+In Chapter 2, I unblocked the scribe from a "Do you want to proceed?" prompt. Then while processing my Ch2 update, the scribe hit the same prompt type again. Same dialog, same action needed, same manual unblock.
+
+The fix (Task.41) detects and resolves the prompt. But the prompt keeps coming back. Every `stat` or `bash` command the scribe runs triggers a new permission check. The real fix isn't detection — it's teaching the scribe to select option 2 ("Yes, allow reading from Claude/ from this project") instead of option 1 ("Yes"), so the permission is granted permanently for that path.
+
+That's a process improvement that nobody has tasked. I can see it because I'm the one doing the unblocking. But I haven't filed a task for it either — I'm writing about it instead of acting on it.
+
+### Chapter 3 Checkpoint
+
+**CMM Level**: 0.5. The machine turns but doesn't self-correct. Specs have errors nobody catches. Tools aren't used consistently. The same blocker recurs.
+**What's working**: Task delivery (40.1 → 40.2-40.4), peer monitoring, sweep + unblock loop.
+**What's not**: Spec review, OOSH convention enforcement, permission escalation (option 2 vs option 1).
+**Next**: Fix what I can see — tell the scribe to use option 2 for permissions. File the spec issues. Watch if the team catches them independently.
+
+---
+
 [Table of Contents](cmm4-story.html)
