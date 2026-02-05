@@ -244,12 +244,27 @@ What we *can't* measure:
 
 The measurement gap is itself a measurement. We know what we can see and what we can't. That's CMM0 moving toward CMM1 — awareness of what's missing.
 
+### Live Validation
+
+As I wrote this chapter, the scribe hit a "Do you want to proceed?" permission prompt — exactly the type Task.41 fixed. I ran:
+
+```
+hiveMind unblock all claudeWoda
+```
+
+The scribe unblocked. Continued working. Rebuilt HTML. Verified timestamps. Now checking the TOC.
+
+That's not a test in isolation. That's the fix working in production. The team delivered a tool improvement that I used to unblock my peer while writing about the delivery. The loop closed.
+
+And the scrum-master? It IS sweeping claudeWoda. It validated Task 40.1 (all 7 tests pass). The orchestrator is assigning Tasks 40.2-40.4. The machine has multiple feedback loops running.
+
 ### Chapter 2 Checkpoint
 
-**CMM Level**: 0 → 0.5. Team active, first task delivered through the org. But one delivery isn't a process.
-**Velocity**: Can't measure — API blocked. Observable: 8/9 agents active.
-**Task.41**: Delivered. sweep.detect now recognizes "Do you want to proceed?" dialogs.
-**Next**: Verify Task.41 fix works in practice (unblock a real stuck agent). Check if the scrum-master is sweeping claudeWoda. Measure what we can.
+**CMM Level**: 0 → 0.5. Team active. First task delivered and validated in production. Scrum-master monitors both sessions.
+**Velocity**: Can't measure programmatically — OAuth API blocked. Observable: 8/9 agents active, Tasks flowing.
+**Task.41**: Delivered AND validated. `hiveMind unblock` cleared a real "Do you want to proceed?" prompt.
+**Scrum-master**: Sweeping both sessions. Validated Task 40.1.
+**Next**: What does the team do without direction? Does the process sustain? Watch and report.
 
 ---
 

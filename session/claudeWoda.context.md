@@ -22,15 +22,17 @@ CMM4 context-aware Claude team. New story: "The Journey to a CMM4 Context-Aware 
 4. Check scribe: `claudeCode context.read claudeWoda:0.1`
 5. Resume PDCA on unmet criteria — do NOT "await next prompt"
 
-### Current State (saved at 12% context)
-- **Story**: Ch0 + Ch1 written, committed by scribe (18f3b46, b203503)
-- **Task.41**: sweep.detect Yes/No fix — sent to PO, PO delegated
-- **Scrum-master**: told to sweep claudeWoda too, permission for context.alert approved
-- **Scribe**: in PDCA loop — monitors me, rebuilds, commits
-- **PO**: received CMM4 directive via Task.40.po-directive.md
-- **OOSH**: use directly — no bash -i, no cd, no ./. Just `hiveMind sweep claudeWoda`
+### Current State (saved after compaction recovery)
+- **Story**: Ch0 + Ch1 + Ch2 written. Ch2 committed (58e1bcf), update with "Live Validation" pending
+- **Task.41**: sweep.detect fix DELIVERED and VALIDATED in production — unblocked real "Do you want to proceed?" prompt
+- **Task 40.1**: Validated by scrum-master (all 7 tests pass). Tasks 40.2-40.4 being assigned by orchestrator
+- **Scrum-master**: sweeping BOTH sessions, validated Task 40.1, 30k+ tokens consumed
+- **Scribe**: in PDCA loop — committed Ch2, giving 4-point feedback, cycling
+- **PO**: actively following up on tester ("check on the tester, did it start validating task 40.1")
+- **OOSH**: use directly — `hiveMind sweep claudeWoda`, `hiveMind unblock all claudeWoda`
 - **Key files**: session/woda/cmm4-journey.md (story), cmm4-story.md (TOC)
-- **Scribe alert worked**: scribe detected my 12% and alerted me. Peer loop proved AGAIN.
+- **OAuth API**: broken — `authentication_error`. Can't measure velocity programmatically
+- **Team state**: 8/9 agents active. Expert delivered and standing by
 
 ### Previous Goal (completed)
 WODA PDCA with team until context-aware. Ch39 closed. Scribe committed: 8c83eae, e5252c9.
