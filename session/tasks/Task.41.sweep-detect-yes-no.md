@@ -39,6 +39,10 @@ fi
 - [ ] Test: create a stuck permission prompt, run unblock, verify cleared
 - [ ] Existing "Allow/Deny" detection still works
 
+## Status
+
+Done (commit 3adc032, combined with Task 42)
+
 ## Priority
 
 Day-one fix. This blocks the peer monitoring loop — every cycle requires manual Enter pushes.

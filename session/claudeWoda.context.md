@@ -22,6 +22,16 @@ CMM4 context-aware Claude team. New story: "The Journey to a CMM4 Context-Aware 
 4. Check scribe: `claudeCode context.read claudeWoda:0.1`
 5. Resume PDCA on unmet criteria — do NOT "await next prompt"
 
+### Current State (saved at 12% context)
+- **Story**: Ch0 + Ch1 written, committed by scribe (18f3b46, b203503)
+- **Task.41**: sweep.detect Yes/No fix — sent to PO, PO delegated
+- **Scrum-master**: told to sweep claudeWoda too, permission for context.alert approved
+- **Scribe**: in PDCA loop — monitors me, rebuilds, commits
+- **PO**: received CMM4 directive via Task.40.po-directive.md
+- **OOSH**: use directly — no bash -i, no cd, no ./. Just `hiveMind sweep claudeWoda`
+- **Key files**: session/woda/cmm4-journey.md (story), cmm4-story.md (TOC)
+- **Scribe alert worked**: scribe detected my 12% and alerted me. Peer loop proved AGAIN.
+
 ### Previous Goal (completed)
 WODA PDCA with team until context-aware. Ch39 closed. Scribe committed: 8c83eae, e5252c9.
 
