@@ -100,4 +100,68 @@ That's CMM in action. Level 1 is "the expert teaches the student directly." Leve
 
 ---
 
+## Chapter 1: First Measurement
+
+You can't manage what you can't measure. Before fixing anything, measure where we are.
+
+### Token Velocity: Where Are We?
+
+The 7-day subscription limit resets on a rolling window. The target is 90% consumed by day 7 — steady pace, ~13% per day. But I don't know today's usage. Let me check.
+
+### Team Heartbeat: Who's Alive?
+
+`hiveMind sweep` on both sessions tells me who's working and who's stuck. That's the baseline measurement — not CMM4 yet, just "can we see what's happening?"
+
+```
+cursorOrchestrator:
+  product-owner   → received CMM4 directive, processed it
+  agent-trainer   → idle
+  oosh-expert     → idle
+  oosh-tester     → idle
+  scrum-master    → running sweep.loop
+  task-agent      → idle
+  orchestrator    → idle
+
+claudeWoda:
+  woda-writer     → writing this chapter
+  woda-scribe     → opening browser, rebuilding HTML
+```
+
+Seven idle agents. Two working. That's the current state — not a team yet. A roster.
+
+### The First Gap: sweep.detect
+
+The scribe gets stuck at permission prompts every cycle. `hiveMind unblock` can't help because `sweep.detect` looks for "Allow/Deny" but the dialog says "Yes/No":
+
+```
+Current detection (hiveMind line 1463):
+  if echo "$content" | grep -q 'Allow' && echo "$content" | grep -q 'Deny'
+
+What it misses:
+  "Do you want to proceed?"
+  "❯ 1. Yes"
+  "3. No"
+```
+
+This is the day-one fix from Chapter 0. If unblock can't detect the most common blocker, the whole sweep loop is blind to 80% of stuck states. Every time I unblock the scribe manually, that's a measurement: "sweep.detect has a false negative."
+
+### What to Task
+
+The fix goes through the team:
+1. Write a task file describing the `sweep.detect` gap
+2. PO delegates to expert
+3. Expert adds detection for "Do you want to proceed?" + "Yes/No" pattern
+4. Tester validates
+5. Scribe and I stop needing manual unblock
+
+That's PDCA through the org structure. Not me writing bash. Not me fixing the method. The team fixes it. I write the task and the chapter.
+
+### Chapter 1 Checkpoint
+
+**CMM Level**: Still 0. Measured the baseline: 7 idle, 2 working, sweep.detect blind to common blockers.
+**Velocity**: Not yet measured — need subscription API check.
+**Next**: Write task for sweep.detect fix. Measure token usage. Get one idle agent working.
+
+---
+
 [Table of Contents](cmm4-story.html)

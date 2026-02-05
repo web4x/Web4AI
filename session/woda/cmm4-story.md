@@ -13,6 +13,7 @@
 | # | Chapter | Key Lesson |
 |---|---------|------------|
 | 0 | [The Starting Line](cmm4-journey.html) | Two teams, nine agents, OOSH tools exist but aren't integrated. Velocity target: 90% of 7-day limit on day 7. Communication: Tron → PO → team. |
+| 1 | [First Measurement](cmm4-journey.html) | Baseline: 7 idle, 2 working. sweep.detect blind to Yes/No dialogs. Can't manage what you can't measure. Task the fix through the team, not solo. |
 
 ### CMM1: Ad Hoc (Chapters 10–19)
 
