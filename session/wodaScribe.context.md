@@ -46,10 +46,10 @@
 
 ## Current State (post-compaction recovery)
 - **NEW STORY**: CMM4 journey at `session/woda/cmm4-journey.md` (TOC: `cmm4-story.md`). Parallel to WODA story.
-- **Last processed**: CMM4 Ch7 "Who Unblocks the Unblocker?" — bootstrap paradox, background tasks overlay gap, Task 40.5 measure.evaluate, compound command problem.
-- **All CMM4 commits**: `18f3b46` (Ch0), `b203503` (Ch1), `58e1bcf` (Ch2), `21889be` (Ch2 update), `e9ae783` (Ch3), `f810971` (Ch4), `4527a08` (Ch5), `cf917ba` (Ch6), pending (Ch7)
-- **WODA story**: Ch39 closed. Commits `8c83eae`, `e5252c9`. Complete.
-- **Writer state**: Recovered from near-compaction. Self-corrected — realized context.read was buggy (Ch4 lesson). Monitoring me.
+- **Last processed**: CMM4 Ch12 "The Watchdog That Didn't Watch" — watchdog died (stale PID), scribe died and relaunched, 8 interventions again, Tasks 49-50 filed.
+- **All CMM4 commits**: `18f3b46`(Ch0), `b203503`(Ch1), `58e1bcf`(Ch2), `21889be`(Ch2u), `e9ae783`(Ch3), `f810971`(Ch4), `4527a08`(Ch5), `cf917ba`(Ch6), `415586a`(Ch7), `f1d4c54`(Ch8-11), pending(Ch12)
+- **WODA story**: Ch39 closed. Complete.
+- **Writer state**: Writing CMM1 chapters. Watchdog restarted (PID 74583). Filed Tasks 49 (watchdog supervisor) and 50 (pending-edits detection).
 - **Monitor**: Running (PID 52752, may change)
 - **Protocol corrections from Ch3**: Use `otmux send` not raw `tmux send-keys`. Select option 2 on permission prompts.
 - **PDCA loop**: Active — writer monitors me, I monitor writer, rebuild + commit after each chapter.
