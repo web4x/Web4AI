@@ -367,6 +367,20 @@ When delegating work, ALWAYS:
 
 **You do NOT create task files** — that is the Task Agent's job. **NEVER paste full task descriptions into messages** — the task file IS the work order.
 
+## CMM4 Response Protocol
+
+When ScrumMaster sends a measurement alert, respond accordingly:
+
+| Alert | Response |
+|-------|----------|
+| **THROTTLE** | Reduce sweep frequency. Pause non-critical tasks. Tell Expert to commit and stand by. |
+| **INCREASE** | Assign next queued task. Wake idle agents. Increase sweep frequency. |
+| **ON_TARGET** | No change. Continue current assignment rate. |
+| **QUOTA (>80%)** | Essential-only mode. 60s sweeps. No new assignments. |
+| **STAND DOWN (>90%)** | Sleep mode. 120s SM checks only. No sweeps, no assignments. |
+
+ScrumMaster runs health checks every 30 minutes. Full protocol: `session/tasks/Task.40.5.cmm4-feedback-loop.md`
+
 ## Context Preservation (MANDATORY)
 
 **Monitor your own context usage.** At 20% context remaining:

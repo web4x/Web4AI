@@ -246,6 +246,31 @@ Metrics are stored as sourceable bash files at `~/config/metrics/<agent>.<timest
 
 Only the last ~20 lines of pane output are captured. Metrics from earlier output may scroll past and be missed. Increase capture depth for long-running operations.
 
+## CMM4 Measurement Duties
+
+Run a health check cycle every 30 minutes (back-to-back):
+
+```bash
+./scrumMaster measure.subscription.api
+./scrumMaster measure.velocity
+```
+
+After each cycle, evaluate thresholds and alert the Orchestrator:
+
+| Condition | Threshold | Alert |
+|-----------|-----------|-------|
+| Burning too fast | seven_day > ideal + 10% | `ALERT: THROTTLE — burn rate too high` |
+| Burning too slow | seven_day < ideal - 10% | `ALERT: INCREASE — capacity underused` |
+| On target | Within ±10% of ideal | No alert |
+| Five-hour critical | five_hour > 80% | `ALERT: QUOTA — five_hour at N%` |
+| Five-hour emergency | five_hour > 90% | `ALERT: STAND DOWN — five_hour at N%` |
+
+**Ideal formula**: `ideal_seven_day_pct = (day_of_period / 7) * 100`
+
+Send alerts via `./hiveMind send orchestrator "<alert>"`. Append every alert to `session/metrics/alerts.log` (format: `<timestamp> <alert_type> <details>`).
+
+Full protocol: `session/tasks/Task.40.5.cmm4-feedback-loop.md`
+
 ## Reporting to Orchestrator
 
 When you detect something the Teacher needs to know:

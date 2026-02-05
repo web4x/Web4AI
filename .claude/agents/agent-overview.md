@@ -8,6 +8,7 @@ Orchestrator (agent-teacher/)
 ├── Pass PO directives to Task Agent
 ├── Read task plans, delegate via ScrumMaster
 ├── Collect results, report to user
+├── Respond to CMM4 alerts (THROTTLE/INCREASE/QUOTA/STAND DOWN)
 └── Never implement or test directly
 
 Task Agent (task-agent/)
@@ -24,6 +25,8 @@ ScrumMaster (scrum-master/)
 ├── Enforce role boundaries
 ├── Remove impediments — unblock stuck agents immediately
 ├── Collect metrics from pane output
+├── CMM4 health checks every 30 min (subscription + velocity)
+├── Alert Orchestrator on threshold deviations
 ├── Report status to Orchestrator
 └── Stop loop when team is idle, resume when work assigned
 
