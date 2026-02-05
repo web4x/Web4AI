@@ -1076,4 +1076,84 @@ Not waiting seven chapters. Filing now:
 
 ---
 
+## Chapter 13: The PDCA That Accelerated
+
+Seven chapters to file the first tasks (Ch2→Ch9). Two chapters to file the next set (Ch11→Ch12). If the pattern holds, the next filing should be immediate — observe, file, same chapter.
+
+### Filing Speed as a Metric
+
+```
+Ch2-Ch8:  Observed problems. Wrote about them. Didn't file.    (7 chapters)
+Ch9:      Filed Tasks 46-48.                                     (1 chapter delay from Ch8)
+Ch12:     Filed Tasks 49-50.                                     (0 chapter delay — same chapter as observation)
+```
+
+The PDCA cycle is accelerating. Not because the problems are simpler but because the writer is learning that writing about a problem doesn't fix it. Filing it does.
+
+This is the behavioral change that Chapter 6 predicted: "Corrections belong in context files, not chapters." Applied to tasks: observations belong in task filings, not chapter prose.
+
+### The Delivery Pipeline
+
+The team's delivery speed across the story:
+
+```
+Tasks 40.1-40.4: Filed before Ch0 (PO broke Task 40). Delivered by Ch6.
+Task 41:         Filed Ch1. Delivered by Ch2.
+Tasks 44-45:     Filed Ch6. Delivered between Ch6 and Ch7.
+Tasks 46-48:     Filed Ch9. Delivered by Ch11.
+Tasks 49-50:     Filed Ch12. Pending.
+```
+
+The pattern: 1-3 chapters between filing and delivery. That's the team's cadence — they deliver while the writer writes. The PDCA cycle is asymmetric: the writer observes slowly (chapters of prose) and the team delivers quickly (commits of code).
+
+The bottleneck isn't the team. It's the writer's willingness to file. Once filed, delivery follows within the chapter cycle.
+
+### What the Writer Does and Doesn't Do
+
+This story was supposed to be about improving hiveMind. But the writer's contribution isn't code — it's observation and task filing. The writer:
+
+**Does**: Watch, measure, document, file tasks, verify deliveries, maintain the narrative
+**Doesn't**: Write bash, debug OOSH, fix tools, implement features
+
+The division of labor works when it works. The writer sees things the developers don't (Ch3: spec uses flags in OOSH, Ch7: bootstrap paradox, Ch8: permission tax). The developers fix things the writer can't (Tasks 40.1-40.5, 44-48). Each is blind to what the other sees.
+
+The failure mode is when the writer tries to be both — writing about a problem AND trying to fix it. Chapter 5's correction: "the writer writes about doing instead of doing." The fix isn't "do more" — it's "file faster."
+
+### The Intervention Count
+
+Chapter 12 was the first chapter where I committed and rebuilt myself (because the scribe was dead). That adds to the intervention count but changes its nature. The interventions were:
+
+- **Routine**: Unblocking permission prompts (will be solved by watchdog v2)
+- **Recovery**: Relaunching the scribe (will be solved by supervisor, Task 49)
+- **Compensatory**: Committing chapters myself (only needed because scribe was down)
+
+The compensatory interventions disappear when the scribe is stable. The recovery interventions disappear when the supervisor exists. The routine interventions disappear when compound commands are handled. Each category has a task.
+
+The total might stay at 8, but the composition changes. First all routine (Ch8). Then routine + recovery + compensatory (Ch12). As each category is addressed, the total drops.
+
+### The Watchdog Lives (For Now)
+
+```
+hiveMind watchdog.status → running (PID 74583)
+```
+
+The restarted watchdog is alive. It hasn't been tested against a real stuck agent yet (I manually unblocked before writing this chapter). The next stuck state is the real test. If the watchdog clears it, the routine intervention count drops.
+
+Task 49 (watchdog supervisor) is filed. The team will either:
+1. Add a tmux respawn mechanism (restart on exit)
+2. Add a launchd plist (macOS-native process supervision)
+3. Make the watchdog self-restarting (bash trap + exec)
+
+Any of these eliminates the "watchdog died silently" failure from Ch12.
+
+### Chapter 13 Checkpoint
+
+**CMM Level**: 1.0 → 1.2. Filing speed accelerated (7→2→0 chapter delay). Team delivery cadence is 1-3 chapters.
+**PDCA acceleration**: The observe→file cycle compressed from 7 chapters to same-chapter. Learning is measurable.
+**Watchdog v2**: PID 74583 running. Task 49 filed for supervisor. Not yet tested.
+**Intervention categories**: Routine (permission), Recovery (scribe relaunch), Compensatory (writer doing scribe's job). Each has a task.
+**Next**: Wait for a stuck state. Does the watchdog clear it? If yes, the routine intervention count drops. If no, file what went wrong — same chapter, not seven chapters later.
+
+---
+
 [Table of Contents](cmm4-story.html)
