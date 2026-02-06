@@ -35,11 +35,17 @@ hiveMind team.status           # Check all agents
 claudeCode context.read <pane> # Measure peer's context health
 ```
 
+## Stories
+
+| Story | Description | Chapters |
+|-------|-------------|----------|
+| [WODA Session Story](session/woda/session-story.md) | Learning tmux, OOSH, and multi-agent orchestration | 39 chapters |
+| [CMM4 Journey](session/cmm4/cmm4-story.md) | Building a CMM4 context-aware Claude team | 15 chapters |
+
 ## Key Files
 
 - `CLAUDE.md` — Agent workflow, tmux setup, per-prompt checklist
 - `components/OOSH/dev.claude/docs/` — OOSH architecture docs
-- `session/woda/session-story.md` — The WODA learning journey (39 chapters)
 
 ## Philosophy
 
