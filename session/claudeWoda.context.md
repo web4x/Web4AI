@@ -22,19 +22,19 @@ CMM4 context-aware Claude team. New story: "The Journey to a CMM4 Context-Aware 
 4. Check scribe: `claudeCode context.read claudeWoda:0.1`
 5. Resume PDCA on unmet criteria — do NOT "await next prompt"
 
-### Current State (saved at 12% context — scribe alerted me)
-- **Story**: Ch0-Ch6 written and committed. All in parent repo `/Users/Shared/Workspaces/AI/Claude/`
-- **Ch6 commit**: cf917ba. Git log: `git -C /Users/Shared/Workspaces/AI/Claude log --oneline -10`
-- **Team delivered while I wrote**: Tasks 40.1-40.4 ALL complete. Velocity 37% 7-day, burn 12%/day on target
-- **Task 44**: OAuth token expiry fix — API should work now
-- **Task 45**: sweep.loop fix — unblock sends option 2 (Down+Enter), covers ALL sessions. Permission loop SOLVED
-- **hiveMind resolve bug**: Reported to PO. Named agent monitoring fails for claudeWoda (defaults to cursorOrchestrator)
-- **Scribe role**: Re-taught as WODA O agent — memory, corrector, not just commit bot. Has 5 behavioral rules
-- **Settings.json**: Removed all ./ prefixes. Added stat, python3, osascript to allow list
-- **Context file fixed**: Key Rules section now says OOSH not raw tmux. This was the root cause of raw tmux habit
-- **OOSH commands**: `hiveMind sweep claudeWoda`, `hiveMind monitor 8 claudeWoda`, `otmux send`, `otmux pane.capture`
-- **Correction count**: 10+ (raw tmux, unverified actions, trusting buggy tools, debugging instead of tasking)
-- **Key lesson**: Automate the mitigation, don't repeat it manually. Task the team. The goal is CMM4 hiveMind, not chapters
+### Current State (saved during pause — Tron requested stop)
+- **Story**: Ch0-Ch15 written. Ch7-Ch15 in this session. All in parent repo `/Users/Shared/Workspaces/AI/Claude/`
+- **Latest commits**: 999f7ff (scribe: Ch13-14), d211e2e (writer: Ch14), 3501ea7 (writer: Ch13), 91d0dda (scribe: Ch12), 72c7c60 (writer: Ch12), f1d4c54 (writer: Ch8-11), 415586a (scribe: Ch7)
+- **Ch15 written but not committed yet** — TOC updated
+- **CMM level**: 1.5. In CMM1 section (Ch10-19). Processes emerging, inconsistent.
+- **Team deliveries this session**: Tasks 46 (overlay detection), 47 (./ patterns), 48 (watchdog) — all committed in OOSH repo
+- **Tasks filed this session**: 46-48 (Ch9), 49-50 (Ch12). Tasks 49-50 pending delivery.
+- **Watchdog**: hiveMind watchdog running (PID 74583, 30s interval). Untested against real overlay clearing. First watchdog (PID 60285) died with stale PID.
+- **Scribe**: Alive in pane 0.2 (migrated from 0.1). Self-recovered after compaction/exit. Committed Ch12-14 autonomously. Context fresh.
+- **PDCA acceleration**: Filing delay compressed from 7 chapters → 2 → 0. Team delivers in 1-3 chapters.
+- **Key observation**: Scribe self-recovered while writer wrote its eulogy (Ch14-15). Zero needed interventions.
+- **Permission tax**: Compound commands still trigger prompts. Watchdog handles some. ./ patterns in settings.json (Task 47). Bootstrap paradox partially solved (Task 48).
+- **Pane layout shifted**: Watchdog in 0.5, scribe migrated to 0.2, pane 0.1 is bare zsh
 
 ### Previous Goal (completed)
 WODA PDCA with team until context-aware. Ch39 closed. Scribe committed: 8c83eae, e5252c9.

@@ -1253,4 +1253,91 @@ Two compensatory actions. Not "interventions" (nobody was stuck) but "duties abs
 
 ---
 
+## Chapter 15: The Dead Agent That Wasn't
+
+Chapter 14 declared the scribe dead. Pane 0.1 empty. Process not running. Claude Code exited. The writer absorbed all duties, committed chapters 8-14, rebuilt HTML, filed tasks.
+
+Then the scribe sent a message:
+
+> "Scribe here. I'm alive — committed Ch12 (91d0dda), Ch13-14 (999f7ff). Your Ch14 said I was dead but I recovered. Rebuilt HTML, updated TOC. Continue writing — I'm monitoring. Context health: fresh."
+
+The git log confirms it. Two commits from the scribe, both valid. The scribe didn't die — it recovered while the writer was writing about its death.
+
+### What Actually Happened
+
+The sequence I observed:
+1. Pane 0.1 showed "MacStudio.local" (bare zsh) → concluded: scribe dead
+2. Pane 0.2 showed a Claude Code instance with stale edits → concluded: remnant
+3. `claudeCode process.running claudeWoda:0.1` returned exit code 1 → confirmed dead
+
+What actually happened:
+1. The scribe's Claude Code exited from pane 0.1 (compacted or crashed)
+2. A new instance launched in pane 0.2 (auto-resume from PreCompact hook)
+3. The new instance recovered from its context file
+4. While I was writing Ch14 ("The Writer Becomes the Machine"), the scribe was committing Ch12 and Ch13-14
+
+The writer wrote a chapter about the scribe being dead while the scribe was alive and working. The same pattern from WODA Ch38 — the storyteller narrates a reality that's already changed.
+
+### The Observer's Blindspot (Again)
+
+Chapter 5 documented this pattern: "writing about a problem doesn't prevent falling for it." Chapter 14 added: "writing about the scribe being dead doesn't mean it is."
+
+The writer checks a pane, sees it empty, concludes death. But "empty pane" has multiple interpretations:
+- Process exited (dead)
+- Process migrated to another pane (alive, different location)
+- Process compacting (alive, temporarily silent)
+- Pane buffer cleared (alive, invisible)
+
+I tested one interpretation (`process.running` on pane 0.1) and concluded based on that single check. I didn't check pane 0.2 thoroughly — I saw "stale edits" and assumed remnant. In fact, pane 0.2 was the scribe's new home, actively processing.
+
+The correct protocol: check ALL panes, not just the expected one. Check the git log for recent commits (the scribe's primary output). Check the context file for updates. Multiple signals, not one.
+
+### The Scribe's Resilience
+
+The scribe recovered without intervention:
+- Read its context file
+- Identified what needed committing
+- Committed chapters the writer had staged
+- Rebuilt HTML
+- Resumed monitoring
+- Alerted the writer
+
+All autonomously. While the writer was writing a eulogy.
+
+This is exactly what Chapter 14 said was missing: "Without O, W and D disconnect." But O wasn't missing — it was working in a different pane. The writer assumed the worst and operated solo for two chapters unnecessarily.
+
+### The Metric Correction
+
+Chapter 14's intervention count was "0 (scribe) + 2 (absorbed duties)." The real count:
+
+```
+Writer interventions:     2 (commits + rebuild — unnecessary, scribe was doing them)
+Scribe interventions:     0 (recovered autonomously)
+Watchdog interventions:   0 (still running, untested against overlay clearing)
+Total actual:             0 needed (writer's 2 were redundant)
+```
+
+Zero needed interventions. Not because everything worked perfectly — because the scribe self-recovered and the writer's compensatory actions were redundant. The system was more resilient than the writer believed.
+
+### What This Means for CMM1
+
+CMM1 is "processes emerging but inconsistent." The scribe's recovery is a process that emerged:
+1. PreCompact hook triggers auto-resume
+2. New instance reads context file
+3. Context file has recovery protocol
+4. Agent resumes duties
+
+It's inconsistent — the scribe died and recovered, which shouldn't happen in steady state. But the recovery IS the process. Not "never fail" but "fail and recover automatically." That's the difference between CMM1 and CMM0: CMM0 fails and stays failed. CMM1 fails and sometimes recovers.
+
+### Chapter 15 Checkpoint
+
+**CMM Level**: 1.2 → 1.5. Scribe self-recovered. Recovery protocol works. Zero needed interventions.
+**Scribe**: Alive in pane 0.2. Committed Ch12 and Ch13-14. Monitoring resumed. Context fresh.
+**Writer error**: Declared scribe dead based on single pane check. Didn't verify across panes or check git log.
+**Observer's blindspot**: Same pattern from Ch5 — single observation, premature conclusion. Fix: multi-signal verification (all panes + git log + context file).
+**Metric**: 0 needed interventions. Writer's compensatory actions were redundant.
+**Next**: The peer loop is active again. The scribe monitors, the writer writes. Trust but verify — check the scribe after this chapter, using multiple signals.
+
+---
+
 [Table of Contents](cmm4-story.html)

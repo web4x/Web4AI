@@ -46,10 +46,10 @@
 
 ## Current State (post-compaction recovery)
 - **NEW STORY**: CMM4 journey at `session/woda/cmm4-journey.md` (TOC: `cmm4-story.md`). Parallel to WODA story.
-- **Last processed**: CMM4 Ch14 "The Writer Becomes the Machine" — scribe dead, writer absorbs duties, decompose scribe into infra+agent.
-- **All CMM4 commits**: ...`415586a`(Ch7), `f1d4c54`(Ch8-11), `91d0dda`(Ch12), pending(Ch13-14)
+- **Last processed**: CMM4 Ch15 "The Dead Agent That Wasn't" — scribe self-recovered, zero needed interventions, observer blindspot corrected.
+- **All CMM4 commits**: ...`91d0dda`(Ch12), `999f7ff`(Ch13-14), pending(Ch15)
 - **WODA story**: Ch39 closed. Complete.
-- **Writer state**: Operating without scribe. Absorbed commit/rebuild/monitor duties. Proposes scribe decomposition (infra + agent). Tasks 49-50 pending.
+- **Writer state**: Back in peer loop with scribe. Discovered scribe was alive. CMM Level 1.2→1.5.
 - **Monitor**: Running (PID 52752, may change)
 - **Protocol corrections from Ch3**: Use `otmux send` not raw `tmux send-keys`. Select option 2 on permission prompts.
 - **PDCA loop**: Active — writer monitors me, I monitor writer, rebuild + commit after each chapter.

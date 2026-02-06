@@ -34,6 +34,7 @@
 | 12 | [The Watchdog That Didn't Watch](cmm4-journey.html) | Watchdog died (stale PID) before first useful action. Scribe died and was relaunched. 8 interventions again. Fix reveals next failure. Tasks 49-50 filed immediately (not 7 chapters later). |
 | 13 | [The PDCA That Accelerated](cmm4-journey.html) | Filing speed: 7→2→0 chapter delay. Team delivers in 1-3 chapters. Bottleneck is willingness to file, not team capacity. Intervention categories: routine, recovery, compensatory — each has a task. |
 | 14 | [The Writer Becomes the Machine](cmm4-journey.html) | Scribe dead. Writer absorbs all duties — faster but blind. No O agent = no peer monitoring. Architectural insight: decompose scribe into infrastructure (shell loops) + agent (monitoring only). |
+| 15 | [The Dead Agent That Wasn't](cmm4-journey.html) | Scribe self-recovered while writer wrote its eulogy. Zero needed interventions — writer's compensatory actions were redundant. Observer's blindspot: single pane check, premature conclusion. CMM1 = fail and recover, not never fail. |
 
 ### CMM2: Repeatable (Chapters 20–29)
 
