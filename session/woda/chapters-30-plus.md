@@ -1,4 +1,4 @@
-[← Chapters 20–29](chapters-20-plus.html) | [Table of Contents](session-story.html)
+[← Chapters 20–29](chapters-20-plus.md) | [Table of Contents](session-story.md)
 
 ---
 
@@ -1293,4 +1293,4 @@ The chapter ends when this loop runs without correction. Or maybe it doesn't end
 
 ---
 
-[← Chapters 20–29](chapters-20-plus.html) | [Table of Contents](session-story.html)
+[← Chapters 20–29](chapters-20-plus.md) | [Table of Contents](session-story.md)

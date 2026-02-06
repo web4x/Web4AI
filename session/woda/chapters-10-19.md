@@ -1,4 +1,4 @@
-[← Chapters 1–9](chapters-1-9.html) | [Table of Contents](session-story.html) | [Chapters 20+ →](chapters-20-plus.html)
+[← Chapters 1–9](chapters-1-9.md) | [Table of Contents](session-story.md) | [Chapters 20+ →](chapters-20-plus.md)
 
 ---
 
@@ -696,8 +696,8 @@ It's the difference between a pile of tools in a garage and a workshop with labe
 
 ---
 
-*The journey continues in [Part III: Chapters 20+](chapters-20-plus.html)...*
+*The journey continues in [Part III: Chapters 20+](chapters-20-plus.md)...*
 
 ---
 
-[← Chapters 1–9](chapters-1-9.html) | [Table of Contents](session-story.html) | [Chapters 20+ →](chapters-20-plus.html)
+[← Chapters 1–9](chapters-1-9.md) | [Table of Contents](session-story.md) | [Chapters 20+ →](chapters-20-plus.md)

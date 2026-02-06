@@ -1,4 +1,4 @@
-[Table of Contents](cmm4-story.html)
+[Table of Contents](cmm4-story.md)
 
 ---
 
@@ -1340,4 +1340,4 @@ It's inconsistent — the scribe died and recovered, which shouldn't happen in s
 
 ---
 
-[Table of Contents](cmm4-story.html)
+[Table of Contents](cmm4-story.md)

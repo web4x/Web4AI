@@ -1,4 +1,4 @@
-[← Chapters 10–19](chapters-10-19.html) | [Table of Contents](session-story.html) | [Chapters 30+ →](chapters-30-plus.html)
+[← Chapters 10–19](chapters-10-19.md) | [Table of Contents](session-story.md) | [Chapters 30+ →](chapters-30-plus.md)
 
 ---
 
@@ -1873,4 +1873,4 @@ The tools are there. The API exists. The team knows how to build OOSH methods. W
 
 ---
 
-[← Chapters 10–19](chapters-10-19.html) | [Table of Contents](session-story.html) | [Chapters 30+ →](chapters-30-plus.html)
+[← Chapters 10–19](chapters-10-19.md) | [Table of Contents](session-story.md) | [Chapters 30+ →](chapters-30-plus.md)

@@ -1,4 +1,4 @@
-[Table of Contents](session-story.html) | [Chapters 10–19 →](chapters-10-19.html)
+[Table of Contents](session-story.md) | [Chapters 10–19 →](chapters-10-19.md)
 
 ---
 
@@ -139,7 +139,7 @@ The plan was almost embarrassingly simple: take the markdown, wrap it in a tiny 
 
 ```python
 # The entire "web server" is: write an HTML file and open it
-os.system('open session-story.html')
+os.system('open session-story.md')
 ```
 
 The browser launched. The page appeared. Dark theme, GitHub styling, code blocks with syntax highlighting. It was *gorgeous*.
@@ -268,4 +268,4 @@ From here on out, the upper pane is my hands.
 
 ---
 
-[Table of Contents](session-story.html) | [Chapters 10–19 →](chapters-10-19.html)
+[Table of Contents](session-story.md) | [Chapters 10–19 →](chapters-10-19.md)

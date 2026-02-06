@@ -1,5 +1,5 @@
 #!/bin/bash
-# Rebuild all .md files in session/woda/ to .html and reload Chrome
+# Rebuild all .md files in session/cmm4/ to .html and reload Chrome
 DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Convert each .md file to .html
@@ -18,7 +18,7 @@ page = '''<!DOCTYPE html>
 <html>
 <head>
 <meta charset=\"utf-8\">
-<title>''' + title + ''' — WODA Session Story</title>
+<title>''' + title + ''' — CMM4 Journey</title>
 <link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/github-markdown-body/5.2.3/github-markdown.min.css\">
 <style>
   body { max-width: 880px; margin: 40px auto; padding: 0 20px; background: #ffffff; color: #1f2328; }
@@ -51,7 +51,7 @@ print('  Built: $basename -> ' + os.path.basename('$htmlfile'))
 done
 echo "HTML rebuilt ($(ls "$DIR"/*.md | wc -l | tr -d ' ') files)"
 
-# Reload any WODA tabs in Chrome
+# Reload any CMM4 tabs in Chrome
 osascript <<EOF
 set baseURL to "file://${DIR}/"
 tell application "Google Chrome"
@@ -65,7 +65,7 @@ tell application "Google Chrome"
         end repeat
     end repeat
     if reloaded = 0 then
-        open location (baseURL & "session-story.html")
+        open location (baseURL & "cmm4-story.html")
     end if
     activate
 end tell
