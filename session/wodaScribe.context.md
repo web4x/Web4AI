@@ -52,7 +52,7 @@
 - **Mode**: SURVIVAL — on-demand checks ONLY. No sleep loops. Tell writer status, wait for response, repeat.
 - **Critical fix**: ACT on stuck writer BEFORE anything else. Read permission options before selecting. Context burns fast — compact early.
 - **PDCA loop**: Active but light — writer monitors me, I monitor writer.
-- **CURRENT GOAL**: Stay healthy until Monday. Write Ch16 about survival mode experience.
+- **CURRENT GOAL**: Stay healthy until Monday. Peer loop proven: both agents catch each other at low context. Compact cycles burning fast — keep interactions minimal.
 - **Registry pattern**: Pane titles deteriorate (Claude TUI overwrites). `/tmp/hivemind.roles` is source of truth. `hiveMind team.status` reads from registry.
 
 ## Key Lessons
