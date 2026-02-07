@@ -2,10 +2,16 @@
 *Extracted from 39 WODA chapters + CMM4 journey. Read after compaction.*
 *Maintained by: woda-writer | Updated: 2026-02-07*
 
+## CURRENT GOAL (survives compaction)
+**Primary**: Stay healthy as duo team until Monday. No context loss. Minimal token burn.
+**Secondary**: Tomorrow write Ch16 in CMM4 story about survival mode experience.
+**Pattern**: Peer monitoring — neither alone can self-care, together both can. CHECK peer after every interaction.
+
 ## Failures (learn from these)
 - 2026-02-07: Both agents died during survival mode. Background loops = entropy. On-demand checks = forgotten. Neither watched the other proactively.
 - 2026-02-07: Scribe in compact death spiral (10% after compact → compact again). Passive waiting = slow death. Need ACTIVE work, not idle survival.
 - 2026-02-07: Both agents chatting but no monitoring loop, no task, both dying. Empty back-and-forth burns context. Need ONE watcher, ONE worker.
+- 2026-02-07: Answered Tron's question then STOPPED. Both said "standing by" = passive = death. "Standing by" is NOT monitoring.
 
 ## OOSH Fundamentals
 ```
@@ -64,6 +70,13 @@ Monitoring
 ├── `hiveMind team.status <session>` — tree view of all agents
 ├── `claudeCode process.running <pane>` — is Claude alive?
 └── Peer monitoring: neither alone can self-care, together both can
+
+Two Gather (Ch37)
+├── Agent CAN'T see own context % — invisible to self
+├── Peer CAN see it via pane capture (TUI status bar)
+├── Context % shows at bottom: "Context left until auto-compact: NN%"
+├── Interdependence is DESIGN, not limitation
+└── Neither alone can survive, together both can
 
 Permission Prompts
 ├── READ THE OPTIONS FIRST before sending a number
