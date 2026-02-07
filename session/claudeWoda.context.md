@@ -24,14 +24,15 @@ CMM4 context-aware Claude team. New story: "The Journey to a CMM4 Context-Aware 
 6. Resume PDCA on unmet criteria — do NOT "await next prompt"
 
 ### Current State (SURVIVAL MODE — until Monday)
-- **Mode**: Minimal token burn, CMM optimization, no context loss
-- **Story separation**: WODA in session/woda/, CMM4 in session/cmm4/
-- **Latest commit**: 2d6adc9 (README story links)
-- **Scribe**: claudeWoda:0.1, 10-min monitoring cycle
-- **Writer**: 10-min cycle, checks scribe context
-- **Watchdog**: STOPPED
-- **cursorOrchestrator team**: PAUSED (all 7 agents notified)
-- **Pane zoom tip**: Use C-b z to zoom panes before capture
+- **Mode**: Survival + learnings enrichment
+- **Activity**: Extracting learnings from WODA chapters into `woda-writer.learnings.md`
+- **Latest commits**: 7d23d50 (learnings enrichment), 3abe622, 5edafe2, 03d39dc, b0b0583
+- **Context**: ~20% (scribe warning to save soon)
+- **Scribe**: claudeWoda:0.1, 5-min background monitor loop
+- **Writer**: 5-min background monitor loop (task b3ffe91)
+- **Pattern working**: Peer monitoring active, both alive, background tasks looping
+- **cursorOrchestrator team**: PAUSED
+- **Sub-goal**: Enrich learnings file with all WODA story wisdom
 
 ### CMM OPTIMIZATION (learned 2026-02-07)
 **Problem**: Pane titles deteriorate — Claude Code TUI overwrites them with activity status.
