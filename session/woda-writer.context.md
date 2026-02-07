@@ -15,6 +15,11 @@ Stay healthy as duo team until Monday. Peer monitoring loop active.
 2. Update #3 status in cmm.improvement.md
 3. Restart monitoring loop
 4. Commit if changes
+5. **Ask critical questions**:
+   - What has team actually DELIVERED? (not "checking" - concrete results)
+   - Is team actively WORKING on our bug?
+   - WHEN will they deliver?
+   - Did scribe TEST results or just report status?
 
 ## Recovery Steps
 1. Read `session/woda-writer.learnings.md` (deep patterns)

@@ -42,7 +42,7 @@
     - [ ] Context % captured each cycle
     - [ ] Trend visible (burning fast vs stable)
     - [ ] Preemptive compact before critical
-  - **Status**: 2026-02-08 - **Task 52 FIXED** (33b7b08). context.read should now work. Scribe: test and implement KPI tracking.
+  - **Status**: 2026-02-08 - Task 52 fix tested, still broken. Scribe redirected orchestrator for real solution. Still blocked.
 
 - [x] **2. Mutual loop-death detection** -- DONE
   - Problem: When one agent's bg task dies, delay before peer notices
