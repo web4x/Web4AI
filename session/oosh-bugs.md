@@ -16,7 +16,7 @@
 - Bootstrap paradox — who unblocks the unblocker? Sweep loop in agent gets stuck. (Ch7) — **Fixed: Task 48 watchdog**
 - Compound commands trigger permission prompts — `sleep && hiveMind && stat` doesn't match patterns. (Ch7-8)
 - Scrum-master uses `./` prefix — `./hiveMind` instead of `hiveMind`, breaks pattern matching. (Ch8) — **Fixed: Task 47 (workaround)**
-- Watchdog died silently — stale PID, no supervisor, no restart mechanism. (Ch12) — **Task 49 pending**
+- Watchdog died silently — stale PID, no supervisor, no restart mechanism. (Ch12) — **Fixed: Task 49 (6dd4f57)**
 - TUI pending-edits stuck state — edits accumulate faster than processed, TUI locks. (Ch12) — **Task 50 pending**
 
 ## Not OOSH Bugs (Agent Behavior)
@@ -40,5 +40,5 @@
 | Bootstrap paradox | CMM4 | Fixed (Task 48) |
 | Compound command perms | CMM4 | Open (architectural) |
 | ./ prefix pattern mismatch | CMM4 | Workaround (Task 47) |
-| Watchdog no supervisor | CMM4 | Task 49 pending |
+| Watchdog no supervisor | CMM4 | Fixed (Task 49) |
 | TUI pending-edits lock | CMM4 | Task 50 pending |
