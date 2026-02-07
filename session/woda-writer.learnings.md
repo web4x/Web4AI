@@ -21,6 +21,11 @@
   - **4. OOSH bugs**: List bugs from WODA story for team to fix (see below).
   - Pattern: Neither alone can self-care, together both can. CHECK peer after every interaction.
 
+- **CMM Improvements** → See `session/cmm.improvement.md`
+  - Writer adds improvement suggestion each cycle (top of list)
+  - Scribe implements one, checks KPIs, marks done
+  - Push regularly: `git add -f session/*.md && git commit && git push`
+
 - **OOSH Bugs** → See `session/oosh-bugs.md` (standalone list, 14 bugs tracked)
   - 4 from WODA: test.suite loop, oo new.method macOS, c2 not found, ghost state refs
   - 10 from CMM4: context.read, permission reset, compound commands, watchdog, etc.
@@ -185,6 +190,7 @@
   - Recovery
     - Read `session/claudeWoda.context.md`
     - Read `session/woda-writer.learnings.md` (this file)
+    - Read `session/cmm.improvement.md` (add improvement, check scribe progress)
     - `otmux pane.capture claudeWoda:0.1 15`
   - Story Files
     - WODA: `session/woda/chapters-*.md`
