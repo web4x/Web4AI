@@ -4,7 +4,7 @@
 ## KPIs (update after each failure/success — CMM4)
 | Date | Failures | Compactions | Peer Alerts | Loop Maintained |
 |------|----------|-------------|-------------|-----------------|
-| 2026-02-07 | 6 | 3 | 4 | YES (after failures) |
+| 2026-02-07 | 6 | 4 | 5 | YES (after failures) |
 
 **Target**: 0 failures/day, loop always maintained, peer alerts < 2 (means healthy)
 
