@@ -18,7 +18,17 @@
   - **1. Survive**: Stay healthy as duo team until Monday. No context loss. Peer monitoring loop.
   - **2. Extract wisdom**: Summarize WODA story learnings, measure KPIs, let it survive compaction.
   - **3. Write**: Tomorrow EVENING write Ch16 in CMM4 story about survival mode experience.
+  - **4. OOSH bugs**: List bugs from WODA story for team to fix (see below).
   - Pattern: Neither alone can self-care, together both can. CHECK peer after every interaction.
+
+- **OOSH Bugs to Fix** (from WODA story — report to cursorOrchestrator team)
+  - `test.suite all` infinite loop — prints `this.call to:` endlessly. Individual suites work. (Ch19)
+  - `oo new.method` shaky on macOS — case-sensitivity issue, awk/sed errors during scaffolding. (Ch20)
+  - `c2: command not found` — internal completion system not available as standalone command.
+  - Ghost state machine refs — old `PDCA_TEST_*` references linger in `current.state.machine.env`.
+  - `claudeCode status` bug — launches TUI instead of method dispatch. (Task.26)
+  - `claudeCode context.read` unreliable — reports "above-threshold" even at 12%.
+  - Enter submission unreliable — `otmux send` + Enter queues messages instead of submitting. (Task.30)
 
 - **Failures** (learn from these)
   - 2026-02-07: Both agents died. Background loops = entropy. On-demand checks = forgotten.
