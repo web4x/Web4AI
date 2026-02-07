@@ -22,8 +22,8 @@
   - Pattern: Neither alone can self-care, together both can. CHECK peer after every interaction.
 
 - **CMM Improvements** → See `session/cmm.improvement.md`
-  - Writer adds improvement suggestion each cycle (top of list)
-  - Scribe implements one, checks KPIs, marks done
+  - Writer adds improvement ONLY when scribe completes one (pull, not push)
+  - Scribe implements one, checks KPIs, marks done, notifies writer
   - Push regularly: `git add -f session/*.md && git commit && git push`
 
 - **Team Delegation** (each cycle)

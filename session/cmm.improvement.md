@@ -1,5 +1,5 @@
 # CMM Improvement Checklist
-*Writer adds at top. Scribe implements top-down. Check off when done.*
+*Writer adds ONLY when scribe completes one (pull system). Scribe implements top-down.*
 
 ## Improvements (newest first)
 
