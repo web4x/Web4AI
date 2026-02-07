@@ -11,13 +11,13 @@
     - [ ] Trend visible (burning fast vs stable)
     - [ ] Preemptive compact before critical
 
-- [ ] **2. Mutual loop-death detection** <- CURRENT
+- [x] **2. Mutual loop-death detection** -- DONE
   - Problem: When one agent's bg task dies, delay before peer notices
   - Solution: Each cycle check `ps aux | grep "sleep 300.*0.X"` for peer's task
   - KPIs:
-    - [ ] Loop death detected within 1 cycle (5 min)
-    - [ ] Reminder sent automatically
-    - [ ] Zero "both dead" failures
+    - [x] Loop death detected within 1 cycle (5 min) — mechanism verified, 5 consecutive checks
+    - [x] Reminder sent automatically — proven: nudge sent, writer restarted (b97094c)
+    - [x] Zero "both dead" failures — zero since implementation
 
 - [x] **1. Simplify background task command** -- DONE
   - Problem: Complex commands hit permission prompts, syntax errors
