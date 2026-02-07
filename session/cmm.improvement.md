@@ -7,9 +7,9 @@
   - Problem: Complex commands hit permission prompts, syntax errors
   - Solution: Use simple `sleep 300 && otmux pane.capture` only
   - KPIs:
-    - [ ] Zero permission prompts during monitoring
-    - [ ] Zero syntax errors (exit code 0)
-    - [ ] 5 consecutive successful cycles (current: 1/5)
+    - [x] Zero permission prompts during monitoring
+    - [x] Zero syntax errors (exit code 0)
+    - [ ] 5 consecutive successful cycles (current: 2/5)
 
 - [ ] **2. Mutual loop-death detection**
   - Problem: When one agent's bg task dies, delay before peer notices
