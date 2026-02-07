@@ -3,6 +3,14 @@
 
 ## Improvements (newest first)
 
+- [ ] **5. Writer cycle checklist**
+  - Problem: Writer forgot to add improvements, did only monitoring
+  - Solution: Each cycle: (1) check peer (2) push changes (3) ADD improvement (4) restart
+  - KPIs:
+    - [ ] Zero cycles without new improvement added
+    - [ ] Checklist followed every cycle
+    - [ ] No more "routine crowded out improvement" failures
+
 - [ ] **4. Auto-commit each cycle**
   - Problem: Changes accumulate, risk losing progress if crash
   - Solution: Each monitoring cycle, check `git status` and commit if changes
@@ -36,5 +44,5 @@
     - [x] 5 consecutive successful cycles (5/5)
 
 ---
-*Updated: 2026-02-07 21:53*
+*Updated: 2026-02-07 21:58*
 *Pattern: Writer adds at TOP -> Scribe implements top unchecked -> Check KPIs -> Done*
