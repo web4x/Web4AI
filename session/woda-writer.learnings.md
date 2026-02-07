@@ -26,6 +26,12 @@
   - Scribe implements one, checks KPIs, marks done
   - Push regularly: `git add -f session/*.md && git commit && git push`
 
+- **Team Delegation** (each cycle)
+  - Send 1 improvement or bugfix to orchestrator: `otmux send cursorOrchestrator:0.0 "..."`
+  - Ask scrum-master to notify scribe when done
+  - Team: orchestrator (0.0), scrum-master (0.1), expert (0.2), tester (0.3)
+  - Bugs to delegate: see `session/oosh-bugs.md`
+
 - **OOSH Bugs** → See `session/oosh-bugs.md` (standalone list, 14 bugs tracked)
   - 4 from WODA: test.suite loop, oo new.method macOS, c2 not found, ghost state refs
   - 10 from CMM4: context.read, permission reset, compound commands, watchdog, etc.
