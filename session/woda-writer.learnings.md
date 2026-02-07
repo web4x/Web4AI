@@ -104,6 +104,12 @@
 - Enables recovery after compaction
 - "Wer den Überblick behält, der behält die Kontrolle"
 
+### Where WODA Breaks (Ch30)
+- Ch24: Forgot scribe = O neglected. W and D working, but O degraded silently.
+- Ch29: Jumped W→A, skipped O. Didn't check what exists before building.
+- Every compaction: W gone, O partial, D full, A results only. O quality determines recovery.
+- Human parallel: 7±2 working memory = our context window. WODA is how humans process petabytes.
+
 ## CMM Patterns
 
 ### Levels
@@ -147,6 +153,22 @@
 - "Wer schreibt, der bleibt"
 
 ## Key Commands Quick Reference
+
+### Known Bugs
+- Enter submission via `otmux send` + Enter is unreliable (messages queue instead of submit)
+- `claudeCode status` launches TUI instead of method dispatch
+- `claudeCode context.read` reports "above-threshold" even at 12% — unreliable
+
+### OAuth API (Ch26-27)
+- Usage endpoint: `GET https://api.anthropic.com/api/oauth/usage`
+- Auth: `security find-generic-password -s "Claude Code-credentials" -w`
+- Returns: `five_hour.utilization`, `seven_day.utilization` with `resets_at` timestamps
+- TUI commands: `/usage`, `/status`, `/stats`, `/context`, `/cost`
+
+### bash -i Trick (Ch35)
+- `bash -i` from internal Bash gives OOSH access (full bootstrap)
+- Removes need for pane 4 for OOSH commands
+- But direct OOSH commands work without wrapper now
 
 ### OOSH (run directly, no wrapper)
 - `hiveMind team.status claudeWoda`
