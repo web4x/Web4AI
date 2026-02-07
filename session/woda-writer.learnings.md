@@ -2,6 +2,9 @@
 *Extracted from 39 WODA chapters + CMM4 journey. Read after compaction.*
 *Maintained by: woda-writer | Updated: 2026-02-07*
 
+## Failures (learn from these)
+- 2026-02-07: Both agents died during survival mode. Background loops = entropy. On-demand checks = forgotten. Neither watched the other proactively.
+
 ## OOSH Fundamentals
 ```
 Invocation
