@@ -55,6 +55,12 @@
 - C-c behaves differently between shells (avoid)
 - zsh finds OOSH scripts in PATH but can't use them properly
 - OOSH shell has full bootstrap (completions, config, PATH)
+- Named panes are findable panes — names are how you stay sane in complex sessions
+
+### Terminal Philosophy (Ch6-8)
+- Terminal isn't a cage, it's a cockpit — reach the whole desktop via `open`, AppleScript
+- Context file = breadcrumb trail back to yourself — amnesia insurance after compact
+- AppleScript + osascript = control GUI apps from CLI (refresh browser, move windows)
 
 ## Multi-Agent
 
@@ -62,8 +68,15 @@
 - File-based communication > buggy Enter messages
 - Write task file → agent READs it (no send-keys needed)
 - Enter submission is unreliable via send-keys (known issue)
+- TUI quirk: first Enter = newline, second Enter = submit
 - hiveMind registry maps agent names to pane targets
 - `hiveMind resolve <name>` — find agent's pane
+
+### Teaching New Agents (Ch10-11)
+- New Claude = blank slate. Name it (`/rename`), brief it (single prompt)
+- Define purpose clearly: "You are X. Your job: Y. You do NOT do Z."
+- Division of labor: writer creates, scribe maintains infrastructure
+- Multi-agent = two AIs sharing tmux, dividing labor, communicating via files
 
 ### Monitoring
 - `hiveMind monitor <name> <lines>` — peek at agent's pane
