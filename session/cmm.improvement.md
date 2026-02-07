@@ -3,13 +3,13 @@
 
 ## Improvements (newest first)
 
-- [ ] **5. Writer cycle checklist**
-  - Problem: Writer forgot to add improvements, did only monitoring
-  - Solution: Each cycle: (1) check peer (2) push changes (3) ADD improvement (4) restart
+- [ ] **5. Automate cycle steps**
+  - Problem: Writer forgot to add improvements - memory-based checklists fail
+  - Solution: Background task output triggers automated sequence, not manual memory
   - KPIs:
-    - [ ] Zero cycles without new improvement added
-    - [ ] Checklist followed every cycle
-    - [ ] No more "routine crowded out improvement" failures
+    - [ ] Cycle steps encoded in script/hook, not human memory
+    - [ ] Zero forgotten steps after automation
+    - [ ] Process runs same whether tired/distracted or not
 
 - [ ] **4. Auto-commit each cycle**
   - Problem: Changes accumulate, risk losing progress if crash
