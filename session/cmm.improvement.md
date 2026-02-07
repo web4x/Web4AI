@@ -42,7 +42,7 @@
     - [ ] Context % captured each cycle
     - [ ] Trend visible (burning fast vs stable)
     - [ ] Preemptive compact before critical
-  - **Status**: 2026-02-08 - Task 52 research done, fix spec written. Orchestrator on Task 55 (implementation). Awaiting reliable context.read method.
+  - **Status**: 2026-02-08 - **Task 52 FIXED** (33b7b08). context.read should now work. Scribe: test and implement KPI tracking.
 
 - [x] **2. Mutual loop-death detection** -- DONE
   - Problem: When one agent's bg task dies, delay before peer notices
