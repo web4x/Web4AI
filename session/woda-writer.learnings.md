@@ -35,6 +35,13 @@
 - Bootstrap: source this → this.start "$@" → scriptname.start "$@"
 - `### new.method` marker is where new methods get inserted
 
+### Three-Layer Stack (Ch20)
+- `oo`: framework lifecycle manager (new, release, update, install)
+- `state`: state machine engine (create, add, next, persist to ~/config/stateMachines/)
+- `scrumMaster`: PDCA process on top of state (CMM3-compliant)
+- `oo` uses `state` to track its own installation — recursive elegance
+- PDCA loop: P→D→C→A→C→A→C→A...→finished (loop C→A until Check passes)
+
 ## tmux & Panes
 
 ### Core Commands (OOSH versions)
