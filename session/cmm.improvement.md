@@ -42,7 +42,7 @@
     - [ ] Context % captured each cycle
     - [ ] Trend visible (burning fast vs stable)
     - [ ] Preemptive compact before critical
-  - **Status**: 2026-02-08 - Task 52 "fix" is useless. Context % NOT in TUI output. Patterns can't match what doesn't exist. Need architectural fix: count tokens in jsonl, or use /stats command. BLOCKED on missing CLI feature.
+  - **Status**: 2026-02-08 - Task 58 ASSIGNED to Expert. Using jsonl token counting approach. Scribe to be notified when done.
 
 - [x] **2. Mutual loop-death detection** -- DONE
   - Problem: When one agent's bg task dies, delay before peer notices
