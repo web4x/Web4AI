@@ -7,3 +7,4 @@
 | 21:59 | >20% (above-threshold) | active, composing | alive (74677) |
 | 22:04 | >20% (above-threshold) | active, going to sleep | alive (76892) |
 | 22:10 | **12%** CRITICAL | active, checking orchestrator | alive (79055) | ALERT SENT |
+| 22:17 | >20% (post-compact) | compacted, another /compact queued | alive (90423) |

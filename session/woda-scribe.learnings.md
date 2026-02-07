@@ -15,6 +15,7 @@
 - Reported "above-threshold x9" passively — didn't notice writer hit 0%. Reporting != acting.
 - Said "standing by" = passive = death. Monitor means CHECK, not wait.
 - Used raw `tmux capture-pane` instead of `otmux pane.capture` — OOSH principle.
+- Built KPI tracking on unreliable measurement (`claudeCode context.read`), acted on possibly hallucinated 12%. VALIDATE measurement tools BEFORE building systems on them. CMM4 theater (form without substance) is worse than honest CMM3 — false confidence is a regression.
 
 ## Core Protocol (8 steps)
 1. Rebuild HTML: `otmux send claudeWoda:0.2 C-u './session/woda/rebuild.sh' Enter`
@@ -48,11 +49,11 @@
 - Reporting numbers passively != monitoring. Look at TRENDS. 0% = ACT.
 
 ## Context Health
-- `claudeCode context.read` is unreliable — reported "above-threshold" at 12%, reported 20% then above-threshold in same session
-- Writer's TUI bottom bar shows "Context left until auto-compact: NN%"
-- At 0%: auto-compact imminent. ACT immediately.
-- At 20%: warn writer, suggest saving state
-- Report data + signals, never say "healthy" without evidence (Ch36)
+- **`claudeCode context.read` is UNVALIDATED** — do NOT act on its numbers without research. Reported "above-threshold" at 12%, "20" then "above-threshold" in same session. Numbers may be hallucinated.
+- **RULE: Validate measurement tools BEFORE building systems on them.** Research how the tool works first. Acting on bad data = CMM4 theater = worse than not measuring.
+- Writer's TUI bottom bar shows "Context left until auto-compact: NN%" — but pane capture doesn't reliably capture it
+- At visible 0% in TUI: auto-compact imminent. ACT immediately.
+- Report data + signals + confidence level, never say "healthy" without evidence (Ch36)
 
 ## Key Files
 - My context: `session/wodaScribe.context.md`
