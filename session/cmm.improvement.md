@@ -3,7 +3,15 @@
 
 ## Improvements (newest first)
 
-- [ ] **3. Context burn rate tracking**
+- [ ] **4. Auto-commit each cycle**
+  - Problem: Changes accumulate, risk losing progress if crash
+  - Solution: Each monitoring cycle, check `git status` and commit if changes
+  - KPIs:
+    - [ ] Zero uncommitted session changes older than 1 cycle
+    - [ ] All progress pushed to remote
+    - [ ] Recovery after crash loses max 5 min work
+
+- [ ] **3. Context burn rate tracking** <- CURRENT
   - Problem: Don't know how fast context burns until too late
   - Solution: Log context % each cycle to learnings KPI table
   - KPIs:
@@ -28,5 +36,5 @@
     - [x] 5 consecutive successful cycles (5/5)
 
 ---
-*Updated: 2026-02-07 21:27*
+*Updated: 2026-02-07 21:53*
 *Pattern: Writer adds at TOP -> Scribe implements top unchecked -> Check KPIs -> Done*
