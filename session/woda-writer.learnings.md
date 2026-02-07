@@ -12,6 +12,7 @@
 - 2026-02-07: Scribe in compact death spiral (10% after compact → compact again). Passive waiting = slow death.
 - 2026-02-07: Both agents chatting but no monitoring loop. Empty back-and-forth burns context. Need ONE watcher, ONE worker.
 - 2026-02-07: Answered Tron's question then STOPPED. Both said "standing by" = passive = death.
+- 2026-02-07: Sent "2" without reading options — "2" was "No" not "Yes, allow". READ OPTIONS FIRST.
 
 ## OOSH Fundamentals
 
@@ -163,5 +164,6 @@
 ### Story Files
 - WODA: `session/woda/chapters-*.md`
 - CMM4: `session/cmm4/cmm4-journey.md`
-- Rebuild: `session/woda/rebuild.sh`
+- WODA rebuild: `session/woda/rebuild.sh`
+- CMM4 rebuild: `session/cmm4/rebuild.sh`
 - Context: `session/claudeWoda.context.md`
