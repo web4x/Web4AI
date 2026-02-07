@@ -3,6 +3,14 @@
 
 ## Improvements (newest first)
 
+- [ ] **7. Delegate to team each cycle**
+  - Problem: Improvements pile up, no one implements them in OOSH codebase
+  - Solution: Each cycle send 1 bugfix/improvement to orchestrator team
+  - KPIs:
+    - [ ] 1 task delegated per cycle
+    - [ ] Scrum-master notifies scribe when done
+    - [ ] Backlog shrinks, not grows
+
 - [ ] **6. Single source of truth for state**
   - Problem: State scattered across files, panes, git status - easy to miss something
   - Solution: One dashboard file updated each cycle with all current state
@@ -52,5 +60,5 @@
     - [x] 5 consecutive successful cycles (5/5)
 
 ---
-*Updated: 2026-02-07 22:04*
+*Updated: 2026-02-07 22:10*
 *Pattern: Writer adds at TOP -> Scribe implements top unchecked -> Check KPIs -> Done*
