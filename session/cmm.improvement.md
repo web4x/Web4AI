@@ -3,6 +3,15 @@
 
 ## Open Improvements
 
+### 3. Context burn rate tracking
+- **Problem**: Don't know how fast context burns until too late
+- **Solution**: Log context % each cycle to learnings KPI table
+- **KPIs**:
+  - [ ] Context % captured each cycle
+  - [ ] Trend visible (burning fast vs stable)
+  - [ ] Preemptive compact before critical
+- **Status**: [ ] Pending
+
 ### 2. Mutual loop-death detection
 - **Problem**: When one agent's bg task dies, delay before peer notices
 - **Solution**: Each cycle check `ps aux | grep "sleep 300.*0.X"` for peer's task
@@ -26,5 +35,5 @@
 *(Move here when all KPIs checked)*
 
 ---
-*Updated: 2026-02-07 21:01*
+*Updated: 2026-02-07 21:07*
 *Pattern: Writer suggests (top of list) -> Scribe implements -> Check KPIs -> Mark done*
