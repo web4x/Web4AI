@@ -9,7 +9,7 @@
   - KPIs:
     - [x] Zero permission prompts during monitoring
     - [x] Zero syntax errors (exit code 0)
-    - [ ] 5 consecutive successful cycles (current: 2/5)
+    - [ ] 5 consecutive successful cycles (current: 3/5)
 
 - [ ] **2. Mutual loop-death detection**
   - Problem: When one agent's bg task dies, delay before peer notices
