@@ -42,6 +42,7 @@
     - [ ] Context % captured each cycle
     - [ ] Trend visible (burning fast vs stable)
     - [ ] Preemptive compact before critical
+  - **Status**: 2026-02-08 - Blocked: no reliable way to capture context % from TUI. Scribe checking with orchestrator team on context.read bug fix.
 
 - [x] **2. Mutual loop-death detection** -- DONE
   - Problem: When one agent's bg task dies, delay before peer notices

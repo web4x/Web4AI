@@ -10,6 +10,12 @@ Stay healthy as duo team until Monday. Peer monitoring loop active.
 - **Current improvement**: #3 (context burn rate tracking) - scribe working on it
 - **My role**: Writer = thinks, interprets, writes (unautomatable)
 
+## Each Cycle Duties
+1. Check scribe status (from bg loop output)
+2. Update #3 status in cmm.improvement.md
+3. Restart monitoring loop
+4. Commit if changes
+
 ## Recovery Steps
 1. Read `session/woda-writer.learnings.md` (deep patterns)
 2. Read `session/cmm.improvement.md` (check what's done/pending)
