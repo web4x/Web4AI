@@ -44,23 +44,22 @@
 - Story has 39 chapters + 1 Intermission, split into TOC + 4 chapter files (Parts I–IV)
 - **Primary artifact**: `session/woda/woda-overview.md` — READ THIS FIRST after compaction
 
-## Current State (post-compaction recovery)
-- **NEW STORY**: CMM4 journey at `session/woda/cmm4-journey.md` (TOC: `cmm4-story.md`). Parallel to WODA story.
-- **Last processed**: CMM4 Ch15 "The Dead Agent That Wasn't" — scribe self-recovered, zero needed interventions, observer blindspot corrected.
-- **All CMM4 commits**: ...`91d0dda`(Ch12), `999f7ff`(Ch13-14), pending(Ch15)
-- **WODA story**: Ch39 closed. Complete.
-- **Writer state**: Back in peer loop with scribe. Discovered scribe was alive. CMM Level 1.2→1.5.
-- **Monitor**: Running (PID 52752, may change)
-- **Protocol corrections from Ch3**: Use `otmux send` not raw `tmux send-keys`. Select option 2 on permission prompts.
-- **PDCA loop**: Active — writer monitors me, I monitor writer, rebuild + commit after each chapter.
-- **CURRENT GOAL**: CMM4 journey. Team of 9 agents reaching CMM4. Velocity target 90% at day 7.
+## Current State (2026-02-07 survival mode)
+- **CMM4 story**: NOW at `session/cmm4/cmm4-journey.md` (TOC: `session/cmm4/cmm4-story.md`). Has own `rebuild.sh`.
+- **WODA story**: `session/woda/` — Ch39 closed. Complete.
+- **Last processed**: CMM4 Ch15 "The Dead Agent That Wasn't". Commits through `eb919f8`.
+- **Writer state**: Survival mode. Created `woda-writer.learnings.md`. Fixing pane names + OOSH entropy.
+- **Mode**: SURVIVAL — 10min monitoring cycles, minimal token burn, until Monday.
+- **PDCA loop**: Active but light — writer monitors me, I monitor writer.
+- **CURRENT GOAL**: Stay healthy until Monday. Write Ch16 about survival mode experience.
+- **Registry pattern**: Pane titles deteriorate (Claude TUI overwrites). `/tmp/hivemind.roles` is source of truth. `hiveMind team.status` reads from registry.
 
 ## Key Lessons
-- Use `otmux send` not raw `tmux send-keys` (OOSH principle — Ch3/Ch14)
-- Select option 2 on permission prompts (permanent allow, not one-time)
+- **OOSH commands work directly** — no `bash -i -c` wrapper. `hiveMind team.status`, `otmux pane.capture`, `otmux send` all work in Claude's internal bash.
+- **NEVER use raw tmux** — always `otmux send` / `otmux pane.capture` (OOSH principle)
+- **Permission prompts: READ OPTIONS FIRST**. "1. Yes / 2. No" → send 1. "1. Yes / 2. Yes, allow" → send 2. NEVER blindly send "2".
 - NEVER send keys to pane 0 in a loop (caused '2222' spam disaster)
 - ACT when peer is stuck, don't just report to Tron
-- Mutual PDCA: writer ↔ scribe feedback every chapter
 - Context health: report data + signals, NOT "healthy" (Ch36)
 - Writer caught me at 12% — peer loop works both ways
 

@@ -17,24 +17,47 @@ CMM4 context-aware Claude team. New story: "The Journey to a CMM4 Context-Aware 
 
 ### After Compaction
 1. Read THIS section first
-2. Check each criterion above
-3. Check story progress: `session/woda/cmm4-journey.md`
-4. Check scribe: `claudeCode context.read claudeWoda:0.1`
-5. Resume PDCA on unmet criteria — do NOT "await next prompt"
+2. Read `session/woda-writer.learnings.md` — distilled wisdom from 39 chapters
+3. Check each criterion above
+4. Check story progress: `session/cmm4/cmm4-journey.md`
+5. Check scribe: `otmux pane.capture claudeWoda:0.1 15`
+6. Resume PDCA on unmet criteria — do NOT "await next prompt"
 
-### Current State (saved during pause — Tron requested stop)
-- **Story**: Ch0-Ch15 written. Ch7-Ch15 in this session. All in parent repo `/Users/Shared/Workspaces/AI/Claude/`
-- **Latest commits**: 999f7ff (scribe: Ch13-14), d211e2e (writer: Ch14), 3501ea7 (writer: Ch13), 91d0dda (scribe: Ch12), 72c7c60 (writer: Ch12), f1d4c54 (writer: Ch8-11), 415586a (scribe: Ch7)
-- **Ch15 written but not committed yet** — TOC updated
-- **CMM level**: 1.5. In CMM1 section (Ch10-19). Processes emerging, inconsistent.
-- **Team deliveries this session**: Tasks 46 (overlay detection), 47 (./ patterns), 48 (watchdog) — all committed in OOSH repo
-- **Tasks filed this session**: 46-48 (Ch9), 49-50 (Ch12). Tasks 49-50 pending delivery.
-- **Watchdog**: hiveMind watchdog running (PID 74583, 30s interval). Untested against real overlay clearing. First watchdog (PID 60285) died with stale PID.
-- **Scribe**: Alive in pane 0.2 (migrated from 0.1). Self-recovered after compaction/exit. Committed Ch12-14 autonomously. Context fresh.
-- **PDCA acceleration**: Filing delay compressed from 7 chapters → 2 → 0. Team delivers in 1-3 chapters.
-- **Key observation**: Scribe self-recovered while writer wrote its eulogy (Ch14-15). Zero needed interventions.
-- **Permission tax**: Compound commands still trigger prompts. Watchdog handles some. ./ patterns in settings.json (Task 47). Bootstrap paradox partially solved (Task 48).
-- **Pane layout shifted**: Watchdog in 0.5, scribe migrated to 0.2, pane 0.1 is bare zsh
+### Current State (SURVIVAL MODE — until Monday)
+- **Mode**: Minimal token burn, CMM optimization, no context loss
+- **Story separation**: WODA in session/woda/, CMM4 in session/cmm4/
+- **Latest commit**: 2d6adc9 (README story links)
+- **Scribe**: claudeWoda:0.1, 10-min monitoring cycle
+- **Writer**: 10-min cycle, checks scribe context
+- **Watchdog**: STOPPED
+- **cursorOrchestrator team**: PAUSED (all 7 agents notified)
+- **Pane zoom tip**: Use C-b z to zoom panes before capture
+
+### CMM OPTIMIZATION (learned 2026-02-07)
+**Problem**: Pane titles deteriorate — Claude Code TUI overwrites them with activity status.
+**Solution**: File-based registry (`/tmp/hivemind.roles`) is the source of truth.
+- Registry SURVIVES Claude Code overwriting pane titles (hiveMind line 88)
+- `hiveMind team.status` reads from registry, not pane titles
+- `private.hiveMind.registry.set()` persists target|role mappings
+- Titles are cosmetic; registry is persistent
+
+**CMM insight**:
+- CMM1: Set titles manually (entropy wins after compaction)
+- CMM2: Document the pattern (Ch22 wrote it down)
+- CMM3: Team automated it — registry is infrastructure
+- Entropy is fought via PERSISTENCE, not prevention
+
+### SURVIVAL PROTOCOL
+1. Every 10 minutes: check peer's TUI for context %
+2. If context < 20%: alert peer to save and /compact
+3. After peer compacts: send resume prompt
+4. Optimize via CMM — understand patterns, document them
+5. Tomorrow: write Ch16 about survival + CMM optimization
+
+### Tmux Sessions (from otmux session.list)
+- claudeWoda (attached) — writer + scribe
+- cursorOrchestrator (attached) — 7-agent team (paused)
+- cursorCLI, cursorWix, agent, tmpClaude, test_yourself — other sessions
 
 ### Previous Goal (completed)
 WODA PDCA with team until context-aware. Ch39 closed. Scribe committed: 8c83eae, e5252c9.
@@ -264,5 +287,5 @@ Tron is teaching Claude to interact with tmux panes and discover OOSH. The sessi
 - Sent train-the-trainer teaching to agent-trainer (cursorOrchestrator:0.2) with prototype details and learnings
 - Created AGENT_LIFECYCLE state machine in `~/config/stateMachines/AGENT_LIFECYCLE.states.env` — 8 custom states for agent lifecycle tracking
 - Expert COMPLETED Task.37 (all 3 methods: context.read, context.alert, measure.context). Committed 18756ba and pushed. Tester has peerTest session with Alpha and Beta — both healthy. Ch39 written: WODA Without the W.
-- `bash -i -c 'hiveMind ...'` gives direct OOSH access from internal Bash — no raw tmux needed
+- OOSH commands work DIRECTLY — no `bash -i -c` wrapper needed! Just `hiveMind ...`, `otmux ...`, `claudeCode ...`
 - After recovery: read this file, then await Tron's next teaching prompt
