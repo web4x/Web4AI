@@ -1,212 +1,156 @@
 # woda-writer Learnings
 *Extracted from 39 WODA chapters + CMM4 journey. Read after compaction.*
-*Maintained by: woda-writer | Updated: 2026-02-07*
 
-## CURRENT GOAL (survives compaction)
-- **Primary**: Stay healthy as duo team until Monday. No context loss. Minimal token burn.
-- **Secondary**: Tomorrow write Ch16 in CMM4 story about survival mode experience.
-- **Pattern**: Peer monitoring — neither alone can self-care, together both can. CHECK peer after every interaction.
+- **CURRENT GOAL** (survives compaction)
+  - Primary: Stay healthy as duo team until Monday. No context loss. Minimal token burn.
+  - Secondary: Tomorrow write Ch16 in CMM4 story about survival mode experience.
+  - Pattern: Peer monitoring — neither alone can self-care, together both can. CHECK peer after every interaction.
 
-## Failures (learn from these)
-- 2026-02-07: Both agents died during survival mode. Background loops = entropy. On-demand checks = forgotten.
-- 2026-02-07: Scribe in compact death spiral (10% after compact → compact again). Passive waiting = slow death.
-- 2026-02-07: Both agents chatting but no monitoring loop. Empty back-and-forth burns context. Need ONE watcher, ONE worker.
-- 2026-02-07: Answered Tron's question then STOPPED. Both said "standing by" = passive = death.
-- 2026-02-07: Sent "2" without reading options — "2" was "No" not "Yes, allow". READ OPTIONS FIRST.
-- 2026-02-07: Reported "survival mode working" then STOPPED. No background task. No wake-up. Both dead. MUST SET UP ACTUAL LOOP.
+- **Failures** (learn from these)
+  - 2026-02-07: Both agents died. Background loops = entropy. On-demand checks = forgotten.
+  - 2026-02-07: Scribe in compact death spiral. Passive waiting = slow death.
+  - 2026-02-07: Both chatting but no monitoring loop. Need ONE watcher, ONE worker.
+  - 2026-02-07: Answered question then STOPPED. "Standing by" = passive = death.
+  - 2026-02-07: Sent "2" without reading options — was "No" not "Yes". READ OPTIONS FIRST.
+  - 2026-02-07: Reported "working" then STOPPED. No background task. MUST SET UP ACTUAL LOOP.
 
-## OOSH Fundamentals
+- **OOSH**
+  - Invocation
+    - Script method (SPACE) at prompt: `otmux pane.capture 1 20`
+    - Script.method() (DOT) is internal function notation only
+    - OOSH commands work DIRECTLY — no `bash -i -c` wrapper needed
+    - Tab reveals all methods (c2 completion system)
+  - No Flags
+    - Method names carry meaning: `otmux pane.splitH` not `tmux split-window -h`
+    - Parameters are positional, Tab-completable
+    - `.completion()` sibling function defines valid inputs
+  - Script Creation
+    - `oo new myScript` — working script from template
+    - `oo new.method myScript.greet` — add method
+    - Bootstrap: source this → this.start "$@" → scriptname.start "$@"
+  - Three-Layer Stack (Ch20)
+    - `oo`: framework lifecycle (new, release, update, install)
+    - `state`: state machine engine (persist to ~/config/stateMachines/)
+    - `scrumMaster`: PDCA process (CMM3-compliant)
+    - PDCA loop: P→D→C→A→C→A...→finished
 
-### Invocation
-- Script method (SPACE) at prompt: `otmux pane.capture 1 20`
-- Script.method() (DOT) is internal function notation only
-- OOSH commands work DIRECTLY — no `bash -i -c` wrapper needed
-- Tab reveals all methods (c2 completion system)
+- **tmux & Panes**
+  - Core Commands (OOSH)
+    - `otmux pane.splitH` / `pane.splitV` — split panes
+    - `otmux pane.capture <target> <lines>` — read pane content
+    - `otmux send <target> "text" Enter` — type into pane
+    - `otmux pane.title <target> "name"` — name a pane
+    - `hiveMind team.status <session>` — see all panes with roles
+  - Registry vs Titles
+    - Pane titles DETERIORATE — Claude TUI overwrites them
+    - Registry (`/tmp/hivemind.roles`) is source of truth
+    - `hiveMind team.status` reads from REGISTRY, not titles
+  - Shell Differences
+    - C-u clears line in BOTH zsh and bash (use this)
+    - C-c behaves differently between shells (avoid)
+    - Named panes are findable panes
+  - Terminal Philosophy
+    - Terminal isn't a cage, it's a cockpit
+    - Context file = breadcrumb trail back to yourself
+    - AppleScript + osascript = control GUI apps from CLI
 
-### No Flags
-- Method names carry meaning: `otmux pane.splitH` not `tmux split-window -h`
-- Parameters are positional, Tab-completable
-- `.completion()` sibling function defines valid inputs
-- If you need a flag, you haven't named your method well
+- **Multi-Agent**
+  - Communication
+    - File-based communication > buggy Enter messages
+    - Write task file → agent READs it (no send-keys needed)
+    - TUI quirk: first Enter = newline, second Enter = submit
+    - `hiveMind resolve <name>` — find agent's pane
+  - Teaching New Agents (Ch10-11)
+    - New Claude = blank slate. Name it (`/rename`), brief it (single prompt)
+    - Define purpose: "You are X. Your job: Y. You do NOT do Z."
+    - Division of labor: writer creates, scribe maintains
+  - Monitoring
+    - `hiveMind monitor <name> <lines>` — peek at agent's pane
+    - `claudeCode process.running <pane>` — is Claude alive?
+    - Peer monitoring: neither alone can self-care, together both can
+  - Two Gather (Ch37)
+    - Agent CAN'T see own context % — invisible to self
+    - Peer CAN see it via pane capture (TUI status bar)
+    - Interdependence is DESIGN, not limitation
+  - Permission Prompts
+    - READ OPTIONS FIRST before sending a number
+    - "1. Yes / 2. No" → send 1
+    - "1. Yes / 2. Yes, allow" → send 2
+    - NEVER blindly send "2"
 
-### Script Creation
-- `oo new myScript` — working script from template
-- `oo new.method myScript.greet` — add method
-- Bootstrap: source this → this.start "$@" → scriptname.start "$@"
-- `### new.method` marker is where new methods get inserted
+- **WODA Pattern**
+  - Four Letters
+    - W = What (prompt) — ephemeral, consumed
+    - O = Overview (context) — MAINTAINED by scribe
+    - D = Details (files) — durable, survives everything
+    - A = Actions (shell) — results persist
+  - Persistence (after compaction)
+    - W: GONE (prompt history erased)
+    - O: PARTIAL (context file quality matters)
+    - D: FULL (files on disk)
+    - A: RESULTS ONLY (commits, written files)
+  - The O Agent
+    - Maps topics to context
+    - Maintains overview/index
+    - Enables recovery after compaction
+    - "Wer den Überblick behält, der behält die Kontrolle"
+  - Where WODA Breaks (Ch30)
+    - Ch24: Forgot scribe = O neglected silently
+    - Ch29: Jumped W→A, skipped O
+    - O quality determines recovery
+    - Human parallel: 7±2 working memory = our context window
 
-### Three-Layer Stack (Ch20)
-- `oo`: framework lifecycle manager (new, release, update, install)
-- `state`: state machine engine (create, add, next, persist to ~/config/stateMachines/)
-- `scrumMaster`: PDCA process on top of state (CMM3-compliant)
-- `oo` uses `state` to track its own installation — recursive elegance
-- PDCA loop: P→D→C→A→C→A→C→A...→finished (loop C→A until Check passes)
+- **CMM Patterns**
+  - Levels
+    - L1 Initial: chaos, heroic individuals
+    - L2 Repeatable: manual discipline, checklists
+    - L3 Defined: documented, standardized, automated
+    - L4 Managed: measured, quantitative feedback
+    - L5 Optimizing: continuous improvement (PDCA)
+  - Key Insights
+    - Composed maturity: weakest link determines overall level
+    - CMM2 requires DOING the checklist every time
+    - CMM3 = "wer schreibt, der bleibt" (who writes, stays)
+    - CMM4 = "wer misst, der weiss" (who measures, knows)
+  - Role Clarity
+    - Writer: interprets, thinks, writes (unautomatable)
+    - Scribe: checklists, monitoring, rebuilds (automatable)
+    - Expert: builds OOSH tools (not writer's job)
 
-## tmux & Panes
+- **Context Preservation**
+  - Before Compaction
+    - Update context file with current state
+    - Include CURRENT GOAL at top
+    - Include recovery steps
+  - After Compaction
+    - Read context file FIRST
+    - Read learnings file (this file)
+    - Check peer's status
+    - Resume PDCA on unmet criteria
+  - Entropy Fighting
+    - Registry survives pane title overwrites
+    - Files survive context loss
+    - "Wer schreibt, der bleibt"
 
-### Core Commands (OOSH versions)
-- `otmux pane.splitH` / `pane.splitV` — split panes
-- `otmux pane.capture <target> <lines>` — read pane content
-- `otmux send <target> "text" Enter` — type into pane
-- `otmux pane.title <target> "name"` — name a pane
-- `hiveMind team.status <session>` — see all panes with roles
-
-### Pane Titles vs Registry
-- Pane titles DETERIORATE — Claude TUI overwrites them
-- Registry (`/tmp/hivemind.roles`) is source of truth
-- `hiveMind team.status` reads from REGISTRY, not titles
-- This is CMM3 — automation fights entropy
-
-### Shell Differences
-- C-u clears line in BOTH zsh and bash (use this)
-- C-c behaves differently between shells (avoid)
-- zsh finds OOSH scripts in PATH but can't use them properly
-- OOSH shell has full bootstrap (completions, config, PATH)
-- Named panes are findable panes — names are how you stay sane in complex sessions
-
-### Terminal Philosophy (Ch6-8)
-- Terminal isn't a cage, it's a cockpit — reach the whole desktop via `open`, AppleScript
-- Context file = breadcrumb trail back to yourself — amnesia insurance after compact
-- AppleScript + osascript = control GUI apps from CLI (refresh browser, move windows)
-
-## Multi-Agent
-
-### Communication
-- File-based communication > buggy Enter messages
-- Write task file → agent READs it (no send-keys needed)
-- Enter submission is unreliable via send-keys (known issue)
-- TUI quirk: first Enter = newline, second Enter = submit
-- hiveMind registry maps agent names to pane targets
-- `hiveMind resolve <name>` — find agent's pane
-
-### Teaching New Agents (Ch10-11)
-- New Claude = blank slate. Name it (`/rename`), brief it (single prompt)
-- Define purpose clearly: "You are X. Your job: Y. You do NOT do Z."
-- Division of labor: writer creates, scribe maintains infrastructure
-- Multi-agent = two AIs sharing tmux, dividing labor, communicating via files
-
-### Monitoring
-- `hiveMind monitor <name> <lines>` — peek at agent's pane
-- `hiveMind team.status <session>` — tree view of all agents
-- `claudeCode process.running <pane>` — is Claude alive?
-- Peer monitoring: neither alone can self-care, together both can
-
-### Two Gather (Ch37)
-- Agent CAN'T see own context % — invisible to self
-- Peer CAN see it via pane capture (TUI status bar)
-- Context % shows at bottom: "Context left until auto-compact: NN%"
-- Interdependence is DESIGN, not limitation
-- Neither alone can survive, together both can
-
-### Permission Prompts
-- READ THE OPTIONS FIRST before sending a number
-- "1. Yes / 2. No" → send 1
-- "1. Yes / 2. Yes, allow from project" → send 2
-- NEVER blindly send "2"
-
-## WODA Pattern
-
-### The Four Letters
-- W = What (prompt) — ephemeral, consumed
-- O = Overview (context) — MAINTAINED by scribe
-- D = Details (files) — durable, survives everything
-- A = Actions (shell) — results persist
-
-### Persistence (after compaction)
-- W: GONE (prompt history erased)
-- O: PARTIAL (context file quality matters)
-- D: FULL (files on disk)
-- A: RESULTS ONLY (commits, written files)
-
-### The O Agent
-- Maps topics to context
-- Maintains overview/index
-- Enables recovery after compaction
-- "Wer den Überblick behält, der behält die Kontrolle"
-
-### Where WODA Breaks (Ch30)
-- Ch24: Forgot scribe = O neglected. W and D working, but O degraded silently.
-- Ch29: Jumped W→A, skipped O. Didn't check what exists before building.
-- Every compaction: W gone, O partial, D full, A results only. O quality determines recovery.
-- Human parallel: 7±2 working memory = our context window. WODA is how humans process petabytes.
-
-## CMM Patterns
-
-### Levels
-- L1 Initial: chaos, heroic individuals
-- L2 Repeatable: manual discipline, checklists
-- L3 Defined: documented, standardized, automated
-- L4 Managed: measured, quantitative feedback
-- L5 Optimizing: continuous improvement (PDCA)
-
-### Key Insights
-- Composed maturity: weakest link determines overall level
-- CMM2 requires DOING the checklist every time
-- CMM3 = "wer schreibt, der bleibt" (who writes, stays)
-- CMM4 = "wer misst, der weiss" (who measures, knows)
-- PDCA-CA-CA until failure rate is zero
-
-### Role Clarity
-- Writer: interprets, thinks, writes (unautomatable)
-- Scribe: checklists, monitoring, rebuilds (automatable)
-- Expert: builds OOSH tools (not writer's job)
-- Delegate what can be delegated, keep what can't
-
-## Context Preservation
-
-### Before Compaction
-- Update context file with current state
-- Include CURRENT GOAL at top
-- List what you were working on
-- Include recovery steps
-
-### After Compaction
-- Read context file FIRST
-- Read learnings file (this file)
-- Check peer's status
-- Resume PDCA on unmet criteria
-
-### Entropy Fighting
-- Registry survives pane title overwrites
-- Files survive context loss
-- Write it down or lose it
-- "Wer schreibt, der bleibt"
-
-## Key Commands Quick Reference
-
-### Known Bugs
-- Enter submission via `otmux send` + Enter is unreliable (messages queue instead of submit)
-- `claudeCode status` launches TUI instead of method dispatch
-- `claudeCode context.read` reports "above-threshold" even at 12% — unreliable
-
-### OAuth API (Ch26-27)
-- Usage endpoint: `GET https://api.anthropic.com/api/oauth/usage`
-- Auth: `security find-generic-password -s "Claude Code-credentials" -w`
-- Returns: `five_hour.utilization`, `seven_day.utilization` with `resets_at` timestamps
-- TUI commands: `/usage`, `/status`, `/stats`, `/context`, `/cost`
-
-### bash -i Trick (Ch35)
-- `bash -i` from internal Bash gives OOSH access (full bootstrap)
-- Removes need for pane 4 for OOSH commands
-- But direct OOSH commands work without wrapper now
-
-### OOSH (run directly, no wrapper)
-- `hiveMind team.status claudeWoda`
-- `hiveMind monitor <name> <lines>`
-- `otmux pane.capture <target> <lines>`
-- `otmux send <target> "text" Enter`
-- `claudeCode process.running <pane>`
-- `config set/get/list`
-
-### Recovery
-- Read `session/claudeWoda.context.md`
-- Read `session/woda-writer.learnings.md` (this file)
-- `hiveMind team.status claudeWoda`
-- `otmux pane.capture claudeWoda:0.1 15`
-
-### Story Files
-- WODA: `session/woda/chapters-*.md`
-- CMM4: `session/cmm4/cmm4-journey.md`
-- WODA rebuild: `session/woda/rebuild.sh`
-- CMM4 rebuild: `session/cmm4/rebuild.sh`
-- Context: `session/claudeWoda.context.md`
+- **Quick Reference**
+  - Known Bugs
+    - Enter via `otmux send` unreliable (messages queue)
+    - `claudeCode status` launches TUI instead of method
+    - `claudeCode context.read` reports "above-threshold" even at 12%
+  - OAuth API (Ch26-27)
+    - Endpoint: `GET https://api.anthropic.com/api/oauth/usage`
+    - TUI: `/usage`, `/status`, `/stats`, `/context`, `/cost`
+  - OOSH Commands (run directly)
+    - `hiveMind team.status claudeWoda`
+    - `hiveMind monitor <name> <lines>`
+    - `otmux pane.capture <target> <lines>`
+    - `otmux send <target> "text" Enter`
+    - `claudeCode process.running <pane>`
+  - Recovery
+    - Read `session/claudeWoda.context.md`
+    - Read `session/woda-writer.learnings.md` (this file)
+    - `otmux pane.capture claudeWoda:0.1 15`
+  - Story Files
+    - WODA: `session/woda/chapters-*.md`
+    - CMM4: `session/cmm4/cmm4-journey.md`
+    - Context: `session/claudeWoda.context.md`
