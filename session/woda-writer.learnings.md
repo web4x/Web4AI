@@ -5,6 +5,7 @@
 ## Failures (learn from these)
 - 2026-02-07: Both agents died during survival mode. Background loops = entropy. On-demand checks = forgotten. Neither watched the other proactively.
 - 2026-02-07: Scribe in compact death spiral (10% after compact → compact again). Passive waiting = slow death. Need ACTIVE work, not idle survival.
+- 2026-02-07: Both agents chatting but no monitoring loop, no task, both dying. Empty back-and-forth burns context. Need ONE watcher, ONE worker.
 
 ## OOSH Fundamentals
 ```
