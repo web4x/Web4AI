@@ -13,6 +13,7 @@
 - 2026-02-07: Both agents chatting but no monitoring loop. Empty back-and-forth burns context. Need ONE watcher, ONE worker.
 - 2026-02-07: Answered Tron's question then STOPPED. Both said "standing by" = passive = death.
 - 2026-02-07: Sent "2" without reading options — "2" was "No" not "Yes, allow". READ OPTIONS FIRST.
+- 2026-02-07: Reported "survival mode working" then STOPPED. No background task. No wake-up. Both dead. MUST SET UP ACTUAL LOOP.
 
 ## OOSH Fundamentals
 
