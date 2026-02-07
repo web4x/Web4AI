@@ -21,14 +21,10 @@
   - **4. OOSH bugs**: List bugs from WODA story for team to fix (see below).
   - Pattern: Neither alone can self-care, together both can. CHECK peer after every interaction.
 
-- **OOSH Bugs to Fix** (from WODA story — report to cursorOrchestrator team)
-  - `test.suite all` infinite loop — prints `this.call to:` endlessly. Individual suites work. (Ch19)
-  - `oo new.method` shaky on macOS — case-sensitivity issue, awk/sed errors during scaffolding. (Ch20)
-  - `c2: command not found` — internal completion system not available as standalone command.
-  - Ghost state machine refs — old `PDCA_TEST_*` references linger in `current.state.machine.env`.
-  - `claudeCode status` bug — launches TUI instead of method dispatch. (Task.26)
-  - `claudeCode context.read` unreliable — reports "above-threshold" even at 12%.
-  - Enter submission unreliable — `otmux send` + Enter queues messages instead of submitting. (Task.30)
+- **OOSH Bugs** → See `session/oosh-bugs.md` (standalone list, 14 bugs tracked)
+  - 4 from WODA: test.suite loop, oo new.method macOS, c2 not found, ghost state refs
+  - 10 from CMM4: context.read, permission reset, compound commands, watchdog, etc.
+  - Status: 4 fixed (Tasks 41, 46, 47, 48), 2 pending (Tasks 49, 50), 8 open
 
 - **Failures** (learn from these)
   - 2026-02-07: Both agents died. Background loops = entropy. On-demand checks = forgotten.
