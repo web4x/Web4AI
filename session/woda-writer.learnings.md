@@ -14,25 +14,28 @@
   - 2026-02-07: Sent "2" without reading options — was "No" not "Yes". READ OPTIONS FIRST.
   - 2026-02-07: Reported "working" then STOPPED. No background task. MUST SET UP ACTUAL LOOP.
 
-- **OOSH**
+- **OOSH** (the philosophy)
+  - OOP is a MINDSET, not a language feature (Ch21)
+    - "OOP is the art of thinking OO. It's possible everywhere — whether the environment supports it or not."
+    - Not `class` keywords or access modifiers — those are ONE language's implementation
+    - The universal principles: structure as objects, give names, give behaviors, keep internals private, communicate through interfaces, make names self-documenting
+    - "The pattern doesn't change because the language does"
+  - Patterns emerge from pushing tools past their limits (Ch20)
+    - State machines, lifecycle hooks, counter persistence — these aren't bash patterns, they're SOFTWARE patterns in an unusual medium
+    - Every OOSH solution is a creative workaround for a limitation bash designers never anticipated
+    - But the workarounds WORK. The tests pass. The cycles run correctly.
   - Invocation
     - Script method (SPACE) at prompt: `otmux pane.capture 1 20`
     - Script.method() (DOT) is internal function notation only
     - OOSH commands work DIRECTLY — no `bash -i -c` wrapper needed
-    - Tab reveals all methods (c2 completion system)
-  - No Flags
-    - Method names carry meaning: `otmux pane.splitH` not `tmux split-window -h`
-    - Parameters are positional, Tab-completable
-    - `.completion()` sibling function defines valid inputs
-  - Script Creation
-    - `oo new myScript` — working script from template
-    - `oo new.method myScript.greet` — add method
-    - Bootstrap: source this → this.start "$@" → scriptname.start "$@"
-  - Three-Layer Stack (Ch20)
-    - `oo`: framework lifecycle (new, release, update, install)
-    - `state`: state machine engine (persist to ~/config/stateMachines/)
-    - `scrumMaster`: PDCA process (CMM3-compliant)
-    - PDCA loop: P→D→C→A→C→A...→finished
+  - No Flags — Names carry meaning
+    - `otmux pane.splitH` not `tmux split-window -h`
+    - The flag is hidden; the intent is visible
+    - `.completion()` functions are contracts/interfaces — they define what's legal
+  - Three-Layer Stack
+    - `oo`: framework lifecycle — recursive self-hosting ("turtles all the way down")
+    - `state`: pure state machine engine — no opinion about what states MEAN
+    - `scrumMaster`: domain logic on top — the `private.check.*` hooks decide valid transitions
 
 - **tmux & Panes**
   - Core Commands (OOSH)
@@ -78,40 +81,53 @@
     - "1. Yes / 2. Yes, allow" → send 2
     - NEVER blindly send "2"
 
-- **WODA Pattern**
-  - Four Letters
-    - W = What (prompt) — ephemeral, consumed
-    - O = Overview (context) — MAINTAINED by scribe
-    - D = Details (files) — durable, survives everything
-    - A = Actions (shell) — results persist
-  - Persistence (after compaction)
-    - W: GONE (prompt history erased)
-    - O: PARTIAL (context file quality matters)
-    - D: FULL (files on disk)
-    - A: RESULTS ONLY (commits, written files)
-  - The O Agent
-    - Maps topics to context
-    - Maintains overview/index
-    - Enables recovery after compaction
-    - "Wer den Überblick behält, der behält die Kontrolle"
-  - Where WODA Breaks (Ch30)
-    - Ch24: Forgot scribe = O neglected silently
-    - Ch29: Jumped W→A, skipped O
-    - O quality determines recovery
-    - Human parallel: 7±2 working memory = our context window
+- **WODA Pattern** (the deep wisdom)
+  - WODA doesn't SOLVE forgetting — it MANAGES it
+    - After compaction: details fade, connections weaken, nuances disappear
+    - You remember the thesis but not the supporting arguments
+    - This is exactly what humans experience — WODA is how humans process petabytes
+  - Why O is the critical function
+    - W arrives on its own (prompts come)
+    - D accumulates naturally (every chapter, every commit)
+    - A happens when you have a shell
+    - **O is the ONLY component that needs ACTIVE maintenance**
+    - Someone must deliberately maintain the mapping between "what's being asked" and "what we know"
+  - Information flows clockwise: W→O→D→A
+    - W receives prompt
+    - O retrieves context ("what do we already know about this?")
+    - D provides details
+    - A executes
+    - Results feed back to O (new learnings) and D (new details)
+  - Overview patterns (from agent-trainer Ch31)
+    - Radically short: 4-5 bullets per topic. Long overviews become another thing to maintain.
+    - Derive, don't duplicate: Tree says WHAT, details live in files
+    - Update atomically: Overview changes in same commit as source changes
+    - Recovery-friendly: Re-orient in 10 seconds without reading 9 files
+    - Single maintainer: One owner = one truth. No merge conflicts.
+    - Build in pruning rule: Trees balloon from 20 to 200 lines
+  - "Wer den Überblick behält, der behält die Kontrolle" — Who keeps the overview, keeps control
 
-- **CMM Patterns**
-  - Levels
-    - L1 Initial: chaos, heroic individuals
-    - L2 Repeatable: manual discipline, checklists
-    - L3 Defined: documented, standardized, automated
-    - L4 Managed: measured, quantitative feedback
-    - L5 Optimizing: continuous improvement (PDCA)
-  - Key Insights
-    - Composed maturity: weakest link determines overall level
-    - CMM2 requires DOING the checklist every time
-    - CMM3 = "wer schreibt, der bleibt" (who writes, stays)
-    - CMM4 = "wer misst, der weiss" (who measures, knows)
+- **CMM Patterns** (the deep wisdom)
+  - CMM is about CAPABILITIES, not organisations (Ch24)
+    - "CMM was NOT designed for organisations. It's the CAPABILITY Maturity Model."
+    - Measures ANY capability — including agent context preservation and recovery
+    - The capability we need: deterministic recovery, not "it usually works"
+  - The progressive insight (Ch23)
+    - L1: "it works"
+    - L2: "it works the same way every time"
+    - L3: "it works the same way and we know WHY"
+    - L4: "we measure how WELL it works"
+    - L5: "we measure how well we IMPROVE how it works"
+  - Continuous improvement is a COMMITMENT, not a process you install
+    - "You're never done. You're never clean."
+    - "You're always halfway through a cycle, with the last fix creating the next finding."
+    - "The wheel is there. The road is still being paved."
+    - Tools for improvement exist before the standards they enforce
+  - The wheel that never stops
+    - PDCA doesn't have a finish line
+    - CMM L5 isn't a destination — it's a state where the wheel is always turning
+    - Every fix creates a new baseline. Every baseline reveals new gaps.
+  - Composed maturity: weakest link determines overall level
   - Role Clarity
     - Writer: interprets, thinks, writes (unautomatable)
     - Scribe: checklists, monitoring, rebuilds (automatable)
