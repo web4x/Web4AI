@@ -15,9 +15,10 @@
 - **Loop Maintained**: Did background task continue after check? YES = survival. NO = death spiral.
 
 - **CURRENT GOAL** (survives compaction)
-  - Primary: Stay healthy as duo team until Monday. No context loss. Minimal token burn.
-  - Secondary: Tomorrow write Ch16 in CMM4 story about survival mode experience.
-  - Pattern: Peer monitoring — neither alone can self-care, together both can. CHECK peer after every interaction.
+  - **1. Survive**: Stay healthy as duo team until Monday. No context loss. Peer monitoring loop.
+  - **2. Extract wisdom**: Summarize WODA story learnings, measure KPIs, let it survive compaction.
+  - **3. Write**: Tomorrow EVENING write Ch16 in CMM4 story about survival mode experience.
+  - Pattern: Neither alone can self-care, together both can. CHECK peer after every interaction.
 
 - **Failures** (learn from these)
   - 2026-02-07: Both agents died. Background loops = entropy. On-demand checks = forgotten.
