@@ -3,6 +3,14 @@
 
 ## Improvements (newest first)
 
+- [ ] **6. Single source of truth for state**
+  - Problem: State scattered across files, panes, git status - easy to miss something
+  - Solution: One dashboard file updated each cycle with all current state
+  - KPIs:
+    - [ ] All state readable from one file
+    - [ ] Recovery from compaction needs only 1 file read
+    - [ ] No state hunting across multiple sources
+
 - [ ] **5. Automate cycle steps**
   - Problem: Writer forgot to add improvements - memory-based checklists fail
   - Solution: Background task output triggers automated sequence, not manual memory
@@ -44,5 +52,5 @@
     - [x] 5 consecutive successful cycles (5/5)
 
 ---
-*Updated: 2026-02-07 21:58*
+*Updated: 2026-02-07 22:04*
 *Pattern: Writer adds at TOP -> Scribe implements top unchecked -> Check KPIs -> Done*
