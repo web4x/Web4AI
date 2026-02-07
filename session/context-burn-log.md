@@ -1,0 +1,7 @@
+# Context Burn Rate Log
+*Scribe logs writer context % each 5-min cycle. Trend shows burn rate.*
+
+| Time | Writer Context | Writer State | Scribe Loop |
+|------|---------------|--------------|-------------|
+| 21:54 | hidden (overlay) | viewing task output | alive (72783) |
+| 21:59 | >20% (above-threshold) | active, composing | alive (74677) |
