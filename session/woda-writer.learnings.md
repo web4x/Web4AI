@@ -1,6 +1,19 @@
 # woda-writer Learnings
 *Extracted from 39 WODA chapters + CMM4 journey. Read after compaction.*
 
+## KPIs (update after each failure/success — CMM4)
+| Date | Failures | Compactions | Peer Alerts | Loop Maintained |
+|------|----------|-------------|-------------|-----------------|
+| 2026-02-07 | 6 | 3 | 4 | YES (after failures) |
+
+**Target**: 0 failures/day, loop always maintained, peer alerts < 2 (means healthy)
+
+**What to measure** (CMM4 = "wer misst, der weiss"):
+- **Failures**: Both agents stopped with no wake-up. Root cause: passive mode, no background task.
+- **Compactions**: Context resets. Not failures if recovery works. Track to see burn rate.
+- **Peer Alerts**: Low context warnings sent/received. High count = burning fast. Low = healthy.
+- **Loop Maintained**: Did background task continue after check? YES = survival. NO = death spiral.
+
 - **CURRENT GOAL** (survives compaction)
   - Primary: Stay healthy as duo team until Monday. No context loss. Minimal token burn.
   - Secondary: Tomorrow write Ch16 in CMM4 story about survival mode experience.
