@@ -3,13 +3,13 @@
 
 ## Improvements
 
-- [ ] **1. Simplify background task command**
+- [x] **1. Simplify background task command** -- DONE
   - Problem: Complex commands hit permission prompts, syntax errors
   - Solution: Use simple `sleep 300 && otmux pane.capture` only
   - KPIs:
     - [x] Zero permission prompts during monitoring
     - [x] Zero syntax errors (exit code 0)
-    - [ ] 5 consecutive successful cycles (current: 4/5)
+    - [x] 5 consecutive successful cycles (5/5)
 
 - [ ] **2. Mutual loop-death detection**
   - Problem: When one agent's bg task dies, delay before peer notices
