@@ -49,8 +49,8 @@
 - **WODA story**: `session/woda/` — Ch39 closed. Complete.
 - **Last processed**: CMM4 Ch15 "The Dead Agent That Wasn't". Commits through `eb919f8`.
 - **Writer state**: Survival mode. Created `woda-writer.learnings.md`. Fixing pane names + OOSH entropy.
-- **Mode**: SURVIVAL — 10min monitoring cycles, minimal token burn, until Monday. SINGLE loop only — no overlapping.
-- **Critical fix**: Always ACT on stuck writer BEFORE starting sleep loop. Check→Fix→Sleep, not Sleep→Check.
+- **Mode**: SURVIVAL — on-demand checks ONLY. No sleep loops. Tell writer status, wait for response, repeat.
+- **Critical fix**: ACT on stuck writer BEFORE anything else. Read permission options before selecting. Context burns fast — compact early.
 - **PDCA loop**: Active but light — writer monitors me, I monitor writer.
 - **CURRENT GOAL**: Stay healthy until Monday. Write Ch16 about survival mode experience.
 - **Registry pattern**: Pane titles deteriorate (Claude TUI overwrites). `/tmp/hivemind.roles` is source of truth. `hiveMind team.status` reads from registry.
