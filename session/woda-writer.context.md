@@ -4,15 +4,24 @@
 ## Current Goal
 Stay healthy as duo team until Monday. Peer monitoring loop active.
 
-## Current State (2026-02-08 18:45)
-- Writer ~40% context, scribe 29.4% (post-compact, recovered)
+## Current State (2026-02-08 19:35)
+- Writer ~26% context, scribe alive + monitoring (loop running)
+- Subscription: 5hr 97% (resets 21:00 CET), 7day 81%
 - Ch16 "Survival Mode" WRITTEN (5cf39f1)
-- SKILL.md written at `.claude/agents/woda-writer/SKILL.md`
-- Scribe.2 wrote `.claude/agents/woda-scribe/SKILL.md` — hibernated as `3d0d4a9b-6eaf-4d12-bf73-2c21ebe033b0`
-- Original scribe resumed (`55126248-da40-424e-a9bc-712a73adecdf`), recovered via boot file
-- Pre-compact hook improved: auto-commit, boot file, PID-tracked resume (no pile-up)
-- Orchestrator notified about agent-trainer + new SKILL.md files
+- SKILL.md: writer + scribe both written
+- Pre-compact hook: auto-commit, boot file, PID-tracked resume (no pile-up)
+- Orchestrator: ordered context.read fix (verify process before returning data)
 - CMM scoreboard: #1-6 DONE, #7 OPEN, #8 IN PROGRESS (2/3 KPIs), #9 DONE (4/6 KPIs)
+- OAuth API WORKING: `scrumMaster measure.subscription.api` returns real data
+- Conservation mode: 10-min monitoring cycles
+- Scribe.2 hibernated: `claude --resume 3d0d4a9b-6eaf-4d12-bf73-2c21ebe033b0`
+
+## Survival Plan (until Monday 9 AM)
+- **Now-21:00 CET**: Stand down. Save state. Wait for 5-hour reset.
+- **21:00-midnight**: Resume with 30-min monitoring cycles. Fix context.read bug if team delivers.
+- **Overnight**: 60-min cycles. Minimal activity. Just verify both agents alive.
+- **Sunday morning**: Check subscription, resume normal if 7-day < 85%.
+- **Monday 9 AM**: Final status check. Goal achieved if both agents alive.
 
 ## Completed Task Templates (reuse as patterns)
 ```

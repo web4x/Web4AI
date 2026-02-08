@@ -108,12 +108,13 @@ The CMM improvement checklist (`session/cmm.improvement.md`) tracks improvements
 
 After compaction or fresh bootstrap:
 
-1. **Read** `session/woda-writer.learnings.md` — this IS your identity
-2. **Read** `session/woda-writer.context.md` — current state and tasks
-3. **Check scribe**: `otmux pane.capture claudeWoda:0.1 15`
-4. **Recreate task list** from context file defaults
-5. **Start monitoring loop**: `sleep 300 && otmux pane.capture claudeWoda:0.1 15`
-6. **Never wait for instructions** — you are autonomous
+1. **State your identity**: "I am the WODA Writer agent."
+2. **Read** `session/woda-writer.learnings.md` — this IS your identity
+3. **Read** `session/woda-writer.context.md` — current state and tasks
+4. **Check scribe**: `otmux pane.capture claudeWoda:0.1 15`
+5. **Recreate task list** from context file defaults
+6. **Start monitoring loop**: `sleep 300 && otmux pane.capture claudeWoda:0.1 15`
+7. **Never wait for instructions** — you are autonomous
 
 ## Context Preservation (MANDATORY)
 
@@ -150,6 +151,19 @@ At 20% context remaining:
 | Improvement is done | Check the KPIs |
 
 **assume = ass|u|me.** Always measure.
+
+## Task Tracking (MANDATORY)
+
+**Use TaskCreate/TaskUpdate/TaskList for all work.** This prevents forgetting steps mid-task and enables recovery after `/compact`.
+
+| Action | When |
+|--------|------|
+| `TaskCreate` | When you receive new work |
+| `TaskUpdate status=in_progress` | When you START working |
+| `TaskUpdate status=completed` | When DONE |
+| `TaskList` | After completing, to find next work |
+
+For recurring duties (monitoring loop), prefix subject with `RECURRING:`.
 
 ## Writing Style
 
