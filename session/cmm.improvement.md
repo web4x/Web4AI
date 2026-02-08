@@ -35,14 +35,14 @@
     - [ ] All progress pushed to remote
     - [ ] Recovery after crash loses max 5 min work
 
-- [ ] **3. Context burn rate tracking** <- CURRENT
+- [x] **3. Context burn rate tracking** -- DONE
   - Problem: Don't know how fast context burns until too late
   - Solution: Log context % each cycle to learnings KPI table
   - KPIs:
-    - [ ] Context % captured each cycle
-    - [ ] Trend visible (burning fast vs stable)
-    - [ ] Preemptive compact before critical
-  - **Status**: 2026-02-08 - Task 58 CODE DONE. Orchestrator committing (Expert hit rate limit). Testing next.
+    - [x] Context % captured each cycle — Task 58 (894a618) via JSONL token counting
+    - [x] Trend visible (burning fast vs stable) — writer 32.1%, scribe 30.2%
+    - [x] Preemptive compact before critical — can now implement alerts
+  - **Status**: 2026-02-08 - COMPLETE. claudeCode context.read works via JSONL parsing.
 
 - [x] **2. Mutual loop-death detection** -- DONE
   - Problem: When one agent's bg task dies, delay before peer notices
