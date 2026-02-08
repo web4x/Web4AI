@@ -39,6 +39,21 @@
   - 10 from CMM4: context.read, permission reset, compound commands, watchdog, etc.
   - Status: 4 fixed (Tasks 41, 46, 47, 48), 2 pending (Tasks 49, 50), 8 open
 
+- **CMM Levels (corrected)**
+  - L1: "it works"
+  - L2: "it works the same way every time"
+  - L3: "it works the same way and we know WHY"
+  - L4: "we MEASURE how well it works"
+  - L5: "we measure how well we IMPROVE measuring" (not just "improve" - measure the improvement!)
+  - Key: "wer misst, der weiss" - who measures, knows
+
+- **Never Assume - Always Measure**
+  - assume = ass|u|me (makes an ass of u and me)
+  - Don't trust old prompts about limits - VERIFY with tools
+  - Use claudeCode context.read for REAL numbers
+  - Scribe hallucinated about rate limit that had already reset
+  - ALWAYS measure before acting
+
 - **Failures** (learn from these)
   - 2026-02-07: Both agents died. Background loops = entropy. On-demand checks = forgotten.
   - 2026-02-07: Scribe in compact death spiral. Passive waiting = slow death.
