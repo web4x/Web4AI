@@ -42,7 +42,7 @@
     - [ ] Context % captured each cycle
     - [ ] Trend visible (burning fast vs stable)
     - [ ] Preemptive compact before critical
-  - **Status**: 2026-02-08 - RESEARCH DONE: VS Code uses GET api.anthropic.com/api/claude_cli_profile with Bearer token. Returns rate_limit_tier. Need to extract token from keychain. Told orchestrator.
+  - **Status**: 2026-02-08 - Task 58 CODE DONE. Orchestrator committing (Expert hit rate limit). Testing next.
 
 - [x] **2. Mutual loop-death detection** -- DONE
   - Problem: When one agent's bg task dies, delay before peer notices
