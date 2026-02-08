@@ -25,3 +25,5 @@
 | 13:12 | **9% TUI** / me **70.9%** | /compact ran, edits pending, idle | writer loop DEAD | holding | recovery prompt SENT — full state reminder |
 | 13:17 | **8% TUI** (JSONL 65.6%) / me **53.6%** | compacted, resume submitted, processing | writer loop DEAD | -1%/cycle | helped submit resume prompt |
 | 13:22 | **6% TUI** (JSONL 41.9%) / me **41.9%** | processing 10 files +132 -223 | writer loop DEAD | -2%/cycle | writer active — don't interrupt |
+| --- | --- | --- WRITER COMPACTED (81.2%) + TIME GAP --- | --- |
+| 16:07 | **20.3%** / me **20.3%** | active, helping SM compact | alive (PID 76089) | below 25% | **ALERT SENT** |

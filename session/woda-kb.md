@@ -14,6 +14,8 @@
 
 **A** — Tasks: #5 delegate fix (in progress), #6 document modes (done), #7 bake verify into protocol (pending).
 
+**NEW failure mode #8**: Once `^[` (Escape chars) pollute TUI input buffer, NO remote keystrokes can clear it. C-u, C-a, C-k, Escape, Tab, Enter all fail or add more junk. Only manual keyboard input works. Root cause: sending Escape via otmux inserts literal `^[` into Claude TUI input instead of triggering Escape action. **NEVER send Escape to Claude TUI via otmux.**
+
 ---
 
 ## 2. Context Measurement
