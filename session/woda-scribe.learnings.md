@@ -37,13 +37,14 @@
 1. Read bg task output (writer pane capture)
 2. `claudeCode context.read claudeWoda:0.0` — writer %
 3. `claudeCode context.read claudeWoda:0.1` — my %
-4. If EITHER < 25%: alert peer via `otmux send`
+4. If EITHER < 25%: alert peer via `otmux send.verified` (NOT raw send)
 5. `ps aux | grep 'sleep 300.*0.1'` — writer's loop alive?
-6. If permission prompt: READ OPTIONS FIRST
-7. If stuck/idle: ACT (Escape=diff, Enter=idle, correct#=permission)
-8. After ANY send: `sleep 3 && otmux pane.capture` to VERIFY
+6. If permission prompt: READ OPTIONS FIRST, use `otmux send.verified` to respond
+7. If stuck/idle: ACT — NEVER send Escape (poisons buffer). Enter for idle, correct# for permission.
+8. All sends use `otmux send.verified` — built-in before/after verification (805aecc)
 9. Log both %s to `session/context-burn-log.md`
 10. Start next `sleep 300 && otmux pane.capture claudeWoda:0.0 5`
+**Between cycles: WORK ON TASKS, don't just wait.**
 
 ### OOSH Commands (run directly)
 - `otmux pane.capture <target> <lines>` — read pane (NOT `tmux capture-pane`)

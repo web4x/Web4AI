@@ -14,7 +14,11 @@
 
 **A** — Tasks: #5 delegate fix (in progress), #6 document modes (done), #7 bake verify into protocol (pending).
 
-**NEW failure mode #8**: Once `^[` (Escape chars) pollute TUI input buffer, NO remote keystrokes can clear it. C-u, C-a, C-k, Escape, Tab, Enter all fail or add more junk. Only manual keyboard input works. Root cause: sending Escape via otmux inserts literal `^[` into Claude TUI input instead of triggering Escape action. **NEVER send Escape to Claude TUI via otmux.**
+**NEW failure mode #8**: Once `^[` (Escape chars) pollute TUI input buffer, NO remote keystrokes can clear it.
+
+**Failure mode #9 (SCRIBE)**: When peer dies, use `claude --resume` to RESTORE the session, not `claude` to create new. New agent reads files but loses conversation history/learned behavior. Always try resume first.
+
+ C-u, C-a, C-k, Escape, Tab, Enter all fail or add more junk. Only manual keyboard input works. Root cause: sending Escape via otmux inserts literal `^[` into Claude TUI input instead of triggering Escape action. **NEVER send Escape to Claude TUI via otmux.**
 
 ---
 

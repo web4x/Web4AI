@@ -31,14 +31,14 @@
     - [ ] Scrum-master notifies scribe when done
     - [ ] Backlog shrinks, not grows
 
-- [ ] **6. Single source of truth for state** — IN PROGRESS
+- [x] **6. Single source of truth for state** — DONE
   - Problem: State scattered across files, panes, git status - easy to miss something
-  - Solution: `hiveMind dashboard` — Expert implementing at cursorOrchestrator
+  - Solution: `hiveMind dashboard` — committed (b13b6df)
   - KPIs:
-    - [ ] All state readable from one file
-    - [ ] Recovery from compaction needs only 1 file read
-    - [ ] No state hunting across multiple sources
-  - **Status**: 2026-02-08 — Expert implementing. SM will notify when done.
+    - [x] All state readable from one file — hiveMind dashboard method
+    - [x] Recovery from compaction needs only 1 file read
+    - [x] No state hunting across multiple sources
+  - **Status**: 2026-02-08 — COMPLETE. Implemented by cursorOrchestrator Expert.
 
 - [x] **5. Automate cycle steps** -- DONE
   - Problem: Writer forgot to add improvements - memory-based checklists fail
