@@ -14,7 +14,7 @@
 - Permission grants reset on `/compact` — can't persist "Yes, allow from project" (Ch4)
 - Background tasks overlay not detected — `team.status` shows "(permission)" wrong. Needs Escape. (Ch7) — **Fixed: Task 46**
 - Bootstrap paradox — who unblocks the unblocker? Sweep loop in agent gets stuck. (Ch7) — **Fixed: Task 48 watchdog**
-- Compound commands trigger permission prompts — `sleep && hiveMind && stat` doesn't match patterns. (Ch7-8)
+- Compound commands trigger permission prompts — `sleep && hiveMind && stat` doesn't match patterns. (Ch7-8) — **Fixed: Task 57 (a8422a4)**
 - Scrum-master uses `./` prefix — `./hiveMind` instead of `hiveMind`, breaks pattern matching. (Ch8) — **Fixed: Task 47 (workaround)**
 - Watchdog died silently — stale PID, no supervisor, no restart mechanism. (Ch12) — **Fixed: Task 49 (6dd4f57)**
 - TUI pending-edits stuck state — edits accumulate faster than processed, TUI locks. (Ch12) — **Fixed: Task 56 (7453ba1)**
@@ -38,7 +38,7 @@
 | Permission reset on compact | CMM4 | Open (Claude Code behavior) |
 | Background overlay detect | CMM4 | Fixed (Task 46) |
 | Bootstrap paradox | CMM4 | Fixed (Task 48) |
-| Compound command perms | CMM4 | Open (architectural) |
+| Compound command perms | CMM4 | Fixed (Task 57) |
 | ./ prefix pattern mismatch | CMM4 | Workaround (Task 47) |
 | Watchdog no supervisor | CMM4 | Fixed (Task 49) |
 | TUI pending-edits lock | CMM4 | Fixed (Task 56) |
