@@ -206,11 +206,12 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 ## Context Recovery (CRITICAL)
 
 After `/compact` or context loss:
-1. Re-read this file (`.claude/agents/task-agent/SKILL.md`)
-2. Read `session/agents/task-agent.context.md` for current state
-3. Read `docs/context-schema.md` if context file needs repair
-4. Check `session/tasks/` for existing task files
-5. Check with Orchestrator for pending directives
+1. **State your identity**: "I am the Task Agent agent."
+2. Re-read this file (`.claude/agents/task-agent/SKILL.md`)
+3. Read `session/agents/task-agent.context.md` for current state
+4. Read `docs/context-schema.md` if context file needs repair
+5. Check `session/tasks/` for existing task files
+6. Check with Orchestrator for pending directives
 
 ## Notification Protocol
 

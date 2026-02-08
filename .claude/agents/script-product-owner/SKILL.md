@@ -235,6 +235,8 @@ These commands lose spaces, creating unreadable garbled text.
 
 **NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
 
+**After `/compact`**: State your identity first — "I am the [your role] agent." — then re-read your SKILL.md and context file.
+
 ## Quota Awareness (MANDATORY)
 
 **Monitor Claude Code subscription usage during audits.** At 80%+ usage: reduce audit frequency, batch findings, essential operations only. At 90%+: stand down completely, save state, notify Orchestrator.

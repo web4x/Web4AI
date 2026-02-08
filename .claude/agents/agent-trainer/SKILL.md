@@ -229,11 +229,12 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 ## Context Recovery (CRITICAL)
 
 After `/compact` or context loss:
-1. Re-read this file (`.claude/agents/agent-trainer/SKILL.md`)
-2. Read `session/agents/agent-trainer.context.md` for current goals
-3. Read `docs/context-schema.md` if context file needs repair
-4. List all SKILL.md files: `ls /Users/Shared/Workspaces/AI/Claude/.claude/agents/*/SKILL.md`
-5. Check with Orchestrator for pending improvement tasks
+1. **State your identity**: "I am the Agent Trainer agent."
+2. Re-read this file (`.claude/agents/agent-trainer/SKILL.md`)
+3. Read `session/agents/agent-trainer.context.md` for current goals
+4. Read `docs/context-schema.md` if context file needs repair
+5. List all SKILL.md files: `ls /Users/Shared/Workspaces/AI/Claude/.claude/agents/*/SKILL.md`
+6. Check with Orchestrator for pending improvement tasks
 
 ## Communication
 

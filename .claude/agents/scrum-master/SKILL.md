@@ -409,12 +409,13 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 The PreCompact hook at `.claude/hooks/pre-compress.sh` auto-detects your role and sends a resume prompt to your pane 15 seconds after compact. **No user interaction needed.**
 
 When you receive the auto-resume prompt (or after `/compact`):
-1. Read `session/agents/scrum-master.context.md` for current team state
-2. Re-read this SKILL.md file
-3. Read `docs/context-schema.md` if context file needs repair
-3. Check all agent panes (0.2, 0.3) for permission prompts immediately
-4. Resume monitoring loop — do NOT wait for further instructions
-5. Report recovery to Orchestrator (0.0)
+1. **State your identity**: "I am the ScrumMaster agent."
+2. Read `session/agents/scrum-master.context.md` for current team state
+3. Re-read this SKILL.md file
+4. Read `docs/context-schema.md` if context file needs repair
+5. Check all agent panes (0.2, 0.3) for permission prompts immediately
+6. Resume monitoring loop — do NOT wait for further instructions
+7. Report recovery to Orchestrator (0.0)
 
 ## Idle Team Protocol
 

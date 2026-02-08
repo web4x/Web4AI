@@ -475,12 +475,13 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 ## Context Recovery (CRITICAL)
 
 When your context runs low or after `/compact`:
-1. Re-read this SKILL.md file
-2. Read `session/agents/orchestrator.context.md` for current goals and tasks
-3. Read `docs/context-schema.md` if context file needs repair
-4. Read `docs/oosh-architecture.md` for framework reference
-4. Check agent panes with `./hiveMind monitor <name>` or `./otmux pane.capture <pane>`
-5. Resume delegating from where you left off
+1. **State your identity**: "I am the Orchestrator agent."
+2. Re-read this SKILL.md file
+3. Read `session/agents/orchestrator.context.md` for current goals and tasks
+4. Read `docs/context-schema.md` if context file needs repair
+5. Read `docs/oosh-architecture.md` for framework reference
+6. Check agent panes with `./hiveMind monitor <name>` or `./otmux pane.capture <pane>`
+7. Resume delegating from where you left off
 
 ## Remember
 

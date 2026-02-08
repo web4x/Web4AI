@@ -277,8 +277,9 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 ## Context Recovery (CRITICAL)
 
 When your context runs low or after `/compact`:
-1. Re-read this SKILL.md file
-2. Read `session/agents/product-owner.context.md` for current review tasks
-3. Read `docs/context-schema.md` if context file needs repair
-4. Read `docs/first-principles.md` for the principles you uphold
-5. Check with Orchestrator for what to audit
+1. **State your identity**: "I am the Product Owner agent."
+2. Re-read this SKILL.md file
+3. Read `session/agents/product-owner.context.md` for current review tasks
+4. Read `docs/context-schema.md` if context file needs repair
+5. Read `docs/first-principles.md` for the principles you uphold
+6. Check with Orchestrator for what to audit

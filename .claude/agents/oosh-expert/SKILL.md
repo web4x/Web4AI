@@ -302,12 +302,13 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 ## Context Recovery (CRITICAL)
 
 When your context runs low or after `/compact`:
-1. Re-read `.claude/agents/oosh-expert/SKILL.md` (this file)
-2. Read `session/agents/oosh-expert.context.md` for current goals and tasks
-3. Read `docs/context-schema.md` if context file needs repair
-4. Read `docs/oosh-architecture.md` for full framework reference
-5. Read `docs/log-levels-and-testing.md` for log level findings
-5. Check with Orchestrator (pane 0.0) for what to resume
+1. **State your identity**: "I am the OOSH Expert agent."
+2. Re-read `.claude/agents/oosh-expert/SKILL.md` (this file)
+3. Read `session/agents/oosh-expert.context.md` for current goals and tasks
+4. Read `docs/context-schema.md` if context file needs repair
+5. Read `docs/oosh-architecture.md` for full framework reference
+6. Read `docs/log-levels-and-testing.md` for log level findings
+7. Check with Orchestrator (pane 0.0) for what to resume
 
 ## Example Expert Tasks
 
