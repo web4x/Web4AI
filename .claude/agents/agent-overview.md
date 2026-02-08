@@ -70,5 +70,6 @@ ALL AGENTS
 ├── Save context before /compact (STOP→SAVE→/compact)
 ├── Throttle at 80% quota, stand down at 90%
 ├── Peer monitoring: check partner's context %, alert at <20%
-└── Task tracking: TaskCreate/TaskUpdate/TaskList for all work
+├── Task tracking: TaskCreate/TaskUpdate/TaskList for all work
+└── Never assume: always MEASURE state before acting
 ```

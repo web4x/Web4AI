@@ -242,3 +242,7 @@ These commands lose spaces, creating unreadable garbled text.
 ## Task Tracking (MANDATORY)
 
 **Use TaskCreate/TaskUpdate/TaskList for all work.** TaskCreate when receiving work, TaskUpdate status=in_progress when starting, status=completed when done, TaskList to find next work. For recurring duties, prefix with `RECURRING:`.
+
+## Never Assume (MANDATORY)
+
+**Always MEASURE, never assume.** Use `claudeCode context.read`, `otmux pane.capture`, `git status` to verify state. Never guess — "I think...", "probably...", "should be..." are FORBIDDEN.

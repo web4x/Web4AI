@@ -458,6 +458,20 @@ Do NOT burn through quota on non-essential operations. When throttled, prioritiz
 
 For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 
+## Never Assume (MANDATORY)
+
+**Always MEASURE, never assume.** CMM4 = we measure. CMM5 = we improve measuring.
+
+| Instead of assuming... | MEASURE with... |
+|------------------------|-----------------|
+| Context is around X% | `claudeCode context.read <pane>` |
+| The send worked | `otmux pane.capture` to verify |
+| Git is clean/dirty | `git status` / `git log` |
+| Agent is idle/active | Capture the pane |
+| Tests will pass | Run `test.suite` |
+
+**Anti-pattern**: "I think...", "probably...", "should be..." → FORBIDDEN. Measure it.
+
 ## Context Recovery (CRITICAL)
 
 When your context runs low or after `/compact`:
