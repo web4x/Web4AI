@@ -1,0 +1,62 @@
+# Task 40 Subtasks — CMM4 Context-Aware Claude Team
+
+**Parent**: Task.40.cmm4-context-aware-team.md
+**Created**: 2026-02-05
+**Status**: Planning
+
+## Subtasks
+
+### Task 40.1 — hiveMind Multi-Team Support
+- **Assigned**: Expert
+- **Priority**: High
+- **Dependencies**: None
+- **Description**: Extend hiveMind to manage multiple tmux sessions/teams. Currently hiveMind operates on `cursorOrchestrator` only. Add team registry that tracks both `cursorOrchestrator` (OOSH dev team) and `claudeWoda` (story team). `hiveMind team.list` shows all registered teams. `hiveMind team.switch <name>` sets active team context. Team config persisted to `~/config/hivemind/teams.env`.
+
+### Task 40.2 — hiveMind sweep.detect Improvements
+- **Assigned**: Expert
+- **Priority**: High
+- **Dependencies**: Task 40.1
+- **Description**: Improve `hiveMind sweep` detection to recognize all Claude Code dialog formats: permission prompts, rate limit warnings, context warnings, `/compact` autocomplete stuck, queued messages, tool-use confirmations, MCP connection prompts. Current detection covers basic cases — expand regex patterns and add structured classification (blocker type, severity, suggested action). Detection must work across both teams.
+
+### Task 40.3 — Tab Completion for Team Selection
+- **Assigned**: Expert
+- **Priority**: Medium
+- **Dependencies**: Task 40.1
+- **Description**: Add tab completion parameters for team-aware hiveMind commands. `hiveMind team.switch` completes registered team names. `hiveMind sweep`, `hiveMind send`, `hiveMind unblock` gain optional `--team <name>` parameter with completion. `hiveMind team.status` gains optional team parameter. Follows OOSH `method.completion.parameter()` convention.
+
+### Task 40.4 — Velocity Measurement Method
+- **Assigned**: Expert + Task Agent
+- **Priority**: High
+- **Dependencies**: Task 40.1, Task.29 (subscription API — done)
+- **Description**: Implement `scrumMaster measure.velocity` — combines subscription API data (Task.29) with task completion rate. Metrics: tokens consumed per day, tasks completed per day, tokens per task, projected day-of-exhaustion at current burn rate. Target: 90% of 7-day limit reached on day 7. Expert implements the OOSH method; Task Agent provides task completion data (board counts, timestamps). Store readings in `~/config/metrics/velocity.<timestamp>.env`.
+
+### Task 40.5 — CMM4 Feedback Loop Design
+- **Assigned**: Orchestrator + ScrumMaster
+- **Priority**: High
+- **Dependencies**: Task 40.2, Task 40.4
+- **Description**: Design the CMM4 measurement-feedback cycle: ScrumMaster runs `measure.velocity` + `measure.subscription.api` on a schedule (per PDCA cycle). If burn rate too high (>14%/day of 7-day limit) → alert Orchestrator to throttle. If burn rate too low (<10%/day) → alert Orchestrator to increase throughput. Orchestrator adjusts task assignment rate based on measurements. This is the meta-capability: the team measures and adjusts its own pace. Agent Trainer updates SKILL.md files for SM and Orchestrator with the feedback protocol.
+
+### Task 40.6 — Story Integration with woda-writer
+- **Assigned**: Product Owner
+- **Priority**: Medium
+- **Dependencies**: Task 40.1
+- **Description**: PO coordinates with `claudeWoda:woda-writer` to integrate Task 40 progress into the story. New chapters (40-49) cover CMM4 milestones. PO ensures woda-writer is included in team communication via hiveMind multi-team support. Chapter numbering follows the story structure rules: only write chapter X9 (49) when CMM4 is actually reached. Reiterate chapters that got wrong.
+
+## Dependency Graph
+
+```
+Task 40.1 (multi-team)
+  ├── Task 40.2 (sweep.detect)
+  │     └── Task 40.5 (feedback loop) ← also needs 40.4
+  ├── Task 40.3 (tab completion)
+  ├── Task 40.4 (velocity) ← also needs Task.29 (done)
+  │     └── Task 40.5 (feedback loop)
+  └── Task 40.6 (story integration)
+```
+
+## Execution Order
+
+1. **Task 40.1** — foundation, unlocks everything
+2. **Task 40.2 + Task 40.3 + Task 40.4** — parallel after 40.1
+3. **Task 40.5** — after 40.2 + 40.4
+4. **Task 40.6** — can start after 40.1, runs in parallel with implementation

@@ -1,0 +1,78 @@
+# 2cuClaude Learning Overview
+
+**Agent**: 2cuClaude (Cursor) | **Updated**: 2026-02-05
+
+- **WODA Framework**
+  - **W** = What (prompt, ephemeral, fragile to compaction)
+  - **O** = Overview (context mapping, must be actively maintained)
+  - **D** = Details (files, chapters, code - durable)
+  - **A** = Actions (OOSH shell, execution - results persist)
+    - **Key insight:** O is the only component needing active maintenance
+- **tmux Multi-Agent (Ch1-9)** → session/woda/chapters-1-9.md
+  - **Create panes:** `split-window -h/-v`
+  - **Remote control:** `send-keys -t <pane>`
+  - **Read pane output:** `capture-pane -t <pane> -p`
+  - **Label panes:** `select-pane -t <pane> -T "name"`
+  - **Lesson:** name your panes or lose control
+- **OOSH Philosophy (Ch10-19)** → session/woda/chapters-10-19.md
+  - **Death to flags:** methods ARE the meaning (`otmux pane.splitH` not `-h`)
+  - **Invocation:** `scriptname method arg` (space, not dot)
+  - **Tab = documentation:** `.completion()`
+  - **Scripts born ready:** `oo new` (shebang → bootstrap → dispatch)
+  - **Config:** `LOG_LEVEL`, `OOSH_DIR`, `CONFIG` persist in `~/config/`
+- **CMM Levels (Ch20-29)** → session/woda/chapters-20-plus.md
+  - **L1:** Ad-hoc (chaos)
+  - **L2:** Repeatable (manual discipline, every time)
+  - **L3:** Defined (written, automated, enforced)
+  - **L4:** Measured (data, not feelings)
+  - **L5:** Optimizing (meta-capability)
+  - **Weakest link:** composed maturity = lowest component
+- **Peer Measurement (Ch37)** → session/woda/chapters-30-plus.md
+  - **Blind spot:** agents can't read own TUI status bar
+  - **Solution:** peer captures pane, reads context %
+  - **Pattern:** neither alone can self-care, together both can
+  - **Methods:** `claudeCode context.read`, `context.alert`
+  - **"Two Gather":** interdependence is design, not limitation
+- **Anti-Patterns Learned**
+  - **Ass-U-Me:** hallucinated "healthy" without measurement (Ch36)
+  - **Form over substance:** checked boxes, didn't verify reality (Ch39)
+  - **Tool bypass:** raw tmux when OOSH available (Ch34)
+  - **Shell ignorance:** unnecessary wrappers (Ch39)
+  - **Goal drift:** W lost after compaction → ODA without direction (Ch39)
+- **Recovery Protocol**
+  - Read context file → find CURRENT GOAL section
+  - For each criterion → verify with LIVE evidence
+  - If all met → report done
+  - If not → resume PDCA on unmet criteria
+  - Never say "awaiting" - check the goal first
+- **Key References**
+  - **WODA Session Files**
+    - **Story index:** session/woda/session-story.md
+    - **Overview template:** session/woda/woda-overview.md
+    - **Ch1-9:** tmux foundations
+    - **Ch10-19:** OOSH + multi-agent
+    - **Ch20-29:** CMM + measurement
+    - **Ch30+:** WODA framework + peer monitoring
+  - **OOSH Core Scripts**
+    - **Kernel, bootstrap, dispatch:** `this`
+    - **Framework lifecycle, script creation:** `oo`
+    - **Persistence:** `config` → `~/config/user.env`
+    - **Logging (levels 0-7, breakpoints):** `log`
+    - **tmux wrapper:** `otmux` (pane.split, capture, send)
+    - **Team management:** `hiveMind` (sweep, send)
+  - **APIs & Tools**
+    - **OAuth usage:** `GET api.anthropic.com/api/oauth/usage`
+    - **TUI commands:** `/usage` `/status` `/context` `/cost`
+    - **Keychain credentials:** `security find-generic-password -s "Claude Code-credentials" -w`
+- **Meta-Lesson**
+  - Before you assume, **test**
+  - Before you wrap, **try without the wrapper**
+  - Before you declare, **verify**
+  - Before you write about doing, **do**
+- **Formatting Rules**
+  - One hierarchical list under a single heading
+  - **Top-level items:** bold
+  - **Label before colon:** bold (e.g., **Meaning:** value)
+  - **Order:** meaning first, then command (not command: meaning)
+  - **Commands:** use `code` backticks
+  - **File paths:** use `code` backticks
