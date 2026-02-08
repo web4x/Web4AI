@@ -19,7 +19,7 @@
 - Watchdog died silently — stale PID, no supervisor, no restart mechanism. (Ch12) — **Fixed: Task 49 (6dd4f57)**
 - TUI pending-edits stuck state — edits accumulate faster than processed, TUI locks. (Ch12) — **Fixed: Task 56 (7453ba1)**
 
-## otmux send Reliability (NEW — from scribe experience)
+## otmux send Reliability — **Fixed: send.verified (805aecc)**
 - **W**: `otmux send` has no delivery guarantee. Sends silently fail in multiple scenarios.
 - **Failure modes**:
   1. Single Enter = newline in Claude TUI, not submit. Need double Enter.
@@ -29,9 +29,8 @@
   5. C-u doesn't clear line in all TUI states.
   6. Rapid sends cause character spam ("2222" from loop).
   7. No feedback when send fails — caller assumes success.
-- **Fix needed**: `otmux send.verified` method — send + sleep 3 + pane.capture to confirm delivery. Return success/failure.
-- **Workaround**: After ANY send, manually run `sleep 3 && otmux pane.capture` to verify. NEVER assume success.
-- **Status**: Open — delegate to cursorOrchestrator Expert
+- **Fix**: `otmux send.verified <target> <text> <?timeout:3>` — returns DELIVERED/CHANGED/FAILED via before/after capture.
+- **Status**: Fixed (805aecc) — callers can now detect blocked sends
 
 ## Not OOSH Bugs (Agent Behavior)
 - Task 40.3 spec used flags (`--team`) — anti-OOSH pattern in spec review gap
@@ -56,3 +55,4 @@
 | ./ prefix pattern mismatch | CMM4 | Workaround (Task 47) |
 | Watchdog no supervisor | CMM4 | Fixed (Task 49) |
 | TUI pending-edits lock | CMM4 | Fixed (Task 56) |
+| otmux send no feedback | Scribe | Fixed (send.verified 805aecc) |
