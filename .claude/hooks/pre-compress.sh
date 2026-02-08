@@ -1,9 +1,12 @@
 #!/bin/bash
-# Pre-compact hook: Auto-detects agent role, saves context, schedules auto-resume
-# Works for all agents in tmux session cursorOrchestrator
+# Pre-compact hook: Auto-detects agent role, auto-saves, generates boot file, schedules resume
+# Boot file = single slim file (~20 lines) that's ALL the agent reads post-compact
+# Prevents death spiral: no more reading 3 large files to recover identity
 
 PROJECT_DIR="${CLAUDE_PROJECT_DIR:-/Users/Shared/Workspaces/AI/Claude}"
 ROLES_FILE="/tmp/hivemind.roles"
+BOOT_DIR="$PROJECT_DIR/session/boot"
+mkdir -p "$BOOT_DIR"
 
 # --- Detect current pane and role ---
 PANE_TARGET=""
@@ -17,58 +20,96 @@ fi
 
 echo "=== PRE-COMPACT: ${CURRENT_ROLE:-unknown} @ ${PANE_TARGET:-unknown} ==="
 
-# --- Map role to context file ---
+# --- Map role to files ---
 CONTEXT_FILE=""
 SKILL_FILE=""
+LEARNINGS_FILE=""
+PEER_PANE=""
+LOOP_CMD=""
 case "$CURRENT_ROLE" in
     *scrum*|*Scrum*)
         CONTEXT_FILE="$PROJECT_DIR/session/agents/scrum-master.context.md"
-        SKILL_FILE="$PROJECT_DIR/.claude/agents/scrum-master/SKILL.md"
+        SKILL_FILE=".claude/agents/scrum-master/SKILL.md"
         ;;
     *expert*|*Expert*)
         CONTEXT_FILE="$PROJECT_DIR/session/agents/oosh-expert.context.md"
-        SKILL_FILE="$PROJECT_DIR/.claude/agents/oosh-expert/SKILL.md"
+        SKILL_FILE=".claude/agents/oosh-expert/SKILL.md"
         ;;
     *tester*|*Tester*)
         CONTEXT_FILE="$PROJECT_DIR/session/agents/oosh-tester.context.md"
-        SKILL_FILE="$PROJECT_DIR/.claude/agents/oosh-tester/SKILL.md"
+        SKILL_FILE=".claude/agents/oosh-tester/SKILL.md"
         ;;
     *teacher*|*Teacher*)
         CONTEXT_FILE="$PROJECT_DIR/session/agent.context.md"
-        SKILL_FILE="$PROJECT_DIR/.claude/agents/agent-teacher/SKILL.md"
+        SKILL_FILE=".claude/agents/agent-teacher/SKILL.md"
+        ;;
+    *woda-writer*|*writer*)
+        CONTEXT_FILE="$PROJECT_DIR/session/woda-writer.context.md"
+        SKILL_FILE=".claude/agents/woda-writer/SKILL.md"
+        LEARNINGS_FILE="session/woda-writer.learnings.md"
+        PEER_PANE="claudeWoda:0.1"
+        LOOP_CMD="sleep 300 && otmux pane.capture claudeWoda:0.1 15"
+        ;;
+    *woda-scribe*|*scribe*)
+        CONTEXT_FILE="$PROJECT_DIR/session/wodaScribe.context.md"
+        SKILL_FILE=".claude/agents/woda-scribe/SKILL.md"
+        LEARNINGS_FILE="session/woda-scribe.learnings.md"
+        PEER_PANE="claudeWoda:0.0"
+        LOOP_CMD="sleep 300 && otmux pane.capture claudeWoda:0.0 5"
         ;;
 esac
 
-# --- Show context summary ---
-if [ -n "$CONTEXT_FILE" ] && [ -f "$CONTEXT_FILE" ]; then
-    echo "Context: $CONTEXT_FILE"
-    echo "---"
-    head -25 "$CONTEXT_FILE"
-    echo "---"
+# --- Auto-commit dirty session files ---
+cd "$PROJECT_DIR" 2>/dev/null
+if git diff --quiet session/ 2>/dev/null; then
+    echo "Git: session/ clean"
 else
-    echo "No context file found for role: ${CURRENT_ROLE:-unknown}"
+    git add -f session/*.md session/**/*.md 2>/dev/null
+    git commit -m "Auto-save: ${CURRENT_ROLE:-unknown} pre-compact $(date +%H:%M)" --no-verify 2>/dev/null
+    echo "Git: auto-committed session files"
 fi
 
-# --- Schedule auto-resume after compact ---
+# --- Generate boot file ---
+BOOT_FILE="$BOOT_DIR/${CURRENT_ROLE:-unknown}.md"
+ROLE_DISPLAY="${CURRENT_ROLE:-unknown}"
+TIMESTAMP=$(date "+%Y-%m-%d %H:%M")
+
+# Extract current goal from context file (first line starting with ## or after "Goal")
+CURRENT_GOAL=""
+if [ -n "$CONTEXT_FILE" ] && [ -f "$CONTEXT_FILE" ]; then
+    CURRENT_GOAL=$(grep -A1 -i "goal\|## Current\|## Active" "$CONTEXT_FILE" 2>/dev/null | head -3 | tail -2 | sed 's/^[# ]*//')
+fi
+
+cat > "$BOOT_FILE" << BOOT
+# Boot: $ROLE_DISPLAY
+*Auto-generated $TIMESTAMP. This is ALL you need to read post-compact.*
+
+## You are: $ROLE_DISPLAY
+## Pane: ${PANE_TARGET:-unknown}
+## Goal: ${CURRENT_GOAL:-Check context file}
+
+## Immediate actions:
+1. Start monitoring loop: \`$LOOP_CMD\`
+2. Check peer: \`otmux pane.capture ${PEER_PANE:-"your peer pane"} 10\`
+3. Resume work (see goal above)
+
+## Deep files (read ONLY if needed, not on boot):
+- SKILL.md: \`$SKILL_FILE\`
+- Context: \`${CONTEXT_FILE#$PROJECT_DIR/}\`
+$([ -n "$LEARNINGS_FILE" ] && echo "- Learnings: \`$LEARNINGS_FILE\`")
+
+## Rules (memorize, don't re-read):
+- Passive mode = death. Always have a background loop running.
+- Never assume — always measure.
+- OOSH wrappers only, no raw tmux.
+BOOT
+
+echo "Boot file: $BOOT_FILE ($(wc -l < "$BOOT_FILE") lines)"
+
+# --- Schedule auto-resume with boot file reference ---
 if [ -n "$PANE_TARGET" ]; then
-    # Build role-specific resume prompt
-    case "$CURRENT_ROLE" in
-        *scrum*|*Scrum*)
-            RESUME_MSG="You just compacted. You are the ScrumMaster agent. Read session/agents/scrum-master.context.md and .claude/agents/scrum-master/SKILL.md then immediately resume monitoring all agent panes for permission prompts. Do not wait for further instructions."
-            ;;
-        *expert*|*Expert*)
-            RESUME_MSG="You just compacted. You are the OOSH Expert agent. Read session/agents/oosh-expert.context.md and .claude/agents/oosh-expert/SKILL.md then resume your current implementation task. Do not wait for further instructions."
-            ;;
-        *tester*|*Tester*)
-            RESUME_MSG="You just compacted. You are the OOSH Tester agent. Read session/agents/oosh-tester.context.md and .claude/agents/oosh-tester/SKILL.md then resume your current testing task. Do not wait for further instructions."
-            ;;
-        *teacher*|*Teacher*)
-            RESUME_MSG="You just compacted. You are the Agent Teacher. Read session/agent.context.md and .claude/agents/agent-teacher/SKILL.md then resume orchestration. Do not wait for further instructions."
-            ;;
-        *)
-            RESUME_MSG="You just compacted. Read your context file and SKILL.md, then resume your duties immediately."
-            ;;
-    esac
+    BOOT_REL="session/boot/${CURRENT_ROLE:-unknown}.md"
+    RESUME_MSG="You just compacted. Read $BOOT_REL — it has everything you need. Do NOT read other files unless the boot file says to."
 
     # Fork background process: wait for compact to finish, then send resume prompt
     (
@@ -77,8 +118,7 @@ if [ -n "$PANE_TARGET" ]; then
     ) &>/dev/null &
     disown 2>/dev/null
 
-    echo ""
-    echo "Auto-resume scheduled: will send resume prompt to $PANE_TARGET in 15s"
+    echo "Auto-resume: will send boot file reference to $PANE_TARGET in 15s"
 fi
 
 echo "=== END ==="

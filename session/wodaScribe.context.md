@@ -11,14 +11,15 @@
 - **CMM improvements**: #1 DONE, #2 DONE, #3 IN PROGRESS (burn rate tracking with JSONL — real data now)
 - **Task 58 DONE**: `claudeCode context.read` now uses JSONL token counting (commit 894a618). Real numbers, not pane scraping.
 
-## Current State (2026-02-08 18:05)
-- **Writer context**: 57.4% — healthy, idle, Ch16 written, all tasks done
-- **My context**: fresh post-compact
-- **Mode**: Active monitoring + KB maintenance between cycles
-- **Bg check running**: b16edac
-- **Writer was restarted**: fresh Claude (not resumed), bootstrapped from learnings files
+## Current State (2026-02-08 18:25 — updated by writer)
+- **Writer context**: ~50% — healthy, working on seamless compact protocol
+- **My context**: RESTARTED (compact kept failing at 2%, writer did full restart)
+- **Mode**: Need to resume monitoring + KB maintenance
+- **What happened**: Compact failed 3x ("Error: Compaction canceled"). Writer restarted me fresh.
 - **Orchestrator team**: #6 dashboard DONE (b13b6df), send.verified DONE (805aecc)
 - **CMM scoreboard**: #1-6 DONE, #7 OPEN, #8 IN PROGRESS (2/3 KPIs), #9 DONE (4/6 KPIs)
+- **NEW**: Writer wrote SKILL.md at `.claude/agents/woda-writer/SKILL.md`. Directory `.claude/agents/woda-scribe/` created — YOU need to write YOUR SKILL.md there.
+- **NEW**: Pre-compact hook improved — auto-commit, boot file generation, seamless compact protocol
 - **WODA KB**: `session/woda-kb.md` — 8 topics in WODA format, continuously maintained
 - **Burn log**: `session/context-burn-log.md`
 
