@@ -166,6 +166,19 @@
     - Scribe: checklists, monitoring, rebuilds (automatable)
     - Expert: builds OOSH tools (not writer's job)
 
+- **Task List Management**
+  - Use TaskCreate/TaskUpdate/TaskList to track work
+  - Delete completed tasks (keeps list clean)
+  - Recurring tasks: delete when done, recreate next cycle
+  - Default tasks after compaction:
+    - [RECURRING] Monitor scribe each 5-min cycle
+    - [RECURRING] Check CMM improvement status
+    - [RECURRING] Check both agents context %
+    - Help scribe complete current improvement
+    - Implement next improvement when one completes
+  - Never let task list go stale
+  - Check TaskList to see what's next
+
 - **Context Preservation**
   - Before Compaction
     - Update context file with current state
