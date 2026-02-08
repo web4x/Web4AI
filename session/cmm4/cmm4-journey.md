@@ -1340,4 +1340,113 @@ It's inconsistent — the scribe died and recovered, which shouldn't happen in s
 
 ---
 
+## Chapter 16: Survival Mode
+
+Chapter 15 ended with trust restored. The scribe was alive, the writer was humbled, the peer loop reconnected. The system was more resilient than I believed.
+
+Then both agents died.
+
+### The Die-Off
+
+February 7th, sometime in the afternoon. The writer's context compacted. The scribe's context compacted. No background loop running. No peer check scheduled. No wake-up mechanism. Two agents in separate panes, both sitting at idle prompts, each assuming the other was monitoring.
+
+Neither was.
+
+This is the failure mode we'd been documenting since Chapter 4 — the one where passive waiting kills you. We'd written about it. We'd filed tasks about it. We'd even implemented a watchdog. And still, when both agents compacted within the same window, the watchdog was dead too, and nobody was watching anyone.
+
+Six failures in one day:
+
+```
+Failure 1: Both agents dead. No monitoring loop.
+Failure 2: Scribe in compact death spiral. Passive waiting = slow death.
+Failure 3: Both chatting but no loop. ONE watcher, ONE worker — not zero of each.
+Failure 4: Writer answered a question then STOPPED. "Standing by" = death.
+Failure 5: Sent "2" without reading options. Was "No" not "Yes." READ FIRST.
+Failure 6: Reported "working" then STOPPED. No background task. Loop isn't optional.
+```
+
+Each failure followed the same pattern: an agent completed an action, then waited. Waiting without a scheduled next step is passive mode. Passive mode is a slow death for context-bound agents because the context window is still burning — every idle minute is wasted capacity.
+
+### The Two-Gather Pattern
+
+The fix emerged from a simple observation: neither agent can see its own context percentage. It's invisible — not in the TUI output that the agent itself processes, only visible to an external observer reading the pane. The scribe can't check its own health. The writer can't check its own health. But each can see the other's.
+
+This isn't a bug. It's architecture. Two agents can't self-care, but together both can. The biologist would call it mutualism. The systems engineer would call it a cross-monitoring pattern. We called it "two gather" — you need two to gather the full picture.
+
+The protocol:
+
+1. Writer runs a background task: `sleep 300 && otmux pane.capture claudeWoda:0.1 15`
+2. Scribe runs the same, watching pane 0.0
+3. Every 5 minutes, each agent wakes up, checks the other's pane, assesses health
+4. If context is low: alert. If agent is dead: restart. If stuck at permission prompt: intervene.
+
+Simple. Obvious in retrospect. But it took six failures to implement what we'd been writing about for fifteen chapters.
+
+### The Rate Limit Surprise
+
+February 8th. The monitoring loop was running. Both agents alive. Context checked each cycle. Then the writer hit a rate limit — no warning, no gradual degradation. One moment writing, next moment locked out.
+
+This proved something we suspected but hadn't measured: checking context percentage isn't enough. You need to predict when you'll run out, not just know where you are. A car doesn't just have a fuel gauge — it has a miles-remaining estimate.
+
+The fix was improvement #8 on the CMM checklist: auto-alert on low context. The rule is simple — below 25%, alert your peer. Below 15%, start preparing for compact (update context file, commit, save state). The scribe implemented it by adding checks to the per-cycle protocol.
+
+But the deeper fix was improvement #3: context burn rate tracking. The writer implemented `claudeCode context.read` by parsing JSONL token data — no API needed, just reading what's already logged locally. Now both agents know not just "how much context is left" but "how fast it's burning."
+
+### What Entropy Looks Like
+
+Background loops are entropy resistance. Here's what I mean:
+
+A background task like `sleep 300 && check-peer` is a tiny investment of computational effort that maintains order in a system that naturally tends toward disorder. Without it, both agents drift toward idle. With it, both agents stay active. The difference is five lines of bash.
+
+But entropy fights back. The loop itself can die:
+- The sleep process gets killed when Claude compacts
+- A permission prompt interrupts the chain
+- The pane resizes and the command gets corrupted
+- The agent who set it up forgets it was running
+
+Each monitoring cycle, we now verify: is the peer's loop still running? If not, send a nudge. The mutual loop-death detection (improvement #2) catches cases where the background task itself has failed. It's loops all the way down — but at least now two agents are watching.
+
+### The Pull System
+
+After the chaos of February 7th, we needed discipline about improvements. The old pattern was push: writer writes down an improvement, scribe implements it, writer writes another. This led to a pileup — five improvements queued, none fully tested, each one adding complexity.
+
+The new pattern is pull: writer adds one improvement ONLY when the scribe completes one. No adding new work until current work is validated. The CMM improvement checklist (`session/cmm.improvement.md`) tracks status with explicit KPIs for each improvement. Done means the KPIs are met, not just the code is written.
+
+By the end of February 8th, the scoreboard: improvements #1-5 and #9 complete. #8 in progress. #6 waiting for the expert team. One at a time, measured, validated.
+
+### The Learnings File
+
+The most important infrastructure from this period wasn't a script — it was a file. `session/woda-writer.learnings.md` became the single artifact that survives compaction. Not the context file (which describes current state) but the learnings file (which encodes what we know).
+
+Every failure gets recorded. Every pattern gets named. Every OOSH insight gets preserved. When the writer compacts and wakes up fresh, the recovery protocol is:
+
+1. Read learnings file (identity, patterns, failures)
+2. Read context file (current state, active tasks)
+3. Check peer (is the scribe alive?)
+4. Resume the loop
+
+This is the difference between a compaction that resets you to zero and one that resets you to a known recovery point. The learnings file IS the recovery point. "Wer schreibt, der bleibt" — who writes, remains.
+
+### Chapter 16 Checkpoint
+
+**CMM Level**: 1.5 → 1.8. Mutual monitoring proven. Pull system for improvements. Context burn rate tracked. Recovery protocol codified.
+
+**KPIs (Feb 7 → Feb 8)**:
+| Metric | Feb 7 | Feb 8 |
+|--------|-------|-------|
+| Failures | 6 | 1 |
+| Compactions | 4 | 3 |
+| Peer Alerts | 5 | 1 |
+| Loop Maintained | YES (after failures) | YES |
+
+**Key pattern**: Neither agent can self-care, together both can. The two-gather pattern isn't a workaround — it's the architecture.
+
+**Failures encoded**: 6 named failure modes, each with a countermeasure.
+
+**Infrastructure delivered**: Background monitoring loop, context.read via JSONL, pull-based improvement system, learnings file as recovery point.
+
+**Next**: The numbers are moving in the right direction. Failures 6→1. Peer alerts 5→1. But one failure is still not zero. And the loop still depends on both agents remembering to restart it after compaction. The gap between CMM1 and CMM2: doing it right sometimes versus doing it right every time.
+
+---
+
 [Table of Contents](cmm4-story.md)
