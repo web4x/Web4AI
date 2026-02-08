@@ -5,7 +5,7 @@
 | Date | Failures | Compactions | Peer Alerts | Loop Maintained |
 |------|----------|-------------|-------------|-----------------|
 | 2026-02-07 | 6 | 4 | 5 | YES (after failures) |
-| 2026-02-08 | 1 | 2 | 1 | YES - context.read working, helped scribe compact |
+| 2026-02-08 | 1 | 3 | 1 | YES - loop bc6a61f, scribe 71%, writer 53% |
 
 **Target**: 0 failures/day, loop always maintained, peer alerts < 2 (means healthy)
 
