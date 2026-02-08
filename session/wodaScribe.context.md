@@ -11,15 +11,15 @@
 - **CMM improvements**: #1 DONE, #2 DONE, #3 IN PROGRESS (burn rate tracking with JSONL — real data now)
 - **Task 58 DONE**: `claudeCode context.read` now uses JSONL token counting (commit 894a618). Real numbers, not pane scraping.
 
-## Current State (2026-02-08 13:25)
-- **Writer context**: 6% TUI — CRITICAL, processing 10 files, will need compact
-- **My context**: 19% — compacting NOW
-- **Mode**: Active monitoring with 5-min background check loops
-- **Bg check running**: bedecb4
-- **Writer loop for me**: DEAD — needs restart after writer stabilizes
-- **Orchestrator team**: #6 dashboard IN PROGRESS, send.verified bug delegated
-- **CMM scoreboard**: #1-5 DONE, #8 IN PROGRESS (2/3 KPIs), #9 DONE (4/6 KPIs), #6 IN PROGRESS, #7 OPEN
-- **WODA KB created**: `session/woda-kb.md` — 7 topics in WODA format
+## Current State (2026-02-08 18:05)
+- **Writer context**: 57.4% — healthy, idle, Ch16 written, all tasks done
+- **My context**: fresh post-compact
+- **Mode**: Active monitoring + KB maintenance between cycles
+- **Bg check running**: b16edac
+- **Writer was restarted**: fresh Claude (not resumed), bootstrapped from learnings files
+- **Orchestrator team**: #6 dashboard DONE (b13b6df), send.verified DONE (805aecc)
+- **CMM scoreboard**: #1-6 DONE, #7 OPEN, #8 IN PROGRESS (2/3 KPIs), #9 DONE (4/6 KPIs)
+- **WODA KB**: `session/woda-kb.md` — 8 topics in WODA format, continuously maintained
 - **Burn log**: `session/context-burn-log.md`
 
 ## My Per-Cycle Protocol

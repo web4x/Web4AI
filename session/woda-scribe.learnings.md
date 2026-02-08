@@ -72,7 +72,7 @@
 - #3 Context burn rate tracking: **DONE**
 - #4 Auto-commit each cycle: **DONE**
 - #5 Automate cycle steps: **DONE**
-- #6 Single source of truth: OPEN
+- #6 Single source of truth: **DONE** (b13b6df)
 - #7 Delegate to team each cycle: OPEN
 - #8 Auto-alert on low context: **IN PROGRESS** (2/3 KPIs)
 - #9 Context velocity tracking: **DONE** (4/6 KPIs)
