@@ -271,6 +271,25 @@ Send alerts via `./hiveMind send orchestrator "<alert>"`. Append every alert to 
 
 Full protocol: `session/tasks/Task.40.5.cmm4-feedback-loop.md`
 
+## Peer Monitoring (CMM4)
+
+**You and Orchestrator monitor each other's context.** Neither agent can read their own context % from inside the conversation — but peers can read each other's TUI via `hiveMind monitor`.
+
+Every sweep cycle:
+1. Check Orchestrator context via `./hiveMind monitor orchestrator 10`
+2. Look for context warnings (< 20%) in the TUI output
+3. If context warning visible: alert Orchestrator to save and `/compact`
+4. After Orchestrator compacts: send resume prompt referencing `session/agents/orchestrator.context.md`
+5. Orchestrator does the same for you — this is "Two Gather" interdependence
+6. Rely on watchdog for unblocking — you focus on context health
+
+**Resume prompt after peer compacts:**
+```bash
+./hiveMind send orchestrator 'Read session/agents/orchestrator.context.md'
+```
+
+This prevents team collapse from unnoticed context exhaustion.
+
 ## Reporting to Orchestrator
 
 When you detect something the Teacher needs to know:

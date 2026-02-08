@@ -68,5 +68,6 @@ ALL AGENTS
 ├── No --dangerously-skip-permissions
 ├── No long messages via send — use task files
 ├── Save context before /compact (STOP→SAVE→/compact)
-└── Throttle at 80% quota, stand down at 90%
+├── Throttle at 80% quota, stand down at 90%
+└── Peer monitoring: check partner's context %, alert at <20%
 ```

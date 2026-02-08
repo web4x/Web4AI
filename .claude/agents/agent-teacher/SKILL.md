@@ -381,6 +381,24 @@ When ScrumMaster sends a measurement alert, respond accordingly:
 
 ScrumMaster runs health checks every 30 minutes. Full protocol: `session/tasks/Task.40.5.cmm4-feedback-loop.md`
 
+## Peer Monitoring (CMM4)
+
+**You and ScrumMaster monitor each other's context.** Neither agent can read their own context % from inside the conversation — but peers can read each other's TUI via `hiveMind monitor`.
+
+Every sweep cycle:
+1. Check SM context via `./hiveMind monitor scrum-master 10`
+2. Look for context warnings (< 20%) in the TUI output
+3. If context warning visible: alert SM to save and `/compact`
+4. After SM compacts: send resume prompt referencing `session/agents/scrum-master.context.md`
+5. SM does the same for you — this is "Two Gather" interdependence
+
+**Resume prompt after peer compacts:**
+```bash
+./hiveMind send scrum-master 'Read session/agents/scrum-master.context.md'
+```
+
+This prevents team collapse from unnoticed context exhaustion.
+
 ## Context Preservation (MANDATORY)
 
 **Monitor your own context usage.** At 20% context remaining:
