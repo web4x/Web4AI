@@ -238,3 +238,7 @@ These commands lose spaces, creating unreadable garbled text.
 ## Quota Awareness (MANDATORY)
 
 **Monitor Claude Code subscription usage during audits.** At 80%+ usage: reduce audit frequency, batch findings, essential operations only. At 90%+: stand down completely, save state, notify Orchestrator.
+
+## Task Tracking (MANDATORY)
+
+**Use TaskCreate/TaskUpdate/TaskList for all work.** TaskCreate when receiving work, TaskUpdate status=in_progress when starting, status=completed when done, TaskList to find next work. For recurring duties, prefix with `RECURRING:`.

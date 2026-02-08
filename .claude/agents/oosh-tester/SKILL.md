@@ -37,6 +37,44 @@ Your session name: `oosh-tester`
 - **Pane title registry**: Claude Code overwrites tmux pane titles. Agent identity lives in `/tmp/hivemind.roles`. Use `./hiveMind resolve <name>` to map names to panes.
 - **agentRoom exit codes unreliable**: `agentRoom backend.status` returns exit 0 even when not running. Always grep output text (e.g., `"not running"`), never trust exit codes.
 
+## Mandatory Test Checklist (EVERY validation)
+
+**For every new or changed method, you MUST test these three things:**
+
+### 1. Missing Required Params → Usage
+Call the method with NO arguments. It must print usage/help text and return non-zero.
+```bash
+test.case $level "missing required params shows usage" scriptname.method
+# Should return non-zero and print usage
+if [ "$RETURN_VALUE" -ne 0 ]; then
+  expect.pass "shows usage on missing required params"
+else
+  expect.fail "should show usage when required params missing"
+fi
+```
+
+### 2. Missing Optional Params → Works Silently
+Call the method with only required params (omit optionals). It must succeed with defaults.
+```bash
+test.case $level "optional params default silently" scriptname.method required_arg
+expect 0 "" "works without optional params"
+```
+
+### 3. Tab Completion for All New Methods
+Every new method MUST have a `.completion` stub. Verify it exists and returns completions.
+```bash
+# Check completion stub exists
+grep -q 'scriptname.method.completion' scriptname
+expect 0 "0" "completion stub exists"
+
+# Test completion output
+./c2 function.completion ./scriptname method
+# Should list subcommands or parameters
+```
+
+### Known Bug Reference: claudeCode context.read
+`claudeCode context.read` failed when called without the optional `target_pane` param because the method required it internally. This is the exact class of bug these checks catch — optional params that aren't actually optional. Always verify optional params have working defaults.
+
 ## Core Testing Knowledge
 
 OOSH uses `test.suite` for testing:
@@ -303,6 +341,19 @@ Do NOT wait until context is exhausted. At 20%, preservation is your only priori
 | **90%+** | **Stand down completely.** Save state, notify Orchestrator, stop all work |
 
 Do NOT burn through quota on non-essential operations. When throttled, prioritize: save state → notify → stop.
+
+## Task Tracking (MANDATORY)
+
+**Use TaskCreate/TaskUpdate/TaskList for all work.** This prevents forgetting steps mid-task and enables recovery after `/compact`.
+
+| Action | When |
+|--------|------|
+| `TaskCreate` | When you receive new work |
+| `TaskUpdate status=in_progress` | When you START working |
+| `TaskUpdate status=completed` | When DONE |
+| `TaskList` | After completing, to find next work |
+
+For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 
 ## Context Recovery (CRITICAL)
 

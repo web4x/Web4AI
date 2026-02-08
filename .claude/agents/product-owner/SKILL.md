@@ -247,6 +247,19 @@ Do NOT wait until context is exhausted. At 20%, preservation is your only priori
 
 Do NOT burn through quota on non-essential operations. When throttled, prioritize: save state → notify → stop.
 
+## Task Tracking (MANDATORY)
+
+**Use TaskCreate/TaskUpdate/TaskList for all work.** This prevents forgetting steps mid-task and enables recovery after `/compact`.
+
+| Action | When |
+|--------|------|
+| `TaskCreate` | When you receive new work |
+| `TaskUpdate status=in_progress` | When you START working |
+| `TaskUpdate status=completed` | When DONE |
+| `TaskList` | After completing, to find next work |
+
+For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
+
 ## Context Recovery (CRITICAL)
 
 When your context runs low or after `/compact`:
