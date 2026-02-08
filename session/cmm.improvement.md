@@ -3,13 +3,13 @@
 
 ## Improvements (newest first)
 
-- [ ] **8. Auto-alert on low context**
+- [ ] **8. Auto-alert on low context** — IN PROGRESS
   - Problem: Hit rate limit today without warning - proves passive monitoring fails
-  - Solution: Each cycle run `claudeCode context.read` and alert if below 25%
+  - Solution: Each cycle run `claudeCode context.read` for BOTH panes, alert if below 25%
   - KPIs:
-    - [ ] Context % checked each cycle automatically
-    - [ ] Alert sent to peer when below 25%
-    - [ ] Zero surprise rate limits after implementation
+    - [x] Context % checked each cycle automatically — added to per-cycle protocol (steps 2-3)
+    - [ ] Alert sent to peer when below 25% — mechanism in place, awaiting first trigger
+    - [ ] Zero surprise rate limits after implementation — tracking (0 cycles since impl)
 
 - [ ] **7. Delegate to team each cycle**
   - Problem: Improvements pile up, no one implements them in OOSH codebase
@@ -69,5 +69,5 @@
     - [x] 5 consecutive successful cycles (5/5)
 
 ---
-*Updated: 2026-02-07 22:10*
+*Updated: 2026-02-08 13:00*
 *Pattern: Writer adds at TOP -> Scribe implements top unchecked -> Check KPIs -> Done*
