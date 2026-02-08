@@ -111,10 +111,20 @@ if [ -n "$PANE_TARGET" ]; then
     BOOT_REL="session/boot/${CURRENT_ROLE:-unknown}.md"
     RESUME_MSG="You just compacted. Read $BOOT_REL — it has everything you need. Do NOT read other files unless the boot file says to."
 
+    # Kill any previous resume process for this pane (prevent pile-up)
+    RESUME_PID_FILE="/tmp/resume-$(echo "$PANE_TARGET" | tr ':.' '-').pid"
+    if [ -f "$RESUME_PID_FILE" ]; then
+        OLD_PID=$(cat "$RESUME_PID_FILE")
+        kill "$OLD_PID" 2>/dev/null
+        rm -f "$RESUME_PID_FILE"
+    fi
+
     # Fork background process: wait for compact to finish, then send resume prompt
     (
+        echo $$ > "$RESUME_PID_FILE"
         sleep 15
-        tmux send-keys -t "$PANE_TARGET" "$RESUME_MSG" Enter
+        tmux send-keys -t "$PANE_TARGET" "$RESUME_MSG" Enter Enter
+        rm -f "$RESUME_PID_FILE"
     ) &>/dev/null &
     disown 2>/dev/null
 

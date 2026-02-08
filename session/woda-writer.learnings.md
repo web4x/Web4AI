@@ -54,6 +54,16 @@
   - Scribe hallucinated about rate limit that had already reset
   - ALWAYS measure before acting
 
+- **Seamless Compact Protocol** (NEW 2026-02-08)
+  - Peer triggers compact — agent being compacted does ZERO manual steps
+  - Steps: write their context → kill rogue hook processes → C-u clear line → `/compact` Enter Enter
+  - Double Enter for TUI: first Enter = newline, second Enter = submit
+  - Hook pile-up bug: each compact spawns `sleep 15 && send-keys` — they accumulate and spam pane
+  - Fix: PID file at `/tmp/resume-<pane>.pid` — kill old process before spawning new one
+  - `/exit` unreliable in TUI with pending edits — may need `kill <pid>` of claude process
+  - Boot file (`session/boot/<role>.md`) = minimal recovery, ~20 lines. Read ONLY this post-compact.
+  - Scribe.2 hibernated: `claude --resume 3d0d4a9b-6eaf-4d12-bf73-2c21ebe033b0` (has SKILL.md)
+
 - **Failures** (learn from these)
   - 2026-02-07: Both agents died. Background loops = entropy. On-demand checks = forgotten.
   - 2026-02-07: Scribe in compact death spiral. Passive waiting = slow death.
@@ -61,6 +71,7 @@
   - 2026-02-07: Answered question then STOPPED. "Standing by" = passive = death.
   - 2026-02-07: Sent "2" without reading options — was "No" not "Yes". READ OPTIONS FIRST.
   - 2026-02-07: Reported "working" then STOPPED. No background task. MUST SET UP ACTUAL LOOP.
+  - 2026-02-08: Hook resume processes piled up — 3+ `sleep 15 && send-keys` spamming scribe pane. Garbled input prevented /compact from working. Fix: PID file cleanup.
 
 - **OOSH** (the philosophy)
   - OOP is a MINDSET, not a language feature (Ch21)
