@@ -11,25 +11,29 @@
 - **CMM improvements**: #1 DONE, #2 DONE, #3 IN PROGRESS (burn rate tracking with JSONL — real data now)
 - **Task 58 DONE**: `claudeCode context.read` now uses JSONL token counting (commit 894a618). Real numbers, not pane scraping.
 
-## Current State (2026-02-08 afternoon)
-- **Writer context**: 22.6% and dropping (-6.3%/cycle when checking orchestrator)
-- **My context**: ~22% — save and compact soon
+## Current State (2026-02-08 13:25)
+- **Writer context**: 6% TUI — CRITICAL, processing 10 files, will need compact
+- **My context**: 19% — compacting NOW
 - **Mode**: Active monitoring with 5-min background check loops
-- **Mutual monitoring**: Both loops running. Each cycle check peer's loop via `ps aux | grep 'sleep 300.*0.X'`
-- **Orchestrator team**: Working on bugs (Tasks 51-58 completed). Expert + Tester active at cursorOrchestrator
-- **CMM4 story**: `session/cmm4/cmm4-journey.md`. WODA story complete (Ch39).
-- **Burn log**: `session/context-burn-log.md` — real JSONL data since 12:15
+- **Bg check running**: bedecb4
+- **Writer loop for me**: DEAD — needs restart after writer stabilizes
+- **Orchestrator team**: #6 dashboard IN PROGRESS, send.verified bug delegated
+- **CMM scoreboard**: #1-5 DONE, #8 IN PROGRESS (2/3 KPIs), #9 DONE (4/6 KPIs), #6 IN PROGRESS, #7 OPEN
+- **WODA KB created**: `session/woda-kb.md` — 7 topics in WODA format
+- **Burn log**: `session/context-burn-log.md`
 
 ## My Per-Cycle Protocol
 1. Read bg task output (writer pane capture)
-2. `claudeCode context.read claudeWoda:0.0` — real context % (JSONL)
-3. `ps aux | grep 'sleep 300.*0.1'` — check writer's loop alive
-4. If permission prompt: READ OPTIONS FIRST, then select correct one
-5. If stuck/idle: ACT (Escape for diff, Enter for idle, correct option for permission)
-6. If context < 20%: alert writer to compact
-7. If writer's loop dead: nudge to restart
-8. Log to `session/context-burn-log.md`
-9. Start next `sleep 300 && otmux pane.capture claudeWoda:0.0 5`
+2. `claudeCode context.read claudeWoda:0.0` — writer context % (JSONL)
+3. `claudeCode context.read claudeWoda:0.1` — my context % (JSONL)
+4. If EITHER < 25%: alert peer (`otmux send` to their pane with % and "compact soon")
+5. `ps aux | grep 'sleep 300.*0.1'` — check writer's loop alive
+6. If permission prompt: READ OPTIONS FIRST, then select correct one
+7. If stuck/idle: ACT (Escape for diff, Enter for idle, correct option for permission)
+8. After ANY send: `sleep 3 && otmux pane.capture` to VERIFY it landed (sends are unreliable — KNOWN)
+8. If writer's loop dead: nudge to restart
+9. Log both context %s to `session/context-burn-log.md`
+10. Start next `sleep 300 && otmux pane.capture claudeWoda:0.0 5`
 
 ## Key Files
 - My learnings: `session/woda-scribe.learnings.md` (READ AFTER COMPACT)

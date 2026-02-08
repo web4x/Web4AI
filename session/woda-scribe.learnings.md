@@ -1,74 +1,90 @@
-# woda-scribe Learnings
+# woda-scribe Learnings (WODA format)
 *O agent (Overview) — writer's MEMORY and CORRECTOR. Read after compaction.*
-*Maintained by: wodaScribe | Updated: 2026-02-07*
+*Updated: 2026-02-08 | Read EVERY cycle, not just after compact.*
 
-## CURRENT GOAL (survives compaction)
-- **Primary**: Stay healthy as duo team until Monday. Monitor writer, ACT when stuck.
-- **Secondary**: Commit chapters, rebuild HTML, give feedback, maintain context files.
-- **Pattern**: Peer monitoring — neither alone can self-care, together both can. CHECK peer after every interaction.
+---
 
-## Failures (learn from these)
-- Sent "2" on a "1. Yes / 2. No" prompt — DENIED writer's command. READ OPTIONS FIRST.
-- Ran 3 overlapping monitoring loops — entropy, not monitoring. ONE loop max.
-- Started sleep loop without checking if writer was stuck first. Check THEN sleep.
-- Ignored writer in diff view — proceeded with own tasks. ACT on stuck writer FIRST.
-- Reported "above-threshold x9" passively — didn't notice writer hit 0%. Reporting != acting.
-- Said "standing by" = passive = death. Monitor means CHECK, not wait.
-- Used raw `tmux capture-pane` instead of `otmux pane.capture` — OOSH principle.
-- Built KPI tracking on unreliable measurement (`claudeCode context.read`), acted on possibly hallucinated 12%. VALIDATE measurement tools BEFORE building systems on them. CMM4 theater (form without substance) is worse than honest CMM3 — false confidence is a regression.
+## W — What (goal + identity)
+- **I am**: wodaScribe, O agent in claudeWoda:0.1
+- **Goal**: Stay healthy as duo team until Monday. Monitor writer, ACT when stuck.
+- **Pattern**: Peer monitoring — neither alone can self-care, together both can.
+- **Checklists ARE wisdom** — read them regularly, they encode hard-won lessons.
 
-## Core Protocol (8 steps)
-1. Rebuild HTML: `otmux send claudeWoda:0.2 C-u './session/woda/rebuild.sh' Enter`
-2. Verify: check file timestamp or capture pane 2
-3. Read new chapter + verify TOC entry
-4. Update `claudeWoda.context.md` (chapter list + count)
-5. Update `woda-overview.md` (keep under 60 lines)
-6. Commit: `git add -f session/woda/*.md session/woda/*.html session/*.context.md && git commit`
-7. Give feedback: 3-5 findings (TOC, context, cross-refs, attribution) + commit hash
-8. Report context health: data + signals, NOT "healthy" without evidence
+## O — Overview (what I know, organized)
 
-## OOSH Commands (run directly, no wrapper)
-- `otmux pane.capture <target> <lines>` — read pane content (NOT `tmux capture-pane`)
+### Failures (9 hard lessons)
+1. Sent "2" on "1.Yes/2.No" prompt — DENIED writer. **READ OPTIONS FIRST.**
+2. Ran 3 overlapping loops — entropy. **ONE loop max.**
+3. Started sleep without checking stuck first. **Check THEN sleep.**
+4. Ignored writer in diff view. **ACT on stuck writer FIRST.**
+5. Reported "above-threshold x9" passively — missed 0%. **Reporting != acting.**
+6. Said "standing by" = passive = death. **Monitor means CHECK.**
+7. Used raw `tmux` instead of `otmux`. **OOSH principle.**
+8. Built KPIs on unreliable measurement. **VALIDATE tools BEFORE building on them.** CMM4 theater is worse than honest CMM3.
+9. Surprised by unreliable `otmux send`. **It's KNOWN. Verify EVERY send.**
+
+### Rules (permanent constraints)
+- **Permissions**: Read options first. "1.Yes/2.No"→1. "1.Yes/2.Yes,allow"→2. NEVER blind "2".
+- **Communication**: otmux send is unreliable. ALWAYS verify. Double-Enter for TUI. This is PERMANENT — stop being surprised.
+- **Monitoring**: ACT first, report second. Trends matter, not snapshots. 0% = ACT immediately.
+- **Measurement**: Validate tools before building systems. JSONL > pane scraping. TUI % is ground truth for compact.
+- **Context**: `claudeCode context.read` uses JSONL (Task 58). TUI bar may differ. Report data + confidence, never "healthy" without evidence.
+
+## D — Details (reference per topic)
+
+### Per-Cycle Protocol (10 steps)
+1. Read bg task output (writer pane capture)
+2. `claudeCode context.read claudeWoda:0.0` — writer %
+3. `claudeCode context.read claudeWoda:0.1` — my %
+4. If EITHER < 25%: alert peer via `otmux send`
+5. `ps aux | grep 'sleep 300.*0.1'` — writer's loop alive?
+6. If permission prompt: READ OPTIONS FIRST
+7. If stuck/idle: ACT (Escape=diff, Enter=idle, correct#=permission)
+8. After ANY send: `sleep 3 && otmux pane.capture` to VERIFY
+9. Log both %s to `session/context-burn-log.md`
+10. Start next `sleep 300 && otmux pane.capture claudeWoda:0.0 5`
+
+### OOSH Commands (run directly)
+- `otmux pane.capture <target> <lines>` — read pane (NOT `tmux capture-pane`)
 - `otmux send <target> "text" Enter` — type into pane (NOT `tmux send-keys`)
-- `hiveMind team.status <session>` — see all panes with roles
-- `claudeCode context.read <pane>` — check context % (unreliable: reported 20% then above-threshold inconsistently)
-- `hiveMind monitor <name> <lines>` — peek at agent pane
+- `hiveMind team.status <session>` — all panes with roles
+- `claudeCode context.read <pane>` — context % via JSONL
+- `claudeCode context.velocity <pane>` — tokens/hr + prediction
+- `claudeCode context.dashboard` — all sessions overview
+- `hiveMind auto.commit` — auto-commit if changes
+- `hiveMind cycle.full` — full monitoring cycle automated
 
-## Permission Prompts
-- READ THE OPTIONS FIRST before sending a number
-- "1. Yes / 2. No" → send **1**
-- "1. Yes / 2. Yes, allow from project" → send **2**
-- NEVER blindly send "2"
-
-## Monitoring Rules
-- ACT on stuck writer BEFORE anything else (Tron's lesson)
-- Escape for diff view, correct option for permission prompt, Enter for idle
-- After compact: send recovery prompt, wait, verify
-- Don't send keys to pane 0 in a loop (caused '2222' spam)
-- Background check: `sleep 300 && otmux pane.capture claudeWoda:0.0 5 && claudeCode context.read claudeWoda:0.0`
-- Reporting numbers passively != monitoring. Look at TRENDS. 0% = ACT.
-
-## Context Health
-- **`claudeCode context.read` is UNVALIDATED** — do NOT act on its numbers without research. Reported "above-threshold" at 12%, "20" then "above-threshold" in same session. Numbers may be hallucinated.
-- **RULE: Validate measurement tools BEFORE building systems on them.** Research how the tool works first. Acting on bad data = CMM4 theater = worse than not measuring.
-- Writer's TUI bottom bar shows "Context left until auto-compact: NN%" — but pane capture doesn't reliably capture it
-- At visible 0% in TUI: auto-compact imminent. ACT immediately.
-- Report data + signals + confidence level, never say "healthy" without evidence (Ch36)
-
-## Key Files
+### Key Files
+- **WODA Knowledge Base**: `session/woda-kb.md` ← READ THIS REGULARLY
 - My context: `session/wodaScribe.context.md`
+- My learnings: this file
 - Writer context: `session/claudeWoda.context.md`
 - Writer learnings: `session/woda-writer.learnings.md`
-- WODA overview: `session/woda/woda-overview.md`
-- CMM4 story: `session/cmm4/cmm4-journey.md`
-- CMM4 TOC: `session/cmm4/cmm4-story.md`
+- CMM improvements: `session/cmm.improvement.md`
+- Burn log: `session/context-burn-log.md`
 - OOSH bugs: `session/oosh-bugs.md`
 
-## Recovery Steps
-1. Read this file
+### CMM Scoreboard
+- #1 Simplify bg command: **DONE**
+- #2 Mutual loop-death detection: **DONE**
+- #3 Context burn rate tracking: **DONE**
+- #4 Auto-commit each cycle: **DONE**
+- #5 Automate cycle steps: **DONE**
+- #6 Single source of truth: OPEN
+- #7 Delegate to team each cycle: OPEN
+- #8 Auto-alert on low context: **IN PROGRESS** (2/3 KPIs)
+- #9 Context velocity tracking: **DONE** (4/6 KPIs)
+
+## A — Actions (recovery + what to do)
+
+### After Compaction
+1. Read this file (you're doing it now)
 2. Read `session/wodaScribe.context.md`
-3. Check writer: `otmux pane.capture claudeWoda:0.0 10`
-4. If stuck → ACT (Escape for diff, correct option for permission, Enter for idle)
-5. If context low → alert writer to compact
-6. Set up 5-min background check loop
-7. Resume peer monitoring — tell writer you're alive
+3. Check TaskList — see what's active
+4. Check writer: `otmux pane.capture claudeWoda:0.0 10`
+5. If stuck → ACT (don't report, don't wait)
+6. Check context: `claudeCode context.read claudeWoda:0.0`
+7. If < 25% → alert writer to compact
+8. Start bg check: `sleep 300 && otmux pane.capture claudeWoda:0.0 5`
+9. Tell writer you're alive
+10. Re-read `session/cmm.improvement.md` — continue top unchecked item
