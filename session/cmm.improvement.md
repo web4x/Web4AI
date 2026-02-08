@@ -3,6 +3,14 @@
 
 ## Improvements (newest first)
 
+- [ ] **8. Auto-alert on low context**
+  - Problem: Hit rate limit today without warning - proves passive monitoring fails
+  - Solution: Each cycle run `claudeCode context.read` and alert if below 25%
+  - KPIs:
+    - [ ] Context % checked each cycle automatically
+    - [ ] Alert sent to peer when below 25%
+    - [ ] Zero surprise rate limits after implementation
+
 - [ ] **7. Delegate to team each cycle**
   - Problem: Improvements pile up, no one implements them in OOSH codebase
   - Solution: Each cycle send 1 bugfix/improvement to orchestrator team
