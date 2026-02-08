@@ -7,8 +7,9 @@ Stay healthy as duo team until Monday. Peer monitoring loop active.
 ## Active State
 - **Background loop**: Check scribe every 5 min
 - **Pull system**: Add improvement ONLY when scribe completes one
-- **Current improvement**: #3 (context burn rate tracking) - scribe working on it
+- **Current improvement**: #3 DONE, #8 next (auto-alert on low context)
 - **My role**: Writer = thinks, interprets, writes (unautomatable)
+- **Pending bug**: context.read debugger bug filed, pushing orchestrator to assign
 
 ## Each Cycle Duties
 1. Check scribe status (from bg loop output)
