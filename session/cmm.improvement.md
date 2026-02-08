@@ -3,6 +3,17 @@
 
 ## Improvements (newest first)
 
+- [ ] **9. Context velocity tracking**
+  - Problem: Only measuring % remaining, not burn rate or prediction
+  - Solution: Measure tokens/hour, max tokens, calculate velocity per agent
+  - KPIs:
+    - [ ] Tokens per hour measured each cycle
+    - [ ] Max tokens known per model
+    - [ ] Velocity = tokens/hour calculated
+    - [ ] Prediction: time until compact needed
+    - [ ] Scrum-master logs structured KPIs
+    - [ ] CMM4 calculation for velocity/wait per agent
+
 - [ ] **8. Auto-alert on low context** — IN PROGRESS
   - Problem: Hit rate limit today without warning - proves passive monitoring fails
   - Solution: Each cycle run `claudeCode context.read` for BOTH panes, alert if below 25%
