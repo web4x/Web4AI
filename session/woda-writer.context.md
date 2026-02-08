@@ -4,6 +4,13 @@
 ## Current Goal
 Stay healthy as duo team until Monday. Peer monitoring loop active.
 
+## Pre-Compact State (2026-02-08 ~13:30)
+- #8 auto-alert: scribe implementing
+- #9 velocity: delegated to scrum-master
+- 12 OOSH bugs fixed, 2 open
+- Task list clean: 4 in_progress, 1 pending
+- Loop running: b5757e2
+
 ## Active State
 - **Background loop**: Check scribe every 5 min
 - **Pull system**: Add improvement ONLY when scribe completes one
