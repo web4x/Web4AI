@@ -27,3 +27,6 @@
 | 13:22 | **6% TUI** (JSONL 41.9%) / me **41.9%** | processing 10 files +132 -223 | writer loop DEAD | -2%/cycle | writer active — don't interrupt |
 | --- | --- | --- WRITER COMPACTED (81.2%) + TIME GAP --- | --- |
 | 16:07 | **20.3%** / me **20.3%** | active, helping SM compact | alive (PID 76089) | below 25% | **ALERT SENT** |
+| --- | --- | --- SCRIBE COMPACT+RESTART (failed 3x, writer restarted) --- | --- |
+| 18:45 | **83.0%** / me **29.4%** | idle at prompt, 6 files pending | alive (bbcbbbc) | post-compact | healthy duo |
+| 18:50 | **76.5%** / me **21.7%** | active, velocity dashboard + monitoring | alive | -6.5% writer, **-7.7% me** | **ME BELOW 25%** |
