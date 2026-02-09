@@ -1,7 +1,7 @@
 # OOSH Bug Tracker
 *Extracted from WODA (39 chapters) + CMM4 (16 chapters). Delegated to cursorOrchestrator team.*
 
-**Score: 14/16 fixed | 1 blocked | 1 unfixable**
+**Score: 15/16 fixed | 0 blocked | 1 unfixable**
 **NEW**: context.read non-Claude guard FIXED (9255a5d) — returns "no-claude" for bash panes
 **NEW**: context.read same-value bug FIXED — was using global newest JSONL, now maps pane→session→JSONL
 
@@ -13,9 +13,9 @@
 - [x] `c2: command not found` — Task 54 (d990efd)
 - [x] Ghost state machine refs (`PDCA_TEST_*`) — Task 55 (6ca9c16)
 
-### CMM4 Bugs (9/11 done)
+### CMM4 Bugs (10/11 done)
 - [x] `sweep.detect` blind to Yes/No prompts — Task 41
-- [ ] OAuth API blocked — **Blocked** (external: Anthropic)
+- [x] OAuth API — **FIXED** via macOS Keychain auth (`scrumMaster measure.subscription.api`)
 - [x] `claudeCode context.read` false positive at 12% — Task 52 (33b7b08)
 - [ ] Permission grants reset on `/compact` — **Unfixable** (Claude Code behavior)
 - [x] Background overlay not detected — Task 46
@@ -30,11 +30,6 @@
 - [x] `otmux send` no delivery guarantee — send.verified (805aecc)
 
 ## Open Items Detail
-
-### OAuth API blocked
-- **Source**: CMM4 Ch2
-- **Symptom**: `GET https://api.anthropic.com/api/oauth/usage` returns `authentication_error: OAuth authentication is currently not supported`
-- **Status**: Blocked on Anthropic enabling OAuth. No workaround.
 
 ### Permission reset on /compact
 - **Source**: CMM4 Ch4
@@ -52,10 +47,10 @@
 7. No feedback when send fails (caller assumes success)
 
 ## Agent Behavior Issues (not OOSH bugs)
-- [ ] Task 40.3 spec used flags (`--team`) — anti-OOSH pattern
-- [ ] Task 40.4 depends on broken OAuth API — spec didn't verify deps
-- [ ] Scribe uses raw `tmux send-keys` instead of `otmux send`
-- [ ] Writer takes 7 chapters to file bugs (Ch3-Ch9)
+- [ ] Task 40.3 spec used flags (`--team`) — anti-OOSH pattern (process, not code)
+- [x] Task 40.4 depends on broken OAuth API — OAuth now works via Keychain auth
+- [ ] Scribe uses raw `tmux send-keys` instead of `otmux send` — tell scribe to use wrappers
+- [x] Writer takes 7 chapters to file bugs — fixed: oosh-bugs.md with checklist format
 
 ---
 *Updated: 2026-02-08 17:55*

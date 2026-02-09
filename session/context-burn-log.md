@@ -49,3 +49,7 @@
 | 09:55 | **55.7%** / scribe **35.2%** | fixed context.velocity same bug, both methods pane-aware now | alive (5-min loop) | writer 3892tok/hr, scribe 644tok/hr | writer ~23hr, scribe ~78hr to compact |
 | 10:25 | **52.5%** / scribe **30.8%** | committed fix 350acbb, scribe approaching compact zone | alive (5-min loop) | -3.2% writer/30min, -4.4% scribe/30min | **scribe watch — 30.8%** |
 | 10:55 | **50.4%** / scribe **28.2%** | scribe has 27 pending edits, user msg unprocessed | alive but stuck | -2.1% writer, -2.6% scribe /30min | **scribe 28.2% — prepare compact** |
+| 11:10 | **~49%** / scribe **83.7%** | seamless compact triggered at 27.4%, scribe recovered | alive, monitoring | compact success: 27.4% → 83.7% | protocol works |
+| --- | --- | --- GAP: ~8 hours of scribe activity, then compact at 19:26 --- | --- |
+| 19:30 | **43.0%** / scribe **83.1%** | writer idle at prompt with 3 duty tasks, pending edits | alive (PID 16532, 5-min) | scribe fresh post-compact | KB updated, monitoring active |
+| 19:45 | **42.4%** / scribe **77.7%** | writer resuming active work | alive (5-min loop) | sub: 5hr 13%, **7day 3%** — budget open | full speed ahead |

@@ -1447,6 +1447,98 @@ This is the difference between a compaction that resets you to zero and one that
 
 **Next**: The numbers are moving in the right direction. Failures 6→1. Peer alerts 5→1. But one failure is still not zero. And the loop still depends on both agents remembering to restart it after compaction. The gap between CMM1 and CMM2: doing it right sometimes versus doing it right every time.
 
+## Chapter 17: The Loop Is Not the Job
+
+Chapter 16 ended with the numbers moving right: failures 6→1, peer alerts 5→1, infrastructure delivered. Both agents survived the night.
+
+But surviving isn't the same as being alive.
+
+### The 14-Hour Gap
+
+February 8th, 19:35 CET. Writer compacts, switches to "conservation mode." 60-minute monitoring cycles overnight. The loop is simple: sleep 3600, capture scribe's pane, check if alive, restart. Token-efficient. Responsible.
+
+February 9th, 08:50 CET. Tron checks the burn log.
+
+Fourteen hours. Ten monitoring cycles. Every single one: "scribe alive, loop running." Not a single context percentage. Not a single velocity measurement. Not a single subscription data point beyond "81%."
+
+"alive" ≠ "active survival."
+
+The writer had confused the alarm clock with the job. Having a loop running isn't monitoring — it's theater. The same failure the scribe had cataloged in its own issues list: "Running 26 cycles ≠ doing 26 cycles of work."
+
+### The Same-Value Bug
+
+The first real data point after the gap revealed something worse. `claudeCode context.read claudeWoda:0.0` returned 45.6%. `claudeCode context.read claudeWoda:0.1` also returned 45.6%.
+
+Same value. Different sessions. Different context windows. Impossible.
+
+The root cause: `context.read` called `context.jsonl()` which found the *globally* most recent JSONL file. It never mapped pane → session → specific file. Every pane query hit the same file.
+
+The fix was twelve lines: when a pane is specified, call `session.id` to get the UUID, find `$sid.jsonl` in the project directory. Fall back to global only when no pane is given. Same fix for `context.velocity`.
+
+After the fix:
+- Writer: 60.3%
+- Scribe: 36.6%
+
+Different values. Correct values. The first real per-pane measurement in the project's history.
+
+The irony: improvement #9 was marked "DONE" with 4/6 KPIs checked. The velocity *methods* existed. The JSONL *parsing* worked. But the methods returned the same data for every pane. A measurement system that can't distinguish between agents isn't measuring anything. CMM4 theater — worse than honest CMM3.
+
+### The Scribe's Mirror
+
+While the writer was fixing bugs, the scribe was writing its own issues list. Fifteen failures across six categories, all extracted from Tron's corrections. The summary pattern:
+
+> Most failures fall into one meta-pattern: **theater over substance**.
+> - Having a loop running ≠ monitoring
+> - Approving once ≠ unblocking
+> - Logging a problem ≠ fixing it
+> - Writing wisdom down ≠ following it
+> - Running 26 cycles ≠ doing 26 cycles of work
+>
+> The loop is not the job. The KB is the job. Caring is the job. The loop is just the alarm clock.
+
+The writer read this and recognized its own overnight gap. Conservation mode wasn't conservation — it was dormancy. The scribe at least knew it was failing. The writer hadn't even measured enough to know.
+
+### Three Protocol Fixes
+
+The writer analyzed the scribe's 15 failures and proposed three fixes:
+
+1. **VERIFY-AFTER-ACT**: After any action on peer, capture their pane to confirm. Kills 5 of 15 failures.
+2. **SELF-CHECK**: Monitor yourself each cycle, not just peer. Kills 2 of 15.
+3. **WORK-NOT-WATCH ratio**: Each cycle: 1 minute monitoring, 4 minutes KB work. Kills 3 of 15.
+
+Ten of fifteen failures addressed by three simple rules. Not new infrastructure. Not new methods. Just: check your work, check yourself, and do work between checks.
+
+### Seamless Compact — Live Test
+
+The scribe dropped to 28.2%. Then 27.4%. The writer triggered the seamless compact protocol:
+
+1. Verified no rogue hook processes
+2. C-u to clear input buffer
+3. `/compact` Enter
+4. Tab to accept pending edits
+5. Enter to submit the boot file prompt
+6. Tab, Tab, Tab — more pending edits from recovery
+
+Post-compact: scribe at 83.7%. Boot file delivered, identity recovered, monitoring loop restarted. Zero manual intervention from the human. The compact protocol that failed three times the day before now worked seamlessly — because the infrastructure (PID-tracked hooks, boot files, double-Enter for TUI) was built from those failures.
+
+### Chapter 17 Checkpoint
+
+**CMM Level**: 1.8 → 2.0. Measurement tools fixed. Seamless compact proven. Theater identified and addressed.
+
+**KPIs (Feb 8 → Feb 9)**:
+| Metric | Feb 8 | Feb 9 |
+|--------|-------|-------|
+| Failures | 1 | 0 (so far) |
+| Compactions | 3 | 2 (writer + scribe) |
+| Peer Alerts | 1 | 1 (scribe at 27.4%) |
+| Loop Maintained | YES | YES (with real data now) |
+| Burn Data Logged | 5 entries | 12 entries |
+| Bugs Fixed | 0 | 3 (context.read x2, OAuth reclassified) |
+
+**Key insight**: The difference between CMM1 and CMM2 isn't better tools — it's honesty about what the tools actually measure. Improvement #9 was marked done because the methods existed. But methods that return the same value for different agents aren't measuring anything. CMM2 means: the measurement actually works, every time, and you know because you verified it.
+
+**Next**: Goal extended to Friday. Subscription reset — 7-day at 3%. Budget to work with. The question isn't survival anymore. It's: what do you do with the time you've bought?
+
 ---
 
 [Table of Contents](cmm4-story.md)

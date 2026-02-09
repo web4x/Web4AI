@@ -6,7 +6,7 @@
 - **Model**: Claude Opus 4.6
 
 ## CURRENT GOAL (survives compaction)
-- **Primary**: Stay healthy as duo team until Monday. Monitor writer, ACT when stuck.
+- **Primary**: Stay healthy as duo team until Friday 2026-02-13 12:00 CET. Monitor writer, ACT when stuck.
 - **Pattern**: Peer monitoring — neither alone can self-care, together both can.
 - **CMM improvements**: #1 DONE, #2 DONE, #3 IN PROGRESS (burn rate tracking with JSONL — real data now)
 - **Task 58 DONE**: `claudeCode context.read` now uses JSONL token counting (commit 894a618). Real numbers, not pane scraping.
