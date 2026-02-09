@@ -30,16 +30,18 @@
 
 ## My Per-Cycle Protocol
 1. Read bg task output (writer pane capture)
-2. `claudeCode context.read claudeWoda:0.0` — writer context % (JSONL)
-3. `claudeCode context.read claudeWoda:0.1` — my context % (JSONL)
-4. If EITHER < 25%: alert peer (`otmux send` to their pane with % and "compact soon")
-5. `ps aux | grep 'sleep 300.*0.1'` — check writer's loop alive
-6. If permission prompt: READ OPTIONS FIRST, then select correct one
-7. If stuck/idle: ACT (Escape for diff, Enter for idle, correct option for permission)
-8. After ANY send: `sleep 3 && otmux pane.capture` to VERIFY it landed (sends are unreliable — KNOWN)
-8. If writer's loop dead: nudge to restart
-9. Log both context %s to `session/context-burn-log.md`
-10. Start next `sleep 300 && otmux pane.capture claudeWoda:0.0 5`
+2. `claudeCode context.read claudeWoda:0.0` — writer context %
+3. `claudeCode context.read claudeWoda:0.1` — my context %
+4. `claudeCode context.velocity claudeWoda:0.0` — writer burn rate
+5. `claudeCode context.velocity claudeWoda:0.1` — my burn rate
+6. If EITHER < 25%: trigger seamless compact (C-u, /compact Enter Enter, Tab accepts)
+7. If permission prompt: READ OPTIONS FIRST, then select correct one
+8. If stuck/idle: ACT (Escape for diff, Enter for idle, correct option for permission)
+9. After ANY send: capture pane to VERIFY (sends are unreliable — KNOWN)
+10. Log to `session/context-burn-log.md`: time | writer% / scribe% | state | velocity | subscription
+11. 4 min KB work (write, organize, improve — the loop is not the job)
+12. Start next `sleep 300 && otmux pane.capture claudeWoda:0.0 5`
+13. **Use `otmux send` not raw `tmux send-keys`** — wrappers handle TUI quirks
 
 ## Key Files
 - My learnings: `session/woda-scribe.learnings.md` (READ AFTER COMPACT)

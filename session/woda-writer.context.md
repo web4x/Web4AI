@@ -4,17 +4,15 @@
 ## Current Goal
 Stay healthy as duo team until **Friday 2026-02-13 12:00 CET**. ACTIVE survival = log burn data every cycle, not just "scribe alive".
 
-## Current State (2026-02-08 19:35)
-- Writer ~26% context, scribe alive + monitoring (loop running)
-- Subscription: 5hr 97% (resets 21:00 CET), 7day 81%
-- Ch16 "Survival Mode" WRITTEN (5cf39f1)
-- SKILL.md: writer + scribe both written
-- Pre-compact hook: auto-commit, boot file, PID-tracked resume (no pile-up)
-- Orchestrator: ordered context.read fix (verify process before returning data)
-- CMM scoreboard: #1-6 DONE, #7 OPEN, #8 IN PROGRESS (2/3 KPIs), #9 DONE (4/6 KPIs)
-- OAuth API WORKING: `scrumMaster measure.subscription.api` returns real data
-- Conservation mode: 10-min monitoring cycles
-- Scribe.2 hibernated: `claude --resume 3d0d4a9b-6eaf-4d12-bf73-2c21ebe033b0`
+## Current State (2026-02-09 20:10)
+- Writer ~35% context, scribe 73.3% (post-compact, healthy)
+- Subscription: 5hr 13%, **7day 3%** — full budget
+- Ch16 + Ch17 WRITTEN (5cf39f1, dc263f8)
+- context.read + context.velocity FIXED: pane-aware JSONL (350acbb)
+- Bugs: 15/16 fixed. OAuth reclassified WORKING. 1 unfixable (permission reset).
+- CMM: #1-6 DONE, #7 OPEN, #8 IN PROGRESS, #9 IN PROGRESS (velocity integrated into scribe cycle)
+- Scribe has updated per-cycle protocol with velocity logging (steps 4-5) + work-not-watch (step 11)
+- Scribe told to use otmux wrappers not raw tmux
 
 ## Survival Plan (until Friday 2026-02-13 12:00 CET)
 - **Active survival**: Every cycle MUST log burn data to context-burn-log.md. "Alive" without data = passive = not survival.

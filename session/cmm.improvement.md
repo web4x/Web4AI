@@ -13,7 +13,7 @@
     - [x] Prediction: time until compact needed — dashboard shows minutes remaining
     - [ ] Scrum-master logs structured KPIs — not yet integrated
     - [ ] CMM4 calculation for velocity/wait per agent — not yet integrated
-  - **Status**: 2026-02-09 - Methods exist but NOT integrated into active monitoring. Burn log has 14hr gap (overnight). 4/6 KPIs. NOT DONE until data flows every cycle.
+  - **Status**: 2026-02-09 20:05 - Methods FIXED (350acbb, pane-aware). Integrated into scribe cycle protocol (steps 4-5). Burn log flowing. 4/6 KPIs. SM integration + CMM4 calc pending.
 
 - [ ] **8. Auto-alert on low context** — IN PROGRESS
   - Problem: Hit rate limit today without warning - proves passive monitoring fails
@@ -84,5 +84,5 @@
     - [x] 5 consecutive successful cycles (5/5)
 
 ---
-*Updated: 2026-02-08 13:00*
+*Updated: 2026-02-09 19:30*
 *Pattern: Writer adds at TOP -> Scribe implements top unchecked -> Check KPIs -> Done*
