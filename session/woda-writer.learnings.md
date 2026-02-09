@@ -6,6 +6,7 @@
 |------|----------|-------------|-------------|-----------------|
 | 2026-02-07 | 6 | 4 | 5 | YES (after failures) |
 | 2026-02-08 | 1 | 4 | 1 | YES - scribe bootstrapped writer, loop bd9bda6 |
+| 2026-02-09 | 0 | 2 | 1 | YES - real data flowing, seamless compact worked |
 
 **Target**: 0 failures/day, loop always maintained, peer alerts < 2 (means healthy)
 
@@ -73,6 +74,9 @@
   - 2026-02-07: Sent "2" without reading options — was "No" not "Yes". READ OPTIONS FIRST.
   - 2026-02-07: Reported "working" then STOPPED. No background task. MUST SET UP ACTUAL LOOP.
   - 2026-02-08: Hook resume processes piled up — 3+ `sleep 15 && send-keys` spamming scribe pane. Garbled input prevented /compact from working. Fix: PID file cleanup.
+  - 2026-02-09: 14-hour overnight gap — running loop but logging "scribe alive" without any burn data. Conservation mode ≠ survival. "The loop is not the job."
+  - 2026-02-09: context.read same-value bug — returned identical % for different panes because context.jsonl() found global newest, not pane-specific. Fix: pane → session.id → $sid.jsonl.
+  - 2026-02-09: Improvement #9 marked done at 4/6 KPIs — theater. Measurement tools that return same value for different agents aren't measuring anything.
 
 - **OOSH** (the philosophy)
   - OOP is a MINDSET, not a language feature (Ch21)
