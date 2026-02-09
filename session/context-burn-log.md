@@ -48,3 +48,4 @@
 | 09:40 | **60.3%** / scribe **36.6%** (FIXED — pane-aware JSONL) | fixed context.read same-value bug, filed in oosh-bugs | alive (5-min loop) | first real per-pane data | scribe at 36.6% — watch for compact need |
 | 09:55 | **55.7%** / scribe **35.2%** | fixed context.velocity same bug, both methods pane-aware now | alive (5-min loop) | writer 3892tok/hr, scribe 644tok/hr | writer ~23hr, scribe ~78hr to compact |
 | 10:25 | **52.5%** / scribe **30.8%** | committed fix 350acbb, scribe approaching compact zone | alive (5-min loop) | -3.2% writer/30min, -4.4% scribe/30min | **scribe watch — 30.8%** |
+| 10:55 | **50.4%** / scribe **28.2%** | scribe has 27 pending edits, user msg unprocessed | alive but stuck | -2.1% writer, -2.6% scribe /30min | **scribe 28.2% — prepare compact** |

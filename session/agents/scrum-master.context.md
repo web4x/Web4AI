@@ -4,81 +4,88 @@
 Continuous monitoring agent in tmux session `cursorOrchestrator`, pane 0.6.
 
 ## Updated
-2026-02-06T19:30Z
+2026-02-08T18:10Z
 
-## Monitoring Targets — TWO SESSIONS
+## Monitoring Targets
 
 ### cursorOrchestrator (7 panes)
 
 | Pane | Agent | Status |
 |------|-------|--------|
-| 0.0 | Orchestrator | Idle. Routed Task 50 SCP→rsync to Expert. |
-| 0.1 | Product Owner | Idle. |
-| 0.2 | Agent Trainer | Idle. Standing by. |
-| 0.3 | Task Agent | Adding Task 50 to board. |
-| 0.4 | Expert | DONE. Task 50 committed (81f888f). 2% context. |
-| 0.5 | Tester | Validating Task 50 SCP→rsync. |
-| 0.6 | ScrumMaster (me) | Active monitoring. Waiting for Tester results. |
+| 0.0 | Orchestrator | Idle |
+| 0.1 | Product Owner | DO NOT TOUCH |
+| 0.2 | Agent Trainer | Adding woda-writer/woda-scribe to overview + Never Assume propagation |
+| 0.3 | Task Agent | Rate limited (resets 2am Berlin), has 8 planned tasks |
+| 0.4 | Expert | Working on Task #15: raw tmux → otmux audit (25+ replacements) |
+| 0.5 | Tester | Just validated help + guard fixes: ALL PASS |
+| 0.6 | ScrumMaster (me) | Compacting |
 
 ### claudeWoda (5 panes)
 
 | Pane | Agent | Status |
 |------|-------|--------|
-| 0.0 | woda-writer | Idle. UI panels keep opening. |
-| 0.1 | woda-scribe | Persistent "2 files +0 -0" issue. Accept edits doesn't respond to Tab/Enter/Escape. |
-| 0.2 | zsh.commands | Shell. |
-| 0.3 | zsh.split | Shell. |
-| 0.4 | oosh.shell | Shell. |
+| 0.0 | woda-writer | Alive, PID 21529, uptime 6d+ |
+| 0.1 | woda-scribe | Alive, PID 27367, uptime 6d+ |
+| 0.2 | zsh shell | |
+| 0.3 | zsh shell | |
+| 0.4 | bash shell | |
 
 ## Commands — MANDATORY RULES
-- **NO ./ prefix**: `hiveMind sweep`, NOT `./hiveMind sweep`
-- **Dual-session sweep**: `hiveMind sweep cursorOrchestrator && hiveMind sweep claudeWoda && hiveMind unblock all claudeWoda`
 - **Permission approval**: `otmux send <pane> Down` then `otmux send <pane> Enter` (SEPARATE commands)
 - **Close UI panels**: `otmux send <pane> Escape`
 - **File-based comms**: Write to `session/tasks/`, send short reference only
-- **Do NOT submit idle loops**: "stand by", "check for new instructions" — clear with C-u
+- **NEVER ASSUME — ALWAYS MEASURE**: Use `claudeCode context.read`, `otmux pane.capture`, `git status`
+- **TaskCreate/TaskUpdate/TaskList** mandatory for all work
 
-## Completed Work This Session
-- **Task 49** (Opus 4.6 model switching): COMPLETE, ALL PASS, pushed
-- **Task 50** (ossh SCP → rsync): Expert COMMITTED (81f888f). 126 insertions, 19 deletions.
-  - All 7 SCP calls in ossh replaced with rsync + auto-mkdir
-  - All 3 SCP calls in user replaced with rsync
-  - Added ossh.connection.open/close (SSH ControlMaster)
-  - Added private.ossh.rsync, private.ossh.rsync.pull, private.ossh.ssh helpers
-  - Tester validating now
-- Closed 30+ UI panels across both sessions
-- Approved 5+ permission prompts
+## Completed This Session (2026-02-08)
 
-## Active Work
-- **Task 50**: COMPLETE + VALIDATED. All 5 checks PASS. Ready for push.
-- Expert at 2% context — will need fresh session for next task
+### Expert Commits (dev.claude branch, all pushed)
+- 6dd4f57: Task 49 watchdog supervisor
+- 7453ba1: Task 56 accept-edits handler fix
+- a8422a4: Task 57 compound command wrappers
+- 894a618: Task 58 context.read via JSONL
+- ea22cb2: Task 58 bugfix optional param debugger
+- dea9b54: Improvements #4-5 auto-commit + cycle
+- b2f6892: Improvement #9 context velocity tracking
+- 805aecc: otmux send.verified (delivery guarantee)
+- b13b6df: Improvement #6 single source of truth dashboard
+- 0dc0ffc: Fix hiveMind help (xargs error)
+- 9255a5d: Fix context.read guard (non-Claude panes)
 
-## Pending Issues
-- **Scribe broken**: claudeWoda:0.1 cycling through Interrupted states
-- **Expert low context**: 2% — will need fresh session for next task
+### SM Work
+- Routed all tasks through Expert → Tester pipeline
+- Approved 10+ permission prompts
+- Started watchdog supervisor (PID 61433, 60s interval)
+- Verified claudeWoda agents alive (6+ days uptime)
+- Broadcast "Never Assume — Always MEASURE" rule
+- Broadcast TaskCreate/TaskUpdate/TaskList rule
+- Sent woda-writer/woda-scribe SKILL.md task to Agent Trainer
 
-## Key Learnings (Accumulated)
-- Permission UI: Arrow keys + Enter (Down Enter = option 2)
-- Never send stray text to panes — only keys when dialog visible
-- C-u to clear stale prompts (doesn't always work — try Escape + C-c)
-- Orchestrator must delegate, never code directly
-- I must NEVER run tests or implement code
-- Use /tmp/hivemind.roles registry for name→pane mapping
-- `hiveMind sweep` handles pane discovery automatically
-- Background tasks panels need Escape to close
-- Git diff panels need Escape to close
-- **TEST IN OOSH SHELL via otmux** — never test oosh from own bash. Use the oosh.shell pane.
-- **Tester must do real functional tests** — grep + bash -n is not testing. Run test.suite AND test in oosh shell.
-- macOS uses openrsync (not GNU rsync) — --mkpath not supported, flags differ
+## In Progress
+
+| Task # | Description | Agent | Status |
+|--------|-------------|-------|--------|
+| #15 | Replace raw tmux send-keys with otmux wrappers | Expert (0.4) | In progress |
+| #7 | RECURRING: Sweep + approve permissions | SM | Ongoing |
+
+## Pending
+
+- Task #15 completion → route to Tester for validation
+- Task Agent has 8 planned tasks (hiveMind help done, 7 remain)
+- Improvement #7 (delegate 1 bug/cycle) — raw tmux audit is this cycle's delegation
+- Agent Trainer updating agent-overview.md with woda-writer/woda-scribe
+
+## Watchdog Status
+- PID 61433, 60s interval, heartbeat fresh
+- Monitors ALL teams including claudeWoda
 
 ## Recovery Steps (after /compact)
 
-**The pre-compact hook auto-sends a resume prompt 15s after compact.**
-
-When you receive the auto-resume prompt:
 1. Read this file: `session/agents/scrum-master.context.md`
 2. Read `.claude/agents/scrum-master/SKILL.md`
-3. Use `hiveMind sweep cursorOrchestrator && hiveMind sweep claudeWoda` to check all panes
-4. Approve any permission prompts with `otmux send <pane> Down` then `otmux send <pane> Enter`
-5. Resume monitoring — do NOT wait for further instructions
-6. Check if Task 48 and Task 50 completed — Orchestrator should notify at 0.6
+3. Read `.claude/agents/agent-overview.md` for role enforcement
+4. Check TaskList for pending work
+5. Sweep all panes (0.0, 0.2, 0.3, 0.4, 0.5 — skip 0.1)
+6. Check Expert (0.4) — should be finishing Task #15 (raw tmux audit)
+7. When Expert commits → route to Tester (0.5) for validation
+8. Verify watchdog still running: `./hiveMind watchdog.status`

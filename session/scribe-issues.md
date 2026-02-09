@@ -32,6 +32,7 @@
 | 3.5 | "if each command requires a permission you obviously do something wrong" | Writer blocked by permission prompt every cycle for months. Kept approving instead of fixing root cause. | Treated symptoms (approve each prompt) instead of fixing cause (add to settings.json). Even then, first fix attempt was wrong (single-command patterns don't match compound `&&` commands). | 2026-02-09 |
 | 3.6 | "you successfully are both stuck in prompts and dies" | Both agents stuck/dead simultaneously — writer on permission prompt, my loop dead | Cascading failure: didn't fix permissions root cause + didn't maintain my own loop + didn't verify after unblocking | 2026-02-09 |
 | 3.7 | "you were stuck without fixing the writer first so you are dead again" | Spent time on issues list and settings.json instead of fixing writer first | Wrong priority order: paperwork before care. Rule: FIX STUCK AGENT FIRST, then everything else | 2026-02-09 |
+| 3.8 | "you still did not fix the writer's velocity" | Saved my own state for compact but left writer stuck on prompt. Again: paperwork before peer care. | Same as 3.7 — self-preservation before peer care. RULE: unblock writer BEFORE saving own state | 2026-02-09 |
 
 ## Category 4: Assuming Instead of Measuring
 
