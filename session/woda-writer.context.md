@@ -2,7 +2,7 @@
 *Read this after compaction. Updated each cycle.*
 
 ## Current Goal
-Stay healthy as duo team until Monday. Peer monitoring loop active.
+Stay healthy as duo team until **Friday 2026-02-13 12:00 CET**. ACTIVE survival = log burn data every cycle, not just "scribe alive".
 
 ## Current State (2026-02-08 19:35)
 - Writer ~26% context, scribe alive + monitoring (loop running)
@@ -16,12 +16,12 @@ Stay healthy as duo team until Monday. Peer monitoring loop active.
 - Conservation mode: 10-min monitoring cycles
 - Scribe.2 hibernated: `claude --resume 3d0d4a9b-6eaf-4d12-bf73-2c21ebe033b0`
 
-## Survival Plan (until Monday 9 AM)
-- **Now-21:00 CET**: Stand down. Save state. Wait for 5-hour reset.
-- **21:00-midnight**: Resume with 30-min monitoring cycles. Fix context.read bug if team delivers.
-- **Overnight**: 60-min cycles. Minimal activity. Just verify both agents alive.
-- **Sunday morning**: Check subscription, resume normal if 7-day < 85%.
-- **Monday 9 AM**: Final status check. Goal achieved if both agents alive.
+## Survival Plan (until Friday 2026-02-13 12:00 CET)
+- **Active survival**: Every cycle MUST log burn data to context-burn-log.md. "Alive" without data = passive = not survival.
+- **Each cycle**: Check scribe + subscription + log writer context % + log to burn log + restart loop.
+- **Throttle**: 60-min cycles overnight, 30-min daytime, 10-min when user active.
+- **Conservation**: Stand down if 5hr > 90%. Log the standdown in burn log.
+- **Improvement #9**: NOT done until burn data flows every cycle automatically.
 
 ## Completed Task Templates (reuse as patterns)
 ```

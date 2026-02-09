@@ -106,7 +106,10 @@ All role definitions live at:
 ├── oosh-tester/SKILL.md
 ├── product-owner/SKILL.md
 ├── script-product-owner/SKILL.md
-└── scrum-master/SKILL.md
+├── scrum-master/SKILL.md
+├── task-agent/SKILL.md
+├── woda-writer/SKILL.md       (claudeWoda session)
+└── woda-scribe/SKILL.md       (claudeWoda session — pending)
 ```
 
 Symlinked to `.cursor/skills/` for Cursor IDE access.

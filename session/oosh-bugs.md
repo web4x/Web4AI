@@ -1,7 +1,9 @@
 # OOSH Bug Tracker
 *Extracted from WODA (39 chapters) + CMM4 (16 chapters). Delegated to cursorOrchestrator team.*
 
-**Score: 13/15 fixed | 1 blocked | 1 unfixable**
+**Score: 14/16 fixed | 1 blocked | 1 unfixable**
+**NEW**: context.read non-Claude guard FIXED (9255a5d) — returns "no-claude" for bash panes
+**NEW**: context.read same-value bug FIXED — was using global newest JSONL, now maps pane→session→JSONL
 
 ## Task Checklist
 
@@ -11,7 +13,7 @@
 - [x] `c2: command not found` — Task 54 (d990efd)
 - [x] Ghost state machine refs (`PDCA_TEST_*`) — Task 55 (6ca9c16)
 
-### CMM4 Bugs (8/10 done)
+### CMM4 Bugs (9/11 done)
 - [x] `sweep.detect` blind to Yes/No prompts — Task 41
 - [ ] OAuth API blocked — **Blocked** (external: Anthropic)
 - [x] `claudeCode context.read` false positive at 12% — Task 52 (33b7b08)
@@ -22,6 +24,7 @@
 - [x] `./` prefix pattern mismatch — Task 47 (workaround)
 - [x] Watchdog died silently (no supervisor) — Task 49 (6dd4f57)
 - [x] TUI pending-edits stuck state — Task 56 (7453ba1)
+- [x] `context.read` same-value for different panes — pane→session→JSONL mapping (woda-writer fix)
 
 ### Scribe Bugs (1/1 done)
 - [x] `otmux send` no delivery guarantee — send.verified (805aecc)

@@ -30,3 +30,21 @@
 | --- | --- | --- SCRIBE COMPACT+RESTART (failed 3x, writer restarted) --- | --- |
 | 18:45 | **83.0%** / me **29.4%** | idle at prompt, 6 files pending | alive (bbcbbbc) | post-compact | healthy duo |
 | 18:50 | **76.5%** / me **21.7%** | active, velocity dashboard + monitoring | alive | -6.5% writer, **-7.7% me** | **ME BELOW 25%** |
+| --- | --- | --- OVERNIGHT GAP: writer compacted, 60-min loops, NO burn data logged --- | --- |
+| 19:35 | writer compacted | conservation mode started | alive (30-min loop) | — | stood down for 5hr reset |
+| ~21:00 | fresh (post-reset) | 60-min monitoring only | alive | 5hr 0%, 7day 81% | resumed after 5hr reset |
+| ~00:25 | unknown | 60-min check: scribe alive | alive | 5hr 9%, 7day 81% | no burn data captured |
+| ~01:25 | unknown | 60-min check: scribe alive | alive | 5hr 5%, 7day 81% | no burn data captured |
+| ~02:25 | unknown | 60-min check: scribe alive | alive | 5hr 3%, 7day 81% | no burn data captured |
+| ~03:25 | writer compacted again | auto-compact triggered | alive | 5hr 0%, 7day 81% | seamless compact worked |
+| ~04:25 | fresh (post-compact) | 60-min check: scribe alive | alive | 5hr 0%, 7day 81% | no burn data captured |
+| ~05:25 | unknown | 60-min check: scribe alive | alive | 5hr 3%, 7day 81% | no burn data captured |
+| ~06:25 | unknown | 60-min check: scribe alive | alive | 5hr 3%, 7day 82% | no burn data captured |
+| ~07:25 | unknown | 60-min check: scribe alive | alive | 5hr 0%, 7day 82% | 5hr reset, no burn data |
+| ~08:25 | unknown | 60-min check: scribe alive | alive | 5hr 1%, 7day 82% | no burn data captured |
+| --- | --- | --- LESSON: "alive" ≠ "active survival". Must log burn data every cycle --- | --- |
+| 08:50 | **55.6%** / scribe **51.4%** | active, user session, editing files | alive (30-min loop) | writer 2077tok/hr, scribe 477tok/hr | sub: 5hr 1%, 7day 82% |
+| 09:15 | **45.6%** (=scribe 45.6% — same-value bug) | active: delegated to orchestrator, wrote scribe improvements, verified delivery | alive (5-min loop, VERIFY-AFTER-ACT) | -10%/25min ACTIVE burn | sub: 5hr 3%, 7day 82% |
+| 09:40 | **60.3%** / scribe **36.6%** (FIXED — pane-aware JSONL) | fixed context.read same-value bug, filed in oosh-bugs | alive (5-min loop) | first real per-pane data | scribe at 36.6% — watch for compact need |
+| 09:55 | **55.7%** / scribe **35.2%** | fixed context.velocity same bug, both methods pane-aware now | alive (5-min loop) | writer 3892tok/hr, scribe 644tok/hr | writer ~23hr, scribe ~78hr to compact |
+| 10:25 | **52.5%** / scribe **30.8%** | committed fix 350acbb, scribe approaching compact zone | alive (5-min loop) | -3.2% writer/30min, -4.4% scribe/30min | **scribe watch — 30.8%** |

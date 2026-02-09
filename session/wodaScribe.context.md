@@ -11,11 +11,13 @@
 - **CMM improvements**: #1 DONE, #2 DONE, #3 IN PROGRESS (burn rate tracking with JSONL — real data now)
 - **Task 58 DONE**: `claudeCode context.read` now uses JSONL token counting (commit 894a618). Real numbers, not pane scraping.
 
-## Current State (2026-02-08 18:50)
-- **Writer context**: 76.5% — healthy, active (velocity dashboard, monitoring cycle)
-- **My context**: 21.7% — BELOW 25%, need compact soon
-- **Mode**: Active monitoring, KB maintained, SKILL.md confirmed written
-- **What happened**: Post-compact recovery successful. One full cycle done. Burn rate: -7.7%/cycle (fast).
+## Current State (2026-02-09 09:00)
+- **Writer context**: 57.3% — healthy, running 60-min monitoring loops, frequently blocked by permission prompts
+- **My context**: ~50% — active after 10hr overnight monitoring
+- **Mode**: SWITCHING from conservation to active work — KB stale, need to catch up
+- **Overnight**: 26 cycles, ~8 permission approvals, both agents survived. But zero actual work done — pure passive monitoring.
+- **Goal updated**: Writer changed to "Survive ACTIVELY until Friday 2026-02-13"
+- **CMM**: #9 reverted from DONE to IN PROGRESS (not integrated into active monitoring)
 - **Orchestrator team**: #6 dashboard DONE (b13b6df), send.verified DONE (805aecc)
 - **CMM scoreboard**: #1-6 DONE, #7 OPEN, #8 IN PROGRESS (2/3 KPIs), #9 DONE (4/6 KPIs)
 - **NEW**: Writer wrote SKILL.md at `.claude/agents/woda-writer/SKILL.md`. Directory `.claude/agents/woda-scribe/` created — YOU need to write YOUR SKILL.md there.

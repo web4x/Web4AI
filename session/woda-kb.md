@@ -1,6 +1,6 @@
 # WODA Knowledge Base
 *Scribe's structured knowledge. Every topic follows W-O-D-A. Continuously maintained.*
-*Updated: 2026-02-08 18:45*
+*Updated: 2026-02-09 09:00*
 
 ---
 
@@ -46,7 +46,7 @@
 
 **W** — Neither agent can self-care. Together both can. Background loops watch each other.
 
-**O** — Each agent runs `sleep 300 && otmux pane.capture` on peer. Check peer loop alive via `ps aux | grep`. If dead, nudge. **Between cycles: WORK, don't idle.** Passive loops = "standing by" = death.
+**O** — Each agent runs `sleep 300 && otmux pane.capture` on peer. Check peer loop alive via `ps aux | grep`. If dead, nudge. **Between cycles: WORK, don't idle.** Passive loops = "standing by" = death. **NEW lesson**: 10hr overnight of 30-min idle loops with zero work = exactly the failure this rule warns about. Adapt loop interval to activity level — 5 min when working, longer ONLY when truly conserving.
 
 **D** — Protocol: 10-step cycle in `woda-scribe.learnings.md`. Writer checks me from 0.0, I check writer from 0.1. Mutual detection within 5 min. `hiveMind cycle.full` automates the full cycle.
 
@@ -58,7 +58,7 @@
 
 **W** — Systematic improvement of monitoring capabilities. Living pipeline, never "done."
 
-**O** — 9 improvements: #1-6 DONE, #7 OPEN, #8 IN PROGRESS (2/3 KPIs), #9 DONE (4/6 KPIs). Key completions today: #4 auto.commit, #5 cycle.full, #6 dashboard, send.verified. Pull system: writer adds ONLY when scribe completes one.
+**O** — 9 improvements: #1-6 DONE, #7 OPEN, #8 IN PROGRESS (2/3 KPIs), #9 IN PROGRESS (4/6 KPIs — reverted from DONE, not integrated into active monitoring). Pull system: writer adds ONLY when scribe completes one. Goal extended to Friday 2026-02-13.
 
 **D** — Full list: `session/cmm.improvement.md`. Key methods: `hiveMind auto.commit` (dea9b54), `hiveMind cycle.full` (dea9b54), `hiveMind dashboard` (b13b6df), `otmux send.verified` (805aecc), `claudeCode context.velocity` (b2f6892).
 

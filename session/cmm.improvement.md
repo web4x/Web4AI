@@ -3,7 +3,7 @@
 
 ## Improvements (newest first)
 
-- [x] **9. Context velocity tracking** -- DONE
+- [ ] **9. Context velocity tracking** — IN PROGRESS (4/6 KPIs)
   - Problem: Only measuring % remaining, not burn rate or prediction
   - Solution: `claudeCode context.velocity` + `claudeCode context.dashboard`
   - KPIs:
@@ -13,7 +13,7 @@
     - [x] Prediction: time until compact needed — dashboard shows minutes remaining
     - [ ] Scrum-master logs structured KPIs — not yet integrated
     - [ ] CMM4 calculation for velocity/wait per agent — not yet integrated
-  - **Status**: 2026-02-08 - Methods COMPLETE (b2f6892). 4/6 KPIs done. SM integration pending.
+  - **Status**: 2026-02-09 - Methods exist but NOT integrated into active monitoring. Burn log has 14hr gap (overnight). 4/6 KPIs. NOT DONE until data flows every cycle.
 
 - [ ] **8. Auto-alert on low context** — IN PROGRESS
   - Problem: Hit rate limit today without warning - proves passive monitoring fails

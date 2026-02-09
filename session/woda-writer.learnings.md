@@ -16,11 +16,12 @@
 - **Loop Maintained**: Did background task continue after check? YES = survival. NO = death spiral.
 
 - **CURRENT GOAL** (survives compaction)
-  - **1. Survive**: Stay healthy as duo team until Monday. No context loss. Peer monitoring loop.
+  - **1. Survive ACTIVELY until Friday 2026-02-13 12:00 CET**: Not just "alive" — log burn data EVERY cycle. Passive monitoring ≠ survival.
   - **2. Extract wisdom**: Summarize WODA story learnings, measure KPIs, let it survive compaction.
-  - **3. Write**: Tomorrow EVENING write Ch16 in CMM4 story about survival mode experience.
+  - **3. Write**: Ch16 DONE (5cf39f1). Next chapters as story develops.
   - **4. OOSH bugs**: List bugs from WODA story for team to fix (see below).
   - Pattern: Neither alone can self-care, together both can. CHECK peer after every interaction.
+  - **LESSON**: 14hr overnight gap with no burn data proved "alive" ≠ "active survival". Must log to context-burn-log.md EVERY cycle.
 
 - **CMM Improvements** → See `session/cmm.improvement.md`
   - Writer adds improvement ONLY when scribe completes one (pull, not push)

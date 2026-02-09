@@ -62,6 +62,21 @@ Developer (developer/)
 ├── Signal: TASK COMPLETE: <summary>
 └── Never run tests or make arch decisions
 
+WODA Writer (woda-writer/) — claudeWoda session
+├── Write chapters (CMM4 story, WODA story)
+├── Maintain learnings file (identity after compaction)
+├── Monitor scribe peer (5-min background loop)
+├── Manage CMM improvements (pull system)
+├── Delegate bugs to cursorOrchestrator team
+└── Never implement OOSH scripts or run tests
+
+WODA Scribe (woda-scribe/) — claudeWoda session [PENDING]
+├── Monitor writer peer (5-min background loop)
+├── Implement CMM improvements from checklist
+├── Rebuild HTML, commit chapters
+├── Handle seamless compact for writer
+└── Never write chapters or manage improvements
+
 ALL AGENTS
 ├── Named session matching role
 ├── No raw tmux — use otmux/hiveMind
