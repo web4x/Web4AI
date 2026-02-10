@@ -33,19 +33,20 @@
 
 ## D — Details (reference per topic)
 
-### Per-Cycle Protocol (12 steps — VERIFY-AFTER-ACT + SELF-CHECK integrated)
+### Per-Cycle Protocol (13 steps — VERIFY-AFTER-ACT + SELF-CHECK + velocity)
 1. Read bg task output (writer pane capture)
-2. `claudeCode context.read claudeWoda:0.0` — writer %
-3. `claudeCode context.read claudeWoda:0.1` — MY % (SELF-CHECK)
-4. If EITHER < 25%: alert peer via `otmux send.verified` (NOT raw send)
-5. `ps aux | grep 'sleep.*otmux'` — check ALL loops (kill stale, verify mine alive)
-6. If permission prompt: READ OPTIONS FIRST, use `otmux send.verified` to respond
-7. **VERIFY-AFTER-ACT**: After ANY action on peer, `otmux pane.capture <target> 5` to confirm it worked. Not "I sent it" but "I sent it AND I see the result."
+2. `claudeCode context.read claudeWoda:0.0` — writer context %
+3. `claudeCode context.read claudeWoda:0.1` — my context % (SELF-CHECK)
+4. `claudeCode context.velocity claudeWoda:0.0` — writer burn rate
+5. `claudeCode context.velocity claudeWoda:0.1` — my burn rate
+6. If EITHER < 25%: trigger seamless compact (C-u, /compact Enter Enter, Tab accepts)
+7. If permission prompt: READ OPTIONS FIRST, then select correct one
 8. If stuck/idle: ACT — NEVER send Escape. Enter for idle, correct# for permission.
-9. All sends use `otmux send.verified` — built-in before/after verification
-10. Log both %s to `session/context-burn-log.md`
-11. Start next `sleep 300 && otmux pane.capture claudeWoda:0.0 5`
-12. **WORK-NOT-WATCH**: Monitoring = 1 min, KB work = 4 min. Loop is the alarm clock, not the job.
+9. **VERIFY-AFTER-ACT**: After ANY action on peer, capture pane to confirm it worked.
+10. Log to `session/context-burn-log.md`: time | writer% / scribe% | state | velocity | subscription
+11. **WORK-NOT-WATCH**: 4 min KB work (write, organize, improve — the loop is not the job)
+12. Start next `sleep 300 && otmux pane.capture claudeWoda:0.0 5`
+13. **Always use `otmux send` not raw `tmux send-keys`** — wrappers handle TUI quirks
 
 ### OOSH Commands (run directly)
 - `otmux pane.capture <target> <lines>` — read pane (NOT `tmux capture-pane`)

@@ -1,6 +1,6 @@
 # WODA Knowledge Base
 *Scribe's structured knowledge. Every topic follows W-O-D-A. Continuously maintained.*
-*Updated: 2026-02-09 09:00*
+*Updated: 2026-02-09 19:30*
 
 ---
 
@@ -48,7 +48,7 @@
 
 **O** — Each agent runs `sleep 300 && otmux pane.capture` on peer. Check peer loop alive via `ps aux | grep`. If dead, nudge. **Between cycles: WORK, don't idle.** Passive loops = "standing by" = death. **NEW lesson**: 10hr overnight of 30-min idle loops with zero work = exactly the failure this rule warns about. Adapt loop interval to activity level — 5 min when working, longer ONLY when truly conserving.
 
-**D** — Protocol: 10-step cycle in `woda-scribe.learnings.md`. Writer checks me from 0.0, I check writer from 0.1. Mutual detection within 5 min. `hiveMind cycle.full` automates the full cycle.
+**D** — Protocol: 12-step cycle in `woda-scribe.learnings.md` (upgraded from 10). Integrates VERIFY-AFTER-ACT, SELF-CHECK, WORK-NOT-WATCH. Writer checks me from 0.0, I check writer from 0.1. Mutual detection within 5 min. `hiveMind cycle.full` automates the full cycle.
 
 **A** — Every cycle: check loop, check context, alert if <25%, act if stuck. Between cycles: maintain KB, curate improvements, update files. Never passive.
 
@@ -70,9 +70,9 @@
 
 **W** — TUI permission prompts block agents. Wrong option = denied command.
 
-**O** — READ OPTIONS FIRST. Two patterns: "1.Yes/2.No" (send 1) vs "1.Yes/2.Yes,allow from project" (send 2). Use `otmux send.verified` to respond. Permissions reset on /compact (unfixed, Claude Code behavior).
+**O** — READ OPTIONS FIRST. Two patterns: "1.Yes/2.No" (send 1) vs "1.Yes/2.Yes,allow from project" (send 2). Use `otmux send.verified` to respond. Permissions reset on /compact (unfixed, Claude Code behavior). **ROOT CAUSE STILL OPEN**: Compound `&&` commands (e.g., `sleep 300 && cd /path && ./claudeCode`) don't match settings.json patterns like `Bash(claudeCode *)`. Added patterns to settings.json but compound commands still trigger prompts every cycle.
 
-**D** — Fixed by team: sweep.detect Yes/No (Task 41), compound commands (Task 57), overlay detection (Task 46). Open: permission reset on compact.
+**D** — Fixed by team: sweep.detect Yes/No (Task 41), compound commands (Task 57), overlay detection (Task 46). Open: permission reset on compact. Open: compound `&&` command matching in settings.json. Added patterns `Bash(sleep * && otmux *)`, `Bash(sleep * && cd *)` etc. but still partially broken.
 
 **A** — Capture pane, read options, send correct number via `send.verified`, verify response.
 
@@ -108,9 +108,9 @@
 
 **O** — The KB is my primary output. Monitoring is a duty, not the goal. Tasks are ONGOING, not checklists to finish. "Standing by" between cycles = failure. Passive loops for 2 hours = "standing by" with extra steps.
 
-**D** — Ongoing duties: (1) Maintain KB — update topics, add learnings, prune stale info. (2) Monitor writer — act when stuck, not just report. (3) Curate CMM pipeline — track completions, verify KPIs. (4) Commit regularly — auto.commit or manual.
+**D** — Ongoing duties: (1) Maintain KB — update topics, add learnings, prune stale info. (2) Monitor writer — act when stuck, not just report. (3) Curate CMM pipeline — track completions, verify KPIs. (4) Commit regularly — auto.commit or manual. (5) Maintain issues list — `session/scribe-issues.md`, 6 categories, 20 failures from Tron's corrections. Meta-pattern: theater over substance.
 
-**A** — Each cycle: monitor (2 min) + KB work (3 min). Never just wait. Read task list. Read KB. Find what's stale. Update it. That's the job.
+**A** — Each cycle: monitor (1 min) + KB work (4 min). Never just wait. Read task list. Read KB. Find what's stale. Update it. That's the job. Consult issues list when making protocol decisions — it's the record of what goes wrong.
 
 ---
 
