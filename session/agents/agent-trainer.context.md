@@ -1,6 +1,6 @@
 # Agent Trainer Context
 
-**Updated**: 2026-02-11T20:15Z
+**Updated**: 2026-02-11T20:30Z
 **Role**: agent-trainer
 **Pane**: `hiveMind resolve agent-trainer`
 **State**: idle — awaiting next assignment
@@ -38,11 +38,15 @@ All PO directives complete. Awaiting next assignment from Orchestrator.
 - Added `cd` prohibition row to all OOSH-Only tables
 - Updated description lines to mention compound command permission issue
 
+### 6. Task file naming + stale reference cleanup (commit dda4c68, pushed)
+- Task file naming convention already updated to `{YYYYMMDD}T{HHMM}Z.task.md` by PO across all SKILL.md files
+- Removed stale `Task.40.5.cmm4-feedback-loop.md` reference from scrum-master and orchestrator (file never existed)
+- Verified: only remaining `Task.` refs are in "GARBLED" examples (intentional)
+
 ## Pending
 
 - No pending tasks — all PO directives addressed
-- Task file naming convention changed by PO to `{YYYYMMDD}T{HHMM}Z.task.md` (noted in system reminders)
-- My own SKILL.md File-Based Communication section still uses old `Task.{N}.{YYYYMMDDHHMM}.md` format — should be updated next session
+- PO governance findings (`session/tasks/20260211T1736Z.task.md`) — all 7 complete
 
 ## Key Files
 
