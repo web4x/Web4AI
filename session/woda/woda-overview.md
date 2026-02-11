@@ -1,6 +1,6 @@
 # WODA Session Overview
 
-**Maintained by**: wodaScribe | **Updated**: 2026-02-05
+**Maintained by**: wodaScribe | **Updated**: 2026-02-11
 
 ```
 Foundation (Ch1-9) → chapters-1-9.md — tmux, OOSH bootstrap, c2, transparency, context files
@@ -24,6 +24,10 @@ WODA Framework (Ch30+) → chapters-30-plus.md
 ├── Two Gather: peer TUI capture = the answer; interdependence as design (Task.37)
 ├── Com Unique Action: no goal = no communication; direction unlocks parallel work
 └── WODA Without the W: goal must survive compaction; CURRENT GOAL section at top of context file
+
+projectTeam Reboot (NEW) → projectTeam-reboot.md
+├── Ch1: Eleven Empty Chairs — 11 agents, 7 stuck, Enter problem at scale
+└── Themes: bootstrap paradox, file-based comms as survival, infrastructure vs process
 ```
 
 ## Active References
