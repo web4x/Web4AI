@@ -141,11 +141,8 @@ vite.config.ts.timestamp-*
 # Nested repos (have their own git tracking)
 components/
 
-# Symlinks to .claude/agents/
-.cursor/
 
-# Session state (transient, not versioned)
-session/
+
 
 # Local settings (may contain secrets or machine-specific config)
 .claude/settings.local.json
