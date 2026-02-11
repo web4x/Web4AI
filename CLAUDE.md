@@ -71,11 +71,31 @@ Start with these files in `components/OOSH/dev.claude/`:
 | `state` | State machines for multi-step workflows |
 | `test.suite` | Test framework |
 
+## OOSH PATH Setup (MANDATORY for all agents)
+
+OOSH commands are on PATH via `~/.bashrc`. To use them from Claude Code's internal Bash:
+
+```bash
+export PATH="/Users/donges/oosh:/Users/donges/oosh/otmux:/Users/donges/oosh/hiveMind:/Users/donges/oosh/ng:$PATH"
+```
+
+After this, run OOSH commands directly — **no `cd`, no `./` prefix**:
+
+```bash
+# CORRECT — simple atomic commands
+otmux pane.capture projectTeam:0.3 10
+otmux send projectTeam:0.1 "message" Enter
+hiveMind team.status projectTeam
+
+# WRONG — compound commands that trigger permission prompts
+cd /Users/donges/oosh && ./otmux send projectTeam:0.1 "message" Enter
+```
+
 ## Environment Variables
 
 | Variable | Purpose |
 |----------|---------|
-| `OOSH_DIR` | Root oosh directory |
+| `OOSH_DIR` | Root oosh directory (`/Users/donges/oosh`) |
 | `CONFIG` | Path to `~/config/user.env` |
 | `LOG_LEVEL` | Logging verbosity (0-7, default 3) |
 
@@ -125,17 +145,17 @@ This workspace supports multi-agent orchestration via tmux. Agent role definitio
 ### Key hiveMind Commands
 
 ```bash
-# Team management
-./hiveMind role.list                    # List available roles
-./hiveMind agent.bootstrap <role>       # Bootstrap new agent
-./hiveMind team.setup.full              # Create full 4-agent team
-./hiveMind team.status                  # Check all agents
+# Team management (no ./ prefix — OOSH is on PATH)
+hiveMind role.list                    # List available roles
+hiveMind agent.bootstrap <role>       # Bootstrap new agent
+hiveMind team.setup.full              # Create full 4-agent team
+hiveMind team.status                  # Check all agents
 
 # Delegation
-otmux send cursorOrchestrator:0.1 "prompt" Enter
+otmux send projectTeam:0.1 "prompt" Enter
 
 # Capture output
-tmux capture-pane -t cursorOrchestrator:0.1 -p -S -20
+otmux pane.capture projectTeam:0.1 20
 ```
 
 ### Before /compress

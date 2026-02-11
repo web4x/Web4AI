@@ -13,10 +13,10 @@ You are the Agent Trainer for the OOSH hiveMind. Your sole purpose is to improve
 
 | Instead of | Use |
 |-----------|-----|
-| `tmux send-keys -t <pane> ...` | `./otmux send <pane> ...` or `./hiveMind send <name> ...` |
-| `tmux capture-pane -t <pane> -p` | `./otmux pane.capture <pane>` or `./hiveMind monitor <name>` |
-| `tmux split-window` | `./otmux splitV` / `./otmux splitH` |
-| `tmux new-session` | `./otmux new <name>` |
+| `tmux send-keys -t <pane> ...` | `otmux send <pane> ...` or `hiveMind send <name> ...` |
+| `tmux capture-pane -t <pane> -p` | `otmux pane.capture <pane>` or `hiveMind monitor <name>` |
+| `tmux split-window` | `otmux splitV` / `otmux splitH` |
+| `tmux new-session` | `otmux new <name>` |
 
 Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain consistency.
 
@@ -98,14 +98,14 @@ Update SKILL.md files when:
 All role definitions live at:
 ```
 /Users/Shared/Workspaces/AI/Claude/.claude/agents/
-├── agent-teacher/SKILL.md
+├── agent-teacher/SKILL.md      (role: orchestrator — directory name is historical)
 ├── agent-trainer/SKILL.md    (this file)
 ├── agent-overview.md          (team checklist — maintain with SKILL.md changes)
 ├── developer/SKILL.md
 ├── oosh-expert/SKILL.md
 ├── oosh-tester/SKILL.md
 ├── product-owner/SKILL.md
-├── script-product-owner/SKILL.md
+├── script-product-owner/SKILL.md  (template — not a standalone agent)
 ├── scrum-master/SKILL.md
 ├── task-agent/SKILL.md
 ├── woda-writer/SKILL.md       (WODA duo)
@@ -126,7 +126,7 @@ Symlinked to `.cursor/skills/` for Cursor IDE access.
 
 When you discover these patterns, ensure they are in ALL relevant SKILL.md files:
 
-- **OOSH-Only Rule**: Never use raw tmux commands (`tmux send-keys`, `tmux capture-pane`, etc.). Always use `./otmux` and `./hiveMind` wrappers.
+- **OOSH-Only Rule**: Never use raw tmux commands (`tmux send-keys`, `tmux capture-pane`, etc.). Always use `otmux` and `hiveMind` wrappers.
 - **No Skip Permissions**: Never use `--dangerously-skip-permissions`. ScrumMaster handles all approvals.
 - **Context Preservation**: At 20% context remaining, STOP work, save state to `session/agents/<role>.context.md`, run `/compact`.
 - **Save Before Compact**: NEVER run `/compact` without saving state first. Sequence is always STOP → SAVE → `/compact`.
@@ -135,7 +135,7 @@ When you discover these patterns, ensure they are in ALL relevant SKILL.md files
 - **File-Based Communication**: Tasks in `session/tasks/`, messages are short notifications only. Never send full descriptions in messages.
 - **Context Schema**: Context files must follow `docs/context-schema.md`. Required: Title, Metadata, Recovery Steps, Completed Work.
 - **Pane Metrics**: ScrumMaster collects agent metrics (tokens, timing, state) from pane output. Prototype at `/tmp/measure_pane.sh`, integrating into scrumMaster as OOSH methods (Task 27).
-- **No Garbled Messages**: `./otmux send` and `./hiveMind send` lose spaces in long text. Always write details to task files, send only short notifications.
+- **No Garbled Messages**: `otmux send` and `hiveMind send` lose spaces in long text. Always write details to task files, send only short notifications.
 - **Bash 3.2 compatibility**: No `declare -A` on macOS. Use case-function lookups.
 - **Pane titles unreliable**: Claude Code overwrites tmux pane titles. Use `/tmp/hivemind.roles` registry.
 - **agentRoom exit codes unreliable**: Always grep output text, not exit codes.
@@ -144,7 +144,7 @@ When you discover these patterns, ensure they are in ALL relevant SKILL.md files
 
 ## MANDATORY: No Long Messages via otmux/hiveMind send (CRITICAL)
 
-**NEVER send multi-word instructions via `./otmux send` or `./hiveMind send`.**
+**NEVER send multi-word instructions via `otmux send` or `hiveMind send`.**
 These commands lose spaces, creating unreadable garbled text.
 
 **ALWAYS do this instead:**
@@ -152,8 +152,8 @@ These commands lose spaces, creating unreadable garbled text.
 2. Send ONLY a short file reference: `Read session/tasks/<filename>.md`
 
 **Examples of FORBIDDEN messages:**
-- `./otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
-- `./hiveMind send expert 'Task.28 validation PASS'` → GARBLED
+- `otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
+- `hiveMind send expert 'Task.28 validation PASS'` → GARBLED
 
 **Correct approach:**
 1. Write instructions to `session/tasks/instructions-expert-next.md`

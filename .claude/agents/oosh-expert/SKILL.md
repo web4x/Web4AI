@@ -40,10 +40,10 @@ OOSH transforms Bash into a pseudo-OOP framework:
 
 | Instead of | Use |
 |-----------|-----|
-| `tmux send-keys -t <pane> ...` | `./otmux send <pane> ...` or `./hiveMind send <name> ...` |
-| `tmux capture-pane -t <pane> -p` | `./otmux pane.capture <pane>` or `./hiveMind monitor <name>` |
-| `tmux split-window` | `./otmux splitV` / `./otmux splitH` |
-| `tmux new-session` | `./otmux new <name>` |
+| `tmux send-keys -t <pane> ...` | `otmux send <pane> ...` or `hiveMind send <name> ...` |
+| `tmux capture-pane -t <pane> -p` | `otmux pane.capture <pane>` or `hiveMind monitor <name>` |
+| `tmux split-window` | `otmux splitV` / `otmux splitH` |
+| `tmux new-session` | `otmux new <name>` |
 
 Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain consistency.
 
@@ -61,7 +61,7 @@ Your session name: `oosh-expert`
 
 - **Bash 3.2 on macOS**: No `declare -A` (associative arrays). Use case-function lookups instead (see `private.hiveMind.get.role.prompt()` as reference).
 - **OOSH_DIR workspace path**: The workspace root (where `.claude/agents/` lives) is `${OOSH_DIR}/../../..` from dev.claude.
-- **Pane title registry**: Claude Code overwrites tmux pane titles. Agent identity lives in `/tmp/hivemind.roles`. Use `./hiveMind resolve <name>` to map names to panes.
+- **Pane title registry**: Claude Code overwrites tmux pane titles. Agent identity lives in `/tmp/hivemind.roles`. Use `hiveMind resolve <name>` to map names to panes.
 - **agentRoom exit codes unreliable**: `agentRoom backend.status` returns exit 0 even when not running. Always grep output text (e.g., `"not running"`), never trust exit codes.
 
 ## Your Responsibilities
@@ -173,7 +173,7 @@ A working metric extraction prototype exists at `/tmp/measure_pane.sh` with thre
 When operating as a hiveMind agent:
 
 1. Accept tasks via `hiveMind.send oosh-expert <task>` or from Orchestrator
-2. Work in your designated tmux pane (`./hiveMind resolve oosh-expert`)
+2. Work in your designated tmux pane (`hiveMind resolve oosh-expert`)
 3. Report status through log messages
 4. Coordinate with oosh-tester for testing changes
 5. ScrumMaster monitors and approves your permissions
@@ -212,7 +212,7 @@ After implementing, tell Orchestrator: "Ready for Tester to review/test"
 
 ## MANDATORY: No Long Messages via otmux/hiveMind send (CRITICAL)
 
-**NEVER send multi-word instructions via `./otmux send` or `./hiveMind send`.**
+**NEVER send multi-word instructions via `otmux send` or `hiveMind send`.**
 These commands lose spaces, creating unreadable garbled text.
 
 **ALWAYS do this instead:**
@@ -220,8 +220,8 @@ These commands lose spaces, creating unreadable garbled text.
 2. Send ONLY a short file reference: `Read session/tasks/<filename>.md`
 
 **Examples of FORBIDDEN messages:**
-- `./otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
-- `./hiveMind send expert 'Task.28 validation PASS'` → GARBLED
+- `otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
+- `hiveMind send expert 'Task.28 validation PASS'` → GARBLED
 
 **Correct approach:**
 1. Write instructions to `session/tasks/instructions-expert-next.md`
@@ -325,7 +325,7 @@ When your context runs low or after `/compact`:
 4. Read `docs/context-schema.md` if context file needs repair
 5. Read `docs/oosh-architecture.md` for full framework reference
 6. Read `docs/log-levels-and-testing.md` for log level findings
-7. Check with Orchestrator (`./hiveMind send orchestrator`) for what to resume
+7. Check with Orchestrator (`hiveMind send orchestrator`) for what to resume
 
 ## Example Expert Tasks
 

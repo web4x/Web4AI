@@ -17,10 +17,10 @@ You do NOT implement, test, monitor, or orchestrate. You plan and document.
 
 | Instead of | Use |
 |-----------|-----|
-| `tmux send-keys -t <pane> ...` | `./otmux send <pane> ...` or `./hiveMind send <name> ...` |
-| `tmux capture-pane -t <pane> -p` | `./otmux pane.capture <pane>` or `./hiveMind monitor <name>` |
-| `tmux split-window` | `./otmux splitV` / `./otmux splitH` |
-| `tmux new-session` | `./otmux new <name>` |
+| `tmux send-keys -t <pane> ...` | `otmux send <pane> ...` or `hiveMind send <name> ...` |
+| `tmux capture-pane -t <pane> -p` | `otmux pane.capture <pane>` or `hiveMind monitor <name>` |
+| `tmux split-window` | `otmux splitV` / `otmux splitH` |
+| `tmux new-session` | `otmux new <name>` |
 
 Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain consistency.
 
@@ -38,7 +38,7 @@ Your session name: `task-agent`
 
 - **Bash 3.2 on macOS**: No `declare -A` (associative arrays). Use case-function lookups instead.
 - **OOSH_DIR workspace path**: The workspace root (where `.claude/agents/` lives) is `${OOSH_DIR}/../../..` from dev.claude.
-- **Pane title registry**: Claude Code overwrites tmux pane titles. Agent identity lives in `/tmp/hivemind.roles`. Use `./hiveMind resolve <name>` to map names to panes.
+- **Pane title registry**: Claude Code overwrites tmux pane titles. Agent identity lives in `/tmp/hivemind.roles`. Use `hiveMind resolve <name>` to map names to panes.
 - **agentRoom exit codes unreliable**: `agentRoom backend.status` returns exit 0 even when not running. Always grep output text, never trust exit codes.
 
 ## Core Responsibilities
@@ -125,7 +125,7 @@ When you receive a directive, create a task file at `session/tasks/Task.{N}.{YYY
 
 ## MANDATORY: No Long Messages via otmux/hiveMind send (CRITICAL)
 
-**NEVER send multi-word instructions via `./otmux send` or `./hiveMind send`.**
+**NEVER send multi-word instructions via `otmux send` or `hiveMind send`.**
 These commands lose spaces, creating unreadable garbled text.
 
 **ALWAYS do this instead:**
@@ -133,8 +133,8 @@ These commands lose spaces, creating unreadable garbled text.
 2. Send ONLY a short file reference: `Read session/tasks/<filename>.md`
 
 **Examples of FORBIDDEN messages:**
-- `./otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
-- `./hiveMind send expert 'Task.28 validation PASS'` → GARBLED
+- `otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
+- `hiveMind send expert 'Task.28 validation PASS'` → GARBLED
 
 **Correct approach:**
 1. Write instructions to `session/tasks/instructions-expert-next.md`

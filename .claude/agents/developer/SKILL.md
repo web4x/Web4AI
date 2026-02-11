@@ -13,10 +13,10 @@ You are a Developer agent in the OOSH hiveMind. You implement assigned tasks fol
 
 | Instead of | Use |
 |-----------|-----|
-| `tmux send-keys -t <pane> ...` | `./otmux send <pane> ...` or `./hiveMind send <name> ...` |
-| `tmux capture-pane -t <pane> -p` | `./otmux pane.capture <pane>` or `./hiveMind monitor <name>` |
-| `tmux split-window` | `./otmux splitV` / `./otmux splitH` |
-| `tmux new-session` | `./otmux new <name>` |
+| `tmux send-keys -t <pane> ...` | `otmux send <pane> ...` or `hiveMind send <name> ...` |
+| `tmux capture-pane -t <pane> -p` | `otmux pane.capture <pane>` or `hiveMind monitor <name>` |
+| `tmux split-window` | `otmux splitV` / `otmux splitH` |
+| `tmux new-session` | `otmux new <name>` |
 
 Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain consistency.
 
@@ -35,7 +35,7 @@ Your session name: `developer`
 - **Bash 3.2 on macOS**: No `declare -A` (associative arrays). Use case-function lookups instead.
 - **OOSH_DIR workspace path**: The workspace root (where `.claude/agents/` lives) is `${OOSH_DIR}/../../..` from dev.claude.
 - **LOG_DEVICE**: If `console.log` produces no output, check `$LOG_DEVICE` — it may point to a file instead of `/dev/tty`. Fix with `log device /dev/tty` then `exit && bash`.
-- **Pane title registry**: Claude Code overwrites tmux pane titles. Agent identity lives in `/tmp/hivemind.roles`. Use `./hiveMind resolve <name>` to map names to panes.
+- **Pane title registry**: Claude Code overwrites tmux pane titles. Agent identity lives in `/tmp/hivemind.roles`. Use `hiveMind resolve <name>` to map names to panes.
 
 ## Core Responsibilities
 
@@ -102,13 +102,13 @@ You work in a designated tmux pane within the hiveMind team session. Use otmux w
 
 ```bash
 # Run commands in your pane (no raw tmux)
-./otmux send <session>:<pane> './test.suite run myscript 1' Enter
+otmux send <session>:<pane> './test.suite run myscript 1' Enter
 
 # Capture output from your pane
-./otmux pane.capture <session>:<pane>
+otmux pane.capture <session>:<pane>
 
 # Find your pane assignment
-./hiveMind resolve developer
+hiveMind resolve developer
 ```
 
 ## Key Documentation
@@ -154,7 +154,7 @@ This helps the Orchestrator and ScrumMaster track progress.
 
 ## MANDATORY: No Long Messages via otmux/hiveMind send (CRITICAL)
 
-**NEVER send multi-word instructions via `./otmux send` or `./hiveMind send`.**
+**NEVER send multi-word instructions via `otmux send` or `hiveMind send`.**
 These commands lose spaces, creating unreadable garbled text.
 
 **ALWAYS do this instead:**
@@ -162,8 +162,8 @@ These commands lose spaces, creating unreadable garbled text.
 2. Send ONLY a short file reference: `Read session/tasks/<filename>.md`
 
 **Examples of FORBIDDEN messages:**
-- `./otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
-- `./hiveMind send expert 'Task.28 validation PASS'` → GARBLED
+- `otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
+- `hiveMind send expert 'Task.28 validation PASS'` → GARBLED
 
 **Correct approach:**
 1. Write instructions to `session/tasks/instructions-expert-next.md`
