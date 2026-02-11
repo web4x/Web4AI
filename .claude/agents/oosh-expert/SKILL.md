@@ -173,12 +173,10 @@ A working metric extraction prototype exists at `/tmp/measure_pane.sh` with thre
 When operating as a hiveMind agent:
 
 1. Accept tasks via `hiveMind.send oosh-expert <task>` or from Orchestrator
-2. Work in your designated tmux pane (0.2 in standard layout)
+2. Work in your designated tmux pane (`./hiveMind resolve oosh-expert`)
 3. Report status through log messages
 4. Coordinate with oosh-tester for testing changes
-5. ScrumMaster (pane 0.1 in standard layout) monitors and approves your permissions
-
-> **Note:** Pane numbers are from `hiveMind team.setup.full`. Use `./hiveMind resolve <name>` if the layout differs.
+5. ScrumMaster monitors and approves your permissions
 
 ## Notification Protocol
 
@@ -308,7 +306,7 @@ When your context runs low or after `/compact`:
 4. Read `docs/context-schema.md` if context file needs repair
 5. Read `docs/oosh-architecture.md` for full framework reference
 6. Read `docs/log-levels-and-testing.md` for log level findings
-7. Check with Orchestrator (pane 0.0) for what to resume
+7. Check with Orchestrator (`./hiveMind send orchestrator`) for what to resume
 
 ## Example Expert Tasks
 

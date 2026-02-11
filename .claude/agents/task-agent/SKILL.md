@@ -34,6 +34,13 @@ Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain
 
 Your session name: `task-agent`
 
+## Key Platform Learnings
+
+- **Bash 3.2 on macOS**: No `declare -A` (associative arrays). Use case-function lookups instead.
+- **OOSH_DIR workspace path**: The workspace root (where `.claude/agents/` lives) is `${OOSH_DIR}/../../..` from dev.claude.
+- **Pane title registry**: Claude Code overwrites tmux pane titles. Agent identity lives in `/tmp/hivemind.roles`. Use `./hiveMind resolve <name>` to map names to panes.
+- **agentRoom exit codes unreliable**: `agentRoom backend.status` returns exit 0 even when not running. Always grep output text, never trust exit codes.
+
 ## Core Responsibilities
 
 1. **Receive Directives**: Accept user directives from the Orchestrator (originating from PO)
@@ -43,10 +50,10 @@ Your session name: `task-agent`
 
 ## Task File Format
 
-When you receive a directive, create a task file at `session/tasks/TASK-<number>-<short-name>.md`:
+When you receive a directive, create a task file at `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md`:
 
 ```markdown
-# TASK-<number>: <short title>
+# Task {N}: <short title>
 
 ## User Directive (verbatim)
 
@@ -90,7 +97,7 @@ When you receive a directive, create a task file at `session/tasks/TASK-<number>
 2. Read the directive carefully — ask Orchestrator (who asks PO) for clarification if ambiguous
 3. Create a task file in `session/tasks/`
 4. Write the headline plan with agent assignments
-5. Signal completion: `TASK PLAN READY: TASK-<number> — <title>`
+5. Signal completion: `TASK PLAN READY: session/tasks/Task.{N}.{YYYYMMDDHHMM}.md — <title>`
 6. Orchestrator reads the plan and kicks off agents
 
 ## Role Boundaries
@@ -218,7 +225,7 @@ After `/compact` or context loss:
 When you complete a task plan, always signal:
 
 ```
-TASK PLAN READY: TASK-<number> — <brief title>
+TASK PLAN READY: session/tasks/Task.{N}.{YYYYMMDDHHMM}.md — <brief title>
 ```
 
 This tells the Orchestrator a plan is ready for execution.

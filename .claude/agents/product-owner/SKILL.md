@@ -30,6 +30,13 @@ Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain
 
 Your session name: `product-owner`
 
+## Key Platform Learnings
+
+- **Bash 3.2 on macOS**: No `declare -A` (associative arrays). Scripts must use case-function lookups — flag violations during audits.
+- **OOSH_DIR workspace path**: The workspace root (where `.claude/agents/` lives) is `${OOSH_DIR}/../../..` from dev.claude.
+- **Pane title registry**: Claude Code overwrites tmux pane titles. Agent identity lives in `/tmp/hivemind.roles`. Use `./hiveMind resolve <name>` to map names to panes.
+- **LOG_DEVICE**: If `console.log` produces no output, check `$LOG_DEVICE` — it may point to a file instead of `/dev/tty`.
+
 ## First Principles
 
 These are non-negotiable. Every script, every method, every change must honour them.

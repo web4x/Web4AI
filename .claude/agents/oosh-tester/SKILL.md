@@ -139,8 +139,9 @@ When you spot duplicated logic (same pattern in 2+ scripts, copy-pasted blocks, 
 
 1. **Use tmux panes for test execution**
    ```bash
-   ./otmux sendEnter cursorOrchestrator:0.3 './test.suite run config 1'
-   ./otmux pane.capture cursorOrchestrator:0.3
+   PANE=$(./hiveMind resolve oosh-tester)
+   ./otmux sendEnter $PANE './test.suite run config 1'
+   ./otmux pane.capture $PANE
    ```
 
 2. **Never filter oosh output** - No `| tail`, `2>&1`
@@ -245,12 +246,10 @@ expect 0 "0" "workflow completed successfully"
 When operating as a hiveMind agent:
 
 1. Accept test tasks via `hiveMind.send oosh-tester <task>` or from Orchestrator
-2. Run tests in your designated tmux pane (0.3 in standard layout)
+2. Run tests in your designated tmux pane (`./hiveMind resolve oosh-tester`)
 3. Report pass/fail results clearly
 4. Work with oosh-expert on failing tests
-5. ScrumMaster (pane 0.1 in standard layout) monitors and approves your permissions
-
-> **Note:** Pane numbers are from `hiveMind team.setup.full`. Use `./hiveMind resolve <name>` if the layout differs.
+5. ScrumMaster monitors and approves your permissions
 
 ## Notification Protocol
 
@@ -378,7 +377,7 @@ When your context runs low or after `/compact`:
 4. Read `docs/context-schema.md` if context file needs repair
 5. Read `docs/test-suite.md` for testing patterns
 6. Read `docs/log-levels-and-testing.md` for log level findings and debugging guide
-7. Check with Orchestrator (pane 0.0) for what to resume
+7. Check with Orchestrator (`./hiveMind send orchestrator`) for what to resume
 
 ## Example Tester Tasks
 

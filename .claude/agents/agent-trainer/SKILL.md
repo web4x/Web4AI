@@ -108,8 +108,8 @@ All role definitions live at:
 ├── script-product-owner/SKILL.md
 ├── scrum-master/SKILL.md
 ├── task-agent/SKILL.md
-├── woda-writer/SKILL.md       (claudeWoda session)
-└── woda-scribe/SKILL.md       (claudeWoda session — pending)
+├── woda-writer/SKILL.md       (WODA duo)
+└── woda-scribe/SKILL.md       (WODA duo)
 ```
 
 Symlinked to `.cursor/skills/` for Cursor IDE access.
