@@ -285,7 +285,7 @@ After each cycle, evaluate thresholds and alert the Orchestrator:
 
 Send alerts via `hiveMind send orchestrator "<alert>"`. Append every alert to `session/metrics/alerts.log` (format: `<timestamp> <alert_type> <details>`).
 
-Full protocol: `session/tasks/Task.40.5.cmm4-feedback-loop.md`
+Full protocol is defined in the CMM4 Response Protocol table above.
 
 ## Peer Monitoring (CMM4)
 
@@ -354,12 +354,12 @@ These commands lose spaces, creating unreadable garbled text.
 
 **All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
 
-- **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions
+- **Task files**: `session/tasks/{YYYYMMDD}T{HHMM}Z.task.md` — contain full work descriptions
 - **Messages**: SHORT notifications only — never relay full task descriptions
 
 | Message Type | Format |
 |-------------|--------|
-| Assignment | `New task: session/tasks/Task.19.202602011820.md` |
+| Assignment | `New task: session/tasks/20260211T1820Z.task.md` |
 | Completion | `Task 19 done` |
 | Blocked | `Task 19 blocked: <reason>` |
 

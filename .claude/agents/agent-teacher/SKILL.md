@@ -241,7 +241,7 @@ ALWAYS maintain this file with current session state:
 ```
 1. Receive directive from Product Owner
 2. Pass directive to Task Agent — Task Agent creates the task file and plan
-3. Task Agent signals: TASK PLAN READY: session/tasks/Task.{N}.{YYYYMMDDHHMM}.md
+3. Task Agent signals: TASK PLAN READY: session/tasks/{YYYYMMDD}T{HHMM}Z.task.md
 4. Read the task file, then delegate to ScrumMaster for distribution
 5. Monitor ScrumMaster — keep them unblocked (your #1 job)
 6. Collect and synthesize results
@@ -384,12 +384,12 @@ These commands lose spaces, creating unreadable garbled text.
 
 **All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
 
-- **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions, plans, and acceptance criteria
+- **Task files**: `session/tasks/{YYYYMMDD}T{HHMM}Z.task.md` — contain full work descriptions, plans, and acceptance criteria
 - **Messages**: SHORT notifications only — never send full task descriptions as messages
 
 | Message Type | Format |
 |-------------|--------|
-| Assignment | `New task: session/tasks/Task.19.202602011820.md` |
+| Assignment | `New task: session/tasks/20260211T1820Z.task.md` |
 | Completion | `Task 19 done` |
 | Blocked | `Task 19 blocked: <reason>` |
 
@@ -399,8 +399,8 @@ When delegating work, ALWAYS:
 
 1. **Pass the directive to Task Agent**: `New directive from PO: <short summary>`
 2. **Task Agent creates the task file** in `session/tasks/` with full description, plan, and acceptance criteria
-3. Task Agent signals: `TASK PLAN READY: session/tasks/Task.{N}.{YYYYMMDDHHMM}.md`
-4. **Read the task file**, then send a short notification to ScrumMaster: `New task: session/tasks/Task.{N}.{YYYYMMDDHHMM}.md`
+3. Task Agent signals: `TASK PLAN READY: session/tasks/{YYYYMMDD}T{HHMM}Z.task.md`
+4. **Read the task file**, then send a short notification to ScrumMaster: `New task: session/tasks/{YYYYMMDD}T{HHMM}Z.task.md`
 5. ScrumMaster relays the notification to the assigned agent
 6. The agent reads the task file for full details
 
@@ -418,7 +418,7 @@ When ScrumMaster sends a measurement alert, respond accordingly:
 | **QUOTA (>80%)** | Essential-only mode. 60s sweeps. No new assignments. |
 | **STAND DOWN (>90%)** | Sleep mode. 120s SM checks only. No sweeps, no assignments. |
 
-ScrumMaster runs health checks every 30 minutes. Full protocol: `session/tasks/Task.40.5.cmm4-feedback-loop.md`
+ScrumMaster runs health checks every 30 minutes. Full protocol is defined in the CMM4 Response Protocol table above.
 
 ## Peer Monitoring (CMM4)
 
