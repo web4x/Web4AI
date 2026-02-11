@@ -37,5 +37,5 @@ Neither agent can see its own context %. The TUI status bar is only visible to a
 - Passive loops = "standing by" = death
 
 ## Action Checklists
--> session/knowledge-base/actions/monitoring-cycle.md
--> session/knowledge-base/actions/unblock-permission.md
+-> [monitoring-cycle.md](actions/monitoring-cycle.md)
+-> [unblock-permission.md](actions/unblock-permission.md)

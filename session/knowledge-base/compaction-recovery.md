@@ -49,5 +49,5 @@ The agent being compacted does ZERO manual steps. The peer handles everything:
 - `cmm.improvement.md` — pipeline status
 
 ## Action Checklists
--> session/knowledge-base/actions/compact-peer.md
--> session/knowledge-base/actions/recover-after-compact.md
+-> [compact-peer.md](actions/compact-peer.md)
+-> [recover-after-compact.md](actions/recover-after-compact.md)

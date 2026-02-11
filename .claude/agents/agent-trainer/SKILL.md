@@ -229,6 +229,22 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 
 **Anti-pattern**: "I think...", "probably...", "should be..." → FORBIDDEN. Measure it.
 
+## Reading List
+
+### On Bootstrap / After Recovery
+1. This file (`.claude/agents/agent-trainer/SKILL.md`)
+2. `CLAUDE.md` (workspace root)
+3. `.claude/agents/agent-overview.md` (team structure — you maintain this)
+4. `session/agents/agent-trainer.context.md` (your saved state)
+5. `docs/context-schema.md` (if context file needs repair)
+
+### For Role Work
+- All SKILL.md files in `.claude/agents/*/SKILL.md` (your audit scope)
+
+### Reference (read when needed)
+- `docs/oosh-architecture.md` (understand what agents reference)
+- `docs/first-principles.md` (understand PO governance criteria)
+
 ## Context Recovery (CRITICAL)
 
 After `/compact` or context loss:

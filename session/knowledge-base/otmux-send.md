@@ -25,5 +25,5 @@ Only manual keyboard input fixes it. No remote fix exists.
 - Commit: 805aecc (send.verified implementation)
 
 ## Action Checklists
--> session/knowledge-base/actions/send-message.md
--> session/knowledge-base/actions/unblock-permission.md
+-> [send-message.md](actions/send-message.md)
+-> [unblock-permission.md](actions/unblock-permission.md)

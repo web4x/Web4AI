@@ -2,11 +2,11 @@
 
 This file has been restructured into proper WODA architecture (PO directive, 2026-02-11).
 
-**New location**: `session/knowledge-base/`
+**New location**: [session/knowledge-base/](knowledge-base/)
 
-- **W (Index)**: `session/knowledge-base/index.md`
-- **O (Overviews)**: `session/knowledge-base/overviews.md`
-- **D (Details)**: `session/knowledge-base/*.md` (one file per topic)
-- **A (Actions)**: `session/knowledge-base/actions/*.md` (reusable checklists)
+- **W (Index)**: [index.md](knowledge-base/index.md)
+- **O (Overviews)**: [overviews.md](knowledge-base/overviews.md)
+- **D (Details)**: [knowledge-base/](knowledge-base/) (one file per topic)
+- **A (Actions)**: [actions/](knowledge-base/actions/) (reusable checklists)
 
 Flow: W -> O -> D -> A. Each layer points to the next. No layer contains the next layer's content inline.

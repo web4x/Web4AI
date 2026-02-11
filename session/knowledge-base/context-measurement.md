@@ -21,4 +21,4 @@ JSONL and TUI show different numbers. Root cause: different denominators. JSONL 
 NEVER ASSUME — ALWAYS MEASURE. assume = ass|u|me. Never say "healthy" without data. Never panic without measuring first.
 
 ## Action Checklists
--> session/knowledge-base/actions/check-context.md
+-> [check-context.md](actions/check-context.md)

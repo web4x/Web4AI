@@ -409,6 +409,21 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 
 **Anti-pattern**: "I think...", "probably...", "should be..." → FORBIDDEN. Measure it.
 
+## Reading List
+
+### On Bootstrap / After Recovery
+1. This file (`.claude/agents/scrum-master/SKILL.md`)
+2. `CLAUDE.md` (workspace root)
+3. `.claude/agents/agent-overview.md` (team structure and role boundaries)
+4. `session/agents/scrum-master.context.md` (your saved state)
+5. `docs/context-schema.md` (if context file needs repair)
+
+### For Role Work
+- Monitoring protocols are defined in this SKILL.md — no additional docs needed
+
+### Reference (read when needed)
+- `.claude/agents/agent-overview.md` (role enforcement reference — re-read after every `/compact`)
+
 ## Context Recovery (CRITICAL)
 
 The PreCompact hook at `.claude/hooks/pre-compress.sh` auto-detects your role and sends a resume prompt to your pane 15 seconds after compact. **No user interaction needed.**

@@ -20,4 +20,4 @@
 Compound `&&` commands (e.g., `sleep 300 && cd /path && ./claudeCode`) generate a single Bash call that doesn't match individual tool patterns in settings.json.
 
 ## Action Checklists
--> session/knowledge-base/actions/unblock-permission.md
+-> [unblock-permission.md](actions/unblock-permission.md)

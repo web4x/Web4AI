@@ -30,4 +30,4 @@ See `session/cmm.improvement.md` for the canonical list with KPIs.
 - Pattern: Writer adds at TOP -> Scribe implements -> Check KPIs -> Mark done
 
 ## Action Checklists
--> session/knowledge-base/actions/implement-improvement.md
+-> [implement-improvement.md](actions/implement-improvement.md)

@@ -25,4 +25,4 @@ File-based preferred. Write task file to `session/tasks/`, agent reads it. No lo
 `session/oosh-bugs.md` — standalone list. Status: 15/16 fixed. 1 unfixable (permission reset).
 
 ## Action Checklists
--> session/knowledge-base/actions/delegate-task.md
+-> [delegate-task.md](actions/delegate-task.md)

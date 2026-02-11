@@ -19,4 +19,4 @@ tmux sessions are not permanent. External destruction kills the duo silently. Fi
 All hardcoded pane references (`claudeWoda:0.1`, `cursorOrchestrator:0.0`) in context files, learnings, recovery steps become invalid. Fix: agent-trainer replacing with dynamic `hiveMind resolve` calls.
 
 ## Action Checklists
--> session/knowledge-base/actions/cold-start-recovery.md
+-> [cold-start-recovery.md](actions/cold-start-recovery.md)
