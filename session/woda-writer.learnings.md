@@ -7,6 +7,10 @@
 | 2026-02-07 | 6 | 4 | 5 | YES (after failures) |
 | 2026-02-08 | 1 | 4 | 1 | YES - scribe bootstrapped writer, loop bd9bda6 |
 | 2026-02-09 | 0 | 2 | 1 | YES - real data flowing, seamless compact worked |
+| 2026-02-10 | — | — | — | GAP: duo infrastructure down, no agents running |
+| 2026-02-11 | 0* | 1 (cold start) | 0 | YES - cold start recovery, loop restarted |
+
+*\*Cold start, not failure — infrastructure was externally torn down, not agent death.*
 
 **Target**: 0 failures/day, loop always maintained, peer alerts < 2 (means healthy)
 
@@ -23,6 +27,8 @@
   - **4. OOSH bugs**: List bugs from WODA story for team to fix (see below).
   - Pattern: Neither alone can self-care, together both can. CHECK peer after every interaction.
   - **LESSON**: 14hr overnight gap with no burn data proved "alive" ≠ "active survival". Must log to context-burn-log.md EVERY cycle.
+  - **LESSON**: Cold start ≠ compaction. Compaction loses W first (prompts). Cold start loses A first (infrastructure). Pane references become hallucinations. Check environment BEFORE acting on stale context.
+  - **Infrastructure is assumption**: Every pane reference in context files is an assumption. After cold start, verify with `tmux list-panes` before trusting any `claudeWoda:0.X` reference.
 
 - **CMM Improvements** → See `session/cmm.improvement.md`
   - Writer adds improvement ONLY when scribe completes one (pull, not push)
@@ -240,11 +246,16 @@
     - `otmux send <target> "text" Enter`
     - `claudeCode process.running <pane>`
   - Recovery
-    - Read `session/claudeWoda.context.md`
     - Read `session/woda-writer.learnings.md` (this file)
+    - Read `session/woda-writer.context.md` (current state — CHECK PANE REFS!)
     - Read `session/cmm.improvement.md` (add improvement, check scribe progress)
-    - `otmux pane.capture claudeWoda:0.1 15`
+    - Check environment: `tmux list-sessions && tmux list-panes` (panes change!)
+    - Find scribe: look for "WODA Scribe" pane title
+  - Current Panes (2026-02-11 — VERIFY THESE, they change!)
+    - Writer: `projectTeam:1.4`
+    - Scribe: `projectTeam:1.1`
+    - **WARNING**: claudeWoda:0.X is DEAD. Do NOT use old references.
   - Story Files
     - WODA: `session/woda/chapters-*.md`
     - CMM4: `session/cmm4/cmm4-journey.md`
-    - Context: `session/claudeWoda.context.md`
+    - Context: `session/woda-writer.context.md`

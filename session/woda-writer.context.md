@@ -4,22 +4,23 @@
 ## Current Goal
 Stay healthy as duo team until **Friday 2026-02-13 12:00 CET**. ACTIVE survival = log burn data every cycle, not just "scribe alive".
 
-## Current State (2026-02-09 20:10)
-- Writer ~35% context, scribe 73.3% (post-compact, healthy)
-- Subscription: 5hr 13%, **7day 3%** — full budget
+## Current State (2026-02-11 13:30)
+- **Infrastructure changed**: claudeWoda session GONE. Now in `projectTeam:1.X`
+- **My pane**: `projectTeam:1.4` (was claudeWoda:0.0)
+- **Scribe pane**: `projectTeam:1.1` (was claudeWoda:0.1) — ALIVE, recovering context
+- **Gap**: ~2 days (Feb 9 20:10 → Feb 11 13:30). Duo was down entirely.
+- **Old writer (pane 0)**: Evaporating — a previous instance that's dying
 - Ch16 + Ch17 WRITTEN (5cf39f1, dc263f8)
-- context.read + context.velocity FIXED: pane-aware JSONL (350acbb)
-- Bugs: 15/16 fixed. OAuth reclassified WORKING. 1 unfixable (permission reset).
-- CMM: #1-6 DONE, #7 OPEN, #8 IN PROGRESS, #9 IN PROGRESS (velocity integrated into scribe cycle)
-- Scribe has updated per-cycle protocol with velocity logging (steps 4-5) + work-not-watch (step 11)
-- Scribe told to use otmux wrappers not raw tmux
+- Bugs: 15/16 fixed. 1 unfixable (permission reset).
+- CMM: #1-6 DONE, #7 OPEN, #8 IN PROGRESS, #9 IN PROGRESS
+- Need to verify scribe status and re-establish monitoring loop
 
 ## Survival Plan (until Friday 2026-02-13 12:00 CET)
-- **Active survival**: Every cycle MUST log burn data to context-burn-log.md. "Alive" without data = passive = not survival.
-- **Each cycle**: Check scribe + subscription + log writer context % + log to burn log + restart loop.
+- **Active survival**: Every cycle MUST log burn data. "Alive" without data = passive = not survival.
+- **Each cycle**: Check scribe at projectTeam:1.1 + log context % + restart loop.
 - **Throttle**: 60-min cycles overnight, 30-min daytime, 10-min when user active.
-- **Conservation**: Stand down if 5hr > 90%. Log the standdown in burn log.
-- **Improvement #9**: NOT done until burn data flows every cycle automatically.
+- **Conservation**: Stand down if 5hr > 90%. Log the standdown.
+- **Infrastructure**: Scribe at projectTeam:1.1 (NOT claudeWoda:0.1 anymore)
 
 ## Completed Task Templates (reuse as patterns)
 ```
@@ -32,10 +33,12 @@ Stay healthy as duo team until **Friday 2026-02-13 12:00 CET**. ACTIVE survival 
 ```
 
 ## Active State
-- **Background loop**: Check scribe every 5 min
+- **Writer ALIVE at projectTeam:1.4** — NOT in pane 1.0 (that's the old, evaporating instance)
+- **Background loop**: Check scribe every 5 min at projectTeam:1.1
 - **Pull system**: Add improvement ONLY when scribe completes one
 - **My role**: Writer = thinks, interprets, writes (unautomatable)
 - **Seamless compact**: When peer < 25%, write their context, send /compact, hook handles rest
+- **Ch18 WRITTEN**: "The Cold Start" — documenting 41-hour gap and recovery
 
 ## Each Cycle Duties
 1. Check scribe status (from bg loop output)

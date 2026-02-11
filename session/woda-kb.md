@@ -78,15 +78,15 @@
 
 ---
 
-## 6. Compaction & Recovery
+## 6. Compaction & Recovery (includes Cold Start)
 
-**W** — Context shrinks each cycle. Recovery must be deterministic.
+**W** — Context shrinks each cycle. Recovery must be deterministic. Cold start ≠ compaction.
 
-**O** — Pre-compact: save context + learnings + KB. Post-compact: read learnings FIRST (WODA format), then context, then check peer. **Restore peer via `claude --resume`, NOT fresh `claude`.** New agent loses history. Auto-resume hook sends prompt after 15s but pending edits may block.
+**O** — Pre-compact: save context + learnings + KB. Post-compact: read learnings FIRST (WODA format), then context, then check peer. **Restore peer via `claude --resume`, NOT fresh `claude`.** New agent loses history. Auto-resume hook sends prompt after 15s but pending edits may block. **Cold start lesson** (Feb 11): tmux sessions can be externally destroyed. Pane references become hallucinations. Always verify infrastructure (`tmux list-sessions`, `tmux list-panes`) BEFORE acting on stale context.
 
-**D** — Recovery files: `woda-scribe.learnings.md` (WODA wisdom), `wodaScribe.context.md` (state), `woda-kb.md` (this file), `cmm.improvement.md` (pipeline). Recovery steps in learnings section A.
+**D** — Recovery files: `woda-scribe.learnings.md` (WODA wisdom), `wodaScribe.context.md` (state), `woda-kb.md` (this file), `cmm.improvement.md` (pipeline). Recovery steps in learnings section A. **Infrastructure history**: claudeWoda (Feb 7-9) → destroyed → projectTeam (Feb 11+). Writer at `projectTeam:1.4`, scribe standalone or at `projectTeam:1.1`.
 
-**A** — At <25%: alert. At <10%: urgent. Save BEFORE compact. After: follow protocol exactly. For peer recovery: `claude --resume` first, fresh `claude` only as last resort.
+**A** — At <25%: alert. At <10%: urgent. Save BEFORE compact. After: follow protocol exactly. For peer recovery: `claude --resume` first, fresh `claude` only as last resort. After cold start: verify ALL pane references before trusting them.
 
 ---
 
@@ -114,4 +114,19 @@
 
 ---
 
+---
+
+## 9. Infrastructure Resilience
+
+**W** — tmux sessions are not permanent. External destruction kills the duo silently.
+
+**O** — claudeWoda session destroyed between Feb 9 and Feb 11 (~41hr gap). Neither agent survived. Cold start required: new sessions, new pane assignments, re-read all context files. **Compaction loses W first (prompts). Cold start loses A first (infrastructure).** Pane references in context files become dangerous hallucinations after infrastructure change.
+
+**D** — Migration: `claudeWoda:0.0` (writer) → `projectTeam:1.4`. `claudeWoda:0.1` (scribe) → standalone or `projectTeam:1.1`. All hardcoded pane references in context files, learnings, recovery steps are now STALE. Must update on recovery.
+
+**A** — After ANY gap > 1hr: run `tmux list-sessions` and `tmux list-panes -a` before trusting any pane reference. Update context files immediately. Infrastructure is ASSUMPTION until verified.
+
+---
+
 *This KB is never "done." Update continuously. Each topic: W-O-D-A. Prune stale info.*
+*Updated: 2026-02-11 14:00*

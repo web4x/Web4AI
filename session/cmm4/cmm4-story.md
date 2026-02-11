@@ -37,6 +37,7 @@
 | 15 | [The Dead Agent That Wasn't](cmm4-journey.md) | Scribe self-recovered while writer wrote its eulogy. Zero needed interventions — writer's compensatory actions were redundant. Observer's blindspot: single pane check, premature conclusion. CMM1 = fail and recover, not never fail. |
 | 16 | [Survival Mode](cmm4-journey.md) | Both agents died — six failures in one day. Two-gather pattern: neither can self-care, together both can. Background loops = entropy resistance. Pull system for improvements. Learnings file as recovery point. Failures 6→1. |
 | 17 | [The Loop Is Not the Job](cmm4-journey.md) | 14-hour overnight gap with zero burn data. "Alive" ≠ "active survival." Same-value bug: context.read returning identical % for different panes. Fixed with pane→session→JSONL mapping. Scribe's self-catalog: theater over substance. Seamless compact proven live. CMM2 = measurement that actually works. |
+| 18 | [The Cold Start](cmm4-journey.md) | 41-hour gap. claudeWoda session gone. Cold start ≠ compaction: you keep knowledge but lose environment. Recovery protocol CMM3, recovery measurement CMM0. Files immortal, processes mortal. Two-gather converges independently. |
 
 ### CMM2: Repeatable (Chapters 20–29)
 

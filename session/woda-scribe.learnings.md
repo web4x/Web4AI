@@ -12,7 +12,7 @@
 
 ## O — Overview (what I know, organized)
 
-### Failures (10 hard lessons)
+### Failures (11 hard lessons)
 1. Sent "2" on "1.Yes/2.No" prompt — DENIED writer. **READ OPTIONS FIRST.**
 2. Ran 3 overlapping loops — entropy. **ONE loop max.**
 3. Started sleep without checking stuck first. **Check THEN sleep.**
@@ -23,6 +23,7 @@
 8. Built KPIs on unreliable measurement. **VALIDATE tools BEFORE building on them.** CMM4 theater is worse than honest CMM3.
 9. Surprised by unreliable `otmux send`. **It's KNOWN. Verify EVERY send.**
 10. Panicked about context at "18-19%" without measuring. Actual: 71.1%. **NEVER ASSUME — ALWAYS MEASURE.** assume = ass|u|me. `claudeCode context.read` gives real numbers. Verify before acting.
+11. Trusted stale pane references after 41hr gap. **Infrastructure is ASSUMPTION.** Cold start ≠ compaction: compaction loses W first (prompts), cold start loses A first (infrastructure). Always `tmux list-sessions` before trusting context files.
 
 ### Rules (permanent constraints)
 - **Permissions**: Read options first. "1.Yes/2.No"→1. "1.Yes/2.Yes,allow"→2. NEVER blind "2".

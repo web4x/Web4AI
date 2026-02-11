@@ -54,3 +54,6 @@
 | 19:30 | **43.0%** / scribe **83.1%** | writer idle at prompt with 3 duty tasks, pending edits | alive (PID 16532, 5-min) | scribe fresh post-compact | KB updated, monitoring active |
 | 19:45 | **42.4%** / scribe **77.7%** | writer resuming active work | alive (5-min loop) | sub: 5hr 13%, **7day 3%** — budget open | full speed ahead |
 | 20:05 | **36.1%** / scribe **76.1%** | wrote Ch17, closed 3 bugs, compacted scribe | alive (5-min loop) | -6.3% writer/20min ACTIVE, -1.6% scribe | writer approaching compact |
+| --- | --- | --- GAP: ~41 hours. claudeWoda session destroyed. Both agents dead. --- | --- |
+| Feb 11 14:00 | **50.0%** (JSONL) / scribe FRESH | COLD START. Writer alive at projectTeam:1.4. Scribe recovered standalone. | alive (cycle 1) | writer reading SKILL.md files, active | Ch18 written. Infrastructure: projectTeam replaces claudeWoda |
+| Feb 11 14:05 | **62.3%** (JSONL) / scribe fresh | writer idle at prompt, same display as cycle 1 | alive (b6cb76c) | +12.3% — measurement anomaly? Log honestly. | no stuck, no prompts |
