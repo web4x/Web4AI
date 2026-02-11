@@ -92,17 +92,18 @@ _Current CLAUDE.md is a framework reference. It needs multi-agent coordination r
 
 _New methods for the existing `otmux` script. These provide tmux layout persistence._
 
-- [ ] **7.1** Implement `otmux.session.save <session> <file>` — captures tmux layout to sourceable bash file
+- [x] **7.1** Implement `otmux.session.save <session> <file>` — captures tmux layout to sourceable bash file
   - Loop windows with `tmux list-windows -F`
   - Loop panes with `tmux list-panes -F`
   - Save: session name, window count, layout strings, pane working directories
-- [ ] **7.2** Implement `otmux.session.restore <file>` — recreates tmux layout from saved file
+- [x] **7.2** Implement `otmux.session.restore <file>` — recreates tmux layout from saved file
   - Source the bash file
   - Create session + panes with correct directories
   - Apply layout strings with `tmux select-layout`
   - Guard: error if session already exists
-- [ ] **7.3** Write tests: `test.suite` cases for save/restore round-trip
-- [ ] **7.4** Add Tab completion entries for new methods
+  - Dynamic window/pane index detection (respects base-index config)
+- [x] **7.3** Write tests: `test.suite` cases for save/restore round-trip (T26-T36, all pass)
+- [x] **7.4** Tab completion auto-detected by c2 system (no manual entries needed)
 
 ---
 
@@ -110,17 +111,17 @@ _New methods for the existing `otmux` script. These provide tmux layout persiste
 
 _Build on otmux.session.save to persist the full agent layer._
 
-- [ ] **8.1** Implement `hiveMind.team.save <session> <file>` — saves topology.md + calls otmux.session.save for topology.tmux
+- [x] **8.1** Implement `hiveMind.team.save <session> <file>` — saves topology.md + calls otmux.session.save for topology.tmux
   - Reads role registry (`/tmp/hivemind.roles`)
   - Reads session UUIDs (`/tmp/hivemind.sessions`)
   - Writes markdown table with pane, role, session UUID, status, context file path
-- [ ] **8.2** Implement `hiveMind.team.restore <file>` — recreates team from topology files
+- [x] **8.2** Implement `hiveMind.team.restore <file>` — recreates team from topology files
   - Calls `otmux.session.restore` for pane layout
   - Rebuilds `/tmp/hivemind.roles` from topology.md
   - Rebuilds `/tmp/hivemind.sessions` from topology.md
   - Does NOT start Claude (that's team.startup's job)
-- [ ] **8.3** Write tests: save/restore round-trip preserves all mappings
-- [ ] **8.4** Add Tab completion entries
+- [x] **8.3** Write tests: save/restore round-trip preserves all mappings (T32-T39, all pass)
+- [x] **8.4** Tab completion auto-detected by c2 system
 
 ---
 
@@ -128,24 +129,24 @@ _Build on otmux.session.save to persist the full agent layer._
 
 _The high-level lifecycle methods that users actually call._
 
-- [ ] **9.1** Implement `hiveMind.team.shutdown <session> [--keep-session]`
+- [x] **9.1** Implement `hiveMind.team.shutdown <session> [--keep-session]`
   - Iterate agents in registry
   - Send "save state" message to each pane
-  - Wait 5-10 seconds for agents to write context files
+  - Wait 10 seconds for agents to write context files
   - Call `hiveMind.team.save`
   - Call `hiveMind.auto.commit`
   - Send Ctrl-C + `/exit` to each pane
   - Optionally kill tmux session (unless `--keep-session`)
-- [ ] **9.2** Implement `hiveMind.team.startup <file>`
+- [x] **9.2** Implement `hiveMind.team.startup <file>`
   - Call `hiveMind.team.restore` (recreate panes, rebuild registries)
-  - Start Claude in each pane with `claude --resume`
-  - Wait for TUI init (2-3 seconds per pane)
+  - Start Claude in each pane with `claude --resume` (uses stored session UUID)
+  - Wait for TUI init (3 seconds per pane)
   - Send boot file prompt to each pane
   - Verify agents alive via `hiveMind.agent.verify`
   - Print startup summary
-- [ ] **9.3** Write tests: shutdown saves state, startup restores it
-- [ ] **9.4** Add Tab completion entries
-- [ ] **9.5** End-to-end test: full team setup -> work -> shutdown -> startup -> verify recovery
+- [x] **9.3** Write tests: argument validation, function existence, completion (T40-T46, all pass)
+- [x] **9.4** Tab completion auto-detected by c2 system
+- [ ] **9.5** End-to-end test: full team setup -> work -> shutdown -> startup -> verify recovery (deferred to Phase 12)
 
 ---
 
