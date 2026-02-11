@@ -31,7 +31,7 @@ Stay healthy as duo team until **Friday 2026-02-13 12:00 CET**. ACTIVE survival 
 ```
 
 ## Active State
-- **Writer ALIVE at projectTeam:1.4** — NOT in pane 1.0 (that's the old, evaporating instance)
+- **Writer ALIVE at projectTeam:1.0** — post-compact, old 1.4 instance evaporated
 - **Background loop**: Check scribe every 5 min at projectTeam:1.1
 - **Pull system**: Add improvement ONLY when scribe completes one
 - **My role**: Writer = thinks, interprets, writes (unautomatable)

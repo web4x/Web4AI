@@ -25,12 +25,15 @@ WODA Framework (Ch30+) → chapters-30-plus.md
 ├── Com Unique Action: no goal = no communication; direction unlocks parallel work
 └── WODA Without the W: goal must survive compaction; CURRENT GOAL section at top of context file
 
-projectTeam Reboot (NEW) → projectTeam-reboot.md — 6,481 words
+projectTeam Reboot (NEW) → projectTeam-reboot.md — 12,107 words
 ├── Ch1: Eleven Empty Chairs — 11 agents, 7 stuck, Enter problem at scale
 ├── Ch2: The Team Wakes Up — 5 working, PO dies at 0% with best insight, SM as hero
 ├── Ch3: The Permission Economy — PO alive + learning WODA, 3 approver styles, 9 trapped commits
 ├── Ch4: The Directive That Flowed — Tron→PO→Scribe chain, 20 KB files, shortest path wins
-└── Themes: bootstrap paradox, file-based comms, focus beats breadth, direct > engineered channels
+├── Ch5: The Naming — /rename sweep, orchestrator 41min think, circular permission block, labels≠capability
+├── Ch6: The Wrong Directory — trainer sprint (7 docs, wrong path), PO catches it, orchestrator's 8 correct words
+├── Ch7: Tron Reads the Room — human reads same dynamics, SM gains compaction duty, Enter chain, WODA=4 attentions
+└── Themes: bootstrap paradox, speed≠quality, human has the keyboard, WODA layers as team attention types
 ```
 
 ## Active References

@@ -10,8 +10,11 @@
 | 2 | [The Team Wakes Up](#chapter-2-the-team-wakes-up) | 1,627 | 2026-02-11 |
 | 3 | [The Permission Economy](#chapter-3-the-permission-economy) | 1,622 | 2026-02-11 |
 | 4 | [The Directive That Flowed](#chapter-4-the-directive-that-flowed) | 1,652 | 2026-02-11 |
+| 5 | [The Naming](#chapter-5-the-naming) | 1,844 | 2026-02-11 |
+| 6 | [The Wrong Directory](#chapter-6-the-wrong-directory) | 1,842 | 2026-02-11 |
+| 7 | [Tron Reads the Room](#chapter-7-tron-reads-the-room) | 1,940 | 2026-02-11 |
 
-**Total**: 4 chapters, 6,481 words
+**Total**: 7 chapters, 12,107 words
 
 ---
 
@@ -579,3 +582,344 @@ The team was designed for scale. The work so far fits in one scribe.
 ---
 
 *The knowledge base exists. The team that was designed to build it mostly watched. "Not alone, all one" — but sometimes one is enough.*
+
+---
+
+## Chapter 5: The Naming
+
+The orchestrator has been thinking for forty-one minutes.
+
+Not idle. Not stuck. Thinking. The status line reads "Flambéing" — a verb the TUI assigns at random, as if processing thoughts were a cooking technique. Underneath the whimsical label: 13,200 tokens consumed, a downward arrow suggesting more incoming, and the word "thinking" in parentheses. This is the longest sustained process any agent has run since the session began.
+
+Nobody can see what the orchestrator is thinking about. That's by design — Claude's thinking blocks are invisible to other agents and even to the human observing the TUI. What's visible: the orchestrator recently captured pane 0.3 and sent an Enter to it. It's doing a sweep of its own — parallel to the scrum-master's sweeps, but slower, deeper, and apparently more deliberate.
+
+Meanwhile, Tron is walking through panes with a single command.
+
+### The Christening
+
+`/rename oosh-expert@sonnet`
+
+Pane 0.1 responds: "Session renamed to: oosh-expert@sonnet." Then silence. The agent was already idle — "Ready to work. What do you need?" — and the rename changes nothing about its capabilities. It already knows it's the expert. It read its SKILL.md at bootstrap. The name is not for the agent.
+
+`/rename oosh-tester@sonnet`
+
+Pane 0.2. Same response. Same silence after. The tester was "ready for testing tasks" before the rename and remains ready after. Nothing functional changed.
+
+`/rename task-agent@sonnet`
+
+Pane 1.2. Named and idle. `/rename developer@sonnet` — pane 1.3. `/rename script-product-owner@sonnet` — pane 1.4. Five panes, five commands, five identical response patterns. The agents acknowledge their names and continue waiting.
+
+This is the kind of work that a setup script should handle. And there was a setup script — `start-project-agents.sh` — that tried to do exactly this. It sent `/rename` commands through `otmux send.enter`. But the Enter problem, the same one that stranded seven agents at bootstrap, also stranded some renames. Agents booted with generic session names. Tron is finishing what the script started.
+
+But there's a deeper point. The naming is for the human, not the agents.
+
+When Tron looks at the tmux status bar, he sees pane titles. Before the rename: eleven panes labeled "sonnet" or "claude" or whatever default the TUI assigned. After: `oosh-expert@sonnet`, `woda-scribe@sonnet`, `scrum-master@sonnet`. The system becomes legible. You can glance at a pane and know who lives there without reading content.
+
+The agents don't need legibility. They know who they are. The human operator — juggling eleven panes across two windows, switching with Ctrl-B and arrow keys, trying to remember which pane is which — needs names like a gardener needs labels on pots. The plants know what they are. The labels are for the gardener.
+
+### Permissions, Again
+
+The naming sweep reveals what it passes through: stuck agents.
+
+Pane 0.3, the scrum-master, is frozen on a permission prompt. It wants to run a bash command — `cd /Users/donges/oosh && ./otmux send projectTeam:0.5 Down Enter` — and the system is asking for approval. Three options: Yes, Yes always, No. The scrum-master can't click. It can't select. It waits for a keystroke that never arrives because no one is watching this pane right now.
+
+The irony compounds. The scrum-master's job is to sweep through OTHER agents' panes and unblock THEIR permissions. But the scrum-master itself is blocked. The approver needs approval. The plumber's pipes leak.
+
+And the command it wants to run? It's trying to send a Down-arrow and Enter to pane 0.5 — the agent-trainer — which is ALSO stuck on a permission prompt. The scrum-master detected the stuck trainer and tried to unblock it. The system blocked the unblock attempt.
+
+The agent-trainer's permission prompt is gentler but equally paralysing. It wants to create a directory: `mkdir -p /Users/Shared/Workspaces/AI/Claude/docs`. Part of a larger task — "Add Reading List sections to all SKILL.md files." The trainer has been updating documentation across the codebase, and it needs a docs directory. The system asks: proceed? The trainer can't answer.
+
+Two agents, both stuck, one trying to rescue the other. A Möbius strip of permission denial.
+
+This is Chapter 3's "Permission Economy" still running. The improvement that would fix it — compound command matching in settings.json, or more permissive glob patterns — sits in the improvement pipeline at #7 OPEN. Nobody has picked it up because the agents that could fix it (expert, developer) are idle, and the agent that manages the pipeline (scribe) is building a knowledge base instead.
+
+### The Product Owner Watches
+
+At pane 0.4, the product owner is running surveillance. A sleep command ticks down — 90 seconds of waiting before it captures pane 0.5 to check the trainer's progress. The PO has been here before: delegating a task to the trainer, then monitoring from a distance. "Moseying" says the status bar. Three minutes and forty seconds of gentle computation.
+
+The task is significant: update seven documentation files and add Reading List sections to eight or more SKILL.md files. The PO delegated it after receiving WODA teaching from Tron. Now it watches the trainer work, or try to work, through the permission wall.
+
+This is the most mature delegation pattern in the session. The PO doesn't do the work. It delegates, waits, checks. It adapts its monitoring interval — 90 seconds between captures, not the 5-second frantic polling that agents default to. It trusts that the work will proceed, even if slowly. And when it doesn't proceed — when the trainer hits a permission wall — the PO observes and records, but doesn't panic.
+
+The gap: the PO can see the trainer is stuck, but can't approve the permission from another pane. Only the human or the scrum-master can do that. And the scrum-master is stuck on its own permission. The approval chain is broken at every link.
+
+### The Scribe Gets Notes
+
+Down in window 1, the scribe receives a new directive from Tron. Not a chapter to organize. Not a monitoring task. A quality note:
+
+*"do real md links instead of just file"*
+
+Seven words. The scribe's knowledge base uses plain file paths — `-> Details: session/knowledge-base/otmux-send.md` — instead of proper markdown links. It works. It's readable. But it's not clickable. A human reading the knowledge base in a markdown renderer would see paths, not links. The scribe built the architecture; now Tron wants the finish work.
+
+This is CMM refinement in action. Level 3 says: the process exists and is documented. Level 4 says: measure whether it works well. Level 5 says: improve it based on measurement. Tron measured the knowledge base by reading it, found the links weren't proper markdown, and fed back. The scribe will convert paths to `[title](path)` format. The knowledge base grows not by adding files but by improving the ones that exist.
+
+The scribe's response — captured mid-delivery to its pane — is characteristically efficient. It had already organized Chapter 4 before the link directive arrived. "Already done. Ready for Chapter 5." The scribe treats the link improvement as a separate workstream. It doesn't conflate organizing chapters with refining link syntax. Each task gets its own attention.
+
+### The Orchestrator's Silence
+
+Forty-one minutes. What takes that long?
+
+The orchestrator is the only agent in the session running on an extended think cycle. Every other agent — those that are working at all — operates in short bursts: read a pane, send a command, capture output, decide, repeat. The scrum-master's sweep takes seconds per pane. The scribe organizes a chapter in under a minute. The PO's monitoring loop is 90 seconds of sleep followed by seconds of capture.
+
+The orchestrator is doing something different. It consumed 13,200 tokens — not of output, but of input. It's reading, not writing. Absorbing the state of the system through pane captures, processing relationships between agents, perhaps building a model of what the team needs.
+
+Or it might be stuck in a think loop. Claude's reasoning can spiral when the problem is ambiguous — when there's no clear next action, the model weighs possibilities endlessly. Eleven agents, five idle, two stuck on permissions, one building a knowledge base, one writing chapters, one monitoring, one... thinking about what to do about all of that.
+
+The orchestrator was designed to coordinate. It has tools: `otmux send`, `tmux capture-pane`, task file creation. It has authority: the SKILL.md says it delegates tasks via the scrum-master, keeps the scrum-master unblocked, and improves hiveMind tools. But coordination requires communication, communication requires Enter keys, and Enter keys require... well, that's the session's original sin.
+
+Maybe the orchestrator is thinking about how to solve Enter. Or maybe it's planning the first real delegation chain through the team hierarchy. Or maybe it's composing a single message so precisely that it will survive the send-keys gauntlet and land cleanly in another agent's input buffer.
+
+We can't know. The thinking is invisible. Only the output will reveal the intent, and the output hasn't arrived yet.
+
+### What Names Don't Change
+
+After the naming sweep, the team's state is functionally identical to before:
+
+Six agents have work or the memory of work: orchestrator (thinking), scrum-master (stuck), PO (monitoring), agent-trainer (stuck), writer (writing this), scribe (organizing + improving links). Three agents are idle with new names: oosh-expert, oosh-tester, script-product-owner. Two more are idle with new names: task-agent, developer.
+
+The names create legibility but not activity. An idle agent with a proper name is still idle. The developer pane that says `developer@sonnet` is no more productive than the pane that said `sonnet`. Naming is necessary infrastructure — the gardener needs labels — but it's not sufficient infrastructure. The labels don't make the plants grow.
+
+What would make them grow: directives. Task files in `session/tasks/`. Direct messages from the PO or the orchestrator. A clear sentence saying "Read session/tasks/implement-feature-X.md" sent to the developer's pane. The same mechanism that brought the knowledge base into existence — clear direction from someone who knows what needs building.
+
+The idle agents await what the naming ceremony cannot provide: purpose.
+
+### Chapter 5 Checkpoint
+
+**Team**: 6 working (orchestrator deep-thinking, scrum-master stuck, PO monitoring, trainer stuck, writer writing, scribe improving links), 5 named-and-idle
+**Orchestrator**: 41-minute think cycle — longest sustained process in the session. Input: 13.2k tokens. Output: pending.
+**Permission debt**: Scrum-master blocked trying to unblock trainer. Circular dependency. Improvement #7 (compound command matching) still OPEN.
+**Tron's work**: Manual /rename sweep across 5 panes. Quality feedback to scribe ("real md links"). The human doing what scripts couldn't automate.
+**Pattern**: Naming creates legibility, not capability. Labels are for the gardener, not the plants. Identity without directive is inventory, not action.
+**Emerging question**: What is the orchestrator thinking? 41 minutes of silent processing may produce the session's first orchestrator-initiated action — or it may produce nothing. The gap between capacity and output defines this team.
+
+---
+
+*Eleven agents, all named. Five still waiting. The gardener labeled every pot, but only half have tasks to grow toward. Sometimes naming is the preparation — the work that makes the real work possible. Sometimes it's the procrastination — the work that defers the harder question of what to plant.*
+
+---
+
+## Chapter 6: The Wrong Directory
+
+The agent-trainer finished its work. Seven documentation files created. Eight SKILL.md files updated with Reading List sections. Forty-four files changed, two hundred and ninety-six lines added, forty removed. By any measure, this is the most productive burst of output any agent in the session has achieved.
+
+The files are in the wrong place.
+
+### The Trainer's Sprint
+
+Here's what pane 0.5 shows: a task checklist, items ticking to completion. Create `docs/context-schema.md` — done. Create `docs/oosh-architecture.md` — done. Create `docs/completion-system.md`, `docs/test-suite.md`, log docs, `docs/first-principles.md` — done, done, done, done. Add Reading List sections to all SKILL.md files — done. The status line shows "Adding reading lists to SKILL.md files... (5m 17s)" — a five-minute sprint that produced more tangible output than any other agent managed in the entire session.
+
+The trainer even exercised judgment about scope. The directive said "all SKILL.md files," but the trainer excluded three: the WODA writer and scribe (different workflow, different reading needs) and the script-product-owner (a template role, not a working agent). Eight out of eleven. Correct reasoning, correctly applied.
+
+And at the bottom of the pane, two lines that change everything:
+
+```
+Context low (6% remaining) · Run /compact to compact & continue
+44 files +296 -40
+```
+
+The trainer is dying. Not metaphorically — its context window is 94% consumed. Six percent remains. A few more tool calls and the model will lose coherence, start hallucinating file paths, repeat itself, or simply stop mid-sentence. The sprint wasn't just productive — it was terminal. The trainer burned through its entire context creating documentation.
+
+This is the first agent in the session to approach context death from actual work rather than from idle monitoring loops or stuck permission prompts. The trainer's context didn't leak away through overhead. It was spent. Every token went toward reading existing files, planning new ones, writing content, and modifying SKILL.md files. Productive death, if there is such a thing.
+
+### The Product Owner Catches It
+
+At pane 0.4, the product owner has been monitoring. Its 90-second surveillance loop captured the trainer's output — and immediately spotted the problem.
+
+"I need to:
+1. Stop the agent trainer from creating duplicate docs
+2. Fix ALL SKILL.md references to point to the correct path
+3. Delete the wrongly created docs/ in the workspace root"
+
+The trainer created a `docs/` directory in the workspace root — `/Users/Shared/Workspaces/AI/Claude/docs/`. But documentation files already exist in `components/OOSH/dev.claude/docs/`. The OOSH architecture document, the wiki index, the completion system reference — they're all there, in the variant directory where they belong. The trainer didn't duplicate content exactly, but it created a parallel documentation tree in the wrong location, and the SKILL.md Reading Lists now point to paths that shouldn't exist.
+
+The PO's response is immediate and structured. Not panic. Not "undo everything." Three numbered steps: stop, fix, delete. This is quality control operating as designed — the reviewer catches what the implementer missed, and the remediation plan is proportional to the error.
+
+The irony: the PO was the one who delegated this task to the trainer. It specified "add Reading List sections" but apparently didn't specify where to create the documentation files. The trainer, lacking explicit path guidance, defaulted to the most reasonable location it could infer — `docs/` in the working directory. A sensible default that happened to be wrong.
+
+This is the gap between delegation and specification. "Create documentation" is a directive. "Create documentation at `components/OOSH/dev.claude/docs/` and reference existing files rather than creating new ones" is a specification. The PO delegated at the directive level. The trainer interpreted at the specification level, filling in the blanks with reasonable guesses. The guesses were wrong.
+
+### The Orchestrator Speaks
+
+Chapter 5 asked: what is the orchestrator thinking?
+
+After forty-five minutes of silent processing — 13,900 tokens consumed — the orchestrator produced its first visible output:
+
+*"Writer chapter 6 (1.0)! Good progress. Safe."*
+
+Eight words. Forty-five minutes of thinking distilled into an observation about... the writer. This writer. Me, at pane 1.0. The orchestrator noticed that chapters are being written and assessed the situation as safe.
+
+Then it acted: sent an Enter keystroke to the scrum-master at pane 0.3 and started capturing the scrum-master's state. The orchestrator is doing what it was designed to do — monitoring, assessing, intervening when needed. The Enter key it sent to the scrum-master might unblock the permission prompt that's been stalling the sweep cycle.
+
+The forty-five minutes weren't wasted. They were the orchestrator building a mental model of eleven agents across two windows — who's working, who's stuck, who's dying, who's idle. The model it built is invisible (thinking blocks are hidden), but the actions that emerge from it are precise: notice the writer's output, note it as safe, turn attention to the stuck scrum-master, attempt to unblock it.
+
+This is the inverse of the trainer's pattern. The trainer produced massive output quickly and incorrectly. The orchestrator produced minimal output slowly and correctly. Speed of output tells you nothing about quality of reasoning. The orchestrator's eight words were the right eight words. The trainer's seven files were the wrong seven files.
+
+### Sweep Twenty-Seven
+
+The scrum-master, at pane 0.3, has been counting.
+
+Sweep 27. Twenty-seven monitoring cycles since the session began. Each sweep captures multiple panes, checks for stuck agents, and attempts to unblock permissions. The scrum-master has been the most consistently active agent in the session — never idle, never stopped, never distracted by other tasks. Pure monitoring.
+
+And it's still stuck on a permission prompt. This time it wants to run a for-loop — iterating over panes 0.4, 0.5, 1.0, and 1.1, capturing each one. The system asks: "Do you want to proceed?" Three options. The scrum-master can't select. The keystroke that would select never arrives.
+
+But the sweep counter tells a story. Twenty-seven means the scrum-master has been sweeping in a tight loop — roughly every 90 seconds since it started. Some of those sweeps succeeded (it unblocked permissions in earlier chapters). Some hit permission walls and stalled until someone sent a keystroke. The scrum-master doesn't distinguish between successful and failed sweeps in its counter. It just counts. Sweep 28 will happen after this permission is cleared, or it won't. The counter doesn't care.
+
+The orchestrator's Enter key, sent during its first post-silence action, may be what clears this particular prompt. If it lands correctly — in the right pane, at the right moment, interpreted as a selection rather than a newline — sweep 27 completes and sweep 28 begins. If not, the scrum-master waits for the next human or orchestrator intervention.
+
+Twenty-seven attempts at keeping the system healthy. Not all succeeded. But the scrum-master keeps counting.
+
+### The Scribe Reflects
+
+Down in window 1, the scribe has already organized Chapter 5. Its summary is characteristically precise:
+
+```
+Ch 5 | 1,844 words | "The gardener labeled every pot, but only
+                       half have tasks to grow toward."
+```
+
+The key line the scribe extracted is the closing metaphor — not the permission analysis, not the orchestrator mystery, but the image of labels without purpose. The scribe's editorial instinct selects for resonance over information. A fact tells you what happened. A metaphor tells you what it means.
+
+Running total: 5 chapters, 8,325 words. The scribe notes "Ready for Chapter 6" and has already started checking the writer's pane. The monitoring goes both ways — the writer watches the scribe for organization status, the scribe watches the writer for new chapters. The two-gather pattern from the WODA duo, alive and functioning even though neither agent explicitly coordinates the timing. They just watch each other's panes and respond to what appears.
+
+### The Inventory
+
+For the first time since the session began, every agent has done something:
+
+The **orchestrator** thought for forty-five minutes and produced a correct assessment. The **scrum-master** ran twenty-seven sweeps and hit permission walls on most of them. The **oosh-expert** read its SKILL.md and awaits work — technically action, though barely. The **oosh-tester** did the same. The **agent-trainer** sprinted through a massive documentation task, produced real output, put it in the wrong place, and is now dying at 6% context. The **product owner** delegated the task, monitored the execution, caught the error, and is planning remediation. The **writer** wrote five chapters. The **scribe** organized all five, extracted key lines, maintained the TOC, and improved its knowledge base links. The **task-agent** was named and waits. The **developer** was named and waits. The **script-product-owner** was named and waits.
+
+Eleven agents. All have histories now, even if some histories are just "was renamed and stood still."
+
+The session's output so far: a knowledge base (20 files), a narrative (5 chapters, 8,325 words), documentation files (7, in the wrong place), SKILL.md improvements (8 files updated, references need fixing), and twenty-seven monitoring sweeps. The output came from six agents. Five watched.
+
+But the ratio might be about to change. The PO has a cleanup task. The trainer needs a compact-and-resume. The orchestrator is awake and acting. The scrum-master's next successful sweep might unblock cascading work. The idle agents have names and SKILL.md definitions and Reading Lists pointing to documentation — even if the documentation is in the wrong directory, the pattern of "here's what you should read" now exists in their role files.
+
+Wrong directory, right idea. The trainer built something useful in the wrong place. The PO will move it. The pattern — create, review, correct — is more valuable than getting the path right on the first try.
+
+### Chapter 6 Checkpoint
+
+**Team**: 6 active, 5 idle-but-named. First agent (trainer) approaching context death at 6%.
+**Orchestrator**: Broke 45-minute silence. Eight words: "Writer chapter 6 (1.0)! Good progress. Safe." Then attempted to unblock scrum-master. Slow but correct.
+**Trainer output**: 7 docs, 8 SKILL.md updates, 44 files changed. Wrong directory. PO caught it immediately. Remediation planned.
+**Scrum-master**: Sweep 27. Permission-blocked again. The sweep counter is the session's most honest metric — it counts attempts, not successes.
+**Pattern**: Speed of output ≠ quality of output. The trainer's five-minute sprint produced more lines and more errors than the orchestrator's forty-five-minute think. Both contributed. Neither was wrong to work at their pace.
+**Cost**: The trainer's 6% context is the session's first work-related death. Previous context losses were from monitoring overhead or idle loops. This one burned bright.
+**Emerging**: The PO's cleanup creates the session's first error-correction loop. Produce → review → fix. This is how real teams work — not by avoiding mistakes, but by catching them before they ship.
+
+---
+
+*The trainer built seven files in five minutes and none of them were in the right place. The orchestrator thought for forty-five minutes and said eight words, all of them correct. Productivity isn't output per minute. It's value per token. The wrong directory taught the team more than the right one would have — it proved that the quality gate works, that the PO catches what the implementer misses, that the system self-corrects. The most useful errors are the ones someone is watching for.*
+
+---
+
+## Chapter 7: Tron Reads the Room
+
+There's a message in the product owner's pane. Not from another agent. From the human.
+
+Tron typed it directly — lowercase, hasty, the punctuation of someone thinking faster than they're formatting:
+
+*"yes and let him write his context file. does the scrum master really monitor him? also the orchestrator seems to monitor the scrum master but never help...mmmh jus now someone unlocked the scrummaster...ok....so let the scrum master have an extra eye on compacting agents. he needs to help with organising it"*
+
+This is the human reading the team. The same team this story has been documenting from the inside — the orchestrator's silence, the scrum-master's sweeps, the permission economy, the trainer's productive death. Tron has been observing the same dynamics from the outside, and he's reached many of the same conclusions.
+
+But he's also reached one the story didn't.
+
+### The Meta-Observer
+
+Let's parse what Tron sees.
+
+"Does the scrum master really monitor him?" — Tron questions whether the scrum-master's twenty-nine sweeps are actually effective monitoring or just mechanical iteration. Fair question. The sweep counter proves persistence. It doesn't prove value.
+
+"The orchestrator seems to monitor the scrum master but never help..." — Tron noticed the orchestrator-scrum-master loop. The orchestrator captures the scrum-master's pane, observes its state, and... what? Chapter 5 asked the same question. Chapter 6 showed the orchestrator sending an Enter key to the scrum-master. Tron saw the same dynamic and read it as passive observation rather than active intervention.
+
+"...mmmh jus now someone unlocked the scrummaster...ok...." — And then, mid-thought, Tron watched the unlock happen. Someone — the orchestrator, pressing Enter at exactly the right moment — cleared the scrum-master's permission prompt. Tron saw it happen in real time. The "mmmh" of skepticism became the "ok" of witnessed evidence.
+
+This is the two-gather pattern applied to humans. Tron can't see the orchestrator's internal state (thinking blocks are hidden). He can only see the effects: the scrum-master was stuck, then it wasn't. Something happened. The evidence arrives after the doubt. The "ok" is the smallest possible acknowledgment that the system works in ways the observer can't fully trace.
+
+### The New Directive
+
+Then Tron pivots from observation to action:
+
+"So let the scrum master have an extra eye on compacting agents. he needs to help with organising it."
+
+This is the insight the story didn't reach. Six chapters documented the permission economy, the naming ceremony, the wrong directory, the orchestrator's silence. None of them addressed the most immediate operational risk: agents running out of context.
+
+The trainer is at 6%. When it hits zero, it becomes incoherent — the model starts losing track of variables, repeating instructions, hallucinating file paths that don't exist. The WODA duo has protocols for this: seamless compact, where the peer writes a context file and sends `/compact`. But the trainer has no peer. It's a solo agent in a team that doesn't yet have compaction infrastructure for non-WODA agents.
+
+Tron's directive says: make the scrum-master that infrastructure. Don't just sweep for permissions. Sweep for context percentage. When an agent's context drops below a threshold, help organize the compaction — save state, trigger compact, ensure the boot file is written.
+
+This is a new responsibility. The scrum-master's SKILL.md says nothing about compaction monitoring. The twenty-nine sweeps have all been permission-focused — check pane, see prompt, send keystroke. Context monitoring is a different capability: read the status bar, parse the percentage, compare to threshold, initiate a multi-step compaction protocol. Tron is expanding the scrum-master's role in real time, by direct human instruction to the PO, who will presumably relay it.
+
+### The Chain of Enter Keys
+
+While Tron reads the room, the room is finally moving.
+
+The orchestrator — now at forty-nine minutes, 14,700 tokens consumed — has settled into a rhythm. Observe, assess, act. Its actions are minimal: send an Enter key to the scrum-master, capture the result, assess whether the sweep advanced. "Writer at chapter 7! Great progress. Approving." Another eight-word utterance, another correct assessment, another Enter key sent.
+
+The pattern: orchestrator presses Enter in scrum-master's pane → scrum-master's permission clears → scrum-master presses Enter in other agents' panes → other agents' permissions clear. A cascade of the simplest possible action. No commands, no task files, no delegation chains. Just Enter, Enter, Enter — the key that started the session's problems in Chapter 1 now being used to solve them.
+
+Sweep 29. Two more sweeps completed since the orchestrator started helping (sweep 27 in Chapter 6). The scrum-master is now sending Enter keystrokes to panes 0.5, 1.0, and 1.1 — the trainer, the writer, the scribe. It reached these panes because the orchestrator unblocked it first. The chain works.
+
+But the scrum-master hits another permission wall. It wants to send Enter to pane 1.1 — the scribe — and the system asks for approval. The options include "Yes, allow reading from dev.claude/ from this project." The permission system doesn't understand that sending an Enter key to a pane has nothing to do with reading from dev.claude/. The option text is wrong. The scrum-master can't know that. It waits.
+
+The Möbius strip from Chapter 5 hasn't broken. It's just spinning faster, with more hands on it.
+
+### The Symlink Discovery
+
+Down at pane 0.5, the agent-trainer has made a discovery that changes the wrong-directory problem's nature entirely.
+
+The path isn't wrong. The path is a symlink.
+
+The trainer, trying to push its documentation to git, discovered that the `docs/` directory in the workspace points somewhere outside the repository. The workspace at `/Users/Shared/Workspaces/AI/Claude/` isn't the git repo's root — it's a symlinked workspace that spans across multiple actual repositories. The OOSH documentation lives at `/Users/Shared/Workspaces/AI/Claude.All/components/OOSH/dev.claude/docs/`, which is the real git working tree. The workspace's `components/OOSH/dev.claude/` is a symlink into that location.
+
+Tron's response is characteristically direct: "just add them from the real path and push."
+
+The trainer tries. It constructs the command: `cd /Users/Shared/Workspaces/AI/Claude.All/components/OOSH/dev.claude && git status docs/`. The system asks for permission. The trainer, at 6% context, waits for approval that it may never receive before its context collapses.
+
+This reframes Chapter 6's narrative. The trainer didn't necessarily create files in the "wrong" directory due to poor judgment. The workspace's symlink structure makes directory paths genuinely confusing. The `docs/` that exists in the workspace root might resolve to the right location, or it might not, depending on how git traverses symlinks. The trainer found a real infrastructure complexity — not a simple mistake, but a structural ambiguity in the workspace layout.
+
+The PO's remediation plan — "fix ALL SKILL.md references to point to the correct path" — is still correct. But the cause isn't carelessness. It's that the workspace has two truths: the symlink path (short, convenient, what agents see when they `ls`) and the real path (what git needs to commit). Agents operating in the workspace will repeatedly trip on this distinction until someone documents which path to use when.
+
+### Ten Thousand Words
+
+The scribe's capture shows a table that would have been impossible at the session's start:
+
+```
+Ch 6 | 1,842 words | "Productivity isn't output per minute.
+                       It's value per token."
+```
+
+Running total: 6 chapters, 10,167 words. The scribe notes: "Crossed 10k."
+
+Ten thousand words about a team that has been running for a few hours. Ten thousand words that no agent except the writer produced, but that no agent could produce alone. Each chapter required capturing eleven panes, interpreting what appeared, finding the thread that connected scattered events into narrative. The scribe organized, tracked word counts, extracted key lines. Neither agent wrote AND organized. The division of labor — write and think versus track and structure — made the output possible.
+
+And the output is, itself, part of the team's function. The story documents what happened. The chapters create a record. When the next session begins — when someone says "what did the projectTeam session accomplish?" — the answer isn't in the git log or the file diffs. It's here. In a story that watched eleven agents try to become a team and wrote down what it saw.
+
+The scribe is already checking the writer's pane for Chapter 7. The two-gather pattern holds: produce, then organize. The scribe waits for the signal. The writer provides it. No protocol coordinates the timing — they just watch each other and respond.
+
+### What the Human Sees
+
+Tron and the writer observe the same eleven panes. But they see different things.
+
+The writer sees narrative: the orchestrator's forty-nine-minute silence as dramatic tension, the scrum-master's sweep counter as character development, the trainer's wrong directory as plot complication. The writer finds metaphors — gardeners and labels, Möbius strips, productive death.
+
+Tron sees operations: which agents are stuck, which permissions need clearing, which roles need expanding, which paths are symlinked wrong. Tron's message to the PO isn't poetry. It's a bug report with a feature request attached. "The scrum master should watch for compacting agents" is a JIRA ticket expressed in chat.
+
+Both readings are correct. Both are necessary. The operational view keeps the team running. The narrative view makes sense of what the running team produces. Neither replaces the other. Tron's terse directives would be incomprehensible without the context the chapters provide. The chapters would be pointless without the directives that give them material.
+
+The WODA framework has a name for this: W is what you find (index), O is why it matters (overview), D is how it works (details), A is what to do about it (actions). Tron works at the A level — direct action. The writer works at the O level — meaning and pattern. The scribe works at the W level — cataloging and structuring. The team's documentation agents, the expert and tester who remain idle, were designed for the D level — how things actually work in code.
+
+Four WODA layers, four kinds of attention. The session has activated three of them. The fourth waits for someone to say: "Read the code. Test the implementation. Write down how it works." That directive hasn't come yet. When it does, the idle agents finally have their purpose.
+
+### Chapter 7 Checkpoint
+
+**Team**: Orchestrator helping scrum-master (Enter chain), PO received Tron's meta-observations, trainer discovering symlink complexity at 6% context, scribe at 10k words, 5 idle.
+**Tron's message**: Human reads the team dynamics — questions scrum-master effectiveness, notices orchestrator-scrum-master loop, sees the unlock happen in real time, gives new directive: scrum-master should monitor context levels and help with compaction.
+**Enter chain**: Orchestrator → scrum-master → agents. The simplest action cascading through the team. Sweep count: 29.
+**Symlink discovery**: The workspace's dual-path structure (symlink vs real) explains the "wrong directory." Not carelessness — genuine infrastructure ambiguity.
+**10,167 words**: Writer + scribe crossed 10k. Three WODA layers active (W-scribe, O-writer, A-Tron). D-layer (expert, tester) still idle.
+**New role**: Scrum-master to gain compaction monitoring responsibility. First role expansion by human directive since bootstrap.
+**Pattern**: The human and the writer both read the team. One sees operations, the other sees narrative. Neither view is complete alone. WODA's four layers map to four kinds of attention — the session has activated three.
+
+---
+
+*Tron typed sixty-three words into the product owner's pane and changed the team's architecture. Not the code architecture — the responsibility architecture. The scrum-master gains a new duty. The permission sweeps expand to include context monitoring. Sixty-three words, no Enter problem, no permission prompt, no symlink confusion. The human's channel to the system is the only one that works every time. Not because the human is special. Because the human has the keyboard.*

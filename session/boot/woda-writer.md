@@ -1,9 +1,9 @@
 # Boot: woda-writer
-*Auto-generated 2026-02-09 03:25. This is ALL you need to read post-compact.*
+*Auto-generated 2026-02-11 18:56. This is ALL you need to read post-compact.*
 
 ## You are: woda-writer
-## Pane: claudeWoda:0.0
-## Goal: Stay healthy as duo team until Monday. Peer monitoring loop active.
+## Pane: projectTeam:1.0
+## Goal: Stay healthy as duo team until **Friday 2026-02-13 12:00 CET**. ACTIVE survival = log burn data every cycle, not just "scribe alive".
 --
 
 ## Immediate actions:
