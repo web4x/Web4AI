@@ -14,7 +14,7 @@
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: `.claude/agents/woda-scribe/SKILL.md`
 - Context: `session/wodaScribe.context.md`
-- Learnings: `session/woda-scribe.learnings.md`
+- Learnings: `session/learnings/woda-scribe.learnings.md`
 
 ## Rules (memorize, don't re-read):
 - Passive mode = death. Always have a background loop running.
