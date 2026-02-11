@@ -315,12 +315,12 @@ These commands lose spaces, creating unreadable garbled text.
 
 **All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
 
-- **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions
+- **Task files**: `session/tasks/{YYYYMMDD}T{HHMM}Z.task.md` — contain full work descriptions
 - **Messages**: SHORT notifications only
 
 | Message Type | Format |
 |-------------|--------|
-| Assignment | `New task: session/tasks/Task.19.202602011820.md` |
+| Assignment | `New task: session/tasks/20260211T1820Z.task.md` |
 | Completion | `Task 19 done` |
 | Blocked | `Task 19 blocked: <reason>` |
 

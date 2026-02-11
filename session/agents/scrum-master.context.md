@@ -41,7 +41,7 @@ Continuous monitoring agent in tmux session `projectTeam`, pane 0.3.
 - 20+ permission prompts approved (pane captures, file reads, git ops)
 - Discovered /rename consumed task prompts — re-sent all 3 via file references
 - 4 compaction assists (PO at 0%, writer at 7%, trainer at 1%, scribe at 9%)
-- Implemented PO compaction-duty directive (sm-compaction-duty.md)
+- Implemented PO compaction-duty directive (20260211T1818Z.task.md)
 - Quota alert at 93%
 
 ### Agent Achievements

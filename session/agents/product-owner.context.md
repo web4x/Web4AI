@@ -17,7 +17,7 @@ All assigned governance tasks complete. Ready to compact and await next directiv
 - Identified strongest teaching chapters and verdict
 
 ### 2. Role Clarification for Agent Trainer (7 findings)
-- Created `session/tasks/po-role-clarification-for-trainer.md`
+- Created `session/tasks/20260211T1736Z.task.md`
 - Agent trainer acted on ALL 7 items (confirmed in trainer pane output)
 
 ### 3. Agent Reading List Audit
@@ -28,7 +28,7 @@ All assigned governance tasks complete. Ready to compact and await next directiv
 - All phantom references now resolve
 
 ### 4. Knowledge Base Restructure (scribe)
-- Wrote `session/tasks/po-knowledgebase-restructure.md` explaining WODA as architecture
+- Wrote `session/tasks/20260211T1756Z.task.md` explaining WODA as architecture
 - W = INDEX (one list of all topics)
 - O = OVERVIEW per W entry (3-5 lines, points to D)
 - D = DETAILS files (one per topic, references A)
@@ -42,7 +42,7 @@ All assigned governance tasks complete. Ready to compact and await next directiv
 - Both set PATH and confirmed OOSH commands work
 
 ### 6. Scrum Master Compaction Duty
-- Wrote `session/tasks/sm-compaction-duty.md`
+- Wrote `session/tasks/20260211T1818Z.task.md`
 - SM now monitors context % and helps agents save state before compact
 - SM already acted on it (helped trainer)
 
@@ -73,11 +73,11 @@ All assigned governance tasks complete. Ready to compact and await next directiv
 | `.claude/agents/product-owner/SKILL.md` | My role definition |
 | `.claude/agents/agent.readinglist.overview.md` | Reading list audit |
 | `.claude/agents/agent-overview.md` | Team overview |
-| `session/tasks/po-role-clarification-for-trainer.md` | 7 governance findings (ALL DONE) |
-| `session/tasks/po-knowledgebase-restructure.md` | KB restructure directive |
-| `session/tasks/sm-compaction-duty.md` | SM compaction assistance |
-| `session/tasks/sm-use-simple-oosh-commands.md` | SM PATH directive |
-| `session/tasks/trainer-add-path-to-all-skills.md` | Trainer PATH directive |
+| `session/tasks/20260211T1736Z.task.md` | 7 governance findings (ALL DONE) |
+| `session/tasks/20260211T1756Z.task.md` | KB restructure directive |
+| `session/tasks/20260211T1818Z.task.md` | SM compaction assistance |
+| `session/tasks/20260211T1832Z.task.md` | SM PATH directive |
+| `session/tasks/20260211T1849Z.task.md` | Trainer PATH directive |
 | `session/knowledge-base/index.md` | Knowledge base W (index) |
 | `docs/` | Symlink to OOSH dev.claude/docs/ |
 | `CLAUDE.md` | Updated with PATH setup |
@@ -90,6 +90,16 @@ All assigned governance tasks complete. Ready to compact and await next directiv
 - All agents get PATH setup in SKILL.md — no cd, no ./ needed
 - Bootstrap scripts use `claude` not `claude --dangerously-skip-permissions`
 - SM has compaction assistance duty: detect <15% context, tell agent to save state
+
+## FAILURES (learn from these)
+
+### F1: Assumed trainer was at quota limit without questioning (2026-02-11 20:10)
+- Captured 10 lines of trainer pane, saw "Stop and wait for limit to reset" prompt
+- ASSUMED this was current state and wrote SM directive to handle quota limit
+- User called it out: "did you check or assume... how can it be at limit if you are not"
+- REALITY: The limit was transient (hit earlier, already recovered). Trainer was actually DONE with work and waiting for edits to be accepted.
+- **Root cause**: 10 lines of capture showed stale state. Should have captured MORE lines (30+) to see full timeline. Should have QUESTIONED why one agent would be limited when I'm running fine on the same subscription.
+- **Rule**: When something doesn't make logical sense (one agent limited, others not), QUESTION it before acting. Capture enough lines to see the full picture, not just a snapshot.
 
 ## RECOVERY STEPS
 

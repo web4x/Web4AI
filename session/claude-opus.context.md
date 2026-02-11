@@ -68,11 +68,11 @@ Window 1: woda-writer(1.0) | woda-scribe(1.1) | task-agent(1.2) | developer(1.3)
 | File | Change |
 |------|--------|
 | `/Users/donges/oosh/otmux` | Tree sub-line: session ID now in `[brackets]` aligned with `[version]` above (%-26s format) |
-| `session/tasks/agent-trainer-review-overview.md` | Task file: review agent-overview.md, flag stale refs |
-| `session/tasks/scrum-master-reboot.md` | Task file: projectTeam layout, immediate tasks |
-| `session/tasks/scrum-master-continuous-sweep.md` | Task file: start continuous monitoring loop |
-| `session/tasks/scrum-master-no-truncate.md` | Task file: don't pipe sweep through head/tail |
-| `session/tasks/orchestrator-monitor-scrummaster.md` | Task file: monitor scrum-master, approve permissions |
+| `session/tasks/20260211T1725Z.task.md` | Task file: review agent-overview.md, flag stale refs |
+| `session/tasks/20260211T1729Z.task.md` | Task file: projectTeam layout, immediate tasks |
+| `session/tasks/20260211T1727Z.task.md` | Task file: start continuous monitoring loop |
+| `session/tasks/20260211T1728Z.task.md` | Task file: don't pipe sweep through head/tail |
+| `session/tasks/20260211T1726Z.task.md` | Task file: monitor scrum-master, approve permissions |
 
 ## Key Learnings
 

@@ -236,7 +236,7 @@ These commands lose spaces, creating unreadable garbled text.
 
 ## File-Based Communication (MANDATORY)
 
-**All work is defined in task files, not in messages.** Task files at `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` contain full descriptions. Messages between agents are short notifications only: `New task: <path>`, `Task N done`, `Task N blocked: <reason>`.
+**All work is defined in task files, not in messages.** Task files at `session/tasks/{YYYYMMDD}T{HHMM}Z.task.md` contain full descriptions. Messages between agents are short notifications only: `New task: <path>`, `Task N done`, `Task N blocked: <reason>`.
 
 
 ## Context Preservation (MANDATORY)

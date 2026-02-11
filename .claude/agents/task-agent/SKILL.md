@@ -61,7 +61,7 @@ Your session name: `task-agent`
 
 ## Task File Format
 
-When you receive a directive, create a task file at `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md`:
+When you receive a directive, create a task file at `session/tasks/{YYYYMMDD}T{HHMM}Z.task.md`:
 
 ```markdown
 # Task {N}: <short title>
@@ -108,7 +108,7 @@ When you receive a directive, create a task file at `session/tasks/Task.{N}.{YYY
 2. Read the directive carefully — ask Orchestrator (who asks PO) for clarification if ambiguous
 3. Create a task file in `session/tasks/`
 4. Write the headline plan with agent assignments
-5. Signal completion: `TASK PLAN READY: session/tasks/Task.{N}.{YYYYMMDDHHMM}.md — <title>`
+5. Signal completion: `TASK PLAN READY: session/tasks/{YYYYMMDD}T{HHMM}Z.task.md — <title>`
 6. Orchestrator reads the plan and kicks off agents
 
 ## Role Boundaries
@@ -157,16 +157,16 @@ These commands lose spaces, creating unreadable garbled text.
 
 **All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
 
-- **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions, plans, and acceptance criteria
+- **Task files**: `session/tasks/{YYYYMMDD}T{HHMM}Z.task.md` — contain full work descriptions, plans, and acceptance criteria
 - **Messages**: SHORT notifications only
 
 | Message Type | Format |
 |-------------|--------|
-| Assignment | `New task: session/tasks/Task.19.202602011820.md` |
+| Assignment | `New task: session/tasks/20260211T1820Z.task.md` |
 | Completion | `Task 19 done` |
 | Blocked | `Task 19 blocked: <reason>` |
 
-As Task Agent, you **create** these task files. After creating one, send only a short notification: `TASK PLAN READY: session/tasks/Task.{N}.{YYYYMMDDHHMM}.md`. The Orchestrator reads the file — do NOT repeat the plan in a message.
+As Task Agent, you **create** these task files. After creating one, send only a short notification: `TASK PLAN READY: session/tasks/{YYYYMMDD}T{HHMM}Z.task.md`. The Orchestrator reads the file — do NOT repeat the plan in a message.
 
 ## Context Preservation (MANDATORY)
 
@@ -251,7 +251,7 @@ After `/compact` or context loss:
 When you complete a task plan, always signal:
 
 ```
-TASK PLAN READY: session/tasks/Task.{N}.{YYYYMMDDHHMM}.md — <brief title>
+TASK PLAN READY: session/tasks/{YYYYMMDD}T{HHMM}Z.task.md — <brief title>
 ```
 
 This tells the Orchestrator a plan is ready for execution.
