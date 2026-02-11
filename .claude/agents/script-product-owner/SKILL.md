@@ -17,7 +17,7 @@ This is NOT a separate agent role. It defines the **ownership contract** that ev
 
 ## Named Sessions (MANDATORY)
 
-**Every Claude Code session MUST have a name matching the agent role.** No unnamed sessions allowed. Agents performing ownership audits must use their own role-named session (e.g., `oosh-expert`, `product-owner`).
+**Every Claude Code session MUST have a name matching the agent role.** No unnamed sessions allowed. Agents performing ownership audits must use their own role-named session (e.g., `expert`, `product-owner`).
 
 ## Ownership = Expert + Tester
 
@@ -174,10 +174,10 @@ The Orchestrator assigns script ownership by giving an expert+tester pair respon
 
 ```
 Orchestrator assigns:
-  hiveMind    → Expert: oosh-expert,  Tester: oosh-tester
-  ossh        → Expert: oosh-expert,  Tester: oosh-tester
-  config      → Expert: oosh-expert,  Tester: oosh-tester
-  claudeCode  → Expert: oosh-expert,  Tester: oosh-tester
+  hiveMind    → Expert: expert,  Tester: tester
+  ossh        → Expert: expert,  Tester: tester
+  config      → Expert: expert,  Tester: tester
+  claudeCode  → Expert: expert,  Tester: tester
 ```
 
 As the team grows, different expert+tester pairs can own different scripts. The Product Owner ensures all pairs follow the same usability contract.
@@ -235,7 +235,12 @@ These commands lose spaces, creating unreadable garbled text.
 
 **NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
 
-**After `/compact`**: State your identity first — "I am the [your role] agent." — then re-read your SKILL.md and context file.
+**After `/compact`**:
+1. **State your identity**: "I am the [your role] agent."
+2. **Read** `session/boot/<your-role>.md` if it exists (boot file -- ALL you need)
+3. **Read** `session/learnings/<your-role>.learnings.md` -- your identity after compaction
+4. **Read** `session/agents/<your-role>.context.md` -- current state and tasks
+5. Only read deeper files (SKILL.md, architecture docs) if the boot file says to
 
 ## Quota Awareness (MANDATORY)
 

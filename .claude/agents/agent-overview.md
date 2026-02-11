@@ -30,13 +30,13 @@ ScrumMaster (scrum-master/)
 ├── Report status to Orchestrator
 └── Stop loop when team is idle, resume when work assigned
 
-OOSH Expert (oosh-expert/)
+Expert (expert/)
 ├── Implement features & architecture
 ├── Follow OOSH patterns (signatures, logging, completions)
 ├── Signal: TASK COMPLETE: <summary>
 └── Never run tests or write test files
 
-OOSH Tester (oosh-tester/)
+Tester (tester/)
 ├── Run test.suite, write test cases
 ├── Validate usability contract
 ├── Detect DRY violations → report to Task Agent

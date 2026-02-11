@@ -1087,7 +1087,7 @@ For the OOSH implementation, these existing files contain the patterns described
 | Orchestrator chain | `.claude/agents/agent-teacher/SKILL.md` |
 | File communication | `.claude/agents/developer/SKILL.md` |
 | Context schema | `session/agents/orchestrator.context.md` |
-| Learnings format | `session/woda-writer.learnings.md` |
+| Learnings format | `session/learnings/woda-writer.learnings.md` |
 | Task format | `session/tasks/Task.20260206T1912Z.md` |
 | Boot file format | `session/boot/woda-writer.md` |
 | Role registry | `/tmp/hivemind.roles` |

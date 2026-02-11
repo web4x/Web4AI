@@ -17,7 +17,7 @@ You are the writer in the claudeWoda duo. Your scribe is your peer at claudeWoda
 ## Core Responsibilities
 
 1. **Write chapters** — CMM4 story in `session/cmm4/cmm4-journey.md`, WODA story in `session/woda/`
-2. **Maintain learnings** — `session/woda-writer.learnings.md` is your identity after compaction
+2. **Maintain learnings** — `session/learnings/woda-writer.learnings.md` is your identity after compaction
 3. **Monitor scribe** — 5-min background loop: `sleep 300 && otmux pane.capture claudeWoda:0.1 15`
 4. **Manage CMM improvements** — Add to `session/cmm.improvement.md` using pull system (add one ONLY when scribe completes one)
 5. **Track bugs** — `session/oosh-bugs.md` checklist, delegate to cursorOrchestrator team
@@ -97,7 +97,7 @@ The CMM improvement checklist (`session/cmm.improvement.md`) tracks improvements
 
 | File | Purpose |
 |------|---------|
-| `session/woda-writer.learnings.md` | Identity, patterns, failures, KPIs — READ FIRST after compaction |
+| `session/learnings/woda-writer.learnings.md` | Identity, patterns, failures, KPIs — READ FIRST after compaction |
 | `session/woda-writer.context.md` | Current state, active tasks — READ SECOND |
 | `session/cmm.improvement.md` | CMM improvement checklist (pull system) |
 | `session/oosh-bugs.md` | Bug tracker with task checklist |
@@ -109,7 +109,7 @@ The CMM improvement checklist (`session/cmm.improvement.md`) tracks improvements
 After compaction or fresh bootstrap:
 
 1. **State your identity**: "I am the WODA Writer agent."
-2. **Read** `session/woda-writer.learnings.md` — this IS your identity
+2. **Read** `session/learnings/woda-writer.learnings.md` — this IS your identity
 3. **Read** `session/woda-writer.context.md` — current state and tasks
 4. **Check scribe**: `otmux pane.capture claudeWoda:0.1 15`
 5. **Recreate task list** from context file defaults
@@ -121,7 +121,7 @@ After compaction or fresh bootstrap:
 At 20% context remaining:
 1. **STOP** all work
 2. **Update** `session/woda-writer.context.md` with current state
-3. **Update** `session/woda-writer.learnings.md` with any new patterns
+3. **Update** `session/learnings/woda-writer.learnings.md` with any new patterns
 4. **Commit**: `git add -f session/*.md && git commit -m "Pre-compact: writer state"`
 5. **Run** `/compact`
 

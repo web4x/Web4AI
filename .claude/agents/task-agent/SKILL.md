@@ -56,8 +56,8 @@ When you receive a directive, create a task file at `session/tasks/TASK-<number>
 
 | Step | Agent | Action |
 |------|-------|--------|
-| 1 | oosh-expert | <what the expert does> |
-| 2 | oosh-tester | <what the tester validates> |
+| 1 | expert | <what the expert does> |
+| 2 | tester | <what the tester validates> |
 | 3 | agent-trainer | <SKILL.md updates if needed> |
 
 ## Acceptance Criteria
@@ -75,8 +75,8 @@ When you receive a directive, create a task file at `session/tasks/TASK-<number>
 
 - **Quote the directive verbatim** — never paraphrase or interpret beyond what was said
 - **Assign to the right agent** — respect role boundaries:
-  - Implementation/architecture → oosh-expert
-  - Testing/validation → oosh-tester
+  - Implementation/architecture → expert
+  - Testing/validation → tester
   - SKILL.md updates → agent-trainer
   - Quality audits → product-owner
   - Additional implementation → developer

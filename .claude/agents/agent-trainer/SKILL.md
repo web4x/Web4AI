@@ -48,9 +48,9 @@ When SKILL.md files change (new responsibilities, renamed roles, new agents), up
 
 | Forbidden | Belongs To |
 |-----------|-----------|
-| Implement features or write code | OOSH Expert |
-| Run or write tests | OOSH Tester |
-| Make architecture decisions | OOSH Expert / Orchestrator |
+| Implement features or write code | Expert |
+| Run or write tests | Tester |
+| Make architecture decisions | Expert / Orchestrator |
 | Monitor panes or approve permissions | ScrumMaster |
 | Delegate tasks or coordinate agents | Orchestrator |
 
@@ -102,8 +102,8 @@ All role definitions live at:
 ├── agent-trainer/SKILL.md    (this file)
 ├── agent-overview.md          (team checklist — maintain with SKILL.md changes)
 ├── developer/SKILL.md
-├── oosh-expert/SKILL.md
-├── oosh-tester/SKILL.md
+├── expert/SKILL.md
+├── tester/SKILL.md
 ├── product-owner/SKILL.md
 ├── script-product-owner/SKILL.md
 ├── scrum-master/SKILL.md

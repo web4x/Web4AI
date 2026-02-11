@@ -15,8 +15,8 @@ Standard layout from `hiveMind team.setup.full`:
 |------|-------|------|
 | 0.0 | **You (Orchestrator)** | Coordinate team, delegate, keep ScrumMaster unblocked |
 | 0.1 | **ScrumMaster** | Continuous monitoring, permission approval, role enforcement |
-| 0.2 | **OOSH Expert** | Architecture, development, code review |
-| 0.3 | **OOSH Tester** | Testing, validation, quality assurance |
+| 0.2 | **Expert** | Architecture, development, code review |
+| 0.3 | **Tester** | Testing, validation, quality assurance |
 | (on demand) | **Product Owner** | OOSH principles quality guardian |
 | (on demand) | **Script Product Owner** | Per-script lifecycle guardian |
 | (on demand) | **Developer** | Additional implementation capacity |
@@ -127,8 +127,8 @@ All roles are defined in `.claude/agents/`:
 | Role | SKILL.md Location | Purpose |
 |------|-------------------|---------|
 | orchestrator | `.claude/agents/agent-teacher/SKILL.md` | This role (directory: `agent-teacher/`) |
-| oosh-expert | `.claude/agents/oosh-expert/SKILL.md` | Implementation & architecture |
-| oosh-tester | `.claude/agents/oosh-tester/SKILL.md` | Testing & validation |
+| expert | `.claude/agents/expert/SKILL.md` | Implementation & architecture |
+| tester | `.claude/agents/tester/SKILL.md` | Testing & validation |
 | scrum-master | `.claude/agents/scrum-master/SKILL.md` | Monitoring, approval, role enforcement |
 | product-owner | `.claude/agents/product-owner/SKILL.md` | OOSH principles quality guardian |
 | script-product-owner | `.claude/agents/script-product-owner/SKILL.md` | Per-script lifecycle (template) |
@@ -149,7 +149,7 @@ Use otmux to send commands to your team:
 ./otmux send cursorOrchestrator:0.3 'Your task here' Enter
 
 # Or resolve by name (works regardless of pane layout)
-./hiveMind send oosh-expert 'Your task here'
+./hiveMind send expert 'Your task here'
 ```
 
 ### CRITICAL: Submit Prompts with Enter AND Verify

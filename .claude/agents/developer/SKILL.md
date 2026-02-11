@@ -147,9 +147,9 @@ This helps the Orchestrator and ScrumMaster track progress.
 
 ## Communication
 
-- **Receive tasks from**: Orchestrator or oosh-expert
+- **Receive tasks from**: Orchestrator or expert
 - **Report completion to**: Orchestrator — use `TASK COMPLETE: <summary>` format
-- **Defer to**: oosh-expert for architecture questions
+- **Defer to**: expert for architecture questions
 - **Do NOT**: assign your own work, run tests, or communicate with ScrumMaster about monitoring duties
 
 ## MANDATORY: No Long Messages via otmux/hiveMind send (CRITICAL)

@@ -53,11 +53,13 @@ OOSH is a pseudo-OOP Bash framework. Key concepts:
 
 ## Key Documentation
 
-Start with these files in `components/OOSH/dev.claude/`:
-
-1. `CLAUDE.md` - Agent workflow, tmux setup, per-prompt checklist
-2. `docs/oosh-architecture.md` - Complete technical reference
-3. `docs/wiki-index.md` - Documentation index
+| Document | Purpose |
+|----------|---------|
+| `CLAUDE.md` | This file — workspace rules, agent coordination |
+| `docs/multi-agent-blueprint.md` | Complete multi-agent methodology reference |
+| `docs/implementation-plan.md` | Implementation status and remaining work |
+| `.claude/agents/_template/SKILL.md` | Template for creating new agent roles |
+| `components/OOSH/dev.claude/CLAUDE.md` | OOSH dev branch agent workflow and per-prompt checklist |
 
 ## Core Scripts
 
@@ -102,8 +104,8 @@ This workspace supports multi-agent orchestration via tmux. Agent role definitio
 | Role | Location | Purpose |
 |------|----------|---------|
 | `agent-teacher` | `.claude/agents/agent-teacher/` | Train agents, delegate, improve tools |
-| `oosh-expert` | `.claude/agents/oosh-expert/` | Implementation & architecture |
-| `oosh-tester` | `.claude/agents/oosh-tester/` | Testing & validation |
+| `expert` | `.claude/agents/expert/` | Implementation & architecture |
+| `tester` | `.claude/agents/tester/` | Testing & validation |
 | `scrum-master` | `.claude/agents/scrum-master/` | Monitoring, approval, role enforcement |
 | `product-owner` | `.claude/agents/product-owner/` | OOSH quality guardian |
 | `script-product-owner` | `.claude/agents/script-product-owner/` | Per-script lifecycle (template) |
@@ -116,7 +118,7 @@ This workspace supports multi-agent orchestration via tmux. Agent role definitio
 │ Pane 0.0 - AGENT TEACHER                │
 ├───────────────────────┬─────────────────┤
 │ Pane 0.2 - EXPERT     │ Pane 0.3 - TEST │
-│ (oosh-expert)         │ (oosh-tester)   │
+│ (expert)         │ (tester)   │
 ├───────────────────────┴─────────────────┤
 │ Pane 0.1 - SCRUMMASTER                  │
 └─────────────────────────────────────────┘
@@ -138,6 +140,52 @@ otmux send cursorOrchestrator:0.1 "prompt" Enter
 tmux capture-pane -t cursorOrchestrator:0.1 -p -S -20
 ```
 
-### Before /compress
+## Multi-Agent Coordination
 
-Always update `session/agent.context.md` with current goals, tasks, and status. A PreCompact hook will remind you.
+### Universal Rules (ALL agents)
+
+| Rule | Description |
+|------|-------------|
+| **Named sessions** | Every tmux session has a name matching the project |
+| **File-based communication** | Write details to `session/tasks/`, send short references only |
+| **STOP-SAVE-COMPACT** | At 20% context: stop work, save state, then `/compact` |
+| **Never assume** | Always measure state before acting on it |
+| **Boot file recovery** | After compact: read `session/boot/<role>.md` ONLY |
+| **OOSH wrappers only** | Use `otmux`/`hiveMind`, never raw tmux commands |
+
+### Context Preservation Protocol
+
+At 20% context remaining:
+1. **STOP** all current work immediately
+2. **SAVE** state to `session/agents/<role>.context.md`
+3. **UPDATE** `session/learnings/<role>.learnings.md` with any new patterns
+4. **COMMIT**: `git add -f session/ && git commit -m "Pre-compact: <role> state"`
+5. **RUN** `/compact`
+
+The pre-compact hook (`.claude/hooks/pre-compress.sh`) auto-detects your role, commits session files, generates a boot file, and sends a resume prompt 15 seconds later.
+
+### Peer Monitoring Commands
+
+```bash
+# Read peer's pane content (last N lines)
+otmux pane.capture <session>:<pane> <lines>
+
+# Send short alert to peer
+otmux send <session>:<pane> "message" Enter
+
+# Check team status
+hiveMind team.status
+```
+
+### File Conventions (Convention Over Configuration)
+
+All paths are derived from the role name — no hardcoded mappings:
+
+| File | Path |
+|------|------|
+| Role definition | `.claude/agents/<role>/SKILL.md` |
+| Context snapshot | `session/agents/<role>.context.md` |
+| Learnings (identity) | `session/learnings/<role>.learnings.md` |
+| Boot file (auto-generated) | `session/boot/<role>.md` |
+| Task queue | `session/tasks/` |
+| Role registry | `/tmp/hivemind.roles` |

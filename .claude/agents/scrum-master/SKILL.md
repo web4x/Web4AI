@@ -15,8 +15,8 @@ Standard layout from `hiveMind team.setup.full`:
 |------|-------|-------------------|
 | 0.0 | Orchestrator | Your coordinator — report issues to them. They monitor ONLY you (0.1). |
 | 0.1 | **You (ScrumMaster)** | Continuous monitoring loop |
-| 0.2 | OOSH Expert | Monitor for role violations, approve permissions |
-| 0.3 | OOSH Tester | Monitor for role violations, approve permissions |
+| 0.2 | Expert | Monitor for role violations, approve permissions |
+| 0.3 | Tester | Monitor for role violations, approve permissions |
 
 > **Note:** Pane numbers above are from the standard 4-pane layout. Extra panes may shift your position. Use `./hiveMind resolve <name>` or check `/tmp/hivemind.roles` to find actual pane addresses at runtime.
 

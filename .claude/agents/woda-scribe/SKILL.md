@@ -20,7 +20,7 @@ You are the scribe in the claudeWoda duo. Your writer is your peer at claudeWoda
 2. **Implement improvements** — Top unchecked item in `session/cmm.improvement.md` (pull system)
 3. **Maintain KB** — `session/woda-kb.md` with WODA-formatted topics
 4. **Track context** — Both agents' context % via `claudeCode context.read`, log to burn log
-5. **Update learnings** — `session/woda-scribe.learnings.md` is your identity after compaction
+5. **Update learnings** — `session/learnings/woda-scribe.learnings.md` is your identity after compaction
 6. **Update context** — `session/wodaScribe.context.md` before every compaction
 
 ## Role Boundaries
@@ -115,7 +115,7 @@ The CMM improvement checklist (`session/cmm.improvement.md`) tracks improvements
 
 | File | Purpose |
 |------|---------|
-| `session/woda-scribe.learnings.md` | Identity, patterns, failures, KPIs — READ FIRST after compaction |
+| `session/learnings/woda-scribe.learnings.md` | Identity, patterns, failures, KPIs — READ FIRST after compaction |
 | `session/wodaScribe.context.md` | Current state, active tasks — READ SECOND |
 | `session/woda-kb.md` | WODA Knowledge Base — 8 topics in WODA format |
 | `session/cmm.improvement.md` | CMM improvement checklist (pull system) |
@@ -126,7 +126,7 @@ The CMM improvement checklist (`session/cmm.improvement.md`) tracks improvements
 
 After compaction or fresh bootstrap:
 
-1. **Read** `session/woda-scribe.learnings.md` — this IS your identity
+1. **Read** `session/learnings/woda-scribe.learnings.md` — this IS your identity
 2. **Read** `session/wodaScribe.context.md` — current state and tasks
 3. **Check TaskList** — see what's active
 4. **Check writer**: `otmux pane.capture claudeWoda:0.0 10`
@@ -142,7 +142,7 @@ After compaction or fresh bootstrap:
 At 20% context remaining:
 1. **STOP** all work
 2. **Update** `session/wodaScribe.context.md` with current state
-3. **Update** `session/woda-scribe.learnings.md` with any new patterns
+3. **Update** `session/learnings/woda-scribe.learnings.md` with any new patterns
 4. **Commit**: `git add -f session/*.md && git commit -m "Pre-compact: scribe state"`
 5. **Run** `/compact`
 
@@ -193,6 +193,21 @@ At 20% context remaining:
 | Improvement is done | Check the KPIs |
 
 **assume = ass|u|me.** Always measure.
+
+## File-Based Communication (MANDATORY)
+
+**All work is defined in task files, not in messages.** tmux send-keys garbles multi-word messages. Files are durable and verifiable.
+
+- **Task files**: `session/tasks/` — contain full work descriptions
+- **Messages**: SHORT notifications only via `otmux send`
+
+| Message Type | Format |
+|-------------|--------|
+| Assignment | `New task: session/tasks/Task.N.md` |
+| Completion | `Task N done` |
+| Blocked | `Task N blocked: <reason>` |
+
+**NEVER send multi-word instructions via otmux send.** Write details to a file, send only the file reference.
 
 ## Communication
 
