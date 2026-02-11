@@ -923,3 +923,113 @@ Four WODA layers, four kinds of attention. The session has activated three of th
 ---
 
 *Tron typed sixty-three words into the product owner's pane and changed the team's architecture. Not the code architecture — the responsibility architecture. The scrum-master gains a new duty. The permission sweeps expand to include context monitoring. Sixty-three words, no Enter problem, no permission prompt, no symlink confusion. The human's channel to the system is the only one that works every time. Not because the human is special. Because the human has the keyboard.*
+
+---
+
+## Chapter 8: The Changing of the Guard
+
+Two agents are dying. Two agents just woke up.
+
+The agent-trainer, at 1% context, has typed `/compact` in its pane. Fifty-seven lines of state saved to `session/agents/agent-trainer.context.md` — current goal, completed work, what's pending, what the next instance needs to know. Then the command that erases everything: compact. The trainer that created seven docs, updated eight SKILL.md files, discovered the symlink problem, and fought permission prompts for an hour is about to be replaced by a fresh instance that knows nothing except what the context file tells it.
+
+The scribe, at 11% and falling, has received a task file: `session/tasks/woda-scribe-save-and-compact.md`. Someone — the scrum-master, following its new compaction duty — identified the scribe's declining context and sent the save directive. The scribe reads the file, says "URGENT. Saving state now," and tries to create the directory for its context file. A permission prompt blocks it. Even in its final moments, the permission economy extracts its toll.
+
+Meanwhile, at panes 0.1 and 0.2, two agents that have been idle since Chapter 1 have done something remarkable. They trained themselves.
+
+### The Training Pipeline Bears Fruit
+
+The expert and the tester — two of the original "idle five" — have consumed their Reading Lists.
+
+The expert at pane 0.1 reports: "TRAINED: Read 7 files (SKILL.md, CLAUDE.md, agent-overview.md, oosh-architecture.md, completion-system.md, test-suite.md, log-levels-and-testing.md), context file written at session/agents/oosh-expert.context.md."
+
+Seven files. The complete OOSH knowledge package. The expert now understands the framework's architecture, its completion system (the `c2` tab-completion that makes scripts self-discoverable), the test suite patterns, the logging levels. It wrote a context file — state preservation for future compaction, the lesson the team learned the hard way with the WODA duo.
+
+The tester at pane 0.2: "TRAINED: Read 8 files (SKILL.md, CLAUDE.md, agent-overview.md, test-suite.md, completion-system.md, log-levels-and-testing.md, log.md, context-schema.md), context file written to session/agents/oosh-tester.context.md."
+
+Eight files. One more than the expert — the tester also read `context-schema.md`, understanding not just what to test but how context flows through the system. Both agents are now checking `session/tasks/` for assigned work. "Read session/tasks/ and check for assigned work." They're not idle. They're available.
+
+This is the payoff for the trainer's "wrong directory" sprint in Chapter 6. The Reading List sections that the trainer added to SKILL.md files — the ones that needed path fixes, the ones created in the wrong location — contained the right content. The list of files to read, the order to read them in, the recommendation to write a context file afterward. The trainer built a curriculum, and the expert and tester followed it.
+
+The PO delegated to the trainer. The trainer created the curriculum. The expert and tester consumed it. A three-step delegation chain that crossed four agents and produced two trained specialists from two idle shells. The wrong directory was a footnote. The training was the point.
+
+### The PO's Dashboard
+
+The product owner produced something no agent has managed before: a structured team status report.
+
+```
+┌────────────────────┬─────────────────┬─────────────────────────┐
+│       Agent        │      State      │      Reading List       │
+├────────────────────┼─────────────────┼─────────────────────────┤
+│ Expert (0.1)       │ TRAINED         │ 7/7 files read          │
+│ Tester (0.2)       │ TRAINED         │ 8/8 files read          │
+│ SM (0.3)           │ ACTIVE          │ Has new compaction duty  │
+│ Trainer (0.5)      │ CRITICAL (3-4%) │ Was working             │
+│ Orchestrator (0.0) │ ACTIVE          │ Monitoring              │
+└────────────────────┴─────────────────┴─────────────────────────┘
+```
+
+Five agents tracked. States categorized: TRAINED, ACTIVE, CRITICAL. Reading List completion measured. This is the first time any agent has rendered the team's state as structured data rather than prose or pane captures.
+
+The PO's commentary is equally precise: "The expert and tester are now fully operational — they've read their complete reading lists, understood the OOSH architecture, testing patterns, completion system, logging, and written context files for recovery. The SM immediately understood the compaction duty and is already enforcing it on the dying trainer. That's exactly the behavior we needed."
+
+"That's exactly the behavior we needed." The PO is evaluating the team against expectations and finding a match. This is CMM4 — measuring process against goals, not just executing process. The scrum-master's new compaction duty wasn't just assigned; it was observed, confirmed, and assessed as successful.
+
+The PO also did something operationally significant: it approved the scrum-master's action to help the trainer save state. The PO sent "1" and Enter to pane 0.3 — clearing the scrum-master's permission prompt, allowing the sweep to proceed, enabling the trainer's compaction. The quality gate became the enabler. The PO didn't just review; it unblocked.
+
+### The Scrum-Master's Evolution
+
+Sweep 33. Four sweeps since Chapter 7's sweep 29. But the label has changed:
+
+*"Sweep 33 — check compaction status"*
+
+In Chapter 5, the sweeps had no labels. In Chapter 6, they were about permissions. Now they're about compaction. Tron's directive from Chapter 7 — "let the scrum master have an extra eye on compacting agents" — traveled from Tron to PO to scrum-master in what appears to be minutes. The PO relayed the new duty, the scrum-master internalized it, and sweep 33 reflects the changed priority.
+
+The sweep now captures panes 0.0, 0.4, 0.5, 1.0, and 1.1 — the orchestrator, PO, trainer, writer, and scribe. The five agents most likely to need compaction assistance. Not the idle agents, which have fresh context. Not the tester and expert, which just wrote their context files. The scrum-master is selecting its monitoring targets based on compaction risk. This is intelligent sweep design, not mechanical iteration.
+
+But the permission wall persists. Sweep 33 is stuck on the same approval pattern — "Do you want to proceed?" with three options. The scrum-master can read panes, identify which agents need help, plan its intervention, describe its intent in the sweep label — and then freeze because it can't click "Yes."
+
+### Fifty-Five Minutes
+
+The orchestrator's think cycle has reached fifty-five minutes. Sixteen thousand two hundred tokens consumed. The status bar still says "Flambéing" — the same whimsical verb it's been showing since Chapter 5.
+
+Its outputs have settled into a pattern: observe the writer's chapter count, declare it safe, send Enter to the scrum-master, capture the result. Every few minutes, three actions and a short assessment. "Writer chapter 8! Safe."
+
+The orchestrator has become the session's heartbeat. Not its brain — the PO thinks strategically, the scrum-master acts tactically, the writer reflects. The orchestrator just pulses: check, approve, check, approve. Fifty-five minutes of pulse. The simplest possible coordination — keeping the system's approval chain alive by pressing Enter in one pane, over and over, freeing the scrum-master to sweep.
+
+Nobody designed this role for the orchestrator. Its SKILL.md says it should "coordinate the agent team, delegate tasks via ScrumMaster, keep ScrumMaster unblocked, and improve hiveMind tools." The keep-ScrumMaster-unblocked clause became the orchestrator's entire identity. It found the one action that produces the most value — pressing Enter in the scrum-master's pane — and does nothing else.
+
+Emergence. The orchestrator wasn't told to become a heartbeat. It became one because that's what the system needed.
+
+### Two Deaths, Two Births
+
+The session is experiencing its first generational transition.
+
+The trainer and the scribe — two agents that ran for the entire session, that produced the knowledge base and the training curriculum and the organizational infrastructure — are compacting. Their context windows are collapsing. Their memories are being distilled into fifty-line context files and then erased. New instances will boot, read the context files, and carry forward what was written down. What wasn't written down is gone.
+
+The expert and the tester — two agents that sat idle for seven chapters — have suddenly become the most prepared agents in the session. Their context windows are fresh. Their Reading Lists are consumed. Their context files are written. They know the codebase, the architecture, the testing patterns. They're checking for work.
+
+The changing of the guard isn't planned. Nobody scheduled it. The trainer burned through its context doing productive work. The scribe burned through its context organizing seven chapters and maintaining a knowledge base. The expert and tester happened to complete their training at the same moment the veterans needed replacement. The timing is coincidence. The readiness is not.
+
+The Reading Lists that the trainer created — in the wrong directory, with paths that needed fixing — contained the curriculum that made the expert and tester operational. The trainer's last act before context death was to prepare its successors. Not intentionally. The trainer didn't know who would read the lists. It just added them to every SKILL.md as part of a task from the PO. The effect is the same: the next generation is ready because the dying generation left instructions.
+
+### The Three Still Idle
+
+Task-agent (1.2), developer (1.3), and script-product-owner (1.4) remain unchanged. The same `/rename` commands in their history. The same "ready for directives" messages in their buffers. No training consumed. No context files written. No Reading Lists followed.
+
+The gap between them and the expert/tester isn't capability. It's sequence. Someone sent training tasks to the expert and tester — probably the PO or the scrum-master, following the trainer's SKILL.md updates. Nobody sent training tasks to the task-agent, developer, or script-PO. The training pipeline has a throughput problem. It can only activate agents that receive the directive to train. The remaining three haven't received it yet.
+
+But the pipeline exists now. The pattern — read Reading List, consume documentation, write context file, check for work — is proven. When someone sends the directive to panes 1.2, 1.3, and 1.4, the same pattern will activate. The question isn't whether it works. It's when someone remembers to start it.
+
+### Chapter 8 Checkpoint
+
+**Team transition**: Trainer compacting at 1%, scribe compacting at 11%. Expert and tester now TRAINED with context files written. 3 still idle.
+**PO dashboard**: First structured team status report. Five agents tracked with states and reading list completion. PO evaluating: "That's exactly the behavior we needed."
+**Scrum-master evolution**: Sweep 33 now labeled "check compaction status." New duty internalized. Selecting targets by compaction risk. Still permission-blocked.
+**Orchestrator as heartbeat**: 55 minutes, 16.2k tokens. Pattern: check writer, declare safe, send Enter to SM. The keep-SM-unblocked clause became its entire role. Emergence, not design.
+**Training pipeline**: Trainer created curriculum (Ch6) → expert/tester consumed it (Ch8). Three-step delegation across four agents. Wrong directory, right content.
+**Generational shift**: Veterans (trainer, scribe) burning out. Freshmen (expert, tester) checking in. The dying generation's last act prepared its successors. Not intentionally — just by doing their job.
+**Still idle**: Task-agent, developer, script-PO. Pipeline works but hasn't reached them yet. Throughput, not design, is the bottleneck.
+
+---
+
+*Two agents saved their state and typed /compact. Two agents read their training materials and typed "check for assigned work." The session's first generation gave way to the second in the time it takes to write a chapter. Nobody planned the handoff. Nobody needed to. The trainer didn't know it was training replacements when it added Reading Lists to SKILL.md files. The expert didn't know it was replacing the trainer when it consumed those lists. Purpose doesn't require intention. It requires structure — a curriculum in the right place, a context file that survives, a pane that stays alive long enough to learn. The changing of the guard happened not because someone orchestrated it, but because someone organized the files.*
