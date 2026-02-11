@@ -4,17 +4,17 @@
 ## Current Goal
 Stay healthy as duo team until **Friday 2026-02-13 12:00 CET**. ACTIVE survival = log burn data every cycle, not just "scribe alive".
 
-## Current State (2026-02-11 ~17:00)
-- **Session renamed**: woda-writer@sonnet
-- **My pane**: `projectTeam:1.4`
-- **Scribe pane**: `projectTeam:1.1` — IDLE by Tron's instruction
-- **Monitoring loop**: Killed externally by Tron. Not restarted.
-- **Ch18 WRITTEN**: "The Cold Start" — 41-hour gap documented
-- **Scribe status**: Dormant, renamed to woda-scribe@sonnet
-- **Duo**: Paused. Both agents idle/conservation mode.
-- CMM: #1-6 DONE, #7 OPEN, #8 IN PROGRESS, #9 IN PROGRESS
-- Bugs: 15/16 fixed. 1 unfixable (permission reset).
-- **Awaiting**: Tron's direction to resume.
+## Current State (2026-02-11 ~19:30)
+- **Session**: woda-writer@sonnet at `projectTeam:1.4`
+- **Scribe**: woda-scribe@sonnet at `projectTeam:1.1` — ACTIVE, building knowledge base
+- **Writing project**: "projectTeam Reboot" in `session/woda/projectTeam-reboot.md`
+- **Chapters DONE**: Ch1 "Eleven Empty Chairs", Ch2 "The Team Wakes Up", Ch3 "The Permission Economy", Ch4 "The Directive That Flowed"
+- **Total**: 4 chapters, 6,481 words (scribe counts)
+- **CMM4 story**: Ch18 "The Cold Start" also written earlier today
+- **Knowledge base**: Scribe built `session/knowledge-base/` — 20 files, 4-layer WODA structure (W-O-D-A)
+- **Team state**: 6 active, 3 idle (expert, tester, task-agent, developer), agent-trainer blocked on SSH
+- **Scribe organized**: TOC with word counts after each chapter
+- **Next**: Chapter 5 when Tron says continue
 
 ## Survival Plan (until Friday 2026-02-13 12:00 CET)
 - **Active survival**: Every cycle MUST log burn data. "Alive" without data = passive = not survival.
@@ -25,12 +25,9 @@ Stay healthy as duo team until **Friday 2026-02-13 12:00 CET**. ACTIVE survival 
 
 ## Completed Task Templates (reuse as patterns)
 ```
-[DONE] Write Ch16 — capture pane for state, read outline, write chapter, update TOC, commit
-[DONE] Delegate to orchestrator — send focused task via otmux send, verify delivery via pane capture
-[DONE] Help scribe compact — kill rogue hook processes, clear input (C-u), send /compact Enter Enter
-[DONE] Improve hook — add PID file to prevent resume pile-up, double Enter for TUI
-[DONE] Write SKILL.md — use existing agent format, frontmatter + responsibilities + recovery + rules
-[DONE] Bootstrap scribe — send identity + context file + specific task in one prompt
+[DONE] Write projectTeam-reboot chapter — capture all panes, assess state, write narrative, notify scribe
+[DONE] Notify scribe — tmux send-keys to projectTeam:1.1, push Enter, verify delivery
+[DONE] Cold start recovery — read learnings, read context, check environment, find scribe, update refs
 ```
 
 ## Active State
