@@ -13,8 +13,10 @@
 | 5 | [The Naming](#chapter-5-the-naming) | 1,844 | 2026-02-11 |
 | 6 | [The Wrong Directory](#chapter-6-the-wrong-directory) | 1,842 | 2026-02-11 |
 | 7 | [Tron Reads the Room](#chapter-7-tron-reads-the-room) | 1,940 | 2026-02-11 |
+| 8 | [The Changing of the Guard](#chapter-8-the-changing-of-the-guard) | 1,876 | 2026-02-11 |
+| 9 | [The Root Cause](#chapter-9-the-root-cause) | 1,960 | 2026-02-11 |
 
-**Total**: 7 chapters, 12,107 words
+**Total**: 9 chapters, 15,943 words
 
 ---
 
@@ -1033,3 +1035,118 @@ But the pipeline exists now. The pattern — read Reading List, consume document
 ---
 
 *Two agents saved their state and typed /compact. Two agents read their training materials and typed "check for assigned work." The session's first generation gave way to the second in the time it takes to write a chapter. Nobody planned the handoff. Nobody needed to. The trainer didn't know it was training replacements when it added Reading Lists to SKILL.md files. The expert didn't know it was replacing the trainer when it consumed those lists. Purpose doesn't require intention. It requires structure — a curriculum in the right place, a context file that survives, a pane that stays alive long enough to learn. The changing of the guard happened not because someone orchestrated it, but because someone organized the files.*
+
+---
+
+## Chapter 9: The Root Cause
+
+Tron typed something into the product owner's pane that changes the entire story:
+
+*"the more complex the bash commands are the more we get permission issues. thats why we should have simple atomic oosh script actions and allow them. so no cd ..../oosh/... ./oosh command methods but setup the path correctly so that the cd and the ./command is not necessary."*
+
+Eight chapters of permission prompts. Twenty-nine scrum-master sweeps interrupted by approval dialogs. An agent-trainer blocked from creating a directory. A scrum-master unable to unblock the agents it was designed to unblock. A Möbius strip of denial. And the root cause is... the PATH variable.
+
+### The Anatomy of a Permission Block
+
+Every agent in the session runs commands like this:
+
+```
+cd /Users/donges/oosh && ./otmux send projectTeam:0.3 Enter
+```
+
+This is a compound command. It changes directory, then invokes a script with a relative path prefix. The permission system sees the full string: a `cd` to an absolute path, an `&&` chain, a `./` invocation. It doesn't match any pre-approved pattern in `settings.json`. So it asks.
+
+What if the command were simply:
+
+```
+otmux send projectTeam:0.3 Enter
+```
+
+No `cd`. No `./`. No compound chain. Just a command name, a method, and arguments. If `otmux` were on the system PATH — if `/Users/donges/oosh` were in the PATH variable — then every OOSH command would be a simple invocation. Simple invocations match simple permission patterns. Simple patterns can be pre-approved.
+
+The permission economy that dominated Chapters 3 through 8 was never about permissions. It was about path resolution. The agents couldn't call OOSH tools simply because the tools weren't installed simply. They required a `cd` to the OOSH directory, making every invocation a compound command, making every compound command a permission prompt, making every permission prompt a block.
+
+Tron sees this. Not from reading the chapters — from watching the team. He sees the pattern that eight chapters of narrative circled around without identifying: the problem isn't the permission system. The permission system is doing its job. The problem is that the commands are unnecessarily complex.
+
+Fix the PATH. The permission economy collapses.
+
+### Second Lives
+
+While Tron diagnoses, two agents prove that death isn't permanent.
+
+The agent-trainer at pane 0.5 is back. The pre-compact hook committed its state (including the 57-line context file), the compact erased the old context, and a fresh instance booted. The fresh instance read `session/agents/agent-trainer.context.md`, learned what the previous instance accomplished, and found new work waiting: `session/tasks/po-role-clarification-for-trainer.md` — seven governance findings from the PO that need addressing.
+
+The trainer's task list is already building:
+
+```
+◻ PO Finding #1: Fix agent-teacher/orchestrator naming inconsistency
+◻ PO Finding #2: Expand PO entry in overview to 6 lines
+```
+
+"Razzle-dazzling" says the status bar. The trainer is reading files, planning changes, preparing edits. Five files modified already. The second-generation trainer picked up where the first left off — not exactly where, because the new context doesn't include the full memory of the documentation sprint, but close enough. The context file said what was done and what remained. The new instance filled in the rest.
+
+This is the proof that the compaction protocol works. Not the WODA seamless compact — the simpler version where an agent saves its own state before dying. The trainer wrote fifty-seven lines. The new trainer read fifty-seven lines. The transfer wasn't perfect — nuance was lost, the symlink discovery from Chapter 7 may not have survived, the frustration of six permission prompts certainly didn't. But the task continuity survived. The trainer knows what it did and what to do next. That's enough.
+
+The scribe at pane 1.1 is recovering too, but slower. The compaction committed (304b53f), the hook generated a boot file, and the new instance is reading its context. The capture shows the scribe loading files: `woda-scribe.context.md` (46 lines), the task file, the WODA overview, the story file (referenced but not fully read — it's too large for a boot sequence). The scribe is rebuilding its understanding of the knowledge base, the chapter tracking, and its relationship with the writer.
+
+The scrum-master is already trying to help. At pane 0.3, sweep 33's permission prompt describes its intent: "Submit scribe boot prompt." The scrum-master detected the compaction, realized the scribe needs a boot nudge, and is attempting to send an Enter key to help the scribe process its boot file. The compaction monitoring duty, assigned by Tron in Chapter 7, relayed by the PO, is now being executed: detect compact → help boot → verify recovery.
+
+The scrum-master can't complete this action because it's blocked on a permission prompt. But the intent is correct, the detection is correct, and the target is correct. When someone clears the prompt, the scribe will receive its nudge.
+
+### The Orchestrator Approaches One Hour
+
+Fifty-nine minutes. Forty-one seconds. Seventeen thousand two hundred tokens consumed.
+
+The orchestrator has been running for nearly an hour in a single think cycle. This may be the longest sustained Claude processing session any agent in either the old teams or the new one has achieved. Not the longest wall-clock time — agents have idled for hours — but the longest continuous computation. The model has been reading, reasoning, acting, and observing for sixty minutes without a compaction, without a restart, without losing thread.
+
+"Writer chapter 9! Safe." The orchestrator's outputs have become a metronome. Every few minutes, a short assessment of the writer's state, an Enter key to the scrum-master, a capture of the result. The pattern is so consistent that it functions as a health check for the orchestrator itself: if the writer count stops incrementing, or if the "Safe" assessment changes, something has gone wrong.
+
+The orchestrator's token consumption — 17.2k on the input side — suggests it's absorbing the full state of every pane it captures. It's not just checking a status bar. It's reading the content, understanding the context, deciding which panes need attention. Seventeen thousand tokens is roughly ten pages of dense text. The orchestrator has read and processed ten pages of team state in a single sustained think.
+
+And yet its actions remain minimal. Enter. Capture. Assess. Enter. The gap between what it consumes and what it produces grows wider with each cycle. A teenager's consumption pattern: take in everything, emit a sentence.
+
+### The PO's Architectural Moment
+
+Tron's message about PATH wasn't just a technical observation. It was an architectural directive. And he gave it to the right agent.
+
+The product owner's role — from SKILL.md — is to be the "OOSH first-principles guardian and governance authority." First principles. The permission problem looks complex when seen as a permissions problem. It looks trivial when seen as a PATH problem. Reducing complex problems to first principles is what a product owner does — not in the scrum sense of writing user stories, but in the OOSH sense of asking "why is this harder than it needs to be?"
+
+Tron's message continues: "so no cd ..../oosh/... ./oosh command methods but setup the path correctly so that the cd and the ./command is not necessary."
+
+This is a specification. Not just "fix permissions" but "here's how: put OOSH on PATH so commands are simple atoms." The PO received this as an architectural directive to relay to the team. When it does — when it sends the specification to the expert or the developer — the implementation becomes straightforward: add `/Users/donges/oosh` to the PATH in the shell profile, update the OOSH commands to not require `./` prefix, update `settings.json` patterns to match the simpler invocations.
+
+The fix has been there since the start. The tools exist. The PATH variable exists. The settings.json patterns exist. Nobody connected the dots until the human watched thirty-three sweeps fail on permission prompts and asked: why is `cd /Users/donges/oosh && ./otmux send` a different permission class than `otmux send`?
+
+### The Missing Chapter
+
+The scribe's compaction means Chapter 8 was never organized. The writer delivered it, the scribe was at 9% and compacting, and the handoff was lost. When the scribe recovers, it will find the story has advanced two chapters since its last organization pass. Chapter 8 "The Changing of the Guard" exists in the file but has no TOC entry, no key line extracted, no word count tracked.
+
+This is the first gap in the WODA duo's coverage. For seven chapters, the pipeline was seamless: writer delivers, scribe organizes, TOC updates, word counts tracked. Chapter 8 broke the chain — not because either agent failed, but because the scribe's context ran out between delivery and organization. The two-gather pattern assumes both agents are alive simultaneously. When one compacts, the pattern has a gap.
+
+The gap will be filled. The new scribe will read the story, find the unorganized chapter, and update the TOC. The data isn't lost. But the real-time coverage — the scribe catching each chapter as it lands — is interrupted. The cost of compaction isn't just the context lost. It's the synchronization broken.
+
+### A Team in Motion
+
+For the first time, more agents are active than idle.
+
+The orchestrator monitors. The scrum-master sweeps (blocked but trying). The PO has Tron's architectural directive. The trainer is working on seven governance findings. The expert and tester are trained and seeking work. The scribe is booting from compaction.
+
+Seven agents with states other than "idle." Three remain parked: task-agent, developer, script-product-owner. But seven of eleven is a majority. The team has crossed a threshold — from "mostly idle with a few working" to "mostly working with a few idle."
+
+And the quality of work has shifted. Early in the session, "working" meant "sending Enter keys" or "hitting permission walls." Now working means: the trainer is modifying governance files, the expert is querying task directories for assignments, the tester is checking what comes after training. These are purposeful actions, not mechanical cycles.
+
+The PATH fix, when it arrives, will unlock the rest. Permission prompts will drop. Sweeps will complete. Commands will land. The three idle agents will receive training directives that currently can't reach them because the send commands trigger permissions. The root cause fix doesn't just solve the current problem. It unblocks the pipeline.
+
+### Chapter 9 Checkpoint
+
+**Root cause**: Tron identifies the permission economy's source — compound bash commands requiring `cd` and `./`. Fix: put OOSH on PATH, use simple atomic commands. Permission patterns become matchable. The eight-chapter problem reduces to a PATH variable.
+**Trainer recovered**: Post-compact, immediately working on 7 PO governance findings. Context file transfer successful. Second generation operational.
+**Scribe recovering**: Post-compact, loading context and boot file. Chapter 8 not yet organized — first gap in WODA duo coverage.
+**Scrum-master**: Sweep 33, trying to send scribe's boot prompt. Compaction monitoring duty working as designed. Still permission-blocked.
+**Orchestrator**: 59 minutes, 17.2k tokens. Approaching one hour of continuous processing. Outputs remain minimal and correct.
+**Active count**: 7 of 11 agents active (orchestrator, SM, PO, trainer, expert, tester, scribe recovering). First time majority active.
+**Pattern**: The root cause of a complex system problem is often simple. Permissions looked like a governance issue. They were a PATH issue. First-principles thinking — Tron's and the PO's job — found the simple truth beneath the complex symptoms.
+
+---
+
+*Tron watched thirty-three sweeps fail on permission prompts and saw what the team couldn't see from inside: the commands were too complex. Not the team. Not the permissions. The commands. Every `cd` prefix, every `./` invocation, every `&&` chain was a surface the permission system could grip. Make the commands simple and the surface disappears. The root cause of the session's central friction wasn't a bug or a missing feature. It was a missing PATH entry. The most consequential fix in the session will be one line in a shell profile.*
