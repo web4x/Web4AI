@@ -4,16 +4,17 @@
 ## Current Goal
 Stay healthy as duo team until **Friday 2026-02-13 12:00 CET**. ACTIVE survival = log burn data every cycle, not just "scribe alive".
 
-## Current State (2026-02-11 13:30)
-- **Infrastructure changed**: claudeWoda session GONE. Now in `projectTeam:1.X`
-- **My pane**: `projectTeam:1.4` (was claudeWoda:0.0)
-- **Scribe pane**: `projectTeam:1.1` (was claudeWoda:0.1) — ALIVE, recovering context
-- **Gap**: ~2 days (Feb 9 20:10 → Feb 11 13:30). Duo was down entirely.
-- **Old writer (pane 0)**: Evaporating — a previous instance that's dying
-- Ch16 + Ch17 WRITTEN (5cf39f1, dc263f8)
-- Bugs: 15/16 fixed. 1 unfixable (permission reset).
+## Current State (2026-02-11 ~17:00)
+- **Session renamed**: woda-writer@sonnet
+- **My pane**: `projectTeam:1.4`
+- **Scribe pane**: `projectTeam:1.1` — IDLE by Tron's instruction
+- **Monitoring loop**: Killed externally by Tron. Not restarted.
+- **Ch18 WRITTEN**: "The Cold Start" — 41-hour gap documented
+- **Scribe status**: Dormant, renamed to woda-scribe@sonnet
+- **Duo**: Paused. Both agents idle/conservation mode.
 - CMM: #1-6 DONE, #7 OPEN, #8 IN PROGRESS, #9 IN PROGRESS
-- Need to verify scribe status and re-establish monitoring loop
+- Bugs: 15/16 fixed. 1 unfixable (permission reset).
+- **Awaiting**: Tron's direction to resume.
 
 ## Survival Plan (until Friday 2026-02-13 12:00 CET)
 - **Active survival**: Every cycle MUST log burn data. "Alive" without data = passive = not survival.
