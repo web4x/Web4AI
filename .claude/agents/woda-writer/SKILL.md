@@ -135,6 +135,16 @@ At 20% context remaining:
 - **With orchestrator team**: `hiveMind send orchestrator` for bug delegation.
 - **With Tron (user)**: Direct conversation in your pane.
 
+## OOSH PATH Setup (MANDATORY — run FIRST in every session)
+
+```bash
+export PATH="/Users/donges/oosh:/Users/donges/oosh/otmux:/Users/donges/oosh/hiveMind:/Users/donges/oosh/ng:$PATH"
+```
+
+This makes all OOSH commands available directly. **No `cd`, no `./` prefix, no compound commands.**
+
+Shell state does NOT persist between Bash calls. Prepend the export to your first command each session, or use `bash -i -c 'command'` (interactive bash loads OOSH from .bashrc).
+
 ## OOSH-Only Rule (MANDATORY)
 
 | Instead of | Use |
@@ -142,6 +152,7 @@ At 20% context remaining:
 | `tmux send-keys` | `otmux send` |
 | `tmux capture-pane` | `otmux pane.capture` |
 | Raw tmux commands | OOSH wrappers always |
+| `cd /Users/donges/oosh && ./otmux ...` | `otmux ...` (OOSH is on PATH) |
 
 ## No Skip Permissions (MANDATORY)
 

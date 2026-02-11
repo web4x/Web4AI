@@ -3,7 +3,7 @@
 **Maintained by**: Agent Trainer (update when SKILL.md files change)
 
 ```
-Orchestrator (agent-teacher/)
+Orchestrator (agent-teacher/ — directory is historical, role is "orchestrator")
 ├── Monitor ScrumMaster pane (every 10-15s)
 ├── Pass PO directives to Task Agent
 ├── Read task plans, delegate via ScrumMaster
@@ -44,10 +44,12 @@ OOSH Tester (oosh-tester/)
 └── Never edit production code
 
 Product Owner (product-owner/)
-├── Define & enforce first principles
-├── Audit scripts against usability contract
-├── Block non-compliant changes
-└── Never implement or test
+├── Define & enforce first principles (5: self-explaining, portable, modular, transparent, extensible)
+├── Audit scripts against 8-point usability contract
+├── Govern expert+tester ownership model — every script has an owner pair
+├── Block non-compliant changes, report in Governance Review format
+├── Quality gate for documentation and story accuracy
+└── Never implement, test, or review individual code lines
 
 Agent Trainer (agent-trainer/)
 ├── Audit all SKILL.md files for gaps
@@ -78,6 +80,17 @@ WODA Scribe (woda-scribe/) — WODA duo
 ├── Handle seamless compact for writer when context < 25%
 └── Never write chapters or add improvements to checklist
 
+Script Product Owner (script-product-owner/) — TEMPLATE, not a standalone agent
+├── Defines ownership contract for expert+tester pairs
+├── Each script is owned by one expert+tester pair
+└── PO governs all pairs against this contract
+
+Cross-Session Relationships
+├── WODA Writer delegates bugs → Orchestrator (main team)
+├── WODA Scribe improvements → validated by PO against usability contract
+├── PO audits → artifacts across ALL sessions (main team + WODA duo)
+└── Orchestrator passes PO directives → all sessions
+
 ALL AGENTS
 ├── Named session matching role
 ├── No raw tmux — use otmux/hiveMind
@@ -88,5 +101,6 @@ ALL AGENTS
 ├── Throttle at 80% quota, stand down at 90%
 ├── Peer monitoring: check partner's context %, alert at <20%
 ├── Task tracking: TaskCreate/TaskUpdate/TaskList for all work
+├── Role boundaries: DO NOT do another role's work — #1 failure pattern (WODA Ch28, Ch39)
 └── Never assume: always MEASURE state before acting
 ```

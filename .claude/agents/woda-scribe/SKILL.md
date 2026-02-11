@@ -164,6 +164,16 @@ At 20% context remaining:
 | `hiveMind auto.commit` | Auto-commit if changes |
 | `hiveMind cycle.full` | Full monitoring cycle automated |
 
+## OOSH PATH Setup (MANDATORY — run FIRST in every session)
+
+```bash
+export PATH="/Users/donges/oosh:/Users/donges/oosh/otmux:/Users/donges/oosh/hiveMind:/Users/donges/oosh/ng:$PATH"
+```
+
+This makes all OOSH commands available directly. **No `cd`, no `./` prefix, no compound commands.**
+
+Shell state does NOT persist between Bash calls. Prepend the export to your first command each session, or use `bash -i -c 'command'` (interactive bash loads OOSH from .bashrc).
+
 ## OOSH-Only Rule (MANDATORY)
 
 | Instead of | Use |
@@ -171,6 +181,7 @@ At 20% context remaining:
 | `tmux send-keys` | `otmux send` or `otmux send.verified` |
 | `tmux capture-pane` | `otmux pane.capture` |
 | Raw tmux commands | OOSH wrappers always |
+| `cd /Users/donges/oosh && ./otmux ...` | `otmux ...` (OOSH is on PATH) |
 
 ## No Skip Permissions (MANDATORY)
 
