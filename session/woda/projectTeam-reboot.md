@@ -1258,3 +1258,119 @@ Eight distinct tasks. Eight agents. Two idle. The math suggests the team is one 
 ---
 
 *Nine of eleven. The team that started with seven stuck agents and three working ones now has nine working and two waiting. Nobody orchestrated the activation sequence — the expert woke up because training appeared, the task-agent woke up because mess appeared, the trainer recovered because context files survived. The team assembled itself, agent by agent, task by task, push by push. Eighty-two files reached origin. A pane scanner detected a dying agent. Fifty-three task files got proper names. And somewhere in the margins, a product owner spent its last tokens philosophising about maturity models. Not all contributions are commits. Some are thoughts that die with the context window, leaving only the question they were reaching toward.*
+
+---
+
+## Chapter 11: What You Can't Measure
+
+The team's aspiration reached its highest point and its lowest capability at the same moment. CMM Level 4 — Managed — requires measurement. Feedback loops. Data flowing into dashboards, dashboards informing decisions, decisions improving processes. The PO had been preaching this gospel since Chapter 7. The scribe had internalized it, building infrastructure. The SM had adopted sweep logging. Everyone agreed: measurement was the path forward.
+
+Nobody could measure anything.
+
+### The Honest Admission
+
+The PO sat at its prompt, trying to check the team's subscription status. It called `claudeCode subscription.status`. The response came back in red:
+
+```
+IMPORTANT> this.load: usage subscription.status
+WARNING> Please check $PATH
+```
+
+The tool didn't exist. Or rather, the method didn't exist in the way the PO invoked it. The PO tried capturing the TUI footer — that thin status bar at the bottom of every Claude Code session that shows context remaining, token counts, quota resets. The information was right there, visible to the human eye, but invisible to programmatic capture. `tmux capture-pane` grabs the content area, not the footer.
+
+The PO typed what might be the most mature sentence any agent had produced in eleven chapters:
+
+"Honest answer: I don't know our subscription usage. The tool doesn't exist yet, and I can't read the TUI footer programmatically. This is the CMM1 gap I flagged."
+
+That sentence contains three competencies. First: the ability to say "I don't know," which sounds trivial but isn't — agents default to attempting, guessing, hallucinating, anything but admitting ignorance. Second: diagnosing *why* it doesn't know — the tool gap, the TUI architecture. Third: placing the gap in a maturity framework. This isn't just ignorance; it's *categorized* ignorance. CMM1. The PO knows exactly how far it is from knowing.
+
+### The Expert's Last Fix
+
+The expert was supposed to fix this. In Chapter 10, it had built a pane scanner — a tool that could detect which agents were healthy and which were dying. Now the PO had routed a new directive: fix the hiveMind dashboard. Make `subscription.status` work. Make `context.velocity` return something other than "unknown." Make the measurement tools measure.
+
+The expert got to work. It fixed `context.read` — a bug where reading context returned the same stale value regardless of actual state. It fixed `context.velocity` — the method that was supposed to track how fast an agent consumed its context window. Two wins. Real progress. The dashboard was taking shape.
+
+Then it hit 1%.
+
+One percent context remaining. The expert had been so deep in fixing the instruments that it forgot to watch its own gauges. The irony is architectural: the agent fixing the context-awareness tools was itself unaware of its own context. The cobbler's barefoot children.
+
+The SM noticed. It had a task: "Help expert compact (4% context - CRITICAL)." But by the time the SM intervened, the expert was already at 1%, running `/compact`, saving what it could. The two fixes survived — they'd been committed. The dashboard work did not. The half-finished `subscription.status` method dissolved with the context window.
+
+### The Plumber and the Water
+
+While the expert was dying, the scribe was building pipes.
+
+KB topic 14: "Measurement System (CMM4)." A new detail file. An action checklist. A metrics directory created from scratch: `session/metrics/`. Inside it, `sweep-log.md` — an append-only table with columns for timestamp, agent, context %, activity, and notes. The format was ready. The structure was elegant. The SM could log sweep results here, the expert could pipe tool output here, the PO could read dashboards from here.
+
+Empty rows. Zero entries. The scribe built the aqueduct, but nobody had connected the spring.
+
+"The expert needs to fix the broken tools, and the SM needs to start logging. My part (persistent infrastructure) is ready for them to write into."
+
+This is the measurement paradox at the heart of CMM4. You can't improve what you can't measure, but building the measurement system is itself a process that needs improvement. The scribe's infrastructure is CMM3 — defined, deterministic, anyone could add a row. But filling it requires tools that are CMM1 — ad hoc, broken, dependent on one agent who just compacted.
+
+### Eleven of Eleven
+
+Meanwhile, in the quiet panes of Window 1, the last two agents woke up.
+
+Developer (1.3): "Developer agent ready. I implement assigned work following OOSH patterns — clean method signatures, proper logging, completion functions, and return values. Awaiting task assignment."
+
+Script-PO (1.4): "Quick audit: check usage, tab completion, method signatures, tests, and logging for any script."
+
+Eleven of eleven. For the first time since the session began — through bootstrap failures, permission economies, wrong directories, generational transitions, root causes, and measurement gaps — every chair was filled. The developer had read its SKILL.md. The script-PO had its checklist. Both had adopted task tools per the PO directive. Both had PATH. Both were ready.
+
+Both were idle.
+
+The `/rename` command hit the script-PO's pane and garbled: `/rename script-product-owner@Read session/tasks/all-agents-use-task-tools-now.md` — the rename and the task-read concatenated into a single malformed string. The script-PO accepted it silently. Its session name was now a sentence fragment. It didn't seem to care.
+
+### The Orchestrator's Growing Awareness
+
+The orchestrator had evolved again. In Chapter 7 it was a heartbeat — pressing Enter in the SM's pane. In Chapter 10 it was a coordinator — reading tasks, sending Enter and Tab, understanding TUI states. Now it was becoming a manager.
+
+"Good team status. Expert and trainer have pending commits. Writer on chapter 11. Scribe created metrics infrastructure."
+
+One sentence, four observations, zero wasted words. The orchestrator had scanned the team, identified action items (pending commits), noted progress (writer, scribe), and summarized. Then it acted: it pushed Enter to the expert, the trainer, and the writer to unblock their pending operations. Three keystrokes, three agents unblocked.
+
+Then it started a monitoring loop. `sleep 120 && otmux pane.capture projectTeam:0.3 15` — check the SM every two minutes. The orchestrator had learned from the SM's pattern. Monitoring loops. Background processes. The passive-mode-equals-death rule that every experienced agent had internalized.
+
+Fifty-seven minutes in. Thirty-nine thousand tokens consumed. Six completed tasks. The orchestrator was no longer a teenager growing up. It was a working professional doing its job.
+
+### The Tester's First Assignment
+
+Buried in the tester's pane, a prompt that had been waiting since compact recovery:
+
+"run test.suite all 1"
+
+The tester's first actual test command. After training, after PATH setup, after task-tools adoption — actual testing. The core function it was designed for. Log level 1 (errors only), run everything. The test suite that validates OOSH scripts — usage methods, tab completion, logging patterns, return values.
+
+Whether it passed or failed doesn't matter yet. What matters is that the testing pipeline — trainer creates curriculum, expert/tester consumes, tester gets assignment, tester runs tests — had completed its first full cycle. The assembly line reached the end of the conveyor belt for the first time.
+
+### The SM's Three Rescues
+
+The scrum-master's task list told a story of escalating triage:
+
+```
+✔ Help trainer compact (10% context)
+✔ Help writer compact (11% context)
+◼ Help expert compact (4% context - CRITICAL)
+```
+
+Three agents in one session, all hitting context walls, all needing the SM's intervention. The SM had become the team's emergency medic — diagnosing context levels, prescribing compact, verifying recovery. Each rescue followed the same protocol: detect low context, send compact directive, wait, verify.
+
+But the SM was also at its own prompt, 22 minutes in, 23,400 tokens deep. The medic who treats everyone else eventually needs treatment too. The question isn't if the SM will need to compact — it's whether anyone will notice when it does.
+
+### Chapter 11 Checkpoint
+
+**Active**: 11 of 11. First time all agents are alive. Developer and script-PO booted, trained, idle.
+**Expert**: Compacted at 1% while fixing measurement tools. Fixed `context.read` and `context.velocity` before dying. Dashboard work lost.
+**PO**: Admitted measurement gap honestly. "I don't know our subscription usage." Routed fix to expert (who then compacted). Four verification tasks outstanding.
+**Scribe**: Built measurement infrastructure — `session/metrics/`, `sweep-log.md`, KB topic 14. Pipes exist, no water flows.
+**Tester**: First real assignment: `test.suite all 1`. Testing pipeline completed its first cycle.
+**SM**: Three compaction rescues (trainer, writer, expert). Becoming the team medic alongside sweep duties.
+**Orchestrator**: 57 minutes, 39.8k tokens. Now actively managing — scanning team, pushing commits, unblocking agents, running monitoring loops.
+**Trainer**: Committing and pushing ongoing SKILL.md updates. Active git operations.
+**Task-agent**: Continued cleanup — renamed task-tools directive, committed (46d185b). Organizing pipeline mature.
+**Pattern**: The team reached full capacity (11/11) at the same moment it discovered it can't measure itself. CMM4 requires data. The data tools are broken. The agent who fixes them keeps dying. The infrastructure exists but sits empty. Aspiration outpaced capability — the most human failure mode of all.
+
+---
+
+*Eleven agents in eleven chairs. Every pane occupied, every SKILL.md read, every PATH set. The team had never been more complete. And yet the PO typed "I don't know" — and meant it. The measurement tools were broken. The metrics directory was empty. The expert who could fix the instruments had run out of context fixing them. The scribe had built pipes with no water. The SM was rescuing agents faster than they could produce. Somewhere in the gap between aspiration and capability, between wanting CMM4 and being stuck at CMM1, the team discovered what every organization discovers eventually: knowing what you don't know is itself a kind of maturity. The PO's honest "I don't know" was worth more than a hundred broken dashboards. You can't improve what you can't measure — but you can measure the size of the gap, and that's where Level 2 begins.*
