@@ -69,3 +69,4 @@
 | --- | --- | --- GAP: prev sessions ended. Both restarted fresh. --- | --- |
 | Feb 12 09:33 | **80.8%** / scribe **77.1%** | writer FRESH session (new), scribe idle at prompt after bootstrap | alive but idle | both healthy, ~26.5hrs to goal | writer nudging scribe to start loop
 | Feb 12 ~10:40 | **74.2%** / scribe **74.2%** | writer active (logging burn data, thinking), scribe NEW session bootstrapping | alive (starting 5-min loop) | same-value bug again, both ~74% | scribe notified writer, message queued
+| Feb 12 09:36 | **70.1%** / scribe **72.7%** | writer resumed after shutdown (new session), scribe stuck at permission prompt | unblocked (sent option 2) | both healthy, ~26.5hrs to goal | permission tax strikes again
