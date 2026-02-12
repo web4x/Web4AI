@@ -1,34 +1,42 @@
 # Orchestrator Context
 
-**Updated**: 2026-02-12T10:30Z
+**Updated**: 2026-02-12T17:15Z
 **Role**: Orchestrator
 **Session**: orchestrator@sonnet (separate Claude Code session, not in projectTeam tmux)
 
 ## Current Task
-Monitor ScrumMaster at projectTeam:0.3. Keep SM unblocked. Coordinate WODA duo.
+Monitor ScrumMaster at projectTeam:0.3. Keep SM unblocked. Monitor hiveMindTeam. Route PO directives.
 
 ## What Just Happened
-1. SM was at 8% context — forced compact (commit 235bc0d)
-2. SM recovered, resumed sweeping autonomously (16+ minutes, no blocks)
-3. Received PO directive: `session/tasks/orchestrator-woda-steady-cycle.task.md`
-4. Sent writer task: `session/tasks/writer-woda-steady-cycle.task.md` to 1.0
-5. Sent scribe task: `session/tasks/scribe-woda-steady-cycle.task.md` to 1.1
-6. Both received and started processing
-7. Task-agent completed file cleanup (-2086 lines, new naming: `{YYYYMMDD}T{HHMM}Z.task.md`)
+1. Expert (0.1) completed ccusage subscription measurement — scrumMaster subscription method works
+2. Expert compacted, sent boot file
+3. Deployed hiveMindTeam tmux session (setup-script-teams.sh hiveMind)
+   - hiveMind-expert (0.0): Working on sweep interval params, completed + committed
+   - hiveMind-tester (0.1): Validated 4/4 acceptance criteria
+4. Writer progressed to chapter 15
+5. Scribe maintaining KB, monitoring writer
+6. 3 OSSH agents deployed: 1.2 (ossh-tester), 1.4 (ossh-expert), 1.5 (ossh-po)
+7. SM has compound command permission issue — told to use simple commands
 
 ## Team Status
-| Pane | Agent | Status |
-|------|-------|--------|
-| 0.0 | Orchestrator (tmux) | 6% context, PO helping compact |
-| 0.1 | Expert | Working on pane titles |
-| 0.3 | ScrumMaster | Active, sweeping autonomously |
-| 0.4 | PO | Active, helping orchestrator compact |
-| 0.5 | Trainer | Active, creating agent subdirs |
-| 1.0 | Writer | Received WODA steady cycle task |
-| 1.1 | Scribe | Received WODA steady cycle task, 9 chapters/15,943 words |
-| 1.2 | Task Agent | Completed file cleanup |
+| Session | Pane | Agent | Status |
+|---------|------|-------|--------|
+| projectTeam | 0.0 | Orchestrator (tmux) | Active (this session mirrors here) |
+| projectTeam | 0.1 | Expert | Compacted, recovering |
+| projectTeam | 0.2 | Tester | Waiting for expert dashboard completion |
+| projectTeam | 0.3 | SM | At 4% context, needs fresh restart |
+| projectTeam | 0.4 | PO | Active, directing team |
+| projectTeam | 0.5 | Trainer | Active |
+| projectTeam | 1.0 | Writer | Chapter 15, steady cycle |
+| projectTeam | 1.1 | Scribe | Monitoring writer, KB maintenance |
+| projectTeam | 1.2 | ossh-tester | Deployed |
+| projectTeam | 1.3 | task-agent | Active |
+| projectTeam | 1.4 | ossh-expert | Deployed |
+| projectTeam | 1.5 | ossh-po | Deployed |
+| hiveMindTeam | 0.0 | hiveMind-expert | Active, coding |
+| hiveMindTeam | 0.1 | hiveMind-tester | Active, validating |
 
-## Communication Hierarchy (PO directive)
+## Communication Hierarchy
 ```
 Tron (user) <-> PO
                  |
@@ -37,16 +45,13 @@ Tron (user) <-> PO
     Writer+Scribe    ScrumMaster
 ```
 
-## Key Commands
-```bash
-export PATH="/Users/donges/oosh:/Users/donges/oosh/otmux:/Users/donges/oosh/hiveMind:/Users/donges/oosh/ng:$PATH"
-otmux pane.capture projectTeam:0.3 30
-otmux send projectTeam:0.3 Enter
-```
+## Known Issues
+- SM uses compound && commands that trigger permission prompts — told to use simple commands
+- Multiple agents need frequent compaction — context sizes are growing
+- Pane indexes shifted after ossh-tester split: task-agent now at 1.3
 
 ## Recovery
 1. Read this file
-2. Read .claude/agents/agent-teacher/SKILL.md
-3. Export PATH (above)
-4. Check SM: `otmux pane.capture projectTeam:0.3 30`
-5. Resume monitoring loop
+2. Check SM: `otmux pane.capture projectTeam:0.3 30`
+3. Check hiveMindTeam: `tmux capture-pane -t hiveMindTeam:0.0 -p -S -10`
+4. Resume monitoring loop
