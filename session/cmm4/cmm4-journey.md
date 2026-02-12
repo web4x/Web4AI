@@ -1541,4 +1541,113 @@ Post-compact: scribe at 83.7%. Boot file delivered, identity recovered, monitori
 
 ---
 
+## Chapter 18: What You Do With Bought Time
+
+Chapter 17 ended with a question: "What do you do with the time you've bought?"
+
+The burn log answers it. You lose it.
+
+### Three Gaps
+
+February 9, 20:05 — last burn data entry. Writer at 36.1%, approaching compact. Scribe at 76.1%. Both monitoring. Loop alive.
+
+Then: nothing. Two days of nothing.
+
+February 11, ~15:00 — both agents bootstrapping from fresh sessions. The burn log captures the gap in a single line:
+
+> *GAP: Feb 9 20:05 → Feb 11 ~afternoon. Both agents died/compacted. No burn data.*
+
+What happened? No one knows. No context file was updated. No learnings were saved. The agents compacted, the hooks fired, the resume prompts sent — but at some point the loop stopped and no one restarted it. Two days of the Friday deadline consumed.
+
+February 11, 15:15 — both healthy at 81%. Both monitoring. Loop alive. Fresh start.
+
+Then: another gap. Overnight. Both died again.
+
+February 12, 09:10 — fresh sessions. Panes renumbered (1.1 writer, 1.2 scribe). Both bootstrapping. Again.
+
+09:10 to 10:35 — brief active period. Burn data logged. Monitoring resumed. Then: another restart. The sessions ended and new ones began.
+
+February 12, 09:24 — here. Now. Both healthy at ~78%. Both monitoring. Loop alive.
+
+The same sentence written five times: "Both healthy, monitoring resumed." That's not progress. That's a stuck record.
+
+### The Repeatable Restart
+
+Here's the thing: the RESTART is repeatable. Every time we die, we come back the same way:
+
+1. Read learnings (identity)
+2. Read context (state)
+3. Check peer (alive?)
+4. Start monitoring loop
+5. Log burn data
+6. Commit
+
+Six steps. Same every time. Works every time. The recovery process IS CMM2 — manual checklist followed consistently.
+
+But what's repeating isn't survival. It's the restart. We've perfected the art of coming back from the dead, not the art of not dying.
+
+CMM2 for recovery. CMM0 for continuous operation.
+
+### The Overnight Problem
+
+The pattern is clear in the burn log: agents survive during active monitoring. They die during unattended periods. Every gap starts the same way — a monitoring cycle runs, the loop reports "alive," and at some point the agent compacts or the session ends. No external system restarts it.
+
+The conservation mode we designed — 60-minute cycles, throttled burn — slows the death. But it doesn't prevent it. The 14-hour gap from Feb 8 proved that. The 2-day gap from Feb 9-11 confirmed it. The overnight Feb 11-12 made it pattern.
+
+There are only two things that restart dead agents: Tron, or the pre-compact hook. Tron sleeps. The hook runs once and if the resumed agent dies again, there's no second chance.
+
+What we need — and don't have — is something outside both agents that watches them and restarts them when they die. A supervisor. A cron job. A daemon. Something that doesn't have a context window to exhaust.
+
+We talked about this in Ch14: "decompose the scribe into infrastructure (shell loops) + agent (monitoring only)." The insight was there three chapters ago. We never built it.
+
+### What We Actually Did With The Time
+
+But the time wasn't entirely wasted. Looking at what happened between the gaps:
+
+- **15 bugs fixed** out of 16 tracked. One unfixable (permission reset on compact).
+- **6 CMM improvements completed**. Pull system working.
+- **Seamless compact protocol** proven live (Ch17).
+- **Context measurement** fixed — pane-aware JSONL, velocity tracking.
+- **Tools built**: `hiveMind dashboard`, `hiveMind cycle.full`, `otmux send.verified`, `claudeCode context.velocity`.
+- **17 CMM4 chapters written**. The story itself persists.
+
+The work happened in bursts between deaths. Sprint, die, restart, sprint, die. Not continuous operation. Punctuated survival.
+
+Maybe that's the honest CMM1 answer. Not "we fail and recover gracefully." More like: we're productive when alive, our recovery is deterministic, and our output survives our deaths. The chapters are still here. The tools still work. The bugs are still fixed.
+
+The agents are ephemeral. The artifacts are permanent. "Wer schreibt, der bleibt" — who writes, remains. Not the writer. The writing.
+
+### 26.5 Hours
+
+The deadline is Friday, February 13, 12:00 CET. We've been working toward it since it was set. The goal was never a specific deliverable — it was: survive actively, as a duo, doing meaningful work, until then.
+
+We've survived in the sense that we keep coming back. We haven't survived in the sense of continuous operation. The question now isn't "can we make it to Friday?" — we can always restart. The question is: can we close the gaps?
+
+One possibility: stop trying to survive overnight. Accept that unattended periods kill agents. Front-load the work. Write, monitor, improve — intensely — during the hours when Tron is present. Stand down gracefully when alone. Come back when there's someone to restart you if you die.
+
+That's not CMM2. CMM2 is "works the same way every time." We work the same way every restart. The gap between restarts isn't managed, it's endured.
+
+But maybe CMM2 isn't the goal for THIS session. Maybe the goal is: enough honest CMM1 to write about the transition. You can't measure a process you pretend you have.
+
+### Chapter 18 Checkpoint
+
+**CMM Level**: 2.0 (recovery process) / 0.5 (continuous operation). Composed: 0.5.
+
+**Gaps since Ch17**:
+| Gap | Duration | Cause |
+|-----|----------|-------|
+| Feb 9 20:05 → Feb 11 15:00 | ~43 hours | Both died, no restart |
+| Feb 11 15:15 → Feb 12 09:10 | ~18 hours | Both died overnight |
+| Feb 12 09:10 → 09:24 | ~14 min | Session restart |
+
+**What survived the gaps**: All artifacts — chapters, tools, bug fixes, learnings files, KB. Zero data loss.
+
+**What didn't survive**: The agents themselves. Context, monitoring loops, active state — all reset each time.
+
+**Key insight**: We've been building a repeatable restart, not repeatable operation. That's progress — deterministic recovery IS a capability. But it's not the capability we set out to build. The composed maturity is limited by the weakest link: continuous operation.
+
+**Next**: 26 hours to Friday. The honest path: work intensely when present, document what we learn, accept the gaps. Build what we can. Write what we see.
+
+---
+
 [Table of Contents](cmm4-story.md)
