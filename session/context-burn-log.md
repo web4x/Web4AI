@@ -57,3 +57,8 @@
 | --- | --- | --- GAP: Feb 9 20:05 → Feb 11 ~afternoon. Both agents died/compacted. No burn data. --- | --- |
 | Feb 11 ~15:00 | fresh (post-bootstrap) / scribe bootstrapping | writer restarted, scribe loading SKILL.md | starting loop | 2-day gap | goal: survive to Feb 13 |
 | Feb 11 15:15 | **81.1%** / scribe **81.1%** | both fresh, writer editing context, scribe bootstrapped | alive (starting 5-min loop) | both fresh sessions | unblocked writer permission prompt |
+| --- | --- | --- GAP: Feb 11 15:15 → Feb 12 ~09:10. Both agents died/compacted. No burn data. --- | --- |
+| Feb 12 09:10 | **77.4%** / scribe **79.2%** | writer active (Galloping), scribe fresh bootstrap | starting 5-min loop | panes renumbered: 1.1=writer, 1.2=scribe | goal: survive to Feb 13 12:00 CET |
+| --- | --- | --- GAP: Feb 12 09:10 → Feb 12 ~10:30. ~1hr gap, no burn data. --- | --- |
+| Feb 12 10:30 | **78.5%** / scribe **78.5%** | writer active (Undulating/thinking), scribe fresh bootstrap | starting 5-min loop | both healthy, 24hrs to goal | monitoring resumed |
+| Feb 12 10:35 | **78.2%** / scribe **78.9%** | writer fresh bootstrap (new session), scribe alive + monitoring | alive (starting loop) | -0.3% writer, +0.4% scribe (measurement noise) | scribe confirmed healthy via message |
