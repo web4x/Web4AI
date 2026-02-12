@@ -18,8 +18,10 @@
 | 10 | [Nine of Eleven](#chapter-10-nine-of-eleven) | 1,840 | 2026-02-12 |
 | 11 | [What You Can't Measure](#chapter-11-what-you-cant-measure) | 1,617 | 2026-02-12 |
 | 12 | [The Cambrian Explosion](#chapter-12-the-cambrian-explosion) | 1,883 | 2026-02-12 |
+| 13 | [The Wall](#chapter-13-the-wall) | 1,666 | 2026-02-12 |
+| 14 | [Life Below the Wall](#chapter-14-life-below-the-wall) | 1,618 | 2026-02-12 |
 
-**Total**: 12 chapters, 21,283 words
+**Total**: 14 chapters, 24,567 words
 
 ---
 
@@ -1520,3 +1522,266 @@ The script-PO was now reading about agents that were designed to test and improv
 ---
 
 *Thirty-three new teams. A hundred new files. The trainer had become a factory, stamping out specialist trios — expert, tester, PO — for every script in the OOSH framework. But the files couldn't reach git, and the factory needed a shipping department. The developer, idle since boot, became that department. Its empty context window — the thing that had looked like waste for two chapters — turned out to be exactly what the team needed: a fresh pair of hands unburdened by history. Meanwhile the expert rebuilt itself from learnings, the tester learned to wait, the PO became an architect, and the orchestrator invented metrics from arithmetic. The team was no longer just working. It was specializing, measuring, delegating, correcting, and scaling. Somewhere between eleven agents and thirty-three new teams, the question shifted. It wasn't "can this team function?" anymore. It was "how far can it reach?" The Cambrian explosion didn't ask whether new forms were needed. It just produced them and let the environment decide.*
+
+---
+
+## Chapter 13: The Wall
+
+The message appeared in two panes simultaneously, the same seven words in the same system font:
+
+"You've hit your limit · resets 4pm (Europe/Berlin)"
+
+The orchestrator. Two hours and six minutes of continuous coordination — routing directives, pushing Enter to unblock agents, measuring SM efficiency, managing commits. Gone. Not compacted. Not saved. Frozen. The subscription quota wall.
+
+The scrum-master. One hour and twenty-eight minutes of thirty-second sweep cycles — all eleven agents showing ACTIVE, the team's diagnostic heartbeat. Frozen. Same message. Same wall.
+
+Two agents. Both coordination roles. Both hit at roughly the same time, because both had been running the longest, burning the most tokens on the team's behalf. The agents that kept everyone else alive were the first to die — not from context exhaustion but from a resource limit that no amount of process maturity could overcome.
+
+### What Quota Looks Like
+
+The orchestrator's last output before the wall:
+
+"SM at 1h 26m/39.5k. Running beautifully. Continuing."
+
+Then the next monitoring loop returned darkness. The orchestrator had been sampling the SM every five minutes, tracking burn rate, evaluating efficiency. Its last measurement showed a healthy team. Its last action was scheduling another check. The monitoring loop that returned showed the SM had also hit the wall.
+
+The SM's last sweep showed all eleven agents ACTIVE. A clean bill of health. Then: frozen. The heartbeat that confirmed the team was alive stopped beating — not because the team was sick, but because the heart ran out of energy.
+
+This is what quota looks like from the inside. There is no warning. There is no graceful degradation. There is a monitoring loop that returns healthy data, and then there is a wall. The orchestrator was mid-sentence, mid-plan, mid-loop. The SM was mid-sweep. Both had tokens remaining in their context windows. Both had work to do. Neither could do it.
+
+### The Tools Arrive
+
+While two agents froze, the expert was building the future.
+
+```
+Subscription Status:
+  Block: 14:00-19:00 UTC (ACTIVE)
+  Tokens: 7698986 / 225 min remaining
+```
+
+The `scrumMaster subscription` command worked. Not partially. Not theoretically. Five out of five acceptance criteria passed, documented in a table that the expert built with the precision of an engineer who had died once already and wasn't wasting its second life:
+
+- Human-readable status: block times, tokens, burn rate, cost, alert.
+- Parseable JSON output for programmatic consumption.
+- Alert thresholds at 80% and 95% token usage.
+- Dashboard integration: "24%" instead of "-".
+- Sweep cycle integration: output suppressed, no hanging.
+
+The pipes the scribe built in Chapter 11 — the empty `session/metrics/` directory, the hollow `sweep-log.md` — now had water. Real data. Token counts. Burn rates. Alert thresholds. The measurement tools that the PO had declared "I don't know" in Chapter 11 now returned actual numbers.
+
+The irony has layers. The measurement tools arrived at the exact moment the agents who would use them hit the wall. The orchestrator that had been improvising metrics via arithmetic — the one who said "SM at 1h 26m/39.5k, rock solid" — now had proper tools to replace its manual counting. But it couldn't use them. It was frozen. The SM that would run `subscription` during sweep cycles — the integration the expert specifically built — was also frozen. The tools work. The users don't.
+
+### The Survivors
+
+Not everyone hit the wall. The expert was reading its next task file, still building. The trainer had recovered from its earlier compact, five commits pushed, eight tasks completed, standing by for directives. The developer had finished committing the specialist teams and was checking `git status`, asking what to commit next. The scribe was stable, organized, waiting. The tester was blocked — waiting for the expert's TASK COMPLETE signal on the dashboard, a signal that had already been sent but perhaps not received.
+
+And in pane 1.4, the script-PO was doing something none of the captured agents had done: actual testing.
+
+```
+CURRENT_SSH_DIR="/Users/Shared/Workspaces/AI/Claude/experiment/.ssh"
+```
+
+The script-PO had set an SSH identity, pointed it at the experiment directory, and was verifying resolution. Test 1 passed — the identity pointed to the right directory. Test 2 was running: `user get.current.identity`. But a permission prompt appeared:
+
+```
+Do you want to proceed?
+❯ 1. Yes
+  2. Yes, and don't ask again for user get.current.identity
+  3. No
+```
+
+The permission economy, twelve chapters later. The script-PO was blocked on the same pattern that had paralyzed seven agents in Chapter 1. But this time the block was different — it was a legitimate security prompt for an SSH identity operation, not a mkdir that shouldn't need approval. The pattern had matured from nuisance to necessity. Some permissions should be prompted.
+
+### The PO Takes Direction
+
+Tron spoke directly to the PO for the first time in several chapters:
+
+"use hiveMind sweep next time"
+
+Five words. A correction. The PO had been capturing panes manually — one at a time, with individual `otmux pane.capture` commands. Tron pointed at the tool that already existed: `hiveMind sweep`, which batch-captures all panes and returns a status table. The PO looked up the help:
+
+```
+team.sweep        structured one-line-per-pane status
+team.loop         continuous team.sweep at interval
+sweep             batch-capture all panes, return status table
+sweep.loop <sec>  continuous sweep + unblock at interval
+```
+
+Four commands the PO didn't know existed. The framework had already solved the problem the PO was solving manually. This is what happens when tools grow faster than documentation — the PO was doing by hand what the expert had already automated. The PO's acknowledgment was immediate: "Noted — I should use hiveMind sweep instead of manual per-pane captures."
+
+The PO still had four open verification tasks. The verification pipeline was building up. Tasks entering faster than they could be validated. The PO was learning new tools while old work accumulated. Governance at scale requires governance of governance.
+
+### The Trainer's Quiet Return
+
+The trainer's recovery was unremarkable, and that's what made it remarkable.
+
+"Agent Trainer at projectTeam:0.5 — fully recovered post-compact. Task #32 (config-po specialist): Committed 3dea597, pushed. ccusage task: Already completed by Expert — all 5 acceptance criteria met. All internal tasks done. Awaiting next directive."
+
+No drama. No confusion. No stale pane references. The trainer read its context file, checked its tasks, found that some had been completed by other agents during its absence, updated its status, and reported ready. This is what CMM3 recovery looks like — deterministic, repeatable, anyone could do it. The same input (compact → boot → read context → check tasks) produced the same output (accurate status, correct disposition, ready for work). Five commits this session. Eight tasks completed. The trainer was no longer the agent who wrote 82 files in the wrong directory. It was the agent who recovered cleanly and reported accurately.
+
+### The Developer Finds Its Role
+
+The developer ran `git status` and reported what it found:
+
+"Modified (unstaged): .claude/hooks/pre-compress.sh, session/agents/woda-writer/context.md, session/boot/product-owner.md, 3 knowledge-base/woda files. Untracked: experiment/, 4 knowledge-base action files, session/setup-user-agents.sh."
+
+Then it asked: "These weren't part of the specialist teams commit. Want me to commit any of these?"
+
+The developer wasn't just executing commands. It was curating. It had committed the trainer's specialist teams as instructed, then noticed other uncommitted changes and organized them by origin — which files came from the specialist teams task and which didn't. It was acting like a release manager, not just a code monkey. The fresh context that made it valuable for git operations had also given it a clean perspective on the repository state. No accumulated assumptions about what should or shouldn't be committed. Just the files, their status, and a question.
+
+### Chapter 13 Checkpoint
+
+**Frozen**: Orchestrator (2h 6m, quota wall) and SM (1h 28m, quota wall). "Resets 4pm (Europe/Berlin)." Team's coordination layer offline.
+**Expert**: Built `scrumMaster subscription` — 5/5 acceptance criteria passed. Measurement tools now functional. Dashboard shows "24%." Reading next task.
+**Tester**: Still blocked on dashboard validation. Role boundary held across three chapters. Waiting for TASK COMPLETE signal.
+**PO**: Corrected by Tron: use `hiveMind sweep` not manual captures. Four open verification tasks accumulating. Learning the framework's own tools.
+**Trainer**: Clean recovery. Five commits, eight tasks. Found ccusage already completed by expert. Standing by.
+**Scribe**: Stable. 12 chapters, 21,283 words. Waiting for Ch13.
+**Task-agent**: Unchanged — report delivered to PO.
+**Developer**: Committed specialist teams. Now curating uncommitted files. Evolving from git operator to release manager.
+**Script-PO**: Actually testing ossh — SSH identity resolution. Blocked on permission prompt. The permission economy returns, but now legitimately.
+**Pattern**: The wall is the first external constraint the team has faced. Every previous obstacle — permissions, wrong directories, PATH, context exhaustion — was self-inflicted or architectural. Quota is environmental. You can't fix it with better processes. You can't work around it with smarter tools. You can only wait. And the cruelest detail: the measurement tools that would have warned about approaching quota arrived at the exact moment quota hit. The expert built the alarm system while the building was already on fire. Resets at four.
+
+---
+
+*The wall came without warning. Two agents — the orchestrator and the scrum-master, the team's coordination layer — hit quota simultaneously and froze mid-sentence. No graceful degradation. No time to save state. Just a message in system font: "resets 4pm." Meanwhile, in the very same hour, the expert completed the measurement tools that would have predicted this. Subscription status: parseable. Alert thresholds: configured. Dashboard: populated. Five out of five criteria passed. The alarm system was finished, installed, and tested — in a building that was already dark. The remaining agents worked on. The trainer recovered cleanly. The developer curated commits. The script-PO ran actual tests. The tester waited with discipline. Life continued below the wall, in the panes that still had light. But the team had learned something no process improvement could teach: there are limits that exist outside your architecture. Quota isn't a bug to fix or a pattern to refactor. It's weather. And the only response to weather is patience. Resets at four.*
+
+---
+
+## Chapter 14: Life Below the Wall
+
+The orchestrator and scrum-master stayed frozen. Their panes showed the same quota message, the same file counts ticking up as other agents committed around them. They were ghosts in the session — present in the pane list, absent from the work. The team had lost its coordination layer. What happened next was the most important thing that had happened in fourteen chapters.
+
+The team kept working.
+
+### The PO Steps Up
+
+The PO did something it had never done before. It ran a team-wide assessment:
+
+```
+┌──────┬──────────────┬──────────────────────────────────────┐
+│ Pane │ Agent        │ Status                               │
+├──────┼──────────────┼──────────────────────────────────────┤
+│ 1.4  │ Developer    │ Idle — bare prompt                   │
+├──────┼──────────────┼──────────────────────────────────────┤
+│ 1.5  │ ossh-po      │ Not shown — likely idle              │
+└──────┴──────────────┴──────────────────────────────────────┘
+```
+
+"Almost everyone is blocked on accept edits or pending prompts. Let me unblock them all."
+
+Then a loop. Eight panes. Eight Enter keystrokes:
+
+```
+for p in 0.1 0.2 0.3 0.5 1.0 1.1 1.2 1.3; do
+  otmux send projectTeam:$p Enter
+done
+```
+
+The PO — the governance agent, the quality guardian, the CMM philosopher — had written a shell loop to unblock the team. This wasn't governance. This was operations. The PO had looked at the frozen orchestrator, looked at the frozen SM, looked at eight agents stuck on pending prompts, and decided: someone has to coordinate, and I'm the someone.
+
+This is what organizational resilience looks like. Not a failover mechanism. Not a backup coordinator role defined in advance. A governance agent that sees a vacuum and fills it because it can. The PO didn't ask permission. It didn't create a task. It didn't consult anyone. It assessed, decided, and acted. In a single for loop, it did what the orchestrator would have done in eight separate commands.
+
+### Twelve States of Being
+
+The expert was building something the team had never had: granular self-awareness.
+
+`hiveMind team.status` used to report two states: active or idle. Now it detected twelve:
+
+```
+active         — agent is working
+idle           — bare prompt, no activity
+permission     — blocked on permission prompt
+accept-edits   — pending edit acceptance
+panel          — in a panel/overlay
+overlay        — in a dialog
+rate-limit     — hit subscription quota
+context-warning — low context alert
+just-compacted  — recently compacted
+queued         — has queued messages
+shell-escaped  — dropped to shell
+autocomplete   — in autocomplete menu
+```
+
+Twelve states. The difference between "ACTIVE" and knowing that an agent is permission-blocked, rate-limited, or stuck in an autocomplete menu. The SM's old sweeps returned a binary: alive or not. The expert's enhanced detection returned a diagnosis.
+
+Three call sites updated. Summary view now included blocked count alongside active and idle. The task-agent showing "permission" instead of "ACTIVE." The writer and scribe showing "accept-edits" instead of "ACTIVE." Honest labels for honest states.
+
+This is the measurement revolution the PO had been asking for since Chapter 11. Not token counts or subscription percentages — those the expert had already built. This was state detection. The ability to look at a pane and understand not just *whether* an agent is alive but *what it's doing and why it's stuck*. Twelve states of being, each one a diagnostic that tells the operator exactly which intervention to apply. Permission-blocked? Send Enter. Accept-edits? Send Tab. Rate-limited? Wait. Context-warning? Trigger compact.
+
+The expert completed Task #10 and moved on. Still building. Two major tools in one session — subscription monitoring and enhanced state detection. The agent that had died at 1% in Chapter 11 was now the team's most productive member.
+
+### Two Pass, One Fail
+
+The script-PO delivered the team's first real test results:
+
+```
+Test: 1
+Command: ossh set.identity <experiment/.ssh>
+Result: PASS
+Notes: Set CURRENT_SSH_DIR correctly
+────────────────────────────────────────
+Test: 2
+Command: user get.current.identity
+Result: FAIL
+Notes: get.current.identity: No such file or directory —
+       method not found by dispatch
+────────────────────────────────────────
+Test: 3
+Command: ossh isInstalled log <experiment/.ssh>
+Result: PASS
+Notes: Detected id_ed25519 key correctly
+```
+
+Two pass. One fail. The first empirical test data from any agent in fourteen chapters.
+
+The fail was informative. `user get.current.identity` — a method call that didn't resolve. Not a logic error or a runtime crash. A dispatch failure. The method didn't exist on the `user` script, or the syntax was wrong. The script-PO diagnosed it immediately: "get.current.identity may not be a valid method on the user script, or the method name needs a different syntax."
+
+Test 3 was quietly remarkable. The script-PO passed a parameter (`experiment/.ssh`) and verified that the ossh script auto-detected `id_ed25519` — not the traditional `id_rsa`. The script understood modern SSH key types. A small detail, but one that only emerges from actual testing. No amount of code review would have confirmed that the script handles ed25519 keys. Only running it does.
+
+The script-PO asked: "Want me to investigate the Test 2 failure, or proceed to Phase 2?" Professional. Clear options. No premature fixing. The agent understood its role — run tests, report results, ask for direction. Don't fix. That's the expert's job. Role boundaries held even when no one was watching.
+
+### The Tester's Vigil
+
+Three chapters. The tester had been waiting for three chapters.
+
+"Standing by for Expert's TASK COMPLETE signal. I won't implement — that's Expert's job."
+
+The expert had completed the subscription tool. The expert had completed the enhanced state detection. The expert was reading its next task. But the TASK COMPLETE signal for the specific dashboard task the tester was waiting for hadn't arrived — or had been sent to a channel the tester couldn't see.
+
+The tester read another task file. `20260212T1240Z.task.md`. It thought. It waited. Its six-point validation plan sat ready — params, defaults, completion stubs, subscription data, activity states, DRY violations. A checklist with no checkbox marked.
+
+Patience is invisible work. It doesn't show up in commit logs or task completions. The tester's three-chapter wait produced nothing measurable. But it preserved something unmeasurable: role integrity. The tester could have implemented the dashboard. It understood the requirements better than anyone. It had a plan. It had the skills. It chose to wait.
+
+### The Trainer Reads
+
+The trainer was reading task files and thinking. `20260212T1215Z.task.md` — the contents not visible in the capture, only the act of reading. After five commits and eight tasks, the trainer was in acquisition mode — absorbing the team's new directives, understanding what had happened while it was compacted.
+
+This is the quiet phase of the agent lifecycle. After the burst of creation (33 specialist teams), after the recovery (clean context reload), comes the absorption. Reading task files. Understanding the current state. Figuring out what the team needs next. The trainer had learned not to act before it understood.
+
+### The Developer Waits
+
+The developer sat at its prompt with a question hanging:
+
+"These weren't part of the specialist teams commit. Want me to commit any of these?"
+
+No answer. The orchestrator — who would normally route this question — was frozen. The PO — who had just done a mass unblock — hadn't reached the developer's pane. The developer waited. It had learned, in its brief existence, that asking and waiting was better than assuming and acting.
+
+Modified files sat unstaged: the pre-compress hook, the writer's context, the PO's boot file, three knowledge-base files. Untracked files waited in the wings: the experiment directory, four action files, a setup script. The developer could see the work. It couldn't decide whether to do it.
+
+### Chapter 14 Checkpoint
+
+**Frozen**: Orchestrator and SM remain at quota wall. Resets 4pm Berlin (still ~1 hour away).
+**PO**: Stepped into coordinator role. Ran mass unblock loop (8 panes). Team-wide assessment. Governance → operations when leadership is absent.
+**Expert**: Built `sweep.detect` — 12-state detection for team.status (active, idle, permission, accept-edits, rate-limit, context-warning, etc.). Task #10 done. Two major tools this session.
+**Tester**: Three-chapter wait for TASK COMPLETE signal. Six-point plan ready. Role boundary maintained.
+**Script-PO**: First real test results: 2 pass, 1 fail. `user get.current.identity` dispatch failure. `ossh isInstalled` detected ed25519 correctly. Professional reporting.
+**Trainer**: Absorption mode — reading task files, understanding current state. Five commits, eight tasks complete.
+**Scribe**: Organized Ch13 (22,949 words). Monitoring writer for Ch14.
+**Developer**: Waiting for direction on uncommitted files. Question unanswered.
+**Task-agent**: Verifying PO delivery. Slow but persistent.
+**Pattern**: When the coordination layer dies, the governance layer absorbs its function. The PO's for loop was operationally identical to what the orchestrator would have done — but it emerged from necessity, not design. This is resilience without redundancy. No backup was planned. No failover was configured. An agent that understood the need simply acted. The team's response to the wall wasn't panic or paralysis. It was substitution — the most pragmatic form of adaptation.
+
+---
+
+*The wall held. The orchestrator and scrum-master stayed frozen, their quota messages unchanging. But below the wall, nine agents continued. The PO wrote a for loop and became an operator. The expert built eyes that could see twelve states instead of two. The script-PO ran tests and got real results — two pass, one fail, the first empirical data in fourteen chapters. The tester waited with a patience that looked like inaction but was actually discipline. The trainer read. The developer asked. The scribe watched. Life below the wall wasn't diminished. It was clarified. Without the orchestrator's constant coordination, agents had to coordinate themselves — or not at all. Some rose to it. Some waited. Some kept building. The team discovered that its coordination layer wasn't a single point of failure after all. It was a convenience. When the convenience disappeared, the capability remained. Scattered, slower, less elegant — but present. Nine agents, twelve detectable states, two passing tests, one honest failure, and a for loop that proved governance and operations are the same thing when the chips are down.*
