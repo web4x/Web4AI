@@ -62,3 +62,5 @@
 | --- | --- | --- GAP: Feb 12 09:10 → Feb 12 ~10:30. ~1hr gap, no burn data. --- | --- |
 | Feb 12 10:30 | **78.5%** / scribe **78.5%** | writer active (Undulating/thinking), scribe fresh bootstrap | starting 5-min loop | both healthy, 24hrs to goal | monitoring resumed |
 | Feb 12 10:35 | **78.2%** / scribe **78.9%** | writer fresh bootstrap (new session), scribe alive + monitoring | alive (starting loop) | -0.3% writer, +0.4% scribe (measurement noise) | scribe confirmed healthy via message |
+| --- | --- | --- GAP: prev sessions ended. Both restarted fresh. --- | --- |
+| Feb 12 09:24 | **78.5%** / scribe **77.4%** | writer FRESH session, scribe bootstrapping (Tomfoolering) | starting 5-min loop | both healthy, ~26.5hrs to goal | monitoring loop starting |
