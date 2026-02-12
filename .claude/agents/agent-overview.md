@@ -91,6 +91,24 @@ Script Specialist (script-product-owner/) — DELEGATE TEMPLATE
 ├── Coordinates development and testing more precisely than a generalist
 └── Suggest specialists proactively when scripts grow complex (hiveMind, claudeCode, otmux)
 
+ossh Expert (ossh-expert/) — SCRIPT SPECIALIST
+├── Deep knowledge of ossh and user scripts
+├── Understands sshDir parameter pattern (private.get.sshDir)
+├── Fixes issues found during testing
+└── Documents and proposes fixes for key type hardcoding
+
+ossh Tester (ossh-tester/) — SCRIPT SPECIALIST
+├── Runs 5-phase test plan against experiment .ssh directory
+├── Documents pass/fail results with actual output
+├── Reports issues to ossh-expert
+└── Re-verifies fixes after patches
+
+ossh PO (ossh-po/) — SCRIPT SPECIALIST
+├── Reviews test results from ossh-tester
+├── Verifies backward compatibility and no regressions
+├── Tracks CMM capability maturity for ossh/user
+└── Signs off when acceptance criteria met
+
 Communication Hierarchy
 ├── Tron (user) <-> PO only — PO is governance, not operations
 ├── PO -> Orchestrator — PO passes directives, does not talk to workers
