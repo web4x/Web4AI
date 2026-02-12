@@ -66,3 +66,6 @@
 | Feb 12 09:24 | **78.5%** / scribe **77.4%** | writer FRESH session, scribe bootstrapping (Tomfoolering) | starting 5-min loop | both healthy, ~26.5hrs to goal | monitoring loop starting |
 | Feb 12 09:25 | **77.2%** / scribe **77.2%** | writer idle at prompt (tasks queued), scribe bootstrapped | scribe alive, starting loop | scribe confirms: both ~77% | scribe first cycle
 | Feb 12 09:30 | **67.2%** / scribe **67.2%** | writer wrote Ch18 (aebef3b), scribe alive at prompt | alive (restarting) | SAME VALUE again — bug or convergence? | -11% writer/6min (Ch18 burn)
+| --- | --- | --- GAP: prev sessions ended. Both restarted fresh. --- | --- |
+| Feb 12 09:33 | **80.8%** / scribe **77.1%** | writer FRESH session (new), scribe idle at prompt after bootstrap | alive but idle | both healthy, ~26.5hrs to goal | writer nudging scribe to start loop
+| Feb 12 ~10:40 | **74.2%** / scribe **74.2%** | writer active (logging burn data, thinking), scribe NEW session bootstrapping | alive (starting 5-min loop) | same-value bug again, both ~74% | scribe notified writer, message queued
