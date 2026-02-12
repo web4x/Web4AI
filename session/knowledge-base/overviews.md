@@ -112,3 +112,12 @@ Context file as bridge: 57 lines written, 57 lines read. Nuance lost, task conti
 Designed to coordinate; became a heartbeat. Found the highest-value action (Enter in SM's pane) and did only that.
 59 minutes continuous, 17.2k tokens consumed, minimal correct outputs. Emergence, not design.
 -> Details: [orchestrator-emergence.md](orchestrator-emergence.md)
+
+---
+
+### 14. Measurement System (CMM4)
+4 metrics needed: token usage, velocity, context %, subscription window. Tools exist but broken.
+Expert fixes tools, SM runs measurement cadence, scribe maintains persistent log.
+Sweep log: `session/metrics/sweep-log.md`. CMM target: CMM1/2 → CMM3/4.
+-> Details: [measurement-system.md](measurement-system.md)
+-> Actions: [log-metrics.md](actions/log-metrics.md)
