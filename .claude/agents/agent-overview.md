@@ -85,6 +85,14 @@ Script Product Owner (script-product-owner/) — TEMPLATE, not a standalone agen
 ├── Each script is owned by one expert+tester pair
 └── PO governs all pairs against this contract
 
+Communication Hierarchy
+├── Tron (user) <-> PO only — PO is governance, not operations
+├── PO -> Orchestrator — PO passes directives, does not talk to workers
+├── Orchestrator -> Writer+Scribe (autonomous pair, report to Orchestrator)
+├── Orchestrator -> ScrumMaster (manages all worker agents)
+├── ScrumMaster -> Expert / Tester / Developer / Trainer / Task Agent
+└── ScrumMaster sweeps ALL panes including Writer+Scribe for health
+
 Cross-Session Relationships
 ├── WODA Writer delegates bugs → Orchestrator (main team)
 ├── WODA Scribe improvements → validated by PO against usability contract

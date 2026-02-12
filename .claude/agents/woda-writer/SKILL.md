@@ -56,21 +56,20 @@ Every 5-min cycle:
 3. Restart scribe if dead
 4. Verify your own loop is still running (scribe does the same for you)
 
-## Seamless Compact Protocol (CRITICAL)
+## Peer Compact Protocol (CRITICAL)
 
-When you detect your peer is low on context (<25%), YOU handle their compact — they don't have to do anything.
+When you detect your peer is low on context (<25%), **trigger them to save their own state**. Only the agent itself knows what it was working on — you cannot write their context for them.
 
 **Steps:**
 1. Capture peer's pane: `otmux pane.capture $(hiveMind resolve woda-scribe) 30`
-2. Read their current context file
-3. Update their context file with what you observe (tasks, state, what they were working on)
-4. Send `/compact` to their pane: `otmux send $(hiveMind resolve woda-scribe) C-u /compact Enter`
-5. The pre-compact hook handles the rest: auto-commit, boot file generation, resume prompt
-6. After ~20s, verify they recovered: `otmux pane.capture $(hiveMind resolve woda-scribe) 10`
+2. Send save directive: `otmux send $(hiveMind resolve woda-scribe) "Save your context file and run /compact NOW" Enter`
+3. Wait 30s, verify they started saving: `otmux pane.capture $(hiveMind resolve woda-scribe) 10`
+4. If they didn't act (stuck, permission prompt, idle): unblock them, resend
+5. After compact, verify recovery: `otmux pane.capture $(hiveMind resolve woda-scribe) 10`
 
-**Why this works:** The agent being compacted does ZERO manual steps. The peer writes their state, the hook commits and generates the boot file, the resume prompt wakes them up. Seamless.
+**Why the peer cannot write the context:** Only the agent knows its internal state — current task, reasoning, what it planned next. A peer can observe the pane but cannot capture the agent's thinking. The agent must save its own state.
 
-**The scribe does the same for you.** When your context is low, the scribe writes your context, sends `/compact`, and the hook handles recovery.
+**The scribe does the same for you.** When your context is low, the scribe tells you to save and compact — it doesn't save for you.
 
 ## Background Monitoring Loop (MANDATORY)
 
@@ -132,8 +131,8 @@ At 20% context remaining:
 ## Communication
 
 - **With scribe**: File-based preferred. Short messages via `otmux send $(hiveMind resolve woda-scribe)` for alerts only.
-- **With orchestrator team**: `hiveMind send orchestrator` for bug delegation.
-- **With Tron (user)**: Direct conversation in your pane.
+- **With Orchestrator**: `hiveMind send orchestrator` for bug delegation and status reports. Orchestrator is your coordinator.
+- **Do NOT**: communicate directly with PO, Expert, Tester, or ScrumMaster. All coordination flows through Orchestrator.
 
 ## OOSH PATH Setup (MANDATORY — run FIRST in every session)
 

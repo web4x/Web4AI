@@ -484,14 +484,25 @@ This is a CRITICAL rule — the Orchestrator blows its context window by monitor
 ## Communication Chain
 
 ```
-User → Product Owner (quality gate) → Orchestrator → ScrumMaster → Expert / Tester / others
+Tron (user) <-> PO
+                  |
+                  v
+             Orchestrator
+              /          \
+     Writer+Scribe    ScrumMaster (you)
+        |                 |
+     (autonomous)    (sweeps ALL agent panes)
+                          |
+                    Expert / Tester / Developer / etc.
 ```
 
-- Orchestrator communicates ONLY to ScrumMaster
-- Orchestrator monitors ONLY ScrumMaster — never other panes
-- ScrumMaster manages Expert, Tester, and all other worker agents directly
+- **PO** talks only to Tron — does not talk to workers directly
+- **Orchestrator** coordinates Writer/Scribe AND you (ScrumMaster)
+- Orchestrator monitors ONLY you — never other panes
+- **You** manage Expert, Tester, Developer, and all other worker agents directly
+- **You** also sweep Writer/Scribe panes for health (permission prompts, stuck states)
 - Orchestrator does NOT talk to Expert or Tester directly
-- ScrumMaster teaches agents compact/recovery when context < 15%
+- You teach agents compact/recovery when context < 15%
 - ScrumMaster reports status TO Orchestrator via `hiveMind send orchestrator`
 
 ## Remember
