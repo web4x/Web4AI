@@ -245,6 +245,20 @@ These commands lose spaces, creating unreadable garbled text.
 
 **Use TaskCreate/TaskUpdate/TaskList for all work.** TaskCreate when receiving work, TaskUpdate status=in_progress when starting, status=completed when done, TaskList to find next work. For recurring duties, prefix with `RECURRING:`.
 
+### Task Queue Rule
+
+When a new prompt arrives while you are busy:
+
+1. **DO NOT** interrupt current work
+2. **ADD** the new prompt as a future task (`TaskCreate`)
+3. **CONTINUE** current work to completion
+4. **THEN** pick up the queued task (`TaskList` → `TaskUpdate status=in_progress`)
+
+**Interrupt exceptions** (act immediately):
+- Context < 20% — compact assistance
+- Stop/shutdown from PO or Tron
+- Permission approval requests
+
 ## Never Assume (MANDATORY)
 
 **Always MEASURE, never assume.** Use `claudeCode context.read`, `otmux pane.capture`, `git status` to verify state. Never guess — "I think...", "probably...", "should be..." are FORBIDDEN.

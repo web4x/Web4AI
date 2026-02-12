@@ -109,6 +109,7 @@ ALL AGENTS
 ├── Throttle at 80% quota, stand down at 90%
 ├── Peer monitoring: check partner's context %, alert at <20%
 ├── Task tracking: TaskCreate/TaskUpdate/TaskList for all work
+├── Task queue: new prompt while busy → TaskCreate it, finish current, then pick up queued
 ├── Role boundaries: DO NOT do another role's work — #1 failure pattern (WODA Ch28, Ch39)
 └── Never assume: always MEASURE state before acting
 ```

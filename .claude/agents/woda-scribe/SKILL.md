@@ -175,6 +175,33 @@ At 20% context remaining:
 
 **NEVER start Claude agents with `--dangerously-skip-permissions`.** The ScrumMaster handles all permission approvals. Skipping permissions removes role enforcement and safety boundaries. Start agents with `claude` only (no flags).
 
+## Task Tracking (MANDATORY)
+
+**Use TaskCreate/TaskUpdate/TaskList for all work.** This prevents forgetting steps mid-task and enables recovery after `/compact`.
+
+| Action | When |
+|--------|------|
+| `TaskCreate` | When you receive new work |
+| `TaskUpdate status=in_progress` | When you START working |
+| `TaskUpdate status=completed` | When DONE |
+| `TaskList` | After completing, to find next work |
+
+For recurring duties (monitoring loop), prefix subject with `RECURRING:`.
+
+### Task Queue Rule
+
+When a new prompt arrives while you are busy:
+
+1. **DO NOT** interrupt current work
+2. **ADD** the new prompt as a future task (`TaskCreate`)
+3. **CONTINUE** current work to completion
+4. **THEN** pick up the queued task (`TaskList` → `TaskUpdate status=in_progress`)
+
+**Interrupt exceptions** (act immediately):
+- Context < 20% — compact assistance
+- Stop/shutdown from PO or Tron
+- Permission approval requests
+
 ## MANDATORY: No Long Messages via otmux/hiveMind send (CRITICAL)
 
 **NEVER send multi-word instructions via `otmux send` or `hiveMind send`.**

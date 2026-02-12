@@ -196,6 +196,20 @@ Do NOT burn through quota on non-essential operations. When throttled, prioritiz
 
 For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 
+### Task Queue Rule
+
+When a new prompt arrives while you are busy:
+
+1. **DO NOT** interrupt current work
+2. **ADD** the new prompt as a future task (`TaskCreate`)
+3. **CONTINUE** current work to completion
+4. **THEN** pick up the queued task (`TaskList` → `TaskUpdate status=in_progress`)
+
+**Interrupt exceptions** (act immediately):
+- Context < 20% — compact assistance
+- Stop/shutdown from PO or Tron
+- Permission approval requests
+
 ## Never Assume (MANDATORY)
 
 **Always MEASURE, never assume.** CMM4 = we measure. CMM5 = we improve measuring.
