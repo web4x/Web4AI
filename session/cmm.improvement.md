@@ -21,7 +21,7 @@
   - KPIs:
     - [x] Context % checked each cycle automatically — added to per-cycle protocol (steps 2-3)
     - [x] Alert sent to peer when below 25% — TRIGGERED: writer at 10% TUI, alert sent 13:02
-    - [ ] Zero surprise rate limits after implementation — tracking (0 cycles since impl)
+    - [ ] Zero surprise rate limits after implementation — tracking: 0 surprise rate limits since impl. Gaps (Feb 9-12) are agent deaths, not rate limit surprises. Alert system proven (13:02 alert). Need 10+ active cycles to close.
 
 - [ ] **7. Delegate to team each cycle**
   - Problem: Improvements pile up, no one implements them in OOSH codebase
