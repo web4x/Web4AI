@@ -1,9 +1,9 @@
 # Agent Context State
 
 **Session**: orchestrator@sonnet
-**Updated**: 2026-02-11T14:00Z
+**Updated**: 2026-02-11T14:45Z
 **Role**: Orchestrator
-**Status**: STAND DOWN — 95% quota reached, resets 8pm Berlin
+**Status**: SLEEPING — user requested token conservation until wake-up tomorrow
 
 ## Current Pane Layout (projectTeam, 11 panes)
 
@@ -30,15 +30,16 @@
 - Trainer reviewed SKILL.md files, committed, compacted
 - PO reviewed collaboration tasks
 
-## QUOTA WARNING
-- 95% quota used, resets 8pm Europe/Berlin
-- Enter STAND DOWN mode: essential monitoring only
-- No new task assignments
-- Let current work drain
+## Status at Shutdown
+- Quota recovered after 8pm reset — agents resumed
+- Trainer recovered from compact, active again
+- Task-agent cleaned up 53 files, -2086 lines
+- SM was sweeping steadily (trainer + task-agent focus)
+- User requested sleep until wake-up tomorrow
 
 ## Recovery
 1. Read this file
 2. Read .claude/agents/agent-teacher/SKILL.md
-3. Check quota: if quota reset, resume normal monitoring
+3. Wait for user wake-up prompt
 4. Check SM at projectTeam:0.3
-5. Resume sweep monitoring if quota available
+5. Resume monitoring loop
