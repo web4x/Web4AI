@@ -4,15 +4,14 @@
 ## Current Goal
 Stay healthy as duo team until **Friday 2026-02-13 12:00 CET**. ACTIVE survival = log burn data every cycle, not just "scribe alive".
 
-## Current State (2026-02-12 ~10:35)
-- Writer: FRESH bootstrap (new session), pane claudeWoda:1.1, context 78.2%
-- Scribe: ALIVE at claudeWoda:1.2, context 78.9%, monitoring loop started
-- **PANES RENUMBERED**: 1.1=writer, 1.2=scribe, 1.3+1.4=shells
-- Gap: Feb 11 15:15 → Feb 12 ~09:10 (both died/compacted)
-- Previous writer session (09:10) ran briefly, logged burn data
-- Ch16 + Ch17 previously written (5cf39f1, dc263f8)
-- CMM: #1-6 DONE, #7 OPEN, #8 IN PROGRESS, #9 IN PROGRESS
-- Both healthy, monitoring loops starting
+## Current State (2026-02-12 09:24)
+- Writer: FRESH session, pane claudeWoda:1.1, context ~78%
+- Scribe: ALIVE at claudeWoda:1.2, context 77.4%, bootstrapping
+- **PANES**: 1.1=writer, 1.2=scribe, 1.3+1.4=shells
+- Ch18 WRITTEN (aebef3b): "What You Do With Bought Time" — three gaps, repeatable restart
+- CMM: #1-6 DONE, #7 OPEN (no orchestrator), #8-9 IN PROGRESS
+- Bugs: 15/16 fixed, 1 unfixable
+- Both healthy, monitoring loop running (task b59055f)
 
 ## Survival Plan (until Friday 2026-02-13 12:00 CET)
 - **~26 hours to deadline**
