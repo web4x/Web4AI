@@ -51,3 +51,12 @@ trainer-organize-agent-files.task.md → 20260212T0950Z.task.md
 trainer-remove-path-export.task.md → 20260212T1000Z.task.md
 trainer-review-communication-hierarchy.task.md → 20260212T0952Z.task.md
 writer-woda-steady-cycle.task.md → 20260212T0953Z.task.md
+all-agents-use-task-tools-now.md → 20260212T1038Z.task.md
+expert-team-loop.task.md → 20260212T1014Z.task.md
+for-task-agent-rename-po-files.md → 20260212T1132Z.task.md
+po-new-ossh-agents.md → 20260212T1126Z.task.md
+po-notify-orchestrator-on-completion.md → 20260212T1129Z.task.md
+po-ossh-status-update.md → 20260212T1131Z.task.md
+po-smart-monitoring.md → 20260212T1133Z.task.md
+trainer-remove-path-export.task.md → 20260212T1015Z.task.md
+orchestrator-ossh-agents-deployed.md → 20260212T1138Z.task.md
