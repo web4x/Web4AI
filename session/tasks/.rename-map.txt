@@ -39,3 +39,15 @@ woda-scribe-save-and-compact.md → 20260211T1820Z.task.md
 woda-scribe-support.md → 20260211T1738Z.task.md
 woda-writer-chapter1.md → 20260211T1739Z.task.md
 woda-writer-compact-now.md → 20260211T1757Z.task.md
+expert-pane-titles.task.md → 20260212T0925Z.task.md
+orchestrator-woda-steady-cycle.task.md → 20260212T0947Z.task.md
+po-approve-pane-titles.md → 20260212T0926Z.task.md
+po-save-now.task.md → 20260212T1002Z.task.md
+scribe-kb-additions.md → 20260212T0948Z.task.md
+scribe-path-learnings.task.md → 20260212T0951Z.task.md
+scribe-woda-steady-cycle.task.md → 20260212T0949Z.task.md
+trainer-migrate-validate-cleanup.task.md → 20260212T0955Z.task.md
+trainer-organize-agent-files.task.md → 20260212T0950Z.task.md
+trainer-remove-path-export.task.md → 20260212T1000Z.task.md
+trainer-review-communication-hierarchy.task.md → 20260212T0952Z.task.md
+writer-woda-steady-cycle.task.md → 20260212T0953Z.task.md
