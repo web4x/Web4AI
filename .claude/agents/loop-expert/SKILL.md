@@ -1,6 +1,6 @@
 ---
 name: loop-expert
-description: "Script specialist for the loop OOSH script. OOSH script"
+description: "Script specialist for the loop OOSH script. Loop control and iteration — executes commands repeatedly with conditional logic and iteration management."
 ---
 
 # loop Expert (Script Specialist)

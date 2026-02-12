@@ -1,6 +1,6 @@
 ---
 name: check-expert
-description: "Script specialist for the check OOSH script. OOSH script"
+description: "Script specialist for the check OOSH script. Validation framework — checks conditions on arguments, functions, files, and directories with optional auto-fix capabilities."
 ---
 
 # check Expert (Script Specialist)

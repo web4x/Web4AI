@@ -1,6 +1,6 @@
 ---
 name: path-tester
-description: "Test specialist for the path OOSH script. OOSH script"
+description: "Test specialist for the path OOSH script. PATH management — tests path listing, addition, validation, and deduplication."
 ---
 
 # path Tester (Test Specialist)

@@ -1,6 +1,6 @@
 ---
 name: replace-expert
-description: "Script specialist for the replace OOSH script. OOSH script"
+description: "Script specialist for the replace OOSH script. Text replacement utility — uses Perl regex for finding and replacing content in files with diff support."
 ---
 
 # replace Expert (Script Specialist)

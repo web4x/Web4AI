@@ -1,6 +1,6 @@
 ---
 name: line-tester
-description: "Test specialist for the line OOSH script. OOSH script"
+description: "Test specialist for the line OOSH script. Text processing — tests line splitting, separator handling, and pipeline processing."
 ---
 
 # line Tester (Test Specialist)

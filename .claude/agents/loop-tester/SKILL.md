@@ -1,6 +1,6 @@
 ---
 name: loop-tester
-description: "Test specialist for the loop OOSH script. OOSH script"
+description: "Test specialist for the loop OOSH script. Loop control — tests iteration logic, conditional execution, and loop termination."
 ---
 
 # loop Tester (Test Specialist)

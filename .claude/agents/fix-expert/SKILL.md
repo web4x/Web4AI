@@ -1,6 +1,6 @@
 ---
 name: fix-expert
-description: "Script specialist for the fix OOSH script. OOSH script"
+description: "Script specialist for the fix OOSH script. Configuration fix utility — manages startup directory and reconfiguration settings for recovery."
 ---
 
 # fix Expert (Script Specialist)

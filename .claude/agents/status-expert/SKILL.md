@@ -1,6 +1,6 @@
 ---
 name: status-expert
-description: "Script specialist for the status OOSH script. OOSH script"
+description: "Script specialist for the status OOSH script. System status discovery — identifies and exports environment paths and OOSH configuration."
 ---
 
 # status Expert (Script Specialist)

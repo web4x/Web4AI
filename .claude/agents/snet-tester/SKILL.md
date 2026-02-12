@@ -1,6 +1,6 @@
 ---
 name: snet-tester
-description: "Test specialist for the snet OOSH script. OOSH script"
+description: "Test specialist for the snet OOSH script. Simple networking — tests network configuration management and service initialization."
 ---
 
 # snet Tester (Test Specialist)

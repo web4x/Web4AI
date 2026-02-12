@@ -1,6 +1,6 @@
 ---
 name: share-tester
-description: "Test specialist for the share OOSH script. OOSH script"
+description: "Test specialist for the share OOSH script. Samba file sharing — tests service status, share listing, and network resource management."
 ---
 
 # share Tester (Test Specialist)

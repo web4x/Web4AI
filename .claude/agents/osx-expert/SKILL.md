@@ -1,6 +1,6 @@
 ---
 name: osx-expert
-description: "Script specialist for the osx OOSH script. OOSH script"
+description: "Script specialist for the osx OOSH script. macOS-specific utility — manages aliases and symbolic links with platform-specific operations."
 ---
 
 # osx Expert (Script Specialist)

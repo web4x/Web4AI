@@ -1,6 +1,6 @@
 ---
 name: osx-tester
-description: "Test specialist for the osx OOSH script. OOSH script"
+description: "Test specialist for the osx OOSH script. macOS utility — tests alias management, symlink creation, and platform-specific operations."
 ---
 
 # osx Tester (Test Specialist)

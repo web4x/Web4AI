@@ -1,6 +1,6 @@
 ---
 name: myId-expert
-description: "Script specialist for the myId OOSH script. OOSH script"
+description: "Script specialist for the myId OOSH script. Identity and SSH configuration manager — lists, creates, and retrieves SSH keys and configurations."
 ---
 
 # myId Expert (Script Specialist)

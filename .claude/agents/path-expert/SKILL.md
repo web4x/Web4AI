@@ -1,6 +1,6 @@
 ---
 name: path-expert
-description: "Script specialist for the path OOSH script. OOSH script"
+description: "Script specialist for the path OOSH script. PATH management — lists, adds, and validates system paths in the PATH environment variable."
 ---
 
 # path Expert (Script Specialist)

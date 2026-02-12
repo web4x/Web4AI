@@ -1,6 +1,6 @@
 ---
 name: webitem-tester
-description: "Test specialist for the webitem OOSH script. OOSH script"
+description: "Test specialist for the webitem OOSH script. Web URL file manager — tests .webloc/.url/.desktop creation, URL extraction, and cross-platform format handling."
 ---
 
 # webitem Tester (Test Specialist)

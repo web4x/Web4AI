@@ -1,6 +1,6 @@
 ---
 name: snet-expert
-description: "Script specialist for the snet OOSH script. OOSH script"
+description: "Script specialist for the snet OOSH script. Simple networking utility — manages network configurations and service initialization."
 ---
 
 # snet Expert (Script Specialist)

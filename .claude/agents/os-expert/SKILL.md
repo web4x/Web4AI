@@ -1,6 +1,6 @@
 ---
 name: os-expert
-description: "Script specialist for the os OOSH script. OOSH script"
+description: "Script specialist for the os OOSH script. System information utility — displays details about the running operating system and environment."
 ---
 
 # os Expert (Script Specialist)

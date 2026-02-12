@@ -1,6 +1,6 @@
 ---
 name: map-tester
-description: "Test specialist for the map OOSH script. OOSH script"
+description: "Test specialist for the map OOSH script. Environment variable mapping — tests named variable group creation, retrieval, and management."
 ---
 
 # map Tester (Test Specialist)

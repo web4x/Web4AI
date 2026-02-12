@@ -1,6 +1,6 @@
 ---
 name: myId-tester
-description: "Test specialist for the myId OOSH script. OOSH script"
+description: "Test specialist for the myId OOSH script. Identity management — tests SSH key listing, creation, retrieval, and configuration integrity."
 ---
 
 # myId Tester (Test Specialist)

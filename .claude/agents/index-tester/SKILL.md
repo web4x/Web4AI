@@ -1,6 +1,6 @@
 ---
 name: index-tester
-description: "Test specialist for the index OOSH script. OOSH script"
+description: "Test specialist for the index OOSH script. Indexing utility — tests index building, searching, and code index management."
 ---
 
 # index Tester (Test Specialist)

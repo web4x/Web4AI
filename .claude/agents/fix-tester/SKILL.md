@@ -1,6 +1,6 @@
 ---
 name: fix-tester
-description: "Test specialist for the fix OOSH script. OOSH script"
+description: "Test specialist for the fix OOSH script. Configuration fix utility — tests startup directory management and reconfiguration workflows."
 ---
 
 # fix Tester (Test Specialist)

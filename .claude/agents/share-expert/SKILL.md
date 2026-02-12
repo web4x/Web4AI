@@ -1,6 +1,6 @@
 ---
 name: share-expert
-description: "Script specialist for the share OOSH script. OOSH script"
+description: "Script specialist for the share OOSH script. Samba file sharing — manages shared network resources, service status, and sharing configurations."
 ---
 
 # share Expert (Script Specialist)

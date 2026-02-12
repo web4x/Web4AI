@@ -1,6 +1,6 @@
 ---
 name: context-expert
-description: "Script specialist for the context OOSH script. OOSH script"
+description: "Script specialist for the context OOSH script. Agent context and recovery tool — preserves session state across compact operations with schema validation and lifecycle management."
 ---
 
 # context Expert (Script Specialist)

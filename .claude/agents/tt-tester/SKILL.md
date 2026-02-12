@@ -1,6 +1,6 @@
 ---
 name: tt-tester
-description: "Test specialist for the tt OOSH script. OOSH script"
+description: "Test specialist for the tt OOSH script. Terminal tools — tests terminal helpers, command utilities, and workflow integration."
 ---
 
 # tt Tester (Test Specialist)

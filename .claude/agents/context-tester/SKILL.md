@@ -1,6 +1,6 @@
 ---
 name: context-tester
-description: "Test specialist for the context OOSH script. OOSH script"
+description: "Test specialist for the context OOSH script. Agent context and recovery — tests schema validation, lifecycle state transitions, and recovery workflows."
 ---
 
 # context Tester (Test Specialist)

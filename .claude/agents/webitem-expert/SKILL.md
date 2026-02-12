@@ -1,6 +1,6 @@
 ---
 name: webitem-expert
-description: "Script specialist for the webitem OOSH script. OOSH script"
+description: "Script specialist for the webitem OOSH script. Web URL file manager — maintains URLs in platform-specific formats (macOS .webloc, Windows .url, Linux .desktop)."
 ---
 
 # webitem Expert (Script Specialist)

@@ -1,6 +1,6 @@
 ---
 name: check-tester
-description: "Test specialist for the check OOSH script. OOSH script"
+description: "Test specialist for the check OOSH script. Validation framework — tests argument/function/file/directory checks and auto-fix behavior."
 ---
 
 # check Tester (Test Specialist)

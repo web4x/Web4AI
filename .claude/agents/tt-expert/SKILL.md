@@ -1,6 +1,6 @@
 ---
 name: tt-expert
-description: "Script specialist for the tt OOSH script. OOSH script"
+description: "Script specialist for the tt OOSH script. Terminal tools — provides general terminal-related commands and helpers for OOSH workflows."
 ---
 
 # tt Expert (Script Specialist)

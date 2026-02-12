@@ -1,6 +1,6 @@
 ---
 name: map-expert
-description: "Script specialist for the map OOSH script. OOSH script"
+description: "Script specialist for the map OOSH script. Environment variable mapping — creates and manages named variable groups for configuration."
 ---
 
 # map Expert (Script Specialist)

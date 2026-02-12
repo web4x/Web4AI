@@ -1,6 +1,6 @@
 ---
 name: replace-tester
-description: "Test specialist for the replace OOSH script. OOSH script"
+description: "Test specialist for the replace OOSH script. Text replacement — tests Perl regex matching, file substitution, and diff output."
 ---
 
 # replace Tester (Test Specialist)

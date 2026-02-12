@@ -1,6 +1,6 @@
 ---
 name: index-expert
-description: "Script specialist for the index OOSH script. OOSH script"
+description: "Script specialist for the index OOSH script. Indexing utility — builds and manages searchable code indices for the OOSH framework."
 ---
 
 # index Expert (Script Specialist)

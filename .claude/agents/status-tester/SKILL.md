@@ -1,6 +1,6 @@
 ---
 name: status-tester
-description: "Test specialist for the status OOSH script. OOSH script"
+description: "Test specialist for the status OOSH script. System status — tests environment path discovery, OOSH config export, and status reporting."
 ---
 
 # status Tester (Test Specialist)

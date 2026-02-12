@@ -1,6 +1,6 @@
 ---
 name: line-expert
-description: "Script specialist for the line OOSH script. OOSH script"
+description: "Script specialist for the line OOSH script. Text processing utility — splits input lines by separators and processes them through the OOSH pipeline."
 ---
 
 # line Expert (Script Specialist)

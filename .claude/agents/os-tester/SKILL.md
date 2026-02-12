@@ -1,6 +1,6 @@
 ---
 name: os-tester
-description: "Test specialist for the os OOSH script. OOSH script"
+description: "Test specialist for the os OOSH script. System information — tests OS detection, environment reporting, and cross-platform accuracy."
 ---
 
 # os Tester (Test Specialist)
