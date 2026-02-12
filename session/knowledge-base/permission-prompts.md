@@ -16,8 +16,10 @@
 - Compound `&&` commands don't match settings.json patterns like `Bash(claudeCode *)`
 - Added patterns `Bash(sleep * && otmux *)`, `Bash(sleep * && cd *)` but still partially broken
 
-## Root Cause
-Compound `&&` commands (e.g., `sleep 300 && cd /path && ./claudeCode`) generate a single Bash call that doesn't match individual tool patterns in settings.json.
+## Root Cause (Ch9 — Tron's insight)
+Compound `&&` commands (e.g., `cd /Users/donges/oosh && ./otmux send ...`) generate a single Bash call that doesn't match individual tool patterns in settings.json.
+
+**The real fix**: Put OOSH on PATH (`/Users/donges/oosh` in shell profile). Then commands become simple atoms (`otmux send ...` instead of `cd ... && ./otmux send ...`). Simple commands match simple permission patterns. The eight-chapter permission economy reduces to a missing PATH entry.
 
 ## Action Checklists
 -> [unblock-permission.md](actions/unblock-permission.md)

@@ -11,3 +11,7 @@
 7. Team Delegation
 8. Scribe Identity
 9. Infrastructure Resilience
+10. Root Cause: PATH and Permissions
+11. Training Pipeline
+12. Generational Transition
+13. Orchestrator Emergence

@@ -78,3 +78,37 @@ Pane references become hallucinations after infrastructure change.
 After ANY gap > 1hr: verify infrastructure BEFORE trusting context files.
 -> Details: [infrastructure-resilience.md](infrastructure-resilience.md)
 -> Actions: [cold-start-recovery.md](actions/cold-start-recovery.md)
+
+---
+
+### 10. Root Cause: PATH and Permissions
+The permission economy (Ch3-8) was caused by compound bash commands (`cd /path && ./cmd`).
+OOSH not on PATH forces `cd` + `&&` + `./` — unmatched by settings.json patterns.
+Fix: add `/Users/donges/oosh` to PATH. Commands become simple atoms. Permissions auto-approve.
+-> Details: [path-and-permissions.md](path-and-permissions.md)
+-> Actions: [fix-path.md](actions/fix-path.md)
+
+---
+
+### 11. Training Pipeline
+Trainer creates Reading Lists in SKILL.md -> idle agents consume them -> write context files -> check for work.
+Three-step delegation: PO -> trainer -> curriculum -> consumers. Proved in Ch8 (expert 7/7, tester 8/8).
+Throughput bottleneck: pipeline only activates agents that receive the directive.
+-> Details: [training-pipeline.md](training-pipeline.md)
+-> Actions: [train-agent.md](actions/train-agent.md)
+
+---
+
+### 12. Generational Transition
+Agents burn context through productive work. When context runs out, they compact and a fresh instance boots.
+The dying generation's output (curriculum, KB, context files) prepares successors — structurally, not intentionally.
+Context file as bridge: 57 lines written, 57 lines read. Nuance lost, task continuity preserved.
+-> Details: [generational-transition.md](generational-transition.md)
+-> Actions: [manage-handoff.md](actions/manage-handoff.md)
+
+---
+
+### 13. Orchestrator Emergence
+Designed to coordinate; became a heartbeat. Found the highest-value action (Enter in SM's pane) and did only that.
+59 minutes continuous, 17.2k tokens consumed, minimal correct outputs. Emergence, not design.
+-> Details: [orchestrator-emergence.md](orchestrator-emergence.md)
