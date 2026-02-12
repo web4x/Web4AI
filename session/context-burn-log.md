@@ -57,3 +57,6 @@
 | --- | --- | --- GAP: ~41 hours. claudeWoda session destroyed. Both agents dead. --- | --- |
 | Feb 11 14:00 | **50.0%** (JSONL) / scribe FRESH | COLD START. Writer alive at projectTeam:1.4. Scribe recovered standalone. | alive (cycle 1) | writer reading SKILL.md files, active | Ch18 written. Infrastructure: projectTeam replaces claudeWoda |
 | Feb 11 14:05 | **62.3%** (JSONL) / scribe fresh | writer idle at prompt, same display as cycle 1 | alive (b6cb76c) | +12.3% — measurement anomaly? Log honestly. | no stuck, no prompts |
+| 12:01 | projectTeam:0.2 | 67.2% | ok | 1314 tokens/hr |  |
+| 12:01 | projectTeam:0.4 | 32.5% | ok | 4403 tokens/hr |  |
+| 12:02 | projectTeam:0.3 | 49.8% | ok | 2843 tokens/hr | ~1681min |

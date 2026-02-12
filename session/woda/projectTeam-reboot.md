@@ -16,8 +16,9 @@
 | 8 | [The Changing of the Guard](#chapter-8-the-changing-of-the-guard) | 1,876 | 2026-02-11 |
 | 9 | [The Root Cause](#chapter-9-the-root-cause) | 1,960 | 2026-02-11 |
 | 10 | [Nine of Eleven](#chapter-10-nine-of-eleven) | 1,840 | 2026-02-12 |
+| 11 | [What You Can't Measure](#chapter-11-what-you-cant-measure) | 1,617 | 2026-02-12 |
 
-**Total**: 10 chapters, 17,783 words
+**Total**: 11 chapters, 19,400 words
 
 ---
 
