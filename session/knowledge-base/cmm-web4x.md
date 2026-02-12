@@ -56,6 +56,18 @@ Not perfection (5.0) but self-sustaining adaptation (4.0). Level 4 means the sys
 ### 7. Why never 5.0
 Once at L4, the system manages its own improvement. There is no Industry 5.0. There is no Web 5.0. The ceiling is 4.0 — and that's by design.
 
+## The #1 Rule: Assuming = CMM2
+
+Every time you say "I think...", "probably...", "should be..." instead of measuring — that's CMM2.
+
+| Behavior | CMM Level |
+|----------|-----------|
+| "I think the agent is stuck" | L2 — assumption |
+| "I captured the pane and it shows idle" | L3 — measured, written |
+| "I captured, compared to last capture, adjusted my action" | L4 — PDCA loop |
+
+**Before reporting any state: take a FRESH measurement.** Stale data = wrong conclusions. Composed maturity = weakest link — one agent assuming drags the whole team to CMM2.
+
 ## Apply to Every Decision
 
 Before acting, ask:
