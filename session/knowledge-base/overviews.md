@@ -82,9 +82,9 @@ After ANY gap > 1hr: verify infrastructure BEFORE trusting context files.
 ---
 
 ### 10. Root Cause: PATH and Permissions
-The permission economy (Ch3-8) was caused by compound bash commands (`cd /path && ./cmd`).
-OOSH not on PATH forces `cd` + `&&` + `./` — unmatched by settings.json patterns.
-Fix: add `/Users/donges/oosh` to PATH. Commands become simple atoms. Permissions auto-approve.
+OOSH was **already on PATH** via `~/.bashrc`. The `export PATH=...` every agent prepended was unnecessary.
+Agents made simple commands compound by copying an untested SKILL.md pattern — classic ASSUME failure.
+Fix: just stop prepending. Commands work directly. Remove mandatory export from all SKILL.md files.
 -> Details: [path-and-permissions.md](path-and-permissions.md)
 -> Actions: [fix-path.md](actions/fix-path.md)
 
