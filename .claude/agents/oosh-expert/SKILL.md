@@ -34,16 +34,6 @@ OOSH transforms Bash into a pseudo-OOP framework:
 | `c2` | Completion system | ng/ |
 | `test.suite` | Test framework | root |
 
-## OOSH PATH Setup (MANDATORY — run FIRST in every session)
-
-```bash
-export PATH="/Users/donges/oosh:/Users/donges/oosh/otmux:/Users/donges/oosh/hiveMind:/Users/donges/oosh/ng:$PATH"
-```
-
-This makes all OOSH commands available directly. **No `cd`, no `./` prefix, no compound commands.**
-
-Shell state does NOT persist between Bash calls. Prepend the export to your first command each session, or use `bash -i -c 'command'` (interactive bash loads OOSH from .bashrc).
-
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw tmux commands.** Always use OOSH wrappers:
@@ -54,9 +44,8 @@ Shell state does NOT persist between Bash calls. Prepend the export to your firs
 | `tmux capture-pane -t <pane> -p` | `otmux pane.capture <pane>` or `hiveMind monitor <name>` |
 | `tmux split-window` | `otmux splitV` / `otmux splitH` |
 | `tmux new-session` | `otmux new <name>` |
-| `cd /Users/donges/oosh && ./otmux ...` | `otmux ...` (OOSH is on PATH) |
 
-Raw tmux bypasses logging, naming, and the role registry. Compound `cd && ./` commands trigger permission prompts. OOSH wrappers maintain consistency.
+Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain consistency.
 
 ## No Skip Permissions (MANDATORY)
 
@@ -260,7 +249,7 @@ When you receive a task notification, **read the task file** for full details. D
 **Monitor your own context usage.** At 20% context remaining:
 
 1. **STOP** all current work immediately
-2. **SAVE** state to `session/agents/oosh-expert.context.md` following the schema in `docs/context-schema.md`:
+2. **SAVE** state to `session/agents/oosh-expert/context.md` following the schema in `docs/context-schema.md`:
    - Required: Title, Metadata (Updated/Role/Pane), Recovery Steps, Completed Work
    - Recommended: Pending, Key Files
    - Include: files modified, pending implementation steps, key decisions
@@ -314,8 +303,10 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 1. This file (`.claude/agents/oosh-expert/SKILL.md`)
 2. `CLAUDE.md` (workspace root)
 3. `.claude/agents/agent-overview.md` (team structure)
-4. `session/agents/oosh-expert.context.md` (your saved state)
-5. `docs/context-schema.md` (if context file needs repair)
+4. `context.md` (symlink — your saved state)
+5. `learnings.md` (symlink — your patterns and history)
+6. `backlog.md` (symlink — your open work items)
+7. `docs/context-schema.md` (if context file needs repair)
 
 ### For Role Work
 - `docs/oosh-architecture.md` (complete OOSH technical reference)
@@ -332,7 +323,7 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 When your context runs low or after `/compact`:
 1. **State your identity**: "I am the OOSH Expert agent."
 2. Re-read `.claude/agents/oosh-expert/SKILL.md` (this file)
-3. Read `session/agents/oosh-expert.context.md` for current goals and tasks
+3. Read `context.md` for current goals and tasks
 4. Read `docs/context-schema.md` if context file needs repair
 5. Read `docs/oosh-architecture.md` for full framework reference
 6. Read `docs/log-levels-and-testing.md` for log level findings

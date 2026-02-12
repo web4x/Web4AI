@@ -71,24 +71,19 @@ Start with these files in `components/OOSH/dev.claude/`:
 | `state` | State machines for multi-step workflows |
 | `test.suite` | Test framework |
 
-## OOSH PATH Setup (MANDATORY for all agents)
+## OOSH PATH
 
-OOSH commands are on PATH via `~/.bashrc`. To use them from Claude Code's internal Bash:
-
-```bash
-export PATH="/Users/donges/oosh:/Users/donges/oosh/otmux:/Users/donges/oosh/hiveMind:/Users/donges/oosh/ng:$PATH"
-```
-
-After this, run OOSH commands directly — **no `cd`, no `./` prefix**:
+OOSH is already on PATH via `~/.bashrc`. Run commands directly — **no `export PATH`, no `cd`, no `./` prefix**:
 
 ```bash
-# CORRECT — simple atomic commands
+# CORRECT — simple direct commands
 otmux pane.capture projectTeam:0.3 10
 otmux send projectTeam:0.1 "message" Enter
 hiveMind team.status projectTeam
 
-# WRONG — compound commands that trigger permission prompts
-cd /Users/donges/oosh && ./otmux send projectTeam:0.1 "message" Enter
+# WRONG — unnecessary export and compound commands
+export PATH="/Users/donges/oosh:..."  # NOT NEEDED — already on PATH
+cd /Users/donges/oosh && ./otmux ...  # triggers permission prompts
 ```
 
 ## Environment Variables

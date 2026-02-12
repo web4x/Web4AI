@@ -22,16 +22,6 @@ hiveMind resolve <name>   # Returns current pane address
 | OOSH Expert | Monitor for role violations, approve permissions | `hiveMind resolve oosh-expert` |
 | OOSH Tester | Monitor for role violations, approve permissions | `hiveMind resolve oosh-tester` |
 
-## OOSH PATH Setup (MANDATORY — run FIRST in every session)
-
-```bash
-export PATH="/Users/donges/oosh:/Users/donges/oosh/otmux:/Users/donges/oosh/hiveMind:/Users/donges/oosh/ng:$PATH"
-```
-
-This makes all OOSH commands available directly. **No `cd`, no `./` prefix, no compound commands.**
-
-Shell state does NOT persist between Bash calls. Prepend the export to your first command each session, or use `bash -i -c 'command'` (interactive bash loads OOSH from .bashrc).
-
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw tmux commands.** Always use OOSH wrappers:
@@ -42,9 +32,8 @@ Shell state does NOT persist between Bash calls. Prepend the export to your firs
 | `tmux capture-pane -t <pane> -p` | `otmux pane.capture <pane>` or `hiveMind monitor <name>` |
 | `tmux split-window` | `otmux splitV` / `otmux splitH` |
 | `tmux new-session` | `otmux new <name>` |
-| `cd /Users/donges/oosh && ./otmux ...` | `otmux ...` (OOSH is on PATH) |
 
-Raw tmux bypasses logging, naming, and the role registry. Compound `cd && ./` commands trigger permission prompts. OOSH wrappers maintain consistency.
+Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain consistency.
 
 ## No Skip Permissions (MANDATORY)
 
@@ -162,7 +151,7 @@ otmux send $PANE Enter
 ### Orchestrator — ALLOWED:
 - Delegate tasks to Expert and Tester via `hiveMind send`
 - Read files, explore codebase for planning
-- Write context files (session/agent.context.md)
+- Write context files (session/agents/<role>/context.md)
 - Coordinate between agents
 
 ### Orchestrator — FORBIDDEN:
@@ -295,13 +284,13 @@ Every sweep cycle:
 1. Check Orchestrator context via `hiveMind monitor orchestrator 10`
 2. Look for context warnings (< 20%) in the TUI output
 3. If context warning visible: alert Orchestrator to save and `/compact`
-4. After Orchestrator compacts: send resume prompt referencing `session/agents/orchestrator.context.md`
+4. After Orchestrator compacts: send resume prompt referencing `session/agents/orchestrator/context.md`
 5. Orchestrator does the same for you — this is "Two Gather" interdependence
 6. Rely on watchdog for unblocking — you focus on context health
 
 **Resume prompt after peer compacts:**
 ```bash
-hiveMind send orchestrator 'Read session/agents/orchestrator.context.md'
+hiveMind send orchestrator 'Read session/agents/orchestrator/context.md'
 ```
 
 This prevents team collapse from unnoticed context exhaustion.
@@ -372,7 +361,7 @@ When Orchestrator sends a task notification, relay the **short notification only
 **Monitor your own context usage.** At 20% context remaining:
 
 1. **STOP** all current work immediately — including monitoring loops
-2. **SAVE** state to `session/agents/scrum-master.context.md` following the schema in `docs/context-schema.md`:
+2. **SAVE** state to `session/agents/scrum-master/context.md` following the schema in `docs/context-schema.md`:
    - Required: Title, Metadata (Updated/Role/Pane), Recovery Steps, Completed Work
    - Recommended: Pending, Key Files
    - Include: team status, pending prompts/violations, issues reported
@@ -426,8 +415,10 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 1. This file (`.claude/agents/scrum-master/SKILL.md`)
 2. `CLAUDE.md` (workspace root)
 3. `.claude/agents/agent-overview.md` (team structure and role boundaries)
-4. `session/agents/scrum-master.context.md` (your saved state)
-5. `docs/context-schema.md` (if context file needs repair)
+4. `context.md` (symlink — your saved state)
+5. `learnings.md` (symlink — your patterns and history)
+6. `backlog.md` (symlink — your open work items)
+7. `docs/context-schema.md` (if context file needs repair)
 
 ### For Role Work
 - Monitoring protocols are defined in this SKILL.md — no additional docs needed
@@ -441,7 +432,7 @@ The PreCompact hook at `.claude/hooks/pre-compress.sh` auto-detects your role an
 
 When you receive the auto-resume prompt (or after `/compact`):
 1. **State your identity**: "I am the ScrumMaster agent."
-2. Read `session/agents/scrum-master.context.md` for current team state
+2. Read `context.md` for current team state
 3. Re-read this SKILL.md file
 4. Read `docs/context-schema.md` if context file needs repair
 5. Discover all agent panes via `hiveMind resolve <name>` — check for permission prompts immediately

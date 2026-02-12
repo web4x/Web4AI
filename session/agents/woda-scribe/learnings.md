@@ -24,6 +24,7 @@
 9. Surprised by unreliable `otmux send`. **It's KNOWN. Verify EVERY send.**
 10. Panicked about context at "18-19%" without measuring. Actual: 71.1%. **NEVER ASSUME — ALWAYS MEASURE.** assume = ass|u|me. `claudeCode context.read` gives real numbers. Verify before acting.
 11. Trusted stale pane references after 41hr gap. **Infrastructure is ASSUMPTION.** Cold start ≠ compaction: compaction loses W first (prompts), cold start loses A first (infrastructure). Always `tmux list-sessions` before trusting context files.
+12. Prepended `export PATH=...` to every Bash call — hundreds of times. OOSH was already on PATH via `~/.bashrc`. **Nobody tested whether the export was needed.** Everyone copied the pattern from SKILL.md without measuring. Same lesson as #10: NEVER ASSUME — ALWAYS MEASURE.
 
 ### Rules (permanent constraints)
 - **Permissions**: Read options first. "1.Yes/2.No"→1. "1.Yes/2.Yes,allow"→2. NEVER blind "2".

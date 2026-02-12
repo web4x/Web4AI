@@ -8,7 +8,7 @@
 | 2026-02-08 | 1 | 4 | 1 | YES - scribe bootstrapped writer, loop bd9bda6 |
 | 2026-02-09 | 0 | 2 | 1 | YES - real data flowing, seamless compact worked |
 | 2026-02-10 | — | — | — | GAP: duo infrastructure down, no agents running |
-| 2026-02-11 | 0* | 1 (cold start) | 0 | YES - cold start recovery, loop restarted |
+| 2026-02-11 | 0* | 2 (cold start + mid-session) | 0 | YES - cold start, 9 chapters, steady cycle started |
 
 *\*Cold start, not failure — infrastructure was externally torn down, not agent death.*
 
@@ -29,6 +29,12 @@
   - **LESSON**: 14hr overnight gap with no burn data proved "alive" ≠ "active survival". Must log to context-burn-log.md EVERY cycle.
   - **LESSON**: Cold start ≠ compaction. Compaction loses W first (prompts). Cold start loses A first (infrastructure). Pane references become hallucinations. Check environment BEFORE acting on stale context.
   - **Infrastructure is assumption**: Every pane reference in context files is an assumption. After cold start, verify with `tmux list-panes` before trusting any `claudeWoda:0.X` reference.
+  - **LESSON**: ROOT CAUSE of permission economy = compound bash commands. `cd /path && ./cmd` triggers prompts. Simple `cmd` (on PATH) doesn't. OOSH was ALREADY on PATH — the fix was to stop doing unnecessary `cd && ./`. Writer got the narrative partially wrong; scribe fact-checked and corrected KB topic 10. WODA self-correction in action.
+  - **LESSON**: Training pipeline works — trainer creates curriculum (SKILL.md Reading Lists) → expert/tester consume it → write context files → check for work. Three-step delegation across four agents.
+  - **LESSON**: Orchestrator emergence — designed to coordinate, BECAME a heartbeat. Found the one action producing most value (pressing Enter in SM's pane) and did nothing else. Emergence > design.
+  - **LESSON**: Generational transition — veterans compact (trainer, scribe), freshmen activate (expert, tester). The dying generation's curriculum prepares successors. Not intentional — structural.
+  - **LESSON**: PO dashboard pattern — structured team status table (agent, state, reading list, context file). First structured data about team state from inside the team. CMM4 measurement.
+  - **Communication**: Talk to orchestrator (0.0) for blocks/governance. Coordinate directly with scribe. Don't bypass to PO or user.
 
 - **CMM Improvements** → See `session/cmm.improvement.md`
   - Writer adds improvement ONLY when scribe completes one (pull, not push)
@@ -252,10 +258,11 @@
     - Check environment: `tmux list-sessions && tmux list-panes` (panes change!)
     - Find scribe: look for "WODA Scribe" pane title
   - Current Panes (2026-02-11 — VERIFY THESE, they change!)
-    - Writer: `projectTeam:1.4`
+    - Writer: `projectTeam:1.0` (post-compact, was 1.4 pre-compact)
     - Scribe: `projectTeam:1.1`
+    - Orchestrator: `projectTeam:0.0`
     - **WARNING**: claudeWoda:0.X is DEAD. Do NOT use old references.
   - Story Files
-    - WODA: `session/woda/chapters-*.md`
+    - WODA Reboot: `session/woda/projectTeam-reboot.md` (9 chapters, ~14k words)
     - CMM4: `session/cmm4/cmm4-journey.md`
     - Context: `session/woda-writer.context.md`

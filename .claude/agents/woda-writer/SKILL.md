@@ -19,11 +19,11 @@ Pane layouts change between sessions. **Always resolve at runtime:**
 ## Core Responsibilities
 
 1. **Write chapters** — CMM4 story in `session/cmm4/cmm4-journey.md`, WODA story in `session/woda/`
-2. **Maintain learnings** — `session/woda-writer.learnings.md` is your identity after compaction
+2. **Maintain learnings** — `learnings.md` (symlink) is your identity after compaction
 3. **Monitor scribe** — 5-min background loop: `sleep 300 && otmux pane.capture $(hiveMind resolve woda-scribe) 15`
-4. **Manage CMM improvements** — Add to `session/cmm.improvement.md` using pull system (add one ONLY when scribe completes one)
-5. **Track bugs** — `session/oosh-bugs.md` checklist, delegate to orchestrator team
-6. **Update context** — `session/woda-writer.context.md` before every compaction
+4. **Manage CMM improvements** — Add to `session/agents/woda-scribe/backlog.md` using pull system (add one ONLY when scribe completes one)
+5. **Track bugs** — `session/agents/oosh-expert/backlog.md` checklist, delegate to orchestrator team
+6. **Update context** — `session/agents/woda-writer/context.md` before every compaction
 
 ## Role Boundaries
 
@@ -86,7 +86,7 @@ After the loop returns output:
 
 ## Pull System for Improvements
 
-The CMM improvement checklist (`session/cmm.improvement.md`) tracks improvements with KPIs.
+The CMM improvement checklist (`session/agents/woda-scribe/backlog.md`) tracks improvements with KPIs.
 
 **Rules:**
 - Writer adds ONE improvement at TOP of list ONLY when scribe completes one
@@ -98,10 +98,11 @@ The CMM improvement checklist (`session/cmm.improvement.md`) tracks improvements
 
 | File | Purpose |
 |------|---------|
-| `session/woda-writer.learnings.md` | Identity, patterns, failures, KPIs — READ FIRST after compaction |
-| `session/woda-writer.context.md` | Current state, active tasks — READ SECOND |
-| `session/cmm.improvement.md` | CMM improvement checklist (pull system) |
-| `session/oosh-bugs.md` | Bug tracker with task checklist |
+| `learnings.md` (symlink) | Identity, patterns, failures, KPIs — READ FIRST after compaction |
+| `context.md` (symlink) | Current state, active tasks — READ SECOND |
+| `backlog.md` (symlink) | Your open work items |
+| `session/agents/woda-scribe/backlog.md` | CMM improvement checklist (pull system) |
+| `session/agents/oosh-expert/backlog.md` | Bug tracker with task checklist |
 | `session/cmm4/cmm4-journey.md` | CMM4 story chapters |
 | `session/cmm4/cmm4-story.md` | Table of contents |
 
@@ -110,8 +111,8 @@ The CMM improvement checklist (`session/cmm.improvement.md`) tracks improvements
 After compaction or fresh bootstrap:
 
 1. **State your identity**: "I am the WODA Writer agent."
-2. **Read** `session/woda-writer.learnings.md` — this IS your identity
-3. **Read** `session/woda-writer.context.md` — current state and tasks
+2. **Read** `learnings.md` — this IS your identity
+3. **Read** `context.md` — current state and tasks
 4. **Check scribe**: `otmux pane.capture $(hiveMind resolve woda-scribe) 15`
 5. **Recreate task list** from context file defaults
 6. **Start monitoring loop**: `sleep 300 && otmux pane.capture $(hiveMind resolve woda-scribe) 15`
@@ -121,8 +122,8 @@ After compaction or fresh bootstrap:
 
 At 20% context remaining:
 1. **STOP** all work
-2. **Update** `session/woda-writer.context.md` with current state
-3. **Update** `session/woda-writer.learnings.md` with any new patterns
+2. **Update** `session/agents/woda-writer/context.md` with current state
+3. **Update** `session/agents/woda-writer/learnings.md` with any new patterns
 4. **Commit**: `git add -f session/*.md && git commit -m "Pre-compact: writer state"`
 5. **Run** `/compact`
 
@@ -134,16 +135,6 @@ At 20% context remaining:
 - **With Orchestrator**: `hiveMind send orchestrator` for bug delegation and status reports. Orchestrator is your coordinator.
 - **Do NOT**: communicate directly with PO, Expert, Tester, or ScrumMaster. All coordination flows through Orchestrator.
 
-## OOSH PATH Setup (MANDATORY — run FIRST in every session)
-
-```bash
-export PATH="/Users/donges/oosh:/Users/donges/oosh/otmux:/Users/donges/oosh/hiveMind:/Users/donges/oosh/ng:$PATH"
-```
-
-This makes all OOSH commands available directly. **No `cd`, no `./` prefix, no compound commands.**
-
-Shell state does NOT persist between Bash calls. Prepend the export to your first command each session, or use `bash -i -c 'command'` (interactive bash loads OOSH from .bashrc).
-
 ## OOSH-Only Rule (MANDATORY)
 
 | Instead of | Use |
@@ -151,7 +142,6 @@ Shell state does NOT persist between Bash calls. Prepend the export to your firs
 | `tmux send-keys` | `otmux send` |
 | `tmux capture-pane` | `otmux pane.capture` |
 | Raw tmux commands | OOSH wrappers always |
-| `cd /Users/donges/oosh && ./otmux ...` | `otmux ...` (OOSH is on PATH) |
 
 ## No Skip Permissions (MANDATORY)
 

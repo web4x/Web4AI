@@ -1,0 +1,1 @@
+../../../session/agents/oosh-tester/learnings.md

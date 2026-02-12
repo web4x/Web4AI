@@ -32,7 +32,7 @@ hiveMind resolve <name>   # Returns current pane address (e.g., projectTeam:0.3)
 
 1. **ScrumMaster Monitoring (PRIORITY #1)**: Keep ScrumMaster unblocked at all times. ScrumMaster unblocks all other agents. If ScrumMaster is stuck (permission prompt, edit acceptance, idle), send Enter immediately. Check every 10-15 seconds when agents are active. This is your most important job.
 2. **Task Delegation**: Receive directives from PO, pass to Task Agent for planning, then execute the plan via ScrumMaster
-3. **Context Management**: Maintain `session/agent.context.md` with current state
+3. **Context Management**: Maintain `session/agents/orchestrator/context.md` with current state
 4. **Agent Teaching**: Bootstrap and teach new agents their roles using `.claude/agents/<role>/SKILL.md`
 5. **Tool Improvement**: Evolve hiveMind, claudeCode, and orchestration scripts via Expert
 6. **Result Collection**: Gather results from agents and synthesize
@@ -75,16 +75,6 @@ hiveMind agent.verify <pane>
 
 The teaching prompt reads from `.claude/agents/<role>/SKILL.md` — the canonical location for all agent role definitions. Cursor reads the same files via symlinks at `.cursor/skills/`.
 
-## OOSH PATH Setup (MANDATORY — run FIRST in every session)
-
-```bash
-export PATH="/Users/donges/oosh:/Users/donges/oosh/otmux:/Users/donges/oosh/hiveMind:/Users/donges/oosh/ng:$PATH"
-```
-
-This makes all OOSH commands available directly. **No `cd`, no `./` prefix, no compound commands.**
-
-Shell state does NOT persist between Bash calls. Prepend the export to your first command each session, or use `bash -i -c 'command'` (interactive bash loads OOSH from .bashrc).
-
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw tmux commands.** Always use OOSH wrappers:
@@ -95,9 +85,8 @@ Shell state does NOT persist between Bash calls. Prepend the export to your firs
 | `tmux capture-pane -t <pane> -p` | `otmux pane.capture <pane>` or `hiveMind monitor <name>` |
 | `tmux split-window` | `otmux splitV` / `otmux splitH` |
 | `tmux new-session` | `otmux new <name>` |
-| `cd /Users/donges/oosh && ./otmux ...` | `otmux ...` (OOSH is on PATH) |
 
-Raw tmux bypasses logging, naming, and the role registry. Compound `cd && ./` commands trigger permission prompts. OOSH wrappers maintain consistency.
+Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain consistency.
 
 ## No Skip Permissions (MANDATORY)
 
@@ -204,7 +193,7 @@ otmux send $(hiveMind resolve scrum-master) 'Your task here' Enter
 
 **Never assume a prompt executed. Always verify processing indicator appears.**
 
-## Context File: session/agent.context.md
+## Context File: session/agents/orchestrator/context.md
 
 ALWAYS maintain this file with current session state:
 
@@ -236,7 +225,7 @@ ALWAYS maintain this file with current session state:
 
 **CRITICAL**: Before running `/compact`, ALWAYS:
 
-1. Update `session/agent.context.md` with:
+1. Update `session/agents/orchestrator/context.md` with:
    - Current goal and progress
    - Pending tasks for each agent
    - Any important decisions made
@@ -253,7 +242,7 @@ ALWAYS maintain this file with current session state:
 4. Read the task file, then delegate to ScrumMaster for distribution
 5. Monitor ScrumMaster — keep them unblocked (your #1 job)
 6. Collect and synthesize results
-7. Update agent.context.md with outcomes
+7. Update session/agents/orchestrator/context.md with outcomes
 8. Report to user
 ```
 
@@ -436,12 +425,12 @@ Every sweep cycle:
 1. Check SM context via `hiveMind monitor scrum-master 10`
 2. Look for context warnings (< 20%) in the TUI output
 3. If context warning visible: alert SM to save and `/compact`
-4. After SM compacts: send resume prompt referencing `session/agents/scrum-master.context.md`
+4. After SM compacts: send resume prompt referencing `session/agents/scrum-master/context.md`
 5. SM does the same for you — this is "Two Gather" interdependence
 
 **Resume prompt after peer compacts:**
 ```bash
-hiveMind send scrum-master 'Read session/agents/scrum-master.context.md'
+hiveMind send scrum-master 'Read session/agents/scrum-master/context.md'
 ```
 
 This prevents team collapse from unnoticed context exhaustion.
@@ -451,7 +440,7 @@ This prevents team collapse from unnoticed context exhaustion.
 **Monitor your own context usage.** At 20% context remaining:
 
 1. **STOP** all current work immediately
-2. **SAVE** state to `session/agents/orchestrator.context.md` following the schema in `docs/context-schema.md`:
+2. **SAVE** state to `session/agents/orchestrator/context.md` following the schema in `docs/context-schema.md`:
    - Required: Title, Metadata (Updated/Role/Pane), Recovery Steps, Completed Work
    - Recommended: Pending, Key Files
    - Include: team status, pending delegations, key decisions
@@ -505,8 +494,10 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 1. This file (`.claude/agents/agent-teacher/SKILL.md`)
 2. `CLAUDE.md` (workspace root)
 3. `.claude/agents/agent-overview.md` (team structure and role boundaries)
-4. `session/agents/orchestrator.context.md` (your saved state)
-5. `docs/context-schema.md` (if context file needs repair)
+4. `context.md` (symlink — your saved state)
+5. `learnings.md` (symlink — your patterns and history)
+6. `backlog.md` (symlink — your open work items)
+7. `docs/context-schema.md` (if context file needs repair)
 
 ### For Role Work
 - All SKILL.md files in `.claude/agents/*/SKILL.md` (for role enforcement and delegation)
@@ -519,7 +510,7 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 When your context runs low or after `/compact`:
 1. **State your identity**: "I am the Orchestrator agent."
 2. Re-read this SKILL.md file
-3. Read `session/agents/orchestrator.context.md` for current goals and tasks
+3. Read `context.md` for current goals and tasks
 4. Read `docs/context-schema.md` if context file needs repair
 5. Read `docs/oosh-architecture.md` for framework reference
 6. Check agent panes with `hiveMind monitor <name>` or `otmux pane.capture <pane>`

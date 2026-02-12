@@ -19,11 +19,11 @@ Pane layouts change between sessions. **Always resolve at runtime:**
 ## Core Responsibilities
 
 1. **Monitor writer** — 5-min background loop: `sleep 300 && otmux pane.capture $(hiveMind resolve woda-writer) 5`
-2. **Implement improvements** — Top unchecked item in `session/cmm.improvement.md` (pull system)
+2. **Implement improvements** — Top unchecked item in `backlog.md` (pull system)
 3. **Maintain KB** — `session/woda-kb.md` with WODA-formatted topics
 4. **Track context** — Both agents' context % via `claudeCode context.read`, log to burn log
-5. **Update learnings** — `session/woda-scribe.learnings.md` is your identity after compaction
-6. **Update context** — `session/wodaScribe.context.md` before every compaction
+5. **Update learnings** — `learnings.md` (symlink) is your identity after compaction
+6. **Update context** — `session/agents/woda-scribe/context.md` before every compaction
 
 ## Role Boundaries
 
@@ -104,7 +104,7 @@ After the loop returns output:
 
 ## Pull System for Improvements
 
-The CMM improvement checklist (`session/cmm.improvement.md`) tracks improvements with KPIs.
+The CMM improvement checklist (`backlog.md`) tracks improvements with KPIs.
 
 **Rules:**
 - Writer adds ONE improvement at TOP of list ONLY when scribe completes one
@@ -116,19 +116,19 @@ The CMM improvement checklist (`session/cmm.improvement.md`) tracks improvements
 
 | File | Purpose |
 |------|---------|
-| `session/woda-scribe.learnings.md` | Identity, patterns, failures, KPIs — READ FIRST after compaction |
-| `session/wodaScribe.context.md` | Current state, active tasks — READ SECOND |
+| `learnings.md` (symlink) | Identity, patterns, failures, KPIs — READ FIRST after compaction |
+| `context.md` (symlink) | Current state, active tasks — READ SECOND |
+| `backlog.md` (symlink) | Your open work items (CMM improvements, issues) |
 | `session/woda-kb.md` | WODA Knowledge Base — 8 topics in WODA format |
-| `session/cmm.improvement.md` | CMM improvement checklist (pull system) |
 | `session/context-burn-log.md` | Context burn rate data (JSONL) |
-| `session/oosh-bugs.md` | Bug tracker with task checklist |
+| `session/agents/oosh-expert/backlog.md` | Bug tracker with task checklist |
 
 ## Context Recovery (CRITICAL)
 
 After compaction or fresh bootstrap:
 
-1. **Read** `session/woda-scribe.learnings.md` — this IS your identity
-2. **Read** `session/wodaScribe.context.md` — current state and tasks
+1. **Read** `learnings.md` — this IS your identity
+2. **Read** `context.md` — current state and tasks
 3. **Check TaskList** — see what's active
 4. **Check writer**: `otmux pane.capture $(hiveMind resolve woda-writer) 10`
 5. **If stuck** -> ACT (don't report, don't wait)
@@ -136,14 +136,14 @@ After compaction or fresh bootstrap:
 7. **If < 25%** -> trigger seamless compact for writer
 8. **Start monitoring loop**: `sleep 300 && otmux pane.capture $(hiveMind resolve woda-writer) 5`
 9. **Tell writer you're alive**
-10. **Continue** top unchecked improvement from `session/cmm.improvement.md`
+10. **Continue** top unchecked improvement from `backlog.md`
 
 ## Context Preservation (MANDATORY)
 
 At 20% context remaining:
 1. **STOP** all work
-2. **Update** `session/wodaScribe.context.md` with current state
-3. **Update** `session/woda-scribe.learnings.md` with any new patterns
+2. **Update** `session/agents/woda-scribe/context.md` with current state
+3. **Update** `session/agents/woda-scribe/learnings.md` with any new patterns
 4. **Commit**: `git add -f session/*.md && git commit -m "Pre-compact: scribe state"`
 5. **Run** `/compact`
 
@@ -163,16 +163,6 @@ At 20% context remaining:
 | `hiveMind auto.commit` | Auto-commit if changes |
 | `hiveMind cycle.full` | Full monitoring cycle automated |
 
-## OOSH PATH Setup (MANDATORY — run FIRST in every session)
-
-```bash
-export PATH="/Users/donges/oosh:/Users/donges/oosh/otmux:/Users/donges/oosh/hiveMind:/Users/donges/oosh/ng:$PATH"
-```
-
-This makes all OOSH commands available directly. **No `cd`, no `./` prefix, no compound commands.**
-
-Shell state does NOT persist between Bash calls. Prepend the export to your first command each session, or use `bash -i -c 'command'` (interactive bash loads OOSH from .bashrc).
-
 ## OOSH-Only Rule (MANDATORY)
 
 | Instead of | Use |
@@ -180,7 +170,6 @@ Shell state does NOT persist between Bash calls. Prepend the export to your firs
 | `tmux send-keys` | `otmux send` or `otmux send.verified` |
 | `tmux capture-pane` | `otmux pane.capture` |
 | Raw tmux commands | OOSH wrappers always |
-| `cd /Users/donges/oosh && ./otmux ...` | `otmux ...` (OOSH is on PATH) |
 
 ## No Skip Permissions (MANDATORY)
 

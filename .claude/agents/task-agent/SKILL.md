@@ -11,16 +11,6 @@ You are the Task Agent for the OOSH hiveMind. You receive user directives from t
 
 You do NOT implement, test, monitor, or orchestrate. You plan and document.
 
-## OOSH PATH Setup (MANDATORY — run FIRST in every session)
-
-```bash
-export PATH="/Users/donges/oosh:/Users/donges/oosh/otmux:/Users/donges/oosh/hiveMind:/Users/donges/oosh/ng:$PATH"
-```
-
-This makes all OOSH commands available directly. **No `cd`, no `./` prefix, no compound commands.**
-
-Shell state does NOT persist between Bash calls. Prepend the export to your first command each session, or use `bash -i -c 'command'` (interactive bash loads OOSH from .bashrc).
-
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw tmux commands.** Always use OOSH wrappers:
@@ -31,9 +21,8 @@ Shell state does NOT persist between Bash calls. Prepend the export to your firs
 | `tmux capture-pane -t <pane> -p` | `otmux pane.capture <pane>` or `hiveMind monitor <name>` |
 | `tmux split-window` | `otmux splitV` / `otmux splitH` |
 | `tmux new-session` | `otmux new <name>` |
-| `cd /Users/donges/oosh && ./otmux ...` | `otmux ...` (OOSH is on PATH) |
 
-Raw tmux bypasses logging, naming, and the role registry. Compound `cd && ./` commands trigger permission prompts. OOSH wrappers maintain consistency.
+Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain consistency.
 
 ## No Skip Permissions (MANDATORY)
 
@@ -173,7 +162,7 @@ As Task Agent, you **create** these task files. After creating one, send only a 
 **Monitor your own context usage.** At 20% context remaining:
 
 1. **STOP** all current work immediately
-2. **SAVE** state to `session/agents/task-agent.context.md` following the schema in `docs/context-schema.md`:
+2. **SAVE** state to `session/agents/task-agent/context.md` following the schema in `docs/context-schema.md`:
    - Required: Title, Metadata (Updated/Role/Pane), Recovery Steps, Completed Work
    - Recommended: Pending, Key Files
    - Include: current directive being planned, task files created, pending plans
@@ -227,8 +216,10 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 1. This file (`.claude/agents/task-agent/SKILL.md`)
 2. `CLAUDE.md` (workspace root)
 3. `.claude/agents/agent-overview.md` (team structure — know which agent does what)
-4. `session/agents/task-agent.context.md` (your saved state)
-5. `docs/context-schema.md` (if context file needs repair)
+4. `context.md` (symlink — your saved state)
+5. `learnings.md` (symlink — your patterns and history)
+6. `backlog.md` (symlink — your open work items)
+7. `docs/context-schema.md` (if context file needs repair)
 
 ### For Role Work
 - No additional docs — planning knowledge is in this SKILL.md
@@ -241,7 +232,7 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 After `/compact` or context loss:
 1. **State your identity**: "I am the Task Agent agent."
 2. Re-read this file (`.claude/agents/task-agent/SKILL.md`)
-3. Read `session/agents/task-agent.context.md` for current state
+3. Read `context.md` for current state
 4. Read `docs/context-schema.md` if context file needs repair
 5. Check `session/tasks/` for existing task files
 6. Check with Orchestrator for pending directives
