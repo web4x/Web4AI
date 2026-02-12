@@ -1,6 +1,6 @@
 ---
 name: config-tester
-description: "Test specialist for the config OOSH script. OOSH script"
+description: "Test specialist for the config OOSH script. Configuration management — tests variable persistence, retrieval, completion discovery, and user.env integrity."
 ---
 
 # config Tester (Test Specialist)

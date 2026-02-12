@@ -1,6 +1,6 @@
 ---
 name: this-expert
-description: "Script specialist for the this OOSH script. OOSH script"
+description: "Script specialist for the this OOSH script. OOSH kernel and bootstrap runtime — initializes the framework, sets up environment variables, logging, and handles method dispatch through bash function calls."
 ---
 
 # this Expert (Script Specialist)

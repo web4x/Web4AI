@@ -1,6 +1,6 @@
 # Team Dashboard
 
-**Updated**: 2026-02-12T11:17:42Z (2026-02-12 12:17 CET)
+**Updated**: 2026-02-12T11:55:27Z (2026-02-12 12:55 CET)
 **Session**: projectTeam
 
 ## Git Status
@@ -9,7 +9,7 @@
 |-------|-------|
 | Branch | `main` |
 | Status | uncommitted changes |
-| Last commit | `14e1e06 Task agent as central tracker, all agents report completions` |
+| Last commit | `032d137 Add 33 script specialist teams (expert+tester pairs) with setup scripts` |
 
 ## Subscription
 
@@ -22,33 +22,33 @@
 
 | Metric | Value |
 |--------|-------|
-| Total task files | 77 |
-| Today's tasks | 34 |
+| Total task files | 84 |
+| Today's tasks | 43 |
 
 ## Team Status
 
 | Agent | Pane | Context | Velocity | State |
 |-------|------|---------|----------|-------|
-| orchestrator | 0.0 | 10% | 3625 tokens/hr | active |
-| oosh-expert | 0.1 | 51.9% | 2628 tokens/hr | unknown |
-| oosh-tester | 0.2 | 54.1% | 2434 tokens/hr | unknown |
-| scrum-master | 0.3 | 44.1% | 3318 tokens/hr | unknown |
-| product-owner | 0.4 | 30.6% | 4553 tokens/hr | unknown |
-| agent-trainer | 0.5 | 44.1% | 3329 tokens/hr | unknown |
-| task-agent | 1.2 | 32.8% | 4437 tokens/hr | unknown |
-| woda-writer | 1.0 | 63.2% | 1636 tokens/hr | active |
-| woda-scribe | 1.1 | 50.9% | 2735 tokens/hr | unknown |
-| developer | 1.3 | 79.9% | 2349238 tokens/hr | unknown |
-| script-product-owner | 1.4 | 80.0% | 1449461 tokens/hr | unknown |
+| orchestrator | 0.0 | 10% | 4178 tokens/hr | active |
+| oosh-expert | 0.1 | 43.0% | 3320 tokens/hr | active |
+| oosh-tester | 0.2 | 54.0% | 2416 tokens/hr | unknown |
+| scrum-master | 0.3 | 30.7% | 4381 tokens/hr | unknown |
+| product-owner | 0.4 | 45.8% | 3078 tokens/hr | unknown |
+| agent-trainer | 0.5 | 36.5% | 3891 tokens/hr | unknown |
+| task-agent | 1.2 | 43.0% | 3320 tokens/hr | unknown |
+| woda-writer | 1.0 | 53.3% | 2445 tokens/hr | completed |
+| woda-scribe | 1.1 | 48.1% | 2890 tokens/hr | unknown |
+| developer | 1.3 | 27.5% | 4678 tokens/hr | unknown |
+| script-product-owner | 1.4 | 60.5% | 1815 tokens/hr | unknown |
 
 ## Recent Commits
 
 ```
-14e1e06 Task agent as central tracker, all agents report completions
-7cbaed4 Auto-save: oosh-expert pre-compact 11:56
-a30daa0 Add task sync rule, error suppression ban, specialist delegate pattern
-ef40f31 Auto-save: oosh-expert pre-compact 11:52
-913d3d8 Auto-save: oosh-expert pre-compact 11:50
+032d137 Add 33 script specialist teams (expert+tester pairs) with setup scripts
+3bdb321 Create 3 ossh script specialist agents (expert, tester, po)
+e90f27e Add cleanup report for PO: full rename mapping and summary
+7a6d6b2 Rename remaining non-conforming task files
+a1d77a3 Auto-save: product-owner pre-compact 12:25
 ```
 
 ## Recovery

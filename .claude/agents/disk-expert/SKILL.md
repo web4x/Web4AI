@@ -1,6 +1,6 @@
 ---
 name: disk-expert
-description: "Script specialist for the disk OOSH script. OOSH script"
+description: "Script specialist for the disk OOSH script. Disk space analysis and monitoring — displays usage statistics and available space on mounted volumes."
 ---
 
 # disk Expert (Script Specialist)

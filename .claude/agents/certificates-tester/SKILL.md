@@ -1,6 +1,6 @@
 ---
 name: certificates-tester
-description: "Test specialist for the certificates OOSH script. OOSH script"
+description: "Test specialist for the certificates OOSH script. Certificate management — tests SSL/TLS certificate handling, scenario configs, and validation."
 ---
 
 # certificates Tester (Test Specialist)

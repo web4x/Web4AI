@@ -1,6 +1,6 @@
 ---
 name: claudeFlow-tester
-description: "Test specialist for the claudeFlow OOSH script. OOSH script"
+description: "Test specialist for the claudeFlow OOSH script. Claude Flow CLI wrapper — tests command delegation, method mapping, and flow operation accessibility."
 ---
 
 # claudeFlow Tester (Test Specialist)

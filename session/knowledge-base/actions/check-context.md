@@ -1,3 +1,5 @@
+**Automated**: `claudeCode context.check <pane>` — CMM3
+
 # Action: Check Context Health
 
 1. Run `claudeCode context.read <pane>` — get JSONL percentage

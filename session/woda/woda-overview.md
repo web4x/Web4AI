@@ -37,7 +37,8 @@ projectTeam Reboot (NEW) → projectTeam-reboot.md — 13,983 words
 ├── Ch9: The Root Cause — Tron identifies PATH as permission fix, trainer 2nd gen working, scribe recovering, orchestrator at 59min, 7/11 active
 ├── Ch10: Nine of Eleven — trainer pushed 82 files, expert built pane scanner, task-agent organized 53 tasks, SM sweep works, PO philosophising at 1%, orchestrator coordinating, 9/11 active
 ├── Ch11: What You Can't Measure — 11/11 active, expert compacted fixing measurement tools, PO admits "I don't know", scribe built empty pipes, tester's first test, SM as medic (3 rescues), orchestrator as manager
-└── Themes: bootstrap paradox, speed≠quality, human has the keyboard, WODA layers as team attention types, generational transition, root cause simplicity, self-assembly, aspiration vs capability
+├── Ch12: The Cambrian Explosion — trainer created 33 script specialist teams (~100 files), developer's first task (committing), expert rebuilt from learnings, tester corrected on role boundary, PO becoming config architect, orchestrator invented metrics via arithmetic, script-PO awakens
+└── Themes: bootstrap paradox, speed≠quality, human has the keyboard, WODA layers as team attention types, generational transition, root cause simplicity, self-assembly, aspiration vs capability, idle capacity as reserve
 ```
 
 ## Active References

@@ -1,6 +1,6 @@
 ---
 name: hiveMind-expert
-description: "Script specialist for the hiveMind OOSH script. OOSH script"
+description: "Script specialist for the hiveMind OOSH script. Multi-agent orchestrator — manages Claude Code agents in tmux panes, maintains role registries, agent bootstrapping, team setup, and status monitoring."
 ---
 
 # hiveMind Expert (Script Specialist)

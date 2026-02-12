@@ -1,6 +1,6 @@
 ---
 name: oo-tester
-description: "Test specialist for the oo OOSH script. OOSH script"
+description: "Test specialist for the oo OOSH script. Framework lifecycle — tests script creation, method addition, test generation, and cross-platform sed behavior."
 ---
 
 # oo Tester (Test Specialist)

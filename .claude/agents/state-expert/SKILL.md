@@ -1,6 +1,6 @@
 ---
 name: state-expert
-description: "Script specialist for the state OOSH script. OOSH script"
+description: "Script specialist for the state OOSH script. State machine framework — manages multi-step workflows in persistent storage with state transitions, machine listing, and cross-subprocess state tracking."
 ---
 
 # state Expert (Script Specialist)

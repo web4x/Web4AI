@@ -1,6 +1,6 @@
 ---
 name: scrumMaster-expert
-description: "Script specialist for the scrumMaster OOSH script. OOSH script"
+description: "Script specialist for the scrumMaster OOSH script. Team monitoring and measurement — implements CMM4 PDCA cycles, captures pane output, manages feedback loops, and generates team health dashboards."
 ---
 
 # scrumMaster Expert (Script Specialist)

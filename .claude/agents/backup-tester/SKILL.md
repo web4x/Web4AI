@@ -1,6 +1,6 @@
 ---
 name: backup-tester
-description: "Test specialist for the backup OOSH script. OOSH script"
+description: "Test specialist for the backup OOSH script. Backup management — tests backup configuration tracking, scheduling, and restore operations."
 ---
 
 # backup Tester (Test Specialist)

@@ -57,6 +57,14 @@ case "$CURRENT_ROLE" in
         PEER_PANE="claudeWoda:0.0"
         LOOP_CMD="sleep 300 && otmux pane.capture claudeWoda:0.0 5"
         ;;
+    *claude-opus*)
+        CONTEXT_FILE="$PROJECT_DIR/session/claude-opus.context.md"
+        PEER_PANE="claudeOpus2kTMUX:0.2"
+        ;;
+    *cursor-agent*)
+        CONTEXT_FILE="$PROJECT_DIR/session/cursor-agent.context.md"
+        PEER_PANE="claudeOpus2kTMUX:0.0"
+        ;;
 esac
 
 # --- Auto-commit dirty session files ---

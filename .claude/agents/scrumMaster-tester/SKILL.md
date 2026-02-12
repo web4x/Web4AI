@@ -1,6 +1,6 @@
 ---
 name: scrumMaster-tester
-description: "Test specialist for the scrumMaster OOSH script. OOSH script"
+description: "Test specialist for the scrumMaster OOSH script. Team monitoring and measurement — tests PDCA cycles, pane capture analysis, feedback loops, and dashboard output."
 ---
 
 # scrumMaster Tester (Test Specialist)

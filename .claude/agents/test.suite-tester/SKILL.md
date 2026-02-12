@@ -1,6 +1,6 @@
 ---
 name: test.suite-tester
-description: "Test specialist for the test.suite OOSH script. OOSH script"
+description: "Test specialist for the test.suite OOSH script. Test framework — tests test discovery, case execution, assertion logic, and result saving."
 ---
 
 # test.suite Tester (Test Specialist)

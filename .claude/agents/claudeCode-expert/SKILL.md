@@ -1,6 +1,6 @@
 ---
 name: claudeCode-expert
-description: "Script specialist for the claudeCode OOSH script. OOSH script"
+description: "Script specialist for the claudeCode OOSH script. Claude Code CLI wrapper — provides method-based access to Claude sessions, projects, context reading, and operations with intelligent color handling."
 ---
 
 # claudeCode Expert (Script Specialist)

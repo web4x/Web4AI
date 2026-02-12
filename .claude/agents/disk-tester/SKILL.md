@@ -1,6 +1,6 @@
 ---
 name: disk-tester
-description: "Test specialist for the disk OOSH script. OOSH script"
+description: "Test specialist for the disk OOSH script. Disk space analysis — tests usage statistics, volume detection, and space reporting accuracy."
 ---
 
 # disk Tester (Test Specialist)

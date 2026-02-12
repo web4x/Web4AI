@@ -1,6 +1,6 @@
 ---
 name: state-tester
-description: "Test specialist for the state OOSH script. OOSH script"
+description: "Test specialist for the state OOSH script. State machine framework — tests state transitions, machine initialization, persistence across subprocesses, and state listing."
 ---
 
 # state Tester (Test Specialist)

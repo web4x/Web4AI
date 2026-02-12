@@ -1,6 +1,6 @@
 ---
 name: otmux-expert
-description: "Script specialist for the otmux OOSH script. OOSH script"
+description: "Script specialist for the otmux OOSH script. Lightweight tmux wrapper — provides intuitive method names for session/window/pane operations, directional targeting, send, and capture with UTF-8 and color support."
 ---
 
 # otmux Expert (Script Specialist)

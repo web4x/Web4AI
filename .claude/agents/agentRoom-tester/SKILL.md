@@ -1,6 +1,6 @@
 ---
 name: agentRoom-tester
-description: "Test specialist for the agentRoom OOSH script. OOSH script"
+description: "Test specialist for the agentRoom OOSH script. Multi-agent orchestration — tests instance management, role routing, @mention dispatch, and backend status."
 ---
 
 # agentRoom Tester (Test Specialist)

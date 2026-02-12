@@ -1,6 +1,6 @@
 ---
 name: hiveMind-tester
-description: "Test specialist for the hiveMind OOSH script. OOSH script"
+description: "Test specialist for the hiveMind OOSH script. Multi-agent orchestrator — tests role registry, agent bootstrapping, team setup, pane resolution, and status monitoring."
 ---
 
 # hiveMind Tester (Test Specialist)

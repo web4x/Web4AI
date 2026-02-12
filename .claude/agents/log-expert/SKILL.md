@@ -1,6 +1,6 @@
 ---
 name: log-expert
-description: "Script specialist for the log OOSH script. OOSH script"
+description: "Script specialist for the log OOSH script. Logging framework — configurable verbosity levels (0-7) and device targets, supporting info/debug/error/warn log levels to terminal or files."
 ---
 
 # log Expert (Script Specialist)

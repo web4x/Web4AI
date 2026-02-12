@@ -1,6 +1,6 @@
 ---
 name: debug-tester
-description: "Test specialist for the debug OOSH script. OOSH script"
+description: "Test specialist for the debug OOSH script. Step debugger — tests stepping, stack traces, breakpoints, and execution tracing."
 ---
 
 # debug Tester (Test Specialist)

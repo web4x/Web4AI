@@ -1,6 +1,6 @@
 ---
 name: test.suite-expert
-description: "Script specialist for the test.suite OOSH script. OOSH script"
+description: "Script specialist for the test.suite OOSH script. Test discovery and execution framework — runs OOSH test cases with completion support, assertions, and result reporting."
 ---
 
 # test.suite Expert (Script Specialist)

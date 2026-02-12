@@ -1,6 +1,6 @@
 ---
 name: oo-expert
-description: "Script specialist for the oo OOSH script. OOSH script"
+description: "Script specialist for the oo OOSH script. Framework lifecycle and script creation — manages new script/method/test creation, cross-platform sed helpers, and method dispatch setup."
 ---
 
 # oo Expert (Script Specialist)

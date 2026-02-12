@@ -1,6 +1,6 @@
 ---
 name: agentRoom-expert
-description: "Script specialist for the agentRoom OOSH script. OOSH script"
+description: "Script specialist for the agentRoom OOSH script. Multi-agent orchestration framework — manages real Claude Code instances with role-based @mention routing and backend coordination."
 ---
 
 # agentRoom Expert (Script Specialist)

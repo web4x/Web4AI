@@ -1,6 +1,6 @@
 ---
 name: this-tester
-description: "Test specialist for the this OOSH script. OOSH script"
+description: "Test specialist for the this OOSH script. OOSH kernel and bootstrap runtime — tests method dispatch, environment initialization, and framework bootstrapping."
 ---
 
 # this Tester (Test Specialist)

@@ -1,6 +1,6 @@
 ---
 name: certificates-expert
-description: "Script specialist for the certificates OOSH script. OOSH script"
+description: "Script specialist for the certificates OOSH script. Certificate and scenario management — handles SSL/TLS certificates and scenario configurations."
 ---
 
 # certificates Expert (Script Specialist)

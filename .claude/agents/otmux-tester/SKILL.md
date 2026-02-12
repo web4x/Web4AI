@@ -1,6 +1,6 @@
 ---
 name: otmux-tester
-description: "Test specialist for the otmux OOSH script. OOSH script"
+description: "Test specialist for the otmux OOSH script. Lightweight tmux wrapper — tests session/window/pane operations, send reliability, capture accuracy, and directional targeting."
 ---
 
 # otmux Tester (Test Specialist)

@@ -1,6 +1,6 @@
 ---
 name: log-tester
-description: "Test specialist for the log OOSH script. OOSH script"
+description: "Test specialist for the log OOSH script. Logging framework — tests verbosity levels, device targeting, log output formatting, and level initialization."
 ---
 
 # log Tester (Test Specialist)

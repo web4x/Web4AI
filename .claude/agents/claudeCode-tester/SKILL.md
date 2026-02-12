@@ -1,6 +1,6 @@
 ---
 name: claudeCode-tester
-description: "Test specialist for the claudeCode OOSH script. OOSH script"
+description: "Test specialist for the claudeCode OOSH script. Claude Code CLI wrapper — tests session management, project listing, context reading, and color handling across terminals."
 ---
 
 # claudeCode Tester (Test Specialist)

@@ -1,6 +1,6 @@
 ---
 name: config-expert
-description: "Script specialist for the config OOSH script. OOSH script"
+description: "Script specialist for the config OOSH script. Configuration management — persists and retrieves shell variables to/from ~/config/user.env, with shell completion discovery and variable management."
 ---
 
 # config Expert (Script Specialist)

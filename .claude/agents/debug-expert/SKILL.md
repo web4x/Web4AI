@@ -1,6 +1,6 @@
 ---
 name: debug-expert
-description: "Script specialist for the debug OOSH script. OOSH script"
+description: "Script specialist for the debug OOSH script. Step debugger with stack trace functionality — enables stepping through OOSH script execution for troubleshooting."
 ---
 
 # debug Expert (Script Specialist)

@@ -1,6 +1,6 @@
 ---
 name: claudeFlow-expert
-description: "Script specialist for the claudeFlow OOSH script. OOSH script"
+description: "Script specialist for the claudeFlow OOSH script. Claude Flow CLI wrapper — provides method-based access to claude-flow commands with intuitive OOSH method names."
 ---
 
 # claudeFlow Expert (Script Specialist)

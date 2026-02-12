@@ -1,6 +1,6 @@
 ---
 name: backup-expert
-description: "Script specialist for the backup OOSH script. OOSH script"
+description: "Script specialist for the backup OOSH script. Backup management — tracks and manages backup configurations and schedules across the system."
 ---
 
 # backup Expert (Script Specialist)
