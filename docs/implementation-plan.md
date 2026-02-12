@@ -193,7 +193,7 @@ _Prove it works end-to-end._
 - [x] **12.3** Pre-compact hook dry-run: syntax OK, generates 21-line boot file, auto-commit + resume scheduling work
 - [x] **12.4** `hiveMind team.save` → kill → `team.restore` round-trip: 2 panes + role registry preserved
 - [x] **12.5** `hiveMind team.startup` structurally validated (argument handling, topology parsing, Claude launch commands)
-- [ ] **12.6** Live test needed: full team with Claude agents (startup → work → /compact → shutdown → startup)
+- [x] **12.6** Live test passed: 2-pane pair (expert+tester), /compact generated boot file with peer detection, shutdown saved topology, startup recreated session with Claude running
 - [x] **12.7** Issues documented below
 
 ### Phase 12 Follow-up Issues

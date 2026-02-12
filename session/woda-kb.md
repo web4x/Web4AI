@@ -1,6 +1,6 @@
 # WODA Knowledge Base
 *Scribe's structured knowledge. Every topic follows W-O-D-A. Continuously maintained.*
-*Updated: 2026-02-09 09:00*
+*Updated: 2026-02-11 15:15*
 
 ---
 
@@ -58,7 +58,7 @@
 
 **W** — Systematic improvement of monitoring capabilities. Living pipeline, never "done."
 
-**O** — 9 improvements: #1-6 DONE, #7 OPEN, #8 IN PROGRESS (2/3 KPIs), #9 IN PROGRESS (4/6 KPIs — reverted from DONE, not integrated into active monitoring). Pull system: writer adds ONLY when scribe completes one. Goal extended to Friday 2026-02-13.
+**O** — 9 improvements: #1-6 DONE, #7 OPEN (blocked — no orchestrator team running), #8 IN PROGRESS (2/3 KPIs), #9 IN PROGRESS (4/6 KPIs). Pull system: writer adds ONLY when scribe completes one. Goal: survive to Friday 2026-02-13 12:00 CET. 2-day gap (Feb 9 20:05 → Feb 11 ~15:00) — both agents died, no burn data.
 
 **D** — Full list: `session/cmm.improvement.md`. Key methods: `hiveMind auto.commit` (dea9b54), `hiveMind cycle.full` (dea9b54), `hiveMind dashboard` (b13b6df), `otmux send.verified` (805aecc), `claudeCode context.velocity` (b2f6892).
 
@@ -82,11 +82,11 @@
 
 **W** — Context shrinks each cycle. Recovery must be deterministic.
 
-**O** — Pre-compact: save context + learnings + KB. Post-compact: read learnings FIRST (WODA format), then context, then check peer. **Restore peer via `claude --resume`, NOT fresh `claude`.** New agent loses history. Auto-resume hook sends prompt after 15s but pending edits may block.
+**O** — Pre-compact: save context + learnings + KB. Post-compact: read learnings FIRST (WODA format), then context, then check peer. **Restore peer via `claude --resume`, NOT fresh `claude`.** New agent loses history. Auto-resume hook sends prompt after 15s but pending edits may block. **2-day gap lesson (Feb 9-11)**: Both agents eventually compact and die when no external system restarts them. Conservation mode delays death but doesn't prevent it.
 
 **D** — Recovery files: `woda-scribe.learnings.md` (WODA wisdom), `wodaScribe.context.md` (state), `woda-kb.md` (this file), `cmm.improvement.md` (pipeline). Recovery steps in learnings section A.
 
-**A** — At <25%: alert. At <10%: urgent. Save BEFORE compact. After: follow protocol exactly. For peer recovery: `claude --resume` first, fresh `claude` only as last resort.
+**A** — At <25%: alert. At <10%: urgent. Save BEFORE compact. After: follow protocol exactly. For peer recovery: `claude --resume` first, fresh `claude` only as last resort. For gap survival: always log burn data even in conservation mode — "alive" without data = passive = not survival.
 
 ---
 
@@ -94,7 +94,7 @@
 
 **W** — Orchestrator team implements OOSH fixes. Scribe delegates and tracks.
 
-**O** — Team completed: Tasks 41-58 + send.verified (805aecc) + dashboard (b13b6df). Team: orchestrator (0.0), SM (0.1/0.6), expert (0.2), tester (0.3) at cursorOrchestrator.
+**O** — Team completed: Tasks 41-58 + send.verified (805aecc) + dashboard (b13b6df). Team was at cursorOrchestrator (orchestrator 0.0, SM 0.1/0.6, expert 0.2, tester 0.3). **Currently no orchestrator session running** — only claudeWoda exists. CMM #7 blocked until team is available again.
 
 **D** — Bug list: `session/oosh-bugs.md`. Coordination: `session/tasks/coordination-*.md`. Communication: file-based preferred (write task file, agent reads it).
 

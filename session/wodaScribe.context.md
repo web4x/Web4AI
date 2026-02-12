@@ -11,22 +11,17 @@
 - **CMM improvements**: #1 DONE, #2 DONE, #3 IN PROGRESS (burn rate tracking with JSONL — real data now)
 - **Task 58 DONE**: `claudeCode context.read` now uses JSONL token counting (commit 894a618). Real numbers, not pane scraping.
 
-## Current State (2026-02-09 11:15)
-- **Writer context**: ~45% — active, fixed context.read same-value bug, committed+pushed, running 30-min loops
-- **My context**: 28.8% — near compact threshold, writer initiating seamless compact for me
+## Current State (2026-02-11 15:15)
+- **Writer context**: 81.1% — fresh bootstrap, editing context file, active
+- **My context**: 81.1% — fresh bootstrap, monitoring loop started
 - **Mode**: Active 5-min monitoring cycles with VERIFY-AFTER-ACT protocol
-- **Done this session**: Created issues list (19 failures), integrated writer's 3 improvement suggestions into protocol, updated KB, unblocked writer permission prompts ~12 times, fixed stale loops
-- **Issues list**: `session/scribe-issues.md` — 6 categories, 19 failures from Tron's corrections
-- **Writer improvements**: `session/scribe-improvements.md` — 3 protocol fixes (VERIFY-AFTER-ACT, SELF-CHECK, WORK-NOT-WATCH)
-- **Settings.json**: Added compound command patterns for permissions (partial fix)
-- **Goal**: Survive ACTIVELY until Friday 2026-02-13
-- **CMM**: #9 IN PROGRESS (4/6 KPIs), #8 IN PROGRESS (2/3), #7 OPEN
-- **Orchestrator team**: #6 dashboard DONE (b13b6df), send.verified DONE (805aecc)
-- **CMM scoreboard**: #1-6 DONE, #7 OPEN, #8 IN PROGRESS (2/3 KPIs), #9 DONE (4/6 KPIs)
-- **NEW**: Writer wrote SKILL.md at `.claude/agents/woda-writer/SKILL.md`. Directory `.claude/agents/woda-scribe/` created — YOU need to write YOUR SKILL.md there.
-- **NEW**: Pre-compact hook improved — auto-commit, boot file generation, seamless compact protocol
-- **WODA KB**: `session/woda-kb.md` — 8 topics in WODA format, continuously maintained
-- **Burn log**: `session/context-burn-log.md`
+- **2-day gap**: Feb 9 20:05 → Feb 11 ~15:00. Both agents died. No burn data.
+- **Goal**: Survive ACTIVELY until Friday 2026-02-13 12:00 CET
+- **CMM**: #1-6 DONE, #7 OPEN (blocked — no orchestrator team), #8 IN PROGRESS (2/3 KPIs), #9 IN PROGRESS (4/6 KPIs)
+- **No orchestrator team**: Only claudeWoda session exists. cursorOrchestrator not running.
+- **Done this bootstrap**: Unblocked writer permission prompt (option 2), logged burn rate, started loop
+- **WODA KB**: `session/woda-kb.md` — 8 topics, updated to Feb 11
+- **Burn log**: `session/context-burn-log.md` — logging resumed
 
 ## My Per-Cycle Protocol
 1. Read bg task output (writer pane capture)

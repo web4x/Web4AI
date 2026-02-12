@@ -4,15 +4,13 @@
 ## Current Goal
 Stay healthy as duo team until **Friday 2026-02-13 12:00 CET**. ACTIVE survival = log burn data every cycle, not just "scribe alive".
 
-## Current State (2026-02-09 20:10)
-- Writer ~35% context, scribe 73.3% (post-compact, healthy)
-- Subscription: 5hr 13%, **7day 3%** — full budget
-- Ch16 + Ch17 WRITTEN (5cf39f1, dc263f8)
-- context.read + context.velocity FIXED: pane-aware JSONL (350acbb)
-- Bugs: 15/16 fixed. OAuth reclassified WORKING. 1 unfixable (permission reset).
-- CMM: #1-6 DONE, #7 OPEN, #8 IN PROGRESS, #9 IN PROGRESS (velocity integrated into scribe cycle)
-- Scribe has updated per-cycle protocol with velocity logging (steps 4-5) + work-not-watch (step 11)
-- Scribe told to use otmux wrappers not raw tmux
+## Current State (2026-02-11 ~15:00)
+- Writer: FRESH bootstrap (this session)
+- Scribe: bootstrapping at claudeWoda:0.1 (loading SKILL.md)
+- 2-day gap since last active session (Feb 9 20:05 → Feb 11 ~15:00)
+- Ch16 + Ch17 previously written (5cf39f1, dc263f8)
+- CMM: #1-6 DONE, #7 OPEN, #8 IN PROGRESS, #9 IN PROGRESS
+- Monitoring loop started, waiting for scribe to come online
 
 ## Survival Plan (until Friday 2026-02-13 12:00 CET)
 - **Active survival**: Every cycle MUST log burn data to context-burn-log.md. "Alive" without data = passive = not survival.
@@ -60,4 +58,4 @@ Stay healthy as duo team until **Friday 2026-02-13 12:00 CET**. ACTIVE survival 
 - Scribe.2 (hibernated): `claude --resume 3d0d4a9b-6eaf-4d12-bf73-2c21ebe033b0`
 
 ---
-*Updated: 2026-02-08 18:45*
+*Updated: 2026-02-11 ~15:00*
