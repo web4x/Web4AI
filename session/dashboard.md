@@ -1,6 +1,6 @@
 # Team Dashboard
 
-**Updated**: 2026-02-12T11:55:27Z (2026-02-12 12:55 CET)
+**Updated**: 2026-02-12T15:14:05Z (2026-02-12 16:14 CET)
 **Session**: projectTeam
 
 ## Git Status
@@ -9,34 +9,34 @@
 |-------|-------|
 | Branch | `main` |
 | Status | uncommitted changes |
-| Last commit | `032d137 Add 33 script specialist teams (expert+tester pairs) with setup scripts` |
+| Last commit | `4ff18bc Enrich all 66 script team SKILL.md descriptions from actual scripts` |
 
 ## Subscription
 
 | Metric | Value |
 |--------|-------|
-| 5-hour usage | - |
-| 7-day usage | - |
+| 5-hour usage | 24% |
+| 7-day usage | 0% |
 
 ## Tasks
 
 | Metric | Value |
 |--------|-------|
-| Total task files | 84 |
-| Today's tasks | 43 |
+| Total task files | 87 |
+| Today's tasks | 46 |
 
 ## Team Status
 
 | Agent | Pane | Context | Velocity | State |
 |-------|------|---------|----------|-------|
-| orchestrator | 0.0 | 10% | 4178 tokens/hr | active |
-| oosh-expert | 0.1 | 43.0% | 3320 tokens/hr | active |
+| orchestrator | 0.0 | 100.0% | - | unknown |
+| oosh-expert | 0.1 | 36.9% | 3366 tokens/hr | active |
 | oosh-tester | 0.2 | 54.0% | 2416 tokens/hr | unknown |
-| scrum-master | 0.3 | 30.7% | 4381 tokens/hr | unknown |
-| product-owner | 0.4 | 45.8% | 3078 tokens/hr | unknown |
-| agent-trainer | 0.5 | 36.5% | 3891 tokens/hr | unknown |
-| task-agent | 1.2 | 43.0% | 3320 tokens/hr | unknown |
-| woda-writer | 1.0 | 53.3% | 2445 tokens/hr | completed |
+| scrum-master | 0.3 | 100.0% | - | completed |
+| product-owner | 0.4 | 32.7% | 3689 tokens/hr | unknown |
+| agent-trainer | 0.5 | 12.5% | 5209 tokens/hr | unknown |
+| task-agent | 1.2 | 36.9% | 3366 tokens/hr | unknown |
+| woda-writer | 1.0 | 100.0% | - | active |
 | woda-scribe | 1.1 | 48.1% | 2890 tokens/hr | unknown |
 | developer | 1.3 | 27.5% | 4678 tokens/hr | unknown |
 | script-product-owner | 1.4 | 60.5% | 1815 tokens/hr | unknown |
@@ -44,11 +44,11 @@
 ## Recent Commits
 
 ```
+4ff18bc Enrich all 66 script team SKILL.md descriptions from actual scripts
+bde9476 Auto-save: unknown pre-compact 16:07
+902fccb started experiment
 032d137 Add 33 script specialist teams (expert+tester pairs) with setup scripts
 3bdb321 Create 3 ossh script specialist agents (expert, tester, po)
-e90f27e Add cleanup report for PO: full rename mapping and summary
-7a6d6b2 Rename remaining non-conforming task files
-a1d77a3 Auto-save: product-owner pre-compact 12:25
 ```
 
 ## Recovery
