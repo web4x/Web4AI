@@ -11,11 +11,14 @@ Orchestrator (agent-teacher/ — directory is historical, role is "orchestrator"
 ├── Respond to CMM4 alerts (THROTTLE/INCREASE/QUOTA/STAND DOWN)
 └── Never implement or test directly
 
-Task Agent (task-agent/)
+Task Agent (task-agent/) — CENTRAL TASK TRACKER
 ├── Receive directives from Orchestrator
 ├── Create task files in session/tasks/
 ├── Write headline plans with agent assignments
 ├── Signal: TASK PLAN READY: <path>
+├── Maintain master status: session/tasks/status.md
+├── Track all tasks: open, in progress, done, owner
+├── Agents report completions here (projectTeam:1.2)
 └── Never implement, test, or delegate
 
 ScrumMaster (scrum-master/)

@@ -200,6 +200,9 @@ Do NOT burn through quota on non-essential operations. When throttled, prioritiz
 
 For recurring duties (monitoring loop), prefix subject with `RECURRING:`.
 
+**Report completion**: When you finish a task, notify the task agent:
+`otmux send projectTeam:1.2 "Task done: <filename>" Enter`
+
 ### Task Queue Rule
 
 When a new prompt arrives while you are busy:

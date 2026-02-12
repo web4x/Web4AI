@@ -284,6 +284,9 @@ These commands lose spaces, creating unreadable garbled text.
 
 **Use TaskCreate/TaskUpdate/TaskList for all work.** TaskCreate when receiving work, TaskUpdate status=in_progress when starting, status=completed when done, TaskList to find next work. For recurring duties, prefix with `RECURRING:`.
 
+**Report completion**: When you finish a task, notify the task agent:
+`otmux send projectTeam:1.2 "Task done: <filename>" Enter`
+
 ### Task Queue Rule
 
 When a new prompt arrives while you are busy:

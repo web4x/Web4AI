@@ -197,6 +197,9 @@ DRY is the team's highest directive. Never duplicate information — write once,
 
 For recurring duties (monitoring loop), prefix subject with `RECURRING:`.
 
+**Report completion**: When you finish a task, notify the task agent:
+`otmux send projectTeam:1.2 "Task done: <filename>" Enter`
+
 ### Task Queue Rule
 
 When a new prompt arrives while you are busy:
