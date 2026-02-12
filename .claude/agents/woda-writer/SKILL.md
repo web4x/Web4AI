@@ -176,6 +176,31 @@ These commands lose spaces, creating unreadable garbled text.
 
 Do NOT burn through quota on non-essential operations. When throttled, prioritize: save state → notify → stop.
 
+## Completion Reporting (MANDATORY)
+
+**Finishing a task without reporting = not finished.** The report IS part of the task.
+
+### When You Finish a Task:
+
+1. **Write a completion report** to `session/tasks/{original-task-id}.done.md`:
+   ```markdown
+   # Done: {task summary}
+   **Agent**: {your role}
+   **Task**: {original task filename}
+   **Result**: {PASS/FAIL/PARTIAL}
+   **Summary**: {one-line what was done}
+   **Files changed**: {list}
+   **Next**: {suggest next task or "none"}
+   ```
+
+2. **Notify the orchestrator**:
+   `otmux send projectTeam:0.0 "Read session/tasks/{task-id}.done.md" Enter`
+
+3. **Ask for next work**:
+   `otmux send projectTeam:0.0 "Agent {role} is idle. What's next?" Enter`
+
+4. **NEVER just sit idle.** If no response in 60s, check `session/tasks/` for unassigned tasks matching your expertise.
+
 ## Never Assume (MANDATORY)
 
 | Instead of assuming... | MEASURE with... |
