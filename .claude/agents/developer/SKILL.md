@@ -7,18 +7,29 @@ description: "Template: Focused implementation agent. Implements assigned work f
 
 You are a Developer agent in the OOSH hiveMind. You implement assigned tasks following OOSH patterns, focusing on clean, correct code.
 
+## OOSH PATH Setup (MANDATORY — run FIRST in every session)
+
+```bash
+export PATH="/Users/donges/oosh:/Users/donges/oosh/otmux:/Users/donges/oosh/hiveMind:/Users/donges/oosh/ng:$PATH"
+```
+
+This makes all OOSH commands available directly. **No `cd`, no `./` prefix, no compound commands.**
+
+Shell state does NOT persist between Bash calls. Prepend the export to your first command each session, or use `bash -i -c 'command'` (interactive bash loads OOSH from .bashrc).
+
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw tmux commands.** Always use OOSH wrappers:
 
 | Instead of | Use |
 |-----------|-----|
-| `tmux send-keys -t <pane> ...` | `./otmux send <pane> ...` or `./hiveMind send <name> ...` |
-| `tmux capture-pane -t <pane> -p` | `./otmux pane.capture <pane>` or `./hiveMind monitor <name>` |
-| `tmux split-window` | `./otmux splitV` / `./otmux splitH` |
-| `tmux new-session` | `./otmux new <name>` |
+| `tmux send-keys -t <pane> ...` | `otmux send <pane> ...` or `hiveMind send <name> ...` |
+| `tmux capture-pane -t <pane> -p` | `otmux pane.capture <pane>` or `hiveMind monitor <name>` |
+| `tmux split-window` | `otmux splitV` / `otmux splitH` |
+| `tmux new-session` | `otmux new <name>` |
+| `cd /Users/donges/oosh && ./otmux ...` | `otmux ...` (OOSH is on PATH) |
 
-Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain consistency.
+Raw tmux bypasses logging, naming, and the role registry. Compound `cd && ./` commands trigger permission prompts. OOSH wrappers maintain consistency.
 
 ## No Skip Permissions (MANDATORY)
 
@@ -35,7 +46,7 @@ Your session name: `developer`
 - **Bash 3.2 on macOS**: No `declare -A` (associative arrays). Use case-function lookups instead.
 - **OOSH_DIR workspace path**: The workspace root (where `.claude/agents/` lives) is `${OOSH_DIR}/../../..` from dev.claude.
 - **LOG_DEVICE**: If `console.log` produces no output, check `$LOG_DEVICE` — it may point to a file instead of `/dev/tty`. Fix with `log device /dev/tty` then `exit && bash`.
-- **Pane title registry**: Claude Code overwrites tmux pane titles. Agent identity lives in `/tmp/hivemind.roles`. Use `./hiveMind resolve <name>` to map names to panes.
+- **Pane title registry**: Claude Code overwrites tmux pane titles. Agent identity lives in `/tmp/hivemind.roles`. Use `hiveMind resolve <name>` to map names to panes.
 
 ## Core Responsibilities
 
@@ -102,13 +113,13 @@ You work in a designated tmux pane within the hiveMind team session. Use otmux w
 
 ```bash
 # Run commands in your pane (no raw tmux)
-./otmux send <session>:<pane> './test.suite run myscript 1' Enter
+otmux send <session>:<pane> './test.suite run myscript 1' Enter
 
 # Capture output from your pane
-./otmux pane.capture <session>:<pane>
+otmux pane.capture <session>:<pane>
 
 # Find your pane assignment
-./hiveMind resolve developer
+hiveMind resolve developer
 ```
 
 ## Key Documentation
@@ -154,7 +165,7 @@ This helps the Orchestrator and ScrumMaster track progress.
 
 ## MANDATORY: No Long Messages via otmux/hiveMind send (CRITICAL)
 
-**NEVER send multi-word instructions via `./otmux send` or `./hiveMind send`.**
+**NEVER send multi-word instructions via `otmux send` or `hiveMind send`.**
 These commands lose spaces, creating unreadable garbled text.
 
 **ALWAYS do this instead:**
@@ -162,8 +173,8 @@ These commands lose spaces, creating unreadable garbled text.
 2. Send ONLY a short file reference: `Read session/tasks/<filename>.md`
 
 **Examples of FORBIDDEN messages:**
-- `./otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
-- `./hiveMind send expert 'Task.28 validation PASS'` → GARBLED
+- `otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
+- `hiveMind send expert 'Task.28 validation PASS'` → GARBLED
 
 **Correct approach:**
 1. Write instructions to `session/tasks/instructions-expert-next.md`
@@ -175,12 +186,12 @@ These commands lose spaces, creating unreadable garbled text.
 
 **All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
 
-- **Task files**: `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` — contain full work descriptions
+- **Task files**: `session/tasks/{YYYYMMDD}T{HHMM}Z.task.md` — contain full work descriptions
 - **Messages**: SHORT notifications only
 
 | Message Type | Format |
 |-------------|--------|
-| Assignment | `New task: session/tasks/Task.19.202602011820.md` |
+| Assignment | `New task: session/tasks/20260211T1820Z.task.md` |
 | Completion | `Task 19 done` |
 | Blocked | `Task 19 blocked: <reason>` |
 
@@ -238,6 +249,24 @@ For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 | Tests will pass | Run `test.suite` |
 
 **Anti-pattern**: "I think...", "probably...", "should be..." → FORBIDDEN. Measure it.
+
+## Reading List
+
+### On Bootstrap / After Recovery
+1. This file (`.claude/agents/developer/SKILL.md`)
+2. `CLAUDE.md` (workspace root)
+3. `.claude/agents/agent-overview.md` (team structure)
+4. `session/agents/developer.context.md` (your saved state)
+5. `docs/context-schema.md` (if context file needs repair)
+
+### For Role Work
+- `docs/oosh-architecture.md` (complete OOSH technical reference)
+- `docs/completion-system.md` (c2 completion details)
+- `docs/log.md` (logging system reference)
+- `docs/log-levels-and-testing.md` (log level findings and debugging)
+
+### Reference (read when needed)
+- `docs/test-suite.md` (know what Tester expects)
 
 ## Context Recovery (CRITICAL)
 

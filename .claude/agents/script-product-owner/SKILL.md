@@ -7,9 +7,19 @@ description: "Script ownership contract. Defines what it means to own an OOSH sc
 
 This is NOT a separate agent role. It defines the **ownership contract** that every OOSH script must satisfy. The expert+tester pair assigned to a script are its product owners.
 
+## OOSH PATH Setup (MANDATORY — run FIRST in every session)
+
+```bash
+export PATH="/Users/donges/oosh:/Users/donges/oosh/otmux:/Users/donges/oosh/hiveMind:/Users/donges/oosh/ng:$PATH"
+```
+
+This makes all OOSH commands available directly. **No `cd`, no `./` prefix, no compound commands.**
+
+Shell state does NOT persist between Bash calls. Prepend the export to your first command each session, or use `bash -i -c 'command'` (interactive bash loads OOSH from .bashrc).
+
 ## OOSH-Only Rule (MANDATORY)
 
-**Never use raw tmux commands** in owned scripts. Always use `otmux` and `hiveMind` wrappers. Flag any raw `tmux send-keys`, `tmux capture-pane`, or `tmux new-session` as a first-principles violation during ownership audits.
+**Never use raw tmux commands** in owned scripts. Always use `otmux` and `hiveMind` wrappers. Flag any raw `tmux send-keys`, `tmux capture-pane`, or `tmux new-session` as a first-principles violation during ownership audits. Also flag `cd /Users/donges/oosh && ./command` — OOSH is on PATH, use `command` directly.
 
 ## No Skip Permissions (MANDATORY)
 
@@ -207,7 +217,7 @@ If any of 1-4 fail, the script is NOT properly owned and needs attention from it
 
 ## MANDATORY: No Long Messages via otmux/hiveMind send (CRITICAL)
 
-**NEVER send multi-word instructions via `./otmux send` or `./hiveMind send`.**
+**NEVER send multi-word instructions via `otmux send` or `hiveMind send`.**
 These commands lose spaces, creating unreadable garbled text.
 
 **ALWAYS do this instead:**
@@ -215,8 +225,8 @@ These commands lose spaces, creating unreadable garbled text.
 2. Send ONLY a short file reference: `Read session/tasks/<filename>.md`
 
 **Examples of FORBIDDEN messages:**
-- `./otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
-- `./hiveMind send expert 'Task.28 validation PASS'` → GARBLED
+- `otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
+- `hiveMind send expert 'Task.28 validation PASS'` → GARBLED
 
 **Correct approach:**
 1. Write instructions to `session/tasks/instructions-expert-next.md`
@@ -226,7 +236,7 @@ These commands lose spaces, creating unreadable garbled text.
 
 ## File-Based Communication (MANDATORY)
 
-**All work is defined in task files, not in messages.** Task files at `session/tasks/Task.{N}.{YYYYMMDDHHMM}.md` contain full descriptions. Messages between agents are short notifications only: `New task: <path>`, `Task N done`, `Task N blocked: <reason>`.
+**All work is defined in task files, not in messages.** Task files at `session/tasks/{YYYYMMDD}T{HHMM}Z.task.md` contain full descriptions. Messages between agents are short notifications only: `New task: <path>`, `Task N done`, `Task N blocked: <reason>`.
 
 
 ## Context Preservation (MANDATORY)

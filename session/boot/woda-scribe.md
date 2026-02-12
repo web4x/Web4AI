@@ -1,9 +1,9 @@
 # Boot: woda-scribe
-*Auto-generated 2026-02-08 18:23. This is ALL you need to read post-compact.*
+*Auto-generated 2026-02-11 19:18. This is ALL you need to read post-compact.*
 
 ## You are: woda-scribe
-## Pane: claudeWoda:0.1
-## Goal: - **Primary**: Stay healthy as duo team until Monday. Monitor writer, ACT when stuck.
+## Pane: projectTeam:1.1
+## Goal: - **Primary**: Stay healthy as duo team until Friday 2026-02-13 12:00 CET. Monitor writer, ACT when stuck.
 --
 
 ## Immediate actions:
