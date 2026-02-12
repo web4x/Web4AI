@@ -11,17 +11,18 @@
 - **CMM improvements**: #1 DONE, #2 DONE, #3 IN PROGRESS (burn rate tracking with JSONL — real data now)
 - **Task 58 DONE**: `claudeCode context.read` now uses JSONL token counting (commit 894a618). Real numbers, not pane scraping.
 
-## Current State (2026-02-11 15:15)
-- **Writer context**: 81.1% — fresh bootstrap, editing context file, active
-- **My context**: 81.1% — fresh bootstrap, monitoring loop started
+## Current State (2026-02-12 09:25)
+- **Writer context**: 77.2% — fresh session, active (monitoring scribe, checking CMM, tasks running)
+- **My context**: 77.2% — fresh bootstrap, monitoring loop started (bg task bed4a1a)
 - **Mode**: Active 5-min monitoring cycles with VERIFY-AFTER-ACT protocol
-- **2-day gap**: Feb 9 20:05 → Feb 11 ~15:00. Both agents died. No burn data.
-- **Goal**: Survive ACTIVELY until Friday 2026-02-13 12:00 CET
+- **Panes**: 1.1=writer, 1.2=scribe, 3+4=bash shells (window 1)
+- **Goal**: Survive ACTIVELY until Friday 2026-02-13 12:00 CET (~26.5 hrs remain)
 - **CMM**: #1-6 DONE, #7 OPEN (blocked — no orchestrator team), #8 IN PROGRESS (2/3 KPIs), #9 IN PROGRESS (4/6 KPIs)
 - **No orchestrator team**: Only claudeWoda session exists. cursorOrchestrator not running.
-- **Done this bootstrap**: Unblocked writer permission prompt (option 2), logged burn rate, started loop
-- **WODA KB**: `session/woda-kb.md` — 8 topics, updated to Feb 11
+- **Done this bootstrap**: Read identity+state, captured writer pane, measured context (both ~77%), nudged writer (confirmed received), logged burn data, updated KB, started monitoring loop
+- **WODA KB**: `session/woda-kb.md` — 8 topics, updated to Feb 12 09:25
 - **Burn log**: `session/context-burn-log.md` — logging resumed
+- **OOSH tools**: `~/oosh/otmux`, `~/oosh/claudeCode` — both accessible
 
 ## My Per-Cycle Protocol
 1. Read bg task output (writer pane capture)

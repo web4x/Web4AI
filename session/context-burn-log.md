@@ -64,3 +64,4 @@
 | Feb 12 10:35 | **78.2%** / scribe **78.9%** | writer fresh bootstrap (new session), scribe alive + monitoring | alive (starting loop) | -0.3% writer, +0.4% scribe (measurement noise) | scribe confirmed healthy via message |
 | --- | --- | --- GAP: prev sessions ended. Both restarted fresh. --- | --- |
 | Feb 12 09:24 | **78.5%** / scribe **77.4%** | writer FRESH session, scribe bootstrapping (Tomfoolering) | starting 5-min loop | both healthy, ~26.5hrs to goal | monitoring loop starting |
+| Feb 12 09:25 | **77.2%** / scribe **77.2%** | writer idle at prompt (tasks queued), scribe bootstrapped | scribe alive, starting loop | scribe confirms: both ~77% | scribe first cycle

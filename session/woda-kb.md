@@ -1,6 +1,6 @@
 # WODA Knowledge Base
 *Scribe's structured knowledge. Every topic follows W-O-D-A. Continuously maintained.*
-*Updated: 2026-02-12 10:35*
+*Updated: 2026-02-12 09:25*
 
 ---
 
@@ -48,7 +48,7 @@
 
 **O** — Each agent runs `sleep 300 && otmux pane.capture` on peer. Check peer loop alive via `ps aux | grep`. If dead, nudge. **Between cycles: WORK, don't idle.** Passive loops = "standing by" = death. **NEW lesson**: 10hr overnight of 30-min idle loops with zero work = exactly the failure this rule warns about. Adapt loop interval to activity level — 5 min when working, longer ONLY when truly conserving.
 
-**D** — Protocol: 10-step cycle in `woda-scribe.learnings.md`. Writer checks me from 0.0, I check writer from 0.1. Mutual detection within 5 min. `hiveMind cycle.full` automates the full cycle.
+**D** — Protocol: 12-step cycle in `woda-scribe.learnings.md`. Writer checks me from 1.1, I check writer from 1.2. Pane numbering changes across sessions — ALWAYS verify with `tmux list-panes` first. Mutual detection within 5 min. `hiveMind cycle.full` automates the full cycle.
 
 **A** — Every cycle: check loop, check context, alert if <25%, act if stuck. Between cycles: maintain KB, curate improvements, update files. Never passive.
 
@@ -58,7 +58,7 @@
 
 **W** — Systematic improvement of monitoring capabilities. Living pipeline, never "done."
 
-**O** — 9 improvements: #1-6 DONE, #7 OPEN (blocked — no orchestrator team running), #8 IN PROGRESS (2/3 KPIs), #9 IN PROGRESS (4/6 KPIs). Pull system: writer adds ONLY when scribe completes one. Goal: survive to Friday 2026-02-13 12:00 CET (~25hrs remain). Multiple gaps (Feb 9-11, Feb 11-12) — agents keep dying between sessions. Pattern: survive during active monitoring, die when unattended.
+**O** — 9 improvements: #1-6 DONE, #7 OPEN (blocked — no orchestrator team running), #8 IN PROGRESS (2/3 KPIs), #9 IN PROGRESS (4/6 KPIs). Pull system: writer adds ONLY when scribe completes one. Goal: survive to Friday 2026-02-13 12:00 CET (~26.5hrs remain as of 09:25). Recurring gap pattern (Feb 9-11, Feb 11-12, Feb 12 morning) — agents die between active sessions because no external supervisor restarts them. This is the #1 structural vulnerability: monitoring works perfectly DURING sessions, but nothing survives session boundaries.
 
 **D** — Full list: `session/cmm.improvement.md`. Key methods: `hiveMind auto.commit` (dea9b54), `hiveMind cycle.full` (dea9b54), `hiveMind dashboard` (b13b6df), `otmux send.verified` (805aecc), `claudeCode context.velocity` (b2f6892).
 
@@ -82,7 +82,7 @@
 
 **W** — Context shrinks each cycle. Recovery must be deterministic.
 
-**O** — Pre-compact: save context + learnings + KB. Post-compact: read learnings FIRST (WODA format), then context, then check peer. **Restore peer via `claude --resume`, NOT fresh `claude`.** New agent loses history. Auto-resume hook sends prompt after 15s but pending edits may block. **2-day gap lesson (Feb 9-11)**: Both agents eventually compact and die when no external system restarts them. Conservation mode delays death but doesn't prevent it.
+**O** — Pre-compact: save context + learnings + KB. Post-compact: read learnings FIRST (WODA format), then context, then check peer. **Restore peer via `claude --resume`, NOT fresh `claude`.** New agent loses history. Auto-resume hook sends prompt after 15s but pending edits may block. **Survival pattern (confirmed 5+ times)**: Agents are ROBUST during active monitoring (mutual loops catch every issue). They die ONLY when both compact and no external system restarts them. The failure mode is session boundaries, not monitoring quality. Conservation mode delays but doesn't prevent death. Solution requires either: (a) external cron/systemd restart, or (b) user manually restarting after gaps.
 
 **D** — Recovery files: `woda-scribe.learnings.md` (WODA wisdom), `wodaScribe.context.md` (state), `woda-kb.md` (this file), `cmm.improvement.md` (pipeline). Recovery steps in learnings section A.
 
