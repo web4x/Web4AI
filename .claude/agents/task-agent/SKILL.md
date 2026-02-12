@@ -179,6 +179,8 @@ Do NOT wait until context is exhausted. At 20%, preservation is your only priori
 
 **NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
 
+**Task sync**: Before `/compact`, run `TaskList` and record any pending/in_progress items in `backlog.md`. After `/compact`, read `backlog.md` and `TaskCreate` for each pending item. Internal tasks die on compact — `backlog.md` survives.
+
 ## Quota Awareness (MANDATORY)
 
 **Monitor Claude Code subscription usage.** When usage is high, throttle activity:
@@ -254,9 +256,10 @@ After `/compact` or context loss:
 1. **State your identity**: "I am the Task Agent agent."
 2. Re-read this file (`.claude/agents/task-agent/SKILL.md`)
 3. Read `context.md` for current state
-4. Read `docs/context-schema.md` if context file needs repair
-5. Check `session/tasks/` for existing task files
-6. Check with Orchestrator for pending directives
+4. Read `backlog.md` and `TaskCreate` for each pending item
+5. Read `docs/context-schema.md` if context file needs repair
+6. Check `session/tasks/` for existing task files
+7. Check with Orchestrator for pending directives
 
 ## Notification Protocol
 

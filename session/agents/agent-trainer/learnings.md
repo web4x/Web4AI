@@ -7,6 +7,8 @@
 - **Rule in SKILL.md but not practiced = CMM2 gap.** Writing a rule is CMM2 (repeatable). Agents actually following it is CMM3 (deterministic). Must verify adoption, not just presence. (2026-02-12, PO observation: zero agents using TaskCreate/TaskUpdate despite rule in all SKILL.md files)
 - **DRY is highest directive.** Write once, link everywhere. KB is single source. SKILL.md files link, never copy.
 - **Parallel edits work.** Can edit 10+ files in one tool call if strings are unique. Always read files first or Edit will fail with "File has not been read yet."
+- **Never suppress errors.** `2>/dev/null || echo` hides root causes. Just run the command and read the real error. KB: `session/knowledge-base/anti-patterns.md`
+- **PO + Trainer can always create specialists.** Script-product-owner is a delegate template, not just a contract. One specialist per complex script. No permission needed to spawn more.
 
 ## Failures & Fixes
 

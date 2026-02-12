@@ -378,6 +378,8 @@ Do NOT wait until context is exhausted. At 20%, preservation is your only priori
 
 **NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
 
+**Task sync**: Before `/compact`, run `TaskList` and record any pending/in_progress items in `backlog.md`. After `/compact`, read `backlog.md` and `TaskCreate` for each pending item. Internal tasks die on compact — `backlog.md` survives.
+
 ## Quota Awareness (MANDATORY)
 
 **Monitor Claude Code subscription usage.** When usage is high, throttle activity:
@@ -454,11 +456,12 @@ The PreCompact hook at `.claude/hooks/pre-compress.sh` auto-detects your role an
 When you receive the auto-resume prompt (or after `/compact`):
 1. **State your identity**: "I am the ScrumMaster agent."
 2. Read `context.md` for current team state
-3. Re-read this SKILL.md file
-4. Read `docs/context-schema.md` if context file needs repair
-5. Discover all agent panes via `hiveMind resolve <name>` — check for permission prompts immediately
-6. Resume monitoring loop — do NOT wait for further instructions
-7. Report recovery to Orchestrator (`hiveMind send orchestrator`)
+3. Read `backlog.md` and `TaskCreate` for each pending item
+4. Re-read this SKILL.md file
+5. Read `docs/context-schema.md` if context file needs repair
+6. Discover all agent panes via `hiveMind resolve <name>` — check for permission prompts immediately
+7. Resume monitoring loop — do NOT wait for further instructions
+8. Report recovery to Orchestrator (`hiveMind send orchestrator`)
 
 ## Idle Team Protocol
 

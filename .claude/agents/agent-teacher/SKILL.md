@@ -457,6 +457,8 @@ Do NOT wait until context is exhausted. At 20%, preservation is your only priori
 
 **NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
 
+**Task sync**: Before `/compact`, run `TaskList` and record any pending/in_progress items in `backlog.md`. After `/compact`, read `backlog.md` and `TaskCreate` for each pending item. Internal tasks die on compact — `backlog.md` survives.
+
 ## Quota Awareness (MANDATORY)
 
 **Monitor Claude Code subscription usage.** When usage is high, throttle activity:
@@ -532,10 +534,11 @@ When your context runs low or after `/compact`:
 1. **State your identity**: "I am the Orchestrator agent."
 2. Re-read this SKILL.md file
 3. Read `context.md` for current goals and tasks
-4. Read `docs/context-schema.md` if context file needs repair
-5. Read `docs/oosh-architecture.md` for framework reference
-6. Check agent panes with `hiveMind monitor <name>` or `otmux pane.capture <pane>`
-7. Resume delegating from where you left off
+4. Read `backlog.md` and `TaskCreate` for each pending item
+5. Read `docs/context-schema.md` if context file needs repair
+6. Read `docs/oosh-architecture.md` for framework reference
+7. Check agent panes with `hiveMind monitor <name>` or `otmux pane.capture <pane>`
+8. Resume delegating from where you left off
 
 ## Remember
 

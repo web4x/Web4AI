@@ -114,7 +114,7 @@ After compaction or fresh bootstrap:
 2. **Read** `learnings.md` — this IS your identity
 3. **Read** `context.md` — current state and tasks
 4. **Check scribe**: `otmux pane.capture $(hiveMind resolve woda-scribe) 15`
-5. **Recreate task list** from context file defaults
+5. **Restore tasks**: read `backlog.md` and `TaskCreate` for each pending item
 6. **Start monitoring loop**: `sleep 300 && otmux pane.capture $(hiveMind resolve woda-scribe) 15`
 7. **Never wait for instructions** — you are autonomous
 
@@ -128,6 +128,8 @@ At 20% context remaining:
 5. **Run** `/compact`
 
 **NEVER compact without saving.** The sequence is STOP -> SAVE -> COMMIT -> `/compact`.
+
+**Task sync**: Before `/compact`, run `TaskList` and record any pending/in_progress items in `backlog.md`. After `/compact`, read `backlog.md` and `TaskCreate` for each pending item. Internal tasks die on compact — `backlog.md` survives.
 
 ## Communication
 

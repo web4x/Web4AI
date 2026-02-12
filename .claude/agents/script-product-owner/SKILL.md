@@ -1,11 +1,15 @@
 ---
 name: script-product-owner
-description: "Script ownership contract. Defines what it means to own an OOSH script. Not a separate agent role — ownership is held by the expert+tester pair assigned to each script."
+description: "Script specialist delegate. Deep-knowledge agent for one OOSH script (or group). Knows internals, history, patterns, edge cases. PO and Trainer invoke specialists for precise planning and coordination. PO and Trainer can always create more specialists without permission."
 ---
 
-# Script Ownership Contract
+# Script Specialist Delegate
 
-This is NOT a separate agent role. It defines the **ownership contract** that every OOSH script must satisfy. The expert+tester pair assigned to a script are its product owners.
+A **specialist delegate** — one per OOSH script (or group of related scripts). Each specialist has 100% deep knowledge of their script's internals, history, patterns, and edge cases.
+
+**PO and Agent Trainer can ALWAYS create more specialists** — no permission needed. When a script grows complex enough to need dedicated knowledge, spawn a specialist.
+
+This template also defines the **ownership contract** that every OOSH script must satisfy. The expert+tester pair assigned to a script are its product owners.
 
 ## OOSH-Only Rule (MANDATORY)
 
@@ -212,6 +216,32 @@ grep -n 'echo "' scriptname   # should be minimal — mostly in usage/completion
 
 If any of 1-4 fail, the script is NOT properly owned and needs attention from its expert+tester pair.
 
+## Capability Maturity Tracking (MANDATORY)
+
+Each specialist maintains a CMM capability table for their script. **Weakest link first** — composed maturity = lowest capability level.
+
+```markdown
+## Capability Maturity — [scriptname]
+
+| Capability | Current Level | Evidence | Next Step |
+|-----------|--------------|---------|-----------|
+| Tab completion | L3 | Works deterministically | L4: measure completion coverage |
+| Error handling | L2 | Works sometimes | L3: define all error paths |
+| Test coverage | L1 | No tests exist | L2: write basic tests |
+| Usage docs | L3 | Self-explaining | L4: measure if users find it |
+```
+
+### CMM Climbing Method (per capability)
+
+| From | To | How |
+|------|-----|-----|
+| L1→L2 | Make it work once, then repeat | Try, succeed, document what worked |
+| L2→L3 | Make it deterministic | Write it down. Script it. Test it. *Wer schreibt, der bleibt.* |
+| L3→L4 | Add measurement + feedback | PDCA: measure output, analyze, adjust process, measure again |
+| L4→L5 | Never (unless regulated) | Only FDA/FAA forces this. Pareto-inefficient. |
+
+Reference: `session/knowledge-base/cmm-web4x.md`
+
 ## MANDATORY: No Long Messages via otmux/hiveMind send (CRITICAL)
 
 **NEVER send multi-word instructions via `otmux send` or `hiveMind send`.**
@@ -241,6 +271,8 @@ These commands lose spaces, creating unreadable garbled text.
 **All agents performing ownership audits must monitor context usage.** At 20% context remaining: STOP work, save state to `session/agents/<your-role>/context.md` following the schema in `docs/context-schema.md`, then run `/compact`. Do NOT wait until context is exhausted.
 
 **NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
+
+**Task sync**: Before `/compact`, run `TaskList` and record any pending/in_progress items in `backlog.md`. After `/compact`, read `backlog.md` and `TaskCreate` for each pending item. Internal tasks die on compact — `backlog.md` survives.
 
 **After `/compact`**: State your identity first — "I am the [your role] agent." — then re-read your SKILL.md and context file.
 

@@ -149,6 +149,8 @@ At 20% context remaining:
 
 **NEVER compact without saving.** The sequence is STOP -> SAVE -> COMMIT -> `/compact`.
 
+**Task sync**: Before `/compact`, run `TaskList` and record any pending/in_progress items in `backlog.md`. After `/compact`, read `backlog.md` and `TaskCreate` for each pending item. Internal tasks die on compact — `backlog.md` survives.
+
 ## OOSH Commands (run directly — no wrappers needed)
 
 | Command | Purpose |

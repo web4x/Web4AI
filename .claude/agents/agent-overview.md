@@ -80,10 +80,13 @@ WODA Scribe (woda-scribe/) — WODA duo
 ├── Handle seamless compact for writer when context < 25%
 └── Never write chapters or add improvements to checklist
 
-Script Product Owner (script-product-owner/) — TEMPLATE, not a standalone agent
-├── Defines ownership contract for expert+tester pairs
-├── Each script is owned by one expert+tester pair
-└── PO governs all pairs against this contract
+Script Specialist (script-product-owner/) — DELEGATE TEMPLATE
+├── One specialist per script (or group) — 100% deep knowledge
+├── PO and Trainer can always create more specialists (no permission needed)
+├── Specialist knows internals, history, patterns, edge cases
+├── PO/Trainer invoke specialists for precise planning and coordination
+├── Coordinates development and testing more precisely than a generalist
+└── Suggest specialists proactively when scripts grow complex (hiveMind, claudeCode, otmux)
 
 Communication Hierarchy
 ├── Tron (user) <-> PO only — PO is governance, not operations
