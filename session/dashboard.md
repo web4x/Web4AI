@@ -1,6 +1,6 @@
 # Team Dashboard
 
-**Updated**: 2026-02-12T15:14:05Z (2026-02-12 16:14 CET)
+**Updated**: 2026-02-12T16:00:46Z (2026-02-12 17:00 CET)
 **Session**: projectTeam
 
 ## Git Status
@@ -9,46 +9,46 @@
 |-------|-------|
 | Branch | `main` |
 | Status | uncommitted changes |
-| Last commit | `4ff18bc Enrich all 66 script team SKILL.md descriptions from actual scripts` |
+| Last commit | `ae0c633 Auto-save: oosh-expert pre-compact 16:38` |
 
 ## Subscription
 
 | Metric | Value |
 |--------|-------|
-| 5-hour usage | 24% |
+| 5-hour usage | 40% |
 | 7-day usage | 0% |
 
 ## Tasks
 
 | Metric | Value |
 |--------|-------|
-| Total task files | 87 |
-| Today's tasks | 46 |
+| Total task files | 92 |
+| Today's tasks | 51 |
 
 ## Team Status
 
 | Agent | Pane | Context | Velocity | State |
 |-------|------|---------|----------|-------|
-| orchestrator | 0.0 | 100.0% | - | unknown |
-| oosh-expert | 0.1 | 36.9% | 3366 tokens/hr | active |
-| oosh-tester | 0.2 | 54.0% | 2416 tokens/hr | unknown |
-| scrum-master | 0.3 | 100.0% | - | completed |
-| product-owner | 0.4 | 32.7% | 3689 tokens/hr | unknown |
-| agent-trainer | 0.5 | 12.5% | 5209 tokens/hr | unknown |
-| task-agent | 1.2 | 36.9% | 3366 tokens/hr | unknown |
-| woda-writer | 1.0 | 100.0% | - | active |
-| woda-scribe | 1.1 | 48.1% | 2890 tokens/hr | unknown |
-| developer | 1.3 | 27.5% | 4678 tokens/hr | unknown |
+| orchestrator | 0.0 | 24.0% | 4214 tokens/hr | unknown |
+| oosh-expert | 0.1 | 68.3% | 971 tokens/hr | active |
+| oosh-tester | 0.2 | 37.8% | 3232 tokens/hr | completed |
+| scrum-master | 0.3 | 20.9% | 4440 tokens/hr | unknown |
+| product-owner | 0.4 | 59.4% | 1629 tokens/hr | unknown |
+| agent-trainer | 0.5 | 70.1% | 854 tokens/hr | unknown |
+| task-agent | 1.2 | 24.0% | 971 tokens/hr | unknown |
+| woda-writer | 1.0 | 31.4% | 3682 tokens/hr | active |
+| woda-scribe | 1.1 | 40.5% | 3044 tokens/hr | completed |
+| developer | 1.3 | 27.3% | 4046 tokens/hr | unknown |
 | script-product-owner | 1.4 | 60.5% | 1815 tokens/hr | unknown |
 
 ## Recent Commits
 
 ```
+ae0c633 Auto-save: oosh-expert pre-compact 16:38
+7b9b8a8 Auto-save: product-owner pre-compact 16:38
+3dea597 Add config-po specialist agent (quality guardian for config script)
+5f27bae Auto-save: agent-trainer pre-compact 16:17
 4ff18bc Enrich all 66 script team SKILL.md descriptions from actual scripts
-bde9476 Auto-save: unknown pre-compact 16:07
-902fccb started experiment
-032d137 Add 33 script specialist teams (expert+tester pairs) with setup scripts
-3bdb321 Create 3 ossh script specialist agents (expert, tester, po)
 ```
 
 ## Recovery

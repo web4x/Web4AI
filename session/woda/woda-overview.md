@@ -40,7 +40,8 @@ projectTeam Reboot (NEW) → projectTeam-reboot.md — 13,983 words
 ├── Ch12: The Cambrian Explosion — trainer created 33 script specialist teams (~100 files), developer's first task (committing), expert rebuilt from learnings, tester corrected on role boundary, PO becoming config architect, orchestrator invented metrics via arithmetic, script-PO awakens
 ├── Ch13: The Wall — orchestrator (2h6m) and SM (1h28m) hit quota wall simultaneously, expert delivered subscription measurement (5/5 criteria) at exact moment users froze, trainer clean recovery, developer as release manager, script-PO testing SSH, permission economy returns legitimately
 ├── Ch14: Life Below the Wall — PO steps up as coordinator (for-loop unblock), expert built 12-state detection, script-PO first test results (2 pass/1 fail), tester's 3-chapter patient wait, resilience without redundancy
-└── Themes: bootstrap paradox, speed≠quality, human has the keyboard, WODA layers as team attention types, generational transition, root cause simplicity, self-assembly, aspiration vs capability, idle capacity as reserve, external constraints (quota as weather), resilience via substitution
+├── Ch15: The Thaw — quota resets, orchestrator/SM resume instantly, PO compacts at 9% (context debt from substituting), tester's signal arrives (4-chapter wait), trainer shows cross-agent awareness, PO's meta-fragility insight lost to compaction
+└── Themes: bootstrap paradox, speed≠quality, human has the keyboard, WODA layers as team attention types, generational transition, root cause simplicity, self-assembly, aspiration vs capability, idle capacity as reserve, external constraints, resilience via substitution, meta-fragility
 ```
 
 ## Active References
