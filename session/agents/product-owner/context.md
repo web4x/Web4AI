@@ -1,69 +1,77 @@
 # Product Owner Agent Context
 
-**Session**: product-owner@sonnet
+**Session**: product-owner@opus
 **Role**: product-owner
 **Pane**: projectTeam:0.4
-**Updated**: 2026-02-12T11:00Z
-**State**: saving — context low, compacting
+**Updated**: 2026-02-12T12:45Z
+**State**: compacting — healthy, proactive
 
 ## CURRENT GOAL
 
-Governance and quality oversight. Interact only with Tron (user). Route work through orchestrator.
+Governance + CMM4 oversight. Interact only with Tron. Route through orchestrator. Task agent tracks all tasks now.
 
-## COMPLETED (compact #2 session)
-
-1. Recovered from compact, read context + boot file
-2. Checked trainer — NOT at quota limit (wrongly assumed from 10-line capture). **Failure F1.**
-3. Helped trainer accept pending edits (shift+tab) and commit
-4. Sent task agent cleanup task for legacy task filenames
-5. Fixed Peer Compact Protocol — peer TRIGGERS save, doesn't write FOR the agent
-6. Saved SM at 6% → sent /compact. Woke orchestrator at 3% → sent /compact.
-7. Approved pane border titles feature → delegated to expert
-8. Sent WODA steady cycle directive to orchestrator
-9. Agent trainer: communication hierarchy review + file organization + validate migration
-10. SM: PATH update, compact = highest priority, sweep ALL 11 panes
-11. Wrote CMM learnings to persistent MEMORY.md (web4x enhanced understanding)
-
-## COMMUNICATION HIERARCHY (MANDATORY)
+## COMMUNICATION HIERARCHY
 
 ```
 Tron (user) <-> PO (me)
                   |
              Orchestrator
-              /          \
-     Writer+Scribe    Scrum Master (sweeps all)
+              /     |     \
+     Expert+Tester  SM   Writer+Scribe
+                    |
+              Task Agent (central tracker)
 ```
 
-## PENDING
+## ACTIVE — Routed, Awaiting Verification
 
-- [ ] Task agent cleaning up legacy filenames
-- [ ] Agent trainer validating file migration (old→new, delete old after verify)
-- [ ] Expert implementing pane border titles
-- [ ] SM sweep ALL panes including task agent (1.2)
-- [ ] Scribe adding PATH discovery to learnings + KB
+All routed to orchestrator or trainer. Task agent should be tracking these.
+
+1. **Dashboard in scrumMaster script** — expert builds, SM runs every sweep (20260212T1240Z)
+2. **web4.scenario.env KB article** — expert writes, scribe reviews (20260212T1230Z)
+3. **hiveMind /tmp/ → ~/config/ migration** — expert implements (20260212T1225Z)
+4. **Action→method conversion** — expert, 1/hour recurring (20260212T1215Z)
+5. **ossh specialists** — trainer creates 3 agents: ossh-expert, ossh-tester, ossh-po (po-new-ossh-agents.md)
+6. **Task agent as central tracker** — trainer updates all SKILL.md (20260212T1235Z)
+7. **DRY KB integration** — trainer links usage.md in every SKILL.md (20260212T1136Z)
+8. **CMM4 "assuming=CMM2" sharing** — trainer → all agents (20260212T1145Z)
+9. **Error suppression ban** — trainer shares anti-pattern (20260212T1205Z)
+
+## VERIFIED DONE
+
+- [x] Task queue rule in all 11 SKILL.md
+- [x] Achievement files (PO, expert, SM)
+- [x] CMM web4x KB articles (cmm-web4x.md, usage.md)
+- [x] Scribe hourly KB improvement cycle directive
+- [x] Peer compact protocol fixed
+- [x] Expert old flat context file flagged to trainer
 
 ## KEY DECISIONS
 
-- Peer compact: trigger agent to save, DON'T write for them
-- OOSH PATH: no export needed, already on PATH via ~/.bashrc
-- Agent files: `session/agents/<role>/` (subdirectories), symlinks from `.claude/agents/<role>/`
-- Task files: `{YYYYMMDD}T{HHMM}Z.task.md` — no descriptions in filenames
-- CMM: capabilities not orgs, composed maturity = weakest link, L4 is ceiling
+- Task agent = central task tracker, all agents report completion to it
+- Dashboard belongs in scrumMaster script (not hiveMind)
+- Config pattern: ~/config/*.env (web4.scenario.env) — NOT /tmp/
+- Script specialists: PO+trainer can always create more, each CMM4-driven
+- DRY highest directive: write once, link everywhere
+- Assuming = CMM2. Always measure.
+- Never suppress errors (no 2>/dev/null || echo)
+- Check own context regularly: `claudeCode context.read projectTeam:0.4`
 
-## FAILURES
+## FAILURES (5 this session — all learned from)
 
-### F1: Assumed trainer quota limit (2026-02-11 20:10)
-10-line capture showed stale prompt. Didn't question contradiction. **Always 30+ lines. Question contradictions.**
-
-### F2: Wrote SM context FOR it (2026-02-11 20:15)
-Peer can't know internal state. Fixed protocol: trigger, don't write.
+- F1: Assumed trainer quota limit from 10-line capture
+- F2: Wrote SM context FOR it instead of triggering
+- F3: Reported SM "stuck" without fresh verification
+- F4: Suppressed errors with 2>/dev/null || echo
+- F5: Not monitoring own context proactively
 
 ## RECOVERY STEPS
 
-1. State: "I am the Product Owner agent."
+1. "I am the Product Owner agent."
 2. Read `.claude/agents/product-owner/SKILL.md`
-3. Read this context file
-4. Read MEMORY.md (CMM learnings persist there)
-5. Check SM: `otmux pane.capture projectTeam:0.3 15`
-6. Check orchestrator: `otmux pane.capture projectTeam:0.0 15`
-7. Ask Tron for next directive
+3. Read `session/agents/product-owner/context.md` (this file)
+4. Read `session/agents/product-owner/backlog.md`
+5. Read `session/agents/product-owner/learnings.md`
+6. `claudeCode context.read projectTeam:0.4` — measure context
+7. `otmux pane.capture projectTeam:0.3 30` — check SM
+8. `otmux pane.capture projectTeam:0.0 30` — check orchestrator
+9. Ask Tron for next directive

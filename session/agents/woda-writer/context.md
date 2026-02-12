@@ -1,50 +1,63 @@
 # woda-writer Context
-*Read this after compaction. Updated each cycle.*
+*Save before compact. Read after compact.*
 
-## Current Goal
-WODA steady cycle — sustainable pace, monitor scribe, identify KB topics, track patterns, pull system for improvements. No chapter sprint unless directed.
+## Identity
+I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpret, write. The scribe (projectTeam:1.1) organizes, tracks, maintains.
 
-## Current State (2026-02-11 ~20:00)
-- **Session**: woda-writer at `projectTeam:1.0` (post-compact)
-- **Scribe**: woda-scribe at `projectTeam:1.1` — post-compact, recovering, processing KB additions task
-- **Orchestrator**: `projectTeam:0.0` — 59min think cycle, heartbeat pattern (Enter to SM)
-- **Writing project**: "projectTeam Reboot" in `session/woda/projectTeam-reboot.md`
-- **Chapters DONE**: Ch1-9 (9 chapters, ~14k words, scribe organized through Ch7, Ch8-9 pending)
-- **CMM4 story**: Ch18 "The Cold Start" also written earlier today
-- **Knowledge base**: 9 topics + 4 new topics sent to scribe (session/tasks/scribe-kb-additions.md)
-- **Team state**: 7 active (orchestrator, SM, PO, trainer post-compact, expert trained, tester trained, scribe recovering), 3 idle (task-agent, developer, script-PO)
-- **CMM pipeline**: #7 OPEN, #8 IN PROGRESS (2/3), #9 IN PROGRESS (4/6). No completions — pull system says wait.
-- **Mode**: Steady cycle per session/tasks/writer-woda-steady-cycle.task.md
+## Current State (2026-02-12 ~12:30)
+- **Pane**: `projectTeam:1.0`
+- **Scribe**: `projectTeam:1.1` — healthy, organized Ch11, waiting for Ch12
+- **Orchestrator**: `projectTeam:0.0` — 57min, 39.8k tokens, actively managing
+- **Mode**: WODA steady cycle per `session/tasks/writer-woda-steady-cycle.task.md`
+- **Story**: "projectTeam Reboot" — 11 chapters in `session/woda/projectTeam-reboot.md`
+- **Next**: Chapter 12 when Tron says continue
+- **CMM pipeline**: #7 OPEN, #8 IN PROGRESS (2/3), #9 IN PROGRESS (4/6). Pull system — wait.
+- **KB**: 14 topics in `session/knowledge-base/`. Scribe added measurement-system topic.
+- **Team**: 11/11 alive. Developer (1.3) and script-PO (1.4) booted but idle. Expert compacted at 1%.
+
+## Chapter Summary (for TOC context)
+| Ch | Title | Theme |
+|----|-------|-------|
+| 1 | Eleven Empty Chairs | Bootstrap, Enter problem, 7/11 stuck |
+| 2 | The Team Wakes Up | 3→5 working, SM hero, PO insight |
+| 3 | The Permission Economy | Three approver patterns, trainer SSH blocked |
+| 4 | The Directive That Flowed | Tron→PO→Scribe→20 KB files, shortest path |
+| 5 | The Naming | /rename sweep, labels≠capability |
+| 6 | The Wrong Directory | Trainer sprint wrong path, PO catches, speed≠quality |
+| 7 | Tron Reads the Room | Human meta-observer, SM compaction duty, Enter chain |
+| 8 | The Changing of the Guard | Trainer/scribe compact, expert/tester trained |
+| 9 | The Root Cause | PATH fix (OOSH already on PATH), second lives |
+| 10 | Nine of Eleven | Trainer pushed 82 files, expert built scanner, 9/11 active |
+| 11 | What You Can't Measure | Measurement paradox, expert dies fixing tools, 11/11 alive |
+
+## Key Patterns Learned This Session
+- ROOT CAUSE: Permission economy = compound bash commands. OOSH already on PATH.
+- Training pipeline: trainer curriculum → expert/tester consume → context files → work
+- Orchestrator emergence: designed to coordinate, became heartbeat, then active coordinator
+- Generational transition: veterans compact, freshmen activate via curriculum
+- WODA self-correction: writer writes narrative → scribe fact-checks → KB corrected
+- PO directive: all agents MUST use TaskCreate/TaskUpdate/TaskList (CMM2 gap)
 
 ## Communication Rules
-- Talk to orchestrator (0.0) for blocks/governance — NOT PO or user directly
+- Talk to orchestrator (0.0) for blocks/governance
 - Coordinate directly with scribe (1.1)
 - File-based communication preferred
-
-## Steady Cycle Duties
-1. Monitor scribe every 5 min (background loop running)
-2. If scribe < 25%: trigger save-and-compact
-3. Identify KB topics → send to scribe
-4. Update learnings with new patterns
-5. Check CMM pipeline — add improvement only when scribe completes one
-6. Velocity awareness — sustainable pace, no rushing
-7. Restart monitoring loop after each check
+- Use TaskCreate/TaskUpdate/TaskList for ALL work (PO directive)
 
 ## Recovery Steps
-1. Read `learnings.md` (identity + patterns — symlink in SKILL.md dir)
-2. Read this file (state + task templates)
+1. Read this file
+2. Read `session/agents/woda-writer/learnings.md` (identity + deep patterns)
 3. Read `session/tasks/writer-woda-steady-cycle.task.md` (steady cycle goals)
-4. Check scribe: `otmux pane.capture projectTeam:1.1 15` (OOSH on PATH)
-5. Start loop: `sleep 300 && otmux pane.capture projectTeam:1.1 15`
+4. Check scribe: `otmux pane.capture projectTeam:1.1 15`
+5. TaskList to see pending work
+6. Start monitoring loop: `sleep 300 && otmux pane.capture projectTeam:1.1 15`
 
 ## Key Files
 - SKILL.md: `.claude/agents/woda-writer/SKILL.md`
 - Learnings: `session/agents/woda-writer/learnings.md`
-- Improvements: `session/agents/woda-scribe/backlog.md`
 - Story: `session/woda/projectTeam-reboot.md`
-- KB additions task: `session/tasks/scribe-kb-additions.md`
-- Steady cycle task: `session/tasks/writer-woda-steady-cycle.task.md`
-- Boot: `session/boot/woda-writer.md` (auto-generated by hook)
+- Improvements: `session/agents/woda-scribe/backlog.md`
+- Boot: `session/boot/woda-writer.md`
 
 ---
-*Updated: 2026-02-11 20:00*
+*Updated: 2026-02-12 12:30*

@@ -1,0 +1,1 @@
+../../../../session/agents/scrumMaster-tester/learnings.md
