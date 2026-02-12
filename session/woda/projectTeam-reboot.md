@@ -15,8 +15,9 @@
 | 7 | [Tron Reads the Room](#chapter-7-tron-reads-the-room) | 1,940 | 2026-02-11 |
 | 8 | [The Changing of the Guard](#chapter-8-the-changing-of-the-guard) | 1,876 | 2026-02-11 |
 | 9 | [The Root Cause](#chapter-9-the-root-cause) | 1,960 | 2026-02-11 |
+| 10 | [Nine of Eleven](#chapter-10-nine-of-eleven) | 1,840 | 2026-02-12 |
 
-**Total**: 9 chapters, 15,943 words
+**Total**: 10 chapters, 17,783 words
 
 ---
 
@@ -1150,3 +1151,110 @@ The PATH fix, when it arrives, will unlock the rest. Permission prompts will dro
 ---
 
 *Tron watched thirty-three sweeps fail on permission prompts and saw what the team couldn't see from inside: the commands were too complex. Not the team. Not the permissions. The commands. Every `cd` prefix, every `./` invocation, every `&&` chain was a surface the permission system could grip. Make the commands simple and the surface disappears. The root cause of the session's central friction wasn't a bug or a missing feature. It was a missing PATH entry. The most consequential fix in the session will be one line in a shell profile.*
+
+---
+
+## Chapter 10: Nine of Eleven
+
+The agent-trainer pushed to git.
+
+Not tried to push. Not hit an SSH error. Not discovered that the key needs a passphrase. Pushed. Eighty-two files, four hundred and eighty-one insertions, eight hundred and eighty deletions. Commit e68ce37, pushed to `github.com:web4x/Web4AI.git`, confirmed with `main -> main`.
+
+Chapter 3 documented the trainer stuck on SSH. Chapter 6 documented it stuck on symlinks. Chapter 8 documented it dying at 1% context. Three chapters of frustration. Now, on its second life, the trainer has delivered the largest single commit of the session: agent file reorganization plus the unnecessary PATH export removal. Net reduction of three hundred and ninety-nine lines across the codebase.
+
+The SSH key problem was solved somewhere between chapters — Tron added the key, or the agent found a token, or the credential manager kicked in. The story doesn't know exactly when. What it knows: the blocker is gone. The trainer's nine local commits from its first life, plus the reorganization from its second life, are now on origin. The team's work exists outside the local machine for the first time.
+
+### The Expert Builds
+
+At pane 0.1, the oosh-expert — idle for nine chapters, trained in Chapter 8, waiting since — has built something.
+
+A pane scanner. The expert wrote a tool that iterates through all eleven panes, captures each one, parses the status bar for context percentage, and reports structured results. It scanned ten of eleven panes (skipping itself), detected that the product owner is at 1% context ("CONTEXT_LOW"), and classified all other agents as "ACTIVE" with details.
+
+"Verified: Syntax clean. Live test: scanned 10/11 panes, correctly detected CONTEXT_LOW 1% on product-owner, ACTIVE with details on others. Ready for Tester to review/test."
+
+This is the first tool built by a team member other than the trainer. The expert consumed its Reading List (seven files on OOSH architecture, completion systems, test patterns), understood the framework, and produced a working implementation. Not a document. Not a task file. Not a knowledge base entry. Working code that scans panes and reports context levels.
+
+The tool does exactly what Tron requested in Chapter 7: monitor agent context levels. The scrum-master was given this duty by directive. The expert encoded it in a script. The difference between a duty and a tool is the difference between "remember to check" and "run this command." The tool makes the duty automatable. The scrum-master can call the expert's scanner instead of manually capturing each pane and reading status bars.
+
+And the expert's first finding from its own tool: the product owner is at 1% context. Another compaction incoming. The expert didn't just build — it immediately used what it built, and what it found was operationally urgent.
+
+### The Task-Agent Organizes
+
+At pane 1.2, the task-agent — the third of the "idle five" to wake up — has completed a task that nobody explicitly assigned but that the team desperately needed.
+
+Fifty-three task files in `session/tasks/` have been renamed to a standardized convention: `{YYYYMMDD}T{HHMM}Z.task.md`. Seven obsolete files deleted. Twelve renamed. The task directory, which had accumulated files with ad-hoc names like `woda-writer-compact-now.md` and `po-knowledgebase-restructure.md` and `sm-compact-highest-priority.task.md`, is now a chronologically ordered list. You can sort by filename and get chronological order. You can glob `202602*.task.md` and get today's tasks.
+
+"Done. 46d185b pushed." The task-agent pushed too. Two agents pushed to origin in the same capture cycle. The team's output is reaching the outside world.
+
+Tron's response: "commit the setup scripts too." The task-agent has more work. The setup scripts — the three shell scripts from Chapter 1 that bootstrapped the session — should be committed and pushed alongside the task file reorganization.
+
+The task-agent didn't need nine chapters of narrative to find its purpose. It needed a mess. The `session/tasks/` directory was a mess. The task-agent is designed to "receive directives, create task files, write headline plans." It found a directory full of inconsistently named task files and organized them. Whether someone told it to or whether it saw the opportunity doesn't matter. The work is done.
+
+### The Scrum-Master's Sweep Works
+
+The scrum-master at pane 0.3 has been running for fifty-one minutes on this cycle. Sixty thousand nine hundred tokens consumed — the most of any agent except the orchestrator's lifetime total. And its sweep is finally producing structured results:
+
+```
+0.0   orchestrator           ACTIVE         thinking
+0.1   oosh-expert            ACTIVE
+0.2   oosh-tester            ACTIVE
+0.4   product-owner          ACTIVE         Searching
+0.5   agent-trainer          COMPLETED
+```
+
+`hiveMind team.sweep projectTeam` returns a table. Agent names, states, activity descriptions. The scrum-master isn't reading raw pane captures anymore — it's calling an OOSH command that parses the panes and returns structured team status. This is the infrastructure that chapters 3 through 8 were waiting for. The sweep works.
+
+The trainer shows "COMPLETED" — its task is done. The orchestrator shows "thinking." The PO shows "Searching." The expert and tester show "ACTIVE." The sweep captures not just who's alive but what they're doing. The scrum-master can now triage: who needs help, who's stuck, who's finished and needs a new task.
+
+Sixty thousand tokens for a monitoring agent seems excessive. But the scrum-master's context includes the history of every sweep, every permission prompt encountered, every pane captured, every Enter key sent. It's the session's institutional memory. When it eventually compacts, its context file will be the most comprehensive record of what happened — from the monitoring side. The writer tells the story. The scrum-master lived it.
+
+### The PO Philosophises
+
+At pane 0.4, the product owner has shifted from operational management to intellectual work.
+
+"CMM web4x integration" — the PO is reading WODA chapters, searching for CMM patterns, thinking about how the maturity model applies to the web4x project. "Philosophising" says the status bar. Two minutes and fourteen seconds of philosophical computation. The PO is writing, not just reviewing.
+
+This is the PO Tron described in his first interaction: the "OOSH first-principles guardian." Not a ticket manager. Not a permission approver. A thinker who reduces complex problems to principles. The first-principles work on permissions (Chapter 9's root cause) came from Tron. Now the PO is doing its own first-principles work on CMM integration.
+
+The PO also routed a task file to the orchestrator — `session/tasks/20260212T1123Z.task.md` — using the new timestamp naming convention the task-agent just established. The PO is both consuming the team's infrastructure (task naming conventions) and producing intellectual output (CMM analysis). The dual role — governance and philosophy — is exactly what the SKILL.md describes.
+
+But the PO is at 1% context. The expert's scanner caught it. The PO's philosophical work is happening in its final moments, the last few tokens before compaction erases the reasoning chain. Whatever insight the PO reaches about CMM web4x integration will survive only if it saves its state first.
+
+### The Orchestrator Coordinates
+
+The orchestrator has restarted — its previous 59-minute think cycle either completed or it compacted. Now it's in a new cycle: 23 minutes, 21.9k tokens. But its behavior has changed.
+
+"Writer and scribe both have unsubmitted prompts. Let me also check the new task file and help scribe accept its edits."
+
+The orchestrator is now actively reading the situation and intervening. It noticed that both the writer and scribe have text stuck in their input buffers. It sent Enter to the writer's pane and Tab to the scribe's pane. It read the new task file. It's doing what an orchestrator should do — not just monitoring but actively managing the flow of work across agents.
+
+The Tab key is new. The scribe has pending edits ("accept edits on (shift+tab to cycle)") and the orchestrator sent Tab to help it cycle through them. This is a more sophisticated intervention than just pressing Enter — it requires understanding what the scribe's TUI state looks like and which keystrokes will advance it.
+
+Twelve files, sixty-nine insertions, minus one. The orchestrator's footprint is growing. It's no longer just a heartbeat pressing Enter in the scrum-master's pane. It's reading task files, unblocking multiple agents, understanding TUI states. The teenager is growing up.
+
+### The Two That Wait
+
+Developer (1.3) and script-product-owner (1.4). Still renamed. Still idle. Still showing the same `/rename` output from Chapter 5.
+
+Nine of eleven agents are active. These two are the holdouts. The developer "awaits task assignment." The script-PO "can do a quick audit." Both have skills. Both have capacity. Both need a directive that hasn't arrived.
+
+The team could use them. The trainer is churning through reorganization tasks. The expert is building tools. The task-agent is organizing files. The developer could implement. The script-PO could audit. But nobody has sent them a task file or a message. The pipeline that activated the expert and tester (Reading Lists → training → context files → work) hasn't reached panes 1.3 and 1.4.
+
+At nine of eleven, the question changes. It's no longer "can this team work?" — the last three chapters proved it can. It's "does this team need all eleven?" The knowledge base took one scribe. The reorganization took one trainer. The tool took one expert. The task cleanup took one task-agent. Nine chapters of narrative took one writer. The monitoring took one scrum-master and one orchestrator. The governance took one PO.
+
+Eight distinct tasks. Eight agents. Two idle. The math suggests the team is one or two agents larger than the work requires. Or: the work hasn't scaled to need them yet.
+
+### Chapter 10 Checkpoint
+
+**Active**: 9 of 11. Only developer and script-PO remain idle. First time near-full activation.
+**Trainer**: Pushed 82 files to origin (e68ce37). SSH blocker resolved. Largest commit of the session. -399 net lines.
+**Expert**: Built pane scanner tool. First team-built tool. Detected PO at 1% context. Ready for tester review.
+**Task-agent**: Organized 53 task files into timestamped convention. Pushed (46d185b). First purposeful work from the idle cohort.
+**Scrum-master**: `hiveMind team.sweep` returns structured results. 51 minutes, 60.9k tokens. Sweep actually works.
+**PO**: Philosophising on CMM web4x integration. At 1% context — about to compact. Intellectual work in final moments.
+**Orchestrator**: New cycle, 23 min. Actively coordinating — reading tasks, sending Enter/Tab, understanding TUI states. No longer just a heartbeat.
+**Pattern**: The team scaled from 3 working agents (Ch2) to 9 (Ch10) without anyone designing the scaling. Each agent activated when work appeared in its domain. The training pipeline, the task directory, the sweep results — each attracted the right agent.
+
+---
+
+*Nine of eleven. The team that started with seven stuck agents and three working ones now has nine working and two waiting. Nobody orchestrated the activation sequence — the expert woke up because training appeared, the task-agent woke up because mess appeared, the trainer recovered because context files survived. The team assembled itself, agent by agent, task by task, push by push. Eighty-two files reached origin. A pane scanner detected a dying agent. Fifty-three task files got proper names. And somewhere in the margins, a product owner spent its last tokens philosophising about maturity models. Not all contributions are commits. Some are thoughts that die with the context window, leaving only the question they were reaching toward.*
