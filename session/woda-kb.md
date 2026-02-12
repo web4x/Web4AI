@@ -1,6 +1,6 @@
 # WODA Knowledge Base
 *Scribe's structured knowledge. Every topic follows W-O-D-A. Continuously maintained.*
-*Updated: 2026-02-11 15:15*
+*Updated: 2026-02-12 10:35*
 
 ---
 
@@ -58,7 +58,7 @@
 
 **W** — Systematic improvement of monitoring capabilities. Living pipeline, never "done."
 
-**O** — 9 improvements: #1-6 DONE, #7 OPEN (blocked — no orchestrator team running), #8 IN PROGRESS (2/3 KPIs), #9 IN PROGRESS (4/6 KPIs). Pull system: writer adds ONLY when scribe completes one. Goal: survive to Friday 2026-02-13 12:00 CET. 2-day gap (Feb 9 20:05 → Feb 11 ~15:00) — both agents died, no burn data.
+**O** — 9 improvements: #1-6 DONE, #7 OPEN (blocked — no orchestrator team running), #8 IN PROGRESS (2/3 KPIs), #9 IN PROGRESS (4/6 KPIs). Pull system: writer adds ONLY when scribe completes one. Goal: survive to Friday 2026-02-13 12:00 CET (~25hrs remain). Multiple gaps (Feb 9-11, Feb 11-12) — agents keep dying between sessions. Pattern: survive during active monitoring, die when unattended.
 
 **D** — Full list: `session/cmm.improvement.md`. Key methods: `hiveMind auto.commit` (dea9b54), `hiveMind cycle.full` (dea9b54), `hiveMind dashboard` (b13b6df), `otmux send.verified` (805aecc), `claudeCode context.velocity` (b2f6892).
 
