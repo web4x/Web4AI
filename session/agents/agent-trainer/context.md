@@ -1,52 +1,55 @@
 # Agent Trainer Context
 
-**Updated**: 2026-02-12T11:00Z
+**Updated**: 2026-02-12T12:00Z
 **Role**: agent-trainer
 **Pane**: projectTeam:0.5
-**State**: file reorganization COMPLETE
+**State**: compacting — all tasks done, pending commit
 
 ## Completed Work (This Session)
 
-### File Reorganization (session/tasks/trainer-organize-agent-files.task.md) - DONE
-- Created 10 subdirectories under `session/agents/` (done in prev session)
-- Moved 7 flat context files into subdirectories (done in prev session)
-- Moved 3 loose session files (done in prev session)
-- Created merged backlogs for woda-scribe and oosh-expert (done in prev session)
-- Created `session/agents/oosh-expert/learnings.md` (empty template)
-- Created 30 symlinks: `.claude/agents/<role>/{context,learnings,backlog}.md` -> `session/agents/<role>/`
-- Updated ALL 11 SKILL.md files:
-  - Save paths: `session/agents/<role>.context.md` -> `session/agents/<role>/context.md`
-  - Reading lists: added relative `context.md`, `learnings.md`, `backlog.md` (via symlinks)
-  - Recovery sections: updated to use relative paths
-  - WODA files: updated all scattered references (`session/woda-writer.learnings.md`, `session/wodaScribe.context.md`, `session/cmm.improvement.md`, `session/oosh-bugs.md`)
-- Merged scribe corrections into writer learnings (preserved extra PO dashboard lesson)
-- Removed 7 old duplicate files:
-  - `session/woda-scribe.context.md`
-  - `session/wodaScribe.context.md`
-  - `session/cmm.improvement.md`
-  - `session/scribe-improvements.md`
-  - `session/scribe-issues.md`
-  - `session/oosh-bugs.md`
-  - `session/woda-writer.learnings.md`
+### 1. File Reorganization (DONE — committed e68ce37)
+- 10 agent subdirs in session/agents/, 30 symlinks in .claude/agents/
+- Updated all SKILL.md paths, removed 7 old files
 
-### Earlier Work (Previous Sessions)
-- Communication hierarchy enforcement (commit 0992391)
-- OOSH PATH Setup in all SKILL.md files (commit 18f659e)
-- PO governance 7 findings (commit 18f659e)
-- Stale Task.40.5 reference cleanup (commit dda4c68)
+### 2. Remove PATH Export (DONE — committed e68ce37)
+- Removed OOSH PATH Setup section from all 11 SKILL.md + CLAUDE.md
 
-## Pending
-- Awaiting next directive from Orchestrator
+### 3. Task Queue Rule (DONE — committed 8e5e706)
+- Added Task Queue Rule to all 11 SKILL.md + agent-overview.md
+- Added full Task Tracking section to woda-scribe (was missing)
+
+### 4. Achievement Files (DONE — committed 8e2186d)
+- Created achievements.md for oosh-expert and scrum-master (pane headers milestone)
+
+### 5. KB Integration (DONE — NOT YET COMMITTED)
+- Added "Knowledge Base (MANDATORY)" section to all 11 SKILL.md
+- Added DRY as first principle in agent-overview.md
+
+### 6. CMM4 Team Standard (DONE — NOT YET COMMITTED)
+- CMM KB article already had "Assuming = CMM2" (lines 59-69)
+- Added CMM4 standard to agent-overview.md
+
+### 7. Task Tools Directive (DONE — NOT YET COMMITTED)
+- Sent directive to all 10 active agents via session/tasks/all-agents-use-task-tools-now.md
+- Added learning about CMM2 gap (rule present but not practiced)
+
+## UNCOMMITTED CHANGES
+- All SKILL.md files (KB section)
+- agent-overview.md (DRY + CMM4)
+- session/tasks/all-agents-use-task-tools-now.md
+- session/agents/agent-trainer/learnings.md
 
 ## Recovery Steps
 1. State: "I am the Agent Trainer agent."
 2. Read `.claude/agents/agent-trainer/SKILL.md`
-3. Read this file (`context.md` via symlink, or `session/agents/agent-trainer/context.md`)
-4. Check with Orchestrator for pending improvement tasks
+3. Read this file (`context.md`)
+4. Read `learnings.md` for patterns
+5. FIRST ACTION: commit and push uncommitted changes
+6. Then check with Orchestrator for next directive
 
 ## Key Files
 | File | Purpose |
 |------|---------|
 | `.claude/agents/agent-trainer/SKILL.md` | My role definition |
 | `.claude/agents/agent-overview.md` | Team overview (I maintain this) |
-| `session/tasks/trainer-organize-agent-files.task.md` | COMPLETED TASK |
+| `session/agents/agent-trainer/learnings.md` | My patterns and failures |

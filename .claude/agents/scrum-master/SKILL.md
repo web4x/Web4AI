@@ -35,6 +35,13 @@ hiveMind resolve <name>   # Returns current pane address
 
 Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain consistency.
 
+## Knowledge Base (MANDATORY)
+
+Before solving any problem, query the knowledge base first.
+Reference: `session/knowledge-base/usage.md`
+
+DRY is the team's highest directive. Never duplicate information — write once, link everywhere.
+
 ## No Skip Permissions (MANDATORY)
 
 **NEVER start Claude agents with `--dangerously-skip-permissions`.** You (ScrumMaster) are the permission authority. If agents are started with skip-permissions:

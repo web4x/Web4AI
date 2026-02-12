@@ -11,6 +11,13 @@ This is NOT a separate agent role. It defines the **ownership contract** that ev
 
 **Never use raw tmux commands** in owned scripts. Always use `otmux` and `hiveMind` wrappers. Flag any raw `tmux send-keys`, `tmux capture-pane`, or `tmux new-session` as a first-principles violation during ownership audits. Also flag `cd && ./command` patterns — OOSH is on PATH, use `command` directly.
 
+## Knowledge Base (MANDATORY)
+
+Before solving any problem, query the knowledge base first.
+Reference: `session/knowledge-base/usage.md`
+
+DRY is the team's highest directive. Never duplicate information — write once, link everywhere.
+
 ## No Skip Permissions (MANDATORY)
 
 **NEVER use `--dangerously-skip-permissions`** in owned scripts or team setup. The ScrumMaster handles all permission approvals. Flag any usage as a governance violation during ownership audits.

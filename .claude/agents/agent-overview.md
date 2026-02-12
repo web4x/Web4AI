@@ -100,6 +100,8 @@ Cross-Session Relationships
 └── Orchestrator passes PO directives → all sessions
 
 ALL AGENTS
+├── DRY (HIGHEST DIRECTIVE): write once, link everywhere — query KB before solving any problem
+├── Knowledge Base: session/knowledge-base/usage.md — single source of truth
 ├── Named session matching role
 ├── No raw tmux — use otmux/hiveMind
 ├── No --dangerously-skip-permissions
@@ -110,6 +112,7 @@ ALL AGENTS
 ├── Peer monitoring: check partner's context %, alert at <20%
 ├── Task tracking: TaskCreate/TaskUpdate/TaskList for all work
 ├── Task queue: new prompt while busy → TaskCreate it, finish current, then pick up queued
+├── CMM4 is the team standard. Assuming = CMM2. Measure, never guess. (session/knowledge-base/cmm-web4x.md)
 ├── Role boundaries: DO NOT do another role's work — #1 failure pattern (WODA Ch28, Ch39)
-└── Never assume: always MEASURE state before acting
+└── Never assume: always MEASURE state before acting — "I think..." is FORBIDDEN
 ```
