@@ -16,3 +16,4 @@
 12. Generational Transition
 13. Orchestrator Emergence
 14. Measurement System (CMM4)
+15. Anti-Patterns (BANNED)
