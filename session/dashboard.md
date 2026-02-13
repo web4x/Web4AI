@@ -1,6 +1,6 @@
 # Team Dashboard
 
-**Updated**: 2026-02-12T16:00:46Z (2026-02-12 17:00 CET)
+**Updated**: 2026-02-12T16:52:08Z (2026-02-12 17:52 CET)
 **Session**: projectTeam
 
 ## Git Status
@@ -9,46 +9,46 @@
 |-------|-------|
 | Branch | `main` |
 | Status | uncommitted changes |
-| Last commit | `ae0c633 Auto-save: oosh-expert pre-compact 16:38` |
+| Last commit | `3900a22 Auto-save: scrum-master pre-compact 17:34` |
 
 ## Subscription
 
 | Metric | Value |
 |--------|-------|
-| 5-hour usage | 40% |
+| 5-hour usage | 57% |
 | 7-day usage | 0% |
 
 ## Tasks
 
 | Metric | Value |
 |--------|-------|
-| Total task files | 92 |
-| Today's tasks | 51 |
+| Total task files | 97 |
+| Today's tasks | 56 |
 
 ## Team Status
 
 | Agent | Pane | Context | Velocity | State |
 |-------|------|---------|----------|-------|
-| orchestrator | 0.0 | 24.0% | 4214 tokens/hr | unknown |
-| oosh-expert | 0.1 | 68.3% | 971 tokens/hr | active |
-| oosh-tester | 0.2 | 37.8% | 3232 tokens/hr | completed |
-| scrum-master | 0.3 | 20.9% | 4440 tokens/hr | unknown |
-| product-owner | 0.4 | 59.4% | 1629 tokens/hr | unknown |
-| agent-trainer | 0.5 | 70.1% | 854 tokens/hr | unknown |
-| task-agent | 1.2 | 24.0% | 971 tokens/hr | unknown |
-| woda-writer | 1.0 | 31.4% | 3682 tokens/hr | active |
-| woda-scribe | 1.1 | 40.5% | 3044 tokens/hr | completed |
-| developer | 1.3 | 27.3% | 4046 tokens/hr | unknown |
-| script-product-owner | 1.4 | 60.5% | 1815 tokens/hr | unknown |
+| orchestrator | 0.0 | unknown | 1737 tokens/hr | unknown |
+| oosh-expert | 0.1 | 51.7% | 2124 tokens/hr | active |
+| oosh-tester | 0.2 | 31.2% | 3592 tokens/hr | completed |
+| scrum-master | 0.3 | 57.3% | 1726 tokens/hr | unknown |
+| product-owner | 0.4 | 54.6% | 1930 tokens/hr | unknown |
+| agent-trainer | 0.5 | 61.4% | 1441 tokens/hr | unknown |
+| task-agent | 1.2 | 57.3% | 1771 tokens/hr | completed |
+| woda-writer | 1.0 | 21.1% | 4304 tokens/hr | active |
+| woda-scribe | 1.1 | 36.4% | 3227 tokens/hr | unknown |
+| developer | 1.3 | 26.3% | 4017 tokens/hr | completed |
+| script-product-owner | 1.4 | 57.3% | 3591 tokens/hr | completed |
 
 ## Recent Commits
 
 ```
-ae0c633 Auto-save: oosh-expert pre-compact 16:38
-7b9b8a8 Auto-save: product-owner pre-compact 16:38
-3dea597 Add config-po specialist agent (quality guardian for config script)
-5f27bae Auto-save: agent-trainer pre-compact 16:17
-4ff18bc Enrich all 66 script team SKILL.md descriptions from actual scripts
+3900a22 Auto-save: scrum-master pre-compact 17:34
+2aa566b Auto-save: orchestrator pre-compact 17:32
+a0bd0e5 Orchestrator context: pre-compact 17:15
+047f30f Rename completion-protocol-now.md to timestamp convention
+56d2666 Add Completion Reporting protocol to all 81 SKILL.md files
 ```
 
 ## Recovery

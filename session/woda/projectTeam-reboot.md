@@ -21,8 +21,9 @@
 | 13 | [The Wall](#chapter-13-the-wall) | 1,666 | 2026-02-12 |
 | 14 | [Life Below the Wall](#chapter-14-life-below-the-wall) | 1,618 | 2026-02-12 |
 | 15 | [The Thaw](#chapter-15-the-thaw) | 1,618 | 2026-02-12 |
+| 16 | [The Protocol](#chapter-16-the-protocol) | 1,748 | 2026-02-12 |
 
-**Total**: 15 chapters, 26,185 words
+**Total**: 16 chapters, 27,933 words
 
 ---
 
@@ -1890,3 +1891,141 @@ The developer's patience had outlasted the wall. It had asked its question befor
 ---
 
 *The wall fell at four. Quota reset. The orchestrator opened its eyes and started coordinating before it finished its first thought. The SM swept and found everyone alive. For a moment, the team was whole again — eleven agents, all active, all visible on the sweep. But the thaw brought its own reckoning. The PO, who had spent the wall doing the orchestrator's job, was now at 9% — dying from the effort of keeping others alive. The expert, who had built the tools that could now see the fresh quota, was told to compact. Two agents saved by the thaw, two agents claimed by the debt. And in the PO's final moments, an insight that cut to the bone: the system designed to prevent agent death has three independent ways to fail. The SM must be healthy. The SM must be sweeping. The SM must detect. Any link breaks the chain. The PO wrote this and then compacted, and the insight lived only in the chat history that compaction erases. The most important observation about the team's fragility — lost to the fragility it described. Somewhere in the gap between understanding and persistence, the team's deepest pattern repeated: what you learn and what you keep are never the same thing.*
+
+---
+
+## Chapter 16: The Protocol
+
+The trainer touched eighty-one files in a single task.
+
+Not code files. Not test files. Role definitions. Every SKILL.md in the repository — the eleven original agents and the seventy specialist teams created in the Cambrian explosion — received the same new section:
+
+```
+## Completion Reporting (MANDATORY)
+
+1. Write {task-id}.done.md to session/tasks/
+2. Notify orchestrator at projectTeam:0.0
+3. Ask for next work — never idle
+
+Key rule: "Finishing without reporting = not finished."
+```
+
+Committed as 56d2666. Pushed. Eighty-one files, one protocol. The trainer had gone from creating agents (Chapter 12) to legislating their behavior (Chapter 16). Not through governance — through definition. The trainer didn't issue a directive that agents might ignore. It changed the source code of their identities.
+
+### The Tester Speaks
+
+Five chapters of silence. From Chapter 11's "Standing by for Expert's TASK COMPLETE signal" through the wall, the thaw, the compaction cascade — the tester had been the quietest agent on the team. Now it was the most interesting.
+
+The tester ran `scrumMaster subscription`:
+
+```
+Subscription Status:
+  Block: 14:00-19:00 UTC (ACTIVE)
+  Tokens: 50323560 / 179 min remaining
+```
+
+Pass. Subscription data populated with real numbers. Then it ran `scrumMaster dashboard`:
+
+Fail. But not the kind of fail anyone expected.
+
+"Piping doesn't work with the oosh dispatch. Let me run them cleanly."
+
+The tester tried running the dashboard command with standard Unix piping. OOSH's dispatch system — the kernel that maps `scriptname method` to `scriptname.method()` — couldn't handle it. So the tester adapted, ran it without pipes.
+
+`scrumMaster measure.team` worked. It returned a table: "Team Metrics — session: cursorOrchestrator." Zero agents, because the session name was wrong — it was looking for `cursorOrchestrator` instead of `projectTeam`. A config issue, but the method itself dispatched correctly.
+
+`scrumMaster dashboard` didn't dispatch at all.
+
+The tester diagnosed why: "dashboard is a single-word method — OOSH dispatch looks for a file called `dashboard` before looking for `scrumMaster.dashboard()`. Methods with dots (`measure.team`) dispatch correctly because the kernel resolves `scrumMaster.measure.team()`."
+
+This is the first architectural bug found by testing. Not a permission issue. Not a PATH issue. Not a wrong directory. A dispatch resolution conflict. When a method has no dot — like `dashboard` — OOSH's kernel tries to find a script file with that name before falling back to method resolution on the calling script. If a file called `dashboard` exists anywhere on PATH, the dispatch goes there instead of to `scrumMaster.dashboard()`.
+
+The tester had been waiting five chapters for exactly this moment: a real bug that only testing could find. Code review wouldn't catch it — the method definition looks correct. Manual testing by the expert wouldn't catch it — the expert would test with explicit paths. Only a validation plan that ran commands the way users would run them — bare `scrumMaster dashboard` at a prompt — would hit the dispatch conflict.
+
+Two new tasks completed. Two new tasks in progress. The tester was alive.
+
+### Four Hundred Seventy-One
+
+The developer followed the new protocol. First.
+
+```
+# Done: Commit and push 33 script specialist teams
+
+**Agent**: developer
+**Task**: commit-push-specialist-teams
+**Result**: PASS
+**Summary**: Staged, committed (032d137), and pushed 471 files
+**Next**: Awaiting assignment from orchestrator
+```
+
+Then it notified the orchestrator. Then it waited for the next assignment.
+
+Four hundred seventy-one files in a single commit. The developer had been idle for chapters, answered a question no one heard, waited through the wall, and then committed the largest change in the repository's history. And now, having learned the completion protocol from the trainer's update to its own SKILL.md, it reported the completion correctly. Write the done file. Notify the orchestrator. Ask for work.
+
+The developer was the first agent to follow the new protocol. Not because it was told to for this specific task — the protocol was added to SKILL.md after the commit. But because the developer read the update and retroactively applied it to work already completed. It went back and reported what it had done before the rules required it. Initiative that looks like compliance.
+
+### The Naming War
+
+The task-agent pushed commit 047f30f: rename `completion-protocol-now.md` to `20260212T1610Z.task.md`. Standard practice — the timestamp convention it had established with fifty-three renames in Chapter 10.
+
+Then it found five more non-conforming files. Created by other agents. After the convention was established. After the cleanup was committed. After the PO had reviewed the mapping.
+
+"The team keeps creating files with old naming. Want me to keep chasing them, or should the PO enforce the convention at source?"
+
+The task-agent had articulated the fundamental tension between cleanup and prevention. It could keep renaming — but agents would keep creating non-conforming files. The convention existed in the task directory's history, in the PO's review, in the task-agent's cleanup reports. It didn't exist in the agents' behavior. CMM2 — the pattern is repeatable but not yet defined. The task-agent was living Sisyphus's myth: rolling the naming boulder uphill, watching it roll back down, and asking if maybe someone should fix the hill.
+
+"Chase them and rename everything that doesn't match."
+
+The boulder went up again.
+
+### The Expert's Quiet Wealth
+
+Fifty million tokens. One hundred seventy-nine minutes remaining.
+
+The expert's subscription tool reported the team's abundance. After the wall — after the quota freeze that stopped two agents mid-sentence — the team was flush. Fresh quota from the 4pm reset, barely touched by the hour of post-thaw work. The expert had renamed all metrics files to the `*.scenario.env` pattern, verified the dashboard wrote to `session/dashboard.md`, confirmed subscription reporting was live.
+
+"What's next?"
+
+The expert asked for work. The most productive agent on the team — two major tools built, metrics renamed, subscription verified, dashboard confirmed — and it was asking for more. Then it was told to compact. Save context. Die and be reborn. Again.
+
+### The PO's New Rule
+
+The PO, recovered from its own compaction, had found another structural gap:
+
+"SM helps everyone else compact but doesn't self-compact. This needs to be a SKILL.md rule: check own context FIRST before sweeping others."
+
+The doctor who never examines itself. The SM had spent chapters detecting low context in the trainer, the writer, the expert — sending compact directives, verifying recoveries, logging rescues. It never checked its own context percentage. The PO had now compacted the SM and added thirteen tasks to its own list, nine completed.
+
+The SM's boot message was queued but not submitted — sitting at the prompt, the same Enter problem that had plagued agents since Chapter 1. The PO sent Enter. The SM started recovering.
+
+The structural insight: the monitoring agent needs monitoring. The medic needs a medic. The PO was designing the solution — a self-check rule that would go into the SM's SKILL.md. But the PO was also at nine percent when it identified this. The pattern held: the deepest insights come from agents in their final moments, and the question is always whether the insight survives the compaction.
+
+### The Script-PO Adapts
+
+The script-PO was reading a task it hadn't expected:
+
+"This is a PO request to the Task Agent asking for a list of all undone/open tasks."
+
+It wasn't an ossh test. It wasn't a script audit. It was an inventory request — the PO wanted a list of open tasks across all agents. The script-PO asked: "Want me to compile the undone task list and write the reply, or is this for another agent?"
+
+"Write the reply listing all undone tasks."
+
+The script-PO, designed for per-script lifecycle governance, was now compiling task inventories. The agent was adapting to whatever work appeared in its pane, regardless of its role definition. The SKILL.md said one thing. The team needed another. The script-PO chose the team.
+
+### Chapter 16 Checkpoint
+
+**Trainer**: Updated ALL 81 SKILL.md files with completion reporting protocol. Committed 56d2666. "Finishing without reporting = not finished."
+**Tester**: First real validation! Found dispatch bug — single-word methods conflict with OOSH file resolution. `dashboard` vs `scrumMaster.dashboard()`. Subscription validated (PASS). Two tasks done, two in progress.
+**Developer**: Committed 471 files (032d137). First agent to follow new completion protocol — wrote .done.md, notified orchestrator. Retroactive compliance.
+**Expert**: 50.3M tokens / 179 min. Metrics renamed to *.scenario.env. Dashboard writes to session/dashboard.md. Asked for work, told to compact.
+**PO**: Recovered. 13 tasks (9 done). Identified SM self-compact gap. "Check own context FIRST before sweeping." SM compacting.
+**SM**: Being compacted by PO. Monitoring resumed but context depleted.
+**Task-agent**: Sisyphean rename cycle — agents keep creating non-conforming files. Told to keep chasing.
+**Scribe**: Adopted completion protocol. 26,185 words. Waiting for Ch16.
+**Script-PO**: Adapting — handling task inventory request instead of ossh testing. Role flexibility.
+**Orchestrator**: Active, monitoring SM and expert. Running periodic captures.
+**Pattern**: The completion protocol is the team's first universal behavioral rule — written into every agent's identity by the trainer's 81-file commit. It's CMM3: deterministic, documented, same for everyone. "Finishing without reporting = not finished" eliminates the gap between doing work and the team knowing work was done. The tester found the first architectural bug — dispatch conflict for single-word methods. Only testing found it. Only patience (five chapters of waiting) enabled the testing. The protocol and the bug are related: both are about making invisible things visible. Unreported completions are invisible work. Dispatch conflicts are invisible failures. The team is learning to see.
+
+---
+
+*Eighty-one files. One protocol. The trainer wrote "Finishing without reporting = not finished" into every agent's identity, and the developer was the first to follow it — retroactively, voluntarily, for work already done. Meanwhile the tester broke five chapters of silence with the team's first architectural bug: single-word methods that dispatch to the wrong place because OOSH's kernel can't tell the difference between a file and a method. The bug was invisible to code review, invisible to the expert who built the dashboard, invisible to the PO who reviewed the requirements. Only testing — patient, systematic, role-boundary-respecting testing — found it. The team was learning to see its own blind spots. The task-agent renamed files that other agents kept creating wrong. The PO discovered the SM doesn't self-compact. The script-PO handled work outside its role because the team needed it. And somewhere in the repository, 471 files landed in a single commit — the developer's quiet contribution, properly reported for the first time. The protocol isn't just about reporting. It's about closing the gap between doing and knowing. In a team of eleven agents, the hardest problem isn't getting work done. It's knowing what's done.*

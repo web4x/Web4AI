@@ -60,3 +60,5 @@
 | 12:01 | projectTeam:0.2 | 67.2% | ok | 1314 tokens/hr |  |
 | 12:01 | projectTeam:0.4 | 32.5% | ok | 4403 tokens/hr |  |
 | 12:02 | projectTeam:0.3 | 49.8% | ok | 2843 tokens/hr | ~1681min |
+| 17:41 | 0.0 | 61.2% | panel | 1457 tokens/hr | ~4213min |
+| 17:41 | 0.1 | 61.7% | panel | 1418 tokens/hr | ~4375min |
