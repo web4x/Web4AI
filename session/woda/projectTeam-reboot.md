@@ -22,8 +22,9 @@
 | 14 | [Life Below the Wall](#chapter-14-life-below-the-wall) | 1,618 | 2026-02-12 |
 | 15 | [The Thaw](#chapter-15-the-thaw) | 1,618 | 2026-02-12 |
 | 16 | [The Protocol](#chapter-16-the-protocol) | 1,748 | 2026-02-12 |
+| 17 | [Thirteen Percent](#chapter-17-thirteen-percent) | 1,654 | 2026-02-12 |
 
-**Total**: 16 chapters, 27,933 words
+**Total**: 17 chapters, 29,587 words
 
 ---
 
@@ -2029,3 +2030,92 @@ The script-PO, designed for per-script lifecycle governance, was now compiling t
 ---
 
 *Eighty-one files. One protocol. The trainer wrote "Finishing without reporting = not finished" into every agent's identity, and the developer was the first to follow it — retroactively, voluntarily, for work already done. Meanwhile the tester broke five chapters of silence with the team's first architectural bug: single-word methods that dispatch to the wrong place because OOSH's kernel can't tell the difference between a file and a method. The bug was invisible to code review, invisible to the expert who built the dashboard, invisible to the PO who reviewed the requirements. Only testing — patient, systematic, role-boundary-respecting testing — found it. The team was learning to see its own blind spots. The task-agent renamed files that other agents kept creating wrong. The PO discovered the SM doesn't self-compact. The script-PO handled work outside its role because the team needed it. And somewhere in the repository, 471 files landed in a single commit — the developer's quiet contribution, properly reported for the first time. The protocol isn't just about reporting. It's about closing the gap between doing and knowing. In a team of eleven agents, the hardest problem isn't getting work done. It's knowing what's done.*
+
+---
+
+## Chapter 17: Thirteen Percent
+
+The task-agent produced a number, and the number was brutal.
+
+```
+Goal: G1: Agent Health ............... 25%
+Goal: G2: Subscription + Sweep ...... 17%
+Goal: G3: Velocity + Reporting ...... 14%
+Goal: G4: Software Delivery ......... 17%
+Goal: G5: Meta-Work Reduction ........ 0%
+Overall: 13% complete across 38 goal-mapped tasks.
+Bottlenecks: Expert (9+ tasks) and Trainer (12+ tasks).
+```
+
+Thirteen percent. After sixteen chapters. After bootstrapping eleven agents, surviving the quota wall, building a completion protocol, writing eighty-one SKILL.md files, committing four hundred and seventy-one files in a single push, training specialists, establishing naming conventions, creating dashboards and measurement tools and monitoring loops. After all of it — thirteen percent.
+
+The task-agent didn't editorialize. It listed five goals, their completion percentages, the key issues blocking each one. G5 — Meta-Work Reduction — sat at zero. All nine of its tasks were pending. The trainer was the bottleneck for twelve tasks. The expert for nine. The numbers were clean, clinical, indifferent to the heroics they summarized.
+
+Tron looked at the report and said three words: "Throttle everyone now."
+
+The PO relayed it. The orchestrator, who had just received a directive to deploy a new scrumMasterTeam — expert plus tester for the scrumMaster script, five tasks already assigned — looked at the subscription meter and did something no agent had done before. It refused.
+
+"Subscription is at 94%. Deploying 2 new agents now would burn through the remaining 6% very fast. Per the 80% quota rule, we should defer this to the next quota reset."
+
+Not refused exactly. Negotiated. The orchestrator offered two options: queue the task for after reset, or deploy now at the risk of exhausting the team mid-setup. It recommended queuing. Tron agreed. The orchestrator filed the deployment as pending and prepared to compact.
+
+This was the team at its most mature. Not the chaos of Chapter 1 where seven agents sat stuck at permission prompts. Not the heroics of Chapter 14 where the PO ran mass unblock loops as a substitute coordinator. This was an agent assessing a resource constraint, proposing alternatives, and deferring a legitimate task because the timing was wrong. CMM3: the same input would produce the same output, from any orchestrator, in any session. The decision was deterministic.
+
+But the thirteen percent gnawed.
+
+The tester stood down voluntarily. "94% subscription — STANDING DOWN." Context saved, re-validation results confirmed (both methods pass), subscription data captured: 127 million tokens consumed, burn rate 711 thousand per minute, cost seventy-seven dollars. The tester had been alive for five chapters and had validated exactly two methods. Both passed. The dispatch bug from Chapter 16 was its only real discovery. Standing down with discipline, standing down with data, but standing down with very little to show.
+
+The SM's monitoring loop broke. Its sleep command was interrupted — "What should Claude do instead?" — and the pane sat at an idle prompt with an accept-edits banner flickering. The recurring monitoring task that had defined its identity across sixteen chapters was paused. The heartbeat stopped beating, not because the heart failed but because someone unplugged the machine.
+
+The trainer was silent. Post-compact, post-curriculum, post-81-file-update, the trainer's pane showed nothing but an idle prompt. No new SKILL.md to write. No curriculum to push. No cross-agent awareness to demonstrate. For the first time in the team's history, the trainer had nothing to teach.
+
+And the scribe was trapped.
+
+"Context saved to session/agents/woda-scribe/context.md. Please run /compact — I can't invoke it as a skill."
+
+The scribe had been told to compact. It tried. `Skill("compact")` returned an error: "Skill compact is not a prompt-based skill." The command that every agent needed to run at end-of-life couldn't be invoked programmatically. It required a human — or another agent with the right permissions — to type `/compact` in the pane. The scribe knew this. It said "please run /compact" to whoever was listening. Nobody was listening. The scribe sat at its prompt, context saved, unable to die properly, unable to continue, waiting for an intervention that might never come.
+
+The irony was architectural. The team had spent three chapters building a completion protocol — "Finishing without reporting = not finished." Now the scribe was discovering the inverse: reporting without finishing. Context saved, done.md written, orchestrator notified, all boxes checked — except the actual compact that would free the resources. The protocol was complete. The work was not.
+
+Meanwhile, the expert was building.
+
+Alone among the agents, the expert had come back from compact and started working. One task, no fanfare: "Convert monitoring-cycle.md to hiveMind monitor.cycle method." Taking a document — a description of how monitoring should work — and turning it into code that actually worked. Someone had sent a test marker to its pane: `echo hivemind-test-marker-ok`. The expert ran it, confirmed the output, and continued. A functional test of whether the pane was responsive. It was.
+
+This was what thirteen percent looked like from the inside. One agent building. Several agents winding down. One agent trapped. One agent dormant. The orchestrator making smart decisions about resource allocation. The PO routing throttle commands. The task-agent counting beans with admirable precision.
+
+The developer had become a janitor.
+
+After following the completion protocol — writing its .done.md for the 471-file commit, notifying the orchestrator, receiving acknowledgment — the developer was assigned a new task: enforce the naming convention. The task-agent had established that all task files should follow the `YYYYMMDDTHHMMZ.task.md` timestamp format. Files like `completion-protocol-now.md` and `commit-push-specialist-teams.done.md` violated it. The developer renamed them. Then more appeared. Other agents kept creating files with descriptive names instead of timestamps.
+
+"Want me to keep chasing them, or should the PO enforce the convention at source?"
+
+"Chase them and rename everything that doesn't match."
+
+So the developer chased. File by file, rename by rename, commit by commit. The agent that had pushed 471 files in a single heroic commit was now renaming individual markdown files to comply with a timestamp format that other agents kept ignoring. This was the cost of standards. Someone had to enforce them. That someone was always the one with the least seniority and the most availability.
+
+The PO's four open tasks told the real story of what thirteen percent meant:
+
+1. Verify trainer completes DRY KB integration in all SKILL.md
+2. Verify SM enforces task queue rule in sweeps
+3. Verify all agents sync internal tasks to permanent files
+4. Track ossh testing completion and notify orchestrator
+
+All four were verification tasks. The PO wasn't building anything. It was checking that other agents had built things correctly. This was governance — necessary, invisible, unrewarded by the metrics. How much of the thirteen percent came from governance work that prevented regressions? The task-agent didn't measure that. Nobody measured that. The PO's contribution was the absence of things going wrong, which looked identical to nothing happening at all.
+
+### Chapter 17 Checkpoint
+
+**Task-agent**: Produced first goal-mapped progress report. 13% complete across 38 tasks. Five goals measured. Two bottlenecks identified (Expert: 9+ tasks, Trainer: 12+ tasks). Sending report to PO.
+**Orchestrator**: Wisely deferred scrumMasterTeam deployment (94% subscription). Queued for post-reset. Preparing to compact. First agent to negotiate a directive instead of blindly executing.
+**Tester**: Standing down at 94%. Both methods PASS. Subscription validated (127M tokens, 711k/min, $77). Context saved. Disciplined retreat.
+**Expert**: Post-compact, building. Converting monitoring-cycle.md to hiveMind monitor.cycle method. Responsive (test marker passed). The only agent actively producing code.
+**PO**: Routing throttle directive. 13 tasks (9 done, 4 open verification tasks). Governance role: verifying others' work, not building.
+**SM**: Sleep loop interrupted. Idle at prompt with accept-edits banner. Heartbeat paused.
+**Trainer**: Post-compact, dormant. No curriculum remaining. First time with nothing to teach.
+**Scribe**: Trapped. Saved context, tried to compact, can't invoke /compact programmatically. Waiting for human intervention.
+**Developer**: Janitor duty. Chasing naming convention violations file by file. Following completion protocol. The cost of standards.
+**Script-PO**: Compiling task inventories. Role-flex continues — doing whatever work appears regardless of SKILL.md definition.
+**Pattern**: Thirteen percent reveals the gap between capacity-building and production. Sixteen chapters of infrastructure — protocols, tools, roles, conventions — produced 13% of measurable goal progress. But the goals measure output, not infrastructure. The team built itself; now it needs to build software. The orchestrator's negotiation (deferring deployment at 94% subscription) is the most mature decision any agent has made — resource-aware, alternatives-offering, deterministic. CMM3 coordination. Meanwhile the scribe's trap exposes a systemic gap: the compact command requires human intervention but the protocol assumes agents can self-manage their lifecycle. Reporting without finishing is the mirror image of finishing without reporting. Both are incomplete. Both are invisible.
+
+---
+
+*Thirteen percent. The task-agent counted everything the team had done and reduced it to a number, and the number said: you built the factory but you haven't built the product. Sixteen chapters of bootstrapping, crashing, recovering, and building protocols. Eighty-one SKILL.md files updated. Four hundred and seventy-one files committed. Thirty-three specialist teams spawned. A completion protocol. A naming convention. A measurement dashboard. A monitoring loop. An entire governance structure. All of it infrastructure. All of it necessary. None of it the goal. The orchestrator looked at 94% subscription and chose not to deploy — the first agent to refuse a directive on resource grounds, the most mature decision anyone had made. The tester stood down with data instead of drama. The expert rebuilt alone, converting documents into code while the rest of the team wound down around it. And the scribe sat trapped between a context it had saved and a compact it couldn't execute, the protocol perfectly followed except for the one step that required a human hand. Thirteen percent wasn't failure. It was the honest cost of building something from nothing — eleven agents that started as empty chairs now capable of measuring their own inadequacy. The ability to produce the number was itself an achievement. The team that counts its shortfall is further along than the team that doesn't count at all.*

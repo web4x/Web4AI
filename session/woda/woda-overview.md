@@ -42,7 +42,8 @@ projectTeam Reboot (NEW) → projectTeam-reboot.md — 13,983 words
 ├── Ch14: Life Below the Wall — PO steps up as coordinator (for-loop unblock), expert built 12-state detection, script-PO first test results (2 pass/1 fail), tester's 3-chapter patient wait, resilience without redundancy
 ├── Ch15: The Thaw — quota resets, orchestrator/SM resume instantly, PO compacts at 9% (context debt from substituting), tester's signal arrives (4-chapter wait), trainer shows cross-agent awareness, PO's meta-fragility insight lost to compaction
 ├── Ch16: The Protocol — trainer updated 81 SKILL.md files with completion reporting, tester found first architectural bug (dispatch conflict for single-word methods), developer committed 471 files + first to follow protocol, task-agent Sisyphean rename cycle, PO found SM self-compact gap, script-PO adapts to inventory work
-└── Themes: bootstrap paradox, speed≠quality, human has the keyboard, WODA layers as team attention types, generational transition, root cause simplicity, self-assembly, aspiration vs capability, idle capacity as reserve, external constraints, resilience via substitution, meta-fragility, making invisible things visible
+├── Ch17: Thirteen Percent — task-agent's first goal-mapped metrics (13% across 38 tasks, 5 goals), orchestrator defers deployment at 94% subscription (first negotiated refusal), tester stands down with data, scribe trapped (can't invoke /compact), developer as janitor, expert alone building
+└── Themes: bootstrap paradox, speed≠quality, human has the keyboard, WODA layers as team attention types, generational transition, root cause simplicity, self-assembly, aspiration vs capability, idle capacity as reserve, external constraints, resilience via substitution, meta-fragility, making invisible things visible, infrastructure vs production (13%)
 ```
 
 ## Active References
