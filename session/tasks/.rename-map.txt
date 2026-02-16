@@ -61,3 +61,11 @@ po-smart-monitoring.md → 20260212T1133Z.task.md
 trainer-remove-path-export.task.md → 20260212T1015Z.task.md
 orchestrator-ossh-agents-deployed.md → 20260212T1138Z.task.md
 completion-protocol-now.md → 20260212T1610Z.task.md
+20260212T1648Z.reply.md → 20260213T1003Z.task.md
+20260212T1730Z.reply.md → 20260213T1004Z.task.md
+CRITICAL-save-compact-all.md → 20260213T1005Z.task.md
+commit-push-specialist-teams.done.md → 20260212T1613Z.done.md
+dashboard-validation.done.md → 20260212T1701Z.done.md
+orchestrator-hivemind-team-deployed.md → 20260212T1614Z.task.md
+sm-status-report.md → 20260216T1625Z.task.md
+subscription-validation.done.md → 20260212T1615Z.done.md
