@@ -36,8 +36,8 @@
 | `fdeffb2` | `active.team` fallback to roles registry |
 | `315c173` | `claudeCode` missing space in monitor.cycle, cycle.full, dashboard |
 | `a7e0ee7` | `sweep` validation, `auto.commit` security (git add -A → -u), `watchdog` path |
+| `4aaea28` | `roles` hardcoded 12 → dynamic SKILL.md lookup (81 roles + filter) |
 
 ## Open Issues (not fixed)
-- `roles` hardcoded 12 roles vs 81 dynamic — should use `role.list` data
 - `monitor.approve` sends option without confirmation — by design?
 - `auto.commit` hangs in non-TTY (git push background process issue)
