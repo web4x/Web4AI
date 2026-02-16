@@ -1,29 +1,24 @@
 # hiveMind tester Agent Context
 **Session**: projectTeam
 **Role**: hiveMind-tester
-**Updated**: 2026-02-12 ~17:00
-**State**: IDLE — all assigned tests complete
+**Updated**: 2026-02-16 ~11:30
+**State**: COMPLETE — all backlog items tested
 
-## CURRENT GOAL
-Continue testing remaining hiveMind methods (see backlog).
+## Summary
 
-## Completed This Session
+Tested 20 hiveMind methods across HIGH/MEDIUM/LOW priority. Found and fixed 8 bugs across 6 commits. 3 items skipped (destructive/blocking).
 
-### Tested 6 methods, found and fixed 5 bugs:
+### Commits This Session
+- `315c173` — Fix claudeCode missing space (6 occurrences in monitor.cycle, cycle.full, dashboard)
+- `a7e0ee7` — Fix sweep validation + auto.commit security (git add -A → -u) + watchdog ./hiveMind path
 
-1. **`role.list`** — FIXED: Added `private.hiveMind.find.agents.dir()` upward search. Commit `390be11`.
-2. **`team.status <session>`** — FIXED: `./claudeCode` relative path → `claudeCode`. Commit `d750b0a`.
-3. **`team.sweep`** — FIXED: silent exit 0 on bad session → exit 1. Commit `390be11`.
-4. **`./otmux` relative path** — 28 occurrences fixed. Commit `e82fee1`.
-5. **`active.team` fallback** — FIXED: falls back to roles registry. Commit `fdeffb2`.
+### Previous Session Commits
+- `d750b0a` — Fix ./claudeCode relative path (3 occurrences)
+- `390be11` — Fix role.list agents dir resolution + team.sweep validation
+- `e82fee1` — Fix ./otmux relative path (28 occurrences)
+- `fdeffb2` — Fix active.team fallback to roles registry
 
-### All Passing After Fixes:
-- `role.list` — 81 roles (was 0)
-- `team.status` — both summary and detailed modes
-- `team.sweep projectTeam` — 11 agents with states
-- `resolve <name> <session>` — correct pane targets
-- `monitor <lines> <session>` — captures all panes
-
-### Design Note (not a bug):
-- `resolve` without session defaults to first registry team (`claudeOpus2kTMUX`), not `projectTeam`
-- Fix: write `~/config/hivemind.active.team` file with `projectTeam`
+### Open Issues
+- `roles` hardcoded list (12) vs dynamic `role.list` (81)
+- `auto.commit` hangs in non-TTY environment
+- Created `~/config/hivemind.active.team` with `projectTeam` during testing
