@@ -74,3 +74,5 @@
 | 11:09 | 1.3 | 26.3% | panel | 4017 tokens/hr | ~488min |
 | 11:09 | 1.4 | 71.9% | panel | 167 tokens/hr | ~44279min |
 | 11:10 | 1.5 | 71.7% | active | 174 tokens/hr | ~42266min |
+| 17:26 | 0.0 | 48.4% | panel | 537 tokens/hr | ~8571min |
+| 17:26 | 0.1 | 43.6% | active | 614 tokens/hr | ~6567min |

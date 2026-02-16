@@ -2,7 +2,7 @@
 *Auto-generated 2026-02-16 17:25. This is ALL you need to read post-compact.*
 
 ## You are: unknown
-## Pane: projectTeam:1.0
+## Pane: projectTeam:1.1
 ## Goal: Check context file
 
 ## Immediate actions:
