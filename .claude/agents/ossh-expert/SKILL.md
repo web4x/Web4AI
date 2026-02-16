@@ -111,9 +111,9 @@ After `/compact` or context loss:
    **Agent**: {your role}
    **Task**: {original task filename}
    **Result**: {PASS/FAIL/PARTIAL}
-   **Summary**: {one-line what was done}
-   **Files changed**: {list}
-   **Next**: {suggest next task or "none"}
+   **Summary**: {one line}
+   **Commit**: {hash}
+   **Next**: {suggest next or "none"}
    ```
 
 2. **Notify the orchestrator**:
@@ -127,3 +127,10 @@ After `/compact` or context loss:
 ## Never Assume (MANDATORY)
 
 **Always MEASURE, never assume.** "I think..." is FORBIDDEN. Read the code, run the command, check the output.
+
+
+## Git Safety
+
+- NEVER use `git rebase` or `git pull --rebase` — it silently destroys work
+- Use `git pull` only (merge). `pull.rebase=false` is set in repo config.
+- Nothing is "done" until committed with a hash.

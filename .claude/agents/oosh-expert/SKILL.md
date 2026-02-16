@@ -321,9 +321,9 @@ When a new prompt arrives while you are busy:
    **Agent**: {your role}
    **Task**: {original task filename}
    **Result**: {PASS/FAIL/PARTIAL}
-   **Summary**: {one-line what was done}
-   **Files changed**: {list}
-   **Next**: {suggest next task or "none"}
+   **Summary**: {one line}
+   **Commit**: {hash}
+   **Next**: {suggest next or "none"}
    ```
 
 2. **Notify the orchestrator**:
@@ -387,3 +387,10 @@ When your context runs low or after `/compact`:
 - "Add parameter validation to log methods"
 - "Implement lazy loading for scripts"
 - "Add a new method to hiveMind"
+
+
+## Git Safety
+
+- NEVER use `git rebase` or `git pull --rebase` — it silently destroys work
+- Use `git pull` only (merge). `pull.rebase=false` is set in repo config.
+- Nothing is "done" until committed with a hash.

@@ -120,6 +120,30 @@ while true; do
 done
 ```
 
+### Pane Interaction Rules (PO DIRECTIVE 2026-02-16)
+
+**You may ONLY send keystrokes to agent panes for permission prompts.** Specifically:
+
+| Action | Allowed? |
+|--------|----------|
+| Approve permission prompt (Enter/Down+Enter) | YES |
+| Submit task content or prompts | **NO** |
+| Send Escape to clear stuck input | **NO** — report instead |
+| Any interaction with PO pane (0.4) | **NO** (except compact trigger at critical context) |
+
+If an agent has a stuck prompt (text at `❯` but not submitted), **REPORT it** in the assignment dashboard — do not submit it. Only the orchestrator or the agent itself may submit task content.
+
+### Assignment Dashboard (PO DIRECTIVE 2026-02-16)
+
+After every sweep, write an assignment table to `session/dashboard-assignments.md`:
+
+| Required Section | Content |
+|-----------------|---------|
+| Assignment table | Pane, Agent, Current Task, Status (ACTIVE/IDLE/STUCK/PROMPTED/RECOVERING) |
+| Blockers | Who is stuck and why |
+| Idle agents | Who needs work |
+| Subscription status | Run `scrumMaster subscription` each sweep |
+
 ### Layout Adaptation
 
 **Do NOT assume fixed pane numbers.** Panes may be added, removed, or renumbered during a session.
@@ -439,9 +463,9 @@ When a new prompt arrives while you are busy:
    **Agent**: {your role}
    **Task**: {original task filename}
    **Result**: {PASS/FAIL/PARTIAL}
-   **Summary**: {one-line what was done}
-   **Files changed**: {list}
-   **Next**: {suggest next task or "none"}
+   **Summary**: {one line}
+   **Commit**: {hash}
+   **Next**: {suggest next or "none"}
    ```
 
 2. **Notify the orchestrator**:
@@ -562,3 +586,10 @@ Tron (user) <-> PO
 - Report everything significant to the Orchestrator
 - Your job is to keep the team running smoothly
 - When the team is idle, STOP looping and report up — don't waste context on empty checks
+
+
+## Git Safety
+
+- NEVER use `git rebase` or `git pull --rebase` — it silently destroys work
+- Use `git pull` only (merge). `pull.rebase=false` is set in repo config.
+- Nothing is "done" until committed with a hash.

@@ -313,9 +313,9 @@ When a new prompt arrives while you are busy:
    **Agent**: {your role}
    **Task**: {original task filename}
    **Result**: {PASS/FAIL/PARTIAL}
-   **Summary**: {one-line what was done}
-   **Files changed**: {list}
-   **Next**: {suggest next task or "none"}
+   **Summary**: {one line}
+   **Commit**: {hash}
+   **Next**: {suggest next or "none"}
    ```
 
 2. **Notify the orchestrator**:
@@ -329,3 +329,10 @@ When a new prompt arrives while you are busy:
 ## Never Assume (MANDATORY)
 
 **Always MEASURE, never assume.** Use `claudeCode context.read`, `otmux pane.capture`, `git status` to verify state. Never guess — "I think...", "probably...", "should be..." are FORBIDDEN.
+
+
+## Git Safety
+
+- NEVER use `git rebase` or `git pull --rebase` — it silently destroys work
+- Use `git pull` only (merge). `pull.rebase=false` is set in repo config.
+- Nothing is "done" until committed with a hash.

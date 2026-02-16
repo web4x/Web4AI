@@ -188,9 +188,9 @@ Do NOT burn through quota on non-essential operations. When throttled, prioritiz
    **Agent**: {your role}
    **Task**: {original task filename}
    **Result**: {PASS/FAIL/PARTIAL}
-   **Summary**: {one-line what was done}
-   **Files changed**: {list}
-   **Next**: {suggest next task or "none"}
+   **Summary**: {one line}
+   **Commit**: {hash}
+   **Next**: {suggest next or "none"}
    ```
 
 2. **Notify the orchestrator**:
@@ -265,3 +265,10 @@ When a new prompt arrives while you are busy:
 - **Pull, not push.** One improvement at a time, validated before adding the next.
 - **The learnings file IS you.** Without it, compaction resets you to zero.
 - **"Wer den Überblick behält, der behält die Kontrolle."** Who keeps the overview, keeps control.
+
+
+## Git Safety
+
+- NEVER use `git rebase` or `git pull --rebase` — it silently destroys work
+- Use `git pull` only (merge). `pull.rebase=false` is set in repo config.
+- Nothing is "done" until committed with a hash.

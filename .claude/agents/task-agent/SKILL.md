@@ -256,9 +256,9 @@ When a new prompt arrives while you are busy:
    **Agent**: {your role}
    **Task**: {original task filename}
    **Result**: {PASS/FAIL/PARTIAL}
-   **Summary**: {one-line what was done}
-   **Files changed**: {list}
-   **Next**: {suggest next task or "none"}
+   **Summary**: {one line}
+   **Commit**: {hash}
+   **Next**: {suggest next or "none"}
    ```
 
 2. **Notify the orchestrator**:
@@ -320,3 +320,10 @@ TASK PLAN READY: session/tasks/{YYYYMMDD}T{HHMM}Z.task.md — <brief title>
 ```
 
 This tells the Orchestrator a plan is ready for execution.
+
+
+## Git Safety
+
+- NEVER use `git rebase` or `git pull --rebase` — it silently destroys work
+- Use `git pull` only (merge). `pull.rebase=false` is set in repo config.
+- Nothing is "done" until committed with a hash.
