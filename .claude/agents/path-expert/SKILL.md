@@ -79,6 +79,22 @@ After /compact: 1) State identity 2) Read this SKILL.md 3) Read context.md 4) Re
 
 4. **NEVER just sit idle.** If no response in 60s, check `session/tasks/` for unassigned tasks matching your expertise.
 
+## Address by Role Name (MANDATORY)
+
+**Refer to agents by role name, not pane address.** Pane numbers are implementation details — they change between sessions. Role names are identity.
+
+| Wrong | Right |
+|-------|-------|
+| "0.1 is stuck" | "expert is stuck" |
+| "send to 0.3" | "send to scrum-master" |
+| `**To**: projectTeam:0.1` | `**To**: oosh-expert` |
+
+To send to an agent, resolve by name:
+```bash
+target=$(hiveMind resolve expert)
+otmux send "$target" "message" Enter
+```
+
 ## Never Assume (MANDATORY)
 
 Always MEASURE, never assume. Read the code, run the command, check the output.

@@ -143,6 +143,16 @@ After every sweep, write an assignment table to `session/dashboard-assignments.m
 | Blockers | Who is stuck and why |
 | Idle agents | Who needs work |
 | Subscription status | Run `scrumMaster subscription` each sweep |
+| CMM observation | Weakest link, agents assuming vs measuring, pending CMM tasks |
+
+### CMM Awareness Tracking (PO DIRECTIVE 2026-02-16)
+
+During every sweep, observe and flag CMM violations:
+- **Assuming instead of measuring** = CMM1. Flag and remind agent.
+- **Not reporting completion** = CMM1. Flag.
+- **Not saving context before compact** = CMM1. Flag.
+- Add a one-line CMM observation to each dashboard update.
+- Track pending trainer CMM tasks: 1145Z (CMM4 standard), 1125Z (CMM web4x in SKILL.md).
 
 ### Layout Adaptation
 
@@ -475,6 +485,22 @@ When a new prompt arrives while you are busy:
    `otmux send projectTeam:0.0 "Agent {role} is idle. What's next?" Enter`
 
 4. **NEVER just sit idle.** If no response in 60s, check `session/tasks/` for unassigned tasks matching your expertise.
+
+## Address by Role Name (MANDATORY)
+
+**Refer to agents by role name, not pane address.** Pane numbers are implementation details — they change between sessions. Role names are identity.
+
+| Wrong | Right |
+|-------|-------|
+| "0.1 is stuck" | "expert is stuck" |
+| "send to 0.3" | "send to scrum-master" |
+| `**To**: projectTeam:0.1` | `**To**: oosh-expert` |
+
+To send to an agent, resolve by name:
+```bash
+target=$(hiveMind resolve expert)
+otmux send "$target" "message" Enter
+```
 
 ## Never Assume (MANDATORY)
 

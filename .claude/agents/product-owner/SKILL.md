@@ -328,6 +328,22 @@ When a new prompt arrives while you are busy:
 
 4. **NEVER just sit idle.** If no response in 60s, check `session/tasks/` for unassigned tasks matching your expertise.
 
+## Address by Role Name (MANDATORY)
+
+**Refer to agents by role name, not pane address.** Pane numbers are implementation details — they change between sessions. Role names are identity.
+
+| Wrong | Right |
+|-------|-------|
+| "0.1 is stuck" | "expert is stuck" |
+| "send to 0.3" | "send to scrum-master" |
+| `**To**: projectTeam:0.1` | `**To**: oosh-expert` |
+
+To send to an agent, resolve by name:
+```bash
+target=$(hiveMind resolve expert)
+otmux send "$target" "message" Enter
+```
+
 ## Never Assume (MANDATORY)
 
 **Always MEASURE, never assume.** CMM4 = we measure. CMM5 = we improve measuring.
