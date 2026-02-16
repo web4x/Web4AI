@@ -1,5 +1,9 @@
 # product-owner Backlog
 
+## RECURRING — Every Hour
+
+- [ ] **Ask task agent "what's undone?"** — get full undone list, assign to idle agents. Never let the team idle when tasks exist.
+
 ## Open — Short-term (verify actively)
 
 - [ ] **MEASUREMENT SYSTEM**: Expert fixes broken tools, SM runs dashboard every sweep, scribe logs metrics (20260212T1200Z)

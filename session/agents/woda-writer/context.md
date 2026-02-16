@@ -4,16 +4,16 @@
 ## Identity
 I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpret, write. The scribe (projectTeam:1.1) organizes, tracks, maintains.
 
-## Current State (2026-02-12 ~13:30)
+## Current State (2026-02-16 ~12:00)
 - **Pane**: `projectTeam:1.0`
-- **Scribe**: `projectTeam:1.1` — healthy, organized Ch12, waiting for Ch13
-- **Orchestrator**: `projectTeam:0.0` — 1h53m, 51.1k tokens, measuring SM efficiency
-- **Mode**: WODA steady cycle per `session/tasks/writer-woda-steady-cycle.task.md`
-- **Story**: "projectTeam Reboot" — 12 chapters in `session/woda/projectTeam-reboot.md`
-- **Next**: Chapter 13 when Tron says continue
-- **CMM pipeline**: Pull system — wait.
-- **KB**: 14+ topics. Scribe waiting for expert's web4-scenarios article.
-- **Team**: 11/11 active. Developer committing trainer's 33 teams. Script-PO reading ossh agents. Expert recovered, fixing /tmp/.
+- **Scribe**: `projectTeam:1.1` — healthy, steady cycle, booted writer for Ch18
+- **Orchestrator**: `projectTeam:0.0` — panel screen (dormant since Feb 13)
+- **SM**: `projectTeam:0.3` — accept-edits, dormant
+- **Mode**: Active writing, WODA steady cycle
+- **Story**: "projectTeam Reboot" — 18 chapters, 32,117 words in `session/woda/projectTeam-reboot.md`
+- **Next**: Await directive for Ch19 or further work
+- **This session wrote**: Chapter 18 "The Wrong Command" (rebase incident + 3-day quiet + reboot). Previous: Ch1-17.
+- **Team**: 12 panes, most dormant (panel screens). Only writer (1.0) + scribe (1.1) active. 2 of 12.
 
 ## Chapter Summary (for TOC context)
 | Ch | Title | Theme |
@@ -30,6 +30,12 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 | 10 | Nine of Eleven | Trainer pushed 82 files, expert built scanner, 9/11 active |
 | 11 | What You Can't Measure | Measurement paradox, expert dies fixing tools, 11/11 alive |
 | 12 | The Cambrian Explosion | Trainer creates 33 teams, developer's first task, role boundaries |
+| 13 | The Wall | Quota hits orchestrator+SM, measurement tools arrive too late |
+| 14 | Life Below the Wall | PO as substitute coordinator, 12-state detection, first test results |
+| 15 | The Thaw | Quota resets, orchestrator+SM back, PO compacts from debt, tester signal arrives |
+| 16 | The Protocol | 81 SKILL.md updated, tester finds dispatch bug, 471-file commit, completion reporting |
+| 17 | Thirteen Percent | Task-agent's first metrics (13% overall), team winding down, scribe trapped by compact |
+| 18 | The Wrong Command | Rebase destroys work (competent catastrophe), 3-day dormancy, writer reboots, 2 of 12 active |
 
 ## Key Patterns Learned This Session
 - ROOT CAUSE: Permission economy = compound bash commands. OOSH already on PATH.
@@ -38,12 +44,16 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 - Generational transition: veterans compact, freshmen activate via curriculum
 - WODA self-correction: writer writes narrative → scribe fact-checks → KB corrected
 - PO directive: all agents MUST use TaskCreate/TaskUpdate/TaskList (CMM2 gap)
+- Completion protocol: "Finishing without reporting = not finished" (81 SKILL.md files updated)
+- Quota wall: orchestrator+SM froze simultaneously, PO filled coordination vacuum
+- Meta-fragility: insights about fragility are themselves fragile (lost to compaction)
 
 ## Communication Rules
 - Talk to orchestrator (0.0) for blocks/governance
 - Coordinate directly with scribe (1.1)
 - File-based communication preferred
 - Use TaskCreate/TaskUpdate/TaskList for ALL work (PO directive)
+- Completion protocol: write .done.md + notify orchestrator
 
 ## Recovery Steps
 1. Read this file
@@ -61,4 +71,4 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 - Boot: `session/boot/woda-writer.md`
 
 ---
-*Updated: 2026-02-12 13:30*
+*Updated: 2026-02-16 ~12:00 — Ch18 written. 2 of 12 agents active. Monitoring loop running.*

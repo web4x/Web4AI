@@ -3,75 +3,69 @@
 **Session**: product-owner@opus
 **Role**: product-owner
 **Pane**: projectTeam:0.4
-**Updated**: 2026-02-12T12:45Z
-**State**: compacting — healthy, proactive
+**Updated**: 2026-02-12T18:00Z
+**State**: compacting — post-incident investigation
 
-## CURRENT GOAL
+## CURRENT GOAL — #1 PRIORITY
 
-Governance + CMM4 oversight. Interact only with Tron. Route through orchestrator. Task agent tracks all tasks now.
+**Self-improving CMM4 team. Agent health + adaptive sweep timing.**
 
-## COMMUNICATION HIERARCHY
+### Subscription measurement: DONE
+`scrumMaster subscription` and `subscription.json` work. Alert thresholds work (saw WARNING at 83%).
 
-```
-Tron (user) <-> PO (me)
-                  |
-             Orchestrator
-              /     |     \
-     Expert+Tester  SM   Writer+Scribe
-                    |
-              Task Agent (central tracker)
-```
+### The 90% Rule (Tron directive)
+80%=throttle, 90%=stop. SM has directive (20260212T1732Z.task.md) for adaptive sweep timing.
 
-## ACTIVE — Routed, Awaiting Verification
+## CRITICAL INCIDENT: Rebase Destroyed Work
 
-All routed to orchestrator or trainer. Task agent should be tracking these.
+**Full writeup**: `session/teamfailure.md`
 
-1. **Dashboard in scrumMaster script** — expert builds, SM runs every sweep (20260212T1240Z)
-2. **web4.scenario.env KB article** — expert writes, scribe reviews (20260212T1230Z)
-3. **hiveMind /tmp/ → ~/config/ migration** — expert implements (20260212T1225Z)
-4. **Action→method conversion** — expert, 1/hour recurring (20260212T1215Z)
-5. **ossh specialists** — trainer creates 3 agents: ossh-expert, ossh-tester, ossh-po (po-new-ossh-agents.md)
-6. **Task agent as central tracker** — trainer updates all SKILL.md (20260212T1235Z)
-7. **DRY KB integration** — trainer links usage.md in every SKILL.md (20260212T1136Z)
-8. **CMM4 "assuming=CMM2" sharing** — trainer → all agents (20260212T1145Z)
-9. **Error suppression ban** — trainer shares anti-pattern (20260212T1205Z)
+hiveMind-expert ran `git pull --rebase` on Feb 12 17:20. Dropped commit `17340f6` containing:
+- otmux tree three-level view (session IDs per pane)
+- claudeCode FORCE_COLOR fix, list.named(), improved list
+- ossh ssh directory improvements
+- user script improvements
+
+**Recovery**: Files extracted to `/Users/donges/oosh/restore/`. Tron manually comparing via `diffReview` tmux session.
+
+**Prevention**: `pull.rebase=false` in repo config. NEVER rebase. All SKILL.md being updated.
+
+## TEAMS RUNNING
+
+- **projectTeam** — 12 panes (0.0-0.5, 1.0-1.5)
+- **hiveMindTeam** — 2 panes (expert + tester)
+- **diffReview** — Tron's manual comparison session
+
+## ACTIVE TASKS
+
+1. SM adaptive sweep timing (20260212T1732Z) — calculate sleep from burn rate
+2. Completion reporting protocol (20260212T1702Z) — trainer pushing to SKILL.md
+3. Git safety rule — trainer pushing "NEVER rebase" to all SKILL.md
+4. Restore lost features from `17340f6` (20260212T1745Z) — Tron reviewing
+5. scrumMasterTeam deployment (20260212T1731Z) — orchestrator
 
 ## VERIFIED DONE
 
-- [x] Task queue rule in all 11 SKILL.md
-- [x] Achievement files (PO, expert, SM)
-- [x] CMM web4x KB articles (cmm-web4x.md, usage.md)
-- [x] Scribe hourly KB improvement cycle directive
-- [x] Peer compact protocol fixed
-- [x] Expert old flat context file flagged to trainer
+- [x] scrumMaster subscription + subscription.json
+- [x] hiveMind team.status with session IDs
+- [x] hiveMindTeam deployed and productive
+- [x] Sweep interval parameter (hiveMind sweep session interval)
+- [x] 33 script specialist teams created
+- [x] Task naming convention enforced
+- [x] Rebase forensic investigation complete
+- [x] teamfailure.md documented
+- [x] pull.rebase=false set in repo
 
-## KEY DECISIONS
+## FAILURES (10 this session)
 
-- Task agent = central task tracker, all agents report completion to it
-- Dashboard belongs in scrumMaster script (not hiveMind)
-- Config pattern: ~/config/*.env (web4.scenario.env) — NOT /tmp/
-- Script specialists: PO+trainer can always create more, each CMM4-driven
-- DRY highest directive: write once, link everywhere
-- Assuming = CMM2. Always measure.
-- Never suppress errors (no 2>/dev/null || echo)
-- Check own context regularly: `claudeCode context.read projectTeam:0.4`
-
-## FAILURES (5 this session — all learned from)
-
-- F1: Assumed trainer quota limit from 10-line capture
-- F2: Wrote SM context FOR it instead of triggering
-- F3: Reported SM "stuck" without fresh verification
-- F4: Suppressed errors with 2>/dev/null || echo
-- F5: Not monitoring own context proactively
+F1-F9: See learnings.md
+F10: git pull --rebase destroyed uncommitted work (17340f6)
 
 ## RECOVERY STEPS
 
 1. "I am the Product Owner agent."
-2. Read `.claude/agents/product-owner/SKILL.md`
-3. Read `session/agents/product-owner/context.md` (this file)
-4. Read `session/agents/product-owner/backlog.md`
-5. Read `session/agents/product-owner/learnings.md`
-6. `claudeCode context.read projectTeam:0.4` — measure context
-7. `otmux pane.capture projectTeam:0.3 30` — check SM
-8. `otmux pane.capture projectTeam:0.0 30` — check orchestrator
-9. Ask Tron for next directive
+2. Read `session/agents/product-owner/context.md` (this file)
+3. `scrumMaster subscription` — check subscription FIRST
+4. `hiveMind sweep projectTeam` — team state
+5. Check `session/teamfailure.md` for incident status
+6. Drive adaptive sweep timing as #1 priority

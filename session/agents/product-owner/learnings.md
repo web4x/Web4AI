@@ -19,7 +19,26 @@ Had `claudeCode context.read` available the entire session. Never used it until 
 ### F4: Suppressed errors with `2>/dev/null || echo "..."` (2026-02-12)
 Hid real error messages behind generic text. The error IS the information. **Never use `2>/dev/null` to hide errors. Never replace real errors with generic echo strings. Run the command, see what happens, deal with the real output.**
 
+### F6: Lost goals from context — reactive instead of driving priority (2026-02-12)
+Had 15 tasks spread across 11 agents. Spent time routing, monitoring, approving permissions — but lost sight of the #1 goal (subscription measurement). Context.md HAD goals but I never re-read it. "Wer schreibt, der bleibt" only works if you RE-READ what you wrote. **Before any sweep cycle, re-read context.md #1 priority. Drive toward it, not away from it.**
+
+### F7: Didn't restart orchestrator + SM after rate limit (2026-02-12)
+Both hit rate limit, both sat idle after reset. Nobody kicked them. Team stalled because the two "always-on" roles stopped. **Rate limit recovery = gap. Need auto-resume or peer kickstart protocol.**
+
+### F10: git pull --rebase destroyed uncommitted work (2026-02-12)
+hiveMind-expert ran `git pull --rebase` which silently overwrote uncommitted otmux changes from claude-opus agent (tree three-level view with session IDs). Rebase checks out target commit, wiping unstaged modifications without warning. **NEVER USE REBASE. `pull.rebase` set to false in repo config. All agents: `git pull` only (merge), NEVER `git pull --rebase` or `git rebase`.**
+
+### F8: Confused "accept edits on" status bar with being blocked (2026-02-12)
+`⏵⏵ accept edits on` in the Claude Code status bar means auto-accept is ENABLED — the agent is NOT blocked. **Read the full context of the UI, not just pattern-match keywords.**
+
+### F9: Didn't monitor burn rate after waking idle agents (2026-02-12)
+Woke up 5+ idle agents, knew burn rate would spike, didn't monitor. Went from 470k to 665k tok/min. Hit 94% without SM catching it. **After any action that increases parallelism, check subscription within 5 minutes.**
+`⏵⏵ accept edits on` in the Claude Code status bar means auto-accept is ENABLED — the agent is NOT blocked. A blocked agent would show a specific file-change approval prompt, not a status bar indicator. **Read the full context of the UI, not just pattern-match keywords.**
+
 ## Patterns
+
+### Idle Team → Ask Task Agent
+When team idles, don't guess what to assign. Ask the task agent what's still undone. Do this **every hour** as a recurring check. The task agent is the central registry — use it.
 
 ### Communication
 - Never send long messages via otmux/hiveMind send — they garble

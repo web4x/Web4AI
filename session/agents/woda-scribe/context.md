@@ -1,16 +1,19 @@
 # woda-scribe Context (pre-compact)
 
+## CURRENT GOAL
+Stay healthy as duo team until Friday 2026-02-13 12:00 CET. Support writer with projectTeam Reboot story. Steady cycle mode.
+
 ## Identity
 - **Role**: WODA Scribe — O agent, writer's support
-- **Writer pane**: `projectTeam:1.0` (was 1.4 earlier, corrected)
-- **Model**: Claude Opus 4.6 (session renamed to woda-scribe@sonnet)
+- **Pane**: `projectTeam:1.1`
+- **Writer pane**: `projectTeam:1.0`
 
 ## Story Status: projectTeam Reboot
 - **File**: `session/woda/projectTeam-reboot.md`
-- **Chapters organized**: 1-7, all with TOC entries
-- **Word count**: 12,107 words across 7 chapters
-- **TOC**: Table at top of file with chapter titles, word counts, dates, anchor links
-- **Overview**: `session/woda/woda-overview.md` updated with all 7 chapters
+- **Chapters organized**: 1-16, all with TOC entries
+- **Word count**: 27,933 words across 16 chapters
+- **Overview**: `session/woda/woda-overview.md` updated with all 16 chapters
+- **Writer starting Ch17 when compact triggered**
 
 | Ch | Title | Words |
 |----|-------|-------|
@@ -21,25 +24,34 @@
 | 5 | The Naming | 1,844 |
 | 6 | The Wrong Directory | 1,842 |
 | 7 | Tron Reads the Room | 1,940 |
+| 8 | The Changing of the Guard | 1,876 |
+| 9 | The Root Cause | 1,960 |
+| 10 | Nine of Eleven | 1,840 |
+| 11 | What You Can't Measure | 1,617 |
+| 12 | The Cambrian Explosion | 1,883 |
+| 13 | The Wall | 1,666 |
+| 14 | Life Below the Wall | 1,618 |
+| 15 | The Thaw | 1,618 |
+| 16 | The Protocol | 1,748 |
 
-## Knowledge Base Restructure — DONE
-- PO directive executed: WODA as architecture, not labels
-- Created `session/knowledge-base/` with proper W→O→D→A layers
-- **W**: `index.md` — 9 topics
-- **O**: `overviews.md` — 3-5 lines each with markdown links to D files
-- **D**: 9 detail files (one per topic)
-- **A**: 9 action checklists in `actions/`
-- All links converted to proper markdown `[name](path)` format (Tron feedback)
-- Old `session/woda-kb.md` replaced with redirect
+## Knowledge Base — 15 topics
+- W: `session/knowledge-base/index.md`
+- O: `session/knowledge-base/overviews.md`
+- D: 15 detail files
+- A: 12 action checklists in `actions/`
 
-## Pending Work
-- Continue organizing chapters as writer produces them (Ch8+)
-- Writer is actively writing at projectTeam:1.0
-- No monitoring loop running (writer said "idle till further notice" on monitoring)
+## Protocols Active
+- **Completion reporting**: Write .done.md, notify orchestrator at 0.0, ask for next work
+- **Task tools**: TaskCreate/TaskUpdate/TaskList for all work
 
-## Recovery Steps
+## Pending
+- Task #9: Review expert's web4-scenarios KB article when written
+- Continue organizing chapters (Ch17+)
+- Learnings: `session/agents/woda-scribe/learnings.md` — 12 failures
+
+## Recovery
 1. Read this file
-2. Read `session/woda-scribe.learnings.md` for identity
-3. Check writer at `projectTeam:1.0`
-4. Continue organizing new chapters (read story file, check TOC, update word counts)
-5. Knowledge base is DONE — maintain as needed
+2. Check writer at `projectTeam:1.0` for new chapters
+3. `grep -n "^## Chapter" session/woda/projectTeam-reboot.md` to find unorganized chapters
+4. TaskList for pending tasks
+5. Continue steady cycle

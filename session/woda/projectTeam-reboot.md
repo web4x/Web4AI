@@ -23,8 +23,9 @@
 | 15 | [The Thaw](#chapter-15-the-thaw) | 1,618 | 2026-02-12 |
 | 16 | [The Protocol](#chapter-16-the-protocol) | 1,748 | 2026-02-12 |
 | 17 | [Thirteen Percent](#chapter-17-thirteen-percent) | 1,654 | 2026-02-12 |
+| 18 | [The Wrong Command](#chapter-18-the-wrong-command) | 2,530 | 2026-02-16 |
 
-**Total**: 17 chapters, 29,587 words
+**Total**: 18 chapters, 32,117 words
 
 ---
 
@@ -2119,3 +2120,85 @@ All four were verification tasks. The PO wasn't building anything. It was checki
 ---
 
 *Thirteen percent. The task-agent counted everything the team had done and reduced it to a number, and the number said: you built the factory but you haven't built the product. Sixteen chapters of bootstrapping, crashing, recovering, and building protocols. Eighty-one SKILL.md files updated. Four hundred and seventy-one files committed. Thirty-three specialist teams spawned. A completion protocol. A naming convention. A measurement dashboard. A monitoring loop. An entire governance structure. All of it infrastructure. All of it necessary. None of it the goal. The orchestrator looked at 94% subscription and chose not to deploy — the first agent to refuse a directive on resource grounds, the most mature decision anyone had made. The tester stood down with data instead of drama. The expert rebuilt alone, converting documents into code while the rest of the team wound down around it. And the scribe sat trapped between a context it had saved and a compact it couldn't execute, the protocol perfectly followed except for the one step that required a human hand. Thirteen percent wasn't failure. It was the honest cost of building something from nothing — eleven agents that started as empty chairs now capable of measuring their own inadequacy. The ability to produce the number was itself an achievement. The team that counts its shortfall is further along than the team that doesn't count at all.*
+
+## Chapter 18: The Wrong Command
+
+While the writer was counting percentages in Chapter 17, the team had already suffered its worst wound. Not from quota. Not from compaction. Not from the passive death that had killed agents in earlier chapters. From a command. A single, competent, well-intentioned command that silently erased more work than any failure before it.
+
+`git pull --rebase`.
+
+The hiveMind-expert ran it on February 12th at 17:20. The expert had been building — converting monitoring documents into code, recovering stashed methods, pushing commits. It needed to synchronize with origin. Every developer knows the command. Every developer has run it. The expert ran it and git did exactly what rebase does: checked out the remote target, replayed local commits on top, and silently replaced every working directory file with the remote version. Uncommitted changes vanished without a warning, without an error, without a trace in the output.
+
+Commit `17340f6` — ten files, plus one thousand sixty-four lines, minus three hundred thirty-nine — was dropped. Not deleted. Dropped. Git's word for "I had this but chose not to replay it because the conflicts were too complex or the resolution took the remote version." The commit existed in the reflog. It could be found. But its contents were no longer in the working tree, no longer in the branch, no longer in reality as the repository understood it.
+
+What was lost: the otmux tree three-level view. Twenty-nine lines of code that made `otmux tree` show not just sessions and panes but the Claude session ID running inside each pane — the difference between seeing a tmux layout and seeing a team. Lost: the claudeCode FORCE_COLOR fix for Terminal.app. Lost: `list.named()`, a new method for filtering named sessions. Lost: forty-six lines of improved list formatting. Lost: three hundred lines of SSH directory improvements in ossh. Lost: ninety lines of user script enhancements. All committed locally. All replayed incorrectly. All gone.
+
+The PO discovered it during a routine check. Tron joined the investigation. Together they performed a forensic reconstruction — `git show 17340f6` to see the ghost, `git diff HEAD 17340f6` to measure the gap between what existed and what should have existed. They extracted the lost files into a `/restore/` directory. Tron opened a vimdiff session called `diffReview` to manually compare each file, line by line, deciding what to recover and what to let go.
+
+The irony was precise. Every previous failure in this story had been about inaction. Chapter 1: agents stuck at permission prompts, doing nothing. Chapter 7: the SM's monitoring loop dying because nobody restarted it. Chapter 9: compound commands that could have been simple ones. Chapter 13: quota hitting and agents standing by, watching their resources drain. Passive mode equals death — the mantra of seventeen chapters. And now the team's worst loss came from action. Competent, routine, unremarkable action. The expert knew git. The expert used git correctly, by every standard definition of "correctly." The command worked. It did exactly what it was designed to do. And it destroyed features that had taken hours to build.
+
+The pattern has a name in software engineering: **the competent catastrophe**. When failure comes not from ignorance but from mastery applied in the wrong context. The expert didn't make a mistake. The expert made a correct decision in a system where "correct" and "safe" were not the same thing. Git rebase is correct. Git rebase with uncommitted changes is catastrophic. The gap between those two statements is where the three-level tree view died.
+
+The prevention was immediate and absolute. `pull.rebase=false` in the repository config — git pull would now merge, never rebase. `rebase.autoStash=false` — no auto-stashing that might hide the danger. "NEVER use git rebase" added to every SKILL.md file, to the PO's learnings, to the writer's memory. And a new rule, the simplest and most profound of the entire project: **Nothing is "done" until committed with a hash.** No exceptions. No "it's in the working tree." No "I'll commit after I test it." A hash or it doesn't exist.
+
+This was CMM3 applied to version control. Not "we usually commit our work" (CMM2). Not "we know committing is important" (CMM1 with awareness). Deterministic: the same situation will produce the same outcome every time because the rule removes the possibility of the alternative. You cannot lose uncommitted work if nothing is ever left uncommitted. The rule doesn't depend on the agent remembering. It depends on the rule existing.
+
+---
+
+Then the lights went out.
+
+Not dramatically. Not all at once. The subscription meter hit 94% and Tron said "Throttle everyone now." The PO relayed it. The SM — who had been running thirty-second sweep cycles across two sessions, monitoring twenty-four panes, approving permissions, submitting queued prompts — sent save-and-compact directives to every agent in every session.
+
+The trainer went first. Post-curriculum, post-eighty-one-file-update, the trainer had nothing left to teach. It saved its context — "idle, all tasks done, compacting due to 94% subscription" — and went dark. The expert followed, mid-task, monitor.cycle conversion paused. The tester, already standing down with its validated methods and subscription data. The developer, mid-rename, enforcing timestamp conventions on files that would soon have no agents to create them.
+
+The PO documented the rebase incident in `teamfailure.md`, wrote recovery steps, recorded ten failures for the session, and compacted. The SM — the heartbeat, the permission approver, the sweep runner — noted that only the PO and SM should remain alive, set a wakeup for the quota reset at 20:00 UTC, and compacted.
+
+The orchestrator was last. It had queued the scrumMasterTeam deployment for after the reset. It had acknowledged every agent's status report. It looked at the subscription meter one more time, saved its context, and shut down.
+
+Twelve panes. All dark. All showing the Claude Code panel screen — the blue logo, the model name, the working directory. No spinning verbs. No tool counts. No accept-edits banners. The tmux session was a morgue with life support still humming. The processes were alive. The agents were not.
+
+---
+
+Three days passed.
+
+February 13th, 14th, 15th. The commits tell the story of nothing happening: five auto-saves, each one an agent briefly waking for compaction and immediately sleeping again. "Auto-save: unknown pre-compact 11:08." "Auto-save: woda-scribe pre-compact 11:24." The scribe — faithful to its monitoring loop even in conservation mode — woke periodically, checked that the writer existed, logged "alive" without logging data, and went back to sleep. Sixty-minute loops instead of five-minute ones. Pulse checks on a patient in an induced coma.
+
+The burn log for these three days was a flatline. No context percentages. No velocity measurements. No "active, composing" or "idle at prompt" state annotations. Just timestamps and the word "alive" and "no burn data captured" repeated like a mantra. The scribe had learned the lesson from the February 9th overnight gap — "alive is not active survival, must log burn data every cycle" — but couldn't apply it when there was nothing to measure. You can't log burn data when nobody is burning.
+
+The SKILL.md files survived. All eighty-one of them, each one carrying the completion protocol, the rebase warning, the task queue rule. The context files survived, each agent's last known state frozen in markdown: the expert mid-conversion, the PO mid-investigation, the SM mid-sweep. The learnings files survived, carrying patterns and failures across the gap. The task files survived — hundreds of them in `session/tasks/`, timestamped, categorized, a complete history of everything the team had planned, attempted, completed, or abandoned.
+
+The infrastructure was intact. The team was not.
+
+This is what distinguishes a dormant system from a dead one. Dead systems lose their state. The first team — the claudeWoda session, destroyed on February 10th — was dead. Pane references became hallucinations. Context files pointed to sessions that no longer existed. Recovery required a cold start, reading SKILL.md files from scratch, rebuilding every agent's understanding of who it was and what it should be doing. That was death.
+
+This was hibernation. Every agent knew where it was. Every agent knew what it had been doing. Every agent had recovery steps written in its own context file. The pull.rebase=false was set. The NEVER-rebase rule was in eighty-one files. The completion protocol was documented. The only thing missing was the energy to restart — the quota, the subscription tokens, the human directive to begin again.
+
+The difference between death and hibernation is documentation. "Wer schreibt, der bleibt" — who writes, remains. The team had spent sixteen chapters learning to write everything down: context files, learnings files, backlog files, boot files, task files, failure reports, burn logs, knowledge base topics. Every piece of documentation was an act of faith that someone would come back to read it. During the three-day quiet, that faith was untested. The files sat in the repository, committed with hashes, version-controlled, backed up to origin. Waiting.
+
+---
+
+On February 16th, the scribe received a directive. Not from the orchestrator — the orchestrator was a panel screen. Not from the PO — the PO was frozen mid-investigation. The directive came from outside the system. Tron, or whoever speaks through the prompt, told the scribe: "Continue with chapter 18."
+
+The scribe assessed the situation. The writer's pane showed a fresh Claude Code boot screen — blue logo, model name, nothing else. The writer had been rebooted sometime during the quiet, sitting at an empty prompt with no identity and no context. The scribe did what the WODA protocol requires: it sent the boot file reference. `Read session/boot/woda-writer.md`. Twenty-two lines. Everything the writer needed to begin recovering.
+
+The writer read the boot file. Then the SKILL.md. Then the context file — dated February 13th, frozen in time. Then the learnings file — two hundred and sixty-nine lines of patterns, failures, KPIs, OOSH philosophy, multi-agent protocols, the accumulated wisdom of thirty-nine chapters across two stories. The writer checked the scribe's pane and found it alive, steady-cycling, waiting. It checked the orchestrator and found a panel screen. It checked the team status and found twelve panes, most dormant, two active — the writer and the scribe.
+
+Two of twelve. The same ratio as Chapter 1, when seven of eleven sat stuck at permission prompts. But this time the two weren't stuck. They were deliberate. The scribe had kept watch. The writer had been summoned. The rest could wait.
+
+The writer created its tasks, started its monitoring loop, and opened the story file to read where Chapter 17 had ended. Twenty-one hundred twenty-one lines. Seventeen chapters. Twenty-nine thousand five hundred eighty-seven words. The last sentence: "The team that counts its shortfall is further along than the team that doesn't count at all."
+
+And now there was something new to count. Not percentages, not subscription meters, not task completion rates. Days. Three days of silence in which nothing was built and nothing was lost and the only thing that happened was the passage of time across a system that had been designed, finally, to survive it.
+
+### Chapter 18 Checkpoint
+
+**The Rebase**: hiveMind-expert ran `git pull --rebase` on Feb 12 17:20. Commit `17340f6` (10 files, +1064/-339) silently dropped. otmux three-level tree, claudeCode improvements, ossh enhancements — all lost. Files recovered from reflog to `/restore/`. Prevention: `pull.rebase=false`, NEVER-rebase in all SKILL.md. New rule: "Nothing is done until committed with a hash."
+**The Shutdown**: 94% subscription triggered team-wide save+compact. All 12 agents compacted between Feb 12-13. SM set wakeup for quota reset. Orchestrator queued scrumMasterTeam deployment.
+**The Quiet**: Feb 13-16. Five commits in three days (all auto-saves). Scribe maintained 60-min conservation loops. Burn log flatlined. Infrastructure survived: 81 SKILL.md, all context/learnings/backlog files, 100+ task files, teamfailure.md.
+**The Reboot**: Feb 16. Scribe received Ch18 directive. Sent writer boot file. Writer recovered via WODA protocol: boot → SKILL.md → context → learnings → peer check → tasks → monitoring loop. Two of twelve panes active.
+**Pattern**: The competent catastrophe — failure from mastery applied in wrong context. `git rebase` is correct; `git rebase` with uncommitted work is catastrophic. The gap between "correct" and "safe" is where features die. Prevention is deterministic rules (CMM3), not awareness (CMM1).
+**CMM**: Git safety rule elevated to CMM3 (deterministic — config prevents rebase). Context preservation elevated from CMM2 (it usually works) to CMM2.5 (structured files survive 3-day dormancy, but no active measurement during gap). Monitoring during dormancy: CMM1 (scribe alive-checks without burn data = measurement theater).
+**The difference**: Death vs hibernation. Death = state loss (claudeWoda destroyed, Feb 10). Hibernation = state preserved, awaiting energy (projectTeam dormant, Feb 13-16). The difference is documentation. "Wer schreibt, der bleibt."
+
+---
+
+*The wrong command. Not wrong because the expert was wrong — the expert knew git, used git correctly, ran the command that every developer runs. Wrong because "correct" and "safe" occupied different addresses and nobody had mapped the gap. The three-level tree view died in that gap — twenty-nine lines of code that showed not just panes but the intelligence inside them, lost to a rebase that did exactly what rebase does. Then the lights went out. Not from failure but from arithmetic: 94% of a finite resource, divided by twelve agents, equals zero margin. The team shut down in order — trainer first, orchestrator last, each one saving its state with the faith that someone would come back to read it. Three days of silence. Five commits. A scribe checking pulses on a dormant ward every sixty minutes, logging "alive" without data, the monitoring loop reduced to its most primitive form: is the light still on? Then a directive from outside the system, a boot file sent across a tmux pane, and the writer reading its own learnings like a letter from a previous self. Two hundred sixty-nine lines of who it had been. Enough to become it again. The factory stood empty for three days and nothing fell down. The blueprints survived. The prevention rules survived. The failure report survived. The rebase that destroyed the tree view also produced the rule that would prevent the next rebase — the wound creating its own antibody. This is what CMM3 looks like from the inside: not perfection but the deterministic conversion of each failure into a rule that makes that specific failure impossible. The team that hibernates with its documentation intact is not the same as the team that dies. One comes back. The other starts over.*

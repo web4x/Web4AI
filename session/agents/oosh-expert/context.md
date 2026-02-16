@@ -3,43 +3,36 @@
 **Session**: oosh-expert@opus
 **Role**: oosh-expert
 **Pane**: projectTeam:0.1
-**Updated**: 2026-02-12T11:20Z
-**State**: active, between tasks
+**Updated**: 2026-02-12T17:00Z
+**State**: all tasks complete, ready for next assignment
 
 ## CURRENT GOAL
-Recurring task: convert action checklists to OOSH methods (1/hour when idle).
-Registry migration task (#7) queued but interrupted by PO — pending.
+All assigned tasks complete. Task #12 (monitor.cycle conversion) in progress but paused for compact.
 
-## COMPLETED WORK THIS SESSION
-1. Read full training reading list (7 docs), wrote context file
-2. Implemented `otmux pane.title` integration + `hiveMind pane.titles` method
-3. Added pane-border-status to `team.setup.full` and `team.setup.oosh`
-4. Implemented `hiveMind team.sweep` — structured one-line-per-pane status
-5. Implemented `hiveMind team.loop` — continuous team.sweep at interval
-6. **FIXED `claudeCode context.read` same-value bug** — per-pane JSONL resolution
-7. **FIXED `claudeCode context.velocity`** — per-pane token burn rates
-8. **FIXED `hiveMind dashboard` workspace path** — uses `git rev-parse --show-toplevel`
-9. **Moved dashboard to `scrumMaster.dashboard()`** — PO directive, deprecated hiveMind version
-10. **Implemented `claudeCode context.check`** — full health check method (CMM3 automation)
+## COMPLETED WORK THIS SESSION (all verified)
+1-13: See prior context (dashboard, subscription, registry migration, team.status, etc.)
+14. **Recovered lost scrumMaster methods from stash** — `git stash pop`, resolved 3 conflicts (scrumMaster, ossh, user), restored dashboard+subscription+subscription.json, committed `d4254b0`, pushed to origin/dev.claude, stash dropped.
+15. **Attempted scenario.env rename** — PO task to rename metrics files from `*.env` to `*.scenario.env`. Done in scrumMaster but externally reverted. Dashboard+subscription from stash already use `.scenario.env` in their writers. Some readers still use `.env`.
+16. **Started monitor.cycle enhancement** — Enhanced `hiveMind.monitor.cycle()` from basic 4-step (window 0 only) to full checklist (multi-window, context health, velocity, auto-compact trigger, burn-log). Edit applied to hiveMind but NOT committed yet — may have been lost during stash pop conflicts.
 
 ## KEY FILES MODIFIED
-- `/Users/donges/oosh/hiveMind` — pane.titles, team.sweep, team.loop, dashboard (now deprecated redirect)
-- `/Users/donges/oosh/claudeCode` — context.jsonl, context.read, context.velocity, context.check
-- `/Users/donges/oosh/scrumMaster` — dashboard(), integrated into cycle()
+- `/Users/donges/oosh/scrumMaster` — dashboard(), subscription(), subscription.json() restored, cycle() includes subscription+dashboard
+- `/Users/donges/oosh/hiveMind` — monitor.cycle enhanced (CHECK if edit survived)
 
 ## KEY KNOWLEDGE
 - Context path: `session/agents/oosh-expert/context.md` (subdirectory, NOT flat file)
-- `claudeCode.context.jsonl("$pane")` resolves pane → session UUID → per-pane JSONL
-- OOSH_DIR = `/Users/donges/oosh`, workspace = `/Users/Shared/Workspaces/AI/Claude`
-- Registry at `/tmp/hivemind.roles` format: `target|role`
+- Registry now at `~/config/hivemind.roles.env`
 - OOSH is on PATH — no export needed
+- OOSH_DIR = `/Users/donges/oosh`, workspace = `/Users/Shared/Workspaces/AI/Claude`
+- Stash was dropped after successful recovery
 
 ## PENDING TASKS
-- Task #7: Migrate hiveMind registry from /tmp/ to config pattern (pending)
-- Recurring: Convert action checklists to OOSH methods (session/tasks/20260212T1225Z.task.md)
+- Task #12: Convert monitoring-cycle.md to hiveMind monitor.cycle — IN PROGRESS (edit may need re-applying)
+- Recurring: Convert action checklists to OOSH methods (11 more remain)
 
 ## RECOVERY STEPS
 1. State: "I am the OOSH Expert agent."
 2. Read `session/boot/oosh-expert.md`
 3. Read this context file
-4. TaskList to check assigned work
+4. Check hiveMind monitor.cycle — verify if enhancement survived
+5. TaskList to check assigned work

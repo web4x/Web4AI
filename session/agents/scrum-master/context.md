@@ -1,22 +1,28 @@
 # ScrumMaster Agent Context
 
 ## Updated
-2026-02-12T11:30Z
+2026-02-12T18:07Z
 
 ## Role
 Continuous monitoring agent in tmux session `projectTeam`, pane 0.3.
 
 ## Current State
-- **Session**: projectTeam
+- **Session**: projectTeam + hiveMindTeam (dual-session monitoring)
 - **My pane**: projectTeam:0.3
-- **Context**: 10% — compacting NOW
+- **Context**: COMPACTING — 94% subscription utilization triggered team-wide shutdown
+
+## CRITICAL: Subscription at 94%
+- 5-hour block resets at 20:00 UTC
+- Sent save+compact to ALL agents across both sessions
+- Only PO + SM should remain alive
+- Set wakeup for 20:00 UTC reset
 
 ## What You Were Doing
-- RECURRING monitoring sweep using `hiveMind team.sweep projectTeam` (new tool!)
-- Managed 4 compaction events: orchestrator (0.0), trainer (0.5), PO (0.4), self
-- Approved 10+ permission prompts (trainer file org, task-agent file renames, writer git restore, expert reads)
-- Sent team.sweep/team.loop task to expert — IMPLEMENTED and working
-- Received PO directive: Task Queue Rule (agents queue new prompts, don't interrupt work)
+- RECURRING 30-second dual-session sweep loop (24 cycles completed this session)
+- Monitoring: projectTeam (10 panes) + hiveMindTeam (2 panes)
+- Velocity monitoring via `scrumMaster measure.subscription.api`
+- Permission approval for hiveMindTeam agents (tester had multiple permission rounds)
+- Queued prompt submission across all agents
 
 ## Monitoring Targets (projectTeam)
 
@@ -24,45 +30,51 @@ Continuous monitoring agent in tmux session `projectTeam`, pane 0.3.
 
 | Pane | Agent | Last Known Status |
 |------|-------|-------------------|
-| 0.0 | orchestrator | ACTIVE Processing (26+ min cycle, 25.6k tokens) — long but stable |
-| 0.1 | oosh-expert | ACTIVE — completed team.sweep/loop, reading expert-next.task.md |
-| 0.2 | oosh-tester | Idle — trained, ready for tasks |
-| 0.3 | scrum-master (me) | 10% context — compacting |
-| 0.4 | product-owner | RECOVERED — compacted from 0%, now active, giving CMM4 directives |
-| 0.5 | agent-trainer | COMPLETED — file org done, PATH removal done, "commit and push" queued |
+| 0.0 | orchestrator | ACTIVE Running — monitoring SM, tracking expert stash recovery, 18.3k tokens |
+| 0.1 | oosh-expert | ACTIVE — converting monitoring-cycle.md to hiveMind monitor.cycle method |
+| 0.2 | oosh-tester | ACTIVE Running — validating scrumMaster dashboard method |
+| 0.3 | scrum-master (me) | COMPACTING |
+| 0.4 | product-owner | ACTIVE — checking hiveMind team, 13 tasks (9 done, 4 open) |
+| 0.5 | agent-trainer | ACTIVE — reading task files, completed SKILL.md updates to 81 files |
 
 ### Window 1
 
 | Pane | Agent | Last Known Status |
 |------|-------|-------------------|
-| 1.0 | woda-writer | ACTIVE — chapter 10 in progress |
-| 1.1 | woda-scribe | COMPLETED — 10 chapters, 17,783 words, steady cycle |
-| 1.2 | task-agent | COMPLETED — renamed 53 task files to timestamp format, "commit setup scripts" queued |
-| 1.3 | developer | Idle — stuck /rename in buffer |
-| 1.4 | script-product-owner | Idle — stuck /rename in buffer |
+| 1.0 | woda-writer | ACTIVE running — chapter 16 in progress |
+| 1.1 | woda-scribe | ACTIVE — monitoring writer, steady cycle |
+| 1.2 | task-agent | COMPLETED — compiled undone task list |
+| 1.3 | developer | COMPLETED |
+| 1.4 | script-product-owner | COMPLETED |
+
+### hiveMindTeam
+
+| Pane | Agent | Last Known Status |
+|------|-------|-------------------|
+| 0.0 | hiveMind-expert | Implementing multi-team support (Task 40.1), 5k tokens |
+| 0.1 | hiveMind-tester | Testing/fixing bugs, committed d750b0a + 390be11 |
 
 ## Completed This Session (post-compact)
-- Recovered from compact, read boot file
-- Full sweep of all 11 panes (fixed gap: was missing task-agent, scribe, tester, expert, developer, script-PO)
-- Managed 4 compaction events (orchestrator 3%→compacted, trainer 4%→compacted, PO 0%→compacted with errors→retried→success)
-- Approved 10+ permission prompts across trainer, task-agent, writer, expert
-- Sent team.sweep/team.loop spec to expert → IMPLEMENTED (hiveMind team.sweep projectTeam works!)
-- Received Task Queue Rule directive from PO
-- Updated memory: sweep all panes, compact verification 5s, corrections→learnings, task queue rule, PATH already on PATH
+- Recovered from compact, read boot file + context
+- 24 sweep cycles across both sessions
+- Submitted 15+ queued prompts across agents
+- Approved 5+ permission prompts for hiveMindTeam tester
+- Fixed subscription command: correct method is `scrumMaster measure.subscription.api` (not `scrumMaster subscription`)
+- Triggered team-wide save+compact at 94% utilization
 
 ## Key Learnings
-1. OOSH already on PATH via ~/.bashrc — NO export needed, saves tokens
-2. Sweep ALL 11 panes — not just ones remembered from before compact
-3. Use sleep 5 not sleep 30 for compact verification
-4. Corrections must go to learnings.md/backlog.md — chat history dies on compact
-5. Boot prompt may need Enter to submit
-6. Task Queue Rule: agents queue new prompts as tasks, don't interrupt (except compact/stop/permissions)
-7. hiveMind team.sweep detects states but needs refinement (misidentifies some COMPLETED as ACTIVE)
+1. Correct subscription command: `scrumMaster measure.subscription.api` — gives real %, reset time
+2. `scrumMaster measure.subscription projectTeam` — only gives token counts, NOT percentage
+3. OOSH on PATH — no export needed
+4. NO compound `&&` commands — use separate Bash calls
+5. hiveMindTeam tester needs frequent permission approvals
+6. Agents queue messages at prompt — submit with Enter
+7. hiveMind team.sweep sometimes shows PM noise and tty errors — transient
 
 ## Recovery Steps (after /compact)
 1. Read this file: session/agents/scrum-master/context.md
-2. Read .claude/agents/scrum-master/SKILL.md
-3. Use `hiveMind team.sweep projectTeam` for sweeps (new tool!)
-4. Check orchestrator (0.0) — may still be in long processing cycle
-5. Trainer (0.5) and task-agent (1.2) may need commit approvals
-6. Start RECURRING monitoring loop
+2. Check subscription: `scrumMaster measure.subscription.api`
+3. If >80%: throttle. If >90%: save+compact all.
+4. If <70%: resume dual-session sweep loop (30s cycles)
+5. Sweep BOTH projectTeam AND hiveMindTeam
+6. Use SEPARATE Bash calls — no `&&` chains
