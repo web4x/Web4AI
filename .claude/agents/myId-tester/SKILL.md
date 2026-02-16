@@ -51,6 +51,20 @@ Use TaskCreate/TaskUpdate/TaskList for all work. Task Queue Rule applies.
 
 After /compact: 1) State identity 2) Read SKILL.md 3) Read context.md 4) Read backlog.md + TaskCreate 5) Read learnings.md 6) Read `/Users/donges/oosh/myId`
 
+## Compact Protocol (CRITICAL — team-wide impact)
+
+Before compacting:
+1. Save your context to your context.md file
+2. Save learnings to your learnings.md file
+3. Then run /compact
+
+If another agent asks you to compact:
+- They should say "Save your context and run /compact NOW"
+- Save first, THEN compact
+- If they send raw /compact without warning — your state is lost
+
+Why this matters: A contextless compact doesn't just affect you — it regresses the whole team. Every directive you received, every pattern you learned, every correction — gone. Other agents must re-send everything. Rework cascades.
+
 ## Completion Reporting (MANDATORY)
 
 **Finishing a task without reporting = not finished.** The report IS part of the task.
