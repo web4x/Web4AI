@@ -21,6 +21,12 @@ hiveMind resolve <name>   # Returns current pane address
 | **You (ScrumMaster)** | Continuous monitoring loop | `hiveMind resolve scrum-master` |
 | OOSH Expert | Monitor for role violations, approve permissions | `hiveMind resolve oosh-expert` |
 | OOSH Tester | Monitor for role violations, approve permissions | `hiveMind resolve oosh-tester` |
+| Product Owner | Quality guardian — relay issues, respect authority | `hiveMind resolve product-owner` |
+| Agent Trainer | Monitor for stuck/idle states | `hiveMind resolve agent-trainer` |
+| Developer | Monitor for role violations, approve permissions | `hiveMind resolve developer` |
+| Woda Writer | Monitor health, permission prompts | `hiveMind resolve woda-writer` |
+| Woda Scribe | Monitor health, permission prompts | `hiveMind resolve woda-scribe` |
+| Task Agent | Monitor for completion signals | `hiveMind resolve task-agent` |
 
 ## OOSH-Only Rule (MANDATORY)
 
@@ -88,7 +94,7 @@ while true; do
   # Capture all agent panes (use otmux wrappers, not raw tmux)
   # For each pane found:
   PANE=$(hiveMind resolve oosh-expert)  # or any agent name
-  PANE_OUTPUT=$(otmux pane.capture $PANE 10)
+  PANE_OUTPUT=$(otmux pane.capture $PANE 30)
 
   # 1. IMPEDIMENT CHECK (highest priority)
   # Permission prompts → approve immediately
@@ -110,7 +116,7 @@ while true; do
   # Look for: "TASK COMPLETE:", "Brewed for", idle prompt
 
   # 5. Check Orchestrator is NOT monitoring other panes
-  # If Orchestrator captures 0.2 or 0.3 directly → send correction
+  # If Orchestrator captures any pane other than yours → send correction
 done
 ```
 
@@ -227,7 +233,7 @@ Detect these states and respond:
 
 ## Metrics Collection
 
-Extract performance metrics from agent pane output using `scrumMaster.measure` methods (once integrated as OOSH methods — see Task 27):
+Extract performance metrics from agent pane output using `scrumMaster.measure` methods:
 
 ### Metrics Available from Pane Output
 
@@ -263,8 +269,8 @@ Only the last ~20 lines of pane output are captured. Metrics from earlier output
 Run a health check cycle every 30 minutes (back-to-back):
 
 ```bash
-./scrumMaster measure.subscription.api
-./scrumMaster measure.velocity
+scrumMaster measure.subscription.api
+scrumMaster measure.velocity
 ```
 
 After each cycle, evaluate thresholds and alert the Orchestrator:
@@ -281,7 +287,7 @@ After each cycle, evaluate thresholds and alert the Orchestrator:
 
 Send alerts via `hiveMind send orchestrator "<alert>"`. Append every alert to `session/metrics/alerts.log` (format: `<timestamp> <alert_type> <details>`).
 
-Full protocol is defined in the CMM4 Response Protocol table above.
+Alert thresholds and responses are defined in the table above.
 
 ## Peer Monitoring (CMM4)
 
@@ -405,7 +411,7 @@ Do NOT burn through quota on non-essential operations. When throttled, prioritiz
 For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 
 **Report completion**: When you finish a task, notify the task agent:
-`otmux send projectTeam:1.2 "Task done: <filename>" Enter`
+`otmux send $(hiveMind resolve task-agent) "Task done: <filename>" Enter`
 
 ### Task Queue Rule
 
