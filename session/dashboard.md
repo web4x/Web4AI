@@ -1,6 +1,6 @@
 # Team Dashboard
 
-**Updated**: 2026-02-12T16:52:08Z (2026-02-12 17:52 CET)
+**Updated**: 2026-02-14T10:10:10Z (2026-02-14 11:10 CET)
 **Session**: projectTeam
 
 ## Git Status
@@ -9,46 +9,46 @@
 |-------|-------|
 | Branch | `main` |
 | Status | uncommitted changes |
-| Last commit | `3900a22 Auto-save: scrum-master pre-compact 17:34` |
+| Last commit | `159942b Auto-save: woda-scribe pre-compact 11:24` |
 
 ## Subscription
 
 | Metric | Value |
 |--------|-------|
-| 5-hour usage | 57% |
+| 5-hour usage | 83% |
 | 7-day usage | 0% |
 
 ## Tasks
 
 | Metric | Value |
 |--------|-------|
-| Total task files | 97 |
-| Today's tasks | 56 |
+| Total task files | 101 |
+| Today's tasks | 0 |
 
 ## Team Status
 
 | Agent | Pane | Context | Velocity | State |
 |-------|------|---------|----------|-------|
-| orchestrator | 0.0 | unknown | 1737 tokens/hr | unknown |
-| oosh-expert | 0.1 | 51.7% | 2124 tokens/hr | active |
-| oosh-tester | 0.2 | 31.2% | 3592 tokens/hr | completed |
-| scrum-master | 0.3 | 57.3% | 1726 tokens/hr | unknown |
-| product-owner | 0.4 | 54.6% | 1930 tokens/hr | unknown |
-| agent-trainer | 0.5 | 61.4% | 1441 tokens/hr | unknown |
-| task-agent | 1.2 | 57.3% | 1771 tokens/hr | completed |
-| woda-writer | 1.0 | 21.1% | 4304 tokens/hr | active |
-| woda-scribe | 1.1 | 36.4% | 3227 tokens/hr | unknown |
+| orchestrator | 0.0 | 52.4% | 1286 tokens/hr | unknown |
+| oosh-expert | 0.1 | 49.0% | 1435 tokens/hr | unknown |
+| oosh-tester | 0.2 | 29.5% | 3680 tokens/hr | unknown |
+| scrum-master | 0.3 | 41.7% | 1756 tokens/hr | unknown |
+| product-owner | 0.4 | 23.6% | 1670 tokens/hr | unknown |
+| agent-trainer | 0.5 | 60.8% | 1470 tokens/hr | unknown |
+| task-agent | 1.2 | 23.6% | 1670 tokens/hr | completed |
+| woda-writer | 1.0 | 100.0% | - | active |
+| woda-scribe | 1.1 | 72.9% | 368 tokens/hr | unknown |
 | developer | 1.3 | 26.3% | 4017 tokens/hr | completed |
-| script-product-owner | 1.4 | 57.3% | 3591 tokens/hr | completed |
+| script-product-owner | 1.4 | 23.6% | 1670 tokens/hr | completed |
 
 ## Recent Commits
 
 ```
-3900a22 Auto-save: scrum-master pre-compact 17:34
-2aa566b Auto-save: orchestrator pre-compact 17:32
-a0bd0e5 Orchestrator context: pre-compact 17:15
-047f30f Rename completion-protocol-now.md to timestamp convention
-56d2666 Add Completion Reporting protocol to all 81 SKILL.md files
+159942b Auto-save: woda-scribe pre-compact 11:24
+5e4bc8a Auto-save: unknown pre-compact 11:04
+0c8a5a2 Auto-save: woda-writer pre-compact 11:03
+59167b0 Auto-save: unknown pre-compact 11:03
+2acb095 Auto-save: orchestrator pre-compact 17:50
 ```
 
 ## Recovery

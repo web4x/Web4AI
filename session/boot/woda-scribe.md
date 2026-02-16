@@ -1,10 +1,9 @@
 # Boot: woda-scribe
-*Auto-generated 2026-02-11 19:18. This is ALL you need to read post-compact.*
+*Auto-generated 2026-02-13 11:24. This is ALL you need to read post-compact.*
 
 ## You are: woda-scribe
 ## Pane: projectTeam:1.1
-## Goal: - **Primary**: Stay healthy as duo team until Friday 2026-02-13 12:00 CET. Monitor writer, ACT when stuck.
---
+## Goal: Check context file
 
 ## Immediate actions:
 1. Start monitoring loop: `sleep 300 && otmux pane.capture claudeWoda:0.0 5`
