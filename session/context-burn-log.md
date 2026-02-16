@@ -76,3 +76,13 @@
 | 11:10 | 1.5 | 71.7% | active | 174 tokens/hr | ~42266min |
 | 17:26 | 0.0 | 48.4% | panel | 537 tokens/hr | ~8571min |
 | 17:26 | 0.1 | 43.6% | active | 614 tokens/hr | ~6567min |
+| 17:26 | 0.2 | 29.5% | panel | 890 tokens/hr | ~2623min |
+| 17:26 | 0.3 | 100.0% | accept-edits | - | - |
+| 17:26 | 0.4 | 66.8% | panel | 239 tokens/hr | ~28427min |
+| 17:26 | 0.5 | 43.6% | panel | 428 tokens/hr | ~12629min |
+| 17:26 | 1.0 | 100.0% | accept-edits | - | - |
+| 17:26 | 1.1 | 65.4% | accept-edits | 262 tokens/hr | ~25266min |
+| 17:26 | 1.2 | 43.6% | panel | 343020 tokens/hr | ~19min |
+| 17:26 | 1.3 | 25.2% | panel | 912 tokens/hr | ~1994min |
+| 17:26 | 1.4 | 77.1% | panel | 614 tokens/hr | ~6567min |
+| 17:27 | 1.5 | 43.6% | active | 258 tokens/hr | ~25828min |
