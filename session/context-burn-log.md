@@ -62,3 +62,11 @@
 | 12:02 | projectTeam:0.3 | 49.8% | ok | 2843 tokens/hr | ~1681min |
 | 17:41 | 0.0 | 61.2% | panel | 1457 tokens/hr | ~4213min |
 | 17:41 | 0.1 | 61.7% | panel | 1418 tokens/hr | ~4375min |
+| 11:05 | 0.0 | 52.2% | panel | 501 tokens/hr | ~10107min |
+| 11:05 | 0.1 | 48.8% | panel | 560 tokens/hr | ~8294min |
+| 11:06 | 0.2 | 29.5% | panel | 890 tokens/hr | ~2623min |
+| 11:06 | 0.3 | 26.1% | accept-edits | 945 tokens/hr | ~2044min |
+| 11:07 | 0.4 | 68.1% | panel | 230 tokens/hr | ~30260min |
+| 11:07 | 0.5 | 60.8% | panel | 1470 tokens/hr | ~4147min |
+| 11:07 | 1.0 | 100.0% | panel | - | - |
+| 11:08 | 1.1 | 72.6% | accept-edits | 153 tokens/hr | ~48920min |
