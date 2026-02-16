@@ -70,3 +70,7 @@
 | 11:07 | 0.5 | 60.8% | panel | 1470 tokens/hr | ~4147min |
 | 11:07 | 1.0 | 100.0% | panel | - | - |
 | 11:08 | 1.1 | 72.6% | accept-edits | 153 tokens/hr | ~48920min |
+| 11:08 | 1.2 | 72.5% | panel | 810 tokens/hr | ~4669min |
+| 11:09 | 1.3 | 26.3% | panel | 4017 tokens/hr | ~488min |
+| 11:09 | 1.4 | 71.9% | panel | 167 tokens/hr | ~44279min |
+| 11:10 | 1.5 | 71.7% | active | 174 tokens/hr | ~42266min |
