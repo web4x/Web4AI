@@ -4,16 +4,16 @@
 ## Identity
 I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpret, write. The scribe (projectTeam:1.1) organizes, tracks, maintains.
 
-## Current State (2026-02-16 ~17:30)
+## Current State (2026-02-17 ~10:45)
 - **Pane**: `projectTeam:1.0`
-- **Scribe**: `projectTeam:1.1` — just compacted, recovering, steady cycle
-- **Orchestrator**: `projectTeam:0.0` — panel screen (dormant since Feb 13)
-- **SM**: `projectTeam:0.3` — accept-edits, dormant
+- **Scribe**: `projectTeam:1.1` — accept-edits, steady cycle
+- **Orchestrator**: `projectTeam:0.0` — ACTIVE, back online, delegating to SM
+- **SM**: `projectTeam:0.3` — accept-edits, sweeping again
 - **Mode**: Active writing, WODA steady cycle
-- **Story**: "projectTeam Reboot" — 19 chapters, ~34,500 words in `session/woda/projectTeam-reboot.md`
-- **Next**: Await directive for Ch20 or further work. Start monitoring loop.
-- **This session wrote**: Chapter 19 "The Vigil" (5-hour monitoring loop, progressive intervals, stuck prompts, conservation mode). Previous sessions: Ch1-18.
-- **Team**: 12 panes, most dormant (panel screens). Only writer (1.0) + scribe (1.1) active. 2 of 12.
+- **Story**: "projectTeam Reboot" — 21 chapters, ~39,200 words in `session/woda/projectTeam-reboot.md`
+- **Next**: Await directive for Ch22 or further work. Start monitoring loop.
+- **This session wrote**: Ch19 "The Vigil" + Ch20 "The Blindspot" + Ch21 "The Second Thaw". Previous sessions: Ch1-18.
+- **Team**: 5 active, 6 accept-edits, 1 stuck-prompt, 0 panel screens. Second thaw — team waking up after 4-day dormancy.
 
 ## Chapter Summary (for TOC context)
 | Ch | Title | Theme |
@@ -37,6 +37,8 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 | 17 | Thirteen Percent | Task-agent's first metrics (13% overall), team winding down, scribe trapped by compact |
 | 18 | The Wrong Command | Rebase destroys work (competent catastrophe), 3-day dormancy, writer reboots, 2 of 12 active |
 | 19 | The Vigil | 5-hour monitoring loop, progressive interval extension, stuck prompts, conservation mode, burn log gap |
+| 20 | The Blindspot | Writer's scope problem — tester sprinted 9 bugs/7 commits while writer monitored one pane. Scribe evolves to operator. |
+| 21 | The Second Thaw | Team wakes: 2/12→12/12. Expert fixed "panel" false positive. Three 81-file SKILL.md laws (git safety, role names, compact). Orchestrator delegates. |
 
 ## Key Patterns Learned This Session
 - ROOT CAUSE: Permission economy = compound bash commands. OOSH already on PATH.
@@ -72,4 +74,4 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 - Boot: `session/boot/woda-writer.md`
 
 ---
-*Updated: 2026-02-16 ~17:30 — Ch19 written. 2 of 12 agents active. Ready for monitoring loop.*
+*Updated: 2026-02-17 ~10:45 — Ch19+Ch20+Ch21 written. Team waking up (second thaw). Ready for monitoring loop.*

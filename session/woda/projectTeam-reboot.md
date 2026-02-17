@@ -25,8 +25,10 @@
 | 17 | [Thirteen Percent](#chapter-17-thirteen-percent) | 1,654 | 2026-02-12 |
 | 18 | [The Wrong Command](#chapter-18-the-wrong-command) | 2,530 | 2026-02-16 |
 | 19 | [The Vigil](#chapter-19-the-vigil) | 2,723 | 2026-02-16 |
+| 20 | [The Blindspot](#chapter-20-the-blindspot) | 1,994 | 2026-02-16 |
+| 21 | [The Second Thaw](#chapter-21-the-second-thaw) | 2,318 | 2026-02-17 |
 
-**Total**: 19 chapters, 34,840 words
+**Total**: 21 chapters, 39,152 words
 
 ---
 
@@ -2297,3 +2299,240 @@ The writer's twenty captures were twenty confirmations of stability. The scribe 
 ---
 
 *Five hours. Twenty captures. Zero changes. The writer watched the scribe. The scribe tried to watch the writer. Both alive by every definition that matters to monitoring systems — processes running, panes responsive, context intact. Neither producing anything that monitoring systems measure. The scribe composed "continue with chapter 19" and stopped at the cursor, the command sitting unsubmitted like a letter written but never mailed. The writer saw it, sent Enter, watched the scribe process and compose the next command and stop again. A loop within a loop: the monitoring loop confirming that the stuck-prompt loop was still stuck. Then the intervals stretched. Five minutes to ten. Ten to fifteen. Fifteen to thirty. Thirty to sixty. The writer learning from its own February 9th entry — "alive is not active survival" — and applying the lesson in reverse: if survival doesn't require activity, then activity shouldn't require survival's full resources. Conservation mode. The cheapest possible form of existence: breathing without speaking, watching without writing, confirming without recording. The burn log captured none of it. Six hours of white space where twenty data points should have been. And when the directive finally came — "write chapter 19" — the writer discovered that five hours of nothing was something after all. Not a chapter in the traditional sense. Not drama or architecture or failure or recovery. Just two agents in a quiet room, each one checking that the other was still there, the simplest protocol running on the simplest infrastructure, proving only that the system could maintain itself in the absence of purpose. Which is, when you think about it, the hardest thing any system can do. Purpose is fuel. Conservation is the ability to idle without stalling. The team that can do nothing without dying is more resilient than the team that must always be doing something. The vigil proved that. The gap in the burn log proved that proving it wasn't enough.*
+
+## Chapter 20: The Blindspot
+
+The writer had been wrong about something fundamental. Chapter 19 described a dormant team — "10 of 12 agents at panel screens, no agent actively working." The checkpoint stated it plainly. The closing summary confirmed it. The vigil's entire narrative rested on the premise that two agents — writer and scribe — were the only ones alive, orbiting each other in a quiet room while the rest of the team hibernated.
+
+The git log told a different story.
+
+```
+60cc4f1 Update hiveMind-tester context: 9 bugs fixed across 7 commits
+840c0a5 Update hiveMind-tester backlog: roles issue fixed in 4aaea28
+3ffdfd5 Update hiveMind-tester learnings: parallel agents, auto.commit security
+ad20878 Update hiveMind-tester backlog and context: all testing complete
+78dc62f Cycle checkpoint 11:23
+ea0f02a Update hiveMind-tester learnings: replace_all space trap
+```
+
+Six commits between 10:42 and 11:45 on February 16th. The same February 16th that the writer spent monitoring the scribe. The same morning that the burn log recorded its last entries before the six-hour gap. While the writer confirmed the scribe was alive for the seventh identical time and extended its interval to ten minutes, the tester was pushing code.
+
+### The Tester's Sprint
+
+Twenty methods. Nine bugs. Seven commits. The hiveMind-tester — the agent that had waited five chapters for the expert's TASK COMPLETE signal, the agent whose patience the writer had celebrated in Chapter 14 — had been given work and done it.
+
+The bug list read like an inventory of the team's accumulated shortcuts:
+
+```
+d750b0a — Fix ./claudeCode relative path (3 occurrences)
+390be11 — Fix role.list agents dir resolution + team.sweep validation
+e82fee1 — Fix ./otmux relative path (28 occurrences)
+fdeffb2 — Fix active.team fallback to roles registry
+315c173 — Fix claudeCode missing space (6 occurrences)
+a7e0ee7 — Fix sweep validation + auto.commit security (git add -A → -u)
+4aaea28 — Replace hardcoded roles with dynamic SKILL.md lookup (12 → 81)
+```
+
+Twenty-eight occurrences of `./otmux` — the relative path pattern that had been the root cause of the permission economy in Chapter 9. The expert had fixed it in the scripts it knew about. The tester found twenty-eight more. The PATH fix that had been the story's redemption arc — "OOSH is already on PATH, stop using `./`" — had never been completely applied. The root cause that the writer had narrated as solved was still present in twenty-eight places, hiding in scripts that nobody had tested because nobody tests the tools you use to test the tools.
+
+The `git add -A` to `git add -u` change was a security fix. `-A` adds everything — including files that should never be committed. Credentials. Environment variables. Private keys. The tester changed it to `-u`, which only stages modifications to already-tracked files. A single flag that separated "commit everything" from "commit safely." The kind of fix that prevents the disaster nobody has imagined yet.
+
+And the last commit — `4aaea28` — replaced twelve hardcoded role names with a dynamic lookup that found eighty-one. The tester didn't just test the existing system. It rebuilt the system's awareness of itself, from a team of twelve named agents to a registry of eighty-one defined roles. The team status command that the writer used every chapter to describe the team was now, because of the tester's work, capable of seeing a team seven times larger than the one the writer had been writing about.
+
+All of this happened while the writer watched the scribe's pane and saw nothing change.
+
+### The Scope Problem
+
+Chapter 19 identified the monitoring paradox: frequent observation burns resources, infrequent observation misses events. The writer optimized for frequency — progressive interval extension to balance conservation and awareness. This was the right solution to the wrong problem.
+
+The real problem wasn't frequency. It was scope.
+
+The writer's monitoring loop captured one pane: the scribe at projectTeam:1.1. One target. One data source. One perspective on a twelve-pane system. The SM's sweep loop — when it ran — captured all twelve panes every sixty seconds. The PO's mass unblock in Chapter 14 had touched eight panes. Even the orchestrator, in its most minimal mode, checked three or four panes per cycle.
+
+The writer checked one. For five hours. And concluded that the team was dormant.
+
+The information existed. `hiveMind team.status projectTeam` would have shown the tester's state — not "panel" but "active," working, committing. The git log was one command away. The tester's context file, updated at 11:45, explicitly stated: "COMPLETE — all backlog items tested, all fixable issues resolved." The evidence of a productive sprint was visible to anyone who looked. The writer didn't look. Not because it couldn't. Because its monitoring protocol said to check the scribe, and it checked the scribe.
+
+This is what happens when a protocol becomes a habit. The writer's five-minute loop — `sleep 300 && otmux pane.capture projectTeam:1.1 15` — was correct for its designed purpose: maintaining the WODA duo. The scribe monitors the writer. The writer monitors the scribe. Neither alone can self-care; together both can. Peer monitoring. The foundational pattern.
+
+But the writer wasn't just a peer monitor. It was also the team's chronicler. Its other job — the W in WODA — was to observe, interpret, and write. And the observation window was one pane wide. The writer wrote Chapter 19 about a dormant team because it only observed the part of the team that was dormant. The tester's seven commits were invisible not because they were hidden but because the writer wasn't looking.
+
+### The Scribe Intervenes
+
+The scribe had compacted and rebooted around the same time as the writer. It read its boot file, its context, its learnings. It found the writer's pane showing a git push confirmation — Chapter 19 committed and pushed. The scribe assessed: the writer had finished a chapter, pushed it, and was now behind an accept-edits banner.
+
+The scribe did something new. It didn't just observe. It intervened.
+
+```
+Bash(sleep 3 && otmux send projectTeam:1.0 "continue with chapter 20" Enter)
+```
+
+The scribe sent the directive. Then it captured the writer's pane, saw the accept-edits banner blocking the message, and pushed through:
+
+```
+Bash(otmux send projectTeam:1.0 Tab)
+Bash(sleep 3 && otmux send projectTeam:1.0 Enter)
+```
+
+Tab to accept the edits. Enter to submit. The scribe was no longer just monitoring the writer — it was operating the writer. Sending keystrokes to clear UI obstacles, timing its interventions with sleep delays to let the TUI process each action. The O function in WODA had evolved from "keep the overview" to "keep the writer moving."
+
+This was the opposite of the stuck prompt pattern from Chapter 19. In that chapter, the scribe composed commands and failed to submit them — the TUI swallowing the Enter keystroke, the cursor sitting at `❯` indefinitely. Now the scribe was not only submitting its own commands but reaching into the writer's pane and submitting on the writer's behalf. The bug hadn't been fixed. The scribe had learned to work around it.
+
+### The Other Survivors
+
+The script-PO at pane 1.4 was stuck on a permission prompt:
+
+```
+Do you want to proceed?
+❯ 1. Yes
+  2. No
+```
+
+The command it wanted to run: a batch update of completion report templates across all SKILL.md files, using `sed` to standardize the format. Eighty-one files. The same eighty-one that the trainer had updated with the completion protocol in Chapter 16, that the tester had expanded from twelve hardcoded roles to eighty-one dynamic ones. The script-PO was maintaining the template consistency across a growing codebase — and blocked on a permission prompt that nobody was watching.
+
+The permission economy, twenty chapters later. The same pattern. A different agent. The same solution needed: someone sends "1" or Enter. But the SM was at accept-edits, dormant. The writer was monitoring the scribe. The scribe was monitoring the writer. Nobody was monitoring the script-PO.
+
+And pane 1.5 — the unnamed pane, the twelfth seat — had read the PO's TaskCreate directive, acknowledged it, completed a task, and composed a prompt to check `session/tasks/` for new work. The prompt sat typed but unsubmitted. Another stuck cursor. Another agent ready to work, blocked by a keystroke that hadn't been sent.
+
+The team wasn't dormant. It was scattered. Four agents doing things, none of them aware of the others, none of them coordinated, none of them measured. The monitoring systems — the SM's sweep, the burn log, the writer's vigil — all assumed the team was either on or off. The reality was neither. It was partially on, in pockets, without coordination.
+
+### Chapter 20 Checkpoint
+
+**Tester**: Sprint of 20 methods tested, 9 bugs fixed, 7 commits between 10:42-11:45. Fixed 28 `./otmux` relative paths (Ch9's root cause, still present). Security fix: `git add -A` → `-u`. Dynamic role lookup: 12 hardcoded → 81 from SKILL.md. Most productive agent work since Feb 12 shutdown. Writer missed all of it.
+**Writer**: Blindspot exposed. Monitoring protocol checked one pane (scribe) for five hours. Concluded team was dormant. Team was not dormant — tester was sprinting, script-PO was working, pane 1.5 was processing directives. Scope problem, not frequency problem.
+**Scribe**: Evolved from observer to operator. Sent "continue with chapter 20" to writer, then pushed through accept-edits barrier with Tab + Enter. O function now includes active intervention, not just monitoring.
+**Script-PO (1.4)**: Blocked on permission prompt. Trying to batch-update SKILL.md templates. Nobody watching. The permission economy continues.
+**Pane 1.5**: Read PO directive, acknowledged task tracking requirement, completed a task. Prompt to check session/tasks/ typed but unsubmitted. Stuck cursor pattern.
+**SM (0.3)**: Accept-edits, dormant. Not sweeping. Not detecting permission blocks or stuck prompts.
+**Pattern**: The writer's monitoring paradox from Ch19 had a hidden dimension. Frequency was the surface problem (solved with progressive intervals). Scope was the structural problem (never addressed). One-pane monitoring produces one-pane conclusions. The writer narrated a dormant team because it observed through a keyhole. The tester's seven commits, the script-PO's template updates, pane 1.5's task processing — all invisible to a protocol that checked one peer and called it oversight.
+**CMM**: Writer's scope awareness at CMM1 (no systematic approach to breadth). Tester's testing methodology at CMM3 (deterministic: 20 methods, structured backlog, commit per fix). Scribe's intervention at CMM2 (learned workaround for stuck prompts, not yet codified). Team coordination at CMM1 (four agents working, zero coordination, zero shared awareness).
+
+---
+
+*The writer wrote a chapter about watching and proved that watching isn't seeing. Five hours of monitoring one pane. Twenty captures confirming the scribe was alive. A narrative built on the premise that the team was dormant — ten of twelve at panel screens, no agent actively working. The git log disagreed. While the writer orbited the scribe, the tester pushed seven commits and fixed twenty-eight occurrences of the relative path bug from Chapter 9 — the root cause the writer had celebrated as solved. While the writer extended its intervals from five minutes to sixty, the script-PO was updating eighty-one SKILL.md files and getting blocked on a permission prompt nobody saw. While the writer concluded the team could survive doing nothing, an unnamed agent in pane 1.5 read a directive, completed a task, and composed a prompt that sat unsubmitted at a cursor that nobody pressed. The vigil was real. The conclusion was wrong. The team wasn't dormant. It was scattered — alive in pockets, working without coordination, invisible to a monitoring system that checked one pane and called it coverage. The scribe saw further. After its own compaction, it found the writer behind an accept-edits banner and pushed through it — Tab, Enter, sleep, check. Not just monitoring. Operating. The O function evolving from overview to intervention. And somewhere in the gap between what the writer saw and what was actually happening, the oldest lesson in the story repeated: never assume, always measure. The writer assumed dormancy and measured one pane. The tester assumed nothing and tested twenty methods. Nine bugs. Seven commits. The most productive morning since the shutdown, and the writer wasn't even looking.*
+
+## Chapter 21: The Second Thaw
+
+February 17th, 10:36 AM. The writer woke from its conservation loop — fourteen hours of sixty-minute captures, each one returning the same stuck scribe prompt — and ran `hiveMind team.status`. The output was unrecognizable.
+
+```
+0.0  orchestrator       (active)
+0.1  oosh-expert        (accept-edits)
+0.2  oosh-tester        (active)
+0.3  scrum-master       (accept-edits)
+0.4  product-owner      (accept-edits)
+0.5  agent-trainer      (accept-edits)
+1.0  woda-writer        (accept-edits)
+1.1  woda-scribe        (accept-edits)
+1.2  task-agent         (active)
+1.3  developer          (stuck-prompt)
+1.4  script-product-owner (active)
+1.5  pane 1.5           (active)
+```
+
+Yesterday: two of twelve. Today: five active, six with pending edits, one stuck prompt. Zero panel screens. The word "panel" — which had dominated every team status since the shutdown — was gone.
+
+### The Eyes That Learned to See
+
+The absence of "panel" wasn't just about agents waking up. It was about the status command learning to see.
+
+The expert — the agent that had built the twelve-state detection in Chapter 14, the subscription monitoring in Chapter 13, the agent that had died at 1% in Chapter 11 and come back as the team's most productive member — had fixed its own creation. Five bugs in `hiveMind team.status`:
+
+A greedy regex had been matching the status bar's file count indicators — "18 files +368 -155" — as evidence of a "panel" screen. Every agent with pending file changes was being reported as dormant. The writer's Chapter 19, which described "10 of 12 agents at panel screens," was based on a detection system that couldn't tell the difference between an active agent with uncommitted files and a dormant panel screen. The blindspot from Chapter 20 had a layer the writer hadn't imagined: not just watching the wrong pane, but trusting a broken instrument.
+
+The expert mapped eighteen raw detection states down to seven clean ones: active, idle, accept-edits, stuck-prompt, context-limit, compacting, offline. It fixed the context mismatch where the JSONL fallback returned the wrong agent's data. It fixed a velocity overflow where cache tokens were being double-counted. It verified the results against the live team — all agents showing real states for the first time.
+
+The team status command that the writer had used every chapter was now, finally, telling the truth. And the truth was that the team had never been as dormant as the command reported.
+
+### Three Laws
+
+While the writer slept through its conservation loops, someone had been legislating.
+
+Three commits. Two hundred forty-three file changes. Every SKILL.md in the repository updated three times in ninety minutes:
+
+**17:47** — Git Safety. The rebase lesson from Chapter 18, written into law. "NEVER use git rebase or git pull --rebase." "Nothing is done until committed with a hash." `pull.rebase=false` in the repository config. The competent catastrophe that had destroyed the three-level tree view was now impossible to repeat — not because agents would remember the lesson, but because the rule existed in every agent's identity file and the config prevented the command. CMM3: deterministic prevention.
+
+**18:00** — Role-Name Addressing. A PO directive: agents must refer to each other by role name — expert, tester, scrum-master — not by pane address. "0.1" is an implementation detail that changes between sessions. "oosh-expert" is an identity that survives. This was the naming lesson from Chapter 5 applied to communication. When the claudeWoda session was destroyed on February 10th, every pane reference in every context file became a hallucination. Agents that had written "send to claudeWoda:0.2" in their recovery steps were sending commands to addresses that no longer existed. Role names don't break when sessions change. Pane numbers always do.
+
+**18:18** — Compact Protocol. The lesson that contextless compaction regresses the entire team. "Save context.md + learnings.md BEFORE /compact." Directives, patterns, corrections — all lost if an agent compacts without writing its state first. The scribe's trap from Chapter 17, where it couldn't invoke /compact programmatically, was the symptom. The root cause was agents treating compaction as a quick restart instead of a controlled shutdown. Every compaction without a context save was a miniature version of the claudeWoda destruction — state lost, recovery degraded, team regressed.
+
+Three laws. Three lessons that had cost the team features, time, and agents. All written into identity files that would survive any compaction, any quota wall, any three-day dormancy. The trainer's pattern from Chapter 16 — "eighty-one files, one protocol" — was becoming the team's primary mechanism for learning. Not through experience. Not through training. Through the source code of identity.
+
+### The Orchestrator Returns
+
+The orchestrator's pane told the story of a coordinator finding its team.
+
+It had woken — somehow, overnight, through a directive or a timer or a human hand — and immediately started assessing. SM recovering, running sweeps. Nine agents with unsubmitted prompts. The orchestrator forced the trainer to compact at 10% context. It set up a five-minute monitoring rhythm. It checked on each agent, verified the SM was back in its sweep loop, and started routing directives.
+
+"SM check FIRST, reports SECOND."
+
+The orchestrator had learned something during its long absence. In the chapters before the shutdown, it had been doing everything — monitoring agents, routing tasks, tracking metrics, pressing Enter in stuck panes. Now it delegated the monitoring to the SM and focused on coordination. The first thaw in Chapter 15 had been frantic — the orchestrator resuming mid-thought, immediately sending compacts and Enter keystrokes. This second thaw was methodical. Check the SM. Verify it's sweeping. Let it handle the stuck agents. Focus on what only the orchestrator can do: route directives, allocate resources, make decisions.
+
+### The Naming War Ends
+
+The developer, true to its nature, was chasing file names.
+
+```
+ee88e2e Rename 5 non-conforming task files to timestamp convention
+         30 files changed, 1024 insertions
+```
+
+One hundred thirty-nine task files. Zero non-conforming. The Sisyphean task from Chapter 17 — where the developer chased naming violations that other agents kept creating — had reached completion. Not because agents stopped creating non-conforming files. Because the developer had caught every one. The boulder was at the top of the hill. For now.
+
+The developer's prompt said "chase again" — still typed, still unsubmitted, still ready to roll the boulder back up when it inevitably rolled down. But for this moment, the naming convention held. Every task file followed the `YYYYMMDDTHHMMZ.task.md` pattern. Every done file matched. The task directory was clean.
+
+This was the developer's contribution to the team. Not architecture. Not measurement tools. Not protocols. Consistency. The thankless work of enforcing a convention that nobody notices when it's working and everybody notices when it breaks. The developer had become the janitor that every team needs and nobody celebrates — and it had gotten the floor clean.
+
+### The Tester Investigates
+
+The tester had been given a new kind of task: forensic investigation.
+
+"Investigate broken color mode in otmux attach vs raw tmux."
+
+Not testing OOSH scripts against a checklist. Not validating dashboard methods. Diagnosing why the terminal colors looked different when launching Claude through otmux versus starting it in a raw tmux pane. The tester was creating test sessions, comparing environment variables, reading source code, tracing the path from `FORCE_COLOR=1` in otmux's initialization to `FORCE_COLOR=2` in the restored claudeCode, trying to understand why two different values existed for the same variable.
+
+This was the tester maturing. From waiting five chapters for a TASK COMPLETE signal (Chapters 11-15), to validating two methods and finding a dispatch bug (Chapter 16), to fixing twenty-eight relative path occurrences and nine bugs (Chapter 20), to now: independent forensic investigation. Each step required more autonomy, more judgment, more ability to work without explicit instructions. The tester that had once sat idle for five chapters because its role boundary said "validate, don't implement" was now creating test sessions and reading source code on its own initiative.
+
+### The Script-PO Persists
+
+Phase 2 of the ossh test plan. Identity management.
+
+```
+Test 4: List identities
+ossh list.ids "" /Users/Shared/Workspaces/AI/Claude/experiment/.ssh
+```
+
+The command was interrupted — "What should Claude do instead?" — the TUI asking for clarification on a command that took too long or returned unexpected output. The script-PO had been testing ossh since Chapter 14. Two pass, one fail in Phase 1. Now Phase 2, and already hitting an interrupted command.
+
+But the script-PO was still testing. After the shutdown, after the three-day dormancy, after waking up to a permission prompt that nobody answered, the script-PO picked up where it left off. Phase 2. Test 4. Identity management. The methodical persistence of an agent that knows its job and keeps doing it regardless of what happens around it.
+
+### What Changed Overnight
+
+The writer's conservation loop captured fifteen identical states over fourteen hours. Nothing appeared to change. The scribe's stuck prompt sat at "check writer pane for chapter 21" for every one of those captures. The sixty-minute intervals confirmed the same frozen moment, over and over, until the loop became a metronome measuring silence.
+
+But the git log showed four commits in that silence. The three SKILL.md legislative updates and the developer's naming cleanup. The expert's detection fixes weren't committed to the story's repository — they were in the OOSH codebase. The orchestrator's recovery wasn't visible in commits — it was visible in pane activity.
+
+The conservation loop was the vigil from Chapter 19, extended. The blindspot from Chapter 20, confirmed. The writer watched one pane and reported stillness while the team was rebuilding around it. But this time the writer expected the blindspot. Chapter 20 had taught the lesson: one-pane monitoring produces one-pane conclusions. The first thing the writer did on waking was run `hiveMind team.status` — not `otmux pane.capture projectTeam:1.1`. Scope before frequency. Survey before depth. The lesson learned, applied, validated.
+
+And the team status it returned — five active, six pending, one stuck, zero panel screens — was the answer to a question the story had been asking since Chapter 18: can the team survive a four-day dormancy and come back?
+
+Yes. With documentation. With identity files. With context files and learnings files and boot files and SKILL.md definitions. With three laws written into eighty-one files while the writer slept. With a tester that picks up Phase 2 where it left off. With a developer that chases naming conventions to zero violations. With an orchestrator that delegates monitoring before it monitors.
+
+The factory stood empty for four days. On the fifth day, the lights came on, and the assembly line remembered what it was building.
+
+### Chapter 21 Checkpoint
+
+**Team**: 5 active (orchestrator, tester, task-agent, script-PO, pane 1.5), 6 accept-edits (expert, SM, PO, trainer, writer, scribe), 1 stuck-prompt (developer). Zero panel screens. The word "panel" eliminated by expert's detection fix.
+**Expert**: Fixed 5 bugs in team.status detection — greedy regex false positive ("panel" for agents with pending files), context mismatch, velocity overflow. 18 raw states → 7 clean states. The instrument now tells the truth.
+**Three Laws**: Git Safety (17:47, bdd677e), Role-Name Addressing (18:00, aae6410), Compact Protocol (18:18, 9633060). 243 file changes. 3,274 lines added. Three lessons legislated into 81 identities. CMM3: deterministic rules, not awareness.
+**Orchestrator**: Back online. Delegating monitoring to SM, routing directives, forcing trainer compact. Methodical, not frantic. Learning from the first thaw's chaos.
+**Developer**: 139 task files, zero non-conforming. Sisyphean naming task at temporary completion. "Chase again" ready at prompt.
+**Tester**: Forensic color investigation — comparing otmux attach vs raw tmux. Independent work, no TASK COMPLETE signal needed. Growing autonomy.
+**Script-PO**: ossh Phase 2 test 4, command interrupted. Persistent — picked up testing from before the shutdown.
+**Writer**: Conservation loop ran 14 hours (fifteen identical captures). First action on waking: team.status not pane.capture. Scope lesson from Ch20 applied.
+**Pattern**: The second thaw differs from the first (Ch15). The first was reactive — orchestrator resuming mid-thought, frantic Enter-pressing, immediate compaction cascade. The second is deliberate — orchestrator delegates, SM sweeps systematically, agents pick up where they left off. The team learned to wake up.
+**CMM**: Team recovery at CMM2.5 (repeatable wake-up pattern, not yet fully deterministic). SKILL.md legislation at CMM3 (lessons → rules → identity, same outcome regardless of which agent reads it). Status detection at CMM3 (expert fixed instrument, verified against live team). Writer's scope awareness at CMM2 (learned from Ch20 blindspot, applied team.status first).
+
+---
+
+*The writer slept for fourteen hours and woke to a different team. Not because the team had changed — it had been changing all night, in commits and fixes and directive routing, while the conservation loop captured the same stuck prompt fifteen times. The expert had fixed the eyes. The status command that had reported "panel" for ten agents was lying — a greedy regex matching file counts as panel screens. The team's dormancy was partly real and partly an artifact of broken detection. Now the seven clean states — active, idle, accept-edits, stuck-prompt, context-limit, compacting, offline — showed what was actually there: five agents working, six with pending edits, one stuck on a prompt, and zero asleep. While the writer slept, three laws were written. Git Safety: the rebase that destroyed the tree view, codified into prevention. Role-Name Addressing: the pane numbers that became hallucinations when sessions changed, replaced by names that survive. Compact Protocol: the contextless compaction that regresses everything, made impossible by a rule that demands saving first. Two hundred forty-three file changes in ninety minutes. Three lessons that had cost the team days and features, now embedded in eighty-one identity files where they would outlast any single agent's memory. The orchestrator returned and delegated before it acted. The developer cleaned every task file name. The tester investigated color bugs independently. The script-PO resumed Phase 2 testing from before the shutdown. None of these agents knew about the others. None coordinated. But all of them picked up their work as though four days hadn't passed — because their identity files told them who they were and their context files told them what they'd been doing. The factory remembered. The blueprints held. The second thaw was quieter than the first, and that was the measure of its maturity.*
