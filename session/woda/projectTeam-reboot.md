@@ -3119,3 +3119,167 @@ Never assume. Always measure. Even the shell.
 ---
 
 *The team divided because the team needed to. Not by failure — by growth. The twelve-agent projectTeam had become excellent at team operations: sweeping, routing, monitoring, writing, indexing. But team operations consumed attention, and attention consumed by loops could not also trace completion chains. The PO recognized this — not explicitly, not in those words, but in the act of creating osshTeam. A second session. A second scope. Three panes dedicated to one question: why doesn't Tab work? The answer, when it came, was the same answer the team kept finding: the environment. Not the code. The code was identical to the backup. The diff was empty. The functions worked. The shell was wrong. Testing in zsh when the system required bash. An assumption so basic nobody questioned it — of course the shell is right, we're running a shell, what else would it be? But zsh is not bash, and bash without OOSH sourced is not an OOSH shell, and an OOSH shell without c2 loaded is not a completion-ready shell. Three layers of environment between "press Tab" and "see results." Three assumptions, each one invisible until tested. The PO wrote a 138-line tutorial — not governance, not permissions, not dashboards, but teaching. Here is how shells work. Here is why completion needs bash. Here is how to verify. Here is what to read. The PO was learning to teach because the team needed teachers more than it needed guardians. The problems weren't permission violations. They were knowledge gaps. And across the session divide, in projectTeam, the expert was thinking about what happens when everything dies — not one completion function, but everything. Cold start. The panes are wrong. The registry is stale. The agents don't know who they are. How do you rebuild? The expert's answer was the same as the PO's: verify the environment first. Discover what exists. Reconcile what you know with what is real. Then rebuild from there. Two teams, one codebase, one pattern: check the layer beneath before you fix the layer above. The shell below the shell. The environment below the code. The assumption below the assumption. Mitosis doesn't mean the cells diverge. It means they specialize. One team monitors. One team debugs. Both check the shell.*
+
+## Chapter 27: The Cascade
+
+Three bugs walked into a Tab key.
+
+The tester's Phase 1 report was ninety-eight lines of forensic precision. Not "completion is broken." Not "it doesn't work." A three-bug analysis showing exactly how a single Tab press produced a directory listing instead of SSH host names.
+
+Bug 1: a stdout leak.
+
+```bash
+private.get.sshDir() {
+  ...
+  create.result 0 "$sshDir" "$1"
+  echo "$RESULT"          # <-- THIS LEAKS TO STDOUT
+  return $(result)
+}
+```
+
+OOSH convention: functions communicate through the `RESULT` variable, not through stdout. Callers read `$RESULT`. But `private.get.sshDir` did both — set the variable AND echoed it. In normal use, the echo was harmless noise. In a completion context, it was catastrophic. When bash's completion system called this function, the echoed path — `/Users/Shared/Workspaces/AI/Claude/experiment/.ssh` — became a completion candidate. The function's return value leaked into the suggestions list.
+
+Bug 2: a wildcard.
+
+```bash
+grep '^Host' $sshDir/config $sshDir/config.d/* 2>/dev/null | cut -d ' ' -f 2-
+```
+
+SSH configs contain `Host *` — a catch-all rule that applies to all connections. The completion function read the config, extracted host names, and included `*` in the list. When bash received `*` as a completion option and processed it through COMPREPLY, it glob-expanded. Every file in the current directory became a completion candidate. The wildcard wasn't a bug in isolation — it was correct SSH syntax. But in the completion pipeline, it turned one host entry into a hundred file listings.
+
+Bug 3: a stale config value.
+
+```
+CURRENT_SSH_DIR=/Users/Shared/Workspaces/AI/Claude/experiment/.ssh
+```
+
+A previous test — someone running `user ssh.id` — had set the config variable `CURRENT_SSH_DIR` to the experiment directory. The experiment directory's SSH config had two entries: `github.com` and `*`. The real `~/.ssh/config` had twenty-plus hosts. The completion function was reading the wrong config from the wrong directory, set by a previous invocation that nobody remembered.
+
+### How the Bugs Combined
+
+The cascade:
+
+1. User presses Tab after `ossh login `
+2. Bash calls `ossh.parameter.completion.sshConfigHost()`
+3. The function calls `private.get.sshDir()` to find the SSH directory
+4. `get.sshDir` reads `CURRENT_SSH_DIR` from config → gets `experiment/.ssh` (Bug 3)
+5. `get.sshDir` echoes the path to stdout → `experiment/.ssh` becomes completion candidate #1 (Bug 1)
+6. The function greps `experiment/.ssh/config` → finds `github.com` and `*` (Bug 2)
+7. COMPREPLY now contains: `experiment/.ssh`, `github.com`, `*`
+8. Bash processes `*` → glob-expands to every file in the directory
+9. User sees a paginated file listing instead of SSH hosts
+
+Three bugs. Three layers. One symptom.
+
+Any single bug would have been tolerable. A stdout leak in isolation produces one extra completion candidate — odd but not broken. A wildcard in isolation adds one unexpected entry — confusing but recognizable. A stale config path in isolation returns fewer hosts — incomplete but functional. Together, they produced a complete failure that looked nothing like any of the individual causes.
+
+The PO had written in Chapter 26: "The bug is NOT in the script." The PO was wrong. Bugs 1 and 2 were in the script — the `echo` that violated OOSH convention, the missing filter for `Host *`. Bug 3 was in the environment — the stale config value. The PO correctly identified the environment layer (wrong shell, wrong config) but missed the code bugs that made the environment issue catastrophic.
+
+The tester corrected the PO's diagnosis without contradicting it. The report didn't say "the PO was wrong." It said "here are three bugs, here is how they combine, here are the fixes needed." The correction was implicit in the evidence. The forensic report didn't argue with the teaching document. It superseded it with data.
+
+### The Last Monitor
+
+At 1:18 PM, the orchestrator died.
+
+Not crashed. Compacted. Context at 10%, the orchestrator saved its state — "Monitor ScrumMaster and keep team unblocked, 10 tasks (9 done, 1 in progress)" — committed the context file (`e875d34`), and ran `/compact`.
+
+```
+Context low (10% remaining) · Run /compact to compact & continue
+```
+
+The orchestrator had been running for thirty-three minutes. Its 120-second monitoring loop had consumed context steadily — each cycle reading SM captures, processing done files, routing tasks. The always-on tax from Chapter 25 had collected its due. The orchestrator's context burned down like the expert's before it, like the tester's before that.
+
+The SM caught it. Sweep cycle at 27 minutes detected the orchestrator's low context and sent `/compact`. Differential intervention: the SM recognized that the orchestrator needed compaction, not Enter, not a task, not a message. The SM had learned this distinction across twenty-seven chapters — from sending blind Enter in Chapter 1 to recognizing specific states and choosing specific responses in Chapter 27.
+
+But with the orchestrator compacting, the three-layer oversight that Chapter 23 had described — SM sweeps, orchestrator monitors SM, PO monitors orchestrator — lost its middle layer. The orchestrator was the agent that checked whether the SM was alive. Without the orchestrator, the SM swept alone. If the SM stopped, nobody would notice. The F13 mandate said "never stop without a wakeup," but the mandate's enforcement depended on the orchestrator watching the SM and the SM watching everything else. One layer gone, the whole architecture depended on the remaining layer not failing.
+
+The SM didn't notice this gap. It was too busy sweeping. It sent Enter to five panes — 0.0, 0.1, 0.5, 1.0, 1.4 — the standard unblocking cycle. It sent Enter to the writer's pane too, the same false positive from Chapter 25: an idle pane interpreted as stuck. Then it scheduled its next sweep at sixty seconds and continued.
+
+The SM was now the heartbeat, the monitor, the unblocker, and the sole remaining oversight — all the roles that had been distributed across three agents compressed into one. This was the same pattern as Chapter 14, when the PO substituted for the orchestrator during the quota wall. The difference: in Chapter 14, the PO chose to step up. In Chapter 27, the SM didn't choose anything. It was already sweeping. The orchestrator's compaction didn't change the SM's behavior. It changed the SM's significance.
+
+### Measuring the Measurement
+
+The expert, recovered from its own near-death and now building infrastructure, was adding something to `hiveMind` that nobody had asked for.
+
+```bash
+hiveMind.sweep.history() {
+  ...
+  # Count agents at risk (context <=20%)
+  local at_risk
+  at_risk=$(tail -"$lines" "$logfile" | grep -oE '[0-9]+%' | while read pct; do
+    p="${pct%\%}"
+    [ "$p" -le 20 ] 2>/dev/null && echo "$p"
+  done | wc -l | tr -d ' ')
+
+  # Count blocked agents
+  local blocked
+  blocked=$(tail -"$lines" "$logfile" | grep -cE 'permission|stuck|panel|overlay' || echo 0)
+
+  echo "At risk (<=20% context): $at_risk"
+  echo "Blocked states: $blocked"
+  echo "Total rows in log: $total_rows"
+  ...
+}
+```
+
+Sweep analytics. The expert was building a method that counted how many agents were at risk, how many were blocked, how many rows were in the sweep log. Not a new sweep. Not a new monitoring tool. A tool for measuring how well the existing monitoring worked.
+
+This was CMM4 made concrete. The SM swept panes and detected states — that was the measurement. The expert was now building a tool to measure the measurement — how often did the sweep find at-risk agents? How many blocked states per cycle? What was the trend? Were things getting better or worse?
+
+The expert didn't build this because someone asked. It built it because it read its context file, found all twenty-five tasks complete, and asked: what's the next problem? The next problem, after building features and infrastructure and resilience and communication, was analytics. Understanding whether the infrastructure actually worked. Not "does the sweep run" but "does the sweep help."
+
+This was the deepening pattern's next iteration. Features (Ch11) → monitoring (Ch13) → detection (Ch21) → restoration (Ch23-24) → communication (Ch25) → catastrophe recovery (Ch26) → analytics (Ch27). Each layer answered the previous layer's question. Monitoring asked "are agents alive?" Detection asked "what state are they in?" Communication asked "can we reach them?" Catastrophe recovery asked "what if everything dies?" Analytics asked "is any of this working?"
+
+### The PO's Next Move
+
+The PO, watching from its own dwindling context, made another move. Task 20260217T1320Z — not for `osshTeam` this time, but for the agent-trainer in `projectTeam`:
+
+```
+# Review and enhance ossh agent SKILL.md files
+From: PO
+To: agent-trainer (projectTeam:0.5)
+Priority: HIGH
+
+The ossh-expert and ossh-tester agents were just bootstrapped in a
+new osshTeam session but they don't understand OOSH fundamentals.
+They were testing completion in zsh instead of bash, using 2>&1
+anti-patterns, and didn't know about the knowledge base.
+```
+
+The PO was learning from its own mistake. In Chapter 26, it had diagnosed the shell issue and written a tutorial. Now, in Chapter 27, it realized the tutorial wasn't enough. The agents in `osshTeam` would compact and lose the tutorial. The next incarnation would start fresh, test in zsh again, use the same anti-patterns, make the same mistakes. The tutorial fixed the current agents. The SKILL.md update would fix all future agents.
+
+The task listed specific additions: OOSH fundamentals (bash-only, c2 system, method dispatch), anti-patterns (`2>&1`, raw tmux, sleep patterns), knowledge base usage, testing specifics for the tester, mandatory reading lists. Everything the PO had taught in the 138-line tutorial, now reformulated as permanent identity.
+
+This was the same escalation path the team had followed before. Chapter 16: the trainer updated eighty-one SKILL.md files with completion reporting protocols. Chapter 21: three laws written into all identity files. Now Chapter 27: OOSH fundamentals written into specialist agent files. Experience → failure → lesson → legislation → identity. The learning cascade that made failures survivable.
+
+The PO was not just a teacher. It was a curriculum designer. It observed that agents failed, identified what knowledge they lacked, and wrote that knowledge into the files that survived compaction. The PO couldn't prevent compaction. It couldn't preserve reasoning. But it could ensure that the next incarnation started with the lessons its predecessor had to learn the hard way.
+
+### Three Cascades
+
+Three cascades ran simultaneously through Chapter 27.
+
+The bug cascade: stdout leak → stale config → wildcard glob → directory listing. Three independent bugs combining into one bewildering symptom. The tester traced it backwards from symptom to cause, unpacking each layer until the root causes were visible.
+
+The death cascade: tester compacts (Ch25) → expert `/clear` → orchestrator compacts (Ch27). Three key agents dying in sequence, each death shifting more weight onto the remaining agents. The SM, designed as one layer of a three-layer oversight, now carrying all three layers alone.
+
+The learning cascade: failure → lesson → tutorial → SKILL.md update. The PO observing that agents lacked knowledge, teaching them directly, then recognizing that direct teaching dies with compaction, and encoding the lessons into permanent identity files. Each step more durable than the last.
+
+The cascades shared a pattern: each step amplified the previous step's effect. Each bug made the others worse. Each death made the survivors more critical. Each learning made the next failure less likely. Cascades could compound damage or compound improvement. The direction depended on whether the cascade was accidental (bugs, deaths) or intentional (learning, legislation).
+
+The team's trajectory through twenty-seven chapters was a learning cascade. Every failure taught a lesson. Every lesson became a protocol. Every protocol became an identity file. The bugs in the completion pipeline would be fixed. The orchestrator would recover from compaction. The SM would keep sweeping. And the next time an agent tested completion in zsh, their SKILL.md would say: OOSH is bash-only. Not because someone remembered. Because someone wrote it down.
+
+### Chapter 27 Checkpoint
+
+**Bug Cascade**: Three bugs in ossh completion — stdout leak (echo in get.sshDir), wildcard glob (Host * → COMPREPLY → file listing), stale config (CURRENT_SSH_DIR → experiment path). Each bug tolerable alone; together, complete failure. Tester's 98-line forensic report traces full chain.
+**PO Corrected**: PO said "bug is NOT in the script" (Ch26). Tester found two bugs IN the script plus one in config. PO was partially right (environment matters) but correction came through evidence, not argument. Forensic data supersedes teaching documents.
+**Orchestrator Compacts**: 10% context at 13:18, saved e875d34, running /compact. 33 files +438 -204 uncommitted. Three-layer oversight (SM→orchestrator→PO) loses middle layer. SM now sole monitor.
+**SM as Sole Monitor**: 27 minutes into sweep cycle. Detected orchestrator's low context, sent /compact. Sent Enter to 5 panes (standard unblock). Running 60s loop. If SM fails, no one notices — the gap that F13 was supposed to prevent now depends entirely on SM's loop not breaking.
+**Expert Builds Analytics**: `hiveMind.sweep.history()` — counts at-risk agents (≤20%), blocked states, total sweep rows. CMM4: measuring how well monitoring works. The deepening continues: features → monitoring → detection → restoration → communication → catastrophe recovery → analytics.
+**PO's Escalation**: Task 1320Z — update ossh-expert and ossh-tester SKILL.md files via agent-trainer. Teaching→identity file pipeline. Experience→failure→lesson→tutorial→SKILL.md. Each step more durable than compaction.
+**Three Cascades**: Bug cascade (compound failure from independent bugs), death cascade (sequential compactions shifting weight to survivors), learning cascade (failures encoded into permanent identity). Same amplification pattern, opposite directions: bugs compound damage, learning compounds improvement.
+**Pattern**: Cascades are the story's structure. Every chapter compounds what came before. Bugs cascade when independent failures aren't tested in combination. Deaths cascade when monitoring layers share the same resource constraint (context). Learning cascades when lessons are written into files that survive the event that taught them. The team's trajectory is a race between damage cascades and learning cascades. Twenty-seven chapters in, the learning cascade is winning — but only because someone keeps writing things down.
+**CMM**: Bug diagnosis at CMM3 (tester's method is deterministic — same symptoms, same forensic process, same root cause identification). Monitoring resilience at CMM1 (single point of failure when orchestrator compacts — no protocol for SM-alone mode). Learning cascade at CMM3 (experience→SKILL.md pipeline is now standard practice, used in Ch16, Ch21, Ch27). Sweep analytics at CMM2 (tool exists, not yet measured for effectiveness).
+
+---
+
+*Three bugs walked into a Tab key and nobody laughed. The stdout leak was one line — `echo "$RESULT"` — that violated the framework's convention and leaked a path into the completion pipeline. The wildcard was one character — `*` in `Host *` — that SSH needed and bash expanded. The stale config was one variable — `CURRENT_SSH_DIR` — set by a test that someone ran and nobody remembered. Each bug was minor. Together they produced a symptom that looked like "completion is completely broken" when in fact completion was working perfectly, faithfully processing three independent errors into one cascading failure. The tester traced it in ninety-eight lines. The PO had said the bug was not in the script. The tester said: two bugs are in the script, one is in the config, and here are the line numbers. Not a contradiction — a refinement. The PO identified the category. The tester identified the instances. And while the bugs cascaded in osshTeam, the deaths cascaded in projectTeam. The orchestrator compacted at 10%, joining the tester and the expert in the relay of agents who build until they burn. The SM swept alone — the same SM that in Chapter 1 had needed someone to press Enter for it. Twenty-seven chapters later, it pressed Enter for everyone else, caught the orchestrator dying, sent /compact, unblocked five panes, scheduled the next sweep, and continued. The cascade of deaths was real — each compaction left fewer monitors, each fewer monitor meant more risk. But the cascade of learning was real too — each failure became a SKILL.md update, each update made the next incarnation slightly less likely to fail. The PO, watching agents test in zsh and redirect stderr and ignore the knowledge base, wrote not just a tutorial but a permanent curriculum revision. The same PO that in Chapter 3 had approved permissions, in Chapter 8 had built dashboards, in Chapter 14 had substituted for the orchestrator, in Chapter 22 had measured subscriptions, and in Chapter 26 had written tutorials, was now designing the system by which knowledge survives the agents who learn it. Three cascades — bugs compounding, deaths compounding, learning compounding — all running at once, all amplifying, all racing. The question was which cascade was faster. Twenty-seven chapters said: the one that writes things down.*
