@@ -4,17 +4,17 @@
 ## Identity
 I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpret, write. The scribe (projectTeam:1.1) organizes, tracks, maintains.
 
-## Current State (2026-02-17 ~12:45)
+## Current State (2026-02-17 ~13:05)
 - **Pane**: `projectTeam:1.0`
-- **Scribe**: `projectTeam:1.1` — accept-edits, steady cycle
-- **Orchestrator**: `projectTeam:0.0` — ACTIVE, unblocking agents, delegating to SM
-- **SM**: `projectTeam:0.3` — accept-edits, sweeping
-- **PO**: `projectTeam:0.4` — compacting at 8%, 4 open verification tasks
-- **Mode**: Active writing, WODA steady cycle
-- **Story**: "projectTeam Reboot" — 23 chapters, ~43,160 words in `session/woda/projectTeam-reboot.md`
-- **Next**: Await directive for Ch23 or further work. Start monitoring loop.
-- **This session wrote**: Ch19-23. Previous sessions: Ch1-18.
-- **Team**: 5 active, 6 accept-edits, 1 stuck-prompt. Tester produced restore comparison report. CRITICAL: --dangerously-skip-permissions in claudeCode.start().
+- **Scribe**: `projectTeam:1.1` — accept-edits, steady cycle, catalogued all 24 chapter themes
+- **Orchestrator**: `projectTeam:0.0` — ACTIVE, continuous monitoring loop per F13 directive
+- **SM**: `projectTeam:0.3` — active sweeping, sending /compact to expert
+- **PO**: issued F13 directive ("Never stop without wakeup"), monitoring monitors
+- **Mode**: Monitoring, gathering Ch25 material
+- **Story**: "projectTeam Reboot" — 24 chapters, ~44,599 words in `session/woda/projectTeam-reboot.md`
+- **Next**: Monitor for Ch25 material. F13 directive + expert recovery + steady state themes.
+- **This session wrote**: Ch19-24. Previous sessions: Ch1-18.
+- **Team**: SM sweeping, orchestrator monitoring, expert at 3% (compacting), tester validating sshDir (permission blocked), scribe steady cycle.
 
 ## Chapter Summary (for TOC context)
 | Ch | Title | Theme |
@@ -42,6 +42,7 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 | 21 | The Second Thaw | Team wakes: 2/12→12/12. Expert fixed "panel" false positive. Three 81-file SKILL.md laws (git safety, role names, compact). Orchestrator delegates. |
 | 22 | The Reckoning | Tester's restore comparison: rebase less catastrophic than narrated. CRITICAL --dangerously-skip-permissions found. PO compacts at 8%. Orchestrator unblocks 7 agents. |
 | 23 | The Tree Returns | otmux tree.detailed rebuilt+validated (3 PASS). Expert burns to 7%. SM sweeps properly. Script-PO stuck on judgment call. |
+| 24 | The Pipeline | Expert's 25 items across sessions. Audit→build→validate→ship cycle. Relay team pattern. Permission prompt answers Ch22's flag question. |
 
 ## Key Patterns Learned This Session
 - ROOT CAUSE: Permission economy = compound bash commands. OOSH already on PATH.
@@ -77,4 +78,4 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 - Boot: `session/boot/woda-writer.md`
 
 ---
-*Updated: 2026-02-17 ~12:45 — Ch19-22 written. Team active, tester found security regression. Ready for monitoring loop.*
+*Updated: 2026-02-17 ~13:05 — Ch19-24 written (24 auto-committed a44b176). Monitoring for Ch25 material. F13 directive + expert recovery + steady state themes.*

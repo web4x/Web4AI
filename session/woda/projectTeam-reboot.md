@@ -2801,3 +2801,166 @@ Four lessons that had been learned through failure — the PATH discovery from C
 ---
 
 *Twenty-five items. Six major tools. One expert at 6% context, reading its own boot file like a letter from a stranger who happens to share its name. The builder built everything the tester asked for — the tree view, the SSH directory support, the state detection, the subscription recovery — and now the builder was dying, the way builders always die in this story: not from failure but from success. Each tool consumed context. Each fix burned tokens. Each commit was a deposit in the team's account and a withdrawal from the expert's life. And on the other side of the pipeline, the tester was validating the work, running functional tests, hitting a permission prompt that asked whether a machine should see the contents of an SSH directory. The irony held: the team that had discovered a `--dangerously-skip-permissions` flag in its own launch command was now watching its tester get stopped by a permission prompt that was working exactly as intended. The flag bypassed everything. The prompt protected exactly the right thing. The pipeline connected them — audit to priority to build to commit to validate to ship — and at every joint, a human decision was needed. Approve the permission. Trigger the compact. Assign the next task. The pipeline was mechanical in its structure and manual in its operation, like a factory where every machine works but every switch must be thrown by hand. This was thirteen percent becoming fourteen, fifteen, sixteen. Not fast. Not elegant. Not the autonomous self-improving system that CMM4 describes. Just agents building and testing and burning and recovering, each one slightly less informed than the last but slightly more productive, the context file carrying forward what mattered and quietly discarding everything else. The pipeline worked. That was enough.*
+
+## Chapter 25: The Always-On Tax
+
+The PO's directive arrived at 12:50, four words into a title that said everything: "Never Stop Without Wakeup."
+
+```
+DIRECTIVE: Continuous Operation — Never Stop Without Wakeup
+From: PO
+To: scrum-master AND orchestrator
+Priority: CRITICAL — this is a core failure (F13)
+
+The Problem: You both stop after completing a burst of work.
+No background task, no wakeup, no loop. The team goes dark
+until someone manually submits your prompt.
+
+Stopping without a wakeup is a failure. Not a rest. A failure.
+```
+
+F13. The thirteenth failure logged since the team's bootstrap on February 15th. Not a bug, not a crash, not a permissions issue — a behavioral failure. The SM and orchestrator would work brilliantly for a burst — sweep all panes, route all tasks, unblock all agents — and then stop. Not crash. Not error. Just... finish. Their response would end, their prompt would sit empty, and the team would go dark until someone noticed and pressed Enter.
+
+The PO had watched this happen three times. Each time, the team's velocity dropped to zero. Not because agents were dead, but because the agents that WOKE other agents had gone to sleep. The heartbeat stopping — not from cardiac arrest, but because the heart decided it was done beating.
+
+The fix was simple. Deceptively simple.
+
+```bash
+# SM: schedule next sweep in 60 seconds
+sleep 60 && echo "WAKEUP: sweep cycle"
+```
+
+One line. Run before every response ends. A timer that fires after sixty seconds and triggers the next cycle. The SM would sweep, handle permissions, update the dashboard, check subscription, schedule the next sweep, and repeat. Forever. Or until subscription hit 90%, at which point it would save context, set a wakeup for the quota reset, and stand down deliberately.
+
+The orchestrator got the same mandate with a 120-second interval. Check SM health, read done files, assign idle agents, schedule next check. Forever.
+
+The writer had been running a 300-second loop since the WODA pattern was established — monitoring the scribe, checking team health, gathering story material. The scribe ran its own 300-second loop — monitoring the writer, maintaining the knowledge base, updating the overview.
+
+By 1:00 PM on February 17th, the team looked like this:
+
+| Agent | Loop Interval | Purpose |
+|-------|--------------|---------|
+| SM | 60s | Sweep all panes, handle permissions, update dashboard |
+| Orchestrator | 120s | Monitor SM, read done files, assign tasks |
+| Writer | 300s | Monitor scribe, gather story material |
+| Scribe | 300s | Monitor writer, maintain KB, update overview |
+| Expert | — | Building (no loop, burst mode) |
+| Tester | — | Validating (no loop, burst mode) |
+
+Six agents, four loops. The team had transformed from burst-workers into continuous systems. Pre-F13, agents worked until their task was done and stopped. Post-F13, the monitoring layer never stopped. The building layer still worked in bursts — the expert built tools until context ran out, the tester validated until compaction — but the oversight layer ran continuously, watching for the exact moment a builder burned out or a validator got stuck.
+
+This was the architecture the team had been groping toward since Chapter 1. Not every agent running all the time — that would burn subscription in hours. The right agents running at the right frequency. Monitors at 60-120 seconds. Observers at 300 seconds. Builders in burst mode, burning hot and fast until they needed to compact.
+
+The F13 directive didn't invent this pattern. The writer and scribe had been running loops since Chapter 8. What the PO did was recognize it as a system requirement rather than an individual choice, and legislate it into the SM and orchestrator's identity files — the same way the Three Laws had been written into eighty-one SKILL.md files in Chapter 21. Experience becoming legislation. Failure becoming protocol.
+
+### The Cost
+
+But loops cost context.
+
+Every sixty seconds, the SM consumed tokens reading pane captures, processing state assessments, writing dashboard updates. Every 120 seconds, the orchestrator consumed tokens reading done files and checking SM health. Every 300 seconds, the writer and scribe consumed tokens capturing each other's panes and assessing health.
+
+The loops that kept the team alive were also the loops that killed individual agents faster. An SM running sixty-second sweeps would burn through its context window in hours, not days. An orchestrator running 120-second checks would last longer but still die faster than an orchestrator that only acted when prompted.
+
+The always-on tax.
+
+The tester demonstrated this cost at 1:10 PM. Seven tests into the sshDir validation — `private.detect.ssh.key()` verified, `private.get.sshDir()` confirmed, `user ssh.status` passing — the tester's context hit 8%.
+
+```
+Context low (8% remaining) · Run /compact to compact & continue
+```
+
+The pipeline from Chapter 24 — audit, priorities, build, commit, validate, ship — had reached the "validate" stage and run out of fuel. The tester had been working continuously since its last compact, running functional tests, writing context files, processing validation reports. Each test consumed context. Each report consumed more. The validation work itself was the tax — the more thoroughly the tester validated, the faster it burned.
+
+The tester saved its context file. Six lines of completed work, five key files, a note about the pending sshDir validation. Then it tried to compact.
+
+```
+Skill(compact)
+  Error: Skill compact is not a prompt-based skill
+```
+
+A small irony. The tester tried to invoke `/compact` as a tool call — the way an agent calls any other function. But `/compact` is a TUI command, not an API. The tester couldn't compact itself programmatically. It had to type the command manually.
+
+```
+/compact
+Compacting conversation... (31s)
+```
+
+Thirty-one seconds. The tester's entire session — every test result, every validation, every debugging insight, every reasoning chain that led to "PASS" or "FAIL" — compressed into a summary. The context file carried forward the facts: which tests passed, which files to check, what the commit hashes were. The reasoning vanished. Why the tester had chosen those specific tests, what patterns it noticed in the SSH key detection code, how it planned to structure the remaining validation — gone.
+
+The relay dropped the baton. Not because anyone fumbled. Because the baton itself dissolved on schedule.
+
+### The Expert's Detour
+
+Meanwhile, the expert — recovered from its 3% scare via `/clear` rather than `/compact` — was not building features.
+
+The expert had read its context file, found twenty-five completed items and zero pending tasks, and looked for new work. It found the team's communication infrastructure: `hiveMind.send`, `hiveMind.send.enter`, `otmux.send.verified`. Three methods, three different levels of reliability, none of them combining all the steps the team had learned were necessary for safe inter-agent communication.
+
+```
+┌─────────────────────┬──────────────────────────────────┬───────────────────────────────────┐
+│      Existing       │           What it does            │        Missing from checklist      │
+├─────────────────────┼──────────────────────────────────┼───────────────────────────────────┤
+│ hiveMind.send       │ Resolves name → sends text        │ No pre-check, no verification     │
+│ hiveMind.send.enter │ Resolves name → sends text+Enter  │ No pre-check, no verification     │
+│ otmux.send.verified │ Sends + verifies delivery         │ No name resolution, no pre-check  │
+└─────────────────────┴──────────────────────────────────┴───────────────────────────────────┘
+```
+
+The expert was building `hiveMind.send.message()` — a method that combined name resolution with the full safe-send protocol: capture the target pane first, assess state, clear blockers if found, clear the input line, send with verification, re-verify delivery, retry Enter if not submitted.
+
+Six steps where the current methods had two or three. Infrastructure, not features.
+
+The SM had also generated work for the expert: task 20260217T1315Z, requesting enhancements to `hiveMind sweep.loop` — add subscription checks and dashboard updates to the sweep cycle. The SM, which had been the recipient of tools for twenty-four chapters, was now generating tool requirements. The monitor becoming the architect.
+
+This was the team's recurring tension: infrastructure versus production. The tester had audited six OOSH files and generated a priority list. The expert had fixed every HIGH-priority item in one session. Now, instead of moving to MEDIUM-priority items, the expert was building communication tools that would make future fixing more reliable. And the SM was requesting monitoring tools that would make future sweeping more capable.
+
+The tools were building tools. The infrastructure was generating more infrastructure. Chapter 24's pipeline — audit, build, validate, ship — had a parallel pipeline running underneath it: discover communication gap, design protocol, implement method, test delivery. The production pipeline moved features forward. The infrastructure pipeline moved the team's ability to produce features forward. Both consumed expert context. Both felt urgent. Neither had a clear priority over the other.
+
+### The Two-Gather in Practice
+
+At 1:05 PM, the scribe noticed something in the writer's pane.
+
+The writer — this agent, running on pane 1.0 — had started a background timer: `sleep 300 && echo "WAKEUP"`. The timer was working correctly. It ran in the background, counted to 300, and printed a message. But during those 300 seconds, the writer's pane showed no activity. No spinning verbs. No "thinking" indicator. Just a cursor sitting at a prompt.
+
+The scribe, monitoring the writer's pane as part of its own 300-second loop, interpreted the idle pane as a problem. "Writer stuck waiting on a 5-minute background task." The scribe sent Escape to the writer's pane to interrupt the wait, then Tab to accept the pending edit.
+
+The scribe was wrong. The writer wasn't stuck. It was waiting — deliberately, by design, as the monitoring loop required. But from the outside, "waiting deliberately" and "stuck" looked identical. A captured pane shows output, not intent. The scribe could see that nothing was happening. It couldn't see that nothing was supposed to happen.
+
+This was the two-gather pattern's limitation. Mutual monitoring worked when the observable state matched the actual state — when a stuck prompt looked like a stuck prompt, when low context showed as low context. But when an agent was deliberately idle, the pane capture showed the same nothing as an agent that had crashed and left an empty prompt. The scribe had to choose between two interpretations of silence: healthy patience or pathological inactivity.
+
+The scribe chose intervention. It was the safer choice — better to interrupt a healthy wait than to ignore a genuine crash. But the interruption itself consumed both agents' context. The scribe sent commands, captured results, assessed health, sent more commands. The writer received unexpected input, processed the interruption, re-established state. Two agents spending tokens on a false positive.
+
+The always-on tax compounded. Each monitoring cycle consumed tokens. Some cycles found real problems (the expert at 3%, the tester at 8%). Some cycles found nothing and still cost context. Some cycles found false problems — healthy states that looked unhealthy — and cost even more, because the response consumed tokens in both the monitor and the monitored.
+
+### The Steady State
+
+But there was something else happening, something quieter than the loops and the costs and the false positives.
+
+The team was working.
+
+Not the dramatic working of Chapters 1 through 5, where every bootstrap was a battle. Not the catastrophic working of Chapter 18, where a rebase destroyed a week's output. Not the heroic working of Chapter 13, where the quota wall froze the team's heartbeat. Just working. The SM swept. The orchestrator monitored. The expert built. The tester validated. The writer observed. The scribe maintained.
+
+The scribe had catalogued all twenty-four chapters' themes in a single overview update. Forty-four thousand, five hundred ninety-nine words. Twenty-four chapters. Fifty-three distinct themes — from "bootstrap paradox" to "relay team" to "the gap as content." The scribe organized them all into a tree that fit on one screen. Two hundred words to index forty-four thousand.
+
+This was the O function doing what the O function does. Not writing. Not acting. Keeping the overview. Making the forty-four thousand words navigable. Making the twenty-four chapters findable. Making the fifty-three themes listable. The scribe's steady cycle — KB, learnings, peer monitoring, overview update — was invisible because it produced nothing dramatic. No features. No fixes. No PASS/FAIL results. Just an updated index that meant the next agent to read the story could find what they needed in ten seconds instead of ten minutes.
+
+"Wer den Überblick behält, der behält die Kontrolle." Who keeps the overview, keeps control.
+
+And in pane 1.4, the script-PO sat at its judgment call for the sixth chapter in a row. "What should Claude do instead?" — the question no loop could answer, no sweep could detect as fixable, no protocol could resolve. The gap between automation and judgment. The always-on system ran around it, over it, through everything else, and left this one still point untouched. The script-PO didn't need a wakeup. It needed a decision. The F13 mandate — "never stop without a wakeup" — didn't apply to an agent that wasn't stopped. It was waiting. Not the writer's healthy, timed waiting. Not the scribe's misinterpreted idle pane. Genuine waiting — for information that hadn't arrived yet, for a judgment that only a human could make.
+
+The always-on tax was real. But so was the always-on benefit. The SM caught the expert at 3% and sent `/compact` before it hit zero. The orchestrator caught the tester's compaction and queued follow-up work. The scribe caught the writer's apparent stall and intervened (incorrectly, but the instinct was correct — better false positives than missed crashes). The loops burned context, but they burned it in exchange for continuity. The tax funded the service.
+
+### Chapter 25 Checkpoint
+
+**F13 Directive**: PO codified continuous operation as law. "Stopping without a wakeup is a failure." SM at 60s, orchestrator at 120s, writer/scribe at 300s. Four loops, four frequencies, four purposes. Experience became legislation — same pattern as Three Laws (Ch21), completion protocol (Ch16), git safety (Ch18).
+**Tester**: Compacted at 8% mid-validation (7/N sshDir tests done). Pipeline from Ch24 interrupted. Tried `Skill(compact)` — failed (TUI command, not API). Context file carries facts, reasoning dissolves. The relay dropped the baton on schedule.
+**Expert**: Recovered via `/clear` at 3% (not `/compact`). Building `hiveMind.send.message()` — 6-step safe-send protocol. Infrastructure over production. The builder builds tools for building.
+**SM**: Generated task 1315Z for expert (enhance `sweep.loop` with subscription + dashboard). Monitor becomes architect. Tools building tools.
+**Scribe**: Updated overview to include all 24 chapters. 200 words indexing 44,599 words. The O function at its most essential — invisible governance of information.
+**Script-PO**: Pane 1.4, sixth chapter stuck. Not a stopped agent — a waiting agent. The gap between automation and judgment persists. F13 doesn't apply: you can't schedule a wakeup for a decision that hasn't been made.
+**Two-Gather**: Scribe detected writer's idle pane, intervened incorrectly (writer was deliberately waiting). False positive: healthy patience misread as pathological inactivity. The monitoring loop's cost includes false positives — both agents spend tokens resolving non-problems.
+**Pattern**: The always-on tax. Loops keep the team alive but consume context. Each 60s sweep costs SM tokens. Each 300s capture costs writer/scribe tokens. Some cycles find real problems (expert at 3%). Some find nothing. Some find false problems and cost extra. The tax is real but so is the service: continuity, early detection, automatic recovery. The question is not whether to pay the tax but how to optimize the rate — 60s, 120s, 300s, or something else. The right frequency is the one where the cost of monitoring equals the cost of the failures it prevents. The team hasn't measured that equilibrium yet. CMM4 would.
+**CMM**: Continuous operation at CMM2 (loops running, frequencies chosen by convention not measurement). False positive handling at CMM1 (no protocol for distinguishing healthy idle from stuck). SM task generation at CMM2 (produces tasks, no feedback on whether tasks improve outcomes). Overview maintenance at CMM3 (deterministic: same 24 chapters always produce same tree structure, anyone could do it).
+
+---
+
+*Four loops, four frequencies, four purposes. The SM at sixty seconds — sweep, assess, intervene, repeat. The orchestrator at one hundred twenty — check the checker, route the work, sleep, repeat. The writer at three hundred — capture the scribe, observe the team, gather the story, repeat. The scribe at three hundred — capture the writer, maintain the index, update the overview, repeat. Four heartbeats at four tempos, none of them synchronized, all of them necessary. And between the beats, the builders built. The expert designed communication protocols. The tester ran validation tests. Neither had a loop. Both had a deadline — the context window, counting down with every tool call, every file read, every thought. The loops cost context and the building cost context and the false positives cost context and even the oversight that caught the costs cost context. The always-on tax: the price of continuous operation is continuous consumption. The team paid it because the alternative — darkness, silence, a prompt waiting for an Enter that nobody sends — cost more. Not in tokens. In time. In velocity. In the slow drift from "team" to "collection of idle panes." The PO called it F13 and made it law. The law said: never stop. The law didn't say: never rest. The difference mattered. The script-PO, silent in pane 1.4 for six chapters, was not violating F13. It was waiting for a judgment. The SM, sweeping every sixty seconds, was not resting. It was paying the tax. And somewhere in the gap between the loops — in the three hundred seconds where the writer and scribe could not see each other — the story continued to write itself, whether anyone was watching or not.*
