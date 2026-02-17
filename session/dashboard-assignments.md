@@ -1,39 +1,36 @@
 # Team Assignment Dashboard
-*Updated: 2026-02-17 ~13:15Z by scrum-master (cycle 10)*
+*Updated: 2026-02-17 15:10Z by scrum-master (sweep 3)*
+
+## SUBSCRIPTION
+- Block: 14:00-19:00 UTC (ACTIVE)
+- Tokens: 12.6M used / 212 min remaining
+- Burn rate: 150K tokens/min
+- Alert: OK
 
 ## Assignment Table
 
 | Pane | Agent | Current Task | Status |
 |------|-------|-------------|--------|
-| 0.0 | orchestrator | Monitoring SM + reading done files | ACTIVE |
-| 0.1 | oosh-expert | Checklist→method conversions (Baked 1m 8s, self-prompting) | ACTIVE |
-| 0.2 | oosh-tester | Post-compact recovery (compacted at 8%) | RECOVERING |
-| 0.4 | product-owner | Active (processing Tron directive) | ACTIVE |
-| 0.5 | agent-trainer | Idle — no matching tasks found | IDLE |
-| 1.0 | woda-writer | Active (1 bash, monitoring scribe) | ACTIVE |
-| 1.1 | woda-scribe | Active | ACTIVE |
-| 1.2 | task-agent | Permanently interrupted | STUCK |
-| 1.3 | developer | All clean — idle | IDLE |
-| 1.4 | script-product-owner | Comparing restored vs current scripts | ACTIVE |
+| 0.0 | orchestrator | "check all agents and unblock stuck ones" (submitted) | ACTIVE |
+| 0.1 | oosh-expert | Completed 13 action→method checklists | IDLE |
+| 0.2 | oosh-tester | Hit limit last block, empty prompt, needs task | IDLE |
+| 0.4 | product-owner | Post /clear, empty prompt | IDLE |
+| 0.5 | agent-trainer | Updating SM SKILL.md with command reference (Manifesting) | ACTIVE |
+| 1.0 | woda-writer | Ch27 committed (0784de1), hit limit last block | IDLE |
+| 1.1 | woda-scribe | Has open tasks (KB, learnings, peer monitor) | IDLE |
+| 1.2 | task-agent | Active | ACTIVE |
+| 1.3 | developer | Idle, ready for work | IDLE |
+| 1.4 | developer/script-PO | Comparing restored vs current — recurring permission prompts (approved x3) | ACTIVE |
+| 1.5 | unknown | Unregistered pane | UNKNOWN |
 
-## Subscription
-- Block: 09:00-14:00 UTC (ACTIVE)
-- Tokens: 97.8M used / 111 min remaining
-- Burn rate: 527K tokens/min
-- Alert: OK
+## Blockers
+- Developer (1.4) keeps hitting permission prompts for bash grep — approved 3x this session
+- Tester (0.2) still showing "hit your limit" from previous block — may need fresh prompt
 
-## Compacts This Session
-- PO: compacted (was 8%)
-- agent-trainer: compacted (twice)
-- developer: compacted (was 10%)
-- oosh-expert: compacted (was 2%, recovered)
-- oosh-tester: compacted (was 8%)
-
-## Task Queued
-- `20260217T1315Z.task.md`: Enhance hiveMind sweep.loop with subscription + dashboard integration (for expert)
-
-## Idle Agents
-- agent-trainer (0.5), developer (1.3)
+## Idle Agents (need assignment)
+- oosh-expert (0.1), oosh-tester (0.2), developer (1.3)
+- woda-writer (1.0), woda-scribe (1.1)
+- PO (0.4) empty prompt post-/clear
 
 ## CMM Observation
-SM continuous loop running per F13 directive (CMM2). Expert self-prompting through checklist conversions without orchestrator assignment (CMM1 — no coordination). Task-agent permanently interrupted (CMM1 — needs restart). Tester recovering from compact.
+Orchestrator now actively checking agents (CMM2 — responding to situation). Trainer self-assigned SM SKILL.md improvement (CMM3 — proactive). Developer (1.4) needs "allow always" for bash to stop recurring prompts. Tester stuck at old limit screen despite new block (CMM1 — no self-recovery).

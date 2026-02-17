@@ -1,7 +1,7 @@
 # Team Dashboard
 
-**Updated**: 2026-02-17T11:41:10Z (2026-02-17 12:41 CET)
-**Session**: claudeOpus2kTMUX
+**Updated**: 2026-02-17T15:34:54Z (2026-02-17 16:34 CET)
+**Session**: projectTeam
 
 ## Git Status
 
@@ -9,37 +9,46 @@
 |-------|-------|
 | Branch | `main` |
 | Status | uncommitted changes |
-| Last commit | `5fb9972 Rename 1 non-conforming task file` |
+| Last commit | `af89deb Add hiveMind/scrumMaster command reference to SM SKILL.md and boot` |
 
 ## Subscription
 
 | Metric | Value |
 |--------|-------|
-| 5-hour usage | 52% |
+| 5-hour usage | 30% |
 | 7-day usage | 0% |
 
 ## Tasks
 
 | Metric | Value |
 |--------|-------|
-| Total task files | 128 |
-| Today's tasks | 2 |
+| Total task files | 131 |
+| Today's tasks | 5 |
 
 ## Team Status
 
 | Agent | Pane | Context | Velocity | State |
 |-------|------|---------|----------|-------|
-| claude-opus | 0.0 | 57.3% | - | unknown |
-| cursor-agent | 0.2 | no-claude | - | unknown |
+| orchestrator | 0.0 | 48.8% | - | unknown |
+| oosh-expert | 0.1 | 50.9% | - | completed |
+| oosh-tester | 0.2 | 100.0% | - | unknown |
+| scrum-master | 0.3 | 27.4% | - | active |
+| product-owner | 0.4 | 100.0% | - | unknown |
+| agent-trainer | 0.5 | 26.7% | - | active |
+| task-agent | 1.2 | 46.2% | - | unknown |
+| woda-writer | 1.0 | 100.0% | - | unknown |
+| woda-scribe | 1.1 | 19.5% | - | active |
+| developer | 1.3 | 73.5% | - | unknown |
+| script-product-owner | 1.4 | 27.4% | - | unknown |
 
 ## Recent Commits
 
 ```
-5fb9972 Rename 1 non-conforming task file
-66e5311 Add Chapter 20 "The Blindspot" + Chapter 21 "The Second Thaw"
-ee88e2e Rename 5 non-conforming task files to timestamp convention
-9633060 Add Compact Protocol lesson to all 81 SKILL.md files
-aae6410 Add role-name addressing rule to all 81 SKILL.md files
+c29ad1b Update restore comparison report with developer method-level verification
+af89deb Add hiveMind/scrumMaster command reference to SM SKILL.md and boot
+d34320c Add WODA learnings to boot files and reading lists (81 SKILL.md + 9 boot)
+ce2b8cc Auto-save: unknown pre-compact 13:24
+0784de1 Add Chapter 27 "The Cascade" — three bugs, three deaths, three learning escalations
 ```
 
 ## Recovery
