@@ -121,3 +121,18 @@ Expert fixes tools, SM runs measurement cadence, scribe maintains persistent log
 Sweep log: `session/metrics/sweep-log.md`. CMM target: CMM1/2 → CMM3/4.
 -> Details: [measurement-system.md](measurement-system.md)
 -> Actions: [log-metrics.md](actions/log-metrics.md)
+
+---
+
+### 15. Anti-Patterns (BANNED)
+Three banned patterns: error suppression (`2>/dev/null`), dashes in OOSH parameter names, hardcoded pane addresses.
+These are framework-level constraints, not style preferences. Violating any will cause crashes or silent failures.
+-> Details: [anti-patterns.md](anti-patterns.md)
+
+---
+
+### 16. OOSH Parameter Naming
+OOSH parameter names MUST be valid bash identifiers (letters, numbers, underscores only — no dashes).
+OOSH converts `<param>` to `PARAM_param` via `declare`. Dashes cause bash arithmetic errors.
+Detection: `grep -E '# <[a-zA-Z0-9]*-' scriptname`
+-> Details: [oosh-parameter-naming.md](oosh-parameter-naming.md)

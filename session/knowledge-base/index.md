@@ -17,7 +17,7 @@
 12. [Generational Transition](overviews.md#12-generational-transition) → [Details](generational-transition.md)
 13. [Orchestrator Emergence](overviews.md#13-orchestrator-emergence) → [Details](orchestrator-emergence.md)
 14. [Measurement System (CMM4)](overviews.md#14-measurement-system-cmm4) → [Details](measurement-system.md)
-15. [Anti-Patterns (BANNED)](anti-patterns.md) → [Details](anti-patterns.md)
-16. [OOSH Parameter Naming](oosh-parameter-naming.md) → [Details](oosh-parameter-naming.md)
+15. [Anti-Patterns (BANNED)](overviews.md#15-anti-patterns-banned) → [Details](anti-patterns.md)
+16. [OOSH Parameter Naming](overviews.md#16-oosh-parameter-naming) → [Details](oosh-parameter-naming.md)
 
 **Reference**: [CMM & Web 4.0](cmm-web4x.md) | [Usage Guide](usage.md)

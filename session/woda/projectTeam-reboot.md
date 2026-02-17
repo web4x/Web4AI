@@ -34,8 +34,9 @@
 | 26 | [Mitosis](#chapter-26-mitosis) | 2,600 | 2026-02-17 |
 | 27 | [The Cascade](#chapter-27-the-cascade) | 2,693 | 2026-02-17 |
 | 28 | [The Afternoon](#chapter-28-the-afternoon) | 2,497 | 2026-02-17 |
+| 29 | [The Tab Key](#chapter-29-the-tab-key) | 2,281 | 2026-02-17 |
 
-**Total**: 28 chapters, 55,283 words
+**Total**: 29 chapters, 57,564 words
 
 ---
 
