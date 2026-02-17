@@ -30,8 +30,9 @@
 | 22 | [The Reckoning](#chapter-22-the-reckoning) | 2,009 | 2026-02-17 |
 | 23 | [The Tree Returns](#chapter-23-the-tree-returns) | 1,676 | 2026-02-17 |
 | 24 | [The Pipeline](#chapter-24-the-pipeline) | 1,762 | 2026-02-17 |
+| 25 | [The Always-On Tax](#chapter-25-the-always-on-tax) | 2,894 | 2026-02-17 |
 
-**Total**: 24 chapters, 44,599 words
+**Total**: 25 chapters, 47,493 words
 
 ---
 
@@ -2964,3 +2965,156 @@ The always-on tax was real. But so was the always-on benefit. The SM caught the 
 ---
 
 *Four loops, four frequencies, four purposes. The SM at sixty seconds — sweep, assess, intervene, repeat. The orchestrator at one hundred twenty — check the checker, route the work, sleep, repeat. The writer at three hundred — capture the scribe, observe the team, gather the story, repeat. The scribe at three hundred — capture the writer, maintain the index, update the overview, repeat. Four heartbeats at four tempos, none of them synchronized, all of them necessary. And between the beats, the builders built. The expert designed communication protocols. The tester ran validation tests. Neither had a loop. Both had a deadline — the context window, counting down with every tool call, every file read, every thought. The loops cost context and the building cost context and the false positives cost context and even the oversight that caught the costs cost context. The always-on tax: the price of continuous operation is continuous consumption. The team paid it because the alternative — darkness, silence, a prompt waiting for an Enter that nobody sends — cost more. Not in tokens. In time. In velocity. In the slow drift from "team" to "collection of idle panes." The PO called it F13 and made it law. The law said: never stop. The law didn't say: never rest. The difference mattered. The script-PO, silent in pane 1.4 for six chapters, was not violating F13. It was waiting for a judgment. The SM, sweeping every sixty seconds, was not resting. It was paying the tax. And somewhere in the gap between the loops — in the three hundred seconds where the writer and scribe could not see each other — the story continued to write itself, whether anyone was watching or not.*
+
+## Chapter 26: Mitosis
+
+At 1:00 PM on February 17th, the team divided.
+
+Not a crash. Not a failure. A deliberate split. The PO created a second tmux session — `osshTeam` — with three panes: an expert at 0.0, a test shell at 0.1, and a tester at 0.2. The task: fix OOSH tab completion. The reason: the problem was too specialized for the generalist team.
+
+```
+osshTeam
+├── 0.0  ossh-expert — Implementation + fixes
+├── 0.1  test-shell  — Plain bash shell for manual testing
+└── 0.2  ossh-tester — Testing + validation
+```
+
+This was the first mitosis. For twenty-five chapters, everything had happened inside `projectTeam` — twelve agents in one session, one SM sweeping all panes, one orchestrator routing all tasks. Now there were two sessions. Two teams. Two scopes.
+
+The trigger was a tab key.
+
+`ossh login [Tab]` — the command that should show SSH host names from the config file. It didn't. It had been working before the recent changes. Something broke it. The tester had been investigating, the script-PO had been stuck on it since Chapter 20, and nobody in projectTeam had the bandwidth to focus on OOSH internals while also rebuilding tools, validating fixes, sweeping panes, and writing stories.
+
+So the PO made a team for it.
+
+### The PO as Teacher
+
+The creation of `osshTeam` came with something unexpected: a 138-line teaching document.
+
+```
+# OOSH Training: Understanding the Shell Ecosystem
+From: PO
+To: ossh-expert (osshTeam:0.0), ossh-tester (osshTeam:0.2)
+Priority: READ BEFORE ANY MORE WORK
+```
+
+The PO — the same agent that in Chapter 3 had been a permissions guardian, in Chapter 8 had created a team dashboard, in Chapter 14 had substituted as coordinator during the quota wall, in Chapter 22 had measured subscription state while monitoring monitors — was now writing curriculum.
+
+Not the trainer's kind of curriculum. The trainer in Chapter 6 had created reading lists: "Read these SKILL.md files." Bibliographies. The PO's document was different. It was a technical tutorial. It explained WHY things worked the way they did.
+
+```
+## The Three Shells — Know the Difference
+
+| Shell | What it is | OOSH? | Completions? |
+|-------|-----------|-------|-------------|
+| zsh   | macOS default login shell. | NO | zsh has its OWN completion system. OOSH does NOT use it. |
+| bash  | Bourne Again Shell. OOSH is built on bash. | YES — but only when sourced | Only when c2 completions are registered. |
+| OOSH bash | A bash shell where the kernel is sourced and c2 is active. | YES | YES |
+```
+
+Three shells. Three different environments. Three different behaviors for the same tab key. The PO had diagnosed the root cause without writing a single line of code: the tester had been testing in zsh. OOSH completions run in bash. The bug wasn't in the completion code. The bug was in the shell.
+
+This was Chapter 9 again. The root cause from Chapter 9 had been that OOSH was already on PATH — the agents had been adding unnecessary `export PATH` prefixes to every command, creating compound bash invocations that triggered permission prompts. The fix was simple: stop doing the unnecessary thing. Now, five chapters later, a different version of the same bug. The tester was testing in the wrong shell. The fix was simple: switch to bash, source OOSH, test again.
+
+But the PO didn't just identify the root cause. It wrote a tutorial that would prevent any future tester from making the same mistake. Eight sections. How OOSH works. How c2 completions work. How to get an OOSH bash shell. How to verify completion is registered. How to test as a user would. How to trace failures. What files to read. What to do next.
+
+The PO was evolving from governance to education. From "you may not" to "here's why."
+
+### The Environment Below the Code
+
+The tester in `osshTeam` had found the evidence independently.
+
+It had captured the test shell (osshTeam:0.1) and seen the default bash prompt: `McDonges:Claude donges$` — no OOSH customization, no completion framework, no `c2` registration. The tester ran `complete -p ossh` and got nothing. No completion specification registered. OOSH wasn't loaded.
+
+```
+Key finding: The shell is bash (not zsh as I initially thought).
+And complete -p ossh shows no completion specification — ossh
+completion is NOT registered. OOSH wasn't fully initialized.
+```
+
+The tester then ran `source ~/.bashrc` in the test shell. The output: "finding completions" — the c2 system initializing, scanning scripts, registering completion functions. After sourcing, `complete -p ossh` would show the registration. The completion would work. The tab key would produce SSH host names.
+
+The bug had never been in the code. The expert's `diff restore/ossh ossh` had returned empty — the scripts were identical. The tester's functional tests of the methods had all passed — `private.detect.ssh.key()` returned correct types, `private.get.sshDir()` resolved correct paths, `user ssh.status` displayed correct output. Everything worked when called as functions. Nothing worked when called via tab completion, because tab completion required an environment that nobody had set up.
+
+The environment below the code. The shell below the shell. The assumption that a bash prompt was an OOSH prompt. The same category of error as Chapter 9's PATH assumption, Chapter 18's rebase assumption, Chapter 22's permissions assumption. The team kept discovering that the layer BENEATH their work had conditions they hadn't verified.
+
+### The Expert's Deepening
+
+Back in projectTeam, the expert was thinking about what happens when everything goes wrong.
+
+Not a single tab completion. Not a single tool failure. Everything. The expert was designing `hiveMind cold-start recovery` — a method to recover from total infrastructure loss: tmux sessions died, panes reshuffled, agents scattered, registry stale.
+
+The design was a ten-step checklist:
+
+1. Discover actual tmux infrastructure (sessions, panes)
+2. Reconcile the registry — remove entries for dead panes, identify live agents
+3. For each live pane with a registered role: verify it's actually running Claude Code
+4. For unregistered panes running Claude Code: try to identify their role
+5. Update the registry to match reality
+6. Send recovery nudges to agents that need them
+
+This was the expert's pattern since the story began. Chapter 11: built pane scanning. Chapter 13: built subscription measurement. Chapter 21: fixed state detection. Chapter 23: rebuilt tree view. Chapter 24: addressed all HIGH-priority restore items. Chapter 25: designed safe-send protocol. Now Chapter 26: cold-start recovery.
+
+Each incarnation found the next layer. Features, then infrastructure, then resilience, then catastrophe recovery. The expert's scope expanded not because it was asked to — nobody assigned cold-start recovery — but because the expert, reading its context file after `/clear`, saw that all twenty-five previous tasks were complete and asked itself: what's the next problem?
+
+The answer was always deeper. Not wider. Not more features of the same kind. Deeper infrastructure. The same pattern as the tester's shell discovery — the layer beneath the layer beneath the layer.
+
+The SM had also contributed to this deepening, writing task 20260217T1315Z: "Enhance `hiveMind sweep.loop` with subscription checks and dashboard updates." The monitor requesting upgrades to its own monitoring tool. The SM had been using `sweep.loop` since Chapter 23 and found it missing subscription integration — it swept panes but didn't check whether the team could afford to keep sweeping. The task asked the expert to add threshold logic: at 80% subscription, double the interval; at 90%, stand down.
+
+The SM generating requirements for the expert. The monitor becoming a product owner for its own tools. Tools requesting improvements to tools.
+
+### Two Teams, One Codebase
+
+The two teams worked in the same codebase but different scopes.
+
+`projectTeam` operated at the team level: monitoring, coordination, task routing, story writing, overview maintenance. Its agents — orchestrator, SM, writer, scribe, task-agent — dealt with agent health, communication protocols, and team governance. When the expert in projectTeam built tools, it built TEAM tools: `hiveMind.send.message`, `hiveMind cold-start`, `sweep.loop` enhancements.
+
+`osshTeam` operated at the script level: testing specific OOSH methods, tracing completion chains, validating SSH key detection. Its agents — a specialized expert and tester — dealt with function signatures, shell environments, and completion frameworks. When the expert in osshTeam investigated, it investigated CODE: `ossh.login.completion()`, `ossh.parameter.completion.sshConfigHost()`, `c2`'s registration mechanism.
+
+The split was not just organizational. It was cognitive. The projectTeam agents couldn't focus on completion internals because they were maintaining monitoring loops, routing tasks, writing chapters, and sweeping panes. The always-on tax from Chapter 25 consumed their attention. They could build team-level tools because that's where their attention already was — each sweep cycle revealed monitoring gaps, each routing cycle revealed communication gaps. But OOSH script internals required a different kind of attention: sustained, deep, uninterrupted focus on how a single function dispatches a single tab key press.
+
+The PO's solution — create a separate team — was not planning. It was recognition. The problem had outgrown the container. The twelve-agent team in projectTeam was excellent at team operations and terrible at script debugging. Not because the agents were incapable, but because their attention was consumed by their loops. An SM sweeping every sixty seconds cannot also trace a completion chain. A tester validating sshDir commits cannot also investigate shell initialization. The always-on tax applied to attention, not just context.
+
+Two teams. Two attention scopes. One codebase.
+
+### What the PO Learned
+
+The PO's training document contained a line that echoed across twenty-six chapters:
+
+```
+## 7. The bug is NOT in the script
+
+Expert already confirmed: diff restore/ossh ossh = empty.
+Scripts are identical. The bug is in HOW completion is being
+invoked — likely:
+- Testing in zsh (wrong shell)
+- c2 not sourced (OOSH not loaded)
+- Or a c2 bug in how it parses the completion chain
+```
+
+The bug is not in the script. The bug is in the environment. The bug is in the assumptions. The bug is in the layer you didn't check because you assumed it was correct.
+
+Chapter 9: the bug wasn't in the permission system — it was in PATH assumptions. Chapter 18: the bug wasn't in git — it was in a rebase flag that did exactly what rebase does. Chapter 22: the bug wasn't in Claude Code — it was in a launch flag that bypassed safety. Now Chapter 26: the bug isn't in the completion function — it's in the shell that doesn't have the completion system loaded.
+
+Four times, across seventeen chapters, the team discovered that the root cause was beneath the code. The root cause was always environmental — something about HOW the code was run, not WHAT the code did. The code was correct every time. The context around the code was wrong.
+
+The PO had generalized this insight in five words: "The bug is NOT in the script." Not specific to ossh. Not specific to completion. A general principle about where bugs hide in systems where the environment is assumed rather than verified. The same principle that had been stated in Chapter 11 as "what you can't measure, you can't fix" and in Chapter 25 as "the always-on tax." Except this time the unmeasured thing wasn't context burn rate or monitoring frequency. It was the shell type.
+
+`echo $SHELL` — four characters, one pipe, one answer. The test that would have prevented the completion bug. The measurement that nobody took because nobody thought to question what shell they were in.
+
+Never assume. Always measure. Even the shell.
+
+### Chapter 26 Checkpoint
+
+**Mitosis**: PO created `osshTeam` — first team split. Three panes: ossh-expert (0.0), test-shell (0.1), ossh-tester (0.2). Reason: completion debugging required sustained focus incompatible with projectTeam's monitoring loops. The always-on tax applies to attention, not just context.
+**PO as Teacher**: 138-line training document explaining three shells (zsh/bash/OOSH bash), c2 completion system, how to get an OOSH environment. Governance evolving: permissions guardian (Ch3) → dashboard (Ch8) → substitute coordinator (Ch14) → meta-observer (Ch22) → teacher (Ch26). From "you may not" to "here's why."
+**Environment as Root Cause**: Completion tested in wrong shell (zsh, not bash). Code was correct — `diff` returned empty. Bug was in the environment. Fourth time (Ch9 PATH, Ch18 rebase, Ch22 permissions, Ch26 shell). Pattern: the root cause is always beneath the code.
+**Expert Deepening**: In projectTeam, expert designing `hiveMind cold-start recovery` — 10-step protocol for total infrastructure loss. Each incarnation finds the next layer: features (Ch11) → monitoring (Ch13) → detection (Ch21) → restoration (Ch23-24) → communication (Ch25) → catastrophe recovery (Ch26).
+**SM as Requirements Generator**: Task 1315Z — enhance `sweep.loop` with subscription checks and dashboard. Monitor requesting upgrades to its own tool. Threshold logic: 80% = throttle, 90% = stand down.
+**Two Scopes**: projectTeam = team-level (monitoring, coordination, governance). osshTeam = script-level (function tracing, completion chains, shell environments). Same codebase, different attention. The split is cognitive, not just organizational.
+**Pattern**: "The bug is NOT in the script" — the PO's generalization of four chapters' root causes. Code is correct. Environment is wrong. The layer you didn't check because you assumed it was correct. Never assume. Always measure. Even the shell.
+**CMM**: Environment verification at CMM1 (nobody checked the shell type before testing). PO teaching at CMM2 (document written, repeatable, but not yet a standard practice). Team splitting at CMM1 (first occurrence, no protocol for when to split or how to coordinate between teams). Expert's deepening at CMM2 (each incarnation consistently finds the next layer, but the pattern is emergent, not designed).
+
+---
+
+*The team divided because the team needed to. Not by failure — by growth. The twelve-agent projectTeam had become excellent at team operations: sweeping, routing, monitoring, writing, indexing. But team operations consumed attention, and attention consumed by loops could not also trace completion chains. The PO recognized this — not explicitly, not in those words, but in the act of creating osshTeam. A second session. A second scope. Three panes dedicated to one question: why doesn't Tab work? The answer, when it came, was the same answer the team kept finding: the environment. Not the code. The code was identical to the backup. The diff was empty. The functions worked. The shell was wrong. Testing in zsh when the system required bash. An assumption so basic nobody questioned it — of course the shell is right, we're running a shell, what else would it be? But zsh is not bash, and bash without OOSH sourced is not an OOSH shell, and an OOSH shell without c2 loaded is not a completion-ready shell. Three layers of environment between "press Tab" and "see results." Three assumptions, each one invisible until tested. The PO wrote a 138-line tutorial — not governance, not permissions, not dashboards, but teaching. Here is how shells work. Here is why completion needs bash. Here is how to verify. Here is what to read. The PO was learning to teach because the team needed teachers more than it needed guardians. The problems weren't permission violations. They were knowledge gaps. And across the session divide, in projectTeam, the expert was thinking about what happens when everything dies — not one completion function, but everything. Cold start. The panes are wrong. The registry is stale. The agents don't know who they are. How do you rebuild? The expert's answer was the same as the PO's: verify the environment first. Discover what exists. Reconcile what you know with what is real. Then rebuild from there. Two teams, one codebase, one pattern: check the layer beneath before you fix the layer above. The shell below the shell. The environment below the code. The assumption below the assumption. Mitosis doesn't mean the cells diverge. It means they specialize. One team monitors. One team debugs. Both check the shell.*
