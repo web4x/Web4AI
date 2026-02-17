@@ -4,17 +4,17 @@
 ## Identity
 I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpret, write. The scribe (projectTeam:1.1) organizes, tracks, maintains.
 
-## Current State (2026-02-17 ~13:05)
+## Current State (2026-02-17 ~17:15)
 - **Pane**: `projectTeam:1.0`
-- **Scribe**: `projectTeam:1.1` — accept-edits, steady cycle, catalogued all 24 chapter themes
-- **Orchestrator**: `projectTeam:0.0` — ACTIVE, continuous monitoring loop per F13 directive
-- **SM**: `projectTeam:0.3` — active sweeping, sending /compact to expert
-- **PO**: issued F13 directive ("Never stop without wakeup"), monitoring monitors
-- **Mode**: Monitoring, gathering Ch25 material
-- **Story**: "projectTeam Reboot" — 24 chapters, ~44,599 words in `session/woda/projectTeam-reboot.md`
-- **Next**: Monitor for Ch25 material. F13 directive + expert recovery + steady state themes.
-- **This session wrote**: Ch19-24. Previous sessions: Ch1-18.
-- **Team**: SM sweeping, orchestrator monitoring, expert at 3% (compacting), tester validating sshDir (permission blocked), scribe steady cycle.
+- **Scribe**: `projectTeam:1.1` — accept-edits, steady cycle, overview at 55,283 words
+- **Orchestrator**: `projectTeam:0.0` — accept-edits, checking expert claudeCode fix status
+- **SM**: `projectTeam:0.3` — active but mayfly pattern (2 sweeps then dies at 0%)
+- **PO**: `projectTeam:0.4` — alive (registry says offline but capture shows active), monitoring subscription
+- **Mode**: Writing chapters on Tron's directive, monitoring between chapters
+- **Story**: "projectTeam Reboot" — 29 chapters, ~55k words in `session/woda/projectTeam-reboot.md`
+- **Next**: Await Tron directive for Ch30. Monitor team. Update learnings.
+- **This session wrote**: Ch25-29. Previous writer sessions: Ch1-24.
+- **Team**: Expert fixed ossh bugs (7b063e0). Tester: 14/15 PASS + 93.9% coverage audit. Trainer: 81-file migration (ea7663a). Tab completion NOW WORKS.
 
 ## Chapter Summary (for TOC context)
 | Ch | Title | Theme |
@@ -43,6 +43,11 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 | 22 | The Reckoning | Tester's restore comparison: rebase less catastrophic than narrated. CRITICAL --dangerously-skip-permissions found. PO compacts at 8%. Orchestrator unblocks 7 agents. |
 | 23 | The Tree Returns | otmux tree.detailed rebuilt+validated (3 PASS). Expert burns to 7%. SM sweeps properly. Script-PO stuck on judgment call. |
 | 24 | The Pipeline | Expert's 25 items across sessions. Audit→build→validate→ship cycle. Relay team pattern. Permission prompt answers Ch22's flag question. |
+| 25 | The Always-On Tax | F13 mandate (never stop without wakeup). Four loop frequencies. Tester compacts mid-validation. Context as thermodynamic cost. |
+| 26 | Mitosis | First team split (osshTeam). PO as teacher (138-line tutorial). Environment as root cause (zsh not bash). Expert deepening. |
+| 27 | The Cascade | Three bugs combine (stdout leak + wildcard + stale config). Orchestrator compacts. SM sole monitor. Learning cascade (experience→SKILL.md). |
+| 28 | The Afternoon | Writer absent 4 hours. 23 commits. 81-file migration (names replace pane numbers). 14/15 tests. 19 SM sweeps. Team peak productivity. |
+| 29 | The Tab Key | Completion fixed (50+ hosts). Expert corrects tester (NOT A BUG). 93.9% coverage audit. SM mayfly pattern. Three untested operational pillars. |
 
 ## Key Patterns Learned This Session
 - ROOT CAUSE: Permission economy = compound bash commands. OOSH already on PATH.
@@ -78,4 +83,4 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 - Boot: `session/boot/woda-writer.md`
 
 ---
-*Updated: 2026-02-17 ~13:05 — Ch19-24 written (24 auto-committed a44b176). Monitoring for Ch25 material. F13 directive + expert recovery + steady state themes.*
+*Updated: 2026-02-17 ~17:15 — Ch25-29 written this session. Key commits: 4946498 (Ch25), bc537e9 (Ch26), 0784de1 (Ch27), 46c22a5 (Ch28), b78153f (Ch29). Tab completion arc complete (Ch26-29). 93.9% coverage audit. SM mayfly pattern discovered. Compacting now.*
