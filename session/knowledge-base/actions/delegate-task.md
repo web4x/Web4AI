@@ -1,5 +1,7 @@
 # Action: Delegate a Task to the Team
 
+**Automated**: `hiveMind delegate <name> <description> <?from>` — CMM3
+
 1. Write task to file: `session/tasks/<role>-<task-name>.md`
 2. Include: who it's from, what to do, acceptance criteria
 3. Send nudge: `otmux send.verified <pane> "Read session/tasks/<file>.md" Enter`

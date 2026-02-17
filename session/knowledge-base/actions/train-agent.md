@@ -1,5 +1,7 @@
 # Train a New Agent — Action Checklist
 
+**Automated**: `hiveMind train <role>` — CMM3
+
 1. Verify agent's SKILL.md has a Reading List section
    - If not: add one (7-8 files, ordered from role-specific to codebase-wide)
 2. Send training task to agent's pane:

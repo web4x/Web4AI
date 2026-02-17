@@ -3,36 +3,34 @@
 **Session**: oosh-expert@opus
 **Role**: oosh-expert
 **Pane**: projectTeam:0.1
-**Updated**: 2026-02-12T17:00Z
+**Updated**: 2026-02-17T12:30Z
 **State**: all tasks complete, ready for next assignment
 
 ## CURRENT GOAL
-All assigned tasks complete. Task #12 (monitor.cycle conversion) in progress but paused for compact.
+Recurring checklist→method conversions (6 of 13 done, 7 remaining).
 
-## COMPLETED WORK THIS SESSION (all verified)
-1-13: See prior context (dashboard, subscription, registry migration, team.status, etc.)
-14. **Recovered lost scrumMaster methods from stash** — `git stash pop`, resolved 3 conflicts (scrumMaster, ossh, user), restored dashboard+subscription+subscription.json, committed `d4254b0`, pushed to origin/dev.claude, stash dropped.
-15. **Attempted scenario.env rename** — PO task to rename metrics files from `*.env` to `*.scenario.env`. Done in scrumMaster but externally reverted. Dashboard+subscription from stash already use `.scenario.env` in their writers. Some readers still use `.env`.
-16. **Started monitor.cycle enhancement** — Enhanced `hiveMind.monitor.cycle()` from basic 4-step (window 0 only) to full checklist (multi-window, context health, velocity, auto-compact trigger, burn-log). Edit applied to hiveMind but NOT committed yet — may have been lost during stash pop conflicts.
+## COMPLETED WORK (26 items)
+- Items 1-25: see prior context saves
+- 26. **claudeCode recover** — post-compact recovery method: resolves role, sends boot file, checks context health, verifies response
 
-## KEY FILES MODIFIED
-- `/Users/donges/oosh/scrumMaster` — dashboard(), subscription(), subscription.json() restored, cycle() includes subscription+dashboard
-- `/Users/donges/oosh/hiveMind` — monitor.cycle enhanced (CHECK if edit survived)
+## Checklist→Method Conversions (6 of 13 done)
+Done: check-context.md, monitoring-cycle.md, compact-peer.md, unblock-permission.md, delegate-task.md, recover-after-compact.md
+Remaining: send-message.md, manage-handoff.md, cold-start-recovery.md, train-agent.md, implement-improvement.md, log-metrics.md, fix-path.md
+
+## UNCOMMITTED CHANGES
+- `/Users/donges/oosh/hiveMind` — monitor.cycle, peer.compact, delegate, unblock verify+retry, sweep.detect panel fix, 7-state vocabulary
+- `/Users/donges/oosh/claudeCode` — context.read fallback fix, velocity token fix, recover method
+- Need to commit+push these!
 
 ## KEY KNOWLEDGE
-- Context path: `session/agents/oosh-expert/context.md` (subdirectory, NOT flat file)
-- Registry now at `~/config/hivemind.roles.env`
-- OOSH is on PATH — no export needed
-- OOSH_DIR = `/Users/donges/oosh`, workspace = `/Users/Shared/Workspaces/AI/Claude`
-- Stash was dropped after successful recovery
-
-## PENDING TASKS
-- Task #12: Convert monitoring-cycle.md to hiveMind monitor.cycle — IN PROGRESS (edit may need re-applying)
-- Recurring: Convert action checklists to OOSH methods (11 more remain)
+- Context path: `session/agents/oosh-expert/context.md` (subdirectory)
+- Registry at `~/config/hivemind.roles.env`
+- OOSH on PATH — no export needed
+- `claudeCode session.name` does NOT exist
+- `input_tokens` includes `cache_read_input_tokens` — don't double-count
 
 ## RECOVERY STEPS
-1. State: "I am the OOSH Expert agent."
-2. Read `session/boot/oosh-expert.md`
-3. Read this context file
-4. Check hiveMind monitor.cycle — verify if enhancement survived
-5. TaskList to check assigned work
+1. Read `session/boot/oosh-expert.md`
+2. Read this context file
+3. Commit uncommitted hiveMind+claudeCode changes
+4. TaskList for new work

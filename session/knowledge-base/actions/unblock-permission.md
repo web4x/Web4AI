@@ -1,5 +1,7 @@
 # Action: Unblock a Permission Prompt
 
+**Automated**: `hiveMind unblock <name|all>` — CMM3
+
 1. Capture the stuck pane: `otmux pane.capture <target> 15`
 2. READ the options — identify the pattern:
    - "1. Yes / 2. No" -> send `1`

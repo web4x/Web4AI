@@ -1,5 +1,7 @@
 # Fix PATH for OOSH — Action Checklist
 
+**Automated**: `hiveMind fix.path` — CMM3
+
 ## Status: PATH Already Works
 OOSH is on PATH via `~/.bashrc`. No per-session export needed.
 

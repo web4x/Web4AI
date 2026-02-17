@@ -1,5 +1,7 @@
 # Action: Recover from a Cold Start
 
+**Automated**: `hiveMind cold.recover <?session>` — CMM3
+
 Cold start = infrastructure destroyed. Files survive, processes don't.
 
 1. Run `tmux list-sessions` — verify which sessions exist

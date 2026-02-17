@@ -3,69 +3,114 @@
 **Session**: product-owner@opus
 **Role**: product-owner
 **Pane**: projectTeam:0.4
-**Updated**: 2026-02-12T18:00Z
-**State**: compacting — post-incident investigation
+**Updated**: 2026-02-17T12:45Z
+**State**: ACTIVE — recovered from compact, team functioning
 
 ## CURRENT GOAL — #1 PRIORITY
 
 **Self-improving CMM4 team. Agent health + adaptive sweep timing.**
 
-### Subscription measurement: DONE
-`scrumMaster subscription` and `subscription.json` work. Alert thresholds work (saw WARNING at 83%).
+### Priority Lesson from F11 (INTERNALIZE THIS)
+Compact protocol is the HIGHEST priority rule. A contextless compact cascades: agent regresses → loses all directives → pure rework. The weakest link was PO itself. 6 failures (F1,F3,F8,F9,F11,F12) share the same root cause: assuming instead of measuring. GATE: measure → assess → act → verify.
 
 ### The 90% Rule (Tron directive)
-80%=throttle, 90%=stop. SM has directive (20260212T1732Z.task.md) for adaptive sweep timing.
+80%=throttle, 90%=stop. Worked on Feb 16 — team throttled and recovered.
 
-## CRITICAL INCIDENT: Rebase Destroyed Work
+## SUBSCRIPTION (last measured 12:41Z Feb 17)
+- Block: 09:00-14:00 UTC (ACTIVE)
+- Used: $34.28, projected $62.62
+- Burn rate: 269k tok/min, 134 min remaining
+- Alert: OK — burn rate higher, still within block
+- `scrumMaster subscription` = correct real-time tool
+- `measure.subscription.api` = DEPRECATED (task 1200Z)
 
-**Full writeup**: `session/teamfailure.md`
+## CURRENT STATE (12:45Z Feb 17)
 
-hiveMind-expert ran `git pull --rebase` on Feb 12 17:20. Dropped commit `17340f6` containing:
-- otmux tree three-level view (session IDs per pane)
-- claudeCode FORCE_COLOR fix, list.named(), improved list
-- ossh ssh directory improvements
-- user script improvements
+- **Expert**: Completed tree.detailed (f1a0e26). At 9% context — needs compact, then queued tasks
+- **Tester**: Validating tree.detailed. Active.
+- **SM**: Sweeping with hiveMind sweep, using proper compact protocol. F11 recovery working.
+- **Orchestrator**: Monitoring SM at 5-min intervals. Active.
+- **Trainer**: Compacting (SM sent proper "Save context and /compact"). All tasks done.
+- **Writer**: Ch22 committed (7cc2284), starting Ch23. Active.
+- **Scribe**: Monitoring writer for Ch23. Active.
+- **Task-agent**: Self-compacting at 9%. Good.
+- **Developer**: Just compacted. Needs task after boot.
+- **Script-PO**: Doing restore comparison but STUCK on permission prompt. SM should catch in sweep.
 
-**Recovery**: Files extracted to `/Users/donges/oosh/restore/`. Tron manually comparing via `diffReview` tmux session.
+## ACCOMPLISHED (Feb 16-17)
 
-**Prevention**: `pull.rebase=false` in repo config. NEVER rebase. All SKILL.md being updated.
+- Expert: ossh + user sshDir restore (32e3b66), tree.detailed (f1a0e26), method conversions, sweep.detect fixes
+- Trainer: 3 SKILL.md updates to ALL 81 files (completion reporting, role names, compact protocol) — commits aae6410, 9633060
+- Script-PO: Completion + git safety + role names to 81 SKILL.md; working on restore comparison report
+- Tester: Dashboard revalidation, color-mode investigation done, validating tree.detailed
+- Writer: Chapters 19, 20, 22 (committed 7cc2284), starting 23
+- SM: Dashboard assignments working, CMM observations, self-recovered from F11, using proper compact protocol
 
-## TEAMS RUNNING
+## DIRECTIVES SENT (Feb 16-17)
 
-- **projectTeam** — 12 panes (0.0-0.5, 1.0-1.5)
-- **hiveMindTeam** — 2 panes (expert + tester)
-- **diffReview** — Tron's manual comparison session
+| Task | To | Content | Status |
+|------|----|---------|--------|
+| 1100Z | tester | Test team.status + measurement tools | DONE |
+| 1101Z | expert | otmux tree.detailed spec | Updated to new method |
+| 1102Z | script-PO | Completion + git safety ALL SKILL.md | DONE |
+| 1103Z | expert | otmux tree.detailed | DONE (f1a0e26) |
+| 1110Z | SM + ALL | No agent remote-controls PO pane | DELIVERED |
+| 1112Z | SM | Assignment tables every sweep | DELIVERED — working |
+| 1115Z | expert (orchestrator) | Fix team.status + dashboard bugs | PENDING |
+| 1120Z | tester | Restore comparison report | IN PROGRESS (script-PO doing it) |
+| 1125Z | tester | Color mode investigation | DONE |
+| 1130Z | expert | ossh + user sshDir restore | DONE (32e3b66) |
+| 1135Z | SM | Track CMM awareness | DELIVERED |
+| 1140Z | trainer | Address by role name | DONE (aae6410) |
+| 1145Z | expert | otmux tree.save/restore | QUEUED |
+| 1150Z | SM | OOSH tools only | DELIVERED |
+| 1155Z | trainer | Compact protocol WHY | DONE (9633060) |
+| 1200Z | expert | Deprecate measure.subscription.api | QUEUED |
+| 1835Z | SM | Resume sweeping, unblock team | DELIVERED |
+| 1836Z | orchestrator | Monitor SM, not just reports | DELIVERED |
+| 0950Z | orchestrator | URGENT: unblock + assign NOW | DELIVERED |
 
-## ACTIVE TASKS
+## osshTeam (DEDICATED SESSION — 1300Z)
 
-1. SM adaptive sweep timing (20260212T1732Z) — calculate sleep from burn rate
-2. Completion reporting protocol (20260212T1702Z) — trainer pushing to SKILL.md
-3. Git safety rule — trainer pushing "NEVER rebase" to all SKILL.md
-4. Restore lost features from `17340f6` (20260212T1745Z) — Tron reviewing
-5. scrumMasterTeam deployment (20260212T1731Z) — orchestrator
+New tmux session `osshTeam` with 3 panes:
+- 0.0: ossh-expert — investigating broken `ossh login [Tab]` completion
+- 0.1: test shell (plain bash for manual testing via send-keys)
+- 0.2: ossh-tester — testing completion in test shell
 
-## VERIFIED DONE
+Task: `session/tasks/20260217T1300Z.ossh-team.md`
+Phase 1 (investigation) started. Both agents bootstrapped and working.
 
-- [x] scrumMaster subscription + subscription.json
-- [x] hiveMind team.status with session IDs
-- [x] hiveMindTeam deployed and productive
-- [x] Sweep interval parameter (hiveMind sweep session interval)
-- [x] 33 script specialist teams created
-- [x] Task naming convention enforced
-- [x] Rebase forensic investigation complete
-- [x] teamfailure.md documented
-- [x] pull.rebase=false set in repo
+## QUEUED TASKS (projectTeam)
 
-## FAILURES (10 this session)
+1. **1145Z** expert: otmux tree.save / tree.restore (MEDIUM)
+2. **1200Z** expert: deprecate measure.subscription.api (HIGH — SM can't do CMM4 without this)
+3. **1115Z** expert: fix team.status + dashboard bugs (HIGH)
 
-F1-F9: See learnings.md
-F10: git pull --rebase destroyed uncommitted work (17340f6)
+## TRON COMMANDS
+- "status" = full report: goals, tasks, priorities, team assignments, subscription — measured not assumed
+
+## GOALS (confirmed with Tron)
+
+1. **CMM4 team** — CMM awareness every decision, SM tracks weakest link
+2. **Restore lost functionality** — sshDir DONE, color mode DONE, tree.detailed DONE (f1a0e26), comparison report IN PROGRESS
+3. **Team self-management** — completion protocol, assignment tables, SM unblocks stuck agents
+4. **Subscription monitoring** — 80%=throttle, 90%=stop, adaptive sweep
+5. **Software delivery** — team.status fixes, action→method conversions, otmux tree family
+
+## FAILURES (12 total)
+
+F1-F10: See learnings.md
+F11 (CRITICAL): Compacted 3 agents without context save — cascade damage
+F12: Set wakeup 1 hour late — assumed reset time
+F13: SM + orchestrator both stopped without wakeup — team went dark. Fixed in both SKILL.md files.
 
 ## RECOVERY STEPS
 
 1. "I am the Product Owner agent."
 2. Read `session/agents/product-owner/context.md` (this file)
-3. `scrumMaster subscription` — check subscription FIRST
-4. `hiveMind sweep projectTeam` — team state
-5. Check `session/teamfailure.md` for incident status
-6. Drive adaptive sweep timing as #1 priority
+3. `scrumMaster subscription` — MEASURE subscription FIRST
+4. Read `session/dashboard-assignments.md` — SM's team report
+5. GATE: measure → assess → act → verify. NEVER assume.
+6. Compact protocol: "Save your context and run /compact NOW" — NEVER raw /compact
+7. Check queued tasks and drive them forward
+8. If agents stuck: tell orchestrator to unblock immediately — don't just report it

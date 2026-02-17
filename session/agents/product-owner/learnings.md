@@ -33,7 +33,20 @@ hiveMind-expert ran `git pull --rebase` which silently overwrote uncommitted otm
 
 ### F9: Didn't monitor burn rate after waking idle agents (2026-02-12)
 Woke up 5+ idle agents, knew burn rate would spike, didn't monitor. Went from 470k to 665k tok/min. Hit 94% without SM catching it. **After any action that increases parallelism, check subscription within 5 minutes.**
-`⏵⏵ accept edits on` in the Claude Code status bar means auto-accept is ENABLED — the agent is NOT blocked. A blocked agent would show a specific file-change approval prompt, not a status bar indicator. **Read the full context of the UI, not just pattern-match keywords.**
+
+### F11 (CRITICAL): Sent /compact to 3 agents without letting them save context (2026-02-16)
+Swept all panes, saw 1.0 (writer), 1.1 (scribe) at context limit and 0.5 (trainer) appearing stale. Sent raw `/compact` to all three without first asking them to save their context. Additionally, 0.5 trainer was ACTIVELY WORKING (fixing SM SKILL.md) — I assumed it was stale based on minutes-old sweep data without re-capturing. All three compacted without saving state. Context files now stale, in-progress work lost. **Two rules violated simultaneously:**
+1. **Peer Compact Protocol**: NEVER send raw `/compact`. Always send "Save your context and run /compact NOW" and WAIT for confirmation.
+2. **Capture → Assess → Act**: NEVER act on stale sweep data. Always re-capture the pane IMMEDIATELY before sending any disruptive command.
+**The correct sequence: re-capture → verify state → send "Save context + /compact" → wait for save confirmation → verify compact completed.**
+
+**Cascade damage (measured):** SM regressed to manual sleep/for loops (lost hiveMind sweep directive). Writer lost chapter progress. Trainer lost mid-task SM SKILL.md fix. All directives sent this session (1110Z, 1112Z, 1135Z) had to be re-sent to SM = pure rework. The cost of a contextless compact is not just "lost state" — it's team-wide regression that burns tokens and time to repair. Compact protocol is the HIGHEST priority rule because violating it cascades into every other capability.
+
+### F12: Set wakeup 1 hour late — assumed reset time instead of measuring (2026-02-16)
+Used the stale API (`measure.subscription.api` showed "resets 18:59 UTC") to calculate wakeup at 20:00 local. Didn't verify with `scrumMaster subscription`. New block had already started at 18:00 UTC — wakeup was 1 hour late. **Same pattern as F1, F3, F8, F9: assuming instead of measuring. Use `scrumMaster subscription` for real-time data. The deprecated API lags. Always verify the reset time AFTER the block ends, not before.**
+
+### F13: SM and orchestrator both stopped without wakeup — team went dark (2026-02-17)
+Both SM and orchestrator completed a burst of work, reported results, and STOPPED. No background task, no wakeup timer, no loop. Unsubmitted prompts sat at `❯` until I manually sent Enter. The team had zero velocity for the entire time they were idle. **Core loop agents (SM, orchestrator) must NEVER finish a response without scheduling their next wakeup. This is now in both SKILL.md files as "Continuous Operation (F13)". Stopping without a wakeup is a failure, not a rest.**
 
 ## Patterns
 
@@ -45,9 +58,12 @@ When team idles, don't guess what to assign. Ask the task agent what's still und
 - Write task files to `session/tasks/`, send only: `Read session/tasks/<file>.md`
 - Task filenames: `{YYYYMMDD}T{HHMM}Z.task.md` — no descriptions in filenames
 
-### OOSH PATH
+### OOSH PATH + OOSH-Only Rule
 - OOSH is ALREADY on PATH via ~/.bashrc — no `export PATH=...` needed
 - Direct commands: `otmux pane.capture projectTeam:0.3 10` — works directly
+- **NEVER use raw `tmux` commands** — always `otmux` wrappers. PO violated this multiple times (F14).
+- **NEVER use `sleep N && command`** — use otmux background patterns instead
+- For session creation: `otmux new <name> -d` (detached)
 
 ### Peer Compact Protocol
 - Peer TRIGGERS agent to save own state, does NOT write context for them

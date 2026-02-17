@@ -1,5 +1,7 @@
 # Manage Generational Handoff — Action Checklist
 
+**Automated**: `hiveMind handoff <name-or-pane>` — CMM3
+
 ## Detect (before compaction)
 1. Monitor agent's context % via `claudeCode context.read <pane>`
 2. If below 15%: alert the agent to save state NOW

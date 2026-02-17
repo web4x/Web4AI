@@ -1,5 +1,7 @@
 # Action: Run a Monitoring Cycle
 
+**Automated**: `hiveMind monitor.cycle <session>` — CMM3
+
 1. Read background task output (peer pane capture)
 2. Check peer context: `claudeCode context.read <peer-pane>`
 3. Check own context: `claudeCode context.read <my-pane>`

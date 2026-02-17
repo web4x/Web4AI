@@ -1,5 +1,7 @@
 # Log Metrics — Action Checklist
 
+**Automated**: `hiveMind metrics.log` + `hiveMind metrics.summary` — CMM3
+
 ## SM: After Each Sweep
 1. Run `hiveMind dashboard` (or manual pane captures if dashboard broken)
 2. Append row to `session/metrics/sweep-log.md` per agent: time, context %, tokens, state

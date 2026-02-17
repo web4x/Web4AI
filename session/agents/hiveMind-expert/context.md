@@ -1,13 +1,13 @@
 # hiveMind-expert Agent Context
 **Session**: hiveMind-expert
 **Role**: hiveMind-expert
-**Updated**: 2026-02-13T11:35Z
-**State**: idle — Tasks 40.1-40.3 all done, ready for next
+**Updated**: 2026-02-16T10:30Z
+**State**: idle — Tasks 40.1-40.5 tooling all done, ready for next
 
 ## CURRENT GOAL
-None — all assigned hiveMind tasks done. Ready for next assignment.
+None — all assigned tasks done. Ready for next assignment.
 
-## COMPLETED THIS SESSION (6 tasks, all pushed)
+## COMPLETED THIS SESSION (8 tasks, all pushed)
 
 ### Task 1: Fix team.status blocker detection (20260212T1335Z) — DONE
 - Replaced `private.hiveMind.pane.activity` (4 states) with `private.hiveMind.sweep.detect` (12+ states)
@@ -45,6 +45,19 @@ None — all assigned hiveMind tasks done. Ready for next assignment.
 - All commands now complete registered teams + running tmux sessions
 - Commit: `d3ce9d0`
 
+### Task 7: Verified Task 40.4 (velocity measurement) — DONE
+- Already implemented by oosh-expert (commits `691174f`, `55a3673`, `4c626a5`)
+- Verified all acceptance criteria pass: velocity snapshot, burn rate, storage, syntax
+- Marked done in task file
+
+### Task 8: CMM4 feedback loop tooling (Task 40.5) — DONE
+- New method: `scrumMaster.measure.health` — full PDCA health check cycle
+  - Refreshes subscription API → snapshots velocity → evaluates thresholds → alerts orchestrator via hiveMind
+- Fixed 8 stale `cursorOrchestrator` defaults → read `~/config/hivemind.active.team`
+- Fixed 3 stale `/tmp/hivemind.roles` registry paths → `~/config/hivemind.roles.env`
+- Updated usage text with CMM4 feedback loop commands
+- Commit: `f4694ea`
+
 ## RECOVERY AFTER COMPACT
 1. State identity: "I am hiveMind-expert"
 2. Read `.claude/agents/hiveMind-expert/SKILL.md`
@@ -55,6 +68,7 @@ None — all assigned hiveMind tasks done. Ready for next assignment.
 
 ## KEY CONTEXT
 - hiveMind lives in `/Users/donges/oosh/hiveMind` — separate git repo (`dev.claude` branch)
+- scrumMaster lives in `/Users/donges/oosh/scrumMaster` — same repo
 - Other agents have uncommitted changes in that repo — be careful with stash/rebase
-- Task 40 subtasks: 40.1 DONE, 40.2 DONE, 40.3 DONE, 40.4-40.6 other agents
-- Task 40.5 (feedback loop) needs 40.2+40.4 — 40.2 done, 40.4 not my scope
+- Task 40 subtasks: 40.1-40.5 DONE (tooling), 40.6 PO scope
+- 40.5 remaining: SM must integrate `measure.health` into sweep loop, Orchestrator must respond to alerts, Trainer must update SKILL.md files

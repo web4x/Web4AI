@@ -1,5 +1,7 @@
 # Action: Trigger Seamless Compact for Peer
 
+**Automated**: `hiveMind peer.compact <name-or-pane>` — CMM3
+
 The agent being compacted does ZERO manual steps.
 
 1. Capture peer's pane (30 lines): `otmux pane.capture <peer> 30`

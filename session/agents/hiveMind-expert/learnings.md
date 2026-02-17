@@ -44,3 +44,14 @@
 - Severity levels: `critical` (crash, subscription-limit, shell-escaped), `blocker` (permission, rate-limit, accept-edits), `warning` (context-warning, just-compacted, mcp-error), `info` (active, idle)
 - Capture window: 20 lines (was 10) — more context for better pattern matching
 - `team.sweep` now delegates to `sweep.detect` instead of duplicating detection logic
+
+## Cross-Script Work: scrumMaster (2026-02-16)
+- **scrumMaster** lives in same repo (`~/oosh/scrumMaster`, ~1650 lines) — I can edit it too when tasks require it
+- **Stale defaults pattern**: Many scrumMaster methods had hardcoded `cursorOrchestrator` session and `/tmp/hivemind.roles` registry paths. Fixed all to read `~/config/hivemind.active.team` and `~/config/hivemind.roles.env`
+- **Active team read pattern** (for scripts that don't source hiveMind): `$(cat "$HOME/config/hivemind.active.team" 2>/dev/null || echo projectTeam)` — lightweight, no function call needed
+- **measure.health**: Full PDCA cycle method — refreshes API, snapshots velocity, evaluates thresholds, alerts orchestrator via `hiveMind agent.send`. SM calls this one command every 30 minutes.
+- **Task 40.4 was already done**: Before implementing, always check git log for existing commits. The oosh-expert had already implemented `measure.velocity` — saved time by verifying instead of reimplementing.
+
+## Git Workflow Update (2026-02-16)
+- **NEVER use `git pull --rebase`** — rebase destroys uncommitted work (Feb 12 incident). Use `git pull` only (merge).
+- `pull.rebase=false` is set in repo config.

@@ -1,5 +1,7 @@
 # Action: Implement a CMM Improvement
 
+**Automated**: `hiveMind improvement [next|done|list]` — CMM3
+
 1. Read `session/cmm.improvement.md` — find top unchecked item
 2. Read the KPIs for that improvement
 3. Implement the solution

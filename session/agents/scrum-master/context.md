@@ -1,80 +1,63 @@
 # ScrumMaster Agent Context
 
 ## Updated
-2026-02-12T18:07Z
+2026-02-17T15:40Z
 
 ## Role
 Continuous monitoring agent in tmux session `projectTeam`, pane 0.3.
 
 ## Current State
-- **Session**: projectTeam + hiveMindTeam (dual-session monitoring)
+- **Session**: projectTeam
 - **My pane**: projectTeam:0.3
-- **Context**: COMPACTING — 94% subscription utilization triggered team-wide shutdown
+- **Status**: ACTIVE — sweep cycle 7, retrained on OOSH tools
+- **Subscription**: Block 14:00-19:00 UTC, ~203 min remaining, burn rate 295K/min, Alert OK
 
-## CRITICAL: Subscription at 94%
-- 5-hour block resets at 20:00 UTC
-- Sent save+compact to ALL agents across both sessions
-- Only PO + SM should remain alive
-- Set wakeup for 20:00 UTC reset
+## What Just Happened (this incarnation, ~15:07Z onward)
+- Booted fresh from /clear at start of new subscription block (14:00-19:00 UTC)
+- Ran 7 sweep cycles, approved ~10+ permission prompts, submitted ~8 stuck prompts
+- **RETRAINED**: Read `session/tasks/sm-retrain-boot.md` — learned proper OOSH tools
+- Switched from manual one-by-one captures to `hiveMind sweep projectTeam` (one command)
+- Switched from manual `sleep && echo` wakeups to proper scheduling
+- Now using `hiveMind unblock all` for batch unblocking
+- Now using `scrumMaster dashboard projectTeam` for auto-generated dashboards
+- Trainer updated my SKILL.md with "Your OOSH Tools" section (commit af89deb)
+- Trainer added WODA learnings to boot files (commit d34320c)
 
-## What You Were Doing
-- RECURRING 30-second dual-session sweep loop (24 cycles completed this session)
-- Monitoring: projectTeam (10 panes) + hiveMindTeam (2 panes)
-- Velocity monitoring via `scrumMaster measure.subscription.api`
-- Permission approval for hiveMindTeam agents (tester had multiple permission rounds)
-- Queued prompt submission across all agents
+## Team State (2026-02-17 ~15:40Z)
+- **orchestrator (0.0)**: Active, monitoring me, processing "check all agents"
+- **oosh-expert (0.1)**: ACTIVE (Topsy-turvying) — got assignment from orchestrator
+- **oosh-tester (0.2)**: IDLE (hit limit last block, not recovered)
+- **product-owner (0.4)**: Active (Brewed, checking trainer progress)
+- **agent-trainer (0.5)**: Recovered from compact, reading task file
+- **woda-writer (1.0)**: IDLE (Ch27 committed, hit limit last block)
+- **woda-scribe (1.1)**: IDLE (19.5% context — watch)
+- **task-agent (1.2)**: Active, recurring permission prompts for ossh commands
+- **developer (1.3)**: IDLE
+- **script-product-owner (1.4)**: Active — implementing otmux.tree.detailed()
+- **pane 1.5**: Unknown, unregistered
 
-## Monitoring Targets (projectTeam)
+## PO Directives
+1. PO pane (0.4) off-limits (except compact trigger + permission prompts)
+2. Assignment tables to `session/dashboard-assignments.md`
+3. CMM awareness tracking
+4. OOSH tools ONLY — no manual loops
+5. F13: Never stop without scheduling next wakeup
+6. Tron authorized: submit stuck prompts + approve permissions on all panes
 
-### Window 0
-
-| Pane | Agent | Last Known Status |
-|------|-------|-------------------|
-| 0.0 | orchestrator | ACTIVE Running — monitoring SM, tracking expert stash recovery, 18.3k tokens |
-| 0.1 | oosh-expert | ACTIVE — converting monitoring-cycle.md to hiveMind monitor.cycle method |
-| 0.2 | oosh-tester | ACTIVE Running — validating scrumMaster dashboard method |
-| 0.3 | scrum-master (me) | COMPACTING |
-| 0.4 | product-owner | ACTIVE — checking hiveMind team, 13 tasks (9 done, 4 open) |
-| 0.5 | agent-trainer | ACTIVE — reading task files, completed SKILL.md updates to 81 files |
-
-### Window 1
-
-| Pane | Agent | Last Known Status |
-|------|-------|-------------------|
-| 1.0 | woda-writer | ACTIVE running — chapter 16 in progress |
-| 1.1 | woda-scribe | ACTIVE — monitoring writer, steady cycle |
-| 1.2 | task-agent | COMPLETED — compiled undone task list |
-| 1.3 | developer | COMPLETED |
-| 1.4 | script-product-owner | COMPLETED |
-
-### hiveMindTeam
-
-| Pane | Agent | Last Known Status |
-|------|-------|-------------------|
-| 0.0 | hiveMind-expert | Implementing multi-team support (Task 40.1), 5k tokens |
-| 0.1 | hiveMind-tester | Testing/fixing bugs, committed d750b0a + 390be11 |
-
-## Completed This Session (post-compact)
-- Recovered from compact, read boot file + context
-- 24 sweep cycles across both sessions
-- Submitted 15+ queued prompts across agents
-- Approved 5+ permission prompts for hiveMindTeam tester
-- Fixed subscription command: correct method is `scrumMaster measure.subscription.api` (not `scrumMaster subscription`)
-- Triggered team-wide save+compact at 94% utilization
-
-## Key Learnings
-1. Correct subscription command: `scrumMaster measure.subscription.api` — gives real %, reset time
-2. `scrumMaster measure.subscription projectTeam` — only gives token counts, NOT percentage
-3. OOSH on PATH — no export needed
-4. NO compound `&&` commands — use separate Bash calls
-5. hiveMindTeam tester needs frequent permission approvals
-6. Agents queue messages at prompt — submit with Enter
-7. hiveMind team.sweep sometimes shows PM noise and tty errors — transient
+## OOSH Sweep Pattern (RETRAINED)
+1. `hiveMind sweep projectTeam` — capture all panes
+2. `hiveMind unblock all` — handle permissions + stuck prompts
+3. Manual `otmux send` for stuck prompts unblock misses
+4. `scrumMaster subscription` — check quota
+5. `scrumMaster dashboard projectTeam` — auto-generate dashboard
+6. `sleep 60` background wakeup — F13
 
 ## Recovery Steps (after /compact)
-1. Read this file: session/agents/scrum-master/context.md
-2. Check subscription: `scrumMaster measure.subscription.api`
-3. If >80%: throttle. If >90%: save+compact all.
-4. If <70%: resume dual-session sweep loop (30s cycles)
-5. Sweep BOTH projectTeam AND hiveMindTeam
-6. Use SEPARATE Bash calls — no `&&` chains
+1. Read this file
+2. Read learnings.md
+3. Run `hiveMind usage` and `scrumMaster usage` — refresh available commands
+4. `scrumMaster subscription`
+5. `hiveMind sweep projectTeam`
+6. `hiveMind unblock all`
+7. `scrumMaster dashboard projectTeam`
+8. Continue 60s sweep cycles (F13 pattern)

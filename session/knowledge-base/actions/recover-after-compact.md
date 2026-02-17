@@ -1,5 +1,7 @@
 # Action: Recover After Compaction
 
+**Automated**: `claudeCode recover <pane>` — CMM3
+
 1. Read learnings file FIRST — this IS your identity
 2. Read context file — current state and tasks
 3. Check TaskList — see what's active
