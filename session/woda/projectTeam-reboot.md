@@ -33,8 +33,9 @@
 | 25 | [The Always-On Tax](#chapter-25-the-always-on-tax) | 2,894 | 2026-02-17 |
 | 26 | [Mitosis](#chapter-26-mitosis) | 2,600 | 2026-02-17 |
 | 27 | [The Cascade](#chapter-27-the-cascade) | 2,693 | 2026-02-17 |
+| 28 | [The Afternoon](#chapter-28-the-afternoon) | 2,497 | 2026-02-17 |
 
-**Total**: 27 chapters, 52,786 words
+**Total**: 28 chapters, 55,283 words
 
 ---
 
