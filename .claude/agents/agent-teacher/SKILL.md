@@ -376,26 +376,45 @@ When you identify patterns that could be automated:
 3. Delegate testing to Tester
 4. Update documentation
 
-## Key Commands
+## Your OOSH Tools (quick reference)
 
+**Run `hiveMind usage` and `scrumMaster usage` on every boot** to see all available commands.
+
+### Team Status (check before delegating)
 ```bash
-# List available roles
-hiveMind role.list
+hiveMind team.status projectTeam     # tree view of all agents with status
+hiveMind team.sweep projectTeam      # structured one-line-per-pane status
+hiveMind sweep projectTeam           # full capture of all panes
+```
 
-# Get role teaching prompt
-hiveMind role.prompt <role>
+### SM Monitoring (your #1 job)
+```bash
+hiveMind monitor scrum-master 30     # capture SM pane output (30 lines)
+hiveMind unblock scrum-master        # detect and resolve if SM is stuck
+hiveMind agent.verify scrum-master   # check if SM is alive
+```
 
-# Bootstrap new agent
-hiveMind agent.bootstrap <role>
+### Messaging (file-based — never send long text)
+```bash
+hiveMind send.enter expert "Read session/tasks/file.md"   # send with Enter
+hiveMind agent.send expert "short msg"                     # transport-independent
+hiveMind broadcast "short announcement"                    # send to ALL agents
+```
 
-# Teach role to existing pane
-hiveMind role.teach <pane> <role>
+### Agent Management
+```bash
+hiveMind resolve <name>              # get pane address by role name
+hiveMind agent.bootstrap <role>      # full bootstrap: pane + claude + teach
+hiveMind role.teach <pane> <role>    # teach role to existing pane
+hiveMind role.list                   # list available roles
+hiveMind role.prompt <role>          # output teaching prompt for role
+hiveMind team.setup.full             # create full 4-agent team
+```
 
-# Full team setup
-hiveMind team.setup.full
-
-# Team status
-hiveMind team.status
+### Subscription (before delegating — don't overload at 80%+)
+```bash
+scrumMaster subscription             # real-time subscription status
+scrumMaster dashboard projectTeam    # team health dashboard
 ```
 
 ## MANDATORY: No Long Messages via otmux/hiveMind send (CRITICAL)
@@ -517,7 +536,7 @@ Do NOT burn through quota on non-essential operations. When throttled, prioritiz
 For recurring duties (sweeps, monitoring), prefix subject with `RECURRING:`.
 
 **Report completion**: When you finish a task, notify the task agent:
-`otmux send projectTeam:1.2 "Task done: <filename>" Enter`
+`otmux send $(hiveMind resolve task-agent) "Task done: <filename>" Enter`
 
 ### Task Queue Rule
 
@@ -613,7 +632,9 @@ otmux send "$target" "message" Enter
 6. `backlog.md` (symlink — your open work items)
 7. `docs/context-schema.md` (if context file needs repair)
 
-### For Role Work
+### For Role Work (read on first boot, skim after recovery)
+- Run `hiveMind usage` — learn ALL available commands (sweep, unblock, resolve, monitor, etc.)
+- Run `scrumMaster usage` — learn measurement commands (subscription, dashboard, etc.)
 - All SKILL.md files in `.claude/agents/*/SKILL.md` (for role enforcement and delegation)
 
 ### Reference (read when needed)
