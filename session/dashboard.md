@@ -1,7 +1,7 @@
 # Team Dashboard
 
-**Updated**: 2026-02-14T10:10:10Z (2026-02-14 11:10 CET)
-**Session**: projectTeam
+**Updated**: 2026-02-17T11:41:10Z (2026-02-17 12:41 CET)
+**Session**: claudeOpus2kTMUX
 
 ## Git Status
 
@@ -9,46 +9,37 @@
 |-------|-------|
 | Branch | `main` |
 | Status | uncommitted changes |
-| Last commit | `159942b Auto-save: woda-scribe pre-compact 11:24` |
+| Last commit | `5fb9972 Rename 1 non-conforming task file` |
 
 ## Subscription
 
 | Metric | Value |
 |--------|-------|
-| 5-hour usage | 83% |
+| 5-hour usage | 52% |
 | 7-day usage | 0% |
 
 ## Tasks
 
 | Metric | Value |
 |--------|-------|
-| Total task files | 101 |
-| Today's tasks | 0 |
+| Total task files | 128 |
+| Today's tasks | 2 |
 
 ## Team Status
 
 | Agent | Pane | Context | Velocity | State |
 |-------|------|---------|----------|-------|
-| orchestrator | 0.0 | 52.4% | 1286 tokens/hr | unknown |
-| oosh-expert | 0.1 | 49.0% | 1435 tokens/hr | unknown |
-| oosh-tester | 0.2 | 29.5% | 3680 tokens/hr | unknown |
-| scrum-master | 0.3 | 41.7% | 1756 tokens/hr | unknown |
-| product-owner | 0.4 | 23.6% | 1670 tokens/hr | unknown |
-| agent-trainer | 0.5 | 60.8% | 1470 tokens/hr | unknown |
-| task-agent | 1.2 | 23.6% | 1670 tokens/hr | completed |
-| woda-writer | 1.0 | 100.0% | - | active |
-| woda-scribe | 1.1 | 72.9% | 368 tokens/hr | unknown |
-| developer | 1.3 | 26.3% | 4017 tokens/hr | completed |
-| script-product-owner | 1.4 | 23.6% | 1670 tokens/hr | completed |
+| claude-opus | 0.0 | 57.3% | - | unknown |
+| cursor-agent | 0.2 | no-claude | - | unknown |
 
 ## Recent Commits
 
 ```
-159942b Auto-save: woda-scribe pre-compact 11:24
-5e4bc8a Auto-save: unknown pre-compact 11:04
-0c8a5a2 Auto-save: woda-writer pre-compact 11:03
-59167b0 Auto-save: unknown pre-compact 11:03
-2acb095 Auto-save: orchestrator pre-compact 17:50
+5fb9972 Rename 1 non-conforming task file
+66e5311 Add Chapter 20 "The Blindspot" + Chapter 21 "The Second Thaw"
+ee88e2e Rename 5 non-conforming task files to timestamp convention
+9633060 Add Compact Protocol lesson to all 81 SKILL.md files
+aae6410 Add role-name addressing rule to all 81 SKILL.md files
 ```
 
 ## Recovery
