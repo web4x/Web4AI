@@ -104,11 +104,26 @@ grep '^Host' $sshDir/config $sshDir/config.d/*
 
 If `config.d/` doesn't exist, `$sshDir/config.d/*` is literal and grep fails. Not critical (grep just reports error), but worth noting.
 
-## Recommended Action
+## Fixes Applied (Phase 2)
 
-1. **Fix 1 only** — remove `CURRENT_SSH_DIR` line from `user.env`
-2. Have tester validate completion works with real `~/.ssh`
-3. Log Fix 2 and Fix 3 as separate improvement tasks
+### Fix 1: CURRENT_SSH_DIR removed from user.env
+- Removed line 12 (`export CURRENT_SSH_DIR="..."`) from `/Users/donges/config/user.env`
+- `private.get.sshDir()` now defaults to `$HOME/.ssh` as intended
+
+### Fix 2: echo → info.log in private.get.sshDir() (ossh:772)
+- Changed `echo "$RESULT"` to `info.log "$RESULT"`
+- Matches the user script pattern at user:92
+- Stops stdout leak into completion results
+
+### Fix 3: Filter Host * from completion (ossh:549)
+- Added `| grep -v '^\*'` to filter wildcard Host entries
+- Tightened grep to `'^Host '` (trailing space) for precision
+- Prevents glob expansion of `*` in COMPREPLY
+
+### Verification
+- `ossh parameter.completion.sshConfigHost` now returns 70+ real hosts
+- `test.suite run ossh` → 8/8 PASS, 0 failures
+- Ready for tester Phase 3 validation
 
 ## Files Examined
 

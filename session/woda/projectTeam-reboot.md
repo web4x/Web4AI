@@ -32,8 +32,9 @@
 | 24 | [The Pipeline](#chapter-24-the-pipeline) | 1,762 | 2026-02-17 |
 | 25 | [The Always-On Tax](#chapter-25-the-always-on-tax) | 2,894 | 2026-02-17 |
 | 26 | [Mitosis](#chapter-26-mitosis) | 2,600 | 2026-02-17 |
+| 27 | [The Cascade](#chapter-27-the-cascade) | 2,693 | 2026-02-17 |
 
-**Total**: 26 chapters, 50,093 words
+**Total**: 27 chapters, 52,786 words
 
 ---
 

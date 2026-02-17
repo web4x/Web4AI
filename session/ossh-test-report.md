@@ -1,86 +1,47 @@
-# ossh Completion Test Report — Phase 1
+# ossh Completion Test Report — Phase 3 Validation
 
 **Agent**: ossh-tester
-**Date**: 2026-02-17T13:30Z
-**Shell**: OOSH bash (after fixing test shell from zsh)
+**Date**: 2026-02-17
+**Status**: IN PROGRESS (compacting at 95%, 4/6 tests done)
 
-## Summary
+## Phase 1 Summary (completed)
 
-`ossh login [Tab][Tab]` is BROKEN. It shows file/directory listings instead of SSH config host names. Root cause is two-fold.
+Test shell was zsh — OOSH can't work in zsh. Fixed by switching to bash + sourcing OOSH.
 
-## Test Environment
+## Phase 2 (expert's fixes)
 
-- Test shell: osshTeam:0.1
-- Shell: bash (sourced via `source ~/.bashrc` in bash subshell)
-- OOSH loaded: YES — prompt shows `[oosh McDonges.native]`
-- Completion registered: YES — `complete -F _oo_completion ossh`
+3 bugs fixed by ossh-expert:
+1. `CURRENT_SSH_DIR` in `user.env` pointed to experiment dir (only 2 hosts) — removed
+2. `private.get.sshDir()` echo leaked path to stdout — changed to `info.log`
+3. `Host *` wildcard in completion output — filtered out with `grep -v '^\*'`
 
-## Test Results
+## Phase 3 Validation Results
 
 | # | Test | Expected | Actual | Result |
 |---|------|----------|--------|--------|
-| 1 | `ossh [Tab]` | List of ossh methods | Shows methods correctly (config.edit, config.get, login, list.ids, etc.) | **PASS** |
-| 2 | `ossh login [Tab]` | SSH host names (github.com, Web.DongesIT, etc.) | Shows usage/help text, then file listings | **FAIL** |
-| 3 | `ossh login [Tab][Tab]` | SSH host names | Shows file/directory listings from $PWD | **FAIL** |
-| 4 | `ossh config.get [Tab]` | SSH host names | Shows usage/help text, then interactive prompt | **FAIL** |
-| 5 | `complete -p ossh` | Completion function registered | `complete -F _oo_completion ossh` | **PASS** |
+| V1 | `ossh login [Tab][Tab]` | 70+ SSH host names | 70+ SSH host names (13mi, github.com, WODA.metatrom, etc.) | **PASS** |
+| V2 | `ossh config.get [Tab][Tab]` | 70+ SSH host names | 70+ SSH host names (same list) | **PASS** |
+| V3 | `ossh [Tab]` — method completion | ossh methods | NOT YET TESTED (was PASS in Phase 1) |
+| V4 | `test.suite run ossh` | 8/8 pass | NOT YET TESTED (expert reports 8/8) |
+| V5 | `test.suite run user` | All pass | NOT YET TESTED |
+| V6 | completion.result.txt contents | No path, no wildcard | NOT YET TESTED |
 
-## Root Cause Analysis
+## Key Observations
 
-### Issue 1: Completion functions not loaded into shell
+- No directory path in completion output (Fix 2 working)
+- No `*` wildcard in completion output (Fix 3 working)
+- 70+ real SSH hosts from `~/.ssh/config` (Fix 1 working — defaults to ~/.ssh)
+- The `your command >` interactive display still appears during Tab (existing c2 behavior, not a bug)
 
-```
-$ type ossh.login.completion
-bash: type: ossh.login.completion: not found
+## Remaining Work After Compact
 
-$ type ossh.config.get.completion
-bash: type: ossh.config.get.completion: not found
+1. Test V3: `ossh [Tab]` method completion regression check
+2. Test V4: `test.suite run ossh` — verify 8/8
+3. Test V5: `test.suite run user` — verify no regressions
+4. Test V6: `cat ~/config/completion.result.txt` — verify clean content
+5. Write final report
+6. Notify expert for Phase 4 commit
 
-$ type ossh.parameter.completion.sshConfigHost
-bash: type: ossh.parameter.completion.sshConfigHost: not found
-```
+## Red Herring (from Phase 1)
 
-The completion functions exist in the `ossh` script file but are NOT sourced into the bash session. The `_oo_completion` callback (from c2) needs these functions to be in memory, but they aren't. So it falls through to default file completion.
-
-### Issue 2: `ossh.parameter.completion.sshConfigHost` returns wrong results
-
-When called via OOSH dispatch:
-```
-$ ossh parameter.completion.sshConfigHost
-/Users/Shared/Workspaces/AI/Claude/experiment/.ssh
-github.com
-*
-```
-
-Expected: A list of SSH config host names from `~/.ssh/config` (github.com, Web.DongesIT, SNET.prod, shift2cu, etc.)
-
-Actual: Returns a directory path, one host, and a wildcard. Only `github.com` is a valid host. The path and `*` are wrong.
-
-### Issue 3: Initial test shell was zsh (not bash)
-
-The tmux pane osshTeam:0.1 started in zsh (macOS default). OOSH completions use bash's `complete` builtin which doesn't exist in zsh. All `add_to_completion:7: command not found: complete` errors at startup confirm this. This was fixed by starting bash and sourcing OOSH.
-
-## Hosts That SHOULD Appear (from ~/.ssh/config)
-
-```
-github.com, Web.DongesIT, SNET.prod, shift2cu, Web.CC, Web.2cu.it,
-KPP.root, KPP, backup.sfsre.com, patricia-backs-macbook-2.fritz.box,
-pubuntu, qnap, 13mi, 2cuBitbucket, surface, githubCC.cerulean,
-githubCC.tech4people, githubCC.soundcurrency, iMac, WODA.test.once2023,
-samsungTablet, avis.login, avis.jump, avis.admin.avis.exchange.login,
-avis.exchange.login, avis.web1.avis.land.dev, avis.web1.avis.land.db,
-avis.srvavis.avis.technology, avis.user.exchange.login
-```
-
-## Additional Observations
-
-1. The `your command >` display (printed by `_oo_completion`) shows up during Tab, which creates a confusing interactive prompt that interferes with normal completion flow.
-2. `completion.result.txt` at `~/config/` is written by the completion system and does contain some results — but they're wrong (path + wildcard instead of host names).
-3. `ossh [Tab]` (method completion) works correctly — methods are listed properly. The bug is parameter-level completion only.
-
-## Recommended Investigation for ossh-expert
-
-1. **Check how c2 loads completion functions** — are they supposed to be sourced into the shell, or called via subprocess? If subprocess, the OOSH dispatch works but the bash completion callback can't use them.
-2. **Fix `ossh.parameter.completion.sshConfigHost()`** — it should parse `~/.ssh/config` for `Host` lines and return host names. Currently returns a directory path and wildcard.
-3. **Check `completion.result.txt` pipeline** — the `_oo_completion` function reads from this file. If the file contains wrong data, completion will be wrong.
-4. **Compare `c2` current vs `restore/c2`** — may reveal changes that broke the loading mechanism.
+"Functions not loaded in shell" — EXPECTED behavior. c2 runs as subprocess which sources ossh. Completion functions don't need to be in the interactive shell.
