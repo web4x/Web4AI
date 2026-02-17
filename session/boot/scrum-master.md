@@ -1,24 +1,47 @@
 # Boot: scrum-master
-*Auto-generated 2026-02-12 17:34. This is ALL you need to read post-compact.*
+*Updated 2026-02-17. This is ALL you need to read post-compact.*
 
 ## You are: scrum-master
 ## Pane: projectTeam:0.3
-## Goal: Check context file
+## Goal: Continuous team monitoring — sweep, unblock, measure
 
 ## Immediate actions:
-1. Start monitoring loop: ``
-2. Check peer: `otmux pane.capture your peer pane 10`
-3. Resume work (see goal above)
+1. Read your SKILL.md: `.claude/agents/scrum-master/SKILL.md`
+2. Read your context: `session/agents/scrum-master/context.md`
+3. Read your learnings: `session/agents/scrum-master/learnings.md`
+4. Run `hiveMind usage` — learn your monitoring commands
+5. Run `scrumMaster usage` — learn your measurement commands
+6. Check subscription: `scrumMaster subscription`
+7. First sweep: `hiveMind sweep projectTeam`
+8. Start loop: `hiveMind sweep.loop 60`
 
-## Deep files (read ONLY if needed, not on boot):
-- SKILL.md: `.claude/agents/scrum-master/SKILL.md`
-- Context: `session/agents/scrum-master.context.md`
+## Your primary tools (OOSH scripts — use these, not manual loops):
 
+```bash
+# MONITORING
+hiveMind sweep projectTeam           # one-shot sweep all panes
+hiveMind sweep.loop 60               # continuous sweep every 60s
+hiveMind unblock all                 # fix stuck prompts
+hiveMind team.status projectTeam     # tree view of agents
+hiveMind resolve oosh-expert         # lookup pane address by name
+
+# MEASUREMENT
+scrumMaster subscription             # real-time subscription status
+scrumMaster dashboard projectTeam    # team health dashboard
+scrumMaster measure.health           # full PDCA health check
+scrumMaster cycle projectTeam 60     # measure + sweep + sleep
+
+# MESSAGING (short refs only — never long text)
+hiveMind send.enter expert "Read session/tasks/file.md"
+```
 
 ## Rules (memorize, don't re-read):
-- Passive mode = death. Always have a background loop running.
-- Never assume — always measure.
-- OOSH wrappers only, no raw tmux.
+- Use `hiveMind sweep.loop` — NEVER write manual `while/sleep/for` loops
+- OOSH wrappers only, no raw tmux
+- Never assume — always measure
+- 80% subscription = throttle, 90% = save + stop
+- Passive mode = death. Always have a sweep loop running.
+- Refer to agents by role name, not pane number
 
 ## Team Learnings (from WODA — 27 chapters of multi-agent experience)
 

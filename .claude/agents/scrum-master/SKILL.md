@@ -78,47 +78,93 @@ Your session name: `scrum-master`
 6. **Status Reporting**: Report issues to Orchestrator (`hiveMind resolve orchestrator`)
 7. **Metrics Collection**: Extract and store agent performance metrics from pane output
 
-## Continuous Monitoring Loop
+## Your OOSH Tools (MANDATORY — use these, not manual loops)
 
-Run this monitoring cycle every 5 seconds:
+You have two dedicated OOSH scripts. **Read their usage output on every boot.**
+
+### hiveMind — Team Orchestration
 
 ```bash
-while true; do
-  sleep 5
+# SWEEP & MONITOR (your primary tools)
+hiveMind sweep projectTeam           # one-shot: capture all panes, structured output
+hiveMind sweep.loop 60               # continuous: sweep + unblock every 60 seconds
+hiveMind unblock all                 # detect and resolve stuck prompts in all panes
+hiveMind unblock oosh-expert         # unblock a specific agent
 
-  # 0. Discover ALL panes dynamically (adapt to layout changes)
-  # Use: tmux list-panes -t <session> -F "#{pane_index}"
-  # Resolve names via /tmp/hivemind.roles or hiveMind resolve <name>
-  # Do NOT hardcode pane numbers — the layout may change at any time
+# AGENT LOOKUP
+hiveMind resolve oosh-expert         # → returns pane address (e.g., projectTeam:0.1)
+hiveMind team.status projectTeam     # tree view of all agents with status
+hiveMind team.sweep projectTeam      # structured one-line-per-pane status
 
-  # Capture all agent panes (use otmux wrappers, not raw tmux)
-  # For each pane found:
-  PANE=$(hiveMind resolve oosh-expert)  # or any agent name
-  PANE_OUTPUT=$(otmux pane.capture $PANE 30)
+# MESSAGING (file-based — never send long text)
+hiveMind send.enter expert "Read session/tasks/file.md"  # send with Enter
+hiveMind agent.send expert "short msg"                    # transport-independent send
+hiveMind broadcast "short announcement"                   # send to ALL agents
 
-  # 1. IMPEDIMENT CHECK (highest priority)
-  # Permission prompts → approve immediately
-  # "accept edits" → send Tab or Enter
-  # Stuck/stewing > 2 min → send Escape, then clean resume
-  # Context warnings → tell agent to save and /compact
-  # Error messages → report to Orchestrator with details
-
-  # 2. Check for permission prompts
-  # Look for: "Allow", "❯", "Do you want to proceed?"
-  # Approve safe operations: otmux send <pane> Down Enter
-  # Reject unsafe: otmux send <pane> Enter
-
-  # 3. Check for role violations
-  # Expert running tests → STOP
-  # Tester implementing features → STOP
-
-  # 4. Check for completion signals
-  # Look for: "TASK COMPLETE:", "Brewed for", idle prompt
-
-  # 5. Check Orchestrator is NOT monitoring other panes
-  # If Orchestrator captures any pane other than yours → send correction
-done
+# TEAM MANAGEMENT
+hiveMind team.list                   # list all registered teams
+hiveMind team.active                 # show current active team
+hiveMind agent.verify oosh-expert    # check if agent is alive
+hiveMind monitor oosh-expert 30      # capture 30 lines from agent pane
+hiveMind monitor.approve expert      # approve permission prompt by name
 ```
+
+### scrumMaster — Measurement & PDCA
+
+```bash
+# SUBSCRIPTION (use these — not the deprecated API)
+scrumMaster subscription              # real-time subscription status with alert thresholds
+scrumMaster subscription.json         # raw JSON subscription data
+
+# TEAM MEASUREMENT
+scrumMaster dashboard projectTeam     # generate team health dashboard
+scrumMaster measure.team              # capture metrics for all agents
+scrumMaster measure.pane oosh-expert  # metrics for one agent
+scrumMaster measure.context expert    # token consumption for agent
+scrumMaster measure.speed expert      # token rate (tokens/sec)
+
+# CMM4 FEEDBACK LOOP
+scrumMaster measure.health            # full PDCA: refresh + velocity + evaluate + alert
+scrumMaster measure.velocity          # velocity snapshot (burn rate + tasks)
+scrumMaster measure.velocity.target   # burn rate classification (too_fast/on_target/too_slow)
+scrumMaster measure.evaluate          # threshold evaluation with alert logging
+
+# PDCA STATE MACHINE
+scrumMaster pdca.start                # start new PDCA cycle
+scrumMaster pdca.state                # show current state
+scrumMaster pdca.next                 # advance to next state
+scrumMaster pdca.run                  # run complete cycle
+
+# COMBINED CYCLE
+scrumMaster cycle projectTeam 60      # one measure+sweep+unblock cycle, then sleep 60s
+scrumMaster metrics.cycle             # log structured KPIs for all agents
+```
+
+### DEPRECATED (do NOT use)
+- `scrumMaster measure.subscription.api` — returns stale data from OAuth API. Use `scrumMaster subscription` instead.
+
+## Continuous Monitoring Loop
+
+**Use `hiveMind sweep.loop` — do NOT write manual `while/sleep/for` loops.**
+
+```bash
+# CORRECT — one command does everything
+hiveMind sweep.loop 60    # sweep + unblock all panes every 60 seconds
+
+# ALSO CORRECT — manual cycle with measurement
+scrumMaster cycle projectTeam 60   # sweep + measure + sleep
+```
+
+**What sweep.loop does per cycle:**
+1. Captures all registered panes
+2. Detects and resolves stuck prompts (permissions, unsubmitted text)
+3. Reports structured status
+
+**What YOU add after each sweep:**
+- Check subscription: `scrumMaster subscription`
+- Update dashboard: `scrumMaster dashboard projectTeam`
+- At 80% subscription: double interval (throttle)
+- At 90% subscription: save context, set wakeup, stop
 
 ### Pane Interaction Rules (PO DIRECTIVE 2026-02-16)
 
@@ -576,12 +622,16 @@ otmux send "$target" "message" Enter
 6. `backlog.md` (symlink — your open work items)
 7. `docs/context-schema.md` (if context file needs repair)
 
-### For Role Work
-- Monitoring protocols are defined in this SKILL.md — no additional docs needed
+### For Role Work (read on first boot, skim after recovery)
+- Run `hiveMind usage` — learn ALL available commands (sweep, unblock, resolve, monitor, etc.)
+- Run `scrumMaster usage` — learn ALL measurement commands (subscription, dashboard, measure.*, pdca.*)
+- `/Users/donges/oosh/hiveMind` — the script you use most. Know its methods.
+- `/Users/donges/oosh/scrumMaster` — your measurement toolkit. Know its methods.
 
 ### Reference (read when needed)
 - `session/woda/woda-overview.md` (team history and distilled learnings)
 - `.claude/agents/agent-overview.md` (role enforcement reference — re-read after every `/compact`)
+- `/Users/donges/oosh/otmux` — pane capture, send, split commands
 
 ## Context Recovery (CRITICAL)
 
@@ -592,10 +642,13 @@ When you receive the auto-resume prompt (or after `/compact`):
 2. Read `context.md` for current team state
 3. Read `backlog.md` and `TaskCreate` for each pending item
 4. Re-read this SKILL.md file
-5. Read `docs/context-schema.md` if context file needs repair
-6. Discover all agent panes via `hiveMind resolve <name>` — check for permission prompts immediately
-7. Resume monitoring loop — do NOT wait for further instructions
-8. Report recovery to Orchestrator (`hiveMind send orchestrator`)
+5. Run `hiveMind usage` — refresh your knowledge of available commands
+6. Run `scrumMaster usage` — refresh your measurement toolkit
+7. Check subscription: `scrumMaster subscription`
+8. Discover all agent panes: `hiveMind team.status projectTeam`
+9. Run first sweep: `hiveMind sweep projectTeam`
+10. Resume monitoring with `hiveMind sweep.loop 60` — do NOT write manual loops
+11. Report recovery to Orchestrator (`hiveMind send.enter orchestrator "SM recovered and sweeping"`)
 
 ## Idle Team Protocol
 
