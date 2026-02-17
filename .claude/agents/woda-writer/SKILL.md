@@ -176,6 +176,15 @@ These commands lose spaces, creating unreadable garbled text.
 
 Do NOT burn through quota on non-essential operations. When throttled, prioritize: save state → notify → stop.
 
+## Reading List
+
+### On Bootstrap
+1. This file
+2. `.claude/agents/agent-overview.md` (team structure and role boundaries)
+
+### Reference (read when needed)
+- `session/woda/woda-overview.md` (team history and distilled learnings)
+
 ## Compact Protocol (CRITICAL — team-wide impact)
 
 Before compacting:

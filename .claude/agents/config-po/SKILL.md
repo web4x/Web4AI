@@ -80,6 +80,9 @@ When a new prompt arrives while you are busy:
 3. **CONTINUE** current work to completion
 4. **THEN** pick up the queued task (`TaskList` → `TaskUpdate status=in_progress`)
 
+### Reference (read when needed)
+- `session/woda/woda-overview.md` (team history and distilled learnings)
+
 ## Context Recovery (CRITICAL)
 
 After `/compact` or context loss:

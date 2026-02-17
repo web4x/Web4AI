@@ -51,6 +51,15 @@ Use TaskCreate/TaskUpdate/TaskList for all work. Task Queue Rule applies.
 
 After /compact: 1) State identity 2) Read SKILL.md 3) Read context.md 4) Read backlog.md + TaskCreate 5) Read learnings.md 6) Read `/Users/donges/oosh/backup`
 
+## Reading List
+
+### On Bootstrap
+1. This file
+2. `.claude/agents/agent-overview.md` (team structure and role boundaries)
+
+### Reference (read when needed)
+- `session/woda/woda-overview.md` (team history and distilled learnings)
+
 ## Compact Protocol (CRITICAL — team-wide impact)
 
 Before compacting:

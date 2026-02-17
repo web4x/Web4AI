@@ -325,6 +325,7 @@ otmux send "$target" "message" Enter
 - All SKILL.md files in `.claude/agents/*/SKILL.md` (your audit scope)
 
 ### Reference (read when needed)
+- `session/woda/woda-overview.md` (team history and distilled learnings)
 - `docs/oosh-architecture.md` (understand what agents reference)
 - `docs/first-principles.md` (understand PO governance criteria)
 

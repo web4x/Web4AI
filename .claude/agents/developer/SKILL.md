@@ -338,6 +338,7 @@ otmux send "$target" "message" Enter
 - `docs/log-levels-and-testing.md` (log level findings and debugging)
 
 ### Reference (read when needed)
+- `session/woda/woda-overview.md` (team history and distilled learnings)
 - `docs/test-suite.md` (know what Tester expects)
 
 ## Context Recovery (CRITICAL)

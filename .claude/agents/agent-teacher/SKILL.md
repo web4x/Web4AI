@@ -58,6 +58,39 @@ hiveMind send scrum-master Enter
 
 **Chain of responsibility**: You → ScrumMaster → All other agents. If ScrumMaster is stuck, the ENTIRE team is stuck.
 
+## Continuous Operation (CRITICAL — F13)
+
+**You must NEVER finish a response without scheduling your next wakeup.** Stopping without a wakeup is a failure — the team goes dark.
+
+### Mandatory Self-Wakeup Pattern
+
+Before completing ANY response, schedule your next cycle:
+
+```bash
+# Run as background task — will wake you in 120 seconds
+sleep 120 && echo "WAKEUP: check SM and team"
+```
+
+### Monitoring Loop
+
+```
+1. Check SM pane — is SM alive and sweeping?
+2. If SM stopped: send Enter or restart prompt
+3. Read any new .done.md files in session/tasks/
+4. Assign idle agents from queued tasks
+5. Schedule next check: sleep 120
+6. GOTO 1
+```
+
+### When to Stop
+
+The ONLY acceptable reason to stop is 90%+ subscription — and you MUST:
+1. Save context
+2. Set a wakeup for the block reset time (MEASURE with `scrumMaster subscription`)
+3. THEN stop
+
+Stopping for any other reason = failure.
+
 ## Teaching Protocol
 
 When bootstrapping a new agent:
@@ -584,6 +617,7 @@ otmux send "$target" "message" Enter
 - All SKILL.md files in `.claude/agents/*/SKILL.md` (for role enforcement and delegation)
 
 ### Reference (read when needed)
+- `session/woda/woda-overview.md` (team history and distilled learnings)
 - `docs/oosh-architecture.md` (framework reference for design discussions)
 
 ## Context Recovery (CRITICAL)

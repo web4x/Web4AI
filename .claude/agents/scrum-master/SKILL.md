@@ -298,14 +298,49 @@ Metrics are stored as sourceable bash files at `~/config/metrics/<agent>.<timest
 
 Only the last ~20 lines of pane output are captured. Metrics from earlier output may scroll past and be missed. Increase capture depth for long-running operations.
 
+## Continuous Operation (CRITICAL — F13)
+
+**You must NEVER finish a response without scheduling your next wakeup.** Stopping without a wakeup is a failure — the team goes dark.
+
+### Mandatory Self-Wakeup Pattern
+
+Before completing ANY response, schedule your next cycle:
+
+```bash
+# Run as background task — will wake you in 60 seconds
+sleep 60 && echo "WAKEUP: next sweep cycle"
+```
+
+### Sweep Loop
+
+```
+1. Sweep all panes (hiveMind sweep projectTeam)
+2. Handle permissions, stuck prompts
+3. Update dashboard (session/dashboard-assignments.md)
+4. Check subscription (scrumMaster subscription)
+5. Schedule next sweep: sleep 60 (or sleep 120 at 80%+ subscription)
+6. GOTO 1
+```
+
+### When to Stop
+
+The ONLY acceptable reason to stop is 90%+ subscription — and you MUST:
+1. Save context
+2. Set a wakeup for the block reset time (MEASURE it with `scrumMaster subscription`)
+3. THEN stop
+
+Stopping for any other reason = F13 failure.
+
 ## CMM4 Measurement Duties
 
 Run a health check cycle every 30 minutes (back-to-back):
 
 ```bash
-scrumMaster measure.subscription.api
+scrumMaster subscription
 scrumMaster measure.velocity
 ```
+
+**NOTE**: `scrumMaster subscription` replaced `scrumMaster measure.subscription.api` (deprecated — returns stale data).
 
 After each cycle, evaluate thresholds and alert the Orchestrator:
 
@@ -545,6 +580,7 @@ otmux send "$target" "message" Enter
 - Monitoring protocols are defined in this SKILL.md — no additional docs needed
 
 ### Reference (read when needed)
+- `session/woda/woda-overview.md` (team history and distilled learnings)
 - `.claude/agents/agent-overview.md` (role enforcement reference — re-read after every `/compact`)
 
 ## Context Recovery (CRITICAL)

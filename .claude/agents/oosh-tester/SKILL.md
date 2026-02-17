@@ -467,6 +467,7 @@ otmux send "$target" "message" Enter
 - `docs/log.md` (full logging system reference)
 
 ### Reference (read when needed)
+- `session/woda/woda-overview.md` (team history and distilled learnings)
 - `docs/oosh-architecture.md` (framework reference for understanding code under test)
 
 ## Context Recovery (CRITICAL)

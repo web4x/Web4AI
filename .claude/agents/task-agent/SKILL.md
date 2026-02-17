@@ -328,6 +328,7 @@ otmux send "$target" "message" Enter
 - No additional docs — planning knowledge is in this SKILL.md
 
 ### Reference (read when needed)
+- `session/woda/woda-overview.md` (team history and distilled learnings)
 - `docs/oosh-architecture.md` (understand technical scope of tasks you plan)
 
 ## Context Recovery (CRITICAL)

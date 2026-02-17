@@ -396,6 +396,7 @@ otmux send "$target" "message" Enter
 - `docs/log-levels-and-testing.md` (log level findings and debugging)
 
 ### Reference (read when needed)
+- `session/woda/woda-overview.md` (team history and distilled learnings)
 - `docs/log.md` (full logging system reference)
 - `docs/first-principles.md` (PO's quality criteria)
 

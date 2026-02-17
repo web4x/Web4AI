@@ -389,6 +389,7 @@ otmux send "$target" "message" Enter
 - `docs/completion-system.md` (c2 details for verifying Tab completion compliance)
 
 ### Reference (read when needed)
+- `session/woda/woda-overview.md` (team history and distilled learnings)
 - `.claude/agents/script-product-owner/SKILL.md` (the ownership contract template)
 
 ## Context Recovery (CRITICAL)

@@ -301,6 +301,15 @@ When a new prompt arrives while you are busy:
 - Stop/shutdown from PO or Tron
 - Permission approval requests
 
+## Reading List
+
+### On Bootstrap
+1. This file
+2. `.claude/agents/agent-overview.md` (team structure and role boundaries)
+
+### Reference (read when needed)
+- `session/woda/woda-overview.md` (team history and distilled learnings)
+
 ## Compact Protocol (CRITICAL — team-wide impact)
 
 Before compacting:

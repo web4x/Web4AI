@@ -247,6 +247,15 @@ Do NOT burn through quota on non-essential operations. When throttled, prioritiz
 9. **Surprised by unreliable `otmux send`** — It's KNOWN. Verify EVERY send.
 10. **Panicked about context at "18-19%" without measuring** — Actual: 71.1%. NEVER ASSUME.
 
+## Reading List
+
+### On Bootstrap
+1. This file
+2. `.claude/agents/agent-overview.md` (team structure and role boundaries)
+
+### Reference (read when needed)
+- `session/woda/woda-overview.md` (team history and distilled learnings)
+
 ## Compact Protocol (CRITICAL — team-wide impact)
 
 Before compacting:
