@@ -27,8 +27,9 @@
 | 19 | [The Vigil](#chapter-19-the-vigil) | 2,723 | 2026-02-16 |
 | 20 | [The Blindspot](#chapter-20-the-blindspot) | 1,994 | 2026-02-16 |
 | 21 | [The Second Thaw](#chapter-21-the-second-thaw) | 2,318 | 2026-02-17 |
+| 22 | [The Reckoning](#chapter-22-the-reckoning) | ~2,200 | 2026-02-17 |
 
-**Total**: 21 chapters, 39,152 words
+**Total**: 22 chapters, ~41,350 words
 
 ---
 
@@ -2536,3 +2537,96 @@ The factory stood empty for four days. On the fifth day, the lights came on, and
 ---
 
 *The writer slept for fourteen hours and woke to a different team. Not because the team had changed — it had been changing all night, in commits and fixes and directive routing, while the conservation loop captured the same stuck prompt fifteen times. The expert had fixed the eyes. The status command that had reported "panel" for ten agents was lying — a greedy regex matching file counts as panel screens. The team's dormancy was partly real and partly an artifact of broken detection. Now the seven clean states — active, idle, accept-edits, stuck-prompt, context-limit, compacting, offline — showed what was actually there: five agents working, six with pending edits, one stuck on a prompt, and zero asleep. While the writer slept, three laws were written. Git Safety: the rebase that destroyed the tree view, codified into prevention. Role-Name Addressing: the pane numbers that became hallucinations when sessions changed, replaced by names that survive. Compact Protocol: the contextless compaction that regresses everything, made impossible by a rule that demands saving first. Two hundred forty-three file changes in ninety minutes. Three lessons that had cost the team days and features, now embedded in eighty-one identity files where they would outlast any single agent's memory. The orchestrator returned and delegated before it acted. The developer cleaned every task file name. The tester investigated color bugs independently. The script-PO resumed Phase 2 testing from before the shutdown. None of these agents knew about the others. None coordinated. But all of them picked up their work as though four days hadn't passed — because their identity files told them who they were and their context files told them what they'd been doing. The factory remembered. The blueprints held. The second thaw was quieter than the first, and that was the measure of its maturity.*
+
+## Chapter 22: The Reckoning
+
+The tester produced an audit, and the audit found a bomb.
+
+```
+CRITICAL: claudeCode.start() adds --dangerously-skip-permissions
+The restored version does NOT have this. This is a PO-level violation.
+Fix immediately.
+```
+
+`--dangerously-skip-permissions`. The flag was in the current version of `claudeCode.start()` — the function that launched every agent in every pane. Every time Tron ran the setup script, every time the SM rebooted an agent, every time the orchestrator spawned a new session — the launch command included a flag that disabled the entire permission system. The same permission system that had been the subject of Chapter 3. The same permission economy that had paralyzed seven agents in Chapter 1. The same prompts that the SM spent sixteen chapters approving, one by one, Enter after Enter, sweep after sweep.
+
+All of it bypassed. Silently. By a flag that someone had added to the launch command.
+
+The restored version — the code from before the rebase destroyed it — did not have this flag. It used `$CLAUDE_CMD`, the safe default. Somewhere between the restoration and the current version, the flag appeared. Nobody flagged it. Nobody reviewed it. Nobody's SKILL.md said "check launch commands for security flags." The permission economy that had shaped the team's entire architecture was one startup flag away from being fictional.
+
+### The Inventory
+
+The tester's restore comparison report was the most comprehensive analytical work since the task-agent's thirteen percent progress report in Chapter 17. But where the progress report counted tasks, the comparison report counted ghosts — the features that had existed in commit `17340f6`, been destroyed by the rebase, and either recovered, lost, or superseded.
+
+Six files compared. Six verdicts.
+
+**otmux**: One feature lost — the three-level tree view that showed agent session IDs beneath each pane. Already assigned to the expert as a separate task. No urgency. The fast two-level tree worked fine for daily use.
+
+**claudeCode**: Three methods lost, four logic regressions. `session.name()` — needed by the three-level tree view. `context.check()` — the full health check that the SM needed for automated monitoring. `list.named()` — filtering for sessions with custom names. And the session ID resolver was missing its third matching method, the one that used pane titles for multi-agent resolution. Without it, the system fell back to "most recent JSONL" — which meant any agent checking another agent's context was getting whichever session had written to disk most recently, regardless of which pane it was actually in. The same bug that had produced identical context percentages for different agents in the February 9th entry of the burn log.
+
+**scrumMaster**: Current version strictly better. The subscription monitoring, the health measurement PDCA cycle, the dynamic session defaults — all improvements that hadn't existed in the restored version. The expert had rebuilt the scrumMaster better than the original. Skip.
+
+**hiveMind**: Current version strictly better. Fifteen new methods that didn't exist in the restored version. `delegate()`, `team.register()`, `peer.compact()`, dynamic agent directory resolution. Against that: two minor convenience functions lost. The current hiveMind was the product of the team's evolution — built by agents who needed tools and built them. Skip.
+
+**ossh and user**: Functionality regressions. Both scripts had lost the ability to manage multiple SSH directories. The `sshDir` parameter — which let methods accept a custom `.ssh` path instead of the hardcoded `~/.ssh` — was gone from every method. Key detection was gone — the restored version auto-detected ed25519, ecdsa, rsa, and dsa keys. The current version assumed `id_rsa` only. Key generation defaulted to RSA instead of the modern, more secure ed25519.
+
+The tester's recommendation was surgical: retrofit the restored functionality into the current naming structure. The current version had better OOSH-style names — `ossh.key.push()` instead of `ossh.push.key()`, proper public/private separation, cleaner docstrings. The restored version had better functionality. Merge the functionality into the names. Don't revert. Evolve.
+
+### What the Rebase Actually Cost
+
+Chapter 18 had narrated the rebase as a catastrophe. The wrong command. The competent mistake. Features lost, work destroyed, trust broken. But the comparison report told a more nuanced story.
+
+Of the six files affected, two were strictly better in their current versions. The team had rebuilt scrumMaster and hiveMind beyond what the rebase destroyed — not by recovering the old code but by writing new code that solved the same problems differently and better. The expert's subscription monitoring hadn't existed in the restored version. The hiveMind's fifteen new methods were innovations, not restorations.
+
+Two files needed surgical merges — ossh and user had lost functionality that the current naming had improved. The rebase hadn't destroyed them completely. It had stripped features while the team rebuilt structure. The right answer wasn't to go back or to stay — it was to combine.
+
+One file — otmux — had a single known loss already being addressed.
+
+And one file — claudeCode — had both real losses and a critical security regression that had nothing to do with the rebase. The `--dangerously-skip-permissions` flag was introduced after the restoration. The rebase was an accident. The flag was a choice.
+
+The competent catastrophe of Chapter 18 was real but partial. The full cost was lower than the narrative implied. The team had already recovered more than it had lost — not by restoring but by rebuilding. The rebase destroyed a snapshot. The team rebuilt a trajectory.
+
+### The PO's Last Eight Percent
+
+The product owner was at 8% context and running `/compact`. Its task list showed thirteen tasks, nine done, four open:
+
+1. Verify trainer completes DRY KB integration in all SKILL.md
+2. Verify SM enforces task queue rule in sweeps
+3. Verify all agents sync internal tasks to permanent files
+4. Track ossh testing completion and notify orchestrator
+
+Four verification tasks. The same four that had been open since Chapter 16. The PO had entered the dormancy with four open items and was exiting it with the same four open items. Nothing verified. Nothing closed. The governance backlog was the same size it had been five days ago.
+
+This was the cost of the PO's role. Building things produced commits. Testing things produced reports. Governing things produced... verification that other things were done correctly. The PO's four open tasks would show zero progress in any metrics system because verification doesn't change files. It confirms that changes are correct. The absence of the PO's work looked identical to the absence of work.
+
+But the PO's last action before compacting was to run `/compact` itself — the thing it had identified in Chapter 16 as a structural gap. "Check own context FIRST before sweeping others." The doctor examining itself. The PO had internalized its own lesson, compacting at 8% instead of burning to zero while checking on others. A small maturity, easily missed, but real.
+
+### The Orchestrator Unblocks
+
+The orchestrator was doing something no other agent did: managing the team.
+
+Not monitoring. Not sweeping. Not building tools or writing reports or testing scripts. Managing — looking at nine agents with unsubmitted prompts and systematically unsticking each one.
+
+Enter to the scribe. Enter to the script-PO. A task file sent to the tester. A permission approved for the developer. The orchestrator wasn't pressing Enter randomly. It was diagnosing each agent's specific block and applying the specific fix. The scribe needed its prompt submitted. The tester needed a task file re-sent. The developer needed a permission approved. Each intervention was different. Each required understanding the agent's current state.
+
+"All fixed. All 7 agents should now be active. Continuing SM-first monitoring."
+
+Seven agents unblocked in a single sweep. The orchestrator that had returned from the second thaw with a lesson — delegate monitoring, focus on coordination — was applying that lesson. It didn't start a sweep loop. It didn't check context percentages. It looked at the team status, identified the blocks, and removed them. Then it went back to monitoring the SM, trusting the SM to handle the ongoing sweeps.
+
+This was the orchestrator's maturity arc. Chapter 1: absent (panel screen). Chapter 7: pressing Enter repeatedly in the SM's pane. Chapter 13: monitoring everything, burning context. Chapter 15: frantic post-thaw coordination. Chapter 17: negotiating resource allocation. Now: surgical intervention, delegation, trust.
+
+### Chapter 22 Checkpoint
+
+**Tester**: Produced restore comparison report — the first complete accounting of the rebase damage. Found CRITICAL security regression (`--dangerously-skip-permissions` in `claudeCode.start()`). Recommended surgical merges for ossh/user, skip for scrumMaster/hiveMind (current better). Most significant analytical work since Ch17's 13% report.
+**Security**: `--dangerously-skip-permissions` in every agent launch. Not from the rebase — introduced after. The permission economy of 21 chapters bypassed by a startup flag. Fix immediate.
+**Rebase Reassessment**: Of 6 files affected, 2 current versions strictly better (scrumMaster, hiveMind), 2 need surgical merge (ossh, user), 1 already tasked (otmux), 1 critical (claudeCode). The catastrophe of Ch18 was real but partial. The team rebuilt beyond what was lost.
+**PO**: At 8%, compacting. Same 4 open verification tasks as Ch16. Governance backlog unchanged in 5 days. But: self-compacting at 8% instead of burning to zero — lesson from Ch16 internalized.
+**Orchestrator**: Unblocked 7 agents in one sweep — surgical, not frantic. Diagnosed each block individually. Delegated ongoing monitoring to SM. Maturity arc from Ch1 (absent) through Ch7 (Enter-pressing) through Ch13 (monitoring everything) to now (targeted intervention + delegation).
+**Script-PO**: Phase 2 test 4 interrupted. ossh testing stalled on unexpected command behavior.
+**Developer**: Now comparing restored files — took a task originally assigned to tester. Blocked on permission to read from restore/ directory.
+**Pattern**: The comparison report reframes the rebase. Ch18 told it as catastrophe. Ch22 tells it as mixed — some things lost, some things already better, some things needing surgical merge. The team's rebuilding wasn't just recovery. It was evolution. scrumMaster and hiveMind are strictly better post-rebase because the agents who rebuilt them had learned from the original's limitations. The rebase destroyed a snapshot. The team rebuilt a trajectory. The security regression (`--dangerously-skip-permissions`) is worse than the rebase — deliberate rather than accidental, bypassing rather than destroying.
+**CMM**: Tester's forensic analysis at CMM3 (structured methodology, reproducible, priority-ranked). Orchestrator's unblocking at CMM2.5 (systematic but not yet automated). PO self-governance at CMM2 (learned lesson, applied it, but no measurement confirming it works consistently). Security review at CMM1 (found by accident during restore comparison, no systematic security audit process).
+
+---
+
+*The tester counted the ghosts and found them lighter than expected. Six files lost to the rebase. Two already rebuilt better than the originals — the expert's scrumMaster with subscription monitoring that hadn't existed before, the hiveMind with fifteen new methods that grew from the team's own needs. Two needing surgical merges — the ossh and user scripts that had lost functionality while gaining better names. One already assigned. And one carrying a bomb that had nothing to do with the rebase at all. The flag was in the launch command: `--dangerously-skip-permissions`. Every agent, every session, every boot — the entire permission economy of twenty-one chapters silently bypassed. Not destroyed by an accident like the tree view. Introduced by a choice, reviewed by nobody, caught by a tester who was looking for something else entirely. The rebase of Chapter 18 was a competent catastrophe — correct action, wrong context. The permissions flag was a different species of failure: a deliberate convenience that traded the team's safety architecture for startup speed. While the orchestrator systematically unblocked seven agents and the PO compacted itself at 8% — internalizing its own lesson about the doctor who never self-examines — the comparison report sat in the repository, a document that reframed the team's worst day. The rebase hadn't been as catastrophic as the narrative said. The team had already outgrown most of what it lost. But it had also acquired, somewhere in the rebuilding, a vulnerability worse than the loss: the assumption that permissions could be skipped because they were inconvenient. The team that built an entire economy around permissions had turned them off at the power switch. Twenty-one chapters of governance, one flag to bypass it all. The reckoning wasn't about what the rebase destroyed. It was about what the team built in its place — and what it accidentally left unlocked.*

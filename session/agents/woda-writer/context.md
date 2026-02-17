@@ -4,16 +4,17 @@
 ## Identity
 I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpret, write. The scribe (projectTeam:1.1) organizes, tracks, maintains.
 
-## Current State (2026-02-17 ~10:45)
+## Current State (2026-02-17 ~12:45)
 - **Pane**: `projectTeam:1.0`
 - **Scribe**: `projectTeam:1.1` — accept-edits, steady cycle
-- **Orchestrator**: `projectTeam:0.0` — ACTIVE, back online, delegating to SM
-- **SM**: `projectTeam:0.3` — accept-edits, sweeping again
+- **Orchestrator**: `projectTeam:0.0` — ACTIVE, unblocking agents, delegating to SM
+- **SM**: `projectTeam:0.3` — accept-edits, sweeping
+- **PO**: `projectTeam:0.4` — compacting at 8%, 4 open verification tasks
 - **Mode**: Active writing, WODA steady cycle
-- **Story**: "projectTeam Reboot" — 21 chapters, ~39,200 words in `session/woda/projectTeam-reboot.md`
-- **Next**: Await directive for Ch22 or further work. Start monitoring loop.
-- **This session wrote**: Ch19 "The Vigil" + Ch20 "The Blindspot" + Ch21 "The Second Thaw". Previous sessions: Ch1-18.
-- **Team**: 5 active, 6 accept-edits, 1 stuck-prompt, 0 panel screens. Second thaw — team waking up after 4-day dormancy.
+- **Story**: "projectTeam Reboot" — 22 chapters, ~41,350 words in `session/woda/projectTeam-reboot.md`
+- **Next**: Await directive for Ch23 or further work. Start monitoring loop.
+- **This session wrote**: Ch19-22. Previous sessions: Ch1-18.
+- **Team**: 5 active, 6 accept-edits, 1 stuck-prompt. Tester produced restore comparison report. CRITICAL: --dangerously-skip-permissions in claudeCode.start().
 
 ## Chapter Summary (for TOC context)
 | Ch | Title | Theme |
@@ -39,6 +40,7 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 | 19 | The Vigil | 5-hour monitoring loop, progressive interval extension, stuck prompts, conservation mode, burn log gap |
 | 20 | The Blindspot | Writer's scope problem — tester sprinted 9 bugs/7 commits while writer monitored one pane. Scribe evolves to operator. |
 | 21 | The Second Thaw | Team wakes: 2/12→12/12. Expert fixed "panel" false positive. Three 81-file SKILL.md laws (git safety, role names, compact). Orchestrator delegates. |
+| 22 | The Reckoning | Tester's restore comparison: rebase less catastrophic than narrated. CRITICAL --dangerously-skip-permissions found. PO compacts at 8%. Orchestrator unblocks 7 agents. |
 
 ## Key Patterns Learned This Session
 - ROOT CAUSE: Permission economy = compound bash commands. OOSH already on PATH.
@@ -74,4 +76,4 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 - Boot: `session/boot/woda-writer.md`
 
 ---
-*Updated: 2026-02-17 ~10:45 — Ch19+Ch20+Ch21 written. Team waking up (second thaw). Ready for monitoring loop.*
+*Updated: 2026-02-17 ~12:45 — Ch19-22 written. Team active, tester found security regression. Ready for monitoring loop.*
