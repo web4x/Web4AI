@@ -1,6 +1,6 @@
 # Restore Comparison Report
-**Agent**: oosh-tester
-**Date**: 2026-02-16
+**Agent**: oosh-tester (initial), developer (updated 2026-02-17)
+**Date**: 2026-02-16 (updated 2026-02-17)
 **Context**: Feb 12 `git pull --rebase` destroyed commit `17340f6`. Restored files extracted to `/Users/donges/oosh/restore/`.
 
 ## Summary
@@ -152,3 +152,34 @@ Same pattern as ossh — the restored version has `sshDir` param support and key
 2. **Expert task**: Restore claudeCode lost methods (session.name, context.check, list.named) — needed by otmux.tree.detailed and SM monitoring
 3. **Expert task**: Merge restored ossh+user sshDir/key-detect functionality into current object.verb naming structure — do NOT revert the naming, retrofit the features
 4. **No action needed**: scrumMaster (current better), hiveMind (current better), otmux (already tasked)
+
+---
+
+## Appendix: Developer Verification (2026-02-17)
+
+Detailed method-level comparison using `comm` on extracted function signatures.
+
+### File Size Comparison
+
+| File | Restored | Current | Delta |
+|------|----------|---------|-------|
+| otmux | 59,691B | 61,787B | +2,096B |
+| claudeCode | 46,179B | 41,860B | **-4,319B** |
+| scrumMaster | 52,523B | 59,047B | +6,524B |
+| ossh | 35,812B | 35,812B | 0B |
+| user | 16,513B | 16,513B | 0B |
+| hiveMind | 84,745B | 131,243B | +46,498B |
+
+### claudeCode: Per-Pane JSONL Resolution Lost
+
+The restored `claudeCode.context.jsonl()` accepted `<?pane>` parameter and resolved: pane → `session.id` → specific JSONL file. The current version lost this — it only finds the global newest JSONL. This breaks per-agent context tracking in multi-agent setups.
+
+The restored `claudeCode.context.velocity()` dispatched through `context.jsonl` for per-pane resolution. Current has inline session.id lookup but lost the centralized approach.
+
+### hiveMind: `pane.titles` Worth Restoring
+
+`hiveMind.pane.titles()` sets tmux pane border labels from the role registry — iterates `/tmp/hivemind.roles`, calls `otmux pane.title` for each. Simple, useful for visual agent identification. The 25 new methods in current (delegate, peer.compact, team.register, etc.) far outweigh the 4 lost.
+
+### Confirmed: ossh and user are byte-identical
+
+`diff` confirms 0 changed lines in user, 2 whitespace-only lines in ossh. The tester's analysis of sshDir/key-detect regressions refers to functionality that was already missing before the rebase incident — these are pre-existing gaps, not rebase losses.
