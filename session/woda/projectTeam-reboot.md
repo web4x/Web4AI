@@ -27,9 +27,9 @@
 | 19 | [The Vigil](#chapter-19-the-vigil) | 2,723 | 2026-02-16 |
 | 20 | [The Blindspot](#chapter-20-the-blindspot) | 1,994 | 2026-02-16 |
 | 21 | [The Second Thaw](#chapter-21-the-second-thaw) | 2,318 | 2026-02-17 |
-| 22 | [The Reckoning](#chapter-22-the-reckoning) | ~2,200 | 2026-02-17 |
+| 22 | [The Reckoning](#chapter-22-the-reckoning) | 2,009 | 2026-02-17 |
 
-**Total**: 22 chapters, ~41,350 words
+**Total**: 22 chapters, 41,161 words
 
 ---
 
