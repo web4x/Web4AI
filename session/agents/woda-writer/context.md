@@ -11,9 +11,9 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 - **SM**: `projectTeam:0.3` — accept-edits, sweeping
 - **PO**: `projectTeam:0.4` — compacting at 8%, 4 open verification tasks
 - **Mode**: Active writing, WODA steady cycle
-- **Story**: "projectTeam Reboot" — 22 chapters, ~41,350 words in `session/woda/projectTeam-reboot.md`
+- **Story**: "projectTeam Reboot" — 23 chapters, ~43,160 words in `session/woda/projectTeam-reboot.md`
 - **Next**: Await directive for Ch23 or further work. Start monitoring loop.
-- **This session wrote**: Ch19-22. Previous sessions: Ch1-18.
+- **This session wrote**: Ch19-23. Previous sessions: Ch1-18.
 - **Team**: 5 active, 6 accept-edits, 1 stuck-prompt. Tester produced restore comparison report. CRITICAL: --dangerously-skip-permissions in claudeCode.start().
 
 ## Chapter Summary (for TOC context)
@@ -41,6 +41,7 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 | 20 | The Blindspot | Writer's scope problem — tester sprinted 9 bugs/7 commits while writer monitored one pane. Scribe evolves to operator. |
 | 21 | The Second Thaw | Team wakes: 2/12→12/12. Expert fixed "panel" false positive. Three 81-file SKILL.md laws (git safety, role names, compact). Orchestrator delegates. |
 | 22 | The Reckoning | Tester's restore comparison: rebase less catastrophic than narrated. CRITICAL --dangerously-skip-permissions found. PO compacts at 8%. Orchestrator unblocks 7 agents. |
+| 23 | The Tree Returns | otmux tree.detailed rebuilt+validated (3 PASS). Expert burns to 7%. SM sweeps properly. Script-PO stuck on judgment call. |
 
 ## Key Patterns Learned This Session
 - ROOT CAUSE: Permission economy = compound bash commands. OOSH already on PATH.

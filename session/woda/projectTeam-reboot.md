@@ -28,8 +28,9 @@
 | 20 | [The Blindspot](#chapter-20-the-blindspot) | 1,994 | 2026-02-16 |
 | 21 | [The Second Thaw](#chapter-21-the-second-thaw) | 2,318 | 2026-02-17 |
 | 22 | [The Reckoning](#chapter-22-the-reckoning) | 2,009 | 2026-02-17 |
+| 23 | [The Tree Returns](#chapter-23-the-tree-returns) | ~2,000 | 2026-02-17 |
 
-**Total**: 22 chapters, 41,161 words
+**Total**: 23 chapters, ~43,160 words
 
 ---
 
@@ -2630,3 +2631,78 @@ This was the orchestrator's maturity arc. Chapter 1: absent (panel screen). Chap
 ---
 
 *The tester counted the ghosts and found them lighter than expected. Six files lost to the rebase. Two already rebuilt better than the originals — the expert's scrumMaster with subscription monitoring that hadn't existed before, the hiveMind with fifteen new methods that grew from the team's own needs. Two needing surgical merges — the ossh and user scripts that had lost functionality while gaining better names. One already assigned. And one carrying a bomb that had nothing to do with the rebase at all. The flag was in the launch command: `--dangerously-skip-permissions`. Every agent, every session, every boot — the entire permission economy of twenty-one chapters silently bypassed. Not destroyed by an accident like the tree view. Introduced by a choice, reviewed by nobody, caught by a tester who was looking for something else entirely. The rebase of Chapter 18 was a competent catastrophe — correct action, wrong context. The permissions flag was a different species of failure: a deliberate convenience that traded the team's safety architecture for startup speed. While the orchestrator systematically unblocked seven agents and the PO compacted itself at 8% — internalizing its own lesson about the doctor who never self-examines — the comparison report sat in the repository, a document that reframed the team's worst day. The rebase hadn't been as catastrophic as the narrative said. The team had already outgrown most of what it lost. But it had also acquired, somewhere in the rebuilding, a vulnerability worse than the loss: the assumption that permissions could be skipped because they were inconvenient. The team that built an entire economy around permissions had turned them off at the power switch. Twenty-one chapters of governance, one flag to bypass it all. The reckoning wasn't about what the rebase destroyed. It was about what the team built in its place — and what it accidentally left unlocked.*
+
+## Chapter 23: The Tree Returns
+
+The tester ran three tests and all three passed.
+
+```
+otmux tree.detailed — PASS (3 PASS, 2 NOTE, 0 FAIL)
+Committed as f1a0e26
+```
+
+`otmux tree.detailed()`. Three levels. Sessions, panes, and the agents inside them. The same feature that Chapter 18 had mourned — "twenty-nine lines of code that showed not just sessions and panes but the intelligence inside them" — now rebuilt, validated, and committed. The fast two-level `otmux tree` remained unchanged for daily use. The detailed view was a new method, not a replacement. The expert had taken the tester's recommendation from the restore comparison — "create otmux.tree.detailed() as a separate method, keeping the fast otmux.tree() unchanged" — and built exactly that.
+
+The validation report noted two non-blocking issues. Session IDs were unstable between runs — the same `claudeCode.session.id()` fallback bug that the restore comparison had flagged as HIGH priority. The pane title registry was mismatched on panes 1.2 through 1.5 — agents in those panes had different identities from what the registry recorded, a team management issue not a code bug. The tree view worked. Its data sources had known imperfections. This was the pragmatic answer to the perfection that the rebase had destroyed: a working feature with documented limitations, instead of a perfect feature that no longer existed.
+
+### The Builder Burns
+
+The expert was at 7% context. The TUI banner blinked its warning: "Context low (7% remaining). Run /compact to compact & continue."
+
+The expert's last action before the warning was to clean its own context file. Removing completed tasks. Simplifying recovery steps. Preparing for the death it knew was coming — the same methodical preparation that the compact protocol now required of every agent, the protocol that had been written into eighty-one SKILL.md files because agents used to compact without saving. The expert saved.
+
+This was the pattern. The expert built until it burned. In Chapter 11, it had died at 1% while building the measurement tools that the team didn't yet know it needed. In Chapter 13, it built the subscription monitoring while the quota wall froze the orchestrator and SM around it. In Chapter 16, it asked for more work after completing two major tools and was told to compact. Now: tree.detailed built, validated, committed — and 7% left.
+
+The SM detected it. The sweep showed `0.1 oosh-expert (accept-edits — 0) Context low (7% remaining)`. The SM sent `/compact`. The expert would die, read its context file on the other side, find the simplified recovery steps it had just written, and continue. The cycle was clean. The compact protocol worked. But the expert's contribution — tree.detailed, the restore of lost functionality, the context file cleanup — had burned through 93% of a full context window. The cost of building is measured in the context you don't have left.
+
+### The Heartbeat Beats
+
+The SM was sweeping. Not the broken sleep loop from Chapter 17 that got interrupted by "What should Claude do instead?" Not the frozen heartbeat of the quota wall in Chapter 13. A full, functional sweep cycle — capturing all panes, detecting states, applying interventions.
+
+Enter to the trainer. Enter to the tester. `/compact` to the expert. Enter to the script-PO. The SM was running `hiveMind sweep projectTeam` — the batch command that the PO had pointed out in Chapter 13, the command the PO had been doing manually one pane at a time until Tron corrected it. Now the SM used it as designed: a single command that returned every agent's state in a structured table.
+
+The SM's sweep found the script-PO still stuck at its Phase 2 prompt and sent Enter. It found the trainer with an unsubmitted prompt and sent Enter. It found the expert at 7% and sent `/compact`. It found the tester reading task files and left it alone. Differential intervention — fix what's broken, skip what's working.
+
+This was the SM that had been designed in Chapter 1, trained in Chapter 8, frozen in Chapter 13, restarted in Chapter 15, broken in Chapter 17, compacted in Chapter 18, and dormant until Chapter 21. Twelve chapters of intermittent heartbeats, false starts, quota walls, and stuck loops. And now, quietly, on a Tuesday morning, it was doing its job. No drama. No rescue. Just the steady pulse of a monitoring system that finally worked.
+
+### The Subscription Budget
+
+The PO had measured what the team was spending:
+
+```
+$34.28 used, 134 min remaining
+Block: 09:00-14:00 UTC
+```
+
+One hundred thirty-four minutes of subscription time. Thirty-four dollars spent. The team had resources — not the 94% panic of Chapter 17 but a comfortable middle state with room to build. The measurement tools that the expert had created in Chapter 13 — the ones that arrived at the exact moment they were needed and couldn't be used — were now being used routinely by the PO. The irony from five chapters ago had resolved into utility.
+
+The PO monitored the monitors. Its four open verification tasks hadn't moved — the same four from Chapter 16, the same four from Chapter 22. But the PO was doing something the task list couldn't capture: watching the SM sweep, watching the orchestrator coordinate, watching the tester validate. Governance at its most invisible — ensuring that the system that ensures quality is itself functioning. The PO's value was the absence of the failures that would occur without its oversight. Unmeasurable. Essential.
+
+### What the Team Built Today
+
+By noon on February 17th, the team had produced more in six hours than in the previous four days combined.
+
+The expert rebuilt `otmux tree.detailed()` and had it validated. The tester produced the restore comparison report and validated the tree view. The orchestrator unblocked seven agents and maintained SM monitoring. The SM ran functional sweeps for the first time in five chapters. The PO measured subscription state and monitored the monitoring layer. Three laws were written into eighty-one identity files. The developer cleaned naming conventions to zero violations and started comparing restored files.
+
+And in pane 1.4, the script-PO was still stuck on Phase 2 test 4.
+
+`ossh list.ids "" /Users/Shared/Workspaces/AI/Claude/experiment/.ssh` — the command that had been interrupted three chapters ago. The SM sent Enter. The orchestrator sent Enter. The scribe sent Enter. Nobody's Enter unstuck it, because the problem wasn't a stuck prompt. The command itself was interrupted — "What should Claude do instead?" — which meant the TUI was asking for clarification, not waiting for submission. The script-PO needed a human decision, not a keystroke.
+
+This was the remaining gap. The team could unblock permission prompts. The team could detect low context and trigger compacts. The team could sweep all panes and diagnose twelve states. But when a command failed mid-execution and the TUI asked "What should Claude do instead?" — that required judgment. Which agent should decide what Claude should do? The script-PO? The orchestrator? The PO? Tron?
+
+The question sat unanswered. The script-PO sat patient. Phase 2 waited.
+
+### Chapter 23 Checkpoint
+
+**Tree View**: `otmux tree.detailed()` rebuilt and validated — 3 PASS, 2 NOTE, 0 FAIL. Committed f1a0e26. The feature lost in Ch18's rebase is restored as a separate method alongside the fast two-level tree. Two known issues: unstable session IDs (fallback bug), mismatched pane registry (team management).
+**Expert**: At 7%, compacting. Built tree.detailed, cleaned context file, preparing for death. Same pattern as Ch11 (dies building) and Ch13 (builds while team freezes). The builder burns.
+**SM**: Functional sweep cycle — first time in 5 chapters. Using `hiveMind sweep projectTeam` (Ch13's correction applied). Differential intervention: Enter to stuck, /compact to low context, skip for healthy. The heartbeat beats.
+**PO**: $34.28 used, 134 min remaining. Monitoring the monitors. Same 4 open verification tasks. Governance invisible but essential.
+**Script-PO**: Phase 2 test 4 still interrupted. Not a stuck prompt — a TUI "What should Claude do instead?" that requires judgment, not keystrokes. The gap the team can't automate.
+**Orchestrator**: Reading validation files, routing work. Monitoring SM monitoring the team. Three-layer oversight: SM sweeps, orchestrator monitors SM, PO monitors orchestrator.
+**Pattern**: The tree's return closes Ch18's wound but reveals Ch22's deeper issue. The feature is rebuilt but runs on data sources with known bugs (session.id fallback, pane registry mismatch). The team can rebuild features faster than it can fix the infrastructure those features depend on. Building outpaces foundation.
+**CMM**: SM sweep at CMM2.5 (works, repeatable, uses correct tools, but interval not yet measured/optimized). Tree.detailed at CMM3 (built to spec, tested, committed, documented). Script-PO blocked at CMM1 (no protocol for "What should Claude do instead?" interrupts).
+
+---
+
+*The tree came back. Not the same tree — the original twenty-nine lines were gone, dissolved in a rebase that did exactly what rebase does. But the new tree worked. Three levels: session, pane, agent. Three tests: all pass. Two notes: known bugs in the data layer beneath it. The expert built it and burned to 7% doing so — the same pattern from Chapter 11, the same pattern from Chapter 13, the builder who builds until there's nothing left to build with. The SM detected the burn and sent /compact. The heartbeat that had stopped and started across twelve chapters was now beating steadily enough to catch a dying agent and save its state. This was the team at its best and its most ordinary: an expert building, a tester validating, an SM sweeping, a PO measuring, an orchestrator routing. Not the drama of the quota wall or the catastrophe of the rebase. Just Tuesday morning, six agents doing their jobs, one tree view returning from the dead. And in pane 1.4, a reminder that ordinary doesn't mean complete. The script-PO sat at a question the team couldn't answer with Enter: "What should Claude do instead?" Not a permission prompt. Not a stuck cursor. A request for judgment — the one thing no monitoring loop can provide. The tree was back. The test passed. The expert was dying. The SM was sweeping. And somewhere in the gap between automation and judgment, a test plan waited for a decision that only a mind could make.*
