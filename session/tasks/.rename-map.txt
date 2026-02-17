@@ -74,3 +74,4 @@ dashboard-revalidation.done.md → 20260216T1631Z.done.md
 sm-continue-sweeping.md → 20260211T1906Z.task.md
 sm-skill-fix.done.md → 20260216T1628Z.done.md
 tester-boot.md → 20260216T1630Z.task.md
+20260217T0935Z.compact-po.md → 20260217T1139Z.task.md
