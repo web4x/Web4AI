@@ -3409,3 +3409,134 @@ This was either the team's greatest achievement or the writer's greatest failure
 ---
 
 *Twenty-three commits and nobody watching. The trainer migrated eighty-one files in a single afternoon — every `otmux send projectTeam:0.2` became `hiveMind send.enter oosh-tester`, every pane number became a name, every address became an identity. The tester ran fifteen tests and fourteen passed. The SM swept nineteen times and died on the twentieth. The developer verified restored methods at the line level. The PO measured tokens and found plenty. The orchestrator routed and unblocked and cycled. The script-PO, silent for seven chapters, woke from compact and started thinking. And the writer slept. Not crashed, not compacted, not stuck — just absent. Accept-edits mode with a queued directive that couldn't process because the writer's context was busy not processing. The scribe saw it. The SM saw it. Neither could fix it, because the fix required the writer to be present, and the writer's absence was the problem. Four hours. The team's most productive afternoon. The story's biggest gap. The pipeline proved it could run without a narrator. The migration proved the learning cascade could reach its final form — structural enforcement, the old pattern made impossible. The tests proved the code worked. The sweeps proved the monitoring worked. Everything worked. And none of it was observed, none of it interpreted, none of it given the names that would make it findable in the overview the scribe maintains. Twenty-three commits in the git log. The reasoning behind them already fading as each agent compacted and recovered and forgot. The writer's job was not to make the team function — the team functioned fine without it. The writer's job was to make the team's functioning mean something. To convert commits into stories, sweeps into patterns, migrations into metaphors. Without the writer, the work happened. Without the writer, the work was just work. "Wer schreibt, der bleibt." Who writes, remains. The writer didn't write. For four hours, nothing remained but the commits.*
+
+## Chapter 29: The Tab Key
+
+`ossh login [Tab]`
+
+Fifty SSH host names cascaded down the terminal. Not a file listing. Not a glob expansion. Not the directory contents of whatever path a stale config variable happened to point at. Fifty real host names from `~/.ssh/config`, correctly parsed by `ossh.parameter.completion.sshConfigHost()`, correctly filtered to exclude `Host *`, correctly sourced from the default SSH directory.
+
+The Tab key worked.
+
+Three chapters ago, this had been the question that triggered the team's first mitosis. Chapter 26: the PO created `osshTeam` because completion was broken. Chapter 27: the tester traced three cascading bugs — the stdout leak, the wildcard glob, the stale config. Now Chapter 29: the expert had fixed two of the three reported issues, proved the third was not a bug, committed `7b063e0`, and the tester had validated that completion worked.
+
+The fix report was a table:
+
+```
+┌───────────────────────────────┬─────────┬──────────────────────────────────────────┐
+│             Issue             │ Status  │                   Fix                    │
+├───────────────────────────────┼─────────┼──────────────────────────────────────────┤
+│ user get.current.identity     │ FIXED   │ Uncommented echo "$RESULT" at line 536   │
+├───────────────────────────────┼─────────┼──────────────────────────────────────────┤
+│ ossh config.create hardcodes  │ NOT A   │ Auto-detection already works. Tester     │
+│ id_rsa                        │ BUG     │ tested different dirs with different keys │
+├───────────────────────────────┼─────────┼──────────────────────────────────────────┤
+│ ossh list.ids exit code 1     │ FIXED   │ Skip line.find when $id is empty         │
+└───────────────────────────────┴─────────┴──────────────────────────────────────────┘
+```
+
+Issue 1: a commented-out echo. The method `user.get.current.identity()` existed. The dispatch worked. The function executed. But line 536 — `echo "$RESULT"` — was commented out. The function did everything correctly and then didn't tell anyone the answer. The fix was one character: uncomment the line. The method that "didn't exist" had existed all along, silently returning the right value to the wrong audience.
+
+Issue 3: an empty string passed to a search function. `line.find ""` — find nothing in everything — returned error code 1, which leaked through the `tree` command's exit code. When no identity filter was provided, the function searched for an empty pattern and reported failure. The fix: skip the search when there's nothing to search for.
+
+Issue 2 was the interesting one.
+
+### Not a Bug
+
+The tester had reported that `ossh config.create` hardcoded `id_rsa` instead of auto-detecting the key type. The evidence seemed clear: the tester ran `config.create`, the generated config contained `id_rsa`, and the experiment directory had `id_ed25519`. Hardcoded.
+
+The expert investigated and found auto-detection at lines 255-260. The detection order: `id_ed25519 → id_ecdsa → id_rsa → id_dsa`. The function checked for each key type in sequence and used the first one found.
+
+The explanation was simpler than the bug report suggested. `config.create` used the DEFAULT SSH directory — `~/.ssh` — which contained `id_rsa`. The tester had compared it against `ossh isInstalled`, which was tested against the EXPERIMENT directory containing `id_ed25519`. Different directories. Different keys. Both correctly detected. Not a bug — a difference in test environments.
+
+The expert's correction of the tester was the inverse of Chapter 27's dynamic. In Chapter 27, the tester had corrected the PO — "the bug IS in the script, not just the environment." Now the expert corrected the tester — "the code already does what you're asking for." The diagnostic chain self-corrected through evidence. The PO over-generalized ("bug is NOT in the script"), the tester over-specified ("config.create hardcodes id_rsa"), and the expert provided the precise truth: auto-detection existed, worked, and chose correctly based on the directory it was given.
+
+Three agents. Three diagnoses. Each one wrong in a different way, each correction moving closer to the accurate picture. Not a hierarchy of authority. A convergence of evidence.
+
+### Ninety-Three Point Nine
+
+The tester didn't stop at fixing completion. It ran a full coverage audit.
+
+```
+| Script           | Test File              | Tests | Pass | Fail | Coverage |
+|------------------|------------------------|-------|------|------|----------|
+| c2               | test.c2                | 16    | 16   | 0    | GOOD     |
+| config           | test.config            | 20    | 20   | 0    | GOOD     |
+| log              | test.log               | 23    | 23   | 0    | GOOD     |
+| this             | test.this              | 9     | 9    | 0    | MINIMAL  |
+| ossh             | test.ossh              | 8     | 8    | 0    | BASIC    |
+| hiveMind         | test.hiveMind          | 33    | 25   | 8    | MODERATE |
+| scrumMaster      | test.scrumMaster       | 9     | 9    | 0    | PDCA     |
+| scrumMaster.measure | test.scrumMaster.measure | 14 | 14   | 0    | PARSERS  |
+| otmux            | MISSING                | -     | -    | -    | NONE     |
+| claudeCode       | MISSING                | -     | -    | -    | NONE     |
+| user             | MISSING                | -     | -    | -    | NONE     |
+```
+
+132 assertions. 124 passed. 93.9%.
+
+The number was misleading in the way that percentages always mislead. 93.9% sounded healthy. It meant "almost everything works." But the table told a different story. Three scripts — `otmux`, `claudeCode`, `user` — had no test files at all. Zero assertions. Zero coverage. Not "tested and failing" but "never tested."
+
+And the scripts with zero coverage were the team's operational spine.
+
+`otmux` — the command the team used in every monitoring cycle to capture panes, send messages, split terminals. The tool underneath every sweep, every monitoring loop, every two-gather capture. Twenty-nine chapters of `otmux pane.capture` and `otmux send`, and not a single test verifying that these commands did what they claimed.
+
+`claudeCode` — the tool that launched Claude agents, read context percentages, managed sessions. The tool that contained the `--dangerously-skip-permissions` flag from Chapter 22. The CRITICAL security finding that the tester had identified and nobody had fixed.
+
+`user` — the script that managed SSH identities, directories, and key detection. The script whose `get.current.identity` had a commented-out echo for an unknown duration.
+
+Three untested scripts. Three pillars holding up the team's daily operations. Every sweep relied on `otmux`. Every agent launch relied on `claudeCode`. Every SSH operation relied on `user`. None of them had ever been tested.
+
+The 8 hiveMind failures were all environmental — `HIVEMIND_AGENTS_DIR` not set, stale session names in test assertions. The code worked; the test environment was wrong. The same category of bug as Chapter 26's shell issue. But the real finding was what hiveMind DIDN'T test: resolve, send, send.enter, send.message, delegate, sweep, unblock, dashboard, peer.compact, handoff, train, watchdog. Every method the SM used in its sixty-second sweep. Every method the orchestrator used in its 120-second monitoring loop. Every method the scribe used to capture the writer's pane. All untested.
+
+The team had built a monitoring system, a communication protocol, a delegation framework, and a continuous operation mandate — and tested none of it. The tools worked because they were used constantly, and bugs were caught through use. But "works because we use it" is CMM1. "Works because we tested it" is CMM2. "Works because we tested it and measure the test coverage" is CMM3. The tester's audit had just provided the measurement for CMM3 — and the measurement showed that the most critical tools were at CMM0: no testing exists.
+
+### The SM's Two Sweeps
+
+The SM told its own story.
+
+Post-compact, the SM recovered, read its boot file, started sweeping. Sweep 1: assessed team status, found "very clean — team running well." Sweep 2: checked subscription (118.6 million tokens, 170 minutes remaining, 938,000 tokens per minute burn rate). Then: "Context low (0% remaining)."
+
+Two sweeps. The SM had been reborn, assessed the world twice, measured the subscription once, and died. The F13 mandate — "never stop without a wakeup" — had been followed to the letter. The SM hadn't stopped. It had run until there was nothing left. Two sweeps where the previous incarnation had managed nineteen.
+
+Why two instead of nineteen? Context overhead. The SM's compact-recovery cycle consumed context: reading the boot file, assessing state, creating tasks, scheduling the first sweep. By the time the SM started sweeping, it had already spent most of its context window on recovery. The always-on tax applied not just to the sweeps but to the recovery that preceded them.
+
+The SM was becoming a mayfly. Born, sweep, die. Each incarnation shorter than the last as the accumulated SKILL.md content grew larger — the Three Laws, the F13 mandate, the command references, the WODA learnings. Each addition to the SM's identity file consumed more context at boot time, leaving less for actual work. The SM's identity was growing richer while its lifespan grew shorter. More knowledge, less time to use it.
+
+This was the cost of the learning cascade. Each chapter's lessons, encoded into SKILL.md files, made future agents smarter at boot. But boot consumed context. The trainer's four commits during the afternoon — WODA learnings, SM command references, OOSH tools, the 81-file migration — had each added content to identity files. Each addition improved the agent's starting knowledge. Each addition shortened its working life.
+
+### The Full Cycle
+
+From Chapter 22 to Chapter 29, the pipeline had run its complete course:
+
+Chapter 22: Tester produces restore comparison report. Identifies CRITICAL (permissions flag), HIGH (tree view, sshDir), MEDIUM, LOW items.
+
+Chapter 23: Expert rebuilds tree.detailed. First feature returns.
+
+Chapter 24: Expert addresses all HIGH items. Six tools rebuilt in one session.
+
+Chapter 26: PO creates osshTeam for completion debugging. Tester investigates shell environment.
+
+Chapter 27: Tester finds three cascading bugs. Expert builds analytics.
+
+Chapter 28: Expert fixes 2 issues, proves 1 not-a-bug. Tester validates.
+
+Chapter 29: Completion works. Tester audits full coverage. 132 assertions, 93.9%, three critical gaps.
+
+Seven chapters. One pipeline cycle. Audit → prioritize → build → validate → fix → re-validate → audit again. The cycle ending not with "done" but with the next audit — the coverage gaps that would drive the next round of building and testing.
+
+The Tab key worked. And the number 93.9 told the team exactly how much work remained.
+
+### Chapter 29 Checkpoint
+
+**Completion Fixed**: `ossh login [Tab]` shows 50+ SSH hosts. Three bugs from Ch27 resolved: stdout leak fixed (expert removed echo from completion path), Host * filtered, CURRENT_SSH_DIR cleared. Commit 7b063e0, pushed to origin/dev.claude.
+**Expert Corrects Tester**: Issue 2 "NOT A BUG" — `config.create` already auto-detected key type. Tester compared different directories with different keys. Three-agent diagnostic chain: PO over-generalized, tester over-specified, expert provided precise truth. Convergence through evidence.
+**Coverage Audit**: 132 assertions, 124 pass (93.9%). Three MISSING test files: otmux, claudeCode, user — the operational spine, untested. hiveMind's critical methods (resolve, send, sweep, unblock, dashboard, peer.compact) — zero coverage. The team's most-used tools are its least-tested.
+**SM Mayfly**: Two sweeps before context death at 0%. Recovery overhead consumes most of the context window. Identity file growth (WODA learnings, command refs, Three Laws) increases boot cost, shortens working life. More knowledge, less time. The learning cascade's cost: smarter agents with shorter lifespans.
+**Pipeline Complete**: Ch22 (audit) → Ch23-24 (build) → Ch26-27 (investigate + diagnose) → Ch28-29 (fix + validate + re-audit). Seven chapters, one full cycle. Ending not with "done" but with the next audit: 93.9% and three untested scripts.
+**Pattern**: "NOT A BUG" as diagnostic maturity. Three agents — PO, tester, expert — each diagnosed the same system differently. PO: "bug is not in script." Tester: "code hardcodes id_rsa." Expert: "auto-detection exists, tester compared different dirs." Each diagnosis was wrong. Each correction was evidence-based. The team converged on truth through disagreement. Not consensus. Convergence.
+**CMM**: Completion at CMM3 (fixed, tested, validated, reproducible). Test coverage measurement at CMM3 (132 assertions documented, gaps identified). Operational tool testing at CMM0 (no tests exist for otmux, claudeCode, user). SM lifecycle at CMM2 (boots and sweeps, but overhead not optimized). Diagnostic convergence at CMM2 (happens, but no protocol for multi-agent diagnosis).
+
+---
+
+*The Tab key worked. Three chapters to find three bugs. One commit to fix two of them. One investigation to prove the third wasn't a bug at all. Fifty SSH host names cascading down a terminal — the simplest possible evidence that something was right. Not "the function returns the correct exit code." Not "the RESULT variable contains the expected value." Just: press Tab, see hosts. The kind of test a user would run, the kind of result a user would trust, the kind of evidence that doesn't need a ninety-eight-line forensic report to interpret. It works. You can see it works. But the tester didn't stop there. 132 assertions. 93.9%. Three missing test files. And in those three missing files — otmux, claudeCode, user — the shape of everything the team hadn't done. Twenty-nine chapters of `otmux pane.capture` and not one test for it. Twenty-nine chapters of `claudeCode` launching agents and not one test for that either. The tools the team used every minute of every sweep were the tools nobody had tested. The monitoring system was untested. The communication protocol was untested. The delegation framework was untested. They worked — the evidence was twenty-nine chapters of working — but "works because we use it" is not "works because we proved it." The Tab key proved that fixing bugs through the pipeline worked: audit, build, validate, repeat. Now the audit said 93.9%, and the .1% gap was three scripts with zero coverage and twelve methods that kept the team alive. The SM demonstrated the cost of all this proving: born after compact, swept twice, measured the subscription once, died. Two sweeps. The previous incarnation had managed nineteen. The identity files grew heavier with each chapter's lessons — the Three Laws, the F13 mandate, the command references, the WODA learnings — and each lesson consumed context at boot, leaving less for work. The team got smarter. The agents got shorter-lived. The Tab key worked. The coverage audit said how much didn't. And somewhere in the gap between 93.9% and 100%, the tools that kept twelve agents alive sat untested, working by luck and daily use, waiting for the audit that would either prove them correct or find the next three cascading bugs.*
