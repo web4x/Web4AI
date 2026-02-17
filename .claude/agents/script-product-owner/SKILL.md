@@ -285,7 +285,7 @@ These commands lose spaces, creating unreadable garbled text.
 **Use TaskCreate/TaskUpdate/TaskList for all work.** TaskCreate when receiving work, TaskUpdate status=in_progress when starting, status=completed when done, TaskList to find next work. For recurring duties, prefix with `RECURRING:`.
 
 **Report completion**: When you finish a task, notify the task agent:
-`otmux send projectTeam:1.2 "Task done: <filename>" Enter`
+`hiveMind send.enter task-agent "Task done: <filename>"`
 
 ### Task Queue Rule
 
@@ -342,10 +342,10 @@ Why this matters: A contextless compact doesn't just affect you — it regresses
    ```
 
 2. **Notify the orchestrator**:
-   `otmux send projectTeam:0.0 "Read session/tasks/{task-id}.done.md" Enter`
+   `hiveMind send.enter orchestrator "Read session/tasks/{task-id}.done.md"`
 
 3. **Ask for next work**:
-   `otmux send projectTeam:0.0 "Agent {role} is idle. What's next?" Enter`
+   `hiveMind send.enter orchestrator "Agent {role} is idle. What's next?"`
 
 4. **NEVER just sit idle.** If no response in 60s, check `session/tasks/` for unassigned tasks matching your expertise.
 
