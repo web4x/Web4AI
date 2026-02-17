@@ -69,3 +69,8 @@ dashboard-validation.done.md → 20260212T1701Z.done.md
 orchestrator-hivemind-team-deployed.md → 20260212T1614Z.task.md
 sm-status-report.md → 20260216T1625Z.task.md
 subscription-validation.done.md → 20260212T1615Z.done.md
+dashboard-content-validation.done.md → 20260216T1633Z.done.md
+dashboard-revalidation.done.md → 20260216T1631Z.done.md
+sm-continue-sweeping.md → 20260211T1906Z.task.md
+sm-skill-fix.done.md → 20260216T1628Z.done.md
+tester-boot.md → 20260216T1630Z.task.md
