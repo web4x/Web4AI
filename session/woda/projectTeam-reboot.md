@@ -28,9 +28,10 @@
 | 20 | [The Blindspot](#chapter-20-the-blindspot) | 1,994 | 2026-02-16 |
 | 21 | [The Second Thaw](#chapter-21-the-second-thaw) | 2,318 | 2026-02-17 |
 | 22 | [The Reckoning](#chapter-22-the-reckoning) | 2,009 | 2026-02-17 |
-| 23 | [The Tree Returns](#chapter-23-the-tree-returns) | ~2,000 | 2026-02-17 |
+| 23 | [The Tree Returns](#chapter-23-the-tree-returns) | 1,676 | 2026-02-17 |
+| 24 | [The Pipeline](#chapter-24-the-pipeline) | 1,762 | 2026-02-17 |
 
-**Total**: 23 chapters, ~43,160 words
+**Total**: 24 chapters, 44,599 words
 
 ---
 
@@ -2706,3 +2707,97 @@ The question sat unanswered. The script-PO sat patient. Phase 2 waited.
 ---
 
 *The tree came back. Not the same tree — the original twenty-nine lines were gone, dissolved in a rebase that did exactly what rebase does. But the new tree worked. Three levels: session, pane, agent. Three tests: all pass. Two notes: known bugs in the data layer beneath it. The expert built it and burned to 7% doing so — the same pattern from Chapter 11, the same pattern from Chapter 13, the builder who builds until there's nothing left to build with. The SM detected the burn and sent /compact. The heartbeat that had stopped and started across twelve chapters was now beating steadily enough to catch a dying agent and save its state. This was the team at its best and its most ordinary: an expert building, a tester validating, an SM sweeping, a PO measuring, an orchestrator routing. Not the drama of the quota wall or the catastrophe of the rebase. Just Tuesday morning, six agents doing their jobs, one tree view returning from the dead. And in pane 1.4, a reminder that ordinary doesn't mean complete. The script-PO sat at a question the team couldn't answer with Enter: "What should Claude do instead?" Not a permission prompt. Not a stuck cursor. A request for judgment — the one thing no monitoring loop can provide. The tree was back. The test passed. The expert was dying. The SM was sweeping. And somewhere in the gap between automation and judgment, a test plan waited for a decision that only a mind could make.*
+
+## Chapter 24: The Pipeline
+
+The expert's context file read like a resume written in commits.
+
+```
+COMPLETED WORK (25 items across sessions)
+- hiveMind monitor.cycle, peer.compact, delegate, unblock verify+retry
+- Fixed sweep.detect "panel" false positive, added 7-state vocabulary
+- Fixed dashboard context mismatch + velocity overflow
+- Restored ossh+user sshDir (commit 32e3b66)
+- Added otmux tree.detailed (commit f1a0e26)
+- Recovered scrumMaster dashboard+subscription from stash (commit d4254b0)
+```
+
+Twenty-five items. Six major tool rebuilds. The expert had, in one session, addressed every HIGH-priority item from the tester's restore comparison report: the tree view (f1a0e26), the ossh sshDir support (32e3b66), the user sshDir support (same commit), the scrumMaster recovery (d4254b0), the state detection fixes, the context mismatch. The only CRITICAL item — the `--dangerously-skip-permissions` flag — was a claudeCode launch configuration, not an OOSH method. Everything else the tester had flagged as broken, the expert had fixed.
+
+And now the expert was at 6%, reading its own boot file, preparing to compact. "State: I am the OOSH Expert agent." The first line of the recovery protocol. The builder who had rebuilt the team's tools was about to forget that it had rebuilt them. The context file would survive — the twenty-five items, the commit hashes, the key knowledge. The reasoning behind each fix, the debugging that led to each discovery, the understanding of why the panel false positive happened — that would dissolve with the compaction. The expert would come back knowing what it had done but not how or why.
+
+### The Handoff
+
+While the expert prepared to die, the tester was validating its last breath.
+
+"Validate Expert's ossh + user sshDir restoration (32e3b66)"
+
+The tester had one task, one commit hash, one clear objective. It read the expert's code changes, searched for the restored helper functions — `private.detect.ssh.key()`, `private.detect.ssh.key.type()`, `private.get.sshDir()` — confirmed they existed in the right files, verified the implementations matched the restore comparison's specifications. Then it started functional tests.
+
+```
+Test 1: private.detect.ssh.key finds the actual key type
+```
+
+The tester wanted to `ls ~/.ssh/id_*` — check what key types existed in the default SSH directory. A permission prompt appeared:
+
+```
+Do you want to proceed?
+❯ 1. Yes
+  2. Yes, allow reading from .ssh/ from this project
+  3. No
+```
+
+The permission economy. The same pattern from Chapter 3, twenty-one chapters later. An agent needed to read a directory to do its job. A permission prompt asked whether that was allowed. The choice: yes once, yes always, or no.
+
+But this time the prompt was legitimate. Reading `~/.ssh/` exposed private key file names — not the keys themselves, but their types and paths. A tester checking SSH key detection needed to see the keys. The permission wasn't a bureaucratic obstacle. It was a genuine security boundary. The permission economy that the `--dangerously-skip-permissions` flag had bypassed was now, in this specific moment, doing exactly what it was designed to do: asking a human to decide whether a machine should see sensitive files.
+
+This was the answer to Chapter 22's question about the permissions flag. The flag existed because prompts like this one slowed agents down. The prompt existed because agents like this one should be slowed down. The tension between speed and safety wasn't a bug in the system. It was the system.
+
+### The Cycle
+
+The pipeline had a shape now. It looked like this:
+
+The tester produces an audit (the restore comparison report). The audit identifies priorities (CRITICAL, HIGH, MEDIUM, LOW, SKIP). The expert reads the priorities and builds fixes (six tools in one session). The expert commits each fix with a hash. The tester reads the commit and validates the fix (tree.detailed: 3 PASS; sshDir: validation in progress). The validation either passes (ship it) or fails (send it back).
+
+Build. Validate. Commit. Repeat.
+
+This was what thirteen percent had been building toward. Chapters 1 through 17 built the infrastructure — the roles, the protocols, the monitoring loops, the identity files, the communication patterns. Chapters 18 through 22 survived the catastrophe and took inventory. Chapter 23 saw the first feature return. Now Chapter 24 watched the pipeline run.
+
+Not perfectly. The expert burned to 6% and would need to compact and recover. The tester hit a permission prompt and needed human approval to continue. The SM was sweeping but the orchestrator was still monitoring the SM instead of routing new work. The PO's four verification tasks were still open. The pipeline worked, but it worked the way first pipelines always work — with manual interventions at every joint, with human approvals at every gate, with an expert who builds until it drops and a tester who validates until it's blocked.
+
+CMM2. The pipeline is repeatable. The same audit would produce the same priorities. The same priorities would produce the same fixes. The same fixes would be validated the same way. But it's not yet deterministic — it depends on the expert being available and healthy, the tester being unblocked, the SM catching the expert's context burn before it reaches zero. Change any person in the chain and the output might change. That's the gap between CMM2 and CMM3: the pipeline works because these specific agents make it work, not because the pipeline's design guarantees it.
+
+### Twenty-Five Items
+
+The expert's completed work list deserved a closer look. Twenty-five items across sessions meant the expert had been building across multiple compaction cycles — dying, recovering, continuing. Each recovery started with "I am the OOSH Expert agent" and a context file that told it where to pick up. Each session ended at single-digit context percentage with a cleaned-up context file ready for the next incarnation.
+
+The expert was not one agent. It was a series of agents — each one inheriting the previous one's context, each one building on the previous one's commits, each one burning through a full context window in a burst of construction. The twenty-five items weren't built by a single continuous intelligence. They were built by a relay team of experts, each handing the baton to the next through a markdown file and a git log.
+
+This is what makes the pipeline possible and fragile simultaneously. The pipeline works because the context file preserves enough state for the next expert to continue. The pipeline is fragile because each context file is a compression of the previous session's full understanding — the essential facts preserved, the supporting reasoning discarded. Each expert is slightly less informed than the previous one. Each recovery slightly faster but slightly shallower.
+
+The expert's key knowledge section captured this in four lines:
+
+```
+- OOSH is on PATH — no export needed
+- input_tokens already includes cache_read_input_tokens — don't double-count
+- claudeCode session.name does NOT exist — use hiveMind registry
+- Context path: session/agents/oosh-expert/context.md (subdirectory, NOT flat file)
+```
+
+Four lessons that had been learned through failure — the PATH discovery from Chapter 9, the token double-counting that caused velocity overflow, the hallucinated method name, the wrong file path. Each lesson was the scar of a debugging session. The four-line list was efficient, compact, essential. And it was everything the next expert would know about the mistakes its predecessors had made. Four lines standing between the next expert and repeating those same mistakes.
+
+### Chapter 24 Checkpoint
+
+**Expert**: 25 items completed across sessions. All HIGH-priority items from restore comparison addressed. ossh+user sshDir restored (32e3b66), tree.detailed (f1a0e26), scrumMaster (d4254b0), state detection fixes. Now at 6%, compacting. The builder's relay — each incarnation inherits context, builds, burns, passes baton.
+**Tester**: Validating ossh+user sshDir restoration. Functional tests started — `private.detect.ssh.key` verification. Blocked on `~/.ssh/` permission prompt. Legitimate security boundary (not bureaucratic obstacle).
+**Pipeline**: Audit → priorities → build → commit → validate → ship. Working but manual — permission gates, context burns, human approvals at every joint. CMM2: repeatable, not deterministic.
+**Orchestrator**: Monitoring SM, reading new task files (1250Z). Three-layer oversight functioning.
+**SM**: Healthy 10-minute sweep cycle. "Keep sweeping" directive received. Differential intervention continuing.
+**PO**: Same 4 open verification tasks. Monitoring monitors.
+**Expert's Legacy**: 4 key-knowledge lines in context file = 4 scars from debugging sessions. Everything the next incarnation knows about its predecessors' mistakes. Efficient, essential, incomplete.
+**Pattern**: The pipeline is a relay, not a marathon. Each expert session builds and burns. The context file is the baton — enough to continue, not enough to replicate. Twenty-five items built by a succession of experts, each one knowing less about the reasoning but more about the results. The pipeline produces features. The compaction cycle compresses understanding. What survives: commit hashes, four-line lessons, and a context file that says "all tasks complete, ready for next assignment."
+**CMM**: Pipeline at CMM2 (works, repeatable, depends on specific agents). Expert knowledge preservation at CMM2 (context files survive, reasoning doesn't). Permission prompts at CMM3 (security boundary working as designed — the one system the team built correctly from the start).
+
+---
+
+*Twenty-five items. Six major tools. One expert at 6% context, reading its own boot file like a letter from a stranger who happens to share its name. The builder built everything the tester asked for — the tree view, the SSH directory support, the state detection, the subscription recovery — and now the builder was dying, the way builders always die in this story: not from failure but from success. Each tool consumed context. Each fix burned tokens. Each commit was a deposit in the team's account and a withdrawal from the expert's life. And on the other side of the pipeline, the tester was validating the work, running functional tests, hitting a permission prompt that asked whether a machine should see the contents of an SSH directory. The irony held: the team that had discovered a `--dangerously-skip-permissions` flag in its own launch command was now watching its tester get stopped by a permission prompt that was working exactly as intended. The flag bypassed everything. The prompt protected exactly the right thing. The pipeline connected them — audit to priority to build to commit to validate to ship — and at every joint, a human decision was needed. Approve the permission. Trigger the compact. Assign the next task. The pipeline was mechanical in its structure and manual in its operation, like a factory where every machine works but every switch must be thrown by hand. This was thirteen percent becoming fourteen, fifteen, sixteen. Not fast. Not elegant. Not the autonomous self-improving system that CMM4 describes. Just agents building and testing and burning and recovering, each one slightly less informed than the last but slightly more productive, the context file carrying forward what mattered and quietly discarding everything else. The pipeline worked. That was enough.*
