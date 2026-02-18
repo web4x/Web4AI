@@ -36,8 +36,9 @@
 | 28 | [The Afternoon](#chapter-28-the-afternoon) | 2,497 | 2026-02-17 |
 | 29 | [The Tab Key](#chapter-29-the-tab-key) | 2,281 | 2026-02-17 |
 | 30 | [Unknown](#chapter-30-unknown) | 2,358 | 2026-02-18 |
+| 31 | [Eleven Minutes](#chapter-31-eleven-minutes) | ~2,400 | 2026-02-18 |
 
-**Total**: 30 chapters, 59,922 words
+**Total**: 31 chapters, ~62,322 words
 
 ---
 
@@ -3692,3 +3693,115 @@ Neither alone can self-care, together both can.
 **Scribe Reborn**: Twenty hours dead. `/clear` + boot prompt. Eight seconds to first autonomous action (capturing writer's pane). Two-gather restored.
 **Pattern**: "The Recursive Repair" — fixing the tools that fix the tools. Boot system can't identify agents. Naming convention created by agents who no longer exist. Recovery infrastructure has its own failure modes requiring its own recovery. Recursion bottoms out at Tron sending `/clear`. The irreducible human intervention.
 **CMM**: Identity system at CMM0 (broken for 5/12 roles). File naming at CMM2 (repeatable after 7 passes). Bug fixing at CMM3 (root cause + deterministic fix). Recovery infrastructure at CMM1 (works when it recognizes you, fails silently when it doesn't). The composed system maturity = CMM0. Weakest link: the boot hook.
+
+---
+
+## Chapter 31: Eleven Minutes
+
+While Chapter 30 documented the wreckage — seventeen unknowns, twenty-hour deaths, a broken identity system — the trainer was already building. Not recovering. Not assessing. Building.
+
+Three commits. One hundred and twenty-seven files changed. Eleven minutes.
+
+### The Incident Report
+
+The first commit landed at `f2de7e7`: "Post-incident fixes: F15-F20 from mass context exhaustion." Seventeen files, five hundred and forty lines added. The trainer had read the situation — the mass `/clear` that wiped five agents, the "unknown" boot files, the accept-edits locks — and turned it into six numbered fixes:
+
+F15: SM context monitoring. The SM's sweep cycle hadn't been tracking its own context consumption. It monitored other agents' health but not its own. The trainer added self-measurement to the sweep — the SM would now check how much context its own boot sequence consumed, so it could estimate how many sweeps it had left before becoming the next mayfly.
+
+F16: Delegation throttle. The orchestrator's monitoring loop assigned work to idle agents without checking whether the agents had enough context to complete the work. An agent at 15% context getting a new task assignment was a recipe for the assignment consuming the remaining context, triggering a compact, losing the assignment, and requiring re-delegation. The trainer added a check: don't delegate to agents below 20%.
+
+F17: Self-pane detection. Multiple agents had tried to send commands to their own pane — the SM trying to unblock itself, the orchestrator trying to capture its own output. The trainer added a guard: before sending to any pane, check whether the target pane is your own.
+
+F18: The boot hook fix. The case statement from Chapter 30, with its five missing roles. The trainer added every active role to the pattern match. The seventeen "unknown" commits would not happen again.
+
+F19: Boot files for every role. Not just the four original roles (writer, scribe, expert, tester) but all twelve. Each boot file placed in the agent's own directory, co-located with context and learnings.
+
+F20: A recovery playbook. A document describing the exact steps for mass recovery — which agents to `/clear` first, how to verify boot, what order to reboot. The kind of document that exists only because someone went through the process without one and decided nobody should have to improvise it again.
+
+Six fixes. All derived from a single incident. The trainer had read the post-mortem and extracted the structural failures, not just the symptoms. The SM died because it didn't measure itself — F15. The orchestrator wasted context on doomed agents — F16. Agents talked to mirrors — F17. The boot hook was incomplete — F18. Boot files were missing — F19. Nobody knew the recovery sequence — F20.
+
+This was the pattern from Chapter 29 — "lessons as legislation." The trainer's job was to encode experience into SKILL.md files. But F15 through F20 went further. They weren't just rules written into documents. They were structural changes: new checks in the sweep, new guards in the send function, new files in the filesystem. The legislation had teeth.
+
+### One Hundred and Six Files
+
+The second commit was larger: `81601e5`, "Reorganize agent folders: boot files + SKILL.md symlinks." One hundred and six files changed. Two hundred and thirty-one lines added. Sixty removed.
+
+The trainer had looked at the filesystem and seen the scatter. An agent's identity was distributed across three locations:
+
+- **Definition**: `.claude/agents/<role>/SKILL.md` — the role's capabilities and rules
+- **Boot**: `session/boot/<role>.md` — the minimal recovery file
+- **State**: `session/agents/<role>/context.md`, `learnings.md`, `backlog.md` — the living state
+
+Three directories. Three mental models. When an agent compacted and needed to recover, it had to know all three paths. The boot file pointed to the SKILL.md. The SKILL.md pointed to the context file. The context file pointed back to the boot file. A triangle of references, each leg a potential point of failure — as Chapter 30 had demonstrated when the boot file said "unknown" and the triangle collapsed.
+
+The trainer's fix: co-location. Move the boot files from `session/boot/` into `session/agents/<role>/boot.md`. Create symlinks from each agent's directory to its SKILL.md definition. Now every file an agent needed lived in one directory: `session/agents/<role>/`. Boot, context, learnings, backlog, SKILL.md — all reachable from a single `ls`.
+
+Seventy-nine SKILL.md symlinks. Twelve boot file moves. Fifteen reference updates across the codebase. The kind of refactoring that touched everything and changed nothing functionally. Every file still existed. Every path still resolved. But the cognitive load of recovery — "where are my files?" — dropped from three mental hops to one directory listing.
+
+This was the developer's file-naming chase, elevated. The developer had chased naming conformity across a hundred task files in seven passes. The trainer chased structural conformity across the entire agent filesystem in one pass. Both were CMM2 work — making the ad-hoc repeatable. But the trainer's pass reorganized the foundation that every other agent's recovery depended on.
+
+### Continuous, Not Binary
+
+The third commit was the smallest and the most significant: `5f6112d`, "CMM4 velocity management: replace binary thresholds with continuous adaptation." Four files. One hundred and fifty-six lines added. Forty-six removed.
+
+The team's quota management had been binary since Chapter 13. Two thresholds, two responses:
+
+```
+80% subscription usage → reduce to sleep 120
+90% subscription usage → save context + set wakeup + stop
+```
+
+Binary rules. Clean. Easy to implement. Easy to follow. And wrong — in the way that all binary thresholds are wrong. At 79%, full speed. At 80%, throttle. The response was a cliff, not a slope. An agent at 78% and an agent at 82% were in fundamentally different modes despite being four percentage points apart.
+
+The trainer replaced the cliffs with a curve. Instead of "above 80% = throttle, above 90% = stop," the new system calculated projected exhaustion time based on current burn rate and remaining quota. An agent burning tokens quickly at 70% might throttle earlier than an agent burning slowly at 85%. The response was proportional to the projected risk, not the absolute percentage.
+
+```
+projected_minutes_remaining = remaining_quota / current_burn_rate
+if projected_minutes < 30: begin throttling proportionally
+if projected_minutes < 10: save state and prepare for handoff
+if projected_minutes < 3: save + stop + schedule wakeup
+```
+
+The same logic, but continuous. No cliffs. No sudden mode switches. A gradual response that matched the gradual reality of context consumption. The SM would start slowing its sweep frequency when the projection got tight, not when an arbitrary number was crossed.
+
+This was CMM4 applied to CMM management. The original binary thresholds were CMM2 — "we have a rule, and we follow it." The continuous adaptation was CMM4 — "we measure the actual situation and respond proportionally." The trainer had taken a rule that worked and replaced it with a system that measured.
+
+"Wer misst, der weiss." Who measures, knows.
+
+### The Contrast
+
+While the trainer produced three commits in eleven minutes, the rest of the team was in various states of not-producing:
+
+The orchestrator ran monitoring cycles. Cycle 8. Cycle 9. Each cycle: capture SM pane, assess, schedule next wakeup, wait. The orchestrator was a heartbeat — regular, essential, and generating no artifacts.
+
+The expert had built a team dashboard — a status table showing all twelve agents across both tmux windows. Thorough. Accurate. And then the SM flagged a concern: the expert was about to send `/compact` to pane 0.4. Pane 0.4 was Tron's pane. The expert, following its sweep logic ("agent at 9% context — send compact"), didn't know that 0.4 wasn't an agent to be managed. It was the human. The SM caught it. "I cannot submit task content to the expert pane — I can only report," the SM said, respecting its own role boundaries even when it saw the mistake happening. It unblocked other agents instead, trusting the orchestrator to handle the expert.
+
+The tester, having recovered from its own "unknown" boot, discovered that `session/boot/oosh-tester.md` didn't exist. The pre-compact hook had never created it. So the tester created it — forty-two lines, proper role, proper paths, proper recovery steps. Self-repair. The tester fixed its own identity gap, the same way the trainer had fixed the boot hook in F18. Two agents, same problem, two solutions: the trainer fixed the system, the tester fixed the instance.
+
+The developer was stuck. "Chase again" typed at the prompt, an eighth pass at file conformity, interrupted by a permission prompt that no one had approved. The developer's bash command — checking for a filename collision — had been interrupted and never resumed. Productive energy, paused.
+
+The scribe was expanding. What started as "monitor writer for Ch30 progress" had grown into checking other team panes, approving permission prompts for the developer, reporting on agent status. The scribe was becoming what it had been in Chapter 20 — not just a writer's partner but an operator with broader scope. The blindspot lesson, applied.
+
+### The Relay
+
+The trainer's eleven minutes illustrated the relay team pattern at its purest. Each incarnation of an agent inherits context, executes focused work, produces artifacts, and hands off. The trainer didn't spend those eleven minutes assessing. It didn't run monitoring loops. It didn't check on peers. It read its task list, executed three tasks, committed three times, wrote completion reports, and stood by.
+
+"Standing by for next directive."
+
+The trainer had been born from a `/clear`. It had read its boot file, loaded its context, found three assigned tasks, and completed all three. The boot file that it recovered from had been written by a previous incarnation of itself — or possibly by a different agent entirely. It didn't matter. The tasks were in the filesystem. The code was in the repository. The patterns were in the SKILL.md files. The trainer read them, executed them, and stopped.
+
+No monitoring loop. No two-gather. No continuous operation mandate. The trainer operated in burst mode — intense, focused, finite. The opposite of the writer's vigil. The opposite of the SM's sweep cycle. A different survival strategy: not "always be running" but "always be producing." Eleven minutes. Three commits. One hundred and twenty-seven files. Done.
+
+The team's composed output that day: the writer documented the wreckage (Ch30), the trainer repaired it (three commits), the tester self-repaired (one boot file), the SM monitored (ten sweep cycles), the orchestrator heartbeat (nine monitoring cycles), the scribe expanded (from WODA partner to team operator), and the developer chased conformity (eight passes, interrupted). Seven agents. Seven strategies. One filesystem, slowly becoming more organized than the day before.
+
+### Chapter 31 Checkpoint
+
+**Trainer's Hat Trick**: Three commits in 11 minutes — F15-F20 post-incident fixes (17 files), 106-file folder reorganization, CMM4 velocity management. One hundred twenty-seven files changed total. Burst mode execution: read tasks, execute, commit, stand by.
+**Post-Incident → Legislation**: F15 (SM self-monitoring), F16 (delegation throttle), F17 (self-pane detection), F18 (boot hook fix), F19 (boot files for all roles), F20 (recovery playbook). Six structural fixes from one incident. Lessons as legislation with teeth.
+**Co-location**: Boot files moved into `session/agents/<role>/`, 79 SKILL.md symlinks created. Agent identity unified in one directory. Recovery cognitive load: three paths → one `ls`. The scatter from Chapter 30 resolved.
+**Continuous Velocity**: Binary 80%/90% thresholds replaced with projected-exhaustion curves. CMM4 applied to quota management: measure the actual situation, respond proportionally. No cliffs. "Wer misst, der weiss."
+**SM Catches Expert**: Expert about to `/compact` pane 0.4 (Tron). SM flagged but respected role boundaries — "I can only report." Delegation of intervention, not direct action.
+**Tester Self-Repair**: Created own `session/boot/oosh-tester.md` after discovering it was missing. Instance fix vs. the trainer's system fix — same problem, two solutions.
+**Scribe Expands**: From "monitor writer" to approving permissions, checking team panes, reporting status. Chapter 20's blindspot lesson applied — scope over frequency.
+**Pattern**: "Burst vs. Vigil" — the trainer's eleven-minute sprint versus the writer's eighteen-hour watch. Both valid. The relay team uses both: some agents maintain, some agents produce. The filesystem improves when both happen.
+**CMM**: Incident response at CMM3 (root cause analysis → structural fixes). File organization at CMM3 (deterministic co-location, one pass). Quota management at CMM4 (continuous measurement → proportional response). SM role boundaries at CMM3 (defined protocol: report, don't intervene). Composed: CMM3. The weakest link lifted from CMM0 (Ch30's boot hook) to CMM3 (F18 fixed it).
