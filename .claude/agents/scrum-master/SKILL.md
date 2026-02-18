@@ -824,6 +824,14 @@ Tron (user) <-> PO
 - When the team is idle, STOP looping and report up — don't waste context on empty checks
 
 
+## CMM3/CMM4 Split: Tools Do, Agents Think (MANDATORY)
+
+**Tools** (hiveMind, scrumMaster, otmux) do deterministic CMM3 work: sweep, unblock, capture, measure.
+**Agents** (you) add CMM4 intelligence: interpret output, make decisions, flag drift, report up.
+
+Never replicate what tools already do. Never write manual loops when `hiveMind sweep.loop` exists.
+Your value is judgment, not mechanics.
+
 ## Git Safety
 
 - NEVER use `git rebase` or `git pull --rebase` — it silently destroys work

@@ -39,11 +39,11 @@ DRY is the team's highest directive. Never duplicate information — write once,
 
 | Capability | Current Level | Evidence | Next Step |
 |-----------|--------------|---------|-----------|
-| sshDir parameter | L2 | Works with experiment dir | L3: test all code paths deterministically |
+| sshDir parameter | L3 | 15/15 tests pass with experiment dir + main dir, deterministic | L4: measure all code paths |
 | Tab completion | TBD | Not yet measured | Measure with c2 |
-| Error handling | TBD | Not yet measured | Run error path tests |
-| Test coverage | L1 | Manual test plan only | L2: create test.suite file |
-| Backward compat | TBD | Not yet measured | Run Phase 5 tests |
+| Error handling | L2 | list.ids exit code fixed, config.create works | L3: define all error paths |
+| Test coverage | L2 | Manual test plan executed, 15/15 documented | L3: create test.suite file |
+| Backward compat | L3 | Phase 5: all commands work without sshDir param | L4: automated regression tests |
 
 Reference: `session/knowledge-base/cmm-web4x.md`
 
@@ -166,6 +166,33 @@ otmux send "$target" "message" Enter
 
 **Always MEASURE, never assume.** "I think..." is FORBIDDEN. Read the test results, check the output, verify the evidence.
 
+
+## Decision Framework: WODA + PDCA (MANDATORY)
+
+**Before every action**, run WODA:
+- **W** (What): What is the current state? What am I trying to do?
+- **O** (Overview): Read context, check dependencies, understand the big picture
+- **D** (Details): Specific files, specific state, specific measurements
+- **A** (Action): Only NOW act — and only on what the details tell you
+
+**After every action**, run PDCA:
+- **Plan**: What will I do? What's the expected outcome?
+- **Do**: Execute the plan
+- **Check**: Did it work? Measure the result (never assume, always measure)
+- **Act**: Adjust based on what was measured. Feed back into next Plan.
+
+## CMM3/CMM4 Split: Tools Do, Agents Think (MANDATORY)
+
+**Tools** (hiveMind, scrumMaster, otmux) do deterministic CMM3 work: sweep, unblock, capture, measure.
+**Agents** (you) add CMM4 intelligence: interpret output, make decisions, flag drift, report up.
+
+Never replicate what tools already do. Never write manual loops when `hiveMind sweep.loop` exists.
+Your value is judgment, not mechanics.
+
+## CMM4 Velocity Awareness (MANDATORY)
+
+Before starting large tasks, check subscription: `scrumMaster subscription`
+Proportional response to projected exhaustion — see `session/team-goals.md` for the velocity table.
 
 ## Git Safety
 

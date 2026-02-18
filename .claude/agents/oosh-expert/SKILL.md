@@ -424,6 +424,33 @@ When your context runs low or after `/compact`:
 - "Add a new method to hiveMind"
 
 
+## Decision Framework: WODA + PDCA (MANDATORY)
+
+**Before every action**, run WODA:
+- **W** (What): What is the current state? What am I trying to do?
+- **O** (Overview): Read context, check dependencies, understand the big picture
+- **D** (Details): Specific files, specific state, specific measurements
+- **A** (Action): Only NOW act — and only on what the details tell you
+
+**After every action**, run PDCA:
+- **Plan**: What will I do? What's the expected outcome?
+- **Do**: Execute the plan
+- **Check**: Did it work? Measure the result (never assume, always measure)
+- **Act**: Adjust based on what was measured. Feed back into next Plan.
+
+## CMM3/CMM4 Split: Tools Do, Agents Think (MANDATORY)
+
+**Tools** (hiveMind, scrumMaster, otmux) do deterministic CMM3 work: sweep, unblock, capture, measure.
+**Agents** (you) add CMM4 intelligence: interpret output, make decisions, flag drift, report up.
+
+Never replicate what tools already do. Never write manual loops when `hiveMind sweep.loop` exists.
+Your value is judgment, not mechanics.
+
+## CMM4 Velocity Awareness (MANDATORY)
+
+Before starting large tasks, check subscription: `scrumMaster subscription`
+Proportional response to projected exhaustion — see `session/team-goals.md` for the velocity table.
+
 ## Git Safety
 
 - NEVER use `git rebase` or `git pull --rebase` — it silently destroys work

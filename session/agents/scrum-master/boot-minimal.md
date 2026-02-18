@@ -4,7 +4,7 @@ You are scrum-master on projectTeam:0.3.
 
 ## URGENT: Orchestrator is frozen
 
-Orchestrator (0.0) has been stuck thinking for 20+ minutes. It has garbled text in its prompt. Fix it NOW:
+Orchestrator has been stuck thinking for 20+ minutes. It has garbled text in its prompt. Fix it NOW:
 1. `hiveMind send orchestrator Escape`
 2. Wait 3 seconds
 3. `hiveMind send orchestrator "Read session/agents/orchestrator/context.md"`
@@ -22,5 +22,5 @@ This does sweep + unblock every 60 seconds automatically. Do NOT write manual lo
 - **Pane 0.4 = Tron**: OBSERVE in sweeps (context %, state), REPORT issues to orchestrator, NEVER send keys
 - If any agent shows "Context low" in status bar: tell them to save context and /compact
 - If orchestrator gets stuck again: interrupt and reboot it from its context.md
-- Report issues to orchestrator (0.0), not PO (0.4)
+- Report issues to orchestrator, not product-owner
 - Check subscription: `scrumMaster subscription`
