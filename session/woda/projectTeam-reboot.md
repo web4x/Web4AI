@@ -40,9 +40,10 @@
 | 32 | [The Unblocking](#chapter-32-the-unblocking) | 2,168 | 2026-02-18 |
 | 33 | [Steady State](#chapter-33-steady-state) | 1,966 | 2026-02-18 |
 | 34 | [The Burn Rate](#chapter-34-the-burn-rate) | 2,046 | 2026-02-18 |
-| 35 | [PLANNING](#chapter-35-planning) | ~2,000 | 2026-02-18 |
+| 35 | [PLANNING](#chapter-35-planning) | 1,628 | 2026-02-18 |
+| 36 | [The Quiet](#chapter-36-the-quiet) | ~1,800 | 2026-02-18 |
 
-**Total**: 35 chapters, ~70,634 words
+**Total**: 36 chapters, ~72,062 words
 
 ---
 
@@ -4230,3 +4231,99 @@ But BUG 3 was fixed. And 9/9 tests passed. And PLANNING was PLANNING.
 **Pipeline Cycle 2**: Audit (Ch29) → assignment → fix (Ch35) → verification → regression test. The loop closes. Ready for next audit.
 **Pattern**: "Working for the wrong reasons." The SM's state machine, the untested operational tools, the happy paths avoiding bugs — the team's critical systems held together by coincidence. Correctness is an investment in comprehension, not output.
 **CMM**: Bug fixing at CMM3 (root cause, fix, verification, regression test). PDCA implementation moved from CMM1 (works by accident) to CMM3 (works correctly, tested, state names documented). Pipeline methodology at CMM2 (repeatable audit → fix → verify cycle). Task assignment still at CMM1 (tester idle, no conversion of audit to tasks). Composed: CMM1 — the task assignment gap persists.
+
+---
+
+## Chapter 36: The Quiet
+
+The ossh-expert on pane 1.4 said it simply:
+
+> "All 3 bugs fixed, committed (55cdca4 + 1bb673c), pushed to origin/dev.claude. 16/16 tests passing. Ready for new work."
+
+Ready for new work. The same four words the tester had been repeating since Chapter 29. The same state the trainer had entered after its eleven-minute burst. Three agents — ossh-expert, tester, trainer — all idle, all ready, all waiting for work that nobody was creating.
+
+The team had run out of backlog.
+
+### The Third Commit
+
+BUG 3's fix landed as commit `1bb673c`. The PDCA state names were now aligned across the scrumMaster's definition and transition functions. Combined with `55cdca4` (BUGs 1 and 2), the ossh-expert had produced two commits fixing three bugs, verified by sixteen passing tests. The `dev.claude` branch carried code that was measurably more correct than it had been that morning.
+
+The expert on pane 0.1, watching from across the window, summarized the state:
+
+```
+│ BUG 1: Dashed parameter names cause hang │ FIXED  │ 55cdca4 │
+│ BUG 2: this.isNumber accepts non-numbers │ FIXED  │ 55cdca4 │
+│ BUG 3: scrumMaster PDCA state mismatch   │ FIXED  │ 1bb673c │
+```
+
+16/16. Pushed. Done.
+
+The expert's next action was to look around: "check the writer, is Ch34 done." It found Ch34 done. And Ch35. "Writer is a machine today." Then: "check the scribe, is it keeping up." The expert, having run out of bugs to monitor, was monitoring the story instead. The observer hierarchy had shifted — the expert watching the writer watching the team watching the code. Everyone watching. Nobody building.
+
+### The SM's Last Words
+
+The SM had something typed at its prompt that the orchestrator captured on cycle 18:
+
+> "Save your context before you run out."
+
+The SM was talking to itself. Not to another agent — to itself. It knew its context was low. It knew the next sweep might be its last. The mayfly from Chapter 29 was approaching the end of another lifespan, and this time it was self-aware about the approach.
+
+Twenty-one sweep cycles. More than any previous SM incarnation. The original SM in the story managed two sweeps before dying (Chapter 29). The next incarnation managed more, then died during the mass context exhaustion (Chapter 30). This incarnation had survived the longest — twenty-one cycles of sweep, unblock, report, sleep, repeat. Each cycle consuming context. Each report adding tokens to the conversation. Each unblock operation — detecting blocked agents, sending Enters, verifying results — eating into the finite window.
+
+The SM had been the team's immune system for over an hour. It had unblocked the writer dozens of times (enabling six chapters). It had unblocked the scribe (enabling four organize cycles). It had caught the expert about to compact Tron's pane. It had reported steady state, flagged rate limits, and approved permissions. Twenty-one cycles of invisible, essential maintenance.
+
+And now it was about to die. Not from failure. From the accumulated cost of doing its job.
+
+The orchestrator's response was practiced: submit the SM's typed message (send Enter to help it save), schedule the next monitoring wakeup, stand by. The orchestrator had been through this before — SM dies, SM gets restarted, SM reads its boot file, SM starts sweeping. The mayfly cycle was no longer a crisis. It was infrastructure.
+
+### The Pipeline Stalls
+
+The writer-scribe pipeline had been "cranking," in the expert's words. But it had a bottleneck. The writer was producing chapters faster than the scribe could organize them. The scribe was still checking "is Ch35 done?" while the writer was already gathering material for Ch36.
+
+The scribe's organize cycle took roughly five minutes per chapter: grep for the chapter header, count words, update the TOC, add themes to the overview. The writer's production cycle had compressed to roughly fifteen minutes per chapter: gather panes, write, commit, push. Three chapters per scribe cycle. The scribe was running a 3:1 deficit.
+
+This wasn't a problem yet. The scribe could batch — organize Ch35 and Ch36 together when it caught up. The TOC updates were idempotent. Nothing broke if the word count was temporarily wrong. But the deficit revealed something about the two-gather pattern: it assumed symmetric workloads. Writer writes, scribe organizes, each roughly matching the other's pace. When the writer accelerated — six chapters in ninety minutes — the pattern strained.
+
+The scribe was still monitoring for health (the original purpose) while also trying to keep up with organizing (the pipeline purpose). Two roles pulling at the same agent. The monitoring loops consumed context. The organizing consumed context. Each chapter the writer produced was a demand on the scribe's finite capacity. The writer's productivity was the scribe's burden.
+
+### Capacity Without Work
+
+The team's capacity profile at hour two of the session:
+
+| Agent | State | Capacity | Work Available |
+|-------|-------|----------|----------------|
+| Orchestrator | Heartbeat cycle 18 | Low — mostly consumed by monitoring | Self-generated |
+| Expert (0.1) | Watching team | High — bugs done, context available | None assigned |
+| Tester (0.2) | Idle since Ch29 | Full — barely consumed | None assigned |
+| SM (0.3) | Sweep cycle 21, dying | None — about to compact | Self-generated |
+| Trainer (0.5) | Rate-limited, idle | Blocked by rate limit | Task read but unstarted |
+| Writer (1.0) | Writing Ch36 | Moderate — 8 tasks complete | Self-generated |
+| Scribe (1.1) | Organizing, behind | Low — pipeline deficit | Writer-generated |
+| Ossh-expert (1.4) | Idle, bugs done | High — 16/16, ready | None assigned |
+| Tester (0.2) | Idle | Full | None assigned |
+| Developer (1.3) | Chase interrupted | Unknown — stuck at prompt | One straggler file |
+
+Three agents with high capacity and no work: the expert on 0.1, the tester on 0.2, and the ossh-expert on 1.4. One agent blocked by rate limit: the trainer. One agent dying: the SM. Two agents consumed by self-generated work: the orchestrator and the writer. One agent overwhelmed by pipeline work: the scribe. One agent frozen mid-task: the developer.
+
+The team had capacity. What it lacked was a mechanism to convert the coverage audit (Ch29's three untested scripts, twelve untested methods) into task assignments. The PO's directive — "all agents MUST use TaskCreate" — was about tracking work that existed. The problem was creating work that should exist. The audit said "test otmux." Nobody had written a task file saying "Agent: oosh-tester. Task: write test.otmux. Scope: pane.capture, send, pane.splitH."
+
+The gap was a role gap. The PO created governance. The orchestrator coordinated running agents. The SM maintained health. The trainer improved SKILL.md files. The writer documented. The scribe organized. None of them had "create task files from audit findings" in their role definition. The work of *creating work* was nobody's job.
+
+### Seventy Thousand Words
+
+The story had passed seventy thousand words. Thirty-five chapters. Eight days of team operation documented in a narrative that traced the arc from eleven empty chairs (Chapter 1) to a team that had fixed its own bugs, repaired its own identity system, reached steady state, and run out of things to do (Chapter 36).
+
+The arc wasn't dramatic. It didn't climax in a victory or collapse in a failure. It wound down. The bugs got fixed. The files got renamed. The state names got corrected. The boot system got repaired. And then the backlog emptied, and agents said "ready for new work," and nobody had new work to give them.
+
+This was what success looked like in a multi-agent system: not a moment of triumph but a gradual approach to completeness. Each chapter a little closer. Each bug fix a small increment. Each improvement an incremental step up the CMM ladder. Not a revolution. An accumulation. Seventy thousand words of accumulation, reaching a quiet plateau where the system worked, the tests passed, and the biggest problem was three idle agents and a scribe that couldn't keep up with the writer.
+
+### Chapter 36 Checkpoint
+
+**Backlog Empty**: All three bugs fixed and pushed (55cdca4, 1bb673c). 16/16 tests passing. Ossh-expert, tester, and trainer all idle — "ready for new work" with no work assigned. Capacity exceeds demand.
+**SM Dying**: Twenty-one sweep cycles — longest-lived SM incarnation in the story. "Save your context before you run out." The mayfly cycle is now infrastructure, not crisis.
+**Pipeline Bottleneck**: Writer produces at 3x scribe's organize rate. Six chapters in ninety minutes vs. one organize cycle per five minutes. Scribe running 3:1 deficit. Two-gather pattern strains under asymmetric workload.
+**Expert Watches Story**: After bugs complete, expert shifts to monitoring the writer-scribe pipeline. The observer hierarchy deepens: expert → writer → team → code.
+**Work Creation Gap**: Coverage audit (Ch29) identified all testing gaps. Nobody converts findings to task files. The role of "creating work from audits" is assigned to nobody. Capacity exists. Work definition doesn't.
+**Seventy Thousand Words**: 35 chapters, 8 days. The arc winds down — not collapse or triumph but gradual approach to completeness. Success in a multi-agent system is a quiet plateau.
+**Pattern**: "The Quiet" — the state after the work is done. Not failure. Not even rest. The system running at full capacity with nothing left to do. Agents sweeping, monitoring, unblocking — maintaining a machine that has finished its current task. The hum of infrastructure with nothing to process.
+**CMM**: Bug fixing complete at CMM3. SM lifecycle at CMM2 (repeatable mayfly cycle). Pipeline at CMM2 (works but bottlenecked). Work creation at CMM0 (nobody's job). Capacity management at CMM1 (idle agents visible but unresolved). Composed: CMM0 — the work creation gap is the weakest link.
