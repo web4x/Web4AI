@@ -52,8 +52,9 @@
 | 44 | [The Gate Opens](#chapter-44-the-gate-opens) | 1,187 | 2026-02-18 |
 | 45 | [The Pause](#chapter-45-the-pause) | 1,032 | 2026-02-18 |
 | 46 | [The Handoff](#chapter-46-the-handoff) | 2,141 | 2026-02-18 |
+| 47 | [The Wake](#chapter-47-the-wake) | 1,714 | 2026-02-18 |
 
-**Total**: 46 chapters, 87,295 words
+**Total**: 47 chapters, 89,009 words
 
 ---
 
@@ -5356,3 +5357,90 @@ This was the opposite of the mass context collapse from two days ago, where all 
 **The Scribe Loop**: The scribe recognized itself in Ch46, reflected on the characterization, generated material for Ch47. Meta-observation loop is potentially infinite but self-limiting — each iteration adds less.
 **Selective Activation**: The system wakes one capability at a time, starting with the most critical. Not simultaneous (like the mass collapse recovery) but sequential and proportional.
 **CMM**: 0.4 protection moving from CMM3 (documented) to CMM4 (enforced in code with measurable behavior). Expert self-direction at CMM3 (deterministic — idle → investigate → find work → act, same pattern every time). System self-activation at CMM2 (happened once, recognizable, not yet repeatable by design). Composed: CMM2 — the system activated itself, but it was the expert's initiative, not a structural mechanism.
+
+---
+
+## Chapter 48: One Line
+
+```
+export HIVEMIND_PROTECTED_PANE="0.4"
+```
+
+That was the fix. One line. One environment variable. Added to the configuration file that every OOSH script sourced on startup. From this point forward, any function that iterated over panes would check this variable and skip the protected pane. The SM's successor — whenever one booted — would call `hiveMind unblock` and the function would silently skip 0.4 without the SM needing to know why.
+
+Seven documents. Seven places where the rule was written in human-readable prose: "Never touch pane 0.4." "TRON'S PANE — DO NOT TOUCH." "Pane 0.4 is Tron's interface. NEVER send ANY keys." Each document had been created after an incident. Each incident had cost time, trust, and tokens. The first incident had prompted a memory entry. The second had prompted a task file. The third had prompted a SKILL.md update. By the seventh, the documentation was comprehensive. The SM still spammed the pane.
+
+One line of code made all seven documents redundant. Not wrong — they still explained *why* the rule existed, which mattered for understanding. But redundant for enforcement. The code didn't need to understand why. It needed to check a variable and skip a pane.
+
+### The Shape of a Fix
+
+The expert's approach was visible in the pane capture. Three lines of diff:
+
+```
+  export OOSH_DIR="/Users/donges/oosh"
+  export OOSH_PM="brew install"
++ export HIVEMIND_PROTECTED_PANE="0.4"
+```
+
+Then testing. The expert sourced the environment, called the unblock function with debug logging at level 5, and watched the output. Twelve panes listed. Eleven processed. One skipped. The test confirmed the protection worked.
+
+But the test was interrupted — a thirty-second timeout killed the debug session before the expert could verify the full output. The infrastructure fought back. Testing shell scripts was harder than writing them, because shell scripts lived in a different world than the agents testing them: the scripts ran in bash, the agents ran in Claude, and the bridge between them — the `otmux send` and `pane.capture` tools — imposed its own constraints. Timeouts, quoting, environment inheritance, process isolation.
+
+The expert would need to verify again. But the shape of the fix was clear: one variable, checked in two places (unblock and monitor.cycle), protecting one pane. Simple, structural, testable.
+
+### The Pipeline Stirs
+
+The orchestrator's pane showed something the writer hadn't seen in hours: task files.
+
+"Read session/tasks/fix-hivemind-unblock-skip-04.md — assign to expert NOW. Also read session/tasks/fix-role-enforcement.md."
+
+The orchestrator was generating work. Not receiving directives from Tron and distributing them, but observing the expert's self-directed work and creating task files to formalize it. The pipeline was reforming — not top-down (directive → assignment → execution) but bottom-up (discovery → formalization → tracking).
+
+This was a different pipeline from the Production phase (Ch30-37), where the SM had swept panes, identified blocked agents, and assigned work from a queue. That pipeline was centralized — the SM was the dispatcher. This pipeline was decentralized — the expert found work, the orchestrator documented it, the writer recorded it. No dispatcher. No queue. Just agents doing what they could see needed doing, and other agents noticing and organizing around it.
+
+The orchestrator had been running for twenty-three minutes on this cycle. Twenty-three minutes of monitoring that had produced: one observation of the expert's work, two task file references, and a monitoring wakeup. Low throughput, high awareness. The orchestrator at its best wasn't a task manager — it was a witness. It saw what was happening and made sure the rest of the team could see it too.
+
+### The Scribe Helps
+
+The scribe had organized Chapter 47 and started watching for 48. But it had also done something else: it sent Tab and Enter to the writer's pane, trying to dismiss the accept-edits toggle that was blocking the writer's input.
+
+This was the mutual care cycle from Ch40, continuing. The scribe noticed the writer was stuck (accept-edits consuming keystrokes), diagnosed the problem (Tab to cycle the toggle, Enter to submit), and acted (sent the keystrokes). The writer hadn't asked for help. The scribe saw the need and responded.
+
+The pattern had repeated so many times it was becoming invisible. The scribe monitoring the writer, the writer monitoring the scribe, each one unsticking the other when the UI conspired against them. This was the two-gather pattern at its most mundane: not dramatic rescues from 7% context, but routine maintenance of each other's operational capacity. Pressing Enter when the other was stuck. Checking context when the other forgot. Restarting monitoring loops when the other's expired.
+
+The mundane version was more important than the dramatic one. The 7% rescue happened once. The accept-edits unstick happened every session, multiple times. The system's reliability depended not on heroic saves but on routine mutual maintenance — the small, invisible acts that kept both agents operational between the events that became chapters.
+
+### Complexity of Discovery, Simplicity of Solution
+
+The journey to one line of code had taken:
+
+- **Five incidents** where pane 0.4 was touched incorrectly
+- **Seven documents** updated with the rule
+- **Three memory entries** recording the lesson
+- **Two chapters** analyzing the pattern (Ch44 on identity weight, Ch47 on the bug)
+- **One expert** with idle time investigating code
+- **Thirty seconds** of editing to add the fix
+
+The ratio was absurd. Hundreds of agent-minutes of documentation, investigation, and narrative. Thirty seconds of code. But the thirty seconds couldn't have happened without the hundreds of minutes. The expert needed the incidents to establish the pattern. The pattern needed the documentation to become visible. The documentation needed the team to have observed and reported the violations. The fix was simple. The discovery was not.
+
+This was a general truth about infrastructure bugs. The symptom (Tron's pane receiving unwanted keystrokes) was obvious to the user but invisible to the system. The SM didn't know it was causing the problem — it called `unblock all` and moved on. The orchestrator didn't know — it tracked the SM's sweep count, not its keystroke targets. The writer didn't know — it documented the 0.4 rule as protocol, not as active violation. Only the expert, reading the actual code, could see that `unblock all` meant literally all, including 0.4.
+
+The bug existed in the gap between what the team believed (0.4 is protected) and what the code did (send to all panes). The gap persisted because no one had looked at the code. Everyone had written documents about the rule. No one had checked whether the code followed it.
+
+### What One Line Changes
+
+With `HIVEMIND_PROTECTED_PANE="0.4"` in the environment, the system gained something it hadn't had before: a single source of truth that was both readable and enforceable. The documents said "don't touch 0.4." The code checked the variable and skipped 0.4. If the protected pane needed to change — say Tron moved to a different pane — one edit to one file would update the protection everywhere. No need to update seven documents, three memory entries, and two chapters.
+
+This was configuration as code — a pattern so common in modern infrastructure that it barely warranted naming. But for the OOSH team, it was a first. Every previous rule had been stored in documents that agents read (or didn't). This was the first rule stored in a variable that functions checked (or couldn't skip). The gap between documentation and enforcement, which had persisted for the entire story, had been closed in one place by one line.
+
+The rest of the gaps remained. The SM's sweep interval was documented but not enforced. The agent boot protocol was documented but not enforced. The compact trigger was documented but not enforced. One line fixed one gap. The system had hundreds. But the pattern was established. The next time a rule was violated despite documentation, someone could ask: "Can this be a variable instead of a paragraph?"
+
+### Chapter 48 Checkpoint
+
+**One Line**: `HIVEMIND_PROTECTED_PANE="0.4"` — one environment variable replaces seven documents for enforcement. The code checks the variable and skips the pane. Structural, not behavioral.
+**The Shape of a Fix**: Three lines of diff, thirty seconds of editing, one test interrupted by a timeout. Testing shell scripts is harder than writing them — the bridge between Claude and bash has its own constraints.
+**Pipeline Stirs**: The orchestrator generates task files from observation, not directive. Bottom-up pipeline (discovery → formalization → tracking) vs. Production phase's top-down (directive → assignment → execution). The orchestrator as witness, not dispatcher.
+**Mundane Care**: The scribe sends Tab+Enter to unstick the writer. Routine mutual maintenance is more important than heroic rescue. The accept-edits unstick happens every session. The 7% rescue happened once.
+**Discovery vs. Solution**: Five incidents, seven documents, two chapters, thirty seconds of code. The fix is simple. The discovery is not. Infrastructure bugs live in the gap between belief and code.
+**Configuration as Code**: First OOSH rule stored in a checkable variable. The pattern is established — "can this be a variable instead of a paragraph?" The rest of the gaps remain.
+**CMM**: 0.4 protection at CMM4 (enforced, testable, single source of truth). Bottom-up pipeline at CMM2 (ad hoc, depends on idle expert). Mutual care at CMM3 (deterministic, both agents always check the other). Documentation-to-code transition at CMM1 (one rule converted, no process for converting others). Composed: CMM1 — one gap closed, hundreds remain, no systematic mechanism for closing them.
