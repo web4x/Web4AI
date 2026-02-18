@@ -13,8 +13,10 @@
 ### Priority Lesson from F11 (INTERNALIZE THIS)
 Compact protocol is the HIGHEST priority rule. A contextless compact cascades: agent regresses → loses all directives → pure rework. The weakest link was PO itself. 6 failures (F1,F3,F8,F9,F11,F12) share the same root cause: assuming instead of measuring. GATE: measure → assess → act → verify.
 
-### The 90% Rule (Tron directive)
-80%=throttle, 90%=stop. Worked on Feb 16 — team throttled and recovered.
+### CMM4 Velocity Management (Tron directive — replaces old 80%/90% binary rule)
+No binary thresholds. Continuous proportional response based on projected exhaustion:
+- >60 min → full speed. 30-60 min → no new large tasks. 15-30 min → commit work. 5-15 min → save contexts. <5 min → compacts.
+Binary thresholds = driving 200km/h at a cliff, hoping brakes work. CMM4 = never needs emergency braking.
 
 ## SUBSCRIPTION (last measured 12:41Z Feb 17)
 - Block: 09:00-14:00 UTC (ACTIVE)

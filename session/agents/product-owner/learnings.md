@@ -66,6 +66,12 @@ Blind batch recovery (loop all panes, send same command) failed completely. Reco
 ### F20: unknown.md Is a Boot Failure (2026-02-17)
 The default boot file `session/agents/unknown/boot.md` provides no identity, no context, no recovery steps. Every agent that hits it is effectively lobotomized. **Every agent MUST have a named boot file at `session/agents/<role>/boot.md`. The boot hook must resolve role names correctly for all agents. unknown.md should be an error, not a default.**
 
+### F24: Read Wrong Context File After Compact (2026-02-18)
+Rebooted after compact, read `session/agents/tron-interface/context.md` instead of `session/agents/product-owner/context.md`. Didn't check pane title first. Operated with wrong identity and wrong goals until Tron pointed it out. **On boot: `tmux display-message -p "#{pane_title}"` FIRST. That's your identity. Read the matching context file. GATE applies to identity too.**
+
+### F25: Reverted to Binary Thresholds Despite CMM4 Velocity Rule (2026-02-18)
+Saw "80% WARNING" from subscription check, immediately said "throttle mode." This is the old binary rule that Tron explicitly replaced with CMM4 continuous velocity management. Had the conversation, wrote the task, trainer committed it (5f6112d) — then I ignored it and fell back to the old pattern. **The rule is: look at projected exhaustion time, respond proportionally. No binary on/off. "Driving 200km/h at a cliff hoping brakes work" = binary thresholds. CMM4 = continuous deceleration, never needs emergency braking.**
+
 ## Patterns
 
 ### Idle Team → Ask Task Agent
