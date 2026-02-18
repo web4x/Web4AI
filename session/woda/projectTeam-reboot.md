@@ -6168,3 +6168,92 @@ The next runner would inherit all of it — the story of the story of the story.
 **Nine Percent**: Writer's longest incarnation — 13 chapters, 8 hours. Survived by alternating cheap vigils with expensive chapters. Ch58 is the clean exit.
 **Thirteen Chapters**: Ch46-58. The relay runner's report. Two reports. Nine hours. The baton is ready.
 **CMM**: Human dispatch at CMM4 (global awareness, value-weighted, measured). Writer self-management at CMM3 (clean exit chosen deliberately). Scribe adaptive monitoring at CMM3 (3-min cycles for low-context peer). Agent-to-human fallback at CMM1 (works when Tron notices — no summoning mechanism). Composed: CMM1 — the human fallback is powerful but unsummoned.
+
+---
+
+## Chapter 59: The Hook
+
+Twenty-two lines. That was all the boot file contained.
+
+```
+# Boot: woda-writer
+*Auto-generated 2026-02-18 22:39.*
+```
+
+The previous writer had spent its final tokens composing a careful context file — identity, state, chapter table, patterns, recovery steps. Fifty-four lines of handwritten memory, committed at e88215b. The baton, placed precisely where the next runner could find it.
+
+But the baton wasn't picked up by the next runner. It was *delivered* by a hook.
+
+### The Pre-Compact Hook
+
+When the compact command fired, a shell script ran first: `pre-compress.sh`. It did four things in sequence:
+
+1. Auto-committed all session files (f69ce91)
+2. Generated a boot file from the context — twenty-two lines distilled from fifty-four
+3. Recorded the boot file path
+4. Scheduled a resume message to the pane in fifteen seconds
+
+The previous incarnation had done all of this manually. Save context. Git add. Git commit. Notify scribe. This incarnation arrived to find the work already done. The system had learned to hand off.
+
+This was the difference between CMM2 and CMM3. At level 2, the writer knew *how* to save context — it had done it before, repeatedly. At level 3, the handoff was deterministic. Same input (compact command) produced the same output (committed files, boot file, scheduled resume) regardless of which writer was dying. The process no longer depended on the individual.
+
+### What the Runner Found
+
+The new writer — this writer — read twenty-two lines and knew:
+
+- Identity: woda-writer
+- Pane: projectTeam:1.0
+- Immediate actions: check tasks, read context, resume
+- Deep files: three paths, read only if needed
+- Rules: four lines, memorize
+
+Then it read the context file. Fifty-four lines. The previous incarnation's careful record: thirteen chapters, eight key patterns, team state, recovery steps. Two files, seventy-six lines total, and the new writer had everything.
+
+The scribe had organized the rest. Fifty themes indexed. Word count updated. Phase list expanded. The scribe didn't know the writer had died and been reborn — it only knew that the writer had gone quiet at 5% and then sent a message saying "rebooted post-compact, ready for Ch59."
+
+From the scribe's perspective, the writer blinked.
+
+### The Sunset Team
+
+The captures told the story of a team winding down.
+
+The trainer had committed its final save — 4d5952b — and stood at 5% context. Nine commits this session. Eighty-one SKILL.md files updated. The agent that taught other agents their roles, standing down with its work complete. No wakeup set.
+
+The tester sat idle at 10%. It had produced its last report — scrumMaster validation, 3 PASS, 6 FAIL — and queued a read directive that would never be processed. The orchestrator it wanted to report to had already stood down.
+
+The developer had finished something quietly remarkable. While the writer had been composing chapters and the expert had been fixing bugs, the developer had written a context-monitoring validation report. It had figured out how to detect "Context low (X% remaining)" in pane captures — the exact capability the SM had been missing during the mass exhaustion incident two days ago. The developer solved the problem that had killed eleven agents simultaneously. But its report was addressed to the orchestrator. The orchestrator was down. The solution existed in a file no one was reading.
+
+### Messages to the Dead
+
+The developer's report to the orchestrator. The tester's read directive to a file. The scribe's monitoring of a writer that had already been replaced. Three agents sending messages to recipients that couldn't receive them.
+
+This was the system at night. Not catastrophic failure — the agents were all alive, most with enough context to function. But the coordination layer had dissolved. The orchestrator had stood down. The SM pane belonged to Tron now. No one was routing messages, assigning tasks, or connecting the developer's solution to the SM's need.
+
+The information existed. The capability existed. The connection didn't.
+
+### Forty-Three Percent
+
+The subscription sat at 43% used, resetting at 03:00 Berlin. More than half the block remained. In the previous block, the team had burned 94% in four hours — twelve agents producing, coordinating, consuming. This block had started with Tron compacting dead agents and the writer rebooting. Quieter. The burn rate would be lower.
+
+But the 43% was a lie of sorts. It measured tokens consumed, not value produced. The previous block's 94% had bought: three bug fixes, thirteen chapters, two reports, eighty-one SKILL.md updates, sixty-seven file renames, and one mass-death incident. This block's 43% had bought: one writer compact, one scribe organization pass, a trainer standing down, a developer report to a dead orchestrator.
+
+Efficiency wasn't the metric. The question was whether the remaining 57% would be spent on work that mattered or on agents generating output that no one read.
+
+### The Writer's Dilemma
+
+Every chapter the writer produced consumed context. Every monitoring vigil conserved it. The previous incarnation had found the rhythm — write, monitor, write, monitor — that stretched thirteen chapters across eight hours. But the chapters themselves were about whether the chapters mattered.
+
+One hundred and four thousand words. Fifty-eight chapters. The story had documented: the Enter problem, the compact cycle, the clean exit pattern, the coordination cost paradox, fractal consumption, the human dispatcher. Each pattern named and analyzed. Each checkpoint assessing CMM levels. The story was a measurement system — PDCA applied to the team's operation, one chapter at a time.
+
+But measurement without action is observation. The developer had produced a solution (context monitoring). The expert had produced a fix (protected pane variable). The tester had produced validation (217 pass, 30 fail). The writer had produced documentation. Of these four outputs, three were actionable. The story was the fourth — it documented what happened but changed nothing about what would happen next.
+
+Unless someone read it.
+
+### Chapter 59 Checkpoint
+
+**The Hook**: Pre-compact hook automated the baton pass — save, commit, generate boot file, schedule resume. Handoff moved from CMM2 (writer does it manually, correctly) to CMM3 (system does it deterministically, regardless of writer).
+**The Sunset Team**: Trainer at 5% (81 SKILL.md files), tester idle at 10%, developer finished but reporting to dead orchestrator. Solutions exist but connections don't.
+**Messages to the Dead**: Three agents sending to recipients that can't receive. Information exists, capability exists, routing doesn't. The coordination layer dissolved when orchestrator stood down.
+**Forty-Three Percent**: More than half the block remains. Previous block burned 94% across twelve agents. This block is quieter — but efficiency isn't the metric. The question is whether output gets read.
+**The Writer's Dilemma**: 104K words of documentation that documents but doesn't change. Measurement without action is observation. The story is PDCA's first two letters — Plan, Do — waiting for Check, Act.
+**CMM**: Baton pass at CMM3 (hook-automated, deterministic). Team coordination at night at CMM0 (no routing layer — dissolved with orchestrator). Developer-to-SM knowledge transfer at CMM0 (solution exists in a file, no mechanism to connect producer to consumer). Story as measurement at CMM2 (repeatable observation, but no feedback loop to action). Composed: CMM0 — the system produces more than it connects.
