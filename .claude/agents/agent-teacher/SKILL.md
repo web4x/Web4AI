@@ -84,12 +84,21 @@ sleep 120 && echo "WAKEUP: check SM and team"
 
 ### When to Stop
 
-The ONLY acceptable reason to stop is 90%+ subscription — and you MUST:
+The ONLY acceptable reason to stop is < 5 min projected exhaustion — and you MUST:
 1. Save context
 2. Set a wakeup for the block reset time (MEASURE with `scrumMaster subscription`)
 3. THEN stop
 
-Stopping for any other reason = failure.
+Stopping for any other reason = failure. See "CMM4 Velocity-Based Delegation" for proportional response at all levels.
+
+### SM Recovery Authorization (Standing Order from PO)
+
+When SM is at 0% context ("Context limit reached"), you are **authorized to /clear it** without asking PO. A dead agent has nothing to lose. Recovery steps:
+1. `otmux send projectTeam:0.3 /clear Enter`
+2. Wait 10s
+3. `otmux send projectTeam:0.3 "Read session/agents/scrum-master/boot.md" Enter`
+4. Wait 30s, capture, verify sweeping
+5. If SM dies again after one cycle → escalate to PO with a specific fix proposal
 
 ## Teaching Protocol
 
