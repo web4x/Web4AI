@@ -26,18 +26,24 @@ Binary thresholds = driving 200km/h at a cliff, hoping brakes work. CMM4 = never
 - `scrumMaster subscription` = correct real-time tool
 - `measure.subscription.api` = DEPRECATED (task 1200Z)
 
-## CURRENT STATE (12:45Z Feb 17)
+## CURRENT STATE (12:45Z Feb 18)
 
-- **Expert**: Completed tree.detailed (f1a0e26). At 9% context — needs compact, then queued tasks
-- **Tester**: Validating tree.detailed. Active.
-- **SM**: Sweeping with hiveMind sweep, using proper compact protocol. F11 recovery working.
-- **Orchestrator**: Monitoring SM at 5-min intervals. Active.
-- **Trainer**: Compacting (SM sent proper "Save context and /compact"). All tasks done.
-- **Writer**: Ch22 committed (7cc2284), starting Ch23. Active.
-- **Scribe**: Monitoring writer for Ch23. Active.
-- **Task-agent**: Self-compacting at 9%. Good.
-- **Developer**: Just compacted. Needs task after boot.
-- **Script-PO**: Doing restore comparison but STUCK on permission prompt. SM should catch in sweep.
+- **SM**: ALIVE — minimal boot (15 lines) working. Sweep cycle 2+ done. Wakeup set. Self-sustaining.
+- **Orchestrator**: Fixed SM per PO directive. Created minimal boot. Standing authorization for SM /clear at 0%.
+- **Expert**: Idle, healthy, ready for work.
+- **Tester**: Idle, healthy, ready for work.
+- **Trainer**: Idle, rate-limited. Completed 3 post-incident tasks (f2de7e7, 81601e5, 5f6112d).
+- **Writer**: Active, Ch34+.
+- **Scribe**: Active, monitoring writer.
+- **Task-agent**: Post-compact, idle.
+- **Developer**: Idle.
+- **Script-PO**: Active, BUG 3 (PDCA states).
+
+## KEY FIX (Feb 18): SM Sustainability
+- Full boot (59 lines → reads SKILL.md 200+ lines + context + learnings) killed SM in one cycle
+- Orchestrator created minimal boot (15 lines): identity + sweep command + key rules only
+- SM now self-sustaining. Velocity monitoring not yet added — incremental.
+- Standing authorization: orchestrator may /clear SM at 0% without PO approval.
 
 ## ACCOMPLISHED (Feb 16-17)
 
@@ -99,12 +105,13 @@ Phase 1 (investigation) started. Both agents bootstrapped and working.
 4. **Subscription monitoring** — 80%=throttle, 90%=stop, adaptive sweep
 5. **Software delivery** — team.status fixes, action→method conversions, otmux tree family
 
-## FAILURES (12 total)
+## FAILURES (25 total)
 
-F1-F10: See learnings.md
-F11 (CRITICAL): Compacted 3 agents without context save — cascade damage
-F12: Set wakeup 1 hour late — assumed reset time
-F13: SM + orchestrator both stopped without wakeup — team went dark. Fixed in both SKILL.md files.
+F1-F13: See learnings.md (pre-incident)
+F15-F20: Mass context exhaustion disaster (Feb 17). See incidents/20260217-mass-context-exhaustion.md
+F21-F23: Total goal loss + SM cycling. See incidents/20260218-total-goal-loss.md
+F24: Read wrong context file after compact (tron-interface instead of product-owner)
+F25: Reverted to binary thresholds despite CMM4 velocity rule
 
 ## RECOVERY STEPS
 
