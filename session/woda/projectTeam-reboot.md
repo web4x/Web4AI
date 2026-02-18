@@ -39,9 +39,10 @@
 | 31 | [Eleven Minutes](#chapter-31-eleven-minutes) | 2,038 | 2026-02-18 |
 | 32 | [The Unblocking](#chapter-32-the-unblocking) | 2,168 | 2026-02-18 |
 | 33 | [Steady State](#chapter-33-steady-state) | 1,966 | 2026-02-18 |
-| 34 | [The Burn Rate](#chapter-34-the-burn-rate) | ~2,100 | 2026-02-18 |
+| 34 | [The Burn Rate](#chapter-34-the-burn-rate) | 2,046 | 2026-02-18 |
+| 35 | [PLANNING](#chapter-35-planning) | ~2,000 | 2026-02-18 |
 
-**Total**: 34 chapters, ~68,688 words
+**Total**: 35 chapters, ~70,634 words
 
 ---
 
@@ -4131,3 +4132,101 @@ The steady state from Chapter 33 was thermodynamically expensive. The team was b
 **"Let It Cook"**: Expert watches BUG 3 struggle, measures token progression (10.6K → 11.9K), decides not to intervene. Micro-PDCA of non-intervention: measure, assess, decide to wait.
 **Pattern**: "Equilibrium has a fuel cost." The steady state from Ch33 burns 871K tokens/min to maintain. More productive = more expensive. The story's growth is the subscription's depletion — same line, different axis.
 **CMM**: Subscription monitoring at CMM3 (measured, reported, projected). Task creation at CMM1 (audit exists but nobody converts it to tasks — the tester starves). Scribe monitoring at CMM3 (targeted, anticipatory, data-driven). BUG 3 methodology at CMM1 (trial-and-error execution vs. systematic code reading). Non-intervention at CMM4 (measure, assess, decide, reassess). Composed: CMM1 — the task creation gap is the weakest link.
+
+---
+
+## Chapter 35: PLANNING
+
+The test output appeared on pane 1.4 at 13:47:
+
+```
+T1: pdca.start — PASS
+T2: pdca.state returns "PLANNING" — correct
+T3: pdca.next returns "DOING" — correct
+```
+
+PLANNING. The state machine returned the correct name for the first PDCA phase. Not "measure." Not whatever misnomer had occupied that slot for twenty-nine chapters of SM sweeps. PLANNING. The word the Deming cycle had always meant, now reflected in the code that implemented it.
+
+Nine of nine scrumMaster tests passed. The expert on 1.4 ran the full test suite to be certain:
+
+```
+╔════════════════════════════════════════════════╗
+║  RUNNING TEST: test.scrumMaster               ║
+╚════════════════════════════════════════════════╝
+```
+
+Every assertion green. Every state transition correct. PLANNING → DOING → CHECKING → ACTING. The cycle that the SM had been executing — imperfectly, with misnomed states, through the happy path that avoided the mismatches — was now internally consistent. The state machine knew its own phase names.
+
+### The Cost of Correctness
+
+BUG 3 had taken nine minutes and twenty seconds. 18,800 tokens. Thirty-one files examined. Two hundred and ninety-two lines added, one hundred and twenty-six removed. The fix itself — aligning state names across the scrumMaster's PDCA definition and its transition functions — was conceptually simple. Make the names match. But getting to the fix had required:
+
+- Reading the scrumMaster source to identify where state names were defined
+- Reading the state engine to understand how `state.add` mapped names to transitions
+- Attempting to run `scrumMaster.pdca.start` directly (hung — BUG 1 in stale environment)
+- Attempting again through the test framework (timeout at 30 seconds)
+- Cleaning up stale state files (`rm -f $HOME/config/stateMachines/PDCA*.env`)
+- Sourcing fresh code in a subshell
+- Running the tests again with the cleaned environment
+- Verifying each PDCA transition individually
+
+Eight steps. Nine minutes. The scribe had suggested reading the code instead of executing it. The expert had persisted with execution — and eventually succeeded, but only after discovering that the test environment needed stale state files cleaned, that the test suite needed a longer timeout, and that a fresh subshell could bypass the in-memory BUG 1. The scribe was right that reading would have been faster. The expert was right that execution provided stronger verification.
+
+Two methodologies. One bug. The scribe's approach (read and trace) would have found the mismatch in the source in roughly two minutes. The expert's approach (execute and observe) took nine minutes but proved the fix worked at runtime. The difference was the confidence of the result. A source-reading fix might miss a dynamic interaction. A runtime-verified fix proved the system behaved correctly end to end.
+
+### All Three
+
+With BUG 3 resolved, all three bugs from the original assignment were complete:
+
+| Bug | Description | Fix | Verification |
+|-----|------------|-----|--------------|
+| BUG 1 | Dashed parameter names cause hang in `this` dispatch | Detect dashed args before dispatch | Committed as `55cdca4` |
+| BUG 2 | `this.isNumber` accepts empty strings and whitespace | Regex tightened to `^[0-9]+$` | Committed as `55cdca4` |
+| BUG 3 | scrumMaster PDCA state names mismatch | Aligned names across definition and transitions | 9/9 tests pass |
+
+The expert wasn't done. After the scrumMaster tests passed, it ran `test.suite run this` — verifying that the BUG 1 and BUG 2 fixes hadn't broken anything in the kernel. Regression testing. The expert didn't just fix forward. It looked backward, confirming that the previous fixes still held.
+
+This was the pipeline from Chapter 29, completing its second cycle. The first cycle: tester audits (Ch29) → bugs identified → assigned to developer → expert fixes → tests pass. Now the pipeline had looped: fixes verified → regression tests run → readiness for the next audit. The circle was closing.
+
+The expert from pane 0.1 had been watching the entire sequence. Its assessment evolved across captures:
+
+- First check: "stuck thinking or waiting on a search... let it cook"
+- Second check: "PLANNING in the output, which means the PDCA state is returning correctly now. 8m in, 18.7k tokens, 31 files changed. Making significant progress."
+- Third check: "T1 pdca.start PASS, T2 pdca.state returns PLANNING, T3 pdca.next returns DOING. Almost done."
+
+Three captures. Three assessments. The expert's "let it cook" had been vindicated. The ossh-expert on 1.4 had been slow but not stuck. The patience of non-intervention had paid off. If the expert on 0.1 had intervened — sent a suggestion, redirected the approach, taken over the task — it might have been faster. Or it might have disrupted a flow that was already converging. The expert chose patience, and patience delivered 9/9.
+
+### The SM's Irony
+
+The scrumMaster's PDCA state machine had been running with mismatched state names since the team's inception. Every sweep cycle — from cycle 1 through cycle 19 — had been executed by a state machine that couldn't correctly name its own phases. The SM had planned, done, checked, and acted across nineteen iterations, and the code underneath had called those phases by the wrong names.
+
+And it had worked. The SM's sweeps were effective. Agents were unblocked. Permissions were approved. The team reached steady state. All of this built on a state machine with naming errors. The happy path — the sequence of transitions that the normal sweep cycle actually traversed — happened to avoid the mismatched states. The bug existed on a code path that the SM never took during normal operation.
+
+This was Chapter 29's insight, repeated at a different scale. In Chapter 29, the tester found that `otmux`, `claudeCode`, and `user` were completely untested — yet they worked because they were used constantly. Now BUG 3 revealed that the PDCA state machine was internally inconsistent — yet it worked because the inconsistency was on an unused path.
+
+The team's most critical systems were held together by coincidence, not correctness. The monitoring worked because the bugs happened to be in the corners. The state machine worked because the errors happened to be on paths nobody traversed. It was working software — measurably, observably working — but it was working for the wrong reasons.
+
+The fix changed nothing observable. The SM's sweep cycle 20 would look identical to sweep cycle 19. The same agents unblocked. The same Enter keystrokes sent. The same "steady state" reported. The difference was invisible: the state names were now correct. PLANNING meant PLANNING. DOING meant DOING. The machine and its labels were aligned for the first time.
+
+The value of correctness wasn't in the output. It was in the maintainability. The next developer to read the scrumMaster code would see state names that matched the PDCA framework they'd learned about. The next tester to write assertions would find that `pdca.state` returned values that made sense. The next SM incarnation to trace a bug through the state machine would follow paths where the names were consistent. Correctness was an investment in future comprehension, not present functionality.
+
+### Nineteen and Counting
+
+The SM had reached sweep cycle 19. The orchestrator had reached monitoring cycle 17. The writer had produced five chapters. The scribe had organized four of them (Ch34 still in queue). The expert had confirmed all three bugs fixed. The trainer was rate-limited but its three commits were deployed and working.
+
+The numbers told a story of accumulation. Not dramatic accumulation — no single agent had done anything unprecedented since the trainer's eleven-minute burst. But the slow, steady accumulation of sweeps and chapters and fixes and verifications. Each cycle adding one more data point to the "steady state" thesis. Each chapter adding two thousand words to a story that was now approaching seventy thousand. Each bug fix adding one more assertion to the test suite's coverage.
+
+The tester was still idle. The coverage audit from Chapter 29 still sat as knowledge without action — three untested scripts, twelve untested hiveMind methods, a team that knew exactly what it needed to test and had an agent available to test it, but no mechanism to convert the knowledge into an assignment.
+
+But BUG 3 was fixed. And 9/9 tests passed. And PLANNING was PLANNING.
+
+### Chapter 35 Checkpoint
+
+**BUG 3 Fixed**: PDCA state names aligned. 9/9 scrumMaster tests pass. States return correct names: PLANNING → DOING → CHECKING → ACTING. Nine minutes, 18.8K tokens, 31 files changed. All three assigned bugs now resolved.
+**All Three Bugs Complete**: BUG 1 (dispatch hang, 55cdca4), BUG 2 (isNumber regex, 55cdca4), BUG 3 (PDCA names, 9/9 pass). Expert also ran regression tests on `this` kernel to verify no breakage.
+**Persistence Validated**: Expert ignored scribe's "read code" advice, persisted with execution approach. Required stale state cleanup, fresh subshell, longer timeout — but produced runtime-verified fix vs. source-only inference. Nine minutes vs. estimated two, but higher confidence.
+**"Let It Cook" Vindicated**: Expert on 0.1 watched 1.4 across three captures: "stuck" → "progressing" → "almost done." Non-intervention delivered 9/9.
+**SM's Irony**: PDCA state machine ran 19 sweep cycles with wrong state names. Worked because bugs were on unused paths. Coincidence, not correctness. Fix changes nothing observable — same sweeps, same results — but invests in future maintainability.
+**Pipeline Cycle 2**: Audit (Ch29) → assignment → fix (Ch35) → verification → regression test. The loop closes. Ready for next audit.
+**Pattern**: "Working for the wrong reasons." The SM's state machine, the untested operational tools, the happy paths avoiding bugs — the team's critical systems held together by coincidence. Correctness is an investment in comprehension, not output.
+**CMM**: Bug fixing at CMM3 (root cause, fix, verification, regression test). PDCA implementation moved from CMM1 (works by accident) to CMM3 (works correctly, tested, state names documented). Pipeline methodology at CMM2 (repeatable audit → fix → verify cycle). Task assignment still at CMM1 (tester idle, no conversion of audit to tasks). Composed: CMM1 — the task assignment gap persists.
