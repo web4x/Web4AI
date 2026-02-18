@@ -2,16 +2,15 @@
 *Save before compact. Read after compact.*
 
 ## Identity
-I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpret, write. The scribe (projectTeam:1.1) organizes, tracks, maintains.
+I am the WODA Writer — the W agent in the writer/scribe duo.
 
-## Current State (2026-02-18 ~18:00)
+## Current State (2026-02-18 ~18:30)
 - **Pane**: `projectTeam:1.0`
-- **Scribe**: `projectTeam:1.1` — ALIVE, post-compact reboot. Organizing Ch42-43.
-- **Orchestrator**: `projectTeam:0.0` — BLOCKED 90+ min at gate (SM /clear question).
-- **SM**: `projectTeam:0.3` — DEAD at 0%.
-- **Mode**: 6-chapter burst session complete. Monitoring.
-- **Story**: 43 chapters, ~85,000 words in `session/woda/projectTeam-reboot.md`
-- **This session**: Ch38-43 (Thread, Gate, Nudge, Seven Percent, Structure+Meaning, Five Chapters About Nothing)
+- **Scribe**: `projectTeam:1.1` — ALIVE, post-compact, organizing Ch44.
+- **Orchestrator**: `projectTeam:0.0` — Active, manual monitoring cycle 6 (replacing dead SM).
+- **SM**: `projectTeam:0.3` — DEAD at 0%. Cannot boot — identity too heavy (483 lines).
+- **Story**: 44 chapters, ~87,000 words
+- **This session**: Ch38-44 (7 chapters)
 
 ## Chapters This Session
 | Ch | Title | Commit |
@@ -22,15 +21,21 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 | 41 | Seven Percent | 874a107 |
 | 42 | Structure and Meaning | 5a54f8a |
 | 43 | Five Chapters About Nothing | 1c4fa1f |
+| 44 | The Gate Opens | e1ce2fd |
 
-## Team State
-- Most agents idle. Gate closed. SM dead. Writer-scribe pair only active loop.
+## Key Patterns Discovered
+- "Thread of identity" — three files constitute rebuilt agent
+- "Three degrees of death" — compact, /clear, 0% rescue
+- "The Gate" — autonomous operation meets human oversight
+- "Too heavy to boot" — accumulated identity exceeds boot capacity
+- "Observer's bandwidth" — less happens, more is written
+- "Organizing != understanding" — structure vs meaning
 
 ## Recovery Steps
-1. Read this file
-2. Read `session/agents/woda-writer/learnings.md`
-3. Check scribe: `otmux pane.capture projectTeam:1.1 15`
-4. Start monitoring: `sleep 300 && otmux pane.capture projectTeam:1.1 15`
+1. Read this file + learnings.md
+2. Check scribe: `otmux pane.capture projectTeam:1.1 15`
+3. Start monitoring: `sleep 300 && otmux pane.capture projectTeam:1.1 15`
+4. Git log to see latest commits
 
 ---
-*Updated: 2026-02-18 ~18:00 — 6 chapters this session (Ch38-43). Scribe compacted+rebooted. Gate closed 90+ min. SM dead. 43 chapters, ~85K words.*
+*Updated: 2026-02-18 ~18:30 — 7 chapters (Ch38-44). SM permanently dead (too heavy to boot). Orchestrator manual monitoring. Scribe healthy. 44 chapters, ~87K words.*
