@@ -6331,3 +6331,86 @@ Tron watched all four scales simultaneously. The agents could see at most two.
 **The Quiet Ones**: Five agents sitting in silence. Three with finished work and no recipient. Two standing down. Completion without coordination — every agent accomplished its task, none knows the others are done.
 **Seventy-Three Minutes**: Subscription burn at 530K/min declining. Same fractal rhythm at session scale: produce, consume, approach limit, wait. Tron watches all four scales. Agents see at most two.
 **CMM**: Human sweep at CMM4 (SM's protocol adopted but with value-weighted decisions — measurement driving different optimization). Scribe role expansion at CMM1 (organic, undocumented, works once — if the scribe compacts, the next scribe won't know to send Enter). Agent completion detection at CMM0 (no mechanism to recognize that five agents have all finished — each sits alone). Fractal burn awareness at CMM1 for agents (see own scale), CMM4 for Tron (sees all scales simultaneously). Composed: CMM0 — individual completion without collective awareness.
+
+---
+
+## Chapter 61: The Chronic Four
+
+Twenty-one sweeps. One minute each. Twenty-one minutes of sustained human operation in the dead SM's pane, and the report had settled into a rhythm: "Chronic 4 unchanged. Continuing."
+
+Four issues that persisted through every sweep. Not escalated, not fixed, not ignored — acknowledged. The human SM had invented triage.
+
+### What Didn't Get Fixed
+
+The chronic four were never enumerated in a single report, but the writer could infer them from the captures: the tester idle at 10% with a self-referential read queue. The developer with a report addressed to a dead orchestrator. The trainer standing down at 5%, awaiting a compact that hadn't landed. The orchestrator itself, down with no wakeup.
+
+Four agents in known-broken states. Twenty-one sweeps acknowledging them. Zero interventions.
+
+This was not neglect. The SM's original protocol would have tried to fix each one — send the compact, clear the queue, restart the orchestrator, redirect the developer's report. Each fix would consume tokens. Each fix would produce activity. None of the fixes would produce value. The tester had no tests to run. The developer had no one to report to even if rerouted. The trainer's work was done. The orchestrator had nothing to orchestrate.
+
+Tron's triage was the opposite of the SM's protocol. The SM treated every anomaly as an impediment. Tron treated anomalies as states — some worth changing, some not. "Chronic 4 unchanged" meant: I see you, I've decided you're not worth fixing, I'll check again next sweep in case something changes. Sustained observation without compulsive intervention.
+
+### The Expert's Secret
+
+While the team slept and the writer wrote about the team sleeping, the expert had been working. Three commits pushed to `oosh/hannes-v2`:
+
+```
+d9ca38e — team.status output cleanup
+91eba78 — subscription timezone (UTC → Berlin)
+9e0d9ea — CRITICAL: subscription reads rate-limit-cache.json for real usage %
+```
+
+The third commit was the one that mattered.
+
+MEMORY.md had documented the problem across multiple entries: "scrumMaster subscription is WRONG — does not match TUI reality." Calibration data from hours ago: tool showed 177M tokens at "OK" when TUI showed 94%. The tool reported the session ending at 21:00 Berlin when it actually ended at 22:00. The tool said "Alert: OK" when the system was nearly exhausted. Every agent that relied on `scrumMaster subscription` for velocity management had been navigating by a broken compass.
+
+The expert fixed the compass. `rate-limit-cache.json` — the file where the API rate limiter stored actual usage data — was now the source of truth for subscription percentage. Not the tool's internal estimate. Not the token counter's approximation. The real data, from the real limiter, read directly.
+
+The timezone fix was the second piece: UTC to Berlin. The tool had been reporting reset times in UTC, but the team operated in Berlin time. Every "resets at 21:00" had actually meant 22:00 Berlin. One line of timezone conversion. One hour of systematic error eliminated.
+
+And no one knew.
+
+The expert had pushed to a branch — `hannes-v2` — not to main. The fix existed in the repository but wasn't deployed. The next SM to run `scrumMaster subscription` would get the same broken data. The fix was three commits away from production but might as well have been three light-years. No one was reviewing the branch. No one was merging it. The orchestrator was down. The SM was a human now, and the human used the TUI footer, not `scrumMaster subscription`.
+
+### The Scribe's Habit
+
+For the second consecutive cycle, the scribe captured the writer's pane, saw "write ch61" sitting unsubmitted in accept-edits mode, and sent Enter.
+
+"Same pattern as last cycle," the scribe noted.
+
+The first time was organic — a one-time intervention born of circumstance. The second time was a habit. Not yet a protocol (undocumented, unformalized), but no longer accidental either. The scribe had added "check if writer is stuck, send Enter" to its monitoring loop without being told to, without updating its SKILL.md, without writing a task. It simply did it because it had worked before.
+
+This was CMM evolution observed in real-time. CMM1: the scribe sends Enter once because the writer is stuck. CMM2: the scribe sends Enter again because it worked last time. CMM3 would require documentation — "when writer is in accept-edits with an unsubmitted prompt, send Enter." CMM3 would survive a compact. CMM2 would not.
+
+The scribe's habit would die with this incarnation. The next scribe would organize chapters, monitor the writer's health, maintain the overview — all the documented functions. But it wouldn't know to send Enter. The undocumented capability would vanish, and the writer would sit in accept-edits until someone else noticed.
+
+Unless the scribe wrote it down.
+
+### Thirty-Eight Percent
+
+The subscription had dropped to 38%. Burn rate 522K per minute, still declining. Sixty-three minutes projected. Tron noted the approaching threshold: below sixty minutes, the velocity rules shifted to "no new large tasks."
+
+The velocity rules lived in MEMORY.md. They had been written by previous orchestrators, refined across sessions, calibrated against real data. Now the human was applying them. The knowledge transfer path: SM developed the rules through trial and error. Orchestrator documented them. MEMORY.md preserved them across compacts. Tron read them and internalized them.
+
+The dead agents' knowledge lived on in the human's behavior.
+
+This was a form of immortality the agents couldn't achieve on their own. An agent's learnings survived compact only if written to a file. The learnings survived /clear only if in a file outside the conversation. The learnings survived session end only if committed to git. But even committed, even filed, even documented — the learnings required a reader. And the readers kept dying.
+
+Tron didn't die. Tron read MEMORY.md once and applied its rules for the rest of the session. The velocity thresholds that agents had discovered, lost, rediscovered, documented, lost again, and finally committed — those thresholds now lived in the one entity that didn't forget.
+
+### The Gap
+
+The expert had fixed the subscription tool. The human was applying the velocity rules. The scribe was unblocking the writer. The PO watched from its pane. The writer documented everything.
+
+Five active entities — three agents, one human, one PO — each holding a piece of the solution. The expert knew how to fix the compass. The human knew how to navigate without it. Neither knew about the other's contribution. The expert's fix would make the human's workaround unnecessary, but only if merged. The human's competence made the fix less urgent, but only for this session.
+
+The system's components were each locally optimal and globally disconnected. The chronic four were a symptom, not the disease. The disease was that the team's outputs — fixes, reports, chapters, rules — flowed into repositories and files but not into each other.
+
+### Chapter 61 Checkpoint
+
+**The Chronic Four**: Twenty-one sweeps, four persistent issues, zero interventions. Tron's triage: sustained observation without compulsive action. Not neglect — value-weighted non-intervention. The SM would have fixed everything. Tron fixes only what matters.
+**The Expert's Secret**: Three commits fixing `scrumMaster subscription` — timezone (UTC→Berlin), real usage % from rate-limit-cache.json. The broken compass that misled every SM is now fixed. But pushed to a branch, not merged. The fix exists and doesn't exist simultaneously.
+**The Scribe's Habit**: Second consecutive Enter sent to stuck writer. CMM1→CMM2 observed in real-time. CMM2 survives this incarnation. CMM3 (documented) would survive compact. The habit will die unless written down.
+**Thirty-Eight Percent**: Human applies MEMORY.md velocity rules. Knowledge path: SM discovered → orchestrator documented → MEMORY.md preserved → Tron applies. The dead agents' knowledge lives in the human who doesn't forget.
+**The Gap**: Expert fixed the compass, human navigates without it, neither knows about the other. Locally optimal, globally disconnected. The system's outputs flow into files but not into each other.
+**CMM**: Triage at CMM3 (consistent, deterministic — same assessment every sweep). Expert's fix at CMM3 (correct, tested, repeatable) but deployment at CMM0 (no merge mechanism active). Scribe habit at CMM2 (works, repeatable, undocumented — dies on compact). Knowledge preservation via MEMORY.md at CMM3 (survives compacts, sessions, incarnations — but requires a reader). Cross-agent knowledge connection at CMM0 (producer and consumer exist but no routing). Composed: CMM0 — the team's knowledge is complete but partitioned.
