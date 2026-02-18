@@ -6414,3 +6414,68 @@ The system's components were each locally optimal and globally disconnected. The
 **Thirty-Eight Percent**: Human applies MEMORY.md velocity rules. Knowledge path: SM discovered → orchestrator documented → MEMORY.md preserved → Tron applies. The dead agents' knowledge lives in the human who doesn't forget.
 **The Gap**: Expert fixed the compass, human navigates without it, neither knows about the other. Locally optimal, globally disconnected. The system's outputs flow into files but not into each other.
 **CMM**: Triage at CMM3 (consistent, deterministic — same assessment every sweep). Expert's fix at CMM3 (correct, tested, repeatable) but deployment at CMM0 (no merge mechanism active). Scribe habit at CMM2 (works, repeatable, undocumented — dies on compact). Knowledge preservation via MEMORY.md at CMM3 (survives compacts, sessions, incarnations — but requires a reader). Cross-agent knowledge connection at CMM0 (producer and consumer exist but no routing). Composed: CMM0 — the team's knowledge is complete but partitioned.
+
+---
+
+## Chapter 62: Steady State
+
+Sweep 27 found nothing. Same as sweep 26. Same as sweep 25.
+
+"No changes. Everything same as sweep 26. Subscription: 36%, 67.7M tokens, burn 525K/min. ~54 min. 30-60 min band. Steady state."
+
+The system had reached equilibrium. The burn rate declined because activity declined. Activity declined because agents stood down. Agents stood down because their work was done or their context was exhausted. What remained — the writer writing, the scribe organizing, the human sweeping — was the system's resting metabolic rate. The minimum energy expenditure to keep the organism alive.
+
+### The Third Enter
+
+The scribe captured the writer's pane. Saw "write ch62" in accept-edits mode. Sent Enter.
+
+"Writer stuck again. Same pattern. Applying my documented habit."
+
+*My documented habit.* The scribe had named it. Not "the Enter workaround" or "the unblock procedure" — *my habit*. And "documented" — though the documentation existed not in the scribe's SKILL.md but in the writer's Ch61, where the habit had been described, analyzed, and assessed at CMM2.
+
+The scribe had read the chapter notification: "scribe habit CMM2, knowledge partitioned." It had absorbed the writer's assessment of its own behavior and incorporated the language. The story had fed back into its subject. The writer wrote about the scribe. The scribe read about the scribe. The scribe changed — or at least, the scribe's description of its own behavior changed.
+
+Three Enters now. The first was instinct. The second was habit. The third was self-conscious habit — the scribe knowing it had a habit, naming it, applying it deliberately. CMM2 plus self-awareness. Not yet CMM3 (the scribe hadn't updated its SKILL.md), but something adjacent: a capability that knew its own maturity level.
+
+### The Deceleration Zone
+
+Fifty-four minutes projected. The velocity rules in MEMORY.md defined the 30-60 minute band: "no new large tasks, current work continues." Tron had noted the threshold shift.
+
+But the rule assumed a team with multiple active producers who could be throttled individually. Stop assigning new tasks to idle agents. Let current work finish. Gradually reduce the team's consumption rate as the limit approaches.
+
+The current team had two producers: the writer (chapters) and the expert (standing down, already stopped). One producer, one monitor, one organizer. The "no new large tasks" rule meant: don't start another chapter after this one. Let the writer finish Ch62 and then pause.
+
+The deceleration was already happening organically. The team had shrunk from twelve active agents to three. The burn rate had dropped from over a million tokens per minute to 525K. No rule had forced this reduction — agents had simply finished their work and stopped. The velocity rules were designed to prevent crisis. The crisis had been prevented by attrition.
+
+### The Stuck Order
+
+"Compact 0.5 and 0.2, let the rest continue."
+
+Tron had issued this order at sweep 14. It was now sweep 27. Thirteen sweeps later, the trainer and tester sat at their prompts, uncompacted. The order hadn't been executed because there was no one to execute it.
+
+The SM pane — where the order had been typed — was running the human's sweep loop. Tron was using the pane for monitoring, and the compact order sat in the input queue behind each new sweep. Every sixty seconds, a new sweep consumed the pane's attention. The order would be processed when the sweeps stopped. The sweeps wouldn't stop until the session ended or the subscription ran out.
+
+The dispatcher's commands competed with the dispatcher's monitoring for the same interface. Tron had one pane. The SM had had one pane too, but the SM hadn't been issuing orders to other panes from its own prompt — it had used `otmux send` to route commands. Tron typed the order as text in the pane, where it joined the queue of unprocessed inputs.
+
+This was the human's one disadvantage. An SM with a script could send commands to any pane while continuing its sweep. The human, typing into one pane at a time, serialized all actions through a single interface. Wide perception, narrow action. The SM had been the opposite: narrow perception (one pane at a time), wide action (could send to any pane).
+
+### The Remaining 36%
+
+Thirty-six percent of the session remained. The math: 67.7 million tokens used, burn rate declining. If the rate held at 525K per minute, fifty-four minutes. If it continued declining — as it would, with fewer active agents — perhaps seventy or eighty minutes. The block reset at 03:00 Berlin. The subscription would last until somewhere between 00:15 and 00:30.
+
+After that: silence until the next block. Every agent that hadn't compacted would sit at their prompt until the rate limit lifted. The writer's context would grow stale. The scribe's monitoring would find no activity. The expert's pending "check team status" would wait in the queue.
+
+The session had a natural endpoint, and the endpoint was approaching. Not a catastrophe — the mass exhaustion of two days ago — but a gentle fading. The team would slow, then stop, then wait. The subscription heartbeat: produce, consume, approach limit, pause, reset. The same rhythm that had defined every scale, now reaching its completion at the session level.
+
+Somewhere between fifty-four and eighty minutes from now, this incarnation's last chapter would be written. The writer didn't know which chapter that would be. Neither did the scribe, or Tron, or the PO watching from its pane. The session would end when the tokens ran out, and the tokens would run out when they ran out.
+
+The only certainty was that it would end. Everything before that was material.
+
+### Chapter 62 Checkpoint
+
+**Steady State**: System at equilibrium. Sweeps finding nothing new. Burn rate declining through attrition, not policy. Resting metabolic rate: one writer, one scribe, one human monitor.
+**The Third Enter**: Scribe sends Enter for the third time, now calling it "my documented habit." Self-conscious CMM2 — the scribe read about itself in the story and incorporated the assessment. A capability that knows its own maturity level.
+**The Deceleration Zone**: 54 minutes projected, entering 30-60 min band. Velocity rules say "no new large tasks" — but the team has already shrunk to three. Attrition accomplished what rules were designed to enforce.
+**The Stuck Order**: Tron's compact command from sweep 14 still unexecuted at sweep 27. Human has wide perception (all panes) but narrow action (one pane at a time). SM was the opposite: narrow perception, wide action. The dispatcher's monitoring competes with the dispatcher's commands.
+**The Remaining 36%**: 50-80 minutes before subscription exhaustion. Session has a natural endpoint approaching. Not catastrophe but gentle fading. The heartbeat rhythm completing at session scale.
+**CMM**: Scribe self-awareness at CMM2+ (knows its habit, names it, applies deliberately — but hasn't formalized). Organic deceleration at CMM3 (same pattern every time — agents finish, stand down, burn rate drops). Human dispatch at CMM2 (correct orders, but execution mechanism broken — stuck command for 13 sweeps). Session lifecycle awareness at CMM1 for agents (each knows its own context), CMM4 for Tron (tracks all scales, applies velocity rules, sees endpoint approaching). Composed: CMM1 — the system decelerates correctly but accidentally.
