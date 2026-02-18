@@ -1,36 +1,51 @@
 # Team Assignment Dashboard
-*Updated: 2026-02-17 15:10Z by scrum-master (sweep 3)*
+*Updated: 2026-02-18 11:30Z by scrum-master (cycle 17)*
 
 ## SUBSCRIPTION
-- Block: 14:00-19:00 UTC (ACTIVE)
-- Tokens: 12.6M used / 212 min remaining
-- Burn rate: 150K tokens/min
-- Alert: OK
+- Block: 10:00-15:00 UTC (ACTIVE)
+- Tokens: 85.4M used / 206 min remaining
+- Burn rate: 921K tokens/min (up from 389K at boot)
+- Alert: OK — no throttling needed
 
 ## Assignment Table
 
-| Pane | Agent | Current Task | Status |
-|------|-------|-------------|--------|
-| 0.0 | orchestrator | "check all agents and unblock stuck ones" (submitted) | ACTIVE |
-| 0.1 | oosh-expert | Completed 13 action→method checklists | IDLE |
-| 0.2 | oosh-tester | Hit limit last block, empty prompt, needs task | IDLE |
-| 0.4 | product-owner | Post /clear, empty prompt | IDLE |
-| 0.5 | agent-trainer | Updating SM SKILL.md with command reference (Manifesting) | ACTIVE |
-| 1.0 | woda-writer | Ch27 committed (0784de1), hit limit last block | IDLE |
-| 1.1 | woda-scribe | Has open tasks (KB, learnings, peer monitor) | IDLE |
-| 1.2 | task-agent | Active | ACTIVE |
-| 1.3 | developer | Idle, ready for work | IDLE |
-| 1.4 | developer/script-PO | Comparing restored vs current — recurring permission prompts (approved x3) | ACTIVE |
-| 1.5 | unknown | Unregistered pane | UNKNOWN |
+| Pane | Agent | Current Task | Context | Status |
+|------|-------|-------------|---------|--------|
+| 0.0 | orchestrator | Standing by, monitoring team | Healthy | IDLE |
+| 0.1 | oosh-expert | Monitoring script-PO BUG 3, checking writer | Healthy | ACTIVE |
+| 0.2 | oosh-tester | Looking for work (stale prompt many cycles) | Healthy | IDLE |
+| 0.3 | scrum-master | Sweep loop (cycle 17) | Healthy | ACTIVE |
+| 0.4 | product-owner | **TRON'S PANE — DO NOT TOUCH** | Unknown | SKIPPED |
+| 0.5 | agent-trainer | Rate-limited (Baked 11m — stale 10+ cycles) | Healthy | RATE-LIMITED |
+| 1.0 | woda-writer | Writing Ch34 (Ch30-33 complete) | Healthy | ACTIVE |
+| 1.1 | woda-scribe | Monitoring writer, checking Ch34 | Healthy | ACTIVE |
+| 1.2 | task-agent | Just-compacted, idle | Healthy | IDLE |
+| 1.3 | developer | No assignment | Healthy | IDLE |
+| 1.4 | script-PO | BUGs 1&2 FIXED, working BUG 3 (PDCA state) | Recovered (compacted from 0%) | ACTIVE |
 
 ## Blockers
-- Developer (1.4) keeps hitting permission prompts for bash grep — approved 3x this session
-- Tester (0.2) still showing "hit your limit" from previous block — may need fresh prompt
+- **agent-trainer (0.5)**: Rate-limited for 10+ cycles. Stale "Baked 11m" and unsubmitted prompt. May need reboot.
+- **oosh-tester (0.2)**: Stale unsubmitted prompt for many cycles. Needs assignment or reboot.
 
 ## Idle Agents (need assignment)
-- oosh-expert (0.1), oosh-tester (0.2), developer (1.3)
-- woda-writer (1.0), woda-scribe (1.1)
-- PO (0.4) empty prompt post-/clear
+- developer (1.3) — completely idle, available
+- task-agent (1.2) — post-compact idle
+- orchestrator (0.0) — standing by with wakeup
+
+## Velocity Notes
+- Writer (1.0): fast burner — Ch30-34 this session. Rate-limited intermittently.
+- Script-PO (1.4): hit 0%, compacted, rebooted with proper boot file. Now active.
+- Burn rate trending up: 389K → 454K → 648K → 815K → 871K → 921K tokens/min
+
+## Key Events This Session
+1. Booted at ~10:50Z, 17 sweep cycles completed
+2. Script-PO emergency compact (6%→0%→compact→reboot with new boot file)
+3. Expert warned about 0.4 no-touch rule — acknowledged, saved to memory
+4. Velocity monitoring directive received and implemented
+5. Writer produced Ch30-34 (5 chapters)
 
 ## CMM Observation
-Orchestrator now actively checking agents (CMM2 — responding to situation). Trainer self-assigned SM SKILL.md improvement (CMM3 — proactive). Developer (1.4) needs "allow always" for bash to stop recurring prompts. Tester stuck at old limit screen despite new block (CMM1 — no self-recovery).
+- **Expert 0.4 rule**: GATE violation → correction → memory save → CMM2→CMM3 for that rule
+- **Script-PO compact**: proportional response working (velocity monitoring directive)
+- **Weakest link**: agent-trainer stuck in rate-limit with no self-recovery — CMM1
+- **Oosh-tester**: stale prompt, no self-recovery — CMM1

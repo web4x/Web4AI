@@ -1,6 +1,6 @@
 # Team Dashboard
 
-**Updated**: 2026-02-17T15:34:54Z (2026-02-17 16:34 CET)
+**Updated**: 2026-02-18T11:32:47Z (2026-02-18 12:32 CET)
 **Session**: projectTeam
 
 ## Git Status
@@ -9,46 +9,46 @@
 |-------|-------|
 | Branch | `main` |
 | Status | uncommitted changes |
-| Last commit | `af89deb Add hiveMind/scrumMaster command reference to SM SKILL.md and boot` |
+| Last commit | `74670ea Add Chapter 33 "Steady State" — equilibrium, meta-unblocking, bug feeds itself` |
 
 ## Subscription
 
 | Metric | Value |
 |--------|-------|
-| 5-hour usage | 30% |
+| 5-hour usage | 29% |
 | 7-day usage | 0% |
 
 ## Tasks
 
 | Metric | Value |
 |--------|-------|
-| Total task files | 131 |
-| Today's tasks | 5 |
+| Total task files | 147 |
+| Today's tasks | 0 |
 
 ## Team Status
 
 | Agent | Pane | Context | Velocity | State |
 |-------|------|---------|----------|-------|
-| orchestrator | 0.0 | 48.8% | - | unknown |
-| oosh-expert | 0.1 | 50.9% | - | completed |
-| oosh-tester | 0.2 | 100.0% | - | unknown |
-| scrum-master | 0.3 | 27.4% | - | active |
+| orchestrator | 0.0 | 100.0% | - | active |
+| oosh-expert | 0.1 | 60.4% | - | active |
+| oosh-tester | 0.2 | 72.8% | - | unknown |
+| scrum-master | 0.3 | 100.0% | - | unknown |
 | product-owner | 0.4 | 100.0% | - | unknown |
-| agent-trainer | 0.5 | 26.7% | - | active |
-| task-agent | 1.2 | 46.2% | - | unknown |
-| woda-writer | 1.0 | 100.0% | - | unknown |
-| woda-scribe | 1.1 | 19.5% | - | active |
-| developer | 1.3 | 73.5% | - | unknown |
-| script-product-owner | 1.4 | 27.4% | - | unknown |
+| agent-trainer | 0.5 | 22.2% | - | completed |
+| task-agent | 1.2 | 67.2% | - | unknown |
+| woda-writer | 1.0 | 100.0% | - | active |
+| woda-scribe | 1.1 | 100.0% | - | unknown |
+| developer | 1.3 | 67.2% | - | unknown |
+| script-product-owner | 1.4 | 54.9% | - | unknown |
 
 ## Recent Commits
 
 ```
-c29ad1b Update restore comparison report with developer method-level verification
-af89deb Add hiveMind/scrumMaster command reference to SM SKILL.md and boot
-d34320c Add WODA learnings to boot files and reading lists (81 SKILL.md + 9 boot)
-ce2b8cc Auto-save: unknown pre-compact 13:24
-0784de1 Add Chapter 27 "The Cascade" — three bugs, three deaths, three learning escalations
+74670ea Add Chapter 33 "Steady State" — equilibrium, meta-unblocking, bug feeds itself
+bb86963 Add Chapter 32 "The Unblocking" — SM as immune system, accept-edits bottleneck, F18 validation
+a32e6b3 Add Chapter 31 "Eleven Minutes" — trainer's hat trick, co-location, continuous velocity
+5f6112d CMM4 velocity management: replace binary thresholds with continuous adaptation
+81601e5 Reorganize agent folders: boot files + SKILL.md symlinks
 ```
 
 ## Recovery

@@ -45,8 +45,9 @@
 | 37 | [Nine Percent](#chapter-37-nine-percent) | 1,588 | 2026-02-18 |
 | 38 | [The Thread](#chapter-38-the-thread) | 2,147 | 2026-02-18 |
 | 39 | [The Gate](#chapter-39-the-gate) | 2,068 | 2026-02-18 |
+| 40 | [The Nudge](#chapter-40-the-nudge) | 1,382 | 2026-02-18 |
 
-**Total**: 39 chapters, 77,680 words
+**Total**: 40 chapters, 79,062 words
 
 ---
 
