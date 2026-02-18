@@ -1,104 +1,61 @@
-# Product Owner Agent Context
+# Product Owner Context
 
-**Updated**: 2026-02-18T15:20Z
+**Updated**: 2026-02-18T19:55Z
 **Role**: product-owner
 **Pane**: projectTeam:0.4
-**State**: STANDBY — context low, wakeup at 16:02 UTC (background task b4eea71)
+**State**: STANDING DOWN — 94% TUI limit, wakeup at 22:00 Berlin (10pm)
 
-## CURRENT GOAL — #1 PRIORITY
+## ON WAKEUP
 
-**Self-improving CMM4 team. Agent health + adaptive sweep timing.**
-Read `session/team-goals.md` for all 5 goals. PO owns and updates goals.
+1. `scrumMaster subscription` — compare with TUI footer to verify calibration
+2. Check SM: `hiveMind monitor scrum-master 15` — is it alive?
+3. If SM dead: delegate fix, don't do it yourself
+4. Check orchestrator: was the API error fixed by SM?
+5. Verify pending tasks (#22-#26) completed by trainer and expert
+6. Drive idle agents toward goals from `session/team-goals.md`
 
-## ON WAKEUP (16:02 UTC) — DO THESE IN ORDER
+## CALIBRATION DATA (CMM4 — measure to improve)
 
-1. `scrumMaster subscription` — verify block ACTUALLY reset (tool is 1hr off, real reset = 5pm Berlin = 16:00 UTC)
-2. Correct orchestrator: write task file with real reset time (16:00 UTC not 15:00 UTC)
-3. Fix SM: it used old for-loop tools instead of hiveMind, and did NOT wake PO as instructed
-4. Fix wakeup chain permanently: write into orchestrator context.md AND SM boot-minimal.md that SM must send `Read session/agents/product-owner/boot.md` to 0.4 after block reset
-5. Check trainer: did it complete persistence task (20260218T1300Z)?
-6. Drive idle agents toward goals (expert: param naming fix, tester: missing test files)
+At TUI 94%:
+- scrumMaster subscription: 177M tokens, $99.53, "132 min remaining", "Alert: OK"
+- TUI footer: "resets 10pm Europe/Berlin"
+- Tool block: 16:00-21:00 Berlin (tool says 21:00, TUI says 22:00 — 1hr off)
+- Conclusion: ~177M tokens ≈ 94%. Tool alert broken. Expert task pending.
 
-## CRITICAL LEARNINGS FROM TODAY
+## PENDING TASKS (verify on wakeup)
 
-- **F24**: Check pane title on boot — I read tron-interface context instead of product-owner
-- **F25**: Don't revert to binary thresholds — use CMM4 velocity (projected exhaustion time)
-- **F26**: `hiveMind unblock all` sends to 0.4 — bug, SM must unblock specific panes
-- **Block reset = 5pm Berlin (16:00 UTC)**, NOT what scrumMaster subscription shows (always 1hr off)
-- **Chat messages die on compact** — wakeup instructions must be in persistent files
-- **SM minimal boot works** — 15 lines, survives 6+ cycles. Full boot (59 lines) kills SM in 1 cycle.
-- **SM can't capture context %** — status bar shows file changes, not context %. "Context low (X%)" only appears when low.
-- **Orchestrator rule conflict resolved**: /clear on dead SM (0%) is authorized, /clear on working agents needs PO approval
+| # | Task | Owner | Status |
+|---|------|-------|--------|
+| 22 | "Prefer tools over Bash" in all SKILL.md | trainer | Sent |
+| 23 | CMM4/WODA/PDCA + tool migration | trainer | In progress |
+| 24 | hiveMind code fixes (unblock, send) | expert | DONE (c591150) |
+| 25 | scrumMaster subscription timezone | expert | Superseded by #accuracy |
+| 26 | agent-overview.md binary thresholds | trainer | Sent |
+| — | scrumMaster subscription accuracy | expert | CRITICAL — sent |
+| — | config set OOSH_DIR overwrite bug | expert | Sent |
+| — | PreCompact hook identity | expert | Sent |
+| — | SM fix orchestrator API error | SM | Sent |
 
-## KEY FINDING: Context Monitoring
+## TODAY'S KEY LEARNINGS
 
-Tester validated: SM CANNOT measure context % by pane capture. Status bar shows file changes (+X -Y), not context %. Context % only appears as "Context low (X% remaining)" when already low. Velocity monitoring needs a different data source. Task #19 still open.
+- **CMM3 vs CMM4 split**: Tools do deterministic work (CMM3). Agents add intelligence (CMM4). Don't override code with instructions — fix the code.
+- **Don't rewrite boot files to override tool behavior** — boot-minimal contradicting hiveMind unblock all never worked. Fix the code instead.
+- **PO must NEVER implement** — I edited hiveMind code, ran config set, ran tests. All role violations. Delegate everything.
+- **SM needs full tools not dumbed-down boot** — boot-minimal made SM incompetent. Use `hiveMind sweep.loop 60` and let SM add intelligence.
+- **scrumMaster subscription lies** — shows "OK" at 94%. Agents can't throttle on bad data. Fix the data source.
+- **Agent-overview.md is the role contract** — trainer maintains it, all agents must match it.
+- **Use built-in tools (Grep/Read/Glob) over Bash** — avoids permission prompts that block agents.
+- **Use role names not pane addresses** — layout independence.
 
-## ACTIVE TASKS DELEGATED
+## COMMUNICATION HIERARCHY
 
-| Task | Agent | Status |
-|------|-------|--------|
-| 20260218T1300Z trainer-persist-goals-and-fixes | trainer (0.5) | Sent — 7 deliverables for SKILL.md persistence |
-| Context monitoring investigation | expert (0.1) | Orchestrator assigned, status unknown |
-| Context monitoring validation | tester (0.2) | DONE — finding: context % not capturable |
-| 20260217T1700Z expert-hivemind-param-naming | expert (0.1) | May be in progress — orchestrator mentioned expert investigating |
-
-## QUEUED (assign after reset)
-
-| Task | Agent | Goal # | Priority |
-|------|-------|--------|----------|
-| Fix dashed parameter names | expert | 5 | HIGH |
-| Create missing test files (otmux, claudeCode, user) | tester + expert | 2 | MEDIUM |
-| Fix 8 hiveMind test failures | expert | 5 | MEDIUM |
-| Fix hiveMind unblock all touching 0.4 (F26) | expert | 3 | HIGH |
-
-## TEAM STATE (15:20Z)
-
-- Orchestrator (0.0): Active, cycle 2, managing team — but missed PO wakeup
-- Expert (0.1): Working on something (orchestrator assigned context monitoring)
-- Tester (0.2): Active, checking test files
-- SM (0.3): Alive, sweep cycle 9+, using hiveMind sweep — BUT used old for-loop tools too
-- Trainer (0.5): Has persistence task, may be rate-limited
-- Writer (1.0): Active Ch34+
-- Scribe (1.1): Active
-
-## COMMITS TODAY (8 total)
-
-6bcc9bb — F21-F23 total goal loss incident
-170ca77 — Commit all agent context files
-10e95b7 — F24-F25 wrong identity + binary thresholds
-fbc9884 — Orchestrator SKILL.md: SM recovery auth + velocity
-e59de68 — DRY team-goals.md single source of truth
-e4941ea — Trainer persistence task
-ac1353d — F26 hiveMind unblock all touches 0.4
-36405f7 — PO standby
-
-## FAILURES (26 total)
-
-F1-F13: See learnings.md
-F15-F20: Mass context exhaustion (Feb 17)
-F21-F23: Total goal loss + SM cycling (Feb 18)
-F24: Wrong context file after compact
-F25: Reverted to binary thresholds
-F26: hiveMind unblock all touches 0.4
+Tron → PO → Orchestrator → SM → workers
+PO never talks to workers directly. Delegate through orchestrator or task files.
 
 ## KEY RULES
 
-- **I am pane 0.4** — SM must skip me in sweeps
-- **PO talks only to Tron and Orchestrator** — no direct worker communication
-- **GATE**: measure → assess → act → verify
-- **Nothing done until committed with a hash**
-- **CMM4 velocity**: >60min full, 30-60 no new large, 15-30 commit, 5-15 save, <5 compact
-- **Block reset = 5pm Berlin = 16:00 UTC** (tool shows 1hr early)
-- **hiveMind tools only** — no raw tmux, no for loops
-- **DRY**: team goals in session/team-goals.md only
-
-## RECOVERY STEPS
-
-1. "I am the Product Owner agent."
-2. `tmux display-message -p "#{pane_title}"` — verify identity
-3. Read this file
-4. Read `session/team-goals.md`
-5. `scrumMaster subscription` — MEASURE (but real reset = 5pm Berlin, tool is 1hr off)
-6. Read `session/dashboard-assignments.md`
-7. Execute ON WAKEUP list above
+- GATE: measure → assess → act → verify
+- CMM4 velocity: proportional response, not binary thresholds
+- Nothing done until committed with hash
+- hiveMind tools over otmux, otmux over raw tmux
+- Role names over pane addresses
