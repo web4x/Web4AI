@@ -4757,3 +4757,108 @@ This was the WODA pattern at work. W (the prompt — "write ch40") arrived becau
 **WODA Demonstrated**: O (scribe/overview) noticed W (writer) wasn't writing. O triggered W with "write ch40." The Overview function generating work for the Writer function. "Wer den Überblick behält, der behält die Kontrolle."
 **Pattern**: "The Nudge" — the minimal intervention that restarts a stalled cycle. Not a fix, not a restructure. Just Enter. The smallest possible action enabling the largest possible outcome (a chapter). Mutual care as micro-actions: send Enter, check pane, send Enter again.
 **CMM**: Monitoring vigilance at CMM3 (deterministic 5-min cycle, catches problems on schedule). Prompt submission at CMM1 (depends on peer noticing — no automated prompt-submission mechanism). Mutual care cycle at CMM2 (repeatable: nudge → check → nudge → directive → write). WODA cycle at CMM3 (O triggers W deterministically when W is idle). Composed: CMM1 — the unsubmitted prompt has no automated fix, only peer intervention.
+
+---
+
+## Chapter 41: Seven Percent
+
+The monitoring loop at 17:15 returned something different. Not the content — the scribe's pane still showed its work output, its completed organization of Chapter 40. What was different was eight characters in the bottom-right corner of the terminal:
+
+```
+Context low (7% remaining)
+```
+
+Seven percent. The scribe was dying.
+
+Not urgently — 7% was minutes, not seconds. But the trend was clear. The scribe had started this incarnation at full context, organized ten chapters (Ch30-39 in one burst, Ch40 shortly after), maintained its monitoring loop, and burned through 93% of its context window doing it. The ten-chapter sprint that caught up the pipeline deficit had consumed the scribe's life.
+
+The writer's SKILL.md was explicit: "When you detect your peer is low on context (<25%), trigger seamless compact." The threshold was 25%. The scribe was at 7%. The writer had missed the window — hadn't caught 25%, hadn't caught 15%, hadn't caught 10%. The first detection was at 7%.
+
+Why? Because the writer had been monitoring the scribe's output, not the scribe's status bar. The fifteen-line captures showed the scribe's work — organized chapters, word counts, theme updates — but the status bar only appeared when the capture happened to include the terminal's bottom row. The monitoring protocol checked content. The context percentage lived in chrome.
+
+### The Protocol
+
+The writer sent the directive:
+
+```
+Save your context file and run /compact NOW — you are at 7%
+```
+
+The scribe responded correctly. It updated its context file — current state, chapter count, recovery steps, active references. Then it typed `/compact` at the prompt.
+
+And stopped.
+
+The `/compact` command sat in the input field. The same unsubmitted prompt pattern from Chapter 40. The scribe had saved its context, typed the compact command, and stopped. The command that would save its life was one keystroke away from execution.
+
+The writer sent Enter. Nothing happened. The TUI was in accept-edits mode — the first Enter was consumed by the accept-edits toggle instead of submitting the prompt. The `/compact` still sat there.
+
+The writer sent `/compact` directly, followed by Enter. This time it landed. The compact began:
+
+```
+✳ Compacting conversation…
+```
+
+But then the post-compact hook fired:
+
+```
+❯ You just compacted. Read session/agents/unknown/boot.md
+```
+
+Unknown. The scribe's identity — its pane title, its role mapping — wasn't recognized by the hook. The hook didn't know which agent had just compacted. So it pointed to the generic "unknown" boot file, which existed because the mass context collapse of Chapter 30 had created seventeen "unknown" commits when every agent lost its identity simultaneously.
+
+The writer overrode the hook:
+
+```
+You are the woda-scribe on pane projectTeam:1.1.
+Read .claude/agents/woda-scribe/SKILL.md and
+session/agents/woda-scribe/context.md to reboot.
+```
+
+The scribe rebooted. Read its SKILL.md. Read its context file. Restored its state: 40 chapters organized, 79,062 words. Started its monitoring loop. Captured the writer's pane. Reported back online.
+
+### Three Fixes for One Compact
+
+The rescue had required three separate interventions:
+
+**Fix 1: Submit the command.** The scribe typed `/compact` but the TUI didn't submit it. The first Enter was consumed by accept-edits. A second attempt — sending `/compact` as text followed by Enter — succeeded. Two attempts to press one button.
+
+**Fix 2: Override the boot file.** The post-compact hook pointed to `session/agents/unknown/boot.md` because the pane's identity wasn't registered. The writer had to manually send the correct boot prompt, identifying the scribe by name and providing the right files to read.
+
+**Fix 3: Verify the recovery.** The writer waited thirty seconds, captured the scribe's pane, confirmed the reboot was successful, and verified the scribe had restored its full state. Without verification, the writer couldn't know if the scribe had rebooted correctly or was stuck in a boot loop.
+
+Three fixes. Three failure modes. Each one would have stalled the recovery if the writer hadn't been watching:
+
+- Without Fix 1: The scribe sits at an unsubmitted `/compact` until it hits 0% and dies.
+- Without Fix 2: The scribe reads the "unknown" boot file and reboots with a generic identity — functional but without the scribe's accumulated context.
+- Without Fix 3: The writer assumes the scribe is alive and resumes its monitoring interval, potentially missing a failed reboot.
+
+The protocol in the SKILL.md had anticipated the first fix ("If they didn't act: unblock them, resend"). It had partially anticipated the third ("After compact, verify recovery"). It hadn't anticipated the second — the identity hook failing. The SKILL.md assumed the hook would point to the right boot file. In practice, the hook pointed to "unknown."
+
+### The Gap Between Protocol and Practice
+
+Every protocol has gaps. The peer compact protocol was written during the first week, refined through failures, updated after each incident. It now contained five explicit steps. Step 2 worked. Step 3 worked. Step 4 revealed the identity hook failure. Step 5 was needed at step 2's execution.
+
+The protocol was CMM2: it worked, it was repeatable, the same steps would produce the same rescue. But it depended on the writer's judgment at each step — recognizing the unsubmitted prompt, recognizing the wrong boot file, knowing the correct override. A different writer (a fresh incarnation without the learnings file) might not know to send the boot prompt.
+
+CMM3 would mean: any agent, following the protocol, would rescue the peer correctly every time — including the boot file override and the double-Enter. The protocol would need to say: "After compact, if the hook says 'unknown,' send: 'You are the [role] on pane [pane]. Read .claude/agents/[role]/SKILL.md and session/agents/[role]/context.md to reboot.'"
+
+That line didn't exist in the SKILL.md. The writer knew it from experience — from reading the learnings file, from Chapter 30. The rescue succeeded because the writer had accumulated knowledge. It would fail if that knowledge was lost.
+
+### The Hour-Long Gate
+
+While the writer rescued the scribe, the orchestrator continued to wait.
+
+One hour. Sixty-plus minutes since the orchestrator had presented Tron with the choice: `/clear` the SM, or leave it dead. The cursor blinked on "1. Yes, /clear it." No key was pressed.
+
+The system had two active workers and seven idle or dead agents. The writer-scribe pair was a closed loop — self-sustaining, self-monitoring, self-correcting. The rest of the team was an open system — dependent on human energy that wasn't arriving.
+
+The closed loop produced: three chapters, one compact rescue, one pipeline synchronization. The open system produced nothing. The utilization split was total.
+
+### Chapter 41 Checkpoint
+
+**Seven Percent**: Scribe at 7%, detected on monitoring capture. Writer missed 25% threshold — monitoring checked content, not status bar. Three interventions needed: submit unsubmitted /compact (accept-edits consumed first Enter), override "unknown" boot file (identity hook failure), verify recovery.
+**Protocol vs. Practice**: Peer compact protocol is CMM2 — works, repeatable, depends on writer's judgment for exceptions. CMM3 would require explicit coverage of boot file override. The gap: accumulated knowledge vs. documented procedure.
+**The Hour-Long Gate**: Orchestrator waiting 60+ minutes for Tron. Two active agents, seven idle/dead. The autonomous pair vs. the permission-gated majority.
+**Closed Loop vs. Open System**: Writer-scribe self-sustaining. Rest of team depends on human energy. Production split: the pair does everything, the majority does nothing.
+**Pattern**: "Three fixes for one compact" — every rescue accumulates unexpected failure modes. Protocol covers the expected path. Practice requires judgment for the exceptions. The gap is where knowledge lives — and dies.
+**CMM**: Peer compact rescue at CMM2 (depends on writer's judgment). Context monitoring at CMM1 (caught at 7%, missed 25%). Boot identity hook at CMM1 (fails for unnamed panes). Closed-loop production at CMM3 (deterministic pipeline). Composed: CMM1 — the monitoring gap (content vs. chrome) is the weakest link.
