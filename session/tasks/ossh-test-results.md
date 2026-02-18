@@ -123,4 +123,4 @@ Initial run: 14/15 PASS, 1 FAIL. After ossh-expert fixes (commit `7b063e0`): **a
 ## Sign-off
 
 - **ossh-tester**: All tests pass. Fixes verified. Ready for ossh-po sign-off.
-- **ossh-po**: Pending review.
+- **ossh-po**: **APPROVED** (2026-02-18). All 4 acceptance criteria met. 15/15 tests pass. Both fixes (commit `7b063e0`) are correct and minimal. Tab completion still unmeasured — next task.
