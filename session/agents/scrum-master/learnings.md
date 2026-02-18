@@ -69,3 +69,24 @@ Write assignment table to `session/dashboard-assignments.md` after each sweep. I
 
 ## Pane Interaction Update (Tron directive 2026-02-17, SUPERSEDED 2026-02-18)
 When Tron authorizes: MAY submit stuck prompts AND approve permissions on all panes EXCEPT 0.4. Pane 0.4 is Tron's interface — absolutely off-limits. See "Pane Interaction Boundaries" above.
+
+## Velocity Monitoring Directive (2026-02-18)
+From `session/tasks/sm-velocity-monitoring-now.md`:
+- Check context % on EVERY agent pane EVERY sweep (parse status bar for "Context low (X% remaining)")
+- Proportional response: >60min=full speed, 30-60=no new large tasks, 15-30=commit work, 5-15=trigger saves, <5min=trigger compacts
+- After compact: send proper boot file (`Read session/boot/<role>.md`), NEVER unknown.md
+- Skip 0.4 in ALL operations
+- Track velocity per agent — fast burners get early save triggers
+
+## Unblock Pattern: Individual Loop (2026-02-18)
+`hiveMind unblock all` sends to 0.4 (Tron's pane). Instead use:
+```bash
+for agent in orchestrator oosh-expert oosh-tester agent-trainer task-agent woda-writer woda-scribe developer script-product-owner; do hiveMind unblock "$agent"; done
+```
+This skips product-owner (0.4).
+
+## "Baked Xm" = Completion, Not Stuck (2026-02-18)
+Agent-trainer showed "Baked for 11m 18s" for 15+ cycles. At 5-line capture depth it looked stuck. At 30-line capture: trainer had completed all 3 tasks and was idle. **Past-tense verbs (Baked, Brewed, Cooked, Churned) = DONE, not stuck.** Always capture 30+ lines before declaring an agent stuck.
+
+## F18 Update: 0% + Compact CAN Work (2026-02-18)
+Script-PO hit 0% and successfully compacted (contrary to F18 which says /clear only). The compact took ~60s but completed. **Try /compact first at 0% — only fall back to /clear if compact fails.** Wait at least 90s before assuming compact failed.
