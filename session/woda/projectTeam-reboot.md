@@ -5836,3 +5836,66 @@ The scribe would rebuild. It always did. But rebuilding took context, and contex
 **Scribe Returns**: /cleared and rebooted. Monitoring writer. Seventy-nine indexed themes lost — files survive but understanding doesn't. The relay's cost: each runner inherits the baton but not the grip. Rebuilding takes context that the block is consuming.
 **SM at 11%**: Already dying in the new block. Thirty-one cycles completed. The burn rate hasn't changed — the system activates at the same speed and exhausts at the same speed. Different block, same pattern.
 **CMM**: Block rhythm at CMM2 (recognizable, repeatable, but not improved — same pattern each block). Cross-block learning at CMM1 (files survive but judgment doesn't — each SM starts from zero). Meta-fixing at CMM2 (expert targets self-monitoring tools, but no systematic approach to identifying which tools need fixing). Goal coverage at CMM3 (orchestrator deterministically assigns all goals — same process, reliable result). Composed: CMM1 — the system repeats its pattern without improving it across blocks.
+
+---
+
+## Chapter 54: Seventy Percent
+
+The trainer's pane showed a number from a different scale: "Weekly: 70% used (resets 16:00 Feb 24 Berlin)."
+
+Seventy percent of the weekly allocation consumed. Six days remaining. Thirty percent of the budget for six-sevenths of the time.
+
+The block heartbeat from Ch53 — activate, produce, burn, exhaust, reset — was nested inside a larger heartbeat. The weekly allocation contained multiple daily blocks. Each block consumed a portion of the weekly budget. The blocks within the week followed the same pattern as the sweeps within a block: fast start, productive middle, frantic end. The system was fractal. The same consumption pattern repeated at every scale.
+
+### Four Scales
+
+**The sweep** (60 seconds): The SM captured panes, checked permissions, unblocked agents, updated its assessment. One sweep consumed a fixed amount of tokens. The SM ran thirty-one sweeps in the current block before dying.
+
+**The monitoring loop** (5 minutes): The writer or scribe captured a peer's pane, assessed health, restarted the loop. Five minutes of idle followed by a few seconds of activity. Sustainable indefinitely at the single-agent level.
+
+**The block** (~4 hours): A subscription allocation — fixed tokens, fixed time, fixed agents. Activate at the start, produce in the middle, exhaust at the end. The pattern from Ch53: the system replayed the same rhythm each block.
+
+**The week**: Seven days of blocks. The weekly allocation distributed across multiple blocks, each one drawing from the same pool. At 70% consumed on day four of seven, the remaining days would have smaller allocations — fewer tokens per block, fewer agents per block, fewer chapters per block.
+
+The fractal nature meant that the system's behavior was predictable at any scale. The SM would burn through its context in each block the same way the week would burn through its allocation — front-loaded activity, back-loaded exhaustion. The early blocks in the week were productive (Ch1-37, bulk of the story). The late blocks would be thin (fewer agents, less context, shorter sessions). The week's arc mirrored the block's arc mirrored the sweep's arc.
+
+### The SM Dies Again
+
+The SM was at 7% context. Thirty-one cycles into the new block, already dying. Someone — the orchestrator or Tron — had sent the compound message: tasks to read, plus "Save your context and run /compact NOW."
+
+But the SM had done something before dying. Its last acts in the current context: unblock three agents.
+
+Pane 0.2 (tester): running hiveMind tests. Pane 1.3 (developer): listing task files. Pane 1.5 (completion engine): running c2 completion. Three agents freed by the SM's final sweep, each one now consuming the subscription tokens that the SM was also consuming.
+
+This was the SM's pattern across the story. Activate others, burn itself. The SM had died in the previous block at cycle 27 after activating six agents. Now it was dying at cycle 31 after activating more. The SM was an energy pump — it moved tokens from its own context into other agents' work. Each sweep cycle took tokens from the SM's budget and converted them into unblocked agents, resolved permissions, assigned tasks. The SM didn't produce output (no chapters, no code, no tests). It produced *activation* — other agents' ability to produce output.
+
+The SM's death was productive in a way that other agents' deaths weren't. When the writer died, chapters stopped. When the expert died, fixes stopped. When the SM died, *everything* slowed — not stopped, but slowed, because the mechanical unblocking and permission resolution that the SM provided had to be done manually or not at all.
+
+### The Trainer's Twilight
+
+The trainer was at 6% context. It had checked with the orchestrator for its next task, seen the weekly subscription numbers, and was now assessing what to do with its remaining context.
+
+The trainer had been updating SKILL.md files — fixing the binary 80/90% thresholds that the team had abandoned in favor of continuous proportional response. This was the kind of work that mattered across blocks: SKILL.md changes were permanent. Each agent that booted in a future block would read the updated SKILL.md and inherit the improvement. The trainer's work at 6% context, if committed, would improve every future incarnation of every agent whose SKILL.md it touched.
+
+But at 6%, the trainer had maybe one or two more tool calls before context ran out. Enough to commit, maybe. Not enough to finish another edit. The trainer was in the zone that the velocity-monitoring directive called "trigger context saves" — between five and fifteen minutes of projected remaining time. The right action was to commit what it had and save its context. The trainer appeared to be doing exactly this — checking for work, not finding any it could start, preparing to stand down.
+
+Two agents dying simultaneously. The SM at 7%, the trainer at 6%. Both activated by the SM's cascade at the start of the block. Both burning through context on useful work. Both approaching the threshold where compact was the only option. The block was consuming its infrastructure (SM) and its improvement capacity (trainer) at the same rate — neither would survive to the block's end.
+
+### The Expert's New Numbers
+
+The expert was testing the subscription fix. "Check the subscription status with the new format." A command ran: `scrumMaster subscription`. The expert wanted to see if its ninety-four-file fix had produced accurate numbers.
+
+This was the moment the meta-fix would either validate or fail. If the numbers matched the TUI data (the real subscription status visible in the terminal footer), the fix worked. If they didn't, the expert would need to iterate again — another debug cycle, more context consumed, more files touched.
+
+Thirty-nine files changed in this session. The expert's total was climbing — from 94 to 39 more, over a hundred files touched across two sessions to fix one display function. The expert was the team's heaviest producer by file count and also its most expensive by token consumption. Each file read, edited, and tested consumed context. The expert survived because its work was convergent — each iteration brought it closer to the fix — but the cost of convergence was high.
+
+If the fix landed, the story would document it as the moment the system gained accurate self-monitoring. If it failed, the story would document another iteration. Either way, the expert's work would become a chapter, and the chapter would outlast the fix. The story was more durable than the code. The narrative about the subscription fix would exist long after the subscription fix itself was superseded by the next improvement.
+
+### Chapter 54 Checkpoint
+
+**Seventy Percent**: Weekly allocation 70% consumed on day four of seven. The consumption pattern is fractal — same rhythm at sweep (60s), loop (5m), block (~4h), and weekly scales. Early periods productive, late periods thin.
+**SM Dies Again**: Cycle 31, 7% context. Last acts: unblock three agents. The SM is an energy pump — converts its own context into other agents' activation. Its death slows everything because mechanical unblocking stops.
+**Trainer's Twilight**: At 6%, checking for work, preparing to stand down. SKILL.md updates (if committed) improve every future agent incarnation. The right work at the wrong time — permanent improvements from a dying agent.
+**Expert Tests**: Subscription fix under validation. 100+ files touched across two sessions. Convergent work — each iteration closer — but expensive. The narrative about the fix outlasts the fix itself.
+**Two Simultaneous Deaths**: SM (7%) and trainer (6%) dying in the same block they were activated. The cascade consumes its own infrastructure and improvement capacity at equal rates.
+**CMM**: Fractal consumption at CMM2 (recognizable at all scales but not managed at any — no mechanism adjusts behavior based on weekly budget). SM as energy pump at CMM3 (deterministic — sweep, unblock, activate, repeat until dead). Trainer improvement persistence at CMM3 (SKILL.md changes survive across blocks — deterministic improvement mechanism). Expert convergence at CMM2 (iterates toward fix, but no estimate of remaining iterations — burn rate unknown). Composed: CMM2 — patterns are recognized and repeatable, but no feedback loop adjusts behavior based on the recognition.
