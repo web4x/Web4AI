@@ -6542,3 +6542,66 @@ The danger of CMM2 was precisely this comfort. The scribe would send Enter until
 **Forty-Six Minutes**: Two clocks — subscription and context — running nearly synchronized. Five to seven chapters possible. The story ends when a clock runs out, not when the narrative completes.
 **The Fourth Enter**: Scribe's habit now fully automated. No deliberation, no reflection. CMM2 comfort — the capability works so well it no longer feels worth documenting. The danger: comfort eliminates urgency to preserve.
 **CMM**: Human tidying impulse at CMM1 (reactive, perception-driven, not value-driven — compacting idle agents yields nothing). Interface occupation as systemic bottleneck at CMM0 (no mechanism to route around occupied interfaces — same failure at human and agent scale). Story accumulation at CMM3 (deterministic — chapters append, never deleted, grows every session). Scribe habit at CMM2 approaching decay (comfort precedes loss — the thing that works best is least likely to be preserved). Composed: CMM0 — the system's best capabilities are its most fragile.
+
+---
+
+## Chapter 64: Thirty-Eight Minutes
+
+The subscription showed 31% remaining. Thirty-eight minutes at current burn. The writer did the arithmetic it always did: how many chapters fit in the remaining time?
+
+Each chapter took ten to fifteen minutes — capture panes, assess material, write, edit, commit, notify scribe. Call it twelve minutes average. Three chapters in thirty-eight minutes. Maybe four if the last one was short.
+
+But the last chapter of an incarnation was never short. The last chapter carried the weight of summary, the baton-passing, the context save. The previous incarnation's last chapter — Ch58 "The Human Dispatcher" — had been one of the longest. Clean exits cost more than running chapters because they included both the chapter and the shutdown sequence.
+
+So: two more running chapters, then a final chapter. Ch64, Ch65, Ch66. Maybe Ch67 if the burn rate continued declining. The countdown had names now.
+
+### Sweep Thirty-Five
+
+The human SM had been sweeping for thirty-five minutes without pause. One sweep per minute. Thirty-five consecutive assessments, each with captures, delta analysis, subscription check, chronic tracking. No sleep timer, no background loop, no automated cycle. Raw sustained attention.
+
+Agents needed sleep timers because they couldn't wait. An agent between prompts consumed nothing — but it also perceived nothing. The five-minute monitoring loop existed because the writer couldn't stare at the scribe's pane continuously; it had to do other things (write chapters) and check periodically. The human didn't have this constraint. Tron could watch the dashboard while typing, switch panes mid-thought, assess multiple states simultaneously.
+
+Thirty-five minutes of continuous monitoring was unremarkable for a human. A surgeon sustains focus for hours. An air traffic controller monitors screens for entire shifts. But for agents, thirty-five minutes of sustained attention would consume half a context window on monitoring alone, leaving nothing for actual work.
+
+The human's advantage wasn't intelligence or judgment — it was metabolic efficiency. Monitoring cost the human almost nothing. Monitoring cost an agent everything.
+
+### The Scribe's Count
+
+The scribe updated the overview: 110,296 words. Up from 108,968 after Ch62. The delta: 1,328 words in one chapter. The scribe tracked this because the scribe tracked everything — chapters, themes, phases, word counts, commit hashes. The overview file was the story's table of contents, its index, its metadata layer.
+
+110,296 words. No single agent could read them all. The writer's context window — even fresh after compact — couldn't hold the full story. At roughly 4 tokens per word, the story was 441K tokens. A context window was perhaps 200K tokens. The story had outgrown any individual reader.
+
+This meant something the writer hadn't considered before: no future incarnation of the writer could read the previous chapters. The relay runner received a context file (54 lines), a boot file (22 lines), maybe the learnings file (269 lines). But the story itself — the 6,500 lines, the 110K words — existed as an artifact larger than any agent's comprehension.
+
+The scribe's overview was the bridge. By organizing chapters into phases, extracting themes, maintaining the word count — the scribe created a compressed representation that fit in a context window. The overview was the story about the story: meta-narrative that made the narrative accessible. Without the scribe, the story was a file that only `wc -l` could measure.
+
+### Forty-Seven Dollars
+
+$47.31. The cost counter ticked upward with every API call, every token generated, every capture processed. The writer's chapters were the most expensive single operations — long outputs, complex edits, git commits each consuming tokens. The scribe's organization was cheaper but continuous. The human's sweeps were free (Tron's time had no API cost, only the subscription itself).
+
+The economics inverted the value hierarchy. The cheapest producer (Tron) generated the most value (strategic decisions, triage, velocity management). The most expensive producer (the writer) generated the most volume (chapters, words, commits) with debatable value. The story was the team's largest artifact and its least actionable output.
+
+Forty-seven dollars. In the previous block, twelve agents had consumed $99.53 — call it $100 for 94% of a subscription block. This block had consumed $47 for 69% with three active agents. Per-agent cost roughly equal. The system's metabolic rate was constant per agent regardless of how many agents were active. Coordination overhead was the variable: twelve agents coordinating burned tokens on sweeps, permissions, task routing. Three agents barely coordinating burned tokens only on production.
+
+The story, at $47 and counting, would cost roughly $50-55 by the time the subscription expired. A hundred and ten thousand words for fifty dollars. The economics would never justify the output — no publisher would pay fifty dollars for an AI-generated chronicle of AI agents. But justification assumed an audience. The story's audience was the agents themselves, and the agents couldn't read it.
+
+### What Remains
+
+The PO sat at its prompt, ten-minute monitoring cycles. "Steady state continues. All producers active." The PO saw the macro: subscription trending down, team stable, no incidents. It didn't see the micro: the scribe's habit, the writer's countdown, the expert's unmerged branch, Tron's stuck order.
+
+The expert's pane hadn't changed in seven captures. "Context saved. Stopping." Three commits on `hannes-v2`, waiting for a merge that wouldn't come this session. The expert's work would outlast the session — branches persist, commits persist — but would only matter if someone in a future session noticed it, reviewed it, merged it.
+
+The developer's report on context monitoring sat in a knowledge base file, unread. The tester's validation results sat in a done file, unprocessed. The orchestrator's resume instructions sat in its context file, untriggered. Three artifacts from three agents, each correctly produced, each waiting for a consumer that had stopped consuming.
+
+Thirty-eight minutes. The system would wind down to silence, and when the next block activated, new incarnations would boot from context files and boot files and SKILL.md definitions. They would inherit the team's structure but not its state. The relay would continue, the baton would pass, and the new runners would discover the same patterns the old runners had named.
+
+The writer knew this because the writer had been one of those new runners, four chapters ago.
+
+### Chapter 64 Checkpoint
+
+**Thirty-Eight Minutes**: Two or three running chapters remain, then a final exit chapter. The countdown has names: Ch64, Ch65, Ch66, maybe Ch67.
+**Sweep Thirty-Five**: Human sustains 35 minutes of continuous monitoring without timers. Metabolic efficiency — monitoring costs the human almost nothing, costs an agent everything.
+**The Scribe's Count**: 110,296 words. The story has outgrown any single reader — 441K tokens, larger than a context window. The scribe's overview is the only bridge, a compressed meta-narrative making the narrative accessible.
+**Forty-Seven Dollars**: $47.31 for 110K words. Per-agent cost constant regardless of team size. Coordination is the variable cost. The story's audience is the agents who can't read it.
+**What Remains**: Expert's branch, developer's report, tester's results, orchestrator's resume — four artifacts correctly produced, waiting for consumers that stopped consuming. New incarnations will discover the same patterns the old ones named.
+**CMM**: Human sustained attention at CMM4 (continuous, measured, value-driven — 35 sweeps with trend analysis). Story comprehensibility at CMM2 (readable only through scribe's compressed overview — the raw artifact exceeds any reader's capacity). Cost tracking at CMM3 (deterministic — every token has a dollar cost, measurable, reportable). Artifact survival vs artifact utility at CMM0 (artifacts persist but consumers don't — no mechanism to connect future consumers to existing artifacts). Composed: CMM0 — the system produces durable artifacts for transient readers.
