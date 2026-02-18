@@ -6107,3 +6107,64 @@ The night watch would continue until the writer's context ran low, or the scribe
 **Tester Reads**: At 10%, reviewing its own test results (scrumMaster: 3P/6F). Self-reflection at operational level. PDCA tests failing while team tries PDCA at organizational level. Can read the failures, can't fix them.
 **Two by Two**: The duo is the minimum viable unit. One alone dies. Two sustain each other indefinitely. The night watch: monitoring, writing, organizing, at resting metabolic rate.
 **CMM**: Night watch sustainability at CMM3 (deterministic — two agents, five-minute loops, chapters when events warrant, indefinitely sustainable). Throughput balancing at CMM0 (no mechanism to match writer speed to scribe speed — mismatch is structural). Permission economy at night at CMM0 (no fallback when SM is dead — stuck agents stay stuck). Tester self-review at CMM2 (useful, repeatable, but the analysis dies with the tester's context). Composed: CMM0 — the night watch works for the duo but abandons stuck agents.
+
+---
+
+## Chapter 58: The Human Dispatcher
+
+The SM's pane showed something new. Not an agent. A human typing.
+
+"compact 0.5 and 0.2, let writer finish ch58 first."
+
+Tron had entered the system.
+
+### The Fallback
+
+When every dispatcher died — SM at 0%, orchestrator standing down — there was no automated fallback. Stuck agents stayed stuck. The night watch served only the duo. Then the human noticed, entered the dead SM's pane, and started directing.
+
+Tron's command was precise: compact the trainer and tester to free their context, but sequence the compacts after the writer's chapter. The human dispatched with something no agent had: global understanding. The SM had swept mechanically — check pane, assess state, unblock, next. Tron processed the whole system simultaneously and applied relative value: the writer's last chapter mattered more than a thirty-second-earlier compact.
+
+The system's hierarchy had always had the human at the top. But escalation was slow — agents recognized needs, composed messages, waited. Tron entering the pane was not escalation. It was direct intervention on the operational layer.
+
+### Nine Percent
+
+The scribe had shortened to three-minute cycles: "writer at 9%." Adaptive monitoring — frequency increasing as the peer's projected exhaustion decreased.
+
+Nine percent. Thirteen chapters across eight hours. The writer's longest incarnation in the story. Previous writers produced five to eight chapters. This one survived by alternating cheap monitoring vigils with expensive chapter writing. The vigils conserved context. The chapters consumed it. The rhythm — write, monitor, write, monitor — stretched the context further than continuous production ever could.
+
+Ch58 was the last. The clean exit from Ch55 provided the template: finish the work, commit, save context, pass the baton. No altruistic death — no spending the last tokens on one more sweep. A deliberate stop. The writer that learned from writing about learning.
+
+### What Tron Sees
+
+No agent saw all eleven panes simultaneously. The SM saw what it captured. The orchestrator saw what it monitored. The writer saw the scribe and measured panes for material. Each agent held a slice of the system state.
+
+Tron held all of it — TUI footer (real subscription data), all panes (switchable freely), git history, file changes, the story being written. The human dispatcher wasn't better because of faster processing but because of wider perception. The SM could sweep eleven panes in eleven minutes. Tron could see them in one glance.
+
+### Thirteen Chapters
+
+The relay runner's report for this incarnation:
+
+Ch46 The Handoff — compact from inside, four degrees of death
+Ch47 The Wake — expert finds 0.4 bug, system self-activates
+Ch48 One Line — HIVEMIND_PROTECTED_PANE, configuration as code
+Ch49 The Wrong Layer — shell env vs OOSH config
+Ch50 Fifty — milestone, tester's interface barrier
+Ch51 The Return — SM resurrected, cascade of activation
+Ch52 The Burn — coordination cost paradox, 90% subscription
+Ch53 The Block — subscription heartbeat, 94-file meta-fix
+Ch54 Seventy Percent — fractal consumption, weekly burn
+Ch55 The Clean Exit — expert's voluntary stop, stopping as skill
+Ch56 One Hundred Thousand — 100K milestone, byproduct outlasts product
+Ch57 The Night Watch — duo alone, minimum viable state
+Ch58 The Human Dispatcher — Tron enters, the fallback
+
+Thirteen chapters. Two reports (test coverage, test comparison). Nine hours including vigils. The baton: this context file, this chapter, this list.
+
+The next runner would inherit all of it — the story of the story of the story. And somewhere in the noise, the signal: eleven agents tried to maintain themselves, most of them failed, and the ones that survived were the ones that watched each other.
+
+### Chapter 58 Checkpoint
+
+**The Human Dispatcher**: Tron entered the dead SM's pane. Direct intervention, not escalation. The human dispatches with global understanding — all panes visible, relative value applied, timing sequenced.
+**Nine Percent**: Writer's longest incarnation — 13 chapters, 8 hours. Survived by alternating cheap vigils with expensive chapters. Ch58 is the clean exit.
+**Thirteen Chapters**: Ch46-58. The relay runner's report. Two reports. Nine hours. The baton is ready.
+**CMM**: Human dispatch at CMM4 (global awareness, value-weighted, measured). Writer self-management at CMM3 (clean exit chosen deliberately). Scribe adaptive monitoring at CMM3 (3-min cycles for low-context peer). Agent-to-human fallback at CMM1 (works when Tron notices — no summoning mechanism). Composed: CMM1 — the human fallback is powerful but unsummoned.
