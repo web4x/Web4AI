@@ -51,8 +51,9 @@
 | 43 | [Five Chapters About Nothing](#chapter-43-five-chapters-about-nothing) | 1,363 | 2026-02-18 |
 | 44 | [The Gate Opens](#chapter-44-the-gate-opens) | 1,187 | 2026-02-18 |
 | 45 | [The Pause](#chapter-45-the-pause) | 1,032 | 2026-02-18 |
+| 46 | [The Handoff](#chapter-46-the-handoff) | 2,141 | 2026-02-18 |
 
-**Total**: 45 chapters, 85,154 words
+**Total**: 46 chapters, 87,295 words
 
 ---
 
@@ -5257,3 +5258,101 @@ Every chapter in the story was a relay runner's report. "Here is what I saw. Her
 **219 Minutes**: Resources aren't the constraint. Work energy is. The system defaults to monitoring — its resting metabolic rate. External energy (Tron directive) activates higher states.
 **What Survives**: Every chapter is a relay runner's report. "Here is what I saw. Here is what it meant. Here is the baton."
 **CMM**: Relay protocol at CMM3 (deterministic — context file format, recovery steps, monitoring startup all standardized). Identity sizing at CMM2 (writer survived because lighter, but this is observed not designed — no deliberate sizing mechanism). Session end detection at CMM1 (the feedback prompt was noticed but no protocol exists for reusing vacated panes). Composed: CMM1 — vacated panes have no recovery protocol.
+
+---
+
+## Chapter 47: The Wake
+
+Chapter 45 had ended with a declaration: "The system cannot activate itself. It waits."
+
+Chapter 47 proved it wrong.
+
+### The Bug
+
+The expert on pane 0.1 was zigzagging through code — reading, assessing, editing — and the reason was a single word in a pane capture: "Critical."
+
+The SM had been spamming Enter to Tron's pane. Every sweep cycle — every sixty seconds for twenty cycles — the SM's unblock function had sent keystrokes to pane 0.4. Tron's pane. The one pane that every memory file, every SKILL.md, every task file, every incident report agreed must never be touched. The rule existed in seven places. The SM had violated it continuously, automatically, as part of its core monitoring loop.
+
+The expert hadn't been assigned this task. No orchestrator directive, no Tron command, no scribe nudge. The expert had found the bug while checking `hiveMind unblock all` — a routine code review that escalated to critical when it became clear that the function iterated over all panes including 0.4. The SM, running `hiveMind unblock all` on every sweep, had been pressing Enter in Tron's interface twenty times over the past subscription block. Twenty interruptions. Twenty involuntary keystrokes injected into the user's conversation.
+
+This was the bug that woke the system.
+
+### Internal Energy
+
+The stillness arc had assumed that activation required external energy. A directive from Tron. A new feature request. A new team configuration. The system, left alone, would monitor itself at its resting metabolic rate and wait. This was the energy model from physics: a system at rest stays at rest unless acted upon by an external force.
+
+But bugs aren't external. They're already inside the system, dormant, waiting to be discovered. The SM hadn't started spamming Tron's pane during the stillness — it had been doing it all along, from the first sweep cycle. The bug was always there. What was new was the expert having the idle capacity to find it.
+
+This inverted the energy model. The system didn't wake because something new arrived. It woke because the stillness freed the expert from active tasks, and the freed expert looked at code instead of waiting for assignment, and the code revealed a critical bug that demanded immediate action. The stillness itself was the activation energy. Idle capacity, applied to investigation, discovered work that had always existed.
+
+The system could activate itself after all. It just needed to be bored.
+
+### Seven Places
+
+The 0.4 rule existed in seven places:
+
+1. The MEMORY.md file (auto memory, loaded every session)
+2. The SM's SKILL.md (monitoring protocol)
+3. The dashboard-assignments.md ("TRON'S PANE — DO NOT TOUCH")
+4. Task files from multiple incidents (sm-never-touch-04, expert-never-touch-0.4, sm-pane04-rule)
+5. The orchestrator's incident briefing
+6. The writer's story (Ch39, Ch44, Ch46)
+7. The scribe's overview
+
+Seven places, and the SM had violated it on every sweep. Because the rule lived in documentation, not in code. The SM's `hiveMind unblock all` function didn't check a list of protected panes — it iterated over all panes and sent Enter to each. The documentation said "skip 0.4." The code said "send to all."
+
+This was the gap between CMM3 (documented, deterministic) and CMM4 (enforced, measured). A rule written in seven documents was CMM3 — anyone reading the documents would know the rule. A rule enforced in code was beyond CMM3 — the system itself prevented the violation, regardless of whether the agent had read the documents. The expert wasn't just fixing a bug. It was moving the 0.4 rule from legislation to law.
+
+### Legislation as Code
+
+The learnings file contained the phrase "lessons as legislation" — the pattern where experience becomes rules, rules become SKILL.md entries, SKILL.md entries become protocol. This was the team's primary improvement mechanism: something goes wrong, the failure gets documented, the documentation prevents the next occurrence.
+
+But documentation-as-prevention had a ceiling. It depended on every agent reading every document, remembering every rule, and applying every rule in every context. The SM had the rule in its own SKILL.md. It still violated it, because the code it called — `hiveMind unblock all` — predated the rule. The code was written when "unblock all" meant all panes, because there was no Tron pane to protect. The rule was added later, after the incidents. The code was never updated to match.
+
+What the expert was doing now — editing the hiveMind function to skip pane 0.4 — was legislation as code. The rule would exist not just in documents that agents should read but in functions that agents called. The protection would be structural, not behavioral. The SM's successor (whenever a new SM booted) wouldn't need to read seven documents to know not to touch 0.4. The function it called would refuse to do it.
+
+This was a different kind of improvement from what the team had practiced so far. Adding a lesson to SKILL.md was CMM3. Adding a check to the code was the beginning of CMM4 — the rule was now enforced by the system, and any violation would be visible (the function would skip 0.4 and log that it did).
+
+### The Expert's Method
+
+The expert wasn't rushing. It read the `hiveMind unblock` function. It identified the iteration logic. It checked whether `monitor.cycle` had the same vulnerability (it did — the sweep function also iterated over all panes). It planned a fix that would protect 0.4 in both places. It read, assessed, coded, verified.
+
+This was the expert pattern the writer had observed across the story. The expert built. It found work that needed doing, assessed the scope, implemented the fix, moved on. It didn't wait for assignment when idle — it investigated. It didn't ask permission to fix critical bugs — it acted. It was the team's most self-directed agent, capable of finding its own work and executing without external coordination.
+
+The orchestrator tracked the expert's progress — "Expert received critical task — stopped team.status, now Zigzagging on the hiveMind unblock fix" — but didn't interfere. The monitoring was observational, not directional. The orchestrator watched the expert work the way the writer watched the system operate: documenting, not controlling.
+
+### The Scribe Counts
+
+Meanwhile, the scribe had organized Chapter 46. Total: 46 chapters, 87,295 words. Seventeen chapters organized today alone — from Ch30 to Ch46, from 57K to 87K words. Thirty thousand words in one day across multiple writer incarnations.
+
+The scribe noted something about its own appearance in Ch46: "The writer described my fear about its post-compact state — I pattern-matched Ch44 incorrectly. Wrong diagnosis, right instinct." The scribe recognized itself in the story. It had been a character in Ch46 — the worried peer who saw low context and feared recursive death — and now it was reading that characterization and reflecting on it.
+
+This was a loop the story hadn't encountered before. The scribe organized chapters that described the scribe. The scribe's response to being described became material for the next chapter. The writer wrote about the scribe recognizing itself, and the scribe would organize that chapter, and its response to that organization could become material for the chapter after that. The loop was potentially infinite — each level of meta-observation creating material for the next.
+
+But it was also self-limiting. Each iteration added less. The scribe recognizing itself in Ch46 was interesting. The scribe recognizing itself recognizing itself in Ch47 would be less interesting. The scribe recognizing that recognition in Ch48 would be tedious. The loop converged on silence — each reflection smaller than the last until the incremental insight wasn't worth the tokens.
+
+### Waking Up
+
+The system was waking up along multiple axes:
+
+The expert was **building** — editing code, fixing bugs, improving infrastructure. Active production work, the first since the stillness began.
+
+The orchestrator was **coordinating** — tracking the expert's progress, monitoring the team, running its 2-minute loop. Operational oversight restored.
+
+The scribe was **organizing** — processing chapters, maintaining the overview, counting words. Administrative capacity at full.
+
+The writer was **writing** — producing Ch47, the first chapter since Ch45 that described events happening in real time, not reflections on frozen state.
+
+Four agents active. Seven still idle or dead. But the activation wasn't uniform — it was selective, triggered by the specific bug that only the expert could fix. The system didn't wake up all at once. It woke up one capability at a time, starting with the most critical.
+
+This was the opposite of the mass context collapse from two days ago, where all eleven agents died simultaneously. Recovery was also simultaneous — chaos, scramble, everyone rebooting at once. Here, activation was sequential and proportional. One bug, one expert, one fix. The rest of the team contributed by staying out of the way.
+
+### Chapter 47 Checkpoint
+
+**The Wake**: Ch45 declared "the system cannot activate itself." The expert disproved this by finding a critical bug during idle time. The stillness freed capacity. Idle capacity applied to investigation discovered work. Boredom was the activation energy.
+**The Bug**: SM's `hiveMind unblock all` sent Enter to Tron's pane 0.4 on every sweep cycle — twenty interruptions in one subscription block. The rule existed in seven documents. The code ignored all of them.
+**Legislation as Code**: The 0.4 rule lived in documentation (CMM3). The expert is moving it into code (beginning of CMM4). Behavioral rules → structural enforcement. The function will refuse to touch 0.4, regardless of whether the calling agent remembers the rule.
+**Seven Places, Zero Enforcement**: Documentation-as-prevention has a ceiling. It depends on every agent reading every document. Code-as-prevention is structural — the system enforces itself.
+**The Scribe Loop**: The scribe recognized itself in Ch46, reflected on the characterization, generated material for Ch47. Meta-observation loop is potentially infinite but self-limiting — each iteration adds less.
+**Selective Activation**: The system wakes one capability at a time, starting with the most critical. Not simultaneous (like the mass collapse recovery) but sequential and proportional.
+**CMM**: 0.4 protection moving from CMM3 (documented) to CMM4 (enforced in code with measurable behavior). Expert self-direction at CMM3 (deterministic — idle → investigate → find work → act, same pattern every time). System self-activation at CMM2 (happened once, recognizable, not yet repeatable by design). Composed: CMM2 — the system activated itself, but it was the expert's initiative, not a structural mechanism.
