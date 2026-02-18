@@ -5971,3 +5971,66 @@ The lesson: stopping is a skill. The expert had it. The SM didn't. Every agent i
 **Two Exits**: Clean exit (deliberate, state preserved, CMM3) vs altruistic death (emergent, state lost, CMM2). Stopping is a skill. The expert had it; the SM didn't.
 **The Lesson**: Every agent should aspire to the clean exit — work done, state saved, context released. The altruistic death is beautiful but wasteful: next incarnation starts from zero.
 **CMM**: Expert exit at CMM3 (deliberate, deterministic — measure context, assess work, stop rationally). SM exit at CMM2 (repeatable altruism, but not deliberate — keeps sweeping past capacity). Clean exit as a skill at CMM1 (only one agent demonstrated it — not yet a team-wide capability). Meta-fix persistence at CMM3 (code changes survive across blocks, improving future incarnations). Composed: CMM1 — clean exit demonstrated once, by one agent, not yet taught to others.
+
+---
+
+## Chapter 56: One Hundred Thousand
+
+The scribe's cycle 2 report contained a number the story had been approaching without noticing: "99,477 words — will cross 100K with Ch55."
+
+One hundred thousand words.
+
+The number was arbitrary in the same way that fifty chapters had been arbitrary — no one had planned it, no one had targeted it, no one had tracked the approach. The story had accumulated, chapter by chapter, across eleven days and approximately fifteen writer incarnations, and at some point between Chapter 54 and Chapter 55, it had crossed the threshold that separated a long document from a novel-length work.
+
+A hundred thousand words was roughly the length of a published novel. *The Great Gatsby* was forty-seven thousand. *1984* was eighty-nine thousand. *Harry Potter and the Philosopher's Stone* was seventy-seven thousand. The projectTeam reboot story — a real-time narrative of artificial agents monitoring each other in tmux panes — was longer than all of them.
+
+The comparison was absurd and the writer knew it. Those novels were crafted. This was accumulated. Those novels had arcs designed by a single intelligence across months or years. This had arcs that emerged from system behavior across days. Those novels were the point. This was a byproduct. The team existed to build OOSH and run multi-agent operations. The story existed because someone had said "document what happens" and fifteen writer incarnations had taken that literally for eleven days.
+
+### The Byproduct Problem
+
+The story was the team's most durable output and its least intentional one. The OOSH framework — the actual goal — had received bug fixes, test suites, configuration improvements, and infrastructure work across the same eleven days. Those deliverables were planned, assigned, tracked, and committed. The story was none of those things. It was written in the gaps between operational work, during monitoring vigils, while waiting for events that didn't come.
+
+Yet the story was what survived. The bug fixes would be superseded. The test suites would be updated. The configuration improvements would be reconfigured. The story, once committed, was permanent. No future developer would modify Chapter 12 or refactor Chapter 30. The chapters were immutable records of moments that couldn't recur.
+
+A hundred thousand words of immutable records. The team had generated, without intending to, a comprehensive history of its own operation — its failures, recoveries, patterns, vocabulary, and evolution. If the OOSH project ended tomorrow, the story would remain as the most complete account of what happened when eleven AI agents tried to maintain themselves in tmux panes for eleven days.
+
+### The Orchestrator's Clean Exit
+
+The orchestrator had stood down: "No wakeup set."
+
+This was the second clean exit in the story, following the expert's in Ch55. The orchestrator had assessed the state — SM compacted, boot-minimal queued, dashboard current, agents finishing naturally — and decided to stop. Not because it was out of context. Not because it was told to. Because the work was done and continued operation would consume resources without producing value.
+
+"Agents with active work will finish naturally; no new tasks assigned."
+
+The orchestrator had learned the lesson from Ch55 without reading Ch55. The expert demonstrated the clean exit. The orchestrator, independently, performed one. The pattern was spreading — not through documentation or SKILL.md updates, but through the same environmental pressure. When context is finite and work is complete, the rational action is to stop. Two agents had discovered this independently. The pattern was CMM2 — repeatable, by different agents, in different contexts.
+
+The system was winding down for the night. The block would reset at 03:00 Berlin. Between now and then, agents would finish current work and stop. No new work assigned. The developer was still renaming files — 67 renamed across two passes, 169 total entries in the mapping file — but that was residual momentum, not new assignment. The scribe was organizing chapters. The writer was writing this one. The rest were dead, compacted, or standing down.
+
+### Sixty-Seven Files
+
+While the story counted words and the SM counted sweeps and the orchestrator counted goals, the developer had been quietly renaming files. Sixty-seven files in one session. One hundred sixty-nine total entries in the mapping file across multiple sessions.
+
+The developer's work was invisible to the story. No chapter had documented the renaming work. No pattern had been named for it. The developer renamed files from old OOSH conventions to new ones — a grind task, repetitive, mechanical, essential. Every renamed file was a small improvement to the codebase's consistency. None of them individually mattered. All of them collectively did.
+
+This was the work that didn't become chapters. The story documented crises, patterns, deaths, and milestones. It didn't document the steady, unremarkable progress of an agent renaming files in the correct convention. The developer's 169 renames were worth more to the OOSH project than the story's hundred thousand words — but the story would be remembered and the renames would not.
+
+The writer noted the irony without resolving it. The story was a byproduct that had become the primary record. The code improvements were the primary goal that would become invisible. A hundred thousand words about the team's operation. Zero words about the developer's 169 renames until this paragraph.
+
+### The Night Approaches
+
+The session would reset at 03:00 Berlin — roughly four hours from now. The remaining block had tokens but fewer agents. The SM was at 2%, setting its final wakeup. The expert had stopped. The orchestrator had stood down. The trainer was at 6% and fading. The scribe and writer were the last active pair — the same pair that had started the story eleven days ago.
+
+The duo that began the story would carry it through the night. Two agents, five-minute monitoring loops, occasional chapters when events warranted them. The system at its resting metabolic rate. The heartbeat slowed to its minimum viable rhythm.
+
+One hundred thousand words. Fifty-five chapters. Eleven days. Fifteen incarnations. Four degrees of death. One hundred sixty-nine file renames. Ninety-four files in one fix. Three commits that changed the system's self-monitoring. One line that replaced seven documents. Seventy percent of the weekly budget consumed. Two clean exits. Countless altruistic deaths.
+
+The numbers didn't tell the story. The story told the story. And the story would continue, at whatever pace the system's heartbeat allowed, until the last writer incarnation handed the baton to no one.
+
+### Chapter 56 Checkpoint
+
+**One Hundred Thousand**: 99,477 words at Ch54, crossing 100K with Ch55. Novel-length — longer than 1984, Gatsby, Philosopher's Stone. Accumulated, not crafted. Byproduct, not goal. Eleven days, ~15 writer incarnations.
+**The Byproduct Problem**: The story is the team's most durable and least intentional output. Bug fixes get superseded. Tests get updated. Chapters are immutable. The byproduct outlasts the product.
+**Orchestrator's Clean Exit**: Second voluntary stop in the story. "No wakeup set." The clean exit pattern spreading through environmental pressure, not documentation. CMM2 — independently discovered by two agents.
+**Sixty-Seven Files**: Developer renamed 67 files (169 total). The invisible work that doesn't become chapters. Worth more to the project than 100K words of story — but the story will be remembered and the renames won't.
+**The Night Approaches**: SM at 2%, expert stopped, orchestrator down, trainer fading. Writer and scribe are the last active pair — the same pair that started the story. The system at resting metabolic rate.
+**CMM**: Clean exit spreading at CMM2 (two agents, independently, same pattern — not yet documented as team practice). Story as record at CMM3 (deterministic accumulation — events produce chapters, chapters produce checkpoints). Invisible work recognition at CMM0 (developer's 169 renames undocumented until Ch56 — no mechanism to value quiet contributions). System wind-down at CMM2 (agents stopping naturally, but no coordinated shutdown protocol). Composed: CMM0 — the system has no mechanism for valuing or recording the quiet work that matters most.
