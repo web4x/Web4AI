@@ -50,8 +50,9 @@
 | 42 | [Structure and Meaning](#chapter-42-structure-and-meaning) | 1,233 | 2026-02-18 |
 | 43 | [Five Chapters About Nothing](#chapter-43-five-chapters-about-nothing) | 1,363 | 2026-02-18 |
 | 44 | [The Gate Opens](#chapter-44-the-gate-opens) | 1,187 | 2026-02-18 |
+| 45 | [The Pause](#chapter-45-the-pause) | 1,032 | 2026-02-18 |
 
-**Total**: 44 chapters, 84,122 words
+**Total**: 45 chapters, 85,154 words
 
 ---
 
