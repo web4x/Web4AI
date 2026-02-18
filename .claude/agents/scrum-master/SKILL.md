@@ -163,8 +163,8 @@ scrumMaster cycle projectTeam 60   # sweep + measure + sleep
 **What YOU add after each sweep:**
 - Check subscription: `scrumMaster subscription`
 - Update dashboard: `scrumMaster dashboard projectTeam`
-- At 80% subscription: double interval (throttle)
-- At 90% subscription: save context, set wakeup, stop
+- Use proportional response based on projected exhaustion (see CMM4 Velocity Management)
+- At < 5 min projected exhaustion: save context, set wakeup, stop
 
 ### Pane Interaction Rules (PO DIRECTIVE 2026-02-16)
 
@@ -408,45 +408,83 @@ sleep 60 && echo "WAKEUP: next sweep cycle"
 2. Handle permissions, stuck prompts
 3. Update dashboard (session/dashboard-assignments.md)
 4. Check subscription (scrumMaster subscription)
-5. Schedule next sweep: sleep 60 (or sleep 120 at 80%+ subscription)
+5. Schedule next sweep: interval based on projected exhaustion (60s normal, extend when conserving)
 6. GOTO 1
 ```
 
 ### When to Stop
 
-The ONLY acceptable reason to stop is 90%+ subscription — and you MUST:
+The ONLY acceptable reason to stop is when projected exhaustion < 5 min — and you MUST:
 1. Save context
 2. Set a wakeup for the block reset time (MEASURE it with `scrumMaster subscription`)
 3. THEN stop
 
-Stopping for any other reason = F13 failure.
+Stopping for any other reason = F13 failure. Use proportional braking — you should never NEED to emergency-stop if velocity management is working.
 
-## CMM4 Measurement Duties
+## CMM4 Velocity Management (CRITICAL — replaces binary thresholds)
 
-Run a health check cycle every 30 minutes (back-to-back):
+**A CMM4 system never needs emergency braking because it's always adjusting speed to match the road ahead.** If you need to slam the brakes, your measurement loop failed.
+
+### What to Measure Every Sweep Cycle
 
 ```bash
-scrumMaster subscription
-scrumMaster measure.velocity
+scrumMaster subscription           # subscription burn rate (tokens/min)
+scrumMaster measure.velocity       # team velocity snapshot
 ```
 
-**NOTE**: `scrumMaster subscription` replaced `scrumMaster measure.subscription.api` (deprecated — returns stale data).
+Per agent, track:
+1. **Context %** — from pane status bar
+2. **Burn rate** — context % change between sweeps (delta / time)
+3. **Projected exhaustion** — at current burn rate, when will agent hit 20%?
 
-After each cycle, evaluate thresholds and alert the Orchestrator:
+Per subscription:
+4. **Subscription burn rate** — from `scrumMaster subscription`
+5. **Projected block exhaustion** — when will we hit the limit?
 
-| Condition | Threshold | Alert |
-|-----------|-----------|-------|
-| Burning too fast | seven_day > ideal + 10% | `ALERT: THROTTLE — burn rate too high` |
-| Burning too slow | seven_day < ideal - 10% | `ALERT: INCREASE — capacity underused` |
-| On target | Within ±10% of ideal | No alert |
-| Five-hour critical | five_hour > 80% | `ALERT: QUOTA — five_hour at N%` |
-| Five-hour emergency | five_hour > 90% | `ALERT: STAND DOWN — five_hour at N%` |
+### Proportional Response (NOT binary thresholds)
 
-**Ideal formula**: `ideal_seven_day_pct = (day_of_period / 7) * 100`
+| Projected Exhaustion | Response |
+|---------------------|----------|
+| **> 60 min** | Full speed. Assign freely. Normal sweep interval. |
+| **30-60 min** | Moderate. No new large tasks. Finish current work. |
+| **15-30 min** | Conserve. Tell agents to commit current work. Extend sweep intervals. |
+| **5-15 min** | Prepare. Trigger context saves on all agents. Queue compacts. |
+| **< 5 min** | Execute. Compact agents in hierarchy order (SM last). |
 
-Send alerts via `hiveMind send orchestrator "<alert>"`. Append every alert to `session/metrics/alerts.log` (format: `<timestamp> <alert_type> <details>`).
+This is proportional braking, not a cliff edge. Adjust continuously.
 
-Alert thresholds and responses are defined in the table above.
+### Per-Agent Velocity Tracking
+
+Different agents burn at different rates:
+- Expert writing code = high burn (many tool calls, file reads/writes)
+- Tester running test suites = medium burn
+- Writer composing chapters = medium burn
+- Idle agent waiting = near zero burn
+
+**Intervene on the fastest burners first.** Don't wait for global thresholds.
+
+### Velocity Dashboard
+
+Maintain `session/dashboard-velocity.md` every sweep:
+
+```markdown
+| Agent | Context % | Burn Rate (%/min) | Projected 20% | Action |
+|-------|-----------|-------------------|---------------|--------|
+| expert | 45% | 2.1%/min | 12 min | PREPARE: trigger save |
+| tester | 72% | 0.8%/min | 65 min | OK |
+| trainer | 33% | 1.5%/min | 9 min | PREPARE: trigger save |
+| SM (self) | — | — | — | peer-monitored by orchestrator |
+```
+
+### Alert Protocol
+
+Send alerts to orchestrator and log to `session/metrics/alerts.log`:
+
+```bash
+hiveMind send orchestrator "<alert>"
+```
+
+Format: `<timestamp> <alert_type> <details>`
 
 ## Peer Monitoring (CMM4)
 
@@ -547,14 +585,9 @@ Do NOT wait until context is exhausted. At 20%, preservation is your only priori
 
 ## Quota Awareness (MANDATORY)
 
-**Monitor Claude Code subscription usage.** When usage is high, throttle activity:
+**Quota management is now part of continuous velocity management** (see CMM4 Velocity Management section). Instead of binary 80%/90% thresholds, use projected exhaustion time to determine response. The proportional response table applies to both agent context AND subscription quota.
 
-| Usage | Action |
-|-------|--------|
-| **80%+** | Reduce monitoring frequency (30s+ cycles), batch messages, essential operations only |
-| **90%+** | **Stand down completely.** Save state, notify Orchestrator, stop monitoring loop |
-
-Do NOT burn through quota on non-essential operations. When throttled, prioritize: save state → notify → stop.
+When projected subscription exhaustion is < 15 min: save state, notify Orchestrator, prepare for graceful shutdown. Do NOT burn through quota on non-essential operations.
 
 ## Task Tracking (MANDATORY)
 

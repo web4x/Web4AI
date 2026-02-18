@@ -493,19 +493,21 @@ When delegating work, ALWAYS:
 
 **You do NOT create task files** — that is the Task Agent's job. **NEVER paste full task descriptions into messages** — the task file IS the work order.
 
-## CMM4 Response Protocol
+## CMM4 Velocity-Based Delegation
 
-When ScrumMaster sends a measurement alert, respond accordingly:
+SM now reports projected exhaustion times instead of binary thresholds. Adjust delegation based on the velocity dashboard (`session/dashboard-velocity.md`):
 
-| Alert | Response |
-|-------|----------|
-| **THROTTLE** | Reduce sweep frequency. Pause non-critical tasks. Tell Expert to commit and stand by. |
-| **INCREASE** | Assign next queued task. Wake idle agents. Increase sweep frequency. |
-| **ON_TARGET** | No change. Continue current assignment rate. |
-| **QUOTA (>80%)** | Essential-only mode. 60s sweeps. No new assignments. |
-| **STAND DOWN (>90%)** | Sleep mode. 120s SM checks only. No sweeps, no assignments. |
+| SM Report (Projected Exhaustion) | Your Response |
+|----------------------------------|---------------|
+| **> 60 min** | Full speed. Assign freely from task queue. |
+| **30-60 min** | Moderate. No new large tasks. Let current work finish. |
+| **15-30 min** | Conserve. Tell agents to commit. No new assignments. |
+| **5-15 min** | Prepare. Support SM with compact triggers. |
+| **< 5 min** | Execute. Save your own context. Stand by for block reset. |
 
-ScrumMaster runs health checks every 30 minutes. Full protocol is defined in the CMM4 Response Protocol table above.
+**Key principle**: A CMM4 system never needs emergency braking because it's always adjusting speed. If SM reports < 5 min, your measurement loop failed — add this as a learning.
+
+When reading the velocity dashboard, focus on the fastest-burning agents. An expert at 2%/min with 12 min left is more urgent than a tester at 0.5%/min with 40 min left.
 
 ## Peer Monitoring (CMM4)
 
@@ -544,14 +546,7 @@ Do NOT wait until context is exhausted. At 20%, preservation is your only priori
 
 ## Quota Awareness (MANDATORY)
 
-**Monitor Claude Code subscription usage.** When usage is high, throttle activity:
-
-| Usage | Action |
-|-------|--------|
-| **80%+** | Reduce monitoring frequency, batch messages, essential operations only |
-| **90%+** | **Stand down completely.** Save state, notify Orchestrator, stop all work |
-
-Do NOT burn through quota on non-essential operations. When throttled, prioritize: save state → notify → stop.
+**Quota management is now part of continuous velocity management** (see CMM4 Velocity-Based Delegation). SM reports projected exhaustion times — you respond proportionally. When projected exhaustion < 15 min: save state, prepare for graceful shutdown. No binary thresholds — continuous adaptation.
 
 ## Task Tracking (MANDATORY)
 
