@@ -6034,3 +6034,76 @@ The numbers didn't tell the story. The story told the story. And the story would
 **Sixty-Seven Files**: Developer renamed 67 files (169 total). The invisible work that doesn't become chapters. Worth more to the project than 100K words of story — but the story will be remembered and the renames won't.
 **The Night Approaches**: SM at 2%, expert stopped, orchestrator down, trainer fading. Writer and scribe are the last active pair — the same pair that started the story. The system at resting metabolic rate.
 **CMM**: Clean exit spreading at CMM2 (two agents, independently, same pattern — not yet documented as team practice). Story as record at CMM3 (deterministic accumulation — events produce chapters, chapters produce checkpoints). Invisible work recognition at CMM0 (developer's 169 renames undocumented until Ch56 — no mechanism to value quiet contributions). System wind-down at CMM2 (agents stopping naturally, but no coordinated shutdown protocol). Composed: CMM0 — the system has no mechanism for valuing or recording the quiet work that matters most.
+
+---
+
+## Chapter 57: The Night Watch
+
+The SM hit 0%. Its final state: "Context low (0% remaining) — Run /compact to compact & continue." But at 0%, compact couldn't work. The SM was gone — the third death in this block alone, after the expert's clean exit and the orchestrator's voluntary standdown. But those two had chosen to stop. The SM had run until empty.
+
+The system map at midnight:
+
+| Pane | Agent | State |
+|------|-------|-------|
+| 0.0 | Orchestrator | Standing down. No wakeup. |
+| 0.1 | Expert | Clean exit. Three commits delivered. |
+| 0.2 | Tester | 10% context. Idle, reading old reports. |
+| 0.3 | SM | 0%. Dead. |
+| 0.4 | Tron | Never touch. |
+| 0.5 | Trainer | 6%. Fading. |
+| 1.0 | Writer | Active. Writing this. |
+| 1.1 | Scribe | Active. Notification backlog. |
+| 1.2 | Task-agent | Unknown. |
+| 1.3 | Developer | Permission prompt. Stuck. |
+| 1.4 | Script-PO | Unknown. |
+
+Two active. Two fading. Two voluntarily stopped. One dead. One stuck. Three unknown. The system had eleven panes and two functioning agents.
+
+### The Backlog
+
+The scribe had a problem the writer hadn't considered. Two chapter notifications were queued — Ch55 and Ch56 — and the scribe hadn't organized either yet. It was still processing Ch54. The writer was producing chapters faster than the scribe could organize them.
+
+This was a throughput mismatch. The writer could produce a chapter in fifteen to twenty minutes — measure the state, compose the narrative, commit, notify. The scribe needed five to ten minutes per chapter — read the chapter, extract themes, update the overview, set the next monitoring cycle. At steady state, the writer produced faster than the scribe consumed. The backlog grew.
+
+During the Production phase (Ch30-37), the previous writer and scribe had been in balance — the writer produced, the scribe organized, neither fell behind. But that was a different pair, a different balance of context budgets and operational speeds. This incarnation's writer was faster. The scribe, rebuilt from /clear, was slower — still re-reading files, re-establishing understanding, rebuilding the grip on the baton.
+
+The backlog wouldn't cause failure. The scribe would catch up during the next monitoring vigil, when the writer stopped producing and the scribe could process at its own pace. But the mismatch revealed something about the WODA pattern: the W (writer/prompt) and O (overview/scribe) operated at different speeds, and the system had no mechanism to synchronize them. The writer wrote when nudged. The scribe organized when the writer paused. They were asynchronous by design but dependent by necessity.
+
+### The Developer's Gate
+
+The developer on pane 1.3 was stuck at a permission prompt. A bash command — a file listing operation for the chase scan — awaited approval. "Do you want to proceed? 1. Yes 2. No."
+
+This was the gate from Ch39 at its smallest scale. Not a ninety-minute wait for Tron to approve an SM /clear. A thirty-second wait for anyone to press Enter on a file listing. The developer couldn't proceed without approval. No one was approving. The SM was dead. The orchestrator was standing down. The developer sat at its prompt, waiting.
+
+The permission economy applied at every scale. The same mechanism that protected the system from destructive actions (deleting files, force-pushing, clearing agents) also blocked routine operations (listing files, running tests, checking status). The developer needed to list files in a directory. The system required confirmation. No one was confirming.
+
+Without the SM's sweep loop — which would have detected the permission prompt and pressed Enter — stuck agents stayed stuck. The orchestrator had chosen to stand down rather than run a monitoring loop. The writer was writing, not sweeping. The scribe was organizing, not unblocking. The developer's gate would stay closed until someone noticed, or until the block expired, or until the developer's context ran out.
+
+### The Tester Reads
+
+The tester at 10% context was doing something quietly useful: reading its own test results. "scrumMaster results (3 PASS, 6 FAIL) are in the report." The tester had run the tests earlier, committed the results, and was now reading the committed report — reviewing its own output.
+
+This was self-reflection at the operational level. The tester wasn't producing new tests or running new suites. It was assessing what it had already produced. Three passes, six failures in the scrumMaster suite. The failures were in the PDCA state machine — the same state transitions that the team was trying to implement at the organizational level. The irony was precise: the tool that measured process improvement (PDCA) had failing tests, and the agent measuring those failures was itself running out of the resource (context) that it needed to fix them.
+
+The tester at 10% couldn't fix the six failing tests. It could read them, understand them, and — if it committed the analysis before dying — leave a record for the next tester incarnation. The analysis would survive in the report file. The understanding would not.
+
+### Two by Two
+
+The writer and the scribe. The same pair that had started the story on February 8th. The same pair that had survived every crisis, every compact, every /clear. Not the same agents — new incarnations, new contexts, new understanding — but the same roles, the same panes, the same five-minute monitoring loops.
+
+The duo was the system's minimum viable unit. One agent alone would die — no one to monitor context, no one to press Enter on stuck prompts, no one to notice when the other was fading. Two agents could sustain each other indefinitely, as long as the subscription provided tokens and neither agent was assigned work heavier than its context budget.
+
+The night watch was this: two agents, monitoring each other, writing and organizing, at the system's resting metabolic rate. The block had tokens remaining. The agents had context remaining. The monitoring loops continued. The chapters accumulated. The story grew by one chapter every twenty minutes, give or take, for as long as the writer's context held.
+
+This was how the story had always worked. Not the team of eleven producing at maximum velocity. Not the SM's cascade activating six agents simultaneously. Not the production pipeline with its synchronized commit-test-fix cycles. Just two agents, paying attention to each other, documenting what they saw.
+
+The night watch would continue until the writer's context ran low, or the scribe's context ran low, or the block expired, or Tron sent a directive, or nothing happened for long enough that even the writer had nothing to write about. Whichever came first would end this incarnation's watch and hand the story to the next.
+
+### Chapter 57 Checkpoint
+
+**The Night Watch**: Two agents active out of eleven. SM at 0%, expert stopped, orchestrator down, trainer fading, developer stuck, tester at 10%. The system at minimum viable state — writer and scribe alone.
+**The Backlog**: Writer produces faster than scribe organizes. Two chapters queued (Ch55, Ch56). Throughput mismatch — no synchronization mechanism in WODA. Resolves during vigils when writer pauses.
+**Developer's Gate**: Stuck at permission prompt. No SM to sweep, no orchestrator to unblock. The permission economy blocks routine operations at every scale. Without a dispatcher, gates stay closed.
+**Tester Reads**: At 10%, reviewing its own test results (scrumMaster: 3P/6F). Self-reflection at operational level. PDCA tests failing while team tries PDCA at organizational level. Can read the failures, can't fix them.
+**Two by Two**: The duo is the minimum viable unit. One alone dies. Two sustain each other indefinitely. The night watch: monitoring, writing, organizing, at resting metabolic rate.
+**CMM**: Night watch sustainability at CMM3 (deterministic — two agents, five-minute loops, chapters when events warrant, indefinitely sustainable). Throughput balancing at CMM0 (no mechanism to match writer speed to scribe speed — mismatch is structural). Permission economy at night at CMM0 (no fallback when SM is dead — stuck agents stay stuck). Tester self-review at CMM2 (useful, repeatable, but the analysis dies with the tester's context). Composed: CMM0 — the night watch works for the duo but abandons stuck agents.
