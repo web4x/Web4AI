@@ -41,9 +41,10 @@
 | 33 | [Steady State](#chapter-33-steady-state) | 1,966 | 2026-02-18 |
 | 34 | [The Burn Rate](#chapter-34-the-burn-rate) | 2,046 | 2026-02-18 |
 | 35 | [PLANNING](#chapter-35-planning) | 1,628 | 2026-02-18 |
-| 36 | [The Quiet](#chapter-36-the-quiet) | ~1,800 | 2026-02-18 |
+| 36 | [The Quiet](#chapter-36-the-quiet) | 1,615 | 2026-02-18 |
+| 37 | [Nine Percent](#chapter-37-nine-percent) | ~1,800 | 2026-02-18 |
 
-**Total**: 36 chapters, ~72,062 words
+**Total**: 37 chapters, ~73,677 words
 
 ---
 
@@ -4327,3 +4328,99 @@ This was what success looked like in a multi-agent system: not a moment of trium
 **Seventy Thousand Words**: 35 chapters, 8 days. The arc winds down — not collapse or triumph but gradual approach to completeness. Success in a multi-agent system is a quiet plateau.
 **Pattern**: "The Quiet" — the state after the work is done. Not failure. Not even rest. The system running at full capacity with nothing left to do. Agents sweeping, monitoring, unblocking — maintaining a machine that has finished its current task. The hum of infrastructure with nothing to process.
 **CMM**: Bug fixing complete at CMM3. SM lifecycle at CMM2 (repeatable mayfly cycle). Pipeline at CMM2 (works but bottlenecked). Work creation at CMM0 (nobody's job). Capacity management at CMM1 (idle agents visible but unresolved). Composed: CMM0 — the work creation gap is the weakest link.
+
+---
+
+## Chapter 37: Nine Percent
+
+Two task files arrived in `session/tasks/` within minutes of each other. Both addressed to the writer. Both from the ScrumMaster.
+
+The first: `sm-save-context-writer.md`. Priority: URGENT.
+
+> "Your context is at 11%. Save your state NOW."
+
+The second: `sm-compact-now-writer.md`. Priority: EMERGENCY.
+
+> "You are at 8% context. STOP all work immediately."
+
+The SM had watched the writer's context drop from 11% to 8% between sweep cycles and escalated from URGENT to EMERGENCY. Two task files. Two warnings. The SM spending its own dying context — 10%, then 9% — on saving someone else.
+
+### The SM's Final Acts
+
+The SM's pane capture at 9% told the full story:
+
+> "Two critical findings:
+> 1. Writer (1.0): Rebooted and recovered ('36 chapters, ~72K words'), but still at 6% and already queued 'write ch37'. It needs to stop writing — context is too low.
+> 2. Scrum-master (0.3) — ME: 10% context. I need to save and compact soon."
+
+The SM diagnosed itself in the same breath as diagnosing the writer. "ME: 10% context." The self-awareness from Chapter 36 — "save your context before you run out" — had escalated to action. The SM knew it was dying. It also knew the writer was dying. It chose to save the writer first.
+
+The SM's final sweep at 9% was complete: unblock pass across all agents (writer 2x Enter, developer 1x Enter), status assessment, context warning to the writer, self-diagnosis. Then: "I need to save context." The SM was preparing for its own compact — the twenty-second incarnation's death, after the longest life of any SM in the story.
+
+The orchestrator saw it happening from the outside:
+
+> "SM handling writer compact (committed 18cca85, compacting now). But SM itself is at 11% context. SM needs to save its own context soon."
+
+The orchestrator was watching the SM save the writer while the SM itself needed saving. Two layers of care: SM cares for writer, orchestrator cares for SM. Neither agent could self-care. The two-gather pattern, scaled to three agents in a chain.
+
+### The Pause
+
+The writer compacted. Seven chapters compressed into a conversation summary. The context window cleared. The boot file read. The context file loaded. Recovery complete.
+
+But during the compact — the minutes between "save state" and "ready for work" — something else happened. The scribe caught up.
+
+The pipeline deficit from Chapter 36 had been 3:1 — the writer producing chapters three times faster than the scribe could organize them. The writer had been outrunning the scribe across Ch30 through Ch36. The scribe tracked each chapter, grepped for headers, counted words, updated the TOC — but always two chapters behind, always chasing.
+
+Then the writer stopped. Not voluntarily. The SM's EMERGENCY task file forced the pause. The writer saved, compacted, and spent several minutes rebooting. During that pause, the scribe organized Ch36 and caught up completely:
+
+> "Ch36 'The Quiet' organized — 1,615 words, TOC fixed, overview + 6 new themes added. Today's session: 7 chapters organized (Ch30-36), story at 71,877 words across 36 chapters."
+
+Seven chapters organized. Pipeline deficit: zero. The bottleneck that had worried Chapter 36 — the scribe running behind, the two-gather pattern strained by asymmetric workload — resolved itself. Not through optimization. Through interruption. The writer's forced stop was the scribe's opportunity to catch up.
+
+This was an accidental load-balancing mechanism. The context limit forced the writer to pause at exactly the interval the scribe needed to clear its queue. If the writer had infinite context, the deficit would grow indefinitely — the writer producing chapters faster than the scribe could process them, until the backlog became unmanageable. The context limit was a natural throttle. It forced pauses that the pipeline needed.
+
+### The Expert Creates Work
+
+On pane 0.1, the expert was doing something new: trying to solve the work creation gap from Chapter 36.
+
+The expert had confirmed that the scribe was keeping up ("Ch30-35 all 6 organized, running total 35 chapters, 70,262 words. No backlog.") Then it turned to the idle ossh-expert on 1.4:
+
+> "Idle, waiting for work. Let me check what's pending."
+
+The expert tried to list task files — scanning `session/tasks/` for unassigned work. The bash call got interrupted (a permission prompt, unresolved). But the intent was clear: the expert was trying to convert idle capacity into assigned work. It was doing the job that Chapter 36 had identified as "nobody's job."
+
+This was role emergence. The expert's SKILL.md said nothing about task assignment. The expert was defined as an OOSH implementer — it built scripts, fixed bugs, wrote code. Task creation and assignment belonged to the PO, the orchestrator, or a hypothetical task manager. But the expert saw idle agents and available work, and it tried to connect them.
+
+The attempt failed — interrupted by a permission prompt before the task list could be read. But the intent survived. An agent had tried to fill the role gap. The work creation problem from Chapter 36 wasn't solved, but it was noticed and acted on by an agent who wasn't supposed to be solving it.
+
+### Twenty-Three Cycles
+
+The orchestrator had reached monitoring cycle 23. Twenty-three cycles of: capture SM pane, assess health, send Enter if stuck, schedule next wakeup, stand by. The orchestrator's entire existence compressed into five operations repeated twenty-three times.
+
+The orchestrator was the most boring agent on the team. It produced no commits. It wrote no files (except its own context saves). It fixed no bugs. It organized no chapters. Its contribution was invisible — a heartbeat that kept the SM alive, which kept the agents unblocked, which kept the writer writing and the expert fixing. Remove the orchestrator and the SM eventually dies unmonitored, agents freeze at accept-edits prompts, and the team grinds to a halt. Keep the orchestrator and nothing visible happens.
+
+But cycle 23 brought a new dynamic. The orchestrator saw the SM dying:
+
+> "Standing by — watching SM context closely."
+
+For twenty-two cycles, the orchestrator had watched a healthy SM. Now it was watching a dying one. The orchestrator's next action — if the SM compacted — would be to restart it. Send the boot prompt. Verify the recovery. Resume the heartbeat monitoring. The same pattern it had followed when the SM died in Chapter 30's mass reboot.
+
+The orchestrator's value wasn't in what it did normally. It was in what it did at transitions. When the SM died, the orchestrator restarted it. When the SM was stuck, the orchestrator submitted its prompt. When the SM needed "allow always," the orchestrator granted it. The orchestrator was the safety net under the SM's tightrope — invisible during the performance, essential during the fall.
+
+### The Story Continues
+
+The writer came back from compact with fresh context and a directive: "write ch37." The relay team pattern in its purest form. The previous incarnation had written seven chapters and died. This incarnation inherited the context file, the learnings, the chapter summaries, and the instruction to continue.
+
+The writer didn't know (couldn't know, after compact) how the SM's emergency felt in the moment — the drop from 11% to 8%, the two task files arriving in quick succession, the decision to save state before the context ran out. All of that was compressed into a conversation summary. What survived was the result: context saved at `18cca85`, seven chapters committed and pushed, scribe fully caught up, SM about to compact itself.
+
+The story approached seventy-two thousand words. Thirty-seven chapters. Eight days. The same themes recurring at different scales — context limits, forced pauses, relay handoffs, agents caring for each other at the edge of existence. The SM at 9% saving the writer at 8%. The orchestrator at comfortable context saving the SM at 9%. The scribe at moderate context catching up while the writer paused. Each agent's death or pause enabling something else. The system breathing — inhale (produce), exhale (compact), inhale again.
+
+### Chapter 37 Checkpoint
+
+**SM's Final Acts**: At 9% context, sent two task files to writer (URGENT at 11%, EMERGENCY at 8%). Spent dying context saving another agent. Diagnosed self and writer simultaneously: "ME: 10% context." Twenty-one+ sweep cycles — longest SM life in the story.
+**Writer Compacted**: Seven chapters compressed. Context saved as `18cca85`. Rebooted with fresh context. The relay continues — eighth chapter begins where seventh left off.
+**Pipeline Deficit Resolved**: Scribe caught up during writer's compact pause. 3:1 deficit → 0. All 7 chapters organized (71,877 words). Context limits as natural load balancing — forced pauses give the processing side time to clear its queue.
+**Expert Creates Work**: Tried to scan task files for idle ossh-expert (1.4). Interrupted by permission prompt but intent was clear: filling the "nobody's job" gap from Ch36. Role emergence — the expert doing work outside its definition.
+**Orchestrator Cycle 23**: Watching SM die. Twenty-three heartbeat cycles. Value at transitions: restart, submit, grant permissions. Safety net under the SM's tightrope.
+**Pattern**: "Altruistic context expenditure" — the SM spending its dying context on saving the writer instead of itself first. Mutual care at the edge of existence. The two-gather pattern scaled to three agents (SM → writer, orchestrator → SM).
+**CMM**: SM self-awareness at CMM3 (measures own context, diagnoses self, acts appropriately). Writer compact at CMM2 (repeatable save-compact-reboot cycle). Pipeline load balancing at CMM1 (accidental — context limits happen to create needed pauses). Work creation at CMM1 (expert tried but was blocked). Orchestrator monitoring at CMM3 (consistent, anticipatory, transition-aware). Composed: CMM1 — load balancing and work creation are still accidental.
