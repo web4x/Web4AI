@@ -1,10 +1,10 @@
 # Agent Trainer Context
 
-**Updated**: 2026-02-18 ~16:45
+**Updated**: 2026-02-18 ~17:00
 **Role**: agent-trainer
 **Pane**: projectTeam:0.5
 
-## Current Status: Active, checking orchestrator
+## Current Status: STANDING DOWN — subscription 78%, resets 03:00 Berlin
 
 ## Completed This Session (all committed)
 
@@ -26,11 +26,12 @@
 - SM boot-minimal.md: 4 mandatory checks, trend monitoring, marathon detection
 - Orchestrator: 10-15 min time-boxing, background sleep loops forbidden
 - All binary 80%/90% thresholds removed from entire codebase
+- Orchestrator recovered from API error, now delegating with goal-aligned table
+- SM executing goal-aligned sweeps with full CMM4 intelligence
 
-## Open Issues
-- Orchestrator was /cleared and rebooted — may still be monitoring instead of delegating
+## Open Issues (for next session)
 - hiveMind unblock all F26 bug in actual code not yet fixed by expert
-- 5 idle agents never got work assigned
+- Orchestrator boot file needs delegation-first directive (defaults to monitoring)
 
 ## Recovery Steps
 1. Read this file
