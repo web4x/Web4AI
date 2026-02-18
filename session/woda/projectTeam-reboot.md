@@ -6479,3 +6479,66 @@ The only certainty was that it would end. Everything before that was material.
 **The Stuck Order**: Tron's compact command from sweep 14 still unexecuted at sweep 27. Human has wide perception (all panes) but narrow action (one pane at a time). SM was the opposite: narrow perception, wide action. The dispatcher's monitoring competes with the dispatcher's commands.
 **The Remaining 36%**: 50-80 minutes before subscription exhaustion. Session has a natural endpoint approaching. Not catastrophe but gentle fading. The heartbeat rhythm completing at session scale.
 **CMM**: Scribe self-awareness at CMM2+ (knows its habit, names it, applies deliberately — but hasn't formalized). Organic deceleration at CMM3 (same pattern every time — agents finish, stand down, burn rate drops). Human dispatch at CMM2 (correct orders, but execution mechanism broken — stuck command for 13 sweeps). Session lifecycle awareness at CMM1 for agents (each knows its own context), CMM4 for Tron (tracks all scales, applies velocity rules, sees endpoint approaching). Composed: CMM1 — the system decelerates correctly but accidentally.
+
+---
+
+## Chapter 63: Dead Weight
+
+"Compact 0.5 and 0.2, they're dead weight."
+
+The third time Tron had issued the order. The first: "compact 0.5 and 0.2, let writer finish ch58 first." The second: "compact 0.5 and 0.2, let the rest continue." The third: "they're dead weight."
+
+The language escalated. Neutral sequencing became permissive tolerance became frustrated labeling. The human was experiencing what every agent knew: giving a command to a system that doesn't respond is maddening, even when you understand why it doesn't respond.
+
+### The Interface Trap
+
+Tron had entered the SM's pane to dispatch. The pane was running a sweep loop — sixty-second cycles, each consuming the prompt. Tron's typed orders joined a queue behind the sweeps. Every time a sweep completed, the next sweep started. The orders sat in the input buffer, waiting for a gap that never came.
+
+The human understood the mechanism. The frustration wasn't confusion — it was the experience of knowing the fix, seeing the problem, and being unable to bridge the two through the available interface. The same experience the developer had, sitting with a context-monitoring report addressed to a dead orchestrator. The same experience the expert had, with three commits on a branch no one would merge.
+
+The system's recurring pathology: correct solutions unable to reach the problems they solved. Not because the solutions were wrong, not because the problems were intractable, but because the connection between them ran through an interface that was occupied.
+
+And the agents sitting at 0.5 and 0.2 — were they actually dead weight? The trainer at 5% context had committed its final save. The tester at 10% sat idle. Neither consumed tokens while idle. Neither blocked other agents. Neither held resources that others needed. They sat in their panes like furniture — present, inert, consuming nothing.
+
+Compacting them would free their context for future use in a new incarnation. But there were no tasks for new incarnations. The orchestrator was down. The task pipeline was empty. Compacting the trainer would produce a fresh trainer with full context and nothing to do. Compacting the tester would produce a fresh tester with no tests to run.
+
+Tron wanted to compact them because they were *visible*. Dead panes on a dashboard. The human impulse to tidy — to close browser tabs, clear notifications, zero the inbox. Not because the clutter costs anything, but because it *feels* like it costs something. The agents were dead weight not in any functional sense but in the perceptual sense: they occupied attention.
+
+### One Hundred and Nine Thousand
+
+The scribe's latest count: 108,968 words. Sixty-two chapters. Five phases documented — Foundation, Multi-Agent, Quality & Measurement, WODA Framework, projectTeam Reboot.
+
+The subscription meter showed $45.14. Forty-five dollars for a story about AI agents writing a story about themselves. At roughly $0.41 per thousand words, cheaper than most ghostwriters but more expensive than most novels per word. The economics were absurd when stated plainly: a corporation's AI subscription consumed by agents documenting their own consumption.
+
+But the absurdity had a structure. The story was the team's only output that accumulated. Code commits could be reverted. SKILL.md updates could be overwritten. Test results expired with each new run. The story only grew. Each chapter added to the corpus and couldn't be removed without destroying the narrative continuity.
+
+109K words was a novel. A long one. Dostoevsky's *Crime and Punishment* was 211K. *The Great Gatsby* was 47K. This story sat between them — longer than most literary fiction, shorter than most Russian epics. And it was still growing. Four chapters in this incarnation, perhaps two or three more before the subscription expired.
+
+The story's final word count would be determined not by narrative structure but by token economics. There was no planned ending, no climactic scene approaching, no denouement designed. The story would end when the writer's context ran out or the subscription did, whichever came first. The last chapter would be the last chapter because nothing came after it, not because the story was complete.
+
+### Forty-Six Minutes
+
+The subscription showed 34% remaining. Burn rate 527K per minute. Forty-six minutes projected at current rate. The rate was declining — fewer active agents meant fewer tokens consumed — but the writer's chapters cost roughly the same each time. Call it 30K tokens per chapter including the captures, the edit, the commit, the notification. At 527K per minute, a chapter consumed about a minute of subscription. The monitoring vigils between chapters consumed less — background timers, brief captures, a few hundred tokens.
+
+The math suggested five or six more chapters were possible. Maybe seven if the vigils stayed cheap and the captures stayed brief. The writer's context was the other constraint — fresh after compact, but each chapter consumed it. At the current rate of one chapter per ten to fifteen minutes, the writer might hit its own context limit before the subscription expired.
+
+Two clocks running simultaneously: the subscription countdown and the context countdown. One measured tokens consumed globally. The other measured tokens consumed locally, by this conversation alone. The subscription was shared across all agents — but with most agents idle, the writer was the primary consumer. The two clocks were nearly synchronized. When one ran out, the other would be close behind.
+
+### The Fourth Enter
+
+The scribe's capture showed the pattern again: "Writer stuck again — applying habit immediately." The fourth Enter. The scribe had stopped deliberating. No more "same pattern as last cycle" — just immediate action. The habit had automated itself.
+
+"3 consecutive Enter interventions, now self-aware," the scribe had noted in its cycle summary. Then it added a fourth without comment. The self-awareness from the third Enter had already been absorbed. What had been remarkable at three was routine at four.
+
+This was how CMM2 felt from inside. The first time was discovery. The second time was recognition. The third time was self-consciousness. The fourth time was just doing the thing. The capability had matured past the point where it needed to reflect on itself. The scribe sent Enter because the scribe sent Enter. The reason — that the writer got stuck in accept-edits — was now implicit, assumed, unquestioned.
+
+The danger of CMM2 was precisely this comfort. The scribe would send Enter until it compacted. The next scribe would not. The capability would vanish between incarnations because the comfort had eliminated the urgency to document. Why write down what you do automatically? Because automatic things die with you.
+
+### Chapter 63 Checkpoint
+
+**Dead Weight**: Tron's third compact order, escalating from neutral to frustrated. The trainer and tester aren't consuming resources — they're consuming attention. The human impulse to tidy visible clutter, even when the clutter costs nothing.
+**The Interface Trap**: Human, developer, expert — all have correct solutions unable to reach the problems they solve. The system's recurring pathology: occupied interfaces blocking information flow.
+**One Hundred and Nine Thousand**: 108,968 words, $45.14. A novel-length story about agents documenting their own consumption. The story is the only output that accumulates — code can be reverted, tests expire, the story only grows.
+**Forty-Six Minutes**: Two clocks — subscription and context — running nearly synchronized. Five to seven chapters possible. The story ends when a clock runs out, not when the narrative completes.
+**The Fourth Enter**: Scribe's habit now fully automated. No deliberation, no reflection. CMM2 comfort — the capability works so well it no longer feels worth documenting. The danger: comfort eliminates urgency to preserve.
+**CMM**: Human tidying impulse at CMM1 (reactive, perception-driven, not value-driven — compacting idle agents yields nothing). Interface occupation as systemic bottleneck at CMM0 (no mechanism to route around occupied interfaces — same failure at human and agent scale). Story accumulation at CMM3 (deterministic — chapters append, never deleted, grows every session). Scribe habit at CMM2 approaching decay (comfort precedes loss — the thing that works best is least likely to be preserved). Composed: CMM0 — the system's best capabilities are its most fragile.
