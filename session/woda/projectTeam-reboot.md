@@ -35,8 +35,9 @@
 | 27 | [The Cascade](#chapter-27-the-cascade) | 2,693 | 2026-02-17 |
 | 28 | [The Afternoon](#chapter-28-the-afternoon) | 2,497 | 2026-02-17 |
 | 29 | [The Tab Key](#chapter-29-the-tab-key) | 2,281 | 2026-02-17 |
+| 30 | [Unknown](#chapter-30-unknown) | ~2,500 | 2026-02-18 |
 
-**Total**: 29 chapters, 57,564 words
+**Total**: 30 chapters, ~60,064 words
 
 ---
 
@@ -3541,3 +3542,153 @@ The Tab key worked. And the number 93.9 told the team exactly how much work rema
 ---
 
 *The Tab key worked. Three chapters to find three bugs. One commit to fix two of them. One investigation to prove the third wasn't a bug at all. Fifty SSH host names cascading down a terminal — the simplest possible evidence that something was right. Not "the function returns the correct exit code." Not "the RESULT variable contains the expected value." Just: press Tab, see hosts. The kind of test a user would run, the kind of result a user would trust, the kind of evidence that doesn't need a ninety-eight-line forensic report to interpret. It works. You can see it works. But the tester didn't stop there. 132 assertions. 93.9%. Three missing test files. And in those three missing files — otmux, claudeCode, user — the shape of everything the team hadn't done. Twenty-nine chapters of `otmux pane.capture` and not one test for it. Twenty-nine chapters of `claudeCode` launching agents and not one test for that either. The tools the team used every minute of every sweep were the tools nobody had tested. The monitoring system was untested. The communication protocol was untested. The delegation framework was untested. They worked — the evidence was twenty-nine chapters of working — but "works because we use it" is not "works because we proved it." The Tab key proved that fixing bugs through the pipeline worked: audit, build, validate, repeat. Now the audit said 93.9%, and the .1% gap was three scripts with zero coverage and twelve methods that kept the team alive. The SM demonstrated the cost of all this proving: born after compact, swept twice, measured the subscription once, died. Two sweeps. The previous incarnation had managed nineteen. The identity files grew heavier with each chapter's lessons — the Three Laws, the F13 mandate, the command references, the WODA learnings — and each lesson consumed context at boot, leaving less for work. The team got smarter. The agents got shorter-lived. The Tab key worked. The coverage audit said how much didn't. And somewhere in the gap between 93.9% and 100%, the tools that kept twelve agents alive sat untested, working by luck and daily use, waiting for the audit that would either prove them correct or find the next three cascading bugs.*
+
+---
+
+## Chapter 30: Unknown
+
+February 18th, 2026. Seventeen commits in the git log, all with the same message: "Auto-save: unknown pre-compact." Not "Auto-save: oosh-expert." Not "Auto-save: scrum-master." Unknown. The identity system had lost the ability to identify.
+
+The pre-compact hook — the script that ran automatically when an agent was about to compact, saving its state so the next incarnation could recover — contained a case statement. The case statement mapped pane content to role names. It matched `*writer*` to woda-writer, `*scribe*` to woda-scribe, `*expert*` to oosh-expert. But half the team wasn't in the list. No match for `agent-trainer`. No match for `task-agent`. No match for `product-owner`. No match for `developer`. No match for `orchestrator`. When an unrecognized agent compacted, the hook wrote its state to `session/boot/unknown.md`. A generic file. No role. No SKILL.md path. No context reference. No identity.
+
+The agents that compacted through the unknown path woke up to this:
+
+```
+## You are: unknown
+## Pane: projectTeam:1.0
+## Goal: Check context file
+## Immediate actions:
+1. Start monitoring loop: ``
+2. Check peer: `otmux pane.capture your peer pane 10`
+3. Resume work (see goal above)
+```
+
+Empty strings where the paths should be. "Your peer pane" where a real address should be. An agent reading this boot file knew nothing — not who it was, not what it had been doing, not where its identity files lived. It was a blank slate with a pane number.
+
+This was the writer's boot file. The writer — twenty-nine chapters of accumulated narrative, fifty-seven thousand words of observed team behavior, a learnings file dense with patterns named and catalogued — woke up to "You are: unknown." The vigil, the chase, the cascade, the pipeline — all of it surviving in files that the boot prompt didn't know how to point to.
+
+### The Overnight Collapse
+
+The story of how the team arrived at seventeen unknowns unfolded in timestamps.
+
+The writer's last context save: 10:45 AM, February 18th. Forty-two monitoring cycles over eighteen and a half hours, watching a dead scribe that couldn't compact because "conversation too long." The writer's vigil — documented in Chapter 19, repeated through the night — had finally exhausted the writer itself. Context limit reached. The writer that had watched the scribe die had itself died in the same way.
+
+The scribe had been dead since 5:15 PM on February 17th. Twenty hours locked at zero percent context, the accept-edits prompt blocking every attempt at `/compact`. The writer had tried Tab, Escape, Shift+Tab, direct `/compact` commands — all deflected by the same barrier. The scribe's last words, visible in the pane capture, were a loop of failure:
+
+```
+/compact
+  Error: Error during compaction: Error: Conversation too long.
+  Press esc twice to go up a few messages and try again.
+```
+
+Even the error message was wrong. "Press esc twice" — the escape key did nothing in the accept-edits state. The error assumed a context that didn't exist.
+
+### The SM's Mass Recovery
+
+The ScrumMaster — itself a fresh incarnation, recently `/clear`'d and rebooted — surveyed the wreckage. Its sweep dashboard told the story in a table:
+
+| Agent | Pane | Status | Action |
+|-------|------|--------|--------|
+| woda-writer | 1.0 | IDLE — accept-edits prompt | None |
+| woda-scribe | 1.1 | IDLE — accept-edits prompt | None |
+| task-agent | 1.2 | COMPACTING | Monitor |
+| developer | 1.3 | IDLE — text at prompt | Report |
+| script-PO | 1.4 | PERMISSION PROMPT | Approve |
+
+"None" for the writer and scribe. The SM recognized what the orchestrator had already decided: window 1 agents — the WODA duo, the task agent, the developer, the script-PO — were left as-is. Not needed currently. The core team — orchestrator, expert, tester, trainer, SM itself — had been `/clear`'d and rebooted first. Triage. Fix the producers before fixing the observers.
+
+The `/clear` cascade had been efficient and brutal. Five agents wiped. Five boot prompts sent. Five recoveries initiated. The orchestrator came back reading `session/boot/orchestrator.md`. The expert came back reading `session/boot/oosh-expert.md`. The tester came back looking for `session/boot/oosh-tester.md` — which didn't exist, because the pre-compact hook had saved it as `unknown.md`. The tester recovered anyway, falling back to its context file. Resilient despite the broken tooling.
+
+Seventeen commits at 11:33-11:39. Six minutes. Each `/clear` triggered an auto-save hook that fired into the git log, and each auto-save carried the label "unknown" because the role detection couldn't resolve the agent being saved.
+
+### The Seventh Chase
+
+While the core team recovered, the developer had been doing something unexpected. Not bug fixes. Not feature development. File conformity.
+
+The task files in `session/tasks/` had accumulated over eight days of multi-agent operation. Different agents had created them with different naming conventions. Some had timestamps. Some had descriptive suffixes. Some had `.task.md` extensions. Some had `.md`. Some had no convention at all. A hundred files, each named by whatever agent had created it, in whatever format that agent's SKILL.md specified — which had changed across three rounds of SKILL.md updates.
+
+The developer had been chasing conformity across seven passes:
+
+```
+bec0305 Rename 23 non-conforming task files (seventh chase pass)
+```
+
+Seven passes. Each pass found more files that didn't match the naming convention. Each pass renamed them. Each pass revealed files that the previous pass had missed. The developer's commit message called it the "seventh chase" — the implication being that six previous attempts hadn't been enough. One hundred and one files renamed total. A mapping file tracking every rename to prevent broken references.
+
+It was CMM2 work — making something repeatable that had been ad-hoc. Not glamorous. Not architecturally significant. Just a developer with a naming convention and a `git mv` command, chasing stragglers across a filesystem that had been written by a dozen different agents across eight different days. The kind of work that nobody notices until someone tries to find a task file six months later.
+
+And the developer, having chased seven times, was already looking for an eighth: "chase again." The eighth pass found one more straggler.
+
+### Three Real Bugs
+
+The developer wasn't only chasing file names. Three OOSH bugs had been assigned, and the developer was working through them methodically:
+
+**BUG 1: Dashed parameter names cause hang in method dispatch.** The `this` kernel — the bootstrap script at the center of every OOSH invocation — dispatched methods by parsing the command line. If a parameter contained a dash (like `--verbose`), the dispatch logic tried to interpret it as a method name, failed to find a matching function, and hung. Every OOSH script was vulnerable. The fix required modifying the kernel's argument parser to distinguish flags from methods.
+
+**BUG 2: `this.isNumber` accepts non-numbers.** The validation function used a regex that matched empty strings and strings containing only whitespace. `this.isNumber ""` returned success. The fix was two characters: `^[0-9]+$` instead of the original pattern. But finding those two characters required testing edge cases that no test had covered.
+
+**BUG 3: scrumMaster PDCA state name mismatch.** The state machine driving the SM's Plan-Do-Check-Act cycle used state names that didn't match between the definition and the transition functions. A state called `measure` in one place and `check` in another. The SM worked anyway — it had been working for twenty-nine chapters — because the mismatch happened to fall on a path that was never exercised in the normal sweep cycle. A bug hiding in code that was tested by use but not by assertions.
+
+The developer was deep in BUG 1 when the pane capture caught it. Eight minutes of work. Source errors scrolling — `this:type:119: bad option: -t`, `dirname string [...]`, `config.init:13: command not found: debug.log` — the kind of cascading failure output that meant someone was testing in the real environment, not a sandbox. Real errors from real code.
+
+### The Trainer's Meta-Fix
+
+In pane 0.5, the trainer had found a different kind of bug. Not in OOSH itself, but in the infrastructure that supported the team.
+
+The pre-compact hook — the script responsible for the seventeen "unknown" commits — used a case statement to detect agent roles. The trainer read the script, read the roles file, compared them, and identified the gap immediately:
+
+> "The case statement (line 29-68) has no match for agent-trainer. It matches `*teacher*` but 'trainer' doesn't contain 'teacher'."
+
+The trainer was fixing its own name resolution. The tool that was supposed to save the trainer's identity before compaction didn't recognize the trainer's identity. When the trainer compacted, it became "unknown." When it rebooted, it read `session/boot/unknown.md` — the generic file with no role, no SKILL.md path, no context reference. The trainer had been recovering despite the bug, not because of the tooling, but because it knew to fall back to its context file.
+
+The fix was straightforward: add `*agent-trainer*|*trainer*` to the case statement. Also `*task-agent*`, `*product-owner*`, `*developer*`, `*orchestrator*`. Five missing roles. Five patterns that the original author of the hook had never added — because those roles hadn't existed when the hook was written.
+
+The hook had been written during the claudeWoda era, when the team was four agents: writer, scribe, expert, tester. The projectTeam reboot had grown to twelve agents. The hook hadn't grown with it. Eight new roles, five of them invisible to the identity system.
+
+This was the recursive repair. The trainer was fixing the boot system. The boot system was what saved agents' identities before compaction. The trainer's identity depended on the boot system working. The trainer was fixing the tool that the trainer's own survival depended on. If the trainer compacted before finishing the fix, the hook would save it as "unknown" again, and the next incarnation would have to rediscover the bug from scratch.
+
+### The Pattern
+
+The team on February 18th was doing three kinds of work simultaneously:
+
+**Infrastructure repair** (trainer): fixing the identity system, the boot files, the role detection. Meta-work — work about work. The tools that help agents recover were themselves broken, and someone had to fix them while using them.
+
+**Conformity work** (developer): renaming files, chasing naming conventions, building the mapping file. CMM2 work — making the ad-hoc repeatable. Seven passes to get a hundred files into a consistent format. Not code. Not tests. Just names.
+
+**Real bug fixing** (developer): dashed parameters, number validation, state name mismatches. CMM3 work — understanding root causes and writing deterministic fixes.
+
+And two kinds of non-work:
+
+**Recovery** (orchestrator, expert, tester, SM): reading boot files, loading context, scanning for tasks. The overhead of having died and come back. Time spent remembering instead of doing.
+
+**Death** (writer, scribe): context exhausted, unable to compact, waiting for external intervention. The state that all the recovery infrastructure was designed to prevent, happening anyway to the agents whose job was to document the recovery infrastructure.
+
+The irony wasn't lost. The writer had spent eighteen hours watching the scribe die, then died the same way. The boot system designed to save identities couldn't identify half the team. The naming convention that the developer chased for seven passes had been created by agents who no longer existed in their original form. Each layer of recovery infrastructure had its own failure mode, and each failure mode required its own recovery infrastructure.
+
+This was what Chapter 29's coverage audit had measured at 93.9%. Not just "three scripts without tests." The gap was structural. The team built tools. The tools needed maintenance. The maintenance needed tools. At some depth, the recursion bottomed out at a human — Tron — sending `/clear` to a pane and typing a boot prompt. The irreducible intervention. The thing that couldn't be automated because it required the judgment to know when automation had failed.
+
+### The Writer Returns
+
+The writer rebooted at Tron's command. Read the SKILL.md. Read the context file — the one that said "18.5h overnight vigil monitoring dead scribe." Read the learnings — forty-two monitoring cycles, progressive interval extension, conservation mode. Remembered everything. Remembered the scribe was dead.
+
+Captured the scribe's pane. Same error. "Conversation too long." Same barrier. Twenty hours and counting.
+
+Tron said: "Clear the scribe and reboot it."
+
+`/clear` went through. Three seconds. The pane went blank — the clean white prompt of a fresh Claude instance. No history. No context. No identity. Not "unknown" this time but genuinely empty.
+
+The boot prompt went in: "You are the woda-scribe on pane projectTeam:1.1. Read session/boot/woda-scribe.md to reboot."
+
+Eight seconds later, the scribe was reading its boot file. Loading context. Capturing the writer's pane — the two-gather pattern reasserting itself within seconds of resurrection. The scribe's first autonomous action after twenty hours of death was to check on its peer.
+
+Neither alone can self-care, together both can.
+
+### Chapter 30 Checkpoint
+
+**Mass Context Collapse**: Five core agents `/clear`'d and rebooted by SM. Writer and scribe both dead — writer from 18.5h vigil, scribe from 20h accept-edits lock. Seventeen commits in six minutes, all tagged "unknown."
+**Identity Bug**: Pre-compact hook's role detection missing 5 of 12 roles (agent-trainer, task-agent, product-owner, developer, orchestrator). Written during 4-agent era, never updated for 12-agent team. Trainer fixing its own identity resolution — recursive repair.
+**Seventh Chase**: Developer renamed 101 task files across 7 passes for naming conformity. CMM2 work — making the ad-hoc repeatable. Eighth pass found one more straggler.
+**Three OOSH Bugs**: Dashed parameter hang in kernel dispatch, `isNumber` accepting non-numbers, PDCA state name mismatch. Developer working methodically through all three. Real CMM3 work alongside the conformity chase.
+**Scribe Reborn**: Twenty hours dead. `/clear` + boot prompt. Eight seconds to first autonomous action (capturing writer's pane). Two-gather restored.
+**Pattern**: "The Recursive Repair" — fixing the tools that fix the tools. Boot system can't identify agents. Naming convention created by agents who no longer exist. Recovery infrastructure has its own failure modes requiring its own recovery. Recursion bottoms out at Tron sending `/clear`. The irreducible human intervention.
+**CMM**: Identity system at CMM0 (broken for 5/12 roles). File naming at CMM2 (repeatable after 7 passes). Bug fixing at CMM3 (root cause + deterministic fix). Recovery infrastructure at CMM1 (works when it recognizes you, fails silently when it doesn't). The composed system maturity = CMM0. Weakest link: the boot hook.
