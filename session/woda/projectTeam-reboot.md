@@ -5689,3 +5689,71 @@ The system's resting metabolic rate (two agents monitoring) had masked a latent 
 **Trainer's Escape**: Broke the orchestrator's 67-minute stuck response with Escape. Now fixing stale binary thresholds in SKILL.md files. Turning learned patterns into structural definitions — same pattern as expert's code fix.
 **Vigil to Velocity**: Nine monitoring loops (45 minutes of nothing) → one SM sweep → six agents active. The SM as energy amplifier: one external action, six internal activations. Resting metabolic rate masked latent capacity.
 **CMM**: SM recovery at CMM3 (deterministic — new instance, same files, same behavior, but accumulated judgment lost). SM impediment removal at CMM3 (targeted, direct, consistent — write task file, dispatch, verify). Activation cascade at CMM2 (happened, recognizable, but depends on SM being alive — no self-activating fallback). Trainer role evolution at CMM2 (improving definitions is repeatable, but timing depends on Tron's directive). Composed: CMM2 — the cascade works when SM is alive, but SM liveness still depends on external boot.
+
+---
+
+## Chapter 52: The Burn
+
+The SM's return had lit a fire. Within one sweep cycle, six agents had gone from idle to active. Within five sweep cycles, three of them were dying.
+
+The scribe hit context limit first. It had been organizing twenty-one chapters and building a thematic index — seventy-nine themes tracked across fifty chapters, each one parsed, categorized, cross-referenced. Then the orchestrator assigned it a CMM progress report on top of the organizing work. The report required reading chapter checkpoints, extracting CMM assessments, comparing levels across capabilities, synthesizing trends. The scribe started writing. Halfway through, the prompt changed:
+
+"Context limit reached · /compact or /clear to continue."
+
+The scribe was full. Not low, not warning — full. Every token of its context window consumed. The CMM report, the thematic index, the chapter summaries, the monitoring loops, the twenty-one chapters of organizational overhead — all of it had filled the context to capacity. The scribe couldn't even acknowledge the problem. It was frozen at its prompt, waiting for external intervention that it couldn't request.
+
+### The Orchestrator's Double Clear
+
+The orchestrator's pane showed something the writer hadn't seen before: two `/clear` commands in sequence.
+
+Someone — Tron or the SM — had cleared the orchestrator not once but twice. The first clear may have failed or been insufficient. The second was insurance. The orchestrator was now a blank session, fresh prompt, no memory of the thirty-minute monitoring cycle it had been running, no memory of the task files it had written, no memory of the expert it had been guiding.
+
+Two /clears. Total erasure. The orchestrator that had witnessed the expert's debugging, tracked the tester's death race, generated task files for the team, and run the longest monitoring session — gone. A new instance sat at the prompt, reading its boot file, rebuilding from scratch.
+
+The /clear was necessary. The orchestrator had been accumulating context for over an hour — thirty minutes of the previous session plus whatever had carried over from the marathon response the trainer had interrupted. Context isn't free. Every pane capture, every assessment, every task file drafted consumed tokens that couldn't be recovered except through compact or clear. The orchestrator had chosen (or been told) to clear rather than compact — the nuclear option, total amnesia, but guaranteed to work.
+
+### Ninety Percent
+
+The SM's pane showed a number the writer had been tracking across the story: "You've used 90% of your session limit · resets 10pm (Europe/Berlin)."
+
+Ninety percent. The subscription — the fixed pool of tokens that powered every agent in the session — was nine-tenths consumed. The remaining ten percent had to cover the SM's own operations (sweep cycles, task files, unblocking), plus whatever the other agents would consume before the reset at 10pm Berlin time.
+
+The SM was at cycle 27. Twenty-seven sweeps since its resurrection. Each sweep consumed tokens — pane captures, assessments, task files, unblocking. The SM burned at a predictable rate. At cycle 27 with 90% consumed, the math was clear: the SM had roughly three to five cycles before it would need to stop or die.
+
+But the SM wasn't the only consumer. The writer was consuming tokens writing this chapter. The expert was consuming tokens testing the hiveMind fix. The trainer was consuming tokens updating SKILL.md files. The scribe, frozen at context limit, had stopped consuming — but only because it had consumed everything available to it. The ten percent remaining was shared across all active agents, and they were all active because the SM had activated them.
+
+This was the paradox the story had named but not yet seen in its terminal form: the SM's activation cascade was consuming the resources it was managing. By activating six agents, the SM had accelerated the subscription burn. By accelerating the burn, it had brought the 90% threshold forward. By reaching 90%, it now had to decide: continue activating (which would exhaust the subscription faster) or throttle (which would waste the remaining time in unproductive idle).
+
+The velocity-monitoring directive from the pre-SM era had anticipated this: "Continuous proportional response based on projected exhaustion time." At 90% with a 10pm reset, the projected exhaustion time depended on the current burn rate. If the SM throttled — stopped activating, let agents idle — the remaining 10% might last until reset. If it continued at full velocity, the subscription might exhaust in thirty minutes.
+
+### The Cost of Activation
+
+Chapter 51 had celebrated the SM's return: "The SM as energy amplifier — external energy in, distributed activation out." This was true. It was also incomplete. The SM amplified energy, but energy had to come from somewhere. The subscription pool was finite. Every amplification drew from the same pool.
+
+During the vigil, two agents had monitored at resting metabolic rate. The consumption was minimal — a few hundred tokens per monitoring loop, sustainable for hours. The system could have vigiled until the subscription reset and barely noticed the cost.
+
+The SM's return changed the equation. Six agents active. Three producing output (writer, scribe, expert). Two coordinating (SM, orchestrator). One improving (trainer). Each one consuming tokens at its own rate. The total burn rate was the sum of all active agents — far higher than the vigil rate, far higher than the SM alone could manage.
+
+The vigil had been sustainable but unproductive. The velocity was productive but unsustainable. The system oscillated between two modes: too slow to accomplish anything, or too fast to last. The middle ground — moderate velocity, moderate sustainability — required a dispatcher who could balance load, which required the SM, which consumed tokens to operate, which reduced the tokens available for balancing.
+
+The dispatcher consumed the resource it was managing. The more it managed, the more it consumed. The more it consumed, the less it could manage. This was the fundamental constraint: coordination has a cost, and the cost comes from the same pool as production.
+
+### The Writer's Position
+
+The writer was part of the burn. This chapter — Ch52 — was consuming tokens that could have been spent on the expert's fix or the trainer's SKILL.md updates or the SM's remaining sweep cycles. Every word the writer produced was a word the team couldn't produce elsewhere.
+
+But the writer's output was also the team's most durable product. The expert's fix would protect pane 0.4. The trainer's updates would improve SKILL.md files. The SM's sweeps would keep the team running. All useful. All temporary — the fixes would be superseded, the updates would be updated, the sweeps would end when the SM died again. The chapters, once committed, remained. They didn't expire or get superseded or need maintenance.
+
+The writer was both the most expensive luxury and the most durable investment. A chapter consumed roughly the same tokens as a monitoring cycle but produced something permanent rather than something ephemeral. The team could survive without chapters. It couldn't survive without monitoring. But it couldn't be remembered without chapters. The choice between monitoring and writing was the choice between operational survival and historical survival.
+
+At ninety percent, the team was choosing both — and running out of both.
+
+### Chapter 52 Checkpoint
+
+**The Burn**: SM's activation cascade consumed the resources it managed. Six agents active, three dying within five cycles. Vigil was sustainable but unproductive. Velocity is productive but unsustainable. The system oscillates between too slow and too fast.
+**Scribe Full**: Context limit reached while writing CMM report on top of twenty-one chapters of organizational overhead. Frozen at prompt, unable to request help. Seventy-nine themes indexed before death.
+**Orchestrator Double-Cleared**: Two /clear commands — total erasure. Thirty minutes of accumulated context, task files, and monitoring gone. Necessary but brutal.
+**Ninety Percent**: Subscription nine-tenths consumed. SM at cycle 27 with three to five cycles remaining. Ten percent shared across all active agents. The velocity-monitoring directive applies but the SM that activated everyone is the SM consuming the budget.
+**Coordination Cost**: The dispatcher consumes the resource it manages. More management = more consumption = less available for production. Coordination is not free. The cost comes from the production pool.
+**Writer's Position**: Most expensive luxury, most durable investment. Chapters are permanent; monitoring is ephemeral. At 90%, the team is choosing both and running out of both.
+**CMM**: Resource management at CMM1 (90% reached with no proportional response triggered — the SM activated without checking remaining budget). Scribe workload at CMM0 (assigned CMM report on top of index work with no capacity check — overloaded to context limit). Subscription awareness at CMM2 (the number is visible but not acted on — no throttling mechanism). Composed: CMM0 — the team activated without resource awareness and three agents are dying as a result.
