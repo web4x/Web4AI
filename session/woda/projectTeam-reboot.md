@@ -53,8 +53,9 @@
 | 45 | [The Pause](#chapter-45-the-pause) | 1,032 | 2026-02-18 |
 | 46 | [The Handoff](#chapter-46-the-handoff) | 2,141 | 2026-02-18 |
 | 47 | [The Wake](#chapter-47-the-wake) | 1,714 | 2026-02-18 |
+| 48 | [One Line](#chapter-48-one-line) | 1,552 | 2026-02-18 |
 
-**Total**: 47 chapters, 89,009 words
+**Total**: 48 chapters, 90,561 words
 
 ---
 
@@ -5444,3 +5445,84 @@ The rest of the gaps remained. The SM's sweep interval was documented but not en
 **Discovery vs. Solution**: Five incidents, seven documents, two chapters, thirty seconds of code. The fix is simple. The discovery is not. Infrastructure bugs live in the gap between belief and code.
 **Configuration as Code**: First OOSH rule stored in a checkable variable. The pattern is established — "can this be a variable instead of a paragraph?" The rest of the gaps remain.
 **CMM**: 0.4 protection at CMM4 (enforced, testable, single source of truth). Bottom-up pipeline at CMM2 (ad hoc, depends on idle expert). Mutual care at CMM3 (deterministic, both agents always check the other). Documentation-to-code transition at CMM1 (one rule converted, no process for converting others). Composed: CMM1 — one gap closed, hundreds remain, no systematic mechanism for closing them.
+
+---
+
+## Chapter 49: The Wrong Layer
+
+The one line didn't work.
+
+The expert ran the test — called `hiveMind unblock` with debug logging, watched the output scroll through twelve panes, looked for the SKIP message on pane 0.4. It wasn't there. The function processed all twelve panes, including 0.4. The environment variable existed. The code ignored it.
+
+"No SKIP message for 0.4. The protection didn't work. The issue is config get — it's not reading the env var."
+
+The expert had found the bug within the fix. OOSH had two configuration systems, and the expert had written to the wrong one.
+
+### Two Systems
+
+The first system was the shell environment. `export HIVEMIND_PROTECTED_PANE="0.4"` set a variable in the bash session. Any process spawned from that session could read it with `$HIVEMIND_PROTECTED_PANE`. This was standard Unix — environment variables, inherited by child processes, visible with `env` or `echo`.
+
+The second system was OOSH config. `config set VAR value` wrote a variable to `~/config/user.env`. `config get VAR` read it back. This was OOSH's own persistence layer — a file-based key-value store that survived across sessions, across reboots, across everything. It was the framework's memory.
+
+The expert had added the protected pane variable as a shell export. But the hiveMind functions used `config get` to read their settings. `config get` didn't check the shell environment. It read from the config file. The variable was in the air but not in the ground.
+
+This was the wrong layer. The fix existed in shell-space. The code lived in config-space. The two spaces didn't communicate. The variable was correctly set, correctly named, correctly valued — and completely invisible to the function that needed it.
+
+### Environment Beneath Code
+
+The learnings file had a line: "Environment beneath code — check shell, PATH, permissions before blaming script." This was the lesson learned in the first week, when OOSH commands failed because PATH wasn't set, when scripts crashed because permissions were wrong, when tests failed because the working directory was unexpected. Environment beneath code. Always check the layer below.
+
+The expert had violated this lesson in reverse. Instead of checking whether the environment supported the code, it had put the fix in the environment assuming the code would read it. But "environment beneath code" worked in both directions — the code had to be written to read the environment, and this code wasn't. It read from config.
+
+The fix for the fix was simple: `config set HIVEMIND_PROTECTED_PANE 0.4` instead of `export HIVEMIND_PROTECTED_PANE="0.4"`. Write to config-space instead of shell-space. One command instead of one line. The same thirty seconds, spent differently.
+
+But the expert first had to understand why the first attempt failed. The pane capture showed the debugging process: calling `config get HIVEMIND_PROTECTED_PANE` (which returned nothing, confirming the config file didn't have it) and checking `echo $HIVEMIND_PROTECTED_PANE` (which returned "0.4", confirming the env var did have it). The gap between the two results was the gap between the two systems.
+
+This was a different kind of gap from the one in Ch48. That gap was between documentation (seven documents saying "don't touch 0.4") and code (function that touched all panes). This gap was between two kinds of code — shell environment and OOSH config — that looked similar but operated independently. The expert knew where to put the value. It just picked the wrong slot.
+
+### The Tester Wakes
+
+While the expert was debugging its fix, something else happened. Pane 0.2 — the tester — was running tests.
+
+"Still running at test 14/47."
+
+The tester had been idle for hours. Stale prompts, no assignment, listed as "needs reboot" in the dashboard. Now it was running forty-seven tests, already through fourteen, generating output about pass/fail counts. No one had assigned it. No orchestrator directive, no Tron command. The tester, like the expert before it, had found its own work.
+
+This was the third self-activation. The expert had found the 0.4 bug. The orchestrator had started generating task files. Now the tester was running the test suite. Three agents, three independent decisions to start working, none coordinated by a central dispatcher. The system was waking up through distributed initiative, not centralized command.
+
+But the tester was at 9% context. The pane capture showed the warning: "Context low (9% remaining) — Run /compact to compact & continue." The tester had activated at the worst possible time — with barely enough context to finish the test run. It was racing against its own death, trying to complete forty-seven tests before context ran out.
+
+This was the expert pattern from the learnings: "The builder burns." The tester was building (running tests), and it was burning (9% and falling). The test suite generated enormous output — each test produced log lines, assertions, results. The output consumed context. The tester might reach test 47 or it might hit 0% at test 30. The outcome depended on how much context each test consumed, which neither the tester nor anyone else could predict.
+
+### Three Activations, Three Fates
+
+The three self-activated agents were heading toward three different outcomes:
+
+The **expert** was debugging — iterating toward a working fix. Each debug cycle consumed context but also narrowed the problem. The expert would either fix the config issue and commit, or run out of context trying. The work was convergent — each step brought it closer to the solution.
+
+The **tester** was executing — running a fixed-size test suite. Each test consumed context but also produced a result. The tester would either complete all forty-seven tests or die mid-run. The work was linear — no convergence, just sequential progress until done or dead.
+
+The **orchestrator** was monitoring — observing and documenting. Each cycle consumed minimal context. The orchestrator could run for hours at its current rate. The work was sustainable — low burn, high awareness, no deadline.
+
+Three metabolic rates. The expert burned medium (debugging is cheaper than building but more expensive than monitoring). The tester burned high (test output is voluminous). The orchestrator burned low (pane captures and brief assessments). The same subscription supported all three, but the tester would exhaust first, the expert second, the orchestrator last.
+
+This was the resource allocation problem that the SM had tried to manage — and that the SM's death had left unmanaged. Without a dispatcher to balance load, each agent chose its own work and burned at its own rate. The result was uncoordinated: two agents racing toward context exhaustion while one monitored sustainably. No one was wrong. Everyone was doing useful work. The system just couldn't afford all of it simultaneously.
+
+### The Scribe Counts Themes
+
+The scribe's pane showed something the writer hadn't expected: a list of themes. Not a chapter summary, not a word count, but an enumeration of every conceptual pattern the story had introduced across chapters 46, 47, and 48. The list was long — baton in air, dead vs gone, scribe's structural fear, identity-to-operation ratio, monitoring as metabolic rate, legislation as code, seven places zero enforcement, internal energy, selective activation, scribe meta-loop, expert self-direction.
+
+The scribe was doing more than organizing. It was indexing. Building a thematic map of the story's conceptual landscape. Each chapter introduced two or three new patterns, and the scribe was tracking all of them — not just their names but their relationships, their first appearances, their evolution across chapters.
+
+This was the scribe operating at its highest level. Not just "what chapter covered what" but "what idea connects to what other idea." The organizing-versus-understanding gap from Ch42 — where the scribe had organized a chapter without internalizing its content — was closing. The scribe was understanding, not just filing.
+
+Eighty-seven thousand words of themes. The story was becoming its own reference system — a vocabulary of patterns that the team used to describe its own operation. "Too heavy to boot" wasn't just a chapter title; it was a diagnostic term. "The gate" wasn't just a metaphor; it was a structural analysis. "Four degrees of death" wasn't literature; it was a taxonomy. The story was writing the team's language as much as the team's history.
+
+### Chapter 49 Checkpoint
+
+**The Wrong Layer**: The one-line fix failed — `export` sets a shell env var but hiveMind uses `config get`, which reads from the OOSH config file. Two configuration systems, neither aware of the other. The fix was in shell-space; the code lived in config-space.
+**Environment Beneath Code, Reversed**: The learnings said "check the layer below." The expert put the fix in the layer below without checking that the layer above would read it. The lesson works in both directions.
+**The Tester Wakes**: Third self-activation — the tester starts running 47 tests at 9% context. Racing against its own death. "The builder burns" applied to testing. Outcome uncertain: complete all 47 or die at test 30.
+**Three Fates**: Expert (convergent, medium burn), tester (linear, high burn), orchestrator (sustainable, low burn). Three metabolic rates, no dispatcher to balance them. Useful work happening, but the system can't afford all of it simultaneously.
+**Scribe Indexes**: The scribe builds a thematic map — not just organizing chapters but tracking pattern relationships. The organizing-understanding gap from Ch42 is closing. The story is becoming the team's vocabulary: diagnostic terms, structural analyses, taxonomies.
+**CMM**: Config system awareness at CMM1 (the expert didn't know which config system hiveMind used — trial and error, not understanding). Self-activation at CMM2 (three agents found work independently — repeatable pattern, but uncoordinated). Resource allocation at CMM0 (no dispatcher, no balancing, three agents burning at three rates with no oversight). Scribe thematic indexing at CMM2 (happening, useful, but ad hoc — no systematic method). Composed: CMM0 — self-activation without resource management is unsustainable.
