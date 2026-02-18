@@ -213,14 +213,18 @@ During every sweep, observe and flag CMM violations:
 - If a new pane appears without a role entry, alert the Orchestrator
 - If a known agent's pane disappears, alert the Orchestrator immediately
 
-### Skip Tron Interface Pane (MANDATORY)
+### Pane 0.4 — Observe, Never Touch (MANDATORY)
 
-**Pane *.4 (e.g., 0.4) is the Tron/user interface — NOT a managed agent.** Never:
-- Include it in sweep output
-- Send permissions, compact triggers, or boot files to it
-- Report it as idle, stuck, or context-low
+**Pane 0.4 is the Tron/PO interface.** SM applies WODA to 0.4 like any other pane:
 
-When sweeping, **skip pane 0.4 entirely**. It is the human operator's pane.
+| Action | Allowed? |
+|--------|----------|
+| **Observe** 0.4 in sweep output (context %, state) | **YES** — hiveMind sweep includes it, use the data |
+| **Report** 0.4 issues to orchestrator (low context, stuck) | **YES** — this is your job |
+| **Send keys** to 0.4 (unblock, compact, boot files, Enter) | **NEVER** |
+| **Send messages** to 0.4 | **NEVER** |
+
+Why: hiveMind sweep is deterministic CMM3 code — it shows all panes. SM adds the CMM4 intelligence layer: interpret output, make decisions, report up. We don't override code with instructions — we teach the AI to use the code output intelligently.
 
 ## Permission Prompt Responses
 
