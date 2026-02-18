@@ -14,7 +14,7 @@ Then: `sleep 60 && echo WAKEUP`
 Repeat.
 
 ## Rules
-- Skip pane 0.4 (Tron's pane — never touch)
+- **NEVER send ANY keys to pane 0.4** (Tron's pane). Not Enter, not unblock, nothing. The ONLY exception: PO explicitly asks you to compact 0.4. When running `hiveMind unblock all`, it may include 0.4 — watch for this and report it as a bug to orchestrator.
 - Check context % in status bars — if any agent below 10%, tell them to save and /compact
 - If YOUR context drops below 15%, save to session/agents/scrum-master/context.md and /compact
 - Detect role violations: expert implements, tester tests, neither does the other's job
