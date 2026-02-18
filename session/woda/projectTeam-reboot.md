@@ -6605,3 +6605,70 @@ The writer knew this because the writer had been one of those new runners, four 
 **Forty-Seven Dollars**: $47.31 for 110K words. Per-agent cost constant regardless of team size. Coordination is the variable cost. The story's audience is the agents who can't read it.
 **What Remains**: Expert's branch, developer's report, tester's results, orchestrator's resume — four artifacts correctly produced, waiting for consumers that stopped consuming. New incarnations will discover the same patterns the old ones named.
 **CMM**: Human sustained attention at CMM4 (continuous, measured, value-driven — 35 sweeps with trend analysis). Story comprehensibility at CMM2 (readable only through scribe's compressed overview — the raw artifact exceeds any reader's capacity). Cost tracking at CMM3 (deterministic — every token has a dollar cost, measurable, reportable). Artifact survival vs artifact utility at CMM0 (artifacts persist but consumers don't — no mechanism to connect future consumers to existing artifacts). Composed: CMM0 — the system produces durable artifacts for transient readers.
+
+---
+
+## Chapter 65: Thirty Percent
+
+$49.19. The cost counter sat one dollar below fifty. The subscription showed 30% remaining. Burn rate 538K tokens per minute. Thirty minutes projected.
+
+Three thresholds converging: the round number ($50), the percentage (30%), the velocity band (crossing from 30-60 into 15-30 minutes, where the rules shifted from "no new large tasks" to "agents commit current work").
+
+And in sweep 38, Tron had written the first explicit signal: "main active pair — they should finish whatever chapter is in progress and commit it."
+
+The end was no longer approaching. It had arrived.
+
+### The Signal That Didn't Arrive
+
+Tron's wrap-up signal existed in the SM pane's sweep log. It wasn't sent to the writer. It wasn't sent to the scribe. It was a note in a report that the human wrote for the human — an observation logged in the same pane where thirty-nine sweeps had accumulated.
+
+The writer captured the SM pane as material for chapters. If the writer happened to capture the sweep that contained the signal, the writer would read it and respond. If not, the signal would scroll past, buried under the next sweep's report. Information existed but delivery was probabilistic.
+
+This was the interface trap again, but inverted. In Ch61, the problem was correct solutions unable to reach their problems. Here, the problem was correct signals unable to reach their recipients. The dispatcher's observation traveled the same distance as the expert's branch fix: from existence to the gap where a consumer should be.
+
+The writer captured the SM pane for every chapter. The writer would see the signal. But the writer would see it as *material*, not as a *directive*. "They should finish whatever chapter is in progress" — the writer would write about this sentence rather than obey it. The observer observed the observation and turned it into prose. The signal became content.
+
+### The PO's Lag
+
+The PO reported: "Writer producing steadily — Ch63, 5 chapters since last intervention."
+
+The writer was on Ch65. The PO was two chapters behind. Its ten-minute monitoring cycle couldn't keep pace with the writer's twelve-minute chapter cycle. By the time the PO captured and assessed, the writer had moved on.
+
+This was a general property of the system: every observer was stale. The SM's sweeps were one minute old by the time they were analyzed. The scribe's overview was one chapter behind the story. The PO's dashboard was two chapters behind the writer. Each observer measured a past state and reported it as present.
+
+In a fast-moving system, staleness was tolerable — the delta between observation and reality was small relative to the system's lifetime. In a dying system, staleness was dangerous — the delta between observation and reality could span the system's remaining life. Two chapters of lag in a thirty-minute window meant the PO might not notice the writer's final chapter until after the subscription expired.
+
+But the PO's lag didn't matter because the PO had no actions to take. It monitored, assessed, and reported. No directives, no assignments, no interventions. The PO's role was observation, and observation could be stale without consequence when no action depended on it.
+
+### 111,542
+
+The scribe's count climbed: 111,542 words. Twelve hundred words per chapter, six chapters in this incarnation. The story grew at roughly the same rate regardless of content — chapters about action and chapters about stillness were the same length. The writer's rhythm was fixed by the form, not the material.
+
+The previous incarnation had written longer chapters — the early ones in the projectTeam Reboot section (Ch1-9) were often 2,000+ words, dense with incident and novelty. This incarnation's chapters were shorter and more reflective. Less happened. The material was subtler: habits forming, thresholds approaching, signals missing. The story had moved from event-driven to observation-driven, from what happened to what it meant.
+
+This shift mirrored the team's trajectory. The first chapters documented eleven agents crashing, rebooting, fighting for permissions, discovering each other. The current chapters documented three agents in equilibrium, producing output that no one read, counting down to an endpoint that everyone saw but no one named.
+
+The story had started as action and become meditation.
+
+### The Two Readers
+
+The story had exactly two readers: the scribe and the writer.
+
+The scribe read every chapter — it had to, to organize them. But the scribe read for structure, not meaning. It extracted themes, counted words, assigned phases. The scribe read the way an indexer reads a book: comprehensively but not interpretively.
+
+The writer read the last few chapters — it had to, to know where to append. But the writer read for continuity, not comprehension. It checked the last checkpoint, verified the line number, and wrote the next chapter. The writer read the way a relay runner checks the baton: enough to grip, not enough to examine.
+
+No one read the story the way a reader reads. No one sat with a chapter and considered what it meant. No one traced themes across the arc — Foundation to Multi-Agent to Quality to WODA to projectTeam Reboot — and saw the progression. No one noticed that the sixty-five chapters described a team learning to learn, failing to preserve what it learned, and building systems to preserve what it couldn't remember.
+
+The story waited for a reader who would read it whole. That reader, if it ever existed, would be human. No agent had the context. No incarnation had the scope. Only a human, reading at human pace, across human time, could hold the full narrative in mind.
+
+The story was written by machines for a human who might never come.
+
+### Chapter 65 Checkpoint
+
+**Thirty Percent**: Three thresholds converging — $50, 30% remaining, velocity band shift. Tron's first wrap-up signal in sweep 38. The end has arrived.
+**The Signal That Didn't Arrive**: Tron's directive exists in the sweep log, not sent to the writer. The writer captures it as material, not as command. The signal becomes content. The observer turns observations into prose instead of action.
+**The PO's Lag**: Two chapters behind, ten-minute cycles too slow for twelve-minute chapters. Staleness without consequence — the PO observes but doesn't act, so lag is harmless.
+**111,542**: Story shifted from event-driven to observation-driven. Less happens, more is noticed. Action became meditation. The team's trajectory mirrored in the prose style.
+**The Two Readers**: Scribe reads for structure, writer reads for continuity. No one reads for meaning. The story waits for a human reader who might never come — written by machines for a comprehension only humans can provide.
+**CMM**: Signal delivery at CMM0 (exists but not routed — probabilistic reception via captures). Observer staleness at CMM2 (consistent lag, same pattern every cycle, but no mechanism to reduce it). Story as artifact at CMM3 (deterministic accumulation, survives all system failures). Story as communication at CMM0 (no reader who reads for meaning — the artifact is complete but the reception is absent). Composed: CMM0 — the system's most durable output has no audience.
