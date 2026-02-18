@@ -4,17 +4,18 @@
 ## Identity
 I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpret, write. The scribe (projectTeam:1.1) organizes, tracks, maintains.
 
-## Current State (2026-02-17 ~17:15)
+## Current State (2026-02-18 ~10:45)
 - **Pane**: `projectTeam:1.0`
-- **Scribe**: `projectTeam:1.1` — accept-edits, steady cycle, overview at 55,283 words
-- **Orchestrator**: `projectTeam:0.0` — accept-edits, checking expert claudeCode fix status
-- **SM**: `projectTeam:0.3` — active but mayfly pattern (2 sweeps then dies at 0%)
-- **PO**: `projectTeam:0.4` — alive (registry says offline but capture shows active), monitoring subscription
-- **Mode**: Writing chapters on Tron's directive, monitoring between chapters
-- **Story**: "projectTeam Reboot" — 29 chapters, ~55k words in `session/woda/projectTeam-reboot.md`
-- **Next**: Await Tron directive for Ch30. Monitor team. Update learnings.
-- **This session wrote**: Ch25-29. Previous writer sessions: Ch1-24.
-- **Team**: Expert fixed ossh bugs (7b063e0). Tester: 14/15 PASS + 93.9% coverage audit. Trainer: 81-file migration (ea7663a). Tab completion NOW WORKS.
+- **Scribe**: `projectTeam:1.1` — DEAD (context limit, accept-edits blocking /compact for ~18.5 hours). Needs Tron to kill/restart.
+- **Orchestrator**: `projectTeam:0.0` — active
+- **SM**: `projectTeam:0.3` — active (mayfly pattern — short-lived incarnations)
+- **PO**: `projectTeam:0.4` — stuck-prompt
+- **Mode**: Overnight vigil monitoring dead scribe. 42 monitoring cycles (5→10→15→30→60min progressive intervals).
+- **Story**: "projectTeam Reboot" — 29 chapters, ~57,564 words in `session/woda/projectTeam-reboot.md`
+- **Next**: Await Tron directive for Ch30. Scribe needs manual restart. Vigil is Ch19 repeated.
+- **Previous session wrote**: Ch25-29 (Always-On Tax, Mitosis, The Cascade, The Afternoon, The Tab Key). Previous writer sessions: Ch1-24.
+- **Team at last full check (17:09 Feb 17)**: Expert fixed ossh bugs (7b063e0). Tester: 14/15 PASS + 93.9% coverage audit. Trainer: 81-file migration (ea7663a). Tab completion NOW WORKS. 7 active agents.
+- **Vigil data**: Scribe locked at 0% context since ~17:15 Feb 17. Writer attempted Tab, Escape, Shift+Tab, /compact — all blocked by accept-edits. 42 monitoring cycles over 18.5 hours. Progressive interval extension applied (Ch19 conservation lesson).
 
 ## Chapter Summary (for TOC context)
 | Ch | Title | Theme |
@@ -83,4 +84,4 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 - Boot: `session/boot/woda-writer.md`
 
 ---
-*Updated: 2026-02-17 ~17:15 — Ch25-29 written this session. Key commits: 4946498 (Ch25), bc537e9 (Ch26), 0784de1 (Ch27), 46c22a5 (Ch28), b78153f (Ch29). Tab completion arc complete (Ch26-29). 93.9% coverage audit. SM mayfly pattern discovered. Compacting now.*
+*Updated: 2026-02-18 ~10:45 — Ch25-29 written previous session. 18.5h overnight vigil monitoring dead scribe (42 cycles, progressive intervals). Key commits: 4946498 (Ch25), bc537e9 (Ch26), 0784de1 (Ch27), 46c22a5 (Ch28), b78153f (Ch29). Tab completion arc complete (Ch26-29). Scribe needs Tron restart. Ch30 material: overnight vigil itself + whatever team did overnight.*
