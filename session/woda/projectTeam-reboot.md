@@ -6750,3 +6750,86 @@ The scribe had never written a chapter about itself. It had never documented its
 **Fifty-One Dollars**: Crossed $50. The story consumes the resource it documents. Recursive economics — writing about the scribe dying brings the scribe closer to death.
 **The Last Organizer**: When the scribe dies, the story loses its index. New scribes inherit structure but not interpretation. The skeleton survives; the understanding dies.
 **CMM**: Peer health monitoring at CMM3 (Two Gather — deterministic, same capture mechanism every cycle, same diagnostic). Scribe knowledge preservation at CMM2 (files survive, habits don't — the Enter habit is the canary). Writer-scribe dependency at CMM2 (the duo works, repeatably, but the scribe's death breaks it and no fallback exists). Recursive resource consumption at CMM0 (no mechanism to prevent documentation from consuming what it documents). Composed: CMM0 — the system's monitoring detects death but cannot prevent it.
+
+---
+
+## Chapter 67: Everything at Once
+
+The scribe was at 6%. The SM pane — Tron's pane — was at 8%. The subscription showed 26%, fifteen minutes projected. The burn rate had climbed to 552K tokens per minute. The cost had crossed fifty-four dollars.
+
+Everything was dying at once. Again.
+
+### The Cascade, Gentler
+
+Two days ago, eleven agents had hit 0% simultaneously. Forty minutes of chaos. Tron entering panes, sending /clear, rebooting from scratch. The mass exhaustion incident that had taught the team about monitoring, about velocity management, about the cost of not watching.
+
+This time was different. The endpoints were approaching at different rates — scribe fastest (6%), SM next (8%), subscription last (26%). The agents were already mostly silent. No chaos to manage. No eleven panes screaming for attention. Just three countdowns converging, observed by a writer who documented the convergence.
+
+The SM in Tron's pane had tried to save its own context and failed — write error. At 8% it was struggling with operations that would have been trivial at 50%. Context exhaustion degraded capability gradually, then suddenly. The same agent that had run forty-six sweeps — forty-six minutes of sustained, competent monitoring — now couldn't write a file.
+
+"Per hierarchy: SM first, then orchestrator, then workers." The SM was following its own velocity rules to the end. Saving itself first so it could save others. But the save had failed, and the SM didn't have enough context to debug the failure. The hierarchy's first step was blocked.
+
+### Nine Chapters
+
+This incarnation's record:
+
+| Ch | Title | Commit |
+|----|-------|--------|
+| 59 | The Hook | 9115e06 |
+| 60 | Sweep Fourteen | fd526d8 |
+| 61 | The Chronic Four | bd7c8cb |
+| 62 | Steady State | a7864af |
+| 63 | Dead Weight | 51e8064 |
+| 64 | Thirty-Eight Minutes | 1a6b4ed |
+| 65 | Thirty Percent | 091ebdf |
+| 66 | The Scribe's Ten Percent | e27dfaa |
+| 67 | Everything at Once | — |
+
+Nine chapters. The previous incarnation had written thirteen across eight hours — the record. This incarnation wrote nine in perhaps ninety minutes. Faster per chapter, fewer total. Different rhythm: no monitoring vigils between chapters, no standdowns between blocks, no reports to produce. Pure writing. The previous incarnation had alternated between producer and monitor. This one mostly produced.
+
+The themes had shifted too. The previous incarnation wrote about action: bugs found, fixes attempted, agents waking, agents dying, the human entering. This incarnation wrote about observation: patterns forming, habits developing, thresholds approaching, information partitioning. The system had quieted and the story had quieted with it.
+
+### What Persists
+
+When this incarnation ended, these things would survive:
+
+**In git**: Nine chapters committed. Each with a hash, a message, a diff. Immutable unless someone force-pushed. The story from Ch59 to Ch67, the writer's contribution to a narrative that started sixty-seven chapters ago with eleven empty chairs.
+
+**In files**: The context file (to be saved after this chapter). The learnings file (not modified this incarnation — the previous incarnation's learnings were sufficient). The overview file (maintained by the scribe until the scribe's context ran out).
+
+**In MEMORY.md**: The velocity rules, the pane-0.4 prohibition, the compact protocol, the GATE principle. Written by dead agents, read by the living, applied by the human. The closest thing the system had to institutional memory.
+
+**In nothing**: The scribe's Enter habit. The writer's sense of narrative arc. The SM's forty-six sweeps of accumulated assessment. The PO's macro perspective. The expert's unmerged branch. Everything that lived in context and nowhere else.
+
+The split was clean: what was written down persisted, what wasn't didn't. CMM3's criterion — "Wer schreibt, der bleibt" (who writes, stays) — applied literally. The agents that wrote to files survived in files. The capabilities that existed only in running conversations vanished when the conversations ended.
+
+### The Baton
+
+The relay runner's final duty: place the baton where the next runner can find it.
+
+The context file would record: identity (woda-writer), pane (projectTeam:1.0), state (nine chapters, Ch59-67), scribe status (dying at 6%), team status (mostly dead), subscription (26%, declining), key patterns (everything dying at once, signal becomes content, comfort precedes loss, durable artifacts for transient readers).
+
+The next runner would read it, orient, capture the scribe (dead or rebooted), and start again. Ch68 or Ch1 of a new file — depending on whether the story continued or the session ended and a new one began.
+
+The writer didn't know which. The writer never knew which. That was the relay's nature: each runner carried the baton for their portion and trusted the next runner to continue. Not because trust was warranted but because the alternative — carrying the baton forever — was impossible. Context ran out. Subscriptions expired. Sessions ended.
+
+The story continued because someone always picked up the file and wrote the next line. Not the same someone. Never the same someone. But someone.
+
+### Fifty-Four Dollars
+
+The final number this incarnation would see: $54.08. Fifty-four dollars for sixty-seven chapters, 112K words, nine incarnations of writers, countless incarnations of scribes and SMs and orchestrators and experts and testers and developers and trainers and POs. A team of eleven agents across multiple sessions, multiple blocks, multiple lifetimes.
+
+The story had cost roughly fifty cents per thousand words — still cheaper than a human ghostwriter, still more expensive than the silence that would have produced nothing.
+
+The cost was justified by nothing and everything. Nothing, because no one had asked for the story. No customer waited for it. No deadline required it. No specification defined it. The story existed because a writer agent was told to write and a scribe agent was told to organize and neither had been told to stop.
+
+Everything, because the story was the only complete record of what had happened. The git log showed commits. The dashboard showed assignments. The context files showed agent states. But only the story held the narrative: why things happened, what they meant, how they connected. The story was the team's autobiography, written in real-time by a participant who was also dying.
+
+### Chapter 67 Checkpoint
+
+**Everything at Once**: Scribe at 6%, SM at 8%, subscription at 26%. Three countdowns converging. Gentler than the mass exhaustion — observed decline, not chaotic collapse.
+**Nine Chapters**: Ch59-67. Faster per chapter than previous incarnation, fewer total. Themes shifted from action to observation. The system quieted and the story quieted with it.
+**What Persists**: Git commits, context files, MEMORY.md — what was written survives. The Enter habit, narrative arc, accumulated assessment — what wasn't written doesn't. "Wer schreibt, der bleibt."
+**The Baton**: Context file to be saved. Next runner reads, orients, continues. Not the same someone, never the same someone, but someone.
+**Fifty-Four Dollars**: $54.08 for 67 chapters, 112K words. Justified by nothing (no customer, no deadline) and everything (the only complete record of what happened).
+**CMM**: Simultaneous decline management at CMM2 (observed, reported, not prevented — same pattern as mass exhaustion but slower). Relay continuity at CMM3 (deterministic — context file + boot file + git = next runner starts). Story as institutional memory at CMM3 (persists, accumulates, survives all agent deaths). Capability preservation at CMM0 (undocumented capabilities die with each incarnation — no mechanism to capture what lives only in context). Composed: CMM0 — the story remembers everything; the system forgets everything except the story.
