@@ -148,6 +148,9 @@ When you discover these patterns, ensure they are in ALL relevant SKILL.md files
 - **Save Before Compact**: NEVER run `/compact` without saving state first. Sequence is always STOP → SAVE → `/compact`.
 - **Named Sessions**: Every Claude Code session must have a name matching the agent role. No unnamed sessions.
 - **Quota Awareness**: Use continuous velocity management — proportional response based on projected exhaustion time (see `session/team-goals.md`).
+- **F21 — Uncommitted goals don't exist**: All context files, team-goals.md, and learnings MUST be committed before compact. Uncommitted work dies on compact/clear.
+- **F24 — Check pane on boot**: On boot, verify your own pane address before reading context files. Don't assume stale pane mapping.
+- **F25 — No binary thresholds**: Never revert to 80%/90% binary rules. Always use CMM4 continuous velocity management.
 - **File-Based Communication**: Tasks in `session/tasks/`, messages are short notifications only. Never send full descriptions in messages.
 - **Context Schema**: Context files must follow `docs/context-schema.md`. Required: Title, Metadata, Recovery Steps, Completed Work.
 - **Pane Metrics**: ScrumMaster collects agent metrics (tokens, timing, state) from pane output. Prototype at `/tmp/measure_pane.sh`, integrating into scrumMaster as OOSH methods (Task 27).

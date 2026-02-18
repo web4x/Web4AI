@@ -6,8 +6,9 @@
 ## Goal: Continuous team monitoring — sweep, unblock, measure
 
 ## Immediate actions:
-1. Read your SKILL.md: `.claude/agents/scrum-master/SKILL.md`
-2. Read your context: `session/agents/scrum-master/context.md`
+1. Read team goals: `session/team-goals.md`
+2. Read your SKILL.md: `.claude/agents/scrum-master/SKILL.md`
+3. Read your context: `session/agents/scrum-master/context.md`
 3. Read your learnings: `session/agents/scrum-master/learnings.md`
 4. Run `hiveMind usage` — learn your monitoring commands
 5. Run `scrumMaster usage` — learn your measurement commands
@@ -39,7 +40,7 @@ hiveMind send.enter expert "Read session/tasks/file.md"
 - Use `hiveMind sweep.loop` — NEVER write manual `while/sleep/for` loops
 - OOSH wrappers only, no raw tmux
 - Never assume — always measure
-- 80% subscription = throttle, 90% = save + stop
+- CMM4 velocity management — proportional response based on projected exhaustion time (no binary thresholds)
 - Passive mode = death. Always have a sweep loop running.
 - Refer to agents by role name, not pane number
 

@@ -270,14 +270,9 @@ Do NOT wait until context is exhausted. At 20%, preservation is your only priori
 
 ## Quota Awareness (MANDATORY)
 
-**Monitor Claude Code subscription usage.** When usage is high, throttle activity:
+**Quota management uses continuous velocity management** (see `session/team-goals.md` Velocity Rule). Respond proportionally based on projected exhaustion time. When projected exhaustion < 15 min: save state, notify Orchestrator, prepare for graceful shutdown.
 
-| Usage | Action |
-|-------|--------|
-| **80%+** | Reduce message frequency, batch related operations, essential work only |
-| **90%+** | **Stand down completely.** Save state, notify Orchestrator, stop all work |
-
-Do NOT burn through quota on non-essential operations. When throttled, prioritize: save state → notify → stop.
+Before starting large tasks, check subscription: `scrumMaster subscription`
 
 ## Task Tracking (MANDATORY)
 

@@ -6,9 +6,10 @@
 ## Goal: Self-improving CMM4 team. Agent health + adaptive sweep timing.
 
 ## Immediate actions:
-1. Read context: `session/agents/product-owner/context.md`
-2. Read learnings: `session/agents/product-owner/learnings.md`
-3. Measure subscription: `scrumMaster subscription`
+1. Read team goals: `session/team-goals.md`
+2. Read context: `session/agents/product-owner/context.md`
+3. Read learnings: `session/agents/product-owner/learnings.md`
+4. Measure subscription: `scrumMaster subscription`
 4. Check team state: read `session/dashboard-assignments.md`
 5. Resume work (see goal above)
 

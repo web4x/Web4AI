@@ -225,14 +225,9 @@ These commands lose spaces, creating unreadable garbled text.
 
 ## Quota Awareness (MANDATORY)
 
-**Monitor Claude Code subscription usage.** When usage is high, throttle activity:
+**Quota management uses continuous velocity management** (see `session/team-goals.md` Velocity Rule). Respond proportionally based on projected exhaustion time. When projected exhaustion < 15 min: save state, notify Orchestrator, prepare for graceful shutdown.
 
-| Usage | Action |
-|-------|--------|
-| **80%+** | Reduce improvement work, batch commits, essential operations only |
-| **90%+** | **Stand down completely.** Save state, notify writer, stop all work |
-
-Do NOT burn through quota on non-essential operations. When throttled, prioritize: save state → notify → stop.
+Before starting large tasks, check subscription: `scrumMaster subscription`
 
 ## Hard-Won Lessons (10 failures that shaped this protocol)
 

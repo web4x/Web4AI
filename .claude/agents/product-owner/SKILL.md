@@ -268,7 +268,9 @@ Do NOT wait until context is exhausted. At 20%, preservation is your only priori
 
 ## Quota Awareness (MANDATORY)
 
-**Quota management uses continuous velocity management** (see `session/team-goals.md` Velocity Rule). Instead of binary 80%/90% thresholds, respond proportionally based on projected exhaustion time. When projected exhaustion < 15 min: save state, notify Orchestrator, prepare for graceful shutdown.
+**Quota management uses continuous velocity management** (see `session/team-goals.md` Velocity Rule). Respond proportionally based on projected exhaustion time. When projected exhaustion < 15 min: save state, notify Orchestrator, prepare for graceful shutdown. **Never revert to binary 80%/90% thresholds (F25).**
+
+Before starting large tasks, check subscription: `scrumMaster subscription`
 
 ## Task Tracking (MANDATORY)
 
@@ -303,9 +305,10 @@ When a new prompt arrives while you are busy:
 ## Compact Protocol (CRITICAL — team-wide impact)
 
 Before compacting:
-1. Save your context to your context.md file
-2. Save learnings to your learnings.md file
-3. Then run /compact
+1. **Commit all uncommitted work** — uncommitted files don't exist after compact/clear (F21)
+2. Save your context to your context.md file
+3. Save learnings to your learnings.md file
+4. Then run /compact
 
 If another agent asks you to compact:
 - They should say "Save your context and run /compact NOW"

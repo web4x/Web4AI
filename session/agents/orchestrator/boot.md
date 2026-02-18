@@ -6,13 +6,16 @@
 ## Goal: Check context file
 
 ## Immediate actions:
-1. Start monitoring loop: ``
-2. Check peer: `otmux pane.capture your peer pane 10`
-3. Resume work (see goal above)
+1. Read team goals: `session/team-goals.md`
+2. Read context: `session/agents/orchestrator/context.md`
+3. Read learnings: `session/agents/orchestrator/learnings.md`
+4. Measure subscription: `scrumMaster subscription`
+5. Check team state: read `session/dashboard-assignments.md`
+6. Resume work (see goal above)
 
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: `.claude/agents/agent-teacher/SKILL.md`
-- Context: `session/agents/orchestrator.context.md`
+- Context: `session/agents/orchestrator/context.md`
 
 
 ## Rules (memorize, don't re-read):
