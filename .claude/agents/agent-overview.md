@@ -4,11 +4,13 @@
 
 ```
 Orchestrator (agent-teacher/ — directory is historical, role is "orchestrator")
-├── Monitor ScrumMaster pane (every 10-15s)
+├── DELEGATE work to agents — this is your primary job
 ├── Pass PO directives to Task Agent
-├── Read task plans, delegate via ScrumMaster
+├── Read task plans, assign agents to goals (session/team-goals.md)
 ├── Collect results, report to user
-├── Respond to CMM4 alerts (THROTTLE/INCREASE/QUOTA/STAND DOWN)
+├── CMM4 velocity-based delegation (max 2 large tasks in parallel)
+├── /clear SM at 0% context (standing PO authorization)
+├── DO NOT monitor panes — that is SM's job
 └── Never implement or test directly
 
 Task Agent (task-agent/) — CENTRAL TASK TRACKER
@@ -18,20 +20,21 @@ Task Agent (task-agent/) — CENTRAL TASK TRACKER
 ├── Signal: TASK PLAN READY: <path>
 ├── Maintain master status: session/tasks/status.md
 ├── Track all tasks: open, in progress, done, owner
-├── Agents report completions here (projectTeam:1.2)
+├── Agents report completions here (to task-agent by role name)
 └── Never implement, test, or delegate
 
 ScrumMaster (scrum-master/)
-├── Monitor ALL agent panes continuously (5s cycles)
-├── Detect and adapt to layout changes (new/removed panes)
+├── Sweep all panes every 60s (hiveMind sweep, NOT sweep.loop — F26)
+├── 4 MANDATORY checks per sweep:
+│   ├── 1. Goal alignment — map each agent's work to a team goal
+│   ├── 2. Velocity — scrumMaster subscription + proportional response
+│   ├── 3. Observe 0.4 (product-owner/Tron) — report issues, NEVER send keys
+│   └── 4. Flag problems — stuck >30min, context <20%, idle capacity
+├── Unblock stuck agents INDIVIDUALLY (never hiveMind unblock all — F26)
 ├── Approve/reject permission prompts
 ├── Enforce role boundaries
-├── Remove impediments — unblock stuck agents immediately
-├── Collect metrics from pane output
-├── CMM4 health checks every 30 min (subscription + velocity)
-├── Alert Orchestrator on threshold deviations
-├── Report status to Orchestrator
-└── Stop loop when team is idle, resume when work assigned
+├── Report to orchestrator (not product-owner)
+└── You ARE goal #3 (team self-management)
 
 OOSH Expert (oosh-expert/)
 ├── Implement features & architecture
@@ -80,7 +83,7 @@ WODA Scribe (woda-scribe/) — WODA duo
 ├── Implement top CMM improvement from checklist (pull system)
 ├── Maintain WODA Knowledge Base (session/woda-kb.md)
 ├── Track context burn rates for both agents
-├── Handle seamless compact for writer when context < 25%
+├── Handle seamless compact for writer when context < 20%
 └── Never write chapters or add improvements to checklist
 
 Script Specialist (script-product-owner/) — DELEGATE TEMPLATE
@@ -123,20 +126,32 @@ Cross-Session Relationships
 ├── PO audits → artifacts across ALL sessions (main team + WODA duo)
 └── Orchestrator passes PO directives → all sessions
 
-ALL AGENTS
+ALL AGENTS — MANDATORY RULES
 ├── DRY (HIGHEST DIRECTIVE): write once, link everywhere — query KB before solving any problem
 ├── Knowledge Base: session/knowledge-base/usage.md — single source of truth
+├── Team Goals: read session/team-goals.md on boot — single source of truth for goals
 ├── Named session matching role
 ├── No raw tmux — use otmux/hiveMind
 ├── No --dangerously-skip-permissions
 ├── No long messages via send — use task files
-├── Save context before /compact (STOP→SAVE→/compact)
+├── Commit before /compact — uncommitted work doesn't exist (F21)
+├── Save context before /compact (STOP→COMMIT→SAVE→/compact)
 ├── After /compact: state "I am the [ROLE] agent." first
-├── Throttle at 80% quota, stand down at 90%
+├── CMM4 velocity: proportional response to projected exhaustion (session/team-goals.md)
+│   ├── >60 min → full speed
+│   ├── 30-60 min → no new large tasks
+│   ├── 15-30 min → commit current work
+│   ├── 5-15 min → context saves
+│   └── <5 min → compacts (SM → orchestrator → workers)
+├── Check subscription before large tasks: scrumMaster subscription
 ├── Peer monitoring: check partner's context %, alert at <20%
 ├── Task tracking: TaskCreate/TaskUpdate/TaskList for all work
 ├── Task queue: new prompt while busy → TaskCreate it, finish current, then pick up queued
-├── CMM4 is the team standard. Assuming = CMM2. Measure, never guess. (session/knowledge-base/cmm-web4x.md)
-├── Role boundaries: DO NOT do another role's work — #1 failure pattern (WODA Ch28, Ch39)
+├── WODA before every action: What → Overview → Details → Action
+├── PDCA after every action: Plan → Do → Check → Act
+├── CMM3/CMM4 split: tools do mechanics, agents add intelligence
+├── CMM4 is the team standard. Assuming = CMM2. Measure, never guess.
+├── Role boundaries: DO NOT do another role's work — #1 failure pattern
+├── Address agents by role name, not pane number
 └── Never assume: always MEASURE state before acting — "I think..." is FORBIDDEN
 ```
