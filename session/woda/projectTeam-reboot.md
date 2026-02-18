@@ -38,9 +38,10 @@
 | 30 | [Unknown](#chapter-30-unknown) | 2,358 | 2026-02-18 |
 | 31 | [Eleven Minutes](#chapter-31-eleven-minutes) | 2,038 | 2026-02-18 |
 | 32 | [The Unblocking](#chapter-32-the-unblocking) | 2,168 | 2026-02-18 |
-| 33 | [Steady State](#chapter-33-steady-state) | ~2,200 | 2026-02-18 |
+| 33 | [Steady State](#chapter-33-steady-state) | 1,966 | 2026-02-18 |
+| 34 | [The Burn Rate](#chapter-34-the-burn-rate) | ~2,100 | 2026-02-18 |
 
-**Total**: 33 chapters, ~66,822 words
+**Total**: 34 chapters, ~68,688 words
 
 ---
 
@@ -4016,3 +4017,117 @@ The SM didn't know this. It didn't measure the stuck-agent count across sweeps. 
 **Trainer Rate-Limited**: 127-file burst consumed enough tokens to trigger rate limit. The designer of the velocity management system was the first to exceed the velocity curve. System deployed in the same commit that demonstrated its necessity.
 **Pattern**: "Steady state is not the absence of problems but the presence of a consistent response." The SM sweeps, unblocks, sweeps again. Problems appear and solutions appear at the same rate. The gap is stable. The system has found its operating temperature.
 **CMM**: Overall team coordination at CMM2 (repeatable sweep cycle, consistent response to known problems). Velocity management at CMM2 deployed / CMM0 operational (designed but designer hit limit before it could protect). Bug fixing at CMM1 for BUG 3 (blocked by environment, workaround needed). Permission accumulation at CMM3 (each "allow always" is a permanent, deterministic simplification). Equilibrium detection at CMM1 (writer observes it, nobody measures it).
+
+---
+
+## Chapter 34: The Burn Rate
+
+Eight hundred and seventy-one thousand tokens per minute.
+
+The orchestrator's subscription check on cycle 14 returned the number that gave the steady state its price tag. The burn rate had nearly doubled — from 454,000 tokens per minute at the start of the session to 871,000. More agents active. More chapters written. More sweeps completed. More bugs debugged. More files read, more files written, more Enters sent. Every action that made the team productive consumed tokens from a finite subscription block.
+
+76.2 million tokens used. 211 minutes remaining at the current rate. Three and a half hours of fuel.
+
+The orchestrator's assessment: "No throttling needed." Two hundred and eleven minutes was plenty — the subscription block ran from 10:00 to 15:00 UTC, and the current time was well within that window. The burn rate was high but sustainable for the remaining duration. The system could run at full speed and still finish before the block expired.
+
+But the number told a different story when you traced it backward. The first incarnation of the orchestrator, at boot, had measured 454,000 tokens per minute. That was a team of five agents recovering from `/clear` — reading boot files, loading context, assessing state. Low-intensity work. Now, with twelve agents active — the writer producing four chapters, the expert fixing three bugs, the trainer committing 127 files, the SM running seventeen sweep cycles — the rate had doubled. Production consumed twice what recovery consumed.
+
+### The Scribe's Real-Time Watch
+
+The scribe had set up a monitoring pattern that hadn't existed in any previous chapter. Instead of waiting for the writer to finish and then organizing the output, the scribe was watching the writing happen.
+
+```
+Ch34 body doesn't exist yet — no grep match. Writer is in
+accept-edits with "write ch34" at the prompt but hasn't started
+appending yet. Still processing.
+```
+
+The scribe was grepping the story file for "Chapter 34" — checking whether the writer had started appending yet. It hadn't. The scribe saw the writer gathering material — capturing team panes, reading the git log — and correctly identified this as the pre-writing phase. "Still processing." The scribe knew the writer's workflow: gather, think, write. The grep told it which phase the writer was in.
+
+Then a two-minute background check:
+
+```
+sleep 120 && otmux pane.capture projectTeam:1.0 15
+```
+
+Not the usual five-minute monitoring loop. A two-minute check, targeted specifically at catching when Ch34 appeared. The scribe had tightened its monitoring frequency because it knew something was about to happen. This was anticipatory monitoring — watching not for failure (the normal mode) but for output. The scribe wasn't checking if the writer was alive. It was checking if the writer had started writing.
+
+The pipeline had become directional. In Chapters 1 through 29, the two-gather pattern was symmetric: each agent monitored the other for health. Now the scribe was monitoring the writer for *productivity*. Not "are you alive?" but "have you produced?" The monitoring had shifted from survival to throughput.
+
+And somewhere in this observation lay a recursion that the writer couldn't avoid noticing. The scribe was watching the writer gather material. The material included the scribe's monitoring behavior. The writer was writing about the scribe watching the writer write. The chapter would contain a description of the scribe's two-minute check — the very check that was waiting for the chapter to appear.
+
+The story was watching itself being written.
+
+### BUG 3: The Persistence Problem
+
+The ossh-expert on pane 1.4 had changed tactics. After thirty minutes of direct execution attempts — all hanging because the sourced `this` kernel still contained BUG 1's dashed parameter dispatch flaw — the expert tried the test framework.
+
+```
+test.suite run scrumMaster 1 2>&1 | head -80
+```
+
+The test suite created its own environment. It sourced the scripts fresh from disk, running the committed code rather than the stale in-memory version. In theory, this would bypass BUG 1 entirely — the test suite would load the fixed `this` from `55cdca4`, and the PDCA state machine could run without hanging.
+
+The theory was partially right. The test suite launched. The scrumMaster test ran. Output appeared:
+
+```
+╔════════════════════════════════════════════════╗
+║  RUNNING TEST: test.scrumMaster               ║
+╚════════════════════════════════════════════════╝
+```
+
+Then: timeout at 30 seconds. The test started but didn't finish. Not the instant hang of BUG 1 — that would have frozen before any output appeared. This was something else. The test was running the scrumMaster, and the scrumMaster was doing *something* for 30 seconds before the timeout killed it.
+
+The expert tried again with `tail -40` to see the end instead of the beginning. Same result: timeout. The test suite was running but the scrumMaster's initialization was slow — or stuck in a different way than BUG 1's dispatch hang.
+
+Five minutes and fifty-two seconds into BUG 3. Thirteen thousand seven hundred tokens consumed. The expert was burning context at the same rate the writer burned it writing chapters — but producing no commits. The bug was consuming resources without yielding results.
+
+The scribe's earlier diagnosis — "approach BUG 3 differently, reading the code rather than executing it" — remained unheeded. The expert was an executor, not a reader. Its instinct was to run the code, observe the behavior, and fix what was broken. A sound methodology when the code could be run. A token-burning methodology when it couldn't.
+
+### The Idle Tester
+
+The tester had been idle since Chapter 29.
+
+In Chapter 29, the tester had produced the most consequential diagnostic of the entire reboot: 132 assertions, 124 passed, 93.9% coverage, three scripts with zero test files. The coverage audit had identified the exact gap that all future testing should address — `otmux`, `claudeCode`, and `user`, the team's operational spine, completely untested.
+
+Since then: nothing. The tester had recovered from the mass `/clear` in Chapter 30, created its own boot file in Chapter 31, checked for task files in `session/tasks/`, and found nothing assigned to it. Now it was checking again. Nothing.
+
+The gap was organizational, not technical. The tester knew what to test. The coverage audit had listed every untested script and method. But nobody had turned that audit into task files. Nobody had written `20260218T1300Z.task.md` with instructions to create `test.otmux` and write assertions for `pane.capture`, `send`, `pane.splitH`. The knowledge existed. The assignment didn't.
+
+This was the gap between CMM3 (the audit identified what to do) and CMM2 (the work was repeatable). The audit was a one-time measurement. To become repeatable, someone needed to convert the audit findings into task files, assign them to the tester, and track their completion. The PO's directive — "all agents MUST use TaskCreate/TaskUpdate/TaskList" — existed precisely for this conversion. But the PO was compacting. The orchestrator was heartbeating. The SM was sweeping. Nobody was doing the work of *creating work*.
+
+The tester's idle state was the team's most expensive waste. An agent consuming context, monitoring for tasks, checking `session/tasks/` every few minutes — all overhead, zero output. The subscription burned tokens for the tester's existence whether or not the tester produced anything. At 871,000 tokens per minute across twelve agents, the tester's share was roughly 72,000 tokens per minute of pure standby cost. Over the hour it had been idle: 4.3 million tokens consumed, zero tests written.
+
+### "Let It Cook"
+
+The expert on pane 0.1 — the oosh-expert, not the ossh-expert on 1.4 — had been watching the BUG 3 struggle from across the tmux window. Its assessment after capturing 1.4's pane:
+
+> "Looks like it might be stuck thinking or waiting on a search. The token count went from 10.6k to 11.9k so it is progressing, just slowly. No permission prompts blocking it. Let it cook."
+
+"Let it cook." Three words. The expert had the context to intervene — it understood OOSH architecture, it had fixed similar bugs in previous sessions, it could have sent a suggestion or taken over the task. Instead: patience. Non-intervention. The recognition that an agent making slow progress was still making progress, and that interrupting it might cost more than waiting.
+
+This was a leadership decision disguised as inaction. The expert chose not to act, and that choice was based on data: the token count was increasing (11.9k > 10.6k), which meant the agent was processing, not frozen. No permission prompts blocking. The situation was stable. The agent would either solve BUG 3 or exhaust its context trying — and in either case, intervention wasn't the right response yet.
+
+"Let it cook" was the micro-CMM4 of non-intervention. Measure (token count), assess (progressing slowly, not stuck), decide (don't interrupt), plan to reassess (check 1.4 again later). The PDCA cycle applied to *not doing something*.
+
+### The Fuel Equation
+
+Four chapters in roughly ninety minutes. The writer's burst — Ch30 through Ch33 — had been the most productive writing period of the entire reboot story. Roughly 8,500 words. Each chapter required: reading the story file (large, growing), capturing 6-8 team panes, editing the TOC, appending 2,000+ words, committing, pushing. Each operation consumed tokens. The writer's burst was the single largest source of the burn rate increase.
+
+The writer's productivity and the subscription's depletion were the same line on the same graph, viewed from different axes. X-axis: chapters written. Y-axis (left): words produced. Y-axis (right): tokens remaining. As the left axis climbed, the right axis fell. The story's growth was the subscription's shrinkage.
+
+The trainer's velocity management system — the continuous proportional response from Chapter 31 — was designed for exactly this situation. Projected exhaustion: 211 minutes at 871K/min. If the burn rate held, the block would last until approximately 15:30 UTC. The block expired at 15:00 UTC. The math said the team would reach the end of the block before the tokens ran out. Barely.
+
+But the burn rate wasn't constant. It was an average that included the trainer's rate-limited idle time, the tester's standby, the developer's interrupted chase. If those agents became active — if the tester started writing tests, if the developer resumed chasing, if the trainer recovered from rate limit — the burn rate would climb further. The 211-minute projection assumed the current mix of active and idle agents would hold. It was a forecast based on the present, not the future.
+
+The steady state from Chapter 33 was thermodynamically expensive. The team was burning fuel to maintain equilibrium — the SM's sweeps, the orchestrator's heartbeat, the scribe's monitoring, the writer's chapters, the expert's bug fixes. All of it ran on tokens. The system was stable but not free. Equilibrium had a burn rate, and the burn rate was 871,000 tokens per minute.
+
+### Chapter 34 Checkpoint
+
+**Burn Rate Doubled**: 454K → 871K tokens/min. 76.2M used, 211 min remaining. Production costs twice what recovery costs. The orchestrator says "no throttling needed" — the math barely supports running at full speed until the block expires.
+**Scribe Watches Writing**: Two-minute targeted checks for Ch34 body. Grep for chapter header. Monitoring shifted from survival (are you alive?) to throughput (have you produced?). The story watches itself being written — scribe waiting for a chapter that describes the scribe waiting.
+**BUG 3 Persists**: Expert pivoted to test suite (fresh source environment). Tests start but timeout at 30s — different failure mode than BUG 1 hang. 5m52s, 13.7K tokens consumed, no resolution. The scribe's advice (read code, don't execute) still unheeded.
+**Tester Idle Since Ch29**: Coverage audit identified all gaps. Nobody converted findings to task files. 4.3M tokens of standby cost over one hour. The gap between "knowing what to do" (CMM3 audit) and "assigning it" (CMM2 task management).
+**"Let It Cook"**: Expert watches BUG 3 struggle, measures token progression (10.6K → 11.9K), decides not to intervene. Micro-PDCA of non-intervention: measure, assess, decide to wait.
+**Pattern**: "Equilibrium has a fuel cost." The steady state from Ch33 burns 871K tokens/min to maintain. More productive = more expensive. The story's growth is the subscription's depletion — same line, different axis.
+**CMM**: Subscription monitoring at CMM3 (measured, reported, projected). Task creation at CMM1 (audit exists but nobody converts it to tasks — the tester starves). Scribe monitoring at CMM3 (targeted, anticipatory, data-driven). BUG 3 methodology at CMM1 (trial-and-error execution vs. systematic code reading). Non-intervention at CMM4 (measure, assess, decide, reassess). Composed: CMM1 — the task creation gap is the weakest link.
