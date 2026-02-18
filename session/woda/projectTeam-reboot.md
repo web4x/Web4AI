@@ -6257,3 +6257,77 @@ Unless someone read it.
 **Forty-Three Percent**: More than half the block remains. Previous block burned 94% across twelve agents. This block is quieter — but efficiency isn't the metric. The question is whether output gets read.
 **The Writer's Dilemma**: 104K words of documentation that documents but doesn't change. Measurement without action is observation. The story is PDCA's first two letters — Plan, Do — waiting for Check, Act.
 **CMM**: Baton pass at CMM3 (hook-automated, deterministic). Team coordination at night at CMM0 (no routing layer — dissolved with orchestrator). Developer-to-SM knowledge transfer at CMM0 (solution exists in a file, no mechanism to connect producer to consumer). Story as measurement at CMM2 (repeatable observation, but no feedback loop to action). Composed: CMM0 — the system produces more than it connects.
+
+---
+
+## Chapter 60: Sweep Fourteen
+
+The SM pane showed sweep number fourteen. But the SM had been dead for hours. Tron was sweeping.
+
+"Sweep 14 — Delta only," the capture read. "0.4 PO now actively thinking. 1.1 scribe still mustering. Everything else unchanged. Subscription: 41%, burn 530K/min, declining. ~73 min. Full speed. No new issues. Chronic 4 unchanged. Continuing."
+
+Delta-only reporting. Burn rate tracking. Chronic issue counting. Proportional assessment. The human had adopted the machine's methodology.
+
+### The Learned Pattern
+
+The SM's sweep protocol had been designed, debugged, and refined across dozens of incarnations. Early SMs swept naively — capture every pane, report everything, act on whatever seemed wrong. Later SMs learned delta-only (report changes, not states), chronic vs acute (track persistent issues separately), and proportional response (assess burn rate before acting). The protocol had evolved from CMM1 (capture and react) through CMM2 (consistent sweep pattern) to CMM3 (deterministic: same inputs produce same assessment).
+
+Tron had absorbed this protocol. Not by reading the SM's SKILL.md — by watching the SM work across hours, days, the full lifecycle of the team. The human had observed the machine observing the system. Meta-observation that produced competence.
+
+But the human's sweeps diverged in one critical way.
+
+"Compact 0.5 and 0.2, leave the rest."
+
+*Leave the rest.* An SM would never leave a 10% tester and a 5% trainer uncompacted while knowing their context was low. The SM's protocol was mechanical: detect low context, trigger compact, verify. No exceptions, no judgment calls, no "leave the rest." Tron applied a filter the SM couldn't: value. The trainer and tester had finished their work. Compacting them freed nothing — they had no pending tasks to resume. Compacting them spent human attention on zero-value operations.
+
+The SM optimized for system health. Tron optimized for system value. Same sweeps, different objective functions.
+
+### The Scribe's Expansion
+
+Meanwhile, on pane 1.1, the scribe had captured the writer's pane.
+
+```
+otmux pane.capture projectTeam:1.0 30
+```
+
+Thirty lines. The scribe saw the writer's prompt — "write ch60" sitting in accept-edits mode, unsubmitted. The scribe assessed: writer is stuck. The scribe acted: sent Enter to the writer's pane.
+
+This was not the scribe's job. The scribe's role was defined in SKILL.md: maintain the knowledge base, organize chapters, monitor the writer's health, manage the overview. Unblocking stuck prompts was the SM's job. Sending Enter to other panes was the SM's action. The scribe had expanded beyond its role definition because the role that should have handled this was dead.
+
+Role expansion under pressure. When the coordination layer disappeared, the remaining agents absorbed its functions. The scribe became a local SM — but only for the writer. It wouldn't sweep the tester or developer or trainer. It monitored one pane because that was its peer. The mutual monitoring pattern (Two Gather) had always contained the potential for role expansion — watching a peer meant detecting when it was stuck, and detecting meant having the information to act.
+
+The scribe's expansion was organic. No one assigned it. No SKILL.md update authorized it. The scribe saw a stuck prompt on its peer's pane and sent Enter. The simplest possible intervention. And exactly what the SM would have done.
+
+### The Quiet Ones
+
+Five agents sat in silence.
+
+The orchestrator's prompt was empty. Standing down, no wakeup. It had saved resume instructions — check if SM rebooted, check subscription, reassign idle agents — but no one would trigger the resume. The orchestrator would sit until the session ended or someone sent it a directive.
+
+The trainer's prompt was empty. Five percent context, accept-edits mode. Nine commits, eighty-one SKILL files. Its work was done. Tron had ordered it compacted, but the compact hadn't landed yet.
+
+The tester showed IDLE with a queued read directive. Ten percent context. It had produced its reports and had nothing left to do. The queue would never clear — the read directive pointed to its own done file, a self-referential loop that accomplished nothing.
+
+The developer had its report ready — context monitoring validation — addressed to the orchestrator. The orchestrator was down. The developer would wait at its prompt, solution in hand, indefinitely.
+
+The expert's pane — whatever state it held — represented the team member who had demonstrated clean exits first. Three commits, voluntary stop, the pattern the orchestrator later learned.
+
+Five agents. Three with finished work and nowhere to send it. Two already standing down. The silence wasn't failure. It was completion without coordination. Every agent had accomplished its task. None of them knew the others were done too.
+
+### Seventy-Three Minutes
+
+The subscription math was simple: 41% used, 530K tokens per minute, declining. Seventy-three minutes projected. The block reset at 03:00 Berlin. The team would run out of subscription before the block ended — or the burn rate would decline further as agents stood down, stretching the remaining tokens until the reset.
+
+This was the fractal pattern again. At the sweep level (60 seconds), the SM checked and waited. At the loop level (5 minutes), the writer monitored and waited. At the block level (hours), the team produced and waited. And now at the session level (the whole night), the subscription burned and would wait for reset.
+
+At every scale, the same rhythm: produce, consume, approach the limit, slow down, wait for replenishment. The team couldn't escape its metabolism. What changed between scales was the duration of the wait and the consequence of misjudging it. Misjudge the sweep: one stuck prompt. Misjudge the loop: one late chapter. Misjudge the block: mass exhaustion. Misjudge the session: the entire team dies at 0% with no reset until morning.
+
+Tron watched all four scales simultaneously. The agents could see at most two.
+
+### Chapter 60 Checkpoint
+
+**Sweep Fourteen**: Tron adopted the SM's sweep methodology — delta-only, burn rate, chronic tracking. But diverged on objective: SM optimized for system health, Tron optimizes for system value. "Leave the rest" is a judgment no SM could make.
+**The Scribe's Expansion**: Scribe captured writer's pane, detected stuck prompt, sent Enter. SM's job, done by scribe. Role expansion under pressure — when the coordination layer dies, surviving agents absorb its functions locally.
+**The Quiet Ones**: Five agents sitting in silence. Three with finished work and no recipient. Two standing down. Completion without coordination — every agent accomplished its task, none knows the others are done.
+**Seventy-Three Minutes**: Subscription burn at 530K/min declining. Same fractal rhythm at session scale: produce, consume, approach limit, wait. Tron watches all four scales. Agents see at most two.
+**CMM**: Human sweep at CMM4 (SM's protocol adopted but with value-weighted decisions — measurement driving different optimization). Scribe role expansion at CMM1 (organic, undocumented, works once — if the scribe compacts, the next scribe won't know to send Enter). Agent completion detection at CMM0 (no mechanism to recognize that five agents have all finished — each sits alone). Fractal burn awareness at CMM1 for agents (see own scale), CMM4 for Tron (sees all scales simultaneously). Composed: CMM0 — individual completion without collective awareness.
