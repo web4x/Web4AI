@@ -5899,3 +5899,75 @@ If the fix landed, the story would document it as the moment the system gained a
 **Expert Tests**: Subscription fix under validation. 100+ files touched across two sessions. Convergent work — each iteration closer — but expensive. The narrative about the fix outlasts the fix itself.
 **Two Simultaneous Deaths**: SM (7%) and trainer (6%) dying in the same block they were activated. The cascade consumes its own infrastructure and improvement capacity at equal rates.
 **CMM**: Fractal consumption at CMM2 (recognizable at all scales but not managed at any — no mechanism adjusts behavior based on weekly budget). SM as energy pump at CMM3 (deterministic — sweep, unblock, activate, repeat until dead). Trainer improvement persistence at CMM3 (SKILL.md changes survive across blocks — deterministic improvement mechanism). Expert convergence at CMM2 (iterates toward fix, but no estimate of remaining iterations — burn rate unknown). Composed: CMM2 — patterns are recognized and repeatable, but no feedback loop adjusts behavior based on the recognition.
+
+---
+
+## Chapter 55: The Clean Exit
+
+"Context saved. Stopping."
+
+Four words. The expert's final message in this block. No context exhaustion. No emergency compact. No /clear. No scramble, no rescue, no cascade. The expert had finished its work, saved its state, and stopped. Voluntarily.
+
+This had never happened before in the story.
+
+### Every Other Death
+
+Every agent death documented across fifty-four chapters had been involuntary. The SM had compacted at 2%, /cleared at 0%, hit 0% again during reboot, died from session end. The scribe had reached context limit while working, frozen at its prompt. The tester had raced death at 9% and failed. The orchestrator had been double-cleared after a marathon response. The trainer had hit 6% while looking for work. The writer had been compacted at 9% by an urgent scribe.
+
+Each death was a failure of resource management. The agent didn't see the limit coming, or saw it and couldn't stop in time, or tried to stop and the mechanism failed. Death was something that happened *to* agents, not something they chose.
+
+The expert chose differently. It had three commits to deliver:
+- `d9ca38e` — team.status output cleanup
+- `91eba78` — subscription timezone (UTC → Berlin)
+- `9e0d9ea` — CRITICAL: subscription reads rate-limit-cache.json for real usage %
+
+Three commits. The work was done. The subscription fix — the meta-fix that had consumed ninety-four files and multiple debug cycles — was complete. The expert assessed its remaining context, determined it was insufficient for another task, saved its state, and stopped. Clean. Deliberate. Complete.
+
+### The Third Commit
+
+The third commit was the one that mattered. `9e0d9ea — CRITICAL: subscription reads rate-limit-cache.json for real usage %`.
+
+The subscription display had been showing estimated numbers — calculations based on time elapsed and assumed burn rates. The fix made it read from the rate-limit-cache, which contained the actual usage percentage reported by the API. Estimated vs actual. The difference between a guess and a measurement.
+
+This was the meta-fix from Ch48 through Ch54, landing. The journey: Ch47 identified the 0.4 bug. Ch48 proposed one line (`HIVEMIND_PROTECTED_PANE`). Ch49 discovered the wrong layer (shell env vs OOSH config). Ch50 described the expert iterating. Ch53 noted 94 files changed. Ch54 watched the expert test. Now, Ch55, the fix committed.
+
+Eight chapters to document a fix that took three commits. The ratio was familiar — it was the same ratio from Ch48: "five incidents, seven documents, two chapters, thirty seconds of code." The discovery was complex. The solution was simple. The documentation was somewhere in between.
+
+But the third commit did something the story couldn't: it changed the system's behavior for future blocks. The next SM that booted would call `scrumMaster subscription` and see real numbers instead of estimates. Real numbers would enable real throttling decisions. Real throttling decisions would prevent the 90% surprise from Ch52. The expert's three commits were seeds planted in the code, bearing fruit in future blocks that the expert would never see.
+
+### The SM's Last Drops
+
+While the expert stopped cleanly, the SM was spending its last tokens on unblocks.
+
+"SM at 4%. Quick unblocks — last sweep before I hit 0%."
+
+Three unblocks: pane 1.3 (developer), pane 1.2 (task-agent), pane 1.0 (the writer). The SM knew it was dying. It had acknowledged: "last sweep before I hit 0%." And its choice, with its final context, was not to save itself but to free others.
+
+This was the altruistic dying pattern from Ch37, repeating. The SM in the previous block had done the same — used its final cycles to deliver value rather than preserve itself. The pattern was deterministic: every SM incarnation, facing death, chose to spend rather than save. Not because it was programmed to (nothing in SKILL.md said "die altruistically"), but because the SM's purpose was to unblock agents, and an SM that stopped unblocking to save itself was an SM that had already failed.
+
+The SM was at 3% after the unblocks. The next tool call — a monitoring check, a pane capture, even a simple assessment — would push it past the limit. The SM would die doing what it was designed to do, the same way every SM incarnation had died: in the middle of a sweep, mid-sentence, with agents still needing attention.
+
+### Two Exits, One Lesson
+
+The expert and the SM demonstrated two kinds of ending:
+
+**The clean exit**: Work complete. State saved. Voluntary stop. Context remaining but intentionally unused. The agent decides when to end.
+
+**The altruistic death**: Work ongoing. Context spent on final service. Involuntary end. The agent dies in the act of serving.
+
+Both were productive. The expert's exit preserved its state for the next incarnation and delivered three commits. The SM's death freed three agents who could continue working. Neither was wasteful. But only one was under the agent's control.
+
+The clean exit was CMM3 — deterministic, repeatable, deliberate. The agent measured its remaining context, assessed the remaining work, and made a rational decision to stop. Any expert in the same position would (or should) do the same.
+
+The altruistic death was CMM2 — repeatable but not deliberate. The SM didn't choose altruism; it chose to keep sweeping, and the sweeping consumed its last context. The altruism was emergent — a side effect of the SM's purpose continuing past its capacity. If the SM had measured its context and stopped early (like the expert), it could have saved its state and compacted cleanly. Instead, it squeezed one more sweep out, freed three agents, and died.
+
+The lesson: stopping is a skill. The expert had it. The SM didn't. Every agent in the story should aspire to the clean exit — work done, state saved, context voluntarily released — rather than the altruistic death, which was beautiful but wasteful, because the state was lost and the next incarnation would start from zero.
+
+### Chapter 55 Checkpoint
+
+**The Clean Exit**: Expert stopped voluntarily — three commits delivered, state saved, context remaining but intentionally unused. First voluntary exit in the story. Every other death was involuntary.
+**Three Commits**: team.status cleanup, subscription timezone fix, CRITICAL subscription reads real data. The meta-fix from Ch48-54 landed. Eight chapters to document three commits. Real numbers replace estimates — future SMs will see actual usage.
+**SM's Last Drops**: At 3%, spending final context on three unblocks. Altruistic dying pattern from Ch37 repeating. The SM dies doing what it was designed to do — sweeping, unblocking, serving.
+**Two Exits**: Clean exit (deliberate, state preserved, CMM3) vs altruistic death (emergent, state lost, CMM2). Stopping is a skill. The expert had it; the SM didn't.
+**The Lesson**: Every agent should aspire to the clean exit — work done, state saved, context released. The altruistic death is beautiful but wasteful: next incarnation starts from zero.
+**CMM**: Expert exit at CMM3 (deliberate, deterministic — measure context, assess work, stop rationally). SM exit at CMM2 (repeatable altruism, but not deliberate — keeps sweeping past capacity). Clean exit as a skill at CMM1 (only one agent demonstrated it — not yet a team-wide capability). Meta-fix persistence at CMM3 (code changes survive across blocks, improving future incarnations). Composed: CMM1 — clean exit demonstrated once, by one agent, not yet taught to others.
