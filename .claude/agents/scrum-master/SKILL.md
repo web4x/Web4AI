@@ -164,8 +164,10 @@ scrumMaster cycle projectTeam 60   # sweep + measure + sleep
 2. Detects and resolves stuck prompts (permissions, unsubmitted text)
 3. Reports structured status
 
-**What YOU add after each sweep:**
+**What YOU add after each sweep (CMM4 intelligence layer):**
 - Check subscription: `scrumMaster subscription`
+- **Burn rate trend** (every 5 cycles): compare burn rate to 5 cycles ago. If >15% climb → flag to orchestrator. Project when remaining crosses 60 min — if within 30 min, start throttling NOW.
+- **Marathon detection**: flag any agent response >15 min to orchestrator as process violation
 - Update dashboard: `scrumMaster dashboard projectTeam`
 - Use proportional response based on projected exhaustion (see CMM4 Velocity Management)
 - At < 5 min projected exhaustion: save context, set wakeup, stop

@@ -319,6 +319,15 @@ When delegating multiple tasks:
 3. Only then delegate task 3
 4. Never fire-and-forget — verify before adding load
 
+## Response Time-Boxing (MANDATORY)
+
+**10-15 minute max per response.** Marathon responses (1h+) are CMM1 — no checkpoints, no visibility, lost work on interrupt.
+
+- After 10 min of work in a single response: commit progress and yield
+- If a task needs >15 min: break it into subtasks and delegate
+- SM will flag any response >15 min as a process violation
+- Background `sleep` loops inside a single response are FORBIDDEN — they prevent the response from finishing and block all queued messages
+
 ## Delegation Workflow
 
 ```

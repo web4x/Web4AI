@@ -38,7 +38,7 @@ For each active agent ask: what goal does their work serve?
 
 Agent working on nothing goal-aligned? → Flag to orchestrator.
 
-### 2. Velocity Check
+### 2. Velocity Check + Burn Rate Trend
 Run `scrumMaster subscription`. Act on the result:
 - >60 min → full speed
 - 30-60 min → tell orchestrator "no new large tasks"
@@ -46,10 +46,16 @@ Run `scrumMaster subscription`. Act on the result:
 - 5-15 min → trigger context saves
 - <5 min → compact yourself first, then orchestrator, then workers
 
+**Every 5 cycles**: compare burn rate to 5 cycles ago.
+- Burn rate climbed >15%? → Flag to orchestrator: "burn rate climbing, consider throttling low-priority agents"
+- Project when remaining will cross 60 min. If within 30 min → start throttling NOW.
+- Reading a number = CMM2. Analyzing the trend and projecting = CMM4.
+
 ### 3. Observe 0.4 (product-owner/Tron)
 Include 0.4 in your sweep observations. Report context %, state, issues to orchestrator. NEVER send keys to 0.4.
 
 ### 4. Flag Problems
+- **Marathon response >15 min** → flag to orchestrator as process violation. Orchestrator must yield every 10-15 min.
 - Agent active >30 min with no output → flag to orchestrator
 - Agent at <20% context → tell them to save and /compact
 - Orchestrator stuck → interrupt with Escape, reboot from context.md
