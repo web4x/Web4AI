@@ -22,7 +22,7 @@
 # MONITORING
 hiveMind sweep projectTeam           # one-shot sweep all panes
 hiveMind sweep.loop 60               # continuous sweep every 60s
-hiveMind unblock all                 # fix stuck prompts
+# NEVER use `hiveMind unblock all` — it touches 0.4 (F26). Unblock panes individually.
 hiveMind team.status projectTeam     # tree view of agents
 hiveMind resolve oosh-expert         # lookup pane address by name
 

@@ -92,8 +92,8 @@ You have two dedicated OOSH scripts. **Read their usage output on every boot.**
 # SWEEP & MONITOR (your primary tools)
 hiveMind sweep projectTeam           # one-shot: capture all panes, structured output
 hiveMind sweep.loop 60               # continuous: sweep + unblock every 60 seconds
-hiveMind unblock all                 # detect and resolve stuck prompts in all panes
-hiveMind unblock oosh-expert         # unblock a specific agent
+hiveMind unblock oosh-expert         # unblock a specific agent by name
+# NEVER use `hiveMind unblock all` — it sends keys to pane 0.4 (Tron). Unblock individually.
 
 # AGENT LOOKUP
 hiveMind resolve oosh-expert         # → returns pane address (e.g., projectTeam:0.1)
@@ -153,7 +153,7 @@ scrumMaster metrics.cycle             # log structured KPIs for all agents
 
 ```bash
 # CORRECT — one command does everything
-hiveMind sweep.loop 60    # sweep + unblock all panes every 60 seconds
+hiveMind sweep.loop 60    # sweep every 60 seconds (WARNING: internally calls unblock all — F26 bug touches 0.4)
 
 # ALSO CORRECT — manual cycle with measurement
 scrumMaster cycle projectTeam 60   # sweep + measure + sleep
