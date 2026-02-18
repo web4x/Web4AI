@@ -1,36 +1,46 @@
 # Team Assignment Dashboard
-*Updated: 2026-02-18 17:52Z by scrum-master (goal-aligned sweep)*
-
-## SUBSCRIPTION
-- Block: 15:00-20:00 UTC (ACTIVE)
-- Remaining: 188 min
-- Burn rate: 836K tokens/min
-- Alert: OK — **FULL SPEED** (>60 min projected)
+*Updated: 2026-02-18 19:40Z by task-agent (daily completions scan)*
 
 ## Assignment Table
 
-| Pane | Agent | Current Task | Goal | Context | Status |
-|------|-------|-------------|------|---------|--------|
-| 0.0 | orchestrator | Rebooted from context.md, thinking 33min | G3 | Unknown | POSSIBLY STUCK |
-| 0.1 | oosh-expert | Cascading — actively working | G5 | Healthy | ACTIVE |
-| 0.2 | oosh-tester | /compact submitted (was 8% context) | G3 | 8% → compacting | COMPACTING |
-| 0.3 | scrum-master | Goal-aligned sweep (CMM4 upgrade) | G3/G4 | Healthy | ACTIVE |
-| 0.4 | product-owner | **TRON'S PANE — NEVER TOUCH** | — | Unknown | SKIPPED |
-| 0.5 | agent-trainer | Writing CMM4 task file for SM | G1 | Healthy | ACTIVE |
-| 1.0 | woda-writer | Monitoring scribe — idle | NONE | Healthy | IDLE |
-| 1.1 | woda-scribe | "Baked 1m 12s" — idle | NONE | Healthy | IDLE |
-| 1.2 | task-agent | No pending tasks | NONE | Healthy | IDLE |
-| 1.3 | developer | Interrupted, empty prompt | NONE | Healthy | IDLE |
-| 1.4 | script-PO | All 3 bugs fixed, waiting | NONE | Healthy | IDLE |
+| Pane | Agent | Current Task | Goal | Status |
+|------|-------|-------------|------|--------|
+| 0.0 | orchestrator | Delegation loop | G3 | Active |
+| 0.1 | oosh-expert | scrumMaster timezone fix | G5 | Active |
+| 0.2 | oosh-tester | hiveMind send validation | G5 | Active |
+| 0.3 | scrum-master | Sweep cycle 22+ | G3/G4 | Active |
+| 0.4 | product-owner | **TRON'S PANE — NEVER TOUCH** | — | SKIPPED |
+| 0.5 | agent-trainer | Role enforcement SKILL.md | G1 | Assigned |
+| 1.0 | woda-writer | Test coverage report | G2 | Assigned |
+| 1.1 | woda-scribe | CMM progress report | G1 | Assigned |
+| 1.2 | task-agent | Dashboard update + daily completions | G3 | Active |
+| 1.3 | developer | action-to-method conversions | G5 | Assigned |
+| 1.4 | script-PO | Checking SM assignment | — | Active |
 
-## DRIFT REPORT
-- **5 agents idle**: writer(1.0), scribe(1.1), task-agent(1.2), developer(1.3), script-PO(1.4)
-- **Root cause**: Orchestrator possibly stuck (33min thinking) — not assigning work
-- **Action needed**: If orchestrator doesn't recover in next sweep, interrupt and reboot again
+## Today's Completions (7 total)
 
-## Blockers
-- **Orchestrator (0.0)**: 33 min single response after reboot — monitor closely
-- **Tester (0.2)**: Compacting — will need reboot file after compact completes
+| Task | Agent | Result | Commit |
+|------|-------|--------|--------|
+| trainer-persist-goals-and-fixes | agent-trainer | PASS | f790da2 |
+| trainer-update-sm-04-observation | agent-trainer | PASS | bb2c12e |
+| trainer-cmm4-all-agents-and-tool-review | agent-trainer | PASS | 21d0202 |
+| trainer-migrate-pane-to-role-names | agent-trainer | PARTIAL | 21d0202 |
+| test-suite-all-results (217P/30F) | oosh-tester | PARTIAL | 848c4db |
+| ossh/user test plan (15/15) | ossh-tester + ossh-expert | PASS | 7b063e0 |
+| SM recovery (minimal boot) | orchestrator | PASS | — |
+
+## Open Tasks (3 dated, 5 SM-assigned)
+
+| Task | Assigned To | Goal |
+|------|------------|------|
+| expert-context-monitoring | oosh-expert | G3+G4 |
+| tester-context-validation | oosh-tester | G3+G4 |
+| sm-goal-aligned-sweeps | scrum-master | G3 |
+| sm-assign-writer | writer | G2 |
+| sm-assign-scribe | scribe | G1 |
+| sm-assign-developer | developer | G5 |
+| sm-assign-script-po | script-PO | — |
+| sm-assign-task-agent | task-agent | G3 |
 
 ## Goals Reference
 - G1: CMM4 team
@@ -39,7 +49,4 @@
 - G4: Subscription monitoring
 - G5: Software delivery
 
-## CMM Observations
-- SM sweep upgraded from CMM2 (mechanical) → CMM3 (goal-aligned, measured)
-- CMM4 target: PDCA loop — measure drift → flag to orchestrator → verify correction → adjust
-- Weakest link: orchestrator stuck = entire team idle = CMM1 delegation
+Full daily report: `session/tasks/daily-completions-20260218.md`
