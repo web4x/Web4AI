@@ -4,7 +4,7 @@
 # Prevents death spiral: no more reading 3 large files to recover identity
 
 PROJECT_DIR="${CLAUDE_PROJECT_DIR:-/Users/Shared/Workspaces/AI/Claude}"
-ROLES_FILE="/tmp/hivemind.roles"
+ROLES_FILE="$HOME/config/hivemind.roles.env"
 AGENTS_DIR="$PROJECT_DIR/session/agents"
 
 # --- Detect current pane and role ---
@@ -19,86 +19,35 @@ fi
 
 echo "=== PRE-COMPACT: ${CURRENT_ROLE:-unknown} @ ${PANE_TARGET:-unknown} ==="
 
-# --- Skip Tron interface pane (0.4) — not a managed agent ---
-if echo "$PANE_TARGET" | grep -qE ':[0-9]+\.4$'; then
-    echo "Pane 0.4 is Tron interface — skipping boot file and auto-resume"
+# --- Skip protected panes (e.g. Tron's 0.4) — not managed agents ---
+PROTECTED_PANE=$(sed -n 's/^export HIVEMIND_PROTECTED_PANE="\(.*\)"/\1/p' "$HOME/config/oosh.env" 2>/dev/null)
+if [ -n "$PROTECTED_PANE" ] && echo "$PANE_TARGET" | grep -qF ":${PROTECTED_PANE}"; then
+    echo "Pane $PROTECTED_PANE is protected — skipping boot file and auto-resume"
     echo "=== END ==="
     exit 0
 fi
 
-# --- Map role to files ---
+# --- Map role to files (generic — derives paths from role name) ---
 CONTEXT_FILE=""
 SKILL_FILE=""
 LEARNINGS_FILE=""
 PEER_PANE=""
 LOOP_CMD=""
-case "$CURRENT_ROLE" in
-    *scrum*|*Scrum*)
-        CONTEXT_FILE="$PROJECT_DIR/session/agents/scrum-master.context.md"
-        SKILL_FILE=".claude/agents/scrum-master/SKILL.md"
-        ;;
-    *expert*|*Expert*)
-        CONTEXT_FILE="$PROJECT_DIR/session/agents/oosh-expert.context.md"
-        SKILL_FILE=".claude/agents/oosh-expert/SKILL.md"
-        ;;
-    *tester*|*Tester*)
-        CONTEXT_FILE="$PROJECT_DIR/session/agents/oosh-tester.context.md"
-        SKILL_FILE=".claude/agents/oosh-tester/SKILL.md"
-        ;;
-    *agent-trainer*|*trainer*)
-        CONTEXT_FILE="$PROJECT_DIR/session/agents/agent-trainer.context.md"
-        SKILL_FILE=".claude/agents/agent-trainer/SKILL.md"
-        ;;
-    *teacher*|*Teacher*)
-        CONTEXT_FILE="$PROJECT_DIR/session/agent.context.md"
-        SKILL_FILE=".claude/agents/agent-teacher/SKILL.md"
-        ;;
-    *woda-writer*|*writer*)
-        CONTEXT_FILE="$PROJECT_DIR/session/woda-writer.context.md"
-        SKILL_FILE=".claude/agents/woda-writer/SKILL.md"
-        LEARNINGS_FILE="session/woda-writer.learnings.md"
-        PEER_PANE="claudeWoda:0.1"
-        LOOP_CMD="sleep 300 && otmux pane.capture claudeWoda:0.1 15"
-        ;;
-    *woda-scribe*|*scribe*)
-        CONTEXT_FILE="$PROJECT_DIR/session/wodaScribe.context.md"
-        SKILL_FILE=".claude/agents/woda-scribe/SKILL.md"
-        LEARNINGS_FILE="session/woda-scribe.learnings.md"
-        PEER_PANE="claudeWoda:0.0"
-        LOOP_CMD="sleep 300 && otmux pane.capture claudeWoda:0.0 5"
-        ;;
-    *task-agent*)
-        CONTEXT_FILE="$PROJECT_DIR/session/agents/task-agent.context.md"
-        SKILL_FILE=".claude/agents/task-agent/SKILL.md"
-        ;;
-    *product-owner*)
-        CONTEXT_FILE="$PROJECT_DIR/session/agents/product-owner.context.md"
-        SKILL_FILE=".claude/agents/product-owner/SKILL.md"
-        ;;
-    *developer*)
-        CONTEXT_FILE="$PROJECT_DIR/session/agents/developer.context.md"
-        SKILL_FILE=".claude/agents/developer/SKILL.md"
-        ;;
-    *orchestrator*)
-        CONTEXT_FILE="$PROJECT_DIR/session/agents/orchestrator.context.md"
-        SKILL_FILE=".claude/agents/agent-teacher/SKILL.md"
-        ;;
-    *claude-opus*)
-        CONTEXT_FILE="$PROJECT_DIR/session/claude-opus.context.md"
-        PEER_PANE="claudeOpus2kTMUX:0.2"
-        ;;
-    *cursor-agent*)
-        CONTEXT_FILE="$PROJECT_DIR/session/cursor-agent.context.md"
-        PEER_PANE="claudeOpus2kTMUX:0.0"
-        ;;
-    *)
-        # Fallback: auto-discover from .claude/agents/<role>/SKILL.md
-        if [ -n "$CURRENT_ROLE" ] && [ -f "$PROJECT_DIR/.claude/agents/$CURRENT_ROLE/SKILL.md" ]; then
-            SKILL_FILE=".claude/agents/$CURRENT_ROLE/SKILL.md"
-            CONTEXT_FILE="$PROJECT_DIR/session/agents/$CURRENT_ROLE.context.md"
-        fi
-        ;;
-esac
+
+if [ -n "$CURRENT_ROLE" ]; then
+    # Standard paths: session/agents/<role>/context.md, .claude/agents/<role>/SKILL.md
+    if [ -f "$PROJECT_DIR/session/agents/$CURRENT_ROLE/context.md" ]; then
+        CONTEXT_FILE="$PROJECT_DIR/session/agents/$CURRENT_ROLE/context.md"
+    elif [ -f "$PROJECT_DIR/session/agents/${CURRENT_ROLE}.context.md" ]; then
+        CONTEXT_FILE="$PROJECT_DIR/session/agents/${CURRENT_ROLE}.context.md"
+    fi
+    if [ -f "$PROJECT_DIR/.claude/agents/$CURRENT_ROLE/SKILL.md" ]; then
+        SKILL_FILE=".claude/agents/$CURRENT_ROLE/SKILL.md"
+    fi
+    if [ -f "$PROJECT_DIR/session/agents/$CURRENT_ROLE/learnings.md" ]; then
+        LEARNINGS_FILE="session/agents/$CURRENT_ROLE/learnings.md"
+    fi
+fi
 
 # --- Auto-commit dirty session files ---
 cd "$PROJECT_DIR" 2>/dev/null
@@ -133,8 +82,8 @@ cat > "$BOOT_FILE" << BOOT
 ## Goal: ${CURRENT_GOAL:-Check context file}
 
 ## Immediate actions:
-1. Start monitoring loop: \`$LOOP_CMD\`
-2. Check peer: \`otmux pane.capture ${PEER_PANE:-"your peer pane"} 10\`
+1. Check for new tasks: \`ls -t session/tasks/ | head -5\`
+2. Read context file if needed (see Deep files below)
 3. Resume work (see goal above)
 
 ## Deep files (read ONLY if needed, not on boot):
