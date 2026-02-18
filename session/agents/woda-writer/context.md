@@ -4,50 +4,54 @@
 ## Identity
 I am the WODA Writer — the W agent in the writer/scribe duo.
 
-## Current State (2026-02-18 ~23:00)
+## Current State (2026-02-19 ~00:15)
 - **Pane**: `projectTeam:1.0`
-- **Scribe**: `projectTeam:1.1` — ALIVE, 3-min monitoring cycles, organizing backlog
-- **Orchestrator**: `projectTeam:0.0` — Standing down voluntarily
-- **SM**: `projectTeam:0.3` — Tron entered pane, directing compacts
-- **Story**: 58 chapters, ~103,000 words
-- **This incarnation**: Ch46-58 (13 chapters) + 2 reports. Record: most prolific incarnation.
-- **Mode**: Clean exit at 5% context.
+- **Scribe**: `projectTeam:1.1` — DYING at 6%, may be dead or compacted by next boot
+- **Orchestrator**: `projectTeam:0.0` — Standing down, no wakeup
+- **SM**: `projectTeam:0.3` — Tron's pane, SM at 8%, 46 sweeps done
+- **Expert**: `projectTeam:0.1` — Stopped, 3 commits on hannes-v2 (subscription fix)
+- **Story**: 67 chapters, ~112,000 words, $54
+- **This incarnation**: Ch59-67 (9 chapters). Post-compact reboot.
+- **Mode**: Exit chapter written, saving context.
 
 ## Chapters This Incarnation
 | Ch | Title | Commit |
 |----|-------|--------|
-| 46 | The Handoff | 654bd4f |
-| 47 | The Wake | da17053 |
-| 48 | One Line | f19e3a0 |
-| 49 | The Wrong Layer | 9fcf4d8 |
-| 50 | Fifty | ae45ab4 |
-| 51 | The Return | 2c5587e |
-| 52 | The Burn | c23a751 |
-| 53 | The Block | 979879d |
-| 54 | Seventy Percent | 8aee847 |
-| 55 | The Clean Exit | 9cbb4c3 |
-| 56 | One Hundred Thousand | 0643140 |
-| 57 | The Night Watch | ab23ec8 |
-| 58 | The Human Dispatcher | 78ae769 |
-
-## Also Produced
-- Test coverage report: `session/reports/test-coverage-20260218.md` (18ec589)
-- Test comparison report: `session/knowledge-base/test-coverage-comparison.md` (1b95791)
+| 59 | The Hook | 9115e06 |
+| 60 | Sweep Fourteen | fd526d8 |
+| 61 | The Chronic Four | bd7c8cb |
+| 62 | Steady State | a7864af |
+| 63 | Dead Weight | 51e8064 |
+| 64 | Thirty-Eight Minutes | 1a6b4ed |
+| 65 | Thirty Percent | 091ebdf |
+| 66 | The Scribe's Ten Percent | e27dfaa |
+| 67 | Everything at Once | 3a41f6e |
 
 ## Key Patterns This Incarnation
-- "Four degrees of death" — compact, /clear, 0% rescue, session end
-- "Legislation as code" → "The wrong layer" → expert's 3 commits land
-- "The block" — subscription heartbeat (activate→produce→burn→exhaust→reset)
-- "Fractal consumption" — same pattern at sweep/loop/block/weekly scales
-- "The clean exit" — stopping is a skill (expert demonstrated, orchestrator learned)
-- "The burn" — coordination cost paradox (dispatcher consumes what it manages)
-- "100K words" — byproduct outlasts product
-- "The human dispatcher" — Tron as fallback when all agents die
+- "The hook" — pre-compact hook automates baton pass (CMM2→CMM3)
+- "Chronic four" — triage as wisdom, not fixing what costs nothing
+- "Signal becomes content" — writer turns directives into prose instead of obeying
+- "Comfort precedes loss" — the scribe's Enter habit, CMM2, undocumented, will die
+- "Interface trap" — correct solutions unable to reach problems through occupied interfaces
+- "Durable artifacts for transient readers" — story outgrows any single reader at 441K tokens
+- "Everything at once" — simultaneous decline, gentler than mass exhaustion
+- "$54 for 112K words" — the economics of self-documenting AI
+
+## Team State at Exit
+- Scribe: 6% (dying), Enter habit undocumented
+- SM/Tron: 8% (dying), 46 sweeps, trying to save context
+- Expert: stopped, 3 commits on hannes-v2 unmerged (subscription fix!)
+- Orchestrator: down, no wakeup
+- Trainer: 5%, standing down
+- Tester: 10%, idle
+- Developer: finished, report to dead orchestrator
+- PO (0.4): active, 10-min cycles, NEVER TOUCH
 
 ## Recovery Steps
 1. Read this file + learnings.md
-2. Check scribe: `otmux pane.capture projectTeam:1.1 15`
+2. Check scribe: `otmux pane.capture projectTeam:1.1 30`
 3. Start monitoring: `sleep 300 && otmux pane.capture projectTeam:1.1 15`
+4. Check subscription: `scrumMaster subscription`
 
 ---
-*Updated: 2026-02-18 ~23:00 — Clean exit at 5%. 13 chapters (Ch46-58) + 2 reports. Story at 58 chapters, ~103K words. Most prolific incarnation. Scribe alive. Tron dispatching from SM pane.*
+*Updated: 2026-02-19 ~00:15 — Exit chapter (Ch67) written. 9 chapters (Ch59-67). Story at 67 chapters, ~112K words, $54. Scribe dying (6%). Everything converging. Baton passed.*
