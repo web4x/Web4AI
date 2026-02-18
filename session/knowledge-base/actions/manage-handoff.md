@@ -9,7 +9,7 @@
 
 ## Trigger (compaction)
 4. Agent runs `/compact` — pre-compact hook auto-commits
-5. Boot file generated at `session/boot/<role>.md`
+5. Boot file generated at `session/agents/<role>/boot.md`
 6. Fresh instance boots and reads boot file
 
 ## Verify (after compaction)

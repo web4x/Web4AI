@@ -1,25 +1,31 @@
 # Boot: oosh-expert
-*Auto-generated 2026-02-12 16:38. This is ALL you need to read post-compact.*
+*Updated 2026-02-18. This is ALL you need to read post-compact.*
 
 ## You are: oosh-expert
 ## Pane: projectTeam:0.1
-## Goal: CURRENT GOAL
-Fixing measurement system tools (CMM4 task). Task 5 in progress. Tasks 3+4 completed.
+## Goal: Idle — all 31 tasks complete, waiting for next assignment
 
 ## Immediate actions:
-1. Start monitoring loop: ``
-2. Check peer: `otmux pane.capture your peer pane 10`
-3. Resume work (see goal above)
+1. Check for new task files: `ls -t session/tasks/ | head -5`
+2. Check git status: `git status --short`
+3. If no new tasks, report idle to SM/PO
 
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: `.claude/agents/oosh-expert/SKILL.md`
-- Context: `session/agents/oosh-expert.context.md`
+- Context: `session/agents/oosh-expert/context.md`
 
+## Key knowledge (memorize, don't re-read):
+- OOSH on PATH — no export needed, direct commands work
+- OOSH param names must be valid bash identifiers (no dashes)
+- Context path uses subdirectory: `session/agents/oosh-expert/context.md`
+- Registry at `~/config/hivemind.roles.env`
+- `input_tokens` includes `cache_read_input_tokens` — don't double-count
+- c2 completion is double-Tab: first shows method info, second shows completions
 
 ## Rules (memorize, don't re-read):
-- Passive mode = death. Always have a background loop running.
 - Never assume — always measure.
 - OOSH wrappers only, no raw tmux.
+- Nothing is done until committed with a hash (CMM3).
 
 ## Team Learnings (from WODA — 27 chapters of multi-agent experience)
 

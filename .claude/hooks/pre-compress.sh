@@ -5,8 +5,7 @@
 
 PROJECT_DIR="${CLAUDE_PROJECT_DIR:-/Users/Shared/Workspaces/AI/Claude}"
 ROLES_FILE="/tmp/hivemind.roles"
-BOOT_DIR="$PROJECT_DIR/session/boot"
-mkdir -p "$BOOT_DIR"
+AGENTS_DIR="$PROJECT_DIR/session/agents"
 
 # --- Detect current pane and role ---
 PANE_TARGET=""
@@ -112,7 +111,10 @@ else
 fi
 
 # --- Generate boot file ---
-BOOT_FILE="$BOOT_DIR/${CURRENT_ROLE:-unknown}.md"
+ROLE_NAME="${CURRENT_ROLE:-unknown}"
+BOOT_AGENT_DIR="$AGENTS_DIR/$ROLE_NAME"
+mkdir -p "$BOOT_AGENT_DIR"
+BOOT_FILE="$BOOT_AGENT_DIR/boot.md"
 ROLE_DISPLAY="${CURRENT_ROLE:-unknown}"
 TIMESTAMP=$(date "+%Y-%m-%d %H:%M")
 
@@ -150,7 +152,7 @@ echo "Boot file: $BOOT_FILE ($(wc -l < "$BOOT_FILE") lines)"
 
 # --- Schedule auto-resume with boot file reference ---
 if [ -n "$PANE_TARGET" ]; then
-    BOOT_REL="session/boot/${CURRENT_ROLE:-unknown}.md"
+    BOOT_REL="session/agents/${CURRENT_ROLE:-unknown}/boot.md"
     RESUME_MSG="You just compacted. Read $BOOT_REL — it has everything you need. Do NOT read other files unless the boot file says to."
 
     # Kill any previous resume process for this pane (prevent pile-up)

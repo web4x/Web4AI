@@ -1,0 +1,1 @@
+/Users/Shared/Workspaces/AI/Claude/.claude/agents/myId-tester/SKILL.md

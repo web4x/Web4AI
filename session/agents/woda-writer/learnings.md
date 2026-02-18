@@ -75,7 +75,7 @@
   - Hook pile-up bug: each compact spawns `sleep 15 && send-keys` — they accumulate and spam pane
   - Fix: PID file at `/tmp/resume-<pane>.pid` — kill old process before spawning new one
   - `/exit` unreliable in TUI with pending edits — may need `kill <pid>` of claude process
-  - Boot file (`session/boot/<role>.md`) = minimal recovery, ~20 lines. Read ONLY this post-compact.
+  - Boot file (`session/agents/<role>/boot.md`) = minimal recovery, ~20 lines. Read ONLY this post-compact.
   - Scribe.2 hibernated: `claude --resume 3d0d4a9b-6eaf-4d12-bf73-2c21ebe033b0` (has SKILL.md)
 
 - **Failures** (learn from these)

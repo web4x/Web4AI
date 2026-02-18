@@ -9,7 +9,7 @@ All 11 agents hit 0% within 30 minutes. SM sweep detected stuck prompts and perm
 At 0% "Context limit reached", /compact cannot work. Only /clear resets the session. **If an agent reaches 0%, send /clear, then send proper boot file. Don't waste time trying /compact.**
 
 ## F20: unknown.md Is a Boot Failure (2026-02-17)
-After compact/clear, agents got `session/boot/unknown.md` which provides no identity. **Always send the NAMED boot file: `Read session/boot/<role>.md`. Never send unknown.md.**
+After compact/clear, agents got `session/agents/unknown/boot.md` which provides no identity. **Always send the NAMED boot file: `Read session/agents/<role>/boot.md`. Never send unknown.md.**
 
 ## LETHAL FAILURE: Forced compact without context save (2026-02-16)
 I sent /compact to agents via background commands WITHOUT first triggering them to save context. This destroyed their state — killed them. The Peer Compact Protocol exists for exactly this reason:

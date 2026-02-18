@@ -36,7 +36,7 @@ Tron delegated 4 tasks simultaneously to expert, tester, trainer, and scribe. Al
 1. **SM detects** context warning in pane status bar ("Context low (X% remaining)")
 2. **SM triggers** compact: sends "Save your context and run /compact NOW"
 3. **SM verifies** compact succeeded within 30 seconds
-4. **SM sends** proper boot file: `Read session/boot/<role>.md`
+4. **SM sends** proper boot file: `Read session/agents/<role>/boot.md`
 5. **Never** let agents reach 0% — that's the "Context limit reached" death zone where /compact fails
 
 ### During Recovery
@@ -58,7 +58,7 @@ The SM sweep detects stuck prompts, permissions, and activity — but does NOT c
 Delegating 4 large tasks to 4 agents simultaneously with no throttling. Each task consumed massive context (reading SKILL.md files, scanning 81 files, running tests). No mechanism to pause delegation when burn rate is high.
 
 ### 3. unknown.md Boot File
-The pre-compact hook and post-compact boot sequence defaults to `session/boot/unknown.md` when it can't detect the agent role. This file is useless — it tells the agent nothing about who they are or what they should do. Every agent that compacted or cleared got this garbage.
+The pre-compact hook and post-compact boot sequence defaults to `session/agents/unknown/boot.md` when it can't detect the agent role. This file is useless — it tells the agent nothing about who they are or what they should do. Every agent that compacted or cleared got this garbage.
 
 **Root cause of unknown.md**: The boot hook uses role detection that doesn't match all agent names. The trainer was actively fixing this when the disaster hit.
 
@@ -86,7 +86,7 @@ At 0% "Context limit reached", /compact cannot work — there's no context left 
 Blind batch recovery (loop all panes, send same command) failed completely. Recovery must follow the communication hierarchy: SM first (monitors everyone), orchestrator second (coordinates), then workers. **SM alive = team can self-heal. SM dead = manual recovery for everyone.**
 
 ### F20: unknown.md Is a Boot Failure (2026-02-17)
-The default boot file `session/boot/unknown.md` provides no identity, no context, no recovery steps. Every agent that hits it is effectively lobotomized. **Every agent MUST have a named boot file at `session/boot/<role>.md`. The boot hook must resolve role names correctly for all agents. unknown.md should be an error, not a default.**
+The default boot file `session/agents/unknown/boot.md` provides no identity, no context, no recovery steps. Every agent that hits it is effectively lobotomized. **Every agent MUST have a named boot file at `session/agents/<role>/boot.md`. The boot hook must resolve role names correctly for all agents. unknown.md should be an error, not a default.**
 
 ## Action Items
 

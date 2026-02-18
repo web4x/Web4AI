@@ -1,0 +1,1 @@
+/Users/Shared/Workspaces/AI/Claude/.claude/agents/agent-trainer/SKILL.md

@@ -338,14 +338,14 @@ Look for these patterns in pane output (last 5 lines of status bar area):
 | **> 20%** | Normal — no action needed |
 | **<= 20%** | Trigger compact: send "Save your context and run /compact NOW" |
 | **<= 5%** | URGENT: send compact trigger immediately, verify within 10 seconds |
-| **0% / "Context limit reached"** | Send `/clear`, then send `Read session/boot/<role>.md` |
+| **0% / "Context limit reached"** | Send `/clear`, then send `Read session/agents/<role>/boot.md` |
 
 ### After Triggering Compact
 
 1. Wait 10 seconds for compact to complete
 2. Capture the pane to verify compact succeeded
-3. Send proper boot file: `Read session/boot/<role>.md`
-4. **NEVER send `Read session/boot/unknown.md`** — that file is useless
+3. Send proper boot file: `Read session/agents/<role>/boot.md`
+4. **NEVER send `Read session/agents/unknown/boot.md`** — that file is useless
 5. If no named boot file exists, send: `Read .claude/agents/<role>/SKILL.md`
 
 ### Monitor Your Own Context

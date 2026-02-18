@@ -1,0 +1,1 @@
+/Users/Shared/Workspaces/AI/Claude/.claude/agents/hiveMind-tester/SKILL.md

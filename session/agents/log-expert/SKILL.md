@@ -1,0 +1,1 @@
+/Users/Shared/Workspaces/AI/Claude/.claude/agents/log-expert/SKILL.md

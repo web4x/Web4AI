@@ -36,12 +36,12 @@ Order matters. SM first (unblocks everyone), then orchestrator (coordinates), th
 # If SM is at 0%:
 hiveMind send scrum-master /clear
 # Wait 5 seconds, then:
-hiveMind send.enter scrum-master "Read session/boot/scrum-master.md"
+hiveMind send.enter scrum-master "Read session/agents/scrum-master/boot.md"
 
 # If SM is low but not 0%:
 hiveMind send.enter scrum-master "Save your context and run /compact NOW"
 # Wait 10 seconds, verify compact completed, then:
-hiveMind send.enter scrum-master "Read session/boot/scrum-master.md"
+hiveMind send.enter scrum-master "Read session/agents/scrum-master/boot.md"
 ```
 
 **Verify SM is processing before moving on.** Capture the pane, look for activity indicators.
@@ -58,12 +58,12 @@ Once SM is alive, SM can handle remaining agents. But if doing it manually:
 # For each dead agent (0%):
 hiveMind send <role> /clear
 # Wait 5s
-hiveMind send.enter <role> "Read session/boot/<role>.md"
+hiveMind send.enter <role> "Read session/agents/<role>/boot.md"
 
 # For each low agent:
 hiveMind send.enter <role> "Save your context and run /compact NOW"
 # Wait 10s, verify, then:
-hiveMind send.enter <role> "Read session/boot/<role>.md"
+hiveMind send.enter <role> "Read session/agents/<role>/boot.md"
 ```
 
 ## Step 3: Verify Each Agent
@@ -81,7 +81,7 @@ After sending recovery commands, verify processing started:
 |------|-----|
 | **0% = /clear only** | /compact cannot compress zero context. Don't waste time retrying. |
 | **Accept-edits is non-blocking** | The `❯` prompt accepts commands even with accept-edits showing. Don't send Escape (that interrupts). |
-| **Never send unknown.md** | Always use the NAMED boot file: `session/boot/<role>.md` |
+| **Never send unknown.md** | Always use the NAMED boot file: `session/agents/<role>/boot.md` |
 | **Track state** | Use TaskCreate per agent recovery. Mark completed when verified. |
 | **One at a time** | Don't batch-loop all panes with the same command. Verify each before moving on. |
 
@@ -91,4 +91,4 @@ To avoid this situation:
 1. **SM monitors context %** in every sweep cycle (added to SKILL.md)
 2. **Orchestrator limits** to max 2 large parallel tasks (delegation throttle in SKILL.md)
 3. **All agents** know their own pane on boot (self-pane detection in SKILL.md)
-4. **All agents** have named boot files in `session/boot/<role>.md`
+4. **All agents** have named boot files in `session/agents/<role>/boot.md`

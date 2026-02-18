@@ -64,7 +64,7 @@ At 0% "Context limit reached", /compact cannot work — there's no context left 
 Blind batch recovery (loop all panes, send same command) failed completely. Recovery must follow the communication hierarchy: SM first (monitors everyone), orchestrator second (coordinates), then workers. **SM alive = team can self-heal. SM dead = manual recovery for everyone.**
 
 ### F20: unknown.md Is a Boot Failure (2026-02-17)
-The default boot file `session/boot/unknown.md` provides no identity, no context, no recovery steps. Every agent that hits it is effectively lobotomized. **Every agent MUST have a named boot file at `session/boot/<role>.md`. The boot hook must resolve role names correctly for all agents. unknown.md should be an error, not a default.**
+The default boot file `session/agents/unknown/boot.md` provides no identity, no context, no recovery steps. Every agent that hits it is effectively lobotomized. **Every agent MUST have a named boot file at `session/agents/<role>/boot.md`. The boot hook must resolve role names correctly for all agents. unknown.md should be an error, not a default.**
 
 ## Patterns
 

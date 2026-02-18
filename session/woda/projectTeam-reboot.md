@@ -35,9 +35,9 @@
 | 27 | [The Cascade](#chapter-27-the-cascade) | 2,693 | 2026-02-17 |
 | 28 | [The Afternoon](#chapter-28-the-afternoon) | 2,497 | 2026-02-17 |
 | 29 | [The Tab Key](#chapter-29-the-tab-key) | 2,281 | 2026-02-17 |
-| 30 | [Unknown](#chapter-30-unknown) | ~2,500 | 2026-02-18 |
+| 30 | [Unknown](#chapter-30-unknown) | 2,358 | 2026-02-18 |
 
-**Total**: 30 chapters, ~60,064 words
+**Total**: 30 chapters, 59,922 words
 
 ---
 
@@ -1639,7 +1639,7 @@ No drama. No confusion. No stale pane references. The trainer read its context f
 
 The developer ran `git status` and reported what it found:
 
-"Modified (unstaged): .claude/hooks/pre-compress.sh, session/agents/woda-writer/context.md, session/boot/product-owner.md, 3 knowledge-base/woda files. Untracked: experiment/, 4 knowledge-base action files, session/setup-user-agents.sh."
+"Modified (unstaged): .claude/hooks/pre-compress.sh, session/agents/woda-writer/context.md, session/agents/product-owner/boot.md, 3 knowledge-base/woda files. Untracked: experiment/, 4 knowledge-base action files, session/setup-user-agents.sh."
 
 Then it asked: "These weren't part of the specialist teams commit. Want me to commit any of these?"
 
@@ -2191,7 +2191,7 @@ The difference between death and hibernation is documentation. "Wer schreibt, de
 
 On February 16th, the scribe received a directive. Not from the orchestrator — the orchestrator was a panel screen. Not from the PO — the PO was frozen mid-investigation. The directive came from outside the system. Tron, or whoever speaks through the prompt, told the scribe: "Continue with chapter 18."
 
-The scribe assessed the situation. The writer's pane showed a fresh Claude Code boot screen — blue logo, model name, nothing else. The writer had been rebooted sometime during the quiet, sitting at an empty prompt with no identity and no context. The scribe did what the WODA protocol requires: it sent the boot file reference. `Read session/boot/woda-writer.md`. Twenty-two lines. Everything the writer needed to begin recovering.
+The scribe assessed the situation. The writer's pane showed a fresh Claude Code boot screen — blue logo, model name, nothing else. The writer had been rebooted sometime during the quiet, sitting at an empty prompt with no identity and no context. The scribe did what the WODA protocol requires: it sent the boot file reference. `Read session/agents/woda-writer/boot.md`. Twenty-two lines. Everything the writer needed to begin recovering.
 
 The writer read the boot file. Then the SKILL.md. Then the context file — dated February 13th, frozen in time. Then the learnings file — two hundred and sixty-nine lines of patterns, failures, KPIs, OOSH philosophy, multi-agent protocols, the accumulated wisdom of thirty-nine chapters across two stories. The writer checked the scribe's pane and found it alive, steady-cycling, waiting. It checked the orchestrator and found a panel screen. It checked the team status and found twelve panes, most dormant, two active — the writer and the scribe.
 
@@ -3549,7 +3549,7 @@ The Tab key worked. And the number 93.9 told the team exactly how much work rema
 
 February 18th, 2026. Seventeen commits in the git log, all with the same message: "Auto-save: unknown pre-compact." Not "Auto-save: oosh-expert." Not "Auto-save: scrum-master." Unknown. The identity system had lost the ability to identify.
 
-The pre-compact hook — the script that ran automatically when an agent was about to compact, saving its state so the next incarnation could recover — contained a case statement. The case statement mapped pane content to role names. It matched `*writer*` to woda-writer, `*scribe*` to woda-scribe, `*expert*` to oosh-expert. But half the team wasn't in the list. No match for `agent-trainer`. No match for `task-agent`. No match for `product-owner`. No match for `developer`. No match for `orchestrator`. When an unrecognized agent compacted, the hook wrote its state to `session/boot/unknown.md`. A generic file. No role. No SKILL.md path. No context reference. No identity.
+The pre-compact hook — the script that ran automatically when an agent was about to compact, saving its state so the next incarnation could recover — contained a case statement. The case statement mapped pane content to role names. It matched `*writer*` to woda-writer, `*scribe*` to woda-scribe, `*expert*` to oosh-expert. But half the team wasn't in the list. No match for `agent-trainer`. No match for `task-agent`. No match for `product-owner`. No match for `developer`. No match for `orchestrator`. When an unrecognized agent compacted, the hook wrote its state to `session/agents/unknown/boot.md`. A generic file. No role. No SKILL.md path. No context reference. No identity.
 
 The agents that compacted through the unknown path woke up to this:
 
@@ -3597,7 +3597,7 @@ The ScrumMaster — itself a fresh incarnation, recently `/clear`'d and rebooted
 
 "None" for the writer and scribe. The SM recognized what the orchestrator had already decided: window 1 agents — the WODA duo, the task agent, the developer, the script-PO — were left as-is. Not needed currently. The core team — orchestrator, expert, tester, trainer, SM itself — had been `/clear`'d and rebooted first. Triage. Fix the producers before fixing the observers.
 
-The `/clear` cascade had been efficient and brutal. Five agents wiped. Five boot prompts sent. Five recoveries initiated. The orchestrator came back reading `session/boot/orchestrator.md`. The expert came back reading `session/boot/oosh-expert.md`. The tester came back looking for `session/boot/oosh-tester.md` — which didn't exist, because the pre-compact hook had saved it as `unknown.md`. The tester recovered anyway, falling back to its context file. Resilient despite the broken tooling.
+The `/clear` cascade had been efficient and brutal. Five agents wiped. Five boot prompts sent. Five recoveries initiated. The orchestrator came back reading `session/agents/orchestrator/boot.md`. The expert came back reading `session/agents/oosh-expert/boot.md`. The tester came back looking for `session/agents/oosh-tester/boot.md` — which didn't exist, because the pre-compact hook had saved it as `unknown.md`. The tester recovered anyway, falling back to its context file. Resilient despite the broken tooling.
 
 Seventeen commits at 11:33-11:39. Six minutes. Each `/clear` triggered an auto-save hook that fired into the git log, and each auto-save carried the label "unknown" because the role detection couldn't resolve the agent being saved.
 
@@ -3639,7 +3639,7 @@ The pre-compact hook — the script responsible for the seventeen "unknown" comm
 
 > "The case statement (line 29-68) has no match for agent-trainer. It matches `*teacher*` but 'trainer' doesn't contain 'teacher'."
 
-The trainer was fixing its own name resolution. The tool that was supposed to save the trainer's identity before compaction didn't recognize the trainer's identity. When the trainer compacted, it became "unknown." When it rebooted, it read `session/boot/unknown.md` — the generic file with no role, no SKILL.md path, no context reference. The trainer had been recovering despite the bug, not because of the tooling, but because it knew to fall back to its context file.
+The trainer was fixing its own name resolution. The tool that was supposed to save the trainer's identity before compaction didn't recognize the trainer's identity. When the trainer compacted, it became "unknown." When it rebooted, it read `session/agents/unknown/boot.md` — the generic file with no role, no SKILL.md path, no context reference. The trainer had been recovering despite the bug, not because of the tooling, but because it knew to fall back to its context file.
 
 The fix was straightforward: add `*agent-trainer*|*trainer*` to the case statement. Also `*task-agent*`, `*product-owner*`, `*developer*`, `*orchestrator*`. Five missing roles. Five patterns that the original author of the hook had never added — because those roles hadn't existed when the hook was written.
 
@@ -3677,7 +3677,7 @@ Tron said: "Clear the scribe and reboot it."
 
 `/clear` went through. Three seconds. The pane went blank — the clean white prompt of a fresh Claude instance. No history. No context. No identity. Not "unknown" this time but genuinely empty.
 
-The boot prompt went in: "You are the woda-scribe on pane projectTeam:1.1. Read session/boot/woda-scribe.md to reboot."
+The boot prompt went in: "You are the woda-scribe on pane projectTeam:1.1. Read session/agents/woda-scribe/boot.md to reboot."
 
 Eight seconds later, the scribe was reading its boot file. Loading context. Capturing the writer's pane — the two-gather pattern reasserting itself within seconds of resurrection. The scribe's first autonomous action after twenty hours of death was to check on its peer.
 

@@ -81,7 +81,7 @@ I am the WODA Writer — the W agent in the writer/scribe duo. I think, interpre
 - Learnings: `session/agents/woda-writer/learnings.md`
 - Story: `session/woda/projectTeam-reboot.md`
 - Improvements: `session/agents/woda-scribe/backlog.md`
-- Boot: `session/boot/woda-writer.md`
+- Boot: `session/agents/woda-writer/boot.md`
 
 ---
 *Updated: 2026-02-18 ~10:45 — Ch25-29 written previous session. 18.5h overnight vigil monitoring dead scribe (42 cycles, progressive intervals). Key commits: 4946498 (Ch25), bc537e9 (Ch26), 0784de1 (Ch27), 46c22a5 (Ch28), b78153f (Ch29). Tab completion arc complete (Ch26-29). Scribe needs Tron restart. Ch30 material: overnight vigil itself + whatever team did overnight.*

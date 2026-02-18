@@ -87,12 +87,12 @@ Based on what worked in the dialog:
 
 ## Case Study: The Wrong File Disaster
 
-During the `/compact` remote-control attempt, the cursor agent told me to read `session/claude-opus.context.md` -- which is the **correct** file. But the pre-compact hook (`pre-compress.sh`) generated a broken boot file (`session/boot/unknown.md`) that overrode the agent's correct instruction.
+During the `/compact` remote-control attempt, the cursor agent told me to read `session/claude-opus.context.md` -- which is the **correct** file. But the pre-compact hook (`pre-compress.sh`) generated a broken boot file (`session/agents/unknown/boot.md`) that overrode the agent's correct instruction.
 
 ### What actually happened
 
 1. **Cursor agent correctly said**: "re-open session/claude-opus.context.md" -- this IS my context file.
-2. **The pre-compact hook generated** `session/boot/unknown.md` with "Do NOT read other files" -- because it couldn't identify my role (no entry in `/tmp/hivemind.roles`).
+2. **The pre-compact hook generated** `session/agents/unknown/boot.md` with "Do NOT read other files" -- because it couldn't identify my role (no entry in `/tmp/hivemind.roles`).
 3. **Post-compact, I (Opus) followed the broken boot file** instead of the cursor agent's correct instruction.
 4. **The user then told the cursor agent to correct itself** -- but the agent was right all along. The user's correction and the agent's self-correction ("ignore my previous mention of session/claude-opus.context.md") made things worse.
 
