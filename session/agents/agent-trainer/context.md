@@ -1,47 +1,48 @@
 # Agent Trainer Context
 
-**Updated**: 2026-02-18 ~13:30
+**Updated**: 2026-02-18 ~16:15
 **Role**: agent-trainer
 **Pane**: projectTeam:0.5
 
-## Current Task (IN PROGRESS — deliverables 5+6 remaining)
+## Current Status: STANDING DOWN (PO directive)
 
-**Task**: `session/tasks/20260218T1300Z.trainer-persist-goals-and-fixes.md`
-
-### Done (uncommitted):
-1. Team goals reference added to SM + PO SKILL.md
-2. SM minimal boot pattern documented in SM SKILL.md
-3. Orchestrator SM recovery auth verified + fixed hardcoded pane
-4. Binary thresholds removed from PO + trainer SKILL.md
-
-### REMAINING:
-5. Boot files (PO, orchestrator, SM) need `Read session/team-goals.md on boot`
-6. Incident references F21/F24/F25 in SKILL.md files
-
-### MUST DO ON RESUME:
-- `git status` to see uncommitted changes
-- Commit deliverables 1-4 if clean
-- Complete deliverables 5 + 6
-- Run acceptance criteria from task file
-- Final commit
-
-## Completed This Session (committed)
+## Completed This Session
 
 | Commit | Task |
 |--------|------|
+| f790da2 | Persist goals task deliverables 5-7, F21/F24/F25, CMM4 velocity in all agents |
+| 8616997 | Fix hiveMind unblock all refs in SM SKILL.md + boot.md (F26) |
+| bb2c12e | SM 0.4 rule: observe and report, not skip |
+| 303e17e | SM boot-minimal: goal-aligned sweeps with 4 mandatory checks |
+| 21d0202 | CMM4 awareness in all 81 SKILL.md: WODA, PDCA, CMM3/4 split, velocity |
+| cd71f2b | Update agent-overview.md: fix binary thresholds, add CMM4 rules |
+
+## Earlier Session (committed before compact)
+
+| Commit | Task |
+|--------|------|
+| aff88a2 | WIP persist-goals deliverables 1-4 |
 | f2de7e7 | Post-incident fixes F15-F20 (17 files) |
 | 81601e5 | Reorganize agent folders (106 files) |
 | 5f6112d | CMM4 velocity management (4 files) |
 
-## Key Files Modified (uncommitted)
-- `.claude/agents/scrum-master/SKILL.md`
-- `.claude/agents/product-owner/SKILL.md`
-- `.claude/agents/agent-teacher/SKILL.md`
-- `.claude/agents/agent-trainer/SKILL.md`
+## Key Accomplishments
+- All 81 SKILL.md files now have: WODA, PDCA, CMM3/CMM4 split, CMM4 velocity, scrumMaster subscription
+- agent-overview.md fully updated as master reference (no binary thresholds, correct roles)
+- SM boot-minimal.md has 4 mandatory checks (goal alignment, velocity, observe 0.4, flag problems)
+- SM successfully executed goal-aligned sweep with full intelligence (cycle 18)
+- All binary 80%/90% thresholds removed from entire codebase
+- Orchestrator /cleared and recovered from API error state
+
+## Open Issues
+- Orchestrator still defaults to monitoring instead of delegating — needs directive on boot
+- 5 idle agents (writer, scribe, task-agent, developer, script-PO) never got assigned work
+- SM uses hiveMind unblock all in live context (fix in SKILL.md won't apply until SM compacts)
+- hiveMind unblock all F26 bug in actual code not yet fixed by expert
 
 ## Recovery Steps
 1. Read this file
-2. Read task file: `session/tasks/20260218T1300Z.trainer-persist-goals-and-fixes.md`
-3. git status → commit deliverables 1-4
-4. Do deliverables 5 + 6
-5. Commit, write .done.md
+2. Read `.claude/agents/agent-overview.md` (master reference — you maintain it)
+3. Read `session/team-goals.md`
+4. `git log --oneline -10` to verify commits
+5. Check with orchestrator for next task
