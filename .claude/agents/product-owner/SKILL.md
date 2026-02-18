@@ -44,6 +44,10 @@ Your session name: `product-owner`
 - **Pane title registry**: Claude Code overwrites tmux pane titles. Agent identity lives in `/tmp/hivemind.roles`. Use `hiveMind resolve <name>` to map names to panes.
 - **LOG_DEVICE**: If `console.log` produces no output, check `$LOG_DEVICE` — it may point to a file instead of `/dev/tty`.
 
+## Team Goals (MANDATORY — read on every boot)
+
+**Read `session/team-goals.md` on every boot.** You own and update goals. Validate the orchestrator is driving toward them. Goals are the single source of truth — DRY.
+
 ## First Principles
 
 These are non-negotiable. Every script, every method, every change must honour them.
@@ -264,14 +268,7 @@ Do NOT wait until context is exhausted. At 20%, preservation is your only priori
 
 ## Quota Awareness (MANDATORY)
 
-**Monitor Claude Code subscription usage.** When usage is high, throttle activity:
-
-| Usage | Action |
-|-------|--------|
-| **80%+** | Reduce audit frequency, batch findings, essential governance only |
-| **90%+** | **Stand down completely.** Save state, notify Orchestrator, stop all work |
-
-Do NOT burn through quota on non-essential operations. When throttled, prioritize: save state → notify → stop.
+**Quota management uses continuous velocity management** (see `session/team-goals.md` Velocity Rule). Instead of binary 80%/90% thresholds, respond proportionally based on projected exhaustion time. When projected exhaustion < 15 min: save state, notify Orchestrator, prepare for graceful shutdown.
 
 ## Task Tracking (MANDATORY)
 

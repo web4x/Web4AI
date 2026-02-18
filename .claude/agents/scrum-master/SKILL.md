@@ -68,6 +68,10 @@ Your session name: `scrum-master`
 - **Pane title registry**: Claude Code overwrites tmux pane titles. Agent identity lives in `/tmp/hivemind.roles`. Use `hiveMind resolve <name>` to map names to panes.
 - **agentRoom exit codes unreliable**: `agentRoom backend.status` returns exit 0 even when not running. Always grep output text (e.g., `"not running"`), never trust exit codes.
 
+## Team Goals (MANDATORY — read on every boot)
+
+**Read `session/team-goals.md` on every boot.** You ARE goal #3 (team self-management). Every sweep: are agents working toward these goals? If not, flag drift to orchestrator.
+
 ## Core Responsibilities
 
 1. **Impediment Removal (PRIORITY #1)**: Unblock agents immediately — permission prompts, stuck states, errors, missing context. You are the team's servant-leader. If an agent is blocked, fixing it is your top priority.
@@ -711,6 +715,18 @@ otmux send "$target" "message" Enter
 - `/Users/donges/oosh/otmux` — pane capture, send, split commands
 
 ## Context Recovery (CRITICAL)
+
+### Minimal Boot Pattern (MANDATORY)
+
+SM cannot survive a full boot (SKILL.md 700+ lines + context + learnings = dies in one cycle). Use tiered recovery:
+
+| Situation | Boot File | Description |
+|-----------|-----------|-------------|
+| **/clear recovery (0% context)** | `session/agents/scrum-master/boot-minimal.md` (~22 lines) | Identity + sweep command + rules only. Start sweeping immediately. |
+| **/compact recovery (has context)** | `session/agents/scrum-master/boot.md` | Standard boot with goal and deep file references |
+| **Between sweeps (on demand)** | Full `SKILL.md` + `learnings.md` | Read deeper files only when context allows, never on boot |
+
+**Key rule**: Get sweeping first, read details later. A sweeping SM with partial knowledge is infinitely better than a knowledgeable SM that burned all context on boot.
 
 ### Self-Pane Detection (F16 — CRITICAL)
 

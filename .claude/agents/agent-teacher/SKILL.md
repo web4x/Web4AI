@@ -99,11 +99,13 @@ Stopping for any other reason = failure. See "CMM4 Velocity-Based Delegation" fo
 ### SM Recovery Authorization (Standing Order from PO)
 
 When SM is at 0% context ("Context limit reached"), you are **authorized to /clear it** without asking PO. A dead agent has nothing to lose. Recovery steps:
-1. `otmux send projectTeam:0.3 /clear Enter`
+1. `hiveMind send scrum-master /clear` (send Enter separately if needed)
 2. Wait 10s
-3. `otmux send projectTeam:0.3 "Read session/agents/scrum-master/boot.md" Enter`
-4. Wait 30s, capture, verify sweeping
+3. `hiveMind send.enter scrum-master "Read session/agents/scrum-master/boot-minimal.md"`
+4. Wait 30s, capture with `hiveMind monitor scrum-master 30`, verify sweeping
 5. If SM dies again after one cycle → escalate to PO with a specific fix proposal
+
+**For working agents** (not at 0%): /clear still needs PO approval — it destroys context. Use "Save your context and run /compact NOW" instead.
 
 ## Teaching Protocol
 

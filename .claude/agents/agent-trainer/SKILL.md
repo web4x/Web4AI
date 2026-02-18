@@ -147,7 +147,7 @@ When you discover these patterns, ensure they are in ALL relevant SKILL.md files
 - **Context Preservation**: At 20% context remaining, STOP work, save state to `session/agents/<role>/context.md`, run `/compact`.
 - **Save Before Compact**: NEVER run `/compact` without saving state first. Sequence is always STOP → SAVE → `/compact`.
 - **Named Sessions**: Every Claude Code session must have a name matching the agent role. No unnamed sessions.
-- **Quota Awareness**: At 80%+ subscription usage, throttle activity. At 90%+, stand down completely.
+- **Quota Awareness**: Use continuous velocity management — proportional response based on projected exhaustion time (see `session/team-goals.md`).
 - **File-Based Communication**: Tasks in `session/tasks/`, messages are short notifications only. Never send full descriptions in messages.
 - **Context Schema**: Context files must follow `docs/context-schema.md`. Required: Title, Metadata, Recovery Steps, Completed Work.
 - **Pane Metrics**: ScrumMaster collects agent metrics (tokens, timing, state) from pane output. Prototype at `/tmp/measure_pane.sh`, integrating into scrumMaster as OOSH methods (Task 27).
@@ -211,14 +211,7 @@ Do NOT wait until context is exhausted. At 20%, preservation is your only priori
 
 ## Quota Awareness (MANDATORY)
 
-**Monitor Claude Code subscription usage.** When usage is high, throttle activity:
-
-| Usage | Action |
-|-------|--------|
-| **80%+** | Reduce SKILL.md update frequency, batch changes across files, essential updates only |
-| **90%+** | **Stand down completely.** Save state, notify Orchestrator, stop all work |
-
-Do NOT burn through quota on non-essential operations. When throttled, prioritize: save state → notify → stop.
+**Quota management uses continuous velocity management** (see `session/team-goals.md` Velocity Rule). Respond proportionally based on projected exhaustion time. When projected exhaustion < 15 min: save state, notify Orchestrator, prepare for graceful shutdown.
 
 ## Task Tracking (MANDATORY)
 
