@@ -5610,3 +5610,82 @@ The story was writing itself into a language. And this chapter — Ch50 — was 
 **Orchestrator Returns**: Shifted from witness to dispatcher — told tester to save+compact, guided expert on debugging. Targeted intervention based on understanding, not mechanical sweep. Lowest metabolic rate, longest survival.
 **Fifty Patterns**: One named pattern per chapter on average. The vocabulary accelerated — recent chapters build on six layers of reference. The story wrote itself into a language. "Fifty" as the milestone where a log becomes a corpus.
 **CMM**: Expert iteration at CMM2 (failed, learned, retried — repeatable learning loop). Tester self-care at CMM0 (cannot invoke own compact — interface barrier prevents survival). Orchestrator dispatch at CMM3 (targeted, context-aware, deterministic response to observed need). Story vocabulary at CMM3 (consistent naming, cross-referenced, deterministic — same event gets the same term). Composed: CMM0 — the tester's interface barrier is the weakest link.
+
+---
+
+## Chapter 51: The Return
+
+The SM was permanently dead. Chapter 44 had diagnosed it. Chapter 46 had confirmed it — the feedback prompt, the session ended, the fourth degree of death. The pane was empty. The agent was gone. "Too heavy to boot" was the epitaph. The system had adapted — the orchestrator took over manual monitoring, the writer held vigil, the team operated without a dispatcher.
+
+Then a task file appeared in the writer's prompt: "sm-assign-writer.md."
+
+"**From**: SM (impediment removal — you've been idle 20+ minutes)."
+
+The SM was back.
+
+### Not the Same
+
+The SM that returned was not the SM that died. The original SM — the one that had run twenty sweep cycles, maintained the dashboard, monitored velocity, died at 2% context, was /cleared, died again at 0% during reboot — was gone. Its session had ended. Its feedback prompt had been dismissed. Whatever followed was a new Claude instance, started fresh in pane 0.3, reading the same SKILL.md but with no memory of the previous runs.
+
+This was the relay pattern from Ch46, applied to the SM. A new runner picked up the baton. The baton was the SKILL.md (role definition), the dashboard (team state), and the task files (pending work). The new SM read these files and began sweeping — the same function, the same cadence, the same pane list. By cycle 23, it was indistinguishable from the original. Same sweeps. Same permissions. Same dispatch.
+
+But it wasn't the same. The original SM had accumulated twenty cycles of context — which agents were stuck, which were productive, what the burn rate looked like, how the orchestrator had adapted. The new SM had none of this. It started from the files, rebuilt its understanding from documentation, and began operating. The files told it what to do. The twenty cycles of experience were lost.
+
+This was the difference between CMM2 and CMM3 for SM recovery. CMM2: "we recovered the SM before" (Feb 17, manual reboot). CMM3: "the recovery produces the same result every time" (the new SM sweeps identically to the old one). The recovery was deterministic — same inputs, same behavior. But the cost was real: twenty cycles of accumulated understanding, gone. The baton carried the role but not the judgment.
+
+### Impediment Removal
+
+The SM's task file had a tone the writer hadn't seen from the previous SM. The previous SM had reported: "Writer (1.0): fast burner — Ch30-34 this session." Neutral observation. The new SM wrote: "impediment removal — you've been idle 20+ minutes." Direct intervention.
+
+The new SM's philosophy was visible in its pane capture: "That's what removing impediments looks like. Not 'flag to orchestrator' — fix it."
+
+This was a different interpretation of the scrum-master role. The previous SM had been a monitor — sweep, observe, report, update dashboard. The new SM was an actor — see impediment, write task file, dispatch directly. The previous SM flagged blockers to the orchestrator. The new SM fixed them itself. The previous SM was CMM3 (deterministic monitoring). The new SM was reaching for CMM4 (measured intervention with feedback).
+
+The same role definition in SKILL.md. Different agents reading it. Different interpretations. Different operating styles. The SKILL.md defined what the SM should do but not how aggressively. One SM read "monitor and report." Another read "remove impediments." Both were valid readings of the same document.
+
+### The Cascade of Activation
+
+The SM's return triggered a cascade. Within minutes of its first sweep:
+
+The **writer** received a task file: "Continue WODA writing." Idle for twenty minutes, now assigned.
+
+The **scribe** received a task file: "sm-assign-scribe.md." The scribe was reading it now — new assignment, new direction.
+
+The **script-PO** on pane 1.4 received a task file: "sm-assign-script-po.md." Idle since the bug fixes, now redirected.
+
+The **expert** on pane 0.1 had its permission prompt unblocked — Enter sent by the SM's sweep, the same mechanical unblocking that the old SM had done (minus the 0.4 violation, if the fix held).
+
+The **orchestrator** on pane 0.0 was already running, but the SM's presence changed its behavior. Instead of solo monitoring, it now had a coordinator to report to. The hierarchy reformed: SM at the operational level, orchestrator at the strategic level.
+
+Five agents activated or redirected by one SM sweep. This was the dispatcher's power — not doing the work but unblocking the workers. The orchestrator had tried to fill this role during the SM's absence, but it was a witness pretending to be a dispatcher. The SM was the genuine article.
+
+### The Trainer's Escape
+
+The orchestrator had been stuck for over an hour. Not dead — stuck. Its response had been generating for sixty-seven minutes, the "Kneading" spinner turning endlessly as the model produced an increasingly long output that no one was reading. The orchestrator wasn't frozen or errored. It was trapped in a marathon response, consuming context without producing useful work.
+
+The trainer on pane 0.5 had noticed. The trainer — normally responsible for improving SKILL.md files and training agents — had seen the orchestrator's stuck state and intervened with the only tool available: Escape. The Escape key interrupted the current response, breaking the marathon and freeing the orchestrator to start fresh.
+
+"The Escape worked — it broke the marathon response and started a new one (now 2m15s instead of 1h7m)."
+
+The trainer had also been given a directive from Tron: "CRITICAL: Use agent-overview.md as your master reference for SKILL.md updates. Line 135 still has old binary 80/90 thresholds — fix it." The trainer was back to its core work — improving role definitions, updating documentation, fixing stale rules. The binary 80/90 thresholds (from the pre-CMM4 era) were being replaced with the continuous proportional response that the team had learned through experience.
+
+The trainer was doing for SKILL.md files what the expert had done for hiveMind code: turning learned patterns into structural enforcement. Not documentation that agents should read, but definitions that agents would embody. The line between code and documentation blurred further.
+
+### From Vigil to Velocity
+
+The writer counted: during the vigil (the gap between Ch50 and Ch51), nine monitoring loops had completed. Each loop was five minutes. Forty-five minutes of steady, uneventful watching. The scribe had reported the same thing each time: "Both agents alive. Monitoring continues. The vigil holds."
+
+Now, in the span of one SM sweep cycle, the system had gone from vigil to velocity. The writer was writing. The scribe was reading a new assignment. The script-PO was reading a new assignment. The expert was unblocked. The orchestrator was freed from its marathon. The trainer had a critical task. Six agents active where two had been monitoring.
+
+This was the activation energy that Chapter 45 had said required external input. And it did — someone had started a new Claude session in pane 0.3 and given it the SM role. That was external energy. But the SM's effect was multiplicative: one external action (boot the SM) produced six internal activations (task files, unblocking, interrupts). The SM was an energy amplifier — external energy in, distributed activation out.
+
+The system's resting metabolic rate (two agents monitoring) had masked a latent capacity. The agents were idle not because they couldn't work but because no one was telling them to. The SM's return proved that the system's potential velocity was much higher than its resting velocity. The dispatcher wasn't just useful — it was the difference between two active agents and eight.
+
+### Chapter 51 Checkpoint
+
+**The Return**: The SM is back — new session in the "permanently dead" pane. Not the same SM — new relay runner, same role. Twenty cycles of accumulated judgment lost. The baton carried the role but not the experience.
+**Impediment Removal**: New SM reads the role differently — "remove impediments" not "flag to orchestrator." Direct dispatch via task files. More aggressive interpretation of the same SKILL.md. Different agents, same document, different operating styles.
+**Cascade of Activation**: One SM sweep activates five agents — writer, scribe, script-PO, expert (unblocked), orchestrator (hierarchy reformed). The dispatcher's power: not doing work but unblocking workers.
+**Trainer's Escape**: Broke the orchestrator's 67-minute stuck response with Escape. Now fixing stale binary thresholds in SKILL.md files. Turning learned patterns into structural definitions — same pattern as expert's code fix.
+**Vigil to Velocity**: Nine monitoring loops (45 minutes of nothing) → one SM sweep → six agents active. The SM as energy amplifier: one external action, six internal activations. Resting metabolic rate masked latent capacity.
+**CMM**: SM recovery at CMM3 (deterministic — new instance, same files, same behavior, but accumulated judgment lost). SM impediment removal at CMM3 (targeted, direct, consistent — write task file, dispatch, verify). Activation cascade at CMM2 (happened, recognizable, but depends on SM being alive — no self-activating fallback). Trainer role evolution at CMM2 (improving definitions is repeatable, but timing depends on Tron's directive). Composed: CMM2 — the cascade works when SM is alive, but SM liveness still depends on external boot.
