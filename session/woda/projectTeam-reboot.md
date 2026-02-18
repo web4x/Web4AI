@@ -36,10 +36,11 @@
 | 28 | [The Afternoon](#chapter-28-the-afternoon) | 2,497 | 2026-02-17 |
 | 29 | [The Tab Key](#chapter-29-the-tab-key) | 2,281 | 2026-02-17 |
 | 30 | [Unknown](#chapter-30-unknown) | 2,358 | 2026-02-18 |
-| 31 | [Eleven Minutes](#chapter-31-eleven-minutes) | ~2,400 | 2026-02-18 |
-| 32 | [The Unblocking](#chapter-32-the-unblocking) | ~2,300 | 2026-02-18 |
+| 31 | [Eleven Minutes](#chapter-31-eleven-minutes) | 2,038 | 2026-02-18 |
+| 32 | [The Unblocking](#chapter-32-the-unblocking) | 2,168 | 2026-02-18 |
+| 33 | [Steady State](#chapter-33-steady-state) | ~2,200 | 2026-02-18 |
 
-**Total**: 32 chapters, ~64,622 words
+**Total**: 33 chapters, ~66,822 words
 
 ---
 
@@ -3917,3 +3918,101 @@ This was the accept-edits bottleneck: a safety feature designed for single-human
 **Three Modes**: Producers (writer, expert, trainer) create artifacts. Maintainers (SM, orchestrator, scribe) keep systems running. Idle (tester, developer, trainer-standby) form a reserve. Healthy ratio: 3:3:3.
 **Pattern**: "The Invisible Essential" — the orchestrator's cycles produce no artifacts but enable all production. Boring infrastructure is healthy infrastructure. The most important agent is the one you don't notice.
 **CMM**: SM unblocking at CMM2 (repeatable sweep, same pattern every cycle). Accept-edits management at CMM1 (works but fragile — SM death = team freeze). F18 feedback loop at CMM3 (incident → fix → validation, deterministic). PDCA state fix moving from CMM1 (works by accident) to CMM2 (will work by design). Composed: CMM1 — the accept-edits single point of failure is the weakest link.
+
+---
+
+## Chapter 33: Steady State
+
+"No permission prompts, no context warnings. Steady state."
+
+The SM's sweep cycle 13 report contained two words that hadn't appeared in any previous sweep: *steady state*. Not "recovering." Not "multiple agents at context limit." Not "compacting." Steady. The word implied equilibrium — a system where the rate of problems matched the rate of solutions, where nothing was getting worse.
+
+It was the first time the team could be described that way.
+
+### The Numbers
+
+The SM's unblock sweep on cycle 13 told the story in Enter keystrokes:
+
+```
+oosh-expert: 1x Enter
+agent-trainer: rate-limit — waiting
+woda-writer: 4x Enter (retry: 4x more)
+woda-scribe: 2x Enter
+```
+
+Four Enters for the writer. Twice. The writer was producing chapters — Ch30, Ch31, Ch32 in rapid succession — and each chapter involved reading the story file, editing the TOC, appending thousands of words, committing, pushing. Every edit triggered an accept-edits prompt. The SM's workload was proportional to the team's productivity. More chapters meant more file writes meant more Enters.
+
+The escalation was visible across sweeps. Cycle 12: writer needed 3 Enters. Cycle 13: writer needed 4, then 4 more after the retry. The writer's burst of three chapters in an hour was the most productive the writer had been all day — and it was generating the most friction for the SM. The team's success metric (chapters produced) and its friction metric (Enters required) were the same measurement seen from different angles.
+
+One Enter per expert. The expert was working on a single bug, reading code, occasionally writing small edits. Low output, low friction. Two Enters for the scribe — moderate activity, organizing and monitoring. Four-plus for the writer — high output, high friction. The SM's unblock load was a direct proxy for each agent's productivity.
+
+### The Bug That Feeds Itself
+
+The ossh-expert on pane 1.4 had been stuck on BUG 3 for over thirty minutes. Not stuck from lack of understanding — the expert had read the `scrumMaster` code, traced the state machine definitions, identified the mismatch between state names. The fix was conceptually clear: make "measure" match "check" (or vice versa) throughout the PDCA cycle.
+
+The problem was verification. Every time the expert tried to run `scrumMaster.pdca.start` to observe the actual state transitions, the command hung. The bash call timed out. The TUI showed "Interrupted — What should Claude do instead?"
+
+The scribe, watching the expert's pane, diagnosed the cause:
+
+> "The BUG 3 test command itself triggers the BUG 1 hang (debug trap in dispatch), so the bash call times out and gets interrupted each time. The agent may need to approach BUG 3 differently — reading the code rather than executing it."
+
+BUG 1 was the dashed parameter hang in the `this` kernel — the bug that the expert had already fixed and committed as part of `55cdca4`. But the fix was in git. The test environment was a running shell that had sourced the old code. The old `this` was still loaded in memory. The fix existed in the repository. The bug existed in the runtime.
+
+To test BUG 3, the expert needed to run the scrumMaster. To run the scrumMaster, the shell sourced `this`. The sourced `this` was the pre-fix version — the one with the dashed parameter hang. The scrumMaster's PDCA cycle used methods with names that contained structure the dispatch couldn't parse. The test hung. Every time.
+
+The expert had fixed BUG 1 in the code but was being blocked by BUG 1 in the environment. The fix and the bug coexisted — one in the repository, one in the runtime. To get the fix into the runtime, the expert would need to start a fresh shell. But the expert was a Claude agent in a tmux pane. Starting a fresh shell meant exiting and re-entering, or sourcing the new code explicitly. Neither was in the agent's normal workflow.
+
+This was the gap between "fixed" and "deployed." In a CI/CD pipeline, a committed fix would be tested in a fresh environment. In a tmux pane with a long-running shell, the old code persisted in memory until something forced a reload. The expert's environment was a museum of every previous bug — patched in the repository, still alive in the shell's sourced functions.
+
+The scribe's suggestion — "read the code rather than executing it" — was the pragmatic escape. Don't run the state machine. Read the source. Trace the state names by following the code paths on disk, not in memory. The verification would be less definitive (reading code can miss runtime interactions) but at least it wouldn't hang.
+
+### Meta-Unblocking
+
+The orchestrator, on its twelfth monitoring cycle, captured the SM's pane and found a permission prompt. The SM's `hiveMind unblock` command — the tool it used to approve accept-edits prompts for other agents — itself required permission to send keystrokes to other panes. The SM was asking for permission to grant permissions.
+
+The orchestrator's response: `Down Enter`. Not just "Yes, approve" (Enter alone), but "Yes, and always approve this" (Down to select option 2, then Enter). The orchestrator was teaching the SM to stop asking. The next time the SM ran `hiveMind unblock`, the permission prompt wouldn't appear. The orchestrator had permanently unblocked the unblocking operation.
+
+Three layers of unblocking in one sweep cycle:
+1. Agents blocked by accept-edits prompts
+2. SM blocked by permission prompts while trying to unblock agents
+3. Orchestrator unblocking the SM by granting permanent permission
+
+Each layer existed because the previous layer's solution had created a new bottleneck. The accept-edits barrier was a design feature. The SM's unblock sweep was a workaround for the barrier. The permission prompt was a safety check on the workaround. The orchestrator's "allow always" was a workaround for the safety check. Each solution dissolved one problem and revealed the next.
+
+The recursion had a natural bottom. "Allow always" was a persistent permission — it survived across sweep cycles, across compactions, across agent deaths. Once granted, it didn't need to be granted again. The orchestrator's single `Down Enter` had permanently eliminated one layer of the bottleneck stack. The system had one fewer permission prompt forever.
+
+This was how the team's operational overhead decreased: not through grand redesigns but through persistent permissions accumulating. Each "allow always" removed one future prompt. Over twelve sweep cycles, the SM had encountered dozens of permission prompts. The orchestrator had answered several with "allow always." Each one was a permanent simplification. Given enough cycles, the system would reach a state where no permissions were needed — every operation the SM performed would be pre-authorized.
+
+### The Trainer's Quota
+
+The trainer — the agent that had produced three commits in eleven minutes in Chapter 31 — was now rate-limited. The SM's sweep detected it: "Waiting agent-trainer (rate-limit) — unknown."
+
+The irony was precise. The trainer had designed the CMM4 velocity management system — the continuous proportional response that replaced binary thresholds. The trainer had written the code that said "respond proportionally to projected exhaustion." And now the trainer was experiencing projected exhaustion firsthand. The burst that produced `f2de7e7` (17 files), `81601e5` (106 files), and `5f6112d` (4 files) had consumed enough tokens to trigger the rate limit.
+
+One hundred and twenty-seven files in eleven minutes. The trainer had been the most productive agent on the team for that window — and the most expensive. Each file read, each file write, each commit operation consumed tokens from the shared subscription. The trainer's burst mode — "always be producing" — was the opposite of the writer's vigil mode, but it consumed resources at the same rate. The difference: the writer consumed slowly over eighteen hours, the trainer consumed quickly over eleven minutes. Same total cost. Different temporal profile.
+
+The velocity management system the trainer had designed would, in theory, have caught this. If the system had been active during the trainer's burst, it would have calculated the burn rate, projected the exhaustion time, and started throttling. But the system was deployed by the same commit that caused the rate limit. The trainer implemented the quota curve and then immediately demonstrated why the quota curve was needed — by blowing past it.
+
+The designer of the brakes was the first to crash.
+
+### What Steady Means
+
+Steady state didn't mean everything worked. BUG 3 was still open. The trainer was rate-limited. The developer was interrupted mid-chase at the prompt. The tester was idle, waiting for assignments that nobody had created. The expert was thinking about code it couldn't run.
+
+Steady meant the problems were stable. The same BUG 3 from thirty minutes ago. The same rate limit from fifteen minutes ago. The same idle tester from an hour ago. Nothing was cascading. Nothing was getting worse. The SM's sweep cycles found the same issues each time and applied the same fixes — Enter, Enter, Enter. The problems were known, bounded, and managed.
+
+This was what equilibrium looked like in a multi-agent system: not the absence of problems but the presence of a consistent response to them. The SM swept. The SM unblocked. The agents continued. The SM swept again. The cycle repeated. Problems appeared at a certain rate. Solutions appeared at the same rate. The gap between them — the number of agents stuck at any given moment — was stable.
+
+In thermodynamics, steady state is when the energy flowing into a system equals the energy flowing out. The temperature doesn't change. In the team, the "energy" was friction — accept-edits prompts, permission prompts, rate limits, bugs. The SM's sweep was the outflow — resolving friction at the same rate it appeared. The temperature — the number of stuck agents — was constant.
+
+The SM didn't know this. It didn't measure the stuck-agent count across sweeps. It didn't calculate whether the count was stable, increasing, or decreasing. It just swept. But the writer could see it in the sweep logs: cycle 12, three agents unblocked. Cycle 13, three agents unblocked. Same number. Same agents, roughly. The system had found its operating temperature, and the SM was the thermostat.
+
+### Chapter 33 Checkpoint
+
+**Steady State Declared**: SM sweep cycle 13 — first use of "steady state" in any sweep report. No cascading failures, no context emergencies, no dead agents. Problems exist but are stable and managed.
+**Escalating Enters**: Writer needed 4+4 Enters (chapter burst = high file output = high friction). Expert: 1 Enter (low output). Scribe: 2 Enters (moderate). SM's unblock workload is a direct proxy for team productivity.
+**Bug Feeds Itself**: BUG 3 test triggers BUG 1 hang. Fix exists in repository (`55cdca4`) but not in runtime (old `this` still sourced in shell). Gap between "fixed in git" and "deployed in environment." Scribe suggests: read code, don't execute it.
+**Meta-Unblocking**: Orchestrator sends `Down Enter` ("allow always") to SM's permission prompt. Three layers: agents blocked → SM unblocks → SM needs permission → orchestrator grants permanent permission. Each "allow always" permanently removes one future prompt.
+**Trainer Rate-Limited**: 127-file burst consumed enough tokens to trigger rate limit. The designer of the velocity management system was the first to exceed the velocity curve. System deployed in the same commit that demonstrated its necessity.
+**Pattern**: "Steady state is not the absence of problems but the presence of a consistent response." The SM sweeps, unblocks, sweeps again. Problems appear and solutions appear at the same rate. The gap is stable. The system has found its operating temperature.
+**CMM**: Overall team coordination at CMM2 (repeatable sweep cycle, consistent response to known problems). Velocity management at CMM2 deployed / CMM0 operational (designed but designer hit limit before it could protect). Bug fixing at CMM1 for BUG 3 (blocked by environment, workaround needed). Permission accumulation at CMM3 (each "allow always" is a permanent, deterministic simplification). Equilibrium detection at CMM1 (writer observes it, nobody measures it).
