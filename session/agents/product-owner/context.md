@@ -97,13 +97,9 @@ Phase 1 (investigation) started. Both agents bootstrapped and working.
 ## TRON COMMANDS
 - "status" = full report: goals, tasks, priorities, team assignments, subscription — measured not assumed
 
-## GOALS (confirmed with Tron)
+## GOALS (single source of truth: `session/team-goals.md`)
 
-1. **CMM4 team** — CMM awareness every decision, SM tracks weakest link
-2. **Restore lost functionality** — sshDir DONE, color mode DONE, tree.detailed DONE (f1a0e26), comparison report IN PROGRESS
-3. **Team self-management** — completion protocol, assignment tables, SM unblocks stuck agents
-4. **Subscription monitoring** — 80%=throttle, 90%=stop, adaptive sweep
-5. **Software delivery** — team.status fixes, action→method conversions, otmux tree family
+Read `session/team-goals.md`. PO owns and updates goals. Orchestrator and SM reference the same file.
 
 ## FAILURES (25 total)
 

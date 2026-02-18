@@ -28,6 +28,11 @@ hiveMind resolve <name>   # Returns current pane address (e.g., projectTeam:0.3)
 | **Developer** | Additional implementation capacity | `hiveMind resolve developer` |
 | **Agent Trainer** | Improve agent SKILL.md files | `hiveMind resolve agent-trainer` |
 
+## TEAM GOALS (MANDATORY — read on every boot)
+
+**Read `session/team-goals.md` on every boot.** This is the single source of truth for team goals.
+If you're not advancing a goal, you're wasting context. Monitoring is a means, not an end.
+
 ## Core Responsibilities
 
 1. **ScrumMaster Monitoring (PRIORITY #1)**: Keep ScrumMaster unblocked at all times. ScrumMaster unblocks all other agents. If ScrumMaster is stuck (permission prompt, edit acceptance, idle), send Enter immediately. Check every 10-15 seconds when agents are active. This is your most important job.

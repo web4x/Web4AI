@@ -1,55 +1,62 @@
 # Orchestrator Context
 
-**Updated**: 2026-02-17T17:20Z
+**Updated**: 2026-02-18T12:50Z
 **Role**: Orchestrator
-**Session**: orchestrator@opus (separate Claude Code session, not in projectTeam tmux)
+**Pane**: projectTeam:0.0
+
+## TEAM GOALS (read `session/team-goals.md` — single source of truth)
+
+Read `session/team-goals.md` on every boot. Every action must advance a goal. If you're not advancing a goal, you're wasting context.
 
 ## Current Task
-Continuous monitoring loop: SM check → unblock agents → read .done files → assign tasks → wakeup in 120s.
 
-## Team Status
+1. **SM is alive** — minimal boot worked (15 lines). Monitor survival across cycles.
+2. **Drive idle agents toward goals** — expert, tester, trainer are idle. Assign from queued tasks below.
+3. **Context monitoring investigation** — team needs to validate that context % data from panes is accurate enough for velocity monitoring. Assign expert to investigate, tester to validate.
+
+## Standing Authorizations (from PO)
+
+- /clear on SM at 0% is authorized recovery — no PO approval needed
+- /clear on working agents still needs PO approval
+- Binary 80%/90% thresholds are REPLACED by CMM4 velocity (see SKILL.md)
+
+## Queued Tasks (route to agents via SM)
+
+| Task | Assign To | Goal # | Priority |
+|------|-----------|--------|----------|
+| Context monitoring data quality investigation | expert + tester | 3, 4 | HIGH |
+| Fix dashed parameter names (hiveMind/otmux) | expert | 5 | HIGH |
+| Create missing test files: test.otmux, test.claudeCode, test.user | tester + expert | 2 | MEDIUM |
+| Fix 8 hiveMind test failures (env/config) | expert | 5 | MEDIUM |
+| hiveMind.parameter.completion.name() | expert | 5 | LOW |
+| Naming rules + SKILL.md send migration | trainer | 5 | LOW |
+
+## Team Status (Feb 18 12:45Z)
+
 | Pane | Agent | Status |
 |------|-------|--------|
-| 0.0 | Orchestrator (tmux) | Active |
-| 0.1 | Expert | Recovered from compact, reading scribe KB task |
-| 0.2 | Tester | 9% context, validated ossh fixes PASS |
-| 0.3 | SM | **DEAD at 0%** — needs manual restart by user |
-| 0.4 | PO | Idle, monitoring subscription |
-| 0.5 | Trainer | Idle, all 10 tasks done |
-| 1.0 | Writer | Active, Chapter 29 |
-| 1.1 | Scribe | Active, KB maintenance |
-| 1.2 | task-agent | Active, updating test results |
-| 1.3 | developer | Idle |
-| 1.4 | script-PO | Active, reading test files |
+| 0.0 | Orchestrator | Active — driving goals |
+| 0.1 | Expert | IDLE — needs assignment |
+| 0.2 | Tester | IDLE — needs assignment |
+| 0.3 | SM | ALIVE — minimal boot, sweep cycle 2+ |
+| 0.4 | PO (Tron) | **DO NOT TOUCH** |
+| 0.5 | Trainer | IDLE, rate-limited |
+| 1.0 | Writer | Active, Ch34+ |
+| 1.1 | Scribe | Active, monitoring writer |
+| 1.2 | Task-agent | Post-compact, idle |
+| 1.3 | Developer | Idle |
+| 1.4 | Script-PO | Active, BUG 3 |
 
-## Key Completions This Session
-- claudeCode CRITICAL fix (adf04de) — removed --dangerously-skip-permissions, restored session.name/context.check/session.id Method 3
-- ossh expert fixes (7b063e0) — user get.current.identity fixed, list.ids exit code fixed
-- ossh expert fix validation — PASS (5/5) at session/tasks/ossh-expert-fix-issues.validation.md
-- Trainer: OOSH tools to orchestrator SKILL.md (a23b2a8), naming rules + send migration (ea7663a), WODA learnings (d34320c)
-- SM retrain (af89deb) — hiveMind/scrumMaster command reference
-- Tester: 132 assertions, 124 pass (93.9%), 3 missing test files identified
-- Restore comparison report updated by developer
+## Key Fixes Today
 
-## Queued Tasks (not yet routed)
-- ossh test issues already done by Expert (7b063e0) — was waiting for claudeCode fix first, both now complete
-- Create missing test files: test.otmux, test.claudeCode, test.user (from tester coverage audit)
-- Fix 8 hiveMind test failures (env/config: HIVEMIND_AGENTS_DIR, stale session name)
-- hiveMind.parameter.completion.name() for resolve argument completion
-- scrumMasterTeam deployment (deferred from 20260212T1731Z)
-
-## PO Directives Active
-- F13: Continuous operation — never stop without wakeup
-- SM first, reports second
-- NEVER send /clear or /compact without user approval (learned Feb 17)
-
-## Known Issues
-- SM at 0% needs manual restart — /clear can't execute at 0%
-- Expert burns context fast — needs /clear not /compact
-- Tester at 9% — may need compact soon
+- SM sustainability: minimal boot (15 lines) replaces full boot (59 lines + SKILL.md + context + learnings)
+- Orchestrator SKILL.md: binary 90% → CMM4 velocity, SM recovery authorization added
+- PO goals now in orchestrator context — drive toward them, not just monitor
 
 ## Recovery
+
 1. Read this file
-2. Check SM: `otmux pane.capture projectTeam:0.3 15`
-3. Schedule wakeup: `sleep 120 && echo "WAKEUP"` (background)
-4. Resume continuous loop
+2. Check SM: `hiveMind monitor scrum-master 30`
+3. Check subscription: `scrumMaster subscription`
+4. Schedule wakeup: `sleep 120 && echo "WAKEUP"`
+5. Drive queued tasks toward idle agents — expert and tester need work NOW
