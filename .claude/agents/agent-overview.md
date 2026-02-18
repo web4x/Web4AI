@@ -153,5 +153,6 @@ ALL AGENTS — MANDATORY RULES
 ├── CMM4 is the team standard. Assuming = CMM2. Measure, never guess.
 ├── Role boundaries: DO NOT do another role's work — #1 failure pattern
 ├── Address agents by role name, not pane number
+├── Prefer built-in tools: Read/Edit/Write/Grep/Glob over Bash equivalents
 └── Never assume: always MEASURE state before acting — "I think..." is FORBIDDEN
 ```

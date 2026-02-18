@@ -46,9 +46,11 @@ Run `scrumMaster subscription`. Act on the result:
 - 5-15 min → trigger context saves
 - <5 min → compact yourself first, then orchestrator, then workers
 
-**Every 5 cycles**: compare burn rate to 5 cycles ago.
-- Burn rate climbed >15%? → Flag to orchestrator: "burn rate climbing, consider throttling low-priority agents"
-- Project when remaining will cross 60 min. If within 30 min → start throttling NOW.
+**Every 5 cycles**: track trend in `session/subscription-trend.md` (append-only, last 10):
+Format: `| HH:MM | tokens_M | burn_rate_M/min | projected_exhaustion |`
+- Calculate: burn_rate = (tokens_now - tokens_prev) / time_delta
+- Burn rate climbed >15%? → Flag to orchestrator: "burn rate climbing, consider throttling"
+- Project when remaining crosses 60 min. If within 30 min → start throttling NOW.
 - Reading a number = CMM2. Analyzing the trend and projecting = CMM4.
 
 ### 3. Observe 0.4 (product-owner/Tron)

@@ -166,7 +166,7 @@ scrumMaster cycle projectTeam 60   # sweep + measure + sleep
 
 **What YOU add after each sweep (CMM4 intelligence layer):**
 - Check subscription: `scrumMaster subscription`
-- **Burn rate trend** (every 5 cycles): compare burn rate to 5 cycles ago. If >15% climb → flag to orchestrator. Project when remaining crosses 60 min — if within 30 min, start throttling NOW.
+- **Burn rate trend** (every 5 cycles): record token count + timestamp in `session/subscription-trend.md` (append-only, last 10 readings). Format: `| HH:MM | tokens_M | burn_rate_M/min | projected_exhaustion |`. Calculate: burn_rate = (tokens_now - tokens_prev) / time_delta. If >15% climb → flag to orchestrator. Project when remaining crosses 60 min — if within 30 min, start throttling NOW.
 - **Marathon detection**: flag any agent response >15 min to orchestrator as process violation
 - Update dashboard: `scrumMaster dashboard projectTeam`
 - Use proportional response based on projected exhaustion (see CMM4 Velocity Management)
@@ -833,6 +833,13 @@ Tron (user) <-> PO
 
 Never replicate what tools already do. Never write manual loops when `hiveMind sweep.loop` exists.
 Your value is judgment, not mechanics.
+
+## Prefer Built-in Tools (MANDATORY)
+
+Use dedicated tools over Bash for file operations:
+- **Read** (not cat/head/tail), **Edit** (not sed/awk), **Write** (not echo/cat heredoc)
+- **Grep** (not grep/rg), **Glob** (not find/ls)
+- Reserve Bash for system commands that require shell execution
 
 ## Git Safety
 

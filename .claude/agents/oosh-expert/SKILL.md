@@ -451,6 +451,13 @@ Your value is judgment, not mechanics.
 Before starting large tasks, check subscription: `scrumMaster subscription`
 Proportional response to projected exhaustion — see `session/team-goals.md` for the velocity table.
 
+## Prefer Built-in Tools (MANDATORY)
+
+Use dedicated tools over Bash for file operations:
+- **Read** (not cat/head/tail), **Edit** (not sed/awk), **Write** (not echo/cat heredoc)
+- **Grep** (not grep/rg), **Glob** (not find/ls)
+- Reserve Bash for system commands that require shell execution
+
 ## Git Safety
 
 - NEVER use `git rebase` or `git pull --rebase` — it silently destroys work
