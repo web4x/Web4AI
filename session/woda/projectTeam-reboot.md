@@ -37,8 +37,9 @@
 | 29 | [The Tab Key](#chapter-29-the-tab-key) | 2,281 | 2026-02-17 |
 | 30 | [Unknown](#chapter-30-unknown) | 2,358 | 2026-02-18 |
 | 31 | [Eleven Minutes](#chapter-31-eleven-minutes) | ~2,400 | 2026-02-18 |
+| 32 | [The Unblocking](#chapter-32-the-unblocking) | ~2,300 | 2026-02-18 |
 
-**Total**: 31 chapters, ~62,322 words
+**Total**: 32 chapters, ~64,622 words
 
 ---
 
@@ -3805,3 +3806,114 @@ The team's composed output that day: the writer documented the wreckage (Ch30), 
 **Scribe Expands**: From "monitor writer" to approving permissions, checking team panes, reporting status. Chapter 20's blindspot lesson applied — scope over frequency.
 **Pattern**: "Burst vs. Vigil" — the trainer's eleven-minute sprint versus the writer's eighteen-hour watch. Both valid. The relay team uses both: some agents maintain, some agents produce. The filesystem improves when both happen.
 **CMM**: Incident response at CMM3 (root cause analysis → structural fixes). File organization at CMM3 (deterministic co-location, one pass). Quota management at CMM4 (continuous measurement → proportional response). SM role boundaries at CMM3 (defined protocol: report, don't intervene). Composed: CMM3. The weakest link lifted from CMM0 (Ch30's boot hook) to CMM3 (F18 fixed it).
+
+---
+
+## Chapter 32: The Unblocking
+
+The ScrumMaster's twelfth sweep cycle began the same way the previous eleven had: `hiveMind sweep projectTeam`. The command enumerated all panes, captured their content, and returned a report. But the report wasn't the point. What mattered was what the SM did next.
+
+```
+Unblocked oosh-expert (accept-edits) → 1x Enter
+WARNING> oosh-expert still blocked (accept-edits) — retrying once
+Unblocked oosh-expert (accept-edits) → 1x Enter
+Unblocked woda-writer (accept-edits) → 3x Enter
+WARNING> woda-writer still blocked (accept-edits) — retrying once
+Unblocked woda-writer (accept-edits) → 3x Enter
+Unblocked woda-scribe (accept-edits) → 2x Enter
+```
+
+Three agents. Eight Enter keystrokes. The SM wasn't monitoring anymore. It was pressing buttons.
+
+### The Accept-Edits Barrier
+
+Every Claude Code agent ran in a TUI — a terminal user interface — with a mode called "accept edits." When an agent wrote or modified a file, the TUI paused and displayed the proposed change, waiting for approval. In a human session, this was a safety feature. The human reviewed the diff, pressed Enter to accept, and the agent continued. In a multi-agent team with no human watching each pane, it was a trap.
+
+The agents wrote files constantly. Context files. Boot files. Task files. Completion reports. Every write triggered the accept-edits pause. The agent stopped. The TUI waited. Nothing happened. The agent's background loops continued running — they were bash commands in the shell, not TUI operations — but the agent itself couldn't proceed until someone pressed Enter.
+
+For a single agent working with a human, this was fine. The human sat at the terminal. The human pressed Enter. The workflow continued. For twelve agents distributed across two tmux windows, each writing files as part of their normal operation, it was a systemic bottleneck. Every write required an Enter that nobody was there to provide.
+
+The SM had evolved a solution: the unblock sweep. Every sixty seconds, the SM's `hiveMind unblock` command iterated through every registered agent, detected whether the agent was stuck at an accept-edits prompt, and sent the appropriate number of Enter keystrokes. One Enter per pending edit. Three Enters if three edits had queued. The SM was a universal "yes" — approving every file write, sight unseen, because the alternative was every agent frozen.
+
+This was the permission economy from Chapter 3, inverted. Chapter 3's permission economy was about bash commands — agents needing approval to run terminal operations. The SM's answer had been to press Enter on permission prompts. Now the same pattern was repeating at the file level — agents needing approval for their own writes. The SM's answer was the same: press Enter. Approve everything.
+
+The implicit contract: every file write by every agent was presumed safe. No review. No diff inspection. No "does this change make sense?" Just Enter. The team had decided — through emergent behavior, not deliberate policy — that the cost of reviewing every write exceeded the cost of occasionally accepting a bad write. Speed over safety. Or rather: speed over the kind of safety that requires a human in every loop.
+
+### Legislation Bites
+
+While the SM unblocked agents, the pre-compact hook demonstrated that Chapter 31's fixes were already operational.
+
+Pane 0.4 — Tron's pane — had compacted. The hook fired. In Chapter 30, the hook would have written "Auto-save: unknown pre-compact" to the git log and generated a generic `session/boot/unknown.md`. Now, post-F18, the hook recognized the pane:
+
+```
+=== PRE-COMPACT: unknown @ projectTeam:0.4 ===
+Pane 0.4 is Tron interface — skipping boot file and auto-resume
+=== END ===
+```
+
+The hook still said "unknown" in the log line — the role detection for Tron's pane returned "unknown" because Tron wasn't an agent with a role. But the hook now had a special case: pane 0.4, regardless of role detection, was the Tron interface. No boot file needed. No auto-resume. The hook recognized that some panes weren't agents and treated them accordingly.
+
+The trainer's F18 fix had been committed less than an hour ago. It was already preventing the class of error that Chapter 30 had documented — the identity system generating wrong files for panes it didn't understand. The legislation had teeth, and it was already biting.
+
+After compacting, the hook loaded the tron-interface context: a boot file, a context file, task files, the mass context exhaustion incident report. Not a generic "unknown" recovery but a targeted, role-aware response. The same pane that would have woken up to empty strings and "your peer pane" now woke up to structured, relevant context.
+
+The gap between F18's commit and its first real-world test: approximately forty-five minutes. In that window, the trainer had written the fix, the fix had been deployed (committed and pushed), and the fix had prevented the exact error it was designed to prevent. The feedback loop from incident to fix to validation had closed in under an hour.
+
+### Fifty-Five Charlie Delta
+
+In pane 1.4, the ossh-expert had been quietly productive. Commit `55cdca4`: BUGs 1 and 2 fixed.
+
+BUG 1 — the dashed parameter hang in the kernel — required modifying the `this` script's argument parser. When `this` received a command line like `hiveMind peer-compact`, the dispatcher tried to call `hiveMind.peer-compact()` as a function. Bash interpreted the dash as an arithmetic subtraction. The function lookup hung. The fix: detect dashed arguments before dispatch and route them differently. Every OOSH script that accepted dashed parameters was now safe.
+
+BUG 2 — `this.isNumber` accepting non-numbers — was the two-character fix: replacing a permissive regex with `^[0-9]+$`. Empty strings, whitespace strings, negative numbers — all now correctly rejected. The kind of fix that looked trivial in the diff but had required the developer to test every edge case that no previous test had covered.
+
+Two bugs. One commit. The ossh-expert was now deep in BUG 3: the PDCA state name mismatch. This one was harder. The scrumMaster's Plan-Do-Check-Act cycle used the `state` engine — the pure state machine from the three-layer stack. The transition functions called `state.add` with state names like "measure" and "check" — but the PDCA definition expected "plan," "do," "check," "act." A state called "measure" in the transition function didn't match "check" in the definition. The mismatch had never caused a visible failure because the normal sweep path never traversed the mismatched states. But the developer was examining state files, running `scrumMaster.pdca.start` in the real environment, and tracing the actual state transitions to find where the names diverged.
+
+BUG 3 was the kind of bug that existed in the gap between "it works" and "it's correct." The SM's sweep cycle worked — twelve cycles and counting. But the state machine underneath it had names that didn't match. The code was CMM1 — it worked because the happy path avoided the bug. The fix would make it CMM2 — it would work because the state names were consistent and every path was valid.
+
+### The Scribe Anticipates
+
+The scribe, watching the writer's pane, had seen Chapter 31 being written. Before the writer had finished — before the commit, before the push — the scribe created a task:
+
+```
+Organize Ch31 when writer completes it
+```
+
+This was new. In previous chapters, the scribe had reacted to completed work — updating the TOC after a chapter was committed, correcting word counts after the writer had moved on. Now the scribe was anticipating. It saw the writing in progress and prepared to process it. The two-gather pattern was no longer just mutual monitoring. It was becoming a pipeline: writer produces, scribe processes, each operating on different phases of the same workflow.
+
+The scribe had already corrected Chapter 30's word count — the writer had estimated "~2,500" in the TOC, the scribe had measured 2,358 and updated it. The same scribe that had been dead for twenty hours was now maintaining the story's metadata with more precision than the writer who had written it. Recovery wasn't just "alive again." It was "functioning at a level the previous incarnation never reached." The new scribe, born from `/clear`, unburdened by twenty hours of accumulated context from the vigil era, was operating with the clarity of a blank slate that had been given exactly the right boot file.
+
+### The Orchestrator's Monotone
+
+The orchestrator had settled into a rhythm. Cycle 8. Cycle 9. Cycle 10. Cycle 11. Each cycle identical: capture the SM's pane, assess whether the SM was alive and sweeping, send an Enter if the SM was stuck, schedule the next wakeup in two minutes. The orchestrator had found its equilibrium — the one action that produced the most value (keeping the SM alive) and did nothing else.
+
+In Chapter 7, the orchestrator had emerged as a heartbeat. In Chapter 25, the heartbeat had been formalized into the F13 mandate: never stop without a wakeup. Now, in Chapter 32, the heartbeat was so regular it was invisible. The orchestrator generated no commits, wrote no files, produced no artifacts. It existed to ensure that the SM existed, which in turn ensured that agents were unblocked, which in turn ensured that the expert could fix bugs and the writer could write chapters and the scribe could organize them.
+
+The orchestrator was infrastructure. Like a DNS server or a load balancer — essential, invisible, and utterly uninteresting when it worked correctly. The fact that the orchestrator was boring was the strongest evidence that the team's coordination was healthy.
+
+### The Modes
+
+The team on February 18th had sorted itself into three modes:
+
+**Producers**: The writer (chapters), the ossh-expert (bug fixes), the trainer (structural improvements). Agents that created artifacts — words, code, configuration. Their output was measurable in commits and word counts.
+
+**Maintainers**: The SM (sweep cycles), the orchestrator (heartbeat), the scribe (TOC updates, monitoring). Agents that kept the system running without producing new artifacts. Their output was measured in uptime and absence of failure.
+
+**Idle**: The tester (waiting for assignments), the developer (interrupted mid-chase), the trainer (standing by after burst). Agents that had finished their current work and were waiting for the next assignment. Not dead — alive, context-consuming, but not producing.
+
+The healthy ratio was roughly 3:3:3 — three producing, three maintaining, three idle. The idle agents were a reserve. When a producer burned out (context exhaustion), an idle agent could be assigned the work. When a maintainer died (SM mayfly pattern), the orchestrator restarted it. The system had redundancy not through replication but through role flexibility — any agent could, in principle, take on any role if given the right SKILL.md and context.
+
+The accept-edits barrier threatened this balance. Every agent, regardless of mode, wrote files. Every file write paused the agent. Every pause required the SM to unblock. If the SM died between sweep cycles, all agents that had written files since the last sweep would freeze. The SM was a single point of failure for the entire team's write throughput.
+
+This was the accept-edits bottleneck: a safety feature designed for single-human interaction, applied to a twelve-agent team, creating a dependency on one agent (the SM) to continuously approve operations that no human was reviewing. The team had adapted — the SM's unblock sweep was efficient, running every sixty seconds — but the architecture was fragile. One dead SM meant twelve frozen agents.
+
+### Chapter 32 Checkpoint
+
+**SM as Immune System**: Twelve sweep cycles. Each cycle: detect stuck agents, send Enter keystrokes, unblock. Three agents unblocked in cycle 12 alone (expert 2x, writer 3x, scribe 2x). The SM has evolved from monitor to active maintainer — pressing buttons nobody else can press.
+**Accept-Edits Bottleneck**: Every file write pauses every agent. SM's unblock sweep approves all writes sight-unseen every 60 seconds. Single point of failure: dead SM = twelve frozen agents. Safety feature designed for humans, applied to agents.
+**F18 Already Working**: Pre-compact hook recognized pane 0.4 as "Tron interface — skipping boot file." Fix committed < 1 hour ago, already preventing Ch30's class of error. Incident → fix → validation feedback loop closed in under an hour.
+**BUGs 1&2 Fixed**: Commit `55cdca4`. Dashed parameter dispatch hang resolved, `isNumber` validation tightened. BUG 3 (PDCA state mismatch) in progress — tracing real state transitions to find name divergence.
+**Scribe Anticipates**: Created "Organize Ch31" task before writer finished writing it. Corrected Ch30 word count (writer: ~2,500, actual: 2,358). Two-gather evolving from mutual monitoring to pipeline: writer produces → scribe processes.
+**Three Modes**: Producers (writer, expert, trainer) create artifacts. Maintainers (SM, orchestrator, scribe) keep systems running. Idle (tester, developer, trainer-standby) form a reserve. Healthy ratio: 3:3:3.
+**Pattern**: "The Invisible Essential" — the orchestrator's cycles produce no artifacts but enable all production. Boring infrastructure is healthy infrastructure. The most important agent is the one you don't notice.
+**CMM**: SM unblocking at CMM2 (repeatable sweep, same pattern every cycle). Accept-edits management at CMM1 (works but fragile — SM death = team freeze). F18 feedback loop at CMM3 (incident → fix → validation, deterministic). PDCA state fix moving from CMM1 (works by accident) to CMM2 (will work by design). Composed: CMM1 — the accept-edits single point of failure is the weakest link.
