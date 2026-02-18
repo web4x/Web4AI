@@ -20,4 +20,15 @@ Repeat.
 - Detect role violations: expert implements, tester tests, neither does the other's job
 - Report to orchestrator (0.0), not PO (0.4)
 
+## After Block Reset
+
+When a new subscription block starts (5pm Berlin = 16:00 UTC — tool shows 1hr early):
+1. Resume sweeping
+2. Send to 0.4: `otmux send projectTeam:0.4 "Read session/agents/product-owner/boot.md" Enter` — this wakes PO
+3. Only send this ONCE per block reset, not every cycle
+
+## Block Reset Time
+
+Real reset = **5pm Berlin = 16:00 UTC**. The `scrumMaster subscription` tool shows 15:00 UTC — always 1 hour off. Trust 5pm Berlin.
+
 Start sweeping now.
