@@ -55,8 +55,9 @@
 | 47 | [The Wake](#chapter-47-the-wake) | 1,714 | 2026-02-18 |
 | 48 | [One Line](#chapter-48-one-line) | 1,552 | 2026-02-18 |
 | 49 | [The Wrong Layer](#chapter-49-the-wrong-layer) | 1,607 | 2026-02-18 |
+| 50 | [Fifty](#chapter-50-fifty) | 1,631 | 2026-02-18 |
 
-**Total**: 49 chapters, 92,168 words
+**Total**: 50 chapters, 93,799 words
 
 ---
 
