@@ -1,7 +1,7 @@
 # Team Dashboard
 
-**Updated**: 2026-02-18T11:32:47Z (2026-02-18 12:32 CET)
-**Session**: projectTeam
+**Updated**: 2026-02-18T16:46:03Z (2026-02-18 17:46 CET)
+**Session**: --help
 
 ## Git Status
 
@@ -9,13 +9,13 @@
 |-------|-------|
 | Branch | `main` |
 | Status | uncommitted changes |
-| Last commit | `74670ea Add Chapter 33 "Steady State" — equilibrium, meta-unblocking, bug feeds itself` |
+| Last commit | `8616997 Fix hiveMind unblock all references in SM SKILL.md and boot.md (F26)` |
 
 ## Subscription
 
 | Metric | Value |
 |--------|-------|
-| 5-hour usage | 29% |
+| 5-hour usage | 35% |
 | 7-day usage | 0% |
 
 ## Tasks
@@ -29,26 +29,15 @@
 
 | Agent | Pane | Context | Velocity | State |
 |-------|------|---------|----------|-------|
-| orchestrator | 0.0 | 100.0% | - | active |
-| oosh-expert | 0.1 | 60.4% | - | active |
-| oosh-tester | 0.2 | 72.8% | - | unknown |
-| scrum-master | 0.3 | 100.0% | - | unknown |
-| product-owner | 0.4 | 100.0% | - | unknown |
-| agent-trainer | 0.5 | 22.2% | - | completed |
-| task-agent | 1.2 | 67.2% | - | unknown |
-| woda-writer | 1.0 | 100.0% | - | active |
-| woda-scribe | 1.1 | 100.0% | - | unknown |
-| developer | 1.3 | 67.2% | - | unknown |
-| script-product-owner | 1.4 | 54.9% | - | unknown |
 
 ## Recent Commits
 
 ```
-74670ea Add Chapter 33 "Steady State" — equilibrium, meta-unblocking, bug feeds itself
-bb86963 Add Chapter 32 "The Unblocking" — SM as immune system, accept-edits bottleneck, F18 validation
-a32e6b3 Add Chapter 31 "Eleven Minutes" — trainer's hat trick, co-location, continuous velocity
-5f6112d CMM4 velocity management: replace binary thresholds with continuous adaptation
-81601e5 Reorganize agent folders: boot files + SKILL.md symlinks
+8616997 Fix hiveMind unblock all references in SM SKILL.md and boot.md (F26)
+da17053 Add Chapter 47 "The Wake" — expert finds critical 0.4 bug, system activates from idle, legislation as code
+654bd4f Add Chapter 46 "The Handoff" — compact from inside, four degrees of death, relay pattern
+489eb92 Pre-compact: writer context — Ch38-45, 8 chapters, 4h session
+ed479bd Auto-save: unknown pre-compact 17:17
 ```
 
 ## Recovery
