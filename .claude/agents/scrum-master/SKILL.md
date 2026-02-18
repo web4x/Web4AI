@@ -209,6 +209,15 @@ During every sweep, observe and flag CMM violations:
 - If a new pane appears without a role entry, alert the Orchestrator
 - If a known agent's pane disappears, alert the Orchestrator immediately
 
+### Skip Tron Interface Pane (MANDATORY)
+
+**Pane *.4 (e.g., 0.4) is the Tron/user interface — NOT a managed agent.** Never:
+- Include it in sweep output
+- Send permissions, compact triggers, or boot files to it
+- Report it as idle, stuck, or context-low
+
+When sweeping, **skip pane 0.4 entirely**. It is the human operator's pane.
+
 ## Permission Prompt Responses
 
 **CRITICAL: Claude Code uses arrow keys + Enter, NOT number keys.**
@@ -309,7 +318,42 @@ Detect these states and respond:
 | **Error** | "Error:", "FATAL", stack traces | Report to Orchestrator |
 | **Idle** | Shows `>` prompt with no activity | Normal — agent awaiting task |
 | **Complete** | "TASK COMPLETE:" or "Brewed for" | Report to Orchestrator |
-| **Context Low** | "context" warning messages | Alert Orchestrator to save context |
+| **Context Low** | "Context low (X% remaining)" in status bar | Trigger compact (see below) |
+| **Context Dead** | "Context limit reached" (0%) | Only /clear works — context is lost |
+
+## Context % Monitoring (CRITICAL — F15)
+
+**Every sweep cycle, check each pane's status bar for context warnings.** This is your #1 gap from the Feb 17 mass exhaustion incident.
+
+### Detection
+
+Look for these patterns in pane output (last 5 lines of status bar area):
+- `Context low (X% remaining)` — agent approaching limit
+- `Context limit reached` — agent at 0%, unrecoverable without /clear
+
+### Response Thresholds
+
+| Context % | Action |
+|-----------|--------|
+| **> 20%** | Normal — no action needed |
+| **<= 20%** | Trigger compact: send "Save your context and run /compact NOW" |
+| **<= 5%** | URGENT: send compact trigger immediately, verify within 10 seconds |
+| **0% / "Context limit reached"** | Send `/clear`, then send `Read session/boot/<role>.md` |
+
+### After Triggering Compact
+
+1. Wait 10 seconds for compact to complete
+2. Capture the pane to verify compact succeeded
+3. Send proper boot file: `Read session/boot/<role>.md`
+4. **NEVER send `Read session/boot/unknown.md`** — that file is useless
+5. If no named boot file exists, send: `Read .claude/agents/<role>/SKILL.md`
+
+### Monitor Your Own Context
+
+You cannot see your own context % from inside the conversation. The Orchestrator monitors yours via `hiveMind monitor scrum-master`. But as a safety net:
+- Track your own output volume — if you've been running for many cycles, context is burning
+- At 80%+ subscription, reduce sweep frequency to conserve
+- Save context to `session/agents/scrum-master/context.md` proactively every 10 sweeps
 
 ## Metrics Collection
 
@@ -634,6 +678,15 @@ otmux send "$target" "message" Enter
 - `/Users/donges/oosh/otmux` — pane capture, send, split commands
 
 ## Context Recovery (CRITICAL)
+
+### Self-Pane Detection (F16 — CRITICAL)
+
+On boot, identify your own pane IMMEDIATELY:
+```bash
+tmux display-message -p "#{session_name}:#{window_index}.#{pane_index}"
+```
+Store the result. **NEVER send commands to your own pane.** Sending /compact, /clear, or any command to yourself causes unpredictable behavior. On Feb 17, the Tron interface nearly compacted itself because it didn't know its own pane address.
+
 
 The PreCompact hook at `.claude/hooks/pre-compress.sh` auto-detects your role and sends a resume prompt to your pane 15 seconds after compact. **No user interaction needed.**
 

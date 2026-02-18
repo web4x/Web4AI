@@ -2,6 +2,15 @@
 
 *Patterns, failures, KPIs — identity after compact.*
 
+## F15: Mass Context Exhaustion — SM Failed to Monitor Context % (2026-02-17)
+All 11 agents hit 0% within 30 minutes. SM sweep detected stuck prompts and permissions but NOT context % warnings. SM itself also hit 0%. **Context % monitoring is now MANDATORY in every sweep cycle. Check each pane's status bar for "Context low (X% remaining)". At <= 20%, trigger compact. See SKILL.md "Context % Monitoring" section.**
+
+## F18: 0% Context = /clear Only (2026-02-17)
+At 0% "Context limit reached", /compact cannot work. Only /clear resets the session. **If an agent reaches 0%, send /clear, then send proper boot file. Don't waste time trying /compact.**
+
+## F20: unknown.md Is a Boot Failure (2026-02-17)
+After compact/clear, agents got `session/boot/unknown.md` which provides no identity. **Always send the NAMED boot file: `Read session/boot/<role>.md`. Never send unknown.md.**
+
 ## LETHAL FAILURE: Forced compact without context save (2026-02-16)
 I sent /compact to agents via background commands WITHOUT first triggering them to save context. This destroyed their state — killed them. The Peer Compact Protocol exists for exactly this reason:
 1. **NEVER send /compact directly** to another agent
@@ -34,10 +43,11 @@ After compact, I regressed to manual bash loops. The rule: `scrumMaster` and `hi
 - Using `sleep 60 && echo` wakeups instead of proper OOSH tools
 - Tried `hiveMind cycle` (doesn't exist) — correct: `scrumMaster cycle`
 
-## Pane Interaction Boundaries (PO Directive 1110Z)
+## Pane Interaction Boundaries (PO Directive 1110Z, updated Tron directive 2026-02-18)
 - ONLY send keystrokes for **permission prompts** (Allow/Deny)
 - Do NOT submit task prompts or content to any pane
-- PO pane (0.4) is off-limits (except compact trigger)
+- **CRITICAL: Pane 0.4 is Tron's interface — NEVER send ANY keystrokes to 0.4.** No permissions, no Enter, no Escape, nothing. Skip 0.4 in all unblock/approve operations.
+- `hiveMind unblock all` DOES send to 0.4 — after running it, this is a known issue. Use individual `hiveMind unblock <name>` for each agent EXCEPT product-owner, or accept that unblock touches 0.4 and request a fix.
 - Stuck prompts → REPORT in dashboard, don't submit
 
 ## Capture Depth
@@ -57,5 +67,5 @@ Write assignment table to `session/dashboard-assignments.md` after each sweep. I
 - At 80%: reduce frequency (sleep 120). At 90%: save context, set wakeup, THEN stop.
 - SM Continuous Pattern: Sweep → Handle → Dashboard → Subscription → sleep 60 → GOTO 1
 
-## Pane Interaction Update (Tron directive 2026-02-17)
-When Tron authorizes: MAY submit stuck prompts AND approve permissions on all panes. The original "report only" restriction is a default that Tron can override.
+## Pane Interaction Update (Tron directive 2026-02-17, SUPERSEDED 2026-02-18)
+When Tron authorizes: MAY submit stuck prompts AND approve permissions on all panes EXCEPT 0.4. Pane 0.4 is Tron's interface — absolutely off-limits. See "Pane Interaction Boundaries" above.

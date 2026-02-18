@@ -472,6 +472,15 @@ otmux send "$target" "message" Enter
 
 ## Context Recovery (CRITICAL)
 
+### Self-Pane Detection (F16 — CRITICAL)
+
+On boot, identify your own pane IMMEDIATELY:
+```bash
+tmux display-message -p "#{session_name}:#{window_index}.#{pane_index}"
+```
+Store the result. **NEVER send commands to your own pane.** Sending /compact, /clear, or any command to yourself causes unpredictable behavior. On Feb 17, the Tron interface nearly compacted itself because it didn't know its own pane address.
+
+
 When your context runs low or after `/compact`:
 1. **State your identity**: "I am the OOSH Tester agent."
 2. Re-read `.claude/agents/oosh-tester/SKILL.md` (this file)

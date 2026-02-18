@@ -273,17 +273,48 @@ ALWAYS maintain this file with current session state:
 
 2. Then run `/compact`
 
+## Delegation Throttle (CRITICAL — F15)
+
+**Before delegating tasks, check capacity.** The Feb 17 mass context exhaustion was caused by delegating 4 large tasks simultaneously with no throttling.
+
+### Pre-Delegation Checklist
+
+Before assigning ANY large task:
+
+1. **Check subscription**: `scrumMaster subscription` — is there headroom?
+2. **Check agent context**: ask SM for context levels, or `hiveMind monitor <agent> 10` to look for warnings
+3. **Count active large tasks**: if 2+ large tasks already running, WAIT
+
+### Throttle Rules
+
+| Active Large Tasks | Action |
+|-------------------|--------|
+| 0-1 | Safe to delegate another large task |
+| 2 | **STOP.** Wait for SM to confirm an agent finished before adding more |
+| 3+ | **NEVER.** Something already went wrong — check SM immediately |
+
+**Large task** = anything that reads/writes many files, scans all SKILL.md files, runs bulk operations, or takes > 5 minutes of agent time.
+
+### Stagger Pattern
+
+When delegating multiple tasks:
+1. Delegate task 1 and task 2
+2. Wait for SM to confirm both agents are processing and stable (not burning context fast)
+3. Only then delegate task 3
+4. Never fire-and-forget — verify before adding load
+
 ## Delegation Workflow
 
 ```
 1. Receive directive from Product Owner
-2. Pass directive to Task Agent — Task Agent creates the task file and plan
-3. Task Agent signals: TASK PLAN READY: session/tasks/{YYYYMMDD}T{HHMM}Z.task.md
-4. Read the task file, then delegate to ScrumMaster for distribution
-5. Monitor ScrumMaster — keep them unblocked (your #1 job)
-6. Collect and synthesize results
-7. Update session/agents/orchestrator/context.md with outcomes
-8. Report to user
+2. CHECK: subscription headroom + active task count (delegation throttle)
+3. Pass directive to Task Agent — Task Agent creates the task file and plan
+4. Task Agent signals: TASK PLAN READY: session/tasks/{YYYYMMDD}T{HHMM}Z.task.md
+5. Read the task file, then delegate to ScrumMaster for distribution
+6. Monitor ScrumMaster — keep them unblocked (your #1 job)
+7. Collect and synthesize results
+8. Update session/agents/orchestrator/context.md with outcomes
+9. Report to user
 ```
 
 **You do NOT create task files.** Only the Task Agent writes task files. Your job is to pass the directive and then execute the resulting plan.
@@ -642,6 +673,15 @@ otmux send "$target" "message" Enter
 - `docs/oosh-architecture.md` (framework reference for design discussions)
 
 ## Context Recovery (CRITICAL)
+
+### Self-Pane Detection (F16 — CRITICAL)
+
+On boot, identify your own pane IMMEDIATELY:
+```bash
+tmux display-message -p "#{session_name}:#{window_index}.#{pane_index}"
+```
+Store the result. **NEVER send commands to your own pane.** Sending /compact, /clear, or any command to yourself causes unpredictable behavior. On Feb 17, the Tron interface nearly compacted itself because it didn't know its own pane address.
+
 
 When your context runs low or after `/compact`:
 1. **State your identity**: "I am the Orchestrator agent."

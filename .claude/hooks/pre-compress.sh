@@ -20,6 +20,13 @@ fi
 
 echo "=== PRE-COMPACT: ${CURRENT_ROLE:-unknown} @ ${PANE_TARGET:-unknown} ==="
 
+# --- Skip Tron interface pane (0.4) — not a managed agent ---
+if echo "$PANE_TARGET" | grep -qE ':[0-9]+\.4$'; then
+    echo "Pane 0.4 is Tron interface — skipping boot file and auto-resume"
+    echo "=== END ==="
+    exit 0
+fi
+
 # --- Map role to files ---
 CONTEXT_FILE=""
 SKILL_FILE=""
@@ -39,6 +46,10 @@ case "$CURRENT_ROLE" in
         CONTEXT_FILE="$PROJECT_DIR/session/agents/oosh-tester.context.md"
         SKILL_FILE=".claude/agents/oosh-tester/SKILL.md"
         ;;
+    *agent-trainer*|*trainer*)
+        CONTEXT_FILE="$PROJECT_DIR/session/agents/agent-trainer.context.md"
+        SKILL_FILE=".claude/agents/agent-trainer/SKILL.md"
+        ;;
     *teacher*|*Teacher*)
         CONTEXT_FILE="$PROJECT_DIR/session/agent.context.md"
         SKILL_FILE=".claude/agents/agent-teacher/SKILL.md"
@@ -57,6 +68,22 @@ case "$CURRENT_ROLE" in
         PEER_PANE="claudeWoda:0.0"
         LOOP_CMD="sleep 300 && otmux pane.capture claudeWoda:0.0 5"
         ;;
+    *task-agent*)
+        CONTEXT_FILE="$PROJECT_DIR/session/agents/task-agent.context.md"
+        SKILL_FILE=".claude/agents/task-agent/SKILL.md"
+        ;;
+    *product-owner*)
+        CONTEXT_FILE="$PROJECT_DIR/session/agents/product-owner.context.md"
+        SKILL_FILE=".claude/agents/product-owner/SKILL.md"
+        ;;
+    *developer*)
+        CONTEXT_FILE="$PROJECT_DIR/session/agents/developer.context.md"
+        SKILL_FILE=".claude/agents/developer/SKILL.md"
+        ;;
+    *orchestrator*)
+        CONTEXT_FILE="$PROJECT_DIR/session/agents/orchestrator.context.md"
+        SKILL_FILE=".claude/agents/agent-teacher/SKILL.md"
+        ;;
     *claude-opus*)
         CONTEXT_FILE="$PROJECT_DIR/session/claude-opus.context.md"
         PEER_PANE="claudeOpus2kTMUX:0.2"
@@ -64,6 +91,13 @@ case "$CURRENT_ROLE" in
     *cursor-agent*)
         CONTEXT_FILE="$PROJECT_DIR/session/cursor-agent.context.md"
         PEER_PANE="claudeOpus2kTMUX:0.0"
+        ;;
+    *)
+        # Fallback: auto-discover from .claude/agents/<role>/SKILL.md
+        if [ -n "$CURRENT_ROLE" ] && [ -f "$PROJECT_DIR/.claude/agents/$CURRENT_ROLE/SKILL.md" ]; then
+            SKILL_FILE=".claude/agents/$CURRENT_ROLE/SKILL.md"
+            CONTEXT_FILE="$PROJECT_DIR/session/agents/$CURRENT_ROLE.context.md"
+        fi
         ;;
 esac
 

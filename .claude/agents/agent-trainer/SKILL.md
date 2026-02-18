@@ -83,6 +83,15 @@ description: <one-line description for tool/completion display>
 **DO NOT:** <forbidden actions, with who does them instead>
 
 ## Context Recovery (CRITICAL)
+
+### Self-Pane Detection (F16 — CRITICAL)
+
+On boot, identify your own pane IMMEDIATELY:
+```bash
+tmux display-message -p "#{session_name}:#{window_index}.#{pane_index}"
+```
+Store the result. **NEVER send commands to your own pane.** Sending /compact, /clear, or any command to yourself causes unpredictable behavior. On Feb 17, the Tron interface nearly compacted itself because it didn't know its own pane address.
+
 <steps to recover after /compact or context loss>
 
 ## Communication

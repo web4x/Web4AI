@@ -11,8 +11,8 @@
 3. Resume work (see goal above)
 
 ## Deep files (read ONLY if needed, not on boot):
-- SKILL.md: ``
-- Context: ``
+- SKILL.md: `.claude/agents/agent-teacher/SKILL.md`
+- Context: `session/agents/orchestrator.context.md`
 
 
 ## Rules (memorize, don't re-read):

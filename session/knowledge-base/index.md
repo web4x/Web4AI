@@ -19,5 +19,6 @@
 14. [Measurement System (CMM4)](overviews.md#14-measurement-system-cmm4) → [Details](measurement-system.md)
 15. [Anti-Patterns (BANNED)](overviews.md#15-anti-patterns-banned) → [Details](anti-patterns.md)
 16. [OOSH Parameter Naming](overviews.md#16-oosh-parameter-naming) → [Details](oosh-parameter-naming.md)
+17. [Mass Context Exhaustion Recovery](overviews.md#17-mass-context-exhaustion-recovery) → [Details](incidents/20260217-mass-context-exhaustion.md) → [Action](actions/recover-mass-context-exhaustion.md)
 
 **Reference**: [CMM & Web 4.0](cmm-web4x.md) | [Usage Guide](usage.md)
