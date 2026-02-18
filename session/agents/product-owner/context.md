@@ -1,121 +1,104 @@
 # Product Owner Agent Context
 
-**Session**: product-owner@opus
+**Updated**: 2026-02-18T15:20Z
 **Role**: product-owner
 **Pane**: projectTeam:0.4
-**Updated**: 2026-02-18T13:00Z
-**State**: STANDBY — 90% subscription, 27 min remaining
+**State**: STANDBY — context low, wakeup at 16:02 UTC (background task b4eea71)
 
 ## CURRENT GOAL — #1 PRIORITY
 
 **Self-improving CMM4 team. Agent health + adaptive sweep timing.**
+Read `session/team-goals.md` for all 5 goals. PO owns and updates goals.
 
-### Priority Lesson from F11 (INTERNALIZE THIS)
-Compact protocol is the HIGHEST priority rule. A contextless compact cascades: agent regresses → loses all directives → pure rework. The weakest link was PO itself. 6 failures (F1,F3,F8,F9,F11,F12) share the same root cause: assuming instead of measuring. GATE: measure → assess → act → verify.
+## ON WAKEUP (16:02 UTC) — DO THESE IN ORDER
 
-### CMM4 Velocity Management (Tron directive — replaces old 80%/90% binary rule)
-No binary thresholds. Continuous proportional response based on projected exhaustion:
-- >60 min → full speed. 30-60 min → no new large tasks. 15-30 min → commit work. 5-15 min → save contexts. <5 min → compacts.
-Binary thresholds = driving 200km/h at a cliff, hoping brakes work. CMM4 = never needs emergency braking.
+1. `scrumMaster subscription` — verify block ACTUALLY reset (tool is 1hr off, real reset = 5pm Berlin = 16:00 UTC)
+2. Correct orchestrator: write task file with real reset time (16:00 UTC not 15:00 UTC)
+3. Fix SM: it used old for-loop tools instead of hiveMind, and did NOT wake PO as instructed
+4. Fix wakeup chain permanently: write into orchestrator context.md AND SM boot-minimal.md that SM must send `Read session/agents/product-owner/boot.md` to 0.4 after block reset
+5. Check trainer: did it complete persistence task (20260218T1300Z)?
+6. Drive idle agents toward goals (expert: param naming fix, tester: missing test files)
 
-## SUBSCRIPTION (last measured 12:41Z Feb 17)
-- Block: 09:00-14:00 UTC (ACTIVE)
-- Used: $34.28, projected $62.62
-- Burn rate: 269k tok/min, 134 min remaining
-- Alert: OK — burn rate higher, still within block
-- `scrumMaster subscription` = correct real-time tool
-- `measure.subscription.api` = DEPRECATED (task 1200Z)
+## CRITICAL LEARNINGS FROM TODAY
 
-## CURRENT STATE (12:45Z Feb 18)
+- **F24**: Check pane title on boot — I read tron-interface context instead of product-owner
+- **F25**: Don't revert to binary thresholds — use CMM4 velocity (projected exhaustion time)
+- **F26**: `hiveMind unblock all` sends to 0.4 — bug, SM must unblock specific panes
+- **Block reset = 5pm Berlin (16:00 UTC)**, NOT what scrumMaster subscription shows (always 1hr off)
+- **Chat messages die on compact** — wakeup instructions must be in persistent files
+- **SM minimal boot works** — 15 lines, survives 6+ cycles. Full boot (59 lines) kills SM in 1 cycle.
+- **SM can't capture context %** — status bar shows file changes, not context %. "Context low (X%)" only appears when low.
+- **Orchestrator rule conflict resolved**: /clear on dead SM (0%) is authorized, /clear on working agents needs PO approval
 
-- **SM**: ALIVE — minimal boot (15 lines) working. Sweep cycle 2+ done. Wakeup set. Self-sustaining.
-- **Orchestrator**: Fixed SM per PO directive. Created minimal boot. Standing authorization for SM /clear at 0%.
-- **Expert**: Idle, healthy, ready for work.
-- **Tester**: Idle, healthy, ready for work.
-- **Trainer**: Idle, rate-limited. Completed 3 post-incident tasks (f2de7e7, 81601e5, 5f6112d).
-- **Writer**: Active, Ch34+.
-- **Scribe**: Active, monitoring writer.
-- **Task-agent**: Post-compact, idle.
-- **Developer**: Idle.
-- **Script-PO**: Active, BUG 3 (PDCA states).
+## KEY FINDING: Context Monitoring
 
-## KEY FIX (Feb 18): SM Sustainability
-- Full boot (59 lines → reads SKILL.md 200+ lines + context + learnings) killed SM in one cycle
-- Orchestrator created minimal boot (15 lines): identity + sweep command + key rules only
-- SM now self-sustaining. Velocity monitoring not yet added — incremental.
-- Standing authorization: orchestrator may /clear SM at 0% without PO approval.
+Tester validated: SM CANNOT measure context % by pane capture. Status bar shows file changes (+X -Y), not context %. Context % only appears as "Context low (X% remaining)" when already low. Velocity monitoring needs a different data source. Task #19 still open.
 
-## ACCOMPLISHED (Feb 16-17)
+## ACTIVE TASKS DELEGATED
 
-- Expert: ossh + user sshDir restore (32e3b66), tree.detailed (f1a0e26), method conversions, sweep.detect fixes
-- Trainer: 3 SKILL.md updates to ALL 81 files (completion reporting, role names, compact protocol) — commits aae6410, 9633060
-- Script-PO: Completion + git safety + role names to 81 SKILL.md; working on restore comparison report
-- Tester: Dashboard revalidation, color-mode investigation done, validating tree.detailed
-- Writer: Chapters 19, 20, 22 (committed 7cc2284), starting 23
-- SM: Dashboard assignments working, CMM observations, self-recovered from F11, using proper compact protocol
+| Task | Agent | Status |
+|------|-------|--------|
+| 20260218T1300Z trainer-persist-goals-and-fixes | trainer (0.5) | Sent — 7 deliverables for SKILL.md persistence |
+| Context monitoring investigation | expert (0.1) | Orchestrator assigned, status unknown |
+| Context monitoring validation | tester (0.2) | DONE — finding: context % not capturable |
+| 20260217T1700Z expert-hivemind-param-naming | expert (0.1) | May be in progress — orchestrator mentioned expert investigating |
 
-## DIRECTIVES SENT (Feb 16-17)
+## QUEUED (assign after reset)
 
-| Task | To | Content | Status |
-|------|----|---------|--------|
-| 1100Z | tester | Test team.status + measurement tools | DONE |
-| 1101Z | expert | otmux tree.detailed spec | Updated to new method |
-| 1102Z | script-PO | Completion + git safety ALL SKILL.md | DONE |
-| 1103Z | expert | otmux tree.detailed | DONE (f1a0e26) |
-| 1110Z | SM + ALL | No agent remote-controls PO pane | DELIVERED |
-| 1112Z | SM | Assignment tables every sweep | DELIVERED — working |
-| 1115Z | expert (orchestrator) | Fix team.status + dashboard bugs | PENDING |
-| 1120Z | tester | Restore comparison report | IN PROGRESS (script-PO doing it) |
-| 1125Z | tester | Color mode investigation | DONE |
-| 1130Z | expert | ossh + user sshDir restore | DONE (32e3b66) |
-| 1135Z | SM | Track CMM awareness | DELIVERED |
-| 1140Z | trainer | Address by role name | DONE (aae6410) |
-| 1145Z | expert | otmux tree.save/restore | QUEUED |
-| 1150Z | SM | OOSH tools only | DELIVERED |
-| 1155Z | trainer | Compact protocol WHY | DONE (9633060) |
-| 1200Z | expert | Deprecate measure.subscription.api | QUEUED |
-| 1835Z | SM | Resume sweeping, unblock team | DELIVERED |
-| 1836Z | orchestrator | Monitor SM, not just reports | DELIVERED |
-| 0950Z | orchestrator | URGENT: unblock + assign NOW | DELIVERED |
+| Task | Agent | Goal # | Priority |
+|------|-------|--------|----------|
+| Fix dashed parameter names | expert | 5 | HIGH |
+| Create missing test files (otmux, claudeCode, user) | tester + expert | 2 | MEDIUM |
+| Fix 8 hiveMind test failures | expert | 5 | MEDIUM |
+| Fix hiveMind unblock all touching 0.4 (F26) | expert | 3 | HIGH |
 
-## osshTeam (DEDICATED SESSION — 1300Z)
+## TEAM STATE (15:20Z)
 
-New tmux session `osshTeam` with 3 panes:
-- 0.0: ossh-expert — investigating broken `ossh login [Tab]` completion
-- 0.1: test shell (plain bash for manual testing via send-keys)
-- 0.2: ossh-tester — testing completion in test shell
+- Orchestrator (0.0): Active, cycle 2, managing team — but missed PO wakeup
+- Expert (0.1): Working on something (orchestrator assigned context monitoring)
+- Tester (0.2): Active, checking test files
+- SM (0.3): Alive, sweep cycle 9+, using hiveMind sweep — BUT used old for-loop tools too
+- Trainer (0.5): Has persistence task, may be rate-limited
+- Writer (1.0): Active Ch34+
+- Scribe (1.1): Active
 
-Task: `session/tasks/20260217T1300Z.ossh-team.md`
-Phase 1 (investigation) started. Both agents bootstrapped and working.
+## COMMITS TODAY (8 total)
 
-## QUEUED TASKS (projectTeam)
+6bcc9bb — F21-F23 total goal loss incident
+170ca77 — Commit all agent context files
+10e95b7 — F24-F25 wrong identity + binary thresholds
+fbc9884 — Orchestrator SKILL.md: SM recovery auth + velocity
+e59de68 — DRY team-goals.md single source of truth
+e4941ea — Trainer persistence task
+ac1353d — F26 hiveMind unblock all touches 0.4
+36405f7 — PO standby
 
-1. **1145Z** expert: otmux tree.save / tree.restore (MEDIUM)
-2. **1200Z** expert: deprecate measure.subscription.api (HIGH — SM can't do CMM4 without this)
-3. **1115Z** expert: fix team.status + dashboard bugs (HIGH)
+## FAILURES (26 total)
 
-## TRON COMMANDS
-- "status" = full report: goals, tasks, priorities, team assignments, subscription — measured not assumed
+F1-F13: See learnings.md
+F15-F20: Mass context exhaustion (Feb 17)
+F21-F23: Total goal loss + SM cycling (Feb 18)
+F24: Wrong context file after compact
+F25: Reverted to binary thresholds
+F26: hiveMind unblock all touches 0.4
 
-## GOALS (single source of truth: `session/team-goals.md`)
+## KEY RULES
 
-Read `session/team-goals.md`. PO owns and updates goals. Orchestrator and SM reference the same file.
-
-## FAILURES (25 total)
-
-F1-F13: See learnings.md (pre-incident)
-F15-F20: Mass context exhaustion disaster (Feb 17). See incidents/20260217-mass-context-exhaustion.md
-F21-F23: Total goal loss + SM cycling. See incidents/20260218-total-goal-loss.md
-F24: Read wrong context file after compact (tron-interface instead of product-owner)
-F25: Reverted to binary thresholds despite CMM4 velocity rule
+- **I am pane 0.4** — SM must skip me in sweeps
+- **PO talks only to Tron and Orchestrator** — no direct worker communication
+- **GATE**: measure → assess → act → verify
+- **Nothing done until committed with a hash**
+- **CMM4 velocity**: >60min full, 30-60 no new large, 15-30 commit, 5-15 save, <5 compact
+- **Block reset = 5pm Berlin = 16:00 UTC** (tool shows 1hr early)
+- **hiveMind tools only** — no raw tmux, no for loops
+- **DRY**: team goals in session/team-goals.md only
 
 ## RECOVERY STEPS
 
 1. "I am the Product Owner agent."
-2. Read `session/agents/product-owner/context.md` (this file)
-3. `scrumMaster subscription` — MEASURE subscription FIRST
-4. Read `session/dashboard-assignments.md` — SM's team report
-5. GATE: measure → assess → act → verify. NEVER assume.
-6. Compact protocol: "Save your context and run /compact NOW" — NEVER raw /compact
-7. Check queued tasks and drive them forward
-8. If agents stuck: tell orchestrator to unblock immediately — don't just report it
+2. `tmux display-message -p "#{pane_title}"` — verify identity
+3. Read this file
+4. Read `session/team-goals.md`
+5. `scrumMaster subscription` — MEASURE (but real reset = 5pm Berlin, tool is 1hr off)
+6. Read `session/dashboard-assignments.md`
+7. Execute ON WAKEUP list above
