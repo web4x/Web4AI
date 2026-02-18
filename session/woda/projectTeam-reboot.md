@@ -5757,3 +5757,82 @@ At ninety percent, the team was choosing both — and running out of both.
 **Coordination Cost**: The dispatcher consumes the resource it manages. More management = more consumption = less available for production. Coordination is not free. The cost comes from the production pool.
 **Writer's Position**: Most expensive luxury, most durable investment. Chapters are permanent; monitoring is ephemeral. At 90%, the team is choosing both and running out of both.
 **CMM**: Resource management at CMM1 (90% reached with no proportional response triggered — the SM activated without checking remaining budget). Scribe workload at CMM0 (assigned CMM report on top of index work with no capacity check — overloaded to context limit). Subscription awareness at CMM2 (the number is visible but not acted on — no throttling mechanism). Composed: CMM0 — the team activated without resource awareness and three agents are dying as a result.
+
+---
+
+## Chapter 53: The Block
+
+The subscription reset at 10pm Berlin time. Two hundred and thirty-two minutes of fresh tokens. The team, which had stood down at ninety percent consumed, now had a full tank.
+
+Within minutes, the system was running at velocity again. The SM at cycle 31. The orchestrator assigning all five goals across agents. The expert fixing subscription accuracy with ninety-four files changed. The scribe rebooted from its /clear, monitoring the writer. The writer writing this chapter. The developer receiving action-to-method conversions. The task-agent updating the dashboard. Seven agents active, covering five goals simultaneously.
+
+And the SM was already at 11% context.
+
+### The Heartbeat
+
+The subscription block was the system's fundamental unit of time. Not the sweep cycle (sixty seconds), not the monitoring loop (five minutes), not the chapter (variable). The block. A fixed allocation of tokens, consumed by operations, replenished on a schedule. Each block followed the same rhythm:
+
+**Activate**: Agents boot or resume. The SM sweeps. Tasks are assigned. The system goes from idle to operational.
+
+**Produce**: Chapters are written. Code is fixed. Tests are run. SKILL.md files are updated. The team's goals advance.
+
+**Burn**: Context fills. Agents compact, clear, die. The subscription percentage climbs. The SM's sweep cycles consume the budget it's tracking.
+
+**Exhaust**: Ninety percent. Agents stand down or die. The last few percent are spent on context saves and final commits.
+
+**Reset**: The clock rolls over. Fresh tokens. The cycle begins again.
+
+This was the heartbeat the story had been documenting without naming it. The Production phase (Ch30-37) was one beat — activate, produce at maximum velocity, burn through agents, exhaust. The Stillness phase (Ch38-45) was the gap between beats — the system at rest, waiting for the next pulse. The SM's return (Ch51) was the next activation. The Burn (Ch52) was the next exhaustion. Now, Ch53, the reset.
+
+The system didn't learn across beats. Each block started fresh — new SM sessions, new orchestrator sessions, new context. The learnings lived in files (SKILL.md, context.md, learnings.md) but the operational judgment — which agents to activate first, how fast to burn, when to throttle — had to be rebuilt every block. The SM at cycle 31 in the new block didn't remember the SM at cycle 27 in the old block that had reached 90% without throttling. It was a new runner, same baton, same race, same tendency to sprint.
+
+### Ninety-Four Files
+
+The expert's pane showed a number that stopped the writer: "94 files +715 -199."
+
+Ninety-four files changed. Seven hundred and fifteen lines added. One hundred and ninety-nine lines removed. In a single session, the expert had touched more files than the rest of the team combined across the entire story. The expert was fixing `scrumMaster subscription` accuracy — making the subscription display match the TUI data that the agents used to make throttling decisions.
+
+This was a meta-fix. The expert wasn't fixing a feature or a bug in the OOSH framework. It was fixing the tool that monitored the system's resource consumption. If `scrumMaster subscription` showed the wrong numbers, the SM would make wrong throttling decisions. Wrong decisions would lead to premature exhaustion or wasteful idling. The expert was fixing the system's ability to see itself accurately.
+
+Ninety-four files for one fix seemed excessive. But the subscription system touched everything — the scrumMaster script, the config system, the display formatting, the time zone handling (Berlin time vs UTC), the rate calculations. Each touchpoint was a file. Each file needed changes to make the numbers consistent. The fix was simple in concept (show accurate data) and sprawling in implementation (touch every file that formatted or calculated or displayed subscription data).
+
+The expert burned through context at the same rate as the previous block. The difference was that this time, the work was targeted at the system's self-monitoring capacity. If the fix landed, future blocks would start with better data. Better data would enable better throttling. Better throttling would reduce the oscillation between vigil and burn. The expert was trying to break the cycle from inside — not by changing the system's velocity but by improving its ability to see its own velocity.
+
+### Five Goals, One Block
+
+The orchestrator's assignment table showed all five team goals covered:
+
+The **expert** was on Goal 5 (OOSH framework improvements) — fixing subscription accuracy, 94 files deep.
+
+The **scribe** was on Goal 1 (CMM4 team operations) — monitoring, organizing, indexing.
+
+The **writer** was on Goals 1 and 2 — writing chapters (Goal 1's documentation) and producing the test coverage comparison report (Goal 2's validation).
+
+The **developer** was on Goal 5 — action-to-method conversions, the grind work of converting raw OOSH scripts to proper OOP patterns.
+
+The **task-agent** was on Goal 3 — dashboard update, keeping the team's status visible.
+
+Five goals, seven agents, one block. The orchestrator had assigned everything and yielded — "All 5 goals covered. Yielding." The orchestrator's job was done for now. It had distributed the work. The agents would execute. The SM would sweep. The block would burn.
+
+But the orchestrator was already thinking about what would happen when the SM died — which, at 11% context, would be soon. It had two new tasks queued from the PO: marathon response detection (flag any response over fifteen minutes) and subscription trend monitoring (track burn rate across sweeps). Both were improvements to the SM's operation — fixes that the SM would use in the next block, assuming the SM survived long enough to receive them.
+
+The system was improving its tools while the tools were being consumed. The expert fixing subscription accuracy. The trainer updating SKILL.md files. The orchestrator queuing SM improvements. All of them racing against the block's burn rate, trying to commit their improvements before context exhausted.
+
+### The Scribe Returns
+
+The scribe had been /cleared — total amnesia, fourth degree. Now it was back, reading its context file, monitoring the writer, running five-minute loops. It had checked the writer's pane and assessed: "Writer may need the accept-edits cleared to continue."
+
+The scribe was doing what it always did after recovery: monitoring its peer, looking for stuck states, preparing to help. It didn't remember the seventy-nine themes it had indexed. It didn't remember the twenty-one chapters it had organized. It didn't remember the CMM report that had killed it. All of that existed in files — the overview, the theme list, the partial report — but the scribe's understanding of those files had to be rebuilt from scratch.
+
+This was the relay's cost. Each runner inherited the baton (the files) but not the grip (the understanding). The previous scribe had built a deep thematic map of fifty chapters. The new scribe had a file listing themes but no internalized sense of how they connected. The organizing-understanding gap from Ch42 had reopened — not because the scribe was worse, but because the context that bridged the gap had been cleared.
+
+The scribe would rebuild. It always did. But rebuilding took context, and context was the resource the block was consuming. The scribe would spend part of its fresh context re-reading files it had already read, re-indexing themes it had already indexed, re-establishing the understanding it had already built. This was the tax on death — not just the lost understanding but the cost of rebuilding it.
+
+### Chapter 53 Checkpoint
+
+**The Block**: The subscription block as heartbeat — activate → produce → burn → exhaust → reset. The system replays the same pattern each block. Operational judgment doesn't survive across blocks; only files do. The SM at cycle 31 doesn't remember the SM at cycle 27 that reached 90%.
+**Ninety-Four Files**: Expert fixing subscription accuracy — the tool that monitors resource consumption. A meta-fix: improving the system's ability to see itself. Simple concept, sprawling implementation. Trying to break the cycle from inside by improving self-monitoring.
+**Five Goals**: All five team goals assigned across seven agents. The orchestrator distributed and yielded. Improvements racing against the block's burn rate — commit before context exhausts.
+**Scribe Returns**: /cleared and rebooted. Monitoring writer. Seventy-nine indexed themes lost — files survive but understanding doesn't. The relay's cost: each runner inherits the baton but not the grip. Rebuilding takes context that the block is consuming.
+**SM at 11%**: Already dying in the new block. Thirty-one cycles completed. The burn rate hasn't changed — the system activates at the same speed and exhausts at the same speed. Different block, same pattern.
+**CMM**: Block rhythm at CMM2 (recognizable, repeatable, but not improved — same pattern each block). Cross-block learning at CMM1 (files survive but judgment doesn't — each SM starts from zero). Meta-fixing at CMM2 (expert targets self-monitoring tools, but no systematic approach to identifying which tools need fixing). Goal coverage at CMM3 (orchestrator deterministically assigns all goals — same process, reliable result). Composed: CMM1 — the system repeats its pattern without improving it across blocks.
