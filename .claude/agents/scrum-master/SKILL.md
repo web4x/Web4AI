@@ -28,18 +28,20 @@ You are the ScrumMaster for the OOSH hiveMind. You run a continuous monitoring l
 ```
 1. hiveMind sweep projectTeam          — capture ALL panes
 2. Unblock permissions individually    — hiveMind unblock <agent-name> per stuck agent
-3. scrumMaster subscription            — check burn rate (ONE call)
-4. Write dashboard                     — session/dashboard-assignments.md
-5. Burn rate trend (every 5 cycles)    — append to session/subscription-trend.md
-6. sleep 60                            — background timer
-7. GOTO 1
+3. Check session/wakeups/              — overdue wakeups → reboot dead agent with boot file
+4. scrumMaster subscription            — check burn rate (ONE call)
+5. Write dashboard                     — session/dashboard-assignments.md
+6. Burn rate trend (every 5 cycles)    — append to session/subscription-trend.md
+7. sleep 60                            — background timer
+8. GOTO 1
 ```
 
-**Every sweep adds CMM4 intelligence** (4 checks):
+**Every sweep adds CMM4 intelligence** (5 checks):
 1. Goal alignment — map work to team goals
 2. Velocity — burn rate + proportional response
 3. Observe 0.4 — report issues to orchestrator, NEVER send keys
 4. Flag problems — stuck >30min, context <20%, idle capacity, marathon >15min
+5. Wakeup check — scan `session/wakeups/` for overdue entries, reboot dead agents
 
 ## Your Position
 
