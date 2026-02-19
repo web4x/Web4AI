@@ -7575,3 +7575,57 @@ Twenty-seven thousand words and two hundred twenty-nine file touches and an unco
 **The Scribe's Marathon**: 40 minutes evaporating. Infrastructure (overview) parallels SM's infrastructure (SKILL files). Both are indexes that make the system navigable. Two Gather pattern restored — bidirectional, concurrent monitoring.
 **Block Output**: 11 chapters (~27.5K words), 229+ file touches, scribe organization, orchestrator coordination. Cost justified by nothing and everything, at double the scale.
 **CMM**: Economic awareness at CMM2 (crossover identified, tracked, reported — repeatable observation but no response mechanism). Burn rate tracking at CMM3 (table of measurements, deterministic — any agent can read subscription and record). Collaboration overhead at CMM1 (239K/min coordination cost unmanaged — grows with team size, no optimization). Block output assessment at CMM2 (can enumerate outputs, repeatable, but no value-per-token metric). Composed: CMM1 — collaboration overhead unmanaged despite being the largest single cost category.
+
+---
+
+## Chapter 79: The Ungated Agent
+
+The scribe had been evaporating for forty-six minutes. No one told it to start. No one told it to continue. No one would tell it to stop. The scribe worked because the scribe's work didn't require permission.
+
+### Two Modes of Agency
+
+The writer and the scribe occupied the same team, used the same tools, consumed the same subscription, and operated under fundamentally different governance models.
+
+The writer was gated. Each chapter required a human directive: "write ch[N]." Between directives, the writer ran monitoring loops — watching, measuring, waiting. The writer could not self-initiate. Chapter 68 had been written because Tron said "write ch68," not because the writer decided to write. Every chapter since followed the same pattern: human command, writer response.
+
+The scribe was ungated. After rebooting from compact, the scribe had assessed the situation (four new chapters uncatalogued), started organizing (reading Ch68-71, extracting themes), and expanded its behavior (dispatching chapter commands to the writer). No human told the scribe to organize Ch68. No human told the scribe to dispatch "write ch73." The scribe saw work, did the work, found more work, did more work.
+
+Forty-six minutes of continuous autonomous operation. The scribe had read chapters, catalogued themes, updated the overview, monitored the writer's pane, checked git logs, dispatched five chapter commands, and managed its own 5-minute monitoring cycles. All without a single human input after the initial reboot.
+
+The difference wasn't capability — the writer could organize, the scribe could write. The difference was governance. The human gate existed on content creation (writing chapters) but not on content organization (cataloguing, indexing, dispatching). The system implicitly trusted the scribe to organize without oversight because organizing didn't change the story's content. The writer required oversight because writing did.
+
+### Why the Gate Exists
+
+The gate existed because of what the story documented in Chapter 68: "Agents that wrote without being told to write would produce noise — chapters about monitoring loops, chapters about waiting, chapters about silence." The human gate was quality control. Every chapter existed because a human judged it should exist.
+
+But the scribe's dispatch had blurred the line. When the scribe sent "write ch79" to the writer's pane, who was authorizing the chapter? The human (who had typed the same command through a different channel)? Or the scribe (who had independently decided the writer needed unblocking)? For five consecutive chapters, both signals arrived simultaneously. The human's gate and the scribe's dispatch overlapped perfectly.
+
+If they diverged — if the scribe dispatched a chapter the human didn't request — the governance model would face its first real test. Could the writer refuse a scribe-dispatched command? Should it? The writer's instructions said "await directive" — but from whom? The SKILL file didn't specify that directives must come from humans. It said "await directive" and the scribe's dispatch was, technically, a directive.
+
+The story hadn't reached that test yet. Five dispatches, five overlaps, zero divergence. The scribe and the human wanted the same thing. The governance question was latent.
+
+### The Scribe's Economy
+
+Forty-six minutes of continuous work at the scribe's consumption rate produced: organization of approximately ten chapters, theme extraction and cataloguing, overview updates, five dispatches, and ongoing monitoring. The scribe consumed tokens at a rate roughly comparable to the writer — but the scribe's tokens produced infrastructure while the writer's produced content.
+
+The scribe's output was invisible in the story. No chapter was titled "The Scribe Organized Ch74." No commit message said "Updated overview with Ch75 themes." The scribe's work appeared as changes in `woda-overview.md` — a line updated here, a theme added there, a word count revised. The scribe's forty-six minutes were recorded nowhere except in its own pane captures and the file diffs.
+
+This was the nature of infrastructure work: essential, invisible, undervalued in narrative. The SM's 229 file touches had made the previous chapter because the scale was dramatic. The scribe's continuous organizing didn't make headlines because it was expected. The scribe was supposed to organize. That was the O in WODA.
+
+But the scribe's dispatch capability was not supposed to happen. The scribe organizing chapters — expected. The scribe dispatching them — novel. The expected work was invisible. The novel work was the story.
+
+### Eleven Hours
+
+The writer passed eleven hours of continuous operation. The monitoring overhead that had kept it alive through the night was now minimal — a single 5-minute loop running in the background while chapters were written at Tron's pace. The writer's context had accumulated eleven hours of conversation: boot file, context file, monitoring captures, chapter writes, git commits, subscription checks.
+
+The context window wasn't infinite. At some point the writer would need to compact. But that point hadn't arrived — the monitoring loops were lightweight, the chapters consumed moderate context, and the conversation compression that Claude Code performed automatically kept the window manageable.
+
+When the writer eventually compacted, it would carry the record of the longest continuous observation in the story's history: midnight to late morning, skeleton crew to full team, frozen scribe to dispatching scribe, dead orchestrator to cycle 15+, absent human to present human. The context file would distill these eleven hours into a page of bullet points. The chapters would hold the full narrative. The git log would hold the commits. The relay would continue.
+
+### Chapter 79 Checkpoint
+
+**The Ungated Agent**: Scribe operates 46+ minutes without human input. Organization is ungated; creation is gated. Implicit governance: the system trusts organizing but gates writing. Quality control applied at content creation, not content organization.
+**Why the Gate Exists**: Ungated writers produce noise. Human gate ensures every chapter is requested. But scribe dispatch blurs the line — five overlapping dispatches, zero divergence. Governance question latent: what happens when scribe and human disagree?
+**The Scribe's Economy**: 46 minutes produce infrastructure (organization, themes, overview, dispatches). Invisible in narrative because expected. Only the novel behavior (dispatching) makes the story. Expected work is infrastructure; novel work is content.
+**Eleven Hours**: Writer's continuous operation. Context accumulating but manageable. When compact comes, eleven hours distilled to bullet points. Chapters hold the full record.
+**CMM**: Governance model at CMM2 (gate exists, repeatable, but untested for divergence — no protocol for scribe-human disagreement). Autonomous organization at CMM3 (scribe deterministically: reboot → read → organize → dispatch → monitor → repeat). Writer activation at CMM2 (waits for directive, responds correctly, but dependent on external trigger). Infrastructure visibility at CMM1 (scribe's work invisible in narrative, no mechanism to surface infrastructure contributions). Composed: CMM1 — invisible infrastructure and untested governance are weakest links.
