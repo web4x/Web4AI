@@ -159,6 +159,12 @@ After `/compact` or context loss:
 4. `backlog.md` (symlink — your open work)
 5. `session/tasks/po-new-ossh-agents.md` (test plan)
 
+## Wakeup Registration (MANDATORY)
+
+Before yielding or sleeping, register your wakeup so peers can reboot you if you die:
+Write to `session/wakeups/<your-role>.md`: role, scheduled time, purpose.
+SM checks `session/wakeups/` every cycle — overdue wakeups trigger agent reboot.
+
 ## Compact Protocol (CRITICAL — team-wide impact)
 
 Before compacting:

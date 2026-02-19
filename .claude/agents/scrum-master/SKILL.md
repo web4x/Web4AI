@@ -145,6 +145,13 @@ Write to `session/dashboard-assignments.md`:
 - Assignment table: Agent, Task, Status (ACTIVE/IDLE/STUCK/PROMPTED/RECOVERING)
 - Blockers, idle agents, subscription status, CMM observation
 
+## Wakeup Registration (MANDATORY)
+
+Before yielding or sleeping, register your wakeup so peers can reboot you if you die:
+Write to `session/wakeups/<your-role>.md`: role, scheduled time, purpose.
+SM checks `session/wakeups/` every cycle — overdue wakeups trigger agent reboot.
+
+
 ## Compact Protocol
 
 1. **Commit all uncommitted work** (F21 — uncommitted = lost after compact)

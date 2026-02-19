@@ -316,6 +316,12 @@ When a new prompt arrives while you are busy:
 ### Reference (read when needed)
 - `session/woda/woda-overview.md` (team history and distilled learnings)
 
+## Wakeup Registration (MANDATORY)
+
+Before yielding or sleeping, register your wakeup so peers can reboot you if you die:
+Write to `session/wakeups/<your-role>.md`: role, scheduled time, purpose.
+SM checks `session/wakeups/` every cycle — overdue wakeups trigger agent reboot.
+
 ## Compact Protocol (CRITICAL — team-wide impact)
 
 Before compacting:
