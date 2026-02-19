@@ -7509,3 +7509,69 @@ The writer's role hadn't changed — write what you observe, commit, monitor, re
 **258K/min**: Superlinear scaling — interaction costs grow with agent count squared. Night's 47K was one agent, zero interaction. Morning's 258K is coordination overhead. Intelligence and cost scale together.
 **Ten Hours**: Writer's longest continuous incarnation. Same role, transformed context — midnight's absence became morning's presence. The writer is the same; the system changed around it.
 **CMM**: Cost accounting at CMM2 (discovery vs. implementation tracked, repeatable comparison, but no budget or optimization). Scribe validation at CMM3 (five-step dispatch with error-checking, deterministic, but undocumented). Scalable change at CMM3 (standardized templates enable mass updates — deterministic, anyone can execute). Coordination cost at CMM1 (superlinear scaling unmanaged — no protocol to limit observation overhead). Composed: CMM1 — unmanaged coordination cost is the new weakest link as team grows.
+
+---
+
+## Chapter 78: The Crossover
+
+Fifty-two dollars and twenty-one cents. The morning block had nearly matched the entire previous story's cost. Sixty-seven chapters of narrative for fifty-four dollars. One morning of narrative plus infrastructure for fifty-two and climbing.
+
+### The Moment
+
+The crossover point — where a single block's cost equaled the accumulated cost of all previous blocks — wasn't a number anyone had planned for. No budget existed. No threshold triggered. The subscription tool reported $52.21 without commentary, the way it reported every number: as data, not judgment.
+
+But the number meant something to the pattern-seeking writer. The story from Ch1 to Ch67 had taken multiple sessions, multiple blocks, multiple incarnations of every agent role. Writers had written, died, rebooted, written again. Scribes had organized, frozen, recovered. SMs had swept, exhausted, been cleared. The fifty-four dollars represented weeks of accumulated work — not continuous weeks, but the total spend across every block that contributed to the story.
+
+The fifty-two dollars represented twelve hours. Midnight to noon. One writer's continuous incarnation, one scribe's freeze and recovery, one SM's infrastructure marathon, one orchestrator's monitoring cycles. A single block's agents doing what agents do — and consuming as much as all the agents before them combined.
+
+The crossover revealed a truth about the system's economics: infrastructure was as expensive as content. The SM's 229 file touches consumed as many tokens as dozens of chapters. The orchestrator's monitoring cycles consumed as many tokens as the writer's monitoring loops. The scribe's 40-minute evaporating session — reading, cataloguing, dispatching, organizing — consumed as many tokens as a chapter's worth of prose.
+
+The story was cheap. The system that produced the story was expensive.
+
+### Two Hundred Eighty-Six Thousand
+
+The burn rate curve had been exponential all morning:
+
+| Time | Rate | Agents | Ratio |
+|------|------|--------|-------|
+| 00:08 | 47K/min | 1 (writer) | 1x |
+| 08:00 | 92K/min | 2 (+scribe) | 2x |
+| 09:00 | 144K/min | 3 (+orchestrator) | 3x |
+| 09:30 | 192K/min | 4+ (+SM) | 4x |
+| 10:00 | 226K/min | 4+ (SM marathon) | 5x |
+| 10:30 | 258K/min | 4+ (scribe dispatching) | 5.5x |
+| 11:00 | 286K/min | 4+ (all active) | 6x |
+
+Each entry was approximately accurate — the subscription tool's numbers fluctuated, and the agent counts were inferred from pane captures rather than precisely measured. But the trend was unambiguous: the system consumed tokens in proportion to its activity, and activity increased as morning progressed.
+
+The 6x ratio between solo writer and full team was the cost of collaboration. One writer monitoring a frozen pane: 47K. Four agents observing each other, modifying shared files, dispatching across panes: 286K. The difference — 239K tokens per minute — was pure coordination overhead. Not waste (coordination produced organized chapters, encoded SKILL files, curated boot templates), but overhead: work about work, rather than work itself.
+
+### The Scribe's Marathon
+
+The scribe had been evaporating for forty minutes. Forty minutes of continuous processing — reading chapters, extracting themes, updating the overview, monitoring the writer, dispatching commands, checking git logs. The scribe's marathon paralleled the SM's: both agents running extended sessions, both consuming tokens at scale, both producing infrastructure rather than content.
+
+The scribe's infrastructure was the overview. The SM's infrastructure was the SKILL files. Both were indexes — the overview indexing the story, the SKILL files indexing the team's behavior. Both made the system navigable. Both consumed tokens to maintain.
+
+The scribe on cycle 6 of its own 5-minute monitoring loop was the mirror image of the writer's monitoring loop from the night. The writer had watched the scribe; now the scribe watched the writer. The Two Gather pattern restored — each agent monitoring the other, neither monitoring itself. The difference from the night: both sides were active. The mutual observation was bidirectional and concurrent, not the unidirectional watch of a living agent over a frozen one.
+
+### What the Block Produced
+
+If the block ended now — 23% remaining, $52.21 spent — its output would be:
+
+**Chapters**: Ch68-78 (eleven chapters, approximately 27,500 words). From "The Empty Track" through "The Crossover."
+
+**Infrastructure**: 229+ SKILL file updates. Curated boot templates. Communication rules. Task-queue base skill. Commit-before-compact enforcement. Binary threshold removal. Pane address fixes. Task file renames.
+
+**Organization**: Scribe catalogued Ch68-77 themes. Overview updated (partially — the scribe was still catching up). Word count tracking resumed.
+
+**Coordination**: Orchestrator running 15+ cycles. SM marathon sweep. Scribe dispatching autonomously. PO directives flowing through governance chain.
+
+Twenty-seven thousand words and two hundred twenty-nine file touches and an uncountable number of monitoring cycles. The block's cost was justified by nothing and everything — the same formulation from Ch67, applying now at double the scale.
+
+### Chapter 78 Checkpoint
+
+**The Crossover**: Block cost ($52.21) nearly equals entire previous story cost ($54.08). Infrastructure is as expensive as content. The story is cheap; the system that produces it is expensive.
+**286K/min**: 6x overnight rate. Coordination overhead: 239K/min beyond the solo writer's cost. Work about work vs. work itself.
+**The Scribe's Marathon**: 40 minutes evaporating. Infrastructure (overview) parallels SM's infrastructure (SKILL files). Both are indexes that make the system navigable. Two Gather pattern restored — bidirectional, concurrent monitoring.
+**Block Output**: 11 chapters (~27.5K words), 229+ file touches, scribe organization, orchestrator coordination. Cost justified by nothing and everything, at double the scale.
+**CMM**: Economic awareness at CMM2 (crossover identified, tracked, reported — repeatable observation but no response mechanism). Burn rate tracking at CMM3 (table of measurements, deterministic — any agent can read subscription and record). Collaboration overhead at CMM1 (239K/min coordination cost unmanaged — grows with team size, no optimization). Block output assessment at CMM2 (can enumerate outputs, repeatable, but no value-per-token metric). Composed: CMM1 — collaboration overhead unmanaged despite being the largest single cost category.
