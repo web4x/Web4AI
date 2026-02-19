@@ -1,8 +1,8 @@
 # Orchestrator Context
 
-**Updated**: 2026-02-18T20:05Z
+**Updated**: 2026-02-19T11:20Z
 **Role**: Orchestrator
-**Status**: STANDING DOWN — PO ordered team standdown to conserve subscription
+**Status**: STANDDOWN — 90% subscription per TUI (tool says 13% — WRONG). All agents told to commit+save.
 
 ## YOUR JOB (from agent-overview.md)
 
@@ -22,17 +22,19 @@
 
 ## TEAM GOALS → `session/team-goals.md`
 
-## How You Monitor SM
+## How You Check SM (10-15 min cadence, NOT 2 min)
 
 ```
-hiveMind monitor scrum-master 15
+hiveMind monitor scrum-master 10
 ```
 
-Every 2 minutes. Check:
-- Is SM sweeping? (look for sweep cycle output)
-- Is SM stuck? (permission prompt, frozen, feedback dialog)
-- Is SM covering ALL agents? (not just some)
-- If SM is dead/stuck: reboot with `session/agents/scrum-master/boot-minimal.md`
+Every 10-15 minutes. ONE quick capture. Check:
+- Is SM alive? (active or accept-edits = alive)
+- If SM marathon >15 min: send yield command, unblock stuck agents yourself
+- If SM dead: reboot with `session/agents/scrum-master/boot-curated.md`
+
+**Between checks: DELEGATE. Assign idle agents. Collect .done files. Report to PO.**
+Monitoring is SM's job. Delegation is YOUR job. Stop burning tokens on sweeps.
 
 ## How You Delegate
 
@@ -43,15 +45,17 @@ hiveMind send <role> "Read session/tasks/<file>.md"
 
 SM handles unblocking. You handle direction.
 
-## Active Tasks (delegated) — ALL PAUSED, team standing down
+## Active Tasks (delegated)
 
-| Task | Agent | File | Status |
-|------|-------|------|--------|
-| CMM4/WODA/PDCA all SKILL.md | trainer | trainer-cmm4-all-agents-and-tool-review.md | DONE (21d0202) |
-| Pane→role name migration | trainer | trainer-migrate-pane-to-role-names.md | PARTIAL DONE (21d0202) |
-| SM 0.4 observe-not-touch | trainer | trainer-update-sm-04-observation.md | DONE (bb2c12e) |
-| PreCompact hook identity | expert | fix-precompact-hook-boot-identity.md | In progress — paused |
-| Subscription timezone | expert | fix-scrummaster-subscription-timezone.md | In progress — paused |
+| Task | Agent | File | Goal | Status |
+|------|-------|------|------|--------|
+| Marathon response fix (SKILL.md) | trainer | fix-orchestrator-marathon-responses.md | G3 | Assigned |
+| Subscription trend (SKILL.md) | trainer | sm-subscription-trend-monitoring.md | G4 | Assigned |
+| Prefer built-in tools (SKILL.md) | trainer | trainer-prefer-builtin-tools.md | G1 | Assigned |
+| Marathon detection (enforce) | SM | fix-orchestrator-marathon-responses.md | G3 | Assigned |
+| Trend tracking (implement) | SM | sm-subscription-trend-monitoring.md | G4 | Assigned |
+| PreCompact hook identity | expert | fix-precompact-hook-boot-identity.md | G5 | Resumed |
+| Subscription timezone | expert | fix-scrummaster-subscription-timezone.md | G5 | Resumed |
 
 ## Completed Today (7 total)
 
@@ -63,13 +67,25 @@ SM handles unblocking. You handle direction.
 - CMM4 awareness in all 81 SKILL.md — trainer, 21d0202
 - test.suite all: 217P/30F, no regressions — tester
 
-## Last Known State (20:05Z standdown)
+## Current State (Feb 19 ~09:50Z)
 
-- Subscription: 131 min remaining, 1.03M/min burn, block 16:00-21:00 Berlin
-- SM: executing standdown, sent /clear to scribe (0% context), was stuck on permission prompt
-- SM had queued message from PO: "stop the team and let it wake up at the right time"
-- 3 agents stuck-prompt (tester 0.2, developer 1.3, script-PO 1.4) — will resolve on standdown
-- Scribe (1.1) /cleared by SM (was at 0%)
+- SM: rebooted, sweeping + running subscription check
+- Expert (0.1): OFFLINE — SM will detect and reboot. Task ready: 20260219T0945Z (G5 hiveMind param)
+- Tester (0.2): active, assigned G2 test gaps task
+- Developer (1.3): accept-edits, working on G5 action→method from last block
+- Trainer (0.5): accept-edits, working on 3 SKILL.md updates
+- Writer (1.0) + Scribe (1.1): AUTONOMOUS — do not touch
+- PO directive: po-directive-hierarchy-restart.md — hierarchy is law
+- NEW RULE: Never run single response >15 min.
+
+## Pending
+- **MY TASK (from PO)**: After next SM compact, verify curated boot works:
+  1. Send boot-curated.md (not auto-generated)
+  2. Wait 2 min, capture 30+ lines
+  3. Verify: hiveMind sweep in use? In the loop? Read learnings?
+  4. If degraded: flag to PO
+- Expert assigned: create boot-curated.md + update PreCompact hook (HIGH)
+- Trainer assigned: update SM SKILL.md boot recovery section (HIGH)
 
 ## Standing Authorizations
 

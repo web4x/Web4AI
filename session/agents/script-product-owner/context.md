@@ -8,8 +8,9 @@
 
 ## Recovery Steps
 1. Read this file
-2. All 3 bugs from test coverage audit are DONE
-3. Look for new work via TaskList or wait for assignment
+2. Note: BUG 1-3 fixes were reverted by user in `this` — the commits exist (55cdca4, 1bb673c) but file was reset
+3. Was reviewing hiveMind fixes (commits c591150, d9ca38e) when team stood down — review incomplete
+4. Look for new work via TaskList or wait for assignment
 
 ## Completed Work: Fix 3 Bugs from Test Coverage Audit
 
@@ -32,11 +33,18 @@
 - `1bb673c` — BUG 3 fix
 - Both pushed to `origin/dev.claude`
 
+## Pending Review: hiveMind fixes (from SM assignment)
+- `c591150` — unblock skip 0.4 + send text/Enter separation
+- `d9ca38e` — team.status output format alignment
+- Code review done (looks solid), test run interrupted before completion
+- Expert claims 33/33 tests pass
+
 ## Learnings
 - Bash tool runs in zsh, not bash — always use `bash -c '...'` for OOSH testing
 - `[[ "$1" =~ ^[0-9]+$ ]]` is more reliable than `case *[!0-9]*` for number checking
 - `./script` from clean shell triggers debug trap (setTrap → step DEBUG) causing hangs — test from OOSH-initialized env instead
-- CONFIG_PATH must be set for state machine operations — `this.init()` now provides default
-- The state machine uses files in `$CONFIG_PATH/stateMachines/` to persist state across subprocesses
+- CONFIG_PATH must be set for state machine operations — `this.init()` provides default
+- `source this && source config && config.init` needed before test.suite in Bash tool
+- hiveMind tests may hang without full OOSH env init (debug trap)
 - oosh repo: `/Users/donges/oosh/`, branch `dev.claude`
 - Workspace repo: `/Users/Shared/Workspaces/AI/Claude/`, branch `main`

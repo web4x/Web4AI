@@ -2,7 +2,6 @@
 
 | Time | Tokens_M | Burn_M/min | Projected_Exhaustion |
 |------|----------|------------|---------------------|
-| Post-compact S1 | 7.7 | 0.031 | 88% | WARNING |
 | Post-compact S2 | 9.5 | 0.038 | 75% | MODERATE |
 | Post-compact S3 | 10.8 | 0.043 | 75% | MODERATE |
 | Post-compact S4 | 13.4 | 0.053 | 75% | MODERATE |
@@ -22,3 +21,4 @@
 **Trend (post-compact):** Session% dropping steadily (88→23%) — plenty of room. Burn 270K/min (team very active). Writer ch78, tester running full suite, trainer completed SKILL.md audit. OK alert. Resets 13:00 Berlin.
 | 12:13 | 36.2 | 13% | 2654 | resets 13:00 |
 | 12:13 | 36.2 | 13% | 2654 | resets 13:00 |
+| 12:14 | 40.1 | 8% | 2717 | resets 13:00 |
