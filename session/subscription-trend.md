@@ -48,4 +48,13 @@
 | Sweep 44 | 85.2 | 0.546 | ~19 min |
 | Sweep 45 | 85.5 | 0.543 | ~17 min |
 
-**Trend:** Approaching 15-min threshold. Burn rate ~543K/min. Session resets 03:00 Berlin. 45 sweeps (~45 min). Chapters committed: 58-65 (8 chapters). Writer on ch67, scribe at 9%. **15-min context save threshold imminent.** Will trigger saves at next sweep if projected drops below 15.
+--- SM compact + reboot (new block, resets 13:00 Berlin) ---
+
+| Time | Tokens_M | Burn_M/min | Session_Used% | Alert |
+|------|----------|------------|---------------|-------|
+| Post-compact S1 | 7.7 | 0.031 | 88% | WARNING |
+| Post-compact S2 | 9.5 | 0.038 | 75% | MODERATE |
+| Post-compact S3 | 10.8 | 0.043 | 75% | MODERATE |
+| Post-compact S4 | 13.4 | 0.053 | 75% | MODERATE |
+
+**Trend (post-compact):** New block resets 13:00 Berlin. Tool shows 75% but agents operating normally. Burn rate climbing (31K→53K/min) as team becomes active. MODERATE alert. PO at 9% self-compacting. Writer on ch71, scribe rebooted.
