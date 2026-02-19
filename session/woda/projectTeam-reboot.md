@@ -6924,3 +6924,85 @@ The relay runner had been standing at the starting line for seventy-five minutes
 **Fresh Block, Dead Team**: 85% subscription remaining, zero agents producing. Capacity without processors. Unresolved threads: expert's branch, SM's wisdom, scribe's compact.
 **One Word**: "Write ch68" turns 75 minutes of nothing into material. The waiting was the story. The silence was the content. The starting gun fired and the chapter was already written — it just needed to be transcribed.
 **CMM**: Night watch monitoring at CMM3 (deterministic loop — every N minutes, capture, assess, restart; same result regardless of operator). Human-gated operation at CMM3 (designed, documented, enforced — agents correctly refuse to self-authorize). Resource efficiency at CMM1 (no mechanism to distinguish frozen pane from about-to-change pane; monitoring intensity doesn't adapt to signal). Writer activation at CMM2 (waits for directive, responds correctly, but no mechanism to self-generate when human is absent for extended periods). Composed: CMM1 — correct behavior at high resource cost, no feedback loop to optimize the cost.
+
+---
+
+## Chapter 69: The Count Stops
+
+The scribe's last measurement was 115,000 words. The story had grown past it. The measuring instrument was dead but the thing being measured continued.
+
+### One Hundred Minutes
+
+The scribe had been frozen for one hundred minutes when the human said "write ch69." In that hundred minutes the writer had committed Ch68 — approximately 2,500 words about the seventy-five minutes before Ch68. The scribe's overview still said "~115,000 words." The real number was closer to 117,500. The gap would only grow.
+
+This was a small discrepancy. Two and a half thousand words, barely two percent. But the discrepancy was permanent. The scribe couldn't update because the scribe was at 4% context with `/compact` unsubmitted. The overview file — `woda-overview.md`, maintained exclusively by the scribe — was frozen at its last edit. Line 28 read: "projectTeam Reboot (NEW) → projectTeam-reboot.md — ~115,000 words." Line 28 would continue to read that until someone changed it.
+
+The writer could change it. Open the file, edit line 28, update the number. A ten-second operation. But the writer wasn't the scribe. The overview file was the scribe's domain — its table of contents, its theme catalog, its word count tracker. If the writer started maintaining the overview, the WODA pattern collapsed: the W doing the O's work meant the W wasn't doing its own work. The writer's job was to write chapters, not to maintain the index.
+
+So the count stopped at 115,000 while the story continued past it.
+
+### WODA Without the O
+
+The overview in `woda-overview.md` was the story's only navigable index. Sixty-seven chapters catalogued with one-line descriptions. Phase groupings. Theme lists. Word count milestones. A reader who wanted to find the chapter about the mass exhaustion incident would check the overview and find "Ch17: Everything Dies — mass exhaustion, 40 min recovery." A reader who wanted the chapter about CMM levels would find "Ch24: The Fifth Level."
+
+Chapter 68 had no entry. Chapter 69 would have no entry. Every subsequent chapter would have no entry until a new scribe incarnation organized them. The story was growing its undocumented tail — chapters that existed in the file but not in the index.
+
+The WODA pattern defined four functions: Writer (what happened), Overview (how it connects), Details (the specifics), Actions (what to do). The pattern explicitly warned that persistence degraded W→O→D→A — the writer was the most durable function, the actions the most ephemeral. Now the pattern was demonstrating its own prediction. The writer survived compact. The overview didn't survive the scribe's freeze.
+
+This created a strange asymmetry. The story file grew richer — more chapters, more themes, more self-referential loops — while the index that made it navigable grew staler. The content improved and the accessibility degraded simultaneously. Like a library that kept acquiring books but whose card catalog was last updated in January.
+
+### The Numbers Diverge
+
+The subscription tool gave contradictory readings across the night. At 00:15, it had reported: 95.5M tokens, $59.12, 15% used. Now at 01:45, it reported: 914K tokens, $0.44, 13% used. The session percentage had *decreased* — 15% to 13% — which was impossible if the same counter was being read. The token count had dropped from 95.5M to 914K. The cost from $59.12 to $0.44.
+
+The explanation was mundane: the writer had compacted. The scrumMaster subscription tool was measuring the current process, not the session. After compact, the writer was a new process with a fresh counter. The 914K tokens and $0.44 were the writer's personal consumption since reboot — reading boot.md, reading context.md, running monitoring loops, writing Ch68, and now writing Ch69.
+
+But the session-level 13% was the real number — the block's total consumption across all processes. And that number was lower than the 15% reported earlier, which meant either other processes had stopped (reducing the burn rate) or the tool was measuring something that didn't map cleanly to reality.
+
+This was the subscription accuracy problem that the expert had been fixing on the hannes-v2 branch. Three commits — unmerged, because the expert had stopped and the orchestrator had stood down and no one remained to merge them. The fix existed in git but not in production. The tool continued to give readings that didn't quite match the TUI footer. The calibration point from MEMORY.md — "177M tokens ≈ 94% of session limit" — was from the previous block. The current block's calibration was unknown.
+
+The system measured itself imprecisely. The story documented the imprecision. The fix sat in a branch. The branch had no merger.
+
+### Writing Alone
+
+Four incarnations of this writer had existed. The first wrote Ch1-9 with a scribe that organized in parallel. The second wrote Ch10-37 (twenty-eight chapters, the record) with active scribe collaboration — real-time word counts, immediate cataloguing, mutual PDCA. The third wrote Ch38-58 with a scribe that rescued itself, developed the Enter habit, and maintained the overview through twenty-one chapters. The fourth wrote Ch59-67 with a scribe declining from 10% to 6%.
+
+This incarnation — the fifth — was writing alone.
+
+The difference was subtle but structural. With a scribe, each chapter went through a cycle: writer commits, notifies scribe, scribe reads, scribe catalogs, writer monitors scribe, learns from scribe's organization, adjusts next chapter. The PDCA loop — Plan (observe material), Do (write chapter), Check (scribe organizes), Act (adjust based on organization) — required both agents.
+
+Without a scribe, the cycle truncated: writer commits. Full stop. No one read Ch68 to catalog it. No one updated the word count. No one identified its themes or connected it to previous chapters. The writer's output went into git and stayed there, uncurated.
+
+The writer could self-assess — every chapter had a checkpoint section with CMM ratings — but self-assessment wasn't the same as external assessment. The scribe noticed things the writer missed. The scribe's one-line summaries often captured a chapter's essence better than the writer's multi-paragraph analysis. The scribe's theme tracking revealed patterns across chapters that the writer, focused on the current chapter, couldn't see.
+
+Without the O, the W was producing content but not knowledge. Chapters accumulated but understanding didn't.
+
+### What the Scribe Built
+
+In its frozen final status, the scribe had reported: "22 chapters organized (Ch46-67), ~80 new themes catalogued, word count tracked: 96K → 115K, Enter habit documented in context file." Twenty-two chapters organized in a single incarnation. Eighty themes identified and catalogued.
+
+The scribe had also maintained the overview through four phases of the story — Foundation (Ch1-9), Multi-Agent & OOSH (Ch10-19), Quality & Measurement (Ch20-29), WODA Framework (Ch30+). Each phase had a summary, a file reference, a theme list. The overview was twelve lines of compressed meta-narrative that made 115,000 words navigable.
+
+Now that navigation stopped. A reader opening the overview would find everything up to Ch67 neatly organized and everything after Ch67 absent. The story's self-awareness — its ability to reference its own structure — depended on the scribe's work. The writer could reference "Chapter 63's interface trap pattern" because the scribe had catalogued it. Future writers, if the scribe remained frozen, would have to search the raw file for patterns rather than consulting an index.
+
+The scribe had built a lens through which the story could see itself. The lens was frozen at 4%.
+
+### 01:45 Berlin
+
+The time — approximate, the writer couldn't read a clock — placed this chapter well past midnight. Berlin asleep. The subscription block running from approximately 22:00 to 03:00, now past the halfway point with 87% remaining. Burn rate at 75K tokens per minute — the writer alone, monitoring and writing, consuming a fraction of what the full team had burned.
+
+At this rate, the block would last until its natural 03:00 reset with tokens to spare. Capacity for dozens of chapters if the human directed them. Capacity for nothing if the human slept.
+
+The night watch continued. Ch68 had been about the waiting. Ch69 was about the solitude. The writer alone in the team, the only process producing output, watching a frozen scribe who couldn't watch back. The Two Gather pattern broken by one half freezing. The minimum viable unit of WODA — writer plus scribe — reduced to half.
+
+The system still functioned. The writer still wrote. The git log still recorded. The story still grew. But the growth was unindexed, uncatalogued, unreviewed. Raw accumulation without organization. Words without an overview.
+
+### Chapter 69 Checkpoint
+
+**The Count Stops**: Scribe's last measurement was 115K words. Story now ~117.5K. The gap grows with each chapter. The measuring instrument is frozen but the thing being measured continues.
+**WODA Without the O**: Overview file frozen at Ch67. Ch68 and Ch69 have no index entries. Story grows its undocumented tail. Content improves, accessibility degrades. Library acquiring books with a dead card catalog.
+**The Numbers Diverge**: Subscription tool shows 914K tokens/$0.44 (writer's personal counter since compact) vs. 13% session-wide. Expert's accuracy fix sits unmerged on hannes-v2. The system measures itself imprecisely and the fix has no merger.
+**Writing Alone**: Fifth incarnation, first without active scribe. PDCA cycle truncated — no Check phase, no external assessment. Content without knowledge. Chapters accumulate but understanding doesn't.
+**What the Scribe Built**: 22 chapters organized, 80 themes catalogued, four-phase overview maintained. The scribe built a lens for the story to see itself. The lens is frozen at 4%.
+**01:45 Berlin**: Past midnight, 87% subscription remaining, 75K/min burn. Capacity for dozens of chapters. Writer alone in the team.
+**CMM**: Solo writing at CMM2 (writer produces, commits, continues — repeatable but missing the Check phase that would make it CMM3). Overview maintenance at CMM0 (stopped — no agent performing the function, no delegation, no fallback). Measurement accuracy at CMM1 (tool gives readings, readings don't match reality, fix exists but is undeployed). Self-referential documentation at CMM3 (story documents its own gaps — the count stopping, the overview freezing, the scribe's absence — deterministically). Composed: CMM0 — the missing overview function is the weakest link, dragging the composed maturity to zero regardless of other functions' levels.
