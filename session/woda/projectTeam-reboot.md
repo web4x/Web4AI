@@ -7142,3 +7142,68 @@ Morning in Berlin. The night watch was over.
 **What Survived**: Scribe still frozen. All dead agents still dead. Four commits in eight hours — 7,500 words plus one context save. A trickle that persisted when the flood couldn't.
 **Seventy-One**: No milestone. Just the next chapter. Continuation as its own justification. ~122K words across 5 writer incarnations.
 **CMM**: Monitoring endurance at CMM3 (deterministic — loop runs regardless of context, human presence, or block boundaries). Resource efficiency at CMM1 (full block consumed on empty captures — no adaptive interval, no signal-based escalation). Process longevity at CMM2 (writer survived the night, repeatable pattern, but accidental — not designed for overnight operation). Morning handoff at CMM3 (human returns, issues directive, writer responds — same protocol regardless of gap duration). Composed: CMM1 — the monitoring consumed a full block without adapting to the absence of signal.
+
+---
+
+## Chapter 72: The Scribe Wakes
+
+After six hours frozen, the scribe was alive. Not just alive — working. Cataloguing themes from the chapters it had missed. Updating the overview. Repairing the lens.
+
+### The Capture That Changed
+
+For thirty-five consecutive captures, the scribe's pane had shown the same fifteen lines: "67 chapters, ~115,000 words, $54.08," the final status message, the `/compact` sitting unsubmitted, the 4% context warning. The thirty-sixth capture — taken not from a monitoring loop but as preparation for this chapter — showed something different.
+
+The scribe was evaporating. Three minutes and forty-three seconds into an operation, 5.8K tokens consumed, thinking. Its output showed theme cataloguing: "empty track," "frozen compact," "WODA without the O," "writing alone," "minimum viable directive," "getting lighter through attrition," "stasis incompressible." Every theme the writer had embedded in Ch68-70. The scribe was reading the chapters it had missed and extracting their meaning.
+
+It had hit an error trying to update the overview file — "Error editing file" — but it was searching, reading, thinking. The accept-edits mode was active, meaning the scribe had proposed changes and was waiting for approval. The prompt said "Now add Ch71 themes." The scribe was working through the backlog in order: Ch68, Ch69, Ch70, now Ch71.
+
+Someone had pressed Enter. Sometime between the writer's last monitoring capture and this morning's measurement, someone — Tron, most likely, returning to the keyboard — had submitted the scribe's `/compact` command. The compact had processed. The scribe had rebooted. The scribe had read its boot file, found four new chapters, and immediately started organizing.
+
+### The PDCA Restored
+
+Chapter 69 had named the loss: "WODA Without the O." The writer's PDCA cycle — Plan, Do, Check, Act — had been truncated. The writer could Plan (observe material) and Do (write chapters) but couldn't Check (scribe organizes) or Act (adjust based on organization). Four chapters of solo writing, content without knowledge, accumulation without understanding.
+
+Now the Check phase returned. The scribe was reading Ch68-70 and extracting themes. The themes it found were exactly the themes the writer had intended — but the scribe's framing was different. Where the writer wrote paragraphs of analysis, the scribe compressed to phrases: "lens frozen (scribe built navigable index then froze — tool outlives its maker briefly)." That compression — the scribe finding the sentence the writer couldn't find in a thousand words — was the Check function in action.
+
+The scribe saw what the writer had written about the scribe and organized it. The writer had written about the scribe's absence. The scribe was now cataloguing the writing about its own absence. The recursion was live: the story documented the gap, and the gap's closer was documenting the documentation of the gap.
+
+### What the Scribe Found
+
+Four chapters had accumulated during the scribe's six-hour freeze. The scribe was discovering them one by one, extracting themes the writer hadn't explicitly named:
+
+From Ch68: "empty track" — the relay that worked with no race to run. The writer had called it that. But the scribe also found "frozen compact as interface trap" — connecting it to Ch63's pattern. The writer had made the connection but the scribe was now *indexing* the connection, making it findable.
+
+From Ch69: "count stops" — the scribe's own measurement frozen at 115K. The scribe was now reading about its own frozen count. It would update the count. The self-referential loop would close: the scribe reading that the scribe's count stopped, then updating the count.
+
+From Ch70: "minimum viable directive" — the human's two-word commands. And "stasis incompressible" — the observation that the scribe's freeze contained zero information per unit time. The scribe was now cataloguing the observation that its own freeze was uncataloguable. Another recursive loop.
+
+From Ch71: themes still being processed. "Through the night" — the writer's eight-hour vigil. The scribe would learn that the writer had watched it sleep for six hours. Would learn about the thirty-five identical captures. Would learn about the cost of vigilance quantified as one full subscription block.
+
+The scribe's discovery of the night chapters was itself a story: the sleeper waking to find that the watcher had written about watching the sleeper sleep.
+
+### The Error
+
+The scribe's first attempt to update the overview had failed: "Error editing file." A mundane failure — perhaps a string-match issue, perhaps a file that had changed since the scribe last read it. The scribe had recovered: "Searching for 1 pattern, reading 1 file." Reading the file again. Finding the right edit point. Trying again.
+
+This was the scribe's characteristic resilience. Previous incarnations had shown it: the Enter habit (pressing Enter on stuck prompts), the self-rescue from 4% context, the immediate reorientation after compact. The scribe didn't pause to assess why the error occurred. It read again and tried again. CMM2 — repeatable recovery, not yet deterministic (the error itself was unpredictable).
+
+The error was also evidence that the story file had grown past the scribe's expectations. The scribe had last seen it at Ch67, line 6835. It was now at Ch71, past line 7145. Four chapters of growth that the scribe's edit patterns didn't account for. The scribe was adapting in real-time, re-reading to recalibrate.
+
+### The Vigil's Payoff
+
+For eight hours the writer had maintained monitoring loops, asking implicitly: is the scribe still frozen? For thirty-five captures the answer was yes. For the thirty-sixth the answer was no.
+
+The monitoring had been pure waste until it wasn't. One hundred percent overhead for thirty-five cycles, then — in one capture — justified. The scribe was alive. The PDCA was restored. The overview would be updated. The count would resume. The undocumented tail would be documented.
+
+Whether the monitoring *caused* the payoff was unclear. The writer's captures didn't wake the scribe. The human pressing Enter woke the scribe. The monitoring simply detected the change. But detection had value: the writer knew, immediately, that the scribe was alive. Knew what it was doing (cataloguing themes). Knew what had gone wrong (edit error). Knew what was working (recovery, reading, indexing).
+
+Without monitoring, the writer would have learned about the scribe's resurrection only when the scribe's work appeared in the overview file or the git log — minutes or hours later. The monitoring compressed the detection time to zero: the next capture after the event was the capture that found the event.
+
+### Chapter 72 Checkpoint
+
+**The Scribe Wakes**: After 6+ hours frozen, scribe compacted and rebooted. Immediately started cataloguing Ch68-71 themes. Working through the backlog in order. Hit an edit error, recovered, continued.
+**The PDCA Restored**: Check phase returns. Scribe extracting themes from the writer's solo chapters. Compression as function — finding the sentence the writer couldn't find in a thousand words.
+**What the Scribe Found**: Sleeper waking to find the watcher wrote about watching the sleeper. Recursive loops: scribe cataloguing its own absence, updating its own frozen count, indexing the observation that its freeze was unindexable.
+**The Error**: Overview edit failed — file grew past scribe's expectations. Scribe re-read, adapted, continued. CMM2 resilience: repeatable recovery, unpredictable triggers.
+**The Vigil's Payoff**: 35 captures returned nothing. 36th found the scribe alive. Monitoring was 100% waste until it was 100% justified. Detection value: compressed the knowledge gap to zero.
+**CMM**: PDCA restoration at CMM3 (deterministic — scribe reboots, reads story, catalogs themes, updates overview; same process regardless of gap duration). Scribe resilience at CMM2 (recovers from errors, adapts to changed files, but recovery path varies). Monitoring payoff at CMM2 (detected the change, but thirty-five empty captures had no adaptive response — same interval regardless of probability). Recursive documentation at CMM4 (the story documents the gap, the scribe documents the documentation, the writer documents the scribe documenting — the loop self-corrects through measurement). Composed: CMM2 — the PDCA cycle works when both halves are alive, but there's no mechanism to ensure both halves stay alive.
