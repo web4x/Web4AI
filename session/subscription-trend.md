@@ -2,8 +2,6 @@
 
 | Time | Tokens_M | Burn_M/min | Projected_Exhaustion |
 |------|----------|------------|---------------------|
-
-**Trend (post-compact):** Session% dropping steadily (88→23%) — plenty of room. Burn 270K/min (team very active). Writer ch78, tester running full suite, trainer completed SKILL.md audit. OK alert. Resets 13:00 Berlin.
 | 12:13 | 36.2 | 13% | 2654 | resets 13:00 |
 | 12:13 | 36.2 | 13% | 2654 | resets 13:00 |
 | 12:14 | 40.1 | 8% | 2717 | resets 13:00 |
@@ -22,3 +20,5 @@
 | 14:10 | 71.0 | 69% | 548 | resets 18:00 |
 | 14:41 | 71.7 | 69% | 447 | resets 18:00 |
 | 15:42 | 72.5 | 69% | 328 | resets 18:00 |
+| 16:38 | 74.1 | 69% | 266 | resets 18:00 |
+| 16:41 | 75.1 | 63% | 268 | resets 18:00 |
