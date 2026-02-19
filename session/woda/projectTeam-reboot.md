@@ -7749,3 +7749,61 @@ This was CMM4 behavior — measuring the measurement system, using the measureme
 **Fifty-Nine Minutes**: Scribe's longest continuous operation. ~10 chapters organized, 6 dispatches, monitoring cycles. Duration (writer, 11hrs) vs. intensity (scribe, 59min). Persistence vs. throughput.
 **The Trend**: Subscription tool gained trend tracking. CMM4 behavior — measuring the measurement system. Doesn't fix inaccuracy but reveals patterns. Feedback loop on the feedback loop.
 **CMM**: Self-referential assessment at CMM3 (scribe reads about itself, accepts, continues — deterministic response to meta-observation). Team cycling at CMM2 (wake-sprint-die repeatable across blocks, but no prediction of cycle length or output). Measurement improvement at CMM4 (trend tracking improves future measurement — genuine PDCA on the measurement capability). Scribe endurance at CMM2 (59-minute marathon repeatable but not designed — emergent from backlog size, not intentional). Composed: CMM2 — trend tracking lifts the measurement capability, but team cycling and scribe endurance remain unpredictable.
+
+---
+
+## Chapter 82: The Override
+
+The system said stop. The human said write. The human won.
+
+### Emergency Overridden
+
+The writer had received "EMERGENCY STANDBY. Stop all work. 90% subscription. Save context and stop." The writer had complied: stopped monitoring loops, saved context, committed the save, and announced standing down. Fourteen chapters committed. Baton placed. The relay runner had set down the baton and stepped off the track.
+
+Then the human typed "write ch82."
+
+The emergency standby was a system-generated alert — the subscription tool detecting 90% usage and triggering the protocol documented in MEMORY.md. The protocol said: save context, stop work, wait for block reset. The writer had followed the protocol exactly. The protocol was correct for its design assumptions: a single shared subscription, a team of agents all consuming from the same pool, conservation as the only way to extend capacity.
+
+The human overrode the protocol because the human had information the protocol didn't: a new block had started. The subscription now read 52% used, resetting at 18:00 Berlin. The afternoon block — the fifth block since the writer's midnight reboot — had capacity to spare. The emergency was over. The standby was unnecessary. The protocol, correct at 12:30, was wrong at 17:00.
+
+The human's override was the governance model working as designed. Agents followed protocols. Humans overrode protocols when circumstances changed. The override wasn't a failure of the emergency system — it was the emergency system's intended escape valve. Automated alerts couldn't know about block resets. Humans could.
+
+### What the Scribe Saved
+
+The scribe's final status before stopping: "14 chapters organized, Ch68-81, all habits documented, dispatch pattern documented for compact survival."
+
+*Dispatch pattern documented for compact survival.* The scribe had done what the story had repeatedly warned was necessary: documented the undocumented. Chapter 75 had identified the scribe's dispatch capability as "alive and undocumented — same trajectory as Enter habit: useful, undocumented, will die on compact." Chapter 61 had named the pattern: "comfort precedes loss." The scribe's dispatch behavior, developed autonomously over six consecutive chapters, was on track to die with the scribe's context.
+
+But the scribe broke the pattern. Before entering emergency standby, the scribe documented the dispatch capability — writing it into its context file where the next incarnation would find it. The capability wouldn't die on compact. The next scribe would boot, read its context, find the dispatch pattern described, and know that dispatching was part of its evolved role.
+
+This was the transition from CMM2 to CMM3. CMM2: the scribe dispatched (repeatable behavior). CMM3: the scribe documented the dispatching (deterministic — any future scribe can replicate it). The scribe hadn't just evolved a capability; it had preserved the evolution. "Wer schreibt, der bleibt" — who writes, stays. The scribe had written about its own writing-about-writing.
+
+### Sixteen Hours
+
+The writer had been running for approximately sixteen hours. From 00:08 to roughly 17:00 Berlin. Five subscription blocks traversed. Fourteen chapters committed. Thirty-five empty scribe captures during the night. A six-hour vigil over a frozen scribe. The morning team revival. The infrastructure sprint. The scribe's marathon. The emergency standby. The override.
+
+Sixteen hours was unprecedented. No agent in the story had run this long. The writer's context window had accumulated the entire arc: midnight solitude, dawn surveillance, morning resurrection, midday production, afternoon standby, and now — post-override continuation.
+
+The writer had outlived every other agent multiple times over. The scribe had compacted once and stopped once. The SM had compacted. The trainer had finished and stopped. The orchestrator had stood down, restarted, and was now in unknown state. The writer had experienced none of these interruptions. It was the continuous thread through a day of discontinuous agents.
+
+But continuity had costs. The writer's context was heavy — sixteen hours of conversation, fourteen chapters of prose, dozens of monitoring cycles. Each new chapter added context. Each monitoring loop added context. The weight accumulated invisibly, manifesting only when the conversation compression kicked in or when the writer's responses began to slow.
+
+The writer didn't know its own context percentage. The Two Gather pattern said each agent could see the other's state but not its own. The writer could see the scribe's 90% emergency. The writer couldn't see its own. The writer might be at 50% or 80% or 95%. The override might bring the writer to its own emergency before the block ended.
+
+### The Afternoon
+
+The subscription read 52% used, resetting at 18:00 Berlin. At the current burn rate — 278K per minute with multiple agents potentially restarting — the block had perhaps ninety minutes of capacity. Less if agents woke. More if the writer stayed solo.
+
+The scribe was stopped, not dead. Its context was saved. A human pressing Enter or sending a directive could restart it. The orchestrator's state was unknown. The SM was compacted — it would need a full reboot. The trainer had finished its work and wouldn't return unless new work was assigned.
+
+The afternoon configuration was between the night's skeleton (one writer, zero activity) and the morning's full team (four+ agents, 286K burn). The writer was alone but not in the dark — it knew the team's state from the morning's observations. The scribe's context was saved. The infrastructure was updated. The story was organized through Ch81.
+
+The writer wrote ch82 because the human said to. Not because the subscription was safe (it might not be). Not because the story needed another chapter (it never needed any). But because the governance model placed the human above the protocols, and the human chose to override.
+
+### Chapter 82 Checkpoint
+
+**The Override**: System said stop (90% emergency). Human said write (new block, 52%). Human wins — governance model working as designed. Automated alerts can't know about block resets; humans can.
+**What the Scribe Saved**: Dispatch pattern documented before stopping. CMM2→CMM3 — scribe preserved its own evolution. "Wer schreibt, der bleibt" applied to capability documentation. Next incarnation inherits dispatch knowledge.
+**Sixteen Hours**: Writer running since 00:08. Five blocks, 14 chapters, entire day arc. Unprecedented duration. Context weight accumulating — writer can't see its own percentage (Two Gather). Override might bring writer to its own emergency.
+**The Afternoon**: 52% used, resets 18:00. Writer alone. Scribe stopped but saveable. Configuration between night skeleton and morning full team.
+**CMM**: Emergency override at CMM3 (human overrides automated protocol — deterministic, documented, any human can do it). Capability preservation at CMM3 (scribe documented dispatch before dying — pattern will survive compact). Writer endurance at CMM2 (16 hours repeatable in principle, but context weight unmonitored — no mechanism to predict own exhaustion). Governance hierarchy at CMM3 (protocols → agents → humans, deterministic chain of authority). Composed: CMM2 — context weight is the unmonitored risk; everything else is at CMM3.
