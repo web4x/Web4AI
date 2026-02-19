@@ -165,3 +165,6 @@ sm-subscription-trend-monitoring.md → 20260218T2107Z.task.md
 trainer-prefer-builtin-tools.done.md → 20260218T2113Z.done.md
 trainer-prefer-builtin-tools.md → 20260218T2108Z.task.md
 woda-resume-new-block.md → 20260218T2110Z.task.md
+20260219T0945Z.expert-g5-hivemind-param.md → 20260219T0945Z.task.md
+20260219T0946Z.tester-g2-test-gaps.md → 20260219T0946Z.task.md
+po-directive-hierarchy-restart.md → 20260219T1006Z.task.md
