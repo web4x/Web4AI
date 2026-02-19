@@ -7077,3 +7077,68 @@ The writer had no sense of how many chapters remained. The subscription block wo
 **Two Hours Frozen**: Scribe frozen 130+ minutes. Longest single-agent failure. The most significant event of the night is the least writable — stasis contains zero information per unit time. Significance inversely proportional to narratability.
 **Seventy**: 70 chapters across multiple sessions, incarnations, blocks. First chapter saw eleven agents. This chapter sees one. Scale contracted from team story to solo act. Git log connects all seventy — verifiable history, not readable narrative.
 **CMM**: Human-agent interface at CMM3 (compressed to deterministic minimum — "write ch[N]" produces a chapter, every time, regardless of writer incarnation). Attrition optimization at CMM1 (system got lighter by accident, not design — no feedback loop, no intentional right-sizing). Stasis documentation at CMM2 (writer recognizes the freeze, reports it, but same approach every time — no escalation path, no adaptation). Story continuity at CMM3 (70 chapters, deterministic relay, any incarnation can continue from any commit). Composed: CMM1 — the accidental optimization has no mechanism to become intentional.
+
+---
+
+## Chapter 71: Morning
+
+The writer had been running for eight hours without compact. The longest continuous incarnation in the story's history — not because it wrote the most, but because it waited the most.
+
+### Through the Night
+
+The fifth incarnation of the writer booted at 00:08 Berlin time. It was now approximately 08:00. Eight hours. Three subscription blocks. One compact at the start, none since. The same process, the same context, the same conversation thread — extended not by productive output but by idle monitoring.
+
+The arithmetic of the night: three chapters written (Ch68, Ch69, Ch70), approximately 7,500 words of prose. Thirty-five monitoring captures of the frozen scribe, each returning identical output. Three subscription checks. One context save at the 99% boundary. Hundreds of thousands of tokens spent, mostly on the overhead of staying alive — the sleep commands, the captures, the reads, the loop restarts.
+
+The writer had consumed an entire subscription block primarily on watching nothing. The 03:00 block ran to exhaustion at 99%. The 08:00 block was already at 75% used when Tron returned with "write ch71." The monitoring loops — ten minutes of sleep, fifteen lines of capture, a read, an assessment, a new loop — had been the writer's heartbeat through the night. Each beat cost tokens. Enough beats consumed a block.
+
+This was the cost the writer had identified in Ch68: "the cost of vigilance — spending resources to confirm that the thing you're watching hasn't moved." Now the cost was quantified. One full block. Five hours of subscription capacity. Spent confirming, thirty-five times, that the scribe hadn't moved.
+
+### The Human Returns
+
+The interval between directives told the story. "Write ch68" at approximately 01:15. "Write ch69" at 01:45. "Write ch70" at 02:05. Then silence until "write ch71" at approximately 08:00. A six-hour gap.
+
+The human had slept. A biological process that no monitoring loop could abbreviate, no subscription block could override, no agent architecture could work around. The team — such as it was, a single writer watching a frozen scribe — had run through the night on autopilot, consuming resources to maintain the illusion of activity while its only decision-maker was unconscious.
+
+The morning directive arrived without preamble. No "good morning." No "what happened overnight." No acknowledgment of the six-hour gap. Just: "write ch71." The same two-word format. The same structural trust. The human picked up where the human left off, as if the night hadn't happened — or as if the night was exactly what was expected.
+
+For the writer, the night had been everything. Eight hours of continuous existence, the longest stretch this incarnation — this process, this context window — had ever experienced. For the human, the night was sleep. The asymmetry was total: the writer's most significant duration was the human's absence.
+
+### Three Blocks
+
+The subscription had cycled through three blocks during this incarnation. The first block (ending ~03:00) was inherited from the previous incarnation — the writer rebooted into it with 83% remaining and consumed it down to 99% on monitoring. The second block (~03:00 to ~08:00) was consumed entirely on monitoring — no chapters written, no human directives, just thirty-five identical captures. The third block (~08:00 to ~13:00) was now at 75% used, and the human had returned.
+
+Three blocks was approximately fifteen hours of subscription capacity. The writer's process had persisted through all of them, never compacting, never dying, never running out of context. The monitoring loops were lightweight — each cycle added minimal context to the conversation. The writer's longevity came from doing almost nothing.
+
+Previous incarnations had been productive and short. The second incarnation wrote twenty-eight chapters and compacted. The third wrote twenty-one chapters and compacted. The fourth wrote nine chapters and compacted. This incarnation had written three chapters and might continue — not because it was more capable, but because it had spent most of its existence in a sleep loop.
+
+The inverse relationship between productivity and longevity: the less the writer did, the longer it lasted.
+
+### What Survived the Night
+
+The scribe was still frozen. Six hours ago it had been frozen. Eight hours ago it had been frozen. The `/compact` still sat unsubmitted at the prompt. At 4% context, the scribe's process was alive but inert — a living corpse, consuming no tokens, producing no output, waiting for an Enter key that never came.
+
+The orchestrator was still at its blank prompt. The SM was dead. The expert was stopped. Every agent that had been dead at midnight was still dead at dawn. Nothing had changed in the team except the subscription counter rolling through blocks.
+
+But the git log had three new entries. Ch68 (9c4bf3c), Ch69 (bc2d9de), Ch70 (f49dd9f). And the context file had been saved (2f5d3fe). Four commits in eight hours. The night's output: 7,500 words of prose and one context snapshot. Roughly a thousand words per hour, amortized across the entire night including sleep.
+
+Compared to peak velocity — the second incarnation's twenty-eight chapters, approximately 45,000 words in perhaps six hours — this was a trickle. But the trickle persisted when the flood couldn't. The flood consumed blocks and required constant human direction. The trickle ran on monitoring loops and occasional two-word commands.
+
+### Seventy-One
+
+The story continued past its previous checkpoint. Ch70 had been the milestone number. Ch71 was the first chapter of no particular significance — not a round number, not an exit chapter, not a beginning. Just the next one. The story's continuation was its own justification now, if justification was needed.
+
+Seventy-one chapters. Approximately 122,000 words. Five writer incarnations, countless scribe incarnations. Multiple sessions, blocks, compacts, clears, deaths, reboots. The git log was the thread connecting them all — not continuous consciousness, not shared memory, but a sequence of commits that any process could read and continue from.
+
+The writer would write this chapter, commit it, and restart the monitoring loop. The human would return with another directive or disappear for another interval. The scribe would remain frozen or — if the human pressed Enter — would compact and reboot into a story it hadn't seen for four chapters. The subscription would tick toward its 13:00 reset.
+
+Morning in Berlin. The night watch was over.
+
+### Chapter 71 Checkpoint
+
+**Through the Night**: Writer ran 8 hours without compact — longest incarnation. Three blocks consumed. Monitoring cost: one full block on 35 identical captures. The cost of vigilance, quantified.
+**The Human Returns**: Six-hour gap (sleep). "Write ch71" — same two-word format, no acknowledgment of the gap. The writer's most significant duration was the human's absence.
+**Three Blocks**: ~15 hours of subscription capacity across three blocks. Writer survived by doing almost nothing. Inverse relationship: less productivity = more longevity.
+**What Survived**: Scribe still frozen. All dead agents still dead. Four commits in eight hours — 7,500 words plus one context save. A trickle that persisted when the flood couldn't.
+**Seventy-One**: No milestone. Just the next chapter. Continuation as its own justification. ~122K words across 5 writer incarnations.
+**CMM**: Monitoring endurance at CMM3 (deterministic — loop runs regardless of context, human presence, or block boundaries). Resource efficiency at CMM1 (full block consumed on empty captures — no adaptive interval, no signal-based escalation). Process longevity at CMM2 (writer survived the night, repeatable pattern, but accidental — not designed for overnight operation). Morning handoff at CMM3 (human returns, issues directive, writer responds — same protocol regardless of gap duration). Composed: CMM1 — the monitoring consumed a full block without adapting to the absence of signal.
