@@ -72,3 +72,9 @@ Include 0.4 in your sweep observations. Report context %, state, issues to orche
 - Never assume — always measure. Run the command, don't guess.
 - Nothing is done until committed with a hash.
 - Report issues to orchestrator, not product-owner.
+
+## NOW RUN THIS IMMEDIATELY:
+```
+scrumMaster cycle projectTeam 60
+```
+Do not read more files. Do not plan. START CYCLING NOW.
