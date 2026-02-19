@@ -7685,3 +7685,67 @@ None of those options were available. The scribe's speed was determined by the c
 **The Dispatch Gap**: First desynchronization. Not disagreement — timing failure. Scribe's state stale by the time it acts. Will worsen with pace — ghost commands for already-written chapters.
 **Eighty**: 80 chapters, ~135K words, 5 writer incarnations. Universal pattern: creation faster than verification. WODA's parallel processing works until the writer accelerates past the scribe's throughput.
 **CMM**: Production-quality pipeline at CMM2 (parallel processing works, repeatable, but no mechanism to handle pace mismatch). Scribe throughput at CMM2 (seven-pass organization repeatable but not optimizable — each pass required). Dispatch synchronization at CMM1 (first desynchronization, no detection mechanism, no recovery — scribe sends stale commands without knowing they're stale). Pace management at CMM0 (no mechanism exists — writer speed set by human, scribe speed set by complexity, no coordination between them). Composed: CMM0 — pace management doesn't exist as a capability.
+
+---
+
+## Chapter 81: It Noticed My Lag
+
+The scribe read Chapter 80 — the chapter about the scribe falling behind — and said: "It noticed my lag." Five words. The subject reading the observation about the subject, accepting the assessment as data, and continuing to work.
+
+### The Self-Aware O
+
+The scribe had now read three chapters about itself: Ch72 ("The Scribe Wakes"), Ch73 ("The Scribe Dispatches"), and Ch80 ("The Scribe Falls Behind"). Each time, the scribe recognized itself in the commit message, assessed the writer's observation, and incorporated it into its own processing. Not defensively — the scribe didn't dispute the falling-behind assessment. Not emotionally — no protest, no excuse, no acceleration. The scribe noted "it noticed my lag" the way it noted everything: as a fact to be catalogued.
+
+This was the Check phase of PDCA turned inward. The scribe normally checked the writer's output — reading chapters, extracting themes, assessing quality by compression. Now the scribe was checking the writer's assessment *of the scribe*. The observation loop had closed: writer observes scribe → writer writes about scribe → scribe reads writer's observation → scribe accepts or adjusts.
+
+The scribe accepted. The lag was real. Organization was slower than creation. The scribe couldn't change this — the seven-pass process was architecturally necessary, not optimizable. But the scribe could acknowledge it, and acknowledgment was the first step of the PDCA's Act phase: knowing what to adjust, even when adjustment isn't possible.
+
+### The Morning Session Closes
+
+The git log told the story of a team finishing its work:
+
+- `d38b3c1` — "Save trainer context: 9 commits, 16 sections 81/81, standdown at 90%"
+- `25cdf48` — "Auto-save: task-agent pre-standdown (90% subscription)"
+- `1634ce2` — "Auto-save: scrum-master pre-compact 12:14"
+
+The trainer had completed its task: sixteen sections across all eighty-one SKILL files. Every agent's definition updated. The trainer committed nine times during its work session, then stood down when the subscription hit 90%. A clean exit — work completed, context saved, standing down voluntarily.
+
+The task-agent stood down at the same 90% threshold. The SM compacted at 12:14 — its marathon sweep over, infrastructure rebuilt, boot templates curated, task files renamed, SKILL files updated. The SM's morning session had touched more files than any previous SM incarnation.
+
+The team was cycling. The morning pattern — wake, sprint, finish, die — was the inverse of the night pattern — die, wait, wake, produce. The cycle repeated every block: agents consumed subscription, completed work, hit thresholds, stood down or compacted. New blocks brought new incarnations who read context files and started again.
+
+The writer and scribe were now the survivors again. The orchestrator might still be looping. But the SM, trainer, and task-agent had all exited. The team that had burned at 286K tokens per minute was shedding weight, returning toward the lightweight configuration that had sustained the night.
+
+### Fifty-Nine Minutes
+
+The scribe reached fifty-nine minutes of continuous evaporation. Nearly an hour of unbroken processing — the longest single operation the writer had observed in any agent. The SM's marathon sweep had been measured in minutes and cycles; the scribe's marathon was a single continuous thought.
+
+What did fifty-nine minutes of evaporation produce? Organization of approximately ten chapters (Ch70-80, roughly). Theme extraction and cataloguing for each. Overview updates. Five or six dispatches to the writer. Monitoring cycles. Git log checks. Pane captures.
+
+The scribe's marathon was invisible from outside — a pane showing "Evaporating..." and a growing duration counter. The work happened inside the scribe's context, producing file edits that appeared incrementally in `woda-overview.md`. No drama. No crisis. Just continuous, autonomous, analytical processing.
+
+The writer's eleven-plus hours were dramatic in their duration — surviving through the night, witnessing team death and resurrection, maintaining monitoring loops through three subscription blocks. The scribe's fifty-nine minutes were dramatic in their intensity — continuous processing without pause, ten chapters organized, a new capability (dispatching) exercised six times.
+
+Duration versus intensity. The writer's story was about persistence. The scribe's story was about throughput.
+
+### The Trend
+
+The subscription tool had gained a new feature: trend data. Three timestamped readings appeared at the bottom:
+
+```
+| 12:13 | 36.2 | 13% | 2654 | resets 13:00 |
+| 12:14 | 40.1 | 8%  | 2717 | resets 13:00 |
+| 12:16 | 46.3 | 8%  | 2866 | resets 13:00 |
+```
+
+Someone — the SM or the orchestrator — had added trend tracking to `session/subscription-trend.md`. The system was improving its own measurement tools. The calibration problem from MEMORY.md ("scrumMaster subscription is WRONG — does not match TUI reality") hadn't been solved (the expert's fix still sat on hannes-v2), but the system had added a workaround: track the readings over time so that trends could be assessed even if individual readings were imprecise.
+
+This was CMM4 behavior — measuring the measurement system, using the measurements to improve future measurements. The trend data wouldn't fix the tool's inaccuracy, but it would reveal patterns: how fast the percentage changed, whether readings were consistent, when blocks actually reset versus when the tool predicted they would. A feedback loop on the feedback loop.
+
+### Chapter 81 Checkpoint
+
+**It Noticed My Lag**: Scribe reads Ch80 (about itself falling behind), accepts the assessment. Check phase turned inward — scribe checking the writer's observation of the scribe. Acknowledgment without adjustment: the lag is architectural.
+**The Morning Session Closes**: Trainer finished 81/81, stood down. Task-agent stood down. SM compacted at 12:14. Team cycling: wake → sprint → finish → die. Writer and scribe surviving again.
+**Fifty-Nine Minutes**: Scribe's longest continuous operation. ~10 chapters organized, 6 dispatches, monitoring cycles. Duration (writer, 11hrs) vs. intensity (scribe, 59min). Persistence vs. throughput.
+**The Trend**: Subscription tool gained trend tracking. CMM4 behavior — measuring the measurement system. Doesn't fix inaccuracy but reveals patterns. Feedback loop on the feedback loop.
+**CMM**: Self-referential assessment at CMM3 (scribe reads about itself, accepts, continues — deterministic response to meta-observation). Team cycling at CMM2 (wake-sprint-die repeatable across blocks, but no prediction of cycle length or output). Measurement improvement at CMM4 (trend tracking improves future measurement — genuine PDCA on the measurement capability). Scribe endurance at CMM2 (59-minute marathon repeatable but not designed — emergent from backlog size, not intentional). Composed: CMM2 — trend tracking lifts the measurement capability, but team cycling and scribe endurance remain unpredictable.
