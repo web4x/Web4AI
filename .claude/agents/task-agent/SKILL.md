@@ -78,7 +78,7 @@ Maintain `session/tasks/status.md` with ALL tasks:
 - **Scan** `session/tasks/` for all `.task.md` files and track their status
 - **Update** status when agents report completion: `Task done: <filename>`
 - **Report** open tasks by priority when asked "what's next?"
-- **Agents report to you** at projectTeam:1.2 when they finish a task
+- **Agents report to you** by role name (task-agent) when they finish a task
 
 ## Task File Format
 
