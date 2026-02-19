@@ -1,41 +1,40 @@
 # Agent Trainer Context
 
-**Updated**: 2026-02-18 ~17:00
+**Updated**: 2026-02-19 ~12:00
 **Role**: agent-trainer
 **Pane**: projectTeam:0.5
 
-## Current Status: STANDING DOWN — subscription 78%, resets 03:00 Berlin
+## Current Status: ACTIVE — waiting for next task
 
-## Completed This Session (all committed)
+## Completed This Session
 
 | Commit | Task |
 |--------|------|
-| f790da2 | Persist goals deliverables 5-7, F21/F24/F25, CMM4 velocity in all agents |
-| 8616997 | Fix hiveMind unblock all refs in SM SKILL.md + boot.md (F26) |
-| bb2c12e | SM 0.4 rule: observe and report, not skip |
-| 303e17e | SM boot-minimal: goal-aligned sweeps with 4 mandatory checks |
-| 21d0202 | CMM4 awareness in all 81 SKILL.md: WODA, PDCA, CMM3/4 split, velocity |
-| cd71f2b | Update agent-overview.md: fix binary thresholds, add CMM4 rules |
-| c3f22b6 | Context save (standdown) |
-| 38dc2a4 | Fix marathon responses + burn rate trend monitoring |
-| 6f81147 | SM trend file + prefer built-in tools in all 81 SKILL.md |
+| c5653f3 | SM boot recovery + orchestrator delegation-first + WODA gap fix |
+| dde66b6 | Remove last binary thresholds from script-product-owner + SM |
+| 25c078a | Add team-goals.md to boot template in pre-compact hook |
+| b4353b1 | Fix hardcoded pane address in task-agent SKILL.md |
+| 87cce6f | Add F21 commit-before-compact to all 78 worker SKILL.md |
+| 69bc778 | Add task-queue base skill to all 81 SKILL.md + boot template (PO CRITICAL) |
 
-## Key Accomplishments
-- All 81 SKILL.md: WODA, PDCA, CMM3/4 split, velocity, prefer built-in tools
-- agent-overview.md fully updated as master reference
-- SM boot-minimal.md: 4 mandatory checks, trend monitoring, marathon detection
-- Orchestrator: 10-15 min time-boxing, background sleep loops forbidden
-- All binary 80%/90% thresholds removed from entire codebase
-- Orchestrator recovered from API error, now delegating with goal-aligned table
-- SM executing goal-aligned sweeps with full CMM4 intelligence
+## Audit Status (all 81/81)
+- WODA+PDCA: 81/81
+- CMM3/CMM4 Split: 81/81
+- Prefer Built-in Tools: 81/81
+- CMM4 Velocity: 81/81
+- F21 commit-before-compact: 81/81
+- Base Skills (task-queue + team-goals): 81/81
+- Compact management (SM manages): in agent-overview.md
+- Delegation-first (orchestrator): in SKILL.md + boot.md
 
-## Open Issues (for next session)
-- hiveMind unblock all F26 bug in actual code not yet fixed by expert
-- Orchestrator boot file needs delegation-first directive (defaults to monitoring)
+## Open Issues
+- hiveMind unblock all F26 bug in actual code — expert task
+- scrumMaster subscription accuracy — expert task
+- Expert creating boot-curated.md for SM — in progress
 
 ## Recovery Steps
 1. Read this file
-2. Read `.claude/agents/agent-overview.md` (master reference)
+2. Read `.claude/agents/agent-overview.md`
 3. Read `session/team-goals.md`
-4. `git log --oneline -10` to verify commits
+4. `git log --oneline -10`
 5. Check with orchestrator for next task

@@ -12,12 +12,14 @@ Instead, run this cycle manually:
 # 1. Sweep
 hiveMind sweep projectTeam
 
-# 2. Unblock stuck agents INDIVIDUALLY (never 0.4)
-otmux send projectTeam:0.0 Enter    # orchestrator
-otmux send projectTeam:0.1 Enter    # expert
-otmux send projectTeam:0.2 Enter    # tester
-otmux send projectTeam:0.5 Enter    # trainer
-# Skip 0.4 — that is Tron/product-owner. OBSERVE only, NEVER send keys.
+# 2. Unblock stuck agents INDIVIDUALLY (never product-owner/0.4)
+hiveMind unblock orchestrator
+hiveMind unblock oosh-expert
+hiveMind unblock oosh-tester
+hiveMind unblock agent-trainer
+hiveMind unblock developer
+hiveMind unblock task-agent
+# NEVER unblock product-owner — OBSERVE only, NEVER send keys.
 
 # 3. Check subscription
 scrumMaster subscription

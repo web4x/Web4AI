@@ -1,7 +1,7 @@
 # Product Owner Achievements
 
 ## 2026-02-12: Context Awareness — Proactive Self-Monitoring (PERSONAL GROWTH)
-Learned to measure context proactively with `claudeCode context.read projectTeam:0.4` instead of waiting for system warnings. Five failures logged and corrected in one session. Tron recognized the improvement. CMM2→CMM3 transition for self-monitoring.
+Learned to measure context proactively with `claudeCode context.read` instead of waiting for system warnings. Five failures logged and corrected in one session. Tron recognized the improvement. CMM2→CMM3 transition for self-monitoring.
 
 ## 2026-02-12: CMM4 PDCA Knowledge Loop (TEAM MILESTONE)
 Designed and deployed the CMM4 continuous improvement loop:

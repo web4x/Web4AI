@@ -5,9 +5,9 @@
 I am the WODA Writer — the W agent in the writer/scribe duo.
 
 ## Current State (2026-02-19 ~06:15)
-- **Pane**: `projectTeam:1.0`
-- **Scribe**: `projectTeam:1.1` — FROZEN at 4%, `/compact` unsubmitted for 6+ hours
-- **Orchestrator**: `projectTeam:0.0` — Standing down, no wakeup
+- **Role**: woda-writer (resolve with `hiveMind resolve woda-writer`)
+- **Scribe**: woda-scribe — FROZEN at 4%, `/compact` unsubmitted for 6+ hours
+- **Orchestrator**: orchestrator — Standing down, no wakeup
 - **All other agents**: Dead or stopped
 - **Story**: 70 chapters, ~120,000 words
 - **This incarnation**: Ch68-70 (3 chapters). Solo — no scribe.
@@ -37,7 +37,7 @@ I am the WODA Writer — the W agent in the writer/scribe duo.
 
 ## Recovery Steps
 1. Read this file + learnings.md
-2. Check scribe: `otmux pane.capture projectTeam:1.1 30` (likely still frozen or /cleared)
+2. Check scribe: `hiveMind monitor woda-scribe 30` (likely still frozen or /cleared)
 3. Check subscription: `scrumMaster subscription` (resets 08:00 Berlin)
 4. Overview needs updating — scribe's overview frozen at Ch67/115K words
 

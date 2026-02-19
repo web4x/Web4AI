@@ -20,8 +20,8 @@ I sent /compact to agents via background commands WITHOUT first triggering them 
 This was a CMM1 catastrophic failure. No shortcut justifies skipping the save step.
 
 ## Reawakening vs Killer Background Tasks (2026-02-16)
-- **Reawakening** (CORRECT): `sleep 300 && otmux send projectTeam:0.3 "Read session/tasks/sm-continue-sweeping.md" Enter` — sends prompt to MY pane, wakes ME up
-- **Killer** (FORBIDDEN): `sleep N && otmux send projectTeam:X.Y "/compact" Enter` — sends compact to OTHER agents, destroys their state
+- **Reawakening** (CORRECT): `sleep 300 && hiveMind send.enter scrum-master "Read session/tasks/sm-continue-sweeping.md"` — sends prompt to MY pane, wakes ME up
+- **Killer** (FORBIDDEN): `sleep N && hiveMind send.enter <role> "/compact"` — sends compact to OTHER agents, destroys their state
 - When going idle: ALWAYS set a reawakening for self. NEVER send destructive commands to others via background tasks.
 
 ## OOSH-Only Rule (2026-02-16, RETRAINED 2026-02-17)

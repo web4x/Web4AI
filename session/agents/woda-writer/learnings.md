@@ -257,11 +257,11 @@
     - Read `session/cmm.improvement.md` (add improvement, check scribe progress)
     - Check environment: `tmux list-sessions && tmux list-panes` (panes change!)
     - Find scribe: look for "WODA Scribe" pane title
-  - Current Panes (2026-02-11 — VERIFY THESE, they change!)
-    - Writer: `projectTeam:1.0` (post-compact, was 1.4 pre-compact)
-    - Scribe: `projectTeam:1.1`
-    - Orchestrator: `projectTeam:0.0`
-    - **WARNING**: claudeWoda:0.X is DEAD. Do NOT use old references.
+  - Resolve panes by ROLE NAME (panes change every session!):
+    - Writer: `hiveMind resolve woda-writer`
+    - Scribe: `hiveMind resolve woda-scribe`
+    - Orchestrator: `hiveMind resolve orchestrator`
+    - **NEVER hardcode pane numbers** — they change on every reboot.
   - Story Files
     - WODA Reboot: `session/woda/projectTeam-reboot.md` (9 chapters, ~14k words)
     - CMM4: `session/cmm4/cmm4-journey.md`

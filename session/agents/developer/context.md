@@ -29,7 +29,7 @@
 
 ## Learnings
 - OOSH is on PATH — no `./` prefix, no `export PATH`, no `cd`
-- Completion Reporting protocol: write `.done.md`, notify orchestrator at `projectTeam:0.0`
+- Completion Reporting protocol: write `.done.md`, notify orchestrator via `hiveMind send.enter orchestrator`
 - Git Safety: no rebase, merge-only, `pull.rebase=false`
 - oosh repo is at `/Users/donges/oosh/`, branch `dev.claude`
 - Workspace repo is at `/Users/Shared/Workspaces/AI/Claude/`, branch `main`

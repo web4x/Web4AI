@@ -14,7 +14,7 @@ Peer cannot know internal state. Only the agent can save its own context. **Trig
 Saw "8% remaining" in earlier capture. Reported SM stuck without taking a new measurement. SM had already recovered and was sweeping. **Same pattern as F1. Before reporting state — take a FRESH capture. Stale data = wrong conclusions.**
 
 ### F5: Not monitoring own context proactively (2026-02-12)
-Had `claudeCode context.read` available the entire session. Never used it until Tron asked. Waited for system warnings instead of measuring. **Run `claudeCode context.read projectTeam:0.4` regularly — every 3-4 interactions. Lead by example.**
+Had `claudeCode context.read` available the entire session. Never used it until Tron asked. Waited for system warnings instead of measuring. **Run `claudeCode context.read` regularly — every 3-4 interactions. Lead by example.**
 
 ### F4: Suppressed errors with `2>/dev/null || echo "..."` (2026-02-12)
 Hid real error messages behind generic text. The error IS the information. **Never use `2>/dev/null` to hide errors. Never replace real errors with generic echo strings. Run the command, see what happens, deal with the real output.**
@@ -84,7 +84,7 @@ When team idles, don't guess what to assign. Ask the task agent what's still und
 
 ### OOSH PATH + OOSH-Only Rule
 - OOSH is ALREADY on PATH via ~/.bashrc — no `export PATH=...` needed
-- Direct commands: `otmux pane.capture projectTeam:0.3 10` — works directly
+- Direct commands: `hiveMind monitor scrum-master 10` — works directly, resolves by role name
 - **NEVER use raw `tmux` commands** — always `otmux` wrappers. PO violated this multiple times (F14).
 - **NEVER use `sleep N && command`** — use otmux background patterns instead
 - For session creation: `otmux new <name> -d` (detached)
