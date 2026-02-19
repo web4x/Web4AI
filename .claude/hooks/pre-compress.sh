@@ -73,7 +73,15 @@ if [ -n "$CONTEXT_FILE" ] && [ -f "$CONTEXT_FILE" ]; then
     CURRENT_GOAL=$(grep -A1 -i "goal\|## Current\|## Active" "$CONTEXT_FILE" 2>/dev/null | head -3 | tail -2 | sed 's/^[# ]*//')
 fi
 
-cat > "$BOOT_FILE" << BOOT
+# Check for curated boot file — role-specific, hand-crafted content
+CURATED_BOOT="$BOOT_AGENT_DIR/boot-curated.md"
+if [ -f "$CURATED_BOOT" ]; then
+    # Use curated boot: copy and inject dynamic pane target
+    sed "s|projectTeam:[0-9]\.[0-9]|${PANE_TARGET:-unknown}|g" "$CURATED_BOOT" > "$BOOT_FILE"
+    echo "Boot: using curated template for $ROLE_NAME"
+else
+    # Generic boot template
+    cat > "$BOOT_FILE" << BOOT
 # Boot: $ROLE_DISPLAY
 *Auto-generated $TIMESTAMP. This is ALL you need to read post-compact.*
 
@@ -97,6 +105,7 @@ $([ -n "$LEARNINGS_FILE" ] && echo "- Learnings: \`$LEARNINGS_FILE\`")
 - Never assume — always measure.
 - OOSH wrappers only, no raw tmux.
 BOOT
+fi
 
 echo "Boot file: $BOOT_FILE ($(wc -l < "$BOOT_FILE") lines)"
 
