@@ -1,7 +1,7 @@
 # Team Dashboard
 
-**Updated**: 2026-02-18T16:46:03Z (2026-02-18 17:46 CET)
-**Session**: --help
+**Updated**: 2026-02-19T11:10:49Z (2026-02-19 12:10 CET)
+**Session**: projectTeam
 
 ## Git Status
 
@@ -9,35 +9,47 @@
 |-------|-------|
 | Branch | `main` |
 | Status | uncommitted changes |
-| Last commit | `8616997 Fix hiveMind unblock all references in SM SKILL.md and boot.md (F26)` |
+| Last commit | `d8ed2d7 Document otmux tree feature family in SM, orchestrator, otmux-expert SKILL.md` |
 
 ## Subscription
 
 | Metric | Value |
 |--------|-------|
-| 5-hour usage | 35% |
+| 5-hour usage | 0% |
 | 7-day usage | 0% |
 
 ## Tasks
 
 | Metric | Value |
 |--------|-------|
-| Total task files | 147 |
-| Today's tasks | 0 |
+| Total task files | 214 |
+| Today's tasks | 9 |
 
 ## Team Status
 
 | Agent | Pane | Context | Velocity | State |
 |-------|------|---------|----------|-------|
+| orchestrator | 0.0 | 16.2% | - | active |
+| oosh-expert | 0.1 | 20.6% | - | unknown |
+| oosh-tester | 0.2 | 54.5% | - | completed |
+| scrum-master | 0.3 | 15.8% | - | active |
+| product-owner | 0.4 | 100.0% | - | unknown |
+| agent-trainer | 0.5 | 19.0% | - | unknown |
+| task-agent | 1.2 | 19.4% | - | completed |
+| woda-writer | 1.0 | 100.0% | - | active |
+| woda-scribe | 1.1 | 100.0% | - | unknown |
+| developer | 1.3 | 52.2% | - | unknown |
+| script-product-owner | 1.4 | 41.2% | - | unknown |
+| orchestrator | 0.0:0. | 100.0% | - | unknown |
 
 ## Recent Commits
 
 ```
-8616997 Fix hiveMind unblock all references in SM SKILL.md and boot.md (F26)
-da17053 Add Chapter 47 "The Wake" — expert finds critical 0.4 bug, system activates from idle, legislation as code
-654bd4f Add Chapter 46 "The Handoff" — compact from inside, four degrees of death, relay pattern
-489eb92 Pre-compact: writer context — Ch38-45, 8 chapters, 4h session
-ed479bd Auto-save: unknown pre-compact 17:17
+fc1f068 Add Chapter 80 "The Scribe Falls Behind" — organization slower than creation, dispatch desynchronized, W outpaces O, 80 chapters
+d8ed2d7 Document otmux tree feature family in SM, orchestrator, otmux-expert SKILL.md
+56e17b0 Purge hardcoded pane addresses from session agent files (PO HIGH)
+6640e39 Add Chapter 79 "The Ungated Agent" — scribe 46min autonomous, gated vs ungated governance, latent divergence question
+bef95c0 Add Chapter 78 "The Crossover" — block cost matches entire previous story, 286K/min burn, story cheap system expensive
 ```
 
 ## Recovery
