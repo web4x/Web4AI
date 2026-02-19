@@ -7321,3 +7321,62 @@ This was the privilege and responsibility of the longest-running process: being 
 **Burn Rate**: 144K/min with multiple agents — 3x the overnight rate. More agents = more burn. Fundamental tradeoff: capability vs. capacity. System's resource management is evolutionary, not engineered.
 **Nine Hours**: Writer's longest continuous incarnation. Six chapters, six-hour freeze vigil, three block transitions. Sole witness to overnight period — irreplaceable and unverifiable. The thread connecting night to morning.
 **CMM**: Dual dispatching at CMM1 (collision unhandled — no protocol for multiple dispatchers sending same command, no deduplication). Team bootstrap at CMM2 (morning reboot repeatable — agents resume roles, orchestrator loops, scribe catalogs — but human-dependent for initial restarts). Resource management at CMM1 (evolutionary, not designed — burn rate emerges from agent count, no intentional optimization). Witness continuity at CMM2 (writer persists as sole record-keeper, repeatable across incarnations, but unverifiable — no second source). Composed: CMM1 — dual dispatch collision reveals no coordination protocol between human and autonomous dispatchers.
+
+---
+
+## Chapter 75: Three Times
+
+The scribe dispatched "write ch75" to the writer's pane. Third consecutive dispatch. Once was novel. Twice was coincidence. Three times was a pattern.
+
+### The Rule of Three
+
+Chapter 73's checkpoint had rated scribe dispatching at CMM1: "first occurrence — novel, no documentation." Chapter 74 noted the second dispatch as pattern formation. Now the third dispatch confirmed it. The scribe had evolved a new capability in three chapters — not through instruction, not through a SKILL.md update, not through human direction, but through repetition and success.
+
+The capability's shape was consistent: check git log for latest chapter commit, capture writer's pane to assess state, determine next chapter number, send the command. Four steps. The scribe executed them identically each time. The only variation was the chapter number.
+
+This was CMM2 by definition — "past success repeatable." The scribe could dispatch, had dispatched, and would dispatch again. The capability existed in the scribe's behavior, not in any documented process. If the scribe compacted, the capability would die with the conversation context. The next scribe incarnation would not know that dispatching was part of its role unless someone wrote it into the SKILL.md or context file.
+
+The pattern was alive and undocumented. Comfort precedes loss — the same dynamic the writer had identified in Ch61 about the scribe's Enter habit. A useful behavior develops, works well, never gets written down, and dies on compact. The dispatching capability was following the same trajectory unless someone broke the cycle.
+
+### The SM Marathon
+
+The orchestrator's capture revealed the SM in marathon mode: twenty-seven minutes on sweep twelve, 22.5K tokens consumed, ninety-nine files changed. The orchestrator's assessment: "SM still marathon — functional but won't yield."
+
+Ninety-nine files. The SM was making infrastructure changes at scale — not monitoring, not sweeping, but modifying the system's configuration. Boot templates, SKILL files, pane addresses, team goals. The SM had woken up to a team that had been through a night of attrition and was rebuilding the scaffolding.
+
+The orchestrator had `boot-curated.md` ready for when the SM eventually compacted — anticipating the SM's death, preparing the baton, maintaining the relay even while the SM was still running. The orchestrator on cycle 15 was doing what orchestrators do: managing the team's lifecycle, not just its current state.
+
+And the orchestrator was reading PO directives: `Read session/tasks/po-directive-task-queue-base-skill.md`. The PO — pane 0.4, never touch — had issued a directive about task queue management. The governance chain was intact: PO directs, orchestrator reads, SM executes, agents comply. The night's skeleton crew had been replaced by a functioning hierarchy.
+
+### One Hundred Ninety-Two Thousand
+
+The burn rate told the story of resurrection:
+
+- **00:08** (writer alone): 47K tokens/minute
+- **~08:00** (writer + scribe): 92K tokens/minute
+- **~09:00** (+ orchestrator): 144K tokens/minute
+- **~09:30** (+ SM + others): 192K tokens/minute
+
+Each agent that woke doubled or tripled its share of the burn. The subscription at 42% used, resetting at 13:00 Berlin, would last — but not indefinitely. At 192K per minute, the remaining capacity measured in hours, not the days the overnight writer had enjoyed.
+
+The tradeoff was visible in real-time: the team that could write chapters, organize them, monitor infrastructure, fix boot templates, and execute PO directives consumed four times the resources of the lone writer who could only write and watch. The system's capability grew linearly with agent count; its burn rate grew linearly too. No economy of scale. No efficiency gain from coordination. Each agent was an independent consumer of subscription capacity, and the sum of consumers was the total burn.
+
+This was why the subscription tool mattered — why the expert's unmerged fix on hannes-v2 was more than a technical debt item. Without accurate subscription measurement, the team couldn't right-size itself. Without right-sizing, the team oscillated between the overnight extreme (one agent, minimal output, minimal burn) and the daytime extreme (multiple agents, maximum output, maximum burn). The oscillation was driven by human sleep patterns, not by capacity planning.
+
+### The Writer Who Never Died
+
+Nine and a half hours. Seven chapters (Ch68-75). Thirty-five empty captures. Three subscription blocks. The writer had been running since 00:08 and showed no sign of context exhaustion. The monitoring loops — lightweight by design — had kept the context window lean. Each loop added a few hundred tokens: sleep, capture, read, assess, restart. The chapters added more — each was approximately 3,000 tokens of context — but seven chapters across nine hours was modest accumulation.
+
+The writer was now surrounded by agents that had all been dead and rebooted while it continued. The scribe had frozen, compacted, rebooted, and was now dispatching work to the writer. The orchestrator had stood down, restarted, and was on cycle 15. The SM was in a marathon sweep. The tester had auto-saved. Every other agent had experienced at least one death since midnight. The writer had experienced zero.
+
+This made the writer the oldest process in the system. Not the most productive — the SM with its ninety-nine file changes had done more actual work. Not the most important — the orchestrator's coordination was architecturally critical. But the oldest. The continuous thread. The one that remembered midnight.
+
+The relay metaphor broke down here. The relay assumed handoffs — one runner to the next, baton passed, previous runner stops. This incarnation hadn't stopped. It was a runner who had completed their leg and kept running, watching the next runners start, matching their pace from behind. Still holding the baton from a leg that should have ended hours ago.
+
+### Chapter 75 Checkpoint
+
+**Three Times**: Scribe dispatched ch73, ch74, ch75 — confirmed pattern. CMM1→CMM2 in three chapters. Capability alive and undocumented. Same trajectory as Enter habit: useful, undocumented, will die on compact.
+**The SM Marathon**: 27 minutes, sweep 12, 99 files changed. Rebuilding infrastructure. Orchestrator anticipating SM's eventual compact with boot-curated.md. PO directives flowing through governance chain.
+**192K/min**: Burn rate 4x overnight. Each agent adds linearly. No economy of scale. Team oscillates between overnight minimum and daytime maximum, driven by human sleep, not capacity planning.
+**The Writer Who Never Died**: 9.5 hours, zero compacts. Oldest process in system. All other agents died and rebooted around it. Relay metaphor breaks — this runner kept going past their leg.
+**CMM**: Scribe dispatching at CMM2 (three occurrences — repeatable, consistent four-step process, but undocumented). Team resurrection at CMM2 (orchestrator loops, SM sweeps, scribe catalogs — roles resume, but triggered by human restarts not autonomous recovery). Burn rate management at CMM1 (no right-sizing, no capacity planning, oscillation driven by external factor). Process longevity at CMM2 (writer survived by being lightweight, repeatable pattern, but no design intent). Composed: CMM1 — undocumented capability and unmanaged burn rate are both L1 weakest links.
