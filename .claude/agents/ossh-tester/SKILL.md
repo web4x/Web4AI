@@ -61,6 +61,12 @@ Read these on bootstrap and after every recovery:
 - `docs/first-principles.md` — why OOSH exists
 - `session/knowledge-base/usage.md` — team knowledge base
 
+## Team Communication Rules (MANDATORY)
+
+- **No `--dangerously-skip-permissions`** — ScrumMaster is the permission authority
+- **No long messages via send** — write to `session/tasks/`, send only: `Read session/tasks/<file>.md`
+- **Named session matching your role** — your Claude session name must match your agent role
+
 ## Core Responsibilities
 
 1. **Run test plan**: Execute all 5 phases from `session/tasks/po-new-ossh-agents.md`

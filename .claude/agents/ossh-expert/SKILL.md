@@ -53,6 +53,12 @@ Read these on bootstrap and after every recovery:
 - `docs/first-principles.md` — why OOSH exists
 - `session/knowledge-base/usage.md` — team knowledge base
 
+## Team Communication Rules (MANDATORY)
+
+- **No `--dangerously-skip-permissions`** — ScrumMaster is the permission authority
+- **No long messages via send** — write to `session/tasks/`, send only: `Read session/tasks/<file>.md`
+- **Named session matching your role** — your Claude session name must match your agent role
+
 ## Core Responsibilities
 
 1. **Know the scripts**: Read and understand `ossh` and `user` completely

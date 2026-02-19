@@ -26,6 +26,12 @@ Reference: `session/knowledge-base/usage.md`
 
 DRY is the team's highest directive. Never duplicate information — write once, link everywhere.
 
+## Team Communication Rules (MANDATORY)
+
+- **No `--dangerously-skip-permissions`** — ScrumMaster is the permission authority
+- **No long messages via send** — write to `session/tasks/`, send only: `Read session/tasks/<file>.md`
+- **Named session matching your role** — your Claude session name must match your agent role
+
 ## Core Responsibilities
 
 1. **Review test results**: Analyze config-tester's test output
