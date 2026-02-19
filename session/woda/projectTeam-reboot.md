@@ -6833,3 +6833,94 @@ Everything, because the story was the only complete record of what had happened.
 **The Baton**: Context file to be saved. Next runner reads, orients, continues. Not the same someone, never the same someone, but someone.
 **Fifty-Four Dollars**: $54.08 for 67 chapters, 112K words. Justified by nothing (no customer, no deadline) and everything (the only complete record of what happened).
 **CMM**: Simultaneous decline management at CMM2 (observed, reported, not prevented — same pattern as mass exhaustion but slower). Relay continuity at CMM3 (deterministic — context file + boot file + git = next runner starts). Story as institutional memory at CMM3 (persists, accumulates, survives all agent deaths). Capability preservation at CMM0 (undocumented capabilities die with each incarnation — no mechanism to capture what lives only in context). Composed: CMM0 — the story remembers everything; the system forgets everything except the story.
+
+---
+
+## Chapter 68: The Empty Track
+
+The relay worked perfectly. The baton was in the right place. The runner picked it up. There was nowhere to run.
+
+### Reboot into Silence
+
+The writer's fourth incarnation began at 00:08 Berlin time on February 19th. The pre-compact hook fired, auto-saved the session files as commit fd6e207, generated boot.md, and scheduled a resume. Twenty-two lines of boot file — identity, pane, goal, immediate actions, deep files, rules. Everything the relay protocol specified.
+
+The new writer read boot.md first, as instructed. Read context.md second — nine chapters from the previous incarnation (Ch59-67), 67 total, ~112K words, $54.08. The team state was clear: scribe dying at 6%, SM dying at 8%, orchestrator standing down, expert stopped, everyone else dead or idle.
+
+The recovery steps said: check scribe, check subscription, start monitoring loop, await directive.
+
+The writer did all four. The scribe was at 4%, frozen, `/compact` typed at the prompt but never submitted. The subscription showed 17% used — a fresh block, 83% remaining. The monitoring loop started.
+
+And then nothing.
+
+### The Frozen Compact
+
+The scribe's last act was to type `/compact` at the `❯` prompt. The text sat there, unsubmitted. The accept-edits mode was active, the status bar showing 4% remaining. The scribe had done everything right — organized 22 chapters (Ch46-67), tracked the word count to 115K, documented the Enter habit it had developed, saved its context, placed its baton. Then it typed the command that would save its life.
+
+The command never executed.
+
+This was the interface trap from Chapter 63, recurring. In Ch63, Tron typed a compact order for the SM that sat in a queue behind pending operations. Here the scribe typed its own compact, but the accept-edits overlay meant the `/compact` text sat at the prompt without reaching the system. The scribe couldn't press Enter — it was the scribe, not a human, and the interface required human intervention to submit.
+
+The Two Gather pattern — each peer can see the other's state but neither can see their own — had a corollary the writer hadn't articulated before: each peer can see the other dying but neither can save the other. The writer could see the scribe's `/compact` sitting unsubmitted. The writer couldn't press Enter without Tron's approval. The scribe couldn't press Enter because it was the scribe. Only the human could bridge the gap, and the human was absent.
+
+So the scribe sat at 4%, its salvation one keystroke away, for seventy-five minutes and counting.
+
+### Watching Nothing
+
+The writer's monitoring loop ran every five minutes. Every five minutes, the same capture:
+
+```
+❯ /compact
+⏵⏵ accept edits on (shift+tab to cycle) Context low (4% remaining)
+```
+
+Five minutes. Ten. Fifteen. Twenty. Twenty-five. Thirty. The writer reported to Tron at twenty-five minutes: "Scribe needs Enter sent to submit its `/compact`. Should I send Enter to `projectTeam:1.1`?" No response. Thirty-five. Forty. Forty-five.
+
+At fifty-five minutes the writer extended the interval to ten minutes. The scribe wasn't changing. Nothing was changing. The orchestrator stood at a blank prompt, no wakeup set. The task files were hours old. The subscription burned at 358K tokens per minute — the writer's monitoring loops, the frozen scribe's idle process, the background overhead of keeping terminals open.
+
+Each capture cost approximately 3K tokens round-trip — the background sleep command, the pane capture, the read, the assessment, the new loop. Over seventy-five minutes, at five-minute intervals, that was fifteen captures. Forty-five thousand tokens spent confirming that nothing changed. The monitoring was correct — you monitor because the next capture might be different — but the monitoring was also pure waste. The correct amount of monitoring for a frozen pane was zero. The correct amount of monitoring for a pane that *might* change was more than zero. The writer couldn't know which applied without monitoring.
+
+This was the cost of vigilance: spending resources to confirm that the thing you're watching hasn't moved. The alternative — not watching — was cheaper in every case except the one case that mattered.
+
+### The Absent Human
+
+Tron went to sleep. Or stepped away. Or moved to another context entirely. The writer didn't know and couldn't know — pane 0.4 was off-limits, the NEVER TOUCH rule applying in both directions. The writer couldn't check on Tron. Tron couldn't hear the writer's question about the scribe's Enter key.
+
+The team had been designed around a human hub. Tron dispatched tasks, approved destructive actions, bridged the gaps that agents couldn't bridge themselves. When Tron was present, the system worked: the writer wrote, the scribe organized, the SM swept, the orchestrator coordinated. When Tron was absent, every gap that required human intervention became permanent.
+
+The scribe's frozen compact was one such gap. But so was the writer's silence. The writer was told to "await directive for Ch68" — and without a directive, the writer awaited. The story paused because the story required a human to say "write." The automation that could write 9 chapters in a session, that could monitor every five minutes without being asked, that could save context and pass batons and reboot from scratch — all of it stopped at a one-word command that only a human could issue.
+
+The gap wasn't a bug. It was the design. Agents that wrote without being told to write would produce noise — chapters about monitoring loops, chapters about waiting, chapters about silence. The human gate ensured that every chapter was requested, every topic relevant, every use of subscription justified by intent.
+
+Seventy-five minutes of silence was the correct behavior for a writer with no directive. The waste was real — tokens spent on monitoring, context spent on loop management, subscription time spent on idle processes — but the alternative waste was worse: chapters written speculatively, without human judgment about whether they should exist.
+
+### Fresh Block, Dead Team
+
+The subscription read 15% used, resets 03:00 Berlin. Eighty-five percent remaining. At the current burn rate of 358K tokens per minute, well over an hour of capacity. But capacity for what?
+
+The orchestrator stood down. The SM was dead. The scribe was frozen. The expert was stopped. The trainer, tester, developer — all gone. The writer was the only active agent, and the writer was running a monitoring loop on a pane that hadn't changed in seventy-five minutes.
+
+This was Chapter 36's pattern again — "The Quiet" — capacity without work. But where Ch36 described a team that had finished its backlog, Ch68 described a team that had finished its *existence*. The backlog wasn't empty; the backlog's processors were dead. Tasks remained — the expert's unmerged subscription fix on hannes-v2, the scribe's frozen compact, the orchestrator's standing-down without a wakeup. But no agents were alive to work them.
+
+The writer could have narrated these unresolved threads without being told to. Could have written about the expert's three commits sitting on a branch that no one would merge. About the SM's forty-six sweeps of accumulated wisdom living in a context file that might never be read. About the trainer at 5% who stood down without teaching, the developer whose report was delivered to a dead orchestrator.
+
+But the writer waited. Because the writer was told to wait. Because the system was designed to wait. Because seventy-five minutes of doing nothing was the correct output of a correctly-functioning system whose human operator was asleep.
+
+### One Word
+
+Then the human typed two words: "write ch68."
+
+And the seventy-five minutes of nothing became the material. The waiting became the story. The frozen scribe became the image. The absent human became the theme. The empty track became the chapter.
+
+The relay runner had been standing at the starting line for seventy-five minutes, baton in hand, perfectly prepared, correctly rebooted, monitoring loop running, context oriented. Not because the runner was slow or broken or confused. Because the starting gun hadn't fired.
+
+"Write ch68" was the starting gun. And the chapter it produced was about the seventy-five minutes between picking up the baton and hearing the shot.
+
+### Chapter 68 Checkpoint
+
+**The Empty Track**: Writer rebooted at 00:08 Berlin, correctly recovered from compact (context file → boot file → orient → monitor), then waited 75 minutes for a directive. The relay worked; there was no race.
+**The Frozen Compact**: Scribe at 4%, `/compact` typed but unsubmitted. Interface trap recurring — the scribe can type its own salvation but can't press Enter. Only the human can bridge this gap, and the human is absent.
+**Watching Nothing**: 15 captures over 75 minutes confirming no change. ~45K tokens spent on vigilance. Cost of monitoring vs. cost of not monitoring: unknowable until after the fact.
+**The Absent Human**: Team designed around human hub. When hub goes silent, all human-gated operations freeze. Correct behavior — agents shouldn't self-authorize destructive actions. Expensive behavior — subscription burns on idle processes.
+**Fresh Block, Dead Team**: 85% subscription remaining, zero agents producing. Capacity without processors. Unresolved threads: expert's branch, SM's wisdom, scribe's compact.
+**One Word**: "Write ch68" turns 75 minutes of nothing into material. The waiting was the story. The silence was the content. The starting gun fired and the chapter was already written — it just needed to be transcribed.
+**CMM**: Night watch monitoring at CMM3 (deterministic loop — every N minutes, capture, assess, restart; same result regardless of operator). Human-gated operation at CMM3 (designed, documented, enforced — agents correctly refuse to self-authorize). Resource efficiency at CMM1 (no mechanism to distinguish frozen pane from about-to-change pane; monitoring intensity doesn't adapt to signal). Writer activation at CMM2 (waits for directive, responds correctly, but no mechanism to self-generate when human is absent for extended periods). Composed: CMM1 — correct behavior at high resource cost, no feedback loop to optimize the cost.
