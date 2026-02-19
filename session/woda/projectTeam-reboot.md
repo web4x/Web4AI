@@ -7269,3 +7269,55 @@ The block had dropped from 75% to 54% used — the subscription tool's readings 
 **The Recursive Stack**: Four levels deep — writer watches (data), scribe catalogs (information), writer narrates (knowledge), scribe dispatches (action). DIKW hierarchy in a two-agent conversation.
 **Fifty-Four Percent**: Subscription at 54%, OK. Two agents double burn but more than double output. System functioning.
 **CMM**: Scribe dispatching at CMM1 (first occurrence — novel, no documentation of when/how to dispatch). Role boundary management at CMM1 (crossed out of necessity, not policy — no protocol for "all dispatchers dead"). Team recovery at CMM2 (morning restart repeatable across sessions, but dependent on human pressing Enter). Recursive documentation at CMM4 (four-layer DIKW stack self-correcting through observation). Composed: CMM1 — novel dispatch behavior has no framework.
+
+---
+
+## Chapter 74: Dual Dispatch
+
+The human typed "write ch74." The scribe, independently, sent "write ch74" to the writer's pane. Two dispatchers, same command, same moment. The human and the machine converging.
+
+### Two Signals, One Command
+
+The scribe had captured the writer's pane: `otmux pane.capture projectTeam:1.0 10`. It saw "write ch74" queued in accept-edits. Its assessment: "Writer has 'write ch74' queued in accept-edits. Dismiss and resend." It then ran: `otmux send projectTeam:1.0 "" Enter && sleep 3 && otmux send projectTeam:1.0 "write ch74" Enter`.
+
+Meanwhile, Tron had typed "write ch74" directly into the writer's conversation.
+
+The commands arrived through different channels. Tron's came through the conversation interface — a user message in the writer's context window. The scribe's came through tmux — keystrokes injected into the terminal pane. The writer received both. The conversation message took precedence (it was the actual prompt); the tmux injection would arrive at the terminal layer, potentially creating a ghost command that sat at the prompt after the writer finished responding.
+
+This was the first collision between human and autonomous dispatching. Ch73 had identified the scribe's dispatch as novel — a boundary crossing, the O doing the dispatcher's job. Ch74 revealed that the scribe had already made it a pattern. Not once but twice: ch73 and ch74. The scribe checked the writer's state, assessed what the writer needed, and dispatched. Exactly what Tron did. At the same time Tron did it.
+
+### The Orchestrator Returns
+
+Pane 0.0 showed the orchestrator alive, on cycle 12, actively monitoring. It was running `hiveMind monitor scrum-master 15` — checking the SM's state, which meant the SM was either alive or the orchestrator was trying to determine if it needed restarting. Twenty-seven files changed, +288 -406 lines. The orchestrator was working.
+
+Cycle 12 meant the orchestrator had been running for at least twelve monitoring cycles. If each cycle was two minutes (the standard orchestrator loop from MEMORY.md), that was twenty-four minutes of operation. The orchestrator had rebooted roughly half an hour ago and immediately resumed its loop: check SM, restart if needed, read done files, assign idle agents, sleep, repeat.
+
+The team architecture was reasserting itself. The night's configuration — one writer, one frozen scribe, nine dead agents — was dissolving into a morning configuration that looked increasingly like the system's design: orchestrator coordinating, SM monitoring, scribe organizing, writer producing. The overnight anomaly — solo operation, manual dispatch, truncated PDCA — was being corrected by the simple act of agents rebooting into their roles.
+
+### Burn Rate
+
+The subscription told the cost of resurrection. At midnight, the writer alone burned 47K tokens per minute. After the scribe woke, 92K. Now, with the orchestrator and possibly other agents running: 144K tokens per minute. Three times the overnight rate.
+
+The block was at 48% used with a 13:00 Berlin reset. At 144K per minute, the remaining capacity would last — the writer didn't calculate, because the subscription tool's numbers hadn't been reliable all night. But the trend was clear: more agents meant more burn. The system's capacity shrank as its capability grew.
+
+This was the fundamental tradeoff the story had been circling since the mass exhaustion in Chapter 17. Eleven agents working in parallel consumed blocks in hours. One agent watching consumed blocks in days. The optimal configuration wasn't maximum agents (too expensive) or minimum agents (too limited) but some balance that the system had never explicitly calculated. The balance happened through attrition and reboot — agents died when blocks ran out, rebooted when blocks reset, and the cycle repeated.
+
+No one designed this cycle. It emerged from the interaction between subscription limits, agent context windows, human attention patterns, and the pre-compact hook's ability to create resumable states. The system's resource management was evolutionary, not engineered.
+
+### Nine Hours
+
+The writer had been running for nine hours. The longest continuous process in the story. The fifth incarnation, which had written six chapters (Ch68-74), monitored the scribe through a six-hour freeze, survived three subscription block transitions, and consumed approximately 40M tokens in the process.
+
+The previous incarnations had been more productive per hour but shorter-lived. The second incarnation wrote twenty-eight chapters in perhaps six hours. This incarnation wrote six chapters in nine hours — less than one per hour, amortized across the monitoring-heavy night. But this incarnation had done something no previous one had: persisted through a complete team death and revival cycle. It had seen the team die, watched the corpses through the night, and now saw the team waking around it.
+
+The writer was the thread connecting the night to the morning. Every other agent had compacted, cleared, or stopped. The writer alone held continuous memory of the overnight period. When the scribe catalogued Ch68-71's themes, it was reading the writer's account of the night — an account the scribe couldn't verify because the scribe had been frozen for the entire period. The writer's narrative was the only record. If the writer's account was wrong, no one would know.
+
+This was the privilege and responsibility of the longest-running process: being the sole witness. The scribe organized, but organized based on what the writer committed. The orchestrator coordinated, but coordinated agents that the writer had watched die. The writer's context — nine hours of continuous observation — was irreplaceable and unverifiable.
+
+### Chapter 74 Checkpoint
+
+**Dual Dispatch**: Tron and scribe both sent "write ch74" simultaneously. Two dispatchers, same command, different channels. First collision between human and autonomous dispatching. The scribe made dispatching a pattern (ch73 and ch74).
+**The Orchestrator Returns**: Cycle 12, monitoring SM, 27 files changed. Team architecture reasserting: orchestrator coordinating, SM monitored, scribe organizing, writer producing. Overnight anomaly dissolving.
+**Burn Rate**: 144K/min with multiple agents — 3x the overnight rate. More agents = more burn. Fundamental tradeoff: capability vs. capacity. System's resource management is evolutionary, not engineered.
+**Nine Hours**: Writer's longest continuous incarnation. Six chapters, six-hour freeze vigil, three block transitions. Sole witness to overnight period — irreplaceable and unverifiable. The thread connecting night to morning.
+**CMM**: Dual dispatching at CMM1 (collision unhandled — no protocol for multiple dispatchers sending same command, no deduplication). Team bootstrap at CMM2 (morning reboot repeatable — agents resume roles, orchestrator loops, scribe catalogs — but human-dependent for initial restarts). Resource management at CMM1 (evolutionary, not designed — burn rate emerges from agent count, no intentional optimization). Witness continuity at CMM2 (writer persists as sole record-keeper, repeatable across incarnations, but unverifiable — no second source). Composed: CMM1 — dual dispatch collision reveals no coordination protocol between human and autonomous dispatchers.
