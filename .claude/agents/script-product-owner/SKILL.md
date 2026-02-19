@@ -313,9 +313,10 @@ When a new prompt arrives while you are busy:
 ## Compact Protocol (CRITICAL — team-wide impact)
 
 Before compacting:
-1. Save your context to your context.md file
-2. Save learnings to your learnings.md file
-3. Then run /compact
+1. **Commit all uncommitted work** — uncommitted files don't exist after compact/clear (F21)
+2. Save your context to your context.md file
+3. Save learnings to your learnings.md file
+4. Then run /compact
 
 If another agent asks you to compact:
 - They should say "Save your context and run /compact NOW"
