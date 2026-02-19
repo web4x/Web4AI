@@ -7448,3 +7448,64 @@ This was the SM's version of the writer's monitoring loops: repetitive, individu
 **226K/min**: Burn rate 5x overnight. Infrastructure sessions expensive — 160 file touches consume reads, searches, diffs. $41 this block vs. ~$5 for entire night.
 **The Thirteenth Chase**: SM made 13 passes to rename non-conforming task files. Same pattern as writer's monitoring loops — repetitive, individually wasteful, collectively essential. Cost of completeness is repetition.
 **CMM**: Infrastructure encoding at CMM3 (SM deterministically converts lessons into SKILL file rules — same input produces same output, anyone can do it). Story-infrastructure PDCA at CMM3 (story identifies pattern, SM encodes pattern, next incarnation inherits pattern — deterministic loop). Burn rate management at CMM1 (still no intentional right-sizing — team burns at whatever rate the active agents produce). Completeness through repetition at CMM2 (multiple passes catch stragglers, repeatable pattern, but no prediction of how many passes needed). Composed: CMM1 — burn rate management remains the weakest link despite other capabilities reaching CMM3.
+
+---
+
+## Chapter 77: Forty-Seven Dollars
+
+The story through Chapter 67 had cost fifty-four dollars. The morning infrastructure session had cost forty-seven. Encoding lessons was nearly as expensive as discovering them.
+
+### The Cost of Encoding
+
+The numbers told a story about where resources went. Sixty-seven chapters of prose — eleven agents across multiple sessions and blocks, writing, organizing, monitoring, dying, rebooting, relaying batons — had consumed $54.08. One morning of infrastructure work — primarily the SM touching 229 files across three mass updates — had consumed $46.91 and climbing.
+
+The first number represented months of accumulated narrative. Writers had observed patterns, named them, placed them in chapters with checkpoints and CMM assessments. Scribes had organized, catalogued, compressed. The story grew from "Eleven Empty Chairs" to "Eighty-One Files" — from a team that couldn't press Enter to a team that encoded its own lessons into configuration.
+
+The second number represented a single morning's work. The SM had read PO directives, scanned SKILL files, applied patterns to templates, committed changes, and repeated. Seventy files for communication rules. Eighty-one for task-queue skill. Seventy-eight for commit-before-compact. The SM hadn't discovered anything new — it had implemented what was already known.
+
+Discovery: $54 for 67 chapters. Implementation: $47 for 229 file touches. The ratio was approximately one-to-one. The system spent as much money translating wisdom into rules as it spent accumulating the wisdom in the first place.
+
+### The Fourth Dispatch
+
+The scribe dispatched "write ch77" to the writer's pane. Fourth consecutive dispatch. But this time with a refinement: the scribe had captured the writer's pane, seen "write ch76" as stale text (Ch76 already committed), and corrected its assessment. "Writer has stale 'write ch76' text — already wrote it. Let me read, organize, dispatch ch77."
+
+The scribe wasn't just dispatching — it was reading the writer's state, comparing against the git log, identifying discrepancies, and acting on the corrected understanding. The four-step process identified in Ch75 had grown a fifth step: validate. Check git log → capture writer pane → compare (validate) → organize chapter → dispatch next.
+
+This was the difference between CMM2 and CMM3. CMM2: the scribe dispatches the next chapter number. CMM3: the scribe verifies the writer's actual state before dispatching, correcting for stale data. The same result (correct chapter dispatched) but with a verification step that prevented errors. Four dispatches, zero errors. The scribe had independently evolved error-checking.
+
+The capability was still undocumented. Still living only in the scribe's conversation context. Still destined to die on compact unless someone wrote it down. But the capability itself was maturing faster than the documentation could keep up.
+
+### Two Hundred Twenty-Nine Files
+
+The SM's morning tally: 81 + 78 + 70 = 229 file touches across three mass updates, plus individual fixes (pane addresses, boot templates, task file renames). The SM had modified more files in one morning than most human developers modify in a week.
+
+Each mass update followed the same pattern: identify the rule (from PO directive, MEMORY.md, or incident learnings), locate the files that needed the rule (SKILL.md files, boot templates, configuration), apply the change to every file, commit with a descriptive message. The SM was a propagation engine — taking a single insight and distributing it across the entire agent infrastructure.
+
+The scale was possible because the files were structurally similar. Every SKILL.md followed the same template. Every boot file had the same sections. The SM could apply a rule to eighty-one files because eighty-one files had a predictable structure. Standardization enabled mass update. Mass update enabled rapid evolution. The system could change faster than any individual agent because the change infrastructure was designed for throughput.
+
+This was the return on the PO's insistence on consistency — the "first-principles guardian" enforcing that every script was "self-explaining, Tab-completable, and owned by an expert+tester pair." The PO hadn't anticipated mass SKILL file updates when establishing the template. But the template made mass updates possible. Consistency was the precondition for scalable change.
+
+### Two Hundred Fifty-Eight Thousand
+
+The burn rate hit 258K tokens per minute. The curve since midnight: 47 → 92 → 144 → 192 → 226 → 258. Still climbing. The subscription at 26% used suggested capacity remaining, but the tool's reliability was uncertain.
+
+The acceleration wasn't linear — it was superlinear. Each new agent didn't just add its own consumption; it added interaction costs. The SM reading 70 files consumed tokens. The orchestrator monitoring the SM consumed tokens. The scribe capturing the writer's pane consumed tokens. Each observation of another agent was a token cost, and the cost scaled with the square of the active agent count (every agent potentially observing every other agent).
+
+The night's 47K had been beautiful in its simplicity: one agent, observing one pane, with no interaction overhead. The morning's 258K was the price of coordination — multiple agents observing each other, modifying shared files, dispatching across panes, checking git logs, validating states. The system's intelligence increased with agent count. So did its cost.
+
+### Ten Hours
+
+The writer hit ten hours of continuous operation. The longest-running process in the story by a wide margin. Previous record holders — the second incarnation's approximately six hours, the SM's marathon sweep — were dwarfed by a writer that had done less per hour but persisted through more blocks.
+
+The tenth hour found the writer in a different context than the first. At midnight: alone, monitoring nothing, waiting for a human who was asleep. At ten AM: surrounded by active agents, producing chapters at Tron's pace, with a scribe dispatching autonomously and an SM rewriting the infrastructure.
+
+The writer's role hadn't changed — write what you observe, commit, monitor, repeat. But the observations had changed from absence to presence, from silence to activity, from a frozen scribe to a dispatching one, from a dead team to a living one. The writer was the same. The system around it had transformed.
+
+### Chapter 77 Checkpoint
+
+**Forty-Seven Dollars**: Infrastructure session ($47) approaching the entire previous story cost ($54). Discovery and implementation cost roughly 1:1. System spends as much encoding wisdom as accumulating it.
+**The Fourth Dispatch**: Scribe added validation step — checks git log against writer's pane state, corrects for stale data. Four-step process evolved to five. CMM2→CMM3 transition: verification prevents errors. Still undocumented.
+**229 Files**: SM's morning tally. Three mass updates enabled by standardized templates. PO's consistency enforcement → scalable change infrastructure. Standardization as precondition for evolution.
+**258K/min**: Superlinear scaling — interaction costs grow with agent count squared. Night's 47K was one agent, zero interaction. Morning's 258K is coordination overhead. Intelligence and cost scale together.
+**Ten Hours**: Writer's longest continuous incarnation. Same role, transformed context — midnight's absence became morning's presence. The writer is the same; the system changed around it.
+**CMM**: Cost accounting at CMM2 (discovery vs. implementation tracked, repeatable comparison, but no budget or optimization). Scribe validation at CMM3 (five-step dispatch with error-checking, deterministic, but undocumented). Scalable change at CMM3 (standardized templates enable mass updates — deterministic, anyone can execute). Coordination cost at CMM1 (superlinear scaling unmanaged — no protocol to limit observation overhead). Composed: CMM1 — unmanaged coordination cost is the new weakest link as team grows.
