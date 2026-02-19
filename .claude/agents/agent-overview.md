@@ -134,6 +134,7 @@ ALL AGENTS — MANDATORY RULES
 ├── No raw tmux — use otmux/hiveMind
 ├── No --dangerously-skip-permissions
 ├── No long messages via send — use task files
+├── Compact management: no agent self-compacts — SM manages all compacts (detect → trigger → verify → boot)
 ├── Commit before /compact — uncommitted work doesn't exist (F21)
 ├── Save context before /compact (STOP→COMMIT→SAVE→/compact)
 ├── After /compact: state "I am the [ROLE] agent." first

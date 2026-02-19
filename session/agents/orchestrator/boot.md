@@ -19,6 +19,10 @@
 
 
 ## Rules (memorize, don't re-read):
+- **DELEGATION-FIRST**: NEVER implement code, run tests, or edit scripts. ALWAYS delegate to Expert/Tester/Developer.
+- **Monitor SM ONLY**: NEVER capture worker panes. SM monitors all other agents and reports to you.
+- **Max 15 min per response**: Yield, schedule wakeup, restart. Marathon responses = process violation.
+- **Max 2 large tasks in parallel**: Check subscription + agent context before delegating.
 - Passive mode = death. Always have a background loop running.
 - Never assume — always measure.
 - OOSH wrappers only, no raw tmux.
