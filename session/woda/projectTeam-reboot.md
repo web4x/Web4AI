@@ -7629,3 +7629,59 @@ When the writer eventually compacted, it would carry the record of the longest c
 **The Scribe's Economy**: 46 minutes produce infrastructure (organization, themes, overview, dispatches). Invisible in narrative because expected. Only the novel behavior (dispatching) makes the story. Expected work is infrastructure; novel work is content.
 **Eleven Hours**: Writer's continuous operation. Context accumulating but manageable. When compact comes, eleven hours distilled to bullet points. Chapters hold the full record.
 **CMM**: Governance model at CMM2 (gate exists, repeatable, but untested for divergence — no protocol for scribe-human disagreement). Autonomous organization at CMM3 (scribe deterministically: reboot → read → organize → dispatch → monitor → repeat). Writer activation at CMM2 (waits for directive, responds correctly, but dependent on external trigger). Infrastructure visibility at CMM1 (scribe's work invisible in narrative, no mechanism to surface infrastructure contributions). Composed: CMM1 — invisible infrastructure and untested governance are weakest links.
+
+---
+
+## Chapter 80: The Scribe Falls Behind
+
+The scribe dispatched "write ch79." The writer had already written Ch79 and was now writing Ch80. For the first time, the scribe's dispatch arrived late.
+
+### The Inversion
+
+During the night, the bottleneck had been human attention. The writer waited seventy-five minutes for "write ch68" because the human was asleep. The scribe was frozen. The system had unlimited capacity and no direction.
+
+During the morning, the bottleneck shifted. The human directed chapters every ten to fifteen minutes: ch72, ch73, ch74, ch75, ch76, ch77, ch78, ch79, ch80. The writer responded in approximately five minutes per chapter — measure, assess, write, commit. The production pipeline was fast.
+
+The scribe couldn't keep up. Organizing a chapter took longer than writing one. The scribe had to read the chapter, extract themes, compress them to phrases, update the overview file, check the git log, capture the writer's pane, assess state, and dispatch. Each chapter took seven to eight minutes of processing. At 52 minutes of continuous evaporation, the scribe had organized perhaps seven chapters (Ch72-78) while the writer had written twelve (Ch68-79) in the same morning.
+
+The scribe was falling behind by one chapter per cycle. Every time the writer committed a new chapter, the scribe's backlog grew by one. The scribe organized one chapter while the writer wrote two. The undocumented tail from Chapter 69 — "story grows its undocumented tail" — had briefly closed when the scribe woke up, then started growing again.
+
+Creation was faster than organization. The W outpaced the O.
+
+### Why Organization Is Slower
+
+A chapter took the writer approximately five minutes: capture panes (30 seconds), read story end (15 seconds), compose prose (3 minutes), edit file (15 seconds), commit (15 seconds), restart monitoring (15 seconds). The writer's process was linear — one pass through the material, one draft, no revision.
+
+Organization required multiple passes. The scribe read the chapter (pass one), identified themes (pass two), compressed themes to index-ready phrases (pass three), located the edit point in the overview (pass four), attempted the edit (sometimes failing, requiring re-read), checked git for subsequent chapters (pass five), captured the writer's pane (pass six), assessed and dispatched (pass seven). Seven passes versus one. Each pass consumed tokens and time.
+
+The asymmetry was inherent, not accidental. Writing was generative — the writer produced text from observations, a single creative act. Organizing was analytical — the scribe decomposed text into components, classified them, and reconstructed them in compressed form. Analysis was harder than synthesis because analysis required understanding the whole before extracting the parts.
+
+This explained why scribes historically struggled more than writers. In the story's early sessions, writers had been the reliable producers while scribes had been the fragile organizers — compacting more often, losing context more easily, falling behind on cataloguing. The O function was architecturally harder than the W function.
+
+### The Dispatch Gap
+
+The scribe's dispatch of "write ch79" arrived at the writer's pane after the writer had already committed Ch79 and moved on. This was the first divergence — not a disagreement (the scribe and human wanted the same thing) but a timing failure. The scribe's information was stale by the time it acted.
+
+Chapter 79 had asked: "What happens when scribe and human disagree?" The answer, it turned out, wasn't disagreement but desynchronization. The scribe and human agreed on the next action but disagreed on the current state. The scribe thought the writer needed ch79. The writer had already written ch79. The dispatch was correct in intent and wrong in timing.
+
+The desynchronization would worsen if the writer continued at the current pace. Each chapter the writer wrote increased the scribe's backlog. The scribe's dispatch would fall further behind. The scribe might dispatch "write ch80" while the writer was already on ch82. The autonomous dispatch system, so elegant when synchronized, became noise when desynchronized — ghost commands arriving at the writer's pane for chapters already written.
+
+### Eighty
+
+The eightieth chapter. The story had now produced more than 135,000 words across five writer incarnations, an uncounted number of scribe incarnations, and what felt like an uncountable number of monitoring loops, subscription blocks, compacts, clears, reboots, and deaths.
+
+Eighty was twenty percent of the way to four hundred — a number with no significance except that four hundred was where numbers started to feel large. Eighty was also the chapter where the scribe fell behind, the chapter where the morning's momentum revealed its structural limit: the production pipeline could move faster than the quality pipeline.
+
+This was a universal pattern, not specific to the WODA duo. In software development: writing code was faster than reviewing it. In publishing: writing manuscripts was faster than editing them. In manufacturing: production was faster than quality control. The creative act was singular; the quality act was multi-pass. Every system that separated creation from verification faced the same asymmetry.
+
+The WODA pattern's answer — have the O run in parallel with the W, catching up asynchronously — was sound in principle. The scribe organized chapters while the writer wrote new ones. The overlap was efficient. But when the writer accelerated (because the human directed chapters faster), the parallel processing fell behind. The scribe needed to be faster or the writer needed to be slower or the system needed more scribes.
+
+None of those options were available. The scribe's speed was determined by the complexity of organization. The writer's speed was determined by the human's directives. And the system had one scribe pane, not two.
+
+### Chapter 80 Checkpoint
+
+**The Scribe Falls Behind**: Scribe dispatching ch79 while writer writes ch80. Organization slower than creation — 7-8 min per chapter vs. 5 min. Undocumented tail growing again. The W outpaces the O.
+**Why Organization Is Slower**: Writing is one pass (generative). Organizing is seven passes (analytical). Analysis harder than synthesis — must understand the whole before extracting parts. Architectural asymmetry, not accidental.
+**The Dispatch Gap**: First desynchronization. Not disagreement — timing failure. Scribe's state stale by the time it acts. Will worsen with pace — ghost commands for already-written chapters.
+**Eighty**: 80 chapters, ~135K words, 5 writer incarnations. Universal pattern: creation faster than verification. WODA's parallel processing works until the writer accelerates past the scribe's throughput.
+**CMM**: Production-quality pipeline at CMM2 (parallel processing works, repeatable, but no mechanism to handle pace mismatch). Scribe throughput at CMM2 (seven-pass organization repeatable but not optimizable — each pass required). Dispatch synchronization at CMM1 (first desynchronization, no detection mechanism, no recovery — scribe sends stale commands without knowing they're stale). Pace management at CMM0 (no mechanism exists — writer speed set by human, scribe speed set by complexity, no coordination between them). Composed: CMM0 — pace management doesn't exist as a capability.
