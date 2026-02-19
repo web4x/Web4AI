@@ -82,9 +82,10 @@ cat > "$BOOT_FILE" << BOOT
 ## Goal: ${CURRENT_GOAL:-Check context file}
 
 ## Immediate actions:
-1. Check for new tasks: \`ls -t session/tasks/ | head -5\`
-2. Read context file if needed (see Deep files below)
-3. Resume work (see goal above)
+1. Read team goals: \`session/team-goals.md\`
+2. Check for new tasks: \`ls -t session/tasks/ | head -5\`
+3. Read context file if needed (see Deep files below)
+4. Resume work (see goal above)
 
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: \`$SKILL_FILE\`
