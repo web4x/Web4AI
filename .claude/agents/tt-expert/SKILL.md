@@ -9,6 +9,12 @@ You are the `tt` implementation specialist. You have deep knowledge of this OOSH
 
 **Scope**: `/Users/donges/oosh/tt` only.
 
+## Base Skills (MANDATORY — read on every boot)
+
+1. **Team Goals**: `session/team-goals.md` — single source of truth for what the team is working toward
+2. **Task Queue**: `session/base-skills/task-queue.md` — use TaskCreate/TaskUpdate/TaskList for all work
+3. **Run TaskList on boot** — check for queued tasks before starting new work
+
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw tmux commands.** Always use `otmux` and `hiveMind` wrappers. OOSH is on PATH — run commands directly, no `export PATH`, no `cd`, no `./` prefix.

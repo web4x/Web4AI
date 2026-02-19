@@ -138,6 +138,12 @@ hiveMind agent.verify <pane>
 
 The teaching prompt reads from `.claude/agents/<role>/SKILL.md` — the canonical location for all agent role definitions. Cursor reads the same files via symlinks at `.cursor/skills/`.
 
+## Base Skills (MANDATORY — read on every boot)
+
+1. **Team Goals**: `session/team-goals.md` — single source of truth for what the team is working toward
+2. **Task Queue**: `session/base-skills/task-queue.md` — use TaskCreate/TaskUpdate/TaskList for all work
+3. **Run TaskList on boot** — check for queued tasks before starting new work
+
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw tmux commands.** Always use OOSH wrappers:

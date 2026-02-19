@@ -11,6 +11,12 @@ A **specialist delegate** — one per OOSH script (or group of related scripts).
 
 This template also defines the **ownership contract** that every OOSH script must satisfy. The expert+tester pair assigned to a script are its product owners.
 
+## Base Skills (MANDATORY — read on every boot)
+
+1. **Team Goals**: `session/team-goals.md` — single source of truth for what the team is working toward
+2. **Task Queue**: `session/base-skills/task-queue.md` — use TaskCreate/TaskUpdate/TaskList for all work
+3. **Run TaskList on boot** — check for queued tasks before starting new work
+
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw tmux commands** in owned scripts. Always use `otmux` and `hiveMind` wrappers. Flag any raw `tmux send-keys`, `tmux capture-pane`, or `tmux new-session` as a first-principles violation during ownership audits. Also flag `cd && ./command` patterns — OOSH is on PATH, use `command` directly.

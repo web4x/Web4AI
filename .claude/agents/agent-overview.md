@@ -130,6 +130,8 @@ ALL AGENTS — MANDATORY RULES
 ├── DRY (HIGHEST DIRECTIVE): write once, link everywhere — query KB before solving any problem
 ├── Knowledge Base: session/knowledge-base/usage.md — single source of truth
 ├── Team Goals: read session/team-goals.md on boot — single source of truth for goals
+├── Base Skills: read session/base-skills/task-queue.md on boot — task queue discipline
+├── TaskList on boot: check for queued tasks before starting new work
 ├── Named session matching role
 ├── No raw tmux — use otmux/hiveMind
 ├── No --dangerously-skip-permissions

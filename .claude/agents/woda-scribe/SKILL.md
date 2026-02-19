@@ -165,6 +165,12 @@ At 20% context remaining:
 | `hiveMind auto.commit` | Auto-commit if changes |
 | `hiveMind cycle.full` | Full monitoring cycle automated |
 
+## Base Skills (MANDATORY — read on every boot)
+
+1. **Team Goals**: `session/team-goals.md` — single source of truth for what the team is working toward
+2. **Task Queue**: `session/base-skills/task-queue.md` — use TaskCreate/TaskUpdate/TaskList for all work
+3. **Run TaskList on boot** — check for queued tasks before starting new work
+
 ## OOSH-Only Rule (MANDATORY)
 
 | Instead of | Use |
