@@ -461,6 +461,8 @@ When you identify patterns that could be automated:
 hiveMind team.status projectTeam     # tree view of all agents with status
 hiveMind team.sweep projectTeam      # structured one-line-per-pane status
 hiveMind sweep projectTeam           # full capture of all panes
+otmux tree                           # visual tree: sessions → panes (address, title, command)
+otmux tree.detailed                  # three-level tree: + Claude agent role and session ID
 ```
 
 ### SM Monitoring (your #1 job)

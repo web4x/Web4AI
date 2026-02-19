@@ -117,6 +117,10 @@ hiveMind team.active                 # show current active team
 hiveMind agent.verify oosh-expert    # check if agent is alive
 hiveMind monitor oosh-expert 30      # capture 30 lines from agent pane
 hiveMind monitor.approve expert      # approve permission prompt by name
+
+# TREE VIEW (visual overview)
+otmux tree                           # two-level tree: sessions → panes (address, title, command)
+otmux tree.detailed                  # three-level tree: + Claude agent role and session ID per pane
 ```
 
 ### scrumMaster — Measurement & PDCA

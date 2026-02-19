@@ -39,6 +39,16 @@ DRY is the team's highest directive. Never duplicate information — write once,
 3. **Propose improvements**: Identify CMM level of each capability, propose upgrades
 4. **Document patterns**: Record discoveries in learnings.md
 
+## Key Methods — Tree View Feature Family
+
+| Method | Purpose |
+|--------|---------|
+| `otmux tree` | Two-level tree: sessions → panes (address, title, command) |
+| `otmux tree.detailed` | Three-level tree: sessions → panes → Claude agent role + session ID |
+| `otmux status` | Alias for `otmux tree` |
+
+These methods are used by SM and orchestrator for team visibility. `tree.detailed` reads the hiveMind role registry and `claudeCode session.id` to show agent identity per pane.
+
 ## Key Files
 
 | File | Purpose |
