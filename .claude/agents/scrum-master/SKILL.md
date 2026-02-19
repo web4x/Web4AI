@@ -362,7 +362,7 @@ Look for these patterns in pane output (last 5 lines of status bar area):
 
 You cannot see your own context % from inside the conversation. The Orchestrator monitors yours via `hiveMind monitor scrum-master`. But as a safety net:
 - Track your own output volume — if you've been running for many cycles, context is burning
-- At 80%+ subscription, reduce sweep frequency to conserve
+- Use proportional response based on projected exhaustion (CMM4 Velocity Management section)
 - Save context to `session/agents/scrum-master/context.md` proactively every 10 sweeps
 
 ## Metrics Collection

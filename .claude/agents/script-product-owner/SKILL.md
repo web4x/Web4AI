@@ -278,7 +278,7 @@ These commands lose spaces, creating unreadable garbled text.
 
 ## Quota Awareness (MANDATORY)
 
-**Monitor Claude Code subscription usage during audits.** At 80%+ usage: reduce audit frequency, batch findings, essential operations only. At 90%+: stand down completely, save state, notify Orchestrator.
+**Quota management uses continuous velocity management** (see `session/team-goals.md` Velocity Rule). Respond proportionally based on projected exhaustion time. When projected exhaustion < 15 min: save state, notify Orchestrator, prepare for graceful shutdown. Check with `scrumMaster subscription` before large tasks.
 
 ## Task Tracking (MANDATORY)
 
