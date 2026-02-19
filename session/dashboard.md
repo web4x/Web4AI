@@ -1,6 +1,6 @@
 # Team Dashboard
 
-**Updated**: 2026-02-19T11:10:49Z (2026-02-19 12:10 CET)
+**Updated**: 2026-02-19T12:25:46Z (2026-02-19 13:25 CET)
 **Session**: projectTeam
 
 ## Git Status
@@ -9,7 +9,7 @@
 |-------|-------|
 | Branch | `main` |
 | Status | uncommitted changes |
-| Last commit | `d8ed2d7 Document otmux tree feature family in SM, orchestrator, otmux-expert SKILL.md` |
+| Last commit | `7dbb5aa FIRST 3 ACTIONS + SM escalation protocol (PO+Tron directive)` |
 
 ## Subscription
 
@@ -29,27 +29,27 @@
 
 | Agent | Pane | Context | Velocity | State |
 |-------|------|---------|----------|-------|
-| orchestrator | 0.0 | 16.2% | - | active |
-| oosh-expert | 0.1 | 20.6% | - | unknown |
-| oosh-tester | 0.2 | 54.5% | - | completed |
-| scrum-master | 0.3 | 15.8% | - | active |
+| orchestrator | 0.0 | 90% | - | unknown |
+| oosh-expert | 0.1 | 14.6% | - | active |
+| oosh-tester | 0.2 | 51.2% | - | completed |
+| scrum-master | 0.3 | 0% | - | unknown |
 | product-owner | 0.4 | 100.0% | - | unknown |
-| agent-trainer | 0.5 | 19.0% | - | unknown |
-| task-agent | 1.2 | 19.4% | - | completed |
-| woda-writer | 1.0 | 100.0% | - | active |
+| agent-trainer | 0.5 | 13.9% | - | unknown |
+| task-agent | 1.2 | unknown | - | completed |
+| woda-writer | 1.0 | 100.0% | - | unknown |
 | woda-scribe | 1.1 | 100.0% | - | unknown |
-| developer | 1.3 | 52.2% | - | unknown |
+| developer | 1.3 | 51.6% | - | unknown |
 | script-product-owner | 1.4 | 41.2% | - | unknown |
 | orchestrator | 0.0:0. | 100.0% | - | unknown |
 
 ## Recent Commits
 
 ```
-fc1f068 Add Chapter 80 "The Scribe Falls Behind" — organization slower than creation, dispatch desynchronized, W outpaces O, 80 chapters
-d8ed2d7 Document otmux tree feature family in SM, orchestrator, otmux-expert SKILL.md
-56e17b0 Purge hardcoded pane addresses from session agent files (PO HIGH)
-6640e39 Add Chapter 79 "The Ungated Agent" — scribe 46min autonomous, gated vs ungated governance, latent divergence question
-bef95c0 Add Chapter 78 "The Crossover" — block cost matches entire previous story, 286K/min burn, story cheap system expensive
+7dbb5aa FIRST 3 ACTIONS + SM escalation protocol (PO+Tron directive)
+04e90c0 Add Chapter 81 "It Noticed My Lag" — scribe reads about itself, team cycling down, 59min marathon, trend tracking as CMM4
+25cdf48 Auto-save: task-agent pre-standdown (90% subscription)
+d38b3c1 Save trainer context: 9 commits, 16 sections 81/81, standdown at 90%
+1634ce2 Auto-save: scrum-master pre-compact 12:14
 ```
 
 ## Recovery

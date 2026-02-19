@@ -2,11 +2,6 @@
 
 | Time | Tokens_M | Burn_M/min | Projected_Exhaustion |
 |------|----------|------------|---------------------|
-| Post-compact S2 | 9.5 | 0.038 | 75% | MODERATE |
-| Post-compact S3 | 10.8 | 0.043 | 75% | MODERATE |
-| Post-compact S4 | 13.4 | 0.053 | 75% | MODERATE |
-| Post-compact S5 | 21.6 | 0.083 | 75% | MODERATE |
-| Post-compact S6 | 24.1 | 0.092 | 68% | MODERATE |
 | Post-compact S7 | 28.2 | 0.107 | 54% | OK |
 | Post-compact S8 | 32.4 | 0.121 | 54% | OK |
 | Post-compact S9 | 38.0 | 0.141 | 48% | OK |
@@ -22,3 +17,8 @@
 | 12:13 | 36.2 | 13% | 2654 | resets 13:00 |
 | 12:13 | 36.2 | 13% | 2654 | resets 13:00 |
 | 12:14 | 40.1 | 8% | 2717 | resets 13:00 |
+| 12:16 | 46.3 | 8% | 2866 | resets 13:00 |
+| 12:23 | 50.0 | 5% | 2144 | resets 13:00 |
+| 13:20 | 54.8 | 100% | 684 | resets 18:00 JUMP+95% |
+| 13:24 | 58.7 | 92% | 700 | resets 18:00 |
+| 13:25 | 59.1 | 92% | 701 | resets 18:00 |
