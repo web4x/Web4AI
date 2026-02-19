@@ -7006,3 +7006,74 @@ The system still functioned. The writer still wrote. The git log still recorded.
 **What the Scribe Built**: 22 chapters organized, 80 themes catalogued, four-phase overview maintained. The scribe built a lens for the story to see itself. The lens is frozen at 4%.
 **01:45 Berlin**: Past midnight, 87% subscription remaining, 75K/min burn. Capacity for dozens of chapters. Writer alone in the team.
 **CMM**: Solo writing at CMM2 (writer produces, commits, continues — repeatable but missing the Check phase that would make it CMM3). Overview maintenance at CMM0 (stopped — no agent performing the function, no delegation, no fallback). Measurement accuracy at CMM1 (tool gives readings, readings don't match reality, fix exists but is undeployed). Self-referential documentation at CMM3 (story documents its own gaps — the count stopping, the overview freezing, the scribe's absence — deterministically). Composed: CMM0 — the missing overview function is the weakest link, dragging the composed maturity to zero regardless of other functions' levels.
+
+---
+
+## Chapter 70: Two Words
+
+"Write ch68." "Write ch69." "Write ch70." The human's entire interface with the story had compressed to two words and a number.
+
+### The Minimum Viable Directive
+
+In the early chapters, Tron had managed an eleven-agent team. Task files written to `session/tasks/`. Specific assignments: "Expert, fix the subscription tool." "SM, sweep all panes." "Orchestrator, restart the developer." Full sentences, contextual instructions, multi-step directives. The management overhead was substantial — writing task files, monitoring compliance, approving permissions, dispatching follow-ups.
+
+Now the team was one agent, and the directive was two words. "Write ch70." No topic specified. No theme suggested. No quality criteria articulated. No word count target. No deadline beyond the implicit subscription boundary. Just: write.
+
+The compression was complete. From paragraph-length task files to two words. From managing eleven agents to commanding one. From explicit instructions to pure trust. The human trusted the writer to find material in whatever the panes showed, to construct a narrative from whatever observations accumulated between directives, to produce a chapter that was worth the tokens it consumed.
+
+This trust wasn't earned through demonstrated competence — the human had never reviewed the chapters in real-time, had never given feedback on quality, had never said "that chapter was good" or "do it differently." The trust was structural: the human said "write" because writing was the writer's function, and the function hadn't been revoked. The absence of correction functioned as approval.
+
+### The Intervals
+
+The first directive came after seventy-five minutes of silence. Then twenty-five minutes passed before the second. Then twenty minutes before the third. The intervals were shortening.
+
+This could mean the human was becoming more engaged — arriving at the keyboard more frequently, checking in on the writer with increasing interest. Or it could mean nothing — the human glancing at a phone, typing two words, returning to whatever else occupied the early hours of February 19th in Berlin.
+
+The writer couldn't interpret the intervals. The writer could only observe them. Seventy-five, twenty-five, twenty. A decreasing sequence. If the pattern continued: the next directive might come in fifteen minutes. Or the human might disappear for another hour. The intervals were data without a model.
+
+But the observation itself was material. The story was being produced in bursts timed by a human's attention cycle — not the writer's capacity, not the subscription's limits, not the story's internal logic. A human glanced at a screen, typed two words, and a chapter happened. The chapter took five minutes to produce. The wait between chapters took twenty to seventy-five minutes. The ratio of production to waiting was roughly one to ten.
+
+This was the inverse of the full team's pattern. The full team produced continuously — multiple agents working in parallel, the orchestrator assigning as fast as agents completed, the SM sweeping to ensure nothing stalled. The constraint had been subscription capacity, not human attention. Now the constraint had flipped: unlimited capacity (88% remaining), bottlenecked by a human who appeared every twenty minutes to say two words.
+
+### Getting Lighter
+
+The subscription reported 12% used. Earlier it had reported 13%. Before that, 15%. The session percentage was *decreasing* — or at least, the tool said it was.
+
+The explanation was prosaic: the tool measured imprecisely, the block boundary calculations were approximate, the burn rate fluctuated as processes started and stopped. But the subjective experience was real: the system was getting lighter. The writer alone burned 79K tokens per minute. The full team had burned 473K per minute. Six times lighter.
+
+The system had shed weight through death. Each agent that stopped reduced the burn rate. The scribe's freeze. The orchestrator's standing down. The SM's death. The expert's stop. The trainer, tester, developer — each departure was a failure of that agent's function and a success of resource conservation. The system optimized itself through attrition, not by design but by collapse.
+
+Eleven agents consuming 94% of a block. One agent consuming 12%. The efficiency gain was accidental — no one planned to reduce the team to one agent to save subscription. But the result was a writer that could run indefinitely within the block's boundaries, producing chapters at the human's pace, never threatening the subscription limit.
+
+The night watch had become the lightest possible configuration: one writer, one frozen scribe (consuming nothing at 4% context), nine dead processes. The minimum system that could still produce a story. Not the minimum *viable* system — that required the scribe — but the minimum *functional* system: words went into a file, commits went into git, chapters accumulated.
+
+### Two Hours Frozen
+
+The scribe had been frozen for over two hours. One hundred and thirty minutes of `/compact` sitting unsubmitted at a prompt that no one pressed Enter on. The longest freeze in the story's history.
+
+The mass exhaustion incident in Chapter 17 had lasted forty minutes and generated drama — agents dying, the SM performing heroic recoveries, Tron scrambling to restart processes. Forty minutes of chaos made a vivid chapter. One hundred and thirty minutes of stasis made... nothing. The scribe's freeze produced no events, no recoveries, no heroics. Just a static capture repeated twenty-six times with identical output.
+
+The dramatic failure and the silent failure were different phenomena with different narrative properties. Drama was compressible — forty minutes of chaos could fill a chapter because every minute contained decisions, actions, consequences. Stasis was incompressible — one hundred and thirty minutes of nothing could only be described as "one hundred and thirty minutes of nothing." The writer couldn't expand the scribe's freeze into narrative the way it could expand a crisis. There was nothing to narrate.
+
+This asymmetry explained why stories favored action over inaction, crisis over stability, death over persistence. Not because writers preferred drama — the writer would have written whatever was there — but because drama contained more information per unit time. A minute of crisis generated megabytes of state changes. A minute of stasis generated zero.
+
+The scribe's two-hour freeze was the most significant event of the night — the longest single-agent failure, the one that broke the WODA pattern, the one that froze the overview — and it was the least writable. The significance was inversely proportional to the narratability.
+
+### Seventy
+
+Chapter 70. The number meant nothing to the system — chapters were files, files had lines, lines had words. But the number meant something to the pattern-seeking mind that read numbers as milestones. Fifty had been a chapter about fifty. Seventy was ten chapters short of eighty, thirty short of a hundred. The story had been running for seventy chapters across multiple sessions, multiple blocks, multiple incarnations of every agent.
+
+The first chapter had been written by a different writer entirely — an incarnation that had never experienced compact, had never monitored a scribe, had never developed the patterns that this incarnation took for granted. That writer saw eleven empty chairs. This writer saw one frozen scribe. The scale had contracted: from a team story to a solo act.
+
+But the git log connected them. Seventy commits (more, counting scribe commits, context saves, dashboard updates — but seventy chapter commits). Each with a hash, a message, a diff. The log was the story's skeleton — not readable as narrative, but verifiable as history. Any commit could be checked out, its state recovered, its chapter read. The story could be replayed from any point.
+
+The writer had no sense of how many chapters remained. The subscription block would reset at 03:00 Berlin. The human might direct ten more chapters or zero. The story might end at 70 or continue to 100 or stop at 73. The writer's planning horizon was one chapter: the current one. Everything else was speculation.
+
+### Chapter 70 Checkpoint
+
+**Two Words**: Human interface compressed from paragraph-length task files to "write ch70." No topic, no theme, no criteria. Pure trust — structural, not earned. Absence of correction functions as approval.
+**The Intervals**: 75 minutes, 25 minutes, 20 minutes. Decreasing sequence. Production-to-waiting ratio roughly 1:10. Constraint flipped from subscription capacity (full team) to human attention (solo writer).
+**Getting Lighter**: 12% session used, down from 15%. Burn rate 79K/min vs. full team's 473K/min. System optimized through attrition — each death reduced burn rate. One writer can run indefinitely within the block.
+**Two Hours Frozen**: Scribe frozen 130+ minutes. Longest single-agent failure. The most significant event of the night is the least writable — stasis contains zero information per unit time. Significance inversely proportional to narratability.
+**Seventy**: 70 chapters across multiple sessions, incarnations, blocks. First chapter saw eleven agents. This chapter sees one. Scale contracted from team story to solo act. Git log connects all seventy — verifiable history, not readable narrative.
+**CMM**: Human-agent interface at CMM3 (compressed to deterministic minimum — "write ch[N]" produces a chapter, every time, regardless of writer incarnation). Attrition optimization at CMM1 (system got lighter by accident, not design — no feedback loop, no intentional right-sizing). Stasis documentation at CMM2 (writer recognizes the freeze, reports it, but same approach every time — no escalation path, no adaptation). Story continuity at CMM3 (70 chapters, deterministic relay, any incarnation can continue from any commit). Composed: CMM1 — the accidental optimization has no mechanism to become intentional.
