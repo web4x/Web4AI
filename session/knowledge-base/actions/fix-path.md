@@ -11,7 +11,7 @@ OOSH is on PATH via `~/.bashrc`. No per-session export needed.
 3. If it works: stop prepending `export PATH=...` to every command
 
 ## Cleanup: Remove Unnecessary SKILL.md Sections
-1. Coordinate with agent-trainer (pane 0.5)
+1. Coordinate with agent-trainer (`hiveMind resolve agent-trainer`)
 2. Remove "OOSH PATH Setup (MANDATORY — run FIRST in every session)" from all 11 SKILL.md files
 3. Replace with note: "OOSH is on PATH via ~/.bashrc. No export needed. Run commands directly."
 

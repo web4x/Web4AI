@@ -57,9 +57,9 @@ I am the WODA Writer — the W agent in the writer/scribe duo.
 
 ## Recovery Steps
 1. Read this file + learnings.md
-2. Check scribe: `otmux pane.capture projectTeam:1.1 30`
+2. Check scribe: `hiveMind monitor woda-scribe 30`
 3. Check subscription: `scrumMaster subscription`
-4. Start monitoring: `sleep 300 && otmux pane.capture projectTeam:1.1 15`
+4. Start monitoring: `sleep 300 && hiveMind monitor woda-scribe 15`
 5. Scribe overview partially caught up (Ch68-~78 organized, Ch79-81 may be pending)
 
 ---
