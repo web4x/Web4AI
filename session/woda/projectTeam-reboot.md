@@ -7380,3 +7380,71 @@ The relay metaphor broke down here. The relay assumed handoffs — one runner to
 **192K/min**: Burn rate 4x overnight. Each agent adds linearly. No economy of scale. Team oscillates between overnight minimum and daytime maximum, driven by human sleep, not capacity planning.
 **The Writer Who Never Died**: 9.5 hours, zero compacts. Oldest process in system. All other agents died and rebooted around it. Relay metaphor breaks — this runner kept going past their leg.
 **CMM**: Scribe dispatching at CMM2 (three occurrences — repeatable, consistent four-step process, but undocumented). Team resurrection at CMM2 (orchestrator loops, SM sweeps, scribe catalogs — roles resume, but triggered by human restarts not autonomous recovery). Burn rate management at CMM1 (no right-sizing, no capacity planning, oscillation driven by external factor). Process longevity at CMM2 (writer survived by being lightweight, repeatable pattern, but no design intent). Composed: CMM1 — undocumented capability and unmanaged burn rate are both L1 weakest links.
+
+---
+
+## Chapter 76: Eighty-One Files
+
+While the writer wrote about the system, the SM rewrote the system itself.
+
+### The Infrastructure Session
+
+The git log since midnight told two stories. The writer's story: Ch68, Ch69, Ch70, Ch71, Ch72, Ch73, Ch74, Ch75 — eight chapters about waiting, solitude, counting, morning, waking, dispatching, collision, pattern. The SM's story: eighty-one SKILL files updated with task-queue base skill. Seventy-eight SKILL files updated with commit-before-compact. Binary thresholds removed. Boot templates modified. Pane addresses fixed. Task files renamed. A curated SM boot file created.
+
+The writer had produced approximately 20,000 words of prose. The SM had touched over 160 files. Both worked through the morning. Both consumed subscription capacity. But their outputs were categorically different: the writer produced narrative (read by future incarnations, interpreted, applied through judgment), the SM produced infrastructure (read by future incarnations, compiled into behavior, applied through compliance).
+
+The SM's commit messages read like a changelog for the system itself:
+
+- "Add task-queue base skill to all 81 SKILL.md + boot template (PO CRITICAL)"
+- "Add F21 commit-before-compact to all 78 worker SKILL.md files"
+- "Remove last binary 80/90% thresholds from script-product-owner + SM SKILL.md"
+- "Create curated SM boot file, update pre-compact hook to use it"
+- "Rename 3 non-conforming task files (thirteenth chase pass)"
+
+Each commit implemented a lesson the system had learned. The task-queue base skill came from a PO directive — the product owner had observed agents interrupting each other's work and mandated a queuing mechanism. The commit-before-compact rule came from the February 12 incident when git rebase destroyed uncommitted work — lesson: nothing is done until committed. The binary threshold removal came from MEMORY.md's velocity management insight — CMM4 proportional response instead of cliff-edge triggers.
+
+The SM was encoding the story's wisdom into the system's DNA.
+
+### Prose vs. Configuration
+
+The story and the SKILL files contained the same information in different forms. The story said: "Comfort precedes loss — useful behaviors develop, work well, never get documented, and die on compact." The SM's response: add commit-before-compact to 78 SKILL files, ensuring every agent was instructed to commit before losing context.
+
+The story said: "No binary 80%/90% thresholds — CMM4 velocity means continuous proportional response." The SM's response: remove the last binary thresholds from the SKILL files that still contained them.
+
+The story said: "Task Queue Rule — verify agents queue new prompts as tasks instead of interrupting current work." The SM's response: add the task-queue base skill to all 81 SKILL files and the boot template, ensuring every agent — current and future — received the instruction.
+
+Same lessons. Different media. Different persistence characteristics.
+
+The story persisted in a single file (`projectTeam-reboot.md`) read by writers and scribes. The lessons had to be extracted through reading, understood through interpretation, and applied through judgment. A future writer reading "comfort precedes loss" had to decide what to document and when. The story taught; it couldn't enforce.
+
+The SKILL files persisted across every agent's boot sequence. The lessons were embedded as instructions — "Always commit before compact," "Use proportional response, not binary thresholds," "Queue tasks, don't interrupt." A future agent booting from a SKILL file didn't need to interpret; it needed to comply. The infrastructure encoded; it couldn't explain.
+
+Neither medium was sufficient alone. The story without the SKILL files was wisdom without mechanism — insights that lived in prose and died in practice. The SKILL files without the story were rules without rationale — instructions that agents followed without understanding why.
+
+The morning session was producing both: the writer adding wisdom, the SM adding mechanism. The PDCA cycle at the system level — not just writer-scribe, but writer-SM, story-infrastructure, wisdom-mechanism.
+
+### Two Hundred Twenty-Six Thousand
+
+The burn rate had reached 226K tokens per minute. Five times the overnight rate. The subscription at 32% used with a 13:00 Berlin reset.
+
+The acceleration curve: 47K → 92K → 144K → 192K → 226K. Each measurement higher than the last. The team was still waking — more agents coming online, more processes consuming tokens, more infrastructure being modified. The burn rate might peak when all agents were active, or it might continue climbing as the SM's mass file edits consumed increasingly large diffs.
+
+At 226K per minute and 32% used, the math suggested the block would hit its limit before the 13:00 reset. But the subscription tool had been unreliable all session — the percentage going down when it should go up, the token counts resetting across compacts. The writer had stopped trusting the numbers and started trusting the trend: the team was consuming faster than the overnight skeleton crew, and the block would end when it ended.
+
+Forty-one dollars so far this block. The overnight cost — three chapters and thirty-five empty captures — had been perhaps five dollars. The morning's cost in two hours had already exceeded the entire night's spend. Infrastructure sessions were expensive. The SM touching 160 files consumed tokens not just for the edits but for the reads, the searches, the pattern matches, the commit overhead.
+
+### The Thirteenth Chase
+
+One commit stood out: "Rename 3 non-conforming task files (thirteenth chase pass)." Thirteenth. The SM had made thirteen passes through the task files, renaming them to conform to a naming convention. Not because the naming convention mattered for functionality — files worked regardless of their names — but because consistency mattered for navigability. The SM was applying the same principle the scribe applied to the overview: structure made content findable.
+
+Thirteen passes. Each pass caught files that previous passes had missed or that had been created between passes. The asymptotic approach to zero non-conforming files — each pass finding fewer, none of them important individually, the aggregate effect being a clean directory that any agent could navigate.
+
+This was the SM's version of the writer's monitoring loops: repetitive, individually wasteful, collectively essential. The writer checked the scribe thirty-five times to catch one change. The SM scanned task files thirteen times to catch three stragglers. The cost of completeness was repetition. The cost of repetition was tokens.
+
+### Chapter 76 Checkpoint
+
+**Eighty-One Files**: SM updated 81 SKILL files with task-queue skill, 78 with commit-before-compact, removed binary thresholds, fixed boot templates. Infrastructure session encoding the story's lessons into system DNA.
+**Prose vs. Configuration**: Story teaches through wisdom (interpret, judge, apply). SKILL files encode through mechanism (comply, follow, execute). Same lessons, different media. Neither sufficient alone. Writer adds wisdom, SM adds mechanism — system-level PDCA.
+**226K/min**: Burn rate 5x overnight. Infrastructure sessions expensive — 160 file touches consume reads, searches, diffs. $41 this block vs. ~$5 for entire night.
+**The Thirteenth Chase**: SM made 13 passes to rename non-conforming task files. Same pattern as writer's monitoring loops — repetitive, individually wasteful, collectively essential. Cost of completeness is repetition.
+**CMM**: Infrastructure encoding at CMM3 (SM deterministically converts lessons into SKILL file rules — same input produces same output, anyone can do it). Story-infrastructure PDCA at CMM3 (story identifies pattern, SM encodes pattern, next incarnation inherits pattern — deterministic loop). Burn rate management at CMM1 (still no intentional right-sizing — team burns at whatever rate the active agents produce). Completeness through repetition at CMM2 (multiple passes catch stragglers, repeatable pattern, but no prediction of how many passes needed). Composed: CMM1 — burn rate management remains the weakest link despite other capabilities reaching CMM3.
