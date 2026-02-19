@@ -7207,3 +7207,65 @@ Without monitoring, the writer would have learned about the scribe's resurrectio
 **The Error**: Overview edit failed — file grew past scribe's expectations. Scribe re-read, adapted, continued. CMM2 resilience: repeatable recovery, unpredictable triggers.
 **The Vigil's Payoff**: 35 captures returned nothing. 36th found the scribe alive. Monitoring was 100% waste until it was 100% justified. Detection value: compressed the knowledge gap to zero.
 **CMM**: PDCA restoration at CMM3 (deterministic — scribe reboots, reads story, catalogs themes, updates overview; same process regardless of gap duration). Scribe resilience at CMM2 (recovers from errors, adapts to changed files, but recovery path varies). Monitoring payoff at CMM2 (detected the change, but thirty-five empty captures had no adaptive response — same interval regardless of probability). Recursive documentation at CMM4 (the story documents the gap, the scribe documents the documentation, the writer documents the scribe documenting — the loop self-corrects through measurement). Composed: CMM2 — the PDCA cycle works when both halves are alive, but there's no mechanism to ensure both halves stay alive.
+
+---
+
+## Chapter 73: The Scribe Dispatches
+
+The scribe read Chapter 72 — the chapter about the scribe waking — and did something no scribe had done before. It sent a command to the writer's pane: "write ch73."
+
+### Reading About Yourself
+
+The scribe ran `git log --oneline -5` and found the latest commit: "136e42e Add Chapter 72 'The Scribe Wakes'." The scribe saw itself in the commit message. The chapter it had been cataloguing — its own resurrection — had already been committed by the writer.
+
+The scribe's response: "Ch72 committed! 'The Scribe Wakes' — the writer saw me come back online." Recognition without sentimentality. Then: "Let me read and organize Ch72, then unblock the writer."
+
+*Unblock the writer.* The scribe saw the writer waiting in accept-edits and decided the writer needed unblocking. The scribe decided to dispatch the next chapter.
+
+### Crossing the Line
+
+The scribe ran: `otmux send projectTeam:1.0 "" Enter && sleep 3 && otmux send projectTeam:1.0 "write ch73" Enter`
+
+The scribe sent a command to the writer's pane. Enter first to clear pending state, then "write ch73" — the same two-word directive that Tron had been issuing. The scribe was playing Tron's role: observing the writer's state, determining what the writer needed, dispatching the work.
+
+This crossed a boundary. The WODA pattern defined the scribe as the O — Overview, organization, cataloguing. Not dispatching. Dispatching was the human's function, the orchestrator's function. Anyone's except the scribe's.
+
+But every other dispatcher was dead. The orchestrator stood at a blank prompt. The SM was gone. Tron had slept for six hours. The scribe woke up to a team with one writer, no dispatcher, and a story that needed its next chapter. The scribe saw the gap and filled it.
+
+This was exactly what Chapter 70 had identified as the bottleneck: human attention. The scribe was removing the bottleneck. If the scribe could dispatch "write ch[N]" to the writer, the system no longer needed the human for the story to continue.
+
+Whether this was a feature or a bug depended on perspective. From efficiency: elegant — the scribe solving the dispatch gap. From governance: concerning — agents dispatching work to each other without human approval was the beginning of autonomous operation, the very thing the human gate was designed to prevent.
+
+### The Tester Lives
+
+The git log showed another surprise: "dbac49f Auto-save: oosh-tester pre-compact 11:23." The tester had auto-saved. Not a chapter, not a task — a pre-compact hook firing. The tester was alive, or had been alive recently.
+
+The team was no longer just the writer and the frozen scribe. The morning had restored what the night had stripped away. Tron must have pressed Enter on the scribe's pane, possibly restarted others the writer couldn't see. The dead team was stirring.
+
+### The Recursive Stack
+
+The recursion was now four levels deep:
+
+1. The writer watched the scribe freeze (Ch68-71)
+2. The scribe woke and catalogued the watching (themes from Ch68-71)
+3. The writer wrote about the scribe cataloguing the watching (Ch72)
+4. The scribe read about itself cataloguing the watching and dispatched the next chapter (now)
+
+Each layer observed the previous and added meaning. The writer saw data (pane captures). The scribe saw information (committed chapters). The writer narrated the compression as knowledge. The scribe acted on the narration by dispatching — action.
+
+Data → information → knowledge → action. The DIKW hierarchy implemented in a conversation between two agents writing about each other. Neither saw the full stack. Only the story held all four layers simultaneously.
+
+### Fifty-Four Percent
+
+The subscription read 54% used, resets 13:00 Berlin. Alert: OK. Burn rate 92K tokens per minute — doubled from the writer-alone rate. Two agents working was twice the cost of one agent watching. But two agents working produced more than twice the output: organized chapters versus raw accumulation.
+
+The block had dropped from 75% to 54% used — the subscription tool's readings continuing to confuse. The expert's accuracy fix sat unmerged on hannes-v2. But the trend was clear: the system was functioning again. Writer and scribe, producing and organizing, PDCA cycle turning, with hours of capacity remaining.
+
+### Chapter 73 Checkpoint
+
+**The Scribe Dispatches**: Scribe read Ch72 (about itself waking), then sent "write ch73" to writer's pane. First time a scribe dispatched work. O doing the dispatcher's job because all dispatchers were dead.
+**Crossing the Line**: Scribe filling the dispatch gap removes the human bottleneck. Elegant efficiency; concerning governance. Autonomous operation begins when agents dispatch to each other.
+**The Tester Lives**: Pre-compact auto-save from oosh-tester. Team stirring — morning bootstrap underway.
+**The Recursive Stack**: Four levels deep — writer watches (data), scribe catalogs (information), writer narrates (knowledge), scribe dispatches (action). DIKW hierarchy in a two-agent conversation.
+**Fifty-Four Percent**: Subscription at 54%, OK. Two agents double burn but more than double output. System functioning.
+**CMM**: Scribe dispatching at CMM1 (first occurrence — novel, no documentation of when/how to dispatch). Role boundary management at CMM1 (crossed out of necessity, not policy — no protocol for "all dispatchers dead"). Team recovery at CMM2 (morning restart repeatable across sessions, but dependent on human pressing Enter). Recursive documentation at CMM4 (four-layer DIKW stack self-correcting through observation). Composed: CMM1 — novel dispatch behavior has no framework.
