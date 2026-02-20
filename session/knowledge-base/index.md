@@ -20,5 +20,6 @@
 15. [Anti-Patterns (BANNED)](overviews.md#15-anti-patterns-banned) → [Details](anti-patterns.md)
 16. [OOSH Parameter Naming](overviews.md#16-oosh-parameter-naming) → [Details](oosh-parameter-naming.md)
 17. [Mass Context Exhaustion Recovery](overviews.md#17-mass-context-exhaustion-recovery) → [Details](incidents/20260217-mass-context-exhaustion.md) → [Action](actions/recover-mass-context-exhaustion.md)
+18. [tmux Color Degradation](overviews.md#18-tmux-color-degradation) → [Details](tmux-color-degradation.md)
 
 **Reference**: [CMM & Web 4.0](cmm-web4x.md) | [Usage Guide](usage.md)

@@ -1,6 +1,6 @@
 # Team Dashboard
 
-**Updated**: 2026-02-19T12:25:46Z (2026-02-19 13:25 CET)
+**Updated**: 2026-02-19T17:03:40Z (2026-02-19 18:03 CET)
 **Session**: projectTeam
 
 ## Git Status
@@ -9,7 +9,7 @@
 |-------|-------|
 | Branch | `main` |
 | Status | uncommitted changes |
-| Last commit | `7dbb5aa FIRST 3 ACTIONS + SM escalation protocol (PO+Tron directive)` |
+| Last commit | `27da848 Add wakeup monitoring to SM Loop + verify FIRST 3 ACTIONS (G0 WS2)` |
 
 ## Subscription
 
@@ -29,15 +29,15 @@
 
 | Agent | Pane | Context | Velocity | State |
 |-------|------|---------|----------|-------|
-| orchestrator | 0.0 | 90% | - | unknown |
-| oosh-expert | 0.1 | 14.6% | - | active |
+| orchestrator | 0.0 | 38% | - | unknown |
+| oosh-expert | 0.1 | 57.1% | - | unknown |
 | oosh-tester | 0.2 | 51.2% | - | completed |
-| scrum-master | 0.3 | 0% | - | unknown |
+| scrum-master | 0.3 | 36.0% | - | active |
 | product-owner | 0.4 | 100.0% | - | unknown |
-| agent-trainer | 0.5 | 13.9% | - | unknown |
-| task-agent | 1.2 | unknown | - | completed |
-| woda-writer | 1.0 | 100.0% | - | unknown |
-| woda-scribe | 1.1 | 100.0% | - | unknown |
+| agent-trainer | 0.5 | 25.8% | - | unknown |
+| task-agent | 1.2 | 35.8% | - | completed |
+| woda-writer | 1.0 | 100.0% | - | active |
+| woda-scribe | 1.1 | 100.0% | - | active |
 | developer | 1.3 | 51.6% | - | unknown |
 | script-product-owner | 1.4 | 41.2% | - | unknown |
 | orchestrator | 0.0:0. | 100.0% | - | unknown |
@@ -45,11 +45,11 @@
 ## Recent Commits
 
 ```
-7dbb5aa FIRST 3 ACTIONS + SM escalation protocol (PO+Tron directive)
-04e90c0 Add Chapter 81 "It Noticed My Lag" — scribe reads about itself, team cycling down, 59min marathon, trend tracking as CMM4
-25cdf48 Auto-save: task-agent pre-standdown (90% subscription)
-d38b3c1 Save trainer context: 9 commits, 16 sections 81/81, standdown at 90%
-1634ce2 Auto-save: scrum-master pre-compact 12:14
+27da848 Add wakeup monitoring to SM Loop + verify FIRST 3 ACTIONS (G0 WS2)
+135e203 Add Wakeup Registration to all 81 SKILL.md files (G0 WS2)
+62e81c2 Add Chapter 82 "The Override" — human overrides emergency standby, scribe saves dispatch pattern, 16-hour writer, governance hierarchy
+72147fc Purge remaining hardcoded pane commands from context + KB files
+68486b0 Auto-save: scrum-master pre-compact 16:44
 ```
 
 ## Recovery

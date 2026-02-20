@@ -136,3 +136,19 @@ OOSH parameter names MUST be valid bash identifiers (letters, numbers, underscor
 OOSH converts `<param>` to `PARAM_param` via `declare`. Dashes cause bash arithmetic errors.
 Detection: `grep -E '# <[a-zA-Z0-9]*-' scriptname`
 -> Details: [oosh-parameter-naming.md](oosh-parameter-naming.md)
+
+---
+
+### 17. Mass Context Exhaustion Recovery
+All 11 agents hit 0% simultaneously — 40 min chaos. Recovery order = hierarchy: SM first → orchestrator → workers.
+0% context = /clear only (/compact can't work). Max 2 large tasks in parallel. SM must monitor context %.
+-> Details: [incidents/20260217-mass-context-exhaustion.md](incidents/20260217-mass-context-exhaustion.md)
+-> Actions: [recover-mass-context-exhaustion.md](actions/recover-mass-context-exhaustion.md)
+
+---
+
+### 18. tmux Color Degradation
+tmux renders using the **lowest-capability terminal** among all attached clients. One stale client without `Tc`/`RGB` drags ALL panes to black-and-white.
+Diagnose: `tmux info | grep -iE "256|color|RGB|Tc"`. Fix: detach stale clients (`tmux detach-client -t /dev/ttyXXX`).
+Composed capability = weakest link (CMM #1). Env vars are necessary but not sufficient — always measure after window switch.
+-> Details: [tmux-color-degradation.md](tmux-color-degradation.md)
