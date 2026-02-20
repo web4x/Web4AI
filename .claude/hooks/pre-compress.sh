@@ -128,11 +128,21 @@ if [ -n "$PANE_TARGET" ]; then
         echo $$ > "$RESUME_PID_FILE"
         sleep 15
         tmux send-keys -t "$PANE_TARGET" "$RESUME_MSG" Enter Enter
+        # SM auto-cycle: after boot prompt is sent, schedule cycle start
+        if [ "$CURRENT_ROLE" = "scrum-master" ]; then
+            sleep 45
+            # Only send if SM is idle (at prompt), not if already working
+            PANE_CONTENT=$(tmux capture-pane -t "$PANE_TARGET" -p 2>/dev/null | tail -3)
+            if echo "$PANE_CONTENT" | grep -qF '❯'; then
+                tmux send-keys -t "$PANE_TARGET" "scrumMaster cycle projectTeam 60" Enter
+            fi
+        fi
         rm -f "$RESUME_PID_FILE"
     ) &>/dev/null &
     disown 2>/dev/null
 
     echo "Auto-resume: will send boot file reference to $PANE_TARGET in 15s"
+    [ "$CURRENT_ROLE" = "scrum-master" ] && echo "Auto-cycle: SM will auto-start cycle 60s after boot"
 fi
 
 echo "=== END ==="
