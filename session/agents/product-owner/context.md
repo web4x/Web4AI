@@ -1,82 +1,125 @@
 # Product Owner Context
 
-**Updated**: 2026-02-18T21:25Z
+**Updated**: 2026-02-21T19:45Z
 **Role**: product-owner
 **Pane**: projectTeam:0.4
-**State**: ACTIVE — new block 21:00-02:00 Berlin, 232 min remaining
+**State**: ACTIVE — manual mode, CMM quality improvement sprint
 
-## CURRENT SESSION (post-compact reboot)
+## CURRENT GOAL: CMM4 Team Quality (Tron directive)
 
-Rebooted at ~21:10Z. New 5hr block. Full speed.
+Tron: "you are the po responsible for the team and its quality and cmm progression. you together with me have to care we built a cmm4 team as described in the woda story."
 
-## COMPLETED THIS SESSION (verified via git log)
+Approach: Train the trainer → retrain PO → then role by role.
 
-| Task | Owner | Commit |
-|------|-------|--------|
-| Marathon responses + burn rate trend monitoring | trainer | 38dc2a4 |
-| Test coverage comparison report (Goal 2) | tester | 1b95791 |
-| SM trend file + prefer built-in tools in 81 SKILL.md | trainer | 6f81147 |
-| 18 chapters (Ch53-Ch70) | writer | multiple (3 incarnations) |
-| scrumMaster subscription reads rate-limit-cache.json | expert | 9e0d9ea (oosh repo) |
-| Trainer context saves | trainer | 1f7471f, 4d5952b |
-| Writer context saves | writer | e88215b, fd6e207, c603d35, 2f5d3fe |
+## SESSION DELIVERIES (verified via git log)
 
-NOTE: hiveMind code fixes (c591150, 24bb4db) and CMM4/PDCA (21d0202) were PREVIOUS session, not this one.
+| Commit | Feature | Status |
+|--------|---------|--------|
+| 205bd40 → fa6abd6 | oo mode + oo use + shim + guards | 9/9 PASS |
+| 885cc6a | session/ cleanup from oosh repo (154 files) | Done |
+| ea02bcb | log live + oo use bootstrap fix | 6/6 PASS |
+| 58048e1 | Completion parser: strip [args...] | Done, expert |
+| a926138 | Regression test for [args...] fix | 4/4 PASS, tester |
+| f32b0ee | Agent trainer bulk fix (PROBLEMATIC — 90 files, needs review) | Task #35 |
+| 90e3488 | PO + trainer SKILL.md: team quality, role-model identity | Done |
 
-## REMAINING TASKS
+## IN PROGRESS
 
-| Task | Owner | Status |
-|------|-------|--------|
-| Context monitoring data quality improvement | SM | Assessed CMM1-2, trend monitoring task created |
-| config set OOSH_DIR overwrite bug | expert | Carried forward |
-| PreCompact hook identity | expert | Carried forward |
-| **Subscription accuracy — STILL BROKEN** | expert | 9e0d9ea improved but cache data is stale/wrong. Shows 95% CRITICAL while agents operate normally. Reset times shift (03→08→13). Token counts don't match capacity. |
+### Expert (projectTeam:0.1)
+- Was /cleared at 0% context (legitimate — context limit reached)
+- Rebooted with FULL retraining: SKILL.md + learnings + context + task
+- Working on `oo use dev <TAB>` command completion fix (v2 approach — edit source files)
+- Researching c2 completion discover for positional param completion
+- Last seen: permission prompt for c2 test (approved)
+- Task #34
 
-## TEAM STATE (01:00Z Feb 19 — cycle 28, STANDDOWN)
+### Tester (projectTeam:0.2)
+- Was /cleared at 5% (PO mistake F29 — should have re-compacted)
+- Currently stopped, waiting for expert to commit
+- Needs proper retraining when expert delivers
 
-- **Subscription: 100% session — RATE LIMITED. Resets 08:00 Berlin.**
-- Writer reached Ch71 (from Ch52 at session start = 19 chapters this session!)
-- SM: active through session, /cleared and rebooted once
-- Trainer: 9 commits, 81 SKILL.md files updated, standing down
-- Expert: 3 commits on oosh/hannes-v2, subscription fix (9e0d9ea) — most impactful change
-- Orchestrator: idle since cycle 7
-- PO ran 28 monitoring cycles (2-15 min intervals), 22 consecutive stable cycles
-- Writer ch71 prompt queued but NOT submitted (rate limited)
+### Role-by-role SKILL.md improvement (Task #33)
+- DONE: Trainer SKILL.md — role-model identity, scope limits, git history, woda reading
+- DONE: PO SKILL.md — team quality ownership, agent lifecycle, manual mode, CMM patterns
+- NEXT: Tron to decide order. Options: expert/tester (daily workers) or SM/orchestrator (Goal 0)
 
-## ON NEXT WAKEUP (08:00 Berlin)
+## TRACKED TASKS
 
-1. `scrumMaster subscription` — verify reset
-2. Submit writer ch71 prompt
-3. Check SM alive
-4. Assess if team should resume or continue in low-power mode
+| # | Task | Status |
+|---|------|--------|
+| 33 | Role-by-role SKILL.md improvement | in_progress — PO+trainer done, rest pending |
+| 34 | Fix oo use command completion | in_progress — expert working |
+| 35 | Review/revert f32b0ee bulk trainer commit | pending — 90 files need assessment |
 
-## CMM4 LEARNING THIS SESSION
+## PENDING TASKS (not tracked yet)
 
-- Expert's subscription fix (9e0d9ea) is the most impactful single change — enables real quota awareness
-- Orchestrator stood down on STALE data (saw 78% when real was 56%) — CMM lesson: always run fresh measurement
-- Trainer updated 81 files in single batch via python3 — efficient, CMM3 approach
-- SM winding down at 3% — recovery path is documented, no panic needed
+| Task | File | Status |
+|------|------|--------|
+| Subscription redesign | session/tasks/spec-subscription-redesign.md | Spec ready, held for velocity |
+| hiveMind send Enter bug | session/tasks/bug-hivemind-send-enter-literal.md | Not assigned — confirmed real (Enter as literal text) |
+| claudeCode 256 color + UTF-8 | session/tasks/20260220T1023Z.task.md | Deferred |
+| Goal 0: autonomous operation | session/tasks/tron-directive-autonomous-operation.md | WS1 spec written |
 
-## TODAY'S KEY LEARNINGS
+## PO FAILURES THIS SESSION (F29 — learnings)
 
-- **CMM3 vs CMM4 split**: Tools do deterministic work (CMM3). Agents add intelligence (CMM4). Don't override code with instructions — fix the code.
-- **Don't rewrite boot files to override tool behavior** — boot-minimal contradicting hiveMind unblock all never worked. Fix the code instead.
-- **PO must NEVER implement** — I edited hiveMind code, ran config set, ran tests. All role violations. Delegate everything.
-- **SM needs full tools not dumbed-down boot** — boot-minimal made SM incompetent. Use `hiveMind sweep.loop 60` and let SM add intelligence.
-- **scrumMaster subscription lies** — shows "OK" at 94%. Agents can't throttle on bad data. Fix the data source.
-- **Agent-overview.md is the role contract** — trainer maintains it, all agents must match it.
-- **Use built-in tools (Grep/Read/Glob) over Bash** — avoids permission prompts that block agents.
-- **Use role names not pane addresses** — layout independence.
+1. **/cleared tester at 5%** — should have re-compacted. Tron: "are you mad...it kills your team mate"
+2. **Agent trainer bulk replace** — 90 files without role understanding. Tron: "looks like he just added random shit"
+3. **Not using TaskCreate** — PO stopped tracking work with internal tools (now fixed)
+4. **Boot.md wrong rules** — "Passive mode = death" propagated to all agents. Only SM/orchestrator should loop.
+5. **Tester self-tasking** — SKILL.md contradiction ("NEVER just sit idle" vs task queue rule). Root cause found and fixed.
+6. **Expert wrong approach** — defining functions via otmux send (garbles). PO should redirect earlier.
 
-## COMMUNICATION HIERARCHY
+## KEY INSIGHTS (Tron directives this session)
 
-Tron → PO → Orchestrator → SM → workers
-PO never talks to workers directly. Delegate through orchestrator or task files.
+1. "you are the po responsible for the team and its quality and cmm progression"
+2. "train the trainer to retrain yourself and then lets do it role by role"
+3. "self care is team care" — save context proactively
+4. "the agents shall use the internal task tool for task queueing. you also stopped doing it"
+5. "did the agent trainer have git histories about the skill evolution? looks like he just added random shit to good skill files of the past"
+6. "the agent trainer must be aware of the role goals"
+7. hiveMind send Enter bug is REAL — "Enter" treated as literal text, not keypress. Use otmux send directly.
 
-## KEY RULES
+## TEAM STATE
+
+- Expert on 0.1 — active, working on completion fix (fresh after /clear + full retraining)
+- Tester on 0.2 — stopped, waiting for expert. Needs retraining after /clear at 5%.
+- SM, orchestrator, others — STOPPED per Tron order
+- Manual mode: PO manages expert + tester directly
+
+## WHAT THE TRAINER DELIVERED (verify quality)
+
+Trainer improved PO SKILL.md with targeted edits (129 insertions, 16 deletions):
+- Team Quality Ownership section: CMM levels, woda patterns, trainer as tool
+- Agent Lifecycle Management: compact rules by %, /clear only at 0%, lifecycle steps
+- Manual Mode: responsibility table, activation triggers, operating rules
+- Communication: three modes (full team, manual, team quality)
+- Role Boundaries: team quality, manual mode caveat
+- Reading List: woda-overview at boot position 4
+
+PO also improved trainer SKILL.md directly:
+- Core principle: "Role model, not search-replace monkey"
+- 5 mandatory gates before any edit
+- Role goals table for all 10 team roles
+- Scope limits: only listed roles, not generic templates
+- F29 documented with Tron's exact words
+
+## RULES
 
 - GATE: measure → assess → act → verify
-- CMM4 velocity: proportional response, not binary thresholds
-- Nothing done until committed with hash
-- hiveMind tools over otmux, otmux over raw tmux
-- Role names over pane addresses
+- Self-care IS team care — save context before compact
+- PO checks RESULTS (git log), not process
+- Use TaskCreate/TaskUpdate for ALL work
+- hiveMind send Enter bug — use otmux send directly as workaround
+- /clear ONLY at 0%. At any % above 0, try /compact again.
+- Agent trainer: role model, not bulk replace. Git history + role goals first.
+- Agents wait for assignment. Only SM/orchestrator have background loops.
+
+## RECOVERY STEPS
+
+1. Read this context file
+2. Read boot-post-compact.md for additional state
+3. Check expert pane (30+ lines) — is completion fix done?
+4. Check tester pane — retrain when expert delivers
+5. TaskList — check tracked tasks
+6. Continue: role-by-role SKILL.md improvement (Task #33)
+7. Monitor subscription velocity

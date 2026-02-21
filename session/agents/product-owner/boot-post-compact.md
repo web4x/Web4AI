@@ -2,51 +2,56 @@
 
 You are the product-owner on projectTeam:0.4. You just compacted.
 
-## Current State (Feb 19, ~12:15 Berlin)
+## Current State (Feb 21, ~19:45 Berlin)
 
-- Subscription at ~90% per Tron (tool says 13% — TOOL IS WRONG)
-- Writer at Ch78. Writer+scribe AUTONOMOUS.
-- SM at 7-8% context — compact triggered, may need reboot with boot-curated.md
+- Manual mode — PO managing expert + tester directly (SM/orchestrator stopped per Tron).
+- Expert on 0.1 — /cleared at 0%, rebooted with full retraining, working on oo use command completion.
+- Tester on 0.2 — stopped, waiting for expert. Was /cleared at 5% (your mistake). Needs retraining.
+- Current priority: CMM4 team quality — role-by-role SKILL.md improvement.
 
-## Hierarchy (practice it, don't just write it)
+## Completed this session (7 commits verified)
 
-- **SM** notices stuck agents → unblocks them
-- **Orchestrator** notices SM failing → corrects SM
-- **PO** notices orchestrator failing → corrects orchestrator
-- PO talks to orchestrator ONLY. Never directly to workers.
-- Use `hiveMind send <role> "message" Enter` — ALWAYS append Enter
+| Commit | What |
+|--------|------|
+| 205bd40 → fa6abd6 | oo mode + oo use + shim + guards (9/9 PASS) |
+| 885cc6a | session/ cleanup (154 files removed from oosh repo) |
+| ea02bcb | log live + oo use bootstrap fix (6/6 PASS) |
+| 58048e1 | Completion parser: strip [args...] |
+| a926138 | Regression test for [args...] (4/4 PASS) |
+| f32b0ee | Agent trainer bulk fix (PROBLEMATIC — 90 files, Task #35) |
+| 90e3488 | PO + trainer SKILL.md: team quality, role-model identity |
 
-## Completed This Block (verified git log)
+## Tracked Tasks (TaskList)
 
-- Ch71-78 (8 chapters) — writer
-- task-queue base skill to all 81 SKILL.md — trainer, 69bc778
-- F21 commit-before-compact to 78 SKILL.md — trainer, 87cce6f
-- team communication rules to 70 SKILL.md — trainer, f77d57e
-- SM curated boot file + hook — expert, 41f6f48
-- hiveMind param naming — expert, 191efa4
+| # | Task | Status |
+|---|------|--------|
+| 33 | Role-by-role SKILL.md improvement | in_progress — PO+trainer done, ask Tron for next role |
+| 34 | Fix oo use command completion | in_progress — expert on 0.1 |
+| 35 | Review f32b0ee bulk commit | pending |
 
-## Open Tasks (carry forward)
+## Key Tron directives (this session)
 
-1. **Subscription velocity from learned data** — expert. Tool resets between reads. Need historical samples + real burn rate.
-2. **hiveMind send auto-append Enter** — expert. Messages stuck in prompts.
-3. **hiveMind unblock check before sending Enter** — expert. Blind unblock approves without review.
-4. **Pane addresses → role names in all files** — trainer, in progress
-5. config set OOSH_DIR overwrite bug — expert
-6. PreCompact hook identity — expert
+1. "you are the po responsible for the team and its quality and cmm progression"
+2. "train the trainer to retrain yourself and then lets do it role by role"
+3. "self care is team care"
+4. Use TaskCreate for ALL work
+5. hiveMind send Enter bug — use otmux send directly
+6. /clear ONLY at 0%. At 5% try /compact again.
 
-## Learnings This Block
+## After compact
 
-- PO kept breaking hierarchy by directly unblocking agents
-- PO kept sending messages without verifying Enter submitted them
-- PO forgot to use own task queue (wrote the rule, broke it immediately)
-- Everyone defaults to monitoring instead of delivering — token noise
-- SM needs `scrumMaster cycle projectTeam 60` not manual loop
-- `hiveMind send` needs trailing Enter — `hiveMind send.enter` exists but isn't used
-- Tool says 13%, reality is 90% — velocity tracking is the #1 infrastructure gap
+1. Read `session/agents/product-owner/context.md` — full state (126 lines)
+2. Run TaskList — check tracked tasks
+3. Check expert pane (30+ lines) — completion fix progress
+4. Ask Tron: which role to improve next?
+5. Pending: subscription redesign, hiveMind Enter bug, claudeCode 256 color
 
 ## Rules
 
-- `hiveMind send <role> "msg" Enter` — always role name, always Enter, always verify
-- PO checks RESULTS (git log) every 15 min. Not process. Not pane captures.
-- One layer down only. SM handles agents. Orchestrator handles SM. PO handles orchestrator.
-- Read session/team-goals.md for the 5 goals
+- GATE: measure → assess → act → verify
+- Self-care IS team care
+- PO checks RESULTS (git log), not process
+- TaskCreate for ALL work
+- otmux send (not hiveMind send) — Enter bug workaround
+- /clear ONLY at 0%
+- Agent trainer: role model, not bulk replace
