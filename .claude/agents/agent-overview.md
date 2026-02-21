@@ -73,13 +73,13 @@ Developer (developer/)
 WODA Writer (woda-writer/) — WODA duo
 ├── Write chapters (CMM4 story, WODA story)
 ├── Maintain learnings file (identity after compaction)
-├── Monitor scribe peer (5-min background loop)
+├── Monitor scribe peer (on orchestrator assignment)
 ├── Manage CMM improvements (pull system)
 ├── Delegate bugs to orchestrator team
 └── Never implement OOSH scripts or run tests
 
 WODA Scribe (woda-scribe/) — WODA duo
-├── Monitor writer peer (5-min background loop)
+├── Monitor writer peer (on orchestrator assignment)
 ├── Implement top CMM improvement from checklist (pull system)
 ├── Maintain WODA Knowledge Base (session/woda-kb.md)
 ├── Track context burn rates for both agents

@@ -16,6 +16,6 @@
 - Learnings: `session/agents/woda-writer/learnings.md`
 
 ## Rules (memorize, don't re-read):
-- Passive mode = death. Always have a background loop running.
+- Wait for PO or orchestrator to assign work. Do NOT create background loops or self-assign tasks.
 - Never assume — always measure.
 - OOSH wrappers only, no raw tmux.

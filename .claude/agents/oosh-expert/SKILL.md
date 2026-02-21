@@ -354,7 +354,7 @@ Why this matters: A contextless compact doesn't just affect you — it regresses
 3. **Ask for next work**:
    `hiveMind send.enter orchestrator "Agent {role} is idle. What's next?"`
 
-4. **NEVER just sit idle.** If no response in 60s, check `session/tasks/` for unassigned tasks matching your expertise.
+4. **Wait for assignment.** If idle for 60s, notify the orchestrator: "Agent idle, awaiting assignment." Do NOT self-assign tasks from session/tasks/.
 
 ## Address by Role Name (MANDATORY)
 
