@@ -30,7 +30,11 @@ One pre-existing framework issue: OOSH `this.start` dispatches dotted methods tw
 | 2 | `odocker file.find naked_ubuntu_20_04` | Find Dockerfile | Found via workspace match: `.../nakedUbuntu/20.04/Dockerfile` | **PASS** |
 | 3 | `odocker file.find` (no args) | Usage error | Correct error message | **PASS** (doubled — framework bug) |
 | 4 | `odocker file.find nonexistent_thing` | Graceful error | `Not found as container or image` | **PASS** (doubled — framework bug) |
-| 5 | Tab completion | Deferred | Expert pane blocked on permissions during first round | **DEFERRED** |
+| 5a | Tab completion: function exists | `odocker.file.find.completion.container-or-image` declared | Confirmed via `declare -F` | **PASS** |
+| 5b | Tab completion: output | Lists containers + images | Returns 5 items: 2 containers (`fervent_ritchie`, `updown-dev-container`) + 3 images | **PASS** |
+| 5c | Tab completion: c2 discovery | `this.functionExists` finds function | Confirmed in bash context with c2 sourced | **PASS** |
+| 5d | Tab completion: naming | Hyphenated param `container-or-image` | Only odocker method using hyphens in codebase — functional but unique. All others use single words. | **PASS** (note) |
+| 5e | Tab completion: interactive | Actual `<tab>` in live bash terminal | Requires interactive shell — cannot test from non-interactive env | **DEFERRED** |
 | 6 | `odocker build` label injection | Deferred | No safe rebuild target available | **DEFERRED** |
 
 ## workspace.list
