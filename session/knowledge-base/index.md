@@ -22,4 +22,7 @@
 17. [Mass Context Exhaustion Recovery](overviews.md#17-mass-context-exhaustion-recovery) → [Details](incidents/20260217-mass-context-exhaustion.md) → [Action](actions/recover-mass-context-exhaustion.md)
 18. [tmux Color Degradation](overviews.md#18-tmux-color-degradation) → [Details](tmux-color-degradation.md)
 
+19. [Fractal PDCA — Reproducible Team Boot](fractal-pdca-remote-boot.md)
+20. [Docker Image Lifecycle](docker-image-lifecycle.md)
+
 **Reference**: [CMM & Web 4.0](cmm-web4x.md) | [Usage Guide](usage.md)
