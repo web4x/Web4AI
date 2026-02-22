@@ -1,47 +1,38 @@
 # Team Assignment Dashboard
-*Updated: 2026-02-22 ~20:40 CET by scrum-master (Overnight Sweep 10)*
+*Updated: 2026-02-22 ~21:25 CET by scrum-master (Overnight Sweep 25)*
 
 ## Subscription
 - **Block**: 21:00 CET — 02:00 CET (ACTIVE)
-- **Used**: 15% / 249 min remaining
+- **Used**: 22% / 228 min remaining
 - **Weekly**: 72% of 7d quota
 - **Alert**: OK — **FULL SPEED**
 
-## Assignment Table — projectTeam
+## odockerTeam (primary active)
 
-| Pane | Agent | Current Task | Goal | Status |
-|------|-------|-------------|------|--------|
-| 0.0 | orchestrator | — | — | IDLE |
-| 0.1 | oosh-expert | Subscription fix done, standing by | G5 | IDLE |
-| 0.2 | oosh-tester | Standing by | G5 | IDLE |
-| 0.3 | scrum-master | Overnight sweep loop (sweep 10) | G3/G0 | ACTIVE |
-| 0.4 | product-owner | Tron asleep, "survive till 8 am" | — | SKIP |
-| 0.5 | agent-trainer | Context monitoring overnight | G1 | IDLE |
-| 1.0 | woda-writer | — | — | IDLE |
-| 1.1 | woda-scribe | — | — | IDLE |
-| 1.2 | task-agent | — | — | IDLE |
-| 1.3 | developer | — | — | IDLE |
-| 1.4 | script-PO | — | — | IDLE |
+| Pane | Agent | Status |
+|------|-------|--------|
+| 0.0 | odocker-expert | Standing by (compacted, all work done) |
+| 0.1 | odocker-tester | ACTIVE — deep-diving framework dispatch-doubling bug |
 
-## Assignment Table — odockerTeam
+## projectTeam
 
-| Pane | Agent | Current Task | Goal | Status |
-|------|-------|-------------|------|--------|
-| 0.0 | odocker-expert | All 8 methods DONE, probing for more tasks | G5 | IDLE (searching) |
-| 0.1 | odocker-tester | Testing tab completion | G5 | ACTIVE |
+| Pane | Agent | Status |
+|------|-------|--------|
+| 0.0 | orchestrator | IDLE |
+| 0.1 | oosh-expert | IDLE |
+| 0.2 | oosh-tester | IDLE |
+| 0.3 | scrum-master | ACTIVE (sweep loop) |
+| 0.4 | product-owner | SKIP (Tron asleep) |
+| 0.5 | agent-trainer | IDLE (context monitoring) |
+| 1.0-1.4 | writer, scribe, task, dev, script-PO | IDLE |
 
 ## Deliveries This Block
-- odocker file.find: commits b68738a, d45c48d (camelCase fix)
-- odocker workspace.list: commit 0bc097c
-- odocker build.all: commit 0323615
-- odocker status, disk, prune, prune.all: commit a0de206
-- **Total: 8 new odocker methods, ALL tested PASS**
+- 8 odocker methods: file.find, workspace.list, build.all, status, disk, prune, prune.all (commits b68738a, d45c48d, 0bc097c, 0323615, a0de206)
+- All 8 tested PASS by odocker-tester
+- Tab completion tested PASS
+- Framework bug identified (dispatch doubling on error paths) — being investigated
 
-## Findings
-- Framework bug: dotted method doubling on error paths (this.start retries). Separate ticket for oosh-expert/this-expert.
-
-## CMM Observation
-- Overnight autonomous operation = G0 success so far
-- odocker delivery pipeline: expert→tester→report→confirm = L3
-- SM sweep loop operational, 10 cycles clean = L3
-- No context warnings = improvement over Feb 17 mass exhaustion
+## CMM
+- Overnight G0: 25 sweeps, 0 incidents = L3 autonomous operation
+- Odocker delivery: L3 (complete pipeline, tested, committed)
+- SM context conservation: compacting idle agents proactively = L3

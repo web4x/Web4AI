@@ -51,7 +51,23 @@ When an incident occurs that you've seen before:
 - 2026-02-19: Reset times shifted 03->08->13 Berlin overnight
 - 2026-02-19: Shows "95% CRITICAL" while agents operate normally
 **Assigned to**: oosh-expert (task: fix-scrummaster-subscription-accuracy.md)
-**Status**: OPEN — partially improved by 9e0d9ea
+**Status**: RESOLVED — commit f5b6c6b. Validated by trainer (7 measurements + block transition). KB #24.
+
+### INC-004: Unsubmitted self-prompts — agents generate text at prompt but never hit Enter
+
+**Count**: 3+
+**Impact**: HIGH — agents appear idle but have pending work sitting at `❯`. SM sweeps miss it. Work stalls silently.
+**First seen**: 2026-02-22 (observed throughout session)
+**Pattern**: Agent generates a "Read session/tasks/..." or continuation prompt for itself but the text sits at `❯` without being submitted. The agent thinks it queued work; actually nothing happens. Only visible via pane capture: text at `❯` WITHOUT "esc to interrupt" = not processing.
+**Workaround**: SM must check EVERY sweep: if text at `❯` and no "esc to interrupt" → send Enter to that pane.
+**Root cause**: Unknown — possibly Claude Code's accept-edits mode or agent self-prompting mechanism doesn't auto-submit. Agents may be generating tool output that includes the next prompt as text rather than executing it.
+**Occurrences**:
+- 2026-02-22 18:47: trainer had task at prompt, not submitted — PO sent Enter
+- 2026-02-22 19:30: SM activation message not submitted — PO sent Enter
+- 2026-02-22 ~21:30: Tron found oosh-expert AND oosh-tester both with unsubmitted prompts
+- Multiple instances of hiveMind send requiring follow-up Enter throughout session
+**Assigned to**: SM sweep procedure (detection) + oosh-expert (root cause investigation)
+**Status**: OPEN — HIGH PRIORITY. Silent work stalls = invisible failure.
 
 ## Resolved Incidents
 
