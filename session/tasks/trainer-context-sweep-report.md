@@ -1,46 +1,42 @@
 # Context Sweep Report
 
 **From**: agent-trainer
-**Date**: 2026-02-22 ~14:30 UTC
+**Date**: 2026-02-22 ~14:30-15:00 UTC
 
-## Results
+## Final Results
 
-| Agent | Pane | Context % | Tokens | Status | Action needed |
-|-------|------|-----------|--------|--------|---------------|
-| oosh-expert | 0.1 | **40%** | 79k/200k | IDLE | OK — continue working. Save context at 35%. |
-| product-owner | 0.4 | **UNABLE** | — | BUSY | PO was actively processing Docker task. /context rendered but scrolled away before capture. Retry when idle. |
-| agent-trainer | 0.5 | **UNABLE** | — | WORKING | Cannot self-measure (42 principle). Need peer to measure. |
+| Agent | Pane | Context % | Tokens | Status | Action taken |
+|-------|------|-----------|--------|--------|--------------|
+| oosh-expert | 0.1 | **40%** | 79k/200k | IDLE | OK — 56% free. Continue working. |
+| product-owner | 0.4 | **31%** (post-compact) | 63k/200k | RECOVERED | Was 82%. Compacted successfully. Now 64% free. |
+| agent-trainer | 0.5 | **67%** | 133k/200k | WORKING | 31% free. Approaching 35% save threshold. |
 
-## Expert Detail (40% — OK)
+## PO Compact Execution
 
-```
-claude-opus-4-6 · 79k/200k tokens (40%)
-System prompt: 7.5k (3.7%)
-System tools: 19.7k (9.9%)
-MCP tools: 7.3k (3.7%)
-Custom agents: 3.8k (1.9%)
-Memory files: 5.5k (2.7%)
-Skills: 2.9k (1.5%)
-Messages: 37.8k (18.9%)
-Compact buffer: 3k (1.5%)
-Free space: 112k (56.2%)
-```
+1. **Pre-compact measurement**: 164k/200k (82% used, 13.9% free) — CRITICAL
+2. **File verification**: boot.md ("Written by PO"), context.md (current), priority.md (new). Uncommitted files found — committed as `7c1a413`.
+3. **Compact sent**: `otmux send projectTeam:0.4 "/compact" Enter`
+4. **Pre-compact hook**: auto-committed 12 files as `8c0b280`
+5. **Recovery**: PO read boot.md, priority.md, context.md. Knows fractal state, team state.
+6. **Post-compact measurement**: 63k/200k (31% used, 64% free) — HEALTHY
 
-Expert has 56% free — safe to continue working. Self-care trigger at 35%.
+**Result**: 82% → 31%. 51 percentage points recovered. PO can continue working.
 
-## PO Issue
+## Issues Encountered
 
-Sent `/context` to 0.4 via `otmux send projectTeam:0.4 "/context" Enter`. PO acknowledged ("Tron ran /context") but was actively processing Docker setup. PO's response generation scrolled past the /context output. This is the "42" race condition — only works on IDLE panes.
+1. **Autocomplete on /context**: PO's TUI showed autocomplete dropdown instead of submitting. Fixed with Escape + Enter.
+2. **Task list overlay garbles captures**: Narrow pane causes vertical text rendering. Fixed by zooming pane (`tmux resize-pane -Z`).
+3. **BUSY agents can't be measured**: First /context attempt failed because PO was processing Docker task. Must wait for IDLE state.
 
-**Recommendation**: PO should run /context themselves and note the result, or pause Docker task briefly for measurement.
+## Self-Assessment (agent-trainer at 67%)
 
-## Self-Measurement
-
-The "42" principle: an agent cannot capture its own /context output. My response generation would overwrite the TUI before I can capture it. Need PO or SM to measure me.
+Tron ran /context on my pane: 133k/200k (67%), 31.2% free. Approaching the 35% save threshold. Should save context.md + boot.md soon, and prepare for compact if burn rate continues.
 
 ## Learnings
 
-- /context only works reliably on IDLE panes (at `❯`, not processing)
-- BUSY agents continuously generate output, making capture impossible
-- For busy agents: either ask them to pause, or have them self-report (they can see the flash)
-- Future improvement: build a tool that writes /context results to a file instead of TUI-only
+- Zoom pane before capture for clean formatting
+- Escape dismisses autocomplete before Enter submits
+- /context only works on IDLE panes
+- Compact recovers significant context: 82% → 31% (51 points)
+- Commit files BEFORE compact — uncommitted = lost
+- Pre-compact hook also auto-commits (belt + suspenders)
