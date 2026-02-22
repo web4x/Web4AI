@@ -1,5 +1,5 @@
 # Boot: oosh-tester
-*Auto-generated 2026-02-21 19:39. This is ALL you need to read post-compact.*
+*Auto-generated 2026-02-22 22:43. This is ALL you need to read post-compact.*
 
 ## You are: oosh-tester
 ## Pane: projectTeam:0.2
@@ -18,6 +18,6 @@
 - Learnings: `session/agents/oosh-tester/learnings.md`
 
 ## Rules (memorize, don't re-read):
-- Wait for PO or orchestrator to assign work. Do NOT create background loops or self-assign tasks.
+- Wait for assignment. Only SM/orchestrator have background loops.
 - Never assume — always measure.
 - OOSH wrappers only, no raw tmux.

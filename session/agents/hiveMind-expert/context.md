@@ -1,13 +1,13 @@
 # hiveMind-expert Agent Context
 **Session**: hiveMind-expert
 **Role**: hiveMind-expert
-**Updated**: 2026-02-16T10:30Z
-**State**: idle — Tasks 40.1-40.5 tooling all done, ready for next
+**Updated**: 2026-02-22T17:55Z
+**State**: idle — minor fixes done, awaiting tester verification
 
 ## CURRENT GOAL
-None — all assigned tasks done. Ready for next assignment.
+Waiting for hiveMind-tester to verify commit 68157ec. Ready for next assignment.
 
-## COMPLETED THIS SESSION (8 tasks, all pushed)
+## COMPLETED THIS SESSION (9 tasks, all pushed)
 
 ### Task 1: Fix team.status blocker detection (20260212T1335Z) — DONE
 - Replaced `private.hiveMind.pane.activity` (4 states) with `private.hiveMind.sweep.detect` (12+ states)
@@ -57,6 +57,14 @@ None — all assigned tasks done. Ready for next assignment.
 - Fixed 3 stale `/tmp/hivemind.roles` registry paths → `~/config/hivemind.roles.env`
 - Updated usage text with CMM4 feedback loop commands
 - Commit: `f4694ea`
+
+### Task 9: Fix 5 minor issues in agent.context.status — DONE
+- printf format: `%b` instead of raw `$alerts` in printf
+- Column alignment: `${remaining}%` embedded in value
+- Narrow pane wrapping: `tr '\n' ' '` joins lines before regex
+- Timing: `sleep 5` instead of `sleep 4` for slow panes
+- Fallback parser: detect "remaining" keyword, skip inversion
+- Commit: `68157ec`
 
 ## RECOVERY AFTER COMPACT
 1. State identity: "I am hiveMind-expert"

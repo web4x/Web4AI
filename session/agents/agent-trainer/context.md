@@ -1,36 +1,43 @@
 # Agent Trainer Context
 
-**Updated**: 2026-02-19 ~13:30
+**Updated**: 2026-02-22T20:45Z (EMERGENCY STOP — saving before context loss)
 **Role**: agent-trainer
 **Pane**: projectTeam:0.5
+**State**: STOPPED — awaiting Tron
 
-## Current Status: STANDDOWN — 90% subscription
+## This Session Deliverables (2026-02-22)
 
-## Active Task (incomplete)
-- **Task #60**: Reduce orchestrator SKILL.md from 808 to <300 lines
-  - Same approach as SM: condense to essentials, move details to reference.md
-  - SM reduction done (919→203, commit 09e923d)
-  - Remove .done file references (bureaucracy), condense verbose sections
-  - Structure: top=FIRST 3 ACTIONS, middle=role definition, bottom=anti-patterns
+1. **Subscription validation PASS** — 7 measurements + block transition (KB #24)
+2. **SM overnight velocity training** — SKILL.md updated, training task delivered
+3. **OOSH naming rules (KB #16)** — added to all 4 script team SKILL.md files
+4. **Compacts managed**: PO (10%→recovered), oosh-tester (9%→recovered), odocker-expert, SM (0%→/clear→rebooted)
+5. **INC-004**: 4 stuck self-prompts fixed in one sweep
+6. **Orchestrator**: /cleared and booted with overnight task
+7. **PO compact #3**: sent at 9%, auto-boot visible but SM message garbled queue
 
-## Completed This Session (11 commits)
+## Recovery State at Emergency Stop
 
-| Commit | Task |
-|--------|------|
-| c5653f3 | SM boot recovery + orchestrator delegation-first + WODA gap fix |
-| dde66b6 | Remove last binary thresholds from script-product-owner + SM |
-| 25c078a | Add team-goals.md to boot template in pre-compact hook |
-| b4353b1 | Fix hardcoded pane address in task-agent SKILL.md |
-| 87cce6f | Add F21 commit-before-compact to all 78 worker SKILL.md |
-| 69bc778 | Add task-queue base skill to all 81 SKILL.md + boot template |
-| f77d57e | Add team communication rules to 70 worker SKILL.md |
-| 56e17b0 | Purge hardcoded pane addresses from session agent files |
-| d8ed2d7 | Document otmux tree feature family in SM, orchestrator, otmux-expert |
-| 7dbb5aa | FIRST 3 ACTIONS + SM escalation protocol (PO+Tron directive) |
-| 09e923d | Reduce SM SKILL.md from 919 to 203 lines |
+| Agent | Where | State |
+|-------|-------|-------|
+| orchestrator | 0.0 | BOOTED — overnight task sent |
+| oosh-expert | 0.1 | WORKING — velocity/naming task |
+| oosh-tester | 0.2 | RECOVERING from compact |
+| SM | 0.3 | REBOOTED — sweeping post /clear |
+| PO | 0.4 | COMPACTING — boot prompt visible, garbled queue |
+| agent-trainer | 0.5 | STOPPED |
+| odocker-expert | odockerTeam:0.0 | RECOVERING — lifecycle task sent |
+| odocker-tester | odockerTeam:0.1 | IDLE |
+| hiveMind-expert | hiveMindTeam:0.0 | INC-004 fixed |
+| hiveMind-tester | hiveMindTeam:0.1 | INC-004 fixed |
 
-## Recovery Steps
-1. Read this file
-2. Read `session/tasks/po-trainer-skillmd-review.md` — the PO+Tron directive
-3. Start Task #60: reduce orchestrator SKILL.md (808→<300)
-4. Same pattern: Write condensed SKILL.md + create reference.md
+## Overnight Scope (if resumed)
+- Context health for ALL agents — 20%=warn, 10%=compact
+- INC-004 detection every sweep
+- SM handles permissions + team direction
+- Trainer handles compact lifecycle
+
+## Key Files
+- Subscription report: `session/tasks/subscription-validation-report.md`
+- SM training: `session/tasks/sm-overnight-velocity-training.md`
+- Learnings: `session/agents/agent-trainer/learnings.md`
+- INC-004: `session/knowledge-base/recurring-incidents.md`

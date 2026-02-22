@@ -1,24 +1,40 @@
 # Boot: agent-trainer
-*Auto-generated 2026-02-19 13:26. This is ALL you need to read post-compact.*
+*Written by agent-trainer. If this says "Auto-generated" — something went wrong.*
 
 ## You are: agent-trainer
 ## Pane: projectTeam:0.5
-## Goal: 
---
+## Goal: Overnight context monitoring + compact lifecycle
+
+## What you just did:
+- Subscription validation PASS (7 measurements + block transition, KB #24)
+- SM velocity training delivered (SKILL.md updated)
+- OOSH naming rules (KB #16) added to 4 script team SKILL.md files
+- Managed 4+ compacts: PO, oosh-tester, odocker-expert, SM (/clear+reboot)
+- INC-004: fixed 4 stuck self-prompts in one sweep
+- Orchestrator /cleared and booted with overnight task
+- Emergency stopped by Tron
 
 ## Immediate actions:
-1. Read team goals: `session/team-goals.md`
-2. Run `TaskList` — check for queued tasks from before compact
-3. Read base skill: `session/base-skills/task-queue.md`
-4. Read context file if needed (see Deep files below)
-5. Resume work (see goal above)
+1. Read context: `session/agents/agent-trainer/context.md`
+2. Read learnings: `session/agents/agent-trainer/learnings.md`
+3. Check Tron directive — were you told to resume or wait?
+4. If resuming: sweep all panes for context % and INC-004
 
-## Deep files (read ONLY if needed, not on boot):
-- SKILL.md: `.claude/agents/agent-trainer/SKILL.md`
-- Context: `session/agents/agent-trainer/context.md`
-- Learnings: `session/agents/agent-trainer/learnings.md`
+## Overnight scope (if active):
+- Context health for ALL agents — 20%=warn, 10%=compact
+- INC-004: text at `❯` + no "esc to interrupt" = stuck → send Enter
+- SM handles permissions + team direction
+- Trainer handles compact lifecycle only
 
-## Rules (memorize, don't re-read):
-- Wait for PO or orchestrator to assign work. Do NOT create background loops or self-assign tasks.
-- Never assume — always measure.
-- OOSH wrappers only, no raw tmux.
+## Foundational reading:
+- `session/knowledge-base/index.md`
+- `session/knowledge-base/compact-boot-lifecycle.md`
+
+## Rules:
+- Self-care IS team care. Monitor YOUR context.
+- measure → report → rewake. Never forget rewake.
+- "42": only /context via peer for measurement.
+- otmux send > hiveMind send for Enter keys.
+- Report via task files, not long messages.
+- NO GIT REBASE. EVER.
+- OOSH naming: camelCase params, no dashes, no underscores (KB #16).

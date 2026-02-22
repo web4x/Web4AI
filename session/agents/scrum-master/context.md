@@ -1,46 +1,52 @@
 # ScrumMaster Agent Context
 
 ## Updated
-2026-02-19T12:00Z (sweep ~25, incarnation 2, pre-compact)
+2026-02-22 ~22:00 CET (pre-compact, sweep 32)
 
 ## Role
-Continuous monitoring agent in tmux session `projectTeam`, pane 0.3.
+Continuous monitoring agent. Pane: projectTeam:0.3
 
 ## Current State
-- **Session**: projectTeam
-- **My pane**: projectTeam:0.3
-- **Status**: 7% context — compact imminent
-- **Subscription**: ~90% used per PO. Resets 13:00 Berlin.
+- **Status**: COMPACTING — overnight sweep loop until 07:00 UTC
+- **Block**: 21:00 CET — 02:00 CET, ~28% used, ~217 min remaining
+- **Sweep count**: 32
+- **Directive**: Tron "survive till 8 am"
 
-## What Happened This Incarnation
-- Rebooted from context.md after /compact
-- Ran ~25 sweep cycles using `scrumMaster cycle projectTeam 60`
-- **Compacted 4 agents**: PO, trainer, tester, scribe (all rebooted successfully)
-- **Expert delivered**: hiveMind param naming fix (Goal 5), curated SM boot file, hiveMind send Enter fix
-- **Trainer delivered**: task-queue base skill to all SKILL.md, pane address purge from SKILL.md
-- **Tester delivered**: test.context, running full test suite, 3 commits pushed
-- **Writer reached ch80** (was ch71 at reboot — 9 chapters!)
-- **Learned**: Use `scrumMaster cycle projectTeam 60` not manual loops
-- **Learned**: Use `hiveMind send <role>` not `otmux send projectTeam:X.X`
-- **Learned**: Read boot-curated.md on reboot (has improved instructions)
-- **Memory updated**: Compact Management + hiveMind role names
+## Sessions I Monitor
+- **projectTeam**: 0.0-0.5, 1.0-1.4 (skip 0.3=me, 0.4=Tron)
+- **odockerTeam**: 0.0, 0.1 (use otmux pane.capture, NOT hiveMind — cross-session)
 
-## Team State (2026-02-19 ~12:00Z)
-- **orchestrator (0.0)**: Active
-- **oosh-expert (0.1)**: 10% context — NEEDS COMPACT
-- **oosh-tester (0.2)**: Active, pushing commits
-- **product-owner (0.4)**: Active, frustrated about subscription at 90%
-- **agent-trainer (0.5)**: 10% context — NEEDS COMPACT
-- **woda-writer (1.0)**: ch80, autonomous
-- **woda-scribe (1.1)**: 53min+ continuous, check context
-- **task-agent (1.2)**: FROZEN (70+ sweeps on same task)
-- **developer (1.3)**: Stopped/empty
-- **script-product-owner (1.4)**: Idle
+## What Happened This Session (32 sweeps)
+- Booted from /clear, read boot.md + learnings.md + SKILL.md
+- Managed 2 agents from 0% context (agent-trainer compacted, woda-writer /cleared + booted)
+- Unblocked oosh-expert + oosh-tester permissions
+- Added odockerTeam to sweep per trainer task
+- Approved multiple odocker-expert git commits (8 lifecycle methods)
+- Odocker-expert: ALL 8 methods DONE, naked image builds done (9/12 built, Tier 1 labels verified), compacted
+- Odocker-tester: ALL 8 methods tested PASS, 16/16 tests committed (2ee90bf), tab completion PASS, framework bug (dispatch doubling) investigated
+- oosh-expert and oosh-tester activated on new tasks
+- Agent-trainer active (context monitoring role overnight)
+- Sent PO updates at sweeps 5, 10, 16, 20, 25, 30
 
-## Recovery Steps (after /compact)
-1. Read `session/agents/scrum-master/boot-curated.md` (NOT boot-minimal!)
-2. Read `session/agents/scrum-master/learnings.md` (ALWAYS)
-3. `scrumMaster subscription`
-4. `scrumMaster cycle projectTeam 60`
-5. IMMEDIATELY compact expert (0.1) and trainer (0.5) — both at 10%
-6. Check scribe context — been running 53min+
+## CRITICAL: INC-004 — Silent Work Stalls (Tron directive)
+Every sweep: check ALL panes for text at `❯` WITHOUT "esc to interrupt" = UNSUBMITTED prompt → send Enter. This was the #1 overnight impediment. Multiple agents stalled 30+ min from this.
+
+## CRITICAL: No compound && commands (KB #15 anti-pattern #4)
+Run commands separately in parallel tool calls. Each `&&` triggers unique permission prompt.
+
+## Deliveries This Block
+- 8 odocker lifecycle methods committed + tested PASS
+- 9/12 naked images built, Tier 1 labels verified
+- Tab completion tested PASS
+- Framework bug identified (dispatch doubling on error paths)
+- Odocker test suite committed (2ee90bf, 16/16 PASS)
+
+## Recovery Steps
+1. Read session/agents/scrum-master/boot.md
+2. Read session/agents/scrum-master/learnings.md
+3. scrumMaster subscription
+4. hiveMind sweep projectTeam
+5. otmux pane.capture odockerTeam:0.0 15
+6. otmux pane.capture odockerTeam:0.1 15
+7. INC-004 scan: check ALL panes for unsubmitted prompts
+8. Resume sweep loop with 60s wakeups

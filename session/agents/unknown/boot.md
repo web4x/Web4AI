@@ -1,21 +1,15 @@
-# Boot: unknown
-*Auto-generated 2026-02-18 17:51. This is ALL you need to read post-compact.*
+# Boot: unknown (identity detection failed)
+*Auto-generated 2026-02-22 19:54. Identity could not be determined.*
 
 ## You are: unknown
-## Pane: projectTeam:0.2
-## Goal: Check context file
+## Pane: unknown
+## Problem: Your role was not found in the roles registry or boot files.
 
-## Immediate actions:
-1. Start monitoring loop: ``
-2. Check peer: `otmux pane.capture your peer pane 10`
-3. Resume work (see goal above)
+## Immediate actions (RECOVER IDENTITY FIRST):
+1. Check your pane: `tmux display-message -p '#{session_name}:#{window_index}.#{pane_index}'`
+2. Look for your context: `ls session/agents/` — find a directory matching your work
+3. Check if a peer knows your role: announce "Identity detection failed at unknown"
+4. Once you know your role, read `.claude/agents/<your-role>/SKILL.md`
+5. Update `session/agents/<your-role>/boot.md` with correct Pane line for next compact
 
-## Deep files (read ONLY if needed, not on boot):
-- SKILL.md: ``
-- Context: ``
-
-
-## Rules (memorize, don't re-read):
-- Wait for PO or orchestrator to assign work. Do NOT create background loops or self-assign tasks.
-- Never assume — always measure.
-- OOSH wrappers only, no raw tmux.
+## Do NOT just "wait for assignment" — recover your identity first.

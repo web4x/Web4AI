@@ -90,3 +90,9 @@ Agent-trainer showed "Baked for 11m 18s" for 15+ cycles. At 5-line capture depth
 
 ## F18 Update: 0% + Compact CAN Work (2026-02-18)
 Script-PO hit 0% and successfully compacted (contrary to F18 which says /clear only). The compact took ~60s but completed. **Try /compact first at 0% — only fall back to /clear if compact fails.** Wait at least 90s before assuming compact failed.
+
+## INC-004: Silent Work Stalls — Unsubmitted Prompts (Tron directive 2026-02-22)
+Agents generate self-prompts that sit at `❯` WITHOUT being submitted (no "esc to interrupt" visible). This silently stalls all work. **Detection**: text at `❯` WITHOUT "esc to interrupt" in status bar = NOT submitted. **Action**: send Enter to that pane. **Every sweep cycle**: check ALL panes (projectTeam AND odockerTeam) for this pattern. This is the #1 overnight impediment — multiple agents stalled for 30+ min because SM didn't detect unsubmitted prompts.
+
+## No Compound && Commands (KB #15, anti-pattern #4)
+Never use `command1 && command2` — triggers unique permission prompts. Run commands separately in parallel tool calls. OOSH tools have built-in delay parameters.

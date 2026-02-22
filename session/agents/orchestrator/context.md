@@ -1,8 +1,8 @@
 # Orchestrator Context
 
-**Updated**: 2026-02-19T11:20Z
+**Updated**: 2026-02-19T17:15Z
 **Role**: Orchestrator
-**Status**: STANDDOWN — 90% subscription per TUI (tool says 13% — WRONG). All agents told to commit+save.
+**Status**: CONSERVING — waiting for 18:00 Berlin reset. G0 tasks ready to assign.
 
 ## YOUR JOB (from agent-overview.md)
 
@@ -78,14 +78,12 @@ SM handles unblocking. You handle direction.
 - PO directive: po-directive-hierarchy-restart.md — hierarchy is law
 - NEW RULE: Never run single response >15 min.
 
-## Pending
-- **MY TASK (from PO)**: After next SM compact, verify curated boot works:
-  1. Send boot-curated.md (not auto-generated)
-  2. Wait 2 min, capture 30+ lines
-  3. Verify: hiveMind sweep in use? In the loop? Read learnings?
-  4. If degraded: flag to PO
-- Expert assigned: create boot-curated.md + update PreCompact hook (HIGH)
-- Trainer assigned: update SM SKILL.md boot recovery section (HIGH)
+## After 18:00 Reset — ASSIGN IMMEDIATELY
+- **Expert**: `session/tasks/20260219T1710Z.expert-g0-autonomous-tools.md` (WS1+WS2+WS3, 5 tasks)
+- **Trainer**: `session/tasks/20260219T1711Z.trainer-g0-autonomous-skillmd.md` (WS2+WS3, 3 tasks)
+- Both work in parallel. G0 is HIGHEST priority.
+- Full directive: `session/tasks/tron-directive-autonomous-operation.md`
+- Pipeline: `session/tasks/next-block-pipeline.md`
 
 ## Standing Authorizations
 

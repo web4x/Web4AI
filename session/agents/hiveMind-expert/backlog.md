@@ -8,6 +8,7 @@
 - [x] Unified tab completion (Task 40.3): shared teams.complete helper, 14 completions updated, added resolve/unblock session completion — commit d3ce9d0 (2026-02-13)
 - [x] Verified Task 40.4 (velocity measurement): already done by oosh-expert, all acceptance criteria pass (2026-02-16)
 - [x] CMM4 feedback loop tooling (Task 40.5): measure.health PDCA cycle + fixed stale defaults in scrumMaster — commit f4694ea (2026-02-16)
+- [x] Fix 5 minor issues in agent.context.status: printf format, column alignment, narrow pane wrapping, timing, fallback parser — commit 68157ec (2026-02-22)
 
 ## Open
-_(none — awaiting next task)_
+_(none — awaiting tester verification of 68157ec)_

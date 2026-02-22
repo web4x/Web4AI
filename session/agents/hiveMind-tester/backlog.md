@@ -37,6 +37,14 @@
 | `315c173` | `claudeCode` missing space in monitor.cycle, cycle.full, dashboard |
 | `a7e0ee7` | `sweep` validation, `auto.commit` security (git add -A → -u), `watchdog` path |
 | `4aaea28` | `roles` hardcoded 12 → dynamic SKILL.md lookup (81 roles + filter) |
+| `2f39e85` | `registry.set` pane ID validation + remove phantom `0.0:0.` entry (expert fix, tester verified) |
+
+## Verified (expert commits — tester tested)
+
+| Commit | Fixes | Verdict |
+|--------|-------|---------|
+| `68157ec` | printf format, column alignment, narrow pane wrapping, timing (5s), fallback parser | 5/5 PASS |
+| `2f39e85` | Phantom pane registry entry + pane ID validation in registry.set | PASS |
 
 ## Open Issues (not fixed)
 - `monitor.approve` sends option without confirmation — by design?

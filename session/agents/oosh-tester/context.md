@@ -1,72 +1,57 @@
 # OOSH Tester Agent — Session Context
 
-**Updated**: 2026-02-11
+**Updated**: 2026-02-22 22:30
 **Role**: oosh-tester (testing & validation)
 **Pane**: projectTeam:0.2
 
 ## Recovery Steps
 1. Read this file
 2. Read `.claude/agents/oosh-tester/SKILL.md`
-3. Read `docs/test-suite.md` for testing patterns
-4. Read `docs/log-levels-and-testing.md` for log diagnostics
-5. Check TaskList for assigned work
-6. Check with Orchestrator for current priorities
+3. Check for new task assignments in `session/tasks/`
+4. Check with Orchestrator for current priorities
 
-## Completed Work
-### Training (DONE)
-- Read SKILL.md (role definition, mandatory 3-check, boundaries)
-- Read CLAUDE.md (workspace overview, OOSH essentials, agent team layout)
-- Read agent-overview.md (all roles: Orchestrator, Task Agent, ScrumMaster, Expert, Tester, PO, Trainer, Developer, WODA duo)
-- Read docs/test-suite.md (test.case, expect, expect.error, naming, running)
-- Read docs/completion-system.md (c2 completion, tmux interactive testing, otmux wrappers)
-- Read docs/log-levels-and-testing.md (levels 0-7, config pollution bug, set +x bug, proposed fixes)
-- Read docs/log.md (log functions, LOG_DEVICE, LOG_LIVE, capture mode, troubleshooting)
-- Read docs/context-schema.md (schema v1.0, lifecycle, validation)
-- Wrote this context file
+## Completed Work This Session
 
-## Key Knowledge
+### Task #47: hiveMind agent.context.status (DONE)
+- Tested across 5 retests and 6 expert commits
+- **Final result**: 10/11 agents get real context % values
+- All 4 major bugs found and verified fixed:
+  - Idle detection (scan last 10 lines, not just last line) — 23c7053
+  - Autocomplete bypass (double-Enter for /context) — ad9c8ef
+  - Tron 0.4 skip — ad9c8ef
+  - Capture depth (-S - full scrollback + tail -1) — 7d336d2
+- All 5 minor fixes verified in commit 68157ec:
+  - printf %b for alert formatting
+  - Column alignment (${remaining}%)
+  - Narrow pane wrapping (tr '\n' ' ')
+  - Timing (sleep 5)
+  - Fallback parser inversion (detect "remaining" keyword)
+- Report: `session/tasks/tester-agent-context-status-final.done.md`
 
-### Mandatory 3-Check Test (every new/changed method)
-1. Missing required params -> must show usage, non-zero return
-2. Missing optional params -> must work silently with defaults
-3. Tab completion stub must exist for all new methods
+### Task #48: Pre-compact hook cross-session fix (DONE)
+- Tested 5 cases for commit e2d5fb7
+- All PASS: regression, boot.md fallback, self-healing registration, unknown template, known template
+- All 3 fallback paths verified (boot.md scan, pane title, context.md scan)
+- Report: `session/tasks/tester-hook-fix-48.done.md`
 
-### Test Framework
-- Test files: `test/test.<scriptname>`, source `test.suite $*`
-- Pattern: `test.case $level "desc" function args` then `expect 0 "expected" "message"`
-- Run single: `./test.suite run <script> <level>`, all: `./test.suite all`
-- Level 1 for CI (errors+assertions only), level 3 for dev, level 5 for debug
-- Results via `RETURN_VALUE` (exit code) and `RESULT` (string)
-- Always end with `test.suite.save.results`
+### OOSH Wrapper Audit (DONE)
+- All wrappers functional: otmux pane.capture, otmux send, hiveMind team.status, hiveMind monitor, hiveMind resolve, otmux tree
+- One gap: no `otmux pane.self` wrapper for self-pane detection
+- Report: `session/tasks/tester-wrapper-audit.done.md`
 
-### Known Bugs to Watch For
-- Config pollution: `config.save` during tests can persist elevated LOG_LEVEL to `~/config/log.env`
-- `set +x` bug in `seq.puml.log`: tracing enabled at level 6 but never disabled (line 121 commented out)
-- `debug` script silently sets LOG_LEVEL=5 if LOG_LEVEL is empty
-- LOG_DEVICE can get redirected to temp file during tests, breaking all log output
-
-### Troubleshooting Log Output
-- Check `LOG_DEVICE` (should be `/dev/tty`)
-- Check `LOG_LEVEL` (should be 3 default)
-- Reset: `log device /dev/tty && log level 3`, then new shell
-
-### Role Boundaries
-- DO: write tests, run test.suite, code reviews, validate, report DRY violations
-- DO NOT: implement features, modify production code, make architecture decisions
-- Report DRY violations to Task Agent (not Expert, not Orchestrator)
-- Signal completion: `TASK COMPLETE: <summary>`
-
-### Communication Rules
-- No raw tmux — always `otmux`/`hiveMind` wrappers
-- No long messages via send — write to `session/tasks/`, send file reference
-- Save context before `/compact` (STOP -> SAVE -> /compact)
+### `oo use` command completion fix (DONE — tested twice)
+- Tested commit ddca28d — fix for `oo use <branch> <TAB>` showing branches instead of commands
+- All 4 test cases PASS: branch completion, dev commands, main commands, no declare errors
+- Branch-specific listing confirmed (dev and main show different script sets)
+- Retested post-compact (22:30) — same 4/4 PASS results
+- Report: `session/tasks/tester-oo-use-command-completion.done.md`
 
 ## Pending
-- Waiting for first testing assignment from Orchestrator
+- No queued tasks
 
 ## Key Files
 - `.claude/agents/oosh-tester/SKILL.md` — role definition
-- `docs/test-suite.md` — testing patterns
-- `docs/log-levels-and-testing.md` — log diagnostics reference
-- `docs/completion-system.md` — c2 completion testing
-- `docs/context-schema.md` — context file format
+- `session/tasks/tester-agent-context-status-final.done.md` — Task #47 report
+- `session/tasks/tester-hook-fix-48.done.md` — Task #48 report
+- `session/tasks/tester-wrapper-audit.done.md` — wrapper audit
+- `session/tasks/tester-oo-use-command-completion.done.md` — oo use completion test

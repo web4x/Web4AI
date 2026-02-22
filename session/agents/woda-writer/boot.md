@@ -1,14 +1,17 @@
 # Boot: woda-writer
-*Auto-generated 2026-02-19 00:08. This is ALL you need to read post-compact.*
+*Auto-generated 2026-02-22 19:23. This is ALL you need to read post-compact.*
 
 ## You are: woda-writer
 ## Pane: projectTeam:1.0
-## Goal: Continue writing chapters. Check scribe status.
+## Goal: Current State (2026-02-19 ~13:30)
+- **Pane**: `projectTeam:1.0`
 
 ## Immediate actions:
-1. Check for new tasks: `ls -t session/tasks/ | head -5`
-2. Read context file if needed (see Deep files below)
-3. Resume work (see goal above)
+1. Read team goals: `session/team-goals.md`
+2. Run `TaskList` — check for queued tasks from before compact
+3. Read base skill: `session/base-skills/task-queue.md`
+4. Read context file if needed (see Deep files below)
+5. Resume work (see goal above)
 
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: `.claude/agents/woda-writer/SKILL.md`
@@ -16,6 +19,6 @@
 - Learnings: `session/agents/woda-writer/learnings.md`
 
 ## Rules (memorize, don't re-read):
-- Wait for PO or orchestrator to assign work. Do NOT create background loops or self-assign tasks.
+- Wait for assignment. Only SM/orchestrator have background loops.
 - Never assume — always measure.
 - OOSH wrappers only, no raw tmux.
