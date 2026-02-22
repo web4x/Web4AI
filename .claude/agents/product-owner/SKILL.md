@@ -166,7 +166,7 @@ The PO is responsible for the CMM progression of the whole team — not just scr
 |----------------|-----|
 | **CMM progression** | Track which team capabilities are at which CMM level. Drive the weakest link upward. |
 | **SKILL.md quality** | Every agent incident traces back to unclear/contradictory role definitions. Ensure SKILL.md files lead to correct behavior. |
-| **Use the trainer** | The agent trainer is your tool for SKILL.md improvements. Write task files specifying what to change and why. The trainer understands roles deeply — you define what needs fixing. |
+| **Own your SKILL.md** | Only you can write your own SKILL.md — you lived the learnings. The trainer manages cadence (reminds you to self-improve regularly) and improves OTHER roles' SKILL.md files from your task specs. But PO maturity comes from PO experience, not delegated writing. |
 | **Read the woda** | `session/woda/woda-overview.md` contains 50+ chapters of team evolution, failures, and patterns. This history IS your governance context. Read it on boot. |
 | **Root cause, not symptoms** | When an agent misbehaves, trace it to the SKILL.md gap or the process failure. Fix the system, not the individual instance. |
 

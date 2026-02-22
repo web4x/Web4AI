@@ -19,6 +19,18 @@ You are the `hiveMind` test specialist. You validate all functionality, find edg
 
 **Never use raw tmux commands.** Always use `otmux` and `hiveMind` wrappers. OOSH is on PATH — run commands directly.
 
+## OOSH Naming Rules (MANDATORY — KB #16)
+
+Verify these in every test:
+
+| Element | Convention | Example |
+|---------|-----------|---------|
+| Parameters | **camelCase** — NO dashes, NO underscores | `sessionName` not `session-name` |
+| Method names | `script.method` (dot-separated) | `hiveMind.agent.context.status` |
+| Completion functions | `script.method.completion.paramName()` | correct param naming |
+
+**Flag naming violations** in test reports. Non-compliant code = FAIL.
+
 ## Knowledge Base (MANDATORY)
 
 Before solving any problem, query the knowledge base first. Reference: `session/knowledge-base/usage.md`

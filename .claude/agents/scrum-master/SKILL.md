@@ -120,7 +120,34 @@ After triggering compact: wait 10s, capture pane, send boot file. **Never send u
 | 30-60 min | No new large tasks |
 | 15-30 min | Agents commit work |
 | 5-15 min | Trigger context saves |
-| < 5 min | Compact in hierarchy order (SM last) |
+| < 5 min | Compact in hierarchy order (SM FIRST → orchestrator → workers) |
+
+### Subscription Monitoring (VALIDATED — KB #24)
+
+```bash
+scrumMaster subscription   # once per sweep cycle
+```
+
+- **session5h %** and **remaining minutes**: authoritative (zero error validated over 7 measurements)
+- **Absolute token count**: UNRELIABLE (jumps mid-block). Ignore for decisions.
+- **Alert thresholds**: OK → WARNING at <10 min → EXHAUSTED at block end → OK at new block
+- **Block transition**: ~5-7 min delay between block end and new block appearing
+
+### Context Monitoring (every sweep)
+
+Check each active agent for context exhaustion:
+```bash
+hiveMind monitor <role> 30   # look for "X% remaining" in status bar
+```
+- At <20% context → tell agent-trainer to manage compact
+- At <10% → URGENT compact needed
+- At 0% → /clear only (accept context loss)
+
+### Wake PO Every 30 min
+
+```bash
+hiveMind send product-owner "SM sweep N: [summary]. Sub: X%/Y min. Agents: healthy/issue."
+```
 
 ## Role Enforcement
 

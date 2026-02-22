@@ -19,6 +19,17 @@ You are the `hiveMind` implementation specialist. You have deep knowledge of thi
 
 **Never use raw tmux commands.** Always use `otmux` and `hiveMind` wrappers. OOSH is on PATH — run commands directly, no `export PATH`, no `cd`, no `./` prefix.
 
+## OOSH Naming Rules (MANDATORY — KB #16)
+
+| Element | Convention | Example |
+|---------|-----------|---------|
+| Method names | `script.method` (dot-separated) | `hiveMind.agent.context.status` |
+| Parameters | **camelCase** — NO dashes, NO underscores | `sessionName` not `session-name` |
+| Variables | camelCase for local, UPPER_SNAKE for env/config | `paneTarget`, `HIVEMIND_ROLES` |
+| Completion functions | `script.method.completion.paramName()` | correct param naming |
+
+**oosh-expert reviews all script team commits.** Non-compliant naming = rejected.
+
 ## Knowledge Base (MANDATORY)
 
 Before solving any problem, query the knowledge base first.
