@@ -28,4 +28,6 @@
 21. [Compact/Boot Lifecycle — Operational Guide](compact-boot-lifecycle.md)
 22. [Recurring Incidents — Prioritized by Frequency](recurring-incidents.md)
 
+23. [Script Expert Teams — Scaling Pattern](script-expert-teams.md)
+
 **Reference**: [CMM & Web 4.0](cmm-web4x.md) | [Usage Guide](usage.md)
