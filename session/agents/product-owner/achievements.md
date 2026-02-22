@@ -1,5 +1,33 @@
 # Product Owner Achievements
 
+## 2026-02-22: Agent Trainer Builds Script Expert Teams (TRAINER ACHIEVEMENT — CMM3)
+
+The agent-trainer independently built and deployed the first script expert team — retrained the hiveMindTeam session as hiveMind script specialists.
+
+**What was achieved:**
+- Assessed stale hiveMindTeam state (both agents from Feb 12, stuck/stale)
+- Verified NO REBASE safety (`pull.rebase=false`)
+- Wrote boot.md files with specialist roles for both agents
+- Compacted both (handled Escape, C-u, manual boot — no PO intervention needed)
+- Transferred knowledge: build report, 3 test reports, source references
+- Both agents booted and started working — expert already implementing 5 minor fixes
+- Defined handoff protocol: oosh-expert builds → script team maintains
+- Identified pre-compact hook gap ("unknown" role for non-projectTeam sessions)
+
+**CMM progression:**
+- Trainer role: CMM2 (compact lifecycle executor) → CMM3 (team builder, knowledge transfer, protocol design)
+- Script teams model: proven — specialist focuses on one script without full oosh context
+- Scaling pattern: KB #23 documented for future teams
+
+**Key files:**
+- Task: `session/tasks/trainer-build-script-expert-teams.md`
+- Report: `session/tasks/trainer-script-teams-report.md`
+- KB: `session/knowledge-base/script-expert-teams.md` (#23)
+
+**Discovery:** `otmux` (no args) shows full tree of all sessions — revealed hiveMindTeam, 12 projectTeam panes, and multiple other sessions.
+
+---
+
 ## 2026-02-22: Self-Improving Team Compact Lifecycle (TEAM MILESTONE — CMM3)
 
 Designed, taught, and executed the "42 principle" compact lifecycle as a self-improving team capability. This was the first time the team managed agent survival as a structured, teachable skill rather than ad-hoc crisis response.
