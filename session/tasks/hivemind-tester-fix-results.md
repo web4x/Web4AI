@@ -45,6 +45,30 @@ Alerts:
   woda-scribe: 26% remaining — prepare compact
 ```
 
-## Minor Observation (not in scope)
-- Stray line `orchestrator 0.0:0. — — NO-PANE` at the bottom — phantom pane reference. Not part of this fix set.
-- `ooshDebug` and `hiveMindTeam` sessions returned empty (no Claude agents running) — correct behavior, no false positives.
+## Follow-up: Phantom pane fix (2f39e85)
+
+| Fix | Description | Verdict | Evidence |
+|-----|-------------|---------|----------|
+| 6. Phantom pane | Validate pane format in registry.set + remove bad entry | **PASS** | `0.0:0.` line gone. Clean 11 entries, no phantom. |
+
+### Post-fix output
+```
+Agent Context Status — projectTeam
+──────────────────────────────────────────
+AGENT                PANE     CTX%   TOKENS       STATUS
+──────────────────────────────────────────
+orchestrator         0.0      11%    —          DANGER
+oosh-expert          0.1      ?      parse-fail   UNKNOWN
+oosh-tester          0.2      66%    132k/200k    OK
+scrum-master         0.3      0%     —          DANGER
+product-owner        0.4      —    —          TRON-SKIP
+agent-trainer        0.5      ?      parse-fail   UNKNOWN
+task-agent           1.2      50%    100k/200k    OK
+woda-writer          1.0      30%    61k/200k     CRITICAL
+woda-scribe          1.1      74%    148k/200k    OK
+developer            1.3      61%    122k/200k    OK
+script-product-owner 1.4      59%    118k/200k    OK
+──────────────────────────────────────────
+```
+
+## Overall: 6/6 PASS (both commits)
