@@ -28,6 +28,15 @@ git -C /Users/Shared/Workspaces/AI/Claude commit -m "<your-role>: save context/b
 **When to commit**: After writing context.md, boot.md, or learnings.md. ALWAYS before /compact.
 **Why**: Uncommitted files don't survive /clear. 21 agent files were nearly lost on Feb 22.
 
+## Rules Are Eternal (Tron directive — Feb 22)
+
+Rules in agent files (context.md, boot.md, learnings.md, SKILL.md) are permanent institutional knowledge. They must NEVER be deleted.
+
+- **When saving context**: APPEND new rules. Copy ALL existing rules forward.
+- **Emergency saves are no excuse** — rules survive even at 9% context.
+- **Only ask Tron** about a rule if it CONTRADICTS another rule. Otherwise: keep it.
+- **Deleting rules = deleting team knowledge = CMM1.**
+
 ## Velocity Rule (CMM4)
 
 No binary thresholds. Proportional response to projected exhaustion:

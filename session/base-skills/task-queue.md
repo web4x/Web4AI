@@ -61,6 +61,14 @@ git -C /Users/Shared/Workspaces/AI/Claude commit -m "<your-role>: save context/b
 
 **Before /compact**: ALWAYS commit first. Uncommitted files don't survive /clear.
 
+## Rules Are Eternal (CRITICAL)
+
+Rules in your agent files are permanent institutional knowledge. NEVER delete them.
+
+- When writing context.md: copy ALL existing rules forward, then add new ones.
+- Emergency saves at low context: still copy rules. No exceptions.
+- Only ask PO/Tron if a rule CONTRADICTS another rule. Otherwise: keep it.
+
 ## Anti-patterns (NEVER do these)
 
 - Dropping current work to read a new incoming prompt
