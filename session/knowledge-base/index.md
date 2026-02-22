@@ -30,4 +30,8 @@
 
 23. [Script Expert Teams — Scaling Pattern](script-expert-teams.md)
 
+24. [Subscription Accuracy — Token Reset & Block Boundaries](subscription-accuracy.md)
+25. [Agent Work Continuity — Never Interrupt, Never Lose Context](agent-work-continuity.md)
+26. [Recovery Order — SM First, Always](recovery-order.md)
+
 **Reference**: [CMM & Web 4.0](cmm-web4x.md) | [Usage Guide](usage.md)

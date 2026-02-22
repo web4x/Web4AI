@@ -152,3 +152,25 @@ tmux renders using the **lowest-capability terminal** among all attached clients
 Diagnose: `tmux info | grep -iE "256|color|RGB|Tc"`. Fix: detach stale clients (`tmux detach-client -t /dev/ttyXXX`).
 Composed capability = weakest link (CMM #1). Env vars are necessary but not sufficient — always measure after window switch.
 -> Details: [tmux-color-degradation.md](tmux-color-degradation.md)
+
+---
+
+### 24. Subscription Accuracy — Token Reset & Block Boundaries
+`scrumMaster subscription` was wrong — ccusage derives block times from logs, TUI reads `~/.claude/rate-limit-cache.json` (actual API headers).
+Fix (f5b6c6b): read rate-limit-cache as primary source. `session5h`/`reset5h`/`weekly7d`/`reset7d` fields. ccusage for enrichment only.
+Validation: sequential measurements must be consistent (tokens up, remaining down). Block transitions: session5h resets, reset5h advances.
+-> Details: [subscription-accuracy.md](subscription-accuracy.md)
+
+---
+
+### 25. Agent Work Continuity — Never Interrupt, Never Lose Context
+"Slow down" = no new large tasks, NOT stop current work. An agent's accumulated context is irreplaceable — interrupting loses reasoning chains, intermediate results, discovered state.
+Never reassign mid-task (only emergency stop). Stuck agents need guidance to CONTINUE, not a new task. Context loss is permanent until compact.
+-> Details: [agent-work-continuity.md](agent-work-continuity.md)
+
+---
+
+### 26. Recovery Order — SM First, Always
+SM first -> orchestrator -> workers. No exceptions. Without SM sweeping, no agent knows its own context %. (F33: PO recovered workers first, trainer burned 64%->0% unmonitored.)
+Every minute without SM = every agent flying blind. Manual management via trainer is CMM1 fallback — restore SM ASAP.
+-> Details: [recovery-order.md](recovery-order.md)
