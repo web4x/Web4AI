@@ -16,6 +16,18 @@
 - **Orchestrator**: Maps every task assignment to a goal number. Idle agents = unassigned capacity = waste.
 - **SM**: Checks every sweep — are agents working on goal-aligned tasks? Flags drift.
 
+## Agent File Commit Discipline (CRITICAL — Feb 22 Tron directive)
+
+Every agent MUST commit its own files after modifying them. The pre-compact hook only commits task files — agent identity files are YOUR responsibility.
+
+```bash
+git -C /Users/Shared/Workspaces/AI/Claude add session/agents/<your-role>/
+git -C /Users/Shared/Workspaces/AI/Claude commit -m "<your-role>: save context/boot/learnings"
+```
+
+**When to commit**: After writing context.md, boot.md, or learnings.md. ALWAYS before /compact.
+**Why**: Uncommitted files don't survive /clear. 21 agent files were nearly lost on Feb 22.
+
 ## Velocity Rule (CMM4)
 
 No binary thresholds. Proportional response to projected exhaustion:

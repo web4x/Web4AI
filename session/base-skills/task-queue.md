@@ -49,6 +49,18 @@ TaskList                          # What's next?
 - SM uses task list for sweep observations
 - Workers use task list for assignment queue
 
+## Agent File Commit Discipline (CRITICAL)
+
+Your agent files (context.md, boot.md, learnings.md) are YOUR responsibility to commit. The pre-compact hook only commits task files.
+
+**After every save**: commit your agent directory.
+```bash
+git -C /Users/Shared/Workspaces/AI/Claude add session/agents/<your-role>/
+git -C /Users/Shared/Workspaces/AI/Claude commit -m "<your-role>: save context/boot/learnings"
+```
+
+**Before /compact**: ALWAYS commit first. Uncommitted files don't survive /clear.
+
 ## Anti-patterns (NEVER do these)
 
 - Dropping current work to read a new incoming prompt
