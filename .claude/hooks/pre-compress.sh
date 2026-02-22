@@ -17,6 +17,46 @@ if [ -n "$PANE_TARGET" ] && [ -f "$ROLES_FILE" ]; then
     CURRENT_ROLE=$(grep "^${PANE_TARGET}|" "$ROLES_FILE" 2>/dev/null | cut -d'|' -f2)
 fi
 
+# --- Fallback detection for cross-session agents ---
+if [ -z "$CURRENT_ROLE" ] && [ -n "$PANE_TARGET" ]; then
+    # Fallback 1: Scan existing boot.md files for this pane address
+    for boot in "$AGENTS_DIR"/*/boot.md; do
+        [ -f "$boot" ] || continue
+        if grep -q "## Pane: $PANE_TARGET" "$boot" 2>/dev/null; then
+            CURRENT_ROLE=$(basename "$(dirname "$boot")")
+            [ "$CURRENT_ROLE" = "unknown" ] && CURRENT_ROLE=""
+            [ -n "$CURRENT_ROLE" ] && break
+        fi
+    done
+
+    # Fallback 2: Check Claude Code session name (--name flag sets it to role)
+    if [ -z "$CURRENT_ROLE" ]; then
+        CLAUDE_SESSION=$(tmux display-message -t "$TMUX_PANE" -p '#{pane_title}' 2>/dev/null)
+        if [ -n "$CLAUDE_SESSION" ] && [ -d "$PROJECT_DIR/.claude/agents/$CLAUDE_SESSION" ]; then
+            CURRENT_ROLE="$CLAUDE_SESSION"
+        fi
+    fi
+
+    # Fallback 3: Check context.md files for this pane
+    if [ -z "$CURRENT_ROLE" ]; then
+        for ctx in "$AGENTS_DIR"/*/context.md; do
+            [ -f "$ctx" ] || continue
+            if grep -q "Pane.*$PANE_TARGET" "$ctx" 2>/dev/null; then
+                CURRENT_ROLE=$(basename "$(dirname "$ctx")")
+                [ "$CURRENT_ROLE" = "unknown" ] && CURRENT_ROLE=""
+                [ -n "$CURRENT_ROLE" ] && break
+            fi
+        done
+    fi
+
+    # Register discovered role for future compacts
+    if [ -n "$CURRENT_ROLE" ] && [ -f "$ROLES_FILE" ]; then
+        if ! grep -q "^${PANE_TARGET}|" "$ROLES_FILE" 2>/dev/null; then
+            echo "${PANE_TARGET}|${CURRENT_ROLE}" >> "$ROLES_FILE"
+        fi
+    fi
+fi
+
 echo "=== PRE-COMPACT: ${CURRENT_ROLE:-unknown} @ ${PANE_TARGET:-unknown} ==="
 
 # --- Skip protected panes (e.g. Tron's 0.4) — not managed agents ---
@@ -73,15 +113,45 @@ if [ -n "$CONTEXT_FILE" ] && [ -f "$CONTEXT_FILE" ]; then
     CURRENT_GOAL=$(grep -A1 -i "goal\|## Current\|## Active" "$CONTEXT_FILE" 2>/dev/null | head -3 | tail -2 | sed 's/^[# ]*//')
 fi
 
-# Check for curated boot file — role-specific, hand-crafted content
-CURATED_BOOT="$BOOT_AGENT_DIR/boot-curated.md"
-if [ -f "$CURATED_BOOT" ]; then
-    # Use curated boot: copy and inject dynamic pane target
-    sed "s|projectTeam:[0-9]\.[0-9]|${PANE_TARGET:-unknown}|g" "$CURATED_BOOT" > "$BOOT_FILE"
-    echo "Boot: using curated template for $ROLE_NAME"
+# Check if boot.md was written by the agent (not auto-generated) — don't overwrite
+BOOT_AGENT_WRITTEN=false
+if [ -f "$BOOT_FILE" ]; then
+    # Agent-written boot files say "Written by" — generic says "Auto-generated"
+    if grep -q "Written by" "$BOOT_FILE" 2>/dev/null; then
+        BOOT_AGENT_WRITTEN=true
+    else
+        # Fallback: also keep if recently modified (<120s)
+        BOOT_AGE=$(( $(date +%s) - $(stat -f %m "$BOOT_FILE" 2>/dev/null || echo 0) ))
+        if [ "$BOOT_AGE" -lt 120 ]; then
+            BOOT_AGENT_WRITTEN=true
+        fi
+    fi
+fi
+
+if [ "$BOOT_AGENT_WRITTEN" = true ]; then
+    echo "Boot: kept agent-written boot.md"
 else
-    # Generic boot template
-    cat > "$BOOT_FILE" << BOOT
+    # Generic boot template — different for known vs unknown roles
+    if [ "$ROLE_DISPLAY" = "unknown" ]; then
+        cat > "$BOOT_FILE" << BOOT
+# Boot: unknown (identity detection failed)
+*Auto-generated $TIMESTAMP. Identity could not be determined.*
+
+## You are: unknown
+## Pane: ${PANE_TARGET:-unknown}
+## Problem: Your role was not found in the roles registry or boot files.
+
+## Immediate actions (RECOVER IDENTITY FIRST):
+1. Check your pane: \`tmux display-message -p '#{session_name}:#{window_index}.#{pane_index}'\`
+2. Look for your context: \`ls session/agents/\` — find a directory matching your work
+3. Check if a peer knows your role: announce "Identity detection failed at ${PANE_TARGET:-unknown}"
+4. Once you know your role, read \`.claude/agents/<your-role>/SKILL.md\`
+5. Update \`session/agents/<your-role>/boot.md\` with correct Pane line for next compact
+
+## Do NOT just "wait for assignment" — recover your identity first.
+BOOT
+    else
+        cat > "$BOOT_FILE" << BOOT
 # Boot: $ROLE_DISPLAY
 *Auto-generated $TIMESTAMP. This is ALL you need to read post-compact.*
 
@@ -102,10 +172,11 @@ else
 $([ -n "$LEARNINGS_FILE" ] && echo "- Learnings: \`$LEARNINGS_FILE\`")
 
 ## Rules (memorize, don't re-read):
-- Passive mode = death. Always have a background loop running.
+- Wait for assignment. Only SM/orchestrator have background loops.
 - Never assume — always measure.
 - OOSH wrappers only, no raw tmux.
 BOOT
+    fi
 fi
 
 echo "Boot file: $BOOT_FILE ($(wc -l < "$BOOT_FILE") lines)"
