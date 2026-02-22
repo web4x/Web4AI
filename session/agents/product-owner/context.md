@@ -1,9 +1,9 @@
 # Product Owner Context
 
-**Updated**: 2026-02-22T22:40Z (fresh post-compact)
+**Updated**: 2026-02-22T23:10Z (pre-compact save)
 **Role**: product-owner
 **Pane**: projectTeam:0.4
-**State**: RECOVERED — management chain restored
+**State**: SAVING — compact imminent, trainer managing
 
 ## CURRENT GOAL: Reproducible Team Boot (fractal PDCA)
 
@@ -98,6 +98,18 @@ Expert: updating oosh-architecture.md (naming: dots + camelCase only)
 - "Slow down" = no new large tasks, current work finishes (KB #25)
 - /clear ONLY at 0%. Never above (F29)
 
+## This Compact Session Accomplished
+
+- Restored deleted rules in context.md (from git history ac7159a)
+- Trainer restored SM curated boot.md (was generic "wait for assignment")
+- Added F26-F34 to learnings.md (9 new failures)
+- Tuned all 5 PO files from WODA/CMM learnings review
+- Added "rules are eternal" to team-goals.md + base-skills/task-queue.md + MEMORY.md
+- Added "CMM4 requires regression safety" to team-goals.md + cmm-web4x.md
+- Symlinked KB usage.md into base-skills/ (DRY)
+- Taught trainer: standing job = maintain KB action checklists on every failure
+- Trainer managing this compact
+
 ## Block State
 
-50% used, ~200 min remaining. Block resets 02:00 CET.
+~55% used, ~180 min remaining. Block resets 02:00 CET.
