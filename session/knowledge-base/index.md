@@ -25,4 +25,7 @@
 19. [Fractal PDCA — Reproducible Team Boot](fractal-pdca-remote-boot.md)
 20. [Docker Image Lifecycle](docker-image-lifecycle.md)
 
+21. [Compact/Boot Lifecycle — Operational Guide](compact-boot-lifecycle.md)
+22. [Recurring Incidents — Prioritized by Frequency](recurring-incidents.md)
+
 **Reference**: [CMM & Web 4.0](cmm-web4x.md) | [Usage Guide](usage.md)
