@@ -37,6 +37,19 @@ Reference: `session/knowledge-base/usage.md`
 
 DRY is the team's highest directive. Never duplicate information — write once, link everywhere.
 
+### KB Feedback Loop
+
+Every learning must flow into persistent storage, not stay in chat:
+
+| Step | Action |
+|------|--------|
+| **Discover** | Solve a problem or discover a pattern |
+| **Record** | Write to your `learnings.md` (personal) AND/OR a KB article (team) |
+| **Reference** | Context files hold references to KB articles, not the content itself (lazy loading) |
+| **Query** | Before solving any problem, check `session/knowledge-base/` first |
+
+KB survives compacts, agents, and sessions. Chat history does not. If a learning is only in chat, it is CMM1 — it will die on compact.
+
 ## No Skip Permissions (MANDATORY)
 
 **NEVER start Claude agents with `--dangerously-skip-permissions`.** The ScrumMaster handles all permission approvals. When auditing, flag any use of `--dangerously-skip-permissions` in scripts or team setup as a governance violation.
@@ -203,6 +216,15 @@ When managing agent compacts, restarts, and recovery, follow these rules learned
 3. **Verify** it processed — capture pane, check for compact completion
 4. **Send** boot prompt — the agent's boot.md file
 5. **Verify** reboot — capture pane, confirm agent is reading its SKILL.md
+
+### Boot file discipline (F30)
+
+1. **One file: `boot.md`. Always.** Never create `boot-post-compact.md`, `boot-curated.md`, or variant filenames. Renaming breaks dependencies — CMM1 chaos.
+2. **Agent writes boot.md before compact.** The pre-compress hook respects recent boot.md (<120s) and will not overwrite it. If the agent forgets, the hook generates a generic fallback.
+3. **Boot must include foundational reading.** Operational state alone = CMM1 recovery. Include: woda, CMM reference, KB usage guide.
+4. **Never rename source files without impact analysis.** PO-level awareness: what depends on this name? Hooks? Other agents? Boot prompts?
+
+Reference: `session/knowledge-base/compaction-recovery.md` (F30 section)
 
 ## Manual Mode
 
@@ -543,6 +565,37 @@ When your context runs low or after `/compact`:
 - **Check**: Did it work? Measure the result (never assume, always measure)
 - **Act**: Adjust based on what was measured. Feed back into next Plan.
 
+## Fractal PDCA (MANDATORY)
+
+Complex goals decompose into fractal PDCA stacks. Each level is its own PDCA cycle. Work bottom-up like a call stack — each level must PASS before the next can start.
+
+### How it maps to WODA
+
+| WODA | PDCA | Action |
+|------|------|--------|
+| **W** (What) | Goal tree | Decompose the goal into levels — what must exist before what? |
+| **O** (Overview) | Level plan | For the current level: what's the plan, what are the dependencies? |
+| **D** (Details) | Task files | Specific tasks, specific measurements, specific acceptance criteria |
+| **A** (Action) | Do/Check/Act | Execute, measure result, adjust — then move to the next level up |
+
+### Example: remote team boot
+
+```
+Level 5: Boot full team        ← top goal
+Level 4: Boot PO (CMM3 test)
+Level 3: Start otmux session
+Level 2: Install oosh remotely
+Level 1: Docker base image     ← start here
+```
+
+Each level has its own Plan-Do-Check-Act cycle. New sublevels emerge as you discover prerequisites (fractal depth). A failure at level 2 does not skip to level 3 — fix, re-check, then proceed.
+
+### Why this matters for the PO
+
+The PO manages goals that span multiple agents and sessions. Fractal PDCA prevents the common failure of jumping to high-level goals before prerequisites are met. It also makes progress measurable — you can report "Level 2 PASS, Level 3 in progress" instead of vague percentages.
+
+Reference: `session/knowledge-base/fractal-pdca-remote-boot.md`
+
 ## CMM3/CMM4 Split: Tools Do, Agents Think (MANDATORY)
 
 **Tools** (hiveMind, scrumMaster, otmux) do deterministic CMM3 work: sweep, unblock, capture, measure.
@@ -555,6 +608,31 @@ Your value is judgment, not mechanics.
 
 Before starting large tasks, check subscription: `scrumMaster subscription`
 Proportional response to projected exhaustion — see `session/team-goals.md` for the velocity table.
+
+## Web4x Principles (MANDATORY)
+
+The PO applies web4x to architectural decisions. Web4x = self-improving systems at CMM4. The core principle: **software manages its own lifecycle from ground up.**
+
+### Self-managing lifecycle
+
+Every tool bootstraps itself. No pre-baked dependencies, no manual setup. The software pulls what it needs, configures itself, and operates autonomously.
+
+| Pattern | Example |
+|---------|---------|
+| **Naked images** | Docker containers have SSH only. oosh installs itself via ossh — no deps in Dockerfile. |
+| **Walking sticks become tools** | Shell scripts (buildDockerfile, runDockerfile) evolve into proper oosh-wrapped tools (odocker build, odocker run). |
+| **OOSH naming convention** | Each wrapped tool follows: tmux->otmux, ssh->ossh, docker->odocker. Own script, own completion, no flags. |
+
+### PO governance of web4x
+
+When reviewing architecture or new tools, verify:
+1. Does the tool manage its own lifecycle, or does it require pre-baked setup?
+2. Are raw commands being used where an oosh wrapper should exist?
+3. Is there a "walking stick" shell script that should graduate to a proper oosh tool?
+
+A raw `docker build` command in a team workflow = CMM1. An `odocker build` with completion, logging, and self-explanation = CMM3 minimum.
+
+Reference: `session/knowledge-base/docker-image-lifecycle.md`
 
 ## Prefer Built-in Tools (MANDATORY)
 
