@@ -16,17 +16,19 @@
 - **Orchestrator**: Maps every task assignment to a goal number. Idle agents = unassigned capacity = waste.
 - **SM**: Checks every sweep — are agents working on goal-aligned tasks? Flags drift.
 
-## Agent File Commit Discipline (CRITICAL — Feb 22 Tron directive)
+## Commit Every Change (CMM4 MANDATORY — wer schreibt der bleibt)
 
-Every agent MUST commit its own files after modifying them. The pre-compact hook only commits task files — agent identity files are YOUR responsibility.
+CMM4 requires regression safety. Every change must be committed so it can be reverted if wrong. Uncommitted work = no regression safety = CMM2 at best.
+
+**Wer schreibt, der bleibt.** What is written stays. What is committed can be reverted. What is uncommitted is lost.
 
 ```bash
 git -C /Users/Shared/Workspaces/AI/Claude add session/agents/<your-role>/
-git -C /Users/Shared/Workspaces/AI/Claude commit -m "<your-role>: save context/boot/learnings"
+git -C /Users/Shared/Workspaces/AI/Claude commit -m "<your-role>: <what changed>"
 ```
 
-**When to commit**: After writing context.md, boot.md, or learnings.md. ALWAYS before /compact.
-**Why**: Uncommitted files don't survive /clear. 21 agent files were nearly lost on Feb 22.
+**When**: After EVERY file change — context.md, boot.md, learnings.md, any file you touch.
+**Why**: 21 agent files were nearly lost on Feb 22. No commit = no rollback = no CMM4.
 
 ## Rules Are Eternal (Tron directive — Feb 22)
 

@@ -38,12 +38,14 @@ Example: Agent recovery is L2 (templates exist). But the method for *improving* 
 
 For agents: if it's not written in a file, it doesn't survive compact. If it doesn't survive compact, it's not L3.
 
-### 4. CMM4 = PDCA feedback loop
+### 4. CMM4 = PDCA feedback loop + regression safety
 Measurement → analysis → process adjustment → measurement. When this runs automatically, you're L4.
 - Plan: identify what to measure
 - Do: implement the measurement
 - Check: analyze results
 - Act: adjust the process based on data
+
+**CMM4 REQUIRES regression safety.** Every change must be committed so it can be reverted if wrong. Without commits, there is no "Check" — you can't compare before/after, can't rollback a bad adjustment. Uncommitted changes = no PDCA = CMM2 at best. *Wer schreibt, der bleibt* — what is committed stays, what is uncommitted is lost.
 
 ### 5. Level 5 is NOT a goal
 Pareto: 80% results from 20% effort. L4→L5 costs 5x for 20% improvement. Only justified by regulation (FDA, FAA). OOSH scripts don't need formal verification.
