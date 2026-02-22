@@ -1,42 +1,47 @@
 # Team Assignment Dashboard
-*Updated: 2026-02-22 ~15:30 UTC by scrum-master (post-clear boot)*
+*Updated: 2026-02-22 ~20:40 CET by scrum-master (Overnight Sweep 10)*
 
-## Assignment Table
+## Subscription
+- **Block**: 21:00 CET — 02:00 CET (ACTIVE)
+- **Used**: 15% / 249 min remaining
+- **Weekly**: 72% of 7d quota
+- **Alert**: OK — **FULL SPEED**
+
+## Assignment Table — projectTeam
 
 | Pane | Agent | Current Task | Goal | Status |
 |------|-------|-------------|------|--------|
-| 0.0 | orchestrator | — | — | Idle |
-| 0.1 | oosh-expert | Implementing odocker dockerfile.find | G5 | Active |
-| 0.2 | oosh-tester | Testing (HOME var fix) | G5 | Active |
-| 0.3 | scrum-master | Sweep loop active | G3 | Active |
-| 0.4 | product-owner | Tron typing | — | SKIP (0.4) |
-| 0.5 | agent-trainer | Compacting (was 0%) | — | Recovering |
-| 1.0 | woda-writer | Booting (post /clear) | — | Recovering |
-| 1.1 | woda-scribe | — | — | Idle |
-| 1.2 | task-agent | — | — | Idle |
-| 1.3 | developer | — | — | Idle |
-| 1.4 | script-PO | — | — | Idle |
+| 0.0 | orchestrator | — | — | IDLE |
+| 0.1 | oosh-expert | Subscription fix done, standing by | G5 | IDLE |
+| 0.2 | oosh-tester | Standing by | G5 | IDLE |
+| 0.3 | scrum-master | Overnight sweep loop (sweep 10) | G3/G0 | ACTIVE |
+| 0.4 | product-owner | Tron asleep, "survive till 8 am" | — | SKIP |
+| 0.5 | agent-trainer | Context monitoring overnight | G1 | IDLE |
+| 1.0 | woda-writer | — | — | IDLE |
+| 1.1 | woda-scribe | — | — | IDLE |
+| 1.2 | task-agent | — | — | IDLE |
+| 1.3 | developer | — | — | IDLE |
+| 1.4 | script-PO | — | — | IDLE |
 
-## Subscription
-- **87% used**, ~38 min remaining
-- Alert: WARNING
-- Velocity: **No new large tasks.** Current work continues.
+## Assignment Table — odockerTeam
 
-## Actions Taken This Sweep
-1. Unblocked oosh-expert (docker ps permission)
-2. Unblocked oosh-tester (cut permission)
-3. Sent /compact to agent-trainer (0% context) — processing
-4. Sent /clear + boot.md to woda-writer (compact failed at 0%)
+| Pane | Agent | Current Task | Goal | Status |
+|------|-------|-------------|------|--------|
+| 0.0 | odocker-expert | All 8 methods DONE, probing for more tasks | G5 | IDLE (searching) |
+| 0.1 | odocker-tester | Testing tab completion | G5 | ACTIVE |
 
-## Blockers
-- 2 agents recovering from 0% context (trainer, writer)
-- 5 agents idle — velocity zone prevents new large tasks
+## Deliveries This Block
+- odocker file.find: commits b68738a, d45c48d (camelCase fix)
+- odocker workspace.list: commit 0bc097c
+- odocker build.all: commit 0323615
+- odocker status, disk, prune, prune.all: commit a0de206
+- **Total: 8 new odocker methods, ALL tested PASS**
+
+## Findings
+- Framework bug: dotted method doubling on error paths (this.start retries). Separate ticket for oosh-expert/this-expert.
 
 ## CMM Observation
-- **Weakest link**: agent-trainer + woda-writer hit 0% undetected = L1 context monitoring
-- Expert + tester working on odocker = L3 software delivery
-- SM sweep operational = L3 team self-management
-
-## Goals Reference
-- G0: Autonomous operation, G1: CMM4 team, G2: Restore lost functionality
-- G3: Team self-management, G4: Subscription monitoring (merged into G0), G5: Software delivery
+- Overnight autonomous operation = G0 success so far
+- odocker delivery pipeline: expert→tester→report→confirm = L3
+- SM sweep loop operational, 10 cycles clean = L3
+- No context warnings = improvement over Feb 17 mass exhaustion

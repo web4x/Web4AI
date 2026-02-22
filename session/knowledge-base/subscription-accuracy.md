@@ -63,13 +63,26 @@ To verify subscription accuracy, take sequential measurements:
 
 Block end 20:00 UTC vs "73 min remaining" at 18:46 = 74 min actual → 1 min off. Acceptable.
 
-## Alert Thresholds
+## Alert Thresholds (validated Feb 22)
 
-- `OK`: >30 min remaining
-- `WARNING`: 10-30 min remaining
-- `CRITICAL`: <10 min remaining
-- `EXHAUSTED`: remaining <= 0
+- `OK`: >= 10 min remaining
+- `WARNING`: < 10 min remaining
+- `EXHAUSTED`: block ended (remaining <= 0)
+- Transitions: OK → WARNING → EXHAUSTED → OK (new block). All verified.
 
-## Key Insight
+## Block Transition Behavior (validated Feb 22, 7 measurements)
 
-**Never trust ccusage for timing.** It derives boundaries from logs — subject to stale data and shifting times. The rate-limit-cache.json is written by Claude Code itself from actual API rate limit headers. Same source as TUI = ground truth.
+1. Block ends → status changes to INACTIVE, alert = EXHAUSTED
+2. **5-7 min delay** before new block appears (cache needs new API call to trigger header refresh)
+3. New block: session5h resets to 0, reset5h advances +5h, new time window shown
+4. Token count does NOT reliably reset — session5h% is the authoritative metric
+
+## Key Insights
+
+1. **Never trust ccusage for timing.** It derives boundaries from logs — subject to stale data and shifting times. rate-limit-cache.json is written by Claude Code itself from actual API rate limit headers. Same source as TUI = ground truth.
+
+2. **Absolute token count is unreliable.** Observed 95M→5.5M mid-block jump when API headers refresh. The count is per-window, not cumulative. Use session5h% for decisions.
+
+3. **Remaining minutes are perfectly accurate.** 7 measurements showed zero error on elapsed-vs-remaining match. This is the most trustworthy field for velocity management.
+
+Full validation report: `session/tasks/subscription-validation-report.md`
