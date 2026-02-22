@@ -72,6 +72,33 @@ Rebooted after compact, read `session/agents/tron-interface/context.md` instead 
 ### F25: Reverted to Binary Thresholds Despite CMM4 Velocity Rule (2026-02-18)
 Saw "80% WARNING" from subscription check, immediately said "throttle mode." This is the old binary rule that Tron explicitly replaced with CMM4 continuous velocity management. Had the conversation, wrote the task, trainer committed it (5f6112d) — then I ignored it and fell back to the old pattern. **The rule is: look at projected exhaustion time, respond proportionally. No binary on/off. "Driving 200km/h at a cliff hoping brakes work" = binary thresholds. CMM4 = continuous deceleration, never needs emergency braking.**
 
+### F26: Sent keys to Tron's pane 0.4 (2026-02-17)
+`hiveMind unblock all` includes 0.4 = Tron's pane. Sent Enter to Tron 20+ times on sweep. **NEVER use `hiveMind unblock all`. Unblock specific panes, skip 0.4.**
+
+### F27: Tried to "park" tester instead of letting finish (2026-02-22)
+Said "I'll let the tester rest" when Tron said slow down. Tron: "if you interrupt tester and reassign...when does he finish his work ever and we lose complete context." **"Slow down" = no new large tasks. Current work finishes. Never interrupt mid-task.** (KB #25)
+
+### F28: Compound `&&` commands triggered permission prompts (2026-02-22)
+Used `scrumMaster subscription && echo "---" && date`. Got rejected. OOSH wrappers have `<?interval>` delay params. **Run commands separately. No `&&` chaining.** (Anti-pattern #4)
+
+### F29: /cleared tester at 5% instead of re-compacting (2026-02-17)
+Tron: "are you mad...it kills your team mate." At 5% after compact, try /compact AGAIN — it can still work. **/clear is absolute last resort at 0% ONLY. Never above.**
+
+### F30: Boot file variant names (2026-02-21)
+Created boot-post-compact.md, boot-curated.md — breaking hook dependencies. **One file: boot.md. Always. No variant names.** Hook checks for recent boot.md.
+
+### F31: Forgot to monitor orchestrator (0.0) completely (2026-02-22)
+Orchestrator was at 0% and nobody noticed. PO forgot pane 0.0 existed. **Monitor ALL panes including orchestrator. Use `hiveMind team.status` not selective checks.**
+
+### F32: Self-care violation — reached 9% without saving at 35% (2026-02-22)
+Priority #1 violated. Burned through managing others while my own context drained. Tron: "you just killed your most important rules like selfcare WTF." **Self-care IS team care. Save at 35%. This is non-negotiable.**
+
+### F33: Recovery order violated — recovered workers before SM (2026-02-22)
+Recovered expert+tester+trainer before SM. Trainer burned 64%→0% on big task with nobody watching. **SM first. Always. Without SM sweeping, no safety net exists.** (KB #26)
+
+### F34: Deleted rules from context.md during emergency save (2026-02-22)
+Overwrote 63% context (19 Tron directives, achievements, fractal, rules) with abbreviated 9% emergency save. Institutional knowledge destroyed. **Rules are eternal. NEVER delete them. Append new content, copy ALL rules forward. Emergency is no excuse.**
+
 ## Patterns
 
 ### Idle Team → Ask Task Agent

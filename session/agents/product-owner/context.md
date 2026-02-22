@@ -79,7 +79,7 @@ Expert: updating oosh-architecture.md (naming: dots + camelCase only)
 - Hook fix task: Task #48
 - Overnight protocol: `session/tasks/overnight-po-protocol.md`
 
-## RULES
+## RULES (eternal — never delete, only append)
 
 - Self-care IS team care (priority.md #1) — save at 35%, NOT 9%
 - "42": only /context via peer
@@ -91,6 +91,12 @@ Expert: updating oosh-architecture.md (naming: dots + camelCase only)
 - `otmux` no args for overview
 - Every hiveMind send: verify + Enter if needed (INC-004)
 - Every agent file write: git commit immediately
+- Rules are eternal — append only, ask Tron only on contradictions (F34)
+- Dots + camelCase ONLY in all OOSH naming — no dashes, no underscores
+- Recovery order: SM first → orchestrator → workers (F33)
+- Monitor ALL panes including orchestrator (F31)
+- "Slow down" = no new large tasks, current work finishes (KB #25)
+- /clear ONLY at 0%. Never above (F29)
 
 ## Block State
 
