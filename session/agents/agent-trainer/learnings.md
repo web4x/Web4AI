@@ -61,6 +61,19 @@
 - **SM compact at 5% was too late** — should have interrupted background bash earlier. At 10%, start the compact process immediately. Don't wait for SM to finish long-running tasks.
 - **OOSH naming rules (KB #16)**: camelCase params, no dashes, no underscores. Added to all 4 script team SKILL.md files. oosh-expert reviews all script team commits.
 
+## PO Failures F26-F34 — Training Reference (2026-02-22)
+
+- **F26: Never `hiveMind unblock all`** — it sends to 0.4 (Tron). Unblock specific panes, skip 0.4.
+- **F27: "Slow down" ≠ "stop"** — no new large tasks, but current work FINISHES. Never interrupt mid-task — context loss is permanent. KB #25.
+- **F28: No compound `&&` commands** — `sleep N && command` and `cmd1 && cmd2` trigger unique permission prompts. OOSH wrappers have `<?interval>` params. Anti-pattern #4.
+- **F29: /clear is 0% ONLY** — at 5% after compact, try /compact AGAIN. /clear kills everything. "Are you mad...it kills your team mate."
+- **F30: One file: boot.md. Always.** No variant names (boot-post-compact.md, boot-curated.md). Hook depends on the exact name.
+- **F31: Monitor ALL panes** — including orchestrator. Use `hiveMind team.status` not selective captures. One forgotten pane = one dead agent.
+- **F32: Self-care at 35%** — save context. If monitoring others while ignoring own burn = die and take team with you. Priority #1.
+- **F33: Recovery order SM FIRST** — without SM sweeping, nobody has a safety net. Trainer burned 64%→0% because SM was recovered last.
+- **F34: Rules are eternal** — NEVER delete from any agent file. Append new, copy ALL old forward. Emergency is no excuse.
+- **Fractal connection**: Every sub-task was born from a failure. F→learning→KB→tool→fractal = PDCA = CMM4 = web4x.
+
 ## Quality Gate (learned 2026-02-22)
 
 - **Reproduce BEFORE fix**: Run tests to confirm the bug exists. Document the failing case. Then send to expert.
