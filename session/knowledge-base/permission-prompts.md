@@ -13,13 +13,17 @@
 
 ## Open Issues
 - Permission reset on /compact — unfixed, Claude Code behavior
-- Compound `&&` commands don't match settings.json patterns like `Bash(claudeCode *)`
-- Added patterns `Bash(sleep * && otmux *)`, `Bash(sleep * && cd *)` but still partially broken
 
-## Root Cause (Ch9 — Tron's insight)
-Compound `&&` commands (e.g., `cd /Users/donges/oosh && ./otmux send ...`) generate a single Bash call that doesn't match individual tool patterns in settings.json.
+## Root Cause: Compound Commands (Ch9 — Tron's insight)
+Compound `&&` commands (e.g., `sleep 60 && hiveMind monitor ...`) generate a single Bash call that doesn't match individual tool patterns in settings.json. Each unique compound = new permission prompt.
 
-**The real fix**: Put OOSH on PATH (`/Users/donges/oosh` in shell profile). Then commands become simple atoms (`otmux send ...` instead of `cd ... && ./otmux send ...`). Simple commands match simple permission patterns. The eight-chapter permission economy reduces to a missing PATH entry.
+**Two fixes that eliminate most permission prompts:**
+
+1. **OOSH on PATH** (done): Simple atoms (`otmux send ...`) match simple permission patterns. No `cd ... && ./otmux ...` needed.
+
+2. **Separate commands instead of chaining**: Run commands as individual tool calls, not `&&` chains. Each single command reuses existing permissions — no new prompts. OOSH wrappers also have built-in `<?interval>` delay parameters (e.g., `hiveMind monitor role 30 60` — last param = sleep before executing). This avoids `sleep N && command` entirely.
+
+See also: [Anti-Patterns #4](anti-patterns.md#4-compound-commands-with--instead-of-built-in-parameters)
 
 ## Action Checklists
 -> [unblock-permission.md](actions/unblock-permission.md)

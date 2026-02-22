@@ -63,3 +63,26 @@ hiveMind send.enter task-agent "Task done"
 ```
 
 **Why**: Layout-dependent commands break when panes move. Role names are identity, pane numbers are implementation details.
+
+## 4. Compound Commands with && Instead of Built-in Parameters
+
+**BANNED**: Using `sleep N && command` or `command1 && command2` when the tool has built-in parameters.
+
+```bash
+# NEVER DO THIS
+sleep 60 && hiveMind monitor scrum-master 30
+sleep 30 && scrumMaster subscription
+command1 && command2   # triggers unique permission prompts
+```
+
+Each compound command triggers a unique permission prompt (bash -c wrapping). Single commands reuse existing permissions.
+
+```bash
+# CORRECT — use built-in delay parameters
+hiveMind monitor scrum-master 30 60    # last param = sleep interval
+scrumMaster subscription               # run separately, no chaining
+```
+
+**Why**: OOSH commands like `hiveMind` have built-in `<?interval>` as last parameter (line 2024: "avoids compound commands that trigger permission prompts"). Using `sleep && command` bypasses this design and creates permission prompt cascades.
+
+**Also**: Run commands separately in parallel tool calls instead of chaining with `&&`. Each single command matches existing permission patterns — no new prompts needed.

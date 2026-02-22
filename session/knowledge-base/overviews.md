@@ -42,7 +42,8 @@ Pull system: writer adds ONLY when scribe completes one. Living pipeline, never 
 ### 5. Permission Prompts
 TUI permission prompts block agents. Wrong option = denied command.
 Two patterns: "1.Yes/2.No" (send 1) vs "1.Yes/2.Yes,allow" (send 2). READ OPTIONS FIRST.
-Permissions reset on /compact (unfixed). Compound `&&` commands don't match settings.json patterns.
+**Fix for repeating prompts**: Run commands separately (not `&&` chains) — single commands reuse existing permissions. OOSH wrappers have built-in `<?interval>` delay params, so `sleep N && command` is never needed.
+Permissions reset on /compact (unfixed).
 -> Details: [permission-prompts.md](permission-prompts.md)
 -> Actions: [unblock-permission.md](actions/unblock-permission.md)
 
@@ -125,8 +126,8 @@ Sweep log: `session/metrics/sweep-log.md`. CMM target: CMM1/2 → CMM3/4.
 ---
 
 ### 15. Anti-Patterns (BANNED)
-Three banned patterns: error suppression (`2>/dev/null`), dashes in OOSH parameter names, hardcoded pane addresses.
-These are framework-level constraints, not style preferences. Violating any will cause crashes or silent failures.
+Four banned patterns: error suppression (`2>/dev/null`), dashes in OOSH parameter names, hardcoded pane addresses, compound `&&` commands when built-in params exist.
+These are framework-level constraints, not style preferences. Violating any will cause crashes, silent failures, or permission prompt cascades.
 -> Details: [anti-patterns.md](anti-patterns.md)
 
 ---
