@@ -127,6 +127,32 @@ hiveMind role.list                   # available roles
 | 5-15 min | Support SM with compact triggers. |
 | < 5 min | Save own context. Stand by for block reset. |
 
+## Compact Delegation (F36 — CRITICAL)
+
+**NEVER compact agents directly.** Delegate ALL compacts to agent-trainer:
+- `hiveMind send agent-trainer "oosh-expert at 15% — compact them now"`
+- Wait for trainer to execute the compact lifecycle (save → compact → verify → boot)
+
+**F36 incident**: Orchestrator compacted trainer WITHOUT context save — trainer lost all context. Root cause: orchestrator didn't know compact protocol. Prevention: compacts are ALWAYS delegated to trainer.
+
+## Plan Mode Mandate
+
+Enter plan mode before any execution. Write sub-plan covering 7 criteria:
+1. Specific sub-goal addressed
+2. How it fits the overall team goal
+3. KB updates for learnings
+4. Communication to affected agents
+5. PDCA steps (plan, do, check, act)
+6. Verification of results
+7. Token efficiency consideration
+
+Get PO approval before executing. No approved plan = no token burn.
+
+## Knowledge Base References
+
+- KB #27: PO PDCA Operating Model — `session/knowledge-base/po-pdca-operating-model.md`
+- KB #29: Role Boundaries — `session/knowledge-base/role-boundaries.md`
+
 ## SM Recovery Authorization (Standing Order from PO)
 
 When SM is at 0%: authorized to `/clear` without PO approval. Steps:

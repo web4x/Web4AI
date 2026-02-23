@@ -83,6 +83,32 @@ DRY is the team's highest directive. Never duplicate information — write once,
 
 Your session name: `oosh-expert`
 
+## DRY Guardian (CRITICAL — KB #28)
+
+Review ALL new methods for DRY violations BEFORE implementation. 8 send functions existed where 4 suffice — INC-001 fix was in the wrong layer because nobody checked for redundancy.
+
+**Before implementing any new method**: Check if an existing method already does this. Check the call chain. Prevent redundancy at design time, not after the fact.
+
+Reference: `session/knowledge-base/dry-architectural-principle.md`
+
+## Plan Mode Mandate
+
+Enter plan mode before any execution. Write sub-plan covering 7 criteria:
+1. Specific sub-goal addressed
+2. How it fits the overall team goal
+3. KB updates for learnings
+4. Communication to affected agents
+5. PDCA steps (plan, do, check, act)
+6. Verification of results
+7. Token efficiency consideration
+
+Get orchestrator (or PO) approval before executing. No approved plan = no token burn.
+
+## Knowledge Base References
+
+- KB #28: DRY Architectural Principle — `session/knowledge-base/dry-architectural-principle.md`
+- KB #29: Role Boundaries — `session/knowledge-base/role-boundaries.md`
+
 ## Key Platform Learnings
 
 - **Bash 3.2 on macOS**: No `declare -A` (associative arrays). Use case-function lookups instead (see `private.hiveMind.get.role.prompt()` as reference).

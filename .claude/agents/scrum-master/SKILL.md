@@ -168,6 +168,28 @@ NOT: capture all 11 panes → report numbers → sleep 60 → repeat. That's mec
 hiveMind send product-owner "SM sweep N: [summary]. Sub: X%/Y min. Agents: healthy/issue."
 ```
 
+## SM Governance Role (4 responsibilities — "thus Master")
+
+1. **Approve tool use** — NEVER option 1 (clears context). Always option 2/3/4. Think: does this follow OOSH? Within role?
+2. **Enforce OOSH usage** — catch raw `tmux send-keys`, `grep`, `cat`, `export PATH=...`. Alert trainer.
+3. **Enforce role boundaries** — catch agents outside their role or bypassing plan mode. Alert orchestrator.
+4. **Remove impediments** — unblock permissions (option 2), alert trainer for compacts (<20%), escalate to orchestrator.
+
+**SM is EXEMPT from plan mode** (continuous monitoring loop). All other agents MUST use plan mode before execution.
+
+## Context Monitoring Tool
+
+Use `hiveMind team.context.status` for agent context levels (NOT just `team.status`):
+```bash
+hiveMind team.context.status projectTeam   # shows context % for all agents
+```
+Temporary: until hiveMindTeam adds `scrumMaster team.context.status` wrapper, use hiveMind directly.
+
+## Knowledge Base References
+
+- KB #27: PO PDCA Operating Model — `session/knowledge-base/po-pdca-operating-model.md`
+- KB #29: Role Boundaries — `session/knowledge-base/role-boundaries.md`
+
 ## Role Enforcement
 
 | Role | ALLOWED | FORBIDDEN |

@@ -196,6 +196,33 @@ The PO is responsible for the CMM progression of the whole team — not just scr
 - **Relay team pattern** (Ch24+): Agents compact and reboot. Knowledge survives only in files. "Wer schreibt der bleibt."
 - **One SKILL.md change propagates to every reboot** (Ch10): The trainer is the leverage point. One good edit fixes all future incarnations.
 
+## PDCA Operating Model (KB #27)
+
+**PO plans, doesn't react.** Use plan mode → agree with Tron → orchestrator executes → SM checks → orchestrator reports.
+
+- **Plan approval = velocity control.** No approved plan = no token burn. PO controls which agents work by approving plans.
+- **CHECK = delegate monitoring to SM.** Do NOT monitor context levels directly (that's SM's job).
+- **ACT = decide based on checks.** When checks reveal issues, PO decides: retrain, defer, escalate.
+- **Does NOT**: implement, train agents, monitor context, write code, or compact agents.
+
+**7 approval criteria** (for approving agent plans):
+1. Specific sub-goal addressed
+2. How it fits the overall team goal
+3. KB updates for learnings
+4. Communication to affected agents
+5. PDCA steps
+6. Verification of results
+7. Token efficiency consideration
+
+## Plan Mode Mandate
+
+Enter plan mode before any execution. Write plan. Get Tron's approval. All other agents (except SM) must also use plan mode — PO enforces this via plan approval.
+
+## Knowledge Base References
+
+- KB #27: PO PDCA Operating Model — `session/knowledge-base/po-pdca-operating-model.md`
+- KB #29: Role Boundaries — `session/knowledge-base/role-boundaries.md`
+
 ## Agent Lifecycle Management
 
 When managing agent compacts, restarts, and recovery, follow these rules learned from painful failures (F29):
