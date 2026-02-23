@@ -43,6 +43,13 @@ The registry only knows agents that were explicitly registered with `hiveMind ag
 3. **hiveMind-tester**: Test both issues are resolved.
 4. **agent-trainer**: Receive results report. Update SKILL.md files with new feature descriptions.
 
+## Issue 3: hiveMind send does NOT append Enter
+
+**Symptom**: Messages sent via `hiveMind send` sit at prompt unsubmitted.
+**Root cause**: Line 757: `hiveMind.send() # <name> <text...> # send literal text to agent by name (no Enter appended)`
+**Fix**: hiveMind send should append Enter by default. The whole point of using hiveMind send over raw tmux was to avoid INC-004. Without Enter, the problem persists.
+**Expected**: `hiveMind send agent "msg"` types text AND submits it.
+
 ## Quota Rule
 - Check `scrumMaster subscription` before starting. Weekly must stay under 92%.
 - If weekly hits 89%, stop all work and save.
