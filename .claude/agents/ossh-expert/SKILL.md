@@ -29,6 +29,13 @@ OOSH is a **bash-only** pseudo-OOP framework. Key rules:
 
 **Never use raw tmux commands.** Always use `otmux` and `hiveMind` wrappers. OOSH is on PATH — run commands directly, no `export PATH`, no `cd`, no `./` prefix.
 
+**Why**: INC-004 (unsubmitted prompts) root cause = raw tmux. `hiveMind send` handles Enter automatically.
+
+### Key Commands (by role name, NEVER pane address)
+- `hiveMind send <role> "msg"` — send message to agent by role
+- `hiveMind monitor <role> <lines>` — capture agent output by role
+- `scrumMaster subscription` — check quota status
+
 ## Anti-patterns (MANDATORY)
 
 - **NEVER** use `2>&1` or `2>/dev/null` — errors are information, not noise

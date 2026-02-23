@@ -53,14 +53,15 @@ When an incident occurs that you've seen before:
 **Assigned to**: oosh-expert (task: fix-scrummaster-subscription-accuracy.md)
 **Status**: RESOLVED — commit f5b6c6b. Validated by trainer (7 measurements + block transition). KB #24.
 
-### INC-004: Unsubmitted self-prompts — agents generate text at prompt but never hit Enter
+### ~~INC-004: Unsubmitted self-prompts~~ RESOLVED
 
 **Count**: 3+
 **Impact**: HIGH — agents appear idle but have pending work sitting at `❯`. SM sweeps miss it. Work stalls silently.
 **First seen**: 2026-02-22 (observed throughout session)
-**Pattern**: Agent generates a "Read session/tasks/..." or continuation prompt for itself but the text sits at `❯` without being submitted. The agent thinks it queued work; actually nothing happens. Only visible via pane capture: text at `❯` WITHOUT "esc to interrupt" = not processing.
-**Workaround**: SM must check EVERY sweep: if text at `❯` and no "esc to interrupt" → send Enter to that pane.
-**Root cause**: Unknown — possibly Claude Code's accept-edits mode or agent self-prompting mechanism doesn't auto-submit. Agents may be generating tool output that includes the next prompt as text rather than executing it.
+**Pattern**: Agent generates a "Read session/tasks/..." or continuation prompt for itself but the text sits at `❯` without being submitted.
+**Root cause**: Raw tmux usage. `hiveMind send` handles Enter automatically (after INC-001 fix, commit `15a8a90`). Agents using raw `tmux send-keys` don't get auto-Enter. Fix: use `hiveMind send <role> "msg"` — never raw tmux.
+**Fix**: Discipline, not code. All 83 SKILL.md files updated with OOSH commands rule. Boot.md files include reminder.
+**Status**: RESOLVED — root cause = raw tmux. Moved to Resolved Incidents.
 **Occurrences**:
 - 2026-02-22 18:47: trainer had task at prompt, not submitted — PO sent Enter
 - 2026-02-22 19:30: SM activation message not submitted — PO sent Enter

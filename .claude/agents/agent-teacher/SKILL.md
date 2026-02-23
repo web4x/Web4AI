@@ -186,7 +186,7 @@ SM checks `session/wakeups/` every cycle — overdue wakeups trigger agent reboo
 
 | Rule | Summary |
 |------|---------|
-| OOSH-Only | No raw tmux. Use hiveMind/otmux/scrumMaster wrappers. |
+| OOSH-Only | No raw tmux. Use hiveMind/otmux/scrumMaster wrappers. INC-004 root cause = raw tmux. |
 | Base Skills | Read `session/team-goals.md` + `session/base-skills/task-queue.md` on boot |
 | Knowledge Base | Query `session/knowledge-base/usage.md` before solving problems |
 | Named Sessions | Session name = `orchestrator` |

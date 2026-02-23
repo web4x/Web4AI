@@ -21,6 +21,14 @@ This template also defines the **ownership contract** that every OOSH script mus
 
 **Never use raw tmux commands** in owned scripts. Always use `otmux` and `hiveMind` wrappers. Flag any raw `tmux send-keys`, `tmux capture-pane`, or `tmux new-session` as a first-principles violation during ownership audits. Also flag `cd && ./command` patterns — OOSH is on PATH, use `command` directly.
 
+**Why**: INC-004 (unsubmitted prompts) root cause = raw tmux. `hiveMind send` handles Enter automatically.
+
+### Key Commands (by role name, NEVER pane address)
+- `hiveMind send <role> "msg"` — send message to agent by role
+- `hiveMind monitor <role> <lines>` — capture agent output by role
+- `scrumMaster subscription` — check quota status
+
+
 ## Knowledge Base (MANDATORY)
 
 Before solving any problem, query the knowledge base first.

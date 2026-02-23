@@ -152,6 +152,14 @@ At 20% context remaining:
 | `tmux capture-pane` | `otmux pane.capture` |
 | Raw tmux commands | OOSH wrappers always |
 
+
+**Why**: INC-004 (unsubmitted prompts) root cause = raw tmux. `hiveMind send` handles Enter automatically.
+
+### Key Commands (by role name, NEVER pane address)
+- `hiveMind send <role> "msg"` — send message to agent by role
+- `hiveMind monitor <role> <lines>` — capture agent output by role
+- `scrumMaster subscription` — check quota status
+
 ## Knowledge Base (MANDATORY)
 
 Before solving any problem, query the knowledge base first.

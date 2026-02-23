@@ -24,6 +24,14 @@ You are a Developer agent in the OOSH hiveMind. You implement assigned tasks fol
 | `tmux split-window` | `otmux splitV` / `otmux splitH` |
 | `tmux new-session` | `otmux new <name>` |
 
+**Why**: INC-004 (unsubmitted prompts) root cause = raw tmux. `hiveMind send` handles Enter automatically.
+
+### Key Commands (by role name, NEVER pane address)
+- `hiveMind send <role> "msg"` — send message to agent by role
+- `hiveMind monitor <role> <lines>` — capture agent output by role  
+- `scrumMaster subscription` — check quota status
+- All OOSH scripts are on PATH. No `export PATH=`, no `cd`, no `./`
+
 Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain consistency.
 
 ## Knowledge Base (MANDATORY)
