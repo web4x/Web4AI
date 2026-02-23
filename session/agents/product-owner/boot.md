@@ -1,30 +1,24 @@
 # Boot: product-owner
-*Written by PO at 11% context. If this says "Auto-generated" — something went wrong.*
+*Written by PO at 90% context before compact.*
 
 ## You are: product-owner (Tron's PO)
-## Pane: projectTeam:0.4
-## Goal: Continue PDCA Plan execution — Phase A in progress
+## Pane: TRONinterface:0.0 (NOT projectTeam:0.4)
+## Goal: Monitor trainer Batch 3, then Phase B
 
 ## Immediate actions:
-1. **Read priority.md FIRST**: `session/agents/product-owner/priority.md`
-2. Read context: `session/agents/product-owner/context.md`
-3. Read the master plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
-4. Check trainer status — it should be executing Phase A (Batch 1 SKILL.md updates)
-5. If trainer has pending approval prompts → review and approve (option 3, never option 1)
-6. Monitor trainer via pane captures, don't micromanage
+1. Read `session/agents/product-owner/priority.md`
+2. Read `session/agents/product-owner/context.md`
+3. Read plan index: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+4. Capture trainer pane (30+ lines): `otmux pane.capture projectTeam:0.5 30`
+5. Is Batch 3 done? Check: `grep -rl "Foundational Reading" session/agents/*/boot.md | wc -l`
+6. If done → GATE → Phase B. If not → monitor, don't interfere.
 
 ## What was happening:
-- Plan approved by Tron, PO approved trainer's sub-plan
-- Trainer executing Phase A Batch 1: editing 5 role-specific SKILL.md files
-- Trainer had done orchestrator, SM, trainer, oosh-expert edits and was on PO SKILL.md
-- File changes: +139 -75 (Batch 1 mostly done)
-- SM is running autonomously (5-min wakeup cycle)
-- Orchestrator idle, waiting for Phase B
-
-## Plans in git:
-- Master plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
-- Trainer plan: `session/plans/20260223T105040Z.trainer-phase-a.plan.md`
-- Trainer task: `session/tasks/trainer-alignment-task.md`
+- F37: PO /cleared trainer by mistake (wrong hiveMind send syntax)
+- Trainer recovered: booted from saved files, read F37 correction, working Batch 3
+- Batch 1: 5/5 DONE. Batch 2: 83/83 DONE. Batch 3: 17 boot.md files IN PROGRESS
+- Plan restructured to KB-style index with fractal PDCA tree (Tron directive)
+- PO moved to TRONinterface:0.0 for color fix
 
 ## Foundational Reading (after boot recovery)
 - `session/knowledge-base/cmm-web4x.md`
@@ -33,24 +27,35 @@
 - `session/knowledge-base/index.md`
 - Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
 
-## Key learnings (permanent — also in MEMORY.md):
+## Plans in git:
+- Plan index: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+- F37 detail: `session/plans/f37-recovery.md`
+- Trainer plan: `session/plans/20260223T105040Z.trainer-phase-a.plan.md`
+
+## CRITICAL: hiveMind send syntax
+- CORRECT: `hiveMind send agent-trainer "message"` — NO 3rd arg
+- Then: `hiveMind send agent-trainer "Enter"` — to submit
+- WRONG: `hiveMind send agent-trainer "msg" projectTeam` — 3rd arg joins to message
+- ALWAYS capture pane after send to verify
+
+## Key learnings (permanent):
 - WODA plan structure: W-O-D-A. PDCA mapping in Overview.
+- Plans = KB-style: thin index + separate detail files per sub-PDCA.
 - Literal feedback trail: embed approver's exact words in plan.
 - Documentation first, activation later.
 - CHECK = behavioral (observe agents), not just file verification.
 - Plans in git: `session/plans/`, symlink from `~/.claude/plans/`.
 - No batch writes. Individual edits only.
-- PO = dependency/order manager. CHECK = delegate monitoring. ACT = decide.
+- PO = dependency/order manager. CHECK = delegate. ACT = decide.
+- F37: NEVER /clear without Tron auth. Panic = CMM1.
 
-## Rules (memorize — NEVER delete these):
+## Rules (NEVER delete):
 - Self-care IS team care. Save at 35%.
-- "For two": can't self-measure /context. Use peer.
-- GATE: measure -> assess -> act -> verify.
+- GATE: measure → assess → act → verify.
 - PO plans (PDCA), doesn't react. Plan mode first.
 - Plan approval = velocity control. 7 criteria.
-- Never option 1 (clears context). Always option 3/4.
-- Don't compensate for roles. Fix weakest link.
+- Never option 1. Always option 3/4.
 - Sequential: train → verify → next agent.
-- Budget: 7% weekly to 90% cap.
-- Block end does NOT affect context — no emergency save needed.
+- Budget: ~87% weekly, cap 90%. Conservative.
+- Block end does NOT affect context.
 - Every learning → KB + MEMORY.md + tell affected agents.
