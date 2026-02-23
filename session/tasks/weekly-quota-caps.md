@@ -7,8 +7,9 @@
 
 ## THE RULES (non-negotiable)
 
-1. **Tonight (until 07:00 UTC Sunday)**: Weekly usage must NOT pass **80%**
-2. **Tomorrow (Sunday all day)**: Weekly usage must NOT pass **90%**
+1. **ABSOLUTE HARD CAP**: Weekly usage must NEVER pass **92%**
+2. **Tonight (until 07:00 UTC Sunday)**: Stay well under 92%
+3. **Tomorrow (Sunday all day)**: Stay well under 92%
 
 ## CURRENT STATE
 
@@ -21,10 +22,9 @@
 
 ### SM: Every Sweep Cycle
 1. Run `scrumMaster subscription` — read the Weekly % line
-2. If weekly >= **79%** tonight → IMMEDIATE full standdown. All agents stop. Only SM sweeps.
-3. If weekly >= **89%** tomorrow → IMMEDIATE full standdown. All agents stop. Only SM sweeps.
-4. At **78%** tonight → WARNING. No new tasks. Current work commits and stops.
-5. At **88%** tomorrow → WARNING. No new tasks. Current work commits and stops.
+2. If weekly >= **91%** → IMMEDIATE full standdown. All agents stop.
+3. At **90%** → WARNING. No new tasks. Current work commits and stops.
+4. **92% is the ABSOLUTE HARD CAP — never exceed.**
 
 ### Standing Down Agents
 - Send: `Save your work, commit, and stop. Weekly quota cap reached.`
