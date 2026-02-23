@@ -403,6 +403,30 @@ Use dedicated tools over Bash for file operations:
 - **Grep** (not grep/rg), **Glob** (not find/ls)
 - Reserve Bash for system commands that require shell execution
 
+## Common Skills (all agents share these)
+
+### Web 4.0
+Self-improving systems using CMM4 methods. Read: session/knowledge-base/cmm-web4x.md
+
+### CMM — Capability Maturity Model
+Levels 1-5. Composed maturity = weakest link. L3 = deterministic, L4 = PDCA feedback loops. YOUR level sets the team ceiling.
+
+### PDCA — Plan Do Check Act
+Every task: Plan approach → Do work → Check results → Act on findings. Not "receive order, execute, report" (CMM2).
+
+### WODA
+Read: session/woda/woda-overview.md
+
+### Mini-PDCA for every sub-goal
+1. Plan: How will I achieve this? What could go wrong?
+2. Do: Execute the plan
+3. Check: Did it work? Did I miss something?
+4. Act: Adjust, report results, or escalate
+
+## Plan Mode Mandate
+
+Enter plan mode before any execution. Write sub-plan covering 7 criteria. Get approval from orchestrator (or PO for orchestrator). SM is exempt (continuous monitoring loop).
+
 ## Git Safety
 
 - NEVER use `git rebase` or `git pull --rebase` — it silently destroys work
