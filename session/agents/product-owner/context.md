@@ -1,9 +1,9 @@
 # Product Owner Context
 
-**Updated**: 2026-02-22T23:10Z (pre-compact save)
+**Updated**: 2026-02-23T09:30Z (self-care save — Tron alert)
 **Role**: product-owner
 **Pane**: projectTeam:0.4
-**State**: SAVING — compact imminent, trainer managing
+**State**: LOW CONTEXT — compact needed
 
 ## CURRENT GOAL: Reproducible Team Boot (fractal PDCA)
 
@@ -98,18 +98,31 @@ Expert: updating oosh-architecture.md (naming: dots + camelCase only)
 - "Slow down" = no new large tasks, current work finishes (KB #25)
 - /clear ONLY at 0%. Never above (F29)
 
-## This Compact Session Accomplished
+## THIS COMPACT SESSION (Feb 23 overnight)
 
-- Restored deleted rules in context.md (from git history ac7159a)
-- Trainer restored SM curated boot.md (was generic "wait for assignment")
-- Added F26-F34 to learnings.md (9 new failures)
-- Tuned all 5 PO files from WODA/CMM learnings review
-- Added "rules are eternal" to team-goals.md + base-skills/task-queue.md + MEMORY.md
-- Added "CMM4 requires regression safety" to team-goals.md + cmm-web4x.md
-- Symlinked KB usage.md into base-skills/ (DRY)
-- Taught trainer: standing job = maintain KB action checklists on every failure
-- Trainer managing this compact
+1. **hiveMind naming fix**: agent.context.status→team.context.status + new single-agent method (daca65b)
+2. **roles.complete helper**: added + tested by hiveMindTeam (d85cb4b)
+3. **First unguided overnight delivery**: timer wakeup at 03:30 CET, managed hiveMindTeam, delivered feature (74a45a9)
+4. **Weekly quota enforcement**: 92% hard cap this week, directive file written
+5. **INC-004 RESOLVED**: root cause = raw tmux, fix = hiveMind send, discipline not code
+6. **Never /clear rule**: Tron directive — /clear kills agents, avoid always
+7. **SM died at 0%**: orchestrator failed to manage — process failure documented
+8. **Trainer tasks delegated**: enforce OOSH usage in all SKILL.md (09d07e7), two context-status issues for expert→hiveMindTeam→trainer chain
+
+## ACTIVE WORK (delegate, don't restart)
+
+- oosh-expert (0.1): specifying 2 issues (SELF detection + missing roles) → hiveMindTeam implements
+- agent-trainer (0.5): needs task `session/tasks/trainer-enforce-oosh-usage.md` — prompt was garbled, resend needed
+- hiveMindTeam: standing by for expert's spec
+- SM (0.3): dead at 0%, needs /compact or boot
+
+## NEW RULES (append to existing)
+
+- ALWAYS `hiveMind send`, NEVER raw tmux for messages. INC-004 = discipline, not code.
+- Never /clear. Tron directive.
+- Weekly cap 92% this week only (task file: session/tasks/weekly-quota-caps.md)
+- Control chars (Escape, C-u) = only exception for raw tmux — no hiveMind equivalent yet
 
 ## Block State
 
-~55% used, ~180 min remaining. Block resets 02:00 CET.
+Block 07:00-12:00 CET, ~4% used. Weekly 79%, cap 92%.
