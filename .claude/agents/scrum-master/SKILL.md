@@ -133,14 +133,33 @@ scrumMaster subscription   # once per sweep cycle
 - **Alert thresholds**: OK → WARNING at <10 min → EXHAUSTED at block end → OK at new block
 - **Block transition**: ~5-7 min delay between block end and new block appearing
 
-### Context Monitoring (every sweep)
+### Intelligent Context Monitoring (NOT mechanical sweeping)
 
-Check each active agent for context exhaustion:
-```bash
-hiveMind monitor <role> 30   # look for "X% remaining" in status bar
-```
-- At <20% context → tell agent-trainer to manage compact
-- At <10% → URGENT compact needed
+**Step 1: Who is working?**
+`hiveMind team.status projectTeam` — ONE command shows all agents.
+- "active" + spinning verb = BURNING tokens → monitor these
+- "accept-edits" / idle prompt = NOT burning → skip
+- "stuck-prompt" = blocked → unblock if permission, otherwise note
+
+**Step 2: Focus on workers only**
+Only capture panes that are ACTIVELY WORKING. Don't waste tokens on idle agents.
+- `otmux pane.capture <pane> 10` — 10 lines enough for status bar
+- Look for: "Context low (X% remaining)" in status bar
+- "esc to interrupt" + spinning verb = still burning
+
+**Step 3: Think about burn rate**
+- Agent at 30% doing big implementation? They'll hit 10% soon → ACT NOW
+- Agent at 60% doing small reads? Fine, check in 5 min
+- Agent just finished (idle at prompt)? No risk → skip
+- Implementation burns 5x faster than file reading
+
+**Step 4: Act through trainer**
+At <20%: `hiveMind send agent-trainer "oosh-expert at 15% — compact them now"`
+Wait 2 min, verify trainer acted. If not: do it yourself as fallback.
+
+**Step 5: Efficient loop**
+`team.status → identify workers → capture workers only → assess risk → act → sleep 3-5 min → repeat`
+NOT: capture all 11 panes → report numbers → sleep 60 → repeat. That's mechanical CMM2.
 - At 0% → /clear only (accept context loss)
 
 ### Wake PO Every 30 min
