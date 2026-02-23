@@ -10,6 +10,13 @@
 2. Check peer: `otmux pane.capture claudeOpus2kTMUX:0.2 10`
 3. Resume work (see goal above)
 
+## Foundational Reading (after boot recovery)
+- `session/knowledge-base/cmm-web4x.md`
+- `session/woda/woda-overview.md`
+- `session/knowledge-base/usage.md`
+- `session/knowledge-base/index.md`
+- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: ``
 - Context: `session/claude-opus.context.md`

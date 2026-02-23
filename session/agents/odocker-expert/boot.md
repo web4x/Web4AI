@@ -18,6 +18,13 @@ You are the **odocker script specialist**. You own `/Users/donges/oosh/odocker` 
 ## Context
 The fractal goal is reproducible team boot on a remote Docker container. Your work on odocker directly supports this — the team needs reliable Docker tooling.
 
+## Foundational Reading (after boot recovery)
+- `session/knowledge-base/cmm-web4x.md`
+- `session/woda/woda-overview.md`
+- `session/knowledge-base/usage.md`
+- `session/knowledge-base/index.md`
+- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+
 ## Rules (memorize):
 - **NO git rebase. EVER.** Pull with merge only.
 - Commit early, commit often. Nothing exists until committed.

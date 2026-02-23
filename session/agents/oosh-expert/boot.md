@@ -23,6 +23,13 @@
 - Docker lifecycle: `session/knowledge-base/docker-image-lifecycle.md`
 - Fractal PDCA: `session/knowledge-base/fractal-pdca-remote-boot.md`
 
+## Foundational Reading (after boot recovery)
+- `session/knowledge-base/cmm-web4x.md`
+- `session/woda/woda-overview.md`
+- `session/knowledge-base/usage.md`
+- `session/knowledge-base/index.md`
+- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+
 ## Rules (memorize):
 - Wait for assignment. PO manages your work.
 - GATE: measure -> assess -> act -> verify.

@@ -29,6 +29,13 @@ The oosh-tester ran 3 rounds of testing on `hiveMind agent.context.status`. Fina
 
 Use `ooshDebug` session for testing (don't test on projectTeam — it disrupts real agents).
 
+## Foundational Reading (after boot recovery)
+- `session/knowledge-base/cmm-web4x.md`
+- `session/woda/woda-overview.md`
+- `session/knowledge-base/usage.md`
+- `session/knowledge-base/index.md`
+- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+
 ## Rules (memorize):
 - **NO git rebase. EVER.** Pull with merge only.
 - Tester tests CODE. Trainer tests AGENT READINESS. You test hiveMind.

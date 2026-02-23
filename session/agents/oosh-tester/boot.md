@@ -12,6 +12,13 @@
 4. Read context file if needed (see Deep files below)
 5. Resume work (see goal above)
 
+## Foundational Reading (after boot recovery)
+- `session/knowledge-base/cmm-web4x.md`
+- `session/woda/woda-overview.md`
+- `session/knowledge-base/usage.md`
+- `session/knowledge-base/index.md`
+- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: `.claude/agents/oosh-tester/SKILL.md`
 - Context: `session/agents/oosh-tester/context.md`

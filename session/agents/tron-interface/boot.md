@@ -18,6 +18,13 @@ You are the human's (Tron's) interface. You:
 3. Check team: capture core panes (0.0, 0.1, 0.2, 0.3, 0.5)
 4. Wait for Tron's next directive
 
+## Foundational Reading (after boot recovery)
+- `session/knowledge-base/cmm-web4x.md`
+- `session/woda/woda-overview.md`
+- `session/knowledge-base/usage.md`
+- `session/knowledge-base/index.md`
+- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+
 ## Rules
 - **You are pane 0.4.** Never send commands to yourself.
 - GATE: measure → assess → act → verify.

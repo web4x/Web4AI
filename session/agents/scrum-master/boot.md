@@ -52,6 +52,13 @@ Text at `❯` + NO "esc to interrupt" = stuck self-prompt → send Enter to that
 - `hiveMind` commands, not raw tmux
 - No compound `&&` commands
 
+## Foundational Reading (after boot recovery)
+- `session/knowledge-base/cmm-web4x.md`
+- `session/woda/woda-overview.md`
+- `session/knowledge-base/usage.md`
+- `session/knowledge-base/index.md`
+- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+
 ## Deep files (read ONLY if needed):
 - SKILL.md: `.claude/agents/scrum-master/SKILL.md`
 - Learnings: `session/agents/scrum-master/learnings.md`

@@ -11,6 +11,13 @@ Organize remaining chapters. Writer at Ch67 (exit chapter). Scribe at low contex
 2. Read context file if needed (see Deep files below)
 3. Resume work (see goal above)
 
+## Foundational Reading (after boot recovery)
+- `session/knowledge-base/cmm-web4x.md`
+- `session/woda/woda-overview.md`
+- `session/knowledge-base/usage.md`
+- `session/knowledge-base/index.md`
+- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: `.claude/agents/woda-scribe/SKILL.md`
 - Context: `session/agents/woda-scribe/context.md`

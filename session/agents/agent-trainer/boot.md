@@ -20,6 +20,13 @@
 6. After all 83 done: start Batch 3 (boot.md foundational reading, 17 files)
 7. Report to PO when Phase A complete
 
+## Foundational Reading (after boot recovery)
+- `session/knowledge-base/cmm-web4x.md`
+- `session/woda/woda-overview.md`
+- `session/knowledge-base/usage.md`
+- `session/knowledge-base/index.md`
+- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+
 ## Rules:
 - Self-care IS team care. Monitor YOUR context.
 - Compact = ATOMIC. No parallel work during agent compact. Team care prio 1.

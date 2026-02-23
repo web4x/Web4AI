@@ -26,6 +26,13 @@
 - Trainer plan: `session/plans/20260223T105040Z.trainer-phase-a.plan.md`
 - Trainer task: `session/tasks/trainer-alignment-task.md`
 
+## Foundational Reading (after boot recovery)
+- `session/knowledge-base/cmm-web4x.md`
+- `session/woda/woda-overview.md`
+- `session/knowledge-base/usage.md`
+- `session/knowledge-base/index.md`
+- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+
 ## Key learnings (permanent — also in MEMORY.md):
 - WODA plan structure: W-O-D-A. PDCA mapping in Overview.
 - Literal feedback trail: embed approver's exact words in plan.

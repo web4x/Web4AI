@@ -13,3 +13,10 @@
 5. Update `session/agents/<your-role>/boot.md` with correct Pane line for next compact
 
 ## Do NOT just "wait for assignment" — recover your identity first.
+
+## Foundational Reading (after boot recovery)
+- `session/knowledge-base/cmm-web4x.md`
+- `session/woda/woda-overview.md`
+- `session/knowledge-base/usage.md`
+- `session/knowledge-base/index.md`
+- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`

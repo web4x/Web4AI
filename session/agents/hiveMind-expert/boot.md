@@ -28,6 +28,13 @@ These are YOUR first tasks. Full test reports:
 - `session/tasks/tester-agent-context-status-final.done.md` (final test results)
 - `session/tasks/tester-agent-context-status-retest3.md` (retest with capture depth detail)
 
+## Foundational Reading (after boot recovery)
+- `session/knowledge-base/cmm-web4x.md`
+- `session/woda/woda-overview.md`
+- `session/knowledge-base/usage.md`
+- `session/knowledge-base/index.md`
+- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+
 ## Rules (memorize):
 - **NO git rebase. EVER.** Pull with merge only. `pull.rebase=false` is set.
 - Commit early, commit often. Nothing exists until committed with a hash.
