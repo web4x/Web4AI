@@ -1,128 +1,99 @@
 # Product Owner Context
 
-**Updated**: 2026-02-23T09:30Z (self-care save — Tron alert)
+**Updated**: 2026-02-23T11:30Z (EMERGENCY SELF-CARE — 6% context)
 **Role**: product-owner
 **Pane**: projectTeam:0.4
-**State**: LOW CONTEXT — compact needed
+**State**: CRITICAL — compact needed NOW
 
-## CURRENT GOAL: Reproducible Team Boot (fractal PDCA)
+## CURRENT GOAL: Perfect the PDCA Plan (Tron directive)
 
-```
-#36 Goal: Reproducible PO boot
-  #41 Level 5: Boot full team
-    #40 Level 4: Boot PO (CMM3 test)
-      #39 Level 3: otmux session
-        #38 Level 2: oosh self-bootstrap via SSH
-          #37 Level 1: Docker base (naked + SSH only) ← NEXT
-            #42 Level 1.0: odocker wrapper ← DONE (1e04861)
-            #46 Level 1.0.1: hiveMind Enter fix ← DONE (15a8a90)
-            #44 Level 1.0.2: Compact lifecycle training ← DONE
-            #45 Level 1.0.3: KB + incidents ← DONE
-            #47 Level 1.0.4: hiveMind agent.context.status ← DONE (088719a→7d336d2)
-            #48 Level 1.0.5: Fix pre-compact hook cross-session identity ← DONE (e2d5fb7, tested)
-            #49 Level 1.0.6: scrumMaster subscription ← DONE (f5b6c6b, validated)
-            #50 NEW: dotted method dispatch doubling
-odockerTeam: ALL 8 methods done + tested PASS
-Expert: updating oosh-architecture.md (naming: dots + camelCase only)
-```
+We have a good plan at `/Users/donges/.claude/plans/streamed-gathering-hippo.md` but it needs optimization before execution. The previous attempt failed because:
+1. **Kicked off orchestrator without training it on protocols** → orchestrator compacted trainer without context save (F36)
+2. **Parallel kickoff = loss of control** → too many agents, nobody watching
+3. **PO still reactive** → kept doing trainer's/SM's jobs
 
-## THIS SESSION ACHIEVEMENTS
+## THE PLAN (approved by Tron, needs optimization)
 
-1. **Self-improving team compact lifecycle** (CMM3)
-2. **hiveMind Enter fix — INC-001 RESOLVED** (15a8a90)
-3. **Expert role evolved to OOSH Principle Guardian**
-4. **Context awareness sweep + tool built** (#47 — 5 commits, 8/11 agents parsed)
-5. **Agent trainer builds script expert teams** (hiveMindTeam retrained as specialists)
-6. **KB #23: Script expert teams scaling pattern**
-7. **scrumMaster subscription validated** (#49 — 7 measurements + block transition)
-8. **odockerTeam: all 8 methods implemented + tested PASS**
-9. **KB #24-26: subscription, work continuity, recovery order**
+### Core: PDCA operating model for the team
+- Every agent (except SM) uses plan mode before executing
+- Plan approval = velocity control (7 criteria)
+- SM is governance: permissions, OOSH enforcement, role boundaries, impediments
+- Trainer trains everyone on common skills (web4, CMM, PDCA, WODA) before they get authority
 
-## TRON DIRECTIVES (all session — cumulative)
+### Correct SEQUENTIAL execution (learned from failure):
+1. **PO + Trainer align on plan** — trainer reads full plan, enters plan mode, PO approves trainer's sub-plan
+2. **Trainer trains SM** — SM is PO's most important companion, monitors for violations
+3. **SM monitors while trainer trains orchestrator** — safety net BEFORE giving orchestrator authority
+4. **Only then: orchestrator coordinates implementation** (DRY fix via hiveMindTeam)
 
-1-8: from previous session (still active)
-9. Fix Enter problem — DONE (15a8a90)
-10. Trainer responsible for spinning up and testing teams
-11. Expert = OOSH principle guardian + hiveMind owner + spec authority
-12. No git rebase — monitor all agents
-13. Keep updating fractal
-14. Fix context awareness before Docker — DONE (#47)
-15. Trainer manages idle/measure/rewakeup protocol for ALL agents
-16. "tester tests code, not trainer"
-17. Build script expert teams — don't overload oosh-expert (KB #23)
-18. "unknown" hook issue is HIGH priority, not low — fractal blocker (#48)
-19. `otmux` (no args) = full session tree — use it
-20. Overnight until 07:00 UTC, CMM4 controlled, no surprises
-21. SM manages teams (incl odockerTeam), trainer does context monitoring
-22. Orchestrator manages SM
-23. Dots + camelCase ONLY in all OOSH naming — no dashes, no underscores
-24. object.verb methods with parameter completion and documentation
-25. oosh-expert reviews odocker for naming compliance
-26. Agent trainer trains on OOSH principles better
-27. Prevent context loss surprises
-28. Every agent must commit its own files (context, boot, learnings) — no exceptions
+### Key: NEVER give authority before training
+The orchestrator compacted trainer because it didn't know compact protocol. Training MUST come before authority. Sequential, not parallel.
 
-## KB Updates This Session
+## WHAT WAS ALREADY DONE (commits exist — verified)
 
-- #24: Subscription accuracy (validated)
-- #25: Agent work continuity (never interrupt)
-- #26: Recovery order (SM first)
-- #15: Anti-pattern #4 (compound commands)
-- INC-003: RESOLVED
-- INC-004: NEW — unsubmitted self-prompts (HIGH)
+1. Issues 1-2 delivered by hiveMindTeam (2e91a82) — SELF message, hybrid roles.complete, registry.fix
+2. DRY send analysis written (fee0e75) — 8 functions → 4, Option C recommended
+3. KB #27-29 written and indexed (9684c3d) — PDCA model, DRY principle, role boundaries
+4. INC-004 reopened with correct root cause (hiveMind send bypasses Enter fix)
+5. MEMORY.md updated with PDCA operating model
+6. Trainer completed: OOSH enforcement (76ceda0), SM training (3486631, 2c63837)
+7. Plan file exists: `/Users/donges/.claude/plans/streamed-gathering-hippo.md`
+
+## WHAT STILL NEEDS DOING
+
+1. **Optimize the plan** — add sequential execution, add F36 failure, fix the parallel kickoff mistake
+2. **PO + Trainer alignment** — trainer reads plan, enters plan mode, PO verifies trainer covers all protocols
+3. **Trainer trains SM on governance role** (permissions, OOSH enforcement, role boundaries, impediments)
+4. **Trainer trains orchestrator on ALL protocols** (compact protocol, 42 principle, plan approval)
+5. **DRY send consolidation** — hiveMindTeam implements Option C (hiveMind.send → otmux.send.enter)
+6. **Common skills in all SKILL.md** — trainer's sub-goal 2 (not started)
+7. **KB #27-29 dissemination** — trainer's sub-goal 3 (not started)
+
+## BUDGET
+
+Weekly 82%, cap 90% (Tron updated from 92%). **8% budget left.** Be extremely efficient.
+Block: ~40% used, ~55 min remaining.
+
+## TRON DIRECTIVES (cumulative — all previous + new)
+
+1-28: previous sessions
+29. PO uses plan mode (PDCA), not reactive
+30. Every agent (except SM) uses plan mode
+31. SM: permissions (never option 1), OOSH enforcement, role boundaries, impediments
+32. Plan approval = velocity control (7 criteria)
+33. Common skills in every SKILL.md
+34. Learn → KB → MEMORY.md → tell affected agents
+35. Check recurring incidents against plan
+36. DRY is highest architectural priority
+37. **SEQUENTIAL, not parallel** — don't kick off all at once, lose control
+38. **Train before authority** — orchestrator compacted trainer because untrained (F36)
+39. **SM is most important companion** — only one who monitors and catches violations
+40. **Trainer must be 100% sure of role before training others**
+41. **Take time to perfect the plan** — quality over speed
+42. **Budget: 8% to 90% cap** (updated from 92%)
+
+## RULES (eternal — never delete)
+
+All previous rules plus:
+- Sequential execution: train → verify → next agent. Never parallel kickoff.
+- F36: Never give coordination authority to untrained agent.
+- SM must be functional before ANY other agent gets kicked off.
+- Cap is now 90% (Tron update), was 92%.
 
 ## KEY FILES
 
-- priority.md: `session/agents/product-owner/priority.md`
-- achievements: `session/agents/product-owner/achievements.md`
+- Master plan: `/Users/donges/.claude/plans/streamed-gathering-hippo.md`
+- DRY task: `session/tasks/dry-send-consolidation.md`
+- Trainer boot: `session/agents/agent-trainer/boot.md`
+- Trainer learnings: `session/agents/agent-trainer/learnings.md`
 - KB index: `session/knowledge-base/index.md`
-- Hook fix task: Task #48
-- Overnight protocol: `session/tasks/overnight-po-protocol.md`
+- INC-004: `session/knowledge-base/recurring-incidents.md`
 
-## RULES (eternal — never delete, only append)
+## NEXT ACTION AFTER COMPACT
 
-- Self-care IS team care (priority.md #1) — save at 35%, NOT 9%
-- "42": only /context via peer
-- Expert = principle guardian, writes oosh specs
-- Tester tests code. Trainer tests agent readiness.
-- NO GIT REBASE
-- "Written by" in boot.md
-- Script expert teams — distribute, don't overload
-- `otmux` no args for overview
-- Every hiveMind send: verify + Enter if needed (INC-004)
-- Every agent file write: git commit immediately
-- Rules are eternal — append only, ask Tron only on contradictions (F34)
-- Dots + camelCase ONLY in all OOSH naming — no dashes, no underscores
-- Recovery order: SM first → orchestrator → workers (F33)
-- Monitor ALL panes including orchestrator (F31)
-- "Slow down" = no new large tasks, current work finishes (KB #25)
-- /clear ONLY at 0%. Never above (F29)
-
-## THIS COMPACT SESSION (Feb 23 overnight)
-
-1. **hiveMind naming fix**: agent.context.status→team.context.status + new single-agent method (daca65b)
-2. **roles.complete helper**: added + tested by hiveMindTeam (d85cb4b)
-3. **First unguided overnight delivery**: timer wakeup at 03:30 CET, managed hiveMindTeam, delivered feature (74a45a9)
-4. **Weekly quota enforcement**: 92% hard cap this week, directive file written
-5. **INC-004 RESOLVED**: root cause = raw tmux, fix = hiveMind send, discipline not code
-6. **Never /clear rule**: Tron directive — /clear kills agents, avoid always
-7. **SM died at 0%**: orchestrator failed to manage — process failure documented
-8. **Trainer tasks delegated**: enforce OOSH usage in all SKILL.md (09d07e7), two context-status issues for expert→hiveMindTeam→trainer chain
-
-## ACTIVE WORK (delegate, don't restart)
-
-- oosh-expert (0.1): specifying 2 issues (SELF detection + missing roles) → hiveMindTeam implements
-- agent-trainer (0.5): needs task `session/tasks/trainer-enforce-oosh-usage.md` — prompt was garbled, resend needed
-- hiveMindTeam: standing by for expert's spec
-- SM (0.3): dead at 0%, needs /compact or boot
-
-## NEW RULES (append to existing)
-
-- ALWAYS `hiveMind send`, NEVER raw tmux for messages. INC-004 = discipline, not code.
-- Never /clear. Tron directive.
-- Weekly cap 92% this week only (task file: session/tasks/weekly-quota-caps.md)
-- Control chars (Escape, C-u) = only exception for raw tmux — no hiveMind equivalent yet
-
-## Block State
-
-Block 07:00-12:00 CET, ~4% used. Weekly 79%, cap 92%.
+1. Read this context + priority.md + boot.md
+2. Read the plan file: `/Users/donges/.claude/plans/streamed-gathering-hippo.md`
+3. Enter plan mode — optimize the plan with sequential execution
+4. Get Tron's approval on optimized plan
+5. THEN: align with trainer (trainer reads plan, enters plan mode)
+6. Do NOT kick off anyone else until trainer is aligned and SM is trained
