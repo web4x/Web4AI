@@ -53,15 +53,15 @@ When an incident occurs that you've seen before:
 **Assigned to**: oosh-expert (task: fix-scrummaster-subscription-accuracy.md)
 **Status**: RESOLVED — commit f5b6c6b. Validated by trainer (7 measurements + block transition). KB #24.
 
-### ~~INC-004: Unsubmitted self-prompts~~ RESOLVED
+### INC-004: Unsubmitted self-prompts — REOPENED
 
 **Count**: 3+
 **Impact**: HIGH — agents appear idle but have pending work sitting at `❯`. SM sweeps miss it. Work stalls silently.
 **First seen**: 2026-02-22 (observed throughout session)
 **Pattern**: Agent generates a "Read session/tasks/..." or continuation prompt for itself but the text sits at `❯` without being submitted.
-**Root cause**: Raw tmux usage. `hiveMind send` handles Enter automatically (after INC-001 fix, commit `15a8a90`). Agents using raw `tmux send-keys` don't get auto-Enter. Fix: use `hiveMind send <role> "msg"` — never raw tmux.
-**Fix**: Discipline, not code. All 83 SKILL.md files updated with OOSH commands rule. Boot.md files include reminder.
-**Status**: RESOLVED — root cause = raw tmux. Moved to Resolved Incidents.
+**Root cause (CORRECTED 2026-02-23)**: Previously blamed on raw tmux usage. Actually: `hiveMind.send()` at line 757 calls `otmux.send()` which does NOT append Enter. The INC-001 fix (commit 15a8a90) fixed `private.otmux.sendEnter()` but `hiveMind send` bypasses this function entirely — it uses the unfixed code path. So using `hiveMind send` instead of raw tmux does NOT fix the problem. Both leave messages unsubmitted.
+**Fix**: DRY send consolidation — change `hiveMind.send()` to call `otmux.send.enter()` instead of `otmux.send()`. See KB #28 and `session/tasks/dry-send-consolidation.md`.
+**Status**: OPEN — awaiting DRY fix implementation by hiveMindTeam.
 **Occurrences**:
 - 2026-02-22 18:47: trainer had task at prompt, not submitted — PO sent Enter
 - 2026-02-22 19:30: SM activation message not submitted — PO sent Enter

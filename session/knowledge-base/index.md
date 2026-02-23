@@ -34,4 +34,8 @@
 25. [Agent Work Continuity — Never Interrupt, Never Lose Context](agent-work-continuity.md)
 26. [Recovery Order — SM First, Always](recovery-order.md)
 
+27. [PO PDCA Operating Model — Plan, Don't React](po-pdca-operating-model.md)
+28. [DRY as Architectural Principle — Send Functions Case Study](dry-architectural-principle.md)
+29. [Role Boundaries — Don't Compensate, Delegate](role-boundaries.md)
+
 **Reference**: [CMM & Web 4.0](cmm-web4x.md) | [Usage Guide](usage.md)
