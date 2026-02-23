@@ -1,24 +1,32 @@
 # Boot: product-owner
-*Written by PO at 90% context before compact.*
+*Written by PO after Phase A GATE pass.*
 
 ## You are: product-owner (Tron's PO)
-## Pane: TRONinterface:0.0 (NOT projectTeam:0.4)
-## Goal: Monitor trainer Batch 3, then Phase B
+## Pane: TRONinterface:0.0
+## Goal: Phase B when budget resets. Standing down until then.
 
 ## Immediate actions:
 1. Read `session/agents/product-owner/priority.md`
 2. Read `session/agents/product-owner/context.md`
-3. Read plan index: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
-4. Capture trainer pane (30+ lines): `otmux pane.capture projectTeam:0.5 30`
-5. Is Batch 3 done? Check: `grep -rl "Foundational Reading" session/agents/*/boot.md | wc -l`
-6. If done → GATE → Phase B. If not → monitor, don't interfere.
+3. Check budget: `scrumMaster subscription`
+4. If budget reset (new week) → Phase B: read plan index `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+5. If still capped (88%+ weekly) → stand down, monitor SM only
 
-## What was happening:
-- F37: PO /cleared trainer by mistake (wrong hiveMind send syntax)
-- Trainer recovered: booted from saved files, read F37 correction, working Batch 3
-- Batch 1: 5/5 DONE. Batch 2: 83/83 DONE. Batch 3: 17 boot.md files IN PROGRESS
-- Plan restructured to KB-style index with fractal PDCA tree (Tron directive)
-- PO moved to TRONinterface:0.0 for color fix
+## What was done:
+- Phase A: ALL 3 BATCHES COMPLETE (verified via GATE)
+  - Batch 1: 5/5 SKILL.md (commit `612522b`)
+  - Batch 2: 83/83 SKILL.md (commits `a61b492`..`bfc0574`)
+  - Batch 3: 17/17 boot.md (commit `fb5f3ad`)
+- GATE passed: 83/83 Common Skills, 16/16 Foundational Reading, orchestrator delegation confirmed
+- Budget gate triggered: 88% weekly, cap 90% → Phase B DEFERRED
+- Trainer notified of stand-down: `session/tasks/phase-a-gate-pass.md`
+- F37 (PO killed trainer): recovered, lessons learned, documented in `session/plans/f37-recovery.md`
+
+## Phase B (next week):
+1. Step 4: Notify SM of updated SKILL.md
+2. Step 5: Activate orchestrator
+3. Step 6: DRY send fix via hiveMindTeam
+4. Step 7: Report to Tron
 
 ## Foundational Reading (after boot recovery)
 - `session/knowledge-base/cmm-web4x.md`
@@ -26,11 +34,6 @@
 - `session/knowledge-base/usage.md`
 - `session/knowledge-base/index.md`
 - Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
-
-## Plans in git:
-- Plan index: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
-- F37 detail: `session/plans/f37-recovery.md`
-- Trainer plan: `session/plans/20260223T105040Z.trainer-phase-a.plan.md`
 
 ## CRITICAL: hiveMind send syntax
 - CORRECT: `hiveMind send agent-trainer "message"` — NO 3rd arg
@@ -48,6 +51,7 @@
 - No batch writes. Individual edits only.
 - PO = dependency/order manager. CHECK = delegate. ACT = decide.
 - F37: NEVER /clear without Tron auth. Panic = CMM1.
+- Budget gate: 88% weekly → defer, don't push.
 
 ## Rules (NEVER delete):
 - Self-care IS team care. Save at 35%.
