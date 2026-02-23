@@ -1,43 +1,71 @@
 # Agent Trainer Context
 
-**Updated**: 2026-02-22T20:45Z (EMERGENCY STOP — saving before context loss)
+**Updated**: 2026-02-23T13:30Z (saving before compact — ~34% context)
 **Role**: agent-trainer
 **Pane**: projectTeam:0.5
-**State**: STOPPED — awaiting Tron
+**State**: COMPACT NEEDED — saving context
 
-## This Session Deliverables (2026-02-22)
+## Current Task: Phase A SKILL.md Alignment (trainer-alignment-task.md)
 
-1. **Subscription validation PASS** — 7 measurements + block transition (KB #24)
-2. **SM overnight velocity training** — SKILL.md updated, training task delivered
-3. **OOSH naming rules (KB #16)** — added to all 4 script team SKILL.md files
-4. **Compacts managed**: PO (10%→recovered), oosh-tester (9%→recovered), odocker-expert, SM (0%→/clear→rebooted)
-5. **INC-004**: 4 stuck self-prompts fixed in one sweep
-6. **Orchestrator**: /cleared and booted with overnight task
-7. **PO compact #3**: sent at 9%, auto-boot visible but SM message garbled queue
+PO-approved plan at `/Users/donges/.claude/plans/unified-munching-bee.md`
 
-## Recovery State at Emergency Stop
+### Batch 2 Progress: 30/83 SKILL.md files have Common Skills + Plan Mode
 
-| Agent | Where | State |
-|-------|-------|-------|
-| orchestrator | 0.0 | BOOTED — overnight task sent |
-| oosh-expert | 0.1 | WORKING — velocity/naming task |
-| oosh-tester | 0.2 | RECOVERING from compact |
-| SM | 0.3 | REBOOTED — sweeping post /clear |
-| PO | 0.4 | COMPACTING — boot prompt visible, garbled queue |
-| agent-trainer | 0.5 | STOPPED |
-| odocker-expert | odockerTeam:0.0 | RECOVERING — lifecycle task sent |
-| odocker-tester | odockerTeam:0.1 | IDLE |
-| hiveMind-expert | hiveMindTeam:0.0 | INC-004 fixed |
-| hiveMind-tester | hiveMindTeam:0.1 | INC-004 fixed |
+**Completed commits:**
+- `612522b` — Batch 1: 5 key role SKILL.md updates (orchestrator, SM, trainer, oosh-expert, PO) — role-specific edits + KB refs
+- `a61b492` — Group 1: 10 files (developer, oosh-tester, task-agent, woda-scribe, woda-writer, script-product-owner, ossh-expert, snet-expert, tt-expert, hiveMind-expert)
+- `2523648` — Group 2: 10 files (this-expert, myId-expert, oo-expert, state-expert, loop-expert, share-expert, os-expert, ossh-po, ossh-tester, config-expert)
+- `0bc6ca6` — Group 3: 10 files (disk-expert, certificates-expert, map-expert, check-expert, line-expert, replace-expert, index-expert, log-expert, path-expert, test.suite-expert)
 
-## Overnight Scope (if resumed)
-- Context health for ALL agents — 20%=warn, 10%=compact
-- INC-004 detection every sweep
-- SM handles permissions + team direction
-- Trainer handles compact lifecycle
+### Next Steps (priority order)
 
-## Key Files
-- Subscription report: `session/tasks/subscription-validation-report.md`
-- SM training: `session/tasks/sm-overnight-velocity-training.md`
-- Learnings: `session/agents/agent-trainer/learnings.md`
-- INC-004: `session/knowledge-base/recurring-incidents.md`
+1. **Group 4**: Edit 10 already-read files (otmux-expert, claudeCode-expert, osx-expert, status-expert, scrumMaster-expert, claudeFlow-expert, agentRoom-expert, debug-expert, fix-expert, context-expert) — insert Common Skills before `## Git Safety`
+2. **Remaining groups**: Glob + grep to find ~43 files still missing Common Skills, edit in groups of 10, commit each group
+3. **Special cases**:
+   - 5 key files need Common Skills ADDED (they got Batch 1 role-specific edits but not the template yet)
+   - SM: Common Skills YES, Plan Mode Mandate NO (SM exempt)
+   - Orchestrator: needs different anchor point (no `## Git Safety`)
+4. **Batch 3**: Update all 17 boot.md files with foundational reading (one by one, read first)
+5. **Report**: Write `session/tasks/trainer-results.md` when Phase A complete
+
+### Template (insert before `## Git Safety`)
+```markdown
+## Common Skills (all agents share these)
+
+### Web 4.0
+Self-improving systems using CMM4 methods. Read: session/knowledge-base/cmm-web4x.md
+
+### CMM — Capability Maturity Model
+Levels 1-5. Composed maturity = weakest link. L3 = deterministic, L4 = PDCA feedback loops. YOUR level sets the team ceiling.
+
+### PDCA — Plan Do Check Act
+Every task: Plan approach → Do work → Check results → Act on findings. Not "receive order, execute, report" (CMM2).
+
+### WODA
+Read: session/woda/woda-overview.md
+
+### Mini-PDCA for every sub-goal
+1. Plan: How will I achieve this? What could go wrong?
+2. Do: Execute the plan
+3. Check: Did it work? Did I miss something?
+4. Act: Adjust, report results, or escalate
+
+## Plan Mode Mandate
+
+Enter plan mode before any execution. Write sub-plan covering 7 criteria. Get approval from orchestrator (or PO for orchestrator). SM is exempt (continuous monitoring loop).
+```
+
+### Method
+1. Grep all SKILL.md for "Common Skills" to find which are done
+2. Read each remaining file, Edit to insert template before `## Git Safety`
+3. Commit in groups of ~10
+4. Verify with grep count after each commit
+
+## PO Directive
+"Do NOT wait for PO before continuing — complete Phase A, PO will spot-check when back"
+
+## Key Tron Directives This Session
+- "team care prio 1" — compact lifecycle takes priority over all other work
+- "do not do parallel work until compact is done successful"
+- "bulk read is ok...but be careful with batch writes... do not approve them"
+- CHECK must be behavioral (CMM4), not just file grep (CMM2)

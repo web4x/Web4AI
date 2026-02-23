@@ -75,6 +75,26 @@
 - **F34: Rules are eternal** — NEVER delete from any agent file. Append new, copy ALL old forward. Emergency is no excuse.
 - **Fractal connection**: Every sub-task was born from a failure. F→learning→KB→tool→fractal = PDCA = CMM4 = web4x.
 
+## Compact = Atomic (learned 2026-02-23, Tron directive x2)
+
+- **Compact is an ATOMIC operation.** When compacting another agent, STAY focused until compact fully completes. No parallel work.
+- Tron corrected TWICE: "team care prio 1" and "do not do parallel work until compact is done successful"
+- Sequence: trigger save → wait for save → send /compact → wait for reboot → submit boot prompt → verify agent healthy at idle prompt → ONLY THEN resume other work.
+- I failed this twice in one session: started Batch 2 work while PO was still mid-compact.
+
+## Self-Compact Protocol Gaps (learned 2026-02-23)
+
+- When Tron asked "whats the compact protocol" after I self-compacted, I missed steps:
+  - Protocol: commit → save context.md → save learnings.md → TaskList/backlog.md → write boot.md → /compact
+  - I skipped: commit, learnings, TaskList/backlog
+- "No agent can self-compact" — but they CAN type it. SM should actively manage compacts.
+- This session: doing it RIGHT. All steps followed.
+
+## Total SKILL.md Count = 83 (updated 2026-02-23)
+
+- Previous count was 81. Now 83 after new script expert agents were created.
+- 81 have `## Git Safety` as anchor point. 2 exceptions: scrum-master, agent-teacher (orchestrator).
+
 ## Quality Gate (learned 2026-02-22)
 
 - **Reproduce BEFORE fix**: Run tests to confirm the bug exists. Document the failing case. Then send to expert.
