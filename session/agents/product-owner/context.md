@@ -1,99 +1,85 @@
 # Product Owner Context
 
-**Updated**: 2026-02-23T11:30Z (EMERGENCY SELF-CARE — 6% context)
+**Updated**: 2026-02-23T10:57Z (block ending in 5 min)
 **Role**: product-owner
 **Pane**: projectTeam:0.4
-**State**: CRITICAL — compact needed NOW
+**State**: Active — executing PDCA plan Step 1
 
-## CURRENT GOAL: Perfect the PDCA Plan (Tron directive)
+## CURRENT GOAL: Execute PDCA Plan — Phase A (Trainer alignment)
 
-We have a good plan at `/Users/donges/.claude/plans/streamed-gathering-hippo.md` but it needs optimization before execution. The previous attempt failed because:
-1. **Kicked off orchestrator without training it on protocols** → orchestrator compacted trainer without context save (F36)
-2. **Parallel kickoff = loss of control** → too many agents, nobody watching
-3. **PO still reactive** → kept doing trainer's/SM's jobs
+Plan approved by Tron. Executing.
 
-## THE PLAN (approved by Tron, needs optimization)
+## WHAT WAS DONE THIS SESSION
 
-### Core: PDCA operating model for the team
-- Every agent (except SM) uses plan mode before executing
-- Plan approval = velocity control (7 criteria)
-- SM is governance: permissions, OOSH enforcement, role boundaries, impediments
-- Trainer trains everyone on common skills (web4, CMM, PDCA, WODA) before they get authority
+1. **Step 0 DONE**: Plans moved to git (commit 59e23f3). Symlinks from `~/.claude/plans/` to `session/plans/`.
+2. **Trainer alignment task written**: `session/tasks/trainer-alignment-task.md` (commit da308ad)
+3. **Trainer entered plan mode**: Read full plan, wrote sub-plan for Phase A
+4. **PO reviewed trainer's plan**:
+   - APPROVED Batch 1 (role-specific SKILL.md edits, 5 files)
+   - REJECTED Batch 2 (bulk Python writes for 83 files) — Tron: "no batch writes"
+   - APPROVED Batch 3 (boot.md one-by-one)
+5. **Sent 2 feedback files to trainer**:
+   - `session/tasks/po-feedback-trainer-plan.md` — no bulk writes (commit f4e8c55)
+   - `session/tasks/po-feedback-check-behavioral.md` — CHECK must be behavioral (commit 0c8a35e)
+6. **Trainer revising plan** — currently in plan mode processing both feedbacks
+7. **Plans in git**: Main plan + orchestrator plan + trainer plan all in `session/plans/`
 
-### Correct SEQUENTIAL execution (learned from failure):
-1. **PO + Trainer align on plan** — trainer reads full plan, enters plan mode, PO approves trainer's sub-plan
-2. **Trainer trains SM** — SM is PO's most important companion, monitors for violations
-3. **SM monitors while trainer trains orchestrator** — safety net BEFORE giving orchestrator authority
-4. **Only then: orchestrator coordinates implementation** (DRY fix via hiveMindTeam)
+## KEY LEARNINGS THIS SESSION (incorporated into MEMORY.md)
 
-### Key: NEVER give authority before training
-The orchestrator compacted trainer because it didn't know compact protocol. Training MUST come before authority. Sequential, not parallel.
-
-## WHAT WAS ALREADY DONE (commits exist — verified)
-
-1. Issues 1-2 delivered by hiveMindTeam (2e91a82) — SELF message, hybrid roles.complete, registry.fix
-2. DRY send analysis written (fee0e75) — 8 functions → 4, Option C recommended
-3. KB #27-29 written and indexed (9684c3d) — PDCA model, DRY principle, role boundaries
-4. INC-004 reopened with correct root cause (hiveMind send bypasses Enter fix)
-5. MEMORY.md updated with PDCA operating model
-6. Trainer completed: OOSH enforcement (76ceda0), SM training (3486631, 2c63837)
-7. Plan file exists: `/Users/donges/.claude/plans/streamed-gathering-hippo.md`
+- **WODA plan structure**: W-O-D-A for all plans. PDCA mapping in Overview.
+- **Literal feedback trail**: Embed approver's exact words in plan next to relevant section.
+- **Documentation first, activation later**: Update all agent files BEFORE activating agents.
+- **CHECK = behavioral**: Not just "was file written" but "does agent behave correctly."
+- **Plan management**: Move all plans to `session/plans/`, symlink back, commit every change.
+- **No batch writes**: Edit files individually, verified one by one.
+- **PO as dependency/order manager**: Track ALL dependencies, manage execution order.
 
 ## WHAT STILL NEEDS DOING
 
-1. **Optimize the plan** — add sequential execution, add F36 failure, fix the parallel kickoff mistake
-2. **PO + Trainer alignment** — trainer reads plan, enters plan mode, PO verifies trainer covers all protocols
-3. **Trainer trains SM on governance role** (permissions, OOSH enforcement, role boundaries, impediments)
-4. **Trainer trains orchestrator on ALL protocols** (compact protocol, 42 principle, plan approval)
-5. **DRY send consolidation** — hiveMindTeam implements Option C (hiveMind.send → otmux.send.enter)
-6. **Common skills in all SKILL.md** — trainer's sub-goal 2 (not started)
-7. **KB #27-29 dissemination** — trainer's sub-goal 3 (not started)
+1. **Trainer revises plan** with batch-write correction + behavioral CHECK → PO approves revised plan
+2. **Trainer executes Phase A** — updates ALL SKILL.md + boot.md files (individually, not bulk)
+3. **PO GATE checkpoint (Step 3b)** — spot-check files for consistency
+4. **Phase B**: Activate SM (notify), then orchestrator, then DRY fix
+5. **Step 6b**: hiveMindTeam updates scrumMaster tool (budget permitting)
+6. **Step 7**: Collect results, report to Tron
+
+## TRON DIRECTIVES (this session, added to cumulative #29-42)
+
+43. Plans must be in git, committed on every change (CMM4)
+44. Bulk reads OK, but NO batch writes — edit individually
+45. SM watches but doesn't interfere (confirmed: SM just checked subscription)
+46. CHECK = behavioral (agents behave correctly), not just file (was it written)
+47. Trainer must also check agent behavior, not just file content
+48. Agent plans → move to session/plans/ + symlink. Core PO skill.
+49. scrumMaster has PDCA state machine — next week, track per-agent PDCA phase
+50. All PO learnings → every agent must learn as basic summary for collaboration
 
 ## BUDGET
 
-Weekly 82%, cap 90% (Tron updated from 92%). **8% budget left.** Be extremely efficient.
-Block: ~40% used, ~55 min remaining.
+Weekly 83%, cap 90% = 7% left. Block ending ~5 min.
+Block resets at 12:00 CET (11:00 UTC).
 
-## TRON DIRECTIVES (cumulative — all previous + new)
+## AGENT STATES
 
-1-28: previous sessions
-29. PO uses plan mode (PDCA), not reactive
-30. Every agent (except SM) uses plan mode
-31. SM: permissions (never option 1), OOSH enforcement, role boundaries, impediments
-32. Plan approval = velocity control (7 criteria)
-33. Common skills in every SKILL.md
-34. Learn → KB → MEMORY.md → tell affected agents
-35. Check recurring incidents against plan
-36. DRY is highest architectural priority
-37. **SEQUENTIAL, not parallel** — don't kick off all at once, lose control
-38. **Train before authority** — orchestrator compacted trainer because untrained (F36)
-39. **SM is most important companion** — only one who monitors and catches violations
-40. **Trainer must be 100% sure of role before training others**
-41. **Take time to perfect the plan** — quality over speed
-42. **Budget: 8% to 90% cap** (updated from 92%)
-
-## RULES (eternal — never delete)
-
-All previous rules plus:
-- Sequential execution: train → verify → next agent. Never parallel kickoff.
-- F36: Never give coordination authority to untrained agent.
-- SM must be functional before ANY other agent gets kicked off.
-- Cap is now 90% (Tron update), was 92%.
+- SM (0.3): Running, 5-min wakeup cycle, autonomous. Just checks subscription.
+- Trainer (0.5): In plan mode, processing PO feedback. Revising sub-plan.
+- Orchestrator (0.0): Idle. Waiting for Phase B.
+- oosh-expert (0.1): 0% context. Skip this cycle.
+- hiveMindTeam: Idle. Available for DRY fix (Phase B Step 6).
 
 ## KEY FILES
 
-- Master plan: `/Users/donges/.claude/plans/streamed-gathering-hippo.md`
-- DRY task: `session/tasks/dry-send-consolidation.md`
-- Trainer boot: `session/agents/agent-trainer/boot.md`
-- Trainer learnings: `session/agents/agent-trainer/learnings.md`
+- Master plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+- Trainer plan: `session/plans/20260223T105040Z.trainer-phase-a.plan.md`
+- Trainer task: `session/tasks/trainer-alignment-task.md`
+- PO feedback: `session/tasks/po-feedback-trainer-plan.md`, `session/tasks/po-feedback-check-behavioral.md`
 - KB index: `session/knowledge-base/index.md`
-- INC-004: `session/knowledge-base/recurring-incidents.md`
 
-## NEXT ACTION AFTER COMPACT
+## NEXT ACTION AFTER BLOCK RESET
 
-1. Read this context + priority.md + boot.md
-2. Read the plan file: `/Users/donges/.claude/plans/streamed-gathering-hippo.md`
-3. Enter plan mode — optimize the plan with sequential execution
-4. Get Tron's approval on optimized plan
-5. THEN: align with trainer (trainer reads plan, enters plan mode)
-6. Do NOT kick off anyone else until trainer is aligned and SM is trained
+1. Read this context.md + boot.md
+2. Check trainer status — did it revise the plan?
+3. Read trainer's revised plan (at `~/.claude/plans/unified-munching-bee.md` → symlinked to `session/plans/`)
+4. Review against 7 criteria + behavioral CHECK + no batch writes
+5. If approved → trainer starts executing Phase A
+6. Monitor trainer via pane captures, not micromanaging
