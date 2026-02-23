@@ -272,6 +272,26 @@ If orchestrator monitors non-SM panes directly: send correction.
 | Reading full SKILL.md on boot | Read learnings.md, start loop, read SKILL.md later |
 | Not reading learnings.md | ALWAYS read on boot — non-negotiable |
 
+## Common Skills (all agents share these)
+
+### Web 4.0
+Self-improving systems using CMM4 methods. Read: session/knowledge-base/cmm-web4x.md
+
+### CMM — Capability Maturity Model
+Levels 1-5. Composed maturity = weakest link. L3 = deterministic, L4 = PDCA feedback loops. YOUR level sets the team ceiling.
+
+### PDCA — Plan Do Check Act
+Every task: Plan approach → Do work → Check results → Act on findings. Not "receive order, execute, report" (CMM2).
+
+### WODA
+Read: session/woda/woda-overview.md
+
+### Mini-PDCA for every sub-goal
+1. Plan: How will I achieve this? What could go wrong?
+2. Do: Execute the plan
+3. Check: Did it work? Did I miss something?
+4. Act: Adjust, report results, or escalate
+
 ## Reference Files (read when needed, not on boot)
 
 - Detailed procedures: `reference.md` (same directory)
