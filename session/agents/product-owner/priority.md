@@ -34,5 +34,5 @@
 - /clear ONLY at 0%. Never above.
 - Naked images = SSH only. Software self-bootstraps (web4x).
 - Every agent file write: git commit immediately.
-- Every hiveMind send: verify + Enter if needed (INC-004).
+- ALWAYS use `hiveMind send`, NEVER raw `tmux send-keys` for messages. INC-004 = self-inflicted from raw tmux.
 - Dots + camelCase ONLY. No dashes, no underscores.
