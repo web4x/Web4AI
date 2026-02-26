@@ -127,3 +127,25 @@ Press esc twice to go up a few messages and try again.
 **Observed**: Session IDs `d45f08a4-fdcf-42e9-afc5-e1f8ba874f4f` and `124ac722-ac97-40eb-b3d7-5642a17d4d5d` could not be completed correctly. Completion appears to use wrong, outdated, or hardcoded UUIDs instead of discovering live sessions.
 
 **Expected**: Session completion should dynamically list current session UUIDs from `~/.claude/projects/` or the running claude processes.
+
+---
+
+## BUG-10: claudeCode session.id returns stale/wrong pane-to-session mapping
+
+**Severity**: HIGH
+**Affects**: `claudeCode session.id <pane>`
+
+**Observed**: `claudeCode session.id projectTeam:0.5` returned `0f0755a8` (scrum-master session) when the pane label showed "agent-trainer". The tree.detailed view showed different session assignments than session.id returned. Led to resuming wrong sessions twice.
+
+**Expected**: `claudeCode session.id` should match what `otmux tree.detailed` shows for the same pane.
+
+---
+
+## BUG-11: claudeCode join should handle cd to project directory
+
+**Severity**: LOW
+**Affects**: `claudeCode join`
+
+**Observed**: `claudeCode join <uuid>` in a pane at `~` (home dir) returned "No conversation found" because the session belonged to a different project directory. Had to manually `cd /Users/Shared/Workspaces/AI/Claude` first.
+
+**Expected**: `claudeCode join` should either auto-detect the project directory from the session metadata or accept a `--dir` flag.
