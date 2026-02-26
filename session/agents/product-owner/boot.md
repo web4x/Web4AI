@@ -1,32 +1,37 @@
 # Boot: product-owner
-*Written by PO after Phase A GATE pass.*
+*Written before compact — PDCA-1.2 plan approved, ready to execute.*
 
 ## You are: product-owner (Tron's PO)
-## Pane: TRONinterface:0.0
-## Goal: Phase B when budget resets. Standing down until then.
+## Pane: ooshDebug:0.0
+## Goal: Execute PDCA-1.2 — backupTeam + Backup Init Fix
 
 ## Immediate actions:
-1. Read `session/agents/product-owner/priority.md`
-2. Read `session/agents/product-owner/context.md`
-3. Check budget: `scrumMaster subscription`
-4. If budget reset (new week) → Phase B: read plan index `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
-5. If still capped (88%+ weekly) → stand down, monitor SM only
+1. Read `session/agents/product-owner/context.md`
+2. Read the approved plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+3. **Begin Step 0**: Split plan into detail files (`backup-team-init-fix.md`, `phase-b-activation.md`)
+4. Then Step 1: Send oosh-expert to plan mode for `hiveMind plan.create` + role prompts
 
 ## What was done:
-- Phase A: ALL 3 BATCHES COMPLETE (verified via GATE)
-  - Batch 1: 5/5 SKILL.md (commit `612522b`)
-  - Batch 2: 83/83 SKILL.md (commits `a61b492`..`bfc0574`)
-  - Batch 3: 17/17 boot.md (commit `fb5f3ad`)
-- GATE passed: 83/83 Common Skills, 16/16 Foundational Reading, orchestrator delegation confirmed
-- Budget gate triggered: 88% weekly, cap 90% → Phase B DEFERRED
-- Trainer notified of stand-down: `session/tasks/phase-a-gate-pass.md`
-- F37 (PO killed trainer): recovered, lessons learned, documented in `session/plans/f37-recovery.md`
+- Phase A: ALL 3 BATCHES COMPLETE (GATE passed)
+- PDCA-1.2 plan written and Tron-approved
+- Plan is in: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+  (symlinked from `~/.claude/plans/streamed-gathering-hippo.md`)
 
-## Phase B (next week):
-1. Step 4: Notify SM of updated SKILL.md
-2. Step 5: Activate orchestrator
-3. Step 6: DRY send fix via hiveMindTeam
-4. Step 7: Report to Tron
+## PDCA-1.2 Steps (approved):
+0. Split plan into detail files, commit
+1. Create `hiveMind plan.create` method (oosh-expert, plan mode)
+2. Add backup role prompts to hiveMind (oosh-expert, plan mode)
+3. Register backupTeam + create tmux session
+4. Bootstrap backup-expert + backup-tester
+5. Train backup roles via agent-trainer
+6. Fix backup init — self-initializing on fresh installs
+7. GATE: verify fix
+8. Return to Phase B
+
+## Tron directives:
+- Do NOT touch projectTeam session. Reboot stuck agents in backupTeam session.
+- Every agent enters plan mode first. PO reviews. Tron approves before kickoff.
+- Budget cap: 98% weekly. Slow continuous work.
 
 ## Foundational Reading (after boot recovery)
 - `session/knowledge-base/cmm-web4x.md`
@@ -41,18 +46,6 @@
 - WRONG: `hiveMind send agent-trainer "msg" projectTeam` — 3rd arg joins to message
 - ALWAYS capture pane after send to verify
 
-## Key learnings (permanent):
-- WODA plan structure: W-O-D-A. PDCA mapping in Overview.
-- Plans = KB-style: thin index + separate detail files per sub-PDCA.
-- Literal feedback trail: embed approver's exact words in plan.
-- Documentation first, activation later.
-- CHECK = behavioral (observe agents), not just file verification.
-- Plans in git: `session/plans/`, symlink from `~/.claude/plans/`.
-- No batch writes. Individual edits only.
-- PO = dependency/order manager. CHECK = delegate. ACT = decide.
-- F37: NEVER /clear without Tron auth. Panic = CMM1.
-- Budget gate: 88% weekly → defer, don't push.
-
 ## Rules (NEVER delete):
 - Self-care IS team care. Save at 35%.
 - GATE: measure → assess → act → verify.
@@ -60,6 +53,6 @@
 - Plan approval = velocity control. 7 criteria.
 - Never option 1. Always option 3/4.
 - Sequential: train → verify → next agent.
-- Budget: ~87% weekly, cap 90%. Conservative.
-- Block end does NOT affect context.
+- Budget cap 98%. Slow continuous work.
 - Every learning → KB + MEMORY.md + tell affected agents.
+- F37: NEVER /clear without Tron auth. Panic = CMM1.

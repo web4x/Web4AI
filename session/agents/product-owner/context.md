@@ -1,70 +1,58 @@
 # Product Owner Context
 
-**Updated**: 2026-02-23T15:40Z
+**Updated**: 2026-02-26
 **Role**: product-owner
-**Pane**: TRONinterface:0.0 (currently running at ooshDebug:0.0 after compact)
-**State**: Phase A COMPLETE. Phase B DEFERRED (budget gate). Standing down.
+**Pane**: ooshDebug:0.0
+**State**: PDCA-1.2 approved, about to compact, then execute
 
-## CURRENT GOAL: Stand Down — Phase B Next Week
+## CURRENT GOAL: Execute PDCA-1.2 — backupTeam + Backup Init Fix
 
-Phase A GATE passed. All 3 batches complete. Budget at 88% (cap 90%) — only 2% remaining. Phase B deferred per plan ACT table.
+Tron-approved plan for highest priority backup script fix. Backup fails on remote MacStudio (no backup.env). Need to create backupTeam, train agents, fix init.
 
-## GATE RESULTS (measured 2026-02-23T15:35Z)
+## PLAN APPROVED — Steps 0-8
 
-| Check | Result |
-|-------|--------|
-| Common Skills SKILL.md | 83/83 |
-| Orchestrator compact delegation | Confirmed in agent-teacher/SKILL.md:132 |
-| SM no Plan Mode Mandate | 0 matches |
-| Foundational Reading boot.md | 16/16 real agents |
-| Batch 3 commit | `fb5f3ad` |
-| Budget | 88% weekly, cap 90% |
+Plan file: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
 
-## WHAT WAS DONE THIS SESSION (post-compact #3)
+0. Split plan into detail files (backup-team-init-fix.md, phase-b-activation.md)
+1. Create `hiveMind plan.create` method (oosh-expert, plan mode)
+2. Add backup-expert/tester role prompts to hiveMind (oosh-expert, plan mode)
+3. Register backupTeam + create tmux session (PO)
+4. Bootstrap backup-expert + backup-tester (PO)
+5. Train backup roles via agent-trainer (plan mode)
+6. Fix backup init (backup-expert, plan mode)
+7. GATE: verify all
+8. Return to Phase B
 
-1. Boot from compact — read boot.md, priority.md, context.md
-2. Captured trainer pane: idle, 43% context, reports Phase A COMPLETE
-3. Verified Foundational Reading: 16/18 (2 missing = new non-agent files)
-4. Verified Common Skills: 83/83
-5. Verified orchestrator compact delegation rule
-6. Verified SM has no Plan Mode Mandate
-7. **GATE: PASS** — all checks confirmed
-8. **Budget gate: 88% weekly** — Phase B DEFERRED per plan
-9. Sent stand-down directive to trainer: `session/tasks/phase-a-gate-pass.md`
-10. Updated plan index: Phase A marked complete, Phase B marked deferred
+## TRON DIRECTIVES
 
-## WHAT STILL NEEDS DOING (NEXT WEEK)
+- Do NOT touch projectTeam session layout
+- Reboot stuck agents in their own team sessions
+- Every agent enters plan mode. PO reviews. Tron approves before kickoff.
+- Budget cap: 98% weekly
 
-1. **Phase B** — SM notification, orchestrator activation, DRY fix
-2. **F37 learnings to KB** — hiveMind send syntax, verify-after-send
-3. **Task #33 update** — Role-by-role SKILL.md is effectively complete (Phase A)
-4. **script-product-owner/boot.md** — needs Foundational Reading (new file, missed Batch 3)
+## BUDGET
 
-## TRON DIRECTIVES THIS SESSION
+- Weekly: 1% (fresh reset Feb 26)
+- Cap: 98%
+- Plenty of room for slow continuous work
 
-51-54 from previous session still active.
+## AGENT STATES (last measured)
 
-## AGENT STATES
-
-- **Trainer (0.5)**: 43% context, idle, received stand-down directive
-- **SM (0.3)**: Running autonomously
-- **Orchestrator (0.0)**: Idle, waiting Phase B (next week)
-- **oosh-expert (0.1)**: 0% context, skip
+- Trainer (projectTeam:0.5 or 0.6): idle, was at 43%, received stand-down
+- SM (projectTeam:0.4): running, may be low context
+- Orchestrator (projectTeam:0.0): DEAD (bare shell, killed force)
+- oosh-expert (projectTeam:0.2): unknown (may be at 0%)
 
 ## KEY FILES
 
-- Plan index: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
-- GATE results: `session/tasks/phase-a-gate-pass.md`
-- F37 detail: `session/plans/f37-recovery.md`
-
-## COMMITS THIS SESSION
-
-- Previous: `744b657`, `8fb9751`, `7dc2cdb` — all pushed
-- This continuation: plan update + GATE task file (pending commit)
+- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+- Backup script: `/Users/donges/oosh/backup` (1108 lines)
+- hiveMind: `/Users/donges/oosh/hiveMind`
+- SKILL.md files: `.claude/agents/backup-expert/SKILL.md`, `.claude/agents/backup-tester/SKILL.md`
 
 ## NEXT ACTION AFTER COMPACT
 
-1. Read boot.md → context.md
-2. Budget check: `scrumMaster subscription`
-3. If new week/budget reset → Phase B
-4. If still capped → stand down, monitor SM only
+1. Read boot.md → this context
+2. Read plan file
+3. Begin Step 0: create detail files, commit
+4. Then Step 1+2: send oosh-expert to plan mode
