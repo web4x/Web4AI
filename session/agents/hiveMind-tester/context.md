@@ -1,28 +1,54 @@
 # hiveMind tester Agent Context
-**Session**: projectTeam
+**Session**: hiveMindTeam
 **Role**: hiveMind-tester
-**Updated**: 2026-02-22 ~19:00
-**State**: COMPLETE — all backlog items tested, all fixable issues resolved
+**Pane**: hiveMindTeam:0.1
+**Updated**: 2026-03-02 ~13:30
+**State**: ACTIVE — identity chain consistency testing
 
-## Summary
+## Current Task
 
-Tested 20+ hiveMind methods across HIGH/MEDIUM/LOW priority. Found and fixed 10 bugs across 8 commits. 3 items skipped (destructive/blocking). Also verified 6 agent.context.status fixes from hiveMind-expert (68157ec + 2f39e85).
+Identity chain consistency testing per `session/tasks/hivemind-tester-consistency-tests.task.md`. Writing tests in `test/test.hiveMind` that cross-compare all 4 identity layers.
 
-### All Commits (chronological)
-- `d750b0a` — Fix ./claudeCode relative path (3 occurrences)
-- `390be11` — Fix role.list agents dir resolution + team.sweep validation
-- `e82fee1` — Fix ./otmux relative path (28 occurrences)
-- `fdeffb2` — Fix active.team fallback to roles registry
-- `315c173` — Fix claudeCode missing space (6 occurrences in monitor.cycle, cycle.full, dashboard)
-- `a7e0ee7` — Fix sweep validation + auto.commit security (git add -A → -u) + watchdog path
-- `4aaea28` — Replace hardcoded roles with dynamic SKILL.md lookup (12 → 81 roles + filter)
-- `2f39e85` — Validate pane target format in registry.set + remove phantom entry (expert fix, tester verified)
+## Identity Chain Tests (T-CONSIST-1 through T-CONSIST-8)
 
-### Verified (expert commits, tester tested)
-- `68157ec` — Fix 5 issues in agent.context.status (printf, alignment, wrapping, timing, fallback) — 5/5 PASS
-- `2f39e85` — Phantom pane fix (registry.set validation + remove bad entry) — PASS
+All 8 tests written, committed, and run. Latest results: **76/89 PASS, 13 FAIL**.
 
-### Open Issues (remaining)
+| Test | Result | What it checks |
+|------|--------|----------------|
+| T-CONSIST-1 | PASS | team.context.status shows ALL panes |
+| T-CONSIST-2 | FAIL (3) | No raw tmux in team.context.status — 3 remain |
+| T-CONSIST-3 | 7/21 FAIL | Registry role names valid — 5 garbage, 2 orphans |
+| T-CONSIST-4 | PASS | Registry panes exist in tmux |
+| T-CONSIST-5 | 1/1 FAIL | Pane titles match registry — title drift |
+| T-CONSIST-6 | PASS | team.status agrees with team.context.status |
+| T-CONSIST-7 | PASS | registry.set rejects garbage, accepts valid |
+| T-CONSIST-8 | 8/8 PASS | session.id matches tree.detailed UUID (BUG-10) |
+
+Bug 6 confirmed: projectTeam:1.2, 1.3, 1.4 share UUID `5fff44f4`.
+
+## Commits This Session
+
+### oosh repo (test file)
+- `48a0591` — Add T-CONSIST-1 through T-CONSIST-7
+- `704dd6e` — Add T-CONSIST-8 (session.id vs tree.detailed UUID)
+
+### AI/Claude repo (results)
+- `edaef96` — Phantom pane fix test results (6/6 PASS)
+- `8f6c4c8` — Consistency test results Run 1
+- `8b2a5c3` — Consistency test results Run 2 (76/89)
+
+### Verified expert commits
+- `68157ec` — 5 agent.context.status fixes — 5/5 PASS
+- `2f39e85` — Phantom pane fix — PASS
+- `5a6c03c` — Harden registry.refresh + /rename in bootstrap
+
+## Previous Work (pre-compact)
+
+Tested 20+ hiveMind methods. Found/fixed 10 bugs across 8 commits (d750b0a through 4aaea28).
+
+## Open Issues
 - `monitor.approve` sends option without confirmation — by design?
 - `auto.commit` hangs in non-TTY environment
-- Created `~/config/hivemind.active.team` with `projectTeam` during testing
+- Bug 6: 3 projectTeam panes share same UUID
+- Bug 8: 3 raw tmux calls remain in team.context.status
+- 5 garbage registry entries in projectTeam (boot prompt text)

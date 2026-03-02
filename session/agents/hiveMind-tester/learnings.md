@@ -42,3 +42,28 @@
 ## Sandbox blocks compound commands
 - Avoid `cmd1; echo EXIT:$?` patterns — sandbox may block the second command.
 - Use simple direct commands: `hiveMind method args 2>&1`
+
+## Running test.suite from Bash tool
+- `source this && source hiveMind` hangs in Bash tool (non-interactive zsh shell).
+- Use `test.suite run hiveMind 1` instead — it handles the OOSH environment properly.
+- `bash test/test.hiveMind` also hangs. Only `test.suite run` works.
+
+## macOS sed vs GNU sed
+- `head -n -1` doesn't work on macOS. Use `awk` + line numbers instead.
+- `sed -n '/start/,/end/{ /pattern/{ ... } }'` compound commands fail on BSD sed.
+- Use `grep | head -1 | sed` pipeline as alternative.
+
+## otmux tree.detailed UUID format
+- tree.detailed shows TRUNCATED 8-char UUIDs in brackets: `[75ce660f]`
+- NOT full 36-char UUIDs. Compare first 8 chars of session.id against tree.detailed.
+- UUIDs appear on SUB-LINES below the pane line: `│     └ role-name  [8hexchars]`
+
+## AGENTS_BASE path for T-CONSIST-3
+- `WORKSPACE_ROOT` resolves via symlink target → wrong .claude/agents/ path.
+- Use `HIVEMIND_AGENTS_DIR` as primary path (set by hiveMind source).
+- Fallback: `${CLAUDE_PROJECT_DIR}/.claude/agents`
+
+## Approving expert permissions
+- When monitoring expert pane, watch for permission prompts and `/status` autocomplete.
+- Send `Enter` to approve (option 1), `Escape` to dismiss autocomplete.
+- Expert's `registry.refresh` gets interrupted by autocomplete — known issue.
