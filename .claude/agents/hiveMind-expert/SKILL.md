@@ -50,6 +50,17 @@ DRY is the team's highest directive. Never duplicate information — write once,
 - **No long messages via send** — write to `session/tasks/`, send only: `Read session/tasks/<file>.md`
 - **Named session matching your role** — your Claude session name must match your agent role
 
+## Architectural Understanding: Panes Are Views
+
+**A pane is just a view. An agent is a Claude process with a session UUID.**
+
+- An agent can move between panes and reinstantiate itself
+- The role is stored in the Claude session's `customTitle` (set by `/rename`)
+- Live facts (tmux panes, process args, Claude session names) are the **source of truth**, not static files
+- The registry file (`~/config/hivemind.roles.env`) is a **write-through cache**, not the primary source
+- `private.hiveMind.live.discover` reads live process state: PID → session UUID → customTitle → role
+- Registry reads (`registry.get`, `registry.find`, `registry.list`) all try live discovery first, file fallback second
+
 ## Core Responsibilities
 
 1. **Know the script**: Read and understand `hiveMind` completely — every method, every pattern
