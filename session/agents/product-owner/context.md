@@ -1,77 +1,90 @@
 # Product Owner Context
 
-**Updated**: 2026-02-26 18:30
+**Updated**: 2026-03-03 14:50
 **Role**: product-owner
 **Pane**: ooshDebug:0.0
-**State**: PDCA-1.2 executing — Steps 0-4 done, Step 5 in progress, F35 failure
+**State**: Monitoring hiveMindTeam + PDCA-1.2 Step 5
 
-## CURRENT GOAL: Execute PDCA-1.2 — backupTeam + Backup Init Fix
+## ACTIVE WORK: hiveMindTeam Self-Management (Tron directive 2026-03-03)
 
-Tron-approved plan for highest priority backup script fix. Backup fails on remote MacStudio (no backup.env). Need to create backupTeam, train agents, fix init.
+Tron ordered hiveMind expert to fix self-management. Major architecture change completed.
 
-## PDCA-1.2 PROGRESS
+### What happened this session:
+1. Expert replaced static registry with **live-fact discovery** (fea74d5)
+   - `private.hiveMind.live.discover` — PID→TTY→pane→UUID→session name→role
+   - `registry.get/find/list` rewritten: live first, file as fallback cache
+   - Verified: `team.status` works WITHOUT registry file
+2. Expert created `hiveMindTeam02_03_26` session with correct names/colors
+3. Expert added `process.lookup` and `process.list` methods (6e25180)
+   - `hiveMind process.lookup 80082` → shows pane, role, UUID, TTY
+   - `hiveMind process.list` → table of all Claude instances
+   - PID completion for Tab
+4. Tester running automated T-CONSIST tests against new implementation
+
+### Key Tron directives this session:
+- "the registry was a bad idea — rely on live facts like open processes and tmux sessions"
+- "panes are just views, agents can move and reinstantiate"
+- "make sure all cases are consistently checked in real tests and confirmed as DRY and fixed"
+- "not just verifying but having tests for it" — proper test.suite test cases
+
+### Known issues:
+- Tester pane (0.1) has wrong registry entry (hiveMind-expert instead of hiveMind-tester)
+- T-CONSIST-5 caught this — pane title vs registry mismatch
+- otmux send Enter doesn't work during agent mid-turn (same INC-001 pattern)
+- Pre-compact hook sent wrong boot file to tester (BUG-6 still open)
+
+### Commits this session (oosh repo):
+- `5a6c03c` — registry.refresh hardening + /rename in bootstrap
+- `fea74d5` — live-fact discovery replaces static registry
+- `704dd6e` — T-CONSIST-8 session.id test
+- `6e25180` — process.lookup and process.list methods
+
+## PDCA-1.2 PROGRESS (unchanged from last session)
 
 | Step | Status | Notes |
 |------|--------|-------|
-| 0 | DONE (c75b042) | Plan files split into backup-team-init-fix.md + phase-b-activation.md |
-| 1 | DEFERRED | hiveMind plan.create — oosh-expert died at 0%, not blocking |
-| 2 | DONE (f282afb) | PO added role prompts directly (expert at 0%) |
-| 3 | DONE | backupTeam registered, tmux session created, roles.env updated |
-| 4 | DONE | backup-expert (backupTeam:0.0) + backup-tester (backupTeam:0.1) bootstrapped |
-| 5 | IN PROGRESS | Fresh trainer started in baseTeam:0.0 (old trainer lost — F35) |
+| 0 | DONE (c75b042) | Plan files split |
+| 1 | DEFERRED | hiveMind plan.create — not blocking |
+| 2 | DONE (f282afb) | PO added role prompts |
+| 3 | DONE | backupTeam registered |
+| 4 | DONE | backup agents bootstrapped |
+| 5 | IN PROGRESS | Trainer at baseTeam:0.0 has approved plan, awaiting GO |
 | 6-8 | PENDING | |
 
-## F35 FAILURE — CRITICAL SELF-ASSESSMENT
+## AGENT STATES
 
-This session was chaos. See `session/agents/product-owner/learnings.md` F35 for full detail.
-- Lost agent-trainer permanently (wrong UUIDs, wrong panes)
-- Violated "don't touch projectTeam" 4 times
-- Used raw commands instead of OOSH wrappers
-- Created 11 "bugs" — most were operator error
-- Sequencing wrong: bootstrapped agents before trainer could train them
-
-11 bugs tracked in `session/bugs/pdca12-setup-bugs.md`.
-Real bugs: BUG-1 (bootstrap wrong team), BUG-2 (CLAUDECODE env var), BUG-7 (FORCE_COLOR missing).
-
-## AGENT STATES (current)
-
-- **backup-expert** (backupTeam:0.0): alive, bootstrapped, waiting for work
-- **backup-tester** (backupTeam:0.1): alive, bootstrapped, waiting for work
-- **trainer** (baseTeam:0.0): FRESH — no context, no history, just started
-- **oosh-expert** (projectTeam:0.2): DEAD (bare shell)
-- **SM** (projectTeam:0.5): stale Claude session
-- **Orchestrator** (projectTeam:0.0): DEAD (bare shell)
+- **hiveMind-expert** (hiveMindTeam02_03_26:0.0): alive, idle after commits
+- **hiveMind-tester** (hiveMindTeam02_03_26:0.1): alive, running tests
+- **hiveMind-expert OLD** (hiveMindTeam:0.0): old session, still alive
+- **hiveMind-tester OLD** (hiveMindTeam:0.1): bare shell after session moved
+- **backup-expert** (backupTeam:0.0): alive, waiting
+- **backup-tester** (backupTeam:0.1): alive, waiting
+- **trainer** (baseTeam:0.0): alive, has approved Step 5 plan
+- **oosh-expert** (baseTeam:0.2): alive (discovered this session)
 
 ## TRON DIRECTIVES
 
 - Do NOT touch projectTeam session layout
 - Reboot stuck agents in baseTeam, not projectTeam
 - Every agent enters plan mode. PO reviews. Tron approves before kickoff.
-- Budget cap: 98% weekly
-- ALWAYS use OOSH wrappers (otmux, hiveMind, claudeCode) — never raw tmux/claude
+- ALWAYS use OOSH wrappers — never raw tmux/claude
+- hiveMind must rely on live facts, not static registry
+- All fixes need proper automated tests, not just manual verification
 
-## KEY FILES
-
-- Plan index: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
-- Plan detail: `session/plans/backup-team-init-fix.md`
-- Phase B detail: `session/plans/phase-b-activation.md`
-- Bug report: `session/bugs/pdca12-setup-bugs.md`
-- Trainer task: `session/tasks/pdca12-step5-train-backup-roles.md`
-- Backup script: `/Users/donges/oosh/backup` (1108 lines)
-
-## TOOL KNOWLEDGE (MUST REMEMBER)
+## TOOL KNOWLEDGE
 
 - `otmux` (no args) — see ALL sessions and panes
 - `otmux tree.detailed` — see sessions with Claude session UUIDs
-- `claudeCode join <uuid>` — resume session (handles FORCE_COLOR + CLAUDECODE)
-- `claudeCode new` — start fresh session (handles env vars)
-- `claudeCode session.id <pane>` — WARNING: can return stale data (BUG-10)
-- NEVER use raw `tmux`, `claude`, or `unset CLAUDECODE && claude`
+- `hiveMind process.lookup <PID>` — NEW: resolve PID to pane, role, UUID
+- `hiveMind process.list` — NEW: table of all Claude processes
+- `claudeCode join <uuid>` — resume session
+- `claudeCode new` — start fresh session
+- otmux send Enter unreliable during agent mid-turn — always verify submission
 
 ## NEXT ACTIONS
 
-1. Verify trainer in baseTeam:0.0 is alive and processing Step 5 task
-2. Wait for trainer to enter plan mode with training plan
-3. PO reviews trainer plan, Tron approves
-4. After training: Step 6 (backup-expert fixes init, plan mode)
-5. Step 7 GATE, Step 8 return to Phase B
+1. Check tester test results at hiveMindTeam02_03_26:0.1
+2. If tests pass → report to Tron
+3. If tests fail → expert fixes, tester re-runs
+4. Resume PDCA-1.2 Step 5 — tell trainer to GO (Tron approved the plan)
+5. Monitor trainer training backup agents
