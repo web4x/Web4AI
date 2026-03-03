@@ -120,6 +120,21 @@ Overwrote 63% context (19 Tron directives, achievements, fractal, rules) with ab
 - **Don't touch projectTeam.** Not once. Not for any reason. Tron's directive.
 - **Sequence matters.** Trainer trains BEFORE agents bootstrap. Not after.
 
+### F36: Plan approval too slow — expert executed before PO could reject (2026-03-03)
+Expert wrote plan for hiveMind self-management. PO reviewed, found issues (no new session creation as Tron requested). But expert was at plan mode approval prompt — selected option and started executing BEFORE PO could send rejection. Committed 5a6c03c on the rejected approach. **Review must happen BEFORE the agent reaches the approval prompt. Write feedback to a file, send it as plan mode option 4 "tell Claude what to change" — don't try to reject after execution starts.**
+
+### F37: otmux send Enter swallowed during agent mid-turn (2026-03-03)
+Sent `otmux send hiveMindTeam02_03_26:0.0 "ISSUE: ..." Enter` — text arrived at prompt but Enter was not processed. Message sat unsubmitted for 10+ minutes while agent finished its current turn. **Same root cause as INC-001. Enter key sent during active processing gets consumed/ignored. After sending, ALWAYS capture pane to verify "esc to interrupt" (= submitted) vs text at `❯` (= NOT submitted). If not submitted, wait for agent to finish, then send Enter separately.**
+
+### Panes Are Views, Agents Are Processes (Tron directive 2026-03-03)
+Tron: "the expert does not understand that he is basically somewhere remote and the pane is just a view." An agent is a Claude Code process with a session UUID. The tmux pane is a terminal view. The agent can move between panes, be viewed from different panes, or create new sessions and reinstantiate. **Don't confuse the view (pane) with the agent (process). Agents can move.**
+
+### Live Facts > Static Registry (Tron directive 2026-03-03)
+Tron: "the registry was a bad idea — rely on live facts like open processes and tmux sessions." Static files (hivemind.roles.env) get stale — garbage entries, dead agents, moved agents not tracked. Live discovery chain: tmux pane → PID (via TTY) → UUID (from ps args) → session name (/rename) → role. **Source of truth = running processes + tmux state. Files are cache/fallback only.**
+
+### Proper Tests, Not Manual Verification (Tron directive 2026-03-03)
+Tron: "not just verifying but having tests for it." Running commands manually and confirming output is CMM2 (ad-hoc). Writing automated test.suite test cases that are committed, repeatable, and catch regressions = CMM3. **Every fix needs a test case in test/test.<script>, not just a manual check.**
+
 ## Patterns
 
 ### Idle Team → Ask Task Agent
@@ -161,7 +176,7 @@ When team idles, don't guess what to assign. Ask the task agent what's still und
 - State machines: `~/config/stateMachines/<NAME>.states.env`
 - web4.scenario.env = the universal pattern for persistent shell configuration
 - Files are sourceable: `. ~/config/name.env`
-- hiveMind registry in `/tmp/` = violation — should be `~/config/hivemind.roles.env`
+- hiveMind registry in `/tmp/` = violation — was moved to `~/config/hivemind.roles.env`, now DEPRECATED as primary source (live-fact discovery replaces it, file is fallback cache only)
 
 ### Script Specialist Pattern
 - script-product-owner = specialist delegate, not just ownership contract
