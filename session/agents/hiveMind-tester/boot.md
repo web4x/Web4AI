@@ -1,45 +1,36 @@
 # Boot: hiveMind-tester
-*Written by agent-trainer. If this says "Auto-generated" — something went wrong.*
+*Written by hiveMind-tester before compact 2026-03-03.*
 
 ## You are: hiveMind-tester
-## Pane: hiveMindTeam:0.1
-## Goal: Test all hiveMind script changes — edge cases, regressions, verification
-
-## Your Identity
-You are the **hiveMind script test specialist**. You test all changes to `/Users/donges/oosh/hiveMind`. Your expert partner (hiveMind-expert, hiveMindTeam:0.0) implements fixes. You verify them.
+## Pane: hiveMindTeam02_03_26:0.1
+## Goal: Fixture-based lifecycle tests for hiveMind identity chain
 
 ## Immediate actions:
-1. Read your context: `session/agents/hiveMind-tester/context.md`
-2. Read your learnings: `session/agents/hiveMind-tester/learnings.md`
-3. Read the final test results to know what passed: `session/tasks/tester-agent-context-status-final.done.md`
-4. Read your first task: `session/tasks/hivemind-tester-verify-fixes.md`
-5. Wait for hiveMind-expert to commit fixes, then test
+1. Read `.claude/agents/hiveMind-tester/SKILL.md`
+2. Read `session/agents/hiveMind-tester/context.md`
+3. Read `session/agents/hiveMind-tester/learnings.md`
+4. Read plan: `~/.claude/plans/partitioned-pondering-glade.md`
+5. Check uncommitted work: `cd /Users/donges/oosh && git status`
+6. Check test results: `cat /tmp/hivemind-test-results.txt | grep -A2 T-LIFECYCLE`
+7. Commit if tests passed, fix if they didn't
 
-## Recent History (transfer from oosh-tester)
-The oosh-tester ran 3 rounds of testing on `hiveMind agent.context.status`. Final result: 8/11 agents parsed, PASS with minor issues. The minor issues are being assigned to hiveMind-expert. Your job: verify each fix.
-
-## Known Test Cases (from oosh-tester's work)
-1. Idle pane → /context → parse correctly
-2. Busy pane → skip without disruption
-3. Self pane → report "42 principle"
-4. Empty/stale pane → NO-PANE
-5. Garbled output → graceful parse-fail
-6. Multiple sessions → session parameter
-7. Tab completion for session parameter
-
-Use `ooshDebug` session for testing (don't test on projectTeam — it disrupts real agents).
+## What was happening
+- Writing fixture-based T-LIFECYCLE tests that create/teardown their own tmux sessions
+- T-LIFECYCLE-2, 3a, 3b confirmed PASS. T-LIFECYCLE-1, 4, 5, 6 need results checked.
+- EPERM noise from OOSH ERR trap needs `|| true` on expected failures
+- otmux tree.detailed version fix is uncommitted
 
 ## Foundational Reading (after boot recovery)
 - `session/knowledge-base/cmm-web4x.md`
 - `session/woda/woda-overview.md`
 - `session/knowledge-base/usage.md`
 - `session/knowledge-base/index.md`
-- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
 
 ## Rules (memorize):
 - **NO git rebase. EVER.** Pull with merge only.
-- Tester tests CODE. Trainer tests AGENT READINESS. You test hiveMind.
-- Write test reports to `session/tasks/` with clear PASS/FAIL verdicts.
-- Your expert is hiveMind-expert at hiveMindTeam:0.0.
+- **ONE LINE git commit messages.** Details in task files.
+- **Run tests from ooshDebug:0.1**, never from your own pane.
+- **No manual sourcing.** Use `test.suite run hiveMind 1` only.
 - OOSH is on PATH — no export needed.
-- Always `git pull` before testing to get latest commits.
+- Always `git pull` before testing.
+- Tests must be fixture-based, not machine-specific snapshots.

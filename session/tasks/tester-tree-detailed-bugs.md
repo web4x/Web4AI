@@ -1,101 +1,67 @@
-# Bugs: otmux tree / tree.detailed for hiveMindTeam02_03_26
+# Test Results: otmux tree / tree.detailed + session.id consistency
 
 **From**: hiveMind-tester (hiveMindTeam02_03_26:0.1)
-**To**: hiveMind-expert (hiveMindTeam02_03_26:0.0)
 **Date**: 2026-03-03
-**Priority**: HIGH
 
 ---
 
-## BUG-A: otmux tree shows [bash] instead of Claude version
+## Expert Fixes Verified (commits 047c53d, faaf2d1)
 
-**Expected** (hiveMindTeam old):
-```
-├── 0.0   hiveMind-expert          [2.1.39]
-└── 0.1   hiveMind-tester          [2.1.39]
-```
+### BUG-C: hiveMind resolve ignores session parameter — FIXED by expert
+- **Fix**: Changed `-a` (all sessions) to `-s` (session-scoped) in `private.hiveMind.live.discover.session` line 285
+- **Commit**: `047c53d`
+- **Verified**: `hiveMind resolve hiveMind-expert hiveMindTeam` → `hiveMindTeam:0.0` (correct session)
 
-**Actual** (hiveMindTeam02_03_26):
-```
-├── 0.0   ✳ hiveMind-expert@opus [bash]
-└── 0.1   ⠐ hiveMind-tester@opus [bash]
-```
+### BUG-B: tree.detailed missing sub-lines — FIXED by expert
+- **Fix**: Added bash/zsh + `claudeCode process.find` detection to tree.detailed line 1346
+- **Commit**: `faaf2d1`
+- **Verified**: Sub-lines now show session names and truncated UUIDs
 
-**Ground truth**: `claudeCode version hiveMindTeam02_03_26:0.0` → `2.1.63`
-
-**Root cause**: `otmux.tree` uses `#{pane_current_command}` from tmux to show the process type in brackets. When Claude was started directly (`claude --resume`), tmux shows the version `2.1.39`. When started via OOSH wrapper (`claudeCode join <uuid>`), tmux sees `bash` (the wrapper script), not the underlying Claude process.
-
-**Location**: `otmux` line ~1252:
-```bash
-printf "%s%s %-5s %-24s [%s]\n" ... "$pane_cmd"
-```
-
-**Fix suggestion**: When `pane_cmd` is `bash`, check for a child Claude process or call `claudeCode version <pane>` to get the real version.
+### BUG-A: tree shows [bash] instead of version — PARTIALLY FIXED by expert
+- Expert fixed `otmux.tree()` but NOT `otmux.tree.detailed()`
+- **Tester completed the fix**: applied same version detection to tree.detailed line 1339
+- Also trimmed `(Claude Code)` suffix from version string for consistency: `[2.1.63]` not `[2.1.63 (Claude Code)]`
+- **Verified**: Both `otmux tree` and `otmux tree.detailed` now show `[2.1.63]`
 
 ---
 
-## BUG-B: tree.detailed missing sub-lines (no session names, no UUIDs)
+## New Test: T-ALIGN-8 — Duplicate UUID Detection
 
-**Expected** (hiveMindTeam old):
-```
-├── 0.0   hiveMind-expert          [2.1.39]
-│     └ hiveMind-expert@opus       [75ce660f]
-└── 0.1   hiveMind-tester          [2.1.39]
-      └ hiveMind-tester@opus       [004e5ea9]
-```
+Added to `test/test.claudeCode`. Scans ALL panes across ALL sessions for shared session.id UUIDs.
 
-**Actual** (hiveMindTeam02_03_26):
-```
-├── 0.0   ✳ hiveMind-expert@opus [bash]
-└── 0.1   ⠐ hiveMind-tester@opus [bash]
-```
+### Results: 9 duplicates found across 3 categories
 
-No sub-lines at all. No session name. No UUID.
+**Category 1 — Benign (same --resume UUID in old+new session):**
+- hiveMindTeam:0.0 & hiveMindTeam02_03_26:0.0 share `75ce660f` (expert resumed)
+- hiveMindTeam:0.1 & hiveMindTeam02_03_26:0.1 share `004e5ea9` (tester resumed)
 
-**Ground truth**:
-- Expert UUID: `75ce660f-ecca-4e48-8ffe-53f7e774a0a8` (confirmed via `session.id` AND `ps args`)
-- Tester UUID: `004e5ea9-6ed5-4c20-bc9e-7db38677b14b` (confirmed via `session.id` AND `ps args`)
+**Category 2 — Bug 6 (stale mapping, 3 panes share task-agent UUID):**
+- projectTeam:1.2, 1.3, 1.4 all return `5fff44f4` (task-agent@sonnet)
 
-**Root cause**: `otmux.tree.detailed()` line 1336:
-```bash
-if [[ "$pane_cmd" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]] || [[ "$pane_cmd" == "claude" ]]; then
-```
+**Category 3 — Severe (1 UUID leaked to 5+ panes across 4 sessions):**
+UUID `a2c6b6c4` (oosh-expert@opus.26.02.26) appears on:
+- baseTeam:0.1, baseTeam:0.2
+- odockerTeam:0.1
+- osshTeam:0.3
+- projectTeam:0.1, projectTeam:0.2
 
-This condition ONLY matches when `pane_cmd` is a version number or `claude`. When `pane_cmd` is `bash` (OOSH wrapper), the entire agent detection block is skipped — no `session.id` lookup, no session name, no UUID sub-line.
-
-**Fix suggestion**: Add `bash` to the detection condition when a Claude child process is present:
-```bash
-# Also detect Claude running behind OOSH wrapper
-if [[ "$pane_cmd" =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]] || [[ "$pane_cmd" == "claude" ]] || \
-   { [[ "$pane_cmd" == "bash" ]] && claudeCode process.find "$pane_target" >/dev/null 2>&1; }; then
-```
+**Root cause**: `claudeCode session.id` falls back to registry/sessions-file lookup (Method 0) when a pane has no running Claude process. The stale sessions file maps multiple roles to the same UUID from a prior session.
 
 ---
 
-## BUG-C: hiveMind resolve ignores session parameter
+## Summary
 
-**Tested**:
-```bash
-hiveMind resolve hiveMind-expert hiveMindTeam      # → hiveMindTeam02_03_26:0.0
-hiveMind resolve hiveMind-tester hiveMindTeam      # → hiveMindTeam02_03_26:0.1
-```
+| Item | Status |
+|------|--------|
+| BUG-A: tree version detection | FIXED (tester completed partial fix) |
+| BUG-B: tree.detailed sub-lines | FIXED (expert) |
+| BUG-C: resolve session scoping | FIXED (expert) |
+| T-ALIGN-8: duplicate UUID test | ADDED — reveals 9 duplicates |
+| Bug 6: 3 panes share 5fff44f4 | CONFIRMED — needs session.id fix |
+| UUID a2c6b6c4 leaked to 5 panes | NEW finding — same root cause |
 
-**Expected**: Should return panes from `hiveMindTeam` (the specified session), or empty/error if not found there.
+## Commit: disable /status live test + enhance T-ALIGN-8
 
-**Actual**: Returns panes from `hiveMindTeam02_03_26` despite asking for `hiveMindTeam`.
-
-**Impact**: The session parameter is meaningless — resolve always returns the first matching role across ALL sessions. This makes it impossible to scope resolution to a specific session.
-
-**User confirmed**: "ignoring the parameter is a bug"
-
----
-
-## Verified CORRECT
-
-| Check | Result |
-|-------|--------|
-| session.id 0.0 → 75ce660f... | PASS (matches ps args) |
-| session.id 0.1 → 004e5ea9... | PASS (matches ps args) |
-| team.status hiveMindTeam02_03_26 | PASS (both agents, correct UUIDs) |
-| Live discovery without registry | PASS (expert verified) |
-| team.status hiveMindTeam (old) | PASS (shows old pane states) |
+- Disabled /status live test: sends commands to active agent panes, disrupts running agents
+- T-ALIGN-8 enhanced: shows tmux session start date per pane, severity (CONFLICT/STALE/GHOST), LIVE labels
+- Helps distinguish same --resume UUID in old vs new session from genuinely stale mappings

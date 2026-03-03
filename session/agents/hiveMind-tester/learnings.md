@@ -47,6 +47,7 @@
 - `source this && source hiveMind` hangs in Bash tool (non-interactive zsh shell).
 - Use `test.suite run hiveMind 1` instead — it handles the OOSH environment properly.
 - `bash test/test.hiveMind` also hangs. Only `test.suite run` works.
+- **Run tests from ooshDebug:0.1** (non-Claude pane) to avoid self-disruption.
 
 ## macOS sed vs GNU sed
 - `head -n -1` doesn't work on macOS. Use `awk` + line numbers instead.
@@ -67,3 +68,24 @@
 - When monitoring expert pane, watch for permission prompts and `/status` autocomplete.
 - Send `Enter` to approve (option 1), `Escape` to dismiss autocomplete.
 - Expert's `registry.refresh` gets interrupted by autocomplete — known issue.
+
+## Git commit message style (Tron directive)
+- ONE LINE commit messages. Short and descriptive.
+- Write details in a task file (e.g. `session/tasks/<file>.md`) and reference it in the commit.
+- Example: `git commit -m "test: enhance T-ALIGN-8 — see session/tasks/tester-tree-detailed-bugs.md"`
+- Never use multi-paragraph HEREDOC commit messages.
+
+## EPERM errors in test output = NOT acceptable
+- OOSH error handler catches `exit 1` from `ps` / `claudeCode` and prints loud EPERM lines.
+- Even if the test logic handles the error silently, the ERROR output is confusing and pollutes results.
+- Tests must use `|| true` on expected failures to prevent ERR trap from firing.
+
+## Tests must NOT be machine-specific
+- Tests that depend on current tmux session layout only work on ONE computer.
+- Live behavioral tests that send `/status` to Claude panes disrupt running agents.
+- Proper approach: fixture-based tests that create/teardown their own sessions via hiveMind.
+- Use `__test_hm_$$` (PID-namespaced) session names for isolation.
+
+## Monitoring is NOT my job
+- Tester tests CODE. Monitoring agents is ScrumMaster's job.
+- Don't use `sleep` loops to poll expert panes. Test the commits after they land.

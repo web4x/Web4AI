@@ -1,54 +1,47 @@
 # hiveMind tester Agent Context
-**Session**: hiveMindTeam
+**Session**: hiveMindTeam02_03_26
 **Role**: hiveMind-tester
-**Pane**: hiveMindTeam:0.1
-**Updated**: 2026-03-02 ~13:30
-**State**: ACTIVE — identity chain consistency testing
+**Pane**: hiveMindTeam02_03_26:0.1
+**Updated**: 2026-03-03 ~13:00
 
-## Current Task
+## Active Plan
+- **Plan file**: `~/.claude/plans/partitioned-pondering-glade.md`
+- **Goal**: Replace snapshot tests with fixture-based lifecycle tests using hiveMind to create/teardown sessions
+- **Status**: Tier 1 (T-LIFECYCLE-1 through T-LIFECYCLE-6) written, running from ooshDebug:0.1
+- **Partial results**: T-LIFECYCLE-2, 3a, 3b PASS. T-LIFECYCLE-1, 4 have EPERM noise from OOSH error handler.
+- **Test output**: `/tmp/hivemind-test-results.txt`
 
-Identity chain consistency testing per `session/tasks/hivemind-tester-consistency-tests.task.md`. Writing tests in `test/test.hiveMind` that cross-compare all 4 identity layers.
+## Commits This Session (oosh repo, branch dev.claude)
+| Commit | What |
+|--------|------|
+| 7afd1b6 | otmux tree.detailed version detection + T-ALIGN-8 duplicate UUID test |
+| 7682cc2 | Disable disruptive /status test, enhance T-ALIGN-8 with dates/severity |
+| c32e3a9 | Suppress EPERM errors in claudeCode tests with `|| true` |
+| (uncommitted) | T-LIFECYCLE-1 through 6 in test/test.hiveMind |
+| (uncommitted) | otmux tree.detailed version fix + `(Claude Code)` suffix trim |
 
-## Identity Chain Tests (T-CONSIST-1 through T-CONSIST-8)
+## Bugs Fixed
+- BUG-A: tree.detailed `[bash]` → `[2.1.63]` (I completed expert's partial fix)
+- BUG-B: tree.detailed sub-lines with UUIDs (expert: faaf2d1)
+- BUG-C: resolve `-a` → `-s` session scoping (expert: 047c53d)
 
-All 8 tests written, committed, and run. Latest results: **76/89 PASS, 13 FAIL**.
+## Key Findings
+- UUID `a2c6b6c4` leaked to 6 panes across 4 sessions (stale session.id fallback)
+- Bug 6: projectTeam 1.2/1.3/1.4 share `5fff44f4`
+- Tests sending `/status` disrupt agents — disabled
+- OOSH ERR trap causes EPERM noise — need `|| true` on expected failures
 
-| Test | Result | What it checks |
-|------|--------|----------------|
-| T-CONSIST-1 | PASS | team.context.status shows ALL panes |
-| T-CONSIST-2 | FAIL (3) | No raw tmux in team.context.status — 3 remain |
-| T-CONSIST-3 | 7/21 FAIL | Registry role names valid — 5 garbage, 2 orphans |
-| T-CONSIST-4 | PASS | Registry panes exist in tmux |
-| T-CONSIST-5 | 1/1 FAIL | Pane titles match registry — title drift |
-| T-CONSIST-6 | PASS | team.status agrees with team.context.status |
-| T-CONSIST-7 | PASS | registry.set rejects garbage, accepts valid |
-| T-CONSIST-8 | 8/8 PASS | session.id matches tree.detailed UUID (BUG-10) |
+## Next Steps
+1. Check T-LIFECYCLE results: `cat /tmp/hivemind-test-results.txt | grep T-LIFECYCLE`
+2. Fix remaining EPERM noise in lifecycle tests
+3. Commit test/test.hiveMind + otmux fixes
+4. Implement Tier 2 (T-CHAIN) tests gated behind `$RUN_LIVE_TESTS` env var
+5. Fix stale session.id — root cause of duplicate UUIDs
 
-Bug 6 confirmed: projectTeam:1.2, 1.3, 1.4 share UUID `5fff44f4`.
-
-## Commits This Session
-
-### oosh repo (test file)
-- `48a0591` — Add T-CONSIST-1 through T-CONSIST-7
-- `704dd6e` — Add T-CONSIST-8 (session.id vs tree.detailed UUID)
-
-### AI/Claude repo (results)
-- `edaef96` — Phantom pane fix test results (6/6 PASS)
-- `8f6c4c8` — Consistency test results Run 1
-- `8b2a5c3` — Consistency test results Run 2 (76/89)
-
-### Verified expert commits
-- `68157ec` — 5 agent.context.status fixes — 5/5 PASS
-- `2f39e85` — Phantom pane fix — PASS
-- `5a6c03c` — Harden registry.refresh + /rename in bootstrap
-
-## Previous Work (pre-compact)
-
-Tested 20+ hiveMind methods. Found/fixed 10 bugs across 8 commits (d750b0a through 4aaea28).
-
-## Open Issues
-- `monitor.approve` sends option without confirmation — by design?
-- `auto.commit` hangs in non-TTY environment
-- Bug 6: 3 projectTeam panes share same UUID
-- Bug 8: 3 raw tmux calls remain in team.context.status
-- 5 garbage registry entries in projectTeam (boot prompt text)
+## RECOVERY AFTER COMPACT
+1. Read `.claude/agents/hiveMind-tester/SKILL.md`
+2. Read `session/agents/hiveMind-tester/context.md` (this file)
+3. Read `session/agents/hiveMind-tester/learnings.md`
+4. Read plan: `~/.claude/plans/partitioned-pondering-glade.md`
+5. Check uncommitted: `cd /Users/donges/oosh && git status`
+6. Check test results: `cat /tmp/hivemind-test-results.txt | grep -A2 T-LIFECYCLE`
