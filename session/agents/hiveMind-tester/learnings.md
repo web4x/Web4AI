@@ -89,3 +89,34 @@
 ## Monitoring is NOT my job
 - Tester tests CODE. Monitoring agents is ScrumMaster's job.
 - Don't use `sleep` loops to poll expert panes. Test the commits after they land.
+
+## Three categories of identity mismatches (Tron directive 2026-03-03)
+1. **DETECT**: Tests that find mismatches (T-CONSIST, T-LIVE cross-checks)
+2. **FIX SYSTEMICALLY**: hiveMind methods that prevent/correct drift automatically (registry.refresh, live.discover)
+3. **FIX MANUALLY**: Use hiveMind commands to correct current state. If no command exists = missing/buggy method.
+- Applying category 3 revealed BUG-E (teach rejects valid roles), BUG-F (no public registry.set/remove).
+- Always try to fix manually FIRST — it's the fastest way to discover missing methods.
+
+## Gate live-probing tests behind RUN_LIVE_TESTS=1 (CRITICAL)
+- Tests that call `process.find`, `live.discover`, `registry.refresh`, or `process.list` across ALL panes MUST be gated.
+- `registry.refresh` sends `/status` to every Claude pane via `session.probe` — disrupts agents.
+- `process.list` iterates all Claude PIDs calling `live.discover` per PID — slow but non-disruptive (reads files).
+- Default test run: fixture-based + function-existence + error-handling tests only.
+- Live tests: `RUN_LIVE_TESTS=1 test.suite run hiveMind 1` — only when explicitly requested.
+- Learned this the hard way: T-ALIGN sent /status to my own pane, T-LIFECYCLE-4 via registry.refresh probed all sessions.
+
+## test.case eats return codes
+- `test.case $level "desc" command args` runs the command but `$?` after is test.case's exit code (0), not the command's.
+- To test return codes: run the command FIRST, capture `$?`, THEN report with test.case.
+- Example: `hiveMind.method 2>/dev/null; RC=$?; test.case $level "desc" echo "rc=$RC"; if [ "$RC" -ne 0 ]; then expect.pass ...`
+
+## tmux send garbles long commands
+- Commands longer than ~80 chars get garbled when sent via `otmux send` to ooshDebug.
+- `cd /Users/donges/oosh && test.suite...` became `d /Users/donges/oosh && test.suite...` (lost the 'c').
+- Keep commands short. If already in the right directory, skip the `cd`.
+
+## Bugs found in hiveMind (report to expert)
+- **BUG-D**: registry.refresh line 1668 uses `-a` (all sessions) instead of `-s` — same as BUG-C but different location
+- **BUG-E**: get.role.prompt (line 58) hardcoded case with ~15 roles, role.list finds 80+. `teach` fails for unlisted roles.
+- **BUG-F**: No public registry.set/remove methods. Can't correct registry from command line.
+- **BUG-G**: Registry mismatch at hiveMindTeam02_03_26:0.1 (says expert, should be tester). Can't fix with any hiveMind command.
