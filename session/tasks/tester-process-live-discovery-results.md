@@ -42,6 +42,15 @@ Same as BUG-C but in `hiveMind.registry.refresh`. Uses `tmux list-panes -t "$ses
 ### BUG-G: Registry mismatch at hiveMindTeam02_03_26:0.1
 Registry says `hiveMind-expert` but pane title and live discovery both say `hiveMind-tester`. Can't fix with hiveMind commands because `teach` rejects the role (BUG-E) and `registry.set` is private (BUG-F).
 
+### BUG-H: `hiveMind status` defaults to wrong team (stale active.team)
+`hiveMind status` (line 780) calls `active.team` which reads `~/config/hivemind.active.team`. This file contains `projectTeam` — never updated when `hiveMindTeam02_03_26` was created. So `hiveMind status` without args shows projectTeam (14 panes, 0 agents) instead of the actual active team. **Fix**: `team.setup` and `team.register` should update `hivemind.active.team`.
+
+### BUG-I: `hiveMindTeam02_03_26` not in teams.env
+`~/config/hivemind.teams.env` lists `osshTeam`, `projectTeam`, `TRONinterface`, `backupTeam` — but NOT `hiveMindTeam02_03_26`. The `active.team` fallback chain (line 341) reads `teams.env` first entry = `osshTeam`. Neither the team file nor the active.team file know about the current team. **Fix**: `team.setup` should auto-register in `teams.env` AND set as active.
+
+### BUG-J: No public method to set active team
+No `hiveMind team.activate <session>` or `hiveMind active.team.set <session>` command exists. The only way to change the active team is to manually edit `~/config/hivemind.active.team`. **Fix**: add `hiveMind team.activate <session>`.
+
 ### DATA: Session names with boot prompt text
 `backupTeam:0.0` session name = "You are the backup script expert. Read ." — boot prompt leaked. `live.discover` correctly rejects this (no `@` in name), but it means the session needs `/rename` to `backup-expert@opus`.
 
