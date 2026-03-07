@@ -1,43 +1,41 @@
 # Boot: hiveMind-tester
-*Written by hiveMind-tester before compact 2026-03-06.*
+*Written by hiveMind-tester before compact 2026-03-07.*
 
 ## You are: hiveMind-tester
 ## Pane: hiveMindTeam02_03_26:0.1
-## Goal: Test hiveMind identity chain, process.lookup/list, live discovery
+## Goal: Identity chain consistency — detect, fix systemically, fix manually
 
 ## Immediate actions:
 1. Read `.claude/agents/hiveMind-tester/SKILL.md`
 2. Read `session/agents/hiveMind-tester/context.md`
 3. Read `session/agents/hiveMind-tester/learnings.md`
-4. Read `session/tasks/tester-process-live-discovery-results.md`
-5. Check uncommitted work: `cd /Users/donges/oosh && git status`
+4. Tell expert: `otmux send hiveMindTeam02_03_26:0.0 "Read session/tasks/expert-consistency-fix-sed-bug.md" Enter`
+5. Run `hiveMind consistency.audit` from ooshDebug:0.1 to see current state
 
 ## What was happening
-- Wrote T-PROCESS (12 tests) and T-LIVE (7 tests) for process.lookup, process.list, team.status, resolve, live.discover
-- All non-gated tests PASS: T-LIFECYCLE 6/6, T-PROCESS 9/9, T-LIVE 3/3
-- Live-probing tests gated behind RUN_LIVE_TESTS=1 (Tron directive: don't disrupt sessions)
-- Committed 7e8c2cd (oosh), b0c5fff + 291d663 (Claude workspace)
-- Documented BUG-D through BUG-G for expert — see task file
+- Expert implemented: teams.save, teams.restore, consistency.audit, consistency.fix, registry.set/remove, team.activate
+- Ran consistency.fix: improved from 2/12 → 7/12 consistent
+- 5 remaining: sed delimiter bug in consistency.fix skipped 3 UUID updates, 2 panes have bad titles
+- Expert compacted at 8% — needs the sed bug task file after reboot
 
-## Bugs to report to expert
-- BUG-D: registry.refresh line 1668 uses `-a` not `-s` (probes all sessions)
-- BUG-E: get.role.prompt hardcoded 15 roles, role.list has 80+. teach fails for unlisted roles.
-- BUG-F: No public registry.set/remove methods
-- BUG-G: Registry mismatch at 0.1 — can't fix without BUG-E or BUG-F fix
+## Remaining issues (5 panes inconsistent)
+1. projectTeam:0.4 — dup UUID (sed bug skipped oosh-tester UUID update)
+2. ooshDebug:0.0 — UUID stale (sed bug skipped product-owner UUID update)
+3. odockerTeam:0.1 — title≠reg ("CommittoExpertPane" — needs /rename)
+4. baseTeam:0.2 — title≠reg ("ClaudeCode" — needs /rename)
+5. baseTeam:0.3 — title≠reg + dup UUID
 
-## Foundational Reading (after boot recovery)
-- `session/knowledge-base/cmm-web4x.md`
-- `session/woda/woda-overview.md`
-- `session/knowledge-base/usage.md`
-- `session/knowledge-base/index.md`
+## Key task files
+- `session/tasks/expert-consistency-fix-sed-bug.md` — send to expert
+- `session/tasks/hivemind-all-bugs-comprehensive.md` — full bug inventory
+- `session/tasks/tester-process-live-discovery-results.md` — original bug report
 
 ## Rules (memorize):
 - **NO git rebase. EVER.** Pull with merge only.
 - **ONE LINE git commit messages.** Details in task files.
 - **Run tests from ooshDebug:0.1**, never from your own pane.
-- **No manual sourcing.** Use `test.suite run hiveMind 1` only.
 - OOSH is on PATH — no export needed.
-- Always `git pull` before testing.
 - Tests must be fixture-based, not machine-specific snapshots.
 - **Gate live-probing tests behind RUN_LIVE_TESTS=1.**
-- **Three categories**: detect, fix systemically, fix manually. Try manual fix first to find missing methods.
+- **Three categories**: detect, fix systemically, fix manually.
+- **Check expert's context** before sending work — don't overload at low context.

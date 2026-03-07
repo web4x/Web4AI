@@ -116,7 +116,43 @@
 - Keep commands short. If already in the right directory, skip the `cd`.
 
 ## Bugs found in hiveMind (report to expert)
-- **BUG-D**: registry.refresh line 1668 uses `-a` (all sessions) instead of `-s` — same as BUG-C but different location
+- **BUG-D**: registry.refresh line 1668 uses `-a` (all sessions) instead of `-s` — FIXED in de85de2
 - **BUG-E**: get.role.prompt (line 58) hardcoded case with ~15 roles, role.list finds 80+. `teach` fails for unlisted roles.
-- **BUG-F**: No public registry.set/remove methods. Can't correct registry from command line.
-- **BUG-G**: Registry mismatch at hiveMindTeam02_03_26:0.1 (says expert, should be tester). Can't fix with any hiveMind command.
+- **BUG-F**: No public registry.set/remove methods — FIXED in 016b3d0
+- **BUG-G**: Registry mismatch at hiveMindTeam02_03_26:0.1 — FIXED by consistency.fix
+- **BUG-H**: active.team stale (shows projectTeam not hiveMindTeam02_03_26) — team.activate added in 016b3d0
+- **BUG-I**: hiveMindTeam02_03_26 not in teams.env — FIXED
+- **BUG-J**: No team.activate command — FIXED in 016b3d0
+- **BUG-K**: otmux.tree calls claudeCode per pane (slow) — NOT FIXED
+- **BUG-L**: find.agents.dir EPERM on every hiveMind command from ooshDebug — FIXED in 8f4210f
+
+## New methods implemented by expert (2026-03-06/07)
+- `hiveMind teams.save` — snapshot all Claude processes with UUIDs
+- `hiveMind teams.restore` — recreate from snapshot (not yet tested)
+- `hiveMind consistency.audit` — cross-compare all identity sources in one table
+- `hiveMind consistency.fix` — auto-repair from live truth (has sed delimiter bug)
+- `hiveMind registry.set <pane> <role>` — public wrapper
+- `hiveMind registry.remove <pane>` — public wrapper
+- `hiveMind team.activate <session>` — set active team
+
+## consistency.fix sed delimiter bug
+- Uses `|` as sed delimiter in sessions.env update
+- Role names like `product-owner` contain `-` which is fine, but the pipe-separated format of sessions.env (role|uuid) conflicts with sed `|` delimiter
+- Result: `sed: bad flag in substitute command` for oosh-tester, scrum-master, product-owner
+- Fix: change sed delimiter to `#`
+
+## Monitoring expert agents
+- Check expert's context % before sending work. Don't force work on an agent at 8% context.
+- Approve permissions promptly when monitoring — Enter for yes, watch for commit/push prompts.
+- Expert at 8% should compact before taking new tasks.
+
+## OOSH ERR trap vs 2>/dev/null
+- `2>/dev/null` on a function call suppresses stderr from the subshell
+- But OOSH ERR trap catches `return 1` INSIDE the function and prints ERROR to /dev/tty BEFORE the caller's redirect
+- Fix: function must `return 0` with empty output instead of `return 1`
+- Applied to find.agents.dir in commit 8f4210f
+
+## Same filesystem = no git pull needed
+- Expert and tester share the same oosh repo on the same machine
+- `git pull` is only needed if changes were pushed to remote but not committed locally
+- When expert commits locally, tester sees it immediately — just `source hiveMind` to reload

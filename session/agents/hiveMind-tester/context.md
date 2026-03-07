@@ -2,53 +2,64 @@
 **Session**: hiveMindTeam02_03_26
 **Role**: hiveMind-tester
 **Pane**: hiveMindTeam02_03_26:0.1
-**Updated**: 2026-03-05
+**Updated**: 2026-03-07
 
-## Active Plan
-- **Plan file**: `~/.claude/plans/partitioned-pondering-glade.md`
-- **Goal**: Fixture-based lifecycle tests + process.lookup/list tests for hiveMind
-- **Status**: Tier 1 T-LIFECYCLE and T-PROCESS tests written and passing. Live tests gated behind RUN_LIVE_TESTS=1.
+## Active Work
+- **Goal**: Identity chain consistency — detect, fix systemically, fix manually
+- **Status**: Major progress. Expert implemented teams.save, consistency.audit, consistency.fix. 7/12 panes now consistent (was 2/12). 5 remaining issues.
 
-## Commits This Session (oosh repo, branch dev.claude)
+## Expert Commits (oosh repo, branch dev.claude)
 | Commit | What |
 |--------|------|
-| 7e8c2cd | T-PROCESS + T-LIVE tests, gate live-probing behind RUN_LIVE_TESTS |
-| c32e3a9 | Suppress EPERM errors in claudeCode tests |
-| 7682cc2 | Disable disruptive /status test, enhance T-ALIGN-8 |
-| 7afd1b6 | otmux tree.detailed version detection + T-ALIGN-8 |
+| c056918 | consistency.fix method |
+| 8f4210f | find.agents.dir returns 0 to avoid ERR trap EPERM |
+| 54a8b47 | session.probe fallback for UUID in save/list |
+| 016b3d0 | teams.save/restore, registry.set/remove, team.activate |
+| de85de2 | registry.refresh -a → -s (BUG-D fix) |
 
-## Test Results (last run: 7e8c2cd)
-- **T-LIFECYCLE**: 6/6 PASS (T-LIFECYCLE-4 gated)
-- **T-PROCESS**: 9/9 PASS (T-PROCESS-4,5,6 gated)
-- **T-LIVE**: 3/3 PASS (T-LIVE-2,5,6,7 gated)
-- **T-CONSIST**: 8/8 PASS for T-CONSIST-8 (UUID matching)
-- **Overall**: 69/92 assertions (23 failures are pre-existing T-CONSIST data issues)
+## My Commits (oosh repo)
+| Commit | What |
+|--------|------|
+| 4e1aa85 | T-STATUS tests for BUG-H, BUG-I, BUG-J |
+| 7e8c2cd | T-PROCESS + T-LIVE tests, gate live-probing |
 
-## Bugs Found (report to expert)
-- **BUG-D**: registry.refresh line 1668 uses `-a` instead of `-s`
-- **BUG-E**: get.role.prompt hardcoded case (15 roles) vs role.list (80+ roles)
-- **BUG-F**: No public registry.set/remove methods
-- **BUG-G**: Registry mismatch at 0.1 (says expert, should be tester)
+## My Commits (Claude workspace)
+| Commit | What |
+|--------|------|
+| 12608d5 | task: consistency.audit spec |
+| c3b9ffc | task: consistency.fix spec |
+| 8ea74ab | task: fix find.agents.dir EPERM + UUID gap |
+| 6604418 | task: teams.save/restore urgent order |
+| 5e0056f | comprehensive bug list |
+| 4e21ad2 | BUG-H, BUG-I, BUG-J added to bug report |
 
-## Next Steps
-1. Report BUG-D through BUG-G to expert via task file
-2. When expert fixes BUG-D: un-gate T-LIFECYCLE-4 and re-test
-3. When expert adds public registry methods: fix BUG-G manually
-4. Implement Tier 2 (T-CHAIN) tests gated behind RUN_LIVE_TESTS
+## Consistency Audit (last run after consistency.fix)
+```
+7 consistent, 5 inconsistent:
+- projectTeam:0.4   ✗ dup UUID (oosh-tester shares a2c6b6c4 with oosh-expert — sed bug skipped update)
+- ooshDebug:0.0     ✗ UUID stale (sessions.env has b2563d89, live is c2775135 — sed bug skipped update)
+- odockerTeam:0.1   ✗ title≠reg (got "CommittoExpertPane" — needs /rename to proper role)
+- baseTeam:0.2      ✗ title≠reg (got "ClaudeCode" — needs /rename)
+- baseTeam:0.3      ✗ title≠reg,dup UUID (same as 0.2)
+```
+
+## Expert Bug to Fix Next
+- **consistency.fix sed delimiter bug**: uses `|` as sed delimiter but role names can conflict. Change to `#`. Causes sessions.env update to fail for oosh-tester, scrum-master, product-owner.
+- After fix: re-run `hiveMind consistency.fix` then `hiveMind consistency.audit` to verify.
+
+## Manual Fixes Still Needed
+- `/rename` on odockerTeam:0.1, baseTeam:0.2, baseTeam:0.3 to proper role names
+- These panes have title "Claude Code" or "Commit to Expert Pane" — not valid role names
+
+## Comprehensive Bug List
+See `session/tasks/hivemind-all-bugs-comprehensive.md` — full inventory of all bugs and gaps.
 
 ## RECOVERY AFTER COMPACT
 1. Read `.claude/agents/hiveMind-tester/SKILL.md`
 2. Read `session/agents/hiveMind-tester/context.md` (this file)
 3. Read `session/agents/hiveMind-tester/learnings.md`
-4. Read plan: `~/.claude/plans/partitioned-pondering-glade.md`
-5. Check uncommitted: `cd /Users/donges/oosh && git status`
-6. Check test results: `cat /tmp/hivemind-test-results.txt | grep -A2 T-PROCESS`
-
-## Foundational Reading (after boot recovery)
-- `session/knowledge-base/cmm-web4x.md`
-- `session/woda/woda-overview.md`
-- `session/knowledge-base/usage.md`
-- `session/knowledge-base/index.md`
+4. Tell expert: `Read session/tasks/expert-consistency-fix-sed-bug.md`
+5. Run `hiveMind consistency.audit` from ooshDebug:0.1 to see current state
 
 ## Rules (memorize):
 - **NO git rebase. EVER.** Pull with merge only.
@@ -60,3 +71,4 @@
 - Tests must be fixture-based, not machine-specific snapshots.
 - **Gate live-probing tests behind RUN_LIVE_TESTS=1.**
 - **Three categories**: detect, fix systemically, fix manually. Try manual fix first to find missing methods.
+- **Check expert's context** before sending work — don't force work on an agent at low context.
