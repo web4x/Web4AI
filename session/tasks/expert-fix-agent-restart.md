@@ -65,6 +65,23 @@ fi
 5. **BUG-P2** (agent.bootstrap raw claude) — consistency
 6. **BUG-S** (raw tmux in restore) — OOSH compliance
 
+### BUG-U: `CLAUDECODE` env var blocks restarting Claude after exit
+**Problem**: When Claude exits, the shell keeps `CLAUDECODE` set. Starting a new `claude` fails: "cannot be launched inside another Claude Code session."
+**Note**: `claudeCode` already handles this — line 19: `unset CLAUDECODE`. So using `claudeCode` wrapper avoids this bug entirely.
+
+### BUG-V: Resumed exhausted session stays at 0% even after /compact and /clear
+**Problem**: `--resume` of a session that hit context limit stays permanently at 0%. Neither /compact nor /clear frees space.
+**Impact**: Dead agents can't be resumed if they died from context exhaustion. Must start fresh.
+**Implication for teams.restore**: Need to detect exhausted sessions and start new instead of resume.
+
+### BUG-W: `teams.restore` creates sessions with default shell (zsh), not bash
+**Problem**: `tmux new-session` defaults to user's shell (zsh). OOSH needs bash. After creating the session, need to send `bash` to get OOSH on PATH before calling `claudeCode`.
+**Fix**: After `tmux new-session`, send `bash` + Enter + sleep, then `claudeCode join`.
+
+### BUG-X: `claudeCode` wrapper sets essential env vars missing from raw `claude`
+**Problem**: `claudeCode` sets `FORCE_COLOR=2`, unsets `COLORTERM`, unsets `CLAUDECODE` (lines 17-19). Raw `claude` doesn't. All restart code MUST use `claudeCode`, never raw `claude`.
+**Impact**: Agents started with raw `claude` have broken colors.
+
 ## Test to verify
 After fixes:
 1. `hiveMind teams.save` — should include dead agents
