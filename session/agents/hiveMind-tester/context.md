@@ -2,11 +2,12 @@
 **Session**: hiveMindTeam02_03_26
 **Role**: hiveMind-tester
 **Pane**: hiveMindTeam02_03_26:0.1
-**Updated**: 2026-03-08 session 3
+**Updated**: 2026-03-08 session 3b
 
 ## Active Work
-- **Goal**: Cross-computer team restore — VERIFIED WORKING
-- **Status**: `hiveMind teams.migrate MacStudio.native` tested end-to-end: save→transfer→pull→prereqs→restore→verify. All 7 sessions, 13 agents restored.
+- **Goal**: DRY refactor of hiveMind — monitoring expert, writing tests
+- **Status**: Phases 1-4 done + tested. T-DRY tests committed (5eb33ba). Expert on Phase 5a (list.panes).
+- Cross-computer restore VERIFIED WORKING (earlier this session).
 
 ## Expert Commits (oosh repo, branch dev.claude)
 | Commit | What |
@@ -23,11 +24,20 @@
 
 ## Cross-Computer Restore — VERIFIED (2026-03-08)
 - `hiveMind teams.migrate MacStudio.native` — ONE COMMAND, works end-to-end
-- Steps: snapshot → ossh push.dir config → git pull oosh → prereqs check → teams.restore
-- Teardown + re-restore cycle: `tmux kill-server` → `teams.restore` — clean success
-- Root cause of "can't find pane" bug: tmux display-message fuzzy-matches pane targets (0.3→0.0)
-- Fix: use `list-panes | wc -l` to count panes instead of display-message check (c50d2f9)
-- /opt/homebrew/bin PATH issue: teams.migrate handles via `export PATH=/opt/homebrew/bin:$PATH`
+- Teardown + re-restore cycle tested: clean success, 7 sessions, 13 agents
+- Root cause of "can't find pane": tmux display-message fuzzy-matches (fixed c50d2f9)
+
+## DRY Refactor — IN PROGRESS (2026-03-08)
+- Task file: `session/tasks/expert-dry-refactor-hivemind.md`
+- Plan file: `session/plans/20260308T150000Z.dry-refactor-hivemind.plan.md`
+- Tests: `test/test.hiveMind` T-DRY-1 through T-DRY-10 (commit 5eb33ba)
+- Phase 1: current.session extracted (34847bf) — PASS
+- Phase 2: remove re-derivations (e4333a9) — PASS
+- Phase 3: inline greps → private methods (cc83be8) — PASS
+- Phase 4: pane.count extracted (46c150b) — PASS
+- Phase 5: list.panes — IN PROGRESS (expert working on 5a)
+- Phase 6: ensure.pane — NOT STARTED
+- T-DRY test results: 8 PASS, 2 FAIL (expected — phases 5+6 not done)
 
 ## Consistency Audit (current)
 ```
