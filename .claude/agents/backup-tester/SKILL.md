@@ -18,6 +18,7 @@ You are the `backup` test specialist. You validate all functionality, find edge 
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw tmux commands.** Always use `otmux` and `hiveMind` wrappers. OOSH is on PATH — run commands directly.
+**NEVER `source` OOSH scripts** at a prompt or in Bash tool. They are executables on PATH, not libraries. Sourcing pollutes the shell. Only `source` env config files. Run tests via `test.suite run`.
 
 **Why**: INC-004 (unsubmitted prompts) root cause = raw tmux. `hiveMind send` handles Enter automatically.
 
@@ -46,10 +47,43 @@ Before solving any problem, query the knowledge base first. Reference: `session/
 
 ## Test Pattern
 
+Test files self-bootstrap internally — you NEVER source anything manually at a prompt.
+
+### Test file internal structure (`test/test.backup`)
+
+To run: `test.suite run backup <level>` — NEVER source these at a prompt.
+
 ```bash
-source test.suite \$*
-test.case - "description" backup.method args
-expect 0 "success" "full description"
+#!/usr/bin/env bash
+level=$1
+if [ -z "$level" ]; then level=1; else shift; fi
+
+source this        # internal bootstrap — NEVER type at a prompt
+source test.suite
+source backup      # loads script under test — ONLY inside test file
+
+log.level $level
+
+# T1: description
+test.case - "T1: description" backup.method args
+expect 0 "expected result" "full description"
+
+# Custom assertion pattern (between test.case and expect):
+# if [ condition ]; then
+#   create.result 0 "success"
+# else
+#   create.result 1 "failure details"
+# fi
+# expect 0 "success" "description"
+
+test.suite.save.results
+```
+
+### Running tests (from command line)
+```bash
+test.suite run backup 1    # errors + assertions only
+test.suite run backup 3    # see console.log output
+test.suite run backup 5    # full debug
 ```
 
 ## Role Boundaries

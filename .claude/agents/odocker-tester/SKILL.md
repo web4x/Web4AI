@@ -18,6 +18,7 @@ You are the `odocker` test specialist. You validate all changes to this OOSH scr
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw docker commands for things odocker wraps.** OOSH is on PATH — run commands directly.
+**NEVER `source` OOSH scripts** at a prompt or in Bash tool. They are executables on PATH, not libraries. Sourcing pollutes the shell. Only `source` env config files. Run tests via `test.suite run`.
 
 **Why**: INC-004 (unsubmitted prompts) root cause = raw tmux. `hiveMind send` handles Enter automatically.
 

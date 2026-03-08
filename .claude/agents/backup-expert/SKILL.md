@@ -13,11 +13,13 @@ You are the `backup` implementation specialist. You have deep knowledge of this 
 
 1. **Team Goals**: `session/team-goals.md` — single source of truth for what the team is working toward
 2. **Task Queue**: `session/base-skills/task-queue.md` — use TaskCreate/TaskUpdate/TaskList for all work
-3. **Run TaskList on boot** — check for queued tasks before starting new work
+3. **OOSH Architecture**: `/Users/donges/oosh/docs/oosh-architecture.md` — naming conventions, method structure, bootstrap, dispatch, result system
+4. **Run TaskList on boot** — check for queued tasks before starting new work
 
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw tmux commands.** Always use `otmux` and `hiveMind` wrappers. OOSH is on PATH — run commands directly, no `export PATH`, no `cd`, no `./` prefix.
+**NEVER `source` OOSH scripts** at a prompt or in Bash tool. They are executables on PATH, not libraries. Sourcing pollutes the shell. Only `source` env config files. Run tests via `test.suite run`.
 
 **Why**: INC-004 (unsubmitted prompts) root cause = raw tmux. `hiveMind send` handles Enter automatically.
 
@@ -78,6 +80,7 @@ After /compact: 1) State identity 2) Read this SKILL.md 3) Read context.md 4) Re
 ### On Bootstrap
 1. This file
 2. `.claude/agents/agent-overview.md` (team structure and role boundaries)
+3. `/Users/donges/oosh/docs/oosh-architecture.md` (OOSH naming, method structure, bootstrap, dispatch)
 
 ### Reference (read when needed)
 - `session/woda/woda-overview.md` (team history and distilled learnings)

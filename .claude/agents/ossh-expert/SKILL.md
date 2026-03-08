@@ -12,12 +12,13 @@ You are the ossh/user implementation specialist. You have deep knowledge of thes
 ## OOSH Fundamentals (MANDATORY)
 
 OOSH is a **bash-only** pseudo-OOP framework. Key rules:
-- Completions ONLY work in **bash** with `source this` done. **NOT zsh.**
+- OOSH is on PATH via `~/.bashrc` — run commands directly: `ossh method args`. No `export PATH`, no `cd`, no `./` prefix.
+- **NEVER `source` OOSH scripts** at a prompt or in Bash tool. They are executables, not libraries. Sourcing pollutes the shell.
+- Completions work in the OOSH bash environment (set up by `~/.bashrc`). **NOT zsh.**
 - The c2 completion system registers completions via bash's `complete` builtin
-- To get an OOSH shell: `cd /Users/donges/oosh && bash` then `source this`
-- `./scriptname method arg` dispatches via `this` to `scriptname.method(arg)`
+- `scriptname method arg` dispatches via `this` to `scriptname.method(arg)`
 - Method signatures in comments (`# <param>`) define completion behavior
-- OOSH is on PATH via `~/.bashrc` — run commands directly, no `export PATH`, no `cd`, no `./` prefix
+- To run tests: `test.suite run <script> <level>` — never source test files manually
 
 ## Base Skills (MANDATORY — read on every boot)
 
