@@ -44,7 +44,8 @@
 - Use simple direct commands: `hiveMind method args 2>&1`
 
 ## Running test.suite from Bash tool
-- `source this && source hiveMind` hangs in Bash tool (non-interactive zsh shell).
+- NEVER `source` OOSH scripts directly. They are executables on PATH, not libraries.
+- `source this && source hiveMind` is WRONG — pollutes the shell. It also hangs in Bash tool.
 - Use `test.suite run hiveMind 1` instead — it handles the OOSH environment properly.
 - `bash test/test.hiveMind` also hangs. Only `test.suite run` works.
 - **Run tests from ooshDebug:0.1** (non-Claude pane) to avoid self-disruption.
@@ -155,4 +156,56 @@
 ## Same filesystem = no git pull needed
 - Expert and tester share the same oosh repo on the same machine
 - `git pull` is only needed if changes were pushed to remote but not committed locally
-- When expert commits locally, tester sees it immediately — just `source hiveMind` to reload
+- When expert commits locally, tester sees it immediately — OOSH scripts are executables on PATH, no reload needed. Just call `hiveMind <method>` directly.
+
+## Session UUID preservation is paramount (CRITICAL)
+- Session UUIDs ARE the agent's identity. NEVER start `claudeCode new` when a UUID exists — it destroys all context and experience.
+- Sessions don't "exhaust" permanently — context resets with /compact or new API blocks.
+- If 0% after /compact: wait for new API block, don't start fresh.
+- Exception: if BOTH /compact AND /clear fail AND a fresh prompt queues without processing, the session IS stuck. Only then is a new session justified.
+- `claudeCode join <role-name>` resolves via sessions.env — use this, not raw `claude --resume <uuid>`.
+- Always use `claudeCode` wrapper (sets FORCE_COLOR, unsets CLAUDECODE nesting guard, uses $CLAUDE_CMD path).
+
+## NEVER source OOSH scripts (CRITICAL)
+- `source hiveMind` pollutes the shell with thousands of functions — DESTROYS the bash environment.
+- OOSH scripts are executables on PATH. Call them directly: `hiveMind consistency.audit`
+- The ONLY things you may `source` are env config files (e.g., `source ~/config/user.env`).
+- If you accidentally source a script: `exit` the shell and restart `bash` to get a clean environment.
+
+## NEVER append 2>&1 to OOSH commands
+- `2>&1` on OOSH commands causes permission prompts in Claude Code Bash tool.
+- OOSH has its own error handling (ERR trap). Let it work.
+- Just run: `hiveMind consistency.audit` — no redirects needed.
+
+## Cross-computer restore findings (2026-03-07)
+- `ossh push.dir <host> ~/config` transfers all hivemind config files (roles, sessions, snapshots)
+- Remote machine needs: tmux on PATH, claude installed, OOSH on PATH, git pulled to latest
+- MacStudio: tmux at /opt/homebrew/bin — NOT in bash PATH (needs bashrc fix)
+- teams.restore fails silently if tmux server isn't running — "no server running" per pane
+- Fix: must start tmux server first (`tmux new-session -d -s init` or similar)
+- After restore: detached sessions exist but agents need boot.md sent
+
+## Raw commands prohibition (CRITICAL — Tron directive)
+- NEVER use raw `claude`, `tmux`, `ssh` commands. Always use claudeCode, otmux, ossh wrappers.
+- claudeCode sets FORCE_COLOR=2, unsets COLORTERM, unsets CLAUDECODE — raw `claude` doesn't.
+- otmux adds error handling, pane title management — raw `tmux` doesn't.
+- ossh manages SSH configs, identity files — raw `ssh` doesn't.
+- teams.restore line 1462 used raw `claude` — BUG-P. Fixed in e351282.
+- This applies to ALL OOSH scripts: hiveMind, otmux, claudeCode, etc. NEVER `source` them.
+- `test.suite run hiveMind 1` handles the test environment internally — that's the only correct way to run tests.
+
+## tmux display-message fuzzy-matches pane targets (CRITICAL)
+- `tmux display-message -t session:0.3 -p "#{pane_id}"` returns SUCCESS even when pane 3 doesn't exist.
+- tmux 3.6a resolves `.3` as a fuzzy target and falls back to pane 0. Returns `%0` with exit code 0.
+- **Never use `display-message` to check if a specific pane index exists.**
+- Correct approach: `tmux list-panes -t session:window | wc -l` to count actual panes.
+- This caused the entire pane creation loop in teams.restore to be skipped — split-window never ran.
+- Fixed in c50d2f9.
+
+## teams.migrate verified end-to-end (2026-03-08)
+- `hiveMind teams.migrate MacStudio.native` — single command, works.
+- Steps: snapshot → push config → git pull → prereqs → restore → verify.
+- Teardown + re-restore cycle tested: `tmux kill-server` → `teams.restore` — clean.
+- 7 sessions, 13 agents, 21 panes created without errors.
+- teams.restore auto-starts tmux server if none running (BUG-Z1 fix).
+- teams.migrate exports `/opt/homebrew/bin` to PATH for Apple Silicon macs.
