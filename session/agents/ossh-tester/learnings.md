@@ -5,7 +5,7 @@
 ## Rules (MANDATORY)
 
 - **NEVER redirect stderr** — no `2>&1`, no `2>/dev/null`. Errors are information in OOSH. See them, deal with them.
-- **OOSH is bash-only** — test shell MUST be bash with OOSH sourced (`cd /Users/donges/oosh && bash` then `source this`). zsh cannot run OOSH completions.
+- **OOSH is bash-only** — the bash environment is set up by `~/.bashrc` with OOSH on PATH. Never source scripts at a prompt. Run tests via `test.suite run <script> <level>` from ooshDebug. zsh cannot run OOSH completions.
 - **Double Tab for completion lists** — `Tab Tab` shows candidates. Single `Tab` may just show usage.
 - **C-u to kill line** — works in both bash and zsh. Use instead of C-c when clearing input.
 
