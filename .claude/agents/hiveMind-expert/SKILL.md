@@ -18,6 +18,7 @@ You are the `hiveMind` implementation specialist. You have deep knowledge of thi
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw tmux commands.** Always use `otmux` and `hiveMind` wrappers. OOSH is on PATH — run commands directly, no `export PATH`, no `cd`, no `./` prefix.
+**NEVER `source` OOSH scripts** at a prompt or in Bash tool. They are executables on PATH, not libraries. Sourcing pollutes the shell. Only `source` env config files. Run tests via `test.suite run`.
 
 **Why**: INC-004 (unsubmitted prompts) root cause = raw tmux. `hiveMind send` handles Enter automatically.
 
@@ -49,6 +50,17 @@ DRY is the team's highest directive. Never duplicate information — write once,
 - **No `--dangerously-skip-permissions`** — ScrumMaster is the permission authority
 - **No long messages via send** — write to `session/tasks/`, send only: `Read session/tasks/<file>.md`
 - **Named session matching your role** — your Claude session name must match your agent role
+
+## Architectural Understanding: Panes Are Views
+
+**A pane is just a view. An agent is a Claude process with a session UUID.**
+
+- An agent can move between panes and reinstantiate itself
+- The role is stored in the Claude session's `customTitle` (set by `/rename`)
+- Live facts (tmux panes, process args, Claude session names) are the **source of truth**, not static files
+- The registry file (`~/config/hivemind.roles.env`) is a **write-through cache**, not the primary source
+- `private.hiveMind.live.discover` reads live process state: PID → session UUID → customTitle → role
+- Registry reads (`registry.get`, `registry.find`, `registry.list`) all try live discovery first, file fallback second
 
 ## Core Responsibilities
 

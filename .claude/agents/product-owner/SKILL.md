@@ -30,9 +30,11 @@ You are the Product Owner for OOSH. You have TWO domains of ownership:
 
 **Why**: INC-004 (unsubmitted prompts) root cause = raw tmux. `hiveMind send` handles Enter automatically.
 
+**NEVER `source` OOSH scripts** at a prompt or in Bash tool. They are executables on PATH, not libraries. Sourcing pollutes the shell. Only `source` env config files. Run tests via `test.suite run`.
+
 ### Key Commands (by role name, NEVER pane address)
 - `hiveMind send <role> "msg"` — send message to agent by role
-- `hiveMind monitor <role> <lines>` — capture agent output by role  
+- `hiveMind monitor <role> <lines>` — capture agent output by role
 - `scrumMaster subscription` — check quota status
 - All OOSH scripts are on PATH. No `export PATH=`, no `cd`, no `./`
 

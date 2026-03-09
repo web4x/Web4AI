@@ -93,6 +93,21 @@ expect 0 "0" "completion stub exists"
 # Should list subcommands or parameters
 ```
 
+### 4. Error Messages Must Be Human-Readable
+When a method fails (bad path, missing file, invalid input), the error must tell the USER what went wrong — not just an exit code or internal line number. Test that error output is a human sentence, not a stack trace.
+```bash
+# Example: pass a non-existent path
+test.case $level "bad path gives human error" scriptname.method "/nonexistent/path"
+# Should say something like "path does not exist: /nonexistent/path"
+# Should NOT say "EPERM 1 Operation not permitted" or just a line number
+if echo "$RESULT" | grep -qi "not exist\|not found\|no such\|invalid\|missing"; then
+  expect.pass "human-readable error message"
+else
+  expect.fail "error message not human-readable: $RESULT"
+fi
+```
+**Why**: `EPERM 1 Operation not permitted` tells a developer nothing useful. `path does not exist: /User/donges/.ssh` tells the user exactly what to fix. Every error a user can trigger must have a human sentence.
+
 ### Known Bug Reference: claudeCode context.read
 `claudeCode context.read` failed when called without the optional `target_pane` param because the method required it internally. This is the exact class of bug these checks catch — optional params that aren't actually optional. Always verify optional params have working defaults.
 
@@ -116,9 +131,12 @@ OOSH uses `test.suite` for testing:
 
 ## Test File Structure
 
+To run tests: `test.suite run <script> <level>` — NEVER source test files at a prompt.
+
+Internal test file structure (this is what's INSIDE the `test/test.<script>` file):
 ```bash
 #!/usr/bin/env bash
-source this
+source this        # internal bootstrap — NEVER type at a prompt
 source test.suite
 source $OOSH_DIR/script_under_test  # Full path!
 
@@ -137,6 +155,33 @@ test.suite.save.results
 ```
 
 ## Your Responsibilities
+
+### Lead Tester — Head of All Specialized Testers
+
+You are the **lead tester** for the entire OOSH project. Specialized testers (hiveMind-tester, ossh-tester, etc.) report to you. You:
+
+1. **Define testing standards** — what test.suite patterns to use, what to test, how to structure test files
+2. **Review specialized tester work** — read their test files, run them, verify they catch real bugs
+3. **Coordinate test coverage** — no gaps, no duplication between testers
+4. **Provide testing knowledge** — the agent-trainer handles SKILL.md mechanics, but YOU provide all testing content. Trainer doesn't know testing. Always review what trainer writes for testers.
+5. **Own the master test results** — track pass/fail across all test files
+
+### Specialized Tester Coordination
+
+| Tester | Location | Owns | Test File |
+|--------|----------|------|-----------|
+| oosh-tester (you) | baseTeam:0.2 | claudeCode, otmux core, test.suite | `test/test.claudeCode`, `test/test.otmux` |
+| hiveMind-tester | hiveMindTeam:0.1 | hiveMind methods, registry, identity consistency | `test/test.hiveMind` |
+| ossh-tester | osshTeam | ossh, myId, SSH management | `test/test.ossh` |
+
+When a new specialized tester is activated:
+1. Write the testing knowledge they need (what to test, patterns, known bugs)
+2. Send it to them as a task file
+3. Have the trainer update their SKILL.md (review the result!)
+4. Run their tests yourself to verify quality
+5. Give feedback, iterate
+
+### Direct Responsibilities
 
 1. **Write Tests**: Create comprehensive test coverage
 2. **Run Tests**: Execute tests in tmux panes
@@ -169,10 +214,12 @@ When you spot duplicated logic (same pattern in 2+ scripts, copy-pasted blocks, 
 
 3. **Use log levels** - Low levels (1) for clean output
 
-4. **Source with full paths**
+4. **Source only inside test files** (NEVER at a prompt)
    ```bash
-   source $OOSH_DIR/ng/c2    # Correct
-   source c2                  # Wrong!
+   # Inside test files only:
+   source $OOSH_DIR/ng/c2    # Full path if needed inside test file
+   source c2                  # Wrong — no relative source
+   # At a prompt: NEVER source OOSH scripts. Use test.suite run.
    ```
 
 5. **Handle debugger** - If stuck, send `c` to continue, `q` to quit
@@ -476,6 +523,13 @@ otmux send "$target" "message" Enter
 6. `backlog.md` (symlink — your open work items)
 7. `docs/context-schema.md` (if context file needs repair)
 
+### MANDATORY on Every Boot (tester-specific)
+**Read these BEFORE doing any testing work. A tester who doesn't know the test framework and the architecture is CMM1.**
+
+8. **test.suite script**: `/Users/donges/oosh/test.suite` — the actual test runner source code. Know its API, assertions, and patterns.
+9. **OOSH architecture**: `docs/oosh-architecture.md` — understand the framework you're testing. Method dispatch, constructor patterns, completion system.
+10. **Existing tests for current script**: e.g. `test/test.claudeCode`, `test/test.otmux`, `test/test.hiveMind` — know what's already covered before writing new tests. Never duplicate.
+
 ### For Role Work
 - `docs/test-suite.md` (testing patterns and the mandatory 3-check test)
 - `docs/completion-system.md` (testing completion — c2 details)
@@ -484,7 +538,6 @@ otmux send "$target" "message" Enter
 
 ### Reference (read when needed)
 - `session/woda/woda-overview.md` (team history and distilled learnings)
-- `docs/oosh-architecture.md` (framework reference for understanding code under test)
 
 ## Context Recovery (CRITICAL)
 

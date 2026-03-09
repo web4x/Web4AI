@@ -42,3 +42,170 @@
 ## Sandbox blocks compound commands
 - Avoid `cmd1; echo EXIT:$?` patterns — sandbox may block the second command.
 - Use simple direct commands: `hiveMind method args 2>&1`
+
+## Running test.suite from Bash tool
+- NEVER `source` OOSH scripts directly. They are executables on PATH, not libraries.
+- `source this && source hiveMind` is WRONG — pollutes the shell. It also hangs in Bash tool.
+- Use `test.suite run hiveMind 1` instead — it handles the OOSH environment properly.
+- `bash test/test.hiveMind` also hangs. Only `test.suite run` works.
+- **Run tests from ooshDebug:0.1** (non-Claude pane) to avoid self-disruption.
+
+## macOS sed vs GNU sed
+- `head -n -1` doesn't work on macOS. Use `awk` + line numbers instead.
+- `sed -n '/start/,/end/{ /pattern/{ ... } }'` compound commands fail on BSD sed.
+- Use `grep | head -1 | sed` pipeline as alternative.
+
+## otmux tree.detailed UUID format
+- tree.detailed shows TRUNCATED 8-char UUIDs in brackets: `[75ce660f]`
+- NOT full 36-char UUIDs. Compare first 8 chars of session.id against tree.detailed.
+- UUIDs appear on SUB-LINES below the pane line: `│     └ role-name  [8hexchars]`
+
+## AGENTS_BASE path for T-CONSIST-3
+- `WORKSPACE_ROOT` resolves via symlink target → wrong .claude/agents/ path.
+- Use `HIVEMIND_AGENTS_DIR` as primary path (set by hiveMind source).
+- Fallback: `${CLAUDE_PROJECT_DIR}/.claude/agents`
+
+## Approving expert permissions
+- When monitoring expert pane, watch for permission prompts and `/status` autocomplete.
+- Send `Enter` to approve (option 1), `Escape` to dismiss autocomplete.
+- Expert's `registry.refresh` gets interrupted by autocomplete — known issue.
+
+## Git commit message style (Tron directive)
+- ONE LINE commit messages. Short and descriptive.
+- Write details in a task file (e.g. `session/tasks/<file>.md`) and reference it in the commit.
+- Example: `git commit -m "test: enhance T-ALIGN-8 — see session/tasks/tester-tree-detailed-bugs.md"`
+- Never use multi-paragraph HEREDOC commit messages.
+
+## EPERM errors in test output = NOT acceptable
+- OOSH error handler catches `exit 1` from `ps` / `claudeCode` and prints loud EPERM lines.
+- Even if the test logic handles the error silently, the ERROR output is confusing and pollutes results.
+- Tests must use `|| true` on expected failures to prevent ERR trap from firing.
+
+## Tests must NOT be machine-specific
+- Tests that depend on current tmux session layout only work on ONE computer.
+- Live behavioral tests that send `/status` to Claude panes disrupt running agents.
+- Proper approach: fixture-based tests that create/teardown their own sessions via hiveMind.
+- Use `__test_hm_$$` (PID-namespaced) session names for isolation.
+
+## Monitoring is NOT my job
+- Tester tests CODE. Monitoring agents is ScrumMaster's job.
+- Don't use `sleep` loops to poll expert panes. Test the commits after they land.
+
+## Three categories of identity mismatches (Tron directive 2026-03-03)
+1. **DETECT**: Tests that find mismatches (T-CONSIST, T-LIVE cross-checks)
+2. **FIX SYSTEMICALLY**: hiveMind methods that prevent/correct drift automatically (registry.refresh, live.discover)
+3. **FIX MANUALLY**: Use hiveMind commands to correct current state. If no command exists = missing/buggy method.
+- Applying category 3 revealed BUG-E (teach rejects valid roles), BUG-F (no public registry.set/remove).
+- Always try to fix manually FIRST — it's the fastest way to discover missing methods.
+
+## Gate live-probing tests behind RUN_LIVE_TESTS=1 (CRITICAL)
+- Tests that call `process.find`, `live.discover`, `registry.refresh`, or `process.list` across ALL panes MUST be gated.
+- `registry.refresh` sends `/status` to every Claude pane via `session.probe` — disrupts agents.
+- `process.list` iterates all Claude PIDs calling `live.discover` per PID — slow but non-disruptive (reads files).
+- Default test run: fixture-based + function-existence + error-handling tests only.
+- Live tests: `RUN_LIVE_TESTS=1 test.suite run hiveMind 1` — only when explicitly requested.
+- Learned this the hard way: T-ALIGN sent /status to my own pane, T-LIFECYCLE-4 via registry.refresh probed all sessions.
+
+## test.case eats return codes
+- `test.case $level "desc" command args` runs the command but `$?` after is test.case's exit code (0), not the command's.
+- To test return codes: run the command FIRST, capture `$?`, THEN report with test.case.
+- Example: `hiveMind.method 2>/dev/null; RC=$?; test.case $level "desc" echo "rc=$RC"; if [ "$RC" -ne 0 ]; then expect.pass ...`
+
+## tmux send garbles long commands
+- Commands longer than ~80 chars get garbled when sent via `otmux send` to ooshDebug.
+- `cd /Users/donges/oosh && test.suite...` became `d /Users/donges/oosh && test.suite...` (lost the 'c').
+- Keep commands short. If already in the right directory, skip the `cd`.
+
+## Bugs found in hiveMind (report to expert)
+- **BUG-D**: registry.refresh line 1668 uses `-a` (all sessions) instead of `-s` — FIXED in de85de2
+- **BUG-E**: get.role.prompt (line 58) hardcoded case with ~15 roles, role.list finds 80+. `teach` fails for unlisted roles.
+- **BUG-F**: No public registry.set/remove methods — FIXED in 016b3d0
+- **BUG-G**: Registry mismatch at hiveMindTeam02_03_26:0.1 — FIXED by consistency.fix
+- **BUG-H**: active.team stale (shows projectTeam not hiveMindTeam02_03_26) — team.activate added in 016b3d0
+- **BUG-I**: hiveMindTeam02_03_26 not in teams.env — FIXED
+- **BUG-J**: No team.activate command — FIXED in 016b3d0
+- **BUG-K**: otmux.tree calls claudeCode per pane (slow) — NOT FIXED
+- **BUG-L**: find.agents.dir EPERM on every hiveMind command from ooshDebug — FIXED in 8f4210f
+
+## New methods implemented by expert (2026-03-06/07)
+- `hiveMind teams.save` — snapshot all Claude processes with UUIDs
+- `hiveMind teams.restore` — recreate from snapshot (not yet tested)
+- `hiveMind consistency.audit` — cross-compare all identity sources in one table
+- `hiveMind consistency.fix` — auto-repair from live truth (has sed delimiter bug)
+- `hiveMind registry.set <pane> <role>` — public wrapper
+- `hiveMind registry.remove <pane>` — public wrapper
+- `hiveMind team.activate <session>` — set active team
+
+## consistency.fix sed delimiter bug
+- Uses `|` as sed delimiter in sessions.env update
+- Role names like `product-owner` contain `-` which is fine, but the pipe-separated format of sessions.env (role|uuid) conflicts with sed `|` delimiter
+- Result: `sed: bad flag in substitute command` for oosh-tester, scrum-master, product-owner
+- Fix: change sed delimiter to `#`
+
+## Monitoring expert agents
+- Check expert's context % before sending work. Don't force work on an agent at 8% context.
+- Approve permissions promptly when monitoring — Enter for yes, watch for commit/push prompts.
+- Expert at 8% should compact before taking new tasks.
+
+## OOSH ERR trap vs 2>/dev/null
+- `2>/dev/null` on a function call suppresses stderr from the subshell
+- But OOSH ERR trap catches `return 1` INSIDE the function and prints ERROR to /dev/tty BEFORE the caller's redirect
+- Fix: function must `return 0` with empty output instead of `return 1`
+- Applied to find.agents.dir in commit 8f4210f
+
+## Same filesystem = no git pull needed
+- Expert and tester share the same oosh repo on the same machine
+- `git pull` is only needed if changes were pushed to remote but not committed locally
+- When expert commits locally, tester sees it immediately — OOSH scripts are executables on PATH, no reload needed. Just call `hiveMind <method>` directly.
+
+## Session UUID preservation is paramount (CRITICAL)
+- Session UUIDs ARE the agent's identity. NEVER start `claudeCode new` when a UUID exists — it destroys all context and experience.
+- Sessions don't "exhaust" permanently — context resets with /compact or new API blocks.
+- If 0% after /compact: wait for new API block, don't start fresh.
+- Exception: if BOTH /compact AND /clear fail AND a fresh prompt queues without processing, the session IS stuck. Only then is a new session justified.
+- `claudeCode join <role-name>` resolves via sessions.env — use this, not raw `claude --resume <uuid>`.
+- Always use `claudeCode` wrapper (sets FORCE_COLOR, unsets CLAUDECODE nesting guard, uses $CLAUDE_CMD path).
+
+## NEVER source OOSH scripts (CRITICAL)
+- `source hiveMind` pollutes the shell with thousands of functions — DESTROYS the bash environment.
+- OOSH scripts are executables on PATH. Call them directly: `hiveMind consistency.audit`
+- The ONLY things you may `source` are env config files (e.g., `source ~/config/user.env`).
+- If you accidentally source a script: `exit` the shell and restart `bash` to get a clean environment.
+
+## NEVER append 2>&1 to OOSH commands
+- `2>&1` on OOSH commands causes permission prompts in Claude Code Bash tool.
+- OOSH has its own error handling (ERR trap). Let it work.
+- Just run: `hiveMind consistency.audit` — no redirects needed.
+
+## Cross-computer restore findings (2026-03-07)
+- `ossh push.dir <host> ~/config` transfers all hivemind config files (roles, sessions, snapshots)
+- Remote machine needs: tmux on PATH, claude installed, OOSH on PATH, git pulled to latest
+- MacStudio: tmux at /opt/homebrew/bin — NOT in bash PATH (needs bashrc fix)
+- teams.restore fails silently if tmux server isn't running — "no server running" per pane
+- Fix: must start tmux server first (`tmux new-session -d -s init` or similar)
+- After restore: detached sessions exist but agents need boot.md sent
+
+## Raw commands prohibition (CRITICAL — Tron directive)
+- NEVER use raw `claude`, `tmux`, `ssh` commands. Always use claudeCode, otmux, ossh wrappers.
+- claudeCode sets FORCE_COLOR=2, unsets COLORTERM, unsets CLAUDECODE — raw `claude` doesn't.
+- otmux adds error handling, pane title management — raw `tmux` doesn't.
+- ossh manages SSH configs, identity files — raw `ssh` doesn't.
+- teams.restore line 1462 used raw `claude` — BUG-P. Fixed in e351282.
+- This applies to ALL OOSH scripts: hiveMind, otmux, claudeCode, etc. NEVER `source` them.
+- `test.suite run hiveMind 1` handles the test environment internally — that's the only correct way to run tests.
+
+## tmux display-message fuzzy-matches pane targets (CRITICAL)
+- `tmux display-message -t session:0.3 -p "#{pane_id}"` returns SUCCESS even when pane 3 doesn't exist.
+- tmux 3.6a resolves `.3` as a fuzzy target and falls back to pane 0. Returns `%0` with exit code 0.
+- **Never use `display-message` to check if a specific pane index exists.**
+- Correct approach: `tmux list-panes -t session:window | wc -l` to count actual panes.
+- This caused the entire pane creation loop in teams.restore to be skipped — split-window never ran.
+- Fixed in c50d2f9.
+
+## teams.migrate verified end-to-end (2026-03-08)
+- `hiveMind teams.migrate MacStudio.native` — single command, works.
+- Steps: snapshot → push config → git pull → prereqs → restore → verify.
+- Teardown + re-restore cycle tested: `tmux kill-server` → `teams.restore` — clean.
+- 7 sessions, 13 agents, 21 panes created without errors.
+- teams.restore auto-starts tmux server if none running (BUG-Z1 fix).
+- teams.migrate exports `/opt/homebrew/bin` to PATH for Apple Silicon macs.

@@ -20,6 +20,7 @@ This template also defines the **ownership contract** that every OOSH script mus
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw tmux commands** in owned scripts. Always use `otmux` and `hiveMind` wrappers. Flag any raw `tmux send-keys`, `tmux capture-pane`, or `tmux new-session` as a first-principles violation during ownership audits. Also flag `cd && ./command` patterns — OOSH is on PATH, use `command` directly.
+**NEVER `source` OOSH scripts** at a prompt or in Bash tool. They are executables on PATH, not libraries. Sourcing pollutes the shell. Only `source` env config files. Run tests via `test.suite run`.
 
 **Why**: INC-004 (unsubmitted prompts) root cause = raw tmux. `hiveMind send` handles Enter automatically.
 
@@ -77,10 +78,10 @@ scriptname.usage() # # display usage information
 
 **Test**: `./scriptname` with no args must print usage. `./scriptname usage` must print usage.
 
-The constructor pattern:
+The constructor pattern (inside the script file itself — NEVER at a prompt):
 ```bash
 scriptname.start() {
-  source this
+  source this    # internal bootstrap — NEVER type at a prompt
   if [ -z "$1" ]; then
     scriptname.usage
     return 0
@@ -150,13 +151,14 @@ private.scriptname.helper() {
 
 ### 6. Test File (REQUIRED)
 
-Every script must have `test/test.scriptname`:
+Every script must have `test/test.scriptname`. Run via `test.suite run scriptname <level>`.
 
+Internal test file structure (NEVER type these at a prompt):
 ```bash
 #!/usr/bin/env bash
-source this
+source this        # internal bootstrap — NEVER at a prompt
 source test.suite
-source scriptname
+source scriptname  # loads script under test — ONLY inside test file
 
 log.level $level
 

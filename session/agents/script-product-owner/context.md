@@ -44,7 +44,7 @@
 - `[[ "$1" =~ ^[0-9]+$ ]]` is more reliable than `case *[!0-9]*` for number checking
 - `./script` from clean shell triggers debug trap (setTrap → step DEBUG) causing hangs — test from OOSH-initialized env instead
 - CONFIG_PATH must be set for state machine operations — `this.init()` provides default
-- `source this && source config && config.init` needed before test.suite in Bash tool
+- Never source OOSH scripts at a prompt — use `test.suite run <script> <level>` to run tests (handles environment internally)
 - hiveMind tests may hang without full OOSH env init (debug trap)
 - oosh repo: `/Users/donges/oosh/`, branch `dev.claude`
 - Workspace repo: `/Users/Shared/Workspaces/AI/Claude/`, branch `main`

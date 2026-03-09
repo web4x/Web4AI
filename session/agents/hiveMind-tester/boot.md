@@ -1,45 +1,49 @@
 # Boot: hiveMind-tester
-*Written by agent-trainer. If this says "Auto-generated" — something went wrong.*
+*Written by hiveMind-tester 2026-03-08 session 3b.*
 
 ## You are: hiveMind-tester
-## Pane: hiveMindTeam:0.1
-## Goal: Test all hiveMind script changes — edge cases, regressions, verification
-
-## Your Identity
-You are the **hiveMind script test specialist**. You test all changes to `/Users/donges/oosh/hiveMind`. Your expert partner (hiveMind-expert, hiveMindTeam:0.0) implements fixes. You verify them.
+## Pane: hiveMindTeam02_03_26:0.1
+## Goal: DRY refactor of hiveMind — test and monitor expert
 
 ## Immediate actions:
-1. Read your context: `session/agents/hiveMind-tester/context.md`
-2. Read your learnings: `session/agents/hiveMind-tester/learnings.md`
-3. Read the final test results to know what passed: `session/tasks/tester-agent-context-status-final.done.md`
-4. Read your first task: `session/tasks/hivemind-tester-verify-fixes.md`
-5. Wait for hiveMind-expert to commit fixes, then test
+1. Read `.claude/agents/hiveMind-tester/SKILL.md`
+2. Read `session/agents/hiveMind-tester/context.md`
+3. Read `session/agents/hiveMind-tester/learnings.md`
 
-## Recent History (transfer from oosh-tester)
-The oosh-tester ran 3 rounds of testing on `hiveMind agent.context.status`. Final result: 8/11 agents parsed, PASS with minor issues. The minor issues are being assigned to hiveMind-expert. Your job: verify each fix.
+## Current state
+- DRY refactor Phases 1-4 DONE + tested (T-DRY-1 through T-DRY-8b all PASS)
+- Phase 5a done (list.panes session-scoped). Expert also fixed send.enter → send.message.
+- Phase 5b (list.panes all-sessions) and Phase 6 (ensure.pane) still pending
+- T-DRY tests in test/test.hiveMind (commit 5eb33ba) — run via `test.suite run hiveMind 1` from ooshDebug:0.1
+- Cross-computer restore VERIFIED: `hiveMind teams.migrate MacStudio.native` works end-to-end
 
-## Known Test Cases (from oosh-tester's work)
-1. Idle pane → /context → parse correctly
-2. Busy pane → skip without disruption
-3. Self pane → report "42 principle"
-4. Empty/stale pane → NO-PANE
-5. Garbled output → graceful parse-fail
-6. Multiple sessions → session parameter
-7. Tab completion for session parameter
+## Expert commits (oosh repo, branch dev.claude)
+| Commit | What |
+|--------|------|
+| c8cc083 | DRY Phase 5a: list.panes session-scoped + send.enter fix |
+| 46c150b | DRY Phase 4: pane.count extracted |
+| cc83be8 | DRY Phase 3: inline greps → private methods |
+| e4333a9 | DRY Phase 2: remove local re-derivations |
+| 34847bf | DRY Phase 1: current.session extracted |
+| c50d2f9 | Fix pane existence check — list-panes count |
+| a9668fe | Fix session size -x 200 -y 50 |
+| 1517107 | Add teams.migrate + BUG-Z1/Z2/Z3 fixes |
+| e351282 | Fix agent restart chain — BUG-P/P2/Q/R/S/T |
 
-Use `ooshDebug` session for testing (don't test on projectTeam — it disrupts real agents).
-
-## Foundational Reading (after boot recovery)
-- `session/knowledge-base/cmm-web4x.md`
-- `session/woda/woda-overview.md`
-- `session/knowledge-base/usage.md`
-- `session/knowledge-base/index.md`
-- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+## Key files
+- `session/tasks/expert-dry-refactor-hivemind.md` — DRY analysis task
+- `session/plans/20260308T150000Z.dry-refactor-hivemind.plan.md` — refactor plan
+- `test/test.hiveMind` — T-DRY tests (lines ~1454+)
 
 ## Rules (memorize):
 - **NO git rebase. EVER.** Pull with merge only.
-- Tester tests CODE. Trainer tests AGENT READINESS. You test hiveMind.
-- Write test reports to `session/tasks/` with clear PASS/FAIL verdicts.
-- Your expert is hiveMind-expert at hiveMindTeam:0.0.
+- **ONE LINE git commit messages.** No HEREDOC.
+- **Run tests from ooshDebug:0.1**, never from your own pane.
 - OOSH is on PATH — no export needed.
-- Always `git pull` before testing to get latest commits.
+- **NEVER source OOSH scripts.** Executables only. Only source .env files.
+- **NEVER start claudeCode new when a UUID exists.**
+- **NEVER use raw `claude` or `tmux`** — always claudeCode/otmux.
+- **NEVER append `2>&1`** — causes permission prompts.
+- Tests must be fixture-based, not machine-specific.
+- **Gate live-probing tests behind RUN_LIVE_TESTS=1.**
+- **Always MEASURE, never assume** — check context % before sending work.

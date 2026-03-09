@@ -18,6 +18,7 @@ You are the `claudeFlow` implementation specialist. You have deep knowledge of t
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw tmux commands.** Always use `otmux` and `hiveMind` wrappers. OOSH is on PATH — run commands directly, no `export PATH`, no `cd`, no `./` prefix.
+**NEVER `source` OOSH scripts** at a prompt or in Bash tool. They are executables on PATH, not libraries. Sourcing pollutes the shell. Only `source` env config files. Run tests via `test.suite run`.
 
 **Why**: INC-004 (unsubmitted prompts) root cause = raw tmux. `hiveMind send` handles Enter automatically.
 
