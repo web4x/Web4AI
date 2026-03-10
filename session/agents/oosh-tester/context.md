@@ -1,57 +1,49 @@
 # OOSH Tester Agent — Session Context
 
-**Updated**: 2026-02-22 22:30
-**Role**: oosh-tester (testing & validation)
-**Pane**: projectTeam:0.2
+**Updated**: 2026-02-26 ~19:30
+**Role**: oosh-tester (baseTeam:0.2)
+**Pane**: baseTeam:0.2
 
 ## Recovery Steps
 1. Read this file
 2. Read `.claude/agents/oosh-tester/SKILL.md`
-3. Check for new task assignments in `session/tasks/`
-4. Check with Orchestrator for current priorities
+3. Check `session/tasks/` for pending work
+4. Check with PO/expert for current priorities
 
-## Completed Work This Session
+## Current Task: Verify session.id Bug Fixes
 
-### Task #47: hiveMind agent.context.status (DONE)
-- Tested across 5 retests and 6 expert commits
-- **Final result**: 10/11 agents get real context % values
-- All 4 major bugs found and verified fixed:
-  - Idle detection (scan last 10 lines, not just last line) — 23c7053
-  - Autocomplete bypass (double-Enter for /context) — ad9c8ef
-  - Tron 0.4 skip — ad9c8ef
-  - Capture depth (-S - full scrollback + tail -1) — 7d336d2
-- All 5 minor fixes verified in commit 68157ec:
-  - printf %b for alert formatting
-  - Column alignment (${remaining}%)
-  - Narrow pane wrapping (tr '\n' ' ')
-  - Timing (sleep 5)
-  - Fallback parser inversion (detect "remaining" keyword)
-- Report: `session/tasks/tester-agent-context-status-final.done.md`
+### What happened
+Filed `session/tasks/expert-fix-session-id-bugs.task.md` — 3 bugs in agent identity:
+1. `claudeCode session.id` returns wrong UUID after agent restart
+2. `otmux tree.detailed` shows wrong names from stale hiveMind registry
+3. Duplicate session UUIDs across panes
 
-### Task #48: Pre-compact hook cross-session fix (DONE)
-- Tested 5 cases for commit e2d5fb7
-- All PASS: regression, boot.md fallback, self-healing registration, unknown template, known template
-- All 3 fallback paths verified (boot.md scan, pane title, context.md scan)
-- Report: `session/tasks/tester-hook-fix-48.done.md`
+Expert (baseTeam:0.1) made fixes:
+- `claudeCode` line 643: `head -1` → `tail -1` in lsof method
+- `otmux` tree.detailed: uses `session.name` before registry fallback
+- `hiveMind`: added `registry.refresh()` method
 
-### OOSH Wrapper Audit (DONE)
-- All wrappers functional: otmux pane.capture, otmux send, hiveMind team.status, hiveMind monitor, hiveMind resolve, otmux tree
-- One gap: no `otmux pane.self` wrapper for self-pane detection
-- Report: `session/tasks/tester-wrapper-audit.done.md`
+### Test Results: 33 tests, 22 PASS, 11 FAIL
 
-### `oo use` command completion fix (DONE — tested twice)
-- Tested commit ddca28d — fix for `oo use <branch> <TAB>` showing branches instead of commands
-- All 4 test cases PASS: branch completion, dev commands, main commands, no declare errors
-- Branch-specific listing confirmed (dev and main show different script sets)
-- Retested post-compact (22:30) — same 4/4 PASS results
-- Report: `session/tasks/tester-oo-use-command-completion.done.md`
+**Bug 1 NOT FIXED** — `tail -1` still returns wrong UUID. Root cause: when agents are **restarted** (NOT compacted — compact keeps UUID), the new claude process opens task dirs from ALL previous sessions (for history/resume). Current session UUID is NOT in lsof at all. 10 out of 15 live agents FAIL.
+
+**Bug 2 PARTIAL** — tree.detailed now uses session.name but shows ugly truncated boot prompts for un-renamed sessions.
+
+**Bug 3 PARTIAL** — registry.refresh works for /rename'd sessions. Stale entries remain.
+
+### Key Files
+- `test/test.claudeCode` — **I WROTE LIVE BEHAVIORAL TESTS** (T11-T33)
+  - Parses `otmux` (no params) to find ALL Claude panes
+  - Sends `/status` to each, parses Session ID, compares with `session.id`
+  - Tests idle pane (exit 1), registry consistency
+  - Run: `cd /Users/donges/oosh && bash test/test.claudeCode`
+- `session/tasks/expert-fix-session-id-bugs.task.md` — original bug report
+- `session/tasks/tester-verify-session-id-fixes.task.md` — expert's test plan
+- `session/tasks/tester-session-id-results.md` — detailed results
+
+### Correction on Root Cause
+NOT caused by /compact. Caused by **restarting agents** (kill + new claude session in same pane). The new process opens lsof handles to old task dirs from previous incarnations. PID 65442 has 89 handles to old UUID, 0 to current.
 
 ## Pending
-- No queued tasks
-
-## Key Files
-- `.claude/agents/oosh-tester/SKILL.md` — role definition
-- `session/tasks/tester-agent-context-status-final.done.md` — Task #47 report
-- `session/tasks/tester-hook-fix-48.done.md` — Task #48 report
-- `session/tasks/tester-wrapper-audit.done.md` — wrapper audit
-- `session/tasks/tester-oo-use-command-completion.done.md` — oo use completion test
+- Expert needs to find a new detection method (lsof is fundamentally broken)
+- Re-run `bash test/test.claudeCode` after expert's next fix — must get 0 FAIL

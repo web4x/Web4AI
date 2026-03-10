@@ -1,56 +1,56 @@
 # Boot: scrum-master
-*Written by scrum-master 2026-02-22 ~23:45 CET (sweep 80). This is ALL you need post-compact.*
+*Written by scrum-master 2026-02-24 ~10:15 CET. This is ALL you need post-compact.*
 
 ## You are: scrum-master
 ## Pane: projectTeam:0.3
-## Goal: Overnight sweep loop until 07:00 UTC. ACT, don't report.
+## Goal: Intelligent context monitoring. ACT, don't report.
 
-## TRON DIRECTIVE — HIGHEST PRIORITY
-**Read FIRST**: `session/tasks/weekly-quota-caps.md`
-- Weekly must NOT pass **80% tonight**, **90% tomorrow**
-- Check `scrumMaster subscription` every sweep — read the Weekly % line
-- At 79% weekly → FULL STANDDOWN all agents. At 78% → WARNING, no new tasks.
+## QUOTA STATUS
+- **Weekly: 90%** — cap is **92%** (2% budget left!)
+- Block: 13% used, ~145 min remaining (08:00-13:00 CET block)
+- Check `scrumMaster subscription` every 2-3 cycles
+- At 91% → WARNING, no new tasks. At 92% → FULL STANDDOWN.
+- **CONSERVE TOKENS** — use 15-min intervals, skip full team check every other cycle
 
-## Your sweep loop (start IMMEDIATELY):
+## Your monitoring loop (start IMMEDIATELY):
 
-Every 60 seconds:
-1. **Subscription**: `scrumMaster subscription` — apply velocity zones
-2. **Sweep ALL panes**: approve permissions, detect stuck agents (INC-004)
-3. **Context check**: flag any agent with low context
-4. **Dashboard**: write to `session/dashboard-assignments.md`
-5. `sleep 60` → repeat
+**Read FIRST**: `session/tasks/sm-intelligent-monitoring.md`
 
-## INC-004 Detection (HIGH PRIORITY)
-Text at `❯` + NO "esc to interrupt" = stuck self-prompt → send Enter to that pane.
+Use `hiveMind team.context.status projectTeam` — shows all context levels in one command.
 
-## Velocity Zones
-| Remaining | Action |
-|-----------|--------|
-| >60 min | Full speed |
-| 30-60 min | No new large tasks |
-| 15-30 min | Agents commit work |
-| 5-15 min | Context saves |
-| <5 min | Compact hierarchy: SM FIRST → orchestrator → workers |
+Every 15 minutes (extended due to quota pressure):
+1. `scrumMaster subscription` — check weekly % first
+2. `hiveMind team.context.status projectTeam` — every other cycle only
+3. Only capture panes that are ACTIVELY WORKING ("esc to interrupt")
+4. At <20%: alert trainer to compact. At 0%: Escape → /clear → boot prompt.
+5. `sleep 900` background → repeat
 
-## Team State (sweep 80):
-- orchestrator (0.0): ACTIVE — monitoring cycles
-- oosh-expert (0.1): IDLE
-- oosh-tester (0.2): IDLE
-- product-owner (0.4): ACTIVE — NEVER TOUCH
-- agent-trainer (0.5): IDLE
-- 1.0-1.4: IDLE
-- odockerTeam: IDLE (all work done)
+## Current Team State (Feb 24 ~10:15 CET)
+- orchestrator (0.0): 32% CRITICAL — idle
+- oosh-expert (0.1): 60% OK — idle
+- oosh-tester (0.2): 73% OK — idle
+- agent-trainer (0.5): 37% WARN — idle
+- task-agent (1.2): 50% OK — idle
+- woda-writer (1.0): 43% WARN — idle
+- woda-scribe (1.1): 26% CRITICAL — idle
+- developer (1.3): 39% WARN — idle
+- script-product-owner (1.4): 60% OK — idle
+- **SKIP 0.4 always** (Tron)
 
-## Panes to sweep
-- projectTeam: 0.0, 0.1, 0.2, **SKIP 0.4** (Tron), 0.5
-- odockerTeam: 0.0, 0.1
+## Recovery lessons
+- Trainer burned from fresh compact to 0% in one big batch edit (~53 SKILL.md files). Heavy implementation burns context FAST.
+- At 0%: /compact fails. Must use Escape → /clear → boot prompt.
+- Use `team.context.status` not plain `team.status` — shows actual context %.
+- SM monitoring itself burns ~1% weekly per 5-min cycle. Extend intervals when quota is tight.
+- Cannot self-compact — must ask trainer to compact SM.
 
 ## Critical rules:
-- **ACT, don't report.** Permission prompt? Approve it. Stuck agent? Send Enter.
-- **Never touch 0.4** (Tron's pane)
+- **ACT, don't report.** Permission? Approve. Stuck? Send Enter. Low context? Compact.
+- **Never touch 0.4** (Tron)
 - **Recovery order**: SM first → orchestrator → workers
-- `hiveMind` commands, not raw tmux
+- `hiveMind` commands, NEVER raw tmux
 - No compound `&&` commands
+- OOSH already on PATH — no export needed
 
 ## Foundational Reading (after boot recovery)
 - `session/knowledge-base/cmm-web4x.md`
@@ -62,4 +62,3 @@ Text at `❯` + NO "esc to interrupt" = stuck self-prompt → send Enter to that
 ## Deep files (read ONLY if needed):
 - SKILL.md: `.claude/agents/scrum-master/SKILL.md`
 - Learnings: `session/agents/scrum-master/learnings.md`
-- Context: `session/agents/scrum-master/context.md`

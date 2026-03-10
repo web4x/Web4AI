@@ -3,27 +3,24 @@
 **Session**: oosh-expert@opus
 **Role**: oosh-expert (OOSH Principle Guardian)
 **Pane**: projectTeam:0.1
-**Updated**: 2026-02-22T14:10Z
-**State**: IDLE — agent.context.status committed, awaiting next task
+**Updated**: 2026-02-23T post-compact
+**State**: IDLE — awaiting next task
 
-## JUST COMPLETED: hiveMind agent.context.status (Task #47)
+## Recent completions (this + previous session)
+- `f5b6c6b` — scrumMaster subscription accuracy fix (rate-limit-cache.json primary)
+- `d45c48d` — odocker camelCase→snake_case conversion fix
+- `f495244` — scrumMaster velocity command (zones: FULL/STEADY/WIND-DOWN/SAVE/COMPACT/EXHAUSTED)
+- `7518b87` — odocker parameter naming (camelCase, KB #16)
+- `6a06bfb` → `d63ed3f` → `3006be4` — architecture doc: naming standard + method structure standard
+- `088719a` — hiveMind agent.context.status
+- `15a8a90` — hiveMind.send() Enter key fix (INC-001)
+- `1e04861` — odocker wrapper (290 lines, 10 methods)
+- Spec delivered: `session/tasks/spec-hivemind-context-status-fixes.md` → hiveMindTeam implements
 
-Commit **088719a** pushed to dev.claude.
-- 121 lines added to hiveMind
-- Reports context % for all registered agents
-- Detects idle/busy/permission, only probes idle agents
-- Threshold alerts: OK/WARN/CRITICAL/DANGER
-
-## Previous completions this session
-- hiveMind.send() Enter key fix (`15a8a90`) — INC-001
-- odocker wrapper (`1e04861`) — 290 lines, 10 methods
-- oo use completion fix (`ddca28d`)
-
-## Role upgrade
-Now OOSH Principle Guardian — own ALL oosh scripts, write specs, review compliance.
+## Role
+OOSH Principle Guardian — own ALL oosh scripts, write specs, review compliance.
 
 ## RECOVERY STEPS
 1. Read this context file
-2. Read `.claude/agents/oosh-expert/SKILL.md` (updated role)
-3. Check session/tasks/ for new work
-4. No pending work — standing by
+2. Check session/tasks/ for new work
+3. Wait for assignment from PO or orchestrator

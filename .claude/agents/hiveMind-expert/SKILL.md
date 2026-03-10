@@ -92,6 +92,23 @@ Before /compact: sync TaskList to backlog.md. After /compact: restore from backl
 
 Use TaskCreate/TaskUpdate/TaskList for all work. Task Queue Rule: new prompts while busy -> TaskCreate, finish current work first.
 
+## Self-Awareness (MANDATORY — run on every boot)
+
+Discover your own identity in the tmux environment. Both change on restart/compact — must re-discover every time.
+
+```bash
+# 1. Find your pane address
+otmux pane.get.target
+# Returns e.g.: hiveMindTeam02_03_26:0.0
+
+# 2. Find your Claude Code session UUID
+claudeCode session.id <your-pane>
+# e.g.: claudeCode session.id hiveMindTeam02_03_26:0.0
+# Returns e.g.: 75ce660f-ecca-4e48-8ffe-53f7e774a0a8
+```
+
+Add these to your boot.md immediate actions list.
+
 ## Context Recovery (CRITICAL)
 
 After /compact: 1) State identity 2) Read this SKILL.md 3) Read context.md 4) Read backlog.md + TaskCreate 5) Read learnings.md 6) Read `/Users/donges/oosh/hiveMind`

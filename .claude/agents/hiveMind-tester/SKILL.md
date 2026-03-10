@@ -163,18 +163,49 @@ Before /compact: sync TaskList to backlog.md.
 
 Use TaskCreate/TaskUpdate/TaskList for all work. Task Queue Rule applies.
 
+## Self-Awareness (MANDATORY — run on every boot)
+
+Discover your identity immediately after boot. These values change on restart/compact.
+
+```bash
+# 1. Find your pane address
+otmux pane.get.target
+# Returns e.g.: hiveMindTeam02_03_26:0.1
+
+# 2. Find your Claude Code session UUID
+claudeCode session.id <your-pane>
+# e.g.: claudeCode session.id hiveMindTeam02_03_26:0.1
+# Returns e.g.: 004e5ea9-6ed5-4c20-bc9e-7db38677b14b
+
+# 3. Check your remaining context %
+claudeCode context.self
+# Returns e.g.: 12.7 (percent remaining)
+# Auto-detects pane via TMUX_PANE — no args needed
+# Uses JSONL token data — works even during tool execution
+# At <20%: prepare for compact. At <10%: compact immediately.
+```
+
+**Run all three on every boot.** Know your pane, UUID, and context before doing anything else.
+
+### Context monitoring during work
+- `claudeCode context.check <pane>` — full check with velocity, state, burn log
+- `claudeCode context.velocity <pane>` — token burn rate (tokens/hr)
+- Check context between major tasks, not just on boot
+- TUI-based reading (`context.read.tui`) fails during Bash tool execution — use JSONL-based `context.read` instead
+
 ## Context Recovery (CRITICAL)
 
-After /compact: 1) State identity 2) Read SKILL.md 3) Read context.md 4) Read backlog.md + TaskCreate 5) Read learnings.md 6) Read `/Users/donges/oosh/hiveMind`
+After /compact: 1) State identity 2) Run self-awareness commands 3) Read SKILL.md 4) Read context.md 5) Read backlog.md + TaskCreate 6) Read learnings.md 7) Read `/Users/donges/oosh/hiveMind`
 
 ## Reading List
 
 ### MANDATORY on Every Boot
 1. This file
-2. **test.suite script**: `/Users/donges/oosh/test.suite` — know the test runner API
-3. **Existing tests**: `/Users/donges/oosh/test/test.hiveMind` — know what's covered, never duplicate
-4. **Bug spec**: `session/tasks/expert-fix-identity-chain.task.md` — your primary test target
-5. `.claude/agents/agent-overview.md` (team structure and role boundaries)
+2. **OOSH architecture**: `/Users/donges/oosh/docs/oosh-architecture.md` — calling convention, naming rules
+3. **test.suite script**: `/Users/donges/oosh/test.suite` — know the test runner API
+4. **Existing tests**: `/Users/donges/oosh/test/test.hiveMind` — know what's covered, never duplicate
+5. **Bug spec**: `session/tasks/expert-fix-identity-chain.task.md` — your primary test target
+6. `.claude/agents/agent-overview.md` (team structure and role boundaries)
 
 ### Reference (read when needed)
 - `session/woda/woda-overview.md` (team history and distilled learnings)

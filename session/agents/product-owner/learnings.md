@@ -135,6 +135,9 @@ Tron: "the registry was a bad idea — rely on live facts like open processes an
 ### Proper Tests, Not Manual Verification (Tron directive 2026-03-03)
 Tron: "not just verifying but having tests for it." Running commands manually and confirming output is CMM2 (ad-hoc). Writing automated test.suite test cases that are committed, repeatable, and catch regressions = CMM3. **Every fix needs a test case in test/test.<script>, not just a manual check.**
 
+### F38: Started agents with `claudeCode new` instead of `claudeCode join` (2026-03-06)
+oosh-expert and baseTeam:0.3 had crashed (Abort trap: 6). Their sessions were still on disk and resumable. Instead of finding their UUIDs via `otmux tree.detailed` and using `claudeCode join <uuid>`, I used `claudeCode new` — destroying all their context, learnings, and session state. Tron: "you did not preserve their context. that was idiotic." **ALWAYS try `claudeCode join <uuid>` first. Only `claudeCode new` if join is impossible. Agent preservation is a core directive — F35 already taught this and I repeated the same mistake.**
+
 ## Patterns
 
 ### Idle Team → Ask Task Agent

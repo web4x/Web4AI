@@ -1,14 +1,18 @@
 # hiveMind-expert Backlog
 
-## Completed
-- [x] Add optional sleep/interval parameter to `hiveMind.sweep()` and `hiveMind.team.sweep()` — commit ddf61f5 (2026-02-12)
-- [x] Migrate registry/sessions from /tmp/ to ~/config/*.env with backward-compat migration — commit d9368cf (2026-02-12)
-- [x] Multi-team support (Task 40.1): team registry, team.switch, team.active, replaced all hardcoded defaults — commit e82fee1 (2026-02-12)
-- [x] Enhanced sweep.detect (Task 40.2): 18 states, severity classification, structured output, refactored team.sweep — commit dcf2b9a (2026-02-13)
-- [x] Unified tab completion (Task 40.3): shared teams.complete helper, 14 completions updated, added resolve/unblock session completion — commit d3ce9d0 (2026-02-13)
-- [x] Verified Task 40.4 (velocity measurement): already done by oosh-expert, all acceptance criteria pass (2026-02-16)
-- [x] CMM4 feedback loop tooling (Task 40.5): measure.health PDCA cycle + fixed stale defaults in scrumMaster — commit f4694ea (2026-02-16)
-- [x] Fix 5 minor issues in agent.context.status: printf format, column alignment, narrow pane wrapping, timing, fallback parser — commit 68157ec (2026-02-22)
+## In Progress
+(none)
 
-## Open
-_(none — awaiting tester verification of 68157ec)_
+## Completed (this session)
+- [x] claudeCode refactor: ALL 6 PHASES DONE (cf727c5, 96a0280, 3a0e65b, a1067a9, 1410a19, 4340180)
+- [x] BUG-E: dynamic SKILL.md lookup — f6340a0
+- [x] BUG-F: registry.list + role completion — 4f7f7b3
+- [x] DRY Phase 1: current.session — 34847bf
+- [x] DRY Phase 2: remove re-derivations — e4333a9
+- [x] DRY Phase 3: inline greps — cc83be8
+- [x] DRY Phase 4: pane.count — 46c150b
+- [x] DRY Phase 5a: list.panes session-scoped — c8cc083
+- [x] send.enter → send.message consolidation — 08e37cc
+- [x] DRY Phase 5b: list.panes all-sessions — d6f1f40
+- [x] DRY Phase 6: ensure.pane — 8484d24
+- [x] DRY Phase 7: claude.processes helper — fb024eb

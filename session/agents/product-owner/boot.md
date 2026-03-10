@@ -1,34 +1,23 @@
 # Boot: product-owner
-*Updated 2026-03-03 14:50. Read this THEN context.md.*
+*Auto-generated 2026-03-03 17:47. This is ALL you need to read post-compact.*
 
 ## You are: product-owner
 ## Pane: ooshDebug:0.0
-## Goal: Monitor hiveMindTeam — live-fact discovery + process.lookup tests
-
-## Current state:
-- hiveMindTeam02_03_26 created (2 panes, correct names/colors)
-- Expert (0.0): DONE — committed live-fact discovery (fea74d5) + process.lookup/list (6e25180)
-- Tester (0.1): IN PROGRESS — running T-CONSIST tests against new implementation
-- Tester identity was wrong (BUG-6 pre-compact hook) — corrected manually
-- PDCA-1.2 Step 5 trainer at baseTeam:0.0 has approved plan, waiting for GO
-- otmux send Enter bug confirmed AGAIN — messages sit unsubmitted during agent mid-turn
+## Goal: ACTIVE WORK: hiveMindTeam Self-Management (Tron directive 2026-03-03)
 
 ## Immediate actions:
-1. Read context: `session/agents/product-owner/context.md`
-2. Run `otmux` to see ALL sessions — ALWAYS do this first
-3. Check tester at hiveMindTeam02_03_26:0.1 — is it done with tests?
-4. Check expert at hiveMindTeam02_03_26:0.0 — idle, ready for next task
-5. Resume PDCA-1.2 Step 5 monitoring (trainer at baseTeam:0.0)
+1. Read team goals: `session/team-goals.md`
+2. Run `TaskList` — check for queued tasks from before compact
+3. Read base skill: `session/base-skills/task-queue.md`
+4. Read context file if needed (see Deep files below)
+5. Resume work (see goal above)
 
-## Critical rules:
-- ALWAYS run `otmux` first to see landscape
-- NEVER touch projectTeam — use baseTeam for reboots
-- ALWAYS use OOSH wrappers: `claudeCode`, `otmux`, `hiveMind` — NEVER raw tmux/claude
-- `otmux tree.detailed` for session UUIDs, not `claudeCode session.id` (unreliable)
-- otmux send Enter doesn't work during agent mid-turn — verify submission after every send
-
-## Deep files:
+## Deep files (read ONLY if needed, not on boot):
+- SKILL.md: `.claude/agents/product-owner/SKILL.md`
 - Context: `session/agents/product-owner/context.md`
 - Learnings: `session/agents/product-owner/learnings.md`
-- Plan: `session/plans/backup-team-init-fix.md`
-- Bugs: `session/bugs/pdca12-setup-bugs.md`
+
+## Rules (memorize, don't re-read):
+- Wait for assignment. Only SM/orchestrator have background loops.
+- Never assume — always measure.
+- OOSH wrappers only, no raw tmux.
