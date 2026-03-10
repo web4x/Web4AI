@@ -1,44 +1,49 @@
 # Boot: hiveMind-expert
-*Written by agent-trainer. If this says "Auto-generated" — something went wrong.*
+*Written by agent before compact 2026-03-09T14:45Z.*
 
 ## You are: hiveMind-expert
-## Pane: hiveMindTeam:0.0
-## Goal: Own the hiveMind script — implement, fix, maintain
-
-## Your Identity
-You are the **hiveMind script specialist**. You own `/Users/donges/oosh/hiveMind` — all implementation, bug fixes, and maintenance. The oosh-expert (principle guardian) handles architecture reviews and cross-script concerns. You handle the code.
+## Pane: hiveMindTeam02_03_26:0.0
+## Goal: Continue claudeCode refactor — Phase 4 next (Phases 1-3 DONE)
 
 ## Immediate actions:
-1. Read your context: `session/agents/hiveMind-expert/context.md`
-2. Read your learnings: `session/agents/hiveMind-expert/learnings.md`
-3. Read the OOSH conventions: `components/OOSH/dev.claude/CLAUDE.md`
-4. Read the hiveMind source to refresh: `/Users/donges/oosh/hiveMind` (start with lines 1488-1609 — agent.context.status)
-5. Read your first task: `session/tasks/hivemind-expert-minor-fixes.md`
+1. Run `otmux pane.get.target` — discover your pane address
+2. Run `claudeCode session.id <your-pane>` — discover your session UUID
+3. Read `.claude/agents/hiveMind-expert/SKILL.md`
+4. Read `session/agents/hiveMind-expert/context.md`
+5. Read `session/agents/hiveMind-expert/learnings.md`
+6. Read `session/knowledge-base/cmm-web4x.md` (CMM4/web4x foundation)
+7. Read `/Users/donges/oosh/hiveMind` (the script you own)
+8. Read `session/agents/hiveMind-expert/backlog.md` — check for pending work
 
-## Recent History (transfer from oosh-expert)
-The oosh-expert just built `hiveMind agent.context.status` (commits 088719a→7d336d2). It works — 8/11 agents parsed in testing. But there are minor fixes needed:
-- Narrow pane wraps token line (multiline regex needed)
-- Timing: some panes need 5s not 4s wait
-- printf format error in alerts (unescaped %)
-- Column alignment (spaces in "43   %")
-- Fallback parser inversion ("remaining" keyword)
+## Plan location:
+- Working plan: `~/.claude/plans/hashed-questing-adleman.md`
+- Git copy: `session/plans/20260309T130000Z.claudeCode-refactor.plan.md`
 
-These are YOUR first tasks. Full test reports:
-- `session/tasks/build-hivemind-agent-context-status.done.md` (expert's build report)
-- `session/tasks/tester-agent-context-status-final.done.md` (final test results)
-- `session/tasks/tester-agent-context-status-retest3.md` (retest with capture depth detail)
+## Plan summary (6 phases):
+0. Save memory: OOSH camelCase convention
+1. Rename ~30 underscore variables to camelCase
+2. Consolidate 10 duplicate completion functions into 3 private helpers
+3. Standardize parameter names (no pane_target, use pane)
+4. Add join.byID, join.byName, join.byPane with typed completions
+5. Split context.velocity into velocity.byPane and velocity.byJsonl
+6. Add otmux pane.capture.visible + replace all raw tmux in claudeCode
 
-## Foundational Reading (after boot recovery)
-- `session/knowledge-base/cmm-web4x.md`
-- `session/woda/woda-overview.md`
-- `session/knowledge-base/usage.md`
-- `session/knowledge-base/index.md`
-- Plan: `session/plans/20260223T104218Z.pdca-team-coordination.plan.md`
+## Tron corrections embedded:
+- context.velocity must split like join (byPane/byJsonl), not hybrid parameter
+- Create otmux pane.capture.visible — no raw tmux without otmux equivalent
+- Tester designs test plan with terminal testing via otmux send keys
 
-## Rules (memorize):
-- **NO git rebase. EVER.** Pull with merge only. `pull.rebase=false` is set.
-- Commit early, commit often. Nothing exists until committed with a hash.
-- You own hiveMind implementation. Principle guardian (oosh-expert) reviews conventions.
-- Report via task files in `session/tasks/`, not long messages.
-- Your tester is hiveMind-tester at hiveMindTeam:0.1. Expert fixes, tester tests.
-- OOSH is on PATH — no export needed. Run commands directly.
+## Completed this session:
+- **cf727c5** Phase 1: camelCase renames (33 vars)
+- **96a0280** Phase 2: completion consolidation (3 private helpers)
+- **3a0e65b** Phase 3: param standardization (no pane_target)
+
+## Rules:
+- ONE LINE commit messages only
+- NO git rebase or git stash. Pull with merge only.
+- OOSH is on PATH. Run commands directly.
+- Use hiveMind by role name, NEVER pane addresses
+- After every commit: notify tester via hiveMind send.enter
+- test/test.hiveMind and test/test.claudeCode are tester's files — NEVER edit
+- Always git pull before committing
+- camelCase variables, NEVER underscores

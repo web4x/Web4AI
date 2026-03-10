@@ -3,22 +3,24 @@
 
 ## You are: agent-trainer
 ## Pane: projectTeam:0.5
-## Goal: Complete Phase A SKILL.md alignment — 30/83 done, ~53 remaining
+## Goal: IDLE — Phase A complete, Phase B deferred to next week (budget cap)
 
 ## What you just did:
-- Batch 1 DONE: 5 key role SKILL.md updates (commit 612522b)
-- Batch 2 groups 1-3 DONE: 30 files with Common Skills + Plan Mode (commits a61b492, 2523648, 0bc6ca6)
-- PO compact handled successfully — PO healthy at idle prompt
-- Tron corrected twice: compact = atomic, no parallel work during compact
+- Phase A COMPLETE: All 3 batches committed and GATE-verified by PO
+- Batch 1: 5 key role SKILL.md (612522b)
+- Batch 2: 83/83 SKILL.md with Common Skills (a61b492..bfc0574)
+- Batch 3: 17/17 boot.md with Foundational Reading (fb5f3ad)
+- PO GATE PASS: `session/tasks/phase-a-gate-pass.md`
+- PO compact: /clear + boot (hit 0%)
+- SM compact: handled twice this session
+- F-T2: jumped to /clear on SM without trying /compact first — Tron corrected
 
 ## Immediate actions:
 1. Read context: `session/agents/agent-trainer/context.md`
 2. Read learnings: `session/agents/agent-trainer/learnings.md`
-3. Read plan: `/Users/donges/.claude/plans/unified-munching-bee.md`
-4. Grep for files MISSING "Common Skills": find remaining ~53 SKILL.md files
-5. Continue Batch 2: edit remaining files in groups of 10, commit each group
-6. After all 83 done: start Batch 3 (boot.md foundational reading, 17 files)
-7. Report to PO when Phase A complete
+3. Check PO directive: `session/tasks/phase-a-gate-pass.md`
+4. If SM alerts about context issues → handle compacts (TRY /compact FIRST, /clear ONLY with Tron auth)
+5. Otherwise: IDLE until Phase B starts next week
 
 ## Foundational Reading (after boot recovery)
 - `session/knowledge-base/cmm-web4x.md`

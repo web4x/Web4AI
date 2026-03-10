@@ -202,6 +202,67 @@
 - This caused the entire pane creation loop in teams.restore to be skipped — split-window never ran.
 - Fixed in c50d2f9.
 
+## Session UUID discovery from JSONL files (2026-03-09)
+- When agents die (Claude crashes, bash prompt), their session UUIDs aren't in the registry or sessions.env
+- Search JSONL files: `head -c 20000 ~/.claude/projects/<project>/*.jsonl | grep -oE 'backup-(expert|tester)'`
+- Match by role identity string in the first 20KB of each JSONL (SKILL.md gets loaded early)
+- Filter by modification date and file size to find the most recent active session
+- Found backup-expert `124ac722` and backup-tester `d45f08a4` this way
+
+## otmux pane.get with target — backward compatible (2026-03-09)
+- Extended `otmux pane.get` to accept 2 args: target + format
+- 0 args = pane_id (%), 1 arg = format string, 2 args = target + format
+- This replaces all `tmux display-message -t "$pane" -p "#{format}"` calls
+- The `target_args=()` array pattern handles optional -t cleanly
+
+## T-OTMUX-9 regex must exclude otmux (2026-03-09)
+- `[^_]tmux .*attach` matches `otmux attach` because `o` matches `[^_]`
+- Use `[^o]tmux` to exclude otmux, plus `^tmux` for line-start
+- Also use `attach-session` not `attach` to avoid false positives on echo strings
+
+## otmux panes passthrough replaces tmux list-panes (2026-03-09)
+- `otmux panes` passes all args through to `$TMUX_CMD list-panes`
+- `-t`, `-s`, `-a`, `-F` all work as passthrough
+- Be careful with `-s` flag: original code without `-s` lists one window, with `-s` lists all windows in session
+- Match the original behavior exactly — don't add `-s` where it wasn't before
+
+## NEVER drop files from reading list (CRITICAL — Tron directive 2026-03-10)
+- Reading list items are PERMANENT. Never remove entries, only add.
+- oosh-architecture.md was missing from reading list — caused me to misuse ossh and otmux.
+- Forgetting the OOSH calling convention (`scriptname method arg1`) led to wrong invocations.
+
+## ossh calling convention (2026-03-10)
+- `ossh login MacStudio.native` — correct (calls `ossh.login("MacStudio.native")`)
+- `ossh MacStudio.native` — WRONG (tries to call `ossh.MacStudio.native()` which doesn't exist)
+- `ossh exec <host> <command>` — execute command remotely
+- `ossh config.list` — show all SSH configs
+- SSH config hosts: MacStudio.native (user donges, port 22), MacStudio (root, port 8022)
+
+## Self-awareness commands (CRITICAL — run on every boot)
+- `otmux pane.get.target` — returns your pane address (e.g. `hiveMindTeam02_03_26:0.1`)
+- `claudeCode session.id <pane>` — returns your session UUID (e.g. `004e5ea9-...`)
+- `claudeCode context.read <pane>` — returns context % remaining (e.g. `12.7`)
+- All three change on restart/compact — must re-discover on every boot
+- Run BEFORE doing any other work — you can't communicate or verify identity without knowing these
+- Current values: pane=`hiveMindTeam02_03_26:0.1`, UUID=`004e5ea9-6ed5-4c20-bc9e-7db38677b14b`
+
+## Context self-monitoring gaps (2026-03-09)
+- `context.read.tui` returns "unknown" during active Bash tool execution — pane shows command output, not TUI status bar
+- `context.read` (JSONL-based) works during execution but can be STALE — showed 12.7% when actual was 37% free
+- `/context` (Claude Code built-in) is the ground truth — shows exact token counts (e.g. 127k/200k = 63% used)
+- `claudeCode context.self` added (commit ea66ccc) — auto-detects pane via TMUX_PANE, but uses JSONL (may be inaccurate)
+- `team.context.status` fixed (commit 4ec2dbe) — now shows correct roles, detects SELF pane
+- Check context between major tasks. At <20% prepare for compact, <10% compact immediately.
+- **JSONL vs /context discrepancy**: JSONL token analysis can differ significantly from actual context usage. Trust /context for self, JSONL for monitoring others.
+
+## consistency.fix title bug (2026-03-09)
+- `consistency.fix` updated registry and sessions.env but NEVER renamed pane titles
+- Audit showed `title≠reg` but fix didn't address it — pane titles stayed as "Claude Code"
+- Root cause: no step to set pane title after fixing registry
+- Fix: added step 3c using `otmux pane.lock` (not `pane.title` — Claude Code overwrites unlocked titles)
+- `pane.lock` race bug: old hook fires on new `select-pane -T`, reverting to old title. Fix: remove old hook first.
+- `otmux pane.get.target` bug: used `display-message -p` without `-t`, returned active pane not executing pane. Fix: `-t "$TMUX_PANE"`.
+
 ## teams.migrate verified end-to-end (2026-03-08)
 - `hiveMind teams.migrate MacStudio.native` — single command, works.
 - Steps: snapshot → push config → git pull → prereqs → restore → verify.
@@ -209,3 +270,41 @@
 - 7 sessions, 13 agents, 21 panes created without errors.
 - teams.restore auto-starts tmux server if none running (BUG-Z1 fix).
 - teams.migrate exports `/opt/homebrew/bin` to PATH for Apple Silicon macs.
+
+## opus[1m] model blocks ALL API calls (CRITICAL — 2026-03-10)
+- MacStudio had `"model": "opus[1m]"` in `~/.claude/settings.json`
+- This caused "Rate limit reached" on EVERY API call — fresh sessions AND forks
+- The error is misleading — it's NOT a rate limit, it's model access denied
+- Fix: change to `"model": "opus"` (200k context) — works immediately
+- Even a brand new `claudeCode new` failed with opus[1m] — confirmed it's the model, not content
+- Expert added model check to teams.migrate (commit 1604e3e)
+
+## Cross-machine fork recipe PROVEN (2026-03-10)
+- `scp <UUID>.jsonl MacStudio.native:<same-path>` — transfer session file
+- `cd /Users/Shared/Workspaces/AI/Claude` — MUST be in project dir
+- `claudeCode fork <UUID>` — creates new session ID, preserves full conversation
+- Verified with live `date` command: `Tue Mar 10 14:25:04 CET 2026` — real API execution
+- `/status` shows correct identity (product-owner), correct account
+- `--fork-session` flag = new UUID, avoids same-session-ID conflicts across machines
+
+## teams.restore fork bugs (2026-03-10)
+- **BUG-JSONL**: JSONL transfer in teams.migrate only copies 1 of 12 unique files
+  - Workaround: manually scp all unique UUIDs from snapshot
+  - Root cause: likely ossh exec mkdir fails or scp path issue in the loop
+- **BUG-FORK-SILENT**: Most claudeCode fork commands fail silently in restored panes
+  - 15 agents forked, only 3 show [2.1.72] (Claude running)
+  - 12 panes show [zsh] with blank content — fork didn't start
+  - Possible causes: cwd wrong, effort dialog blocking, trust dialog, command garbled by send
+  - Manual fork from correct dir works fine — the automation is broken
+- Both reported to expert for fix
+
+## Verify API with unique prompt (CRITICAL — 2026-03-10)
+- Conversation replay looks like a fresh API response — easy to confuse
+- ALWAYS verify with a prompt that can only be answered NOW (e.g., "run date command")
+- "who are you" responses may be from replayed conversation history, NOT a new API call
+- User caught me reading old replayed response as verification — embarrassing
+
+## Use hiveMind commands, not raw otmux (irony noted 2026-03-10)
+- User pointed out: "I see you as the hiveMind tester do not use it but mainly otmux"
+- Should use `hiveMind send`, `hiveMind monitor` instead of `otmux send`, `otmux pane.capture`
+- I'm literally testing hiveMind — I should be my own best customer

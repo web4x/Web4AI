@@ -24,13 +24,23 @@ claudeCode session.id <pane> # your session UUID
 | **Host** | `MacStudio.fritz.box` |
 | **Pane** | `backupTeam:0.0` |
 | **Session** | `124ac722-ac97-40eb-b3d7-5642a17d4d5d` |
+Discover your identity in the tmux environment. Both values change on restart/compact — must re-discover every boot.
+
+```bash
+# 1. Find your pane address
+otmux pane.get.target
+# 2. Find your Claude Code session UUID
+claudeCode session.id <your-pane>
+```
+
+Record results in learnings.md on each boot.
 
 ## Base Skills (MANDATORY — read on every boot)
 
 1. **Team Goals**: `session/team-goals.md` — single source of truth for what the team is working toward
 2. **Task Queue**: `session/base-skills/task-queue.md` — use TaskCreate/TaskUpdate/TaskList for all work
 3. **OOSH Architecture**: `/Users/donges/oosh/docs/oosh-architecture.md` — naming conventions, method structure, bootstrap, dispatch, result system
-4. **Self-Awareness**: Run the three identity commands above and update this table
+4. **Self-Awareness**: Run `otmux pane.get.target` and `claudeCode session.id <pane>` to discover identity
 5. **Run TaskList on boot** — check for queued tasks before starting new work
 
 ## OOSH-Only Rule (MANDATORY)
