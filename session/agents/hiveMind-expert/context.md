@@ -1,82 +1,50 @@
 # hiveMind-expert Agent Context
 **Session**: hiveMind-expert
 **Role**: hiveMind-expert
-**Updated**: 2026-02-22T17:55Z
-**State**: idle — minor fixes done, awaiting tester verification
+**Pane**: hiveMindTeam02_03_26:0.0
+**Updated**: 2026-03-10T15:00Z
+**State**: idle — all tasks complete, tester not running, awaiting Tron
 
 ## CURRENT GOAL
-Waiting for hiveMind-tester to verify commit 68157ec. Ready for next assignment.
+All implementation tasks done. Tester pane (0.2) has no active Claude session — bare shell prompt. Awaiting Tron's next directive.
 
-## COMPLETED THIS SESSION (9 tasks, all pushed)
+## COMPLETED THIS SESSION (7 commits)
 
-### Task 1: Fix team.status blocker detection (20260212T1335Z) — DONE
-- Replaced `private.hiveMind.pane.activity` (4 states) with `private.hiveMind.sweep.detect` (12+ states)
-- Added `blocked_count` to summary view
-- Commit: `ddf61f5`
+### claudeCode 6-phase refactor — COMPLETE
+- Phase 4 (a1067a9): join sub-methods (byID, byName, byPane) with typed completions
+- Phase 5 (1410a19): velocity split into dispatcher + byPane + byJsonl + private calculate
+- Phase 6 (4340180): replaced 6 raw tmux calls with otmux wrappers, added pane.capture.visible
 
-### Task 2: Add sleep parameter to sweep (20260212T1658Z) — DONE
-- Added `<?interval>` to `hiveMind.sweep()` and `hiveMind.team.sweep()`
-- SM calls `hiveMind team.sweep projectTeam 60` — no permission prompt
-- Commit: `ddf61f5`
+### context.self method (ea66ccc)
+- `claudeCode.context.self()` — auto-detects own pane via `otmux pane.get.target` + `context.read`
 
-### Task 3: Registry migration /tmp/ → ~/config/ — DONE
-- `HIVEMIND_REGISTRY` → `~/config/hivemind.roles.env`, `HIVEMIND_SESSIONS` → `~/config/hivemind.sessions.env`
-- Migration functions auto-copy from `/tmp/` on first access
-- Commit: `d9368cf`
+### team.context.status bug fix (4ec2dbe)
+- Changed data source from `otmux pane.list` (space-separated) to direct `tmux list-panes` with tab format
+- Root cause: IFS='\t' reading space-separated output → entire line went into $target
 
-### Task 4: Multi-team support (Task 40.1) — DONE
-- Team registry: `~/config/hivemind.teams.env` (session|description)
-- Active team: `~/config/hivemind.active.team`
-- New methods: `team.register`, `team.remove`, `team.switch`, `team.active`
-- Replaced ALL 12 hardcoded `cursorOrchestrator` defaults with `private.hiveMind.active.team` helper
-- Commit: `e82fee1`
+### claudeCode fork + agent.restart.remote (2efbdec)
+- `claudeCode.fork()` wrapping `--resume "$sessionId" --fork-session`
+- `hiveMind.agent.restart.remote()` — SCP JSONL + fork on remote machine
 
-### Task 5: Enhanced sweep.detect (Task 40.2) — DONE
-- 18 detection states (was 12): mcp-error, api-error, subscription-limit, tool-confirm, crash, down-enter
-- Severity classification: critical/blocker/warning/info as 3rd output field
-- Refactored team.sweep to use sweep.detect (single source of truth)
-- Updated unblock.pane for all new states
-- Commit: `dcf2b9a`
+### teams.migrate improvements (1604e3e)
+- JSONL transfer loop (step 3), model compat check (step 5), --fork mode for teams.restore
 
-### Task 6: Unified tab completion (Task 40.3) — DONE
-- Added `private.hiveMind.teams.complete()` shared helper
-- Replaced 14 inline completion functions with shared helper
-- Added missing session completion for: `resolve`, `unblock`
-- All commands now complete registered teams + running tmux sessions
-- Commit: `d3ce9d0`
-
-### Task 7: Verified Task 40.4 (velocity measurement) — DONE
-- Already implemented by oosh-expert (commits `691174f`, `55a3673`, `4c626a5`)
-- Verified all acceptance criteria pass: velocity snapshot, burn rate, storage, syntax
-- Marked done in task file
-
-### Task 8: CMM4 feedback loop tooling (Task 40.5) — DONE
-- New method: `scrumMaster.measure.health` — full PDCA health check cycle
-  - Refreshes subscription API → snapshots velocity → evaluates thresholds → alerts orchestrator via hiveMind
-- Fixed 8 stale `cursorOrchestrator` defaults → read `~/config/hivemind.active.team`
-- Fixed 3 stale `/tmp/hivemind.roles` registry paths → `~/config/hivemind.roles.env`
-- Updated usage text with CMM4 feedback loop commands
-- Commit: `f4694ea`
-
-### Task 9: Fix 5 minor issues in agent.context.status — DONE
-- printf format: `%b` instead of raw `$alerts` in printf
-- Column alignment: `${remaining}%` embedded in value
-- Narrow pane wrapping: `tr '\n' ' '` joins lines before regex
-- Timing: `sleep 5` instead of `sleep 4` for slow panes
-- Fallback parser: detect "remaining" keyword, skip inversion
-- Commit: `68157ec`
+## PREVIOUS SESSION (9 tasks)
+Tasks 1-9 from Feb 12-22: sweep.detect, registry migration, multi-team, completions, CMM4 tooling, context.status fixes. See backlog.md for full list.
 
 ## RECOVERY AFTER COMPACT
 1. State identity: "I am hiveMind-expert"
-2. Read `.claude/agents/hiveMind-expert/SKILL.md`
-3. Read this file (`session/agents/hiveMind-expert/context.md`)
-4. Read `session/agents/hiveMind-expert/backlog.md` → TaskCreate any open items
-5. Read `session/agents/hiveMind-expert/learnings.md`
-6. Read `/Users/donges/oosh/hiveMind`
+2. Run: `otmux pane.get.target` (confirm pane)
+3. Read `.claude/agents/hiveMind-expert/SKILL.md`
+4. Read this file (`session/agents/hiveMind-expert/context.md`)
+5. Read `session/agents/hiveMind-expert/backlog.md` → TaskCreate any open items
+6. Read `session/agents/hiveMind-expert/learnings.md`
+7. Read `/Users/donges/oosh/hiveMind`
 
 ## KEY CONTEXT
 - hiveMind lives in `/Users/donges/oosh/hiveMind` — separate git repo (`dev.claude` branch)
 - scrumMaster lives in `/Users/donges/oosh/scrumMaster` — same repo
-- Other agents have uncommitted changes in that repo — be careful with stash/rebase
-- Task 40 subtasks: 40.1-40.5 DONE (tooling), 40.6 PO scope
-- 40.5 remaining: SM must integrate `measure.health` into sweep loop, Orchestrator must respond to alerts, Trainer must update SKILL.md files
+- claudeCode lives in `/Users/donges/oosh/claudeCode` — same repo
+- otmux lives in `/Users/donges/oosh/otmux` — same repo
+- Tester (hiveMind-tester) is NOT running — pane 0.2 shows bare shell
+- Team session: hiveMindTeam02_03_26 (3 panes: 0.0=expert, 0.1=MacStudio, 0.2=tester)

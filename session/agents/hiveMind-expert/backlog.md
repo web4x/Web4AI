@@ -9,6 +9,11 @@
 - [x] Verified Task 40.4 (velocity measurement): already done by oosh-expert, all acceptance criteria pass (2026-02-16)
 - [x] CMM4 feedback loop tooling (Task 40.5): measure.health PDCA cycle + fixed stale defaults in scrumMaster — commit f4694ea (2026-02-16)
 - [x] Fix 5 minor issues in agent.context.status: printf format, column alignment, narrow pane wrapping, timing, fallback parser — commit 68157ec (2026-02-22)
+- [x] claudeCode 6-phase refactor (Phases 4-6): join sub-methods, velocity split, otmux wrappers — commits a1067a9, 1410a19, 4340180 (2026-03-09)
+- [x] claudeCode context.self method — commit ea66ccc (2026-03-09)
+- [x] hiveMind team.context.status bug fix (wrong roles/NO-PANE) — commit 4ec2dbe (2026-03-09)
+- [x] claudeCode fork + agent.restart.remote — commit 2efbdec (2026-03-10)
+- [x] teams.migrate improvements (JSONL transfer, --fork mode, model compat check) — commit 1604e3e (2026-03-10)
 
 ## Open
-_(none — awaiting tester verification of 68157ec)_
+_(none — awaiting Tron's next directive)_
