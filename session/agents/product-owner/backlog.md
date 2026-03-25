@@ -2,11 +2,11 @@
 
 ## Active — This Block
 
+- [ ] **Sender prefix DRY consistency** — hiveMind.send now routes through otmux.send; tester verifying T-PFXCON tests
+- [ ] **test.suite single test case runner** — tester queued: `test.suite run <script> <level> <?testCase>` + `test.suite list <script>` with completion
 - [ ] **#50 Dotted method dispatch doubling** — framework bug in this.start, oosh-expert to fix
-- [ ] **#37 Level 1: Docker base** — nearly ready, sub-tasks #42-#49 done, #50 blocking
 - [ ] **oosh-architecture.md naming update** — dots + camelCase + object.verb + completions + docs
 - [ ] **INC-004 root cause** — agents self-prompt without submitting, detection in SM sweeps
-- [ ] **Trainer at 7%** — needs compact before new work
 
 ## Recurring — Every Wakeup
 
@@ -33,7 +33,23 @@
 - [ ] #43 Build reliable CMM3 context measurement tool
 - [ ] #35 Revert or review f32b0ee bulk trainer commit
 
-## Done (this session)
+## Done (this session — 2026-03-26)
+
+- [x] **hiveMind team.pull + agent.restart** — pull team config from remote, restart single agent locally (f8ac6f8, d94e9cc, 3503ddf)
+- [x] **JSONL download in team.pull** — now downloads all JONSLs for fork (ceec723, 2774828)
+- [x] **stdin consumption fix** — all 6 while-read snapshot loops use fd 3 (2dcbfa9)
+- [x] **teams.save DRY UUID** — uses session.resolve.uuid, not inline discovery (fa722ac)
+- [x] **Sender prefix** — `[@role pane]` on otmux.send, isClaudeCode guard, /command skip (a0c22b1, e4a165c)
+- [x] **Prefix consistency** — hiveMind.send routes text through otmux.send (d8b1311)
+- [x] **Fork UUID auto-registration** — session.resolve.uuid after fork (502b553)
+- [x] **agent.rename** — atomic /rename + pane.lock + registry (ea17c19)
+- [x] **ossh.scp** — new method for ControlMaster scp (ceec723)
+- [x] **Completion fixes** — team.pull uses ossh helper, agent.restart uses CONFIG_PATH (1a2aac4)
+- [x] **PO SKILL.md updated** — reading list now includes WODA story + otmux/hiveMind/claudeCode source
+- [x] **9/9 UUID match** — teams.save vs status fully consistent after DRY fix
+- [x] 16 T-PULL/T-ARESTART/T-PULLRESTART tests, 9 T-PREFIX tests, 7 T-PFXCON tests, 6 fork UUID tests — all passing
+
+## Done (previous sessions)
 
 - [x] #42 odocker wrapper (1e04861)
 - [x] #46 hiveMind Enter fix (15a8a90)

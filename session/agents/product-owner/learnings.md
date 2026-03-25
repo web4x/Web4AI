@@ -138,6 +138,110 @@ Tron: "not just verifying but having tests for it." Running commands manually an
 ### F38: Started agents with `claudeCode new` instead of `claudeCode join` (2026-03-06)
 oosh-expert and baseTeam:0.3 had crashed (Abort trap: 6). Their sessions were still on disk and resumable. Instead of finding their UUIDs via `otmux tree.detailed` and using `claudeCode join <uuid>`, I used `claudeCode new` — destroying all their context, learnings, and session state. Tron: "you did not preserve their context. that was idiotic." **ALWAYS try `claudeCode join <uuid>` first. Only `claudeCode new` if join is impossible. Agent preservation is a core directive — F35 already taught this and I repeated the same mistake.**
 
+### F39: Used raw `tmux display-message` instead of OOSH wrapper (2026-03-11)
+Tried `tmux display-message -p "#{session_name}:#{window_index}.#{pane_index}"` to find my own pane. Tron rejected: "always use oosh scripts over plain commands." Should have used `otmux` to find myself. **The OOSH-only rule applies to EVERYTHING — even self-identification. Use `otmux` not raw `tmux`.**
+
+### F40: Didn't know otmux method names (2026-03-11)
+Tried `otmux pane.name` (doesn't exist), `otmux splitH` (doesn't exist). Had to grep the script each time. Correct methods: `otmux pane.title`, `otmux split.v` (top-bottom), `otmux split.h` (side-by-side), `otmux split` (default horizontal). **Learn the tool API. `grep -n "otmux\." /Users/donges/oosh/otmux` for the full method list.**
+
+### Identity: role@model Convention (learned from backup-tester, 2026-03-11)
+`product-owner@opus` means role=product-owner, model=opus (claude-opus-4-6). The `@model` suffix is a human convention so Tron can see at a glance which Claude model powers each agent. Not set by hiveMind — set manually via `/rename`. Other suffixes: `@sonnet`, `@haiku`.
+
+### Forking and Machine Awareness (2026-03-11)
+Tron can fork a session to a different machine and different tmux session. After fork: use `otmux` to discover your new location — don't assume you're where you were before compact. I was moved from ooshDebug:0.0 on McDonges-4 to TRONinterface:0.0 on MacStudio. **Cross-machine observations from `otmux tree.detailed`:**
+- Same Claude session UUID can appear on both machines (cloud-synced sessions)
+- Different machines can have different tmux session layouts (TRONinterface only on MacStudio, ooshDebug only on McDonges)
+- Same role can have different session UUIDs on different machines (agent restarted independently)
+- My UUID [c2775135] exists on both: ooshDebug:0.0 (McDonges) and TRONinterface:0.0 (MacStudio) — the fork
+
+### PATH Fix: Use OOSH `path` Script (learned from Tron, 2026-03-11)
+tmux wasn't in PATH on MacStudio — `/opt/homebrew/bin` was missing. Tron fixed it with OOSH tools:
+1. `path list` — see current PATH entries
+2. `path append /opt/homebrew/bin` — add the missing entry
+3. `c` (or `reconfigure` or `r`) — apply change to current shell
+**Never `export PATH=...` manually. Use `path list/append/add` — the OOSH way.**
+
+### F41: otmux split.h didn't create second pane (2026-03-11)
+`otmux split.h otmuxTeam:0.0` ran without error but didn't create a second pane. Had to fall back to raw `tmux split-window -h -t otmuxTeam:0.0`. **otmux split methods may have target parameter issues for remote sessions. Verify with `otmux` after every split.**
+
+### Forking Agents to New Teams (2026-03-11, updated after completion)
+To create a new team from existing agents: (1) `otmux new <teamName> -d`, (2) split panes, (3) `otmux pane.title` + `pane.lock`, (4) `claudeCode fork <uuid>` in each pane. Fork preserves conversation history. Then `/rename` to set new role identity and send correct SKILL.md reference.
+**Critical UUID lesson**: `otmux tree.detailed` shows SHORT UUIDs (8 chars) and `claudeCode session.id <pane>` also returns a UUID — but these can be STALE or WRONG if the agent compacted/restarted. The session picker opens when the UUID is unknown. **To get the REAL current UUID: ask the agent with `/status` (shows Session ID in the status screen) — this is the only ground truth.** Successfully forked backup-expert [a552f5ac-...] and backup-tester [a79b35f1-...] into otmuxTeam after discovering the originally recorded UUIDs [124ac722, d45f08a4] were stale.
+
+### F42: Always Switch Monitor When Switching Teams (2026-03-11)
+When working on a different team's panes, always switch the TRON-monitor (TRONinterface:0.3) to show that team. Tron watches through the monitor — if it shows the wrong team, Tron can't see what's happening. **Before interacting with any team: `otmux send TRONinterface:0.3 "C-a" && otmux send TRONinterface:0.3 "c"` then attach to the target team.**
+
+### F48: Assumed I was on UpDown.ai Docker container (2026-03-26)
+Tree showed `UpDown_ai_` prefix sessions — assumed I was running in Docker. Tron corrected: ALL sessions are local on MacStudio. The `UpDown_ai_` prefix is just the team name from when agents were pulled. **Don't confuse session naming with machine location. Run `otmux tree.detailed` and READ it — hostnames in pane titles tell you the machine.**
+
+### F49: Expert kept reading internal Claude session files instead of using OOSH (2026-03-26)
+Expert repeatedly used `cat /tmp/claude-0/.../tasks/*.output` to read test results from background tasks. Denied 3 times, told to use `otmux pane.capture` instead. **Agents must use OOSH wrappers for EVERYTHING — including reading test output. `otmux pane.capture <testShell> 20` is the OOSH way. Reading Claude's internal files is forbidden.**
+
+### F50: Test for stdin bug reproduced the bug and hung test harness (2026-03-26)
+Tester wrote T-PULL-8a test that executed a `while read < file` loop with `cat > /dev/null` inside — proving the stdin consumption bug by EXHIBITING it. The test hung the entire test.suite. **Tests for infrastructure bugs must use code-pattern detection (grep), not execution. If the bug is "command eats stdin in a loop," running that loop in a test eats the TEST's stdin.**
+
+### F47: claudeCode context.self is unreliable (2026-03-25)
+`claudeCode context.self` reported 40.7% but `/context` showed 81% used with 0.3% free. The tool reads the TUI status bar which may be stale or parsed wrong. **Use `/context` for ground truth on own context. `claudeCode context.self` and `claudeCode context.read` can be wildly inaccurate.**
+
+### F46: Sent Hysteric Compact Warnings at 35-39% (2026-03-11)
+Agents at 35-39% context — sent "URGENT save and compact NOW" to 4 agents. Tron: "compact is required at 10% urgent..before its hysteric!!!" 35% is completely fine. Compact is URGENT at ~10%. **Don't panic. Context thresholds: 35%=fine, 20%=start thinking about it, 10%=urgent compact needed. Sending false alarms wastes agent turns and burns their context for nothing.**
+
+### F45: Gave WRONG Naming Convention — Told Expert Opposite of OOSH Standard (2026-03-11)
+Tron said "parameters are with _ not camelCase — they forgot everything." I interpreted this backwards and told the expert to change camelCase TO underscore_case. OOSH standard IS camelCase (jsonlFile, sessionId, claudePid). Tron was pointing out that agents used underscore_case INSTEAD of camelCase. I corrected the expert with the WRONG rule. **NEVER give architectural guidance you haven't verified. When unsure: READ THE CODE FIRST, check existing patterns, THEN advise. Getting naming conventions backwards actively destroys the codebase.**
+
+### F44: Watched Team Execute Without Reviewing Architecture (2026-03-11)
+hiveMind-expert committed code with raw `find`, `stat`, `--flag` arguments in OOSH methods. I monitored the task, approved commands, celebrated "delivery" — but never reviewed the CODE for OOSH compliance. Tron caught it: "they massively violate oosh architecture again introducing flags." **PO's job is ARCHITECTURE review, not just task completion. When approving agent work: check the DIFF, not just the result. Every commit needs OOSH pattern compliance check before celebrating.**
+
+### F43: Never Use Raw `claude` Command (2026-03-11)
+When `claudeCode fork` kept opening the session picker, I tried `claude --resume <uuid> --fork-session` directly. Tron: "NEVER use claude raw!!!!!" The OOSH wrapper `claudeCode` exists for a reason — it handles FORCE_COLOR, CLAUDECODE env var, and other fixes. **Even when the wrapper seems broken, debug the wrapper — don't bypass it.**
+
+### projectTeam Phantom Panes — ONE Real Pane (2026-03-11, Tron correction)
+Raw `tmux list-panes -t projectTeam` returned only `1.0 woda-writer [zsh]`. But `tmux list-panes -t projectTeam:0` claimed 6 panes exist. Tron attached and confirmed: ONE pane. I over-trusted the second tmux query and said "the panes DO exist." Tron corrected: "if there is actually only one pane... then THERE IS only one... everything else is wrong. just a bug!" **Trust what you see (attach + zoom out), not what tmux metadata claims. When raw tmux contradicts visual reality, the metadata is corrupt.**
+
+### Screen Alternate Buffer Hides pane.capture (2026-03-11)
+GNU screen uses alternate screen buffer mode. `otmux pane.capture` returns EMPTY for panes running screen — it can't read the alternate buffer. Screen windows are working but invisible to capture. **If pane.capture returns nothing and the pane runs screen, the pane is NOT dead — it's a capture limitation.**
+
+### Remote Shell via PO-shell (2026-03-11)
+PO-shell (TRONinterface:0.1) can SSH to McDonges via `ossh login McDonges`. McDonges default shell is zsh — must run `bash` to enter OOSH. This gives me a remote OOSH shell on the other machine. **Layout: 0.0=me, 0.1=PO-shell(remote McDonges), 0.2=TRON-shell(Tron's, NEVER touch), 0.3=TRON-monitor(screen, shared).**
+
+### BUG-6 Recurrence: Pre-compact Hook Sends Wrong Boot File (2026-03-11)
+agent-trainer at baseTeam:0.0 compacted. Hook sent `session/agents/oosh-expert/boot.md` instead of `session/agents/agent-trainer/boot.md`. Same bug as before. The hook doesn't correctly resolve agent role from pane. **After any agent compact, immediately capture the pane and verify it got the RIGHT boot file. If wrong, send correction BEFORE it reads the wrong one.**
+
+### Agent Identity Confusion from Stale Session Names (2026-03-11)
+agent-trainer's Claude session was named "oosh-expert@opus.26.02.26" (stale). Trainer read oosh-expert SKILL.md, assumed it was the oosh-expert, and started doing expert work (implementing features, locking all pane titles). **Session name is NOT identity when it's stale. Pane title is source of truth. On identity confusion: write a task file explaining who they really are, reference their correct boot.md and SKILL.md.**
+
+### TRON-monitor Pattern: Screen Inside tmux (2026-03-11)
+GNU `screen` inside a tmux pane, with each screen window attached read-only (`-r`) to a different team session. Allows Tron to flip between team views with Ctrl-a 0/1/2. Setup: `TMUX= tmux attach -t <session> -r` in each screen window (unset TMUX to allow nesting). I can remotely switch the view by sending screen shortcuts to the monitor pane.
+
+### Pane Split Shifts Indices (2026-03-11)
+Splitting a pane shifts all subsequent pane indices up by 1. Before split: 0.0, 0.1, 0.2. After splitting 0.0: new pane becomes 0.1, old 0.1→0.2, old 0.2→0.3. **Always check who is affected and inform them. Pane titles stay with the pane (they don't shift), but addresses change.**
+
+### ossh login Silent Failure + Config Direction Bug (2026-03-11)
+`ossh login McDonges.native` appeared to fail silently — actually SSH'd to MacStudio.fritz.box (itself) because the config was created ON McDonges where MacStudio was the remote target. On MacStudio, it's the wrong direction. **Config entries are machine-relative: `McDonges.native` on McDonges points outward to MacStudio, but on MacStudio it points to itself.** Investigation:
+- `ossh config.get McDonges.native` → `HostName MacStudio.fritz.box` (local machine!)
+- `ossh config.get McDonges` → `HostName 192.168.178.22` (correct remote IP)
+- `ossh login McDonges` → password prompt (key auth not set up from MacStudio)
+- After Tron typed password → connected to McDonges zsh. Then `bash` → OOSH prompt `[oosh McDonges.native]`
+- **SSH key limitation**: MacStudio's `~/.ssh/id_rsa` public key not in McDonges' `authorized_keys` — needs key exchange setup
+- **zsh → bash**: McDonges default shell is zsh, not bash. Must run `bash` after SSH to enter OOSH environment.
+
+## Achievements
+
+### A1: otmuxTeam Created Successfully (2026-03-11)
+Forked backup-expert and backup-tester into a new otmuxTeam with correct identities (otmux-expert@opus, otmux-tester@opus). Discovered stale UUID bug in the process — `/status` is the only ground truth. Both agents alive and working. Monitor screen window added for Tron.
+
+### A2: Comprehensive Bug Report to hiveMind Team (2026-03-11)
+Wrote detailed task file (`session/tasks/hivemind-uuid-and-groundtruth-issues.md`) documenting 5 real bugs found during otmuxTeam setup, with ground truth test matrix. Both hiveMind agents actively processing. Connected hiveMind and otmuxTeam for coordination.
+
+### A3: TRON-monitor Multi-Team Setup (2026-03-11)
+Set up GNU screen inside tmux pane with read-only views of multiple team sessions. Tron can flip between teams with Ctrl-a 0/1/2. Learned to switch monitor when switching teams (F42).
+
+### A4: Human-Readable Error Messages Directive (2026-03-11)
+Updated oosh-tester and hiveMind-tester SKILL.md files with mandatory test criterion: all error paths must produce human-readable sentences, not EPERM/line numbers.
+
+### A5: Agent Identity Rescue (2026-03-11)
+Fixed agent-trainer at baseTeam:0.0 that was confused as oosh-expert (stale session name). Wrote identity correction task, taught it role@model convention.
+
 ## Patterns
 
 ### Idle Team → Ask Task Agent
@@ -151,9 +255,10 @@ When team idles, don't guess what to assign. Ask the task agent what's still und
 ### OOSH PATH + OOSH-Only Rule
 - OOSH is ALREADY on PATH via ~/.bashrc — no `export PATH=...` needed
 - Direct commands: `hiveMind monitor scrum-master 10` — works directly, resolves by role name
-- **NEVER use raw `tmux` commands** — always `otmux` wrappers. PO violated this multiple times (F14).
+- **NEVER use raw `tmux` commands** — always `otmux` wrappers. PO violated this multiple times (F14, F39).
 - **NEVER use `sleep N && command`** — use otmux background patterns instead
 - For session creation: `otmux new <name> -d` (detached)
+- Key otmux methods: `pane.title` (set title), `pane.lock` (lock title), `split` (default), `split.v` (top-bottom), `split.h` (side-by-side), `pane.capture` (read pane)
 
 ### Peer Compact Protocol
 - Peer TRIGGERS agent to save own state, does NOT write context for them
@@ -192,3 +297,10 @@ When team idles, don't guess what to assign. Ask the task agent what's still und
 - PO talks only to Tron and Orchestrator — no direct communication with other agents
 - Compact assistance is HIGHEST priority for SM
 - SM must sweep ALL 11 panes (skip 0.3 = self)
+- Human-readable error messages: testers must verify ALL error paths produce clear sentences, not EPERM/line numbers (Tron directive 2026-03-11, added to oosh-tester and hiveMind-tester SKILL.md)
+- Agent restart: ALWAYS `claudeCode join <uuid>` first, `claudeCode new` only as last resort (F38)
+- Current PO location: UpDown_ai_projectTeam:0.0 on MacStudio.fritz.box (pulled from UpDown.ai)
+- Sender prefix: `[@role pane]` on all agent messages — absence = Tron sent it
+- DRY send chain: otmux.send has prefix logic → hiveMind.send.message inherits → hiveMind.send routes text through otmux.send
+- stdin consumption in while-read loops: use `read <&3 ... done 3< file` when loop body has commands that read stdin (ossh exec, scp)
+- teams.save must use session.resolve.uuid (DRY) — inline UUID extraction returns stale parent UUIDs for forked/autocompacted sessions
