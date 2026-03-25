@@ -38,4 +38,8 @@
 28. [DRY as Architectural Principle — Send Functions Case Study](dry-architectural-principle.md)
 29. [Role Boundaries — Don't Compensate, Delegate](role-boundaries.md)
 
+30. [Team Pull & Remote Offloading — Build the Tool, Use the Tool](team-pull-remote-offloading.md)
+31. [Sender Prefix Pattern — Agent Identity on Messages](sender-prefix-pattern.md)
+32. [stdin Consumption in Bash Loops — fd 3 Rule](stdin-consumption-bash-loops.md)
+
 **Reference**: [CMM & Web 4.0](cmm-web4x.md) | [Usage Guide](usage.md)
