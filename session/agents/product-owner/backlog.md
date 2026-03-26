@@ -2,6 +2,7 @@
 
 ## Active — This Block
 
+- [ ] **BUG: teams.save uses pane title for role instead of session customTitle** — projectTeam:0.4 has pane title 'agent-trainer' but Claude session /rename'd to 'oosh-expert'. Snapshot records wrong role. Fix: prefer `claudeCode session.name` (customTitle from /rename) over pane title, same DRY pattern as UUID fix. From master-PO bug report.
 - [ ] **Sender prefix DRY consistency** — hiveMind.send now routes through otmux.send; tester verifying T-PFXCON tests
 - [ ] **test.suite single test case runner** — tester queued: `test.suite run <script> <level> <?testCase>` + `test.suite list <script>` with completion
 - [ ] **#50 Dotted method dispatch doubling** — framework bug in this.start, oosh-expert to fix
