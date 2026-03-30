@@ -1,26 +1,31 @@
 # OOSH Expert Agent Context
 
-**Session**: oosh-expert@opus
-**Role**: oosh-expert (OOSH Principle Guardian)
-**Pane**: projectTeam:0.1
-**Updated**: 2026-02-23T post-compact
-**State**: IDLE — awaiting next task
+**Session**: oosh-expert@opus 1M on MacStudio.native
+**Role**: oosh-expert (OOSH Implementation Authority)
+**Pane**: UpDown_ai_projectTeam:0.1
+**Updated**: 2026-03-30 pre-compact
+**State**: ACTIVE — tronMonitor multi-instance fix pending
 
-## Recent completions (this + previous session)
-- `f5b6c6b` — scrumMaster subscription accuracy fix (rate-limit-cache.json primary)
-- `d45c48d` — odocker camelCase→snake_case conversion fix
-- `f495244` — scrumMaster velocity command (zones: FULL/STEADY/WIND-DOWN/SAVE/COMPACT/EXHAUSTED)
-- `7518b87` — odocker parameter naming (camelCase, KB #16)
-- `6a06bfb` → `d63ed3f` → `3006be4` — architecture doc: naming standard + method structure standard
-- `088719a` — hiveMind agent.context.status
-- `15a8a90` — hiveMind.send() Enter key fix (INC-001)
-- `1e04861` — odocker wrapper (290 lines, 10 methods)
-- Spec delivered: `session/tasks/spec-hivemind-context-status-fixes.md` → hiveMindTeam implements
+## CURRENT TASK: tronMonitor multi-instance bug
 
-## Role
-OOSH Principle Guardian — own ALL oosh scripts, write specs, review compliance.
+**Problem**: tronMonitor uses ONE global screen session (tronMon) and ONE env file. Two panes sharing = collision.
+
+**Fix**: Derive screen name and env file from monitorPane:
+- Screen: `tronMon_UpDown_ai_po` (session part of pane target)
+- Env: `~/config/tronMonitor.UpDown_ai_po.env`
+- Change `private.tronMonitor.screenSession()` and `TRON_MONITOR_ENV` to derive from `TRON_MONITOR_PANE`
+
+**Key file**: `~/oosh/tronMonitor`
 
 ## RECOVERY STEPS
-1. Read this context file
-2. Check session/tasks/ for new work
-3. Wait for assignment from PO or orchestrator
+1. Read this file
+2. Read `~/oosh/tronMonitor` — fix multi-instance
+3. Check session/tasks/ for new work from PO
+4. Tester shell: UpDown_ai_projectTeam:0.3
+
+## Rules (eternal)
+- NEVER source OOSH scripts — CLI only
+- NEVER raw tmux — otmux wrappers
+- object.verb naming
+- No push without tester PASS
+- No head/tail/2>/dev/null on output
