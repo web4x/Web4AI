@@ -3,28 +3,56 @@
 ## Patterns
 - OOSH is on PATH — run directly, no `./`, no `cd`, no `export PATH`
 - NEVER source OOSH scripts — executables, not libraries
-- NEVER use `head`, `tail`, `2>/dev/null` on output — show raw
-- `git rev-parse --show-toplevel` for workspace root
-- Tab completion goes through `config.completion.discover`, NOT c2
-- `screen -ls` returns exit 1 always — use `|| true`
-- macOS `screen -X` needs full PID.name when attached from different TTY
-- macOS `sed -i ''` — use temp file pattern for cross-platform
-- `grep -oE` uses ERE (`{8}`), NOT BRE (`\{8\}`)
-- JSONL filenames ARE session UUIDs — use `basename file .jsonl`
-- Autocompacted sessions: newest unassigned JSONL in same project dir
-- Forked sessions: process args show PARENT UUID — detect via `--fork-session|claudeCode fork`
+- Context path: `session/agents/oosh-expert/context.md` (subdirectory)
+- Use `git rev-parse --show-toplevel` for workspace root
+- `private.scrumMaster.parse.state()` sets METRIC_STATE as side effect — call directly, not in subshell
 
-## Architecture
-- `private.hiveMind.agents.discover` — single source for display methods
-- `private.hiveMind.session.resolve.uuid` — pure bash, forks + autocompact, write-through
-- UUID priority: sessions.env → process args → JSONL filename
-- otmux.send = smart send (accept-edits, prefix, verify). send.raw = bare keys
-- Sender prefix `[@role pane]` in otmux.send, flows to hiveMind (DRY)
-- ossh dispatchers: `ossh get config.port host` → `ossh.config.port.get host`
-- tronMonitor: `screen -X stuff` for commands, `screen -X select` for switching
+## UUID Discovery (Hard-Won)
+- Process args UUID is WRONG for forks (`claudeCode fork <parentUUID>`)
+- Process args UUID is STALE after autocompact (new JSONL created)
+- JSONL first line has parentUuid for autocompact — NOT the session UUID
+- JSONL FILENAME is the UUID: `basename "$f" .jsonl`
+- UUID_RE must use ERE `{8}` with `grep -oE`, NOT BRE `\{8\}`
+- sessions.env checked BEFORE process args (may have write-through data)
+- Fork detection: both `--fork-session` AND `claudeCode fork` in args
 
-## Failures
-- `send.enter` deleted during DRY broke PO — keep backward-compat aliases
-- `ossh.get.config` collided with `ossh.get` dispatcher — made private
-- `config.get` log pollution: blank echo to stdout written into config files
-- `claudeCode fork` needs `--model "claude-opus-4-6[1m]"` + auto-cd to project dir
+## DRY
+- Discovery in ONE place: `agents.discover` for display, `session.resolve.uuid` for UUIDs
+- otmux = low-level (tmux), hiveMind = high-level (agents). Fixes belong in otmux
+- `otmux.send` is smart by default — `send.raw` for key sequences
+- Completion functions must match parameter names exactly
+- os.check supports `private.method` fallback for OS-variant dispatch
+
+## Cross-Platform
+- `sed -i ''` is macOS — use temp file pattern: `sed ... > file.tmp && mv file.tmp file`
+- `set-hook -p` needs tmux 3.2+ — background enforcer on older
+- TTY: macOS `/dev/ttysN`, Linux `/dev/pts/N`
+- OAuth: macOS Keychain, Linux direct `~/.claude/.credentials.json`
+- `claudeCode session.name` needs python3 fallback (jq not on Linux)
+
+## Failures & Fixes
+- `$TMUX_CMD` only in otmux — use otmux wrappers from hiveMind
+- Accept-edits: BTab×2 toggles back to normal prompt
+- `source hiveMind` triggers status output — leak in tests
+- hiveMind status must return 0 even for non-existent sessions
+
+## Persistence file pattern (DRY)
+- Env var at hiveMind:~36: `: ${HIVEMIND_X:=${CONFIG_PATH:-$HOME/config}/hivemind.x.env}`
+- CRUD helpers follow team.register/remove/list (hiveMind:~3700-3834):
+  - `private.*.ensure.dir` → mkdir
+  - `private.*.get <key>` → grep + tail -1 + cut
+  - `private.*.set <key> <value...>` → grep -v > tmp && mv && append (atomic upsert)
+- List formatter: green=valid (underlying resource exists), red=stale
+
+## Forking mechanics
+- `claudeCode fork <uuid>` = `claude --resume <uuid> --fork-session` → NEW child UUID
+- After fork, let the child start (sleep 5), then call `private.hiveMind.session.resolve.uuid $pane`
+  to write-through sessions.env with the child UUID
+- For /rename after fork: `otmux send.raw "$target" "/rename $role" Enter`
+- Registry re-affirm: `private.hiveMind.registry.set $pane $role`
+
+## claudeCode.list semantics
+- DEAD: JSONL on disk but UUID not in live Claude process args (orphan)
+- FORK-READY: has pane + role + context remaining in [20,40] (= 60-80% used)
+- Color hierarchy (strongest wins): RED > CYAN > GREEN > YELLOW > GRAY
+- Keep GREEN = "has pane / active" — don't reuse for fork-ready
