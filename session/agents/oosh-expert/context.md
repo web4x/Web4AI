@@ -8,6 +8,12 @@
 
 ## Recent Work (this session continuation)
 
+- **3 hiveMind bug fixes** (commit 02fdf96, 2026-04-15):
+  - `private.hiveMind.active.team` validates with `otmux has` — stale active-team file ignored
+  - `hiveMind.resolve` added caller-tmux-session as 2nd preferred scope; debug.log per scope
+  - `hiveMind.team.monitor` new signature `<?session> <?agentName> <?lines>`, $2 type-dispatched
+  - `hiveMind.teams.save` role cascade simplified to live → registry → role.fromTitle → "unknown"
+  - 7 grep-based regression tests in test.hiveMind; handed to tester for live integration
 - **Agent snapshots + respawn** (commit b9ffaed, 2026-04-15):
   - New `hivemind.snapshots.env` (role|uuid|ts|ctx) beside roles/sessions/teams
   - `hiveMind.agent.snapshot <name>` — register current session UUID as golden for role

@@ -51,6 +51,35 @@
 - For /rename after fork: `otmux send.raw "$target" "/rename $role" Enter`
 - Registry re-affirm: `private.hiveMind.registry.set $pane $role`
 
+## Resolve / active-team pitfalls
+
+- `hivemind.active.team` FILE can go stale after test runs leave `__test_hm_$$` entries —
+  `private.hiveMind.active.team` must validate every candidate with `otmux has` before
+  trusting it, otherwise `resolve` falls straight through to the cross-team grep.
+- When a role is registered in multiple teams (e.g. `projectTeam` and `UpDown_ai_projectTeam`
+  both have `oosh-expert` after a fork-based migration), cross-team `grep -i` returns the
+  first match by file order, which is rarely the one the caller meant.
+- Correct scope order for resolve: explicit session (if given) → active team → caller's own
+  tmux session (when `$TMUX` set) → cross-team fallback. Always emit `debug.log` per scope
+  for future diagnosis.
+
+## error.log writes to stdout, not stderr (GOTCHA)
+
+- `error.log` prints to stdout. A function that captures a callee's output into a variable
+  AND then checks `[ -z "$var" ]` will be FOOLED by the error string — the variable is
+  non-empty because it contains the error message itself.
+- Always check rc AND (where applicable) validate format: e.g. for `hiveMind.resolve`,
+  require `rc == 0` AND the captured value matches `^[A-Za-z0-9_.-]+:[0-9]+\.[0-9]+$`.
+
+## teams.save role priority (correct cascade)
+
+- customTitle (via `private.hiveMind.live.discover` → `claudeCode session.name`) must win
+  over the pane title — `/rename` reflects the TRUE role, pane title can be stale from
+  plan mode, prior rename, etc.
+- Cascade: `live.discover` → `registry.get` → `role.fromTitle` → `"unknown"`.
+- `role.fromTitle` already strips prefixes (`✳ ⠐ ⠂ ✻ ✢ ✶`), `@model`, whitespace,
+  and rejects generic values. Do NOT duplicate that cleanup inline.
+
 ## claudeCode.list semantics
 - DEAD: JSONL on disk but UUID not in live Claude process args (orphan)
 - FORK-READY: has pane + role + context remaining in [20,40] (= 60-80% used)
