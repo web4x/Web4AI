@@ -51,6 +51,27 @@
 - For /rename after fork: `otmux send.raw "$target" "/rename $role" Enter`
 - Registry re-affirm: `private.hiveMind.registry.set $pane $role`
 
+## Sed regex — greedy vs first-quote extraction
+
+When extracting the FIRST quoted string from a line that may contain multiple,
+`.*"([^"]+)".*` is WRONG — `.*` is greedy and grabs up to the last quote.
+Correct: `[^"]*"([^"]+)".*` — matches any non-quote chars until the first quote,
+then captures the first quoted string. Applies to test.suite label extraction
+and any similar `key "value" key "value2"` parsing.
+
+## test.suite filter + list (framework pattern)
+
+- Filter injection point: ONE `test.case` function in test.suite. Set
+  `$TEST_CASE_FILTER` before dispatching to test file; early-return from
+  test.case when label doesn't match. Zero per-script changes.
+- Skip propagation: set `$TEST_CASE_SKIPPED=y` on skip so the expect.*
+  calls that typically follow a test.case (outside the case body) no-op.
+  Set `=""` on run. Clears naturally between runs; no scope pollution.
+- Test case label shape: `"T-XXX-N: description"` or `"function - desc"`.
+  Filter prefix-matches both the full label AND the `${label%%:*}` tag.
+- List pattern: `grep '^\s*test\.case' file | sed 's/^[^"]*"([^"]+)".*/\1/'`.
+  Include line number via `grep -n` + sed group for navigation UX.
+
 ## Resolve / active-team pitfalls
 
 - `hivemind.active.team` FILE can go stale after test runs leave `__test_hm_$$` entries —

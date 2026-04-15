@@ -8,6 +8,19 @@
 
 ## Recent Work (this session continuation)
 
+- **test.suite single-case filter + list** (commit 8964dd8, 2026-04-15):
+  - `test.suite run <script> <?level> <?filter>` — prefix-matches label or tag-before-colon
+  - `test.suite list <script>` — emits `label\t(line N)` for every test.case
+  - Completions: `.completion.filter` (labels+tags of given script), `.completion.test` (scripts)
+  - `test.case` honors `$TEST_CASE_FILTER`; skipped cases set `TEST_CASE_SKIPPED=y` so stray
+    `expect.pass`/`expect.fail` (written after test.case by convention) are no-ops
+  - Zero per-script changes. Framework only.
+  - Gotcha: sed regex must be `[^"]*` before first quote, not `.*` (greedy grabs last quote)
+- **c2 sort** (commit 0120723, 2026-04-15):
+  - `c2.get.functions` + `c2.get.function.with.documentation` append `| sort`
+  - Affects every OOSH script's Tab completion (hiveMind, otmux, ossh, ...)
+- **T-233/234 + T-238 regression fixes** (commit e3bee03): test file updated for
+  protected rename + claude.processes budget bumped 6→7 (session.resolve.uuid livePanes filter)
 - **3 hiveMind bug fixes** (commit 02fdf96, 2026-04-15):
   - `private.hiveMind.active.team` validates with `otmux has` — stale active-team file ignored
   - `hiveMind.resolve` added caller-tmux-session as 2nd preferred scope; debug.log per scope
