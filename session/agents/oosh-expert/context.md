@@ -8,6 +8,13 @@
 
 ## Recent Work (this session continuation)
 
+- **test.suite filter fixes + test.def** (commit 8978958, 2026-04-15→17):
+  - Fixed skipped-test RETURN_VALUE=0 (was empty → integer crash in follow-up blocks)
+  - Fixed 3 `local` outside function in test.hiveMind (lines 620, 2164, 2178)
+  - Default log level 3 (was 1); args type-dispatched (any order: name/level/filter)
+  - New `test.def "label" funcName` — wraps each test as a callable bash function.
+    Delegates to test.case so filter+counters+skip-flag integrate. Migration is opt-in.
+  - `test.suite list` and completions now discover both test.case and test.def registrations
 - **test.suite single-case filter + list** (commit 8964dd8, 2026-04-15):
   - `test.suite run <script> <?level> <?filter>` — prefix-matches label or tag-before-colon
   - `test.suite list <script>` — emits `label\t(line N)` for every test.case
