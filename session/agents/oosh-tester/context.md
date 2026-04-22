@@ -1,49 +1,34 @@
 # OOSH Tester Agent — Session Context
 
-**Updated**: 2026-02-26 ~19:30
-**Role**: oosh-tester (baseTeam:0.2)
-**Pane**: baseTeam:0.2
+**Updated**: 2026-04-22
+**Role**: oosh-tester
+**Pane**: ooshTeam:0.2
+**Test Shell**: ooshTeam:0.4 (oosh-tester-shell)
+**Expert**: ooshTeam:0.1 (oosh-expert)
+**Expert Shell**: ooshTeam:0.3 (oosh-expert-shell)
+**Machine**: MacStudio.native
 
 ## Recovery Steps
 1. Read this file
 2. Read `.claude/agents/oosh-tester/SKILL.md`
-3. Check `session/tasks/` for pending work
-4. Check with PO/expert for current priorities
+3. Read `session/agents/oosh-tester/learnings.md`
+4. Check `session/tasks/` for pending work
+5. Check with PO (TRONinterface:0.0) for priorities
 
-## Current Task: Verify session.id Bug Fixes
+## Current Task: UUID Tracking Refactor Tests
 
-### What happened
-Filed `session/tasks/expert-fix-session-id-bugs.task.md` — 3 bugs in agent identity:
-1. `claudeCode session.id` returns wrong UUID after agent restart
-2. `otmux tree.detailed` shows wrong names from stale hiveMind registry
-3. Duplicate session UUIDs across panes
+Expert commits: 6ddeb14, cbcea82, 9b90851 on test/macos.latest
 
-Expert (baseTeam:0.1) made fixes:
-- `claudeCode` line 643: `head -1` → `tail -1` in lsof method
-- `otmux` tree.detailed: uses `session.name` before registry fallback
-- `hiveMind`: added `registry.refresh()` method
+### New methods to test:
+- `claudeCode session.discover` — non-invasive UUID+state+title discovery
+- `claudeCode session.current` — print UUID for pane
+- `claudeCode session.state` — print state: live/stable/stale/broken/unknown
+- `hiveMind registry.refresh` — rewrite using session.discover, writes forks.env
+- `hiveMind` bare (no args) — shows persisted teams when tmux empty
 
-### Test Results: 33 tests, 22 PASS, 11 FAIL
-
-**Bug 1 NOT FIXED** — `tail -1` still returns wrong UUID. Root cause: when agents are **restarted** (NOT compacted — compact keeps UUID), the new claude process opens task dirs from ALL previous sessions (for history/resume). Current session UUID is NOT in lsof at all. 10 out of 15 live agents FAIL.
-
-**Bug 2 PARTIAL** — tree.detailed now uses session.name but shows ugly truncated boot prompts for un-renamed sessions.
-
-**Bug 3 PARTIAL** — registry.refresh works for /rename'd sessions. Stale entries remain.
-
-### Key Files
-- `test/test.claudeCode` — **I WROTE LIVE BEHAVIORAL TESTS** (T11-T33)
-  - Parses `otmux` (no params) to find ALL Claude panes
-  - Sends `/status` to each, parses Session ID, compares with `session.id`
-  - Tests idle pane (exit 1), registry consistency
-  - Run: `cd /Users/donges/oosh && bash test/test.claudeCode`
-- `session/tasks/expert-fix-session-id-bugs.task.md` — original bug report
-- `session/tasks/tester-verify-session-id-fixes.task.md` — expert's test plan
-- `session/tasks/tester-session-id-results.md` — detailed results
-
-### Correction on Root Cause
-NOT caused by /compact. Caused by **restarting agents** (kill + new claude session in same pane). The new process opens lsof handles to old task dirs from previous incarnations. PID 65442 has 89 handles to old UUID, 0 to current.
-
-## Pending
-- Expert needs to find a new detection method (lsof is fundamentally broken)
-- Re-run `bash test/test.claudeCode` after expert's next fix — must get 0 FAIL
+### Key Rules
+- NEVER use raw tmux — always otmux wrappers
+- NEVER filter output (no 2>/dev/null, | head, | tail, | grep)
+- Use oosh-tester-shell (ooshTeam:0.4) for running commands
+- Tests must be self-contained
+- TDD: write tests BEFORE when possible

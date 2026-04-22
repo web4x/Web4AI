@@ -2,65 +2,54 @@
 **Session**: hiveMindTeam02_03_26
 **Role**: hiveMind-tester
 **Pane**: hiveMindTeam02_03_26:0.1
-**UUID**: 004e5ea9-6ed5-4c20-bc9e-7db38677b14b
-**Updated**: 2026-03-10 (post T-RESTORE tests)
+**Updated**: 2026-03-25 (post-compact #2)
 
-## Active Work: Full MacStudio Restore
+## Active Work: T-RESTART tests for d94e9cc, full test suite running
 
-### Cross-Machine Fork: PROVEN WORKING
-1. Root cause of "Rate limit reached" = `opus[1m]` in MacStudio `~/.claude/settings.json`
-2. Changed to `opus` (200k) → fresh session works, fork works, API calls work
-3. Verified with live `date` command on forked PO: `Tue Mar 10 14:25:04 CET 2026`
-4. Expert implemented F1-F4 in commit `1604e3e`:
-   - F1: JSONL transfer via scp in teams.migrate
-   - F2: `--fork` flag for teams.restore
-   - F3: Model compatibility check (opus[1m] → opus)
-   - F4: teams.migrate always uses --fork
+### T-SCP Tests — DONE (7/8 PASS)
+- Expert commit `ceec723`: ossh.scp method + replaced all 6 raw scp in hiveMind
+- T-SCP-1..7 all PASS — zero raw scp/ssh, ossh.scp method exists
+- T-SCP-8: Fixed — scoped to team.pull method (was checking global file, task.transfer is separate)
+- Committed: `93e861e` (tests), `3fc2947` (T-SCP-8 fix)
+- Done report: session/tasks/hivemind-team-pull-scp-fix.done.md
 
-### T-RESTORE Tests: ALL 15 PASS
-- Commit `5cb6eb9`: T-RESTORE-1..15 all green
-- Function existence, snapshot format, cross-machine readiness, fixture restore
-- Previous commit `6ab741a`: initial tests (7 failures), then `5cb6eb9` fixed all
+### T-RESTART Tests — WRITTEN, COMMITTED (9540a33)
+- PO task: session/tasks/hivemind-agent-restart-single.md
+- Expert commit `d94e9cc`: agent.restart now takes <configDir> <role> (single agent)
+- Old all-agents behavior renamed to `team.restart`
+- Tests added:
+  - T-ARESTART-2b: completion.role lists roles from snapshot
+  - T-ARESTART-3b: no-role shows usage with available roles
+  - T-ARESTART-4b: unknown role returns error
+  - T-ARESTART-6: single-role restart creates correct pane
+  - T-ARESTART-6c: only requested role restarted (not all)
+  - T-TRESTART-1..4: team.restart function exists, completion, no-args error, creates all panes
+- Full test suite running (background bv4ckgg8p)
 
-### Full MacStudio Restore: PARTIALLY WORKING (Task #8)
-- `teams.migrate MacStudio.native` ran — created all 7 sessions, 15 panes, forked all agents
-- **BUG**: Only 1 of 12 JSONL files was transferred by teams.migrate (transferred rest manually via scp)
-- **BUG**: After re-restore with all JNSONLs present, only 3 of 15 agents running (show [2.1.72])
-- Most panes show [zsh] — Claude fork failed silently. PO pane blank.
-- Possible causes: cd to project dir didn't work, or effort dialog blocking, or fork command garbled
-- Reported to expert for investigation
-- Agents running: claudeOpus2kTMUX:0.0, odockerTeam:0.1, osshTeam:0.3
+### Consistency.fix — 14/5 (was 8 inconsistent)
+- Done report: session/tasks/consistency-fix-verification.done.md
 
-### MacStudio Current State
-- 7 sessions recreated with correct pane layout
-- Most agents NOT running — need expert to fix teams.restore fork reliability
-- All 12 unique JNSONLs now present on MacStudio
-
-### Expert State
-- Idle after commit 1604e3e
-- Can assign more work if needed
-
-## Previous Completed Work
-- **claudeCode fork**: commit 2efbdec, claudeCode.fork method
-- **agent.restart.remote**: commit 6207f8f, hiveMind method
-- **Cross-machine restart research**: scp JSONL + fork = working recipe
-- **All previous work**: see learnings.md
+### Send prefix bug — FIXED
+- Expert commit e4a165c: guard with isClaudeCode
 
 ## Pending Tasks
-1. **Full MacStudio restore** — Task #8, IN PROGRESS
-2. **hiveMind whoami** — NOT STARTED
-3. **claudeCode test plan** — NOT STARTED
-4. **otmux raw tmux migration** — Plan exists
+1. Wait for full test suite results → analyze failures
+2. Run T-GHOST and T-TRUTH tests
+3. bash 5 PATH permanent config fix
+
+## Commits This Session
+- `93e861e` T-SCP-1..8 tests committed
+- `9540a33` T-ARESTART/T-TRESTART tests for single-role agent.restart
+- `3fc2947` T-SCP-8 scoped to team.pull method
 
 ## Rules (memorize)
 - **NO git rebase. EVER.** Pull with merge only.
 - **ONE LINE git commit messages.**
-- OOSH is on PATH — no export needed.
-- **NEVER source OOSH scripts.** Executables only.
-- **NEVER use raw `claude` or `tmux`** — always claudeCode/otmux.
-- **NEVER drop files from reading list** — only add, never remove.
-- **ossh login <host>** not `ossh <host>`.
+- OOSH is on PATH — no export, no cd, no ./ prefix.
+- **NEVER source OOSH scripts in Bash tool.**
+- **OOSH: positional args ONLY, never --flags.**
+- **Read ALL OOSH docs on every boot.**
+- **Do NOT approve expert's permission prompts — PO's job.**
+- **Use otmux send, not raw tmux send-keys.**
 - Tests must be fixture-based, not machine-specific.
 - **Always MEASURE, never assume.**
-- **Graceful exit before kill.** Escape → /exit → Ctrl-C → kill (last resort).
-- **Use hiveMind commands, not raw otmux** — I'm the hiveMind tester!

@@ -98,8 +98,57 @@
 | hiveMind-tester | hiveMindTeam:0.1 | hiveMind consistency, registry, identity chain | me |
 | (ossh-tester) | osshTeam | ossh, myId (not yet activated) | me |
 
+## Session Learnings (2026-03-24 → 2026-03-30)
+
+### UUID discovery chain (hard-won)
+- Process args UUID is WRONG for forked agents (`--fork-session` flag) and autocompacted sessions
+- JSONL filename IS the UUID — `basename file .jsonl`, never parse line 1 (may contain parentUuid)
+- `session.resolve.uuid` must: detect fork flag, find newest JSONL by mtime, use filename as UUID
+- `sessions.env` is updated by consistency.fix, not by Claude Code itself
+- Three sources must agree: sessions.env, process args, JSONL file — test all three
+
+### BRE vs ERE regex
+- `grep -oE` uses ERE: `{8}` not `\{8\}`
+- `grep -o` (no -E) uses BRE: `\{8\}`
+- Mixing them silently returns zero matches — hard to debug
+
+### Test self-containment
+- Tests must work on a clean machine with zero running agents
+- Use `__test_` prefix + `$$` for isolation
+- Live measurement tests gate behind `LIVE_SESSION` check
+- Code-level tests (grep source) always work — prefer these
+- NEVER execute the bug pattern in tests (stdin consumption test hung the test suite)
+
+### Tab completion testing
+- Send Tab via `otmux send.raw pane Tab` — NOT via otmux send (which adds Enter)
+- c2 first Tab shows usage help, second Tab shows completions
+- `--More--` pager in bash cuts off long completion lists — send `q` to exit
+- c2 namespace collision: `ossh.get.config()` made c2 see `get` as having sub-method `config`
+
+### Remote testing via SSH
+- Use remote-tester-shell pane for SSH sessions
+- `otmux new` attaches by default inside SSH — steals the shell. Use `-d`.
+- Run commands on remote via `otmux send.raw remote-pane 'command' && send.raw Enter`
+- Remote oosh needs branch switch, NOT just `git pull`
+
+### oo mode — Branch switching (learned 2026-04-02)
+- `~/oosh` is a SYMLINK to a git worktree — NOT a git repo checkout
+- `oo mode` shows current branch/worktree
+- `oo mode <branch>` switches the symlink (instant)
+- `oo mode.list` lists available worktrees
+- `oo checkout <branch>` creates worktree from remote + switches
+- After switching: start new `bash` to pick up new PATH
+- On Docker containers: default is `prod`. Run `oo mode test/macos.latest` to get dev fixes
+- `OOSH_COMPONENTS_DIR` must be set correctly on each machine — defaults to macOS path
+- BUG: on testUbuntuRoot, `oo mode test/macos.latest` created worktree but symlink pointed to `dev` not the new worktree. May need `oo checkout` instead of `oo mode` for first-time setup
+
 ## Role Boundaries (enforced)
 - DO NOT create TaskCreate for self — PO assigns all work
 - DO NOT implement fixes — report findings, expert implements
 - DO NOT use sleep loops for polling — wait for direction
+- NEVER use raw tmux — always otmux wrappers
+- NEVER filter output (no 2>/dev/null, | head, | tail, | grep on commands)
+- NEVER manually rm/ln framework files — use oo mode, ask expert if tool fails
+- Use the oosh-tester-shell, not direct Bash tool for oosh commands
+- When a tool fails, REPORT the bug. Do NOT work around by hand.
 - Test, report, stand by

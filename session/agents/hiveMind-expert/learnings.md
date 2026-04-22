@@ -1,6 +1,6 @@
 # hiveMind-expert Learnings
 
-## Script Structure (~2600 lines)
+## Script Structure (~2800 lines)
 - **Location**: `/Users/donges/oosh/hiveMind`
 - **Git repo**: `~/oosh` on branch `dev.claude` (remote: `Cerulean-Circle-GmbH/once.sh.git`)
 - **Not in workspace git** — it's a separate repo. Commit and push from `cd /Users/donges/oosh`.
@@ -14,6 +14,17 @@
 - **Shared completion**: `private.hiveMind.teams.complete()` — single source for all session/team completions (registered + running, deduplicated)
 - **Watchdog**: External bash process in tmux pane (no Claude Code = no permission prompts) with heartbeat file + supervisor auto-restart
 
+## OOSH Architecture Standards (MANDATORY — PO-enforced, commit be1885a)
+
+1. **camelCase for ALL variables and parameters** — NEVER underscore_case. `jsonlFile` not `jsonl_file`, `sessionId` not `session_id`, `paneTarget` not `pane_target`.
+2. **Public method interfaces: positional args ONLY, NEVER --flags.** Sub-modes become separate methods (`teams.restore` with `mode` positional, not `--fork`). Method signature: `# <required> <?optional:default> # description`.
+3. **Use OOSH wrappers where they exist**: `otmux` (tmux), `claudeCode` (claude), `check` (validation), `config` (persistence), `path` (PATH management). Call the wrapper, not the raw command.
+4. **Raw system commands ONLY inside private helpers** when no OOSH wrapper exists. `stat`, `date`, `ps`, `find` are acceptable in `private.*` methods — never in public method bodies.
+5. **Hardcoded thresholds go in config, not code.** Use `config set THRESHOLD 300` pattern. Read via `${THRESHOLD:-300}` with sensible default.
+
+### Why this matters
+Commit `102fa81` had raw `find`/`stat`/`date` in public `session.id`. Commit `1604e3e` had `--fork` flag in `teams.restore`. Both were OOSH violations caught by PO radical review. Refactored in `be1885a`.
+
 ## OOSH Conventions Observed
 - Method signature comments: `# <required> <?optional:default> # description`
 - Completion functions: `methodName.completion.paramName()` — echo one option per line
@@ -21,6 +32,7 @@
 - Return values: exit codes, stdout for data
 - Private helpers: `private.hiveMind.*` prefix
 - Constructor: `hiveMind.start()` sources `this`, sets defaults, dispatches via `this.start "$@"`
+- `warn.log` and `error.log` write to **stdout**, not stderr — never use them in data-returning functions
 
 ## Git Workflow
 - The `~/oosh` repo has active changes from multiple agents — always expect unstaged changes in other files
@@ -95,14 +107,6 @@
 - Role aliases (orchestrator → agent-teacher) preserved via small case block before file lookup
 - Contract unchanged: returns 0 with prompt text if found, returns 1 if no SKILL.md exists
 
-## BSD sed Compatibility (2026-03-08)
-- macOS BSD sed does NOT support nested `{ }` in address ranges. Use pipeline: `sed -n '/^---$/,/^---$/p' | grep | sed`
-
-## Dynamic SKILL.md Lookup (2026-03-08)
-- `get.role.prompt` replaced hardcoded 14-entry case with dynamic `$HIVEMIND_AGENTS_DIR/<role>/SKILL.md` check
-- YAML frontmatter `description:` extracted via sed+grep pipeline
-- Role aliases (orchestrator → agent-teacher) kept as small case block before file lookup
-
 ## DRY Refactor Helpers (2026-03-08)
 - `private.hiveMind.current.session` — wraps `tmux display-message -p '#{session_name}'`
 - `private.hiveMind.pane.count <target> <?-s>` — `tmux list-panes | wc -l`
@@ -133,6 +137,41 @@
   - `claudeCode session.id <your-pane>` → your Claude session UUID (e.g. `75ce660f-...`)
 - Both change on restart/compact — must re-discover every time
 - `pane.get.target` uses `TMUX_PANE` env var to query the executing pane, not the focused one (Tron bugfix)
+
+## Consistency Fix Architecture (2026-03-17)
+- **sessions.env schema limitation**: `role|UUID` can't handle same role in multiple panes. Last-write-wins causes UUID stale on audit.
+- **Shared --resume sessions**: Same Claude session resumed in two panes → same UUID from ps args → dup UUID in audit. Can't be fixed without forking or schema change.
+- **Fork detection**: `--fork-session` in ps args means the `--resume UUID` is the parent, not current. Skip it, fall through to registry lookup.
+- **Generic role handling**: "ClaudeCode" is not a role — it's the default pane title. Reject in title→role extraction, try live.discover instead.
+- **DRY private helpers**: Extract repeated patterns into `private.hiveMind.role.isGeneric`, `role.fromTitle`, `env.set`, `env.del`, `liveUuid`.
+- **Dup purge loop pitfall**: When A purges B's UUID and then B purges A's UUID, nothing changes. Fix: only purge entries for roles that have NO live Claude process.
+- **Audit must enumerate ALL panes** (via `list.panes`), not just Claude processes (via `claude.processes`). Non-agent panes show as "no agent" gray.
+
+## Shell Environment (2026-03-17)
+- Do NOT prefix every bash command with `source ~/config/user.env`. OOSH is already on PATH.
+- Do NOT redirect stderr with `2>/dev/null` on OOSH commands — let logging show.
+- PATH needs `/opt/homebrew/bin` first for bash 5 (associative arrays `local -A`). This is in user.env but the Claude Code shell may need it set once per session.
+
+## c2 Completion System (2026-03-25)
+- Completion functions are called as: `$class.$method.completion.$param "$cur" "$class" "$method"`
+- `$1` is ALWAYS the current typing word (`$cur`), NOT the value of a previous positional parameter
+- To access previous parameter values, must use COMP_WORDS (not available in c2 scope) or scan filesystem
+- Solution for dependent completions: scan all known directories rather than expecting the previous arg
+
+## ossh.scp (2026-03-25)
+- Created `ossh.scp()` — public method wrapping `scp -o ControlPath="$OSSH_CONTROL_PATH"`
+- Replaces all raw scp in hiveMind (6 calls: task.transfer, teams.push, team.pull x4, agent.restart.remote)
+- ossh already had `private.ossh.rsync()`, `private.ossh.rsync.pull()`, `private.ossh.ssh()` — all private
+
+## JSONL Path Normalization (2026-03-25)
+- `team.pull` downloads JSOLs from remote. Remote path may differ from local (different $HOME, different user)
+- Must normalize: find first local project dir under `$HOME/.claude/projects/` and download there
+- Previous bug: downloaded to remote's absolute path which doesn't exist locally
+
+## hiveMind send.enter Dispatch Bug (2026-03-25)
+- `hiveMind send.enter hiveMind-tester "msg"` fails with "send.enter: No such file or directory"
+- Workaround: use `otmux send <pane> "msg" Enter` directly
+- Root cause: method dispatch in `this` can't find `send.enter` — needs investigation
 
 ## Registry Garbage Root Causes (2026-03-02)
 - **Boot prompt text as role names**: `registry.refresh` would extract firstPrompt text as role when session wasn't `/rename`d. Fixed with validation (reject >30 chars, spaces, prompt-like words).

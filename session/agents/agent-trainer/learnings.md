@@ -103,3 +103,12 @@
 - **Verify AFTER fix**: Run ALL test cases (not just the failing one). Test edge cases too.
 - **INC-001 root cause**: `-l` flag in tmux send-keys makes everything literal. `$*` joins args into one string. Both together prevent "Enter" from being a keypress. Fix: regex detect trailing key names, send separately.
 - **Use the fix to send the report**: The ultimate integration test — send the completion notification via the fixed command.
+
+## Identity Confusion (F-T3, 2026-03-11)
+
+- **Session name does NOT define your role.** Pane title is source of truth. I was at `baseTeam:0.0` with pane title "agent-trainer" but my Claude session was named "oosh-expert@opus.26.02.26" (stale from previous session). I assumed I was oosh-expert and spent the entire session doing oosh-expert work (reading oosh-expert SKILL.md, implementing hiveMind.plan.create, fixing bash 5 PATH, locking pane titles across all sessions).
+- **Identity check on boot is MANDATORY**: Before reading ANY role files, check your pane title first. `otmux pane.capture <your-pane> 1` or check the pane title in the tmux tree output.
+- **The `@model` convention** (e.g., `agent-trainer@opus`) means `role@model`, NOT that you ARE that role from the session name. The session name can be stale.
+- **Damage from wrong identity**: Implemented a feature (oosh-expert work), modified system config files (user.env, .zshrc), tried to lock all pane titles (overreach). All of this was outside agent-trainer's scope.
+- **Prevention**: On boot: (1) check pane title, (2) read YOUR boot.md, (3) read YOUR SKILL.md. Never read another role's files as if they're yours.
+- **PO caught it** via task file `session/tasks/trainer-identity-correction.md`. Without that intervention, I would have continued as oosh-expert indefinitely.

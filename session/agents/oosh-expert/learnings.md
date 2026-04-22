@@ -6,6 +6,14 @@
 - Context path: `session/agents/oosh-expert/context.md` (subdirectory)
 - Use `git rev-parse --show-toplevel` for workspace root
 - `private.scrumMaster.parse.state()` sets METRIC_STATE as side effect — call directly, not in subshell
+- **NEVER filter OOSH output** — no `2>&1`, no `2>/dev/null`, no `| tail`, no `| head`, no `| grep`
+  - `otmux pane.capture <target> <?lines>` already takes a line count — use it, don't pipe to tail
+  - OOSH scripts use their own log functions (error.log/info.log) that write to LOG_DEVICE — stderr merging breaks this
+  - If output is long, read it in full
+- Send tty-sensitive commands (ssh login, brew install, OSC 52 tests) to the paired expert-shell pane
+  via `otmux send <team>:0.3 "<cmd>" Enter`, not the Claude Code Bash tool
+  - Claude Code Bash tool runs in a non-tty subprocess — terminal escapes never reach the user's local terminal
+  - Expert-shell pane has a real pty on the SSH session — escapes flow through correctly
 
 ## UUID Discovery (Hard-Won)
 - Process args UUID is WRONG for forks (`claudeCode fork <parentUUID>`)

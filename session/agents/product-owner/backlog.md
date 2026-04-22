@@ -3,6 +3,9 @@
 ## Active — This Block
 
 - [ ] **BUG: teams.save uses pane title for role instead of session customTitle** — projectTeam:0.4 has pane title 'agent-trainer' but Claude session /rename'd to 'oosh-expert'. Snapshot records wrong role. Fix: prefer `claudeCode session.name` (customTitle from /rename) over pane title, same DRY pattern as UUID fix. From master-PO bug report.
+- [ ] **BUG: hiveMind resolve matches wrong team** — `agent.monitor oosh-expert` resolves to `projectTeam:0.3` instead of `UpDown_ai_projectTeam:0.1`. Multiple teams have agents with same role name. Resolve picks first match across ALL teams instead of preferring the active team. Need: active team match first, then cross-team fallback.
+- [ ] **BUG: team.monitor second param parsed as lines, not filter** — `hiveMind team.monitor UpDown_ai_projectTeam oosh-expert` treats `oosh-expert` as line count → `tail: invalid option -- o`. The second param is `<?lines:30>` but users expect a filter. Either add a filter param or document clearly.
+- [ ] **BUG: teams.save role from pane title not session customTitle** — from master-PO bug report. Snapshot records wrong role when pane title differs from /rename'd customTitle.
 - [ ] **Sender prefix DRY consistency** — hiveMind.send now routes through otmux.send; tester verifying T-PFXCON tests
 - [ ] **test.suite single test case runner** — tester queued: `test.suite run <script> <level> <?testCase>` + `test.suite list <script>` with completion
 - [ ] **#50 Dotted method dispatch doubling** — framework bug in this.start, oosh-expert to fix

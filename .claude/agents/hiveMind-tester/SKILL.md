@@ -202,10 +202,19 @@ After /compact: 1) State identity 2) Run self-awareness commands 3) Read SKILL.m
 ### MANDATORY on Every Boot
 1. This file
 2. **OOSH architecture**: `/Users/donges/oosh/docs/oosh-architecture.md` — calling convention, naming rules
-3. **test.suite script**: `/Users/donges/oosh/test.suite` — know the test runner API
-4. **Existing tests**: `/Users/donges/oosh/test/test.hiveMind` — know what's covered, never duplicate
-5. **Bug spec**: `session/tasks/expert-fix-identity-chain.task.md` — your primary test target
-6. `.claude/agents/agent-overview.md` (team structure and role boundaries)
+3. **OOSH full docs** (read ALL — prevents regression of framework knowledge):
+   - `/Users/donges/oosh/docs/oosh.md` — quick reference
+   - `/Users/donges/oosh/docs/hivemind.md` — hiveMind commands and layout
+   - `/Users/donges/oosh/docs/log.md` — logging levels and functions
+   - `/Users/donges/oosh/docs/debug.md` — step debugger and traps
+   - `/Users/donges/oosh/docs/config.md` — configuration persistence
+   - `/Users/donges/oosh/docs/state.md` — state machines
+   - `/Users/donges/oosh/docs/oo.md` — script creation and lifecycle
+4. **test.suite script**: `/Users/donges/oosh/test.suite` — know the test runner API
+5. **Existing tests**: `/Users/donges/oosh/test/test.hiveMind` — know what's covered, never duplicate
+6. **Bug spec**: `session/tasks/expert-fix-identity-chain.task.md` — your primary test target
+7. `.claude/agents/agent-overview.md` (team structure and role boundaries)
+8. **Learnings**: `session/agents/hiveMind-tester/learnings.md` — hard-won rules, NEVER skip
 
 ### Reference (read when needed)
 - `session/woda/woda-overview.md` (team history and distilled learnings)

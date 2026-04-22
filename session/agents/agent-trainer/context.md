@@ -2,7 +2,7 @@
 
 **Updated**: 2026-02-23T16:15Z (saving before compact)
 **Role**: agent-trainer
-**Pane**: projectTeam:0.5
+**Pane**: baseTeam:0.2
 **State**: COMPACT PENDING — standing down per PO directive (budget cap)
 **Context**: ~20% (160k/200k)
 

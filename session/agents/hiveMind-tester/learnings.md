@@ -308,3 +308,94 @@
 - User pointed out: "I see you as the hiveMind tester do not use it but mainly otmux"
 - Should use `hiveMind send`, `hiveMind monitor` instead of `otmux send`, `otmux pane.capture`
 - I'm literally testing hiveMind — I should be my own best customer
+
+## `source` inside test files vs at prompts (CRITICAL — 2026-03-11)
+- **Inside test/test.hiveMind**: `source hiveMind` is CORRECT — the test file is an OOSH executable that sources dependencies internally
+- **At a Bash tool prompt**: `source hiveMind` is WRONG — pollutes shell, hangs (scriptname.start runs at end)
+- **Running tests**: `test.suite run hiveMind 3` — the ONLY way. Runs test file as subprocess.
+- The test file's bootstrap: `source this; source test.suite; source hiveMind` — all inside the file
+- Rule: NEVER `source` in Bash tool. ALWAYS run as commands. Test files handle their own sourcing.
+- User corrected me 3 TIMES on this. Read OOSH docs on EVERY boot.
+
+## Ghost panes — titled but dead (2026-03-11)
+- Ghost pane = tmux pane with an agent title (e.g. "orchestrator") but no running Claude process
+- `hiveMind team.status` correctly shows `(offline)` for ghost panes — this WORKS
+- `otmux tree.detailed` differentiates: live agents show `[2.1.72]` (version), ghosts show `[zsh]`/`[bash]`
+- PO concern: at a glance, titled ghost panes look like real agents in basic tree output
+- projectTeam has 7 ghost panes — all titled, all empty, all (offline)
+- T-GHOST-1..6 tests written to verify ghost detection works
+
+## bash 3.x `local -A` incompatibility (2026-03-11)
+- MacStudio runs stock macOS bash 3.2 — does NOT support `local -A` (associative arrays)
+- `private.hiveMind.claude.processes()` at line 104 uses `local -A ttyMap titleMap` — crashes on bash 3
+- `consistency.audit` at line 1739 also uses `local -A` — same crash
+- Error: `local: -A: invalid option` then `/dev/ttys007: syntax error: operand expected`
+- Result: `0 consistent, 0 inconsistent` — audit returns nothing
+- This is a cross-platform bug — needs `declare -A` or a non-associative-array approach
+- Observed in pane 0.2 (expert shell on MacStudio)
+
+## OOSH docs reading list — MANDATORY on every boot (2026-03-11)
+- User corrected me 3 times for forgetting OOSH fundamentals after compact
+- MUST read ALL docs before doing any work, not just SKILL.md
+- Key docs: oosh-architecture.md (calling convention), hivemind.md, oosh.md
+- Also: log.md, debug.md, config.md, state.md, oo.md — the full set
+- The reading list in SKILL.md should include ALL docs, not just architecture
+
+## OOSH Architecture Standards (CRITICAL — PO directive 2026-03-11)
+These are the rules. Violations = FAIL in tests. Violations in code = bug report to expert.
+
+### Calling Convention
+- **Positional args ONLY, never --flags.** `scriptname method arg1 arg2` not `scriptname method --flag`
+- Sub-modes = separate methods: `hiveMind teams.migrate.fork` not `hiveMind teams.migrate --fork`
+- Methods: `scriptname.methodname()` with camelCase + dots
+- Private: `private.scriptname.helperName()`
+- Entry point: `scriptname.start() { source this; this.start "$@"; }` then `scriptname.start "$@"`
+
+### Naming Rules (MANDATORY)
+- Method names: `script.method` or `script.noun.verb` (dot-separated, camelCase)
+- Parameters: `<camelCase>` — NO dashes, NO underscores (dashes crash bash, underscores banned)
+- Completion functions: `script.method.completion.paramName()` — must match param name exactly
+- Local variables: `camelCase` — no underscores
+- Environment variables: `UPPER_SNAKE_CASE` (only exception to camelCase)
+- Script files: lowercase or camelCase (`hiveMind`, `claudeCode`, `otmux`)
+
+### Method Structure (MANDATORY for every public method)
+1. Signature with doc comment: `script.method() # <required> <?optional:default> # description`
+2. Completion function per completable parameter
+3. Object.verb naming pattern (`config.set`, `hiveMind.team.status`)
+
+### OOSH Wrappers Over Raw Commands
+- File checks: `check file.exists <path>` — not raw `find`/`stat`/`test -f`
+- Config values: `config set THRESHOLD 300` — never hardcode numbers
+- Error output: `error.log "message"` — human-readable sentences, never stack traces
+- Logging: `console.log`, `info.log`, `debug.log` at appropriate levels
+- tmux: `otmux` wrappers — never raw `tmux`
+- Claude: `claudeCode` wrappers — never raw `claude`
+- SSH: `ossh` wrappers — never raw `ssh`/`scp`
+
+### Result Communication
+- Functions return via `RETURN_VALUE` (numeric) and `RESULT` (string)
+- `create.result 0 "success message"` then `return $(result)`
+
+### Test Pattern
+- `source test.suite $*` inside test file (test file sources deps internally)
+- `test.case $level "description" command args`
+- `expect 0 "expected" "description"` or `expect.pass/fail "message"`
+- NEVER source OOSH scripts in Bash tool — only test.suite runs them as subprocess
+- Fixture sessions: `__test_name_$$` with teardown
+
+### What to Flag in Tests
+- `--flag` patterns in OOSH method interfaces = FAIL
+- Raw `find`/`stat`/`head`/`date` in OOSH scripts = FAIL
+- C-style `is_ghost=0/1` instead of OOSH variable patterns = FAIL
+- Hardcoded thresholds instead of config values = FAIL
+- Missing doc comments on public methods = FAIL
+- Missing completion functions for public params = FAIL
+
+### session.id returns --resume arg, NOT actual session ID (CRITICAL — 2026-03-11)
+- After `claudeCode fork <uuid> --fork-session`, the process shows `--resume <source-uuid>` in ps
+- `claudeCode session.id` reads the `--resume` arg from ps → returns the SOURCE uuid
+- The ACTUAL new session UUID is different — only visible via agent's `/status`
+- `otmux tree.detailed` also shows the source UUID (from ps args)
+- Confirmed during claudeCodeTeam creation: both otmuxTeam and claudeCodeTeam show same UUIDs
+- This is Issue 1 from PO bug report — session.id is architecturally broken for forked sessions

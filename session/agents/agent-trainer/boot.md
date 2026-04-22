@@ -2,7 +2,7 @@
 *Written by agent-trainer. If this says "Auto-generated" — something went wrong.*
 
 ## You are: agent-trainer
-## Pane: projectTeam:0.5
+## Pane: baseTeam:0.2
 ## Goal: IDLE — Phase A complete, Phase B deferred to next week (budget cap)
 
 ## What you just did:
