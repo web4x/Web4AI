@@ -48,7 +48,7 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
 #### **EPIC A: MODEL LAYER — claudeCode Lifecycle**
 
 - [ ] [Task A1: claudeCode MVC Boundary Audit](./task-a1-claudecode-mvc-boundary-audit.md)
-  **Priority:** 1 (CRITICAL - Foundation) **Status:** IN PROGRESS
+  **Priority:** 1 (CRITICAL - Foundation) **Status:** QA REVIEW
   - [x] [Task A1.1: Expert - Model Boundary Audit](./task-a1.1-expert-model-boundary-audit.md) — QA REVIEW: 68 methods, 14 View leaks, 4 Controller leaks. Findings at task-a1.1-findings.md
   - [x] [Task A1.2: Expert - View Leak Identification](./task-a1.2-expert-view-leak-identification.md) — DONE (delivered with A1.1)
   - [x] [Task A1.3: Tester - Boundary Violation Tests](./task-a1.3-tester-boundary-violation-tests.md) — commit 57d8a00
