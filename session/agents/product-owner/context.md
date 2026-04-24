@@ -1,6 +1,6 @@
 # Product Owner Context
 
-**Updated**: 2026-04-24 10:36
+**Updated**: 2026-04-24 19:16
 **Role**: product-owner
 **Pane**: ooshTeam:0.0 (forked PO for ooshTeam)
 **Parent PO**: TRONinterface:0.0 (TRON's interface — do not message there)
@@ -26,10 +26,12 @@
 - **D1.1**: DONE — tronMonitor add validation + prune
 - **C3.3**: Tester working — fixture-based sweep tests
 
-### Next After G1
-- A1.2 (View leak identification)
-- C3.2 (18-state test fixtures)
-- Epic F (scrumMaster CMM4 reliability)
+### Current State
+- **Expert**: CONTEXT LIMIT (1M full) — awaiting Tron decision. Last delivered: D1.10, B3.1, D2.1+D2.2, C3.2. F2 assigned but not started.
+- **Tester**: Active — working through backlog (G1.3, A2.3 done cb31d3f, continuing B1.3/B2.3/C3.3)
+- **SM**: TRONinterface:0.2 — needs periodic nudges, can't sustain loops (task #4)
+- **Remaining expert work**: F2, F3, E1 support
+- **Remaining tester work**: B1.3, B2.3, B3.2, C1.4, C3.3, D2.3, E1
 
 ## Key Learnings This Session
 - Subscription counts INPUT tokens only — sustained output is FREE
