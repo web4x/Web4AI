@@ -1,5 +1,22 @@
 # OOSH Expert Learnings
 
+## Commit Rule (SM directive 2026-04-24)
+
+**Every task = one commit, one-liner message, no uncommitted work.**
+
+Format: `<what changed> (ref: task-<id>-<name>.md)`
+
+Example:
+```
+otmux pane.lock auto-unlock before relock (ref: task-b3.1-expert-pane-lock-idempotent.md)
+```
+
+**Not** the multi-paragraph commit messages with Co-Authored-By tags I used earlier in the sprint. Details belong in the task file, not the commit message.
+
+**Checklist before reporting task done:**
+1. `git status -sb` — must show only `## branch` line (no modified/untracked files I created)
+2. `git log -1 --oneline` — most recent commit matches the task
+
 ## Sprint 0 Audit Insights (2026-04-24)
 
 **MVC boundary rule for Model purity:**
