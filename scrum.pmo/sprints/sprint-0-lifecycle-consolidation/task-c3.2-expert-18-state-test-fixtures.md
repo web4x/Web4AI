@@ -4,14 +4,31 @@
 [task:uuid:e4434cf3-d429-4b57-a615-00750e946d43]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement (reviewed sweep.detect line 4531 — 18 states + variants)
+  - [x] creating test cases (25 fixtures produced)
+  - [x] implementing (commit afc57d3)
+  - [x] testing (fixtures delivered for C3.3 tester to execute)
+- [x] QA Review
+- [x] Done
+
+## Deliverable
+
+Commit `afc57d3`. Location: `/Users/donges/oosh/test/test.data/sweep.detect/`
+
+**25 fixtures:**
+- 18 canonical states, one `.txt` file each
+- 7 edge-case variants for the 3 false-positive-prone states:
+  - permission: edit-variant, proceed-variant, **false-positive-prose** (text without ❯ menu)
+  - rate-limit: 529-Overloaded variant, **false-positive-source** (detector's own grep regex displayed)
+  - subscription-limit: billing-cap variant, **false-positive-source**
+
+**README.md maps each fixture to its expected `status|action|severity|detail` output** and documents the prose-scrub rationale (why false-positive fixtures must NOT trigger their apparent state).
+
+## Key insight documented for C3.3
+
+The fixture harness via `load-buffer` + `paste-buffer` is flaky — tmux reflow and pane.capture line handling don't guarantee the fixture content is preserved verbatim in the pane. A cleaner future refactor would expose a testable entry point on `private.hiveMind.sweep.detect` that accepts content via stdin instead of pane-capture. Flagged in README as future work.
 
 ## Traceability
 - up

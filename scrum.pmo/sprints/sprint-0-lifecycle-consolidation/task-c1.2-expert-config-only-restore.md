@@ -4,14 +4,27 @@
 [task:uuid:45074dfb-f21d-4a17-bb39-e2fff3d0fb28]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement (design complete)
+  - [x] creating test cases (8 assertions for C1.4 in shared findings)
+  - [x] implementing (DESIGN ONLY — code changes deferred per sprint rule: document before implement)
+  - [ ] testing (awaits implementation + tester C1.4)
+- [x] QA Review (design + test criteria ready)
+- [ ] Done (pending implementation task + C1.4 tester)
+
+## Deliverable
+**Design:** [task-c1-findings.md](./task-c1-findings.md) — "C1.2 Config-Only Restore Design" section
+
+**Proposed cold-restart flow:**
+1. Read snapshot → group by session
+2. Per session: `otmux layout.restore <session>` (B2 — exact geometry)
+3. Per agent: skip if shell-kind; else `claudeCode fork/join.byID <uuid>` with saved cwd + model flag
+4. Poll `claudeCode process.running` instead of hardcoded `sleep 5`
+5. Register team in `hivemind.teams.env`
+6. Idempotency: if session exists with expected layout, skip layout restore, only re-apply titles + registry
+
+**Split of responsibility** clearly documented — each MVC layer owns its scope, Controller composes.
 
 ## Traceability
 - up

@@ -39,44 +39,49 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
 
 #### **EPIC G: CRITICAL FIXES (Priority 0 — before all other work)**
 
-- [ ] Task G1: claudeCode context.read hardcodes 200k — BROKEN for 1M agents
-  **Priority:** 0 (BLOCKER - SM gives wrong alerts) **Status:** PLANNED
-  - [ ] Task G1.1: Expert — fix 4x hardcoded 200000 in claudeCode (lines 1386, 1643, 1720, 1725) + 180000 threshold (line 1723). Detect model from JSONL `"model"` field and set max_tokens: opus[1m]=1000000, opus=200000, sonnet=200000, haiku=200000
-  - [ ] Task G1.2: Expert — fix velocity calculator same bug (lines 1643, 1720, 1725)
-  - [ ] Task G1.3: Tester — test context.read returns correct % for 1M agent (should be ~60% not -226%)
+- [ ] [Task G1: claudeCode context.read hardcodes 200k — BROKEN for 1M agents](./task-g1-claudecode-context-read-1m-fix.md)
+  **Priority:** 0 (BLOCKER - SM gives wrong alerts) **Status:** IN PROGRESS
+  - [x] [Task G1.1: Expert - Fix hardcoded 200k max_tokens](./task-g1.1-expert-fix-hardcoded-200k.md) — DONE ca49445 + ae002cd (DRY constants)
+  - [x] [Task G1.2: Expert - Fix velocity calculator](./task-g1.2-expert-fix-velocity-calculator.md) — DONE bundled in ca49445 + ae002cd
+  - [ ] [Task G1.3: Tester - Test context.read for 1M agent](./task-g1.3-tester-test-context-read-1m.md)
 
 #### **EPIC A: MODEL LAYER — claudeCode Lifecycle**
 
 - [ ] [Task A1: claudeCode MVC Boundary Audit](./task-a1-claudecode-mvc-boundary-audit.md)
   **Priority:** 1 (CRITICAL - Foundation) **Status:** IN PROGRESS
   - [x] [Task A1.1: Expert - Model Boundary Audit](./task-a1.1-expert-model-boundary-audit.md) — QA REVIEW: 68 methods, 14 View leaks, 4 Controller leaks. Findings at task-a1.1-findings.md
-  - [ ] [Task A1.2: Expert - View Leak Identification](./task-a1.2-expert-view-leak-identification.md)
+  - [x] [Task A1.2: Expert - View Leak Identification](./task-a1.2-expert-view-leak-identification.md) — DONE (delivered with A1.1)
   - [x] [Task A1.3: Tester - Boundary Violation Tests](./task-a1.3-tester-boundary-violation-tests.md) — commit 57d8a00
 
 - [ ] [Task A2: claudeCode Session Portability](./task-a2-claudecode-session-portability.md)
-  **Priority:** 1 (CRITICAL - Cold Restart) **Status:** PLANNED
-  - [ ] [Task A2.1: Expert - Session Operations Without tmux](./task-a2.1-expert-session-without-tmux.md)
-  - [ ] [Task A2.2: Expert - UUID Resolution Without tmux](./task-a2.2-expert-uuid-resolution-without-tmux.md)
+  **Priority:** 1 (CRITICAL - Cold Restart) **Status:** QA REVIEW (pending A2.3)
+  - [x] [Task A2.1: Expert - Session Operations Without tmux](./task-a2.1-expert-session-without-tmux.md) — DONE commit 1dc8b91
+  - [x] [Task A2.2: Expert - UUID Resolution Without tmux](./task-a2.2-expert-uuid-resolution-without-tmux.md) — DONE commit 1dc8b91
   - [ ] [Task A2.3: Tester - Portability Tests](./task-a2.3-tester-portability-tests.md)
 
 #### **EPIC B: VIEW LAYER — otmux Lifecycle**
 
 - [ ] [Task B1: otmux MVC Boundary Audit](./task-b1-otmux-mvc-boundary-audit.md)
-  **Priority:** 2 (HIGH - Layer Purity) **Status:** PLANNED
-  - [ ] [Task B1.1: Expert - Controller/Model Leak Identification](./task-b1.1-expert-controller-model-leak-identification.md)
-  - [ ] [Task B1.2: Expert - Sender Prefix Layer Decision](./task-b1.2-expert-sender-prefix-layer-decision.md)
+  **Priority:** 2 (HIGH - Layer Purity) **Status:** QA REVIEW (pending B1.3)
+  - [x] [Task B1.1: Expert - Controller/Model Leak Identification](./task-b1.1-expert-controller-model-leak-identification.md) — DONE
+  - [x] [Task B1.2: Expert - Sender Prefix Layer Decision](./task-b1.2-expert-sender-prefix-layer-decision.md) — DONE (prefix stays in otmux, no double-prefix)
   - [ ] [Task B1.3: Tester - Boundary Violation Tests](./task-b1.3-tester-boundary-violation-tests.md)
 
 - [ ] [Task B2: otmux Layout Persistence](./task-b2-otmux-layout-persistence.md)
-  **Priority:** 2 (HIGH - Cold Restart) **Status:** PLANNED
-  - [ ] [Task B2.1: Expert - Layout Save/Restore Design](./task-b2.1-expert-layout-save-restore-design.md)
-  - [ ] [Task B2.2: Expert - Pane Title/Layout Persistence](./task-b2.2-expert-pane-title-layout-persistence.md)
+  **Priority:** 2 (HIGH - Cold Restart) **Status:** QA REVIEW (pending B2.3)
+  - [x] [Task B2.1: Expert - Layout Save/Restore Design](./task-b2.1-expert-layout-save-restore-design.md) — DONE
+  - [x] [Task B2.2: Expert - Pane Title/Layout Persistence](./task-b2.2-expert-pane-title-layout-persistence.md) — DONE
   - [ ] [Task B2.3: Tester - Server Restart Recovery Tests](./task-b2.3-tester-server-restart-recovery-tests.md)
+
+- [ ] Task B3: otmux pane.lock idempotent relock
+  **Priority:** 2 (HIGH - silently fails) **Status:** QA REVIEW (pending B3.2)
+  - [x] Task B3.1: Expert - pane.lock idempotent — commit 75ab018
+  - [ ] Task B3.2: Tester - test: lock → relock with different title → verify new title applied without manual unlock
 
 #### **EPIC C: CONTROLLER LAYER — hiveMind Lifecycle**
 
 - [ ] [Task C1: hiveMind Cold-Start Restore](./task-c1-hivemind-cold-start-restore.md)
-  **Priority:** 1 (CRITICAL - Primary Deliverable) **Status:** PLANNED
+  **Priority:** 1 (CRITICAL - Primary Deliverable) **Status:** QA REVIEW (pending C1.4)
   - [ ] [Task C1.1: Expert - Restore Audit](./task-c1.1-expert-restore-audit.md)
   - [ ] [Task C1.2: Expert - Config-Only Restore](./task-c1.2-expert-config-only-restore.md)
   - [ ] [Task C1.3: Expert - Save Completeness](./task-c1.3-expert-save-completeness.md)
@@ -89,23 +94,30 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
   - [x] [Task C2.3: Tester - DRY Pattern Tests](./task-c2.3-tester-dry-pattern-tests.md) — commit 57d8a00
 
 - [ ] [Task C3: sweep.detect Fixture Tests](./task-c3-sweep-detect-fixture-tests.md)
-  **Priority:** 2 (HIGH - Monitoring Reliability) **Status:** IN PROGRESS
-  - [x] [Task C3.1: Expert - Remaining False Positive Audit](./task-c3.1-expert-remaining-false-positive-audit.md) — commits eca047a (prose-scrub), b3a63ae (DRY detection), bb76bb6 (edit-dialog)
-  - [ ] [Task C3.2: Expert - 18-State Test Fixtures](./task-c3.2-expert-18-state-test-fixtures.md)
-  - [ ] [Task C3.3: Tester - Fixture-Based Detection Tests](./task-c3.3-tester-fixture-based-detection-tests.md)
+  **Priority:** 2 (HIGH - Monitoring Reliability) **Status:** QA REVIEW (pending C3.3)
+  - [x] [Task C3.1: Expert - Remaining False Positive Audit](./task-c3.1-expert-remaining-false-positive-audit.md) — commits eca047a, b3a63ae, bb76bb6
+  - [x] [Task C3.2: Expert - 18-State Test Fixtures](./task-c3.2-expert-18-state-test-fixtures.md) — commit afc57d3, 25 fixtures (18 states + 7 edge cases)
+  - [ ] [Task C3.3: Tester - Fixture-Based Detection Tests](./task-c3.3-tester-fixture-based-detection-tests.md) — NOTE: tmux harness flaky, may need stdin entry point
 
 #### **EPIC D: MONITOR LAYER — tronMonitor Lifecycle**
 
 - [ ] [Task D1: tronMonitor Lifecycle Review](./task-d1-tronmonitor-lifecycle-review.md)
-  **Priority:** 3 (NORMAL - Tron UX) **Status:** IN PROGRESS
+  **Priority:** 2 (HIGH - BLOCKS Tron monitoring) **Status:** IN PROGRESS
   - [x] [Task D1.1: Expert - DRY and Validation Audit](./task-d1.1-expert-dry-validation-audit.md) — commit 0594575 (add validation + prune)
   - [ ] [Task D1.2: Expert - Auto-Sync with hiveMind Registry](./task-d1.2-expert-auto-sync-hivemind-registry.md)
   - [ ] [Task D1.3: Expert - Idempotent Setup](./task-d1.3-expert-idempotent-setup.md)
+  - [x] Task D1.10: Expert - tronMonitor rewrite with Tron-proven recipe — commit 0f9330b. Also fixes SM segfault (screen.ensure removed from auto paths)
+  - [x] Task D1.4: Expert - attach -r enforcement — commit e9723ff
+  - [x] Task D1.5: Expert - window-size largest on team sessions — commit e9723ff
+  - [x] Task D1.6: Expert - setup spec (prior commits 26c4fdf/a030f68/cd23b6e verified)
+  - [x] Task D1.7: Expert - prune EPERM + __test_* cleanup (prior commits verified)
+  - [x] Task D1.8: Expert - switch screen select (prior commits verified)
+  - [x] Task D1.9: Expert - add validates + uses -r (prior commits verified)
 
 - [ ] [Task D2: tronMonitor-hiveMind Integration](./task-d2-tronmonitor-hivemind-integration.md)
-  **Priority:** 3 (NORMAL - Event Wiring) **Status:** PLANNED
-  - [ ] [Task D2.1: Expert - team.register Triggers tronMonitor.add](./task-d2.1-expert-register-triggers-add.md)
-  - [ ] [Task D2.2: Expert - team.remove Triggers tronMonitor.remove](./task-d2.2-expert-remove-triggers-remove.md)
+  **Priority:** 3 (NORMAL - Event Wiring) **Status:** QA REVIEW (pending D2.3)
+  - [x] [Task D2.1: Expert - team.register Triggers tronMonitor.add](./task-d2.1-expert-register-triggers-add.md) — commit 597f93e
+  - [x] [Task D2.2: Expert - team.remove Triggers tronMonitor.remove](./task-d2.2-expert-remove-triggers-remove.md) — commit 597f93e
   - [ ] [Task D2.3: Tester - Integration Tests](./task-d2.3-tester-integration-tests.md)
 
 #### **EPIC F: SCRUMMASTER CMM4 RELIABILITY**

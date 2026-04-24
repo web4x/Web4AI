@@ -10,14 +10,27 @@
 - Subtasks must be ordered to avoid blocking dependencies.
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement
+  - [x] creating test cases (8 assertions in shared findings for B2.3)
+  - [x] implementing (5 methods: layout.save/restore/list/show/delete)
+  - [x] testing (save/kill/restore round-trip + --force guard verified)
+- [x] QA Review
+- [ ] Done (pending B2.3 tester)
+
+## Deliverable
+**Implementation:** 145 lines added to `/Users/donges/oosh/otmux` (new LAYOUT PERSISTENCE section)
+**Findings:** [task-b2-findings.md](./task-b2-findings.md) (combined B2.1 + B2.2)
+**Methods shipped:**
+- `otmux layout.save <session>` — serialize layout + titles + cwds
+- `otmux layout.restore <session> <?--force>` — recreate from saved
+- `otmux layout.list` — table of saved layouts
+- `otmux layout.show <session>` — cat saved file
+- `otmux layout.delete <session>` — remove saved file
+
+**View-purity preserved:** zero claudeCode/hiveMind/HIVEMIND_* refs in new code.
+**Unblocks C1:** hiveMind cold-start restore can compose `otmux layout.restore` + `hiveMind teams.restore`.
 
 ## Traceability
 - Source: Sprint 0 - Lifecycle Consolidation, Epic B (View Layer)

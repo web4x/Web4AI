@@ -4,14 +4,26 @@
 [task:uuid:533c88b4-0d66-4c39-8f37-010192604d39]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement
+  - [x] creating test cases (6 test assertions in shared findings for B1.3)
+  - [x] implementing (audit only; 3 fixes proposed for later implementation tasks)
+  - [x] testing (grep-based audit complete)
+- [x] QA Review
+- [ ] Done (pending B1.3 tester)
+
+## Deliverable
+**Findings:** [task-b1-findings.md](./task-b1-findings.md)
+
+**Leaks found:** 5 discrete (2 HIGH, 2 MEDIUM, 1 ACCEPTED)
+- HIGH: `private.otmux.send.prefix` reads HIVEMIND_ROLE / hivemind.roles.env
+- HIGH: `otmux.tronMonitor.setup` calls `private.hiveMind.ensure.pane`
+- MEDIUM: `otmux.tree` + `tree.detailed` call `claudeCode process.running` / `version`
+- MEDIUM: `otmux.tree.detailed` calls `hiveMind protected.agents.discover`
+- ACCEPTED: `otmux.session.rename` fires observer `hiveMind protected.session.renamed` (documented as intentional)
+
+**Metric:** 95%+ of otmux (2306 lines) is already pure View. Concentrated leaks in 3 methods.
 
 ## Traceability
 - up

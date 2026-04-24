@@ -311,3 +311,6 @@ When team idles, don't guess what to assign. Ask the task agent what's still und
 - tronMonitor is the OOSH tool for monitoring — uses GNU screen in TRONinterface:0.3. DO NOT use raw team.loop from internal bash or Monitor tool. DO NOT use TRONinterface:0.2 (bare zsh, not the monitor pane)
 - sweep.detect false positives: matches code content in scrollback (rate-limit comments, subscription-limit comments, menu text). Reports ACTIVE when edit-approval dialog is showing (fixed in bb76bb6 but code-content FPs remain)
 - Multi-team resolve landed (03149ef) — hiveMind.resolve now searches ALL registered teams, no team.switch needed. 450x faster via file-grep vs per-session live.discover
+- Role separation (Tron directive): SM checks, monitors, suggests, handles impediments. PO assigns sprint tasks based on priority and dependencies. TRON reviews QA Review state. SM does NOT assign tasks — reports idle agents to PO, PO decides.
+- Before stopping/pausing: ALWAYS check SM health first. SM gets stuck on permission prompts — unblock before leaving. A stuck SM means no monitoring while PO is away.
+- PO and SM are a 42 team — neither alone can self-care, together both can. SM monitors PO (unblocks permissions), PO monitors SM (unblocks + restarts). Peer measurement.

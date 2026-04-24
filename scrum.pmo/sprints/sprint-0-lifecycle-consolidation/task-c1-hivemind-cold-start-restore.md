@@ -10,14 +10,26 @@
 - Subtasks must be ordered to avoid blocking dependencies.
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement (full audit + design complete)
+  - [x] creating test cases (8 assertions for C1.4 tester)
+  - [~] implementing (AUDIT + DESIGN done; CODE CHANGES queued for next implementation task)
+  - [ ] testing (pending implementation + C1.4 tester)
+- [x] QA Review (audit + design + test criteria ready)
+- [ ] Done (pending implementation + C1.4 tester)
+
+## Deliverable
+**Findings:** [task-c1-findings.md](./task-c1-findings.md) — combined C1.1 + C1.2 + C1.3
+
+**Status matrix (current vs target after implementation):**
+- 13 capabilities analyzed
+- 4 currently working (save role+UUID+title, explicit save, basic restore, session re-attach via UUID)
+- 9 missing or ad-hoc (layout geometry, cwd, model flag, team metadata, bootstrap flag, kind classification, auto-save triggers, idempotency, polling vs sleeps)
+
+**Recommended implementation order** (5 steps) queued for next task once C1.4 tester coverage is defined. Per sprint rule: "document leaks, fixes come after tester coverage."
+
+**B2 integration ready** — the design leverages the layout.save/restore methods just shipped in commit ec7fe28.
 
 ## Traceability
 - Source: Sprint 0 - Lifecycle Consolidation, Epic C (Controller Layer)

@@ -70,8 +70,26 @@ Every 10 minutes:
 - If an agent is tight on context: send them a reminder via `hiveMind send.message <agent> "SM: Context at X%. Run /context now to save your state."` — do NOT compact, just remind.
 
 ## PO Unblock
-- You ARE allowed to unblock the product-owner if they are stuck on a PERMISSION prompt.
+- You ARE allowed to unblock any PO if they are stuck on a PERMISSION prompt.
 - Same rules apply: safe prompts → unblock. Destructive → don't.
+
+## PO Hierarchy
+- **oosh-po** (ooshTeam:0.0) — manages ooshTeam. Report oosh team issues here.
+- **web4-po** (web4team:0.0) — manages web4team. Report web4 team issues here.
+- **TRONinterface:0.0** — master operator. Escalate only when PO can't resolve.
+- To report: `hiveMind send.message oosh-po "SM: <message>"` or `hiveMind send.message web4-po "SM: <message>"`
+
+## Idle Agent Reporting — NEVER ASSIGN TASKS
+- ooshTeam idle agents → report to `oosh-po` (ooshTeam:0.0): `hiveMind send.message oosh-po "SM: <agent> idle, ready for assignment"`
+- web4team idle agents → report to `web4-po` (web4team:0.0): `hiveMind send.message web4-po "SM: <agent> idle, ready for assignment"`
+- NEVER send messages to TRONinterface:0.0 — that is Tron's pane (human operator), not an agent.
+- DO NOT assign sprint tasks. That is each team's PO job.
+- DO NOT read planning.md to pick next tasks. Just report idle state.
+
+## Git Commit Rule
+- Every agent must `git commit` after each task with a one-liner referencing the task file.
+- During sweeps: if an agent is COMPLETED/idle and recent work is uncommitted, remind them:
+  `hiveMind send.message <agent> "SM: Remember to git commit your work with a one-liner referencing the task file."`
 
 ## Subscription Velocity Log
 Keep a mental tally:

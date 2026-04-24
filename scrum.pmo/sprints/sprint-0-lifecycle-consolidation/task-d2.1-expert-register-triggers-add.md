@@ -4,14 +4,21 @@
 [task:uuid:6da05389-e22a-4927-8287-f4c3f5ffc9d2]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement
+  - [x] creating test cases
+  - [x] implementing (commit 597f93e)
+  - [x] testing (live: register scratch_d2_team → added as window 21)
+- [x] QA Review
+- [x] Done
+
+## Deliverable
+Commit `597f93e`: hiveMind.team.register now fires `tronMonitor add $session` after
+registration succeeds. Soft-fail — `command -v tronMonitor >/dev/null && ... || info.log`
+— monitoring is enhancement, not prerequisite.
+
+Observer pattern, same shape as otmux.session.rename → hiveMind.protected.session.renamed.
 
 ## Traceability
 - up

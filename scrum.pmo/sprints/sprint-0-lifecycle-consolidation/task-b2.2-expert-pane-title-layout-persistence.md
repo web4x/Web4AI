@@ -4,14 +4,23 @@
 [task:uuid:10a9f8e3-fbe4-4c01-ba0a-bea413090742]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement
+  - [x] creating test cases
+  - [x] implementing
+  - [x] testing (round-trip verified: titles exactly preserved)
+- [x] QA Review
+- [ ] Done (pending B2.3 tester)
+
+## Deliverable
+Title save/restore integrated into B2.1's `layout.save` + `layout.restore` (same commit).
+- Capture: `tmux display-message -p -t <pane> '#{pane_title}'`
+- Restore: `tmux select-pane -t <pane> -T '<title>'`
+- Stored as `OTMUX_WINDOW_<W>_PANE_<P>_TITLE` env var
+- UTF-8 preserved (verified with live ooshTeam: ✳ product-owner, ✳ oosh-tester)
+
+Full details in [task-b2-findings.md](./task-b2-findings.md).
 
 ## Traceability
 - up

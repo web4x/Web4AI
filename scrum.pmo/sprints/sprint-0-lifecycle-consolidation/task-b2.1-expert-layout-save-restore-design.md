@@ -4,14 +4,19 @@
 [task:uuid:b2198afb-ffa9-4875-a2f8-f01eb4f8efa8]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement (6 design decisions documented in findings)
+  - [x] creating test cases (8 assertions in shared findings for B2.3)
+  - [x] implementing (methods written, format chosen, docs header added to code)
+  - [x] testing (save/kill/restore round-trip verified, --force guard verified)
+- [x] QA Review
+- [ ] Done (pending B2.3 tester)
+
+## Deliverable
+**Findings:** [task-b2-findings.md](./task-b2-findings.md) — design + implementation combined
+**Format:** env-file (OOSH convention) at `~/config/otmux/<session>.layout.env`
+**Key design:** uses tmux native `#{window_layout}` string for geometry — no custom math
 
 ## Traceability
 - up

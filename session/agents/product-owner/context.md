@@ -2,9 +2,9 @@
 
 **Updated**: 2026-04-24 10:36
 **Role**: product-owner
-**Pane**: TRONinterface:0.0 (MacStudio.native)
-**PO Shell**: TRONinterface:0.1
-**SM**: TRONinterface:0.2 (Sonnet, sweep monitor)
+**Pane**: ooshTeam:0.0 (forked PO for ooshTeam)
+**Parent PO**: TRONinterface:0.0 (TRON's interface — do not message there)
+**SM**: TRONinterface:0.2 (Sonnet, reports to ME at ooshTeam:0.0)
 **tronMonitor**: TRONinterface:0.3 (GNU screen)
 
 ## Teams
@@ -68,3 +68,4 @@
 - Claude agents cannot loop — use hiveMind watchdog or /loop for persistent monitoring
 - Subscription counts INPUT only — sustained output (accept-edits) is FREE
 - NEVER ASSUME — ALWAYS MEASURE
+- After each task: git commit with one-liner referencing task file. Format: '<what changed> (ref: task-<id>.md)'. No uncommitted work. Enforce on every assignment.

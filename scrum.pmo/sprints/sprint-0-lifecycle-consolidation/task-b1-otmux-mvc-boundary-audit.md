@@ -10,14 +10,25 @@
 - Subtasks must be ordered to avoid blocking dependencies.
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement
+  - [x] creating test cases (test-handoff criteria defined for B1.3)
+  - [x] implementing (audit + decision only; code fixes deferred to implementation tasks)
+  - [x] testing (grep audit, layer analysis)
+- [x] QA Review
+- [ ] Done (pending B1.3 tester)
+
+## Deliverable
+**Findings:** [task-b1-findings.md](./task-b1-findings.md) — combined B1.1 + B1.2
+
+**Summary:**
+- 5 leaks catalogued, fix priorities assigned
+- B1.2 decision: Option B (Controller wraps View — hiveMind.send.message builds prefix)
+- Target view surface confirmed: ~95% of 2306 lines are already pure tmux wrappers
+- Metrics table before/after for tester to validate
+
+**Related tasks:** B1.3 (tester coverage), future implementation tasks to execute the 5 fix priorities.
 
 ## Traceability
 - Source: Sprint 0 - Lifecycle Consolidation, Epic B (View Layer)

@@ -4,14 +4,21 @@
 [task:uuid:5f1121f2-9718-4e3f-814a-0ab1886ec2ca]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement
+  - [x] creating test cases
+  - [x] implementing (commit 597f93e)
+  - [x] testing (live: remove scratch_d2_team → window 21 cleaned from tronMonitor.env)
+- [x] QA Review
+- [x] Done
+
+## Deliverable
+Commit `597f93e`: hiveMind.team.remove now fires `tronMonitor remove $session` BEFORE
+removing from the registry (ordering matters — tronMonitor.remove needs findWindow to
+resolve, which means the team must still be in registry at that moment). Soft-fail.
+
+Verified round-trip: register → tronMonitor env gets entry; remove → entry cleaned.
 
 ## Traceability
 - up

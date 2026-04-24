@@ -4,14 +4,21 @@
 [task:uuid:9c20f03d-6a2d-4e7a-b1a5-b1f26148c216]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement
+  - [x] creating test cases (8 assertions for C1.4)
+  - [x] implementing (audit only — no code changes this task)
+  - [x] testing (method inventory, state file survey, dependency map)
+- [x] QA Review
+- [ ] Done (pending C1.4 tester)
+
+## Deliverable
+**Findings:** [task-c1-findings.md](./task-c1-findings.md) (combined C1.1 + C1.2 + C1.3)
+- 8 existing restore-related methods catalogued with cold-restart suitability
+- 6 state files inventoried (roles/sessions/teams/forks/snapshot/NEW layouts from B2)
+- Dependency map across claudeCode (Model) + otmux (View) + self (Controller)
+- **Verdict:** all pieces exist; gap is composition — teams.save/restore doesn't use B2's new layout methods
 
 ## Traceability
 - up
