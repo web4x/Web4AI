@@ -37,13 +37,21 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
 
 ### **WEEK 1: MODEL + CONTROLLER BOUNDARIES**
 
+#### **EPIC G: CRITICAL FIXES (Priority 0 — before all other work)**
+
+- [ ] Task G1: claudeCode context.read hardcodes 200k — BROKEN for 1M agents
+  **Priority:** 0 (BLOCKER - SM gives wrong alerts) **Status:** PLANNED
+  - [ ] Task G1.1: Expert — fix 4x hardcoded 200000 in claudeCode (lines 1386, 1643, 1720, 1725) + 180000 threshold (line 1723). Detect model from JSONL `"model"` field and set max_tokens: opus[1m]=1000000, opus=200000, sonnet=200000, haiku=200000
+  - [ ] Task G1.2: Expert — fix velocity calculator same bug (lines 1643, 1720, 1725)
+  - [ ] Task G1.3: Tester — test context.read returns correct % for 1M agent (should be ~60% not -226%)
+
 #### **EPIC A: MODEL LAYER — claudeCode Lifecycle**
 
 - [ ] [Task A1: claudeCode MVC Boundary Audit](./task-a1-claudecode-mvc-boundary-audit.md)
-  **Priority:** 1 (CRITICAL - Foundation) **Status:** PLANNED
-  - [ ] [Task A1.1: Expert - Model Boundary Audit](./task-a1.1-expert-model-boundary-audit.md)
+  **Priority:** 1 (CRITICAL - Foundation) **Status:** IN PROGRESS
+  - [x] [Task A1.1: Expert - Model Boundary Audit](./task-a1.1-expert-model-boundary-audit.md) — QA REVIEW: 68 methods, 14 View leaks, 4 Controller leaks. Findings at task-a1.1-findings.md
   - [ ] [Task A1.2: Expert - View Leak Identification](./task-a1.2-expert-view-leak-identification.md)
-  - [ ] [Task A1.3: Tester - Boundary Violation Tests](./task-a1.3-tester-boundary-violation-tests.md)
+  - [x] [Task A1.3: Tester - Boundary Violation Tests](./task-a1.3-tester-boundary-violation-tests.md) — commit 57d8a00
 
 - [ ] [Task A2: claudeCode Session Portability](./task-a2-claudecode-session-portability.md)
   **Priority:** 1 (CRITICAL - Cold Restart) **Status:** PLANNED
@@ -74,23 +82,23 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
   - [ ] [Task C1.3: Expert - Save Completeness](./task-c1.3-expert-save-completeness.md)
   - [ ] [Task C1.4: Tester - Full Cycle Test](./task-c1.4-tester-full-cycle-test.md)
 
-- [ ] [Task C2: hiveMind DRY Remaining Audit](./task-c2-hivemind-dry-remaining-audit.md)
-  **Priority:** 2 (HIGH - Code Quality) **Status:** PLANNED
-  - [ ] [Task C2.1: Expert - Inline UUID Discovery Grep](./task-c2.1-expert-inline-uuid-discovery-grep.md)
-  - [ ] [Task C2.2: Expert - Raw tmux Call Grep](./task-c2.2-expert-raw-tmux-call-grep.md)
-  - [ ] [Task C2.3: Tester - DRY Pattern Tests](./task-c2.3-tester-dry-pattern-tests.md)
+- [x] [Task C2: hiveMind DRY Remaining Audit](./task-c2-hivemind-dry-remaining-audit.md)
+  **Priority:** 2 (HIGH - Code Quality) **Status:** QA REVIEW
+  - [x] [Task C2.1: Expert - Inline UUID Discovery Grep](./task-c2.1-expert-inline-uuid-discovery-grep.md) — commit 02b4070 (session.current consolidation)
+  - [x] [Task C2.2: Expert - Raw tmux Call Grep](./task-c2.2-expert-raw-tmux-call-grep.md) — pre-sprint DRY audit confirmed zero raw tmux
+  - [x] [Task C2.3: Tester - DRY Pattern Tests](./task-c2.3-tester-dry-pattern-tests.md) — commit 57d8a00
 
 - [ ] [Task C3: sweep.detect Fixture Tests](./task-c3-sweep-detect-fixture-tests.md)
-  **Priority:** 2 (HIGH - Monitoring Reliability) **Status:** PLANNED
-  - [ ] [Task C3.1: Expert - Remaining False Positive Audit](./task-c3.1-expert-remaining-false-positive-audit.md)
+  **Priority:** 2 (HIGH - Monitoring Reliability) **Status:** IN PROGRESS
+  - [x] [Task C3.1: Expert - Remaining False Positive Audit](./task-c3.1-expert-remaining-false-positive-audit.md) — commits eca047a (prose-scrub), b3a63ae (DRY detection), bb76bb6 (edit-dialog)
   - [ ] [Task C3.2: Expert - 18-State Test Fixtures](./task-c3.2-expert-18-state-test-fixtures.md)
   - [ ] [Task C3.3: Tester - Fixture-Based Detection Tests](./task-c3.3-tester-fixture-based-detection-tests.md)
 
 #### **EPIC D: MONITOR LAYER — tronMonitor Lifecycle**
 
 - [ ] [Task D1: tronMonitor Lifecycle Review](./task-d1-tronmonitor-lifecycle-review.md)
-  **Priority:** 3 (NORMAL - Tron UX) **Status:** PLANNED
-  - [ ] [Task D1.1: Expert - DRY and Validation Audit](./task-d1.1-expert-dry-validation-audit.md)
+  **Priority:** 3 (NORMAL - Tron UX) **Status:** IN PROGRESS
+  - [x] [Task D1.1: Expert - DRY and Validation Audit](./task-d1.1-expert-dry-validation-audit.md) — commit 0594575 (add validation + prune)
   - [ ] [Task D1.2: Expert - Auto-Sync with hiveMind Registry](./task-d1.2-expert-auto-sync-hivemind-registry.md)
   - [ ] [Task D1.3: Expert - Idempotent Setup](./task-d1.3-expert-idempotent-setup.md)
 
@@ -99,6 +107,26 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
   - [ ] [Task D2.1: Expert - team.register Triggers tronMonitor.add](./task-d2.1-expert-register-triggers-add.md)
   - [ ] [Task D2.2: Expert - team.remove Triggers tronMonitor.remove](./task-d2.2-expert-remove-triggers-remove.md)
   - [ ] [Task D2.3: Tester - Integration Tests](./task-d2.3-tester-integration-tests.md)
+
+#### **EPIC F: SCRUMMASTER CMM4 RELIABILITY**
+
+- [ ] [Task F1: scrumMaster subscription velocity tracking](./task-f1-scrummaster-subscription-velocity.md)
+  **Priority:** 2 (HIGH - Token Management) **Status:** PLANNED
+  - [ ] Task F1.1: Expert — add velocity.log method: store 5h% with timestamp, calculate burn rate per 10-min window
+  - [ ] Task F1.2: Expert — add velocity.alert: if burn >15%/10min, output warning with rate
+  - [ ] Task F1.3: Tester — test velocity calculation with mock data
+
+- [ ] [Task F2: sweep.detect false-positive hardening](./task-f2-sweep-detect-false-positive-hardening.md)
+  **Priority:** 2 (HIGH - Monitoring Reliability) **Status:** PLANNED
+  - [ ] Task F2.1: Expert — prose-scrub must strip ALL comment patterns (# and // and --)
+  - [ ] Task F2.2: Expert — add test fixtures for each known false-positive pattern (code comments, menu text, preamble)
+  - [ ] Task F2.3: Tester — regression tests: feed code-content pane captures, verify no false triggers
+
+- [ ] [Task F3: scrumMaster subscription API resilience](./task-f3-scrummaster-subscription-api-resilience.md)
+  **Priority:** 3 (NORMAL - Reliability) **Status:** PLANNED
+  - [ ] Task F3.1: Expert — handle API rate_limit_error gracefully: return cached value with staleness warning
+  - [ ] Task F3.2: Expert — add subscription.cache.age method to show seconds since last fresh read
+  - [ ] Task F3.3: Tester — test with simulated API failure
 
 #### **EPIC E: INTEGRATION — Full Lifecycle Test**
 

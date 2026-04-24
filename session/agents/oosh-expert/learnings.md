@@ -1,5 +1,43 @@
 # OOSH Expert Learnings
 
+## Sprint 0 Audit Insights (2026-04-24)
+
+**MVC boundary rule for Model purity:**
+- Take data, not panes (`<uuid>`, `<jsonlFile>`, `<pid>` — NEVER `<pane>`)
+- Return data, never send (no `otmux send*`)
+- Read-only on shared state (may read `hivemind.sessions.env` as cache; never write)
+- Observable not imperative (no `alert`/`notify`/push-into-pane methods)
+- Work without `$TMUX` — plain bash callable
+
+**Two-method split pattern for leaks:**
+- Old: `claudeCode.foo <pane>` (View-coupled)
+- New:
+  - Model: `claudeCode.foo.byUuid <uuid>` OR `claudeCode.foo.fromCapture <text>` (pure data/parser)
+  - Controller: `hiveMind.agent.foo <agentName>` (resolves pane → data → calls Model)
+
+**Pure parser pattern** — take captured TUI text, extract data:
+- `session.probe.fromCapture <captureText>` — extract UUID from `/status` output
+- `context.read.fromCapture <captureText>` — extract `N%` from status bar
+- `model.parse.statusBar <captureText>` — extract opus|sonnet|haiku
+- Benefits: testable with fixture strings, zero tmux dependency, reusable by log scrapers
+
+**Bridge-method handling:** For methods that NEED both layers (e.g. `process.find` needs tty from pane for ps lookup), split into `byTty <tty>` (Model) + Controller wrapper that does `otmux pane.get tty` → Model.
+
+**Duplicates to delete:**
+- `claudeCode.agent.recover` duplicates `hiveMind.agent.unblock` family — delete from Model
+- `claudeCode.agent.start` duplicates `hiveMind.agent.start` — delete from Model
+
+## Sprint 0 Workflow
+
+**Task file structure:** `## Status` checklist with `[x]` markers for Planned/In Progress substeps/QA Review/Done. Grep pattern for state counting:
+```bash
+for f in task-*.md; do grep -E '^\- \[x\] Done' "$f"; done
+```
+
+**PO feedback loop:** Write findings doc `task-<id>-findings.md` beside task file. Update task Status section with Deliverable block linking to findings. Report summary to TRONinterface:0.0 via otmux send.
+
+**SM role:** approves proceeding from one task to next, catches context overflow (-224% warning ≠ joke — means compact NOW).
+
 ## Patterns
 - OOSH is on PATH — run directly, no `./`, no `cd`, no `export PATH`
 - NEVER source OOSH scripts — executables, not libraries

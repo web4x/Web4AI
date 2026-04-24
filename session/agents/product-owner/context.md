@@ -1,49 +1,70 @@
 # Product Owner Context
 
-**Updated**: 2026-04-22 12:02
+**Updated**: 2026-04-24 10:36
 **Role**: product-owner
 **Pane**: TRONinterface:0.0 (MacStudio.native)
-**TronMonitor**: TRONinterface:0.2
+**PO Shell**: TRONinterface:0.1
+**SM**: TRONinterface:0.2 (Sonnet, sweep monitor)
+**tronMonitor**: TRONinterface:0.3 (GNU screen)
 
-## Teams (registered, clean)
-| Team | Status | Description |
-|------|--------|-------------|
-| TRONinterface | running | PO interface session |
-| ooshTeam | running | OOSH expert+tester |
-| web4team | running | Web4 de-monolithization |
+## Teams
+| Team | Status |
+|------|--------|
+| TRONinterface | running — PO + SM |
+| ooshTeam | running — expert + tester |
+| web4team | running — po + architect + expert + tester |
 
-## ooshTeam — Current Work
+## Sprint 0 — Lifecycle Consolidation
+**Location**: scrum.pmo/sprints/sprint-0-lifecycle-consolidation/planning.md
 
-### Expert (ooshTeam:0.1)
-- UUID tracking DRY refactor: 8+ commits (6ddeb14 → b3a63ae)
-- claudeCode.session.discover, registry.refresh rewrite, forks.env, lifecycle hooks, sweep.detect consolidation
-- Waiting for tester test suite before DRY consolidation (session.id → session.current)
-- Queued: multi-team resolve (session/tasks/hivemind-multi-team-resolve.md)
+### Current Priority
+- **G1 (BLOCKER)**: claudeCode context.read hardcodes 200k — returns -226% for 1M agents. Expert fixing NOW. Lines 1386, 1643, 1720, 1725, 1723 in claudeCode.
+- **A1.1**: DONE (QA REVIEW) — 68 methods, 14 View leaks, 4 Controller leaks
+- **A1.3 + C2.3**: DONE — boundary + DRY tests (commit 57d8a00)
+- **C2**: DONE (QA REVIEW) — all 3 subtasks
+- **C3.1**: DONE — sweep.detect false-positive audit
+- **D1.1**: DONE — tronMonitor add validation + prune
+- **C3.3**: Tester working — fixture-based sweep tests
 
-### Tester (ooshTeam:0.2)
-- Writing T-DISCOVER + T-REFRESH tests
-- Debugging T-REFRESH-5 (role@model stripping)
-- Uses ooshTeam:0.4 as test shell
+### Next After G1
+- A1.2 (View leak identification)
+- C3.2 (18-state test fixtures)
+- Epic F (scrumMaster CMM4 reliability)
 
-## Completed This Session
-1. hiveMind team.pull + agent.restart — f8ac6f8, 33d9f3d, 3503ddf
-2. Sender prefix on otmux.send — a0c22b1, e4a165c
-3. teams.save DRY UUID fix — fa722ac
-4. team.pull JSONL stdin loop fix — 2dcbfa9 (fd 3, all 6 loops)
-5. Completion fixes — 1a2aac4
-6. sweep.detect edit-dialog + consolidated — bb76bb6, b3a63ae
-7. WODA story read (39 chapters), SKILL.md updated
-8. Stale teams cleaned, ooshTeam + web4team registered
+## Key Learnings This Session
+- Subscription counts INPUT tokens only — sustained output is FREE
+- 4 agents ran 5h+ at +5% total subscription burn in accept-edits mode
+- Each new prompt costs ~15-20% of 5h budget (context replay)
+- Claude agents CANNOT sustain loops — use hiveMind watchdog or /loop
+- Sprint files are PO responsibility — update as work lands
+- NEVER compact agents — only TRON authorizes
+- Use hiveMind for agent interaction, never raw otmux
+- Autocompact is OFF by design
 
-## Open Bugs (reported to expert)
-- Multi-team resolve only searches active team — QUEUED
-- send.message cascading failure on resolve error — QUEUED
-- sweep.detect false-positive on code content (comments/code match patterns) — REPORTED
+## RULES (eternal — never delete, only append)
 
-## Rules
+- Self-care IS team care — save context at 35%, NOT 9%
+- "42": only /context via peer
+- Expert = principle guardian, writes oosh specs
+- Tester tests code. Trainer tests agent readiness.
+- NO GIT REBASE
+- Script expert teams — distribute, don't overload
+- `otmux` no args for overview
+- Every hiveMind send: verify + Enter if needed
+- Every agent file write: git commit immediately
+- Rules are eternal — append only, ask Tron only on contradictions
+- Dots + camelCase ONLY in all OOSH naming — no dashes, no underscores
+- Recovery order: SM first → orchestrator → workers
+- Monitor ALL panes including orchestrator
+- "Slow down" = no new large tasks, current work finishes
+- /clear ONLY at 0%. Never above
 - hiveMind for agent interaction, otmux for transport only
-- Sweep detects → manual capture → then decide to act
-- Never blind-unblock
-- No output filtering
-- PO delegates, never debugs
-- NO COMPACT unless Tron says
+- Sweep detects → capture → decide → act (never blind unblock)
+- No output filtering (no 2>&1, no | grep, no | head, no | tail)
+- PO delegates, never debugs — write bug reports, don't trace code
+- NO COMPACT unless Tron says — autocompact OFF by design
+- Task-switching: finish current task, queue new via TaskCreate
+- Sprint files are PO responsibility — update as work lands, present for QA review
+- Claude agents cannot loop — use hiveMind watchdog or /loop for persistent monitoring
+- Subscription counts INPUT only — sustained output (accept-edits) is FREE
+- NEVER ASSUME — ALWAYS MEASURE

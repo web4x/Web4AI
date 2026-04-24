@@ -1,69 +1,78 @@
-# web4-expert Context — Save Point 2026-03-26 (Session 3)
+# web4-expert Context — Save Point 2026-04-24
 
 **Role**: Web4AI Implementation Authority
-**Status**: Phase 3 DONE, Phase 4 next
-**Updated**: 2026-03-26
-**Machine**: Mac Studio (moved from Ubuntu)
+**Status**: Sprint 1 Tasks 7.2-7.6 DONE, 7.7 handed to tester
+**Machine**: Mac Studio
+**Pane**: web4team:0.2
 
-## Team
-- upDown-po: UpDown_ai_upDownTeam:0.0
-- web4-tester: UpDown_ai_upDownTeam:0.3
-- test shell: UpDown_ai_upDownTeam:0.2
-- I am: UpDown_ai_upDownTeam:0.1
+## Team Layout
+- web4team:0.0 — web4-po (quality owner, CMM4 goal)
+- web4team:0.1 — web4-architect (PUML/MDAv4/Units)
+- web4team:0.2 — ME (web4-expert)
+- web4team:0.3 — web4-tester
+- web4team:0.4 — expert-shell (Web4 initialized)
+- web4team:0.5 — spare
 
-## Base Path (Mac Studio)
+## Base Path
 `/Users/Shared/Workspaces/AI/Claude.All/UpDown/components/`
 
-## Phase Status
+## De-monolithization — ALL PHASES DONE
 
-| Phase | Status | Details |
-|-------|--------|---------|
-| **Phase 0** @web4x/ucp | **DONE** | Foundation, 63 files, zero deps |
-| **Phase 1** @web4x/web4tscomponent | **DONE** | CLI, wired to UCP+Unit+Persistence |
-| **Phase 1.25** BUG-W02 fix | **DONE** | import.meta.url self-discovery |
-| **Phase 1.5** Cascading auto-build | **DONE** | build.sh parses file: deps |
-| **Phase 2** @web4x/unit | **DONE** | DefaultUnit, UnitDiscoveryService, ScenarioService |
-| **Phase 3a** @web4x/persistence | **DONE** | UcpStorage, BrowserScenarioStorage |
-| **Phase 3b** @web4x/user | **DONE** | DefaultUser, NodeOSInfrastructure, DefaultEnvironmentModel |
-| **Phase 3c** @web4x/filesystem | **DONE** | DefaultFile/Folder/FileSystem/Image/MimetypeHandlerRegistry |
-| **Phase 3d** @web4x/http | **DONE** | HTTPServer, HTTPRouter, PortManager, 7 Route subclasses, IORMethodRouter |
-| **Phase 3e** @web4x/tls | **DONE** | TLSCertificateLoader, DomainCertStore, LetsEncrypt, CertRenewal, SNI, CertOrchestrator, HTTPSLoader |
-| **Phase 4** @web4x/once | NOT STARTED | Remaining ONCE-specific files |
-| **Phase 5** web4test/tootsie/pdca/idealminimal | NOT STARTED | |
-| **Phase 6** Testing + promotion | NOT STARTED | |
+| Phase | Status |
+|-------|--------|
+| 0: @web4x/ucp | DONE |
+| 1: @web4x/web4tscomponent | DONE |
+| 1.25: BUG-W02 fix | DONE |
+| 1.5: Cascading auto-build | DONE |
+| 2: @web4x/unit | DONE |
+| 3a-e: persistence/user/filesystem/http/tls | DONE |
+| 4: @web4x/once | DONE |
+| 5: web4test/tootsie/pdca/idealminimal | DONE |
+| 6: Testing 8/8 PASS | DONE |
 
-## Dependency Graph (8 components, all compiling)
-```
-@web4x/ucp (foundation, zero deps)
-  ├── @web4x/unit (DefaultUnit, UnitDiscoveryService, ScenarioService)
-  ├── @web4x/persistence (UcpStorage, BrowserScenarioStorage)
-  ├── @web4x/user (DefaultUser + env detection) [deps: ucp, unit]
-  ├── @web4x/filesystem (File/Folder/FileSystem/Image) [deps: ucp, unit]
-  ├── @web4x/http (Server/Router/Routes) [deps: ucp]
-  ├── @web4x/tls (Certificates/SNI/LetsEncrypt) [deps: ucp]
-  └── @web4x/web4tscomponent (CLI) [deps: ucp, unit, persistence]
-```
+## 13 Components at 0.3.23.0 (all compile clean)
+@web4x/ucp, unit, persistence, user, filesystem, http, tls, web4tscomponent, once, web4test, tootsie, pdca, idealminimalcomponent
 
-## Key Technical Decisions
-1. **Re-export pattern** for shared types (DRY, no massive import rewrites)
-2. **PlatformDetection utility** replaces Once.isNode in filesystem
-3. **Conditional scenarioCreate** in DefaultImage (method is in ONCE's UcpComponent, not extracted UCP)
-4. **ServerHierarchyManager stays in ONCE** — too many ONCE-specific deps (ONCEPeerModel, WebSocket, LoggingUtils)
-5. **ACME Route stays in ONCE/HTTP** — depends on Route from @web4x/http (would create circular with TLS)
-6. **ProxyRoute/ReverseProxyRoute stay in ONCE** — need HeaderRewriter/HrefRewriter
-7. **HTTPSServer stays in ONCE** — bridges HTTP and TLS
+## Sprint 1 — Current Work (0.3.23.1)
 
-## Files NOT Yet Extracted (remain in ONCE for Phase 4)
-- ServerHierarchyManager, HTTPSServer
-- ProxyRoute, ReverseProxyRoute, HeaderRewriter, HrefRewriter
-- DefaultONCE, BrowserOnce, DefaultEnvironmentInfo
-- ScenarioManager, ScenarioLoader (ONCE-specific scenario ops)
-- LoggingUtils, HostnameParser
-- All ONCE-specific layer3: ONCEPeerModel, LifecycleEvents, etc.
-- All layer5 views
-- WebSocket/WS infrastructure
+### Tasks 7.2-7.6 (DONE)
+- 7.2 VERIFIED: UnitModel has origin, typeM3, references
+- 7.3 DONE: Added FOLDER to TypeM3 enum in UCP/0.3.23.1
+- 7.4 VERIFIED: references[] exists in UnitModel
+- 7.5 DONE: tsUnitCreate() on UnitDiscoveryService in Unit/0.3.23.1
+- 7.6 DONE: PumlUnitConverter in Unit/0.3.23.1/src/ts/layer2/
+- 7.7: Handed to tester — awaiting verification
 
-## Bugs Fixed
-- **BUG-W01:** ISR restored in UcpModel
-- **BUG-W02:** CLI path delegation — import.meta.url self-discovery
-- **BUG-W03:** IOR restored with full pluggable loader registry
+### Key Files Modified
+- `UCP/0.3.23.1/src/ts/layer3/TypeM3.enum.ts` — added FOLDER
+- `Unit/0.3.23.1/src/ts/layer2/UnitDiscoveryService.ts` — added tsUnitCreate() + imports
+- `Unit/0.3.23.1/src/ts/layer2/PumlUnitConverter.ts` — NEW file
+
+### Spec File
+`/Users/Shared/Workspaces/AI/Claude.All/UpDown/scrum.pmo/sprints/sprint-1-monolithic-functionality/task-7.1-architect-unit-mdav4-spec.md`
+
+## Semantic Links
+- W4TSC: prod→0.3.19.1, test→0.3.19.3, dev→0.3.20.6, latest→0.3.23.1
+- ONCE: prod→0.3.22.1, test→0.3.21.6, dev→0.3.21.6, latest→0.3.22.1
+
+## Loss Report (from de-monolithization)
+~20 files at domain boundaries not extracted to standalone components (remain in ONCE 0.3.23.0):
+- HTTPSServer, ServerHierarchyManager, ProxyRoute, ReverseProxyRoute, HeaderRewriter, HrefRewriter
+- ScenarioManager, ScenarioLoader (L2+L4), UnitCacheManager
+- ACMEChallengeRoute, StaticFileRoute, FileOrchestrator
+- All Layer5 views for filesystem
+- DefaultEnvironmentInfo
+
+## CMM Understanding
+- Web4 = CMM4 (self-optimizing systems)
+- Composed maturity = weakest link
+- Assuming = L2, measuring = L3, PDCA loop = L4
+- Current composed level: L1 (zero PDCA files, no Tootsie tests)
+- PO goal: reach CMM4
+
+## Key Learnings This Session
+- Web4 shells need `bash --init-file source.env` from UpDown root
+- otmux pane.lock for persistent pane titles
+- CLI scripts must self-register version symlinks
+- PROJECT_ROOT derived from component path (3 levels up), never from $PWD
+- Ask oosh-expert when stuck on otmux methods — don't guess

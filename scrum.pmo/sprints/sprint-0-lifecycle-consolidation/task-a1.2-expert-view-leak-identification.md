@@ -4,14 +4,27 @@
 [task:uuid:c7e7a6ff-11d1-4ac4-b4c2-c17bf9ddf401]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
+- [x] Planned
+- [x] In Progress
+  - [x] refinement (inherits A1.1 audit classification)
+  - [x] creating test cases (handoff to A1.3 — 6 zero-grep/zero-tmux assertions defined in findings)
+  - [x] implementing (refactor plan complete — no code changes yet; plan only)
+  - [ ] testing (A1.3 tester pass required after fixes land)
+- [x] QA Review (findings ready — 13 leaks documented with per-leak target layer + pure Model API replacement)
 - [ ] Done
+
+## Deliverable
+- Refactor plan: [task-a1.2-findings.md](./task-a1.2-findings.md)
+- 13 View leaks enumerated with: current behavior, target layer, clean Model interface
+- Proposed Model API (40 methods, down from 68) with new pure parsers:
+  - `session.probe.fromCapture <text>`
+  - `context.read.fromCapture <text>`
+  - `model.parse.statusBar <text>`
+  - `process.find.byTty <tty>`, `process.running.byPid <pid>`
+  - `session.current.byTty <tty>`, `session.state.byUuid <uuid>`
+  - `context.read.byUuid <uuid>`, `context.velocity.byUuid <uuid>`
+- 6 test-handoff criteria for A1.3 tester (zero-grep assertions + TMUX= fixture tests)
+- Migration safety: backward-compat shims documented for transition period
 
 ## Traceability
 - up

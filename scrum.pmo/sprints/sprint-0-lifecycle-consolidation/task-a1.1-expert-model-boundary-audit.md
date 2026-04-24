@@ -4,14 +4,25 @@
 [task:uuid:16d0acad-989a-4d45-ba3a-0b27fd61e5cd]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
+- [x] Planned
+- [x] In Progress
+  - [x] refinement
+  - [x] creating test cases (handed off to A1.3 — zero-grep assertions defined in findings)
+  - [x] implementing (audit complete — 2026-04-24)
+  - [ ] testing (A1.3 tester pass required after A1.2 cleanup lands)
+- [x] QA Review (findings ready for PO review)
 - [ ] Done
+
+## Deliverable
+- Audit report: [task-a1.1-findings.md](./task-a1.1-findings.md)
+- Total: 68 public methods classified
+  - 47 Pure Model
+  - 14 View leaks (otmux calls)
+  - 4 Controller leaks (hiveMind + env writes)
+  - 1 raw tmux (private.claudeCode.complete.panes)
+  - 3 tmux assumptions (`$TMUX` / `TMUX_PANE`)
+- Proposed Model surface: ~44 methods (reduction from 68)
+- Fix priority list + test handoff criteria included
 
 ## Traceability
 - up

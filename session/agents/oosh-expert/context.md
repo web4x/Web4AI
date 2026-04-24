@@ -6,8 +6,50 @@
 **Shell**: ooshTeam:0.3 (bash 5, OOSH env loaded)
 **Peer**: oosh-tester @ ooshTeam:0.2 (shell ooshTeam:0.4)
 **PO**: product-owner @ TRONinterface:0.0
-**Updated**: 2026-04-22
-**State**: UUID tracking refactor under test — waiting on tester's T-REFRESH re-run after BRE/ERE fix (8f9d5b2). Multi-team resolve queued next.
+**Updated**: 2026-04-24
+**State**: Sprint 0 active. A1.1 + A1.2 complete (both QA Review). Model surface audit + View leak refactor plan documented. Awaiting A1.3 tester coverage before implementing fixes.
+
+---
+
+## Current Sprint (Sprint 0: Lifecycle Consolidation)
+
+**Sprint file:** `scrum.pmo/sprints/sprint-0-lifecycle-consolidation/planning.md`
+
+**Completed (2026-04-24 continuation):**
+
+- ✅ **A1.1 Model Boundary Audit** → `task-a1.1-findings.md`
+  - 68 claudeCode methods classified: 47 Model / 14 View-leak / 4 Controller-leak / 1 raw tmux / 3 tmux assumptions
+  - Status: QA Review (PO approved)
+- ✅ **A1.2 View Leak Refactor Plan** → `task-a1.2-findings.md`
+  - 13 leaks with per-leak target layer + clean Model API
+  - Proposed pure parsers (NEW): `session.probe.fromCapture`, `context.read.fromCapture`, `model.parse.statusBar`
+  - Proposed data accessors (NEW): `process.find.byTty <tty>`, `session.current.byTty <tty>`, `session.state.byUuid <uuid>`, `context.read.byUuid <uuid>`, `context.velocity.byUuid <uuid>`
+  - Final Model surface: 68 → ~40 methods (40% reduction)
+  - 6 test-handoff criteria for A1.3
+  - Status: QA Review
+
+**PO-approved fix order** (execute AFTER A1.3 tester coverage):
+1. `private.claudeCode.complete.panes` — 1-line: raw `tmux list-panes` → `otmux panes -a -F ...`
+2. `session.probe` split — Controller owns TUI send/capture; Model owns `fromCapture` parser
+3. `agent.recover` — delete (duplicate of `hiveMind.agent.unblock` family)
+
+**Next tasks (unblocked, parallel per sprint graph):**
+- A2 — claudeCode Session Portability (depends on A1.1/A1.2 classification)
+- C2 — hiveMind DRY Remaining Audit (parallel, independent)
+
+---
+
+## Team Layout (ooshTeam session)
+
+| Pane | Role | Shell |
+|------|------|-------|
+| 0.0 | MacStudio (zsh — user/PO) | zsh |
+| 0.1 | oosh-expert (me) | Claude Code, renamed + pane.lock'd |
+| 0.2 | oosh-tester | Claude Code |
+| 0.3 | oosh-expert-shell | bash 5.3.9 + OOSH env |
+| 0.4 | oosh-tester-shell | bash 5.3.9 + OOSH env |
+
+PO at TRONinterface:0.0, scrum-master at TRONinterface:0.2.
 
 ---
 
