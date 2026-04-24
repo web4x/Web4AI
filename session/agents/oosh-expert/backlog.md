@@ -10,7 +10,7 @@
 
 ## Open Tasks (Sprint 0 implementation, awaits tester coverage)
 
-- [ ] **A1.2 fixes** (pending A1.3 tester): (1) private.claudeCode.complete.panes raw `tmux` → `otmux panes`, (2) session.probe split into fromCapture parser + Controller TUI flow, (3) agent.recover deletion (duplicate of hiveMind.agent.unblock)
+- [ ] **A1.2 fix 2b** (queued): move `claudeCode.session.probe` entirely to `hiveMind.agent.session.probe` once 8 callers migrate (currently 7 in hiveMind + 1 in claudeCode). Parser already split as `session.probe.fromCapture` — Controller just needs to compose otmux I/O + parser.
 - [ ] **C1 cold-restart implementation** (pending C1.4 tester): extend teams.save with layout/cwd/model/kind fields; rewrite teams.restore to compose `otmux layout.restore` + per-pane `claudeCode fork/join.byID`
 - [ ] **B1 Option B migration** (pending B1.3 tester): move prefix logic from `private.otmux.send.prefix` → `hiveMind.send.message`. Deprecation shim with `HIVEMIND_SEND_PREFIX_OWNED_BY_CONTROLLER` env guard.
 
@@ -21,6 +21,12 @@
 - [ ] T-59 otmux tree.detailed — missing sub-branch for new sessions
 - [ ] T-63 otmux pane.capture delay parameter
 - [ ] T-67 DRY reduction for remaining scripts (config, log, state, etc.)
+
+## Done — Sprint 0 (2026-04-24) continued
+
+- [x] A1.2 fix 1: complete.panes raw tmux → otmux — 66ddcd6
+- [x] A1.2 fix 2: extract session.probe.fromCapture pure parser — 6d264df
+- [x] A1.2 fix 3: delete claudeCode.agent.recover (duplicate) — de65ac2
 
 ## Done — Sprint 0 (2026-04-24)
 
