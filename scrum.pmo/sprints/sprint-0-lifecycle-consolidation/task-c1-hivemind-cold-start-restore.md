@@ -14,10 +14,29 @@
 - [x] In Progress
   - [x] refinement (full audit + design complete)
   - [x] creating test cases (8 assertions for C1.4 tester)
-  - [~] implementing (AUDIT + DESIGN done; CODE CHANGES queued for next implementation task)
-  - [ ] testing (pending implementation + C1.4 tester)
-- [x] QA Review (audit + design + test criteria ready)
-- [ ] Done (pending implementation + C1.4 tester)
+  - [x] implementing — commit 22bb525 (all 5 steps from findings)
+  - [ ] testing (pending C1.4 tester full-cycle test)
+- [x] QA Review (implementation ready for tester)
+- [ ] Done (pending C1.4)
+
+## Implementation summary (commit 22bb525)
+
+**teams.save** — 3 additions:
+1. New helper `private.hiveMind.pane.kind` classifies panes as `claude`/`shell`/`monitor`/`unknown`
+2. New helper `private.hiveMind.pane.model` extracts model flag (e.g. `claude-opus-4-6[1m]`) from child process args via `pgrep -P` (wrapper bash → claude node child)
+3. Extended snapshot schema: `sess|addr|role|uuid|title|cwd|model|kind` (backward-compat: old 5-field parser still works)
+4. After snapshot write: calls `otmux layout.save <session>` for each unique session (composes B2)
+
+**teams.restore** — 5 rewrites per plan:
+1. **Layout first**: groups snapshot entries by session, calls `otmux layout.restore <session> [--force]` for each BEFORE iterating panes
+2. **Kind-aware dispatch**:
+   - `shell` → skip claude join, just cd to saved cwd (stays bash)
+   - `monitor` → skip entirely (tronMonitor.setup handles)
+   - `claude`/default → proceed with join/fork
+3. **Per-pane cwd** from snapshot (was hardcoded `/Users/Shared/Workspaces/AI/Claude`)
+4. **Polling instead of `sleep 5`**: new `private.hiveMind.wait.for.claude` loops `claudeCode process.running` up to 30s
+5. **Idempotency**: if Claude already running in target pane, skip — no duplicate launch
+6. Final step: re-register each restored session via `hiveMind.team.register`
 
 ## Deliverable
 **Findings:** [task-c1-findings.md](./task-c1-findings.md) — combined C1.1 + C1.2 + C1.3
