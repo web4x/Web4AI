@@ -82,9 +82,9 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
 
 - [ ] [Task C1: hiveMind Cold-Start Restore](./task-c1-hivemind-cold-start-restore.md)
   **Priority:** 1 (CRITICAL - Primary Deliverable) **Status:** QA REVIEW (pending C1.4)
-  - [ ] [Task C1.1: Expert - Restore Audit](./task-c1.1-expert-restore-audit.md)
-  - [ ] [Task C1.2: Expert - Config-Only Restore](./task-c1.2-expert-config-only-restore.md)
-  - [ ] [Task C1.3: Expert - Save Completeness](./task-c1.3-expert-save-completeness.md)
+  - [x] [Task C1.1: Expert - Restore Audit](./task-c1.1-expert-restore-audit.md) — DONE commit 22bb525
+  - [x] [Task C1.2: Expert - Config-Only Restore](./task-c1.2-expert-config-only-restore.md) — DONE commit 22bb525 (kind-aware dispatch, otmux layout.restore)
+  - [x] [Task C1.3: Expert - Save Completeness](./task-c1.3-expert-save-completeness.md) — DONE commit 22bb525 (8-field schema: +cwd, +model, +kind)
   - [ ] [Task C1.4: Tester - Full Cycle Test](./task-c1.4-tester-full-cycle-test.md)
 
 - [x] [Task C2: hiveMind DRY Remaining Audit](./task-c2-hivemind-dry-remaining-audit.md)
@@ -122,22 +122,22 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
 
 #### **EPIC F: SCRUMMASTER CMM4 RELIABILITY**
 
-- [ ] [Task F1: scrumMaster subscription velocity tracking](./task-f1-scrummaster-subscription-velocity.md)
-  **Priority:** 2 (HIGH - Token Management) **Status:** PLANNED
-  - [ ] Task F1.1: Expert — add velocity.log method: store 5h% with timestamp, calculate burn rate per 10-min window
-  - [ ] Task F1.2: Expert — add velocity.alert: if burn >15%/10min, output warning with rate
+- [x] [Task F1: scrumMaster subscription velocity tracking](./task-f1-scrummaster-subscription-velocity.md)
+  **Priority:** 2 (HIGH - Token Management) **Status:** DONE — commit 3fd0420
+  - [x] Task F1.1: Expert — velocity.log/rate/alert/history methods (CMM4 time-series)
+  - [x] Task F1.2: Expert — velocity.alert with burn rate warnings
   - [ ] Task F1.3: Tester — test velocity calculation with mock data
 
-- [ ] [Task F2: sweep.detect false-positive hardening](./task-f2-sweep-detect-false-positive-hardening.md)
-  **Priority:** 2 (HIGH - Monitoring Reliability) **Status:** PLANNED
-  - [ ] Task F2.1: Expert — prose-scrub must strip ALL comment patterns (# and // and --)
-  - [ ] Task F2.2: Expert — add test fixtures for each known false-positive pattern (code comments, menu text, preamble)
-  - [ ] Task F2.3: Tester — regression tests: feed code-content pane captures, verify no false triggers
+- [x] [Task F2: sweep.detect false-positive hardening](./task-f2-sweep-detect-false-positive-hardening.md)
+  **Priority:** 2 (HIGH - Monitoring Reliability) **Status:** DONE — 4 commits (eca047a, bb76bb6, b3a63ae, 1996c9a)
+  - [x] Task F2.1: Expert — prose-scrub strips //, --, /*, *, <!-- patterns
+  - [x] Task F2.2: Expert — 6 false-positive fixtures at test/test.data/sweep.detect/
+  - [ ] Task F2.3: Tester — regression tests with fixtures
 
-- [ ] [Task F3: scrumMaster subscription API resilience](./task-f3-scrummaster-subscription-api-resilience.md)
-  **Priority:** 3 (NORMAL - Reliability) **Status:** PLANNED
-  - [ ] Task F3.1: Expert — handle API rate_limit_error gracefully: return cached value with staleness warning
-  - [ ] Task F3.2: Expert — add subscription.cache.age method to show seconds since last fresh read
+- [x] [Task F3: scrumMaster subscription API resilience](./task-f3-scrummaster-subscription-api-resilience.md)
+  **Priority:** 3 (NORMAL - Reliability) **Status:** QA REVIEW
+  - [x] Task F3.1: Expert — DONE commits 7c818c3 + 2758d18. Cache with STALE flag + reason
+  - [x] Task F3.2: Expert — DONE subscription.cache.age returns seconds since last fresh read
   - [ ] Task F3.3: Tester — test with simulated API failure
 
 #### **EPIC E: INTEGRATION — Full Lifecycle Test**

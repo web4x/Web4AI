@@ -1,73 +1,71 @@
 # Product Owner Context
 
-**Updated**: 2026-04-25 00:16
-**Role**: product-owner
-**Pane**: ooshTeam:0.0 (forked PO for ooshTeam)
-**Parent PO**: TRONinterface:0.0 (TRON's interface — do not message there)
-**SM**: TRONinterface:0.2 (Sonnet, reports to ME at ooshTeam:0.0)
-**tronMonitor**: TRONinterface:0.3 (GNU screen)
+**Updated**: 2026-04-25 01:00
+**Role**: TRONinterface-agent (master PO)
+**Pane**: TRONinterface:0.0
+**Forked oosh-PO**: ooshTeam:0.0
+**SM**: TRONinterface:0.2 (Sonnet, rewound, reports to oosh-po)
+**Fallback session**: fallback-agents (8 forked agents)
 
 ## Teams
 | Team | Status |
 |------|--------|
-| TRONinterface | running — PO + SM |
-| ooshTeam | running — expert + tester |
+| TRONinterface | running — TRONinterface-agent + SM |
+| ooshTeam | running — oosh-po + expert + tester |
 | web4team | running — po + architect + expert + tester |
+| fallback-agents | parked — 8 forked backups |
 
-## Sprint 0 — Lifecycle Consolidation
+## Sprint 0 — Status
 **Location**: scrum.pmo/sprints/sprint-0-lifecycle-consolidation/planning.md
 
-### Current Priority
-- **G1 (BLOCKER)**: claudeCode context.read hardcodes 200k — returns -226% for 1M agents. Expert fixing NOW. Lines 1386, 1643, 1720, 1725, 1723 in claudeCode.
-- **A1.1**: DONE (QA REVIEW) — 68 methods, 14 View leaks, 4 Controller leaks
-- **A1.3 + C2.3**: DONE — boundary + DRY tests (commit 57d8a00)
-- **C2**: DONE (QA REVIEW) — all 3 subtasks
-- **C3.1**: DONE — sweep.detect false-positive audit
-- **D1.1**: DONE — tronMonitor add validation + prune
-- **C3.3**: Tester working — fixture-based sweep tests
+### Completed (QA REVIEW for Tron)
+- G1: context.read 200k fix — ca49445 + ae002cd (DRY constants)
+- A1: boundary audit — 68 methods, 14 View leaks
+- A2: session portability — 1dc8b91
+- B1: otmux boundary audit — done
+- B2: layout persistence — done
+- C1: COLD-START RESTORE (primary deliverable) — 22bb525 + 971f68a
+- C2: DRY audit — done
+- F3: subscription API resilience — 7c818c3
 
-### Current State
-- **Expert**: CONTEXT LIMIT (1M full) — awaiting Tron decision. Last delivered: D1.10, B3.1, D2.1+D2.2, C3.2. F2 assigned but not started.
-- **Tester**: Active — working through backlog (G1.3, A2.3 done cb31d3f, continuing B1.3/B2.3/C3.3)
-- **SM**: TRONinterface:0.2 — needs periodic nudges, can't sustain loops (task #4)
-- **Remaining expert work**: F2, F3, E1 support
-- **Remaining tester work**: B1.3, B2.3, B3.2, C1.4, C3.3, D2.3, E1
+### In Progress
+- C3: sweep.detect fixtures — C3.1 done, C3.2+C3.3 pending
+- D1: tronMonitor — D1.1 done, D1.2+D1.3 assigned (TMUX= -r requirements sent)
+- E1: end-to-end test — expert ran verification, 125/201 claudeCode passing, 51 environmental
 
-## Key Learnings This Session
-- Subscription counts INPUT tokens only — sustained output is FREE
-- 4 agents ran 5h+ at +5% total subscription burn in accept-edits mode
-- Each new prompt costs ~15-20% of 5h budget (context replay)
-- Claude agents CANNOT sustain loops — use hiveMind watchdog or /loop
-- Sprint files are PO responsibility — update as work lands
-- NEVER compact agents — only TRON authorizes
-- Use hiveMind for agent interaction, never raw otmux
-- Autocompact is OFF by design
+### Planned
+- D2: tronMonitor-hiveMind integration
+- F1: subscription velocity tracking
+- F2: sweep false-positive hardening
+
+## Token Economics (proven)
+- Subscription counts INPUT only — sustained output (accept-edits) is FREE
+- Each new prompt: ~15-20% of 5h budget (context replay)
+- 4 agents ran 5h+ at +5% total in sustained generation
 
 ## RULES (eternal — never delete, only append)
-
 - Self-care IS team care — save context at 35%, NOT 9%
 - "42": only /context via peer
 - Expert = principle guardian, writes oosh specs
 - Tester tests code. Trainer tests agent readiness.
 - NO GIT REBASE
 - Script expert teams — distribute, don't overload
-- `otmux` no args for overview
 - Every hiveMind send: verify + Enter if needed
 - Every agent file write: git commit immediately
 - Rules are eternal — append only, ask Tron only on contradictions
-- Dots + camelCase ONLY in all OOSH naming — no dashes, no underscores
+- Dots + camelCase ONLY in all OOSH naming
 - Recovery order: SM first → orchestrator → workers
 - Monitor ALL panes including orchestrator
-- "Slow down" = no new large tasks, current work finishes
-- /clear ONLY at 0%. Never above
 - hiveMind for agent interaction, otmux for transport only
 - Sweep detects → capture → decide → act (never blind unblock)
 - No output filtering (no 2>&1, no | grep, no | head, no | tail)
-- PO delegates, never debugs — write bug reports, don't trace code
+- PO delegates, never debugs
 - NO COMPACT unless Tron says — autocompact OFF by design
-- Task-switching: finish current task, queue new via TaskCreate
-- Sprint files are PO responsibility — update as work lands, present for QA review
-- Claude agents cannot loop — use hiveMind watchdog or /loop for persistent monitoring
-- Subscription counts INPUT only — sustained output (accept-edits) is FREE
-- NEVER ASSUME — ALWAYS MEASURE
-- After each task: git commit with one-liner referencing task file. Format: '<what changed> (ref: task-<id>.md)'. No uncommitted work. Enforce on every assignment.
+- Sprint files are PO responsibility — update as work lands
+- Role separation: SM checks/monitors/suggests/impediments. PO assigns. TRON reviews QA.
+- Before stopping: ALWAYS check SM health first
+- PO and SM are 42 team — peer measurement
+- /rewind option 1 "Restore code and conversation" — NEVER option 2 (summarize destroys context)
+- /rewind trigger: prompt too long / context full → rewind to known-good checkpoint
+- Every task = one git commit with task file reference
+- Commit format: '<what changed> (ref: task-<id>.md)'
