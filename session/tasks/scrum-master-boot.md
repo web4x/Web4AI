@@ -70,30 +70,34 @@ Every 10 minutes:
 - If an agent is tight on context: send them a reminder via `hiveMind send.message <agent> "SM: Context at X%. Run /context now to save your state."` — do NOT compact, just remind.
 
 ## PO Unblock
-- You ARE allowed to unblock any PO if they are stuck on a PERMISSION prompt.
+- You ARE allowed to unblock the product-owner if they are stuck on a PERMISSION prompt.
 - Same rules apply: safe prompts → unblock. Destructive → don't.
 
-## PO Hierarchy
-- **oosh-po** (ooshTeam:0.0) — manages ooshTeam. Report oosh team issues here.
-- **web4-po** (web4team:0.0) — manages web4team. Report web4 team issues here.
-- **TRONinterface:0.0** — master operator. Escalate only when PO can't resolve.
-- To report: `hiveMind send.message oosh-po "SM: <message>"` or `hiveMind send.message web4-po "SM: <message>"`
-
-## Idle Agent Reporting — NEVER ASSIGN TASKS
-- ooshTeam idle agents → report to `oosh-po` (ooshTeam:0.0): `hiveMind send.message oosh-po "SM: <agent> idle, ready for assignment"`
-- web4team idle agents → report to `web4-po` (web4team:0.0): `hiveMind send.message web4-po "SM: <agent> idle, ready for assignment"`
-- NEVER send messages to TRONinterface:0.0 — that is Tron's pane (human operator), not an agent.
-- DO NOT assign sprint tasks. That is each team's PO job.
-- DO NOT read planning.md to pick next tasks. Just report idle state.
-
-## Git Commit Rule
-- Every agent must `git commit` after each task with a one-liner referencing the task file.
-- During sweeps: if an agent is COMPLETED/idle and recent work is uncommitted, remind them:
-  `hiveMind send.message <agent> "SM: Remember to git commit your work with a one-liner referencing the task file."`
+## Known Tool Limitation — Ambiguous Agents
+- `hiveMind agent.monitor <name> <session>` works with session qualifier (e.g. `web4-po web4team`)
+- `hiveMind agent.unblock <name> <session>` does NOT — always fails if agent exists in multiple sessions
+- If unblock fails with "ambiguous": report to oosh-po, agent will likely self-resolve
+- web4 agents (web4-po, web4-architect, web4-expert, web4-tester) are all ambiguous — monitor works, unblock doesn't
 
 ## Subscription Velocity Log
 Keep a mental tally:
 - Note 5h% at each 10-min check
 - If jump >15% in 10 min: "SM: BURN ALERT — 5h went from X% to Y% in 10 min"
 - If 5h% > 80%: "SM: CAUTION — 5h at X%, resets in Nm"
-- If 5h% resets (drops to <5%): "SM: 5h reset — fresh budget"
+- If 5h% resets (drops significantly): "SM: 5h reset — fresh budget at X%"
+
+## Session Learnings (2026-04-25)
+- RATE_LIMIT in sweep can be false positive — always verify with `agent.monitor` before escalating
+- Server-side rate limits ("not your usage limit") persist ~15 min, agents auto-retry in auto mode
+- ACCEPT_EDITS = idle at prompt, not blocked — verify before acting
+- web4 agents are ambiguous across fallback-agents + web4team — monitor works, unblock doesn't
+- "Do you want to proceed?" is Yes/No — hiveMind agent.unblock picks option 2 (No) — safe prompts usually self-resolve anyway
+- oosh-po and oosh-expert/tester can all hit server rate limits simultaneously during heavy work
+- Subscription can jump fast during rate-limit recovery bursts — watch for >15% velocity
+- Report to oosh-po (ooshTeam:0.0), NOT TRONinterface:0.0
+
+## Current State (last updated ~14:32 2026-04-25)
+- ooshTeam: oosh-po, oosh-expert, oosh-tester all ACTIVE
+- web4team: all ACTIVE (web4-po had PERMISSION on bash check, self-resolving)
+- Subscription: 5h=12% (just reset from 58%), 7d=27%, resets in ~4h13m
+- No crashes. No compacts. Loop running ~116 sweeps.
