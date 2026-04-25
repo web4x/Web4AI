@@ -78,6 +78,12 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
   - [x] Task B3.1: Expert - pane.lock idempotent — commit 75ab018
   - [ ] Task B3.2: Tester - test: lock → relock with different title → verify new title applied without manual unlock
 
+- [ ] Task B4: otmux client lifecycle — attach -r read-only + window-size largest
+  **Priority:** 2 (HIGH - tronMonitor dependency) **Status:** PLANNED
+  - [ ] Task B4.1: Expert - otmux.attach must default to -r (read-only) when called from monitoring context. Add otmux.attach.readonly method or <?readonly> param
+  - [ ] Task B4.2: Expert - otmux.setup.default must set window-size largest on all sessions to prevent resize on multi-client attach
+  - [ ] Task B4.3: Tester - test: attach -r doesn't resize panes, window-size largest persists
+
 #### **EPIC C: CONTROLLER LAYER — hiveMind Lifecycle**
 
 - [ ] [Task C1: hiveMind Cold-Start Restore](./task-c1-hivemind-cold-start-restore.md)
@@ -85,7 +91,7 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
   - [x] [Task C1.1: Expert - Restore Audit](./task-c1.1-expert-restore-audit.md) — DONE commit 22bb525
   - [x] [Task C1.2: Expert - Config-Only Restore](./task-c1.2-expert-config-only-restore.md) — DONE commit 22bb525 (kind-aware dispatch, otmux layout.restore)
   - [x] [Task C1.3: Expert - Save Completeness](./task-c1.3-expert-save-completeness.md) — DONE commit 22bb525 (8-field schema: +cwd, +model, +kind)
-  - [ ] [Task C1.4: Tester - Full Cycle Test](./task-c1.4-tester-full-cycle-test.md)
+  - [x] [Task C1.4: Tester - Full Cycle Test](./task-c1.4-tester-full-cycle-test.md) — DONE commit d092295 (8 tests save/restore/idempotency)
 
 - [x] [Task C2: hiveMind DRY Remaining Audit](./task-c2-hivemind-dry-remaining-audit.md)
   **Priority:** 2 (HIGH - Code Quality) **Status:** QA REVIEW
