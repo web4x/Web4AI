@@ -73,4 +73,7 @@
 - /rewind option 2 — NEVER option 1 (summarize destroys context)
 - Every task = one git commit: '<what changed> (ref: task-<id>.md)'
 - After each task: git commit with one-liner referencing task file
+- /rewind trigger: prompt too long / context full → rewind to known-good checkpoint
+- Every task = one git commit with task file reference
+- Commit format: '<what changed> (ref: task-<id>.md)'
 - NEVER ASSUME — ALWAYS MEASURE
