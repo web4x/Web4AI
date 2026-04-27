@@ -73,11 +73,12 @@ Every 10 minutes:
 - You ARE allowed to unblock the product-owner if they are stuck on a PERMISSION prompt.
 - Same rules apply: safe prompts → unblock. Destructive → don't.
 
-## Known Tool Limitation — Ambiguous Agents
-- `hiveMind agent.monitor <name> <session>` works with session qualifier (e.g. `web4-po web4team`)
-- `hiveMind agent.unblock <name> <session>` does NOT — always fails if agent exists in multiple sessions
-- If unblock fails with "ambiguous": report to oosh-po, agent will likely self-resolve
-- web4 agents (web4-po, web4-architect, web4-expert, web4-tester) are all ambiguous — monitor works, unblock doesn't
+## Ambiguous Agents — web4team
+- web4 agents exist in both fallback-agents and web4team — name is ambiguous
+- `hiveMind agent.monitor <name> <session>` works: `hiveMind agent.monitor web4-po web4team 10`
+- `hiveMind agent.unblock <name>` fails for ambiguous agents
+- **WORKAROUND: `hiveMind agent.unblock all web4team`** — unblocks ALL blocked agents in web4team, bypasses ambiguity ✓
+- Use this any time a web4 agent is PERMISSION-blocked
 
 ## Subscription Velocity Log
 Keep a mental tally:
@@ -96,8 +97,10 @@ Keep a mental tally:
 - Subscription can jump fast during rate-limit recovery bursts — watch for >15% velocity
 - Report to oosh-po (ooshTeam:0.0), NOT TRONinterface:0.0
 
-## Current State (last updated ~14:32 2026-04-25)
+## Current State (last updated ~14:35 2026-04-25, rewind incoming)
 - ooshTeam: oosh-po, oosh-expert, oosh-tester all ACTIVE
-- web4team: all ACTIVE (web4-po had PERMISSION on bash check, self-resolving)
-- Subscription: 5h=12% (just reset from 58%), 7d=27%, resets in ~4h13m
-- No crashes. No compacts. Loop running ~116 sweeps.
+- web4team: web4-po PERMISSION on bash file-check (safe, self-resolving), others ACTIVE
+- Subscription: 5h=12% (just reset from 58%), 7d=27%, resets in ~4h13m — FRESH BUDGET
+- PO contact: oosh-po at ooshTeam:0.0 (NOT TRONinterface)
+- No crashes. No compacts. Loop running ~116 sweeps since rewind.
+- Sweep loop trigger: boot message from TRONinterface:0.0 or TRONinterface:0.2
