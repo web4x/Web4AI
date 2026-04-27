@@ -4,14 +4,37 @@
 [task:uuid:46ea7f7d-6aed-4d90-9df4-b621b4a596d4]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement
+  - [x] creating test cases (live multi-call test sequence)
+  - [x] implementing — commit e66036f (bundled with D1.2)
+  - [x] testing (verified: setup×2, sync×2, remove non-tracked all idempotent)
+- [x] QA Review
+- [x] Done
+
+## Deliverable
+
+**Commit:** `e66036f` (pushed)
+
+**Idempotency changes:**
+
+| Method | Before | After |
+|--------|--------|-------|
+| `setup` | Destructive — kill screen + clear env + restart | No-op if screen alive on right pane; runs `sync` instead |
+| `add` | Already idempotent (checks `findWindow` first) | Unchanged |
+| `remove` | Errored with rc=1 if team not tracked | Silent `info.log` + rc=0 |
+| `prune` | Already idempotent | Unchanged |
+
+**Destructive reset still available** via existing `tronMonitor.reset` method.
+
+**Live test sequence (all passed):**
+```
+tronMonitor sync           # cleaned drift (fallback-agents removed)
+tronMonitor sync           # no-op — already in sync
+tronMonitor setup          # no-op — "already set up"
+tronMonitor remove ghost   # no-op — silent
+```
 
 ## Traceability
 - up

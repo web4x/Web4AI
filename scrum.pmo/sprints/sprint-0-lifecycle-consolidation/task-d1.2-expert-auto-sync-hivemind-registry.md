@@ -4,14 +4,37 @@
 [task:uuid:42215eb1-e5bf-495e-845d-0903a9b799dd]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement
+  - [x] creating test cases (handed off to D1 tester sub-task)
+  - [x] implementing — commit e66036f
+  - [x] testing (live verified — drift detected & cleaned)
+- [x] QA Review
+- [x] Done
+
+## Deliverable
+
+**Commit:** `e66036f` (pushed to test/macos.latest)
+
+**Approach chosen:** Option C (read from `hivemind.teams.env` directly).
+Simplest, file-based single source of truth. No coupling to hiveMind events.
+
+**New method:** `tronMonitor.sync <?dryRun>`
+- Adds: live registered teams not yet tracked
+- Drops: tracked entries not in registry (drift cleanup)
+- Calls `prune` for dead-session cleanup
+- `dry` preview mode shows changes without applying
+
+**Helpers added:**
+- `private.tronMonitor.registry.teams [onlyLive]` — read canonical list
+- `private.tronMonitor.tracked.teams` — read local state
+
+**setup() integration:** now calls `sync()` at end, ensuring tronMonitor always
+matches registry after setup.
+
+**Live test:** detected and cleaned drift (`fallback-agents` was in tronMonitor.env
+but not in hivemind.teams.env). Subsequent sync was no-op as expected.
 
 ## Traceability
 - up

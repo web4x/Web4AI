@@ -73,16 +73,16 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
   - [x] [Task B2.2: Expert - Pane Title/Layout Persistence](./task-b2.2-expert-pane-title-layout-persistence.md) — DONE
   - [ ] [Task B2.3: Tester - Server Restart Recovery Tests](./task-b2.3-tester-server-restart-recovery-tests.md)
 
-- [ ] Task B3: otmux pane.lock idempotent relock
+- [ ] [Task B3: otmux pane.lock idempotent relock](./task-b3-otmux-pane-lock-idempotent.md)
   **Priority:** 2 (HIGH - silently fails) **Status:** QA REVIEW (pending B3.2)
-  - [x] Task B3.1: Expert - pane.lock idempotent — commit 75ab018
-  - [ ] Task B3.2: Tester - test: lock → relock with different title → verify new title applied without manual unlock
+  - [x] [Task B3.1: Expert - pane.lock idempotent](./task-b3.1-expert-pane-lock-idempotent.md) — commit 75ab018
+  - [ ] [Task B3.2: Tester - pane.lock relock test](./task-b3.2-tester-pane-lock-relock-test.md)
 
-- [ ] Task B4: otmux client lifecycle — attach -r read-only + window-size largest
+- [ ] [Task B4: otmux client lifecycle — attach -r read-only + window-size largest](./task-b4-otmux-client-lifecycle.md)
   **Priority:** 2 (HIGH - tronMonitor dependency) **Status:** PLANNED
-  - [ ] Task B4.1: Expert - otmux.attach must default to -r (read-only) when called from monitoring context. Add otmux.attach.readonly method or <?readonly> param
-  - [ ] Task B4.2: Expert - otmux.setup.default must set window-size largest on all sessions to prevent resize on multi-client attach
-  - [ ] Task B4.3: Tester - test: attach -r doesn't resize panes, window-size largest persists
+  - [ ] [Task B4.1: Expert - attach readonly](./task-b4.1-expert-attach-readonly.md)
+  - [ ] [Task B4.2: Expert - window-size largest](./task-b4.2-expert-window-size-largest.md)
+  - [ ] [Task B4.3: Tester - client lifecycle tests](./task-b4.3-tester-client-lifecycle-tests.md)
 
 #### **EPIC C: CONTROLLER LAYER — hiveMind Lifecycle**
 
@@ -128,7 +128,7 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
 
 #### **EPIC F: SCRUMMASTER CMM4 RELIABILITY**
 
-- [x] [Task F1: scrumMaster subscription velocity tracking](./task-f1-scrummaster-subscription-velocity.md)
+- [x] [Task F1: scrumMaster subscription velocity tracking](./task-f1-velocity-tracking.md)
   **Priority:** 2 (HIGH - Token Management) **Status:** DONE — commit 3fd0420
   - [x] Task F1.1: Expert — velocity.log/rate/alert/history methods (CMM4 time-series)
   - [x] Task F1.2: Expert — velocity.alert with burn rate warnings

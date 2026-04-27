@@ -10,14 +10,14 @@
 - Subtasks must be ordered to avoid blocking dependencies.
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement
+  - [x] creating test cases (live test sequence)
+  - [x] implementing — D1.2 + D1.3 done in commit e66036f
+  - [x] testing (live verified — drift cleanup + idempotency)
+- [x] QA Review
+- [ ] Done (D1.1 DRY audit pending — note: most DRY violations addressed by D1.2 sync; explicit audit could land later)
 
 ## Traceability
 - Source: Sprint 0 - Lifecycle Consolidation, Epic D (Monitor Layer)

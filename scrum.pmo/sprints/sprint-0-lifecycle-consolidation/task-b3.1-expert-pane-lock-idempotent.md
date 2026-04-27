@@ -1,4 +1,4 @@
-[Back to Sprint 0](./planning.md)
+[Back to Task B3](./task-b3-otmux-pane-lock-idempotent.md)
 
 # Task B3.1: Expert — otmux pane.lock is idempotent (auto-unlocks before relocking)
 [task:uuid:b31-pane-lock-idempotent]
