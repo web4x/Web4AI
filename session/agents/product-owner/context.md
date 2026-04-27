@@ -69,6 +69,7 @@
 - Sprint files are PO responsibility — update as work lands
 - Role separation: SM checks/monitors/suggests/impediments. PO assigns. TRON reviews QA
 - Before stopping: ALWAYS check SM health first
+- PO and SM are 42 team — peer measurement, neither alone can self-care
 - /rewind option 2 — NEVER option 1 (summarize destroys context)
 - Every task = one git commit: '<what changed> (ref: task-<id>.md)'
 - After each task: git commit with one-liner referencing task file
