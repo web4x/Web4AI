@@ -1,4 +1,5 @@
 # Wakeup: scrum-master
-- **Scheduled**: 2026-02-22 ~22:31 CET + 60s
-- **Purpose**: Next sweep cycle (sweep 2)
-- **Directive**: Overnight operation until 07:00 UTC
+- **Scheduled**: 2026-04-28 + 60s
+- **Purpose**: Sweep cycle 1 — monitor expert (task 7) + tester (task 6)
+- **Directive**: Continuous monitoring during Sprint 0 closing phase
+- **Team**: projectTeam (session renamed from "0" today)
