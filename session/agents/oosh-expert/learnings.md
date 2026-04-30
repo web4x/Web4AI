@@ -1,5 +1,57 @@
 # OOSH Expert Learnings
 
+## NEW: Background-process hygiene — NEVER use `run_in_background` with unbounded waits
+
+**The bug:** I left two orphan zsh `until-sleep-loop` processes running for **5+ days
+of wall time** because I used `run_in_background: true` to wait for tmux pane output
+files via:
+
+```bash
+until [ -s "$task_output" ]; do sleep 5; done && tail -8 "$task_output"
+```
+
+The wait conditions were overtaken by direct Bash tool calls. The loops never exited
+because nothing ever tripped the `[ -s ]` check (files were already consumed). Tron had
+to kill them manually.
+
+**Prevention rules — never violate:**
+
+1. **NEVER `run_in_background: true` for an unbounded `until` poll.** If the wait
+   condition might never become true, the process leaks forever.
+
+2. **For "wait for output" cases, use bounded polling INSIDE the foreground Bash call:**
+   ```bash
+   for i in 1 2 3 4 5; do                # max 5 * 2 = 10s
+     sleep 2
+     [ -s "$file" ] && break
+   done
+   tail -8 "$file"
+   ```
+   The whole thing is one foreground call; if the file never appears, the loop ends
+   and we move on. No orphan.
+
+3. **For multi-pane wait, prefer `sleep N + capture` over `until-loop`:**
+   ```bash
+   sleep 4                                # fixed budget
+   otmux pane.capture pane:0.A 20
+   otmux pane.capture pane:0.B 20
+   ```
+   Simpler, predictable, and self-terminating.
+
+4. **`run_in_background: true` is for genuinely-fire-and-forget work** (long-running
+   builds, daemon starts) where the harness explicitly notifies me on completion. NOT
+   for "wait until X happens" loops.
+
+5. **Periodically audit:** if I'm using background tasks, run
+   `ps -eo pid,etime,args | grep claude-501` to catch orphans before the user does.
+
+6. **Audit-on-rewind:** When re-reading agent files post-rewind, also list background
+   processes — they survive rewinds and accumulate.
+
+The notifications I receive about background-task `failed` exit codes (e.g. 144 =
+SIGTERM, 1 = generic failure) are signals that the wait condition was wrong from
+the start. Treat them as bugs in the wait pattern, not as benign noise.
+
 ## NEW: Bug #4 — capture rc separately + validate format (defence-in-depth for send)
 
 **The bug:** `target=$(hiveMind.resolve "$name" 2>/dev/null); [ -z "$target" ] && return 1`
