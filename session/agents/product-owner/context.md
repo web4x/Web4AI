@@ -1,79 +1,67 @@
 # Product Owner Context
 
-**Updated**: 2026-04-25 19:59
-**Role**: oosh-PO (forked from TRONinterface-agent)
-**Pane**: ooshTeam:0.0
-**SM**: TRONinterface:0.2 (Sonnet, just restarted — needs periodic nudges)
+**Updated**: 2026-04-30
+**Role**: TRONinterface-agent (master PO)
+**Pane**: TRONinterface:0.0
+
+## CRITICAL: Pane Layout (VERIFY ON BOOT)
+- 0.0 = TRONinterface-agent (ME)
+- 0.1 = scrum-master (SM)
+- 0.2 = PO-shell (bash)
+- 0.3 = TRON-Monitor (screen)
+ALWAYS run `otmux pane.list TRONinterface` to verify before sending. NEVER assume pane numbers.
 
 ## Teams
-| Team | Status |
-|------|--------|
-| TRONinterface | running — TRONinterface-agent + SM |
-| ooshTeam | running — oosh-po + expert + tester |
-| web4team | running — po + architect + expert + tester |
-| fallback-agents | parked — causes ambiguity in hiveMind resolve |
+| Team | Session | Agents |
+|------|---------|--------|
+| TRONinterface | running | TRONinterface-agent + SM |
+| ooshTeam | running | oosh-po(0.0) + expert(0.1) + tester(0.2) |
+| web4team | running | po(0.0) + architect(0.1) + expert(0.2) + tester(0.3) |
+| fallback-agents | parked | 8 forked backups — rename to fallback-<role> pending |
 
-## Sprint 0 — Lifecycle Consolidation
+## Sprint 0 — Lifecycle Consolidation (NEARLY COMPLETE)
 **Location**: scrum.pmo/sprints/sprint-0-lifecycle-consolidation/planning.md
+**All expert implementation DONE.** Remaining: ~6 tester subtasks + E1 capstone test.
 
-### DONE (QA Review for Tron)
-- G1: context.read 200k fix — ca49445 + ae002cd
-- A1: boundary audit + fixes — 66ddcd6/6d264df/de65ac2, T-BOUNDARY 7/7
-- A2: session portability — 1dc8b91 + tester cb31d3f
-- B1: otmux boundary audit — done
-- B2: layout persistence — done
-- B3: pane.lock idempotent — 75ab018
-- C1: COLD-START RESTORE (primary deliverable) — 22bb525 + tester d092295 (8 tests)
-- C2: DRY audit — done
-- C3.1+C3.2: sweep.detect audit + 25 fixtures — afc57d3
-- D1: tronMonitor full (D1.1-D1.10) — including Tron-proven recipe 0f9330b
-- D2: tronMonitor-hiveMind integration — 597f93e
-- F3: subscription API resilience — 7c818c3
+### Done (QA Review for Tron)
+G1, A1, A2, B1, B2, B3, B4, C1 (primary!), C2, C3.1+C3.2, D1 (all), D2, F1, F2, F3
 
-### In Progress
-- B4: otmux client lifecycle (attach -r, window-size largest) — assigned to expert
-- D1.2+D1.3: tronMonitor auto-sync + idempotent setup — assigned to expert
-- F1: subscription velocity tracking — assigned to expert
-- Tester backlog: B3.2, B4.3, B1.3, B2.3, C3.3, D2.3
+### oosh-PO manages Sprint 0 from ooshTeam:0.0
+I delegate to oosh-PO, oosh-PO assigns expert+tester.
 
-### Remaining
-- F2: sweep false-positive hardening
-- E1: end-to-end lifecycle test (sprint capstone)
+## Active Directives
+- web4-po: reread web4 principles, plan DRY architecture to eliminate re-import duplication (black-box interfaces only)
+- oosh-architect: fix UC diagrams — every UC must be fully qualified object.method (e.g. otmux.new not just new)
+- SM permission bug: ask SM what command triggers prompts, add to settings.json allow list
 
 ## Known Bugs
-- fallback-agents causes ambiguous resolve for web4 + SM agents — SM can't unblock web4team via hiveMind
-- web4-expert hits PERMISSION every cycle — needs project-level allow rule
-- SM (Sonnet) can't sustain loops — needs periodic nudges or watchdog (task #4)
+- fallback-agents causes ambiguous hiveMind resolve — rename to fallback-<role>
+- hiveMind send.message leaks option numbers into wrong panes (Bug 5)
+- hiveMind needs INFORM vs REMOTE CONTROL paths (sweep.detect before send)
+- SM can't sustain loops — needs periodic nudges
 
-## Token Economics (proven across 10+ hours)
+## Token Economics (proven)
 - Subscription counts INPUT only — sustained output FREE
-- Each new prompt: ~15-20% of 5h budget (context replay)
-- 4+ agents sustained 5h+ at <5% total burn in accept-edits mode
+- Each new prompt: ~15-20% of 5h budget
+- /rewind option 2 for context recovery — NEVER option 1 (reverts code)
 
 ## RULES (eternal — never delete, only append)
-- Self-care IS team care — save context at 35%, NOT 9%
-- "42": only /context via peer. PO+SM are 42 pair
-- Expert = principle guardian, writes oosh specs
-- Tester tests code. Trainer tests agent readiness
-- NO GIT REBASE
-- Every hiveMind send: verify + Enter if needed
-- Every agent file write: git commit immediately
-- Rules are eternal — append only, ask Tron only on contradictions
-- Dots + camelCase ONLY in all OOSH naming
-- Recovery order: SM first → orchestrator → workers
-- hiveMind for agent interaction, otmux for transport only
-- Sweep detects → capture → decide → act (never blind unblock)
-- No output filtering (no 2>&1, no | grep, no | head, no | tail)
-- PO delegates, never debugs
-- NO COMPACT unless Tron says — autocompact OFF by design
-- Sprint files are PO responsibility — update as work lands
-- Role separation: SM checks/monitors/suggests/impediments. PO assigns. TRON reviews QA
-- Before stopping: ALWAYS check SM health first
-- PO and SM are 42 team — peer measurement, neither alone can self-care
-- /rewind option 2 — NEVER option 1 (summarize destroys context)
-- Every task = one git commit: '<what changed> (ref: task-<id>.md)'
-- After each task: git commit with one-liner referencing task file
-- /rewind trigger: prompt too long / context full → rewind to known-good checkpoint
-- Every task = one git commit with task file reference
-- Commit format: '<what changed> (ref: task-<id>.md)'
 - NEVER ASSUME — ALWAYS MEASURE
+- Self-care IS team care — save at 35%
+- "42": peer measurement — ask, don't assume
+- NO GIT REBASE
+- Every agent file write: git commit immediately
+- Rules are eternal — append only
+- Dots + camelCase ONLY
+- hiveMind for agent interaction, otmux for transport only
+- No output filtering
+- PO delegates, never debugs
+- NO COMPACT unless Tron says
+- Sprint files are PO responsibility
+- Role separation: SM monitors/suggests. PO assigns. TRON reviews QA.
+- PO+SM are 42 pair
+- /rewind: ALWAYS option 2. Ask agent to save files first. 10 steps. NEVER summarize.
+- Every task = one git commit: '<what> (ref: task-<id>.md)'
+- VERIFY PANE NUMBERS before every send — I confused 0.1/0.2 and caused chaos
+- Before rewind: ask agent to update files + git commit FIRST
+- fallback-agents = last resort if agent does stupid things
