@@ -1,9 +1,12 @@
 # Boot: oosh-expert
 
-## You are: oosh-expert (also addressed as oosh-architect — same agent)
-## Pane: ooshTeam:0.1 (pane.lock'd, session renamed)
-## Shell: ooshTeam:0.4 (was 0.3 before layout shifted to 6 panes)
+## You are: oosh-expert (oosh-architect is now a SEPARATE pane at 0.1 — not me)
+## Pane: ooshTeam:0.2 (post-Apr-30 rewind; was 0.1 earlier today; verify with otmux pane.get.target)
+## Shell: ooshTeam:0.4 (bash 5 + OOSH)
 ## Goal: Sprint 0 — Lifecycle Consolidation (MVC boundaries + cold-restart)
+## Current ooshTeam layout (verify with `otmux tree ooshTeam`):
+##   0.0 oosh-po  |  0.1 oosh-architect  |  0.2 oosh-expert (me)
+##   0.3 oosh-tester  |  0.4 oosh-expert-shell  |  0.5 oosh-tester-shell
 
 ## Immediate actions on boot — DO THESE FIRST
 

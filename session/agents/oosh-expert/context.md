@@ -2,12 +2,25 @@
 
 **Session**: oosh-expert@opus 1M on MacStudio.native
 **Role**: oosh-expert (OOSH Implementation Authority) — also addressed as oosh-architect
-**Pane**: ooshTeam:0.1 (renamed via /rename + pane.lock)
-**Shell**: ooshTeam:0.4 (bash 5 with OOSH env — was 0.3 before layout change)
-**Peer**: oosh-tester @ ooshTeam:0.3 (shell ooshTeam:0.5) — pane indices shifted from earlier 0.2/0.4
-**PO**: product-owner / oosh-po @ ooshTeam:0.0 / TRONinterface:0.0
+**Pane**: ooshTeam:0.2 (post-rewind — layout shifted again; was 0.1 earlier today)
+**Shell**: ooshTeam:0.4 (bash 5 with OOSH env)
+**Peer**: oosh-tester @ ooshTeam:0.3 (shell ooshTeam:0.5)
+**Sibling**: oosh-architect @ ooshTeam:0.1 (separate Claude Code pane added today)
+**PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.2
-**Updated**: 2026-04-30
+**Updated**: 2026-04-30 (after Bug #4 + A1.2 fix 2b — Sprint 0 expert work fully shipped)
+**Layout**: 6 panes now — 0.0 po, 0.1 architect, 0.2 expert (me), 0.3 tester, 0.4 expert-shell, 0.5 tester-shell
+
+## Sprint 0 — final commits today (post-rewind)
+
+| Commit | Task | Summary |
+|--------|------|---------|
+| `19fa1b7` | Bug #4 | Validate pane target before send. New `private.otmux.target.isPane` (regex: `%N` or `sess:win.pane`); rejects whitespace/error.log text. Applied to all 6 send methods. `hiveMind.send`/`send.message` now check `rc` separately + format-validate the resolved target. |
+| `559e03a` | A1.2 fix 2b | session.probe Controller migration. New `hiveMind.agent.session.probe <agentName\|pane>` does View I/O + delegates to Model parser. Deleted `claudeCode.session.probe` composite. 7 callers migrated (1 internal claudeCode + 6 hiveMind). Pure parser `session.probe.fromCapture` remains. |
+
+**Bug #4 root cause:** `error.log` writes to stdout (GOTCHA). Captured failed-resolve output landed in `$target`, the empty-check passed, malformed target was sent to `tmux send-keys -t` which silently fell back to focused pane, leaking content.
+
+**B4 verified shipped earlier:** `44ad07e` (B4.1 attach.readonly), `e0ddb95` (B4.2 window-size=largest), `7d27904` (B4.2 polish aggressive-resize).
 **State**: Sprint 0 closing — B5 + Bug #2 + Bug #3 landed today. 4 fresh commits. Tester ran G1.3 (5/5 PASS) and E1.1 (7/8 PASS, critical path GREEN). Only outstanding sprint item is A1.2 fix 2b (session.probe full Controller migration) — still awaiting greenlight.
 
 ---
@@ -96,8 +109,9 @@
 - E1.1/2/3 — end-to-end integration (queued)
 - G1.3 — 1M context (DONE, a515fdc/3f786b0)
 
-**Outstanding expert work (only one item):**
-- **A1.2 fix 2b** — fully relocate `claudeCode.session.probe` to `hiveMind.agent.session.probe`. Pure parser already shipped (6d264df). Migration touches 8 callers (1 in claudeCode + 7 in hiveMind). Awaiting greenlight — not done autonomously because PO didn't explicitly authorize.
+**Outstanding expert work:** NONE. All sprint-0 epics shipped.
+- A1.2 fix 2b shipped today (559e03a). Bug #4 shipped today (19fa1b7).
+- Next: Epic I (context-aware send) — awaiting task file from PO.
 
 ---
 

@@ -1,5 +1,55 @@
 # OOSH Expert Learnings
 
+## NEW: Bug #4 — capture rc separately + validate format (defence-in-depth for send)
+
+**The bug:** `target=$(hiveMind.resolve "$name" 2>/dev/null); [ -z "$target" ] && return 1`
+silently failed because `error.log` writes to **stdout** (not stderr — see "error.log
+writes to stdout" gotcha below). On resolve failure, `$target` contained the error
+text (non-empty), guard passed, malformed string went to `tmux send-keys -t "..."`
+which silently fell back to the focused pane, leaking text into wherever Tron was
+looking.
+
+**Fix pattern — two layers:**
+1. **Caller side** (`hiveMind.send` / `hiveMind.send.message`): capture rc separately
+   AND regex-validate the captured value. Use `local var; var=$(...); local rc=$?`
+   (NOT `local var=$(...)` which always returns 0 for the local).
+   ```bash
+   local target resolveRc
+   target=$(hiveMind.resolve "$name" 2>/dev/null)
+   resolveRc=$?
+   if [ $resolveRc -ne 0 ] || [ -z "$target" ]; then return 1; fi
+   if ! [[ "$target" =~ ^[A-Za-z_][A-Za-z0-9_.-]*:[0-9]+\.[0-9]+$ ]]; then
+     error.log "malformed target: '$target'"; return 1
+   fi
+   ```
+2. **View side** (all `otmux.send*`): new `private.otmux.target.isPane <target>` —
+   accepts `^%[0-9]+$` (pane id) OR `^[A-Za-z_][A-Za-z0-9_.-]*:[0-9]+\.[0-9]+$`
+   (sess:win.pane). Rejects whitespace/newlines (typical of captured error.log).
+   Applied to: `send`, `send.raw`, `send.key`, `send.verified`, `send.enter`, `send.tui`.
+
+**Lesson:** When a function captures another function's output AND uses error.log,
+empty-check is insufficient. Always use `rc` + format validation.
+
+## NEW: View I/O migration to Controller (A1.2 Fix #2b model)
+
+When extracting View-layer I/O from a Model method:
+
+1. **Add Controller method** (e.g. `hiveMind.agent.session.probe`) that:
+   - Accepts `<agentName|pane>` — pane format detection via regex, else resolve
+   - Does the I/O (otmux send/capture/send)
+   - Delegates parse to Model's pure parser via CLI invocation:
+     `claudeCode session.probe.fromCapture "$capture"`
+2. **Migrate callers** — internal hiveMind callers use direct function call form
+   `hiveMind.agent.session.probe`; cross-script callers use `hiveMind agent.session.probe`
+3. **Delete Model composite** — replace with comment block pointing to migration
+4. **Keep Model parser** — pure parser stays (no I/O, takes text or stdin)
+
+When the Model has its own internal callers (e.g. `private.claudeCode.resolve.byPane`
+called `claudeCode.session.probe`), and removing the Model composite would break it,
+the simplest fix is to delegate the internal call to the Controller (`hiveMind agent.session.probe`).
+This creates a temporary Model→Controller call that's documented and goes away when
+the calling helper itself moves to Controller (already flagged in A1.2 plan).
+
 ## NEW: Output filtering rule (PO directive — never violate)
 
 **NEVER use `2>&1`, `| head`, `| tail`, `| grep`, or `2>/dev/null` on output you
