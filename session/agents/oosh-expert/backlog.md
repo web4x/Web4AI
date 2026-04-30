@@ -10,6 +10,21 @@
       full fix queued (screen.ensure re-entry guard + remove from auto paths). See
       `task-bug-agent-monitor-segfault.md`.
 
+## Closed THIS SESSION (2026-04-30)
+
+- [x] **B5.1** — Pane operations notify hiveMind (commits `d0d3d92`, `da032b1`)
+  - `otmux.split[.h|.v]` → `protected.panes.shifted`
+  - `otmux.pane.swap` → `protected.panes.swapped`
+  - `otmux.pane.move`/`pane.join` → `protected.pane.moved`
+  - registry.set TTL priority (3-field format with timestamp)
+- [x] **Bug #2** — `agent.unblock` strict allowlist (commit `8d01421`)
+  - Only acts on `permission|tool-confirm|accept-edits|queued`
+  - Removed leak-vector `*)` fallback that interrupted active agents
+- [x] **Bug #3** — Push `HIVEMIND_ROLE` to shells after swap/move (commit `163b0a0`)
+  - New helper `private.hiveMind.pane.pushRoleEnv`
+  - Plain shells get the export; Claude TUIs are skipped (would inject text into prompt)
+  - MVC propagation chain complete: registry + title + env
+
 ## Open Tasks (Sprint 0 — only one expert item left)
 
 - [ ] **A1.2 fix 2b** (queued, awaits explicit greenlight): Fully relocate

@@ -1,14 +1,14 @@
-# OOSH Expert Agent Context
+# OOSH Expert / Architect Agent Context
 
 **Session**: oosh-expert@opus 1M on MacStudio.native
-**Role**: oosh-expert (OOSH Implementation Authority)
-**Pane**: ooshTeam:0.1 (renamed, pane.lock'd)
-**Shell**: ooshTeam:0.3 (bash 5, OOSH env loaded)
-**Peer**: oosh-tester @ ooshTeam:0.2 (shell ooshTeam:0.4)
-**PO**: product-owner @ ooshTeam:0.0 / TRONinterface:0.0
+**Role**: oosh-expert (OOSH Implementation Authority) — also addressed as oosh-architect
+**Pane**: ooshTeam:0.1 (renamed via /rename + pane.lock)
+**Shell**: ooshTeam:0.4 (bash 5 with OOSH env — was 0.3 before layout change)
+**Peer**: oosh-tester @ ooshTeam:0.3 (shell ooshTeam:0.5) — pane indices shifted from earlier 0.2/0.4
+**PO**: product-owner / oosh-po @ ooshTeam:0.0 / TRONinterface:0.0
 **SM**: scrum-master @ TRONinterface:0.2
-**Updated**: 2026-04-27
-**State**: Sprint 0 expert work effectively complete. 23 commits to test/macos.latest this sprint. Tester has covered C1.4 + B3.1 + B1.3 + A2.3 + G1.3. Only A1.2 fix 2b queued (full session.probe migration to Controller).
+**Updated**: 2026-04-30
+**State**: Sprint 0 closing — B5 + Bug #2 + Bug #3 landed today. 4 fresh commits. Tester ran G1.3 (5/5 PASS) and E1.1 (7/8 PASS, critical path GREEN). Only outstanding sprint item is A1.2 fix 2b (session.probe full Controller migration) — still awaiting greenlight.
 
 ---
 
@@ -17,7 +17,22 @@
 **Sprint file:** `scrum.pmo/sprints/sprint-0-lifecycle-consolidation/planning.md`
 **Goal:** Consolidate MVC stack — claudeCode (Model) / otmux (View) / hiveMind (Controller) / tronMonitor (Monitor) with cold-restart capability.
 
-### Delivered this sprint (23 commits to test/macos.latest, chronological)
+### Delivered TODAY 2026-04-30 (4 commits + 1 test/macos.latest port)
+
+| Commit | Task | Summary |
+|--------|------|---------|
+| `d0d3d92` | B5.1 | Pane operations notify Controller + registry.set TTL priority |
+| `da032b1` | B5.1 align | Rename callbacks to match B5.3 PUML spec (`panes.shifted`/`panes.swapped`/`pane.moved`) |
+| `8d01421` | Bug #2 | agent.unblock strict ALLOWLIST — never interrupt active agents |
+| `163b0a0` | Bug #3 | panes.swapped/pane.moved push HIVEMIND_ROLE to plain shells |
+
+**Cross-branch consolidation earlier today:**
+| Commit | Branch | Summary |
+|--------|--------|---------|
+| `9b7138e` | test/macos.latest | B1.3 surgical port from prod (6 raw `tmux` → `$TMUX_CMD` + Controller-private leak fix) |
+| `7d27904` | test/macos.latest | B4.2 polish port — `aggressive-resize on` + `otmux.window.size` runtime method |
+
+### Delivered earlier this sprint (23 commits to test/macos.latest, chronological)
 
 | Commit | Task | Summary |
 |--------|------|---------|

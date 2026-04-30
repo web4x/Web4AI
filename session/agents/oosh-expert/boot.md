@@ -1,7 +1,8 @@
 # Boot: oosh-expert
 
-## You are: oosh-expert
+## You are: oosh-expert (also addressed as oosh-architect — same agent)
 ## Pane: ooshTeam:0.1 (pane.lock'd, session renamed)
+## Shell: ooshTeam:0.4 (was 0.3 before layout shifted to 6 panes)
 ## Goal: Sprint 0 — Lifecycle Consolidation (MVC boundaries + cold-restart)
 
 ## Immediate actions on boot — DO THESE FIRST
@@ -24,9 +25,14 @@
 |------|------|--------------|
 | 0.0 | product-owner / oosh-po | Assigns tasks, approves fixes, reviews commits |
 | 0.1 | **oosh-expert (you)** | Implementation, audits, architecture decisions |
-| 0.2 | oosh-tester | Writes + runs tests; you hand off test criteria |
-| 0.3 | oosh-expert-shell | Your bash shell for running commands without polluting agent |
-| 0.4 | oosh-tester-shell | Tester's shell (don't touch per feedback memory) |
+| 0.2 | oosh-expert-shell | Your bash shell for running commands without polluting agent |
+| 0.3 | oosh-tester | Writes + runs tests; you hand off test criteria |
+| 0.4 | oosh-expert-shell *(after Apr 30 layout)* OR oosh-tester-shell | Layout has shifted twice — verify with `otmux tree ooshTeam` |
+| 0.5 | oosh-tester-shell *(after Apr 30 layout)* | tester's shell (don't touch per feedback memory) |
+
+**IMPORTANT:** Pane indices have shifted at least twice during the sprint. Always
+verify current layout with `otmux tree ooshTeam` before sending. Use
+`hiveMind resolve <role>` to get the current pane for any role.
 
 External: SM at TRONinterface:0.2 monitors and alerts on subscription/context pressure.
 PO sometimes appears at TRONinterface:0.0.
@@ -97,3 +103,25 @@ ls ~/.claude/projects/-Users-Shared-Workspaces-AI-Claude/$(claudeCode session.cu
 **A1.2 fix 2b** — fully relocate `claudeCode.session.probe` to `hiveMind.agent.session.probe`.
 Pure parser already shipped (`6d264df`). 8 callers to migrate. Awaiting explicit greenlight.
 See backlog.md for the full plan.
+
+## Recent Sprint 0 work (2026-04-30 — last day of work)
+
+| Commit | Task | Summary |
+|--------|------|---------|
+| `d0d3d92` | B5.1 | Pane ops notify Controller (`panes.shifted`/`panes.swapped`/`pane.moved`) + registry.set TTL priority (3-field format `pane\|role\|epoch`, HIVEMIND_REGISTRY_TTL=30) |
+| `da032b1` | B5.1 align | Rename callbacks to match B5.3 PUML spec |
+| `8d01421` | Bug #2 | `agent.unblock` strict ALLOWLIST: keys only for `permission\|tool-confirm\|accept-edits\|queued`. Removed `*)` fallback that interrupted active agents. |
+| `163b0a0` | Bug #3 | `panes.swapped`/`pane.moved` push `HIVEMIND_ROLE` to plain shells via `private.hiveMind.pane.pushRoleEnv` (skips Claude TUIs to avoid prompt injection). Uses raw `tmux display-message` to avoid OOSH log pollution. |
+
+Cross-branch ports earlier today:
+- `9b7138e` test/macos.latest — surgical B1.3 port (6 raw `tmux` → `$TMUX_CMD` + Controller-private leak fix)
+- `7d27904` test/macos.latest — B4.2 polish port (`aggressive-resize on` + `otmux.window.size` runtime method)
+
+## MVC propagation chain — now COMPLETE
+| Layer | After swap | After move | Status |
+|-------|-----------|-----------|--------|
+| View (otmux) | swap-pane done | move-pane done | — |
+| Controller registry | swap roles in roles.env | rename key | ✓ B5.1 |
+| Controller pane.title | (existing wiring) | (existing) | ✓ |
+| Shell env (HIVEMIND_ROLE) | push new export to plain shells | push to dest | ✓ Bug #3 |
+| Sender prefix | reads env first, registry fallback | same | now correct from any source |

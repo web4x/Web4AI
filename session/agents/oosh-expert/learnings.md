@@ -1,5 +1,107 @@
 # OOSH Expert Learnings
 
+## NEW: Output filtering rule (PO directive — never violate)
+
+**NEVER use `2>&1`, `| head`, `| tail`, `| grep`, or `2>/dev/null` on output you
+show to the user.** Show raw unfiltered. Filtering hides errors and breaks
+debugging. Reminder: I violated this 3x in one session before being called out.
+
+If the output is too long, use `Read` with `offset/limit` instead of piping
+through `head`. For dedicated tools (Grep, Glob), use them directly.
+
+## NEW: Observer callback pattern (B5.1)
+
+**View notifies Controller after state mutations.** Soft-fail with `command -v`:
+
+```bash
+command -v hiveMind >/dev/null 2>&1 && hiveMind protected.<event> "$@" 2>/dev/null
+```
+
+Used in:
+- `otmux.session.rename` → `hiveMind protected.session.renamed <old> <new>`
+- `otmux.split[.h|.v]` → `hiveMind protected.panes.shifted <session>`
+- `otmux.pane.swap` → `hiveMind protected.panes.swapped <session> <A> <B>`
+- `otmux.pane.move`/`pane.join` → `hiveMind protected.pane.moved <from> <to>`
+
+Naming convention: `protected.<noun>.<verb-past-tense>` (event has happened, not
+imperative). Args carry context the Controller needs to update its state.
+
+## NEW: Allowlist > Denylist for action-taking code
+
+**Bug #2 lesson:** `agent.unblock` had `case "$status" in active|idle|unknown) skip ;; esac`
+followed by a `*)` fallback that read `$action`. ANY new sweep.detect status flowed
+through the fallback and could trigger key sends to active agents.
+
+**Fix:** Strict allowlist. Only `permission|tool-confirm|accept-edits|queued` trigger
+sends. Everything else (including new states from future sweep.detect changes) is
+silent skip via `debug.log + return 0`.
+
+Rule: when the action is destructive/disruptive (sending keys to a running agent),
+use an explicit allowlist of safe states. Anything not allowlisted is a no-op.
+Better to leave a stuck overlay than interrupt an active agent.
+
+## NEW: TTL-priority pattern for shared state
+
+**Problem (B5.1):** `hiveMind.registry.set` writes file. Live discovery overwrites
+the file entry on next refresh. Manual sets are silently lost.
+
+**Solution:** Write a timestamp with the entry: `pane|role|epoch-timestamp` (3
+fields, backward-compat with legacy 2-field reads). Readers check timestamp:
+- Fresh (within TTL) → file wins, live discovery skipped
+- Stale → live wins, file is fallback
+
+Constant: `HIVEMIND_REGISTRY_TTL=30` (seconds, env-overridable).
+Helper: `private.hiveMind.registry.isRecent <pane>` returns 0 if fresh.
+
+Use this whenever a writer's intent must survive automatic reconciliation.
+
+## NEW: Shell env propagation after pane mutation
+
+**Bug #3 lesson:** After tmux swap-pane, the agent moves with the pane content
+but the shell's HIVEMIND_ROLE env was set at launch time. The sender prefix
+in `otmux send.prefix` reads env first → can render wrong role.
+
+**Fix:** Push `export HIVEMIND_ROLE=<newrole>` to the new pane location's shell
+AFTER the registry update. Helper: `private.hiveMind.pane.pushRoleEnv <pane> <role>`.
+
+**CRITICAL caveat:** Only push to **plain shells**, never Claude TUI panes —
+sending text to a TUI pane injects it into the agent's input prompt (harmful).
+Detect via `pane_current_command` ∈ {bash, zsh, sh, fish}, AND verify no Claude
+child process running (`claudeCode process.running`).
+
+When env update isn't safe (Claude running), the registry is the truth source —
+`otmux send.prefix` falls back to file lookup if env doesn't match.
+
+## NEW: Use raw `tmux` (not `otmux`) inside Controller helpers
+
+When a Controller helper does internal state lookups (e.g. `pane_current_command`),
+calling `otmux pane.get` re-enters the OOSH dispatch chain and at higher LOG_LEVEL
+pollutes captured stdout with `info.log` chatter. The result: `case "$cmd" in bash)`
+fails because `$cmd` contains log lines, not just `bash`.
+
+**Solution:** Use raw `tmux display-message -p` directly inside Controller helpers.
+This is NOT a B1.3 boundary violation because the Controller is calling tmux for
+its OWN state lookup, not from a View context. (Document this in the helper header
+to forestall future cleanup attempts.)
+
+Example: `private.hiveMind.pane.pushRoleEnv` reads `pane_current_command` via
+`tmux display-message -p -t "$pane" '#{pane_current_command}'` — clean output
+regardless of LOG_LEVEL.
+
+## NEW: Cherry-pick won't work between branches with parallel implementations
+
+**Cross-branch consolidation lesson:** prod had `fa75c22` with B4. test/macos.latest
+already had `44ad07e` (B4.1) and `e0ddb95` (B4.2 partial) by other commits. Direct
+`git cherry-pick fa75c22` produced massive structural conflicts because both
+branches independently implemented the same feature in different code styles.
+
+**Approach:** Abort the cherry-pick. Inspect what's already on the target branch
+via `grep` for the feature markers. Surgically port only the genuinely-missing
+deltas. Two smaller commits beats one big conflict resolution.
+
+For Sprint 0: `9b7138e` ported B1.3 fixes, `7d27904` ported B4.2 polish — both
+small, both clean.
+
 ## Boot rule — CRITICAL
 
 **Re-read agent files (context.md, learnings.md, backlog.md, boot.md) on every fresh
