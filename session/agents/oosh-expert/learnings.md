@@ -1,5 +1,35 @@
 # OOSH Expert Learnings
 
+## NEW: --flag args break c2 completion (Epic J J-BUG)
+
+`claudeCode.list <?--json>` produced `PARAM_OPTIONAL_--json` which c2 then tried to
+`declare -- "PARAM_OPTIONAL_--json=..."` → bash error `not a valid identifier`. The
+hyphen in the variable name kills `declare`.
+
+**Rule (T-ARCH-5 reaffirmed):** parameter names must be valid bash identifiers —
+no leading dashes, no embedded dashes, camelCase only. Use positional values:
+`<?format:tree|json>` not `<?--json>`. Backward-compat for legacy `--json` is
+trivial: `[ "$format" = "--json" ] && format="json"` after parameter receipt.
+
+The `c2` parser converts `<?paramName>` to `PARAM_OPTIONAL_paramName` and
+`<paramName>` to `PARAM_paramName` for default-value injection — the parameter
+identifier becomes a shell variable. Any character bash doesn't accept in a
+variable name (including `-`) breaks the whole completion chain.
+
+## NEW: Self-contained python for cross-source data (Epic J1)
+
+When a Controller method needs to compose data from multiple sources (e.g.
+`hiveMind.roles.list.uuids` needs ps + tmux + JSONL files), inline python is
+cleaner than parsing the textual output of upstream methods. Trade-off vs DRY:
+- Pro: single subprocess, no fragile regex on printf-aligned output, faster
+- Con: duplicates the data-source logic (ps args UUID extraction, JSONL tail-scan
+  for customTitle)
+
+**Rule of thumb:** when the upstream method's output format would need parsing,
+implement the data gathering directly. Comment with "mirrors `<method>` data
+source" so future readers know where to look. Never rely on screen-scraping
+internal output.
+
 ## NEW: Stale tmux client → layout crush; `refresh-client -S` is the key (B6)
 
 **Symptom:** `tronMonitor`'s `screen -X screen ... TMUX= tmux attach -r` chain leaves

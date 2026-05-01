@@ -8,16 +8,30 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1 (separate Claude Code pane added today)
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.2
-**Updated**: 2026-04-30 (after Bug #4 + A1.2 fix 2b — Sprint 0 expert work fully shipped)
+**Updated**: 2026-05-01 (Epic J1 + J-BUG shipped after rewind recovery)
 **Layout**: 6 panes now — 0.0 po, 0.1 architect, 0.2 expert (me), 0.3 tester, 0.4 expert-shell, 0.5 tester-shell
 
-## Sprint 0 — final commits today (post-rewind)
+## Sprint 0 — Epic J shipped 2026-05-01 (post-rewind recovery)
+
+| Commit | Task | Summary |
+|--------|------|---------|
+| `a77a7c8` | J1 + J-BUG | `hiveMind.roles.list.uuids <role>` — lists all session UUIDs for a role with status (live/dead/orphan), sorted by recency. Self-contained python: ps + tmux pane→tty cross-ref + JSONL tail-scan for customTitle. Match: case-insensitive, accepts `fallback-<role>` variant, strips `@model`. Completion: `role.list` + `fallback-` prefixed. **J-BUG**: `claudeCode.list <?--json>` (dashes broke c2 → `PARAM_OPTIONAL_--json invalid identifier`) renamed to `<?format:tree\|json>`; legacy `--json` still accepted. |
+| `6256031` | J1 polish | Colorize `roles.list.uuids` output: UUID=gray, TITLE=bold white, PANE=bold cyan/gray, STATUS=green(live)/red(dead)/yellow(orphan). Matches `claudeCode list` scheme. |
+
+## Sprint 0 — earlier commits today (2026-04-30 post-rewind)
 
 | Commit | Task | Summary |
 |--------|------|---------|
 | `19fa1b7` | Bug #4 | Validate pane target before send. New `private.otmux.target.isPane` (regex: `%N` or `sess:win.pane`); rejects whitespace/error.log text. Applied to all 6 send methods. `hiveMind.send`/`send.message` now check `rc` separately + format-validate the resolved target. |
 | `559e03a` | A1.2 fix 2b | session.probe Controller migration. New `hiveMind.agent.session.probe <agentName\|pane>` does View I/O + delegates to Model parser. Deleted `claudeCode.session.probe` composite. 7 callers migrated (1 internal claudeCode + 6 hiveMind). Pure parser `session.probe.fromCapture` remains. |
 | `d860bec` | B6 | otmux client lifecycle. `client.list` tabular (TTY/SESSION/SIZE/FLAGS/IDLE) — exposes stale clients via idle column. `client.detach` reliable + auto `refresh-client -S` to re-sync sizes after detach. NEW `client.cleanup <?filter:read-only>` bulk-detaches matching clients. Live: detached 3 stale 54x26 read-only clients (97h idle was the smoking gun), layout restored to 109x53. |
+
+## Pending — Epic J
+
+- **J2 BLOCKED** — `agent.fork.best <role>` selection logic awaits architect design. PO directive: do NOT implement until architect ships design.
+- **J2.1/2.2/2.3** — implementation + auto-boot + tests, all queued behind J2 design.
+- **J1.3 tester** — multi-UUID scenario test against `hiveMind roles.list.uuids`.
+- **J3** — architect updates MVC PUML (sequence + use-case) with recovery flow.
 
 **Bug #4 root cause:** `error.log` writes to stdout (GOTCHA). Captured failed-resolve output landed in `$target`, the empty-check passed, malformed target was sent to `tmux send-keys -t` which silently fell back to focused pane, leaking content.
 
