@@ -17,6 +17,7 @@
 |--------|------|---------|
 | `19fa1b7` | Bug #4 | Validate pane target before send. New `private.otmux.target.isPane` (regex: `%N` or `sess:win.pane`); rejects whitespace/error.log text. Applied to all 6 send methods. `hiveMind.send`/`send.message` now check `rc` separately + format-validate the resolved target. |
 | `559e03a` | A1.2 fix 2b | session.probe Controller migration. New `hiveMind.agent.session.probe <agentName\|pane>` does View I/O + delegates to Model parser. Deleted `claudeCode.session.probe` composite. 7 callers migrated (1 internal claudeCode + 6 hiveMind). Pure parser `session.probe.fromCapture` remains. |
+| `d860bec` | B6 | otmux client lifecycle. `client.list` tabular (TTY/SESSION/SIZE/FLAGS/IDLE) — exposes stale clients via idle column. `client.detach` reliable + auto `refresh-client -S` to re-sync sizes after detach. NEW `client.cleanup <?filter:read-only>` bulk-detaches matching clients. Live: detached 3 stale 54x26 read-only clients (97h idle was the smoking gun), layout restored to 109x53. |
 
 **Bug #4 root cause:** `error.log` writes to stdout (GOTCHA). Captured failed-resolve output landed in `$target`, the empty-check passed, malformed target was sent to `tmux send-keys -t` which silently fell back to focused pane, leaking content.
 

@@ -1,5 +1,35 @@
 # OOSH Expert Learnings
 
+## NEW: Stale tmux client → layout crush; `refresh-client -S` is the key (B6)
+
+**Symptom:** `tronMonitor`'s `screen -X screen ... TMUX= tmux attach -r` chain leaves
+read-only clients attached at the screen-window's tiny size (e.g. 54x26). They linger
+for hours/days even after the screen window is killed. Attached panes get crushed to
+match.
+
+**Why `ignore-size` flag isn't enough:** even with `client_flags` containing
+`ignore-size`, the tmux server still considers the small client when computing window
+geometry under some conditions. The flag prevents the client from FORCING resize, but
+doesn't fully exclude it from layout calculations.
+
+**The fix that actually works — `tmux refresh-client -S`:**
+- `refresh-client -S` (sync) forces all remaining clients to re-evaluate window sizes
+- Without `-S`, the server keeps the smallest-client geometry even after the small
+  client is gone
+- Always call it AFTER bulk-detach: `tmux detach-client -t X; tmux refresh-client -S`
+
+**Diagnostic format string:**
+```bash
+tmux list-clients -F '#{client_tty}|#{client_session}|#{client_width}x#{client_height}|#{client_flags}|#{client_activity}'
+```
+- `client_activity` is epoch seconds — compute idle as `(now - activity)`
+- A multi-hour idle on a 54x26 read-only client is a strong stale signal
+
+**Detach reliability:**
+- Always pass `-t <client>` explicitly when targeting (omitting it detaches the
+  CALLING client, which is rarely what you want from a script)
+- After ANY detach, call `refresh-client -S` to restore widths
+
 ## NEW: Background-process hygiene — NEVER use `run_in_background` with unbounded waits
 
 **The bug:** I left two orphan zsh `until-sleep-loop` processes running for **5+ days
