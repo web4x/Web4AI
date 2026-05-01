@@ -21,3 +21,14 @@
 14. **ADR-002:** Web4 X.Y.Z.W → npm X.Y.Z-W (prerelease syntax)
 15. **@web4x/cli:** separate component for DefaultCLI/DelegationProxy — avoids circular deps
 16. **QnD = sacrifice web4 for speed** — web2 is OK when deadline matters
+
+## Process Failures (learned the hard way)
+17. **Never mark DONE without tester verification** — expert claims ≠ evidence. Tester must verify.
+18. **Tester must test IN BROWSER not just WS protocol** — page was blank the whole time, tester never noticed
+19. **Use TaskCreate to queue internal work** — don't rely on reactive monitoring loops. CMM4 = process-driven queued tasks, not ad-hoc sleep+capture cycles
+20. **DoD validation requires ACTUAL evidence** — screenshots, curl output, test results. Not "expert says it works"
+21. **oosh team's infra is their job** — don't fix hivemind registries or UUID tracking yourself, delegate back
+22. **Mobile-first is a requirement** — if spec says PWA, test on actual phone screen sizes (320px min)
+23. **PO is NOT the tester or debugger** — PO reviews and accepts, delegates investigation to expert+tester. Scrum PO role: defines WHAT, reviews acceptance criteria, says yes/no. Does NOT grep code, curl URLs, or diagnose bugs. That's the expert's job. When Tron reports a bug, PO creates a task and assigns it — doesn't fix it.
+24. **PO is NOT the expert** — don't suggest code fixes like "add <base href='/'>". Write the bug report with symptoms, assign to expert. Expert finds root cause.
+25. **Every fix must be tester-verified before reporting to Tron** — expert fixes, tester verifies, THEN PO reports. Not: expert fixes → PO reports → Tron finds it broken.
