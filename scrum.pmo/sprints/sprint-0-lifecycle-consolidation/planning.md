@@ -50,7 +50,7 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
 - [x] [Task A1: claudeCode MVC Boundary Audit](./task-a1-claudecode-mvc-boundary-audit.md)
   **Priority:** 1 (CRITICAL - Foundation) **Status:** DONE
   - [x] [Task A1.1: Expert - Model Boundary Audit](./task-a1.1-expert-model-boundary-audit.md) — QA REVIEW: 68 methods, 14 View leaks, 4 Controller leaks. Findings at task-a1.1-findings.md
-  - [x] [Task A1.2: Expert - View Leak Identification](./task-a1.2-expert-view-leak-identification.md) — commits `66ddcd6` raw tmux→otmux, `6d264df` extract pure parser, `de65ac2` delete duplicate `agent.recover`
+  - [x] [Task A1.2: Expert - View Leak Identification](./task-a1.2-expert-view-leak-identification.md) — commits `66ddcd6` raw tmux→otmux, `6d264df` extract pure parser, `de65ac2` delete `agent.recover`, `559e03a` session.probe Controller migration
   - [x] [Task A1.3: Tester - Boundary Violation Tests](./task-a1.3-tester-boundary-violation-tests.md) — commit `57d8a00`
 
 - [x] [Task A2: claudeCode Session Portability](./task-a2-claudecode-session-portability.md)
@@ -78,11 +78,35 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
   - [x] [Task B3.1: Expert - pane.lock idempotent](./task-b3.1-expert-pane-lock-idempotent.md) — commit 75ab018
   - [ ] [Task B3.2: Tester - pane.lock relock test](./task-b3.2-tester-pane-lock-relock-test.md)
 
-- [ ] [Task B4: otmux client lifecycle — attach -r read-only + window-size largest](./task-b4-otmux-client-lifecycle.md)
-  **Priority:** 2 (HIGH - tronMonitor dependency) **Status:** PLANNED
-  - [ ] [Task B4.1: Expert - attach readonly](./task-b4.1-expert-attach-readonly.md)
-  - [ ] [Task B4.2: Expert - window-size largest](./task-b4.2-expert-window-size-largest.md)
+- [x] [Task B4: otmux client lifecycle — attach -r read-only + window-size largest](./task-b4-otmux-client-lifecycle.md)
+  **Priority:** 2 (HIGH - tronMonitor dependency) **Status:** DONE
+  - [x] [Task B4.1: Expert - attach readonly](./task-b4.1-expert-attach-readonly.md) — commit 44ad07e
+  - [x] [Task B4.2: Expert - window-size largest](./task-b4.2-expert-window-size-largest.md) — commits e0ddb95 + 7d27904
   - [ ] [Task B4.3: Tester - client lifecycle tests](./task-b4.3-tester-client-lifecycle-tests.md)
+
+- [x] Task B6: otmux client lifecycle — stale client detection + cleanup + layout restore
+  **Priority:** 1 (CRITICAL - stale clients crush pane widths) **Status:** QA REVIEW (pending B6.5)
+  - [x] Task B6.1: Expert — client.list structured: TTY|SESSION|SIZE|FLAGS|IDLE — commit d860bec
+  - [x] Task B6.2: Expert — client.detach uses -t + auto refresh-client -S — commit d860bec
+  - [x] Task B6.3: Expert — client.cleanup <?filter:read-only> bulk-detach — commit d860bec
+  - [x] Task B6.4: Expert — layout refresh always runs after detach — commit d860bec
+  - [ ] Task B6.5: Tester — 6 test cases in task file
+
+- [ ] Task B5: otmux pane operations must update hiveMind registry (MVC View→Controller)
+  **Priority:** 1 (CRITICAL - MVC consistency) **Status:** QA REVIEW (pending B5.2)
+  - [x] Task B5.1: Expert — commits d0d3d92 + da032b1. View observer callbacks (split→panes.shifted, swap→panes.swapped, move/join→pane.moved). Controller handlers (refresh/atomic swap/rename). Registry.set TTL priority (30s, 3-field format).
+  - [ ] Task B5.2: Tester — test: swap two panes, verify hiveMind resolve returns correct targets after swap. Test: split pane, verify indices shift correctly in registry.
+  - [x] Task B5.3: Architect — PUML at diagrams/mvc-pane-lifecycle.puml
+
+  **Bugs found during fork (2026-04-30):**
+  - BUG: otmux split.h shifts ALL pane indices — registry has stale targets until live discovery refreshes
+  - BUG: hiveMind resolve returns wrong pane after split (live discovery vs registry race)
+
+  **ud-po MVC test (2026-05-01):** Inserted 2 shells at wrong position (above agents), pushed indices. Killed misplaced panes — agents returned to original indices with SAME UUIDs. Split correctly below agents preserves layout. UX rule: split FROM target pane, shell goes below. Session UUIDs survive pane index shifts.
+  - BUG: pane.swap doesn't update registry (Tron found this manually)
+  - ~~BUG: agent.unblock all sends keys to ACTIVE agents~~ — FIXED commit 8d01421 (strict allowlist)
+  - ~~BUG: sender prefix uses wrong identity after pane swap~~ — FIXED commit 163b0a0
+  - BUG CRITICAL: hiveMind send.message leaks option numbers into wrong panes — can approve dangerous prompts. Resolve error cascades into send, bare digits hit permission prompts.
 
 #### **EPIC C: CONTROLLER LAYER — hiveMind Lifecycle**
 
@@ -139,6 +163,27 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
   - [x] Task F3.2: Expert — add subscription.cache.age method to show seconds since last fresh read
   - [x] Task F3.3: Tester — test with simulated API failure
 
+#### **EPIC I: CONTEXT-AWARE SEND (Tron Architecture Directive)**
+
+- [ ] Task I1: hiveMind context-aware send — two distinct paths
+  **Priority:** 1 (CRITICAL - Foundation for reliable communication) **Status:** PLANNED
+  - [ ] Task I1.1: Expert — sweep.detect BEFORE send: check pane state, route to correct path
+  - [ ] Task I1.2: Expert — INFORM path: send text to Claude prompt. Only when IDLE at ❯. Uses otmux send with literal text.
+  - [ ] Task I1.3: Expert — REMOTE CONTROL path: interact with TUI (approve options, select menus). Only when PERMISSION/overlay. Uses otmux send.raw with key sequences.
+  - [ ] Task I1.4: Expert — QUEUE path: if agent is ACTIVE, queue the message for delivery when agent goes IDLE. Return "queued" status.
+  - [ ] Task I1.5: Tester — test all 3 paths: idle→inform, permission→remote-control, active→queue
+  - [ ] Task I1.6: Architect — PUML sequence diagram: context-aware send flow showing sweep.detect → route → path selection
+
+#### **EPIC H: ARCHITECTURE DIAGRAMS**
+
+- [ ] Task H1: MVC Use Case Diagrams — one per tool
+  **Priority:** 2 (HIGH - Architecture Documentation) **Status:** IN PROGRESS
+  - [ ] Task H1.1: Architect — claudeCode-UseCases.puml (Model layer: session.current, context.read, context.velocity, process.find, session.discover, etc.)
+  - [ ] Task H1.2: Architect — otmux-UseCases.puml (View layer: pane.capture, pane.split, send, pane.swap, layout.save, layout.restore, etc.)
+  - [ ] Task H1.3: Architect — hiveMind-UseCases.puml (Controller layer: resolve, send.message, team.sweep, agent.unblock, registry.set, teams.save, teams.restore, etc.)
+  - Cross-layer <<include>> where one layer calls another (e.g. hiveMind.send.message <<include>> otmux.send)
+  - [x] Task H0: Architect — mvc-pane-lifecycle.puml sequence diagram — DONE
+
 #### **EPIC E: INTEGRATION — Full Lifecycle Test**
 
 - [ ] [Task E1: End-to-End Lifecycle Test](./task-e1-end-to-end-lifecycle-test.md)
@@ -180,6 +225,38 @@ E1 (integration test)                        <- last, validates everything
 - [x] sweep.detect has fixture-based tests for all 18 states — C3.2 + C3.3
 - [x] tronMonitor auto-syncs with hiveMind team registry — D1.2 + D2.1/D2.2
 - [ ] Full lifecycle test passes: setup -> save -> kill -> restore -> verify — depends on E1.2/E1.3 currently in flight
+
+#### **EPIC J: ROLE-BASED UUID DISCOVERY & RECOVERY (Priority 1 — SM recovery blocker)**
+
+- [ ] [Task J1: hiveMind roles.list.uuids implementation](./task-j1-roles-list-uuids.md)
+  **Priority:** 1 (CRITICAL - Recovery) **Status:** QA REVIEW (pending J1.3)
+  - [x] Task J1.1: Expert — commit a77a7c8 + 6256031 (colors). Sorted by recency, live/dead/orphan classification
+  - [x] Task J1.2: Expert — completion with role.list + fallback-* variants. Colors match claudeCode list
+  - [ ] Task J1.3: Tester — test with real multi-UUID scenario
+
+- [ ] [Task J2: hiveMind agent.fork.best implementation](./task-j2-agent-fork-best.md)
+  **Priority:** 1 (CRITICAL - One-Command Recovery) **Status:** PLANNED
+  - [ ] Task J2.1: Expert — select most recent non-dead session, fork into target pane
+  - [ ] Task J2.2: Expert — auto-send boot file after fork
+  - [ ] Task J2.3: Tester — test fork + boot cycle end-to-end
+
+- [ ] [Task J3: Update MVC diagrams with recovery flow](./task-j3-update-puml-recovery.md)
+  **Priority:** 2 (HIGH - Documentation) **Status:** PLANNED
+  - [ ] Task J3.1: Architect — update sequence PUML with recovery flow
+  - [ ] Task J3.2: Architect — update use case PUML with roles.list.uuids + agent.fork.best
+
+- [x] Task J-BUG: claudeCode list `<?--json>` parameter has dashes — violates OOSH naming, crashes c2 completion
+  **Priority:** 2 (HIGH - Usability) **Status:** DONE — commit a77a7c8, now `<?format:tree|json>`, backward-compat
+
+- [ ] Task J-BUG2: expert-shell shows fork SOURCE UUID, not the NEW forked session UUID
+  **Priority:** 2 (HIGH - SM recovery tracking) **Status:** PLANNED
+  - [ ] J-BUG2.1: Expert — after claudeCode fork, sessions.env and registry must store the NEW child UUID, not the parent UUID. Investigate: does fork create a new JSONL? If so, detect and register the new UUID.
+  - [ ] J-BUG2.2: Tester — verify after fork: hiveMind process.list shows new UUID, not parent
+
+- [ ] Task J4: Cleanup broken tmux sessions (garbled names from shell errors)
+  **Priority:** 1 (CRITICAL - pollutes otmux tree) **Status:** IN PROGRESS
+  - [x] Layout snapshot saved before cleanup
+  - [ ] J4.1: Tester — kill 5 broken sessions (ERROR>, c, mean_, you) with single-quoted names
 
 ## Token Budget Rule
 - ONE agent works at a time on heavy refactors
