@@ -20,3 +20,15 @@ Must run `bash --init-file source.env` from UpDown project root for web4 command
 
 ## L7: Never assume — always measure
 "All three working" claimed multiple times when agents were actually idle or blocked. ALWAYS capture pane before reporting status.
+
+## L8: Use consistent measurement commands across checkpoints
+Flat file count showed 0 then 10,016 because different find commands were used (tester's vs PO's). Define the measurement command once in the task file and reuse it verbatim.
+
+## L9: Architect review before accepting fixes
+Architect caught DRY gap (duplicated UUID algorithm) that expert missed. Code review is not optional — it prevents technical debt from shipping.
+
+## L10: PDCA checkpoints with before/after metrics = CMM4
+Sprint 0 PDCA checkpoint had a measurable table (before/after/target/status). This is what CMM4 looks like — not just "it works" but measured improvement.
+
+## L11: Commit context after every state change
+SM reminds to commit regularly. Context file is the recovery mechanism — if it's stale, compact recovery fails.

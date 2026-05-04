@@ -23,15 +23,29 @@
 ### Root Cause
 TsAstExtractor.ts has independent write path bypassing UcpStorage. 29,961 correct files from UnitDiscoveryService chain.
 
-### Task Status (2026-05-04)
+### Sprint 0 Status: CLOSED (2026-05-04)
 | Task | Owner | Status |
 |------|-------|--------|
 | 1.1-1.3 | Expert | DONE — findings-expert-source-analysis.md |
 | 1.5 | Tester | DONE — findings-tester-unit-comparison.md |
-| 2.1 | Architect | DONE — findings-architect-rootcause.md |
+| 2.1 | Architect | DONE — findings-architect-rootcause.md, fix review APPROVED |
 | 3.2 | Expert | DONE — UnitRepair.ts compiles |
-| 4.1 | Expert | IN PROGRESS — TsAstExtractor fix + repair running |
-| 4.1 verify | Tester | PREP — reading task files |
+| 3.4 | Expert | DONE — astray dirs cleaned (archive/domain/index/type only) |
+| 4.1 | Expert | DONE — TsAstExtractor uuidToIndexPath() fix, architect APPROVED |
+| 4.3 | Expert | DONE — 0.0.0.0 version dirs removed |
+| PDCA | PO | DONE — pdca-checkpoint-1.md + pdca-closing.md |
+
+### Open Issue for Sprint 1
+Flat file count discrepancy: `find index -maxdepth 1` shows 10,016 but tester earlier measured 0. Need consistent measurement command.
+
+### Next: Sprint 1
+Port prod Unit features (0.3.0.5) to 0.3.23.1. Sprint 1 backlog:
+- Verify/resolve flat file count discrepancy
+- TsAstExtractor→ScenarioService DRY refactor (architect recommendation)
+- UnitCLI commands (create, list, info, repair)
+- .ts.unit file creation in UnitDiscoveryService
+- MDAv4 fields (origin, typeM3, references[]) in UnitModel
+- PUML→Unit converter
 
 ### Key Paths
 - Scenarios: /Users/Shared/Workspaces/AI/Claude/workspaces/UpDown/scenarios/
