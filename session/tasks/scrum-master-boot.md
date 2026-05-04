@@ -197,10 +197,13 @@ Chained commands trigger permission prompts. Single commands do not.
   10. Health check after — verify ACTIVE within 3 cycles
 - REWIND FAILURE: if TUI doesn't appear after 3 attempts → escalate to oosh-po → Tron. NEVER /clear.
 
-## Current State (last updated 2026-04-30, rewind incoming)
-- ooshTeam: oosh-po ACCEPT_EDITS, oosh-architect ACCEPT_EDITS, oosh-expert ACTIVE/reading, oosh-tester ACCEPT_EDITS
-- web4team: web4-po PERMISSION, web4-architect ACTIVE, web4-expert COMPLETED, web4-tester ACTIVE
-- Subscription: 5h=46%, 7d=34%, resets in ~3h06m — safe
-- PO contact: oosh-po at ooshTeam:0.0
-- oosh-po notified about web4-po being stuck
-- Sweep loop trigger: boot message or background sleep timer
+## Current State (updated 2026-05-03 ~01:00 UTC)
+- ooshTeam: oosh-po ACTIVE (my 42 peer), oosh-architect ACCEPT_EDITS (context tight 816k/1M ~18%), oosh-expert RATE_LIMIT (stuck-prompt, no tasks), oosh-tester ACTIVE
+- upDownTeam: ud-po ACTIVE, ud-architect ACTIVE/running (vitest task), ud-expert COMPLETED, ud-tester ACTIVE
+- web4team: IDLE — do NOT sweep
+- Subscription: 5h=88%, 7d=81%, resets in ~2h52m — CAUTION, velocity +6%/10min
+- PO contact: oosh-po at ooshTeam:0.0 (my 42 peer)
+- Sprint 3: QnD UpDown game, deadline today (Sunday). ud-architect + ud-tester doing vitest conversion (UC1-UC26)
+- Sweep loop: `sleep 60 && echo "SWEEP NOW"` background task, sweep ooshTeam + upDownTeam only
+- Context monitoring: pane.capture status bar for "new task? /clear to save" on active agents every 3rd cycle
+- oosh-architect reported tight to oosh-po — needs rewind coordination
