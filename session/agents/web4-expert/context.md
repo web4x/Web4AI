@@ -1,78 +1,68 @@
-# web4-expert Context — Save Point 2026-04-24
+# ud-expert Context — Save Point 2026-05-04 (pre-rewind)
 
-**Role**: Web4AI Implementation Authority
-**Status**: Sprint 1 Tasks 7.2-7.6 DONE, 7.7 handed to tester
-**Machine**: Mac Studio
-**Pane**: web4team:0.2
+**Role**: UpDown Implementation Authority (ud-expert)
+**Pane**: upDownTeam:0.2
+**Shell**: upDownTeam:0.3 (Web4 initialized)
+**Branch**: qndNow
+**Last commit**: 9dc76b36c
 
 ## Team Layout
-- web4team:0.0 — web4-po (quality owner, CMM4 goal)
-- web4team:0.1 — web4-architect (PUML/MDAv4/Units)
-- web4team:0.2 — ME (web4-expert)
-- web4team:0.3 — web4-tester
-- web4team:0.4 — expert-shell (Web4 initialized)
-- web4team:0.5 — spare
+- upDownTeam:0.0 — ud-po
+- upDownTeam:0.1 — ud-architect
+- upDownTeam:0.2 — ME (ud-expert)
+- upDownTeam:0.3 — ud-expert-shell
+- upDownTeam:0.4 — ud-tester
+- upDownTeam:0.5 — ud-tester-shell
 
-## Base Path
-`/Users/Shared/Workspaces/AI/Claude.All/UpDown/components/`
+## Base Paths
+- UpDown project: `/Users/Shared/Workspaces/AI/Claude.All/UpDown/`
+- QnD game: `qnd/`
+- Components: `components/`
+- Web4 init: `bash --init-file source.env` from UpDown root
 
-## De-monolithization — ALL PHASES DONE
+## Sprint 1 (COMPLETE) — Web4 De-monolithization
+- 14 @web4x/* components at 0.3.23.1, all compile clean
+- @web4x/cli extracted (DRY — no copied DefaultCLI)
+- ONCE server start parity verified
+- npm exports subpath pattern (ADR-001)
+- Semantic links: ONCE dev+latest→0.3.23.0, W4TSC dev→0.3.23.0
 
-| Phase | Status |
-|-------|--------|
-| 0: @web4x/ucp | DONE |
-| 1: @web4x/web4tscomponent | DONE |
-| 1.25: BUG-W02 fix | DONE |
-| 1.5: Cascading auto-build | DONE |
-| 2: @web4x/unit | DONE |
-| 3a-e: persistence/user/filesystem/http/tls | DONE |
-| 4: @web4x/once | DONE |
-| 5: web4test/tootsie/pdca/idealminimal | DONE |
-| 6: Testing 8/8 PASS | DONE |
+## Sprint 3 (COMPLETE) — QnD Multiplayer Card Game
+All tasks 1-32 done. Branch qndNow, pushed to GitHub.
 
-## 13 Components at 0.3.23.0 (all compile clean)
-@web4x/ucp, unit, persistence, user, filesystem, http, tls, web4tscomponent, once, web4test, tootsie, pdca, idealminimalcomponent
+### Server Files (qnd/src/ts/server/)
+- **GameRoom.ts** — rooms, GM dealing, rounds, 10s countdown, elimination, scoring, diamonds, bots, spectators, chat history, pre-created rooms with stable slug IDs (2p/3p/4p/5p/party), auto-recreate
+- **SpecialCards.ts** — 11 cards L1-L3, priority resolution
+- **BotPlayer.ts** — card-counting AI, 4 personalities, 25% random nerf, 30% shield play rate
+- **server.ts** — HTTPS+WS, room manager, .env config, /api/config endpoint, all protocol handlers, SERVER_CONFIG on connect, ROOM_LIST on connect+leave
 
-## Sprint 1 — Current Work (0.3.23.1)
+### Client Files (qnd/src/public/ts/)
+- **WebSocketClient.ts** — protocol client + shareOrCopy() + generateInviteMessage() (DRY)
+- **LobbyUI.ts** — room list, create, join, share, spectate, ?join= auto-join, ?name= param
+- **MultiplayerUI.ts** — game board, cards with visual comparison, countdown, guess buttons, special cards from inventory, chat bottom sheet (Google Maps style), player profiles (slide-up), spectate mode, invite button
+- **multiplayer.ts** — entry point with /api/config loader
 
-### Tasks 7.2-7.6 (DONE)
-- 7.2 VERIFIED: UnitModel has origin, typeM3, references
-- 7.3 DONE: Added FOLDER to TypeM3 enum in UCP/0.3.23.1
-- 7.4 VERIFIED: references[] exists in UnitModel
-- 7.5 DONE: tsUnitCreate() on UnitDiscoveryService in Unit/0.3.23.1
-- 7.6 DONE: PumlUnitConverter in Unit/0.3.23.1/src/ts/layer2/
-- 7.7: Handed to tester — awaiting verification
+### Shared (qnd/src/ts/shared/ + qnd/src/shared/)
+- **MessageTypes.ts** — 36 MSG constants, single source of truth
 
-### Key Files Modified
-- `UCP/0.3.23.1/src/ts/layer3/TypeM3.enum.ts` — added FOLDER
-- `Unit/0.3.23.1/src/ts/layer2/UnitDiscoveryService.ts` — added tsUnitCreate() + imports
-- `Unit/0.3.23.1/src/ts/layer2/PumlUnitConverter.ts` — NEW file
+### Tests (qnd/test/vitest/)
+- 9 UC test files, 47 tests, 47 PASS
+- vitest.config.ts configured
 
-### Spec File
-`/Users/Shared/Workspaces/AI/Claude.All/UpDown/scrum.pmo/sprints/sprint-1-monolithic-functionality/task-7.1-architect-unit-mdav4-spec.md`
+### Key Bugs Fixed
+- BUG-1: disconnected player vanishes (mark+cleanup pattern)
+- Double resolveRound race (re-entry guard)
+- Bot elimination (nerf + shield probability)
+- Score in ROUND_RESULT (name+score+streak+roundScore)
+- Inventory sync (per-player ROUND_START)
+- Room recreate instant (no 2s gap)
+- Chat history on join (max 50)
+- ROOM_LIST on LEAVE_ROOM
+- .env BASE_DOMAIN=home.donges.it
 
-## Semantic Links
-- W4TSC: prod→0.3.19.1, test→0.3.19.3, dev→0.3.20.6, latest→0.3.23.1
-- ONCE: prod→0.3.22.1, test→0.3.21.6, dev→0.3.21.6, latest→0.3.22.1
-
-## Loss Report (from de-monolithization)
-~20 files at domain boundaries not extracted to standalone components (remain in ONCE 0.3.23.0):
-- HTTPSServer, ServerHierarchyManager, ProxyRoute, ReverseProxyRoute, HeaderRewriter, HrefRewriter
-- ScenarioManager, ScenarioLoader (L2+L4), UnitCacheManager
-- ACMEChallengeRoute, StaticFileRoute, FileOrchestrator
-- All Layer5 views for filesystem
-- DefaultEnvironmentInfo
-
-## CMM Understanding
-- Web4 = CMM4 (self-optimizing systems)
-- Composed maturity = weakest link
-- Assuming = L2, measuring = L3, PDCA loop = L4
-- Current composed level: L1 (zero PDCA files, no Tootsie tests)
-- PO goal: reach CMM4
-
-## Key Learnings This Session
-- Web4 shells need `bash --init-file source.env` from UpDown root
-- otmux pane.lock for persistent pane titles
-- CLI scripts must self-register version symlinks
-- PROJECT_ROOT derived from component path (3 levels up), never from $PWD
-- Ask oosh-expert when stuck on otmux methods — don't guess
+### Key Decisions
+- Pre-created rooms: stable slug IDs, auto-recreate, host transfers to first human
+- No auto-start countdown — host always clicks Start, bots fill on start
+- navigator.share() on mobile, clipboard on desktop
+- esbuild bundles client TS → dist/multiplayer.js
+- <base href="/"> in multiplayer.html for /mp route
