@@ -108,6 +108,11 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
   - ~~BUG: sender prefix uses wrong identity after pane swap~~ — FIXED commit 163b0a0
   - BUG CRITICAL: hiveMind send.message leaks option numbers into wrong panes — can approve dangerous prompts. Resolve error cascades into send, bare digits hit permission prompts.
 
+- [ ] Task B7: otmux tree/tree.detailed completion broken — must use parameter.completion (DRY)
+  **Priority:** 1 (CRITICAL - usability broken) **Status:** QA REVIEW (pending B7.2)
+  - [x] Task B7.1: Expert — commit adee4cb. 6 methods rewired to delegate to parameter.completion.session (tree, tree.detailed, session.details, pane.list, rename, session.rename). layout.save duplicate also fixed. Single source at line 1350. NOTE: c2 boot bug observed (line 636 cd ng) — pre-existing, not this fix.
+  - [ ] Task B7.2: Tester — test: `otmux tree ` + Tab completes session names. Test: `otmux tree.detailed ` + Tab same. Test: matches `otmux attach ` + Tab output exactly.
+
 #### **EPIC C: CONTROLLER LAYER — hiveMind Lifecycle**
 
 - [x] [Task C1: hiveMind Cold-Start Restore](./task-c1-hivemind-cold-start-restore.md)
@@ -248,10 +253,22 @@ E1 (integration test)                        <- last, validates everything
 - [x] Task J-BUG: claudeCode list `<?--json>` parameter has dashes — violates OOSH naming, crashes c2 completion
   **Priority:** 2 (HIGH - Usability) **Status:** DONE — commit a77a7c8, now `<?format:tree|json>`, backward-compat
 
+- [ ] Task J-BUG3: hiveMind send/send.message fails for ambiguous agent names (oosh-tester, web4-expert, web4-tester)
+  **Priority:** 1 (CRITICAL - SM cannot message agents) **Status:** PLANNED
+  - hiveMind resolve with session qualifier works (resolve oosh-tester ooshTeam → 0.3)
+  - But send/send.message don't pass session qualifier to resolve
+  - Fix: send.message should accept optional <?session> or auto-prefer caller's session (03149ef pattern)
+
 - [ ] Task J-BUG2: expert-shell shows fork SOURCE UUID, not the NEW forked session UUID
   **Priority:** 2 (HIGH - SM recovery tracking) **Status:** PLANNED
   - [ ] J-BUG2.1: Expert — after claudeCode fork, sessions.env and registry must store the NEW child UUID, not the parent UUID. Investigate: does fork create a new JSONL? If so, detect and register the new UUID.
   - [ ] J-BUG2.2: Tester — verify after fork: hiveMind process.list shows new UUID, not parent
+
+- [ ] Task J-BUG4: otmux tree <?session> completion broken — c2 not falling through to parameter.completion.session
+  **Priority:** 2 (HIGH - Tab completion) **Status:** PLANNED
+  - Signature has `<?session>`, `parameter.completion.session` exists, but Tab doesn't complete
+  - RULE: ALWAYS use parameter.completion over method.completion for DRY
+  - Expert: check c2 fallthrough logic for optional params with parameter.completion
 
 - [ ] Task J4: Cleanup broken tmux sessions (garbled names from shell errors)
   **Priority:** 1 (CRITICAL - pollutes otmux tree) **Status:** IN PROGRESS
