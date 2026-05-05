@@ -8,15 +8,21 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1 (separate Claude Code pane added today)
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.2
-**Updated**: 2026-05-01 (Epic J1 + J-BUG shipped after rewind recovery)
+**Updated**: 2026-05-05 (Sprint 0 Epic J + B7 + tronMonitor fix shipped; dev branch parity)
 **Layout**: 6 panes now — 0.0 po, 0.1 architect, 0.2 expert (me), 0.3 tester, 0.4 expert-shell, 0.5 tester-shell
 
-## Sprint 0 — Epic J shipped 2026-05-01 (post-rewind recovery)
+## Sprint 0 — recent shipped (2026-05-01 → 2026-05-05)
 
-| Commit | Task | Summary |
-|--------|------|---------|
-| `a77a7c8` | J1 + J-BUG | `hiveMind.roles.list.uuids <role>` — lists all session UUIDs for a role with status (live/dead/orphan), sorted by recency. Self-contained python: ps + tmux pane→tty cross-ref + JSONL tail-scan for customTitle. Match: case-insensitive, accepts `fallback-<role>` variant, strips `@model`. Completion: `role.list` + `fallback-` prefixed. **J-BUG**: `claudeCode.list <?--json>` (dashes broke c2 → `PARAM_OPTIONAL_--json invalid identifier`) renamed to `<?format:tree\|json>`; legacy `--json` still accepted. |
-| `6256031` | J1 polish | Colorize `roles.list.uuids` output: UUID=gray, TITLE=bold white, PANE=bold cyan/gray, STATUS=green(live)/red(dead)/yellow(orphan). Matches `claudeCode list` scheme. |
+| Commit | Branch | Task | Summary |
+|--------|--------|------|---------|
+| `a77a7c8` | macos | J1 + J-BUG | `hiveMind.roles.list.uuids <role>` — lists all session UUIDs for a role with status (live/dead/orphan), sorted by recency. Self-contained python: ps + tmux pane→tty cross-ref + JSONL tail-scan for customTitle. Match: case-insensitive, accepts `fallback-<role>` variant, strips `@model`. **J-BUG**: `claudeCode.list <?--json>` → `<?format:tree\|json>` (dashes broke c2 `PARAM_OPTIONAL_--json invalid identifier`). |
+| `6256031` | macos | J1 polish | Colorize `roles.list.uuids` output: UUID=gray, TITLE=bold white, PANE=bold cyan/gray, STATUS=green/red/yellow. |
+| `adee4cb` | macos | B7.1 | All otmux methods with `<session>` param now have explicit `.completion.session` delegating to `parameter.completion.session` (DRY single source). Layout.restore/delete/show kept their saved-file completions (different semantic). |
+| `be3db2b` | macos | J2 | `hiveMind.agent.fork.best <role> <targetPane>` — JSONL size + tool count heuristic (50KB filter), tiebreaker bare > fallback then recency. Fork → sleep 8 → boot.md → registry.set. Validated on real data: scrum-master picks 35916ccb (14.6MB/4918 tools) over 1c1d2925 (14KB/0 tools — SKIP). |
+| `212e072` | macos | B7.2 | Fix completion-vs-param mismatches: `tree <?target>→<?session>`, `layout.restore <?--force>→<?force>` (T-ARCH-5 J-BUG class), added `otmux.session.kill` alias for orphan completion. |
+| `68b922c` | macos | **B7.3** | **c2 substring-match bug fix** — `get.function.declaration` greps with bare method name, matched `otmux.client.choose.tree` for filter `tree`, alphabetical sort picked it first → empty METHOD_PARAMETER → no parameter completion. Fix: class-qualified `${name}.$1` in both filter and grep. Verified: tree, attach, layout.restore all complete correctly. |
+| `de065b5` | **dev** | B7.3 port | Same c2 fix on dev branch (different namespace `private.c2.*`). Cherry-pick would conflict due to parallel implementations; surgical port instead. |
+| `f671d3d` | macos | d1.3 fix | tronMonitor setup: window 0 was bare zsh because `screen -S name` started with default shell. Fix: cold start sends `screen -S name -t firstTeam bash -c "TMUX= tmux attach -r -t firstTeam; exec bash"` — window 0 IS the first team. Subsequent teams = windows 1..N matching env. switch uses window number (more reliable than name on old macOS screen). Tested live: 20 teams visible, switch updates pane. |
 
 ## Sprint 0 — earlier commits today (2026-04-30 post-rewind)
 

@@ -1,5 +1,63 @@
 # OOSH Expert Learnings
 
+## NEW: c2 substring match bug — qualify method names with class (B7.3)
+
+**Symptom:** `otmux tree <TAB>` returned no completions (`;` fallback). `otmux attach <TAB>` worked.
+
+**Root cause:** `c2.get.function.declaration` did `grep "$1("` where `$1` was the bare
+method name. For `tree`, the grep matched both `otmux.tree(` AND `otmux.client.choose.tree(`.
+After `c2.get.functions | sort`, `client.choose.tree` came first alphabetically, so
+`line.select 1` picked it. That function has no parameters → METHOD_PARAMETER stayed
+empty → no `PARAM_OPTIONAL_session` declared → `private.call.custom.completion` had
+no parameter to look up → fell through to `;`.
+
+**Fix:** in c2.get.function.declaration, qualify both the filter passed to
+get.functions and the grep with `${name}.$1`:
+```bash
+private.c2.get.functions "$from" "${name}.$1" \
+  | grep "${name}\.$1(" \
+  | line.select 1 \
+  ...
+```
+
+**Generalization:** any time you grep for a method by name, anchor with the class
+prefix. Bare method names hit suffix-substring collisions (`kill` matches
+`session.kill`, `tree` matches `client.choose.tree`). The class is the namespace —
+without it, grep is asking "any function whose name contains tree".
+
+**Cross-branch port:** the same bug existed on dev's `private.c2.*` namespace.
+Cherry-pick would have conflicted (dev's c2 is 5KB larger — independent
+implementation). Surgical port: read dev's variant, apply the same logical fix
+in dev's naming, separate commit.
+
+## NEW: tronMonitor window 0 must be a team, not a bare shell (d1.3)
+
+**Symptom:** `tronMonitor setup` reports SUCCESS but the monitor pane shows a bare
+`donges@MacStudio ~ %` zsh. Tron sees nothing.
+
+**Root cause:** the prior setup sent `screen -S tronMon` to the pane. Screen starts
+with the user's default shell as window 0 (a bare zsh). The subsequent
+`screen -X screen -t team cmd` calls created TEAM windows (1, 2, ...), but screen
+kept displaying window 0.
+
+**Fix:** start screen with the first team as window 0 directly:
+```bash
+otmux send.raw "$pane" \
+  "screen -S tronMon -t firstTeam bash -c \"TMUX= tmux attach -r -t firstTeam; exec bash\"" Enter
+```
+
+`screen -t name cmd` makes window 0 named + running cmd. Add the rest as windows
+1..N. Final `screen -X select 0` ensures predictable starting view.
+
+**Switch by number, not name.** Old macOS screen's `select <name>` is unreliable;
+`select <N>` always works. Track `N|teamSession` in env (cold-start truncates to
+keep numbering aligned with screen's sequential assignment).
+
+**Recipe invariants (Tron-tested):**
+- `TMUX=` prefix — clears env so nested `tmux attach` works inside screen
+- `-r` flag — read-only attach, never destroys agent layouts
+- `exec bash` tail — keeps the screen window alive after user detaches
+
 ## NEW: --flag args break c2 completion (Epic J J-BUG)
 
 `claudeCode.list <?--json>` produced `PARAM_OPTIONAL_--json` which c2 then tried to
