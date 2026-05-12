@@ -1,5 +1,156 @@
 # OOSH Expert Learnings
 
+## NEW: Sprint 1 State Correctness — events + reconcile hybrid (2026-05-12)
+
+**Architecture: Option C primary + Option B safety net** (joint design with architect)
+- Primary: in-process event dispatch (function-table, not subprocess) for hiveMind-internal handlers
+- Cross-script observers (otmux→hiveMind, tronMonitor→hiveMind) keep B5.1 subprocess pattern
+- Safety net: `consistency.reconcile` runs in SM cycle, calls same `reconcile.diff` primitive as `audit`/`fix`
+- Why both: events are fast on the hot path; reconcile catches anything events missed
+
+**Event dispatch table is per-process by design**
+- `declare -gA HIVEMIND_EVENT_HANDLERS` is in-process state — does NOT persist across `hiveMind ...` subprocess invocations
+- Correct: registration happens at hiveMind's load time, every fresh subprocess re-registers
+- Testing requires single-subshell harness OR registering inside a method that emits in same process
+- Don't try to make it persist via env file — that defeats the in-process fast path
+
+**The `protected.*` pattern for testable internals**
+- When `private.<name>` is needed for CLI invocation but architecture.md says private is hidden from CLI, add `hiveMind.protected.<name>` thin wrapper
+- protected = CLI callable, hidden from Tab completion
+- Same pattern used for cross-script observers (e.g. `protected.panes.swapped`)
+- Document as "CLI wrapper for tests/diagnostics" in commit message
+
+**Severity-graded mutation output format**
+- `<severity>|<invariant>|<store>|<op>|<key>|<expected>|<actual>` — 7 pipe-separated fields
+- Severity FIRST for easy `| grep CRITICAL`
+- Invariant id second for traceability
+- Sorted output: CRITICAL → HIGH → MEDIUM → LOW (stable, per-invariant ordering within tier)
+
+**PO-locked operational constraints (Sprint 1 lift these as code constants)**
+- U1: log+continue on handler failure — never abort the mutation
+- U2: graded audit — show all violations, never exit early
+- U3: dry-run default for reconcile, `--apply` flag required
+
+## NEW: Pane address normalization for cross-script observers (2026-05-12, B5.2 SWAP-1)
+
+Observer callers may pass pane addresses in two formats:
+- Full target: `teamX:0.0` (otmux's canonical)
+- PUML-spec addr-only: `0.0` (when session is implicit/context-derived)
+
+The receiver MUST normalize:
+```bash
+[[ "$a" != *:* ]] && [ -n "$session" ] && a="${session}:${a}"
+```
+
+Without this, `grep "^${a}|"` against the registry fails silently for addr-only callers. T-B5-SWAP-1 was failing exactly because the test called `panes.swapped <sess> 0.0 0.1` and the handler tried to grep `^0.0|` instead of `^sess:0.0|`.
+
+## NEW: TTL=0 must short-circuit, not rely on `-le` semantics (2026-05-12, B5.2 TTL-3)
+
+`HIVEMIND_REGISTRY_TTL=0` should mean "always expired / live-only mode".
+With `[ "$age" -le "${TTL:-30}" ]` and both age=0 + TTL=0: `0 -le 0` is TRUE → entry recent. Wrong.
+
+Fix preserves boundary semantics for non-zero TTLs while special-casing 0:
+```bash
+local ttl="${HIVEMIND_REGISTRY_TTL:-30}"
+[ "$ttl" -eq 0 ] && return 1
+[ "$age" -le "$ttl" ]
+```
+
+Strict `-lt` would also work but slightly changes inclusive-boundary behavior. Explicit short-circuit is safer.
+
+## NEW: Verify-before-claim generalized (2026-05-12, D1 follow-up)
+
+**Pattern P2 (canonical):** Methods producing observable side effects (title bars, displayed state, registry entries) must VERIFY the effect before reporting success. Otherwise the cache becomes a lie.
+
+`tronMonitor.switch` was: select (fire-and-forget) → title update (unconditional) → claim success. Fix: select → settle → capture+grep team signature → title only if verified → on failure flip title to "⚠ MISMATCH" + rc=1.
+
+**Generalize to:** any method that updates a UI/cache after triggering a state change. The cache update must follow successful observation, not precede it.
+
+## NEW: teams.env "Did/you/mean" garbage = unquoted-var word-split (2026-05-12)
+
+Root cause: `for sess in $uniqueSessions` (unquoted) word-splits on snapshot file containing `Did you mean: foo` line, registers each word as separate team.
+
+Fix two-fold:
+1. **Read-side** — use array iteration:
+   ```bash
+   local arr=()
+   while IFS= read -r line; do arr+=("$line"); done < <(cmd)
+   for x in "${arr[@]}"; do ...; done
+   ```
+2. **Ingress (team.register)** — triple defense P3 (regex + pipe-reject + live-tmux existence)
+
+**Critical insight:** regex alone insufficient. `Did` is a valid identifier. ONLY the live-tmux existence check rejects it. Defense-in-depth → each layer catches a different attack class:
+- (a) regex: format errors (`mean:`, `foo bar`, `-baz`)
+- (b) pipe: storage corruption (`a|b|c`)
+- (c) existence: fictional sessions (`Did`, `ghostTeam`, valid-but-not-real)
+
+## NEW: For-loop array vs unquoted iteration (P7 reaffirmed)
+
+```bash
+# WRONG — splits on IFS, globs
+for x in $(command); do ...
+for x in $varHoldingMultilineData; do ...
+
+# RIGHT — array
+mapfile -t array < <(command)
+for x in "${array[@]}"; do ...
+
+# RIGHT — while-read (no array)
+while IFS= read -r x; do ...; done < <(command)
+```
+
+## NEW: Defense-in-depth for cross-script observers (D2.1 tronMonitor hijack)
+
+When script A fires an observer in script B (e.g. `hiveMind.team.register` →
+`tronMonitor add` via D2.1), the **receiver** is the right place to filter, not
+the sender. The PO-reported tronMonitor hijack happened because:
+
+1. test.hiveMind created `__test_hm_$$` session
+2. test called `hiveMind.team.register $TEST_SESSION` (legitimate)
+3. team.register fired `tronMonitor add $TEST_SESSION` via D2.1 observer
+4. Test ended; `tmux kill-session` removed the tmux session
+5. **tronMonitor.env still had the entry**, the screen window dangled, eventually
+   tronMonitor reset re-attached → hijack
+
+**Right fix:** `tronMonitor.add` itself rejects `__test_*` names. Mirrors the
+D1.7 prune guard at line ~355.
+
+**Wrong fix:** Make test cleanup more thorough. (Still added it as belt-and-braces,
+but it's the slow path. The receiver guard is the cheap, atomic, always-correct
+guard.)
+
+**Generalization:** observers fire from many code paths (legitimate + test +
+imported scripts). Guard at the receiver, not at every sender. Same pattern
+applies to:
+- `protected.session.renamed` — reject names matching test prefixes
+- `protected.panes.swapped` — TBD (B5.2 currently failing, need to look)
+- Any future `protected.<X>.<event>` handler
+
+## NEW: Raw-tmux usage = audit moment, not shortcut (B7.4 audit)
+
+Whenever I reach for `tmux <subcommand>` in an operation, that's a signal to
+stop and ask: "is this a misuse of an existing otmux method, or a genuine gap?"
+Two categories of failure:
+
+**Misuse (existing otmux method available, I forgot):**
+- `tmux swap-pane -s A -t B` → `otmux pane.swap A B`
+- `tmux set-window-option <opt> <val>` → `otmux config.set.window <opt> <val>`
+- `tmux show-window-options` → `otmux config.show.window`
+
+**Genuine gap (no otmux method — must add):**
+- `tmux display-message -p '#{window_layout}'` → added `otmux.window.layout.get`
+- `tmux select-layout <spec>` raw → added `otmux.window.layout.set` (B2.layout.restore is file-based)
+- `tmux list-panes -F <custom-format>` → added `otmux.pane.list.format`
+- `tmux list-windows -F <custom-format>` → added `otmux.window.list.format`
+- `tmux set-window-option aggressive-resize on` (frequent enough to deserve verb) → added `otmux.window.aggressive.resize`
+
+**Rule:** when shipping work that used raw tmux, the commit MUST either (a) cite
+the existing otmux method I should have used (and reproach myself), or (b) add
+the missing wrapper as part of the same shipment. Raw tmux escaping into commit
+diff is an OOSH first-principles violation (see learnings.md older entry "No
+raw tmux"). Catching it at audit time, after PO calls it out, is the slow path —
+catch at write time.
+
 ## NEW: c2 substring match bug — qualify method names with class (B7.3)
 
 **Symptom:** `otmux tree <TAB>` returned no completions (`;` fallback). `otmux attach <TAB>` worked.

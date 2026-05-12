@@ -8,8 +8,84 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1 (separate Claude Code pane added today)
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.2
-**Updated**: 2026-05-05 (Sprint 0 Epic J + B7 + tronMonitor fix shipped; dev branch parity)
-**Layout**: 6 panes now — 0.0 po, 0.1 architect, 0.2 expert (me), 0.3 tester, 0.4 expert-shell, 0.5 tester-shell
+**Updated**: 2026-05-12 — Sprint 0 CLOSED, Sprint 1 ACTIVE. Today shipped: 4 fixes (B5.2 SWAP-1, B5.2 TTL-3, D1 verify-before-title, teams.env triple-defense). Sprint 1 designed jointly with architect, signed off PO, scaffolded 38 task files, shipped 2 commits (SC-A.1 + SC-B.1).
+**Layout**: 6 panes — 0.0 po, 0.1 architect, 0.2 expert (me), 0.3 tester, 0.4 expert-shell, 0.5 tester-shell
+
+## Sprint 1 — shipped TODAY 2026-05-12
+
+| Commit | Task | Summary |
+|--------|------|---------|
+| `10e9fa0` | B5.2 SWAP-1 | hiveMind protected.panes.swapped pane-arg normalization (accept full target or addr-only) |
+| `b4c3b3f` | B5.2 SWAP-1 | test.lifecycle grep patterns tolerate both legacy 2-field + B5.1 3-field TTL registry |
+| `14d5866` | B5.2 TTL-3 | registry.isRecent explicit short-circuit when TTL=0 (was `0 -le 0 = true`) |
+| `aa7d6ac` | D1 follow-up | tronMonitor.switch capture-and-grep verify-before-title — Tron's 3-bug headers-lie pattern surfaced + fixed |
+| `ebc8b5e` | teams.env hygiene | team.register triple-defense (regex+pipe+live-tmux) + teams.restore unquoted-var word-split fix |
+
+## Sprint 1 — DESIGN + SCAFFOLD shipped today
+
+**Joint design with oosh-architect — signed off PO + architect (2026-05-12).**
+
+Canonical doc: `scrum.pmo/sprints/sprint-1-state-correctness/sprint-1-design.md` (10 sections, ~340 lines)
+- 10 cache stores (S1-S10) + 3 ground-truth sources (L1-L3)
+- 25 mutation operations × per-store W/R/D/? matrix
+- 7 invariants I1-I7 (architect's 6 + my I7 verify-before-claim)
+- Architecture: Option C events + Option B reconcile (hybrid)
+- 10-event catalog
+- P1-P7 patterns from Sprint 0 made canonical
+- 7 epics SC-A through SC-G with dependency order
+
+**PO-locked decisions (U1/U2/U3):**
+- U1: handler failure → log+continue (reconcile catches drift)
+- U2: audit graded severity (CRITICAL/HIGH/MEDIUM/LOW), show all
+- U3: reconcile dry-run default, `--apply` flag to mutate
+
+**PUMLs:**
+- `docs/puml/Sprint1_StateCorrectness_StateStores.puml` (macro)
+- `docs/puml/Sprint1_StateCorrectness_EventFlow.puml` (micro)
+- `docs/puml/Sprint1_StateCorrectness_ReconcileCycle.puml` (SM cycle)
+
+**Sprint 1 scaffold:** 38 task files at `scrum.pmo/sprints/sprint-1-state-correctness/` per Sprint 0 format (1 planning.md + 7 parent epic tasks + 30 expert/tester subtasks).
+
+## Sprint 1 — Implementation shipped today
+
+| Commit | Task | Summary |
+|--------|------|---------|
+| `b4447f6` | SC-A.1 | `private.hiveMind.reconcile.diff` + 7 invariant check helpers (i1-i7) emit `severity\|inv\|store\|op\|key\|expected\|actual` lines; `protected.reconcile.diff` CLI wrapper. **Live: surfaced 1 CRITICAL I7 + 11 HIGH I1 + 3 HIGH I2 on real system.** |
+| `8feac46` | SC-B.1 | Event dispatch primitives (declare -gA HIVEMIND_EVENT_HANDLERS): register (idempotent), emit (isolated handlers, log+continue per U1), history.append with 1MiB rotation, protected.events.* CLI wrappers, public events.list/history. **SC-B.2 (history+rotation) was bundled here.** |
+
+## State of the union
+
+**Sprint 0:** CLOSED — all known bugs shipped, all Epic implementation work landed, tester coverage mostly green.
+
+**Sprint 1:** ACTIVE — design + scaffold + first 2 commits done. Next implementations: SC-A.2 audit method (uses SC-A.1) + SC-B.3 tester isolation tests + SC-A.3 tester fixture tests. Then SC-C handlers + SC-D reconcile.
+
+## Sprint 0 — recent shipped 2026-05-11 (previous day)
+
+| Commit | Branch | Task | Summary |
+|--------|--------|------|---------|
+| `634b7b6` | macos | F2.2 | sweep.detect accept-edits matches tail-only (5 lines) — fixes Epic I scrollback FP that rejected idle agents whose history showed stale `⏵⏵ accept` text. Added `fp-accept-edits-scrollback.txt` fixture so C3.3 picks it up. |
+| `d624a9d` | macos | ud-po help | otmux `pane.size` + `pane.size.set` — absolute resize wrapper (ud-po: shell panes squish to 1 row). |
+| `7358fc9` | macos | raw-tmux audit | Added 5 otmux methods to close gaps: `window.layout.get`, `window.layout.set`, `window.aggressive.resize`, `pane.list.format`, `window.list.format`. |
+| `52fcf43` | macos | tronMonitor hijack | `tronMonitor.add` skip `__test_*` + `test.hiveMind` teardown calls `tronMonitor remove` for test sessions. Fixes PO-reported "screen showed __test_hm0/test-alpha/beta/gamma". Mirror of D1.7 prune guard. |
+
+**Interactive (not committed):** unlock+aggressive-resize on ooshTeam/web4team/upDownTeam (B8 lock was squishing them at 80×40). upDownTeam panes 0.3/0.4 swapped to align with ooshTeam role order; `hiveMind.protected.panes.swapped` fired manually to sync registry.
+
+**Outstanding (tester reported, NOT yet fixed):**
+- **T-B5-SWAP-1** — `panes.swapped` doesn't exchange registry entries. After swap, alpha still at 0.0, beta at 0.1 — should be reversed.
+- **T-B5-TTL-3** — `HIVEMIND_REGISTRY_TTL=0` env override doesn't expire entries.
+
+## Sprint 0 — earlier shipped (2026-05-01 → 2026-05-05)
+
+| Commit | Branch | Task | Summary |
+|--------|--------|------|---------|
+| `2196cdc` | macos | B8 | otmux window.size.lock/unlock/status/floor.apply (4 methods, 200 lines) + auto-hook in hiveMind.teams.restore. Persist `~/config/otmux.size.locks.env`. Live: 18 collapsed sessions floored to 80×40. |
+| `885e587` | macos | B8 fix | literal-match awk for size.lock entries (regex-safe with escape-coded session names) + 4-state classification (collapsed red / small-client cyan / locked yellow / healthy green). |
+| `08ec428` | macos | I1.1 | hiveMind.agent.send context-aware router + agent.route helper. Maps 18 sweep.detect states → 4 routes. Legacy hiveMind.send/send.message now wrappers (Phase 2). |
+| `580bf9e` | macos | I1.2 | Extract private.hiveMind.agent.inform helper for INFORM path (smart-send + monitor.switch + rc propagation). |
+| `ccb8f4f` | macos | I1.3 | REMOTE CONTROL verbs: hiveMind.agent.{approve,reject,dismiss,option} + per-overlay key map (permission/tool-confirm:1/2, accept-edits:Tab/Esc, all:Esc dismiss). |
+| `bea1cbd` | macos | I1.4 | QUEUE: persistence ~/config/hivemind.queue/<pane>.queue + agent.queue.{list,drain,clear} + drain hook on idle in agent.unblock + channel.resolve rc+format hardening. |
+
+**Tester:** `449ee34` — I1.5 13/13 PASS. Epic I Phase 2 fully verified.
 
 ## Sprint 0 — recent shipped (2026-05-01 → 2026-05-05)
 

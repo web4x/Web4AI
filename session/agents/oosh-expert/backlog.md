@@ -1,7 +1,46 @@
 # OOSH Expert Backlog
 
+## ACTIVE — Sprint 1 in-flight (2026-05-12)
+
+**Sprint 1 — State Correctness Architecture** (joint design with architect, PO-signed-off)
+- Design doc: `scrum.pmo/sprints/sprint-1-state-correctness/sprint-1-design.md`
+- Planning: `scrum.pmo/sprints/sprint-1-state-correctness/planning.md`
+- 38 task files scaffolded (commit `aa39007` in workspace repo)
+
+**Shipped today:**
+- SC-A.1 (`b4447f6`) — `private.hiveMind.reconcile.diff` + 7 invariant checks + protected CLI wrapper
+- SC-B.1 (`8feac46`) — Event dispatch primitives (register/emit/history) + protected wrappers + public list/history
+
+**Next unblocked (in dependency order):**
+- [ ] **SC-A.2** — `hiveMind consistency.audit` graded report on top of SC-A.1 diff. Replace existing audit at hiveMind:3242 with new implementation that calls `private.hiveMind.reconcile.diff` and formats per U2 (graded by severity, exit code = total violation count).
+- [ ] **SC-B.3 tester** — handler isolation + idempotency tests for SC-B.1 primitives. Task file: `task-sc-b.3-tester-events-isolation.md`.
+- [ ] **SC-A.3 tester** — invariant detection fixtures (I1-I7 scenarios). Task file: `task-sc-a.3-tester-invariant-fixtures.md`.
+
+**Blocked on above:**
+- [ ] SC-C (10 handlers) — needs SC-B.3 to confirm dispatch is stable
+- [ ] SC-D (reconcile cycle) — needs SC-A.2 audit method
+
+**Can run in parallel any time:**
+- [ ] SC-E ingress triple-defense audit (P3 applied to all ingress points)
+- [ ] SC-F snapshot integrity + format versioning (depends on SC-E for regex)
+- [ ] SC-G docs (last — needs A/B/C/D landed)
+
+**Closed today (Sprint 0 cleanup + Sprint 1 foundation):**
+- [x] T-B5-SWAP-1 fixed (`10e9fa0` + `b4c3b3f`) — pane arg normalization + test grep tolerance
+- [x] T-B5-TTL-3 fixed (`14d5866`) — explicit TTL=0 short-circuit
+- [x] D1 follow-up tronMonitor.switch (`aa7d6ac`) — verify-before-title
+- [x] teams.env hygiene (`ebc8b5e`) — team.register triple-defense + teams.restore word-split fix
+- [x] Sprint 1 joint design — architect-state-analysis.md + design.md + sprint-1-design.md consolidation
+- [x] Sprint 1 scaffold (workspace `aa39007`) — planning.md + 38 task files
+- [x] SC-A.1 (`b4447f6`) — reconcile.diff primitive
+- [x] SC-B.1 (`8feac46`) — event dispatch primitives
+
+**SC-B.2 effectively closed** — `history.append` + 1MiB rotation was bundled into SC-B.1 commit. Update task status when next touching the task file.
+
 ## Open Bugs
 
+- [ ] **otmux help broken** — calls `tmux --help` instead of `this.help`.
+  Tester discovery path for B8 methods was blocked by this. Pre-existing.
 - [ ] **JSONL stdin fd3** — some JSONL reads fail with fd3 redirection issue
 - [ ] **Fork project dir** — forked sessions may cd to wrong project directory
 - [ ] **agent.restart pane safety** — ensure.pane should verify pane is empty before sending commands
@@ -10,7 +49,15 @@
       full fix queued (screen.ensure re-entry guard + remove from auto paths). See
       `task-bug-agent-monitor-segfault.md`.
 
-## Closed THIS SESSION (2026-04-30)
+## Closed 2026-05-11
+
+- [x] **F2.2 sweep.detect accept-edits FP** — `634b7b6` — tail-only match
+- [x] **otmux pane.size + pane.size.set** — `d624a9d` — for ud-po
+- [x] **Raw-tmux gap closure** — `7358fc9` — 5 new methods (window.layout.get/set, window.aggressive.resize, pane.list.format, window.list.format)
+- [x] **tronMonitor __test_ hijack** — `52fcf43` — defense-in-depth (add guard + teardown removal)
+- [x] **Interactive B8 unlock** for ooshTeam/web4team/upDownTeam + aggressive-resize enable
+
+## Closed 2026-04-30
 
 - [x] **B5.1** — Pane operations notify hiveMind (commits `d0d3d92`, `da032b1`)
   - `otmux.split[.h|.v]` → `protected.panes.shifted`

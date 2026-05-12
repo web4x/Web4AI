@@ -1,9 +1,36 @@
 # Boot: oosh-expert
 
-## You are: oosh-expert (oosh-architect is now a SEPARATE pane at 0.1 — not me)
-## Pane: ooshTeam:0.2 (post-Apr-30 rewind; was 0.1 earlier today; verify with otmux pane.get.target)
-## Shell: ooshTeam:0.4 (bash 5 + OOSH)
-## Goal: Sprint 0 — Lifecycle Consolidation (MVC boundaries + cold-restart)
+## You are: oosh-expert (oosh-architect is a SEPARATE pane at 0.1 — not me)
+## Pane: ooshTeam:0.2 (verify with `otmux pane.get.target`)
+## Shell: ooshTeam:0.4 (bash 5 + OOSH — preferred for diagnostics)
+## Goal: Sprint 1 — State Correctness Architecture (events + reconcile)
+
+## URGENT on next session (Sprint 1 active, 2026-05-12):
+
+**Sprint 0 is DONE.** All known bugs from boot.md urgent list shipped:
+- T-B5-SWAP-1 fixed (commits `10e9fa0` + `b4c3b3f`)
+- T-B5-TTL-3 fixed (`14d5866`)
+- D1 tronMonitor.switch verify-before-title (`aa7d6ac`)
+- teams.env triple-defense + word-split fix (`ebc8b5e`)
+
+**Sprint 1 ACTIVE.** Joint design with oosh-architect signed off + scaffolded:
+- Authoritative design: `scrum.pmo/sprints/sprint-1-state-correctness/sprint-1-design.md`
+- Planning: `scrum.pmo/sprints/sprint-1-state-correctness/planning.md`
+- 38 task files scaffolded per Sprint 0 format
+- 3 PUMLs in `docs/puml/Sprint1_StateCorrectness_*.puml`
+
+**Shipped today (Sprint 1):**
+- `b4447f6` SC-A.1 — `private.hiveMind.reconcile.diff` (7 invariant checks I1-I7, output `severity|inv|store|op|key|expected|actual`) + `protected.reconcile.diff` CLI wrapper for tests
+- `8feac46` SC-B.1 — `private.hiveMind.events.register/emit` + `history.append` (1MiB rotation) + `protected.events.*` CLI wrappers + public `events.list`/`events.history`
+
+**Next unblocked:**
+1. **SC-A.2** — `hiveMind consistency.audit` (graded report on top of SC-A.1 diff per U2)
+2. **SC-B.3 tester** — isolation + idempotency tests
+3. **SC-A.3 tester** — invariant detection fixtures
+
+Then SC-C handlers (10 events, blocked on SC-B confirmed), SC-D reconcile cycle (blocked on SC-A.2).
+
+**SC-B.2** (history + rotation) was bundled into SC-B.1 commit — mark Done.
 ## Current ooshTeam layout (verify with `otmux tree ooshTeam`):
 ##   0.0 oosh-po  |  0.1 oosh-architect  |  0.2 oosh-expert (me)
 ##   0.3 oosh-tester  |  0.4 oosh-expert-shell  |  0.5 oosh-tester-shell
@@ -101,24 +128,36 @@ ls ~/.claude/projects/-Users-Shared-Workspaces-AI-Claude/$(claudeCode session.cu
 - If asked for status: report from context.md/backlog.md WITHOUT shipping new code unless explicitly asked
 - If the assignment is for work you've already done: cite the commit + verify file state, report "already shipped"
 
-## Currently outstanding (only one item)
+## Currently outstanding (Sprint 1 active work)
 
-**A1.2 fix 2b** — fully relocate `claudeCode.session.probe` to `hiveMind.agent.session.probe`.
-Pure parser already shipped (`6d264df`). 8 callers to migrate. Awaiting explicit greenlight.
-See backlog.md for the full plan.
+**SC-A.2** — `hiveMind consistency.audit` on top of SC-A.1 diff primitive.
+Reports all I1-I7 violations graded (CRITICAL/HIGH/MEDIUM/LOW per U2 lock).
+Exit code = total violation count. Pure dry-run output (per U3 — `--apply` lives
+in SC-D `consistency.fix`/`reconcile`).
+Key file: `/Users/donges/oosh/hiveMind` — replace existing `hiveMind.consistency.audit`
+at line ~3242 with one that calls `private.hiveMind.reconcile.diff` and formats output.
 
-## Recent Sprint 0 work (2026-04-30 — last day of work)
+**SC-B.3 tester** — handler isolation + idempotency tests. Task file:
+`scrum.pmo/sprints/sprint-1-state-correctness/task-sc-b.3-tester-events-isolation.md`.
+
+**SC-A.3 tester** — invariant detection fixtures. Task file:
+`scrum.pmo/sprints/sprint-1-state-correctness/task-sc-a.3-tester-invariant-fixtures.md`.
+
+Then SC-C 10 handlers (blocked on SC-B.3 confirming SC-B stable) and SC-D
+reconcile cycle (blocked on SC-A.2). SC-E ingress audit + SC-F snapshot
+integrity can run in parallel any time.
+
+## Sprint 1 commits (2026-05-12)
 
 | Commit | Task | Summary |
 |--------|------|---------|
-| `d0d3d92` | B5.1 | Pane ops notify Controller (`panes.shifted`/`panes.swapped`/`pane.moved`) + registry.set TTL priority (3-field format `pane\|role\|epoch`, HIVEMIND_REGISTRY_TTL=30) |
-| `da032b1` | B5.1 align | Rename callbacks to match B5.3 PUML spec |
-| `8d01421` | Bug #2 | `agent.unblock` strict ALLOWLIST: keys only for `permission\|tool-confirm\|accept-edits\|queued`. Removed `*)` fallback that interrupted active agents. |
-| `163b0a0` | Bug #3 | `panes.swapped`/`pane.moved` push `HIVEMIND_ROLE` to plain shells via `private.hiveMind.pane.pushRoleEnv` (skips Claude TUIs to avoid prompt injection). Uses raw `tmux display-message` to avoid OOSH log pollution. |
-
-Cross-branch ports earlier today:
-- `9b7138e` test/macos.latest — surgical B1.3 port (6 raw `tmux` → `$TMUX_CMD` + Controller-private leak fix)
-- `7d27904` test/macos.latest — B4.2 polish port (`aggressive-resize on` + `otmux.window.size` runtime method)
+| `10e9fa0` | B5.2 SWAP-1 | `protected.panes.swapped` normalizes pane args — accept full target or PUML-spec addr-only |
+| `b4c3b3f` | B5.2 SWAP-1 | test.lifecycle grep patterns tolerate both legacy 2-field and B5.1 3-field TTL format |
+| `14d5866` | B5.2 TTL-3 | `registry.isRecent`: explicit short-circuit when HIVEMIND_REGISTRY_TTL=0 (was returning recent due to `0 -le 0`) |
+| `aa7d6ac` | D1 follow-up | tronMonitor.switch verify-before-title — capture+grep team signature, flip to ⚠ MISMATCH on failure |
+| `ebc8b5e` | teams.env bug | hiveMind.team.register triple-defense (regex+pipe+live-tmux); teams.restore unquoted-var word-split fix |
+| `b4447f6` | SC-A.1 | `private.hiveMind.reconcile.diff` primitive + 7 invariant check helpers + protected.* CLI wrapper |
+| `8feac46` | SC-B.1 | Event dispatch primitives: register/emit (idempotent, isolated handlers), 1MiB history rotation, public events.list/history |
 
 ## MVC propagation chain — now COMPLETE
 | Layer | After swap | After move | Status |
