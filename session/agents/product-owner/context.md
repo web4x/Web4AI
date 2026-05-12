@@ -1,47 +1,49 @@
 # Product Owner Context
 
-**Updated**: 2026-05-05
+**Updated**: 2026-05-12
 **Role**: TRONinterface-agent (master PO)
 **Pane**: TRONinterface:0.0
 
 ## CRITICAL: Pane Layout (VERIFY ON BOOT)
 TRONinterface:
 - 0.0 = TRONinterface-agent (ME)
-- 0.1 = scrum-master (SM, Opus 1M, 42 pair with oosh-po)
+- 0.1 = scrum-master (SM, 42 pair with oosh-po)
 - 0.2 = PO-shell (bash)
-- 0.3 = TRON-Monitor (GNU screen, FIXED f671d3d)
+- 0.3 = TRON-Monitor (GNU screen, FIXED f671d3d but MVC state desync bugs remain)
 
 ## Teams
 | Team | Session | Agents |
 |------|---------|--------|
 | TRONinterface | running | TRONinterface-agent + SM |
-| ooshTeam | running | oosh-po(0.0) + oosh-architect(0.1) + oosh-expert(0.2) + oosh-tester(0.3) |
+| ooshTeam | running | oosh-po(0.0) + oosh-architect(0.1) + oosh-expert(0.2) + oosh-tester(0.3) + shells(0.4,0.5) |
 | web4team | idle | po + architect + expert + tester |
-| upDownTeam | running | ud-po(0.0) + ud-architect(0.1) + ud-expert(0.2) + ud-tester(0.4) |
-| unitTeam | running | unit-po(0.0) + unit-architect(0.1) + unit-expert(0.2) + unit-tester(0.4) |
+| upDownTeam | running | ud-po(0.0) + ud-architect(0.1) + ud-expert(0.2) + ud-tester(0.4) + shells(0.3,0.5) |
+| unitTeam | running | unit-po(0.0) + unit-architect(0.1) + unit-expert(0.2) + unit-tester(0.4) + shells(0.3,0.5) |
 | fallback-agents | parked | 16 forked backups (4 windows: oosh, web4, ud, unit) |
 
-## Sprint 0 — Lifecycle Consolidation (NEARLY COMPLETE)
+## Sprint 0 — Lifecycle Consolidation
 **Location**: scrum.pmo/sprints/sprint-0-lifecycle-consolidation/planning.md
-All expert implementation DONE. Remaining: ~6 tester subtasks + E1 capstone test.
-oosh-PO manages Sprint 0 from ooshTeam:0.0.
+All expert implementation DONE. Remaining tester subtasks. oosh-PO manages from ooshTeam:0.0.
 
-## Delivered This Session
-- tronMonitor FIXED (f671d3d) — screen windows with TMUX= tmux attach -r
-- SM rewound (two-phase: shallow→save→deep→option 2)
-- oosh-po rewound (~1/3 back, 45/135 messages)
-- All 4 ud agents rewound (~1/3 back)
-- unitTeam created (forked from web4team, renamed, shells added)
-- All unit agents forked into fallback-agents (window 3)
-- ud agents forked into fallback-agents (window 2)
-- Agent rewind skill written (session/base-skills/agent-rewind.md)
-- otmux client lifecycle bugs reported
+## Bugs Reported to oosh-po (MVP blockers)
+- tronMonitor MVC state desync: header says upDownTeam, shows web4team content
+- tronMonitor switch doesn't verify actual screen window matches
+- Registry pollution: stale test entries (0.99/0.98 test-alpha/test-beta with timestamps)
+- Duplicate registry: oosh-po at both 0.0 AND 0.4
+- team.sweep shows wrong data from polluted registry
+- registry.refresh must prune non-existent panes, timestamp entries, duplicates
+- otmux client.list and lifecycle methods broken
 
 ## Active Directives
+- oosh-po: fix registry+tronMonitor bugs (MVP blockers), manage Sprint 0
 - ud-po: Sprint 3 QnD multiplayer game
 - unit-po: Unit component tootsie tests
-- oosh-po: Sprint 0 completion + sprint management
-- web4-po: idle, sprint complete
+- web4-po: idle
+
+## Token Economics (proven)
+- Subscription counts INPUT only — sustained output FREE
+- Each new prompt: ~15-20% of 5h budget
+- /rewind option 2 for context recovery
 
 ## RULES (eternal — never delete, only append)
 - NEVER ASSUME — ALWAYS MEASURE
@@ -61,7 +63,7 @@ oosh-PO manages Sprint 0 from ooshTeam:0.0.
 - NEVER /clear ANY trained agent — EVER (F-CLEAR failure)
 - /rewind TWO-PHASE: (1) shallow 2-3 steps → agent saves → commit (2) deep ~1/3 back → find sweetspot → option 2
 - /rewind ALWAYS option 2 "Restore conversation" — NEVER option 1 (reverts code)
-- Rewind depth: go DEEP, ~50% or 1/3 back. Shallow (3-10) is useless.
+- Rewind depth: go DEEP, ~1/3 back. Shallow (3-10) is useless.
 - Every task = one git commit: '<what> (ref: task-<id>.md)'
 - VERIFY PANE NUMBERS before every send
 - Before rewind: ask agent to update files + git commit FIRST
