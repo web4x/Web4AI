@@ -58,3 +58,10 @@ ADR-001 (npm exports), ADR-002 (version mapping) approved.
 - Don't file bugs without checking code first (false room bug incident)
 - oosh team handles their own infra (hivemind registry, UUID tracking)
 - SM reminder: measure before acting, PDCA every cycle
+- WRITE TASK FILE FIRST, then delegate — never shout ad-hoc directives (CMM1)
+- VERIFY the actual diff before committing — don't rubber-stamp expert's "done"
+- Rebuild esbuild after client changes — source changes don't appear without bundle rebuild
+- Keep planning.md updated IN REAL TIME as tasks complete — not after Tron asks
+- Don't reinvent — READ existing /ts code and COPY patterns, not rewrite from scratch
+- Task files must match gold standard (task-32.2): [uc:uuid:], numbered AC, test structure, architect review
+- PO's job is unblocking agents AND quality-checking deliverables — not just approving permissions
