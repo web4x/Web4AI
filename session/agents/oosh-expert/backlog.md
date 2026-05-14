@@ -7,25 +7,41 @@
 - Planning: `scrum.pmo/sprints/sprint-1-state-correctness/planning.md`
 - 38 task files scaffolded (commit `aa39007` in workspace repo)
 
-**Shipped today:**
-- SC-A.1 (`b4447f6`) — `private.hiveMind.reconcile.diff` + 7 invariant checks + protected CLI wrapper
-- SC-B.1 (`8feac46`) — Event dispatch primitives (register/emit/history) + protected wrappers + public list/history
+**Shipped this session (Sprint 1 + Sprint-0 cleanup, 2026-05-12 LATE):**
+- SC-A.1 (`b4447f6`) — reconcile.diff primitive + 7 invariant checks
+- SC-B.1 (`8feac46`) — event dispatch primitives + history rotation
+- SC-A.2 (architect) — consistency.audit graded report
+- SC-D.1 (`1df1973`) — consistency.fix interactive + consistency.reconcile dry-run + reconcile.apply primitive
+- SC-D.2 (`cef6e8f`) — scrumMaster.cycle wires consistency.reconcile apply, gated by sweep stability (etime<60s recency filter)
+- SC-C.1+C.2 (`1ed429c`) — agent.spawned (2 handlers) + agent.killed (3 handlers); emission at bootstrap + registry.remove
+- SC-C.5+C.6+C.7 (`47d94b0`) — panes.shifted/swapped/pane.moved migrated to event dispatch; protected.* observers become thin emitters
+- P0 tronMonitor (`e3424ed`) — verify rewritten ps-based; reset delegates to setup
+- Tron P0 v1+v2 (`480459a`, `2a39a60`) — DRY private.otmux.is.key; comprehensive tmux key detection so prefix never leaks on keys
 
 **Next unblocked (in dependency order):**
-- [ ] **SC-A.2** — `hiveMind consistency.audit` graded report on top of SC-A.1 diff. Replace existing audit at hiveMind:3242 with new implementation that calls `private.hiveMind.reconcile.diff` and formats per U2 (graded by severity, exit code = total violation count).
-- [ ] **SC-B.3 tester** — handler isolation + idempotency tests for SC-B.1 primitives. Task file: `task-sc-b.3-tester-events-isolation.md`.
-- [ ] **SC-A.3 tester** — invariant detection fixtures (I1-I7 scenarios). Task file: `task-sc-a.3-tester-invariant-fixtures.md`.
+- [ ] **SC-C.3** (agent.renamed) — emit from agent.rename. Handlers: registry.update, pane.title.pushed, role.env.pushed. Pure event-dispatch refactor since most logic already exists.
+- [ ] **SC-C.4** (agent.forked) — emit from agent.respawn / fork.byName. Handlers: registry.set, sessions.store, forks.append.
+- [ ] **SC-C.8** (team.created) — emit from team.register. Handlers: teams.add, tronMonitor.add (closes V→C event-gap).
+- [ ] **SC-C.9** (team.destroyed) — emit from team.remove + agent.killed cascade. Handlers: teams.remove, tronMonitor.remove, registry.prune, sessions.prune, queue.prune.
+- [ ] **SC-C.10** (team.restored) — emit from teams.restore. Handlers: bulk-register, tronMonitor.bulk-add.
+
+**Tester (handed off, awaiting coverage):**
+- [ ] **SC-C.tests** — handler integration tests across all 10 events. Inject violations, verify each handler runs, confirm dispatch is stable, idempotency under repeat emission.
+- [ ] **SC-A.3** — invariant detection fixtures (I1-I7 scenarios)
+- [ ] **SC-B.3** — handler isolation + idempotency tests for SC-B.1 primitives
+- [ ] **SC-D.3** — reconcile roundtrip: inject violation → cycle runs → reconcile apply → audit clean. Race tronMonitor.sync against scrumMaster.cycle, verify gate defers.
 
 **Blocked on above:**
-- [ ] SC-C (10 handlers) — needs SC-B.3 to confirm dispatch is stable
-- [ ] SC-D (reconcile cycle) — needs SC-A.2 audit method
+- [ ] None for expert — SC-C dispatch is stable enough to ship remaining 5 handlers in parallel. Per PO ship-in-batches policy.
 
 **Can run in parallel any time:**
 - [ ] SC-E ingress triple-defense audit (P3 applied to all ingress points)
 - [ ] SC-F snapshot integrity + format versioning (depends on SC-E for regex)
 - [ ] SC-G docs (last — needs A/B/C/D landed)
 
-**Closed today (Sprint 0 cleanup + Sprint 1 foundation):**
+**queue.rename deferred** — panes.shifted handler for queue files renamed by pane addr. Current B5.1 caller signature (`<session>` only) doesn't carry pre/post-shift index map. Reconcile cycle catches stale queue files via S6 invariant in the meantime. Will add when caller signature evolves to include shift delta.
+
+**Closed today (Sprint 0 cleanup + Sprint 1 foundation + Sprint 1 SC-A/B/C/D wave):**
 - [x] T-B5-SWAP-1 fixed (`10e9fa0` + `b4c3b3f`) — pane arg normalization + test grep tolerance
 - [x] T-B5-TTL-3 fixed (`14d5866`) — explicit TTL=0 short-circuit
 - [x] D1 follow-up tronMonitor.switch (`aa7d6ac`) — verify-before-title
@@ -34,6 +50,13 @@
 - [x] Sprint 1 scaffold (workspace `aa39007`) — planning.md + 38 task files
 - [x] SC-A.1 (`b4447f6`) — reconcile.diff primitive
 - [x] SC-B.1 (`8feac46`) — event dispatch primitives
+- [x] **P0 tronMonitor verify** (`e3424ed`) — ps-based per-window check + reset delegates to setup
+- [x] **SC-D.1** (`1df1973`) — consistency.fix interactive + consistency.reconcile dry-run + reconcile.apply primitive (architect drafted, expert reviewed/committed)
+- [x] **SC-D.2** (`cef6e8f`) — scrumMaster.cycle wires reconcile apply with etime<60s stability gate
+- [x] **Tron P0 v1** (`480459a`) — partial otmux send prefix-leak fix (single alphanumeric)
+- [x] **SC-C.1+C.2** (`1ed429c`) — agent.spawned + agent.killed handlers + emission wiring
+- [x] **SC-C.5+C.6+C.7** (`47d94b0`) — panes.shifted/swapped/pane.moved migrated to event dispatch
+- [x] **Tron P0 v2** (`2a39a60`) — DRY private.otmux.is.key with full tmux key spec (33 KEY + 7 PROSE classified correctly)
 
 **SC-B.2 effectively closed** — `history.append` + 1MiB rotation was bundled into SC-B.1 commit. Update task status when next touching the task file.
 

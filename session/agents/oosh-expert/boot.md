@@ -5,32 +5,42 @@
 ## Shell: ooshTeam:0.4 (bash 5 + OOSH — preferred for diagnostics)
 ## Goal: Sprint 1 — State Correctness Architecture (events + reconcile)
 
-## URGENT on next session (Sprint 1 active, 2026-05-12):
+## URGENT on next session (Sprint 1 active, 2026-05-12 LATE — major wave landed):
 
-**Sprint 0 is DONE.** All known bugs from boot.md urgent list shipped:
-- T-B5-SWAP-1 fixed (commits `10e9fa0` + `b4c3b3f`)
-- T-B5-TTL-3 fixed (`14d5866`)
-- D1 tronMonitor.switch verify-before-title (`aa7d6ac`)
-- teams.env triple-defense + word-split fix (`ebc8b5e`)
+**Sprint 1 SC-A through SC-D ALL shipped + Tron P0 fixes + tronMonitor verify rewrite.** See `context.md` for full table.
 
-**Sprint 1 ACTIVE.** Joint design with oosh-architect signed off + scaffolded:
-- Authoritative design: `scrum.pmo/sprints/sprint-1-state-correctness/sprint-1-design.md`
-- Planning: `scrum.pmo/sprints/sprint-1-state-correctness/planning.md`
-- 38 task files scaffolded per Sprint 0 format
-- 3 PUMLs in `docs/puml/Sprint1_StateCorrectness_*.puml`
+Key landed commits (chronological newest→oldest):
+- `2a39a60` Tron P0 v2 — `private.otmux.is.key` DRY (4 detection cases, 33/33 key + 7/7 prose verified)
+- `47d94b0` SC-C.5+C.6+C.7 — panes events migrated to event dispatch (protected.* → thin emitters)
+- `1ed429c` SC-C.1+C.2 — agent.spawned + agent.killed (5 handlers across 2 events)
+- `480459a` Tron P0 v1 — partial prefix-leak fix (single alphanumeric)
+- `cef6e8f` SC-D.2 — scrumMaster.cycle wires reconcile apply, etime<60s stability gate
+- `1df1973` SC-D.1 — consistency.fix interactive + consistency.reconcile dry-run + reconcile.apply primitive
+- `e3424ed` P0 tronMonitor — verify ps-based per-window + reset delegates to setup
+- `8feac46` SC-B.1 — event dispatch primitives (SC-B.2 bundled)
+- `b4447f6` SC-A.1 — reconcile.diff primitive
 
-**Shipped today (Sprint 1):**
-- `b4447f6` SC-A.1 — `private.hiveMind.reconcile.diff` (7 invariant checks I1-I7, output `severity|inv|store|op|key|expected|actual`) + `protected.reconcile.diff` CLI wrapper for tests
-- `8feac46` SC-B.1 — `private.hiveMind.events.register/emit` + `history.append` (1MiB rotation) + `protected.events.*` CLI wrappers + public `events.list`/`events.history`
+**5 events × 10 handlers registered. Safety net loop closed.** Run `hiveMind events.list` to see.
 
-**Next unblocked:**
-1. **SC-A.2** — `hiveMind consistency.audit` (graded report on top of SC-A.1 diff per U2)
-2. **SC-B.3 tester** — isolation + idempotency tests
-3. **SC-A.3 tester** — invariant detection fixtures
+**Next unblocked (expert, ship in batches per PO):**
+1. **SC-C.3** (agent.renamed) — emit from agent.rename; handlers: registry.update, pane.title.pushed, role.env.pushed
+2. **SC-C.4** (agent.forked) — emit from agent.respawn/fork.byName; handlers: registry.set, sessions.store, forks.append
+3. **SC-C.8** (team.created) — emit from team.register; handlers: teams.add, tronMonitor.add (closes V→C gap)
+4. **SC-C.9** (team.destroyed) — emit from team.remove; handlers: teams.remove, tronMonitor.remove, registry.prune, sessions.prune, queue.prune
+5. **SC-C.10** (team.restored) — emit from teams.restore; handlers: bulk-register, tronMonitor.bulk-add
 
-Then SC-C handlers (10 events, blocked on SC-B confirmed), SC-D reconcile cycle (blocked on SC-A.2).
+**Tester handed off:** SC-C.tests, SC-A.3, SC-B.3, SC-D.3.
+
+**Parallel any time:** SC-E ingress triple-defense audit, SC-F snapshot integrity, SC-G docs.
 
 **SC-B.2** (history + rotation) was bundled into SC-B.1 commit — mark Done.
+
+**Pattern reminders (see learnings.md NEW entries 2026-05-12 LATE):**
+- Handler split: registry handler writes first, role_env handler reads post-mutation state
+- Migration: keep direct calls AND emit during transition (handlers are idempotent siblings)
+- Stability gate: filter ps by etime<60s — wrappers persist forever otherwise
+- DRY single source: `private.otmux.is.key` covers single char + named + modifier + plus-syntax
+- Verify methods return 0 (informational) — return 1 fires EPERM debug trap noise
 ## Current ooshTeam layout (verify with `otmux tree ooshTeam`):
 ##   0.0 oosh-po  |  0.1 oosh-architect  |  0.2 oosh-expert (me)
 ##   0.3 oosh-tester  |  0.4 oosh-expert-shell  |  0.5 oosh-tester-shell

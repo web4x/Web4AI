@@ -8,10 +8,22 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1 (separate Claude Code pane added today)
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.2
-**Updated**: 2026-05-12 — Sprint 0 CLOSED, Sprint 1 ACTIVE. Today shipped: 4 fixes (B5.2 SWAP-1, B5.2 TTL-3, D1 verify-before-title, teams.env triple-defense). Sprint 1 designed jointly with architect, signed off PO, scaffolded 38 task files, shipped 2 commits (SC-A.1 + SC-B.1).
+**Updated**: 2026-05-12 LATE — Sprint 1 ACTIVE. Today shipped 14+ commits across Sprint 0 cleanup, SC-A/B/C/D delivery, Tron P0 fixes, tronMonitor verify rewrite. Sprint 1: SC-A.1, SC-A.2 (architect), SC-B.1, SC-D.1, SC-D.2, SC-C.1+2+5+6+7 ALL landed. 5 events × 10 handlers registered. Safety-net loop closed.
 **Layout**: 6 panes — 0.0 po, 0.1 architect, 0.2 expert (me), 0.3 tester, 0.4 expert-shell, 0.5 tester-shell
 
-## Sprint 1 — shipped TODAY 2026-05-12
+## Sprint 1 — shipped 2026-05-12 LATE (post-rewind continuation)
+
+| Commit | Task | Summary |
+|--------|------|---------|
+| `e3424ed` | P0 tronMonitor | verify rewritten — ps-based per-window health check (was false-positive on tmux 9-char status truncation); reset delegates to setup (was bare-zsh window-0 bug); return 0 always (no EPERM trap noise) |
+| `1df1973` | SC-D.1 | consistency.fix interactive + consistency.reconcile <?session> <?mode:dry-run\|apply> + private.reconcile.apply primitive — 6 (store, op) dispatch table (S1/S2/S2-update/S3/S6/S8) with I5/I7 SKIP. Architect drafted, I reviewed+smoke-tested+committed. Legacy fix → fix.table. |
+| `cef6e8f` | SC-D.2 | scrumMaster.cycle now closes safety-net loop: capture→subscription→dashboard→pane.sweep→agent.unblock→reconcile apply (gated). private.scrumMaster.sweep.isStable runs ONE awk pass over ps -eo etime,args with etime<60s recency filter — KEY INSIGHT below. |
+| `480459a` | Tron P0 v1 | otmux send: extended is_key regex to include single alphanumeric — fixes `otmux send pane 2` prefix leak. Partial; superseded by 2a39a60. |
+| `1ed429c` | SC-C.1+C.2 | agent.spawned (registry+sessions handlers) + agent.killed (registry+sessions+queue handlers). Emission at bootstrap step 8 + registry.remove. Migration policy: existing direct calls retained, handlers idempotent siblings. |
+| `47d94b0` | SC-C.5+6+7 | panes.shifted/swapped/pane.moved migrated to event dispatch. protected.* B5.1 observers become thin emitters; mutation logic moved into private.hiveMind.handler.<event>.{registry,role_env}. Order-dependent registration: registry runs first, role_env reads post-mutation state. 5 events × 10 handlers total. |
+| `2a39a60` | Tron P0 v2 | DRY refactor: private.otmux.is.key single source of truth. 4 detection cases — single non-whitespace char + named keys (case-insensitive incl. aliases) + C-/M-/S- modifiers (stacked up to 3) + Shift+/Ctrl+/Alt+/Meta+/Cmd+/Super+ plus-syntax (chained). 33 KEY cases + 7 PROSE cases all classified correctly. Shift+Tab no longer prefixed. |
+
+## Sprint 1 — shipped 2026-05-12 EARLIER (pre-rewind)
 
 | Commit | Task | Summary |
 |--------|------|---------|
@@ -52,6 +64,28 @@ Canonical doc: `scrum.pmo/sprints/sprint-1-state-correctness/sprint-1-design.md`
 |--------|------|---------|
 | `b4447f6` | SC-A.1 | `private.hiveMind.reconcile.diff` + 7 invariant check helpers (i1-i7) emit `severity\|inv\|store\|op\|key\|expected\|actual` lines; `protected.reconcile.diff` CLI wrapper. **Live: surfaced 1 CRITICAL I7 + 11 HIGH I1 + 3 HIGH I2 on real system.** |
 | `8feac46` | SC-B.1 | Event dispatch primitives (declare -gA HIVEMIND_EVENT_HANDLERS): register (idempotent), emit (isolated handlers, log+continue per U1), history.append with 1MiB rotation, protected.events.* CLI wrappers, public events.list/history. **SC-B.2 (history+rotation) was bundled here.** |
+
+## Sprint 1 event dispatch state (after SC-C.1+2+5+6+7)
+
+```
+EVENT             N  HANDLERS
+agent.killed      3  registry sessions queue
+agent.spawned     2  registry sessions
+pane.moved        2  registry role_env
+panes.shifted     1  registry
+panes.swapped     2  registry role_env
+```
+
+5 events × 10 handlers. Order-dependent registration: registry handler always
+runs first; role_env handler reads post-mutation state to push correct
+HIVEMIND_ROLE (Bug #3 invariant). B5.1 subprocess observer pattern preserved —
+`hiveMind protected.<event>` is a thin emitter; cross-script callers see no
+API change while internal architecture is now event-driven.
+
+**Migration policy:** existing direct calls (`registry.set`, `session.store`)
+in mutation sites RETAINED during Sprint 1 transition. Handlers are
+idempotent siblings. SC-C.tests verifies coverage before any direct-call
+removal (future refactor).
 
 ## State of the union
 

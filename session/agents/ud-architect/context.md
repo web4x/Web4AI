@@ -1,102 +1,74 @@
-# ud-architect Context — Save Point 2026-04-25
+# ud-architect Context — Save Point 2026-05-12
 
-**Role:** Web4 Architect
+**Role:** UpDown Architect — PUML diagrams, MDAv4 ontology, Unit model, specs
 **Pane:** upDownTeam:0.1
+**Shell:** upDownTeam:0.4 (Web4 initialized)
 **Machine:** MacStudio
-**Session:** Forked from ud-po
 
-## Team
-- upDownTeam:0.0 — ud-po (PO, quality, CMM4)
+## Team Layout
+- upDownTeam:0.0 — ud-po
 - upDownTeam:0.1 — ME (ud-architect)
-- upDownTeam:0.2 — ud-expert (implementation)
-- upDownTeam:0.3 — ud-tester (testing)
-- upDownTeam:0.4 — shell (web4-initialized, plantuml rendering)
-- upDownTeam:0.5 — spare
-
-## Version Strategy
-- Dev: 0.3.23.1
-- Release: 0.3.24.0 (after Sprint 1 tests pass)
-
-## ALL SPRINT 1 ARCHITECT TASKS — COMPLETE
-
-| Task | Deliverable | Status |
-|------|------------|--------|
-| 4.1 | Path accessor spec (UCP vs W4TSC) | DONE |
-| 6.0a | W4TSC+IMC Class Diagram | DONE |
-| 6.0b | W4TSC+IMC Use Case Diagram | DONE |
-| 6.1 | UCP Class Diagram (ISR, loader registry) | DONE |
-| 6.2 | Unit Class Diagram | DONE |
-| 6.3 | Persistence Class Diagram (dual platform) | DONE |
-| 6.4 | User/Filesystem/HTTP/TLS Diagrams (4) | DONE |
-| 6.5 | Full Dependency Graph (13 components) | DONE |
-| 6.6 | Framework Components Diagram | DONE |
-| 6.8 | Layer label corrections (8 diagrams) | DONE |
-| 6.9 | EAMD 5-Layer Reference Diagram | DONE |
-| 7.1 | UnitModel MDAv4 Extension Spec | DONE |
-| 8.1 | MDAv4/M3/CLASS/ Structure (58 classes, 137 units) | DONE |
-
-## PUML Files Created (13 diagrams, all rendering zero errors)
-
-| File | Location | SVG Size |
-|------|----------|----------|
-| W4TSC-IMC-ClassDiagram.puml | Web4TSComponent/0.3.23.1/src/puml/ | 77KB |
-| W4TSC-IMC-UseCaseDiagram.puml | Web4TSComponent/0.3.23.1/src/puml/ | 66KB |
-| W4TSC-FrameworkComponents.puml | Web4TSComponent/0.3.23.1/src/puml/ | 54KB |
-| UCP-ClassDiagram.puml | UCP/0.3.23.0/src/puml/ | 106KB |
-| Unit-ClassDiagram.puml | Unit/0.3.23.0/src/puml/ | 58KB |
-| UnitModel-Enhanced.puml | Unit/0.3.23.0/src/puml/ | 9KB |
-| Persistence-ClassDiagram.puml | Persistence/0.3.23.0/src/puml/ | 43KB |
-| User-ClassDiagram.puml | User/0.3.23.0/src/puml/ | 32KB |
-| Filesystem-ClassDiagram.puml | Filesystem/0.3.23.0/src/puml/ | 54KB |
-| HTTP-ClassDiagram.puml | HTTP/0.3.23.0/src/puml/ | 48KB |
-| TLS-ClassDiagram.puml | TLS/0.3.23.0/src/puml/ | 46KB |
-| Web4x-ComponentDependency.puml | ONCE/0.3.23.0/src/puml/ | 57KB |
-| EAMD-5LayerArchitecture.puml | ONCE/0.3.23.0/src/puml/ | 25KB |
-
-## Spec Documents Created
-
-| File | Location |
-|------|----------|
-| task-4.1-architect-path-accessor-spec.md | scrum.pmo/sprints/sprint-1-monolithic-functionality/ |
-| task-7.1-architect-unit-mdav4-spec.md | scrum.pmo/sprints/sprint-1-monolithic-functionality/ |
-| task-8.1-architect-mdav4-class-structure.md | scrum.pmo/sprints/sprint-1-monolithic-functionality/ |
-| task-6-layer-review.md | scrum.pmo/sprints/sprint-1-monolithic-functionality/ |
-
-## Key Architectural Decisions
-
-### Path Accessors (Task 4.1)
-- DO NOT restore 423 lines removed from UcpComponent
-- CLI back-reference was circular dep — correctly removed
-- Add 2 protected helpers (projectRoot, componentsDirectory) derived from model.componentRoot
-
-### UnitModel (Task 7.1)
-- UnitModel ALREADY has origin, typeM3, references[] (from Unit/0.3.0.5 lineage)
-- Only change: add FOLDER to TypeM3 enum
-- New class: PumlUnitConverter (parse PUML → create M3 CLASS units)
-- New method: UnitDiscoveryService.tsUnitCreate() for .ts.unit files
-
-### MDAv4 Structure (Task 8.1)
-- 58 M3 CLASS units across 13 components
-- 3 M3 RELATIONSHIP units (extends, implements, depends-on)
-- 13 M3 FOLDER units (one per component)
-- 58 .ts.unit tracking files next to source
-- 137 total unit files to create
-
-### EAMD 5-Layer Architecture (Task 6.8-6.9)
-- L1 = Kernel & OS Infrastructure (ONCE singleton, os module wrappers)
-- L2 = Implementation (Default* classes, sync only)
-- L3 = Interfaces & Runtime Types (NOT just interfaces — includes JsInterface, UcpModel, TypeDescriptor)
-- L4 = Async Orchestration (ADDED by UpDown for P7, not in original EAMD)
-- L5 = UX & Views (CLI, Web Components, Lit views)
+- upDownTeam:0.2 — ud-expert
+- upDownTeam:0.3 — ud-tester
+- upDownTeam:0.4 — ud-expert-shell (my rendering shell)
+- upDownTeam:0.5 — ud-tester-shell
 
 ## Base Paths
-- UpDown: /Users/Shared/Workspaces/AI/Claude.All/UpDown/
-- Components: .../UpDown/components/
-- Sprint planning: .../UpDown/scrum.pmo/sprints/sprint-1-monolithic-functionality/
-- MDAv4 examples: /Users/Shared/Workspaces/2cuGitHub/Web4Articles/MDAv4/
-- SKILL.md: .claude/agents/ud-architect/SKILL.md
+- UpDown project: `/Users/Shared/Workspaces/AI/Claude.All/UpDown/`
+- Components: `/Users/Shared/Workspaces/AI/Claude.All/UpDown/components/`
+- QnD game: `/Users/Shared/Workspaces/AI/Claude/workspaces/UpDown/qnd/`
+- Sprint 3: `scrum.pmo/sprints/sprint-3-qnd-multiplayer-game/`
+- QnD spec: `qnd/spec/`
 
-## Pending (Expert Implementation Tasks)
-- Task 4.2: Implement path accessor helpers in UcpComponent
-- Task 7.2-7.7: UnitModel FOLDER enum + tsUnitCreate + PumlUnitConverter
-- Task 8.2-8.5: Create 137 unit files in MDAv4/M3/
+## Sprint 1 — COMPLETE
+### Architect Tasks Done
+- 6.0a: W4TSC+IMC class diagram (PUML+SVG)
+- 6.0b: W4TSC+IMC use case diagram (PUML+SVG)
+- 6.1: UCP class diagram with ISR + pluggable loaders (PUML+SVG)
+- 6.2: Unit class diagram (PUML+SVG)
+- 6.3: Persistence class diagram (PUML+SVG)
+- 7.1: UnitModel spec (origin, typeM3, references[])
+- 7.8: Unit.prod (0.3.0.5) class diagram — identified GitTextIOR gap
+- 8.1: MDAv4 ontology structure
+- 9.1: Unit gap analysis (prod vs 0.3.23.x) — 20 files, ~1,500 lines to port
+- 4.1: Path accessor spec (UCP vs W4TSC)
+- ADR-001: npm exports field — APPROVED, POC passed on UCP+Unit
+- ADR-002: Version mapping X.Y.Z.W → X.Y.Z-W — APPROVED
+- @web4x/cli extraction review — APPROVED (behavioral coupling flagged for Sprint 2)
+
+## Sprint 3 — COMPLETE (architect tasks)
+### Diagrams Created/Updated
+- qnd-usecase-diagram.puml — 75+ UCs with UUIDs, color-coded coverage (15 green, 5 orange, 55 red), UC-R12/R13/R14/H5/H6 added
+- traceability-diagram.puml — 75 UUID dashboard + 13 detailed chains, 15 covered
+- room-lifecycle-state.puml — full state machine: waiting→countdown/hostControl→revealing→exchange→finished→waiting, replay FIXED, countdown toggle, room removal
+- room-replay-usecase.puml — replay flow marked IMPLEMENTED (Task 35+36)
+
+### Specs Written
+- Task 28: DRY share util (gold standard)
+- Task 29: DRY card utils (gold standard)
+- Task 30: DRY score calc (gold standard)
+- Task 31: DRY special cards (gold standard)
+- Task 33: Room autoname (upgraded to gold standard)
+- Task 35: Room replay (upgraded)
+- Task 36: Bots survive replay (upgraded)
+- Task 37: Host countdown toggle (upgraded)
+- Task 38: MP UX parity gap analysis (8 subtasks)
+- Task 38.14 review: persistent feedback — forceNextRound guard issue flagged
+- Task 39: UC completeness review — 5 gaps prioritized, reconnection #1
+- Task 39.1: Reconnection protocol spec (qnd/spec/reconnection-protocol.md)
+- Task 40: Unique room names (gold standard)
+- Task 41: Room cleanup + owner remove (gold standard)
+- Task 42 review: Card Played Mode — DUPLICATE of Tasks 37+38.14
+
+### Key Architectural Decisions
+- forceNextRound() handles both countdown AND revealing states (line 398-406)
+- Reconnection needs reconnectToken (UUID) in sessionStorage, 30s grace period
+- Room lifecycle: finished is no longer terminal (resetForReplay)
+- hostControl state parallel to countdown (countdownEnabled flag)
+
+## Learnings
+- TaskStop kills background shells — never claim they can't be stopped
+- Use upDownTeam:0.4 for plantuml rendering, NOT 0.3 (tester pane)
+- PlantUML card diagrams don't support chained arrows (A-->B-->C), must split
+- Gold standard task files: [uc:uuid:], numbered AC, Test Structure code block, Architect Review checkboxes
+- Web4 shell init: `bash --init-file source.env` from UpDown root

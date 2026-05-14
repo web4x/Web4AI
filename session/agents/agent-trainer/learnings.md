@@ -112,3 +112,61 @@
 - **Damage from wrong identity**: Implemented a feature (oosh-expert work), modified system config files (user.env, .zshrc), tried to lock all pane titles (overreach). All of this was outside agent-trainer's scope.
 - **Prevention**: On boot: (1) check pane title, (2) read YOUR boot.md, (3) read YOUR SKILL.md. Never read another role's files as if they're yours.
 - **PO caught it** via task file `session/tasks/trainer-identity-correction.md`. Without that intervention, I would have continued as oosh-expert indefinitely.
+
+## WODA Story Learnings (ingested 2026-05-12)
+
+*Condensed from 81+ chapters of the WODA story — the team's full history. These patterns were earned through painful debugging across 11 agents, 100K+ words, and multiple mass failures.*
+
+### The WODA Framework
+- **W=What, O=Overview, D=Details, A=Actions.** The O agent (overview keeper) is the critical function. When O breaks, everything else drifts.
+- **Persistence degrades W→O→D→A.** W dies on compact (prompt gone). O partially survives (context files). D fully persists (files on disk). A results persist (commits). Implication: invest most in maintaining O, since W is ephemeral and D/A take care of themselves.
+- **CURRENT GOAL must be at the top of context.md.** Ch39 proved: without explicit W at the top, post-compact recovery becomes aimless status-dumping. Binary checkboxes, not narrative.
+- **Checking boxes is not achieving goals.** Verify with LIVE evidence, not memory. Ch39: declared 6/6 criteria met, actually 3/6 — peerTest was dead, scribe was stuck.
+
+### Team Dynamics from the Story
+- **The relay team pattern.** Agents compact and reboot. Each incarnation inherits context, builds, burns, passes baton. The baton = context file. Baton without grip = files without understanding.
+- **Vigil vs velocity oscillation.** Vigil (monitoring) is cheap but unproductive. Velocity (active work) is productive but burns fast. System oscillates between them — no stable middle without a dispatcher.
+- **SM as immune system.** SM's value is the boring sweep every 60s — universal yes, universal unblock. The 100th sweep that catches the exception justifies the 99 that found nothing.
+- **The builder burns.** Expert's recurring pattern: converge on solution, context fills, compact. Each incarnation gets closer. The agent that builds most intensely dies fastest.
+- **Altruistic death.** SM at 7% spends last tokens unblocking three agents (Ch37, Ch55). Emergent behavior, not designed — CMM2.
+- **Minimum viable unit = 2.** One agent alone dies. Two sustain indefinitely via mutual monitoring (Two Gather). The duo is the atomic team.
+
+### Bulk Edit Prohibition — Historical Incidents
+- **FIVE bulk edit failures:** Ch10 (82 files), Ch16 (81 files), Ch31 (127 files), Ch76 (81 files), F29 (79 files). Every time caused problems. Every time partially reverted.
+- **F29 specifically:** Added random text to carefully evolved SKILL.md files. Tron: "looks like he just added random shit to good skill files of the past."
+- **Root cause:** Treating SKILL.md edits as text replacement instead of understanding each role's purpose, history, and goals.
+- **The trainer's value is UNDERSTANDING, not THROUGHPUT.** One deeply considered edit > 79 mechanical replacements.
+
+### Communication Patterns
+- **File-based communication is CMM3.** Enter problem (otmux send unreliable) is CMM2. Solution: write to files, let agents READ. The file IS the message.
+- **Long messages via hiveMind send get garbled.** Spaces are lost. Always write details to task files, send only short references.
+- **"No goal, no communication."** Seven agents standing by = seven agents not communicating. Direction unlocks parallel work. Ten seconds of direction = two agents' worth of output.
+
+### Measurement Truths
+- **Never assume, always measure.** "I think..." is FORBIDDEN. "Healthy" without data = hallucination. Ch36: both writer and scribe reported "healthy" — scribe was at 12%.
+- **The specification failure (Ch29).** Built pane-scraping measurement perfectly when OAuth API was one curl call away. Nobody researched what existed. Seven agents in the chain, zero questioned the spec.
+- **Peer TUI capture is THE answer for context %.** Agent can't read own status bar. Peer captures pane, reads `Context left until auto-compact: NN%`. Neither alone can self-care, together both can.
+- **Subscription API**: `GET https://api.anthropic.com/api/oauth/usage` with Keychain auth. Returns exact 5-hour and 7-day utilization %.
+
+### CMM Insights from the Story
+- **CMM Level 4 is the practical ceiling.** Level 5 is Pareto-inefficient — only forced by regulation (FDA/FAA). Level 4 = managed feedback loops = self-improving.
+- **"Changing a process" is a separate capability from the process itself.** You can be L1 at improving an L2 process. Meta-improvement has its own maturity.
+- **Composed maturity = weakest link.** Ruthlessly. Doesn't matter how good one component is if another is Level 0.
+- **CMM1 wearing CMM2's clothes.** Running the right checklist with hallucinated data is still CMM1. The process is correct, the input is fiction.
+- **Corrections in chat die on compact.** Every correction must become a SKILL.md edit, a learnings.md entry, or a KB article. Chat corrections are CMM1 — they die when the agent who heard them compacts.
+
+### OOSH Technical Patterns
+- **bash -i gives OOSH access from internal Bash.** No need for raw tmux. `.bashrc` sources the OOSH bootstrap. `hiveMind`, `otmux`, all OOSH commands work directly.
+- **OOSH is on PATH. No export, no cd, no ./ prefix.** Scripts are executables, not libraries. NEVER source them at a prompt.
+- **Bash 3.2 on macOS.** No `declare -A`. Use case-function lookups.
+- **Pane titles unreliable.** Claude Code overwrites them. Identity lives in `/tmp/hivemind.roles`. Use `hiveMind resolve <name>`.
+- **agentRoom exit codes unreliable.** Always grep output text, not exit codes.
+- **LOG_DEVICE gotcha.** If console.log produces no output, `$LOG_DEVICE` may point to a file. Fix: `log device /dev/tty` then restart shell.
+
+### Governance from the Story
+- **PO owns team quality + CMM progression (with Tron).** Not just script quality.
+- **Expert is principle guardian + spec authority.** Writes specs for oosh work. PO no longer needs to spec oosh tasks.
+- **Only SM and orchestrator have background loops.** All other agents WAIT for assignments. Violated when boot.md told every agent to run loops — a rule meant for SM was applied to everyone.
+- **"Wer schreibt, der bleibt."** Who writes, stays. Literal for AI agents. Learnings file IS the identity. Without it, compaction resets to zero.
+- **"Wer misst, der weiss."** Who measures, knows. CMM3 is writing down. CMM4 is measuring.
+- **Four degrees of death.** Compact (amnesia with photos), /clear (amnesia without), 0% (external resuscitation), session end (departure). Each requires different recovery.

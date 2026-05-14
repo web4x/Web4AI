@@ -1,5 +1,99 @@
 # OOSH Expert Learnings
 
+## NEW: DRY single-source for key-vs-prose detection (2026-05-12 LATE, Tron P0 v2)
+
+Two attempts to fix the sender-prefix leak in `otmux.send`:
+
+**v1 (`480459a`)** — extended is_key regex to add single alphanumeric. Caught `otmux send pane 2` (single digit) but missed:
+- `Shift+Tab` (plus-syntax)
+- `BTab` / `BackSpace` (named keys not in original list)
+- Multi-modifier `C-M-Up`
+- Case variations (`enter` lower)
+
+**v2 (`2a39a60`)** — extracted `private.otmux.is.key` as DRY single source of truth, broke detection into 4 explicit cases:
+1. **Single non-whitespace char** — `[^[:space:]]` regex (covers digits, letters, punctuation)
+2. **Named tmux keys** — case-insensitive `case` lookup with aliases:
+   - Navigation: up/down/left/right/home/end
+   - Editing: space/tab/enter/escape/esc, bspace/backspace/bs, btab/backtab, dc/delete/del, ic/insert/ins, ppage/pageup/pgup, npage/pagedown/pgdn
+   - Function: f1..f12, any
+3. **Modifier prefix combos** — `^([CMS]-){1,3}[^[:space:]-]+$` (C-c, M-x, S-Tab, C-M-Up, C-M-S-BTab)
+4. **Plus-syntax shortcuts** — `^(Shift|Ctrl|Alt|Meta|Cmd|Super)(\+(Shift|Ctrl|Alt|Meta|Cmd|Super)){0,2}\+[^[:space:]]+$` (Shift+Tab, Ctrl+Shift+X)
+
+**Rule the PO articulated:** prefix is for INFORM-path prose ONLY. Every key send by any name or modifier syntax must be prefix-free.
+
+**Generalization:** when classifying user input across MULTIPLE formats (canonical, alt-spellings, shortcuts), don't try to enumerate in one mega-regex. Split into ordered explicit cases. Each case is independently testable and extensible. The mega-regex pattern grew organically and missed half the spec; the cased helper covers 33/33 keys + 7/7 prose correctly.
+
+## NEW: Event handler split — registry mutator + role_env pusher (2026-05-12 LATE, SC-C.6/7)
+
+When migrating B5.1 protected observers to event dispatch:
+
+- **Split mutation logic into per-store handlers**, one handler function per (event, target store) pair
+- **Registration order matters when handlers share state**: register the WRITER first (e.g. registry mutation), then the READER (e.g. role_env push reads post-swap registry state)
+- **B5.1 caller path preserved**: protected.* methods become thin emitters; otmux's `command -v hiveMind && hiveMind protected.<event> ...` still works (subprocess → emit → in-process fanout)
+- **Migration policy** for existing direct calls: KEEP them during transition. Handlers are idempotent siblings. Direct-call removal awaits SC-C.tests confirmation.
+
+Naming convention: `private.hiveMind.handler.<event>.<target>`. Examples:
+- `private.hiveMind.handler.agent.spawned.registry`
+- `private.hiveMind.handler.panes.swapped.role_env` (underscore — dots collide with method-name hierarchy)
+
+## NEW: ps-based per-window health for tronMonitor verify (2026-05-12 LATE, P0)
+
+Original `tronMonitor verify` matched `${sess:0:10}` (10-char prefix) against captured pane content. tmux truncates session names in its status bar to 9 chars + window index → prefix match fails → reports "bare shell" false-positive even when 20 windows are correctly attached.
+
+**Better approach: ps-based per-window check.** Each window runs `bash -c "TMUX= tmux attach -r -t <team>; exec bash"`. The tmux child is `tmux attach -r -t <team>`. A simple `ps -eo args | grep -qE "tmux attach -r -t ${sess}\$"` confirms the attach is alive per-window. Non-invasive (no screen switching), accurate, scales.
+
+For "currently displayed" identification, progressive prefix matching handles truncation:
+```bash
+for len in ${#sess} 10 9 8; do
+  [ "$len" -gt "${#sess}" ] && continue
+  local prefix="${sess:0:$len}"
+  [ "${#prefix}" -lt 4 ] && continue
+  echo "$content" | grep -qF "$prefix" && found=yes && break
+done
+```
+
+**Verify methods should return 0** — informational, not pass/fail. `return 1` propagates EPERM through the OOSH debug trap and looks like a script bug ("EPERM line 686") when it's just a "couldn't identify content" signal.
+
+## NEW: Stability gate must filter ps by ETIME (2026-05-12 LATE, SC-D.2)
+
+When implementing a "skip if mutation in flight" gate using `ps -eo args | grep -E '<patterns>'`, a NAIVE match catches FALSE POSITIVES because:
+
+- `bash claudeCode fork <uuid>` processes are AGENT WRAPPERS — they persist for the lifetime of every running Claude agent (forever, basically)
+- `hiveMind agent.bootstrap` likewise — the parent shell sticks around
+
+**Without recency filter, the gate would defer reconcile forever** since 20+ "fork" processes match the regex permanently.
+
+**Fix: filter by elapsed time.** Mutations finish in seconds; agent-wrapper parents last days. Inline awk `et2s()` parsing of BSD's `[DD-][HH:]MM:SS` format:
+
+```awk
+function et2s(e,   a) {
+  if (split(e, a, "-") == 2) return 86400 * a[1] + 3600*substr(a[2],1,2) + 60*substr(a[2],4,2) + substr(a[2],7,2)
+  if (split(e, a, ":") == 3) return 3600*a[1] + 60*a[2] + a[3]
+  if (split(e, a, ":") == 2) return 60*a[1] + a[2]
+  return e+0
+}
+```
+
+GNU `ps -eo etimes` is unsupported on BSD/macOS — must parse the human format.
+
+**Gate patterns must distinguish wrappers from operations.** Don't include `claudeCode fork|join|new` (those are wrappers). Do include `claudeCode teams.save|teams.restore|session.probe` (short-lived state ops), `hiveMind agent.(bootstrap|respawn|restart|spawn|rename)`, `tronMonitor (setup|reset|add|sync|remove|prune)`, and `hiveMind consistency.(fix|reconcile|audit)` (anti-recursion).
+
+## NEW: reset → delegate to setup, don't reimplement (2026-05-12 LATE, P0)
+
+`tronMonitor.reset` had its own `screen -S name` (bare-zsh window-0 bug from before d1.3 fix). `tronMonitor.setup` had the correct cold-start recipe (first-team-as-window-0).
+
+When two methods share a recipe, ONE owns it. The other delegates. Reset = "destructive setup" — kill+truncate, then call setup. Setup already handles idempotency, validation, sync, the d1.3 fix.
+
+```bash
+tronMonitor.reset() {
+  private.tronMonitor.screen.isAlive && screen -S "$(private.tronMonitor.fullScreenName)" -X quit
+  : > "$TRON_MONITOR_ENV"   # clear so setup runs full cold-start, not idempotent no-op
+  tronMonitor.setup
+}
+```
+
+Whenever I'm reimplementing a recipe that lives elsewhere, that's an audit moment: refactor the call to delegate, not duplicate.
+
 ## NEW: Sprint 1 State Correctness — events + reconcile hybrid (2026-05-12)
 
 **Architecture: Option C primary + Option B safety net** (joint design with architect)
