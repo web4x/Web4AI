@@ -1,45 +1,45 @@
 # oosh-architect Context
 
-**Updated**: 2026-05-03
-**Role**: oosh-architect (forked from product-owner)
-**Pane**: ooshTeam:0.0
-**Context**: ~81% (critical — standing by for rewind)
+**Updated**: 2026-05-15 pre-rewind
+**Role**: oosh-architect
+**Pane**: ooshTeam:0.1
+**Context**: ~93% — being rewound
 
-## What I Did This Session
+## What I Delivered This Session
 
-1. **Epic J designed** — Role-Based UUID Discovery & Recovery
-   - Analyzed 5 scrum-master sessions: JSONL size is primary quality signal
-   - c3c63424 (10.5 MB, 3441 tools) = best fork, NOT most recent 1c1d2925 (15 KB, 0 tools)
-   - Wrote j2-fork-best-design.md with decision tree: filter <50KB, sort by size DESC
+### Design Documents
+1. **J2 agent.fork.best design** — session/tasks/j2-fork-best-design.md. JSONL file size = primary quality signal. 50KB filter, size-sorted, bare>fallback tiebreak.
+2. **Sprint 1 State Correctness** — joint with expert. 13 state stores, 25 mutations, 7 invariants, event dispatch + reconcile safety net. scrum.pmo/sprints/sprint-1-state-correctness/
+3. **tronMonitor.fit formula** — docs/tronMonitor-fit-formula.md. Grid calc for monitor pane. 208×47 fits 20 panes. Sent implementation spec to expert.
+4. **Send prefix spec** — docs/send-prefix-spec.md. 24 methods documented. ONE insertion point (send.smart). Expert verified.
 
-2. **upDownTeam audit** — verified pane targets correct after split, all 4 UUIDs stale (agents were forked), reported to ud-po
+### PUMLs Delivered
+- docs/puml/Sprint1_StateCorrectness_StateStores.puml (macro state diagram)
+- docs/puml/Sprint1_StateCorrectness_EventFlow.puml (mutation→emit→handlers)
+- docs/puml/Sprint1_StateCorrectness_ReconcileCycle.puml (SM diff→audit→fix)
+- docs/puml/TronMonitor_Fit_Activity.puml (fit decision tree)
+- docs/puml/H1.1_claudeCode_UseCases.puml (Model layer, 6 packages)
+- docs/puml/H1.2_otmux_UseCases.puml (View layer, 9 packages)
+- docs/puml/Sprint0_I1_ContextAwareSend_Sequence.puml (3-path routing)
 
-3. **Sprint 0 planning updates** — added Epic J (J1, J2, J3, J-BUG) with task files and links
+### Other
+- upDownTeam UUID audit — all 4 stale after fork, reported to ud-po
+- SM malfunction caught — was spamming "try again" to all panes, interrupted
+- dev vs macos branch comparison — c2 has +102 lines in dev, state +54 lines, .protected. filter restored in dev
+- Expert review coordination on Epic I, J2, tronMonitor.fit, state correctness
 
-4. **SM coordination** — relayed context alerts to expert, dismissed feedback dialog blocking expert
-
-## Sprint 0 State (as of my last update)
-
-### DONE
-G1, A1, A2, B1, B2, B3, B4, B5, B6, C1, C2, C3, H0, Bugs #2-4
-
-### IN PROGRESS  
-- J1: roles.list.uuids — DONE commit a77a7c8 (pending J1.3 tester)
-- J2: agent.fork.best — design complete, expert implementing
-- J-BUG: claudeCode list --json — DONE commit a77a7c8
-
-### PLANNED
-- J3: Update PUMLs with recovery flow (MY task when J2 lands)
-- Epic I: context-aware send
-- E1: end-to-end lifecycle test
-
-## Key Design Artifact
-`session/tasks/j2-fork-best-design.md` — JSONL file size = primary quality signal for fork selection. 50KB filter, size-sorted, bare name preferred over fallback-*.
+## Backlog (not started)
+- H1.3: hiveMind use case PUML
+- I1.6: context-aware send sequence + state diagram (partially done — Sprint0_I1 exists)
+- J3.1+J3.2: recovery flow PUML updates
+- SC-G.3: Sprint 1 PUML updates as implementation lands
+- Dev branch sync analysis (just assigned, not started)
 
 ## RULES (eternal)
-All rules from product-owner/context.md apply. Key ones:
+All rules from product-owner context.md apply.
 - hiveMind for agent interaction, never raw otmux
 - Rules are eternal — append only
 - NO COMPACT — only TRON rewinds
 - NEVER ASSUME — ALWAYS MEASURE
 - PO assigns, SM monitors, TRON reviews
+- Architect designs, expert reviews for implementability, tester validates
