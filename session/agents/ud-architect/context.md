@@ -1,8 +1,8 @@
-# ud-architect Context — Save Point 2026-05-12
+# ud-architect Context — Save Point 2026-05-18
 
-**Role:** UpDown Architect — PUML diagrams, MDAv4 ontology, Unit model, specs
+**Role:** UpDown Architect — PUML diagrams, specs, code analysis, bug root causes
 **Pane:** upDownTeam:0.1
-**Shell:** upDownTeam:0.4 (Web4 initialized)
+**Shell:** upDownTeam:0.4 (Web4 initialized, plantuml available)
 **Machine:** MacStudio
 
 ## Team Layout
@@ -15,60 +15,42 @@
 
 ## Base Paths
 - UpDown project: `/Users/Shared/Workspaces/AI/Claude.All/UpDown/`
-- Components: `/Users/Shared/Workspaces/AI/Claude.All/UpDown/components/`
 - QnD game: `/Users/Shared/Workspaces/AI/Claude/workspaces/UpDown/qnd/`
 - Sprint 3: `scrum.pmo/sprints/sprint-3-qnd-multiplayer-game/`
-- QnD spec: `qnd/spec/`
 
-## Sprint 1 — COMPLETE
-### Architect Tasks Done
-- 6.0a: W4TSC+IMC class diagram (PUML+SVG)
-- 6.0b: W4TSC+IMC use case diagram (PUML+SVG)
-- 6.1: UCP class diagram with ISR + pluggable loaders (PUML+SVG)
-- 6.2: Unit class diagram (PUML+SVG)
-- 6.3: Persistence class diagram (PUML+SVG)
-- 7.1: UnitModel spec (origin, typeM3, references[])
-- 7.8: Unit.prod (0.3.0.5) class diagram — identified GitTextIOR gap
-- 8.1: MDAv4 ontology structure
-- 9.1: Unit gap analysis (prod vs 0.3.23.x) — 20 files, ~1,500 lines to port
-- 4.1: Path accessor spec (UCP vs W4TSC)
-- ADR-001: npm exports field — APPROVED, POC passed on UCP+Unit
-- ADR-002: Version mapping X.Y.Z.W → X.Y.Z-W — APPROVED
-- @web4x/cli extraction review — APPROVED (behavioral coupling flagged for Sprint 2)
+## Sprint 3 Architect Work — COMPLETE
 
-## Sprint 3 — COMPLETE (architect tasks)
-### Diagrams Created/Updated
-- qnd-usecase-diagram.puml — 75+ UCs with UUIDs, color-coded coverage (15 green, 5 orange, 55 red), UC-R12/R13/R14/H5/H6 added
-- traceability-diagram.puml — 75 UUID dashboard + 13 detailed chains, 15 covered
-- room-lifecycle-state.puml — full state machine: waiting→countdown/hostControl→revealing→exchange→finished→waiting, replay FIXED, countdown toggle, room removal
-- room-replay-usecase.puml — replay flow marked IMPLEMENTED (Task 35+36)
+### Diagrams (qnd/spec/)
+- qnd-usecase-diagram.puml — 75+ UCs with UUIDs, color-coded
+- traceability-diagram.puml — 75 UUID dashboard + 15 covered chains
+- room-lifecycle-state.puml — full state machine
+- room-replay-usecase.puml — replay IMPLEMENTED
 
-### Specs Written
-- Task 28: DRY share util (gold standard)
-- Task 29: DRY card utils (gold standard)
-- Task 30: DRY score calc (gold standard)
-- Task 31: DRY special cards (gold standard)
-- Task 33: Room autoname (upgraded to gold standard)
-- Task 35: Room replay (upgraded)
-- Task 36: Bots survive replay (upgraded)
-- Task 37: Host countdown toggle (upgraded)
-- Task 38: MP UX parity gap analysis (8 subtasks)
-- Task 38.14 review: persistent feedback — forceNextRound guard issue flagged
-- Task 39: UC completeness review — 5 gaps prioritized, reconnection #1
-- Task 39.1: Reconnection protocol spec (qnd/spec/reconnection-protocol.md)
-- Task 40: Unique room names (gold standard)
-- Task 41: Room cleanup + owner remove (gold standard)
-- Task 42 review: Card Played Mode — DUPLICATE of Tasks 37+38.14
+### Major Specs
+- T39.1: Reconnection protocol (reconnectToken, 30s grace, sessionStorage)
+- T61: Parallel games — single-thread FINE
+- T80: Game docs (3 files: game-rules, special-cards, multiplayer)
+- T82: Highscore/leaderboard — extend PlayerProfile, rank by diamonds
+- T86: User editor + device tracking + consolidation
+- T87: Bug report → otmux send to PO pane (execFile for security)
+- T91: Button audit — 45 buttons, guardClick loading broken, fix with once()
 
-### Key Architectural Decisions
-- forceNextRound() handles both countdown AND revealing states (line 398-406)
-- Reconnection needs reconnectToken (UUID) in sessionStorage, 30s grace period
-- Room lifecycle: finished is no longer terminal (resetForReplay)
-- hostControl state parallel to countdown (countdownEnabled flag)
+### Bug Root Causes Found
+- T55: ROOM_JOINED handler doesn't reset client state → stale data on second room
+- T56: client.on() inside render() stacks handlers → duplicate messages
+- T69: resetForReplay() revives ghost players → duplicates on rejoin
+- T83: Countdown stays OFF after host elimination → game appears stuck
+- T82-debug: Playwright fresh context = no token → leaderboard empty (test setup)
+- BR-007: Link Account needs targetToken not secretCode, same-room security check
 
-## Learnings
-- TaskStop kills background shells — never claim they can't be stopped
-- Use upDownTeam:0.4 for plantuml rendering, NOT 0.3 (tester pane)
-- PlantUML card diagrams don't support chained arrows (A-->B-->C), must split
-- Gold standard task files: [uc:uuid:], numbered AC, Test Structure code block, Architect Review checkboxes
-- Web4 shell init: `bash --init-file source.env` from UpDown root
+### ADRs (Sprint 1)
+- ADR-001: npm exports field — APPROVED, POC passed
+- ADR-002: Version X.Y.Z-W mapping — APPROVED
+
+## Key Learnings
+- TaskStop kills background shells
+- execFile (not exec) prevents shell injection
+- forceNextRound() is polymorphic by state
+- guardClick loading invisible because actions are sync WS sends
+- PlantUML card diagrams don't support chained arrows
+- NEVER ASSUME — ALWAYS MEASURE (read code before speccing)
