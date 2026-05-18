@@ -8,7 +8,35 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.1
-**Updated**: 2026-05-18 — saving for rewind
+**Updated**: 2026-05-18 LATE — pre-rewind save + new directive captured
+
+## NEW DIRECTIVE (2026-05-18, just before rewind)
+
+PO assigned: **`hiveMind team.migrate <session> <host>`** — single-session migration.
+
+**Problem**: existing `hiveMind teams.migrate <host>` migrates ALL sessions. Agent-trainer tried to fork ooshTeam to McDonges → got 18 sessions cloned. Wrong.
+
+**Design (to verify post-rewind)**:
+- New method `hiveMind.team.migrate <session> <host>` (singular `team`, not `teams`)
+- Workflow mirror of existing teams.migrate but session-filtered:
+  1. Snapshot ONE session (filter teams.save by `<session>`)
+  2. scp snapshot + per-session JSONLs to remote
+  3. Restore on remote via filtered `teams.restore`
+
+**Key code to inspect post-rewind**:
+- `~/oosh/hiveMind` `teams.migrate` (line ~3115) — current bulk path
+- `~/oosh/hiveMind` `teams.save` — does it have a session-filter argument? If not, may need to add one.
+- `~/oosh/hiveMind` `teams.restore` — same question for filter
+
+**Likely simplest implementation**:
+- `hiveMind.team.migrate <session> <host>` = wrapper that:
+  - generates snapshot to a tmp file filtered to one session (grep snapshot file by session prefix)
+  - calls existing scp + ssh exec restore path with that tmp snapshot
+- OR add `<?session>` filter arg to teams.save/teams.restore and let team.migrate compose.
+
+**Coordinate with architect on signature** before shipping (per recent pattern). Single commit per PO directive.
+
+
 **Layout**: 6 panes — 0.0 po, 0.1 architect, 0.2 expert (me), 0.3 tester, 0.4 expert-shell, 0.5 tester-shell
 
 ---

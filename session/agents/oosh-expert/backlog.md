@@ -1,5 +1,10 @@
 # OOSH Expert Backlog
 
+## URGENT POST-REWIND
+
+- [ ] **git pull both repos** — remote is ahead on workspace main (508509e local vs 15c5d00 remote per PO). Also pull ~/oosh.
+- [ ] **`hiveMind team.migrate <session> <host>`** — single-session migration. Current `teams.migrate <host>` does ALL sessions (18 sessions cloned when agent-trainer wanted just ooshTeam). Spec + design candidates captured in context.md "NEW DIRECTIVE" section. Coordinate signature with architect (ooshTeam:0.1) before shipping.
+
 ## ACTIVE — Sprint 1 in-flight
 
 **Sprint 1 — State Correctness Architecture**
