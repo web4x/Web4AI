@@ -10,9 +10,40 @@
 **SM**: scrum-master @ TRONinterface:0.1
 **Updated**: 2026-05-18 LATE — pre-rewind save + new directive captured
 
-## NEW DIRECTIVE (2026-05-18, just before rewind)
+## NEW FEATURE LANDED (2026-05-18, just before rewind — commit `dc0cc00`)
 
-PO assigned: **`hiveMind team.migrate <session> <host>`** — single-session migration.
+**`hiveMind team.migrate <session> <sshHost> <?snapshotFile>` + `hiveMind protected.team.import <session>`** shipped (commit `dc0cc00`).
+
+How I found it: when I came back from save-context, `git diff hiveMind` showed
+137 lines of uncommitted `hiveMind.team.migrate()` from an earlier rewind cycle
+of this same agent. Architect/PO design notes embedded in the code:
+- Q1 merge-on-remote (preserves remote's other teams; vs clobber)
+- Q2 auto-snapshot (generates if no snapshot found)
+- Q3 success.log only for v1 (no event emission yet)
+- Q4 singular `team.migrate` (plural `teams.migrate` stays as full-machine)
+- Gotcha: `$1==s` exact awk match (NOT `$1~s` — prevents `ooshTeam` matching `ooshTeam2`)
+
+The uncommitted code was complete EXCEPT it called `hiveMind protected.team.import`
+which didn't exist. I added it (~50 lines, idempotent merge of slice files into
+local registries, ingress P3 via `this.isSessionName` + `this.isPipeSafe`).
+
+**Verified live**:
+- `bash -n hiveMind` syntax OK
+- `hiveMind team.migrate` (no args) → usage error rejects correctly
+- `hiveMind protected.team.import` (no args) → usage error rejects correctly
+- NOT integration-tested with a real remote — that's tester scope.
+
+**Workflow team.migrate <session> <host>**:
+1. Auto-snapshot if no snapfile given
+2. mktemp dir; awk-slice the snapshot to filter to one session (exact match)
+3. Slice roles/sessions/teams env files by session prefix
+4. ssh + `cd ~/oosh && git pull` on remote (or `ossh dir.push` fallback)
+5. Push 4 slice files via `ossh scp` to `~/config/` on remote
+6. Push JSONLs (deduped by uuid) for the session's UUIDs only
+7. `ossh exec $host "hiveMind protected.team.import $session"` — merge slices
+8. `ossh exec $host "hiveMind teams.restore ~/config/$(basename $sessSnap)"` — start team
+
+PO assigned: **`hiveMind team.migrate <session> <host>`** — single-session migration. SHIPPED.
 
 **Problem**: existing `hiveMind teams.migrate <host>` migrates ALL sessions. Agent-trainer tried to fork ooshTeam to McDonges → got 18 sessions cloned. Wrong.
 

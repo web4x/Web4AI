@@ -1,9 +1,10 @@
 # OOSH Expert Backlog
 
-## URGENT POST-REWIND
+## URGENT POST-REWIND (still open after pre-rewind work)
 
-- [ ] **git pull both repos** — remote is ahead on workspace main (508509e local vs 15c5d00 remote per PO). Also pull ~/oosh.
-- [ ] **`hiveMind team.migrate <session> <host>`** — single-session migration. Current `teams.migrate <host>` does ALL sessions (18 sessions cloned when agent-trainer wanted just ooshTeam). Spec + design candidates captured in context.md "NEW DIRECTIVE" section. Coordinate signature with architect (ooshTeam:0.1) before shipping.
+- [x] **`hiveMind team.migrate <session> <host>` SHIPPED** — commit `dc0cc00`. Found pre-existing uncommitted implementation from earlier rewind cycle of this agent; added missing `protected.team.import` callee. NOT integration-tested with real remote — tester handoff needed.
+- [ ] **Integration test team.migrate** — tester needs to migrate ooshTeam to a test remote, verify only that session lands, verify remote's other teams preserved.
+- [ ] **git pull both repos** — workspace already up-to-date; ~/oosh dev was 1 commit ahead but not on my branch. Verify on next boot.
 
 ## ACTIVE — Sprint 1 in-flight
 
