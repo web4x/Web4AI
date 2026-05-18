@@ -177,15 +177,15 @@ Every ~30 minutes (rotate between teams):
 - Messages show as [@TRONinterface-agent] instead of [@scrum-master]
 - Would need to prefix every command with env vars to fix
 
-## Current State (2026-05-17)
-- upDownTeam: T86 delivery (user editor + friend invite). ud-po frequently PERMISSION (heavy file work). ud-expert frequently PERMISSION (CSS/HTML edits)
-- ooshTeam: all ACTIVE, oosh-architect at 96.6% context (dead — needs fork from fallback), oosh-expert+tester productive
-- baseTeam: agent-trainer ACTIVE, was taught rewind protocol (failed on first attempt — killed oosh-architect)
-- Subscription: 34% 5h, 78% 7d, safe
-- CMM4 reminders paused during T86 delivery — replaced with review-before-unblock protocol
-- SM rewound by TRON on 2026-05-17
+## Current State (2026-05-15, pre-rewind save)
+- ooshTeam: was all ACTIVE, then hit rate limits on po/architect/expert. Retries sent. oosh-tester still working.
+- upDownTeam: T86 delivery ongoing. ud-po frequently hits PERMISSION (heavy file work). ud-expert frequently hits PERMISSION (CSS/HTML).
+- baseTeam: agent-trainer ACTIVE, completed agent file review — all changes valid, recommended sync commit.
+- Subscription: ~16% 5h, 75% 7d, safe
+- SM context at 39% (390k/1M) — rewound by TRON
+- CMM4 reminders paused during T86 delivery
 
-## Key Learnings This Session (2026-05-14 to 2026-05-17)
+## Key Learnings This Session (2026-05-14 to 2026-05-15)
 - Review before unblock — NEVER blind unblock. SM reviews PO prompts, PO reviews agent prompts
 - "continue" from TRON = sweep + act, not just schedule timer
 - TRON intercepts and supervises — all other work is PO jobs
@@ -194,6 +194,13 @@ Every ~30 minutes (rotate between teams):
 - Context health scan every 10 min — watch for "/clear to save Nk tokens"
 - Rewind delegation is DANGEROUS — agent-trainer destroyed oosh-architect (925k → 33k)
 - Only TRON authorizes and supervises rewinds
+- Notify PO EVERY tick when agent blocked — don't wait 3 ticks silently
+- "ACTION NEEDED — RUN THIS NOW:" + exact command = most effective PO message format
+- When PO is COMPLETED/idle, use "Run this command now:" as direct instruction
+- NEVER send to TRONinterface panes — TRON reads SM output in conversation
+- Use `sleep 60 && echo "SWEEP TICK"` background, not ScheduleWakeup
+- Measure subscription BEFORE going silent — never assume
+- Dismiss "How is Claude doing?" feedback prompts with "0" Enter
 
 ## Achievements
 - 6+ hour continuous autonomous sweep loop monitoring 3 teams (9 agents)
