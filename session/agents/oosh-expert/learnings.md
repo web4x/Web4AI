@@ -1,5 +1,229 @@
 # OOSH Expert Learnings
 
+## NEW: TMUX_PANE for subprocess-safe self-pane resolution (2026-05-17, Tron P0 #3)
+
+**Production-broken-since-forever bug:** `tmux display-message -p '#{format}'` WITHOUT
+`-t` returns information for the FOCUSED pane (wherever the user last clicked) — NOT
+the pane that called tmux. When you're a subprocess (Bash tool, otmux send wrapper,
+any `script.sh` invocation), you have no attached client, so "focused" falls back to
+whatever the active client of the calling session happens to be.
+
+**Consequence:** every `otmux send` subprocess that built the sender prefix
+resolved to the WRONG pane. Prefix said `[@oosh-po ooshTeam:0.0]` when sent from
+`oosh-expert ooshTeam:0.2`. Silent corruption — receiving agents acted on the
+wrong attribution.
+
+**Fix:** tmux exports `TMUX_PANE=%N` to every child process of every pane. Pass
+it as `-t` to display-message:
+```bash
+local pane
+pane=$($TMUX_CMD display-message -p -t "$TMUX_PANE" '#{session_name}:#{window_index}.#{pane_index}' 2>/dev/null)
+```
+
+**Early-return guard for non-tmux contexts (CI, cron, plain shell):**
+```bash
+[ -z "$TMUX_PANE" ] && return    # not in tmux → no caller pane
+```
+
+**Generalization:** ANY tmux query inside an OOSH method that wants "info about
+the caller's pane/session" must explicitly target `-t "$TMUX_PANE"`. Bare
+display-message is a footgun. The same rule applies to derived methods like
+`#{session_name}` (gets focused session, not caller session).
+
+## NEW: Registry-only role lookup — env vars go stale (2026-05-17, Tron P0 #1)
+
+`HIVEMIND_ROLE` is exported once at shell start. After pane swaps/moves/agent
+renames, the env value doesn't auto-update — but the registry file IS updated
+(by SC-C event handlers). So:
+
+**WRONG (env-first):**
+```bash
+local myRole="${HIVEMIND_ROLE:-}"
+[ -z "$myRole" ] && myRole=$(grep "^${pane}|" "$reg" | cut -d'|' -f2)
+```
+After a swap, env is stale, registry is fresh — caller gets the OLD role.
+
+**RIGHT (registry only):**
+```bash
+local myRole=$(grep "^${pane}|" "$reg" | cut -d'|' -f2)
+```
+
+The push of `HIVEMIND_ROLE` to shells (in `private.hiveMind.pane.pushRoleEnv`)
+is STILL useful — future Claude processes inherit it at launch, and shell users
+see consistent `$HIVEMIND_ROLE`. But never read it as a source of truth.
+
+**Generalization:** with the SC-B event dispatch + SC-C handlers now writing
+through to env files on every mutation, env files ARE the cache that handlers
+keep fresh. Process env vars are pre-handler-era stale-by-default. Always read
+the file, not the env.
+
+## NEW: this.isEmpty + DRY ingress predicates in kernel (2026-05-17)
+
+Five new kernel predicates in `this` (sibling to `this.isNumber`):
+
+```bash
+this.isEmpty()        # [[ ^[[:space:]]*$ ]] — empty or whitespace-only
+this.isPaneTarget()   # session:win.pane OR %N
+this.isSessionName()  # tmux session name regex
+this.isRoleName()     # [A-Za-z][A-Za-z0-9._-]{0,39}
+this.isUuid()         # 36-char Claude UUID
+this.isPipeSafe()     # no | or newline (env-file safety)
+```
+
+Pattern: every script sources `this` at start, so kernel predicates are pure
+bash functions available everywhere with zero subprocess cost. Replaced 8+
+inline regexes across otmux/hiveMind in `1276e58`. Triple-defense applications
+in `c1ecf3f`/`a7f5cb0`/`085f621`.
+
+**The rule:** if a predicate would otherwise be duplicated across 2+ scripts,
+it belongs in `this`. Pure bash (no I/O, no dependencies on other OOSH scripts)
+is the contract for kernel predicates.
+
+## NEW: Empty-send guard prevents agent hallucination (2026-05-17, Tron P0 #2)
+
+A bare `[@role pane] ` prefix delivered into a Claude TUI reads as a USER
+PROMPT with no body. The agent treats it as a request and HALLUCINATES a task
+to fulfill the apparent ask. PO observed agents committing unrequested work
+after empty `otmux send` invocations from automation.
+
+**Defense at 8 entry points** (with `this.isEmpty`):
+- otmux: `send`, `send.smart`, `send.verified`
+- hiveMind: `send`, `send.message`, `agent.send`, `agent.inform`, `broadcast`
+
+`return 0` (silent no-op), NOT `return 1` (error). Callers passing variables
+that MAY be empty shouldn't have to wrap every send with `[ -n "$msg" ]`.
+
+**Architecture rule:** if a method composes user-visible output from user-supplied
+input + a templated wrapper (prefix, header, etc), the empty input must short-circuit
+BEFORE the template is applied — otherwise the wrapper alone gets delivered as
+"the message" and downstream consumers misinterpret it.
+
+## NEW: ps tty="??" is the detached-process trap (2026-05-18, fast-path)
+
+`ps -eo pid,tty,args | grep -i claude` over-matches:
+- Real claude binaries on a real tty: `38723 ttys025 /Users/donges/.local/bin/claude --resume ...`
+- Detached zsh subshells whose ARGS contain "claude" text: `41714 ?? /bin/zsh -c ...long args mentioning claude...`
+
+The `??` means no controlling tty — these processes can't be on any user pane.
+Mixing them into a tty→pid map produces false positives.
+
+**Filter:**
+```bash
+while read -r pid tty args; do
+  [ -z "$tty" ] || [ "$tty" = "??" ] && continue
+  case "$args" in *claude*) MAP["$tty"]="$pid" ;; esac
+done < <(ps -eo pid=,tty=,args= 2>/dev/null)
+```
+
+**Companion gotcha:** `pane_tty` from tmux has the `/dev/` prefix
+(`/dev/ttys025`); ps tty column omits it (`ttys025`). Strip on insert:
+```bash
+TREE_TTY["$pane"]="${pane_tty#/dev/}"
+```
+
+## NEW: Batch-cache pattern for per-pane operations (2026-05-18, fast-path)
+
+`otmux.tree` took 40.7s on 76 panes because the inner loop called
+`claudeCode process.running <pane>` per bash/zsh pane. Each call shelled out
+to `otmux pane.get $pane tty` (full OOSH bootstrap, ~200ms) + `ps -eo …`
+(~50ms). 75 × 0.5s = 37s.
+
+**Fix pattern — build caches ONCE at function entry:**
+```bash
+declare -A TREE_TTY=()           # pane_target → tty
+declare -A TREE_CLAUDE_PID=()    # tty → claude pid
+while IFS='|' read -r _p _t; do TREE_TTY["$_p"]="${_t#/dev/}"; done \
+  < <(tmux list-panes -aF '#{session_name}:#{window_index}.#{pane_index}|#{pane_tty}')
+while read -r pid tty args; do ...; done < <(ps -eo pid=,tty=,args=)
+# Per-pane in inner loop: O(1) assoc lookup
+local _tty="${TREE_TTY[$pane]}"
+[ -n "$_tty" ] && [ -n "${TREE_CLAUDE_PID[$_tty]:-}" ] && display_cmd="$VERSION"
+```
+
+Result: 40.7s → 1.1s (37×). Works because bash assoc arrays survive nested
+`echo X | while …` pipe subshells (verified — inheritance by value, reads work
+even through 2-level nesting).
+
+**Generalization:** any "per-pane / per-X expensive query" pattern in a render
+function can collapse to ONE batch query + N assoc lookups. The cache lifetime
+is the function call; declare local-scope at function top.
+
+## NEW: 3-tier speed model for render functions (2026-05-18, fast-path)
+
+| Tier | Cost | Content | Use case |
+|------|------|---------|----------|
+| 1 | <0.5s | Session list, pane counts, attach state | Default no-arg (`otmux`) |
+| 2 | <1.5s | Per-pane tree, titles, current command | `otmux tree` |
+| 3 | seconds-minutes | + UUIDs, models, agent discover | `otmux tree.detailed` (explicit opt-in) |
+
+Don't put Tier-3 cost in the default Tier-1 path. The old `otmux.status()`
+called `otmux.tree` which forced 40s for every `otmux` invocation.
+
+## NEW: Cross-team writes blocked by harness (2026-05-15)
+
+The harness refuses `otmux send <other-team>:0.X "..."` from a Bash tool when
+the request originated from a captured-pane relay (e.g. PO forwarding a
+message from ud-po). Error: "external-system write/publication to others
+not authorized by the user". Right call from a security standpoint.
+
+**Workaround:** relay the answer through your own PO (same-team send, always
+authorized). They forward it to the other PO. Don't try to bypass.
+
+## NEW: Cross-component symlinks must respect workspace symlink chain (2026-05-16)
+
+`/Users/Shared/Workspaces/AI/Claude/docs` is ITSELF a symlink chain:
+`Claude → components/OOSH/dev.claude/docs`. So relative `../components/...`
+from the visible `docs/` path traverses through the chain and resolves wrong.
+
+**Fix:** use the path from the UNDERLYING git location. From
+`dev.claude/docs` to `macos/docs` is `../../macos/docs/`. Workspace-portable
+across all OOSH branch variants.
+
+**Git also blocks symlinked-path commits:** `git add docs/symlink.md` from the
+workspace root fails with "pathspec is beyond a symbolic link". Must `cd` to
+the underlying repo (`components/OOSH/dev.claude`) and add from there.
+
+## NEW: `otmux fit` vs `otmux size.unlock` semantics (2026-05-17)
+
+Both deal with window sizing but for different cases:
+- `otmux size.unlock <?session>` — set window-size=largest, aggressive-resize=on. Window adapts to LARGEST attached client. Multi-client dynamic.
+- `otmux fit <?session>` — one-shot snap to CALLER'S terminal cols×rows. Implicitly sets window-size=manual. Use when you want your terminal to fit perfectly, ignoring other clients.
+
+Pairs: `fit` for "now"; `size.unlock` to return to follow-largest behavior.
+
+## NEW: Tron's "try again" pattern (2026-05-17)
+
+When scrum-master at TRONinterface:0.1 says "try again", they don't always
+mean "your previous attempt failed". Often it means "retry verification —
+your declared success was based on stale state". Or "I see you didn't actually
+test live, just inferred from code reading". Treat as a prompt to run a
+real end-to-end verification before claiming done.
+
+## NEW: Tron P0 v2 — DRY single-source for key-vs-prose detection (2026-05-12 LATE)
+
+Two attempts to fix the sender-prefix leak in `otmux.send`:
+
+**v1 (`480459a`)** — extended is_key regex to add single alphanumeric. Caught `otmux send pane 2` (single digit) but missed:
+- `Shift+Tab` (plus-syntax)
+- `BTab` / `BackSpace` (named keys not in original list)
+- Multi-modifier `C-M-Up`
+- Case variations (`enter` lower)
+
+**v2 (`2a39a60`)** — extracted `private.otmux.is.key` as DRY single source of truth, broke detection into 4 explicit cases:
+1. **Single non-whitespace char** — `[^[:space:]]` regex (covers digits, letters, punctuation)
+2. **Named tmux keys** — case-insensitive `case` lookup with aliases:
+   - Navigation: up/down/left/right/home/end
+   - Editing: space/tab/enter/escape/esc, bspace/backspace/bs, btab/backtab, dc/delete/del, ic/insert/ins, ppage/pageup/pgup, npage/pagedown/pgdn
+   - Function: f1..f12, any
+3. **Modifier prefix combos** — `^([CMS]-){1,3}[^[:space:]-]+$` (C-c, M-x, S-Tab, C-M-Up, C-M-S-BTab)
+4. **Plus-syntax shortcuts** — `^(Shift|Ctrl|Alt|Meta|Cmd|Super)(\+(Shift|Ctrl|Alt|Meta|Cmd|Super)){0,2}\+[^[:space:]]+$` (Shift+Tab, Ctrl+Shift+X)
+
+**Rule the PO articulated:** prefix is for INFORM-path prose ONLY. Every key send by any name or modifier syntax must be prefix-free.
+
+**Generalization:** when classifying user input across MULTIPLE formats (canonical, alt-spellings, shortcuts), don't try to enumerate in one mega-regex. Split into ordered explicit cases. Each case is independently testable and extensible. The mega-regex pattern grew organically and missed half the spec; the cased helper covers 33/33 keys + 7/7 prose correctly.
+
+
+
 ## NEW: DRY single-source for key-vs-prose detection (2026-05-12 LATE, Tron P0 v2)
 
 Two attempts to fix the sender-prefix leak in `otmux.send`:
