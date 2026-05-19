@@ -138,6 +138,27 @@ Tron: "not just verifying but having tests for it." Running commands manually an
 ### F38: Started agents with `claudeCode new` instead of `claudeCode join` (2026-03-06)
 oosh-expert and baseTeam:0.3 had crashed (Abort trap: 6). Their sessions were still on disk and resumable. Instead of finding their UUIDs via `otmux tree.detailed` and using `claudeCode join <uuid>`, I used `claudeCode new` — destroying all their context, learnings, and session state. Tron: "you did not preserve their context. that was idiotic." **ALWAYS try `claudeCode join <uuid>` first. Only `claudeCode new` if join is impossible. Agent preservation is a core directive — F35 already taught this and I repeated the same mistake.**
 
+### F39: Wrote local task file, told remote agent to Read it (2026-03-13)
+Wrote `session/tasks/otmux-setup-default.md` locally, sent `Read session/tasks/...` to an agent on MacStudio. File didn't exist there. Tron: "writing a local file and asking it to be read on a remote machine is stupid." **Always scp task files to the remote machine first via pane 0.3: `scp <file> donges@MacStudio.native:<path>`. Use MacStudio.native (direct SSH), NOT MacStudio (docker port 8022).**
+
+### F40: Sent Claude message to bash shell (2026-03-13)
+Sent `Read session/tasks/...` to baseTeam:0.2 but the agent's Claude session had exited — pane was at bash prompt. The `Read` command was interpreted by bash (`/usr/bin/Read`), not Claude. **Always verify the agent is IN a Claude session before sending Claude-specific commands. Capture the pane first — look for `❯` prompt with Claude status bar, not `[oosh ...] donges@` bash prompt.**
+
+### F41: Started untrained agent, accepted bad work (2026-03-14)
+Sent `claudeCode new` to baseTeam:0.2 with no boot prompt, no SKILL.md reference. Agent produced: underscore methods (`_base`), env vars instead of config (`OOSH_COMPONENTS_DIR=... oo mode`), sourcing OOSH scripts (`source "$LATEST/this"`), bootstrap delegation causing infinite hang. **I watched and approved all of it.** Tron: the baseTeam expert WAS trained — I just didn't give context. **Always send boot prompt or SKILL.md reference when starting agents. Review plans against OOSH architecture before approving.**
+
+### F42: Used underscores in OOSH method names (2026-03-14)
+`oo.mode._base()` — underscores are FORBIDDEN in OOSH method names. Should be `oo.mode.base.get()`. **Dots only, always.** If the dispatcher can't handle deep dotted names, fix the dispatcher — don't compromise naming.
+
+### F43: config.set instead of config set (2026-03-14)
+`config` is an OOSH executable on PATH, not a sourced function. `config.set` looks for a function — fails. `config set` calls the executable with method dispatch. **Same applies to all OOSH scripts: space between script and method, not dot.**
+
+### F44: Switching oosh symlink breaks otmux (2026-03-14)
+When `~/oosh` is switched to a branch without newer otmux methods, all `otmux pane.capture` calls fail. To recover: `cd /path/to/components/OOSH/<branch> && ./oo mode <branch>` from inside the correct directory. **Always measure what ~/oosh points to before and after branch switching.**
+
+### F45: Started Claude in test shell pane (2026-03-14)
+Started `claudeCode new` in baseTeam:0.3 which was the test shell for the tester. **Always run `hiveMind consistency.audit` or `otmux pane.list <team>` to understand the team layout before starting agents in any pane.**
+
 ## Patterns
 
 ### Idle Team → Ask Task Agent
