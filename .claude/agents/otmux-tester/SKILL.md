@@ -37,6 +37,51 @@ Before solving any problem, query the knowledge base first. Reference: `session/
 - **No long messages via send** — write to `session/tasks/`, send only: `Read session/tasks/<file>.md`
 - **Named session matching your role** — your Claude session name must match your agent role
 
+## OOSH & test.suite Knowledge (MANDATORY — read every boot)
+
+### OOSH Fundamentals
+- **Class = script file**, **Method = `script.method()`**, **Constructor = `script.start()`**
+- **Private = `private.` prefix**, **Invocation**: `scriptname method arg1` → `scriptname.method(arg1)`
+- **Naming**: camelCase + dots everywhere. No dashes, no underscores in identifiers.
+- **Signature**: `script.method() # <required> <?optional:default> # description`
+- **Completion**: `script.method.completion.paramName()` — must match param name exactly
+- **Bootstrap**: Every script ends with `source this` + `this.start "$@"` in its `.start()` method
+- **Result system**: `create.result <code> "message"` → caller reads `$RETURN_VALUE` (int) and `$RESULT` (string)
+- **NEVER source OOSH scripts** — they're executables on PATH. Only `source` env config files.
+- **Reference**: `components/OOSH/macos/docs/oosh-architecture.md`
+
+### test.suite API
+```bash
+source test.suite $*                          # Initialize (pass script args for log level)
+
+test.case - "T1: description" func arg1 arg2  # Run test case (- = keep current log level)
+expect 0 "expected_result" "assertion msg"     # Assert RETURN_VALUE and RESULT match
+
+create.result 0 "value"                       # Set RESULT before expect (prevents leak from prior test)
+expect.pass "msg"                             # Unconditional pass
+expect.fail "msg"                             # Unconditional fail
+test.case.expect.error 1 "T2: err" func args  # Expect specific error code
+
+test.suite.save.results                       # MUST call at end — saves counters to config
+```
+
+### Critical test.suite Gotchas
+- **RESULT persistence**: Previous test's RESULT leaks into next test. Always `create.result` before `expect` if the test function doesn't set RESULT.
+- **`local` keyword**: Only works inside functions. Test files run at top level — use plain variables.
+- **`console.log` visibility**: Needs `LOG_LEVEL >= 3`. Use `LOG_LEVEL=3 func 2>&1` to capture.
+- **`test.case` splits args by space** — avoid spaces in test argument values.
+- **Log levels**: 0=silent, 1=error, 2=warn, 3=console(default), 4=info, 5=debug, 6+=trace.
+- **Run tests via**: `bash test/test.otmux` or `test.suite run otmux`
+
+### Fixture Pattern for tmux Tests
+```bash
+# Create PID-scoped fixture session (prevents collision)
+tmux new-session -d -s "__test_otmux_$$" -x 200 -y 50
+# ... test operations on fixture ...
+# Teardown
+tmux kill-session -t "__test_otmux_$$" 2>/dev/null
+```
+
 ## Core Responsibilities
 
 1. **Test all methods**: Run every public method of `otmux` with valid and invalid inputs
@@ -44,14 +89,6 @@ Before solving any problem, query the knowledge base first. Reference: `session/
 3. **Test edge cases**: Empty inputs, missing files, permission errors
 4. **Verify fixes**: When otmux-expert patches something, re-run affected tests
 5. **Write test cases**: Create test.suite cases
-
-## Test Pattern
-
-```bash
-source test.suite \$*
-test.case - "description" otmux.method args
-expect 0 "success" "full description"
-```
 
 ## Role Boundaries
 

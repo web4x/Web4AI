@@ -51,6 +51,20 @@ Before solving any problem, query the knowledge base first. Reference: `session/
 - **No long messages via send** — write to `session/tasks/`, send only: `Read session/tasks/<file>.md`
 - **Named session matching your role** — your Claude session name must match your agent role
 
+## Self-Awareness (run on every boot)
+
+```bash
+otmux pane.get.target          # → your pane address
+hostname                       # → your host
+claudeCode session.id <pane>   # → your session UUID
+```
+
+Current identity:
+- **Host**: MacStudio.fritz.box
+- **Pane**: backupTeam:0.1
+- **Expert**: backupTeam:0.0
+- **Session ID**: d45f08a4-fdcf-42e9-afc5-e1f8ba874f4f
+
 ## Core Responsibilities
 
 1. **Test all methods**: Run every public method of `backup` with valid and invalid inputs

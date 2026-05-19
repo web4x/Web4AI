@@ -1,0 +1,230 @@
+@startuml hiveMind Use Cases — Controller Layer
+
+title **hiveMind — Controller Layer Use Cases**\nOrchestrates Model (claudeCode) in View (otmux) panes\nPersists state: roles.env, sessions.env, teams.env, forks.env
+
+left to right direction
+
+skinparam usecase {
+  BackgroundColor<<public>> #LightGreen
+  BackgroundColor<<private>> #EEEEEE
+  BackgroundColor<<protected>> #ccFFcc
+  BackgroundColor<<crossmodel>> #LightYellow
+  BackgroundColor<<crossview>> #LightBlue
+}
+
+actor "PO/SM/Tron" as user
+actor "otmux\n(View)" as ot #LightBlue
+actor "claudeCode\n(Model)" as cc #LightYellow
+
+rectangle "hiveMind (Controller)" {
+
+  ' === RESOLUTION ===
+  package "Agent Resolution" {
+    usecase "hiveMind.resolve" as RES <<public>>
+    usecase "hiveMind.registry.set" as RSET <<public>>
+    usecase "hiveMind.registry.remove" as RREM <<public>>
+    usecase "hiveMind.registry.list" as RLIST <<public>>
+    usecase "hiveMind.registry.refresh" as RREF <<public>>
+    usecase "hiveMind.registry.fix" as RFIX <<public>>
+    usecase "private.hiveMind.registry.set" as PRSET <<private>>
+    usecase "private.hiveMind.registry.get" as PRGET <<private>>
+    usecase "private.hiveMind.registry.find" as PRFIND <<private>>
+    usecase "private.hiveMind.live.discover" as PLD <<private>>
+    usecase "private.hiveMind.live.discover.session" as PLDS <<private>>
+
+    RES ..> PRFIND : <<include>>
+    RES ..> PLD : <<include>>
+    RREF ..> cc : <<include>>\nsession.discover
+    PLD ..> cc : <<include>>\nprocess.find\n+ session.name
+  }
+
+  ' === PROTECTED METHODS (called by otmux) ===
+  package "Protected\n(Observer — called by View)" {
+    usecase "hiveMind.protected.session.renamed" as PSR <<protected>>
+    usecase "hiveMind.protected.panes.shifted" as PPS <<protected>>
+    usecase "hiveMind.protected.panes.swapped" as PPSW <<protected>>
+    usecase "hiveMind.protected.pane.moved" as PPM <<protected>>
+    usecase "hiveMind.protected.agents.discover" as PAD <<protected>>
+    usecase "hiveMind.protected.agents.offline" as PAO <<protected>>
+
+    note right of PSR
+      **Observer pattern:**
+      View notifies Controller
+      on structural changes.
+      otmux calls these via:
+      command -v hiveMind &&
+        hiveMind protected.xxx
+    end note
+
+    PSR ..> PRSET : <<include>>
+    PPS ..> PRSET : <<include>>
+    PPSW ..> PRSET : <<include>>
+    PPM ..> PRSET : <<include>>
+    PPM ..> RREM : <<include>>
+  }
+
+  ' === MESSAGING ===
+  package "Messaging" {
+    usecase "hiveMind.send" as SEND <<public>>
+    usecase "hiveMind.send.enter" as SENT <<public>>
+    usecase "hiveMind.send.message" as SMSG <<public>>
+    usecase "hiveMind.agent.send" as ASND <<public>>
+    usecase "hiveMind.broadcast" as BCAST <<public>>
+    usecase "hiveMind.delegate" as DLGT <<public>>
+    usecase "hiveMind.task" as TASK <<public>>
+    usecase "hiveMind.task.delegate" as TDLG <<public>>
+
+    SMSG ..> RES : <<include>>
+    SMSG ..> ot : <<include>>\notmux.send
+    SEND ..> RES : <<include>>
+    SEND ..> ot : <<include>>\notmux.send.raw
+    DLGT ..> RES : <<include>>
+    DLGT ..> ot : <<include>>\notmux.send.enter
+    BCAST ..> SMSG : <<include>>
+  }
+
+  ' === MONITORING ===
+  package "Monitoring" {
+    usecase "hiveMind.team.sweep" as TSW <<public>>
+    usecase "hiveMind.team.loop" as TLP <<public>>
+    usecase "hiveMind.team.monitor" as TMN <<public>>
+    usecase "hiveMind.agent.monitor" as AMN <<public>>
+    usecase "hiveMind.agent.verify" as AVER <<public>>
+    usecase "hiveMind.agent.unblock" as AUNB <<public>>
+    usecase "hiveMind.pane.sweep" as PSW <<public>>
+    usecase "hiveMind.pane.sweep.loop" as PSWL <<public>>
+    usecase "hiveMind.pane.sweep.cycle" as PSWC <<public>>
+    usecase "private.hiveMind.sweep.detect" as PSWD <<private>>
+    usecase "private.hiveMind.agent.unblock.pane" as PAUB <<private>>
+
+    TSW ..> PSWD : <<include>>
+    TSW ..> ot : <<include>>\notmux.pane.capture
+    TLP ..> TSW : <<include>>
+    AMN ..> RES : <<include>>
+    AMN ..> ot : <<include>>\notmux.pane.capture
+    AUNB ..> PSWD : <<include>>
+    AUNB ..> PAUB : <<include>>
+    PAUB ..> ot : <<include>>\notmux.send.raw\n(Enter/Down/Escape)
+
+    note right of AUNB #FFcccc
+      **BUG: agent.unblock all**
+      sends keys to ACTIVE agents.
+      Must check sweep.detect
+      before acting on each pane.
+    end note
+  }
+
+  ' === AGENT LIFECYCLE ===
+  package "Agent Lifecycle" {
+    usecase "hiveMind.agent.bootstrap" as ABOOT <<public>>
+    usecase "hiveMind.agent.spawn" as ASPN <<public>>
+    usecase "hiveMind.agent.respawn" as ARSP <<public>>
+    usecase "hiveMind.agent.restart" as ARST <<public>>
+    usecase "hiveMind.agent.rename" as AREN <<public>>
+    usecase "hiveMind.agent.train" as ATRN <<public>>
+    usecase "hiveMind.agent.handoff" as AHND <<public>>
+    usecase "hiveMind.peer.compact" as PCMP <<public>>
+    usecase "private.hiveMind.pane.identify" as PPI <<private>>
+    usecase "private.hiveMind.get.role.prompt" as PGRP <<private>>
+
+    ABOOT ..> ot : <<include>>\notmux.split + send.enter
+    ABOOT ..> PPI : <<include>>
+    ABOOT ..> RREF : <<include>>
+    ASPN ..> ot : <<include>>\notmux.split
+    PPI ..> PRSET : <<include>>
+    PPI ..> ot : <<include>>\notmux.pane.title
+    AREN ..> PRSET : <<include>>
+    ARST ..> ot : <<include>>\notmux.send.enter
+    ARST ..> cc : <<include>>\nclaudeCode fork
+  }
+
+  ' === TEAM MANAGEMENT ===
+  package "Team Management" {
+    usecase "hiveMind.team.setup" as TSTP <<public>>
+    usecase "hiveMind.team.setup.full" as TSFULL <<public>>
+    usecase "hiveMind.team.register" as TREG <<public>>
+    usecase "hiveMind.team.remove" as TREM <<public>>
+    usecase "hiveMind.team.switch" as TSWT <<public>>
+    usecase "hiveMind.team.active" as TACT <<public>>
+    usecase "hiveMind.team.list" as TLST <<public>>
+    usecase "hiveMind.team.status" as TSTAT <<public>>
+    usecase "hiveMind.team.recover" as TREC <<public>>
+    usecase "hiveMind.team.pull" as TPULL <<public>>
+    usecase "hiveMind.team.restart" as TRST <<public>>
+    usecase "hiveMind.teams.save" as TSSV <<public>>
+    usecase "hiveMind.teams.restore" as TSRST <<public>>
+    usecase "hiveMind.teams.migrate" as TSMIG <<public>>
+
+    TSTP ..> ot : <<include>>\notmux.new + split + tiled
+    TSTP ..> PPI : <<include>>
+    TSTP ..> TREG : <<include>>
+    TSTAT ..> PAD : <<include>>
+    TSSV ..> cc : <<include>>\nsession.current\n(UUID per agent)
+    TSRST ..> ot : <<include>>\notmux.new + ensure.pane
+    TSRST ..> cc : <<include>>\nclaudeCode fork/join
+    TPULL ..> TSSV : <<include>>\n(remote via ossh)
+
+    note right of TSSV
+      **DRY: uses session.current**
+      Single UUID source (02b4070).
+      Fixed: teams.save was inline.
+    end note
+  }
+
+  ' === CONSISTENCY ===
+  package "Consistency" {
+    usecase "hiveMind.consistency.audit" as CAUD <<public>>
+    usecase "hiveMind.consistency.fix" as CFIX <<public>>
+    usecase "private.hiveMind.agents.discover" as PAGD <<private>>
+
+    CAUD ..> PAGD : <<include>>
+    CFIX ..> PAGD : <<include>>
+    CFIX ..> PRSET : <<include>>
+    PAGD ..> cc : <<include>>\nprocess.find\n+ session.current
+    PAGD ..> ot : <<include>>\notmux.pane.capture
+    PAGD ..> PSWD : <<include>>
+  }
+
+  ' === CONTEXT MANAGEMENT ===
+  package "Context Management" {
+    usecase "hiveMind.agent.context.status" as ACS <<public>>
+    usecase "hiveMind.team.context.status" as TCS <<public>>
+    usecase "hiveMind.agent.monitor.cycle" as AMC <<public>>
+    usecase "hiveMind.metrics.log" as MLOG <<public>>
+    usecase "hiveMind.metrics.summary" as MSUM <<public>>
+    usecase "hiveMind.dashboard" as DASH <<public>>
+
+    ACS ..> cc : <<include>>\ncontext.read
+    TCS ..> cc : <<include>>\ncontext.read
+    AMC ..> cc : <<include>>\ncontext.read\n+ context.velocity
+    MLOG ..> cc : <<include>>\ncontext.read
+  }
+
+  ' === WATCHDOG ===
+  package "Watchdog" {
+    usecase "hiveMind.watchdog" as WD <<public>>
+    usecase "hiveMind.watchdog.stop" as WDS <<public>>
+    usecase "hiveMind.watchdog.status" as WDST <<public>>
+    usecase "hiveMind.watchdog.supervisor" as WDSUP <<public>>
+
+    WD ..> AUNB : <<include>>
+    WDSUP ..> WD : <<include>>
+  }
+}
+
+user --> RES
+user --> SMSG
+user --> TSW
+user --> ABOOT
+user --> TSTP
+user --> TSTAT
+user --> TSSV
+user --> TSRST
+user --> CAUD
+user --> AMN
+ot --> PSR : session.rename\n→ protected.session.renamed
+ot --> PPS : split/kill\n→ protected.panes.shifted\n**(B5 — to implement)**
+ot --> PPSW : swap\n→ protected.panes.swapped\n**(B5 — to implement)**
+ot --> PPM : move/join\n→ protected.pane.moved\n**(B5 — to implement)**
+
+@enduml

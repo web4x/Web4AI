@@ -1,49 +1,61 @@
 # OOSH Tester Agent — Session Context
 
-**Updated**: 2026-02-26 ~19:30
-**Role**: oosh-tester (baseTeam:0.2)
-**Pane**: baseTeam:0.2
+**Updated**: 2026-05-18
+**Role**: oosh-tester
+**Pane**: ooshTeam:0.3
+**Test Shell**: ooshTeam:0.5 (oosh-tester-shell)
+**Expert**: ooshTeam:0.2 (oosh-expert), ooshTeam:0.1 (oosh-architect)
+**Expert Shell**: ooshTeam:0.4 (oosh-expert-shell)
+**Machine**: MacStudio.native
+**Branch**: test/macos.latest
+
+## Sprint 0+1 — Delivered Results
+
+| Task | Tests | Result | Commit |
+|------|-------|--------|--------|
+| B3.2 pane.lock relock | 4/4 | ALL PASS | fb30cc2 |
+| B4.3 client lifecycle | 6/6 | ALL PASS | a60e06c |
+| B5.2 pane operations | 8/8 | ALL PASS | 4915d00 |
+| B6.5 stale client | 6/6 | ALL PASS | 267ac7e |
+| B7.2 tree Tab completion | 6/6 | ALL PASS | 688cbe6 |
+| B8.3 pane size floor | 7/7 | ALL PASS | d66847a |
+| G1.3 context.read 1M | 5/5 | ALL PASS | 8fac44e |
+| I1.5 context-aware send | 13/13 | ALL PASS | 449ee34 |
+| SC-B.3 event dispatch | 6/6 | ALL PASS | 59a1db5 |
+| SC-A.3 invariant fixtures | 7/7 | ALL PASS | e61035f |
+| D3.3 tronMonitor switch | manual | PASS | aa7d6ac verified |
+| Tron P0 empty-send | 16 | committed | 0b22bff |
+| Prefix verification | manual | PASS | 6231b93+af2f76b verified |
+| E1.1 lifecycle cycle | 7/8 | PASS | 508509e |
+| Bug #4 send leak | 7/7 | ALL PASS | 654b177 |
+
+## Bugs Found This Session
+- consistency.audit has interactive y/N prompt that blocks test.suite (reported)
+- test.otmux T25 typo: 2c.intsall → c2.install (fixed: b5cef8d)
+- test.hiveMind EPERM spam from claudeCode.process.find (fixed: 71f38c7)
+- grep -P not available on macOS (test.hiveMind uses it — needs -E)
+- Prefix only works on Claude Code target panes (by design — bash shells no prefix)
+
+## Pending
+- D2.3 tronMonitor integration tests — not written
+- E1.2+E1.3 — test.lifecycle exists, needs rerun
+- SC-C.tests handler integration — not written
+- SC-D.3 reconcile roundtrip — not written
+- SC-E.3 ingress 3-vector reject — not written
+- SC-F.4 corrupt snapshot reject — not written
 
 ## Recovery Steps
 1. Read this file
-2. Read `.claude/agents/oosh-tester/SKILL.md`
-3. Check `session/tasks/` for pending work
-4. Check with PO/expert for current priorities
+2. Read `session/agents/oosh-tester/learnings.md`
+3. Run `otmux tree.detailed` to verify pane layout
+4. Check with PO (ooshTeam:0.0) for priorities
 
-## Current Task: Verify session.id Bug Fixes
-
-### What happened
-Filed `session/tasks/expert-fix-session-id-bugs.task.md` — 3 bugs in agent identity:
-1. `claudeCode session.id` returns wrong UUID after agent restart
-2. `otmux tree.detailed` shows wrong names from stale hiveMind registry
-3. Duplicate session UUIDs across panes
-
-Expert (baseTeam:0.1) made fixes:
-- `claudeCode` line 643: `head -1` → `tail -1` in lsof method
-- `otmux` tree.detailed: uses `session.name` before registry fallback
-- `hiveMind`: added `registry.refresh()` method
-
-### Test Results: 33 tests, 22 PASS, 11 FAIL
-
-**Bug 1 NOT FIXED** — `tail -1` still returns wrong UUID. Root cause: when agents are **restarted** (NOT compacted — compact keeps UUID), the new claude process opens task dirs from ALL previous sessions (for history/resume). Current session UUID is NOT in lsof at all. 10 out of 15 live agents FAIL.
-
-**Bug 2 PARTIAL** — tree.detailed now uses session.name but shows ugly truncated boot prompts for un-renamed sessions.
-
-**Bug 3 PARTIAL** — registry.refresh works for /rename'd sessions. Stale entries remain.
-
-### Key Files
-- `test/test.claudeCode` — **I WROTE LIVE BEHAVIORAL TESTS** (T11-T33)
-  - Parses `otmux` (no params) to find ALL Claude panes
-  - Sends `/status` to each, parses Session ID, compares with `session.id`
-  - Tests idle pane (exit 1), registry consistency
-  - Run: `cd /Users/donges/oosh && bash test/test.claudeCode`
-- `session/tasks/expert-fix-session-id-bugs.task.md` — original bug report
-- `session/tasks/tester-verify-session-id-fixes.task.md` — expert's test plan
-- `session/tasks/tester-session-id-results.md` — detailed results
-
-### Correction on Root Cause
-NOT caused by /compact. Caused by **restarting agents** (kill + new claude session in same pane). The new process opens lsof handles to old task dirs from previous incarnations. PID 65442 has 89 handles to old UUID, 0 to current.
-
-## Pending
-- Expert needs to find a new detection method (lsof is fundamentally broken)
-- Re-run `bash test/test.claudeCode` after expert's next fix — must get 0 FAIL
+## Key Rules
+- NEVER use raw tmux — always otmux wrappers
+- NEVER filter output (no 2>/dev/null, | head, | tail, | grep on commands)
+- Use oosh-tester-shell (ooshTeam:0.5) for running test commands
+- BRE vs ERE: grep -qE uses | not \| for alternation
+- Finish current task before handling new prompts
+- Tests must be self-contained
+- Read specs BEFORE testing — know expected behavior
+- Prefix only applies to Claude Code target panes, not bash shells

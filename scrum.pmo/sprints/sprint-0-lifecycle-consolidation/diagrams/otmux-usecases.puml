@@ -1,0 +1,160 @@
+@startuml otmux Use Cases — View Layer
+
+title **otmux — View Layer Use Cases**\nPane management, capture, send, layout\nPure tmux wrapper — no agent knowledge
+
+left to right direction
+
+skinparam usecase {
+  BackgroundColor<<public>> #LightBlue
+  BackgroundColor<<private>> #EEEEEE
+  BackgroundColor<<notify>> #LightGreen
+  BackgroundColor<<bug>> #FFcccc
+}
+
+actor "Agent/PO/SM" as user
+actor "hiveMind\n(Controller)" as hm #LightGreen
+
+rectangle "otmux (View)" {
+
+  ' === SESSION LIFECYCLE ===
+  package "Session Lifecycle" {
+    usecase "otmux.new" as NEW <<public>>
+    usecase "otmux.attach" as ATT <<public>>
+    usecase "otmux.attach.readonly" as ATTR <<public>>
+    usecase "otmux.detach" as DET <<public>>
+    usecase "otmux.kill" as KILL <<public>>
+    usecase "otmux.rename" as REN <<public>>
+    usecase "otmux.session.rename" as SREN <<public>>
+    usecase "otmux.sessions" as SESS <<public>>
+    usecase "otmux.switch" as SW <<public>>
+    usecase "otmux.setup.default" as SD <<public>>
+
+    REN ..> hm : <<notify>>\nprotected.session.renamed
+    SREN ..> hm : <<notify>>\nprotected.session.renamed
+
+    note right of REN #ccFFcc
+      EXISTING: session rename
+      notifies Controller.
+      Pattern for B5 fix.
+    end note
+  }
+
+  ' === PANE OPERATIONS (B5 — need Controller notification) ===
+  package "Pane Operations\n(B5: must notify Controller)" {
+    usecase "otmux.split" as SPL <<public>>
+    usecase "otmux.split.h" as SPLH <<public>>
+    usecase "otmux.split.v" as SPLV <<public>>
+    usecase "otmux.pane.swap" as PSWP <<bug>>
+    usecase "otmux.pane.move" as PMOV <<bug>>
+    usecase "otmux.pane.join" as PJOIN <<bug>>
+    usecase "otmux.pane.kill" as PKILL <<bug>>
+    usecase "otmux.pane.break" as PBRK <<bug>>
+
+    SPL ..> hm : <<notify>> MISSING\nprotected.panes.shifted
+    SPLH ..> hm : <<notify>> MISSING\nprotected.panes.shifted
+    SPLV ..> hm : <<notify>> MISSING\nprotected.panes.shifted
+    PSWP ..> hm : <<notify>> MISSING\nprotected.panes.swapped\n(+registry +titles +HIVEMIND_ROLE)
+    PMOV ..> hm : <<notify>> MISSING\nprotected.pane.moved
+    PJOIN ..> hm : <<notify>> MISSING\nprotected.pane.moved
+    PKILL ..> hm : <<notify>> MISSING\nprotected.pane.removed
+    PBRK ..> hm : <<notify>> MISSING\nprotected.panes.shifted
+
+    note bottom of PSWP #FFcccc
+      **BUG: 3 things broken on swap:**
+      1. Registry (stale targets)
+      2. Pane titles (wrong labels)
+      3. HIVEMIND_ROLE env (wrong sender prefix)
+    end note
+  }
+
+  ' === PANE QUERIES (safe — read only) ===
+  package "Pane Queries" {
+    usecase "otmux.pane.capture" as PCAP <<public>>
+    usecase "otmux.pane.capture.visible" as PCAPV <<public>>
+    usecase "otmux.pane.history" as PHIST <<public>>
+    usecase "otmux.pane.list" as PLIST <<public>>
+    usecase "otmux.pane.get" as PGET <<public>>
+    usecase "otmux.pane.get.target" as PGETT <<public>>
+    usecase "otmux.pane.title" as PTITLE <<public>>
+    usecase "otmux.pane.lock" as PLOCK <<public>>
+    usecase "otmux.pane.unlock" as PUNLK <<public>>
+    usecase "otmux.pane.select" as PSEL <<public>>
+    usecase "otmux.pane.resize" as PRSZ <<public>>
+    usecase "otmux.pane.display" as PDSP <<public>>
+    usecase "otmux.zoom" as ZOOM <<public>>
+  }
+
+  ' === SEND / COMMUNICATION ===
+  package "Send / Communication" {
+    usecase "otmux.send" as SEND <<public>>
+    usecase "otmux.send.raw" as SRAW <<public>>
+    usecase "otmux.send.enter" as SENT <<public>>
+    usecase "otmux.send.key" as SKEY <<public>>
+    usecase "otmux.send.tui" as STUI <<public>>
+    usecase "otmux.send.verified" as SVER <<public>>
+    usecase "private.otmux.send.prefix" as PPFX <<private>>
+    usecase "private.otmux.pane.isClaudeCode" as PICC <<private>>
+
+    SEND ..> SVER : <<include>>
+    SEND ..> PPFX : <<include>>
+    SEND ..> PICC : <<include>>
+    SENT ..> SRAW : <<include>>
+  }
+
+  ' === LAYOUT PERSISTENCE (B2) ===
+  package "Layout Persistence" {
+    usecase "otmux.layout.save" as LSAV <<public>>
+    usecase "otmux.layout.restore" as LRST <<public>>
+    usecase "otmux.layout.list" as LLST <<public>>
+    usecase "otmux.layout.show" as LSHW <<public>>
+    usecase "otmux.layout.delete" as LDEL <<public>>
+  }
+
+  ' === TREE / STATUS ===
+  package "Tree / Status" {
+    usecase "otmux.tree" as TREE <<public>>
+    usecase "otmux.tree.detailed" as TREED <<public>>
+    usecase "otmux.status" as STAT <<public>>
+    usecase "otmux.session.details" as SDET <<public>>
+
+    TREE ..> hm : <<include>>\nprotected.agents.discover\n(agent names + UUIDs)
+    TREED ..> hm : <<include>>\nprotected.agents.discover
+  }
+
+  ' === WINDOW OPERATIONS ===
+  package "Window Operations" {
+    usecase "otmux.window.new" as WNEW <<public>>
+    usecase "otmux.window.kill" as WKILL <<public>>
+    usecase "otmux.window.rename" as WREN <<public>>
+    usecase "otmux.window.select" as WSEL <<public>>
+    usecase "otmux.window.swap" as WSWP <<public>>
+    usecase "otmux.window.move" as WMOV <<public>>
+    usecase "otmux.window.size" as WSZ <<public>>
+  }
+
+  ' === CONFIG ===
+  package "Configuration" {
+    usecase "otmux.config.init" as CINIT <<public>>
+    usecase "otmux.config.reset" as CRST <<public>>
+    usecase "otmux.reload" as RLOD <<public>>
+    usecase "otmux.install" as INST <<public>>
+    usecase "otmux.setup.clipboard.local" as SCL <<public>>
+    usecase "otmux.setup.clipboard.remote" as SCR <<public>>
+  }
+}
+
+user --> SEND
+user --> PCAP
+user --> SPL
+user --> PSWP
+user --> TREE
+user --> LSAV
+user --> LRST
+user --> NEW
+user --> ATT
+hm --> SEND : send.message\n→ otmux.send
+hm --> PCAP : agent.monitor\n→ pane.capture
+hm --> SPL : team.setup\n→ split panes
+hm --> PTITLE : pane.identify\n→ set title
+
+@enduml

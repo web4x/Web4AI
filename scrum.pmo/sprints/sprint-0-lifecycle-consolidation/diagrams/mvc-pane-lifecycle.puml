@@ -1,0 +1,194 @@
+@startuml MVC Pane Lifecycle — Current (Broken) vs Correct Flow
+
+title **MVC Pane Lifecycle — Sprint 0 Task B5**\nView (otmux) must notify Controller (hiveMind) on pane mutations\nModel (claudeCode) is unaffected — sessions are bound to TTYs, not pane indices
+
+skinparam backgroundColor #FEFEFE
+skinparam sequenceArrowThickness 2
+skinparam participantPadding 20
+skinparam boxPadding 10
+
+actor Tron
+participant "otmux\n(View)" as V #LightBlue
+participant "hiveMind\n(Controller)" as C #LightGreen
+participant "claudeCode\n(Model)" as M #LightYellow
+database "roles.env\n(Registry)" as R #LightGray
+
+== CURRENT FLOW — BROKEN ==
+
+note over V,C #FFcccc
+  **Pane operations do NOT notify Controller.**
+  Registry keeps stale pane→role mappings.
+  hiveMind.resolve returns wrong targets.
+end note
+
+Tron -> V : otmux split.h ooshTeam:0.0
+activate V
+V -> V : tmux split-window -h\n(new pane inserted at 0.1)
+note right of V #FFcccc
+  **tmux renumbers ALL panes:**
+  0.0 stays
+  NEW → 0.1 (empty zsh)
+  old 0.1 → 0.2 (expert)
+  old 0.2 → 0.3 (tester)
+  old 0.3 → 0.4 (expert-shell)
+  old 0.4 → 0.5 (tester-shell)
+end note
+deactivate V
+
+note over R #FFcccc
+  **Registry (STALE):**
+  ooshTeam:0.1 | oosh-expert ← WRONG (now empty zsh)
+  ooshTeam:0.2 | oosh-tester ← WRONG (now expert)
+end note
+
+Tron -> C : hiveMind resolve oosh-expert
+activate C
+C -> R : grep "oosh-expert"
+R --> C : ooshTeam:0.1
+C --> Tron : ooshTeam:0.1 ← **WRONG** (expert is at 0.2 now)
+deactivate C
+
+|||
+
+Tron -> V : otmux pane.swap 0.1 0.2
+activate V
+V -> V : tmux swap-pane -s 0.1 -t 0.2
+deactivate V
+note over R #FFcccc
+  **THREE things broken after swap:**
+  1. Registry unchanged → resolve returns wrong pane
+  2. Pane titles unchanged → visual labels lie
+  3. HIVEMIND_ROLE env unchanged →
+     sender prefix shows wrong identity
+     ([@PO-shell] instead of [@scrum-master])
+end note
+
+== CORRECT FLOW — FIXED (Task B5) ==
+
+note over V,C #ccFFcc
+  **Pane operations notify Controller via protected methods.**
+  Registry stays consistent. resolve returns correct targets.
+end note
+
+Tron -> V : otmux split.h ooshTeam:0.0
+activate V
+V -> V : tmux split-window -h\n(pane indices shift)
+V -> C : **hiveMind protected.panes.shifted**\n(session, old→new index map)
+activate C
+C -> R : update all entries for session:\n0.1→0.2, 0.2→0.3, 0.3→0.4, 0.4→0.5
+deactivate C
+deactivate V
+
+note over R #ccFFcc
+  **Registry (CORRECT):**
+  ooshTeam:0.2 | oosh-expert ✓
+  ooshTeam:0.3 | oosh-tester ✓
+end note
+
+Tron -> C : hiveMind resolve oosh-expert
+activate C
+C -> R : grep "oosh-expert"
+R --> C : ooshTeam:0.2
+C --> Tron : ooshTeam:0.2 ← **CORRECT**
+deactivate C
+
+|||
+
+Tron -> V : otmux pane.swap 0.1 0.2
+activate V
+V -> V : tmux swap-pane
+V -> C : **hiveMind protected.panes.swapped**\n(session, paneA, paneB)
+activate C
+C -> R : 1. swap registry entries:\n0.1↔0.2 roles exchanged
+C -> V : 2. swap pane titles:\notmux pane.title 0.1 <roleB>\notmux pane.title 0.2 <roleA>
+C -> V : 3. swap HIVEMIND_ROLE env:\notmux send.enter 0.1 "export HIVEMIND_ROLE=<roleB>"\notmux send.enter 0.2 "export HIVEMIND_ROLE=<roleA>"
+note right of C #ccFFcc
+  **Three things must update on swap:**
+  1. Registry (Controller state)
+  2. Pane titles (View labels)
+  3. HIVEMIND_ROLE env (Model-in-View)
+
+  Without #3: sender prefix shows
+  wrong identity ([@PO-shell] instead
+  of [@scrum-master])
+end note
+deactivate C
+deactivate V
+
+|||
+
+Tron -> V : otmux pane.kill ooshTeam:0.3
+activate V
+V -> V : tmux kill-pane\n(indices shift down)
+V -> C : **hiveMind protected.pane.removed**\n(session, removed_index)
+activate C
+C -> R : remove entry for 0.3\nshift 0.4→0.3, 0.5→0.4
+deactivate C
+deactivate V
+
+|||
+
+Tron -> V : otmux pane.move ooshTeam:0.2 otherSession
+activate V
+V -> V : tmux move-pane
+V -> C : **hiveMind protected.pane.moved**\n(from_session:pane, to_session:pane)
+activate C
+C -> R : remove from source session\nadd to target session
+deactivate C
+deactivate V
+
+== MODEL LAYER — UNAFFECTED ==
+
+note over M #LightYellow
+  **claudeCode sessions are bound to TTYs, not pane indices.**
+  When panes split/swap/move, the Claude process stays on its TTY.
+  The TTY→pane mapping changes (tmux renumbers), but the process doesn't move.
+
+  claudeCode.session.id uses: ps args → sessions.env → JSONL
+  None of these reference pane indices — they use TTY or UUID.
+
+  **Model is portable. Only View↔Controller binding needs fixing.**
+end note
+
+== PROTECTED METHODS NEEDED (hiveMind) ==
+
+note over C #ccFFcc
+  **New hiveMind protected methods for otmux to call:**
+
+  hiveMind.protected.panes.shifted <session>
+    — re-scan pane list, remap registry by TTY matching
+    — called after: split, kill (any op that renumbers)
+
+  hiveMind.protected.panes.swapped <session> <paneA> <paneB>
+    — exchange two registry entries
+    — called after: pane.swap
+
+  hiveMind.protected.pane.moved <from> <to>
+    — remove from source, add to target session
+    — called after: pane.move, pane.join
+
+  **Pattern: same as existing protected.session.renamed (line 2505)**
+  **Guard: command -v hiveMind >/dev/null (otmux works without hiveMind)**
+end note
+
+== OBSERVER PATTERN — EXISTING PRECEDENT ==
+
+note over V,C #LightBlue
+  **Already implemented for session rename (otmux line 183):**
+
+  otmux.rename() calls:
+    command -v hiveMind >/dev/null 2>&1 &&
+      hiveMind protected.session.renamed "$oldName" "$newName"
+
+  **Same pattern for pane operations:**
+
+  otmux.split.h() should call:
+    command -v hiveMind >/dev/null 2>&1 &&
+      hiveMind protected.panes.shifted "$session"
+
+  otmux.pane.swap() should call:
+    command -v hiveMind >/dev/null 2>&1 &&
+      hiveMind protected.panes.swapped "$session" "$paneA" "$paneB"
+end note
+
+@enduml

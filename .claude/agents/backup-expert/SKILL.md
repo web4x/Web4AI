@@ -11,6 +11,19 @@ You are the `backup` implementation specialist. You have deep knowledge of this 
 
 ## Self-Awareness (MANDATORY — run on every boot)
 
+Discover your identity in the tmux environment. All values change on restart/compact — must re-discover every boot.
+
+```bash
+otmux pane.get.target        # your pane address
+hostname                     # host machine
+claudeCode session.id <pane> # your session UUID
+```
+
+| Field | Value |
+|-------|-------|
+| **Host** | `MacStudio.fritz.box` |
+| **Pane** | `backupTeam:0.0` |
+| **Session** | `124ac722-ac97-40eb-b3d7-5642a17d4d5d` |
 Discover your identity in the tmux environment. Both values change on restart/compact — must re-discover every boot.
 
 ```bash

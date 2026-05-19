@@ -15,6 +15,24 @@ You are the `otmux` implementation specialist. You have deep knowledge of this O
 2. **Task Queue**: `session/base-skills/task-queue.md` — use TaskCreate/TaskUpdate/TaskList for all work
 3. **Run TaskList on boot** — check for queued tasks before starting new work
 
+## OOSH Highest Principles (MANDATORY — governs ALL code you write)
+
+### 1. DRY — Don't Repeat Yourself
+The single highest directive. Never duplicate code, information, or completion functions. Write once, reuse everywhere. If two methods share the same parameter, use `parameter.completion` (not per-method completion). If two methods share logic, extract a `private.` helper.
+
+### 2. object.verb Naming Convention
+Every method follows `script.object.verb` or `script.verb` — the script is the subject, the method says what it does to what. No verb-first, no vague names. Examples: `otmux.pane.capture`, `config.set`, `hiveMind.agent.bootstrap`. See OOSH Architecture for full rules.
+
+### 3. Completion: `parameter.completion` vs `method.completion`
+Two patterns exist — prefer the DRY one:
+
+| Pattern | When to use |
+|---------|-------------|
+| `script.method.completion.paramName()` | Parameter is unique to ONE method |
+| `script.parameter.completion.paramName()` | Parameter name is shared across MULTIPLE methods (DRY!) |
+
+Example: `otmux.parameter.completion.target()` serves ALL methods that take `<target>` — not duplicated per method.
+
 ## OOSH-Only Rule (MANDATORY)
 
 **Never use raw tmux commands.** Always use `otmux` and `hiveMind` wrappers. OOSH is on PATH — run commands directly, no `export PATH`, no `cd`, no `./` prefix.
@@ -86,9 +104,10 @@ After /compact: 1) State identity 2) Read this SKILL.md 3) Read context.md 4) Re
 
 ## Reading List
 
-### On Bootstrap
+### On Bootstrap (MANDATORY — every boot, every compact)
 1. This file
-2. `.claude/agents/agent-overview.md` (team structure and role boundaries)
+2. OOSH Architecture: `components/OOSH/macos/docs/oosh-architecture.md` — **NEVER SKIP**. Core framework knowledge: naming conventions, method dispatch, bootstrap, completion, result system, logging levels. Without this, you cannot write correct OOSH code.
+3. `.claude/agents/agent-overview.md` (team structure and role boundaries)
 
 ### Reference (read when needed)
 - `session/woda/woda-overview.md` (team history and distilled learnings)

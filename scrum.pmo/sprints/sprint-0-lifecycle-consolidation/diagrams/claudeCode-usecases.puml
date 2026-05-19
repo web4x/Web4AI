@@ -1,0 +1,133 @@
+@startuml claudeCode Use Cases — Model Layer
+
+title **claudeCode — Model Layer Use Cases**\nAgent data: session UUID, context %, PID, JSONL\nPortable without tmux
+
+left to right direction
+
+skinparam usecase {
+  BackgroundColor<<public>> #LightYellow
+  BackgroundColor<<private>> #EEEEEE
+  BackgroundColor<<crosslayer>> #LightCoral
+}
+
+actor "Agent/PO" as user
+actor "hiveMind\n(Controller)" as hm #LightGreen
+actor "otmux\n(View)" as ot #LightBlue
+
+rectangle "claudeCode (Model)" {
+
+  ' === SESSION MANAGEMENT ===
+  package "Session Lifecycle" {
+    usecase "claudeCode.session.current" as SC <<public>>
+    usecase "claudeCode.session.id" as SI <<public>>
+    usecase "claudeCode.session.name" as SN <<public>>
+    usecase "claudeCode.session.probe" as SP <<public>>
+    usecase "claudeCode.session.state" as SS <<public>>
+    usecase "claudeCode.session.save" as SSV <<public>>
+    usecase "claudeCode.session.recover" as SR <<public>>
+    usecase "private.claudeCode.session.discover" as PSD <<private>>
+
+    SC ..> PSD : <<include>>
+    SI ..> SC : <<include>>
+    SP ..> PSD : <<extend>>
+  }
+
+  ' === SESSION OPERATIONS ===
+  package "Session Operations" {
+    usecase "claudeCode.new" as NEW <<public>>
+    usecase "claudeCode.join" as JOIN <<public>>
+    usecase "claudeCode.join.byID" as JID <<public>>
+    usecase "claudeCode.join.byName" as JNM <<public>>
+    usecase "claudeCode.join.byPane" as JPE <<public>>
+    usecase "claudeCode.fork" as FORK <<public>>
+    usecase "claudeCode.fork.byID" as FID <<public>>
+    usecase "claudeCode.fork.byName" as FNM <<public>>
+    usecase "claudeCode.continue" as CONT <<public>>
+    usecase "claudeCode.sessions" as SESS <<public>>
+    usecase "claudeCode.list" as LIST <<public>>
+
+    JOIN ..> JID : <<include>>
+    JOIN ..> JNM : <<include>>
+    JOIN ..> JPE : <<include>>
+    FORK ..> FID : <<include>>
+    FORK ..> FNM : <<include>>
+    JNM ..> SN : <<include>>
+  }
+
+  ' === CONTEXT MONITORING ===
+  package "Context Monitoring" {
+    usecase "claudeCode.context.read" as CR <<public>>
+    usecase "claudeCode.context.velocity" as CV <<public>>
+    usecase "claudeCode.context.alert" as CA <<public>>
+    usecase "claudeCode.context.all" as CALL <<public>>
+    usecase "claudeCode.context.dashboard" as CD <<public>>
+    usecase "claudeCode.context.self" as CS <<public>>
+    usecase "claudeCode.context.check" as CCH <<public>>
+    usecase "private.claudeCode.context.from.jsonl" as PCJ <<private>>
+    usecase "private.claudeCode.context.parse" as PCP <<private>>
+    usecase "private.claudeCode.context.read.tui" as PCT <<private>>
+    usecase "private.claudeCode.max.tokens.for.jsonl" as PMT <<private>>
+    usecase "private.claudeCode.velocity.calculate" as PVC <<private>>
+
+    CR ..> PCJ : <<include>>
+    CR ..> PCT : <<extend>>
+    CV ..> PVC : <<include>>
+    PCJ ..> PMT : <<include>>
+    PVC ..> PMT : <<include>>
+    CD ..> CR : <<include>>
+    CALL ..> CR : <<include>>
+    CA ..> CR : <<include>>
+  }
+
+  ' === PROCESS DETECTION ===
+  package "Process Detection" {
+    usecase "claudeCode.process.find" as PF <<public>>
+    usecase "claudeCode.process.running" as PR <<public>>
+    usecase "private.claudeCode.complete.panes" as PCP2 <<private>>
+
+    PR ..> PF : <<include>>
+  }
+
+  ' === MODEL CONFIGURATION ===
+  package "Model Configuration" {
+    usecase "claudeCode.model.set" as MS <<public>>
+    usecase "claudeCode.model.get" as MG <<public>>
+    usecase "claudeCode.model.list" as ML <<public>>
+    usecase "claudeCode.opus" as OP <<public>>
+    usecase "claudeCode.sonnet" as SO <<public>>
+    usecase "claudeCode.haiku" as HA <<public>>
+
+    OP ..> MS : <<include>>
+    SO ..> MS : <<include>>
+    HA ..> MS : <<include>>
+  }
+
+  ' === VIEW LEAKS (to be fixed per A1) ===
+  package "View Leaks\n(flagged by A1.1 audit)" #FFcccc {
+    usecase "claudeCode.context.read\n→ otmux pane.capture" as VL1 <<crosslayer>>
+    usecase "claudeCode.context.alert\n→ otmux send" as VL2 <<crosslayer>>
+    usecase "claudeCode.session.probe\n→ otmux send /status" as VL3 <<crosslayer>>
+
+    note right of VL1
+      14 View leaks found.
+      Model should NOT call View.
+      Controller (hiveMind) mediates.
+    end note
+  }
+}
+
+user --> SC
+user --> CR
+user --> CV
+user --> JOIN
+user --> FORK
+user --> NEW
+user --> LIST
+user --> PF
+user --> OP
+hm --> SC : session.current\n(DRY UUID source)
+hm --> PF : process.find
+hm --> CR : context.read\n(SM monitoring)
+hm --> PSD : protected.discover
+
+@enduml
