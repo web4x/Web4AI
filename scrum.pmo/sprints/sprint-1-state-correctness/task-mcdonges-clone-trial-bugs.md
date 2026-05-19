@@ -63,15 +63,55 @@ check.
 Suggested labels: `(shell)` or `(bash)`. Status renderer needs to
 distinguish `kind=shell` from `kind=claude` when colouring.
 
+### MIG-6 (CRITICAL) — FIXED in `f39cb77` — scp src==dest truncation
+
+When `team.migrate`'s target host resolves to the local machine itself
+(McDonges.fritz.box → 192.168.178.49 = my own IP; hostname is also
+"McDonges"), the source layout file at `~/config/otmux/<sess>.layout.env`
+and the remote dest at `~/config/otmux/<sess>.layout.env` are the SAME
+absolute path on the filesystem. `scp` opens dest for write (truncates),
+then reads from source (which IS dest) → 0 bytes. Reproduced with both
+multiplexed and direct `scp` — root cause is scp's open-for-write-then-read
+behavior on self-targeted transfers.
+
+**Fix**: stage layout file in `$tmpdir` first; scp `$tmpdir/<sess>.layout.env`
+→ remote `~/config/otmux/<sess>.layout.env`. Now src!=dest paths.
+
+**Workaround for cross-machine clarity**: until host identity is verified,
+treat any `team.migrate <session> <host>` where remote home matches local
+home as suspect — consider adding `this.isSelfHost` predicate that compares
+remote hostname against local hostname before any scp.
+
+## Layout integration (PO directive, FIXED in `f39cb77`)
+
+- `team.migrate` now pushes `~/config/otmux/<session>.layout.env` via
+  tmpdir staging (avoids MIG-6 self-host truncation).
+- `team.pull` pulls all `~/config/otmux/*.layout.env` files into
+  `$pullDir/otmux/`.
+- `team.restart` consumes pulled layout via `OTMUX_LAYOUT_DIR=$pullDir/otmux
+  otmux layout.restore` when the local session name doesn't collide with
+  the original (collision → fall back to bare session + ensure.pane).
+- `teams.restore` already used `otmux layout.restore`, no change needed.
+
+## Host identity finding
+
+Context.md claimed I am `oosh-expert on MacStudio.native`. Actual hostname
+is `McDonges`. `McDonges.fritz.box` resolves to my own IP. **The clone
+trial verifies code-path correctness but not actual cross-machine behavior**
+because both ends are this same machine. To truly cross-validate, point
+the trial at a *different* host (UpDown.ai, WODA.metatrom, etc.).
+
+## ssh config fix (PO directive)
+
+Edited `~/.ssh/config` line 520: `IdentityFile /root/.ssh/id_rsa`
+→ `IdentityFile ~/.ssh/id_rsa` for `Host MacStudio.home`. Not committed
+(user config, not in any tracked repo).
+
 ## Coverage / scope
 
-- **MIG-1**: shipped, push verified, snapshot re-generates clean.
+- **MIG-1**: shipped (`803bc86`), push verified, snapshot re-generates clean.
+- **MIG-6**: shipped (`f39cb77`), layout file roundtrip verified at 1266 bytes.
 - **MIG-2..5**: documented here. Not blocking the trial; queued.
-- **Followups requested by PO** (separate tasks):
-  - `teams.restore` should call `otmux layout.restore` instead of
-    `ensure.pane`-from-scratch when a `~/config/otmux/<sess>.layout.env`
-    exists locally for that session.
-  - `teams.save` / `team.pull` must include `~/config/otmux/*.layout.env`
-    in slice transfer so layout survives migration.
-  - `ossh` config `MacStudio.home` has `IdentityFile /root/.ssh/id_rsa`
-    (Docker-specific) — breaks on non-Docker machines.
+- **Followups**:
+  - Add `this.isSelfHost <host>` predicate to detect self-targeting migrations.
+  - `MIG-3..5` are cosmetic/wording; defer until other work is clear.
