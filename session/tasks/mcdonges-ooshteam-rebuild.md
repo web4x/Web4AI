@@ -1,8 +1,12 @@
+[Back to Sprint 0 Planning](../../scrum.pmo/sprints/sprint-0-lifecycle-consolidation/planning.md)
+
 # Task: ooshTeam Rebuild on McDonges — Complete
+[task:uuid:d7e3f1a2-8b4c-4d9e-a6f5-3c2d1e0f9a8b]
 
 **Date**: 2026-05-19/20
 **Status**: DONE
 **Machine**: McDonges
+**Sprint**: [Sprint 0 — Lifecycle Consolidation](../../scrum.pmo/sprints/sprint-0-lifecycle-consolidation/planning.md)
 
 ## What Happened
 

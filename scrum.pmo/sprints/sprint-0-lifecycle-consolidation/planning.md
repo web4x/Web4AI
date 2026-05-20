@@ -208,6 +208,10 @@ Tasks that landed during Sprint 0 but were not in the original plan:
 - [x] Task D1.5: Expert — pane resolution respects env var, validates existence — commit `a030f68`
 - [x] Task D1.6: Expert — screen session resilience + remove kill fix — commit `cd23b6e`
 - [x] Task D1.10: Expert — tronMonitor matches proven Tron recipe (named windows, inline attach cmd) — commit `0f9330b`
+- [x] Task B9: Expert — 5 otmux gap methods (window.layout.get/set, window.aggressive.resize, pane.list.format, window.list.format) — commit 7358fc9
+- [x] Task MIG-1: Expert — teams.save ghost filter via tmux list-panes — commit 803bc86
+- [x] Task MIG-LAYOUT: Expert — team.migrate/pull push+pull otmux layout files; team.restart uses pulled layout — commit f39cb77
+- [x] [Task MCDONGES: ooshTeam rebuild on McDonges](../../../session/tasks/mcdonges-ooshteam-rebuild.md) — end-to-end clone trial, 7 learnings, 6 bugs found, condensed rebuild recipe
 
 ## Sprint Dependencies
 
