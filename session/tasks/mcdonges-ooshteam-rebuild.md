@@ -75,12 +75,12 @@ ossh login <sshConfigName>      # e.g. ossh login MacStudio.home
 bash                            # start OOSH bash on remote
 otmux layout.list               # check saved layouts exist
 
-# 4. Download layout + snapshot from source via ossh
-# From LOCAL shell (not the SSH session):
-mkdir -p ~/config/otmux
-ossh scp <sshConfigName>:~/config/otmux/<session>.layout.env ~/config/otmux/
-# Also download JONSLs if not already pulled:
-# hiveMind team.pull <sshConfigName>  — downloads snapshot + roles + sessions + JONSLs
+# 4. Download everything from source — ONE command
+# team.pull downloads: snapshot + roles + sessions + JONSLs + layouts (f39cb77)
+hiveMind team.pull <sshConfigName>
+# If team.pull doesn't exist or fails, the manual fallback is:
+# ossh scp <sshConfigName>:~/config/otmux/<session>.layout.env ~/config/otmux/
+# ossh scp <sshConfigName>:~/config/hivemind.snapshot.<session>.env ~/config/
 
 # 5. Restore layout (creates exact pane geometry + titles in one command)
 otmux layout.restore <session> --force
