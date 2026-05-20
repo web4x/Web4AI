@@ -60,34 +60,41 @@ The MVC tools work — `otmux layout.save/restore` recreated exact geometry in s
 ## Optimal Condensed Commands for Next Similar Task
 
 ```bash
-# 1. Check where you are
-hostname
-otmux tree
-otmux pane.list <session>
+# 1. Check where you are — NEVER trust context files after fork
+hostname                        # truth — not what context.md says
+otmux tree                      # what tmux sessions + panes actually exist
+otmux pane.list <session>       # pane titles + commands
 
 # 2. Clean stale panes (keep only yours, kill highest first)
 for i in $(seq 20 -1 1); do otmux pane.kill "<session>:0.$i"; done
 
-# 3. SSH to source machine, check layouts exist
-ssh -i ~/.ssh/id_rsa -p 9922 donges@home.donges.it
-bash  # for OOSH
-otmux layout.list
+# 3. SSH to source machine via OOSH — check layouts exist
+# Use ossh login, NOT raw ssh. If ossh config is broken, fix it first.
+# CAVEAT: verify target is NOT localhost (hostname != ossh target hostname)
+ossh login <sshConfigName>      # e.g. ossh login MacStudio.home
+bash                            # start OOSH bash on remote
+otmux layout.list               # check saved layouts exist
 
-# 4. Download layout + snapshot from source
+# 4. Download layout + snapshot from source via ossh
+# From LOCAL shell (not the SSH session):
 mkdir -p ~/config/otmux
-scp -P 9922 -i ~/.ssh/id_rsa donges@home.donges.it:~/config/otmux/<session>.layout.env ~/config/otmux/
+ossh scp <sshConfigName>:~/config/otmux/<session>.layout.env ~/config/otmux/
+# Also download JONSLs if not already pulled:
+# hiveMind team.pull <sshConfigName>  — downloads snapshot + roles + sessions + JONSLs
 
-# 5. Restore layout (creates exact pane geometry + titles)
+# 5. Restore layout (creates exact pane geometry + titles in one command)
 otmux layout.restore <session> --force
 
-# 6. Verify
+# 6. Verify — must match source machine layout
 otmux pane.list <session>
 
 # 7. Fork agents into the correctly-shaped panes
-# Option A: one by one
+# Option A: one by one (preferred — control per agent)
 claudeCode fork.to <session>:0.1 <role>
 claudeCode fork.to <session>:0.2 <role>
 claudeCode fork.to <session>:0.3 <role>
+# If best JSONL is at 0% context, use fallback:
+# claudeCode fork.to lists candidates — pick one with room
 
 # Option B: bulk from snapshot (if JONSLs already downloaded)
 hiveMind teams.restore ~/config/hivemind.snapshot.<session>.env --fork
@@ -95,6 +102,9 @@ hiveMind teams.restore ~/config/hivemind.snapshot.<session>.env --fork
 # 8. Verify agents running
 hiveMind team.sweep <session>
 hiveMind agent.monitor <agent-name> 8
+
+# 9. Orient each agent — they don't know they were forked
+# Send: "You are <role> at <session>:<pane> on <hostname>. Read your context files."
 ```
 
 ## Final Layout (matches upDownTeam on MacStudio)
