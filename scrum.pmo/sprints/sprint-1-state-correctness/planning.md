@@ -73,30 +73,30 @@ Monitor (tronMonitor) ──────┤
 
 - [ ] [Task SC-A: consistency.audit foundation](./task-sc-a-consistency-audit-foundation.md)
   **Status:** PLANNED · **Depends on:** none
-  - [ ] [SC-A.1: Expert — reconcile.diff primitive](./task-sc-a.1-expert-reconcile-diff-primitive.md)
-  - [ ] [SC-A.2: Expert — consistency.audit method](./task-sc-a.2-expert-consistency-audit.md)
+  - [x] [SC-A.1: Expert — reconcile.diff primitive](./task-sc-a.1-expert-reconcile-diff-primitive.md)
+  - [x] [SC-A.2: Expert — consistency.audit method](./task-sc-a.2-expert-consistency-audit.md)
   - [ ] [SC-A.3: Tester — invariant detection fixtures](./task-sc-a.3-tester-invariant-fixtures.md)
 
 ### **EPIC SC-B: Event dispatch infrastructure** (PRIORITY 1, parallel with SC-A)
 
 - [ ] [Task SC-B: Event dispatch infrastructure](./task-sc-b-event-dispatch-infrastructure.md)
   **Status:** PLANNED · **Depends on:** none
-  - [ ] [SC-B.1: Expert — events.register/emit primitives](./task-sc-b.1-expert-events-primitives.md)
+  - [x] [SC-B.1: Expert — events.register/emit primitives](./task-sc-b.1-expert-events-primitives.md)
   - [ ] [SC-B.2: Expert — events.history + log rotation](./task-sc-b.2-expert-events-history.md)
-  - [ ] [SC-B.3: Tester — isolation + idempotency](./task-sc-b.3-tester-events-isolation.md)
+  - [x] [SC-B.3: Tester — isolation + idempotency](./task-sc-b.3-tester-events-isolation.md)
 
 ### **EPIC SC-C: Event handler implementation** (PRIORITY 2)
 
 - [ ] [Task SC-C: Event handler implementation](./task-sc-c-event-handlers.md)
   **Status:** PLANNED · **Depends on:** SC-B
-  - [ ] [SC-C.1: Expert — agent.spawned handler](./task-sc-c.1-expert-handler-agent-spawned.md)
+  - [x] [SC-C.1: Expert — agent.spawned handler](./task-sc-c.1-expert-handler-agent-spawned.md)
   - [ ] [SC-C.2: Expert — agent.killed handler](./task-sc-c.2-expert-handler-agent-killed.md)
-  - [ ] [SC-C.3: Expert — agent.renamed handler](./task-sc-c.3-expert-handler-agent-renamed.md)
+  - [x] [SC-C.3: Expert — agent.renamed handler](./task-sc-c.3-expert-handler-agent-renamed.md)
   - [ ] [SC-C.4: Expert — agent.forked handler](./task-sc-c.4-expert-handler-agent-forked.md)
-  - [ ] [SC-C.5: Expert — panes.shifted handler](./task-sc-c.5-expert-handler-panes-shifted.md)
+  - [x] [SC-C.5: Expert — panes.shifted handler](./task-sc-c.5-expert-handler-panes-shifted.md)
   - [ ] [SC-C.6: Expert — panes.swapped handler](./task-sc-c.6-expert-handler-panes-swapped.md)
   - [ ] [SC-C.7: Expert — pane.moved handler](./task-sc-c.7-expert-handler-pane-moved.md)
-  - [ ] [SC-C.8: Expert — team.created handler](./task-sc-c.8-expert-handler-team-created.md)
+  - [x] [SC-C.8: Expert — team.created handler](./task-sc-c.8-expert-handler-team-created.md)
   - [ ] [SC-C.9: Expert — team.destroyed handler](./task-sc-c.9-expert-handler-team-destroyed.md)
   - [ ] [SC-C.10: Expert — team.restored handler](./task-sc-c.10-expert-handler-team-restored.md)
   - [ ] [SC-C.tests: Tester — handler integration tests](./task-sc-c.tests-tester-handler-integration.md)
@@ -105,8 +105,8 @@ Monitor (tronMonitor) ──────┤
 
 - [ ] [Task SC-D: Reconcile cycle (safety net)](./task-sc-d-reconcile-cycle.md)
   **Status:** PLANNED · **Depends on:** SC-A
-  - [ ] [SC-D.1: Expert — consistency.fix + consistency.reconcile](./task-sc-d.1-expert-fix-and-reconcile.md)
-  - [ ] [SC-D.2: Expert — scrumMaster.cycle wiring](./task-sc-d.2-expert-sm-cycle-wiring.md)
+  - [x] [SC-D.1: Expert — consistency.fix + consistency.reconcile](./task-sc-d.1-expert-fix-and-reconcile.md)
+  - [x] [SC-D.2: Expert — scrumMaster.cycle wiring](./task-sc-d.2-expert-sm-cycle-wiring.md)
   - [ ] [SC-D.3: Tester — degrade→reconcile→audit-clean roundtrip](./task-sc-d.3-tester-reconcile-roundtrip.md)
 
 ### **EPIC SC-E: Ingress triple-defense audit + apply** (PARALLEL)
@@ -125,6 +125,22 @@ Monitor (tronMonitor) ──────┤
   - [ ] [SC-F.2: Expert — teams.save validates each line](./task-sc-f.2-expert-save-validates.md)
   - [ ] [SC-F.3: Expert — teams.restore validates each line](./task-sc-f.3-expert-restore-validates.md)
   - [ ] [SC-F.4: Tester — corrupt-snapshot + version-skew reject](./task-sc-f.4-tester-corrupt-reject.md)
+
+### **Task D4: tronMonitor.fit — auto-size team panes** (Tron directive)
+
+- [ ] [Task D4: tronMonitor.fit](./task-d4-tronmonitor-fit.md)
+  **Status:** IN PROGRESS · **Depends on:** B4.2 (DONE), architect design (DONE)
+  - [ ] D4.1: Expert — implement tronMonitor.fit (~30 lines, formula in docs/tronMonitor-fit-formula.md)
+  - [ ] D4.2: Tester — test fit ooshTeam/web4team, N=0, oversized, idempotency
+
+### **Task D5: tronMonitor stale client cleanup** (P1 — prevents pane collapse)
+
+- [ ] [Task D5: tronMonitor stale client cleanup](./task-d5-tronmonitor-client-cleanup.md)
+  **Status:** IN PROGRESS · **Depends on:** B6 (DONE), B8 (DONE), SC-D.2 (DONE)
+  - [ ] D5.1: Expert — tronMonitor.setup/reset/remove must cleanup read-only clients
+  - [ ] D5.2: Expert — tronMonitor.sync checks client health, detaches stale tiny clients
+  - [ ] D5.3: Expert — scrumMaster.cycle includes client.cleanup in reconcile
+  - [ ] D5.4: Tester — stale client simulation + auto-cleanup verification
 
 ### **EPIC SC-G: Documentation + PUMLs** (LAST)
 

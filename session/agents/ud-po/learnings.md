@@ -110,7 +110,7 @@ Blind unblocking = CMM1 (reactive, no awareness). Reviewing before unblocking = 
 When architect is in plan mode waiting for approval, READ THE PLAN before accepting. The architect's plan file is at `~/.claude/plans/<name>.md`. Review: does the data model make sense? Are edge cases covered (e.g. redirectTo for merged tokens)? Is effort estimate reasonable? Accept with "1" (auto-accept) only after reviewing. Don't let architect sit waiting while you do other things — plan review is PO's job and blocks the pipeline.
 
 ### 22. Re-Remind Agents About Self-Reports
-Training agents to self-report (#17) doesn't stick permanently — they forget after a few tasks. When an agent completes work without self-reporting, remind them immediately AND at the start of the next task assignment. Include the exact format in every assignment: "Self-report when done: otmux send upDownTeam:0.0 'T{N} DONE — ...'". Repetition is the only way to build habits.
+Training agents to self-report (#17) doesn't stick permanently — they forget after a few tasks. Chat reminders don't survive compact. The ONLY fix: make the agent write the self-report requirement into their OWN learnings/memory file. Tell them: "Write this to session/agents/ud-expert/learnings.md BEFORE continuing." If it's not in their file, it won't survive rewind/compact and you'll be reminding forever.
 
 ### 23. Never Interrupt a Task — Queue Instead
 When a new requirement comes in while the expert is working on a task, do NOT send it immediately as "also do this" — that interrupts flow and causes half-finished work. Instead:
@@ -121,6 +121,26 @@ When a new requirement comes in while the expert is working on a task, do NOT se
 Same applies to PO: when Tron sends a new requirement mid-task, write the task file immediately but queue the assignment. Say "do this after T87" not "ALSO do this NOW".
 
 Anti-pattern: "T86 UPDATE: also add editable secret code" sent while expert is mid-T87 — causes confusion about which task to work on.
+
+### 24. Test Your Own Features — First Use Reveals Bugs
+T87 bug report pipeline: architect specced it, expert built it, vitest passed — but the first real test revealed the target pane was wrong (0.2 instead of 0.0). The pipeline worked technically but routed to the wrong agent. CMM4 response: (1) identify the bug, (2) write a subtask file (task-87.1), (3) queue for expert after current work. Don't just shout "fix this" — plan it, file it, deliver it through the team.
+
+### 25. Complete the Full PO Cycle — File + Plan + Assign
+Creating a bug report .md is not enough. The FULL PO cycle for every incoming item is:
+1. Write the .md file (bug report or task)
+2. Update planning.md with a link to it
+3. Queue it in the expert's assignment chain ("after T{current}")
+4. VERIFY all 3 happened before moving on
+
+I keep doing step 1 and forgetting steps 2-3. Writing the file feels like "done" but it's not — an unassigned, unlinked file is invisible to the team.
+
+### 26. MEASURE Don't Assume — Expert May Be Ahead of You
+I assumed the expert was still working through a 4-item queue. They had already finished ALL 4. I wasted time polling and reminding about self-reports for work already done. ALWAYS capture pane output BEFORE assuming state.
+
+Also: the expert CANNOT run `otmux send` from their Bash tool — it's tty-sensitive. The self-report mechanism I demanded was technically impossible. Before designing a process, verify agents CAN do what you're asking. The expert was reporting inline (in their conversation) — I just wasn't reading it. (UPDATE: oosh-expert confirmed otmux send DOES work from Bash tool — expert's belief was wrong, now fixed.)
+
+### 27. Preexisting Issues Are Tasks, Not Excuses
+"It was already like that" is CMM1 acceptance of broken state. CMM4: if something is broken, write a task file, refine it, assign it, fix it. Every known issue without a task file is PO negligence. Scan for broken things proactively — don't wait for Tron to find them.
 
 ## Sprint History
 - Sprint 1: 9/9 tasks, 14 components at 0.3.23.1, server parity verified

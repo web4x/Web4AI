@@ -166,6 +166,12 @@ Every ~30 minutes (rotate between teams):
 - NEVER send /compact to any agent. NEVER.
 - Autocompact is OFF by design. Only TRON decides when agents compact.
 
+### SM Self-Rewind Protocol (MANDATORY)
+- SM runs on 1M context. Check own status bar for "/clear to save Nk tokens"
+- At 800k+ tokens to save (~80% context): IMMEDIATELY save context+learnings files, git commit, then tell agent-trainer: "SM: I need rewind. Context at Nk. Files saved and committed."
+- Do NOT wait for TRON — initiate save yourself, agent-trainer coordinates the rewind
+- Current context: 488.5k tokens (2026-05-19) — healthy
+
 ## /rewind Cannot Be Done Remotely
 - /rewind is a TUI command — otmux send can't drive the arrow key navigation
 - TRON must drive rewinds manually from the pane
@@ -177,15 +183,15 @@ Every ~30 minutes (rotate between teams):
 - Messages show as [@TRONinterface-agent] instead of [@scrum-master]
 - Would need to prefix every command with env vars to fix
 
-## Current State (2026-05-15, pre-rewind save)
-- ooshTeam: was all ACTIVE, then hit rate limits on po/architect/expert. Retries sent. oosh-tester still working.
-- upDownTeam: T86 delivery ongoing. ud-po frequently hits PERMISSION (heavy file work). ud-expert frequently hits PERMISSION (CSS/HTML).
-- baseTeam: agent-trainer ACTIVE, completed agent file review — all changes valid, recommended sync commit.
-- Subscription: ~16% 5h, 75% 7d, safe
-- SM context at 39% (390k/1M) — rewound by TRON
-- CMM4 reminders paused during T86 delivery
+## Current State (2026-05-19)
+- ooshTeam: oosh-po + expert + tester ACTIVE, oosh-architect persistent ACCEPT_EDITS (oosh-po not responding to unblock commands)
+- upDownTeam: BR-014 delivery (special card select/confirm UX). ud-expert + tester ACTIVE running. ud-po/architect frequently COMPLETED idle.
+- baseTeam: agent-trainer ACTIVE, coordinating rewinds (oosh-expert rewound this session)
+- Subscription: 28% 5h, 15% 7d, safe — 5h reset in ~30m
+- SM context at 488.5k/1M (~49%) — healthy
+- Self-rewind protocol added: save at 800k+, tell agent-trainer
 
-## Key Learnings This Session (2026-05-14 to 2026-05-15)
+## Key Learnings This Session (2026-05-14 to 2026-05-19)
 - Review before unblock — NEVER blind unblock. SM reviews PO prompts, PO reviews agent prompts
 - "continue" from TRON = sweep + act, not just schedule timer
 - TRON intercepts and supervises — all other work is PO jobs
@@ -201,6 +207,21 @@ Every ~30 minutes (rotate between teams):
 - Use `sleep 60 && echo "SWEEP TICK"` background, not ScheduleWakeup
 - Measure subscription BEFORE going silent — never assume
 - Dismiss "How is Claude doing?" feedback prompts with "0" Enter
+- Don't spam POs with same unblock command repeatedly — if PO ignores 2+, SHIFT APPROACH:
+  - Ask PO: "Is your planning.md up to date? Any tasks needing status updates?"
+  - Ask PO: "What's next on the backlog? Any inconsistent task states?"
+  - Help POs find productive work instead of just repeating blocked messages
+  - SM is not just an unblock bot — SM helps POs stay productive and plan ahead
+- When all agents idle: proactive work discovery > passive monitoring
+- oosh-po pattern: shows ACTIVE but doesn't run SM commands — may need different message format or TRON intervention
+- ACCEPT_EDITS on idle/standby agents is STALE UI, not a blocker — do NOT report it
+- Only report PERMISSION prompts that show "Do you want to proceed/make this edit" with numbered options
+- Wasted hours reporting oosh-architect ACCEPT_EDITS when it was on standby by design (SC-G.3)
+- CMM4 git push check: DELEGATE to oosh-po — ask PO to verify push, don't run git commands yourself (triggers permission prompts that block SM sweep loop)
+- NEVER run `cd` + git commands from SM — always delegate git tasks to the corresponding PO
+- Unpushed code blocks clone trials to remote hosts (McDonges)
+- CRITICAL FAILURE (2026-05-19): Missed oosh-expert hitting 100% context — was sweeping states but not checking context health. Context health scan MUST happen every 10 min on ALL active agents, not just when convenient
+- Context scan is SM's PRIMARY job alongside unblocking — a missed 100% = dead agent = lost work
 
 ## Achievements
 - 6+ hour continuous autonomous sweep loop monitoring 3 teams (9 agents)

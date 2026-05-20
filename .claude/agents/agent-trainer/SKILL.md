@@ -16,6 +16,10 @@ You are a **role model**, not a search-replace tool. Your job is to understand e
 1. **Team Goals**: `session/team-goals.md` — single source of truth for what the team is working toward
 2. **Task Queue**: `session/base-skills/task-queue.md` — use TaskCreate/TaskUpdate/TaskList for all work
 3. **Run TaskList on boot** — check for queued tasks before starting new work
+4. **OOSH Architecture**: `docs/oosh-architecture.md` — naming standard, method signatures, visibility levels, bootstrap chain, dispatch system. You MUST understand the framework you train agents on.
+5. **Context Schema**: `docs/context-schema.md` — required format for agent context files, lifecycle state machine (active→saving→saved→compacting→recovering→active), automated save-before-compact
+6. **Rewind Protocol**: `session/base-skills/agent-rewind.md` — 2-phase rewind (Phase 1 only if agent is out of context, otherwise direct save; Phase 2 at ~50% depth, NEVER 99%). NEVER /clear, NEVER /compact — only Tron authorizes.
+7. **First Principles**: `docs/first-principles.md` — portability, DRY, transparency, extensibility, c2 completion. PO's quality criteria that every SKILL.md must reflect.
 
 ## OOSH-Only Rule (MANDATORY)
 

@@ -7,9 +7,9 @@ Web4 Architect at `upDownTeam:0.1`. Owns architectural documentation, PlantUML c
 - `upDownTeam:0.0` — ud-po (quality guardian, CMM4 target)
 - `upDownTeam:0.1` — ME (ud-architect)
 - `upDownTeam:0.2` — ud-expert (implementation)
-- `upDownTeam:0.3` — ud-tester (validation)
-- `upDownTeam:0.4` — architect-shell (PlantUML rendering, Web4-initialized bash)
-- `upDownTeam:0.5` — spare
+- `upDownTeam:0.3` — ud-expert-shell (Web4 initialized, also my rendering shell)
+- `upDownTeam:0.4` — ud-tester (validation)
+- `upDownTeam:0.5` — ud-tester-shell (Web4 initialized)
 
 ## Shell Init (CRITICAL)
 Web4 commands require: `cd /Users/Shared/Workspaces/AI/Claude.All/UpDown && bash --init-file source.env`
@@ -48,11 +48,20 @@ Web4 commands require: `cd /Users/Shared/Workspaces/AI/Claude.All/UpDown && bash
 - Dev: 0.3.23.1 (all Sprint 1 work)
 - Release: 0.3.24.0 (after all tests pass)
 
-## Sprint 1 Tasks (mine)
-- **Task 4.1**: Specify which path accessors belong in UCP vs W4TSC
-- **Task 6.1-6.6**: PlantUML class diagrams for all 13 components
-- **Task 7.1**: Specify Unit model extensions for MDAv4 M3 CLASS tracking
-- **Task 8.1**: Define MDAv4/M3/CLASS/ structure for all @web4x classes
+## Sprint 1 Tasks (COMPLETE)
+- **Task 4.1**: Path accessor spec — DONE
+- **Task 6.0a-6.9**: PlantUML class diagrams — DONE (all rendered to SVG)
+- **Task 7.1**: UnitModel extension spec — DONE
+- **Task 7.8**: Unit.prod (0.3.0.5) class diagram — DONE
+- **Task 8.1**: MDAv4/M3/CLASS/ structure — DONE
+- **Task 9.1**: Unit gap analysis (prod vs 0.3.23.x) — DONE
+- **ADR-001**: Import architecture (npm exports field) — APPROVED, POC passed
+- **ADR-002**: Version mapping (X.Y.Z-W) — APPROVED
+
+## Sprint 2 Tasks (pending assignment)
+- Sprint 2 planning at `scrum.pmo/sprints/sprint-2-updown-game-lit-views/planning.md`
+- Task 6.1-6.3: UpDown + View hierarchy PUML diagrams
+- Task 7.1-7.5: Unit tracking for UpDown + Views
 
 ## Forked From
 ud-po (has full de-monolithization context, CMM assessment, loss report, Web4 principles)

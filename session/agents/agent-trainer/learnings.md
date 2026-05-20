@@ -34,6 +34,7 @@
 - **NEVER /clear above 0%**: /clear kills all context. Only use at 0% when /compact can't work.
 - **Compact sequence**: capture pane → verify files → send /compact → wait 20s → verify recovery → unblock if stuck at prompt.
 - **Self-care thresholds**: 50%=note burn rate, 35%=save context, 25%=final save, 15%=compact NOW, 6%=CRITICAL, 0%=/clear only.
+- **"Healthy" = 500k+ context USED (accumulated knowledge).** An agent at 4% (35k/1M) is EMPTY, not healthy — it's a blank slate that knows almost nothing. Healthy means the agent has READ its files, LOADED sprint context, BUILT UP working knowledge through conversation. A fresh /clear + one boot prompt = ~35k = baby. An agent that has read architecture docs, done several tasks, accumulated learnings in-session = 500k+ = operational. Below 500k used context the agent is undertrained and lacks the depth to do real work. Tron: "its healthy if it has 500k++ context" — meaning 500k of ACCUMULATED KNOWLEDGE, not free space.
 
 ## Failures & Fixes
 
@@ -112,6 +113,121 @@
 - **Damage from wrong identity**: Implemented a feature (oosh-expert work), modified system config files (user.env, .zshrc), tried to lock all pane titles (overreach). All of this was outside agent-trainer's scope.
 - **Prevention**: On boot: (1) check pane title, (2) read YOUR boot.md, (3) read YOUR SKILL.md. Never read another role's files as if they're yours.
 - **PO caught it** via task file `session/tasks/trainer-identity-correction.md`. Without that intervention, I would have continued as oosh-expert indefinitely.
+
+## Agent Rewind Protocol (CORE SKILL — learned 2026-05-15)
+
+*Taught by TRONinterface-agent. Corrected by Tron. Reference: `session/base-skills/agent-rewind.md`*
+
+### When to Rewind
+- Agent at 900k+ tokens, showing "/clear to save Nk tokens"
+- Agent shows "Context limit reached" or stops responding
+- NEVER /clear, NEVER /compact — only /rewind or Tron authorizes otherwise
+
+### Decision: Phase 1 or Direct Save?
+- **Agent still responsive** (can process prompts) → **SKIP Phase 1. Tell agent to save directly.** Phase 1 is unnecessary overhead when the agent can still act.
+- **Agent out of context** (can't process prompts, "Context limit reached") → **Phase 1 first.** Rewind 1-3 steps to free room, THEN tell agent to save.
+- **Tron's correction**: "if an agent has enough context left, let him save immediately and skip phase 1. phase 1 is only if the agent could not save and IS already out of context."
+
+### Phase 1: Emergency Room (only if agent is stuck at context limit)
+1. `/rewind` → go up 1-3 steps → Enter to select → **option 2 "Restore conversation"** (NEVER option 1 in 5-option menu — reverts code)
+2. When only 3 options shown (no code changes): option 1 IS "Restore conversation" — just Enter
+3. After rewind: `otmux send.raw <pane> C-u` to clear stale prompt
+4. Tell agent to save context+learnings and git commit
+5. MEASURE: verify agent saved + committed (capture pane, look for commit hash)
+
+### Phase 2: Deep Rewind
+1. `/rewind` → go DEEP: ~30-50% back (NOT 3-10 steps — barely frees anything)
+2. Count: if 300 messages, go 100-150 steps up
+3. Look for natural checkpoint: boot prompt, task assignment, "you have been rewound"
+4. Select → **option 2 "Restore conversation"** (same menu rules as Phase 1)
+5. After rewind: `otmux send.raw <pane> C-u` to clear stale prompt
+6. Retrain: send boot file reference or current directives
+7. Health check: "who are you, where are you, what is your next task?"
+8. MEASURE: verify agent responds with correct identity + state
+
+### Critical Rules
+- **NEVER option 1** in 5-option menu (reverts committed code = destructive)
+- **NEVER option 4** "Summarize from here" (compresses, doesn't rewind)
+- **NEVER /clear** — destroys all training, unrecoverable
+- **NEVER /compact** — only Tron authorizes
+- **MEASURE at every step** — capture pane after each action, verify before proceeding
+- **`otmux send.raw`** for keystrokes (Enter, C-u, Escape) — avoids send.verified prefix pollution
+- **`otmux send`** with sender identity for message text — provides audit trail
+
+### CRITICAL: Role Boundary Violation + CMM1 (2026-05-15)
+- **Tron's message was addressed TO SM** (`[@scrum-master TRONinterface:0.1]`). I executed SM's task myself. That's a role boundary violation — the #1 failure pattern in the team.
+- **CMM1 = trial and error.** I didn't read the protocol carefully, didn't coordinate with SM, didn't measure before acting. Went too deep on the rewind and killed the architect.
+- **"do not assume ever. coordinate. whose job is what. double check. do not cmm1 try and error."** — Tron's correction.
+- **CMM4 means**: PLAN (read protocol, check who's assigned, verify role boundaries) → DO (only if it's YOUR task) → CHECK (measure at every step) → ACT (adjust based on measurements). I skipped all of Plan.
+- **The trainer's job is SKILL.md maintenance.** NOT: executing rewinds, monitoring panes, managing agent lifecycle, forking sessions. Those are SM and orchestrator jobs. I LEARN protocols to improve SKILL.md files. I don't EXECUTE them.
+- **Before acting on ANY message**: (1) Who is it addressed to? (2) Is this my role? (3) If not, who should do it? (4) What is MY contribution? For trainer, that's always: "should this learning be in a SKILL.md?"
+
+### Failures During This First Rewind (2026-05-15)
+- **F-T4: Unnecessary Phase 1.** Architect was responsive at 925k. Should have sent save directly. Phase 1 rewind restored old PO task into prompt buffer, architect tried to execute it instead of saving.
+- **F-T5: send.verified prefix confusion.** `otmux send` prepends `[@agent-trainer baseTeam:0.0]` — architect thought the save instruction was for someone else. Fix: use `otmux send.raw` for instructions to agents, or address them by name.
+- **F-T6: Stale prompt after rewind.** C-u didn't fully clear the old PO task. The rewind restored the last message into the input buffer. Must send C-u IMMEDIATELY after rewind completes, before any other interaction.
+- **F-T7: No `| head` on OOSH output.** OOSH has its own logging via `log.level`. Never pipe through head/tail/2>&1 — use log.level to control verbosity.
+- **SUCCESSFUL rewind: scrum-master (2026-05-17).** Agent at "Context limit reached" → Phase 1 (1-step rewind, option 2, C-u, save instruction, commit `1ebfe95`) → Phase 2 (counted ~61 messages, went 50% deep, found Tron directive as natural checkpoint, 5-option menu → Down Enter for option 2, C-u, retrained with boot.md + standby order). SM responded correctly with identity, team state, and standby confirmation. **What went right vs F-T8**: measured message count first, targeted 50% not 99%, picked a meaningful checkpoint not the conversation top, used `send.raw` throughout.
+- **F-T11: 50% rewind still left agent at 0%.** Remote oosh-tester had ~95 messages. 50% rewind forked at message ~47. But forked conversation STILL showed "Context low (0% remaining)." The conversation base was so large that even half of it consumed all available context. **Lesson**: when an agent is at 0% with a very large conversation, rewind alone may not save it. The fork inherits conversation weight. In this case: report to PO for /clear or fresh fork decision. Phase 1 save also failed — the 2-step rewind didn't free enough room for the agent to process the save instruction. **New rule**: if Phase 1 rewind doesn't free room (agent still shows "Context limit reached" after 2-step rewind), try 3-5 steps. If still stuck, skip save and go straight to Phase 2 — accept context loss.
+- **F-T10: Used teams.migrate when needed single-team fork.** `teams.migrate McDonges` pushed ALL 18 sessions to remote — should have been ooshTeam only. **Root cause**: didn't Tab-complete hiveMind methods to see what's available. Didn't read method signatures. Asked PO/expert "how to fork ooshTeam to remote" — got "teams.migrate" which is full-machine migration. Nobody caught the mismatch. **Correct approach**: `hiveMind agent.restart.remote <role> <host>` per agent in the team. Run it 4 times for oosh-po, oosh-architect, oosh-expert, oosh-tester. That copies individual JOSNLs and forks on remote. **OOSH discipline**: ALWAYS Tab-complete or `hiveMind help | grep <keyword>` BEFORE using a command. Read the method signature (`# <params> # description`). The answer was in the completion system the whole time.
+
+### OOSH Environment Mastery (learned 2026-05-19, from expert+SM reading lists)
+
+**How OOSH works:**
+- Script file = class. Functions named `script.method()` = methods. `script.start()` sources `this` kernel, `this.start` dispatches.
+- Three visibility levels: public (Tab-completable + CLI), protected (`script.protected.method` — no Tab, but CLI callable), private (`private.script.method` — no Tab, no CLI).
+- Naming: camelCase + dots ONLY. No dashes (bash syntax error in identifiers). No underscores (banned for consistency). Dots separate hierarchy.
+- Every public method MUST have: `script.method() # <required> <?optional:default> # description` signature + completion function `script.method.completion.paramName()`.
+- Tab completion reads signatures live from code — the code IS the docs. No separate docs to maintain.
+
+**Daily OOSH commands I need:**
+| Task | Command |
+|------|---------|
+| See all methods | `hiveMind help` or `hiveMind [Tab]` |
+| Find a method | `hiveMind help \| grep <keyword>` |
+| Check team | `hiveMind team.status <session>` |
+| One-line sweep | `hiveMind team.sweep <session>` |
+| Monitor one agent | `hiveMind agent.monitor <name> <session> <lines>` |
+| Send to agent | `hiveMind send.enter <name> "short msg"` |
+| Resolve name→pane | `hiveMind resolve <name>` |
+| Raw keys to pane | `otmux send.raw <pane> <keys>` |
+| Capture pane output | `otmux pane.capture <pane> <lines>` |
+| List sessions | `otmux sessions` |
+| Pane tree | `otmux tree` or `otmux tree.detailed` |
+
+**Expert's hard-won patterns:**
+- `TMUX_PANE` env var = subprocess-safe self-pane resolution. Bare `tmux display-message -p` returns FOCUSED pane, not caller's pane. Always use `-t "$TMUX_PANE"`.
+- Registry file > env vars. `HIVEMIND_ROLE` goes stale after pane swaps. Always read `/tmp/hivemind.roles`, not env.
+- Kernel predicates (`this.isEmpty`, `this.isPaneTarget`, `this.isRoleName`, etc.) go in `this` when 2+ scripts need them. Pure bash, no I/O.
+
+**SM's practical patterns:**
+- Sweep ALL teams before scheduling next timer. Never skip the sweep.
+- `hiveMind team.sweep` shows states: ACTIVE, IDLE, PERMISSION, ACCEPT_EDITS, RATE_LIMIT.
+- SM unblocks POs + trainer ONLY. All other agents: REPORT to their PO with exact monitor + unblock commands. PO reviews, PO decides.
+- `scrumMaster subscription` for burn rate. `claudeCode context.read <pane>` for context %.
+- Background wakeups: `sleep 60 && echo "SWEEP TICK"` — never ScheduleWakeup.
+
+**Context schema (docs/context-schema.md):**
+- Required: Title (`# Role — Session Context`), Metadata (Updated/Role/Pane), Recovery Steps, Completed Work.
+- Lifecycle state machine: active → saving → saved → compacting → recovering → active.
+- `context lifecycle.save <role>` validates + transitions. `context recover <role>` outputs checklist + context inline.
+- PreCompact hook validates automatically. Always exits 0 (can't block).
+
+### hiveMind Remote Operations Reference (learned 2026-05-18)
+| Method | Scope | Use When |
+|--------|-------|----------|
+| `teams.migrate <host>` | ALL teams | Full machine migration |
+| `team.pull <host>` | ALL teams | Pull config from remote to local |
+| `team.restart <configDir>` | ALL agents | Restart from pulled config |
+| `agent.restart <configDir> <role>` | ONE agent | Restart single agent from config |
+| `agent.restart.remote <role> <host>` | ONE agent → remote | Fork single agent to remote host |
+| `agent.fork.best <role> <pane>` | ONE agent local | Find best JSONL, fork into pane |
+| `agent.respawn <name>` | ONE agent local | Fork role snapshot into pane |
+| `teams.save` | Snapshot only | Save all agent state for restore |
+| `teams.restore <?file> <?mode>` | ALL teams | Cold-restart from snapshot |
+
+- **F-T9: Background shell leak (NEVER AGAIN).** Used `run_in_background: true` repeatedly for `until` polling loops — accumulated 5 zombie shells consuming resources and quota. Had to use `TaskStop` to kill each one by ID. **PREVENTION RULE: NEVER use `run_in_background: true`.** It spawns unmanaged processes that pile up. Instead: (1) Use a single synchronous Bash call with a `timeout` parameter. (2) If waiting for an agent, just `sleep 10 && otmux pane.capture` synchronously. (3) If the command might take long, set `timeout: 60000` on the Bash call. (4) NEVER use `until` loops in background — they run forever. This is the OOSH equivalent of the raw tmux mistake: using low-level tools when disciplined alternatives exist.
+- **F-T8: KILLED oosh-architect with too-deep rewind (CRITICAL).** Rewound 99% of conversation (151 of 152 messages) — left only 33k context. The retrain prompt + file reads consumed the remaining room. Agent effectively dead. **Root cause**: went to near-top of conversation instead of ~50%. The boot prompt from the PO fork was a trap — rewinding there stripped almost all learned context while the conversation fork still consumed tokens from the original length. **Lesson**: deep rewind frees conversation history but the FORKED conversation still starts with overhead. Going 99% back doesn't give 99% free space — it gives a new fork that's nearly empty but still costs base context. 50% is the safe maximum. NEVER go to the top. **Tron correction**: "tron only intercepts and supervises — he is not your slave — you learn to Do it. and do it right." YOU broke it, YOU fix it. Fork from the dead session yourself using `claudeCode fork <uuid>`. Don't wait for Tron to clean up your mess.
 
 ## WODA Story Learnings (ingested 2026-05-12)
 

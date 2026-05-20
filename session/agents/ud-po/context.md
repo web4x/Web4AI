@@ -17,13 +17,20 @@ SM peer: TRONinterface:0.1
 
 ## Sprint 3 — QnD Multiplayer Game
 
-### Completed (70 tasks + 11 bugs)
+### Completed (92 tasks + 12 bugs)
 - Tasks 1-38.21: Core game + UX parity + Playwright verification
 - Tasks 40-70: Room management, identity, device tracking, button feedback, cross-device fixes
+- Tasks 78-92: Home button, version nav, md renderer, game docs, player level, leaderboard, host elimination, chat multiline, user editor, bug report pipeline, QR invite, player popup+vCard, DRY button feedback, char counter
+- BR-001-011: Secret code fixes, profile display, report UUID tracking, lifecycle API, room delete, link account rework
+- DRY: T29 CardUtils, T30 ScoreCalculator, T31 SpecialCards — all done
+
+### In Progress
+- BR-011: Link Account same-room fix — tester re-verifying 7 tests
+- BR-012: Host elimination regression — architect analyzing
 
 ### Deferred
-- Tasks 29-31: DRY (CardUtils, ScoreCalculator, SpecialCards)
 - Task 39: WebSocket reconnection
+- Mobile/PWA testing — needs Tron device
 
 ### Key Files
 - Planning: scrum.pmo/sprints/sprint-3-qnd-multiplayer-game/planning.md

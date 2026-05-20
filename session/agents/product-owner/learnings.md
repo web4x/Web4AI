@@ -329,12 +329,4 @@ SM hit "Context limit reached" — couldn't process any input including /rewind.
 - F-RELAY: Relaying Tron's requirements to a PO is NOT just sending text. A PO must: send requirement → verify PO acknowledges → verify PO creates a task → verify task is assigned. PDCA on EVERY requirement. "Message delivered" is NOT "requirement understood and planned." Treating send as done is being a mailman, not a PO. I sent 10 messages to ud-po and none were acted on because I never followed up on any of them. The tools worked — my process failed.
 - F-FIT: Assigned tronMonitor.fit to expert, told them to hold and coordinate with architect, then NEVER followed up. Expert moved on to SC-E.2. Task evaporated because I didn't track it in TaskList. SM was sending CMM4 reminders the whole time — I dismissed them as "loop" instead of checking my own open assignments. USE TaskCreate for every assignment. VERIFY delivery with grep/git log. SM reminders are VALID SIGNALS.
 - New tasks during active work: TaskCreate to queue, don't interrupt current flow, don't drop assignments
-- ALWAYS check hostname first after fork — context files lie. `hostname` is truth. McDonges ≠ MacStudio.
-- otmux layout.save/restore is THE tool for pane rebuilds — never manually split panes. Save on source, download, restore on target. One command recreates exact geometry + titles.
-- hiveMind teams.restore WITHOUT layouts creates chaos — ensure.pane splits blindly, 10-30 stale panes. ALWAYS restore layout first, THEN fork agents into correctly-shaped panes.
-- Read the tools BEFORE acting — I killed/recreated panes 3 times before discovering layout.save/restore existed. Cost: hours of debugging that should have been 2 commands.
-- McDonges.native = localhost on McDonges — never scp to yourself. Check if target resolves to self before migrating.
-- ossh config is machine-specific — Docker IdentityFile paths (/root/.ssh/) don't work on bare metal (~/.ssh/).
-- EVERY task file MUST have: (1) back-link to planning.md, (2) [task:uuid:] tag, (3) forward-link FROM planning.md to task file. Dual navigation. No orphan tasks.
-- EVERY commit MUST be pushed. Committed ≠ pushed. Check `git log origin/main..HEAD` — if ahead, push. Unpushed commits die with the machine.
-- Sprint planning.md is the single source of truth — every task, bug, mid-sprint addition MUST be linked there. If it's not in planning.md, it doesn't exist for the team.
+- F-PREEXISTING: "It was already like that" is NOT an excuse. Pre-existing issues are tasks to refine and fix — that IS the PO's job. Every broken thing encountered = TaskCreate + refine + assign. Saying "pre-existing" is CMM1 acceptance of known defects.

@@ -1,78 +1,92 @@
-# ud-expert Context — Save Point 2026-04-24
+# ud-expert Context — Save Point 2026-05-15
 
-**Role**: Web4AI Implementation Authority
-**Status**: Sprint 1 Tasks 7.2-7.6 DONE, 7.7 handed to tester
+**Role**: Web4AI Implementation Authority (UpDown QnD multiplayer)
+**Status**: Queue empty, standing by
 **Machine**: Mac Studio
 **Pane**: upDownTeam:0.2
 
 ## Team Layout
-- upDownTeam:0.0 — ud-po (quality owner, CMM4 goal)
-- upDownTeam:0.1 — ud-architect (PUML/MDAv4/Units)
+- upDownTeam:0.0 — ud-po (quality owner)
+- upDownTeam:0.1 — ud-architect (specs, analysis)
 - upDownTeam:0.2 — ME (ud-expert)
 - upDownTeam:0.3 — ud-tester
 - upDownTeam:0.4 — expert-shell (Web4 initialized)
-- upDownTeam:0.5 — spare
 
-## Base Path
-`/Users/Shared/Workspaces/AI/Claude.All/UpDown/components/`
+## Code Locations
+- **Source**: `/Users/Shared/Workspaces/2cuGitHub/UpDown/qnd/`
+- **Server**: `src/ts/server/server.ts`, `src/ts/server/GameRoom.ts`
+- **Client**: `src/public/ts/MultiplayerUI.ts`, `src/public/ts/LobbyUI.ts`, `src/public/ts/WebSocketClient.ts`
+- **Shared**: `src/ts/shared/MessageTypes.ts`, `CardUtils.ts`, `ScoreCalculator.ts`, `SpecialCardInfo.ts`
+- **HTML pages**: `src/public/index.html`, `index-js.html`, `index-ts.html`, `multiplayer.html`
+- **CSS**: `src/public/multiplayer.css`
+- **Profiles**: `data/profiles.json`
+- **Task files**: `scrum.pmo/sprints/sprint-3-qnd-multiplayer-game/`
 
-## De-monolithization — ALL PHASES DONE
+## Build Commands
+```bash
+npm run build    # esbuild client bundles
+npm run stop     # stop server
+npm start        # build + start server
+npx vitest run   # ~9 min, WS integration tests
+```
 
-| Phase | Status |
-|-------|--------|
-| 0: @web4x/ucp | DONE |
-| 1: @web4x/web4tscomponent | DONE |
-| 1.25: BUG-W02 fix | DONE |
-| 1.5: Cascading auto-build | DONE |
-| 2: @web4x/unit | DONE |
-| 3a-e: persistence/user/filesystem/http/tls | DONE |
-| 4: @web4x/once | DONE |
-| 5: web4test/tootsie/pdca/idealminimal | DONE |
-| 6: Testing 8/8 PASS | DONE |
+## Vitest Baseline
+- 58-60 tests across 15 files
+- 2-3 pre-existing flaky failures (uc-r7 join-full, uc-r9 join-rejected, occasionally uc-p1 early-resolution, uc-s1 spectator)
+- NEVER restart server mid-vitest — causes 15-40 false failures
 
-## 13 Components at 0.3.23.0 (all compile clean)
-@web4x/ucp, unit, persistence, user, filesystem, http, tls, web4tscomponent, once, web4test, tootsie, pdca, idealminimalcomponent
+## Completed Tasks This Session
 
-## Sprint 1 — Current Work (0.3.23.1)
+### Sprint 3 Features
+| Task | Summary |
+|------|---------|
+| T43 | Share link includes room name |
+| T44 | Finished rooms show Remove button for all players |
+| T45 | Stale room auto-disposal (tightened criteria + broadcast) |
+| T56 | Chat duplication fix (moved 5 client.on to constructor) |
+| T58 | Split card chooser (suit + value pickers), avatar preview |
+| T59 | Profile photo fixes (upload quota, self avatar in player list + popup) |
+| T60 | Player identity token (UUID, dedup, client avatar to server) |
+| T62 | Device tracking (IDENTIFY message, profiles.json, device list in popup) |
+| T67 | Button press feedback + double-press protection (guardClick utility) |
+| T68 | HOST_CHANGED re-renders game controls mid-game |
+| T69 | Ghost player purge in resetForReplay() |
+| T70 | Back to lobby cleans URL params |
+| T71 | Header click cleans URL before reload |
+| T78 | Home button (🏠) + fullscreen button (⛶) in headers |
+| T79 | Version display, version-click project nav, /docs markdown renderer |
+| T81 | Player level shown above special cards |
+| T82 | Highscore leaderboard (/leaderboard page, /api/leaderboard, game result recording) |
+| T83 | Host elimination auto-enables countdown |
+| T84 | Chat multiline (white-space pre-wrap, XSS fix, lorem test) |
+| T85 | Leaderboard own page with REST API |
+| T86 | User profile page (/profile), 4-digit secret code, device consolidation, TOKEN_REDIRECT |
+| T87 | Bug report button → otmux send to PO (execFile, sanitize, fallback) |
+| T87.2 | Bug report includes reporter UUID |
 
-### Tasks 7.2-7.6 (DONE)
-- 7.2 VERIFIED: UnitModel has origin, typeM3, references
-- 7.3 DONE: Added FOLDER to TypeM3 enum in UCP/0.3.23.1
-- 7.4 VERIFIED: references[] exists in UnitModel
-- 7.5 DONE: tsUnitCreate() on UnitDiscoveryService in Unit/0.3.23.1
-- 7.6 DONE: PumlUnitConverter in Unit/0.3.23.1/src/ts/layer2/
-- 7.7: Handed to tester — awaiting verification
+### DRY Refactoring
+| Task | Summary |
+|------|---------|
+| T29 | shared/CardUtils.ts (suitSymbol, cardColor, cardToHtml, cardText) |
+| T30 | shared/ScoreCalculator.ts (calculateScore, calculateDiamonds) |
+| T31 | shared/SpecialCardInfo.ts (SPECIAL_CARD_CATALOG, CARD_INFO_MAP) |
 
-### Key Files Modified
-- `UCP/0.3.23.1/src/ts/layer3/TypeM3.enum.ts` — added FOLDER
-- `Unit/0.3.23.1/src/ts/layer2/UnitDiscoveryService.ts` — added tsUnitCreate() + imports
-- `Unit/0.3.23.1/src/ts/layer2/PumlUnitConverter.ts` — NEW file
+### Bug Fixes
+| Bug | Summary |
+|-----|---------|
+| Keybinding Game 2 | eliminated flag one-way in ROUND_START — now derived each round |
+| Enforce Result | Click handler hardcoded innerHTML — now calls renderGame() |
+| Eliminated host deadlock | New branch for eliminated host with countdown off |
+| Room name stale | Create Room button refreshes room name input |
+| Private room keys | Share links + auto-join include room key |
+| BR-001 | Secret code editable in lobby + /profile |
+| BR-002 | Pre-T86 profiles backfilled with secretCodes on load |
+| BR-003 | /profile: full token, device IP, code propagation |
 
-### Spec File
-`/Users/Shared/Workspaces/AI/Claude.All/UpDown/scrum.pmo/sprints/sprint-1-monolithic-functionality/task-7.1-architect-unit-mdav4-spec.md`
-
-## Semantic Links
-- W4TSC: prod→0.3.19.1, test→0.3.19.3, dev→0.3.20.6, latest→0.3.23.1
-- ONCE: prod→0.3.22.1, test→0.3.21.6, dev→0.3.21.6, latest→0.3.22.1
-
-## Loss Report (from de-monolithization)
-~20 files at domain boundaries not extracted to standalone components (remain in ONCE 0.3.23.0):
-- HTTPSServer, ServerHierarchyManager, ProxyRoute, ReverseProxyRoute, HeaderRewriter, HrefRewriter
-- ScenarioManager, ScenarioLoader (L2+L4), UnitCacheManager
-- ACMEChallengeRoute, StaticFileRoute, FileOrchestrator
-- All Layer5 views for filesystem
-- DefaultEnvironmentInfo
-
-## CMM Understanding
-- Web4 = CMM4 (self-optimizing systems)
-- Composed maturity = weakest link
-- Assuming = L2, measuring = L3, PDCA loop = L4
-- Current composed level: L1 (zero PDCA files, no Tootsie tests)
-- PO goal: reach CMM4
-
-## Key Learnings This Session
-- Web4 shells need `bash --init-file source.env` from UpDown root
-- otmux pane.lock for persistent pane titles
-- CLI scripts must self-register version symlinks
-- PROJECT_ROOT derived from component path (3 levels up), never from $PWD
-- Ask oosh-expert when stuck on otmux methods — don't guess
+## Key Patterns
+- `guardClick(btn, asyncFn)` — disable+loading during execution, re-enable in finally
+- `localAvatarHtml(size)` — reads localStorage avatar for self player rendering
+- `createChatBubble()` — XSS-safe chat rendering via textContent
+- Server pages (/profile, /leaderboard, /bug-report) are inline HTML in server.ts route handlers
+- `execFile` (not exec) for bug report → otmux send (injection-safe)
+- Self-report via: `otmux send upDownTeam:0.0 "T{N} DONE — ..." Enter`

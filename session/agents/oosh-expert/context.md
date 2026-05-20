@@ -146,6 +146,24 @@ PO assigned: **`hiveMind team.migrate <session> <host>`** — single-session mig
 
 ---
 
+## MISSED PROMPTS (expert never processed — captured by Tron, saved by trainer 2026-05-19)
+
+### BUG-T5 NEW — source hiveMind hangs 30s
+`source hiveMind` hangs ~30s. Status scans all sessions. Bare invocation (`hiveMind` with no args) needs a fast path — should show usage instantly, not scan everything.
+
+### BUG-T Verification Results (from Tron)
+| Bug | Status | Detail |
+|-----|--------|--------|
+| T1 | CONFIRMED | 9 ghost methods |
+| T2 | CONFIRMED | Not fixed |
+| T3 | PARTIAL | |
+| T4 | CONFIRMED | 80+ undocumented methods |
+| T5 | NEW | source hiveMind hangs 30s (see above) |
+
+### Fix Priorities (Tron directive)
+1. **T1/T4**: auto-generate usage from `this.help` — eliminate ghost methods + document all methods
+2. **T5**: fast bare invocation — hiveMind with no args must return instantly
+
 ## Open bugs / outstanding
 
 - **hiveMind.protected.agents.discover internal cost** — 57s for 6 panes is the new bottleneck on tree.detailed. Separate epic (SC-F territory). Not in oosh-expert scope.

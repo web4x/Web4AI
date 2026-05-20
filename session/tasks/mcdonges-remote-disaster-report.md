@@ -334,3 +334,59 @@ ls ~/.claude/projects/*/*.jsonl | wc -l  # 591
 Phases ordered by urgency. Phase 1 (kill live claudes) should run first to stop token burn. Phases 2-5 are state cleanup. Phase 6 is a local code-fix backlog.
 
 Will not execute any phase without explicit Tron authorization per directive.
+
+---
+
+## Architect Section — Design Analysis
+
+**Author:** oosh-architect @ ooshTeam:0.1
+
+### (a) Was single-session team.migrate sufficient guard against bulk-session leak?
+
+**Yes — the guard existed, but wasn't used.** The expert confirms: operator ran `hiveMind teams.restore` (bulk) instead of `hiveMind team.migrate <session> <host>` (single). The single-session tool (commit `dc0cc00`) was shipped before the incident but hadn't been adopted.
+
+**However, team.migrate itself has a secondary leak path.** Line 3252 calls bare `teams.restore` on the remote. If the session-filtered snapshot file doesn't transfer correctly, `teams.restore` falls back to `ls -t hivemind.snapshot.*.env | head -1` — the remote's latest FULL snapshot. This silent fallback is architecturally wrong. `teams.restore` should FAIL HARD when given an explicit path that doesn't exist, not fall back silently.
+
+### (b) Cross-host state consistency — architect-state-analysis findings
+
+The disaster violates **all 6 invariants** from the state-correctness design:
+
+| Invariant | Violation |
+|-----------|-----------|
+| **I1: Registry-tmux consistency** | 30 dead UUID entries in sessions.env for panes that don't match reality. ooshTeam has 55 panes but only 6 in registry. |
+| **I2: Sessions-registry alignment** | UUID aca3405a stored at TWO panes (Bug 6). 9 live processes at panes that don't match sessions.env. |
+| **I3: Teams-tmux alignment** | 18 teams in teams.env, all created by bulk restore, none intentionally registered. |
+| **I4: tronMonitor-teams sync** | tronMonitor.env is EMPTY despite 18 team sessions existing. |
+| **I5: Snapshot completeness** | The source snapshot (20260430) is deleted from disk — no forensic trail. |
+| **I6: Queue-pane consistency** | Not checked, but with 55 panes in ooshTeam, queue files likely reference non-existent targets. |
+
+**Design gap identified:** The state-correctness architecture (Option C: events + Option B: reconcile) was designed for LOCAL mutations. Cross-host migration is a NEW failure class. `teams.restore` running on the remote has no concept of "I should only touch one session" — it processes the entire snapshot file. The `<?sessionFilter>` parameter that was in our team.migrate design spec was never added to `teams.restore`.
+
+### (c) Prior PUML coverage for bulk-restore explosion
+
+**No existing PUML covers this failure path.** The three Sprint 1 PUMLs I delivered:
+
+1. `Sprint1_StateCorrectness_StateStores.puml` — Shows `teams.restore` as a mutation event but doesn't detail the snapshot-fallback path or the per-session filter gap.
+2. `Sprint1_StateCorrectness_EventFlow.puml` — `team.restored` event catalogued but no cross-host variant.
+3. `Sprint1_StateCorrectness_ReconcileCycle.puml` — Only covers local reconciliation, not remote state divergence.
+
+**PUML needed:** `TeamMigrate_BulkRestoreExplosion_Sequence.puml` — sequence diagram showing:
+1. Operator calls `teams.restore` (no session filter)
+2. Function iterates ALL sessions in snapshot
+3. Per session: `layout.restore` creates tmux session + panes
+4. Per UUID: `claudeCode fork` spawns opus process
+5. Repeated invocations: pane count ONLY GROWS (no idempotency check)
+6. Result: 55 panes, 9 live claudes, 30 orphan UUIDs
+
+Will create this PUML after Tron authorizes cleanup (captures the failure for posterity).
+
+### (d) Architectural recommendations (extends expert's Phase 6 backlog)
+
+7. **`teams.restore` MUST accept `<?sessionFilter>` param.** Back-compatible: no arg = current behavior. With arg = only process matching rows. This was in the team.migrate design spec but never implemented.
+8. **`teams.restore` silent fallback removal.** If explicit snapshot path is provided and file doesn't exist → `error.log` + `return 1`. No `ls -t | head -1` fallback. Fail loud.
+9. **`team.migrate` remote-side call must pass session filter.** Line 3252 should be: `hiveMind teams.restore ~/config/${snapname} --session $session` — so even if the snapshot somehow contains more sessions, restore only processes the one.
+10. **Pane-count guard in teams.restore.** Before creating panes for session X: `current_count=$(tmux list-panes -t X | wc -l)`. If `current_count >= target_count`, skip pane creation. Prevents cumulative explosion.
+
+---
+
+**Architect sign-off:** Expert's cleanup plan is sound. Phase 1 (kill 9 claudes) is URGENT. Phase 6 bug-fixes align with Sprint 1 state-correctness design. Items 7-10 above should be added to the Sprint 1 backlog as SC-F follow-up tasks.

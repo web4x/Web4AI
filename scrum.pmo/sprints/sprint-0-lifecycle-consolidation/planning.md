@@ -82,7 +82,7 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
   **Priority:** 2 (HIGH - tronMonitor dependency) **Status:** DONE
   - [x] [Task B4.1: Expert - attach readonly](./task-b4.1-expert-attach-readonly.md) — commit 44ad07e
   - [x] [Task B4.2: Expert - window-size largest](./task-b4.2-expert-window-size-largest.md) — commits e0ddb95 + 7d27904
-  - [ ] [Task B4.3: Tester - client lifecycle tests](./task-b4.3-tester-client-lifecycle-tests.md)
+  - [x] [Task B4.3: Tester - client lifecycle tests](./task-b4.3-tester-client-lifecycle-tests.md) — commit a60e06c, 6 tests
 
 - [x] Task B6: otmux client lifecycle — stale client detection + cleanup + layout restore
   **Priority:** 1 (CRITICAL - stale clients crush pane widths) **Status:** QA REVIEW (pending B6.5)
@@ -90,12 +90,12 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
   - [x] Task B6.2: Expert — client.detach uses -t + auto refresh-client -S — commit d860bec
   - [x] Task B6.3: Expert — client.cleanup <?filter:read-only> bulk-detach — commit d860bec
   - [x] Task B6.4: Expert — layout refresh always runs after detach — commit d860bec
-  - [ ] Task B6.5: Tester — 6 test cases in task file
+  - [x] Task B6.5: Tester — 6/6 ALL PASS
 
 - [ ] Task B5: otmux pane operations must update hiveMind registry (MVC View→Controller)
   **Priority:** 1 (CRITICAL - MVC consistency) **Status:** QA REVIEW (pending B5.2)
   - [x] Task B5.1: Expert — commits d0d3d92 + da032b1. View observer callbacks (split→panes.shifted, swap→panes.swapped, move/join→pane.moved). Controller handlers (refresh/atomic swap/rename). Registry.set TTL priority (30s, 3-field format).
-  - [ ] Task B5.2: Tester — test: swap two panes, verify hiveMind resolve returns correct targets after swap. Test: split pane, verify indices shift correctly in registry.
+  - [ ] Task B5.2: Tester — RERUN PENDING: expert fixes shipped (10e9fa0 swap normalization, b4c3b3f grep tolerance, 14d5866 TTL=0 short-circuit). Awaiting tester verification of all 8 B5.2 tests.
   - [x] Task B5.3: Architect — PUML at diagrams/mvc-pane-lifecycle.puml
 
   **Bugs found during fork (2026-04-30):**
@@ -108,10 +108,17 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
   - ~~BUG: sender prefix uses wrong identity after pane swap~~ — FIXED commit 163b0a0
   - BUG CRITICAL: hiveMind send.message leaks option numbers into wrong panes — can approve dangerous prompts. Resolve error cascades into send, bare digits hit permission prompts.
 
-- [ ] Task B7: otmux tree/tree.detailed completion broken — must use parameter.completion (DRY)
-  **Priority:** 1 (CRITICAL - usability broken) **Status:** QA REVIEW (pending B7.2)
-  - [x] Task B7.1: Expert — commit adee4cb. 6 methods rewired to delegate to parameter.completion.session (tree, tree.detailed, session.details, pane.list, rename, session.rename). layout.save duplicate also fixed. Single source at line 1350. NOTE: c2 boot bug observed (line 636 cd ng) — pre-existing, not this fix.
-  - [ ] Task B7.2: Tester — test: `otmux tree ` + Tab completes session names. Test: `otmux tree.detailed ` + Tab same. Test: matches `otmux attach ` + Tab output exactly.
+- [x] Task B7: otmux tree/tree.detailed completion broken — must use parameter.completion (DRY)
+  **Priority:** 1 (CRITICAL - usability broken) **Status:** QA REVIEW
+  - [x] Task B7.1: Expert — commit adee4cb. 6 methods rewired to parameter.completion.session.
+  - [x] Task B7.2: Tester — commit 212e072. 3 param-name fixes + full audit.
+  - [x] Task B7.3: Expert — commit 68b922c. c2 ROOT CAUSE: bare method name substring match in c2.get.function.declaration — 'tree' matched 'client.choose.tree'. Fix: class-qualified grep. Affects ANY method whose name is suffix of another.
+
+- [ ] Task B8: otmux window size floor — prevent 0x0 collapse in unattached sessions
+  **Priority:** 2 (HIGH - background agents broken) **Status:** IN PROGRESS
+  - [x] Task B8.1: Expert — proposal at task-b8-otmux-pane-size-floor-proposal.md. PO approved: Option A (explicit unlock), 80x40, auto-hook teams.restore, ~/config/otmux.size.locks.env
+  - [x] Task B8.2: Expert — commit 2196cdc. 200 lines, all methods + teams.restore hook. Live verified on 18 collapsed sessions. Minor bugs: grep bracket error on escaped session names, TRONinterface 57x33 with client attached.
+  - [x] Task B8.3: Tester — commit d66847a. 7 tests for window.size.* floor
 
 #### **EPIC C: CONTROLLER LAYER — hiveMind Lifecycle**
 
@@ -148,6 +155,13 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
   - [x] [Task D2.2: Expert - team.remove Triggers tronMonitor.remove](./task-d2.2-expert-remove-triggers-remove.md) — commit `597f93e` (same commit)
   - [ ] [Task D2.3: Tester - Integration Tests](./task-d2.3-tester-integration-tests.md) — currently being written by oosh-tester
 
+- [x] Task D3: tronMonitor MVC state sync — TRON REPORTED BUGS — **FIXED**
+  **Priority:** 0 (P0) **Status:** DONE — 20/20 windows healthy after reset
+  - [x] Task D3.1: Expert — commit aa7d6ac. verify-before-title fix.
+  - [x] Task D3.2: Expert — source of truth = screen hardcopy.
+  - [x] Task D3.4: Expert — commit e3424ed. ps-based verify + reset delegates to setup. 20/20 healthy.
+  - [ ] Task D3.3: Tester — verify switch correctness (window 0 title mismatch still present — verify-before-claim catches it correctly)
+
 #### **EPIC F: SCRUMMASTER CMM4 RELIABILITY**
 
 - [x] [Task F1: scrumMaster subscription velocity tracking](./task-f1-scrummaster-subscription-velocity.md)
@@ -159,7 +173,7 @@ hiveMind (Controller) — orchestrate Model instances in View panes, persist+res
 - [x] [Task F2: sweep.detect false-positive hardening](./task-f2-sweep-detect-false-positive-hardening.md)
   **Priority:** 2 (HIGH - Monitoring Reliability) **Status:** DONE — commit `1996c9a` prose-scrub strips comments + 6 fixtures
   - [x] Task F2.1: Expert — prose-scrub must strip ALL comment patterns (# and // and --)
-  - [x] Task F2.2: Expert — add test fixtures for each known false-positive pattern (code comments, menu text, preamble)
+  - [x] Task F2.2: Expert — commit 634b7b6. accept-edits tail-only match (5 lines) + fp-accept-edits-scrollback fixture. Fixes Epic I scrollback FP.
   - [x] Task F2.3: Tester — regression tests: feed code-content pane captures, verify no false triggers
 
 - [x] [Task F3: scrumMaster subscription API resilience](./task-f3-scrummaster-subscription-api-resilience.md)
@@ -205,6 +219,18 @@ Tasks that landed during Sprint 0 but were not in the original plan:
 - [x] Task B4.1: Expert — `otmux.attach <readonly>` + `attach.readonly` alias — commit `44ad07e`
 - [x] Task B4.2: Expert — `otmux.setup.default window-size=largest` + `aggressive-resize` + `window.size` method — commits `e0ddb95` + `7d27904`
 - [x] Task D1.4: Expert — tronMonitor prune EPERM + survive `__test_*` cleanup — commit `26c4fdf`
+- [x] Task B9: Expert — 5 otmux gap methods (window.layout.get/set, window.aggressive.resize, pane.list.format, window.list.format) — commit 7358fc9
+
+#### **EPIC I: CONTEXT-AWARE SEND**
+
+- [x] Task I1: Context-Aware Send — route every send through sweep.detect
+  **Priority:** 1 (CRITICAL - reliable communication) **Status:** DONE
+  - [x] Task I1.1: Expert — router primitive — commit 08ec428
+  - [x] Task I1.2: Expert — INFORM path — commit 580bf9e
+  - [x] Task I1.3: Expert — REMOTE CONTROL verbs — commit ccb8f4f
+  - [x] Task I1.4: Expert — QUEUE persistence + drain — commit bea1cbd
+  - [x] Task I1.5: Tester — 13/13 tests pass — commit 449ee34
+  - [ ] Task I1.6: Architect — PUML sequence + state diagram
 - [x] Task D1.5: Expert — pane resolution respects env var, validates existence — commit `a030f68`
 - [x] Task D1.6: Expert — screen session resilience + remove kill fix — commit `cd23b6e`
 - [x] Task D1.10: Expert — tronMonitor matches proven Tron recipe (named windows, inline attach cmd) — commit `0f9330b`
@@ -243,11 +269,11 @@ E1 (integration test)                        <- last, validates everything
   - [x] Task J1.2: Expert — completion with role.list + fallback-* variants. Colors match claudeCode list
   - [ ] Task J1.3: Tester — test with real multi-UUID scenario
 
-- [ ] [Task J2: hiveMind agent.fork.best implementation](./task-j2-agent-fork-best.md)
-  **Priority:** 1 (CRITICAL - One-Command Recovery) **Status:** PLANNED
-  - [ ] Task J2.1: Expert — select most recent non-dead session, fork into target pane
-  - [ ] Task J2.2: Expert — auto-send boot file after fork
-  - [ ] Task J2.3: Tester — test fork + boot cycle end-to-end
+- [ ] [Task J2: hiveMind agent.fork.best + claudeCode fork.to](./task-j2-agent-fork-best.md)
+  **Priority:** 1 (CRITICAL - One-Command Recovery) **Status:** QA REVIEW (pending J2.3)
+  - [x] Task J2.1: Expert — commit be3db2b. JSONL size primary, tool count secondary, 50KB filter
+  - [x] Task J2.2: Expert — commit b38e75c. Full 12-step flow: fork + /rename + pane.title + boot.md + registry. NEW: claudeCode.fork.to facade (auto-derives role from pane title, delegates to hiveMind)
+  - [ ] Task J2.3: Tester — end-to-end fork test
 
 - [ ] [Task J3: Update MVC diagrams with recovery flow](./task-j3-update-puml-recovery.md)
   **Priority:** 2 (HIGH - Documentation) **Status:** PLANNED
