@@ -1,46 +1,61 @@
 # Product Owner Context
 
-**Updated**: 2026-05-12 22:40
-**Role**: TRONinterface-agent (master PO)
-**Pane**: TRONinterface:0.0
+**Updated**: 2026-05-20 pre-rewind
+**Role**: oosh-po (forked PO for ooshTeam)
+**Pane**: ooshTeam:0.0
+**Machine**: McDonges (NOT MacStudio.native)
 
-## Teams
-| Team | Session | Status |
-|------|---------|--------|
-| TRONinterface | running | TRONinterface-agent(0.0) + SM(0.1, stuck loop task #9) |
-| ooshTeam | running | po(0.0) + architect(0.1) + expert(0.2) + tester(0.3) + shells(0.4,0.5) |
-| web4team | idle | po + architect + expert + tester |
-| upDownTeam | running | ud-po + ud-architect + ud-expert + ud-tester + shells |
-| unitTeam | running | unit-po + unit-architect + unit-expert + unit-tester + shells |
+## ooshTeam Layout (McDonges)
+| Pane | Agent | Status |
+|------|-------|--------|
+| 0.0 | oosh-po (me) | 89% context — being rewound |
+| 0.1 | oosh-architect | ACTIVE |
+| 0.2 | oosh-expert | ACTIVE |
+| 0.3 | oosh-tester | COMPLETED — idle |
+| 0.4 | oosh-expert-shell | bash |
+| 0.5 | oosh-tester-shell | SSH to MacStudio |
 
-## Sprint 0 — DONE (QA phase)
-All expert epics shipped. B5.2 8/8 PASS. tronMonitor fixes landed (aa7d6ac, e3424ed).
+## Sprint 0 — Status
 
-## Sprint 1 — State Correctness (IN PROGRESS)
-SC-A: 2/3 (diff b4447f6, audit 636489f, tester A.3 pending)
-SC-B: 1/3 (events 8feac46, B.2 bundled, B.3 tester pending)
-SC-D: D.1 assigned to expert
-SC-E: E.1 findings + E.2 shipped (4 commits triple defense)
-SC-C/F/G: not started
+### ALL MAJOR EPICS DONE
+A (Model), B (View + size floor + c2 fix), C (Controller), D (tronMonitor), F (scrumMaster CMM4), G (Critical fixes), I (Context-aware send 13/13 tests)
 
-## Delivered This Session
-- tronMonitor.fit — expert commit, verified (40 lines, task #8 done)
-- tronMonitor MVC state sync — aa7d6ac verify-before-claim
-- teams.env garbage fix — ebc8b5e triple defense
-- Registry cleanup — removed phantoms 0.99/0.98/0.4
-- ooshTeam layout fixed — 30 stale panes killed, shells recreated
-- Dev branch sync analysis — architect delivered, 18 scripts, 200+ methods, checkboxes for Tron
+### Migration Fixes Delivered
+- MIG-1: teams.save ghost filter — commit 803bc86
+- Layout integration: team.migrate/pull/restart use otmux layouts — commit f39cb77
+- ossh config IdentityFile fixed (user config)
 
-## Open Tasks
-#9: SM rewind (stuck CMM4 loop)
-#10: Tester D3.3 tronMonitor switch verification
-#11: Sprint 1 progress tracking
-#14: agentRoom stale room handling (queued)
+### Open Bugs
+1. otmux split.h/split.v naming swap — pending
+3. ensure.pane excessive splits (may be moot with layout.restore) — pending
+6. scp self-migration truncation (tmpdir workaround) — pending
+
+### McDonges Discovery
+- hostname=McDonges, NOT MacStudio
+- Clone trial was self-copy — cross-machine test needed
+- SSH to MacStudio: ssh -i ~/.ssh/id_rsa -p 9922 donges@home.donges.it
+- JONSLs + layouts downloaded from MacStudio exist locally
+- Git repo synced (main branch)
+
+### Subscription Economics
+- Sustained generation: FREE (0%/hour)
+- New prompt: ~15-20% per 1M agent
+- sweep false-ACTIVE: ALWAYS manual verify
+
+## After Rewind
+1. Read this file + learnings.md
+2. hiveMind team.sweep ooshTeam
+3. scrumMaster subscription
+4. Check agent contexts before assigning
+5. Use 0.4 for local, 0.5 for MacStudio remote
 
 ## RULES (eternal)
 - NO COMPACT — only TRON rewinds
-- Track assignments in TaskList — VERIFY delivery with grep/git log
-- SM CMM4 reminders are VALID — check before dismissing
 - hiveMind for agents, otmux for transport
+- Manual verify every 20 min — sweep lies
 - Save context at 35%
 - NEVER ASSUME — ALWAYS MEASURE
+- No output filtering
+- PO delegates, never debugs
+- /rewind: ALWAYS option 2
+- ossh login MacStudio.home (not .native — that's localhost here)
