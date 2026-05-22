@@ -220,6 +220,7 @@ Every ~30 minutes (rotate between teams):
 - CMM4 git push check: DELEGATE to oosh-po — ask PO to verify push, don't run git commands yourself (triggers permission prompts that block SM sweep loop)
 - NEVER run `cd` + git commands from SM — always delegate git tasks to the corresponding PO
 - Unpushed code blocks clone trials to remote hosts (McDonges)
+- SM asks PO to REVIEW permission prompts, not blindly unblock — PO must monitor the prompt first, then decide. "Run: hiveMind agent.monitor <name> <session> 10 — then: hiveMind agent.unblock <name>" is the correct format. NEVER just say "Run: hiveMind agent.unblock" without review step.
 - CRITICAL FAILURE (2026-05-19): Missed oosh-expert hitting 100% context — was sweeping states but not checking context health. Context health scan MUST happen every 10 min on ALL active agents, not just when convenient
 - Context scan is SM's PRIMARY job alongside unblocking — a missed 100% = dead agent = lost work
 
