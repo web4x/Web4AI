@@ -12,23 +12,25 @@
 - Server source: `src/ts/server/server.ts` (~900 lines)
 - Room class: `src/ts/server/Room.ts` (~300 lines)
 - Client source: `src/public/ts/` (app.ts, RawBinClient.ts, RoomBrowser.ts, RoomView.ts)
-- Tests: `test/vitest/` (6 test files)
+- Tests: `test/vitest/` (8 test files)
 - Scrum: `scrum.pmo/sprints/`
-- Server port: HTTPS 4444 (was 3443 in QnD)
+- Server port: HTTPS 4444
 
 ## Test Suite Status
-- **213 unit tests** across 6 files, **211 PASS / 2 expected FAIL** (shell scripts not yet created)
-- Duration: 2.4s (well under 5s target)
+- **283 unit tests** across 8 files, **283/283 PASS**
+- Duration: 2.6s
 
 ### Test Files
 | File | Tests | Status |
 |------|-------|--------|
 | room.test.ts | 33 | 33/33 PASS |
-| server.test.ts | 57 | 55/57 PASS (2 FAIL: rawbin.sh + stop.sh don't exist yet) |
+| server.test.ts | 57 | 57/57 PASS |
 | client.test.ts | 22 | 22/22 PASS |
 | profile.test.ts | 22 | 22/22 PASS |
 | userkeys.test.ts | 61 | 61/61 PASS |
 | chat.test.ts | 18 | 18/18 PASS |
+| pwa.test.ts | 40 | 40/40 PASS |
+| offline.test.ts | 30 | 30/30 PASS |
 
 ### Test Architecture
 - ALL unit tests — no running server dependency
@@ -36,18 +38,20 @@
 - Room class tested directly via import
 - File system tests use temp dirs (os.tmpdir)
 - `it.each` used for route and message type validation
+- PWA tests check file existence and content
+- Offline tests use in-memory mock OfflineStore
 
 ## Completed Work
 
 ### Sprint 1 — RawBin Foundation
-- T3.3: Wrote room.test.ts (33 tests, 9 describe blocks) — Room class CRUD
+- T3.3: Wrote room.test.ts (33 tests) — Room class CRUD
 - T3.4: Fixed 5 API mismatches (addChat, return false, persistDir string, mockWs readyState)
-- T3.5: Fixed broadcast-with-exclude mock clear — 32/33 PASS
-- T4.6: Wrote server.test.ts (33 tests) — routes, WS handlers, data separation
-- T5.7: Wrote client.test.ts (23 tests) — build, app loading, WS protocol, room flow
+- T3.5: Fixed broadcast-with-exclude mock clear
+- T4.6: Wrote server.test.ts — routes, WS handlers, data separation
+- T5.7: Wrote client.test.ts — build, app loading, WS protocol, room flow
 
 ### Sprint 2 — Identity & SSH
-- T7.7: Wrote profile.test.ts (18→22 tests) — UPDATE_PROFILE, GET_USER_INFO, profileCommitted, secretCode, backfill
+- T7.7: Wrote profile.test.ts (22 tests) — UPDATE_PROFILE, GET_USER_INFO, profileCommitted, secretCode, backfill, backward compat
 - T9.7: Wrote userkeys.test.ts (27 tests) — createUserHome, generateUserKeypair, permissions, idempotent
 - T10.7: Extended userkeys.test.ts (+20 tests) — device keypair, sign/verify, enrollDevice, DEVICE_ENROLL handler
 - T12.8: Extended userkeys.test.ts (+14 tests) + profile.test.ts (+3 tests) — challenge-response, backward compat
@@ -59,7 +63,12 @@
 
 ### Sprint 4 — Traceability
 - T23-T25: Audited 28 task files across Sprints 1-3 — report at sprint-4-traceability/audit-report.md
-- T17 SUPPORT: Standing by to run full suite after expert fixes
+
+### Sprint 5 — PWA Offline (Tron approved)
+- T31: Wrote pwa.test.ts (20 tests) — sw.js, manifest.json, icons, app.html PWA integration
+- T32: Extended pwa.test.ts (+9 tests) — Cache-Control headers, source map production blocking
+- T33: Extended pwa.test.ts (+11 tests) — reconnect method, messageQueue, queue-on-disconnect, FIFO replay
+- T36: Wrote offline.test.ts (30 tests) — IndexedDB OfflineStore: messageQueue persist/replay, roomState cache, profile cache, background sync
 
 ## Rules (Eternal)
 - P15: NEVER filter output (no 2>/dev/null, | head, | tail, | grep)
