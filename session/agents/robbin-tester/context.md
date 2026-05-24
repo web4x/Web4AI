@@ -9,88 +9,77 @@
 
 ## Base Paths
 - Project root: `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
-- Server source: `src/ts/server/server.ts`
-- Room class: `src/ts/server/Room.ts`
-- Client source: `src/public/ts/` (app.ts, RawBinClient.ts, RoomBrowser.ts, RoomView.ts)
-- Components: `src/public/ts/components/` (rb-update-banner, rb-header, rb-overlay, rb-chat-sheet, rb-member-badge, rb-member-list, rb-qr-popup)
-- Tests: `test/vitest/` (11 test files)
-- E2E: `test/e2e/` (6 Playwright specs)
+- Server: `src/ts/server/server.ts`, Room.ts, UserKeys.ts, UserCrypto.ts, FileApi.ts
+- Client: `src/public/ts/` (app.ts, edit.ts, RawBinClient.ts, RoomBrowser.ts, RoomView.ts)
+- Components: `src/public/ts/components/` (rb-update-banner, rb-header, rb-overlay, rb-chat-sheet, rb-member-badge, rb-member-list, rb-qr-popup, rb-avatar, rb-editor-layout, rb-file-tree, rb-code-editor, rb-preview, rb-editor-toolbar)
+- Tests: `test/vitest/` (13 test files)
+- E2E: `test/e2e/` (Playwright specs)
 - Scrum: `scrum.pmo/sprints/`
 - Server port: HTTPS 4444
 
 ## Test Suite Status
-- **437 unit tests** across 11 files, **437/437 PASS**
-- Duration: ~5s
-- **Playwright E2E**: 1/6 PASS (server down + stale selectors from Sprint 6 refactor)
+- **631 unit tests** across 13 files, **629/631 PASS**
+- 2 expected FAIL: /md/↔/edit/ cross-links not added yet
+- Duration: ~6s
 
 ### Test Files
-| File | Tests | Status |
-|------|-------|--------|
-| room.test.ts | 33 | PASS |
-| server.test.ts | 56 | PASS |
-| client.test.ts | 22 | PASS |
-| profile.test.ts | 22 | PASS |
-| userkeys.test.ts | 61 | PASS |
-| chat.test.ts | 18 | PASS |
-| pwa.test.ts | 40 | PASS |
-| offline.test.ts | 30 | PASS |
-| components.test.ts | 97 | PASS (jsdom) |
-| crypto.test.ts | 25 | PASS |
-| avatar.test.ts | 33 | PASS |
+| File | Tests |
+|------|-------|
+| room.test.ts | 33 |
+| server.test.ts | 56 |
+| client.test.ts | 22 |
+| profile.test.ts | 22 |
+| userkeys.test.ts | 61 |
+| chat.test.ts | 18 |
+| pwa.test.ts | 40 |
+| offline.test.ts | 30 |
+| components.test.ts | 144 (jsdom) |
+| crypto.test.ts | 25 |
+| avatar.test.ts | 33 |
+| fileapi.test.ts | 79 |
+| editor.test.ts | 67 |
 
-### Test Architecture
-- ALL unit tests — no running server dependency
-- Handler logic extracted and tested with mocks
-- Room class tested directly via import
-- File system tests use temp dirs (os.tmpdir)
-- Crypto tests use real RSA-2048 + AES-256-GCM
-- Component tests use jsdom environment
-- Playwright for visual verification (375x812 viewport, screenshots)
-
-## Completed Work
+## Completed Sprints
 
 ### Sprint 1 — RawBin Foundation
-- T3.3-T3.5: room.test.ts — Room class CRUD, API alignment fixes
-- T4.6: server.test.ts — routes, WS handlers, data separation
-- T5.7: client.test.ts — build, app loading, WS protocol, room flow
+- T3-T5: room.test.ts, server.test.ts, client.test.ts
 
 ### Sprint 2 — Identity & SSH
-- T7.7: profile.test.ts — UPDATE_PROFILE, GET_USER_INFO, secretCode, backfill
-- T9.7+T10.7+T12.8: userkeys.test.ts — SSH keys, device keys, challenge-response
+- T7-T12: profile.test.ts, userkeys.test.ts (SSH+device+challenge)
 
 ### Sprint 3 — E2E Hardening
-- T14: Refactored server+client tests from integration to unit
-- T16: Deployment tests — health endpoint, version, shell scripts
-- T20: chat.test.ts — broadcast, history, limits, multi-user
+- T14: Refactored to unit tests. T16: deployment. T20: chat.test.ts
 
 ### Sprint 4 — Traceability
-- T23-T25: Audited 28 task files — report at sprint-4-traceability/audit-report.md
+- T23-T25: Audited 28 task files — audit-report.md
 
 ### Sprint 5 — PWA Offline
-- T31-T33: pwa.test.ts — SW, manifest, caching, reconnect queue
-- T36: offline.test.ts — IndexedDB OfflineStore
-- T37: Verified private rooms, update banner (Playwright visual)
-- Found update banner bug (silent version swallow) — expert fixed v0.2.4
-- Verified v0.2.4 → v0.2.7 (safe-area insets, CACHE_NAME, skipWaiting)
+- T31-T36: pwa.test.ts, offline.test.ts
+- Found update banner bug (silent version swallow) — fixed v0.2.4
+- Found lobby notch bug (padding:0 killed safe-area) — fixed v0.2.12
 
 ### Sprint 6 — Web Components
-- T39-T45: components.test.ts — rb-overlay, rb-update-banner, rb-header, rb-chat-sheet, rb-member-badge/list, rb-qr-popup, server page shell, lobby notch
-- T46: Verified cleanup — no orphaned imports, rb-overlay unused externally
-- Found lobby notch bug (padding:0 killed safe-area) — expert fixed v0.2.12
+- T39-T46: components.test.ts (rb-overlay, banner, header, chat, members, qr, server pages)
 
 ### Sprint 7 — Encrypted Storage + Avatars
-- T47: crypto.test.ts (25 tests) — encryptFile, decryptFile, roundtrip, wrong-user rejection, tampered ciphertext, 1MB file, listUserFiles, deleteFile, fileExists
-- T48+T49: avatar.test.ts (17 tests) — avatar endpoint 200/404, ETag, Content-Type, profile.avatar URL, avatar.enc storage
-- T51-T53: Extended avatar.test.ts (+16 tests) — upload API (500KB limit, MIME validation), avatar visible everywhere, room join uses profile.avatar with /icon-192.png fallback
-- T54: Verified cleanup — avatarCache still present (3 lines, expert must remove), fetchUniqueAvatar moved to profile creation only, no plaintext images
+- T47: crypto.test.ts — AES-256-GCM + RSA hybrid encryption
+- T48-T53: avatar.test.ts — upload, serve, ETag, profile URL, room avatars
+- T54-T57: Avatar fixes — PDCA percentage crop, reactivity, propagation
+
+### Sprint 8 — Monaco Editor
+- T60-T61: fileapi.test.ts — readDir, readFile, writeFile, conflict detection
+- T62: Security tests — path sanitization (node_modules, .git, data/users), authorization
+- T63-T70: editor.test.ts — edit.html, edit.ts, rb-editor-layout, rb-file-tree, rb-code-editor, rb-preview, save handler, rb-editor-toolbar
+- T71-T72: Mobile responsive layout, /md/↔/edit/ cross-links
+- T73: Standing by for expert E2E results
 
 ## Known Issues
-- Playwright E2E 5/6 FAIL: 4 = server not running (ERR_CONNECTION_REFUSED), 1 = stale chat shadow DOM selector
-- avatarCache Map still in server.ts (3 lines) — expert must remove
-- rb-overlay exists but 0 external imports — dialogs not refactored to use it
+- 2 vitest FAIL: /md/ pages don't have /edit/ cross-links yet
+- Playwright E2E: stale selectors from Sprint 6 component refactor + server dependency
+- avatarCache still in server.ts (expert must remove)
 
 ## Rules (Eternal)
-- P15: NEVER filter output (no 2>/dev/null, | head, | tail, | grep)
+- P15: NEVER filter output
 - I do NOT implement features — I test, verify, find bugs, report
 - Expert does not test — tester owns test execution
 - Unit test handler logic directly — no server dependency for vitest
