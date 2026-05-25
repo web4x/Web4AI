@@ -56,6 +56,7 @@ profile-editor, room-identity(6/6), room-lifecycle
 ## QUEUED POST-COMPACT JOB (PO assigned 2026-05-25)
 1. **T80 verify (v0.4.7)** — independently re-run FULL Playwright suite: `npx playwright test --reporter=line`. Expert shipped one-shot onSave fix, self-reported 21/21. MY confirmation is the gate before Tron QA. Target: 21/21 (the 2 prior fails were device-enrollment + new-user own-enrollment-code).
 2. **T78 verify (v0.4.8, commit f5d7df4 — READY)** — verify: (1) lobby room cards show full UUID + 💾 Persistent badge (.room-persist) + owner attribution ('you' / 'by <name>'); (2) full E2E stays 21/21 no regression. NEW .room-persist badge + .room-owner/.room-id CSS stubs. Note: /api/health says 0.4.7 until iphone:0.1 restart (PO-gated) but running server serves new bundle (build-manifest per-request).
+3. **T81 verify (v0.4.9, commit f083a29 — READY)** — TS1-TS5 in `scrum.pmo/sprints/sprint-10-contacts-ui/task-81-member-click-vcard.md`. Implemented: (1) USER_INFO key fix msg.user, (2) rb-avatar readonly on member badges (tap avatar bubbles → opens contact sheet NOT editor), (3) listeners attach once (TS4 no-stacking). Read the task file for exact TS1-TS5 scenarios.
 - Run from `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
 
 ## Known Issues
