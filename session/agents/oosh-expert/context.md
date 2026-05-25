@@ -8,7 +8,40 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.1
-**Updated**: 2026-05-18 LATE — pre-rewind save + new directive captured
+**Updated**: 2026-05-25 LATE — context-critical save (SC-H wave in progress)
+
+## Active sprint context (2026-05-25)
+
+**SC-H wave** — MVC audit + lifecycle gap closure:
+
+| Task | Commit | Status |
+|------|--------|--------|
+| SC-H.1 findings (MVC matrix 12×5) | `25c8138` (Web4AI repo) | DELIVERED |
+| SC-H.2 Gap C: agent.restart + team.restart emit agent.spawned | `f707fa9` | DONE |
+| SC-H.2 Gap B: team.remove S1/S2 orphan prune (bash 3.2 fallback) | `e843391` | DONE |
+| SC-H.2 Gap A: defer-probe pattern for session.store | queued | NEXT |
+
+**Wave context**:
+- SC-H.1 surfaced 6 Gap Classes (A-F) in `scrum.pmo/sprints/sprint-1-state-correctness/task-sc-h.1-findings.md` (Web4AI repo, commit 25c8138)
+- Gap C (events from restart paths) — 8 lines, 1 commit, signature matches agent.bootstrap line 5563
+- Gap B (orphan pruning) — turns out handler chain ALREADY worked on bash 5; gap was bash 3.2 events no-op (task #29 gate). Added direct prune fallback gated on `[ -z "$HIVEMIND_EVENTS_AVAILABLE" ]`. Idempotent on bash 5.
+- Gap A (probe race) — robbinTeam root cause. Plan: `private.hiveMind.session.store.deferred` retries probe at 5s/15s/30s post-launch. Requires careful test design — affects team.setup/agent.bootstrap/agent.restart/team.restart/teams.restore.
+
+## Earlier 2026-05-24/25 wave (CMM4 naming + audit invariants)
+
+| Commit | What |
+|--------|------|
+| `e7d5a8a` | Option C unified naming: all /rename + pane.lock = role@HIVEMIND_HOST. Added I8 (pane coverage) + I9 (title format) audit invariants. |
+| `53f2bd9` | Added I10 (sessions.env coverage) — symmetric to I8 for S2. Probe-required entries skipped to avoid collision corruption. |
+| `194568a` | Task #29 bash 3.2 compat: assoc arrays → delimited string lookups across hiveMind (events, claude.processes, agents.discover, consistency.audit, consistency.fix.table, teams.restore TARGET_PANE_COUNT) + otmux (status, tree, tree.detailed). `${t,,}` → tr. Events system gated by BASH_VERSINFO. |
+
+## Active task state
+
+- robbinTeam 6 panes + 1 new window (1.0 planner, 1.1 req) — all panes registered in S1 (post-manual registry.set). S2 incomplete (3/6 Claude panes) — needs operator `hiveMind agent.session.probe` per missing pane OR defer-probe (Gap A).
+- Web4RawBin project dir: `/Users/Shared/Workspaces/2cuGitHub/Web4RawBin` — all robbinTeam agents cwd `/Users/Shared/Workspaces/AI/Claude/` (not project dir per SM directive).
+- Architect at ooshTeam:0.1 finalized Option C design (drops @model from /rename).
+
+
 
 ## NEW FEATURE LANDED (2026-05-18, just before rewind — commit `dc0cc00`)
 

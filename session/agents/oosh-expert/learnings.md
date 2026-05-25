@@ -1,5 +1,17 @@
 # OOSH Expert Learnings
 
+## NEW: Audit findings can be wrong — verify with live test before recommending fix (2026-05-25, SC-H.2 Gap B)
+
+**SC-H.1 finding said**: `team.remove` "leaves orphan S1/S2 entries". PO assigned Gap B to fix the handler chain. I went to add the prune logic — discovered the handlers ALREADY existed (lines 685-700) and ALREADY worked on bash 5 (verified live: synthetic test session, seed entries in roles/sessions/teams, run team.remove, all three files cleaned).
+
+**Real gap**: the handler chain runs through `events.emit` which is gated by `BASH_VERSINFO >= 4` (per task #29). On macOS-default bash 3.2, events are silent no-op → handlers never fire → orphans remain. The grep-based audit in SC-H.1 saw `events.emit "team.destroyed"` and assumed it worked — but didn't check the bash-version gate.
+
+**Lesson**: when an audit reports "command X doesn't update store Y", actually run the command and inspect the store. Static grep misses runtime branches (version gates, conditional handlers, `[ -n "$VAR" ]` guards). Especially when the codebase has multiple bash compatibility paths.
+
+**Fix shipped (e843391)**: direct prune fallback in `team.remove` gated on `[ -z "$HIVEMIND_EVENTS_AVAILABLE" ]`. Idempotent: handlers prune first on bash 5; fallback is no-op there. On bash 3.2, fallback IS the prune.
+
+**Pattern for future bash 3.2 compatibility checks**: every commit that ships an event-handler-based feature must also have a direct-call fallback gated on `[ -z "$HIVEMIND_EVENTS_AVAILABLE" ]` for the same effect. The events system is a bash-5-only optimization, not a guarantee.
+
 ## NEW: TMUX_PANE for subprocess-safe self-pane resolution (2026-05-17, Tron P0 #3)
 
 **Production-broken-since-forever bug:** `tmux display-message -p '#{format}'` WITHOUT
