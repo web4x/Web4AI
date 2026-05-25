@@ -53,6 +53,11 @@ profile-editor, room-identity(6/6), room-lifecycle
 - Components: jsdom environment
 - Playwright: visual verification 375x812 + disk verification
 
+## QUEUED POST-COMPACT JOB (PO assigned 2026-05-25)
+1. **T80 verify (v0.4.7)** — independently re-run FULL Playwright suite: `npx playwright test --reporter=line`. Expert shipped one-shot onSave fix, self-reported 21/21. MY confirmation is the gate before Tron QA. Target: 21/21 (the 2 prior fails were device-enrollment + new-user own-enrollment-code).
+2. **T78 verify (v0.4.8)** — expert implementing; verify when ready.
+- Run from `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
+
 ## Known Issues
 - 2 E2E specs (device-enrollment, new-user) have own enrollment code, #de-submit disabled
 - Playwright shadow DOM <img> screenshots unreliable — verify with curl
