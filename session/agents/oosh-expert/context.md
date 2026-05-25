@@ -8,7 +8,30 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.1
-**Updated**: 2026-05-25 LATE — context-critical save (SC-H wave in progress)
+**Updated**: 2026-05-25 11% LATE — CRITICAL PRE-REWIND SAVE (SC-H wave mid-flight)
+
+## ⚠️ POST-REWIND: READ THIS FIRST
+
+You were rewound at 11% context. Last 4 commits (most recent first):
+- `a1f6594` (Web4AI) — this context + learnings save
+- `e843391` (oosh) — SC-H.2 Gap B: team.remove S1/S2 bash 3.2 fallback prune
+- `f707fa9` (oosh) — SC-H.2 Gap C: agent.spawned events from agent.restart + team.restart
+- `25c8138` (Web4AI) — SC-H.1 findings: MVC audit matrix (12 commands × 5 stores)
+
+**Next assignment standing**: SC-H.2 **Gap A** — defer-probe pattern for `private.hiveMind.session.store`.
+- **Problem**: `agent.session.probe` 8s window misses if Claude not ready → `session.store` never runs → S2 orphan (the robbinTeam root cause).
+- **Affected**: `team.setup`, `agent.bootstrap`, `agent.restart`, `team.restart`, `teams.restore`.
+- **Sketch**: `private.hiveMind.session.store.deferred <pane> <role>` schedules retries at 5s/15s/30s. Idempotent — silently does nothing if S2 already populated.
+- **Detector exists**: I10 in `consistency.audit` (commit `53f2bd9`) catches missing-entry case post-fact. Defer-probe is the prevention side.
+
+**Reading order post-rewind**:
+1. This context.md (you are here)
+2. `learnings.md` — has the new "audit findings can be wrong" lesson from Gap B
+3. `boot.md` for daily setup
+4. `~/oosh/hiveMind` line 685-700 (team.destroyed handlers, working pattern to mimic)
+5. `~/oosh/hiveMind` line 5563 (agent.bootstrap events.emit "agent.spawned" — canonical signature)
+6. `scrum.pmo/sprints/sprint-1-state-correctness/task-sc-h.1-findings.md` (Web4AI) for full gap context
+
 
 ## Active sprint context (2026-05-25)
 
