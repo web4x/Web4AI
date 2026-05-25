@@ -63,6 +63,11 @@ profile-editor, room-identity(6/6), room-lifecycle
    - TS4: exactly 1 GET_USER_INFO per tap (listeners attach once, no stacking)
    - TS5: editable avatars (own profile editor) unaffected
    Impl: USER_INFO key fix msg.user, rb-avatar readonly on member badges, listeners-attach-once.
+4. **T84 verify (v0.4.10, commit 24482f7 — READY)** — task file: `scrum.pmo/sprints/sprint-12-editor-fixes/task-84-editor-back-button.md`. Editor back button derives parent dir from this._path. Test page is /edit/<path>, change in EDITOR bundle (edit-SZJS7HJV.js):
+   - TS1: deep file a/b/c.md → back goes /md/a/b/
+   - TS2: root file README.md → back goes /md/ (guarded, no //)
+   - TS3: label is '← Back'
+   - TS4: 📂 still points to /md/
 - Run from `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
 
 ## Known Issues
