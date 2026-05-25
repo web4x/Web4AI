@@ -1,73 +1,78 @@
 # Product Owner Context
 
-**Updated**: 2026-05-18 late session. SM loop consuming context. 8 open tasks.
+**Updated**: 2026-05-25 pre-rewind
+**Role**: TRONinterface-agent (master PO) / oosh-po
+**Pane**: TRONinterface:0.0 on MacStudio.native
+**Session**: oosh-po@MacStudio
+
+## Teams
+| Team | Status | Agents |
+|------|--------|--------|
+| TRONinterface | running | TRONinterface-agent(0.0) + SM(0.1 stale loop) + PO-shell(0.2) + tronMonitor(0.3) |
+| ooshTeam | running | po(0.0) + architect(0.1) + expert(0.2) + tester(0.3) + shells(0.4,0.5) |
+| robbinTeam | running | po(0.0) + architect(0.1) + expert(0.2) + tester(0.3) + shells(0.4,0.5) + planner(1.0) + req(1.1) |
+| web4team | idle | po + architect + expert + tester |
+| upDownTeam | running | ud-po + ud-architect + ud-expert + ud-tester + shells |
+| unitTeam | running | unit-po + architect + expert + tester + shells |
+
+## Sprint 0 — DONE
+All epics shipped. B5.2 8/8 PASS. Final QA items completed.
+
+## Sprint 1 — State Correctness (IN PROGRESS)
+- SC-A: 2/3 (diff b4447f6, audit 636489f — A.3 tester pending)
+- SC-B: 1/3 (events 8feac46 — bash 3.2 compat fixed 194568a)
+- SC-D: D.1 in progress
+- SC-E: E.1 findings + E.2 shipped
+- SC-C/F/G: not started
+- Naming migration shipped (9c2cc70) — BUT pane title bug remains (fork/setup produce @model not @hostname)
 
 ## Completed This Session
-- tronMonitor.fit (expert)
-- otmux fast-path: 40s→1.1s (a68db7c + 97b3020)
-- otmux.fit (expert)
-- team.migrate single-team (dc0cc00)
-- Items 7-10 restore hardening (84df40a, b5e76f0, ae57f35, 0e268c2)
-- Dev branch sync analysis (architect)
-- Doc symlinks (b153f1d)
-- Trainer remote ops reference
+- robbinTeam created (4 agents + 2 shells + planner + req engineer)
+- robbin-planner bootstrapped at 1.0 (new window)
+- robbin-req forked from architect at 1.1 (with /remote-control)
+- Bash 3.2 compat fix (194568a) — declare -g + assoc arrays
+- robbinTeam registry repaired after pane-shift incident
+- Window size floor applied to robbinTeam windows 0+1
+- Naming migration shipped (9c2cc70) — 9 write paths
+- BUG-T5 source hang fix (bfb8d3c) — 0.055s vs 30s
+- Task #26 configDir completion (c6af20e)
+- Task #29 bash compat (194568a)
+- McDonges clone trial complete — 6 bugs found
+- Clone trial bug B1+B2 fixed
+- tronMonitor MVC state sync (aa7d6ac)
 - teams.env garbage fix (ebc8b5e)
-- B5.2 8/8 PASS
-- McDonges disaster report + architect review
+- SM recovered from CMM4 loop (task #9)
+- Git push enforcement (task #25)
 
-## Open Tasks (8)
-#9: SM rewind CRITICAL
+## Open Tasks
 #10: Tester D3.3 tronMonitor verification
+#11: Sprint 1 progress tracking
 #14: agentRoom stale rooms
 #16: Pre-existing issues audit
 #20: agents.discover 57s bottleneck
-#22/#23: McDonges cleanup — blocked on Tron auth, P0-P5 plan ready
-- Tester testing restore hardening (4 commits)
+#22/#23: McDonges cleanup — blocked on Tron auth
+#28: SM identity — local stale vs McDonges real
+#30: consistency.audit coverage invariant
 
-## Waiting On Tron
-- McDonges remote cleanup auth (P0: forensic snapshot, P1: kill 9 claudes, P2-P5)
-- SM rewind/kill decision
-- Dev branch sync checkboxes review
-**Role**: TRONinterface-agent (master PO)
-**Pane**: TRONinterface:0.0
+## Pending from Tron (unanswered)
+- Monaco editor sprint planning — Tron asked to plan a big sprint adding Monaco editor to "the browser" for editing source files. Asked for clarification on which browser/UI. No answer yet.
+- Naming convention bug — fork/setup produce @model not @hostname in pane titles. Reported to oosh-expert + tester.
 
-## Teams
-| Team | Session | Status |
-|------|---------|--------|
-| TRONinterface | running | TRONinterface-agent(0.0) + SM(0.1, stuck loop task #9) |
-| ooshTeam | running | po(0.0) + architect(0.1) + expert(0.2) + tester(0.3) + shells(0.4,0.5) |
-| web4team | idle | po + architect + expert + tester |
-| upDownTeam | running | ud-po + ud-architect + ud-expert + ud-tester + shells |
-| unitTeam | running | unit-po + unit-architect + unit-expert + unit-tester + shells |
-
-## Sprint 0 — DONE (QA phase)
-All expert epics shipped. B5.2 8/8 PASS. tronMonitor fixes landed (aa7d6ac, e3424ed).
-
-## Sprint 1 — State Correctness (IN PROGRESS)
-SC-A: 2/3 (diff b4447f6, audit 636489f, tester A.3 pending)
-SC-B: 1/3 (events 8feac46, B.2 bundled, B.3 tester pending)
-SC-D: D.1 assigned to expert
-SC-E: E.1 findings + E.2 shipped (4 commits triple defense)
-SC-C/F/G: not started
-
-## Delivered This Session
-- tronMonitor.fit — expert commit, verified (40 lines, task #8 done)
-- tronMonitor MVC state sync — aa7d6ac verify-before-claim
-- teams.env garbage fix — ebc8b5e triple defense
-- Registry cleanup — removed phantoms 0.99/0.98/0.4
-- ooshTeam layout fixed — 30 stale panes killed, shells recreated
-- Dev branch sync analysis — architect delivered, 18 scripts, 200+ methods, checkboxes for Tron
-
-## Open Tasks
-#9: SM rewind (stuck CMM4 loop)
-#10: Tester D3.3 tronMonitor switch verification
-#11: Sprint 1 progress tracking
-#14: agentRoom stale room handling (queued)
+## Token Economics
+- Sustained generation: FREE (0%/hour)
+- New prompt: ~15-20% per agent
+- Push after every commit
 
 ## RULES (eternal)
 - NO COMPACT — only TRON rewinds
-- Track assignments in TaskList — VERIFY delivery with grep/git log
-- SM CMM4 reminders are VALID — check before dismissing
 - hiveMind for agents, otmux for transport
+- Sweep → capture → decide → act
+- No output filtering
+- PO delegates, never debugs
 - Save context at 35%
 - NEVER ASSUME — ALWAYS MEASURE
+- SM reports to oosh-po NOT TRONinterface:0.0
+- /rewind ALWAYS option 2
+- Git push after every commit
+- Accept-edits on idle agents = expected, don't unblock
+- Sprint files are PO responsibility
