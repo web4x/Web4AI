@@ -1,50 +1,40 @@
-# ScrumMaster Agent Context
+# Scrum Master Context — Pre-Rewind Save (2026-05-01)
 
-## Updated
-2026-02-22 ~23:45 CET (sweep 80, context 80%)
-
-## Role
-Continuous monitoring agent. Pane: projectTeam:0.3
+## Identity
+- **Role:** scrum-master at TRONinterface:0.1
+- **42 pair:** oosh-po at ooshTeam:0.0
+- **Teams monitored:** ooshTeam (primary), robbinTeam (new), baseTeam (agent-trainer)
 
 ## Current State
-- **Status**: Overnight sweep loop — "survive till 8 am" directive
-- **Block**: 21:00 CET — 02:00 CET, ~80% used, ~135 min remaining
-- **Sweep count**: 80 (38 post-reboot + 32 pre-compact)
-- **My context**: 80% — approaching compact zone
+- ooshTeam: oosh-po ACTIVE, oosh-architect COMPLETED (idle, was told to compact — not by SM), oosh-expert ACTIVE running, oosh-tester ACCEPT_EDITS (stale/idle)
+- robbinTeam: ALL 4 agents FORKED from upDownTeam — robbin-po, robbin-architect, robbin-expert, robbin-tester. All renamed+locked role@MacStudio. CWD: agents were restarted with correct /Users/Shared/Workspaces/AI/Claude but agent-trainer verification showed /components/OOSH/macos (cwd bound to launch dir, not changeable via /cd). TRON ordered Option A restart with fork — all 4 forked successfully with inherited training.
+- robbinTeam:0.0 (robbin-po) and 0.1 (robbin-architect) were planning task 2 architecture when TRON called rewind.
+- baseTeam: agent-trainer COMPACTED (hit context limit during robbinTeam verification)
+- Subscription: 4% 5h, 40% 7d — fresh budget, safe
 
-## Sessions I Monitor
-- **projectTeam**: 0.0-0.5, 1.0-1.4 (skip 0.3=me, 0.4=Tron/PO)
-- **odockerTeam**: 0.0, 0.1 (use otmux pane.capture, NOT hiveMind — cross-session)
+## robbinTeam Setup Summary (completed this session)
+1. oosh-expert cloned upDownTeam → robbinTeam (4 panes, claudeCode opus)
+2. Naming fix: /rename role@MacStudio + otmux pane.lock on all 4
+3. CWD fix attempt 1: /cd doesn't exist in Claude Code TUI — BLOCKED
+4. CWD fix attempt 2: TRON authorized Option A restart (/exit + cd + claudeCode opus) — done
+5. TRON discovered agents were empty (not forked) — ordered fork from ud-team
+6. All 4 re-done with claudeCode fork <uuid> from upDownTeam agents
+7. Agent-trainer verified: all PASS, inherited training confirmed
+8. Agent-trainer noted: need robbin-specific SKILL.md and context files for full transition
 
-## What Happened This Session (sweeps 38-80)
-- Booted from /clear, read boot.md + learnings.md + SKILL.md + context.md
-- INC-004: 5 unsubmitted prompts resolved (expert x2, tester x2, trainer x1)
-- Agent-trainer: detected 8%→7% context, triggered compact, submitted boot, verified recovery
-- Oosh-tester: compact verified successful
-- 37 consecutive clean sweeps since sweep 43
-- Tron emergency stop re: PO health — checked, PO alive at 0.4, confirmed by Tron
-- Orchestrator running 1h+ marathon on 5-min timer cycles — active, not stuck
+## Key Learnings This Session
+- /cd is NOT a Claude Code command — cwd is bound to launch directory
+- claudeCode fork <uuid> inherits training from source agent
+- agent.rename with @ in name fails (use dash instead) — registry name vs pane title are separate
+- hiveMind registry names don't update from pane.lock (known limitation)
+- Don't spam CMM4 reminders to idle agents — if team is idle, stand by instead
+- When agents are idle and ignoring messages, stop sending — better to stand by
+- Measure subscription BEFORE going silent (learned early in session)
+- SM unblocks POs ONLY — report non-PO blockers to their PO for review
+- ACCEPT_EDITS on idle agents is stale UI, not a real blocker
+- Background sleep timer works: `sleep 60 && echo "SWEEP TICK"` with run_in_background=true
 
-## Team State at Sweep 80
-- orchestrator (0.0): ACTIVE — monitoring cycle with 5min timers
-- oosh-expert (0.1): IDLE
-- oosh-tester (0.2): IDLE (fresh post-compact)
-- scrum-master (0.3): Me — sweep loop
-- product-owner (0.4): ACTIVE — observe only
-- agent-trainer (0.5): IDLE (fresh post-compact)
-- 1.0-1.4: All IDLE
-- odockerTeam: Both IDLE, all work complete
-
-## CRITICAL: INC-004 — Silent Work Stalls
-Every sweep: check ALL panes for text at `❯` WITHOUT "esc to interrupt" = UNSUBMITTED prompt → send Enter.
-
-## CRITICAL: No compound && commands
-Run commands separately in parallel tool calls.
-
-## Recovery Steps
-1. Read session/agents/scrum-master/boot.md
-2. Read session/agents/scrum-master/learnings.md
-3. scrumMaster subscription
-4. hiveMind sweep projectTeam
-5. INC-004 scan: check ALL panes for unsubmitted prompts
-6. Resume sweep loop with 60s wakeups
+## Pending Tasks
+- robbinTeam:0.0 and 0.1 were planning task 2 architecture — monitor when resumed
+- robbinTeam agents need robbin-specific SKILL.md and context files
+- agent-trainer at baseTeam:0.0 is COMPACTED — may need rewind/fork

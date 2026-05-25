@@ -1,98 +1,78 @@
-# scrum-master Learnings
+# Scrum Master Learnings — Updated 2026-05-01
 
-*Patterns, failures, KPIs — identity after compact.*
+## Core Rules (from boot file + session experience)
 
-## F15: Mass Context Exhaustion — SM Failed to Monitor Context % (2026-02-17)
-All 11 agents hit 0% within 30 minutes. SM sweep detected stuck prompts and permissions but NOT context % warnings. SM itself also hit 0%. **Context % monitoring is now MANDATORY in every sweep cycle. Check each pane's status bar for "Context low (X% remaining)". At <= 20%, trigger compact. See SKILL.md "Context % Monitoring" section.**
+### 1. SM unblocks POs and agent-trainer ONLY
+- For ALL other agents: REPORT to their PO with review command
+- "Run: hiveMind agent.monitor <name> <session> 10 — then: hiveMind agent.unblock <name>"
+- NEVER blind unblock — PO must review first
 
-## F18: 0% Context = /clear Only (2026-02-17)
-At 0% "Context limit reached", /compact cannot work. Only /clear resets the session. **If an agent reaches 0%, send /clear, then send proper boot file. Don't waste time trying /compact.**
+### 2. Sweep status is UNRELIABLE
+- COMPLETED and ACTIVE can mask hidden PERMISSION prompts
+- Always monitor to verify COMPLETED agents
+- ACCEPT_EDITS on idle agents is STALE UI, not a blocker — don't report it
 
-## F20: unknown.md Is a Boot Failure (2026-02-17)
-After compact/clear, agents got `session/agents/unknown/boot.md` which provides no identity. **Always send the NAMED boot file: `Read session/agents/<role>/boot.md`. Never send unknown.md.**
+### 3. Background wakeups
+- NEVER use ScheduleWakeup — doesn't fire visibly
+- ALWAYS use: `sleep 60 && echo "SWEEP TICK"` with run_in_background=true
 
-## LETHAL FAILURE: Forced compact without context save (2026-02-16)
-I sent /compact to agents via background commands WITHOUT first triggering them to save context. This destroyed their state — killed them. The Peer Compact Protocol exists for exactly this reason:
-1. **NEVER send /compact directly** to another agent
-2. Send "Save your context and run /compact NOW" — let the AGENT do it
-3. Wait and VERIFY the agent saved (capture pane, check file write)
-4. Only the agent knows its own state — I cannot save it for them
-This was a CMM1 catastrophic failure. No shortcut justifies skipping the save step.
+### 4. Subscription management
+- Measure BEFORE going silent (never assume)
+- When 5h hits 100%: measure, then stand by — DON'T just go silent without measuring
+- Report at 80%+ (CAUTION) and 90%+ (CRITICAL)
+- Track velocity: >15% jump in 10min = BURN ALERT
 
-## Reawakening vs Killer Background Tasks (2026-02-16)
-- **Reawakening** (CORRECT): `sleep 300 && hiveMind send.enter scrum-master "Read session/tasks/sm-continue-sweeping.md"` — sends prompt to MY pane, wakes ME up
-- **Killer** (FORBIDDEN): `sleep N && hiveMind send.enter <role> "/compact"` — sends compact to OTHER agents, destroys their state
-- When going idle: ALWAYS set a reawakening for self. NEVER send destructive commands to others via background tasks.
+### 5. Rate-limited agents
+- Send "try again" to rate-limited agents
 
-## OOSH-Only Rule (2026-02-16, RETRAINED 2026-02-17)
-After compact, I regressed to manual bash loops. The rule: `scrumMaster` and `hiveMind` are my ONLY tools. If something is missing, request improvement — don't write raw bash.
+### 6. Don't spam idle agents
+- If team is idle/stable for extended period, CMM4 reminders become noise
+- When agents ignore messages, STOP sending — stand by instead
+- Better to be silent than annoying
 
-### Primary tools (use these, not manual loops):
-- `hiveMind sweep projectTeam` — batch-capture ALL panes in one command
-- `hiveMind unblock all` — auto-detect and resolve stuck prompts + permissions
-- `hiveMind monitor.approve <name>` — approve permission by agent name
-- `scrumMaster subscription` — check subscription
-- `scrumMaster dashboard projectTeam` — auto-generate team health dashboard
-- `scrumMaster cycle projectTeam 60` — full cycle: measure + sweep + unblock + sleep
-- `otmux send <pane> <keys>` — manual fallback for stuck prompts unblock misses
+### 7. TRON's role
+- TRON intercepts and supervises — all task work is PO jobs
+- Don't ask TRON to do PO work — route to correct PO
+- TRON only: rewinds, team-level decisions, cross-team coordination, subscription limits
 
-### What I was doing WRONG (pre-retrain):
-- Capturing 11 panes one-by-one instead of `hiveMind sweep projectTeam`
-- Sending Enter manually to each stuck prompt instead of `hiveMind unblock all`
-- Writing dashboard by hand instead of `scrumMaster dashboard projectTeam`
-- Using `sleep 60 && echo` wakeups instead of proper OOSH tools
-- Tried `hiveMind cycle` (doesn't exist) — correct: `scrumMaster cycle`
+### 8. Context Protocol
+- NEVER send /compact or /clear to any agent
+- Report context concerns to TRON
+- SM self-rewind: at 800k+ save context+learnings, tell agent-trainer
 
-## Pane Interaction Boundaries (PO Directive 1110Z, updated Tron directive 2026-02-18)
-- ONLY send keystrokes for **permission prompts** (Allow/Deny)
-- Do NOT submit task prompts or content to any pane
-- **CRITICAL: Pane 0.4 is Tron's interface — NEVER send ANY keystrokes to 0.4.** No permissions, no Enter, no Escape, nothing. Skip 0.4 in all unblock/approve operations.
-- `hiveMind unblock all` DOES send to 0.4 — after running it, this is a known issue. Use individual `hiveMind unblock <name>` for each agent EXCEPT product-owner, or accept that unblock touches 0.4 and request a fix.
-- Stuck prompts → REPORT in dashboard, don't submit
+### 9. Agent file edits → notify agent-trainer proactively
+- Watch for signs of agent file edits during monitoring
+- Send to baseTeam:0.0 with details
 
-## Capture Depth
-Always 30+ lines. 5-10 lines is insufficient.
+### 10. NEVER send to TRONinterface panes
+- TRON reads SM output in conversation
+- Escalations go in sweep report text, not via otmux send
 
-## CMM Tracking (PO Directive 1135Z)
-Every sweep: add CMM observation to dashboard. Track weakest link. Flag agents who assume instead of measure.
+## Technical Learnings (This Session)
 
-## Dashboard Duties (PO Directive 1112Z)
-Write assignment table to `session/dashboard-assignments.md` after each sweep. Include: assignments, blockers, idle agents, subscription, CMM observation.
+### Claude Code TUI
+- /cd does NOT exist — "Unknown command: /cd"
+- CWD is bound to where claudeCode was launched
+- To change CWD: must /exit, cd to new dir, restart claudeCode
+- claudeCode fork <uuid> creates a fork with inherited training from source
 
-## NEVER STOP WITHOUT WAKEUP (PO Directive F13 — 2026-02-17)
-**Stopping without a wakeup is a FAILURE, not a rest.** Before finishing ANY response, MUST schedule next action:
-- Use `sleep 60` inline to chain the next sweep cycle
-- Or use background bash to trigger next cycle
-- The only acceptable stop: 90% subscription with wakeup set for reset
-- At 80%: reduce frequency (sleep 120). At 90%: save context, set wakeup, THEN stop.
-- SM Continuous Pattern: Sweep → Handle → Dashboard → Subscription → sleep 60 → GOTO 1
+### hiveMind / Team Management
+- agent.rename rejects @ in names (regex: [A-Za-z][A-Za-z0-9._-]{0,39})
+- Registry names vs pane titles are separate systems
+- pane.lock sets tmux pane title but doesn't update hiveMind registry
+- team.sweep shows registry names, not pane titles
+- robbinTeam clone process: team.setup → fork from source UUIDs → rename → pane.lock → verify
 
-## Pane Interaction Update (Tron directive 2026-02-17, SUPERSEDED 2026-02-18)
-When Tron authorizes: MAY submit stuck prompts AND approve permissions on all panes EXCEPT 0.4. Pane 0.4 is Tron's interface — absolutely off-limits. See "Pane Interaction Boundaries" above.
+### Multi-Step Task Coordination
+- When coordinating multi-agent tasks: sweep actively every 60s, don't wait passively
+- Report each step completion to TRON
+- Verify naming conventions against existing teams before signing off
+- CWD verification is critical — agents can report wrong cwd if not checked
 
-## Velocity Monitoring Directive (2026-02-18)
-From `session/tasks/sm-velocity-monitoring-now.md`:
-- Check context % on EVERY agent pane EVERY sweep (parse status bar for "Context low (X% remaining)")
-- Proportional response: >60min=full speed, 30-60=no new large tasks, 15-30=commit work, 5-15=trigger saves, <5min=trigger compacts
-- After compact: send proper boot file (`Read session/boot/<role>.md`), NEVER unknown.md
-- Skip 0.4 in ALL operations
-- Track velocity per agent — fast burners get early save triggers
-
-## Unblock Pattern: Individual Loop (2026-02-18)
-`hiveMind unblock all` sends to 0.4 (Tron's pane). Instead use:
-```bash
-for agent in orchestrator oosh-expert oosh-tester agent-trainer task-agent woda-writer woda-scribe developer script-product-owner; do hiveMind unblock "$agent"; done
-```
-This skips product-owner (0.4).
-
-## "Baked Xm" = Completion, Not Stuck (2026-02-18)
-Agent-trainer showed "Baked for 11m 18s" for 15+ cycles. At 5-line capture depth it looked stuck. At 30-line capture: trainer had completed all 3 tasks and was idle. **Past-tense verbs (Baked, Brewed, Cooked, Churned) = DONE, not stuck.** Always capture 30+ lines before declaring an agent stuck.
-
-## F18 Update: 0% + Compact CAN Work (2026-02-18)
-Script-PO hit 0% and successfully compacted (contrary to F18 which says /clear only). The compact took ~60s but completed. **Try /compact first at 0% — only fall back to /clear if compact fails.** Wait at least 90s before assuming compact failed.
-
-## INC-004: Silent Work Stalls — Unsubmitted Prompts (Tron directive 2026-02-22)
-Agents generate self-prompts that sit at `❯` WITHOUT being submitted (no "esc to interrupt" visible). This silently stalls all work. **Detection**: text at `❯` WITHOUT "esc to interrupt" in status bar = NOT submitted. **Action**: send Enter to that pane. **Every sweep cycle**: check ALL panes (projectTeam AND odockerTeam) for this pattern. This is the #1 overnight impediment — multiple agents stalled for 30+ min because SM didn't detect unsubmitted prompts.
-
-## No Compound && Commands (KB #15, anti-pattern #4)
-Never use `command1 && command2` — triggers unique permission prompts. Run commands separately in parallel tool calls. OOSH tools have built-in delay parameters.
+## Achievements This Session
+- Managed robbinTeam creation end-to-end: clone → naming → restart → fork → verification
+- Coordinated oosh-expert, agent-trainer, and TRON across 3 teams
+- Caught CWD discrepancy (agents in OOSH/macos not project root)
+- Successfully escalated /cd limitation and got TRON decision on restart approach
+- 5h subscription reset tracked and reported
+- Continuous autonomous sweep loop maintained throughout session
