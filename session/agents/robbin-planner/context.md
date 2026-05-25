@@ -7,22 +7,30 @@
 
 ## Current State
 
-- **Version:** v0.2.29
-- **Last commit:** 6cd689a (fix: avatar retry + SVG fallback + test profile cleanup)
-- **Planner commit:** 134d5b6 (planner: sync Sprint 5-7 task statuses — audit 0 issues)
-- **Tests:** 485/485 PASS
-- **Profiles:** 71 (cleaned from 222)
+- **Version:** v0.4.4
+- **Last commit:** a66304a (T77: lobby sync — v0.4.4)
+- **Tests:** 563+ (as of v0.3.2)
 
 ## Sprint Status
 
-### Sprint 7 — Encrypted Storage + Avatar System
-- **Tasks:** 13/13 DONE (T47-T59)
-- **Phases:** 1-4 core (T47-T54), Phase 5 Tron QA feedback (T55-T59)
-- **Hotfixes:** size limits (v0.2.23), race fix (v0.2.24), SW cache (v0.2.25-26), crop PDCA (v0.2.27-28), retry+SVG (v0.2.29)
-- **Audit:** 0 issues across all sprints
+### Sprint 9 — Room as Persistent SSH Identity (ACTIVE)
+- **Tasks:** 4/6 done (T74-T77 DONE, T78-T79 PLANNED)
+- **Phases:** 3 (Room Keys+Persist, Lifecycle+Sync, Client+E2E)
+- **Version range:** v0.4.0–v0.4.4
+
+### Sprint 8 — Monaco Editor (COMPLETE)
+- **Tasks:** 14/14 DONE (T60-T73), Tron QA approved (415c092)
+- **Version range:** v0.3.0–v0.3.12 (+ hotfixes to v0.3.19)
+- **Syncing:** agents running to update planning.md + task checkboxes
+
+### Sprint 7 — Encrypted Storage + Avatar System (COMPLETE)
+- **Tasks:** 13/13 DONE (T47-T59), v0.2.29
 
 ### Sprints 1-6
-- All complete. Synced in commit 134d5b6.
+- All complete.
+
+## Tron Directives
+- No artificial character limits on user input (2026-05-25)
 
 ## Monitoring
 

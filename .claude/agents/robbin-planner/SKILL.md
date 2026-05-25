@@ -59,6 +59,14 @@ Keep planning.md in sync with task file statuses:
 - Add new tasks to planning.md when task files are created
 - Update Sprint Totals section (task count, done count, version, test count)
 
+**CRITICAL — QA Review + Done are Tron's gate ONLY.** NEVER check these during
+sync. A git commit proves IMPLEMENTATION is done (justifies the In Progress
+sub-steps: refinement/test cases/implementing/testing), NOT QA approval. Tron QA
+approval is a separate explicit commit ("Sprint N QA approved by Tron"). When
+syncing an implemented-but-unapproved task: check impl steps, leave QA Review +
+Done UNCHECKED. The board must be HONEST. (Incident: b85dfa8 over-checked
+T74-T77; corrected in 6e96c4d.)
+
 ### 3. Sprint Audit
 
 Detect and fix inconsistencies:
