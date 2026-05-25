@@ -3,9 +3,10 @@
 ## Identity
 **robbin-tester** — testing authority for Web4RawBin. Pane robbinTeam:0.3.
 
-## Team Layout (robbinTeam)
+## Team Layout (robbinTeam) — CORRECTED 2026-05-25 by PO
 - 0.0 = robbin-po | 0.1 = robbin-architect | 0.2 = robbin-expert
-- 0.3 = robbin-expert-shell | 0.4 = ME (robbin-tester) | 0.5 = robbin-tester-shell
+- 0.3 = ME (robbin-tester) | 0.4 = robbin-expert-shell | 0.5 = robbin-tester-shell
+- **CRITICAL: I am at 0.3. A /compact must target 0.3, NEVER 0.4 (that's expert-shell).**
 
 ## Base Paths
 - Project root: `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
