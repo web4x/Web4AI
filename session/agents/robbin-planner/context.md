@@ -7,27 +7,31 @@
 
 ## Current State
 
-- **Version:** v0.4.4
-- **Last commit:** a66304a (T77: lobby sync — v0.4.4)
-- **Tests:** 563+ (as of v0.3.2)
+- **Version:** v0.4.6
+- **Last planner commit:** 1a87ecd (T79 specs committed, Sprint 9 5/6 awaiting QA)
+- **Tests:** room-identity adds 70 unit + 6 e2e (c43cbc8)
 
 ## Sprint Status
 
 ### Sprint 9 — Room as Persistent SSH Identity (ACTIVE)
-- **Tasks:** 4/6 done (T74-T77 DONE, T78-T79 PLANNED)
-- **Phases:** 3 (Room Keys+Persist, Lifecycle+Sync, Client+E2E)
-- **Version range:** v0.4.0–v0.4.4
+- **Tron QA-approved (Done):** 0/6 — NO Sprint 9 QA approval commit exists yet
+- **Impl-done + committed, awaiting Tron QA:** 5 (T74,75,76,77,79)
+- **Not started:** 1 (T78 — client updates) ← ONLY remaining dev work
+- **Version range:** v0.4.0–v0.4.6
+- **Key commits:** T79 specs c43cbc8; honesty correction 6e96c4d; totals 1a87ecd
 
 ### Sprint 8 — Monaco Editor (COMPLETE)
-- **Tasks:** 14/14 DONE (T60-T73), Tron QA approved (415c092)
-- **Version range:** v0.3.0–v0.3.12 (+ hotfixes to v0.3.19)
-- **Syncing:** agents running to update planning.md + task checkboxes
+- 14/14 DONE (T60-T73), Tron QA approved (415c092), v0.3.0–v0.3.19
 
-### Sprint 7 — Encrypted Storage + Avatar System (COMPLETE)
-- **Tasks:** 13/13 DONE (T47-T59), v0.2.29
+### Sprint 7 — Encrypted Storage (COMPLETE)
+- 13/13 DONE (T47-T59), v0.2.29
 
 ### Sprints 1-6
 - All complete.
+
+## CRITICAL RULE
+- QA Review + Done = Tron's gate ONLY. Never check during sync. Verify via
+  explicit "Sprint N QA approved by Tron" commit. (Incident b85dfa8 → fix 6e96c4d.)
 
 ## Tron Directives
 - No artificial character limits on user input (2026-05-25)
