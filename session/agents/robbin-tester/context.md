@@ -1,4 +1,4 @@
-# robbin-tester Context — 2026-05-24
+# robbin-tester Context — 2026-05-25
 
 ## Identity
 **robbin-tester** — testing authority for Web4RawBin. Pane robbinTeam:0.3.
@@ -9,81 +9,62 @@
 
 ## Base Paths
 - Project root: `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
-- Server: `src/ts/server/server.ts`, Room.ts, UserKeys.ts, UserCrypto.ts, FileApi.ts
-- Client: `src/public/ts/` (app.ts, edit.ts, RawBinClient.ts, RoomBrowser.ts, RoomView.ts)
-- Components: `src/public/ts/components/` (rb-update-banner, rb-header, rb-overlay, rb-chat-sheet, rb-member-badge, rb-member-list, rb-qr-popup, rb-avatar, rb-editor-layout, rb-file-tree, rb-code-editor, rb-preview, rb-editor-toolbar)
-- Tests: `test/vitest/` (13 test files)
-- E2E: `test/e2e/` (Playwright specs)
+- Server: `src/ts/server/` (server.ts, Room.ts, UserKeys.ts, UserCrypto.ts, FileApi.ts)
+- Client: `src/public/ts/` + `src/public/ts/components/` (13 rb-* web components)
+- Tests: `test/vitest/` (14 files) + `test/e2e/` (Playwright specs)
 - Scrum: `scrum.pmo/sprints/`
 - Server port: HTTPS 4444
+- Version: 0.4.6
 
 ## Test Suite Status
-- **631 unit tests** across 13 files, **629/631 PASS**
-- 2 expected FAIL: /md/↔/edit/ cross-links not added yet
-- Duration: ~6s
+- **701 vitest unit tests** across 14 files (1 pre-existing cleanupStale flaky)
+- **Playwright E2E**: 19/21 PASS
+- Duration: vitest ~7s
 
-### Test Files
-| File | Tests |
-|------|-------|
-| room.test.ts | 33 |
-| server.test.ts | 56 |
-| client.test.ts | 22 |
-| profile.test.ts | 22 |
-| userkeys.test.ts | 61 |
-| chat.test.ts | 18 |
-| pwa.test.ts | 40 |
-| offline.test.ts | 30 |
-| components.test.ts | 144 (jsdom) |
-| crypto.test.ts | 25 |
-| avatar.test.ts | 33 |
-| fileapi.test.ts | 79 |
-| editor.test.ts | 67 |
+### Vitest Files
+room.test.ts(33), server.test.ts(56), client.test.ts(22), profile.test.ts(22),
+userkeys.test.ts(61), chat.test.ts(18), pwa.test.ts(40), offline.test.ts(30),
+components.test.ts(144, jsdom), crypto.test.ts(25), avatar.test.ts(33),
+fileapi.test.ts(79), editor.test.ts(?), room-identity.test.ts(70)
 
-## Completed Sprints
+### E2E Specs (test/e2e/)
+device-enrollment, editor(9/9), mobile-viewport, negative-cases, new-user,
+profile-editor, room-identity(6/6), room-lifecycle
+- 2 FAIL: device-enrollment + new-user (own enrollment code, #de-submit disabled — not using fixed ensureLobby)
 
-### Sprint 1 — RawBin Foundation
-- T3-T5: room.test.ts, server.test.ts, client.test.ts
+## Sprints Complete (1-9)
+- S1 Foundation: room/server/client tests
+- S2 Identity/SSH: profile, userkeys (SSH+device+challenge)
+- S3 E2E Hardening: refactor to unit, deployment, chat
+- S4 Traceability: audited 28 task files
+- S5 PWA Offline: pwa, offline tests; found update banner bug
+- S6 Web Components: components.test.ts; found lobby notch bug
+- S7 Encrypted Storage+Avatars: crypto, avatar tests; found avatar upload persistence bug (fixed v0.3.19)
+- S8 Monaco Editor: fileapi, editor tests (security + authorization)
+- S9 Room Identity: room-identity.test.ts (70) + room-identity.spec.ts (6/6) — committed c43cbc8
 
-### Sprint 2 — Identity & SSH
-- T7-T12: profile.test.ts, userkeys.test.ts (SSH+device+challenge)
-
-### Sprint 3 — E2E Hardening
-- T14: Refactored to unit tests. T16: deployment. T20: chat.test.ts
-
-### Sprint 4 — Traceability
-- T23-T25: Audited 28 task files — audit-report.md
-
-### Sprint 5 — PWA Offline
-- T31-T36: pwa.test.ts, offline.test.ts
-- Found update banner bug (silent version swallow) — fixed v0.2.4
-- Found lobby notch bug (padding:0 killed safe-area) — fixed v0.2.12
-
-### Sprint 6 — Web Components
-- T39-T46: components.test.ts (rb-overlay, banner, header, chat, members, qr, server pages)
-
-### Sprint 7 — Encrypted Storage + Avatars
-- T47: crypto.test.ts — AES-256-GCM + RSA hybrid encryption
-- T48-T53: avatar.test.ts — upload, serve, ETag, profile URL, room avatars
-- T54-T57: Avatar fixes — PDCA percentage crop, reactivity, propagation
-
-### Sprint 8 — Monaco Editor
-- T60-T61: fileapi.test.ts — readDir, readFile, writeFile, conflict detection
-- T62: Security tests — path sanitization (node_modules, .git, data/users), authorization
-- T63-T70: editor.test.ts — edit.html, edit.ts, rb-editor-layout, rb-file-tree, rb-code-editor, rb-preview, save handler, rb-editor-toolbar
-- T71-T72: Mobile responsive layout, /md/↔/edit/ cross-links
-- T73: Standing by for expert E2E results
+## Test Architecture
+- ALL vitest = unit tests, no server dependency
+- Handler logic extracted, tested with mock Maps + mock send
+- Room class tested via direct import
+- File system tests use temp dirs (os.tmpdir)
+- Crypto: real RSA-2048 + AES-256-GCM
+- Components: jsdom environment
+- Playwright: visual verification 375x812 + disk verification
 
 ## Known Issues
-- 2 vitest FAIL: /md/ pages don't have /edit/ cross-links yet
-- Playwright E2E: stale selectors from Sprint 6 component refactor + server dependency
-- avatarCache still in server.ts (expert must remove)
+- 2 E2E specs (device-enrollment, new-user) have own enrollment code, #de-submit disabled
+- Playwright shadow DOM <img> screenshots unreliable — verify with curl
+- avatarCache may still be in server.ts
 
 ## Rules (Eternal)
-- P15: NEVER filter output
-- I do NOT implement features — I test, verify, find bugs, report
+- P15: NEVER filter output (no 2>/dev/null, | head, | tail, | grep)
+- I do NOT implement features — I test, verify, find bugs, report. Implementation = expert.
 - Expert does not test — tester owns test execution
 - Unit test handler logic directly — no server dependency for vitest
-- ALWAYS visually verify with Playwright — code review alone is NOT verification
+- ALWAYS visually verify with Playwright AND curl — code review/DOM alone is NOT verification
+- NEVER verify avatar with stub image — use real 200x200+ photo
 - Self-report to robbinTeam:0.0 when task complete
 - TaskCreate before starting, TaskUpdate when done
-- Commit agent files after every save
+- Commit agent files after every save; commit test files NOT test-results/ or data/*.json
+- NEVER ASSUME — ALWAYS MEASURE (run claudeCode context.read before panicking)

@@ -62,3 +62,37 @@
 - Self-report format: `[@robbin-tester → robbin-po] Task XX DONE — [count] tests, [describe blocks], [pass/fail]. [key coverage areas]. Standing by.`
 - Always include test count, pass/fail ratio, duration
 - List expert-side failures separately from tester-side
+
+## jsdom for Web Component tests
+- components.test.ts uses `@vitest-environment jsdom` (file-level docblock)
+- Required for document.createElement, shadow DOM, CustomEvent
+- Install: npm install -D jsdom
+
+## Playwright shadow DOM limitation (CRITICAL)
+- Playwright headless Chromium does NOT reliably paint <img> inside shadow DOM in screenshots
+- The img element loads correctly (DOM reports loaded class, display:block, opacity:1) but screenshot shows fallback
+- VERIFY actual image bytes with curl, not just screenshots: `curl -sk /api/avatar/<token> -o /tmp/x.png && file /tmp/x.png`
+- Cross-check DOM state (img.naturalWidth, classList) against visual — they can disagree
+- When visual fails but DOM+curl pass: it's a Playwright rendering bug, recommend real-device verification
+
+## Avatar verification lesson (Tron correction)
+- NEVER verify with a 10x10 stub image — use real 200x200+ photo
+- Generate valid PNG programmatically with zlib.deflateSync + CRC32 chunks if canvas module unavailable
+- The default avatar (initials PNG) is 817 bytes — a real uploaded photo is larger; size is a quick discriminator
+- Upload persistence: POST /api/avatar returns 200 but verify GET serves the NEW bytes, not the old default
+
+## Playwright E2E gotchas
+- ES module spec: no __dirname — use `path.dirname(fileURLToPath(import.meta.url))`
+- ensureLobby helper captures #pe-code BEFORE save, but server assigns NEW secretCode on IDENTIFY → enrollment #de-submit stays disabled
+- Specs with their OWN enrollment code (device-enrollment, new-user) break independently of the shared helper
+- Create-room form: don't blind-fill #room-name='' — check if create form visible first, default name auto-fills
+
+## E2E disk verification pattern
+- Verify server-side state on disk after Playwright actions: data/users/<token>/rooms/<uuid>/
+- Read localStorage token via page.evaluate(() => localStorage.getItem('rawbin-player-id'))
+- Commit test files only — NOT test-results/ (Playwright artifacts) or data/*.json (test pollution)
+
+## Sprint progress (as of 2026-05-25)
+- 14 vitest files, 701 unit tests; ~21 Playwright E2E (19 pass)
+- Sprints 1-9 complete. Latest: T79 room identity (committed c43cbc8)
+- Version 0.4.6
