@@ -66,6 +66,13 @@ All verified, findings written into each task file's Test Results section, commi
 - **T94** ✓ PWA update banner fires (per-request getVersion). update-banner.spec.ts (3/3) + curl (AC3/AC4/AC7). AC5 iOS standalone = Tron device QA.
 - Run from `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`. Awaiting next assignment / Tron QA.
 
+## ROOM-FLOOD SELF-CLEANUP (PO directive 2026-05-26) — TODO
+E2E specs create real rooms in live data/ → flooded prod (239 rooms found during T95). FIX PLAN:
+1. Add `afterEach`/`afterAll` to room-creating specs (room-identity.spec.ts, room-order.spec.ts, room-lifecycle.spec.ts) that deletes rooms created during the test (owner delete via UI, or direct fs.rmSync of data/users/<token>/rooms/<uuid>).
+2. BETTER: run E2E against an isolated test-data dir (env var DATA_DIR override on the test server) so prod data/ is never touched. Needs expert to support DATA_DIR env in server.ts.
+3. Tag-based cleanup: specs already use unique tags (T95-NNNNNN) — afterAll can scan + delete rooms whose name contains the run tag.
+Interim: expert purging existing flood. Preferred long-term = isolated test-data dir (option 2).
+
 ## Known Issues
 - 2 E2E specs (device-enrollment, new-user) have own enrollment code, #de-submit disabled
 - Playwright shadow DOM <img> screenshots unreliable — verify with curl
