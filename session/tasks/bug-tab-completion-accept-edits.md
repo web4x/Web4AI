@@ -24,16 +24,28 @@
 
 ## Findings
 
-(filled during investigation)
+**RESOLVED as duplicate root cause of bug-otmux-fit-too-small.md.**
+
+The "pletion on" fragment was bash's filename completion line-wrapping `.bashrc.bak.without.completion` (a real file in $HOME) — broken into two lines as `complet` + `ion`. Tron's terminal width was small enough that the wrap exposed the tail fragment `pletion on`.
+
+Why filename completion fired: c2 completion was failing (because of apostrophes in 9 method doc comments), producing malformed `current.method.env`, sourcing failed with "unexpected EOF", c2 returned no candidates, bash fell back to default filename completion. `.bashrc.bak.without.completion` matched the `.` prefix in $HOME.
+
+Accept-edits hypothesis dismissed — no TUI interference. Purely a c2 pipeline bug.
 
 ## Fix
 
-(filled after diagnosis)
+Same fix as bug-otmux-fit-too-small.md — commit `4338d2c` strips apostrophes from c2 signature pipeline.
+
+## Verification
+
+Post-fix interactive test: `hiveMind join ` + Tab → shows agent names (`TRONinterface-agent`, `agent-trainer`, `fallback-oosh-expert`, etc.) instead of $HOME filenames. No "pletion on" fragment.
 
 ## Commit
 
-(filled after fix)
+(none — closed as duplicate, fixed by `4338d2c` shipped under bug-otmux-fit-too-small.md)
 
-## Status
+## Status (closure)
 
-(filled after closure)
+- **Resolution**: duplicate root cause; closed without separate commit.
+- **Single fix** at `4338d2c` resolves both bugs simultaneously.
+- **Handoff**: tester verify second symptom (filename completion fallback) is gone in addition to first (no Tab completion).
