@@ -36,16 +36,42 @@ Option 1 (wider history scan) is likely sufficient — rate-limit messages are u
 
 ## Findings
 
-(filled during investigation)
+**Root cause confirmed**: `private.hiveMind.sweep.detect` (hiveMind line 7370) calls `otmux pane.capture "$target" 20` — only 20 lines. Claude TUI rate-limit / subscription-limit / API-error messages disappear from the visible 20-line window once the agent returns to IDLE prompt. The substring checks at lines 7449/7488/7494 scan that narrow window — when the marker has scrolled off, only the idle ❯ remains, so sweep classifies `idle|none|info`.
+
+The IDLE branch was the only path missing a state-transition catch.
 
 ## Fix
 
-(filled after diagnosis)
+Targeted state-transition detection — after the 20-line classification confirms idle (`last_line` is clean `❯` or `>`), do ONE additional 200-line history scan via `otmux pane.capture "$target" 200`. Run the same prose-scrub against that wider view and check ONLY three distinctive block markers (most distinctive forms, conservative patterns to avoid false-positives):
+
+- subscription-limit → `subscription-limit|none|critical|scrolled-history`
+- rate-limit → `rate-limit|wait|blocker|scrolled-history`
+- api-error → `api-error|wait|blocker|scrolled-history`
+
+If none match, classify as `idle` as before. Other states (active, queued, permission, accept-edits, etc.) are unaffected — the wider scan runs only on the idle path, so agents currently working through resolved limits aren't misclassified.
+
+Detail field `scrolled-history` is the observability hook: operators / scrumMaster can see which detections came from scrollback vs visible state.
+
+## Smoke test (8 cases all PASS)
+
+| # | Scenario | Expected | Actual |
+|---|----------|----------|--------|
+| T1 | idle visible + clean history | idle | idle\|none\|info |
+| T2 | idle visible + rate-limit scrolled | rate-limit | rate-limit\|wait\|blocker\|scrolled-history |
+| T3 | idle visible + sub-limit scrolled | subscription-limit | subscription-limit\|none\|critical\|scrolled-history |
+| T4 | idle visible + api-error scrolled | api-error | api-error\|wait\|blocker\|scrolled-history |
+| T5 | rate-limit in visible content | rate-limit | rate-limit\|wait\|blocker\|unknown (early return, history not consulted) |
+| T6 | active state, marker in history | active | active\|none\|info (history NOT consulted) |
+| T7 | queued (text after prompt) | queued | queued\|enter\|blocker |
+| T8 | permission prompt overrides | permission | permission\|enter\|blocker |
 
 ## Commit
 
-(filled after fix)
+`hiveMind: sweep.detect catches scrolled-off rate-limit/sub-limit/api-error on idle path (ref: bug-rate-limit-invisible-to-sweep.md)`
 
-## Status
+## Status (closure)
 
-QUEUED — implementation starts after otmux-layout-dynamic ships.
+- **Implementation**: oosh commit `3a4bfbc` — 29 lines added inside the `idle` branch. No changes to other state classifications.
+- **Verification**: 8 smoke-test scenarios all PASS via env-var injection mock.
+- **Handoff to tester**: (a) verify all 8 scenarios via test fixture, (b) verify regression: existing idle/active/queued tests still pass, (c) live verification on real rate-limited agent (when one occurs).
+- **Follow-up if false-negatives persist**: Option 2 from spec — track previous state per pane, detect ACTIVE→IDLE transitions without forward progress (commit, file mtime, response delivery). Requires state-store S11. Defer to a future task.
