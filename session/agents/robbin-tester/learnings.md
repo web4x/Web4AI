@@ -92,7 +92,37 @@
 - Read localStorage token via page.evaluate(() => localStorage.getItem('rawbin-player-id'))
 - Commit test files only — NOT test-results/ (Playwright artifacts) or data/*.json (test pollution)
 
-## Sprint progress (as of 2026-05-25)
-- 14 vitest files, 701 unit tests; ~21 Playwright E2E (19 pass)
-- Sprints 1-9 complete. Latest: T79 room identity (committed c43cbc8)
-- Version 0.4.6
+## Sprint progress (as of 2026-05-26)
+- ~16 vitest files; Playwright E2E grew 21 → ~39 (added editor-back 4, lobby-card-badges 1, multi-room-lobby 4, contacts-ui 6, update-banner 3)
+- Sprints 1-13 verified. v0.4.6 → v0.5.4 this session. Jobs T78/T80/T81/T82/T83/T84/T91/T92/T93/T94 all green.
+
+## Environment: ONE checkout via symlink (CRITICAL)
+- `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin` is a SYMLINK → `/Users/Shared/Workspaces/2cuGitHub/Web4RawBin` (same inode). Not two checkouts. Playwright error paths / running server show the 2cuGitHub path — that's the same files.
+- Running server is `tsx watch src/ts/server/server.ts` from 2cuGitHub. `reuseExistingServer:true` → Playwright reuses it.
+- **tsx watch reloads on imported .ts changes, NOT package.json.** A version-only bump didn't reach /api/health until restart → stale version string. T94 fixed this with per-request `getVersion()` (reads package.json each request). Client bundles always current (built per-request). So for SERVER-side fixes, verify the running process has the code (or that a deploy restart happened — /api/health version is the tell); CLIENT bundle fixes are always live.
+
+## Testing server-side fixes against REAL modules (T91/T92 pattern)
+- DATA_DIR in UserKeys/UserCrypto is HARDCODED (`path.join(__dirname,'../../../data')`, __dirname via import.meta.url) — NOT env-overridable. Under vitest it resolves to the real `data/`.
+- So: import the REAL UserKeys+UserCrypto, use a SYNTHETIC token (`T92TEST-<rand>`) under real data/, clean up in afterEach (`fs.rmSync(getUserHomeDir(token),{recursive,force})`). This exercises real RSA-2048 + AES-256-GCM, real key gen/regeneration, not a re-implementation.
+- Replicate the exact handler body (e.g. server.ts POST /api/avatar:328-341) as a helper to test the self-heal sequence (createUserHome→generateUserKeypair→try encrypt/catch regenerateUserKeypair+retry). Assert byte-exact roundtrip (decryptFile(token,'avatar').data == uploaded) = the serve path's core (AC6).
+- Avoid re-implementing logic in tests (the old avatar.test.ts copied functions — weaker). Import the shipped code.
+- Auth gate `tokenToClient.has(playerToken)` needs a LIVE WS connection → can't curl POST /api/avatar without one. Unit-import path sidesteps this; note the HTTP wire as the one untested layer + recommend 1 live check.
+
+## Live-server E2E on a SHARED server
+- The deployed server has 100s of rooms (181→195 this session). Don't assert total counts.
+- AC "count == disk" → verify as a SUBSET invariant: every on-disk room for the owner ∈ the lobby's `.room-card[data-room-id]`. Robust regardless of other users' rooms.
+- Specs that create rooms pollute the shared server (same as room-identity specs); delete-tests clean their own; leftover empty rooms are dormant/harmless.
+
+## vCard blob capture + WS frame counting
+- Capture a download blob: hook `URL.createObjectURL` in page.evaluate before clicking; `if (obj instanceof Blob && obj.type==='text/vcard') obj.text().then(t=>window.__vcard=t)`. Wait after click (downloadVCard awaits an avatar fetch before createObjectURL).
+- Count a specific WS message (no-stacking AC): `page.on('websocket', ws=>ws.on('framesent', f=>{ if (f.payload.includes('GET_USER_INFO')) count++ }))`. Reset counter right before the decisive tap; assert ==1 after re-rendering twice.
+
+## Shadow-DOM component assertions
+- rb-update-banner / rb-avatar overlay live in shadow DOM. Query via page.evaluate + `el.shadowRoot.getElementById(...)` for robustness (Playwright CSS also pierces, but evaluate is unambiguous).
+- rb-member-badge + ProfileSheet are LIGHT DOM (innerHTML) → normal locators + `:has-text()` work.
+
+## addInitScript clobbers localStorage on reload (T94 gotcha)
+- `page.addInitScript(()=>localStorage.setItem(...))` re-runs on EVERY navigation — including a reload triggered by the code under test — overwriting what the handler wrote. For "click → reload → assert localStorage" tests, seed manually (goto, evaluate setItem, reload) instead of addInitScript.
+
+## Superseded ACs across tasks
+- When a later task INVERTS an earlier AC (T83 inverted T81 TS3: self-tap → ProfileEditor became → read-only .user-sheet), REPLACE the old assertion, don't keep it (it fails by design). Verify against the CURRENT behavior; mark the old AC `[~] SUPERSEDED by [Tnn]` in the task file.
