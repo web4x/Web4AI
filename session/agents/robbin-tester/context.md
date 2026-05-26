@@ -15,12 +15,13 @@
 - Tests: `test/vitest/` (14 files) + `test/e2e/` (Playwright specs)
 - Scrum: `scrum.pmo/sprints/`
 - Server port: HTTPS 4444
-- Version: 0.4.6
+- Version: 0.5.4 (advanced 0.4.6→0.5.4 over 2026-05-26 session via deploys)
+- **Checkout is a SYMLINK**: workspaces/AI/Claude/workspaces/Web4RawBin → 2cuGitHub/Web4RawBin (ONE checkout; running tsx-watch server is the same files). See learnings.
 
 ## Test Suite Status
-- **701 vitest unit tests** across 14 files (1 pre-existing cleanupStale flaky)
-- **Playwright E2E**: 19/21 PASS
-- Duration: vitest ~7s
+- vitest unit tests across ~16 files (+ avatar-keyless-upload 6, avatar-persist 5 this session)
+- **Playwright E2E**: 39 tests (was 21) — added editor-back(4), lobby-card-badges(1), multi-room-lobby(4), contacts-ui(6), update-banner(3); fixed profile-editor for T83 inversion
+- Duration: vitest ~7s; full E2E ~2.7m
 
 ### Vitest Files
 room.test.ts(33), server.test.ts(56), client.test.ts(22), profile.test.ts(22),
@@ -53,30 +54,17 @@ profile-editor, room-identity(6/6), room-lifecycle
 - Components: jsdom environment
 - Playwright: visual verification 375x812 + disk verification
 
-## QUEUED POST-COMPACT JOB (PO assigned 2026-05-25)
-1. **T80 verify (v0.4.7)** — independently re-run FULL Playwright suite: `npx playwright test --reporter=line`. Expert shipped one-shot onSave fix, self-reported 21/21. MY confirmation is the gate before Tron QA. Target: 21/21 (the 2 prior fails were device-enrollment + new-user own-enrollment-code).
-2. **T78 verify (v0.4.8, commit f5d7df4 — READY)** — verify: (1) lobby room cards show full UUID + 💾 Persistent badge (.room-persist) + owner attribution ('you' / 'by <name>'); (2) full E2E stays 21/21 no regression. NEW .room-persist badge + .room-owner/.room-id CSS stubs. Note: /api/health says 0.4.7 until iphone:0.1 restart (PO-gated) but running server serves new bundle (build-manifest per-request).
-3. **T81 verify (v0.4.9, commit f083a29 — READY)** — task file: `scrum.pmo/sprints/sprint-10-contacts-ui/task-81-member-click-vcard.md`. Run TS1-TS5 + full-suite regression:
-   - TS1: tap member name/avatar/status → opens contact sheet
-   - TS2: avatar tap does NOT open editor (readonly on member badges)
-   - TS3: self-tap opens ProfileEditor
-   - TS4: exactly 1 GET_USER_INFO per tap (listeners attach once, no stacking)
-   - TS5: editable avatars (own profile editor) unaffected
-   Impl: USER_INFO key fix msg.user, rb-avatar readonly on member badges, listeners-attach-once.
-4. **T84 verify (v0.4.10, commit 24482f7 — READY)** — task file: `scrum.pmo/sprints/sprint-12-editor-fixes/task-84-editor-back-button.md`. Editor back button derives parent dir from this._path. Test page is /edit/<path>, change in EDITOR bundle (edit-SZJS7HJV.js):
-   - TS1: deep file a/b/c.md → back goes /md/a/b/
-   - TS2: root file README.md → back goes /md/ (guarded, no //)
-   - TS3: label is '← Back'
-   - TS4: 📂 still points to /md/
-5. **T91 verify (v0.4.11, commit f2e019c — READY)** — `sprint-13-stability/task-91`. Avatar persist: upload → reconnect/restart → avatar MUST survive (not revert to default). Verify avatar.enc NOT overwritten on reconnect. (Recall: real photo ≠ 817-byte initials default; verify served bytes via curl.)
-6. **T92 verify (v0.4.11, commit f2e019c — READY)** — `sprint-13-stability/task-92`. Keyless UX: trigger upload with missing keys → must show 'Upload failed. Please try again.' — NEVER 'key not found' or any key/crypto term. Verify self-heal regenerates keys so a retry succeeds.
-7. **T82 verify (v0.5.0, commit 86256fa — READY)** — `sprint-10-contacts-ui/task-82`:
-   - TS1: open another member's sheet → #us-vcard VISIBLE (readable, not white-on-white) + clickable
-   - TS2: sheet avatar is <rb-avatar> (not bare img), readonly (tap ≠ editor)
-   - TS3: lobby #refresh-rooms-btn .btn-secondary on dark bg stays light-on-dark (scope didn't leak)
-   - TS4: vCard blob well-formed (BEGIN:VCARD / VERSION:3.0 / FN: / END:VCARD)
-   Note: isSelf #us-edit present but unwired = T83 not a T82 defect.
-- Run from `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
+## SESSION 2026-05-26 — ALL QUEUED JOBS DONE ✓
+All verified, findings written into each task file's Test Results section, committed:
+- **T80** ✓ full Playwright 21/21 (gate). task-80 QA.
+- **T78** ✓ lobby card full UUID + 💾 Persistent + owner 'you'. lobby-card-badges.spec.ts (1/1).
+- **T81+T82+T83** ✓ contacts-ui.spec.ts (6/6). T83 inverted T81 TS3 (self-click → read-only .user-sheet, NOT editor; #us-edit → editor). vCard visible+well-formed, rb-avatar readonly, 1 GET_USER_INFO/tap, refresh-btn scope no-leak. ALSO fixed profile-editor.spec.ts (T13.4) for the same inversion.
+- **T84** ✓ editor back → parent dir. editor-back.spec.ts (4/4).
+- **T91** ✓ avatar persists (ensureAvatar guards on fileExists, never overwrites). avatar-persist.test.ts (5/5) + code review.
+- **T92 RE-FIX** ✓ keyless upload self-heals (createUserHome+generateUserKeypair always; encrypt try/catch→regenerate+retry; client never echoes result.error). avatar-keyless-upload.test.ts (6/6) against REAL modules.
+- **T93** ✓ all owner rooms load+show. multi-room-lobby.spec.ts (4/4) live v0.5.2.
+- **T94** ✓ PWA update banner fires (per-request getVersion). update-banner.spec.ts (3/3) + curl (AC3/AC4/AC7). AC5 iOS standalone = Tron device QA.
+- Run from `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`. Awaiting next assignment / Tron QA.
 
 ## Known Issues
 - 2 E2E specs (device-enrollment, new-user) have own enrollment code, #de-submit disabled
