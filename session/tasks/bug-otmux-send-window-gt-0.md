@@ -57,6 +57,6 @@ Two lines changed semantically (info.log → console.log), plus added drain hint
 
 - **Investigation**: routing verified correct across all 4 send paths × both windows (0 and 1). No routing bug exists.
 - **Real bug identified**: silent feedback at default log level — operator perception of "wrong pane" was symptom of invisible queue path.
-- **Fix shipped**: commit `<filled-after-commit>` — info.log → console.log on 2 success paths in `hiveMind.agent.send`. Drain hint added.
+- **Fix shipped**: commit `82213a6` — info.log → console.log on 2 success paths in `hiveMind.agent.send`. Drain hint added.
 - **Verification**: post-fix `hiveMind send robbin-req "..."` produces `QUEUE: robbin-req (robbinTeam:1.1) busy ...` at default level — operator now sees the routing decision.
 - **Handoff**: tester to verify (a) default-level visible queue/deliver messages, (b) routing still correct on multi-window panes, (c) no regression on existing send-path tests.
