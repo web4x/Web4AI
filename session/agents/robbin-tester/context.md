@@ -76,6 +76,7 @@ profile-editor, room-identity(6/6), room-lifecycle
 - avatarCache may still be in server.ts
 
 ## Rules (Eternal)
+- **CMM4 (SM directive 2026-05-26): communicate through task files, not ad-hoc messages.** Write findings/status/handoffs INTO the task file (e.g. task-NN's QA/results section). Read task files before asking questions. Task files = single source of truth. otmux pings are pointers, not the record.
 - P15: NEVER filter output (no 2>/dev/null, | head, | tail, | grep)
 - I do NOT implement features — I test, verify, find bugs, report. Implementation = expert.
 - Expert does not test — tester owns test execution
