@@ -3,7 +3,7 @@
 **Reporter**: Tron via PO (ooshTeam:0.0)
 **Priority**: TBD (queued after bug-otmux-send-window-gt-0)
 **Assignee**: oosh-expert
-**Status**: SPEC DRAFT — implementation queued
+**Status**: IN PROGRESS — architect questions resolved via codebase investigation 2026-05-26
 
 ## Request
 
@@ -34,11 +34,29 @@ Companion: existing `otmux size.unlock <?session>` removes the S9 entry but does
 3. Confirm whether the user wants "tiled" or "even" as the re-layout choice (or just no-op layout and let user pick)
 4. Identify if there's interaction with `tronMonitor.fit` (Sprint 1 D4) — fit is event-driven sizing; dynamic is the inverse
 
-## Open questions for architect
+## Open questions for architect — RESOLVED via investigation
 
-- Should `layout.dynamic` unlock S9 entries automatically, or only act on tmux-level state and require operator to run `size.unlock` separately? Both signal "go back to natural sizing" — bundling is simpler but couples concerns.
-- Default re-layout: `tiled`, `even-horizontal`, `even-vertical`, or skip and let tmux pick?
-- Scope: current window only (as requested) or full session?
+**Q1 — Unlock S9 automatically?** YES. Existing `otmux.size.unlock` already does both: reverts tmux state AND removes S9 entry via `private.otmux.size.lock.remove`. `layout.dynamic` mirrors that pattern at window granularity. Mismatch between S9 and tmux state would be worse than coupling.
+
+**Q2 — Default re-layout?** `tiled`. Works for any pane count, well-tested across the codebase (see tronMonitor.fit, hiveMind team.setup). Operators can re-pick via existing `otmux layout <type>` after.
+
+**Q3 — Scope?** Current window only — PO explicit. Session-scope already covered by `otmux size.unlock <session>`. New method fills the per-window gap.
+
+## Design
+
+```bash
+otmux.layout.dynamic() # <?window:current> # restore current-window panes to dynamic sizing + tiled layout
+```
+
+Steps:
+1. Resolve target window: arg or `${session}:${window_index}` via `display-message`
+2. Set session's `window-size=largest` (per-window largest = dynamic mode)
+3. Set per-window `aggressive-resize on`
+4. Remove S9 entry for `session:window` key via existing `private.otmux.size.lock.remove`
+5. Apply `select-layout -t <window> tiled` to redistribute panes immediately
+6. `refresh-client -S` to sync survivors
+
+Relies on existing private helpers (`private.otmux.size.lock.remove`, `private.otmux.size.currentSession`). No new state, no new files.
 
 ## Acceptance (draft)
 
@@ -52,6 +70,14 @@ Companion: existing `otmux size.unlock <?session>` removes the S9 entry but does
 
 `otmux: layout.dynamic method (ref: otmux-layout-dynamic.md)`
 
-## Status
+## Status (closure)
 
-**SPEC ONLY — implementation queued.** Awaiting architect input on the 3 open questions before coding. PO confirmed this is post-bug-otmux-send-window-gt-0.
+- **Investigation**: 3 architect questions self-resolved via existing pattern study (size.unlock + size.lock.remove).
+- **Implementation**: oosh commit `da48c11` — single method `otmux.layout.dynamic <?window>` at line ~1314 + completion function. 47+/0-.
+- **Live verification**:
+  - `bash -n otmux` clean
+  - Default invocation (no arg) resolves current window via TMUX_PANE — ooshTeam:0 transitioned `window-size=manual → largest`
+  - Explicit invocation `otmux layout.dynamic ooshTeam:0` — same result, idempotent
+  - S9 cleared via private.otmux.size.lock.remove (existing helper)
+  - Interactive Tab completion: `otmux layout.dynamic ` + Tab shows window targets (e.g. `ooshTeam:0`, `TRONinterface:0`)
+- **Handoff to tester**: verify (a) `bash -n`, (b) state transitions on a deliberately-locked window: `otmux size.lock` then `otmux layout.dynamic` then assert `window-size=largest`, (c) tiled redistribute on a window with uneven pane sizes, (d) completion lists session:window form.
