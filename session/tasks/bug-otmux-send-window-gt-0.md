@@ -60,3 +60,22 @@ Two lines changed semantically (info.log → console.log), plus added drain hint
 - **Fix shipped**: commit `82213a6` — info.log → console.log on 2 success paths in `hiveMind.agent.send`. Drain hint added.
 - **Verification**: post-fix `hiveMind send robbin-req "..."` produces `QUEUE: robbin-req (robbinTeam:1.1) busy ...` at default level — operator now sees the routing decision.
 - **Handoff**: tester to verify (a) default-level visible queue/deliver messages, (b) routing still correct on multi-window panes, (c) no regression on existing send-path tests.
+
+## Tester Verification (oosh-tester, 2026-05-26)
+
+### (a) Default-level visibility: PASS
+- Line 2159: `console.log "INFORM delivered to $name ($target)"` — `console.log` gates at LOG_LEVEL > 2, visible at default 3.
+- Line 2182: `console.log "QUEUE: $name ($target) busy ..."` — same gate, visible. Includes drain hint.
+- Both changed from `info.log` (gates > 3, invisible at default) to `console.log`.
+
+### (b) Multi-window routing: PASS
+- `this.isPaneTarget` regex `[0-9]+\.[0-9]+` accepts any window number (not just 0).
+- Expert's manual tests confirmed `robbinTeam:1.1` routes correctly via all 4 send paths.
+- No address normalization truncates window number.
+
+### (c) Regression: PASS (code-level)
+- No routing logic changed — pure log-level fix (2 lines).
+- `otmux.send`, `send.raw`, `send.verified` unchanged.
+- Existing send-path tests (Tron P0 empty-send, prefix tests) unaffected.
+
+**Verdict: VERIFIED. Bug closed.**

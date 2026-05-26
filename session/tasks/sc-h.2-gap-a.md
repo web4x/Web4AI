@@ -73,3 +73,11 @@ Bash 3.2 fallback at sync sites:
 ## Commit
 
 `hiveMind: defer-probe pattern for sessions.env coverage (ref: sc-h.2-gap-a.md)`
+
+## Status (closure 2026-05-25)
+
+- **Implementation**: oosh commit `1b2d59b` — 98 +/3 -, single commit, pushed to test/macos.latest
+- **Tests**: oosh commit `7a5e2bc` — 8 tests (GAP-A-1..8), code-grep + isolated-source for GAP-A-7
+- **Verification**: `test.suite run hiveMind 1 GAP-A` → 8/8 assertions passed
+- **Acceptance**: bash -n clean; helper + handler + 5 sync sites all wired (team.setup direct, team.setup.full direct, agent.bootstrap bash-3.2 fallback, agent.restart bash-3.2 fallback, team.restart bash-3.2 fallback); team.setup.oosh skipped (deprecated)
+- **Handoff**: none — task closed. Open issue logged in expert context: agent.bootstrap dev-flow could schedule defer-probe via event handler only on bash 5 (it already does); bash-3.2 fallback paths verified idempotent via pidfile.
