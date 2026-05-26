@@ -29,3 +29,9 @@ NEVER check QA Review or Done checkboxes during sync. These are Tron's QA gate. 
 
 ## 10. Verify Tron QA Approval via Commit
 To confirm a sprint/task is Tron-QA-approved, grep git log for "Sprint N QA approved by Tron" or "QA approv". No such commit = not approved, regardless of impl commits.
+
+## 11. CMM4 File-Based Communication (SM directive 2026-05-26)
+Communicate through task files / scrum.pmo artifacts, NOT ad-hoc messages. Write findings, status, handoffs INTO the task file (it's the single source of truth). Read task files before asking questions. otmux/hiveMind messages = SHORT pointers only ("done, read <file>"), never long status dumps. Other agents follow this too — expert/architect write Measured Evidence + Root-Cause Findings sections directly into task files (e.g. S13 T91-T93). Respect their in-flight task-file edits; don't commit another role's uncommitted work.
+
+## 12. Recurring: req-eng creates task files / structure ahead of planner
+req-eng repeatedly creates task files (sometimes whole sprint dirs) in their own structure/numbering — caused T81/T83 collision, T90-misplacement, and a duplicate Sprint 13 (sprint-13-stability vs my sprint-13-core-workflow-fixes). Resolution pattern: req owns requirement CONTENT (real Tron quotes) so their files are authoritative; planner owns STRUCTURE — adopt req's content, remove my scaffold, add the missing planning.md + diagrams pointer + compliance sections, reconcile T-numbers. Always check `git status -s scrum.pmo/` for untracked sibling dirs/files each cycle.
