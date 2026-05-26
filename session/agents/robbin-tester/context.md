@@ -68,6 +68,8 @@ profile-editor, room-identity(6/6), room-lifecycle
    - TS2: root file README.md → back goes /md/ (guarded, no //)
    - TS3: label is '← Back'
    - TS4: 📂 still points to /md/
+5. **T91 verify (v0.4.11, commit f2e019c — READY)** — `sprint-13-stability/task-91`. Avatar persist: upload → reconnect/restart → avatar MUST survive (not revert to default). Verify avatar.enc NOT overwritten on reconnect. (Recall: real photo ≠ 817-byte initials default; verify served bytes via curl.)
+6. **T92 verify (v0.4.11, commit f2e019c — READY)** — `sprint-13-stability/task-92`. Keyless UX: trigger upload with missing keys → must show 'Upload failed. Please try again.' — NEVER 'key not found' or any key/crypto term. Verify self-heal regenerates keys so a retry succeeds.
 - Run from `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
 
 ## Known Issues
