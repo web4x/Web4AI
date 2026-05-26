@@ -70,6 +70,12 @@ profile-editor, room-identity(6/6), room-lifecycle
    - TS4: 📂 still points to /md/
 5. **T91 verify (v0.4.11, commit f2e019c — READY)** — `sprint-13-stability/task-91`. Avatar persist: upload → reconnect/restart → avatar MUST survive (not revert to default). Verify avatar.enc NOT overwritten on reconnect. (Recall: real photo ≠ 817-byte initials default; verify served bytes via curl.)
 6. **T92 verify (v0.4.11, commit f2e019c — READY)** — `sprint-13-stability/task-92`. Keyless UX: trigger upload with missing keys → must show 'Upload failed. Please try again.' — NEVER 'key not found' or any key/crypto term. Verify self-heal regenerates keys so a retry succeeds.
+7. **T82 verify (v0.5.0, commit 86256fa — READY)** — `sprint-10-contacts-ui/task-82`:
+   - TS1: open another member's sheet → #us-vcard VISIBLE (readable, not white-on-white) + clickable
+   - TS2: sheet avatar is <rb-avatar> (not bare img), readonly (tap ≠ editor)
+   - TS3: lobby #refresh-rooms-btn .btn-secondary on dark bg stays light-on-dark (scope didn't leak)
+   - TS4: vCard blob well-formed (BEGIN:VCARD / VERSION:3.0 / FN: / END:VCARD)
+   Note: isSelf #us-edit present but unwired = T83 not a T82 defect.
 - Run from `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
 
 ## Known Issues
