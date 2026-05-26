@@ -87,6 +87,13 @@
 - Specs with their OWN enrollment code (device-enrollment, new-user) break independently of the shared helper
 - Create-room form: don't blind-fill #room-name='' — check if create form visible first, default name auto-fills
 
+## reuseExistingServer:true LEAKS to prod (T100 AC4, learned the hard way 2026-05-26)
+- Playwright `reuseExistingServer:true` reuses ANY server responding on the url — including a live prod-DATA_DIR server that (re)starts mid-run. webServer.env DATA_DIR is then IGNORED (only applies to a server PLaywright launches itself).
+- Symptom: I ran the isolated suite (DATA_DIR=tmp), but the live server got restarted on 4444 during the run → Playwright reused it → 24 test rooms LEAKED to prod, tmp dir stayed EMPTY.
+- FIX: for isolated runs set `reuseExistingServer:false` (gated on E2E_ISOLATED=1) so Playwright MUST own its server with DATA_DIR=tmp. AND the live server must stay DOWN for the whole run (no mid-run restart on the same port).
+- Verify isolation BOTH ways: prod count byte-unchanged AND tmp dir actually populated. If tmp is empty after a "isolated" run, isolation did NOT engage — do not report pass.
+- Deleting shared prod data to clean a leak is NOT tester authority — auto-classifier blocks it; expert owns the purge + backups. Report the leak, request re-purge.
+
 ## E2E disk verification pattern
 - Verify server-side state on disk after Playwright actions: data/users/<token>/rooms/<uuid>/
 - Read localStorage token via page.evaluate(() => localStorage.getItem('rawbin-player-id'))
