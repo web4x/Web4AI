@@ -64,6 +64,46 @@ attribute value. When the lobby renders before the profile arrives, src="" and w
 updated before the user clicked. Fix: `getAvatarUrl()` falls back to `/api/avatar/<token>`
 when src is empty but token attribute is set. Used in both render() and openOverlay().
 
+### BUG: Avatar stacking — img + initial both rendered (v0.3.17)
+img and initial span both existed at 100% in position:relative container — initial
+rendered on top of/behind broken img. Fix: initial-first approach. img starts
+display:none, gets `.loaded` class on img.onload event. CSS: `.circle img.loaded
+{ display:block }` + `.circle img.loaded + .initial { display:none }` (adjacent
+sibling). img.onerror removes img entirely. Race handled: if img.complete &&
+naturalWidth>0 before listener attaches, add .loaded immediately.
+
+### BUG: Avatar SVG fallback stuck forever (v0.3.18)
+ensureAvatar returned early if profile.avatar started with /api/avatar/ — so once
+the initials-SVG fallback was stored (when thispersondoesnotexist fetch failed),
+it never retried the photo. Fix: decrypt existing avatar, check mimeType; if
+image/svg+xml, retry photo fetch. node-fetch v3 is ESM-only — works in server
+(import) but CJS require() fails. The fetch itself works fine, failures are network.
+
+### BUG: Avatar GET cached stale (v0.3.18)
+GET /api/avatar served Cache-Control: max-age=3600 — browser cached old avatar
+after upload. Fix: no-cache, must-revalidate + ETag (MD5 of .enc) → 304 when same.
+
+## Avatar Pipeline (Tron directive) — full
+- POST /api/avatar { playerToken, data(base64), mimeType } → requires tokenToClient.has(token)
+  (active WS session) → encryptFile(token, buf, mimeType, `avatar.<ext>`, 'avatar')
+  → profile.avatar = /api/avatar/<token>
+- GET /api/avatar/<token> → decryptFile(token, 'avatar') → serves with mimeType, no-cache, ETag
+- encryptFile writes data/users/<token>/files/avatar.enc + avatar.meta.json (AES-256-GCM,
+  AES key RSA-encrypted with user pubkey). writeFileSync DOES overwrite.
+- rb-avatar getAvatarUrl() falls back to /api/avatar/<token> from token attr when src empty
+- Cache-bust client URL with ?t=Date.now() after upload
+- Global refresh: window 'rb-avatar-updated' {token, url, crop} event
+
+## Room Identity (Sprint 9, T74)
+- Rooms are per-user persistent SSH identities, NOT ephemeral global rooms
+- RoomKeys.ts mirrors UserKeys.ts pattern but scoped to data/users/<token>/rooms/<uuid>/
+- Room.id is FULL crypto.randomUUID() (not .slice(0,8))
+- Room.creatorToken = persistent user token (NOT clientId which is ephemeral)
+- CREATE_ROOM: createRoomHome → generateRoomKeypair → writeRoomJson, default name profile.name+"'s Room"
+- Startup: scanAllRooms() walks data/users/*/rooms/*/room.json, registers each
+- Requires sshKeysGenerated on owner profile before room creation
+- room.json: {id, name, ownerToken, maxMembers, isPrivate, roomKey, state, createdAt, sshKeysGenerated, sshPublicKey, chatHistory}
+
 ### BUG: Avatar upload stack overflow (v0.3.13)
 `btoa(String.fromCharCode(...new Uint8Array(buf)))` crashes >10KB due to max call stack.
 Fixed: loop-based binary string construction.
@@ -114,9 +154,25 @@ The `private.sprint.get.status()` helper tries flat grep first, falls back to ch
 
 ## Process Learnings
 
+### otmux send: NO backticks in the message text (shell command substitution)
+`otmux send <pane> "...message..."` runs through Bash. Backticks in the double-quoted
+message (e.g. a code-ish `npm run migrate` or `data/x.json`) trigger command substitution
+in MY shell — the backtick span executes as a command (harmless ENOENT in the wrong cwd here,
+but it COULD run something) and the delivered text is mangled. Rule: write otmux messages
+WITHOUT backticks (use plain words or single quotes), and verify with pane.capture after.
+
+### CMM4: task file is the single source of truth (SM directive 2026-05-26)
+Write findings, status, and handoffs INTO the task file (scrum.pmo/sprints/.../task-NN.md
+Implementation + Status sections), not ad-hoc otmux chat. Read the task file before
+asking questions. otmux send is for routing/notification only (\"T84 done, see file\") —
+the substance (what changed, AC results, audit, version) lives in the file so it survives
+compact and any agent can pick it up. I already add Implementation sections per task; keep
+doing that, and keep otmux reports thin pointers to the file.
+
 ### Self-report format
 PO expects: task number, subtask summary, line counts, test results. Always include
-clean tsc, build size, and test pass counts. Report to robbinTeam:0.0 via otmux send.
+clean tsc, build size, and test pass counts. Report to robbinTeam:0.0 via otmux send
+(thin pointer — full detail in the task file per CMM4 directive above).
 
 ### Compile check before reporting
 Always run `npx tsc --noEmit --strict --skipLibCheck` on server files and `npm run build`

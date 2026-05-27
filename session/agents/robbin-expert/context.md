@@ -1,64 +1,55 @@
-# robbin-expert Context — Save Point 2026-05-24 (post Sprint 8 + avatar hotfix)
+# robbin-expert Context — Save Point 2026-05-27
 
 **Role**: Web4RawBin Implementation Authority
-**Status**: v0.3.15 deployed — avatar fix shipped. Queue empty, standing by.
-**Machine**: Mac Studio
-**Pane**: robbinTeam:0.2
+**Status**: S15 traceability browser shipped + relocated; S14 migration+T99 closed. Standing by.
+**Machine**: Mac Studio · **Pane**: robbinTeam:0.2
+**Repo**: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin · **Live**: https://home.donges.it:4444 on iphone:0.1 (tmux)
+**Current version**: v0.5.22 (deployed). PKG_VERSION read per-request (T94) so /api/health + /api/config track disk.
 
-## Project
-**Web4RawBin** v0.3.15 — Collaborative rooms + Monaco editor + encrypted storage + PWA
-- Repo: `/Users/Shared/Workspaces/2cuGitHub/Web4RawBin`
-- Live: https://home.donges.it:4444/app
-- Editor: https://home.donges.it:4444/edit/<path>
-- Commit: ed1ad01 (main)
+## Team (robbinTeam)
+0.0 robbin-po · 0.1 robbin-architect · 0.2 ME · 0.3 robbin-tester · 1.0 planner · 1.1 req
 
-## What Just Shipped (v0.3.15)
-**Avatar fix** — two Tron-reported bugs:
-1. **Lobby semicircle**: `flex-shrink: 0` on `:host`, `display: block` on `.circle` and img, removed `transform:scale` from crop
-2. **Overlay showing initial "R" instead of photo**: Added `getAvatarUrl()` method that falls back to `/api/avatar/<token>` when `src` attribute empty but `token` is set — per Tron directive, component always tries encrypted avatar endpoint
+## Deploy ritual (every version)
+Stop server (otmux send iphone:0.1 C-c — often needs TWICE; verify curl /api/health empty=down),
+then: `otmux send iphone:0.1 "cd <repo> && git pull && npm run build && npm run dev" Enter`,
+wait ~14s, verify /api/health version. NEVER add `git stash` to the restart (it swept my uncommitted
+changes once — recovered via stash pop/checkout). Build = node build.mjs (esbuild client bundles +
+sw.js CACHE_NAME stamp). Server runs via tsx (no tsconfig — single-file `tsc` shows bogus node-type
+errors; the real gates are esbuild build + tsx run + vitest).
 
-## Code Summary (8 sprints + hotfixes, ~75 tasks)
+## What shipped this session (commits)
+- **S13 stability** (earlier): T80/T78/T81/T84/T82/T83/T91/T92/T93/T94/T95/T100. Avatar fix 2 halves:
+  rekeyUser re-encrypts files on keypair rotation (v0.5.9) + ensureAvatar preserve-on-decrypt-fail (v0.5.10).
+  vCard photo-from-token + UUID note (v0.5.14). DATA_DIR + port env isolation (T100).
+- **S14 migration** (sprint-14-legacy-migration/): T96/T97 Migration.ts (copy-only, idempotent),
+  T98 tester PASS, **T99 DONE** — removed loadFromDisk + dual-WRITE; per-user/UUID is SOLE source;
+  deleted data/rooms + 141 token-* originals. v0.5.20. Backup web4rawbin-pre-T99-backup-20260526T175321Z.tar.gz.
+- **S15 traceability** (sprint-15-traceability-browser/) COMPLETE R1-R7:
+  - T101 src/ts/shared/TraceModel.ts (7 UUID classes + TraceGraph, flat-JSON, DOM-free SHARED).
+  - T102 src/ts/server/TraceConsistency.ts + trace-cli.ts (npm trace:check/trace:fix; marker-region fix).
+  - T103-T108 client layer src/public/ts/trace/: TraceRouter, VerbRegistry, ViewBus (MVC observer),
+    rb-trace-view, rb-object-item (draggable), rb-list-overview (SearchProvider), rb-detail-view,
+    rb-overview (computed-from-graph), rb-trace-tree (capstone). viewRegistry()=production wiring;
+    defaultRegistry=T103 proof. GET /api/trace (server) = scanRepo→graph.toJSON()+validate.
+  - **RELOCATED** (v0.5.22): Traceability is a DOCS TOP-NAV choice — GET /trace page (trace-page.ts
+    bundle) + pageNav 'Traceability'→/trace link; removed /edit sidebar mount. NOT the /edit sidebar.
 
-### Server (src/ts/server/)
-- `server.ts` — HTTPS+WS+routes (~1300 lines)
-- `Room.ts` — rooms with members/spectators/chat/persistence
-- `UserKeys.ts` (192) — RSA-2048 keypairs, device enrollment, challenge-response
-- `UserCrypto.ts` (112) — AES-256-GCM + RSA envelope encrypted file storage
-- `FileApi.ts` (95) — readDir/readFile/writeFile with sanitization + auth
+## Current data state (prod)
+3 real rooms only: Marcel Donges's Room (99e6a422, owner 3dca7f5e), Marcel Donges Surface Mini's Room
+(fe4d5664, owner f4798dae), Admins's Room (c5899b10, owner 3dca7f5e). 0 token-* dirs, no data/rooms.
+141 token dirs migrated to UUID. data/ is gitignored.
 
-### Client Components (src/public/ts/components/ — 13 total)
-- rb-update-banner, rb-header, rb-chat-sheet, rb-overlay, rb-member-badge, rb-member-list, rb-qr-popup, rb-avatar
-- Sprint 8: rb-editor-layout, rb-file-tree, rb-code-editor, rb-preview, rb-editor-toolbar
+## Tester verification status (787/787 batch + more)
+PASS: T80 21/21, T91, T92 6/6, T93 4/4, T78, T98, T102 10/10, T103 11/11, T105 5/5, T106 7/7, vCard 6/6.
+Queued: T107 (rb-detail-overview), T108 (rb-trace-tree + e2e now targeting /trace), T99 UI-create re-confirm.
 
-### Client Pages
-- `app.ts` (91) — room app with gate/enrollment/browser/roomview
-- `edit.ts` (110) — Monaco editor with file tree, preview, save
+## Build/test commands
+npm run build · npm run dev (tsx watch) · npm test (vitest) · npm run test:e2e (playwright, now
+default-isolated: E2E_LIVE=1 opts OUT) · npm run trace:check/trace:fix · npm run migrate.
 
-### Build & Deploy
-```bash
-npm run build       # → app-[HASH].js + edit-[HASH].js + rb-update-banner-[HASH].js
-npm run dev         # tsx watch
-npm run test        # 631 vitest (13 files)
-npm run test:e2e    # 15 Playwright (6 app + 9 editor)
-```
-Deploy: bump version → `npm run build` → `git push` → restart iphone:0.1
-
-### Key Routes
-- `/app` — room app (PWA)
-- `/edit/<path>` — Monaco editor
-- `/api/files/<path>/` — readDir, `/api/files/<path>` — readFile, PUT writeFile
-- `/api/puml-render` — POST PlantUML → SVG
-- `/api/avatar/<token>` — encrypted avatar serving (GET decrypts, POST encrypts+stores)
-- `/api/health`, `/api/config`, `/md/`, `/docs/`
-
-### Avatar Pipeline (Tron directive)
-- POST /api/avatar: accepts {playerToken, data, mimeType} → encryptFile → profile.avatar = /api/avatar/<token>
-- GET /api/avatar/<token>: decryptFile → serves with Content-Type from meta, ETag+304
-- rb-avatar component: `getAvatarUrl()` falls back to `/api/avatar/<token>` from token attr
-- Global refresh: window 'rb-avatar-updated' event with {token, url, crop}
-- 26 users have encrypted avatars in data/users/<token>/files/avatar.enc
-
-### Test Baselines
-- vitest: 631/631 (13 files)
-- Playwright app: 6/6
-- Playwright editor: 9/9
+## Key file locations
+- shared model: src/ts/shared/TraceModel.ts (DOM-free, server+client)
+- trace client layer: src/public/ts/trace/ (browser-only — extends HTMLElement)
+- server: src/ts/server/server.ts (routes incl /trace, /api/trace, /api/avatar), Room.ts, UserKeys.ts,
+  UserCrypto.ts (rekeyUser), RoomKeys.ts (scanAllRooms/scanUserRooms), Migration.ts, TraceConsistency.ts
+- pages: src/public/ts/{app,edit,trace-page}.ts → build.mjs entryPoints + build-manifest.json
