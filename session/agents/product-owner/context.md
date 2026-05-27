@@ -18,11 +18,9 @@
 ## Sprint 0 — DONE
 All epics shipped. B5.2 8/8 PASS. Final QA items completed.
 
-## Sprint 1 — State Correctness (IN PROGRESS)
-- SC-A: 2/3 (diff b4447f6, audit 636489f — A.3 tester pending)
-- SC-B: 1/3 (events 8feac46 — bash 3.2 compat fixed 194568a)
-- SC-D: D.1 in progress
-- SC-E: E.1 findings + E.2 shipped
+## Sprint 1 — State Correctness: DONE (2026-05-25)
+All epics SC-A through SC-H shipped. 11 impl commits + 48 tests. Final commit 4af9e99 (SC-G docs).
+Awaiting Tron directive for Sprint 2.
 - SC-C/F/G: not started
 - Naming migration shipped (9c2cc70) — BUT pane title bug remains (fork/setup produce @model not @hostname)
 
