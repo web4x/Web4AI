@@ -1,6 +1,6 @@
 # Product Owner Context
 
-**Updated**: 2026-05-25 pre-rewind
+**Updated**: 2026-05-27 22:37 pre-rewind
 **Role**: TRONinterface-agent (master PO) / oosh-po
 **Pane**: TRONinterface:0.0 on MacStudio.native
 **Session**: oosh-po@MacStudio
@@ -8,9 +8,9 @@
 ## Teams
 | Team | Status | Agents |
 |------|--------|--------|
-| TRONinterface | running | TRONinterface-agent(0.0) + SM(0.1 stale loop) + PO-shell(0.2) + tronMonitor(0.3) |
+| TRONinterface | running | TRONinterface-agent(0.0) + SM(0.1) + PO-shell(0.2) + tronMonitor(0.3) |
 | ooshTeam | running | po(0.0) + architect(0.1) + expert(0.2) + tester(0.3) + shells(0.4,0.5) |
-| robbinTeam | running | po(0.0) + architect(0.1) + expert(0.2) + tester(0.3) + shells(0.4,0.5) + planner(1.0) + req(1.1) |
+| robbinTeam | running | po(0.0) + architect(0.1) + expert(0.2 JUST RESTARTED) + tester(0.3) + shells(0.4,0.5) + planner(1.0) + req(1.1) |
 | web4team | idle | po + architect + expert + tester |
 | upDownTeam | running | ud-po + ud-architect + ud-expert + ud-tester + shells |
 | unitTeam | running | unit-po + architect + expert + tester + shells |
@@ -21,26 +21,14 @@ All epics shipped. B5.2 8/8 PASS. Final QA items completed.
 ## Sprint 1 — State Correctness: DONE (2026-05-25)
 All epics SC-A through SC-H shipped. 11 impl commits + 48 tests. Final commit 4af9e99 (SC-G docs).
 Awaiting Tron directive for Sprint 2.
-- SC-C/F/G: not started
 - Naming migration shipped (9c2cc70) — BUT pane title bug remains (fork/setup produce @model not @hostname)
 
-## Completed This Session
-- robbinTeam created (4 agents + 2 shells + planner + req engineer)
-- robbin-planner bootstrapped at 1.0 (new window)
-- robbin-req forked from architect at 1.1 (with /remote-control)
-- Bash 3.2 compat fix (194568a) — declare -g + assoc arrays
-- robbinTeam registry repaired after pane-shift incident
-- Window size floor applied to robbinTeam windows 0+1
-- Naming migration shipped (9c2cc70) — 9 write paths
-- BUG-T5 source hang fix (bfb8d3c) — 0.055s vs 30s
-- Task #26 configDir completion (c6af20e)
-- Task #29 bash compat (194568a)
-- McDonges clone trial complete — 6 bugs found
-- Clone trial bug B1+B2 fixed
-- tronMonitor MVC state sync (aa7d6ac)
-- teams.env garbage fix (ebc8b5e)
-- SM recovered from CMM4 loop (task #9)
-- Git push enforcement (task #25)
+## What Just Happened (2026-05-27)
+- Rewound from May 25 context
+- SM alerted: 4 agents context-overflowed (negative readings) — NOT compacted per protocol
+- SM alerted: robbin-expert fork FAILED — was forking ud-expert session (wrong identity)
+- FIXED: exited broken ud-expert fork, launched fresh opus, renamed to robbin-expert@MacStudio, trained with boot.md, registry corrected
+- S16 UI build was blocked on this — now unblocked
 
 ## Open Tasks
 #10: Tester D3.3 tronMonitor verification
@@ -53,8 +41,9 @@ Awaiting Tron directive for Sprint 2.
 #30: consistency.audit coverage invariant
 
 ## Pending from Tron (unanswered)
-- Monaco editor sprint planning — Tron asked to plan a big sprint adding Monaco editor to "the browser" for editing source files. Asked for clarification on which browser/UI. No answer yet.
-- Naming convention bug — fork/setup produce @model not @hostname in pane titles. Reported to oosh-expert + tester.
+- Monaco editor sprint planning — asked for clarification on which browser/UI. No answer yet.
+- Naming convention bug — fork/setup produce @model not @hostname in pane titles
+- Sprint 2 direction — Sprint 1 done, awaiting Tron directive
 
 ## Token Economics
 - Sustained generation: FREE (0%/hour)
@@ -65,7 +54,7 @@ Awaiting Tron directive for Sprint 2.
 - NO COMPACT — only TRON rewinds
 - hiveMind for agents, otmux for transport
 - Sweep → capture → decide → act
-- No output filtering
+- No output filtering (no 2>&1, no | head/tail/grep)
 - PO delegates, never debugs
 - Save context at 35%
 - NEVER ASSUME — ALWAYS MEASURE
@@ -74,3 +63,7 @@ Awaiting Tron directive for Sprint 2.
 - Git push after every commit
 - Accept-edits on idle agents = expected, don't unblock
 - Sprint files are PO responsibility
+- NEVER /clear ANY trained agent — fork from fallback instead
+- /rewind 2-phase: shallow (save files) then deep (restore checkpoint)
+- tronMonitor uses GNU screen in TRONinterface:0.3
+- Use hiveMind team.sweep for monitoring, not manual Monitor loops
