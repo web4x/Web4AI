@@ -130,3 +130,20 @@ Data deletion / migration: design as copy-then-verify, legacy untouched until a 
 
 ### 59. Don't reason from filtered/truncated output
 I read a `git show --stat | head -15` (truncated), concluded a server file wasn't committed, and nearly raised a false bug alarm. It WAS committed. Never `| head/tail/grep` git/tool output when verifying — read it whole.
+
+## Session 2026-05-26/27 — Marathon learnings (60+)
+
+### 60. VERIFY after destructive ops, not just before
+Verify-before-delete AND verify-after. Caught this session: (a) a STALE T98 verify (ran on polluted 14-room data, would have gated a delete on wrong state) — re-verified on current clean data; (b) legacy data/rooms REGENERATED right after T99 deleted it (Room.persist dual-write) — caught by checking post-delete, led to removing the write path. "Deleted once" ≠ "consistently removed". Never report a destructive op done without verifying the end-state holds.
+
+### 61. Capture a dying agent's output + commit it MYSELF before rewind
+When the architect hit 2% mid-avatar-diagnosis it couldn't git-commit. I otmux-captured the root cause from its pane and committed it myself (f162f1a) BEFORE the agent-trainer rewound it → diagnosis preserved, safe rewind. Don't rely on a near-0% agent to save its own work; capture from the pane + commit for it.
+
+### 62. No backticks (or $(), $VAR) in otmux send text
+A directive with backticks got shell-command-substituted by the Bash wrapper ("command not found: catch") and mangled. Always verify the send landed (pane.capture) and re-send clean without shell-special chars.
+
+### 63. The architect is the load bottleneck — watch it
+The architect carried avatar diagnosis + S14 design + S15 Object.verb design + S16 design and hit context limits 3x (2% then 0%), each recovered via agent-trainer rewind. Heaviest-loaded agent stalls the critical path repeatedly. Consider splitting design load or pre-emptive rewinds before it wedges.
+
+### 64. "QA is after delivering" + don't over-report "done"
+Tron: QA comes AFTER delivery — don't gate work waiting on QA; deliver, he QAs. And report only REAL built/verified deliverables, never "done" prematurely (S16 was honestly "early design", not delivered, while the design agent was down).
