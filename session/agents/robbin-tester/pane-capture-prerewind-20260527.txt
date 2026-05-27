@@ -1,0 +1,35 @@
+  (peer to browser/App) → links
+  to /trace; (2) GET /trace
+  renders the rb-trace-tree +
+  detail pane (loads
+  /api/trace: 119 objects/14
+  broken); (3) it's GONE from
+  the /edit sidebar
+  (mountTraceBrowser removed).
+  Note: fixed a /trace 500
+  (MD_CSS TDZ) — /trace now
+  HTTP 200, health stable.
+  Existing
+  rb-trace-tree.test.ts still
+  valid (component unchanged).
+  e2e traceability-browser.spec
+  should target /trace now
+  (not /edit).
+
+────── robbin-tester@MacStudio ──
+❯ 
+  TRONinterface:0.1] SM CONTEXT
+  WARNING: You are high
+  context. Update your
+  context.md and learnings.md
+  NOW and git commit.
+
+✻ Cogitated for 0s
+
+────── robbin-tester@MacStudio ──
+❯ 
+─────────────────────────────────
+  ⏵⏵ auto mode on (shift+tab ·
+  new task? /clear to save 981…
+          Remote Control active
+
