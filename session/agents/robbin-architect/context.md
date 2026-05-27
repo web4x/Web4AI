@@ -1,5 +1,11 @@
 # robbin-architect — Context
 
+## ACTIVE (2026-05-26, pre-rewind save): Sprints 13 + 14
+- **Avatar-fallback recurrence (S13 T91):** ROOT CAUSE done + saved into task-91 + session/tasks diagnosis addendum. Decrypt-exception in ensureAvatar (server.ts:828 catch) OVERWRITES real avatar with default; serve 500→client fallback. T91 fileExists guard didn't cover decrypt-throw. Fix = never overwrite on decrypt exception. Owner: expert. AVATAR FIX FIRST, then S14 (disjoint data).
+- **S14 legacy→UUID migration:** T96-T99 designs + migration-workflow.puml committed (d953d5a, 4501e05). Flat data/rooms = stale dup (all per-user); token-* dirs = room-only orphans (0 profiles/keys). T98 baseline run-time not hardcoded. T99 Tron-gated. PENDING: add T97 invariant "re-encrypt files/* on identity rekey".
+- **S13 T95** newest-rooms-first committed faa7d89. **S13 T91-T94** root causes committed 1042a4a.
+- **NEXT after rewind:** (2) T97 re-encrypt-on-rekey invariant, (3) S15 T104 Object.verb use-case diagrams.
+
 ## Identity
 - **Role:** robbin-architect
 - **Pane:** robbinTeam:0.1
