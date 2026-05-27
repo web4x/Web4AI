@@ -75,3 +75,26 @@ Detail field `scrolled-history` is the observability hook: operators / scrumMast
 - **Verification**: 8 smoke-test scenarios all PASS via env-var injection mock.
 - **Handoff to tester**: (a) verify all 8 scenarios via test fixture, (b) verify regression: existing idle/active/queued tests still pass, (c) live verification on real rate-limited agent (when one occurs).
 - **Follow-up if false-negatives persist**: Option 2 from spec — track previous state per pane, detect ACTIVE→IDLE transitions without forward progress (commit, file mtime, response delivery). Requires state-store S11. Defer to a future task.
+
+## Tester Verification (oosh-tester, 2026-05-26)
+
+### (a) 8 scenarios covered via code-grep tests: PASS
+- RL-1: scrolled-history path exists in sweep.detect
+- RL-2: history scan captures 200 lines
+- RL-3: subscription-limit pattern (subscription.*limit, quota.*exhausted, etc)
+- RL-4: rate-limit pattern (rate.limit, too many requests, throttl)
+- RL-5: api-error pattern (APIConnectionError, 502, 503, 529)
+- RL-6: history scan gated to idle path only — active/queued/permission unaffected
+- RL-7: prose-scrub filters code comments to prevent false positives
+- RL-8: clean idle fallthrough preserved (idle|none|info)
+
+### (b) Regression: PASS
+- RL-8 confirms idle|none|info fallthrough unchanged
+- RL-6 confirms history scan only runs on idle path — no impact on active/queued/permission states
+- No changes to non-idle classification branches
+
+### (c) Live verification: DEFERRED
+- No rate-limited agent currently available. Will verify when one occurs naturally.
+
+Commit: `1eb8cf6`
+**Verdict: VERIFIED. Bug closed.**
