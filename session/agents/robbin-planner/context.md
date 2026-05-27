@@ -1,56 +1,40 @@
-# robbin-planner Context — 2026-05-24
+# robbin-planner Context — Save Point 2026-05-27 (pre-deep-rewind)
 
-**Role:** Sprint Planner
-**Pane:** robbinTeam:1.0
-**Project:** Web4RawBin
-**Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
+**Role:** Sprint Planner / board-consistency owner, co-driving with robbin-po
+**Pane:** robbinTeam:1.0 · **Reports to:** robbin-po (robbinTeam:0.0)
+**Project:** Web4RawBin · **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
+**Sprint tool:** `SPRINT_PMO_DIR=<repo>/scrum.pmo /Users/Shared/Workspaces/AI/Claude/components/OOSH/dev.claude/sprint {status|audit}`
 
-## Current State
+## Current State (v0.5.22)
+- Repo raced ahead during prior timeline; trust `git log` + `sprint audit` over memory.
+- Traceability browser shipped at **/trace** (v0.5.21, top-nav). Full suite ~787 tests.
+- Audit: 0 issues last check. NEXT NEW TASK = **T110** (T84-T109 in use).
 
-- **Version:** v0.4.6
-- **Last planner commit:** 1a87ecd (T79 specs committed, Sprint 9 5/6 awaiting QA)
-- **Tests:** room-identity adds 70 unit + 6 e2e (c43cbc8)
+## STANDING RULES (most important — keep enforcing)
+1. **QA Review + Done = TRON's gate ONLY.** Tron declares QA explicitly, relayed via PO. NEVER check QA Review/Done without his declaration. (PO reinforced hard.) "qa is after implementing" (+testing).
+2. **CMM4 file-comms:** write findings/status INTO task files; otmux/hiveMind = SHORT pointers only. Read files before asking.
+3. **Sync against COMMITTED reality only** (not uncommitted WIP). But tester often leaves the `testing` box unchecked after a PASS commit → check it (committed evidence). The restructure pattern keeps DROPPING `## QA Audit` from tasks on expert commits → re-verify QA Audit + Traceability sections after each expert commit.
+4. **Discoverability:** any NEW sprint → add to README "Individual sprints" list + `scrum.pmo/sprints/sprints.overview.md` in the SAME commit. Traceability artifacts indexed in README `## Traceability` (matrix + standard + audits). Push when PO asks / repo ahead.
+5. **req-eng + architect create tasks/dirs ahead of me** — reconcile (adopt their content, fix numbering/structure, wire to planning). Watch every cycle for misplaced/untracked files + T-collisions via `git status -s scrum.pmo/`.
+6. Tron directive: NO artificial character limits in specs.
+7. Standard: `scrum.pmo/standards/traceability-standard.md`; template `scrum.pmo/templates/task-template.md`; matrix `scrum.pmo/traceability-matrix.md`; backlog `scrum.pmo/backlog.md`.
 
-## Sprint Status
+## Sprint State (S1-16)
+- **S1-8:** Done, Tron-approved (a172a1d batch S1-4; S5/6/7/8 individual commits).
+- **S9 Room Identity:** T74-77,79,80 Tron-QA Done (bc99ed7); **T78 tested→awaiting Tron QA**.
+- **S10 Contacts UI:** T81/82/83 tested→awaiting Tron QA.
+- **S11 Traceability Standardization:** T85/T86 impl-done(tested-ish); **T87 (S8,9 backfill), T88 (S5-7), T89 (S1-4) planned**, T90 verify. Remediation of S1-9 to full chain. Not yet executed.
+- **S12 Editor Fixes:** T84 tested→awaiting Tron QA.
+- **S13 Stability:** T91,92,93,94,95,T100,**T109** all tested→awaiting Tron QA. R-A1 avatar-persist SATISFIED by T91+T109 (both tested). T109 = avatar recurrence (decrypt-exception no-overwrite + rekey re-encrypt `rekeyUser`).
+- **S14 Legacy Migration:** T96/T97 migrated, T98 verify PASS, **T99 gate cleared (T98 PASS + Tron auth) + delete EXECUTED (ec0423d v0.5.19)**; dual-write regen regression fixed (9c1b0a0 v0.5.20). S14 complete ONLY when a new-room-create proves data/rooms stays gone (was being closed at rewind — VERIFY THIS). T99 gate held end-to-end, no violation.
+- **S15 Traceability Browser & Object Model:** T101-108 ALL impl-complete + tested (8/8 In Progress = tested, QA/Done unchecked). Browser at /trace. Awaiting Tron QA.
+- **S16 Traceability UX (STARTED, NOT PLANNED YET):** dir `sprint-16-traceability-ux/` has `compound-requirement-source.md`. **PENDING PLANNER WORK** (missed prompt): plan S16 = tree-view UI — word-wrap, OS drag, tap-collapse, traceability-chain review, UseCase-as-class PUML. Coordinate req (requirements) + architect (design). Tasks T110+. Full traceability per standard. Add to README + overview. Report S16 plan to PO.
 
-### Sprint 9 — Room as Persistent SSH Identity (ACTIVE)
-- **Tron QA-approved (Done):** 0/6 — NO Sprint 9 QA approval commit exists yet
-- **Impl-done + committed, awaiting Tron QA:** 5 (T74,75,76,77,79)
-- **Not started:** 1 (T78 — client updates) ← ONLY remaining dev work
-- **Version range:** v0.4.0–v0.4.6
-- **Key commits:** T79 specs c43cbc8; honesty correction 6e96c4d; totals 1a87ecd
+## TRON-QA GATE QUEUE (tested, awaiting Tron's explicit QA declaration)
+S9 T78 · S10 T81/82/83 · S12 T84 · S13 T91/92/93/94/95/100/109 · S15 T101-108.
+Nothing marked Done. On Tron QA declaration (via PO): check QA Review+Done on named tasks, sync planning Done + counts + totals + sprints.overview.md.
 
-### Sprint 8 — Monaco Editor (COMPLETE)
-- 14/14 DONE (T60-T73), Tron QA approved (415c092), v0.3.0–v0.3.19
-
-### Sprint 7 — Encrypted Storage (COMPLETE)
-- 13/13 DONE (T47-T59), v0.2.29
-
-### Sprints 1-6
-- All complete.
-
-## CRITICAL RULE
-- QA Review + Done = Tron's gate ONLY. Never check during sync. Verify via
-  explicit "Sprint N QA approved by Tron" commit. (Incident b85dfa8 → fix 6e96c4d.)
-
-## Tron Directives
-- No artificial character limits on user input (2026-05-25)
-
-## Monitoring
-
-- **Cycle:** 15-minute ScheduleWakeup
-- **Last check:** 2026-05-24 ~17:00 UTC
-- **Status:** Clean — no inconsistencies
-
-## Completed This Session
-
-1. Initial audit of all sprint files
-2. Updated T55-T59 task file statuses (were PLANNED, now DONE)
-3. Added Phase 5 + hotfixes to Sprint 7 planning.md
-4. Updated Sprint Totals and Definition of Done
-5. Fixed acceptance criteria checkboxes (T47-T59)
-6. Added traceability to T57-T59
-7. Synced Sprint 5 (T31-T38) and Sprint 6 (T39-T46) — all checkboxes checked
-8. Logged sprint tool parser bug in known-issues.md
-9. Committed: 134d5b6 (33 files, 300 ins, 240 del)
-10. Created agent role files (SKILL.md, context.md, learnings.md)
+## IMMEDIATE TODO (post-rewind)
+1. Verify S14 closure: does creating a new room leave `data/rooms` gone? (was the open item).
+2. PLAN S16 (tree-view UX) from compound-requirement-source.md — coordinate req+architect; tasks T110+; README+overview; report to PO.
+3. Resume 15-min monitoring; sync committed task-status changes; enforce the QA gate.
