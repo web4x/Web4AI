@@ -147,3 +147,6 @@ The architect carried avatar diagnosis + S14 design + S15 Object.verb design + S
 
 ### 64. "QA is after delivering" + don't over-report "done"
 Tron: QA comes AFTER delivery — don't gate work waiting on QA; deliver, he QAs. And report only REAL built/verified deliverables, never "done" prematurely (S16 was honestly "early design", not delivered, while the design agent was down).
+
+### 65. PO + SM + agent-trainer coordinate CONTINUOUS team-health until delivery (Tron 2026-05-27)
+Team health is a coordinated standing job, not ad-hoc firefighting. SM proactively monitors every agent's context; BEFORE an agent nears its limit it WRITES + git-COMMITS context.md + learnings + in-flight findings; the agent-trainer then does a CMM4-RECOVERABLE REWIND (state saved+committed FIRST → rewind → agent reboots fully from context.md = deterministic/reproducible; NEVER a destructive /compact). Proactive (before 0%, not after wedging). PO coordinates priorities; SM monitors; agent-trainer executes. Sustain through the whole marathon until ALL requirements delivered. This is why context.md must always be current+committed — it's the recovery anchor.
