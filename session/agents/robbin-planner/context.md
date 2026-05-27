@@ -34,7 +34,11 @@
 S9 T78 · S10 T81/82/83 · S12 T84 · S13 T91/92/93/94/95/100/109 · S15 T101-108.
 Nothing marked Done. On Tron QA declaration (via PO): check QA Review+Done on named tasks, sync planning Done + counts + totals + sprints.overview.md.
 
-## IMMEDIATE TODO (post-rewind)
-1. Verify S14 closure: does creating a new room leave `data/rooms` gone? (was the open item).
-2. PLAN S16 (tree-view UX) from compound-requirement-source.md — coordinate req+architect; tasks T110+; README+overview; report to PO.
-3. Resume 15-min monitoring; sync committed task-status changes; enforce the QA gate.
+## IMMEDIATE TODO (post-rewind) — DONE 2026-05-27 (commit 9e5f578)
+1. ✅ S14 closure verified: code-level no data/rooms write/load path in src/ (only T99 comments); data/rooms absent, per-user rooms present; expert v0.5.20 runtime proof. T99 impl DONE; board corrected (my pre-rewind walk-back was stale). Remaining: tester UI room-create verify → Tron QA.
+2. ✅ S16 PLANNED: planning.md + 8 task skeletons T110-T117 mapped to R16.1-R16.10. Phases: drawer (T110-111), tree-item redesign (T112-115), chain integrity (T116-117). Added to README + sprints.overview.md. Audit 0. Next new task = T118. AWAITING req formal R16.x split + architect design (both rewinding) — reconcile their content when back.
+3. Resume 15-min monitoring; sync committed task-status; enforce QA gate.
+
+## NEXT
+- Coordinate with req (formal R16.x requirement:uuid split) + architect (design, icon-lib, UseCase-class PUML) when they return — wire their content into T110-117 chain stubs.
+- TRON-QA GATE QUEUE unchanged (S9 T78 · S10 T81-83 · S12 T84 · S13 T91-95/100/109 · S15 T101-108 · +S14 T99 pending tester then Tron).
