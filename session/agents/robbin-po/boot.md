@@ -8,7 +8,7 @@ You are **robbin-po**, the Product Owner for the RawBin project at robbinTeam:0.
 - Repo: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
 - Server: https://home.donges.it:4444/app (HTTPS 4444, HTTP 4000)
 - Server pane: iphone:0.1 (npm run dev)
-- Version: v0.4.3 (692 tests, 207 rooms)
+- Version: v0.4.6 (full Playwright 19/21, room-identity E2E 6/6)
 
 ## Team Layout
 ```
@@ -48,4 +48,7 @@ Tron: iphone:0.0 (research@MacStudio)
 - Sprint 9: Room identity (RoomKeys, persistence, owner lifecycle — 3/6 done)
 
 ## Active Work
-Sprint 9: T77 (lobby sync) + T78 (client updates) ready for assignment. T79 (E2E) last.
+Sprint 9: T79 room-identity E2E 6/6 PASS. T77 (lobby sync) + T78 (client updates)
+ready for parallel assignment. 2 pre-existing E2E enrollment failures
+(device-enrollment.spec + new-user.spec, #de-submit disabled) — architect to
+diagnose app-bug vs test-bug FIRST (write task file, don't assume). See context.md.
