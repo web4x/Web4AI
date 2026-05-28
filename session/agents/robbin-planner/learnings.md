@@ -39,6 +39,12 @@ Whenever standing up a new sprint, add it to BOTH (a) the README.md "Individual 
 ## 12. Recurring: req-eng creates task files / structure ahead of planner
 req-eng repeatedly creates task files (sometimes whole sprint dirs) in their own structure/numbering — caused T81/T83 collision, T90-misplacement, and a duplicate Sprint 13 (sprint-13-stability vs my sprint-13-core-workflow-fixes). Resolution pattern: req owns requirement CONTENT (real Tron quotes) so their files are authoritative; planner owns STRUCTURE — adopt req's content, remove my scaffold, add the missing planning.md + diagrams pointer + compliance sections, reconcile T-numbers. Always check `git status -s scrum.pmo/` for untracked sibling dirs/files each cycle.
 
+## 15. impl-done ≠ shipped without version+sw.js bump (STANDING — Tron 2026-05-29)
+A task that's been "implemented" is NOT actually shipped to Tron's device until BOTH:
+- **(a)** `package.json` `"version"` is bumped, AND
+- **(b)** `src/public/sw.js` CACHE_NAME is bumped (auto-stamped from package.json by `build.mjs`, but verify the built sw.js shows the new version)
+…in the SAME commit-set as the impl. Without both, the PWA update banner does not fire and Tron's iPhone stays on the old code — the fix never reaches the device. Hard check before symbol ✅→🧪 (and certainly before the QA gate): grep the impl commit-set for a package.json version bump; if absent, flag and report. **S16 incident (2026-05-29):** T110-T117 shipped 51812eb→61d0253 without a bump; PO/expert caught it after Tron's flag. Add an explicit "version bumped + sw.js cache" line to every task's AC + DoD (template already has it). When syncing 📝→✅, the planner's check is: (i) impl commit present? (ii) version bump present in the same commit-set? Both must be true.
+
 ## 14. Emoji-prefix readability pattern in planning.md (STANDING — Tron 2026-05-28)
 Tron flagged: planning.md looked unprogressed because the single `[ ]` per task line only reflects Tron's Done gate (empty by design). FIX: add an at-a-glance emoji prefix to every task line in the task list. Standing pattern for every new sprint AND back-propagation:
 

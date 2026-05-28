@@ -67,6 +67,19 @@ syncing an implemented-but-unapproved task: check impl steps, leave QA Review +
 Done UNCHECKED. The board must be HONEST. (Incident: b85dfa8 over-checked
 T74-T77; corrected in 6e96c4d.)
 
+**STANDING — impl-done ≠ shipped without version+sw.js bump (Tron 2026-05-29).**
+Before flipping a task's symbol from 📝 → ✅ (or treating it as "shipped"),
+verify the impl commit-set ALSO contains:
+1. `package.json` `"version"` bump, AND
+2. `src/public/sw.js` CACHE_NAME bump (auto-stamped from package.json by `build.mjs`).
+
+Without both, the PWA update banner does not fire and Tron's device stays on old
+code. The QA gate cannot legitimately approve work the device hasn't received.
+Hard check on every sync: grep the impl commit-set for the version bump; if
+absent, flag in the report ("impl-shipped at code level but not delivered to
+device — version bump missing"). See learnings #15. Incident: S16 T110-T117
+shipped 2026-05-29 without bump; expert remediated.
+
 **STANDING — At-a-glance progress symbols in planning.md (Tron 2026-05-28).**
 Single `[ ]` per task only reflects Tron's Done gate — makes planning.md look
 unprogressed. Add a symbol prefix to every task line; insert a legend block once
