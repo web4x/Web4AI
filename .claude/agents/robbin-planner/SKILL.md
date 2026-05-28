@@ -67,6 +67,25 @@ syncing an implemented-but-unapproved task: check impl steps, leave QA Review +
 Done UNCHECKED. The board must be HONEST. (Incident: b85dfa8 over-checked
 T74-T77; corrected in 6e96c4d.)
 
+**STANDING — At-a-glance progress symbols in planning.md (Tron 2026-05-28).**
+Single `[ ]` per task only reflects Tron's Done gate — makes planning.md look
+unprogressed. Add a symbol prefix to every task line; insert a legend block once
+at top of `## Task List` in each planning.md. Apply to every NEW sprint at stand-up;
+maintain on every monitoring cycle (treat symbol drift as a sync target).
+
+| Symbol | Meaning |
+|--------|---------|
+| ⏳ | planned (no work started) |
+| 📝 | designed (architect refinement done, awaiting impl) |
+| 🔧 | implementing (in progress, not shipped) |
+| ✅ | impl-shipped (impl committed, tester pending) |
+| 🧪 | testing (tester verified PASS, awaiting Tron QA) |
+| 🏁 | Tron-QA-done (Tron explicitly QA-approved via commit) |
+
+Format: `- [ ] <emoji> [Txx: Title](./task-xx-...)`. Keep `[ ]` Done-gate semantic
+intact — flips to `[x]` only on Tron's explicit QA approval. First applied: ecce49e
+(S10-S16 sweep), initial S16 in a0df3f8. See learnings #14.
+
 ### 3. Sprint Audit
 
 Detect and fix inconsistencies:

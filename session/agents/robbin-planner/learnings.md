@@ -38,3 +38,25 @@ Whenever standing up a new sprint, add it to BOTH (a) the README.md "Individual 
 
 ## 12. Recurring: req-eng creates task files / structure ahead of planner
 req-eng repeatedly creates task files (sometimes whole sprint dirs) in their own structure/numbering — caused T81/T83 collision, T90-misplacement, and a duplicate Sprint 13 (sprint-13-stability vs my sprint-13-core-workflow-fixes). Resolution pattern: req owns requirement CONTENT (real Tron quotes) so their files are authoritative; planner owns STRUCTURE — adopt req's content, remove my scaffold, add the missing planning.md + diagrams pointer + compliance sections, reconcile T-numbers. Always check `git status -s scrum.pmo/` for untracked sibling dirs/files each cycle.
+
+## 14. Emoji-prefix readability pattern in planning.md (STANDING — Tron 2026-05-28)
+Tron flagged: planning.md looked unprogressed because the single `[ ]` per task line only reflects Tron's Done gate (empty by design). FIX: add an at-a-glance emoji prefix to every task line in the task list. Standing pattern for every new sprint AND back-propagation:
+
+**Legend block** — insert once at the top of the `## Task List` section of each planning.md:
+> **Progress legend** (at-a-glance per task; `[ ]` stays = Tron's Done gate):
+> ⏳ planned · 📝 designed (refinement-done) · 🔧 implementing · ✅ impl-shipped · 🧪 testing · 🏁 Tron-QA-done
+
+**Per-task prefix** — `- [ ] <emoji> [Txx: Title](./task-xx-...)` where <emoji> reflects current state:
+- ⏳ planned (no work started)
+- 📝 designed (architect refinement done, awaiting impl)
+- 🔧 implementing (impl in progress, not yet shipped)
+- ✅ impl-shipped (impl committed, tester verification pending)
+- 🧪 testing (tester verified PASS, awaiting Tron QA — OR verify task whose verify PASSED)
+- 🏁 Tron-QA-done (Tron explicitly QA-approved via commit)
+
+**Rules:**
+- KEEP `[ ]` Done-gate semantic untouched — only flips to `[x]` on Tron's explicit "QA approved by Tron" commit.
+- Apply to every NEW sprint at planning.md creation time.
+- Maintain symbols on every monitoring cycle: when a task transitions state, update its prefix. Treat symbol drift as a sync target (📝→✅ on impl commit, ✅→🧪 on tester PASS, 🧪→🏁 on Tron QA).
+- Sprint Totals lines should match the symbol counts.
+- First applied: ecce49e (S10-S16 sweep). Initial application to S16 in a0df3f8.
