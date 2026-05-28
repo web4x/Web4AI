@@ -34,11 +34,19 @@
 S9 T78 · S10 T81/82/83 · S12 T84 · S13 T91/92/93/94/95/100/109 · S15 T101-108.
 Nothing marked Done. On Tron QA declaration (via PO): check QA Review+Done on named tasks, sync planning Done + counts + totals + sprints.overview.md.
 
-## IMMEDIATE TODO (post-rewind) — DONE 2026-05-27 (commit 9e5f578)
-1. ✅ S14 closure verified: code-level no data/rooms write/load path in src/ (only T99 comments); data/rooms absent, per-user rooms present; expert v0.5.20 runtime proof. T99 impl DONE; board corrected (my pre-rewind walk-back was stale). Remaining: tester UI room-create verify → Tron QA.
-2. ✅ S16 PLANNED: planning.md + 8 task skeletons T110-T117 mapped to R16.1-R16.10. Phases: drawer (T110-111), tree-item redesign (T112-115), chain integrity (T116-117). Added to README + sprints.overview.md. Audit 0. Next new task = T118. AWAITING req formal R16.x split + architect design (both rewinding) — reconcile their content when back.
-3. Resume 15-min monitoring; sync committed task-status; enforce QA gate.
+## DONE 2026-05-27/28
+- 9e5f578: S16 planned (T110-T117) + S14 board corrected (v0.5.20 dual-write removed; my pre-rewind walk-back was stale).
+- **e132eec (2026-05-28)**: T110 status sync per PO drift alert — shipped by expert (rb-detail-drawer + drawer integration, build clean, 791 tests pass). Planned+In Progress+refinement+creating-test-cases+implementing [x]; testing [ ] (tester pending); QA gate [ ]. Sprint 16: 1 impl-shipped, 7 planned. Audit 0 issues across S1-S16.
+
+## OPEN ITEMS
+- T111-T117: architect design content UNCOMMITTED (visible via system reminders 2026-05-28). When architect commits + checks their refinement boxes, sync planning.md status lines + Sprint Totals.
+- S16 architect has supplied T110/T111/T114/T115 full designs + T112/T113/T116/T117 design (diffs not shown). diagrams/ untracked.
+- No commits between 9e5f578 and HEAD (e132eec is the only new one) — PO's "S14 closure verified / fail-closed isolation / vCard fix" not in git yet; if they land, sync next cycle.
+
+## TRON-QA GATE QUEUE (unchanged)
+S9 T78 · S10 T81-83 · S12 T84 · S13 T91-95/100/109 · S15 T101-108 · S14 T99 (pending tester then Tron) · NOW also S16 T110 (pending tester then Tron).
+None checked Done. Only Tron's explicit "QA approved by Tron" commit releases the gate.
 
 ## NEXT
-- Coordinate with req (formal R16.x requirement:uuid split) + architect (design, icon-lib, UseCase-class PUML) when they return — wire their content into T110-117 chain stubs.
-- TRON-QA GATE QUEUE unchanged (S9 T78 · S10 T81-83 · S12 T84 · S13 T91-95/100/109 · S15 T101-108 · +S14 T99 pending tester then Tron).
+- Coordinate with req (formal R16.x requirement:uuid split) + architect (icon-lib choice for T113, UseCase-class PUML for T117) when content commits land.
+- Resume 15-min monitoring.
