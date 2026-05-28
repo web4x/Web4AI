@@ -80,6 +80,21 @@ absent, flag in the report ("impl-shipped at code level but not delivered to
 device — version bump missing"). See learnings #15. Incident: S16 T110-T117
 shipped 2026-05-29 without bump; expert remediated.
 
+**STANDING — New SPA route ≠ shipped without sw.js STATIC_SHELL entry
+(Tron 2026-05-29, paired with the bump rule).** For route-introducing tasks
+(new server route returning a unique HTML shell, e.g. `/trace`, `/edit/<path>`,
+`/profile`, AND/OR a new dedicated client bundle entry), the impl commit-set
+MUST also include `src/public/sw.js` STATIC_SHELL additions for:
+- the route path (e.g. `/trace`)
+- the bundle path (e.g. `/dist/trace-page-<HASH>.js`)
+
+Without it, the PWA can serve the route's stale HTTP-cached bundle even after
+the new `CACHE_NAME` activates — the new code never runs on that route. Pair
+this check with the bump rule. Report format: "(a) version bumped (b) CACHE_NAME
+bumped (c) STATIC_SHELL entry for new route". All three must pass for a
+route-introducing task to move past ✅. See learnings #16. Incident: S16
+trace-page bundle, remediated in bdb74ec (v0.5.24).
+
 **STANDING — At-a-glance progress symbols in planning.md (Tron 2026-05-28).**
 Single `[ ]` per task only reflects Tron's Done gate — makes planning.md look
 unprogressed. Add a symbol prefix to every task line; insert a legend block once

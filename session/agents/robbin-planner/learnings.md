@@ -39,6 +39,19 @@ Whenever standing up a new sprint, add it to BOTH (a) the README.md "Individual 
 ## 12. Recurring: req-eng creates task files / structure ahead of planner
 req-eng repeatedly creates task files (sometimes whole sprint dirs) in their own structure/numbering — caused T81/T83 collision, T90-misplacement, and a duplicate Sprint 13 (sprint-13-stability vs my sprint-13-core-workflow-fixes). Resolution pattern: req owns requirement CONTENT (real Tron quotes) so their files are authoritative; planner owns STRUCTURE — adopt req's content, remove my scaffold, add the missing planning.md + diagrams pointer + compliance sections, reconcile T-numbers. Always check `git status -s scrum.pmo/` for untracked sibling dirs/files each cycle.
 
+## 16. New SPA route ≠ shipped without sw.js STATIC_SHELL entry (STANDING — Tron 2026-05-29, paired with #15)
+Every NEW SPA route or dynamically-loaded page MUST have its **bundle path + route path** added to `src/public/sw.js` `STATIC_SHELL` in the **same commit-set** as the version + `CACHE_NAME` bump (#15). Without that entry, the PWA can serve the route's existing HTTP-cached bundle (stale) even after `sw.js` activates the new `CACHE_NAME` — the new code never runs on that route. **Hard pre-gate** for any route-introducing task: before flipping its symbol toward "testing-done" / QA-gate, grep the impl commit-set for:
+- `src/public/sw.js` modification that adds the bundle path (e.g. `/dist/trace-page-*.js`) AND the route path (e.g. `/trace`) to `STATIC_SHELL`
+- AND the bump pair from #15 (`package.json` + `CACHE_NAME`)
+
+If a route-introducing task's commits don't show STATIC_SHELL entry, **flag and block testing-done** in the report (just like #15). What counts as "route-introducing":
+- new server route handler that returns a unique HTML shell (e.g. `/trace`, `/edit/<path>`, `/profile`)
+- new dedicated client bundle entry (e.g. `trace-page.ts`, `edit.ts`) emitted by `build.mjs`
+
+The check is per task; it does NOT trigger for pure server-API additions (no bundle), library/component additions (no route), or test-infra changes (#15 exception covers).
+
+**Incident (paired with #15 incident):** S16 T108/T110-T117 (Traceability Browser + Detail Views) shipped 51812eb→61d0253 without STATIC_SHELL entry for `/trace` + the trace-page bundle. PWA served the stale bundle on /trace even after the v0.5.23 bump. Expert remediated in **bdb74ec (v0.5.24)** — added trace-page bundle to STATIC_SHELL. Pair the rules in reports: "(a) version bumped? (b) sw.js CACHE_NAME bumped? (c) STATIC_SHELL entry for any new route?"
+
 ## 15. impl-done ≠ shipped without version+sw.js bump (STANDING — Tron 2026-05-29)
 A task that's been "implemented" is NOT actually shipped to Tron's device until BOTH:
 - **(a)** `package.json` `"version"` is bumped, AND
