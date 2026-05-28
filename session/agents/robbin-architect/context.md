@@ -56,5 +56,13 @@ S1: Foundation (QnD fork, rebrand). S2: Identity/SSH (diagrams, ProfileSheet). S
 - **T78:** Client room updates — RoomInfo gets ownerToken/ownerName, create form default name from profile, room cards show owner name + full UUID, removed hardcoded "My Room".
 - **T80 (diagnosis + task file):** Diagnosed E2E 19/21 failure. Root cause: second (avatar backfill) PROFILE_UPDATED re-fires ProfileEditor.onSave → re-renders DeviceEnrollDialog → resets #de-submit to disabled. APP BUG not test bug. Wrote fix task (one-shot onSave clear) assigned to expert. Future fix: AVATAR_UPDATED message split.
 
+### Sprint 16 — Traceability UX & DetailViews (IN PROGRESS)
+- T110-T115: Architect designs written into all task files (PO APPROVED)
+- T111: Refined per PO — separate Web Components per type, VerbRegistry dispatch
+- T113: Icon lib: Lucide (ISC), vendored inline SVGs, 7 type-specific icons
+- T117: s16-usecases.puml AUTHORED — 15 <<UseCase>> instances, rendered 95KB SVG
+- T116: Chain audit COMPLETE — 18 methods → 15 UCs → 8 tasks → 10 reqs, zero orphans
+- Scanner extension spec written (Pass 4 PUML, Pass 5 impl:uuid) for expert
+
 ## Status
-Sprint 9 in progress. T80 task file written, routed to expert. Standing by for Sprint 10.
+S16 design complete. T116 audit + T117 PUML authored. Waiting for expert recovery to build T110-T115.
