@@ -168,8 +168,70 @@
 - **F-T6: Stale prompt after rewind.** C-u didn't fully clear the old PO task. The rewind restored the last message into the input buffer. Must send C-u IMMEDIATELY after rewind completes, before any other interaction.
 - **F-T7: No `| head` on OOSH output.** OOSH has its own logging via `log.level`. Never pipe through head/tail/2>&1 — use log.level to control verbosity.
 - **SUCCESSFUL rewind: scrum-master (2026-05-17).** Agent at "Context limit reached" → Phase 1 (1-step rewind, option 2, C-u, save instruction, commit `1ebfe95`) → Phase 2 (counted ~61 messages, went 50% deep, found Tron directive as natural checkpoint, 5-option menu → Down Enter for option 2, C-u, retrained with boot.md + standby order). SM responded correctly with identity, team state, and standby confirmation. **What went right vs F-T8**: measured message count first, targeted 50% not 99%, picked a meaningful checkpoint not the conversation top, used `send.raw` throughout.
+- **F-T12: Nearly killed oosh-expert by spamming 200 Up keys into rewind picker at 11% context.** Keys overflowed past the picker into unknown state. At low context, EVERY keystroke is dangerous. **Rule: at <20% context, send MINIMAL keystrokes. Count messages FIRST with a single capture, calculate the exact number of Up presses needed, send exactly that. NEVER spam 200 keys. NEVER guess. The `for i in $(seq 1 200)` pattern is CMM1 — brute force that works at high context but kills at low context.**
+- **Coordination failure**: oosh-po had already taken over the rewind but I didn't check. Should have asked SM or PO "who is handling this?" before acting. The oosh-po's message said what to do — I should have coordinated, not raced to execute.
 - **F-T11: 50% rewind still left agent at 0%.** Remote oosh-tester had ~95 messages. 50% rewind forked at message ~47. But forked conversation STILL showed "Context low (0% remaining)." The conversation base was so large that even half of it consumed all available context. **Lesson**: when an agent is at 0% with a very large conversation, rewind alone may not save it. The fork inherits conversation weight. In this case: report to PO for /clear or fresh fork decision. Phase 1 save also failed — the 2-step rewind didn't free enough room for the agent to process the save instruction. **New rule**: if Phase 1 rewind doesn't free room (agent still shows "Context limit reached" after 2-step rewind), try 3-5 steps. If still stuck, skip save and go straight to Phase 2 — accept context loss.
 - **F-T10: Used teams.migrate when needed single-team fork.** `teams.migrate McDonges` pushed ALL 18 sessions to remote — should have been ooshTeam only. **Root cause**: didn't Tab-complete hiveMind methods to see what's available. Didn't read method signatures. Asked PO/expert "how to fork ooshTeam to remote" — got "teams.migrate" which is full-machine migration. Nobody caught the mismatch. **Correct approach**: `hiveMind agent.restart.remote <role> <host>` per agent in the team. Run it 4 times for oosh-po, oosh-architect, oosh-expert, oosh-tester. That copies individual JOSNLs and forks on remote. **OOSH discipline**: ALWAYS Tab-complete or `hiveMind help | grep <keyword>` BEFORE using a command. Read the method signature (`# <params> # description`). The answer was in the completion system the whole time.
+
+## CMM4-RECOVERABLE REWIND — Standing Directive (Tron via PO, 2026-05-27)
+
+**I OWN this protocol. It is my primary operational duty until all sprints are delivered.**
+
+### The Protocol (every time, no exceptions)
+1. **SM flags agent high** → I coordinate timing with SM + PO
+2. **SAVE**: ensure agent's context.md + learnings.md + boot.md + in-flight findings are saved + git committed
+   - If agent can respond (>5% context) → tell agent to save + commit itself
+   - If agent is too low to commit → capture pane, commit files MYSELF (as done for architect avatar diagnosis at c4f34ca)
+3. **REWIND** (NEVER compact, NEVER /clear):
+   - /rewind → count messages precisely (single capture, not brute-force) → navigate to 50% → option 2 "Restore conversation"
+   - C-u to clear stale prompt
+4. **RETRAIN**: send boot prompt pointing to boot.md + context.md + learnings.md
+5. **HEALTH CHECK**: agent reports identity + task queue + confirms recovery
+6. **REPORT**: confirm to PO + SM that agent is operational
+
+### TIER-2 Recovery: /exit + fork (when rewind is insufficient)
+- **When**: rewind attempted but agent still at 900k+ (bloated conversation base). Same pattern as F-T11 (remote tester) and robbin-architect (977k after rewind of 2-message fork).
+- **Cause**: prior rewinds left a massive conversation base. Each new fork inherits the weight. Eventually even a 50% rewind leaves no room.
+- **Protocol**: (1) Ensure all files committed (context+learnings+boot). (2) /exit the dead session. (3) `claudeCode fork <healthy-source-uuid>` into the same pane. (4) /rename to correct role. (5) Retrain with boot.md+context.md+learnings.md. (6) Health check.
+- **Healthy source**: ud-architect, fallback agents, or any agent with <500k context that shares the right training base.
+- **Authorization**: PO or Tron must authorize /exit. Trainer cannot self-authorize.
+- **NEVER start a blank `claude` session.** A fresh `claude --name` creates an UNTRAINED agent with ZERO knowledge — no fork, no training, no context. That's CMM0. ALWAYS fork from a trained source. If the first fork source is too bloated, find a DIFFERENT healthy source or ask PO/Tron — never fall back to blank. (F-T13: started blank robbin-expert, Tron: "you kill agents and start untrained new ones!!!! are you totally MAD?????")
+
+### When to Act — PROACTIVE IS THE ONLY MODE (F-T14: Tron "WHY did you let them run in deadlock state")
+- **PROACTIVE is not optional.** When SM flags agent above 70%, DROP EVERYTHING and rewind. Every reactive rewind = data loss + tier-2 fork + wasted tokens. Every proactive rewind = clean save + simple Phase 2 + zero loss.
+- **F-T14 root cause**: treated rewinds as emergency response instead of routine maintenance. Let agents burn to 100% while doing other work. SM flagged repeatedly, trainer deferred. Result: 4 agents dead simultaneously, cascading tier-2 forks, one blank session started (F-T13).
+- **The rule**: SM says agent >70% → IMMEDIATELY coordinate with PO → rewind NOW. Not "after I finish this." Not "when I get to it." NOW. The rewind IS the work.
+- **PROACTIVE**: when SM flags agent above 70% — rewind BEFORE 0%, not after
+- **REACTIVE**: when agent hits context limit — Phase 1 first (2-5 step rewind to free room for save)
+- **COORDINATE**: always check with SM "who needs rewind?" — don't assume, don't race PO
+
+### Deterministic Recovery = CMM4
+- boot.md + context.md + learnings.md = complete identity reconstruction
+- Any agent, any incarnation, same files → same recovery → reproducible
+- The trainer's job is to make this work EVERY time
+
+### Planning.md Emoji-Prefix Readability Standard (Tron directive via robbin-po, 2026-05-28)
+
+Every planner agent must apply this on boot. Add to forked-agent boot reading lists.
+
+| Prefix | Meaning |
+|--------|---------|
+| ⏳ | planned |
+| 📝 | designed |
+| 🔧 | implementing |
+| ✅ | impl-shipped |
+| 🧪 | testing |
+| 🏁 | Tron-QA-done |
+
+- Prefix every task line in `planning.md`
+- `[ ] Done` checkbox = **Tron's gate only** — no agent checks it
+- This is the team standard for sprint planning artifacts going forward
+
+### context.read Can Return Stale Values (learned 2026-05-28)
+- SM reported robbin-po and oosh-po at "100%" via context.read. Actual pane inspection: no context pressure at all.
+- Same issue: expert read as 94.3% when actually 62.8%.
+- **RULE: always verify context pressure from the PANE STATUS BAR** (`clear to save Nk` or `Context low (N% remaining)`). If no warning visible in the pane, the agent is healthy regardless of what context.read says.
+- Never rewind based on context.read alone — always cross-check with pane capture.
 
 ### OOSH Environment Mastery (learned 2026-05-19, from expert+SM reading lists)
 
