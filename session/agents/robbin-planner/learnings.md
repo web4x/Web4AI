@@ -39,6 +39,13 @@ Whenever standing up a new sprint, add it to BOTH (a) the README.md "Individual 
 ## 12. Recurring: req-eng creates task files / structure ahead of planner
 req-eng repeatedly creates task files (sometimes whole sprint dirs) in their own structure/numbering — caused T81/T83 collision, T90-misplacement, and a duplicate Sprint 13 (sprint-13-stability vs my sprint-13-core-workflow-fixes). Resolution pattern: req owns requirement CONTENT (real Tron quotes) so their files are authoritative; planner owns STRUCTURE — adopt req's content, remove my scaffold, add the missing planning.md + diagrams pointer + compliance sections, reconcile T-numbers. Always check `git status -s scrum.pmo/` for untracked sibling dirs/files each cycle.
 
+## 17. Generate REAL v4 UUIDs for task:uuid AND requirement:uuid placeholders (STANDING — caught by T121 Phase 1, 2026-05-29)
+When standing up a new task, the placeholder `[task:uuid:...]` and `[requirement:uuid:...]` MUST be proper RFC4122 v4 UUIDs. Readable-but-invalid identifiers (like `r120-detailsview-black-bg-f30a-2d4b-c1d4f7a0fae3` — non-hex chars `r`, wrong structure) get silently dropped by trace-cli and surface as C2b BLOCKERs in chain audits. My S16 T120/T121/T122 stand-ups created 3 such offenders, flagged in T121's diagnosis (7777ad6).
+
+**Rule:** generate with `uuidgen` (macOS) or `python -c 'import uuid; print(uuid.uuid4())'` for EVERY uuid slot before writing the file. Real example shape: `bbca5514-a5c0-4a32-8be4-bf1133290c7a`. The variant nibble (4th group, first char) must be in `[89ab]`. The version nibble (3rd group, first char) must be `4`. Only `[0-9a-f]` chars.
+
+For requirement:uuids: same v4 format. The optional "human-readable" prefix some tasks use (e.g. `r118-` style) is an anti-pattern — use a real UUID and let req-eng / matrix maintain the human label separately.
+
 ## 16. New SPA route ≠ shipped without sw.js STATIC_SHELL entry (STANDING — Tron 2026-05-29, paired with #15)
 Every NEW SPA route or dynamically-loaded page MUST have its **bundle path + route path** added to `src/public/sw.js` `STATIC_SHELL` in the **same commit-set** as the version + `CACHE_NAME` bump (#15). Without that entry, the PWA can serve the route's existing HTTP-cached bundle (stale) even after `sw.js` activates the new `CACHE_NAME` — the new code never runs on that route. **Hard pre-gate** for any route-introducing task: before flipping its symbol toward "testing-done" / QA-gate, grep the impl commit-set for:
 - `src/public/sw.js` modification that adds the bundle path (e.g. `/dist/trace-page-*.js`) AND the route path (e.g. `/trace`) to `STATIC_SHELL`
