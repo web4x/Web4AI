@@ -64,5 +64,12 @@ S1: Foundation (QnD fork, rebrand). S2: Identity/SSH (diagrams, ProfileSheet). S
 - T116: Chain audit COMPLETE — 18 methods → 15 UCs → 8 tasks → 10 reqs, zero orphans
 - Scanner extension spec written (Pass 4 PUML, Pass 5 impl:uuid) for expert
 
+### Sprint 17 — Scenario Units / IOR Data Model (IN PROGRESS)
+- T124.1: Data model — ior=class loader, model.uuid=instance, ownerIor=parent (Tron-refined, fda5970)
+- T124.2: View template architecture — 7 class templates, ViewTemplateRegistry, live-update (14b2821)
+- T124.3: Storage layout — 3-layer (index/json-tree/md-tree), migration path (9423fac)
+- T124.6: s17-usecases.puml — 13 UCs across 4 phases, 6 implementing classes (1316b7e)
+- T124.4/T124.5: Pending req-eng (requirements.md + traceability standard update)
+
 ## Status
-S16 design complete. T116 audit + T117 PUML authored. Waiting for expert recovery to build T110-T115.
+S17 T124.1-T124.3 + T124.6 design complete. Waiting for req-eng (T124.4/T124.5) + PO/Tron review.
