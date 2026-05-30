@@ -1,4 +1,4 @@
-# robbin-tester Context — 2026-05-25
+# robbin-tester Context — 2026-05-30
 
 ## Identity
 **robbin-tester** — testing authority for Web4RawBin. Pane robbinTeam:0.3.
@@ -10,83 +10,65 @@
 
 ## Base Paths
 - Project root: `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
-- Server: `src/ts/server/` (server.ts, Room.ts, UserKeys.ts, UserCrypto.ts, FileApi.ts)
+- Server: `src/ts/server/` (server.ts, Room.ts, UserKeys.ts, UserCrypto.ts, FileApi.ts, TraceConsistency.ts)
 - Client: `src/public/ts/` + `src/public/ts/components/` (13 rb-* web components)
-- Tests: `test/vitest/` (14 files) + `test/e2e/` (Playwright specs)
+- Tests: `test/vitest/` (~28 files) + `test/e2e/` (Playwright specs)
 - Scrum: `scrum.pmo/sprints/`
 - Server port: HTTPS 4444
-- Version: 0.5.4 (advanced 0.4.6→0.5.4 over 2026-05-26 session via deploys)
-- **Checkout is a SYMLINK**: workspaces/AI/Claude/workspaces/Web4RawBin → 2cuGitHub/Web4RawBin (ONE checkout; running tsx-watch server is the same files). See learnings.
+- Version: 0.5.27 (advanced through session: 0.5.22→0.5.23→0.5.25→0.5.26→0.5.27)
+- **Checkout is a SYMLINK**: workspaces/AI/Claude/workspaces/Web4RawBin → 2cuGitHub/Web4RawBin
 
 ## Test Suite Status
-- vitest unit tests across ~16 files (+ avatar-keyless-upload 6, avatar-persist 5 this session)
-- **Playwright E2E**: 39 tests (was 21) — added editor-back(4), lobby-card-badges(1), multi-room-lobby(4), contacts-ui(6), update-banner(3); fixed profile-editor for T83 inversion
-- Duration: vitest ~7s; full E2E ~2.7m
+- vitest: **797/797** across 28 files
+- Playwright E2E: **33/40** pass (7 pre-existing: room-identity + multi-room-lobby disk-verify specs read prod DATA_DIR in isolated mode)
+- 2 specs (device-enrollment, new-user) have own enrollment code issues
 
-### Vitest Files
-room.test.ts(33), server.test.ts(56), client.test.ts(22), profile.test.ts(22),
-userkeys.test.ts(61), chat.test.ts(18), pwa.test.ts(40), offline.test.ts(30),
-components.test.ts(144, jsdom), crypto.test.ts(25), avatar.test.ts(33),
-fileapi.test.ts(79), editor.test.ts(?), room-identity.test.ts(70)
+## SESSION 2026-05-29/30 — ALL VERIFIED ✓
 
-### E2E Specs (test/e2e/)
-device-enrollment, editor(9/9), mobile-viewport, negative-cases, new-user,
-profile-editor, room-identity(6/6), room-lifecycle
-- 2 FAIL: device-enrollment + new-user (own enrollment code, #de-submit disabled — not using fixed ensureLobby)
+### S14 Close (PO directive)
+- **S14 UI CLOSE** ✓ — room create writes per-user ONLY, data/rooms/ STAYS GONE (live WS test)
+- **FAIL-CLOSED ISOLATION** ✓ — playwright.config.ts inverted: default=isolated (4445, tmp, reuseExistingServer:false), E2E_LIVE=1 to opt out
 
-## Sprints Complete (1-9)
-- S1 Foundation: room/server/client tests
-- S2 Identity/SSH: profile, userkeys (SSH+device+challenge)
-- S3 E2E Hardening: refactor to unit, deployment, chat
-- S4 Traceability: audited 28 task files
-- S5 PWA Offline: pwa, offline tests; found update banner bug
-- S6 Web Components: components.test.ts; found lobby notch bug
-- S7 Encrypted Storage+Avatars: crypto, avatar tests; found avatar upload persistence bug (fixed v0.3.19)
-- S8 Monaco Editor: fileapi, editor tests (security + authorization)
-- S9 Room Identity: room-identity.test.ts (70) + room-identity.spec.ts (6/6) — committed c43cbc8
+### Room.test S14-debt fix (my commit 7ba0160)
+- 4 legacy flat-file tests (loadFromDisk/persistDir/data/rooms) → 4 mock-based writeRoomJson tests
+- 33/33 room.test, 795→797/797 full suite
 
-## Test Architecture
-- ALL vitest = unit tests, no server dependency
-- Handler logic extracted, tested with mock Maps + mock send
-- Room class tested via direct import
-- File system tests use temp dirs (os.tmpdir)
-- Crypto: real RSA-2048 + AES-256-GCM
-- Components: jsdom environment
-- Playwright: visual verification 375x812 + disk verification
+### S16 Phase 1-3 Verification (T110-T117)
+- **T110** ✓ drawer slideUp, ESC dismiss, ctx.mount routing (Playwright live)
+- **T111** ✓ 3 specialized DetailViews (task/req/usecase) + generic fallback, cross-type link nav
+- **T112** ✓ two-line layout, generated speaky name (5 words+…), 3-line clamp desc
+- **T113** ✓ 7 Lucide SVG icons 32x32, per-type colors (green/blue/orange/purple/red/brown/teal)
+- **T114** ✓ 3 dataTransfer payloads, custom drag image, click preserved
+- **T115** ✓ icon-tap collapse/expand, › expander 90deg rotation, toggle-children event
+- **T116+T117** ✓ trace-cli Pass 4 (PUML UseCase: 15 UCs parsed) + Pass 5 (impl markers), chain complete
 
-## SESSION 2026-05-26 — ALL QUEUED JOBS DONE ✓
-All verified, findings written into each task file's Test Results section, committed:
-- **T80** ✓ full Playwright 21/21 (gate). task-80 QA.
-- **T78** ✓ lobby card full UUID + 💾 Persistent + owner 'you'. lobby-card-badges.spec.ts (1/1).
-- **T81+T82+T83** ✓ contacts-ui.spec.ts (6/6). T83 inverted T81 TS3 (self-click → read-only .user-sheet, NOT editor; #us-edit → editor). vCard visible+well-formed, rb-avatar readonly, 1 GET_USER_INFO/tap, refresh-btn scope no-leak. ALSO fixed profile-editor.spec.ts (T13.4) for the same inversion.
-- **T84** ✓ editor back → parent dir. editor-back.spec.ts (4/4).
-- **T91** ✓ avatar persists (ensureAvatar guards on fileExists, never overwrites). avatar-persist.test.ts (5/5) + code review.
-- **T92 RE-FIX** ✓ keyless upload self-heals (createUserHome+generateUserKeypair always; encrypt try/catch→regenerate+retry; client never echoes result.error). avatar-keyless-upload.test.ts (6/6) against REAL modules.
-- **T93** ✓ all owner rooms load+show. multi-room-lobby.spec.ts (4/4) live v0.5.2.
-- **T94** ✓ PWA update banner fires (per-request getVersion). update-banner.spec.ts (3/3) + curl (AC3/AC4/AC7). AC5 iOS standalone = Tron device QA.
-- Run from `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`. Awaiting next assignment / Tron QA.
+### T118 E2E Cleanup (commit 317f41a + my fix 62b3e1a)
+- cleanupTestUsers helper ✓, 8/8 specs afterAll wired ✓
+- Backfill: 115 test users purged, 7 real preserved, 141 unknown safe-skip
+- **AC5 zero-net-add**: 148→148 data/users after full isolated E2E run ✓
+- **BUG FOUND+FIXED**: JSDoc in helpers.ts broke ALL E2E specs (Babel parser choked on */ in glob + /.*/ regex in comment). Replaced with single-line comments.
 
-## ROOM-FLOOD SELF-CLEANUP (PO directive 2026-05-26) — TODO
-E2E specs create real rooms in live data/ → flooded prod (239 rooms found during T95). FIX PLAN:
-1. Add `afterEach`/`afterAll` to room-creating specs (room-identity.spec.ts, room-order.spec.ts, room-lifecycle.spec.ts) that deletes rooms created during the test (owner delete via UI, or direct fs.rmSync of data/users/<token>/rooms/<uuid>).
-2. BETTER: run E2E against an isolated test-data dir (env var DATA_DIR override on the test server) so prod data/ is never touched. Needs expert to support DATA_DIR env in server.ts.
-3. Tag-based cleanup: specs already use unique tags (T95-NNNNNN) — afterAll can scan + delete rooms whose name contains the run tag.
-Interim: expert purging existing flood. Preferred long-term = isolated test-data dir (option 2).
+### S16 Phase 4 (Tron iteration)
+- **T120** ✓ dark drawer bg #1a1a2e, dv-* styles dark-adapted (white/alpha text, translucent badges)
+- **T122** ✓ position:fixed bottom:0 confirmed (was already correct from T110)
+- **T123** ✓ pageNav sticky-top (position:sticky, top:0, z-index:50, dark bg #1a1a2e)
+- **T130** ✓ MD nested-list indent (ul/ol padding-left 1.5em, nested cumulative 24px, checkbox accent-color)
+
+## Queued
+- **T119** test-traceability verification (when planner/architect spin it up)
+- Expert modified room.test.ts (added test:uuid traceability tag) — noted, not reverted
 
 ## Known Issues
-- 2 E2E specs (device-enrollment, new-user) have own enrollment code, #de-submit disabled
-- Playwright shadow DOM <img> screenshots unreliable — verify with curl
-- avatarCache may still be in server.ts
+- 7 E2E failures in isolated mode: room-identity + multi-room-lobby disk-verify specs (read prod DATA_DIR while server writes to tmp)
+- 2 specs (device-enrollment, new-user) have own enrollment code issues
+- 141 unknown user dirs (no profile, has data) — S14 migration artifacts, safe-skip
 
 ## Rules (Eternal)
-- **CMM4 (SM directive 2026-05-26): communicate through task files, not ad-hoc messages.** Write findings/status/handoffs INTO the task file (e.g. task-NN's QA/results section). Read task files before asking questions. Task files = single source of truth. otmux pings are pointers, not the record.
-- P15: NEVER filter output (no 2>/dev/null, | head, | tail, | grep)
-- I do NOT implement features — I test, verify, find bugs, report. Implementation = expert.
+- **CMM4: communicate through task files, not ad-hoc messages.**
+- P15: NEVER filter output
+- I do NOT implement features — I test, verify, find bugs, report
 - Expert does not test — tester owns test execution
-- Unit test handler logic directly — no server dependency for vitest
-- ALWAYS visually verify with Playwright AND curl — code review/DOM alone is NOT verification
-- NEVER verify avatar with stub image — use real 200x200+ photo
+- ALWAYS visually verify with Playwright AND curl
 - Self-report to robbinTeam:0.0 when task complete
-- TaskCreate before starting, TaskUpdate when done
-- Commit agent files after every save; commit test files NOT test-results/ or data/*.json
-- NEVER ASSUME — ALWAYS MEASURE (run claudeCode context.read before panicking)
+- Commit agent files after every save
+- NEVER ASSUME — ALWAYS MEASURE

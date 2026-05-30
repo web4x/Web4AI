@@ -133,3 +133,21 @@
 
 ## Superseded ACs across tasks
 - When a later task INVERTS an earlier AC (T83 inverted T81 TS3: self-tap → ProfileEditor became → read-only .user-sheet), REPLACE the old assertion, don't keep it (it fails by design). Verify against the CURRENT behavior; mark the old AC `[~] SUPERSEDED by [Tnn]` in the task file.
+
+## JSDoc inside Playwright E2E files (T118 CRITICAL)
+- Playwright's Babel parser treats `*/` inside JSDoc as comment termination even when it's part of a glob path (e.g. `data/users/*/profile.json`). Also treats `/.*/` as a regex literal start.
+- **FIX**: use single-line `//` comments in E2E helper files, NEVER multi-line JSDoc with glob paths or regex examples.
+- This blocked ALL 40 E2E specs until fixed (commit 62b3e1a).
+
+## pageNav is a div, not a nav element
+- server.ts `pageNav()` renders a `<div>` with inline styles, not a `<nav>`. Query by `position:sticky` computed style, not by tag name.
+
+## S16 trace browser verification pattern
+- /api/trace returns all objects; /trace renders them. Tree currently shows requirements at root, tasks as children (via `›` expander).
+- Click tree item → drawer opens (rb-detail-drawer), hosts typed DetailView (rb-task-detail, rb-requirement-detail, rb-usecase-detail, or generic rb-detail-view).
+- Cross-type navigation: click a dv-link → drawer updates to target type's view.
+- Icon colors via CSS vars `--type-bg` / `--type-color` on `rb-object-item[type="..."]`.
+
+## Isolated E2E proves zero-net-add
+- Default Playwright run = isolated (port 4445, DATA_DIR=tmp, reuseExistingServer:false). Count data/users/ before and after to prove zero net add.
+- 7 specs fail in isolated mode because they verify disk state at prod DATA_DIR while isolated server writes to tmp. Known limitation, not a regression.
