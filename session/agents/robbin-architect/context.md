@@ -89,8 +89,10 @@ S1: Foundation (QnD fork, rebrand). S2: Identity/SSH (diagrams, ProfileSheet). S
 - T142: vCard import pipeline written into task file (d87fd5f) — parseVCard, 3 inputs, rb-avatar.uploadBlob
 - PENDING: T143 (reload button on connection-failed page — waiting for planner file)
 
+- PENDING: T143 (chain→traceability tree in 7 templates + planning.md — waiting for planner)
+
 ## Status
-S17 design phase mostly complete. T124.1-.3, T132-T134, T136, T138-T142 all designed + committed. T121 close-out done. Waiting for planner T143 + any new PO assignments.
+S17 design phase complete for all stood-up tasks. Designed+committed: T124.1-.3, T132-T134, T136, T138-T142, T121 close-out. WAITING: planner T143 (chain→tree rendering). Context at 1% — save+compact imminent.
 
 ## CMM4 Standing Rules
 - #18: req captures → planner stands up task file with T-number → architect refines → expert impl → tester verify. Never design from harness numbers.
