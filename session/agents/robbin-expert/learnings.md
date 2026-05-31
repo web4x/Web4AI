@@ -185,3 +185,43 @@ Playwright uses `reuseExistingServer: true` — connects to whatever is running 
 ### Deploy flow
 bump version in package.json → npm run build → git commit → git push → restart iphone:0.1
 via otmux send. Verify server started with otmux pane.capture iphone:0.1.
+
+## S17 Scenario Unit Learnings (2026-05-30/31)
+
+### IOR = Class Loader, NOT Instance ID
+The outer `ior` field in a scenario unit is `ior:class:Task` (class loader reference).
+Instance identity is `model.uuid`. Owner is `ownerIor: ior:instance:<parent-uuid>`.
+Never conflate ior with uuid.
+
+### 5-level deep index (Tron directive)
+scenario/index/<c1>/<c2>/<c3>/<c4>/<c5>/<uuid>.scenario.json — each of first 5
+UUID hex chars (hyphens stripped) is its own directory level. prefixPath() returns
+e.g. 'a/7/f/3/c'. list() must walk recursively.
+
+### Speaking-name filenames for generated views
+Generated .md/.html use slug from model.slug (task-1-team-bootstrap.md), NOT uuid.md.
+Symlinks in sprints.json/ already use speaking names. Links in planning.md use
+speaking-name paths (../task/task-1-team-bootstrap.md).
+
+### Children IOR inferred from slug pattern
+Migration script infers parent-child from task numbering: task-3 → task-3.4,
+task-1 → task-1.1/1.2/1.3, task-124 → task-124.1/.2/.3. The regex matches
+`taskNum + '.' + single-level-suffix`.
+
+### Planning.md dedup: children only nested, never flat
+If a task is referenced as a child of another task, skip it from the flat top-level
+list — emit it ONLY nested under its parent. Prevents double-listing.
+
+### Symlink visibility in file browser
+Node's readdirSync({ withFileTypes: true }) returns isFile()=false, isDirectory()=false
+for symlinks. Must check isSymbolicLink() separately, then statSync the target to
+determine type. Both FileApi.ts (readDir) and server.ts (/md/ handler) need this.
+
+### Version bump rule-pair #15/#16
+Every surface change bumps package.json + sw.js CACHE_NAME (#15). STATIC_SHELL (#16)
+updated only when trace-page bundle hash changes or new SPA route added.
+No new route = STATIC_SHELL exempt. Server-side-only/tooling changes = no bump.
+
+### Standing rule: planner stands up T-numbers first
+Do NOT use PO harness numbers (#nn) as T-numbers. Wait for planner's task file
+with official T-number before building. Ask for T-number if routed without one.
