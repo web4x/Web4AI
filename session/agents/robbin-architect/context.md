@@ -85,8 +85,12 @@ S1: Foundation (QnD fork, rebrand). S2: Identity/SSH (diagrams, ProfileSheet). S
 - T141: Chain-link 🔗 icon — shared renderChainSection(), all 7 templates, speaking-name hrefs (d978db8)
 - T142: vCard import pipeline designed (pre-task-file) — parseVCard, 3 input methods, rb-avatar.uploadBlob()
 
+- T121: Close-out audit — C5 deferred to S11 T87-T89, 6/8 fixed, boundary documented (b2e0c72)
+- T142: vCard import pipeline written into task file (d87fd5f) — parseVCard, 3 inputs, rb-avatar.uploadBlob
+- PENDING: T143 (reload button on connection-failed page — waiting for planner file)
+
 ## Status
-S17 design phase active. T124.1-.3, T132-T134, T136, T138-T141 all designed + committed. T140 designed. T142 pipeline ready to paste. Waiting for planner T142 file + any new PO assignments.
+S17 design phase mostly complete. T124.1-.3, T132-T134, T136, T138-T142 all designed + committed. T121 close-out done. Waiting for planner T143 + any new PO assignments.
 
 ## CMM4 Standing Rules
 - #18: req captures → planner stands up task file with T-number → architect refines → expert impl → tester verify. Never design from harness numbers.
