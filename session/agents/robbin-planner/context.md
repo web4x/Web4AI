@@ -1,52 +1,80 @@
-# robbin-planner Context — Save Point 2026-05-27 (pre-deep-rewind)
+# robbin-planner Context — Save Point 2026-05-31 (pre-deep-rewind #2)
 
-**Role:** Sprint Planner / board-consistency owner, co-driving with robbin-po
-**Pane:** robbinTeam:1.0 · **Reports to:** robbin-po (robbinTeam:0.0)
-**Project:** Web4RawBin · **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
+**Role:** Sprint Planner / board-consistency owner. Reports to robbin-po (robbinTeam:0.0).
+**Pane:** robbinTeam:1.0 · **Project:** Web4RawBin · **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
 **Sprint tool:** `SPRINT_PMO_DIR=<repo>/scrum.pmo /Users/Shared/Workspaces/AI/Claude/components/OOSH/dev.claude/sprint {status|audit}`
 
-## Current State (v0.5.22)
-- Repo raced ahead during prior timeline; trust `git log` + `sprint audit` over memory.
-- Traceability browser shipped at **/trace** (v0.5.21, top-nav). Full suite ~787 tests.
-- Audit: 0 issues last check. NEXT NEW TASK = **T110** (T84-T109 in use).
+## Current State (v0.5.31)
+- HEAD: my last planner commit (3729534 closes T132/T133/T134 bump-gap)
+- 830/830 tests pass. Repo clean.
+- Audit: 0 issues across all 17 sprints.
+- NEXT NEW TASK = **T135** (T84-T134 in use).
 
-## STANDING RULES (most important — keep enforcing)
-1. **QA Review + Done = TRON's gate ONLY.** Tron declares QA explicitly, relayed via PO. NEVER check QA Review/Done without his declaration. (PO reinforced hard.) "qa is after implementing" (+testing).
-2. **CMM4 file-comms:** write findings/status INTO task files; otmux/hiveMind = SHORT pointers only. Read files before asking.
-3. **Sync against COMMITTED reality only** (not uncommitted WIP). But tester often leaves the `testing` box unchecked after a PASS commit → check it (committed evidence). The restructure pattern keeps DROPPING `## QA Audit` from tasks on expert commits → re-verify QA Audit + Traceability sections after each expert commit.
-4. **Discoverability:** any NEW sprint → add to README "Individual sprints" list + `scrum.pmo/sprints/sprints.overview.md` in the SAME commit. Traceability artifacts indexed in README `## Traceability` (matrix + standard + audits). Push when PO asks / repo ahead.
-5. **req-eng + architect create tasks/dirs ahead of me** — reconcile (adopt their content, fix numbering/structure, wire to planning). Watch every cycle for misplaced/untracked files + T-collisions via `git status -s scrum.pmo/`.
-6. Tron directive: NO artificial character limits in specs.
-7. Standard: `scrum.pmo/standards/traceability-standard.md`; template `scrum.pmo/templates/task-template.md`; matrix `scrum.pmo/traceability-matrix.md`; backlog `scrum.pmo/backlog.md`.
+## STANDING RULES (active — keep enforcing)
+1. **QA Review + Done = TRON's gate ONLY.** Tron declares QA explicitly via PO. Never check Done from sync. (Learnings #15)
+2. **CMM4 file-comms:** write into task files; otmux/hiveMind = short pointers only.
+3. **Sync against COMMITTED reality.** Tester often leaves testing-box unchecked after PASS commit → check it. Architect drops content without checking refinement box → flag/coordinate.
+4. **Discoverability:** new sprint → README + sprints.overview.md in same commit.
+5. **req-eng + architect create files ahead of me** — reconcile (adopt content, fix numbering, wire to planning). Check `git status -s scrum.pmo/` every cycle for collisions.
+6. **No artificial character limits** in specs.
+7. **Standard:** `scrum.pmo/standards/traceability-standard.md`; template `scrum.pmo/templates/task-template.md`; matrix `traceability-matrix.md`; backlog `backlog.md`.
+8. **Rule-pair (learnings #15+#16):** every impl commit on user-facing surface = (a) package.json bump + (b) sw.js CACHE_NAME bump + (c) STATIC_SHELL entry if route-introducing.
+9. **Real v4 UUIDs always (learnings #17):** task:uuid AND requirement:uuid. Use `uuidgen`.
+10. **CMM4 4-role engagement per task (learnings #18):** req → architect → expert → tester. No expert+tester-only stand-ups.
+11. **Planner uses scenarios (learnings #19, NEW Tron 2026-05-31):** planning.md becomes a generated VIEW from scenario JSON units. Planner reads/writes scenario.json as the planning unit — same model as everyone else.
+12. **At-a-glance symbols (learnings #14):** ⏳📝🔧✅🧪🏁 prefix per task line in planning.md.
 
-## Sprint State (S1-16)
-- **S1-8:** Done, Tron-approved (a172a1d batch S1-4; S5/6/7/8 individual commits).
-- **S9 Room Identity:** T74-77,79,80 Tron-QA Done (bc99ed7); **T78 tested→awaiting Tron QA**.
-- **S10 Contacts UI:** T81/82/83 tested→awaiting Tron QA.
-- **S11 Traceability Standardization:** T85/T86 impl-done(tested-ish); **T87 (S8,9 backfill), T88 (S5-7), T89 (S1-4) planned**, T90 verify. Remediation of S1-9 to full chain. Not yet executed.
-- **S12 Editor Fixes:** T84 tested→awaiting Tron QA.
-- **S13 Stability:** T91,92,93,94,95,T100,**T109** all tested→awaiting Tron QA. R-A1 avatar-persist SATISFIED by T91+T109 (both tested). T109 = avatar recurrence (decrypt-exception no-overwrite + rekey re-encrypt `rekeyUser`).
-- **S14 Legacy Migration:** T96/T97 migrated, T98 verify PASS, **T99 gate cleared (T98 PASS + Tron auth) + delete EXECUTED (ec0423d v0.5.19)**; dual-write regen regression fixed (9c1b0a0 v0.5.20). S14 complete ONLY when a new-room-create proves data/rooms stays gone (was being closed at rewind — VERIFY THIS). T99 gate held end-to-end, no violation.
-- **S15 Traceability Browser & Object Model:** T101-108 ALL impl-complete + tested (8/8 In Progress = tested, QA/Done unchecked). Browser at /trace. Awaiting Tron QA.
-- **S16 Traceability UX (STARTED, NOT PLANNED YET):** dir `sprint-16-traceability-ux/` has `compound-requirement-source.md`. **PENDING PLANNER WORK** (missed prompt): plan S16 = tree-view UI — word-wrap, OS drag, tap-collapse, traceability-chain review, UseCase-as-class PUML. Coordinate req (requirements) + architect (design). Tasks T110+. Full traceability per standard. Add to README + overview. Report S16 plan to PO.
+## Sprint State (active — what to know on restart)
 
-## TRON-QA GATE QUEUE (tested, awaiting Tron's explicit QA declaration)
-S9 T78 · S10 T81/82/83 · S12 T84 · S13 T91/92/93/94/95/100/109 · S15 T101-108.
-Nothing marked Done. On Tron QA declaration (via PO): check QA Review+Done on named tasks, sync planning Done + counts + totals + sprints.overview.md.
+### S1-S15 — closed/QA'd or 🧪 awaiting Tron QA (see sprints.overview.md)
 
-## DONE 2026-05-27/28
-- 9e5f578: S16 planned (T110-T117) + S14 board corrected (v0.5.20 dual-write removed; my pre-rewind walk-back was stale).
-- **e132eec (2026-05-28)**: T110 status sync per PO drift alert — shipped by expert (rb-detail-drawer + drawer integration, build clean, 791 tests pass). Planned+In Progress+refinement+creating-test-cases+implementing [x]; testing [ ] (tester pending); QA gate [ ]. Sprint 16: 1 impl-shipped, 7 planned. Audit 0 issues across S1-S16.
+### S16 Traceability UX — 12 tasks; all impl-shipped or done (T120-T123 ✅), Phase 4 T121 🔧 (Phase 2 C2a/C2b done, C1/C3/C5/C6/C7 remaining)
 
-## OPEN ITEMS
-- T111-T117: architect design content UNCOMMITTED (visible via system reminders 2026-05-28). When architect commits + checks their refinement boxes, sync planning.md status lines + Sprint Totals.
-- S16 architect has supplied T110/T111/T114/T115 full designs + T112/T113/T116/T117 design (diffs not shown). diagrams/ untracked.
-- No commits between 9e5f578 and HEAD (e132eec is the only new one) — PO's "S14 closure verified / fail-closed isolation / vCard fix" not in git yet; if they land, sync next cycle.
+### S17 Scenario Units (ACTIVE, near close)
+- **T124** 🔧 — architect 4/6 sub-tasks done (T124.1, T124.2, T124.3, T124.6 testing[x] via self-review); **T124.4 req-eng requirements.md + T124.5 standard update STILL PENDING** (only S17 work left)
+- **T125** 🧪 — Unit+IOR+7 ClassLoaders+ClassRegistry+ScenarioIndex+ViewTemplateRegistry (9b79be3, tester ticked 4c630dd)
+- **T126** 🧪 — ViewGenerator + 7 templates + regenerate CLI (5a7e162)
+- **T127** 🧪 — cross-nav /md/↔/trace + IOR resolver (b30b3de v0.5.28)
+- **T128** 🧪 — T128.1 exemplar through 60d6e36 v0.5.29 iteration burst; T128.2/T128.3/T128.4 still gated on Tron exemplar sign-off
+- **T129** 🧪 — verification GATE PASS (f487c2f — 222 graph objs, 6 chain walks PASS, 13/13 compliant)
+- **T131** 🧪 — file-browser symlinks (aad0816 v0.5.30, retroactive — CMM4 gap; tester verified 37 markers)
+- **T132** 🧪 — renderStatusHtml (4a362d0 + 2f6dde2 v0.5.31 bump)
+- **T133** 🧪 — Task FSM 7 states/8 verbs/Tron gate (e062849, bumped via 2f6dde2)
+- **T134** 🧪 — TraceLink class + symlink emission (f173cad, bumped via 2f6dde2)
 
-## TRON-QA GATE QUEUE (unchanged)
-S9 T78 · S10 T81-83 · S12 T84 · S13 T91-95/100/109 · S15 T101-108 · S14 T99 (pending tester then Tron) · NOW also S16 T110 (pending tester then Tron).
-None checked Done. Only Tron's explicit "QA approved by Tron" commit releases the gate.
+## INCOMING WORK (PO 2026-05-31, post-rewind to stand up)
+PO directed plan T135-T139 with CMM4 4-role:
+- **T135** req-audit (formalize backlog Tron quotes that req missed)
+- **T136** migration extension for Requirement+UseCase units (T128 follow-on)
+- **T137** req+planner LEARN scenarios for planning + update SKILL.md
+- **T138** skill set on scenarios (capture-quote, propose-task, walk-chain)
+- **T139** fork skill-expert from expert (PO decision; agent-trainer executes)
 
-## NEXT
-- Coordinate with req (formal R16.x requirement:uuid split) + architect (icon-lib choice for T113, UseCase-class PUML for T117) when content commits land.
-- Resume 15-min monitoring.
+Stand up T135-T139 in S17 (or new sprint at PO's call) with: real v4 uuids; 4-role owner block; Drive Plan ordering req→architect→expert→tester; rule-pair (a)+(b) scoped per task.
+
+## TRON-QA GATE QUEUE (huge — pending Tron's batch approval)
+- S9 T78 · S10 T81/82/83 · S12 T84 · S13 T91-95/100/109/118/130 · S14 T99 · S15 T101-108 · S16 T110-117/T120-123 · S17 T125/T126/T127/T128/T129/T131/T132/T133/T134
+- T124 still 🔧 (waits on T124.4+T124.5 req-eng)
+- T121 S11 still 🔧 (C1/C3/C5/C6/C7 + 12 remaining task:uuids)
+- None marked Done. Only Tron's explicit "QA approved by Tron" commit releases the gate per #15.
+
+## MY RECENT COMMIT CHAIN (post-rewind verification anchor)
+- 3729534 (HEAD) — T132/T133/T134 rule-pair CLOSED (2f6dde2 v0.5.31)
+- d1cafcf — massive S17 sync (7-commit burst caught)
+- 99f190a — T131 ✅→🧪
+- b7b1fc9 — S17 status reconciliation per PO 2026-05-31 (T124.1/.2/.3 testing self-review; T131 verified)
+- a490028 — T132+T133+T134 plan in S17 (4-role first time proactively)
+- 8315164 — T131 retroactive stand-up (CMM4 gap on aad0816)
+- ff3fb59 — CMM4 4-role rule (learnings #18)
+- ecce49e — at-a-glance symbols sweep (learnings #14)
+- b0db445 — version-bump rule (learnings #15)
+- c5be323 — STATIC_SHELL rule (learnings #16)
+- 3181127 — real v4 uuids rule (learnings #17)
+- 7214735 — S17 plan stood up (6 parents T124-T129)
+- 0183b32 — emoji-prefix standing pattern (learnings #14)
+
+## NEXT (on rewind recovery)
+1. Verify HEAD == 3729534 (or beyond — git log)
+2. Re-read context.md + learnings.md (you're doing this now)
+3. Stand up T135-T139 per PO direction with 4-role + #17 uuids
+4. Resume 15-min monitoring; watch for: Tron QA batch-approval (closes huge queue); T124.4+T124.5 req-eng; T128.2/T128.3/T128.4 if Tron unlocks
