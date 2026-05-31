@@ -111,3 +111,26 @@ The avatar backfill (Sprint 7) sends a SECOND PROFILE_UPDATED after the synchron
 - Pattern: callbacks bound to a message that the server may send more than once must be ONE-SHOT — clear the callback before invoking it (`const cb = this.onSave; this.onSave = null; cb(...)`).
 - Deeper fix: don't overload one message type for distinct events. A backfilled avatar should be its own AVATAR_UPDATED message, not a reused PROFILE_UPDATED.
 - When diagnosing "button stays disabled" or "dialog resets" bugs: suspect a re-render triggered by a duplicate/async message. RUN the test to capture the actual Playwright locator state rather than theorizing from code.
+
+## CMM4 Standing Rules (S17+)
+- **#18 Planner-first:** planner creates task file with T-number FIRST, then architect refines into it. Never design from harness numbers or create task files.
+- **#46 Web4Articles template:** every sub-task file must have Status, Traceability, AC, Dependencies, DoD, QA Audit, Subtasks sections. No skeleton-only designs.
+- **Task files = single source of truth.** Write designs INTO task files before reporting via otmux. SM enforces this.
+
+## UpDown Convention: 5-Level UUID Index
+UcpStorage (Persistence/0.3.23.0 line 300-303): `uuid.replace(/-/g,'').substring(0,5).split('')` → 5 single-char directories. Example: `44443290-...` → `index/4/4/4/4/3/`. NOT a flat 5-char folder.
+
+## PlantUML @startuml Naming
+Always set `@startuml` to a path-safe slug (no spaces, no unicode). PlantUML derives SVG filename from the @startuml title. Unicode em-dash in title → broken filename on disk → SVG-not-found. Use a separate `title` directive for the human-readable display text.
+
+## Symlink Visibility: Two Browsers
+- `/md/` directory handler (server.ts): uses `withFileTypes`, checks `isSymbolicLink()`, shows 🔗 marker. Correct.
+- `/api/files/` (FileApi.ts readDir): was dropping symlinks — `isFile()` and `isDirectory()` both return false for symlinks. Fixed by adding `isSymbolicLink()` check + `statSync` target.
+
+## vCard Parse (Pre-T142)
+- RFC 6350 line unfolding: lines starting with space/tab are continuations. `text.replace(/\r\n[ \t]/g, '')`.
+- PHOTO field: v3 uses `ENCODING=b;TYPE=JPEG`, v4 uses `MEDIATYPE=image/jpeg`. Handle both.
+- Feed photo Blob into existing rb-avatar upload pipeline via a new `uploadBlob(blob)` method — no new server endpoint needed.
+
+## Skill Catalog (T139)
+16 skills across 6 domains: core CRUD (4), migration (3), view generation (2), source location (2), tracelink (2), chain integrity (3). All return `SkillResult<T> = {ior, unit, links[]}`.
