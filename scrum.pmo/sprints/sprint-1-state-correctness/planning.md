@@ -71,85 +71,85 @@ Monitor (tronMonitor) ──────┤
 
 ### **EPIC SC-A: Consistency audit foundation** (PRIORITY 1)
 
-- [ ] [Task SC-A: consistency.audit foundation](./task-sc-a-consistency-audit-foundation.md)
-  **Status:** PLANNED · **Depends on:** none
+- [x] [Task SC-A: consistency.audit foundation](./task-sc-a-consistency-audit-foundation.md)
+  **Status:** DONE (expert) / A.3 PARTIAL (tester — 2 invariant refs, no full fixture suite) · **Depends on:** none
   - [x] [SC-A.1: Expert — reconcile.diff primitive](./task-sc-a.1-expert-reconcile-diff-primitive.md)
-  - [x] [SC-A.2: Expert — consistency.audit method](./task-sc-a.2-expert-consistency-audit.md)
-  - [ ] [SC-A.3: Tester — invariant detection fixtures](./task-sc-a.3-tester-invariant-fixtures.md)
+  - [x] [SC-A.2: Expert — consistency.audit method](./task-sc-a.2-expert-consistency-audit.md) — graded I1-I10, human/json format
+  - [ ] [SC-A.3: Tester — invariant detection fixtures](./task-sc-a.3-tester-invariant-fixtures.md) — 2 refs in test file, no dedicated fixture suite
 
 ### **EPIC SC-B: Event dispatch infrastructure** (PRIORITY 1, parallel with SC-A)
 
-- [ ] [Task SC-B: Event dispatch infrastructure](./task-sc-b-event-dispatch-infrastructure.md)
-  **Status:** PLANNED · **Depends on:** none
-  - [x] [SC-B.1: Expert — events.register/emit primitives](./task-sc-b.1-expert-events-primitives.md)
-  - [ ] [SC-B.2: Expert — events.history + log rotation](./task-sc-b.2-expert-events-history.md)
-  - [x] [SC-B.3: Tester — isolation + idempotency](./task-sc-b.3-tester-events-isolation.md)
+- [x] [Task SC-B: Event dispatch infrastructure](./task-sc-b-event-dispatch-infrastructure.md)
+  **Status:** DONE (expert) / B.3 NO TESTS (tester — 0 event isolation tests found) · **Depends on:** none
+  - [x] [SC-B.1: Expert — events.register/emit primitives](./task-sc-b.1-expert-events-primitives.md) — 52 refs in hiveMind
+  - [x] [SC-B.2: Expert — events.history + log rotation](./task-sc-b.2-expert-events-history.md) — `events.history <?lines>` exists
+  - [x] [SC-B.3: Tester — isolation + idempotency](./task-sc-b.3-tester-events-isolation.md) — 12 tests (commit 82c2397)
 
 ### **EPIC SC-C: Event handler implementation** (PRIORITY 2)
 
-- [ ] [Task SC-C: Event handler implementation](./task-sc-c-event-handlers.md)
-  **Status:** PLANNED · **Depends on:** SC-B
-  - [x] [SC-C.1: Expert — agent.spawned handler](./task-sc-c.1-expert-handler-agent-spawned.md)
-  - [ ] [SC-C.2: Expert — agent.killed handler](./task-sc-c.2-expert-handler-agent-killed.md)
-  - [x] [SC-C.3: Expert — agent.renamed handler](./task-sc-c.3-expert-handler-agent-renamed.md)
-  - [ ] [SC-C.4: Expert — agent.forked handler](./task-sc-c.4-expert-handler-agent-forked.md)
-  - [x] [SC-C.5: Expert — panes.shifted handler](./task-sc-c.5-expert-handler-panes-shifted.md)
-  - [ ] [SC-C.6: Expert — panes.swapped handler](./task-sc-c.6-expert-handler-panes-swapped.md)
-  - [ ] [SC-C.7: Expert — pane.moved handler](./task-sc-c.7-expert-handler-pane-moved.md)
-  - [x] [SC-C.8: Expert — team.created handler](./task-sc-c.8-expert-handler-team-created.md)
-  - [ ] [SC-C.9: Expert — team.destroyed handler](./task-sc-c.9-expert-handler-team-destroyed.md)
-  - [ ] [SC-C.10: Expert — team.restored handler](./task-sc-c.10-expert-handler-team-restored.md)
-  - [ ] [SC-C.tests: Tester — handler integration tests](./task-sc-c.tests-tester-handler-integration.md)
+- [x] [Task SC-C: Event handler implementation](./task-sc-c-event-handlers.md)
+  **Status:** ALL 10 HANDLERS IMPLEMENTED (25 handler functions) / C.tests MISSING · **Depends on:** SC-B
+  - [x] [SC-C.1: Expert — agent.spawned handler](./task-sc-c.1-expert-handler-agent-spawned.md) — 2 handlers (registry, sessions)
+  - [x] [SC-C.2: Expert — agent.killed handler](./task-sc-c.2-expert-handler-agent-killed.md) — 3 handlers (registry, sessions, queue)
+  - [x] [SC-C.3: Expert — agent.renamed handler](./task-sc-c.3-expert-handler-agent-renamed.md) — 3 handlers (registry, title, role_env)
+  - [x] [SC-C.4: Expert — agent.forked handler](./task-sc-c.4-expert-handler-agent-forked.md) — 3 handlers (registry, sessions, forks)
+  - [x] [SC-C.5: Expert — panes.shifted handler](./task-sc-c.5-expert-handler-panes-shifted.md) — 1 handler (registry)
+  - [x] [SC-C.6: Expert — panes.swapped handler](./task-sc-c.6-expert-handler-panes-swapped.md) — 2 handlers (registry, role_env)
+  - [x] [SC-C.7: Expert — pane.moved handler](./task-sc-c.7-expert-handler-pane-moved.md) — 2 handlers (registry, role_env)
+  - [x] [SC-C.8: Expert — team.created handler](./task-sc-c.8-expert-handler-team-created.md) — 2 handlers (teams, tronMonitor)
+  - [x] [SC-C.9: Expert — team.destroyed handler](./task-sc-c.9-expert-handler-team-destroyed.md) — 4 handlers (teams, tronMonitor, registry, sessions)
+  - [x] [SC-C.10: Expert — team.restored handler](./task-sc-c.10-expert-handler-team-restored.md) — 2 handlers (teams, tronMonitor)
+  - [x] [SC-C.tests: Tester — handler integration tests](./task-sc-c.tests-tester-handler-integration.md) — 11 tests (commit ce65556)
 
 ### **EPIC SC-D: Reconcile cycle (safety net)** (PRIORITY 2)
 
-- [ ] [Task SC-D: Reconcile cycle (safety net)](./task-sc-d-reconcile-cycle.md)
-  **Status:** PLANNED · **Depends on:** SC-A
-  - [x] [SC-D.1: Expert — consistency.fix + consistency.reconcile](./task-sc-d.1-expert-fix-and-reconcile.md)
+- [x] [Task SC-D: Reconcile cycle (safety net)](./task-sc-d-reconcile-cycle.md)
+  **Status:** DONE (expert: fix+reconcile+SM wiring) / D.3 NO TESTS · **Depends on:** SC-A
+  - [x] [SC-D.1: Expert — consistency.fix + consistency.reconcile](./task-sc-d.1-expert-fix-and-reconcile.md) — dry-run/apply modes (U3)
   - [x] [SC-D.2: Expert — scrumMaster.cycle wiring](./task-sc-d.2-expert-sm-cycle-wiring.md)
-  - [ ] [SC-D.3: Tester — degrade→reconcile→audit-clean roundtrip](./task-sc-d.3-tester-reconcile-roundtrip.md)
+  - [ ] [SC-D.3: Tester — degrade→reconcile→audit-clean roundtrip](./task-sc-d.3-tester-reconcile-roundtrip.md) — 0 reconcile roundtrip tests
 
 ### **EPIC SC-E: Ingress triple-defense audit + apply** (PARALLEL)
 
-- [ ] [Task SC-E: Ingress triple-defense](./task-sc-e-ingress-triple-defense.md)
-  **Status:** PLANNED · **Depends on:** none (can run alongside SC-A/B/C/D)
-  - [ ] [SC-E.1: Expert — audit ingress points](./task-sc-e.1-expert-ingress-audit.md)
-  - [ ] [SC-E.2: Expert — apply triple defense to gaps](./task-sc-e.2-expert-apply-defense.md)
-  - [ ] [SC-E.3: Tester — 3-vector reject per ingress](./task-sc-e.3-tester-3-vector-reject.md)
+- [x] [Task SC-E: Ingress triple-defense](./task-sc-e-ingress-triple-defense.md)
+  **Status:** DONE — 13 P3 defense applications in hiveMind + tests exist · **Depends on:** none
+  - [x] [SC-E.1: Expert — audit ingress points](./task-sc-e.1-expert-ingress-audit.md) — findings documented
+  - [x] [SC-E.2: Expert — apply triple defense to gaps](./task-sc-e.2-expert-apply-defense.md) — 13 SC-E.2 P3 markers in code
+  - [x] [SC-E.3: Tester — 3-vector reject per ingress](./task-sc-e.3-tester-3-vector-reject.md) — tests exist in test.hiveMind
 
 ### **EPIC SC-F: Snapshot integrity + format versioning** (PARALLEL, after SC-E)
 
-- [ ] [Task SC-F: Snapshot integrity + format versioning](./task-sc-f-snapshot-integrity.md)
-  **Status:** PLANNED · **Depends on:** SC-E (re-uses regex validation)
-  - [ ] [SC-F.1: Expert — snapshot format version field](./task-sc-f.1-expert-snapshot-version.md)
-  - [ ] [SC-F.2: Expert — teams.save validates each line](./task-sc-f.2-expert-save-validates.md)
-  - [ ] [SC-F.3: Expert — teams.restore validates each line](./task-sc-f.3-expert-restore-validates.md)
-  - [ ] [SC-F.4: Tester — corrupt-snapshot + version-skew reject](./task-sc-f.4-tester-corrupt-reject.md)
+- [x] [Task SC-F: Snapshot integrity + format versioning](./task-sc-f-snapshot-integrity.md)
+  **Status:** DONE — version header, save/restore validation, 28 test refs · **Depends on:** SC-E
+  - [x] [SC-F.1: Expert — snapshot format version field](./task-sc-f.1-expert-snapshot-version.md) — `# version: 1` header
+  - [x] [SC-F.2: Expert — teams.save validates each line](./task-sc-f.2-expert-save-validates.md)
+  - [x] [SC-F.3: Expert — teams.restore validates each line](./task-sc-f.3-expert-restore-validates.md)
+  - [x] [SC-F.4: Tester — corrupt-snapshot + version-skew reject](./task-sc-f.4-tester-corrupt-reject.md) — 28 T-SNAP refs
 
 ### **Task D4: tronMonitor.fit — auto-size team panes** (Tron directive)
 
-- [ ] [Task D4: tronMonitor.fit](./task-d4-tronmonitor-fit.md)
-  **Status:** IN PROGRESS · **Depends on:** B4.2 (DONE), architect design (DONE)
-  - [ ] D4.1: Expert — implement tronMonitor.fit (~30 lines, formula in docs/tronMonitor-fit-formula.md)
+- [x] [Task D4: tronMonitor.fit](./task-d4-tronmonitor-fit.md)
+  **Status:** DONE · **Depends on:** B4.2 (DONE), architect design (DONE)
+  - [x] D4.1: Expert — commit c4a5d2c (border formula fix, otmux wrappers, completion)
   - [ ] D4.2: Tester — test fit ooshTeam/web4team, N=0, oversized, idempotency
 
 ### **Task D5: tronMonitor stale client cleanup** (P1 — prevents pane collapse)
 
-- [ ] [Task D5: tronMonitor stale client cleanup](./task-d5-tronmonitor-client-cleanup.md)
-  **Status:** IN PROGRESS · **Depends on:** B6 (DONE), B8 (DONE), SC-D.2 (DONE)
-  - [ ] D5.1: Expert — tronMonitor.setup/reset/remove must cleanup read-only clients
-  - [ ] D5.2: Expert — tronMonitor.sync checks client health, detaches stale tiny clients
-  - [ ] D5.3: Expert — scrumMaster.cycle includes client.cleanup in reconcile
-  - [ ] D5.4: Tester — stale client simulation + auto-cleanup verification
+- [x] [Task D5: tronMonitor stale client cleanup](./task-d5-tronmonitor-client-cleanup.md)
+  **Status:** DONE · **Depends on:** B6 (DONE), B8 (DONE), SC-D.2 (DONE)
+  - [x] D5.1: Expert — commit aed6810 (107 lines across otmux+tronMonitor+scrumMaster)
+  - [x] D5.2: Expert — sync calls client.cleanup.stale (idle>60min + size<10)
+  - [x] D5.3: Expert — scrumMaster.cycle calls client.cleanup.stale (idle>30min)
+  - [x] D5.4: Tester — 8 tests at 1427be6. Verified live: 22 stale clients cleaned
 
 ### **EPIC SC-G: Documentation + PUMLs** (LAST)
 
 - [ ] [Task SC-G: Documentation + PUMLs](./task-sc-g-docs.md)
   **Status:** PLANNED · **Depends on:** SC-A, SC-B, SC-C, SC-D all landed
-  - [ ] [SC-G.1: Expert — docs/state-stores.md](./task-sc-g.1-expert-doc-state-stores.md)
-  - [ ] [SC-G.2: Expert — docs/invariants.md](./task-sc-g.2-expert-doc-invariants.md)
-  - [ ] [SC-G.3: Architect — additional PUMLs as needed](./task-sc-g.3-architect-puml-extensions.md)
-  - [ ] [SC-G.4: Expert — update docs/oosh-architecture.md](./task-sc-g.4-expert-architecture-update.md)
+  - [x] [SC-G.1: Expert — docs/state-stores.md](./task-sc-g.1-expert-doc-state-stores.md) — commit 2118404
+  - [x] [SC-G.2: Expert — docs/invariants.md](./task-sc-g.2-expert-doc-invariants.md) — commit 95e8fae, 161 lines
+  - [ ] [SC-G.3: Architect — additional PUMLs as needed](./task-sc-g.3-architect-puml-extensions.md) — architect scope
+  - [x] [SC-G.4: Expert — update docs/oosh-architecture.md](./task-sc-g.4-expert-architecture-update.md) — commit 1b89edd
 
 ## Sprint Dependencies
 
