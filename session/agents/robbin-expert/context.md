@@ -1,80 +1,56 @@
-# robbin-expert Context — Save Point 2026-05-31
+# robbin-expert Context — Save Point 2026-05-31 (SM warning 540k)
 
 **Role**: Web4RawBin Implementation Authority
-**Status**: S17 migration active; S16 shipped; T118-T131 delivered. Standing by.
+**Status**: S17 active — T132-T138 shipped. Standing by for next assignment.
 **Machine**: Mac Studio · **Pane**: robbinTeam:0.2
 **Repo**: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin · **Live**: https://home.donges.it:4444
-**Current version**: v0.5.30 (deployed). Build 72.6kb. 818/818 tests pass.
+**Current version**: v0.5.31 (deployed). Build 72.6kb. 834/834 tests pass.
 
 ## Team (robbinTeam)
 0.0 robbin-po · 0.1 robbin-architect · 0.2 ME · 0.3 robbin-tester · 1.0 planner · 1.1 req
 
-## What shipped this session
+## Session deliveries (commits this session, chronological)
 
-### S16 Traceability UX (T110-T117, all Done)
-- T110: rb-detail-drawer (Google-Maps bottom drawer) — 51812eb
-- T111: 3 specialized DetailViews (task/req/usecase) — 51812eb
-- T112: tree-item name+desc two-line layout — 13c9dc1
-- T113: Lucide SVG type icons (vendored ISC) — 5b9b86c
-- T114: OS drag verified + custom drag image — 6ede466
-- T115: icon collapse/expand + children expander — c9f4a48
-- T116+T117: trace-cli Pass 4+5 (PUML UC + impl markers) — 61d0253
+### S16 (T110-T117) — all Done
+T110-T111 drawer+views 51812eb · T112 name+desc 13c9dc1 · T113 icons 5b9b86c · T114 drag 6ede466 · T115 collapse c9f4a48 · T116+T117 trace-cli Pass 4+5 61d0253
 
-### Hotfixes & infrastructure
-- v0.5.23: version bump for S16 PWA delivery — a1b58ee
-- v0.5.24: trace-page in sw.js STATIC_SHELL — bdb74ec
-- v0.5.25 T120+T122: dark drawer bg + viewport-fixed — 50d20be
-- v0.5.26: sticky pageNav — 2a28dd3
-- v0.5.27 T130: fix flat nested lists in /md/ preview — 8539d57
-- v0.5.28 T127: cross-nav /md/↔/trace + IOR resolver — b30b3de
-- v0.5.29 T128.1: all subtasks indented + symlink visibility — 60d6e36
-- v0.5.30 T39: file-browser symlink support (FileApi + rb-file-tree) — aad0816
+### Hotfixes
+v0.5.23 PWA a1b58ee · v0.5.24 STATIC_SHELL bdb74ec · v0.5.25 T120+T122 dark drawer 50d20be · v0.5.26 sticky nav 2a28dd3 · v0.5.27 T130 nested lists 8539d57 · v0.5.28 T127 cross-nav b30b3de · v0.5.29 subtask indent+symlinks 60d6e36 · v0.5.30 T39 FileApi symlinks aad0816 · v0.5.31 T132 regenerate+indent fix 2f6dde2
 
-### T118 E2E cleanup (B2)
-- cleanupTestUsers helper + 8-spec afterAll — 317f41a
-- Backfill purge: 115 test users removed, 7 preserved — applied live
+### T118 E2E cleanup
+cleanupTestUsers+8 specs 317f41a · Backfill 115 purged live
 
 ### T119 test traceability
-- Pass 6 [test:uuid:] parser — ac4a6d2
-- All 42 test files (28 vitest + 14 E2E) have markers — a242530
+Pass 6 parser ac4a6d2 · 42 test files marked a242530
 
 ### T121 UUID remediation
-- 22 task UUIDs regenerated to valid v4 — 9eb9d6a
-- 5 invented req:uuids + 3 S13 req:uuids fixed — 2496aeb
+22 task UUIDs 9eb9d6a · 8 req UUIDs 2496aeb
 
-### S17 Scenario Units (T125-T128)
-- T125: scenario module (types + 7 classes + index-store + templates) — 9b79be3
-- T125.3 re-do: 5-level deep index — 0fc5b90
-- T126: ViewGenerator + all 7 templates + regenerate script — 5a7e162
-- T127: IOR resolver + /api/ior endpoint + cross-nav — b30b3de
-- T128.1: Sprint 1 exemplar (full content fidelity, speaking names, nested subtasks, dup fix) — d5b4770, 17dcd01, 60d6e36, d5b4770
-- T128.3: Sprint 17 migrated — e8de4c6
+### S17 Scenario Units
+T125 foundation 9b79be3 · T125.3 5-level index 0fc5b90 · T126 views+generator 5a7e162 · T127 IOR resolver b30b3de · T128.1 exemplar (multiple: efc6d17→e1fabbf→17dcd01→60d6e36→d5b4770) · T128.3 Sprint 17 e8de4c6 · T132 renderStatusHtml 4a362d0 · T133 Task FSM e062849 · T134 TraceLink f173cad · T138 skills 368f1d0 · T136 migration req+UC 4b3dafb
 
-## Current data state
-- Graph: 217+ objects (tasks + requirements + UCs + impls + tests)
-- Scenario index: Sprint 1 (12 units) + Sprint 17 (11 units) migrated
-- 5-level deep: scenario/index/<c1>/<c2>/<c3>/<c4>/<c5>/<uuid>.scenario.json
-- data/users: 148 dirs (115 test users purged, 7 preserved real owners)
+### Spot-check fix (uncommitted)
+renderStatusHtml: blockquote filter + non-checkbox line skip — include in next bump
+
+## Scenario module (src/ts/scenario/)
+types.ts · classes.ts (8 loaders incl TraceLink) · index-store.ts (5-level) · templates.ts (8 templates + renderStatusHtml) · generator.ts (ViewGenerator) · ior-resolver.ts · task-fsm.ts (7 states, 8 verbs) · trace-link.ts (8 relations) · skills.ts (captureQuote/proposeTask/walkChain/statusTransition)
+
+## Migrated scenario data
+S1: 12 units (1 sprint + 11 tasks) · S17: ~40 units (tasks + 15 UCs from PUML)
+Index: scenario/index/<c1>/<c2>/<c3>/<c4>/<c5>/<uuid>.scenario.json
+Symlinks: scenario/sprints.json/<sprint>/<speaking-name>.json
+Views: scenario/sprints.md/<class>/<speaking-name>.md + .html
 
 ## Standing rules
-- Every new task stood up by PLANNER first with official T-number — do NOT use PO harness numbers
-- Version bump per #66 (package.json + sw.js CACHE_NAME) on every surface change
-- STATIC_SHELL per #67 — update trace-page hash when bundle changes; no new route = exempt
-- implementing [x] checkbox in task file before committing
+- Planner stands up T-numbers first — never use PO harness numbers
+- Version bump per #66 on surface changes (package.json + sw.js)
+- STATIC_SHELL per #67 — update trace-page hash when bundle changes
+- implementing [x] checkbox before committing
 - Report each commit to robbinTeam:0.0
+- T132 spot-check fix (blockquote filter) ready to include in next bump
 
 ## Deploy ritual
-Stop server (otmux send iphone:0.1 C-c — often needs TWICE),
-then: `otmux send iphone:0.1 "cd <repo> && git pull && npm run build && npm run dev" Enter`,
-wait ~14s, verify /api/health version.
+Stop iphone:0.1 C-c (×2) → git pull && npm run build && npm run dev → wait 16s → /api/health
 
-## Build/test commands
-npm run build · npm run dev (tsx watch) · npm test (vitest) · npm run test:e2e (playwright)
-npm run trace:check · npm run trace:fix · npx tsx scripts/migrate-to-scenario.ts --sprint <slug> --apply
-
-## Key file locations
-- scenario module: src/ts/scenario/ (types, classes, index-store, templates, generator, ior-resolver)
-- trace client: src/public/ts/trace/ (rb-detail-drawer, rb-task-detail, rb-requirement-detail, rb-usecase-detail, icons, rb-object-item, rb-trace-tree)
-- server: src/ts/server/server.ts, TraceConsistency.ts, FileApi.ts, trace-cli.ts
-- migration: scripts/migrate-to-scenario.ts, scripts/test-data-purge.ts, scripts/regenerate-views.ts
-- scenario data: scenario/index/ (5-level), scenario/sprints.json/ (symlinks), scenario/sprints.md/ (generated views)
+## Key commands
+npm run build · npm test · npm run trace:check · npx tsx scripts/migrate-to-scenario.ts --sprint <slug> --apply
