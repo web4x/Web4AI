@@ -80,6 +80,21 @@ absent, flag in the report ("impl-shipped at code level but not delivered to
 device — version bump missing"). See learnings #15. Incident: S16 T110-T117
 shipped 2026-05-29 without bump; expert remediated.
 
+**STANDING — CMM4 four-role engagement on EVERY new task (Tron via PO 2026-05-31).**
+When standing up any new task (regardless of size), the task file must explicitly
+engage all four roles in sequence:
+
+1. **req-eng** — captures the formal requirement with a v4 `requirement:uuid` and the verbatim Tron quote
+2. **architect** — diagnoses root cause + designs the approach (refinement step, sub-task file or in-task section)
+3. **expert** — implements per architect's design
+4. **tester** — verifies against AC, reports PASS/FAIL
+
+Don't default to expert+tester ownership even for small UI fixes. Owner block,
+Status sub-steps (refinement → creating test cases → implementing → testing),
+and Drive Plan section must reflect all 4 roles. The architect step can be
+short for trivial fixes ("root cause: X, approach: Y") but it MUST exist.
+S17 / T121 are the gold-standard pattern. See learnings #18.
+
 **STANDING — New SPA route ≠ shipped without sw.js STATIC_SHELL entry
 (Tron 2026-05-29, paired with the bump rule).** For route-introducing tasks
 (new server route returning a unique HTML shell, e.g. `/trace`, `/edit/<path>`,

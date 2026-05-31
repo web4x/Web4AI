@@ -39,6 +39,23 @@ Whenever standing up a new sprint, add it to BOTH (a) the README.md "Individual 
 ## 12. Recurring: req-eng creates task files / structure ahead of planner
 req-eng repeatedly creates task files (sometimes whole sprint dirs) in their own structure/numbering — caused T81/T83 collision, T90-misplacement, and a duplicate Sprint 13 (sprint-13-stability vs my sprint-13-core-workflow-fixes). Resolution pattern: req owns requirement CONTENT (real Tron quotes) so their files are authoritative; planner owns STRUCTURE — adopt req's content, remove my scaffold, add the missing planning.md + diagrams pointer + compliance sections, reconcile T-numbers. Always check `git status -s scrum.pmo/` for untracked sibling dirs/files each cycle.
 
+## 18. CMM4 = engage ALL 4 roles on every task (STANDING — Tron via PO 2026-05-31)
+Every new task MUST engage all four roles in sequence:
+1. **req-eng** captures the formal requirement (verbatim Tron quote, `[requirement:uuid:v4]`)
+2. **architect** diagnoses root cause + designs the approach (refinement step in the task file)
+3. **expert** implements per architect's design
+4. **tester** verifies against AC and reports PASS/FAIL
+
+Don't default to expert+tester only — even small UI fixes (T120/T122/T123/T130 pattern I've been doing) need architect-refinement and req-capture. Planner duty when standing up new tasks:
+- Owner block reads: "robbin-architect (refinement), robbin-req (requirement), robbin-expert (impl), robbin-tester (verify)"
+- Status sub-steps: refinement (architect) → creating test cases (architect/req) → implementing (expert) → testing (tester)
+- Drive Plan section ordered: req → architect → expert → tester
+- For genuinely-small fixes, the architect step can be short ("root cause: X, approach: Y") but it MUST exist — that's the CMM4 invariant.
+
+S17 + T121 are the gold-standard pattern (all 4 roles formally engaged). T118/T123/T130 were faster but skipped architect-refinement formal step — those skipped CMM4.
+
+**Apply this on every new task stand-up going forward.** Also: audit my own standing tasks for gaps and flag where architect/req engagement was bypassed.
+
 ## 17. Generate REAL v4 UUIDs for task:uuid AND requirement:uuid placeholders (STANDING — caught by T121 Phase 1, 2026-05-29)
 When standing up a new task, the placeholder `[task:uuid:...]` and `[requirement:uuid:...]` MUST be proper RFC4122 v4 UUIDs. Readable-but-invalid identifiers (like `r120-detailsview-black-bg-f30a-2d4b-c1d4f7a0fae3` — non-hex chars `r`, wrong structure) get silently dropped by trace-cli and surface as C2b BLOCKERs in chain audits. My S16 T120/T121/T122 stand-ups created 3 such offenders, flagged in T121's diagnosis (7777ad6).
 
