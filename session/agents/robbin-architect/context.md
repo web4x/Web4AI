@@ -67,9 +67,30 @@ S1: Foundation (QnD fork, rebrand). S2: Identity/SSH (diagrams, ProfileSheet). S
 ### Sprint 17 — Scenario Units / IOR Data Model (IN PROGRESS)
 - T124.1: Data model — ior=class loader, model.uuid=instance, ownerIor=parent (Tron-refined, fda5970)
 - T124.2: View template architecture — 7 class templates, ViewTemplateRegistry, live-update (14b2821)
-- T124.3: Storage layout — 3-layer (index/json-tree/md-tree), migration path (9423fac)
+  - Tron refinements: subtask indentation, speaking-name filenames (not uuid.md), speaking-name hrefs, 404 page (44f9dce)
+- T124.3: Storage layout — 3-layer (index/json-tree/md-tree), 5-level deep UUID dirs matching UpDown convention (1d80907)
 - T124.6: s17-usecases.puml — 13 UCs across 4 phases, 6 implementing classes (1316b7e)
-- T124.4/T124.5: Pending req-eng (requirements.md + traceability standard update)
+- T121: Chain data quality — Phase 1 defect catalog DONE (7777ad6): 34 invalid v4 UUIDs (BLOCKER), 8 defect classes
+- S16 T116 chain gaps fixed — all TBD→real uc:uuid (d87e826)
+- S16 SVG filename fixed — unicode→path-safe s16-usecases.svg (d87e826)
+- Symlink diagnosis: FileApi.readDir() drops symlinks (BUG), /md/ handler correct. Expert fixed (DirEntry.symlink field)
+- T128.3: S17 migration structure verified — parent-child X.Y inference works for task-124/task-124.1
+- T132: HTML status template — root cause <pre> dump, fix: shared renderStatusHtml() (497cee2)
+- T133: Task FSM — 7 states, 8 transitions, guardTransition(), tronApprove() gate (497cee2)
+- T134: TraceLink — 8 typed relations + inverses, bidirectional ln emission, 8th template (497cee2)
+- T136: Req+UC migration — two parsers (requirements.md split + PUML <<UseCase>>), deterministic link UUIDs (5073c3b)
+- T138: 4 skills — captureQuote/proposeTask/walkChain/statusTransition, SkillResult<T> (5073c3b)
+- T139: Skill catalog — 16 skills across 6 domains, SKILL.md structure for skill-expert (47bec60)
+- T140: Source-location IOR — ior:file:<path>?commit=<sha>&lines=<a>-<b>, 3 regex extractors (7aea2df)
+- T141: Chain-link 🔗 icon — shared renderChainSection(), all 7 templates, speaking-name hrefs (d978db8)
+- T142: vCard import pipeline designed (pre-task-file) — parseVCard, 3 input methods, rb-avatar.uploadBlob()
 
 ## Status
-S17 T124.1-T124.3 + T124.6 design complete. Waiting for req-eng (T124.4/T124.5) + PO/Tron review.
+S17 design phase active. T124.1-.3, T132-T134, T136, T138-T141 all designed + committed. T140 designed. T142 pipeline ready to paste. Waiting for planner T142 file + any new PO assignments.
+
+## CMM4 Standing Rules
+- #18: req captures → planner stands up task file with T-number → architect refines → expert impl → tester verify. Never design from harness numbers.
+- #46: sub-task files MUST follow Web4Articles standard template (Status, Traceability, AC, etc.)
+
+## Status
+S17 design phase mostly complete (T124.1-.3 + T124.6 done, T121 Phase 1 done). Waiting for planner T132/T133/T134 task files, then refine. Context at ~28% — healthy.
