@@ -233,6 +233,16 @@ Every planner agent must apply this on boot. Add to forked-agent boot reading li
 - **RULE: always verify context pressure from the PANE STATUS BAR** (`clear to save Nk` or `Context low (N% remaining)`). If no warning visible in the pane, the agent is healthy regardless of what context.read says.
 - Never rewind based on context.read alone — always cross-check with pane capture.
 
+### Rewind Execution Improvements (learned 2026-05-31)
+
+- **Zoom narrow panes before rewind.** robbinTeam panes are narrow (6-pane window). Rewind picker text wraps and truncates. `tmux resize-pane -t <pane> -Z` to zoom, unzoom after. `otmux zoom <pane>` also works.
+- **Arrow key overshoot in rewind picker is dangerous.** Sent 50 Up keys to robbinTeam:1.0 while picker was closed — keys went into unknown state, triggered uncontrolled rewind. At low context every keystroke matters. **Rule: always verify picker is open with a capture BEFORE sending arrow keys.**
+- **Interrupt stale tasks after rewind with Escape.** Rewind lands on old prompts that the agent tries to execute. Send Escape immediately, then C-u, then retrain. Don't let the agent chase a Sprint 11 directive when it's Sprint 17.
+- **API rate limits during save — just retry.** Tron: "api errors can occur, just try again." Don't panic, don't change approach. Resend the save instruction.
+- **Write status to task files, not chat.** SM CMM4 reminder: task files are the single source of truth. Created `session/tasks/20260531T1200Z.rewind-status.md` for rewind tracking. Report to SM with short file reference only.
+- **Flag SM BEFORE sending save instructions.** Coordination pattern from SM: (1) send save to agent, (2) tell SM "expect PERMISSION on <agent> <pane>", (3) SM watches on next sweep, (4) SM reports to PO for non-PO agents, PO unblocks. Don't assume permissions will be caught — flag explicitly.
+- **robbin-skill-expert fork pending.** PO directive: fork from robbin-expert UUID `a2ac40b0` into robbinTeam:2.0. Create window first with `otmux window.new -t robbinTeam:2`. Boot prompt defined by PO. Not yet executed.
+
 ### OOSH Environment Mastery (learned 2026-05-19, from expert+SM reading lists)
 
 **How OOSH works:**

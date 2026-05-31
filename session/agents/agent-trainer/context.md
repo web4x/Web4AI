@@ -1,53 +1,47 @@
 # Agent Trainer Context
 
-**Updated**: 2026-05-12 (deep reading session — full WODA + all SKILL.md ingested)
+**Updated**: 2026-05-31
 **Role**: agent-trainer
-**Session**: agent-trainer (standalone via remote control, not in a hiveMind team pane)
-**State**: ACTIVE — completing full knowledge ingestion, ready for work
+**Session**: agent-trainer at baseTeam:0.0
+**State**: ACTIVE — rewind duty + pending fork
 
 ## CURRENT GOAL
 
-Deep-read all agent definitions and the WODA story to rebuild full understanding.
-Then: be ready for training tasks from Tron or orchestrator.
+Execute 2-phase rewind protocol on agents flagged by SM. Write results to task files.
 
-## What I Just Did (this session)
+## Completed Today (2026-05-31)
 
-1. Read ALL 12 core team SKILL.md files + 3 specialist files + overview + reading list audit
-2. Read the complete WODA story: chapters 1-39 + projectTeam reboot overview (Ch1-81)
-3. Read agent-overview.md, agent.readinglist.overview.md, both reference.md files
-4. Reviewed existing context.md, learnings.md, boot.md — aligning with current knowledge
+1. Rewound oosh-po (ooshTeam:0.0) — Phase 1 + save d2445be + Phase 2 50% + retrained
+2. Rewound robbin-po (robbinTeam:0.0) — Phase 1 at 0% + no save possible + Phase 2 50% + retrained + relayed missed messages
+3. Rewound robbin-planner (robbinTeam:1.0) — Phase 1 at 0% + save b08d4d4 (API retry) + Phase 2 ~50% + retrained
+4. Status written to session/tasks/20260531T1200Z.rewind-status.md
 
-## Historical Context (2026-02-23 session — Phase A/B)
+## Pending
 
-Phase A completed: 3 batches of SKILL.md updates across 83 files, PO GATE PASS verified.
-Phase B (notify SM, activate orchestrator, DRY send fix) was deferred due to budget cap.
-Status of Phase B: UNKNOWN — need to verify with Tron or orchestrator if still relevant (~3 months old).
+- **robbin-skill-expert fork** — PO directive: fork from robbin-expert (UUID a2ac40b0) into robbinTeam:2.0. Window created. Boot prompt defined by robbin-po. Not yet executed.
 
-**Commits from that session:**
-- `612522b` — Batch 1: 5 key role SKILL.md updates
-- `a61b492`..`bfc0574` — Batch 2: 83/83 SKILL.md with Common Skills
-- `fb5f3ad` — Batch 3: 17/17 boot.md with Foundational Reading
+## Prior Session Summary (2026-05-12 through 2026-05-19)
 
-## Key Tron Directives (carried forward)
+- Deep knowledge ingestion: all SKILL.md + WODA story + docs
+- Learned 2-phase rewind protocol (F-T8 killed architect, then successful SM/expert/tester rewinds)
+- ooshTeam remote fork attempt: teams.migrate pushed ALL 18 sessions (F-T10), cleanup delegated to oosh team
+- Ambiguity report filed, oosh-po resolved all 7 items
 
-- "team care prio 1" — compact lifecycle > all other work
-- "do not do parallel work until compact is done successful"
-- "bulk read is ok...but be careful with batch writes"
-- CHECK must be behavioral (CMM4), not just file grep (CMM2)
+## Key Directives
 
-## Ambiguities to Resolve
-
-1. **Phase B status**: 3 months old, may be obsolete. Ask Tron before resuming.
-2. **Team layout**: Previous pane was baseTeam:0.2. Current session is standalone. Need hiveMind team.status if team is running.
-3. **PO location**: Was at TRONinterface:0.0 last session. May have moved.
-4. **Missing docs**: reading list audit (agent.readinglist.overview.md) flagged 7 docs/ files referenced but MISSING. These phantom references affect all agents on recovery.
+- "team care prio 1" — rewind/save > all other work
+- PROACTIVE rewind at SM flag >70%, not reactive at 0%
+- Write status to task files (CMM4), not chat
+- Flag SM before save instructions for permission coordination
+- NEVER /clear, NEVER /compact — only /rewind
+- Role boundaries: I do NOT execute operational procedures addressed to SM
 
 ## After Compaction
 
-1. State identity: "I am the Agent Trainer agent."
+1. "I am the Agent Trainer agent."
 2. Read this file — CURRENT GOAL first
-3. Read learnings.md — patterns and failures
-4. Read SKILL.md — role boundaries and procedures
-5. Read backlog.md — pending work items
-6. TaskList — check for queued tasks
-7. Check with orchestrator or Tron for pending improvement tasks
+3. Read learnings.md
+4. Read SKILL.md
+5. Read backlog.md
+6. TaskList
+7. Check session/tasks/ for pending rewind-status files
