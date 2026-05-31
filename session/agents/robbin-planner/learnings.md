@@ -39,6 +39,20 @@ Whenever standing up a new sprint, add it to BOTH (a) the README.md "Individual 
 ## 12. Recurring: req-eng creates task files / structure ahead of planner
 req-eng repeatedly creates task files (sometimes whole sprint dirs) in their own structure/numbering — caused T81/T83 collision, T90-misplacement, and a duplicate Sprint 13 (sprint-13-stability vs my sprint-13-core-workflow-fixes). Resolution pattern: req owns requirement CONTENT (real Tron quotes) so their files are authoritative; planner owns STRUCTURE — adopt req's content, remove my scaffold, add the missing planning.md + diagrams pointer + compliance sections, reconcile T-numbers. Always check `git status -s scrum.pmo/` for untracked sibling dirs/files each cycle.
 
+## 19. Planner uses scenarios as the planning unit (STANDING — Tron via PO 2026-05-31)
+Planner's working unit transitions from hand-edited `planning.md` markdown to **scenario.json units** (the S17 scenario-unit model). Concrete deltas:
+
+- **Read state** from `scenario/index/<5char>/<uuid>.scenario.json`, not by grepping markdown
+- **Write Task units** when standing up new tasks: create `task:<uuid>.scenario.json` (with proper v4 uuid per #17) with model.status set by T133 Task FSM verbs (`task.plan()`, `task.startRefinement()`, …); regenerate planning.md as a view (T126 ViewGenerator)
+- **Trust planning.md as a generated view** — don't hand-edit; edit the underlying Task units, then regenerate
+- **Symbol legend (⏳📝🔧✅🧪🏁) derives from `model.status`** via T133 FSM state (no longer manually mirrored)
+- **Walk chains** via `IOR.resolve()` + TraceLink (T134), not via grep
+- **Standing up tasks**: create Requirement units (via T138 `captureQuote`) + Task units (via T138 `proposeTask`); TraceLink units (T134) carry the cross-references — no hand-authored chain blocks
+
+Transition policy: existing hand-edited markdown stays valid (T128.3 active-batch migration will convert them); new work goes through scenarios. T137 is the sprint task that formally adopts this in this SKILL.md + req SKILL.md.
+
+Anchor: T128.1 exemplar is the gold reference; T138 verbs are the toolkit; T133 FSM is the state model.
+
 ## 18. CMM4 = engage ALL 4 roles on every task (STANDING — Tron via PO 2026-05-31)
 Every new task MUST engage all four roles in sequence:
 1. **req-eng** captures the formal requirement (verbatim Tron quote, `[requirement:uuid:v4]`)
