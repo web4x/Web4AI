@@ -9,28 +9,31 @@
 
 ## Base Paths
 - Project: `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
-- Tests: `test/vitest/` (29 files) + `test/e2e/`
-- Scenario: `scenario/` (index/ 150 units, sprints.json/ 10 dirs, sprints.md/)
-- Server: HTTPS 4444 | Version: **0.5.34** | Suite: **834/834**
+- Scenario: `scenario/` (150 units, 312 views, 10 sprint dirs)
+- Server: HTTPS 4444 | Version: **0.5.35** | Suite: **834/834**
 
 ## SESSION — ALL VERIFIED
 
-### S14/S16/S17 complete
-- S14: UI CLOSE + FAIL-CLOSED ISOLATION + room.test fix (7ba0160)
+### S14/S16 complete
+- S14: UI CLOSE + FAIL-CLOSED + room.test fix (7ba0160)
 - S16: T110-T117, T118 (+JSDoc fix 62b3e1a), T120/T122/T123/T130
-- S17: T125/T126/T127/T128.1/.2/.3/.4/T129 gate/T132/T133/T134/T136/T138/T39/T140/T141
-- T121 close-out: errors 11→2 (82% reduction), 278 objects, ready for QA Review
 
-### Latest verifications
-- T128.2: S2-S9 batch — 10 sprint dirs, 116 symlinks, 150 units, 212 task views
-- T128.4: 67 impl:uuid markers, Pass 5 impl discovery working
-- T141: chain-link 🔗 in all 7 templates
-- T140: source-location IOR on 15/15 UCs
-- Cross-OS VCF drag-drop spec delivered (research)
+### S17 complete
+- T125/T126/T127: foundation+views+nav (19→35 scenario tests)
+- T128.1/.2/.3/.4: migration (S1+S2-S9+S17+impl markers, 116 symlinks, 150 units)
+- T129: verification gate (6 chains, 13/13 compliance, 0 S17 orphans)
+- T132/T133/T134: status HTML + FSM + TraceLink
+- T136/T138: req+UC migration (15 UCs) + 4 skills
+- T39/T140/T141: symlinks + source-location + chain-links
+- T121 close-out: errors 11→2 (82% reduction), 278 objects
+- T142: vCard upload+drag-drop onboarding (parser+button+drag+uploadBlob)
+
+### Pre-staged for T143
+- 312 view files (162 md + 150 html) in scenario/sprints.md/
+- 5 class dirs: sprint(20+10), task(106+106), usecase(15+15), requirement(10+10), tracelink(9+9) + overview.md
 
 ## Queued
-- T142 multi-platform verify (standing by, pre-staged 834/834 clean)
-- T119/T135/T137/T139 (not yet impl-shipped)
+- **T143** multi-template (standing by)
 
 ## Rules (Eternal)
 - CMM4: task files = single source of truth
