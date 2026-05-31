@@ -151,3 +151,33 @@
 ## Isolated E2E proves zero-net-add
 - Default Playwright run = isolated (port 4445, DATA_DIR=tmp, reuseExistingServer:false). Count data/users/ before and after to prove zero net add.
 - 7 specs fail in isolated mode because they verify disk state at prod DATA_DIR while isolated server writes to tmp. Known limitation, not a regression.
+
+## S17 scenario verification pattern
+- Scenario units live in `scenario/index/<5char>/<uuid>.scenario.json` (5-level UUID prefix).
+- `scenario/sprints.json/<sprint>/` has speaking-name symlinks → index entries. Verify with `file` or `ls -la`.
+- `scenario/sprints.md/` has generated views: `sprint/`, `task/`, `usecase/` subdirs with .md + .html per unit.
+- Planning.md nesting: parent tasks at top-level `- [ ]`, subtasks indented `  - [ ]`. marked.js renders as nested `<ul>`.
+- Verify chain: ownerIor on task units → sprint UUID. Check with `node -e` JSON parse.
+- Generated views served via /md/ route (marked.js); .html files are NOT served by /md/ (404) — check on disk only.
+- UseCase views minimal (name + source location); chain section empty if no IOR array fields populated.
+
+## Source location on UseCase units (T140)
+- model.source = {file, lines:[start,end], commit, repo, ior}
+- Rendered in MD as `**Source:** \`file\` lines N-M @<sha>`, in HTML as `/edit/<file>#L<line>` link + `@<sha>` badge.
+- validateSource checks: file-not-found, lines-out-of-range, commit-not-resolved (git cat-file).
+
+## Chain-link rendering (T141)
+- renderChainSection() walks IOR array fields (children, tasks, requirements, etc.) and renders `🔗 <uuid-prefix>` items.
+- HTML: `<a class="chain-link">🔗 e83d47a1</a>` — no href at generation time (IOR resolution is runtime).
+- CSS: `.chain-link` = blue, `.chain-link-broken` = grey italic.
+- Applied to all 7 class templates. Empty if no IOR arrays populated on the unit.
+
+## Cross-OS VCF drag-drop (research)
+- Desktop: native HTML5 drag-drop works. Match .vcf by EXTENSION not MIME (empty on Windows Chrome/Firefox, `text/vcard` on macOS, `text/x-vcard` on some Android).
+- Mobile (iPhone/Android): NO native file drag-to-browser. MUST have `<input type="file" accept=".vcf">` fallback.
+- Playwright: `setInputFiles()` for `<input>`, synthetic `dispatchEvent` for drop handler. Real OS drag = manual QA only.
+- VCF multi-contact: a single .vcf can have multiple BEGIN:VCARD blocks.
+
+## Task file = single source of truth (CMM4 reinforced)
+- Write findings/status/handoffs INTO the task file's QA section. Read task files before asking questions.
+- Verify against official task file with T-number, not PO harness refs. Planner-first.
