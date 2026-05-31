@@ -97,11 +97,50 @@
 - /commands → no prefix (starts with /)
 - Keys (Enter, Tab, etc.) → no prefix (is.key detection)
 
+## Sprint 1 Learnings (2026-05-18 → 2026-05-30)
+
+### SC-B.3 event dispatch testing
+- events.register is idempotent — double-register, verify count=1
+- events.emit isolates failures — register fail+ok handlers, verify ok still called
+- Save/restore HIVEMIND_EVENT_HANDLERS around tests, skip on bash 3.2
+- Protected CLI wrappers (protected.events.register/emit) exist for test access
+
+### SC-C handler verification pattern
+- 10 events × 25 handlers — verify via code-grep: handler registered to correct event, handler body writes correct store
+- Map event→handler→store from sprint-1-design.md §4 event catalog
+- team.destroyed has 5 handlers (most complex) — S1, S2, S3, S6, S8
+
+### Bug verification workflow (CMM4)
+- Read task file FIRST (SM directive — task files are single source of truth)
+- Write verification results INTO the task file (not ad-hoc messages)
+- Verdict line at bottom: "VERIFIED. Bug closed."
+- 3-part verification: (a) code check, (b) behavior check, (c) regression check
+
+### c2 apostrophe completion bug
+- Single ' in method doc comment breaks c2.get.function.declaration
+- xargs in line.format parses shell quotes — ' pops quote state
+- Produces malformed current.method.env → bash falls back to filename completion
+- Fix: sed "s/'//g" in c2 pipeline line 159 — one line fixes 9 methods
+
+### Rate-limit scroll detection
+- sweep.detect only captures 20 lines — rate-limit message scrolls off → idle
+- Fix: 200-line history scan on idle path with prose-scrub filter
+- Detail field "scrolled-history" distinguishes scrollback from visible detection
+- Prose-scrub filters code comments/grep/sed to prevent false positives
+
+### Test performance
+- Full hiveMind test suite takes 1-2 hours with 18 sessions (~80 panes)
+- Each agents.discover call scans ALL sessions — ~2 min per call
+- Tests 1+2 (hiveMind.list, hiveMind.workers) alone take 10+ minutes
+- Workaround: use test.suite filter mode (still slow due to 5000-line setup)
+
 ## Role Boundaries
 - DO NOT implement fixes — report findings, expert implements
 - NEVER use raw tmux — always otmux wrappers
 - NEVER filter output (no 2>/dev/null, | head, | tail, | grep on commands)
 - NEVER source oosh scripts from zsh Bash tool — use tester-shell (bash)
+- NEVER use run_in_background with until-loops — they dangle, waste resources
+- Write findings to task files (SM CMM4 directive — not ad-hoc messages)
 - Use oosh-tester-shell (ooshTeam:0.5) for commands
 - Read specs BEFORE testing — know expected behavior
 - Finish current task before handling new prompts
