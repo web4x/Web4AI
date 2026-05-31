@@ -255,3 +255,22 @@ read the spec fully before coding, implement exactly per design, no scope creep.
 Every template change requires re-running `migrate-to-scenario.ts` on all
 migrated sprints to update on-disk views. Stale views = Tron sees old rendering.
 Always re-generate + commit the scenario/ dir after template modifications.
+
+### impl:uuid markers: NEVER bare * outside JSDoc (esbuild crash)
+`sed -i '' "2a\\ * [impl:uuid:...]"` inserts a bare ` * ` line. If the file
+doesn't start with `/** */`, this lands INSIDE code and esbuild treats `[` as
+a computed property → parse error → build crash → server down.
+Rule: ALWAYS use `// [impl:uuid:...]` for files starting with code/imports.
+Only use ` * [impl:uuid:]` inside an existing `/** */` JSDoc block.
+
+### iphone:0.1 pane: narrow + scrollback obscures output
+The iphone tmux pane is ~30 chars wide. Crash traces fill the entire visible
+buffer. `otmux pane.capture` only returns the VISIBLE last N lines — if those
+are all scrollback from an error, you can't see your command output even though
+commands ARE executing. Fix: send `clear` or `C-l` THEN capture. Or use the
+expert shell pane instead for server operations.
+
+### Server restart after dirty working tree
+`git pull` fails silently if working tree is dirty. Always `git checkout -- .`
+or `git stash` BEFORE pull when restarting a crashed server. The crash state
+often leaves uncommitted changes from the running tsx process.
