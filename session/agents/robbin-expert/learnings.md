@@ -225,3 +225,33 @@ No new route = STATIC_SHELL exempt. Server-side-only/tooling changes = no bump.
 ### Standing rule: planner stands up T-numbers first
 Do NOT use PO harness numbers (#nn) as T-numbers. Wait for planner's task file
 with official T-number before building. Ask for T-number if routed without one.
+
+## T140-T141 Source + Chain Learnings (2026-05-31)
+
+### Source location: git anchor at migration time
+`getFileCommit(file, cwd)` via `git log --format=%h -1 -- <file>`. Pin content to
+exact SHA so line ranges stay valid even after refactoring. IOR format:
+`ior:file:<path>?commit=<sha>&lines=<start>-<end>`.
+
+### extractPumlUseCaseRanges: brace-depth tracking
+Can't just find the next `}` — need to track depth for nested braces inside
+UseCase bodies. Same pattern for extractTsClassRanges and extractTsMethodRanges.
+
+### renderChainSection: IOR field convention
+All 7 class models use the same field names for IOR arrays: requirements, tasks,
+useCases, classes, methods, implementations, tests, children. The shared helper
+walks all 8 fields uniformly — no per-class special casing.
+
+### renderStatusHtml: 2-space indent + filter non-checkbox lines
+Web4Articles uses 2-space indent for nested sub-steps (not 4). Must skip lines
+starting with `>` (blockquotes) and lines without `[x]`/`[ ]` (not checklist items).
+
+### T132-T141 velocity pattern
+Small focused tasks (T132 ~25 lines, T133 ~60, T134 ~80, T138 ~160, T140 ~90,
+T141 ~40 template change) commit fast when architect design is precise. Key:
+read the spec fully before coding, implement exactly per design, no scope creep.
+
+### Re-generation after template changes
+Every template change requires re-running `migrate-to-scenario.ts` on all
+migrated sprints to update on-disk views. Stale views = Tron sees old rendering.
+Always re-generate + commit the scenario/ dir after template modifications.
