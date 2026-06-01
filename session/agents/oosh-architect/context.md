@@ -1,6 +1,6 @@
 # oosh-architect Context
 
-**Updated**: 2026-06-01 (60% context save)
+**Updated**: 2026-06-01 (63% context save #2)
 **Role**: oosh-architect @ ooshTeam:0.1
 **Machine**: MacStudio
 **Session name**: oosh-architect@MacStudio
@@ -64,10 +64,17 @@ Web4 PUMLs (components/*/src/puml/):
 - **ADR-001 exports rollout** — queued after expert finishes Task 3.1
 - **ADR-002 version rollout** — ~30 package.json files, low priority
 
+### Since Last Save
+- Cross-platform path audit: 16 hardcoded paths (/tmp/, /opt/homebrew, /Users/Shared/, ~/.ssh/id_rsa) reported to PO
+- MVC rename consistency bug: answered PO — tree.detailed should prefer live pane title over stale JSONL, consistency.audit needs grace period after /rename
+- Branch migration task (session/tasks/branch-migrate-macos-latest-to-dev.md): Phase 1 gap analysis — git log dev..test/macos.latest returned EMPTY (branches already in sync). Reverse gap check interrupted.
+- robbinTeam naming: expert applied @MacStudio to all 4 agents. Option A→C follow-up still pending for 5 /rename sites in hiveMind.
+
 ### Backlog (not started)
 - H1.3: hiveMind use case PUML (completes MVC trilogy)
 - TeamMigrate BulkRestoreExplosion Sequence PUML
 - SC-G.3: Sprint 1 PUML updates as implementation lands
+- Branch migration Phase 1 completion: verify reverse gap (test/macos.latest..dev), update task file
 
 ## MVC Architecture Summary
 - **Model (claudeCode)**: resolve.byName bug approved (Option A), not yet shipped

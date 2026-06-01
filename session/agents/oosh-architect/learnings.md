@@ -43,8 +43,20 @@
 - TRON directives override architect recommendations — update docs accordingly
 - Architect does NOT implement, test, or monitor — route those tasks back
 
+## Cross-Platform
+- 16 hardcoded platform-specific paths across core scripts: /tmp/ (11), /opt/homebrew (3), /Users/Shared/ (2), ~/.ssh/id_rsa (1)
+- Fix patterns: ${TMPDIR:-/tmp}/, command -v discovery, detect key type
+- No mktemp usage anywhere — all manual /tmp/ paths
+- Termux uses $PREFIX/tmp, iSH varies, WSL uses /tmp but may lack /dev/tty
+
+## MVC State Drift
+- After /rename, pane title updates immediately but JSONL customTitle is stale until session flushes
+- tree.detailed reads JSONL → shows old name. Should prefer pane title (live truth) over JSONL (eventual truth)
+- consistency.audit needs grace period after /rename — suppress title≠sessionName for 60s
+
 ## Failures
 - SM can malfunction and spam agents — check health, interrupt if broken
-- dev branch diverges silently — compare periodically
+- dev branch diverges silently — compare periodically. git log A..B returns EMPTY = already synced
 - Option A (split @model/@hostname) was wrong — TRON wanted simpler single convention
 - Naming design missed 4 write sites — always grep ALL occurrences, not just obvious ones
+- Don't cd into ~/oosh from Bash tool — use expert-shell via otmux send. Permission rejected when attempting direct git commands in oosh dir
