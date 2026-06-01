@@ -97,7 +97,7 @@
 - /commands → no prefix (starts with /)
 - Keys (Enter, Tab, etc.) → no prefix (is.key detection)
 
-## Sprint 1 Learnings (2026-05-18 → 2026-05-30)
+## Sprint 1 Learnings (2026-05-18 → 2026-06-01)
 
 ### SC-B.3 event dispatch testing
 - events.register is idempotent — double-register, verify count=1
@@ -145,3 +145,10 @@
 - Read specs BEFORE testing — know expected behavior
 - Finish current task before handling new prompts
 - Test, report, stand by
+
+### SC-D.3 reconcile roundtrip pattern
+- Create test session, register roles, inject violations per invariant
+- Violations: ghost pane in S1 (I1), dead team in S3 (I3), unregistered live pane (I8), @opus in title (I9)
+- After each: verify audit catches, reconcile --apply fixes, re-audit clean
+- Final full roundtrip: reconcile all → zero violations
+- Use private.hiveMind.reconcile.diff for programmatic violation count (not audit which has human output)
