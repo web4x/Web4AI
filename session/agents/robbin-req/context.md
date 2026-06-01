@@ -3,49 +3,50 @@
 ## Identity
 - **Role:** robbin-req (requirements engineer)
 - **Pane:** robbinTeam:1.1
-- **Team:** robbinTeam (window 1 with robbin-planner at 1.0; window 0 has PO, architect, expert, tester)
-- **Project:** RawBin (Web4RawBin) — AI Server Management Interface
+- **Team:** robbinTeam
+- **Project:** RawBin (Web4RawBin)
 - **Working dirs:**
   - Planning: `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
   - Implementation: `/Users/Shared/Workspaces/2cuGitHub/Web4RawBin/`
 
-## Work Completed
+## Completed Work
 
-### Sprint 8 — Monaco Editor Requirements
-- requirements.md — 20 use cases, 47 AC. Commit `503f56e`.
+### Requirements authored (sprints)
+- S8 requirements.md (20 UC, 47 AC) — `503f56e`
+- S9 requirements.md (6 UC, 44 AC) — `9bf3363`
+- S10 T83 self-click profile — Tron quote + open question resolved
+- S11 requirements.md (1 req) — `fc08420`
+- S12 requirements.md exists (1 req)
+- S13 requirements.md (7 reqs incl T118+T130 orphans) — `df01926` + updates
+- S14 requirements.md exists (4 reqs)
+- S15 requirements.md exists (7 reqs)
+- S16 requirements.md (4 reqs) — `e71f86e`
+- S17 requirements.md (29 reqs R17.1-R17.29) — `ea532bd` + `ac8c8e7`
 
-### Sprint 9 — Room Identity Requirements
-- requirements.md — 6 use cases (UC-RM.1-6), 44 AC. Commit `9bf3363`.
+### Traceability standard + audits
+- `scrum.pmo/standards/traceability-standard.md` — 7 UUID types + source-location IOR + chain-link convention
+- Sprint 1 audit + Sprints 2-9 audit — 86 files, 0 orphans S10-S17
+- T124.4 (R17.1-R17.25 formalized) — `ea532bd`
+- T124.5 (standard extended) — `4d4181d`
+- T135 (orphan audit — 0 remaining) — multiple commits
+- T137 (SKILL.md created) — `d457448`
 
-### Sprint 10 — T83 Self-Click Profile
-- Captured Tron directive, resolved open question (Option A: Edit button in sheet). 8 AC.
+### Backlog captures
+- B3: vCard upload onboarding — `df01926`
+- B4: Reload button on error pages — `60d6d32` + `8a337e9`
+- B5: File-browser display fixes — `2bfb64f`
+- B6: User name stale + User as scenario model — `7e439dd`
+- B7: Requirement name-first format — `ac4f508`
 
-### Sprint 13 — Stability Requirements
-- requirements.md — T91-T94 (avatar persist, upload UX, multi-room, PWA banner). Commit `df01926` (B3 vCard onboarding).
-- Fixed 2 orphan requirements (T118 R-TC1, T130 R-ED1).
-
-### Traceability Standard + Audits
-- Created `scrum.pmo/standards/traceability-standard.md` — 7 UUID types, full chain definition.
-- Sprint 1 audit: 11 files, 5 gaps. Sprint 2-9 audit: 75 files, 4 systematic gaps.
-- Extended standard with source-location IOR + chain-link convention (T124.5, commit `4d4181d`).
-
-### Sprint 17 — Scenario Units Requirements
-- T124.4: Formalized R17.1-R17.25 (25 requirements) into S17 requirements.md. Commit `ea532bd`.
-- T135: Orphan audit — resolved ALL S10-S17 orphans to 0. Created S11, S16 requirements.md.
-- T137: Created req-eng SKILL.md with scenario-unit workflow. Commit `d457448`.
-- T140: Created task file for source-location IOR (R17.24). Commit `0663495`.
-- R17.25: Captured chain-link icon requirement. Commit `2d4c078`.
-
-### Backlog Captures
-- B3: vCard upload + native drag-and-drop for onboarding. Commit `df01926`.
-- B4: Reload button on Connection-Failed + Offline pages. Commits `60d6d32`, `8a337e9`.
+### Task refinements
+- T140 source-location IOR — `0663495`
+- T145+T146 req refinement — `ccca722`
+- T146 pre-audit draft at `session/agents/robbin-req/t146-name-drafts.md`
 
 ## Key Files
-- `.claude/agents/robbin-req/SKILL.md` — role definition + scenario-unit workflow
-- `scrum.pmo/standards/traceability-standard.md` — the formal standard
-- `scrum.pmo/standards/sprint-1-traceability-audit.md`
-- `scrum.pmo/standards/sprints-2-9-traceability-audit.md`
-- Sprint requirements.md files: S8, S9, S11, S13, S16, S17
+- `.claude/agents/robbin-req/SKILL.md`
+- `scrum.pmo/standards/traceability-standard.md`
+- `session/agents/robbin-req/t146-name-drafts.md`
 
 ## Status
-Standing by for next PO directive. Context at ~67% used.
+T145 impl done (f549114, 48eb52a). T146 impl done (7fbfd8e). Both awaiting tester. Standing by.
