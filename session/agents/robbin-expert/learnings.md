@@ -274,3 +274,35 @@ expert shell pane instead for server operations.
 `git pull` fails silently if working tree is dirty. Always `git checkout -- .`
 or `git stash` BEFORE pull when restarting a crashed server. The crash state
 often leaves uncommitted changes from the running tsx process.
+
+## T142-T156 Learnings (2026-06-01)
+
+### DRY-RUN discipline for data migrations (T151 pattern)
+Always dry-run first, report per-item counts, refine until 0 mismatches, THEN
+apply. AC hard-FAIL gates (e.g. 815/815 exact) catch parser gaps before data loss.
+
+### findTaskBySlug: prefix fallback for wrong slugs
+requirements.md sometimes references wrong file slugs (task-127-ior-resolver vs
+task-127-navigation). Fallback: match by task-number prefix (task-127-*).
+
+### populateReqAltIds: R-number on line BEFORE uuid tag
+requirements.md format: **R17.1: Title** on one line, [requirement:uuid:] on next.
+Parser must look back 1-2 lines from the uuid tag, not forward from it.
+
+### Multi-pass migration order matters
+T153 altIds must be written to index BEFORE fixUcDataQuality can resolve R-refs.
+In dry-run mode, both passes see stale data. Apply altIds first, then quality fix.
+
+### Per-class symlink subdirs (T149)
+sprints.json/<sprint>/<class-dir>/<slug>.json replaces flat layout. scenarioLink
+helper must scan both flat (backward compat) and class subdirs.
+
+### SlugResolver for template chain links (T143 AC2)
+setActiveResolver() injects ScenarioIndex-backed resolver into templates module.
+Without it, chain links render bare UUIDs → 404. Generator sets resolver before
+rendering. Module-level state (not ideal but backward-compatible).
+
+### Requirement data quality pipeline (T153→T154→T155)
+T153: altId + UC class/req refs. T154: name/description/tasks from requirements.md.
+T155: bidirectional closure (reverse-scan tasks + test coverage). Each builds on
+the previous pass's data. Run in order.
