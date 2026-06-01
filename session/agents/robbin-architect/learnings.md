@@ -134,3 +134,21 @@ Always set `@startuml` to a path-safe slug (no spaces, no unicode). PlantUML der
 
 ## Skill Catalog (T139)
 16 skills across 6 domains: core CRUD (4), migration (3), view generation (2), source location (2), tracelink (2), chain integrity (3). All return `SkillResult<T> = {ior, unit, links[]}`.
+
+## scenarioLink Two-Strategy Resolution (T147/T149)
+When resolving .md filenames to their .json scenario counterparts: (1) if filename IS a UUID (tracelinks), resolve directly via scenario/index/<prefix>/<uuid>.scenario.json. (2) if filename is a speaking name (tasks, reqs, UCs), scan sprints.json/<sprint>/<class>/ subdirs. Always use /edit/ route for .scenario.json hrefs (not /md/ — 404s).
+
+## altId on Requirements (T153)
+R-numbers (R17.1, R16.3) exist only in requirements.md, not in scenario JSON model.name (which holds Tron quote text). model.altId field stores the sprint-scoped R-number. Populated by parsing `**R17.1:** ...` pattern. Required for any R-number→UUID resolution (PUML UC refs, trace-cli, templates).
+
+## Per-Count Audit Gate Pattern (T151-T155)
+For data migration tasks: md-count == json-count per entity. Emit a table with every entity row. Any mismatch = hard FAIL — stop, diagnose parser, fix before --apply. Established in T151 (1016 bullets), reused in T152 (15 UCs), T153, T154 (32 Reqs), T155. Expert commits the table as evidence in QA Audit section.
+
+## TraceEntry Schema (T151)
+Canonical shape for all chain data: `{type, ref, label, uuid?, commit?}`. Inline objects on the Task model (NOT TraceLink scenario units). model.links.{up,down,follows,changes} + model.chain.{requirements,useCases,puml,classMethods}. 10 MD bullet shapes mapped.
+
+## Already-Implemented Detection
+Before designing, always check if the feature already exists in code. T157 (vCard import) was fully implemented — button, file input, drag-drop, parser, applyVCard all present. Saved an entire design+impl cycle by auditing first.
+
+## Breadcrumb + Contrast Pattern (T148/T150)
+breadcrumb() helper: split path on /, each segment except last = clickable <a>, last = <span>. Use .bc-link CSS class (not inline color) for WCAG AA contrast: white/a8c8ff/b8d8ff matching MD_CSS link scheme.
