@@ -55,6 +55,12 @@ Requirement units use full Tron quotes as model.name (no character limits). mode
 ### Requirement name vs description (B15/T154)
 model.name = plain-English short name (similar to filename slug). model.description = verbatim Tron quote. These MUST differ. The quote IS the description, the name is the summary. JSON-side equivalent of T146 MD name-first format.
 
+### Forward-Only Traceability (B18 — critical correction)
+Chain is FORWARD-ONLY per Tron: requirement→task→subtask→useCase→class→method. NO back-refs from task→requirement or UC→requirement. B18 overrides T155 bidirectional closure. Existing reverse arrays need cleanup.
+
+### Planner Sometimes Uses Canonical UUIDs Directly
+Not every task needs a uuid replacement — check first. T156/T157 planner already used B4/B3 canonical uuids. In that case, just confirm + update chain section + add QA entry.
+
 ## Inherited from robbin-architect
 - Two working dirs: planning in workspaces/Web4RawBin/, code in 2cuGitHub/Web4RawBin/
 - plantuml at /opt/homebrew/bin/plantuml
