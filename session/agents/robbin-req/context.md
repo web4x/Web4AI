@@ -7,19 +7,17 @@
 
 ## Work Summary
 
-### Backlog captures: B3-B15
-B3 vCard onboarding, B4 reload button, B5 file-browser fixes, B6 user stale name, B7 req format, B8 MD listing icons, B9 breadcrumb nav, B10 symlinks all 9 classes, B11 breadcrumb contrast, B12 JSON traceability empty, B13 UC object/verb, B14 UC classes/req, B15 req name≠description
+### Backlog captures: B3-B17
+B3 vCard onboarding, B4 reload button, B5 file-browser fixes, B6 user stale name, B7 req format, B8 MD listing icons, B9 breadcrumb nav, B10 symlinks all 9 classes, B11 breadcrumb contrast, B12 JSON traceability empty, B13 UC object/verb, B14 UC classes/req, B15 req name≠description, B16 req tasks[]+tests[] empty, B17 traceability browser full chain
 
-### Task verbatim anchors (replaced planner UUIDs with canonical)
-T140, T145, T146, T147, T148, T149, T150, T151 (JOINT + per-shape mapping), T152, T153, T154
+### Task verbatim anchors
+T140, T145, T146, T147, T148, T149, T150, T151 (JOINT + mapping table), T152, T153, T154, T156, T157
 
 ### Requirements.md files
 S8(20 UC), S9(6 UC), S11(1), S13(7), S16(4), S17(29 R17.1-R17.29)
 
-### Standards
-- traceability-standard.md (7 UUID types + source-location IOR + chain-link)
-- S1 audit + S2-9 audit → 0 orphans S10-S17
-- T124.4, T124.5, T135, T137 (SKILL.md)
+### Standards + audits
+traceability-standard.md, S1-S9 audits (0 orphans S10-S17), T124.4/T124.5/T135/T137
 
 ## Status
-81% context. Ready for rewind.
+829k context. B3-B17 captured, T140-T157 anchored.
