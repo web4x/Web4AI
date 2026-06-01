@@ -41,9 +41,35 @@ All features, fixes, and tests on test/macos.latest that are NOT on dev must be 
 6. Pull dev on Termux (ooshTeam:0.5) — verify ossh key.pull still works
 7. Report: N tests pass / N fail per script
 
-## Phase 1 Results
+## Phase 1 Results (architect, 2026-06-01)
 
-(architect fills in)
+### Gap: 16 hardcoded platform-specific paths
+
+**HARDCODED /tmp/ (8 sites):**
+- ossh:9 — OSSH_CONTROL_PATH default
+- ossh:2203 — remote init script
+- hiveMind:277,291 — legacy migration paths
+- hiveMind:4380 — resume PID file
+- hiveMind:5222,5223,5224 — watchdog pid/log/heartbeat
+
+**HARDCODED /Users/Shared/ (2 sites):**
+- hiveMind:1348,1666 — CLAUDE_PROJECT_DIR default (macOS-only)
+
+**HARDCODED /opt/homebrew (3 sites):**
+- hiveMind:1762,1783,1788 — PATH fallback for remote tmux
+
+**HARDCODED ~/.ssh/id_rsa (1 site):**
+- ossh:832 — assumes RSA key (modern: ed25519)
+
+**Fix patterns:**
+- `/tmp/` → `${TMPDIR:-/tmp}/`
+- `/opt/homebrew` → `command -v` discovery
+- `/Users/Shared/` → already `${CLAUDE_PROJECT_DIR:-...}` guarded, default is macOS-only
+- `~/.ssh/id_rsa` → detect available key type
+
+### Git gap analysis
+
+(expert to run `git log dev..test/macos.latest --oneline` and append count here)
 
 ## Phase 2 Results
 
