@@ -1,5 +1,19 @@
 # OOSH Expert Learnings
 
+## NEW: Termux cross-platform wave (2026-06-01) — systematic /tmp/ eradication
+
+**Pattern:** `/tmp/` hardcoded in 48+ sites across 10 scripts + test files. Termux has no `/tmp/` — uses `$TMPDIR` (`/data/data/com.termux/files/usr/tmp`).
+
+**Fix pattern:** `${TMPDIR:-/tmp}/` everywhere. For `mktemp`: `mktemp -d "${TMPDIR:-/tmp}/prefix.XXXXXX"` — MUST include closing `"` before `)`.
+
+**Sed gotcha:** `sed 's|/tmp/|${TMPDIR:-/tmp}/|g'` inserts the replacement but breaks quoting when the original was inside `$(mktemp -d /tmp/foo.XXXXXX)` — the sed adds `"${TMPDIR:-/tmp}/` but the original closing `)` now lacks its `"`. Always verify `bash -n` after bulk sed.
+
+**Cherry-pick workflow:** When porting fixes between test/macos.latest and dev, conflicts arise from architect's parallel dev work. Resolve with `--theirs` (prefer source branch) for test files, `--ours` for production scripts that were already fixed. Always `bash -n` every resolved file.
+
+**config.save declare -p parsing:** The old `grep " ${name}" | sed 's/...-x.../export.../'` matched prefix in VALUES not just NAMES (e.g. `COMMANDS="save oosh OOSH"` matched). Fix: `declare -px | while read` with explicit varname extraction + `case "$varname" in ${name}*`.
+
+**Missing function pattern (architect dev additions):** Tests on dev reference functions that were never implemented (log.install.init, log.live.panes, config.v). These are NOT test bugs — they're specs-as-tests. Implement the functions to match test expectations, not delete the tests.
+
 ## NEW: L3 token semantics — cache tokens are additive, not overlapping (2026-05-28, P0 context.read)
 
 **I got this WRONG first.** Assumed `cache_creation_input_tokens` and `cache_read_input_tokens` were billing breakdowns OF `input_tokens` (overlapping). Changed formula to `input_tokens` alone → returned 100% remaining because `input_tokens = 1` with full caching.

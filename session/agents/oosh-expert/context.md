@@ -8,7 +8,53 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.1
-**Updated**: 2026-06-01 — Post-Sprint-1 continuation. Forked from fallback-oosh-expert. 6 commits this session.
+**Updated**: 2026-06-01 — Post-Sprint-1 continuation + Termux cross-platform wave. 25+ commits this session across test/macos.latest + dev.
+
+## ⚠️ CURRENT STATE
+
+### This session commits (chronological, most important)
+
+| Commit | Branch | Summary |
+|--------|--------|---------|
+| `f89bbc8` | macos | P0: context.read staleness fix (JSONL mtime guard + dynamic project dirs) |
+| `2118404` | macos | SC-G.1: state-stores.md |
+| `95e8fae` | macos | SC-G.2: invariants.md (event handler enforcement + P0 case study) |
+| `1b89edd` | macos | SC-G.4: oosh-architecture.md (event dispatch + reconcile section) |
+| `c4a5d2c` | macos | D4: tronMonitor.fit border formula + raw tmux→otmux |
+| `382a26b` | macos | MVC bug: tree.detailed uses pane title not JSONL model |
+| `7363a60..3b7c756` | macos | ossh BUG 1-6: key.pull Termux fixes (4 commits) |
+| `e33f567` | both | ossh BUG 4.1: TMPDIR in ControlPath |
+| `1fd748a` | both | ossh BUG 1.1: id_rsa-as-directory guard |
+| `a640f8c` | both | ossh BUG 5: key.pull auto-detects remote key |
+| `35f1c69` | both | ossh BUG 6: connection.open IPv4 retry |
+| `af23e3f` | both | config.save: declare -px + varname extraction (fixes T6b) |
+| `29914d5` | both | tronMonitor.fit: no-arg iterates all teams |
+| `071fcb5` | both | test.ossh: 108/108 (T8 guard, T61 wrapper, T-DISPATCH-11) |
+| `7d8b58a` | dev | Merge test/macos.latest→dev (458 commits + 16 hardcoded paths) |
+| `8ef8ef0` | dev | Fix: log private.log.install.append merge artifact |
+| `82d4493` | macos | Bulk /tmp/→TMPDIR across 7 test files |
+| `a8bdf3d` | both | log+config: 7 missing functions + LOG_INSTALL capture — log 45/45 config 20/20 |
+| `c217c3c` | both | config.discover: quote path + ls -1 + existence guard |
+
+### Test suite status (macOS)
+
+| Suite | Result |
+|-------|--------|
+| ossh | 108/108 |
+| config | 20/20 |
+| log | 45/45 |
+| oo | 65/65 (T6b+T6c fixed) |
+
+### Termux status (dev branch, tester verifying)
+
+Target: 185/185 (was 184/185, config.discover fix pushed).
+
+### Outstanding
+
+- SC-E.2 P2/P3 ingress (17 remaining sites)
+- BUG-T1/T4/T5 (ghost methods, source hiveMind hangs)
+- hiveMind discover perf (57s bottleneck)
+- Cross-platform audit: 48 hits documented at session/tasks/cross-platform-hardcoded-paths-audit.md
 
 ## ⚠️ CURRENT STATE (read this first on rewind)
 
