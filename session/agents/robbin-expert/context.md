@@ -1,37 +1,42 @@
-# robbin-expert Context — Save Point 2026-05-31 (SM context warning)
+# robbin-expert Context — Save Point 2026-06-01 (SM 710k warning)
 
 **Role**: Web4RawBin Implementation Authority
-**Status**: T128.2+T128.4+T141 shipped. Server restored v0.5.34. Standing by for T142.
+**Status**: T142-T146 shipped. Standing by.
 **Machine**: Mac Studio · **Pane**: robbinTeam:0.2
 **Repo**: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin · **Live**: https://home.donges.it:4444
-**Current version**: v0.5.34 (live, pushed). 834/834 tests pass.
+**Current version**: v0.5.42 (pushed). 834/834 tests pass.
 
-## Latest commits (most recent)
-- 57a1288 fix: rb-overlay.ts bare impl marker
-- 2e5e9dc T128.4: impl:uuid markers on all 61 source files
-- cc7af47 T128.2: batch migrate S2-S9 (75 tasks)
-- eb29238 v0.5.34 T141: chain-link icons all 7 templates
-- 3fb1fce v0.5.33 T140: source-location IOR
-- 5be4185 v0.5.32 T132: blockquote fix
-- 368f1d0 T138: 4 scenario skills
-- 4b3dafb T136: migration extension Req+UC
-- e062849 T133: Task FSM
-- 4a362d0 T132: renderStatusHtml
-- f173cad T134: TraceLink
+## Latest commits
+- 48eb52a v0.5.42 T145 follow-up: ViewBus subscribers (3 components)
+- f549114 v0.5.41 T145: User 9th class + ViewBus singleton
+- 7fbfd8e T146: requirement NAME-first + <details> + validator
+- 6f5cf89 v0.5.40 T143 AC2: chain links → speaking-name hrefs (SlugResolver)
+- 4e79afa v0.5.39 T143 AC2: TraceNode.slug field
+- 0101980 v0.5.38 T144 AC2: 🔗 href → /edit/
+- 5da4054 v0.5.36 T144: file-browser 3 fixes
+- 84f3915 v0.5.37 T143: trace-tree module + clickable links
+- dc9187f v0.5.35 T142: vCard upload + drag-drop
+- Earlier: T128.2 (S2-S9 migration), T128.4 (impl markers), T138-T141, T132-T136
 
 ## Scenario module (src/ts/scenario/)
-types, classes (8 loaders), index-store (5-level), templates (8 + renderStatusHtml + renderChainSection), generator, ior-resolver, task-fsm, trace-link, skills, source-location
+types · classes (9: +User) · index-store (5-level) · templates (9 templates + renderStatusHtml + renderChainSection + SlugResolver) · generator · ior-resolver · task-fsm · trace-link · skills · source-location · trace-tree
 
-## Migrated scenario data
-S1-S9 + S17 = 150 index units, 116 symlinks, 312 views. 10 sprints in overview.
+## Client additions
+- ViewBus.ts: pub/sub singleton (subscribe/publish by class+uuid)
+- vcard-parse.ts: RFC 6350 FN/TEL/URL/PHOTO parser
+- ProfileEditor: vCard import + viewBus.publish on save
+- rb-member-badge: viewBus.subscribe → live name update
+- ProfileSheet: viewBus.subscribe on open
+- RoomBrowser: viewBus.subscribe → lobby name input
 
 ## Standing rules
 - Planner stands up T-numbers first
 - Version bump #66 on surface changes; STATIC_SHELL #67 on bundle hash change
-- impl:uuid markers: ALWAYS inside /** */ or use // single-line (NEVER bare * outside JSDoc)
+- impl:uuid markers: ALWAYS // or inside /** */ (NEVER bare *)
 - implementing [x] before commit; report to robbinTeam:0.0
 - Re-generate views after template changes
 - Task files = single source of truth (CMM4)
+- Findings INTO task files, reference file path in chat
 
 ## Deploy
-otmux send iphone:0.1 C-c (x2) → git pull && npm run build && npm run dev → /api/health
+otmux send iphone:0.1 C-c (x2) → git stash; git pull; npm run build; npm run dev → /api/health
