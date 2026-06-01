@@ -43,6 +43,18 @@ Untriaged Tron directives go to `backlog.md` with `[requirement:uuid:]` tag but 
 ### Source-Location IOR
 `ior:file:<path>?commit=<sha>&lines=<start>-<end>` — the standard format for git-anchored file references. Every UC/Class/Method scenario unit carries this in `model.source`. Capture commit via `git log --format=%h -1 -- <path>`.
 
+### Task Anchor Pattern
+When planner stands up a task with a placeholder requirement:uuid, req-eng replaces it with the canonical uuid from the backlog capture. Three edits per task: (1) traceability block uuid + verbatim quote, (2) chain section requirement line, (3) QA Audit entry with date + what was done. Commit message: `robbin-req: T<N> — anchor verbatim Tron quote + canonical requirement:uuid`.
+
+### Per-Shape Mapping (T151)
+When doing JOINT work with architect, produce a concrete mapping table: MD bullet type → JSON model field → IOR type. Include audit counts (how many of each type across the sprint range). This gives architect the exact schema to design against.
+
+### model.altId for Short Aliases
+Requirement units use full Tron quotes as model.name (no character limits). model.altId="R17.1" is a runtime alias for lookup — canonical identifier remains the UUID. Confirmed OK with standard.
+
+### Requirement name vs description (B15/T154)
+model.name = plain-English short name (similar to filename slug). model.description = verbatim Tron quote. These MUST differ. The quote IS the description, the name is the summary. JSON-side equivalent of T146 MD name-first format.
+
 ## Inherited from robbin-architect
 - Two working dirs: planning in workspaces/Web4RawBin/, code in 2cuGitHub/Web4RawBin/
 - plantuml at /opt/homebrew/bin/plantuml

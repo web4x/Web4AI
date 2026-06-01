@@ -3,50 +3,23 @@
 ## Identity
 - **Role:** robbin-req (requirements engineer)
 - **Pane:** robbinTeam:1.1
-- **Team:** robbinTeam
 - **Project:** RawBin (Web4RawBin)
-- **Working dirs:**
-  - Planning: `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
-  - Implementation: `/Users/Shared/Workspaces/2cuGitHub/Web4RawBin/`
 
-## Completed Work
+## Work Summary
 
-### Requirements authored (sprints)
-- S8 requirements.md (20 UC, 47 AC) — `503f56e`
-- S9 requirements.md (6 UC, 44 AC) — `9bf3363`
-- S10 T83 self-click profile — Tron quote + open question resolved
-- S11 requirements.md (1 req) — `fc08420`
-- S12 requirements.md exists (1 req)
-- S13 requirements.md (7 reqs incl T118+T130 orphans) — `df01926` + updates
-- S14 requirements.md exists (4 reqs)
-- S15 requirements.md exists (7 reqs)
-- S16 requirements.md (4 reqs) — `e71f86e`
-- S17 requirements.md (29 reqs R17.1-R17.29) — `ea532bd` + `ac8c8e7`
+### Backlog captures: B3-B15
+B3 vCard onboarding, B4 reload button, B5 file-browser fixes, B6 user stale name, B7 req format, B8 MD listing icons, B9 breadcrumb nav, B10 symlinks all 9 classes, B11 breadcrumb contrast, B12 JSON traceability empty, B13 UC object/verb, B14 UC classes/req, B15 req name≠description
 
-### Traceability standard + audits
-- `scrum.pmo/standards/traceability-standard.md` — 7 UUID types + source-location IOR + chain-link convention
-- Sprint 1 audit + Sprints 2-9 audit — 86 files, 0 orphans S10-S17
-- T124.4 (R17.1-R17.25 formalized) — `ea532bd`
-- T124.5 (standard extended) — `4d4181d`
-- T135 (orphan audit — 0 remaining) — multiple commits
-- T137 (SKILL.md created) — `d457448`
+### Task verbatim anchors (replaced planner UUIDs with canonical)
+T140, T145, T146, T147, T148, T149, T150, T151 (JOINT + per-shape mapping), T152, T153, T154
 
-### Backlog captures
-- B3: vCard upload onboarding — `df01926`
-- B4: Reload button on error pages — `60d6d32` + `8a337e9`
-- B5: File-browser display fixes — `2bfb64f`
-- B6: User name stale + User as scenario model — `7e439dd`
-- B7: Requirement name-first format — `ac4f508`
+### Requirements.md files
+S8(20 UC), S9(6 UC), S11(1), S13(7), S16(4), S17(29 R17.1-R17.29)
 
-### Task refinements
-- T140 source-location IOR — `0663495`
-- T145+T146 req refinement — `ccca722`
-- T146 pre-audit draft at `session/agents/robbin-req/t146-name-drafts.md`
-
-## Key Files
-- `.claude/agents/robbin-req/SKILL.md`
-- `scrum.pmo/standards/traceability-standard.md`
-- `session/agents/robbin-req/t146-name-drafts.md`
+### Standards
+- traceability-standard.md (7 UUID types + source-location IOR + chain-link)
+- S1 audit + S2-9 audit → 0 orphans S10-S17
+- T124.4, T124.5, T135, T137 (SKILL.md)
 
 ## Status
-T145 impl done (f549114, 48eb52a). T146 impl done (7fbfd8e). Both awaiting tester. Standing by.
+81% context. Ready for rewind.
