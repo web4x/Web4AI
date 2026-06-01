@@ -141,10 +141,19 @@
 - NEVER source oosh scripts from zsh Bash tool — use tester-shell (bash)
 - NEVER use run_in_background with until-loops — they dangle, waste resources
 - Write findings to task files (SM CMM4 directive — not ad-hoc messages)
-- Use oosh-tester-shell (ooshTeam:0.5) for commands
+- Use ooshTeam:0.4 for macOS tests, ooshTeam:0.5 for Termux
 - Read specs BEFORE testing — know expected behavior
 - Finish current task before handling new prompts
 - Test, report, stand by
+
+### Cross-platform testing (2026-06-01)
+- `/tmp/` hardcoded is the #1 Termux killer — 33+ occurrences across 7 test files + production scripts
+- Fix: `${TMPDIR:-/tmp}` everywhere, or bare `mktemp` (uses $TMPDIR automatically)
+- Cascade effect: 1 failed mktemp can break 20+ downstream tests
+- Production scripts (log, config, this) also had /tmp/ — not just test files
+- Test on Termux AFTER macOS to catch platform-specific failures
+- `oo update` pulls dev branch on any platform (uses oo.mode)
+- Permission check: dirs 700, private keys 600, public keys 644
 
 ### SC-D.3 reconcile roundtrip pattern
 - Create test session, register roles, inject violations per invariant
