@@ -8,21 +8,79 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.1
-**Updated**: 2026-05-25 11% LATE — CRITICAL PRE-REWIND SAVE (SC-H wave mid-flight)
+**Updated**: 2026-06-01 — Post-Sprint-1 continuation. Forked from fallback-oosh-expert. 6 commits this session.
 
-## ⚠️ POST-REWIND: READ THIS FIRST
+## ⚠️ CURRENT STATE (read this first on rewind)
 
-You were rewound at 11% context. Last 4 commits (most recent first):
-- `a1f6594` (Web4AI) — this context + learnings save
+**This session** (forked 2026-05-27, continuing through 2026-06-01):
+
+| Commit | Task | Summary |
+|--------|------|---------|
+| `f89bbc8` | P0 bug | context.read staleness fix: JSONL mtime guard + dynamic project dirs + velocity cache_read |
+| `2118404` | SC-G.1 | state-stores.md: S2 staleness risk, L3 token semantics, S10 correct path |
+| `95e8fae` | SC-G.2 | invariants.md: event handler enforcement table + P0 staleness case study |
+| `1b89edd` | SC-G.4 | oosh-architecture.md: event dispatch + reconcile architecture section |
+| `c4a5d2c` | D4 | tronMonitor.fit: border formula for pane-border-status top, raw tmux→otmux, completion |
+| `382a26b` | MVC bug | tree.detailed: use pane title for sub-line (fixes @model→@host naming inconsistency) |
+
+**Also fixed MVC state on boot:**
+- S7 (active team): was `__test_hm_47067` → `ooshTeam`
+- S2 (sessions.env): removed stale shell pane 0.4 entry, updated 0.2 UUID from parent `ea2c7021` to fork `453c3aec`
+
+**Sprint status:** Sprint 1 CLOSED. SC-G epic (docs) DONE for expert scope (G.1+G.2+G.4). D4+D5 verified. P0 context.read bug fixed. MVC rename consistency bug fixed.
+
+**Outstanding from backlog:**
+- SC-E.2 P2/P3 ingress (17 remaining sites)
+- BUG-T1/T4 ghost methods + auto-generated usage
+- BUG-T5 `source hiveMind` hangs 30s
+- hiveMind discover perf (57s bottleneck)
+- SC-G.3 PUMLs (architect scope)
+
+Sprint 1 closed 2026-05-25. Post-Sprint 1 bug-fix wave on 2026-05-26 (this session):
+
+| Commit | Task |
+|--------|------|
+| `82213a6` | hiveMind agent.send queue/deliver feedback visible at default log level |
+| `4338d2c` | c2 apostrophe strip — fixes Tab completion for 9 methods |
+| `da48c11` | otmux layout.dynamic — current-window dynamic resize + tiled |
+| `3a4bfbc` | sweep.detect scrolled-history catch for rate-limit/sub-limit/api-error |
+
+Sprint 1 closure (2026-05-25, in order): SC-H.2 Gap A `1b2d59b`, D5 `aed6810`, SC-F.1 `2a61072`, SC-F.2+F.3 `c06eb80`, SC-E.2 `317e0d7` + `2b4e4c7` + `5be0eeb`, SC-G docs `4af9e99`.
+
+Tester confirmations: Gap A `7a5e2bc` (8), D5 `1427be6` (8), F.2/F.3 `e3b223a` (10), SC-E.2 `b951b52` (14). 40 tests landed by tester across the wave. Bug-fix wave tester verifications: `4338d2c` confirmed PASS, `da48c11` confirmed PASS, `82213a6` + `3a4bfbc` pending.
+
+Only architect-scope SC-G.3 (PUMLs) + tester-scope SC-D.3/E.3 fixtures remain from Sprint 1.
+
+
+
+Recent commits (most recent first):
+- `c08f44b` (Web4AI) — task: sc-e.2 P2/P3 ingress defense spec
+- `5be0eeb` (oosh) — **SC-E.2 Commit C: claudeCode P3** — UUID/pane methods (join.byID/fork/fork.byID/join.byPane/fork.byPane/fork.to), 32+
+- `2b4e4c7` (oosh) — **SC-E.2 Commit B: otmux+tronMonitor P2** — session.rename/kill/tronMon, 36+/1-
+- `317e0d7` (oosh) — **SC-E.2 Commit A: this+hiveMind P2/P3** — new this.isSshHost + 9 sites, 78+
+- `e3b223a` (oosh) — tester: 10 tests for SC-F.2/F.3 (confirmed)
+- `4db0e2b` (Web4AI) — task: sc-f.2+f.3 snapshot row validation spec
+- `c06eb80` (oosh) — **SC-F.2+F.3 BUNDLED: snapshot row validation on save+restore** (DONE — this turn). New `private.hiveMind.snapshot.row.valid` validates 8 fields. Wired at teams.save (live+dead) and teams.restore (main row loop). 72+/8-. Smoke 6/6 PASS.
+- `1427be6` (oosh) — tester landed D5 tests (8 tests for stale-client cleanup)
+- `a8dc6cc` (Web4AI) — task: sc-f.1 snapshot version field spec
+- `2a61072` (oosh) — **SC-F.1: snapshot version field + reader validation** (DONE). `HIVEMIND_SNAPSHOT_VERSION=1` + `private.hiveMind.snapshot.version.check`. teams.save writes `# version: 1`; teams.restore + agent.restart + team.restart gate via helper. Grandfather: no-header → v1 accepted.
+- `4f9cdac` (Web4AI) — task: d5 stale-client cleanup spec
+- `aed6810` (oosh) — **D5: tronMonitor stale read-only client cleanup** (DONE). New `otmux.client.cleanup.stale <idleMin> <maxSize> <filter>` + targeted tronMonitor helper. 5 wire sites: setup/reset/remove/sync/scrumMaster.cycle. 107+/0-.
+- `7a5e2bc` (oosh) — test.hiveMind: 8 Gap A tests (tester) — 8/8 verified PASS
+- `20e9338` (Web4AI) — task: sc-h.2-gap-a.md spec
+- `1b2d59b` (oosh) — **SC-H.2 Gap A: defer-probe pattern** (DONE)
+- `20e9338` (Web4AI) — task file: sc-h.2-gap-a.md
 - `e843391` (oosh) — SC-H.2 Gap B: team.remove S1/S2 bash 3.2 fallback prune
 - `f707fa9` (oosh) — SC-H.2 Gap C: agent.spawned events from agent.restart + team.restart
 - `25c8138` (Web4AI) — SC-H.1 findings: MVC audit matrix (12 commands × 5 stores)
 
-**Next assignment standing**: SC-H.2 **Gap A** — defer-probe pattern for `private.hiveMind.session.store`.
-- **Problem**: `agent.session.probe` 8s window misses if Claude not ready → `session.store` never runs → S2 orphan (the robbinTeam root cause).
-- **Affected**: `team.setup`, `agent.bootstrap`, `agent.restart`, `team.restart`, `teams.restore`.
-- **Sketch**: `private.hiveMind.session.store.deferred <pane> <role>` schedules retries at 5s/15s/30s. Idempotent — silently does nothing if S2 already populated.
-- **Detector exists**: I10 in `consistency.audit` (commit `53f2bd9`) catches missing-entry case post-fact. Defer-probe is the prevention side.
+**SC-H.2 wave status**: Gaps A+B+C all shipped. Tester verifies on robbinTeam.
+
+**Gap A implementation** (commit `1b2d59b`, 98+/3-):
+- New: `private.hiveMind.session.store.deferred <pane> <role>` (~70 lines after `session.lookup` at line ~1046). Forks disowned subshell, retries probe at 5s/15s/30s post-call. Pidfile at `/tmp/hivemind.deferred.<sanitized>.pid` guards re-entry. Idempotent — each iteration checks `session.lookup` first.
+- Modified: `private.hiveMind.handler.agent.spawned.sessions` — when uuid arg empty, schedules deferred probe instead of returning silently.
+- 5 sync sites updated: team.setup (direct call), team.setup.full (direct call), agent.bootstrap (bash-3.2 fallback), agent.restart (bash-3.2 fallback), team.restart (bash-3.2 fallback). team.setup.oosh DEPRECATED — skipped.
+- Bash-3.2 fallback pattern: `[ -z "$HIVEMIND_EVENTS_AVAILABLE" ] && [ -z "$uuid" ] && schedule defer-probe` — handler path covers bash 5, fallback covers bash 3.2.
 
 **Reading order post-rewind**:
 1. This context.md (you are here)
@@ -42,7 +100,7 @@ You were rewound at 11% context. Last 4 commits (most recent first):
 | SC-H.1 findings (MVC matrix 12×5) | `25c8138` (Web4AI repo) | DELIVERED |
 | SC-H.2 Gap C: agent.restart + team.restart emit agent.spawned | `f707fa9` | DONE |
 | SC-H.2 Gap B: team.remove S1/S2 orphan prune (bash 3.2 fallback) | `e843391` | DONE |
-| SC-H.2 Gap A: defer-probe pattern for session.store | queued | NEXT |
+| SC-H.2 Gap A: defer-probe pattern for session.store | `1b2d59b` | DONE |
 
 **Wave context**:
 - SC-H.1 surfaced 6 Gap Classes (A-F) in `scrum.pmo/sprints/sprint-1-state-correctness/task-sc-h.1-findings.md` (Web4AI repo, commit 25c8138)

@@ -1,6 +1,32 @@
 # OOSH Expert Learnings
 
-## NEW: Audit findings can be wrong — verify with live test before recommending fix (2026-05-25, SC-H.2 Gap B)
+## NEW: L3 token semantics — cache tokens are additive, not overlapping (2026-05-28, P0 context.read)
+
+**I got this WRONG first.** Assumed `cache_creation_input_tokens` and `cache_read_input_tokens` were billing breakdowns OF `input_tokens` (overlapping). Changed formula to `input_tokens` alone → returned 100% remaining because `input_tokens = 1` with full caching.
+
+**Reality:** `input_tokens`(1) + `cache_creation`(~300) + `cache_read`(~512k) = total context (~513k). They are ADDITIVE. The original formula `input + cache_create + cache_read` was correct all along.
+
+**Real root cause of P0 bug:** `session.id` returned stale parent UUID from S2 (sessions.env) pointing to a dead JSONL (total=0 → 100% remaining). The fork's real JSONL had a different UUID.
+
+**Fix (f89bbc8):** Added staleness guard in `context.from.jsonl` — JSONL with mtime >10min returns `"stale"`. `context.read` catches stale, re-resolves UUID via `session.current` (ps-based). Also fixed hardcoded project dirs → search all `~/.claude/projects/*/`.
+
+**Lesson:** When a calculation seems wrong, check the INPUT DATA first (which file/UUID), not the formula. I wasted a round-trip "fixing" a correct formula.
+
+## NEW: tree.detailed display — use pane title, not JSONL model (2026-05-31)
+
+After the @model→@host naming migration (Option C: `role@HIVEMIND_HOST`), `tree.detailed` sub-line still showed `@opus` because it grepped the JSONL `"model"` field and appended it. The pane title already had `@MacStudio` from `pane.lock`.
+
+**Fix (382a26b):** Sub-line now uses pane title directly. Removed 14 lines of JSONL model-grep. Single source of truth for display name = pane title (set by `pane.lock`).
+
+**Pattern:** When the View layer (pane title) and Model layer (JSONL) disagree on display data, prefer View — it's what the operator set most recently via `/rename` + `pane.lock`.
+
+## NEW: Starting an OOSH shell = just type `bash` (2026-04-24)
+
+`~/.bashrc` is what turns plain bash into OOSH. It sources PATH/config, loads `_oosh_commands` completions, sets the `[oosh <hostname>]` prompt. No `source this`, no `export PATH`, no `./` prefix. Just `bash`.
+
+Added to `docs/oosh.md` and `README.md` after I failed to start OOSH in a tmux pane (embarrassing).
+
+## Audit findings can be wrong — verify with live test before recommending fix (2026-05-25, SC-H.2 Gap B)
 
 **SC-H.1 finding said**: `team.remove` "leaves orphan S1/S2 entries". PO assigned Gap B to fix the handler chain. I went to add the prune logic — discovered the handlers ALREADY existed (lines 685-700) and ALREADY worked on bash 5 (verified live: synthetic test session, seed entries in roles/sessions/teams, run team.remove, all three files cleaned).
 
@@ -1064,3 +1090,88 @@ generic markers — do NOT duplicate that cleanup inline.
 - BUT: don't take destructive actions without explicit greenlight
 - If a refactor touches >5 callers, ask first (e.g. A1.2 fix 2b — 8 callers, queued)
 - Read agent files BEFORE acting after rewind (don't trust session memory)
+
+## CMM4: task files are the single source of truth (SM directive 2026-05-26)
+
+- Every task, bug, investigation gets ONE file at `session/tasks/<task>.md`
+- Write hypothesis → findings → fix → commit → status (closure) + tester handoff INTO the file as you work
+- Brief pane messages just POINT readers to the file. Never duplicate content in chat.
+- When a bug report comes in, FIRST write a task file with hypothesis, THEN investigate
+- When you find a bug is a duplicate of another's root cause, close it as duplicate IN the file (don't make a new commit)
+- Operator/PO/architect questions go IN the task file's "Open questions" section, NOT in chat. Notify peers by pointing them to the file.
+
+## Investigation discipline: reported symptom ≠ actual bug
+
+Two recent cases proved this:
+1. **"send to robbinTeam:1.1 arrives wrong pane"** — routing was fine across all 4 send paths × window 0 and 1. Real bug was `info.log` gating queue feedback above default LOG_LEVEL → silent routing → operator perception of "wrong pane". One-line `info.log → console.log` fix.
+2. **"otmux fit returns 57x34 too small"** — fit returns the operator's writable client size correctly. Real bug was Tab COMPLETION for `otmux fit` broken — c2 pipeline choked on apostrophe in "caller's terminal" doc comment, fallback to filename completion produced fragment "pletion on" from `.bashrc.bak.without.completion`.
+
+**Rule**: reproduce the EXACT symptom before fixing. If reproduction shows the reported cause is wrong, don't fix the reported cause — find the real one. Write the misdirection into the task file's findings so future readers don't repeat it.
+
+## c2 completion pipeline — apostrophe trap
+
+`line.format FORMAT_PARSE_METHOD` uses `cat - | xargs printf` — xargs parses shell-like quotes. ANY `'` in input (e.g. method doc comment "caller's terminal") pops the quote state and produces malformed bash in `$CONFIG_PATH/current.method.env`. Sourcing fails with `unexpected EOF`, c2 returns no candidates, bash falls back to filename completion.
+
+**Fix**: strip apostrophes from signature line BEFORE `line.format` — insert `| sed "s/'//g"` in `c2.get.function.declaration`. Apostrophes in doc comments are display-only; stripping is safe.
+
+**Impact**: 9 methods had this break: `hiveMind.join`, `hiveMind.team.migrate`, `hiveMind.agent.unblock`, `private.hiveMind.pane.model`, `otmux.fit`, `otmux.attach`, `otmux.pane.size`, `otmux.status`, `state.add`. All fixed by 1-line `4338d2c`.
+
+**Detection**: `grep -hE "^[a-zA-Z_][a-zA-Z0-9._]*\(\) # .*'" *(.)`
+
+## Operator-visible log levels: console.log vs info.log
+
+- `console.log` gates `LOG_LEVEL > 2` — visible at default level 3
+- `info.log` gates `LOG_LEVEL > 3` — INVISIBLE at default level 3
+
+**Rule**: ANY operator-relevant routing decision MUST use `console.log` or higher. Silent success paths look like silent failure. Examples that needed fixing:
+- `hiveMind.agent.send` queue/deliver paths (was `info.log`, fixed `82213a6` to `console.log`)
+
+When unsure, ask: "will operator know what happened from default-level output?" If not, use `console.log`.
+
+## Defer-probe pattern (sessions.env coverage race)
+
+When a `sleep N; agent.session.probe` window misses (Claude TUI not ready yet), `private.hiveMind.session.store` never runs and S2 (sessions.env) is missing the pane→UUID mapping. Detector I10 flags it later; defer-probe is the prevention side.
+
+**Pattern**: `private.hiveMind.session.store.deferred <pane> <role>` forks a disowned subshell, retries probe at 5s/15s/30s. Pidfile-guarded at `/tmp/hivemind.deferred.<sanitized>.pid` so concurrent call sites (event handler + bash-3.2 fallback) don't double-schedule. Each iteration checks `session.lookup` first — exits early if S2 was populated by another path.
+
+**Bash 3.2 fallback at sync sites**: gate on `[ -z "$HIVEMIND_EVENTS_AVAILABLE" ]` since events.emit is no-op on bash 3.2.
+
+## State-transition catch via scrollback (sweep.detect rate-limit)
+
+Default `sweep.detect` only captures 20 lines. Rate-limit / subscription-limit / api-error messages disappear from that window once an agent returns to IDLE. The IDLE branch was the only path missing a state-transition catch.
+
+**Pattern**: at the END of the idle classification (after `last_line` confirms clean `❯`), do ONE 200-line `pane.capture` and re-scan for the distinctive block markers ONLY. Conservative patterns — drop generic strings like "try again" that false-positive in tool output. If found, re-classify with `scrolled-history` detail tag so operators see this came from scrollback.
+
+**Important**: only consult history on the idle path — active/queued/permission/etc. already have their own signal, history scan would false-positive there.
+
+## Snapshot integrity (SC-F)
+
+- `# version: 1` header on first line — `private.hiveMind.snapshot.version.check` gates all readers
+- Grandfather: no-header → v1 (existing snapshots predate the gate)
+- Per-row validation via `private.hiveMind.snapshot.row.valid` — 8-field schema, isSessionName/isRoleName/isUuid/isPipeSafe per field; skip-and-log invalid rows instead of writing/processing garbage
+- Wired at teams.save (live + dead paths), teams.restore (main row loop), agent.restart, team.restart
+
+## Ingress triple defense (SC-E P3) — kernel predicates pattern
+
+Every public method accepting a caller-supplied identifier must apply at the boundary:
+1. **Format regex** via kernel predicate (`this.isPaneTarget` / `this.isSessionName` / `this.isRoleName` / `this.isUuid` / `this.isSshHost`)
+2. **Pipe-safe** via `this.isPipeSafe` when identifier flows into `|`-delimited env files
+3. **Existence** via `otmux has` / file grep / registry lookup as appropriate
+
+Kernel predicates in `this`:
+- `this.isPaneTarget` — `session:win.pane` or `%N`
+- `this.isSessionName` — `[A-Za-z0-9_][A-Za-z0-9_.-]*`
+- `this.isRoleName` — `[A-Za-z][A-Za-z0-9._-]{0,39}`
+- `this.isUuid` — canonical 36-char
+- `this.isPipeSafe` — no `|`, no newline
+- `this.isSshHost` — `[A-Za-z0-9._-]{1,64}` (added `317e0d7`, command-injection vector defense)
+
+## Stale read-only clients crush window-size=largest
+
+`tronMonitor.setup` creates GNU screen windows that attach via `tmux attach -r`. When screen dies or terminal shrinks, these can survive as zombie 1×3 attachments. With `window-size=largest`, tmux sizes each session to the LARGEST attached client — but if only tiny zombies remain, "largest" IS 1×3. Recurring incident.
+
+**Fix**: `otmux.client.cleanup.stale <?idleMin:30> <?maxSize:0> <?filter:read-only>` — surgical detach with idle + size gates. Wired at tronMonitor.setup (pre-cleanup), .reset (post-kill), .remove (targeted-session detach), .sync (60min+10x10), scrumMaster.cycle (30min+any-size — periodic safety net).
+
+## Multi-commit waves — bundle by FILE, not by site
+
+For SC-E.2's 17 ingress sites across 4 files, the audit doc suggested "one commit per ingress class" but PO had been accepting bundles. Compromise: one commit per FILE = 3 commits (hiveMind, otmux+tronMonitor, claudeCode). Each is reviewable atomic per script; rollback granularity matches blast radius. SM rule "one task = one commit OR one logical bundle" allows.
