@@ -8,7 +8,7 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.1
-**Updated**: 2026-06-01 — Post-Sprint-1 continuation + Termux cross-platform wave. 25+ commits this session across test/macos.latest + dev.
+**Updated**: 2026-06-01 (780k save) — Post-Sprint-1 + Termux cross-platform wave. 30+ commits this session.
 
 ## ⚠️ CURRENT STATE
 
@@ -48,6 +48,29 @@
 ### Termux status (dev branch, tester verifying)
 
 Target: 185/185 (was 184/185, config.discover fix pushed).
+
+### Latest commits (since last save)
+
+| Commit | Branch | Summary |
+|--------|--------|---------|
+| `82d4493` | macos | Bulk /tmp/→TMPDIR across 7 test files |
+| `c05288e` | dev | Production /tmp/ fix (hiveMind watchdog) + config.v + log.install.live + test.log TMPDIR |
+| `a8bdf3d` | both | log+config: 7 missing functions + LOG_INSTALL capture — log 45/45 config 20/20 |
+| `c217c3c` | both | config.discover: quote path + ls -1 + existence guard |
+| `071fcb5` | both | test.ossh: 108/108 (T8 guard, T61 wrapper, T-DISPATCH-11) |
+| `52eb598` | dev | test.ossh: 5 more /tmp/ mktemp + missing quotes |
+| `eb864cb` | both | ossh fix.rights: recursive SSH permissions (dirs 700, private 600, public 644) |
+
+### Test suite status (macOS, all zero failures)
+
+| Suite | Result |
+|-------|--------|
+| ossh | 108/108 |
+| config | 20/20 |
+| log | 45/45 |
+| oo | 65/65 |
+
+### Termux status: 184/185 → awaiting config.discover retest for 185/185
 
 ### Outstanding
 
