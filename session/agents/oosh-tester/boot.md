@@ -2,23 +2,31 @@
 
 ## You are: oosh-tester
 ## Pane: ooshTeam:0.3
-## Test Shell: ooshTeam:0.5
+## macOS Shell: ooshTeam:0.4 (expert shell, shared for tests)
+## Termux Shell: ooshTeam:0.5 (samsungTablet)
 ## Machine: MacStudio.native
+## Branch: dev
 
-## Current Sprint: Sprint 1 — State Correctness
-88 tests delivered across 9 commits. Remaining: SC-A.3 (invariant fixtures), D4.2 (tronMonitor.fit).
+## Sprint 1 DONE — 88+ tests delivered, 4 bugs verified, cross-platform green
+
+## Cross-Platform Status (2026-06-01)
+| Suite | macOS | Termux |
+|-------|-------|--------|
+| oo | 63/65 | 12/12 |
+| ossh | 108/108 | 108/108 |
+| log | — | 45/45 |
+| config | — | 19/20 |
+| fix.rights | dirs 700, keys 600/644 | pending |
 
 ## Immediate actions:
-1. Read `session/agents/oosh-tester/context.md` — full state
-2. Read `session/agents/oosh-tester/learnings.md` — patterns + rules
+1. Read `session/agents/oosh-tester/context.md`
+2. Read `session/agents/oosh-tester/learnings.md`
 3. Check PO (ooshTeam:0.0) for priorities
-4. Resume remaining work (SC-A.3, D4.2)
 
 ## Rules:
 - NEVER use raw tmux — always otmux wrappers
 - NEVER filter output (no 2>/dev/null, | head, | tail, | grep)
 - NEVER use run_in_background with until-loops
 - Write findings to task files (SM CMM4 directive)
-- Use oosh-tester-shell (ooshTeam:0.5) for commands
-- Read specs BEFORE testing
+- Use ooshTeam:0.4 for macOS tests, ooshTeam:0.5 for Termux
 - Tests must be self-contained (__test_ prefix)
