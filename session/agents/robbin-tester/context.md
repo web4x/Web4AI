@@ -1,4 +1,4 @@
-# robbin-tester Context — 2026-06-01
+# robbin-tester Context — 2026-06-02
 
 ## Identity
 **robbin-tester** — testing authority for Web4RawBin. Pane robbinTeam:0.3.
@@ -9,31 +9,27 @@
 
 ## Project
 - Path: `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
-- Server: HTTPS 4444 | Version: **0.5.55** | Suite: **834/834**
-- Scenario: 114 units, 231 views, 15 with source locations
+- Server: HTTPS 4444 | Version: **0.5.65** | Suite: **834/834**
+- Scenario: 243 units, 491 views, 7 typed classes in /api/trace (360 objects)
 
-## SESSION — ALL VERIFIED
+## SESSION 2026-05-29 → 2026-06-02 — ALL VERIFIED
 
-### Latest batch (2026-06-01)
-- **T155** ✓ bidirectional closure (32 reqs, 0 loss, R16.1+1test, R17.24+1task)
-- **T154** ✓ req name/description split (32 reqs plain English names, verbatim Tron descs)
-- **T153** ✓ R-resolution (23/30 UCs with req IORs via altId)
-- **T152** ✓ UC data quality (30/30 object+verb, PUML refs→JSON match)
-- **T151** ✓ traceability arrays (38 units populated, 319 entries)
-- **T150** ✓ breadcrumb .bc-link WCAG colors
-- **T149** ✓ per-class subdirs + tracelink slug fix
-- **T148** ✓ breadcrumb clickable segments
-- **T147** ✓ 🔗 parity .json↔.md sides
-- **T146** ✓ req NAME-first format + >7-word validator
-- **T145** ✓ User 9th class + ViewBus + B6 stale-name closed (v0.5.42)
-- **T144** ✓ file-browser fixes (icon order + 🔗→/edit/ + .json→MD)
-- **T143** ✓ trace-tree rework (Chain→Traceability, slug hrefs v0.5.40)
-- **T142/T157** ✓ vCard upload+drag-drop (Playwright E2E: FN/TEL/URL populate)
-- **T156** ✓ Retry button on connection-failed screen
-- **T140 ext** ✓ validateAllSources (0 source issues, trace-cli integrated)
+### S17 Phase 23-25 (forward-only + browser + data quality)
+- **T159** ✓ forward-only chain (0 back-refs, 116 units clean)
+- **T160** ✓ stale req items fix + AC3 task.useCases[] (5 tasks, 24 UC refs)
+- **T161** ✓ req name renders speaky (28/28 model.name clean, not Tron quotes)
+- **T163** ✓→partial→closed by T164: /api/trace overlay scenario-index model.name
+- **T164** ✓ 41/41 req titles clean (firstLine() harden + cleanModelName)
+- **T165** ✓→closed by T166: tree renders 7/7 typed classes
+- **T166** ✓ Class(12)+Method(40) in /api/trace, tree 7/7, DetailView click-through
+- **T158** ✓ 7 typed DetailViews + VerbRegistry + STATIC_SHELL trace-page hash
+- **T128.2** ✓ S10-S16 migrated (243 units, 491 views, forward-only, clean names)
 
-### Earlier (S14/S16/S17 core)
-- S14/S16 complete | S17 T125-T141 complete | T118 E2E cleanup
+### Earlier verified (2026-05-29 → 06-01)
+- S14/S16 complete | S17 T125-T155 complete | T118/T142/T145/T146/T147-T157
+
+## Queued
+- Standing by for next PO directive
 
 ## Rules (Eternal)
 - CMM4: task files = single source of truth
