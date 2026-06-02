@@ -1,30 +1,31 @@
-# robbin-expert Context — Save Point 2026-06-02 (SM warning)
+# robbin-expert Context — Save Point 2026-06-02 (SM 684k)
 
 **Role**: Web4RawBin Implementation Authority
-**Status**: T158+T160+T161 shipped (v0.5.60). T162 superseded by T163. Pre-loading T163.
+**Status**: T165+T164+T128.2 shipped (v0.5.64). Awaiting T166 architect design.
 **Machine**: Mac Studio · **Pane**: robbinTeam:0.2
 **Repo**: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin · **Live**: https://home.donges.it:4444
-**Current version**: v0.5.60 (pushed). 834/834 tests pass.
+**Current version**: v0.5.64 (committed). 834/834 tests pass.
 
 ## Latest commits this session
-- edc477c v0.5.60 T160 AC3: task.useCases[] from PUML T-number refs (24 refs, 5 tasks)
-- a41d16a v0.5.59 T158: 4 typed DetailViews (Class/Method/Test/Implementation) + STATIC_SHELL
-- 5b354fd v0.5.58 T160: requirement.tasks[] forward repop (23 refs)
+- f4d21b3 v0.5.64 T128.2: S10-S16 migrated (243 total units, 496 views)
+- 7016003 v0.5.63 T164: firstLine()+cleanModelName() hardened, 0 dirty names
+- ece09bc v0.5.62 T165: tree renders all 7 typed classes + orphan recovery
+- f138aa0 v0.5.61 T163: /api/trace title source → scenario index model.name
+- edc477c v0.5.60 T160 AC3: task.useCases[] from PUML T-number refs
+- a41d16a v0.5.59 T158: 4 typed DetailViews (Class/Method/Test/Implementation)
+- 5b354fd v0.5.58 T160: requirement.tasks[] forward repop
 - 737c841 v0.5.57 T161: requirement name fix — speaky names not quotes
-- 58b17e3 v0.5.56 T159: forward-only chain strip back-refs + validator
+- 58b17e3 v0.5.56 T159: forward-only chain strip back-refs
 
-## Next: T163 (api/trace title source switch)
-T162 SUPERSEDED by T163. T163 = switch /api/trace from scanRepo firstLine() to scenario index model.name. Awaiting architect design in task-163-api-trace-title-source-switch.md.
+## Next: T166 (populate Class+Method in /api/trace from scenario index)
+Sister pattern to T163. scanRepo() doesn't produce Class/Method objects. Scenario index has them from T128.1. Overlay into graph after scanRepo. Awaiting architect design.
 
-## Scenario module (src/ts/scenario/)
-types · classes (9 loaders) · index-store (5-level) · templates (9+TraceLink+renderStatusHtml+renderChainSection+SlugResolver) · generator · ior-resolver · task-fsm · trace-link · skills · source-location · trace-tree
+## Scenario data
+243 units: 55 Reqs, 99 Tasks, 30 UCs, 50 TraceLinks, 9 Sprints. S1+S10-S17 migrated.
 
-## Standing rules
-- Planner stands up T-numbers first
-- Version bump #66 on surface changes; STATIC_SHELL #67 on bundle hash change
-- implementing [x] before commit; report to robbinTeam:0.0
-- Re-generate views after template changes
+## Key rules
 - Forward-only chain (T159) — no back-refs
-
-## Deploy
-otmux send iphone:0.1 C-c (x2) → git pull && npm run build && npm run dev → /api/health
+- cleanModelName() strips ##, **, ---, date suffixes, bold
+- /api/trace overlays scenario index model.name on graph (T163)
+- Version bump #66; STATIC_SHELL #67 on bundle hash change
+- Planner T-numbers first; implementing [x] before commit
