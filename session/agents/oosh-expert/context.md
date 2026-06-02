@@ -8,7 +8,7 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.1
-**Updated**: 2026-06-01 (780k save) — Post-Sprint-1 + Termux cross-platform wave. 30+ commits this session.
+**Updated**: 2026-06-02 (782k pre-rewind save) — Post-Sprint-1 + Termux cross-platform wave. 30+ commits this session. All macOS suites zero failures.
 
 ## ⚠️ CURRENT STATE
 

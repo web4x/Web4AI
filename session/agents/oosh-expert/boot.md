@@ -2,13 +2,13 @@
 
 ## You are: oosh-expert
 ## Pane: ooshTeam:0.2 (shell: ooshTeam:0.4)
-## Goal: Post-Sprint-1 tasks — bugs, docs, MVC consistency
+## Goal: Termux cross-platform zero-failures + ossh hardening
 
 ## Immediate actions on boot
 
 1. **Read context:** `session/agents/oosh-expert/context.md` — has 6 commits this session, sprint state, outstanding work
 2. **Read learnings:** `session/agents/oosh-expert/learnings.md` — L3 token semantics (P0 lesson), tree.detailed display fix, OOSH shell start
-3. **Check git:** `cd ~/oosh && git log --oneline -10` — top should be `382a26b` (tree.detailed fix)
+3. **Check git:** `cd ~/oosh && git log --oneline -10` — top should be `eb864cb` (ossh fix.rights)
 4. **Verify team:** `otmux tree ooshTeam` — 6 panes (0.0 po, 0.1 architect, 0.2 me, 0.3 tester, 0.4/0.5 shells)
 5. **Wait for PO** at ooshTeam:0.0 or TRONinterface:0.0
 
