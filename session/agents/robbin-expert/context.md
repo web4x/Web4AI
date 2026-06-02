@@ -1,29 +1,30 @@
-# robbin-expert Context — Save Point 2026-06-01 (SM 575k)
+# robbin-expert Context — Save Point 2026-06-02 (SM warning)
 
 **Role**: Web4RawBin Implementation Authority
-**Status**: T140 shipped (v0.5.55). Standing by for next assignment.
+**Status**: T158+T160+T161 shipped (v0.5.60). T162 superseded by T163. Pre-loading T163.
 **Machine**: Mac Studio · **Pane**: robbinTeam:0.2
 **Repo**: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin · **Live**: https://home.donges.it:4444
-**Current version**: v0.5.55 (pushed). 834/834 tests pass.
+**Current version**: v0.5.60 (pushed). 834/834 tests pass.
 
 ## Latest commits this session
-- 8fb354e v0.5.55 T140: trace-cli source validation + S17 re-migration
-- 5be4185 v0.5.32 T132: blockquote leak fix + regenerate views
-- Prior session shipped T142-T156 (v0.5.36-v0.5.54)
+- edc477c v0.5.60 T160 AC3: task.useCases[] from PUML T-number refs (24 refs, 5 tasks)
+- a41d16a v0.5.59 T158: 4 typed DetailViews (Class/Method/Test/Implementation) + STATIC_SHELL
+- 5b354fd v0.5.58 T160: requirement.tasks[] forward repop (23 refs)
+- 737c841 v0.5.57 T161: requirement name fix — speaky names not quotes
+- 58b17e3 v0.5.56 T159: forward-only chain strip back-refs + validator
+
+## Next: T163 (api/trace title source switch)
+T162 SUPERSEDED by T163. T163 = switch /api/trace from scanRepo firstLine() to scenario index model.name. Awaiting architect design in task-163-api-trace-title-source-switch.md.
 
 ## Scenario module (src/ts/scenario/)
-types · classes (9: Sprint/Task/Req/UC/Class/Method/Test/TraceLink/User) · index-store (5-level) · templates (9+TraceLink + renderStatusHtml + renderChainSection + SlugResolver) · generator · ior-resolver · task-fsm (7 states, 8 verbs) · trace-link (8 relations) · skills (captureQuote/proposeTask/walkChain/statusTransition) · source-location (git anchor + 3 extractors + validateAllSources) · trace-tree
-
-## Migrated scenario data
-S1+S17 migrated. ~200+ index units. Per-class symlink subdirs. 231+ views.
-Source locations on all UCs (PUML line ranges + git commit SHA).
+types · classes (9 loaders) · index-store (5-level) · templates (9+TraceLink+renderStatusHtml+renderChainSection+SlugResolver) · generator · ior-resolver · task-fsm · trace-link · skills · source-location · trace-tree
 
 ## Standing rules
-- Planner stands up T-numbers first — never use PO harness numbers
-- Version bump #66 on surface changes; STATIC_SHELL #67 on bundle hash
+- Planner stands up T-numbers first
+- Version bump #66 on surface changes; STATIC_SHELL #67 on bundle hash change
 - implementing [x] before commit; report to robbinTeam:0.0
 - Re-generate views after template changes
-- DRY-RUN first for data migrations
+- Forward-only chain (T159) — no back-refs
 
 ## Deploy
 otmux send iphone:0.1 C-c (x2) → git pull && npm run build && npm run dev → /api/health
