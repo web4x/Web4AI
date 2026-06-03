@@ -19,5 +19,30 @@ S8(20 UC), S9(6 UC), S11(1), S13(7), S16(4), S17(29 R17.1-R17.29)
 ### Standards + audits
 traceability-standard.md, S1-S9 audits (0 orphans S10-S17), T124.4/T124.5/T135/T137
 
+### Compound requirement captures (current session)
+compound-requirement-source-2.md in sprint-17-scenario-units/:
+- R-A: HTML task status broken (works MD, broken HTML)
+- R-B: Task.status = state-machine methods on Task class
+- R-C: Traceability artifacts → atomic uuid.scenario.json units with ln links
+- R-D: Mobile-first layout + hard width limit
+- R-E: Chain ORDER: requirement→task→usecase(s)→class→method→implementation→test(s) [1:N]. Atomic requirements are ROOTS.
+  - Amendment 1: "implementation traces finally to test"
+  - Amendment 2: "one implementation can have multiple tests" (1:N cardinality)
+- R-F: Data quality — complete consistent tree, zero backward chaos, zero untraced scenarios
+- R-G: Diligent plan, no-stop until done, SM re-activated
+
+### Commits this session
+- bfae071: R-A/B/C verbatim (cut-off flagged)
+- 2be6e96: R-D/E/F/G follow-on + R-E amendment 1
+- 7e01491: R-E amendment 2 (impl→test 1:N)
+
+### Active work
+T160 (browser-stale + forward-source repop) + T161 (names ≠ json) stood up by planner, architect designing. R-A through R-G captured, awaiting formalization + sprint scoping by planner.
+
+### Latest (trainer capture 2026-06-03)
+- R-M3e committed 6f7614eb — /scenario interaction parity with /trace (collapse/expand + DetailView-on-click)
+- B18: forward-only traceability correction captured
+- Planner canonical uuid pattern learned
+
 ## Status
-830k context. B3-B18 captured, T140-T157 anchored.
+679k context (trainer update — agent couldn't self-save due to API errors). Standing by for PO directive or next Tron literal.
