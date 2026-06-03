@@ -8,7 +8,7 @@
 ## Work Summary
 
 ### Backlog captures: B3-B18
-B3 vCard onboarding, B4 reload button, B5 file-browser fixes, B6 user stale name, B7 req format, B8 MD listing icons, B9 breadcrumb nav, B10 symlinks all 9 classes, B11 breadcrumb contrast, B12 JSON traceability empty, B13 UC object/verb, B14 UC classes/req, B15 req name=description, B16 req tasks[]+tests[], B17 traceability browser full chain, B18 forward-only chain
+B3 vCard onboarding, B4 reload button, B5 file-browser fixes, B6 user stale name, B7 req format, B8 MD listing icons, B9 breadcrumb nav, B10 symlinks all 9 classes, B11 breadcrumb contrast, B12 JSON traceability empty, B13 UC object/verb, B14 UC classes/req, B15 req name!=description, B16 req tasks[]+tests[], B17 traceability browser full chain, B18 forward-only chain
 
 ### Task verbatim anchors
 T140, T145, T146, T147, T148, T149, T150, T151 (JOINT + mapping table), T152, T153, T154, T156, T157, T167, T168, T169, T170
@@ -20,7 +20,8 @@ S8(20 UC), S9(6 UC), S11(1), S13(7), S16(4), S17(29 R17.1-R17.29 + R-I split R17
 traceability-standard.md, S1-S9 audits, T169 pre-audit (241/241 untraced, R17.26 fixed 8f8f5e1)
 
 ### Compound requirement captures (compound-requirement-source-2.md)
-- R-A: HTML task status broken (cut-off flagged) -- bfae071
+All in sprint-17-scenario-units/compound-requirement-source-2.md:
+- R-A: HTML task status broken -- bfae071
 - R-B: Task.status = state-machine methods -- bfae071
 - R-C: Traceability artifacts to atomic uuid.scenario.json -- bfae071
 - R-D: Mobile-first layout + hard width limit -- 2be6e96
@@ -41,14 +42,20 @@ traceability-standard.md, S1-S9 audits, T169 pre-audit (241/241 untraced, R17.26
   - R-M3d: Details nav scrolls tree -- f12ccec0
   - R-M3e: /scenario full /trace interaction parity -- 6f7614eb
 - R-M4: Mobile drawer width capped -- acae0ffe
+- R-N1: Oversized tree items (width) -- 8cb1e3ad
+- R-N2: Expand/collapse state incorrect -- 8cb1e3ad
+- R-N3: Class model Tree BASE <- Traceability <- typed scenarios, parent/children as IORs -- 8cb1e3ad
+- R-O: Test server must serve ES modules for headless Playwright (self-signed cert blocker) -- 7bc51c5b
 
 ### R-I retroactive split (de427a6)
 T167-R17.30-31, T168-R17.32-35, T169-R17.36-38, T170-R17.39-42, T171-R17.43-44, T172-R17.45-46, R-J-R17.47
 
 ### Active tasks being fed
-- T174: /scenario route + R-M3 scope
+- T174: /scenario route + R-M3 scope (R-M3a-e)
+- T175: Tree model + oversized + expand/collapse (R-N1-N3)
 - T172: chain direction enforcement + R-H/R-J data fill
 - T173: R-K + R-L dead-link fixes
+- TBD: R-O Playwright verifiability blocker (planner stand-up pending)
 
 ## Status
 Standing by for next Tron capture or planner/PO directive.
