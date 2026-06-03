@@ -1,37 +1,32 @@
-# robbin-architect — Context
+# robbin-architect — Context (Save 2026-06-03, pre-rewind)
 
-## ACTIVE (2026-06-01): Sprint 17 — Scenario Units / IOR Data Model
+## ACTIVE: Sprint 17 — Scenario Units (Phase 28-30)
 
-### Just completed (this session)
-- **T143 AC2 fix** (fe69562): slug field on TraceNode for speaking-name hrefs
-- **T144 AC2 fix** (bd3b75d): 🔗 href uses /edit/ not /md/ for .scenario.json
-- **T145 design** (83099ea): User as 8th scenario class + ViewBus singleton
-- **T146 design** (83099ea): Requirement NAME-first format + <details> for description
-- **T147 design** (2ff001b): 🔗 scenario link in sprints.md/ listings (scenarioLink helper)
-- **T148 design** (6f0c72c): breadcrumb path-header for /md/ listings
-- **T149 design** (3f8cd33 + de7f348): sprints.json symlink tree for all 9 classes + slug mismatch fix (two-strategy scenarioLink)
-- **T150 design** (1d534a2): breadcrumb link contrast fix (.bc-link CSS class)
-- **T151 design** (6f4db8f): MD traceability → JSON arrays migration (1016 bullets, TraceEntry schema, per-task count audit gate)
-- **T152 pre-design** (b741d50): UC data-quality — auto-derive object.verb from name + PUML task refs
-- **T153 design v2** (c77d1f5): UC class refs + requirement refs from PUML + altId blocker fix
-- **T154 design** (2077202): Requirement data quality — name/description/tasks from requirements.md
-- **T155 design** (6cff106): Requirement bidirectional closure — reverse-scan tasks + test coverage
-- **T156 design** (d7ade7b): Reload button on connection-failed page (one line in app.ts)
-- **T157 finding** (d7ade7b): vCard import ALREADY IMPLEMENTED — skip to tester verification
+### Session 2 Designs (2026-06-01 to 2026-06-03) — ALL committed to RawBin
 
-### Expert implemented (this session, per status updates in task files)
-- T143 impl: v0.5.37 (trace-tree.ts, template RenderContext)
-- T144 impl: v0.5.36 + v0.5.38 (icon order, symlinkIcon, jsonHref)
-- T145 impl: v0.5.41 (User scenario class + ViewBus)
-- T146 impl: v0.5.41 (batched with T145 — template + validator)
-- T147 impl: v0.5.43 (scenarioLink for .md listings)
-- T148 impl: v0.5.44 (breadcrumb helper)
-- T149 impl: v0.5.45 + v0.5.46 (per-class symlink subdirs + full-UUID tracelinks)
-- T150 impl: v0.5.47 (.bc-link WCAG AA contrast)
-- T151 impl: v0.5.48 (815/815 per-task count gate PASSED)
-- T152+T153 impl: v0.5.49 + v0.5.50 (UC object/verb + classes/requirements)
-- T154 impl: v0.5.52 (Requirement name/description/tasks)
-- T155 impl: v0.5.53 (bidirectional closure tasks[] + tests[])
+| Task | Commit | Status |
+|------|--------|--------|
+| T158 | 304a94d | ✅ shipped (a41d16a v0.5.59) — 4 typed DetailViews |
+| T159 | 4d3151223 (UpDown) | ✅ shipped — forward-only chain refactor |
+| T160 | b2ac0b7 | ✅ shipped — forward-ref repopulation |
+| T161 | 410778d | ✅ shipped (737c841 v0.5.57) — speaky names |
+| T163 | (expert) | ✅ shipped (f138aa0 v0.5.61) — title source switch |
+| T165 | 60a97a7 | ✅ shipped — 7-class tree |
+| T166 | 921cc9b | ✅ shipped (2a61aa2 v0.5.65) — Class+Method overlay |
+| T167 | 2638f52 | 📝 designed — mobile-first 480px cap |
+| T168 | c28c982 | 📝 designed — 7-step chain LOCKED |
+| T169 | 43f9a0e | 📝 designed KEYSTONE — data-quality audit |
+| T170 | 72e685d | ✅ shipped (afe969e) — CI gates |
+| T171 | 826d30b | 📝 designed — orphan categorization |
+| T172 | d87aab7 | 📝 designed — 239 orphans + R-J test reachability |
+| T173 | 505d405 | 📝 designed — 4 broken-link bugs + lazy-load |
+| T174 | 86b024ae | 📝 designed — drawer UX + /scenario route (R-M1/M2/M3/M4/M3d/M3e) |
+| T132 | 5c1a860 | 📝 R-A refinement — native checkboxes |
+| T128.2 | daec247 | ✅ shipped — S10-S16 migration |
+
+### Session 1 Designs (2026-06-01) — T143 through T157
+- T143-T155: all shipped (v0.5.37 through v0.5.53)
+- T156-T157: designed (reload button, vCard finding)
 
 ### Deferred
 - T97: re-encrypt-on-rekey invariant (S14)

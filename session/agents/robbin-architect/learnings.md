@@ -152,3 +152,39 @@ Before designing, always check if the feature already exists in code. T157 (vCar
 
 ## Breadcrumb + Contrast Pattern (T148/T150)
 breadcrumb() helper: split path on /, each segment except last = clickable <a>, last = <span>. Use .bc-link CSS class (not inline color) for WCAG AA contrast: white/a8c8ff/b8d8ff matching MD_CSS link scheme.
+
+## Forward-Only Rule is ABSOLUTE (T159/B18 — Session 2)
+"tasks do not trace back to requirements... never back to requirements." No `requirements[]`, `requirement`, or `links.up` on ANY non-Requirement unit. Empty `requirements[]` is CORRECT — strip the field. The forward chain FROM Requirements is the sole truth. To answer "which req traces to this task," walk ALL requirements' `tasks[]` — don't store the reverse pointer.
+
+## Wrong Metric: requirements[] Empty vs Forward-Walk Reachability (T169/T172)
+T171 counted units with empty `requirements[]` = 50. WRONG — that field SHOULD be empty per T159. The REAL metric is forward-walk reachability from requirement roots = 57/296 (19%). Root cause: `requirement.tasks[]` nearly empty (2/100 tasks linked). Fix: 5-step forward-ref population at EVERY chain hop.
+
+## 7-Step Chain LOCKED (T168)
+requirement → task → usecase(s) → class → method → implementation → test(s). 1:N at plural hops. Implementation.tests[] new IOR array. CANONICAL_WALK dict for ordered traversal. Requirements are the ONLY tree roots.
+
+## /scenario Route: Seed vs Full Graph (T174 R-M3)
+`/scenario?ior=<uuid>` shows ONE instance as root, lazy-loads children. The expert's first impl fetched `/api/trace` (full 400KB graph) — showed all 379 items. The architect's design uses `data-seed-ior` attribute which should fetch ONLY `/api/trace/children/<uuid>`. Tree needs graph for expand resolution (graph.get) — temporary tradeoff. The pure-lazy approach (no full graph) is T173 scope.
+
+## Scenario Data Has No UUID Forward Arrays (T174 R-M3e diagnosis)
+model.subtasks = "None (atomic task)..." (STRING not UUID[]). model.useCases = undefined. The scenario index stores raw markdown text in fields named like arrays. `/api/trace/children/` endpoint reads these expecting UUID arrays → gets nothing → returns 0 children. Fix: scanRepo fallback (bridge) + T172 population (permanent).
+
+## renderSeed Timing: Never setTimeout for Async Dependencies (T174 R-M3d)
+`setTimeout(navigate, 100)` races async fetch+DOM render. Use event-driven: renderSeed dispatches `seed-ready` event when done; consumer listens with `{ once: true }`. Zero timing assumptions.
+
+## Start Collapsed, Lazy on Expand (T174 R-M3e)
+Tron spec: "ONLY that item view THEN lazy-load children." renderSeed must start with children HIDDEN (display:none). Store pending children data. First expand click populates from stored data. Children of children use `buildChildNode()` which fetches `/api/trace/children/<child-uuid>` per click — cascading lazy-load per LOCKED chain.
+
+## Broken Links: 3 Root Causes in /md/ Views (T173)
+1. `jsonHref()` (server.ts:626) hardcodes `task/` for ALL .json → wrong type for Sprint/UC/etc.
+2. `renderChainLinkMd()` (templates.ts:64) uses `../sprints.md/${type}/` → doubles sprints.md path.
+3. No `/md/` handler for `.scenario.json` direct URLs → 404. Fix: 302 redirect to `/trace?ior=`.
+All 3 fixed at generator level — single fix point for 296 views.
+
+## Expert Diverges from Design: Check Shipped Code (T174 pattern)
+Expert may implement differently than the architect designed. When Tron flags a bug, ALWAYS read the shipped code first — don't assume the design was followed. In T174 R-M3: design said `data-seed-ior`, expert used `fetch('/api/trace')` + `setGraph(fullGraph)`. In R-M3e: design said collapsed start, expert showed all children expanded.
+
+## Commit Designs to RawBin, Not UpDown (Session 2 mistake)
+My first T158-T161 designs went to the wrong repo (UpDown at /Users/Shared/Workspaces/AI/Claude.All/UpDown/). RawBin is at /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/. PO caught this. Always verify repo before commit.
+
+## Web4 Shell Init for Component Commands
+`bash --init-file source.env` from UpDown root puts web4tscomponent, once, etc. on PATH. Without it: "command not found." Check prompt: `[web4 0.3.23.1 | user@host]` = initialized.
