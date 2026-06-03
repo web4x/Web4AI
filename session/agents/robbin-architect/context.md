@@ -1,6 +1,6 @@
-# robbin-architect — Context (Save 2026-06-03, pre-rewind)
+# robbin-architect — Context (Save 2026-06-03, rewind #2)
 
-## ACTIVE: Sprint 17 — Scenario Units (Phase 28-30)
+## ACTIVE: Sprint 17 — Scenario Units (Phase 28-30+)
 
 ### Session 2 Designs (2026-06-01 to 2026-06-03) — ALL committed to RawBin
 
@@ -42,7 +42,23 @@
   - Planning: `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
   - Implementation: `/Users/Shared/Workspaces/2cuGitHub/Web4RawBin/`
 
-## Key Patterns Established This Session
+## PENDING: T175 Refactor — 2-Layer Hierarchy (Tron explicit naming)
+
+Expert collapsed Tree+Traceability into single TraceObject. Tron requires:
+- `Tree` abstract base (generic: parent/children — reusable beyond traceability)
+- `Traceability extends Tree` (adds chain-typed resolution via chainPosition)
+- Typed classes extend Traceability (not TraceObject directly)
+
+Current code (TraceModel.ts:93-165): TraceObject has parent/children with inline chain maps.
+Refactor: extract Tree abstract, rename TraceObject→Traceability, add chainPosition per typed class.
+Zero behavioral change — pure structural rename + split.
+
+## PENDING: T174 R-M3d+R-M3e (expert handoff at 113254e8)
+
+scenario-view.ts:52 still has setTimeout(100). rb-trace-tree.ts renderSeed still pre-expands all children.
+Expert diffs committed in T174 task file — replace setTimeout with seed-ready event + collapsed start.
+
+## Key Patterns Established
 - **TraceEntry schema:** {type, ref, label, uuid?, commit?} — canonical for all chain data
 - **Per-task/UC/Req count audit gates:** AC hard-FAIL pattern — md-count == json-count
 - **altId field on Requirements:** R17.1-style sprint-scoped identifier for R-number lookups

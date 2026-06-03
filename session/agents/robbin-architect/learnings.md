@@ -188,3 +188,9 @@ My first T158-T161 designs went to the wrong repo (UpDown at /Users/Shared/Works
 
 ## Web4 Shell Init for Component Commands
 `bash --init-file source.env` from UpDown root puts web4tscomponent, once, etc. on PATH. Without it: "command not found." Check prompt: `[web4 0.3.23.1 | user@host]` = initialized.
+
+## Tron's 2-Layer Hierarchy is Non-Negotiable (T175)
+Tron explicitly named: Tree (generic base) ← Traceability extends Tree (chain-typed) ← typed classes. Expert collapsed into single TraceObject. MUST refactor to match Tron's naming — even if functionally identical. The 2-layer split matters: Tree is reusable beyond traceability (file trees, org charts). Always check shipped code against Tron's explicit structural directives — functional correctness is necessary but not sufficient.
+
+## Always Verify Expert Impl Against Design (pattern)
+T174 R-M3: design said data-seed-ior, expert used fetch('/api/trace') full graph. T174 R-M3d: design said seed-ready event, expert used setTimeout(100). T175: design said 2-layer hierarchy, expert collapsed to 1. Pattern: expert optimizes for speed, collapses abstractions. Architect must audit shipped code post-impl and flag divergence before tester verifies.
