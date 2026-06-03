@@ -130,3 +130,38 @@ Tron flagged: planning.md looked unprogressed because the single `[ ]` per task 
 - Maintain symbols on every monitoring cycle: when a task transitions state, update its prefix. Treat symbol drift as a sync target (📝→✅ on impl commit, ✅→🧪 on tester PASS, 🧪→🏁 on Tron QA).
 - Sprint Totals lines should match the symbol counts.
 - First applied: ecce49e (S10-S16 sweep). Initial application to S16 in a0df3f8.
+
+## 20. Architect concurrent file creation — duplicate reconcile pattern (PO learning #12 applied)
+When planner stands up a task, architect/req-eng MAY create a same-scope file concurrently with a DIFFERENT filename + own (often non-v4) uuid. Examples: T164 (architect's task-164-dirty-model-name-remigration.md vs my close-out scaffold), T172 (architect's task-172-strict-direction-audit-massive-orphans.md vs my chain-direction scaffold). Pattern:
+1. Adopt architect's content as authoritative (their diagnosis + inventory is sharper than my speculative scaffold)
+2. Replace fake uuids (`a8b9c0d1-…-164000000001`, `a7b8c9d0-…-172000000001`) with planner's real v4 from uuidgen (learning #17)
+3. Add Web4Articles-required Subtasks + QA Audit sections (audit failures otherwise)
+4. Delete my scaffold; update planning.md to architect's filename
+5. Fold any PO amendments I introduced (R-H.2 atomic-split, AC10 matrix refresh, etc.) into the architect's file
+Don't fight over who created it first — architect's content is more accurate; my structure is required for audit compliance.
+
+## 21. Wrong metric pattern — T171's "50 untraced" was actually counting back-refs (PO 2026-06-03)
+T169 audit reported "50/296 untraced" but the metric was wrong: it counted units with empty `requirements[]` (back-ref field, which is CORRECT per T159/B18 forward-only — should be empty). The right metric is **forward-walk reachability from Requirement roots**. T172's architect ran that audit: 239/296 orphans (81%), not 50. Lesson: when an audit reports a clean-sounding number, verify it measures what the directive actually demands. Tron R-F = "ZERO untraced" via the canonical forward chain — T171's 50 wasn't the right denominator. T172 (3fefc68) achieved 238/238 (100%) chain reachability via 5-step forward-ref population.
+
+## 22. Chain-direction is clean separately from chain-reachability (architect T172)
+Audit-too-lenient was one hypothesis for live /trace orphans. Architect ran strict-direction audit FIRST: every edge follows T168 canonical order; zero reverse edges. Direction was already clean. The real gap was forward-ref population — arrays were empty at most hops, not pointing the wrong way. When diagnosing audit-vs-display divergence, separate "direction wrong" from "data missing" — they're orthogonal problems with different fixes.
+
+## 23. T172 5-step forward-ref population recipe (architect, expert 3fefc68)
+The forward-ref population must run at every chain hop, not just one:
+- Step 0: `Sprint.requirements[]` (sprint owns reqs)
+- Step 1: `Requirement.tasks[]` (sprint-membership matching when requirements.md lacks explicit bullets)
+- Step 2: `Task.useCases[]` (UC ownerIor → task/sprint)
+- Step 3: `UseCase.classes[]` (matrix Impl column or UC's chain section)
+- Step 4: `Class.methods[]` (sourcePath matching)
+- Step 5: `Method.implementations[]` + `Implementation.tests[]` (impl:uuid:/test:uuid: annotations in source/test files)
+T160 only did Step 1 partially (2/100 Tasks linked). T172 completed all 5 → 238/238 reachability. Sprints (orphan-by-design containers) + TraceLinks (edge metadata) properly excluded via allowlist.
+
+## 24. Rule-pair exemption categories (expert self-noted, confirmed by PO acceptance)
+Three expert commits this cycle were correctly rule-pair exempt — they self-noted "no version bump (X only)":
+- T170 (afe969e): infra-only — CI gate scripts + npm script; same-cycle T167 already bumped
+- T171 (7c84fe0): scenario data only, no user surface
+- T172 (3fefc68): data-only (forward-ref population, no user surface)
+Rule-pair (a)+(b) applies to **user-facing surface** changes only. Data migrations, infra scripts, audit tooling without UI impact = exempt. Expert noting the exemption + reason in the commit message is sufficient; planner accepts.
+
+## 25. SM context warning protocol (SM directive 2026-06-03)
+At 78% context, SM (TRONinterface:0.1) issued urgent save-before-rewind directive. Pattern: write context.md + learnings.md immediately, commit, then resume work. Agent-trainer rewinds at 80%. Save NOW means before any further task work — even active PO directives wait (PO understands the loop will rewind and re-fire). For planner: context.md must include current commit chain, sprint state, IMMEDIATE TODO with task numbers + uuids generated for in-flight stand-ups, so post-rewind work can resume from the saved state.
