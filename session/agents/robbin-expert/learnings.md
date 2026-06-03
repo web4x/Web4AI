@@ -275,6 +275,37 @@ expert shell pane instead for server operations.
 or `git stash` BEFORE pull when restarting a crashed server. The crash state
 often leaves uncommitted changes from the running tsx process.
 
+## T166-T172 Data Quality Learnings (2026-06-02/03)
+
+### /api/trace overlay pattern (T163/T166)
+scanRepo() builds the base graph from markdown. Scenario index supplements it.
+T163: title overlay (model.name). T166: create Class+Method graph objects via
+makeObject(). Always after scanRepo, never replace it.
+
+### Forward-ref population is the KEY to reachability
+The chain breaks at the FIRST missing forward hop. T172 showed: 55 Requirements
+existed but only 2 Tasks were in their tasks[]. Fix: populate forward arrays at
+EVERY hop (req.tasks, task.useCases, uc.classes, class.methods). Sprint→Requirement
+ownerIor mapping + sprint-level task assignment covers the gap.
+
+### Audit must walk from Requirement roots ONLY (strict)
+Walking from Sprint roots inflates reachability (Sprint.tasks[] catches everything).
+Strict = Requirement roots only. Sprints and TraceLinks = orphan-by-design.
+
+### Synthetic requirements for pre-traceability sprints
+Sprint 1 (pre-traceability era) has no requirements.md. Create a synthetic
+Requirement unit to link its tasks into the chain. Same pattern for any sprint
+lacking formal requirements.
+
+### CI gates: npm run ci:gates
+trace:audit:strict (orphans + back-refs + cardinality) && rule-pair:strict
+(package.json + sw.js bump when user-facing files change). Both must pass.
+
+### T167 mobile layout: .trace-page flex container
+Desktop ≥1025px: flex split (tree left, drawer right 480px cap static).
+Mobile ≤480px: single-column, drawer = fixed bottom overlay 60vh.
+Drawer inside .trace-page (not body) for desktop split to work.
+
 ## T142-T156 Learnings (2026-06-01)
 
 ### DRY-RUN discipline for data migrations (T151 pattern)
