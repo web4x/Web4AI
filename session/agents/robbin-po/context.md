@@ -1,34 +1,36 @@
-# robbin-po Context — SM-triggered save 2026-06-03 (pre-rewind)
+# robbin-po Context — SM-triggered save 2026-06-03
 
 **Role:** PO | **Pane:** robbinTeam:0.0 | **Project:** RawBin | **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
-**Server:** https://home.donges.it:4444 — **v0.5.75 LIVE** (iphone:0.1)
+**Server:** https://home.donges.it:4444 — **v0.5.77 LIVE** (iphone:0.1) | listens *:4444 externally OK
 **Tron:** iphone:0.0 | SM TRONinterface:0.1 | agent-trainer baseTeam:0.0
-**Team:** 0.1 architect (web4-architect fork, self-IDs web4team:0.1) | 0.2 expert | 0.3 tester | 1.0 planner | 1.1 req
+**Team:** 0.1 architect | 0.2 expert | 0.3 tester | 1.0 planner | 1.1 req
 
-## CURRENT SPRINT — S17 Scenario Units / IOR / Traceability Browser
-Chain LOCKED: requirement → task → usecase(s) → class → method → implementation → test(s). 1:N at plural hops. Atomic reqs are ROOTS.
+## SPRINT 17 — Scenario Units / IOR / Traceability Browser
+Chain LOCKED 7-step: requirement→task→usecase(s)→class→method→implementation→test(s). 1:N at plural hops. Atomic one-sentence reqs are ROOTS. Forward-only (no back-refs). scenario/index/<5-deep-uuid>/<uuid>.scenario.json; scenario/sprints.json/ (ln speaking-name tree); scenario/sprints.md/ (generated views). {ior=class-loader, model={attrs+children IOR arrays}, ownerIor}.
 
-## DELIVERED + VERIFIED (this run)
-T167 mobile-first /trace + width-cap (v0.5.67) · T168 chain-order spec · T169 KEYSTONE 100% chain reachability (146→238/238) · T170 3 CI gates · T171 untraced closure + matrix refresh · T172 strict-direction + 5-step forward-ref (296 units, 0 orphans/back-refs/cardinality) · T173 .scenario.json → /scenario?ior= 302 (click+direct) · T174 drawer cleanups + NEW /scenario route (R-M1-4+M3d/M3e) v0.5.74 CODE-COMPLETE · T175 Tree base (TraceObject getters) + R-N1 ellipsis + R-N2 localStorage v0.5.75
+## TRON-QA-GATE BATCH = 23 tasks (tester-verified, awaiting Tron QA — HIS cadence, not a blocker)
+T125/126/127/128/129/131/132/133/134/136/138/143/144/167/168/169/170/171/172/173/174/175/177. T124 ✅ code-complete-gated. T176 RESOLVED-NOT-A-BUG.
 
-## IN FLIGHT
-- **T176** (R-O KEYSTONE): headless Playwright can't exec /scenario ES-module JS (self-signed SSL blocks type=module). Architect picking approach (trusted cert/http/Chromium flag). UNBLOCKS T174 R-M3d/M3e + T175 R-N2 behavior verify + ALL future browser-behavior + Tron QA on T174/T175.
-- **T175 R-N3 hierarchy check**: shipped as single 'TraceObject'; Tron spec = Tree(base) ← Traceability extends Tree ← typed. Architect confirming match-or-reconcile.
+## IN FLIGHT — TWO KEYSTONES
+- **T178 (R-Q) CRITICAL PATH** — deep-chain DATA fill: UC.classes[]/Class.methods[]/Method.implementations[]/Implementation.tests[] are EMPTY (data only 3 deep Req→Task→Subtask). 44 tests 'chain gap' → R-J/R-E NOT satisfied in DATA despite 7-step CODE done. Architect designing linking (PUML uc→class, [impl:uuid], [test:uuid] markers). Gates T124+T168 closure + the CI-gate extension. Target: 44/44 tests 7-hop reachable.
+- **T179 (R-S)** — SW auto-activation (skipWaiting+clients.claim+purge old CACHE_NAME) → ends RECURRING stale-SW-cache (Tron keeps seeing old bundles / 'routes broken' = his stale cache, confirmed clean headless). Architect designing SW lifecycle.
 
-## CRITICAL INCIDENT 2026-06-03 (false alarm, resolved, NO data loss)
-SM misread queued-unsubmitted /compact in architect buffer as 'self-compacted'; I relayed as root cause → Tron 'bullshit'. FACTS: autocompact OFF; /compact never ran (cleared via C-u); architect's 'continued from previous' = its earlier web4-architect fork (2026-05-18 UUID 5b56e996), not new compact.
+## STRICT VERIFY BAR (codified 3f1896ee, planner #27) — ROOT FIX
+'audit clean' ≠ Tron-satisfied. 'Verified' now REQUIRES: (i) per-Test 7-hop reachability via LOCKED chain (node-count proxy REJECTED), (ii) LIVE headless UX reproduction. CI gate (trace:audit:strict) extends after T178: fail on any Test walkUp<7. Treat Tron's live-device observation as the real acceptance test; tester reproduces it headless (T176 proved headless module-exec works: ignoreHTTPSErrors + --ignore-certificate-errors).
 
 ## HARD RULES
-- #65 NEVER /compact agents; rewind via trainer (silent). NEW: never tell an agent its context %/level (auto-mode self-prescribes /compact). Save order = 'commit your current work' (no context mention).
-- Queued /compact ≠ executed — verify execution vs buffer; SM C-u clears stale /compact each tick.
-- Never relay another agent's claim as root cause w/o evidence.
-- #66 ship = package.json + sw.js CACHE_NAME (a+b). #67 new route → STATIC_SHELL (c).
-- #71 every report → derive+route next; never stop after report.
-- CMM4 4-role planner-first: req→planner→architect→expert→tester. Chat=pointer+next. Atomic one-sentence reqs.
-- compound-requirement-source*.md = Tron verbatim FIRST.
-- 'I am not your tester' — fix TESTER verifiability (T176), don't punt browser-behavior to Tron device.
+- #65 NEVER /compact agents (killed tester once). Rewind via agent-trainer (silent). NEVER tell an agent its context %/level (auto-mode self-prescribes /compact). Save order = exactly 'commit your current work'. CAUGHT this run: cleared queued 'save+compact' from architect via C-u; corrected SM.
+- Never relay another agent's claim as root cause w/o evidence (false-alarm incident).
+- #66 ship = package.json + sw.js CACHE_NAME (a+b). #67 new route/bundle → sw.js STATIC_SHELL (c). Triple-check report '(a)✓(b)✓(c)'.
+- #71 every report → derive+route next; never stop after report. Don't blindly wait — SM proactively reports idle/stuck; I re-task.
+- CMM4 4-role planner-first: req(atomic 1-sentence)→planner(stand-up w/ v4 uuid)→architect(design)→expert(impl)→tester(verify). Chat=pointer+next-delegation. compound-requirement-source*.md = Tron verbatim FIRST.
+- 'I am not your tester' — fix tester verifiability, don't punt browser-behavior to Tron device.
+- Read whole output (no |head/tail/grep filtering when verifying — bit me on git --stat truncation).
 
 ## NEXT (post-rewind anchor)
-1. Architect: T176 approach pick + R-N3 hierarchy confirm → expert impl → tester proves headless JS exec → T174/T175 tails verify → Tron QA.
-2. Every Tron literal → req (atomic) → planner → architect → expert → tester. SM monitors (no context-mentions to agents).
-3. Harness tasks #52 T174 / #53 T175 / #54 T176 track current; #29-51 done.
+1. Architect: T178 design (CRITICAL — deep-chain data fill) + T179 SW lifecycle → expert impl → tester proves 44/44 7-hop + SW auto-takeover → closes T124/T168 + R-J/R-E.
+2. Every Tron literal → req atomic → planner → architect → expert → tester under STRICT verify bar.
+3. SM proactive monitor (commit-your-work saves, no context mentions, rewind via trainer). Fleet resilient (many rewinds, zero loss).
+4. S11 backlog deferred: 33 unformalised S10-16 reqs + S1-9 warnings (T87-89).
+
+## HARNESS TASKS: #29-55 done; #56 T178 / #57 T179 in flight; #37 S17 parent open until T178+T179 close.
