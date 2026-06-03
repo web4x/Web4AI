@@ -337,3 +337,43 @@ rendering. Module-level state (not ideal but backward-compatible).
 T153: altId + UC class/req refs. T154: name/description/tasks from requirements.md.
 T155: bidirectional closure (reverse-scan tasks + test coverage). Each builds on
 the previous pass's data. Run in order.
+
+## T166-T175 Learnings (2026-06-02/03)
+
+### /scenario?ior= vs /trace: two distinct entry points
+/trace: full requirement-rooted tree via setGraph(). /scenario?ior=<uuid>: single
+instance as root via data-seed-ior + renderSeed(). Both reuse the same components
+(rb-trace-tree, rb-detail-drawer, TraceRouter) but seed differently.
+
+### scanRepo fallback for /api/trace/children
+Scenario index forward arrays may be empty (strings not UUID[]). The children
+endpoint must fall back to scanRepo graph when no UUID refs found. Bridge pattern
+until migration forward-refs are complete.
+
+### filepath = req.url.split('?')[0]
+Server filepath MUST strip query params before route matching. Without this,
+/trace?ior=X doesn't match '/trace' → falls through to static file → 404.
+
+### .scenario.json click → /scenario?ior= (not /md/)
+jsonHref() + /md/ 302 redirect both target /scenario?ior=<uuid>. realpathSync
+resolves symlinks to extract UUID from the target .scenario.json filename.
+
+### rAF-based timing for auto-navigate after tree render
+Don't use setTimeout for graph-dependent navigation. Use requestAnimationFrame
+loop waiting for the target element to exist in DOM. Graph type lookup via
+graph.get(uuid).type is more reliable than API response data.
+
+### Expand state per seed IOR (R-N2)
+/scenario localStorage key = rawbin-scenario-expanded-<ior>. Separate from
+/trace's rawbin-trace-expanded. buildSeedNode reads/writes on toggle-children.
+
+### Tree base on TraceObject (T175)
+parent/children/hasChildren/isRoot/isLeaf as getters using LOCKED chain
+forward-only scan. parent() scans all objects of the above-type whose forward-ref
+includes this.uuid. children() resolves forward refs to next chain hop type.
+Added directly to TraceObject (not separate class hierarchy) — simpler.
+
+### STATIC_SHELL must track ALL client bundle hashes
+Every build that changes trace-page or scenario-view bundles produces new hashes.
+STATIC_SHELL must be updated in the SAME commit. Check build-manifest.json after
+every npm run build and update sw.js if hashes changed.
