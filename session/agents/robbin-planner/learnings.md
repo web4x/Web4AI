@@ -178,3 +178,10 @@ PO directed "STAND UP T174 covering R-M1-M4 (or split per planner's call)". I sc
 Only AFTER these checks: scaffold + commit. Learning #12 ("req-eng creates files ahead") + #20 (architect concurrent) already pointed at this — but I still rushed. The pre-flight is a HARD planner discipline.
 
 **Also:** when invoking otmux send from Bash, single-quote the message OR escape backticks — backtick-wrapped commit hashes get shell-expanded, garbling the report (incident: same 2026-06-03 PO send dropped 3 hashes, required a follow-up correction).
+
+**Race-window addendum (T175 incident 2026-06-03):** Pre-flight CAN be clean at scan time but architect/req commits a same-scope file BETWEEN my pre-flight and my own commit (T175 incident: architect `fe6d2289` landed during my scaffold write). Mitigations:
+- Keep stand-up scaffold writes SHORT (minimize race window)
+- Re-run `ls task-<N>*` IMMEDIATELY before `git add` — last-chance check
+- Use architect's filename if they shipped first (architect's name typically reflects their richer design content; planner's pre-seed name was a placeholder)
+- Reconcile per learning #20 the same way regardless (adopt content, replace fake uuid, add structural compliance)
+- Surface any PO corrections the architect captured that I missed (T175: "Traceability EXTENDS Tree" — opposite of PO's initial seed hint)
