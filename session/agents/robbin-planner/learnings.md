@@ -185,3 +185,16 @@ Only AFTER these checks: scaffold + commit. Learning #12 ("req-eng creates files
 - Use architect's filename if they shipped first (architect's name typically reflects their richer design content; planner's pre-seed name was a placeholder)
 - Reconcile per learning #20 the same way regardless (adopt content, replace fake uuid, add structural compliance)
 - Surface any PO corrections the architect captured that I missed (T175: "Traceability EXTENDS Tree" — opposite of PO's initial seed hint)
+
+## 27. STRICT VERIFY BAR — "metrics-pass-but-gapped" prevention (PO directive 2026-06-03)
+
+Codified after the T172 incident: 238/238 unit reachability looked clean, but 44 Tests still had "chain gap" because UC/Class/Method/Impl/Test forward arrays were empty. The metric counted units, not chain depth. PO direction: a task or sprint is **not "verified"** until BOTH of the following are asserted:
+
+1. **FULL semantic chain — per-Test 7-hop reachability.** Every Test instance MUST be reachable from a Requirement root via the LOCKED chain `requirement → task → usecase(s) → class → method → implementation → test`. Audit must iterate every Test and assert `walkUp(test).length === 7` with the walk ending at `chainPosition.above === null`. Node-count proxies (e.g. "238/238 units") do NOT satisfy.
+2. **LIVE user experience reproduction (headless).** Tester reproduces the actual user-visible behaviour on the running app (headless Playwright on T100), not just unit-test counts. "All unit tests green" is necessary but not sufficient.
+
+**CI gate:** T170's `trace:audit:strict` must be extended (T178 lands data first; T170-follow-on adds the depth assertion) to FAIL on any Test with depth < 7-hop reachable, reporting per-Test depth + offending UUIDs.
+
+**Standards anchor:** [scrum.pmo/standards/traceability-standard.md](../../../../../Workspaces/2cuGitHub/Web4RawBin/scrum.pmo/standards/traceability-standard.md) "Strict Verify Bar" section.
+
+**Apply to:** every task closure that involves traceability-chain claims. When PO says "tester verified" and the task touches the chain, BEFORE flipping 🧪/🏁 check: did tester prove per-Test 7-hop walk, or did they only check node counts / unit-test totals? If only counts → push back, ask for the 7-hop walk. (The b85dfa8 incident pattern but for verification metrics rather than gate boxes.)
