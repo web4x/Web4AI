@@ -165,3 +165,16 @@ Rule-pair (a)+(b) applies to **user-facing surface** changes only. Data migratio
 
 ## 25. SM context warning protocol (SM directive 2026-06-03)
 At 78% context, SM (TRONinterface:0.1) issued urgent save-before-rewind directive. Pattern: write context.md + learnings.md immediately, commit, then resume work. Agent-trainer rewinds at 80%. Save NOW means before any further task work — even active PO directives wait (PO understands the loop will rewind and re-fire). For planner: context.md must include current commit chain, sprint state, IMMEDIATE TODO with task numbers + uuids generated for in-flight stand-ups, so post-rewind work can resume from the saved state.
+
+## 26. ALWAYS pre-check for existing task files before scaffolding (planner-discipline; 2026-06-03 incident)
+PO directed "STAND UP T174 covering R-M1-M4 (or split per planner's call)". I scaffolded a SPLIT (T174+T175) without first checking that architect `483d1587` had already shipped a CONSOLIDATED T174 covering all 4 atoms — landed 1 commit BEFORE my scaffold ea88de12. Resulting duplicate forced a reconcile (490daed1: delete my 2 scaffolds, adopt architect's bundle, fix fake uuid + add Subtasks/QA Audit).
+
+**Pre-flight checklist before EVERY new task stand-up (planner-first or otherwise):**
+1. `git status -s scrum.pmo/` — uncommitted concurrent work?
+2. `ls scrum.pmo/sprints/<sprint>/task-<N>*` — does the slot exist?
+3. `git log --oneline -10 scrum.pmo/sprints/<sprint>/` — recent commits in this sprint?
+4. `git log --grep="T<N>\|R-<x>"` — has another role already shipped under this banner?
+
+Only AFTER these checks: scaffold + commit. Learning #12 ("req-eng creates files ahead") + #20 (architect concurrent) already pointed at this — but I still rushed. The pre-flight is a HARD planner discipline.
+
+**Also:** when invoking otmux send from Bash, single-quote the message OR escape backticks — backtick-wrapped commit hashes get shell-expanded, garbling the report (incident: same 2026-06-03 PO send dropped 3 hashes, required a follow-up correction).

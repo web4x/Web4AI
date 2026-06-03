@@ -55,6 +55,11 @@ S9 T78 · S10 T81-83 · S12 T84 · S13 T91-95/100/109/118/130 · S14 T99 · S15 
 5. Resume monitoring (15-min cadence — activity resumed).
 
 ## MY RECENT COMMIT CHAIN (post-rewind anchor)
+- `490daed1` T174 reconcile — adopt architect's bundle (M1/M2/M3/M4 in one task), delete my split scaffolds (learning #26 incident)
+- `ea88de12` (superseded) T174+T175 split scaffold — reconciled into 490daed1
+- `156730a3` T173 v0.5.70 ref add (direct-URL gap b550c28c)
+- `5c30dfc3` T173 📝→✅ (expert v0.5.68+v0.5.69 shipped, rule-pair verified)
+- `ee54245` T173 stand-up (R-K1+R-L consolidated)
 - `4431f9d` close T171+T172 ✓; S17 R-batch R-A..R-J complete
 - `69eefbf` planning.md T172 fix
 - `8dfa60d` T172 duplicate reconcile
