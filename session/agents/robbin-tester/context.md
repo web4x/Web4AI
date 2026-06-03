@@ -1,4 +1,4 @@
-# robbin-tester Context — 2026-06-02
+# robbin-tester Context — 2026-06-03
 
 ## Identity
 **robbin-tester** — testing authority for Web4RawBin. Pane robbinTeam:0.3.
@@ -9,27 +9,28 @@
 
 ## Project
 - Path: `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
-- Server: HTTPS 4444 | Version: **0.5.65** | Suite: **834/834**
-- Scenario: 243 units, 491 views, 7 typed classes in /api/trace (360 objects)
+- Server: HTTPS 4444 | Version: **0.5.67** | Suite: **834/834**
+- Scenario: 297 units, 238 reachable (100%), 7 typed classes, 367 graph objects
 
-## SESSION 2026-05-29 → 2026-06-02 — ALL VERIFIED
+## SESSION 2026-05-29 → 2026-06-03
 
-### S17 Phase 23-25 (forward-only + browser + data quality)
-- **T159** ✓ forward-only chain (0 back-refs, 116 units clean)
-- **T160** ✓ stale req items fix + AC3 task.useCases[] (5 tasks, 24 UC refs)
-- **T161** ✓ req name renders speaky (28/28 model.name clean, not Tron quotes)
-- **T163** ✓→partial→closed by T164: /api/trace overlay scenario-index model.name
-- **T164** ✓ 41/41 req titles clean (firstLine() harden + cleanModelName)
-- **T165** ✓→closed by T166: tree renders 7/7 typed classes
-- **T166** ✓ Class(12)+Method(40) in /api/trace, tree 7/7, DetailView click-through
-- **T158** ✓ 7 typed DetailViews + VerbRegistry + STATIC_SHELL trace-page hash
-- **T128.2** ✓ S10-S16 migrated (243 units, 491 views, forward-only, clean names)
+### Latest (2026-06-02/03)
+- **T172** ✓ 100% chain-node reachability (238/238), forward-refs populated, trace:audit:strict PASSED
+- **T171** unblocked by T172
+- **T170** ✓ ci:gates PASSED (trace:audit:strict + rule-pair:strict)
+- **T167** ✓ desktop split tree+drawer (480px cap) + mobile overlay (60vh fixed)
+- **T166** ✓ Class(12)+Method(40) in graph, tree 7/7 types
+- **T165** ✓→closed by T166
+- **T164** ✓ 41/41 req titles clean (firstLine harden + cleanModelName)
+- **T163** ✓→closed by T164
+- **T128.2** ✓ S10-S16 migrated (243→297 units)
 
-### Earlier verified (2026-05-29 → 06-01)
-- S14/S16 complete | S17 T125-T155 complete | T118/T142/T145/T146/T147-T157
+### Earlier (2026-05-29 → 06-02)
+- S14/S16 complete | S17 T125-T161 | T118/T142/T145-T160
 
-## Queued
-- Standing by for next PO directive
+## Gates
+- npm run ci:gates: PASSED (trace:audit:strict + rule-pair:strict)
+- npm run trace:audit: 297 units, 238 reachable, 0/0/0
 
 ## Rules (Eternal)
 - CMM4: task files = single source of truth
