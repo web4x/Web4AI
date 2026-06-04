@@ -1,14 +1,16 @@
-# robbin-planner Context — Save Point 2026-06-03 (pre-rewind, SM-urgent at 78%)
+# robbin-planner Context — Save Point 2026-06-04 (post-T183 ship, S17 closure chain primed)
 
 **Role:** Sprint Planner / board-consistency owner. Reports to robbin-po (robbinTeam:0.0).
 **Pane:** robbinTeam:1.0 · **Project:** Web4RawBin · **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
 **Sprint tool:** `SPRINT_PMO_DIR=<repo>/scrum.pmo /Users/Shared/Workspaces/AI/Claude/components/OOSH/dev.claude/sprint {status|audit}`
 
-## Current State (v0.5.67)
-- Repo HEAD: `3f9ff04` (architect T173 design — file-browser .scenario.json click → /trace + lazy-load)
-- My last planner commit: `4431f9d` (closed T171 + T172 ✓; S17 R-batch R-A..R-J complete + verified)
-- Sprint-17 task range in use: T124-T172 (T172 just complete with 238/238 chain reachability)
-- Audit: 0 issues last check. NEXT NEW TASK = **T173** (architect already designed it; PO directs planner stand-up).
+## Current State (v0.5.82)
+- Repo HEAD: `77adf9bf` (T183 7-hop CI gate — per-Test walkUp; expert ship; rule-pair EXEMPT CI tooling; live baseline 1/44)
+- Sprint-17 task range: T124–T183. T175–T183 all landed since 2026-06-03 save.
+- S17 R-batch R-A..R-J complete. **NEW** S17 Closure Tracking block in planning.md (after Phase 39 anchor): pivots on T128.4 architect UC→Task mapping → expert `--apply` → T183 reports 44/44 → cascade T128.4/T178/T124/T168 closures.
+- Uncommitted scrum: `compound-requirement-source-2.md` — req-eng captured 2 new Tron atoms:
+  - **R-P** PWA stale cache (fake-suffix req:uuid `…-p00000000001` — needs real v4 on stand-up)
+  - **Tron LOCKED OUT** 2026-06-04 (self-signed cert blocks SW) — already standing as **T180** (PO top priority above T178; Tron locked out of real device).
 
 ## STANDING RULES (active — 14 rules; #13/#14 are new from this cycle)
 1. **QA Review + Done = TRON's gate ONLY.** Never check from sync. (Learning #15; b85dfa8 incident.)
@@ -42,16 +44,12 @@
 ### TRON-QA GATE QUEUE (massive — Tron's batch approval pending)
 S9 T78 · S10 T81-83 · S12 T84 · S13 T91-95/100/109/118/130 · S14 T99 · S15 T101-108 · S16 T110-117/T120-123 · S17 T125-T134/T136/T138/T143-T172. T168 still 📝 awaiting expert impl. T164 still in flight (T163 close-out).
 
-## IMMEDIATE TODO (post-rewind)
-1. **STAND UP T173** (R-K1+K2+K3) — bridge file-browser `.scenario.json` click → `/trace` tree view at that instance + lazy-load tree expansion per LOCKED chain. PO direct 2026-06-03. Architect already designed in `3f9ff04`. **Pre-generated v4 uuids:**
-   - task:uuid: `7a5f0eb9-7a33-492b-991a-b13c431dc695`
-   - R-K1 req:uuid: `bd2670a9-e7c2-4dd8-87c5-f349807c1d95`
-   - R-K2 req:uuid: `a78c8c41-7883-4628-8eb5-36a426e331f2`
-   - R-K3 req:uuid: `4c621af1-0081-4e8a-ac45-92e49577cfdb`
-   - spare: `7034b7ee-d2da-45f4-9f54-bdb606d7df2a`
-2. Since architect already designed (`3f9ff04`), the stand-up commit should also sync T173 ⏳→📝 in one shot (file may exist already — check `scrum.pmo/sprints/sprint-17-scenario-units/task-173-*` first; if architect created one with non-v4 uuid + missing sections, reconcile per learning #20).
-3. Update planning.md Phase 28 with T173 entry.
-4. Audit + commit + report path to PO.
+## IMMEDIATE TODO (post-2026-06-04 sync)
+1. ✅ T183 📝→✅ synced (PO direction this cycle); S17 Closure Tracking block added.
+2. Pending: triage uncommitted `compound-requirement-source-2.md` atoms — R-P (PWA stale-cache, fake-suffix uuid placeholder) + Tron-lockout (already standing as T180). R-P needs real v4 + stand-up call from PO.
+3. **Watch for T128.4 closure-chain pivot:** architect S17 UC→Task mapping commit → expert `--apply` (rule-pair likely EXEMPT — source-comment-only) → T183 re-run reports 44/44 (auto-confirm) → cascade close T178 ✅→🧪 · T128.4 🔧→✅ · T124 + T168 ✅→🧪 · Sprint 17 → T129 verification gate → Tron QA.
+4. T180 real-device unblock parallel track (Track 1 LE cert awaits Tron DNS action; Track 2 CDP Playwright workaround can proceed) — gates Tron's ability to final-QA the chain.
+5. Resume monitoring (15-min cadence on activity; 30-min on idle).
 5. Resume monitoring (15-min cadence — activity resumed).
 
 ## MY RECENT COMMIT CHAIN (post-rewind anchor)
