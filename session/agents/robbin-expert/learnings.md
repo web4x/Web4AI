@@ -377,3 +377,64 @@ Added directly to TraceObject (not separate class hierarchy) — simpler.
 Every build that changes trace-page or scenario-view bundles produces new hashes.
 STATIC_SHELL must be updated in the SAME commit. Check build-manifest.json after
 every npm run build and update sw.js if hashes changed.
+
+## T178-T191 Deep Chain + Narrowing Learnings (2026-06-04/05)
+
+### Query params stripped from filepath at line 327
+server.ts: `let filepath = (req.url || '/').split('?')[0]` at the TOP of handleRequest.
+Any handler that reads query params MUST use `req.url`, NOT `filepath`. The mode=trace
+bug was caused by reading `filepath.includes('?')` which is always false.
+
+### ScenarioIndex legacy path fallback
+12 scenario units created before the 5-level layout change sit at
+`scenario/index/<5char>/<uuid>.scenario.json` (flat). The current `prefixPath()` builds
+`<c1>/<c2>/<c3>/<c4>/<c5>`. `filePath()` must check new-format first, fall back to
+legacy 5-char flat. Without this fallback, `get()` returns null for old units.
+
+### clients.claim() breaks SW activation
+v0.5.78 added `self.clients.claim()` in SW activate handler. Combined with old-cache
+deletion, creates a race: new SW claims tabs BEFORE cache populated → fetch fails →
+offline page. v0.5.79 removed it. SW now activates passively (takes over on next
+navigation). The winning pattern: skipWaiting on message + passive activate (no claim).
+
+### build.mjs auto-injects STATIC_SHELL
+build.mjs now writes hashed bundle names (app + trace-page + scenario-view) directly
+into sw.js STATIC_SHELL at build time. Can never go stale. Removed the fragile
+manifest-fetch + /dist/app.js fallback from SW install handler.
+
+### CDP Security.setIgnoreCertificateErrors for SW E2E
+Playwright's `ignoreHTTPSErrors: true` handles page navigation but NOT SW registration
+(secure context requirement). CDP `Security.setIgnoreCertificateErrors` via
+`page.context().newCDPSession(page)` enables SW.register() over self-signed HTTPS.
+Combined with `--ignore-certificate-errors` launch arg.
+
+### Forward-only at TWO layers (defense-in-depth)
+1. Server (T184): `/api/trace` strips backward keys using FORWARD_KEYS map
+2. Client (T181): forward-only.ts `forwardOnly(obj)` filter on all 8 DetailViews
+Both layers use the same FORWARD_KEYS constant from TraceModel.ts.
+
+### Chain narrowing: two modes, same chain
+SCENARIO_FORWARD: UC→classes[]→Class.methods[] (fan-out all methods)
+TRACE_FORWARD: UC→method (singular), Method→implementation (singular)
+Divergence ONLY at UC→Method hop. Navigation layer (Sprint→Task→UC) identical both.
+Tree component passes `data-mode` attribute → `modeParam` on fetch calls.
+
+### Let's Encrypt cert auto-detect
+server.ts checks /etc/letsencrypt/live/<domain>/fullchain.pem at startup.
+If present → LE cert. If absent → self-signed fallback. LE_DOMAIN env var overrides.
+Startup log shows which cert source is active.
+
+### Task→UC fill from PUML
+PUML <<UseCase>> blocks have `task: Tnnn` — parse with regex, match T-number to task
+slugs in scenario index. S16 PUML yielded 15 links. S17 UCs owned by Sprint (not Task)
+need explicit Task→UC mapping.
+
+### Bridge Implementation pattern
+When [impl:uuid:] shares UUID with a Task (S14/S15 convention), create a DEDICATED
+Implementation unit with a fresh UUID. Link it to a reachable Method. Otherwise the
+Test→Impl→Method chain breaks because the "impl" is actually a Task.
+
+### Skill manifest foundation
+4 skills exist in src/ts/scenario/skills.ts (T138): captureQuote, proposeTask,
+walkChain, statusTransition. All tested. Not yet exposed via API or .skill manifests.
+Next: ior:class:Skill scenario units with parameter schemas + impl IOR tracing.
