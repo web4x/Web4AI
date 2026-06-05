@@ -41,4 +41,7 @@ ONLY 2 ITEMS LEFT, BOTH TRON:
 T129 S17 gate closes after Tron QA. Team fully caught up — no idle, no manufactured work.
 Every report → derive+route next (#71). SM monitor; rewind via trainer.
 
+## POST-REWIND VERIFY 2026-06-05 (#3)
+Rewound + recovered from this file. Verified: live=v0.5.87 (uptime ~2.8h, 9 real rooms). All 5 agents idle = LEGITIMATE (S17 dev done+verified; only the 2 Tron items remain — cert run + QA batch sign-off scrum.pmo/tron-qa-batch-2026-06-05.md). No drift, no manufactured work. Re-task the instant Tron acts on cert or QA, or any new literal → req.
+
 ## HARNESS: #29-57 + T173-186 done; #58 T180 in flight (Track1 Tron-blocked); #37 S17 parent open until T180/T184/T185 close + T129 gate.
