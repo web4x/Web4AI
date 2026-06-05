@@ -1,7 +1,7 @@
-# robbin-po Context — SM-triggered save 2026-06-05
+# robbin-po Context — SM-triggered save 2026-06-05 (#2)
 
 **Role:** PO | **Pane:** robbinTeam:0.0 | **Project:** RawBin | **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
-**Server:** https://home.donges.it:4444 — **v0.5.84 LIVE** (iphone:0.1). 886f9815 removed clients.claim offline race.
+**Server:** https://home.donges.it:4444 — **v0.5.87 LIVE** (iphone:0.1). LE cert auto-detect + self-signed fallback staged (bb828692).
 **Tron:** iphone:0.0 | SM TRONinterface:0.1 | agent-trainer baseTeam:0.0
 **Team:** 0.1 architect | 0.2 expert | 0.3 tester | 1.0 planner | 1.1 req
 
@@ -33,10 +33,12 @@ Chain LOCKED 7-step: requirement→task→usecase(s)→class→method→implemen
 - #17 NEVER fake-suffix uuids — real v4 (uuidgen). Caught repeatedly (PUML method uuids, req atoms).
 - Read whole output (no |head/tail/grep when verifying).
 
-## NEXT (post-save anchor)
-1. Tron runs certbot (T180 Track 1) → expert wires cert + deploys → lockout clears.
-2. Expert: T185 38-uuid align → T184 forward-only-emit. Tester re-verifies each.
-3. Every Tron literal → req atomic → planner → architect → expert → tester under STRICT verify bar.
-4. SM proactive monitor; rewind via trainer; fleet resilient.
+## NEXT (post-save anchor #2 — 2026-06-05 v0.5.87)
+ALL S17 DEV DONE+VERIFIED. T184 (forward-only 44/44, 0 back-keys), T185 (38/38+14/14 exact uuids), T179 (SW-active E2E 4/4) all tester-verified strict. T180 Track1 PRE-STAGED (bb828692 v0.5.87 — server auto-detects /etc/letsencrypt/live/home.donges.it/ cert, self-signed fallback).
+ONLY 2 ITEMS LEFT, BOTH TRON:
+1. **Tron runs certbot** (DNS-01 `--manual --preferred-challenges dns` if port80 closed, OR `--standalone` if port80 open) → `git pull && npm run build && npm run dev` → log 'SSL: Let's Encrypt cert' → real device SW registers → LOCKOUT CLEARS. Expert staged code = instant pickup.
+2. **Tron QA-signs** the batch: scrum.pmo/tron-qa-batch-2026-06-05.md (29 strict 🧪 + 33 bonus ✅). Recommended: spot-check 3 + single batch-approve commit (S5-S8 precedent).
+T129 S17 gate closes after Tron QA. Team fully caught up — no idle, no manufactured work.
+Every report → derive+route next (#71). SM monitor; rewind via trainer.
 
 ## HARNESS: #29-57 + T173-186 done; #58 T180 in flight (Track1 Tron-blocked); #37 S17 parent open until T180/T184/T185 close + T129 gate.
