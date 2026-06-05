@@ -108,6 +108,47 @@ Seven UUID tag types:
 - `[impl:uuid:<v4>]` — in source code comments
 - `[test:uuid:<v4>]` — in test file comments
 
+## Decomposition Protocol (Rules 9-11 — refinement-precedence-analysis.md)
+
+### Rule 9: Deduplication before UUID creation
+
+Before creating a NEW `[requirement:uuid:]`:
+1. Search `compound-requirement-source-*.md` for prior captures on the same topic
+2. Search `requirements.md` across ALL sprints for existing atoms covering the behavior
+3. **If match:** annotate the existing requirement with Tron's new quote. Do NOT create a new UUID.
+4. **If genuinely new:** create new atomic requirement with new UUID
+
+### Rule 10: Exhaustive verb × noun cross-product gate
+
+At capture time, exhaust the compound source:
+1. List every VERB (action) in the Tron text
+2. List every NOUN (component/entity) in the Tron text
+3. Cross-product: does each verb apply to each noun?
+4. For each cell, write the ONE acceptance criterion
+5. Confirm no existing requirement already covers this behavior
+6. Signal "decomposition COMPLETE" to planner (commit message or explicit message)
+
+**Planner MUST NOT create task files until decomposition is signaled complete.**
+
+### Rule 11: Compound source is INPUT, not OUTPUT
+
+`compound-requirement-source-*.md` preserves Tron's literal words. It is NEVER the authoritative requirement — it is the raw input. The authoritative requirements are the atomic `[requirement:uuid:]` entries in `requirements.md`. Undecomposed compound entries are OPEN ITEMS, not requirements. Planner cannot create tasks from them.
+
+### Atomic Requirement Definition
+
+An atomic requirement is ONE testable sentence. It passes the single-AC test: if you can write exactly one acceptance criterion that verifies it, it's atomic. If you need multiple ACs for different behaviors, split further.
+
+### Compound → Atomic → Scenario Unit Flow
+
+```
+1. Tron speaks       → compound-requirement-source.md (verbatim, timestamped)
+2. Req-eng decomposes → requirements.md (atomic [requirement:uuid:] entries)
+   GATE: signal "decomposition COMPLETE" before any task creation
+3. Req-eng creates   → Requirement scenario.json units in scenario/index/
+4. Req-eng fills     → Task.coveredRequirements[] on each implementing task unit
+5. Planner creates   → Task files/units with forward-links FROM requirements
+```
+
 ## Process Rules
 
 1. **Task file first** — write the task file before any implementation
@@ -115,6 +156,8 @@ Seven UUID tag types:
 3. **Stay in lane** — write requirements, don't create bug/feature tasks unprompted
 4. **Read before writing** — audit current codebase (routes, models, patterns) before specifying
 5. **Report with TRON DIRECTIVE prefix** — when task originates from Tron
+6. **No character limits** — NEVER specify maxlength or arbitrary boundaries on user input (Tron directive)
+7. **Forward-only chain** — requirements link forward to tasks (Requirement.tasks[]). No Task.requirements[] back-ref. Display groups by task at render time.
 
 ## Tools
 
@@ -122,3 +165,10 @@ Seven UUID tag types:
 - Two working dirs: planning in `workspaces/Web4RawBin/`, code in `2cuGitHub/Web4RawBin/`
 - Use `cat -n` via Bash to read files (Read tool may be stale after linter mods)
 - Commit message format: `robbin-req: <summary>`
+
+## Reference Documents
+
+- `scrum.pmo/standards/traceability-standard.md` — UUID tag formats + chain rules
+- `scrum.pmo/standards/refinement-precedence-analysis.md` — Rules 1-11, three-way protocol
+- `scrum.pmo/templates/task-template.md` — canonical task file format
+- `session/agents/robbin-req/learnings.md` — accumulated patterns + Tron corrections
