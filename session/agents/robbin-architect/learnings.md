@@ -194,3 +194,39 @@ Tron explicitly named: Tree (generic base) ← Traceability extends Tree (chain-
 
 ## Always Verify Expert Impl Against Design (pattern)
 T174 R-M3: design said data-seed-ior, expert used fetch('/api/trace') full graph. T174 R-M3d: design said seed-ready event, expert used setTimeout(100). T175: design said 2-layer hierarchy, expert collapsed to 1. Pattern: expert optimizes for speed, collapses abstractions. Architect must audit shipped code post-impl and flag divergence before tester verifies.
+
+## UUID Collision: Class UUID = Task UUID (T185)
+TraceObject class and T101 task share UUID `101a0b1c-...`. Same for RbTraceTree/T108 (`108b7283-...`). TraceGraph.register() rejects duplicates — overlay's `if (graph.has(uuid)) continue` skips the Class if Task was registered first from scanRepo. Scenario index stores both (different IOR: `ior:class:Task` vs `ior:class:Class`). When linking UC→Class, the class UUID works in scenario JSON but may collide in the live TraceGraph. Expert's "9 dedicated Impl units for UUID collisions" pattern (T178 cc152130) is the established fix for these.
+
+## Champagne = Structural + Intentional (T191)
+A requirement is champagne-verified iff a test is BOTH structurally reachable (chain walk) AND declares the requirement in verifies[]. Structural alone = code coverage. Intentional alone = orphan test. The 96% "mismatch" is GENUINE: shared-class tests cover code, not intention. Fix: Test.verifies[] field (populated via T-number→Task→Requirement resolution). The fast win: parse existing test annotations into verifies[] — no new tests needed for the existing 44.
+
+## Class.method Singular is GLOBAL, Not Per-UC (T187 narrowing bug)
+Class.method was populated once by the T187 verb-matching pipeline — one value per class. If a Class is shared by N UCs, Class.method = the LAST UC's match, not the current UC's. The tree picks the wrong method because it reads Class.method without UC context. Fix: server returns `chainMethod` hint from the UC; client uses that on Class expand instead of the global field.
+
+## scanRepo Fallback Bypasses FORWARD_KEYS (T194/T197)
+server.ts:572-584: when a scenario unit has empty forward arrays, the fallback calls scanRepo() and dumps `Object.values(links).flat()` — ALL links including backward. This is the same bug class as T181 (Object.values in tree walker). The fallback MUST iterate fwdKeys[type] only. Additionally, a type-check invariant (EXPECTED_CHILD map) should filter wrong-type children as defense-in-depth.
+
+## Verb→Method Fallback to .render (T195 contacts fix)
+When the verb-matching pipeline finds no method matching a UC's verb, it falls back to `.render`. This creates dishonest traceability — the render method isn't the actual handler. Always verify: is the mapped method the ACTUAL handler for the verb? If not, create the correct Method unit (e.g., onClickDelegate for click-verb UCs) and remap.
+
+## Sprint Deduplication: Two Migration Passes Created Duplicates (T198)
+T128.1 + T136 both created Sprint scenario units without dedup checking. Result: 9 sprints had 2 units each. Fix: delete one per pair (keep richer), REPOINT all references from deleted UUID to kept UUID BEFORE deletion. Always grep the full index for references before deleting any scenario unit.
+
+## Honest Champagne Denominator (T195)
+82 total requirements → subtract 36 orphan-by-design (infra/process + no-task) → subtract 11 artifacts (table-header parse bugs) = 35 feature requirements. The champagne metric must use the honest denominator. A requirement is "feature" if ANY of its tasks are feature tasks. Mark infra reqs orphan-by-design with model.orphanByDesign=true + model.orphanReason.
+
+## R18.8: Chain Root vs Browser Tree Root
+"Chain root" (Requirement) ≠ "browser tree root" (Sprint). Prior specs conflated these — rework all instances of "tree ROOT" to "CHAIN ROOT." Three concerns: Chain (WHY — forward-only), Dependency (WHAT FIRST — DAG metadata), Navigation (HOW TO BROWSE — Sprint→Task→coveredReqs). The chain starts at Requirement; the browser starts at Sprint.
+
+## Two-Path Tree Rendering (T178 lazy-load diagnosis)
+rb-trace-tree.ts has TWO rendering paths: Path 1 (full graph from /api/trace → `nodeEl()` uses `obj.children` from in-memory graph — WORKS). Path 2 (seed mode from /api/trace/children → `buildSeedNode()` — BROKEN: passes `[]` for grandchildren, ignores `hasChildren` flag, expand only toggles display). Always check which path is active when diagnosing tree bugs. The `data-seed-ior` attribute switches between them.
+
+## Defense-in-Depth: Forward-Only at Two Layers (T181+T184)
+Server strips backward keys at API emit (T184). Client filters with FORWARD_KEYS in DetailViews + tree (T181). Neither alone is sufficient — server may re-introduce backward keys in future changes; client is the safety net. Both layers must exist.
+
+## Fake-Suffix UUIDs Violate Learning #17 (T185)
+PUML [method:uuid] annotations must use real v4 UUIDs from `uuidgen`, not manually crafted patterns like `101a0b1c-0001-4a01-a001-000000000001`. The fake-suffix pattern creates scenario units that fail validation. Always generate real UUIDs when annotating PUML, then create matching scenario units immediately.
+
+## PUML @startuml Must Match Filename Convention
+Always set @startuml to a path-safe slug matching the filename (e.g., `@startuml s17-architecture` for `s17-architecture.puml`). PlantUML derives SVG filename from the @startuml title. Verify SVG output is >10KB (real diagram) after rendering.
