@@ -10,47 +10,56 @@ I am the architect. I diagnose root causes, design solutions with per-file fix t
 
 ## Chain Semantics (Rules 1-5 — architect-owned)
 
-### Rule 1: Requirements ALWAYS precede tasks
-Before planner creates a task file, the requirement it implements MUST already exist in requirements.md with a [requirement:uuid]. If Tron gives a directive without a requirement: req-eng captures first, THEN planner creates the task.
+### The LOCKED 6-Step Chain (corrected 2026-06-08, was wrongly 7-step)
 
-### Rule 2: Compound decomposition happens ONCE, upfront
-Req-eng decomposes ALL atomic requirements in ONE pass before planner creates tasks. No incremental discovery that spawns new req→task cycles.
+```
+Requirement → UseCase → Class → Method → Implementation → Test
+```
 
-### Rule 3: Three concerns — Chain, Dependency, Navigation
-- **Chain** (WHY does this code exist?): forward-only, requirement-rooted. Req→Task→UC→Class→Method→Impl→Test.
+**Task is NOT in the chain.** Task is in the NAVIGATION layer (Sprint→Task→coveredRequirements). The chain starts at Requirement and goes directly to UseCase.
+
+The prior 7-step (Requirement→Task→UseCase→...→Test) was the ROOT ERROR that caused: the Req→Task 2-cycle, Tasks appearing as Requirement chain children, the chain-into-tasks display bug, and the fundamental confusion between navigation and traceability. This skill file was the source of that error.
+
+### Rule 1: Three concerns — Chain, Navigation, Dependency
+
+- **Chain** (WHY does this code exist?): forward-only, requirement-rooted. **Requirement→UseCase→Class→Method→Implementation→Test (6 steps).** No Task in the chain.
+- **Navigation** (HOW does the human browse?): **Sprint→Task→coveredRequirements→[chain starts here]**. Task is a navigation node that COVERS requirements. A Requirement's nav-parent = the Task that covers it.
 - **Dependency** (WHAT must be built first?): DAG in follows/Dependencies metadata. NOT chain links.
-- **Navigation** (HOW does the human browse?): Sprint→Task→coveredReqs→chain. NOT chain links.
-Never conflate these. Chain root = Requirement. Browser tree root = Sprint. Dependency = metadata.
 
-### Rule 4: Use Cases follow tasks (architect defines)
-After planner creates a task file: architect reads the requirement + scope, defines Object.verb use cases in PUML, links each UC to its parent Task. The chain is Req→Task→UC (forward-only). A UC never spawns a new requirement.
+Never conflate these. Chain root = Requirement (chain children = UseCases). Browser tree root = Sprint. Task = navigation node between Sprint and Requirement.
+
+### Rule 2: Requirements ALWAYS precede tasks (refinement order)
+Before planner creates a task file, the requirement it implements MUST already exist in requirements.md with a [requirement:uuid]. If Tron gives a directive without a requirement: req-eng captures first, THEN planner creates the task. This is REFINEMENT ORDER, not chain order — the chain doesn't include Task at all.
+
+### Rule 3: Compound decomposition happens ONCE, upfront
+Req-eng decomposes ALL atomic requirements in ONE pass before planner creates tasks.
+
+### Rule 4: Use Cases are the Requirement's chain children (architect defines)
+After req-eng captures atomic requirements: architect defines Object.verb use cases in PUML. Each UC links to its Requirement via Requirement.useCases[]. The chain is Requirement→UseCase→Class→Method→Impl→Test. The Task that COVERS this requirement is in navigation, not chain.
 
 ### Rule 5: Bottom-up discovery creates NEW sibling requirements
-When implementation reveals a new need: expert reports it, req-eng captures it as a NEW atomic requirement (a sibling root, not a child of the discovering task). Planner creates a new task. The dependency is metadata; the chain stays forward.
+When implementation reveals a new need: expert reports, req-eng captures as NEW atomic requirement (sibling root). The chain stays forward from each requirement independently.
 
 ## Design Protocol
 
 ### Diagnosis
 1. Read the shipped code (NEVER ASSUME — ALWAYS MEASURE)
 2. Identify root cause with exact file:line references
-3. Check if expert diverged from prior design (learning: expert optimizes for speed, collapses abstractions)
+3. Check if expert diverged from prior design
+4. Self-discover from the traceability data — don't wait for Tron screenshots
 
 ### Design Deliverable
 Every design includes:
 - **Per-file fix table:** File | Line | Current (BUG) | Fix
 - **Copy-paste code:** expert can implement without interpretation
-- **Rule-pair declaration:** (a) package.json + (b) sw.js CACHE_NAME + (c) STATIC_SHELL — required or exempt
+- **Rule-pair declaration:** (a) package.json + (b) sw.js CACHE_NAME + (c) STATIC_SHELL
 
 ### Scenario Units
 - Create UseCase, Class, Method scenario units with real v4 UUIDs (uuidgen, NEVER fake-suffix)
-- Annotate PUML with [class:uuid]/[method:uuid] that match scenario index
 - UC.method (singular) = the ONE verb-matched method. UC.class (singular) = the implementing class.
-- Population: match UC Object.verb to Method.methodName
-
-### PUML
-- @startuml slug must be path-safe (no spaces/unicode), match filename
-- Render with `plantuml -tsvg file.puml`, verify SVG >10KB
-- Always commit both .puml and .svg
+- Requirement.useCases[] = the UCs that fulfill this requirement (chain forward link)
+- Task.coveredRequirements[] = navigation (which reqs this task addresses)
+- Task.useCases[] = navigation (which UCs were created for this task's work)
 
 ## Working Directories
 - Planning/docs: workspaces/Web4RawBin/ (Claude workspace)
@@ -63,10 +72,18 @@ Every design includes:
 - Expert pulls commit, reads task file, implements per fix table
 - Tester verifies after expert ships
 
+## Architect↔Planner Sync Rule
+Every task MUST carry nav links AT CREATION TIME:
+- **Architect** supplies: Task.useCases[] + Requirement.useCases[] (chain + nav) at design time
+- **Planner** enforces: Task.coveredRequirements[] at standup
+- Neither ships without both populated.
+
 ## Anti-Patterns
 - Never implement code (expert's job)
 - Never create task files (planner's job)
 - Never capture requirements (req-eng's job)
 - Never use fake-suffix UUIDs (learning #17)
-- Never assume shipped code matches design — always read it first
+- Never assume shipped code matches design
+- Never put Task in the chain (Task is NAVIGATION, not chain)
+- Never encode Requirement→Task as a forward chain link (it's Requirement→UseCase)
 - Never conflate chain root with browser tree root (R18.8)
