@@ -438,3 +438,38 @@ Test→Impl→Method chain breaks because the "impl" is actually a Task.
 4 skills exist in src/ts/scenario/skills.ts (T138): captureQuote, proposeTask,
 walkChain, statusTransition. All tested. Not yet exposed via API or .skill manifests.
 Next: ior:class:Skill scenario units with parameter schemas + impl IOR tracing.
+
+## Session 3 Learnings (2026-06-07/08)
+
+### Source link filter: suppress .scenario.json sourceFiles
+Many conceptual units (bridge impls, abstract classes, TraceLinks) have
+sourceFile pointing to their own .scenario.json — not a real .ts source.
+Server must filter: if sourceFile contains `.scenario.json`, suppress it.
+Only real .ts/.puml files should generate Browse/Monaco links.
+
+### Sprint objects not in TraceModel graph
+Sprint units exist in scenario index but NOT in the /api/trace graph
+(scanRepo only produces Requirement/Task/UC/Class/Method/Impl/Test).
+rb-detail-view must fall back to fetchDetailData() when graph.get()
+returns null — otherwise Sprint detail shows "object not found" and
+never renders children.
+
+### IOR normalization: 3 forms everywhere
+Every IOR entry point (client ?ior= param, renderSeed attribute,
+/api/trace/children endpoint, IORResolver) must handle all 3 forms:
+bare UUID, ior:instance:UUID, UUID.scenario.json. Strip prefix/suffix
+before use. The normalize() helper in ior-resolver.ts is the canonical
+implementation; client-side uses inline .replace() chains.
+
+### T176: ignoreHTTPSErrors handles ES modules
+Playwright's ignoreHTTPSErrors:true (already in config) successfully
+handles type=module script loading over self-signed HTTPS. No cert
+workaround (HTTP fallback, mkcert) needed. R-O was not a systemic issue.
+
+### R18.29-31: unitLinks[] atomic symlink lifecycle
+model.unitLinks[] declares symlink paths relative to scenario/ root.
+put() auto-syncs: if unitLinks[] present, calls syncLinks() which
+creates/updates all declared symlinks. addLink/removeLink mutate both
+the JSON and the on-disk symlink atomically. scenarioRoot = path.dirname(basePath).
+Backfill: read existing symlinks → readlinkSync → extract UUID → populate unitLinks[].
+267/282 symlinks backfilled (15 orphans skipped).
