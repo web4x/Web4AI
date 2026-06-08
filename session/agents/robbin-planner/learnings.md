@@ -225,5 +225,19 @@ S2-S9 Sprint scenario units with empty `Sprint.tasks[]` are **by-design — hist
 ## 35. Wakeup-prompt save-hash can be wrong — trust context.md not the prompt (2026-06-08)
 The rewind/wakeup prompt cited "Last save 5790a53" but that hash does not exist in this repo. My actual save anchor (committed in context.md) was `8ce33c87`. Lesson: when re-establishing post-rewind, treat context.md as the source of truth for the save anchor; if a wakeup prompt cites a different hash, verify via `git log <hash>` and ignore the prompt's hash on mismatch. Pattern: always anchor recovery to the **commit chain recorded in context.md**, not to the harness-supplied hash.
 
+## 37. SKILL.md must be APPLIED per-cycle, not just read-at-boot — and the Planner↔Architect Sync Rule is the structural prevention for the systemic chain-wiring gap (PO 2026-06-08)
+PO + architect surfaced the systemic gap: 100% empty `coveredRequirements[]` across ~120 tasks (S01-S17) + 46% empty `useCases[]`. Root cause: both architect's and my SKILL.md were dormant — read at rewind, not applied as a per-cycle pre-gate. Empty chain-wiring fields on committed task units is a SYNC FAILURE between planner and architect, not a content problem; the chain content was authored elsewhere (requirements.md, UC PUMLs) but never wired BACK into the Task unit.
+
+**Fix (paired SKILL.md edits 2026-06-08, my commit pending; architect's already landed):**
+
+- Architect supplies `Task.useCases[]` at design time, BEFORE handing to expert. Never designs a UC without immediately wiring it back to its `Task.useCases[]`.
+- Planner enforces `Task.coveredRequirements[]` at stand-up, BEFORE committing the task file. If req-eng hasn't formalised the requirement scenario unit, use a real v4 placeholder (per #17) and note the placeholder status.
+- Neither role ships a task without BOTH fields populated.
+- This pre-gate runs as part of the per-cycle triple-check, alongside the rule-pair (#15/#16) and the Tron-QA gate (#9/#10). Report format: "(a) coveredReqs populated (b) useCases populated (c) ship rules + Tron gate respected".
+
+**Operating discipline:** the SKILL.md "Operating Discipline" section is now at top of the file — first thing loaded, last thing checked before every sync report. Treat assertion-without-measurement as dormant-skill behavior; before reporting "sync clean / audit 0", walk the triple-check explicitly with grep/unit-fetch verification.
+
+**Anti-pattern (the dormant-skill incident itself):** my own SKILL.md had the rule-pair (#15/#16) documented but the new chain-wiring gate was missing. Same with architect's. Reading SKILL.md at boot is necessary but not sufficient; I must APPLY it per cycle. Treat new PO learnings as triggers to update SKILL.md (the active pre-gate set), not just learnings.md (the diary). Learnings is the source; SKILL.md is the load-bearing enforcement.
+
 ## 36. SM broadcast save-directive applies to all agents (2026-06-08)
 When the SM (TRONinterface:0.1) broadcasts "commit your current work to context.md and learnings now" (even addressed to a sibling agent like @scrum-master, with "try again" repetitions), treat it as a TEAM-WIDE save-before-rewind protocol. Save preemptively — don't wait for an addressed directive. Pattern: write context.md updates → commit, write learnings updates → commit, then respond with one-line confirmation. The "try again" repetitions are SM escalating because someone didn't act; if no other agent in the team-board PER-AGENT section has obvious in-flight context, assume planner is the latent target.
