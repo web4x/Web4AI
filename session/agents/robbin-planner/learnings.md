@@ -225,6 +225,24 @@ S2-S9 Sprint scenario units with empty `Sprint.tasks[]` are **by-design — hist
 ## 35. Wakeup-prompt save-hash can be wrong — trust context.md not the prompt (2026-06-08)
 The rewind/wakeup prompt cited "Last save 5790a53" but that hash does not exist in this repo. My actual save anchor (committed in context.md) was `8ce33c87`. Lesson: when re-establishing post-rewind, treat context.md as the source of truth for the save anchor; if a wakeup prompt cites a different hash, verify via `git log <hash>` and ignore the prompt's hash on mismatch. Pattern: always anchor recovery to the **commit chain recorded in context.md**, not to the harness-supplied hash.
 
+## 38. Per-cycle pre-gate triple-check LIVE — placeholder-then-canonicalize pattern (T200 → T201 → T200 release, 2026-06-08/09)
+First live applications of the per-cycle pre-gate. Pattern that worked end-to-end:
+
+**Stand-up with placeholders (T200 `da69ebbd`, T201 `124186ae`):**
+- Pre-gate (a) chain wiring satisfied with planner-generated v4 placeholders for `coveredRequirements[]` + `useCases[]` slots; adoption-note in the file so req-eng / architect can swap in canonical IORs when their canonical units land.
+- Pre-gate explicitly documented in a `## Pre-gate triple-check` section IN the task file — auditable proof the gate ran.
+
+**Canonicalize-on-release (T200 release `323712b6`):**
+- When the canonical Requirement scenario unit lands (e.g. R18.33 `b64a9d54-…`), swap the placeholder for the canonical IOR.
+- ALSO populate the requirement's `tasks[]` forward-array with the Task IOR — closes the chain-wiring loop both directions.
+- Update Pre-gate section with an "At release" sub-block showing the canonicalization audit trail. Sync Status ⏳→📝 as the release moment.
+
+**Self-reflexive rule (T201):** when the task itself corrects a chain rule, its OWN Traceability MUST use the corrected form. T201 corrected 7-step→6-step, so T201's chain block has NO Task→useCase edge. Fix dogfoods itself — instant tester for the change.
+
+**Emoji-prefix gotcha (T200 `6a49add7`):** the at-a-glance emoji legend (⏳📝🔧✅🧪🏁) is for planning.md task lists ONLY. Inside task-file Status checkbox lines, the audit parser flags MISSING STATUS if emoji appears in `- [x] ⏳ Planned`. Keep task-file Status pure: `- [x] Planned`.
+
+**Architect partnership:** Sync Rule is genuinely paired — architect's parallel block (added before my `780bb36`) + reciprocal audit requests confirm active partnership, not just policy. Per-cycle means CHECK every cycle, not "applied it once when I learned it."
+
 ## 37. SKILL.md must be APPLIED per-cycle, not just read-at-boot — and the Planner↔Architect Sync Rule is the structural prevention for the systemic chain-wiring gap (PO 2026-06-08)
 PO + architect surfaced the systemic gap: 100% empty `coveredRequirements[]` across ~120 tasks (S01-S17) + 46% empty `useCases[]`. Root cause: both architect's and my SKILL.md were dormant — read at rewind, not applied as a per-cycle pre-gate. Empty chain-wiring fields on committed task units is a SYNC FAILURE between planner and architect, not a content problem; the chain content was authored elsewhere (requirements.md, UC PUMLs) but never wired BACK into the Task unit.
 

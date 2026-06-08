@@ -65,17 +65,24 @@ req-eng `15dd69c1` captured R-X1+R-X2 for PUML class diagrams concurrently with 
 ## TRON-QA GATE QUEUE (snapshot)
 - Existing batch file: `scrum.pmo/tron-qa-batch-2026-06-05.md` (S16+S17, 29 strict-verified). **STALE — needs refresh** to include S18 T187-T198 + R18.x + champagne + zero-pad. PO requested prep for one-pass approvable batch (S5-S8 precedent — spot-check-3 + single approve commit).
 
-## DONE THIS SESSION (2026-06-08)
-- `3234be28` **T199 stand-up** — scenario-data-integrity R18.32 backfill (ownerIor + unitLinks[] on every unit). Owners CMM4 4-role: req (R18.32 capture; req-uuid placeholder 76b16118-…) → architect (assess) → expert (backfill) → tester (verify 0 violations). PO directive 2026-06-08. T-number rationale: T199 = free W2 wave slot (T196+T199 skipped per context); T174 reserved for R-M re-fire. task:uuid `f5b8c83e-…`. R18.32 captured by req-eng in compound-source Follow-on H (uncommitted on their side; my task references with placeholder uuid).
-- `69a7a2f8` **Web4Articles audit sweep** — 16 → 0 issues on 3 hand-written planner task files. uuids: `03fb4511-…` (s2-s9-backfill), `abc78991-…` (strict-champagne-21), kept `675cc8e3-…` (r18.13-15). Honest-board: QA Review + Done unchecked throughout.
+## DONE THIS SESSION (2026-06-08/09)
+- `3234be28` T199 stand-up — scenario-data-integrity R18.32 backfill (ownerIor + unitLinks[]). task f5b8c83e-…; R18.32 placeholder 76b16118-….
+- `69a7a2f8` Web4Articles audit sweep — 16→0 issues on 3 hand-written planner task files.
+- `780bb36` SKILL.md UPGRADED — added "Operating Discipline" (per-cycle triple-check) + "Planner↔Architect Sync Rule". Architect paired theirs. Honest admission: SKILL.md had been read-at-rewind, not applied per cycle — same root cause as architect's 100% empty coveredRequirements on ~120 tasks.
+- `da69ebbd` + `6a49add7` **T200 stand-up** — tree↔detail sync, FIRST LIVE pre-gate application. task f84b551a-…; R placeholder c8064a94-…; UC placeholder dbc9ad5f-…. (lesson: emoji prefix belongs in planning.md legend ONLY, not task-file Status — fix 6a49add7.)
+- `124186ae` **T201 6-step chain correction** — multi-layer foundational fix (skill → standards → code → data → views), each layer VERIFIED before next. task 53b926d6-…. SELF-REFLEXIVE: T201's own Traceability uses 6-step (fix dogfoods itself). Supersedes T168 chain definition.
+- `bf7288e` planner SKILL.md +Canonical 6-step Chain Definition (T201 Layer 1 alignment).
+- T201 closed via expert/architect work: `0925a420 d79c3013` Layer 2 standards; `81856abd v0.5.108` Layer 3 code; `f3171e57` Layer 4 data; `84908ea4 v0.5.109` Layer 5 views (PO-verified).
+- `323712b6` **T200 RELEASE** — coveredRequirements canonicalized R18.33 (b64a9d54-… real v4 owned by Sprint 18). T200 ⏳→📝. R18.33 scenario unit tasks[] populated with T200 IOR (chain wiring loop closed both sides). useCases[] placeholder 88a1c3a0-… remains pending architect quick-design.
 
 ## IMMEDIATE TODO (next session)
-1. **T174 R-M1/M2/M3/M4** — still queued, PO directive cut off mid-spec by rewind: "STAND UP T174 (or split per planner's call) covering R-M1/M2/M3/M4. R-M3 is the meatiest: new /scenario route reusing /trace view components but seeded from a single IOR + …" (truncated). R-M1-M4 NOT in compound-source-2 yet (Follow-ons A→J, dup C-E,D — no R-M). Awaits req-eng capture OR PO re-fire with full spec.
-2. **Watch for T199 follow-through**: req-eng formal R18.32 Requirement unit emit (replaces my placeholder req:uuid); architect refinement; expert backfill commit; tester verification. Sync T199 status box on each role's check.
-3. Re-verify champagne metric (live `npm run trace:audit:strict` — earlier 23/44 7-hop; architect/expert work has landed since).
-4. Refresh `scrum.pmo/tron-qa-batch-2026-06-05.md` → new dated file with S18 work (T187-T198 + R18.x + champagne + zero-pad + T199).
-5. R18.20-R18.23 + R18.26-R18.28 — verify `ccdffd64` covered.
-6. Allowlist for empty S1-S9 `Sprint.tasks[]` (architect's lane; tracked in task-planner-s2-s9-backfill.md).
+1. **T200 follow-through** — architect quick-designs sync semantics + canonicalizes useCases[] placeholder 88a1c3a0-…; expert builds (rule-pair (a)+(b) at impl); tester standing by for R18.33 ACs. Sync T200 📝→✅ on expert ship; ✅→🧪 on tester PASS.
+2. **T201 closure cleanup** — T201 task file checkboxes may need sync to Done (PO-verified through Layer 5); T168 may need "superseded by T201" note per T201 DoD. Verify next cycle.
+3. **T199 follow-through** — req-eng formal R18.32 unit emit; architect refinement; expert ownerIor/unitLinks backfill (in flight via 23907dd4 + 4147a6fd + d383970f); tester verification.
+4. **T174 R-M1/M2/M3/M4** — STILL QUEUED, cut off mid-spec ("/scenario route reusing /trace view components but seeded from a single IOR + …"). R-M1-M4 NOT yet captured. Awaits PO re-fire.
+5. Refresh `scrum.pmo/tron-qa-batch-2026-06-05.md` → new dated file with S18 (T187-T201) + champagne + zero-pad.
+6. Allowlist for empty S1-S9 `Sprint.tasks[]` (architect's lane).
+7. **Per-cycle pre-gate triple-check on EVERY sync** (operating discipline 780bb36 — NOT just at boot/rewind).
 
 ## REWIND-NOTE
 - Wakeup prompt cited "Last save 5790a53" — that hash does NOT exist in the tree (per learning #35). Context.md is source of truth.
