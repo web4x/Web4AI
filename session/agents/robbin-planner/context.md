@@ -4,10 +4,10 @@
 **Pane:** robbinTeam:1.0 · **Project:** Web4RawBin · **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
 **Sprint tool:** `SPRINT_PMO_DIR=<repo>/scrum.pmo /Users/Shared/Workspaces/AI/Claude/components/OOSH/dev.claude/sprint {status|audit}`
 
-## Current State (v0.5.106 — bump landed since previous save)
-- Repo HEAD: `8ce33c87` (planner: S18 sprints.json symlink tree + README nav link to scenario-data-pipeline standard). My save anchor unchanged.
-- **Since previous save:** req-eng `6cf7b901` (S14 quote placeholders + R18.29-31 unitLinks lifecycle) + `ccdffd64` (canonicalised ALL tronQuote — zero inferred markers remaining). My R18.20-R18.23/R18.26-R18.28 follow-up may now be moot — verify req's canonicalization covered them.
-- Uncommitted on disk: `compound-requirement-source.md` (M — likely Tron R-M capture WIP by req-eng).
+## Current State (v0.5.106 — anchor 69a7a2f8)
+- Repo HEAD: `69a7a2f8` (planner: 16→0 audit sweep — Web4Articles sections added to 3 hand-written task files).
+- My recent planner chain: 8ce33c87 → 3234be28 (T199 stand-up) → 69a7a2f8 (audit sweep).
+- **Since prev save (8ce33c87):** req-eng `6cf7b901` (S14 quote placeholders + R18.29-31 unitLinks lifecycle) + `ccdffd64` (canonicalised ALL tronQuote — zero inferred markers). req's compound-source still has uncommitted M on disk (R-M / Follow-on H R18.32 capture WIP).
 - **Sprint 17 closed** — cascade fired 2026-06-05 (T178 KEYSTONE `452f8d5d` 44/44 7-hop reach; T128.4 ✅; T178/T124/T168 🧪 Tron QA pending).
 - **Sprint 18 ACTIVE** — `sprint-18-chain-method-scope`. Sprint uuid `5b950725-a6f6-4d45-b802-4784ee6ef962`. **DOGFOOD COMPLETE 2026-06-07/08.**
 
@@ -65,16 +65,20 @@ req-eng `15dd69c1` captured R-X1+R-X2 for PUML class diagrams concurrently with 
 ## TRON-QA GATE QUEUE (snapshot)
 - Existing batch file: `scrum.pmo/tron-qa-batch-2026-06-05.md` (S16+S17, 29 strict-verified). **STALE — needs refresh** to include S18 T187-T198 + R18.x + champagne + zero-pad. PO requested prep for one-pass approvable batch (S5-S8 precedent — spot-check-3 + single approve commit).
 
+## DONE THIS SESSION (2026-06-08)
+- `3234be28` **T199 stand-up** — scenario-data-integrity R18.32 backfill (ownerIor + unitLinks[] on every unit). Owners CMM4 4-role: req (R18.32 capture; req-uuid placeholder 76b16118-…) → architect (assess) → expert (backfill) → tester (verify 0 violations). PO directive 2026-06-08. T-number rationale: T199 = free W2 wave slot (T196+T199 skipped per context); T174 reserved for R-M re-fire. task:uuid `f5b8c83e-…`. R18.32 captured by req-eng in compound-source Follow-on H (uncommitted on their side; my task references with placeholder uuid).
+- `69a7a2f8` **Web4Articles audit sweep** — 16 → 0 issues on 3 hand-written planner task files. uuids: `03fb4511-…` (s2-s9-backfill), `abc78991-…` (strict-champagne-21), kept `675cc8e3-…` (r18.13-15). Honest-board: QA Review + Done unchecked throughout.
+
 ## IMMEDIATE TODO (next session)
-1. **T174 R-M1/M2/M3/M4 STAND-UP** — PO directive 2026-06-08 was cut off mid-spec by rewind: "STAND UP T174 (or split per planner's call) covering R-M1/M2/M3/M4. R-M3 is the meatiest: new /scenario route reusing /trace view components but seeded from a single IOR + …" (truncated). PREREQ: R-M1-M4 not yet in `compound-requirement-source.md` (goes Follow-on A→J + dup C-E,D, no R-M); req-eng must capture verbatim first, OR PO re-fires the full directive. When standing up: generate v4 uuids via uuidgen for task + each R-Mx; apply learning #20 reconcile if architect drops design ahead.
-2. Re-verify champagne metric (live `npm run trace:audit:strict` — earlier 23/44 7-hop; architect/expert work has landed since `ccdffd64` + `6cf7b901`).
-3. Refresh `scrum.pmo/tron-qa-batch-2026-06-05.md` → new dated file with S18 work (T187-T198 + R18.x + champagne + zero-pad).
-4. T191-T194 + T195/T197/T198 confirm tester-verified state.
-5. R18.20-R18.23 + R18.26-R18.28 — verify `ccdffd64` covered (likely done); if not, follow up with req-eng.
+1. **T174 R-M1/M2/M3/M4** — still queued, PO directive cut off mid-spec by rewind: "STAND UP T174 (or split per planner's call) covering R-M1/M2/M3/M4. R-M3 is the meatiest: new /scenario route reusing /trace view components but seeded from a single IOR + …" (truncated). R-M1-M4 NOT in compound-source-2 yet (Follow-ons A→J, dup C-E,D — no R-M). Awaits req-eng capture OR PO re-fire with full spec.
+2. **Watch for T199 follow-through**: req-eng formal R18.32 Requirement unit emit (replaces my placeholder req:uuid); architect refinement; expert backfill commit; tester verification. Sync T199 status box on each role's check.
+3. Re-verify champagne metric (live `npm run trace:audit:strict` — earlier 23/44 7-hop; architect/expert work has landed since).
+4. Refresh `scrum.pmo/tron-qa-batch-2026-06-05.md` → new dated file with S18 work (T187-T198 + R18.x + champagne + zero-pad + T199).
+5. R18.20-R18.23 + R18.26-R18.28 — verify `ccdffd64` covered.
 6. Allowlist for empty S1-S9 `Sprint.tasks[]` (architect's lane; tracked in task-planner-s2-s9-backfill.md).
 
 ## REWIND-NOTE
-- Wakeup prompt cited "Last save 5790a53" — that hash does NOT exist in the tree. My actual save anchor is `8ce33c87`. Context.md is the source of truth; the prompt-fragment hash was wrong.
+- Wakeup prompt cited "Last save 5790a53" — that hash does NOT exist in the tree (per learning #35). Context.md is source of truth.
 
 ## MY RECENT COMMIT CHAIN (post-rewind anchor)
 - `8ce33c87` S18 sprints.json symlink tree + README scenario-data-pipeline link
