@@ -1,29 +1,39 @@
-# robbin-po Context — clean snapshot 2026-06-05 (save #4)
+# robbin-po Context — clean snapshot 2026-06-08 (save #5, pre-rewind)
 
 **Role:** PO | **Pane:** robbinTeam:0.0 | **Project:** RawBin | **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
-**Server:** https://home.donges.it:4444 — **v0.5.87 LIVE** (iphone:0.1), uptime ~5.4h, 9 real rooms.
-**Tron:** iphone:0.0 | SM TRONinterface:0.1 (monitors me) | agent-trainer baseTeam:0.0
-**Team:** 0.1 architect | 0.2 expert | 0.3 tester | 1.0 planner | 1.1 req — ALL legitimately idle (blocked on Tron, not drift).
+**Server:** https://home.donges.it:4444 — **v0.5.106 LIVE** (iphone:0.1) — going higher as R18.29-31 deploys.
+**Tron:** iphone:0.0 | SM TRONinterface:0.1 (actively helping: idle-catch + unsent-catch + report-discipline) | agent-trainer baseTeam:0.0
+**Team:** 0.1 architect | 0.2 expert | 0.3 tester | 1.0 planner | 1.1 req | **2.0 robbin-skill-expert** (Tron's skill agent; T189 done)
 
-## SPRINT 17 — Scenario Units / IOR / Traceability Browser — DEV DONE + VERIFIED
-- **Chain LOCKED, 7-step:** requirement→task→usecase(s)→class→method→implementation→test(s). 1:N at plural hops. Atomic one-sentence reqs are ROOTS. FORWARD-ONLY (no back-refs).
-- **Storage:** scenario/index/<5-deep char dirs>/<uuid>.scenario.json · scenario/sprints.json/ (ln tree, speaking names) · scenario/sprints.md/ (generated views). Unit shape: {ior=class-loader, model={attrs+children IOR arrays}, ownerIor}.
-- **Verified strict (per-Test 7-hop + live UX repro, not API-only):** T178 keystone 44/44 (every test reachable from Req root), T179 SW auto-activation E2E 4/4, T181/T184 forward-only (0 back-keys), T185 (38/38 method:uuid + 14/14 class exact), T186 tree lazy-load (live 7-level expand), T128.1 Sprint-1 exemplar + T128.2 S10-S16 migration, file-browser symlink support.
+## DONE + STRICTLY VERIFIED
+- **S17** Scenario Units / IOR / Traceability Browser — complete.
+- **S18** chain method-scope + detail-view + dogfood:
+  - R18.1-8 chain narrowing (UC.method singular, /trace vs /scenario, Sprint→Task→coveredReq nav-root, 3-concern model Chain/Dependency/Navigation)
+  - R18.9-R18.13 detail-view: all-children (incl Sprint→tasks), 5-level Parent chain (ownerIor), Browse-File→Monaco#L{line} (only real .ts/.puml), source.file+line on 353 units — VERIFIED v0.5.106
+  - R18.19 sprint zero-pad "Sprint 01-18" + dedup (9 dup units deleted, 94 refs repointed) + S2-S9 Sprint units (tasks[] empty by-design, deferred — re-openable)
+  - **CHAMPAGNE strict 44/44** — every test 7-hop reachable from Req root (single fix R15.6→T111). Canonical metric /44 tests (T183 gate). Orphan-by-design allowlisted (f221d25b).
+  - S18 dogfood COMPLETE: sprint authored as scenario.json units → planning.md + 11 task MDs generated. S18 sprints.json symlink tree built (8ce33c87).
+  - req canonicalization: zero inferred-marker quotes (ccdffd64); heading-artifact reqs orphaned.
+  - T189: 19 Skill scenario units + scrum.pmo/skills/ .md (cdb65607).
+  - DOC: scrum.pmo/standards/scenario-data-pipeline.md (storage/views/scripts/serving + flow) — README-linked.
 
-## ONLY 2 ITEMS LEFT — BOTH TRON (nothing else in flight)
-1. **HTTPS cert → clears device lockout.** Tron runs on Mac Studio: `sudo certbot certonly` (DNS-01 `--manual --preferred-challenges dns -d home.donges.it` if port80 closed; else `--standalone`) → cert at /etc/letsencrypt/live/home.donges.it/ → `git pull && npm run build && npm run dev` → server logs 'SSL: Let's Encrypt cert' → real-device SW registers → lockout clears. Expert PRE-STAGED auto-detect+self-signed-fallback (bb828692 v0.5.87) = instant pickup. (Real iOS PWA = Safari → Add-to-Home-Screen; Chrome iOS=WebKit.)
-2. **Tron QA-signs the batch:** scrum.pmo/tron-qa-batch-2026-06-05.md (29 strict-verified 🧪 + 33 bonus ✅). Recommend: spot-check 3 + single batch-approve commit (S5-S8 precedent). → T129 S17 gate closes.
+## IN FLIGHT (the ONE active impl)
+- **R18.29-31 unitLinks[] + Unit lifecycle** — expert IMPLEMENTING now: model.unitLinks[] (IOR list) + addLink/removeLink/syncLinks + put() auto-sync → keeps unitLinks[] AND on-disk scenario/sprints.json symlinks atomically consistent (makes the S18 symlink-gap structurally impossible). Architect design cd3b2730 + r18-29-31-unit-links-atomic-symlinks.md; req formalized 6cf7b901. Tester verifies symlink-consistency after add/remove on deploy.
+
+## 2 STANDING TRON ITEMS (both Tron)
+1. **HTTPS cert** — needs Tron DNS API access for ACME (clears device lockout). Expert pre-staged auto-detect+self-signed-fallback = instant pickup.
+2. **Tron QA batch** — scrum.pmo/tron-qa-batch-*.md (planner making it spot-check-3 + batch-approve ready). Closes S17/S18 gates.
 
 ## HARD RULES (durable)
-- #65 NEVER /compact (kills agents); rewind via agent-trainer (silent); NEVER tell an agent its ctx%; "save" = commit current work to context.md+learnings.
-- #66 ship = package.json + sw.js CACHE_NAME bump (a+b). #67 new route/bundle → sw.js STATIC_SHELL (c). Report '(a)✓(b)✓(c)'.
-- #71 every report → derive + route next; never stop. SM flags idle/stuck → I re-task.
-- CMM4 4-role, planner-first: req (atomic 1-sentence + literal capture) → planner (v4-uuid stand-up) → architect (design) → expert (impl) → tester (verify). Chat = pointer + next-delegation only. compound-requirement-source*.md = Tron verbatim captured FIRST. Route EVERY Tron literal to req.
-- #17 NEVER fake-suffix uuids — real v4 (uuidgen). Caught repeatedly.
-- #27 STRICT VERIFY: "audit clean" ≠ Tron-satisfied. Requires per-Test 7-hop reachability + LIVE headless/tree UX repro. Tron's live-device observation IS the acceptance test.
-- Read whole tool output when verifying (no |head/tail/grep that truncates).
+- #65 NEVER /compact (kills agents) — rewind via agent-trainer (save+commit FIRST); verify reset <30% before re-tasking.
+- #66 ship = package.json + sw.js CACHE_NAME bump (a+b); #67 new route/bundle → sw.js STATIC_SHELL (c).
+- CMM4: req (atomic+literal capture) → planner (v4-uuid stand-up) → architect (design) → expert (impl) → tester (strict verify). compound-requirement-source*.md = Tron verbatim FIRST.
+- REPORT + DELEGATE VIA TASK FILE; chat = one-line pointer ONLY (Tron, repeatedly).
+- Route EVERY Tron literal to req. #17 real v4 uuids only. #27 STRICT verify = per-Test 7-hop + LIVE UX repro.
+- #71 every report → route next; never idle. otmux send is unreliable → VERIFY via pane.capture (sends silently drop).
+- SM actively helps: idle-catch / unsent-catch / report-discipline — drive on its flags.
 
-## HARNESS TRACKER: #29-57 + T173-186 done. #58 T180 in flight (Track1 Tron-blocked). #37 S17 parent open until T129 gate closes after Tron QA.
+## HARNESS TRACKER: #29-74 done. #75 R18.29-31 in flight. #58 cert + QA batch = Tron-gated. #37/#61 S17/S18 parents close on Tron QA.
 
 ## ON RESUME
-Team caught up, no manufactured work. Re-task the instant Tron (a) runs cert or (b) signs QA, or any new literal → straight to req. SM monitors; rewind via trainer if near limit.
+Verify TRUE state via git/health (this snapshot lags live). Re-task instant Tron runs cert / signs QA / gives a literal (→req). 5+ agents idle = re-task or confirm legitimate (only standby if ALL impl+tested). SM monitors; rewind via trainer near limit.
