@@ -1,11 +1,13 @@
-# robbin-planner Context — Save Point 2026-06-08 (S18 dogfood COMPLETE; sprints.json symlink tree shipped)
+# robbin-planner Context — Save Point 2026-06-08 (post-rewind, SM-broadcast save directive)
 
 **Role:** Sprint Planner / board-consistency owner. Reports to robbin-po (robbinTeam:0.0).
 **Pane:** robbinTeam:1.0 · **Project:** Web4RawBin · **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
 **Sprint tool:** `SPRINT_PMO_DIR=<repo>/scrum.pmo /Users/Shared/Workspaces/AI/Claude/components/OOSH/dev.claude/sprint {status|audit}`
 
-## Current State (v0.5.105)
-- Repo HEAD: `8ce33c87` (planner: S18 sprints.json symlink tree + README nav link to scenario-data-pipeline standard).
+## Current State (v0.5.106 — bump landed since previous save)
+- Repo HEAD: `8ce33c87` (planner: S18 sprints.json symlink tree + README nav link to scenario-data-pipeline standard). My save anchor unchanged.
+- **Since previous save:** req-eng `6cf7b901` (S14 quote placeholders + R18.29-31 unitLinks lifecycle) + `ccdffd64` (canonicalised ALL tronQuote — zero inferred markers remaining). My R18.20-R18.23/R18.26-R18.28 follow-up may now be moot — verify req's canonicalization covered them.
+- Uncommitted on disk: `compound-requirement-source.md` (M — likely Tron R-M capture WIP by req-eng).
 - **Sprint 17 closed** — cascade fired 2026-06-05 (T178 KEYSTONE `452f8d5d` 44/44 7-hop reach; T128.4 ✅; T178/T124/T168 🧪 Tron QA pending).
 - **Sprint 18 ACTIVE** — `sprint-18-chain-method-scope`. Sprint uuid `5b950725-a6f6-4d45-b802-4784ee6ef962`. **DOGFOOD COMPLETE 2026-06-07/08.**
 
@@ -64,11 +66,15 @@ req-eng `15dd69c1` captured R-X1+R-X2 for PUML class diagrams concurrently with 
 - Existing batch file: `scrum.pmo/tron-qa-batch-2026-06-05.md` (S16+S17, 29 strict-verified). **STALE — needs refresh** to include S18 T187-T198 + R18.x + champagne + zero-pad. PO requested prep for one-pass approvable batch (S5-S8 precedent — spot-check-3 + single approve commit).
 
 ## IMMEDIATE TODO (next session)
-1. Re-verify current champagne metric (live `npm run trace:audit:strict` — earlier 23/44 7-hop but architect/expert work has landed since; recheck).
-2. Refresh `scrum.pmo/tron-qa-batch-2026-06-05.md` → new dated file with S18 work folded in.
-3. T191-T194 + T195/T197/T198 confirm tester-verified state if needed; many task units use status="Done" mechanically but Tron QA + tester strict-verify still pending.
-4. R18.20-R18.23 + R18.26-R18.28 canonicalization follow-up with req-eng.
-5. Allowlist for empty S1-S9 `Sprint.tasks[]` (architect's lane; tracked in task-planner-s2-s9-backfill.md).
+1. **T174 R-M1/M2/M3/M4 STAND-UP** — PO directive 2026-06-08 was cut off mid-spec by rewind: "STAND UP T174 (or split per planner's call) covering R-M1/M2/M3/M4. R-M3 is the meatiest: new /scenario route reusing /trace view components but seeded from a single IOR + …" (truncated). PREREQ: R-M1-M4 not yet in `compound-requirement-source.md` (goes Follow-on A→J + dup C-E,D, no R-M); req-eng must capture verbatim first, OR PO re-fires the full directive. When standing up: generate v4 uuids via uuidgen for task + each R-Mx; apply learning #20 reconcile if architect drops design ahead.
+2. Re-verify champagne metric (live `npm run trace:audit:strict` — earlier 23/44 7-hop; architect/expert work has landed since `ccdffd64` + `6cf7b901`).
+3. Refresh `scrum.pmo/tron-qa-batch-2026-06-05.md` → new dated file with S18 work (T187-T198 + R18.x + champagne + zero-pad).
+4. T191-T194 + T195/T197/T198 confirm tester-verified state.
+5. R18.20-R18.23 + R18.26-R18.28 — verify `ccdffd64` covered (likely done); if not, follow up with req-eng.
+6. Allowlist for empty S1-S9 `Sprint.tasks[]` (architect's lane; tracked in task-planner-s2-s9-backfill.md).
+
+## REWIND-NOTE
+- Wakeup prompt cited "Last save 5790a53" — that hash does NOT exist in the tree. My actual save anchor is `8ce33c87`. Context.md is the source of truth; the prompt-fragment hash was wrong.
 
 ## MY RECENT COMMIT CHAIN (post-rewind anchor)
 - `8ce33c87` S18 sprints.json symlink tree + README scenario-data-pipeline link
