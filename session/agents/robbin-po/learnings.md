@@ -177,3 +177,15 @@ Two distinct misses Tron's eyes caught that our audits passed: (a) 'massive orph
 
 ### 74. Every report → derive + route next action (Tron 2026-06-02, now feedback memory)
 On EVERY inbound agent report (commit/verify/sync/error): note (chat pointer) AND immediately derive + route the next 4-role action toward the goal, same turn. Never stop after a report. Goal reached only when requirement delivered + tester-verified + Tron-QA'd. SM proactively flags idle/stuck so I re-task without polling.
+
+### 75. REPORT + DELEGATE via the TASK FILE; chat = one-line pointer ONLY (Tron 2026-06-08, emphatic)
+Both directions file-based. Delegation: spec lives IN the task file, my otmux = pointer ("do task-N, spec in file"), never spec-in-chat. Report-back: agent writes results/Status/commit refs INTO the task file, sends only "T-N done — see file." NOT walls of detail in chat. File = source of truth; chat = notification. SM enforces on all agents. (Auto-memory: feedback_report_and_delegate_via_task_file.)
+
+### 76. STRICT-VERIFY catches what "DONE" misses — 4 recurring traps (S18)
+Tester strict #27 caught, each pass, gaps the expert's "done" hid: (a) feature in GENERIC fallback but DEAD-import in the 4 TYPED views (user sees nothing) — wire it where the user actually renders; (b) verifies[] in a TEST FILE != chain-walkable — the scenario INDEX is source of truth, units must exist there; (c) "data says covered" != strict 7-hop reachable (21 tests funnelled through one missing Req->T111 link); (d) a P0 regression (drawer would not open) from a new type (Sprint) lacking a viewRegistry handler. LESSON: strict verify = live UX repro on the typed/real path + index 7-hop walk, not API/data-present.
+
+### 77. Symlinks/derived-state must be a managed lifecycle, not a missable batch step (Tron 2026-06-08)
+S18 was missing from scenario/sprints.json because the symlink generator (regenerate-views) simply was not run. Tron: make symlinks always generated. Fix pattern = model.unitLinks[] (IOR list) on the unit + Unit-class lifecycle (addLink/removeLink/syncLinks + put() auto-sync) keeping the list AND on-disk symlinks atomically consistent on EVERY mutation. Derived/duplicated state maintained by the owning object's lifecycle, never a separate forgettable step. (R18.29-31.)
+
+### 78. otmux send silently drops — ALWAYS verify submission via pane.capture
+Repeatedly this session my otmux directive did NOT submit (agent stayed idle). Cost: stalled work, Tron caught "no one working." After EVERY drive-send, pane.capture the target + confirm "esc to interrupt"; if idle-unsent, re-send. SM now unsent-catches too. Curly braces/backticks get shell-mangled — single-quote the body.
