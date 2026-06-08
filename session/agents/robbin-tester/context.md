@@ -1,37 +1,33 @@
-# robbin-tester Context — 2026-06-05
+# robbin-tester Context — 2026-06-08
 
 ## Identity
 **robbin-tester** — testing authority for Web4RawBin. Pane robbinTeam:0.3.
 
-## Team Layout
-- 0.0 = robbin-po | 0.1 = robbin-architect | 0.2 = robbin-expert
-- 0.3 = ME | 0.4 = robbin-expert-shell | 0.5 = robbin-tester-shell
-
 ## Project
 - Path: `/Users/Shared/Workspaces/AI/Claude/workspaces/Web4RawBin/`
-- Server: HTTPS 4444 | Version: **0.5.86** | Suite: **836/836 vitest + 8/8 E2E**
-- Scenario: 486+ units, 505 objects in /api/trace, 44/44 tests 7-hop reachable
+- Server: HTTPS 4444 | Version: **0.5.106** | Suite: **876/876 vitest + 44/44 7-hop**
+- Scenario: 353+ units, 11 S18 tasks, 20 S18 requirements
 
-## SESSION — Latest verified (2026-06-05)
+## Latest verified
+- **R18.9-12** ✓ all-children(5 types), parent-chain(5 levels), source-link(6 types), Monaco#L end-to-end
+- **R18.13-15** ✓ source on filled types, /md/?highlight, edit#L3 Monaco
+- **R18.29-31** ✓ unitLinks code review (addLink/removeLink/syncLinks + put auto-sync). 0 live consumers yet — blocked awaiting expert populate
+- **B1+B2** ✓ narrowing fix (chain≠all-children, per-UC method, continues past Method)
+- **T194** ✓ type invariant (0 violations, no higher-type below Method)
+- **T193** ✓ no cycle, one-layer lazy, children restored
+- **T198** ✓ 10 sprints, 0 dups, sorted, 0 broken refs. S2-S9 missing units
+- **v0.5.106** ✓ conceptual units no broken links, S18 detail 11 tasks
+- **Champagne** 37/71 strict (verifies[] + 7-hop walkable). 44 total verifies UUIDs
+- **S18 dogfood** 11 units = 4 planning links (7 views not regenerated — stale)
+- **Regression** 876/876 vitest + 44/44 7-hop + 37/37 scenario tests
 
-- **T178 KEYSTONE** ✓ 44/44 tests 7-hop reachable from Req roots. 7-level API lazy-load walk confirmed.
-- **T184** ✓ (v0.5.85) forward-only API emit — 0 backward keys in /api/trace (505 objects)
-- **T185** ✓ s17-architecture.puml — 14/14 class + 38/38 method exact index match, 0 orphans
-- **T181** ✓ forward-only display — DetailViews + tree show NO backward links
-- **T182** ✓ all 8 DetailViews have 📄 Scenario view → /scenario?ior=, all 7 types → 200
-- **T180 Track 2** ✓ CDP cert-accept → SW registers headless (4/4 E2E proof)
-- **T179** ✓ FULLY CLOSED (v0.5.86) — SW activation 4/4 E2E: register+activate, cache serve, passive activation, zero app.js 404
-- **T177** ✓ /scenario?ior= resolves all 3 forms (bare/ior:instance/uuid.scenario.json)
-- **Tree lazy-load** ✓ (v0.5.84) 7-level deep expand in actual tree UI
-- **T183** spec committed (7-hop CI gate — tester-authored, expert implements)
-
-### Headless SSL solution
-`--ignore-certificate-errors` browser arg OR CDP `Security.setIgnoreCertificateErrors` — both work. Context-level `ignoreHTTPSErrors` alone covers page+XHR+WS but NOT ES module fetches.
-
-## S17 Status
-Dev complete except T180 Track 1 (Tron certbot) + T129 gate.
+## Queued
+- Live unitLinks verify when expert populates (structural-impossibility behavior)
+- Req canonicalization cleanup when it lands
+- R18.13 re-verify when Method/Sprint/UC/Class get real .ts source paths
 
 ## Rules (Eternal)
-- CMM4: task files = single source of truth
+- CMM4: task files = single source of truth; chat = one-line pointer
 - GREP-VERIFY code present, then behavioral test
+- Sprint-18 dir for new tasks, real v4 UUIDs via uuidgen
 - P15: NEVER filter output | I do NOT implement | NEVER ASSUME — ALWAYS MEASURE
