@@ -138,6 +138,37 @@ bumped (c) STATIC_SHELL entry for new route". All three must pass for a
 route-introducing task to move past ✅. See learnings #16. Incident: S16
 trace-page bundle, remediated in bdb74ec (v0.5.24).
 
+**STANDING — Canonical 6-step Chain Definition (architect #79; corrected 2026-06-08).**
+The traceability chain is **6 steps, NOT 7**:
+
+```
+Requirement → UseCase → Class → Method → Implementation → Test
+```
+
+**Task is NOT in the chain.** Task lives in the NAVIGATION layer:
+
+```
+Sprint → Task → coveredRequirements → [chain starts at Requirement]
+```
+
+The prior T168 "LOCKED 7-step" definition (with Task as a chain hop) is **SUPERSEDED**.
+The 7-step was the root error that produced the Req→Task 2-cycle, Tasks-as-chain-children
+display bugs, and the navigation/traceability confusion. See architect SKILL.md
+Rule 1 + traceability-standard.md header (corrected 2026-06-08) + T201 multi-layer
+correction (this task drives the propagation across skill → standards → code → data → views).
+
+**Planner application:**
+- The Sync Rule below treats `Task.coveredRequirements[]` as NAVIGATION (Task → Requirement
+  upward pointer) and `Task.useCases[]` as the architect-supplied UCs the Task addresses
+  (those UCs ARE chain children of the covered Requirements, not chain children of the Task).
+  Neither field represents a Task→chain edge — Task is OUTSIDE the chain.
+- In planning.md / task files I author, NEVER write the chain as
+  `Requirement → Task → UseCase → …`. Always: chain starts at Requirement; Task is
+  cross-referenced via coveredRequirements (navigation).
+- When syncing a task: validate the `chain` block in Traceability starts at
+  Requirement and walks 6 steps (Req → UC → Class → Method → Impl → Test). If a
+  task file has `Req → Task → UC`, flag as Layer 2/Layer 5 regression.
+
 **STANDING — Planner↔Architect Sync Rule (added 2026-06-08, systemic gap lesson).**
 Empty `coveredRequirements[]` and missing `useCases[]` on committed task units is a
 sync failure between planner and architect, not a content problem. The S01-S17
