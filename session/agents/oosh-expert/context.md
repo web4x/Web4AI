@@ -8,7 +8,7 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.1
-**Updated**: 2026-06-02 (782k pre-rewind save) — Post-Sprint-1 + Termux cross-platform wave. 30+ commits this session. All macOS suites zero failures.
+**Updated**: 2026-06-09 — Post-Sprint-1 + Termux cross-platform wave continuing. 32+ commits since 2026-05-25. macOS suites zero failures. Most recent: ossh.fix.rights (eb864cb), otmux.attach completion fix (c0c7dd7).
 
 ## ⚠️ CURRENT STATE
 
@@ -16,6 +16,8 @@
 
 | Commit | Branch | Summary |
 |--------|--------|---------|
+| `c0c7dd7` | macos | otmux.attach: param target→session + completion fn names match (NEW 06-09) |
+| `eb864cb` | macos | ossh.fix.rights: recursive SSH perms (700/600/644/600) (NEW 06-09) |
 | `f89bbc8` | macos | P0: context.read staleness fix (JSONL mtime guard + dynamic project dirs) |
 | `2118404` | macos | SC-G.1: state-stores.md |
 | `95e8fae` | macos | SC-G.2: invariants.md (event handler enforcement + P0 case study) |
