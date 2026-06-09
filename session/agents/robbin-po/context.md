@@ -1,33 +1,45 @@
-# robbin-po Context — clean snapshot 2026-06-09 (save #6, pre-rewind)
+# robbin-po Context — save #5 (2026-06-09)
 
 **Role:** PO | **Pane:** robbinTeam:0.0 | **Project:** RawBin | **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
 **Server:** https://home.donges.it:4444 — **v0.5.113 LIVE** (iphone:0.1), 9 real rooms.
-**Tron:** iphone:0.0 | SM TRONinterface:0.1 (enforcing CMM4 task-file comms + idle-catch + proactive rewind) | agent-trainer baseTeam:0.0
-**Team:** 0.1 architect | 0.2 expert | 0.3 tester | 1.0 planner | 1.1 req | 2.0 robbin-skill-expert (T189 done). NOTE: planner/expert/req cycling proactive rewinds (SM+trainer) — re-anchor their queues from committed context on reboot.
+**Tron:** iphone:0.0 | SM TRONinterface:0.1 | agent-trainer baseTeam:0.0
+**Team:** 0.1 architect | 0.2 expert | 0.3 tester | 1.0 planner | 1.1 req.
 
-## DONE + STRICTLY VERIFIED
-- **S17** Scenario Units / IOR / Traceability Browser — complete.
-- **S18** chain method-scope + detail-view + dogfood — complete.
-- **T201 6-STEP CHAIN CORRECTION (CLOSED v0.5.109):** canonical chain = Req→UC→Class→Method→Impl→Test. Task = NAVIGATION (Sprint→Task→coveredReq), NOT a chain hop. 5 layers verified (skill 741b0eb, standards d79c3013, code 81856abd, data f3171e57 Req.useCases[] 77/124, views 84908ea4). 3-concern model: Chain(WHY)/Dependency(WHAT-FIRST)/Navigation(HOW-BROWSE). Self-reflexively dogfooded.
-- **CHAMPAGNE 44/44** canonical (every test 7-hop reachable from Req root, T183 gate). Chain-correction PRESERVED + improved it (68 reqs reachable). 7 orphan Impls don't block (tests reachable via alt paths).
-- **R18.29-31 unitLinks[] atomic symlinks (CLOSED):** 267 units have unitLinks[] (backfill-unit-links.ts); put() auto-syncs JSON↔on-disk symlinks. S18 gap structurally impossible.
-- **T200/R18.33 detail→tree sync — PRIMARY DONE (v0.5.113):** in-tree reveal (navigate in DetailView link → tree scroll+expand+highlight) = Tron's literal ask. VERIFIED.
-- chain-correction skill/standards corrected; refinement-precedence-analysis.md (3-concern + R1-11 protocol rules).
+## BASE = SCENARIOS (new operating principle, Tron 2026-06-09)
+The scenario units (sprint + task scenarios + their states + views) ARE the live project
+state — they accumulate into it. Read current state FROM the scenarios (scenario/index/),
+NOT from a context.md snapshot (which goes stale on rewind — that bit me: save #4 was a
+whole sprint behind). Plan every requirement scenario-first: FIND owning scenario → ADD
+req+task as scenario units → design→impl→test forward chain. Standard being written:
+scrum.pmo/standards/project-state-is-scenarios.md. See memory feedback_scenarios_are_project_state.
 
-## DEFERRED EDGE (Tron deciding)
-- **Deep-link-on-fresh-load reveal** fails the ancestor-expand-on-fresh-render race (4 fix attempts: timing-guard, waitForNode, server reverse-scan-parent for empty-ownerIor). Outside the literal req ('navigation in details' = in-tree, works). Asked Tron: defer (default) or pursue as separate enhancement. Don't grind unprompted.
+## DELIVERED THROUGH S17 + most of S18 (verified)
+S1-S17 + S18 (T190-T201): traceability browser, 7→6-step forward-only chain
+(Req→UC→Class→Method→Impl→Test; Req→Task is dependency NOT chain — see
+refinement-precedence-analysis.md, 3-way: architect R1-5, planner R6-8, req R9-11),
+scenario-unit data model, lazy tree, breadcrumbs, detail↔tree sync, champagne intention-
+verification, SW auto-activation. v0.5.113.
 
-## 2 STANDING TRON ITEMS (the only substantive open work)
-1. **HTTPS cert** — needs Tron DNS/ACME access → clears device lockout. Expert pre-staged auto-detect+self-signed-fallback = instant pickup.
-2. **Tron QA batch** — scrum.pmo/tron-qa-batch-*.md (spot-check-3 + batch-approve). Closes S17/S18 gates.
+## IN FLIGHT
+- **SVG view optimization** (#80, NEW Tron 2026-06-09, 3 screenshots): SVG opens as thin
+  strip + pinch-zoom zooms WHOLE PAGE not the diagram. Want near-fullscreen iframe +
+  pan/zoom scoped to SVG inside iframe. Flow: req decompose (BLOCKED on transient API
+  rate-limit — let clear, don't thrash) → planner FIND owning scenario (file-browser/md SVG
+  render) + add req/task units → architect design (iframe+svg-pan-zoom) → expert → tester.
+- Planner writing project-state-is-scenarios.md standard.
+- #77 systemic task-traceability backfill (coveredRequirements+useCases+unitLinks split).
+- #61 S18 parent open.
 
-## HARD RULES (durable)
-- CMM4 COMMS (Tron repeated + SM now enforces): findings/reports/specs INTO the task file; otmux = ONE-LINE pointer only. I kept violating under driving pressure — STOP.
-- #71 every report → route next; NEVER let agents idle (only standby if ALL impl+tested). I keep dropping the design→IMPLEMENT handoff — re-task the instant a layer/design lands.
-- INSTRUMENT BEFORE HYPOTHESIS-FIX: T200 wasted 4 fix attempts guessing; instrument-first (breadcrumbs + log actual values) found the real root cause (empty ownerIor breaks ancestor walk). When a fix fails twice, STOP guessing — measure.
-- #65 NEVER /compact (kills agents); rewind via agent-trainer (save+commit FIRST). #27 STRICT verify = per-Test 7-hop + LIVE UX repro (caught test-file-only champagne inflation, ref-format false leads, async races). #66 ship=pkg+sw.js bump; #67 new route→STATIC_SHELL. #17 real v4 uuids. Route EVERY Tron literal to req (compound-requirement-source FIRST).
+## 2 TRON-ONLY ITEMS (standing)
+1. HTTPS cert run on Mac Studio → clears device lockout (expert pre-staged auto-detect+fallback bb828692).
+2. QA-sign scrum.pmo/tron-qa-batch-2026-06-05.md (29 strict-verified + 33 bonus) → closes S17 T129 gate.
 
-## HARNESS TRACKER: #29-79 done except #37/#61 (S17/S18 parents close on Tron QA), #58 (cert+QA Tron-gated), #77 (systemic backfill ~done), #78 T200 primary done/deep-link deferred.
+## HARD RULES
+- #65 NEVER /compact (kills); rewind via agent-trainer; "save"=commit context+learnings.
+- #66 ship=package.json + sw.js CACHE_NAME bump (a+b). #67 new route→STATIC_SHELL (c). Report (a)✓(b)✓(c).
+- Route EVERY Tron literal to req FIRST (capture verbatim); req decomposes ALL atoms + signals BEFORE planner creates tasks (precedence protocol). compound-requirement-source*.md = verbatim.
+- #17 real v4 uuids only (uuidgen). #27 STRICT VERIFY: live UX repro, not API-only. Read whole tool output.
+- CMM4: req→planner→architect→expert→tester. Chat = pointer + next-delegation. Commit context FREQUENTLY (stale anchor bit me).
 
 ## ON RESUME
-Verify TRUE state via git/health (snapshot lags live). Team genuinely near standby — only cert + QA (Tron) + the deferred deep-link edge (Tron's call) remain. Re-task instant Tron runs cert / signs QA / gives a literal (→req) / decides deep-link. Re-anchor rewound agents (planner/expert/req) from their committed context. SM enforces task-file comms + flags idle.
+Read scenarios for true state. SVG fix is the active Tron item (req rate-limited — let clear). 2 Tron items standing. SM monitors; rewind via trainer near limit.
