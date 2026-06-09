@@ -181,3 +181,26 @@
 ## Task file = single source of truth (CMM4 reinforced)
 - Write findings/status/handoffs INTO the task file's QA section. Read task files before asking questions.
 - Verify against official task file with T-number, not PO harness refs. Planner-first.
+
+## Champagne test pattern (T188/T190/R18.34.B)
+- Test scenario unit MUST declare: `implementations[]=[<impl-uuid>]`, `verifies[]=[<req-uuid>]`, `parent=<impl-uuid>`, `ownerIor=<impl-uuid>`, `status=GREEN`, `file=ior:file:<spec-path>`.
+- Update Impl.tests[] with **push** (don't overwrite existing entries) — multiple Tests can share one Impl.
+- Verify with 7-hop walkUp: Test → Impl → Method → Class → UseCase → Task → Requirement. Use parentOf map built from FORWARD_KEYS.
+- If walkUp lands on a different Req than `verifies[]`, that's OK — verifies[] is the assertion target; the actual chain reaches *some* Req root via Class.methods routing.
+
+## WebKit Touch synthesis (R18.34.B)
+- WebKit blocks `new Touch()` ("Illegal constructor") — use `document.createTouch(window, target, id, x, y, x, y, 0, 0, 0, 0)` (10 args).
+- Wrap touch list with `document.createTouchList(...touches)`.
+- Try `ev.initTouchEvent(type, true, true, window, ...)` first; fall back to `new TouchEvent(type, {touches, targetTouches, changedTouches})` for Safari 13+.
+- Run with `webkit.launch()` + `devices['iPhone 13']` profile. Install via `npx playwright install webkit`.
+- Tron real-device acceptance remains the final gate (#27).
+
+## npm run masks child exit codes (T188)
+- `npm run check:sprint-md && echo $?` captures npm's own exit, not the inner tsx process — can show 0 when child exited 1.
+- Use `npx tsx scripts/... > /tmp/out 2>&1; echo $?` for the real exit code.
+- For CI gates: piping into another command (`tail`, `grep`) loses the inner exit via `$?` — use `${PIPESTATUS[0]}` in bash or run direct.
+
+## Hand-edit detection via byte-match (T188 AC5)
+- `--check` mode writes generator output to tmp dir, byte-diffs vs disk. Exit 1 on `extra` (file on disk not in units), `missing` (unit name not on disk), `mismatched` (content differs).
+- Idempotence test: regen → check, regen again → check; outputs identical except for node PIDs in stderr warnings.
+- "Extras" can be pre-existing hand-named .md files left over from before generator — DRIFT but not regression. Round-trip still idempotent.
