@@ -41,12 +41,15 @@
 - **11.0% 5h | 50.0% 7d | resets in ~4h47m | safe**
 - The `scrumMaster subscription` EPERM error line is a harmless return-code quirk; the numbers print correctly above it.
 
-## IMMEDIATE PENDING ACTIONS (do these first)
-1. **robbin-po (0.0)** — verify its TICK-3 save committed (`git log`/pane), then dispatch rewind to agent-trainer FIRST. At 1% it may not have completed the save — best-effort.
-2. **oosh-po (0.0)** — verify save commit, then rewind.
-3. **robbin-planner (1.0)** — verify save commit, then rewind.
-4. Rewind dispatch: `hiveMind send.message agent-trainer "SM: rewind <agent> at <pane> — save committed at <commit>"`. After trainer reports done, VERIFY pane shows NO "clear to save"/"context low" before declaring recovered + notifying PO (Rule 6).
-5. Rate-limit cluster will clear itself (transient server-side, subscription safe). Don't spam retries.
+## ALL THREE CONTEXT EMERGENCIES RESOLVED (by TICK 6, ~20:25 UTC)
+1. ✅ **robbin-po (0.0)** — save committed 04abd9e, then REWOUND by agent-trainer. SM-VERIFIED (Rule 6): pane shows 46+ tasks, Sprint 18 active, NO context-low warning. Healthy. Health-check + resume nudge sent.
+2. ✅ **oosh-po (0.0)** — "clear to save" warning cleared on its own; clean idle prompt, no warning. Healthy. (Re-verify periodically but not an emergency.)
+3. ✅ **robbin-planner (1.0)** — save committed d1868fa ("post-rewind re-anchor"), ACTIVE/Reading at healthy context. Recovered.
+
+## REMAINING / ONGOING
+- Transient server-side rate-limit cluster (subscription safe ~11%): robbin-architect 0.1, robbin-req 1.1, oosh-tester 0.3 — leave to auto-recover, do NOT spam retries.
+- agent-trainer (baseTeam:0.0): functional rewind executor; was intermittently throttled but recovered each time. Its message queue dropped my queued rewind order once — when it's throttled, prefer DIRECT `otmux send baseTeam:0.0` over the queue.
+- Resume normal sweep cadence: PO panes every tick, all panes every 3rd, subscription every 10th.
 
 ## What I Learned This Session (see learnings.md for detail)
 - Server-side rate limit ("Server is temporarily limiting requests — not your usage limit") is NOT budget exhaustion. Always `scrumMaster subscription` to confirm before reacting. Nudges fail while throttle is active — don't spam the whole cluster.
