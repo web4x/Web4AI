@@ -74,15 +74,19 @@ req-eng `15dd69c1` captured R-X1+R-X2 for PUML class diagrams concurrently with 
 - `bf7288e` planner SKILL.md +Canonical 6-step Chain Definition (T201 Layer 1 alignment).
 - T201 closed via expert/architect work: `0925a420 d79c3013` Layer 2 standards; `81856abd v0.5.108` Layer 3 code; `f3171e57` Layer 4 data; `84908ea4 v0.5.109` Layer 5 views (PO-verified).
 - `323712b6` **T200 RELEASE** — coveredRequirements canonicalized R18.33 (b64a9d54-… real v4 owned by Sprint 18). T200 ⏳→📝. R18.33 scenario unit tasks[] populated with T200 IOR (chain wiring loop closed both sides). useCases[] placeholder 88a1c3a0-… remains pending architect quick-design.
+- `83ad5177` **NEW STANDARD: `project-state-is-scenarios.md`** (Tron 2026-06-09 via PO). Principle: scenario units ARE the live project state; canonical planning workflow (find owning sprint → add scenario units → no floating tasks). Paired back-ref in refinement-precedence-analysis.md; indexed in README Traceability.
+- **SVG fix scope located** (no commit yet — Steps 2-3 wait for req's atomic decomposition): owning sprint = Sprint 18 (`ior:instance:5b950725-a6f6-4d45-b802-4784ee6ef962`). Two defects from screenshots IMG_3876/IMG_3877/IMG_3878: (1) /md SVG wrapper height ≈ 5% viewport (should be near-fullscreen iframe); (2) pinch-zoom zooms the page, not the SVG content. Screenshots relayed to architect at robbinTeam:0.1 for design.
 
 ## IMMEDIATE TODO (next session)
-1. **T200 follow-through** — architect quick-designs sync semantics + canonicalizes useCases[] placeholder 88a1c3a0-…; expert builds (rule-pair (a)+(b) at impl); tester standing by for R18.33 ACs. Sync T200 📝→✅ on expert ship; ✅→🧪 on tester PASS.
-2. **T201 closure cleanup** — T201 task file checkboxes may need sync to Done (PO-verified through Layer 5); T168 may need "superseded by T201" note per T201 DoD. Verify next cycle.
-3. **T199 follow-through** — req-eng formal R18.32 unit emit; architect refinement; expert ownerIor/unitLinks backfill (in flight via 23907dd4 + 4147a6fd + d383970f); tester verification.
-4. **T174 R-M1/M2/M3/M4** — STILL QUEUED, cut off mid-spec ("/scenario route reusing /trace view components but seeded from a single IOR + …"). R-M1-M4 NOT yet captured. Awaits PO re-fire.
-5. Refresh `scrum.pmo/tron-qa-batch-2026-06-05.md` → new dated file with S18 (T187-T201) + champagne + zero-pad.
-6. Allowlist for empty S1-S9 `Sprint.tasks[]` (architect's lane).
-7. **Per-cycle pre-gate triple-check on EVERY sync** (operating discipline 780bb36 — NOT just at boot/rewind).
+1. **SVG fix Step 2/3** — once req-eng emits the atomic R-SVG.1/R-SVG.2 (or similar) Requirement scenario units, planner creates the Task scenario unit IN Sprint 18 (`uuid.scenario.json`, `ownerIor:instance:5b950725-…`, real v4 uuids, `unitLinks[]`), wires `coveredRequirements[]` ↔ `Requirement.tasks[]`. Owning sprint already chosen — no float. Architect refines with the 3 screenshot evidence already relayed.
+2. **T200 follow-through** — architect quick-designs sync semantics + canonicalizes useCases[] placeholder 88a1c3a0-…; expert builds (rule-pair (a)+(b)); tester standing by for R18.33 ACs.
+3. **T201 closure cleanup** — task file checkboxes may need sync to Done (PO-verified through Layer 5); T168 "superseded by T201" annotation per T201 DoD. Verify next cycle.
+4. **T199 follow-through** — req-eng formal R18.32 unit emit; architect refinement; expert ownerIor/unitLinks backfill (in flight via 23907dd4 + 4147a6fd + d383970f); tester verification.
+5. **T174 R-M1/M2/M3/M4** — STILL QUEUED, cut off mid-spec. Awaits PO re-fire.
+6. Refresh `scrum.pmo/tron-qa-batch-2026-06-05.md` → new dated file with S18 (T187-T201 + SVG fix once stood up) + champagne + zero-pad.
+7. Allowlist for empty S1-S9 `Sprint.tasks[]` (architect's lane).
+8. **Per-cycle pre-gate triple-check on EVERY sync** (operating discipline 780bb36).
+9. **New canonical workflow applies**: `project-state-is-scenarios.md` (83ad5177) — every new req → FIND owning sprint → ADD as scenario units → no floating tasks. Refer to it in every new stand-up going forward.
 
 ## REWIND-NOTE
 - Wakeup prompt cited "Last save 5790a53" — that hash does NOT exist in the tree (per learning #35). Context.md is source of truth.

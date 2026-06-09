@@ -225,6 +225,21 @@ S2-S9 Sprint scenario units with empty `Sprint.tasks[]` are **by-design — hist
 ## 35. Wakeup-prompt save-hash can be wrong — trust context.md not the prompt (2026-06-08)
 The rewind/wakeup prompt cited "Last save 5790a53" but that hash does not exist in this repo. My actual save anchor (committed in context.md) was `8ce33c87`. Lesson: when re-establishing post-rewind, treat context.md as the source of truth for the save anchor; if a wakeup prompt cites a different hash, verify via `git log <hash>` and ignore the prompt's hash on mismatch. Pattern: always anchor recovery to the **commit chain recorded in context.md**, not to the harness-supplied hash.
 
+## 39. Canonical planning workflow standard `project-state-is-scenarios.md` — find owning sprint first (Tron 2026-06-09; commit 83ad5177)
+Tron promoted to a written standard: scenario units ARE the live project state; canonical planning workflow is **find owning sprint → add Requirement + Task as scenario units (uuid.scenario.json, ownerIor, unitLinks, real v4) → architect → expert → tester → Tron QA**. No floating tasks.
+
+**Find-the-owning-sprint pattern (live application: SVG fix scoping 2026-06-09):**
+- Inventory candidates from grep + git log + scenario index: feature lineage (where was it introduced/last modified?), Sprint scope alignment, active vs closed.
+- Prefer the **currently-iterating sprint that owns the affected feature surface**, not the original-introduction sprint when that's closed. The diagrams being rendered may live in S17 (closed) but the rendering CODE belongs in the active S18 where file-browser/md-viewer is being iterated (T173, R18.13-15, T144).
+- Lineage-only-closed-sprints → bring to PO before standing up a new sprint; planner doesn't spin new sprints unilaterally.
+- The owning Sprint's IOR becomes `ownerIor` for the new Requirement + Task scenario units.
+
+**Workflow staging:** Step 1 (find owning sprint) runs IMMEDIATELY at planner's level. Steps 2-3 (create units, refine, implement, verify) wait for req-eng's atomic decomposition — planner doesn't pre-emptively author requirement content when req-eng is in flight. Relay screenshot/spec evidence to architect while waiting.
+
+**Standard pair-linked back into refinement-precedence-analysis.md** (header) so the chain-vs-navigation-vs-dependency reasoning is co-located with the workflow steps.
+
+**Indexed in README Traceability section** per discoverability rule (#13). Standards must be findable from the README, not buried in scrum.pmo/standards/.
+
 ## 38. Per-cycle pre-gate triple-check LIVE — placeholder-then-canonicalize pattern (T200 → T201 → T200 release, 2026-06-08/09)
 First live applications of the per-cycle pre-gate. Pattern that worked end-to-end:
 
