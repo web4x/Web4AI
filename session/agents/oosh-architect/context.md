@@ -1,6 +1,6 @@
 # oosh-architect Context
 
-**Updated**: 2026-06-01 (63% context save #2)
+**Updated**: 2026-06-09 (SM-directed save)
 **Role**: oosh-architect @ ooshTeam:0.1
 **Machine**: MacStudio
 **Session name**: oosh-architect@MacStudio
@@ -75,6 +75,11 @@ Web4 PUMLs (components/*/src/puml/):
 - TeamMigrate BulkRestoreExplosion Sequence PUML
 - SC-G.3: Sprint 1 PUML updates as implementation lands
 - Branch migration Phase 1 completion: verify reverse gap (test/macos.latest..dev), update task file
+
+### Since Save #2 (Jun 1 → Jun 9)
+- No new tasks assigned. Standing by for PO direction.
+- Branch migration: forward gap confirmed EMPTY (dev..test/macos.latest = 0 commits). Reverse gap check was interrupted (Bash tool permission rejected for ~/oosh git commands — must use expert-shell).
+- SM directed context saves at 60% and 63%. This is save #3.
 
 ## MVC Architecture Summary
 - **Model (claudeCode)**: resolve.byName bug approved (Option A), not yet shipped
