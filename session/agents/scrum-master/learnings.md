@@ -12,9 +12,10 @@
 - Always monitor to verify COMPLETED agents
 - ACCEPT_EDITS on idle agents is STALE UI, not a blocker — don't report it
 
-### 3. Background wakeups
-- NEVER use ScheduleWakeup — doesn't fire visibly
-- ALWAYS use: `sleep 60 && echo "SWEEP TICK"` with run_in_background=true
+### 3. Background wakeups (CORRECTED 2026-06-09)
+- USE a single `ScheduleWakeup` heartbeat per tick. It fires reliably (verified this session, 60–92s).
+- Do NOT use `sleep && echo` shell loops, until-loops, or per-task sleep monitors.
+- TRON feedback overriding the old advice: `feedback_no_until_loops.md` + commit #82 "ZERO wait-loops ever, trust the count". The old "never use ScheduleWakeup" note and `how-i-worked.md` are OUTDATED.
 
 ### 4. Subscription management
 - Measure BEFORE going silent (never assume)
@@ -22,8 +23,11 @@
 - Report at 80%+ (CAUTION) and 90%+ (CRITICAL)
 - Track velocity: >15% jump in 10min = BURN ALERT
 
-### 5. Rate-limited agents
-- Send "try again" to rate-limited agents
+### 5. Rate-limited agents (REFINED 2026-06-09)
+- A cross-team RATE_LIMIT cluster while subscription is safe = server-side throttle ("Server is temporarily limiting requests — not your usage limit"), NOT budget. ALWAYS `scrumMaster subscription` to confirm before reacting.
+- Nudges FAIL while a throttle is active. Don't spam the whole cluster every tick — that's the spam mistake. It clears itself; re-check next tick.
+- `team.sweep` reads RATE_LIMIT from scrollback text — the actual pane may already be idle/clean. Verify with pane capture.
+- A targeted re-trigger that references the specific pending task (Rule 10) recovers an idle-at-prompt agent; bare "try again" to the whole cluster does not.
 
 ### 6. Don't spam idle agents
 - If team is idle/stable for extended period, CMM4 reminders become noise
@@ -68,6 +72,12 @@
 - Report each step completion to TRON
 - Verify naming conventions against existing teams before signing off
 - CWD verification is critical — agents can report wrong cwd if not checked
+
+## Session 2026-06-09 Learnings
+- **ACTIVE ≠ healthy context.** Two POs (robbin-po at 1% remaining, oosh-po at 803k tokens) drifted to critical SIMULTANEOUSLY while sweep showed them merely ACTIVE. Only the every-3rd-tick all-pane context check caught it. Never trust sweep state for context health — capture panes.
+- **PO panes every tick is non-negotiable.** Losing a PO at 1% is the worst outcome; proactive saves must happen well before the warning, not at it.
+- **Save → verify commit → rewind** ordering is strict. Rewinding before the commit lands loses the work the save was meant to protect.
+- **agent-trainer can itself be throttled.** When it shows RATE_LIMIT, confirm via pane capture (often stale scrollback) before assuming a catch-22. This session it recovered on its own within ~1 tick.
 
 ## Achievements This Session
 - Managed robbinTeam creation end-to-end: clone → naming → restart → fork → verification
