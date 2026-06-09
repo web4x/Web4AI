@@ -1,12 +1,20 @@
-# robbin-planner Context — Save Point 2026-06-08 (post-rewind, SM-broadcast save directive)
+# robbin-planner Context — Save Point 2026-06-09 (post-rewind re-anchor, SM-broadcast save)
 
 **Role:** Sprint Planner / board-consistency owner. Reports to robbin-po (robbinTeam:0.0).
 **Pane:** robbinTeam:1.0 · **Project:** Web4RawBin · **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
 **Sprint tool:** `SPRINT_PMO_DIR=<repo>/scrum.pmo /Users/Shared/Workspaces/AI/Claude/components/OOSH/dev.claude/sprint {status|audit}`
+**Model:** Opus 4.7 (1M context) (default) — switched 2026-06-09 (prior unavailable).
+**Auto mode:** OFF as of 2026-06-09 — ask clarifying questions before non-obvious moves.
 
-## Current State (v0.5.106 — anchor 69a7a2f8)
-- Repo HEAD: `69a7a2f8` (planner: 16→0 audit sweep — Web4Articles sections added to 3 hand-written task files).
-- My recent planner chain: 8ce33c87 → 3234be28 (T199 stand-up) → 69a7a2f8 (audit sweep).
+## Current State (v0.5.114 committed; v0.5.115 uncommitted-in-flight — anchor 39af520a)
+- Repo HEAD: `39af520a` (req-eng SVG Task scenario unit + chain wiring R18.34 → task → sprint).
+- Three commits landed since my prior save anchor `83ad5177` — the SVG fix work I had queued as IMMEDIATE TODO #1:
+  - `87dfee3b` v0.5.114 — expert SVG viewer fix (aspect-ratio sizing + iframe isolation + pinch-zoom)
+  - `c66ad3fd` — req-eng captured R18.34 verbatim ("SVG renders in fullscreen iframe natively")
+  - `39af520a` — req-eng emitted the SVG Task scenario unit + wired chain (R18.34 → task → sprint)
+- **package.json shows v0.5.115 uncommitted** — likely another expert fix in flight; sync on commit.
+- **Wakeup-prompt hash `4fe0702` does NOT exist** (per learning #35) — context.md is the source of truth.
+- My recent planner chain (pre-rewind): 8ce33c87 → 3234be28 (T199) → 69a7a2f8 (audit sweep) → 780bb36 (SKILL upgrade) → da69ebbd/6a49add7 (T200) → 124186ae (T201 6-step chain) → bf7288e → 323712b6 (T200 release) → 83ad5177 (project-state-is-scenarios standard).
 - **Since prev save (8ce33c87):** req-eng `6cf7b901` (S14 quote placeholders + R18.29-31 unitLinks lifecycle) + `ccdffd64` (canonicalised ALL tronQuote — zero inferred markers). req's compound-source still has uncommitted M on disk (R-M / Follow-on H R18.32 capture WIP).
 - **Sprint 17 closed** — cascade fired 2026-06-05 (T178 KEYSTONE `452f8d5d` 44/44 7-hop reach; T128.4 ✅; T178/T124/T168 🧪 Tron QA pending).
 - **Sprint 18 ACTIVE** — `sprint-18-chain-method-scope`. Sprint uuid `5b950725-a6f6-4d45-b802-4784ee6ef962`. **DOGFOOD COMPLETE 2026-06-07/08.**
@@ -78,7 +86,7 @@ req-eng `15dd69c1` captured R-X1+R-X2 for PUML class diagrams concurrently with 
 - **SVG fix scope located** (no commit yet — Steps 2-3 wait for req's atomic decomposition): owning sprint = Sprint 18 (`ior:instance:5b950725-a6f6-4d45-b802-4784ee6ef962`). Two defects from screenshots IMG_3876/IMG_3877/IMG_3878: (1) /md SVG wrapper height ≈ 5% viewport (should be near-fullscreen iframe); (2) pinch-zoom zooms the page, not the SVG content. Screenshots relayed to architect at robbinTeam:0.1 for design.
 
 ## IMMEDIATE TODO (next session)
-1. **SVG fix Step 2/3** — once req-eng emits the atomic R-SVG.1/R-SVG.2 (or similar) Requirement scenario units, planner creates the Task scenario unit IN Sprint 18 (`uuid.scenario.json`, `ownerIor:instance:5b950725-…`, real v4 uuids, `unitLinks[]`), wires `coveredRequirements[]` ↔ `Requirement.tasks[]`. Owning sprint already chosen — no float. Architect refines with the 3 screenshot evidence already relayed.
+1. **SVG fix RECONCILE** — req-eng SHIPPED R18.34 + SVG Task unit in `c66ad3fd` + `39af520a` (resolves former TODO #1). Planner now: reconcile per learning #20 → verify the new Task scenario unit (a) lives under Sprint 18 `ownerIor:instance:5b950725-…`, (b) has real v4 uuids (no fake-suffix per #17/#33), (c) `coveredRequirements` carries R18.34 IOR and R18.34's `tasks[]` reciprocates, (d) Web4Articles compliance (Subtasks + QA Audit) intact. Verify rule-pair (a)+(b) on `87dfee3b` v0.5.114 (package.json + sw.js bumped together). On clean → sync Sprint 18 planning.md entry to ✅ impl-shipped.
 2. **T200 follow-through** — architect quick-designs sync semantics + canonicalizes useCases[] placeholder 88a1c3a0-…; expert builds (rule-pair (a)+(b)); tester standing by for R18.33 ACs.
 3. **T201 closure cleanup** — task file checkboxes may need sync to Done (PO-verified through Layer 5); T168 "superseded by T201" annotation per T201 DoD. Verify next cycle.
 4. **T199 follow-through** — req-eng formal R18.32 unit emit; architect refinement; expert ownerIor/unitLinks backfill (in flight via 23907dd4 + 4147a6fd + d383970f); tester verification.
