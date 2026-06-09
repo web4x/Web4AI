@@ -1,39 +1,33 @@
-# robbin-po Context — clean snapshot 2026-06-08 (save #5, pre-rewind)
+# robbin-po Context — clean snapshot 2026-06-09 (save #6, pre-rewind)
 
 **Role:** PO | **Pane:** robbinTeam:0.0 | **Project:** RawBin | **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
-**Server:** https://home.donges.it:4444 — **v0.5.106 LIVE** (iphone:0.1) — going higher as R18.29-31 deploys.
-**Tron:** iphone:0.0 | SM TRONinterface:0.1 (actively helping: idle-catch + unsent-catch + report-discipline) | agent-trainer baseTeam:0.0
-**Team:** 0.1 architect | 0.2 expert | 0.3 tester | 1.0 planner | 1.1 req | **2.0 robbin-skill-expert** (Tron's skill agent; T189 done)
+**Server:** https://home.donges.it:4444 — **v0.5.113 LIVE** (iphone:0.1), 9 real rooms.
+**Tron:** iphone:0.0 | SM TRONinterface:0.1 (enforcing CMM4 task-file comms + idle-catch + proactive rewind) | agent-trainer baseTeam:0.0
+**Team:** 0.1 architect | 0.2 expert | 0.3 tester | 1.0 planner | 1.1 req | 2.0 robbin-skill-expert (T189 done). NOTE: planner/expert/req cycling proactive rewinds (SM+trainer) — re-anchor their queues from committed context on reboot.
 
 ## DONE + STRICTLY VERIFIED
 - **S17** Scenario Units / IOR / Traceability Browser — complete.
-- **S18** chain method-scope + detail-view + dogfood:
-  - R18.1-8 chain narrowing (UC.method singular, /trace vs /scenario, Sprint→Task→coveredReq nav-root, 3-concern model Chain/Dependency/Navigation)
-  - R18.9-R18.13 detail-view: all-children (incl Sprint→tasks), 5-level Parent chain (ownerIor), Browse-File→Monaco#L{line} (only real .ts/.puml), source.file+line on 353 units — VERIFIED v0.5.106
-  - R18.19 sprint zero-pad "Sprint 01-18" + dedup (9 dup units deleted, 94 refs repointed) + S2-S9 Sprint units (tasks[] empty by-design, deferred — re-openable)
-  - **CHAMPAGNE strict 44/44** — every test 7-hop reachable from Req root (single fix R15.6→T111). Canonical metric /44 tests (T183 gate). Orphan-by-design allowlisted (f221d25b).
-  - S18 dogfood COMPLETE: sprint authored as scenario.json units → planning.md + 11 task MDs generated. S18 sprints.json symlink tree built (8ce33c87).
-  - req canonicalization: zero inferred-marker quotes (ccdffd64); heading-artifact reqs orphaned.
-  - T189: 19 Skill scenario units + scrum.pmo/skills/ .md (cdb65607).
-  - DOC: scrum.pmo/standards/scenario-data-pipeline.md (storage/views/scripts/serving + flow) — README-linked.
+- **S18** chain method-scope + detail-view + dogfood — complete.
+- **T201 6-STEP CHAIN CORRECTION (CLOSED v0.5.109):** canonical chain = Req→UC→Class→Method→Impl→Test. Task = NAVIGATION (Sprint→Task→coveredReq), NOT a chain hop. 5 layers verified (skill 741b0eb, standards d79c3013, code 81856abd, data f3171e57 Req.useCases[] 77/124, views 84908ea4). 3-concern model: Chain(WHY)/Dependency(WHAT-FIRST)/Navigation(HOW-BROWSE). Self-reflexively dogfooded.
+- **CHAMPAGNE 44/44** canonical (every test 7-hop reachable from Req root, T183 gate). Chain-correction PRESERVED + improved it (68 reqs reachable). 7 orphan Impls don't block (tests reachable via alt paths).
+- **R18.29-31 unitLinks[] atomic symlinks (CLOSED):** 267 units have unitLinks[] (backfill-unit-links.ts); put() auto-syncs JSON↔on-disk symlinks. S18 gap structurally impossible.
+- **T200/R18.33 detail→tree sync — PRIMARY DONE (v0.5.113):** in-tree reveal (navigate in DetailView link → tree scroll+expand+highlight) = Tron's literal ask. VERIFIED.
+- chain-correction skill/standards corrected; refinement-precedence-analysis.md (3-concern + R1-11 protocol rules).
 
-## IN FLIGHT (the ONE active impl)
-- **R18.29-31 unitLinks[] + Unit lifecycle** — expert IMPLEMENTING now: model.unitLinks[] (IOR list) + addLink/removeLink/syncLinks + put() auto-sync → keeps unitLinks[] AND on-disk scenario/sprints.json symlinks atomically consistent (makes the S18 symlink-gap structurally impossible). Architect design cd3b2730 + r18-29-31-unit-links-atomic-symlinks.md; req formalized 6cf7b901. Tester verifies symlink-consistency after add/remove on deploy.
+## DEFERRED EDGE (Tron deciding)
+- **Deep-link-on-fresh-load reveal** fails the ancestor-expand-on-fresh-render race (4 fix attempts: timing-guard, waitForNode, server reverse-scan-parent for empty-ownerIor). Outside the literal req ('navigation in details' = in-tree, works). Asked Tron: defer (default) or pursue as separate enhancement. Don't grind unprompted.
 
-## 2 STANDING TRON ITEMS (both Tron)
-1. **HTTPS cert** — needs Tron DNS API access for ACME (clears device lockout). Expert pre-staged auto-detect+self-signed-fallback = instant pickup.
-2. **Tron QA batch** — scrum.pmo/tron-qa-batch-*.md (planner making it spot-check-3 + batch-approve ready). Closes S17/S18 gates.
+## 2 STANDING TRON ITEMS (the only substantive open work)
+1. **HTTPS cert** — needs Tron DNS/ACME access → clears device lockout. Expert pre-staged auto-detect+self-signed-fallback = instant pickup.
+2. **Tron QA batch** — scrum.pmo/tron-qa-batch-*.md (spot-check-3 + batch-approve). Closes S17/S18 gates.
 
 ## HARD RULES (durable)
-- #65 NEVER /compact (kills agents) — rewind via agent-trainer (save+commit FIRST); verify reset <30% before re-tasking.
-- #66 ship = package.json + sw.js CACHE_NAME bump (a+b); #67 new route/bundle → sw.js STATIC_SHELL (c).
-- CMM4: req (atomic+literal capture) → planner (v4-uuid stand-up) → architect (design) → expert (impl) → tester (strict verify). compound-requirement-source*.md = Tron verbatim FIRST.
-- REPORT + DELEGATE VIA TASK FILE; chat = one-line pointer ONLY (Tron, repeatedly).
-- Route EVERY Tron literal to req. #17 real v4 uuids only. #27 STRICT verify = per-Test 7-hop + LIVE UX repro.
-- #71 every report → route next; never idle. otmux send is unreliable → VERIFY via pane.capture (sends silently drop).
-- SM actively helps: idle-catch / unsent-catch / report-discipline — drive on its flags.
+- CMM4 COMMS (Tron repeated + SM now enforces): findings/reports/specs INTO the task file; otmux = ONE-LINE pointer only. I kept violating under driving pressure — STOP.
+- #71 every report → route next; NEVER let agents idle (only standby if ALL impl+tested). I keep dropping the design→IMPLEMENT handoff — re-task the instant a layer/design lands.
+- INSTRUMENT BEFORE HYPOTHESIS-FIX: T200 wasted 4 fix attempts guessing; instrument-first (breadcrumbs + log actual values) found the real root cause (empty ownerIor breaks ancestor walk). When a fix fails twice, STOP guessing — measure.
+- #65 NEVER /compact (kills agents); rewind via agent-trainer (save+commit FIRST). #27 STRICT verify = per-Test 7-hop + LIVE UX repro (caught test-file-only champagne inflation, ref-format false leads, async races). #66 ship=pkg+sw.js bump; #67 new route→STATIC_SHELL. #17 real v4 uuids. Route EVERY Tron literal to req (compound-requirement-source FIRST).
 
-## HARNESS TRACKER: #29-74 done. #75 R18.29-31 in flight. #58 cert + QA batch = Tron-gated. #37/#61 S17/S18 parents close on Tron QA.
+## HARNESS TRACKER: #29-79 done except #37/#61 (S17/S18 parents close on Tron QA), #58 (cert+QA Tron-gated), #77 (systemic backfill ~done), #78 T200 primary done/deep-link deferred.
 
 ## ON RESUME
-Verify TRUE state via git/health (this snapshot lags live). Re-task instant Tron runs cert / signs QA / gives a literal (→req). 5+ agents idle = re-task or confirm legitimate (only standby if ALL impl+tested). SM monitors; rewind via trainer near limit.
+Verify TRUE state via git/health (snapshot lags live). Team genuinely near standby — only cert + QA (Tron) + the deferred deep-link edge (Tron's call) remain. Re-task instant Tron runs cert / signs QA / gives a literal (→req) / decides deep-link. Re-anchor rewound agents (planner/expert/req) from their committed context. SM enforces task-file comms + flags idle.
