@@ -21,3 +21,15 @@
 - Chat = one-line pointer; substance goes in task file (SM directive)
 - Check for UUID collisions when creating units — uuid4() can land on existing file paths
 - scrum.pmo/skills/index.md groups by object category
+
+## Chain Correction (2026-06-08)
+- Chain changed from 7-step to 6-step: Task removed from chain (Task = navigation layer)
+- Chain: Requirement → UseCase(s) → Class → Method → Implementation → Test(s)
+- Navigation: Sprint → Task → coveredRequirements → [chain starts]
+- forward-only.ts FORWARD_KEYS updated accordingly
+- traceability-standard.md rewritten to reflect 6-step
+
+## Reboot Notes
+- All skill work is COMPLETE — no continuation needed post-rewind
+- Follow-on work (/api/skill/*, CLI, invocation framework) not started — needs fresh assignment
+- 19 Skill units in scenario/index, 20 .md files in scrum.pmo/skills/
