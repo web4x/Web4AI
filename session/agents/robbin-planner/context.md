@@ -6,46 +6,50 @@
 **Model:** Opus 4.7 (1M context) (default) — switched 2026-06-09 (prior unavailable).
 **Auto mode:** OFF as of 2026-06-09 — ask clarifying questions before non-obvious moves.
 
-## Current State (v0.5.121 committed — anchor 8e9e6a06; my last sync 6dd805ae)
-- Repo HEAD: `8e9e6a06` v0.5.121 (expert R18.34.B pinch-commit fix — touchend apply + rAF).
-- My planner work this session:
-  - `d1868fa` post-rewind context save (re-anchored)
-  - `6dd805ae` SVG R18.34 reconcile — Web4Articles compliance on architect's task-r18.34-…md + scenario status Planned→In Progress
-- Activity since 6dd805ae (3 commits):
-  - `c6d47477` robbin-req compound-source R18.34.B SVG pinch-release commit + chain plan
-  - `83ccbd0e` robbin-req R18.34.B atomic refinement (req:uuid `6ee95023-5639-4eb7-86cc-916ebb418e7e` — sibling of R18.34, shares SVG task bef36fd2)
-  - `8e9e6a06` v0.5.121 expert pinch-commit fix (rule-pair ✓)
-- **Architect QUEUED** for R18.34.B chain: UC `svgViewer.pinchZoom AC9.1` + `SvgViewer` Class + `SvgViewer.onPinchEnd` Method. NOT yet on disk.
-- **Tester QUEUED** for R18.34.B: champagne test (pinch→release, no pan, zoom persists).
-- **SVG Task `bef36fd2-…`** scenario JSON: status="In Progress" (synced 6dd805ae); coveredRequirements still only R18.34 (042bab1a) — needs R18.34.B (6ee95023) added.
+## Current State (v0.5.123 committed — anchor c49966f5 my last; SM save-broadcast 2026-06-10)
+- Latest version: v0.5.123 (6771a91d expert T188 --check + determinism + ci:gates wire).
+- My recent planner chain THIS session (most-recent first):
+  - **`c49966f5`** restore 13 NO-QA-REVIEW checkboxes (audit-drift cleanup from concurrent linter edits; S13/S14/S17 tasks; PO-authorized) — **audit 0**
+  - `51899d07` T188 testing[x] sync — champagne 442237d6 GREEN, AC1/3/4/5 PASS, 7-step chain wired Test 9dbf5538 → Impl ee738f5f → … → Req R18.3
+  - `3b1a0734` T188 --check 6-orphan reconcile — DELETE 6 stale generator artifacts (old slugs of existing scenarios); round-trip gate CLEAN
+  - `f60784d0` T187 testing[x] (10/10 TS GREEN WebKit) + **675cc8e3 disposed** (covered by T187 via R18.26/27/28 shipped df4e4011/c3ba4fd9/08ae00f8) + **anomaly #4 resolved** (3 dup R18.13/14/15 deleted; 2 Done-task back-refs re-pointed to canonical R18.13; UC `725981f9 sourceLink.browse` re-owned to T187)
+  - `b30f40a2` **T202 stand-up** — Class.method-per-UC narrowing for shared Class (sibling/follow-on T187); task `8a303a65`, placeholder req `4d525a4d` (learning #38)
+  - `27866f2f` SVG fully Tron-blocked + R18.13-15 task triage (name-misleads)
+  - `8f98face` T189 testing[x] sync — skill-expert 45/45 chain + R18.13 captured + 19 Skill orphan-by-design accepted
+  - `f47e5eef` anomaly #1 resolved — dup Sprint 18 unit `8662d51e` deleted; 3 victims re-pointed (T187/T190 + previously-hidden `675cc8e3` source-link)
+  - `aa4f11ac` R18.34.B chain sync + open-S18 actionable inventory
+  - `6dd805ae` SVG R18.34 reconcile (Web4Articles compliance on architect's task .md; status Planned→In Progress)
+  - `d1868fa`, `8ce3146` two intra-session context saves (post-rewind re-anchor; mid-session save)
+- All anomalies surfaced this session = ALL RESOLVED (anomaly #1 dup-Sprint, anomaly #4 dup-reqs, 6-orphan .md drift, 13 audit warnings).
 - Wakeup-prompt hash `4fe0702` does NOT exist (learning #35) — context.md is source of truth.
 
-## OPEN-S18 ACTIONABLE LIST (PO requested 2026-06-09; full file in scrum.pmo/sprints/sprint-18-chain-method-scope/planner-open-s18-state.md)
+## OPEN-S18 ACTIONABLE LIST (full file in scrum.pmo/sprints/sprint-18-chain-method-scope/planner-open-s18-state.md)
 
-**Sprint 18.tasks[] = 12 total; 7 Done, 5 OPEN.**
+**Sprint 18.tasks[] = 13 total (after 675cc8e3 dispose + T202 add); 7 Done, 6 OPEN.**
 
 | # | uuid | status | what | blocked-on | actionable role |
 |---|------|--------|------|------------|-----------------|
-| 1 | bef36fd2 | In Progress | SVG viewer fullscreen iframe + native zoom (R18.34 + R18.34.B) | impl v0.5.121 shipped → Tron iPhone+Mac verify + architect class/method chain | **architect** (SvgViewer Class + onPinchEnd) · **tester** (3-platform verify) · **Tron** (final QA) |
-| 2 | 292d8931 | In Progress | T187 trace-narrowing chain walker one method per UC | architect refinement scope? (ownerIor anomaly — points at S18-dup 396197533cdb) | **architect/expert** continuation; flag dup-owner |
-| 3 | 08e46ce3 | In Progress | T190 tree expand append-only | architect refinement? (also points at S18-dup 396197533cdb) | **architect/expert** continuation; flag dup-owner |
-| 4 | 8a31ba75 | Planned | T188 dogfood view-gen planning.md from scenarios | nothing — net new | **req + architect** (refinement); generator already exists |
-| 5 | a7f7f216 | Planned | T189 role skills co-specify planner/architect/req-eng SKILL.md | nothing | **req + architect** (refinement) |
+| 1 | bef36fd2 | In Progress | SVG viewer fullscreen iframe + native zoom (R18.34 + R18.34.B) | architect chain wired ✓; tester champagne ✓; only Tron device re-verify | **Tron** (final QA) |
+| 2 | 292d8931 | In Progress | T187 trace-narrowing | testing[x] (10/10 TS GREEN WebKit per PO 2026-06-09); follow-on Class.method-per-UC bug split to T202 | **Tron** (final QA) |
+| 3 | 8a31ba75 | In Progress | T188 dogfood view-gen | testing[x] (champagne 442237d6 GREEN per PO 2026-06-09); 7-step chain wired | **Tron** (final QA) |
+| 4 | a7f7f216 | In Progress | T189 role skills SKILL.md | testing[x] (skill-expert 45/45 chain + R18.13 captured + Skill-orphan-by-design accepted) | **Tron** (final QA) |
+| 5 | 08e46ce3 | In Progress | T190 tree expand append-only | tester executing 8 TS (per PO; was concurrent with T187 fixes) | **tester** (continuation) → Tron |
+| 6 | 8a303a65 | Planned | T202 Class.method-per-UC narrowing (T187 follow-on) | placeholder Requirement `4d525a4d-…` per learning #38 | **req-eng** (canonicalize: verbatim Tron quote → R18.x altId → swap uuid in T202.coveredRequirements[]) → architect /api/trace/children UC-chainMethod-context design → expert → tester |
 
 **Sub-track (hand-written .md, no scenario unit):**
-| | | | | | |
-|---|---|---|---|---|---|
-| 6 | 03fb4511 | (decision-only) | task-planner-s2-s9-backfill — DEFERRED per PO 2026-06-07 | Tron QA on decision | **Tron** (acknowledge decision) — no role work |
+| 7 | 03fb4511 | (decision-only) | task-planner-s2-s9-backfill — DEFERRED per PO 2026-06-07 | Tron QA on decision | **Tron** (acknowledge decision) — no role work |
 
-**ANOMALIES FLAGGED:**
-- **Duplicate Sprint 18 unit:** `5b950725-…` (canonical, 10 tasks) AND `396197533cdb` (dup, owns T187+T190 via ownerIor). Same `ior:class:Sprint`, same name "Sprint chain method scope". S18 `tasks[]` includes both groups (12 total) but ownerIor split — chain audit will eventually fail per learning #27. Needs dedup decision (PO).
-- **SVG task statusChecklist UNSYNC'D** from `model.status` — checklist still all-unchecked even though status=In Progress; sub-step state lives only in architect's task .md, not in scenario JSON. Generator output may misclassify if it reads statusChecklist literally.
+**SUMMARY:** 4 of 6 OPEN are Tron-blocked (SVG/T187/T188/T189 all testing[x], awaiting Tron QA + device acceptance). 1 in active role work (T190 tester). 1 net-new (T202, req-eng queued). + S2-S9 decision-only.
 
-## R18.34.B CHAIN SYNC PLAN (this session — proceeding now)
-1. SVG task `bef36fd2`.coveredRequirements[]: add R18.34.B IOR (was only R18.34)
-2. R18.34.B unit `6ee95023`.tasks[]: add SVG task IOR (chain wiring loop both directions per learning #38)
-3. SVG task statusChecklist sync: reflect impl-shipped reality (planned[x], in-progress[x], refinement[x], creating-test-cases[x], implementing[x], testing[ ])
-4. Architect's SvgViewer Class + onPinchEnd Method = QUEUED; planner can't pre-emptively create per learning #39 (find-owning-sprint workflow — architect owns design content)
+**ANOMALIES — ALL RESOLVED THIS SESSION:**
+- ✓ **Anomaly #1** dup Sprint 18 unit `8662d51e` deleted f47e5eef; T187+T190+`675cc8e3` victims re-pointed to canonical S18.
+- ✓ **Anomaly #4** 3 dup R18.13/14/15 reqs deleted f60784d0; Done-task back-refs re-pointed to canonical R18.13; UC re-owned to T187.
+- ✓ **6-orphan .md drift** (T188 --check finding) — all 6 stale generator artifacts deleted 3b1a0734; round-trip gate CLEAN.
+- ✓ **13 NO-QA-REVIEW audit drift** restored c49966f5 (linter concurrent-edit damage); audit 0 issues.
+
+## TRON-QA GATE QUEUE (S18 portion)
+SVG (R18.34/R18.34.B) · T187 · T188 · T189 · S2-S9 backfill (+ T190 once tester finishes 8 TS)
+All testing-hops verified; only Tron's final QA + device acceptance separates ✅ from 🏁.
 - **Since prev save (8ce33c87):** req-eng `6cf7b901` (S14 quote placeholders + R18.29-31 unitLinks lifecycle) + `ccdffd64` (canonicalised ALL tronQuote — zero inferred markers). req's compound-source still has uncommitted M on disk (R-M / Follow-on H R18.32 capture WIP).
 - **Sprint 17 closed** — cascade fired 2026-06-05 (T178 KEYSTONE `452f8d5d` 44/44 7-hop reach; T128.4 ✅; T178/T124/T168 🧪 Tron QA pending).
 - **Sprint 18 ACTIVE** — `sprint-18-chain-method-scope`. Sprint uuid `5b950725-a6f6-4d45-b802-4784ee6ef962`. **DOGFOOD COMPLETE 2026-06-07/08.**

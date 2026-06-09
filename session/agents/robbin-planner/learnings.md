@@ -274,3 +274,48 @@ PO + architect surfaced the systemic gap: 100% empty `coveredRequirements[]` acr
 
 ## 36. SM broadcast save-directive applies to all agents (2026-06-08)
 When the SM (TRONinterface:0.1) broadcasts "commit your current work to context.md and learnings now" (even addressed to a sibling agent like @scrum-master, with "try again" repetitions), treat it as a TEAM-WIDE save-before-rewind protocol. Save preemptively — don't wait for an addressed directive. Pattern: write context.md updates → commit, write learnings updates → commit, then respond with one-line confirmation. The "try again" repetitions are SM escalating because someone didn't act; if no other agent in the team-board PER-AGENT section has obvious in-flight context, assume planner is the latent target.
+
+## 40. T188 `--check` round-trip gate detects slug-rename .md drift (2026-06-09)
+`npx tsx scripts/generate-sprint-md.ts --check <sprint-uuid>` is the canonical orphan detector for "filename↔scenario" drift. It reports `extra: <file>` for any .md in the sprint dir that the current generator does NOT emit (i.e. no matching scenario slug). Cause pattern: a task's `model.slug` changed (rename, T-numbering adjustment) — old generator output stays on disk while the new run emits the new name. Both files carry the same `[task:uuid:...]` embed.
+
+**Disposition recipe:**
+- ALL 6 found this session were stale generator output (each carried `<!-- GENERATED FROM SCENARIO UNITS — DO NOT HAND-EDIT -->` header + `[task:uuid:...]` matching an EXISTING scenario whose slug had changed).
+- For each: confirm `git status` shows the file is the older one (compare against current `model.slug`); the newer name is the current generator emit.
+- If embedded uuid matches an existing Task scenario → **DELETE** stale orphan (no backfill).
+- If embedded uuid is dangling (no matching scenario unit) → **BACKFILL** the missing Task scenario unit (the .md is a real task that lost its source).
+
+Run `--check` after EVERY slug rename / task re-stand-up. Round-trip gate champagne fails if drift remains; this is part of the strict-chain audit per learning #27.
+
+## 41. Audit drift from concurrent linter edits — Status block sub-steps SILENTLY lost (PO 2026-06-09)
+Concurrent agent edits (typically a linter or auto-formatter) can strip a task .md's Status block down to bare `Planned / In Progress / Done` — losing both the In Progress sub-steps (refinement / creating test cases / implementing / testing) AND the QA Review line. The sprint audit catches "NO QA REVIEW in checklist" but NOT the missing sub-steps. **The sub-steps lost are silent damage.**
+
+**What survives:** the scenario JSON's `model.statusChecklist` field carries the full sub-step state (planner mutated to match impl/test reality during status syncs). This is the source of truth.
+
+**Repair pattern (planner):**
+- Surgical: insert `- [ ] QA Review` immediately before `- [ ] Done` to satisfy the audit.
+- Do NOT attempt to restore sub-step checkboxes from .md alone — they require per-task work-state inference (cross-reference git log + scenario JSON statusChecklist + PO directives).
+- Next regenerator run will rewrite .md from scenario JSON, restoring sub-steps consistently.
+
+**Incident:** 13 task .mds across S13/S14/S17 hit this drift; restored with `c49966f5` (PO-authorized). Audit went 13 → 0 issues.
+
+## 42. Renumbered-Tron-directive triage — verify scope vs canonical req ids before disposing (PO 2026-06-09)
+Tron directives sometimes get RENUMBERED when a sprint accumulates work (collision resolution: original R18.13/14/15 source-link reqs got renumbered to R18.26/27/28 in Follow-on D to avoid clashing with canonical R18.13 "chain terminates in Test" et al). A task created BEFORE the renumbering keeps the OLD-numbering name and references — looking like it's about R18.13/14/15 when its actual scope is R18.26/27/28.
+
+**Triage pattern when a task name LOOKS REDUNDANT with completed work:**
+1. Match the task NAME against scope, NOT against altId — names lag renumbering.
+2. Search compound-requirement-source.md / requirements.md for "REVISED by R18.XX" / "renumbered" markers.
+3. Look up the CANONICAL altId-bearing requirement units (filter `altId=R18.X`) — those are the live ones.
+4. If renumbered work is already shipped (commit + version-bump on the canonical altId), the old-name task is REDUNDANT → disposal.
+
+**Incident:** `675cc8e3` task named "R18.13-15 Source link..." carried 6 stale coveredRequirements that were 3 distinct duplicate scenario units (no altId, 0 task back-refs) of canonical R18.13/14/15. PO triage authorized DELETE because R18.26/R18.27/R18.28 (the renumbered Follow-on D versions) already shipped df4e4011 v0.5.99 + c3ba4fd9 + 08ae00f8 v0.5.106 under T187 ownership. Dedupe pattern matched anomaly #1 (dup Sprint reconcile).
+
+## 43. Placeholder-then-canonicalize stand-up — bulletproof req-eng handoff (2026-06-09 T202 stand-up)
+When PO directs a task stand-up before req-eng has captured the verbatim Tron requirement, the planner creates a PLACEHOLDER Requirement scenario unit with a real v4 uuid (learning #17) and wires it as `coveredRequirements[0]` on the new Task. This satisfies the chain-wiring pre-gate without authoring requirement content (req-eng's role per learning #18 CMM4).
+
+**Bulletproof handoff (T202 b30f40a2 pattern):**
+- Task .md carries **multiple req-eng mentions** so the handoff is unmissable: top callout box, Traceability up-link line, Owners table row, QA Audit chronology, pending-list line, footer Owners line.
+- Placeholder Requirement scenario JSON carries `placeholder: true` boolean flag + `placeholderNote` string with the explicit canonicalize steps (verbatim Tron quote → assign real R18.x altId → swap placeholder uuid in `T<N>.coveredRequirements[]`).
+- altId on placeholder = `R-placeholder-T<N>` (recognizable, never matches a real R18.x).
+- The Sprint's `requirements[]` includes the placeholder IOR (architecturally complete) — req-eng's canonicalize swaps the IOR there too.
+
+When req-eng commits the canonical Requirement (real Tron quote + real R18.x altId + real v4 uuid), they execute the swap across all references; the placeholder unit gets deleted in the same commit. Planner then verifies the chain is clean with `--check` round-trip + audit.
