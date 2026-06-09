@@ -473,3 +473,100 @@ creates/updates all declared symlinks. addLink/removeLink mutate both
 the JSON and the on-disk symlink atomically. scenarioRoot = path.dirname(basePath).
 Backfill: read existing symlinks → readlinkSync → extract UUID → populate unitLinks[].
 267/282 symlinks backfilled (15 orphans skipped).
+
+## Session 4 Learnings (2026-06-09)
+
+### 6-STEP chain LOCKED: Req → UC → Class → Method → Impl → Test
+Task is NAVIGATION (Sprint→Task→coveredRequirements), NOT chain.
+8 code locations to update for chain change: TraceModel FORWARD_KEYS,
+TraceModel children/parent (ABOVE+BELOW maps), forward-only.ts,
+server.ts SCENARIO_FWD+TRACE_FWD+EXPECTED_CHILD_TYPE+roots,
+trace-audit CANONICAL_FORWARD. Tests assert FORWARD_KEYS and may
+depend on chain — update those too.
+
+### 5-layer chain correction methodology (T201)
+L1 standard doc, L2 baseline audit, L3 code changes (FORWARD_KEYS),
+L4 data derivation (populate forward arrays), L5 view wiring.
+HARD GATE between L3 and L4: tester must strict-verify code change
+before data backfill (so any regression is isolated).
+
+### iOS Safari iframe orientation defects (R18.34 D4 evolution)
+- iframe isolation does NOT scope pinch zoom (Tron disproved on
+  iOS + Chrome/Mac + Chrome/iPhone).
+- Fix #1: outer page viewport maximum-scale=1,user-scalable=no
+  (belt-and-braces, iOS specific)
+- Fix #2: in-iframe gesture handler (touch + wheel+ctrl + drag)
+  with touch-action:none + preventDefault EVERYWHERE.
+- Fix #3 (snap-back): window.addEventListener('resize', reset) is
+  THE bug — iOS fires resize on URL-bar settle after touchend →
+  contain-fit recompute. Replace with preserve-zoom handler that
+  shifts tx/ty proportionally, NEVER recomputes scale.
+- Fix #4 (orientation snap-back): even with preserve-zoom resize,
+  rotation can re-execute the script (iframe remount) or fire
+  orientationchange-only. Defenses: sessionStorage persist scale/tx/ty,
+  orientationchange listener, visualViewport.resize listener.
+
+### Inline <svg> > <img src=svg> for zoom viewer
+- <img>: rasterizes once at layout box → upsample blur on transform
+- inline <svg>: vector re-rasterizes on every paint at scaled size → crisp
+- <img> with no explicit dims → iOS reflow on touchend re-anchors transform
+- inline <svg> with explicit width/height attrs + numeric px style → pinned
+
+### preserve-zoom on resize (architect 7422733c)
+```js
+let lastSw=sw,lastSh=sh;
+window.addEventListener('resize',()=>{
+  const newSw=stage.clientWidth,newSh=stage.clientHeight;
+  if(newSw===lastSw&&newSh===lastSh)return;
+  tx+=(newSw-lastSw)/2; ty+=(newSh-lastSh)/2;
+  lastSw=newSw; lastSh=newSh; sw=newSw; sh=newSh; apply();
+});
+```
+Keep reset() for INTENTIONAL resets only (dbltap/dblclick).
+
+### Detail→tree sync revealNode pattern (T200)
+revealNode(uuid):
+1. if no .tt-node in DOM → pendingReveal = uuid; return (race guard)
+2. existing? → highlight + return
+3. fetchAncestorPath(uuid) walks model.parent upward via /api/trace/children
+4. For each ancestor: if not children-open, dispatch toggle-children +
+   waitForNode(nextUuid) — rAF poll until DOM appears, 5s timeout
+5. Final querySelector + highlightNode (orange outline 2s fade)
+render() drains pendingReveal via rAF.
+
+### /api/trace/children reverse-lookup fallback (T200)
+When ownerIor empty, scan all units for any whose forward arrays
+(tasks/useCases/classes/methods/implementations/tests) contain this
+UUID. Derive parent in same format. Closes ancestor-path break on
+ownerIor data gaps.
+
+### T199 integrity backfill (763 units)
+PASS 1: ownerIor reverse-lookup per type (Task→Sprint via Sprint.tasks[],
+Req→Task via Task.coveredRequirements[], UC→Task via Task.useCases[],
+Class→UC via UC.classes[], Method→Class, Impl→Method, Test→Impl).
+PASS 2: unitLinks[] field on ALL 763 + populate forward IOR refs.
+model.parent MIRRORS ownerIor on all non-Sprint units. Sprints get
+NO model.parent field (absent, not null — Tron directive).
+
+### Don't hypothesis-fix when PO says INSTRUMENT
+3 failed fix attempts = STOP. Add console breadcrumbs in suspect
+functions, capture actual values from live device. Architect can
+read logs to confirm root cause. Then ONE confident fix.
+
+### Architect root-cause beats my speculation
+When defect persists after my "obvious" fix, escalate to architect for
+audit. They have file-history context (e.g., R18.34 D4 was resize listener,
+NOT CSS pin as I/PO initially suspected). Implement architect's fix,
+don't add layers of guards on top.
+
+### Cache-bust bump trick
+When user can't verify fix and suspects PWA cache, bump package.json
++ rebuild → sw.js CACHE_NAME changes → service worker re-fetches all
+assets. Even if STATIC_SHELL unchanged, the CACHE_NAME hash forces
+re-install of the SW which triggers update banner.
+
+### Inline svg attribute style pattern
+PUML SVGs come with `style="width:1083px;height:850px"` baked in +
+`width="1083px" height="850px"` attrs. Setting svg.style.width = iw+'px'
+overrides the inline style property. Don't need removeAttribute('style')
+unless you see a regression (architect confirmed no width:100% in PUMLs).
