@@ -1,15 +1,19 @@
 # Product Owner Context
 
-**Updated**: 2026-06-01 16:15
+**Updated**: 2026-06-09
 **Role**: oosh-po
 **Pane**: ooshTeam:0.0 on MacStudio.native
 **Session**: oosh-po@MacStudio [aca3405a]
 
 ## Current State
-- Monitor delegated to SM at TRONinterface:0.1
-- Team autonomous 16h+ — architect, expert, tester all active
-- All agents ~60% context — saving files now
-- Naming migration @model→@host DONE + MVC bug found and fixed (382a26b)
+- SM at TRONinterface:0.1 being replaced (bloated context, fresh boot pending)
+- Expert rewound (saved cc7d6da), tester rewound (saved b3cabc7)
+- Architect active
+- Role dir sorted: now using session/agents/oosh-po/ (not shared product-owner/)
+- robbin-skill-expert forked (robbinTeam:2.0) — 6 tooling gaps documented
+- Cross-platform: oo 12/12, ossh 108/108, config 20/20, log 45/45 on Termux
+- otmux 130/146 macOS — 16 failures need identification
+- Branch merge test/macos.latest→dev DONE (458 commits, 0 gap)
 
 ## Teams (registered)
 | Team | Status |
