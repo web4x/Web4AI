@@ -39,3 +39,11 @@ SVG done (device-verified) — finishing clean v0.5.126 + false-green-test fix. 
 
 ## RESUME-VERIFIED 2026-06-10 (save #8)
 v0.5.125 confirmed live (curl /api/health, 10 rooms). req actively on #77 backfill (Pass C committed 025f33e2). In flight unchanged: v0.5.126 SVG-clean + false-green-test + #82 clickpath. Live priority order: #82 clickpath (active Tron bug) → SVG close-out (v0.5.126) → T202/R18.35 → #77. Re-task idle/rewound agents at #82 first (not backfill). otmux: C-u workaround on every send.
+
+## SAVE #9 — 2026-06-10
+- **#82 clickpath FIXED + deployed v0.5.126** (ba20c9d0): templates.ts:65 + trace-tree.ts:92 dropped doubled sprints.md/ segment → ../TYPE/SLUG.md; 1615 views regenerated; 879/879; (a)✓(b)✓. → TESTER verifying link resolves, then #82 closed.
+- **SVG R18.34.B device-verified DONE** (Tron "You made it!!!"); v0.5.126 carries the clean build.
+- **SPRINT 19 — Room Handling: PLANNING in flight (#83).** Verbatim source: scrum.pmo/sprints/sprint-19-room-handling/compound-requirement-source.md (R19.1-14). 4-role routed (precedence): req decomposing→signal→planner stand-up→architect design. Rooms ARE scenario units; files become units (uuid.content + uuid.scenario.json + unitLinks); visibility public/invite(Apply-flow)/private(owner-only); lifecycle live/persistent (persistent becomes default post-sprint); room UI drop-zone 2x + Members/Files tree.
+- OPEN: #81 T202/R18.35 (per-UC class.method); #77 backfill (req); SVG/T187-190/S2-9 on Tron-QA gate.
+- Expert flagged to SM for post-#82 rewind (~651k). otmux C-u workaround still required.
+- LIVE PRIORITY: tester closes #82 → S19 planning → #81/#77 → 2 Tron standing (cert + QA batch).
