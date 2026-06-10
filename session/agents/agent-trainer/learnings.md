@@ -241,9 +241,53 @@ Every planner agent must apply this on boot. Add to forked-agent boot reading li
 - **API rate limits during save — just retry.** Tron: "api errors can occur, just try again." Don't panic, don't change approach. Resend the save instruction.
 - **Write status to task files, not chat.** SM CMM4 reminder: task files are the single source of truth. Created `session/tasks/20260531T1200Z.rewind-status.md` for rewind tracking. Report to SM with short file reference only.
 - **Stuck agent with queued messages — Escape, don't rewind.** robbin-architect froze 2.5hrs on a search ("Inferring… 2h 32m, 149 tokens"). Messages from PO piled up in input buffer ("Press up to edit queued messages"). Escape interrupted the stuck op, queue auto-drained. Agent survived. **This is NOT context death — don't rewind.** Diagnose first: stuck op vs context limit vs permission block. Each has a different fix. Escape = stuck op. /rewind = context limit. SM unblock = permission.
+- **SM false positive rewind cycle.** SM context.read triggers at 700-800k on recently-rewound agents that are rebuilding context from recovery reads. This is NORMAL post-rewind behavior — the agent reads context.md, learnings.md, SKILL.md, checks git, runs commands — all of which adds to context. Rewinding again immediately destroys the knowledge it just rebuilt. **Rule: never rewind an agent that was rewound in the last 30 minutes unless pane status bar shows actual "Context low" or "clear to save 800k+".** SM flags without pane evidence = false positive. Push back.
 - **Use `hiveMind team.sweep <session>` not for-loops.** One command shows all agents with states (ACTIVE/COMPLETED/IDLE/PERMISSION). Never `for pane in ... do capture done` — that's raw bash, not OOSH.
 - **Flag SM BEFORE sending save instructions.** Coordination pattern from SM: (1) send save to agent, (2) tell SM "expect PERMISSION on <agent> <pane>", (3) SM watches on next sweep, (4) SM reports to PO for non-PO agents, PO unblocks. Don't assume permissions will be caught — flag explicitly.
 - **robbin-skill-expert fork pending.** PO directive: fork from robbin-expert UUID `a2ac40b0` into robbinTeam:2.0. Create window first with `otmux window.new -t robbinTeam:2`. Boot prompt defined by PO. Not yet executed.
+
+### TIER-3 Recovery: Knowledge Distillation → Fresh Agent (learned 2026-06-09, Tron directive)
+
+**When**: Agent has 800k++ context AFTER rewind. Rewinds accumulate conversation base — each fork inherits weight. Eventually even 50% rewinds leave no room.
+
+**The problem**: Rewind procedure works but each cycle adds context overhead. After many rewind cycles, the agent's conversation base is so bloated that a 50% rewind still leaves 800k+. The agent is trapped — can't work, can't rewind free.
+
+**The solution**: Agent must DISTILL all its experience into files, then a BLANK agent is trained from those files.
+
+**What the distilled files must contain (200-300k of rock-solid content):**
+1. **Fundamental learnings** — not just current task state, but WHY patterns work, HOW the agent does its job, WHAT fails
+2. **Success patterns** — the procedures that work, the workflows that deliver, the coordination patterns
+3. **Role mastery** — deep understanding of the role, not just SKILL.md rules but lived experience
+4. **Reading list** — prioritized files the new agent must read to reach operational capacity
+5. **Current state** — sprint status, task queue, team layout, in-flight work
+6. **Hard-won rules** — corrections from Tron, PO, incidents — the stuff that only exists in the agent's memory
+
+**Files to produce:**
+- `session/agents/<role>/boot.md` — updated with distilled boot sequence
+- `session/agents/<role>/context.md` — current state snapshot
+- `session/agents/<role>/learnings.md` — ALL accumulated patterns, not just recent
+- `session/agents/<role>/SKILL.md` or equivalent — role definition with lived experience baked in
+
+**Procedure:**
+1. Tell the dying agent: "You are being replaced. Write down EVERYTHING you know — not just current tasks, but how you do your job, what works, what fails, what Tron taught you. Write it to your learnings.md and context.md. This will train your successor. Git commit."
+2. Wait for commit
+3. Have the oosh team boot a fresh agent (claudeCode fork from a healthy source or blank claude --name)
+4. Train the fresh agent from the distilled files
+5. Health check — agent must demonstrate role mastery, not just file reading
+
+**Key difference from Tier-1 (rewind) and Tier-2 (fork):**
+- Tier-1 rewind: conversation fork, keeps training, frees ~50% context
+- Tier-2 fork: exit + claudeCode fork from healthy source, keeps source training
+- Tier-3 distillation: FRESH agent, trained ONLY from files. No conversation inheritance. Clean slate with distilled knowledge.
+
+**When to use each:**
+- Agent <800k after rewind → Tier-1 sufficient
+- Agent >800k after rewind, healthy source available → Tier-2 fork
+- Agent >800k after rewind, no healthy source, conversation base bloated → Tier-3 distillation
+
+### Fresh Agent Checklist (learned 2026-06-09)
+- **Always enable /remote-control on fresh agents.** A fresh `claude --name` session does NOT have Remote Control enabled. Without it, Tron can't see the agent's output in the Claude app. Send `/remote-control` + Enter after boot and verify "Remote Control active" in status bar.
+- **Fresh agents also need**: correct model (`/model` → Opus 4.7), accept-edits mode if needed, and their boot training prompt.
 
 ### OOSH Environment Mastery (learned 2026-05-19, from expert+SM reading lists)
 
