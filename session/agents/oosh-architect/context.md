@@ -1,97 +1,111 @@
 # oosh-architect Context
 
-**Updated**: 2026-06-09 (SM-directed save)
+**Updated**: 2026-06-10 (comprehensive reboot save)
 **Role**: oosh-architect @ ooshTeam:0.1
 **Machine**: MacStudio
 **Session name**: oosh-architect@MacStudio
 
+## Identity
+I am the OOSH framework architect. I design systems — I do NOT implement, test, or monitor. I create PlantUML diagrams, ADRs, design specs, and review expert implementations. TRON directives override my recommendations.
+
 ## Team Layout
-- ooshTeam:0.0 — oosh-po
+- ooshTeam:0.0 — oosh-po (quality owner, sprint planning)
 - ooshTeam:0.1 — ME (oosh-architect)
-- ooshTeam:0.2 — oosh-expert
-- ooshTeam:0.3 — oosh-tester
-- ooshTeam:0.4 — oosh-expert-shell
-- ooshTeam:0.5 — oosh-tester-shell
+- ooshTeam:0.2 — oosh-expert (implementation)
+- ooshTeam:0.3 — oosh-tester (validation)
+- ooshTeam:0.4 — oosh-expert-shell (bash)
+- ooshTeam:0.5 — oosh-tester-shell (bash)
 
-## What I Delivered This Session (cumulative)
+## MVC Architecture (CRITICAL)
 
-### Design Documents
-1. **J2 agent.fork.best design** — session/tasks/j2-fork-best-design.md
-2. **Sprint 1 State Correctness** — architect-state-analysis.md (10 stores, 15 mutations, 7 invariants I1-I7, Option C events + Option B reconcile)
-3. **tronMonitor.fit formula** — docs/tronMonitor-fit-formula.md
-4. **Send prefix spec** — docs/send-prefix-spec.md (24 methods, ONE insertion point)
-5. **otmux fast-path architecture** — task-otmux-fast-path.md (4 batch fixes A+B+C+D, 46s→1.5s, expert shipped)
-6. **Naming migration design** — naming-migration-design.md (9 write paths, Option C: @hostname everywhere, expert shipped 9c2cc70)
-7. **ADR-001: Import architecture** — adr-001-import-architecture.md (npm exports field, POC passed UCP+Unit, rollout queued)
-8. **ADR-002: Version mapping** — adr-002-version-mapping.md (X.Y.Z.W → X.Y.Z-W, approved)
-9. **McDonges disaster architect section** — appended to mcdonges-remote-disaster-report.md (I1-I6 breach analysis, 4 recommendations)
-10. **Unit gap analysis** — task-9.1-architect-unit-gap-analysis.md (20 files missing from 0.3.23.x, ~1500 lines to port, Merge Forward strategy)
-11. **@web4x/cli extraction review** — verified zero circular deps, flagged DefaultWeb4TSComponent string coupling
-12. **claudeCode resolve.byName bug** — approved Option A (awk field extraction over grep)
-13. **team.migrate shape review** — approved merge-on-remote, session filter, signed off expert impl
+OOSH follows strict MVC with 4 scripts:
 
-### PUMLs Delivered (13 total)
+| Script | Role | Owns | NEVER touches |
+|--------|------|------|---------------|
+| **claudeCode** | Model | Session UUID, context %, PID, JSONL. Portable without tmux. | hiveMind functions |
+| **otmux** | View | Pane management, capture, send, layout. Reads registry FILE only. | claudeCode/hiveMind source |
+| **hiveMind** | Controller | Orchestrates Models in View panes. Owns ALL state stores. | Direct tmux (uses otmux) |
+| **tronMonitor** | Monitor | Tron's visual dashboard. Auto-syncs with Controller. | State mutation |
 
-OOSH PUMLs (docs/puml/):
-- Sprint1_StateCorrectness_StateStores.puml
-- Sprint1_StateCorrectness_EventFlow.puml
-- Sprint1_StateCorrectness_ReconcileCycle.puml
-- TronMonitor_Fit_Activity.puml
-- H1.1_claudeCode_UseCases.puml
-- H1.2_otmux_UseCases.puml
-- Sprint0_I1_ContextAwareSend_Sequence.puml
+**MVC boundary:** claudeCode NEVER calls hiveMind. otmux has ZERO references to claudeCode/hiveMind.
 
-Web4 PUMLs (components/*/src/puml/):
-- W4TSC-IMC-ClassDiagram.puml + SVG
-- W4TSC-IMC-UseCaseDiagram.puml + SVG
-- UCP-ClassDiagram.puml + SVG
-- Unit-ClassDiagram.puml + SVG
-- Persistence-ClassDiagram.puml + SVG
-- Unit-Prod-ClassDiagram.puml + SVG (0.3.0.5 with GitTextIOR gap analysis)
+### State Stores (hiveMind owns)
+| Store | File | Format |
+|-------|------|--------|
+| roles.env | ~/config/hivemind.roles.env | pane\|role\|timestamp |
+| sessions.env | ~/config/hivemind.sessions.env | pane\|uuid |
+| teams.env | ~/config/hivemind.teams.env | session\|description |
+| forks.env | ~/config/hivemind.forks.env | append-only audit log |
+| snapshots | ~/config/hivemind.snapshot.*.env | session\|addr\|role\|uuid\|title |
+| queue | ~/config/hivemind.queue/*.queue | epoch\|intent\|text |
+| tronMonitor.env | ~/config/tronMonitor.env | session list |
+| active.team | ~/config/hivemind.active.team | single session name |
 
-### Reviews Completed
-- otmux.fit signature (approved, flagged cross-session client dimension issue)
-- team.migrate design (approved Option A merge-on-remote)
-- @web4x/cli extraction (approved, flagged behavioral coupling)
-- claudeCode resolve.byName (approved Option A awk)
-- Naming migration 9c2cc70 (approved, pending Option A→C follow-up)
+### 7 Invariants (I1-I7)
+I1: roles.env panes MUST exist in tmux. I2: sessions.env panes in roles.env, UUID matches live. I3: teams.env = running tmux sessions. I4: tronMonitor ⊆ teams.env. I5: Snapshot UUIDs correct at save time. I6: Queue files reference valid panes. I7: role.fromTitle() extracts bare role from any title.
+
+### Consistency Model
+Option C (events) + Option B (reconcile safety net). Every mutation emits event → handlers update stores. consistency.reconcile on SM sweep. consistency.audit validates I1-I7.
+
+## Agent Lifecycle
+
+### Boot: team.setup → fork/bootstrap → /rename role@hostname → pane.title → registry.set → boot.md
+### Rewind: NEVER compact. Only TRON rewinds. Read boot.md → context.md → learnings.md → verify pane → report to PO.
+### Fork: claudeCode fork <uuid> auto-compacts. NEVER send keystrokes during compact.
+
+## Naming Convention (Option C, TRON-approved)
+- Pane title + Claude /rename: `role@hostname` (e.g., oosh-architect@MacStudio)
+- Registry: bare `role` (no @suffix)
+- role.fromTitle() strips @* — all read paths work
+- HIVEMIND_HOST = hostname -s (cached)
+- 9 write paths in hiveMind
+
+## PlantUML
+
+```bash
+plantuml -tsvg file.puml           # render
+plantuml -tsvg -failfast2 -v file.puml  # verbose
+```
+- @startuml = path-safe slug (no spaces/unicode). Separate `title` for display.
+- SVG >10KB = real, <1KB = error. Commit .puml + .svg together.
+- Layer colors: L3=#F5F5F5, L2=#E8F5E9, L4=#FFF3E0, L5=#FCE4EC, External=#EEEEEE
+
+## Units, Scenarios, Traceability (from robbinTeam)
+
+### Scenario = {ior: {uuid, component, version}, owner, model}. EVERYTHING is a scenario (P1).
+### Unit = scenario for a file/folder/code element. Fields: origin (IOR to source), typeM3 (CLASS/RELATIONSHIP/FOLDER), references[] (bidirectional links with syncStatus).
+### .ts.unit files live NEXT TO .ts source, same UUID as M3 CLASS unit.
+
+### Traceability Chain (6-step, LOCKED)
+Requirement → UseCase → Class → Method → Implementation → Test
+- Task = NAVIGATION (Sprint→Task→coveredReqs), NOT chain
+- ONE UC per Task, ONE Method per UC (singular at intermediate hops)
+- Forward-only. Champagne = structural + intentional (Test.verifies[]).
+
+### MDAv4: M3/CLASS/{Name}.unit, M3/RELATIONSHIP/extends.unit, M3/FOLDER/{name}.unit
+
+## Deliverables (cumulative)
+
+### Designs (13): fork.best, state-correctness, tronMonitor.fit, send-prefix, otmux-fast-path, naming-migration, ADR-001 (npm exports), ADR-002 (version mapping), McDonges disaster, Unit gap analysis, @web4x/cli review, resolve.byName, team.migrate
+
+### PUMLs (13): StateStores, EventFlow, ReconcileCycle, TronMonitor Fit, H1.1 claudeCode UCs, H1.2 otmux UCs, I1 ContextAwareSend, W4TSC-IMC Class+UseCase, UCP Class, Unit Class, Persistence Class, Unit-Prod Class
 
 ## Open Items
+- MVC rename bug: tree.detailed prefers pane title over stale JSONL
+- Option A→C follow-up: 5 /rename sites pending
+- ADR-001/002 rollout queued
+- 16 cross-platform hardcoded paths reported
+- Branch migration: dev..macos.latest = 0 (synced)
 
-### Pending (blocked or waiting)
-- **MVC rename consistency bug** — session/tasks/mvc-rename-consistency-bug.md. View shows @MacStudio, Model JSONL shows @opus. PO asked: should tree.detailed prefer live session name over JSONL? Should consistency.audit treat title≠sessionName as invariant violation? **I have NOT yet answered these questions.**
-- **Option A→C naming follow-up** — expert has 5 /rename sites to switch from @model to @hostname. Bundled with robbinTeam restart.
-- **ADR-001 exports rollout** — queued after expert finishes Task 3.1
-- **ADR-002 version rollout** — ~30 package.json files, low priority
-
-### Since Last Save
-- Cross-platform path audit: 16 hardcoded paths (/tmp/, /opt/homebrew, /Users/Shared/, ~/.ssh/id_rsa) reported to PO
-- MVC rename consistency bug: answered PO — tree.detailed should prefer live pane title over stale JSONL, consistency.audit needs grace period after /rename
-- Branch migration task (session/tasks/branch-migrate-macos-latest-to-dev.md): Phase 1 gap analysis — git log dev..test/macos.latest returned EMPTY (branches already in sync). Reverse gap check interrupted.
-- robbinTeam naming: expert applied @MacStudio to all 4 agents. Option A→C follow-up still pending for 5 /rename sites in hiveMind.
-
-### Backlog (not started)
-- H1.3: hiveMind use case PUML (completes MVC trilogy)
-- TeamMigrate BulkRestoreExplosion Sequence PUML
-- SC-G.3: Sprint 1 PUML updates as implementation lands
-- Branch migration Phase 1 completion: verify reverse gap (test/macos.latest..dev), update task file
-
-### Since Save #2 (Jun 1 → Jun 9)
-- No new tasks assigned. Standing by for PO direction.
-- Branch migration: forward gap confirmed EMPTY (dev..test/macos.latest = 0 commits). Reverse gap check was interrupted (Bash tool permission rejected for ~/oosh git commands — must use expert-shell).
-- SM directed context saves at 60% and 63%. This is save #3.
-
-## MVC Architecture Summary
-- **Model (claudeCode)**: resolve.byName bug approved (Option A), not yet shipped
-- **View (otmux)**: fast-path shipped (46s→1.5s), otmux.fit shipped
-- **Controller (hiveMind)**: naming 9c2cc70 shipped (Option A, needs C follow-up), team.migrate shipped, event handlers partially implemented
-- **Monitor (tronMonitor)**: fit formula delivered, no open issues
+## Backlog
+- H1.3: hiveMind use case PUML
+- TeamMigrate BulkRestoreExplosion PUML
+- SC-G.3: Sprint 1 PUML updates
 
 ## RULES (eternal)
-- hiveMind for agent interaction, never raw otmux
-- Rules are eternal — append only
 - NO COMPACT — only TRON rewinds
 - NEVER ASSUME — ALWAYS MEASURE
-- PO assigns, SM monitors, TRON reviews
-- Architect designs, expert reviews for implementability, tester validates
-- Architect does NOT implement, does NOT run tests, does NOT run monitoring loops
+- Architect designs, expert implements, tester validates
+- TRON overrides architect. PO assigns. SM monitors.
+- Grep ALL occurrences when identifying write sites
+- Don't cd ~/oosh from Bash — use expert-shell via otmux
