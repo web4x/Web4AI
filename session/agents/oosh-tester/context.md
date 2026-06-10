@@ -1,17 +1,14 @@
 # OOSH Tester Agent — Session Context
 
-**Updated**: 2026-06-01
+**Updated**: 2026-06-10
 **Role**: oosh-tester
 **Pane**: ooshTeam:0.3
-**Test Shell**: ooshTeam:0.4 (expert shell, used for macOS tests)
-**Termux Shell**: ooshTeam:0.5 (samsungTablet, branch may differ)
-**Expert**: ooshTeam:0.2 (oosh-expert), ooshTeam:0.1 (oosh-architect)
+**macOS Shell**: ooshTeam:0.4 (expert shell, shared for tests)
+**Termux Shell**: ooshTeam:0.5 (samsungTablet)
 **Machine**: MacStudio.native
-**Branch**: dev (primary), test/macos.latest (legacy)
+**Branch**: dev
 
-## Sprint 1 Delivered: 88 tests + 4 bug verifications
-
-## Cross-Platform Validation (2026-06-01)
+## Cross-Platform Status (final)
 
 | Suite | macOS | Termux | Status |
 |-------|-------|--------|--------|
@@ -19,25 +16,24 @@
 | ossh | 108/108 | 108/108 | GREEN |
 | log | — | 45/45 | GREEN |
 | config | — | 19/20 | 1 fail (config.discover) |
+| otmux | 130/146 (16 fail) | — | 16 failures unidentified |
 
-## ossh fix.rights verified
-- macOS: dirs 700, private keys 600, public keys 644 — PASS
+## Current Task
+- otmux 16 failing tests: need rerun with output capture to identify
+- Previous runs interrupted or results file lost ($TMPDIR cleaned)
+- tree.detailed test blocks for minutes (performance bottleneck)
 
-## Branch Migration
-- Phase 3 complete: dev fully synced (458 commits merged)
-- log bug (private.log.install.append) fixed: 8ef8ef0
-- /tmp/ bulk fix: 33+ mktemp calls across 7 test files
-- Expert delivered 7 new functions for log/config zero-failure
-
-## Remaining
-- Termux config.discover (1 fail)
-- otmux + hiveMind full regression (blocked by tree.detailed performance)
+## Verified This Session
+- ossh fix.rights: dirs 700, keys 600/644 — PASS
+- otmux.attach param naming (5db5b83) — test suite ran
+- Branch migration Phase 3: dev fully synced
+- /tmp/ bulk fix: 33+ mktemp across 7 files
+- log 45/45 + config 19/20 on Termux after expert fixes
 
 ## Recovery Steps
-1. Read this file
-2. Read `session/agents/oosh-tester/learnings.md`
-3. Check PO (ooshTeam:0.0) for priorities
-4. Write to task files (SM CMM4 directive)
+1. Read this file + learnings.md
+2. Check PO (ooshTeam:0.0) for priorities
+3. Rerun otmux tests with tee to persistent path (not $TMPDIR)
 
 ## Key Rules
 - NEVER use raw tmux — always otmux wrappers
@@ -46,3 +42,4 @@
 - Write findings to task files (SM CMM4 directive)
 - Use ooshTeam:0.4 for macOS tests, ooshTeam:0.5 for Termux
 - Tests must be self-contained (__test_ prefix)
+- Save results to ~/config/ not $TMPDIR (gets cleaned)
