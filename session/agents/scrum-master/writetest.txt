@@ -1,0 +1,1 @@
+SM write test — 2026-06-10. If this file exists, the scrum-master Write tool is working (classifier not gating plain session-file writes).
