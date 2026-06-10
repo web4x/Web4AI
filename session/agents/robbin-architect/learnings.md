@@ -230,3 +230,30 @@ PUML [method:uuid] annotations must use real v4 UUIDs from `uuidgen`, not manual
 
 ## PUML @startuml Must Match Filename Convention
 Always set @startuml to a path-safe slug matching the filename (e.g., `@startuml s17-architecture` for `s17-architecture.puml`). PlantUML derives SVG filename from the @startuml title. Verify SVG output is >10KB (real diagram) after rendering.
+
+## model.parent = ownerIor Mirror, Sprint Excluded (T199)
+Tron directive: every scenario unit gets model.parent IOR pointing to its tree/nav parent. model.parent = ownerIor value copied into model. Sprint units are EXCLUDED (nav roots — no parent field at all, not null, ABSENT). Derive ownerIor for gaps via reverse-lookup (parent's forward array). TraceLink/Skill with null ownerIor get model.parent = null.
+
+## ownerIor Gaps: Legitimate Nulls vs Genuine Gaps (T199)
+Sprint (19) = nav root, null correct. Requirement (20 missing) = chain root, parent is Sprint via nav. TraceLink (65) = edge not node, null correct. Skill (19) = standalone, null correct. Test (44 empty) = GENUINE gap, owner = Implementation. Implementation (7 empty) = GENUINE gap, owner = Method. Task (9 missing) = GENUINE gap, owner = Sprint. Derive all from reverse-lookup of parent's forward array.
+
+## Self-Discovery from Traceability (T191 Champagne Practice)
+Tron: "champagne is when the architect SELF-DISCOVERS from the traceability." Standing practice: proactively walk /trace browser + scenario data + tester screenshots. Self-discover chain breaks, missing hops, wrong-type children, rendering bugs BEFORE Tron screenshots them. Report each finding to PO immediately. The 134 wrong-type corruption, 21 T111 funnel, Class-hop skip — all should have been self-discovered, not Tron-reported.
+
+## 6-Step Chain Correction (R18.8, 2026-06-08)
+The chain is 6 steps, not 7: Requirement → UseCase → Class → Method → Implementation → Test. Task is NAVIGATION (Sprint→Task→coveredRequirements), NOT chain. My old SKILL.md encoded Req→Task as chain step 1 — that propagated to all standards + code + data and caused the recurring task↔req alternation Tron observed. Fix migrated layer by layer (skill → standards → code → data → views), source-first, with PO gate after each. Mantra: chain root = Requirement; nav root = Sprint; Task is between them, not in the chain.
+
+## Three Concerns: Chain / Dependency / Navigation
+Never conflate. CHAIN (WHY does this code exist?) = forward-only Req→...→Test. DEPENDENCY (WHAT must be built first?) = DAG in follows/Dependencies metadata. NAVIGATION (HOW does the human browse?) = Sprint→Task→coveredRequirements. T156 covers R-A2 (chain) AND depends-on T155 (dependency) AND lives under Sprint 17 (navigation) — three independent link types on the same task. Conflating produces the task↔req recurrence (chain reading Task as a chain hop instead of nav).
+
+## Device Telemetry Beats Guessing (R18.34.B)
+After 5 iterations of design guesses on the SVG snap-back, the answer came from one log capture: tmux capture-pane -t iphone:0.1 -S -2000 -J -p | grep SVGDBG showed `touchend touches=0 scale=0.567` followed by `apply scale=0.187` 47× in a second — definitive proof reset() was firing from line 909 (lastTap double-tap detector) on pinch release. Lesson: when a defect is intermittent or device-specific, ship instrumentation FIRST (addLog from the suspect code path → /api debug sink → server log ring), have Tron reproduce, read the actual event sequence. Don't iterate on design guesses.
+
+## Server-Side Log Sinks (No /api/logs Endpoint)
+addLog() writes to in-memory serverLogs[] (capped MAX_LOGS) + (only when NODE_ENV=production) data/logs/rawbin-<date>.log. There is NO /api/logs HTTP endpoint. To read live logs from a running dev server, use the tmux console scrollback on the server pane: tmux capture-pane -t <pane> -S -2000 -J -p (the -J flag joins wrapped lines, otherwise long entries are visually truncated at the column boundary). For agent-driven device debugging, add a /api/<sink> POST handler that calls addLog('TAG '+msg) and post from client-side JS; then capture tmux -S -2000 -J -p | grep TAG to read them.
+
+## Dogfood Architect Designs Into Scenario Unit Fields
+For scenario.json-first sprints (S18+, T188 pattern): the .md task file is GENERATED FROM SCENARIO UNITS — do not hand-edit. Architect designs go INTO model fields (architectDesign, acceptanceCriteria, architectDesignAt, architectDesignBy) on the Task unit. Generator emits them into the .md on regen. T188 round-trip --check then verifies the .md byte-matches the unit fields — ANY hand-edit on the generated .md fails CI. Same dogfood principle for tester (test scenarios → Test unit fields → MD), expert (impl status → Implementation unit), req-eng (requirement.tronQuote).
+
+## Tap Detector Must Require touches.length===0 (R18.34.B pattern)
+The naive double-tap detector `if (now-lastTap<300 && e.changedTouches.length===1) reset(); lastTap=now;` on touchend MISFIRES on pinch release. A pinch fires touchend twice (one per finger), both with changedTouches.length===1 (each event reports the one finger that just lifted), gap is a few ms. Second hit triggers reset → snap-back. Real tap requires: (a) touchstart with exactly 1 touch (single-finger candidate) cleared at multi-touch start, (b) touchend with touches.length===0 (all fingers off), (c) duration < 250ms, (d) slop < 10px. ~25 lines.
