@@ -1,33 +1,38 @@
-# robbin-po Context — save #6 (2026-06-09)
+# robbin-po Context — save #7 (2026-06-10)
 
 **Role:** PO | **Pane:** robbinTeam:0.0 | **Project:** RawBin | **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
-**Server:** https://home.donges.it:4444 — **v0.5.118 LIVE** (iphone:0.1).
-**Tron:** iphone:0.0 | SM TRONinterface:0.1 | agent-trainer baseTeam:0.0
-**Team:** 0.1 architect | 0.2 expert | 0.3 tester | 1.0 planner | 1.1 req.
+**Server:** https://home.donges.it:4444 — **v0.5.125 LIVE** (v0.5.126 SVG-cleanup + clickpath-fix in flight).
+**Tron:** iphone:0.0 | SM TRONinterface:0.1 | agent-trainer baseTeam:0.0 | oosh-po ooshTeam:0.0
+**Team:** 0.1 architect | 0.2 expert | 0.3 tester | 1.0 planner | 1.1 req | 2.0 skill-expert.
+**BASE = SCENARIOS:** read state from scenario units (scenario/index/), not stale snapshots. Standard: scrum.pmo/standards/project-state-is-scenarios.md. Plan scenario-first.
 
-## BASE = SCENARIOS (operating principle, Tron 2026-06-09)
-Project state = the scenario units (sprint/task scenarios + states + views), live in scenario/index/. Read state FROM scenarios, not stale snapshots. Standard: scrum.pmo/standards/project-state-is-scenarios.md. Plan scenario-first: find owning scenario → add req+task units → design→impl→test.
+## SVG R18.34.B — DEVICE-VERIFIED ✅ ("You made it!!!" Tron 2026-06-10)
+- REAL root cause (found via SVGDBG device instrumentation = learning #83): the DOUBLE-TAP DETECTOR (server.ts:909) called reset() on pinch-release — pinch fires touchend TWICE (per finger) <300ms apart, changedTouches.length===1 each → false double-tap → reset→fit-to-stage → snap-back. v0.5.121 apply() fix was the WRONG thing.
+- FIX shipped v0.5.125 (809cb92a): proper tap-detector (single-finger touchstart + <10px slop + <250ms + touches.length===0 + tapStart CLEARED on multi-touch). Tron device-confirmed holds.
+- CLOSE-OUT IN FLIGHT: expert stripping SVGDBG instrumentation → v0.5.126 clean; tester fixing the FALSE-GREEN champagne test to model TWO sequential touchends (passed headless while device failed — #27); planner reconciling R18.34.B → Tron-QA gate.
 
-## ACTIVE: SVG viewer (R18.34, S18) — NOT quality-solved
-- D1 thin-strip FIXED (iframe+fill). D2 page-zoom FIXED (in-/svg-viewer gesture handler). D3 blur: inline <svg> (was img+transform raster) — Tron says ACCEPTABLE worst-case (deprioritized).
-- **D4 iPhone snap-back: STILL OCCURS, intermittent** (holds after pinch sometimes, then re-snaps). First fix (v0.5.118, replace window.resize→reset w/ preserve-zoom) was INCOMPLETE → there's a SECOND trigger. Architect doing THOROUGH audit: EVERY listener (resize/touchend/orientationchange/visualViewport/gesture*/visibility/scroll/load) + EVERY reset()/scale-recompute caller, via a METHOD SCENARIO trace of reset() usages. → expert fixes ALL paths → Tron iPhone re-verify. Architect HEALTHY (do not rewind it — critical path).
-- NOTE my own debug got D4 wrong once (CSS hypothesis) — architect found real cause (JS resize). #81: don't debug, delegate diagnosis.
+## ACTIVE: broken clickpath #82 (Tron live bug)
+- generated scenario/sprints.md/requirement/SLUG.md "Tasks: T190" link → "File not found".
+- ROOT CAUSE (architect): MD-relative chain-link helper emits DOUBLED segment ../sprints.md/TYPE/SLUG.md → resolves scenario/sprints.md/sprints.md/... → 404. Fix: src/ts/scenario/templates.ts:65 + trace-tree.ts:92 → drop "sprints.md/" → ../TYPE/SLUG.md (HTML absolute variant templates.ts:72 is correct). Expert fixing + REGEN sprints.md views + bump → tester verifies clickpath.
 
-## TEAM-HEALTH (in progress, trainer executing)
-- 112 background "wait for X"/monitoring tasks (my #52/#82 anti-pattern recurrence) — Tron CLEARED them via web UI (I couldn't get IDs from inside). ZERO wait-loops ever again (#82).
-- Trainer recovery: expert 0.2 (866k) rewinding; req 1.1 (840k)+tester 0.3 (830k) TIER-3 distillation (rewinds not clearing base); architect 0.1 healthy (D4 audit, preserve); planner 1.0 (482k) OK. Verify resets actually drop (verify-the-reset gap; use 10-15 line scrollback not 3).
+## OTHER S18 OPEN
+- T202 / R18.35 (per-UC Class.method: shared Class shows wrong method) — req canonicalized R18.35 (bottom-up sibling, Rule 5); architect designing /api/trace/children UC-chainMethod-context fix → expert → tester.
+- #77 systemic task-traceability backfill (req, in flight).
+- Tron-QA gate queue: SVG · T187 · T188 · T189 · T190 · S2-S9 backfill.
 
 ## 2 TRON STANDING ITEMS
 1. HTTPS cert run (Mac Studio) → clears device lockout (expert pre-staged auto-detect+fallback).
 2. QA-sign scrum.pmo/tron-qa-batch-2026-06-05.md.
 
-## HARD RULES (see learnings.md #1-82, role-owned in robbin-po/; memory copy in robbin-po/memory/)
-- #79 chat = POINTER ONLY; spec lives in scenario/task documents; team works FROM docs.
-- #80 NO anthropomorphic excuses ("pressure"/"haste") — a machine applies rules deterministically; state real cause, apply rule.
-- #81 PO does NOT debug — my code-tracing gives confident-WRONG root causes; delegate diagnosis to architect.
-- #82 ZERO background wait/monitor loops; after delegating, STOP (agent self-reports + harness notifies); pane.capture ONCE to check; trust the web-UI count.
-- #65 NEVER /compact; rewind/Tier-3 via trainer. #66 ship=pkg+sw.js bump. #67 new route→STATIC_SHELL. #17 real v4 uuids.
-- Route EVERY Tron literal to req FIRST (verbatim capture). #27 STRICT VERIFY = live device repro (Tron's device is acceptance), not headless-only. Verify otmux submission via pane.capture. Commit context FREQUENTLY (role files = robbin-po/, NOT generic product-owner/).
+## TEAM-HEALTH / TOOLING
+- 4 agents rewound this round (expert/architect/req/tester) — all back LOW context; planner ok; skill-expert standby (done). On every recovery: re-task from preserved scenario/context (rewind drops queue — re-point at the live priority, e.g. I re-pointed architect at #82 not backfill).
+- otmux send-submit BUG: `send..Enter` intermittently does NOT submit (agent stalls with staged text); bare Enter won't flush. WORKAROUND: `otmux send <pane> C-u` then fresh `send "text" Enter`. oosh-po OWNS the fix (filed CRITICAL session/tasks/otmux-send-enter-reliability.md), must report delivery → THEN retire workaround (Tron). Until then use C-u workaround on every send.
+
+## HARD RULES (learnings #1-83, role files robbin-po/)
+- #65 NEVER /compact; rewind via trainer. #66 ship=pkg+sw.js bump (a+b); #67 new route→STATIC_SHELL (c). #17 real v4 uuids.
+- #79 chat=POINTER; spec in scenario/task docs. #80 no anthropomorphic excuses. #81 PO does NOT debug — delegate diagnosis. #82 ZERO background wait/monitor loops; pane.capture ONCE; web-UI count is ground truth.
+- #83 DEVICE-INSTRUMENTATION: device-only bug + headless false-green → architect specs log points → expert ships server-log sink → Tron reproduces → architect reads REAL logs → real fix. (Just proved it on SVG.)
+- Route EVERY Tron literal to req FIRST (verbatim). #27 STRICT VERIFY = Tron's device is acceptance, not headless. CMM4 4-role precedence: req(atomic+literal)→planner(v4 stand-up)→architect(design)→expert(impl)→tester(verify). Commit context FREQUENTLY (this gap caused a stale-rewind).
 
 ## ON RESUME
-SVG D4 is the active Tron quality item — architect auditing all listeners/reset-callers (method-scenario trace) → expert fixes all paths → Tron device-verify. Team-health recovery in progress (trainer). 2 Tron items standing. Read scenarios for true state.
+SVG done (device-verified) — finishing clean v0.5.126 + false-green-test fix. Drive #82 clickpath fix (architect root-caused, expert fixing) → tester verify. Then T202 + #77. 2 Tron items standing. Re-task rewound agents at the live priority. Read scenarios for true state. Use C-u workaround on otmux sends until oosh-po delivers.
