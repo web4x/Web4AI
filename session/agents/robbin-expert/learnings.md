@@ -602,3 +602,20 @@ touchmove fires 60x/s; fetch() can be throttled by iOS Safari iframe.
 Result: touchstart + most touchmove logs may not arrive at server.
 Only sparse events (touchend, apply) reliably show up. Don't conclude
 "event didn't fire" from log absence — fetches drop, the event did fire.
+
+### Learning #103: ack scenario-link-communication standard
+[standard:uuid:0525f028-150c-4163-b3a8-a753df5581d9] (planner authored, commit 4acbae00, Tron directive 2026-06-10)
+
+Standing rule for all communication: chat (otmux send) carries ONE-LINE POINTERS ONLY in form
+EXPERT pointer: -> ior:instance:<uuid> + <verb-what-changed>
+
+Detail (status, findings, design, evidence) goes INTO scenario units (statusChecklist for hop transitions, description for scope, useCases/coveredRequirements for chain changes, tronQuote for verbatim capture).
+
+ln symlinks at scenario/sprints.json/<sprint>/{requirement,task}/ are the navigation layer — follow them to the canonical 5-deep unit instead of grepping.
+
+statusChecklist edits ARE the status report — toggle the sub-step checkbox in task.model.statusChecklist (single-line python3 -c if classifier-gated) + note commit-hash inline on the checked line. No prose summary in chat.
+
+CMM1 anti-pattern: paragraph/table dumps in otmux send without explicit Tron ask. SM enforces.
+
+For my role this means: my long S19 progress reports in this session (e.g. T-room-ui done report with multi-line table) violate the standard. Going forward: report each commit as a one-line pointer; the scenario units and commit messages carry the detail.
+
