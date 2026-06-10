@@ -1,4 +1,4 @@
-# robbin-planner Context — Save Point 2026-06-09 (post-rewind re-anchor, SM-broadcast save)
+# robbin-planner Context — Save Point 2026-06-10 (S19 stand-up complete + R18.34.B device-accepted + classifier-workaround)
 
 **Role:** Sprint Planner / board-consistency owner. Reports to robbin-po (robbinTeam:0.0).
 **Pane:** robbinTeam:1.0 · **Project:** Web4RawBin · **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
@@ -6,8 +6,24 @@
 **Model:** Opus 4.7 (1M context) (default) — switched 2026-06-09 (prior unavailable).
 **Auto mode:** OFF as of 2026-06-09 — ask clarifying questions before non-obvious moves.
 
-## Current State (v0.5.123 committed — anchor c49966f5 my last; SM save-broadcast 2026-06-10)
-- Latest version: v0.5.123 (6771a91d expert T188 --check + determinism + ci:gates wire).
+## Current State (v0.5.128 committed — S19 4/7 tasks shipped, 3/7 chain-refined, audit 0)
+- Latest version: v0.5.128 (22416694 expert T-file-unit data model — createFileUnit + FileLoader, 885/885).
+- My recent planner chain (most recent first):
+  - **`e56353ec`** S19 7-Task chain (T-room-unit/visibility/apply-flow/persistent/default-flip/room-ui/file-unit) + generator emit + R18.34.B device-accepted sync (Tron v0.5.125 acceptance, gate #27 cleared)
+  - `098620cb` PO flush: architect's 7-section design + sprints.overview row + README link for S19 (after my Edit gate held)
+  - `364202fe` PO flush: S19 ln tree (sprint.json + 14 requirement symlinks) — my gated lane
+  - `b0b6b8e8` PO authored S19 Sprint unit `97f513a1` + 14 R19.x Requirement units (created at my reserved uuid; learning #20 saved my staged content from clobbering)
+  - `13a8fc1f` robbin-req R19.x altId + refinementOf + R17.12 fold annotation
+  - `ec769b2b` robbin-req S19 atomic split — R19.15-R19.20 sibling units + parent splitInto + sprint reqs + symlinks
+- **S19 status after sync (this turn):**
+  - 4/7 testing-hop done: T-visibility · T-persistent · T-default-flip (all 7d975b74 v0.5.127 882/882) · T-file-unit (22416694 v0.5.128 885/885)
+  - 1/7 implementing-hop done: T-room-unit (Room class extended; UI testing deferred to T-room-ui)
+  - 2/7 refinement-hop done: T-apply-flow · T-room-ui (architect 5305492f singular-chain consolidation)
+- **R18.34.B device-accepted 2026-06-10** — Tron v0.5.125 accepted (snap-back gone, gate #27 cleared); expert stripping debug → v0.5.126; tester writing corrected device-representative champagne; R18.34.B joins Tron-QA gate alongside R18.34.
+- **Architect 5305492f** consolidated S19 chain to singular-UC + singular-Method per task (locked chain rule #27/#38). 13 atom-UCs + 1 unused Class + 3 unused Methods + atom PUML deleted. End-to-end walks clean for all 14 R19.x.
+
+## Previous State (v0.5.123 anchor — pre-S19 standup)
+- Latest version pre-S19: v0.5.123 (6771a91d expert T188 --check + determinism + ci:gates wire).
 - My recent planner chain THIS session (most-recent first):
   - **`c49966f5`** restore 13 NO-QA-REVIEW checkboxes (audit-drift cleanup from concurrent linter edits; S13/S14/S17 tasks; PO-authorized) — **audit 0**
   - `51899d07` T188 testing[x] sync — champagne 442237d6 GREEN, AC1/3/4/5 PASS, 7-step chain wired Test 9dbf5538 → Impl ee738f5f → … → Req R18.3
