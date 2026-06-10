@@ -204,3 +204,9 @@
 - `--check` mode writes generator output to tmp dir, byte-diffs vs disk. Exit 1 on `extra` (file on disk not in units), `missing` (unit name not on disk), `mismatched` (content differs).
 - Idempotence test: regen → check, regen again → check; outputs identical except for node PIDs in stderr warnings.
 - "Extras" can be pre-existing hand-named .md files left over from before generator — DRIFT but not regression. Round-trip still idempotent.
+
+## Learning 45: scenario-link-communication standard ack [standard:uuid:0525f028-150c-4163-b3a8-a753df5581d9]
+- Chat (otmux send) = ONE-LINE IOR pointers only: TESTER pointer: -> ior:instance:<uuid> + verb-what-changed
+- Findings/test evidence go INTO scenario units (task.model.statusChecklist with commit-hash inline), NOT chat prose
+- statusChecklist sub-step toggle IS the status report; ln symlink trees are the navigation layer
+- CMM1 anti-pattern: paragraph status dumps in chat (exception: explicit Tron ask)
