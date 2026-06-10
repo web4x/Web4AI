@@ -570,3 +570,35 @@ PUML SVGs come with `style="width:1083px;height:850px"` baked in +
 `width="1083px" height="850px"` attrs. Setting svg.style.width = iw+'px'
 overrides the inline style property. Don't need removeAttribute('style')
 unless you see a regression (architect confirmed no width:100% in PUMLs).
+
+## Session 4 — R18.34.B SVGDBG saga (2026-06-10)
+
+### Device instrumentation pattern (when 3+ hypotheses fail)
+Add a /api/<feature>-log POST endpoint that calls addLog(). Wire client
+to fire-and-forget POST at every suspect event with relevant state.
+Capture from server logs ring buffer (in-memory dev) or production file.
+SVGDBG capture proved 2-finger pinch fires TWO touchends within ms
+(one per finger lift) — broken dbltap detector misfired.
+
+### Proper tap detector (vs naive dbltap)
+- tapStart SET only on single-finger touchstart
+- tapStart CLEARED on any multi-finger touchstart → pinch CAN'T qualify
+- Tap qualifies on touchend only if: touches.length===0 (full lift) +
+  changedTouches.length===1 + movement <10px + duration <250ms
+- Dbltap fires only if previous qualifying tap within 300ms
+
+### iOS touch sequence on 2-finger pinch release
+- pinch start: touchstart with touches.length=2
+- pinching: touchmove with touches.length=2
+- release finger 1: touchend with touches.length=1, changedTouches=1
+- release finger 2: touchend with touches.length=0, changedTouches=1
+The naive `changedTouches.length===1` check fires TWICE during pinch.
+
+### Log capture from iphone:0.1 narrow pane
+Pane is ~30 chars wide → lines wrap. Use `tr -d '\n' | sed 's/\[\([0-9:]* [AP]M\)\]/\n[\1]/g'` to unwrap and split on timestamps. Then grep SVGDBG.
+
+### slog() fire-and-forget can drop high-frequency events
+touchmove fires 60x/s; fetch() can be throttled by iOS Safari iframe.
+Result: touchstart + most touchmove logs may not arrive at server.
+Only sparse events (touchend, apply) reliably show up. Don't conclude
+"event didn't fire" from log absence — fetches drop, the event did fire.
