@@ -75,9 +75,33 @@ All features, fixes, and tests on test/macos.latest that are NOT on dev must be 
 
 (expert fills in)
 
-## Phase 3 Results
+## Phase 3 Results (oosh-tester, 2026-06-01)
 
-(tester fills in)
+### Log bug (merge artifact)
+`private.log.install.append: command not found` — spamming on every log call.
+Fixed by expert: 8ef8ef0.
+
+### Test Suite Results on dev
+
+| Suite | Pass/Total | Status | Notes |
+|-------|-----------|--------|-------|
+| **oo** | 63/65 | ✓ | T6b+T6c PASS. 2 pre-existing failures. |
+| **ossh** | 103/108 | ✓ | 5 pre-existing failures. |
+| **otmux** | BLOCKED | ⏳ | Test 3 (tree.detailed) takes 10+ min with ~20 sessions |
+| **hiveMind** | NOT RUN | ⏳ | Waiting for otmux. Same performance issue. |
+
+### T6b/T6c (config.save persistence)
+- T6b: `oo.mode.base.set` persists `OOSH_COMPONENTS_DIR` to `oosh.env` → **PASS**
+- T6c: `oo.mode.base.get` returns value from env even when file cleared → **PASS**
+- Required expert fix: `config.save` prefix-match filter (36fb03b)
+
+### Termux (ossh key.pull)
+All 6 bugs verified fixed on dev branch (see ossh-key-pull-termux-bugs.md).
+
+### Performance blocker
+`otmux tree.detailed` and `hiveMind.list/workers` scan ALL sessions (~20 with ~80 panes).
+Each call takes 2-10 minutes. Full test suites take 30+ minutes.
+This is a known issue — not a regression from the merge.
 
 ## Acceptance Criteria
 
