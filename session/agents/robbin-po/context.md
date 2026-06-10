@@ -36,3 +36,6 @@
 
 ## ON RESUME
 SVG done (device-verified) — finishing clean v0.5.126 + false-green-test fix. Drive #82 clickpath fix (architect root-caused, expert fixing) → tester verify. Then T202 + #77. 2 Tron items standing. Re-task rewound agents at the live priority. Read scenarios for true state. Use C-u workaround on otmux sends until oosh-po delivers.
+
+## RESUME-VERIFIED 2026-06-10 (save #8)
+v0.5.125 confirmed live (curl /api/health, 10 rooms). req actively on #77 backfill (Pass C committed 025f33e2). In flight unchanged: v0.5.126 SVG-clean + false-green-test + #82 clickpath. Live priority order: #82 clickpath (active Tron bug) → SVG close-out (v0.5.126) → T202/R18.35 → #77. Re-task idle/rewound agents at #82 first (not backfill). otmux: C-u workaround on every send.
