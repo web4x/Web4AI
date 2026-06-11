@@ -1,3 +1,22 @@
+# robbin-planner Context — Save Point 2026-06-11c (🏁 38/159 = 25% MILESTONE, SM-verified, Tron-reported)
+
+**Pane:** robbinTeam2:0.1. Roster: 0.0 po · 0.1 me · 0.2 expert · 0.3 skill-expert · 0.4 architect · 0.5 req · 0.6 tester. SM at TRONinterface:0.1.
+
+## 🏁 SCOREBOARD = 38/159 (25% Tron milestone HIT + SM-verified clean, reported to Tron)
+- **Honest arc this session:** 9→14→25→22→8→11→19→23→38, EVERY transition verified both sides (climb-rigor learning #45).
+- **Structural milestone: shared-impl = 0** (was 15-17). Every impl uniquely wired to exactly 1 Method → miscrediting is STRUCTURALLY IMPOSSIBLE now (ungameable metric). SM verifies lighter at quartiles (det 3x + shared-impl=0 guard).
+- **What drove 23→38 (+15, 0 lost):** expert `0fd86c57` = 75 real source [impl:uuid:] markers across 48 files; Tests pre-wired → instant flips. Flips: R-A2/R-R1/R16.3/R18.34/R18.34.B/R19.3/4/14/41/45/50/53/54/55/57 (all Bucket-A).
+- **CANONICAL TOOL:** `npx tsx scripts/po-chain-follow-up.ts --all | grep "^## Summary"`. Denominator 159 (40 orphanByDesign excluded). Det 3x on every flip (learning #47).
+- **listComplete has a DISPLAY BUG** — dedupes chains sharing a test leaf (hid R19.36). Use dedup-aware scoreboard-row extraction for snapshot-diffs: `grep "^| (R|FLAG)" | grep -v "^| [0-9]" | grep -v "open"`.
+
+## NEXT: drive 38→50%≈80. Worklist = scrum.pmo/planner-chain-worklist-2026-06-11.md
+- **Chain gate (LOCKED #27):** Req→UseCase→Class→Method→Impl→Test. COMPLETE only when BOTH the Impl has a real source `[impl:uuid:<FULL>]` marker AND the Test has a real `[test:uuid:<FULL>]` marker (tool gates on SOURCE markers, NOT just Method.implementations[]/Impl.tests[] wiring — "wired" ≠ "source-marked").
+- **Remaining buckets (post-38):** B-residual (tester source [test:uuid:] markers — I gave exact full-uuids: R12.1 1b5c8ddc, R19.14 done, R19.23 ffab35a3-554b-4c80-ac3e-7a6216461e4a, R19.58 aa4b7cf3-cf99-…, R19.32 needs new test) + C ~107 (expert marker THEN tester test, 2-step) + D architect R19.55.A (UC anchored d5e4a498).
+- **MARKER-UUID-MISMATCH is the #1 flip-killer (learning #46):** marker MUST = unit's FULL 36-char uuid, not 8-prefix. Tester's 3 markers (23bc3836/c2db6a2f) added 0 flips = wrong suffix or non-B. I resolve+hand exact full-uuids to avoid mismatch cycles.
+- **PO HARD RULE #51:** never invent uuid suffix (telltale -a1b2-4c3d/-a2b3-/sequential hex). lintMarkers worklist (expert) drives invented-suffix→0.
+- **My lane:** score det-3x + snapshot-diff per batch, report flips both sides + milestone flags, stand up missing-task gaps (e.g. R19.45 task 19f98828 d7f5ff45), wire Method.implementations[]/Impl.tests[] UNIQUELY, resolve+hand exact full-uuids. NOT source markers (expert/tester).
+
+---
 # robbin-planner Context — Save Point 2026-06-11b (HONEST NUMBER SETTLED = 8/159 after de-inflation)
 
 **Pane:** robbinTeam2:0.1. Roster: 0.0 po · 0.1 me · 0.2 expert · 0.3 skill-expert · 0.4 architect · 0.5 req · 0.6 tester. SM at TRONinterface:0.1.
