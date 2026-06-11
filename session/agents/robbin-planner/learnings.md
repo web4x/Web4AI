@@ -399,3 +399,10 @@ A `<<<<<<< Updated upstream` merge-conflict marker appeared mid-scan and crashed
 
 ## 48. SESSION PANE MOVE + roster reload (2026-06-10/11)
 Team migrated robbinTeam → robbinTeam2 to overcome a write-classifier outage. Roster: 0.0 po · 0.1 planner(me) · 0.2 expert · 0.3 skill-expert · 0.4 architect · 0.5 req · 0.6 tester. SM at TRONinterface:0.1. Route ALL pointers/IORs to robbinTeam2:0.X (not robbinTeam). When a write-classifier outage hits mid-task, surface it to PO and continue read-only work; a fresh session pane can restore writes.
+
+## 52. Markers go in .ts SOURCE only — comment-in-scenario.json breaks the canonical tool (2026-06-11, Bucket-C outage)
+A Bucket-C marker batch inserted `// [impl:uuid:<uuid>]` COMMENT lines into 19 scenario.json files. JSON has no comments → the canonical scoreboard (Chain.scoreboard / po-chain-follow-up.ts) threw `SyntaxError ... at skill-classes.ts:258` on the parse. SM initially suspected a skill-classes.ts:258 CODE regression; root cause was DATA corruption. "Validate-the-tool" extends to data: when the canonical measure errors, FIRST scan for broken scenario JSON (`python3 json.load` over scenario/index/) before suspecting code.
+
+**RULE (reinforced by SM + PO):** `[impl:uuid:]` and `[test:uuid:]` source markers live in `.ts`/`.test.ts` SOURCE files ONLY, NEVER in scenario.json units. The scenario unit's identity is its `model.uuid` field; the SOURCE marker is the separate gate the tool checks. Putting the marker comment in the JSON breaks the unit.
+
+**Planner per-cycle guard (added to monitoring):** before trusting any scoreboard read, confirm `broken scenario JSON = 0` (scan json.load over scenario/index/). On a tool crash mid-drive, this distinguishes transient concurrent-write corruption (learning #47) from systematic batch corruption (this) from a real code regression. The repair: revert the JSON insertions + place the markers in the .ts source. Recovered 19→0 (skill-expert), tool back to 39/159 det 3x.
