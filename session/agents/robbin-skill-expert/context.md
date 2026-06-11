@@ -1,7 +1,7 @@
-# robbin-skill-expert Context — Save Point 2026-06-11 (pre-rewind)
+# robbin-skill-expert Context — Save Point 2026-06-11 (Object.verb migration DONE)
 
 **Role**: Skill authoring specialist (forked from robbin-expert)
-**Status**: OOSH skill-tooling active. taskChain script delivered, awaiting oosh-expert link+verify.
+**Status**: Object.verb migration SHIPPED (0b24dcdb). taskChain now GENERATED (emitOosh). Awaiting oosh-expert re-link+verify.
 **Machine**: Mac Studio · **Pane**: robbinTeam2:0.3
 **Repo**: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin
 **Tests**: 920/920 pass.
@@ -38,9 +38,24 @@ Route ALL pointers/IORs to robbinTeam2:0.X.
    - how-to-write-skills.md guide. Logic in typed Class methods, scripts = thin dispatch.
 5. **taskChain OOSH script** (scrum.pmo/skills/taskChain) — Object.verb dispatch via OOSH.
 
+
+## OBJECT.VERB MIGRATION (0b24dcdb, 2026-06-11, Tron-directed)
+- scripts/objectVerb.ts = generic dispatcher (c2 for TS): introspects skill-classes.ts
+  signatures+JSDoc -> CLI/help/completion/emitOosh/emitDocs. NO per-skill flags, NO prose md.
+- Chain consolidates ALL canonical logic. NEW: listComplete (diffable COMPLETE set),
+  wireAllMissing, scoreboard. Velocity in-process (execSync removed).
+- 3 legacy scripts = thin shims, byte-identical output (diff exit=0 vs same-instant baseline).
+- taskChain GENERATED canonical (.start, per-method completion.paramName) — re-emit after
+  class edits: npx tsx scripts/objectVerb.ts emitOosh && emitDocs. Both audit deviations dead.
+- Matrix regenerated from canonical (25/154). Snapshot anchor:
+  scrum.pmo/chain-snapshots/2026-06-11-listComplete.tsv (planner diff baseline).
+- 937/937 pass (17 new in test/vitest/object-verb.test.ts). rule-pair PASS, no bump.
+- PRE-EXISTING (not mine): trace-audit 678 structural issues; rb-trace-tree jsdom
+  scrollIntoView unhandled noise; 76 Methods without Impl (wireAllMissing dry-run).
+
 ## IN FLIGHT — coordinate after rewind
 - **taskChain linking**: sent to ooshTeam:0.2 (oosh-expert) to symlink ~/oosh/external/taskChain + verify dispatch/completion. AWAITING response.
-- **Matrix integration**: traceability-matrix.md is STALE (T86 2026-05-26, old 5-col format). Chain.generateMatrix() regenerates it from canonical. Need to wire taskChain generateMatrix → overwrite matrix, and updateMatrixRow on each chain change.
+- **Matrix integration**: DONE (0b24dcdb) — matrix regenerated from canonical.
 
 ## KEY DIAGNOSIS (for expert/tester)
 - 117/189 Method.implementations[] refs point to Impl UUIDs with NO .scenario.json unit on disk.

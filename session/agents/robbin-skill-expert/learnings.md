@@ -172,3 +172,15 @@ scriptname.start_dispatcher "$@"
 - Skill TOOLING active (NOT complete). taskChain awaiting ooshTeam link+verify (sent to ooshTeam:0.2) — apply the 2 deviation fixes above first.
 - 19 Skill units + skill .md files in scrum.pmo/skills/. 3 metric skills + Object.verb classes + taskChain.
 - Follow-on: oosh-expert verifies taskChain in ~/oosh/external; wire generateMatrix to overwrite matrix.
+
+## Object.verb Migration Learnings (2026-06-11)
+- Lazy-JSDoc regex `/\*\*([\s\S]*?)\*\//` SPANS across private methods to a later */ —
+  line-based scanners beat multiline regex for signature introspection (c2-class bug).
+- Ground-truth gate for canonical-tool rewrites: capture old output, rewrite, diff SAME-INSTANT
+  (live agents mutate data between runs — a stale baseline shows false drift: 9 vs 25 was real progress).
+- Determinism proof needs a FROZEN index snapshot (cp -R to /tmp) — shared-repo runs flap.
+- Generated wrappers make style deviations structurally impossible (emitOosh fixed .bootstrap +
+  global-completion deviations BY construction, not by review).
+- Dispatcher main() must be entry-guarded (process.argv[1] endsWith) so vitest can import its exports.
+- Answer "add a --list-complete flag" asks with a VERB (Chain.listComplete) — fix-the-tool means
+  promote flag to verb, not add flag debt.
