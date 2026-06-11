@@ -38,3 +38,9 @@ Honest 8→167. **11+ inflation/coverage events caught + corrected**, incl a FAL
 ## HOLD 2026-06-11 (SM survival mandate)
 - Team IDLE at SEALED 174/179 (lossless git). Zero new reqs. Hold for TRON-HUMAN: pause / Tier-3 fork-from-fresh (~50% rewind floor needs fresh bases).
 - OPEN-FOR-RESUME (NOT started): (1) url-preview regression from partial commit 862868bfe (R19.84/85 iframe-zoom wrapper half-wired broke .url inline preview); (2) nudge-mismatch: preview drawer nudge = small stub+X, must become the chat drawer wide grab-bar that DRAG-RESIZES to 95vh (R19.84); (3) R19.85 pinch must SCALE iframe content not pan-only.
+
+## SURVIVAL STANDBY 2026-06-11 (SM: 7d budget 83%≥80%)
+- FULL STANDBY until budget reset ~Jun14 / Tron. Sealed lossless. v0.5.210 live.
+- R19.90 (20fc59cc) = ROOT consolidation in flight: in-room tree REUSES /trace rb-trace-tree (room mode + setItems), DELETE RoomView renderRoomTree*/diffRenderItems — fixes iOS init/collapse/drawer BY CONSTRUCTION, supersedes R19.83/88/88.A patches, fulfills R19.21. Expert finishing to working state or leaving v0.5.210.
+- READY-TO-SEAL pending TRON iOS device-verify: R19.87 (touch-action pan-y drawer). Also pending device: R19.88/88.A init, R19.89 button-moved.
+- OPEN: R19.85 pinch-SCALE (partial).
