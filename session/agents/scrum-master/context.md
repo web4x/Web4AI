@@ -1,4 +1,4 @@
-# Scrum Master Context — 2026-06-11 (live session, ~tick 152)
+# Scrum Master Context — 2026-06-11 (live session, post-rewind, 164/167 sealed)
 
 ## Identity
 - **Role:** scrum-master at TRONinterface:0.1, Opus 4.8 (1M context) — MUST stay Opus 1M (Sonnet=200k would break this ~900k pane).
@@ -17,9 +17,8 @@
 ## CURRENT STATE (2026-06-11)
 - **robbinTeam2 — primary active team.** Driving traceability champagne chains + product deliverables.
   - Both TRON product priorities DONE: (1) FILE-RESTORE green (v0.5.175 fs→fsSync fix, screenshot bug closed, tester 2/2 FILE_ADDED on JOIN_ROOM). (2) FLUSH-BUTTON code+placement verified (sw.js red Flush Cache btn + real flushCache impl [impl:uuid:fd5059c5/79505a42]) — PENDING TRON DEVICE-TEST (headless can't go offline).
-  - **Canonical count: 12/142 COMPLETE (guarded po-chain-follow-up --all), S19 ~10-11/51.** Climbing real toward 25%≈35. VERIFY via `npx tsx scripts/po-chain-follow-up.ts --sprint S19/--all` (the ONE tool) + full-scan; NEVER sample, NEVER parallel scripts.
-  - Bounded remaining: ~101 real-Impl-creates + marker-aligns + Tests. New work R19.46 (file-restore-from files[] IOR list, file-dedup) being captured.
-  - robbin-po JUST REWOUND (a3d18ef save, Rule-6 verified, code-not-reverted) — recovered, processing R19.46.
+  - **SEALED honest count: 164/167 COMPLETE (det-3x, excluded:40), S19 79/81.** Tool briefly showed false 165/165 (100%) — MY independent 30-empty-tests-challenge + skill-expert caught 1 real over-credit (R15.6, display-name dedup bug); tool fixed to dedup-by-methodUuid → honest 164/167. Never flagged Tron 100%. 3 opens: R15.6 (tester test), R19.73/74 (expert). VERIFY via `npx tsx scripts/po-chain-follow-up.ts --sprint S19/--all` (the ONE tool, now methodUuid-dedup) + full-scan; NEVER sample. Reconcile-by-methodology resolved planner('genuine' on buggy tool) vs skill-expert(found R15.6).
+  - **EXPERT-REWIND event:** robbin-expert(0.2) hit Context-low 0% (caught on my post-rewind PRIMARY scan — the lapse lesson again). agent-trainer rewound it (picker landed, NOT RC-blocked, no-code-revert); status-bar clean post-rewind. PENDING Rule-6 orientation check before declaring recovered to robbin-po. robbin-po holding expert re-task til verified.
 - **oosh trio FROZEN (RC-gated, contained, idle=no burn):** oosh-po ~945k, oosh-expert ~816k (RC-blocked keystrokes), oosh-tester parked-in-rewind-picker. Saves committed (d2f62fe po, b073a83 tester). Awaiting TRON RC-rewind (agent-trainer RC-blocked too). DON'T re-ping TRON; not burning.
 - **TRONinterface:0.0 agent at CONTEXT LIMIT** — TRON-human reads via RC; route coordination via robbin-po. Don't /compact/clear it (TRON's agent).
 - **agent-trainer:** healthy, does rewinds (robbin-po, earlier oosh-tester). RC-block can stall its keystrokes on RC-active panes → then TRON drives via RC.
