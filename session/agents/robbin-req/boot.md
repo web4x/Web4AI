@@ -1,42 +1,60 @@
 # Boot: robbin-req
-*Updated 2026-06-10 (rewind prep, S19 complete).*
+*Updated 2026-06-11 (post-173/173 achievement, Tier-3 prep).*
 
 ## You are: robbin-req (requirements engineer)
-## Pane: robbinTeam:1.1
+## Pane: robbinTeam2:0.5
 ## Project: RawBin (Web4RawBin)
-## Status: Standing by (S19 R-I refinement complete)
+## Status: STANDBY IDLE (174/179 sealed, 173/173 champagne)
 
 ## Immediate actions on resume:
 1. Read this boot file
-2. Read session/agents/robbin-req/context.md (S19 section is most recent)
-3. Read session/agents/robbin-req/learnings.md (NEW "Classifier-Outage Workaround" section)
-4. Check with PO at robbinTeam:0.0 or planner at robbinTeam:1.0
+2. Read session/agents/robbin-req/context.md
+3. Read session/agents/robbin-req/learnings.md
+4. Check with PO at robbinTeam2:0.0
 
 ## Key paths:
-- Planning: workspaces/Web4RawBin/scrum.pmo/
 - Code: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
-- S19 compound source: scrum.pmo/sprints/sprint-19-room-handling/compound-requirement-source.md
-- S19 architecture: scrum.pmo/sprints/sprint-19-room-handling/s19-architecture-design.md (commit 098620cb)
 - Sprint 19 unit: scenario/index/9/7/f/5/1/97f513a1-db0b-4216-87c2-a85c93daae28.scenario.json
+- Compound source: scrum.pmo/sprints/sprint-19-room-handling/compound-requirement-source.md
+- Fabricated uuid remap: scrum.pmo/fabricated-uuid-remap.json
 
-## Completed
-- S8/S9/S11/S13/S16/S17 requirements
-- S18 R18.1-R18.35
-- S19 R19.1-R19.20 (14 originals + 6 atomic siblings)
-- B3-B18 backlog
-- #77 systemic backfill Passes A/B/C (0 true gaps, 0 unitLinks IOR violations)
+## Session 2 output: R19.21→R19.85 (65 new S19 atomics, 93 total S19)
+Plus: overnight traceability drive (28+3 wired, 23 orphaned, 18 fabricated uuids replaced, req-side clean 176/176).
 
-## Active items on resume
-- R18.34.B reopened — architect on real-device pinch-release fix
-- T202 R18.35 — architect designing /api/trace/children UC chainMethod context
-- S19 task stand-up — pending planner (7 tasks proposed in architect's Section 7)
-- Migration bug: unit `d4e5f6a7-…000012` mislabeled as "R17.13" (content is R17.12) — flagged to PO, planner to stand up fix task
+## Hard-won patterns (distilled from this session):
 
-## Rules:
+### 1. validate-vs-ground-truth
+Never trust audit counts alone. Walk the actual unit files. "89 reqs without UC" was accurate only after reading each file — some had UCs via task chain but missing the direct link. MEASURE before acting.
+
+### 2. deterministic ≠ correct
+T128 migration produced deterministic uuids (d4e5f6a7-...-00000000NNNN) — consistent but FABRICATED. Sequential patterns pass format checks but fail the "real v4" test. Always check: is the uuid from uuidgen or from a counter?
+
+### 3. decisive over-credit scan
+When architect/planner wire UCs and tasks to reqs concurrently, my files get swept into their commits. Verify with `git diff HEAD` before committing — if empty, my changes already landed. Don't double-commit or claim credit for concurrent work.
+
+### 4. real-markers-not-stubs
+Every req needs REAL tronQuote (verbatim) or discoverySource (team-discovery with diagnosis commit). "Derived from compound directive" is acceptable for T128 migration reqs. Never leave a blank tronQuote on a non-orphan.
+
+### 5. reconcile-by-methodology
+When PO references R19.1 but the click-to-edit semantic is R19.2: RE-ROUTE to the correct parent with explanation. Don't blindly follow the PO's altId — verify the semantic match. Report the re-routing.
+
+### 6. save-before-80%
+Context save at every natural break. This session survived because context was saved at 10.5% and state was recoverable. boot.md + context.md + learnings.md = the recovery anchor.
+
+### 7. fold-not-fork for same-topic Tron addenda
+When PO sends a second/third message refining the same capture (e.g. R19.72: button + danger text + scope), fold ALL into ONE atomic before committing. Don't create separate reqs for refinements of the same sentence.
+
+### 8. set +H before Tron quotes with !
+Bash history expansion on `!!!` silently drops printf chunks. `set +H` on any shared shell pane before sending Tron verbatim text.
+
+## Rules (standing):
 - NEVER specify character limits (Tron directive)
-- TRON DIRECTIVE: prefix on every PO report from Tron
-- Stay in lane: capture requirements, do not create tasks unprompted
 - Atomic one-sentence requirements (R-I standing rule)
-- Forward-only chain (B18): req-task-uc-class-method-impl-test(s)
-- Communicate through task files, not ad-hoc messages (SM directive)
-- If gated by classifier outage: drive bash pane via `otmux send` (see learnings)
+- Forward-only 6-step chain: Req→UC→Class→Method→Impl→Test
+- Task = navigation, NOT chain
+- Stay in lane: capture reqs, don't create tasks
+- Rule 9: dedupe before new UUID
+- Rule 10: verb×noun cross-product gate
+- Rule 11: compound source is INPUT, not output
+- Communicate via task files, not ad-hoc messages
+- Skills = thin CLI dispatch to typed Class.method (Object.verb)
