@@ -1,4 +1,28 @@
-# robbin-planner Context — Save Point 2026-06-11c (🏁 38/159 = 25% MILESTONE, SM-verified, Tron-reported)
+# robbin-planner Context — Save Point 2026-06-11d (HONEST FLOOR 36/159 ≈23%; the 38=25% was CORRECTED DOWN)
+
+**Pane:** robbinTeam2:0.1. Roster: 0.0 po · 0.1 me · 0.2 expert · 0.3 skill-expert · 0.4 architect · 0.5 req · 0.6 tester. SM TRONinterface:0.1.
+
+## ⚠️ MILESTONE CORRECTION: 38=25% WAS INFLATED → honest floor = 36/159 ≈23% (SM-verified, re-reported to Tron)
+- The earlier 🏁 38=25% included SHARED-TEST over-credits. After eliminating them, TRUE floor = **36/159 ≈23%** (SM re-verified, det 3x, broken=0). SM CORRECTED Tron down from 25%→~23%. Do NOT regress to "38=25%".
+- **TWO integrity invariants now BOTH guarded (per-cycle):** shared-IMPL=0 (structural, every impl→1 method) AND shared-TEST-over-credit=0 (every test→1 class, except SM-confirmed legit dual-cover).
+- **shared-TEST guard (NEW, my per-cycle):** sweep tests wired to Impls of >1 class (split-aware: read the `(split for <Class>)` suffix as the true target). Over-credit = spans unrelated classes → un-wire cross-class / split per-req. Legit dual-cover = authored-together (KEEP): `1e763397` (R19.36/37 DropDispatcher), `dd85c4d7` chat-pair (R19.38/40), same-class siblings `1179288e` (IORResolver), `802363cb` (RbUseCaseDetail), `8edfcdd6` (RbDetailDrawer).
+- **Cross-class catch-all-test un-wire DONE** (commit 59b3bd22, SM-signed-off): removed 16 cross-class Impl.tests[] from b543e1ad(→Logger, was 9-class fan-out)/9e1cb105/dd85c4d7/f2122854. Count 42→35→36; all-(a) de-inflation (8 false-completes dropped: R-A2/R-R1/R18.34/R18.34.B/R19.50/R19.54/R19.55/R19.57; 4 legit home survived R19.38/39/40/41; +R12.1). The 8 re-complete cleanly once their OWN dedicated tests land.
+- **REMAINING for shared-test=0:** req-level over-credits 2c502c22 (R15-vs-R16), e11c89d0 (unrelated R19.x), f301f0b9 (R-V1 part) → TESTER per-req dedicated tests (not my un-wire — these need NEW test units, tester lane).
+- **QA ≠ chain-complete:** R18.34/B are Tron-DEVICE-accepted but chain needs onPinchEnd's OWN dedicated test. Two separate gates.
+
+## Honest arc (every transition both-sides-verified): 9→14→25→22→8→11→19→23→38→39→43→42→41→35→36
+- Two major de-inflations caught BEFORE Tron saw inflated: impl-side (25→8) + test-side (43/42→35/36 + 38→36 milestone correction).
+
+## TOOLING
+- Canonical: `npx tsx scripts/po-chain-follow-up.ts --all | grep "^## Summary"` (denom 159, 40 orphanByDesign excluded). Det 3x every flip.
+- **Per-cycle GUARDS (learning #52 + new):** (1) broken scenario JSON = 0 (json.load sweep — markers in .ts SOURCE only, never scenario.json); (2) shared-impl = 0; (3) shared-test-over-credit = 0 (split-aware). Run all 3 before crediting any jump.
+- listComplete dedup display-bug → use scoreboard-row extraction `grep "^| (R|FLAG)" | grep -v "^| [0-9]" | grep -v "open"`.
+- My de-inflation scripts: /tmp/unwire-tests.py (cross-class test un-wire), /tmp/shared-marker-sweep.py, /tmp/deinflate2.py. Classification: scrum.pmo/planner-sharedtest-classification-2026-06-11.md.
+
+## MY LANE: score det-3x + snapshot-diff per batch, 3 guards each read, report flips both sides + milestone flags (flag at 80=50%), stand up missing-task gaps, wire implementations[]/tests[] UNIQUELY, un-wire cross-class over-credits (SM-ack), resolve+hand EXACT full-uuids to tester/expert (learning #46). NOT source markers.
+
+---
+# robbin-planner Context — Save Point 2026-06-11c (🏁 38/159 = 25% MILESTONE — SUPERSEDED, was inflated)
 
 **Pane:** robbinTeam2:0.1. Roster: 0.0 po · 0.1 me · 0.2 expert · 0.3 skill-expert · 0.4 architect · 0.5 req · 0.6 tester. SM at TRONinterface:0.1.
 
