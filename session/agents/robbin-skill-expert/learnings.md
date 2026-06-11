@@ -208,3 +208,11 @@ scriptname.start_dispatcher "$@"
   (63-68 hits vs 25). KEY DISTINCTION for reporting: fabricated-PATTERN uuid (style debt,
   marker=unit verbatim-consistent, chain valid) != ACTIVE defect (shared-impl, orphan-marker,
   prefix-collision). Report both numbers or cause false panic / false comfort.
+
+## renameUuid pattern (2026-06-11)
+- Atomic verbatim rename = 3 sweeps with full-uuid string replace: (1) the unit file itself
+  (put new + remove old; JSON.stringify split/join catches self-refs), (2) every referencing
+  unit, (3) every src/test marker file. Count-neutral by construction — verify pre/post
+  scoreboard anyway. In each prefix-collision pair, re-mint the minted SIBLING (Impl), never
+  the owner (Method/Task). Explicit-path staging: build the path list programmatically from
+  the old+new uuids (prefixPath from hex chars) + grep for new uuids.
