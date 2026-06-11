@@ -34,3 +34,7 @@ Honest 8→167. **11+ inflation/coverage events caught + corrected**, incl a FAL
 2. Drawer: per-view-instance of shared rb-detail-drawer (Tron asked singleton-vs-instance; awaiting his call).
 3. R19.76 nonce-hardening when prioritized; 14 per-method-depth quality tests.
 4. Continuous: capture-verify-active-and-output every dispatch; triple-verify every headline; never /compact.
+
+## HOLD 2026-06-11 (SM survival mandate)
+- Team IDLE at SEALED 174/179 (lossless git). Zero new reqs. Hold for TRON-HUMAN: pause / Tier-3 fork-from-fresh (~50% rewind floor needs fresh bases).
+- OPEN-FOR-RESUME (NOT started): (1) url-preview regression from partial commit 862868bfe (R19.84/85 iframe-zoom wrapper half-wired broke .url inline preview); (2) nudge-mismatch: preview drawer nudge = small stub+X, must become the chat drawer wide grab-bar that DRAG-RESIZES to 95vh (R19.84); (3) R19.85 pinch must SCALE iframe content not pan-only.
