@@ -1,66 +1,40 @@
-# Scrum Master Context — 2026-06-10 (PRE-REWIND HANDOFF)
+# Scrum Master Context — 2026-06-11 (live session, ~tick 152)
 
 ## Identity
-- **Role:** scrum-master at TRONinterface:0.1, Opus 4.8 (1M context) — MUST stay on Opus 1M (Sonnet 4.6 here = 200k only; this pane runs ~900k tokens, would break on Sonnet).
-- **Reports to:** TRON (TRONinterface:0.0). Coordinates: agent-trainer (baseTeam:0.0), robbin-po (robbinTeam2:0.0), oosh-po (ooshTeam:0.0).
+- **Role:** scrum-master at TRONinterface:0.1, Opus 4.8 (1M context) — MUST stay Opus 1M (Sonnet=200k would break this ~900k pane).
+- **Reports to:** TRON (TRONinterface:0.0 — but that AGENT is at CONTEXT LIMIT; route coordination via robbin-po, TRON-human reads via Remote Control).
+- **Coordinates:** agent-trainer (baseTeam:0.0), robbin-po (robbinTeam2:0.0), oosh-po (ooshTeam:0.0).
 
-## HEARTBEAT MECHANISM (changed this session — TRON directive)
-- Pace the loop with a SINGLE **visible** background `sleep N && echo "<next tick prompt>"` (run_in_background=true). TRON wants it VISIBLE as "1 shell" in the status bar — ScheduleWakeup is invisible and he can't see it.
-- ALWAYS exactly **1 shell** — relaunch ONE sleep heartbeat at the end of each tick. Never 0 (invisible), never 2+ (swarm).
-- This is compliant: a single one-shot `run_in_background` wait is endorsed by the wait-rule (the ban is on poll-LOOPS and per-task sleep-monitor SWARMS, not a single heartbeat).
-- The echo carries the full next-tick directive so completion re-invokes me with it.
-- Cadence: churn/near-limit → 120-150s; steady impl → 200-250s; quiet → 300-600s.
+## Heartbeat (TRON directive — unchanged)
+- Single VISIBLE background `sleep N && echo "<next-tick prompt>"` (run_in_background=true). ALWAYS exactly 1 shell. Relaunch ONE each tick. Echo carries the full next-tick directive.
+- Cadence: emergency/churn 150s; steady 200-300s; quiet/eased 300-360s. Conserve tool-runs.
 
-## MONITORING TARGET: robbinTeam2 (robbinTeam was KILLED + recreated 2026-06-10)
-NEW pane map (all window 0):
-| Pane | Agent |
-|------|-------|
-| 0.0 | robbin-po |
-| 0.1 | robbin-planner |
-| 0.2 | robbin-expert |
-| 0.3 | robbin-skill-expert |
-| 0.4 | robbin-architect |
-| 0.5 | robbin-req |
-| 0.6 | robbin-tester |
-| 0.7 | MacStudio shell (IGNORE) |
-robbinTeam2 agents are FRESH (rebooted, low context) — old "protected commit" hashes are stale. Use `otmux tree` to re-confirm layout if unsure.
-Other teams: ooshTeam (0.0 oosh-po, 0.1 arch, 0.2 expert, 0.3 tester), baseTeam:0.0 agent-trainer.
+## Monitoring targets (all window 0)
+- **robbinTeam2** (Web4RawBin, /Users/Shared/Workspaces/2cuGitHub/Web4RawBin): 0.0 robbin-po, 0.1 planner, 0.2 expert, 0.3 skill-expert, 0.4 architect, 0.5 req, 0.6 tester, 0.7 MacStudio shell (ignore). ALL panes RC-active.
+- **ooshTeam:** 0.0 oosh-po, 0.1 architect, 0.2 expert, 0.3 tester, 0.4/0.5 shells.
+- **baseTeam:0.0** agent-trainer.
 
-## SPRINT 19 (room-handling) — DELIVERED on old robbinTeam, lands in Web4RawBin repo
-git log in /Users/Shared/Workspaces/2cuGitHub/Web4RawBin (NOT this AI/Claude repo). Chain:
-- b0b6b8e8 sprint unit 97f513a1 + R19.1-14 · 364202fe ln tree · 098620cb design · 13a8fc1f relations · ec769b2b R19.15-20 split (20 reqs) · e56353ec 7 task units · c3264b3c planning.md+4 task md · 701ec3fe chain wired (6 Class/9 Method/13 UC/PUML/SVG)
-- Impl shipping: v0.5.127 (visibility/persistent/default-flip), v0.5.128 (file-unit), v0.5.129 (room-ui), v0.5.130 (room-editor pencil/modal/WS), v0.5.131 (pencil owner-visibility fix + lobby labels)
-- Open TRON directives captured: R19.21 (in-room tree reuse rb-tree/rb-tree-item), R19.2.A (pencil edit-icon wiring); Scenario-Link Communication standard 0525f028.
-- S19 was IMPLEMENTING when robbinTeam2 replaced robbinTeam. Verify current state on robbinTeam2 + repo git log.
+## CURRENT STATE (2026-06-11)
+- **robbinTeam2 — primary active team.** Driving traceability champagne chains + product deliverables.
+  - Both TRON product priorities DONE: (1) FILE-RESTORE green (v0.5.175 fs→fsSync fix, screenshot bug closed, tester 2/2 FILE_ADDED on JOIN_ROOM). (2) FLUSH-BUTTON code+placement verified (sw.js red Flush Cache btn + real flushCache impl [impl:uuid:fd5059c5/79505a42]) — PENDING TRON DEVICE-TEST (headless can't go offline).
+  - **Canonical count: 12/142 COMPLETE (guarded po-chain-follow-up --all), S19 ~10-11/51.** Climbing real toward 25%≈35. VERIFY via `npx tsx scripts/po-chain-follow-up.ts --sprint S19/--all` (the ONE tool) + full-scan; NEVER sample, NEVER parallel scripts.
+  - Bounded remaining: ~101 real-Impl-creates + marker-aligns + Tests. New work R19.46 (file-restore-from files[] IOR list, file-dedup) being captured.
+  - robbin-po JUST REWOUND (a3d18ef save, Rule-6 verified, code-not-reverted) — recovered, processing R19.46.
+- **oosh trio FROZEN (RC-gated, contained, idle=no burn):** oosh-po ~945k, oosh-expert ~816k (RC-blocked keystrokes), oosh-tester parked-in-rewind-picker. Saves committed (d2f62fe po, b073a83 tester). Awaiting TRON RC-rewind (agent-trainer RC-blocked too). DON'T re-ping TRON; not burning.
+- **TRONinterface:0.0 agent at CONTEXT LIMIT** — TRON-human reads via RC; route coordination via robbin-po. Don't /compact/clear it (TRON's agent).
+- **agent-trainer:** healthy, does rewinds (robbin-po, earlier oosh-tester). RC-block can stall its keystrokes on RC-active panes → then TRON drives via RC.
 
-## UTILIZATION METRIC (TRON CMM4 commission — ACTIVE)
-- File: session/metrics/robbinTeam.utilization.tsv (ts\tpane\tagent\tstate\treason), ~40 samples logged.
-- EACH tick: sample all robbin agents → classify ACTIVE | IDLE | BLOCKED(reason). ALERT robbin-po on >5min stuck; summary on material change.
-- Classify: 'esc to interrupt'/'N shell'=ACTIVE; 'denied by auto mode'=BLOCKED:classifier-gate; staged-unsent=BLOCKED:wedged-send; 'Context low'=critical; idle-staged=BLOCKED:awaiting-dependency; idle-done=IDLE:awaiting-retask.
-- Team-switch marker row written when robbinTeam→robbinTeam2.
+## HARD-WON DISCIPLINES THIS SESSION (detail in learnings.md — READ IT)
+1. **CONTEXT-HEALTH IS PRIMARY** — per-tick sweep ALL panes, capture 4+ lines to SEE status bar ('Context low'/'clear to save'). PO every tick. Caught robbin-po proactively at 2% (saved before 0%); earlier LET IT LAPSE during measurement saga → expert hit 0% (lesson). Never let goal-tracking displace it.
+2. **VALIDATE MEASURES vs GROUND TRUTH** — 8 tool bugs caught this session (over+under+coverage), ALL fixed-not-bypassed; tool more trustworthy each time. Deterministic≠correct (cross-validate vs canonical). Full-scan not sample (a 3-sample gave false '170 real'). One canonical tool only (po-chain-follow-up); competing scripts now refuse (fe85ea16). Report CONVERGENCE-state not transient counts. Reconcile-by-methodology, don't blind-defer NOR blind-assert.
+3. **COMMIT-RECENCY not sweep-state** — ACTIVE in sweep ≠ progress (7h stall hidden behind ACTIVE). Gate on commit-delta + actual pane content (esc-to-interrupt + edits = real work; idle empty-prompt + flat = stall→redrive).
+4. **QA never blocks** — PO gating team on TRON QA = stall, drive it.
+5. **Rewind:** no-code option by LABEL (menu varies, not 'option 2 always') + verify no code revert (Rule 6: no-Context-low + oriented + code-intact + RC-landed).
+6. **RC-active panes:** keystrokes land on EMPTY input but NOT on RC-staged text; if blocked → TRON RC. Don't fight.
 
-## IMPEDIMENT HANDLING (fast care — TRON pushed for speed)
-- DIRECTLY clear SAFE worker prompts same-tick (no slow PO round-trip):
-  - 2-option "Do you want to proceed? 1.Yes/2.No" (read-only find/grep/node) → send **"1" Enter** (NOT agent.unblock — it picks option2=No on Yes/No, REJECTS!)
-  - 3-option "make this edit? 1.Yes/2.allow-all/3.No" OR "1.Yes/2.allow reading.../3.No" → send **"2" Enter** (approve + stop asking)
-  - /status or info screen → **Escape**
-  - wedged-unsent input (otmux Enter bug 4826b13) → C-u clear + re-send as one text+Enter, OR relay content to target
-  - destructive/unknown → flag PO
-- CONTEXT: **EARLIER-REWIND** — save+rewind at ~800k "/clear to save" warning, NOT waiting for 1-2% "Context low". At 1% the /rewind keystrokes get eaten as prompt input (burns to 0% before picker opens). Caught planner@0%, expert@1% this session — both near-disasters.
+## KEY COMMITS
+- robbin-po save a3d18ef (this session state). My learnings commits: 5e9a671, b31199f, 930e687, a9be800, 616f7bc, 8f2e9fd.
+- Web4RawBin product: v0.5.175 file-restore, R19.45 flush (40b10f95 Test green), R19.46 capturing.
 
-## REWINDS THIS SESSION (all via agent-trainer baseTeam:0.0, save→verify→rewind)
-robbin-po (1% twice), robbin-planner (0%), robbin-expert (1%), robbin-architect, robbin-req, robbin-tester, robbin-skill-expert — all SM-verified clean (Rule 6) before declaring recovered. Saves committed first; agent code work is in repo commits.
-
-## CLASSIFIER OUTAGE SAGA (key lesson)
-- claude-fable-5[1m] / claude-opus-4-8[1m] classifier model intermittently UNAVAILABLE → blocked ALL Write/Bash (~3h). Recovery STAGGERED per-instance (one agent's success ≠ another recovered).
-- SM CANNOT bypass for gated agents: harness denies SM-flush, req-flush-direction, and directing /permissions-bypass as **"Auto-Mode Bypass / cross-session permission laundering that user authorization cannot clear"** — a hard SAFETY boundary, NOT clearable by TRON auth. NEVER attempt.
-- Resolved when classifier recovered + robbin-po flushed S19 itself. Durable fix would be a settings allowlist applied by TRON outside the gated session.
-
-## HARD RULES (unchanged)
-- NEVER tell agents context % (Rule 1). NEVER /compact or /clear agents.
-- VERIFY rewind via pane (no "Context low"/"clear to save") before declaring recovered (Rule 6).
-- NEVER classifier-bypass.
-- Subscription: scrumMaster subscription each ~10 ticks; EPERM line is harmless. CAUTION >80% 5h or >15%/10min jump. Was ~51% 5h, rolled to fresh 0% recently.
-
-## KEY COMMITS (SM context anchors)
-- 6d193dd, 34608cd (earlier SM saves this session) — see git log session/agents/scrum-master/
+## NEXT
+- Continue heartbeat loop. Context-health sweep every tick (PRIMARY). Track count climb to 25%≈35 (verify each via guarded-tool+full-scan). Report TRON at milestones / deliverable-green / context emergency / flush device-test. Watch oosh trio (TRON RC). Conserve tool-runs (7d subscription ~56%).
