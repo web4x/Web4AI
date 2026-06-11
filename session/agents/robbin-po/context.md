@@ -9,6 +9,7 @@
 0.0 po(me) | 0.1 planner | 0.2 expert | 0.3 skill-expert | 0.4 architect | 0.5 req | 0.6 tester
 
 ## CURRENT STATE
+- **2026-06-11 GENUINE 173/173 SEALED** (SM det-3x + 0-over-credit; scorer .css-coverage fixed fix-the-tool). Chain grew 168→173 (R19.77 url-buttons, R19.78-81 drawer/preview UX — all device-verified live v0.5.201). ACTIVE FIRE: "cannot join room" from lobby (server.ts:1555 addMember false) — architect+tester diagnosing, prime suspect R19.8.B dedup reject path.
 - **Traceability chain: FULL 168/168 GENUINE** (SM independently verified det-3x + 0-over-credit, 2026-06-11). R19.75 preview-auth CLOSED (c26a1d928); R19.76 nonce-hardening DEFERRED orphanByDesign (d58eb6fd7, PO ruling). No open cert work — chain whole.
 - **All Tron features delivered + verified live:** content-dedup+index+consolidation, data-integrity (members/files loss fixed), room-full removed, content-preview (/trace + in-room image+HTML rendered, auth-fixed v0.5.197), scenario-link DRY→browser+highlight, room-children, User/Device scenarios, room-dir standardized, remove-ID recovery button, file-auth(F1 fail-closed)+iframe-sandbox security, 5 OOSH skills.
 - **Deferred/backlog:** R19.76 (preview short-lived-nonce vs token-in-URL); 14 per-method-depth tests (champagne quality).
