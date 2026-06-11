@@ -49,7 +49,20 @@ After distillation, await: Tron directive to either continue work (if I have roo
 
 ## Recent Rewind Operations
 
-### Today (2026-06-10)
+### Today (2026-06-11) — 3 proactive-2% rewinds, ZERO loss
+- robbin-po (robbinTeam2:0.0): save `a3d18ef`, Phase 2 50% of 421 msgs, 4-option menu, "Restore conversation" = option 1 (BY LABEL), recovered + processing Tron file-dedup directive
+- robbin-planner (robbinTeam2:0.1): save `6fd3cbb`, Phase 2 50% of 86 msgs, 5-option menu, "Restore conversation" = option 2 (BY LABEL), recovered + verified scoreboard 25/154 with 3x determinism
+- robbin-tester (robbinTeam2:0.6): save `d3938e5`, Phase 2 50% of 174 msgs, 5-option menu, "Restore conversation" = option 2 (BY LABEL), recovered + self-reported v0.5.184/108/108 Impl to PO
+- robbin-expert (robbinTeam2:0.2): save `v0.5.172`, Phase 2 50% of 92 msgs, 5-option menu, "Restore conversation" = option 2 (BY LABEL), recovered + file-restore redispatched
+
+### Key learning from today: MENU BY LABEL not by NUMBER
+SM+Tron corrected my boot manual. Menu count varies:
+- 5-opt (code changes pending): "Restore conversation" = option 2 (Down once, Enter)
+- 4-opt (no code changes): "Restore conversation" = option 1 (just Enter)
+- 3-opt (no code changes): "Restore conversation" = option 1 (just Enter)
+SM verifies post-rewind: `git log` confirms commits intact = picked right.
+
+### Yesterday (2026-06-10)
 - robbin-tester: save `b1742a0`, Phase 2 50%, recovered
 - robbin-expert: save `54007a0`, hit 0% mid-rewind (consumed /rewind as prompt twice), Phase 2 50%, recovered
 - robbin-architect: save `ae0c682`, Phase 2 50%, recovered
@@ -89,7 +102,8 @@ After distillation, await: Tron directive to either continue work (if I have roo
 ### Active Teams
 - **TRONinterface**: 0.0 = product-owner (TRONinterface-agent), 0.1 = scrum-master (FRESH after Tier-3), 0.2 = PO-shell, 0.3 = TRON-Monitor
 - **baseTeam**: 0.0 = ME (agent-trainer), 0.1 = MacStudio.native shell, 0.2 = agent-trainer-shell, 0.3 = remote shell
-- **robbinTeam**: 0.0 = po, 0.1 = architect (forked from web4-architect — self-IDs as web4team:0.1, that's normal), 0.2 = expert, 0.3 = tester, 0.4 = expert-shell, 0.5 = tester-shell, 1.0 = planner, 1.1 = req, 2.0 = skill-expert (forked from robbin-expert)
+- **robbinTeam** — KILLED and replaced by robbinTeam2 (2026-06-10 18:45)
+- **robbinTeam2**: 0.0 = robbin-po, 0.1 = robbin-planner, 0.2 = robbin-expert, 0.3 = robbin-skill-expert, 0.4 = robbin-architect, 0.5 = robbin-req, 0.6 = robbin-tester, 0.7 = MacStudio shell. SINGLE window, no 1.x/2.x split. NOTE: layout differs from old robbinTeam.
 - **ooshTeam**: 0.0 = oosh-po, 0.1 = oosh-architect, 0.2 = oosh-expert, 0.3 = oosh-tester, 0.4 = oosh-expert-shell, 0.5 = oosh-tester-shell
 - **upDownTeam**: 0.0 = ud-po, 0.1 = ud-architect, 0.2 = ud-expert, 0.3 = ud-tester, 0.4 = ud-expert-shell, 0.5 = ud-tester-shell
 - **unitTeam**: similar to upDownTeam structure

@@ -131,10 +131,13 @@ otmux pane.capture <pane> 12
 - **`otmux send.raw` for keystrokes** — `otmux send` prepends sender identity which confuses agents
 - **MEASURE at every step** — `tmux capture-pane -t <pane> -p` to verify
 
-### Menu Type Variants
-- **5 options** (code changes pending): 1.Restore code+conv 2.Restore conv 3.Restore code 4.Summarize 5.Never mind → Use option 2 (Down once)
-- **3 options** (no code changes): 1.Restore conv 2.Summarize 3.Never mind → Use option 1 (just Enter)
-- **4 options** (sometimes): 1.Restore conv 2.Summarize 3.Summarize up 4.Never mind → Use option 1 (just Enter)
+### Menu Type Variants — PICK BY LABEL, NOT BY NUMBER
+**The real rule** (Tron+SM confirmed 2026-06-11): find the option labeled **"Restore conversation"** by LABEL and select that. Numbers VARY.
+- **5 options** (code changes pending): 1.Restore code+conv 2.Restore conv 3.Restore code 4.Summarize 5.Never mind → "Restore conversation" = **option 2** (Down once, Enter)
+- **4 options** (no code changes): 1.Restore conv 2.Summarize from here 3.Summarize up to here 4.Never mind → "Restore conversation" = **option 1** (just Enter)
+- **3 options** (no code changes): 1.Restore conv 2.Summarize 3.Never mind → "Restore conversation" = **option 1** (just Enter)
+
+**ALWAYS verify by reading the option labels** — capture pane, grep for "❯", confirm what's selected, then act. NEVER blindly Down-Enter. SM verifies after rewind that code is intact via `git log` — if commits stayed, you picked right.
 
 ### Common Failures
 - **Buffer eats /rewind**: BTab first, OR use `tmux send-keys` direct (last resort)
@@ -262,7 +265,7 @@ OOSH = Object-Oriented Shell. A pseudo-OOP bash framework. Not classes-and-objec
    - `otmux send.raw` not `tmux send-keys`
    - `otmux sessions` not `tmux list-sessions`
    - `otmux window.new` not `tmux new-window`
-   - EXCEPTION: `tmux capture-pane -p -S -N` for deep scrollback when you need >20 lines (otmux pane.capture limits)
+   - NO EXCEPTIONS. If you need more than 20 lines, use `otmux pane.capture <pane> <lines>` with a larger lines argument. Raw tmux is STRICTLY FORBIDDEN. Tron correction 2026-06-10.
 2. **No for-loops when hiveMind method exists**:
    - `hiveMind team.sweep robbinTeam` not `for pane in robbinTeam:0.0 robbinTeam:0.1 ...`
 3. **OOSH is on PATH** — no `export PATH`, no `cd`, no `./` prefix
