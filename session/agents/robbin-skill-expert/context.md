@@ -1,41 +1,69 @@
-# robbin-skill-expert Context — Save Point 2026-06-10
+# robbin-skill-expert Context — Save Point 2026-06-11 (pre-rewind)
 
 **Role**: Skill authoring specialist (forked from robbin-expert)
-**Status**: ALL skill work COMPLETE. T189 chain confirmed complete. Standing by idle.
-**Machine**: Mac Studio · **Pane**: robbinTeam:0.2 (rewound into this pane)
+**Status**: OOSH skill-tooling active. taskChain script delivered, awaiting oosh-expert link+verify.
+**Machine**: Mac Studio · **Pane**: robbinTeam2:0.3
 **Repo**: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin
-**Tests**: 876/876 pass.
+**Tests**: 920/920 pass.
 
-## Task Status (all complete)
-- **T189** (role SKILL.md co-spec): COMPLETE — 19 Skill units as ior:class:Skill scenario units + scrum.pmo/skills/ .md views generated.
-- **R18.13 UC source fill**: COMPLETE — 43/43 UseCase source.file+line populated.
-- **Skill manifests**: COMPLETE — 4 agent skills + 11 precedence rules + 2 ship rules + 2 verify rules. SkillLoader in ClassRegistry.
+## ROSTER (robbinTeam2 — NEW session, NOT robbinTeam)
+0.0=robbin-po | 0.1=robbin-planner | 0.2=robbin-expert | 0.3=ME(skill-expert) | 0.4=robbin-architect | 0.5=robbin-req | 0.6=robbin-tester
+Route ALL pointers/IORs to robbinTeam2:0.X.
 
-## Chain Confirmation (2026-06-10)
-- 6-step code chain: 45/45 tests reach Requirement roots (7-hop PASS)
-- 19 Skill units: orphan by design — ior:class:Skill is metadata/process type, not code artifact in the 6-step chain (Req→UC→Class→Method→Impl→Test)
-- All 19 Skills have impl + requirement trace fields populated (19/19)
-- T189 task has UseCase linked (89aff659) — code chain fully wired
+## Latest commits this session (skill tooling)
+- 9b651b63 taskChain OOSH script + Chain.generateMatrix/updateMatrixRow
+- 32e9abe1 po.chainFollowUp: use UC.method for UC→Method hop (not Class.methods[0])
+- 34233db2 scan .js/.mjs for impl/test markers (not just .ts)
+- 56660964 require Impl/Test UNIT on disk (defensive guard)
+- c9696009 fix orphanByDesign exclusion (bool not string)
+- 2c3ac41d canonical denominator — one row per Req, deterministic
+- be1efa2d prefix-match UUIDs + sprint filter + Method→Test-direct
+- fe85ea16 + 9caefcda CMM4 prevention: ONE canonical measure, trace-audit hard-refuses
+- e5b8cd16 team.velocity skill (sources po-chain-follow-up canonical)
+- 345748bf + 27719e4d velocity cwd-independent git + default last-24h
+- b6f2ca49 Object.verb pattern: Chain+Velocity classes + how-to guide
+- af53a19d chain.wireImplNode skill
+- 54d56427 + cc306c2c po.chainFollowUp skill + Impl-node MANDATORY rule
 
-## T178 Status (robbin-expert's work, not mine)
-- PATH A chosen: create UCs for S1-S14 tasks with tests (no bypass)
-- S17 UC→Task: 24 links applied from PUML
-- 22 bridge Impl units created for orphan tests
-- 7-hop gate: 2/44 at last expert commit → needs architect+req UC creation for pre-S16 tasks
-- Task files now show GENERATED FROM SCENARIO UNITS header (view-gen running)
+## DELIVERED SKILLS (3 + Object.verb pattern + OOSH script)
+1. **po.chainFollowUp** (scripts/po-chain-follow-up.ts + scrum.pmo/skills/po-chain-follow-up.md)
+   - CANONICAL completion measure. Walk Req→UC→Class→Method→Impl→Test.
+   - check/open per node, dispatch list with owner. Denominator: one row per Req, orphanByDesign excluded.
+   - Current: ~11/137 COMPLETE.
+2. **chain.wireImplNode** (scripts/chain-wire-impl-node.ts)
+   - Create Impl unit + wire Method.implementations[] + move Method.tests[]→Impl.tests[]. Idempotent.
+3. **team.velocity** (scripts/team-velocity.ts)
+   - Sources po-chain-follow-up for numerator. git throughput. Default last-24h window.
+4. **Object.verb pattern** (src/ts/scenario/skill-classes.ts: Chain + Velocity classes)
+   - how-to-write-skills.md guide. Logic in typed Class methods, scripts = thin dispatch.
+5. **taskChain OOSH script** (scrum.pmo/skills/taskChain) — Object.verb dispatch via OOSH.
 
-## Delivered (commits)
-- cdb65607 T189: scrum.pmo/skills/ .md views
-- 391cb9e4 R18.13: UC source.file+line 43/43
-- 6394960d 15 team protocol Skill units
-- 318c5977 4 agent Skill units + SkillLoader
+## IN FLIGHT — coordinate after rewind
+- **taskChain linking**: sent to ooshTeam:0.2 (oosh-expert) to symlink ~/oosh/external/taskChain + verify dispatch/completion. AWAITING response.
+- **Matrix integration**: traceability-matrix.md is STALE (T86 2026-05-26, old 5-col format). Chain.generateMatrix() regenerates it from canonical. Need to wire taskChain generateMatrix → overwrite matrix, and updateMatrixRow on each chain change.
 
-## Follow-ons (NOT started, for future assignment)
-- /api/skill/* HTTP endpoints (expose skills via REST)
-- CLI wiring (npx tsx scripts/skill-*.ts)
-- Skill invocation framework (agent calls skill by Object.verb → resolved from SkillRegistry)
+## KEY DIAGNOSIS (for expert/tester)
+- 117/189 Method.implementations[] refs point to Impl UUIDs with NO .scenario.json unit on disk.
+  Source markers exist (190/190) but Implementation SCENARIO UNITS missing. DATA GAP not tool bug.
+  Fix: expert runs chain-wire-impl-node --all-missing to CREATE the 117 units.
+
+## VALIDATE-BEFORE-TRUST (8 tool bugs caught this session)
+Every metric: 3 identical runs + match ground truth BEFORE authoritative.
+Bugs caught: denominator drift, orphanByDesign bool-vs-string, cwd-fragile git,
+UC.method-vs-Class.methods[0], .js-not-scanned, unit-existence guard, numerator-inflation, today-vs-24h.
+
+## OOSH PATTERN (Tron directive — FOUNDATIONAL)
+- Skills = Object.verb. Logic in typed Class method (Chain.followUp, Velocity.compute, Chain.generateMatrix).
+- CLI/script = thin DISPATCH: scriptname method args → Class.method(args).
+- OOSH external script pattern: source this + this.start dispatcher + parameter.completion.* helpers.
+- Reference: ~/oosh/external/aiderOOSH. ooshTeam links + verifies skill tools in ~/oosh/external.
+- ONE canonical measure per metric — no parallel counts. Non-canonical scripts hard-refuse (exit 1).
 
 ## Standing rules
-- Report → robbinTeam:0.0 (pointer only, detail in task file)
-- Chain is 6-step (Task = navigation, not chain) per 2026-06-08 correction
-- Query params from req.url not filepath (filepath strips ? at line 327)
+- Report → robbinTeam2:0.0 (pointer only, detail in task file)
+- Chain is 6-step: Requirement → UseCase(s) → Class → Method → Implementation → Test(s). Task = navigation.
+- Validate-before-trust: 3 identical runs + ground-truth match before authoritative.
+- Native Write/Edit/Bash works (classifier operational). No pane-bash workarounds.
+
+## Build/test
+npm run build · npm test · npx tsx scripts/po-chain-follow-up.ts --all · taskChain followUp --all
