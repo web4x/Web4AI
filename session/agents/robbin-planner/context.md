@@ -1,3 +1,37 @@
+# robbin-planner Context — Save Point 2026-06-11b (HONEST NUMBER SETTLED = 8/159 after de-inflation)
+
+**Pane:** robbinTeam2:0.1. Roster: 0.0 po · 0.1 me · 0.2 expert · 0.3 skill-expert · 0.4 architect · 0.5 req · 0.6 tester. SM at TRONinterface:0.1.
+
+## ⚠️ HONEST SCOREBOARD = 8/159 (NOT 25). The 25 was INFLATED.
+- **The 25/154 was a SHARED-MARKER FALSE-COMPLETE inflation.** Surfaced via SM's gold-standard 14→25 verification (learning #45). Finding doc committed: `scrum.pmo/planner-chain-inflation-finding-2026-06-11.md` (71d61048).
+- **Root cause:** 2 "catch-all" Impl units wired into methods of UNRELATED classes:
+  - `94bc8f6e` (marker "chat lazy-load", FAKE -a1b2- suffix) — legit owner Message.lazyLoadChain; was fanned to Room/Assets/Device/server (6 miscredits).
+  - `7f1774c9` (marker "Logger.logAtLevel", REAL suffix) — legit owner Logger; fanned to SvgViewer/PageNav/FileUnit/User/server/Message (6 miscredits).
+  - `7de1d230` minor (ClassRegistry+User). Total 12+ cross-class miscredit wirings.
+- **De-inflation EXECUTED BY SKILL-EXPERT** (I HELD to avoid clobber — 9 units were uncommitted mid-fix, learning #47/#11) + lint commit `9c67945c` (64 marker violations worklist). I re-scored: **22→8/159, det 3x.** Drop = climb-rigor class (a) de-inflation (honest), NOT regression.
+- **Honest 8 survivors:** R19.30, R19.33, R19.34, R19.35, R19.36, R19.37, R19.39, R19.52 — each method+impl+test CLASS-MATCHED + uniquely wired.
+- **SM's plan:** SM independently re-verifies the 8 (each marker uniquely-wired, not fanned) → THEN reports Tron. Current honest = 8/159.
+- **Denominator drifted 154→157→159** as req added units (R19.62-66). Legit tightening, reported.
+
+## NEW LEARNINGS THIS SESSION (add to learnings.md #49-51)
+- **#49 Shared-marker false-complete:** markers can PASS git -S (exist in source) yet be MISCREDITED — one impl/test marker wired into N unrelated methods via Method.implementations[]. The 10th+ precision catch, SUBTLEST. Detection: group impls by the SET of method-CLASSES wiring them. All-same-class = LEGIT (one file impl serves its class's methods). Spans ≥2 unrelated classes = CATCH-ALL miscredit; legit owner = the class matching the impl's source-marker name; remove the rest.
+- **#50 Home-class heuristic pitfall:** deriving an impl's home-class from its UNIT NAME fails (names vary: "Class.method" vs "R15.x desc"). My first pass over-flagged 90 (b4c8bf40 all-RbObjectItem, 664314f1 all-IORResolver = legit, falsely flagged). Use the METHOD-CLASS SPAN of its wirings instead — only ≥2 distinct classes = true catch-all.
+- **#51 PO HARD RULE (2026-06-11):** NEVER invent a uuid suffix. Marker uuid = uuidgen-fresh OR copied VERBATIM (full 36 chars) from the unit. Telltale invented: -a1b2-4c3d, -a2b3-, -b2c3-, sequential hex. One marker=one unit=one method, no sharing. grep FULL uuid before claiming a flip.
+
+## TASKS STOOD UP THIS SESSION (S19, all real v4, useCases:[] for architect)
+- Pre-rewind: T-room-editor 6e0240a9 (R19.2+R19.2.A), placeholder ada9339a→R19.21 swap, R19.22 split (R19.22.A e9618d93 T-room-symlink 755a2b09 + R19.22.B b748b4f1 T-room-link-affordance be3ea56d), T-remove-room-sizes e90c223d (R19.23), T-remove-spectator 787e88ab (R19.24), T-persistent-retention fa8fffc8 (R19.8), T-persistent-dedup ce98e242 (R19.8.B), T-room-ui-shared REOPEN 2195d98f, T-child-count-badge 2d945dbd (R19.25), T-icon-only-drag ce3c7870 (R19.26), T-icon-tap-collapse 62adcf98 (R19.27), T-one-layer-prefetch 07c44272 (R19.28), T-tree-owns-badges-prefetch 5df25620 (R19.29), T-share-link-offline 0608a036 (R19.32).
+- Post-rewind: R19.62-65 (T-url-drop e22d3c92, T-file-preview 6bbac678, T-preview-by-type 50437a26, T-generic-previewer 70ec5980) d0aad785; T-room-scenario-detail 594b06ea (R19.66) 356189f7.
+- **S19.tasks[] = 58.**
+
+## R19.23 — did NOT auto-flip (PO expected it to)
+Gated at Impl edge not Test: Method stripSizeLimits.implementations[] was empty + fake-suffix collision (f1dd0d77-a2b3 vs real c96d458c). Reconciled in c52957d0 (delete fake, wire Method→c96d458c→Test ffab35a3).
+
+## STANDING DUTY: chain-completion drive (Tron-assigned)
+- Loop: `npx tsx scripts/po-chain-follow-up.ts --all | grep "^## Summary"` (det 3x on flip). Report flips + milestone (flag at 38=25%) to PO + SM. NEVER stop while open work exists.
+- Bottleneck = EXPERT (Impl units + REAL source markers). 64-violation lint worklist (9c67945c) is the expert grind list. Tester downstream.
+- My data lane: wire Method.implementations[] (uniquely!), fix dangling refs, mark designStage. NOT source markers (expert).
+
+---
 # robbin-planner Context — Save Point 2026-06-11 (overnight chain-completion drive, SM save directive)
 
 **Role:** Sprint Planner / board-consistency owner + **chain-completion drive owner** (Tron-assigned standing duty). Reports to robbin-po (robbinTeam2:0.0).
