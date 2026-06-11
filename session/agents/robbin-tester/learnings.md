@@ -210,3 +210,34 @@
 - Findings/test evidence go INTO scenario units (task.model.statusChecklist with commit-hash inline), NOT chat prose
 - statusChecklist sub-step toggle IS the status report; ln symlink trees are the navigation layer
 - CMM1 anti-pattern: paragraph status dumps in chat (exception: explicit Tron ask)
+
+## Learning 46: NEVER invent uuid suffix (HARD RULE — 3+ wasted re-measures)
+- Marker uuid = `uuidgen` fresh OR copied VERBATIM (full 36 chars) from the scenario unit
+- Telltale invented patterns: -a1b2-4c3d, -a2b3-, -b2c3-, sequential hex = BUG
+- One marker = one unit = one method, no sharing
+- grep FULL uuid in source before claiming a chain flip
+- WRONG: `[test:uuid:dd85c4d7-a1b2-4c3d-8e4f-5a6b7c8d9e01]` (invented suffix)
+- RIGHT: `[test:uuid:dd85c4d7-2fe6-4564-ba91-66a362860b0f]` (copied from unit)
+
+## Learning 47: fs vs fsSync in server.ts
+- L6 `import fs from 'node:fs/promises'` = async (no existsSync/readdirSync)
+- L7 `import fsSync from 'node:fs'` = sync (has existsSync/readdirSync)
+- Code using `fs.existsSync()` throws "not a function" — must use `fsSync.existsSync()`
+- This blocked file-restore on JOIN_ROOM for multiple versions (silent catch{})
+
+## Learning 48: Impl.tests[] concurrent overwrite recovery
+- Expert batch commits overwrite Impl units → my tests[] wiring gets lost
+- Fix: build reverse map from Test.implementations[] → which Impls each Test covers
+- Re-wire all Impls where tests[]=[] but a Test points at them
+- Run this after EVERY expert batch that touches scenario/index/
+
+## Learning 49: canonical measure only (po-chain-follow-up)
+- NEVER report my own parallel chain-walk count (caused 38/177 vs 4/137 confusion)
+- Only the guarded canonical tool (po-chain-follow-up --all) is THE measure
+- SM+PO agreed on one authoritative measure — divergent counts = wasted time
+
+## Learning 50: content-dedup verification
+- Same content uploaded twice → same UUID returned (dedup via SHA-256 hash symlink)
+- scenario/content/<hash>.file.scenario.json = hash index
+- createFileUnit checks hash index before creating new unit
+- Verify by comparing UUIDs from two identical uploads
