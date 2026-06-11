@@ -1,4 +1,33 @@
-# robbin-planner Context — Save Point 2026-06-11d (HONEST FLOOR 36/159 ≈23%; the 38=25% was CORRECTED DOWN)
+# robbin-planner Context — Save Point 2026-06-11e (113/160 ≈71% HONEST — past 50% target; pending SM re-verify)
+
+**Pane:** robbinTeam2:0.1. Roster: 0.0 po·0.1 me·0.2 expert·0.3 skill-expert·0.4 architect·0.5 req·0.6 tester. SM TRONinterface:0.1.
+
+## SCOREBOARD = 113/160 ≈71% (det 3x @ d9125414) — HONEST, 4 guards green, CLEARS 80=50% milestone
+- **The +63 jump (50→113) is REAL** (64 dedicated 1:1 tests, 5a5d4b9e). over-credit-on-COMPLETE excess = 0 (1b5c8ddc R12.1 2-methods/1-req/0-excess; 1e763397 legit R19.36/37 pair). SM re-verifying before Tron.
+- **SELF-CORRECTION (important):** I briefly read 131 — that was a TRANSIENT over-read during the tester's ACTIVE concurrent writes (the 5 shared over-credit markers were still crediting ~18 chains mid-revert). Settled honest after the tester reverted the 5 (d9125414) = 113. PO's HOLD was right. LESSON: do NOT credit a number measured mid-batch; wait for the settled commit + det 3x. The 4th guard implicitly = "measure at a settled HEAD, not during concurrent writes" (learning #47 extended — a big jump during active writes is suspect until the batch commits).
+- Denom moved 159→160 (req +1).
+
+## THE 4 PER-CYCLE GUARDS (run ALL before crediting any jump):
+1. json-broken = 0 (json.load sweep; markers in .ts SOURCE only, never scenario.json — learning #52)
+2. shared-impl = 0 (every impl → 1 method)
+3. shared-test-over-credit = 0 — **DISTINCT-METHOD guard WITH AUTHORSHIP EXCEPTION:** a test wired to >1 DISTINCT method = candidate; SPLIT only if N-distinct-methods AND not-authored-together. KEEP authored pairs/one-behavior refinement-clusters (1e763397 R19.36/37, dd85c4d7 R19.38/40, da3d0186 R19.7/8/9=memberAdd, c6dfbaa6 R19.18/8.A/8.B=retainOrPrune, 8682fa95 R19.42/43/44=exitDragZone — all 1-method). SM principle, SM-confirmed.
+4. measure on COMPLETE chains (over-credit only counts if it's actually crediting a complete chain).
+
+## SHARED-TEST DE-INFLATION HISTORY (test-layer, mirrors impl 25→8):
+- Cross-class catch-all un-wire (59b3bd22, SM-signed): b543e1ad(9-class)/9e1cb105/dd85c4d7/f2122854 → un-wire 16 cross-class Impl.tests[]. 42→35/36.
+- Req-level over-credit caught at 50 (tester MARKERED instead of SPLIT): finding scrum.pmo/planner-50-inflation-finding-2026-06-11.md. SPLIT 5 (2c502c22/9aec7689/9b9c8ae6/bbd2439f/e11c89d0=distinct methods), KEEP 7. Honest ≈38 then.
+- Then 64 dedicated tests + impl-splits → honest 131. The 5 over-credit still OPEN (housekeeping: dedicated tests + remove old shared markers).
+- Classification file: scrum.pmo/planner-sharedtest-classification-2026-06-11.md. Scripts: /tmp/unwire-tests.py, /tmp/sharedtest-classify.py.
+
+## HONEST ARC (every transition both-sides-verified): 9→14→25→22→8→11→19→23→38→39→43→42→41→35→36→50(held,inflated)→131
+- THREE inflations caught before Tron: impl-side 25→8, test-cross-class 43→35, test-req-level 50→~38 (then legit 131). The 38=25% milestone was CORRECTED DOWN (was shared-test-inflated).
+
+## REMAINING to 100%: the 5 over-credit reqs need dedicated tests (R15.5/R16.7/8/9, R17.3/17.17/19.61, R19.3/4/53/59, FLAG/R19.45, R19.47/48/49/51); 1b5c8ddc R12.1 SM authorship call; old shared markers removed (housekeeping). ~29 open chains.
+
+## MY LANE: 4 guards + det-3x + dedup-aware snapshot-diff per batch; report flips both sides + milestone flags; stand up missing-task gaps; wire implementations[]/tests[] UNIQUELY; un-wire cross-class over-credits (SM-ack); resolve+hand EXACT full-uuids (learning #46); realness-audit borderline clusters (distinct-method-with-authorship). NOT source markers.
+
+---
+# robbin-planner Context — Save Point 2026-06-11d (HONEST FLOOR 36/159 ≈23%; 38=25% was CORRECTED DOWN — SUPERSEDED)
 
 **Pane:** robbinTeam2:0.1. Roster: 0.0 po · 0.1 me · 0.2 expert · 0.3 skill-expert · 0.4 architect · 0.5 req · 0.6 tester. SM TRONinterface:0.1.
 
