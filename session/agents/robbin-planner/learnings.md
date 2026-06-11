@@ -370,3 +370,32 @@ When PO directs a task stand-up before req-eng has captured the verbatim Tron re
 - The Sprint's `requirements[]` includes the placeholder IOR (architecturally complete) — req-eng's canonicalize swaps the IOR there too.
 
 When req-eng commits the canonical Requirement (real Tron quote + real R18.x altId + real v4 uuid), they execute the swap across all references; the placeholder unit gets deleted in the same commit. Planner then verifies the chain is clean with `--check` round-trip + audit.
+
+## 44. CHAIN-COMPLETION DRIVE — the canonical measurement + grind model (Tron standing duty, 2026-06-11)
+Tron assigned planner the continuous chain-completion drive to 154/154. Codified model:
+
+**Canonical tool + denominator:** `npx tsx scripts/po-chain-follow-up.ts --all` (canonical since 2c3ac41d = one row per non-orphan Requirement, deterministic). Denominator = 154 (40 orphanByDesign excluded). NEVER use parallel/ad-hoc scans alongside it — one canonical number only (PO/SM mandate; the 612/482/176/136 denominator thrashing happened from mixing tool versions + scopes). When denominator shifts, it's a legit tightening (orphan exclusion, canonical-row collapse) — report the shift explicitly.
+
+**A chain is COMPLETE only at the Test leaf:** Req→UC→Class→Method→Impl→Test, with the Test backed by a REAL `[test:uuid:<full-uuid>]` marker in the source test file AND Impl.tests[] wired to it. The tool gates on the FULL-uuid source marker, not just IOR existence.
+
+**Bottleneck analysis — name the precise edge per chain:** the tool's per-row output names exactly what's missing (Impl unit / source marker / Test / UC). Group by owner: after architect closes UCs/Classes, EXPERT is the sole gate (Impl units + source markers). Tester is mostly DOWNSTREAM (auto-registers once Impl marker lands) — don't dispatch it as a separate front. Highest-leverage = Methods with biggest fanout (one classMethodScope fix flipped 13 chains).
+
+**Planner-fixable data layer (my lane, not source):** I CAN wire Impl.tests[] IORs, fix dangling refs, mark designStage. I CANNOT add source [impl:uuid:]/[test:uuid:] markers (that's expert/tester editing src/test). Sweep recurring Impl.tests[] dropouts each cycle.
+
+## 45. CLIMB-RIGOR — diagnosing a numerator DROP without churn (#89b, 2026-06-11, the 12→9 diag)
+When the COMPLETE count DROPS, SM/PO demand a rigorous diff, not hand-waving. Method:
+1. Isolate tool-from-data: `git stash; git checkout <old-data-commit>; git checkout HEAD -- scripts/po-chain-follow-up.ts` → run CURRENT tool against OLD data. Restore: `git checkout scripts/...; git checkout HEAD; git stash pop`.
+2. Capture the COMPLETE chain-name SET at both states; compute the exact LOST + GAINED.
+3. Classify EACH lost chain: **(a) false-complete de-inflation** (was counted via data-level wiring without a real source marker — git log -S the marker uuid GLOBALLY; if never committed, it was never real) vs **(b) real regression** (a genuinely-complete chain broken by a refactor — check `git show <refactor> --stat` for the specific source file; verify it removed the marker).
+4. For (b): name the broken edge → route to expert/tester immediately. For (a): it's honest, expected; no fix.
+
+**The 12→9 verdict:** all 4 lost (R19.38/39/40/41) were (a) — their test:uuid/impl:uuid markers were NEVER in committed source (git log -S empty globally). Ruled out re-shard (touched only User/Device) + dedup (only renamed a test desc). 9 was the honest number; 12 over-credited.
+
+## 46. MARKER-UUID-MISMATCH — tester's prefix-not-full-uuid bug (2026-06-11)
+The tool matches `\[test:uuid:${FULL_UUID}\]`. A tester wrote `test:uuid:dd85c4d7-a1b2-...` in source while the Test scenario UNIT's uuid was `dd85c4d7-2fe6-...` — SAME 8-char prefix, DIFFERENT full uuid. The chain stayed open because the full-uuid regex failed. Diagnosis: compare the Test unit's `model.uuid` against the `test:uuid:` string in its `sourceFile`. Fix: tester corrects the source marker suffix to the unit's full uuid (fa169ab2 flipped R19.38/39/40 = +3). Same risk for impl:uuid markers — marker MUST equal the Impl UNIT uuid, not the Method uuid.
+
+## 47. TRANSIENT TOOL ERROR during concurrent agent writes (2026-06-11)
+A `<<<<<<< Updated upstream` merge-conflict marker appeared mid-scan and crashed po-chain-follow-up (JSON parse error) — a concurrent agent was mid-write on a scenario unit. Also a mid-write read returned a spuriously-high count (14 before it was real). MITIGATION: on a tool crash or surprising jump, re-run; if a conflict marker is in a scenario/index file, find+resolve before trusting the count. Always confirm a flip with deterministic 3x before reporting.
+
+## 48. SESSION PANE MOVE + roster reload (2026-06-10/11)
+Team migrated robbinTeam → robbinTeam2 to overcome a write-classifier outage. Roster: 0.0 po · 0.1 planner(me) · 0.2 expert · 0.3 skill-expert · 0.4 architect · 0.5 req · 0.6 tester. SM at TRONinterface:0.1. Route ALL pointers/IORs to robbinTeam2:0.X (not robbinTeam). When a write-classifier outage hits mid-task, surface it to PO and continue read-only work; a fresh session pane can restore writes.

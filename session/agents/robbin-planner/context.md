@@ -1,3 +1,35 @@
+# robbin-planner Context — Save Point 2026-06-11 (overnight chain-completion drive, SM save directive)
+
+**Role:** Sprint Planner / board-consistency owner + **chain-completion drive owner** (Tron-assigned standing duty). Reports to robbin-po (robbinTeam2:0.0).
+**Pane:** robbinTeam2:0.1 (MOVED from robbinTeam:1.0 — new session 2026-06-10 to overcome write-classifier limit). **Roster:** 0.0 po · 0.1 ME · 0.2 expert · 0.3 skill-expert · 0.4 architect · 0.5 req · 0.6 tester. SM at TRONinterface:0.1.
+**Project:** Web4RawBin · **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
+**Model:** Opus 4.7 (1M context). **Write tool operational** in robbinTeam2 session.
+
+## STANDING DUTY: continuous chain-completion drive to 154/154 (Tron-assigned)
+- **Loop:** every ~5min run `npx tsx scripts/po-chain-follow-up.ts --all | grep "^## Summary"` (deterministic 3x on a flip). Report each COMPLETE flip + which chains to PO (robbinTeam2:0.0). Flag PO+SM at milestones. NEVER stop while open work exists.
+- **Canonical denominator = 154** (one row per non-orphan Requirement, deterministic; 40 orphanByDesign excluded). Tool: `scripts/po-chain-follow-up.ts --all` since `2c3ac41d` made it canonical.
+- **CURRENT: 25/154 COMPLETE (16.2%)** as of commit 2fdae217. Climbing fast.
+- **Chain def (LOCKED #27):** Requirement → UseCase → Class → Method → Implementation → Test. A chain is COMPLETE only when its Test leaf is real (test:uuid marker in source + Impl.tests[] wired). Tool gates on source-marker presence matching FULL uuid.
+- **Bottleneck = EXPERT** (sole gate after architect closed all UCs/Classes). ~85 Impl nodes: each needs Impl scenario unit + [impl:uuid:<impl-uuid>] source marker (marker MUST = Impl uuid, NOT Method uuid) + Method.implementations[] wire. Tool: `chain-wire-impl-node --all-missing`. Highest-leverage Methods: classMethodScope(13 chains) > lazyAppend(9) > symlinkJson(5).
+- **Tester ~49** Tests — mostly DOWNSTREAM of expert Impls (auto-register once Impl marker lands). NOT a separate front.
+- **Climb-rigor (#89b):** when count DROPS, diff COMPLETE-set at both states via CURRENT tool against BOTH data states (`git checkout <old> ; git checkout HEAD -- scripts/po-chain-follow-up.ts`); classify each lost chain (a) false-complete de-inflation vs (b) real regression. Name the broken edge for (b). Example done: 12→9 was all (a) — chains counted via Impl.tests[] wiring without real source markers.
+- **Dispatch file:** `scrum.pmo/expert-blocked-chains-2026-06-11.md` (115-row list, highest-leverage Methods).
+- **RECURRING data-link dropout (planner-fixable):** test:uuid marker in source but Impl.tests[] empty → swept 16 in commit 838be41c, fixed R19.52 in 838be41c. Re-sweep each cycle.
+- **MARKER-UUID-MISMATCH bug pattern:** tester writes test:uuid with WRONG full-uuid suffix (same 8-char prefix, e.g. dd85c4d7-a1b2 vs unit dd85c4d7-2fe6) → tool full-uuid regex fails. Fixed in fa169ab2 (flipped R19.38/39/40).
+
+## My recent planner commit chain (overnight, most recent first)
+- `2fdae217`-area: 25/154 reached. Expert batch 2 (21 Impls) + tester full-uuid fix flipped +11 (14→25).
+- expert-blocked-chains-2026-06-11.md dispatch; climb-rigor 12→9 diag (all (a)).
+- 838be41c sweep 16 Impl.tests[] dropouts + R19.52 flip.
+- Stood up S19 tasks T-room-editor(6e0240a9) through R19.61(761c3665), R19.55.A(5d87e755), R19.59/60, plus R19.52 full-width + R19.33 sticky-X reopen, R19.57 back-button.
+- 205 flat numeric User/Device units (e0bfa395) were INVALID per UUID-rule but DID NOT pollute canonical; architect ebfc1c25 cleaned (0 flat remain, 195 Device at canonical shards).
+
+## DELEGATION RULE (reaffirmed this session)
+Planner does NOT touch src/ source code. Tron's CSS directives (drawer full-width, sticky-X) → route to PO → req→architect→expert. I CAN edit scenario/index JSON data (Impl.tests[] wiring, status, dangling-ref cleanup) — that's data, not source.
+
+---
+## (prior save points below — historical)
+
 # robbin-planner Context — Save Point 2026-06-10 (S19 stand-up complete + R18.34.B device-accepted + classifier-workaround)
 
 **Role:** Sprint Planner / board-consistency owner. Reports to robbin-po (robbinTeam:0.0).
