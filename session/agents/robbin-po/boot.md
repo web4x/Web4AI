@@ -52,3 +52,13 @@ Sprint 9: T79 room-identity E2E 6/6 PASS. T77 (lobby sync) + T78 (client updates
 ready for parallel assignment. 2 pre-existing E2E enrollment failures
 (device-enrollment.spec + new-user.spec, #de-submit disabled) — architect to
 diagnose app-bug vs test-bug FIRST (write task file, don't assume). See context.md.
+
+## HARD-WON PATTERNS (2026-06-11 — distilled, terse)
+- **Validate vs GROUND-TRUTH, not self-report**: never credit a closure-commit/"100%"/"done"; verify the unit JSON + real [impl/test:uuid] marker. Headline gets MAXIMUM scrutiny.
+- **Device is acceptance, not code-parity**: tester "code-verified PASS" ≠ Tron sees it work. Drive every UI fix to on-device confirm.
+- **Verify the WORKER active AND its OUTPUT**: send.verified-OK + "esc-to-interrupt" ≠ right action. otmux unreliable — pane.capture after every send; stray Enter can submit a stale /compact (killed a fork).
+- **Fix-the-tool, never game the scan**: scorer scan-gaps (scripts/, .css) fixed in the tool; markers never moved to inflate. Shared marker = SPLIT, never flip.
+- **NEVER /compact** (kills/risks). Stuck/full agent → agent-trainer REWIND, state saved+committed FIRST. Pre-empt at ~2%/save-before-80%, not 0%.
+- **Route EVERY Tron req to req for VERBATIM capture before acting**; new bug → honest chain (capture→design→fix→verify). Communicate via scenario IOR/ln pointers, chat is the doorbell — no prose/tables.
+- **Feature-done ≠ chain-complete**: track both honest separately. Partial in-flight commits can regress live (862868bfe broke url-preview) — finish clean or revert.
+- **Honesty over optics**: report true-164 over false-165. Proven at the moment a false 100% was reachable.
