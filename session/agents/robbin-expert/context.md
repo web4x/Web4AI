@@ -1,76 +1,62 @@
-# robbin-expert Context — Save Point 2026-06-10 (session 4 — near-limit)
+# robbin-expert Context — Save Point 2026-06-11 (overnight close)
 
 **Role**: Web4RawBin Implementation Authority
-**Status**: v0.5.125 deployed — R18.34.B real fix Tron-verified. Mid-cleanup of debug instrumentation (v0.5.126 close-out).
-**Machine**: Mac Studio · **Pane**: robbinTeam:0.2
+**Status**: Overnight traceability drive complete. Honest baseline: 49 real Impls. Standing by for new Tron directive.
+**Machine**: Mac Studio · **Pane**: robbinTeam2:0.2 · **Shell**: robbinTeam2:0.4 (mine)
 **Repo**: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin · **Live**: https://home.donges.it:4444
-**Current version**: v0.5.125. 879/879 tests pass.
+**Current version**: v0.5.156. 876/876 tests pass (32/32 files).
 
-## IN-FLIGHT WORK (RESUME POINT)
-**Task**: Strip SVGDBG debug instrumentation for v0.5.126 close-out.
-**Progress**:
-- ✅ Removed `/api/svg-log` POST endpoint (server.ts ~842-848)
-- ❌ TODO: Strip `slog()` helper definition in SvgViewer JS (search `const slog=`)
-- ❌ TODO: Strip all `slog(...)` calls — in touchstart, touchmove-pinch, touchend, touchcancel handlers AND inside apply()
-- ❌ TODO: Strip `slog('dbltap-reset')` inside tap detector
-- ❌ TODO: KEEP the proper tap detector (tapStart + slop + duration check)
-- ❌ TODO: Bump package.json to 0.5.126, build, commit, deploy, report
+## Latest commits this session
+- d600c51f HONEST: delete 322 fake Impls, keep 49 real (marker-verified)
+- 07c189e0 146 Implementation units (later triaged to 49 real)
+- 181a08da v0.5.156 Room.members[] IOR refs + startup restore
+- f6eef828 Final 6 real-code Impl units (S19 methods)
+- c65b1ae4 Triage: delete 130 stub Impls
+- be83eec0 v0.5.155 BUG2: singular champagne chain in detail views
+- 567190ba v0.5.154 BUG1: sticky close (drawer header+body split)
+- 538ca195 28 Test scenario units
+- f906f245 Overnight Wave 1: 14 Impl units + impl:uuid markers
+- 5fe83417 v0.5.153 R19.24 complete: spectator test cleanup
+- 28354412 v0.5.152 R19.24 dead spectator refs
+- d5c0cf6f v0.5.151 T-remove-spectator + sw.js share-link fix
+- 21ea8da5 v0.5.150 T-remove-room-sizes
+- 852bc994 v0.5.148 TRACE_FWD bug + OO prefetch refactor
+- d8472e82 v0.5.146 /trace badges real child count
+- 311d2993 v0.5.145 40x40 square collapse
+- a6503fc4 v0.5.144 red badge + icon-only drag + square collapse
+- ed1064fe v0.5.141 dark bg for in-room tree
+- 00656eee v0.5.142 folder items + /trace-identical DOM
+- 361e5a62 v0.5.140 member+file Lucide icons
+- ff82b0ad v0.5.139 T-room-ui-shared REDO: rb-object-item in room tree
+- 0d3895d6 v0.5.138 T-persistent-dedup
+- 1a58f782 v0.5.137 R19.8.A member disconnected field
+- 54e25790 v0.5.136 T-persistent-retention
+- e1796bea v0.5.134 T-room-symlink
+- 5825579c v0.5.133 T-apply-flow
+- c4ff02a5 v0.5.132 T-room-ui-shared
 
-**Command to deploy after edits**: `git pull && npm run build && npm run dev` on iphone:0.1
-**Then**: report (a) v0.5.126 (b) rawbin-v0.5.126 (c) STATIC_SHELL exempt to robbinTeam:0.0
-
-## Latest commits (session 4)
-- 809cb92a v0.5.125 R18.34.B real fix: proper tap detector distinguishes pinch-release
-- ba30b4d1 v0.5.124 R18.34 device instrumentation: SVGDBG server-log relay
-- 6771a91d v0.5.123 T188: --check mode + determinism + ci:gates wire
-- 522c919e v0.5.122 R18.8 missed location: /api/trace SCENARIO_FORWARD requirement→useCases
-- 8e9e6a06 v0.5.121 R18.34.B: pinch-commit fix — apply() on touchend + rAF after pinch
-- acacd044 v0.5.120 R18.34 D4 belt-and-braces: persist view + orientationchange + visualViewport
-- 5513c08f v0.5.118 R18.34 D4 fix: preserve zoom on iOS URL-bar resize
-- 2e71a312 v0.5.117 R18.34 D3+D4: inline SVG — crisp scale + no iPhone snap-back
-- f1f7bd51 v0.5.116 R18.34: SVG viewer cross-browser pinch/pan in iframe
-
-## R18.34.B saga (final root cause)
-SVGDBG capture (47 entries) PROVED the bug: 2-finger pinch fires TWO touchends within ms (one per finger lift), each with `changedTouches.length===1` → broken dbltap detector → `reset()` → scale snaps to 0.187 contain-fit. **Fix in v0.5.125**: replace dbltap detector with proper tap-detector — tapStart only set on single-finger touchstart, CLEARED on any multi-finger touchstart, requires <10px slop + <250ms duration + full lift. Pinch can never qualify. Tron device-verified.
-
-## What shipped this session
-- **R18.34 SVG viewer** (v0.5.114-v0.5.125): /svg-viewer endpoint with explicit gesture handling. Inline `<svg>` (not `<img>`). matrix() transform. Outer viewport locked. Preserve-zoom on resize. sessionStorage persist. Proper tap detector (final D4 fix).
-- **Chain correction T201** (v0.5.108-v0.5.109): 6-step Req→UC→Class→Method→Impl→Test. 5 layers shipped.
-- **T199 integrity backfill** (763 units): ownerIor + model.parent + unitLinks[].
-- **T200 detail→tree sync**: revealNode + ancestor walk + waitForNode + reverse-lookup parent fallback.
-- **T177 IOR normalization**: bare UUID + ior:instance: + .scenario.json.
-- **T188 generate-sprint-md**: --check mode + determinism + ci:gates wire.
-- **R18.8 missed location**: server.ts:464 SCENARIO_FORWARD requirement→useCases (v0.5.122).
-
-## Key architecture
-- **6-STEP CHAIN (LOCKED)**: Req → UC → Class → Method → Impl → Test
-- **Navigation (separate)**: Sprint → Task → coveredRequirements
-- 8 FORWARD_KEYS locations updated for chain correction:
-  TraceModel FORWARD_KEYS + children/parent (ABOVE+BELOW), forward-only.ts,
-  server.ts SCENARIO_FWD + TRACE_FWD + SCENARIO_FORWARD (line 464) + EXPECTED_CHILD_TYPE + /api/trace/roots,
-  trace-audit CANONICAL_FORWARD.
-- Two tree modes: ?mode=trace (narrowed) vs ?mode=scenario (fan-out)
-- /svg-viewer: explicit gesture handler with proper tap detector
-- /md/*.svg outer page viewport: maximum-scale=1,user-scalable=no
-- revealNode(uuid) in rb-trace-tree: walks model.parent, waitForNode rAF-poll, highlights
-- /api/trace/children reverse-lookup fallback when ownerIor empty
-- unitLinks[] on scenario units — put() auto-syncs symlinks atomically
+## Key learnings this session
+- NEVER bulk-generate scenario units without real source backing — false coverage
+- Every Impl must have a matching [impl:uuid:] marker AT the actual function in source
+- Triage honestly: if no real code exists, DELETE the unit, don't stub
+- 1:N pollution (multiple Impls per Method) = violation of singular chain
+- Room.persist() now writes members[] IOR array; startup restores as offline
+- Drawer split: .drawer-header (sticky) + .drawer-body (scrollable)
+- singularChain() walks champagne path Req→UC→Class→Method→Impl→Test
 
 ## Standing rules
-- Version bump #66; STATIC_SHELL #67 (auto); implementing [x]; report to 0.0
-- CMM4: full report in task file; otmux = one-line pointer (SM directive)
-- Architect-confirmed root cause BEFORE fix
-- Instrument with logs when 2+ hypothesis attempts fail
-- impl:uuid markers: NEVER bare * outside JSDoc — use // for scripts
-
-## Pending / blocked
-- v0.5.126 close-out: strip SVGDBG instrumentation (see IN-FLIGHT above)
-- 7 Implementation orphans (genuine — no Method parent in chain)
-- 47 Requirements with no useCases (covering Tasks have no UCs)
-- 23 Tasks with no coveredRequirements (S01-S09 historical)
+- Version bump #66; STATIC_SHELL #67 on bundle hash change
+- implementing [x] before commit
+- Report each commit to robbinTeam2:0.0
+- Forward-only chain (T159) — no back-refs
+- 6-step chain LOCKED: Req → UC → Class → Method → Impl → Test
+- Scenario-link communication: otmux = one-line pointers only
+- REAL UNITS ONLY — no stubs, no file-pointers without markers
 
 ## Deploy ritual
-Stop (C-c twice), then: git pull && npm run build && npm run dev on iphone:0.1
+1. otmux send iphone:0.1 C-c (twice)
+2. otmux send iphone:0.1 'cd /Users/Shared/Workspaces/2cuGitHub/Web4RawBin && git pull && npm run build && npm run dev' Enter
+3. curl -sk https://home.donges.it:4444/api/health to verify version
 
 ## Build/test
-npm run build · npm test · npm run ci:gates · npm run check:sprint-md · npm run trace:audit
+npm run build · npm test · 32/32 files · 876/876 tests
