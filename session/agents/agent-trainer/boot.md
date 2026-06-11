@@ -131,6 +131,22 @@ otmux pane.capture <pane> 12
 - **`otmux send.raw` for keystrokes** — `otmux send` prepends sender identity which confuses agents
 - **MEASURE at every step** — `tmux capture-pane -t <pane> -p` to verify
 
+### KEY LESSONS FROM 2026-06-11 MASS REWIND OPERATION
+
+This was the day I rewound 6 agents cleanly (po, planner, tester, expert, architect, planner-again, SM). Patterns:
+
+1. **No-code option BY LABEL, not always-2.** Old wrong rule: "always Down once for option 2." Real rule: Find "Restore conversation" by LABEL. 4-option menu (no code) = option 1. 5-option menu (code) = option 2. 3-option = option 1. SM verifies by `git log` post-rewind that commits stayed intact.
+
+2. **Deeper rewind still floors on bloated bases → Tier-3 candidate.** Today: robbin-po landed 51% used, architect 54.8% used, even at 50-65% depth. Conversation base is bloated beyond what /rewind can free. When 2+ agents floor at ~50% used, that's a fleet-wide Tier-3 signal. Tier-3 = fork from fresh agent, boot from context.md + learnings, NOT continue rewinding.
+
+3. **RC-staged-pane blocks keystrokes.** Pane in Remote Control mode with staged text in the input buffer eats /rewind as a prompt. If picker doesn't open after BTab+C-u+/rewind, flag SM → TRON drives via RC. Don't keep spamming keystrokes.
+
+4. **Transient rate-limit mid-rewind → retry.** API can throttle mid-operation. /rewind silently fails. Wait 30s, retry the same sequence (BTab+C-u+/rewind). No state corruption — just lost the operation.
+
+5. **Prevent 0% by acting at ~80% used (not at 95%+).** Reactive at 0% = no-save (chat-context lost, code safe in git). Proactive at 2%/1% = save commits then deeper rewind. PROACTIVE at 80% used = full save runway + deep rewind to <30% used = best outcome. SM should flag at first warning, not at limit.
+
+6. **catch-22 awareness: I'm the rewinder.** If I climb toward limit, I can't rewind myself. SM watches me every tick, flags TRON to drive my rewind. Keep context.md+learnings current so Tron can rewind+retrain me cleanly.
+
 ### Menu Type Variants — PICK BY LABEL, NOT BY NUMBER
 **The real rule** (Tron+SM confirmed 2026-06-11): find the option labeled **"Restore conversation"** by LABEL and select that. Numbers VARY.
 - **5 options** (code changes pending): 1.Restore code+conv 2.Restore conv 3.Restore code 4.Summarize 5.Never mind → "Restore conversation" = **option 2** (Down once, Enter)
