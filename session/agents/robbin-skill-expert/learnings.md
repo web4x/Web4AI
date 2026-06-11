@@ -199,3 +199,12 @@ scriptname.start_dispatcher "$@"
 - snapshotComplete pattern: dated TSV + named added/removed vs prior = planner deltas with
   zero manual diffing. New-call-site gotcha: adding a param to a private helper — grep ALL
   call sites (listComplete missed implRefs, caught by CLI run not tsc since tsx skips checks).
+
+## Git hygiene in shared live repos (2026-06-11, self-inflicted)
+- NEVER broad `git add scenario/index/` in a repo where other agents commit live —
+  swept 139 of req/expert's in-flight units into my commit 8c16192d. Stage EXPLICIT paths only.
+  Content preserved (wer schreibt der bleibt) but attribution muddied; disclosed to PO.
+- Fabrication detector: generalized +0x11 byte-progression (>=3 steps) beats fixed telltale list
+  (63-68 hits vs 25). KEY DISTINCTION for reporting: fabricated-PATTERN uuid (style debt,
+  marker=unit verbatim-consistent, chain valid) != ACTIVE defect (shared-impl, orphan-marker,
+  prefix-collision). Report both numbers or cause false panic / false comfort.
