@@ -216,3 +216,13 @@ scriptname.start_dispatcher "$@"
   scoreboard anyway. In each prefix-collision pair, re-mint the minted SIBLING (Impl), never
   the owner (Method/Task). Explicit-path staging: build the path list programmatically from
   the old+new uuids (prefixPath from hex chars) + grep for new uuids.
+
+## Marker-paste-into-JSON bug class (2026-06-11, caught live)
+- Agents satisfying hasRealImpl may paste // [impl:uuid:] INTO .scenario.json (line 2) —
+  corrupts JSON, downs ALL canonical tools, and cannot even credit (scanner reads src/+test/ only).
+  Signature: SyntaxError position 2 line 2 from ScenarioIndex.get. Sweep: python json.load over
+  scenario/index/*/*/*/*/*/*.json. Repair: sed 2d if line2 is a //-marker (uncommitted -> restores HEAD).
+- Bridge Impls (sourceFile=*.scenario.json) have NO real source: leave unmarked + route to architect.
+- renameUuid scope: Impl/Test batch-safe; Req/Task/UC/Class uuids ALSO live in scrum.pmo planning
+  docs -> verb now sweeps scrum.pmo/**/*.md (exclude chain-snapshots = history) but renames of
+  planning-visible types need planner sign-off. dist/*.map stale refs = build artifacts, rebuild clears.
