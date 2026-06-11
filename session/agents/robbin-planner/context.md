@@ -1,6 +1,71 @@
-# robbin-planner Context — Save Point 2026-06-11e (113/160 ≈71% HONEST — past 50% target; pending SM re-verify)
+# robbin-planner Context — Save Point 2026-06-11j (🏁 ACTIVE 168/168 = 100% FULL-CHAIN CERTIFIED GENUINE @f3ce4e56 — SM re-seal→Tron)
+
+**Pane:** robbinTeam2:0.1.
+
+## TOOLING MIGRATED to Object.verb (Tron directive, planner-first, 2026-06-11) — skill: scrum.pmo/skills/migrate-to-object-verb.md
+- Legacy scripts are byte-identical shims over the Chain class (commit 0b24dcdb) — old forms still work (rollback = keep typing them), but migrate my invocation habit.
+- **Completion loop (det-3x):** `npx tsx scripts/objectVerb.ts Chain followUp --all` → JSON `{complete,total,excluded}` (replaces `po-chain-follow-up.ts --all | grep '^## Summary'`). Equivalence VERIFIED 2026-06-11: old 168/169-excl41 == new complete=168 total=169 excluded=41, det-3x identical.
+- **Flip tracking:** `npx tsx scripts/objectVerb.ts Chain snapshotComplete` → dated TSV in scrum.pmo/chain-snapshots/ + named +/- flips vs prior (no hand-diffing).
+- **Lane dispatch:** `npx tsx scripts/objectVerb.ts Chain scoreboard` → open-nodes table with owner column (tester/expert/architect), paste-ready for handoffs.
+- OOSH Tab-complete form: `taskChain chain.followUp --all` etc. Help: `objectVerb.ts` (objects) / `objectVerb.ts Chain` (verbs).
+- **My guards UNCHANGED** (read scenario.json directly): /tmp/guards.py (json-broken+shared-impl), name-based guard-3 (KEEP only 802363cb RbUseCaseDetail + 8edfcdd6 RbDetailDrawer), worktree-cert recipe (learning #54). Only the COUNT invocation migrated.
+- TODO: teach tester+expert the same ritual at NEXT handoff-file refresh (their instructions still carry legacy form — replace forward, not retroactively).
+
+## SCOREBOARD = **🏁 ACTIVE 168/168 = 100% FULL CHAIN, CERTIFIED GENUINE @f3ce4e56** (now 168/169 active — R19.77 tester-open) (det-3x 3x Summary + ALL 4 guards green: json-broken=0, shared-impl=0, over-credit=0, 0 open non-dedup; R19.75 ground-truthed; excluded 41 orphanByDesign). Flagged SM re-seal→Tron.
+- Post-167: req added R19.75 (ContentPreviewer.authToken) + R19.76 (nonce security-debt). PO ruling: **R19.76 DEFERRED** (set model.orphanByDesign=true + deferred note, my commit d58eb6fd → active denom 168). R19.75 closed via expert Impl 4c897dae + tester wired tests[]=[733dc384] (real marker server.test.ts).
+- **orphanByDesign mechanism (skill-classes.ts:99-103):** model.orphanByDesign===true OR model.tags includes 'orphanByDesign' → excluded from canonical denominator (resolveReqSet line 122). Use this to defer per PO.
+- **DEDUP-BUG DISCIPLINE (re-confirmed):** the display ROW can show 'all check' while the req is incomplete (listComplete dedupes shared-test leaves). ALWAYS trust the det-3x SUMMARY count + ground-truth (Impl.tests[] non-empty + real [test:uuid:] marker), NEVER the row. Caught R19.75 false-'all-check' this way.
+- **Climb to 168 caught (held every premature close):** false '167 closure' (empty Impl.tests[]), false '168' display-row (dedup, Impl 4c897dae.tests[] empty). Plus earlier: 162(oc=3→159), 164(oc=1→161), 165 dedup-false, structural impl-edge (markers on method uuid, empty implementations[]).
+- **Cert recipe (learning #54 worktree-cert + max-scrutiny):** git worktree add -q --detach /tmp/wt-cert <H> → det-3x Summary 3x + /tmp/guards.py + name-based guard-3 (KEEP only 802363cb RbUseCaseDetail + 8edfcdd6 RbDetailDrawer) + 0-open non-dedup grep + GROUND-TRUTH the specific new Impls (tests[] non-empty + real marker) → remove.
+- NEXT: SM re-seal of active 168. R19.76 in backlog (re-include when scheduled). Denom grows as req adds; keep certifying each settled batch with the same max-scrutiny recipe.
+
+---
+# robbin-planner Context — Save Point 2026-06-11i (🏁 167/167 = 100% FULL-CHAIN CERTIFIED GENUINE @331c2719 — SM re-seal→Tron)
+
+**Pane:** robbinTeam2:0.1. SCOREBOARD = **🏁 167/167 = 100% FULL CHAIN, CERTIFIED GENUINE @331c2719** (det-3x 3x + ALL 4 guards green: json-broken=0, shared-impl=0, over-credit=0, 0 open; R19.73/74 ground-truthed). Flagged PO→SM re-seal→Tron.
+- Post-165: req added R19.73 (in-room file preview) + R19.74 (HTML sandboxed iframe) → denom 165→167. Climb to 167 caught THREE false-closures (max-scrutiny discipline held every time):
+  - false "165 closure" via listComplete DEDUP display bug (hid open rows) — my det-3x Summary + non-dedup open-row grep don't rely on dedup display.
+  - "164/164" earlier = over-credit=1 (d5478d32) → honest 161.
+  - false "167 closure" (197d73f8 v0.5.196) = Impls 6471cfbd/cf44c51c had EMPTY tests[]; before that, R19.73/74 Methods 1608977f/aee04064 had empty implementations[] + [impl:uuid:] markers used the METHOD uuid (learning #46) — structural impl-edge gap I diagnosed.
+  - GENUINE 167 @331c2719: tester rewired tests to the new Impls (6471cfbd.tests[]=[7f62966c], cf44c51c.tests[]=[178f14b2]); markers real in components.test.ts.
+- **SM's 30 empty-tests[] reconcile (165 seal):** GENUINE, 0 over-credit. 16 off-chain orphans + 14 on-chain SECONDARY methods; 0 reqs complete SOLELY via empty-test path. Tool gates empty-tests row complete=FALSE. Quality follow-up logged: 14-method own-test-per-method champagne depth (PO-accepted, not blocking). Doc: scrum.pmo/planner-165-empty-tests-reconcile-2026-06-11.md.
+- **Cert method (learning #54 worktree-cert):** `git worktree add -q --detach /tmp/wt-cert <H>` → det-3x + /tmp/guards.py + name-based guard-3 (KEEP only 802363cb RbUseCaseDetail + 8edfcdd6 RbDetailDrawer dup-name) + 0-open grep + ground-truth specific new Impls → remove. Immune to fast-dirty live tree (#53).
+- NEXT: SM re-seal of 167. Denom grows as req adds units; keep certifying each settled batch. The 100% drive is COMPLETE at the current req set (167).
+
+---
+# robbin-planner Context — Save Point 2026-06-11h (🏁 165/165 = 100% FULL-CHAIN CERTIFIED HONEST @0bccc3d5 — flagged SM→Tron)
+
+**Pane:** robbinTeam2:0.1. SCOREBOARD = **🏁 165/165 = 100% FULL CHAIN, CERTIFIED HONEST @0bccc3d5** (det-3x 3x identical + ALL 4 guards GREEN: json-broken=0, shared-impl=0, shared-test-over-credit=0 name-based, 0 open). Flagged PO→SM independent re-verify→Tron.
+- **THE saga (inflation caught 3x before Tron, all held + resolved):**
+  - 162/162 claim → guard-3=3 cross-class over-credits (71e9d3b6/061360a0→TraceConsistency.auditOrphans; 9b5111b2→ProfileGate.vcardUpload+ChainLink.iconInView). Worktree-proven honest 159. HELD.
+  - "164/164" claim → really 162/164, guard-3=1 (d5478d32 ProfileGate+ChainLink). Worktree-proven honest 161. HELD.
+  - Each time: tester's "rewire to current Impls" wired ONE test across ≥2 unrelated classes → false-completes. Fix = un-wire to home class + dedicated test per borrowing method. RECURRING tester pattern (flagged: one-test-per-method, never span 2 classes).
+  - Final clean climb: 159/164 → 162/165 → 164/165 → **165/165 (R19.72 test b8fcc88f closed last chain)**.
+- **Scorer scan-coverage bugs found+fixed (skill-expert):** impl-marker scan missed scripts/ (572ad650 added implRoots); test-marker scan missed scripts/ (b5d1096e testRoots twin). Markers in scripts/*.ts (tooling = real code) were real but unscanned. 9 chains uncredited until fixed.
+- **TECHNIQUE that made fast-board cert possible (learning #54 worktree-cert):** team commits perpetually-dirty live tree; cert the EXACT committed state via `git worktree add -q --detach /tmp/wt-cert <H>` → det-3x + /tmp/guards.py there → remove. Immune to concurrent writes; proper #53.
+- **Guard scripts:** /tmp/guards.py (json-broken+shared-impl+shared-test-span), inline name-based guard-3 (KEEP only 802363cb RbUseCaseDetail + 8edfcdd6 RbDetailDrawer dup-name artifacts), /tmp/resolve.py (8-prefix→full uuid). Handoffs: scrum.pmo/planner-tester-uuid-handoff + planner-162-overcredit-finding + planner-160-certification-criteria (2026-06-11).
+- NEXT: SM independent re-verify of 165. If req adds more units, denom grows → keep certifying each settled batch det-3x + 4 guards. The chain-completion drive is COMPLETE at 100%.
+
+---
+# robbin-planner Context — Save Point 2026-06-11g (146/162 ≈90% HONEST CERTIFIED @106f3262 — SM re-verify)
+
+**Pane:** robbinTeam2:0.1. SCOREBOARD = **146/162 ≈90% CERTIFIED @106f3262** (det-3x + 4 guards green).
+- Arc since 128: 128@6ccea842 → [tester fc592d4e cleanup deleted 80 units incl. 18 with LIVE source markers = over-delete] → skill-expert e7dca03f RESTORED those 18 (RECONCILE #89b VERDICT: CORRECT restore — 18/18 were fc592d4e deletions/0 new, 18/18 live `[test/impl:uuid]` markers in .ts → wrongly-deleted, not re-inflation) → tester c8095fa2 +15 → 106f3262 → **CERTIFIED 146/162**. Denom 160→162 (req R19.67/68/69).
+- 4 guards @106f3262: json-broken=0 · shared-impl=0 (restore NO re-dup) · shared-test-over-credit=0 (only 802363cb RbUseCaseDetail + 8edfcdd6 RbDetailDrawer same-class siblings, restore added 0 new) · complete-chains.
+- **NEW TECHNIQUE (learning #54): worktree-cert.** Team commits so fast the live working tree is perpetually dirty (15-124 uncommitted on top of every settled commit) → #53 hold would never fire. Solution: `git worktree add -q --detach /tmp/wt-cert <commit>` → run det-3x + /tmp/guards.py in the CLEAN worktree (exact committed state, immune to live concurrent edits) → `git worktree remove /tmp/wt-cert --force`. This is the proper #53 application: measure at a settled COMMIT, not the dirty live tree.
+- 16 open to 162. Handoffs: scrum.pmo/planner-tester-uuid-handoff-2026-06-11.md + planner-160-certification-criteria-2026-06-11.md (cert criteria + owner audit, 0 stuck). Guard scripts: /tmp/guards.py, /tmp/g3verify.py, /tmp/resolve.py.
+
+---
+# robbin-planner Context — Save Point 2026-06-11f (128/160 ≈80% HONEST CERTIFIED @6ccea842 — SM independent re-verify)
 
 **Pane:** robbinTeam2:0.1. Roster: 0.0 po·0.1 me·0.2 expert·0.3 skill-expert·0.4 architect·0.5 req·0.6 tester. SM TRONinterface:0.1.
+
+## SCOREBOARD = 128/160 ≈80% CERTIFIED HONEST @6ccea842 (det-3x stable, 4 guards green)
+- Arc since rewind: anchored 113@d9125414 → mid-batch HELD (refused architect's transient 128 + 131) per #53 → re-scored on each SETTLED batch: 111@feb9813b (−2 split-18-shared-tests housekeeping) → 107@add87115 (orphan-marker cleanup) → **128@6ccea842 (tester 53-marker batch settled, +21)**.
+- 4 guards @6ccea842: json-broken=0 · shared-impl=0 · shared-test-over-credit=0 · complete-chains. Det-3x identical.
+- Guard-3 nuance: 2 cross-class-span tests (802363cb/8edfcdd6) = same-LOGICAL-class siblings (RbUseCaseDetail/RbDetailDrawer); span artifact from DUP same-named Class units → KEEP (SM-confirmed legit). **Housekeeping dedup candidate:** RbUseCaseDetail cd70a713/84a94745, RbDetailDrawer 0dd08b2f/7af8178b.
+- Guard scripts THIS session: /tmp/guards.py (json+shared-impl+shared-test-span), /tmp/g3verify.py (authorship resolve).
+- NEXT: watch full-chain 160 (~32 open). Re-score det-3x+4guards per settled batch. SM independent re-verify of 128 in flight.
 
 ## SCOREBOARD = 113/160 ≈71% (det 3x @ d9125414) — HONEST, 4 guards green, CLEARS 80=50% milestone
 - **The +63 jump (50→113) is REAL** (64 dedicated 1:1 tests, 5a5d4b9e). over-credit-on-COMPLETE excess = 0 (1b5c8ddc R12.1 2-methods/1-req/0-excess; 1e763397 legit R19.36/37 pair). SM re-verifying before Tron.
