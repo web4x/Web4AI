@@ -1,3 +1,17 @@
+# robbin-planner Context — Save Point 2026-06-11k (SM SURVIVAL STANDBY @83% 7d-budget — IDLE until ~Jun14/Tron)
+
+**Pane:** robbinTeam2:0.1. STANDBY HARD (SM survival, 7d budget 83%≥80%). ZERO new reqs (R19.91+ WAIT). Sealed lossless.
+- **R19.86-90 fix-task batch stood up this session** (PO drip-fed; expert+tester resuming). ALL settled canonical — note the heavy DUP-COLLISION pattern: architect/concurrent-me beat me to 4 of 6, reconciled per #20 every time (adopt architect's = sharper+has-UC, drop my untracked/committed dup):
+  - R19.86 → canonical **bec78a23** (UC 6bd2b297); my 356bf502 deleted.
+  - R19.87 → MINE **8cc07506** (UC cd88d924 added by architect after); committed both-ways.
+  - R19.88 → architect **67abd046** (UC bdd5cd03 whenDefined); my 1155d59b deleted.
+  - R19.88.A → architect **c524c8a0** (UC c5419a86, renderRoomTree diff); my 507c9b21 git-rm'd; refinementOf R19.88.
+  - R19.89 → MINE **9628370d** (move red Remove-ID btn ProfileEditor→DeviceEnrollDialog); committed both-ways.
+  - R19.90 → architect **b8da64a1** (UC 2591b56a; reuse rb-trace-tree, DRY/OOP) — SUPERSEDES R19.83(task 322d0fcd)/R19.88(67abd046)/R19.88.A(c524c8a0), fulfills R19.21(req d1391ee3). Supersession documented in R19.90 REQ description (20fc59cc). My dup db55bbc6 deleted. (Reverse supersededBy annotations on the 3 tasks NOT applied — survival cutoff; req-level note suffices.)
+- **FLAGGED to PO:** recurring dup-collision wastes churn — suggest PO route each "stand up Rxx" to exactly ONE of {planner, architect}.
+- **ON RESUME:** apply reverse supersededBy annotations to 322d0fcd/67abd046/c524c8a0 if PO still wants them; re-score Chain (was 174/180 pre-batch; denom climbs w/ R19.86-90). Scoreboard cmd: `npx tsx scripts/objectVerb.ts Chain followUp --all`.
+
+---
 # robbin-planner Context — Save Point 2026-06-11j (🏁 ACTIVE 168/168 = 100% FULL-CHAIN CERTIFIED GENUINE @f3ce4e56 — SM re-seal→Tron)
 
 **Pane:** robbinTeam2:0.1.
