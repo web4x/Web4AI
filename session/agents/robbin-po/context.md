@@ -1,33 +1,35 @@
-# robbin-po Context — save 2026-06-11 (robbinTeam2 fork)
+# robbin-po Context — save (2026-06-11, robbinTeam2 marathon)
 
-**Role:** PO | **Pane:** robbinTeam2:0.0 (forked from robbinTeam to escape write-classifier outage; same repo/machine, diff otmux session)
+**Role:** PO | **Pane:** robbinTeam2:0.0 (forked to escape write-classifier outage; same repo/machine)
 **Project:** RawBin | **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
-**Server:** https://home.donges.it:4444 — **v0.5.176 LIVE**
-**Tron:** iphone:0.0 | SM TRONinterface:0.1 (event-driven) | agent-trainer baseTeam:0.0
+**Server:** https://home.donges.it:4444 — **v0.5.197 LIVE**
+**Tron:** iphone:0.0 | SM TRONinterface:0.1 | agent-trainer baseTeam:0.0
 
 ## robbinTeam2 roster
-0.0 po(me) | 0.1 planner | 0.2 expert | 0.3 skill-expert | 0.4 architect | 0.5 req | 0.6 tester | 0.7 empty
+0.0 po(me) | 0.1 planner | 0.2 expert | 0.3 skill-expert | 0.4 architect | 0.5 req | 0.6 tester
 
-## ★ PRINCIPLE #1 — ALL IS DILIGENCE. NOTHING URGENT. (read learnings #1 first)
+## CURRENT STATE
+- **Traceability chain: FULL 168/168 GENUINE** (SM independently verified det-3x + 0-over-credit, 2026-06-11). R19.75 preview-auth CLOSED (c26a1d928); R19.76 nonce-hardening DEFERRED orphanByDesign (d58eb6fd7, PO ruling). No open cert work — chain whole.
+- **All Tron features delivered + verified live:** content-dedup+index+consolidation, data-integrity (members/files loss fixed), room-full removed, content-preview (/trace + in-room image+HTML rendered, auth-fixed v0.5.197), scenario-link DRY→browser+highlight, room-children, User/Device scenarios, room-dir standardized, remove-ID recovery button, file-auth(F1 fail-closed)+iframe-sandbox security, 5 OOSH skills.
+- **Deferred/backlog:** R19.76 (preview short-lived-nonce vs token-in-URL); 14 per-method-depth tests (champagne quality).
 
-## CURRENT STATE (honest, dual-verified)
-- **Chain count: 12/137 COMPLETE** (S19 11/51), guarded-canonical, deterministic 3x, full-scan-clean (86/86 Impls real, 0 stubs). Climbed 4→11→12 on REAL work.
-- **Both Tron product priorities GREEN + on phone:** (1) FILE-RESTORE fixed (fs→fsSync, v0.5.175, files reappear on JOIN_ROOM) (2) FLUSH-PWA-CACHE button (R19.45, sw.js red button + flushCache, chain now FULLY COMPLETE).
-- Milestone 25%=34/137 (need +22). Open: expert ~94 real-Impl-creates, tester ~78 Tests, architect ~0.
+## THE MEASUREMENT-INTEGRITY SYSTEM (this session's core proof)
+Honest 8→167. **11+ inflation/coverage events caught + corrected**, incl a FALSE 165/165 "100%" rejected AT THE HEADLINE (SM independent challenge → skill-expert found display-name-dedup over-credit hid R15.6 → reported true 164). Dual/triple-verify: tester self-report → planner det-3x+4guards → SM INDEPENDENT seal. Guards: json-broken=0, shared-impl=0, shared-test-overcredit=0 (methodUuid-dedup), complete-scan.
 
-## THE MEASUREMENT-INTEGRITY SYSTEM (session's core achievement)
-- **ONE canonical measure:** `npx tsx scripts/po-chain-follow-up.ts --all` (or --sprint S19). NO parallel scans. trace-audit.ts hard-REFUSES (exit 1) on --completion (skill-expert prevention).
-- **team-velocity** skill sources po-chain-follow-up (never recomputes); validated cwd-independent.
-- **8 tool bugs caught vs ground truth, ALL FIXED-NOT-BYPASSED** (tool stays canonical gate): arg-handling, indexing, exclusion(boolean-stringify), unit-existence-guard(dropped over-count 10→4), denominator-canonicalization, UC.method-walker(under-count), marker-uuid-mismatch, .js-scan-coverage(sw.js). Tool erred OVER + UNDER + COVERAGE — all corrected. More trustworthy each time.
-- **3 stub-creation rounds caught by tester's FULL SCAN** (130, 322, 145 sourceless stubs deleted). 86 real Impls remain.
-- Object.verb skill pattern (Chain/Velocity typed classes + how-to-write-skills.md).
+## HARD-WON RULES (this marathon — append to learnings)
+- **Headline gets MAXIMUM scrutiny, not less.** Every "complete"/"100%" commit-msg (162/164/165/167-closure) was OPTIMISTIC and caught at cert. NEVER credit a closure-commit or self-report; triple-verify before Tron.
+- **Verify the WORKER active AND its OUTPUT** — not send.verified-OK (otmux unreliable, caused 2 stalls), not "esc-to-interrupt" alone ("active"≠right-action — tester was active but markering-not-splitting).
+- **Pre-empt context at ~2%, not 0%** — expert+skill-expert+planner rewinds; SM caught expert at 0% (should've been ~2%). Rewind=state-save-first→agent-trainer→reboot→VERIFY reset<30%-USED before re-task. NEVER /compact. Code lossless in git (only chat-context lost).
+- **Fix-the-tool-not-bypass** — scan-coverage bugs (scorer didn't walk scripts/); display-name-dedup hid a real over-credit. Fixed both in the canonical tool, never moved markers to game the scan.
+- **Shared-marker = NEVER a flip; always SPLIT first** (one test/impl=one chain). The recurring inflation source (caught ~4×).
+- **Feature ≠ count** — a feature can be device-verified-done while its chain (Impl-unit/Test bookkeeping) is still open. Don't conflate; both honest separately.
+- **Security fail-closed + verify-independently** — F1 file-auth caught FAILING OPEN by independent PO-verify (grep+live-curl no-token→403), re-fixed fail-closed. New features interact (preview iframe vs F1 auth → token-in-URL fix).
+- **DRY** — preview/scenario-link reuse; the DRY audit cracked the dedup bug. rb-detail-drawer reused per-view (not singleton).
+- Route EVERY Tron requirement to req for literal capture (verbatim) BEFORE acting. New bug → honest chain (capture→design→fix→verify).
+- Honesty over optics: report 164 honest over 165 false — proven at the moment a false 100% was within reach.
 
-## HARD-WON RULES (learnings.md — read #1 first, then these)
-- #1 ALL DILIGENCE NOTHING URGENT. #53/#65 NEVER /compact — agent-trainer REWIND. #85 never blind-Enter (stale buffer). #86 never idle team on QA/deferred-Q. #88 SAMPLED-real≠validated, FULL-SCAN the population. #89b reconcile conflicting measures (don't blind-defer); don't run parallel scans — fix the canonical tool. Surface-don't-swallow errors (silent catch{} hid 3 bugs: chat undeclared-room, file-restore stderr-not-TUI, fs/fsSync). Verify before trusting ANY claim (premature "complete" caught repeatedly). DON'T BYPASS the tool when data looks right — FIX the tool.
-- Dual context-health watch (PO+SM, SM per-tick primary). Expert hit 0% → clean agent-trainer rewind (verified reset <30% before re-dispatch).
-
-## NEXT ACTIONS
-1. Drive expert's ~94 real-Impl-creates (full-scan-verify each #88) + tester's ~78 Tests → climb 12→34 (25%).
-2. Verify EVERY climb via guarded-tool deterministic 3x + full-scan; SM independently re-verifies; report convergence.
-3. Flag SM/Tron on: 25% milestone, deliverable green, count climb, worker idle, context warning.
-4. New Tron requirements → req for literal capture; build full-champagne-from-start (no retrofit).
+## NEXT
+1. FULL CHAIN 168/168 GENUINE (SM-sealed 2026-06-11) — no open cert work.
+2. Drawer: per-view-instance of shared rb-detail-drawer (Tron asked singleton-vs-instance; awaiting his call).
+3. R19.76 nonce-hardening when prioritized; 14 per-method-depth quality tests.
+4. Continuous: capture-verify-active-and-output every dispatch; triple-verify every headline; never /compact.
