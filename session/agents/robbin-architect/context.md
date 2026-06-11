@@ -1,103 +1,64 @@
-# robbin-architect — Context (Save 2026-06-10, near-limit)
+# robbin-architect Context (Save 2026-06-11, 32% ctx)
 
-## ACTIVE: Sprint 17 + Sprint 18
+## ACTIVE — standing by for next dispatch
+Pane: robbinTeam2:0.4
+Team: 0.0=po | 0.1=planner | 0.2=expert | 0.3=skill-expert | 0.4=ME | 0.5=req | 0.6=tester | 0.7=shell
 
-### Latest Work (2026-06-09 → 2026-06-10)
+## OVERNIGHT DRIVE STATUS (2026-06-11)
+Top-of-chain ALL ZERO:
+  reqNoUC: 0 (132 active + 34 orphan-by-design)
+  ucNoClass: 0 (47 UCs synced class→classes[])
+  ucNoMethod: 0
+  classNoMethod: 0
+  methodNoImpl: 0 (65 real impls, all with [impl:uuid:] markers)
+  
+Tool (po-chain-follow-up.ts):
+  open architect (non-orphan): 0
+  open architect (orphan-by-design): 18 (tool doesn't skip orphanByDesign flag)
 
-| Task | Commit | Status |
-|------|--------|--------|
-| 6-step chain correction Layer 1 SKILL.md | 741b0eb | ✅ |
-| 6-step chain correction Layer 2 standards | 0925a420 + d79c3013 | ✅ — zero 7-step defs left |
-| 6-step chain correction plan (PO-approved) | 122c70d7 | ✅ |
-| R18.34.B Class+Method+Impl chain wired | 38653299 | ✅ — UC.method singular, all model.parent |
-| T187 follow-on: /api/trace SCENARIO_FORWARD req:['tasks']→['useCases'] | 522c919e (expert) | ✅ shipped v0.5.122 |
-| T188 round-trip design + chain wired | c008c20c | ✅ — Class SprintMdGenerator + Method checkRoundTrip + Impl + AC1-AC7 |
-| T199 ownerIor + unitLinks + model.parent backfill | (expert) | ✅ shipped |
-| TS6 verdict: spec-drift, not bug | (otmux) | ✅ — TRACE_FWD UC→Class→Method correct per R18.8 |
+Impl integrity: 65/65 with real source + markers. 0 stubs. 0 design-stage-only.
 
-### R18.34.B SVG snap-back — LIVE
-- Tron device telemetry (SVGDBG) captured 47 alternations at 1:12:43 AM via:
-  `tmux capture-pane -t iphone:0.1 -S -2000 -J -p | grep SVGDBG`
-- Pattern: `touchend touches=0 scale=0.567` → `apply scale=0.187 …` ×47
-- 0.187 = Math.min(sw/iw, sh/ih) — only `reset()` writes it
-- ROOT CAUSE: server.ts:909 lastTap double-tap detector misfires on pinch release
-  (two finger lifts within 300ms, both `changedTouches.length===1` → reset())
-- FIX SPEC: task-r18.34-svg-viewer-scoped-pinch-zoom.md "Defect 4 — full audit" — proper tap detector requiring touchstart with touches.length===1, slop<10px, duration<250ms, touchend with touches.length===0. Cannot misfire on pinch.
-- Expert ships v0.5.125; keep instrumentation in place for next verification round
-- Chain wired (R18.34.B): Req 042bab1a → Task bef36fd2 → UC c27d67d8 (svgViewer.pinchZoom) → Class 7dd2f3c3 (SvgViewer) → Method 4a4591ca (onPinchEnd) → Impl 094c18a4
+## CHAINS DESIGNED THIS SESSION
+R19.35 room.persistMembers → Room.persistMembers (members[] IOR refs on Room model)
+R19.36 dropZone.uploadFile → DropDispatcher.uploadFile (DnD file upload)
+R19.37 dropZone.dispatchUnknown → DropDispatcher.routeUnknown (unknown format → chat)
+R19.38 message.persistAsUnit → Message.createMessageUnit (chat as scenario units, doubly-linked)
+R19.38 chat.lazyLoad → Message.lazyLoadChain (GET /api/room/<rid>/messages?before=&limit=5)
+R19.39 user.ensureSystemOwner → User.ensureRawBinUser (RawBin system user 00000000-...)
+R19.40 chat lazy-load → wired to chat.lazyLoad UC
+R19.41 server.leveledLog → Logger.logAtLevel (error/warn/info/debug/trace, LOG_LEVEL env)
+R19.42-44 dropZone.feedbackCycle → DropDispatcher.feedbackCycle (progress statusbar + system messages)
+R19.45 offlinePage.flushCache → ServiceWorker.flushAndReload (red button, nuclear cache clear)
+T-persistent-retention → Room.retainOrPrune (mode-aware disconnect)
+T-persistent-dedup → addMember match-by-playerToken
+T-remove-room-sizes → Room.stripSizeLimits
+T-remove-spectator → Room.stripSpectator
+T-room-editor → room.editConfig → RbRoomDetail.editOpen
+T-room-symlink → room.symlinkCanonical → Room.persistAsSymlink
+T-room-link-affordance → room.linkToScenario → RbRoomDetail.scenarioLinkRender
 
-### Earlier in-flight
-- Tester reports broken clickpath in generated requirement MD: link `../sprints.md/task/task-190-tree-expand-append-no-rerender.md` 404s — file DOES exist on disk at `scenario/sprints.md/task/task-190-tree-expand-append-no-rerender.md` (verified by ls). Need to confirm what URL the SERVER receives + which route serves it (/md/scenario/sprints.md/... missing?). Diagnosis paused — context save first.
+## DIAGNOSES THIS SESSION
+- Persistent member retention: removeMember called unconditionally, markDisconnected is dead code
+- Persistent dedup: addMember keys by clientId not playerToken → duplicate on rejoin
+- rb-tree false reuse: components/rb-tree.ts is 75-line fake, not /trace rb-object-item
+- rb-object-item blank in room: white-on-white (white text on white bg)
+- Members/Files headers: black-on-black after dark bg fix
+- Badge=0 on /trace: TRACE_FWD uses singular 'method'/'implementation' but units have plural 'methods[]'/'implementations[]'
+- Share-link offline: SW cacheFirst matches full URL incl query, /app?join=... misses cache
+- Edit pen 404: Room unit sourceFile points to per-user path, not canonical
+- Room link 404: likely stale SW-cached 404
+- R19.27 collapse broken: flex:1 overrides width:40px, min-width:120px fights it
+- FileUnit unitLinks: syncLinks resolves scenario/-relative (correct), room-FS link needs separate symlink
 
-## Identity
-- **Role:** robbin-architect
-- **Pane:** robbinTeam:0.1
-- **Team:** robbinTeam
-- **Expert:** robbinTeam:0.2 | **Tester:** robbinTeam:0.3
-- **Planner:** robbinTeam:1.0 | **Req-eng:** robbinTeam:1.1
-- **Working dirs:** Planning workspaces/Web4RawBin/ | Impl workspaces/2cuGitHub/Web4RawBin/
-- **RULE:** NEVER /compact — only /rewind via agent-trainer
+## DESIGN CONVENTIONS (from Tron this session)
+- Skills = thin CLI dispatch to typed Class.method (OOSH Object.verb)
+- Logic lives in the method, skill is the veneer
+- Same model as scenario chains → skills become traceable UC→Class→Method units
 
-## 6-STEP CHAIN (R18.8 corrected 2026-06-08)
-Requirement → UseCase → Class → Method → Implementation → Test
-Task is NAVIGATION (Sprint→Task→coveredRequirements), NOT chain.
-TraceModel.ts FORWARD_KEYS + server.ts TRACE_FWD + SCENARIO_FWD + /api/trace overlay all updated.
-3 standards files updated; zero `7-step` chain defs remain (historical "was 7-step" notes only).
-
-## CHAMPAGNE STATUS
-- Last measured: 16/35 (45%)
-- Tester annotating Test.verifies[] from R-number refs in test names
-- Path: tester verifies[] + 44/44 strict audit → up to 35/35
-
-## R18.34 SVG VIEWER DEFECTS PROGRESS
-- D1 (iframe scope): shipped — outer page viewport lock + iframe owns gesture
-- D2 (page zoom bleed): shipped — touch + wheel+ctrlKey + wheel pan in iframe with preventDefault
-- D3 (raster blur): shipped — inline `<svg>` + transform (not `<img>`)
-- D4 (snap-back): partial — apply() in touchend/touchcancel + onViewport preserve-zoom shipped (v0.5.117, .118, .120, .124); ROOT CAUSE still in line 909 double-tap detector → fix queued for v0.5.125
-
-## T188 ROUND-TRIP DOGFOOD
-- Generator `scripts/generate-sprint-md.ts` emits one-way (units → MD into scrum.pmo/sprints/<sprint>/)
-- T188 adds: `--check` mode (regen to temp, diff against current, exit non-zero on drift) + determinism sorts + npm script + CI gate
-- Architect design committed into T188.architectDesign field (regen picks it up)
-- AC1-AC7 in T188.acceptanceCriteria
-- Chain: R18.3 91a1c36a → T188 8a31ba75 → UC ec3a0206 → Class efbaa376 → Method 3108e643 → Impl ee738f5f
-- Expert + tester briefed
-
-## Key Designs Pending Expert
-- R18.34.B real tap-detector (v0.5.125) — replace server.ts:908-909 with the spec in the task doc
-- T188 --check mode + determinism sorts + CI script
-- T181 FORWARD_KEYS filter in DetailViews + tree
-- Narrowing bug: Class.method global vs per-UC chainMethod hint (narrowing-bugs-and-r18-13-15.md)
-- Generated MD clickpath fix (in-flight diagnosis)
-
-## Standards Authored
-- scrum.pmo/standards/refinement-precedence-analysis.md (3-author JOINT, corrected 6-step)
-- scrum.pmo/standards/intention-verification-model.md (6-step)
-- scrum.pmo/standards/scenario-data-pipeline.md
-- scrum.pmo/standards/chain-correction-plan.md (PO-approved execution log)
-- session/agents/robbin-architect/SKILL.md (Rules 1-5 corrected to 6-step + architect↔planner sync rule)
-
-## CMM4 Rules / Standing
-- Chat = one-line pointer; detail in task files OR scenario unit fields (dogfood)
-- Champagne = structural (chain reaches Test) + intentional (Test.verifies declares root Req); BOTH required
-- Chain root = Requirement; browser nav root = Sprint (R18.8)
-- Three concerns: Chain (WHY) / Dependency (WHAT-FIRST) / Navigation (HOW-BROWSE)
-- model.parent = ownerIor mirror; Sprint excluded
-- Architect↔Planner sync: every task ships with useCases[] (architect) + coveredRequirements[] (planner) populated AT CREATION; never backfilled silently
-- Architect supplies UC/Class/Method/Impl scenario units (real v4 uuids only) when handing design to expert; chain wired end-to-end before impl ships
-- Report-back immediately on every completion; flag idle
-- NEVER /compact — only /rewind via agent-trainer
-- Self-discover from traceability before Tron has to screenshot the bug
-- NEVER ASSUME — ALWAYS MEASURE (instrument device, read logs)
-
-## Recent Commits (mine, last few days)
-- c008c20c T188 round-trip design + chain
-- 38653299 R18.34.B SvgViewer chain wired
-- d79c3013 Layer 2 residuals — zero 7-step defs left
-- 0925a420 Layer 2 standards 7-step→6-step
-- 741b0eb Layer 1 SKILL.md 7-step→6-step
-- 122c70d7 chain-correction-plan PO-approved
-- 7422733c R18.34 D4 v0.5.117 real root cause (resize listener)
-- 1f2524d8 R18.34 D3+D4 inline-SVG + pinned layout box
-- b3e8799c R18.34 cross-browser design
-- (and many earlier T185/T187/T188/T191/T195/T197/T198/T199 architect commits)
+## STANDING RULES
+- Wait for PO assignment. Never self-assign.
+- NEVER /compact. Only /rewind via agent-trainer.
+- NEVER ASSUME — ALWAYS MEASURE.
+- Architect ships scenario units (real v4 UUIDs only).
+- UC.class + UC.classes[] both populated (tool reads plural).
+- No placeholder UUIDs (0000-padded) — always real v4.
