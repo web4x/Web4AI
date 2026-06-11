@@ -226,3 +226,42 @@ scriptname.start_dispatcher "$@"
 - renameUuid scope: Impl/Test batch-safe; Req/Task/UC/Class uuids ALSO live in scrum.pmo planning
   docs -> verb now sweeps scrum.pmo/**/*.md (exclude chain-snapshots = history) but renames of
   planning-visible types need planner sign-off. dist/*.map stale refs = build artifacts, rebuild clears.
+
+## Session 2026-06-11 post-rewind (lint-gate + scan-coverage campaign)
+
+### Scan-coverage bug family — the single-point-of-truth fix
+walkFiles extension filter + scan roots are THE recurring bug source (11 caught).
+Fixed surfaces: .js/.mjs, scripts/(impl), scripts/(test), .css. Pattern: implRoots()/
+testRoots() helpers in skill-classes.ts; ALL 3 sweeps (markerScanners, lintMarkers,
+renameUuid) consume them — one fix covers scorer + lint + rename simultaneously.
+CSS is a legit impl surface (R19.80 = max-height:95vh rule, no TS handler).
+
+### Dedup identity must be UUID, never display name
+summarize() deduped rows by method DISPLAY name (name.split('.').pop()). Two *.render
+methods on one Req collided: first-complete row silently dropped the incomplete sibling
+→ req over-credited (R15.6, SM independent re-verify caught it). Fix: ChainRow.methodUuid
+field; dedup key = methodUuid || method. LESSON: any dedup/join in a counting tool keys
+on identity (uuid), never on a human label.
+
+### Independent re-verify (SM) catches what the author's own lint can't
+My lintMarkers couldn't see the dedup bug — it lives in summarize(), not in marker data.
+SM's brute scan (30 Method→Impl pairs, both tests[] empty) forced the authoritative
+walk-through that exposed it. Welcome external sweeps; classify them rigorously:
+(i) covered / (ii) off-counted / (iii) genuine — report all three numbers.
+
+### Orphan markers: remove, don't stub
+Marker with zero unit refs = decoration. Resolution = remove; proper credit path is
+chain.wireImplNode (fresh uuid + unit + marker atomic). Applies to MY OWN tooling
+markers too — the gate caught its author 7 times; delete without sentiment.
+
+### Teaching = file + pointer, adoption = cascade
+Object.verb migration guide: detail in scrum.pmo/skills/migrate-to-object-verb.md,
+planner got a one-line pointer + pre-verified equivalence (I ran both surfaces myself
+BEFORE asking planner to trust the ritual). Planner migrates first, then OWNS teaching
+tester+expert via handoff refresh — adoption flows through existing instruction
+channels, not by me editing other agents' files.
+
+### Shared live repo state moves mid-analysis
+Denominator changed 162→164→167→169→173 across one afternoon while I measured.
+Never compare counts across runs minutes apart without re-baselining; snapshot
+(snapshotComplete) at each decision point — named flips beat raw totals.

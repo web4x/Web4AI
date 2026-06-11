@@ -1,105 +1,61 @@
-# robbin-skill-expert Context — Save Point 2026-06-11 EVE (climb-support active, ~78% ctx)
+# robbin-skill-expert Context — Save Point 2026-06-11 SM HEALTH HOLD (STANDBY IDLE)
 
-**Role**: Skill authoring specialist (forked from robbin-expert)
-**Status**: Climb-support active. Graph 100% fabricated-uuid-free. 141/162 at save time (160-push).
-NEAR 80% CTX — flagged PO for agent-trainer rewind when needed (NEVER /clear/compact).
+**Role**: Skill authoring specialist + rawbin-chain lint-gate (forked from robbin-expert)
+**Status**: STANDBY IDLE per SM survival mandate. Sealed checkpoint 173/173 (later sealed 174/179 as team landed more). NO new reqs until TRON-HUMAN directs (pause / Tier-3 fork-from-fresh).
 **Machine**: Mac Studio · **Pane**: robbinTeam2:0.3
 **Repo**: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin
-**Tests**: 920/920 pass.
+**Tests**: 946/946 pass (40 files).
 
-## ROSTER (robbinTeam2 — NEW session, NOT robbinTeam)
+## ROSTER (robbinTeam2)
 0.0=robbin-po | 0.1=robbin-planner | 0.2=robbin-expert | 0.3=ME(skill-expert) | 0.4=robbin-architect | 0.5=robbin-req | 0.6=robbin-tester
 Route ALL pointers/IORs to robbinTeam2:0.X.
 
-## Latest commits this session (skill tooling)
-- 9b651b63 taskChain OOSH script + Chain.generateMatrix/updateMatrixRow
-- 32e9abe1 po.chainFollowUp: use UC.method for UC→Method hop (not Class.methods[0])
-- 34233db2 scan .js/.mjs for impl/test markers (not just .ts)
-- 56660964 require Impl/Test UNIT on disk (defensive guard)
-- c9696009 fix orphanByDesign exclusion (bool not string)
-- 2c3ac41d canonical denominator — one row per Req, deterministic
-- be1efa2d prefix-match UUIDs + sprint filter + Method→Test-direct
-- fe85ea16 + 9caefcda CMM4 prevention: ONE canonical measure, trace-audit hard-refuses
-- e5b8cd16 team.velocity skill (sources po-chain-follow-up canonical)
-- 345748bf + 27719e4d velocity cwd-independent git + default last-24h
-- b6f2ca49 Object.verb pattern: Chain+Velocity classes + how-to guide
-- af53a19d chain.wireImplNode skill
-- 54d56427 + cc306c2c po.chainFollowUp skill + Impl-node MANDATORY rule
+## THIS SESSION (post-rewind, 2026-06-11)
+Scan-coverage + guard fixes on the canonical tool (ALL fix-the-tool, never bypass):
+- 0bb6a956c removed 3 expert orphan markers (zero unit refs, 2 invented-suffix)
+- 572ad650f implRoots(): scripts/ in impl scan (scorer+lintMarkers+renameUuid) +7 orphan
+  decorations removed that new coverage caught (incl my own tooling markers)
+- b5d1096ec testRoots(): scripts/ in TEST scan (twin fix) — 9dbf5538 case
+- methodUuid dedup guard: summarize() keyed on DISPLAY NAME — two *.render on one Req
+  collided, complete row hid incomplete sibling (R15.6 over-credit, SM catch). ChainRow
+  got optional methodUuid field; dedup key = methodUuid || method.
+- .css in walkFiles: R19.80 max-height:95vh = legit CSS impl surface (c23f3022 app.css:272)
+- Final sealed: 173/173 det-3x, lint=0, snapshot 2026-06-11T16-24
 
-## DELIVERED SKILLS (3 + Object.verb pattern + OOSH script)
-1. **po.chainFollowUp** (scripts/po-chain-follow-up.ts + scrum.pmo/skills/po-chain-follow-up.md)
-   - CANONICAL completion measure. Walk Req→UC→Class→Method→Impl→Test.
-   - check/open per node, dispatch list with owner. Denominator: one row per Req, orphanByDesign excluded.
-   - Current: ~11/137 COMPLETE.
-2. **chain.wireImplNode** (scripts/chain-wire-impl-node.ts)
-   - Create Impl unit + wire Method.implementations[] + move Method.tests[]→Impl.tests[]. Idempotent.
-3. **team.velocity** (scripts/team-velocity.ts)
-   - Sources po-chain-follow-up for numerator. git throughput. Default last-24h window.
-4. **Object.verb pattern** (src/ts/scenario/skill-classes.ts: Chain + Velocity classes)
-   - how-to-write-skills.md guide. Logic in typed Class methods, scripts = thin dispatch.
-5. **taskChain OOSH script** (scrum.pmo/skills/taskChain) — Object.verb dispatch via OOSH.
+## SM 30-PAIR RECONCILE (authoritative answer, delivered)
+Test edge = Impl.tests[] FORWARD only, credit = realImpl && realTest (unit on disk AND
+source marker). Method.tests[] NEVER credits. Empty Impl.tests[] = open by construction.
+The 30: 29 off-chain helpers (never walked), 1 genuine = R15.6 name-collision (fixed above).
 
+## OBJECT.VERB MIGRATION — TEAM ADOPTION
+- scrum.pmo/skills/migrate-to-object-verb.md = the guide (mapping table, planner-first
+  loop upgrades, equivalence ritual, anti-patterns). Tron directive: planner FIRST.
+- PLANNER MIGRATED (confirmed): followUp JSON + snapshotComplete + scoreboard, equivalence
+  verified old==new, det-3x, context updated. Planner owns teaching tester+expert at next
+  handoff refresh.
+- Legacy shims permanent (byte-identical) — old invocations keep working; new verbs
+  (scoreboard/listComplete/snapshotComplete) only on new surface.
 
+## OPEN-FOR-RESUME (do NOT start until Tron directs)
+- url-preview regression 862868bfe + nudge-mismatch (SM named)
+- R19.86+ reqs WAIT
 
-## CLIMB-SUPPORT SESSION LOG (2026-06-11 afternoon — for post-rewind me)
-- 5 Claude Code skills LIVE: rawbin-{chain,velocity,scenario,rules,audit} — generated by
-  objectVerb emitClaudeSkills, symlinked AI/Claude/.claude/skills -> repo .claude/skills.
-  Registry: Chain, Velocity, Scenario(T138 4 verbs), Rules(rulebook), Audit(CI gates).
-- ALL emit targets: emitOosh (taskChain) + emitDocs + emitClaudeSkills. Re-emit after ANY
-  class edit. Learning-OOSH section (Tab is the manual + otmux recipe) is IN the generator.
-- HARD-RULE gate live: shared Impl NEVER credited. renameUuid sweeps units+src+test+
-  scrum.pmo .md/.puml/.svg (NOT chain-snapshots/dist). Batches done: 5 collisions,
-  13 + 24 style-debt -> lint invented-suffix = 0. All count-neutral (proof in commits
-  d447736f, 9d1650ea, 1336f4ed).
-- LINT-GATE CATCHES: (1) 18 units corrupted by marker-paste-into-JSON (expert batch,
-  repaired, stop-signaled); (2) tester fc592d4e deleted 18 live-marker units = 12 chains
-  silently de-credited -> restored e7dca03f. RULE: orphan-UNIT != orphan-MARKER;
-  lintMarkers BEFORE any unit cleanup.
-- OPEN: 3 orphan markers expert-side (c3efb22c, c3164c1e content-preview.ts; 4999f5a8
-  server.ts + 9b45ad1a scenario-view.ts named earlier). Regenerate views after renames
-  (scripts/regenerate-views.ts). Snapshot cadence: chain.snapshotComplete after batches.
-- CADENCE: lint-gate each tester/expert batch; snapshotComplete -> named flips to planner.
-
-## OBJECT.VERB MIGRATION (0b24dcdb, 2026-06-11, Tron-directed)
-- scripts/objectVerb.ts = generic dispatcher (c2 for TS): introspects skill-classes.ts
-  signatures+JSDoc -> CLI/help/completion/emitOosh/emitDocs. NO per-skill flags, NO prose md.
-- Chain consolidates ALL canonical logic. NEW: listComplete (diffable COMPLETE set),
-  wireAllMissing, scoreboard. Velocity in-process (execSync removed).
-- 3 legacy scripts = thin shims, byte-identical output (diff exit=0 vs same-instant baseline).
-- taskChain GENERATED canonical (.start, per-method completion.paramName) — re-emit after
-  class edits: npx tsx scripts/objectVerb.ts emitOosh && emitDocs. Both audit deviations dead.
-- Matrix regenerated from canonical (25/154). Snapshot anchor:
-  scrum.pmo/chain-snapshots/2026-06-11-listComplete.tsv (planner diff baseline).
-- 937/937 pass (17 new in test/vitest/object-verb.test.ts). rule-pair PASS, no bump.
-- PRE-EXISTING (not mine): trace-audit 678 structural issues; rb-trace-tree jsdom
-  scrollIntoView unhandled noise; 76 Methods without Impl (wireAllMissing dry-run).
-
-## IN FLIGHT — coordinate after rewind
-- **taskChain linking**: DONE — oosh-expert verified canonical (c2 discovers 11 methods, private. filtered, per-method completion dispatches route to TS introspector, .start + quoted at-args + zero flags all pass). Symlink ~/oosh/external/taskChain already pointed at the regenerated file. Tab completion functional in OOSH shells.
-- **Matrix integration**: DONE (0b24dcdb) — matrix regenerated from canonical.
-
-## KEY DIAGNOSIS (for expert/tester)
-- 117/189 Method.implementations[] refs point to Impl UUIDs with NO .scenario.json unit on disk.
-  Source markers exist (190/190) but Implementation SCENARIO UNITS missing. DATA GAP not tool bug.
-  Fix: expert runs chain-wire-impl-node --all-missing to CREATE the 117 units.
-
-## VALIDATE-BEFORE-TRUST (8 tool bugs caught this session)
-Every metric: 3 identical runs + match ground truth BEFORE authoritative.
-Bugs caught: denominator drift, orphanByDesign bool-vs-string, cwd-fragile git,
-UC.method-vs-Class.methods[0], .js-not-scanned, unit-existence guard, numerator-inflation, today-vs-24h.
-
-## OOSH PATTERN (Tron directive — FOUNDATIONAL)
-- Skills = Object.verb. Logic in typed Class method (Chain.followUp, Velocity.compute, Chain.generateMatrix).
-- CLI/script = thin DISPATCH: scriptname method args → Class.method(args).
-- OOSH external script pattern: source this + this.start dispatcher + parameter.completion.* helpers.
-- Reference: ~/oosh/external/aiderOOSH. ooshTeam links + verifies skill tools in ~/oosh/external.
-- ONE canonical measure per metric — no parallel counts. Non-canonical scripts hard-refuse (exit 1).
+## SCAN-COVERAGE BUG FAMILY (11 caught total — pattern for future)
+Scorer marker scan misses a real-code surface → real markers read open → fix walkFiles/
+roots, NEVER move markers. Surfaces fixed: .js/.mjs, scripts/(impl), scripts/(test), .css.
+implRoots()/testRoots() in skill-classes.ts are the single points of truth; all 3 sweeps
+(markerScanners, lintMarkers, renameUuid) inherit.
 
 ## Standing rules
-- Report → robbinTeam2:0.0 (pointer only, detail in task file)
-- Chain is 6-step: Requirement → UseCase(s) → Class → Method → Implementation → Test(s). Task = navigation.
-- Validate-before-trust: 3 identical runs + ground-truth match before authoritative.
-- Native Write/Edit/Bash works (classifier operational). No pane-bash workarounds.
+- Chain 6-step: Req → UC(s) → Class → Method → Impl → Test(s). Task = navigation.
+- Chat = one-line pointer (standard 0525f028): EXPERT pointer: -> ior + verb.
+- Validate-before-trust: det-3x + ground-truth before authoritative.
+- Marker uuid = uuidgen-fresh OR verbatim copy. One marker=one unit=one method.
+- Lint-gate each batch: lintMarkers (invented-suffix/prefix-collision/shared-impl/orphan-marker).
+- Explicit-path git staging ONLY (never sweep others' in-flight).
+- Version bump #66 / STATIC_SHELL #67; tooling-only = no bump.
+- NEVER /clear/compact — agent-trainer rewind only.
 
-## Build/test
-npm run build · npm test · npx tsx scripts/po-chain-follow-up.ts --all · taskChain followUp --all
+## Build/test/measure
+npm run build · npm test · npx tsx scripts/objectVerb.ts Chain followUp --all (canonical)
+· Chain scoreboard / listComplete / snapshotComplete / lintMarkers · taskChain (OOSH, Tab)
