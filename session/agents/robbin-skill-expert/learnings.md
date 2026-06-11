@@ -184,3 +184,18 @@ scriptname.start_dispatcher "$@"
 - Dispatcher main() must be entry-guarded (process.argv[1] endsWith) so vitest can import its exports.
 - Answer "add a --list-complete flag" asks with a VERB (Chain.listComplete) — fix-the-tool means
   promote flag to verb, not add flag debt.
+
+## Shared-Marker Inflation (2026-06-11, PO+planner 71d61048)
+- DIAGNOSIS METHOD: "which Method units CARRY impl X in implementations[]" settles TOOL-vs-DATA
+  in one query. 7 carriers = DATA. Tool was faithful to wrong data.
+- TOOL-FIX-NOT-BYPASS: don't credit ambiguity — followUp un-credits any Impl referenced by >1
+  Method (shared-impl xN + dispatch action). Measurement now immune to the bug class while
+  data repair proceeds. Corrected 25/154 -> 7/158 (17 named false-completes).
+- HARD RULE (PO): marker uuid = uuidgen-fresh OR verbatim 36-char copy. Telltales: -a1b2-,
+  -b2c3-, -c3d4-, sequential hex. One marker=one unit=one method. grep FULL uuid before
+  claiming a flip. chain.lintMarkers automates the catch (invented-suffix, prefix-collision,
+  shared-impl, orphan-marker).
+- Prefix-collision (same first-8 hex, >1 unit) = strongest invented-uuid signal (1/2^32 chance).
+- snapshotComplete pattern: dated TSV + named added/removed vs prior = planner deltas with
+  zero manual diffing. New-call-site gotcha: adding a param to a private helper — grep ALL
+  call sites (listComplete missed implRefs, caught by CLI run not tsc since tsx skips checks).
