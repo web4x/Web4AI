@@ -1,7 +1,7 @@
 # robbin-skill-expert Context — Save Point 2026-06-11 (Object.verb migration DONE)
 
 **Role**: Skill authoring specialist (forked from robbin-expert)
-**Status**: Object.verb migration SHIPPED (0b24dcdb). taskChain now GENERATED (emitOosh). Awaiting oosh-expert re-link+verify.
+**Status**: Object.verb migration SHIPPED (0b24dcdb) + taskChain CANONICAL VERIFIED by oosh-expert (2026-06-11). No in-flight items. Standing by.
 **Machine**: Mac Studio · **Pane**: robbinTeam2:0.3
 **Repo**: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin
 **Tests**: 920/920 pass.
@@ -54,7 +54,7 @@ Route ALL pointers/IORs to robbinTeam2:0.X.
   scrollIntoView unhandled noise; 76 Methods without Impl (wireAllMissing dry-run).
 
 ## IN FLIGHT — coordinate after rewind
-- **taskChain linking**: sent to ooshTeam:0.2 (oosh-expert) to symlink ~/oosh/external/taskChain + verify dispatch/completion. AWAITING response.
+- **taskChain linking**: DONE — oosh-expert verified canonical (c2 discovers 11 methods, private. filtered, per-method completion dispatches route to TS introspector, .start + quoted at-args + zero flags all pass). Symlink ~/oosh/external/taskChain already pointed at the regenerated file. Tab completion functional in OOSH shells.
 - **Matrix integration**: DONE (0b24dcdb) — matrix regenerated from canonical.
 
 ## KEY DIAGNOSIS (for expert/tester)
