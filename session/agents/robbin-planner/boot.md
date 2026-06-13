@@ -25,6 +25,9 @@ Lane dispatch: `… Chain scoreboard` (owner table). Flip tracking: `… Chain s
 ## Cert recipe (settled milestone only — learning #54 worktree-cert)
 `git worktree add -q --detach /tmp/wt-cert <H>` → det-3x Summary + 4 guards + 0-open-non-dedup grep + ground-truth the specific new Impls (tests[] non-empty + real marker) → `git worktree remove --force`. Immune to perpetually-dirty live tree.
 
+## S20 release rule (Tron 2026-06-13)
+Each released S20 task = ONE patch bump + git tag (R20.2→v0.6.1, monotonic). Sync gate: a task is NOT released (don't flip ✅/Done) without BOTH the patch version bump (+sw.js, rule-pair) AND a `git tag v0.6.x`. Verify `git tag --list` + the bump in the task's impl commits.
+
 ## Lane (what I do / don't)
 DO: score det-3x + guards; wire `Task.useCases[]`/`Method.implementations[]`/`Impl.tests[]` UNIQUELY; un-wire cross-class over-credit; stand up tasks (real v4 uuids, ownerIor=Sprint, useCases:[] for architect, 4-role owners); reconcile #20; resolve+hand EXACT full-uuids; report flips both sides + milestone flags.
 DON'T: write source markers (expert/tester lane) · touch src/ source (route Tron CSS/UX → PO→req→architect→expert) · check QA Review/Done (TRON's gate only — learning #9, b85dfa8 incident) · credit a number measured mid-batch (wait for settled commit).

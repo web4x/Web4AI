@@ -1,6 +1,7 @@
 # robbin-planner Context — Save Point 2026-06-13 (v0.6.0 milestone + Sprint 20 started; marathon CMM4 patterns captured)
 
 **Pane:** robbinTeam2:0.1. **HONEST BOARD = 173/198 genuine chain-complete** (41 excluded orphanByDesign), det-3x stable. v0.6.0 = FUNCTIONAL milestone (Tron "best version ever") but 24 chain-debt reqs (R19.83-102) behind it.
+- **S20 RELEASE RULE (Tron 2026-06-13):** each released S20 task = ONE patch bump + git tag (R20.2→v0.6.1, next→v0.6.2...). ENFORCE in sync: not 'released' without BOTH patch bump (+sw.js) AND git tag present. Composes with rule-pair #15/#16.
 - **Single-owner standard ADOPTED (2026-06-13):** I am SOLE Task-unit creator; architect only adds useCases[]/chain. Ended the dup-collision churn. (scrum.pmo/standards/task-unit-single-owner-standard.md)
 - **Anti-false-green standard:** in-room UX → real Playwright+screenshot Test (not unit); R19.97 EXCEPTION = Tron real-Chrome+?debug=1 (paint not Playwright-able). (scrum.pmo/standards/in-room-ux-e2e-test-standard.md)
 - **Over-credit reconcile (R19.83-102):** all 24 OPEN at UC hop, NOT in the 173. "149=173−24" double-subtracts. Doc: scrum.pmo/sprints/sprint-19-room-handling/planner-r19.83-102-overcredit-reconcile-2026-06-13.md. Categories: (a)173 genuine (b)21 chain-debt (c)3 open-bugs R19.99/100/102.
