@@ -44,3 +44,10 @@ Honest 8→167. **11+ inflation/coverage events caught + corrected**, incl a FAL
 - R19.90 (20fc59cc) = ROOT consolidation in flight: in-room tree REUSES /trace rb-trace-tree (room mode + setItems), DELETE RoomView renderRoomTree*/diffRenderItems — fixes iOS init/collapse/drawer BY CONSTRUCTION, supersedes R19.83/88/88.A patches, fulfills R19.21. Expert finishing to working state or leaving v0.5.210.
 - READY-TO-SEAL pending TRON iOS device-verify: R19.87 (touch-action pan-y drawer). Also pending device: R19.88/88.A init, R19.89 button-moved.
 - OPEN: R19.85 pinch-SCALE (partial).
+
+## v0.6.0 MILESTONE (2026-06-13) — best version ever
+- v0.6.0 tagged/deployed (rawbin-v0.6.0). iPhone touch bug SOLVED (rb-chat-sheet :host overlay intercepted lower-viewport touches → :host pointer-events:none). In-room tree = Members+Files folders via unified /trace seed path, all interactions work on iPhone.
+- HONEST chain count: 173/198 genuine champagne + 25 open (21 chain-debt R19.83-101 funct-shipped-chain-open + 3 open bugs R19.99/100/102 + R19.72). chain-debt NOT counted champagne (SM over-credit scan + planner det-3x held).
+- SCHEDULED tonight 22:07 (cron 7cb709d4): radical v0.5.x traceability backfill → champagne. Sprint 20 standing up = traceability-FIRST forward (Test-defined-first, no backfill); carries R19.99/100/102.
+- Achievements: scrum.pmo/achievements.md. Boot reading-list + learnings #84-89 updated with CMM4 delivery/quality process.
+- Team all updating boot/learnings/context with CMM4 marathon learnings (Tron directive).

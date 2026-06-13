@@ -256,3 +256,68 @@ After agreeing po-chain-follow-up is THE canonical measure, I kept running my ow
 
 ### 89b. REFINEMENT of #89 — when measures conflict, RECONCILE (understand what each counts); don't blindly defer either way
 I over-corrected in #89: I deferred to the canonical tool's "0 dangling" over my glob's "198 dangling" + apologized. Then the planner's authoritative full-scan confirmed 218 dangling refs — MY GLOB WAS RIGHT, the tool's "0" was stale/different-methodology (it resolved refs differently / pre-delete). LESSON (the true one): when two full-scans CONFLICT, neither auto-wins — RECONCILE by understanding exactly what each enumerates (refs-on-disk vs idx.get-resolution vs unit-files-with-sourceFile, and at what TIMESTAMP). The error is asserting EITHER without reconciliation. #89's "always defer to the agreed tool" was wrong when the tool itself was stale/buggy (it's been buggy 6x). Hold both measures, find why they differ, fix the wrong one. The tool is canonical for REPORTING, but a conflicting raw scan is a VALID signal to investigate the tool, not dismiss.
+
+### 86. INVENTED UUID SUFFIXES are a recurring inflation/no-flip bug — uuidgen or copy, NEVER reconstruct (Tron-session 2026-06-11)
+Agents repeatedly write [impl:uuid:]/[test:uuid:] markers with a REAL 8-char prefix but an INVENTED suffix (telltale patterns: -a1b2-4c3d, -a2b3-, -b2c3-, sequential hex). The canonical tool matches the FULL uuid → no match → chain silently stays open (no-flip) OR a marker matches multiple methods → false-complete inflation. This cost 3+ wasted re-measures (R19.38/39/40 suffix mismatch, R19.23 f1dd0d77-a2b3 collision, shared 94bc8f6e/dd85c4d7 → 6 methods miscredited).
+**HARD RULE (team-wide):** a marker uuid MUST be either (a) `uuidgen`-fresh for a new Impl/Test unit, or (b) copied VERBATIM (full 36 chars) from the existing unit. NEVER hand-type/reconstruct a suffix. One marker = one unit = one method (no sharing across methods). Before claiming a flip: grep the marker is the FULL real unit uuid. PO/skill-expert watch for the invented-suffix patterns in every batch. Pairs with #88 (full-scan-real) and the de-inflation discipline (drops/inflation diagnosed like climbs, honest count held for SM ack).
+
+### 86. THE CAUSE IS CMM1 QUALITY (Tron 2026-06-12, after 17 failed iterations)
+The recurring in-room-item bug was never really a code bug — it was MY PROCESS at CMM1, and the bug just kept surfacing because of it. Tron: "the cause is cmm1 quality." 17 iterations of guess→patch→ship→break.
+**The CMM1 behaviors I ran:**
+- THEORIZING causes instead of MEASURING (network, timing, setAttribute — all wrong guesses). assume=ass|u|me. CMM4 = "wer misst der weiss" — measure FIRST, never hypothesize-then-ship.
+- Shipping on hope / unit-green while live behavior broke (FALSE GREEN, repeatedly). A green test that doesn't run under the real conditions / doesn't assert the real DOM is theatre.
+- Using TRON as the integration tester — pushing every unverified iteration to his device. He is NOT the tester.
+- Celebrating partial/misread signals as success (2/8 = "win").
+- Bypassing the champagne standard the traceability exists to enforce.
+**CMM4 discipline (the fix is PROCESS, not another patch):**
+1. MEASURE before acting — capture the actual difference between broken vs working (DOM/data/state), never theorize a cause then ship.
+2. The Test node must run under the REAL conditions and assert the REAL rendered behavior (E2E + screenshot) — it IS the acceptance, before anything reaches Tron.
+3. NEVER ship to Tron on unit-green or my interpretation; the tester's behavioral screenshot is the gate.
+4. NEVER use Tron as tester. The tester reproduces, measures, and proves with screenshots.
+5. No success claim until the behavioral gate is green AND verified — report measured facts, not optimism.
+This is the meta-lesson of the whole marathon: the measurement-integrity system (167/173 honest) applied to the headline must ALSO apply to every feature ship. CMM1 process produces CMM1 results no matter how good the individual fixes look.
+
+### 87. SYSTEMATIC DEBUGGING PROCESS — the in-room-file-items marathon (~25 iterations, Tron 2026-06-13)
+A device-reported UI bug ("file items broken in room") took ~25 iterations because I ran CMM1: hypothesize→patch→ship→break, using Tron's device as the integration test. The CMM4 process that FINALLY worked, in detail — this is the standard for any hard/device bug:
+
+**1. NEVER use the human as the integration tester.** Every iteration I pushed an unverified build to Tron's device = he catches the regression = wasted his time + my credibility. The tester must reproduce + verify END-TO-END with a SCREENSHOT before anything reaches Tron. "I am NOT your tester" was said ~4 times before I built the harness.
+
+**2. The verification gap WAS the bug's camouflage. Measure the RIGHT signal.** For ~20 iterations every gate asserted `collapsed=false` and passed — but the items were `collapsed=false` AND `0x0 pixels` (invisible). "Not collapsed" ≠ "visible". Broken kept reading green. FIX: assert actual RENDERED DIMENSIONS (getBoundingClientRect width>0 && height>0), not attributes/structure/source-strings. A test that doesn't measure what the user SEES is theatre.
+
+**3. Test REAL data, not synthetic.** My harness uploaded synthetic files (first.txt) → rendered fine → false green. Tron's REAL files (vcf/jpg/html/url + real members) triggered the bug. Always reproduce with the actual production data shape, in the actual conditions.
+
+**4. Reproduce in a CONTROLLED surface, never pollute prod.** Per-test room/user creation trashed Tron's lobby (recurring B2/T118). FIX: ONE systemTester identity + ONE persistent system test room, reused (zero pollution by construction). Then ADD the real data (Tron's user + real files) to THAT room → faithful reproduction without trashing anything.
+
+**5. RED→GREEN with a reproducing test.** A fix is only valid if a test FAILED before it (RED, reproduces the bug) and PASSES after (GREEN). Same engine, controlled room, real data, dimensions. No "unit-green" that never reproduced the bug.
+
+**6. Eliminate hypotheses by MEASUREMENT, one at a time — never ship a theory.** I burned iterations shipping guessed causes (slow network, setAttribute-vs-data, LS-persisted-collapse, one-way-setter, triple-render-race). EACH must be either reproduced-then-fixed OR disproved by measurement BEFORE moving on. The tester disproved LS (seeded it, still rendered), disproved scale, disproved the race (interleaved triggers, no 0x0). assume=CMM1; measure=CMM4.
+
+**7. VERIFY agent claims against source — don't relay.** Expert claimed "collapsed cleared on update" — I grepped DATA_ATTRS, collapsed was NOT in the list = false claim caught. Every "fixed/done/100%" gets source-verified by PO before it's believed or shipped. (Same class as the headline over-credit lesson #84/86.)
+
+**8. Same code + different surface = DATA or ENVIRONMENT, not code.** "Works in System room, broken in md-safari room" (same version) → it's the room's data/state, not the renderer. "Works in WebKit, broken on iPhone" (same code+data) → it's the ENVIRONMENT (iOS standalone PWA), not the code. Use the works-here/breaks-there discriminator to locate the LAYER before touching code.
+
+**9. Build a tool to expose the invisible layer.** Build-time version badge in header (not server version) → a STALE cached bundle shows its OWN old version → stale-SW becomes instantly visible on every screenshot (mine + Tron's). Make the failure mode self-evident.
+
+**10. When ALL harness reproduction is exhausted → ONE device-instrumentation capture, NOT iteration.** After measurement eliminates renderer/data/scale/cache/race and the bug is provably environment-only (iOS standalone PWA), the disciplined escalation is an ON-SCREEN debug overlay (?debug=1) the user screenshots ONCE — giving real-device DOM/dimension data — never another guess-patch-ship, never making the user iterate.
+
+**Meta:** the bug AND the 25-iteration failure had the SAME root: CMM1 process (wrong signal measured, synthetic data, no reproducing test, theories shipped, claims unverified, human-as-tester). Better individual fixes can't compensate — CMM1 process yields CMM1 results. The fix was the PROCESS, applied as steps 1-10.
+
+### 88. PAINT-TIMING BUGS ARE NOT PLAYWRIGHT-GATEABLE — eliminate-by-construction + structural-assert + device-confirm (Tron 2026-06-13)
+The file-items-icon-only bug (case 5) green-then-cried ~6 times because Playwright CANNOT reproduce paint-timing bugs — it serializes JS-execution → paint-complete → evaluate-capture, so it NEVER observes a mid-paint partial frame. The compositor painting a partially-rendered DOM (first item rendered, rest pending) is visible to the USER but architecturally invisible to Playwright (headed or headless, any throttle). The tester proved this: 30 rapid snapshots + 6x CPU + 3G all GREEN while Tron's real Chrome showed it broken.
+**Consequence:** for compositor/paint-timing bugs, a passing Playwright test is MEANINGLESS — it can't see the failure. Every "gate GREEN" was a false signal of a different (serialized) reality.
+**The correct approach:**
+1. ELIMINATE the partial-frame possibility BY CONSTRUCTION — build the entire subtree offscreen (detached DocumentFragment), fully rendered (synchronous render, NOT microtask-deferred — defer creates a visible-but-unrendered window), then attach in ONE atomic appendChild. No element is ever in the live DOM un-rendered → no partial frame can be painted at any depth. (queueMicrotask render was the WRONG fix — it caused the very window it tried to avoid.)
+2. VERIFY STRUCTURALLY (static/source assertions, not runtime paint capture): render() is synchronous in connectedCallback; tree built in fragment + attached atomically; ZERO display/children-open mutation AFTER attach. If these invariants hold, a partial paint frame is impossible — that's the gate.
+3. DEVICE-CONFIRM is the final acceptance — Tron's real browser, or a self-running rAF-loop diagnostic script he pastes once in devtools to capture the actual frame dimensions. ONE capture, not iteration.
+**Meta:** know your test tool's blind spots. Playwright is excellent for DOM-state/logic but BLIND to compositor paint timing. Don't gate a class of bug on a tool that can't observe it — that manufactures false-greens. Match the verification method to the bug's physics.
+
+### 89. ENFORCE OOP-BY-CONSTRUCTION for robustness + TEST REAL (structural gate is necessary, NOT sufficient) — Tron 2026-06-13
+v0.5.232 offscreen-attach fix passed the STRUCTURAL gate (3 invariants: sync render, fragment, atomic attach) — and it DID eliminate the paint-timing race. BUT it introduced a FUNCTIONAL regression the structural gate couldn't see: folders render collapsed + the › expand toggle is broken (can close, never re-open). Tron: "still broken... keep enforcing OOP for robustness... test real."
+**Two standing rules:**
+1. ENFORCE OOP-BY-CONSTRUCTION: keep making invalid states impossible by design (offscreen-complete-then-attach, self-healing property setters, single render authority, exactly-once listeners). This is the robustness direction — bugs eliminated structurally, not patched per-symptom. Continue it.
+2. BUT "TEST REAL" — structural/code-shape verification is necessary, NOT sufficient. It proves the paint-timing class impossible, but it does NOT prove the FEATURE WORKS. ALWAYS ALSO test the real BEHAVIOR: the actual interaction (click › → folder expands; tap icon → collapses + re-expands), the actual rendered/visible state, the actual user flow — in the real environment. A code-shape gate that doesn't exercise the interaction will green a build whose feature is broken.
+**Verification taxonomy (match method to bug class):**
+- Paint-timing/compositor bug → STRUCTURAL gate (Playwright can't observe it) + device-confirm.
+- Functional/interaction/state bug (expand, toggle, click, render-presence) → BEHAVIORAL gate (Playwright CAN + MUST: simulate the interaction, assert the result).
+- A fix can pass one gate and fail the other class — run BOTH that apply. The offscreen-attach passed structural (paint) but failed behavioral (expand toggle) → must run the behavioral gate too.
+**Meta:** "by construction" robustness + "test real" behavioral verification are COMPLEMENTARY, not alternatives. Do both.

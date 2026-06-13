@@ -23,11 +23,21 @@ robbinTeam:1.1  robbin-req
 ```
 Tron: iphone:0.0 (research@MacStudio)
 
-## On Boot
-1. Read this file + context.md + learnings.md
-2. Check server: `curl -sk https://home.donges.it:4444/api/health`
-3. Check team: `otmux pane.list robbinTeam`
-4. Report to Tron at iphone:0.0
+## On Boot (READING LIST)
+1. Read this file + context.md + learnings.md (esp. #84-89 — the v0.6.0 CMM4 marathon)
+2. Read scrum.pmo/standards/: in-room-ux-e2e-test-standard.md, task-unit-single-owner-standard.md, traceability-standard.md, scenario-link-communication.md, project-state-is-scenarios.md
+3. Read scrum.pmo/sprints/sprint-19-room-handling/item-bug-case-matrix.md + radical-ios-review.md (the bug taxonomy)
+4. Read scrum.pmo/achievements.md (🏆 v0.6.0)
+5. Check server: `curl -sk https://home.donges.it:4444/api/health`; team: `tmux list-panes -t robbinTeam2`
+6. Report to Tron at iphone:0.0
+
+## CMM4 DELIVERY/QUALITY PROCESS (v0.6.0 marathon — learnings #84-89)
+- **The GATE is the bottleneck.** A gate that can't SEE the bug manufactures false-greens. MATCH verification to the bug's physics: paint-timing → STRUCTURAL gate + device-confirm (Playwright can't observe mid-paint); interaction → BEHAVIORAL gate (touchscreen.tap, real coords, probe the real hit-target). Wrong modality (mouse vs touch) / coords (page vs viewport) = false RED or false GREEN.
+- **GATE-BEFORE-DEPLOY** for UX: build → gate isolated → deploy ONLY on green. Tron never sees an intermediate.
+- **Real conditions + real data + RED→GREEN reproducing test.** Synthetic data + clean rooms false-green. Use the real data in ONE systemTester/ONE room (no pollution).
+- **Traceability-FIRST, Test-defined-first.** NEVER functional-first-then-backfill (creates chain-debt; det-3x won't count it champagne).
+- **Measurement integrity:** SM over-credit scan + planner det-3x; chain-debt is NOT champagne; report the honest count, headline gets MAX scrutiny.
+- **SOURCE-verify every claim** (don't relay "fixed/done"); **Tron is NOT the tester** — the team's faithful gate is.
 
 ## Core Rules (CMM4)
 1. **NEVER implement code** — always delegate to expert (learning #35)
