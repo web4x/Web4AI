@@ -1,6 +1,6 @@
 # robbin-planner Context — Save Point 2026-06-13 (v0.6.0 milestone + Sprint 20 started; marathon CMM4 patterns captured)
 
-**Pane:** robbinTeam2:0.1. **HONEST BOARD = 173/198 genuine chain-complete** (41 excluded orphanByDesign), det-3x stable. v0.6.0 = FUNCTIONAL milestone (Tron "best version ever") but 24 chain-debt reqs (R19.83-102) behind it.
+**Pane:** robbinTeam2:0.1. **HONEST BOARD = 158/207 excl 44 CERTIFIED det-3x (2026-06-13T18-01)** — T-TOOL-1/2 superseded-auto-exclude (R18.24+R19.58 supersededBy 7734f4e1). Arc: sealed 168/168 @f3ce4e56 → 160/201 (11 shared-impl regressions, recovery d43fce61) → 158/207 (superseded-exclusion correction, NOT regression). 11 regressions PERSIST; fixing→~169/207. Prior: 173/198 genuine chain-complete (41 excluded orphanByDesign), det-3x stable. v0.6.0 = FUNCTIONAL milestone (Tron "best version ever") but 24 chain-debt reqs (R19.83-102) behind it.
 - **S20 RELEASE RULE (Tron 2026-06-13):** each released S20 task = ONE patch bump + git tag (R20.2→v0.6.1, next→v0.6.2...). ENFORCE in sync: not 'released' without BOTH patch bump (+sw.js) AND git tag present. Composes with rule-pair #15/#16.
 - **Single-owner standard ADOPTED (2026-06-13):** I am SOLE Task-unit creator; architect only adds useCases[]/chain. Ended the dup-collision churn. (scrum.pmo/standards/task-unit-single-owner-standard.md)
 - **Anti-false-green standard:** in-room UX → real Playwright+screenshot Test (not unit); R19.97 EXCEPTION = Tron real-Chrome+?debug=1 (paint not Playwright-able). (scrum.pmo/standards/in-room-ux-e2e-test-standard.md)
