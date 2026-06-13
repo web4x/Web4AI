@@ -37,6 +37,12 @@ A champagne Impl REQUIRES a real NAMED METHOD. Inline/closure/CSS-attr/template-
 - **achievements.md** committed + indexed (v0.6.0 🏆).
 - **Marathon CMM4 patterns** folded into boot.md (#7-10) + learnings #63: gate-faithfulness (gate must SEE the bug, match to physics), traceability-first/gate-before-deploy, measurement-integrity (det-3x, chain-debt≠champagne, honest count), source-verify-don't-relay, Tron-is-not-the-tester.
 
+## 2026-06-14 CLIMB 21→27 VERIFIED GENUINE (d04556a6, det-3x)
+- Expert 3558cb097 extracted Room.init()(Room.ts:116)/Room.retainOrPrune()(Room.ts:204) into real named methods, markers in-body name-matched (drove by my mis-placed-marker finding). SHARED methods → +6 NOT +2: R19.1+R19.2 (init/2ab8a3dd), R19.8+R19.8.A+R19.8.B+R19.18 (retainOnDisconnect→retainOrPrune/4c21d2ee — LEGIT refinement-cluster, SM-pre-confirmed test c6dfbaa6, shared-impl clean 4c21d2ee→1 method). Each per-req-traced via scripts/trace-req.ts (scorer's own walkReq) — ALL UC.method legs complete. Tester room.test.ts 30/30.
+- PLANNER UNWIRE HYGIENE: removed stale 9fbb1f6e(file-header)+4c8a91a5(mis-wired, heads addMember, doesn't own R19.8.B's retainOrPrune UC.method→left unwired) from method init(4fed4fda).implementations[] → singular-genuine [2ab8a3dd]. Count-NEUTRAL (det-3x 27 before+after) = pure hygiene.
+- ⚠ LESSON: nearly panic-reverted a 21→27 jump thinking MY wiring edit caused it — was actually the EXPERT's concurrent commit (3558cb097). Always check `git log` for concurrent commits before attributing a count change to your own edit. The revert instinct was right (suspicious jump→stop) but the cause-attribution was wrong.
+- HONEST FLOOR NOW = 27/205 excl 46. Doc: planner-climb-21-to-27-2026-06-14.md.
+
 ## 2026-06-14 STRICT-FOLD AFTERMATH + R19.2/R19.8 DETERMINISTIC RESOLUTION
 - AST strict-test FOLDED into live skill-classes.ts hasRealImpl (a0d0ea16f, skill-expert). Canonical = 21/205 excl 46, det-3x, SM+PO CO-SEALED → Tron. 158 string-only de-credits.
 - My standalone scripts/strict-marker-audit.ts (impl-markers, TS-AST) = 23 on STALE credited.json; reconciled: live=full-chain=21, standalone=impl-markers=23 (different measures). 21 FINAL.
