@@ -1,53 +1,41 @@
-# robbin-po Context — save (2026-06-11, robbinTeam2 marathon)
+# robbin-po Context — save #9 (2026-06-13 ~20:10, OVERNIGHT pre-rewind)
 
-**Role:** PO | **Pane:** robbinTeam2:0.0 (forked to escape write-classifier outage; same repo/machine)
-**Project:** RawBin | **Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/
-**Server:** https://home.donges.it:4444 — **v0.5.197 LIVE**
+**Role:** PO | **Pane:** robbinTeam2:0.0 (forked team; same repo/machine) | **Project:** RawBin
+**Repo:** /Users/Shared/Workspaces/2cuGitHub/Web4RawBin/ | **Server:** https://home.donges.it:4444 — **v0.6.8 LIVE**
 **Tron:** iphone:0.0 | SM TRONinterface:0.1 | agent-trainer baseTeam:0.0
+**Team robbinTeam2:** 0.0 po(me) | 0.1 planner | 0.2 expert | 0.3 skill-expert | 0.4 architect | 0.5 req | 0.6 tester
 
-## robbinTeam2 roster
-0.0 po(me) | 0.1 planner | 0.2 expert | 0.3 skill-expert | 0.4 architect | 0.5 req | 0.6 tester
+## OVERNIGHT MANDATE (Tron, past 10pm 2026-06-13): PO DRIVES TILL 8AM
+Heartbeat wakeup armed (~25min fallback; agent otmux reports re-invoke me between). Drive autonomously, honest, source-verify, never /compact.
 
-## CURRENT STATE
-- **2026-06-11 GENUINE 173/173 SEALED** (SM det-3x + 0-over-credit; scorer .css-coverage fixed fix-the-tool). Chain grew 168→173 (R19.77 url-buttons, R19.78-81 drawer/preview UX — all device-verified live v0.5.201). ACTIVE FIRE: "cannot join room" from lobby (server.ts:1555 addMember false) — architect+tester diagnosing, prime suspect R19.8.B dedup reject path.
-- **Traceability chain: FULL 168/168 GENUINE** (SM independently verified det-3x + 0-over-credit, 2026-06-11). R19.75 preview-auth CLOSED (c26a1d928); R19.76 nonce-hardening DEFERRED orphanByDesign (d58eb6fd7, PO ruling). No open cert work — chain whole.
-- **All Tron features delivered + verified live:** content-dedup+index+consolidation, data-integrity (members/files loss fixed), room-full removed, content-preview (/trace + in-room image+HTML rendered, auth-fixed v0.5.197), scenario-link DRY→browser+highlight, room-children, User/Device scenarios, room-dir standardized, remove-ID recovery button, file-auth(F1 fail-closed)+iframe-sandbox security, 5 OOSH skills.
-- **Deferred/backlog:** R19.76 (preview short-lived-nonce vs token-in-URL); 14 per-method-depth tests (champagne quality).
+## SEALED COUNT: 158/207 genuine champagne (excl 44) — det-3x + SM-sealed 2026-06-13T18-01
+- Honest de-inflation 160→158: R18.24+R19.58 superseded (supersededBy→7734f4e1) had parallel chains, auto-excluded via T-TOOL-1 (isOrphanByDesign checks supersededBy). T-TOOL-2 = parallel-chain lint. fix-the-tool, not gaming.
+- Exclusion guard: 44 = 41 orphanByDesign + 4 supersededBy (R18.24/R19.58/R-placeholder-T202/R19.92), zero improper.
 
-## THE MEASUREMENT-INTEGRITY SYSTEM (this session's core proof)
-Honest 8→167. **11+ inflation/coverage events caught + corrected**, incl a FALSE 165/165 "100%" rejected AT THE HEADLINE (SM independent challenge → skill-expert found display-name-dedup over-credit hid R15.6 → reported true 164). Dual/triple-verify: tester self-report → planner det-3x+4guards → SM INDEPENDENT seal. Guards: json-broken=0, shared-impl=0, shared-test-overcredit=0 (methodUuid-dedup), complete-scan.
+## S20 SHIPPED (each Test-first / full-chain / patch+TAG — release rule learning #90):
+R20.2 grab-bar v0.6.1 · R20.3 default-collapsed+iOS-cursor v0.6.2 · R20.4 Bug+ChangeRequest OOP subtypes v0.6.3 · R20.5 chain-vs-all-children+dedup-traceability(universal,8 views) v0.6.4 · CR1 champagne→traceability rename v0.6.5 · BUG1 chain-excludes-self+non-chain-types v0.6.6 · R20.6 global SelectionModel+3-drawer-consolidation v0.6.7 · BUG2 tap-switch-single + long-press-toggle-on/off v0.6.8.
+- R20.4 dogfooded same session: CR1+BUG1+BUG2 are real ior:class:ChangeRequest/Bug units.
+- icon-only (state 3) DEPRECATED (Tron) — long-press reassigned to selection; item-view-states-standard.md = collapsed/expanded + selection.
 
-## HARD-WON RULES (this marathon — append to learnings)
-- **Headline gets MAXIMUM scrutiny, not less.** Every "complete"/"100%" commit-msg (162/164/165/167-closure) was OPTIMISTIC and caught at cert. NEVER credit a closure-commit or self-report; triple-verify before Tron.
-- **Verify the WORKER active AND its OUTPUT** — not send.verified-OK (otmux unreliable, caused 2 stalls), not "esc-to-interrupt" alone ("active"≠right-action — tester was active but markering-not-splitting).
-- **Pre-empt context at ~2%, not 0%** — expert+skill-expert+planner rewinds; SM caught expert at 0% (should've been ~2%). Rewind=state-save-first→agent-trainer→reboot→VERIFY reset<30%-USED before re-task. NEVER /compact. Code lossless in git (only chat-context lost).
-- **Fix-the-tool-not-bypass** — scan-coverage bugs (scorer didn't walk scripts/); display-name-dedup hid a real over-credit. Fixed both in the canonical tool, never moved markers to game the scan.
-- **Shared-marker = NEVER a flip; always SPLIT first** (one test/impl=one chain). The recurring inflation source (caught ~4×).
-- **Feature ≠ count** — a feature can be device-verified-done while its chain (Impl-unit/Test bookkeeping) is still open. Don't conflate; both honest separately.
-- **Security fail-closed + verify-independently** — F1 file-auth caught FAILING OPEN by independent PO-verify (grep+live-curl no-token→403), re-fixed fail-closed. New features interact (preview iframe vs F1 auth → token-in-URL fix).
-- **DRY** — preview/scenario-link reuse; the DRY audit cracked the dedup bug. rb-detail-drawer reused per-view (not singleton).
-- Route EVERY Tron requirement to req for literal capture (verbatim) BEFORE acting. New bug → honest chain (capture→design→fix→verify).
-- Honesty over optics: report 164 honest over 165 false — proven at the moment a false 100% was within reach.
+## STANDARDS authored this session
+- scrum.pmo/standards/item-view-states-standard.md (icon-only/collapsed/expanded; collapsed≠empty eager-lazy+count-badge; gestures). CMM3.
+- scenario-link-communication: chat=pointer-only (→ ior + 1-line), details live in scenario units. (learning: I keep slipping to prose — #84, guard it.)
 
-## NEXT
-1. FULL CHAIN 168/168 GENUINE (SM-sealed 2026-06-11) — no open cert work.
-2. Drawer: per-view-instance of shared rb-detail-drawer (Tron asked singleton-vs-instance; awaiting his call).
-3. R19.76 nonce-hardening when prioritized; 14 per-method-depth quality tests.
-4. Continuous: capture-verify-active-and-output every dispatch; triple-verify every headline; never /compact.
+## OVERNIGHT QUEUE (driving till 8am)
+1. **d43fce61 — 11-shared-impl SPLIT recovery** → ~169/207. Reqs R19.11/12/13/21/27/31/63/69/71/72/73. Each method gets OWN Impl unit + OWN [impl:uuid] (SPLIT real code, NEVER flip a shared marker). Expert executing. Planner det-3x + SM verify each restored chain real-own-impl before credit.
+2. **22:07 backfill (cron 7cb709d4) + radical S19 v0.5.x chain-debt → champagne**: R19.83-101 + 88.A + dups. Architect LINKS UC→Class→Method→EXISTING [impl:uuid] (don't recreate). Tester wires GENUINE [test:uuid] from existing gates. Planner det-3x per batch, SM over-credit seal. Goal: every v0.5.x S19 achievement genuine champagne, no functional-done-chain-open. Climb toward 198.
+3. **3 open bugs** (expert, after splits, Test-first+patch+tag): R19.99 broken-link, R19.100 inversion, R19.102 folder-actions.
 
-## HOLD 2026-06-11 (SM survival mandate)
-- Team IDLE at SEALED 174/179 (lossless git). Zero new reqs. Hold for TRON-HUMAN: pause / Tier-3 fork-from-fresh (~50% rewind floor needs fresh bases).
-- OPEN-FOR-RESUME (NOT started): (1) url-preview regression from partial commit 862868bfe (R19.84/85 iframe-zoom wrapper half-wired broke .url inline preview); (2) nudge-mismatch: preview drawer nudge = small stub+X, must become the chat drawer wide grab-bar that DRAG-RESIZES to 95vh (R19.84); (3) R19.85 pinch must SCALE iframe content not pan-only.
+## HARD RULES (boot.md has full; key overnight)
+- NEVER /compact (kills/risks). Stuck/full agent → save+commit→agent-trainer REWIND→Rule-6 verify (clean+oriented+code-intact+reset<30%) before re-task. ACT AT 80%-USED (SM stricter than 2%-remaining; /rewind keystrokes eaten near 0%). pane-capture is PRIMARY (context.read gave FALSE 4.7% while expert at 1%).
+- GATE-BEFORE-DEPLOY; source-VERIFY every claim (curl /api/health + git tag); Tron≠tester (team's faithful gate is). Headline = MAX scrutiny; honest count over optics.
+- Shared marker = SPLIT never flip. Fix-the-tool never game-scan. Feature-done ≠ chain-complete (track both).
+- Route EVERY Tron req → req VERBATIM before acting. New bug/CR → dogfood ior:class:Bug/ChangeRequest, traced.
+- Release = patch bump + sw.js + git TAG per task (learning #90). One release per task (S20).
+- otmux send unreliable: pane.capture after every send; FAILED-retry can submit stale buffer (killed a fork via stray /compact). Verify WORKER active AND right OUTPUT.
+- Fire the GO: don't queue "after X" without firing the GO when X completes (R20.6 stalled the team — my miss).
 
-## SURVIVAL STANDBY 2026-06-11 (SM: 7d budget 83%≥80%)
-- FULL STANDBY until budget reset ~Jun14 / Tron. Sealed lossless. v0.5.210 live.
-- R19.90 (20fc59cc) = ROOT consolidation in flight: in-room tree REUSES /trace rb-trace-tree (room mode + setItems), DELETE RoomView renderRoomTree*/diffRenderItems — fixes iOS init/collapse/drawer BY CONSTRUCTION, supersedes R19.83/88/88.A patches, fulfills R19.21. Expert finishing to working state or leaving v0.5.210.
-- READY-TO-SEAL pending TRON iOS device-verify: R19.87 (touch-action pan-y drawer). Also pending device: R19.88/88.A init, R19.89 button-moved.
-- OPEN: R19.85 pinch-SCALE (partial).
-
-## v0.6.0 MILESTONE (2026-06-13) — best version ever
-- v0.6.0 tagged/deployed (rawbin-v0.6.0). iPhone touch bug SOLVED (rb-chat-sheet :host overlay intercepted lower-viewport touches → :host pointer-events:none). In-room tree = Members+Files folders via unified /trace seed path, all interactions work on iPhone.
-- HONEST chain count: 173/198 genuine champagne + 25 open (21 chain-debt R19.83-101 funct-shipped-chain-open + 3 open bugs R19.99/100/102 + R19.72). chain-debt NOT counted champagne (SM over-credit scan + planner det-3x held).
-- SCHEDULED tonight 22:07 (cron 7cb709d4): radical v0.5.x traceability backfill → champagne. Sprint 20 standing up = traceability-FIRST forward (Test-defined-first, no backfill); carries R19.99/100/102.
-- Achievements: scrum.pmo/achievements.md. Boot reading-list + learnings #84-89 updated with CMM4 delivery/quality process.
-- Team all updating boot/learnings/context with CMM4 marathon learnings (Tron directive).
+## NEXT ON BOOT
+1. Resume overnight drive: check team panes (pane-capture), see split-recovery + backfill progress, drive next batch.
+2. Each agent report → verify (source/ground-truth) → credit honest → drive next.
+3. Re-arm heartbeat each turn. Hold till 8am / Tron returns. Summary ready at wake.
