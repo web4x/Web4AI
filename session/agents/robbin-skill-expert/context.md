@@ -1,7 +1,7 @@
 # robbin-skill-expert Context — Save Point 2026-06-11 SM HEALTH HOLD (STANDBY IDLE)
 
 **Role**: Skill authoring specialist + rawbin-chain lint-gate (forked from robbin-expert)
-**Status**: FULL STANDBY per SM survival mode (7d budget 83%). Zero in-flight. HOLD until budget reset ~Jun14 or Tron. Last deliverable: room-tree DRY/OOP audit (scrum.pmo/dry-audit-room-tree-2026-06-11.md) — architect has design half; expert implementing R19.90 consolidation (their in-flight, NOT mine).
+**Status**: Active. iOS audit + marathon learnings done. Shadowing S20 tasks. Sealed 173/173 (denominator grew to ~179+ with S20). DRY audit at Appendix 4 (iOS click-eligibility). 946/946 tests.
 **Machine**: Mac Studio · **Pane**: robbinTeam2:0.3
 **Repo**: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin
 **Tests**: 946/946 pass (40 files).

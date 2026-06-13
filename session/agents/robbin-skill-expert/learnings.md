@@ -265,3 +265,36 @@ channels, not by me editing other agents' files.
 Denominator changed 162→164→167→169→173 across one afternoon while I measured.
 Never compare counts across runs minutes apart without re-baselining; snapshot
 (snapshotComplete) at each decision point — named flips beat raw totals.
+
+## v0.6.0 Marathon CMM4 Delivery/Quality-Process Takeaways (skill-expert role)
+
+### Gate-faithfulness: the gate must SEE the bug
+Match verification to the bug's physics. Paint bugs need structural+device gates (real viewport,
+real renderer). Interaction bugs need behavioral touch gates with real coords + probe-real-target.
+A passing vitest with jsdom proves code logic, not that iOS Safari fires the click.
+
+### GATE-BEFORE-DEPLOY
+Never ship a fix without a gate that would have caught the original bug. If the gate can't run
+locally (e.g. needs iPhone Safari), document the manual verification protocol in the task file
+BEFORE marking done.
+
+### Measurement integrity (my lane, foundational)
+det-3x = necessary but NOT sufficient (all 12 of my scan-coverage bugs were det-3x stable).
+Over-credit scan (SM-independent) catches what the author's lint can't see (dedup collision).
+Chain-debt is NOT champagne — honest count means BOTH: no false-negatives (scan-coverage family)
+AND no false-positives (shared-impl, name-collision dedup, marker-without-unit).
+
+### Source-VERIFY claims, don't relay
+When an agent reports a number or a fix, trace it from code before relaying to PO.
+"The metric says 165" → read summarize(), find the dedup key, reproduce the collision. Relaying
+without verifying is how the false 162/165 numbers propagated.
+
+### NEVER functional-first-then-backfill
+Traceability-FIRST: chain unit + [impl:uuid:] marker in the SAME commit as the code.
+Test-defined-first: the test scenario exists BEFORE the fix lands, turns RED→GREEN.
+Backfill batches (our overnight 146→49 honest triage) prove the cost of doing it backwards.
+
+### Tron-is-NOT-the-tester
+Tron's device repro is a SIGNAL, not a test plan. My role: ensure the canonical tool faithfully
+counts what IS tested, and flag what ISN'T. If a chain shows "complete" but no real device gate
+exists, the completion is aspirational — flag it, don't credit it.

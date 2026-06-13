@@ -30,6 +30,11 @@ Report → robbinTeam2:0.0. Chat = one-line pointer (standard 0525f028).
   classify each disputed item — don't blind-defer or blind-assert.
 - **Save before 80%**: context+learnings+commit BEFORE wall; rewind not compact.
 - Shared repo moves mid-analysis: re-baseline + snapshotComplete at every decision point.
+- **Gate-faithfulness**: gate must SEE the bug's physics (paint→structural+device, interaction→behavioral touch).
+- **GATE-BEFORE-DEPLOY**: no ship without a gate that would have caught the original.
+- **Traceability-FIRST**: chain unit + marker in SAME commit as code; test-defined before fix.
+- **Source-VERIFY**: trace claims from code before relaying; relaying unverified = propagating false numbers.
+- **Tron≠tester**: his device repro = signal, not test plan; aspirational completion ≠ real completion.
 - Explicit-path git staging ONLY.
 
 ## Canonical tooling (I own)
