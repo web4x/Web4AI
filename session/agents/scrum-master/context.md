@@ -40,3 +40,11 @@
 
 ## NEXT
 - Continue heartbeat loop. Context-health sweep every tick (PRIMARY). Track count climb to 25%≈35 (verify each via guarded-tool+full-scan). Report TRON at milestones / deliverable-green / context emergency / flush device-test. Watch oosh trio (TRON RC). Conserve tool-runs (7d subscription ~56%).
+
+## 2026-06-13 UPDATE (post deep-rewind for headroom; recovery anchor 1971f5e = ACT-AT-80%-USED)
+- **Sprint state advanced:** v0.6.0 milestone, 18 rooms, **173/198 champagne** (was 167/168). robbin-po REWOUND clean (anchor 1d9a4c6, full state, verified Rule-6: 55% used, no Context-low, oriented). **Sprint 20 = traceability-first forward + close R19.99/100/102 + url-drawer regression; NOTHING ships chain-open.**
+- **TRON DIRECTIVE — url-files-don't-open-drawer regression** (= 862868bfe partial-commit): driven Test-FIRST — req captures, tester RED test (.url click→drawer opens) on v0.6.0 → expert fix → GREEN → gate-before-deploy. VERIFY RED lands then GREEN via commit-delta + test file.
+- **TRON DIRECTIVE — SURVIVAL MODE @80% WEEKLY (7d) + agent budgets (AGREED+LOCKED w/ robbin-po).** Division: **SM tracks 7d% (~every 10 ticks) + FLAGS at 80% → robbin-po gates priorities + enforces budgets.** Budgets: soft tool-run cap/task; ACT-AT-80%-used proactive save; batch tool-runs; scenario-edit over chat-prose; weights expert/architect=HEAVY, planner/req/tester=MEDIUM, PO/SM=LIGHT (coordinate, don't compute). Survival@80%-7d = minimal-runs + batch + save-first. NOW 7d=11% → DORMANT, plenty runway.
+- **Subscription at rewind:** 7% 5h / 11% 7d / safe.
+- **Heartbeat (relaunched):** single visible background `sleep N && echo` (TRON wants visible, 1 shell); 200s steady, 120s if any agent ≥75%, NEVER ease context-health frequency (conserve only on the count-skill run). context.read per pane each tick = bare % USED.
+- **Context unknowns to cross-check via pane:** expert(0.2)/skill-expert(0.3)/tester(0.6) read 'unknown' at rewind — verify via 4-6 line capture.
