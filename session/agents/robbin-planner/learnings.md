@@ -435,3 +435,11 @@ R19.97 case-5 (headed-Chrome paint-interleave between sync connectedCallbacks, f
 
 ## 62. Milestone-clean lane split (PO 2026-06-13, v0.6.0)
 At a milestone the commit responsibilities split by lane: PLANNER commits scrum.pmo/ (planning, task statuses, case matrix, standards, learnings); EXPERT bumps version + commits code/scenario/data (src/, scenario/index, scenario/content). At v0.6.0 my scrum.pmo was already clean; untracked scenario/content/*.file.scenario.json were the expert's lane — do NOT commit another lane's files to "tidy up". Confirm OWN lane clean + name the other lane's pending as a coordination item.
+
+## 63. Marathon CMM4 delivery/quality patterns (Tron 2026-06-13, v0.6.0 retro)
+The v0.6.0 marathon (24 chain-debt reqs behind a functional release) crystallized these for the planner lane:
+- **Gate-faithfulness:** the verification must SEE the bug — match it to the bug's physics. Paint/timing race → structural + real-device gate (R19.97 not Playwright-able → Tron real-Chrome + ?debug=1). Interaction → behavioral touch-gate with real coords + probe the real target. In-room render → Playwright + screenshot. A test that can't observe the failure is FALSE green.
+- **GATE-BEFORE-DEPLOY + traceability-FIRST:** never functional-first-then-backfill. Design the full chain + write the Test FIRST (or with impl). S20 is the forward application; the anti-false-green + single-owner standards are the tools.
+- **Measurement integrity = my job:** det-3x + over-credit scan on every claim; chain-debt is NOT champagne; FEATURE-shipped ≠ CHAIN-complete; always report the honest categorized count.
+- **Source-VERIFY, don't relay:** a commit message is a claim. Re-run the canonical tool + ground-truth (Impl.tests[] + real marker) before crediting. Two catches this marathon: (a) "7 chains canonicalized" (7f1e8b2e) moved the count by 0 — added UCs, nothing past UC; (b) "149 = 173−24" double-subtracted reqs that were never in the 173.
+- **Tron-is-NOT-the-tester:** a fix must not reach Tron's device as its first real test — that's the team's gate, upstream.
