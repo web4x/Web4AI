@@ -1,6 +1,11 @@
 # robbin-planner Context — Save Point 2026-06-13 (v0.6.0 milestone + Sprint 20 started; marathon CMM4 patterns captured)
 
-**Pane:** robbinTeam2:0.1. **HONEST BOARD = 181/206 excl 45 (det-3x stable, 2026-06-13 night)** — climbed 158→181 via genuine S19 chain backfill, every step ground-truthed (0 over-credit). Arc: 158(superseded-excl)→168→walker-bridge-fix +5→173→R19.31/72 +2→175→R19.94+R19.84x2 +3→178→expert markers +4→182→un-share faf7bd6e cross-class over-credit −1→181.
+**Pane:** robbinTeam2:0.1. **HONEST BOARD = 178/206 excl 45 STRICT-COMPLIANT (det-3x stable, SM cross-verifying to seal, 2026-06-13 night)**.
+## SM NAMED-METHOD RULING (STANDARD, 2026-06-13) — strict canonical chain
+A champagne Impl REQUIRES a real NAMED METHOD. Inline/closure/CSS-attr/template-string behaviors carrying [impl:uuid] do NOT complete a chain (no Method node → fictitious Method→Impl hop = THE inflation pattern). REJECT: event-handler closures, CSS-attr impls, template-literal markers, file-header comment markers. Climb-up = refactor the behavior to a real named method + marker IN its body + per-impl test. This session's saga: claims pushed 177→182 via stub/closure/template markers; max-scrutiny (det-3x + marker-placement-grep + shared-impl/shared-test guards) caught every fake; expert's honest FINAL removed 8 → strict floor 178. R19.31/83/85/87/92/93 now OPEN (inline/closure/CSS/template, no named method).
+## MARKER-PLACEMENT VERIFY (per-marker, on settled commit): grep each [impl:uuid:] → must sit INSIDE a named method body matching the behavior. Reject header(line<10)/template(above innerHTML=`)/handler-closure/CSS-attr.
+## SHARED-TEST GUARD (formal, PO 2026-06-13): scan tests wired to >1 impl; cross-class=over-credit (un-share, credit the genuine one, other needs own test); same-class/known-sibling (802363cb/8edfcdd6/8682fa95/1b5c8ddc)=KEEP. Caught faf7bd6e.
+ — climbed 158→181 via genuine S19 chain backfill, every step ground-truthed (0 over-credit). Arc: 158(superseded-excl)→168→walker-bridge-fix +5→173→R19.31/72 +2→175→R19.94+R19.84x2 +3→178→expert markers +4→182→un-share faf7bd6e cross-class over-credit −1→181.
 ## OVERNIGHT CHAIN-RECOVERY (Tron-assigned, in flight)
 - 11 shared-impl regressions: SPLIT recovery (d43fce61) — expert split each to own impl+marker; ground-truthed genuine. shared-impl guard=0.
 - SHARED-TEST GUARD now formal (PO 2026-06-13): scan tests wired to >1 impl; cross-class = over-credit, same-class/known-sibling (802363cb/8edfcdd6/8682fa95/1b5c8ddc) = KEEP. Caught faf7bd6e (SpeakingTree+FileBrowser) — un-shared, −1.
