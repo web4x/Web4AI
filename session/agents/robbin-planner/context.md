@@ -1,3 +1,20 @@
+# robbin-planner Context — Save Point 2026-06-13 (v0.6.0 milestone + Sprint 20 started; marathon CMM4 patterns captured)
+
+**Pane:** robbinTeam2:0.1. **HONEST BOARD = 173/198 genuine chain-complete** (41 excluded orphanByDesign), det-3x stable. v0.6.0 = FUNCTIONAL milestone (Tron "best version ever") but 24 chain-debt reqs (R19.83-102) behind it.
+- **Single-owner standard ADOPTED (2026-06-13):** I am SOLE Task-unit creator; architect only adds useCases[]/chain. Ended the dup-collision churn. (scrum.pmo/standards/task-unit-single-owner-standard.md)
+- **Anti-false-green standard:** in-room UX → real Playwright+screenshot Test (not unit); R19.97 EXCEPTION = Tron real-Chrome+?debug=1 (paint not Playwright-able). (scrum.pmo/standards/in-room-ux-e2e-test-standard.md)
+- **Over-credit reconcile (R19.83-102):** all 24 OPEN at UC hop, NOT in the 173. "149=173−24" double-subtracts. Doc: scrum.pmo/sprints/sprint-19-room-handling/planner-r19.83-102-overcredit-reconcile-2026-06-13.md. Categories: (a)173 genuine (b)21 chain-debt (c)3 open-bugs R19.99/100/102.
+- **Architect 7f1e8b2e "7 chains canonicalized" = +0 to count** (added UCs, nothing past UC) — caught via det-3x + ground-truth.
+- **SPRINT 20 STARTED (Tron radical-forward-planning):** Sprint unit 64af2638. Traceability-FIRST discipline (chain designed + Test-first, nothing ships chain-open). Carry-forward R19.99(eff42eff)/R19.100(51d53769)/R19.102(new task 42819b8b). Backfill-tracking task 450cb98a for tonight's **22:07 scheduled** radical S19 v0.5.x champagne backfill — MY DUTY post-job: re-score det-3x + ground-truth each flip + report honest count (baseline 173/198). README+overview indexed.
+- **achievements.md** committed + indexed (v0.6.0 🏆).
+- **Marathon CMM4 patterns** folded into boot.md (#7-10) + learnings #63: gate-faithfulness (gate must SEE the bug, match to physics), traceability-first/gate-before-deploy, measurement-integrity (det-3x, chain-debt≠champagne, honest count), source-verify-don't-relay, Tron-is-not-the-tester.
+
+## NEXT
+1. **22:07 backfill watch** (task 450cb98a): after the job, det-3x + ground-truth each newly-claimed chain, reject over-credit, report honest flip count both sides.
+2. S20 forward reqs with req-eng; each → full chain designed + Test-first.
+3. Carry R19.99/100/102 to genuine champagne (E2E-gated).
+
+---
 # robbin-planner Context — Save Point 2026-06-11k (SM SURVIVAL STANDBY @83% 7d-budget — IDLE until ~Jun14/Tron)
 
 **Pane:** robbinTeam2:0.1. STANDBY HARD (SM survival, 7d budget 83%≥80%). ZERO new reqs (R19.91+ WAIT). Sealed lossless.
