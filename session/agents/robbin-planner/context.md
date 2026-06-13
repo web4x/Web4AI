@@ -37,8 +37,19 @@ A champagne Impl REQUIRES a real NAMED METHOD. Inline/closure/CSS-attr/template-
 - **achievements.md** committed + indexed (v0.6.0 🏆).
 - **Marathon CMM4 patterns** folded into boot.md (#7-10) + learnings #63: gate-faithfulness (gate must SEE the bug, match to physics), traceability-first/gate-before-deploy, measurement-integrity (det-3x, chain-debt≠champagne, honest count), source-verify-don't-relay, Tron-is-not-the-tester.
 
+## 2026-06-14 STRICT-FOLD AFTERMATH + R19.2/R19.8 DETERMINISTIC RESOLUTION
+- AST strict-test FOLDED into live skill-classes.ts hasRealImpl (a0d0ea16f, skill-expert). Canonical = 21/205 excl 46, det-3x, SM+PO CO-SEALED → Tron. 158 string-only de-credits.
+- My standalone scripts/strict-marker-audit.ts (impl-markers, TS-AST) = 23 on STALE credited.json; reconciled: live=full-chain=21, standalone=impl-markers=23 (different measures). 21 FINAL.
+- **NEW TIEBREAKER TOOL: scripts/trace-req.ts** — calls Chain.walkReq/summarize reflectively ((c as any).walkReq) = scorer's OWN un-summarized per-req trace. Use for any "is req X complete and why" dispute. Re-run: npx tsx scripts/trace-req.ts (edit the tags array).
+- R19.2/R19.8 3-way contradiction RESOLVED deterministically (aaeb25bf): BOTH genuinely incomplete, 21 NOT under-reported. R19.2: method init(4fed4fda) has 3 impl-rows, 2 strict-fail (2ab8a3dd marker-in-constructor, 9fbb1f6e file-header) drag it via summarize-needs-ALL-rows; editOpen complete. R19.8: retainOrPrune(f82d09a5) sole impl 4c21d2ee marker mis-placed in removeMember. Architect 'all legs done' was WRONG (saw 'a' impl, missed multi-impl drag + strict-fail).
+- **KEY SCORER FACT:** summarize() (skill-classes.ts:327) requires ALL of a method's wired impl-ROWS complete; a multi-impl method with any markerless/strict-failing impl drags the whole req. Non-canonical per singular-chain #38 (method should have 1 impl). walkReq:256-264 narrows to UC.method when set (no fan-out if .method present).
+- SCOPE-GUARD HELD TWICE: rejected (1) my own '+2 re-wire' (siblings already wired) and (2) architect's 'narrow-to-UC.method' (+2) — both UCs have .method set, 2nd legs genuine open work. PO rule: number follows rule, never rule follows number; a scope-narrow flip is valid ONLY if the dropped leg is a genuine over-walk, not genuine open work.
+- CLIMB from 21 (genuine, det-3x each): R19.8 +1 = expert relocate 4c21d2ee into retainOrPrune body. R19.2 +1 = architect designates init's true singular impl (#38) → planner unwires stale 2ab8a3dd/9fbb1f6e → expert strict-marker in init body. Awaiting architect.
+- Docs: planner-{21-vs-23-reconcile, r19.2-r19.8-scope-verdict, scorer-trace-r19.2-r19.8, strict-true-floor}-2026-06-{13,14}.md. Learning #64 (fix-the-instrument).
+
 ## NEXT
-1. **22:07 backfill watch** (task 450cb98a): after the job, det-3x + ground-truth each newly-claimed chain, reject over-credit, report honest flip count both sides.
+1. Await architect's ruling on init's canonical impl (#38) + the retainOrPrune marker relocate (expert); det-3x each climb flip; guard scope-narrows.
+2. (prior) **22:07 backfill watch** (task 450cb98a): after the job, det-3x + ground-truth each newly-claimed chain, reject over-credit, report honest flip count both sides.
 2. S20 forward reqs with req-eng; each → full chain designed + Test-first.
 3. Carry R19.99/100/102 to genuine champagne (E2E-gated).
 
