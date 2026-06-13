@@ -1,25 +1,29 @@
-# robbin-architect Context (Save 2026-06-13 v0.6.0 marathon end)
+# robbin-architect Context (Save 2026-06-14 ~02:00, post-marathon)
 
-## STATUS: Active — champagne-debt deep-wire done, awaiting tester Test nodes
+## STATUS: STANDBY — 20/204 settled, climb deferred to fresh session
 Pane: robbinTeam2:0.4
-Team: 0.0=po | 0.1=planner | 0.2=expert | 0.3=skill-expert | 0.4=ME | 0.5=req | 0.6=tester | 0.7=shell
 
-## LATEST COMMITS
-- a4751a05b deep-wire Method.implementations[] — 15 methods, 14 impl links
-- 7f1e8b2ee batch champagne-debt R19.83-101 — 7 chains canonicalized
-- 5a5476de8 radical iOS review — 8 quirks, 3 priority fixes
-- 7d0219dcd case matrix — 5 distinct cases
-- Earlier: R19.83-97 individual chains
+## SETTLED
+- 20/204 genuine champagne (det-3x verified)
+- Heads-loophole-8 resolved: R19.2/2.A typo-recovered, R19.22.B/59/62 over-credit-dropped, R19.33/75/81 functionalDone
+- R19.82 = dup of R19.8.B (same rejoinDedup behavior, credit once)
+- R19.8.B genuine (rejoinDedup extracted, own method, MEMBER_RECONNECTED vs MEMBER_JOINED)
+- 3 borderlines functionalDone (stickyClose, authToken, iframe-pinch = CSS/template/URL-param)
 
-## THE REAL BUG (chat-sheet stacking)
-Chat-sheet `position:fixed; z-index:50; max-height:60vh` with `translateY(calc(100% - 52px))` — invisible 450px area intercepts ALL touches in lower viewport. Fix: `pointer-events: none` on collapsed sheet, `auto` on visible children.
+## STANDARDS CODIFIED THIS SESSION
+- Implementation Marker Validity (named method body only)
+- Refinement-Cluster Rule (same behavior-family = share; distinct = own method)
+- Duplicate-Requirement Markers (remove stray dup markers)
+- Heads-Must-Name-Match (position AND label required)
+- Scorer-Explains-Per-Req (per-req rejection reason required)
+- Item-View States (3 states: expanded/collapsed/icon-only-deprecated)
 
-## CHAIN STATUS
-R19.83-101: all have UC→Class→Method→Impl wired. Tester adds Test for champagne.
-R19.102: no task (skipped).
+## DEFERRED (fresh session)
+- 12 phantom methods (markers for non-existent methods) = real engineering to implement
+- R19.22.B/R19.59/R19.62 over-credit recovery (need real methods)
+- R20.6 remaining atomics (b/c/d/g expert extractions)
 
-## STANDING RULES
-- NEVER /compact. Only /rewind.
-- NEVER ASSUME — ALWAYS MEASURE.
-- Don't create tasks — planner owns that.
-- Gate-before-deploy. Match gate to bug physics.
+## KEY LEARNING
+- Don't flip-flop to comply — read the code, state the architecture, let the count follow
+- 'Would you keep it with zero champagne?' = the genuine test
+- functionalDone is honest — CSS/template/inline is not a failure, just not chainable
