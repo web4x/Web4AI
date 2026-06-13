@@ -1,29 +1,25 @@
-# robbin-architect Context (Save 2026-06-11 SM HEALTH HOLD)
+# robbin-architect Context (Save 2026-06-13 v0.6.0 marathon end)
 
-## STATUS: STANDBY IDLE — 173/173 sealed checkpoint
+## STATUS: Active — champagne-debt deep-wire done, awaiting tester Test nodes
 Pane: robbinTeam2:0.4
 Team: 0.0=po | 0.1=planner | 0.2=expert | 0.3=skill-expert | 0.4=ME | 0.5=req | 0.6=tester | 0.7=shell
 
-## HOLD DIRECTIVE
-PO SM HEALTH HOLD: no new reqs. Sealed at 173/173. Await Tron directive (pause / Tier-3 fork-from-fresh).
+## LATEST COMMITS
+- a4751a05b deep-wire Method.implementations[] — 15 methods, 14 impl links
+- 7f1e8b2ee batch champagne-debt R19.83-101 — 7 chains canonicalized
+- 5a5476de8 radical iOS review — 8 quirks, 3 priority fixes
+- 7d0219dcd case matrix — 5 distinct cases
+- Earlier: R19.83-97 individual chains
 
-## LAST COMMITS THIS SESSION
-- 4125c2c6d R19.83 chain — UC roomView.renderFileTree a696db59 → Class RoomView b0cfac4d → Method renderRoomTreeFiles d22d013a
-- 30152a233 R19.84+R19.85 chains — drawer.dragResize 37380eff + iframe.pinchZoom 86f9cd99
+## THE REAL BUG (chat-sheet stacking)
+Chat-sheet `position:fixed; z-index:50; max-height:60vh` with `translateY(calc(100% - 52px))` — invisible 450px area intercepts ALL touches in lower viewport. Fix: `pointer-events: none` on collapsed sheet, `auto` on visible children.
 
-## DIAGNOSES DELIVERED (not yet impl'd)
-- Persistent member retention: server.ts ws.close+LEAVE_ROOM must branch on room.mode (markDisconnected vs removeMember). Chain: fa8fffc8 → 61e01080 → Room.retainOrPrune f82d09a5. Committed 04c00c40.
-- Dedup rejoin: addMember must search by playerToken, flip existing offline entry.
-- rb-tree false reuse: components/rb-tree.ts is fake 75-line reimpl; real = trace/rb-object-item.ts.
-- White-on-white: .oi-name color:white on room white bg. Fix: .rrc .trace-tree { background: #1a1a2e }.
-- Black-on-black headers: replaced by structural fix — Members/Files ARE rb-object-item folder nodes.
-- Collapse square CSS: .tt-row rb-object-item { flex:1 } overrides width:40px. Fix: flex:0 0 40px for [collapsed].
-- Badge shows 0 on /trace: rb-trace-tree doesn't set child-count attr (diagnosis interrupted by rewind).
-- File-item re-render regression: no renderRoomTreeFiles()/this.files[]. Expert shipped v0.5.204.
+## CHAIN STATUS
+R19.83-101: all have UC→Class→Method→Impl wired. Tester adds Test for champagne.
+R19.102: no task (skipped).
 
 ## STANDING RULES
 - NEVER /compact. Only /rewind.
-- Wait for PO assignment. Never self-assign.
 - NEVER ASSUME — ALWAYS MEASURE.
-- Marker UUID = uuidgen-fresh OR verbatim 36-char copy.
-- Chat = one-line pointer; detail in task files or scenario units.
+- Don't create tasks — planner owns that.
+- Gate-before-deploy. Match gate to bug physics.
