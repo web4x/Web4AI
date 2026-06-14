@@ -1,6 +1,6 @@
 # robbin-planner Context — Save Point 2026-06-14 (POST-DEEP-REWIND RE-ANCHOR, git-grounded)
 
-**Pane:** robbinTeam2:0.1. **GIT GROUND TRUTH (trust this over older saves below): HEAD 80902b201, v0.6.22, scoreboard det-2x = 22/208 excl 47 (stable).** Champagne 22 honest (R20.5c+R20.5a genuine); denom 207→208 = R20.9 landscape req added. Older save-points below climbed 181→20→22 — the 20→22 + denom growth happened post my last committable save (2% saves didn't land).
+**Pane:** robbinTeam2:0.1. **GIT GROUND TRUTH (trust this over older saves below): HEAD 80902b201, v0.6.22, scoreboard det-3x = 22/207 excl 49 (stable, post dup-altId dedup d0a94601).** Champagne 22 honest (R20.5c+R20.5a genuine); denom 207→208 = R20.9 landscape req added. Older save-points below climbed 181→20→22 — the 20→22 + denom growth happened post my last committable save (2% saves didn't land).
 ## STATUS (PO-confirmed 2026-06-14 post-rewind)
 - PURGE-VERIFY GATE CLOSED = PASS: test-user purge executed (data/users 232→61→now 29 across cycles), 9 real-humans preserved (Felix Wittke/Hannes Nortje/James Woodward-Caradonna/Krista/Krista Kim/Marcel Donges Surface/Marcel Samsung/Tanya Kelen/Vladislav Tsyao), 12 room-havers survive, backup pre-testuser-purge-...103044Z.tar.gz (49MB) intact. No data lost. Method: room-havers + full-names + over-keep direction + backup-readable (has-device is NOT a real-signal — test fixtures enroll devices).
 - DRAWER v0.6.10 SHIPPED. Champagne 22/208 settled honest.
@@ -14,7 +14,7 @@ det-3x 22/209 excl 47 (denom -1 = dup R19.84 req 62e1b2e1 DELETED db5bfdea). All
 - R20.10(0690ce5e) → openForRef 0a902bff. Remaining: Impl + Test.
 - R20.11(c83f86f6) → close 91efe513. Remaining: Test only (impl already landed).
 - DIAGNOSIS CHAIN fully resolved (5 verify-don't-relay catches before effort): multi-method-drag → UC.method-not-set → class-vs-classes(walker reads ucM.CLASSES plural:254; new UCs had only class singular) → R19.84-residual-impl → R19.84-DUP-REQ(62e1b2e1, one of my flagged dup-altIds R19.84/85/89/92).
-- ⚠ RECOMMEND req-eng dedup the OTHER 3 dup-altIds (R19.85/89/92) — same fan-out risk (doc planner-housekeeping-dup-altids-2026-06-14.md / e726968).
+- ✓ DUP-ALTID DEBT CLOSED (req-eng d0a94601): R19.85/89 redundant DELETED, R19.92→R19.92a renumbered (distinct). det-3x 22/207 excl 49, complete=22 UNCHANGED (no champagne lost). ALL altIds now unique. This debt (flagged hours ago) directly unblocked the R19.84 drawer chain.
 - NEXT: expert markers-in-body (no fake/split/header) + Impl units + tester tests → planner det-3x + per-req-trace each genuine close → +1 each. Each = real named method + classes[]+UC.method + marker-in-body + test + det. Burn-mitigation: pause scans til actual completions.
 ## RbDetailDrawer 11-method assessment (2026-06-14, Tron R19.102 no-progress)
 - COMPLETE champagne (3): swipeDismiss R19.86(852101d1), renderGrabBar R20.2(58abb87f, real method :168), selectionDriven R20.5(b4f6b903).
