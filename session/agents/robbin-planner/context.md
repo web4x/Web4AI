@@ -7,6 +7,11 @@
 - **6-ITEM QUEUE (doc planner-queued-tasks-2026-06-14.md) — ALL forward-traceable + diagnosed/RED + QUEUED, NOT driven (Tron strict-forward):** Q1 BUG8/9, Q2 orphan-prune, Q3 BUG10, Q4 BUG11 (HIGH regression), Q5 R20.9 landscape (designed), +1. Nothing driven.
 - ⚠ BURN-MITIGATION (PO, I 2nd-burned on det-3x scans = fast-burner): SMALLER det-3x batches (det-2x not 3x when possible; scope greps tightly); SAVE context.md PROACTIVELY before big scans/audits → self-rewind-clean. Watch own context %.
 - HOLD active re-task til SM Rule-6 GREEN (protocol). Then full PO re-dispatch on queue + climb.
+## DRAWER-CHAMPAGNE CLIMB IN FLIGHT (2026-06-14, task 3c7d1853 / 24381f9c)
+- 4 climb candidates: open(R16.2)/close(R19.33)/dragResize(R19.84 0be510a8)/filePreview-content(R19.63 6052570f). filePreviewBUTTON R19.93 already champagne (distinct).
+- Architect wired 4 UC+Method chains (e7841a0d): openForRef→0a902bff, close→91efe513, dragResize→dc130f76 handleDragResize, filePreview→e4395c35 renderFilePreview. det holds 22/208 (no inflation).
+- ⚠ FLAGGED to architect (verify-don't-relay, before expert burns effort): MULTI-METHOD DRAG — each req's tool-representative is a DIFFERENT open method (R16.2=setBackground, R19.33=stickyClose[was functionalDone CSS!], R19.63=old-filePreview) → must narrow to single genuine UC.method (T187/T202) or extras drag. R19.84 has a stray 'open' method open-at-Class = likely cross-wired from R16.2's openForRef. R19.33 close-vs-stickyClose: confirm genuine path.
+- BLOCKED on architect resolving singular-chain/mis-wire → then expert(real in-body markers, no split-for/fake)→tester(tests)→I det-3x each genuine close (+1 champagne each from 22). NOT-scope: 3 champagne + 4 functionalDone.
 ## RbDetailDrawer 11-method assessment (2026-06-14, Tron R19.102 no-progress)
 - COMPLETE champagne (3): swipeDismiss R19.86(852101d1), renderGrabBar R20.2(58abb87f, real method :168), selectionDriven R20.5(b4f6b903).
 - functionalDone (4, CSS/template, NOT a gap): fullWidth R19.52(CSS app.css:264), iframePinchZoom(CSS), removeDefaultHighlight R20.6(e76330fe CSS keep-X), unifiedTraceability(template — confirm).
