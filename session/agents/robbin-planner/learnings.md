@@ -458,3 +458,6 @@ Arc: inflated-181 (string-match hasRealImpl) → 21 (AST strict fold) → +5 gen
 - **Number follows the rule BOTH ways:** correct own over-credits DOWN AND surface genuine recoveries UP (R19.2/2.A vs a peer's blanket "0 typos").
 - **functionalDone ≠ champagne:** CSS/template/inline/handler = functionalDone (in-denom, model.functionalDone:true), not champagne. Don't extract-a-fake-method to game +1.
 - **per-req trace beats summary:** scripts/trace-req.ts (reflective walkReq) is the tiebreaker; verify via det-3x, don't relay "done" claims.
+
+## 66. Destructive-op: delete-SET safe ≠ post-execution safe (2026-06-14 purge)
+Two gates BOTH needed: (a) pre-exec delete-set audit (independent baseline: backup-readable, every room-haver+full-name-human in keep, over-keep direction) = catches bad PLAN. (b) post-exec re-verify vs captured baseline = catches bad IMPL. The delete-set was SAFE yet the aggregate-PRUNE impl over-deleted 4 real humans from profiles.json (dirs survived but server loads the aggregate → invisible); a clean dir-count masked it. LESSON: capture independent baseline BEFORE, re-verify AFTER, check consistency BOTH directions (aggregate↔per-item). A "done, count matches" claim can hide silent loss in a secondary store. Backup-first non-negotiable. Verify-don't-relay applies to destructive ops most.
