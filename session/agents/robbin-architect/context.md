@@ -1,29 +1,45 @@
-# robbin-architect Context (Save 2026-06-14 ~02:00, post-marathon)
+# robbin-architect Context (Save 2026-06-14 late, SM-directed)
 
-## STATUS: STANDBY — 20/204 settled, climb deferred to fresh session
+## STATUS: Active — T-DRAWER-CHAMPAGNE + R20.12 pinned sprint
 Pane: robbinTeam2:0.4
+Team: 0.0=po | 0.1=planner | 0.2=expert | 0.3=skill-expert | 0.4=ME | 0.5=req | 0.6=tester | 0.7=shell
 
-## SETTLED
-- 20/204 genuine champagne (det-3x verified)
-- Heads-loophole-8 resolved: R19.2/2.A typo-recovered, R19.22.B/59/62 over-credit-dropped, R19.33/75/81 functionalDone
-- R19.82 = dup of R19.8.B (same rejoinDedup behavior, credit once)
-- R19.8.B genuine (rejoinDedup extracted, own method, MEMBER_RECONNECTED vs MEMBER_JOINED)
-- 3 borderlines functionalDone (stickyClose, authToken, iframe-pinch = CSS/template/URL-param)
+## CHAMPAGNE: 22/209 (honest, planner det-3x verified)
 
-## STANDARDS CODIFIED THIS SESSION
-- Implementation Marker Validity (named method body only)
-- Refinement-Cluster Rule (same behavior-family = share; distinct = own method)
-- Duplicate-Requirement Markers (remove stray dup markers)
-- Heads-Must-Name-Match (position AND label required)
-- Scorer-Explains-Per-Req (per-req rejection reason required)
-- Item-View States (3 states: expanded/collapsed/icon-only-deprecated)
+## ACTIVE CHAINS (expert proceeds)
+- R19.84 → handleDragResize dc130f76 (CLEAN, single method, expert extracts + real marker)
+- R19.63 → renderFilePreview e4395c35 (CLEAN, expert extracts + real marker)
+- R20.10 → openForRef 0a902bff (CLEAN, expert marker + test)
+- R20.11 → close 91efe513 (CLEAN, expert marker + test → impl already done per planner)
+- R20.12 → renderPinnedSprint 91af4ca4 (Sprint 29 6dc43057 created, expert implements)
 
-## DEFERRED (fresh session)
-- 12 phantom methods (markers for non-existent methods) = real engineering to implement
-- R19.22.B/R19.59/R19.62 over-credit recovery (need real methods)
-- R20.6 remaining atomics (b/c/d/g expert extractions)
+## RECENT COMMITS
+- 7becb98e0 R20.12 chain — Sprint 29 + TracePage + renderPinnedSprint
+- db5bfdea4 delete duplicate R19.84 req 62e1b2e1
+- 68aeef9a1 add classes[] plural to 4 drawer UCs
+- 003da584b wire R20.10+R20.11 reqs
+- 6c529d163 remove old dragResize 01771d5b fake-suffix from methods[]
+- e2f8e48d4 narrow T-DRAWER-CHAMPAGNE to 2 flippable
+- e7841a0d7 4 UCs+Methods for drawer behaviors
+- 64be19345 honest reclassify — 2 genuine, 5 un-wired
+- 233ad9627 UC legs R20.5a+R20.5c + delete 4 phantoms
 
-## KEY LEARNING
-- Don't flip-flop to comply — read the code, state the architecture, let the count follow
-- 'Would you keep it with zero champagne?' = the genuine test
-- functionalDone is honest — CSS/template/inline is not a failure, just not chainable
+## QUEUED (not driven, Tron strict-forward)
+- QUEUE-5: landscape-responsive layout (R20.9 678ed4f1, design spec'd)
+- BUG8-11: collection-blank + file-blank + URL-actions broken + stale-cache
+- Test isolation harness (SystemTester identity + grep-guard)
+- Drawer consolidation refinements
+
+## KEY LEARNINGS THIS SESSION
+- classes[] (plural) vs class (singular): walker reads plural, must set BOTH
+- Duplicate altId reqs cause fan-out drag (R19.84/85/89/92 dups from marathon)
+- UC.method narrows walker — without it, Class.methods[] fans out ALL methods
+- Phantom methods: delete, don't fabricate markers for non-methods
+- Honest classification: inline/declarative/CSS = functionalDone, NOT champagne
+
+## STANDING RULES
+- NEVER /compact. Only /rewind.
+- NEVER ASSUME — ALWAYS MEASURE.
+- Don't create tasks — planner owns that.
+- Gate-before-deploy. Match gate to bug physics.
+- classes[] PLURAL on every UC (walker reads plural, not singular).

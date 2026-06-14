@@ -342,4 +342,35 @@ Recurring dup-collisions from architect creating tasks that planner also creates
 ### Tron Is NOT the Tester
 Tron reports symptoms on his device. Tester measures. Architect diagnoses from measurements. Never gate on "Tron says it works." Gate = tester's reproducible automated or device-verified test. Tron's device is the FINAL acceptance, not the primary gate.
 
+## v0.6.14 Session: Chain Hygiene + Drawer Completion (2026-06-14)
+
+### classes[] (plural) vs class (singular) — Walker Field Mismatch
+The champagne walker reads `ucM.classes` (PLURAL array, skill-classes.ts:254), NOT `ucM.class` (singular). If classes=[] empty, walker hits the 'Wire Class to UC' branch BEFORE reaching UC.method narrowing → Class.methods[] fans out ALL methods ('open' drag). Fix: ALWAYS set BOTH `class` (singular IOR) AND `classes` (plural array with same IOR) on every UC. This caused 4 chains to drag until fixed.
+
+### Duplicate altId Reqs Cause Fan-Out Drag
+Two R19.84 requirement units (0be510a8 + my 62e1b2e1 from the marathon) both had altId='R19.84'. Walker resolved BOTH → 2 method rows → drag. Fix: delete duplicates. Recommend req-eng dedup R19.85/89/92 (same risk). RULE: before creating a req, grep for existing altId.
+
+### Phantom Methods — Delete, Don't Fabricate
+classifyType = const data-factory declarations (BugLoader/ChangeRequestLoader), NOT a named method body. classHop = file-level marker (TraceModel.ts:2), real logic in get chainPosition() getter. Both deleted as phantoms. RULE: if there's no named function/method body to mark, the behavior is functionalDone — don't fabricate an [impl:uuid] on a const/CSS/getter/file-header.
+
+### Honest Classification: Inline/Declarative/CSS = functionalDone
+The night's strict ruling: Impl MUST mark a REAL NAMED METHOD (function declaration or method body). Inline code blocks inside render(), CSS rules in app.css, const declarations, file-header comments = functionalDone, NOT valid champagne Impls. Applied to 13 methods: 2 genuine (renderAllChildrenSection, renderSupersededSection), 11 functionalDone. Honesty over optics — even fewer wired.
+
+### Multi-Method Drag — Narrow UC to Single Method
+R16.2 had 2 UCs (stickyBottom + openForRef), R19.63 had 2 UCs (file.clickPreview + renderFilePreview). Per singular-chain rule, each req must narrow to ONE UC with ONE method. Cross-wired UCs (openForRef on R16.2 which is CSS stickiness) cause incorrect req attribution. Fix: remove cross-wired UCs, create own reqs for orphaned genuine methods.
+
+### Drawer Overlay = Flex Container Constraint, NOT position:fixed
+The /trace drawer's "overlay" appearance on narrow screens is from the FLEX CONTAINER constraint (.trace-page height:100vh-44px + tree flex:1 scrolls internally + drawer flex-shrink:0 pins at bottom), NOT position:fixed. position:fixed caused BUG5 (full-viewport hit-test area). The static-flex pattern gives overlay LOOK without overlap. Applied to room via .room-view flex constraint alignment.
+
+### Bounded Overlay: height:auto + max-height = Element Bounds Match Visible Bounds
+If position:fixed overlay is needed: height:auto + max-height:50vh makes the element only as tall as its content. Area above = tree, tappable. The original BUG5 had max-height:95vh + full-viewport element box → taps above visible drawer hit the invisible element.
+
+### Touch Listeners on Handle Only — Not Whole Drawer
+rb-detail-drawer touch handlers (touchstart/touchmove/touchend) registered on `this` (whole element) prevented click synthesis for taps ANYWHERE on the drawer — even with pointer-events:none CSS (JS addEventListener ignores CSS pointer-events). Fix: register touch listeners on `.drawer-handle` only.
+
+### SystemTester Identity — Zero New Users By Construction
+Test pollution (49 probe users) caused by inline scripts creating fresh identities on prod. Fix: shared test/system-tester.ts with fixed SystemTester token. ensureSystemTester() sets localStorage to known token → server reuses existing profile → 0 new users. grep-guard rejects raw :4444 in test files.
+
+### Sprint Scenario Units Required for /api/trace/sprints
+/api/trace/sprints returns only scenario-indexed Sprint units sorted by number. If a sprint has no scenario unit, it doesn't appear. Sprint 29 was missing → created with number=29 so it becomes the "current" (highest-numbered) sprint for the pin feature.
 
