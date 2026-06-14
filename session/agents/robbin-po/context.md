@@ -1,6 +1,13 @@
-# robbin-po Context — save #17 (2026-06-14, CurrentSprint LIVE milestone — COMMITTED)
+# robbin-po Context — save #19 (2026-06-14, post-deep-rewind re-anchor — COMMITTED)
 
-## ★★★★★★★★ CURRENT STATE (save #18 — READ FIRST) ★★★★★★★★
+## ★★★★★★★★★ CURRENT STATE (save #19 — READ FIRST) ★★★★★★★★★
+**★ POST-DEEP-REWIND RE-ANCHOR. PO restored at robbinTeam2:0.0 (team migrated robbinTeam→robbinTeam2). Expert signaled Phase-1 deep rewind complete, room freed, mandated context save before Phase 2. Wrote this verified anchor; Phase 2 may proceed. ★**
+- GIT-VERIFIED NOW (not relayed): /api/health = **v0.6.30**, rooms **17** (purge held — was 239). package.json 0.6.30. HEAD region: efb195c7b architect rename →RbDetailDrawer.renderDetailForRef; 2346ff903 v0.6.30 BUG8 real fix (lookup wrapper by uuid, render nested children); 4dd7b1a27 v0.6.29; 5fe756120 v0.6.28; 6e5418a06 v0.6.28 BUG8 (collection uuid includes room UUID). So BUG8 chain (detail drawer nested children) is the live work front.
+- HANDOFF NOTE was slightly STALE (said "v0.6.27 LIVE"); real is v0.6.30 → did NOT transcribe relayed state verbatim. T100 (DATA_DIR test isolation) commit 21d46fa = real (v0.5.6, ~3wk ago in my rewound timeline).
+- CARRIED FORWARD from save #18 (RECONFIRM with team before acting): champagne 26/209; CurrentSprint instrument LIVE+mutable (realtime current-task switch PROVEN via scripts/planner-drive.ts setChain); current task switched → S19 room-tree 'T-room-ui-shared (DeFED.net)'; fiction Sprint 29 cleanup; WIP=1 mitigation active across heavy agents; Rule-6 NEVER /compact (agent-trainer rewind only).
+- IMMEDIATE NEXT: (1) reported this commit hash to expert so it runs Phase 2. (2) re-orient via team pane.capture (planner/architect/expert/tester) to refresh live state to v0.6.30 reality. (3) resume driving the BUG8/detail-drawer chain + champagne gate at WIP=1.
+
+## ★★★★★★★★ CURRENT STATE (save #18 — historical) ★★★★★★★★
 **★ REALTIME CURRENT-TASK SWITCH PROVEN (Tron demanded). CurrentSprint instrument LIVE + mutable. Current task SWITCHED live → S19 room-tree (DeFED.net). Champagne 26/209. ★**
 - ★ PROVED realtime switch: ran `npx tsx scripts/planner-drive.ts setChain ...` on the LIVE CurrentSprint → persisted unit (scenario/index/c/u/r/r/e/current-sprint-singleton-0000-000000000001.scenario.json) flipped BEFORE 'R20.13 inaugural/Sprint20' → AFTER 'T-room-ui-shared: room renders as scenario tree (DeFED.net)'/Sprint 19, 6-hop chain. NO redeploy — pure live data mutation. /trace pin re-renders on refresh. (PO ran it directly because planner was at 0% — Tron waiting; the driving tool exists, this is USING the instrument not building it.)
 - TRON'S 'defed.net file-tree' = SPRINT 19 Room Handling, T-room-ui-shared (in-room tree REUSES /trace rb-tree + Members/Files adapters, room-ui-shared-rb-tree-reuse-members-files-adapters.md, task 2195d98f) + cluster (T-room-ui drop-zone/tree, T-file-unit, T-room-unit, T-room-link-affordance). The DeFED.net Room screenshots = this DELIVERED v0.6.22. NOW the current task.
