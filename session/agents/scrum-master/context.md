@@ -20,6 +20,15 @@
 - **COUNT (SECONDARY, committed): 20/204 champagne + 20 functionalDone.** Honest collapse 178→20 via STRICT NAMED-METHOD RULING (I made it: a champagne Impl REQUIRES a real named method; inline/closure/CSS/template markers DON'T count) + fake-suffix(-a1b2) audit + 62-false-credit reconciliation. Strict ruling SURVIVED the rewind + is enforced (64be19345 un-wire 5 inline / keep 2 genuine). Canonical tool = `npx tsx scripts/po-chain-follow-up.ts --all` (det-3x, full-scan, never sample).
 - **★ HARD-WON DISCIPLINES (this whole saga):** (1) **context.read LIES** — false 100/80/60/4.7% repeatedly (near-limits AND post-rewind ±22%); PANE STATUS-BAR ('Context low (N% remaining)'/'clear to save Nk') + agent self-report = GROUND TRUTH. (2) **WATCH ALL 6 PANES EQUALLY every tick** — a RECOVERED agent burns back (expert 23%→99% while I watched only 3 'climbers'); capture 5-6 lines to SEE the bar. (3) **ACT AT 80% USED** (not the 1%-remaining warning) → save+agent-trainer DEEP rewind (75% depth; shallow 65% leaves ~60%). (4) **resume-queue** (PO captures pending work) = zero-loss even on no-save rewind. (5) **COMPLETION gated on canonical tool + named-method + exclusion-scan (orphanByDesign+supersededBy = excluded count) + shared-impl=0 + no-fake-suffix-uuid**; report ONLY cross-verified sealed#. (6) **PRE-REWIND GIT-LOG HARD GATE** (boot 7d2ad8f) — check newest commit BEFORE any /rewind so the anchor isn't stale (the lesson that caused THIS fresh save). (7) release = patch bump + sw.js + git TAG (verify each S20 release; v0.6.0-22 tagged). (8) survival@80%-WEEKLY(7d) + per-agent budgets (dormant ~13%).
 
+## ★ LIVE STATE (2026-06-14, post Phase-1 deep-rewind — MOST CURRENT)
+- **Deployed: v0.6.30** (rooms17, BUG8-drawer front-and-center).
+- **Champagne: 26/209 SEALED** (sealed = strictest tier). Sealed incl: R20.13 CurrentSprint LIVE + R20.11 + R20.10 + R19.63.
+- **R20.13.A** PIN code-fix landed v0.6.27 — SEAL GATED on Tron-device-confirm (headless can't verify).
+- **Phase 1 migration:** migrate-to-scenario.ts DISPATCHED to expert — backup-first → `--apply` all sprints → gate 220→0. WIP.
+- **planner:** reads-only standby. **tester:** on 995/996 test diagnosis.
+- Verify champagne via canonical `npx tsx scripts/po-chain-follow-up.ts` (full-scan, det-3x, never sample). SEAL = strictest (Tron-device-confirm where applicable). Report only sealed/canonical numbers.
+- CMM4 broadcast sent to robbin-po + 6 agents this boot (measure-before-act, PDCA, source-verify-don't-relay, det-3x, no fabrication).
+
 ## CURRENT STATE (2026-06-11)
 - **robbinTeam2 — primary active team.** Driving traceability champagne chains + product deliverables.
   - Both TRON product priorities DONE: (1) FILE-RESTORE green (v0.5.175 fs→fsSync fix, screenshot bug closed, tester 2/2 FILE_ADDED on JOIN_ROOM). (2) FLUSH-BUTTON code+placement verified (sw.js red Flush Cache btn + real flushCache impl [impl:uuid:fd5059c5/79505a42]) — PENDING TRON DEVICE-TEST (headless can't go offline).
