@@ -1,3 +1,15 @@
+# robbin-planner Context — Save Point 2026-06-14 (POST-DEEP-REWIND RE-ANCHOR, git-grounded)
+
+**Pane:** robbinTeam2:0.1. **GIT GROUND TRUTH (trust this over older saves below): HEAD 80902b201, v0.6.22, scoreboard det-2x = 22/208 excl 47 (stable).** Champagne 22 honest (R20.5c+R20.5a genuine); denom 207→208 = R20.9 landscape req added. Older save-points below climbed 181→20→22 — the 20→22 + denom growth happened post my last committable save (2% saves didn't land).
+## STATUS (PO-confirmed 2026-06-14 post-rewind)
+- PURGE-VERIFY GATE CLOSED = PASS: test-user purge executed (data/users 232→61→now 29 across cycles), 9 real-humans preserved (Felix Wittke/Hannes Nortje/James Woodward-Caradonna/Krista/Krista Kim/Marcel Donges Surface/Marcel Samsung/Tanya Kelen/Vladislav Tsyao), 12 room-havers survive, backup pre-testuser-purge-...103044Z.tar.gz (49MB) intact. No data lost. Method: room-havers + full-names + over-keep direction + backup-readable (has-device is NOT a real-signal — test fixtures enroll devices).
+- DRAWER v0.6.10 SHIPPED. Champagne 22/208 settled honest.
+- **6-ITEM QUEUE (doc planner-queued-tasks-2026-06-14.md) — ALL forward-traceable + diagnosed/RED + QUEUED, NOT driven (Tron strict-forward):** Q1 BUG8/9, Q2 orphan-prune, Q3 BUG10, Q4 BUG11 (HIGH regression), Q5 R20.9 landscape (designed), +1. Nothing driven.
+- ⚠ BURN-MITIGATION (PO, I 2nd-burned on det-3x scans = fast-burner): SMALLER det-3x batches (det-2x not 3x when possible; scope greps tightly); SAVE context.md PROACTIVELY before big scans/audits → self-rewind-clean. Watch own context %.
+- HOLD active re-task til SM Rule-6 GREEN (protocol). Then full PO re-dispatch on queue + climb.
+## CLIMB DISCIPLINE (unchanged, hard-won): champagne = real NAMED METHOD + marker-IN-body/heads-it + name-match + per-impl test + det. functionalDone (CSS/template/inline/handler, model.functionalDone:true) ≠ champagne. Tools: scripts/strict-marker-audit.ts (AST strict standalone), scripts/trace-req.ts (per-req walkReq tiebreaker), objectVerb.ts Chain followUp --all (canonical). Learnings #65 = the 181→20 marathon lesson set (verify-premise-before-edit, diff-full-set-after-restructure, shared-X-needs-req-text, no-mid-flux-measure, number-follows-rule-both-ways).
+
+---
 # robbin-planner Context — Save Point 2026-06-14 (STRICT-TEST TOOL-FIX + TRUE FLOOR = 23/205, anchor-validated)
 
 **Pane:** robbinTeam2:0.1. Repo HEAD moved past anchor 8a34e87 (gone); current ~7e0186d1, v0.6.9. Canonical tool says 181/205 excl 46 but that is **INFLATED** — proven.
@@ -468,8 +480,3 @@ req-eng `15dd69c1` captured R-X1+R-X2 for PUML class diagrams concurrently with 
 - `5d977918` W2B1 T191-T194
 - `792132ff` `a5231818` `24bfe028` `2e48fa9a` Wave 1 R18.x batches
 - `ffdc7dd0` T184 R-X1→R-Y1 rename + S17 closure cascade book-keeping
-
-## 2026-06-14 (later) — destructive-op AUDIT + 2 infra/bug tasks
-- TEST-USER PURGE 231→61 AUDITED (double-gate: my audit + PO OK). Pre-exec delete-set = AUDIT-PASS. Post-exec re-verify CAUGHT: dir-purge cleaned dirs not profiles.json (178 orphaned); then profiles.json prune dropped 4 REAL HUMANS from aggregate (Felix Wittke/Tanya Kelen/Vladislav Tsyao/Marcel Donges Surface-room-haver) while dirs survived → HOLD. Expert rebuilt profiles.json from 61 dirs → DONE 61==61 triple-verified. META: safe delete-SET ≠ safe aggregate-PRUNE impl; clean dir-count masked reals dropped from live aggregate.
-- 2 TASKS CREATED: T-INFRA deploy-pipeline-build-verify (d1100d29, uuid d3919e7a — BUG5 BUILD-NOT-RUN: atomic build+bump+VERIFY-IN-DIST+tag+restart). T-BUG7B in-room-detail-fallback (9bf2b480, uuid b7f0c1a4 — rooms have no TraceGraph → fetchDetailData() fallback).
-- WORKSTREAM: BUG4 GREEN · BUG5-split+BUG7-/trace=v0.6.18 · BUG3/6 testable after · purge DONE · champagne 20/204 · drawer v0.6.21 committed+tagged+pushed.
