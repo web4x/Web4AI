@@ -7,14 +7,15 @@
 - **6-ITEM QUEUE (doc planner-queued-tasks-2026-06-14.md) — ALL forward-traceable + diagnosed/RED + QUEUED, NOT driven (Tron strict-forward):** Q1 BUG8/9, Q2 orphan-prune, Q3 BUG10, Q4 BUG11 (HIGH regression), Q5 R20.9 landscape (designed), +1. Nothing driven.
 - ⚠ BURN-MITIGATION (PO, I 2nd-burned on det-3x scans = fast-burner): SMALLER det-3x batches (det-2x not 3x when possible; scope greps tightly); SAVE context.md PROACTIVELY before big scans/audits → self-rewind-clean. Watch own context %.
 - HOLD active re-task til SM Rule-6 GREEN (protocol). Then full PO re-dispatch on queue + climb.
-## DRAWER-CHAMPAGNE CLIMB — UNBLOCKED, expert proceeding (2026-06-14, task 3c7d1853) — 4 candidates, 22→26
-count 22/210 excl 47. Pipeline: req-eng✓ → architect✓(narrowing+classes[] fix 68aeef9a) → EXPERT(real in-body markers+Impl units) → tester(tests) → planner det-3x each.
-- R19.63 → renderFilePreview e4395c35 (rb-detail-view.ts). CLEAN narrowed, open-at-Impl(expert). Ready.
-- R20.10 (0690ce5e) → openForRef 0a902bff. CLEAN. Ready.
-- R20.11 (c83f86f6) → close 91efe513 (rb-detail-drawer.ts:107). CLEAN. Ready.
-- R19.84 → handleDragResize dc130f76 (genuine). ⚠ residual: old dragResize 01771d5b (fake-suffix) still wired → architect dropping it → then clean. Expert uses handleDragResize, NOT 01771d5b.
-- DIAGNOSIS CHAIN resolved (3 verify-don't-relay catches before effort): (1) multi-method drag → narrow, (2) UC.method not set, (3) class-vs-classes: WALKER reads ucM.CLASSES (plural, skill-classes.ts:254); architect's new UCs had only CLASS (singular) → clsIors empty → 'Wire Class to UC' branch before UC.method narrowing. Fix=add classes[] plural. (Tool-harden flagged for skill-expert: walker fall back to class-singular.)
-- Each flip = real named method + classes[]+UC.method set + marker-IN-body (no fake/split/header) + test + det-3x + per-req-trace. NOT-scope: 3 champagne + 4 functionalDone.
+## DRAWER-CHAMPAGNE CLIMB — ALL 4 CHAINS CLEAN, expert/tester proceeding (2026-06-14, task 3c7d1853) — 22→26
+det-3x 22/209 excl 47 (denom -1 = dup R19.84 req 62e1b2e1 DELETED db5bfdea). All 4 single genuine method, no fan-out:
+- R19.84(0be510a8) → handleDragResize dc130f76. Remaining: Impl (expert marker).
+- R19.63(6052570f) → renderFilePreview e4395c35. Remaining: Impl + Test.
+- R20.10(0690ce5e) → openForRef 0a902bff. Remaining: Impl + Test.
+- R20.11(c83f86f6) → close 91efe513. Remaining: Test only (impl already landed).
+- DIAGNOSIS CHAIN fully resolved (5 verify-don't-relay catches before effort): multi-method-drag → UC.method-not-set → class-vs-classes(walker reads ucM.CLASSES plural:254; new UCs had only class singular) → R19.84-residual-impl → R19.84-DUP-REQ(62e1b2e1, one of my flagged dup-altIds R19.84/85/89/92).
+- ⚠ RECOMMEND req-eng dedup the OTHER 3 dup-altIds (R19.85/89/92) — same fan-out risk (doc planner-housekeeping-dup-altids-2026-06-14.md / e726968).
+- NEXT: expert markers-in-body (no fake/split/header) + Impl units + tester tests → planner det-3x + per-req-trace each genuine close → +1 each. Each = real named method + classes[]+UC.method + marker-in-body + test + det. Burn-mitigation: pause scans til actual completions.
 ## RbDetailDrawer 11-method assessment (2026-06-14, Tron R19.102 no-progress)
 - COMPLETE champagne (3): swipeDismiss R19.86(852101d1), renderGrabBar R20.2(58abb87f, real method :168), selectionDriven R20.5(b4f6b903).
 - functionalDone (4, CSS/template, NOT a gap): fullWidth R19.52(CSS app.css:264), iframePinchZoom(CSS), removeDefaultHighlight R20.6(e76330fe CSS keep-X), unifiedTraceability(template — confirm).
