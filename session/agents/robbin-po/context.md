@@ -1,4 +1,14 @@
-# robbin-po Context — save #16 (2026-06-14, post-DEEP-rewind, git-verified + COMMITTED — F-T16 fresh anchor)
+# robbin-po Context — save #17 (2026-06-14, CurrentSprint LIVE milestone — COMMITTED)
+
+## ★★★★★★★ CURRENT STATE (save #17 — READ FIRST) ★★★★★★★
+**★ CurrentSprint INSTRUMENT IS LIVE (Tron's directive realized). Champagne 24/209 excl 49 (+2 genuine), +2 recoverable→26. v0.6.24 LIVE+tagged. Repopulation FIXED+proven. ★**
+- ★ R20.13 CurrentSprint CHAMPAGNE → CLASS LIVE (planner det-3x): real code src/ts/scenario/CurrentSprint.ts (4 methods setChain e8bd1984/pinCurrent 63d2c341/advance 2011ae78/getActiveChain f44ae205, in-body name-matched, real tests) + planner SKILL formalized (scrum.pmo/skills/planner-current-sprint-driving.md). NOW the planner's planning+driving TOOL: maintains CurrentSprint, setChain(WIP=1 chain), pinCurrent→/trace pin (R20.12), advance on champagne+Tron-QA, driveNext derives role-actions from open node. 6-queue MIGRATING into CurrentSprint advance-order; WIP=1 class-enforced.
+- CHAMPAGNE 24/209 (+2 this gate: R20.13 + R20.11). RECOVERIES routed (expert): R20.10 relabel openForRef→renderDetailForRef typo →25; R19.63 extract anon-closure→named method renderFilePreview() →26 (both genuine, like R19.2 typo/R19.93 extract). R20.12 functionalDone (module-level pinnedSprint, like R16.5). det-3x each on commit.
+- v0.6.24 LIVE+tagged (drawer/trace detail + pinned-current-sprint). Repopulation FIXED-by-construction+PROVEN (ensureSystemTester reuse token + seed-before-WS + test:guard; 0-new proven; profiles 24/dirs 29/orphans 0). 
+- 6-ITEM QUEUE (now → CurrentSprint advance-order): Q1 BUG8/9, Q2 orphan-prune, Q3 BUG10, Q4 BUG11(HIGH url-dual-path), Q5 R20.9 landscape. Driven ONE narrow chain at a time THROUGH the live CurrentSprint.
+- TEAM: many rewinds all clean Rule-6 NEVER /compact; anchors committed fresh each cycle (F-T16). Verify-don't-relay now reflexive across ALL agents (planner caught architect's units-only + wiring-holes; tester honest-flagged module-level no-impl). SM watches PO-first. Device-checks (drawer/all-children/pinned-row v0.6.24) + R19.99 = Tron-side.
+
+## ★★★★★★ save #16 (historical) ★★★★★★
 
 ## ★★★★★★ CURRENT STATE (save #16 — READ FIRST, git-verified HEAD 76bb35a9a) ★★★★★★
 **v0.6.24 LIVE (/api/health=0.6.24, HEAD 76bb35a9a) — but UNTAGGED (expert tagging, release rule #90). Sprint 29 WIP=1. Champagne 22/207-208 (markers in, tester tests PENDING for det-3x). Repopulation FIXED+PROVEN+cleaned. Recovered this cycle.**
