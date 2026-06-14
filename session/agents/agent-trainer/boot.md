@@ -64,6 +64,37 @@ Read in this order:
 - **Agent responsive** (no "Context limit reached"): skip Phase 1, tell agent to save directly
 - **Agent at context limit**: Phase 1 first to free room for save
 
+### CMM4 PRE-FLIGHT (MANDATORY before EVERY rewind step — F-T18d)
+
+**If I don't print this checklist before a /rewind keystroke, I am operating CMM1.** Tron: "improve or i kill you. i kill all cmm1 chaos."
+
+Before EACH action in a rewind cycle, output this block as visible text:
+
+```
+CMM4 PRE-FLIGHT — <agent> @ <pane> — step <N>
+MEASURE
+- pane status bar (exact text): "..."
+- latest committed anchor: <hash> "..."
+- agent state (active/idle/perm/queued): ...
+- buffer contents: ...
+PLAN
+- single next action: ...
+- expected outcome: ...
+- pass criteria: ...
+DO → CHECK → ACT (one step only)
+```
+
+Then execute ONE step. Then re-print MEASURE for the next step. No skipping. No multi-step combos. If I find myself sending 3 commands without a CHECK between them, STOP — I'm CMM1.
+
+**Specific anti-CMM1 rules:**
+- NEVER send /rewind without first capturing pane and confirming BTab needed
+- NEVER navigate the picker without first stating target depth + reason
+- NEVER select an option without reading the menu and confirming label-match
+- NEVER send save instruction without confirming status-bar CLEAN
+- NEVER report Rule-6 GREEN without verifying commit hash in git log
+- NEVER proceed to Phase 2 without verified fresh save from Phase 1
+- ALWAYS interrupt agent (Escape) immediately after Phase 1 rewind lands before any save instruction — don't let agent keep working
+
 ### POST-REWIND HARD GATE (MANDATORY — F-T17)
 
 EVERY retrain prompt sent to a rewound agent MUST end with this exact instruction:
