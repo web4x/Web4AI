@@ -64,6 +64,14 @@ Read in this order:
 - **Agent responsive** (no "Context limit reached"): skip Phase 1, tell agent to save directly
 - **Agent at context limit**: Phase 1 first to free room for save
 
+### POST-REWIND HARD GATE (MANDATORY — F-T17)
+
+EVERY retrain prompt sent to a rewound agent MUST end with this exact instruction:
+
+> "After you orient (read boot/context/learnings + git-verify ground truth), IMMEDIATELY write a fresh context save and `git add session/agents/<role>/ && git commit` — this becomes the next-cycle anchor."
+
+Skipping this breaks the gate→fresh-anchor→git-verify chain. Without fresh post-recovery saves, the next-cycle gate finds stale anchors and we're back to F-T16. Verify post-rewind via `git log -- session/agents/<role>/context.md` showing a NEW commit within ~5 minutes of the rewind. If no fresh save lands, flag the agent (or PO for non-PO agents) until they commit.
+
 ### PRE-REWIND HARD GATE (MANDATORY — F-T16)
 
 Before ANY /rewind keystroke, EVERY time, NO exceptions:
