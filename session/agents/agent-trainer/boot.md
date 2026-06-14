@@ -102,7 +102,7 @@ Sequence:
 2. Try modest depth (2-3 steps), select, option-2-by-label
 3. CHECK STATUS BAR — if "Context low" gone: GOOD, proceed to step 4
 4. If still "Context low": /rewind AGAIN, go deeper (5, then 10, then ~75% if needed)
-5. Once status bar CLEAN: FORCE agent to write context save and commit (F-T17 instruction)
+5. Once status bar CLEAN: **IMMEDIATELY send Escape to interrupt any in-progress agent generation** (F-T18c) → C-u to clear buffer → FORCE agent to write context save and commit. Do NOT wait for the agent to finish whatever it's doing — interrupt and save NOW.
 6. VERIFY commit hash via `git log` BEFORE Phase 2
 7. Phase 2: full 75% deep rewind from the FRESH anchor
 
