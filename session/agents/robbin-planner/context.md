@@ -7,6 +7,11 @@
 - **6-ITEM QUEUE (doc planner-queued-tasks-2026-06-14.md) — ALL forward-traceable + diagnosed/RED + QUEUED, NOT driven (Tron strict-forward):** Q1 BUG8/9, Q2 orphan-prune, Q3 BUG10, Q4 BUG11 (HIGH regression), Q5 R20.9 landscape (designed), +1. Nothing driven.
 - ⚠ BURN-MITIGATION (PO, I 2nd-burned on det-3x scans = fast-burner): SMALLER det-3x batches (det-2x not 3x when possible; scope greps tightly); SAVE context.md PROACTIVELY before big scans/audits → self-rewind-clean. Watch own context %.
 - HOLD active re-task til SM Rule-6 GREEN (protocol). Then full PO re-dispatch on queue + climb.
+## RbDetailDrawer 11-method assessment (2026-06-14, Tron R19.102 no-progress)
+- COMPLETE champagne (3): swipeDismiss R19.86(852101d1), renderGrabBar R20.2(58abb87f, real method :168), selectionDriven R20.5(b4f6b903).
+- functionalDone (4, CSS/template, NOT a gap): fullWidth R19.52(CSS app.css:264), iframePinchZoom(CSS), removeDefaultHighlight R20.6(e76330fe CSS keep-X), unifiedTraceability(template — confirm).
+- INCOMPLETE-genuine climb candidates (4): open R16.1/2(97f2cf22, SPLIT-FOR markers→need genuine named-method), close(real method :107 but stickyBottom SPLIT-FOR d0235605→need impl+test in body), dragResize R19.84(01771d5b FAKE-SUFFIX -a1b2-4c3d-8e4f→need real uuid+named method), filePreviewButton R19.63(f94da2cd; R19.93 createFilePreviewButton already genuine→confirm mapping).
+- INSIGHT: all-children RENDERS but champagne stalls = 4 inline/split-for/fake + 4 CSS-functionalDone(done) + 3 champagne. Only 2 source standalone named methods (close, renderGrabBar). PO drives completion of the 4 (architect named-method+UC / expert markers / tester tests). Source: rb-detail-drawer.ts.
 ## CLIMB DISCIPLINE (unchanged, hard-won): champagne = real NAMED METHOD + marker-IN-body/heads-it + name-match + per-impl test + det. functionalDone (CSS/template/inline/handler, model.functionalDone:true) ≠ champagne. Tools: scripts/strict-marker-audit.ts (AST strict standalone), scripts/trace-req.ts (per-req walkReq tiebreaker), objectVerb.ts Chain followUp --all (canonical). Learnings #65 = the 181→20 marathon lesson set (verify-premise-before-edit, diff-full-set-after-restructure, shared-X-needs-req-text, no-mid-flux-measure, number-follows-rule-both-ways).
 
 ---
