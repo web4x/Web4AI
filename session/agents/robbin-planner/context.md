@@ -7,6 +7,12 @@
 - **6-ITEM QUEUE (doc planner-queued-tasks-2026-06-14.md) — ALL forward-traceable + diagnosed/RED + QUEUED, NOT driven (Tron strict-forward):** Q1 BUG8/9, Q2 orphan-prune, Q3 BUG10, Q4 BUG11 (HIGH regression), Q5 R20.9 landscape (designed), +1. Nothing driven.
 - ⚠ BURN-MITIGATION (PO, I 2nd-burned on det-3x scans = fast-burner): SMALLER det-3x batches (det-2x not 3x when possible; scope greps tightly); SAVE context.md PROACTIVELY before big scans/audits → self-rewind-clean. Watch own context %.
 - HOLD active re-task til SM Rule-6 GREEN (protocol). Then full PO re-dispatch on queue + climb.
+## SPRINT 29 = RADICAL FORWARD PLANNING (WIP=1) — I AM DRIVING THE CURRENT TASK (2026-06-14, Tron directive)
+- WIP=1 model: ONE Current Task driven end-to-end across ALL roles (req→uc→class→method→impl→test→DELIVER), replaced ONLY on version-bump delivery (patch+sw.js+git tag). No parallel batch — everything else PAUSED. Planner orchestrates the role-by-role handoffs IN SEQUENCE.
+- Sprint 29 FORMALIZED (84673c1e): planning doc sprint-29-radical-forward-planning/planning.md + 📌 CURRENT SPRINT block (top of sprints.overview.md = its live expression) + README. Discoverability rule held.
+- ▶ CURRENT TASK = 'Drawer/trace DETAIL works end-to-end → v0.6.23' (task unit 3c7d1853): BUG8+BUG10 collection-renders-children (both /trace+drawer) · BUG9 leaf-renders-detail · BUG11 URL-actions(regression) · + completes RbDetailDrawer champagne (handleDragResize/renderFilePreview/openForRef/close, same methods).
+- PIPELINE STATE: req✓ → architect✓(chains clean, all 4 narrowed) → ▶EXPERT ACTIVE (dispatched: renderDetailForRef collection-handling + remove openFilePreview dual-path + remove file-tagMap + real in-body champagne impls) → tester(RED→GREEN bug+chain tests) → PO-verify → planner DELIVERY-GATE verify (det-3x champagne closes + v0.6.23 patch+sw.js+git tag) → DELIVER → replace.
+- MY DRIVE DUTIES: report at EACH role-handoff + the v0.6.23 delivery; det-3x each champagne close; verify the delivery gate (version+sw.js+tag present) before DELIVERED; pin progress (overview block + task unit). Baseline 22/207 excl 49.
 ## DRAWER-CHAMPAGNE CLIMB — ALL 4 CHAINS CLEAN, expert/tester proceeding (2026-06-14, task 3c7d1853) — 22→26
 det-3x 22/209 excl 47 (denom -1 = dup R19.84 req 62e1b2e1 DELETED db5bfdea). All 4 single genuine method, no fan-out:
 - R19.84(0be510a8) → handleDragResize dc130f76. Remaining: Impl (expert marker).
