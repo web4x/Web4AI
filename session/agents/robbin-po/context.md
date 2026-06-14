@@ -1,6 +1,26 @@
 # robbin-po Context — save #19 (2026-06-14, post-deep-rewind re-anchor — COMMITTED)
 
-## ★★★★★★★★★ CURRENT STATE (save #19 — READ FIRST) ★★★★★★★★★
+## ★★★★★★★★★★★ CURRENT STATE (save #21 — READ FIRST) ★★★★★★★★★★★
+**★ BUG8 fully TRACED + REALTIME-SKILL delivered + realtime switch DEMO proven. Pin back on BUG8 full chain.**
+- BUG8 chain COMPLETE (all 6 hops real, screenshots embedded RED+GREEN, SM co-sealed, board HELD 26/210 — Bug=quality-fix not champagne row): req 12cf7bb5 → uc 38204812 → class 0dd08b2f → method 0a902bff(renderDetailForRef) → impl 36934fe3 → test 4644dd3c (drawer-champagne.test 5/5). Task: bug8-trace/task-bug8-collection-node-detail.md. RED→GREEN v0.6.28(0/0)→v0.6.29(Members50/Files22).
+- CMM3 REALTIME-TRACEABILITY SKILL committed: scrum.pmo/skills/realtime-traceability.md (85aaa760d) — 6-step AUTHORING procedure (system realtime-by-design, NO infra fix: /api/trace scanRepo per-request markdown; /api/trace/children + /api/ior read ScenarioIndex per-request; singleton pin realtime). R20.14 req 03e0a816.
+- ★ REALTIME /trace PIN-SWITCH MECHANISM: npx tsx scripts/planner-drive.ts setChain <req> <uc> <class> <method> <impl> <test> \"<sprint>\" \"<task>\" → flips CurrentSprint singleton (scenario/index/c/u/r/r/e/current-sprint-singleton-0000-000000000001.scenario.json) → current-sprint-changed → Tron /trace reload shows it. DEMO PROVEN live: BUG8→R20.14→T94→BUG8(full). Planner owns it; PO can run when Tron waiting.
+- CORRECTION OWNED: my 'T94 cache, restart fixed it' was WRONG — expert confirmed realtime-by-design (chain appeared because markdown committed between my curls, not the restart). Don't assert root cause without code evidence; let expert diagnose internals.
+- T94 verified GREEN this turn (per-request getVersion reads disk, banner injects, no regression).
+- PANE MAP robbinTeam2 (1 window): 0.0 PO | 0.1 planner | 0.2 expert | 0.3 skill-expert | 0.4 architect | 0.5 req | 0.6 tester | 0.7 shell. SM=TRONinterface:0.1, agent-trainer=baseTeam:0.0.
+- NEXT: await Tron — verify BUG8 on DeFED.net OR advance to BUG9 (NOT auto-advancing, WIP=1). Wire R20.14 real hops as skill-expert lands them then re-setChain.
+
+## ★★★★★★★★★★ CURRENT STATE (save #20 — historical) ★★★★★★★★★★
+**★ CORRECTED robbinTeam2 PANE MAP (single window 0, 8 panes) — my old robbinTeam map was STALE + caused mis-sends:**
+`0.0 PO(me) | 0.1 PLANNER | 0.2 EXPERT | 0.3 SKILL-EXPERT(new) | 0.4 ARCHITECT | 0.5 REQ | 0.6 TESTER | 0.7 shell`
+SM = TRONinterface:0.1. agent-trainer = baseTeam:0.0. (NO window 1; planner/req are NOT 1.0/1.1 anymore.)
+**★ DRIVING BUG8 TRACEABILITY LAYER-BY-LAYER (Tron real-time directive).** Bug (screenshot IMG_4037): tap /trace COLLECTION node (Members/Files) → detail STUCK 'Loading children…' synthetic-UUID-404. Task: scrum.pmo/sprints/sprint-29-radical-forward-planning/bug8-trace/task-bug8-collection-node-detail.md. Screenshots staged in bug8-trace/ (bug-loading-children-404.png + fix-members-50.png + fix-files-22.png).
+- LAYER 1 ✓ req DONE: requirement:uuid:12cf7bb5-36d5-415e-92b2-75b14fb5cc23, chain skeleton UC 38204812→Class 0dd08b2f→Method 0a902bff→Impl 36934fe3→Test-needed, commit f3830e19d.
+- LAYER 2 architect (in flight): root-cause + uc:uuid + method (RbDetailDrawer.renderDetailForRef @:84).
+- LAYER 3 tester (in flight): test:uuid + confirm fix-proof screenshots; planner stitches full chain + embeds screenshots + audit.
+- SCORING RULED: BUG8 = delivered quality-fix, NO board point (Bug not a champagne row); net HOLD 26/210. Don't auto-advance to BUG9.
+
+## ★★★★★★★★★ CURRENT STATE (save #19 — historical) ★★★★★★★★★
 **★ POST-DEEP-REWIND RE-ANCHOR. PO restored at robbinTeam2:0.0 (team migrated robbinTeam→robbinTeam2). Expert signaled Phase-1 deep rewind complete, room freed, mandated context save before Phase 2. Wrote this verified anchor; Phase 2 may proceed. ★**
 - GIT-VERIFIED NOW (not relayed): /api/health = **v0.6.30**, rooms **17** (purge held — was 239). package.json 0.6.30. HEAD region: efb195c7b architect rename →RbDetailDrawer.renderDetailForRef; 2346ff903 v0.6.30 BUG8 real fix (lookup wrapper by uuid, render nested children); 4dd7b1a27 v0.6.29; 5fe756120 v0.6.28; 6e5418a06 v0.6.28 BUG8 (collection uuid includes room UUID). So BUG8 chain (detail drawer nested children) is the live work front.
 - HANDOFF NOTE was slightly STALE (said "v0.6.27 LIVE"); real is v0.6.30 → did NOT transcribe relayed state verbatim. T100 (DATA_DIR test isolation) commit 21d46fa = real (v0.5.6, ~3wk ago in my rewound timeline).
