@@ -1,3 +1,29 @@
+# robbin-planner Context — Save Point 2026-06-14 (★ POST-PHASE-2-DEEP-REWIND RE-ANCHOR — F-T17, git-grounded, THIS = next-cycle anchor)
+
+**Identity:** robbin-planner, **robbinTeam2:0.1**. Phase 2 deep-rewind COMPLETE (was 75% at pre-save); this is the post-recovery re-orientation. Prior anchor `8afba56` ("pre-Phase-2 deep-rewind live-state save", in AI/Claude repo) was PRE-Phase-2 — **this save supersedes it as the live next-cycle anchor.**
+
+## GIT GROUND TRUTH (verified this recovery, Web4RawBin repo)
+- **HEAD `ebd639e27` = v0.6.27** "fix: pinned sprint reads LIVE CurrentSprint singleton". Prior: e5a7a67f4 v0.6.26 (R20.13.A current-task realtime tree-chain); 8d022a00e (R20.13.A capture).
+- package.json version = **0.6.27** (confirmed).
+- Anchor `8afba56` confirmed real in AI/Claude workspace repo (not Web4RawBin).
+
+## LIVE STATE (PO resume-queue, this rewind — verbatim, PO holds it)
+- **CHAMPAGNE = 26/209.** Sealed/LIVE this session: R20.13 CurrentSprint LIVE + R20.11 + R20.10 + R19.63.
+- **R20.13.A PIN fix = LANDED & CODE-VERIFIED in v0.6.27 (NOT yet sealed):** I git-verified `trace-page.ts` no longer hardcodes static ior `3c7d1853` — now reads `current-sprint-singleton-0000-000000000001` + listens `current-sprint-changed`→renderPinned(). ⚠ **SEAL GATED on Tron-device-confirm on /trace** (verify-don't-relay). Champagne stays 26 — do NOT credit R20.13.A until Tron device-confirms the live switch SHOWS.
+- **CURRENT TASK = S19 room-tree 'T-room-ui-shared (DeFED.net)'.** Realtime switch via `setChain` VERIFIED (singleton flipped from R20.13/Sprint20).
+- **Fiction Sprint 29 cleanup:** IN PROGRESS.
+- **WIP=1** (Sprint 29 radical-forward): one Current Task driven end-to-end; planner orchestrates role handoffs in sequence.
+
+## STALE-MESSAGE NOTE (verify-ground-truth discipline applied)
+- The PO relay also carried a PRE-REWIND leftover ("v0.2.29 current, Sprint 7 sync, T55-T59 hotfixes"). **Contradicted by git (real HEAD = v0.6.27, Sprint 19/20 era).** Disregarded as stale — Sprint 7 / v0.2.x is ancient history. Not actioned. Flagged to PO.
+
+## NEXT ACTIONS (post-recovery resume)
+1. Tron-device-confirm R20.13.A PIN on /trace (HEAD ebd639e27) → THEN seal → 27/209.
+2. Resume S19 'T-room-ui-shared (DeFED.net)' drive + Sprint 29 fiction cleanup.
+3. Scoreboard: `npx tsx scripts/objectVerb.ts Chain followUp --all` (det-3x); baseline **26/209**.
+4. Climb discipline UNCHANGED: real named method + marker-IN-body name-match + per-impl test + det-3x. QA Review/Done = Tron gate only. Burn-mitigation: smaller det batches, save proactively before big scans.
+
+---
 # robbin-planner Context — Save Point 2026-06-14 (⚠ PRE-PHASE-2 DEEP-REWIND LIVE-STATE SAVE — PO holds state)
 
 **Pane:** robbinTeam2:0.1 (rewound for emergency room; Phase 1 complete, Phase 2 next). **GIT GROUND TRUTH: HEAD `ebd639e27` v0.6.27 "pinned sprint reads LIVE CurrentSprint singleton" (prior: e5a7a67f4 v0.6.26 R20.13.A current-task realtime tree-chain; 8d022a00e R20.13.A capture — TRON always-visible realtime tree-chain reusing rb-trace-tree).**
