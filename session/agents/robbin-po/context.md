@@ -1,6 +1,13 @@
 # robbin-po Context — save #19 (2026-06-14, post-deep-rewind re-anchor — COMMITTED)
 
-## ★★★★★★★★★★★ CURRENT STATE (save #21 — READ FIRST) ★★★★★★★★★★★
+## ★★★★★★★★★★★★ CURRENT STATE (save #22 — READ FIRST) ★★★★★★★★★★★★
+**★ Traceability-foundation rebuild — Tron's architectural laws delivered. v0.6.35.**
+DONE+PROVEN (DET-3x/source-verify/disk-grep): markdown-is-not-source → /api/trace UNIT-SOURCED (scanRepo removed, bug=14/cr=1 appear from units, 0 removals, R20.19 QA-Review) · S29 fiction eradicated · dup sprint-dirs reconciled (Option B zero-pad R18.19) · [DUP] migration-junk DELETED from disk (22 units, [DUP]=0 disk+api, 222 refs re-pointed) · 7 meaningful supersessions kept-on-disk + filtered-from-view (skill-classes.ts:193) · DRY-unify 5 maps→1 CHAIN_TYPE_CONFIG · 220 md-only nodes migrated→units · auto-follow pin (focus <task>, per-agent realtime hop-update, switch-only-when-test-gate-proven) · hopStates persisted on disk · BUG13/14 (.url own-detail) PROVEN-resolved on real DeFED data · Bug→Task nav (canonical useCases+tasks).
+OPEN (WIP): TestCase+Gate as 1st-class scenarios (R20.20/21, task 54519bc4) — 988 it()→TestCase units + Gate units MUST PERSIST TO DISK (currently 0 on disk = the 'information lost' gap); expert implementing idempotent (crypto-hash uuid) + superseded-filter; tester proves DET-3x disk-count. Pin auto-tracks at impl.
+TRON LAWS (now team code + learnings #98-104): #103 DATA ON DISK = ONLY source of truth · #100 markdown is a VIEW · discover→PERSIST · #104 GIT IS THE BACKUP (no tar — hallucinations) · #99 communicate INTO units not chat · #101 team PROVES never wait on Tron (he redirects) · #102 per-agent realtime hop + switch-when-test-gate-proven · every gate asserts GOAL not proxy · idempotent generators · #53 NEVER /compact (agent-trainer rewind).
+GATE SET (SM-enforced): goal-present + DET-3x + disk-presence(grep-proof) + Rule-6. PO=LIGHT (gate, don't compute; tester/expert grep). PANES robbinTeam2: 0.1 planner|0.2 expert|0.3 skill-expert|0.4 architect|0.5 req|0.6 tester. SM=TRONinterface:0.1, trainer=baseTeam:0.0.
+
+## ★★★★★★★★★★★ CURRENT STATE (save #21 — historical) ★★★★★★★★★★★
 **★ BUG8 fully TRACED + REALTIME-SKILL delivered + realtime switch DEMO proven. Pin back on BUG8 full chain.**
 - BUG8 chain COMPLETE (all 6 hops real, screenshots embedded RED+GREEN, SM co-sealed, board HELD 26/210 — Bug=quality-fix not champagne row): req 12cf7bb5 → uc 38204812 → class 0dd08b2f → method 0a902bff(renderDetailForRef) → impl 36934fe3 → test 4644dd3c (drawer-champagne.test 5/5). Task: bug8-trace/task-bug8-collection-node-detail.md. RED→GREEN v0.6.28(0/0)→v0.6.29(Members50/Files22).
 - CMM3 REALTIME-TRACEABILITY SKILL committed: scrum.pmo/skills/realtime-traceability.md (85aaa760d) — 6-step AUTHORING procedure (system realtime-by-design, NO infra fix: /api/trace scanRepo per-request markdown; /api/trace/children + /api/ior read ScenarioIndex per-request; singleton pin realtime). R20.14 req 03e0a816.
