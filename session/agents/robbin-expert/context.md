@@ -1,10 +1,17 @@
-# robbin-expert Context — Save Point 2026-06-14 (context-limit, rewind needed)
+# robbin-expert Context — Save Point 2026-06-14 (post-Phase-1 rewind)
 
 **Role**: Web4RawBin Implementation Authority
-**Status**: v0.6.35 deployed. Phase 2 complete. Bug/CR fix shipped. NEXT: TestCase+Gate (UNSTARTED).
+**Status**: v0.6.30+ deployed. Phase 1 deep rewind COMPLETE — room freed. TestCase+Gate UNSTARTED.
 **Machine**: Mac Studio · **Pane**: robbinTeam2:0.2
 **Repo**: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin · **Live**: https://home.donges.it:4444
-**Current version**: v0.6.35. Tests: 998/1000 (2 pre-existing). Total /api/trace: 2124 objects.
+**Current version**: v0.6.35 live (HEAD advanced by other agents during rewind).
+
+## POST-REWIND STATE (2026-06-14)
+- Phase 1 rewind complete — context freed
+- TestCase+Gate: UNSTARTED — design unit d20855e74
+- IDEMPOTENT uuid = crypto hash of file+describe+it path, NOT randomUUID
+- Prior anchor: 9f50415 captured this exact resume-state
+- Pick up from QUEUED TASK below — no other work in flight
 
 ## QUEUED TASK (UNSTARTED — next agent picks up)
 - **TestCase+Gate** from design unit d20855e74
