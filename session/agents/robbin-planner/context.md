@@ -10,9 +10,12 @@
 ## LIVE STATE (PO resume-queue, this rewind — verbatim, PO holds it)
 - **CHAMPAGNE = 26/209.** Sealed/LIVE this session: R20.13 CurrentSprint LIVE + R20.11 + R20.10 + R19.63.
 - **R20.13.A PIN fix = LANDED & CODE-VERIFIED in v0.6.27 (NOT yet sealed):** I git-verified `trace-page.ts` no longer hardcodes static ior `3c7d1853` — now reads `current-sprint-singleton-0000-000000000001` + listens `current-sprint-changed`→renderPinned(). ⚠ **SEAL GATED on Tron-device-confirm on /trace** (verify-don't-relay). Champagne stays 26 — do NOT credit R20.13.A until Tron device-confirms the live switch SHOWS.
-- **CURRENT TASK = S19 room-tree 'T-room-ui-shared (DeFED.net)'.** Realtime switch via `setChain` VERIFIED (singleton flipped from R20.13/Sprint20).
+- **CURRENT TASK = BUG8 navigation fix** (PO CORRECTED: the 4 DeFED.net pictures are NAVIGATION BUGS to FIX, not a rendering to adopt). setChain ok=true → live singleton flipped to BUG8; WIP=req hop 0. Family order: BUG8(12cf7bb5)→BUG9(1b216edc)→BUG10(da4a27bc)→BUG11(871c5cf9). Goal: clicking collections/files/links in the room tree NAVIGATES correctly.
+  - BUG8 chain: req 12cf7bb5 · uc 38204812 (collectionDetail.resolveViaParent) · class RbDetailDrawer 0dd08b2f · impl 36934fe3 (renderDetailForRef.collectionHandler). **Method+test PENDING** (architect names renderDetailForRef / tester RED on live DeFED.net). ⚠ setChain HARD-requires 6 refs → method+test slots = uc-placeholder (38204812), VIEW-pin only, NOT champagne. Re-setChain with real method uuid when architect names it.
+  - PIPELINE: ▶architect root-cause+name-method (dispatched 0.4) → expert fix → tester REPRODUCE live → PO-verify → planner delivery-gate (patch+sw.js+tag).
 - **Fiction Sprint 29 cleanup:** IN PROGRESS.
 - **WIP=1** (Sprint 29 radical-forward): one Current Task driven end-to-end; planner orchestrates role handoffs in sequence.
+- Team2 panes: PO 0.0 · planner 0.1(me) · expert 0.2 · skill-expert 0.3 · architect 0.4 · req 0.5 · tester 0.6.
 
 ## STALE-MESSAGE NOTE (verify-ground-truth discipline applied)
 - The PO relay also carried a PRE-REWIND leftover ("v0.2.29 current, Sprint 7 sync, T55-T59 hotfixes"). **Contradicted by git (real HEAD = v0.6.27, Sprint 19/20 era).** Disregarded as stale — Sprint 7 / v0.2.x is ancient history. Not actioned. Flagged to PO.
