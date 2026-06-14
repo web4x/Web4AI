@@ -92,6 +92,22 @@ otmux pane.capture <pane> 6
 
 NEVER skip step 1. The rewind protocol exists to preserve state. Rewinding from a stale anchor without flagging it is a state regression dressed up as a recovery. F-T16: did exactly this and only Tron caught it.
 
+### Phase 1: Emergency Room — GO AS DEEP AS NEEDED TO FREE ROOM (F-T18 2026-06-14)
+
+**WRONG (old rule)**: "go up 1-3 steps" — works for fresh agents, FAILS for bloated bases.
+**RIGHT (Tron correction)**: Go as DEEP as it takes for the status bar to show CLEAN (no "Context low (N% remaining)"). On heavily bloated bases this can be 10-15 steps or more, i.e. effectively Phase 2 depth. Phase 1 isn't "small rewind" — Phase 1 is "free enough room for the agent to write a save, no matter how deep that takes."
+
+Sequence:
+1. BTab + C-u + /rewind → picker opens
+2. Try modest depth (2-3 steps), select, option-2-by-label
+3. CHECK STATUS BAR — if "Context low" gone: GOOD, proceed to step 4
+4. If still "Context low": /rewind AGAIN, go deeper (5, then 10, then ~75% if needed)
+5. Once status bar CLEAN: FORCE agent to write context save and commit (F-T17 instruction)
+6. VERIFY commit hash via `git log` BEFORE Phase 2
+7. Phase 2: full 75% deep rewind from the FRESH anchor
+
+Phase 1 is "make save possible." Phase 2 is "deep recovery from fresh anchor." Both are needed. Skipping Phase 1 and going straight to Phase 2 from a stale anchor = F-T16 trap.
+
 ### Phase 1: Emergency Room (only if agent is stuck at limit)
 ```bash
 otmux send.raw <pane> BTab        # Toggle off accept-edits (otherwise /rewind consumed as prompt)
