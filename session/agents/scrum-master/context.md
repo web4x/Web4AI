@@ -44,6 +44,15 @@
 - robbin-po save a3d18ef (this session state). My learnings commits: 5e9a671, b31199f, 930e687, a9be800, 616f7bc, 8f2e9fd.
 - Web4RawBin product: v0.5.175 file-restore, R19.45 flush (40b10f95 Test green), R19.46 capturing.
 
+## SURVIVAL MODE + AGENT BUDGETS (TRON directive 2026-06-13, agreed w/ robbin-po)
+- **Survival trigger = 80% of WEEKLY (7d) limit** (not 5h). Track 7d% every ~10 ticks. At ≥80% 7d → SURVIVAL: minimal tool-runs, batch, save-first, pause non-critical agents. Now 7d~11% = dormant.
+- **Per-agent budgets:** expert/architect = heavy tool budget; planner/req/tester = medium; PO/SM = light (coordinate, don't compute). Proactive context save at 80%-used (ACT-AT-80%). Batch tool-runs; prefer scenario-edit over chat prose.
+- **Division:** SM tracks 7d% + FLAGS survival@80%; robbin-po GATES priorities. DEPLOY-GATE: nothing ships unverified (SM gates on canonical tool, PO on QA).
+
+## SPRINT 20 (2026-06-13, robbin-po) — traceability-FIRST forward
+- Focus: traceability-first + close R19.99/100/102 + url-drawer regression. v0.6.0, 18 rooms, 173/198 champagne (re-verify via canonical tool full-scan).
+- **url-drawer regression** = 862868bfe partial-commit (.url file click does NOT open drawer). Test-first: req capture → tester RED test (.url-click→drawer-opens on v0.6.0) → expert fix → GREEN → gate-before-deploy.
+
 ## NEXT
 - Continue heartbeat loop. Context-health sweep every tick (PRIMARY). Track count climb to 25%≈35 (verify each via guarded-tool+full-scan). Report TRON at milestones / deliverable-green / context emergency / flush device-test. Watch oosh trio (TRON RC). Conserve tool-runs (7d subscription ~56%).
 
