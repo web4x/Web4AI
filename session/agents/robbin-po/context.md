@@ -1,6 +1,15 @@
-# robbin-po Context — save #12 (2026-06-14, post-DEEP-rewind #N, git-verified authoritative — COMMITTED)
+# robbin-po Context — save #16 (2026-06-14, post-DEEP-rewind, git-verified + COMMITTED — F-T16 fresh anchor)
 
-## ★★★★★ CURRENT STATE (save #15 — READ FIRST) ★★★★★
+## ★★★★★★ CURRENT STATE (save #16 — READ FIRST, git-verified HEAD 76bb35a9a) ★★★★★★
+**v0.6.24 LIVE (/api/health=0.6.24, HEAD 76bb35a9a) — but UNTAGGED (expert tagging, release rule #90). Sprint 29 WIP=1. Champagne 22/207-208 (markers in, tester tests PENDING for det-3x). Repopulation FIXED+PROVEN+cleaned. Recovered this cycle.**
+- ✅ REPOPULATION DONE (Tron's bigger issue, COMPLETE): ensureSystemTester (reuse fixed token ce981242; seed /api/health→localStorage→/app BEFORE WS) + test:guard (ban raw :4444). Tester PROVEN 0-new (211→211). Purge-2 done (38 deleted, backup) + 4 over-deleted reals recovered. Final profiles=24/dirs=29/orphans=0, all reals present. Fixed by construction — won't refill.
+- SPRINT 29 = RADICAL FORWARD PLANNING, WIP=1 (Tron): ONE NARROW CHAIN at a time → version-bump deliver → next. LESSON: I made v0.6.23 task too broad (4 bugs+4 chains+pinned-row) → multi-burn; WIP=1 = ONE narrow req→…→test→deliver, NOT a bundle.
+- CURRENT TASK (drawer/trace detail + pinned-Current-Sprint → v0.6.24, mostly DONE): functional fixes landed (f69b75565 BUG8/9/10/11); champagne markers in-body committed (R19.63 71954a38, R19.84 cea22d12, R20.10 dbddf408, R20.12 chain 7becb98e — real UUIDs); pinned-row live (TracePage.renderPinnedSprint). REMAINING to CLOSE: (a) TAG v0.6.24 (expert, missing); (b) tester TESTS for the markers → planner det-3x credit (champagne 22→up genuine); (c) Sprint 29 scenario unit (number=29) for pinned-row naming; (d) Tron device-screenshot gate (pinned-row+detail).
+- COUNT 22/207-208 honest (drawer chains markers-in but tests-pending = NOT yet flipped). BUG7 +2 already sealed (R20.5a/c). R19.99 awaits Tron screenshot.
+- 6-ITEM FORWARD QUEUE (planner-queued-tasks-2026-06-14.md, RED+diagnosed, NOT driven per strict-forward WIP=1): Q1 BUG8/9, Q2 orphan-prune, Q3 BUG10, Q4 BUG11(HIGH url-action dual-path), Q5 R20.9 landscape. Drive ONE narrow chain at a time only.
+- TEAM: MANY rewinds tonight (planner×3 architect×2 expert×3 tester×1 SM×2 PO×N), ALL clean Rule-6, NEVER /compact. BURN-MITIGATION (all heavy agents incl PO-coordination): small chunks + proactive context.md save before/during heavy work. SM watches PO FIRST now. ANCHOR PROTOCOL (F-T16): commit fresh context.md post-rewind + before any rewind (git log -- it). Device-checks (drawer/all-children/pinned-row) = Tron-side.
+
+## ★★★★★ save #15 (historical) ★★★★★
 **Sprint 29 = RADICAL FORWARD PLANNING (WIP=1): ONE NARROW CHAIN driven across all roles → version-bump delivery → replace. Current Task: drawer/trace detail + pinned-Current-Sprint → needs v0.6.24 (v0.6.23 already deployed).**
 - ⚠ v0.6.24 NEEDED (Tron caught): v0.6.23 ALREADY DEPLOYED (/api/health=0.6.23 uptime 5145, Tron's screenshot from it). The pinned-row (architect 7becb98e R20.12 TracePage.renderPinnedSprint) + champagne markers committed ON TOP still say 0.6.23 → PWA won't pick up. MUST bump v0.6.24 (package+sw.js+tag) to deliver. Rule: version+sw.js or it doesn't reach PWA.
 - ⚠ WIP=1 LESSON: I made the v0.6.23 current-task TOO BROAD (4 bugs BUG8/9/10/11 + 4 champagne chains + pinned-row, all roles at once) → MULTI-BURN (planner 0%/architect 2%/tester 85% in one 240s gap). Tron said 'ONE CHAIN' — WIP=1 must be ONE NARROW CHAIN (single req→…→test→deliver), then next. NOT a bundled feature.
