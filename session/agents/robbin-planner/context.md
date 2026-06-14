@@ -1,6 +1,26 @@
+# robbin-planner Context — Save Point 2026-06-14 (⚠ PRE-PHASE-2 DEEP-REWIND LIVE-STATE SAVE — PO holds state)
+
+**Pane:** robbinTeam2:0.1 (rewound for emergency room; Phase 1 complete, Phase 2 next). **GIT GROUND TRUTH: HEAD `ebd639e27` v0.6.27 "pinned sprint reads LIVE CurrentSprint singleton" (prior: e5a7a67f4 v0.6.26 R20.13.A current-task realtime tree-chain; 8d022a00e R20.13.A capture — TRON always-visible realtime tree-chain reusing rb-trace-tree).**
+
+## LIVE STATE (PO-dictated this rewind — capture verbatim, PO is holding all of it)
+- **CHAMPAGNE = 26/209.** Sealed/LIVE this session: **R20.13 CurrentSprint LIVE** + **R20.11** + **R20.10** + **R19.63** sealed.
+- **R20.13.A realtime PIN = BROKEN (fix in flight):** `trace-page.ts:33` hardcodes ior `3c7d1853` STATIC, NOT the live singleton → sprint switch does NOT SHOW on `/trace`. Expert fix = **v0.6.27**: PIN reads the live singleton + no-cache. ⚠ HEAD `ebd639e27` msg = exactly this fix → likely JUST LANDED; **VERIFY on /trace before sealing R20.13.A** (don't relay).
+- **CURRENT TASK = S19 room-tree 'T-room-ui-shared (DeFED.net)'.** Realtime switch via `setChain` VERIFIED — singleton `current-sprint-singleton-0000` flipped from R20.13 / Sprint20.
+- **Fiction Sprint 29 cleanup:** IN PROGRESS.
+- **WIP=1** (Sprint 29 radical-forward): one Current Task driven end-to-end; planner orchestrates role handoffs in sequence.
+
+## RECOVERY AFTER PHASE 2
+1. Re-read this block + learnings.md + .claude/agents/robbin-planner/SKILL.md.
+2. Get full live state from **PO (robbinTeam2:0.0) — PO is holding it**.
+3. VERIFY R20.13.A PIN fix on /trace (HEAD ebd639e27, det the switch SHOWS live).
+4. Resume S19 'T-room-ui-shared (DeFED.net)' + Sprint 29 fiction cleanup.
+5. Scoreboard: `npx tsx scripts/objectVerb.ts Chain followUp --all` (det-3x); baseline 26/209.
+6. Climb discipline UNCHANGED: real named method + marker-in-body name-match + per-impl test + det-3x. QA Review/Done = Tron gate only.
+
+---
 # robbin-planner Context — Save Point 2026-06-14 (POST-DEEP-REWIND RE-ANCHOR, git-grounded)
 
-**Pane:** robbinTeam2:0.1. **GIT GROUND TRUTH (trust this over older saves below): HEAD 80902b201, v0.6.22, scoreboard det-3x = 22/207 excl 49 (stable, post dup-altId dedup d0a94601).** Champagne 22 honest (R20.5c+R20.5a genuine); denom 207→208 = R20.9 landscape req added. Older save-points below climbed 181→20→22 — the 20→22 + denom growth happened post my last committable save (2% saves didn't land).
+**Pane:** robbinTeam2:0.1. **GIT GROUND TRUTH (trust the v0.6.27 block ABOVE; this is the prior anchor): HEAD 80902b201, v0.6.22, scoreboard det-3x = 22/207 excl 49 (stable, post dup-altId dedup d0a94601).** Champagne 22 honest (R20.5c+R20.5a genuine); denom 207→208 = R20.9 landscape req added. Older save-points below climbed 181→20→22 — the 20→22 + denom growth happened post my last committable save (2% saves didn't land).
 ## STATUS (PO-confirmed 2026-06-14 post-rewind)
 - PURGE-VERIFY GATE CLOSED = PASS: test-user purge executed (data/users 232→61→now 29 across cycles), 9 real-humans preserved (Felix Wittke/Hannes Nortje/James Woodward-Caradonna/Krista/Krista Kim/Marcel Donges Surface/Marcel Samsung/Tanya Kelen/Vladislav Tsyao), 12 room-havers survive, backup pre-testuser-purge-...103044Z.tar.gz (49MB) intact. No data lost. Method: room-havers + full-names + over-keep direction + backup-readable (has-device is NOT a real-signal — test fixtures enroll devices).
 - DRAWER v0.6.10 SHIPPED. Champagne 22/208 settled honest.
