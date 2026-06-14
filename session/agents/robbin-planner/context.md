@@ -501,3 +501,9 @@ req-eng `15dd69c1` captured R-X1+R-X2 for PUML class diagrams concurrently with 
 - `5d977918` W2B1 T191-T194
 - `792132ff` `a5231818` `24bfe028` `2e48fa9a` Wave 1 R18.x batches
 - `ffdc7dd0` T184 R-X1→R-Y1 rename + S17 closure cascade book-keeping
+
+---
+## ACTIVE 2026-06-14 (post-2nd-deep-rewind): v0.6.24 DELIVERY (narrow, PO re-dispatch)
+- DELIVERY-GATE: version 0.6.24 ✓ + sw.js rawbin-v0.6.24 ✓ + git TAG v0.6.24 PENDING (gated on Tron screenshot-OK → then I tag). v0.6.24=76bb35a9 (expert: pinned sprint reads Current-Task unit not highest-number). R20.12 pinned-current-sprint SHIPPED.
+- MY TASKS: (1) det-3x champagne R19.63/84/R20.10/R20.11 WHEN tester tests land (not yet). (2) verify delivery-gate. (3) DROP S29 phantom: scrum.pmo/sprints/sprint-29-radical-forward-planning + 2 units (0171efa2, 6dc43057) from R20.12 chain — renderer fixed to read current-task so removable.
+- MITIGATION: SMALL det batches + SAVE context BEFORE scans (fast-burn fix). HEAD was 5d7c271a→76bb35a9.
