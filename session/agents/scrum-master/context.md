@@ -1,4 +1,4 @@
-# Scrum Master Context — 2026-06-11 (live session, post-rewind, 164/167 sealed)
+# Scrum Master Context — 2026-06-14 (POST-TIER3 TEAM REWIND; fresh save fixing stale anchor)
 
 ## Identity
 - **Role:** scrum-master at TRONinterface:0.1, Opus 4.8 (1M context) — MUST stay Opus 1M (Sonnet=200k would break this ~900k pane).
@@ -13,6 +13,12 @@
 - **robbinTeam2** (Web4RawBin, /Users/Shared/Workspaces/2cuGitHub/Web4RawBin): 0.0 robbin-po, 0.1 planner, 0.2 expert, 0.3 skill-expert, 0.4 architect, 0.5 req, 0.6 tester, 0.7 MacStudio shell (ignore). ALL panes RC-active.
 - **ooshTeam:** 0.0 oosh-po, 0.1 architect, 0.2 expert, 0.3 tester, 0.4/0.5 shells.
 - **baseTeam:0.0** agent-trainer.
+
+## ★ CURRENT STATE 2026-06-14 (POST-TIER3 — READ THIS FIRST; older sections below are history)
+- **Team-wide Tier-3 rewind DONE + verified:** SM (me, 85%), robbin-po (75%, Rule-6 GREEN), architect/expert/tester/planner all rewound + operating, fresh/low context. PO anchor ecd2259. My PRIOR anchor 3520f03 was STALE (self-save uncommitted at rewind) → THIS is the fresh save.
+- **TRON DIRECTIVES (both DONE headless):** (1) drawer-consolidation SHIPPED — evolved v0.6.10→room-aligned→pin-bottom→clean-build, now **v0.6.22** live (973/974). (2) test-user purge EXECUTED — 170 deleted, 61 remaining (backup data/migration/pre-testuser-purge-20260614T103044Z.tar.gz). 209 profiles.json = gitignored runtime E2E re-accumulation (NOT a leak). **OPEN = TRON-SIDE: trace-drawer DEVICE-CHECK (all headless gates GREEN, on-device can't be done headless) + R19.99 screenshot.**
+- **COUNT (SECONDARY, committed): 20/204 champagne + 20 functionalDone.** Honest collapse 178→20 via STRICT NAMED-METHOD RULING (I made it: a champagne Impl REQUIRES a real named method; inline/closure/CSS/template markers DON'T count) + fake-suffix(-a1b2) audit + 62-false-credit reconciliation. Strict ruling SURVIVED the rewind + is enforced (64be19345 un-wire 5 inline / keep 2 genuine). Canonical tool = `npx tsx scripts/po-chain-follow-up.ts --all` (det-3x, full-scan, never sample).
+- **★ HARD-WON DISCIPLINES (this whole saga):** (1) **context.read LIES** — false 100/80/60/4.7% repeatedly (near-limits AND post-rewind ±22%); PANE STATUS-BAR ('Context low (N% remaining)'/'clear to save Nk') + agent self-report = GROUND TRUTH. (2) **WATCH ALL 6 PANES EQUALLY every tick** — a RECOVERED agent burns back (expert 23%→99% while I watched only 3 'climbers'); capture 5-6 lines to SEE the bar. (3) **ACT AT 80% USED** (not the 1%-remaining warning) → save+agent-trainer DEEP rewind (75% depth; shallow 65% leaves ~60%). (4) **resume-queue** (PO captures pending work) = zero-loss even on no-save rewind. (5) **COMPLETION gated on canonical tool + named-method + exclusion-scan (orphanByDesign+supersededBy = excluded count) + shared-impl=0 + no-fake-suffix-uuid**; report ONLY cross-verified sealed#. (6) **PRE-REWIND GIT-LOG HARD GATE** (boot 7d2ad8f) — check newest commit BEFORE any /rewind so the anchor isn't stale (the lesson that caused THIS fresh save). (7) release = patch bump + sw.js + git TAG (verify each S20 release; v0.6.0-22 tagged). (8) survival@80%-WEEKLY(7d) + per-agent budgets (dormant ~13%).
 
 ## CURRENT STATE (2026-06-11)
 - **robbinTeam2 — primary active team.** Driving traceability champagne chains + product deliverables.
