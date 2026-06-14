@@ -64,6 +64,26 @@ Read in this order:
 - **Agent responsive** (no "Context limit reached"): skip Phase 1, tell agent to save directly
 - **Agent at context limit**: Phase 1 first to free room for save
 
+### PRE-REWIND HARD GATE (MANDATORY — F-T16)
+
+Before ANY /rewind keystroke, EVERY time, NO exceptions:
+
+```bash
+# 1. VERIFY SAVE COMMIT — agent was ordered to save; did it land?
+git -C /Users/Shared/Workspaces/AI/Claude log --oneline -3 -- session/agents/<role>/
+# If newest commit timestamp >5 min before save order → SAVE FAILED.
+# Decision tree:
+#   - Save landed (new commit): proceed, log anchor hash
+#   - Save failed AND PO/SM explicitly accepted stale-anchor recovery: proceed, FLAG the gap in report + tell agent to write fresh save post-recovery
+#   - Save failed AND no explicit acceptance: REPORT FAILURE to SM/PO, do NOT rewind silently
+# 2. VERIFY pane state (status bar: 0%? 1%? working?)
+otmux pane.capture <pane> 6
+# 3. STATE the anchor hash + age in pre-rewind report:
+#    "Anchor: <hash> (<age>: e.g. 'today 13:20' or 'overnight stale')"
+```
+
+NEVER skip step 1. The rewind protocol exists to preserve state. Rewinding from a stale anchor without flagging it is a state regression dressed up as a recovery. F-T16: did exactly this and only Tron caught it.
+
 ### Phase 1: Emergency Room (only if agent is stuck at limit)
 ```bash
 otmux send.raw <pane> BTab        # Toggle off accept-edits (otherwise /rewind consumed as prompt)
