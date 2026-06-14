@@ -1,6 +1,14 @@
 # robbin-po Context — save #17 (2026-06-14, CurrentSprint LIVE milestone — COMMITTED)
 
-## ★★★★★★★ CURRENT STATE (save #17 — READ FIRST) ★★★★★★★
+## ★★★★★★★★ CURRENT STATE (save #18 — READ FIRST) ★★★★★★★★
+**★ REALTIME CURRENT-TASK SWITCH PROVEN (Tron demanded). CurrentSprint instrument LIVE + mutable. Current task SWITCHED live → S19 room-tree (DeFED.net). Champagne 26/209. ★**
+- ★ PROVED realtime switch: ran `npx tsx scripts/planner-drive.ts setChain ...` on the LIVE CurrentSprint → persisted unit (scenario/index/c/u/r/r/e/current-sprint-singleton-0000-000000000001.scenario.json) flipped BEFORE 'R20.13 inaugural/Sprint20' → AFTER 'T-room-ui-shared: room renders as scenario tree (DeFED.net)'/Sprint 19, 6-hop chain. NO redeploy — pure live data mutation. /trace pin re-renders on refresh. (PO ran it directly because planner was at 0% — Tron waiting; the driving tool exists, this is USING the instrument not building it.)
+- TRON'S 'defed.net file-tree' = SPRINT 19 Room Handling, T-room-ui-shared (in-room tree REUSES /trace rb-tree + Members/Files adapters, room-ui-shared-rb-tree-reuse-members-files-adapters.md, task 2195d98f) + cluster (T-room-ui drop-zone/tree, T-file-unit, T-room-unit, T-room-link-affordance). The DeFED.net Room screenshots = this DELIVERED v0.6.22. NOW the current task.
+- PLANNER REWINDING (hit 0% mid-switch): agent-trainer rewind ordered + reminded PHASE-ONE FORCE CONTEXT WRITING (force context-write+commit BEFORE rewind; proactive during heavy work). Re-orient planner on Rule-6 GREEN with this live state.
+- v0.6.26 LIVE (realtime current-task tree-chain R20.13.A + R20.13 CurrentSprint). Champagne 26/209 honest. Fiction Sprint 29 cleanup in progress. Repopulation FIXED+proven.
+- Tron device-checks (v0.6.26: realtime tree-chain, BUG8, drawer/all-children/pinned, R19.99) = his court.
+
+## ★★★★★★★ save #17 (historical) ★★★★★★★
 **★ CurrentSprint INSTRUMENT LIVE + champagne SEALED 26/209 excl 49 (det-3x 3x, HEAD 7b67c8f77). v0.6.24 LIVE+tagged. Repopulation FIXED+proven. Planner now dogfood-driving the 6-queue THROUGH CurrentSprint. ★**
 - SEALED 26: +2 recoveries credited GENUINE at settled commit (no-mid-flux #65 held — planner caught working-tree-26, held committed-24, credited 26 only at 7b67c8f77): R20.10 dbddf408→renderDetailForRef (typo-fix, name-match @rb-detail-drawer:84) + R19.63 71954a38→renderFilePreview (extracted anon-closure→named method @rb-detail-view:142). R20.12 functionalDone-tagged (module-level).
 - ★ R20.13 CurrentSprint CHAMPAGNE → CLASS LIVE (planner det-3x): real code src/ts/scenario/CurrentSprint.ts (4 methods setChain e8bd1984/pinCurrent 63d2c341/advance 2011ae78/getActiveChain f44ae205, in-body name-matched, real tests) + planner SKILL formalized (scrum.pmo/skills/planner-current-sprint-driving.md). NOW the planner's planning+driving TOOL: maintains CurrentSprint, setChain(WIP=1 chain), pinCurrent→/trace pin (R20.12), advance on champagne+Tron-QA, driveNext derives role-actions from open node. 6-queue MIGRATING into CurrentSprint advance-order; WIP=1 class-enforced.
