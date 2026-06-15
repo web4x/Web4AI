@@ -362,6 +362,26 @@ R16.2 had 2 UCs (stickyBottom + openForRef), R19.63 had 2 UCs (file.clickPreview
 ### Drawer Overlay = Flex Container Constraint, NOT position:fixed
 The /trace drawer's "overlay" appearance on narrow screens is from the FLEX CONTAINER constraint (.trace-page height:100vh-44px + tree flex:1 scrolls internally + drawer flex-shrink:0 pins at bottom), NOT position:fixed. position:fixed caused BUG5 (full-viewport hit-test area). The static-flex pattern gives overlay LOOK without overlap. Applied to room via .room-view flex constraint alignment.
 
+## v0.6.24+ Marathon: Radical Forward Planning (2026-06-14→16)
+
+### Markdown Is NOT Source — Scenario Units Are
+Tron architectural law: scenario units (scenario/index) = THE source of truth. Markdown (task/planning) = generated views. /api/trace must build from ScenarioIndex, not scanRepo markdown parser. 220 markdown-only UUIDs needed migration BEFORE the switch (safety gate: old⊆new parity). 3-phase: migrate→switch→delete-scanRepo.
+
+### DRY-Unify Kills Bug Classes by Construction
+5 parallel forward-key maps drifted → BUG9 (Bug/CR absent). CHAIN_TYPE_CONFIG = single source. Adding a type = one entry. ObjectType derived from config keys. 6th type-location (makeObject switch) also needed.
+
+### Your-Hop-Your-Status (#102)
+Self-call `npx tsx scripts/planner-drive.ts hop <hop> <status>` immediately when finishing architect hop-work. Don't leave for planner to backfill. SM enforces.
+
+### UC Needs .class + .method + .classes[] at Creation
+Planner caught wiring gaps: UC.classes[] was empty, req.tasks[] bridge missing. Both needed for chain walker. Wire ALL fields at creation time, not as follow-up.
+
+### Status Badge vs Child-Count Badge = Distinct Elements
+Expert claimed status badge renders, tester verified RED — only child-count oi-badge showed. The two are DIFFERENT concerns: oi-badge = child count (structural), status badge = hop/gate state (semantic). Must be separate DOM elements with separate CSS.
+
+### Gate Verdict Derivation
+Gate.verdict drives badge color. But non-gate nodes need hop-status derivation: hopState from CurrentSprint chain data OR model.status from the scenario unit. Two data sources, one badge render.
+
 ### Bounded Overlay: height:auto + max-height = Element Bounds Match Visible Bounds
 If position:fixed overlay is needed: height:auto + max-height:50vh makes the element only as tall as its content. Area above = tree, tappable. The original BUG5 had max-height:95vh + full-viewport element box → taps above visible drawer hit the invisible element.
 
