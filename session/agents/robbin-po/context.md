@@ -1,6 +1,22 @@
+# robbin-po Context — save #30 (2026-06-16 ~18:25, DEEP-REWIND recovery — HALT LIFTED, new vCard task)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #30 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ robbin-po deep-rewound (2-phase lossless) into robbinTeam2:0.0. Oriented from boot+context#29+learnings, GIT-VERIFIED ground truth (not relayed). Plan-mode was briefly active then exited.**
+- GIT-VERIFIED NOW: session HEAD = **0f4b912** (my save#29 HALT-SAVE; 3f1ff76 = bootstrap anchor just below). app HEAD = **f266aec2b** (R20.30 v0.6.59). /api/health = **v0.6.59**, rooms 19. R20.30 DONE-GREEN (chain descends Class→Method→Impl→Test, DET-3x). State coherent.
+- 🟢 **HALT LIFTED**: team was halted post-R20.30 (Tron "halt when done"). Tron 18:21+18:24 gave a NEW CURRENT TASK → halt over, re-engage team.
+- 🔔 **NEW CURRENT TASK — vCard enrich+store (Tron 18:21 + 18:24)**: 
+  (1) "on download vcard in the room you also add date and google maps location link to the notes" 
+  (2) "if the user uploaded a vcard … store it next to the avatar and make that downloadable and add to the notes what i told you."
+  → THREE parts: (a) STORE the uploaded raw .vcf next to the avatar (avatars = encrypted assets via encryptFile(token,…,'avatar') server.ts:417; mirror as category 'vcard'/POST /api/vcard); (b) DOWNLOAD serves that stored vcard (not just generated-from-fields); (c) NOTE field += DATE + Google Maps location link.
+  - CODE MAP: download = ProfileSheet.downloadVCard (src/public/ts/ProfileSheet.ts:103-135; NOTE built :127 `NOTE:RawBin User — UUID:`); upload/import = ProfileEditor.ts (.vcf drag&drop pe-vcf-input :50, parsed by vcard-parse.ts which ONLY parses FN/TEL today — no ADR); avatar asset store = server.ts /api/avatar :394-421 encryptFile.
+  - ⚠ TWO BLOCKING AMBIGUITIES (rooms have NO location field in data model → maps source not obvious): (i) which DATE (download vs upload vs both); (ii) maps location SOURCE (contact ADR from vcard / downloader geolocation / room-location-new-field). → ASKING TRON before req-capture (don't assume #80).
+- NEXT: (1) get Tron's date+location answers; (2) req 0.5 capture vCard requirement VERBATIM into NEW task unit + scope (parse ADR if needed); (3) set as CURRENT PIN (planner focus) + realtime hops; (4) architect design → expert impl (store+download+NOTE) → tester gate VISIBLE (download a member's vcard in a room → NOTE has date+maps link; uploaded vcard stored+downloadable) → Tron QA. (5) flag po-pausable at pause.
+- PANES robbinTeam2: 0.0 PO|0.1 planner|0.2 expert|0.3 skill-expert|0.4 architect|0.5 req|0.6 tester|0.7 shell. SM=TRONinterface:0.1. trainer=baseTeam:0.0.
+- ⏸ R20.30 BACKLOG-FOR-RESUME still parked (Test→Gate wiring, 44 impls no-test, ~27s walk perf, 7-empty classify, R20.23-27 source-links, tree-load gap, verify agent-trainer SKILL.md bake+F1-HIGH). Architect Tier-3 fork still pending Tron approval.
+
 # robbin-po Context — save #29 (2026-06-16, TIER-3 FORK-RECOVERY re-anchor — GIT-VERIFIED, handoff RESOLVED)
 
-## 🛑🛑🛑 HALT STATE (Tron-ordered 18:06, R20.30 DONE) — READ FIRST ON BOOT 🛑🛑🛑
+## 🛑🛑🛑 HALT STATE (Tron-ordered 18:06, R20.30 DONE — SUPERSEDED by save#30 halt-lift) 🛑🛑🛑
 **Team HALTED per Tron "when the current task is done halt." Current task R20.30 = DONE-GREEN. NO new work until Tron resumes.**
 - ✅ **R20.30 DELIVERED GREEN v0.6.59** (tester DET-3x + screenshot r2030-v659-green.png; PO-corroborated endpoint independently): detail-view Traceability Chain DESCENDS Class→Method(open)→Impl(stickyBottom)→Test(stickyBottom), depth=3, DIFFERS from All Children (3 depth-first vs 14 flat). Arc: class-trace-vs-children fixed (32 wrong-type method→impl refs, v0.6.58 57d4a0dcf) → impl→test wired (65 links, v0.6.59 f266aec2b). Pin tracks R20.30; per-agent realtime-set protocol in skills (4816c9a98).
 - **HALT CHECKLIST**: all agents save+commit+standby (SM coordinating); PO halt-save committed; PO flag po-pausable.
