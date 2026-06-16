@@ -1,6 +1,19 @@
 # robbin-po Context — save #19 (2026-06-14, post-deep-rewind re-anchor — COMMITTED)
 
-## ★★★★★★★★★★★★★★ CURRENT STATE (save #24 — READ FIRST) ★★★★★★★★★★★★★★
+## ★★★★★★★★★★★★★★★ CURRENT STATE (save #25 — READ FIRST, pre-Phase2-rewind anchor) ★★★★★★★★★★★★★★★
+**★ 2026-06-16. Catch-22 BROKEN — trainer recovered (SM), rewinding architect→po/expert. Impl pipeline UNBLOCKING. FLUSH THE QUEUE on architect-back. v0.6.52.**
+RECOVERY: trainer back (SM 2-phase rewind); architect(0.4 at-limit) being rewound next → then po/expert. SM flags me STOP when architect back → FLUSH design+impl queue.
+✅ DONE+gate-proven (Tron-confirmed): BUG18 (file detail renders own detail) · CurrentSprint 3-slot pin + visible done+green gates (R20.20/21/22) · describe-tests+gates 1st-class · getThreeSlots CONSISTENCY GREEN v0.6.52 (current-slot syncs to canonical WIP, current/last/next code-side done; skill-side done; ARCHITECT REVIEW pending) · 13 laws + L13 release in skills; tags clean.
+★ FLUSH-QUEUE (on architect recovery, in order):
+  1. R20.28-DRY (CURRENT WIP) — file-detail preview buttons DRY-rework: rb-file-detail REUSES content-preview.ts (cv-url-preview/newtab), dupes deleted. v0.6.51 shipped but tester RED 4 issues → architect must root-cause+design: (a) METADATA missing (embed broke preserve — name/mime/size/scenario/edit must render above preview), (b) double-render dup cv-url buttons, (c) .url newtab doesn't open (popup/auth uploaderToken), (d) .jpg no buttons (image path). → expert impl → tester GATE-VISIBLE (screenshot).
+  2. R20.29 (edb3c4fe) — trace TREE renders Method→Impl→Test→Gate (Method=0 in tree but detail traces impl; chain completes to GREEN gate in tree/Last-Completed).
+  3. R20.30 (d7299c88) — Traceability Chain (DEPTH: current-method→impl path) ≠ All Children (BREADTH: all 14 methods=class badge); currently identical, re-asserts R20.5.
+  4. architect REVIEW the current/last/next consistency (coherence: driving-verbs↔getThreeSlots↔skills).
+  5. CR1 (56cc23b5) ready (rename Champagne→Traceability, RED defined, 3-file fix). 6. R20.23-27 source-links (clickable per-type, designed-ahead).
+KEY LESSONS: #109 verify MY OWN path before accusing claim false (wrong-path grep) · #110 PO+SM 42-pair + capture FULL pane for 'Context limit' · all-exists-REWIRE not re-implement (DRY) · gate VISIBLE not data/claim · verify dispatches LAND + WIP progressing (otmux loses sends, agents idle silently) · NEVER /compact—trainer rewind (#53).
+PANES robbinTeam2: 0.1 planner|0.2 expert(recovered)|0.3 skill-expert|0.4 architect(rewinding)|0.6 tester. SM=TRONinterface:0.1 (42-pair). trainer=baseTeam:0.0 (recovered).
+
+## ★★★★★★★★★★★★★★ CURRENT STATE (save #24 — historical) ★★★★★★★★★★★★★★
 **★ 2026-06-16. file-detail saga + RECOVERY-FLUX blocker. v0.6.51.**
 DONE+confirmed (Tron): BUG18 file-detail renders own detail (not parent). · CurrentSprint 3-slot pin (current/last/next) + visible done+green gates (R20.20/21/22). · describe-tests+gates 1st-class. · 13 laws + L13 release-protocol baked into skills; tags 44/44 clean.
 WIP = R20.28-DRY (file-detail preview buttons): Tron flagged the NEW buttons (btn-file-preview/newtab) are a DRY VIOLATION — the impl ALREADY EXISTS in content-preview.ts (cv-url-preview/cv-url-newtab). REWORK = rb-file-detail REUSE content-preview.ts (renderContentPreview+wireUrlActions), DELETE dupes, PRESERVE file-detail metadata. v0.6.51 shipped the reuse BUT tester RED: 4 issues — (1) METADATA missing (embed broke preserve), (2) double-render dup cv-url buttons, (3) .url newtab doesn't open (popup/auth uploaderToken), (4) .jpg no buttons (image path). architect was root-causing → NOW context-limited.
