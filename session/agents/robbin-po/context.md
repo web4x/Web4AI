@@ -1,3 +1,17 @@
+# robbin-po Context — save #28 (2026-06-16, post-deep-rewind re-anchor — GIT-VERIFIED)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #28 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ Post deep 2-phase lossless rewind (~70% depth, heavy-burn coordinator). robbin-po @ robbinTeam2:0.0. Oriented from save #27 + GIT-VERIFIED ground truth (NOT relayed). State coherent — no staleness surprise.**
+- GIT-VERIFIED NOW (not relayed): /api/health = **v0.6.56**, rooms 18, uptime 369. package.json 0.6.56. HEAD = **1f9324607** (CR1 rename Champagne→Traceability in last-comment + v0.6.56, implementing[x]). Region: 8f7f07efa v0.6.55 R20.29 populate Method→Impl→Test + Test→Gate; b326a3879 R20.30 implementing[x]; 1ccbd90c3 architect R20.29+R20.30 designs; 87c955ba0 v0.6.54 R20.30 breadth-vs-depth; 4917f848a v0.6.53 R20.28-DRY. → CR1 CODE is live in HEAD (matches save #27 'code GREEN').
+- CONFIRMS save #27 (authoritative below). Two RED fronts, BOTH data-not-code (same class: data wired/labeled ≠ rendered/renamed):
+  1. 🟡 **CR1 PARTIAL-RED** (rename Champagne→Traceability): CODE green (drawer heading 'Traceability Chain', 0 Champagne in bundle) BUT /trace tree body RED = **12 'Champagne' in SCENARIO DATA** (task/sprint unit titles+descriptions still 'Champagne Chain') → needs a **scenario-unit rename pass (planner/req)**, NOT more code. screenshot v656-cr1-trace.png.
+  2. 🔴 **R20.29+R20.30 chain DATA** (THE priority = Tron's visible traceability chain): R20.29 backfilled 270 Impls.tests[] (v0.6.55) BUT tree shows 0 method/impl/test = **tree-traversal/endpoint gap** (/api/trace/children doesn't surface deep types; same class as scanRepo bug-emission). **Architect DESIGNING tree-surface fix** → forked-expert impls → tester re-gate → chain populates (currently 'No chain'). Don't call green till tree VISIBLY renders Method→Impl→Test.
+- DATA-GAP follow-up: Test→Gate 0 links (Tests lack requirements[]/gate links) — data-quality, not code.
+- ★ Expert is TIER-3 FORKED (clean ud-expert source, 68% runway, durable — fixes rewind context-thrash; learning #100 2026-06-16). Expert fresh-save 94013c5.
+- PROCESS LOCKED: communicate INTO units/pointers not chat (#99/#105 — Tron 6th occ); verify in DEPLOYED bundle not source (#95); gate VISIBLE not claim (#107); codified≠enforced wire the gate (#97); NEVER /compact → trainer rewind/fork (#53); verify dispatches LAND (otmux loses sends, agents idle silently); data wired ≠ rendered (#101).
+- PANES robbinTeam2: 0.0 PO(me)|0.1 planner|0.2 expert(Tier-3 forked)|0.3 skill-expert|0.4 architect|0.6 tester. SM=TRONinterface:0.1 (42-pair). trainer=baseTeam:0.0.
+- NEXT: (1) re-orient via team pane.capture (architect tree-fix design? expert idle/on-CR1-data? planner/req for CR1 rename pass). (2) DISPATCH the CR1 scenario-rename pass to planner/req (data, parallel). (3) switch forked-expert to tree-surface fix when architect design lands (priority WIP). (4) CR1 gate VISIBLE → then chain populates → Tron QA R20.28+29+30 together. (5) PO flag 'po-pausable' at next pause → trainer rewind.
+
 # robbin-po Context — save #27 (2026-06-16, pre-rewind anchor — COMMITTED)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #27 — READ FIRST) ★★★★★★★★★★★★★★★★★
