@@ -1,4 +1,23 @@
-# robbin-planner Context — Save Point 2026-06-14 (★ POST-PHASE-2-DEEP-REWIND RE-ANCHOR — F-T17, git-grounded, THIS = next-cycle anchor)
+# robbin-planner Context — Save Point 2026-06-16 (★ HEALTH-CHECK RE-ANCHOR — git-grounded, THIS = live anchor)
+
+**Identity:** robbin-planner, **robbinTeam2:0.1**. Web4RawBin (`/Users/Shared/Workspaces/2cuGitHub/Web4RawBin/`).
+
+## GIT GROUND TRUTH (this health check)
+- **HEAD `dbfe9cedf` = v0.6.56** "R20.30 task+UC minted: breadth-vs-depth task 5baef26a + UC detailView.distinctSections d63bf19b".
+- ⚠ **DRIFT CAUGHT:** my prior in-conversation context was anchored at R20.20/21 (v0.6.38) — STALE. Real state is **R20.30 / v0.6.56**. My thread was NOT driving the R20.22-R20.30 arc (cron/other instance did). **ON WAKE: re-orient via `planner-drive status` (slots) + git log, NOT stale conversation memory.**
+
+## CURRENT WIP (live pin, ground-truthed)
+- **`T-file-detail-preview-buttons`** (task 3852fdd7-f091-47fc-8239-93433fef4dfe, req 607146d1) — BUILD+DEPLOY+GATE-VISIBLE open-in-preview + open-in-new-tab buttons. chainDepth=5, **wipStatus=TEST** (req✓uc 62290aa8✓class 37103cf0✓method 63d58e0f✓impl✓ → test active).
+- **3-SLOT model** (tool now): current=file-detail-preview-buttons · lastCompleted=T-detail-drawer-grab-bar (fe8c43a5) · nextBacklog=T-rename-champagne-to-traceability (56cc23b5).
+
+## ARC since R20.20/21 (git-verified)
+R20.22 (3-slot consistency review + CR1 Champagne→Traceability rename) · R20.23-27 design-ahead (architect) · R20.28-DRY 4-fix (mime fallback + double-render guard + sync newtab + universal buttons, v0.6.53) · R20.29 (Method→Impl→Test forward refs + Test→Gate pipeline, v0.6.55) · R20.30 (breadth-vs-depth: Chain≠Children in ALL detail views, v0.6.54-56, Tron IMG_4064).
+
+## DISCIPLINE (carried, all current)
+Tron #102 'your hop your status' (agents self-call `planner-drive hop <hop> <status>`; planner does NOT backfill) · PROVEN-OR-STAY (`isGateProven` blocks switch until test gate-proven; `--force` ONLY to fix a mistaken switch) · TRON-PRIORITY outranks lowest-open heuristic · TEAM PROVES on real data (never wait on Tron; goal=renders/works NOT proxy) · git=BACKUP (no tar) · CMM4 (measure-before-act, source-verify don't relay, det-3x, no-fabrication, Tron-outranks-heuristic, backup=commit-clean-first).
+
+---
+# robbin-planner Context — Save Point 2026-06-14 (★ POST-PHASE-2-DEEP-REWIND RE-ANCHOR — F-T17, git-grounded, prior anchor)
 
 **Identity:** robbin-planner, **robbinTeam2:0.1**. Phase 2 deep-rewind COMPLETE (was 75% at pre-save); this is the post-recovery re-orientation. Prior anchor `8afba56` ("pre-Phase-2 deep-rewind live-state save", in AI/Claude repo) was PRE-Phase-2 — **this save supersedes it as the live next-cycle anchor.**
 
