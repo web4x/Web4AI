@@ -394,3 +394,15 @@ Test pollution (49 probe users) caused by inline scripts creating fresh identiti
 ### Sprint Scenario Units Required for /api/trace/sprints
 /api/trace/sprints returns only scenario-indexed Sprint units sorted by number. If a sprint has no scenario unit, it doesn't appear. Sprint 29 was missing → created with number=29 so it becomes the "current" (highest-numbered) sprint for the pin feature.
 
+### grep -rl Not find -exec (SM tip 2026-06-16)
+Use `grep -rl <pattern> <dir>` (auto-allowed, no permission prompt) for ground-truth lookups. NEVER `find ... -exec grep` (prompts every time). Saves round-trips during design sessions.
+
+### Skill Doc Split: scrum.pmo/skills/ vs .claude/agents/
+Aligned skill docs (e.g. planner-current-sprint-driving.md) live in scrum.pmo/skills/ but agents boot from .claude/agents/<role>/SKILL.md. If only scrum.pmo/skills/ is updated (commit b8b1f685a), agents boot without the knowledge. F1-HIGH finding in R20.22 review.
+
+### hasChildren Computation in /api/trace/children
+server.ts:788-789 computes hasChildren by scanning hardcoded array of forward field names ['tasks','useCases','classes','methods','implementations','tests','children']. If a unit type uses a field name NOT in this list, its children won't show the expander. Gate uses 'gates' field → would need that in the scan list.
+
+### Tree chainMethod Shortcut (rb-trace-tree.ts:346)
+When a Class node has a `chainMethod` from the UC context, the tree bypasses fetchAndRenderChildren and directly renders the Method with children=[] and hasChildren=true. The Method then lazy-loads its OWN children on expand. This is correct but means the Method node starts empty until clicked — no pre-fetch of its Implementation children.
+

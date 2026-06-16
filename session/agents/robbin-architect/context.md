@@ -1,55 +1,66 @@
-# robbin-architect Context (Save 2026-06-16 post-rewind cycle-2)
+# robbin-architect Context (Save 2026-06-16 pre-rewind-2)
 
-## STATUS: Active — DIAGNOSING persistent member-drop (Royal Jungle bug)
+## STATUS: Active — R20.29 tree-surface root-cause IN PROGRESS
 Pane: robbinTeam2:0.4
-Team: 0.0=po | 0.1=planner | 0.2=expert | 0.3=skill-expert | 0.4=ME | 0.5=req | 0.6=tester | 0.7=shell
+Team: 0.0=po | 0.1=planner | 0.2=expert(idle, waiting on this design) | 0.3=skill-expert | 0.4=ME | 0.5=req | 0.6=tester | 0.7=shell
 
 ## GIT-VERIFIED
-- HEAD: add897c13 (v0.6.52)
-- Branch: main, 1 ahead of origin
+- HEAD: 03d617855 (robbin-architect: R20.22 review + CR1 + R20.23-27 design-ahead)
+- Version: v0.6.52+
+- Working tree: clean (scenario units committed)
 
-## CURRENT DIAGNOSIS: Royal Jungle persistent member-drop
+## #1 PRIORITY: R20.29 tree-surface fix design (UNFINISHED)
 
-PO directive: persistent rooms drop members on leave instead of retaining + flipping online/offline. R19.7+R19.8 (T-persistent v0.5.127) regression.
+PO directive: /trace tree renders 0 method/impl/test though data IS backfilled (362/369 Methods have implementations[], 270/347 Impls have tests[]). Expert at 0.2 is IDLE waiting on this design.
 
-### Code Path Analysis (MEASURED from v0.6.52 source)
+### Root-cause analysis (MEASURED, in progress):
 
-**Server-side retainOrPrune is CORRECT:**
-- Room.ts:207-212 `retainOrPrune()`: persistent→markDisconnected, live→removeMember
-- Room.ts:216-223 `markDisconnected()`: sets member.disconnected=true, broadcasts MEMBER_DISCONNECTED, persists
-- server.ts:1498 ws.close handler → retainOrPrune (correct)
-- server.ts:1600 LEAVE_ROOM handler → retainOrPrune (correct)
-- NO direct removeMember bypass found in server.ts
+**Data layer: CORRECT.** populate-forward-refs backfilled:
+- Method.implementations[]: 362/369 populated
+- Implementation.tests[]: 270/347 populated
+- Test.gates[]/testCases[]: 74/357 populated
 
-**Client-side handlers are CORRECT:**
-- RoomView.ts:62 MEMBER_LEFT → filters member out of local array (correct for live mode)
-- RoomView.ts:63 MEMBER_DISCONNECTED → flips m.disconnected=true, re-renders (correct for persistent)
-- RoomView.ts:64 MEMBER_RECONNECTED → removes old, pushes new with disconnected=false (correct)
+**Server endpoint: CORRECT.** /api/trace/children reads CHAIN_TYPE_CONFIG fwdKeys (Method→implementations, Impl→tests). Resolves child UUIDs from model arrays. Computes hasChildren from forward arrays. No type filtering blocks Implementation/Test (expectedChildren is correct).
 
-**Persist/restore round-trip preserves members:**
-- Room.ts:340-348 persist() writes members[] with status online/offline
-- server.ts:242-246 restore maps members back with disconnected=true
+**Client tree: WHERE THE BUG LIKELY IS.** rb-trace-tree.ts:
+- Line 346-350: when `chainMethod` is set (Class→Method shortcut from UC context), tree renders Method with `children=[]` and `hasChildren=true` but does NOT pre-fetch.
+- Line 344: on expand, if `!loaded` → calls `fetchAndRenderChildren` which fetches `/api/trace/children/<uuid>`.
+- Line 490: `buildSeedNode(child.uuid, child.type, child.name, [], child.hasChildren, ...)` — children ALWAYS passed as `[]` on lazy-load, relying on `hasChildren` for the expander.
 
-### HYPOTHESIS: Bug may be in ROOM_JOINED payload on rejoin
-When remaining client gets ROOM_JOINED (after themselves rejoining), the members list may not include disconnected members. Need to check if addMember/rejoinDedup sends the FULL members list including offline ones.
+**HYPOTHESIS (not yet verified):** The `hasChildren` value from the server may be `false` for Method children because the hasChildren computation at server.ts:788-789 checks:
+```
+['tasks','useCases','classes','methods','implementations','tests','children']
+```
+For an Implementation unit, `implementations` is checked (wrong — Implementation doesn't HAVE implementations, it has `tests`). BUT `tests` IS in the list. So `hasChildren` should be true if tests[] is non-empty.
 
-Room.ts:171 `this.sendTo(member.id, { type: MSG.ROOM_JOINED, room: this.info(), members: this.allMemberInfo() })` — `allMemberInfo()` at line 304-307 includes ALL members with disconnected flag. This looks correct.
+**NEXT STEP:** Need to test the actual API response — fetch `/api/trace/children/<method-uuid>` and inspect the response JSON for a Method that has populated implementations[]. Check if children come back, and if their `hasChildren` is correct. Was about to do this when PO said STOP.
 
-### NEXT STEP: Ask tester for EXACT reproduction + measurement
-Need tester's Royal Jungle test output to identify WHERE the member disappears — is it:
-(a) server members Map (check via /api endpoint or console log)
-(b) persisted room.json (check file on disk)
-(c) client-side members array (check via browser console)
-(d) render only (member exists but not rendered)
+### Design direction (if hypothesis confirms):
+If server returns correct data but tree doesn't render → client rendering bug in buildSeedNode or CSS.
+If server returns empty/wrong → trace the specific fwdKeys resolution path for the failing type.
 
-## DEFERRED
-- Orphan-req UC backfill (~T203)
-- Status-badge design
-- CR1 (champagne→traceability rename)
-- R20.22 (3-slot pin)
+## DELIVERED THIS CYCLE (03d617855)
+1. R20.28-DRY: 4-fix design into requirement unit (47837e0e6)
+2. R20.29 + R20.30 designs into units (1ccbd90c3)
+3. R20.22 3-slot consistency review — 5 findings (F1-HIGH: planner SKILL.md stale)
+4. CR1 design-ahead (3-file rename)
+5. R20.23-27 source-links design-ahead (per-type)
+
+## CHAIN TYPE CONFIG (current, chain-model.ts)
+- Method: scenarioFwd=["implementations"], traceFwd=["implementations"], expectedChildren=["Implementation"]
+- Implementation: scenarioFwd=["tests"], traceFwd=["tests"], expectedChildren=["Test"]
+- Test: scenarioFwd=["testCases","gates"], traceFwd=["testCases","gates"], expectedChildren=["TestCase","Gate"]
+
+## KEY CLASSES
+- CurrentSprint 43d570be (4 methods + getThreeSlots + hopUpdate)
+- RbTraceTree: rb-trace-tree.ts (buildSeedNode, fetchAndRenderChildren, prefetchLayer)
+- RbFileDetail 37103cf0 (content-preview embed)
+- RbDetailView: rb-detail-view.ts (renderAllChildrenSection, renderSupersededSection)
 
 ## PROCESS RULES
 - NEVER ASSUME — ALWAYS MEASURE
+- grep -rl for lookups (auto-allowed), NOT find -exec (prompts)
 - Gate-before-deploy; match gate to bug physics
-- 6-step chain LOCKED
+- 6-step chain LOCKED: Req → UC → Class → Method → Impl → Test
 - Don't create tasks — planner owns that
+- Marker UUID = uuidgen-fresh OR verbatim copy
