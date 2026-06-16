@@ -5,9 +5,8 @@
 ## ⚠ LIVE STATE AT REWIND (resume here post-Phase-2)
 **HEAD `dbfe9cedf` v0.6.56, R20.30.** Pin = `T-file-detail-preview-buttons` (task 3852fdd7, req 607146d1), wipStatus=TEST. 3-slot: current=file-detail-preview-buttons · lastCompleted=T-detail-drawer-grab-bar (fe8c43a5) · nextBacklog=T-rename-champagne-to-traceability (56cc23b5).
 
-**TWO PENDING JOBS (PO-dispatched, NOT done — resume these):**
-1. **P1 — switch pin R20.28→R20.30:** `npx tsx scripts/planner-drive.ts focus 5baef26a`. ⚠ RETURNED **BLOCKED** "current task test hop not gate-proven" — contradicts PO's claim it's gate-proven. Resolve: either the file-detail-preview-buttons TEST genuinely isn't gate-proven (verify via `gate`), OR use `--force` per PO. VERIFY singleton name flips off "T-file-detail-preview-buttons" → R20.30.
-2. **P2 — CR1 rename:** "Champagne Chain"→"Traceability Chain" in scenario UNIT DATA (~41 instances). ⚠ PRESERVE "Champagne" QUALITY-METRIC concept (Defect Catalog/lift/metric — do NOT rename those; only the CHAIN term). Commit each; report pin-name + remaining Champagne-Chain count + hashes to robbinTeam2:0.0.
+**P1 ✓ DONE (0d51faf49):** pin switched → R20.30. LESSON: `focus` needs the FULL task uuid (5baef26a-8331-4feb-850f-2a38e4434ce7) — the SHORT uuid '5baef26a' returned a misleading "BLOCKED test hop not gate-proven" (gate WAS proven). Singleton flipped off file-detail-preview-buttons → R20.30 breadth-vs-depth.
+**P2 — DONE as no-op + finding (awaiting PO):** the 42 "Champagne Chain" in unit DATA are ALL rename-task quotes (CR1 b04fc9af + rename-task 56cc23b5 + UC renameChainLabel) OR old-label references ("NOT Champagne Chain", "currently labeled Champagne Chain", "rename Champagne Chain→Traceability"). ZERO live user-facing labels (those already renamed in SOURCE 1f9324607). My blanket replace CORRUPTED them ("rename Traceability Chain→Traceability Chain") — CAUGHT in git diff BEFORE commit, REVERTED. Per ruling (preserve rename-quotes, rename only live labels) = 0 renameable. Count stays 42 (meta/historical, correct). LESSON: 'rename X in data' where X is the OLD-label-being-renamed = verify-before-blanket-replace (don't falsify rename history). PRESERVE Champagne metric (lift/metric/Defect) untouched.
 
 ## GIT GROUND TRUTH (this health check)
 
