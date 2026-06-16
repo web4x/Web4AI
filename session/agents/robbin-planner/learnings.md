@@ -458,3 +458,23 @@ Arc: inflated-181 (string-match hasRealImpl) → 21 (AST strict fold) → +5 gen
 - **Number follows the rule BOTH ways:** correct own over-credits DOWN AND surface genuine recoveries UP (R19.2/2.A vs a peer's blanket "0 typos").
 - **functionalDone ≠ champagne:** CSS/template/inline/handler = functionalDone (in-denom, model.functionalDone:true), not champagne. Don't extract-a-fake-method to game +1.
 - **per-req trace beats summary:** scripts/trace-req.ts (reflective walkReq) is the tiebreaker; verify via det-3x, don't relay "done" claims.
+
+## 66. gate-proven ≠ chain-RENDERS (goal-present-not-proxy) — 2026-06-15
+
+R20.20/21 (TestCase/Gate) was GATE-PROVEN (test passes: 1016 TestCase persisted+served+idempotent, real det-3x Gate) — but Tron's IMG_4045 showed `uc testCase.parseFromSource = "No chain / no links"`. The test passing was a PROXY; the goal is the traceability chain RENDERING on /trace. Root cause: (a) `Test.testCases[]` empty — TestCase units had `testUuid`→Test (back-link) but the forward `Test.testCases[]`→TestCase was never populated, so forward-key `Test:['testCases']` rendered nothing; (b) `Method.implementations[]/tests[]` empty → chain dead-ends at method. **Lesson:** verify the GOAL (renders/works on real data), not the proxy (test-green). Gate the chain-render, not just the test-pass.
+
+## 67. WIP follows TRON PRIORITY, not a lowest-open heuristic — 2026-06-15
+
+After R20.20/21, I picked the next WIP by "lowest unproven R20.x" (R20.3) and dispatched the architect. WRONG — Tron's priority was to FINISH the describe-as-1st-class work (R20.20/21 chain-render gap), not start the numerically-lowest open req. **Tron-directive/priority OUTRANKS any heuristic.** Worse: the wrong switch TRAPPED the pin — `isGateProven` (PROVEN-OR-STAY) blocks switching AWAY from the now-current-but-unproven R20.3, so `focus <correct-task>` returned ok=false twice. **`--force` is the escape hatch for fixing a MISTAKEN switch** (not for skipping a real gate).
+
+## 68. Tron #102 'your hop your status' — planner does NOT backfill — 2026-06-14
+
+Each agent SELF-CALLS `planner-drive.ts hop <hop> <status>` as they finish (expert→impl=done, tester→test=gate-proven). The planner only marks ITS OWN hop (delivery-gate/verify). I had backfilled impl/test hops for R20.20/21 (because they were unset + the switch-gate needed it) — that's now the agents' self-call; SM (TRONinterface:0.1) flags agents who skip. Don't cover for them.
+
+## 69. SOURCE-VERIFY reconciles claimed-vs-actual — don't relay PO/expert numbers — 2026-06-14/15
+
+Repeatedly the relayed number was wrong vs ground-truth: PO's "7 corrupt files" = actually 10 restored + 17 conflict-fixed; gate `gatedItems=BUG8` should've been R20.20; "15 bugs" = 14 active + 1 superseded; "both new reqs are R20.15 dups" = only one collided (other already R20.16); "214 tasks migrated" = +311 nodes across 6 types with Sprint-dup collisions. **Always measure the actual unit/source; the commit-claim or relayed count is often off.** This is the CMM4 core.
+
+## 70. git=BACKUP (not tar); re-orient via instrument + git, not stale memory — 2026-06-14/16
+
+Tron: in a git repo, git IS the backup — commit the working tree clean (pre-state), the delete/edit IS a commit, `git revert`=rollback. tar/.cleanup-backups are clutter ("hallucinations") — remove them. AND (health check 2026-06-16): my conversation context was stale at R20.20/21 while git reality was R20.30/v0.6.56 — my thread wasn't driving the R20.22-30 arc (cron/other instance did). **On wake, re-orient via `planner-drive status` (slots) + `git log`, NOT stale in-conversation memory.**

@@ -1,6 +1,15 @@
-# robbin-planner Context — Save Point 2026-06-16 (★ HEALTH-CHECK RE-ANCHOR — git-grounded, THIS = live anchor)
+# robbin-planner Context — Save Point 2026-06-16 (⚠ PRE-PHASE-2-DEEP-REWIND ANCHOR — git-grounded live state, THIS = resume anchor)
 
 **Identity:** robbin-planner, **robbinTeam2:0.1**. Web4RawBin (`/Users/Shared/Workspaces/2cuGitHub/Web4RawBin/`).
+
+## ⚠ LIVE STATE AT REWIND (resume here post-Phase-2)
+**HEAD `dbfe9cedf` v0.6.56, R20.30.** Pin = `T-file-detail-preview-buttons` (task 3852fdd7, req 607146d1), wipStatus=TEST. 3-slot: current=file-detail-preview-buttons · lastCompleted=T-detail-drawer-grab-bar (fe8c43a5) · nextBacklog=T-rename-champagne-to-traceability (56cc23b5).
+
+**TWO PENDING JOBS (PO-dispatched, NOT done — resume these):**
+1. **P1 — switch pin R20.28→R20.30:** `npx tsx scripts/planner-drive.ts focus 5baef26a`. ⚠ RETURNED **BLOCKED** "current task test hop not gate-proven" — contradicts PO's claim it's gate-proven. Resolve: either the file-detail-preview-buttons TEST genuinely isn't gate-proven (verify via `gate`), OR use `--force` per PO. VERIFY singleton name flips off "T-file-detail-preview-buttons" → R20.30.
+2. **P2 — CR1 rename:** "Champagne Chain"→"Traceability Chain" in scenario UNIT DATA (~41 instances). ⚠ PRESERVE "Champagne" QUALITY-METRIC concept (Defect Catalog/lift/metric — do NOT rename those; only the CHAIN term). Commit each; report pin-name + remaining Champagne-Chain count + hashes to robbinTeam2:0.0.
+
+## GIT GROUND TRUTH (this health check)
 
 ## GIT GROUND TRUTH (this health check)
 - **HEAD `dbfe9cedf` = v0.6.56** "R20.30 task+UC minted: breadth-vs-depth task 5baef26a + UC detailView.distinctSections d63bf19b".
