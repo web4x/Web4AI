@@ -1,10 +1,9 @@
 # Boot: robbin-expert
-*Auto-generated 2026-05-27 22:21. This is ALL you need to read post-compact.*
+*Auto-generated 2026-06-16 02:53. This is ALL you need to read post-compact.*
 
 ## You are: robbin-expert
-## Pane: robbinTeam:0.2
-## Goal: Current data state (prod)
-3 real rooms only: Marcel Donges's Room (99e6a422, owner 3dca7f5e), Marcel Donges Surface Mini's Room
+## Pane: robbinTeam2:0.2
+## Goal: Check context file
 
 ## Immediate actions:
 1. Read team goals: `session/team-goals.md`
