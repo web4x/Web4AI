@@ -8,7 +8,27 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.1
-**Updated**: 2026-06-09 — Post-Sprint-1 + Termux cross-platform wave continuing. 32+ commits since 2026-05-25. macOS suites zero failures. Most recent: ossh.fix.rights (eb864cb), otmux.attach completion fix (c0c7dd7).
+**Updated**: 2026-06-16 (833k pre-rewind save) — Sprint 0 docker-install fix shipped + taskChain verified. Pending: MERGE test/macos.latest INTO dev for WODA.test push. Most recent commits: 66212be (init/oosh canonical ossh path), 0bdd8df (init/oosh SSH-first install), c0c7dd7 (otmux.attach completion), eb864cb (ossh.fix.rights).
+
+## ⚠️ DEFERRED TO POST-REWIND (do not start before rewind)
+
+**team.push verification + 458-commit merge to dev** (PO directive 2026-06-16):
+- (1) Verify `hiveMind team.migrate` (line 3440) handles JSONL transfer — line 3548-3559 confirms "Push JSONLs for UUIDs in this session's snapshot only". team.migrate IS team.push equivalent.
+- (2) Target: WODA.test (NOT UpDown.ai per Tron correction).
+- Steps after rewind:
+  a. `git checkout dev && git pull origin dev`
+  b. `git merge test/macos.latest`
+  c. `git push origin dev`
+  d. SSH WODA.test, `cd ~/oosh && git pull`
+  e. Verify on WODA.test: `team.migrate`, `team.pull` both exist
+  f. WODA.test becomes team.migrate target from MacStudio
+
+## team.migrate JSONL transfer status (verified this session)
+- Line 3440: `hiveMind.team.migrate <session> <sshHost> <?snapshotFile>`
+- Line 3486: mktemp tmpdir
+- Line 3548-3559: JSONL push for UUIDs in this session's snapshot only
+- Mirrors teams.migrate but session-filtered (Q4 design)
+- Verdict: **team.migrate IS sufficient as team.push** — no extension needed
 
 ## ⚠️ CURRENT STATE
 
