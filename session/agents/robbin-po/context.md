@@ -1,6 +1,9 @@
 # robbin-po Context — save #30 (2026-06-16 ~18:25, DEEP-REWIND recovery — HALT LIFTED, new vCard task)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #30 — READ FIRST) ★★★★★★★★★★★★★★★★★
+- 🚫🚫 **HAZARD (2026-06-16 ~19:40): DO NOT MESSAGE planner robbinTeam2:0.1** — it is SAVED (commit 3d8510b, fresh-fork-recoverable) + IDLE at 1% context; ANY otmux input burns it to 0% (trainer DEAD = no rewind net). Leave it untouched until Tron restarts/forks the trainer → planner rewound. (SM-confirmed.) Same caution for any near-limit agent while trainer down.
+- ⚠ FLEET: agent-trainer baseTeam:0.0 DEAD 0% (no rewind net, #70); planner 1% saved-idle; PO (me) high-context but anchor committed every step (fresh-fork viable). Awaiting TRON: emergency trainer restart/fork-go. STAY LIGHT — minimize dispatches/context burn.
+
 **★ robbin-po deep-rewound (2-phase lossless) into robbinTeam2:0.0. Oriented from boot+context#29+learnings, GIT-VERIFIED ground truth (not relayed). Plan-mode was briefly active then exited.**
 - GIT-VERIFIED NOW: session HEAD = **0f4b912** (my save#29 HALT-SAVE; 3f1ff76 = bootstrap anchor just below). app HEAD = **f266aec2b** (R20.30 v0.6.59). /api/health = **v0.6.59**, rooms 19. R20.30 DONE-GREEN (chain descends Class→Method→Impl→Test, DET-3x). State coherent.
 - 🟢 **HALT LIFTED**: team was halted post-R20.30 (Tron "halt when done"). Tron 18:21+18:24 gave a NEW CURRENT TASK → halt over, re-engage team.
