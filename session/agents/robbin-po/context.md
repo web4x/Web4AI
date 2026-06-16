@@ -1,4 +1,13 @@
-# robbin-po Context — save #28 (2026-06-16, post-deep-rewind re-anchor — GIT-VERIFIED)
+# robbin-po Context — save #28 (2026-06-16, post-deep-rewind re-anchor — GIT-VERIFIED + IN-FLIGHT HANDOFF to forked-po)
+
+## ★★★★★★★★★★★★★★★★★ HANDOFF TO FORKED-PO (READ FIRST — in-flight WIP this turn) ★★★★★★★★★★★★★★★★★
+**★ This PO instance hit 79% → trainer Tier-3 FORKing a clean-runway robbin-po. SM verifies forked-po lands LOW+Rule-6 then flags ready. RESUME these IN-FLIGHT dispatches (sent AFTER the save#28 body below; do NOT re-dispatch — VERIFY landed + await reports):**
+- ⏳ **ARCHITECT (0.4) → R20.29/30 TREE-SURFACE FIX design** (THE priority). Architect finished flush-queue (03d617855: R20.22 3-slot review + CR1 + R20.23-27 source-links design-ahead) but had NOT designed the tree-fix. I directed it to design NOW: root-cause where /api/trace/children traversal stops + fix so tree VISIBLY renders method→impl→test→gate; write into R20.29 unit; report to 0.0. → ON ITS REPORT: switch forked-expert (0.2, IDLE) to impl immediately.
+- ⏳ **PLANNER (0.1) → CR1 scenario-rename pass** (was 'still running'): rename 12 'Champagne'→'Traceability' in scenario UNIT titles+descriptions (data on disk, not code/markdown); commit; report count+hash → then TESTER (0.6, idle) re-gates CR1 VISIBLE.
+- ⏳ **SM (TRONinterface:0.1)** clears architect permission prompts fast (42-pair) — keep flagging.
+- 📋 **ARCHITECT FINDINGS to route** (from 03d617855): F1-HIGH — planner SKILL.md at .claude/agents/ has ZERO 3-slot API refs (only scrum.pmo/skills aligned) → route to AGENT-TRAINER for durable fix (else planner reboots blind to getThreeSlots API). F2-MED — HOP_OWNERS.method should be architect not expert (fix). F3/F4-LOW — lastCompleted shard-order, nextBacklog status filter.
+- EXPERT (0.2) idle since 'CR1 done v0.6.56, 995/1004 tests' — reserved for tree-fix impl (don't start R20.23-27 yet; WIP=1 on the visible chain).
+- ✅ ANCHOR FRESH: save#28 committed 9c70fd6; this handoff update is the resume point. PO flagged po-pausable to SM.
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #28 — READ FIRST) ★★★★★★★★★★★★★★★★★
 **★ Post deep 2-phase lossless rewind (~70% depth, heavy-burn coordinator). robbin-po @ robbinTeam2:0.0. Oriented from save #27 + GIT-VERIFIED ground truth (NOT relayed). State coherent — no staleness surprise.**
