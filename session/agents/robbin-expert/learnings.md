@@ -713,3 +713,6 @@ testcase/gate → 'test' base; currentsprint → 'task' base. The line 622 overr
 ### Learning #113: forward-key alignment (scenarioFwd vs traceFwd)
 Build uses scenarioFwd keys (plural: 'classes'), filter must use the SAME keys. traceFwd had singular ('class') causing mismatch → links stripped. Fix: filter uses scenarioFwd().
 
+### Learning #114: R20.30 breadth-vs-depth pattern
+Traceability Chain ≠ All Children. Chain = depth-first single path (renderChainPathSection: async /api/trace/children walk, first child at each hop, max 6 levels). All Children = breadth (renderAllChildrenSection: all children flat = badge count). Class with 14 methods: Chain shows 1 method→impl→test→gate; Children shows all 14. Task/Req/UC already used singularChain — only class/method/impl/test needed the fix.
+
