@@ -14,6 +14,12 @@
 - **ooshTeam:** 0.0 oosh-po, 0.1 architect, 0.2 expert, 0.3 tester, 0.4/0.5 shells.
 - **baseTeam:0.0** agent-trainer.
 
+## ★★★★ LIVE (2026-06-16 post-Phase2 DEEP rewind ~70%, no-code lossless) — MOST CURRENT
+- Re-oriented; git-verified anchor 554e205 CURRENT (not stale). SM healthy post-rewind, status-bar clean.
+- **NEW ENFORCE (robbin-po #102 adoption-gap):** agents must SELF-UPDATE their hop via `planner-drive.ts hop <hop> <status>` AS they finish (expert→impl=done, tester→test=gate-proven) — NOT planner-backfilled. FLAG to PO any agent that completes hop-work without self-calling hop. R20.20/21 now gate-proven→QA (was planner-backfilled — the gap).
+- WATCH architect(0.4) identity-drift (prior 'UpDown' drift root of 47min stall). WIP = R20.30 full-depth-chain (method→impl→test→gate, no truncate).
+- MY JOB (TRON-refined SLIM): hiveMind team.monitor robbinTeam2 → blocked→PO, low-ctx→trainer, subscription+velocity, enforce hop-self-update + disk-is-truth + CMM4. NO product-compute. ScheduleWakeup ticks. 15-min trainer ctx-ping.
+
 ## ★ CURRENT STATE 2026-06-14 (POST-TIER3 — READ THIS FIRST; older sections below are history)
 - **Team-wide Tier-3 rewind DONE + verified:** SM (me, 85%), robbin-po (75%, Rule-6 GREEN), architect/expert/tester/planner all rewound + operating, fresh/low context. PO anchor ecd2259. My PRIOR anchor 3520f03 was STALE (self-save uncommitted at rewind) → THIS is the fresh save.
 - **TRON DIRECTIVES (both DONE headless):** (1) drawer-consolidation SHIPPED — evolved v0.6.10→room-aligned→pin-bottom→clean-build, now **v0.6.22** live (973/974). (2) test-user purge EXECUTED — 170 deleted, 61 remaining (backup data/migration/pre-testuser-purge-20260614T103044Z.tar.gz). 209 profiles.json = gitignored runtime E2E re-accumulation (NOT a leak). **OPEN = TRON-SIDE: trace-drawer DEVICE-CHECK (all headless gates GREEN, on-device can't be done headless) + R19.99 screenshot.**
