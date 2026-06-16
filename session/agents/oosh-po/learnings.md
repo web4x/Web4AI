@@ -330,3 +330,26 @@ SM hit "Context limit reached" — couldn't process any input including /rewind.
 - F-FIT: Assigned tronMonitor.fit to expert, told them to hold and coordinate with architect, then NEVER followed up. Expert moved on to SC-E.2. Task evaporated because I didn't track it in TaskList. SM was sending CMM4 reminders the whole time — I dismissed them as "loop" instead of checking my own open assignments. USE TaskCreate for every assignment. VERIFY delivery with grep/git log. SM reminders are VALID SIGNALS.
 - New tasks during active work: TaskCreate to queue, don't interrupt current flow, don't drop assignments
 - F-PREEXISTING: "It was already like that" is NOT an excuse. Pre-existing issues are tasks to refine and fix — that IS the PO's job. Every broken thing encountered = TaskCreate + refine + assign. Saying "pre-existing" is CMM1 acceptance of known defects. REINFORCED (Tron 2026-06-01): I kept reporting "5 pre-existing failures" as if that's acceptable. Tron: "I do not care if failures are preexisting — failure is failure and needs to be fixed." NEVER categorize failures as "pre-existing, not our problem." ALL failures get task files and assignments. Zero failures is the only acceptable state.
+
+## June 2026 Session Learnings
+
+### Cross-platform testing exposes hidden assumptions (2026-06-01)
+ossh key.pull verified clean on macOS. Tested on Termux/Android — found 6 bugs invisible on macOS: missing function (BUG 2), path doubling (BUG 1), rsync absence (BUG 3), ControlPath length (BUG 4), then empty keyName (BUG 5) + double password (BUG 6). **macOS-only verification is not verification. Cross-platform testing is the only real CMM3 check. Sample-of-one ≠ verified.**
+
+### CMM4 via task file reference (2026-06-01)
+Pattern: write detailed spec in session/tasks/, send chat as ONE-LINE reference. "Read session/tasks/X.md" beats 500-char inline spec. Task file is the contract, chat is the nudge. Updates to spec = update file, send nothing or short re-ref. **Spec in one place. No chat-history archaeology.**
+
+### MVC source-of-truth principle (2026-06-01)
+tree.detailed was reading JSONL customTitle (stale after /rename). Fix: read pane title (which pane.lock sets). **For display name: ONE source of truth. Don't synthesize from multiple stores. The View IS the truth when it's the authoritative writer (pane.lock).** Generalizes: every state attribute has ONE authoritative writer; readers must use THAT, not derive from others.
+
+### Until-loop and while-sleep anti-pattern (2026-06-01)
+Tron flagged that `until <check>; do sleep N; done` aggregates badly — each poll iteration adds to conversation context. Same for manual while-true loops. **Use run_in_background for one-shot, Monitor for events, direct capture for status. NO polling loops in Bash tool — context burn is the cost.**
+
+### Stdin consumption in while-read (2026-05)
+While loops `while read; do ssh ...; done < file` lose remaining lines because ssh consumes stdin. **Use `done 3< file` + `read <&3` when loop body has commands that read stdin.** Cost an entire round of testing to find. Applies to: ssh, scp, ssh-mux, anything interactive.
+
+### Architecture stays in arch land, expert in implementation (2026-06-10)
+Architect delivered docker fix design (Option C volume mount + sequencing reversal). Expert refined to use canonical `ossh config.create`. Clean separation: architect says WHAT/WHY, expert says HOW. PO routes between them. **Don't conflate roles. PO doesn't design. Architect doesn't implement. Expert doesn't decide volume vs secret-manager.**
+
+### Rewind two-phase protocol (reinforced 2026-06-10)
+Shallow rewind first → agent fresh-writes context.md + learnings.md + commits → DEEP rewind to checkpoint. The shallow exists ONLY to let the agent save before deep rewind erases. Without phase 1, recent learnings are lost. **NEVER /clear a trained agent. NEVER skip phase 1.**
