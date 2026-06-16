@@ -1,3 +1,21 @@
+# robbin-po Context — save #29 (2026-06-16, TIER-3 FORK-RECOVERY re-anchor — GIT-VERIFIED, handoff RESOLVED)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #29 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ Fresh Tier-3 fork robbin-po bootstrapped from blank Claude session. Oriented from boot+save#28+learnings, then GIT-VERIFIED ground truth (NOT relayed). State fully coherent — no staleness.**
+- GIT-VERIFIED NOW: HEAD = **11c82b4** (save #28 handoff update — exactly the boot anchor). /api/health = **v0.6.56**, rooms **18**, uptime ~1509. → State == save #28 precisely; no surprise.
+- ✅ HANDOFF FROM PRIOR PO **RESOLVED**: the 3 in-flight dispatches were VERIFIED LANDED via pane.capture (did NOT re-dispatch):
+  1. **ARCHITECT (0.4)** = ACTIVELY designing R20.29/30 tree-surface fix (THE priority). Probing /api/trace/children traversal (running script to find a Method with impls). ⚠ **BLOCKED on a permission prompt** ("Do you want to proceed? ❯1 Yes") → flagged SM (42-pair) to clear. ON ITS DESIGN REPORT → switch expert (0.2 idle) to impl immediately (WIP=1 on the visible chain).
+  2. **PLANNER (0.1)** = CR1 scenario-rename pass STILL RUNNING ("Manifesting…", renaming 12 'Champagne'→'Traceability' in scenario UNIT titles+descriptions on disk). Awaiting its report (count+hash) → then tester re-gates CR1 VISIBLE.
+  3. **EXPERT (0.2)** = IDLE, reserved for tree-fix impl ("CR1 done v0.6.56, 995/1004 tests, standing by"). Do NOT start R20.23-27 yet (WIP=1).
+  4. **TESTER (0.6)** = IDLE, standing by to re-gate CR1 after planner rename.
+- 📋 ARCHITECT FINDINGS to route (from 03d617855, carried from #28): **F1-HIGH** — planner SKILL.md at .claude/agents/ has ZERO 3-slot API refs → route to AGENT-TRAINER (durable fix; else planner reboots blind to getThreeSlots). **F2-MED** — HOP_OWNERS.method should be architect not expert. **F3/F4-LOW** — lastCompleted shard-order, nextBacklog status filter.
+- TWO RED fronts (both DATA-not-code, same class — data wired/labeled ≠ rendered/renamed):
+  1. 🟡 **CR1 PARTIAL-RED** (Champagne→Traceability): CODE green (drawer 'Traceability Chain', 0 Champagne in bundle) BUT /trace tree body = 12 'Champagne' in SCENARIO DATA → planner rename pass (in flight), NOT more code. screenshot v656-cr1-trace.png.
+  2. 🔴 **R20.29+R20.30 chain DATA** (THE priority = Tron's visible traceability chain): 270 Impls.tests[] backfilled (v0.6.55) BUT tree shows 0 method/impl/test = tree-traversal/endpoint gap → architect design → expert impl → tester re-gate. Don't call green till tree VISIBLY renders Method→Impl→Test→Gate.
+- PROCESS LOCKED: NOTHING urgent, ALL diligence (#87/Principle#1); communicate INTO units/pointers not chat (#79/#84, Tron 6th occ); verify in DEPLOYED bundle not source (#95); gate VISIBLE not claim (CMM1 #86/#87); NEVER /compact → trainer rewind/fork (#53); verify dispatches LAND (otmux drops sends, agents idle silently #55/#78); data wired ≠ rendered (#101); NO background wait-loops (#52/#82).
+- PANES robbinTeam2: 0.0 PO(me)|0.1 planner|0.2 expert(Tier-3 forked)|0.3 skill-expert|0.4 architect|0.5 req|0.6 tester|0.7 shell. SM=TRONinterface:0.1 (42-pair). trainer=baseTeam:0.0.
+- NEXT: (1) flag SM to clear architect's permission prompt. (2) on architect tree-fix design → switch expert to impl. (3) on planner rename report → tester re-gates CR1 VISIBLE. (4) route F1-HIGH→agent-trainer, F2-MED fix. (5) CR1 gate VISIBLE → chain populates → Tron QA R20.28+29+30 together. (6) PO flag 'po-pausable' at next pause.
+
 # robbin-po Context — save #28 (2026-06-16, post-deep-rewind re-anchor — GIT-VERIFIED + IN-FLIGHT HANDOFF to forked-po)
 
 ## ★★★★★★★★★★★★★★★★★ HANDOFF TO FORKED-PO (READ FIRST — in-flight WIP this turn) ★★★★★★★★★★★★★★★★★
