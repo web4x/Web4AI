@@ -690,3 +690,26 @@ Confirmed: cat > file <<EOF via otmux send drops random characters mid-stream du
 
 Per standard 0525f028 (commit 4acbae00, ack 98d2df0): chat = one-line pointers only; detail goes IN scenario units (statusChecklist for hop transitions with commit-hash inline); planner owns view consistency; CMM1 anti-pattern = paragraph dumps. Format: EXPERT pointer: -> ior:instance:<uuid> + <verb>
 
+## Session 2026-06-15/16 Learnings
+
+### Learning #107: SOURCE-VERIFY before EVERY claim
+3+ false "deployed" / "renders" claims this session. MANDATORY: git show HEAD:<file> | grep <feature> (must be >0) AND curl live dist bundle AND /api/health BEFORE any deploy claim. "Bundle has it" is NOT "renders" — tester gates visible.
+
+### Learning #108: PWA version bump required for user reach
+Same-version redeploy does NOT reach PWA users. MUST bump package.json + sw.js CACHE_NAME (#66) to trigger update banner. Without bump, stale cached bundle stays.
+
+### Learning #109: rb-file-detail is at trace/ not components/
+File: src/public/ts/trace/rb-file-detail.ts. PO grepped components/ (wrong path) and got 0. Always verify the actual file path.
+
+### Learning #110: Gate = few real verification events, NOT 1-per-testcase
+1016 fake per-testcase Gates were wrong semantics. Gates are deploy-gate/det-3x/parity/tron-qa events — a HANDFUL, created by role at gate-time via record-gates.ts CLI.
+
+### Learning #111: content-preview.ts is the DRY source for preview
+renderContentPreview + loadTextPreview + wireUrlActions already exist in content-preview.ts. Don't rebuild preview in rb-file-detail — import from content-preview.ts.
+
+### Learning #112: baseType remap pattern for new types
+testcase/gate → 'test' base; currentsprint → 'task' base. The line 622 override restores original type string so /api/trace emits the correct type. Same pattern as bug/changerequest → 'requirement'.
+
+### Learning #113: forward-key alignment (scenarioFwd vs traceFwd)
+Build uses scenarioFwd keys (plural: 'classes'), filter must use the SAME keys. traceFwd had singular ('class') causing mismatch → links stripped. Fix: filter uses scenarioFwd().
+
