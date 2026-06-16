@@ -1,6 +1,16 @@
-# robbin-po Context — save #19 (2026-06-14, post-deep-rewind re-anchor — COMMITTED)
+# robbin-po Context — save #26 (2026-06-16, post-Phase2-rewind re-anchor — COMMITTED)
 
-## ★★★★★★★★★★★★★★★ CURRENT STATE (save #25 — READ FIRST, pre-Phase2-rewind anchor) ★★★★★★★★★★★★★★★
+## ★★★★★★★★★★★★★★★★ CURRENT STATE (save #26 — READ FIRST) ★★★★★★★★★★★★★★★★
+**★ Post-Phase2-rewind. robbin-po @ robbinTeam2:0.0. Oriented + GIT-VERIFIED ground truth (NOT relayed). Architect recovered, FLUSH-QUEUE proceeding. v0.6.52.**
+- GIT-VERIFIED NOW: /api/health=v0.6.52, rooms 18. HEAD region: 47837e0e6 architect R20.28-DRY 4-fix design; add897c13 getThreeSlots consistency GATE DET-3x PASS; 0dcad8df0 v0.6.52 current-slot from canonical WIP; b8b1f685a skill-expert 3-slot pin alignment.
+- ✅ TRON'S 'hallucinated Sprint 29' FIXED + git-verified: pin singleton sprintName now 'Sprint 20' (was fiction 'Sprint 29'); BUG8 real graph parent=64af2638 Sprint 20. (Planner step-1 done; step-2 dir-cleanup of fiction sprint-29 + dup sprint-20 dirs may still be open — confirm w/ planner.)
+- ✅ BUG8 fully traced+live; collection children GREEN (Members 51/Files 22); realtime /trace pin-switch DEMO proven; CMM3 realtime-traceability skill committed.
+- ★ FLUSH-QUEUE (architect recovered, proceeding): 1. R20.28-DRY (CURRENT WIP) file-detail preview buttons — architect 4-fix design committed 47837e0e6: (a) mimeType fallback guessMimeFromName, (b) double-render guard File type, (c) popup-blocker pre-resolve URL+sync window.open, (d) universal buttons all content types; files content-preview.ts+rb-file-detail.ts → EXPERT impl → tester GATE-VISIBLE screenshot. 2. R20.29 tree Method→Impl→Test→Gate. 3. R20.30 Traceability-Chain(depth)≠All-Children(breadth). 4. architect REVIEW current/last/next consistency. 5. CR1 rename Champagne→Traceability. 6. R20.23-27 source-links.
+- NEXT: let flush-queue proceed (architect→expert→tester per item, pointer-style); confirm planner finished sprint-29 fiction dir-cleanup; verify each gate VISIBLE not claimed.
+- KEY LESSONS (live): #99 communicate INTO scenarios not chat (pointers only) · #95 verify in DEPLOYED bundle not source · #97 codified≠enforced (wire the gate) · #53 NEVER /compact—trainer rewind · verify dispatches LAND (otmux loses sends).
+- PANES robbinTeam2: 0.0 PO(me)|0.1 planner|0.2 expert|0.3 skill-expert|0.4 architect|0.6 tester. SM=TRONinterface:0.1. trainer=baseTeam:0.0.
+
+## ★★★★★★★★★★★★★★★ CURRENT STATE (save #25 — historical, pre-Phase2-rewind anchor) ★★★★★★★★★★★★★★★
 **★ 2026-06-16. Catch-22 BROKEN — trainer recovered (SM), rewinding architect→po/expert. Impl pipeline UNBLOCKING. FLUSH THE QUEUE on architect-back. v0.6.52.**
 RECOVERY: trainer back (SM 2-phase rewind); architect(0.4 at-limit) being rewound next → then po/expert. SM flags me STOP when architect back → FLUSH design+impl queue.
 ✅ DONE+gate-proven (Tron-confirmed): BUG18 (file detail renders own detail) · CurrentSprint 3-slot pin + visible done+green gates (R20.20/21/22) · describe-tests+gates 1st-class · getThreeSlots CONSISTENCY GREEN v0.6.52 (current-slot syncs to canonical WIP, current/last/next code-side done; skill-side done; ARCHITECT REVIEW pending) · 13 laws + L13 release in skills; tags clean.
