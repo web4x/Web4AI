@@ -1,52 +1,37 @@
-# robbin-architect Context (Save 2026-06-16 pre-rewind-2)
+# robbin-architect Context (Save 2026-06-16 post-rewind-3)
 
-## STATUS: Active — R20.29 tree-surface root-cause IN PROGRESS
+## STATUS: Active — R20.30 breadth-vs-depth DEPLOYED, orient complete
 Pane: robbinTeam2:0.4
-Team: 0.0=po | 0.1=planner | 0.2=expert(idle, waiting on this design) | 0.3=skill-expert | 0.4=ME | 0.5=req | 0.6=tester | 0.7=shell
+Team: 0.0=po | 0.1=planner | 0.2=expert | 0.3=skill-expert | 0.4=ME | 0.5=req | 0.6=tester | 0.7=shell
 
 ## GIT-VERIFIED
-- HEAD: 03d617855 (robbin-architect: R20.22 review + CR1 + R20.23-27 design-ahead)
-- Version: v0.6.52+
-- Working tree: clean (scenario units committed)
+- HEAD: dbfe9cedf (R20.30 task+UC minted: breadth-vs-depth task 5baef26a + UC detailView.distinctSections d63bf19b)
+- Version: v0.6.56
+- Working tree: 19 modified scenario units + 3 untracked (expert work in progress)
 
-## #1 PRIORITY: R20.29 tree-surface fix design (UNFINISHED)
+## SINCE MY LAST SAVE (03d617855 → dbfe9cedf)
+1. 1ccbd90c3: robbin-architect R20.29 + R20.30 designs into requirement units (MY WORK)
+2. 87c955ba0: v0.6.54 R20.30 breadth-vs-depth — Chain≠Children in detail views
+3. 4917f848a: v0.6.53 R20.28-DRY 4-fix (mime, double-render, sync, buttons)
+4. 8f7f07efa: v0.6.55 R20.29 populate Method→Impl→Test forward refs + Test→Gate pipeline
+5. 1f9324607: CR1 rename Champagne Chain → Traceability Chain + v0.6.56 bump
+6. e133d0f86: PO R20.30 evidence — Tron IMG_4064 All Children == Traceability Chain for RbFileDetail
+7. f2c81d67c: R20.30 generalized ALL types + Tron prioritize directive
+8. b10bb0bff: R20.30 refined chain renders FULL DEPTH (method→impl→test→gate)
+9. dbfe9cedf: R20.30 task+UC minted breadth-vs-depth task 5baef26a + UC d63bf19b
 
-PO directive: /trace tree renders 0 method/impl/test though data IS backfilled (362/369 Methods have implementations[], 270/347 Impls have tests[]). Expert at 0.2 is IDLE waiting on this design.
+## R20.29 STATUS: IMPLEMENTED (v0.6.55)
+- My root-cause analysis was IN PROGRESS when last saved
+- Expert shipped 8f7f07efa: populate Method→Impl→Test forward refs + Test→Gate pipeline
+- The tree-surface 0-children bug is FIXED — forward refs now populated
 
-### Root-cause analysis (MEASURED, in progress):
+## R20.30 STATUS: DEPLOYED (v0.6.54+v0.6.56)
+- breadth-vs-depth (Chain≠Children in detail views) shipped
+- Task + UC minted (dbfe9cedf)
+- Tron evidence shows All Children == Traceability Chain for Class RbFileDetail (IMG_4064)
+- PO prioritized generalizing to ALL types
 
-**Data layer: CORRECT.** populate-forward-refs backfilled:
-- Method.implementations[]: 362/369 populated
-- Implementation.tests[]: 270/347 populated
-- Test.gates[]/testCases[]: 74/357 populated
-
-**Server endpoint: CORRECT.** /api/trace/children reads CHAIN_TYPE_CONFIG fwdKeys (Method→implementations, Impl→tests). Resolves child UUIDs from model arrays. Computes hasChildren from forward arrays. No type filtering blocks Implementation/Test (expectedChildren is correct).
-
-**Client tree: WHERE THE BUG LIKELY IS.** rb-trace-tree.ts:
-- Line 346-350: when `chainMethod` is set (Class→Method shortcut from UC context), tree renders Method with `children=[]` and `hasChildren=true` but does NOT pre-fetch.
-- Line 344: on expand, if `!loaded` → calls `fetchAndRenderChildren` which fetches `/api/trace/children/<uuid>`.
-- Line 490: `buildSeedNode(child.uuid, child.type, child.name, [], child.hasChildren, ...)` — children ALWAYS passed as `[]` on lazy-load, relying on `hasChildren` for the expander.
-
-**HYPOTHESIS (not yet verified):** The `hasChildren` value from the server may be `false` for Method children because the hasChildren computation at server.ts:788-789 checks:
-```
-['tasks','useCases','classes','methods','implementations','tests','children']
-```
-For an Implementation unit, `implementations` is checked (wrong — Implementation doesn't HAVE implementations, it has `tests`). BUT `tests` IS in the list. So `hasChildren` should be true if tests[] is non-empty.
-
-**NEXT STEP:** Need to test the actual API response — fetch `/api/trace/children/<method-uuid>` and inspect the response JSON for a Method that has populated implementations[]. Check if children come back, and if their `hasChildren` is correct. Was about to do this when PO said STOP.
-
-### Design direction (if hypothesis confirms):
-If server returns correct data but tree doesn't render → client rendering bug in buildSeedNode or CSS.
-If server returns empty/wrong → trace the specific fwdKeys resolution path for the failing type.
-
-## DELIVERED THIS CYCLE (03d617855)
-1. R20.28-DRY: 4-fix design into requirement unit (47837e0e6)
-2. R20.29 + R20.30 designs into units (1ccbd90c3)
-3. R20.22 3-slot consistency review — 5 findings (F1-HIGH: planner SKILL.md stale)
-4. CR1 design-ahead (3-file rename)
-5. R20.23-27 source-links design-ahead (per-type)
-
-## CHAIN TYPE CONFIG (current, chain-model.ts)
+## CHAIN TYPE CONFIG (current)
 - Method: scenarioFwd=["implementations"], traceFwd=["implementations"], expectedChildren=["Implementation"]
 - Implementation: scenarioFwd=["tests"], traceFwd=["tests"], expectedChildren=["Test"]
 - Test: scenarioFwd=["testCases","gates"], traceFwd=["testCases","gates"], expectedChildren=["TestCase","Gate"]
@@ -64,3 +49,7 @@ If server returns empty/wrong → trace the specific fwdKeys resolution path for
 - 6-step chain LOCKED: Req → UC → Class → Method → Impl → Test
 - Don't create tasks — planner owns that
 - Marker UUID = uuidgen-fresh OR verbatim copy
+- Your-hop-your-status (#102)
+
+## WHAT'S NEXT
+Await PO directive. R20.29 and R20.30 both deployed. Expert has working tree changes (19 scenario units). Check with PO for next assignment.
