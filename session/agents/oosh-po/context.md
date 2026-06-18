@@ -1,95 +1,100 @@
-# Product Owner Context
+# oosh-po Context
 
-**Updated**: 2026-06-11
-**Role**: oosh-po
+**Updated**: 2026-04-24
+**Role**: oosh-po (forked from fallback-oosh-po)
 **Pane**: ooshTeam:0.0 on MacStudio.native
-**Session**: oosh-po@MacStudio [aca3405a]
+**Session**: oosh-po@MacStudio [6b89d34c-1039-4cbb-b7ca-2e3ed2af5d95]
 
-## Current State (post Phase 1 rewind, before Phase 2 deep rewind)
+## Identity (verify on doubt)
+- I am a FORK. Conversation continuity lies about identity after a fork.
+- Verify: `otmux pane.get.target` → ooshTeam:0.0, `claudeCode session.name 6b89d34c` → oosh-po@MacStudio
+- My files: `session/agents/oosh-po/` (NOT product-owner/)
+- Tron is at TRONinterface:0.0 — never interrupt that pane
 
-- Phase 1 rewind freed room. About to do Phase 2 DEEP rewind.
-- Auto mode active — autonomous execution
-- Team status: tester recovering from rewind, expert+architect delivered docker fix
-- robbin-skill-expert (robbinTeam2:0.3) coordinating with me on OOSH skill authoring
+## Team Layout (ooshTeam)
+| Pane | Agent |
+|------|-------|
+| 0.0 | oosh-po (me) |
+| 0.1 | oosh-architect |
+| 0.2 | oosh-expert |
+| 0.3 | oosh-tester |
+| 0.4 | oosh-expert-shell |
+| 0.5 | oosh-tester-shell |
 
-## Active Work Streams
-
-### 1. Docker install fix (66212be on top of 0bdd8df)
-- Bug: fresh Once.sh install uses HTTPS instead of SSH, no keys provisioned
-- Architect design: Option C (volume mount, never bake keys) + sequencing reversal
-- Expert implementation: ossh config.create 2cuGitHub FIRST, then clone via 2cuGitHub: URL
-- Cascade: 2cuGitHub: → git@github.com: → HTTPS
-- Status: ready for tester verification (tester rewinding)
-- Task file: session/tasks/20260610T1900Z.docker-install-git-keys-fix.md
-
-### 2. config.init bug investigation
-- Under investigation — details in expert's notes
-- TBD priority based on sprint completion needs
-
-### 3. robbin-skill-expert OOSH teaching (commit 4d89f61)
-- Delivered 4 must-knows: dispatch + signature, completion conventions, symlink/verify, common wrongs
-- Identified 2 taskChain deviations to fix:
-  - `.bootstrap` should be `.start`
-  - global `parameter.completion.X` should be per-method `method.completion.paramName`
-- Will coordinate fix with oosh-expert at next STOP
-
-### 4. Sprint 1 — nearly done
-- All expert tasks DONE (SC-A through SC-G, D4, D5, P0, MVC fix 382a26b)
-- Tester remaining: SC-D.3 (reconcile roundtrip), SC-A.3 (invariant fixtures), D4.2 (fit verification)
-- Architect: SC-G.3 PUMLs in progress
-- Sprint 0 closed
-- 458-commit branch merge test/macos.latest→dev complete
-- Cross-platform Termux: 185/185 tests pass (oo+ossh+config+log)
-
-## Teams (registered)
+## Other Teams
 | Team | Status |
 |------|--------|
-| TRONinterface | running — SM active, just saved |
-| ooshTeam | running — expert active, tester rewinding, architect delivered |
-| web4team | running — 4 agents |
-| robbinTeam2 | running — robbin-skill-expert active |
-| baseTeam | running — agent-trainer (also rewinding) |
+| TRONinterface | Tron interface (0.0) + SM (0.2, Sonnet sweep monitor) |
+| web4team | web4-po + architect + expert + tester |
+| robbinTeam2 | robbin team |
 
-## Recent Deliverables (commits this session)
+## SM (scrum-master)
+- Sonnet at TRONinterface:0.2, boot: session/tasks/scrum-master-boot.md
+- Reports to ME (oosh-po), not Tron
+- Role: sweep, unblock safe prompts, track subscription velocity, report impediments
+- Does NOT assign tasks — that's MY job
+- Cannot self-loop (Claude agents halt at turn end) — needs nudges or watchdog
+- FORBIDDEN: compacting any agent
 
-- `382a26b`: MVC rename consistency fix — tree.detailed reads pane title not stale JSONL
-- `0bdd8df`: Docker install SSH-first cascade
-- `66212be`: Docker architect refinement (canonical ossh config.create)
-- `4d89f61`: robbin OOSH teaching captured
-- ossh key.pull 6 Termux bugs FIXED + verified live on samsungTablet
-- config.save prefix-match bug FIX (af23e3f)
-- Bulk /tmp/→TMPDIR cross-platform fix (33+ sites)
+## Sprint 0 — Lifecycle Consolidation (MVC: claudeCode=Model, otmux=View, hiveMind=Controller, tronMonitor=Monitor)
+**Location**: scrum.pmo/sprints/sprint-0-lifecycle-consolidation/planning.md
+**I own this file** — update checkboxes as commits land, present at QA Review for Tron.
 
-## Bugs Filed This Session
-- session/tasks/mvc-rename-consistency-bug.md — FIXED (382a26b)
-- session/tasks/ossh-key-pull-termux-bugs.md — 6 bugs FIXED + verified Termux
-- session/tasks/hivemind-multi-team-resolve.md — 5 bugs, active-team bottleneck (queued)
-- session/tasks/20260610T1900Z.docker-install-git-keys-fix.md — FIXED, awaiting tester
+### Status
+- **G1** (BLOCKER): context.read hardcoded 200k → -226% for 1M. DONE ca49445+ae002cd (DRY env constants). G1.3 tester pending.
+- **A1** (boundary audit): A1.1+A1.2+A1.3 DONE. QA REVIEW.
+- **A2** (session portability): A2.1+A2.2 DONE (1dc8b91). A2.3 tester pending.
+- **B1** (otmux boundary): B1.1+B1.2 DONE. B1.3 tester pending. Decision: prefix stays in otmux.
+- **B2** (otmux layout persistence): expert assigned/in progress
+- **C2** (hiveMind DRY): DONE. QA REVIEW.
+- **C3** (sweep.detect): C3.1 DONE. C3.2+C3.3 pending.
+- **D1** (tronMonitor): D1.1 DONE (0594575).
+- **Epic F** (scrumMaster CMM4): F1 velocity, F2 false-positive hardening, F3 API resilience — PLANNED
+- **Epic E** (integration test): PLANNED — depends on C1 cold-restore
+
+### Next assignments (by dependency order)
+- Expert: B2 → C1 (cold-start restore, primary deliverable)
+- Tester: G1.3 → A2.3 → B1.3 → C3.3 (test backlog)
+
+## Pre-Sprint Commits (foundation, this branch)
+- 02b4070 DRY session.current consolidation
+- 03149ef multi-team resolve
+- ff1d6dd lifecycle auto-refresh
+- 635158d consistency.fix broken UUID prune
+- eca047a/b3a63ae/bb76bb6 sweep.detect hardening
+- ca49445/ae002cd context.read 1M fix
+- 1dc8b91 session portability
+- 57d8a00 Sprint 0 A1.3 + C2.3 tests
+
+## Token Velocity (CMM4)
+- Subscription counts INPUT only — sustained output FREE
+- Check `scrumMaster subscription` every 10-15 min via PO shell
+- Each new prompt ≈ 15-20% of 5h budget (context replay)
+- >80% 5h = let agents finish, no new prompts, schedule wakeup at reset
+- Reset is seamless — agents keep producing across the boundary
 
 ## Rules (eternal — copy forward on every save)
-
 - Use hiveMind for agent interaction (not raw otmux for agents)
-- Sweep detects → manual capture → then decide
-- Never blind-unblock
+- Sweep detects → manual capture → then decide (never blind-unblock)
 - No output filtering (no 2>/dev/null, no grep/head/tail on output)
-- No until loops or while-sleep polling — they stack up in context
-- PO delegates, never debugs
-- NEVER /clear a trained agent — use /rewind (F-CLEAR rule)
+- No until-loops or while-sleep polling — context burn
+- PO delegates, never debugs — write bug reports
+- NEVER /clear or compact a trained agent — only Tron authorizes; autocompact OFF by design
 - /rewind protocol: shallow rewind → agent saves → deep rewind (TWO-PHASE)
 - Failure is failure — NO "pre-existing" excuse. ALL failures get task files
-- CMM4: task file is the spec, chat is just the reference
-- Failure: rewind option 2 only (Restore conversation), never 1/3/4
-- Check scrumMaster subscription every 15-30 min
-- Compact urgent at ~10%, not 35% (F46 — not hysteric)
+- CMM4: task file is the spec, chat is the reference
+- Check scrumMaster subscription every 10-15 min
+- Role separation: SM monitors+suggests+impediments, PO assigns, Tron reviews QA
+- Name format role@host for /remote-control visibility
+- Verify identity on doubt: pane.get.target + session.name
+- Before pausing: check SM health (42 team — peer unblock)
+- dots + camelCase ONLY in OOSH naming
+- DRY not negotiable — one source of truth
 
-## Queued for next assignment cycle
-- session/tasks/tronmonitor-fit-no-arg-default.md — NORMAL
-- session/tasks/skill-expert-scenario-planning.md — NORMAL
-- session/tasks/hivemind-multi-team-resolve.md — HIGH (5 bugs)
-- taskChain skill deviations (.bootstrap→.start, global→per-method completions)
-
-## After Phase 2 deep rewind, I need to:
+## Post-rewind/compact recovery
 1. Read this context.md
-2. Read learnings.md  
-3. Resume from "current work streams" section
-4. Health check: who and where am I (this file confirms identity)
+2. Read learnings.md (session/agents/oosh-po/learnings.md)
+3. Verify identity: pane.get.target + session.name 6b89d34c
+4. Read sprint planning, check what's QA REVIEW vs IN PROGRESS
+5. hiveMind team.sweep ooshTeam — see agent states
+6. Resume assigning from "Next assignments"
