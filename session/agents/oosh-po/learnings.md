@@ -353,3 +353,30 @@ Architect delivered docker fix design (Option C volume mount + sequencing revers
 
 ### Rewind two-phase protocol (reinforced 2026-06-10)
 Shallow rewind first → agent fresh-writes context.md + learnings.md + commits → DEEP rewind to checkpoint. The shallow exists ONLY to let the agent save before deep rewind erases. Without phase 1, recent learnings are lost. **NEVER /clear a trained agent. NEVER skip phase 1.**
+
+### Identity after fork — verify, never assume (2026-04-24 session / forked oosh-po)
+A fork inherits the FULL parent conversation, so the forked agent believes it is the parent. I spent many turns answering as "product-owner at TRONinterface:0.0" when I was actually the freshly-forked oosh-po at ooshTeam:0.0. **On ANY identity doubt: `otmux pane.get.target` (where am I) + `claudeCode session.name <uuid>` (what am I named). Conversation continuity LIES about identity after a fork.** Also: claudeCode list can be stale — the live session (via session.discover) is truth, not the cached list entry.
+
+### Edit the RIGHT agent files (2026-04-24)
+I edited session/agents/product-owner/{context,learnings}.md for a whole session when my real files are session/agents/oosh-po/. The fork parent was fallback-oosh-po, my files are oosh-po/. **Verify your file path matches your real identity before writing. Wrong-file edits are lost work + stale truth.**
+
+### Name format: role@host for /remote-control (2026-04-24)
+Session customTitle convention is `<role>@<host>` (e.g. oosh-po@MacStudio). The @host is INTENTIONAL — it shows in /remote-control where each agent runs. Registry strips @model/@host via `%%@*` to store bare role. **Don't strip @host from session name — only strip wrong prefixes like "fallback-". /rename <role>@<host>.**
+
+### Token economics — subscription counts INPUT only (2026-04-24, measured)
+Ran 4-6 agents for 5+ HOURS in sustained generation (accept-edits mode): subscription went 20%→25%, +5% total. Each NEW prompt (full context replay) costs ~15-20% of 5h budget. **Sustained output is effectively FREE. The cost is input context replay on new turns. Velocity management = minimize new prompts, let agents work long autonomously, never interrupt sustained generation. A 1M-context agent's single new prompt ≈ 100k+ input tokens ≈ big chunk of budget.**
+
+### Role separation: SM / PO / TRON (2026-04-24 Tron directive)
+SM checks, monitors, suggests, handles impediments — does NOT assign tasks. PO assigns sprint tasks by priority+dependencies. TRON reviews QA Review state. SM reports idle agents to PO; PO decides what's next. **SM is the eyes (sweep+unblock+velocity), PO is the hands (assign+plan), Tron is the gate (review).**
+
+### Claude agents cannot self-loop (2026-04-24)
+A Sonnet SM told to "sweep every 60s forever" stops after one batch — Claude agents respond once per prompt then wait. **For persistent monitoring use hiveMind watchdog (bash loop in a pane) or the /loop skill or PO ScheduleWakeup — NOT an agent told to loop. The agent will always halt at turn end.**
+
+### Sprint files are PO's living source of truth (2026-04-24 Tron directive)
+PO maintains scrum.pmo/sprints/.../planning.md: tick checkboxes as commits land, set Status (PLANNED→IN PROGRESS→QA REVIEW→DONE), link task files. Assign at correct velocity. Tron reviews at QA Review state. **The planning file must reflect reality at all times — it's how PO knows what to assign next. Stale checkboxes = wrong assignments.**
+
+### 42 team: PO + SM peer-monitor (2026-04-24)
+PO and SM are a 42 pair — neither can self-care (can't read own context/unblock own prompt). SM unblocks PO's permission prompts; PO unblocks+restarts SM. **Before pausing, ALWAYS check SM health — a stuck SM = blind team. Mutual measurement.**
+
+### NEVER compact trained agents — autocompact is OFF by design (2026-04-24, Tron emphatic)
+Tron disabled autocompact intentionally and fixed the context problem at the infra level. Compacting destroys trained context. SM boot must FORBID compact. **Only Tron authorizes compacts. If agent low on context: REPORT, don't act. context.read was also buggy (hardcoded 200k → -226% for 1M agents, fixed in ca49445+ae002cd).**
