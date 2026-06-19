@@ -58,18 +58,15 @@
 Owner/deliverer: **oosh-po**. Expert + tester report completion by editing the lines below.
 
 ### Expert (ooshTeam:0.2) — implementation
-- Status: NOT STARTED
-- Commit(s): ___
-- Done when: signature changed, json param removed, name+uuid completions added, age-sort. Update this block + tick the acceptance boxes above, then notify PO via one-line task reference.
+- Status: ✅ DONE — commit 44726ab (+ a986391 #6, a469165 tests)
+- #1 list nameFilter (json dropped), #2 UUID+name completion, #3 age-sort (ls -t), #9 T-ALIGN-8 cap-20 unblock. All landed.
 
 ### Tester (ooshTeam:0.3) — tests
-- Status: NOT STARTED
-- Tests added: ___ (T-LIST-filter, T-COMPLETE-uuid, T-SORT-age)
-- Result: ___ / ___ pass
-- Done when: tests written + run green against expert's commit. Update this block, then notify PO.
+- Status: ✅ GREEN (unblocked by #9 cap)
+- Result: 5 target tests GREEN — T-LIST-FILTER-1/2, T-LIST-SORT-1, T-COMPLETE-UUID-1/2.
 
 ### PO verification
-- [ ] Expert reported + commit verified
-- [ ] Tester reported + tests green
-- [ ] PO ran `claudeCode list oosh` and confirmed filter works
-- [ ] Delivered to Tron
+- [x] Expert reported + commit verified (44726ab present in git log)
+- [x] Tester reported + tests green (5/5 list tests)
+- [x] PO ran `claudeCode list oosh` → 26/84 filtered; `list robbin` → 30 — filter works
+- [x] Delivered to Tron (2026-06-19)
