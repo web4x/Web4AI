@@ -56,7 +56,7 @@ Deliverer/owner: **oosh-po**. Each fix has an owner; agents tick the box + add c
 | 3 | age-sort / oldest picker | oosh-expert | S | IN PROGRESS (same task) | ___ |
 | 4 | otmux send prefix guard (skip non-Claude/shell targets) | oosh-expert | S | ASSIGNED | ___ |
 | 5 | claudeCode stop = kill PID + respawn (restore cooked mode) | oosh-expert | S | ASSIGNED | ___ |
-| 6 | sweep.detect false-positives — **KEYSTONE** | oosh-expert | M | ASSIGNED-PRIORITY | ___ |
+| 6 | sweep.detect idle-vs-active — **KEYSTONE** | oosh-expert | M | ✅ DONE+VERIFIED (live: idle agents show IDLE) | a986391 |
 | 7 | 27-col TUI: zoom-helper for menu interaction | oosh-expert | S | ASSIGNED | ___ |
 | 8 | agent.send rejects accept-edits as overlay | oosh-expert | S | ASSIGNED | ___ |
 
