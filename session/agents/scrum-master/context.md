@@ -7,9 +7,9 @@
 
 ## ★★★★★ LIVE STATE (2026-06-19, idle-window save — MOST CURRENT)
 - **Sessions:** baseTeam (trainer@0.0) + ooshTeam (po@0.0, architect@0.1, expert@0.2, tester@0.3, shells@0.4/0.5) + TRONinterface (me@0.1, TRON-Monitor@0.3). **NO robbin team** (robbinTeam2 killed; await TRON for new project team).
-- **oosh-architect(0.1) THRASHING — Tier-3 FORK escalated to TRON** (3rd 'clear to save' cycle; shallow+deep rewinds don't stick). Save committed, trainer recommended Tier-3 (distill→fork from healthy source→Touch Protocol). Awaiting TRON decision on source+approval. Architect idle/contained (not burning).
-- **oosh-expert(0.2):** recovered (identity drift post-rewind caught+corrected — was 'hiveMind expert', re-anchored to oosh-expert). Shell-pane fix CONFIRMED (3+ clean ticks, no permission prompts). 63.3% used WATCH.
-- **oosh-tester(0.3):** recovered, Rule-6 verified, 48.6% used, clean.
+- **ALL 3 oosh workers THRASHING — Tier-3 FORK escalated to TRON:** architect 3x, expert 2x, tester 2x 'clear to save' cycles. Rewinds are a treadmill on bloated conversation bases. Saves committed on all. Trainer alerted. Awaiting TRON decision on Tier-3 forks (distill→fork from healthy source→Touch Protocol).
+- **oosh-po(0.0):** was stuck in a 1h16m single generation (explains why IDLE-CATCHes seemed ignored — it WAS processing). Now idle.
+- **IDLE-CATCH escalation completed:** flag→re-drive→final-drive→TRON escalation (team unproductive 30+ ticks, 0 commits 2h+). Root cause = PO stuck in long gen + workers thrashing.
 - **oosh-po(0.0):** idle, auto mode on, healthy.
 - **agent-trainer(baseTeam:0.0):** operational, just completed deep rewinds on architect+tester.
 - **Subscription:** 0%/5h, 51%/7d — safe, well under 80% survival trigger.
