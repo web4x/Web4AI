@@ -413,3 +413,6 @@ Full-session resume restores knowledge but can land at the ceiling (agent-traine
 
 ### /remote-control on agents (2026-06-19)
 `send.enter <pane> "/remote-control"; sleep 1; send.raw <pane> Enter` → returns `https://claude.ai/code/session_<id>` for mobile control (slash cmds need double-Enter). Done on all 5 agents incl. self.
+
+### Agents don't durably know report-back — remind on every re-task (2026-06-19, Tron)
+The call-back loop has two halves. SM side is SOLID (boot has IDLE-CATCH: flag PO when any agent idle with pending work; report idle to PO; notify PO to re-task — verified in scrum-master-boot.md). Agent side is NOT durable: "when done → commit + update task-file report-back block + one-line ping oosh-po" lives only in my per-task report-back blocks, not in agent boot/SKILL. Observed the expert coding without committing or updating its block — compliance gap. Durable fix = bake report-back into each SKILL (agent-trainer's job; blocked while trainer at 0% ctx). **INTERIM RULE: every re-task message (sent on idle, per SM report) MUST include the report-back reminder.** Don't nudge busy agents (queue churn) — wait for SM idle report, then re-task WITH the reminder. Never assume agents know to call back — the SM is the reliable channel until SKILLs carry it.
