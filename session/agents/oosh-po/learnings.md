@@ -380,3 +380,36 @@ PO and SM are a 42 pair — neither can self-care (can't read own context/unbloc
 
 ### NEVER compact trained agents — autocompact is OFF by design (2026-04-24, Tron emphatic)
 Tron disabled autocompact intentionally and fixed the context problem at the infra level. Compacting destroys trained context. SM boot must FORBID compact. **Only Tron authorizes compacts. If agent low on context: REPORT, don't act. context.read was also buggy (hardcoded 200k → -226% for 1M agents, fixed in ca49445+ae002cd).**
+
+### otmux send VARIANTS — prefix corrupts shell/menu input (2026-06-19, Tron drilled repeatedly)
+`otmux send <t> <text>` adds `[@role pane]` prefix — ONLY for prose to idle Claude agents. To a BASH pane it becomes `[@oosh-po ...] echo hi` → "bad pattern"; to a menu it corrupts keys. **Map: `send`=prefixed prose-to-agent ONLY · `send.raw`=raw keys no prefix (menu nav/control) · `send.enter`=literal text+Enter no prefix (shell cmds). Prefer CONTROLLER `hiveMind agent.send` (idle→INFORM, busy→QUEUE, overlay→reject).** Wasted ~15 turns on the wrong variant before Tron made me `otmux usage` it.
+
+### Resume-from-summary menu — DIGITS work, arrows echo literal, NEVER summary (2026-06-19)
+Fork/resume of a large session shows: `1 summary / 2 full / 3 don't ask`. **NEVER 1 (discards trained context). Always 2.** Arrows/Escape over tmux echo LITERAL `^[[B` (cursor-key mode mismatch) — selection won't move. **DIGITS work: `otmux send.raw <pane> 2`.** Menu needs WIDTH — zoom first. Recipe: zoom → `send.enter "claudeCode fork <uuid>"` → wait 12s → `send.raw <pane> 2` → verify `<role>@host` → unzoom.
+
+### Killing a claude TUI leaves PTY RAW (2026-06-19)
+After `kill <claude-pid>` the shell echoes `^M`/`^C` literally, nothing executes (TUI never restored cooked mode; can't type `reset`). **Fix: `tmux respawn-pane -k -t <pane>`.** Need a proper `claudeCode stop` (kill+respawn) — bug #5.
+
+### Trained vs untrained — measure JSONL size (2026-06-19)
+Untrained clone = tens of lines (29-132); trained = thousands (2.7k-9.1k, 6-14M). `wc -l ~/.claude/projects/*/<uuid>.jsonl` is the discriminator. Accidental clones came from blank sessions; real trained were the OLDER same-day UUIDs.
+
+### MVC — route agent ops through the hiveMind CONTROLLER (2026-06-19, Tron)
+Model=claudeCode, View=otmux, Controller=hiveMind, Monitor=tronMonitor. Stop reaching past to raw tmux/otmux/kill. Use `hiveMind resolve` (searches ALL teams now), `agent.send` (context-aware), `delegate` (file+nudge), `teams.restore <snap> fork` (composes fork+resume across a team — replaces manual pane-by-pane), `agent.monitor` (by name).
+
+### PDCA per pane — NO for-loops on multi-pane ops (2026-06-19, Tron)
+One pane: Plan→Do→Check→Act, verify, THEN next. Batching hid failures + left panes half-done. Balance zoom toggles (every `-Z` on matched off; check `#{window_zoomed_flag}`).
+
+### CMM4 comms — task file IS the channel, chat is the reference (2026-06-19, Tron)
+Full spec in the task file. Nudge = ONE LINE `Read session/tasks/<f>.md`. Never repeat content in the message. Agents report done by editing a report-back block IN the file.
+
+### MANAGE, don't just analyze (2026-06-19, Tron called me out)
+Logging a bug + reporting to Tron ≠ managing. Managing = every bug → OWNED task (owner/size/status/commit) in a tracked backlog, DELEGATED via controller with report-back, DRIVEN to green (I verify each, deliver). PO delegates the fix, doesn't code it. The deliverable is MINE.
+
+### Controller bug: agent.send rejects accept-edits as "overlay" (2026-06-19, found)
+`hiveMind agent.send` → `rejected: overlay state` when target just has accept-edits banner (not a real modal). Blocked sends to healthy agents. Bug #8 — accept-edits must route as normal INFORM/QUEUE.
+
+### Recovered trained agents may be at 0% context (2026-06-19)
+Full-session resume restores knowledge but can land at the ceiling (agent-trainer recovered at 977.5k = 0%). At 0% it can't work or coordinate rewinds. Flag to Tron; never compact without authorization.
+
+### /remote-control on agents (2026-06-19)
+`send.enter <pane> "/remote-control"; sleep 1; send.raw <pane> Enter` → returns `https://claude.ai/code/session_<id>` for mobile control (slash cmds need double-Enter). Done on all 5 agents incl. self.
