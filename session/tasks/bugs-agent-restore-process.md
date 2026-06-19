@@ -54,20 +54,21 @@ Deliverer/owner: **oosh-po**. Each fix has an owner; agents tick the box + add c
 | 1 | list nameFilter (drop json) | oosh-expert | S | IN PROGRESS (claudeCode-list-discovery-fixes.md) | ___ |
 | 2 | UUID completion fork/join | oosh-expert | M | IN PROGRESS (same task) | ___ |
 | 3 | age-sort / oldest picker | oosh-expert | S | IN PROGRESS (same task) | ___ |
-| 4 | otmux send prefix guard (skip non-Claude/shell targets) | oosh-expert | S | ASSIGNED | ___ |
+| 4 | otmux send prefix guard | oosh-expert | S | ✅ RESOLVED (architect-confirmed: send.smart skips prefix for shell/non-Claude) | in send.smart |
 | 5 | claudeCode stop = kill PID + respawn (restore cooked mode) | oosh-expert | S | ASSIGNED | ___ |
 | 6 | sweep.detect idle-vs-active — **KEYSTONE** | oosh-expert | M | ✅ DONE+VERIFIED (live: idle agents show IDLE) | a986391 |
 | 7 | 27-col TUI: zoom-helper for menu interaction | oosh-expert | S | ASSIGNED | ___ |
-| 8 | agent.send rejects accept-edits as overlay | oosh-expert | S | ASSIGNED | ___ |
+| 8 | agent.send: REMOVE accept-edits PRE-CHECK (otmux auto-clears it) | oosh-expert | S | ASSIGNED (refined by architect) | ___ |
+| 9 | T-ALIGN-8 test hangs scanning ~80 panes (test 270) → blocks ALL list-task tests | oosh-expert | S | **ASSIGNED-PRIORITY** (skip/timeout the pane-scan) | ___ |
 
 - Tests for each: **oosh-tester** — add T- cases, run green against expert's commit, report result here.
 - Architect (oosh-architect): owns design/triage + the send-prefix-spec.md reference for #4/#8.
-- Order: **#6 FIRST (KEYSTONE)** → finish #1-3 → #8 → #4 → #5 → #7.
+- Order (updated 2026-06-19): #6 DONE ✓, #4 RESOLVED ✓. NEXT for expert: **#9 (unblock test suite — T-ALIGN-8 timeout/skip)** → verify list-task #1-3 green → audit-#1, audit-#3 (consistency core, see 20260619T1100Z file) → #8 → audit-#2/#4/#5 → #5, #7 → DURING_REWIND impl (design done, approved).
 - **#6 root-cause (SM diagnosis 2026-06-19):** `team.sweep` classifies agent state from SCROLLBACK TEXT PATTERNS, not live prompt state. Result: an idle agent at an empty `❯` prompt is reported ACTIVE (stale "reading"/verb text in scrollback). This masked a fully-idle team for multiple ticks AND likely makes `agent.send` busy-detection mis-queue to idle agents. FIX: distinguish idle-at-prompt (bare `❯`, no `esc to interrupt`) from genuinely ACTIVE (esc-to-interrupt / thinking / running present in the LAST live lines). Ref SM learnings #2 + Rule 8.
 
 ### Report-back lines (agents edit)
 - Expert: ___
-- Tester: ___
+- Tester (2026-06-19): Tests written for #1-3 (a469165): T-LIST-FILTER-1/2, T-LIST-SORT-1, T-COMPLETE-UUID-1/2, T-COLOR-PANE-CYAN, T-COLOR-DATE + T-LIST-FMT-1..7 + T-LIST-PERF-1..4. RUN BLOCKED: T-ALIGN-8 hangs at test 270 scanning 80+ panes, all my tests are after that and never execute. #6 sweep fix a986391 verified (see status table). hiveMind test suite also running (pane 0.5, started, ETA ~1hr).
 
 ## Working recipe (validated this session — restore a trained agent)
 1. `tmux resize-pane -Z -t <pane>` (zoom for width)
