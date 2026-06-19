@@ -155,6 +155,14 @@
 - `oo update` pulls dev branch on any platform (uses oo.mode)
 - Permission check: dirs 700, private keys 600, public keys 644
 
+### Systemic EPERM fix (2026-06-16)
+- Root cause: debug script onError() overrides init/once version
+- init/once suppressed code 1, debug version had -z/-n bug — never suppressed
+- Fix: bd39c80 adds code-1 suppression + fixes -z→-n logic
+- problem.log sets STEP_DEBUG=ON at 4 sites (log lines 117,206,230,253) — separate bug (task #40)
+- ERR trap + set -E in init/once inherits to ALL functions — any [ ] test failure fires onError
+- Cherry-pick fixes to remote hosts (WODA.test, Docker) — same codebase
+
 ### SC-D.3 reconcile roundtrip pattern
 - Create test session, register roles, inject violations per invariant
 - Violations: ghost pane in S1 (I1), dead team in S3 (I3), unregistered live pane (I8), @opus in title (I9)

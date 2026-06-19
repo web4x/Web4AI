@@ -1,45 +1,41 @@
 # OOSH Tester Agent — Session Context
 
-**Updated**: 2026-06-10
+**Updated**: 2026-06-19
 **Role**: oosh-tester
 **Pane**: ooshTeam:0.3
-**macOS Shell**: ooshTeam:0.4 (expert shell, shared for tests)
+**macOS Shell**: ooshTeam:0.4
 **Termux Shell**: ooshTeam:0.5 (samsungTablet)
+**WODA.test Shell**: ooshTeam:0.5 (also SSH to WODA.test)
 **Machine**: MacStudio.native
-**Branch**: dev
+**Branch**: dev (primary), test/macos.latest
 
-## Cross-Platform Status (final)
+## Current Task
+- claudeCode list/discovery fixes — task file: session/tasks/claudeCode-list-discovery-fixes.md
+- Need to write tests: T-LIST-filter, T-COMPLETE-uuid, T-SORT-age
+- Expert status: NOT STARTED
+- Tester status: NOT STARTED
+
+## Cross-Platform Status
 
 | Suite | macOS | Termux | Status |
 |-------|-------|--------|--------|
 | oo | 63/65 | 12/12 | GREEN |
 | ossh | 108/108 | 108/108 | GREEN |
 | log | — | 45/45 | GREEN |
-| config | — | 19/20 | 1 fail (config.discover) |
-| otmux | 130/146 (16 fail) | — | 16 failures unidentified |
+| config | — | 19/20 | 1 fail |
+| otmux | 130/146 (16 fail) | — | unidentified |
 
-## Current Task
-- otmux 16 failing tests: need rerun with output capture to identify
-- Previous runs interrupted or results file lost ($TMPDIR cleaned)
-- tree.detailed test blocks for minutes (performance bottleneck)
+## Systemic Fixes Delivered
+- bd39c80: debug onError suppresses exit code 1 (EPERM spam fix)
+- 7ba87d0: config start [ ! -f ] fix
+- Both cherry-picked to WODA.test dev
 
-## Verified This Session
-- ossh fix.rights: dirs 700, keys 600/644 — PASS
-- otmux.attach param naming (5db5b83) — test suite ran
-- Branch migration Phase 3: dev fully synced
-- /tmp/ bulk fix: 33+ mktemp across 7 files
-- log 45/45 + config 19/20 on Termux after expert fixes
+## Open Bugs
+- problem.log sets STEP_DEBUG=ON at 4 sites in log script (task #40)
+- otmux 16 failing tests unidentified
+- config.discover fails on Termux
 
 ## Recovery Steps
 1. Read this file + learnings.md
-2. Check PO (ooshTeam:0.0) for priorities
-3. Rerun otmux tests with tee to persistent path (not $TMPDIR)
-
-## Key Rules
-- NEVER use raw tmux — always otmux wrappers
-- NEVER filter output (no 2>/dev/null, | head, | tail, | grep)
-- NEVER use run_in_background with until-loops
-- Write findings to task files (SM CMM4 directive)
-- Use ooshTeam:0.4 for macOS tests, ooshTeam:0.5 for Termux
-- Tests must be self-contained (__test_ prefix)
-- Save results to ~/config/ not $TMPDIR (gets cleaned)
+2. Read session/tasks/claudeCode-list-discovery-fixes.md for current task
+3. Check PO (ooshTeam:0.0) for priorities
