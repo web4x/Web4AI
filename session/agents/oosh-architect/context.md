@@ -1,6 +1,6 @@
 # oosh-architect Context
 
-**Updated**: 2026-06-10 (comprehensive reboot save)
+**Updated**: 2026-06-19 (pre-rewind save)
 **Role**: oosh-architect @ ooshTeam:0.1
 **Machine**: MacStudio
 **Session name**: oosh-architect@MacStudio
@@ -96,6 +96,12 @@ Requirement → UseCase → Class → Method → Implementation → Test
 - ADR-001/002 rollout queued
 - 16 cross-platform hardcoded paths reported
 - Branch migration: dev..macos.latest = 0 (synced)
+
+### Since Jun 10
+- Docker install design review: Volume mount for SSH keys (not baked, not secret manager). Real bug is sequencing — install clones HTTPS first, sets up SSH after. Fix: reverse order.
+- Kernel bug design: problem.log NEVER sets STEP_DEBUG. 4 sites in log script (117, 206, 230, 253) all need STEP_DEBUG=ON removed. Logger ≠ debugger. this.load: optional methods (status/usage/help) = silent return 0.
+- Bug triage: 7 restore-process bugs triaged for Sprint 0. HIGH: list filter, UUID completion, claudeCode stop, send prefix guard. MEDIUM: age sort. LOW: menu nav (doc), zoom helper.
+- config.save EPERM fix: routed to expert (implementation, not architecture).
 
 ## Backlog
 - H1.3: hiveMind use case PUML

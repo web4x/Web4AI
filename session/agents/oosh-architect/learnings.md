@@ -57,6 +57,11 @@
 - Wait for PO assignment. Never self-assign.
 - Expert answers to design Qs are binding for implementation.
 
+## Kernel Contracts
+- problem.log NEVER sets STEP_DEBUG=ON. Logger ≠ debugger. All 4 sites in log (117, 206, 230, 253) must be stripped.
+- this.load: optional methods (status, usage, help, completion) → return 0 silently. Required methods → error.log + return 1. Never problem.log for missing methods.
+- Docker install: SSH key = volume mount (-v ~/.ssh:/root/.ssh:ro), never bake in image. Real bug = sequencing (clone HTTPS first, SSH setup after — reverse it).
+
 ## Failures
 - Option A was wrong — TRON wanted simpler single convention
 - Naming design missed 4 write sites — always grep ALL occurrences
