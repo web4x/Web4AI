@@ -56,13 +56,14 @@ Deliverer/owner: **oosh-po**. Each fix has an owner; agents tick the box + add c
 | 3 | age-sort / oldest picker | oosh-expert | S | IN PROGRESS (same task) | ___ |
 | 4 | otmux send prefix guard (skip non-Claude/shell targets) | oosh-expert | S | ASSIGNED | ___ |
 | 5 | claudeCode stop = kill PID + respawn (restore cooked mode) | oosh-expert | S | ASSIGNED | ___ |
-| 6 | sweep.detect false-positives (code/comments, accept-edits) | oosh-expert | M | ASSIGNED | ___ |
+| 6 | sweep.detect false-positives — **KEYSTONE** | oosh-expert | M | ASSIGNED-PRIORITY | ___ |
 | 7 | 27-col TUI: zoom-helper for menu interaction | oosh-expert | S | ASSIGNED | ___ |
 | 8 | agent.send rejects accept-edits as overlay | oosh-expert | S | ASSIGNED | ___ |
 
 - Tests for each: **oosh-tester** — add T- cases, run green against expert's commit, report result here.
 - Architect (oosh-architect): owns design/triage + the send-prefix-spec.md reference for #4/#8.
-- Order: finish #1-3 (in flight) → #8 (unblocks my own controller use) → #4 → #5 → #6 → #7.
+- Order: **#6 FIRST (KEYSTONE)** → finish #1-3 → #8 → #4 → #5 → #7.
+- **#6 root-cause (SM diagnosis 2026-06-19):** `team.sweep` classifies agent state from SCROLLBACK TEXT PATTERNS, not live prompt state. Result: an idle agent at an empty `❯` prompt is reported ACTIVE (stale "reading"/verb text in scrollback). This masked a fully-idle team for multiple ticks AND likely makes `agent.send` busy-detection mis-queue to idle agents. FIX: distinguish idle-at-prompt (bare `❯`, no `esc to interrupt`) from genuinely ACTIVE (esc-to-interrupt / thinking / running present in the LAST live lines). Ref SM learnings #2 + Rule 8.
 
 ### Report-back lines (agents edit)
 - Expert: ___
