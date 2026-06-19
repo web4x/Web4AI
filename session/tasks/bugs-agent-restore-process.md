@@ -58,9 +58,9 @@ Deliverer/owner: **oosh-po**. Each fix has an owner; agents tick the box + add c
 | 5 | claudeCode stop = kill PID + respawn (restore cooked mode) | oosh-expert | S | ASSIGNED | ___ |
 | 6 | sweep.detect idle-vs-active — **KEYSTONE** | oosh-expert | M | ✅ DONE+VERIFIED (live: idle agents show IDLE) | a986391 |
 | 7 | 27-col TUI: zoom-helper for menu interaction | oosh-expert | S | ASSIGNED | ___ |
-| 8 | agent.send: REMOVE accept-edits PRE-CHECK (otmux auto-clears it) | oosh-expert | S | ASSIGNED (refined by architect) | ___ |
+| 8 | agent.send: REMOVE accept-edits PRE-CHECK (otmux auto-clears it) | oosh-expert | S | ✅ DONE (accept-edits routes to inform, not overlay) | 57cf612 |
 | 9 | T-ALIGN-8 test hangs scanning ~80 panes (test 270) → blocks ALL list-task tests | oosh-expert | S | ✅ DONE (cap 20 Claude panes + skip non-Claude via tty check) | 44726ab |
-| 10 | team.push alias → teams.migrate (symmetry with team.pull) | oosh-expert | XS | ASSIGNED | ___ |
+| 10 | team.push alias → teams.migrate (symmetry with team.pull) | oosh-expert | XS | ✅ DONE (thin wrapper + sshHost completion) | 57cf612 |
 
 **#10 spec (Tron direct):** add `hiveMind.team.push()` as a thin DRY wrapper: `hiveMind.team.push() # <sshHost> # push team to remote (alias for teams.migrate) { hiveMind.teams.migrate "$@"; }`. Keep `teams.migrate` (don't rename/break it). Add `team.push.completion.sshHost` (reuse teams.migrate's host completion) + a usage line. Tester: T-PUSH-ALIAS (push routes to migrate, completion works). Gives team.pull/team.push symmetry.
 
