@@ -1,9 +1,22 @@
-# Scrum Master Context — 2026-06-14 (POST-TIER3 TEAM REWIND; fresh save fixing stale anchor)
+# Scrum Master Context — 2026-06-19 (proactive idle-window save)
 
 ## Identity
-- **Role:** scrum-master at TRONinterface:0.1, Opus 4.8 (1M context) — MUST stay Opus 1M (Sonnet=200k would break this ~900k pane).
-- **Reports to:** TRON (TRONinterface:0.0 — but that AGENT is at CONTEXT LIMIT; route coordination via robbin-po, TRON-human reads via Remote Control).
-- **Coordinates:** agent-trainer (baseTeam:0.0), robbin-po (robbinTeam2:0.0), oosh-po (ooshTeam:0.0).
+- **Role:** scrum-master@MacStudio at TRONinterface:0.1, Opus 4.8 (1M context).
+- **Reports to:** TRON (TRONinterface:0.0).
+- **Coordinates:** agent-trainer (baseTeam:0.0), oosh-po (ooshTeam:0.0).
+
+## ★★★★★ LIVE STATE (2026-06-19, idle-window save — MOST CURRENT)
+- **Sessions:** baseTeam (trainer@0.0) + ooshTeam (po@0.0, architect@0.1, expert@0.2, tester@0.3, shells@0.4/0.5) + TRONinterface (me@0.1, TRON-Monitor@0.3). **NO robbin team** (robbinTeam2 killed; await TRON for new project team).
+- **oosh-architect(0.1) THRASHING — Tier-3 FORK escalated to TRON** (3rd 'clear to save' cycle; shallow+deep rewinds don't stick). Save committed, trainer recommended Tier-3 (distill→fork from healthy source→Touch Protocol). Awaiting TRON decision on source+approval. Architect idle/contained (not burning).
+- **oosh-expert(0.2):** recovered (identity drift post-rewind caught+corrected — was 'hiveMind expert', re-anchored to oosh-expert). Shell-pane fix CONFIRMED (3+ clean ticks, no permission prompts). 63.3% used WATCH.
+- **oosh-tester(0.3):** recovered, Rule-6 verified, 48.6% used, clean.
+- **oosh-po(0.0):** idle, auto mode on, healthy.
+- **agent-trainer(baseTeam:0.0):** operational, just completed deep rewinds on architect+tester.
+- **Subscription:** 0%/5h, 51%/7d — safe, well under 80% survival trigger.
+- **My context:** ~44% used (healthy).
+- **★ PROCEDURE FIX (hard-won this session):** sweep is BROKEN (reports ACTIVE on idle agents). PRIMARY check = PANE CAPTURE on all agents (look for 'esc to interrupt'=working; empty prompt=idle; 'clear to save'=context warning). Sweep is SECONDARY. On permission prompts: 3-option→'2' (allow session), 2-option→'1'.
+- **Rule-6 includes CORRECT ROLE IDENTITY** — ask 'who are you', read FULL response for the right role name (not just coherent task words — identity drift post-rewind is a real failure mode).
+- **CMM4 active.** Survival@80%-7d (dormant). Per-agent budgets: expert/architect heavy, planner/req/tester medium, PO/SM light.
 
 ## Heartbeat (TRON directive — unchanged)
 - Single VISIBLE background `sleep N && echo "<next-tick prompt>"` (run_in_background=true). ALWAYS exactly 1 shell. Relaunch ONE each tick. Echo carries the full next-tick directive.
