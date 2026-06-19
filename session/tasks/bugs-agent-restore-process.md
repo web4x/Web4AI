@@ -60,6 +60,9 @@ Deliverer/owner: **oosh-po**. Each fix has an owner; agents tick the box + add c
 | 7 | 27-col TUI: zoom-helper for menu interaction | oosh-expert | S | ASSIGNED | ___ |
 | 8 | agent.send: REMOVE accept-edits PRE-CHECK (otmux auto-clears it) | oosh-expert | S | ASSIGNED (refined by architect) | ___ |
 | 9 | T-ALIGN-8 test hangs scanning ~80 panes (test 270) → blocks ALL list-task tests | oosh-expert | S | ✅ DONE (cap 20 Claude panes + skip non-Claude via tty check) | 44726ab |
+| 10 | team.push alias → teams.migrate (symmetry with team.pull) | oosh-expert | XS | ASSIGNED | ___ |
+
+**#10 spec (Tron direct):** add `hiveMind.team.push()` as a thin DRY wrapper: `hiveMind.team.push() # <sshHost> # push team to remote (alias for teams.migrate) { hiveMind.teams.migrate "$@"; }`. Keep `teams.migrate` (don't rename/break it). Add `team.push.completion.sshHost` (reuse teams.migrate's host completion) + a usage line. Tester: T-PUSH-ALIAS (push routes to migrate, completion works). Gives team.pull/team.push symmetry.
 
 - Tests for each: **oosh-tester** — add T- cases, run green against expert's commit, report result here.
 - Architect (oosh-architect): owns design/triage + the send-prefix-spec.md reference for #4/#8.
