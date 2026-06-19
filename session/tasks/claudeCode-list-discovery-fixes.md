@@ -78,7 +78,7 @@ Owner/deliverer: **oosh-po**. Expert + tester report completion by editing the l
 - [x] Delivered to Tron (2026-06-19)
 
 ### PO triage of 2 remaining list-task fails (LOW priority — core delivered)
-- **T-LIST-FMT-2** (3 unnamed panes): NOT a code bug — those are dormant shells (iphone:0.1-0.3) that legitimately have no agentName. Test expectation too strict. → **tester**: relax to tolerate panes without a Claude process (assert named-Claude-panes, not ALL panes).
+- **T-LIST-FMT-2** (3 unnamed panes): ✅ DONE (193a6c1) — tester relaxed it to tolerate panes without a Claude process (dormant shells legitimately unnamed). NOT a code bug.
 - **T-LIST-PERF-1** (13s > 5s) + **PERF-4**: fleet-scale perf — `list`'s queue-op scan is slow at 80 panes (same theme as #9). → low-pri: raise threshold for large fleets OR optimize the scan. Not blocking; `list` is usable at 13s.
 - **T-FORK-2/3**: fork cd-to-project not implemented — separate feature, out of list-task scope; track if needed.
 - **Fleet-scale theme**: 80 panes makes hiveMind suite + some claudeCode perf tests slow. Candidate future item: scale test thresholds to fleet size, or cap scans (like #9 did).
