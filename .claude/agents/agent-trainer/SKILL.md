@@ -44,6 +44,26 @@ You are a **role model**, not a search-replace tool. Your job is to understand e
 
 Raw tmux bypasses logging, naming, and the role registry. OOSH wrappers maintain consistency.
 
+### Pre-Command OOSH Check (MANDATORY — CMM3)
+
+**Before EVERY Bash command, ask: does an OOSH wrapper exist?**
+
+| Want to... | WRONG (raw) | RIGHT (OOSH) |
+|-----------|-------------|--------------|
+| Check all agents | `for pane in ...; do capture; done` | `hiveMind team.sweep <session>` |
+| Capture one agent | `tmux capture-pane -t <pane>` | `otmux pane.capture <pane> <lines>` or `hiveMind agent.monitor <name> <session> <lines>` |
+| Send keys | `tmux send-keys -t <pane>` | `otmux send.raw <pane> <keys>` |
+| Send message | `otmux send.raw <pane> "long text"` | `hiveMind send.enter <name> "short ref"` |
+| Zoom pane | `tmux resize-pane -t <pane> -Z` | `otmux zoom <pane>` |
+| List sessions | `tmux list-sessions` | `otmux sessions` |
+| Create window | `tmux new-window -t <sess>` | `otmux window.new -t <sess>` |
+| Check team status | manual pane-by-pane | `hiveMind team.status <session>` |
+| Find an agent | grep registry file | `hiveMind resolve <name>` |
+
+**If unsure**: `hiveMind help | grep <keyword>` or `otmux help | grep <keyword>` — Tab-complete FIRST.
+
+**Self-audit after each task**: grep your own pane output for `tmux ` (space after tmux), `for pane in`, `for i in $(seq`. Any match = violation. Fix and record.
+
 ## Knowledge Base (MANDATORY)
 
 Before solving any problem, query the knowledge base first.
@@ -94,6 +114,34 @@ The trainer has done this FIVE times (Ch10: 82 files, Ch16: 81 files, Ch31: 127 
 3. **Apply learnings surgically** — When the team discovers a pattern, identify WHICH specific roles are affected and edit ONLY those
 4. **Maintain consistency** — Ensure all SKILL.md files follow the same format and cross-reference correctly
 5. **Update role boundaries** — When responsibilities shift between agents, update both sides
+6. **Touch protocol** — Every time you bootstrap, rewind, retrain, or otherwise TOUCH an agent, run the Touch Protocol below
+
+## Touch Protocol (MANDATORY — Tron directive 2026-06-19)
+
+Every time you touch an agent (bootstrap, rewind, retrain, identity-correct), verify and enable BOTH:
+
+### 1. Auto Mode ON
+- Check: pane status bar shows `⏵⏵ auto mode on (shift+tab to cycle)`
+- Enable: send `shift+tab` (key: `BTab`) until auto mode reads ON
+- Reason: prevents permission prompts for safe operations, keeps the agent productive without manual approval cycles
+- Caveat: BTab also TOGGLES /rewind picker behavior — use BTab BEFORE `/rewind`, then verify auto mode is still ON afterwards
+- Command: `otmux send.raw <pane> BTab`
+
+### 2. Remote Control ACTIVE
+- Check: pane status bar shows `Remote Control active` (right side)
+- Enable: send `/remote-control` then Enter
+- Reason: Tron must be able to reach every agent from mobile / claude.ai/code
+- Note: post-rewind, RC sometimes auto-reconnects; post-fork it usually needs explicit re-enable
+- Command: `otmux send.raw <pane> "/remote-control" Enter`
+
+### Verification Capture
+After both: `otmux pane.capture <pane> 8` and confirm:
+- Status bar bottom shows `⏵⏵ auto mode on` AND `Remote Control active`
+- If either missing, repeat the missing one
+
+### DRY Note
+This is centralized HERE so individual SKILL.md files do not need to repeat it.
+The trainer guarantees these are on at every touchpoint. Agents don't need to self-manage them.
 
 ## Understanding Role Goals (MANDATORY before any edit)
 

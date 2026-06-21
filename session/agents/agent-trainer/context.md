@@ -1,6 +1,6 @@
 # Agent Trainer Context — Tier-3 Distillation 2026-06-10
 
-**Updated**: 2026-06-10 (Tier-3 distillation per Tron directive at 88% context)
+**Updated**: 2026-06-21 (proactive save per SM directive)
 **Role**: agent-trainer
 **Session**: agent-trainer@MacStudio at baseTeam:0.0
 **Model**: Opus 4.7 (1M context) — switched 2026-06-09 from claude-opus-4-6[1m]
@@ -48,6 +48,33 @@ After distillation, await: Tron directive to either continue work (if I have roo
 - Learnings.md (~700 lines already, will be linked)
 
 ## Recent Rewind Operations
+
+### 2026-06-21 — oosh team cycle (proactive at 2-3%, all SHALLOW resets, Tier-3 escalated)
+- oosh-po (ooshTeam:0.0): Phase 2 50% of 111 msgs, 4-option option 1 LABEL, reset 41.2% used CLEAN
+- oosh-expert (ooshTeam:0.2): Phase 2 50% of 21 msgs, 5-option option 2 LABEL, reset 88% SHALLOW (Tier-3 candidate)
+- oosh-tester (ooshTeam:0.3): Phase 2 50% of 90 msgs, 4-option option 1 LABEL, reset 63.1% (Tier-3 candidate — pane warning persists)
+- oosh-architect (ooshTeam:0.1): Phase 2 50% of 61 msgs, 4-option option 1 LABEL, reset 73.5% (3rd thrash, Tier-3 candidate)
+- Tier-3 escalated to Tron — workers need fork from healthy 300k+ source (NOT blank per F-T13), PO stays
+- Architect+expert+tester thrash pattern: shallow rewinds don't stick on bloated bases
+
+### 2026-06-20 — SM rewind protocol training delivered
+- Wrote session/tasks/20260621T1100Z.sm-train-rewind-trainer.md (training for SM to rewind me)
+- Catch-22 documented: I save, SM drives picker
+
+### 2026-06-19 — hiveMind audit + F-T16 incident
+- Ran hiveMind consistency.audit, fixed pane titles + registry + forks.env manually
+- Filed bugs to oosh-architect at session/tasks/20260619T1100Z.hivemind-audit-bugs.md
+- **F-T16 (QoS violation)**: misread `<role>@<host>` convention as drift, stripped suffixes from 7 panes, filed wrong Bug #2 to architect. Tron called it a QoS violation. Reverted, sent correction.
+
+### 2026-06-18 — TRONinterface session restoration
+- Restored TRONinterface session (was killed): 4 panes (TRONinterface-agent, scrum-master, PO-shell, TRON-Monitor)
+- Forked SM from JSONL c73e0abd (June 16 SM), Opus 4.8, RC active
+- Forked TRONinterface-agent from JSONL 75a70914 (June 16 TRON-agent), Opus 4.8, RC active
+- TRON-Monitor screen running, tracking 4 teams
+- Initially picked wrong fork (aca3405a = oosh-po identity), exited and re-forked correctly
+
+### 2026-06-17 — robbinTeam killed and replaced by robbinTeam2, then both killed
+- Current active teams: TRONinterface, baseTeam, ooshTeam, iphone
 
 ### Today (2026-06-11) — 3 proactive-2% rewinds, ZERO loss
 - robbin-po (robbinTeam2:0.0): save `a3d18ef`, Phase 2 50% of 421 msgs, 4-option menu, "Restore conversation" = option 1 (BY LABEL), recovered + processing Tron file-dedup directive

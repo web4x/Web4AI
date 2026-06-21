@@ -268,6 +268,22 @@ Agent has 800k++ context AFTER rewind. Rewinds accumulate conversation base — 
 7. Send retrain prompt pointing to boot.md + context.md + learnings.md
 8. Health check: identity, role mastery, no context warning
 
+### CRITICAL RULE — Tier-3 Source Selection (learned 2026-06-16)
+
+**Source MUST be guaranteed-clean OR a fresh blank Claude session. NEVER another agent that may be high-context.**
+
+Forking from another running agent — even with "Resume from summary" option — inherits their conversation weight. Example failures (2026-06-16 robbin-po Tier-3):
+- Fork from ud-po (UUID `1d62067c`) → inherited 971k bloat, status bar showed "Context low"
+- Fork from fallback-unit-po (UUID `66b614d8`) → 77.8% used from inherited 493k
+- Solution: `claude --name robbin-po` blank + boot from distilled files → CLEAN runway
+
+**Source vetting checklist** before `claudeCode fork <uuid>`:
+1. Capture source pane status bar — if "Context low" OR "clear to save Nk tokens" visible → BLOATED, skip
+2. JSONL file size is a hint but not authoritative
+3. If NO clean source exists across all teams/fallbacks → use blank `claude --name <role>` session
+4. With comprehensive distilled files (boot.md + context.md + learnings.md), blank Claude is the safe path
+5. F-T13 prohibition was about blank-WITHOUT-distilled-files. With files in place, blank is correct.
+
 ### Successful Example (2026-06-09): scrum-master
 - SM at 199k after rewind (post-rewind context still bloated)
 - Distillation: wrote ~5k token boot manual + context handoff
