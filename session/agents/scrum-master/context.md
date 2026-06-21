@@ -9,7 +9,8 @@
 - **Sessions:** baseTeam (trainer@0.0) + ooshTeam (po@0.0, architect@0.1, expert@0.2, tester@0.3, shells@0.4/0.5) + TRONinterface (me@0.1, TRON-Monitor@0.3). **NO robbin team** (robbinTeam2 killed; await TRON for new project team).
 - **ALL 4 oosh agents REWOUND this cycle (2026-06-21):** po 41.2% (CLEAN), architect 73.5% (Tier-3, 3x thrash), expert 88% (Tier-3, 2x thrash, permission-prone), tester 63.1% (Tier-3, 2x thrash). Trainer escalating Tier-3 fork recommendation to TRON for all 3 workers (not PO). Fork from healthy sources, not blank (F-T13).
 - **Catch-22 SOLVED this session:** trainer taught me the protocol — trainer saves itself, I drive its /rewind picker, TRON aware. Training doc: session/tasks/20260621T1100Z.sm-train-rewind-trainer.md.
-- **Expert permission-prompt issue persists** — approve 2-opt with "1", 3-opt with "2" (allow session). Permanent fix = shell-pane execution (oosh-po to deliver when expert idle).
+- **Expert permission-prompt FIXED** (shell-pane execution confirmed 3+ clean ticks).
+- **★ DELIVERABLE SHIPPED (2026-06-21):** all oosh tasks complete+green — T-STOP (ee590cd), T-ZOOM (724123e 7/7), T-THIS-DISPATCH (ea63801), T-REWIND-STATE (efbdc5e), restore #7, task#1 this-dispatch error, DURING_REWIND impl (80fdbd8). Expert+tester backlogs CONFIRMED EMPTY by PO. Only remaining: TRON QA review + optional Samsung tablet cross-platform (TRON's cadence). Team legitimately idle.
 - **oosh-po(0.0):** idle, auto mode on, healthy.
 - **agent-trainer(baseTeam:0.0):** operational, just completed deep rewinds on architect+tester.
 - **Subscription:** 0%/5h, 51%/7d — safe, well under 80% survival trigger.
