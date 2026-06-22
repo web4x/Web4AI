@@ -66,3 +66,22 @@ All 5 agents have /remote-control active (mobile control).
 3. `hiveMind team.status ooshTeam` — see agents
 4. Read active deliverable task files, check report-back blocks for progress
 5. Resume driving: verify reported fixes, assign next, deliver QA to Tron
+
+## CURRENT STATE — 2026-06-22 (WODA.prod migration)
+
+**Goal**: migrate ooshTeam onto a dev-mode machine (WODA.prod) so the team works natively on `dev` (local MacStudio is test/macos.latest — wrong mode for dev fixes).
+
+**In flight**: `hiveMind team.push WODA.prod` (controller, run from MacStudio shell ooshTeam:0.4) — re-running now claude is installed; transfers snapshot+config+JSONLs → prereq (passes now) → `teams.restore` forks the 4 agents on WODA.prod. VERIFY with `hiveMind team.status` on WODA.prod when done; then `/rename <role>@WODA.prod` + `/remote-control` each. Agents: po 29a1e1d1, architect 6df08923, expert a43c1b23, tester 74f27969.
+
+**Machines**: WODA.prod=v60211 (dev at /var/dev/EAMD.ucp/.../Once.sh/dev; claude 2.1.185 installed at ~/.local/bin, NOT on PATH — use claudeCode wrapper). u20=195.90.209.56:9022=container 4faed70700c9 (dev). MacStudio=test/macos.latest. WODA.prod control/monitor shell = ooshTeam:0.5 (ssh in).
+
+**Done this session (on origin/dev via u20 cherry-picks)**: EPERM `[` fix 90469c8, completion+'''corruption 7687cfe. u20 origin switched https→ssh (2cuGitHub key).
+
+**Open tasks**:
+- #4 env-files-pure-state-architecture.md — architect design APPROVED (with my 2 notes: validate matches line-leading not substrings; grep config.add callers). Expert to implement ON DEV (was stopped from doing it on local/test — wrong mode).
+- #5 oosh-flag-violations-audit.md — remove `--fork` flag from teams.restore/migrate + audit all method flags + T-NO-FLAGS guard.
+- DIVERGED MERGE: the 5 session fixes (d79a4c9 sweep.detect, b904be5 stop, 516ebb3 zoom, 12100f8 dispatch, 80fdbd8 DURING_REWIND) conflict on cherry-pick to dev → team re-applies natively on dev.
+
+**ALL prior session deliverables** (test/macos.latest, green): #5 stop, #7 zoom, task#1 this-dispatch, DURING_REWIND, sweep.detect, c2 completion — code+tests, pushed.
+
+**Recovery**: read this + learnings; verify identity (pane.get.target + session.name 29a1e1d1); use the hiveMind CONTROLLER for agent ops (not raw otmux); `scrumMaster subscription` via shell; check team.status on WODA.prod for migration result.

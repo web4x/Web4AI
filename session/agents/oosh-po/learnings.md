@@ -416,3 +416,35 @@ Full-session resume restores knowledge but can land at the ceiling (agent-traine
 
 ### Agents don't durably know report-back — remind on every re-task (2026-06-19, Tron)
 The call-back loop has two halves. SM side is SOLID (boot has IDLE-CATCH: flag PO when any agent idle with pending work; report idle to PO; notify PO to re-task — verified in scrum-master-boot.md). Agent side is NOT durable: "when done → commit + update task-file report-back block + one-line ping oosh-po" lives only in my per-task report-back blocks, not in agent boot/SKILL. Observed the expert coding without committing or updating its block — compliance gap. Durable fix = bake report-back into each SKILL (agent-trainer's job; blocked while trainer at 0% ctx). **INTERIM RULE: every re-task message (sent on idle, per SM report) MUST include the report-back reminder.** Don't nudge busy agents (queue churn) — wait for SM idle report, then re-task WITH the reminder. Never assume agents know to call back — the SM is the reliable channel until SKILLs carry it.
+
+## 2026-06-22 Session — WODA.prod migration + systemic OOSH fixes
+
+### MVC: route agent ops through the hiveMind CONTROLLER (Tron, reinforced hard)
+Model=claudeCode, View=otmux, Controller=hiveMind, Monitor=tronMonitor. I kept reaching past the controller — `otmux new` to make a session, planning per-pane `claudeCode fork` — and got into nested-tmux traps (my control shell became ooshTeam:0.0). The whole-team restore IS one controller op: `hiveMind team.push <host>` (= teams.migrate) does snapshot→transfer→prereq→teams.restore(claudeCode-fork each, self-handles resume menu). STOP hand-assembling pieces in View/Model; call the controller.
+
+### "use claudeCode" — the wrapper finds claude even when not on PATH
+WODA.prod had claude installed at ~/.local/bin/claude but not on PATH; `command -v claude` empty, but `claudeCode version` → 2.1.185. claudeCode resolves the binary itself. So go through claudeCode for every claude op; don't fight PATH. (Also: `claudeCode install` installs Claude Code from web; `path append` didn't persist across relogin on that box — config/env issue.)
+
+### env files are PURE STATE — all code in scripts (Tron, "WTF")
+`config list` "broken" on u20 wasn't subprocess resolution — `user.env` contained LOGIC (`: ${X:=...}`, `[ ] && ...` conditionals, `$(cd...)`, `source` lines). env files = only export/declare; safe to source BECAUSE inert. `this` bootstraps + makes ALL config decisions; `config` owns initialising/maintaining clean pure-state files. Two pollution sources: config.add (source lines, all branches) + commit 43796be (BASH_SOURCE self-anchor, dev). → task env-files-pure-state-architecture.md.
+
+### OOSH forbids flags — `--fork` is a violation (Tron caught; PO guardian miss)
+`teams.restore --fork` / `<?--fork>` signature = cardinal "Death to Flags" violation. Replace with positional `<?mode:join|fork>` or object.verb split `teams.restore`/`teams.fork`. I propagated `--fork` all session without catching it — as first-principles guardian that's my job. Recurs (F44). → task oosh-flag-violations-audit.md + T-NO-FLAGS grep guard.
+
+### Output filtering — `2>&1 | tail` is forbidden (Tron caught)
+Used `git push ... 2>&1 | tail -12`. `| tail/head/grep` HIDES output (forbidden); also piping `git push`/interactive cmds through tail breaks credential/TUI prompts. Run RAW, then `otmux pane.capture <pane> N` — the capture is the filter, never the pipe.
+
+### PO delegates, never debugs — I rabbit-holed (Tron "WTF")
+Hand-debugged config.file.check / BASH_SOURCE for ~20 turns. PO investigates ENOUGH to characterise, then delegates the fix to the owner (architect designs, expert implements). Don't spelunk internals.
+
+### Diverged dev vs test/macos.latest — cherry-picks conflict
+Fixes made on test/macos.latest (local) don't cleanly cherry-pick to dev — `d79a4c9` conflicted in hiveMind immediately. EPERM (bd39c80→90469c8) + completion (33da219→7687cfe) DID cherry-pick clean earlier and are on origin/dev; the rest conflict. The team must re-apply on dev natively — the reason to migrate the team to a dev machine. (Aborted cleanly with `git cherry-pick --abort` — never hand-resolve hiveMind conflicts.)
+
+### ssh: HTTPS clone → push prompts for password; switch to SSH as-local
+u20 container origin was https → push asked for github user/pw. Fix: `git remote set-url origin git@github.com:Org/repo.git` (match local) + add `Host github.com` → the authorized key. u20's authorized github key was `~/.ssh/2cuGitHub` (auths as user pnkjjsr); default id_rsa/id_ed25519 denied. Set git identity to match local (Marcel Donges <marcel.donges@ceruleancircle.com>).
+
+### reconfigure / `r` re-execs the shell → drops the SSH session
+On a remote oosh shell, `reconfigure` (and `oo checkout` loops) logout/drop the SSH connection back to the local pane. Expect the drop; reconnect with `ossh login <host>`.
+
+### Machine map (this era)
+u20 = 195.90.209.56:9022 = container 4faed70700c9 (Linux, dev at /home/shared/EAMD.ucp/.../Once.sh/prod, branch dev). WODA.prod = v60211 (dev at /var/dev/EAMD.ucp/.../Once.sh/dev). Both run `dev`; MacStudio runs test/macos.latest (different mode — can't do dev work locally).
