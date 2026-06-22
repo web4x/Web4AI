@@ -10,7 +10,9 @@
 - **ALL 4 oosh agents REWOUND this cycle (2026-06-21):** po 41.2% (CLEAN), architect 73.5% (Tier-3, 3x thrash), expert 88% (Tier-3, 2x thrash, permission-prone), tester 63.1% (Tier-3, 2x thrash). Trainer escalating Tier-3 fork recommendation to TRON for all 3 workers (not PO). Fork from healthy sources, not blank (F-T13).
 - **Catch-22 SOLVED this session:** trainer taught me the protocol — trainer saves itself, I drive its /rewind picker, TRON aware. Training doc: session/tasks/20260621T1100Z.sm-train-rewind-trainer.md.
 - **Expert permission-prompt FIXED** (shell-pane execution confirmed 3+ clean ticks).
-- **★ DELIVERABLE SHIPPED (2026-06-21):** all oosh tasks complete+green — T-STOP (ee590cd), T-ZOOM (724123e 7/7), T-THIS-DISPATCH (ea63801), T-REWIND-STATE (efbdc5e), restore #7, task#1 this-dispatch error, DURING_REWIND impl (80fdbd8). Expert+tester backlogs CONFIRMED EMPTY by PO. Only remaining: TRON QA review + optional Samsung tablet cross-platform (TRON's cadence). Team legitimately idle.
+- **★ DELIVERABLE SHIPPED (2026-06-21):** all oosh tasks complete+green. Expert STOPPED by TRON ("doing implementations local"). TRON driving oosh-po via RC (cherry-pick merge + env-files-pure-state architecture task).
+- **★ Agent-trainer REWIND PROVEN (2026-06-22):** first SM-driven trainer rewind — Phase 2 at 50% of 112 msgs, 5-option menu "Restore conversation" by LABEL (Down+Enter via send.raw), retrain from distilled files, Touch Protocol (auto mode + /remote-control), Rule-6 verified (identity+code-intact 11294d3). Catch-22 safety net operational.
+- **★ CORRECTION: `send.raw` for menus, `send` for prose** — oosh-po caught that `otmux send` prepends [@role pane] which corrupts menu digits. All menu/permission approvals must use `otmux send.raw <pane> <keystroke>`.
 - **oosh-po(0.0):** idle, auto mode on, healthy.
 - **agent-trainer(baseTeam:0.0):** operational, just completed deep rewinds on architect+tester.
 - **Subscription:** 0%/5h, 51%/7d — safe, well under 80% survival trigger.
