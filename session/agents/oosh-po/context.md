@@ -67,9 +67,11 @@ All 5 agents have /remote-control active (mobile control).
 4. Read active deliverable task files, check report-back blocks for progress
 5. Resume driving: verify reported fixes, assign next, deliver QA to Tron
 
-## POST-REWIND ANCHOR — 2026-06-23
+## POST-REWIND ANCHOR — 2026-06-23 (576k, 3rd cycle — REWIND IMMINENT, Tier-3 candidate)
 
-**Rewound from eb3c0f8 (940k pre-rewind anchor). Fresh anchor written this turn.**
+**Rewound from eb3c0f8 (940k). This save at 576.8k, 3rd cycle. Prior anchor 0fc6d2a.**
+
+**On resume**: agents idle on test/macos.latest, all UUIDs verified (po 29a1e1d1 / architect 6df08923 / expert a43c1b23 / tester 74f27969). Open decision pending with Tron: resume WODA.prod migration vs continue tasks #4/#5 natively. Both are dev-mode work. SM (TRONinterface:0.1) was told to save its own context.
 
 Ground truth verified this turn:
 - Identity: oosh-po, ooshTeam:0.0, session 29a1e1d1 (confirmed via output path + team.status)
