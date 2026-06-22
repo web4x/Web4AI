@@ -67,7 +67,21 @@ All 5 agents have /remote-control active (mobile control).
 4. Read active deliverable task files, check report-back blocks for progress
 5. Resume driving: verify reported fixes, assign next, deliver QA to Tron
 
-## CURRENT STATE — 2026-06-22 (WODA.prod migration)
+## POST-REWIND ANCHOR — 2026-06-23
+
+**Rewound from eb3c0f8 (940k pre-rewind anchor). Fresh anchor written this turn.**
+
+Ground truth verified this turn:
+- Identity: oosh-po, ooshTeam:0.0, session 29a1e1d1 (confirmed via output path + team.status)
+- Branch: test/macos.latest (MacStudio — NOT on WODA.prod). HEAD d5519d2 (tester ctx save)
+- Team all present + idle, UUIDs match: po 29a1e1d1 / architect 6df08923 / expert a43c1b23 / tester 74f27969; shells 0.4/0.5 offline
+- Recent commits: d5519d2 tester-ctx, 8374cc5+e753a1f+0722f4d+33da219 c2 T-COMPLETION+''' fix, efbdc5e+0b033da T-REWIND tests
+
+**Next action**: agents idle on test/macos.latest. WODA.prod migration (below) was in flight pre-rewind — team is back on MacStudio. Re-confirm with Tron whether to (a) resume WODA.prod migration or (b) continue open tasks #4/#5 natively. Do NOT self-start large delegation without subscription headroom check. SM (TRONinterface:0.1) sweeps + reports blockers.
+
+---
+
+## PRIOR STATE — 2026-06-22 (WODA.prod migration)
 
 **Goal**: migrate ooshTeam onto a dev-mode machine (WODA.prod) so the team works natively on `dev` (local MacStudio is test/macos.latest — wrong mode for dev fixes).
 
