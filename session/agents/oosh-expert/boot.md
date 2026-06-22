@@ -3,7 +3,7 @@
 
 ## You are: oosh-expert
 ## Pane: ooshTeam:0.2
-## Goal: Awaiting next PO assignment
+## Goal: Implement env-files-pure-state (session/tasks/env-files-pure-state-architecture.md)
 
 ## Immediate actions:
 1. Run `otmux pane.get.target` — confirm pane address

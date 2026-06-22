@@ -8,7 +8,42 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.1
-**Updated**: 2026-06-22 (rewind anchor) — restore-backlog ALL DONE, DURING_REWIND shipped, c2 completion fix shipped, this-dispatch fix shipped, sweep.detect stale-scrollback fix shipped. Identity drift corrected (was running as hiveMind-expert after compact).
+**Updated**: 2026-06-23 — env-files-pure-state task IN PROGRESS. Read task file, PO approval notes, examined `this` bootstrap + `config` init/save/add. Ready to implement.
+
+## ⚠️ ACTIVE TASK: env-files-pure-state-architecture.md
+
+**Task file**: `session/tasks/env-files-pure-state-architecture.md`
+**Status**: Analysis done, implementation starting
+**PO approval**: YES with 2 must-address notes
+
+### What I've learned so far (pre-implementation):
+
+**config.add callers** (PO note #2 — grep before deleting):
+- `config` line 326-327: `config.add oosh OOSH` / `config.add log LOG` (in config.init)
+- `config` line 353: `config.add $1 $2` (in config.update)
+- `log` line 347: commented out `#config add log`
+- `test/test.config` and `docs/config.md` reference it
+- **Verdict**: config.add's ONLY purpose is writing `source $CONFIG_PATH/<name>.env` into user.env (line 408). config.update calls it. Both need updating.
+
+**config.add implementation** (line 387-411):
+- Line 408: `echo source \$CONFIG_PATH/$file.env` — this is the pollution source
+- Called from config.init (lines 326-327) and config.update (line 353)
+
+**`this` bootstrap** (relevant lines):
+- Line 29: `OOSH_DIR` resolution from BASH_SOURCE
+- Line 195: `: ${CONFIG_PATH:=$HOME/config}` — already sets CONFIG_PATH
+- Does NOT currently source oosh.env or log.env — that's delegated to user.env's `source` lines
+
+**config.save self-anchor** (commit 43796be): Writes 3 lines of executable logic at TOP of user.env. Only in dev branch / u20 container.
+
+### Implementation plan:
+1. **`this` bootstrap**: After `source $CONFIG` (user.env), add explicit sourcing of oosh.env + log.env
+2. **`config.add`**: Change to write `export CONFIG_CHAIN_<NAME>=1` instead of `source` statement (preserves config.update caller)
+3. **`config.save`**: Remove self-anchor logic (the 3 lines from 43796be)
+4. **`config.init`**: Lines 326-327 still call config.add but it now writes exports, not source
+5. **NEW `config.validate`**: Line-leading pattern match — reject `^source `, `^: \${`, `^[[:space:]]*[`, `^[[:space:]]*{`, lines with unquoted `$(` — but ACCEPT exports with brackets/parens in quoted values
+6. **Regenerate** u20 user.env cleanly
+7. **Verify** `config list` on symlinked container
 
 ## ⚠️ CURRENT STATE (2026-06-21/22 session)
 
