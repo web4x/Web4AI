@@ -67,7 +67,22 @@ All 5 agents have /remote-control active (mobile control).
 4. Read active deliverable task files, check report-back blocks for progress
 5. Resume driving: verify reported fixes, assign next, deliver QA to Tron
 
-## POST-REWIND ANCHOR — 2026-06-23 (576k, 3rd cycle — REWIND IMMINENT, Tier-3 candidate)
+## POST-REWIND ANCHOR — 2026-06-23 (fresh, post-rewind, 4th cycle)
+
+**Rewound again. This is the post-rewind anchor save. Prior pre-rewind save 9f9ca11 (576k 3rd cycle).**
+
+Ground truth verified this turn:
+- Identity: oosh-po, ooshTeam:0.0, fork 29a1e1d1 (pane.get.target confirmed)
+- **Branch is now `main`, HEAD `deeb809`** (SM save "all 4 oosh agents Tier-3 candidates, expert escalated, PO 3rd cycle" — landed AFTER my 9f9ca11). NOTE: prior anchor said test/macos.latest — repo moved to main since.
+- Last oosh-po save before this: 9f9ca11 (576k pre-rewind 3rd cycle); 0fc6d2a prior anchor
+- Tasks persisted: #4 env-files-pure-state (in_progress), #5 remove --fork flag (pending)
+- team.status ran slow (live discovery) — re-verify agent UUIDs (po 29a1e1d1 / architect 6df08923 / expert a43c1b23 / tester 74f27969) before assigning
+
+**Next action**: re-confirm team present+idle on `main`, check SM health (TRONinterface:0.1), check subscription via PO shell, then ask Tron: resume open tasks #4/#5 or new direction. Do NOT self-start large delegation without subscription headroom + agent-context check.
+
+---
+
+## PRIOR ANCHOR — 2026-06-23 (576k, 3rd cycle — REWIND IMMINENT, Tier-3 candidate)
 
 **Rewound from eb3c0f8 (940k). This save at 576.8k, 3rd cycle. Prior anchor 0fc6d2a.**
 
