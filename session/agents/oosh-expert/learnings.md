@@ -1,5 +1,76 @@
 # OOSH Expert Learnings
 
+## NEW: c2 line.add produces triple quotes (2026-06-22, 33da219)
+
+`line.add "'"` uses `echo -e "'$1'"` — with `$1="'"`, this produces `'''` (three quotes), not one. The function passes stdin through (`cat -`) then APPENDS the echo output as a new line. Combined with `line.unquote` stripping closing quotes from `FORMAT_PARSE_METHOD` output, the pipeline `line.split | line.unquote | line.add "'"` = strip quotes then re-add them wrong = `'''` corruption in `current.method.env`.
+
+**Fix**: Don't use `line.split "|" | line.unquote | line.add "'"`. Replace with `sed 's/|/\n/g'` — splits on pipe without touching quotes. `FORMAT_PARSE_METHOD` already produces valid `declare --` statements with correct quoting.
+
+**Pattern**: When a format template (`FORMAT_PARSE_METHOD`) produces correctly-quoted output, don't post-process quotes. The stripping+re-adding pipeline was a fragile no-op that failed on edge cases.
+
+## NEW: sweep.detect must check live area BEFORE scrollback (2026-06-21, d79a4c9)
+
+Previous fix (a986391) moved idle/active to bottom-5-lines. But scrollback-based checks (rate-limit, api-error, context-warning, just-compacted) still ran FIRST against full 20-line content. Stale scrollback from prior states matched before reaching the live area checks.
+
+**Fix**: Check bottom 5 lines for active/idle/queued FIRST. Only fall through to scrollback-based patterns when the bottom area is ambiguous (no clear prompt or active signal). This means agents that recovered from rate-limit/error to idle are correctly classified.
+
+## NEW: this.load dispatch — check private before fallback (2026-06-22, 12100f8)
+
+When `$caller.$aFunction` doesn't exist, `this` dispatch falls through to a multi-level script fallback that swaps function/script names. This produces garbage errors ("No such file or directory" from trying to source a method name as a script).
+
+**Fix**: Two guards: (1) `elif this.functionExists private.$caller.$aFunction` before the fallback catches private methods. (2) `which "$aFunction"` guard before treating the method name as a script — if it's not on PATH, it's an unknown method.
+
+## NEW: operator state override = Layer 3 on live detection (2026-06-21, 80fdbd8)
+
+DURING_REWIND is NOT a detection path — it's an OVERRIDE layer. `hivemind.state.env` stores `pane|STATE|timestamp|set-by`. sweep.detect checks it BEFORE pane capture. agent.route maps DURING_REWIND/MAINTENANCE/FROZEN to `rewind-hold` (exit code 3, distinct from 0=delivered, 1=error, 2=queued).
+
+**Architecture**: override writes are exclusive to `agent.state.set`/`team.state.set`. Override reads are in sweep.detect (one check). All downstream consumers (team.status, agent.send) get the override transparently through sweep.detect's existing pipeline.
+
+## NEW: sweep.detect TUI layout awareness (2026-06-19, a986391)
+
+**Root cause of false-active classification:** `last_line` (last non-empty line) gets Claude Code's STATUS BAR (`⏵⏵ auto mode on`), not the `❯` prompt. Every idle agent fell through to the "active" default.
+
+**Claude Code TUI bottom-of-pane layout:**
+```
+─── role@host ──        (title bar)
+❯                       (prompt)
+────────────────        (separator)
+esc to interrupt        (ACTIVE status bar)
+⏵⏵ auto mode on · …   (IDLE status bar)
+```
+
+**Fix:** Check `bottom` (last 5 lines) instead of `last_line`. `esc to int` present → ACTIVE. Bare `❯`/`>` without it → IDLE. Status bar truncates in narrow panes: `esc to int…` — use `esc to int` as pattern.
+
+**Also removed:** 200-line scrollback history scan that caused false rate-limit/api-error detections from stale text.
+
+## NEW: agent.route accept-edits is inform, not overlay (2026-06-19, 57cf612)
+
+`accept-edits` banner is NOT a blocking overlay. Agent is at the `❯` prompt and can receive messages — `otmux send` auto-clears the banner. Route to `inform` alongside `idle`, not `overlay` (which rejects sends).
+
+## NEW: T-ALIGN-8 pane-scan cap (2026-06-19, 44726ab)
+
+Test was scanning ALL ~80 tmux panes calling `claudeCode session.id` + `process.find` per pane (~2s each = 160s+ hang). Fix: cap at 20 Claude panes, skip non-Claude panes via fast tty+ps check.
+
+## NEW: claudeCode list age-sort (2026-06-19, 44726ab)
+
+`ls -t` (newest-first by mtime) instead of glob order (alphabetical by UUID). Glob order was random from the user's perspective — UUIDs have no temporal meaning.
+
+## NEW: Shell pane for execution (2026-06-19, PO directive)
+
+Run ALL execution (test.suite, git, source, grep) in shell pane `ooshTeam:0.4` via `otmux send.enter`. Shell execution triggers NO Claude permission prompts. Reserve Claude Bash tool for code EDITS only (when needed) or quick greps.
+
+## NEW: audit return code overflow (2026-06-19, 84898c3)
+
+Bash `return` values 128+ are interpreted as signal numbers (128+N = killed by signal N). With 128 violations, `return 128` meant SIGHUP to OOSH's `this` dispatch. Cap at 125 (126=command-not-found, 127=command-not-executable).
+
+## NEW: fork UUID-stale is expected, not a bug (2026-06-19, 111e0a0)
+
+`--fork-session` means `--resume UUID` is the PARENT, not the child. sessions.env will always have the parent UUID until `registry.refresh` runs. The audit's "UUID stale" check must skip forked sessions — it's not stale data, it's the fork design.
+
+## NEW: tronMonitor switch/prune must update roles registry (2026-06-19, ccd7ef1)
+
+tronMonitor.switch updates pane title but previously didn't touch `hivemind.roles.env`. tronMonitor.prune drops dead sessions from `tronMonitor.env` but left `TRON-Monitor:<deadTeam>` in roles. Both now call `hiveMind registry.set` to stay consistent.
+
 ## NEW: Docker install SSH sequencing (2026-06-10/11, init/oosh 66212be+0bdd8df)
 
 **Anti-pattern shipped to prod for years:** install script clones HTTPS first, sets up SSH after → fresh docker container can't `oo update`. HTTPS blocked at port 443 (firewall), no SSH keys provisioned. User stuck.

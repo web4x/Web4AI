@@ -8,29 +8,62 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.1
-**Updated**: 2026-06-16 (833k pre-rewind save) — Sprint 0 docker-install fix shipped + taskChain verified. Pending: MERGE test/macos.latest INTO dev for WODA.test push. Most recent commits: 66212be (init/oosh canonical ossh path), 0bdd8df (init/oosh SSH-first install), c0c7dd7 (otmux.attach completion), eb864cb (ossh.fix.rights).
+**Updated**: 2026-06-22 — restore-backlog ALL DONE, DURING_REWIND shipped, c2 completion fix shipped, this-dispatch fix shipped, sweep.detect stale-scrollback fix shipped.
 
-## ⚠️ DEFERRED TO POST-REWIND (do not start before rewind)
+## ⚠️ CURRENT STATE (2026-06-21/22 session)
 
-**team.push verification + 458-commit merge to dev** (PO directive 2026-06-16):
-- (1) Verify `hiveMind team.migrate` (line 3440) handles JSONL transfer — line 3548-3559 confirms "Push JSONLs for UUIDs in this session's snapshot only". team.migrate IS team.push equivalent.
-- (2) Target: WODA.test (NOT UpDown.ai per Tron correction).
-- Steps after rewind:
-  a. `git checkout dev && git pull origin dev`
-  b. `git merge test/macos.latest`
-  c. `git push origin dev`
-  d. SSH WODA.test, `cd ~/oosh && git pull`
-  e. Verify on WODA.test: `team.migrate`, `team.pull` both exist
-  f. WODA.test becomes team.migrate target from MacStudio
+### Commits this session (6 total):
+| Commit | Task | Summary |
+|--------|------|---------|
+| `d79a4c9` | sweep.detect | check live bottom area BEFORE scrollback — fixes stale false-active |
+| `b904be5` | restore #5 | claudeCode.stop: kill PID + respawn pane to restore cooked mode |
+| `516ebb3` | restore #7 | otmux.send.zoomed: zoom + send keys + unzoom for 27-col TUI |
+| `12100f8` | PO task #1 | this: human-readable errors for private/unknown method dispatch |
+| `80fdbd8` | DURING_REWIND | operator state override layer — set/clear/get + sweep + send routing |
+| `33da219` | c2 completion | fix current.method.env ''' corruption + suppress usage text |
 
-## team.migrate JSONL transfer status (verified this session)
-- Line 3440: `hiveMind.team.migrate <session> <sshHost> <?snapshotFile>`
-- Line 3486: mktemp tmpdir
-- Line 3548-3559: JSONL push for UUIDs in this session's snapshot only
-- Mirrors teams.migrate but session-filtered (Q4 design)
-- Verdict: **team.migrate IS sufficient as team.push** — no extension needed
+### bugs-agent-restore-process.md — ALL 10 DONE:
+| # | Status | Commit |
+|---|--------|--------|
+| 1-4,6,8-10 | ✅ DONE (prev session) | 44726ab, 57cf612, a986391 |
+| 5 | ✅ DONE+TESTER-VERIFIED | b904be5 |
+| 7 | ✅ DONE | 516ebb3 |
 
-## ⚠️ CURRENT STATE
+### DURING_REWIND (80fdbd8) — DONE:
+- Storage: `~/config/hivemind.state.env` (pane|STATE|timestamp|set-by)
+- Methods: agent.state.set/clear/get + team.state.set/clear
+- sweep.detect Layer 3 override before live detection
+- agent.send rewind-hold route (exit code 3)
+- Tester: awaiting T-REWIND-STATE tests
+
+### c2 completion (33da219) — DONE+TESTER-VERIFIED:
+- Root cause: `line.split | line.unquote | line.add "'"` produced `'''` corruption
+- Fix: replaced with `sed 's/|/\n/g'` + empty-pipeline guard
+- Removed unconditional function listing output during completion
+- Tester: T-COMPLETION 7/7 GREEN (8374cc5)
+
+### this-dispatch (12100f8) — DONE+TESTER-VERIFIED:
+- Private method → clean error message, not ENOENT
+- Unknown method → clean error message, not PATH dump
+- Tester: T-THIS-DISPATCH 7/7 GREEN (ea63801)
+
+### Deferred:
+- 458-commit merge test/macos.latest → dev for WODA.test push
+- SC-E.2 P2/P3 ingress (17 remaining sites)
+- BUG-T1/T4/T5 (ghost methods, source hang)
+
+### Previous session commits (2026-06-19, 7 total):
+| Commit | Task | Summary |
+|--------|------|---------|
+| `a986391` | restore #6 | sweep.detect idle-vs-active: bottom 5 lines not last_line |
+| `44726ab` | restore #9,#3 | T-ALIGN-8 pane-scan cap + list age-sort newest-first |
+| `57cf612` | restore #8,#10 | accept-edits→inform routing + team.push alias |
+| `84898c3` | audit #1 | return code cap at 125 (not-a-bug for truncation) |
+| `111e0a0` | audit #3 | fork UUID-stale skip for --fork-session panes |
+| `d33d2ea` | audit #2 | role.fromTitle strict + title@warn yellow |
+| `ccd7ef1` | audit #4/#5 | tronMonitor switch+prune update roles registry |
+
+## ⚠️ EARLIER STATE
 
 ### This session commits (chronological, most important)
 
