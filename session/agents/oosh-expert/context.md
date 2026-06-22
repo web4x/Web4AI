@@ -8,7 +8,7 @@
 **Sibling**: oosh-architect @ ooshTeam:0.1
 **PO**: oosh-po @ ooshTeam:0.0 (also TRONinterface:0.0)
 **SM**: scrum-master @ TRONinterface:0.1
-**Updated**: 2026-06-22 — restore-backlog ALL DONE, DURING_REWIND shipped, c2 completion fix shipped, this-dispatch fix shipped, sweep.detect stale-scrollback fix shipped.
+**Updated**: 2026-06-22 (rewind anchor) — restore-backlog ALL DONE, DURING_REWIND shipped, c2 completion fix shipped, this-dispatch fix shipped, sweep.detect stale-scrollback fix shipped. Identity drift corrected (was running as hiveMind-expert after compact).
 
 ## ⚠️ CURRENT STATE (2026-06-21/22 session)
 

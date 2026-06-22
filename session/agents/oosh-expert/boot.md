@@ -1,5 +1,5 @@
 # Boot: oosh-expert
-*Written by agent 2026-06-22.*
+*Written by agent 2026-06-22. Rewind anchor save.*
 
 ## You are: oosh-expert
 ## Pane: ooshTeam:0.2
