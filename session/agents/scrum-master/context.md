@@ -13,6 +13,8 @@
 - **★ DELIVERABLE SHIPPED (2026-06-21):** all oosh tasks complete+green. Expert STOPPED by TRON ("doing implementations local"). TRON driving oosh-po via RC (cherry-pick merge + env-files-pure-state architecture task).
 - **★ Agent-trainer REWIND PROVEN (2026-06-22):** first SM-driven trainer rewind — Phase 2 at 50% of 112 msgs, 5-option menu "Restore conversation" by LABEL (Down+Enter via send.raw), retrain from distilled files, Touch Protocol (auto mode + /remote-control), Rule-6 verified (identity+code-intact 11294d3). Catch-22 safety net operational.
 - **★ CORRECTION: `send.raw` for menus, `send` for prose** — oosh-po caught that `otmux send` prepends [@role pane] which corrupts menu digits. All menu/permission approvals must use `otmux send.raw <pane> <keystroke>`.
+- **oosh-po NOW also Tier-3 candidate** (3rd "clear to save" cycle at 576.8k). Expert Tier-3 escalated (c890b9d, doc 20260623T0900Z). All 4 oosh agents (po+architect+expert+tester) have thrashed — whole team needs Tier-3 forks from healthy sources.
+- **My context: ~60% used (tick 171).** Subscription 0%/5h, 7%/7d safe.
 - **oosh-po(0.0):** idle, auto mode on, healthy.
 - **agent-trainer(baseTeam:0.0):** operational, just completed deep rewinds on architect+tester.
 - **Subscription:** 0%/5h, 51%/7d — safe, well under 80% survival trigger.
