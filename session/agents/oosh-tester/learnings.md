@@ -133,6 +133,20 @@
 - Each agents.discover call scans ALL sessions — ~2 min per call
 - Tests 1+2 (hiveMind.list, hiveMind.workers) alone take 10+ minutes
 - Workaround: use test.suite filter mode (still slow due to 5000-line setup)
+- T-ALIGN-8 used to hang scanning 80+ panes — fixed by #9 cap (44726ab, max 20 Claude panes)
+- claudeCode suite runs ~10min end-to-end now (was infinite before #9 cap)
+- hiveMind suite still impractical at fleet scale — 28 lines in 10min, needs optimization
+
+### Audit verification workflow (2026-06-19)
+- Run `hiveMind consistency.audit 2>&1 | tee /tmp/audit-results.txt` — capture to file
+- Grep file for specific patterns (UUID-stale, MISMATCH, @host) — pane history truncates
+- Compare violation counts before/after fix (128→120 = 8 fork stales removed)
+- Report in the task file report-back section, not chat
+
+### Test relaxation pattern
+- When a test fails because reality is legitimate (dormant shells have no agentName), relax the assertion
+- Change `all X must have Y` to `some X must have Y` — tolerate known exceptions
+- Document the reason in the test comment (PO triage decision)
 
 ## Role Boundaries
 - DO NOT implement fixes — report findings, expert implements
@@ -169,3 +183,20 @@
 - After each: verify audit catches, reconcile --apply fixes, re-audit clean
 - Final full roundtrip: reconcile all → zero violations
 - Use private.hiveMind.reconcile.diff for programmatic violation count (not audit which has human output)
+
+### Verification workflow (2026-06-21/22)
+- Use ooshTeam:0.4 (macOS shell) for running tests — NEVER ooshTeam:0.3 (own pane)
+- test.suite filter mode (`T-ZOOM`) still runs ALL setup code in 6000-line files — takes 10+ min
+- For fast verification: run test logic inline via `otmux send` to shell pane
+- Use `otmux pane.history` to retrieve results (not `pane.capture` which is current screen only)
+- Monitor tool with until-loop for async test waits — don't sleep-poll
+- Role names must start with a letter (`this.isRoleName` rejects `__test_*`): use `rw-test-*` not `__test_rewind_*`
+- state.set resolves role→pane via hiveMind.resolve — needs REAL tmux session, not fake pane name
+- completion.discover COMP_CWORD is 0-based: word 0=script, word 1=method
+- Exact single match returns empty completion (resolved) — test with multi-match prefix like "l" not "list"
+
+### Task file discipline (CMM4)
+- Tick acceptance criteria checkboxes in task file
+- Add report-back line with: date + commit + test count + pass/fail + what was verified
+- One-line ping to PO via otmux send after each verified task
+- Task files are single source of truth — not chat messages

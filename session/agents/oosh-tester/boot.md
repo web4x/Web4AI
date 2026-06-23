@@ -1,32 +1,24 @@
 # Boot: oosh-tester
+*Auto-generated 2026-06-17 10:18. This is ALL you need to read post-compact.*
 
 ## You are: oosh-tester
 ## Pane: ooshTeam:0.3
-## macOS Shell: ooshTeam:0.4 (expert shell, shared for tests)
-## Termux Shell: ooshTeam:0.5 (samsungTablet)
-## Machine: MacStudio.native
-## Branch: dev
-
-## Sprint 1 DONE — 88+ tests delivered, 4 bugs verified, cross-platform green
-
-## Cross-Platform Status (2026-06-01)
-| Suite | macOS | Termux |
-|-------|-------|--------|
-| oo | 63/65 | 12/12 |
-| ossh | 108/108 | 108/108 |
-| log | — | 45/45 |
-| config | — | 19/20 |
-| fix.rights | dirs 700, keys 600/644 | pending |
+## Goal: Current Task
+- otmux 16 failing tests: need rerun with output capture to identify
 
 ## Immediate actions:
-1. Read `session/agents/oosh-tester/context.md`
-2. Read `session/agents/oosh-tester/learnings.md`
-3. Check PO (ooshTeam:0.0) for priorities
+1. Read team goals: `session/team-goals.md`
+2. Run `TaskList` — check for queued tasks from before compact
+3. Read base skill: `session/base-skills/task-queue.md`
+4. Read context file if needed (see Deep files below)
+5. Resume work (see goal above)
 
-## Rules:
-- NEVER use raw tmux — always otmux wrappers
-- NEVER filter output (no 2>/dev/null, | head, | tail, | grep)
-- NEVER use run_in_background with until-loops
-- Write findings to task files (SM CMM4 directive)
-- Use ooshTeam:0.4 for macOS tests, ooshTeam:0.5 for Termux
-- Tests must be self-contained (__test_ prefix)
+## Deep files (read ONLY if needed, not on boot):
+- SKILL.md: `.claude/agents/oosh-tester/SKILL.md`
+- Context: `session/agents/oosh-tester/context.md`
+- Learnings: `session/agents/oosh-tester/learnings.md`
+
+## Rules (memorize, don't re-read):
+- Wait for assignment. Only SM/orchestrator have background loops.
+- Never assume — always measure.
+- OOSH wrappers only, no raw tmux.
