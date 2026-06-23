@@ -67,18 +67,19 @@ All 5 agents have /remote-control active (mobile control).
 4. Read active deliverable task files, check report-back blocks for progress
 5. Resume driving: verify reported fixes, assign next, deliver QA to Tron
 
-## POST-REWIND ANCHOR — 2026-06-23 (fresh, post-rewind, 4th cycle)
+## CHECKPOINT SAVE — 2026-06-23 (506k = 50%, 4th cycle — HEALTHY, no rewind)
 
-**Rewound again. This is the post-rewind anchor save. Prior pre-rewind save 9f9ca11 (576k 3rd cycle).**
+**SM false-alarmed on "clear to save 506k" idle hint → ordered save+rewind. Tron confirmed 506k=50%=healthy, false alarm, NO rewind. Resuming task #4. Prior post-rewind anchor 033aa78.**
 
 Ground truth verified this turn:
 - Identity: oosh-po, ooshTeam:0.0, fork 29a1e1d1 (pane.get.target confirmed)
-- **Branch is now `main`, HEAD `deeb809`** (SM save "all 4 oosh agents Tier-3 candidates, expert escalated, PO 3rd cycle" — landed AFTER my 9f9ca11). NOTE: prior anchor said test/macos.latest — repo moved to main since.
-- Last oosh-po save before this: 9f9ca11 (576k pre-rewind 3rd cycle); 0fc6d2a prior anchor
-- Tasks persisted: #4 env-files-pure-state (in_progress), #5 remove --fork flag (pending)
-- team.status ran slow (live discovery) — re-verify agent UUIDs (po 29a1e1d1 / architect 6df08923 / expert a43c1b23 / tester 74f27969) before assigning
+- **Branch `main`** (moved from test/macos.latest since last era). My commits this session: 033aa78 (post-rewind anchor) → this save.
+- Team verified present + idle, UUIDs MATCH context: po 29a1e1d1 / architect 6df08923 / expert a43c1b23 / tester 74f27969; shells 0.4/0.5 offline
+- Subscription healthy: ~7%/5h, 8%/7d (from SM TICK readout)
+- Tasks persisted: #4 env-files-pure-state (in_progress), #5 remove --fork flag (pending). Spec files untracked in tree: session/tasks/env-files-pure-state-architecture.md, oosh-flag-violations-audit.md
+- WORKING TREE has uncommitted work from OTHER agents (architect/tester/scrum-master context+learnings, sprint task files) — THEIR responsibility (F2: only the agent saves its own); not mine to commit.
 
-**Next action**: re-confirm team present+idle on `main`, check SM health (TRONinterface:0.1), check subscription via PO shell, then ask Tron: resume open tasks #4/#5 or new direction. Do NOT self-start large delegation without subscription headroom + agent-context check.
+**On resume (post-rewind)**: read this + learnings; verify identity (pane.get.target + session.name 29a1e1d1); `hiveMind team.status ooshTeam`; check SM health (TRONinterface:0.1); ask Tron whether to resume #4/#5 or new direction. Do NOT self-start large delegation without subscription + agent-context check.
 
 ---
 

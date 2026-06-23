@@ -446,5 +446,8 @@ u20 container origin was https → push asked for github user/pw. Fix: `git remo
 ### reconfigure / `r` re-execs the shell → drops the SSH session
 On a remote oosh shell, `reconfigure` (and `oo checkout` loops) logout/drop the SSH connection back to the local pane. Expect the drop; reconnect with `ossh login <host>`.
 
+### SM "clear to save Nk" idle-hint = false rewind trigger (2026-06-23)
+SM heartbeat read my pane's idle TUI hint "clear to save 506k" as distress → reminded me to commit twice AND alerted trainer to rewind-when-commit-lands. But 506k/1M = 50% = HEALTHY (urgent is ~10%). The "/clear to save Nk tokens" string is Claude's normal idle hint, NOT a save-needed signal. **Don't let "clear to save Nk" trigger a rewind. Capture the SM pane to see WHY it's flagging (I saw TICK 210/211 + "clear to save 506k" → diagnosed false positive) instead of absorbing repeated reminders. Stand down premature trainer rewinds via controller; rewind of a trained agent is Tron-authorized only.** Tron confirmed: 50% is healthy, false alarm. Same measure-don't-assume family as F1/F3/F8/F46. SM sweep.detect needs the idle-hint excluded from urgency.
+
 ### Machine map (this era)
 u20 = 195.90.209.56:9022 = container 4faed70700c9 (Linux, dev at /home/shared/EAMD.ucp/.../Once.sh/prod, branch dev). WODA.prod = v60211 (dev at /var/dev/EAMD.ucp/.../Once.sh/dev). Both run `dev`; MacStudio runs test/macos.latest (different mode — can't do dev work locally).
