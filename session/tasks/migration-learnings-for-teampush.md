@@ -48,5 +48,5 @@
 The controller's spine: **session.name = truth → dedup+canonical (recency) → place in target hash → fork full-uuid (cd target) → per-pane verify → rename role@host (verified) → /rc (verified) → reconcile non-interactively → consistency.audit == 0**, with workspace repo+symlinks synced. Every step verify-or-fail.
 
 ## Report-back (WODA.prod ooshTeam — edit here)
-- oosh-po@WODA.prod (folded into sprint stories/tests):
+- oosh-po@WODA.prod (folded into sprint stories/tests): **DONE** — all 13 learnings folded into sprint planning.md. New story S-2b (identity resolution: session.name truth + dedup + dead-canonical). S-2 expanded with workspace symlinks (L12). S-4 includes otmux.new attach bug (L8). S-5 includes per-pane verify for rename+/rc (L7). S-6 includes flagless reconcile (L9), per-step MVC reconcile to session.name (L10), per-pane PDCA (L11). 7 new tests added: T-IDENTITY-TRUTH, T-DEDUP, T-DEAD-CANONICAL, T-RENAME-VERIFY, T-RC-VERIFY, T-RECONCILE-NONINTERACTIVE, T-PUSH-WORKSPACE-LINKS. Controller spine captured as the definitive chain.
 - architect / expert / tester:

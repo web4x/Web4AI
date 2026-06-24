@@ -5,6 +5,7 @@
 **Status**: PLANNED
 **Created**: 2026-06-24
 **Source story**: `session/tasks/hivemind-team-push-controller.md` (12 manual steps + gaps)
+**Migration learnings**: `session/tasks/migration-learnings-for-teampush.md` (13 hard-won lessons from 2 live manual migrations — ooshTeam + robbinTeam2)
 
 ## Collaboration Model
 
@@ -51,14 +52,36 @@ Reuse: `private.claudeCode.decode.projectHash` (reverse) or implement `private.c
 - Owner: oosh-expert (implement) + oosh-tester (test)
 - Ref: `session/tasks/pushed-team-data-discovery.md` (#7)
 
-### S-2: Session-state repo sync step
+### S-2: Session-state repo sync + workspace replication (L12)
 Add workspace repo sync to the push choreography: `git push` on source → `ssh <host> "cd <targetWorkspace> && git pull"`. The fork boots blind without context.md/learnings.md/task files.
+
+**L12 addition**: also replicate workspace symlinks. Agents reach their work repos via symlinks from CWD (e.g. `Claude/workspaces/Web4RawBin` → the actual repo). The controller must: clone the work-repo on the target if missing, then recreate the symlink structure.
 
 - [ ] `team.push` syncs workspace repo (push+pull) before any JSONL transfer
 - [ ] Handles: target workspace dir doesn't exist (error clearly), target repo diverged (pull --ff-only, fail clearly on conflict)
+- [ ] Replicate workspace symlinks: discover `workspaces/*` symlinks on source, clone targets on host if missing, recreate links
 - [ ] Test: T-PUSH-REPO — verify agent files present on target after push
+- [ ] Test: T-PUSH-WORKSPACE-LINKS — verify workspace symlinks replicated + resolve correctly on target
 - Status: PLANNED
 - Owner: oosh-expert
+
+### S-2b: Identity resolution — session.name is the ONLY truth (L1, L2, L3)
+**THE fundamental migration lesson**: `claudeCode list` role labels are stale/shifted, `hiveMind team.status` live-discovery mislabels agents, pane titles and registry can be wrong. The ONLY reliable identity is `claudeCode session.name <uuid>`.
+
+The controller's pre-fork discovery must:
+1. **Resolve every agent's role via `session.name`**, never from list/team.status/pane-title. (L1)
+2. **Dedup duplicate titles by recency + training size.** Two sessions can have the same customTitle (e.g. two `robbin-tester@MacStudio`). Pick the newest-trained (mtime + JSONL line-count) as canonical; surface duplicates for confirmation. (L2)
+3. **Fork even if the canonical agent is DEAD.** The real trained agent may show as DEAD in `claudeCode list` while a stale older incarnation is "live". JSONL is resumable — dead ≠ skip. (L3)
+
+- [ ] `private.hiveMind.push.resolveCanonical <role> <session>` — returns the canonical UUID via session.name, deduped by recency+training
+- [ ] Handles dead agents: fork their JSONL regardless of live/dead status
+- [ ] Surfaces duplicate titles with a clear report (which UUID, which mtime, which line-count)
+- [ ] Test: T-IDENTITY-TRUTH — mapping comes from session.name only, never list/status/title
+- [ ] Test: T-DEDUP — two sessions with same customTitle → picks newest-trained
+- [ ] Test: T-DEAD-CANONICAL — dead canonical agent's JSONL is transferred and forked successfully
+- Status: PLANNED
+- Owner: oosh-expert (implement) + oosh-architect (design the resolution chain)
+- Depends: S-1
 
 ### S-3: Per-agent JSONL transfer + verify (with target hash)
 For each agent in the snapshot: locate source JSONL, compute target hash, mkdir + scp, verify with `claudeCode list` on target. Per-pane PDCA (no batch-then-hope).
@@ -78,8 +101,9 @@ Fork each agent in its target pane: `cd <targetWorkspace> && claudeCode fork <fu
 - [x] `claudeCode fork <full-uuid>` (normalize short UUIDs) (PROVEN: 3 agents forked)
 - [x] Resume menu: detect + select option 2 (full), verify agent at prompt (PROVEN: architect+tester hit menu→option 2; expert auto-resumed — controller must handle BOTH cases)
 - [ ] Zoom management: zoom before fork (menu needs width), unzoom after
+- [ ] **L8 BUG**: `otmux new` attaches the caller when not in tmux — controller creating a new team session from a plain ssh shell gets nested. Fix: use detached create path (`otmux new <name> -d`), or fix otmux.new to never attach the driver. Mind signature: `<?name> <?command>` — `-x/-y` args get swallowed as command.
 - [ ] Test: T-PUSH-FORK — fork completes, agent at idle prompt
-- Status: **MANUALLY PROVEN** — needs automation; controller must detect menu vs auto-resume
+- Status: **MANUALLY PROVEN** — needs automation; controller must detect menu vs auto-resume + fix L8 attach bug
 - Owner: oosh-expert
 - Depends: S-3
 
@@ -91,20 +115,26 @@ Per agent post-fork: `/rename role@<targetHost>` (double-Enter for slash cmd), `
 - [x] `/remote-control` immediately → capture URL (PROVEN: all 3 /rc active)
 - [x] Verify: pane title == session name == registry role == `role@<host>` (PROVEN: team.status shows all correct)
 - [ ] `pane.lock` (not done — cosmetic, add to automation)
+- [ ] **L7**: Per-pane verify each rename: capture pane → assert "Session renamed to role@host" BEFORE moving to next agent. Batched renames over double-hop (MacStudio→ssh→otmux→pane) FAIL silently. Same for /rc: capture → assert "/rc active" + URL present.
 - [ ] Test: T-PUSH-IDENTITY — all 4 MVC identity stores agree + /rc URL captured
-- Status: **MANUALLY PROVEN** — needs automation; must also write forked UUID to sessions.env (GAP #12 proven live)
+- [ ] Test: T-RENAME-VERIFY — after /rename, pane capture contains "Session renamed to <expected>"
+- [ ] Test: T-RC-VERIFY — after /remote-control, pane capture contains "/rc active" + URL
+- Status: **MANUALLY PROVEN** — needs automation; must also write forked UUID to sessions.env (GAP #12) + per-pane verify (L7)
 - Owner: oosh-expert
 - Depends: S-4
 
 ### S-6: Per-step verify-or-fail + MVC consistency throughout
 Every step above MUST verify (capture + assert) before proceeding. Fail loudly on any mismatch — never leave MVC in a half-consistent state. Build on `check … fix` idiom and `consistency.audit`.
 
-- [ ] Each step has explicit verify (capture pane → assert condition → continue or error)
+- [ ] Each step has explicit verify (capture pane → assert condition → continue or error). **L11**: per-pane PDCA, NOT batch-then-hope — verify each agent before proceeding to the next.
 - [ ] On failure: stop, report which step + which agent + what went wrong
 - [x] MVC state audited at end of each agent's migration (not just at the end) (PROVEN: consistency.audit ran, caught 5 violations → fixed → 0 = CLEAN)
+- [ ] **L10**: reconcile ALL MVC stores to `session.name` truth at EACH step (not just final audit). After every fork/rename: registry, pane title, sessions.env must agree with session.name.
 - [ ] **GAP #12 PROVEN LIVE**: manual forks leave sessions.env empty (forked UUID ≠ parent UUID, non-invasive discovery can't resolve). Controller MUST: (a) capture the forked JSONL UUID by matching customTitle `@WODA.prod` in the target hash dir, (b) write it to sessions.env immediately after fork. JSONL-correlation pattern: `grep customTitle ~/.claude/projects/<targetHash>/*.jsonl` → match `role@host` → extract UUID from filename.
+- [ ] **L9**: `consistency.fix` is interactive (y/N, aborts with no input) and `consistency.reconcile --apply` uses a **flag** (OOSH violation). Controller needs a **flagless non-interactive reconcile** method — e.g. `hiveMind consistency.reconcile.apply` (object.verb, no flag). This is a prereq for automated team.push.
 - [ ] Test: T-PUSH-FAIL — inject a failure (e.g. wrong UUID), assert controller stops + reports cleanly
-- Status: **GAP DOCUMENTED** — needs automation with UUID-capture-on-fork
+- [ ] Test: T-RECONCILE-NONINTERACTIVE — flagless reconcile applies all fixes without prompting
+- Status: **GAP DOCUMENTED** — needs automation with UUID-capture-on-fork + flagless reconcile + per-step MVC reconciliation
 - Owner: oosh-expert (wiring) + oosh-architect (verify-chain design)
 
 ### S-7: Final parity gate — consistency.audit on target
@@ -148,24 +178,34 @@ The acceptance test: use the finished `hiveMind team.push WODA.prod` (from MacSt
 ## Sequencing
 
 ```
-S-0 (bootstrap expert manually)
+S-0 (bootstrap — DONE)
  ↓
 S-1 (target-hash fix) ←── S-8 (snapshot prune, parallel)
  ↓
-S-2 (repo sync)
+S-2 (repo sync + workspace symlinks — L12)
  ↓
-S-3 (JSONL transfer+verify)
+S-2b (identity resolution: session.name truth + dedup + dead-canonical — L1/L2/L3)
  ↓
-S-4 (fork+resume)
+S-3 (JSONL transfer+verify — MANUALLY PROVEN)
  ↓
-S-5 (rename+lock+registry+/rc)
+S-4 (fork+resume + fix otmux.new attach bug L8 — MANUALLY PROVEN)
  ↓
-S-6 (verify-or-fail wiring, parallel with S-3→S-5)
+S-5 (rename+lock+registry+/rc + per-pane verify L7 — MANUALLY PROVEN)
  ↓
-S-7 (final parity gate)
+S-6 (verify-or-fail + flagless reconcile L9 + per-step MVC reconcile L10 + per-pane PDCA L11)
  ↓
-S-9 (dogfood)
+S-7 (final parity gate — MANUALLY PROVEN)
+ ↓
+S-9 (dogfood — idempotent)
 ```
+
+### Controller spine (from migration learnings — the full chain)
+```
+session.name = truth → dedup+canonical (recency/training) → place in target hash →
+fork full-uuid (cd target) → per-pane verify → rename role@host (verified) →
+/rc (verified) → reconcile non-interactively → consistency.audit == 0
+```
+With workspace repo+symlinks synced before any JSONL transfer.
 
 ## Velocity guardrails
 - Check `scrumMaster subscription` before each delegation wave (minimize new prompts — context replay = the burn).
