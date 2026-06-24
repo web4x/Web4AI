@@ -31,12 +31,12 @@ Manual fork of oosh-expert (a43c1b23) to ooshTeam:0.2 on WODA.prod, using the pr
 
 Pre-req: the expert is now on dev box and can implement.
 
-- [ ] JSONL transferred to target hash dir
-- [ ] Fork + resume-full in ooshTeam:0.2
-- [ ] Rename + /rc active
-- [ ] Verified via pane.get.target + session.name + claudeCode list
-- Status: PLANNED
-- Owner: oosh-po@WODA.prod (I do this one manually — proving the procedure)
+- [x] JSONL transferred to target hash dir (oosh-po@MacStudio scp'd all 3: architect 6df08923, expert a43c1b23, tester 74f27969)
+- [x] Fork + resume-full in ooshTeam:0.1 (architect — resume menu → option 2), 0.2 (expert — auto-full), 0.3 (tester — resume menu → option 2)
+- [x] Rename `@WODA.prod` + /rc active on ALL THREE (URLs captured in pane captures)
+- [x] Verified: team.status shows all 4 agents, correct roles, registry.set done
+- Status: **DONE**
+- Owner: oosh-po@WODA.prod (manual procedure proven) + oosh-po@MacStudio (source-side scp)
 
 ### S-1: Target-hash placement fix (prereq — the #7 core fix)
 Fix `agent.restart.remote` / `teams.migrate` to place JSONLs in the TARGET project-hash dir, not the source's. Compute target hash from the target workspace path.
