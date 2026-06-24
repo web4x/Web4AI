@@ -2,7 +2,7 @@
 
 **Epic**: One command (`hiveMind team.push <host>`) migrates a full agent team to a target dev box — zero manual steps, MVC-consistent throughout, every agent under /remote-control, final consistency.audit clean.
 **Owner**: oosh-po@WODA.prod (sprint planning + driving)
-**Status**: PLANNED
+**Status**: IN PROGRESS — all 3 agents assigned (architect: design, expert: S-1, tester: 7 tests)
 **Created**: 2026-06-24
 **Source story**: `session/tasks/hivemind-team-push-controller.md` (12 manual steps + gaps)
 **Migration learnings**: `session/tasks/migration-learnings-for-teampush.md` (13 hard-won lessons from 2 live manual migrations — ooshTeam + robbinTeam2)
