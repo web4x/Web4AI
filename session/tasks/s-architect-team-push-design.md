@@ -34,5 +34,319 @@ fork full-uuid (cd target) → per-pane verify → rename role@host (verified) �
 Write your design into this file (below this line), commit, ping oosh-po.
 
 ---
-## Design (architect — edit here)
+## Design (oosh-architect@WODA.prod — 2026-06-22)
+
+### Overview
+
+`hiveMind team.push <host>` is a Controller method that migrates an entire agent team to a target dev box. It follows the spine:
+
+```
+session.name = truth → dedup+canonical → place in target hash →
+fork full-uuid (cd target) → per-pane verify → rename role@host →
+/rc (verified) → reconcile non-interactively → consistency.audit == 0
+```
+
+Every step is per-agent (NOT batch), verify-or-fail.
+
+---
+
+### 1. Pre-flight (`private.hiveMind.push.preflight <host> <teamSession>`)
+
+Before any agent transfer, validate the target:
+
+```
+1. SSH connectivity:   ossh exec <host> "echo ok"          → fail if unreachable
+2. OOSH installed:     ossh exec <host> "which this"       → fail if no oosh
+3. Workspace dir:      ossh exec <host> "[ -d <targetWS> ]" → fail if missing
+4. tmux session:       ossh exec <host> "otmux session.exists <teamName>"
+                       → create DETACHED if missing (see L8 below)
+5. Pane count:         verify target panes >= source agent count
+                       → split to match if needed
+6. oosh version:       ossh exec <host> "oo v"             → warn if mismatch
+```
+
+**Session creation (L8 fix)**: if the tmux session doesn't exist, create it **detached**. NEVER use `otmux new <name>` from a non-tmux caller — it attaches and traps the driver. Use raw tmux:
+```bash
+ossh exec <host> "tmux new-session -d -s <teamName> -x 200 -y 50"
+```
+Then split panes to match source layout via `otmux split` commands.
+
+**Workspace repo sync (S-2)**: run BEFORE any JSONL transfer:
+```bash
+# Source side
+(cd <sourceWS> && git push origin main)
+# Target side
+ossh exec <host> "cd <targetWS> && git pull --ff-only origin main"
+```
+Fail on merge conflict — needs human.
+
+---
+
+### 2. Identity resolution (`private.hiveMind.push.resolveCanonical <role> <teamSession>`)
+
+Called per-role to find the ONE canonical UUID to migrate.
+
+**Returns**: full UUID (8-4-4-4-12)
+
+**Algorithm**:
+```
+1. List ALL JSONLs in source project hash:
+   ls ~/.claude/projects/<sourceHash>/*.jsonl → extract UUIDs
+
+2. For each UUID, query identity:
+   claudeCode session.name <uuid> → customTitle (e.g. "oosh-expert@MacStudio")
+
+3. Filter: keep sessions whose session.name starts with <role>
+   (strip @host: ${name%%@*})
+
+4. Count matches:
+   0 → ERROR "role not found in any session"
+   1 → canonical (done)
+   >1 → DEDUP:
+     a. Sort by JSONL mtime (newest first)
+     b. Tiebreak by JSONL line-count (wc -l, most trained = most lines)
+     c. Pick first as canonical
+     d. Log: "DEDUP: <role> has N sessions, canonical=<uuid>
+              (mtime=<date>, lines=<n>), skipped: ..."
+
+5. Dead check (L3): canonical may be DEAD in claudeCode list.
+   DO NOT SKIP. JSONL is resumable. Log note, proceed.
+
+6. UUID normalization (L5): if input is short (<36 chars, no dashes),
+   scan JSONL filenames for prefix match → expand to full.
+```
+
+---
+
+### 3. Per-agent loop (`private.hiveMind.push.agent <host> <role> <sourceUUID> <targetPane>`)
+
+**Called once per agent. Sequential. Verify-or-fail at every gate.**
+
+#### Step 3.1: Compute target hash
+```bash
+TARGET_HASH=$(private.claudeCode.projectHash "$TARGET_WORKSPACE")
+# /var/dev/Workspaces/AI/Claude → -var-dev-Workspaces-AI-Claude
+```
+Implementation: `echo "$path" | sed 's|^/||; s|/|-|g'`
+
+#### Step 3.2: Place JSONL
+```bash
+TARGET_HASH_DIR="$TARGET_HOME/.claude/projects/$TARGET_HASH"
+ossh exec <host> "mkdir -p $TARGET_HASH_DIR"
+ossh scp "$SOURCE_JSONL" "<host>:$TARGET_HASH_DIR/"
+```
+**VERIFY**: `ossh exec <host> "[ -f $TARGET_HASH_DIR/$UUID.jsonl ]"` → must succeed.
+
+#### Step 3.3: Fork
+```bash
+ossh exec <host> "otmux send <targetPane> 'cd $TARGET_WORKSPACE && claudeCode fork $FULL_UUID' Enter"
+```
+Then handle resume menu (see §4). Timeout 120s.
+
+**VERIFY**: `claudeCode process.running <targetPane>` → true, AND pane shows idle prompt.
+
+#### Step 3.4: Capture forked UUID
+Fork creates a NEW UUID. Correlate via customTitle on the target:
+```bash
+FORKED_UUID=$(ossh exec <host> "
+  for f in $TARGET_HASH_DIR/*.jsonl; do
+    UUID=\$(basename \$f .jsonl)
+    NAME=\$(claudeCode session.name \$UUID 2>/dev/null)
+    case \"\$NAME\" in $ROLE@*) echo \$UUID; break;; esac
+  done
+")
+```
+Fallback if not yet renamed: most recent JSONL by mtime in target hash dir.
+
+**Write to sessions.env immediately** (GAP #12):
+```bash
+ossh exec <host> "hiveMind sessions.set <targetPane> $FORKED_UUID"
+```
+
+#### Step 3.5: Rename
+```bash
+ossh exec <host> "otmux send <targetPane> '/rename $ROLE@$TARGET_HOST' Enter Enter"
+```
+**VERIFY (L7)**: capture pane → assert contains `"Session renamed to: $ROLE@$TARGET_HOST"`.
+If not found after 5s → RETRY once → still missing → ERROR.
+
+#### Step 3.6: /remote-control
+```bash
+ossh exec <host> "otmux send <targetPane> '/remote-control' Enter Enter"
+```
+**VERIFY**: capture pane → assert contains `https://claude.ai/code/session_`. Extract + log URL.
+
+#### Step 3.7: Registry + title + lock
+```bash
+ossh exec <host> "hiveMind registry.set <targetPane> $ROLE"
+ossh exec <host> "otmux pane.title <targetPane> '$ROLE@$TARGET_HOST'"
+ossh exec <host> "otmux pane.lock <targetPane> '$ROLE@$TARGET_HOST'"
+```
+
+#### Step 3.8: Per-agent MVC verify (L10, L11)
+All 4 identity stores must agree:
+```bash
+PANE_TITLE = otmux pane.title.get <targetPane>
+SESSION_NAME = claudeCode session.name $FORKED_UUID
+REGISTRY_ROLE = hiveMind registry.get <targetPane>
+SESSIONS_UUID = hiveMind sessions.get <targetPane>
+
+assert PANE_TITLE = "$ROLE@$TARGET_HOST"
+assert SESSION_NAME = "$ROLE@$TARGET_HOST"
+assert REGISTRY_ROLE = "$ROLE"
+assert SESSIONS_UUID = "$FORKED_UUID"
+```
+Fail on ANY mismatch → stop, report which store is wrong.
+
+**Only after ALL 8 sub-steps pass → proceed to next agent.**
+
+---
+
+### 4. Resume menu handling
+
+Fork produces 3 possible outcomes:
+
+| Outcome | Detection (capture after 10s) | Action |
+|---------|-------------------------------|--------|
+| **Auto-resume** | `❯` prompt visible | Proceed (no action) |
+| **Resume menu** | "Continue" / numbered options | Send `2` Enter (full resume) |
+| **Compacting** | "Compacting conversation" | Wait up to 60s, poll 10s intervals |
+
+**NEVER send keystrokes while compacting** — can trigger unintended commands.
+
+After menu selection or auto-resume, wait for idle prompt (❯). Timeout 120s total.
+
+---
+
+### 5. Flagless reconcile: `hiveMind consistency.reconcile.apply`
+
+**Problem (L9)**: `consistency.fix` prompts y/N (aborts on no input). `consistency.reconcile --apply` uses a flag (OOSH violation).
+
+**Solution**: new method `hiveMind consistency.reconcile.apply <?teamSession>`:
+- Same logic as `consistency.reconcile` with `--apply`
+- No y/N prompt — applies all fixes silently
+- Returns: count of fixes applied via RESULT
+- Exit 0 on success, 1 on failure
+- Logs each fix applied
+
+The existing interactive `consistency.fix` is preserved for human use.
+
+---
+
+### 6. Collision/idempotency
+
+When `team.push` targets a host that already has agents:
+
+```
+For each target pane:
+  1. Is Claude running? (claudeCode process.running <pane>)
+  2. YES:
+     a. current = claudeCode session.name (from sessions.get UUID)
+     b. If current == expected role@host → SKIP (verify-only mode)
+        Run steps 3.5–3.8 verify gates, log "ALREADY CORRECT: <role>"
+     c. If current != expected → CONFLICT
+        Log: "CONFLICT: pane <pane> has <current>, expected <role>"
+        STOP. Human decides.
+  3. NO Claude running → proceed with full fork
+```
+
+**Re-run guarantee**: `team.push` twice = same result. Correct agents verified, not re-forked. No duplicates, no corruption.
+
+---
+
+### 7. Workspace symlink replication (L12)
+
+```bash
+# Discover on source
+SOURCE_LINKS=$(find "$SOURCE_WS/workspaces" -maxdepth 1 -type l 2>/dev/null)
+
+for link in $SOURCE_LINKS; do
+  LINK_NAME=$(basename "$link")
+  LINK_TARGET=$(readlink -f "$link")
+
+  # Clone repo on target if missing
+  if ! ossh exec <host> "[ -d $LINK_TARGET ]"; then
+    REPO_URL=$(cd "$LINK_TARGET" && git config --get remote.origin.url)
+    ossh exec <host> "git clone $REPO_URL $LINK_TARGET"
+  fi
+
+  # Recreate symlink
+  ossh exec <host> "mkdir -p $TARGET_WS/workspaces && ln -sf $LINK_TARGET $TARGET_WS/workspaces/$LINK_NAME"
+done
+```
+
+---
+
+### 8. Error handling
+
+| Condition | Action | Recoverable? |
+|-----------|--------|-------------|
+| SSH unreachable | STOP pre-flight | Yes — fix ssh, re-run |
+| Workspace missing | STOP pre-flight | Yes — create dir, re-run |
+| git pull conflict | STOP, report files | No — human resolves |
+| Role not found | STOP, list available | Yes — check session.name |
+| JSONL scp fails | STOP, report perms | Yes — fix perms, re-run |
+| Fork timeout (120s) | STOP at this agent | Yes — re-run (idempotent) |
+| Rename not verified | RETRY once → STOP | Maybe — pane width? |
+| /rc not verified | RETRY once → STOP | Maybe — network? |
+| MVC mismatch | STOP, report store | Yes — manual fix, re-run |
+| Collision (wrong agent) | STOP, report conflict | No — human decides |
+| audit != 0 after reconcile | EXIT 1, report violations | Yes — manual fix, re-run |
+
+**Principle**: STOP on first failing agent. Report what succeeded, what failed, which step. Controller is re-runnable — skips correct agents.
+
+---
+
+### Method signature
+
+```bash
+hiveMind.team.push() # <host> <?teamSession:active> # push entire team to target host
+{
+  local host="$1"
+  local teamSession="${2:-$(hiveMind.active.team.get)}"
+
+  # 1. Pre-flight
+  private.hiveMind.push.preflight "$host" "$teamSession" || return 1
+
+  # 2. Workspace sync + symlinks
+  private.hiveMind.push.workspace.sync "$host" "$teamSession" || return 1
+
+  # 3. Snapshot source team
+  hiveMind teams.save "$teamSession"
+
+  # 4. Per-agent loop (sequential, verify-or-fail)
+  local agents=$(hiveMind snapshot.agents "$teamSession")
+  local failed=0
+  for agent in $agents; do
+    local role=$(echo "$agent" | cut -d'|' -f2)
+    local sourcePane=$(echo "$agent" | cut -d'|' -f1)
+    local sourceUUID=$(private.hiveMind.push.resolveCanonical "$role" "$teamSession")
+    local targetPane=$(private.hiveMind.push.targetPane "$sourcePane" "$teamSession")
+
+    if ! private.hiveMind.push.agent "$host" "$role" "$sourceUUID" "$targetPane"; then
+      error.log "FAILED at agent $role — stopping push"
+      failed=1
+      break
+    fi
+    console.log "PASS: $role → $host (verified + /rc active)"
+  done
+
+  # 5. Final parity gate
+  if [ "$failed" -eq 0 ]; then
+    local violations=$(ossh exec "$host" "hiveMind consistency.audit $teamSession")
+    if [ $? -ne 0 ]; then
+      warn.log "audit found violations — running reconcile.apply"
+      ossh exec "$host" "hiveMind consistency.reconcile.apply $teamSession"
+      ossh exec "$host" "hiveMind consistency.audit $teamSession" || { failed=1; }
+    fi
+  fi
+
+  [ "$failed" -eq 0 ] && console.log "team.push COMPLETE: $teamSession → $host"
+  return $failed
+}
+```
+
+### Handoff
+
+Design covers all 8 points. Expert implements in hiveMind on dev branch. Tester validates with sprint tests: T-IDENTITY-TRUTH, T-DEDUP, T-DEAD-CANONICAL, T-RENAME-VERIFY, T-RC-VERIFY, T-RECONCILE-NONINTERACTIVE, T-PUSH-WORKSPACE-LINKS, T-PUSH-PARITY.
 
