@@ -150,54 +150,10 @@ Sequencing: expert implements `this` sourcing-chain + config changes + config.va
 
 ---
 
-## u20 LIVE FINDING — fresh `ossh install` PRODUCES the polluted user.env (2026-06-24, Tron-directed investigation)
+## Install-path slice → own task file
 
-**THIRD pollution source (beyond config.add + 43796be self-anchor): the installer itself.** u20 (container 4faed70700c9) was freshly installed via `ossh install`. The fresh install produced a broken, logic-laden `user.env` — proving the pollution is BORN AT INSTALL, not later drift.
+The fresh-`ossh install` case (u20 shipped a polluted user.env on a symlinked-`~/config` box — 3rd pollution source: the installer) is tracked separately with full findings + fix in:
 
-### Symptom (Tron: "config list works on WODA.prod, not u20")
-Two live remote shells: remoteOOSH:0.0=WODA.prod (v60211), 0.1=u20 (4faed70700c9).
+**`session/tasks/ossh-install-polluted-userenv.md`**
 
-| | WODA.prod (works) | u20 (broken) |
-|---|---|---|
-| `oo mode` git branch | dev | dev (`## dev...origin/dev`) |
-| OOSH_MODE | dev | **(empty)** |
-| OOSH_DIR | …/Once.sh/**dev** | …/Once.sh/**prod** (wrong tree) |
-| `oo mode` header | "Mode: dev / Path: …/dev" | **missing** (no OOSH_MODE) |
-| `config list` | shows exports | **EMPTY (RC=0)** |
-| CONFIG_PATH | …/sharedConfig (real) | /root/config (symlink, unresolved) |
-
-### Root cause (measured, not assumed)
-1. **u20 `/root/config` is a symlink → `…/Once.sh/sharedConfig`** (EAMD scenario shared config; same path string WODA.prod uses directly — different machines → different files).
-2. **`cat $CONFIG` shows all 7 lines are LOGIC, not state:**
-   ```bash
-   : ${CONFIG_PATH:="${BASH_SOURCE[0]%/*}"}
-   { [ -z "$CONFIG_PATH" ] || [ ! -f "$CONFIG_PATH/user.env" ]; } && CONFIG_PATH="$HOME/config"
-   : ${OOSH_DIR:="$(cd "$HOME/oosh" 2>/dev/null && pwd -P || echo "$HOME/oosh")"}
-   export CONFIG_FILE="user.env"
-   export BASH_FILE="/usr/bin/bash"
-   source $CONFIG_PATH/oosh.env
-   source $CONFIG_PATH/log.env
-   ```
-   Only 2 real exports (CONFIG_FILE, BASH_FILE); NO `export CONFIG_PATH/OOSH_DIR/PATH`.
-3. **Symlink trap**: sourced via the symlink, `: ${CONFIG_PATH:="${BASH_SOURCE[0]%/*}"}` resolves CONFIG_PATH to `/root/config` (symlink dir), not the canonical sharedConfig path.
-4. **Consequences**: OOSH_MODE never set (empty); OOSH_DIR resolves onto the PROD tree though git is on dev → internally inconsistent env.
-5. **`config list` empty (RC=0)**: `cat $CONFIG` works (readable) but `config list` parses for listable pure-state exports and finds none — the polluted format defeats it. WODA.prod's user.env has real export lines → its `config list` works.
-
-### Where the install writes it
-`ossh install` → `ossh.install.continue.local` (ossh:435) runs `oo update` + `oo state`/`state next` + `config list` + `config ssh.host.set`. The user.env write happens via `config.save` in that chain → emits the `43796be` self-anchor (3 logic lines) + `config.add oosh/log` source lines (config:326-327). On a symlinked `~/config` the self-anchor's `BASH_SOURCE` mis-resolves CONFIG_PATH → the cascade above.
-
-### The fix
-#4 core (d45031a on MacStudio main) PLUS install-path coverage:
-1. **#4 core (done on main)**: source-chain → `this`; `config.save`/`config.add` emit ONLY pure exports; `config.validate` guard refuses to write logic.
-2. **Install path must emit pure state**: the `ossh install` → `config.save` chain must produce real exports (`export CONFIG_PATH="<canonical>"`, `export OOSH_DIR=...`, `export OOSH_MODE=...`) resolved by `this`, NOT BASH_SOURCE tricks. `config.validate` must run at end of install and FAIL the install if the generated user.env contains logic.
-3. **Symlinked `~/config` must work**: canonicalisation happens in `this`, never via in-file `BASH_SOURCE`.
-
-### Remediation + verification (NEW — owner: oosh-expert, AFTER T-ENV-PURE green on MacStudio)
-- [ ] Propagate #4 fix to dev branch; regenerate clean `user.env` on **u20** and **WODA.prod** (drop logic + source lines → pure exports).
-- [ ] Verify on u20 (symlinked-config container): `config list` non-empty, `OOSH_MODE=dev`, `OOSH_DIR` on the **dev** tree, `oo mode` shows the Mode header.
-- [ ] Verify a FRESH `ossh install` into a symlinked-config box yields a pure-state user.env (config.validate passes) — closes the install-born pollution.
-- [ ] Tester: extend T-ENV-PURE to assert `config.validate` runs in the install path and fails on any logic line.
-
-### Report-back (install-path; edit here)
-- Expert (install-path fix + u20/WODA.prod regen + commit):
-- Tester (install-path T-ENV-PURE result):
+It depends on #4 core (this task, `d45031a`) and extends it with the install-path emit + `config.validate` gate-in-install + u20/WODA.prod regeneration + T-ENV-INSTALL.
