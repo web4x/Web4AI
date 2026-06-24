@@ -44,11 +44,11 @@ Fix `agent.restart.remote` / `teams.migrate` to place JSONLs in the TARGET proje
 
 Reuse: `private.claudeCode.decode.projectHash` (reverse) or implement `private.claudeCode.encode.projectPath` (forward: `/var/dev/Workspaces/AI/Claude` → `-var-dev-Workspaces-AI-Claude`).
 
-- [ ] `private.claudeCode.projectHash <path>` — compute project hash from workspace path
-- [ ] `teams.migrate` / `agent.restart.remote` use TARGET hash for JSONL placement
-- [ ] `claudeCode list` on target surfaces the placed sessions
+- [x] `private.claudeCode.projectHash <path>` — compute project hash from workspace path (8ca434e)
+- [x] `teams.migrate` / `agent.restart.remote` use TARGET hash for JSONL placement (8ca434e — 3 sites fixed)
+- [ ] `claudeCode list` on target surfaces the placed sessions (needs live verification)
 - [ ] Test: T-PUSH-HASH — push to target with different $HOME, assert `claudeCode list` sees it
-- Status: PLANNED
+- Status: **S-1 DONE** (8ca434e) — test pending
 - Owner: oosh-expert (implement) + oosh-tester (test)
 - Ref: `session/tasks/pushed-team-data-discovery.md` (#7)
 
