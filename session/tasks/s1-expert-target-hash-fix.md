@@ -26,4 +26,4 @@
 Commit on dev, push, fill report-back below, ping oosh-po. Then read `session/tasks/s-architect-team-push-design.md` for the full choreography design (when architect delivers) and proceed to S-2..S-8.
 
 ## Report-back (edit here)
-- Expert (S-1 impl + commit):
+- Expert (S-1 impl + commit): DONE `8ca434e` on dev. (1) `private.claudeCode.projectHash <path>` — encodes workspace path to hash (`/` → `-`). (2) Fixed 3 JSONL transfer sites: `team.migrate` (singular), `teams.migrate` (plural), `agent.restart.remote` — all now query remote for first existing `~/.claude/projects/*/` dir, fall back to computing hash from remote workspace path. Creates remote dir via `mkdir -p`. (3) `agent.restart.remote` step 5 (project dir for cd) now derives from remote hash instead of source's. All 3 sites tested syntax-clean.
