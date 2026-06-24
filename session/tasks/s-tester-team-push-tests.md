@@ -41,4 +41,4 @@ Assert: after push, workspace symlinks from source are replicated on target (dis
 Commit test file, push, fill report-back below, ping oosh-po.
 
 ## Report-back (edit here)
-- Tester (tests written + baseline run):
+- Tester (tests written + baseline run): **DONE** 2026-06-22. 7 tests written (179 lines), committed (`9b5cb35`), pushed to dev. All fixture-based, self-contained with trap cleanup. Inserted before test.suite.save.results. TDD baseline — T-IDENTITY-TRUTH, T-RENAME-VERIFY, T-RC-VERIFY, T-PUSH-WORKSPACE-LINKS will FAIL until expert implements session.name resolution, per-pane verify, and workspace link replication in teams.migrate. T-DEDUP and T-DEAD-CANONICAL pass on fixture logic. T-RECONCILE-NONINTERACTIVE checks for flagless reconcile.apply method.
