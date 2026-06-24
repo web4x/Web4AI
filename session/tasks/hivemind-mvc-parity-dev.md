@@ -30,5 +30,5 @@ dev got an earlier merge (`7d8b58a`) but the newest macos.latest MVC work (DURIN
 - [ ] Tester: diff the controller method surface (`grep` method signatures) dev vs macos.latest → zero MVC divergence.
 
 ## Report-back (edit here; report to oosh-po)
-- Expert (merge + push + WODA.prod pull + commit):
+- Expert (merge + push + WODA.prod pull + commit): DONE `f74c20a` (merge test/macos.latest→dev, 41 commits). 3 conflicts resolved: init/oosh kept dev (portability), test/test.c2+test/test.this kept both (dev's existing + macos.latest's new tests). WODA.prod `git pull` fast-forwarded (17 files). hiveMind: 195 methods + 23 MVC refs identical on both. dev preserves TMPDIR portability fixes (28 line diff vs macos.latest = expected). Carries env-files-pure-state (d45031a) + DURING_REWIND + sweep.detect + c2 completion + this-dispatch into dev.
 - Tester (parity diff result):
