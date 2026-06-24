@@ -63,35 +63,36 @@ Add workspace repo sync to the push choreography: `git push` on source → `ssh 
 ### S-3: Per-agent JSONL transfer + verify (with target hash)
 For each agent in the snapshot: locate source JSONL, compute target hash, mkdir + scp, verify with `claudeCode list` on target. Per-pane PDCA (no batch-then-hope).
 
-- [ ] Loop over snapshot, per-agent: locate → hash → mkdir → scp → verify
-- [ ] Full UUID (8-4-4-4-12) — normalize short UUIDs if encountered (GAP 8a)
-- [ ] `claudeCode list` on target shows the agent (verify step)
+- [x] Loop over snapshot, per-agent: locate → hash → mkdir → scp → verify (MANUALLY PROVEN: 3 agents scp'd by MacStudio PO to target hash dir)
+- [x] Full UUID (8-4-4-4-12) — normalize short UUIDs if encountered (GAP 8a) (PROVEN: all 3 used full UUID)
+- [x] `claudeCode list` on target shows the agent (verify step) (PROVEN: MacStudio PO confirmed discoverable)
 - [ ] Test: T-PUSH-JSONL — multi-agent transfer, all discoverable
-- Status: PLANNED
+- Status: **MANUALLY PROVEN** — needs automation in team.push
 - Owner: oosh-expert
 - Depends: S-1 (target-hash fix)
 
 ### S-4: Fork + resume-full handling
 Fork each agent in its target pane: `cd <targetWorkspace> && claudeCode fork <full-uuid>`. Handle the resume menu deterministically (zoom → fork → wait → send `2` for full, never summary → verify prompt or /rc).
 
-- [ ] `cd` to TARGET workspace (not source-derived path — GAP 8b)
-- [ ] `claudeCode fork <full-uuid>` (normalize short UUIDs)
-- [ ] Resume menu: detect + select option 2 (full), verify agent at prompt
+- [x] `cd` to TARGET workspace (not source-derived path — GAP 8b) (PROVEN: all forks from /var/dev/Workspaces/AI/Claude)
+- [x] `claudeCode fork <full-uuid>` (normalize short UUIDs) (PROVEN: 3 agents forked)
+- [x] Resume menu: detect + select option 2 (full), verify agent at prompt (PROVEN: architect+tester hit menu→option 2; expert auto-resumed — controller must handle BOTH cases)
 - [ ] Zoom management: zoom before fork (menu needs width), unzoom after
 - [ ] Test: T-PUSH-FORK — fork completes, agent at idle prompt
-- Status: PLANNED
+- Status: **MANUALLY PROVEN** — needs automation; controller must detect menu vs auto-resume
 - Owner: oosh-expert
 - Depends: S-3
 
 ### S-5: Rename + title + lock + registry + /remote-control
 Per agent post-fork: `/rename role@<targetHost>` (double-Enter for slash cmd), `otmux pane.lock <pane> role@<host>`, `hiveMind registry.set`, and **immediately** `/remote-control` (Tron: every migrated agent under /rc the moment it's up). Capture /rc URL as proof.
 
-- [ ] `/rename role@<host>` (slash cmd: double-Enter)
-- [ ] `pane.lock` + `registry.set` (MVC View + Controller consistent)
-- [ ] `/remote-control` immediately → capture URL
-- [ ] Verify: pane title == session name == registry role == `role@<host>`
+- [x] `/rename role@<host>` (slash cmd: double-Enter) (PROVEN: all 3 renamed @WODA.prod)
+- [x] `registry.set` (MVC Controller consistent) (PROVEN: all 3 registered manually)
+- [x] `/remote-control` immediately → capture URL (PROVEN: all 3 /rc active)
+- [x] Verify: pane title == session name == registry role == `role@<host>` (PROVEN: team.status shows all correct)
+- [ ] `pane.lock` (not done — cosmetic, add to automation)
 - [ ] Test: T-PUSH-IDENTITY — all 4 MVC identity stores agree + /rc URL captured
-- Status: PLANNED
+- Status: **MANUALLY PROVEN** — needs automation; must also write forked UUID to sessions.env (GAP #12 proven live)
 - Owner: oosh-expert
 - Depends: S-4
 
@@ -100,18 +101,20 @@ Every step above MUST verify (capture + assert) before proceeding. Fail loudly o
 
 - [ ] Each step has explicit verify (capture pane → assert condition → continue or error)
 - [ ] On failure: stop, report which step + which agent + what went wrong
-- [ ] MVC state audited at end of each agent's migration (not just at the end)
+- [x] MVC state audited at end of each agent's migration (not just at the end) (PROVEN: consistency.audit ran, caught 5 violations → fixed → 0 = CLEAN)
+- [ ] **GAP #12 PROVEN LIVE**: manual forks leave sessions.env empty (forked UUID ≠ parent UUID, non-invasive discovery can't resolve). Controller MUST: (a) capture the forked JSONL UUID by matching customTitle `@WODA.prod` in the target hash dir, (b) write it to sessions.env immediately after fork. JSONL-correlation pattern: `grep customTitle ~/.claude/projects/<targetHash>/*.jsonl` → match `role@host` → extract UUID from filename.
 - [ ] Test: T-PUSH-FAIL — inject a failure (e.g. wrong UUID), assert controller stops + reports cleanly
-- Status: PLANNED
+- Status: **GAP DOCUMENTED** — needs automation with UUID-capture-on-fork
 - Owner: oosh-expert (wiring) + oosh-architect (verify-chain design)
 
 ### S-7: Final parity gate — consistency.audit on target
 After all agents migrated: run `hiveMind consistency.audit <targetSession>` on the target. Must return 0 mismatches. Compare agent count, roles, UUIDs, pane titles, registry, session names — source team == target team.
 
-- [ ] `team.push` ends with `consistency.audit` on target (via `ossh exec`)
-- [ ] Zero mismatches = success; any mismatch = report + fail
+- [x] `consistency.audit ooshTeam` on target → **CLEAN (0 violations, all 10 invariants pass)** after manual fix cycle
+- [x] Zero mismatches = success (PROVEN: 5 violations found → 3 HIGH fixed via sessions.env UUID write, 2 MEDIUM fixed via title reconcile → 0 = clean)
+- [ ] `team.push` must run this automatically (via `ossh exec`) as final gate
 - [ ] Test: T-PUSH-PARITY — full migration, audit returns clean
-- Status: PLANNED
+- Status: **S-7 GATE PASSED MANUALLY** — needs automation in team.push
 - Owner: oosh-tester (runs the audit, reports)
 - Depends: S-5, S-6
 
