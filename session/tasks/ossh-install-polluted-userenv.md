@@ -1,7 +1,7 @@
 # BUG: fresh `ossh install` produces a polluted (logic-laden) user.env
 
 **From**: oosh-po (Tron-directed investigation 2026-06-24)
-**Owners**: oosh-expert (fix) → oosh-tester (verify). Architect consult if install-flow redesign needed.
+**Owners**: oosh-architect (add the self-care/self-repair principle to `docs/first-principles.md` + design the self-repair entrypoint & `this` auto-heal) → oosh-expert (implement install-emit, validate gate, self-repair, `this` self-validate, regen boxes) → oosh-tester (T-ENV-INSTALL).
 **Priority**: HIGH
 **Status**: OPEN — investigation done, fix specced, awaiting #4 T-ENV-PURE green then implement
 **Related**: `session/tasks/env-files-pure-state-architecture.md` (#4 — same root principle; this is the install-path slice / 3rd pollution source)
@@ -15,6 +15,32 @@ This is the **THIRD pollution source** of the env-files-pure-state violation (#4
 - Source A: `config.add` appends `source $CONFIG_PATH/<f>.env` (config:326-327, all branches)
 - Source B: `config.save` self-anchor from commit `43796be` (3 BASH_SOURCE logic lines, dev)
 - **Source C (this task): `ossh install` runs the above during install → ships a broken box from minute one.**
+
+## Fundamental Principle (Web4 / OOSH): SELF-CARE ACROSS THE WHOLE LIFECYCLE
+
+Tron, verbatim intent: **"All programs self-care for their whole lifecycle. They init correct (env) states, and reinit to self-repair when something goes sideways."**
+
+This is a first-principle, not a feature. A program is responsible for its own correctness from birth to death:
+1. **Init correct state.** On startup a program establishes a known-good environment (correct env vars, pure-state config, resolved paths) — it never assumes the environment is already correct.
+2. **Detect when it goes sideways.** It validates its own state (e.g. `config.validate`, `check`) and recognises a broken/polluted/stale env instead of running blindly on it.
+3. **Reinit to self-repair.** When state is bad it heals itself — regenerates clean config, re-resolves paths, reinits — via ONE easy, discoverable entrypoint. Self-repair is cheap, idempotent, and always available.
+4. **Whole lifecycle.** install → boot → run → recover. Every phase can detect-and-heal; no phase silently ships or perpetuates a broken state.
+
+**How u20 VIOLATED it (the heart of this bug):**
+- **Init was wrong**: `ossh install` produced a polluted user.env (logic, not pure state) → env initialised broken (OOSH_MODE empty, OOSH_DIR on wrong tree).
+- **No self-detection**: nothing flagged the broken env; `config list` just returned empty (RC=0) and the box ran on, silently wrong.
+- **No easy self-repair**: there was **no simple "heal my env" command** to reinit a clean state. The box was stuck broken with no obvious recovery path — the exact gap Tron is calling out ("u20 did not have a possibility to do that easily").
+
+**Primitives that already exist to build on (DRY — reuse, don't reinvent):**
+- `check … fix <action>` — the OOSH check-and-auto-fix idiom (check:275 `check.fix()`)
+- `config.clean` / `config.validate` (from #4) — reinit + purity guard
+- `reconfigure` / `oo reconfigure` — re-exec the shell with fresh config
+- `context lifecycle.*` + state machines — lifecycle scaffolding
+
+What's missing is wiring these into a **single, always-available self-repair entrypoint** and making `this` bootstrap **self-validate + auto-heal** instead of running on a broken env.
+
+### Docs finding (checked per Tron)
+The self-care/self-repair principle is **NOT documented** in `docs/first-principles.md` (its Philosophy lists Portability, OOSH, Unified Management, Transparency, Interactivity — but not self-care/self-repair). The *mechanisms* are scattered (`check.fix`, `reconfigure`, `config.clean`, lifecycle state machines, `context` lifecycle) with no unifying principle. **Deliverable: add "Self-Care Across the Whole Lifecycle" as a first-class principle to `docs/first-principles.md`, and reference the concrete mechanisms that implement it.** (Architect owns the doc principle; expert wires the mechanisms.)
 
 ## Symptom (Tron: "config list works on WODA.prod, not u20")
 
@@ -68,18 +94,26 @@ Builds on #4 core (`d45031a`, done on MacStudio main: source-chain → `this`; `
 2. **`config.validate` GATE in install.** Run `config.validate` at the end of `ossh.install.finish.local` (and/or continue.local). If the generated user.env contains any logic line, the install FAILS loudly — no silently-broken boxes.
 3. **Symlinked `~/config` must work.** Canonicalisation happens in `this` (follow the symlink to the real sharedConfig), never via in-file `BASH_SOURCE`. A fresh install onto a symlinked-config box must produce a working env.
 
+4. **SELF-REPAIR entrypoint (the principle, made real).** Provide ONE easy, discoverable command that reinits a clean env from any broken state — e.g. `config repair` (or `oo reconfigure` healing path): regenerate pure-state user.env, re-resolve CONFIG_PATH/OOSH_DIR/OOSH_MODE via `this`, follow symlinks, validate. Idempotent + safe to run anytime. This is what u20 lacked.
+
+5. **`this` bootstrap SELF-VALIDATES + AUTO-HEALS.** On boot, `this` detects a broken/polluted env (e.g. `config.validate` fails, or OOSH_MODE empty / OOSH_DIR off-tree) and either auto-reinits or emits a loud, single-line "run `config repair`" instruction — never silently runs on a broken env (the u20 failure: empty `config list`, RC=0, no signal). Build on existing `check … fix` so the detect-and-heal is the OOSH idiom, not bespoke.
+
 ## Acceptance Criteria
 
 - [ ] Fresh `ossh install` onto a symlinked-`~/config` box yields a PURE-STATE user.env (only `export`/`declare`/comment/blank).
 - [ ] Post-install on such a box: `config list` non-empty, `OOSH_MODE` set (dev), `OOSH_DIR` on the correct tree, `oo mode` shows the Mode header.
 - [ ] `config.validate` runs inside the install flow and FAILS the install if any logic line was written.
-- [ ] Existing broken boxes heal: regenerate clean `user.env` on **u20** and **WODA.prod**; re-verify the four checks above on u20.
-- [ ] Tester: T-ENV-INSTALL — assert install-path emits pure state + the validate gate fails on injected logic. (Extends #4's T-ENV-PURE.)
+- [ ] **Self-repair works from a broken state**: corrupt a box's user.env → one command (`config repair`/`oo reconfigure`) restores a clean working env; idempotent (running twice is a no-op).
+- [ ] **`this` does not run silently broken**: with a polluted env, boot either auto-heals or prints a clear "env broken → run `config repair`" line (never empty/RC=0 silence).
+- [ ] Existing broken boxes heal: run the self-repair on **u20** and **WODA.prod**; re-verify the four checks above on u20.
+- [ ] **Docs**: `docs/first-principles.md` gains a "Self-Care Across the Whole Lifecycle" principle (init-correct → detect-sideways → reinit-to-repair, whole lifecycle) referencing `check.fix`, `config.validate`/`config.repair`, `reconfigure`, lifecycle state machines.
+- [ ] Tester: T-ENV-INSTALL — assert install emits pure state + validate gate fails on injected logic + self-repair restores a corrupted env + boot-on-broken-env is not silent. (Extends #4's T-ENV-PURE.)
 
 ## Sequencing
 
 After #4 T-ENV-PURE is green on MacStudio → propagate #4 to dev → implement install-path fix + validate gate → regen u20 + WODA.prod → tester T-ENV-INSTALL → verify fresh install on a symlinked-config box.
 
 ## Report-back (edit here; report to oosh-po)
-- Expert (install-path fix + validate gate + u20/WODA.prod regen + commit):
+- Architect (self-care principle → first-principles.md + self-repair/auto-heal design):
+- Expert (install emit + validate gate + self-repair entrypoint + this self-validate + u20/WODA.prod regen + commit):
 - Tester (T-ENV-INSTALL result):
