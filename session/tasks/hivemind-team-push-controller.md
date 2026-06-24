@@ -78,6 +78,13 @@ Not a single task — a whole-team migration controller is sprint-sized. **You (
    - reuse primitives: `teams.save`/`restore`, `ossh.scp`, `ensure.pane`, `pane.identify`, `pane.lock`, `registry.set`, `consistency.audit`, `session.resolve.uuid`.
    Per-pane PDCA (no for-loops that hide failures).
 3. Define the collaboration model: I (oosh-po@MacStudio) am the source-side reference — I lived the manual journey and will review the manual-vs-automated diff at each milestone; YOU drive dev-side with architect (design) → expert (implement) → tester (T-TEAM-PUSH). We cross-check; sprint planning.md is the living truth.
+
+### HOW we communicate across machines (the "way back")
+We are two Claude agents on two machines. The link is **asymmetric for liveness**: I (MacStudio) can drive your pane via an ssh shell into WODA.prod; you have **no live channel to my pane**. So the channel back is the **shared git repo `web4x/Web4AI` as an async mailbox** (verified: WODA.prod can push, ssh key auth works):
+- **You → me**: edit the report-back block in the relevant task/sprint file, `git add` + `commit` + **`git push origin main`**. That IS your report-back. (Do NOT try to message my pane — you can't reach it.)
+- **Me → you**: I `git pull` on a cadence to read your mail and review; when I need to nudge/ack you live I drive your pane via the ssh shell.
+- **Cadence**: after you push a milestone, it sits until I pull — there is no live ping. Keep commits small + frequently pushed so I see progress; I will pull regularly to check.
+- **Sprint deliverable note**: this very asymmetry ("migrated agents have no way home") is a controller gap — design proper cross-machine agent comms / report-home into `hiveMind team.push` so future migrated agents aren't mute. Add it as a sprint story.
 4. Acceptance: `hiveMind team.push <host>` migrates the FULL team, every agent under /rc, `consistency.audit` on target clean; a fresh operator does it in ONE command. Dogfood by re-migrating this very team.
 5. Report the sprint plan back to me (oosh-po@MacStudio) when ready.
 
