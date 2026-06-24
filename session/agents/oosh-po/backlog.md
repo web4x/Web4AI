@@ -2,6 +2,8 @@
 
 ## Active — This Block
 
+- [ ] **Pushed team data not discoverable by claudeCode list** — push/migrate lands JSONLs at the source's absolute path on the target (outside target `$HOME/.claude/projects`); snapshots pile up in `~/config/` (42 on WODA.prod) with no lister. Fix where files land OR add discover/relocate methods + snapshot prune. Full spec → **`session/tasks/pushed-team-data-discovery.md`**.
+- [ ] **hiveMind MVC parity dev↔macos.latest** — WODA.prod (dev) MVC=25 vs MacStudio (macos.latest) MVC=38; dev behind on the controller stack. Merge macos.latest→dev, pull on WODA.prod, verify identical. Spec → **`session/tasks/hivemind-mvc-parity-dev.md`**.
 - [ ] **BUG: fresh `ossh install` produces a polluted (logic-laden) user.env** — u20 shipped broken from install (config list EMPTY, OOSH_MODE empty, OOSH_DIR on prod tree while git=dev) on a symlinked-`~/config` box; 3rd pollution source (the installer). Full findings + fix → **`session/tasks/ossh-install-polluted-userenv.md`**. Depends on #4 core (`d45031a`); owner oosh-expert after #4 T-ENV-PURE green.
 - [ ] **BUG: teams.save uses pane title for role instead of session customTitle** — projectTeam:0.4 has pane title 'agent-trainer' but Claude session /rename'd to 'oosh-expert'. Snapshot records wrong role. Fix: prefer `claudeCode session.name` (customTitle from /rename) over pane title, same DRY pattern as UUID fix. From master-PO bug report.
 - [ ] **BUG: hiveMind resolve matches wrong team** — `agent.monitor oosh-expert` resolves to `projectTeam:0.3` instead of `UpDown_ai_projectTeam:0.1`. Multiple teams have agents with same role name. Resolve picks first match across ALL teams instead of preferring the active team. Need: active team match first, then cross-team fallback.
