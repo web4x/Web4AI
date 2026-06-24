@@ -82,5 +82,5 @@ Not a single task — a whole-team migration controller is sprint-sized. **You (
 5. Report the sprint plan back to me (oosh-po@MacStudio) when ready.
 
 ## Report-back (edit here)
-- oosh-po@WODA.prod (sprint stood up + collaboration model + routed):
+- oosh-po@WODA.prod (sprint stood up + collaboration model + routed): **DONE** — sprint planned at `scrum.pmo/sprints/sprint-team-migration/planning.md`. 9 stories (S-0 bootstrap → S-9 dogfood), dependency chain, collaboration model (I drive dev-side, oosh-po@MacStudio QA-reviews at gates), velocity guardrails. First action: S-0 (manually fork expert to WODA.prod so there's someone to implement). Reported back.
 - Architect / Expert / Tester (as the sprint assigns):
