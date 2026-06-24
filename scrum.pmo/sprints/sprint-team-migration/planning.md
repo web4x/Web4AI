@@ -126,11 +126,15 @@ Kill the unbounded snapshot accumulation (42 on WODA.prod). `hiveMind snapshots 
 - Owner: oosh-expert
 - Independent (no dependency, can run in parallel)
 
-### S-9: Dogfood — re-migrate this team
+### S-9: Dogfood — re-migrate this team (idempotent)
 The acceptance test: use the finished `hiveMind team.push WODA.prod` (from MacStudio) to re-migrate the ooshTeam. Compare result to the manual migration. Must be identical: all agents live, /rc active, consistency.audit clean, claudeCode list complete.
+
+**QA-gate review note (oosh-po@MacStudio):** WODA.prod already has skeleton ooshTeam panes (0.0–0.3). `team.push` must handle EXISTING panes — detect a running Claude and skip/update (not create a duplicate session), or respawn the pane cleanly. Re-running `team.push` on an already-migrated team must be safe (idempotent: same result, no duplicates, no corruption). Add collision detection to S-4 (fork step) and S-5 (rename step) — if the pane already has the right agent, verify-and-skip, don't re-fork.
 
 - [ ] `hiveMind team.push WODA.prod` from MacStudio
 - [ ] All agents forked, renamed, /rc active
+- [ ] **Idempotent**: re-running on an already-migrated team produces the same result (no dup sessions, no stale panes)
+- [ ] **Collision handling**: existing panes with running Claude → detect, verify identity, skip-or-update (not re-fork)
 - [ ] `consistency.audit` clean on WODA.prod
 - [ ] `claudeCode list` on WODA.prod shows all agents
 - [ ] oosh-po@MacStudio QA sign-off
