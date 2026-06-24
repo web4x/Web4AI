@@ -67,6 +67,19 @@ All 5 agents have /remote-control active (mobile control).
 4. Read active deliverable task files, check report-back blocks for progress
 5. Resume driving: verify reported fixes, assign next, deliver QA to Tron
 
+## MIGRATION TO DEV BOX — 2026-06-24 (forked oosh-po onto WODA.prod)
+
+**Tron directive: "develop there" — dev work belongs on the dev box (WODA.prod), not macos.latest-then-merge.**
+
+Done this turn:
+- Workspace repo (web4x/Web4AI, main) pushed from MacStudio (098b8b7..0501f20) → pulled on WODA.prod at `/var/dev/Workspaces/AI/Claude`. My agent files + all task files now present there.
+- My JSONL `29a1e1d1` (14MB, trained) scp'd to WODA.prod **target** hash dir `~/.claude/projects/-var-dev-Workspaces-AI-Claude/` (NOT source hash — the #7 trap). `claudeCode list` on WODA.prod now SHOWS it → live proof of #7 Option-A (place in target hash = discoverable).
+- Forked into **WODA.prod ooshTeam:0.0**, `cd /var/dev/Workspaces/AI/Claude`, `claudeCode fork <full-uuid>` (short UUID is rejected — needs 8-4-4-4-12), resumed FULL (no summary menu), `/rename oosh-po@WODA.prod`. Live, idle, auto-mode on.
+
+**Two oosh-po instances now exist**: this one (MacStudio ooshTeam:0.0, @MacStudio) and the fork (WODA.prod ooshTeam:0.0, @WODA.prod). Per "develop there", the WODA.prod fork is the one to drive dev work. The fork inherited my full context → on first activation it must re-verify identity (pane.get.target → ooshTeam:0.0 but on v60211; session.name → oosh-po@WODA.prod) per [[identity-after-fork]] learning.
+
+WODA.prod ooshTeam skeleton: 0.0 oosh-po (now live fork), 0.1 architect, 0.2 expert, 0.3 tester (all bash/skeleton — not yet forked), 0.4/0.5 shells dead.
+
 ## CHECKPOINT SAVE — 2026-06-23 (506k = 50%, 4th cycle — HEALTHY, no rewind)
 
 **SM false-alarmed on "clear to save 506k" idle hint → ordered save+rewind. Tron confirmed 506k=50%=healthy, false alarm, NO rewind. Resuming task #4. Prior post-rewind anchor 033aa78.**
