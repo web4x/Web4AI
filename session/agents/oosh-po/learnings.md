@@ -446,6 +446,23 @@ u20 container origin was https → push asked for github user/pw. Fix: `git remo
 ### reconfigure / `r` re-execs the shell → drops the SSH session
 On a remote oosh shell, `reconfigure` (and `oo checkout` loops) logout/drop the SSH connection back to the local pane. Expect the drop; reconnect with `ossh login <host>`.
 
+### Migration identity: session.name is the ONLY truth (2026-06-24, two live migrations)
+Migrated ooshTeam + robbinTeam2 to WODA.prod by hand. Identity sources LIED: `claudeCode list` role labels were stale/shifted (called a "req" session "tester"); `hiveMind team.status` live-discovery was buggy (hallucinated a "robbin-planner" that doesn't exist, mislabeled tester→req). I panicked over a fake "off-by-one" because I trusted team.status over ground truth. **`claudeCode session.name <uuid>` is the single source of truth for an agent's role — resolve identity there, never from list/team.status/pane-title.** Also: duplicate identities are real (two sessions both `robbin-tester@MacStudio`) — dedup by recency+size, confirm canonical with the owner. And the canonical agent may be DEAD (newest tester f7db409b was dead; the live one was older) — don't only migrate "green" panes. Full writeup: `session/tasks/migration-learnings-for-teampush.md`.
+
+### Migration choreography gotchas (2026-06-24)
+- **JSONL must land in the TARGET project-hash dir** (encode target workspace path), not source — else `claudeCode list`/`fork` can't see it. Verified live.
+- **`claudeCode fork` needs FULL uuid** (8-4-4-4-12); cd to TARGET workspace before fork.
+- **Batched renames over the double-hop FAIL** — per-pane `/rename`+`/rc` with capture-verify each.
+- **`otmux new` ATTACHES the caller** when not already in tmux (nested my control shell; recover with `C-b d`). Create detached or detach after.
+- **`consistency.fix` is interactive (y/N), aborts with no input**; the apply path uses a flag (OOSH flag violation). Need a flagless non-interactive reconcile for automation.
+- **MVC stores drift independently** (registry/title/session/sessions.env) — reconcile to session.name at each step, audit==0 at end.
+- **Replicate the work-repo AND its symlinks** (Web4RawBin cloned + symlinked into Claude/workspaces so agents reach it from CWD).
+
+### Process anti-patterns Tron drilled (2026-06-24) — STOP doing these
+- **No until-loops for polling** (`until <check>; do sleep; done`) — aggregates background tasks, burns context. Single capture; rely on completion notifications.
+- **No `2>/dev/null` / `2>&1`** — never suppress stderr (F4). Run raw, see real output.
+- **No `| tail`/`| head`/`| grep` on shown output** — capture the pane raw; the capture IS the filter.
+
 ### SM "clear to save Nk" idle-hint = false rewind trigger (2026-06-23)
 SM heartbeat read my pane's idle TUI hint "clear to save 506k" as distress → reminded me to commit twice AND alerted trainer to rewind-when-commit-lands. But 506k/1M = 50% = HEALTHY (urgent is ~10%). The "/clear to save Nk tokens" string is Claude's normal idle hint, NOT a save-needed signal. **Don't let "clear to save Nk" trigger a rewind. Capture the SM pane to see WHY it's flagging (I saw TICK 210/211 + "clear to save 506k" → diagnosed false positive) instead of absorbing repeated reminders. Stand down premature trainer rewinds via controller; rewind of a trained agent is Tron-authorized only.** Tron confirmed: 50% is healthy, false alarm. Same measure-don't-assume family as F1/F3/F8/F46. SM sweep.detect needs the idle-hint excluded from urgency.
 
