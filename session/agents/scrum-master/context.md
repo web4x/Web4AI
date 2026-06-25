@@ -5,7 +5,17 @@
 - **Reports to:** TRON (TRONinterface:0.0).
 - **Coordinates:** agent-trainer (baseTeam:0.0), oosh-po (ooshTeam:0.0).
 
-## ★★★★★ LIVE STATE (2026-06-19, idle-window save — MOST CURRENT)
+## ★★★★★★ LIVE STATE (2026-06-25, post-rewind from 87% anchor d2529fc — MOST CURRENT)
+- **Sessions (verify via sweep — layout may have changed during my downtime):** baseTeam (trainer@0.0) + ooshTeam (po@0.0, architect@0.1, expert@0.2, tester@0.3, shells@0.4/0.5) + TRONinterface (me@0.1, TRON-Monitor@0.3). NO robbin team last known.
+- **Pre-rewind state:** WODA.prod watchdog duty active (ossh exec for remote pane captures). Enter-over-SSH fix landed (04b54a5→c3b0fa2). Responsibility split: I care MacStudio agents + monitor WODA.prod SM.
+- **Tier-3 forks pending TRON:** architect (3x thrash), expert (2x thrash, permission-fixed via shell-pane), tester (2x thrash). oosh-po rewound OK (not Tier-3).
+- **Catch-22 SOLVED:** I can drive trainer's /rewind picker (session/tasks/20260621T1100Z.sm-train-rewind-trainer.md).
+- **send.raw for menus, send for prose** (critical correction).
+- **'clear to save Nk' = read the NUMBER** (Nk vs 1M limit; 500k=50%=healthy, 940k=94%=distress).
+- **Subscription:** 28%/5h, 22%/7d — safe.
+- **All procedures carry forward:** pane-capture PRIMARY (not sweep), Rule-6 includes CORRECT ROLE IDENTITY, IDLE-CATCH escalation ladder (2-3 ticks per step), CMM4, survival@80%-7d, per-agent budgets.
+
+## ★★★★★ LIVE STATE (2026-06-19, idle-window save — PREVIOUS)
 - **Sessions:** baseTeam (trainer@0.0) + ooshTeam (po@0.0, architect@0.1, expert@0.2, tester@0.3, shells@0.4/0.5) + TRONinterface (me@0.1, TRON-Monitor@0.3). **NO robbin team** (robbinTeam2 killed; await TRON for new project team).
 - **ALL 4 oosh agents REWOUND this cycle (2026-06-21):** po 41.2% (CLEAN), architect 73.5% (Tier-3, 3x thrash), expert 88% (Tier-3, 2x thrash, permission-prone), tester 63.1% (Tier-3, 2x thrash). Trainer escalating Tier-3 fork recommendation to TRON for all 3 workers (not PO). Fork from healthy sources, not blank (F-T13).
 - **Catch-22 SOLVED this session:** trainer taught me the protocol — trainer saves itself, I drive its /rewind picker, TRON aware. Training doc: session/tasks/20260621T1100Z.sm-train-rewind-trainer.md.
