@@ -346,7 +346,173 @@ hiveMind.team.push() # <host> <?teamSession:active> # push entire team to target
 }
 ```
 
+---
+
+## Architect Review: S-1 projectHash (8ca434e) — 2026-06-25
+
+### Verdict: BUG — hash function is incomplete
+
+**Expert's implementation** (claudeCode line 77):
+```bash
+private.claudeCode.projectHash() {
+  echo "$1" | sed 's/\//-/g'
+}
+```
+
+**What Claude Code actually does** (verified empirically on WODA.prod):
+
+| Real path | Expert's hash | Claude Code's real hash | Match? |
+|-----------|--------------|------------------------|--------|
+| `/var/dev/Workspaces/AI/Claude` | `-var-dev-Workspaces-AI-Claude` | `-var-dev-Workspaces-AI-Claude` | YES |
+| `/home/shared/EAMD.ucp/Components/.../1_infrastructure/Once.sh/dev` | `-home-shared-EAMD.ucp-...-1_infrastructure-Once.sh-dev` | `-home-shared-EAMD-ucp-...-1-infrastructure-Once-sh-dev` | **NO** |
+
+Claude Code replaces **three** characters with `-`: `/`, `.`, and `_`. The expert's sed only replaces `/`.
+
+**Evidence**: `ls /root/.claude/projects/` on WODA.prod shows:
+```
+-home-shared-EAMD-ucp-Components-com-ceruleanCircle-EAM-1-infrastructure-Once-sh-dev
+-var-dev-Workspaces-AI-Claude
+```
+The dots in `EAMD.ucp` and `Once.sh`, and the underscore in `1_infrastructure`, are all `-` in the hash.
+
+**Fix** (expert must apply):
+```bash
+private.claudeCode.projectHash() {
+  echo "$1" | sed 's/[\/._]/-/g'
+}
+```
+
+**Decode is lossy by nature**: the reverse function can't distinguish which `-` was originally `/`, `.`, or `_`. This is acceptable — decode is only for display, and paths can be verified against real filesystem. But document the lossiness.
+
+**Impact on team.push**: the current hash works for `/var/dev/Workspaces/AI/Claude` (no dots/underscores) which is our primary target. But any push to a workspace with dots or underscores in the path will silently place JSONLs in a wrong hash dir. **Must fix before S-9 dogfood.**
+
+---
+
+## S-6 Detail Spec: UUID-capture-on-fork (GAP #12)
+
+### Problem
+
+`claudeCode fork <sourceUUID>` creates a NEW session with a NEW UUID. The controller needs this forked UUID to:
+1. Write it to `sessions.env` (MVC Model ↔ Controller binding)
+2. Verify identity via `session.name <forkedUUID>`
+3. Track for final consistency.audit
+
+Currently the push.agent loop proceeds fire-and-forget after fork — it never captures the forked UUID.
+
+### Design: `private.hiveMind.push.captureForkedUUID`
+
+**Called**: after Step 3.3 (fork verified running) and before Step 3.5 (rename).
+
+**Input**: `<host> <targetPane> <targetHashDir> <role> <targetHost>`
+**Output**: sets `FORKED_UUID` variable
+
+**Algorithm** (3 strategies, fallback chain):
+
+```
+Strategy A — customTitle match (fastest, works if fork auto-renames):
+  On target: scan JSONLs in target hash dir for matching customTitle.
+  
+  FORKED_UUID=$(ossh exec <host> "
+    for f in $TARGET_HASH_DIR/*.jsonl; do
+      [ -f \"\$f\" ] || continue
+      _uuid=\$(basename \"\$f\" .jsonl)
+      _name=\$(claudeCode session.name \"\$_uuid\" 2>/dev/null)
+      case \"\$_name\" in
+        ${ROLE}@*|${ROLE}) echo \"\$_uuid\"; break ;;
+      esac
+    done
+  ")
+
+Strategy B — mtime correlation (if fork hasn't renamed yet):
+  The forked JSONL is the NEWEST file in the target hash dir that
+  didn't exist before the fork.
+  
+  # Before fork (in push.agent Step 3.3):
+  PRE_FORK_FILES=$(ossh exec <host> "ls $TARGET_HASH_DIR/*.jsonl 2>/dev/null")
+  
+  # After fork:
+  POST_FORK_FILES=$(ossh exec <host> "ls $TARGET_HASH_DIR/*.jsonl 2>/dev/null")
+  FORKED_UUID=$(diff <(echo "$PRE_FORK_FILES") <(echo "$POST_FORK_FILES") \
+    | grep '^>' | sed 's|.*/||; s|\.jsonl||' | head -1)
+
+Strategy C — PID correlation (most reliable, slowest):
+  Get the Claude process PID running in the target pane, then find
+  which JSONL it has open.
+  
+  PID=$(ossh exec <host> "claudeCode process.find $TARGET_PANE")
+  FORKED_UUID=$(ossh exec <host> "
+    ls -l /proc/$PID/fd 2>/dev/null | grep '\.jsonl' | sed 's|.*/||; s|\.jsonl||'
+  ")
+```
+
+**Recommended approach**: Strategy B (mtime/diff) as primary, Strategy A as verification.
+
+```bash
+private.hiveMind.push.captureForkedUUID() {
+  local host="$1" targetPane="$2" targetHashDir="$3" role="$4" preForkFiles="$5"
+  
+  # Strategy B: diff pre/post fork file lists
+  local postForkFiles
+  postForkFiles=$(ossh exec "$host" "ls $targetHashDir/*.jsonl 2>/dev/null | sort")
+  FORKED_UUID=$(diff <(echo "$preForkFiles") <(echo "$postForkFiles") \
+    | grep '^>' | sed 's|.*/||; s|\.jsonl||' | head -1)
+  
+  if [ -z "$FORKED_UUID" ]; then
+    error.log "UUID capture failed: no new JSONL after fork"
+    return 1
+  fi
+  
+  # Verify via Strategy A: session.name must match role
+  local forkedName
+  forkedName=$(ossh exec "$host" "claudeCode session.name $FORKED_UUID 2>/dev/null")
+  local bareRole="${forkedName%%@*}"
+  
+  if [ "$bareRole" != "$role" ]; then
+    warn.log "UUID $FORKED_UUID session.name='$forkedName' doesn't match role '$role' yet (fork may still be loading — will verify after rename)"
+  fi
+  
+  # Write to sessions.env IMMEDIATELY (GAP #12 fix)
+  ossh exec "$host" "hiveMind sessions.set $targetPane $FORKED_UUID"
+  console.log "UUID captured: $FORKED_UUID → sessions.env[$targetPane]"
+  
+  return 0
+}
+```
+
+### Integration into push.agent
+
+Modify Step 3.3 in `private.hiveMind.push.agent`:
+
+```bash
+# BEFORE fork: snapshot existing JSONLs (for diff-based UUID capture)
+local preForkFiles
+preForkFiles=$(ossh exec "$host" "ls $TARGET_HASH_DIR/*.jsonl 2>/dev/null | sort")
+
+# Step 3.3: Fork
+ossh exec "$host" "otmux send $targetPane 'cd $TARGET_WORKSPACE && claudeCode fork $FULL_UUID' Enter"
+# ... wait for fork, handle resume menu ...
+
+# Step 3.4: Capture forked UUID (NEW — was fire-and-forget)
+if ! private.hiveMind.push.captureForkedUUID "$host" "$targetPane" "$TARGET_HASH_DIR" "$role" "$preForkFiles"; then
+  error.log "Failed to capture forked UUID for $role"
+  return 1
+fi
+
+# Steps 3.5-3.8 now use $FORKED_UUID (set by captureForkedUUID)
+```
+
+### Verify gate
+
+After UUID capture, the per-agent MVC verify (Step 3.8) uses `$FORKED_UUID` instead of the source UUID. This closes the identity chain: source UUID → fork → forked UUID → sessions.env → registry → pane title → session.name. All must agree.
+
+---
+
 ### Handoff
 
-Design covers all 8 points. Expert implements in hiveMind on dev branch. Tester validates with sprint tests: T-IDENTITY-TRUTH, T-DEDUP, T-DEAD-CANONICAL, T-RENAME-VERIFY, T-RC-VERIFY, T-RECONCILE-NONINTERACTIVE, T-PUSH-WORKSPACE-LINKS, T-PUSH-PARITY.
+Design covers all 8 points + S-1 review (projectHash bug found) + S-6 UUID-capture spec. Expert must:
+1. Fix `projectHash` sed: `s/\//-/g` → `s/[\/._]/-/g`
+2. Implement `private.hiveMind.push.captureForkedUUID` per spec above
+3. Wire pre-fork snapshot + post-fork capture into `push.agent`
+
+Tester validates with sprint tests: T-IDENTITY-TRUTH, T-DEDUP, T-DEAD-CANONICAL, T-RENAME-VERIFY, T-RC-VERIFY, T-RECONCILE-NONINTERACTIVE, T-PUSH-WORKSPACE-LINKS, T-PUSH-PARITY.
 
