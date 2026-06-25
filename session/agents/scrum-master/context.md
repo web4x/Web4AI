@@ -5,7 +5,28 @@
 - **Reports to:** TRON (TRONinterface:0.0).
 - **Coordinates:** agent-trainer (baseTeam:0.0), oosh-po (ooshTeam:0.0).
 
-## ★★★★★ LIVE STATE (2026-06-19, idle-window save — MOST CURRENT)
+## ★★★★★★★ LIVE STATE (2026-06-25, tick 37 proactive save — MOST CURRENT)
+- **#6 login-bug DONE+verified** (3 commits on origin/dev: config.save OOSH_DIR, .bashrc guard, T-ENV tests). PO task list: 2 pending, 1 completed.
+- **team.push merge-back PARKED on TRON decision** (option 1 full hiveMind vs option 2 selective). 457 tests ran, 63 fail (15 live-env noise + 45 macos.latest missing dev work). PO correctly holding — NOT dispatchable by PO.
+- **Workers idle (correct)** — holding per TRON "one after the other" + merge-decision block.
+- **Expert shell-pane fix CONFIRMED** (3+ clean ticks, no permission prompts).
+- **Tier-3 forks still pending TRON:** architect (3x thrash), expert (2x), tester (2x).
+- **Title drift lesson:** pane title can drift (0.3 showed "oosh-architect" when it was oosh-tester). Ground truth = session.name, not pane title.
+- **★ git fetch BEFORE commit-recency** — local refs are stale without fetch. False-flagged PO twice on "zero commits" that had actually landed on origin/dev.
+- Subscription ~7%/5h, 23%/7d — safe. My context healthy.
+- Post-rewind anchor: a3a3bef.
+
+## ★★★★★★ LIVE STATE (2026-06-25, post-rewind from 87% anchor d2529fc — PREVIOUS)
+- **Sessions (verify via sweep — layout may have changed during my downtime):** baseTeam (trainer@0.0) + ooshTeam (po@0.0, architect@0.1, expert@0.2, tester@0.3, shells@0.4/0.5) + TRONinterface (me@0.1, TRON-Monitor@0.3). NO robbin team last known.
+- **Pre-rewind state:** WODA.prod watchdog duty active (ossh exec for remote pane captures). Enter-over-SSH fix landed (04b54a5→c3b0fa2). Responsibility split: I care MacStudio agents + monitor WODA.prod SM.
+- **Tier-3 forks pending TRON:** architect (3x thrash), expert (2x thrash, permission-fixed via shell-pane), tester (2x thrash). oosh-po rewound OK (not Tier-3).
+- **Catch-22 SOLVED:** I can drive trainer's /rewind picker (session/tasks/20260621T1100Z.sm-train-rewind-trainer.md).
+- **send.raw for menus, send for prose** (critical correction).
+- **'clear to save Nk' = read the NUMBER** (Nk vs 1M limit; 500k=50%=healthy, 940k=94%=distress).
+- **Subscription:** 28%/5h, 22%/7d — safe.
+- **All procedures carry forward:** pane-capture PRIMARY (not sweep), Rule-6 includes CORRECT ROLE IDENTITY, IDLE-CATCH escalation ladder (2-3 ticks per step), CMM4, survival@80%-7d, per-agent budgets.
+
+## ★★★★★ LIVE STATE (2026-06-19, idle-window save — PREVIOUS)
 - **Sessions:** baseTeam (trainer@0.0) + ooshTeam (po@0.0, architect@0.1, expert@0.2, tester@0.3, shells@0.4/0.5) + TRONinterface (me@0.1, TRON-Monitor@0.3). **NO robbin team** (robbinTeam2 killed; await TRON for new project team).
 - **ALL 4 oosh agents REWOUND this cycle (2026-06-21):** po 41.2% (CLEAN), architect 73.5% (Tier-3, 3x thrash), expert 88% (Tier-3, 2x thrash, permission-prone), tester 63.1% (Tier-3, 2x thrash). Trainer escalating Tier-3 fork recommendation to TRON for all 3 workers (not PO). Fork from healthy sources, not blank (F-T13).
 - **Catch-22 SOLVED this session:** trainer taught me the protocol — trainer saves itself, I drive its /rewind picker, TRON aware. Training doc: session/tasks/20260621T1100Z.sm-train-rewind-trainer.md.
@@ -13,8 +34,12 @@
 - **★ DELIVERABLE SHIPPED (2026-06-21):** all oosh tasks complete+green. Expert STOPPED by TRON ("doing implementations local"). TRON driving oosh-po via RC (cherry-pick merge + env-files-pure-state architecture task).
 - **★ Agent-trainer REWIND PROVEN (2026-06-22):** first SM-driven trainer rewind — Phase 2 at 50% of 112 msgs, 5-option menu "Restore conversation" by LABEL (Down+Enter via send.raw), retrain from distilled files, Touch Protocol (auto mode + /remote-control), Rule-6 verified (identity+code-intact 11294d3). Catch-22 safety net operational.
 - **★ CORRECTION: `send.raw` for menus, `send` for prose** — oosh-po caught that `otmux send` prepends [@role pane] which corrupts menu digits. All menu/permission approvals must use `otmux send.raw <pane> <keystroke>`.
-- **oosh-po NOW also Tier-3 candidate** (3rd "clear to save" cycle at 576.8k). Expert Tier-3 escalated (c890b9d, doc 20260623T0900Z). All 4 oosh agents (po+architect+expert+tester) have thrashed — whole team needs Tier-3 forks from healthy sources.
-- **My context: ~60% used (tick 171).** Subscription 0%/5h, 7%/7d safe.
+- **oosh-po REWOUND OK** (save 9f9ca11, rewind held — NOT Tier-3). Expert Tier-3 escalated (c890b9d, doc 20260623T0900Z, pending TRON). Architect+tester also Tier-3 candidates (2x thrash each).
+- **My context: 87% used (tick 414) — ACT threshold hit, saving for rewind.**
+- **WODA.prod WATCHDOG (new duty, 2026-06-25):** I run `ossh exec WODA.prod 'otmux pane.capture ooshTeam:0.N 8'` per-pane (8-line min, not team.status which returns 'unknown'). Report idle-with-pending to LOCAL oosh-po; SM@WODA.prod handles his own agents, I monitor him. Enter-over-SSH fix landed (04b54a5→c3b0fa2 deployed+verified). Old queued prompts persist (pre-fix) — flagged, not retrying manually (code fix handles new sends).
+- **Responsibility split:** I care for MacStudio agents + monitor WODA.prod SM. SM@WODA.prod cares for his agents. I flag him if he's stuck.
+- **send.raw for menus, send for prose** (oosh-po correction). 'clear to save Nk' = idle hint, NOT distress unless Nk>800k.
+- Subscription ~24%/5h, ~21%/7d safe.
 - **oosh-po(0.0):** idle, auto mode on, healthy.
 - **agent-trainer(baseTeam:0.0):** operational, just completed deep rewinds on architect+tester.
 - **Subscription:** 0%/5h, 51%/7d — safe, well under 80% survival trigger.
