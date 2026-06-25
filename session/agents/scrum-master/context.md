@@ -13,8 +13,12 @@
 - **★ DELIVERABLE SHIPPED (2026-06-21):** all oosh tasks complete+green. Expert STOPPED by TRON ("doing implementations local"). TRON driving oosh-po via RC (cherry-pick merge + env-files-pure-state architecture task).
 - **★ Agent-trainer REWIND PROVEN (2026-06-22):** first SM-driven trainer rewind — Phase 2 at 50% of 112 msgs, 5-option menu "Restore conversation" by LABEL (Down+Enter via send.raw), retrain from distilled files, Touch Protocol (auto mode + /remote-control), Rule-6 verified (identity+code-intact 11294d3). Catch-22 safety net operational.
 - **★ CORRECTION: `send.raw` for menus, `send` for prose** — oosh-po caught that `otmux send` prepends [@role pane] which corrupts menu digits. All menu/permission approvals must use `otmux send.raw <pane> <keystroke>`.
-- **oosh-po NOW also Tier-3 candidate** (3rd "clear to save" cycle at 576.8k). Expert Tier-3 escalated (c890b9d, doc 20260623T0900Z). All 4 oosh agents (po+architect+expert+tester) have thrashed — whole team needs Tier-3 forks from healthy sources.
-- **My context: ~60% used (tick 171).** Subscription 0%/5h, 7%/7d safe.
+- **oosh-po REWOUND OK** (save 9f9ca11, rewind held — NOT Tier-3). Expert Tier-3 escalated (c890b9d, doc 20260623T0900Z, pending TRON). Architect+tester also Tier-3 candidates (2x thrash each).
+- **My context: 87% used (tick 414) — ACT threshold hit, saving for rewind.**
+- **WODA.prod WATCHDOG (new duty, 2026-06-25):** I run `ossh exec WODA.prod 'otmux pane.capture ooshTeam:0.N 8'` per-pane (8-line min, not team.status which returns 'unknown'). Report idle-with-pending to LOCAL oosh-po; SM@WODA.prod handles his own agents, I monitor him. Enter-over-SSH fix landed (04b54a5→c3b0fa2 deployed+verified). Old queued prompts persist (pre-fix) — flagged, not retrying manually (code fix handles new sends).
+- **Responsibility split:** I care for MacStudio agents + monitor WODA.prod SM. SM@WODA.prod cares for his agents. I flag him if he's stuck.
+- **send.raw for menus, send for prose** (oosh-po correction). 'clear to save Nk' = idle hint, NOT distress unless Nk>800k.
+- Subscription ~24%/5h, ~21%/7d safe.
 - **oosh-po(0.0):** idle, auto mode on, healthy.
 - **agent-trainer(baseTeam:0.0):** operational, just completed deep rewinds on architect+tester.
 - **Subscription:** 0%/5h, 51%/7d — safe, well under 80% survival trigger.
