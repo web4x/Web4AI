@@ -63,6 +63,23 @@ The local case (above, 2026-06-10) is known. The now-blocking dimension: **`otmu
 - [ ] Test: T-SEND-SSH — submit over ossh, assert remote pane shows submitted (not queued). Covers the double-hop, not just local.
 - [ ] Cross-ref: `cross-machine-send-submit-rename.md` (same root; merge findings).
 
+## Expert Report-back (2026-06-25)
+
+**Commit**: `04b54a5` on test/macos.latest
+**Root cause**: Claude TUI autocomplete/suggestion popup. When text is typed, the TUI shows suggestions. Enter selects the suggestion instead of submitting. Over SSH, the popup persists longer (timing/latency) making it worse.
+**Fix**: Send `Escape` before `Enter` on Claude TUI panes (detected via `pane.isClaudeCode`). Escape dismisses any popup, then Enter submits cleanly. Applied in 3 places:
+1. `private.otmux.sendEnter` — the submit primitive used by `send.verified`/`send.enter`
+2. `otmux.send.raw` trailing Enter — text + Enter sequences
+3. `otmux.send.raw` bare Enter — `otmux send <pane> Enter`
+Non-Claude panes (bash/zsh) are unaffected — Escape is only sent when `isClaudeCode` returns true.
+
+**Tested over SSH (MacStudio→WODA.prod)**:
+- Queued text + bare `otmux send.raw Enter` → **SUBMITTED** (previously failed)
+- Full `otmux send <pane> "text" Enter` → `send.verified OK: text delivered`
+- Local `otmux send` → still works (no regression)
+
+**Fixed otmux copied to WODA.prod** via `ossh scp` for immediate use. PO can `git pull` on dev after cherry-pick.
+
 ## Acceptance Criteria (local — original)
 
 - [ ] `otmux send <pane> "text"` deterministically submits to Claude Code TUI
