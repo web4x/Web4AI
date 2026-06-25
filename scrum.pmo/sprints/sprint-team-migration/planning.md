@@ -2,7 +2,7 @@
 
 **Epic**: One command (`hiveMind team.push <host>`) migrates a full agent team to a target dev box — zero manual steps, MVC-consistent throughout, every agent under /remote-control, final consistency.audit clean.
 **Owner**: oosh-po@WODA.prod (sprint planning + driving)
-**Status**: **7/7 T-PUSH TESTS GREEN** (8ca434e → 9d48bd0 → ee12cde). Ready for S-7 audit gate + S-9 dogfood (robbinTeam2)
+**Status**: **REDO on clean macos.latest base** (0e5f7dd). Prior work preserved at `origin/dev-teampush-astray`. Expert cherry-picking 4 impl commits (8ca434e→9d48bd0→ee12cde→07e8a06→3c3d186) onto clean base. Tester cherry-picking 16 tests. Target: 16/16 green on clean base → merge BACK to macos.latest (the MVC master)
 **Created**: 2026-06-24
 **Source story**: `session/tasks/hivemind-team-push-controller.md` (12 manual steps + gaps)
 **Migration learnings**: `session/tasks/migration-learnings-for-teampush.md` (13 hard-won lessons from 2 live manual migrations — ooshTeam + robbinTeam2)
