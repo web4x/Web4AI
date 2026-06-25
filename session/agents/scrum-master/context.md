@@ -5,7 +5,18 @@
 - **Reports to:** TRON (TRONinterface:0.0).
 - **Coordinates:** agent-trainer (baseTeam:0.0), oosh-po (ooshTeam:0.0).
 
-## ★★★★★★ LIVE STATE (2026-06-25, post-rewind from 87% anchor d2529fc — MOST CURRENT)
+## ★★★★★★★ LIVE STATE (2026-06-25, tick 37 proactive save — MOST CURRENT)
+- **#6 login-bug DONE+verified** (3 commits on origin/dev: config.save OOSH_DIR, .bashrc guard, T-ENV tests). PO task list: 2 pending, 1 completed.
+- **team.push merge-back PARKED on TRON decision** (option 1 full hiveMind vs option 2 selective). 457 tests ran, 63 fail (15 live-env noise + 45 macos.latest missing dev work). PO correctly holding — NOT dispatchable by PO.
+- **Workers idle (correct)** — holding per TRON "one after the other" + merge-decision block.
+- **Expert shell-pane fix CONFIRMED** (3+ clean ticks, no permission prompts).
+- **Tier-3 forks still pending TRON:** architect (3x thrash), expert (2x), tester (2x).
+- **Title drift lesson:** pane title can drift (0.3 showed "oosh-architect" when it was oosh-tester). Ground truth = session.name, not pane title.
+- **★ git fetch BEFORE commit-recency** — local refs are stale without fetch. False-flagged PO twice on "zero commits" that had actually landed on origin/dev.
+- Subscription ~7%/5h, 23%/7d — safe. My context healthy.
+- Post-rewind anchor: a3a3bef.
+
+## ★★★★★★ LIVE STATE (2026-06-25, post-rewind from 87% anchor d2529fc — PREVIOUS)
 - **Sessions (verify via sweep — layout may have changed during my downtime):** baseTeam (trainer@0.0) + ooshTeam (po@0.0, architect@0.1, expert@0.2, tester@0.3, shells@0.4/0.5) + TRONinterface (me@0.1, TRON-Monitor@0.3). NO robbin team last known.
 - **Pre-rewind state:** WODA.prod watchdog duty active (ossh exec for remote pane captures). Enter-over-SSH fix landed (04b54a5→c3b0fa2). Responsibility split: I care MacStudio agents + monitor WODA.prod SM.
 - **Tier-3 forks pending TRON:** architect (3x thrash), expert (2x thrash, permission-fixed via shell-pane), tester (2x thrash). oosh-po rewound OK (not Tier-3).
