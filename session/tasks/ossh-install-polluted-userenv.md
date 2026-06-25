@@ -133,6 +133,6 @@ Two fix layers:
 After #4 T-ENV-PURE is green on MacStudio → propagate #4 to dev → implement install-path fix + validate gate → regen u20 + WODA.prod → tester T-ENV-INSTALL → verify fresh install on a symlinked-config box.
 
 ## Report-back (edit here; report to oosh-po)
-- Architect (self-care principle → first-principles.md + self-repair/auto-heal design):
+- Architect (self-care principle → first-principles.md + self-repair/auto-heal design): **DONE** `b6028ca` on dev — added "Self-Care Across the Whole Lifecycle" as 6th Philosophy principle. 4 obligations (init correct, detect sideways, reinit to repair, whole lifecycle). References check.fix, config.validate, config repair, oo reconfigure, this self-validate, context lifecycle.
 - Expert (install emit + validate gate + self-repair entrypoint + this self-validate + u20/WODA.prod regen + commit): **DONE** `2a03bae` — config.save emits `export OOSH_DIR` + CONFIG_PATH + OOSH_MODE as pure state. PO-verified on WODA.prod: `env -i HOME=$HOME bash -lc 'echo OOSH_DIR=[$OOSH_DIR]'` → non-empty; `env -i HOME=$HOME bash -lc 'echo ok'` → zero errors.
 - Tester (T-ENV-INSTALL result): **DONE** `f58baaf` — 4/4 T-ENV-LOGIN pass: OOSH_DIR non-empty, user.env pure, .bashrc guards ok, fresh login clean.
