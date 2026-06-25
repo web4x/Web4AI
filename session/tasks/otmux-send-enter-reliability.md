@@ -42,7 +42,28 @@ The smart send already does C-u for Claude Code panes (line 1044 in otmux). But 
 ### C: Double-Enter with delay
 Send text, wait 100ms, send Enter, wait 100ms, send Enter again. Catches both autocomplete and submit cases.
 
-## Acceptance Criteria
+## ESCALATION 2026-06-25 — OVER-SSH is the now-live BLOCKER (Tron directive)
+
+**Status: CRITICAL BLOCKER of the entire WODA.prod sprint (team.push redo cannot be driven).**
+
+The local case (above, 2026-06-10) is known. The now-blocking dimension: **`otmux send.raw <pane> Enter` over SSH (MacStudio→ossh→WODA.prod tmux) does NOT reliably submit** queued prompts. Evidence this session, multiple agents, multiple retries each:
+- oosh-po@prod: "merge dev to macos.latest" persisted across **4** clear+resend cycles.
+- SM@prod(0.7): "start your sweep loop" — agent processed 32s but prompt **stayed unsubmitted** after multiple Enters.
+- architect/expert: queued prompts wouldn't submit remotely.
+
+**Root cause (additional to local candidates):** over `ossh exec … 'otmux send.raw Enter'`, the keypress reaches the remote tmux but the Claude TUI doesn't register it as submit (timing/PTY/non-interactive shell across the hop). The C-u workaround helps locally but the **Enter itself** doesn't land over SSH.
+
+**TRON DIRECTIVE:** fix in **macos.latest** (the MVC master for otmux/hiveMind/claudeCode), then merge to **dev**. There are **past tests + task docs** (this file + `cross-machine-send-submit-rename.md`) — consolidate, don't duplicate.
+
+**Owner:** oosh-expert. **Note the chicken/egg:** the expert is on WODA.prod and driving it over the broken channel is itself unreliable → may need TRON /rc to the expert, OR fix authored MacStudio-side where macos.latest + local sends work.
+
+### Added acceptance (over-SSH)
+- [ ] `ossh exec <host> "otmux send <pane> 'text'"` deterministically submits on the remote TUI (verified by remote pane.capture showing "esc to interrupt" / prompt cleared).
+- [ ] Bare remote Enter flushes already-queued text remotely.
+- [ ] Test: T-SEND-SSH — submit over ossh, assert remote pane shows submitted (not queued). Covers the double-hop, not just local.
+- [ ] Cross-ref: `cross-machine-send-submit-rename.md` (same root; merge findings).
+
+## Acceptance Criteria (local — original)
 
 - [ ] `otmux send <pane> "text"` deterministically submits to Claude Code TUI
 - [ ] No silent stalls — if submit fails, error is reported
