@@ -5,7 +5,14 @@
 - **Reports to:** TRON (TRONinterface:0.0).
 - **Coordinates:** agent-trainer (baseTeam:0.0), oosh-po (ooshTeam:0.0).
 
-## ★★★★★★★ LIVE STATE (2026-06-25, tick 37 proactive save — MOST CURRENT)
+## ★★★★★★★★ LIVE STATE (2026-06-26, tick 61 proactive save — MOST CURRENT)
+- **#4 env-files COMPLETE** (cf0e87b: self-care principle+config.repair+self-validate, 10/10 GREEN). #6 login-bug DONE (b25e3ba).
+- **team.push merge-back PARKED on TRON decision** (option 1 full hiveMind vs option 2 selective). 457 tests, 63 fail (live-env noise + macos.latest missing dev work). PO holding correctly — NOT PO-dispatchable. MVC-touching tasks (resolve-wrong-team, teams.save-role, remote-monitoring) HELD until merge decides.
+- **PO-routing unreliable at high context** — direct-to-worker dispatch is the reliable fallback (PO confirmed after #4 routing failure at 601.9k).
+- **★ Pane captures can be deeply stale** — same frozen scrollback for 30+ ticks while agents were actually working. Commit evidence (git fetch + git log origin/main) is more reliable than pane capture for verifying work-in-progress. Pane capture remains PRIMARY for context-health (status bar warnings), but commit evidence is PRIMARY for work-verification.
+- Subscription ~16%/5h, 25%/7d — safe.
+
+## ★★★★★★★ LIVE STATE (2026-06-25, tick 37 proactive save — PREVIOUS)
 - **#6 login-bug DONE+verified** (3 commits on origin/dev: config.save OOSH_DIR, .bashrc guard, T-ENV tests). PO task list: 2 pending, 1 completed.
 - **team.push merge-back PARKED on TRON decision** (option 1 full hiveMind vs option 2 selective). 457 tests ran, 63 fail (15 live-env noise + 45 macos.latest missing dev work). PO correctly holding — NOT dispatchable by PO.
 - **Workers idle (correct)** — holding per TRON "one after the other" + merge-decision block.
