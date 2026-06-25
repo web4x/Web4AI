@@ -80,9 +80,36 @@ Done this turn:
 
 WODA.prod ooshTeam skeleton: 0.0 oosh-po (now live fork), 0.1 architect, 0.2 expert, 0.3 tester (all bash/skeleton — not yet forked), 0.4/0.5 shells dead.
 
-## CHECKPOINT SAVE — 2026-06-23 (506k = 50%, 4th cycle — HEALTHY, no rewind)
+## CHECKPOINT SAVE — 2026-06-25 (601.9k = ~60%, 5th cycle)
 
-**SM false-alarmed on "clear to save 506k" idle hint → ordered save+rewind. Tron confirmed 506k=50%=healthy, false alarm, NO rewind. Resuming task #4. Prior post-rewind anchor 033aa78.**
+**Context 601.9k. Multi-day session: sprint-team-migration on WODA.prod, #6 login bug fixed, #4 env-files self-care in flight.**
+
+Ground truth:
+- Identity: oosh-po@WODA.prod, ooshTeam:0.0, fork 29a1e1d1, session renamed @WODA.prod
+- Branch: dev (WODA.prod). Clean macos.latest MVC base `0e5f7dd`, team.push redo commits `76c629b→07c6b1e` on top, 16/16 T-PUSH GREEN. Merge-back to macos.latest PARKED (Tron decision pending).
+- Team: all 4 agents + SM live on WODA.prod, /rc active. SM at ooshTeam:0.7 (35916ccb, renamed @WODA.prod).
+- oosh code repo: `/var/dev/EAMD.ucp/.../Once.sh/dev`
+- workspace repo: `/var/dev/Workspaces/AI/Claude` on main
+
+**DELIVERED THIS SESSION:**
+- S-0 through S-8 manually proven + automated (team.push controller 9d48bd0+ee12cde+3c3d186, 16/16 tests)
+- REDO on clean base: 5 cherry-picks landed clean (76c629b→07c6b1e), 16/16 GREEN, merge-back ready
+- #6 login bug: config.save emits OOSH_DIR (2a03bae), .bashrc guards (6cb5172), 4/4 T-ENV-LOGIN GREEN
+- S-8 snapshot prune (07e8a06, 44→5)
+- SM identity cleanup: kept ooshTeam:0.7 (35916ccb), renamed @WODA.prod, /rc refreshed
+
+**IN FLIGHT (Tron direct-dispatched, I oversee):**
+- #4 env-files completion — self-care principle:
+  - Architect → docs/first-principles.md self-care principle
+  - Expert → config repair entrypoint + this self-validate/auto-heal
+  - Tester → T-SELFREPAIR
+  - All on dev, config/this/docs ONLY (NOT hiveMind/otmux/claudeCode — merge-parked)
+
+**PARKED:**
+- team.push merge-back to macos.latest (Tron decides when)
+- S-9 dogfood robbinTeam2 (after merge-back)
+
+**Next**: oversee #4 report-backs, verify commits, aggregate. Do NOT re-dispatch (Tron already sent).
 
 Ground truth verified this turn:
 - Identity: oosh-po, ooshTeam:0.0, fork 29a1e1d1 (pane.get.target confirmed)
