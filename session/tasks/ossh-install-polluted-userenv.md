@@ -134,5 +134,5 @@ After #4 T-ENV-PURE is green on MacStudio → propagate #4 to dev → implement 
 
 ## Report-back (edit here; report to oosh-po)
 - Architect (self-care principle → first-principles.md + self-repair/auto-heal design):
-- Expert (install emit + validate gate + self-repair entrypoint + this self-validate + u20/WODA.prod regen + commit):
-- Tester (T-ENV-INSTALL result):
+- Expert (install emit + validate gate + self-repair entrypoint + this self-validate + u20/WODA.prod regen + commit): **DONE** `2a03bae` — config.save emits `export OOSH_DIR` + CONFIG_PATH + OOSH_MODE as pure state. PO-verified on WODA.prod: `env -i HOME=$HOME bash -lc 'echo OOSH_DIR=[$OOSH_DIR]'` → non-empty; `env -i HOME=$HOME bash -lc 'echo ok'` → zero errors.
+- Tester (T-ENV-INSTALL result): **DONE** `f58baaf` — 4/4 T-ENV-LOGIN pass: OOSH_DIR non-empty, user.env pure, .bashrc guards ok, fresh login clean.
