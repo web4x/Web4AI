@@ -98,7 +98,26 @@ Builds on #4 core (`d45031a`, done on MacStudio main: source-chain → `this`; `
 
 5. **`this` bootstrap SELF-VALIDATES + AUTO-HEALS.** On boot, `this` detects a broken/polluted env (e.g. `config.validate` fails, or OOSH_MODE empty / OOSH_DIR off-tree) and either auto-reinits or emits a loud, single-line "run `config repair`" instruction — never silently runs on a broken env (the u20 failure: empty `config list`, RC=0, no signal). Build on existing `check … fix` so the detect-and-heal is the OOSH idiom, not bespoke.
 
+## CONFIRMED SYMPTOM — fresh-login completion breakage (2026-06-25, Tron screenshot + repro)
+
+The polluted user.env's most visible damage: on a **fresh `ossh login WODA.prod`** (no inherited env), `.bashrc` errors:
+```
+-bash: /log: No such file or directory
+-bash: /templates/user/c2.install: No such file or directory
+```
+Root cause CONFIRMED by clean-env repro on WODA.prod:
+- `env -i HOME=$HOME bash -lc 'echo OOSH_DIR=[$OOSH_DIR]'` → `OOSH_DIR=[]` (empty)
+- `grep OOSH_DIR "$CONFIG"` → **nothing** — user.env does NOT export OOSH_DIR at all.
+- `.bashrc:144` sources user.env (no OOSH_DIR set) → `.bashrc:149 source "$OOSH_DIR/log"` = `/log` and `.bashrc:183 source $OOSH_DIR/templates/user/c2.install` = `/templates/user/c2.install` → both "No such file".
+
+Why it looked fine in earlier tests: a sub-shell of an already-set-up session **inherits** OOSH_DIR; only a CLEAN login (no inherited env) exposes it. Test must be a fresh login, not `bash -lic` inside a primed shell.
+
+Two fix layers:
+1. **user.env must `export OOSH_DIR`** (and CONFIG_PATH/OOSH_MODE) as pure state — the core of this task. Install-born, so the install path must emit it.
+2. **`.bashrc` robustness**: guard the sources — `[ -n "$OOSH_DIR" ] && source "$OOSH_DIR/log"` etc., or have `this` resolve OOSH_DIR before .bashrc relies on it. An empty OOSH_DIR should never produce `/log`-style root-relative sourcing.
+
 ## Acceptance Criteria
+- [ ] Fresh `ossh login WODA.prod` produces NO `/log` or `/templates/user/c2.install` "No such file" errors (clean-env repro: `OOSH_DIR` non-empty after sourcing user.env).
 
 - [ ] Fresh `ossh install` onto a symlinked-`~/config` box yields a PURE-STATE user.env (only `export`/`declare`/comment/blank).
 - [ ] Post-install on such a box: `config list` non-empty, `OOSH_MODE` set (dev), `OOSH_DIR` on the correct tree, `oo mode` shows the Mode header.
