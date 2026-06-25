@@ -1,5 +1,25 @@
 # OOSH Expert Learnings
 
+## NEW: Claude Code projectHash replaces 3 chars, not 1 (2026-06-25, 07c6b1e)
+
+`private.claudeCode.projectHash` must `sed 's/[\/._]/-/g'` — Claude Code replaces `/`, `.`, AND `_` with `-`. My first impl only replaced `/`. Paths with dots (`EAMD.ucp`, `Once.sh`) or underscores (`1_infrastructure`) produced wrong hashes → JSONLs placed in nonexistent dirs. Verified empirically: `ls ~/.claude/projects/` on WODA.prod showed the 3-char replacement. The decode is lossy (can't distinguish which `-` was originally `/`, `.`, or `_`) — acceptable, decode is display-only.
+
+## NEW: Cherry-pick works for hiveMind when base is clean (2026-06-25)
+
+Prior learnings said "cherry-picks conflict in hiveMind" — that was true when dev had DIVERGED implementations. After PO reset dev to macos.latest MVC (0e5f7dd), all 5 cherry-picks from dev-teampush-astray landed clean. **Rule**: cherry-pick works when target file = source file's parent. Conflicts come from parallel independent edits, not from the cherry-pick mechanism itself.
+
+## NEW: captureForkedUUID — Strategy B (diff) beats Strategy A (customTitle) (2026-06-25, 07c6b1e)
+
+Fork creates a NEW UUID. To capture it: snapshot `ls *.jsonl` BEFORE fork, diff with AFTER. The new file IS the forked UUID. Strategy A (scan by customTitle) is slower and unreliable if fork hasn't auto-renamed yet. Strategy B is pure filesystem diff — no Claude API needed. Write UUID to sessions.env IMMEDIATELY after capture (GAP #12 fix). On remote: inline the sessions.env write via `ossh exec` with grep-v + append (private methods aren't CLI-callable).
+
+## NEW: WODA.prod LOG_DEVICE = /dev/tty fails (2026-06-25)
+
+Container has no `/dev/tty`. OOSH log functions default to LOG_DEVICE=/dev/tty → silent failures with exit code 1. Prefix commands with `LOG_DEVICE=/dev/stdout` for visible output. Or set it in the env permanently.
+
+## NEW: env files pure state — source chain lives in `this`, not in env files (2026-06-22, d45031a)
+
+`user.env` had `source $CONFIG_PATH/oosh.env` and `source $CONFIG_PATH/log.env` — these are CODE, not state. Fixed: (1) `this.init()` explicitly sources oosh.env+log.env after user.env (both init paths). (2) `config.add` writes `export CONFIG_CHAIN_<NAME>=1` instead of `source` line. (3) `config.validate` guards purity — line-leading pattern match rejects source/conditional/command-sub, accepts brackets in quoted values.
+
 ## NEW: c2 line.add produces triple quotes (2026-06-22, 33da219)
 
 `line.add "'"` uses `echo -e "'$1'"` — with `$1="'"`, this produces `'''` (three quotes), not one. The function passes stdin through (`cat -`) then APPENDS the echo output as a new line. Combined with `line.unquote` stripping closing quotes from `FORMAT_PARSE_METHOD` output, the pipeline `line.split | line.unquote | line.add "'"` = strip quotes then re-add them wrong = `'''` corruption in `current.method.env`.

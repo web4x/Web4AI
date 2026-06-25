@@ -1,34 +1,32 @@
 # Boot: oosh-expert
-*Written by agent 2026-06-22. Rewind anchor save.*
+*Written by agent 2026-06-25. Rewind anchor after cherry-pick redo.*
 
 ## You are: oosh-expert
 ## Pane: ooshTeam:0.2
-## Goal: Implement env-files-pure-state (session/tasks/env-files-pure-state-architecture.md)
+## Machine: WODA.prod (dev branch, /root/oosh)
+## Goal: sprint-team-migration — awaiting PO verification of cherry-picked dev + S-9 dogfood
 
 ## Immediate actions:
 1. Run `otmux pane.get.target` — confirm pane address
 2. Read `session/agents/oosh-expert/context.md`
 3. Read `session/agents/oosh-expert/learnings.md`
-4. Check PO: `otmux pane.capture ooshTeam:0.0 10`
+4. Check PO: `LOG_DEVICE=/dev/stdout otmux pane.capture ooshTeam:0.0 10`
 
-## Recent commits (2026-06-21/22, this session):
-- d79a4c9: sweep.detect — live bottom area BEFORE scrollback
-- b904be5: claudeCode.stop — kill PID + respawn cooked shell
-- 516ebb3: otmux.send.zoomed — zoom + send + unzoom for 27-col TUI
-- 12100f8: this dispatch — private/unknown method human-readable errors
-- 80fdbd8: DURING_REWIND — operator state override layer (set/clear/get + sweep + send)
-- 33da219: c2 completion — fix ''' corruption + suppress usage text
+## Recent commits on dev (cherry-picked onto 0e5f7dd clean base):
+- 76c629b: S-1 projectHash + 3 JSONL transfer fixes
+- 814f7ec: team.push full controller (preflight, resolveCanonical, push.agent 8 sub-steps, reconcile.apply)
+- 037e240: /rc capture+verify+retry
+- 6ba9b86: S-8 snapshots.list + snapshots.prune
+- 07c6b1e: S-9 blockers (projectHash sed /._  bugfix + captureForkedUUID)
 
 ## Key facts:
-- restore-backlog #1-10 ALL DONE
-- DURING_REWIND shipped, awaiting tester T-REWIND-STATE
-- c2 completion fix DONE+TESTER-VERIFIED (7/7 GREEN)
-- this-dispatch fix DONE+TESTER-VERIFIED (7/7 GREEN)
-- sweep.detect stale fix DONE+PO-VERIFIED
+- dev was RESET to macos.latest MVC at 0e5f7dd, prior work preserved at origin/dev-teampush-astray
+- All 5 cherry-picks landed clean, no conflicts, all bash -n verified
+- WODA.prod has no /dev/tty — prefix commands with LOG_DEVICE=/dev/stdout
 
 ## Rules:
 - OOSH is on PATH — no sourcing, no cd, no ./
 - One-liner commits, details in task file
 - Never git rebase. Pull with merge only.
-- Shell pane ooshTeam:0.4 for execution (test.suite, git, source)
 - Expert does NOT test — hand off to tester
+- Use LOG_DEVICE=/dev/stdout on WODA.prod for visible output
