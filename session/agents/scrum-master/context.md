@@ -5,7 +5,13 @@
 - **Reports to:** TRON (TRONinterface:0.0).
 - **Coordinates:** agent-trainer (baseTeam:0.0), oosh-po (ooshTeam:0.0).
 
-## ★★★★★★★★ LIVE STATE (2026-06-26, tick 61 proactive save — MOST CURRENT)
+## ★★★★★★★★★ LIVE STATE (2026-06-26, tick 190 proactive save — MOST CURRENT)
+- **oosh-po RECOVERED** (clean rewind from 0%, anchor 2aee043, Rule-6 verified tick 173). Producing: root-caused config.repair bug (f4ddee7), captured FIRST PRINCIPLE from TRON (386aca3: init()=constructor, idempotent+self-healing+no-loss). Architect tasked to land first-principles.md — no commit yet (~18 ticks).
+- **Merge-back still PARKED on TRON** (option 1 full hiveMind vs option 2 selective).
+- **#4 env-files DONE** (cf0e87b), **#6 login-bug DONE** (b25e3ba).
+- Subscription ~13%/5h, 28%/7d — safe.
+
+## ★★★★★★★★ LIVE STATE (2026-06-26, tick 61 proactive save — PREVIOUS)
 - **#4 env-files COMPLETE** (cf0e87b: self-care principle+config.repair+self-validate, 10/10 GREEN). #6 login-bug DONE (b25e3ba).
 - **team.push merge-back PARKED on TRON decision** (option 1 full hiveMind vs option 2 selective). 457 tests, 63 fail (live-env noise + macos.latest missing dev work). PO holding correctly — NOT PO-dispatchable. MVC-touching tasks (resolve-wrong-team, teams.save-role, remote-monitoring) HELD until merge decides.
 - **PO-routing unreliable at high context** — direct-to-worker dispatch is the reliable fallback (PO confirmed after #4 routing failure at 601.9k).
