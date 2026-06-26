@@ -342,8 +342,9 @@ Pattern: write detailed spec in session/tasks/, send chat as ONE-LINE reference.
 ### MVC source-of-truth principle (2026-06-01)
 tree.detailed was reading JSONL customTitle (stale after /rename). Fix: read pane title (which pane.lock sets). **For display name: ONE source of truth. Don't synthesize from multiple stores. The View IS the truth when it's the authoritative writer (pane.lock).** Generalizes: every state attribute has ONE authoritative writer; readers must use THAT, not derive from others.
 
-### Until-loop and while-sleep anti-pattern (2026-06-01)
+### Until-loop and while-sleep anti-pattern (2026-06-01, REINFORCED 2026-06-26)
 Tron flagged that `until <check>; do sleep N; done` aggregates badly — each poll iteration adds to conversation context. Same for manual while-true loops. **Use run_in_background for one-shot, Monitor for events, direct capture for status. NO polling loops in Bash tool — context burn is the cost.**
+**REINFORCED 2026-06-26 (Tron: "you aggregate bash background tasks ... until iscan antipattern!!!"):** While driving the WODA.prod migration I repeatedly used `until otmux pane.capture ... | grep -q ...; do sleep 4; done` to wait on remote pane output. EVERY such loop is the antipattern — even "just waiting for a remote command to finish." Correct patterns for cross-machine driving: (1) fire the remote cmd, do a SINGLE `otmux pane.capture` when I next need it (the result persists in the pane — I don't need to babysit it); (2) for long remote work, `run_in_background:true` and let the completion notification wake me; (3) NEVER chain sleeps or until-grep loops. The pane is a durable view — capture it once when ready, don't poll it.
 
 ### Stdin consumption in while-read (2026-05)
 While loops `while read; do ssh ...; done < file` lose remaining lines because ssh consumes stdin. **Use `done 3< file` + `read <&3` when loop body has commands that read stdin.** Cost an entire round of testing to find. Applies to: ssh, scp, ssh-mux, anything interactive.

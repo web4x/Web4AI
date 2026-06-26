@@ -5,6 +5,9 @@
 **Pane**: ooshTeam:0.0 on MacStudio.native
 **Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## ★★ POST-REWIND CONFIRM — 2026-06-26
+Resumed from rewind. Verified: pane.get.target=ooshTeam:0.0, branch=main, prior anchor=2aee043. Identity oosh-po@MacStudio (29a1e1d1) intact. Phase-1 anchor below is current — follow its "Next after rewind". **Tron flagged the until-loop/while-sleep polling antipattern (I overused `until <check>; do sleep; done` to wait on remote pane output) — STOP: one-shot capture, or run_in_background + completion notification, NEVER poll-loops in Bash (aggregates context). Recorded in learnings.**
+
 ## ★ PHASE 1 PRE-REWIND ANCHOR — 2026-06-26 (WODA.prod dev-team era)
 
 **I am oosh-po@MacStudio at ooshTeam:0.0. Tron is rewinding me (2-phase). On resume: read this anchor FIRST, verify identity (pane.get.target + session.name 29a1e1d1), then `hiveMind team.status ooshTeam` + git fetch.**
