@@ -1,9 +1,40 @@
 # oosh-po Context
 
-**Updated**: 2026-06-19
+**Updated**: 2026-06-26
 **Role**: oosh-po (forked from fallback-oosh-po)
 **Pane**: ooshTeam:0.0 on MacStudio.native
-**Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c] (current fork)
+**Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
+
+## ★ PHASE 1 PRE-REWIND ANCHOR — 2026-06-26 (WODA.prod dev-team era)
+
+**I am oosh-po@MacStudio at ooshTeam:0.0. Tron is rewinding me (2-phase). On resume: read this anchor FIRST, verify identity (pane.get.target + session.name 29a1e1d1), then `hiveMind team.status ooshTeam` + git fetch.**
+
+### Machines & teams (this era)
+- **MacStudio** = where I (oosh-po), MacStudio ooshTeam (0.1 architect/0.2 expert/0.3 tester originals), and SM live. oosh repo `/Users/donges/oosh`. Branches: `test/macos.latest` (MVC master) + `dev`.
+- **WODA.prod** = v60211, the DEV BOX. The WHOLE team was migrated/forked here: ooshTeam (0.0 oosh-po@WODA.prod, 0.1 architect, 0.2 expert, 0.3 tester, 0.6 agent-trainer, 0.7 scrum-master) + robbinTeam2 (po/expert/skill-expert/architect/req/tester(×2)). Workspace `/var/dev/Workspaces/AI/Claude`, Web4RawBin cloned+symlinked into workspaces/. I drive WODA.prod via the **remoteOOSH:0.0** ssh shell (MacStudio pane SSH'd into WODA.prod).
+- **SM = TRONinterface:0.1** (scrum-master@MacStudio, my 42 pair). Monitors WODA.prod via remote pane.capture; reports idle-with-pending to me; I drive the WODA.prod PO/workers.
+
+### DONE + VERIFIED this session
+- **Enter-over-SSH BLOCKER fixed** (`04b54a5` macos.latest, `c3b0fa2` dev): Claude TUI autocomplete ate Enter over SSH → Escape-before-Enter (3 sites in otmux send.raw/sendEnter). Live-verified remote submit works. THIS unblocked all cross-machine driving.
+- **#6 login bug DONE** (`2a03bae` config.save emits OOSH_DIR+CONFIG_PATH+OOSH_MODE pure-state, `6cb5172` .bashrc guards, `f58baaf` T-ENV). Verified: clean login OOSH_DIR non-empty, /log+/c2.install errors gone.
+- **cross-machine-send + #6**: backlog marked done.
+
+### ⏸ THE ONE OPEN DECISION (Tron's) — team.push merge-back
+- team.push REDO is DONE + green on **dev** (5 commits on clean base `0e5f7dd`: S-1 target-hash, choreography S-2b–S-6, /rc-verify, S-8 prune, S-9). Strayed dev preserved in branch **`dev-teampush-astray`**.
+- Merging team.push ALONE onto the stripped macos.latest base → **63 fails** (~15 live-env noise + ~45 because macos.latest hiveMind is MISSING dev's good work: DRY phases 2/3/5b/7, sweep.detect fixes, completions). I did NOT commit — master clean at `04b54a5`.
+- **Awaiting Tron: Option 1 (bring dev's FULL hiveMind to macos.latest — all green together; my recommendation) vs Option 2 (selective exclude).** Until decided, HOLD all hiveMind/otmux/claudeCode changes (more dev MVC churn worsens the reconciliation).
+
+### IN FLIGHT — #4 env-files completion (safe, non-MVC)
+Direct-dispatched (PO routing failed) to WODA.prod workers, all working: architect(0.1)→Self-Care first-principles doc, expert(0.2)→`config repair` entrypoint + `this` self-validate/auto-heal, tester(0.3)→T-SELFREPAIR. config/this/docs ONLY (not merge-parked MVC). Watch for their commits.
+
+### Next after rewind
+1. Verify identity + git fetch (origin/dev, origin/test/macos.latest).
+2. Check #4 commits landed (architect doc, expert config-repair, tester T-SELFREPAIR).
+3. **Get Tron's merge option 1/2** → execute (option 1 = bring full dev hiveMind to macos.latest, run test.suite, commit master).
+4. Then resume backlog (#7 discovery, #5 flags, remote-monitoring) — MVC items only AFTER merge resolves.
+
+---
+
 
 ## Identity (verify on doubt)
 - I am a FORK. Conversation continuity LIES about identity after a fork.

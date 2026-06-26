@@ -446,6 +446,24 @@ u20 container origin was https → push asked for github user/pw. Fix: `git remo
 ### reconfigure / `r` re-execs the shell → drops the SSH session
 On a remote oosh shell, `reconfigure` (and `oo checkout` loops) logout/drop the SSH connection back to the local pane. Expect the drop; reconnect with `ossh login <host>`.
 
+### Enter-over-SSH: autocomplete eats Enter (2026-06-25, root-caused + fixed)
+`otmux send Enter` over SSH (MacStudio→ossh→WODA.prod tmux) didn't submit — prompts queued, persisted 4× retries. Root cause: Claude TUI **autocomplete popup eats the Enter**. Fix: **Escape before Enter** on Claude panes (otmux send.raw/sendEnter, 3 sites) — commit `04b54a5` macos.latest → `c3b0fa2` dev. This was THE blocker behind every "PO won't route / prompt re-queues" symptom. **When remote sends won't submit: it's autocomplete; Escape-then-Enter.** Also: my earlier `bash -lic` test inside a primed shell INHERITED env and masked bugs — test with a FRESH login (`env -i` / real ossh login), not a sub-shell of a set-up session.
+
+### PO-routing is unreliable (esp. high context) → direct-to-worker fallback (2026-06-26)
+Dispatched tasks to the WODA.prod PO repeatedly; it kept NOT routing to workers (idle, esp. at 601k context). The SM caught it via worker-pane verify + commit-recency. Fix: once cross-machine sends are reliable (Enter-fix), **direct-dispatch to each worker** (per-pane, verify each lands) is the reliable fallback when a PO stalls. Don't assume "sent to PO" = "workers got it" — verify the WORKERS. (Role-purity says PO assigns, but a stalled PO must not block the team.)
+
+### "Reset to clean master + redo" can DISCARD good work (2026-06-26, big lesson)
+Tron: "macos.latest is the MVC master, dev strayed → reset dev to it + redo team.push." I reset dev's hiveMind to macos.latest (`0e5f7dd`), team redid team.push green on dev. But merging team.push back to macos.latest → **63 test fails** because macos.latest's hiveMind was MISSING legit dev work (DRY refactor phases 2/3/5b/7, sweep.detect fixes, completions) — NOT stray, GOOD work the reset threw away. **Before "reset to clean base + redo," VERIFY the base actually contains all the good work — a branch being "master" doesn't mean it's complete. dev was AHEAD, not just strayed.** Preserved strayed dev in `dev-teampush-astray` before resetting (non-destructive — always do this).
+
+### Don't clear agent prompts on stale assumptions (2026-06-26)
+Cleared the WODA.prod PO's "merge dev to macos.latest" prompt 3× thinking it was wrong/premature — but the planning said "16/16 GREEN, READY TO MERGE BACK": the agents were RIGHT, I was operating on a stale model (thought redo wasn't done). **Before clearing/overriding an agent's prompt, check the sprint planning / their actual state — they may be correctly executing the plan. Verify the goal state, not just react to the prompt text.**
+
+### commit-recency check MUST git fetch first (2026-06-26)
+SM reported "zero commits 3+ hrs" and a phantom hash `a38a5ef` — both from reading a STALE LOCAL git view. The commits were on origin/dev (pushed). **Disk/git is ground truth ONLY after `git fetch`. Always `git fetch` then `git log origin/<branch>` for commit-recency — a local log lies about pushed work.**
+
+### Cross-machine comms = git mailbox + ssh-shell drive (2026-06-24/26)
+Two Claude agents on two machines (MacStudio PO ↔ WODA.prod PO). Asymmetric: I drive WODA.prod panes via the **remoteOOSH ssh shell** (write); they report via the **shared git repo** (web4x/Web4AI main) — push their work, I pull on cadence. No live reverse-link. READING WODA.prod over the hop (pane.capture) is reliable; WRITING needed the Enter-fix. JSONL placement for migration: **TARGET project-hash dir** (encode target workspace path), full UUID, cd target before fork. `claudeCode session.name` = the ONE identity truth (list/team.status/pane-title all drift/lie).
+
 ### Migration identity: session.name is the ONLY truth (2026-06-24, two live migrations)
 Migrated ooshTeam + robbinTeam2 to WODA.prod by hand. Identity sources LIED: `claudeCode list` role labels were stale/shifted (called a "req" session "tester"); `hiveMind team.status` live-discovery was buggy (hallucinated a "robbin-planner" that doesn't exist, mislabeled tester→req). I panicked over a fake "off-by-one" because I trusted team.status over ground truth. **`claudeCode session.name <uuid>` is the single source of truth for an agent's role — resolve identity there, never from list/team.status/pane-title.** Also: duplicate identities are real (two sessions both `robbin-tester@MacStudio`) — dedup by recency+size, confirm canonical with the owner. And the canonical agent may be DEAD (newest tester f7db409b was dead; the live one was older) — don't only migrate "green" panes. Full writeup: `session/tasks/migration-learnings-for-teampush.md`.
 
