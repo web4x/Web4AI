@@ -50,6 +50,96 @@ validate ACCEPTS `^source .*\.env` (legit chaining) and `export`/`declare`/comme
 - [ ] T-NOLOSS: set a user var → corrupt env → init → user var survives + env clean
 - Owner: oosh-architect (design no-loss merge) + oosh-expert (impl) · Ref #10, Rule B
 
+#### S-5 DESIGN (oosh-architect, 2026-06-26)
+
+**The problem**: `config.save` (no-args) and `config.repair` both rewrite user.env but lose state differently. `config.save` dumps from `declare -px` (live env) — on a born-broken box the live env is empty, so it captures nothing. `config.repair` writes fundamentals from scratch — correct fundamentals, but wipes all user-set vars (TRON_MONITOR_PANE, custom SSH host, any `config set` additions).
+
+**The principle**: init is the constructor. Repair IS init. No second path.
+
+**Design: 3-phase harvest-resolve-merge in `config.save` (no-args path)**
+
+`config.save` with no args = regenerate user.env = the persistent constructor:
+
+```
+PHASE 1 — HARVEST: read existing user.env FILE, extract valid export lines.
+           Skip logic (: ${, $(, conditionals). Captures user vars that may
+           not be in the live env (subshell, born-broken).
+
+PHASE 2 — RESOLVE: call private.this.resolve.fundamentals (S-2).
+           Canonical OOSH_DIR/CONFIG_PATH/OOSH_MODE from BASH_SOURCE.
+
+PHASE 3 — MERGE + WRITE:
+           Fundamentals first (canonical, override stale harvested values).
+           Then harvested user vars (skip fundamentals — already written).
+           Then source chain (Rule A: source $CONFIG_PATH/oosh.env etc.).
+           Validate with config.validate.
+```
+
+**Harvest implementation** (reads from FILE, not live env):
+```bash
+local harvested=""
+if [ -f "$CONFIG" ]; then
+  harvested=$(while IFS= read -r line; do
+    [[ "$line" =~ ^export[[:space:]] ]] && echo "$line"
+    [[ "$line" =~ ^source[[:space:]].*\.env ]] && echo "$line"
+  done < "$CONFIG")
+fi
+```
+
+**Merge implementation** (fundamentals override, user vars preserved):
+```bash
+{
+  # Fundamentals (canonical — always correct)
+  echo "export CONFIG_PATH=\"$CONFIG_PATH\""
+  echo "export CONFIG_FILE=\"$CONFIG_FILE\""
+  echo "export CONFIG=\"$CONFIG_PATH/$CONFIG_FILE\""
+  echo "export OOSH_DIR=\"$OOSH_DIR\""
+  echo "export OOSH_MODE=\"$OOSH_MODE\""
+  echo "export BASH_FILE=\"$BASH_FILE\""
+  echo "export PATH=\"$PATH\""
+
+  # Harvested user vars (skip fundamentals — already written)
+  echo "$harvested" | while IFS= read -r line; do
+    [ -z "$line" ] && continue
+    local vn="${line#export }"; vn="${vn%%=*}"
+    case "$vn" in
+      CONFIG_PATH|CONFIG_FILE|CONFIG|OOSH_DIR|OOSH_MODE|BASH_FILE|PATH) continue ;;
+    esac
+    echo "$line"
+  done
+
+  # Source chain (Rule A)
+  echo "source \$CONFIG_PATH/oosh.env"
+  echo "source \$CONFIG_PATH/log.env"
+} > "$CONFIG"
+config.validate
+```
+
+**Key properties**:
+- **No loss**: user vars harvested from file survive reinit. TRON_MONITOR_PANE, OOSH_SSH_CONFIG_HOST, any `config set` var — preserved.
+- **Self-healing**: fundamentals always from resolve.fundamentals (BASH_SOURCE), never from broken file/env.
+- **Idempotent**: running twice = same result.
+- **Pure-state**: output is only `export` + `source *.env`. Validated.
+- **Born-broken**: u20's fully polluted user.env → harvest extracts CONFIG_FILE + BASH_FILE (the 2 valid exports); fundamentals resolved canonically; valid object.
+
+**`config.repair` becomes**:
+```bash
+config.repair() { config.save; }  # alias — repair IS init
+```
+
+**`config.save <name> <PREFIX>`** (single-file save, e.g. oosh.env): unchanged — still dumps from `declare -px`. Only the no-args user.env path gets harvest-merge.
+
+**Sequence for born-broken box**:
+```
+this.init → config.init → resolve.fundamentals → config.save (no args)
+  → HARVEST file → RESOLVE canonical → MERGE+WRITE → VALIDATE → valid object
+```
+
+**Expert checklist**:
+1. Replace config.save no-args path (lines 292-341) with harvest-resolve-merge
+2. `config.repair() { config.save; }` (one-liner alias)
+3. T-NOLOSS: `config set CUSTOM_VAR foo` → corrupt user.env → `config save` → CUSTOM_VAR survives + env clean
+
 ### S-6: Constructors NEVER fail — they ALWAYS self-heal to valid (expert)
 A constructor never fails; an object never fails. There is NO error path. Because fundamentals derive from `BASH_SOURCE` (the running script's own location — ALWAYS present), the constructor can ALWAYS resolve them and ALWAYS heal → it ALWAYS reaches a valid object. No "unrecoverable env" case exists; "fail loud" is WRONG (it implies an impossible failure). init self-heals unconditionally and succeeds, every time.
 - [ ] this.init / every `.start`: no failure/abort path on a broken env — it self-heals and returns a valid object (RC 0 because the object IS valid, not because broken was ignored)
