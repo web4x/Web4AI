@@ -22,10 +22,11 @@ Replace the bolt-on "Self-Care obligation-3 (repair as separate entrypoint)" in 
 
 ### S-2: Canonical fundamental resolution (expert) — fixes #11 root
 `this.init` / `config.init` resolve OOSH_DIR/CONFIG_PATH/OOSH_MODE from **BASH_SOURCE** (the running script's own dir), never `$HOME/oosh` guess, never conditional. Single shared resolver.
-- [ ] `private.this.resolve.fundamentals` (or equiv) — BASH_SOURCE-based, symlink-safe (`cd -P`)
-- [ ] this.init + config.init both call it; no `$HOME/oosh` guess remains
-- [ ] T-FUND: OOSH_DIR correct on EAMD/symlinked layout (u20), not just $HOME/oosh
-- Owner: oosh-expert · Ref #11
+- [x] `private.this.resolve.fundamentals` — BASH_SOURCE chain walker, symlink-safe cd -P (`921f0c3`)
+- [x] this.init (3 call sites) + config.init (2 call sites) both call it; zero `$HOME/oosh` guesses remain
+- [x] Tested on WODA.prod + u20: OOSH_DIR resolves to real EAMD path, CONFIG_PATH follows symlink
+- [ ] T-FUND: tester to cover (part of S-8 T-CONSTRUCTOR suite)
+- Owner: oosh-expert — **S-2 DONE** (`921f0c3`)
 
 ### S-3: Unconditional pure-state emit (expert) — fixes #11 emit
 `config.save` emits OOSH_DIR/CONFIG_PATH/OOSH_MODE ALWAYS (resolve-then-emit), never `[ -n "$OOSH_DIR" ] && echo`. A fundamental var is never silently skipped.
