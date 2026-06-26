@@ -30,9 +30,10 @@ Replace the bolt-on "Self-Care obligation-3 (repair as separate entrypoint)" in 
 
 ### S-3: Unconditional pure-state emit (expert) — fixes #11 emit
 `config.save` emits OOSH_DIR/CONFIG_PATH/OOSH_MODE ALWAYS (resolve-then-emit), never `[ -n "$OOSH_DIR" ] && echo`. A fundamental var is never silently skipped.
-- [ ] config.save: drop `[ -n ]` guards on fundamentals; resolve via S-2 then emit
-- [ ] T-EMIT: fresh-install subshell (OOSH_DIR initially empty) → user.env HAS OOSH_DIR
-- Owner: oosh-expert · Ref #11
+- [x] config.save: resolve.fundamentals before emit, unconditional write (`dab7685`)
+- [x] Tested: fresh subshell with empty OOSH_DIR → user.env has all three
+- [ ] T-EMIT: tester to cover (part of S-8)
+- Owner: oosh-expert — **S-3 DONE** (`dab7685`)
 
 ### S-4: config.validate reconcile to Rule A (expert) — env = state + source*.env ONLY
 validate ACCEPTS `^source .*\.env` (legit chaining) and `export`/`declare`/comment/blank; REJECTS all other logic (`: ${`, `$(`, `[ ]`, `{ }`, bare conditionals). Reconciles Rule A vs #4's source-stripping — Rule A is authority.
