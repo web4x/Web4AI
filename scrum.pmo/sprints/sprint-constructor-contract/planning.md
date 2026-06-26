@@ -1,6 +1,6 @@
 # Sprint: Constructor Contract — init() ALWAYS yields a valid object
 
-**Epic**: Every OOSH constructor (`this.init`, `config.init`, every `scriptname.start`) honors the contract: after it runs, the object is **fully operational, consistent, and safe** — idempotent, self-healing, canonical-source-resolved, no config loss, pure-state persistence, fail-loud. This is THE first principle of the object-oriented shell.
+**Epic**: Every OOSH constructor (`this.init`, `config.init`, every `scriptname.start`) honors the contract: after it runs, the object is **fully operational, consistent, and safe** — idempotent, self-healing, canonical-source-resolved, no config loss, pure-state persistence. **Constructors NEVER fail — they always self-heal to valid (no error path).** This is THE first principle of the object-oriented shell.
 **Owner**: oosh-po@WODA.prod (drive on dev box) · oosh-po@MacStudio (first-principles guardian, QA gates)
 **Status**: PLANNED → driving
 **Created**: 2026-06-26
@@ -48,10 +48,11 @@ validate ACCEPTS `^source .*\.env` (legit chaining) and `export`/`declare`/comme
 - [ ] T-NOLOSS: set a user var → corrupt env → init → user var survives + env clean
 - Owner: oosh-architect (design no-loss merge) + oosh-expert (impl) · Ref #10, Rule B
 
-### S-6: Every constructor fails LOUD, never half-built (expert)
-this.init / every `.start`: if it cannot reach a valid object, error loud + non-zero — never RC=0 on broken env, never half-constructed.
-- [ ] this.init signals clearly on unrecoverable env (no silent RC=0)
-- [ ] T-LOUD: unrecoverable env → loud error + non-zero, not silent
+### S-6: Constructors NEVER fail — they ALWAYS self-heal to valid (expert)
+A constructor never fails; an object never fails. There is NO error path. Because fundamentals derive from `BASH_SOURCE` (the running script's own location — ALWAYS present), the constructor can ALWAYS resolve them and ALWAYS heal → it ALWAYS reaches a valid object. No "unrecoverable env" case exists; "fail loud" is WRONG (it implies an impossible failure). init self-heals unconditionally and succeeds, every time.
+- [ ] this.init / every `.start`: no failure/abort path on a broken env — it self-heals and returns a valid object (RC 0 because the object IS valid, not because broken was ignored)
+- [ ] Remove any "cannot reach valid object → error" branches; replace with self-heal
+- [ ] T-NEVERFAIL: every kind of broken env (empty OOSH_DIR, polluted, missing file, symlinked u20) → init → valid object, success. There is no input that makes a constructor fail.
 - Owner: oosh-expert
 
 ### S-7: Heal the live broken boxes (expert + PO)
@@ -61,7 +62,7 @@ Regenerate clean env on **u20** + **WODA.prod** via the new init; fresh `ossh in
 - Owner: oosh-expert + oosh-po@WODA.prod · Ref #11, ossh-install task
 
 ### S-8: T-CONSTRUCTOR suite (tester)
-One suite proving the contract: born-broken→init→valid+zero-loss; idempotent (twice = no-op); validate accepts source/rejects logic; fresh install valid; fail-loud on unrecoverable.
+One suite proving the contract: born-broken→init→valid+zero-loss; idempotent (twice = no-op); validate accepts source/rejects logic; fresh install valid; NEVER-FAIL — every broken input (empty/polluted/missing/symlinked) self-heals to a valid object, no failure path exists.
 - [ ] All of S-2..S-6 covered, GREEN on dev
 - Owner: oosh-tester
 
@@ -73,7 +74,7 @@ Guardian QA all gates; dogfood the full born-broken→init cycle on u20. Sprint 
 ## Sequencing
 ```
 S-1 (principle) ─┐
-S-2 (canonical resolve) → S-3 (emit) → S-5 (init self-heal/no-loss) → S-6 (fail-loud)
+S-2 (canonical resolve) → S-3 (emit) → S-5 (init self-heal/no-loss) → S-6 (never-fail/always-self-heal)
 S-4 (validate, parallel) ─┘                    ↓
                                         S-7 (heal u20/WODA.prod) → S-8 (tests) → S-9 (QA/dogfood)
 ```
