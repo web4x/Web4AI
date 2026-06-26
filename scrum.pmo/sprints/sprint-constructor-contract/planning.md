@@ -37,10 +37,10 @@ Replace the bolt-on "Self-Care obligation-3 (repair as separate entrypoint)" in 
 
 ### S-4: config.validate reconcile to Rule A (expert) — env = state + source*.env ONLY
 validate ACCEPTS `^source .*\.env` (legit chaining) and `export`/`declare`/comment/blank; REJECTS all other logic (`: ${`, `$(`, `[ ]`, `{ }`, bare conditionals). Reconciles Rule A vs #4's source-stripping — Rule A is authority.
-- [ ] validate accepts `source *.env`; rejects every other non-state construct
-- [ ] decide w/ architect: source-chain in env file (Rule A) vs this (#4) — env file carrying `source *.env` MUST be valid
-- [ ] T-VALIDATE: accepts source-lines + quoted-value brackets; rejects logic
-- Owner: oosh-expert + architect · Ref Rule A, #4
+- [x] validate accepts `^source *.env` + `^. *.env`; rejects source *.sh, `: ${`, `$()`, `[ ]`, `{ }`, bare conditionals (`b50355e`)
+- [x] Rule A reconciled: env file carrying `source *.env` IS valid
+- [ ] T-VALIDATE: tester to cover (part of S-8)
+- Owner: oosh-expert — **S-4 DONE** (`b50355e`)
 
 ### S-5: init is self-healing + no-loss; fold repair INTO init (expert+architect) — fixes #10
 `config.init`/`this.init` idempotent + self-healing: on a broken/born-broken env, restore fundamentals (S-2) + preserve ALL existing user state + rewrite pure-state + validate → valid object. `config repair` becomes an alias for "init again" (or removed). NO config loss.
