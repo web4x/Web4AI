@@ -136,3 +136,10 @@ After #4 T-ENV-PURE is green on MacStudio → propagate #4 to dev → implement 
 - Architect (self-care principle → first-principles.md + self-repair/auto-heal design): **DONE** `b6028ca` on dev — added "Self-Care Across the Whole Lifecycle" as 6th Philosophy principle. 4 obligations (init correct, detect sideways, reinit to repair, whole lifecycle). References check.fix, config.validate, config repair, oo reconfigure, this self-validate, context lifecycle.
 - Expert (install emit + validate gate + self-repair entrypoint + this self-validate + u20/WODA.prod regen + commit): **DONE** `2a03bae` (config.save emits OOSH_DIR) + `4fe7faa` (config.repair idempotent self-heal) + `aeda79c` (this self-validate auto-heal on boot). PO-verified on WODA.prod: clean-env repro passes, 6/6 T-SELFREPAIR GREEN.
 - Tester (T-ENV-INSTALL result): **DONE** `f58baaf` (4/4 T-ENV-LOGIN) + `25324e5` (6/6 T-SELFREPAIR). Total 10/10 env tests GREEN.
+
+## ROOT CAUSE FOUND — OOSH_DIR lost on fresh install (2026-06-26, Tron-directed)
+Fresh `ossh install` on u20 → user.env missing OOSH_DIR (the most fundamental var).
+- **Cause**: `config.save` (config:322) does `[ -n "$OOSH_DIR" ] && echo "export OOSH_DIR=..."` — CONDITIONAL emit. During fresh-install subshell OOSH_DIR is empty → line silently SKIPPED → user.env born without OOSH_DIR.
+- **macos.latest discipline (bootsratp.sequence.puml + this:28-37)**: `this` RESOLVES OOSH_DIR from BASH_SOURCE first ("set OOSH_DIR" is the first bootstrap step), unconditionally. OOSH_DIR is never left to a maybe.
+- **Fix**: `config.save` must RESOLVE OOSH_DIR before emitting (config already has a resolver at config:427 `cd "$HOME/oosh" && pwd -P`) — emit ALWAYS, never `[ -n ]`-guarded. Same born-broken family as #10 (config.repair regenerating from broken env). Both: derive correct state from canonical source, never trust/propagate the empty/broken value.
+- **Owner**: WODA.prod oosh-expert (reproduces on u20). Verify: fresh install on symlinked-config box → user.env HAS OOSH_DIR, login clean.
