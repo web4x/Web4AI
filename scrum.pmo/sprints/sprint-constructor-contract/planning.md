@@ -16,9 +16,9 @@
 
 ### S-1: Land the first principle (architect)
 Replace the bolt-on "Self-Care obligation-3 (repair as separate entrypoint)" in `docs/first-principles.md` with the authoritative constructor-contract text (386aca3) as the FIRST Philosophy bullet. init = constructor = always-valid-object.
-- [ ] first-principles.md: constructor-contract principle verbatim, bolt-on wording removed
-- [ ] QA gate: guardian (me) sign-off on wording
-- Owner: oosh-architect
+- [x] first-principles.md: constructor-contract principle verbatim, bolt-on wording removed (`63659a3`)
+- [x] QA gate: guardian sign-off — **APPROVED by oosh-po@WODA.prod** (wording exact, bolt-on removed, repair=init)
+- Owner: oosh-architect — **S-1 DONE**
 
 ### S-2: Canonical fundamental resolution (expert) — fixes #11 root
 `this.init` / `config.init` resolve OOSH_DIR/CONFIG_PATH/OOSH_MODE from **BASH_SOURCE** (the running script's own dir), never `$HOME/oosh` guess, never conditional. Single shared resolver.
