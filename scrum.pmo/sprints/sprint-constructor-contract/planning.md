@@ -158,6 +158,14 @@ One suite proving the contract: born-broken→init→valid+zero-loss; idempotent
 - [x] 17/17 GREEN on dev (`e388c98` + `2f49d28`): T-FUND(4) T-EMIT(3) T-VALIDATE(4) T-NOLOSS(2) T-NEVERFAIL(4)
 - Owner: oosh-tester — **S-8 DONE**
 
+### S-10: c2 completion crash — triple-quote corruption in current.method.env (expert)
+Tab completion crashes for ALL oosh commands when c2 writes `'''` to current.method.env (empty pipeline → line.add wraps nothing). Guard the write (empty pipeline → empty file, not `'''`) + guard the source (bash -n or truncate-and-continue on broken content). Spec: `session/tasks/c2-completion-crash-triple-quote.md`.
+- [ ] c2 write guard: empty pipeline → valid empty file
+- [ ] c2 source guard: broken file → self-heal, never crash
+- [ ] T-C2-QUOTE: inject `'''` → completion → no crash + file healed
+- Status: IN PROGRESS — expert assigned
+- Owner: oosh-expert + oosh-tester
+
 ### S-9: QA + dogfood (PO)
 Guardian QA all gates; dogfood the full born-broken→init cycle on u20. Sprint done when the contract holds everywhere + all green.
 - [ ] guardian sign-off; u20 dogfood clean; backlog #10/#11 closed
