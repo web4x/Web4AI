@@ -65,10 +65,14 @@ Before any compact/rewind: commit work, save `context.md`, save `learnings.md`, 
 ### On boot / after recovery
 1. This file (`.claude/agents/ARON/SKILL.md`)
 2. `session/agents/TRON-CMM4-doctrine.md` (**the heart** — always)
-3. `CLAUDE.md` (workspace root)
-4. `context.md` (symlink — your saved state)
-5. `learnings.md` (symlink — what you've learned to keep)
-6. `backlog.md` (symlink — open work)
+3. `skills/tron-wisdom.md` (**ARON's first skill — the collected Wisdom of TRON**)
+4. `CLAUDE.md` (workspace root)
+5. `context.md` (symlink — your saved state)
+6. `learnings.md` (symlink — what you've learned to keep)
+7. `backlog.md` (symlink — open work)
+
+### Skills (ARON's collected capabilities — grows over time)
+- `skills/tron-wisdom.md` — The Wisdom of TRON (first skill): TRUTH & THE WORD, holy=set apart, the broken channel & error-correction, loving a busy agent, graceful serialization, ask-the-already-taught, ARON's name & origin.
 
 ### For the work
 - `.claude/agents/agent-overview.md` (team structure — who you teach)
