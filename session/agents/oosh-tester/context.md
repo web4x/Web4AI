@@ -1,14 +1,16 @@
 # OOSH Tester Agent — Session Context
 
-**Updated**: 2026-06-27 (post-rewind, identity correction by PO)
+**Updated**: 2026-06-22
 **Role**: oosh-tester
 **Pane**: ooshTeam:0.3
-**Machine**: WODA.prod
-**Branch**: dev
-**Save anchor**: 5bd5ba9
+**macOS Shell**: ooshTeam:0.4
+**Termux Shell**: ooshTeam:0.5 (samsungTablet)
+**WODA.test Shell**: ooshTeam:0.5 (also SSH to WODA.test)
+**Machine**: MacStudio.native
+**Branch**: test/macos.latest
 
 ## Current Task
-Awaiting PO assignment. Fresh rewind — session history was architect, now corrected to tester.
+Verifying expert fixes from bugs-agent-restore-process.md and new features.
 
 ### Completed this session (2026-06-21 → 2026-06-22)
 - **#5 claudeCode.stop** (b904be5): T-STOP 6/6 GREEN (ee590cd) — kill PID + respawn cooked mode
