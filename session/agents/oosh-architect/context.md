@@ -112,7 +112,7 @@ Requirement → UseCase → Class → Method → Implementation → Test
 - **Constructor Contract S-5 design** (3d9c92f): harvest-resolve-merge for no-loss self-healing init. config.repair = config.save alias.
 
 ## Active Sprints
-- **sprint-constructor-contract**: S-1 DONE, S-2 DONE (921f0c3), S-3 DONE (dab7685), S-5 DESIGN DONE (3d9c92f). S-4/S-5-impl/S-6/S-7/S-8/S-9 pending.
+- **sprint-constructor-contract**: S-1..S-6 DONE. **S-8 DONE** — T-CONSTRUCTOR 17/17 GREEN (e388c98+2f49d28). S-7 (heal live boxes) + S-9 (QA/dogfood) pending.
 - **sprint-team-migration**: 16/16 tests GREEN. Designs approved+implemented. Ready for merge-back + S-9 dogfood.
 
 ## Backlog
