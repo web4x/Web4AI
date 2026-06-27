@@ -1,15 +1,6 @@
-# Boot: unknown (identity detection failed)
-*Auto-generated 2026-06-10 19:08. Identity could not be determined.*
+# Boot: scrum-master@WODA.prod
+*Updated 2026-06-25. Identity confirmed via /rename.*
 
-## You are: unknown
-## Pane: robbinTeam2:0.3
-## Problem: Your role was not found in the roles registry or boot files.
-
-## Immediate actions (RECOVER IDENTITY FIRST):
-1. Check your pane: `tmux display-message -p '#{session_name}:#{window_index}.#{pane_index}'`
-2. Look for your context: `ls session/agents/` — find a directory matching your work
-3. Check if a peer knows your role: announce "Identity detection failed at robbinTeam2:0.3"
-4. Once you know your role, read `.claude/agents/<your-role>/SKILL.md`
-5. Update `session/agents/<your-role>/boot.md` with correct Pane line for next compact
-
-## Do NOT just "wait for assignment" — recover your identity first.
+## You are: scrum-master@WODA.prod
+## Pane: ooshTeam:0.1
+## Read: session/tasks/scrum-master-boot.md then session/agents/scrum-master/context.md
