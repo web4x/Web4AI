@@ -46,7 +46,7 @@ Create `docs/puml/config-lifecycle.puml` documenting:
 Write findings + any issues into this file. Commit the PlantUML. Ping oosh-po.
 
 ## Report-back (edit here)
-- Architect (review findings + puml commit): **DONE** 2026-06-27. Review + PUML below.
+- Architect (review findings + puml commit): **DONE** `8ee8564` (puml) + `8427057` (review). 9-point audit all correct. 3 minor gaps: GAP-1 config.add not idempotent (dup source lines, sort reorders), GAP-2 BASH_FILE conditional emit, GAP-3 config.save oosh/log ordering dependency. No silent-broken gaps — every init path ends valid. **PO disposition**: GAP-1 = expert fix (add grep guard); GAP-2+3 = accept as-is (trivial, edge-case only). S-12 DONE. **DONE** 2026-06-27. Review + PUML below.
 
 ### Review findings (oosh-architect, 2026-06-27)
 
