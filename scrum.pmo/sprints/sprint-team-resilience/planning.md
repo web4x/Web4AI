@@ -58,3 +58,9 @@ Per-pane PDCA, no for-loops hiding failures. Measure by PROCESS ARGS not session
 
 ## Report-back
 - per story owner:
+
+## S-3b RESTORE inherits STALE @host in customTitle (CMM3-verified 2026-06-27)
+When a trained session is RESTORED, its customTitle carries the OLD host (robbin agents resumed showing `robbin-X@MacStudio` / `@opus`, not `@WODA.prod`) → /rc lists them under the wrong host. The restore /rename to role@CURRENT-host did not land (slash cmd lost on loading sessions = S-3).
+- [ ] restore/teams.restore MUST set customTitle to `role@<currentHost>` and VERIFY it changed (re-measure customTitle == role@host; retry until it sticks) before declaring the agent restored
+- [ ] /rename reliability over ssh: send → verify customTitle changed → retry (do not fire-and-forget on a loading session)
+- [ ] T: restore a @MacStudio-titled session onto WODA.prod → customTitle becomes role@WODA.prod, /rc lists it under WODA.prod
