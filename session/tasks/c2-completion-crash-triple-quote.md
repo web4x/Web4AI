@@ -57,5 +57,5 @@ The file is RE-CORRUPTED on every Tab press (the pipeline re-runs), so manually 
 - [ ] Test: T-C2-QUOTE — write `'''` to current.method.env → c2 completion → no crash + file healed
 
 ## Report-back (edit here)
-- Expert (c2 fix + commit): **DONE** `f13f35d` — write guard (empty pipeline → SCRIPT+CLASS only, no `'''`), source guard (bash -n before source, broken file skipped). PO-verified: `otmux attach [Tab]` → zero errors, completion shows methods.
+- Expert (c2 fix + commit): **PARTIAL** `f13f35d` — crashes fixed (no `'''`), but completion returns `;` instead of session names. `completion.result.txt` contains literal `;`. `private.complete.sessions` works standalone (`otmux sessions` → correct list). Issue: during c2's completion subshell, the result pipeline produces `;` instead of session names. PO investigation: TMUX_CMD is set (otmux top), grep -v __test_ is clean, c2.install identical to macos.latest. **Expert: debug WHY `otmux.attach.completion.session` → `private.complete.sessions` returns `;` when called through c2 completion chain (not standalone). Check c2 line ~466 `grep "^$cur"` filter — is $cur set correctly? Is the completion function being called at all, or is c2 falling through to a default?**
 - Tester (T-C2-QUOTE): pending
