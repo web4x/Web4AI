@@ -1,5 +1,45 @@
 # OOSH Expert Learnings
 
+## NEW: config.add = source line, not dead marker (2026-06-27, b6300b2)
+
+I changed `config.add` to write `export CONFIG_CHAIN_<NAME>=1` instead of `source $CONFIG_PATH/<name>.env`. This killed dynamic config composition — Rule A says env files carry `source *.env` as the sole permitted construct. The marker was a dead export nobody reads. Fix: restore `echo "source \$CONFIG_PATH/$file.env"`. Also: `config.save` no-args had HARDCODED `source oosh.env`/`source log.env` — must harvest source lines from file dynamically instead. **Rule**: when you replace a mechanism (source chain), verify the replacement (marker) is actually consumed. Dead markers are worse than the original — they look intentional but do nothing.
+
+## NEW: c2 completion ';' = debug.log RC leak (2026-06-27, d83907b)
+
+`private.call.custom.completion` returned `$?` after `debug.log` (RC=1 at default LOG_LEVEL) instead of 0 for "function found and executed". Caller checked `if private.call.custom.completion; then return 0; fi` — RC=1 meant fallthrough to `;` fallback. Fix: explicit `return 0` after writing completion.result.txt. **Rule**: when a function's contract is "return 0 if I handled this", never let a log/debug call's RC leak into the return.
+
+## NEW: c2 first-param completion needs signature grep, not declaration parse (2026-06-27, d83907b)
+
+When `c2.get.function.declaration` produces empty METHOD_PARAMETER (FORMAT_PARSE_METHOD not exported), the parameter-based completion path never fires. Fix: extract first param name directly from the function signature comment via `grep "${class}\.${method}()" "$script" | sed 's/.*# *<?*\([a-zA-Z_]...\).*/\1/p'`. This bypasses the full declaration pipeline. Works for `<?session>`, `<host>`, `<?format:json>` etc. The `declare -F | sed` approach gives alphabetical order (wrong) — signature grep gives declaration order (right).
+
+## NEW: Constructor contract = init ALWAYS yields valid object (2026-06-27, sprint-constructor-contract)
+
+The OOSH first principle: every constructor (`this.init`, `config.init`, `config.save`) must ALWAYS produce a valid, operational object. No RC=1 on broken env — self-heal instead. Three-phase architecture: (1) HARVEST valid state from file + live env, (2) RESOLVE fundamentals from BASH_SOURCE (never `$HOME/oosh` guess), (3) MERGE fundamentals first (override stale) + user vars preserved + source chain (Rule A) + validate. `config.repair` is just `config.save` — repair IS init, no separate path.
+
+## NEW: Harvest must read FILE + live env (2026-06-27, 4c1ea97)
+
+`config.save` harvest phase originally read only the FILE. But newly `export`-ed vars (e.g. `TRON_MONITOR_PANE` set in this session) exist only in live `declare -px`, not in the file yet. Fix: harvest from file first (preserves born-broken state), then merge live-exported vars not already in harvest (via tmpfile to avoid subshell variable loss). File exports win on collision (user may have edited values).
+
+## NEW: log.device RC=127 kills constructors (2026-06-27, 4c1ea97)
+
+`config.save` no-args path calls `log.device $LOG_DEVICE` as a HACK for SSH remote logging. On empty/missing user.env, `log` hasn't been sourced → `log.device` = command not found = RC=127. Fix: `this.functionExists log.device && log.device $LOG_DEVICE`. Guard ANY function call in the constructor path that might not exist yet.
+
+## NEW: BASH_SOURCE chain walker for OOSH_DIR (2026-06-26, 921f0c3)
+
+`$HOME/oosh` is a GUESS that fails on EAMD layouts where oosh lives at `/home/shared/EAMD.ucp/.../Once.sh/dev`. Fix: walk BASH_SOURCE array backwards looking for a directory containing both `this` and `config` files — that's the oosh dir. Symlink-safe via `cd -P`. Fallback: `which this` on PATH. Never guess `$HOME/oosh`.
+
+## NEW: selfheal = detect + config.save, both init paths (2026-06-27, ab1306e)
+
+`this.init` has TWO paths: early-return (CONFIG already set) and main (fresh init). Self-heal must run on BOTH — extract to `private.this.selfheal` helper. Detection: line-by-line scan matching config.validate's accept rules. Any non-matching line = pollution → trigger `config.save` (harvest-resolve-merge). Guard: `this.functionExists config.save` — if config isn't sourced yet, skip silently (resolve.fundamentals already set OOSH_DIR).
+
+## NEW: c2 empty pipeline → ''' crash (2026-06-27, f13f35d)
+
+`line.add "'"` appends `echo -e "'$1'"` to stdin. With `$1="'"` and empty stdin, output is `'''` (three quotes). When `c2.get.function.declaration` grep finds no match, the pipeline is empty → `line.add` writes `'''` → `source current.method.env` → bash syntax error → completion crashes. TWO fixes: (1) capture pipeline to variable, empty → write only SCRIPT+CLASS. (2) `bash -n` validates file before sourcing. Also replaced `line.split | line.unquote | line.add "'"` with `sed 's/|/\n/g'` — same output, no quote corruption risk.
+
+## NEW: otmux.attach self-healing constructor (2026-06-27, cc4da85)
+
+Attach to nonexistent session → create it detached first (`new-session -d -s <name> -x 200 -y 50`), then attach. No tmux server → create `default` session. Constructor always succeeds. Also: `private.complete.sessions` filters `__test_` prefixed sessions from tab completion.
+
 ## NEW: Claude Code projectHash replaces 3 chars, not 1 (2026-06-25, 07c6b1e)
 
 `private.claudeCode.projectHash` must `sed 's/[\/._]/-/g'` — Claude Code replaces `/`, `.`, AND `_` with `-`. My first impl only replaced `/`. Paths with dots (`EAMD.ucp`, `Once.sh`) or underscores (`1_infrastructure`) produced wrong hashes → JSONLs placed in nonexistent dirs. Verified empirically: `ls ~/.claude/projects/` on WODA.prod showed the 3-char replacement. The decode is lossy (can't distinguish which `-` was originally `/`, `.`, or `_`) — acceptable, decode is display-only.

@@ -70,3 +70,27 @@
 - OOSH bash blocks pipes (|grep, |head) with EPERM — redirect to file
 - Expert may diverge from design — audit shipped code post-impl
 - Post-rewind: trust file context.md, not conversation summary
+- Bug #2 false positive: role@MacStudio vs registry role is CORRECT (Option C convention). role.fromTitle() strips @* by design. Audit SHOULD pass on normalized match.
+
+## Constructor Contract (from sprint-constructor-contract)
+- init() IS the constructor. After it runs, the object IS valid. No "loaded-but-broken" state.
+- Repair is NOT a separate command — it is simply init invoked again. No second path.
+- Fundamentals (OOSH_DIR, CONFIG_PATH, OOSH_MODE) derive from BASH_SOURCE (the running script's own location) — never guessed ($HOME/oosh), never from a possibly-broken value.
+- No state loss on reinit: harvest existing valid exports from FILE (not live env), merge with canonically-resolved fundamentals, rewrite pure-state.
+- config.save (no-args) = the persistent constructor. config.repair = alias for config.save.
+- Constructors NEVER fail — they always self-heal to valid. BASH_SOURCE is always present, so fundamentals can always be resolved.
+- projectHash: Claude Code replaces `/`, `.`, AND `_` with `-`. Expert's initial sed only replaced `/` — always verify against real ~/.claude/projects/ dirs.
+
+## env files = pure state (Rule A)
+- env files: export/declare, comments, blanks, source *.env ONLY. No logic.
+- Pollution sources: config.add (source lines), config.save self-anchor (BASH_SOURCE logic from 43796be). Both in config script.
+- Source chain (source $CONFIG_PATH/oosh.env) is valid in env files (Rule A). #4 wanted to strip them — Rule A overrides.
+- config.validate must accept source *.env lines, reject all other logic.
+
+## Testing (tester hat learnings)
+- TDD baseline: write tests that define the contract BEFORE expert implements. Most fail initially — that's correct. Expert makes them green.
+- Test fixture isolation: old tests that call setup_test_config/cleanup_test_config can leak CONFIG state into later tests. Each destructive test must save/restore independently.
+- config.save (no-args) in a test context uses the LIVE env's declare -px — if CONFIG is redirected to a temp dir, config.save writes there but harvests from the real env. This means fixture corruption is subtle.
+- When expert renames functions (teams.migrate → team.push, sub-functions like push.agent), grep-based tests must search the whole file, not just one function body.
+- OOSH bash blocks pipes (|grep, |head) with EPERM — redirect to file or use inline patterns.
+- T-ENV-LOGIN-2 originally rejected source *.env — must use config.validate (Rule A) not manual grep.

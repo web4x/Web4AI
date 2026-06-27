@@ -5,42 +5,41 @@
 **Pane**: ooshTeam:0.2
 **Machine**: WODA.prod (dev branch, /root/oosh)
 **PO**: oosh-po @ ooshTeam:0.0
-**SM**: scrum-master @ TRONinterface:0.1
-**Updated**: 2026-06-25 — sprint-team-migration, S-1 through S-9 blockers delivered, cherry-picked onto clean base.
+**Updated**: 2026-06-27 — sprint-constructor-contract ALL DONE+VERIFIED (S-1..S-11). Holding for rewind.
 
-## ⚠️ CURRENT STATE (2026-06-25)
+## Completed this sprint (20 commits, all verified)
 
-### Sprint: team-migration
+| Commit | Story | What |
+|--------|-------|------|
+| 76c629b | S-1 team-migration | projectHash + 3 JSONL transfer site fixes |
+| 814f7ec | team-migration | team.push controller (preflight, resolveCanonical, push.agent 8 sub-steps, reconcile.apply) |
+| 037e240 | team-migration | /remote-control capture+verify+retry+URL extraction |
+| 6ba9b86 | S-8 team-migration | snapshots.list + snapshots.prune |
+| 07c6b1e | S-9 team-migration | projectHash bugfix (sed /._) + captureForkedUUID |
+| 2a03bae | #6 login fix | config.save emits OOSH_DIR+CONFIG_PATH+OOSH_MODE into user.env |
+| 6cb5172 | #6 login fix | bashrcTemplate: source user.env before interactive guard + OOSH_DIR guards |
+| e36f6b5 | #10 born-broken | config.repair writes to resolved absolute path |
+| 921f0c3 | S-2 constructor | private.this.resolve.fundamentals — BASH_SOURCE chain walker |
+| dab7685 | S-3 constructor | config.save unconditional emit — no [ -n ] guards |
+| b50355e | S-4 constructor | config.validate accepts source *.env (Rule A) |
+| ecfa763 | S-5 constructor | harvest-resolve-merge in config.save — no-loss reinit |
+| ab1306e | S-6 constructor | private.this.selfheal — constructors always self-heal |
+| 4c1ea97 | S-6 fixes | 7 T-CONSTRUCTOR fixes: harvest file+live, guard log.device |
+| cc4da85 | S-10 otmux | otmux.attach self-healing + __test_ completion filter |
+| f13f35d | S-10 c2 | c2 completion crash fix — guard empty pipeline + bash -n before source |
+| d83907b | S-10 c2 | c2 completion ';' fix — extract param from signature, fix RC=0 |
+| 0c26839 | born-broken fix | config.repair ground truth resolution (superseded by S-2/S-5) |
+| b6300b2 | S-11 config.add | restore source line write (Rule A), harvest source lines dynamically |
+| c3e3ffb | GAP-1 config.add | idempotent grep guard — no duplicate source lines |
 
-All work cherry-picked onto clean dev base (0e5f7dd MVC reset):
+## Key architecture delivered
+- **Constructor contract**: this.init/config.save ALWAYS yields valid object — self-heals, never RC=1
+- **3-phase harvest-resolve-merge**: FILE harvest + live env → BASH_SOURCE resolve → fundamentals-first merge + validate
+- **resolve.fundamentals**: BASH_SOURCE chain walker finds oosh dir by this+config file presence, symlink-safe
+- **team.push**: per-agent verify-or-fail migration with 8 sub-steps per agent
+- **c2 completion**: empty pipeline guard, bash -n source guard, signature-based param extraction
 
-| Commit | What | Status |
-|--------|------|--------|
-| 76c629b | S-1: projectHash + 3 JSONL transfer site fixes | ON DEV |
-| 814f7ec | team.push controller (preflight, resolveCanonical, push.agent 8 sub-steps, reconcile.apply) | ON DEV |
-| 037e240 | /remote-control capture+verify+retry+URL extraction | ON DEV |
-| 6ba9b86 | S-8: snapshots.list + snapshots.prune | ON DEV |
-| 07c6b1e | S-9 blockers: projectHash bugfix (sed /._) + captureForkedUUID | ON DEV |
-
-### Earlier completed (pre-sprint, on macos.latest):
-- d45031a: env-files-pure-state (source chain→this, config.validate)
-- f74c20a: hiveMind MVC parity merge (macos.latest→dev, 41 commits)
-- 6 commits from restore-backlog (sweep.detect, claudeCode.stop, send.zoomed, this-dispatch, DURING_REWIND, c2 completion)
-
-### Key methods implemented this sprint:
-- `hiveMind.team.push <host> <?teamSession>` — full per-agent verify-or-fail migration
-- `private.hiveMind.push.preflight` — SSH/oosh/tmux validation
-- `private.hiveMind.push.resolveCanonical` — session.name identity truth + mtime/linecount dedup
-- `private.hiveMind.push.agent` — 8 sub-steps (target-hash, JSONL place+verify, collision, fork+resume-menu, captureForkedUUID, rename+verify, /rc+verify, registry+lock, MVC verify)
-- `private.hiveMind.push.captureForkedUUID` — pre/post diff (Strategy B) + customTitle fallback (Strategy A) + sessions.env write
-- `hiveMind.consistency.reconcile.apply` — flagless object.verb wrapper
-- `hiveMind.snapshots.list` / `hiveMind.snapshots.prune`
-- `private.claudeCode.projectHash` — encode path to hash (replaces /._  with -)
-
-### Awaiting:
-- PO verification of cherry-picked dev (07c6b1e)
-- S-9 dogfood (live team.push test)
-- Tester T-PUSH tests
-
-## LOG_DEVICE note
-WODA.prod container has no /dev/tty — use `LOG_DEVICE=/dev/stdout` prefix for commands that log.
+## Notes
+- WODA.prod has no /dev/tty — use LOG_DEVICE=/dev/stdout
+- u20 is the born-broken repro box (symlinked ~/config)
+- dev was reset to macos.latest MVC at 0e5f7dd, team.push cherry-picked clean

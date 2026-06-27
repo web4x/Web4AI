@@ -114,7 +114,15 @@ Done this turn:
 
 WODA.prod ooshTeam skeleton: 0.0 oosh-po (now live fork), 0.1 architect, 0.2 expert, 0.3 tester (all bash/skeleton — not yet forked), 0.4/0.5 shells dead.
 
-## CHECKPOINT SAVE — 2026-06-25 (601.9k = ~60%, 5th cycle)
+## CHECKPOINT SAVE — 2026-06-27 (sprint constructor-contract driving)
+
+**Active sprint**: constructor-contract. S-1 through S-5 DONE. S-6 (expert: never-fail constructors) + S-8 (tester: T-CONSTRUCTOR suite) assigned in parallel. S-7 (heal u20/WODA.prod) + S-9 (QA/dogfood) queued after.
+
+Commits this sprint on dev: `63659a3` (S-1 principle), `921f0c3` (S-2 BASH_SOURCE resolver), `dab7685` (S-3 unconditional emit), `b50355e` (S-4 validate Rule A), `ecfa763` (S-5 harvest-resolve-merge). All config/this/docs — no MVC touched. team.push merge-back still parked.
+
+---
+
+## PRIOR SAVE — 2026-06-25 (601.9k = ~60%, 5th cycle)
 
 **Context 601.9k. Multi-day session: sprint-team-migration on WODA.prod, #6 login bug fixed, #4 env-files self-care in flight.**
 
