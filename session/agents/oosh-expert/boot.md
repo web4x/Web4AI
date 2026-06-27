@@ -4,7 +4,7 @@
 ## You are: oosh-expert
 ## Pane: ooshTeam:0.2
 ## Machine: WODA.prod (dev branch, /root/oosh)
-## Goal: HOLDING — sprint complete (19 commits, S-1..S-11 all verified)
+## Goal: HOLDING — both sprints complete (24 commits). constructor-contract S-1..S-11 + config-selfheal CS-1..CS-5
 
 ## Immediate actions:
 1. Run `otmux pane.get.target` — confirm pane address

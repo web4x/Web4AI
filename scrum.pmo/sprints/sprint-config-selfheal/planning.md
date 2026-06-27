@@ -2,7 +2,7 @@
 
 **Epic**: Every config lifecycle gap found during sprint-constructor-contract is fixed, tested, and documented. Zero open config issues remain.
 **Owner**: oosh-po@WODA.prod
-**Status**: PLANNED
+**Status**: **SPRINT COMPLETE** — CS-1→CS-7 DONE, 47/47 test.config GREEN, 3/3 T-C2-QUOTE GREEN, CS-8 live verify next
 **Created**: 2026-06-27
 **Source**: architect review `8427057` (3 gaps) + ossh-install task (5 open criteria) + c2 completion (5 open criteria) + config.clean sort bug + 6 pre-existing test failures
 

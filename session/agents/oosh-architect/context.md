@@ -111,9 +111,10 @@ Requirement → UseCase → Class → Method → Implementation → Test
 - **Constructor Contract S-1** (63659a3 on dev): constructor-contract principle as FIRST Philosophy bullet in first-principles.md. QA-approved.
 - **Constructor Contract S-5 design** (3d9c92f): harvest-resolve-merge for no-loss self-healing init. config.repair = config.save alias.
 
-## Active Sprints
-- **sprint-constructor-contract**: S-1..S-6 DONE. **S-8 DONE** — T-CONSTRUCTOR 17/17 GREEN (e388c98+2f49d28). S-7 (heal live boxes) + S-9 (QA/dogfood) pending.
-- **sprint-team-migration**: 16/16 tests GREEN. Designs approved+implemented. Ready for merge-back + S-9 dogfood.
+## Completed Sprints
+- **sprint-constructor-contract**: **COMPLETE.** My deliverables: S-1 principle (63659a3), S-5 harvest-resolve-merge design (3d9c92f), S-12 lifecycle review + PUML (8ee8564+8427057). S-8 tester hat: T-CONSTRUCTOR 17/17 GREEN (e388c98+2f49d28). 3 minor gaps found, all fixed.
+- **sprint-team-migration**: **COMPLETE.** My deliverables: team.push choreography (dd3272e), S-1 projectHash review (c73137a, BUG found), S-6 UUID-capture spec (c73137a). Tester hat: T-PUSH 16/16 GREEN.
+- **sprint-config-selfheal**: **COMPLETE.** Tester hat: CS-6 T-C2-QUOTE 3/3 GREEN + CS-7 T-ENV-INSTALL 6/6 GREEN (53729c0). Full test.config 47/47 GREEN.
 
 ## Backlog
 - H1.3: hiveMind use case PUML

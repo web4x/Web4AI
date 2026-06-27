@@ -94,3 +94,13 @@
 - When expert renames functions (teams.migrate → team.push, sub-functions like push.agent), grep-based tests must search the whole file, not just one function body.
 - OOSH bash blocks pipes (|grep, |head) with EPERM — redirect to file or use inline patterns.
 - T-ENV-LOGIN-2 originally rejected source *.env — must use config.validate (Rule A) not manual grep.
+- c2 completion crash: ''' written into current.method.env makes it un-sourceable. Fix: bash -n syntax check before source. Test: inject broken quotes, verify no crash + file valid after.
+
+## Config Lifecycle (from S-12 review)
+- config.init = in-memory constructor (resolve + set vars). config.save (no-args) = persistent constructor (harvest-resolve-merge + write). Two constructors, same contract.
+- Harvest reads from FILE first (survives born-broken), then live env (captures new vars). File wins for user state preservation.
+- config.add NOT idempotent: appending then sort -u can reorder lines. Guard with grep before append.
+- config.save oosh/log after merge depends on resolve.fundamentals having primed OOSH_* — ordering implicit, works but fragile.
+- PlantUML activity diagrams with swimlanes work well for multi-script lifecycle flows.
+- Integration tests (T-ENV-INSTALL) must cover the full lifecycle: fresh emit, corrupt→heal, never-prompt, never-fail (RC=0 on all broken inputs), subshell roundtrip. These are the acceptance criteria from the spec, not just unit checks.
+- When testing config.save on corrupted input, config.save uses LIVE env vars (still set in shell) to resolve fundamentals — so it can heal even when the FILE is garbage. This is by design (harvest-resolve-merge).
