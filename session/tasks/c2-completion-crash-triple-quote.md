@@ -57,5 +57,5 @@ The file is RE-CORRUPTED on every Tab press (the pipeline re-runs), so manually 
 - [ ] Test: T-C2-QUOTE — write `'''` to current.method.env → c2 completion → no crash + file healed
 
 ## Report-back (edit here)
-- Expert (c2 fix + commit):
-- Tester (T-C2-QUOTE):
+- Expert (c2 fix + commit): **DONE** `f13f35d` — write guard (empty pipeline → SCRIPT+CLASS only, no `'''`), source guard (bash -n before source, broken file skipped). PO-verified: `otmux attach [Tab]` → zero errors, completion shows methods.
+- Tester (T-C2-QUOTE): pending

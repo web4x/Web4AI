@@ -160,10 +160,11 @@ One suite proving the contract: born-broken→init→valid+zero-loss; idempotent
 
 ### S-10: c2 completion crash — triple-quote corruption in current.method.env (expert)
 Tab completion crashes for ALL oosh commands when c2 writes `'''` to current.method.env (empty pipeline → line.add wraps nothing). Guard the write (empty pipeline → empty file, not `'''`) + guard the source (bash -n or truncate-and-continue on broken content). Spec: `session/tasks/c2-completion-crash-triple-quote.md`.
-- [ ] c2 write guard: empty pipeline → valid empty file
-- [ ] c2 source guard: broken file → self-heal, never crash
-- [ ] T-C2-QUOTE: inject `'''` → completion → no crash + file healed
-- Status: IN PROGRESS — expert assigned
+- [x] c2 write guard: empty pipeline → SCRIPT+CLASS only, no `'''` (`f13f35d`)
+- [x] c2 source guard: bash -n before source, broken file skipped (`f13f35d`)
+- [x] PO-verified: `otmux attach [Tab]` → zero errors, completion works
+- [ ] T-C2-QUOTE: tester to cover
+- Status: **S-10 DONE** (`f13f35d`)
 - Owner: oosh-expert + oosh-tester
 
 ### S-9: QA + dogfood (PO)
