@@ -1,9 +1,9 @@
 # oosh-architect Context
 
-**Updated**: 2026-06-19 (pre-rewind save)
+**Updated**: 2026-06-27 (SM-requested save)
 **Role**: oosh-architect @ ooshTeam:0.1
-**Machine**: MacStudio
-**Session name**: oosh-architect@MacStudio
+**Machine**: WODA.prod (v60211)
+**Session name**: oosh-architect@WODA.prod
 
 ## Identity
 I am the OOSH framework architect. I design systems — I do NOT implement, test, or monitor. I create PlantUML diagrams, ADRs, design specs, and review expert implementations. TRON directives override my recommendations.
@@ -102,6 +102,18 @@ Requirement → UseCase → Class → Method → Implementation → Test
 - Kernel bug design: problem.log NEVER sets STEP_DEBUG. 4 sites in log script (117, 206, 230, 253) all need STEP_DEBUG=ON removed. Logger ≠ debugger. this.load: optional methods (status/usage/help) = silent return 0.
 - Bug triage: 7 restore-process bugs triaged for Sprint 0. HIGH: list filter, UUID completion, claudeCode stop, send prefix guard. MEDIUM: age sort. LOW: menu nav (doc), zoom helper.
 - config.save EPERM fix: routed to expert (implementation, not architecture).
+
+### Since Jun 22 (WODA.prod era)
+- **ENV-PURE-STATE analysis**: traced 2 pollution sources in user.env. Design: source chain → this, config.validate guard. DONE.
+- **team.push choreography** (dd3272e): full 8-section controller design. All 13 migration learnings mapped. APPROVED, implemented (9d48bd0+ee12cde), 7/7 tests GREEN.
+- **S-1 projectHash review** (c73137a): BUG found — sed misses `.` and `_` replacement. Fix: `s/[\/._]/-/g`.
+- **S-6 UUID-capture-on-fork spec** (c73137a): captureForkedUUID — pre/post fork diff + sessions.env write. Closes GAP#12.
+- **Constructor Contract S-1** (63659a3 on dev): constructor-contract principle as FIRST Philosophy bullet in first-principles.md. QA-approved.
+- **Constructor Contract S-5 design** (3d9c92f): harvest-resolve-merge for no-loss self-healing init. config.repair = config.save alias.
+
+## Active Sprints
+- **sprint-constructor-contract**: S-1 DONE, S-2 DONE (921f0c3), S-3 DONE (dab7685), S-5 DESIGN DONE (3d9c92f). S-4/S-5-impl/S-6/S-7/S-8/S-9 pending.
+- **sprint-team-migration**: 16/16 tests GREEN. Designs approved+implemented. Ready for merge-back + S-9 dogfood.
 
 ## Backlog
 - H1.3: hiveMind use case PUML
