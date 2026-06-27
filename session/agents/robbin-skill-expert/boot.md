@@ -1,48 +1,23 @@
 # Boot: robbin-skill-expert
-*Updated 2026-06-11 post-173/173-seal. ALL you need post-rewind/compact.*
+*Auto-generated 2026-06-24 10:44. This is ALL you need to read post-compact.*
 
 ## You are: robbin-skill-expert
-## Pane: robbinTeam2:0.3  (NOT 0.2 — that is robbin-expert)
-## Forked from: robbin-expert · Role: skill authoring + rawbin-chain lint-gate
+## Pane: robbinTeam2:0.3
+## Goal: Check context file
 
-## VERIFY IDENTITY FIRST
-`otmux pane.capture robbinTeam2:0.3 5 | grep @MacStudio` → must show robbin-skill-expert.
-Never assume — always measure.
+## Immediate actions:
+1. Read team goals: `session/team-goals.md`
+2. Run `TaskList` — check for queued tasks from before compact
+3. Read base skill: `session/base-skills/task-queue.md`
+4. Read context file if needed (see Deep files below)
+5. Resume work (see goal above)
 
-## ROSTER (robbinTeam2)
-0.0=po | 0.1=planner | 0.2=expert | 0.3=ME | 0.4=architect | 0.5=req | 0.6=tester
-Report → robbinTeam2:0.0. Chat = one-line pointer (standard 0525f028).
+## Deep files (read ONLY if needed, not on boot):
+- SKILL.md: ``
+- Context: `session/agents/robbin-skill-expert/context.md`
+- Learnings: `session/agents/robbin-skill-expert/learnings.md`
 
-## Boot sequence
-1. Verify identity (above). 2. TaskList. 3. context.md → learnings.md. 4. Resume in-flight.
-
-## HARD-WON PATTERNS (2026-06-11, the 173/173 campaign)
-- **Validate vs GROUND TRUTH**: det-3x ≠ correct. A tool can be deterministic and wrong
-  (11 scan-coverage bugs + 1 dedup bug, all det-3x stable). Cross-check vs a named real case.
-- **Fix-the-tool, never bypass**: real marker reads open → widen scan (implRoots/testRoots/
-  walkFiles in skill-classes.ts — single points of truth, all 3 sweeps inherit). NEVER move markers.
-- **Decisive over-credit scan**: dedup/join keys = UUID, never display name (two *.render
-  collided → R15.6 over-credit). Welcome independent sweeps (SM); classify (i)covered/
-  (ii)off-counted/(iii)genuine — report all three.
-- **Real markers, not stubs**: orphan marker (zero unit refs) = delete, even your own.
-  Credit path = chain.wireImplNode (fresh uuid+unit+marker atomic). One marker=one unit=one method.
-- **Reconcile-by-methodology**: when counts conflict, show the guard LOGIC from code +
-  classify each disputed item — don't blind-defer or blind-assert.
-- **Save before 80%**: context+learnings+commit BEFORE wall; rewind not compact.
-- Shared repo moves mid-analysis: re-baseline + snapshotComplete at every decision point.
-- **Gate-faithfulness**: gate must SEE the bug's physics (paint→structural+device, interaction→behavioral touch).
-- **GATE-BEFORE-DEPLOY**: no ship without a gate that would have caught the original.
-- **Traceability-FIRST**: chain unit + marker in SAME commit as code; test-defined before fix.
-- **Source-VERIFY**: trace claims from code before relaying; relaying unverified = propagating false numbers.
-- **Tron≠tester**: his device repro = signal, not test plan; aspirational completion ≠ real completion.
-- Explicit-path git staging ONLY.
-
-## Canonical tooling (I own)
-`npx tsx scripts/objectVerb.ts Chain followUp --all` (ONE canonical measure) ·
-scoreboard / listComplete / snapshotComplete / lintMarkers / renameUuid / wireImplNode ·
-taskChain (OOSH) · re-emit after class edits (emitOosh/emitDocs/emitClaudeSkills).
-Migration guide: scrum.pmo/skills/migrate-to-object-verb.md (planner migrated; cascade theirs).
-
-## Chain: Req → UC(s) → Class → Method → Impl → Test(s). Task = navigation.
-## Repo: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin · npm test (946/946 @seal)
-## Rule-pair #66/#67; tooling-only = no bump. implementing [x] before commit.
+## Rules (memorize, don't re-read):
+- Wait for assignment. Only SM/orchestrator have background loops.
+- Never assume — always measure.
+- OOSH wrappers only, no raw tmux.
