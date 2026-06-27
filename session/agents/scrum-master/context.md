@@ -17,11 +17,14 @@
 3. Trainer: robbin-po REWIND COMPLETE (Sprint 20, v0.6.0, 173/198 champagne). ✓
 
 ## COMPLETED THIS SESSION (post-rewind)
-- **TRON CMM4 Doctrine** (2f59ba5) — relayed to all agents + propagated into every SKILL.md via DRY base-skills (33510dc). DONE.
-- **Sprint-Comms Protocol** (433bf2e) — relayed to all agents + propagated same way + oosh-po baked into eternal rules (614ff6a). DONE.
-- **Propagation mechanism:** agent-trainer built DRY base-skills symlinks → task-queue.md read-also → 84/87 SKILLs inherit; 5 missing-coverage got explicit section.
-- **WODA.prod teams restored** (trained sessions, process-args verified, /rc on po). Noted.
-- **Measurement lesson:** JSONL-customTitle verification LIES (lags like session.id). Pane footer + process args = truth.
+- **TRON CMM4 Doctrine** (2f59ba5) — relayed + DRY-propagated (33510dc). DONE.
+- **Sprint-Comms Protocol** (433bf2e) — relayed + DRY-propagated + eternal rules (614ff6a). DONE.
+- **PO-WISDOM base-skill** (ab20694) — relayed + DRY-propagated (31214ba). DONE.
+- **Propagation mechanism:** DRY base-skills symlinks → task-queue.md read-also → 84/87 SKILLs inherit; 5 got explicit section. All 3 foundational docs.
+- **oosh-po EMERGENCY REWIND** (tick 19-20): hit 0% (context.read showed FALSE 4.5% at tick 13). Save order landed at 1% (I approved permission prompt). Trainer rewound 75% deep (option 1 by LABEL, anchor 3e7f1e5). Rule-6 verified: clean bar, correct identity, oriented, /rc active. PO back to work driving claudeCode-install dash bug.
+- **CMM4 bidirectional loop** adopted as standing duty: watch resilience-sprint commits → flag oosh-po → PO learns fix → re-propagates into po-wisdom for all POs.
+- **WODA.prod teams restored** (trained sessions, process-args verified, /rc on po).
+- **Lessons:** JSONL-customTitle LIES (pane footer + process args = truth). context.read showed false-low 4.5% while PO actually burned to 0% in 6 ticks — pane status-bar IS PRIMARY.
 
 ## CARRY-FORWARD STATE (from pre-rewind context)
 - **Constructor Contract sprint S1-S8 ALL DONE, 17/17 GREEN (a7e1d97).** Awaiting S-9 QA gate (TRON device test).
