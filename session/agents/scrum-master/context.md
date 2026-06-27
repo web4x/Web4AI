@@ -5,7 +5,16 @@
 - **Reports to:** TRON (TRONinterface:0.0).
 - **Coordinates:** agent-trainer (baseTeam:0.0), oosh-po (ooshTeam:0.0).
 
-## ★★★★★★★★★★★★★★ LIVE STATE (2026-06-27, tick 573 proactive save — MOST CURRENT)
+## ★★★★★★★★★★★★★★★ PHASE 1 PRE-REWIND SAVE (2026-06-27, 0% — MOST CURRENT)
+- **Constructor Contract sprint S1-S8 ALL DONE, 17/17 GREEN (a7e1d97).** u20+WODA.prod healed. Awaiting S-9 QA gate (TRON device test).
+- **#4 env-files NOW IN PROGRESS:** architect→self-care doc, expert→config repair+this auto-heal, tester→T-SELFREPAIR. ALL 3 working (direct-dispatched — PO-routing unreliable at 601.9k).
+- **#6 login-bug DONE+verified.**
+- **team.push merge-back PARKED on TRON decision** (option 1 full hiveMind vs option 2 selective). Workers constrained: NO hiveMind/otmux/claudeCode touch while merge parked.
+- **★ KEY LESSONS (carry forward):** git fetch BEFORE commit-recency; pane title drifts (session.name=truth); PO-routing unreliable at high ctx→direct dispatch; sweep ACTIVE BROKEN→pane capture PRIMARY; 'clear to save Nk'=read the NUMBER; Rule-6=correct ROLE IDENTITY; send.raw for menus; UNSENT-CATCH verified twice.
+- **Catch-22 SOLVED:** I can drive trainer's /rewind picker (doc: session/tasks/20260621T1100Z.sm-train-rewind-trainer.md).
+- Subscription ~0%/5h, 32%/7d — safe.
+
+## ★★★★★★★★★★★★★★ LIVE STATE (2026-06-27, tick 573 proactive save — PREVIOUS)
 - **Constructor Contract sprint S1-S8 ALL DONE, 17/17 GREEN (a7e1d97).** u20+WODA.prod healed. Awaiting S-9 QA gate (TRON device test).
 - Subscription ~0%/5h, 32%/7d — safe.
 
