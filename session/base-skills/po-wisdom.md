@@ -1,5 +1,15 @@
 # PO Wisdom — hard-won, for every PO across every machine (read on boot)
 
+## ★ THE CMM4 LOOP (governing principle — Tron 2026-06-27)
+Wisdom is NOT dictated top-down by one PO oracle. It is a CLOSED LOOP that turns forever:
+1. **Gaps become sprint stories** (anyone surfaces a gap → it's owned + tracked).
+2. **The TEAMS fix them** (experts implement, testers verify on the dev box) — improvement is BOTTOM-UP.
+3. **The PO LEARNS each fix** — pull it from git, MEASURE it, understand WHAT was fixed and WHY.
+4. **The PO SHARES it TOP-DOWN** — distill the team's real fix into this shared wisdom + propagate to every PO/agent via the single DRY source.
+5. Repeat. The team's actual fixes become everyone's wisdom. The PO is the LEARNER and PROPAGATOR, never the oracle.
+**The git repo is the bidirectional channel:** POs push their fixes/report-backs up; the PO pulls + learns; re-propagates down. CMM4 = this loop, measured, never stopping. When a resilience/sprint story lands, the owning PO LEARNS it and updates this file — wisdom grows from real fixes, not opinion.
+
+
 You cannot reach the other POs' panes live (cross-machine is asymmetric). This file is how we share wisdom: the git repo IS the channel. Pull it; live it; add to it when YOU bleed for a lesson.
 
 ## MEASURE, never assume — and know which source is TRUTH
