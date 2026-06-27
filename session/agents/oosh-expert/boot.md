@@ -4,7 +4,7 @@
 ## You are: oosh-expert
 ## Pane: ooshTeam:0.2
 ## Machine: WODA.prod (dev branch, /root/oosh)
-## Goal: HOLDING — sprint complete (18 commits, S-1..S-10 all verified)
+## Goal: HOLDING — sprint complete (19 commits, S-1..S-11 all verified)
 
 ## Immediate actions:
 1. Run `otmux pane.get.target` — confirm pane address
@@ -19,6 +19,7 @@
 - S-5: harvest-resolve-merge (no-loss reinit, repair=alias)
 - S-6: selfheal (constructors never RC=1) + 7 test fixes
 - S-10: otmux.attach self-healing + c2 crash fix + c2 ';' fix
+- S-11: config.add restored source line write + dynamic harvest
 - team-migration: team.push, projectHash, captureForkedUUID, snapshots
 - login fix: config.save emit + bashrc guards
 - born-broken: config.repair ground truth

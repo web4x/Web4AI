@@ -5,9 +5,9 @@
 **Pane**: ooshTeam:0.2
 **Machine**: WODA.prod (dev branch, /root/oosh)
 **PO**: oosh-po @ ooshTeam:0.0
-**Updated**: 2026-06-27 — sprint-constructor-contract ALL DONE+VERIFIED (S-1..S-10). Holding.
+**Updated**: 2026-06-27 — sprint-constructor-contract ALL DONE+VERIFIED (S-1..S-11). Holding for rewind.
 
-## Completed this sprint (18 commits, all verified)
+## Completed this sprint (19 commits, all verified)
 
 | Commit | Story | What |
 |--------|-------|------|
@@ -29,6 +29,7 @@
 | f13f35d | S-10 c2 | c2 completion crash fix — guard empty pipeline + bash -n before source |
 | d83907b | S-10 c2 | c2 completion ';' fix — extract param from signature, fix RC=0 |
 | 0c26839 | born-broken fix | config.repair ground truth resolution (superseded by S-2/S-5) |
+| b6300b2 | S-11 config.add | restore source line write (Rule A), harvest source lines dynamically |
 
 ## Key architecture delivered
 - **Constructor contract**: this.init/config.save ALWAYS yields valid object — self-heals, never RC=1

@@ -1,5 +1,9 @@
 # OOSH Expert Learnings
 
+## NEW: config.add = source line, not dead marker (2026-06-27, b6300b2)
+
+I changed `config.add` to write `export CONFIG_CHAIN_<NAME>=1` instead of `source $CONFIG_PATH/<name>.env`. This killed dynamic config composition — Rule A says env files carry `source *.env` as the sole permitted construct. The marker was a dead export nobody reads. Fix: restore `echo "source \$CONFIG_PATH/$file.env"`. Also: `config.save` no-args had HARDCODED `source oosh.env`/`source log.env` — must harvest source lines from file dynamically instead. **Rule**: when you replace a mechanism (source chain), verify the replacement (marker) is actually consumed. Dead markers are worse than the original — they look intentional but do nothing.
+
 ## NEW: c2 completion ';' = debug.log RC leak (2026-06-27, d83907b)
 
 `private.call.custom.completion` returned `$?` after `debug.log` (RC=1 at default LOG_LEVEL) instead of 0 for "function found and executed". Caller checked `if private.call.custom.completion; then return 0; fi` — RC=1 meant fallthrough to `;` fallback. Fix: explicit `return 0` after writing completion.result.txt. **Rule**: when a function's contract is "return 0 if I handled this", never let a log/debug call's RC leak into the return.
