@@ -47,4 +47,4 @@ This is Rule A: env files contain state + `source *.env` as the sole permitted c
 - [ ] Round-trip: config.add custom → config.save → custom source line survives
 
 ## Report-back
-- Expert (fix + commit):
+- Expert (fix + commit): **DONE** `b6300b2` — config.add writes source line, config.save harvests dynamically. PO-verified: `config list` shows source lines, `config validate` RC=0.
