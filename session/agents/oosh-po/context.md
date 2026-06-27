@@ -115,7 +115,21 @@ Done this turn:
 
 WODA.prod ooshTeam skeleton: 0.0 oosh-po (now live fork), 0.1 architect, 0.2 expert, 0.3 tester (all bash/skeleton — not yet forked), 0.4/0.5 shells dead.
 
-## CHECKPOINT SAVE — 2026-06-27 (sprint constructor-contract driving)
+## CHECKPOINT SAVE — 2026-06-27 (BOTH SPRINTS COMPLETE, post-task cadence)
+
+**TWO sprints delivered this session:**
+
+**Sprint constructor-contract** (COMPLETE): S-1→S-12 done, S-9 QA+dogfood passed on u20 (born-broken→init→valid+zero-loss), #10/#11 closed. Key commits on dev: 63659a3 (principle), 921f0c3 (BASH_SOURCE), dab7685 (emit), b50355e (validate), ecfa763 (harvest-resolve-merge), ab1306e+4c1ea97 (never-fail), f13f35d+d83907b (c2 completion), b6300b2+c3e3ffb (config.add restored+idempotent), 8ee8564 (PlantUML).
+
+**Sprint config-selfheal** (COMPLETE): CS-1→CS-8 done. d583281 (clean order), 2bfc88b (BASH_FILE), 91bfd14 (ordering guard), bf674b9 (install validate gate), 53729c0 (T-C2-QUOTE+T-ENV-INSTALL). 47/47 test.config GREEN, 3/3 T-C2-QUOTE GREEN. Both live boxes verified clean.
+
+**Post-task cadence**: all 3 agents saved (ddabd29/5bd5ba9), trainer rewinding them. SM updated with core skill: keep PO+trainer healthy (42 pair). SM checking MY context now.
+
+**Core PO skill added (Tron directive)**: after EVERY task — agents save ctx+learnings → PO orders trainer rewind → agents come back fresh.
+
+---
+
+## PRIOR SAVE — 2026-06-27 (sprint constructor-contract driving)
 
 **Active sprint**: constructor-contract. S-1 through S-5 DONE. S-6 (expert: never-fail constructors) + S-8 (tester: T-CONSTRUCTOR suite) assigned in parallel. S-7 (heal u20/WODA.prod) + S-9 (QA/dogfood) queued after.
 
