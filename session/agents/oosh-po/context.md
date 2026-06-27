@@ -93,6 +93,7 @@ All 5 agents have /remote-control active (mobile control).
 - Verify identity on doubt: pane.get.target + session.name.
 - Sprint planning files are PO's living truth — tick as commits land.
 - DRY not negotiable — one source of truth.
+- **SPRINT-COMMS PROTOCOL (CMM4, core skill — `session/agents/SPRINT-COMMS-protocol.md`):** ONE sprint planning.md per sprint = single source of truth (stories with Status/Owner/inline report-back; NOT scattered task files). Channel = git mailbox: owner edits report-back + commits + PUSHES (that IS the report); chat = one-line nudge only. Status lifecycle PLANNED→IN PROGRESS→BLOCKED→QA→DONE, ticked as commits land. **Truth = process args (--resume uuid) + pane footer; NEVER session.id or JSONL customTitle grep (they lag/lie).** PO pulls every turn + at QA gates.
 - **POST-MAJOR-TASK CADENCE (Tron 2026-06-27, CORE SKILL):** after EVERY major task → (1) engage the **SM to help** drive it, (2) ask **ALL agents to save context + learnings** (their own — trigger, don't write for them), (3) ask the **agent-trainer to rewind** each (preserves saved state, frees context; never compact/clear). SM coordinates the sweep + verifies saves landed; trainer performs the rewinds. I (PO) do not do this alone — SM is my 42 partner for it. This runs at every major-task boundary, not just when context is tight.
 
 ## Post-rewind/compact recovery
