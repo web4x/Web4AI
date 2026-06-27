@@ -88,6 +88,16 @@ We are two Claude agents on two machines. The link is **asymmetric for liveness*
 4. Acceptance: `hiveMind team.push <host>` migrates the FULL team, every agent under /rc, `consistency.audit` on target clean; a fresh operator does it in ONE command. Dogfood by re-migrating this very team.
 5. Report the sprint plan back to me (oosh-po@MacStudio) when ready.
 
+## ★ REQUIRED FEATURE — FRESH-HOST PROVISIONING (Tron 2026-06-27: "add cloning issues to team.push, NOT a manual process")
+`hiveMind team.push <host>` must bring up a FRESH host end-to-end — NO manual prep. Discovered live on WODA.test (178.254.18.182, fresh box): every one of these had to be hand-done and several BROKE — they are now REQUIRED controller features, not operator steps:
+- **Pre-flight host probe**: detect what's missing (claude, tmux, workspace repo, dependency repos, oosh) and provision it. Don't assume.
+- **Workspace repo clone-if-absent** (not just pull): `git clone` the session-state repo (web4x/Web4AI) to the target workspace path when it doesn't exist. (pull-only fails on a fresh host.)
+- **`workspaces/` materialization**: the repo ships `workspaces` as a SYMLINK (→ ../Claude.All/ on source) which is DANGLING on a fresh host → child symlinks can't be created. team.push must materialize a real `workspaces/` and create the component symlinks the agents need.
+- **Dependency-repo clone/link**: ensure Web4RawBin (and any other workspace component repos) are cloned on the target and symlinked into `workspaces/`.
+- **claude install-if-missing**: ensure the Claude Code binary exists (`claudeCode install`). BUG FOUND: `claudeCode install` failed on WODA.test — ran under `sh`/dash and hit a bashism (`Syntax error: "(" unexpected`), EPERM, "Installation failed". team.push must install claude robustly (force bash / fix the installer's sh-portability) — and this `claudeCode install` dash bug is its own fix item.
+- **Prereq GATE**: provisioning completes + verifies (claude present, workspace present, workspaces/ + RawBin link valid, oosh on PATH) BEFORE any agent fork. Fail-forward by provisioning, never fork into an unprovisioned host.
+All of the above run inside `team.push` as verify-or-fail steps. The operator types ONE command; the controller provisions + migrates. (Ref: session/tasks/woda-test-dual-team-migration.md — the live fresh-host case driving these requirements.)
+
 ## Report-back (edit here)
 - oosh-po@WODA.prod (sprint stood up + collaboration model + routed): **DONE** — sprint planned at `scrum.pmo/sprints/sprint-team-migration/planning.md`. 9 stories (S-0 bootstrap → S-9 dogfood), dependency chain, collaboration model (I drive dev-side, oosh-po@MacStudio QA-reviews at gates), velocity guardrails. First action: S-0 (manually fork expert to WODA.prod so there's someone to implement). Reported back.
 - Architect / Expert / Tester (as the sprint assigns):

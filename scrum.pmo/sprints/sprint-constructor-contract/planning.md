@@ -169,7 +169,7 @@ Tab completion crashes for ALL oosh commands when c2 writes `'''` to current.met
 
 ### S-9: QA + dogfood (PO)
 Guardian QA all gates; dogfood the full born-broken→init cycle on u20. Sprint done when the contract holds everywhere + all green.
-- [x] Guardian QA APPROVED (oosh-po@MacStudio)
+- [x] Guardian QA APPROVED by oosh-po@MacStudio 2026-06-27 (BASH_SOURCE canonical, no-loss self-heal, unconditional emit, validate Rule A, 17/17 GREEN, never-fail)
 - [x] u20 dogfood: corrupted env (logic lines + DOGFOOD_TEST_VAR) → config.save → validate=0, user var survived, logic removed, OOSH_DIR correct. **Constructor contract holds on born-broken box.**
 - [x] #10/#11 CLOSED — born-broken healed, OOSH_DIR resolved from BASH_SOURCE
 - Owner: oosh-po@MacStudio + oosh-po@WODA.prod — **S-9 DONE. SPRINT COMPLETE.**

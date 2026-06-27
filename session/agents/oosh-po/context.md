@@ -93,6 +93,7 @@ All 5 agents have /remote-control active (mobile control).
 - Verify identity on doubt: pane.get.target + session.name.
 - Sprint planning files are PO's living truth — tick as commits land.
 - DRY not negotiable — one source of truth.
+- **POST-MAJOR-TASK CADENCE (Tron 2026-06-27, CORE SKILL):** after EVERY major task → (1) engage the **SM to help** drive it, (2) ask **ALL agents to save context + learnings** (their own — trigger, don't write for them), (3) ask the **agent-trainer to rewind** each (preserves saved state, frees context; never compact/clear). SM coordinates the sweep + verifies saves landed; trainer performs the rewinds. I (PO) do not do this alone — SM is my 42 partner for it. This runs at every major-task boundary, not just when context is tight.
 
 ## Post-rewind/compact recovery
 1. Read this context.md + learnings.md (session/agents/oosh-po/)
