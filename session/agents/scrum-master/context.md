@@ -11,10 +11,17 @@
 - **ooshTeam ALL IDLE** (po, architect, expert, tester at prompt). Agent-trainer ACTIVE (reading).
 - **Subscription: 19%/5h, 35%/7d — safe.**
 
-## MISSED MESSAGES (received during 0% — relaying now)
-1. **TRON:** "all looks good. i agree on survival mode on 80% of weekly limit. but give all agents a budget." → Already in my doctrine. ACKNOWLEDGED.
-2. **TRON:** "relive the survival mode for the regression that url files do not open the drawer." → **URL-files-don't-open-drawer regression** = ACTIVE TRON DIRECTIVE. Context: Sprint 20, url-drawer regression (862868bfe partial-commit). Test-first: req capture → tester RED test → expert fix → GREEN → gate-before-deploy.
-3. **Trainer:** robbin-po REWIND COMPLETE — 0% no-save, anchor 1d9a4c6 v0.6.0 milestone, Phase 2 65% of 472 msgs, 4-option menu option 1 BY LABEL, PO recovered fully with full sprint state at v0.6.0/18 rooms/173/198 champagne. Sprint 20 starting Test-first.
+## MISSED MESSAGES (received during 0% — ALL PROCESSED)
+1. TRON survival@80% weekly + budgets — in doctrine. ✓
+2. TRON url-drawer regression — OPEN directive, no team to execute (robbinTeam2 gone). Awaiting TRON.
+3. Trainer: robbin-po REWIND COMPLETE (Sprint 20, v0.6.0, 173/198 champagne). ✓
+
+## COMPLETED THIS SESSION (post-rewind)
+- **TRON CMM4 Doctrine** (2f59ba5) — relayed to all agents + propagated into every SKILL.md via DRY base-skills (33510dc). DONE.
+- **Sprint-Comms Protocol** (433bf2e) — relayed to all agents + propagated same way + oosh-po baked into eternal rules (614ff6a). DONE.
+- **Propagation mechanism:** agent-trainer built DRY base-skills symlinks → task-queue.md read-also → 84/87 SKILLs inherit; 5 missing-coverage got explicit section.
+- **WODA.prod teams restored** (trained sessions, process-args verified, /rc on po). Noted.
+- **Measurement lesson:** JSONL-customTitle verification LIES (lags like session.id). Pane footer + process args = truth.
 
 ## CARRY-FORWARD STATE (from pre-rewind context)
 - **Constructor Contract sprint S1-S8 ALL DONE, 17/17 GREEN (a7e1d97).** Awaiting S-9 QA gate (TRON device test).
