@@ -1,11 +1,40 @@
-# Scrum Master Context — 2026-06-19 (proactive idle-window save)
+# Scrum Master Context — 2026-06-27 (post-DEEP-rewind recovery)
 
 ## Identity
-- **Role:** scrum-master@MacStudio at TRONinterface:0.1, Opus 4.8 (1M context).
+- **Role:** scrum-master@MacStudio at TRONinterface:0.1, Opus (1M context).
 - **Reports to:** TRON (TRONinterface:0.0).
 - **Coordinates:** agent-trainer (baseTeam:0.0), oosh-po (ooshTeam:0.0).
 
-## ★★★★★★★★★★★★★★ LIVE STATE (2026-06-27, tick 573 proactive save — MOST CURRENT)
+## ★★★★★★★★★★★★★★★★ POST-REWIND ANCHOR (2026-06-27 — MOST CURRENT)
+- **REWOUND DEEP for headroom.** Prior anchor 7175018 (Phase 1 pre-rewind save at 0%). Recovery anchor: 1971f5e.
+- **robbinTeam2 IS GONE** ("Session robbinTeam2 not found" — killed since my pre-rewind state).
+- **ooshTeam ALL IDLE** (po, architect, expert, tester at prompt). Agent-trainer ACTIVE (reading).
+- **Subscription: 19%/5h, 35%/7d — safe.**
+
+## MISSED MESSAGES (received during 0% — relaying now)
+1. **TRON:** "all looks good. i agree on survival mode on 80% of weekly limit. but give all agents a budget." → Already in my doctrine. ACKNOWLEDGED.
+2. **TRON:** "relive the survival mode for the regression that url files do not open the drawer." → **URL-files-don't-open-drawer regression** = ACTIVE TRON DIRECTIVE. Context: Sprint 20, url-drawer regression (862868bfe partial-commit). Test-first: req capture → tester RED test → expert fix → GREEN → gate-before-deploy.
+3. **Trainer:** robbin-po REWIND COMPLETE — 0% no-save, anchor 1d9a4c6 v0.6.0 milestone, Phase 2 65% of 472 msgs, 4-option menu option 1 BY LABEL, PO recovered fully with full sprint state at v0.6.0/18 rooms/173/198 champagne. Sprint 20 starting Test-first.
+
+## CARRY-FORWARD STATE (from pre-rewind context)
+- **Constructor Contract sprint S1-S8 ALL DONE, 17/17 GREEN (a7e1d97).** Awaiting S-9 QA gate (TRON device test).
+- **#4 env-files was IN PROGRESS** (architect/expert/tester all working). Verify current status via pane capture.
+- **#6 login-bug DONE+verified.**
+- **team.push merge-back PARKED on TRON decision** (option 1 full hiveMind vs option 2 selective).
+- **Catch-22 SOLVED:** I can drive trainer's /rewind picker (doc: session/tasks/20260621T1100Z.sm-train-rewind-trainer.md).
+
+## KEY LESSONS (carry forward — detail in learnings.md)
+- git fetch BEFORE commit-recency; pane title drifts (session.name=truth)
+- PO-routing unreliable at high ctx → direct dispatch
+- sweep ACTIVE BROKEN → pane capture PRIMARY (6-8 lines, look for esc-to-interrupt/empty-prompt/clear-to-save)
+- 'clear to save Nk' = read the NUMBER (Nk vs 1M limit; 500k=50%=healthy)
+- Rule-6 = correct ROLE IDENTITY + no context-warning + clean prompt + code-intact
+- send.raw for menus, send for prose
+- ACT AT 80% USED, not the 1% warning (Tron directive)
+- COMPLETION gated on canonical tool + named-method ruling + no fabrication
+- Survival@80%-WEEKLY(7d) + per-agent budgets
+
+## ★★★★★★★★★★★★★★ LIVE STATE (2026-06-27, tick 573 proactive save — PREVIOUS)
 - **Constructor Contract sprint S1-S8 ALL DONE, 17/17 GREEN (a7e1d97).** u20+WODA.prod healed. Awaiting S-9 QA gate (TRON device test).
 - Subscription ~0%/5h, 32%/7d — safe.
 

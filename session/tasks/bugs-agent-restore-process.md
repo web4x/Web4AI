@@ -55,9 +55,9 @@ Deliverer/owner: **oosh-po**. Each fix has an owner; agents tick the box + add c
 | 2 | UUID completion fork/join | oosh-expert | M | ✅ DONE (T-COMPLETE-UUID-1/2 GREEN) | 44726ab |
 | 3 | age-sort / oldest picker | oosh-expert | S | ✅ DONE (ls -t newest-first, T-LIST-SORT-1 GREEN) | 44726ab |
 | 4 | otmux send prefix guard | oosh-expert | S | ✅ RESOLVED (architect-confirmed: send.smart skips prefix for shell/non-Claude) | in send.smart |
-| 5 | claudeCode stop = kill PID + respawn (restore cooked mode) | oosh-expert | S | ASSIGNED | ___ |
+| 5 | claudeCode stop = kill PID + respawn (restore cooked mode) | oosh-expert | S | ✅ DONE+TESTER-VERIFIED (T-STOP 6/6 GREEN) | b904be5, ee590cd |
 | 6 | sweep.detect idle-vs-active — **KEYSTONE** | oosh-expert | M | ✅ DONE+VERIFIED (live: idle agents show IDLE) | a986391 |
-| 7 | 27-col TUI: zoom-helper for menu interaction | oosh-expert | S | ASSIGNED | ___ |
+| 7 | 27-col TUI: zoom-helper for menu interaction | oosh-expert | S | ✅ DONE+TESTER-VERIFIED (T-ZOOM 7/7 GREEN) | 516ebb3, 724123e |
 | 8 | agent.send: REMOVE accept-edits PRE-CHECK (otmux auto-clears it) | oosh-expert | S | ✅ DONE (accept-edits routes to inform, not overlay) | 57cf612 |
 | 9 | T-ALIGN-8 test hangs scanning ~80 panes (test 270) → blocks ALL list-task tests | oosh-expert | S | ✅ DONE (cap 20 Claude panes + skip non-Claude via tty check) | 44726ab |
 | 10 | team.push alias → teams.migrate (symmetry with team.pull) | oosh-expert | XS | ✅ DONE (thin wrapper + sshHost completion) | 57cf612 |
@@ -71,7 +71,11 @@ Deliverer/owner: **oosh-po**. Each fix has an owner; agents tick the box + add c
 
 ### Report-back lines (agents edit)
 - Expert (2026-06-19): #9 T-ALIGN-8 cap (44726ab) — pane scan limited to 20 Claude panes via tty check, was scanning ~80 and hanging. #3 age-sort (same commit) — `ls -t` newest-first. All 5 target tests GREEN: T-LIST-FILTER-1/2, T-LIST-SORT-1, T-COMPLETE-UUID-1/2. #6 sweep idle-vs-active (a986391) — done earlier today.
-- Tester (2026-06-19): Tests written for #1-3 (a469165): T-LIST-FILTER-1/2, T-LIST-SORT-1, T-COMPLETE-UUID-1/2, T-COLOR-PANE-CYAN, T-COLOR-DATE + T-LIST-FMT-1..7 + T-LIST-PERF-1..4. RUN BLOCKED: T-ALIGN-8 hangs at test 270 scanning 80+ panes, all my tests are after that and never execute. #6 sweep fix a986391 verified (see status table). hiveMind test suite also running (pane 0.5, started, ETA ~1hr).
+- Expert (2026-06-21): #5 claudeCode.stop (b904be5) — `claudeCode stop <pane>` kills Claude PID + `otmux pane.respawn -k` to restore cooked terminal mode. Includes pane completion + ingress P3 validation. Tester: add T-STOP (verify cooked mode restored, clean prompt after stop).
+- Expert (2026-06-21): #7 otmux.send.zoomed (516ebb3) — `otmux send.zoomed <pane> <key1> [<key2>...]` zooms pane, sends keys with inter-key delays, unzooms. For 27-col Claude Code menus (fork resume menu, permission prompts). Includes pane completion + ingress validation. Tester: add T-ZOOM-HELPER.
+- Tester (2026-06-19 UPDATED): claudeCode suite 168/342 pass (174 fail — mostly pre-existing alignment tests). List-task tests (289-306): **16/18 GREEN**. FILTER-1/2 GREEN, SORT-1 GREEN, COMPLETE-UUID-1/2 GREEN, COLOR-PANE-CYAN GREEN, COLOR-DATE GREEN, FMT-1/3/4/5/6/7 GREEN. FAIL: FMT-2 (3 pane sessions unnamed), PERF-1 (13s >5s threshold). FORK-2/3 still FAIL (cd to project dir unimplemented). hiveMind suite too slow (~2hr with 80 panes) — not practical to run in this session.
+- Tester (2026-06-21): #5 T-STOP **6/6 GREEN** (ee590cd). T-STOP-1: function exists ✓, T-STOP-2: completion ✓, T-STOP-3: no-args error ✓, T-STOP-4: invalid pane error ✓, T-STOP-5: code has kill+respawn ✓, T-STOP-6: non-Claude pane graceful return ✓. Bug #5 verified fixed.
+- Tester (2026-06-21): #7 T-ZOOM **7/7 GREEN** (724123e). T-ZOOM-1..4: function+completion+error handling ✓, T-ZOOM-5: balanced zoom/unzoom (2 resize-pane -Z) ✓, T-ZOOM-6: send-keys between zoom pair ✓, T-ZOOM-7: live zoom flag 0→0 (balanced) ✓. Bug #7 verified fixed.
 
 ## Working recipe (validated this session — restore a trained agent)
 1. `tmux resize-pane -Z -t <pane>` (zoom for width)

@@ -24,3 +24,9 @@ Every gap → owned task. Some feed the team.push sprint (controller features); 
 
 ## Owner routing
 WODA.prod team (dev box): G-A, G-C, G-PROV, G-D, G-F, G-G, G-I. oosh-po@WODA.prod assigns; oosh-po@MacStudio QA.
+
+## DECISIONS + ASSIGNMENTS (oosh-po 2026-06-27, drive-with-SM)
+- team.push merge-back: **OPTION 1 DECIDED by Tron** (full dev hiveMind → macos.latest). UNPARKED. (SM: update doctrine — no longer awaiting decision.)
+- **G-A #13 claude-install dash bug → ASSIGNED to ooshTeam expert (WODA.prod 0.2), GO NOW.** Blocks WODA.test teams. Fix: force bash in installer sub-shell / remove the sh-bashism that throws `Syntax error "(" unexpected`. Test-first: tester RED (install under dash fails) → expert fix → GREEN. Report-back in this file.
+- url-drawer regression (Tron active directive): **Sprint 20, robbin-po domain** — robbin-po recovered + driving test-first. oosh-po confirms tracked; SM monitor robbin-po progress, report blockers to me.
+- SM 42 cadence: you sweep ooshTeam(WODA.prod)+robbin-po, report idle/blocked to me via your tick commits; I assign. After each major task: all agents save ctx+learnings → trainer rewind.
