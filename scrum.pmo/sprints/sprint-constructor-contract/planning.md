@@ -169,7 +169,9 @@ Tab completion crashes for ALL oosh commands when c2 writes `'''` to current.met
 
 ### S-9: QA + dogfood (PO)
 Guardian QA all gates; dogfood the full born-broken→init cycle on u20. Sprint done when the contract holds everywhere + all green.
-- [ ] guardian sign-off; u20 dogfood clean; backlog #10/#11 closed
+- [x] guardian QA sign-off APPROVED by oosh-po@MacStudio 2026-06-27 (origin/dev: PHASE2 RESOLVE BASH_SOURCE canonical no $HOME/oosh; PHASE1 harvest+PHASE3 merge = no-loss self-heal; unconditional emit; validate accepts source*.env Rule A; 17/17 GREEN e388c98+2f49d28; never-fail honored)
+- [ ] u20 born-broken dogfood (oosh-po@WODA.prod) <- only remaining S-9 item
+- [ ] on dogfood pass: close #10/#11, sprint DONE
 - Owner: oosh-po@MacStudio (QA) + oosh-po@WODA.prod (dogfood)
 
 ## Sequencing
