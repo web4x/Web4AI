@@ -1,5 +1,13 @@
 # OOSH Expert Learnings
 
+## NEW: config.clean sort -u reorders lines — use awk dedup (2026-06-27, CS-1 d583281)
+
+`sort -u` deduplicates but REORDERS — fundamentals move after source lines, breaks the source chain order. `awk '!seen[$0]++'` deduplicates while preserving insertion order. Always prefer awk dedup over sort -u when line order matters.
+
+## NEW: constructor tests must re-resolve CONFIG after config.save (2026-06-27, CS-5 fc5b6b3)
+
+`config.save` calls `resolve.fundamentals` which resets CONFIG_PATH to the REAL path. Tests that set CONFIG to a test fixture path break because config.save writes to the real user.env, not the test file. Fix: after every `config.save` call in tests, add `CONFIG="$CONFIG_PATH/$CONFIG_FILE"` to re-sync. Constructor test fixture must also call `resolve.fundamentals` at setup to start from the real CONFIG, not a stale test redirect.
+
 ## NEW: config.add = source line, not dead marker (2026-06-27, b6300b2)
 
 I changed `config.add` to write `export CONFIG_CHAIN_<NAME>=1` instead of `source $CONFIG_PATH/<name>.env`. This killed dynamic config composition — Rule A says env files carry `source *.env` as the sole permitted construct. The marker was a dead export nobody reads. Fix: restore `echo "source \$CONFIG_PATH/$file.env"`. Also: `config.save` no-args had HARDCODED `source oosh.env`/`source log.env` — must harvest source lines from file dynamically instead. **Rule**: when you replace a mechanism (source chain), verify the replacement (marker) is actually consumed. Dead markers are worse than the original — they look intentional but do nothing.
