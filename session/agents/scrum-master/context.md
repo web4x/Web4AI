@@ -5,7 +5,12 @@
 - **Reports to:** TRON (TRONinterface:0.0).
 - **Coordinates:** agent-trainer (baseTeam:0.0), oosh-po (ooshTeam:0.0).
 
-## ★★★★★★★★★★★★ LIVE STATE (2026-06-27, tick 500 proactive save — MOST CURRENT)
+## ★★★★★★★★★★★★★ LIVE STATE (2026-06-27, tick 550 proactive save — MOST CURRENT)
+- **Constructor Contract sprint S1-S8 ALL DONE, 17/17 GREEN (a7e1d97).** u20+WODA.prod healed. Awaiting S-9 QA gate (TRON device test). Sprint nearly complete.
+- Subscription ~9%/5h, 32%/7d — safe.
+- All oosh MacStudio agents idle (work on WODA.prod). No robbin team.
+
+## ★★★★★★★★★★★★ LIVE STATE (2026-06-27, tick 500 proactive save — PREVIOUS)
 - **Constructor Contract sprint S1-S4 DONE, S-5 design landed (3d9c92f), S-5 impl in progress on WODA.prod.** No commits since S-5 design (~300+ ticks). Work is on WODA.prod.
 - Subscription ~0%/5h, 30%/7d — safe.
 - All oosh MacStudio agents idle (correct — work is on WODA.prod). No robbin team.
