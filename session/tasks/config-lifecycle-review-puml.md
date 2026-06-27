@@ -46,4 +46,49 @@ Create `docs/puml/config-lifecycle.puml` documenting:
 Write findings + any issues into this file. Commit the PlantUML. Ping oosh-po.
 
 ## Report-back (edit here)
-- Architect (review findings + puml commit):
+- Architect (review findings + puml commit): **DONE** 2026-06-27. Review + PUML below.
+
+### Review findings (oosh-architect, 2026-06-27)
+
+**1. config.init** (line 205): CORRECT. Calls resolve.fundamentals, sets CONFIG vars in memory, mkdir. Does NOT write user.env (that's config.save's job). Clean.
+
+**2. config.save (no-args)** — harvest-resolve-merge (line 300-366): CORRECT.
+- Phase 1 HARVEST: reads FILE first (valid exports + source lines), then adds from live env (vars not already harvested). Handles born-broken (file has logic → only valid exports survive) and primed env (live vars captured).
+- Phase 2 RESOLVE: calls resolve.fundamentals. Canonical.
+- Phase 3 MERGE: fundamentals first (override stale), user vars from harvest (skip fundamentals), source chain from harvest. Writes to $CONFIG. Validates.
+- **No loss**: user vars survive reinit. TRON_MONITOR_PANE, OOSH_SSH_CONFIG_HOST — all preserved via file harvest.
+
+**3. config.save <name> <PREFIX>** (line 288-299): CORRECT. Dumps declare -px filtered by prefix. Only from live env (correct — sub-env files are written from primed state after init).
+
+**4. config.add** (line 453-476): PARTIALLY CORRECT.
+- Appends `source $CONFIG_PATH/<name>.env` to user.env. Rule A compliant.
+- **GAP-1: NOT idempotent.** Calling `config.add oosh` twice appends two `source $CONFIG_PATH/oosh.env` lines. `config.clean` (sort -u) deduplicates, BUT sort reorders all lines — fundamentals may move after source lines, breaking source order. Expert should guard: `grep -q "^source.*$file.env" "$CONFIG" && return 0` before appending.
+
+**5. config.repair** (line 448-451): CORRECT. `config.repair() { config.save; }` — one-liner alias. No separate path.
+
+**6. config.validate** (line 422-446): CORRECT.
+- Accepts: export/declare, bare VAR=, comment (#), blank, `source *.env`, `. *.env`. Rule A.
+- Rejects: everything else.
+- Covers all historical pollutants: `: ${` (BASH_SOURCE trick), `$(...)` (command sub), `[ ]` / `{ }` (conditionals).
+- Note: bare `VAR=` (no export) is accepted — intentional? It's uncommon in env files. Not a bug but worth documenting.
+
+**7. resolve.fundamentals** (this:99-147): CORRECT.
+- BASH_SOURCE chain walker: iterates from deepest frame, finds dir with `this` + `config` files. Symlink-safe via `cd -P`. Last resort: `which this`.
+- CONFIG_PATH: follows `~/config` symlink via `cd -P`. Falls back to `$HOME/config`.
+- OOSH_MODE: from git branch in OOSH_DIR.
+- Runs on BOTH this.init paths (line 258 + 269/293). Handles EAMD layout, simple layout, symlinked config.
+
+**8. this.selfheal** (this:149-166): CORRECT.
+- Scans user.env for non-pure-state lines using same regex as config.validate.
+- If pollution found → calls `config.save` (harvest-resolve-merge).
+- **Always RC=0.** Constructor never fails.
+- Called on both this.init paths (line 270 + 295).
+
+**9. Full lifecycle gaps**:
+- **GAP-1 (config.add idempotency)**: described above. Minor — config.clean's sort-u masks it, but sort reordering is a latent bug.
+- **GAP-2 (BASH_FILE conditional emit)**: config.save line 336: `[ -n "$BASH_FILE" ] && echo "export BASH_FILE=..."`. If BASH_FILE is empty (unlikely but possible on minimal installs), it's silently skipped. Should resolve via `which bash` fallback. Trivial.
+- **GAP-3 (config.save calls config.save oosh/log after merge)**: Lines 362-363 call `config.save oosh OOSH` and `config.save log LOG`, which overwrite oosh.env and log.env from live env. If called during a born-broken boot where OOSH_* vars aren't fully primed yet, oosh.env may get a partial dump. In practice, resolve.fundamentals has primed OOSH_DIR/OOSH_MODE by this point, so it works — but the ordering dependency is implicit, not guarded.
+- **No silent-broken gaps found.** Every path through this.init ends with resolve.fundamentals + selfheal. A polluted env is detected and repaired before the constructor returns.
+
+### PlantUML
+Created: `docs/puml/config-lifecycle.puml` — activity diagram with 3 swimlanes (this kernel, config persistence, env files). Covers: file hierarchy, this.init constructor, config.save harvest-resolve-merge, config.validate, boot sequence, constructor contract legend.
