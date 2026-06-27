@@ -144,5 +144,5 @@ Also: the expert CANNOT run `otmux send` from their Bash tool — it's tty-sensi
 
 ## Sprint History
 - Sprint 1: 9/9 tasks, 14 components at 0.3.23.1, server parity verified
-- Sprint 3: 26 tasks + 11 bugs + DRY + vitest migration, 47/47 PASS
+- Sprint 3: 92 tasks + 14 bug reports. Key features: leaderboard, user profiles, bug report pipeline, QR invite, vCard, special card UX, DRY refactoring, link account with secret code
 - Sprint 2: NOT STARTED (UpDown in ONCE + Lit Views)

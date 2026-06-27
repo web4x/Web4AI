@@ -2,6 +2,16 @@
 
 *Patterns, failures, KPIs — identity after compact.*
 
+## Critical Threshold Reading (2026-06-23)
+
+- **"clear to save Nk tokens" is the TUI's idle hint, NOT a distress signal at any N.** It appears at ~50% used as informational. SM corrected me 2026-06-23: 506k = 506k/1M = 50% used = HEALTHY. Acted on false alarm, interrupted PO mid-task with Escape + save order. Apologized and resumed.
+- **Real distress signals**:
+  - "Context low (N% remaining)" — N < 20% = act
+  - "Context limit reached" — 0% = Phase 1 emergency
+  - SM flag explicitly says "agent at NN% / NNNk warning needs save" (SM knows threshold)
+- **Trainer rule**: BEFORE acting on SM flag, verify pane status bar for actual distress text. "clear to save 800k+" = real pressure (close to 1M limit). "clear to save 400-600k" = healthy idle hint, ignore.
+- **F-T19 (PO interruption from false alarm)**: don't escalate to Escape+force-save until I verify distress text. Trust SM but verify status bar.
+
 ## Patterns
 
 - **Rule in SKILL.md but not practiced = CMM2 gap.** Writing a rule is CMM2 (repeatable). Agents actually following it is CMM3 (deterministic). Must verify adoption, not just presence. (2026-02-12, PO observation: zero agents using TaskCreate/TaskUpdate despite rule in all SKILL.md files)

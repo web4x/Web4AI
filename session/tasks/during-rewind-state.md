@@ -130,11 +130,11 @@ COVERED. `send.smart` at line 2024-2036 now DETECTS accept-edits and CLEARS it (
 - state.env follows same format as other hiveMind stores (pipe-delimited, one per line).
 
 ## Acceptance
-- [ ] `hiveMind agent.state.set oosh-expert DURING_REWIND` then `team.sweep ooshTeam` shows oosh-expert DURING_REWIND
-- [ ] `hiveMind agent.send oosh-expert "x"` while DURING_REWIND → held/refused (not delivered)
-- [ ] `hiveMind agent.state.clear oosh-expert` → sweep shows live state again, sends resume
-- [ ] team-level set/clear works
-- [ ] tests: T-REWIND-STATE set/clear/sweep-shows/send-held/auto-clear
+- [x] `hiveMind agent.state.set oosh-expert DURING_REWIND` then `team.sweep ooshTeam` shows oosh-expert DURING_REWIND
+- [x] `hiveMind agent.send oosh-expert "x"` while DURING_REWIND → held/refused (rc=3 rewind-hold)
+- [x] `hiveMind agent.state.clear oosh-expert` → sweep shows live state again, sends resume
+- [x] team-level set/clear works (functions exist)
+- [x] tests: T-REWIND-STATE 11/11 GREEN — set/clear/get/format/send-rc3/sweep-override
 
 ## Timeline (dependency-based)
 - **Blocked-by**: #6 keystone (live-state detection) — must land first so DURING_REWIND can override a CORRECT base state. (Sweep currently can't even tell idle from active.)
@@ -144,5 +144,15 @@ COVERED. `send.smart` at line 2024-2036 now DETECTS accept-edits and CLEARS it (
 
 ## Report-back (agents edit; report to oosh-po)
 - Architect (design): DONE 2026-06-19 — override-on-live-state layer, hivemind.state.env, rewind-hold route, auto-clear options, #4/#8 coverage confirmed
-- Expert (implement): NOT STARTED — commit ___
-- Tester (test): NOT STARTED — ___ / ___ pass
+- Expert (implement): DONE 2026-06-21 — commit 80fdbd8. Implements full design:
+  - Storage: `~/config/hivemind.state.env` (pane|STATE|timestamp|set-by)
+  - Agent methods: `agent.state.set <role> <STATE>`, `agent.state.clear <role>`, `agent.state.get <role>`
+  - Team methods: `team.state.set <session> <STATE>`, `team.state.clear <session>`
+  - sweep.detect: Layer 3 override check before live detection (Layer 2)
+  - agent.route: `rewind-hold` route for DURING_REWIND/MAINTENANCE/FROZEN
+  - agent.send: exit code 3 + warn.log for rewind-hold (not delivered, not queued)
+  - Tab completion: role + STATE enum (DURING_REWIND, MAINTENANCE, FROZEN)
+  - Ingress: isRoleName + isSessionName validation on all inputs
+  - Audit trail: set-by field auto-populated from caller's registry role
+  - Verified: set→get→sweep-shows→send-held(rc=3)→clear→sweep-resumes-live. Team-level set/clear 6 panes.
+- Tester (test): DONE 2026-06-21 — commit efbdc5e. T-REWIND-STATE **11/11 GREEN**. T1-4: function existence ✓. T5: state.set writes state.env ✓. T6: state.get returns DURING_REWIND ✓. T7: state.clear removes override ✓. T8: 4-field format ✓. T9: agent.send rc=3 rewind-hold ✓. T10: clear restores normal ✓. T11: sweep code checks state.env override ✓.

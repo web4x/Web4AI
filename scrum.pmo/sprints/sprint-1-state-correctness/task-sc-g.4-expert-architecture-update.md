@@ -4,14 +4,16 @@
 [task:uuid:b0bfd291-20e8-4c97-ae2e-0c34949f2dc8]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] implementing — commit 1b89edd
+- [x] QA Review
+- [x] Done
+
+## Deliverable
+**File:** `docs/oosh-architecture.md` (+52 lines, commit 1b89edd)
+
+Added: event dispatch architecture, reconcile cycle, supporting defenses, cross-links to state-stores.md + invariants.md in See Also.
 
 ## Description
 **Role: oosh-expert**
