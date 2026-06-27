@@ -1,5 +1,13 @@
 # OOSH Expert Learnings
 
+## NEW: c2 completion ';' = debug.log RC leak (2026-06-27, d83907b)
+
+`private.call.custom.completion` returned `$?` after `debug.log` (RC=1 at default LOG_LEVEL) instead of 0 for "function found and executed". Caller checked `if private.call.custom.completion; then return 0; fi` — RC=1 meant fallthrough to `;` fallback. Fix: explicit `return 0` after writing completion.result.txt. **Rule**: when a function's contract is "return 0 if I handled this", never let a log/debug call's RC leak into the return.
+
+## NEW: c2 first-param completion needs signature grep, not declaration parse (2026-06-27, d83907b)
+
+When `c2.get.function.declaration` produces empty METHOD_PARAMETER (FORMAT_PARSE_METHOD not exported), the parameter-based completion path never fires. Fix: extract first param name directly from the function signature comment via `grep "${class}\.${method}()" "$script" | sed 's/.*# *<?*\([a-zA-Z_]...\).*/\1/p'`. This bypasses the full declaration pipeline. Works for `<?session>`, `<host>`, `<?format:json>` etc. The `declare -F | sed` approach gives alphabetical order (wrong) — signature grep gives declaration order (right).
+
 ## NEW: Constructor contract = init ALWAYS yields valid object (2026-06-27, sprint-constructor-contract)
 
 The OOSH first principle: every constructor (`this.init`, `config.init`, `config.save`) must ALWAYS produce a valid, operational object. No RC=1 on broken env — self-heal instead. Three-phase architecture: (1) HARVEST valid state from file + live env, (2) RESOLVE fundamentals from BASH_SOURCE (never `$HOME/oosh` guess), (3) MERGE fundamentals first (override stale) + user vars preserved + source chain (Rule A) + validate. `config.repair` is just `config.save` — repair IS init, no separate path.
