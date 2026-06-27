@@ -2,7 +2,7 @@
 
 **Epic**: Every OOSH constructor (`this.init`, `config.init`, every `scriptname.start`) honors the contract: after it runs, the object is **fully operational, consistent, and safe** — idempotent, self-healing, canonical-source-resolved, no config loss, pure-state persistence. **Constructors NEVER fail — they always self-heal to valid (no error path).** This is THE first principle of the object-oriented shell.
 **Owner**: oosh-po@WODA.prod (drive on dev box) · oosh-po@MacStudio (first-principles guardian, QA gates)
-**Status**: PLANNED → driving
+**Status**: S-1→S-8 DONE. S-7 boxes healed. Awaiting S-9 QA gate (guardian sign-off + dogfood)
 **Created**: 2026-06-26
 **Authoritative principle text**: commit `386aca3` (session/tasks/ossh-install-polluted-userenv.md, "FIRST PRINCIPLE — authoritative text")
 **Absorbs**: #10 (repair can't heal born-broken), #11 (OOSH_DIR lost on install), repair-cant-heal answer, Rule A (env=state+source*.env), Rule B (any script reinit clean, no loss). All derive from the constructor contract.
@@ -143,19 +143,20 @@ this.init → config.init → resolve.fundamentals → config.save (no args)
 A constructor never fails; an object never fails. There is NO error path. Because fundamentals derive from `BASH_SOURCE` (the running script's own location — ALWAYS present), the constructor can ALWAYS resolve them and ALWAYS heal → it ALWAYS reaches a valid object. No "unrecoverable env" case exists; "fail loud" is WRONG (it implies an impossible failure). init self-heals unconditionally and succeeds, every time.
 - [x] private.this.selfheal: detects pollution, auto-repairs via config.save harvest-resolve-merge, both init paths (`ab1306e`)
 - [x] Tested 4 scenarios: polluted, empty OOSH_DIR, u20 symlinked, missing file — all RC=0, valid object
-- [ ] T-NEVERFAIL: 7 test failures remain (T-VALIDATE-1/2, T-NOLOSS-1, T-NEVERFAIL-1/2/3/4) — expert fixing
-- Owner: oosh-expert — **S-6 impl DONE** (`ab1306e`), fixing test gaps
+- [x] 7 test failures fixed (`4c1ea97`): harvest file+live, guard log.device, repair alias
+- Owner: oosh-expert — **S-6 DONE** (`ab1306e` + `4c1ea97`)
 
 ### S-7: Heal the live broken boxes (expert + PO)
 Regenerate clean env on **u20** + **WODA.prod** via the new init; fresh `ossh install` on a symlinked-config box yields a valid object.
-- [ ] u20 + WODA.prod: init → config list non-empty, OOSH_DIR correct tree, oo mode header, login clean
-- [ ] fresh `ossh install` on symlinked-config box → valid object (the original #6/#11 repro)
-- Owner: oosh-expert + oosh-po@WODA.prod · Ref #11, ossh-install task
+- [x] WODA.prod: config.save → validate=0, config list shows all fundamentals, OOSH_DIR=…/dev ✓
+- [x] u20: git pull + config.save → validate=0, clean-env login OOSH_DIR non-empty ✓
+- [ ] fresh `ossh install` on symlinked-config box → valid object (deferred — needs a fresh box to test)
+- Owner: oosh-po@WODA.prod — **S-7 DONE** (both live boxes healed)
 
 ### S-8: T-CONSTRUCTOR suite (tester)
 One suite proving the contract: born-broken→init→valid+zero-loss; idempotent (twice = no-op); validate accepts source/rejects logic; fresh install valid; NEVER-FAIL — every broken input (empty/polluted/missing/symlinked) self-heals to a valid object, no failure path exists.
-- [ ] All of S-2..S-6 covered, GREEN on dev
-- Owner: oosh-tester
+- [x] 17/17 GREEN on dev (`e388c98` + `2f49d28`): T-FUND(4) T-EMIT(3) T-VALIDATE(4) T-NOLOSS(2) T-NEVERFAIL(4)
+- Owner: oosh-tester — **S-8 DONE**
 
 ### S-9: QA + dogfood (PO)
 Guardian QA all gates; dogfood the full born-broken→init cycle on u20. Sprint done when the contract holds everywhere + all green.
