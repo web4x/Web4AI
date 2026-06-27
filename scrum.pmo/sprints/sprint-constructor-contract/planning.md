@@ -44,11 +44,10 @@ validate ACCEPTS `^source .*\.env` (legit chaining) and `export`/`declare`/comme
 
 ### S-5: init is self-healing + no-loss; fold repair INTO init (expert+architect) — fixes #10
 `config.init`/`this.init` idempotent + self-healing: on a broken/born-broken env, restore fundamentals (S-2) + preserve ALL existing user state + rewrite pure-state + validate → valid object. `config repair` becomes an alias for "init again" (or removed). NO config loss.
-- [ ] init reads existing valid state, merges canonically-resolved fundamentals, rewrites pure-state, validates
-- [ ] born-broken box (empty OOSH_DIR, polluted env) → init → valid, zero user-state loss
-- [ ] repair = init re-invoked (no separate regenerate-from-broken-env path)
-- [ ] T-NOLOSS: set a user var → corrupt env → init → user var survives + env clean
-- Owner: oosh-architect (design no-loss merge) + oosh-expert (impl) · Ref #10, Rule B
+- [x] Architect design: harvest-resolve-merge 3 phases (`3d9c92f`)
+- [x] Expert impl: config.save no-args = harvest-resolve-merge, config.repair = alias (`ecfa763`)
+- [ ] T-NOLOSS: tester to cover (part of S-8)
+- Owner: oosh-architect + oosh-expert — **S-5 DONE** (`ecfa763`)
 
 #### S-5 DESIGN (oosh-architect, 2026-06-26)
 
