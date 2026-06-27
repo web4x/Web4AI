@@ -141,10 +141,10 @@ this.init → config.init → resolve.fundamentals → config.save (no args)
 
 ### S-6: Constructors NEVER fail — they ALWAYS self-heal to valid (expert)
 A constructor never fails; an object never fails. There is NO error path. Because fundamentals derive from `BASH_SOURCE` (the running script's own location — ALWAYS present), the constructor can ALWAYS resolve them and ALWAYS heal → it ALWAYS reaches a valid object. No "unrecoverable env" case exists; "fail loud" is WRONG (it implies an impossible failure). init self-heals unconditionally and succeeds, every time.
-- [ ] this.init / every `.start`: no failure/abort path on a broken env — it self-heals and returns a valid object (RC 0 because the object IS valid, not because broken was ignored)
-- [ ] Remove any "cannot reach valid object → error" branches; replace with self-heal
-- [ ] T-NEVERFAIL: every kind of broken env (empty OOSH_DIR, polluted, missing file, symlinked u20) → init → valid object, success. There is no input that makes a constructor fail.
-- Owner: oosh-expert
+- [x] private.this.selfheal: detects pollution, auto-repairs via config.save harvest-resolve-merge, both init paths (`ab1306e`)
+- [x] Tested 4 scenarios: polluted, empty OOSH_DIR, u20 symlinked, missing file — all RC=0, valid object
+- [ ] T-NEVERFAIL: 7 test failures remain (T-VALIDATE-1/2, T-NOLOSS-1, T-NEVERFAIL-1/2/3/4) — expert fixing
+- Owner: oosh-expert — **S-6 impl DONE** (`ab1306e`), fixing test gaps
 
 ### S-7: Heal the live broken boxes (expert + PO)
 Regenerate clean env on **u20** + **WODA.prod** via the new init; fresh `ossh install` on a symlinked-config box yields a valid object.
