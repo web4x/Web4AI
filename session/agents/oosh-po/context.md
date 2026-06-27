@@ -5,6 +5,9 @@
 **Pane**: ooshTeam:0.0 on MacStudio.native
 **Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## ★★ POST-REWIND CONFIRM — 2026-06-27 (from 0%)
+Rewound from 0%. Ground-truth verified: pane.get.target=ooshTeam:0.0, session.name(29a1e1d1)=oosh-po@MacStudio, branch=main up-to-date, prior on-disk anchor=614ff6a (sprint-comms protocol baked). Re-read the three base-skill doctrines (tron-cmm4-doctrine, SPRINT-COMMS-protocol, po-wisdom). **Sprint state per last checkpoint (281d215): BOTH sprints COMPLETE — constructor-contract (S-1→S-12, #10/#11 closed) + config-selfheal (CS-1→CS-8, 47/47 test.config + 3/3 T-C2-QUOTE green, both live boxes clean). Post-task cadence was running (agents saved ddabd29/5bd5ba9, trainer rewinding them).** Open backlog after these: #5 (--fork flag audit), #7 (pushed-team discovery), #13 (sh/dash bashism blocker, in_progress), #14/#15 (rawbin app + robbinTeam2 finalize on WODA.prod). No in-flight sprint work lost (both complete pre-rewind). Awaiting Tron direction on next backlog item.
+
 ## ★★ POST-REWIND CONFIRM — 2026-06-26
 Resumed from rewind. Verified: pane.get.target=ooshTeam:0.0, branch=main, prior anchor=2aee043. Identity oosh-po@MacStudio (29a1e1d1) intact. Phase-1 anchor below is current — follow its "Next after rewind". **Tron flagged the until-loop/while-sleep polling antipattern (I overused `until <check>; do sleep; done` to wait on remote pane output) — STOP: one-shot capture, or run_in_background + completion notification, NEVER poll-loops in Bash (aggregates context). Recorded in learnings.**
 
