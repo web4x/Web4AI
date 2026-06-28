@@ -796,6 +796,25 @@ the shared unit, mint-or-reuse ladder. AND: my temp-dir harness CAUGHT the AC-a4
 ship — ALWAYS encode the AC's literal example ("GmbH & Co KG"→acme) as a harness assertion, not
 just the happy path. The bug you measure is the bug you don't ship.
 
+## One-surface-fixed ≠ feature-done: chase EVERY consumer + e5 desktop≠touch (R21.9 surface, v0.6.74, 2026-06-28)
+Tron said pan/zoom "in room file details" but R21.9 only landed it on rb-file-detail (trace
+browser). The ROOM file view (RoomView.openFilePreview) goes through a DIFFERENT path:
+content-preview.ts renderContentPreview, which still had the OLD @400px iframe `touch-action:
+pinch-zoom`. Lesson: when a directive names a surface, `grep -rn` the render function across
+ALL consumers BEFORE declaring done — renderContentPreview had 3 callers (RoomView,
+rb-detail-view, rb-file-detail) and I'd only fixed one. The DRY cure: extract ONE shared
+`fillPreviewPane(pane,uuid,mime,name,token)` mime→content builder; retire the legacy path at
+the SOURCE (content-preview emits <rb-preview-pane>); delete the duplicate that had drifted
+(rb-file-detail's private fillPane). Then every surface fixes at once and can't drift again.
+**AC-e5 had a real gap:** gesturing() (iframe pointer-events:none mid-gesture) fired ONLY on
+touchstart — desktop mouse-drag of a zoomed PDF/HTML still let the iframe swallow the drag.
+Touch-eligibility and mouse-eligibility are SEPARATE code paths; an AC that says "during
+gesture" means BOTH pointer types — add the call to mousedown too. **How to apply:** (1) for any
+"make X work here" directive, enumerate every code path that renders X (grep the function name)
+and fix at the shared source, not the one surface in front of you; (2) DOM-mock harness on node
+(fake addEventListener capturing handlers + style objects) PROVES pointer/transform logic
+without jsdom — 7/7 here caught nothing broken but turned "I think e5 works" into measured TRUTH.
+
 ## Pan/zoom controller + the post-gate-fix re-gate discipline (R21.9 + R21.8 AC-b3, 2026-06-28)
 RbPanZoom (pan-zoom.ts) is a reusable transform controller: CSS translate(tx,ty)scale(s),
 transform-origin 0 0; zoom-about-point keeps the cursor/pinch-midpoint stationary
