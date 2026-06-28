@@ -2,7 +2,13 @@
 
 ## ADJUDICATION: PO ruled AC-a5 — nameKey auto-merge WITHOUT domain IS correct (Tron "do not duplicate companies"). My AC-a5 was over-precise. No code change. (Lesson: don't out-precise Tron's stated intent.) AC-b3 (different-domain merge) FIXED by expert in c22083798 (nameKey recall gated on no-domain) — matches my recommended fix; tester should re-gate R21.8.
 
-## LATEST (PDCA CHECK): R21.9 pan/zoom (v0.6.73 c22083798) vs my 22 ACs (21e792e0) = SUBSTANTIALLY COMPLIANT. Read pan-zoom.ts + rb-preview-pane.ts + rb-file-detail.ts.
+## FINAL PDCA (v0.6.74 2a1357a69): all 3 flagged items RESOLVED — GREEN.
+- AC-f2 DRY ✓: content-preview.ts old @400px iframe pinch-zoom RETIRED → <rb-preview-pane>/RbPanZoom; grep '400px|pinch-zoom' = NONE REMAINING; RbPanZoom now imported by RoomView (room) + rb-detail-view + rb-file-detail + content-preview (trace). Old path GONE, proven by removal.
+- AC-e5 ✓: pan-zoom.ts:53 mousedown now calls gesturing() → iframe pointer-events:none on desktop drag too.
+- AC-b3 ✓: mintOrReuseShared — domain present+miss falls through to MINT (skips nameKey); no-domain nameKey-recall preserved (Tron/AC-a5). Traced 4 cases, all correct. buildLinks preserves first unit's recall key.
+- e1 tap-refinements remain noted optional. VERDICT: R21.9 + R21.8-b3 fully compliant → OK to gate. Reported to PO.
+
+## PRIOR (PDCA CHECK): R21.9 pan/zoom (v0.6.73 c22083798) vs my 22 ACs (21e792e0) = SUBSTANTIALLY COMPLIANT. Read pan-zoom.ts + rb-preview-pane.ts + rb-file-detail.ts.
 - PASS: a1-a5 reorder (buttons→75vh in-flow pane→metadata), b1-b4 transform (zoom-about-point, clamp/recenter, [1,8]), c1-c2 desktop, d1-d3 touch, e2 (no elementFromPoint), e3 (viewport-only listeners), e4 (destroy + setContent teardown), e6 (reset on file change via new RbPanZoom), f1 (img/svg/iframe/pre/download by mime). DOUBLE-TAP PINCH-RELEASE GUARD WORKS (traced: 2-finger start never sets pendingDoubleTap; touches===0 gate).
 - **AC-f2 GAP (MEDIUM):** RbPanZoom NOT reused by room file view — content-preview.ts still uses OLD native iframe pinch-zoom @400px; two impls coexist (not DRY). Also clarify: R21.9 "in-room file detail" target = rb-file-detail (trace browser) vs a separate room component? Change landed on rb-file-detail; room view unchanged. PO/tester confirm surface.
 - **AC-e5 MINOR:** iframe pointer-events disabled on TOUCH (gesturing on touchstart) but NOT on desktop mousedown → desktop drag over iframe may be swallowed.
