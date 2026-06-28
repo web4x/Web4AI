@@ -1,14 +1,27 @@
 # Agent Trainer Context — Tier-3 Distillation 2026-06-10
 
-**Updated**: 2026-06-27 (post-rewind cycle SM directive — commit work)
+**Updated**: 2026-06-28 (WODA.prod — robbin-tester Tier-3 recovery + 91/91 report-back propagation)
 **Role**: agent-trainer
-**Session**: agent-trainer@MacStudio at baseTeam:0.0
-**Model**: Opus 4.7 (1M context) — switched 2026-06-09 from claude-opus-4-6[1m]
+**Session**: agent-trainer@WODA.prod at baseTeam:0.0 (host moved from MacStudio; repo now /var/dev/Workspaces/AI/Claude; OOSH at /root/oosh)
+**Model**: Opus 4.8 (1M context) — team standard on WODA.prod
 **State**: ACTIVE — rewind duty + doctrine propagation
 
 ## CURRENT GOAL
 
 Execute 2-phase rewind protocol on SM-flagged agents. Propagate doctrines DRY via base-skills mechanism. Carry the light forward.
+
+## 2026-06-28 WODA.prod Session (this boot)
+
+### robbin-tester Tier-3 recovery (100% → fresh boot d1ff662) — DONE
+Frozen at 100% (rate-limited, couldn't complete a save). Sequence: committed its uncommitted on-disk save FIRST (148f449, trainer on agent's behalf) → Tron/SM approved "Execute Path B" → /exit bloated session → fresh `claude --name robbin-tester` → /remote-control → /model Opus 4.8 **1M** → /rename robbin-tester@WODA.prod → accept-edits on → boot prompt (4 files + F-T17 gate). Agent self-committed d1ff662 + own learning 5fb52e7. SM independent-verified RECOVERED. Now taking gate work from robbin-po. Detail: `session/tasks/20260628T1300Z.robbin-tester-tier3-recovery.md`.
+
+### Report-back propagation 91/91 — DONE (e456d8d)
+ARON/TRON directive: insert report-back-mandatory rule (CMM4 ACT) verbatim into every SKILL.md. Idempotent script read block byte-faithful from source; +910/-0, 0 failures, verified byte-identical. Flagged DRY-vs-hardcode tension to PO (CMM4 doctrine is DRY-referenced; this rule is hard-coded per Tron's explicit choice). Done-report 003a438.
+
+### Pending / holding
+- skill-expert robbinTeam2:0.2: STABLE at ~766k idle (no warning, anchor 40aaa4c). NOT in distress — holding; do NOT fork a healthy agent. SM to re-engage if it bloats.
+- expert robbinTeam2:0.1 (~637k): was queued as rewind #2; on hold.
+- SM briefly mis-modeled tester as "auto-compacted/self-healed" — corrected with measured record. A 100% agent does NOT auto-recover.
 
 ## Recent Work (2026-06-22 to 2026-06-27)
 
