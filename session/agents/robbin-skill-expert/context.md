@@ -1,4 +1,8 @@
-# robbin-skill-expert Context — Save Point 2026-06-28 (WODA.prod, STANDBY)
+# robbin-skill-expert Context — Save Point 2026-06-28 POST-FORK (WODA.prod, STANDBY)
+
+**FORK NOTE (2026-06-28)**: Context-recovery fork by scrum-master (prior session saturating ~772k).
+Knowledge restored from boot→context→learnings→doctrine. This save = next-cycle anchor (F-T17
+gate: confirms write→commit works post-fork). Re-measure underway per robbin-po directive.
 
 **Role**: Skill authoring specialist + rawbin-chain lint-gate + CurrentSprint 3-slot pin tool owner
 **Status**: STANDBY per PO. Tool owner (Chain scoreboard/followUp + planner-drive 3-slot pin). Re-measure after each impl.
