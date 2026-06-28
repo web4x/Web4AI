@@ -19,10 +19,15 @@ ssh u24 'grep -E "^state=|stateValue" ~/config/current.state.machine.env'   # ch
 ```
 **5 install-transport bugs FIXED (gate)**: rsync push+pull remote-probe→scp (4397ac2,8a3c02d), mode ssh→root (4397ac2), ssh-keygen -N'' hang (99fb694), odocker run.sshd sshHostPort (9a87d34); +container seccomp.
 **SETUP_SERVER S-B (architect: ALL 5 = FIX dev, zero ports — macOS stubs the tail)**:
-- ✅ BUG5 contamination FIXED+VERIFIED `2b68265` — create.result(this:319) strips ANSI; err.log+important.log(log) coerce stdout/empty LOG_DEVICE→/dev/stderr. Clean .pub paths now.
-- ⏳ STILL state 32. True blocker exposed: **`Unknown method: ossh get.key.name` at ossh:533** (`remoteKeyName=$(ossh.exec $host "ossh get.key.name")` — should be `ossh key.name.get`, words reversed). NEXT FIX.
-- Then BUG2 state.declaration(state:361/668 undefined), BUG3 ossh.prereqs.install(init/oosh:454, non-fatal warn), BUG1 config ci(this:919), BUG4 2cuGitHub create-before-clone(oo:869/1052).
-- Per fix: commit + recreate u24 + reinstall (~5min) + confirm state advances.
+**7 BUGS FIXED (all architect-5 + 2 siblings); machine chains 0→32 cleanly; STOPS at state-33 setup (new batch).**
+- ✅ BUG5 contamination `2b68265` — create.result(this:319) strips ANSI; err.log+important.log coerce stdout/empty LOG_DEVICE→/dev/stderr.
+- ✅ method-name `d546947` — `ossh get.key.name`→`ossh key.name.get` at ossh:533 + ossh:1513 (renamed in dev, call sites missed).
+- ✅ BUG2 `044dc75` — defined `state.declaration()` (lightweight current-state render; state.machine.declaration cats whole file + installs vim, wrong for per-transition).
+- ✅ BUG1+BUG3 `edbbabc` — removed vestigial `config ci`(this:927); defined `ossh.prereqs.install()` (rsync+tree via oo cmd, non-fatal).
+- ✅ BUG6 `376020e` — ossh.key.pull(1483) pulled `.ssh/<name>.pub` but ossh keys live at `public_keys/<name>.public_key`; try managed path first.
+- ⏳ STATE STILL 32 (machine chains 0→32, state-33 `root.installation.done` SETUP fails). Checks are STUBS (oo:981-986 return 0) → advance gated by SETUP action. `state.next`(state) is single-step; chain driven by each passing check calling next; `ossh.install.continue.local` kicks it via `state next`(ossh:502).
+- **NEXT (state-33 setup, fresh-box-assumption class)**: `wget 404 Not Found` (dead asset URL); `cat /root/.ssh/config: No such file` (fresh box); `cp config.initial/stateMachines/: No such file`. Reported to PO/architect for scope — same class as gate's 5 install bugs.
+- Re-install cmd unchanged (see above). u24 still live port 9024.
 
 ---
 ## PRIOR: clean-boot sprint + S3 plan
