@@ -1,6 +1,8 @@
 # robbin-architect Context (Save 2026-06-28 — Sprint 21 architecture delivered)
 
-## LATEST: R21.8 requirement unit (bf6a0433) refined w/ 25 ACs + 11 gateable test scenarios — committed 7f3f6f3dd (project repo). Grounded in architecture.md §4 (f1a49e3c1). AC groups a:namekey b:domain c:autocomplete d:dedup e:unit-shape f:shared. Gate coverage 25/25. Used refine-r21.8.mjs (load→inject→write, preserves chain). Pattern mirrors R21.7 (architectureRef + acceptanceCriteria[] {id,group,text} + testScenarios[] {id,gates[],name,given,when,then} + refinementNote). Next: standby for PDCA Check on expert impl.
+## LATEST: R21.5 email requirement (a8be009e) refined — 17 ACs + 8 TS, gate 17/17 — committed 5523a0deb (project repo). AC groups a:unit-shape b:relationship(multi+idempotent) c:normalizeEmail d:alt-index e:EmailIndex.mintAndLink f:device-link(shares R21.4 resolveKeyToProfile). SAME commit also fixed architecture.md per REQ FLAG (code is law): alt/phone+alt/email symlink is declared on **Profile.unitLinks[]** (NOT Phone/Email unit), pointing to the Profile — matches shipped R21.6. Used refine-r21.5.mjs (load→inject→write). NOTE: R21.1 (efd1acb6) now carries an `implRef` field → expert IS shipping code; R21.1 impl already landed+gated. Next: standby / next req refinement (R21.3/R21.4/R21.6/R21.9 still un-refined?).
+
+## PRIOR: R21.8 (bf6a0433) refined 25 ACs + 11 TS — committed 7f3f6f3dd. Grounded in architecture.md §4 (f1a49e3c1). Pattern: architectureRef + acceptanceCriteria[] {id,group,text} + testScenarios[] {id,gates[],name,given,when,then} + refinementNote (mirrors R21.7).
 
 ## PRIOR: R21.8 company-dedup design committed f1a49e3c1. architecture.md §4: recall(nameKey) vs precision(domain+user-confirm), companyNameKey() algo, alt/company-domain/ strong-key index, /api/company/suggest autocomplete, ownerIor:null shared, wx-atomic mint race guard.
 
