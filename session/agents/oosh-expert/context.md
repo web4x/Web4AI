@@ -5,7 +5,27 @@
 **Pane**: ooshTeam:0.3 (verified via `otmux pane.get.target`; shell ooshShells:0.0)
 **Machine**: WODA.prod (dev branch, /root/oosh)
 **PO**: oosh-po @ ooshTeam:0.0 | Peer tester: ooshTeam:0.4 | Architect: ooshTeam:0.2
-**Updated**: 2026-06-28 — clean-boot sprint DONE (BUG1-9,A,B,C-ext,FEAT8 all on dev, QA-passed). Now S3 PARITY: merge plan prepared, holding for S1 (tester GREEN) gate before dev→macos.latest merge.
+**Updated**: 2026-06-28 — NOW on u24 fresh-install GATE / SETUP_SERVER tail (S-B). S3 macos.latest merge HELD (S1 not green: tester found 83 legacy fails, triage pending). Clean-boot sprint (BUG1-9,A,B,C-ext,FEAT8) all on dev + QA-passed.
+
+## ACTIVE: u24 fresh-install gate → SETUP_SERVER 32→62 tail (S-B)
+Task files: `session/tasks/u24-freshinstall-testgate.md` + `session/tasks/setup-server-statemachine-tail.md`.
+**Goal**: fresh dev ossh install on pristine ubuntu:24.04 (u24 container) must reach state 62 + wire root .bashrc → clean boot.
+**u24 testbed**: container `u24`, port 9024, `--security-opt seccomp=unconfined` (glibc clone3 vs Docker 20.10.7), root key injected. Recreate+install:
+```
+docker rm -f u24; docker run -d --name u24 --security-opt seccomp=unconfined -p 9024:22 naked_ubuntu_24_04
+docker exec u24 bash -c "mkdir -p /root/.ssh && echo '$(cat /root/.ssh/id_rsa.pub)' > /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys"
+LOG_DEVICE=/dev/stderr LOG_LEVEL=3 STEP_DEBUG=OFF ossh install u24
+ssh u24 'grep -E "^state=|stateValue" ~/config/current.state.machine.env'   # check state
+```
+**5 install-transport bugs FIXED (gate)**: rsync push+pull remote-probe→scp (4397ac2,8a3c02d), mode ssh→root (4397ac2), ssh-keygen -N'' hang (99fb694), odocker run.sshd sshHostPort (9a87d34); +container seccomp.
+**SETUP_SERVER S-B (architect: ALL 5 = FIX dev, zero ports — macOS stubs the tail)**:
+- ✅ BUG5 contamination FIXED+VERIFIED `2b68265` — create.result(this:319) strips ANSI; err.log+important.log(log) coerce stdout/empty LOG_DEVICE→/dev/stderr. Clean .pub paths now.
+- ⏳ STILL state 32. True blocker exposed: **`Unknown method: ossh get.key.name` at ossh:533** (`remoteKeyName=$(ossh.exec $host "ossh get.key.name")` — should be `ossh key.name.get`, words reversed). NEXT FIX.
+- Then BUG2 state.declaration(state:361/668 undefined), BUG3 ossh.prereqs.install(init/oosh:454, non-fatal warn), BUG1 config ci(this:919), BUG4 2cuGitHub create-before-clone(oo:869/1052).
+- Per fix: commit + recreate u24 + reinstall (~5min) + confirm state advances.
+
+---
+## PRIOR: clean-boot sprint + S3 plan
 
 ## Sprint: clean-boot bugs + parity (2026-06-28, dev) — all QA-passed
 
