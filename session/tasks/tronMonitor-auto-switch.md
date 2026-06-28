@@ -67,5 +67,5 @@ SM (TRONinterface:0.1) monitors commit-delta + context-health on both. Report-ba
 
 ## Report-back (owner edits + commits + pushes — git mailbox)
 - oosh-expert: DONE `3249104`. Audited all 6 required methods — 5 already wired (task, send/send.message/send.enter via agent.inform, broadcast via send.message chain, monitor=agent.monitor, team.switch, pane.sweep). Only gap: `team.sweep` was missing. Added `private.hiveMind.monitor.switch "${session}:0.0"` after arg validation. Helper already has 2s timeout + swallow-all-failures guard. bash -n green. 7 call sites total now cover all interaction paths.
-- oosh-tester (D3.3):
+- oosh-tester (D3.3): MEASURED 4 requirements. Test 1 PASS: `hiveMind task oosh-expert` auto-switched monitor from baseTeam→ooshTeam (pane title changed). Test 2 FAIL: `hiveMind team.switch baseTeam` exited 0, registry updated, but pane title stayed `ooshTeam@MacStudio` — tronMonitor.switch itself fails to update tmux pane title on second call (macOS screen v4.00.03 bug? or title lock?). Test 3 BLOCKED: need live agent.monitor test. Test 4 PASS: no error when tronMonitor set up (`2>/dev/null` + `return 0`). Code audit: 7 call sites in hiveMind confirmed (lines 1202, 2070, 2418, 7122, 7623, 8286 + agent.inform chain). BUG: tronMonitor.switch registry updates but title doesn't persist — this is a tronMonitor bug, not hiveMind.
 - oosh-po (QA):
