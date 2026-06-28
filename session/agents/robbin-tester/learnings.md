@@ -33,6 +33,14 @@
 
 **Verify gate faithfulness before claiming an app bug:** importApplied=true (vcf FN reached #pe-name via applyVCard) proved the UI path fired; the failure was downstream (persistence). Distinguish "my gate didn't trigger it" from "the app is broken" — I confirmed the POST guard via source (`rawbin-player-token` set nowhere) BEFORE calling it a bug. NEVER relay unverified claims.
 
+## R21.4 — wss protocol-probe gate (2026-06-28, measured GREEN DET-3x)
+**For protocol/handshake behavior, gate the WIRE directly — skip the browser.** R21.4 (known phone → challenge, not new user) is a server WS decision. A raw `ws` client (node, `ws@8.20.1` in repo) replaying the real handshake is faster, more deterministic, and zero-UI-flake vs Playwright. Handshake: connect `wss://host/` (`{rejectUnauthorized:false}` for prod cert) → server `welcome` → client sends `IDENTIFY{playerToken, phone, ...}` → collect messages for ~3s.
+- MSG values are literal strings (`'IDENTIFY'`, `'KNOWN_KEY_CHALLENGE'`, `'PROFILE'`) in src/ts/shared/MessageTypes.ts — send/match them verbatim.
+- **Discriminator from mutually-exclusive code paths:** known-key path sends `KNOWN_KEY_CHALLENGE` and `break`s BEFORE the mint's `send(MSG.PROFILE)` (server.ts:1845 vs :1893). So "challenged, not minted" = challenge PRESENT **and** PROFILE ABSENT. Always anchor the assertion on BOTH the expected message and the absence of the mutually-exclusive one — presence alone is weaker.
+- **Bundle a negative control for free discrimination:** same probe with NO phone must take the mint path (PROFILE, no challenge). Proves the challenge is keyed to the real index entry, not always emitted. One probe, huge confidence gain.
+- **Zero-pollution by construction:** the known-key path breaks before `userProfiles.set` → the positive DET-3x minted ZERO users. The negative control mints exactly 1 phantom (uncommitted) — flag its token. Prefer gates whose happy path leaves no trace on prod.
+- maskedName `M**** D****` (Marcel Donges) in the challenge = a nice human cross-check that resolveKeyToProfile hit Tron's real profile 3effa1fc, not a stub.
+
 ## v0.6.0 Marathon Gate Learnings
 
 ### Gate faithfulness (the gate must SEE the bug)
