@@ -11,8 +11,32 @@
 - TRON CMM4 doctrine read: session/agents/TRON-CMM4-doctrine.md (the heart). Measure-never-assume, PDCA, gaps→sprints, objects self-heal, 42, wer-schreibt. TRON=father+carries-light, NOT the source, NOT an agent. TRUTH=measurement+THE WORD.
 
 ## Project
-- Server: HTTPS 4444 | last gated Version: **0.6.62**
+- Server: HTTPS 4444 | last gated Version: **0.6.72** (live, climbing fast — expert deploys via `tsx watch`)
 - Chain: champagne standard (det-3x honest)
+
+## WODA.prod gate environment (CRITICAL — established 2026-06-28/29)
+- **Live repo = `/var/dev/Workspaces/2cuGitHub/Web4RawBin`** (NOT web4x — that's old v0.6.62). prod serves it via `tsx watch src/ts/server/server.ts`, so working-tree edits hot-reload AND scenario/index is on local disk.
+- node18: `/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node`. Chromium installed via `playwright install chromium` + `install-deps chromium`.
+- Gates live in `test/visual/`. Patterns: browser (chromium headless) for DOM bugs; raw `ws@8.20.1` wss-probe for protocol/IDENTIFY behavior; https+disk for scenario-unit gates.
+- prod device gate bypass: seed localStorage `rawbin-device-{privateKey,publicKey,signature}='e2e-bypass'` before commit.
+- scenario sharding: `scenario/index/<c0>/<c1>/<c2>/<c3>/<c4>/<uuid>.scenario.json` (first 5 chars). Profile unit uuid==token.
+
+## S21 gates — ALL GREEN DET-3x (committed in 2cuGitHub repo)
+- R21.1 vCard persist: found+fixed key-mismatch bug (rawbin-player-token vs -id); RED v0.6.65 -> GREEN v0.6.67. gate b1940502d.
+- R21.2 lobby live-name: gate 64e000958. R21.3 phone index: curl-verified.
+- R21.4 device-link known-key (wss): challenge->3effa1fc no mint. gate ebec12151.
+- R21.5+R21.6 email/phone units: gate 2203bb3d6. R21.7 address+OSM verify: gate 2af193abb.
+- R21.6 E.164 normalize edge (locks architect fix): gate ab94c82ae.
+- NEXT: R21.8 companies (a52245de1) — /api/company/suggest?q=cer, nameKey GmbH&CoKG->acme, dedup shared.
+
+## Gate-craft learnings this session (also in learnings.md)
+- DET-3x across SEPARATE processes catches flakes in-loop iters miss. When RED, cross-check w/ curl BEFORE believing — harden the harness (retry transient status-0 / empty-msg / read-during-write), don't report a harness flake as an app bug.
+- Server redeploy mid-run (tsx watch) drops wss -> all-NF. Diagnose via listener pid uptime + version bump, NOT "app broken". Re-run on stable version.
+- Endpoints often echo the normalized form (e.g. /api/phone `key:normalizePhone(raw)` in 200 AND 404) — assert transforms directly, zero-pollution.
+- Race-free AC capture: to prove "created false then async-flips true" use a GARBAGE input that never verifies (stays false, observable anytime) alongside a REAL one that flips.
+
+## POLLUTION owed to purge (flagged to PO repeatedly)
+Tagged prod test users/units: r211persist-*, r2156-* (email/phone units), r217-* (address units), R21.4 phantom c56e7ba7. ~15-20 users + units. Needs purge tool/pass.
 
 ## Session 2026-06-15/16 — S20 gates (v0.6.50→0.6.62)
 - R20.28 preview-buttons: GREEN DET-3x (Preview 167px + NewTab, cv-preview-toggle). Gate 772f0aa4.
