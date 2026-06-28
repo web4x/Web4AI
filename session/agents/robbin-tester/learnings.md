@@ -41,6 +41,13 @@
 - **Zero-pollution by construction:** the known-key path breaks before `userProfiles.set` → the positive DET-3x minted ZERO users. The negative control mints exactly 1 phantom (uncommitted) — flag its token. Prefer gates whose happy path leaves no trace on prod.
 - maskedName `M**** D****` (Marcel Donges) in the challenge = a nice human cross-check that resolveKeyToProfile hit Tron's real profile 3effa1fc, not a stub.
 
+## DET-3x earns its keep + harden the harness, not the verdict (2026-06-29, measured)
+On R21.5/6, the 3 in-script iterations were GREEN but a SECOND independent process run flipped the standalone checks to RED with `status 0` / `challenge=NONE`. I did NOT report RED — I MEASURED: direct `curl` of the same endpoint was 5/5 HTTP 200 (~20ms). So the RED was a **transient connection blip swallowed by my harness** (`https.get` `.on('error')` → status 0, no retry), not an app regression. Fix = retry-on-transient in `apiGet` (status 0) and `probe` (zero messages = blip, since SERVER_CONFIG/ROOM_LIST always arrive on a healthy socket). Re-ran clean GREEN 3×.
+**How to apply:** (a) DET-3x across SEPARATE processes (not just in-loop iterations) is what surfaces connection/timing flakes — keep doing independent runs. (b) When a gate goes RED, FIRST cross-check with a dead-simple independent tool (curl) before believing it — a flaky gate is unfaithful and must be fixed, not reported as an app bug. (c) Harnesses firing many rapid wss+https connections WILL hit occasional transient errors; bake in bounded retries so a blip never becomes a false RED. (d) Distinguish "empty response" (connection failure → retry) from "wrong response" (real RED → report).
+
+## Self-contained round-trip > depending on a seed
+R21.5/6 gate creates its own committed user, adds phone/email, then resolves them back — proving the FULL lifecycle (mint unit → index → resolve / device-link) in one gate, plus a separate check of Tron's real seed. Self-contained create→verify is stronger and less brittle than asserting only against pre-seeded data, and the alt-UUID REST (`/api/phone/<x>` → token; Profile unit uuid==token) is the clean observable for "unit created on update."
+
 ## v0.6.0 Marathon Gate Learnings
 
 ### Gate faithfulness (the gate must SEE the bug)
