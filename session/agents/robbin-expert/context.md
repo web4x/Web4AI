@@ -4,7 +4,7 @@
 **Machine**: WODA.prod · **Pane**: robbinTeam2:0.1
 **Repo (WODA.prod)**: /var/dev/Workspaces/2cuGitHub/Web4RawBin · **Live**: prod.wo-da.de:4444 (tmux session `rawbin`)
 **AI/Claude repo** (context/learnings): /var/dev/Workspaces/AI/Claude
-**Current version**: v0.6.69.
+**Current version**: v0.6.73 (R21.1-9 impl complete + E.164/AC-b3 fixes).
 
 ## Sprint 21 (Contact Identity) — progress
 | Req | What | Commit | Version | Gate |
@@ -17,8 +17,12 @@
 | R21.7 | addresses as scenario units + async OSM verify | 3cf79d5d3 | 0.6.70 | awaiting tester (components measured) |
 | E.164 | normalizePhone 00→+ / reject bare national | 8ede36d4e | 0.6.71 | dedup-hardening fix |
 | orphans | wireImplNode 5 missing impl units | 84161c91f | — | 0 orphans (scoreboard) |
-| R21.8 | companies as shared units (ior:class:Company) | a52245de1 | 0.6.72 | awaiting tester |
-- **NEXT: R21.9** (file-detail reorder + pan/zoom; req 6e978d5ee) then R21.2 (lobby name race; partial v0.5.131). R21.8 DONE (a52245de1 v0.6.72).
+| R21.8 | companies as shared units (ior:class:Company) | a52245de1 | 0.6.72 | tester GREEN 446d39d3e |
+| R21.8-fix | AC-b3 present-but-unmatched domain → distinct unit (not nameKey merge) | c22083798 | 0.6.73 | re-gate pending |
+| R21.9 | file-detail reorder + pan/zoom (RbPanZoom, rb-preview-pane) | c22083798 | 0.6.73 | awaiting tester |
+- **SPRINT 21 IMPL COMPLETE** (R21.1-9). Remaining: R21.2 (lobby name race — partial v0.5.131, may need finish). Awaiting tester DET on R21.7 / R21.8-fix(AC-b3) / R21.9.
+- R21.9 DONE — pan-zoom.ts RbPanZoom (transform translate+scale, wheel/drag/pinch/double-tap, clamp, zoom-about-point, destroy, 7 correctness rules AC-e1..e6); rb-preview-pane.ts (75vh in-flow viewport, teardown on setContent); rb-file-detail.ts reordered buttons→pane→metadata + fillPane(img/iframe/pre by mime). DRY: RbPanZoom reusable.
+- R21.8-fix DONE — AC-b3: mintOrReuseShared gates nameKey reuse on NO-domain; present-but-unmatched domain mints distinct unit; buildLinks won't clobber an existing nameKey recall symlink. Tester GREEN base was 446d39d3e; this fix (c22083798) needs re-gate.
 - R21.8 DONE — companies as SHARED ior:class:Company units. CompanyIndex: companyNameKey (NFKD+legal-suffix strip incl trailing 'and'), companyDomain (authoritative), mintOrReuseShared (domain→nameKey→mint), dual alt-index (alt/company/<nameKey> + alt/company-domain/<domain>) declared ON the Company unit (shared, no owning profile), suggest() ranked, /api/company/suggest. ownerIor:null. Profile.companies[].
 - R21.7 DONE (was NEXT) — addresses as scenario units. Req 5d3b5e6e (16 AC). Architecture §5. Built:
   (1) ior:class:Address {uuid, oneLine, verified:false, osmLink:null, gmapsLink:null, ownerIor→Profile}

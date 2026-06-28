@@ -795,3 +795,19 @@ stops at 'and' → 'acmegmbhand' instead of 'acme' (mid-name 'and' stays trailin
 the shared unit, mint-or-reuse ladder. AND: my temp-dir harness CAUGHT the AC-a4 'and' bug before
 ship — ALWAYS encode the AC's literal example ("GmbH & Co KG"→acme) as a harness assertion, not
 just the happy path. The bug you measure is the bug you don't ship.
+
+## Pan/zoom controller + the post-gate-fix re-gate discipline (R21.9 + R21.8 AC-b3, 2026-06-28)
+RbPanZoom (pan-zoom.ts) is a reusable transform controller: CSS translate(tx,ty)scale(s),
+transform-origin 0 0; zoom-about-point keeps the cursor/pinch-midpoint stationary
+(tx'=px-f*(px-tx)); clamp tx/ty to viewport*(1-s)..0 and recenter at s=1. Correctness rules
+that bite: listeners on the .pz-viewport ONLY (not the drawer root) or the whole detail view
+hijacks; e.target hit-test (never elementFromPoint); iframe pointer-events:none MID-GESTURE
+(else the iframe swallows drags); destroy() before re-wire on ViewBus re-render (else leaked
+listeners stack); double-tap detector needs touchend touches.length===0. Wrap it in a 75vh
+in-flow pane (NOT position:fixed → never intercepts outside taps).
+**How to apply (process):** when a fix lands ON TOP of an already-GREEN gate (architect PDCA
+caught R21.8 AC-b3 after tester GREEN 446d39d3e), it is NEW code → explicitly tell the tester
+it needs a RE-GATE; never let a post-gate fix ride the old GREEN. And when a domain/key is
+PRESENT-but-unmatched, that is positive proof of distinctness — don't fall through to a weaker
+recall key (mint distinct); and a distinct unit must not clobber the first unit's recall symlink
+(only create the alt-link if free).
