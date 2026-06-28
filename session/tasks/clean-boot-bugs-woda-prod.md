@@ -167,6 +167,51 @@ private.complete.panes
 
 **Acceptance**: `otmux pane.title CURRENT "x"` retitles caller's pane; `otmux pane.capture CURRENT` / `pane.lock CURRENT` etc. all work (free via the resolver); `CURRENT` appears in Tab completion; test T-CURRENT-TARGET. Verify it resolves correctly even with stale TMUX_PANE (uses pane.self).
 
+## Architect Review (oosh-architect, 2026-06-28) — config-dedup + color-boot + BUG 7 + FEAT 8 DRY
+
+### A. config.save var policy — ESSENTIAL vs CLUTTER (dedup)
+Source: healthy backup `…/sharedConfig/user.env.healthy-tron-backup-20260628` (25 exports + 2 source lines).
+
+**ESSENTIAL — config.save must ALWAYS resolve + emit:**
+- Fundamentals (canonical, via `private.this.resolve.fundamentals`): `CONFIG_PATH, CONFIG_FILE, CONFIG, OOSH_DIR, OOSH_MODE, BASH_FILE, PATH`
+- OOSH-owned state: `LOG_LEVEL, LOG_LEVEL_RESET, LOG_LIVE, USER` (+ `LOG_DEVICE`, caveat below)
+- ⚠ `LOG_DEVICE` belongs in log.env and must NOT be hard-set to `/dev/tty` (BUG 3) — headless/cron has no `/dev/tty`.
+
+**CLUTTER — config.save must NEVER persist:**
+- Test artifacts (LEAKED from test.suite/test.config into the *shared* config): `EXPECTED_RETURN_VALUE, GET_TEST_VAR`
+- VS Code injected: `BROWSER, GIT_ASKPASS, GIT_EDITOR`
+- lesspipe/system: `LESSCLOSE, LESSOPEN`
+- Terminal-specific (freezing breaks a different terminal): `TERM, COLORTERM, LC_TERMINAL, LC_TERMINAL_VERSION, LANG`
+
+**DESIGN — ALLOW-LIST, not DENY-LIST.** Deny-list loses (new VSCode/terminal vars appear constantly). `config.save` (no-args/regen) emits ONLY: (1) 7 fundamentals always, (2) explicit OOSH allow-set (`OOSH_*, LOG_*, CONFIG_*, USER`), (3) `config set` user vars (tracked via `CONFIG_USER_VARS` marker or separate user-vars.env). **ROOT CAUSE of clutter:** S-5 harvest-resolve-merge harvests EVERY `^export` from file+live-env → terminal/VSCode/test leakage accumulates. Harvest must filter to the allow-set, not "all exports."
+
+**Source lines MUST GO** (BUG 2/4) — chain belongs in `this`. ⚠ **DOCTRINE CONFLICT flagged:** `first-principles.md` Rule A says "`source xyz.env` is the sole permitted construct" in env files, but this directive moves them to `this`. Tron's newer directive wins: env files = pure exports ONLY; `this` owns the chain. first-principles.md needs reconciling (my `9e4915c` no-source-of-scripts rule is fine; narrow the env-file source allowance to "`this` sources the chain; env files don't self-re-source").
+
+### B. Color boot — macos.latest vs dev
+**MEASURED on dev:** `setup.color.env` EXISTS (sources color.env + color.names.env + bold.color.names.env w/ ESC/BOLD/NORMAL prelude); `color.env` EXISTS; **`.bashrc:150` DOES `source setup.color.env`**; `TERM=xterm-256color`, `COLORTERM=truecolor` present.
+
+**FINDING — premise "setup.color.env not sourced on dev" is FALSE: dev sources it.** Divergence is downstream. Ranked:
+1. **`.bashrc:151 source "$OOSH_DIR/log"`** runs AFTER colors — if dev's `log` (`log.start`→`log.init.colors`) clobbers `BOLD/NORMAL/COLOR_*`, colors die after set. *(Most likely — only script-level branch diff in chain, sources after colors.)*
+2. **PS1/prompt template** doesn't reference color vars (or wrong names) on dev.
+3. `line init` SKIPPED on both (color.env exists) → DATA identical → NOT cause.
+
+**A/B REPRO:** `oo mode macos.latest; bash -lc 'declare -p BOLD NORMAL; declare -p|grep -c COLOR_; echo PS1=$PS1'` vs `oo mode dev; …` — BOLD/NORMAL differ → `log` clobbers; PS1 differs → prompt template.
+
+### C. BUG 7 — pane.self single self-ID primitive (dedup)
+**CONFIRMED single primitive:** `private.otmux.pane.self()` (otmux:2747, PID/ppid-walk). Public funnels (`pane.self`, `pane.get.target`, `current`) all route through it. otmux internals (1298/1341/1384/1899) already migrated — the `|| ${TMUX_PANE}` fallbacks are ALREADY removed. **otmux fully deduped.**
+
+**PARALLEL self-ID STILL TO ELIMINATE (do NOT funnel through pane.self):**
+1. `hiveMind:2258`+`2316` — `$TMUX_PANE` + raw `tmux display-message -t "$TMUX_PANE"` (callerRole) → DOUBLE violation. Fix: `otmux pane.get.target` → registry lookup.
+2. `hiveMind:7461`+`7726` — `own_pane="$TMUX_PANE"` → `own_pane=$(otmux pane.get.target)`.
+3. `hiveMind:1936` — `callerSession=$(tmux display-message -p '#{session_name}')` — bare display-message = FOCUSED pane's session, NOT self (the exact bug otmux:1890 warns of). Fix: derive from `otmux pane.get.target`.
+4. `claudeCode:1595-1598` — `context.self` reads via `$TMUX_PANE` → use `otmux pane.get.target`; keep only `$TMUX` presence gate.
+
+**VERDICT:** pane.self IS the single primitive, otmux fully deduped. **hiveMind (5) + claudeCode (1)** have parallel ad-hoc self-ID to funnel through `otmux pane.get.target`. Extend T-NO-TMUXPANE guard to ALSO catch bare `display-message -p '#{session_name}'` self-ID (hiveMind:1936 class). test.c2's 10 `TMUX_PANE=` SETS are legit target-injection — switch to explicit target arg for clarity (low priority).
+
+### D. FEATURE 8 DRY question (pane-target completions consolidation)
+**Decision: IN SCOPE now, same PR as CURRENT.** The single-resolver principle (`private.resolve.target` adds `CURRENT`) is undermined if the valid-target LIST is duplicated across completions (`otmux.parameter.completion.target` inline U/D/L/R vs `send.zoomed.completion.target` panes-only). Add ONE `private.complete.paneTargets` (CURRENT + U/D/L/R + `private.complete.panes`) that BOTH completions call. The list lives in ONE place, mirroring the ONE resolver — same dedup discipline as pane.self. Small, on-theme, do it with FEAT 8.
+
 ## Report-back (edit here; report to oosh-po)
+- Architect (config-dedup + color-boot + BUG 7 + FEAT 8 DRY): **DONE 2026-06-28** — see Architect Review above. (A) clutter = test/VSCode/terminal leakage harvested by S-5 merge → ALLOW-LIST; source lines → `this` (Rule A doctrine conflict flagged). (B) dev DOES source setup.color.env — premise corrected; culprit ranked: `source $OOSH_DIR/log` after colors (cand 1) or PS1 template (cand 2), A/B repro given. (C) pane.self confirmed single primitive; 5 hiveMind + 1 claudeCode parallel self-ID to funnel through pane.get.target. (D) consolidate pane-target completions into one helper w/ FEAT 8.
 - Expert (HOME guard + user.env regen + commit):
 - Tester (clean-boot verification on WODA.prod + u20):
