@@ -14,7 +14,14 @@
 | R21.4 | phone/email known-key → device-link not new user | 3b6dcc83c | 0.6.67 | tester GREEN |
 | R21.5 | emails as scenario units (ior:class:Email) | d4aad5081 | 0.6.68 | awaiting tester |
 | R21.6 | phones as scenario units (ior:class:Phone) | f420c79de | 0.6.69 | awaiting tester |
-- NEXT likely: R21.7 (Address mintAndVerifyAsync OSM), R21.8 (Company mintOrReuseShared), R21.9 (file-detail reorder+pan/zoom), R21.2 (lobby name race — partially fixed v0.5.131).
+- **NEXT ASSIGNED: R21.7** (v0.6.70) — addresses as scenario units. Req unit 5d3b5e6e (16 AC + 8 test scenarios, refined 6d3f8052d). Architecture §5. Build:
+  (1) ior:class:Address {uuid, oneLine, verified:false, osmLink:null, gmapsLink:null, ownerIor→Profile}
+  (2) Profile.addresses[] multi (mirror EmailIndex/PhoneIndex mintAndLink — see contact-unit pattern below)
+  (3) address oneLine = "Country City PostalCode Street HouseNumber" (large→small)
+  (4) ASYNC OSM verify: save immediately verified:false; background Nominatim (≤1 req/s, descriptive User-Agent, cache by oneLine) → on HIT set verified:true + osmLink (openstreetmap.org/?mlat=&mlon=#map=18/lat/lon) + gmapsLink (google.com/maps?q=lat,lon); miss → stays verified:false, displays w/o badge
+  (5) GET /api/address/:uuid → badge state {verified, osmLink, gmapsLink}
+  Create AddressIndex.ts (mintAndVerifyAsync). Measure: temp-dir harness + live /api/address curl. NOTE: Nominatim is the one external-network call — rate-limit + UA per their policy.
+- THEN: R21.8 (Company mintOrReuseShared — SHARED unit, link on Company not profile; req 7f3f6f3dd 25 AC), R21.9 (file-detail reorder+pan/zoom; 6e978d5ee), R21.2 (lobby name race — partial v0.5.131).
 - BUG-A/B/C/D (CurrentSprint 3-slot) shipped earlier: 7782dd54b, 81049cb5d.
 
 ## Contact-unit pattern (R21.3/4/5/6 — REUSE for R21.7/8)
