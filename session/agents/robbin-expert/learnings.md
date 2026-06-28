@@ -716,3 +716,15 @@ Build uses scenarioFwd keys (plural: 'classes'), filter must use the SAME keys. 
 ### Learning #114: R20.30 breadth-vs-depth pattern
 Traceability Chain ≠ All Children. Chain = depth-first single path (renderChainPathSection: async /api/trace/children walk, first child at each hop, max 6 levels). All Children = breadth (renderAllChildrenSection: all children flat = badge count). Class with 14 methods: Chain shows 1 method→impl→test→gate; Children shows all 14. Task/Req/UC already used singularChain — only class/method/impl/test needed the fix.
 
+
+## WODA.prod env (2026-06-28)
+- System node = v16 (vitest/tsx fail). BUT node18 available at /root/.vscode-server/bin/*/node — use it for tests/tsx on WODA.prod.
+- esbuild --bundle parses on node16 = compile gate. To run logic: harness .mjs in repo root → esbuild bundle to /tmp → node.
+- otmux send fails (no /dev/tty) → use `tmux send-keys -t robbinTeam2:0.0 "..." Enter`.
+- git commit needs `-c commit.gpgsign=false`.
+- Repo on WODA.prod: /var/dev/Workspaces/2cuGitHub/Web4RawBin.
+
+## CurrentSprint 3-slot invariant (BUG-A/B/C, 2026-06-28)
+- wipStatus 'done' requires explicit gate-proven check at last hop (CHAIN_ORDER[last] is truthy so ||'done' never fires).
+- setFocus must capture old focused task → lastCompleted (persist 3 fields) for 3-slot rotation.
+- getThreeSlots: enforce distinct UUIDs — lastCompleted excludes current; nextBacklog excludes current+lastCompleted; null when pool small. Self-heal = no --force.
