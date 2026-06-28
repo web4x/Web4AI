@@ -22,3 +22,4 @@
 | 2026-06-28 | Round 4 — metric correction | 33/98 was artifact: 0 empty-learnings agents are LIVE; live capture healthy (robbin workers rich). Corrected docs + SM + robbin-po. Dormant gap = boot-seeding, not nudge. |
 | 2026-06-28 | Round 5 | both POs LIVE+engaged (robbin-po planning R21.7/8; oosh-po at prompt); tasks ~2/75min; standard nudge sent |
 | 2026-06-28 | Round 6 | both POs live but quiet (auto-mode, no active work shown); tasks low (1/75min) — mild slowdown; nudged to keep wheel turning |
+| 2026-06-28 | Round 7 — STALL | tasks 3->2->1->0 (now 0); both POs quiet/auto-mode; re-drove POs to name next-task-or-blocker; flagged SM to sweep idle-vs-blocked |
