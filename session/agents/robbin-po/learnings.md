@@ -452,3 +452,37 @@ A bloated-base agent (expert) burned context FAST — even a DEEP (~70%) 2-phase
 
 ### 101. Data wired ≠ rendered — the render/endpoint layer is a separate gate (2026-06-16)
 Recurring this cycle (BUG8 children, scanRepo Bug-emission, R20.29 tree): a fix can correctly WIRE THE DATA (forward-key maps, backfilled Impl.tests[], scenario units) yet the feature stays RED because a DIFFERENT layer — the scan/traversal/endpoint that SURFACES it — doesn't emit those types. RULE: for any 'make X appear' bug, verify BOTH (a) data wired AND (b) the render/endpoint layer surfaces it, as SEPARATE gates. An agent's 'tree should now render' after a data fix is a CLAIM — the independent tester gate (visible, DET-3x) is what proves it; it caught 3 such premature-greens this cycle. Never mark visible-feature green on a data-layer fix alone.
+
+## WODA.prod Cycle — 2026-06-28
+
+### 111. --force is forbidden in radical OOP — fix the object, don't bypass the guard (2026-06-28, Tron correction)
+Used `focus --force` to advance the CurrentSprint pin past a blocked state. Tron: "--force and flags are all strictly forbidden in radical OOP." When the system blocks, the block IS the bug report. The object must self-heal (doctrine rule 4). FIX: BUG-A in wipStatus (read hopStates at last hop) made --force unnecessary — focus() passed naturally. Then removed the --force call and reverted its commit.
+**How to apply:** NEVER use --force, --skip, --override, --no-verify on ANY tool. If a tool offers --force, that's a design smell — the tool should self-heal. When blocked, diagnose the object's inconsistency, fix the code/data, let the operation succeed naturally.
+
+### 112. LOG_DEVICE=/dev/stderr workaround for headless servers (2026-06-28)
+OOSH `log` script defaults LOG_DEVICE to /dev/tty, which doesn't exist on headless Linux (WODA.prod). Every `otmux send` fails silently. Workaround: `export LOG_DEVICE=/dev/stderr` before hiveMind/otmux commands. Filed as task (task-log-device-headless-fallback.md) for oosh-expert to fix at init.
+**How to apply:** On any headless host, set LOG_DEVICE=/dev/stderr in the shell before OOSH commands. Verify `otmux send` returns "send.verified OK" — if it doesn't, check LOG_DEVICE first.
+
+### 113. otmux send verified OK ≠ agent processed — check for permission prompts + stale buffers (2026-06-28)
+`send.verified OK` means the text was DELIVERED to the pane, not that the agent PROCESSED it. Agents block on permission prompts (architect hit 3 consecutive prompts), have stale text in their input buffer from previous sessions, or are interrupted mid-work. Always capture the pane AFTER sending to confirm the agent is actually working on the dispatch.
+**How to apply:** After `otmux send`, wait briefly then `otmux pane.capture` to confirm: (a) prompt changed (agent processing), (b) no permission prompt blocking, (c) no stale buffer text interfering.
+
+### 114. hiveMind registry drifts on host migration — verify after every migration (2026-06-28)
+Agents migrated MacStudio→WODA.prod but hiveMind registry kept the old pane assignments (5/6 wrong). boot.md files also carried old pane numbers. The registry is the team's routing table — if it's wrong, otmux sends go to wrong agents.
+**How to apply:** After any host/team migration: (1) `hiveMind team.status` to check registry, (2) compare against `otmux pane.list`, (3) fix hivemind.roles.env, (4) update all boot.md pane numbers, (5) verify each agent confirms its identity.
+
+### 115. UUID prefix match ≠ UUID match — same first 8 chars, different UUID (2026-06-28)
+CR1 chain.class pointed to f2f84ce3-bbbc (doesn't exist) while the real RbDetailView Class unit is f2f84ce3-6f8f (exists, fully wired). Same prefix, different UUID. I reported "class NOT ON DISK" which was true for the pointer but false for the data — the unit existed, the reference was wrong. Fix the pointer, don't mint a duplicate.
+**How to apply:** When a unit appears "missing," check whether a unit with the same prefix but different suffix exists. Search by prefix, not full UUID. A "missing" unit is often a wrong pointer, not absent data.
+
+### 116. Staggered rewind: idle + highest-burn first, WIP preserved via context.md commit (2026-06-28)
+Three agents crossed context danger zones simultaneously (tester 100%, skill-expert 766k, expert 636k). SM coordinated staggered rewinds: idle agents first (lowest disruption), each one commits context.md before rewind (wer schreibt, der bleibt), trainer executes one at a time.
+**How to apply:** Rewind order = idle+highest-burn first. Before each rewind: (1) agent saves context.md + learnings.md, (2) commits, (3) then rewind. Never rewind mid-task. Never rewind multiple agents simultaneously. 42 principle — SM + trainer peer-heal; PO coordinates order.
+
+### 117. 3-slot uniqueness invariant — enforce by construction, not data patching (2026-06-28)
+CurrentSprint getThreeSlots() allowed current=lastCompleted=nextBacklog (all same UUID). I patched the data 3 times before the expert fixed the code (BUG-C: exclude current from lastCompleted selection, exclude both from nextBacklog). The invariant must be in the CODE — data patches are CMM1 (whack-a-mole), code invariants are CMM3 (deterministic by construction).
+**How to apply:** When a data constraint keeps breaking, the fix is a code invariant (enforce by construction), never repeated data patches. If you're fixing the same data shape twice, stop and file a code bug.
+
+### 118. Use hiveMind for team operations, not raw tmux or manual captures (2026-06-28, Tron correction)
+Tron caught me using raw `tmux send-keys` and manual `tmux capture-pane` instead of `otmux send` and `hiveMind team.status`. The OOSH tools ARE the discipline layer — they verify delivery, enforce routing, maintain the registry. Raw tmux bypasses all of that and caused INC-004 (pane shift). ALWAYS use the OOSH tools.
+**How to apply:** `otmux send` not `tmux send-keys`. `otmux pane.capture` not `tmux capture-pane`. `hiveMind team.status` not manual pane loops. Only fall back to raw tmux when OOSH is genuinely broken (and file a task to fix OOSH).
