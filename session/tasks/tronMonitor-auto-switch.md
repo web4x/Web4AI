@@ -66,6 +66,6 @@ When PO runs `hiveMind team.switch <team>`, that should also call `tronMonitor s
 SM (TRONinterface:0.1) monitors commit-delta + context-health on both. Report-back: edit your block below, commit, push.
 
 ## Report-back (owner edits + commits + pushes — git mailbox)
-- oosh-expert:
+- oosh-expert: DONE `3249104`. Audited all 6 required methods — 5 already wired (task, send/send.message/send.enter via agent.inform, broadcast via send.message chain, monitor=agent.monitor, team.switch, pane.sweep). Only gap: `team.sweep` was missing. Added `private.hiveMind.monitor.switch "${session}:0.0"` after arg validation. Helper already has 2s timeout + swallow-all-failures guard. bash -n green. 7 call sites total now cover all interaction paths.
 - oosh-tester (D3.3):
 - oosh-po (QA):
