@@ -56,3 +56,16 @@ When PO runs `hiveMind team.switch <team>`, that should also call `tronMonitor s
 - Positional args only, NEVER --flags
 - Use OOSH wrappers only
 - `2>/dev/null` OK on the tronMonitor call (graceful if monitor not set up) — but NOT on any other output
+
+## Owners + Status (re-activated 2026-06-28 — Tron directive via SM, oosh-po driving)
+| Role | Pane | Owns | Status |
+|------|------|------|--------|
+| oosh-expert | ooshTeam:0.2 (@MacStudio) | Implement: `private.hiveMind.monitor.switch` helper + wire into hiveMind task/send/send.enter/broadcast/monitor/sweep + team.switch. camelCase, no flags, OOSH wrappers, `2>/dev/null` ONLY on the tronMonitor call. | IN PROGRESS |
+| oosh-tester | ooshTeam:0.3 (@MacStudio) | D3.3 verify: the 4 test requirements above (task/team.switch/monitor switch the tronMonitor; no error when monitor not set up). | IN PROGRESS |
+
+SM (TRONinterface:0.1) monitors commit-delta + context-health on both. Report-back: edit your block below, commit, push.
+
+## Report-back (owner edits + commits + pushes — git mailbox)
+- oosh-expert:
+- oosh-tester (D3.3):
+- oosh-po (QA):
