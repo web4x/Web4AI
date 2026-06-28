@@ -68,5 +68,12 @@ SEQUENCING: `oo:869/878` clone via the `2cuGitHub:` ssh alias BEFORE `oo:1052-10
 
 ## Report-back (edit here)
 - Architect (compare + port/fix list): **DONE 2026-06-28** — see above. Verdict: ALL 5 = FIX dev, ZERO ports (macOS stubs the 32-62 server tail → no working reference). Ordered: (5)contamination→(3)prereqs.install→(2)state.declaration→(1)config ci→(4)2cuGitHub sequencing. BUG 5 is foundational (do first).
-- Expert (fixes + commits + state reached):
+- Expert (fixes + commits + state reached): **IN PROGRESS.**
+  - **BUG 5 (contamination) — FIXED + VERIFIED `2b68265`.** Root mechanism: `error.log`/`important.log` write to `$LOG_DEVICE`; when that's stdout/empty and the call happens inside a `$(...)` substitution (e.g. `$(ossh.id.file.get)` at ossh:424/533), the ANSI error text is captured into the value → garbage path `.ssh/<ESC>ERROR>.pub` + brace_expand crash. Fixes at source: (a) `create.result` (this:319) strips ANSI from `$RESULT` at the single chokepoint; (b) `err.log`+`important.log` coerce empty/stdout `LOG_DEVICE`→`/dev/stderr` so errors NEVER reach fd1. **Re-install verified**: clean `.pub` paths now (`root.v60211.1blu.de.public_key`), no brace_expand crash, no `<ESC>ERROR>` in filenames. Contamination eliminated.
+  - **State after BUG5: still 32 `root.dev.keys.installed`** — BUG5 cleared the noise and exposed the TRUE state-32 blockers (were masked by contamination):
+    1. **`Unknown method: ossh get.key.name`** at `ossh:533` (`ossh.install.finish.local`): `remoteKeyName=$(ossh.exec $host "ossh get.key.name")` — method is `ossh key.name.get` (`ossh.key.name.get`), call has the words REVERSED. This is the live state-32→33 blocker (key-pull fails → `scp: .ssh/root.<hash>.pub: No such file`). Sibling of BUG 1 (unknown-method class). **NEXT FIX.**
+    2. **`state.declaration: command not found`** (state:361/668) = BUG 2 — fires on every transition.
+    3. `prereqs.install` (BUG 3) is a non-fatal WARNING (`|| install may still proceed`), not the blocker.
+    4. `config 2cuGitHub/2cuBitbucket not found` (BUG 4) = later sequencing.
+  - **Adapting order to live evidence** (architect's order was BUG5→3→2→1→4): with BUG5 done, the actual 32-blocker is the `ossh get.key.name` method-name bug + BUG2 state.declaration. Proceeding: fix `ossh get.key.name`→`key.name.get` next, then BUG2, then BUG3/BUG1/BUG4. Re-install per fix. Commits: 2b68265(BUG5) + the 5 install-transport fixes from the gate (4397ac2/8a3c02d/99fb694/9a87d34).
 - Tester (state 62 + clean boot on u24):
