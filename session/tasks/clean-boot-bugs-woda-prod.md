@@ -47,12 +47,29 @@ These are the two `config.add` source lines (Source A in #4/#6 analysis). The `d
 
 **Related**: `session/tasks/env-files-pure-state-architecture.md` (#4), `session/tasks/ossh-install-polluted-userenv.md` (#6)
 
+## BUG 3: `config save` mutates runtime state + produces side-effect output
+
+**Observation** (Tron caught live): running `config save` on WODA.prod produces:
+```
+IMPORTANT> new LOG_DEVICE=/dev/tty
+IMPORTANT> this.load: save config
+```
+
+Two violations:
+1. **`new LOG_DEVICE=/dev/tty`** — `config save` resets LOG_DEVICE to `/dev/tty` during a SAVE operation. Save should WRITE state, not MUTATE it. LOG_DEVICE belongs in `log.env` (data) or `this` (bootstrap logic) — `config save` shouldn't decide what the log device is. On headless/cron/env-i, `/dev/tty` may not exist → log breaks.
+2. **`this.load: save config`** — save triggers `this.load` which re-sources config → circular: save triggers load triggers side effects. A write-state operation should not re-bootstrap.
+
+**Root cause**: `config save` calls `this.load` or `source $CONFIG` internally, which re-runs the bootstrap chain → side effects (LOG_DEVICE reset, IMPORTANT log lines). Save should be inert: serialize current vars to file, validate purity, done.
+
+**Fix**: `config save` must NOT call `this.load` or `source $CONFIG`. It serializes, writes, validates — no re-bootstrap, no log device mutation, no IMPORTANT output (save is not an event worth announcing at IMPORTANT level — use `info.log` at most).
+
 ## Acceptance Criteria
 - [ ] `env -i sh && bash` on WODA.prod: zero errors, clean OOSH prompt, `$HOME/.local/bin/env` either sourced (if HOME resolved) or skipped gracefully (no error)
 - [ ] `config list` on WODA.prod shows NO source lines — only pure exports
 - [ ] `config validate` passes on WODA.prod user.env
 - [ ] Same verified on u20
-- [ ] `.bashrc` HOME guard committed
+- [ ] `this.init` HOME discovery committed (not a .bashrc guard — `this` owns it)
+- [ ] `config save` produces NO IMPORTANT log lines, does NOT reset LOG_DEVICE, does NOT trigger `this.load`
 
 ## Report-back (edit here; report to oosh-po)
 - Expert (HOME guard + user.env regen + commit):
