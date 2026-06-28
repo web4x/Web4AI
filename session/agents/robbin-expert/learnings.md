@@ -728,3 +728,24 @@ Traceability Chain ≠ All Children. Chain = depth-first single path (renderChai
 - wipStatus 'done' requires explicit gate-proven check at last hop (CHAIN_ORDER[last] is truthy so ||'done' never fires).
 - setFocus must capture old focused task → lastCompleted (persist 3 fields) for 3-slot rotation.
 - getThreeSlots: enforce distinct UUIDs — lastCompleted excludes current; nextBacklog excludes current+lastCompleted; null when pool small. Self-heal = no --force.
+
+## R21.3 alt-UUID symlink targeting + prod deploy-verify (2026-06-28, MEASURED)
+**Symlink target rule (measured in index-store.ts ensureSymlinkDisk):** a `unitLinks[]`
+entry declared on unit X ALWAYS resolves its symlink to X's OWN canonical file
+(`this.filePath(uuid)`). So to make `alt/phone/<key>.scenario.json` point to the
+PROFILE, the link must be declared on the **Profile unit**, NOT the Phone unit.
+Verified: registerSymlink(profileUuid, phone) → addLink on profile → symlink
+`alt/phone/+4915253844085.scenario.json -> ../../index/3/e/f/f/a/<profile>.json`.
+**How to apply:** for R21.5 (email), R21.8 (company) alt-indexes — declare the alt-link
+on the OWNING unit you want the key to resolve to (Profile for email; Company unit for
+company nameKey). Lookup = fs.readFileSync the symlink path → JSON.parse → model.uuid.
+
+**Prod deploy-verify (measured this cycle — almost reported a false 'done'):** the
+prod server is plain `tsx src/ts/server/server.ts` (NOT tsx watch) in tmux session
+`rawbin`. `/api/health` version + the static client bundle update WITHOUT a restart
+(version is read per-request; bundles served from disk) — but **server.ts ROUTES are
+in-memory and stay STALE until restart**. A new endpoint returned the generic HTML 404
+even though version showed the new number.
+**How to apply:** after ANY server.ts change, restart: `tmux send-keys -t rawbin C-c`
+(x2) then `npm run dev`, then curl the ACTUAL new route (not just /api/health) before
+reporting live. Version-string match ≠ route live.
