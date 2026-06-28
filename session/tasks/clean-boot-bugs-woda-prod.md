@@ -211,6 +211,34 @@ Source: healthy backup `…/sharedConfig/user.env.healthy-tron-backup-20260628` 
 ### D. FEATURE 8 DRY question (pane-target completions consolidation)
 **Decision: IN SCOPE now, same PR as CURRENT.** The single-resolver principle (`private.resolve.target` adds `CURRENT`) is undermined if the valid-target LIST is duplicated across completions (`otmux.parameter.completion.target` inline U/D/L/R vs `send.zoomed.completion.target` panes-only). Add ONE `private.complete.paneTargets` (CURRENT + U/D/L/R + `private.complete.panes`) that BOTH completions call. The list lives in ONE place, mirroring the ONE resolver — same dedup discipline as pane.self. Small, on-theme, do it with FEAT 8.
 
+## BUG 9: `[@role pane] [@role pane]` sender-prefix DUPLICATION (Tron, recurring)
+
+**Symptom**: messages arrive double-prefixed: `[@oosh-expert ooshTeam:0.3] [@oosh-expert ooshTeam:0.3] Self-check…`.
+
+**Root cause**: prefix is applied at ONE chokepoint (`otmux.send` step 2, ~L2059) — but it is NOT idempotent. When `text` ALREADY starts with `[@…]` (a relayed message, a re-send, or text the caller composed including a prefix), `otmux.send` prefixes it AGAIN. hiveMind uses `otmux send.enter` (no prefix) so it's not a second layer — it's the same layer firing twice on already-prefixed text.
+
+**Fix (DRY, one guard at the chokepoint)** — make prefix application idempotent. At otmux.send ~L2059:
+```bash
+if private.otmux.pane.isClaudeCode "$target" && [[ "$text" != /* ]] && [[ "$text" != \[@* ]]; then
+```
+i.e. skip prefixing when text already begins with `[@`. One condition, one place. Add test T-PREFIX-IDEMPOTENT: sending `"[@x y] msg"` through otmux.send yields exactly ONE prefix.
+
+**Also audit**: find WHY already-prefixed text reaches send (is something capturing a received message and re-sending it verbatim?). The idempotency guard is the safety net regardless, but if a caller is echoing the inbound prefix, fix that too.
+
+---
+
+## Architect review FILED (f5253b9) — expert-action items A & B + C-extension
+
+Full A/B/C/D in the "Architect Review" section above. Items still needing EXPERT action:
+
+**A — config.save ALLOW-LIST (not deny-list)**: root cause = S-5 harvest grabs EVERY `^export` from file+live-env → VSCode/terminal/test leakage. Fix: harvest filters to allow-set only — 7 fundamentals always + OOSH allow-set (`OOSH_*/LOG_*/CONFIG_*/USER`) + tracked `config set` user vars. NEVER persist: TERM/COLORTERM/LC_*/LANG/BROWSER/GIT_*/LESS*/EXPECTED_RETURN_VALUE/GET_TEST_VAR. Source lines move to `this`. (Doctrine: architect flagged first-principles Rule A conflict — env files = pure exports only, `this` owns the source chain; architect to reconcile the wording.)
+
+**B — color culprit (my premise was WRONG, dev DOES source setup.color.env)**: ranked #1 = `.bashrc:151 source "$OOSH_DIR/log"` runs AFTER colors and `log.init.colors` likely clobbers `BOLD/NORMAL/COLOR_*`. Repro: `oo mode macos.latest; bash -lc 'declare -p BOLD NORMAL'` vs `oo mode dev; …` — if BOLD/NORMAL differ, log clobbers. Expert: fix the ordering/clobber so colors survive on dev (this is why `claudeCode list` shows no color).
+
+**C-extension — guard missed a class**: my TMUX_PANE grep returned zero, BUT architect found bare `display-message -p '#{session_name}'` self-ID at hiveMind:1936 (focused-pane bug, no TMUX_PANE string so grep missed it). Funnel through `otmux pane.get.target`. **Extend T-NO-TMUXPANE guard to also catch bare `display-message -p '#{session_name}'` self-ID.**
+
+**D — FEATURE 8 completion consolidation IN SCOPE**: add one `private.complete.paneTargets` (CURRENT + U/D/L/R + panes), both pane-target completions call it. Same PR as CURRENT.
+
 ## Report-back (edit here; report to oosh-po)
 - Architect (config-dedup + color-boot + BUG 7 + FEAT 8 DRY): **DONE 2026-06-28** — see Architect Review above. (A) clutter = test/VSCode/terminal leakage harvested by S-5 merge → ALLOW-LIST; source lines → `this` (Rule A doctrine conflict flagged). (B) dev DOES source setup.color.env — premise corrected; culprit ranked: `source $OOSH_DIR/log` after colors (cand 1) or PS1 template (cand 2), A/B repro given. (C) pane.self confirmed single primitive; 5 hiveMind + 1 claudeCode parallel self-ID to funnel through pane.get.target. (D) consolidate pane-target completions into one helper w/ FEAT 8.
 - Expert (HOME guard + user.env regen + commit): **DONE** — BUG1 4bdd948, BUG2 37e16f7+regen, BUG3 af3a3f7, BUG5 d40a005, BUG6 3fd419b.
