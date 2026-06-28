@@ -1,11 +1,33 @@
 # OOSH Expert Agent Context
 
-**Session**: oosh-expert@WODA.prod (opus 1M)
+**Session**: oosh-expert@WODA.prod (opus 4.8 1M)
 **Role**: oosh-expert (OOSH Implementation Authority)
-**Pane**: ooshTeam:0.2
+**Pane**: ooshTeam:0.3 (verified via `otmux pane.get.target`; shell ooshShells:0.0)
 **Machine**: WODA.prod (dev branch, /root/oosh)
-**PO**: oosh-po @ ooshTeam:0.0
-**Updated**: 2026-06-27 — BOTH SPRINTS COMPLETE. constructor-contract S-1..S-11 + config-selfheal CS-1..CS-5. Holding for rewind.
+**PO**: oosh-po @ ooshTeam:0.0 | Peer tester: ooshTeam:0.4 | Architect: ooshTeam:0.2
+**Updated**: 2026-06-28 — clean-boot sprint DONE (BUG1-9,A,B,C-ext,FEAT8 all on dev, QA-passed). Now S3 PARITY: merge plan prepared, holding for S1 (tester GREEN) gate before dev→macos.latest merge.
+
+## Sprint: clean-boot bugs + parity (2026-06-28, dev) — all QA-passed
+
+| Item | Commit | What |
+|------|--------|------|
+| BUG1 | 4bdd948 | this.init resolves HOME before any HOME-path (env -i/cron/container) |
+| BUG2 | 37e16f7 | config.save harvest drops source lines (pure-state) + regen user.env |
+| BUG3 | af3a3f7 | config.save inert — no LOG_DEVICE mutation, no this.load, info.log |
+| BUG5 | d40a005 | hiveMind.status fd3 — team.status no longer eats session list via stdin |
+| BUG6 | 3fd419b | pane.unlock pkills ALL enforcers — no orphan accumulation |
+| BUG7 | 6480f78,350e3e7,d74e354,a20d0d7,a5f709d | ELIMINATE $TMUX_PANE — public `otmux pane.self` (PID-walk) is the ONE self-ID primitive; purged otmux/hiveMind/claudeCode/restore; T-NO-TMUXPANE guard |
+| BUG7 C-ext | 9ff5343 | kill bare `display-message -p` self-ID (focused-pane bug); `private.otmux.self.session`; guard extended |
+| BUG9 | 4c52e24 | otmux.send prefix idempotent — skip if text starts with `[@` (no `[@x][@x]`); T-PREFIX-IDEMPOTENT |
+| A | 9937799 | config.save ALLOW-LIST: strict OOSH-only live-env harvest + deny-set; user.env 113→19 exports, 0 leakage |
+| B | c82fa31 | `line init` self-contained EXPORTED setup.color.env — colors survive into subprocesses (claudeCode list); pure-state |
+| FEAT8+D | 615918c,76bb8ef | `CURRENT` pane target via one resolver→pane.self; shared `private.complete.paneTargets`; T-CURRENT-TARGET (explicit env-gated skip) |
+| extra | 1366742,9557be1,f076064 | sweep.detect 'auto mode on'=idle + team.sweep fd3; team.models.list; default model opus-4-8[1m] DRY const |
+
+**Key primitives this session**: `otmux pane.self [%|target]` (PID-walk self-ID, never stale) + `private.otmux.self.session` + `CURRENT` target. **Doctrine**: env files = pure exports, `this` owns source chain (architect reconciled 6540254). **S3 gate**: merge dev→macos.latest is clean (merge-tree: 0 conflicts); HOLD until tester S1 GREEN.
+
+---
+## PRIOR (archived) — constructor-contract + config-selfheal sprints (2026-06-27)
 
 ## Sprint: constructor-contract (S-1..S-11, all verified)
 
