@@ -5,6 +5,20 @@
 **Pane**: ooshTeam:0.0 on **WODA.prod** (v60211.1blu.de) — re-derived 2026-06-28 (was wrongly @MacStudio: fork inherited parent's stale @host; real host = OOSH_SSH_CONFIG_HOST=WODA.prod)
 **Session**: oosh-po@WODA.prod [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## ★★★ PRE-CLIFF CHECKPOINT — 2026-06-28 (SM cliff warning; gate nearly DONE)
+Identity: oosh-po@WODA.prod, ooshTeam:0.0, fork 29a1e1d1. SM=ooshTeam:0.1 (42 pair). Two repos: oosh code /root/oosh (branch dev), workspace /var/dev/Workspaces/AI/Claude (main).
+
+**WHERE WE ARE — gate one tester-pass from GOOD:**
+- **NP-3 SETUP_SERVER: DONE** → state 99/finished on pristine u24 (driver fix 278d5a7 + root .bashrc as SETUP_SERVER state bee01a1 + ~11 fixes). Fresh dev install now boots clean (env -i bash = working OOSH). The dev-reliability gap Tron named is CLOSED.
+- **S1: fully triaged** — 82/83 = pre-existing shared debt (dev actually IMPROVED hiveMind: 23 vs macos 40); legacy-remediation = separate sprint (NOT waved, F-PREEXISTING). 1 real regression = BUG6 pkill.
+- **BUG6 pkill regression: FIXED 44c9043** — enforcer tagged `__paneLckEnforcer`, pkill only that, no self-SIGTERM. Confirmed GREEN on full test.suite run otmux (T-UNLOCK-KILLS-1/2/3 ✓). **S3 GATE 1 CLEARED.**
+- **u24 gate (NP-2): expert-GREEN, tester S-C pending** = Step 4 (formal clean-boot checks, tester running u24-step4.sh) + Step 5 (hiveMind team.push u24 → agents discoverable). = **S3 GATE 2.**
+- **S3 merge dev→macos.latest (ed4c9fd plan): release when BOTH gates green** = pkill ✅ + u24 GOOD. Clean auto-merge, carries ~11 fixes + dev's MVC improvements to macos.
+
+**NEXT AFTER REWIND:** (1) check tester S-C result in u24-freshinstall-testgate.md — if Step 4+5 green → mark u24 TEST GATE GOOD. (2) Both gates green → release S3 (expert does the ed4c9fd merge). (3) Then: legacy-suite-remediation sprint + dispatch-submission-verified (BUG10 fix, highest-ROI) + NP-1 odocker autoconfig + the queued improvement tasks.
+
+**★ BUG10 WORKAROUND (proven, learning 24e39d8): dispatch SHORT one-line pointers only** — long/wrapping messages stall unsubmitted (`❯ …`). Recipe: `Escape → C-u → short pointer "<verb> — spec in <file>" → Enter`. This is also ARON's pointer-discipline. SM is the submission safety-net.
+
 ## ★★ CHECKPOINT — 2026-06-28 LATE (clean-boot bug sprint + u24 gate, before idle)
 Identity: oosh-po, ooshTeam:0.0, fork 29a1e1d1, **on WODA.prod (v60211)** — I was forked here this session (raw tmux confirmed pane=0.0; $TMUX_PANE was stale %8 → that bug started the whole sprint). Branch dev (oosh code /root/oosh) + main (workspace /var/dev/Workspaces/AI/Claude). SM = scrum-master ooshTeam:0.1, my 42 pair, actively monitoring + catching my unsent dispatches (BUG 10).
 
