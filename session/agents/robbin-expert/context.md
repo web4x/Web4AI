@@ -15,7 +15,11 @@
 | R21.5 | emails as scenario units (ior:class:Email) | d4aad5081 | 0.6.68 | awaiting tester |
 | R21.6 | phones as scenario units (ior:class:Phone) | f420c79de | 0.6.69 | awaiting tester |
 | R21.7 | addresses as scenario units + async OSM verify | 3cf79d5d3 | 0.6.70 | awaiting tester (components measured) |
-- **NEXT ASSIGNED: R21.8** (v0.6.71) — Company mintOrReuseShared. Req 7f3f6f3dd/f1a49e3c1 (25 AC). Architecture §4. SHARED unit (ownerIor:null), dedup by nameKey=name.toLowerCase().replace(/[^a-z0-9]/g,''). alt/company/<nameKey> symlink declared on the COMPANY unit (the ONE case where the alt-link lives on the resolved unit, since many profiles share it). mintOrReuseShared(name): nameKey → hit alt/company → reuse uuid; miss → mint ior:class:Company {uuid,name,nameKey,ownerIor:null} + alt-link. Profile.companies[] push. Architect refined recall(nameKey) vs precision(domain+user-confirm) — read req. Then R21.9 (file-detail reorder+pan/zoom 6e978d5ee), R21.2 (lobby name partial v0.5.131).
+| E.164 | normalizePhone 00→+ / reject bare national | 8ede36d4e | 0.6.71 | dedup-hardening fix |
+| orphans | wireImplNode 5 missing impl units | 84161c91f | — | 0 orphans (scoreboard) |
+| R21.8 | companies as shared units (ior:class:Company) | a52245de1 | 0.6.72 | awaiting tester |
+- **NEXT: R21.9** (file-detail reorder + pan/zoom; req 6e978d5ee) then R21.2 (lobby name race; partial v0.5.131). R21.8 DONE (a52245de1 v0.6.72).
+- R21.8 DONE — companies as SHARED ior:class:Company units. CompanyIndex: companyNameKey (NFKD+legal-suffix strip incl trailing 'and'), companyDomain (authoritative), mintOrReuseShared (domain→nameKey→mint), dual alt-index (alt/company/<nameKey> + alt/company-domain/<domain>) declared ON the Company unit (shared, no owning profile), suggest() ranked, /api/company/suggest. ownerIor:null. Profile.companies[].
 - R21.7 DONE (was NEXT) — addresses as scenario units. Req 5d3b5e6e (16 AC). Architecture §5. Built:
   (1) ior:class:Address {uuid, oneLine, verified:false, osmLink:null, gmapsLink:null, ownerIor→Profile}
   (2) Profile.addresses[] multi (mirror EmailIndex/PhoneIndex mintAndLink — see contact-unit pattern below)

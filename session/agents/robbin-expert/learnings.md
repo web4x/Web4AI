@@ -781,3 +781,17 @@ curl the live endpoint for initial state, and a standalone https probe to confir
 external dependency resolves — report honestly that the in-server flip is component-proven,
 full e2e left to tester DET. Clean any seeded test units from prod after (units + the
 profile's forward-array entry).
+
+## Shared-unit alt-index + the harness-catches-AC-bug discipline (R21.8, 2026-06-28)
+Company is the SHARED contact unit: ownerIor:null (no owning profile), dedup by TWO alt-keys —
+domain (authoritative: same domain→same unit even if names differ) then nameKey (recall only:
+collision never auto-merges). Unlike phone/email, the alt-link is declared on the COMPANY unit
+itself (not a profile), because many profiles share one company. mintOrReuseShared = domain-hit →
+nameKey-hit → mint. nameKey = NFKD+strip-diacritics, lc, &→and, token-wise legal-suffix strip
+REPEATED-until-stable — and the trailing 'and' connector must also pop or "Acme GmbH & Co KG"
+stops at 'and' → 'acmegmbhand' instead of 'acme' (mid-name 'and' stays trailing-only, so
+"Ben & Jerry" is safe).
+**How to apply:** for any shared/deduped entity — two-tier key (authoritative + recall), link on
+the shared unit, mint-or-reuse ladder. AND: my temp-dir harness CAUGHT the AC-a4 'and' bug before
+ship — ALWAYS encode the AC's literal example ("GmbH & Co KG"→acme) as a harness assertion, not
+just the happy path. The bug you measure is the bug you don't ship.
