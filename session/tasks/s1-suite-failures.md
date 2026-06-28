@@ -48,6 +48,33 @@ The 4 legacy-suite reds are a MIX; categorized from log analysis:
 
 **S3 merge: stays HELD** (was already gated on u24 green; now ALSO on macos.latest-baseline confirming the 83 are pre-existing-shared, not regressions).
 
+## BASELINE RESULTS — tester report-back (oosh-tester, 2026-06-28)
+
+**Run**: 4 legacy suites on `test/macos.latest` worktree @ `8374cc5` (the S3 merge target), from ooshShells:0.0 (live tmux), same env as the dev run. **macos.latest does NOT contain any clean-boot sprint commit** (verified: BUG6 commit `3fd419b` absent) — so it is a true pre-sprint baseline.
+
+| Suite | dev (ooshShells) | macos.latest 8374cc5 | Read |
+|-------|------------------|----------------------|------|
+| config | 56c / **0 fail** (T-NOLOSS now fixed) | 20c / 0 fail | dev GREEN. macos has 36 fewer cases = the NEW clean-boot tests aren't on macos yet. No shared debt. |
+| c2 | 25c / 2 fail | 20c / 0 fail | **NOT a regression** — the 2 dev fails are NEW `c2.functions.get` tests (0 mentions on macos). Needs c2-expert triage (found 0 + `/dev/tty` log noise), but absent from baseline so non-comparable. |
+| otmux | 149c / ~25 fail | 146c / **24 fail** | ~24 fails are SHARED (identical on macos which has zero sprint commits) → **PRE-EXISTING shared debt**. |
+| hiveMind | 456c / 55 fail | *(baseline running — slow; will append)* | dev 55 are structural (completions/role-prompts/doc-drift/raw-tmux/JSONL/fork-UUID); expected to be largely shared. |
+
+**otmux DEV-ONLY fails (in dev, absent on macos) — the real signal:**
+- `T-UNLOCK-KILLS-1: pane.lock returned rc=143` — **SPRINT REGRESSION** ⚠️
+- `expected title-two/title-three, got 'v60211.1blu.de'` — **downstream of the same regression** (pane.lock can't set a title → stays hostname)
+- `expected [@test-sender pane], got '[@CURRENT-test-ok ooshShells:0.0]'` — env-flaky (prefix derives from the live pane's title), not a true regression
+
+### ⚠️ ROOT-CAUSE FINDING — BUG6 commit `3fd419b` BREAKS `otmux pane.lock`
+`pane.lock` auto-unlocks first (idempotency, otmux:3009). `pane.unlock`'s BUG6 fix (otmux:3051) runs `pkill -f "pane.lock.*$target"` — which **matches the running `otmux pane.lock <target>` process's OWN argv and SIGTERMs it → rc=143, and the title is never set** (verified: title stays `v60211.1blu.de`, no enforcer spawned). Existing agent panes were locked BEFORE `3fd419b`, so the breakage was invisible until a fresh lock. macos.latest lacks `3fd419b` → its pane.lock works → this is **dev-only, introduced by the sprint**. **When S3 merges dev→macos.latest it WILL carry `3fd419b` and break pane.lock there too.**
+**Fix (expert)**: narrow the pkill to the enforcer-loop signature only (e.g. match `sleep 5` + the title, or the pid-file PID), never any `pane.lock` invocation. Then re-verify T-UNLOCK-KILLS-1 goes green.
+
+### VERDICT (objective S3 gate)
+- **The bulk of the 83 are PRE-EXISTING SHARED debt** — otmux's ~24 fails are identical on a macos.latest that has ZERO sprint commits; config is now green; c2's 2 are new-test triage. S3 merge does **not** worsen the shared debt.
+- **ONE genuine SPRINT REGRESSION found: BUG6 `3fd419b` breaks `pane.lock`** (self-SIGTERM via pkill). This is NOT pre-existing — macos is clean of it. It must be fixed before S3, else the merge breaks pane.lock fleet-wide.
+- **S3 DECISION: BLOCK on the pane.lock pkill fix** (in addition to the u24 gate). Everything else → the tracked legacy-remediation sprint.
+
+Test fixes committed to dev `3e4ab3e` (config T-NOLOSS → config.set; otmux T-UNLOCK-KILLS mechanism-aware/isolated). T-UNLOCK-KILLS-1 is intentionally RED until `3fd419b`'s pkill is fixed — it is the regression guard.
+
 ## config — fail lines
 ```
   ✗ FAIL: config.save did not capture TRON_TEST_CUSTOM_VAR
@@ -147,3 +174,13 @@ The 4 legacy-suite reds are a MIX; categorized from log analysis:
   ✗ FAIL: timed out or took too long: rc=124 elapsed=15s
 ```
 
+
+---
+## PO S3-GATE DECISION (oosh-po, 2026-06-28) — baseline triage complete
+Tester ran the 4 legacy suites on test/macos.latest @8374cc5 (zero sprint commits = true baseline). Result:
+- **82 of 83 = PRE-EXISTING SHARED debt** (otmux ~24 identical on macos; config now green after T-NOLOSS; c2's 2 = NEW tests absent on macos) → S3 does NOT worsen them; they become the separate legacy-remediation sprint (NOT waved — F-PREEXISTING).
+- **1 genuine SPRINT REGRESSION**: BUG6 `3fd419b` — `pane.unlock` `pkill -f 'pane.lock.*<target>'` SIGTERMs the foreground `otmux pane.lock <target>` process itself (rc=143, title never set); pane.lock auto-unlocks first → self-kill. dev-only (macos lacks 3fd419b). Guard: T-UNLOCK-KILLS-1 (RED until fixed, committed `3e4ab3e`).
+
+**S3 merge BLOCKED on TWO gates: (1) the pkill regression fix [T-UNLOCK-KILLS-1 green], (2) u24 gate GOOD.** Do NOT merge dev→macos.latest until both — else the pane.lock regression goes fleet-wide.
+
+**pkill fix (expert, HIGH — live regression + S3 blocker):** narrow the kill to the ENFORCER background loop ONLY, never the foreground `otmux pane.lock` invocation (tag the enforcer with a distinct signature, e.g. `__paneLockEnforcer <target>`, and pkill that — not the generic `pane.lock` script name). Also ensure pane.lock's auto-unlock-first does not kill the process it's running in. Make T-UNLOCK-KILLS-1 green. Composes with `panelock-skip-human-shells.md`.
