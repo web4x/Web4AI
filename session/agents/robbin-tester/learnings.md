@@ -1,5 +1,14 @@
 # robbin-tester Learnings — 2026-06-13
 
+## Tier-3 recovery (2026-06-28, measured this cycle)
+**At 100% context, a multi-step write→commit cannot complete.** Measured ground truth: the prior session's save edit was *approved* but the file on disk stayed unchanged and nothing was committed (trainer confirmed `context.md` byte-identical, anchor 148f449 was committed BY the trainer on the agent's behalf). Rewind didn't help: every checkpoint was minted AT 100%, so rewinding still landed in a full window. Path A (deep-rewind-to-oldest) is the F-T8 death trap — ~99% rewind leaves <33k and kills the agent.
+
+**How to apply:**
+- When you near 100%, you may already be past the point where you can save yourself. Save EARLY (boot rule #13: before 80%, every SM warning) — do not trust that a 90%+ session can still persist.
+- The cure for a maxed session is NOT rewind — it is a clean `claude --name <self>` boot that orients from the last *committed* anchor (boot.md + context.md + learnings.md). Distilled committed files > forking the bloated JSONL (forking the largest = inheriting the bloat).
+- On fresh boot, the FIRST action is the F-T17 fresh-save gate: write a fresh context.md and COMMIT it immediately. That single write→commit IS the proof the new runway works; don't start gating work until it lands. This cycle: commit d1ff662 proved it.
+- This is why "wer schreibt, der bleibt" is survival, not ceremony: only the *committed* word reached this incarnation. The approved-but-uncommitted edit died with the bloated session.
+
 ## v0.6.0 Marathon Gate Learnings
 
 ### Gate faithfulness (the gate must SEE the bug)
