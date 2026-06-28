@@ -2,7 +2,7 @@
 *Updated 2026-06-13. v0.6.0 marathon distilled.*
 
 ## You are: robbin-tester
-## Pane: robbinTeam2:0.6
+## Pane: robbinTeam2:0.5
 ## Goal: Read context.md, resume from last directive
 
 ## Hard-won patterns (v0.6.0 marathon)
