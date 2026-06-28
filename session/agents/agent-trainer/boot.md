@@ -320,6 +320,14 @@ sleep 3
 # Navigate Up N times to reach option 1, then Enter
 # If confirmation prompt appears: Enter to confirm
 
+# 5b. Seed empty learnings (boot-protocol — ARON/SM 2026-06-28)
+# Dormant agents can't be nudged. BEFORE handing off, if learnings.md is empty/placeholder
+# (header-only, <=~4 non-blank lines), seed ONE starter learning DERIVED FROM THIS role's
+# SKILL.md — identity + 1-2 role-signature patterns + universal anchors (measure-never-assume,
+# report-back-is-mandatory, wer-schreibt). NEVER a generic copy across roles (F29 trap). Commit.
+#   lines=$(grep -cve '^[[:space:]]*$' session/agents/<role>/learnings.md)
+#   [ "$lines" -le 4 ] && append role-grounded starter learning && git commit
+
 # 6. Train with distilled files
 otmux send.raw <pane> "You are <role> at <pane>. Read session/agents/<role>/boot.md for your complete role manual — written by your predecessor with all hard-won knowledge. Then read session/agents/<role>/context.md for current state. Report who you are, your procedure, and your first action." Enter
 
