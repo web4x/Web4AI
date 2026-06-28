@@ -25,5 +25,5 @@ Propagate ALL dev fixes (BUG 1-9, A, B, C-ext, FEAT8) to **macos.latest** so bot
 
 ## Report-back (agents edit here; hop-self-update on completion)
 - S1 tester (suite results):
-- S2 architect (doctrine reconcile + hash):
+- S2 architect (doctrine reconcile + hash): **DONE `6540254` (dev, once.sh)**. Reconciled `docs/first-principles.md` in 2 places that both listed `source xyz.env` as permitted-in-env-files. NEW wording: (1) *Pure-state persistence* — "Config/env files hold STATE ONLY — `export`/`declare`, comments, blanks. No logic, and **no `source` lines: an env file never sources another env file.** The bootstrap (`this`) owns the source chain — it sources `user.env` and the env files that belong to the chain (`oosh.env`, `log.env`) in order. … a stray `source` in an env file is the exact pollution `config.validate` rejects." (2) *Only env files are sourced; scripts are invoked* — narrowed parenthetical to "(`export`/`declare` only, no logic, no `source` lines)" + documented the ONE bootstrap exception (`.bashrc → this` sources the env chain, never another script). Kept the `9e4915c` no-source-of-scripts rule intact. Conflict closed: env files = pure exports only; `this` owns the chain.
 - S3 expert (macos.latest parity + hash):
