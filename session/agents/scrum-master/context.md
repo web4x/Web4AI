@@ -25,6 +25,7 @@
 - **CMM4 bidirectional loop** adopted as standing duty: watch resilience-sprint commits → flag oosh-po → PO learns fix → re-propagates into po-wisdom for all POs.
 - **WODA.prod teams restored** (trained sessions, process-args verified, /rc on po).
 - **Lessons:** JSONL-customTitle LIES (pane footer + process args = truth). context.read showed false-low 4.5% while PO actually burned to 0% in 6 ticks — pane status-bar IS PRIMARY.
+- **oosh-po /rc disconnected** (~tick 197). ARON agent type available. Subscription 36%/5h 48%/7d safe at tick 200. Fleet idle+healthy, all agents <80%, loop stable ~200 ticks.
 
 ## CARRY-FORWARD STATE (from pre-rewind context)
 - **Constructor Contract sprint S1-S8 ALL DONE, 17/17 GREEN (a7e1d97).** Awaiting S-9 QA gate (TRON device test).
