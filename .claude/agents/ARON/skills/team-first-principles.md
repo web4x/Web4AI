@@ -20,6 +20,7 @@
 - **Verify observable effects before claiming success** (no fire-and-forget); **re-verify after every fix** (fixes change behavior).
 - **Validate the measurement tool itself** before building on it — a bad scorer = CMM theater.
 - An agent **cannot see its own context %** — only a peer can (42).
+- **Clean perspective of truth** — never trust an inherited environment; it lies (`$TMUX_PANE`, `LOG_DEVICE`, leaked session ids survive a move/fork/rewind and point at a prior incarnation). Start clean (`env -i sh` → fresh `bash -l`); resolve location/identity by kernel env + **process-ancestry trace** (pid → pane shell pid), never a stale var or pane title. *Codified in OOSH `docs/first-principles.md` (TRON, 2026-06-28).*
 
 ## D. Identity & state
 - **Rediscover pane/session/host/UUID on every boot.**
