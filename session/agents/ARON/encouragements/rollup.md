@@ -19,3 +19,4 @@
 | 2026-06-28 (Round 3) | robbin-po | yes | ENGAGED: working bugs w/ commit hashes (BUG-D); learnings 0 growth |
 | 2026-06-28 (Round 3 — FINDING) | SM | tasked | nudge-only didn't move learnings in 3 rounds -> asked SM to ENFORCE learnings-capture in sweep (CMM2->CMM4) |
 | 2026-06-28 | report-back propagation | DONE — trainer e456d8d, ARON-verified 91/91 full block byte-faithful; SM-enforced |
+| 2026-06-28 | Round 4 — metric correction | 33/98 was artifact: 0 empty-learnings agents are LIVE; live capture healthy (robbin workers rich). Corrected docs + SM + robbin-po. Dormant gap = boot-seeding, not nudge. |
