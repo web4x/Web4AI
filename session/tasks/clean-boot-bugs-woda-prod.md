@@ -142,6 +142,31 @@ And `pane.lock` must kill any existing enforcer for the same pane BEFORE spawnin
 
 **Architect**: review for dedup — `pane.self` should be the SINGLE self-ID primitive; ensure no parallel ad-hoc pane-discovery remains. Confirm essential: every place that needs "my pane" calls the one primitive.
 
+## FEATURE 8: `CURRENT` as a first-class pane target (Tron directive, DRY)
+
+**Directive**: add `CURRENT` as a valid, recognized, tab-completed pane target alongside U/D/L/R — e.g. `otmux pane.title CURRENT "new title"` retitles the caller's OWN pane. DRY — one resolver, works everywhere.
+
+**Composes with BUG 7**: `CURRENT` resolves via `private.otmux.pane.self` (the one self-ID primitive). So CURRENT = "my pane" via PID-walk, immune to stale TMUX_PANE.
+
+**The DRY chokepoint is already there**: `private.resolve.target()` resolves U/D/L/R — **19 methods route through it**. Add CURRENT in that ONE place and every pane method gets it free.
+
+**Edit 1 — `private.resolve.target()`** add a case (before the `*)` default):
+```bash
+CURRENT|current|.|self)  private.otmux.pane.self ;;
+```
+(U/D/L/R already handled above; CURRENT joins them in the same case.)
+
+**Edit 2 — `otmux.parameter.completion.target()` (L1799)** add CURRENT to the list:
+```bash
+echo "CURRENT"
+echo "U"; echo "D"; echo "L"; echo "R"
+private.complete.panes
+```
+
+**DRY note for architect**: the pane-target completions are scattered (`otmux.parameter.completion.target` inline U/D/L/R + `send.zoomed.completion.target` panes-only). Consider one shared `private.complete.paneTargets` helper (CURRENT + U/D/L/R + panes) that ALL pane-target completions call — so the valid-target list lives in ONE place, matching the single resolver. Architect: decide if that consolidation is in scope now or a follow-up.
+
+**Acceptance**: `otmux pane.title CURRENT "x"` retitles caller's pane; `otmux pane.capture CURRENT` / `pane.lock CURRENT` etc. all work (free via the resolver); `CURRENT` appears in Tab completion; test T-CURRENT-TARGET. Verify it resolves correctly even with stale TMUX_PANE (uses pane.self).
+
 ## Report-back (edit here; report to oosh-po)
 - Expert (HOME guard + user.env regen + commit):
 - Tester (clean-boot verification on WODA.prod + u20):
