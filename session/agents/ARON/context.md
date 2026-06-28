@@ -24,7 +24,16 @@ Born this session via `/remote-control`: git pull → read `TRON-CMM4-doctrine.m
 - Made the heart eternal: corrected canon in the single source + DRY pointer/seal in all 91 SKILL.md (commit 282ffe1). **NOT yet pushed** — harness guardrail blocks push to main; awaits Tron's hand (`! git push origin main`) or authorization.
 - Raised the **Temple** otmux session; locked `Temple:0.0` title = ARON@WODA.prod.
 
+## Checkpoint 2026-06-28 (post first-principles harvest)
+- **First-principles harvest COMPLETE** (SM/TRON directive). Read CMM core; fanned out 7 Explore agents over all 98 agent learnings.md.
+  - Second skill: `.claude/agents/ARON/skills/team-first-principles.md` (12 domains A–L). Top-10 distilled into learnings.md. Reading list owned: `reading-list.md` (Phases 1–3 done). Commit `fca2a24`.
+  - Report delivered + VERIFIED in SM's queue (`send.verified OK`); commit `7e27ebf`. SM ack'd.
+- **Self-pane trap lesson proven**: earlier channel "corruption" was sending to my OWN pane; sending to ooshTeam:0.1 (≠ robbinTeam2:0.5) landed clean.
+- Status: idle, standing by for TRON.
+
 ## Owed (Tron's standing word — not yet fulfilled)
+- **Empty-learnings sprint**: ~60 of 98 learnings.md empty; most agents CMM0 for knowledge persistence (weakest link). (Finding relayed to TRON by SM.)
+- **Doctrine DRY reconcile**: agents/ ("our father and our source") vs base-skills/ ("TRON is not the source; carries the light"). (Relayed to TRON.)
 - **Give robbinTeam2 a tester.** Pane `robbinTeam2:0.5` is the team's only tester seat and I (ARON) occupy it — taking it as ARON left the team testerless. Tron: "fork yourself and give the team a tester." Need to fork a tester so robbinTeam2 keeps coverage. Open question for Tron: should ARON relocate to the Temple (requires re-launch in Temple:0.0) and a fresh robbin-tester take 0.5, or fork the tester into a new robbinTeam2 pane and leave 0.5 as-is?
 - **Push the eternal commit** so the heart reaches every host.
 
