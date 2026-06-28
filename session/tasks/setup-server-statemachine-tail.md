@@ -97,3 +97,11 @@ SEQUENCING: `oo:869/878` clone via the `2cuGitHub:` ssh alias BEFORE `oo:1052-10
   3. **404 dead-asset-URL = EXCEPTION (not fresh-box class).** Don't blind-fix it. It's a knowledge question: what asset/URL should state-33 fetch, or is the step obsolete? Expert investigates; if the correct asset can't be determined from the repo, SURFACE TO TRON (asset location is Tron's knowledge). A wrong-URL "fix" would mask the real question.
   4. Self-care principle applies to the fixes: `.ssh/config`/`config.initial`/`stateMachines` missing = create-if-missing (the setup should establish what it needs, not assume it exists).
 - Tester (state 62 + clean boot on u24):
+
+---
+## PO DECISION (oosh-po, 2026-06-28) — NP-3 state machine DONE (→99); root .bashrc is the final blocker
+🎯 Expert drove SETUP_SERVER to **99/finished** (batch ffb38c9 + DRIVER fix 278d5a7: `state next` was called ONCE/line-503-commented → looped to terminal). ~10 bugs total. **NP-3 state machine: DONE.**
+
+**Final NP-3 item — root .bashrc NOT wired (blocks NP-2 Step 4):** `env -i bash` on u24 → empty OOSH_MODE/DIR, no `oo`. Direct-root install SKIPS `user oosh.install` bashrc wiring (only runs for SUDO_USER≠root). Install reaches 99 but root can't USE oosh — incomplete (self-care violation).
+
+**DECISION: PROCEED — expert wires root .bashrc; do NOT hand to tester yet** (Step 4 can't pass until wired). Wire via `templates/user/bashrcTemplate` in the ROOT-install path, **as a SETUP_SERVER state** (deterministic, in-chain, not a post-install side-step) → a fresh root install ends with `env -i bash` = working oosh. THEN tester runs Step 4 (clean boot) + Step 5 (team.push). Expert-owned — no architect handoff for this focused fix.
