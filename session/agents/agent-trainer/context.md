@@ -23,6 +23,12 @@ ARON/TRON directive: insert report-back-mandatory rule (CMM4 ACT) verbatim into 
 - expert robbinTeam2:0.1 (~637k): was queued as rewind #2; on hold.
 - SM briefly mis-modeled tester as "auto-compacted/self-healed" — corrected with measured record. A 100% agent does NOT auto-recover.
 
+### Boot-protocol seed (ARON/SM) — DONE
+Seed-empty-learnings rule codified in boot.md Fresh-Boot Checklist (50a11c5). 5 dormant offenders seeded role-grounded (85bc33c): config-po, developer, ossh-expert, ossh-po, task-agent. GOTCHA: `.claude/agents/*/learnings.md` are SYMLINKS to `session/agents/*/` — commit the session/ path. SKILL.md mirror blocked by self-mod guard (needs Tron auth). ~60 dormant still empty (seed lazily or batch on Tron go).
+
+### 2026-06-28 CONTEXT CRISIS fork pass (IN PROGRESS — executor)
+SM declared crisis on robbinTeam2, multiple agents saturating. Method = TRUE FORK (Path B: /exit + `claude --name <role>` + /model option-1 **1M** + RC + rename@WODA.prod + boot from files). Shallow rewind proven NOT to reduce context on full bases. PRIORITY: (1) skill-expert 0.2 772k — fork when its save commits (anchor 40aaa4c baseline). (2) expert 0.1 818k+rate-limited — HOLD until R21.6 reported (PO call), then fork. (3) req 0.4 261k + architect 0.3 227k (saved 5762a47) — after. Verify each <10% used before declaring RECOVERED → report SM. I am at ~266-300k (healthy). Ensure 1M via /model picker (—model claude-opus-4-8 alone may not be the [1m] variant).
+
 ## Recent Work (2026-06-22 to 2026-06-27)
 
 ### Rewinds Executed
