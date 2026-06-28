@@ -26,6 +26,13 @@
 
 **Pollution:** each `node` gate run = fresh browser context = new prod user. Reuse ONE context across DET-3x iterations to make it 1 user, and TAG names (`r212gate-*`) so they're purgeable. Still flag the count honestly.
 
+## R21.1 — probe-to-isolate root cause + silent-guard bug class (2026-06-28, measured)
+**Bug class — silent guard swallows the failure:** `const token = localStorage.getItem('rawbin-player-token'); if (token) { POST }`. The key is never set (real key is `rawbin-player-id`), so `token=null`, the `if` is skipped, and `.catch(()=>{})` on the fetch means ZERO error surfaces. The vCard just never persists. These bugs are invisible to "does it throw" checks — only an END-STATE gate (GET /api/vcard/<token> returns the data) catches them. Always gate the persisted outcome, not the absence of an exception.
+
+**Probe-to-isolate (pinpoint the one-line fix, don't just report RED):** when a gate goes RED, run ONE more measurement that flips the suspected single variable. Here: I seeded the real id under the WRONG key the handler reads → GET went 200 with the FN. That single probe proved (a) the endpoint works, (b) the key mismatch is the SOLE defect, (c) the exact fix. A RED + root-cause + probe-proven fix is worth 10× a bare RED to the expert. "Gaps become sprints — the wound teaches the cure."
+
+**Verify gate faithfulness before claiming an app bug:** importApplied=true (vcf FN reached #pe-name via applyVCard) proved the UI path fired; the failure was downstream (persistence). Distinguish "my gate didn't trigger it" from "the app is broken" — I confirmed the POST guard via source (`rawbin-player-token` set nowhere) BEFORE calling it a bug. NEVER relay unverified claims.
+
 ## v0.6.0 Marathon Gate Learnings
 
 ### Gate faithfulness (the gate must SEE the bug)
