@@ -239,6 +239,19 @@ Full A/B/C/D in the "Architect Review" section above. Items still needing EXPERT
 
 **D — FEATURE 8 completion consolidation IN SCOPE**: add one `private.complete.paneTargets` (CURRENT + U/D/L/R + panes), both pane-target completions call it. Same PR as CURRENT.
 
+## BUG 10: agent.send / otmux send reports "delivered" but ENTER does not register (false-positive verify)
+
+**Symptom** (SM caught, 2x: tester S1 + expert u24 dispatches): `hiveMind agent.send` returned "INFORM delivered" but the message sat COMPLETE-but-UNSUBMITTED in the target's input buffer — Enter never registered, agent stayed idle, task never ran. SM had to manually submit both.
+
+**Impact**: PO dispatches silently fail to start work. `send.verified` is giving a FALSE POSITIVE — it confirms the text is present in the pane but NOT that it was submitted (no 'esc to interrupt' / processing state).
+
+**Fix**:
+1. `otmux.send.verified` must verify SUBMISSION, not just text presence — after sending Enter, capture and confirm the pane entered a processing/submitted state (e.g. 'esc to interrupt' appears, or the input line cleared), not merely that the text echoed.
+2. If not submitted, retry Enter (send.raw Enter) up to N times, then report FAILURE (not success).
+3. Investigate why Enter doesn't register on these panes (timing? the text-send and Enter race? accept-edits eating it?).
+
+**Interim PO discipline (adopt now)**: after every dispatch, verify the pane shows 'esc to interrupt' (submitted) — if not, `otmux send.raw <pane> Enter` and re-check. Don't treat "delivered" as "running." (SM is currently the safety net catching these.)
+
 ## Report-back (edit here; report to oosh-po)
 - Architect (config-dedup + color-boot + BUG 7 + FEAT 8 DRY): **DONE 2026-06-28** — see Architect Review above. (A) clutter = test/VSCode/terminal leakage harvested by S-5 merge → ALLOW-LIST; source lines → `this` (Rule A doctrine conflict flagged). (B) dev DOES source setup.color.env — premise corrected; culprit ranked: `source $OOSH_DIR/log` after colors (cand 1) or PS1 template (cand 2), A/B repro given. (C) pane.self confirmed single primitive; 5 hiveMind + 1 claudeCode parallel self-ID to funnel through pane.get.target. (D) consolidate pane-target completions into one helper w/ FEAT 8.
 - Expert (HOME guard + user.env regen + commit): **DONE** — BUG1 4bdd948, BUG2 37e16f7+regen, BUG3 af3a3f7, BUG5 d40a005, BUG6 3fd419b.
