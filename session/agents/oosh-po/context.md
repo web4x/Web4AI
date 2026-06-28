@@ -2,8 +2,8 @@
 
 **Updated**: 2026-06-28
 **Role**: oosh-po (forked from fallback-oosh-po)
-**Pane**: ooshTeam:0.0 on MacStudio.native
-**Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
+**Pane**: ooshTeam:0.0 on **WODA.prod** (v60211.1blu.de) — re-derived 2026-06-28 (was wrongly @MacStudio: fork inherited parent's stale @host; real host = OOSH_SSH_CONFIG_HOST=WODA.prod)
+**Session**: oosh-po@WODA.prod [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
 ## ★★ CHECKPOINT — 2026-06-28 LATE (clean-boot bug sprint + u24 gate, before idle)
 Identity: oosh-po, ooshTeam:0.0, fork 29a1e1d1, **on WODA.prod (v60211)** — I was forked here this session (raw tmux confirmed pane=0.0; $TMUX_PANE was stale %8 → that bug started the whole sprint). Branch dev (oosh code /root/oosh) + main (workspace /var/dev/Workspaces/AI/Claude). SM = scrum-master ooshTeam:0.1, my 42 pair, actively monitoring + catching my unsent dispatches (BUG 10).
