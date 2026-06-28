@@ -324,3 +324,9 @@ focus-switch must leave 3 slots distinct by construction.
 ### Doctrine-faithful reporting under WODA.prod
 Measured slots + scoreboard (20/276 excl 49) from disk, reported the DEFECT (slot collapse)
 not a convenient green. TRUTH = what the measurement says. The gap becomes the fix.
+
+## Re-measure 2026-06-28 (SM save-checkpoint)
+Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276→285 (more reqs).
+3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert
+a0106ea86 (BUG-C enforce 3 slots always distinct) — verified on disk: current/last/next now
+3 distinct uuids. The gap I measured became a sprint+fix (doctrine: gaps become sprints).
