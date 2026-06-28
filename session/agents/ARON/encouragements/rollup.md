@@ -12,3 +12,6 @@
 | 2026-06-28 (Round 1 — measured effect) | robbin-po | yes | ENGAGED: pane shows "NEVER forget TRON CMM4"; driving commits; filed task-po-learnings-woda-cycle.md. |
 
 **Round-1 verdict:** encouragement LANDS (engagement + task discipline strong, ~9 tasks/hr). Weakest link unchanged = build-up-skills (~65/98 learnings empty). Next rounds: push learnings hardest; log real effect each round.
+| 2026-06-28 (Round 2 — measured) | oosh-po | yes | live; tasks/hr low (2/75min); learnings 0 growth -> nudge made learnings ask concrete |
+| 2026-06-28 (Round 2 — measured) | robbin-po | yes | live, coordinating team; learnings 0 growth |
+| 2026-06-28 (Round 2 — FINDING) | agent-trainer | re-driven | report-back rule still 0/91 — trainer not yet propagated; re-driven at baseTeam:0.0 |
