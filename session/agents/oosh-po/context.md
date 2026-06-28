@@ -5,8 +5,22 @@
 **Pane**: ooshTeam:0.0 on MacStudio.native
 **Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
-## ★★ CHECKPOINT — 2026-06-28 (post-rewind session, SM-directed save)
-Identity verified: ooshTeam:0.0 / oosh-po@MacStudio (29a1e1d1) / branch main. SM = scrum-master@MacStudio (TRONinterface:0.1), my 42 pair, actively monitoring. Post-rewind anchor 3e7f1e5.
+## ★★ CHECKPOINT — 2026-06-28 LATE (clean-boot bug sprint + u24 gate, before idle)
+Identity: oosh-po, ooshTeam:0.0, fork 29a1e1d1, **on WODA.prod (v60211)** — I was forked here this session (raw tmux confirmed pane=0.0; $TMUX_PANE was stale %8 → that bug started the whole sprint). Branch dev (oosh code /root/oosh) + main (workspace /var/dev/Workspaces/AI/Claude). SM = scrum-master ooshTeam:0.1, my 42 pair, actively monitoring + catching my unsent dispatches (BUG 10).
+
+**CLEAN-BOOT BUG SPRINT — DELIVERED (all on dev, session/tasks/clean-boot-bugs-woda-prod.md):**
+- BUG1 HOME discovery in this (4bdd948); BUG2 user.env pure 0-source (37e16f7+9937799); BUG3 config.save inert (af3a3f7); BUG4 self-care+no-source docs (9e4915c); BUG5 hiveMind.status fd3 all-teams (d40a005+1366742); BUG6 pane.unlock pkill orphans (3fd419b); BUG7 ELIMINATE $TMUX_PANE→pane.self PID-walk, 0 residual+guard (6480f78,350e3e7,d74e354,a20d0d7,a5f709d); BUG8/FEAT8 CURRENT pane target via resolve.target→pane.self (615918c); BUG9 idempotent prefix no [@x][@x] (4c52e24); A config.save allow-list 113→19 exports (9937799); B color boot — line init exports setup.color.env, claudeCode list 41 ANSI (c82fa31); C-ext bare display-message self-ID killed (9ff5343); A/doctrine reconciled first-principles Rule A (6540254).
+- PO-VERIFIED live: user.env 19exp/0src, claudeCode list 41 ANSI, CURRENT 5/5, $TMUX_PANE 0 residual, hiveMind bare=6 teams.
+- BUG10 LOGGED (not fixed): agent.send/send.verified FALSE-POSITIVE — text delivered but Enter not registering on WODA.prod panes; SM caught 2 unsent dispatches. INTERIM DISCIPLINE: after every dispatch verify pane shows 'esc to interrupt' (submitted), else send.raw Enter. Fix spec: send.verified must confirm submission not text-presence.
+
+**IN FLIGHT (WIP=1 each, results into task files):**
+- **u24 GATE** (session/tasks/u24-freshinstall-testgate.md): CORE #6 PASS — fresh dev ossh install on pristine ubuntu:24.04 → pure-state config 20exp/0src; expert fixed 5 fresh-install bugs (rsync→scp 4397ac2/8a3c02d, mode ssh→root, ssh-keygen -N'' 99fb694, seccomp=unconfined). FULL GATE HELD — SETUP_SERVER stalls 32→62 (root .bashrc never wired → clean boot + push blocked). odocker u24 running (port 9024), ossh config u24 ok, testbed PRESERVED.
+- **SETUP_SERVER tail** (session/tasks/setup-server-statemachine-tail.md): the dev-reliability gap. Strategy=macos.latest→dev (Tron: macos.latest boots more reliably). **architect WIP=1 on S-A** (compare macos.latest vs dev SETUP_SERVER 32-62, port-vs-fix ordered list); **expert HOLDING for S-A** then S-B applies fixes (incl result-vs-error ANSI→$RESULT→filename contamination at source). Known tail bugs: config ci unknown, state.declaration missing, prereqs.install fails, ANSI leak into filename.
+- **S1** (sprint-cleanboot-closeout.md): tester running full dev suite (otmux/hiveMind/config/c2 + prefix-idempotent/current-target/no-tmuxpane) — verification gate.
+- **S2** doctrine: DONE (architect 6540254).
+- **S3** dev→macos.latest merge: PLAN READY (expert ed4c9fd — clean auto-merge, preserves 4 macos.latest-only commits 04b54a5/9971ad7/3249104/2cca6f8), **HELD until u24 gate green**.
+
+**NEXT after rewind/idle:** (1) await architect S-A port/fix list → release expert S-B. (2) SM flags S1-green → I'm already past needing it for S3 (S3 gated on u24 not S1). (3) u24 gate green (state 62 + push works) → release S3 merge → mark gate GOOD. (4) Drive each via task-file report-backs; verify before advancing; verify-submission on every dispatch (BUG10).
 
 **WODA.prod team state (v60211, driven via remoteOOSH:0.0 ssh shell):**
 - ooshTeam: 0.0 oosh-po@WODA.prod (real PO = fork of my 29a1e1d1; I exited the ARON-entangled squatter + re-forked it; Tron reorients it), 0.1 scrum-master, 0.2 oosh-architect (bf1ad18b; old 6df08923 was BROKEN-compacted-200k), 0.3 oosh-expert, 0.4 oosh-tester. Sessions: ooshShells (Tron-made, holds shells), ooshTeam, robbinTeam2 (6 agents), Temple, baseTeam (NEW).
