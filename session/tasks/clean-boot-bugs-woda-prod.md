@@ -88,6 +88,22 @@ Two violations:
 3. **`.bashrc` bootstrap**: the `.bashrc` → `source this` chain is the ONE exception — it's how bash becomes an OOSH shell. But `this` must NOT re-source itself or other scripts during the boot chain; it sources ONLY env files.
 4. **Tester**: add T-NO-SOURCE grep guard — `grep -rn "^source.*oosh/" test/` catches test files that source scripts instead of invoking. Same guard for SKILL.md files.
 
+## BUG 5: `hiveMind` (no args) shows only FIRST team — stdin consumption AGAIN
+
+**Observation** (Tron called it live): `hiveMind` on ooshTeam:0.5 shows only ooshTeam — robbinTeam2, Temple, baseTeam, ooshShells all missing. Had to Ctrl-C (hung after the first team). Most agents show `(unknown)` state.
+
+**Root cause**: `hiveMind.status()` no-arg path (line ~1799):
+```bash
+while read -r sess; do
+    hiveMind.team.status "$sess" 2>/dev/null
+done <<< "$sessions"
+```
+`team.status` → `agents.discover` → process scanning internally consumes stdin → remaining sessions eaten → loop stops after first team. **Same fd 3 bug** as the JSONL download loop fixed in `2dcbfa9` — this loop was MISSED.
+
+**Fix**: `done 3<<< "$sessions"` + `read -r sess <&3`. Or pipe-based: `echo "$sessions" | while read -r sess; do ... done` (subshell isolates stdin). Same pattern as all other snapshot/session loops.
+
+**Also**: agents showing `(unknown)` state suggests `agents.discover` → `sweep.detect` is failing or timing out on WODA.prod. Investigate — is it a `/dev/tty` issue (LOG_DEVICE set to `/dev/tty` from BUG 3's config.save side effect)?
+
 ## Report-back (edit here; report to oosh-po)
 - Expert (HOME guard + user.env regen + commit):
 - Tester (clean-boot verification on WODA.prod + u20):
