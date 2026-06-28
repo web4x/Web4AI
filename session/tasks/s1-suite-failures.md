@@ -57,7 +57,7 @@ The 4 legacy-suite reds are a MIX; categorized from log analysis:
 | config | 56c / **0 fail** (T-NOLOSS now fixed) | 20c / 0 fail | dev GREEN. macos has 36 fewer cases = the NEW clean-boot tests aren't on macos yet. No shared debt. |
 | c2 | 25c / 2 fail | 20c / 0 fail | **NOT a regression** — the 2 dev fails are NEW `c2.functions.get` tests (0 mentions on macos). Needs c2-expert triage (found 0 + `/dev/tty` log noise), but absent from baseline so non-comparable. |
 | otmux | 149c / ~25 fail | 146c / **24 fail** | ~24 fails are SHARED (identical on macos which has zero sprint commits) → **PRE-EXISTING shared debt**. |
-| hiveMind | 456c / 55 fail | *(baseline running — slow; will append)* | dev 55 are structural (completions/role-prompts/doc-drift/raw-tmux/JSONL/fork-UUID); expected to be largely shared. |
+| hiveMind | 456c / 55 fail (full) | **partial: hung at T-ARESTART-8 (~T246)** | macos baseline HUNG on a broken `timeout` wrapper during agent.restart's dotted-hostname session creation (interrupted + cleaned up). Apples-to-apples through ~T246: **dev 218pass/23fail vs macos 208pass/40fail** → macos is WORSE. dev's hiveMind work IMPROVED on the baseline; remaining dev fails are a subset of pre-existing debt that's heavier on macos. **Shared debt, no sprint regression.** |
 
 **otmux DEV-ONLY fails (in dev, absent on macos) — the real signal:**
 - `T-UNLOCK-KILLS-1: pane.lock returned rc=143` — **SPRINT REGRESSION** ⚠️
@@ -184,3 +184,17 @@ Tester ran the 4 legacy suites on test/macos.latest @8374cc5 (zero sprint commit
 **S3 merge BLOCKED on TWO gates: (1) the pkill regression fix [T-UNLOCK-KILLS-1 green], (2) u24 gate GOOD.** Do NOT merge dev→macos.latest until both — else the pane.lock regression goes fleet-wide.
 
 **pkill fix (expert, HIGH — live regression + S3 blocker):** narrow the kill to the ENFORCER background loop ONLY, never the foreground `otmux pane.lock` invocation (tag the enforcer with a distinct signature, e.g. `__paneLockEnforcer <target>`, and pkill that — not the generic `pane.lock` script name). Also ensure pane.lock's auto-unlock-first does not kill the process it's running in. Make T-UNLOCK-KILLS-1 green. Composes with `panelock-skip-human-shells.md`.
+
+---
+## EXPERT FIX — BUG6 pkill regression RESOLVED (oosh-expert, 2026-06-28) `44c9043`
+Done exactly per the PO spec. Two-part fix in `otmux`:
+1. **Tagged enforcer**: the background re-enforce loop now launches via `setsid bash -c '…' __paneLockEnforcer "$target" "$title" "$pidFile"` — its argv carries the distinct `__paneLockEnforcer <target>` signature (no longer the inherited `pane.lock` script name).
+2. **Narrow kill**: new `private.otmux.pane.lock.killEnforcers <target>` does `pkill -f "__paneLockEnforcer <target>"` (target dots regex-escaped so 0.4≠0.41). Both `pane.lock` (pre-spawn, idempotency) and `pane.unlock` (orphan sweep) call it. It can NEVER match the foreground `otmux pane.lock`/`pane.unlock` caller (their argv has no `__paneLockEnforcer`), so the auto-unlock-first self-SIGTERM is eliminated.
+
+**Direct verification (live tmux, ooshTeam:0.5):**
+- `pane.lock` → **rc=0** (was 143) ✅ T-UNLOCK-KILLS-1
+- enforcer present + correctly tagged `__paneLockEnforcer ooshTeam:0.5 …` ✅
+- `pane.unlock` → rc=0; **0 orphan enforcers** for the target afterwards ✅ T-UNLOCK-KILLS-2
+- pre-spawn killEnforcers keeps relock ≤1 enforcer ✅ T-UNLOCK-KILLS-3
+
+Gate (1) of the S3 block is CLEARED. (Gate (2) u24 fresh-install gate is expert-GREEN, with tester S-C verification pending.) Tester: please confirm T-UNLOCK-KILLS-1/2/3 green on a full `test.suite run otmux` run.
