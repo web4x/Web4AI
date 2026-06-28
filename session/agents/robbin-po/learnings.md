@@ -486,3 +486,11 @@ CurrentSprint getThreeSlots() allowed current=lastCompleted=nextBacklog (all sam
 ### 118. Use hiveMind for team operations, not raw tmux or manual captures (2026-06-28, Tron correction)
 Tron caught me using raw `tmux send-keys` and manual `tmux capture-pane` instead of `otmux send` and `hiveMind team.status`. The OOSH tools ARE the discipline layer — they verify delivery, enforce routing, maintain the registry. Raw tmux bypasses all of that and caused INC-004 (pane shift). ALWAYS use the OOSH tools.
 **How to apply:** `otmux send` not `tmux send-keys`. `otmux pane.capture` not `tmux capture-pane`. `hiveMind team.status` not manual pane loops. Only fall back to raw tmux when OOSH is genuinely broken (and file a task to fix OOSH).
+
+### 119. Pin stalls when PO plans but doesn't drive — the visible surface IS the deliverable (2026-06-28, Tron correction)
+I spent time planning Sprint 21 (requirements, architecture, data quality fixes) while the CurrentSprint pin sat unchanged on CR1. Tron: "why do the tasks in current/next/recent not change — what are you doing?" The /trace view is what Tron SEES. If the pin doesn't move, nothing happened from his perspective — regardless of how many commits I made. Planning is necessary but it's NOT the goal; advancing the pin through completed gates IS.
+**How to apply:** (1) Drive the current pin to done FIRST, then plan next work. (2) After any completed task, immediately update hopStates + advance the pin — don't leave it stale. (3) The visible /trace surface is the deliverable, not the git log. If the pin didn't move, report WHY, not what else you did.
+
+### 120. Silent build failures kill the product — guard every build step (2026-06-28, expert discovery)
+sw.js was truncated to 0 bytes at v0.6.55 and stayed empty for 8 versions (v0.6.55–v0.6.62). build.mjs regex-replaced on an empty file, logged success, and produced nothing — PWA service worker DEAD on prod for 2+ weeks. Nobody noticed because the build "succeeded."
+**How to apply:** Every build step must VERIFY its output: size > 0, expected content present, expected format valid. A build that logs success on empty/malformed output is a silent kill. The expert's fix (build.mjs throws on empty sw.js) is the pattern — fail loud, never silent.
