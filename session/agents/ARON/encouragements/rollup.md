@@ -18,3 +18,4 @@
 | 2026-06-28 (Round 3) | oosh-po | yes | live; learnings still 33/98 (0 growth x3) -> nudge reframed to "drive your WORKERS" |
 | 2026-06-28 (Round 3) | robbin-po | yes | ENGAGED: working bugs w/ commit hashes (BUG-D); learnings 0 growth |
 | 2026-06-28 (Round 3 — FINDING) | SM | tasked | nudge-only didn't move learnings in 3 rounds -> asked SM to ENFORCE learnings-capture in sweep (CMM2->CMM4) |
+| 2026-06-28 | report-back propagation | DONE — trainer e456d8d, ARON-verified 91/91 full block byte-faithful; SM-enforced |
