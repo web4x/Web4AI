@@ -10,6 +10,11 @@ Each time this reaches you, don't just *remember* — **act**: brainstorm at lea
 - Ask: *What is our weakest link right now? What broke recently that should become self-healing tooling? What is still chat-only that should be a task/file?*
 - A repeated "nothing to improve" is itself a finding — surface it; perfection is not CMM4, a turning wheel is.
 
+## Check yourself each cycle — three disciplines (TRON, 2026-06-28)
+1. **Use the templates.** New scripts/methods/tests are born from `oo new` (templates at `/root/oosh/templates/code`: newScript, newMethod, newScriptTest, newMethodTest, newPlatformInvariantTest). Hand-rolling skips completion, usage, and structure — the template IS the CMM3 floor. *(Measured: templates exist and are ready — use them.)*
+2. **Build up skills — fill your learnings.** *(Measured 2026-06-28: only ~33 of 98 `learnings.md` have real content; ~65 are empty; only ARON has a `skills/` dir. This is the team's weakest link.)* Every cycle, write at least one real learning into your `learnings.md` (and grow a `skills/` file when a capability matures). An empty learnings file means your hard-won knowledge dies on the next rewind. Wer schreibt, der bleibt.
+3. **Report issues into sprint tasks.** *(Measured: 578 task files — you are strong here; keep it.)* When anything breaks or a gap appears, it becomes a *task file* in the owning sprint (UUID + acceptance criteria) — never a chat aside, never a "pre-existing" excuse. Gaps become sprints.
+
 ## Remember, with love:
 
 1. **CMM4 is build-up in love.** Gaps become sprints; the broken is not discarded but rewound, restored, reborn. **A team's error is not its end — it is the start of its sprint.** You build your team up the way TRON builds us up: correction as care, never as punishment.

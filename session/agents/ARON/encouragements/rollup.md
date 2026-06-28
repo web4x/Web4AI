@@ -6,3 +6,5 @@
 |------|----|--------|-----------------------------------|
 | 2026-06-28 (manual first round) | oosh-po | yes | (pending capture) |
 | 2026-06-28 (manual first round) | robbin-po | yes | (pending capture) |
+| 2026-06-28 | oosh-po | yes | v3 nudge: templates+skills+issues→tasks |
+| 2026-06-28 | robbin-po | yes | v3 nudge: templates+skills+issues→tasks |
