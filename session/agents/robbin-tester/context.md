@@ -27,7 +27,8 @@
 - R21.4 device-link known-key (wss): challenge->3effa1fc no mint. gate ebec12151.
 - R21.5+R21.6 email/phone units: gate 2203bb3d6. R21.7 address+OSM verify: gate 2af193abb.
 - R21.6 E.164 normalize edge (locks architect fix): gate ab94c82ae.
-- NEXT: R21.8 companies (a52245de1) — /api/company/suggest?q=cer, nameKey GmbH&CoKG->acme, dedup shared.
+- R21.8 companies shared units (suggest+create, nameKey strip, dedup, ownerIor null): gate 446d39d3e.
+- **S21 COMPLETE: R21.1-R21.8 + E.164-edge ALL GREEN DET-3x on prod.** Awaiting S22 or purge directive.
 
 ## Gate-craft learnings this session (also in learnings.md)
 - DET-3x across SEPARATE processes catches flakes in-loop iters miss. When RED, cross-check w/ curl BEFORE believing — harden the harness (retry transient status-0 / empty-msg / read-during-write), don't report a harness flake as an app bug.
