@@ -14,7 +14,9 @@
 | R21.4 | phone/email known-key → device-link not new user | 3b6dcc83c | 0.6.67 | tester GREEN |
 | R21.5 | emails as scenario units (ior:class:Email) | d4aad5081 | 0.6.68 | awaiting tester |
 | R21.6 | phones as scenario units (ior:class:Phone) | f420c79de | 0.6.69 | awaiting tester |
-- **NEXT ASSIGNED: R21.7** (v0.6.70) — addresses as scenario units. Req unit 5d3b5e6e (16 AC + 8 test scenarios, refined 6d3f8052d). Architecture §5. Build:
+| R21.7 | addresses as scenario units + async OSM verify | 3cf79d5d3 | 0.6.70 | awaiting tester (components measured) |
+- **NEXT ASSIGNED: R21.8** (v0.6.71) — Company mintOrReuseShared. Req 7f3f6f3dd/f1a49e3c1 (25 AC). Architecture §4. SHARED unit (ownerIor:null), dedup by nameKey=name.toLowerCase().replace(/[^a-z0-9]/g,''). alt/company/<nameKey> symlink declared on the COMPANY unit (the ONE case where the alt-link lives on the resolved unit, since many profiles share it). mintOrReuseShared(name): nameKey → hit alt/company → reuse uuid; miss → mint ior:class:Company {uuid,name,nameKey,ownerIor:null} + alt-link. Profile.companies[] push. Architect refined recall(nameKey) vs precision(domain+user-confirm) — read req. Then R21.9 (file-detail reorder+pan/zoom 6e978d5ee), R21.2 (lobby name partial v0.5.131).
+- R21.7 DONE (was NEXT) — addresses as scenario units. Req 5d3b5e6e (16 AC). Architecture §5. Built:
   (1) ior:class:Address {uuid, oneLine, verified:false, osmLink:null, gmapsLink:null, ownerIor→Profile}
   (2) Profile.addresses[] multi (mirror EmailIndex/PhoneIndex mintAndLink — see contact-unit pattern below)
   (3) address oneLine = "Country City PostalCode Street HouseNumber" (large→small)

@@ -766,3 +766,18 @@ SHARED (ownerIor:null, dedup by nameKey, alt/company/<nameKey> declared on the C
 a profile since many profiles share it — the ONE case where the link lives on the resolved unit
 itself). Always: normalize first, idempotent dedup, measure via temp-dir esbuild harness +
 (for device-link) a live wss probe before reporting.
+
+## Async background verification pattern (R21.7 address OSM, 2026-06-28)
+Save-immediate + verify-async: mintAddress does a SYNCHRONOUS index.put (verified:false,
+links null) and RETURNS — never a network call on the request path (AC-c1). A module-level
+queue + self-pumping worker (setTimeout 1100ms between items = ≤1 req/s) does the Nominatim
+lookup off-path, cached by the query string; on HIT calls applyVerification (sets verified
++ both links), on MISS leaves verified:false (displays, never errors). Use node:https.get
+(NOT fetch — unreliable on node16/18) with a descriptive User-Agent per Nominatim policy.
+**How to apply:** any "save now, enrich later" field (geo, link-preview, avatar-fetch) — split
+into a pure sync mint + a rate-limited cached worker + an apply() mutator + a GET badge
+endpoint. Measure by PARTS when one wss e2e is costly: harness the sync+apply mutators,
+curl the live endpoint for initial state, and a standalone https probe to confirm the
+external dependency resolves — report honestly that the in-server flip is component-proven,
+full e2e left to tester DET. Clean any seeded test units from prod after (units + the
+profile's forward-array entry).
