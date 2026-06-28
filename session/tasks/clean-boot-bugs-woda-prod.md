@@ -115,6 +115,33 @@ pkill -f "pane.lock.*${target}" 2>/dev/null
 ```
 And `pane.lock` must kill any existing enforcer for the same pane BEFORE spawning a new one (idempotent — relocking replaces, doesn't accumulate).
 
+## BUG 7: ELIMINATE `$TMUX_PANE` TOTALLY — error-prone, stale after fork/swap (Tron directive)
+
+**Directive**: `$TMUX_PANE` is set once at shell start and goes STALE after any pane swap/fork — it is the root cause of every self-identification failure (BUG that started this whole session: tools reported wrong pane). The reliable replacement `private.otmux.pane.self` (PID-walk, commit 950409e) already exists. **Purge ALL self-identification uses of `$TMUX_PANE` and drop the `|| ${TMUX_PANE}` fallbacks entirely.**
+
+**Exact sites (grep'd on dev):**
+
+`otmux` (14 refs):
+- L1298, L1897, L2774, L2785: `selfPane=$(private.otmux.pane.self) || selfPane="${TMUX_PANE:-}"` → **drop the fallback**, just `selfPane=$(private.otmux.pane.self)` (it already walks PID reliably; the stale fallback is the danger)
+- L1340-1343 `layout.dynamic`: uses `$TMUX_PANE` directly for session/window → replace with `pane.self`
+- L1382-1391 `fit`: uses `$TMUX_PANE` directly for client width/height → replace with `pane.self`
+- L1294, L1889-1892: comments — update to reflect TMUX_PANE is gone
+
+`hiveMind` (4 refs):
+- L2258, L2316: caller-role detection via `$TMUX_PANE` + raw `tmux display-message` → use `otmux pane.self` (also kills a raw-tmux call)
+- L7461, L7726: `own_pane="$TMUX_PANE"` (self-skip in sweeps) → `own_pane=$(otmux pane.self)`
+
+`claudeCode` (3 refs):
+- L1595-1598 `context.self`: gate + read via `$TMUX_PANE` → use `otmux pane.self`
+
+`restore/hiveMind` (3 refs): backup copy — apply same fixes for consistency (L1527, L1686-1687)
+
+`test/test.c2` (10 refs): tests EXPLICITLY SET `TMUX_PANE="$TMUX_TEST_SESSION:0.0"` to target a controlled pane — this is legitimate (deliberate target, not inherited-stale self-ID). **Architect: review whether these should switch to passing an explicit target arg instead, but they are NOT the stale-inheritance bug.**
+
+**Rule going forward**: no code reads `$TMUX_PANE` for self-identification. `otmux pane.self` is the ONE source of "which pane am I". Add a T-NO-TMUXPANE grep guard: `grep -rn 'TMUX_PANE' otmux hiveMind claudeCode` returns zero self-ID uses (only the pane.self internals + explicit-set test targets allowed).
+
+**Architect**: review for dedup — `pane.self` should be the SINGLE self-ID primitive; ensure no parallel ad-hoc pane-discovery remains. Confirm essential: every place that needs "my pane" calls the one primitive.
+
 ## Report-back (edit here; report to oosh-po)
 - Expert (HOME guard + user.env regen + commit):
 - Tester (clean-boot verification on WODA.prod + u20):
