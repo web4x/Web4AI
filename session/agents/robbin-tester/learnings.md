@@ -9,6 +9,23 @@
 - On fresh boot, the FIRST action is the F-T17 fresh-save gate: write a fresh context.md and COMMIT it immediately. That single write→commit IS the proof the new runway works; don't start gating work until it lands. This cycle: commit d1ff662 proved it.
 - This is why "wer schreibt, der bleibt" is survival, not ceremony: only the *committed* word reached this incarnation. The approved-but-uncommitted edit died with the bloated session.
 
+## WODA.prod gate environment + R21.2 discriminator (2026-06-28, measured)
+**Repo location (measured, my committed path was stale):** live Web4RawBin on WODA.prod = `/var/dev/Workspaces/2cuGitHub/Web4RawBin` (v0.6.65). `/var/dev/Workspaces/web4x/Web4RawBin` is the OLD v0.6.62 (pre-fix) — useful as a RED-baseline source. Always `grep '"version"'` + `git log -1` both before assuming which is live.
+
+**Browser gate bring-up on WODA.prod (no browser cached):**
+- node18 at `/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node`.
+- `node_modules/.bin/playwright install chromium` then `playwright install-deps chromium` (root) — chromium failed with `libatk-1.0.so.0` missing until install-deps ran.
+- Scripts importing `@playwright/test` MUST live inside the repo dir (node_modules resolution) — `/tmp` scripts get ERR_MODULE_NOT_FOUND.
+- For a DOM-event-binding bug (not paint/touch), headless chromium is a faithful observer — webkit/touch not required. Match browser to bug physics.
+
+**prod new-user flow gotcha:** after profile commit, prod shows "Authorize This Device" (#de-code). `hasDeviceKeys()` (app.ts) only checks localStorage presence → seed `rawbin-device-privateKey/publicKey/signature='e2e-bypass'` BEFORE commit to skip the device gate and reach the lobby (#member-name). Same bypass r2031 uses.
+
+**R21.2 discriminator (the subtle one):** the bug = lobby name stale after vCard import until reload. Fix fb369d340 = RoomBrowser subscribes PROFILE_UPDATED → sets `this.memberName`. KEY: `render()` emits `value="${this.memberName}"`, and `this.memberName` is set ONCE at construction (line 29) and ONLY updated afterward by the fix's listener. So even if the editor's `onSave→browser.show()` RE-RENDERS the lobby (replacing the #member-name node), the buggy build still shows the stale construction value → RED. **Therefore the sound assertion is VALUE-based (after===vcardName && after!==prev && no-reload), NOT node-identity-based.** I first added a `sameNode` (tag survives) check → false REDs, because re-render legitimately replaces the node while the VALUE is still correct (driven by the fix). Lesson: gate the requirement (name correct, no reload), not an implementation detail (in-place patch vs re-render).
+
+**RED baseline honesty:** when prod is already the fixed version, a live RED is impossible there. Discrimination proven by SOURCE analysis is a *weaker* proof than a measured RED run — SAY SO in the report (don't claim a RED you didn't run). The pre-fix repo (web4x @ 0.6.62) is the place to get a real live RED if the PO wants champagne-grade RED→GREEN.
+
+**Pollution:** each `node` gate run = fresh browser context = new prod user. Reuse ONE context across DET-3x iterations to make it 1 user, and TAG names (`r212gate-*`) so they're purgeable. Still flag the count honestly.
+
 ## v0.6.0 Marathon Gate Learnings
 
 ### Gate faithfulness (the gate must SEE the bug)
