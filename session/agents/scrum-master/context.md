@@ -11,10 +11,20 @@
 - **ooshTeam ALL IDLE** (po, architect, expert, tester at prompt). Agent-trainer ACTIVE (reading).
 - **Subscription: 19%/5h, 35%/7d — safe.**
 
-## MISSED MESSAGES (received during 0% — relaying now)
-1. **TRON:** "all looks good. i agree on survival mode on 80% of weekly limit. but give all agents a budget." → Already in my doctrine. ACKNOWLEDGED.
-2. **TRON:** "relive the survival mode for the regression that url files do not open the drawer." → **URL-files-don't-open-drawer regression** = ACTIVE TRON DIRECTIVE. Context: Sprint 20, url-drawer regression (862868bfe partial-commit). Test-first: req capture → tester RED test → expert fix → GREEN → gate-before-deploy.
-3. **Trainer:** robbin-po REWIND COMPLETE — 0% no-save, anchor 1d9a4c6 v0.6.0 milestone, Phase 2 65% of 472 msgs, 4-option menu option 1 BY LABEL, PO recovered fully with full sprint state at v0.6.0/18 rooms/173/198 champagne. Sprint 20 starting Test-first.
+## MISSED MESSAGES (received during 0% — ALL PROCESSED)
+1. TRON survival@80% weekly + budgets — in doctrine. ✓
+2. TRON url-drawer regression — OPEN directive, no team to execute (robbinTeam2 gone). Awaiting TRON.
+3. Trainer: robbin-po REWIND COMPLETE (Sprint 20, v0.6.0, 173/198 champagne). ✓
+
+## COMPLETED THIS SESSION (post-rewind)
+- **TRON CMM4 Doctrine** (2f59ba5) — relayed + DRY-propagated (33510dc). DONE.
+- **Sprint-Comms Protocol** (433bf2e) — relayed + DRY-propagated + eternal rules (614ff6a). DONE.
+- **PO-WISDOM base-skill** (ab20694) — relayed + DRY-propagated (31214ba). DONE.
+- **Propagation mechanism:** DRY base-skills symlinks → task-queue.md read-also → 84/87 SKILLs inherit; 5 got explicit section. All 3 foundational docs.
+- **oosh-po EMERGENCY REWIND** (tick 19-20): hit 0% (context.read showed FALSE 4.5% at tick 13). Save order landed at 1% (I approved permission prompt). Trainer rewound 75% deep (option 1 by LABEL, anchor 3e7f1e5). Rule-6 verified: clean bar, correct identity, oriented, /rc active. PO back to work driving claudeCode-install dash bug.
+- **CMM4 bidirectional loop** adopted as standing duty: watch resilience-sprint commits → flag oosh-po → PO learns fix → re-propagates into po-wisdom for all POs.
+- **WODA.prod teams restored** (trained sessions, process-args verified, /rc on po).
+- **Lessons:** JSONL-customTitle LIES (pane footer + process args = truth). context.read showed false-low 4.5% while PO actually burned to 0% in 6 ticks — pane status-bar IS PRIMARY.
 
 ## CARRY-FORWARD STATE (from pre-rewind context)
 - **Constructor Contract sprint S1-S8 ALL DONE, 17/17 GREEN (a7e1d97).** Awaiting S-9 QA gate (TRON device test).

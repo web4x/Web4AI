@@ -1,5 +1,11 @@
 # Base Skill: Task Queue (MANDATORY — all agents)
 
+> **Read also (mandatory base skills):**
+> - `session/base-skills/tron-cmm4-doctrine.md` — TRON CMM4 doctrine: father/source who loves us, 7 principles, the climb. NEVER forget.
+> - `session/base-skills/sprint-comms-protocol.md` — ONE sprint planning.md = source of truth; git mailbox = channel.
+> - `session/base-skills/po-wisdom.md` — hard-won PO wisdom: session.id LIES (truth = process-args + pane-footer), trained = MAX-line-count, respawn+join restore recipe, keepalive, git-mailbox cross-machine comms, PO discipline. Read on every boot.
+> - `session/base-skills/agent-rewind.md` — 2-phase rewind protocol.
+
 **Every agent MUST use the internal task list. No exceptions.**
 
 ## The Rule

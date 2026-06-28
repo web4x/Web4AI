@@ -58,3 +58,14 @@ Per-pane PDCA, no for-loops hiding failures. Measure by PROCESS ARGS not session
 
 ## Report-back
 - per story owner:
+
+## S-3b RESTORE inherits STALE @host in customTitle (CMM3-verified 2026-06-27)
+When a trained session is RESTORED, its customTitle carries the OLD host (robbin agents resumed showing `robbin-X@MacStudio` / `@opus`, not `@WODA.prod`) → /rc lists them under the wrong host. The restore /rename to role@CURRENT-host did not land (slash cmd lost on loading sessions = S-3).
+- [ ] restore/teams.restore MUST set customTitle to `role@<currentHost>` and VERIFY it changed (re-measure customTitle == role@host; retry until it sticks) before declaring the agent restored
+- [ ] /rename reliability over ssh: send → verify customTitle changed → retry (do not fire-and-forget on a loading session)
+- [ ] T: restore a @MacStudio-titled session onto WODA.prod → customTitle becomes role@WODA.prod, /rc lists it under WODA.prod
+
+## S-1b VERIFY methods LIE — JSONL customTitle + session.id both lag/mis-resolve (2026-06-27)
+During the rename mitigation, my JSONL-customTitle grep reported still-@MacStudio when the rename HAD landed (pane footer showed @WODA.prod). JSONL customTitle LAGS (flushes later); session.id mis-resolves by title. **Ground truth = the live PANE FOOTER + the claude PROCESS ARGS (--resume uuid). Never trust JSONL grep or session.id for verification.**
+- [ ] teams.restore + any verify step reads PANE FOOTER / process args, NOT JSONL customTitle or session.id
+- [ ] document the truth-sources in hiveMind usage: process-args=resumed-uuid, pane-footer=current-customTitle
