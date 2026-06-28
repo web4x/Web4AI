@@ -15,3 +15,6 @@
 | 2026-06-28 (Round 2 — measured) | oosh-po | yes | live; tasks/hr low (2/75min); learnings 0 growth -> nudge made learnings ask concrete |
 | 2026-06-28 (Round 2 — measured) | robbin-po | yes | live, coordinating team; learnings 0 growth |
 | 2026-06-28 (Round 2 — FINDING) | agent-trainer | re-driven | report-back rule still 0/91 — trainer not yet propagated; re-driven at baseTeam:0.0 |
+| 2026-06-28 (Round 3) | oosh-po | yes | live; learnings still 33/98 (0 growth x3) -> nudge reframed to "drive your WORKERS" |
+| 2026-06-28 (Round 3) | robbin-po | yes | ENGAGED: working bugs w/ commit hashes (BUG-D); learnings 0 growth |
+| 2026-06-28 (Round 3 — FINDING) | SM | tasked | nudge-only didn't move learnings in 3 rounds -> asked SM to ENFORCE learnings-capture in sweep (CMM2->CMM4) |
