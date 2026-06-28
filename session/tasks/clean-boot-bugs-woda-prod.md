@@ -104,6 +104,17 @@ done <<< "$sessions"
 
 **Also**: agents showing `(unknown)` state suggests `agents.discover` → `sweep.detect` is failing or timing out on WODA.prod. Investigate — is it a `/dev/tty` issue (LOG_DEVICE set to `/dev/tty` from BUG 3's config.save side effect)?
 
+## BUG 6: `pane.unlock` doesn't kill ALL enforcers — multiple enforcers accumulate
+
+**Observation** (Tron: "it's still doing it — unlock MUST kill them too"): after `otmux pane.unlock ooshTeam:0.5`, the title kept flickering. `ps aux | grep pane.lock` showed **8 enforcer processes** — two for ooshTeam:0.5 alone (one "ooshShell", one "ooshShell@WODA.prod"), plus stale ones on other panes. `pane.unlock` only kills via ONE pid file, but each `pane.lock` call spawns a NEW background process. Multiple locks on the same pane → multiple enforcers → pid file only tracks the last one → unlock leaves orphans.
+
+**Fix**: `pane.unlock` must kill ALL enforcers for the target pane, not just the one in the pid file:
+```bash
+# Kill by process pattern — catches ALL enforcers regardless of pid file
+pkill -f "pane.lock.*${target}" 2>/dev/null
+```
+And `pane.lock` must kill any existing enforcer for the same pane BEFORE spawning a new one (idempotent — relocking replaces, doesn't accumulate).
+
 ## Report-back (edit here; report to oosh-po)
 - Expert (HOME guard + user.env regen + commit):
 - Tester (clean-boot verification on WODA.prod + u20):
