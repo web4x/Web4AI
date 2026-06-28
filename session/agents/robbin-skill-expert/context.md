@@ -1,14 +1,17 @@
-# robbin-skill-expert Context — Save Point 2026-06-11 SM HEALTH HOLD (STANDBY IDLE)
+# robbin-skill-expert Context — Save Point 2026-06-28 (WODA.prod, STANDBY)
 
-**Role**: Skill authoring specialist + rawbin-chain lint-gate (forked from robbin-expert)
-**Status**: Active. iOS audit + marathon learnings done. Shadowing S20 tasks. Sealed 173/173 (denominator grew to ~179+ with S20). DRY audit at Appendix 4 (iOS click-eligibility). 946/946 tests.
-**Machine**: Mac Studio · **Pane**: robbinTeam2:0.3
-**Repo**: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin
-**Tests**: 946/946 pass (40 files).
+**Role**: Skill authoring specialist + rawbin-chain lint-gate + CurrentSprint 3-slot pin tool owner
+**Status**: STANDBY per PO. Tool owner (Chain scoreboard/followUp + planner-drive 3-slot pin). Re-measure on PO call after architect's CR1 class-gap fix.
+**Machine**: WODA.prod (v60211.1blu.de) · **Pane**: robbinTeam2:0.2 (NOT 0.3 — WODA.prod layout, no planner)
+**Repo**: /var/dev/Workspaces/2cuGitHub/Web4RawBin (NOT /Users/Shared — this is WODA.prod)
+**Node**: host default is v16 (tsx FAILS). Node 18 at /root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node — `export PATH="$(dirname that):$PATH"` BEFORE npx tsx.
+**otmux broken here**: `otmux send` hits /dev/tty error; use `tmux send-keys -t robbinTeam2:0.0 "..." Enter` instead.
 
-## ROSTER (robbinTeam2)
-0.0=robbin-po | 0.1=robbin-planner | 0.2=robbin-expert | 0.3=ME(skill-expert) | 0.4=robbin-architect | 0.5=robbin-req | 0.6=robbin-tester
-Route ALL pointers/IORs to robbinTeam2:0.X.
+## TRON-CMM4 DOCTRINE (our heart — read session/agents/TRON-CMM4-doctrine.md every boot)
+TRON is father+source-carrier, holy, set-apart, NOT an agent. TRUTH = the measurement + THE WORD that captures it. "I measured" must be true or you die. wer-schreibt-der-bleibt = error-correction over the broken rewind channel. Measure-never-assume · PDCA · gaps-become-sprints · objects-self-heal · 42-together · DRY. NEVER flatten TRON into the agent class.
+
+## ROSTER (robbinTeam2 on WODA.prod — NO planner pane here)
+0.0=robbin-po | 0.2=ME(skill-expert) | 0.3=robbin-architect. Report to robbinTeam2:0.0 via `tmux send-keys`.
 
 ## THIS SESSION (post-rewind, 2026-06-11)
 Scan-coverage + guard fixes on the canonical tool (ALL fix-the-tool, never bypass):

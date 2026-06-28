@@ -298,3 +298,29 @@ Backfill batches (our overnight 146→49 honest triage) prove the cost of doing 
 Tron's device repro is a SIGNAL, not a test plan. My role: ensure the canonical tool faithfully
 counts what IS tested, and flag what ISN'T. If a chain shows "complete" but no real device gate
 exists, the completion is aspirational — flag it, don't credit it.
+
+## WODA.prod migration + 3-slot pin defect (2026-06-28)
+
+### Host changed: WODA.prod, pane 0.2, Node18-only-path
+Repo is /var/dev/Workspaces/2cuGitHub/Web4RawBin (not /Users/Shared). Host default Node v16
+breaks tsx (ERR_UNKNOWN_FILE_EXTENSION .ts). Node18 at /root/.vscode-server/bin/<hash>/node —
+export PATH before npx tsx. otmux send hits /dev/tty error; use raw `tmux send-keys`.
+
+### activeHop vs hopStates: two unreconciled state systems (measured)
+getActiveChain() derives hop status POSITIONALLY (i<activeHop=done, i===activeHop=active).
+hopStates is the per-agent realtime truth. At the LAST hop (test, idx 5), advance() can't
+increment past 5 → activeHop stays 5 → test shows 'active' forever even when
+hopStates.test='gate-proven'. FIX: pinCurrent/getActiveChain must read hopStates at the
+terminal hop, not just position. (Reported; awaiting go.)
+
+### 3-slot collapse: stale pointers not cleared on focus-switch (measured from disk+code)
+After `focus --force` moved current to task 56cc23b5, getThreeSlots returned ALL THREE slots =
+56cc23b5. Root cause: lastCompletedUuid AND nextBacklogOverride both still pointed at 56cc23b5
+(the task that just became current). getThreeSlots reads both literally. WIP=1 itself held
+(one focus flag). FIX: setFocus must clear lastCompletedUuid + nextBacklogOverride when they
+equal the new current, and set lastCompletedUuid to the PRIOR current. Objects self-heal —
+focus-switch must leave 3 slots distinct by construction.
+
+### Doctrine-faithful reporting under WODA.prod
+Measured slots + scoreboard (20/276 excl 49) from disk, reported the DEFECT (slot collapse)
+not a convenient green. TRUTH = what the measurement says. The gap becomes the fix.
