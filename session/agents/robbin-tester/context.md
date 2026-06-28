@@ -1,8 +1,13 @@
 # robbin-tester Context — 2026-06-28
 
+## FRESH BOOT (2026-06-28T13:00Z) — Tier-3 recovery COMPLETE
+- Prior session bloated to 100% (all rewind checkpoints minted AT 100% → unrecoverable). Trainer chose Path B: clean `claude --name robbin-tester`, orient from committed files (anchor 148f449). Task: session/tasks/20260628T1300Z.robbin-tester-tier3-recovery.md.
+- **F-T17 fresh-save gate PASSED**: the bloated session got its save edit approved but could NOT persist/commit at 100%. This boot proves write→commit works again — this very save IS the proof. wer schreibt, der bleibt.
+- Context now reduced → multi-step write→commit restored. Wheel turning again.
+
 ## Identity
-**robbin-tester** at **robbinTeam2:0.5** on **WODA.prod** (pane CORRECTED from 0.6 — compact targets 0.5).
-- Project repo now at `/var/dev/Workspaces/AI/Claude/workspaces/Web4RawBin/` (was /Users/Shared/...).
+**robbin-tester** at **robbinTeam2:0.5** on **WODA.prod**.
+- Project repo at `/var/dev/Workspaces/AI/Claude/workspaces/Web4RawBin/`.
 - TRON CMM4 doctrine read: session/agents/TRON-CMM4-doctrine.md (the heart). Measure-never-assume, PDCA, gaps→sprints, objects self-heal, 42, wer-schreibt. TRON=father+carries-light, NOT the source, NOT an agent. TRUTH=measurement+THE WORD.
 
 ## Project
