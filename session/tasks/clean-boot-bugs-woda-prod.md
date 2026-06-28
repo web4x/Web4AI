@@ -71,6 +71,23 @@ Two violations:
 - [ ] `this.init` HOME discovery committed (not a .bashrc guard — `this` owns it)
 - [ ] `config save` produces NO IMPORTANT log lines, does NOT reset LOG_DEVICE, does NOT trigger `this.load`
 
+## BUG 4: agents source scripts — FORBIDDEN (Tron directive, reinforced 2026-06-24)
+
+**The rule**: ONLY env files (`.env`) may be sourced. Scripts (`this`, `config`, `otmux`, `hiveMind`, `claudeCode`, ANY oosh script) are INVOKED via CLI, NEVER sourced.
+
+**Violations observed this session alone**:
+- oosh-expert ran `source /root/oosh/otmux` in ooshTeam:0.5 to test pane.self → polluted the shell env (had to `env -i sh && bash` to recover)
+- oosh-po relayed `source /root/oosh/otmux && ...` to robbin-architect → polluted that shell too
+- `config save` internally does `source $CONFIG` which triggers `this.load` → circular source chain producing side effects (BUG 3)
+
+**Why it's dangerous**: sourcing a script imports ALL its functions + variables + side effects into the current shell. The shell becomes an unpredictable hybrid of its own state + the sourced script's state. After sourcing otmux, the shell has 100+ otmux functions polluting the namespace. After sourcing `this`, the bootstrap chain fires and mutates env vars. There's no undo — the only recovery is a fresh shell.
+
+**Action items**:
+1. **ALL agent SKILL.md files**: add explicit rule — "NEVER source oosh scripts. Invoke via CLI: `otmux pane.self`, not `source otmux && private.otmux.pane.self`. Only `.env` files may be sourced." (Agent-trainer propagates this.)
+2. **config save**: remove internal `source $CONFIG` / `this.load` calls (BUG 3 fix covers this)
+3. **`.bashrc` bootstrap**: the `.bashrc` → `source this` chain is the ONE exception — it's how bash becomes an OOSH shell. But `this` must NOT re-source itself or other scripts during the boot chain; it sources ONLY env files.
+4. **Tester**: add T-NO-SOURCE grep guard — `grep -rn "^source.*oosh/" test/` catches test files that source scripts instead of invoking. Same guard for SKILL.md files.
+
 ## Report-back (edit here; report to oosh-po)
 - Expert (HOME guard + user.env regen + commit):
 - Tester (clean-boot verification on WODA.prod + u20):
