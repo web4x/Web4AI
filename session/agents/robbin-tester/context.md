@@ -28,7 +28,10 @@
 - R21.5+R21.6 email/phone units: gate 2203bb3d6. R21.7 address+OSM verify: gate 2af193abb.
 - R21.6 E.164 normalize edge (locks architect fix): gate ab94c82ae.
 - R21.8 companies shared units (suggest+create, nameKey strip, dedup, ownerIor null): gate 446d39d3e.
-- **S21 COMPLETE: R21.1-R21.8 + E.164-edge ALL GREEN DET-3x on prod.** Awaiting S22 or purge directive.
+- R21.8 AC-b3 domain-mismatch->distinct company: gate c04ded508 (needs UNIQUE domains per iter — domain is global-authoritative).
+- R21.9 file-detail pan/zoom BOTH surfaces (TRACE rb-file-detail + ROOM rb-preview-pane.setContent; 75vh, wheel, pinch, reset): gate 39ef620be.
+- **S21 COMPLETE @ v0.6.74: R21.1-R21.9 + E.164-edge + AC-b3 ALL GREEN DET-3x on prod.** Awaiting S22 or purge directive.
+- KEY robustness: wss session.ready MUST gate on server PROFILE msg (not identify-sent) else UPDATE_PROFILE races 'Not identified'. Use fresh short-lived sessions; retry transient https/empty-msg/read-during-write. Browser gates: mount component directly when app-nav can't reach it.
 
 ## Gate-craft learnings this session (also in learnings.md)
 - DET-3x across SEPARATE processes catches flakes in-loop iters miss. When RED, cross-check w/ curl BEFORE believing — harden the harness (retry transient status-0 / empty-msg / read-during-write), don't report a harness flake as an app bug.
