@@ -27,6 +27,27 @@ The 4 legacy-suite reds are a MIX; categorized from log analysis:
 
 **Caveat on baseline**: these legacy suites were NOT part of the expert's "all green" claim (expert ran the new guards, not full legacy suites). Most hiveMind/otmux fails look like PRE-EXISTING tech debt surfaced by running the FULL suites, not regressions introduced by the clean-boot sprint. Expert/PO triage needed to confirm none are sprint-introduced before S3.
 
+## PO RULINGS (oosh-po, 2026-06-28)
+
+**Sprint deliverables = GREEN** (3 guards 15/15). The clean-boot sprint work this session is VERIFIED. The 83 are LEGACY-SUITE failures surfaced by running FULL suites (not in the expert's new-guard scope).
+
+**Per Tron F-PREEXISTING: "failure is failure" — the 83 are NOT waved away.** They become a tracked remediation sprint (this file is the seed). But scoped correctly:
+
+1. **config-1 (T-NOLOSS-1): RULED — INTENDED, test is wrong.** BUG A made config.save an ALLOW-LIST (OOSH vars + tracked `config set` vars only) — that is exactly what stopped VSCode/terminal/test leakage (113→19 exports). A bare-exported var is deliberately NOT harvested. **Action: tester updates the test to set the var via `config set` (tracked), not bare export.** Code correct, not a regression.
+
+2. **T-UNLOCK-KILLS ("expected >=1 enforcer, got 0"): tester's OWN wrong assumption** (this tmux uses hook-based locking, not a background enforcer process). **Action: tester fixes the test to match hook-based locking.**
+
+3. **S3-gating triage mechanism: tester runs the 4 legacy suites on `macos.latest` to establish the BASELINE.** If macos.latest shows ≈ the same 83 red → confirmed PRE-EXISTING SHARED debt (not sprint regressions; S3 merge doesn't worsen them, carries the sprint fixes + 3 green guards). If macos.latest is materially GREENER → some are dev regressions → S3 BLOCKED + per-fail triage. This objective baseline replaces subjective "expert triage."
+
+4. **A few reds look sprint-ADJACENT — expert triage AFTER S-B (don't interrupt u24 priority):**
+   - hiveMind `only 4/8 sessions found (stdin consumption bug)` — SAME CLASS as BUG5 fd3, different loop. Likely REAL, likely also on macos.latest (baseline will confirm).
+   - otmux `expected [@test-sender pane], got ''` + `hiveMind should delegate to otmux send, got ''` — prefix/delegation wiring; baseline confirms pre-existing vs sprint.
+   - sweep.detect classification block (~10 fails) — pre-existing detector debt.
+
+5. **The legacy debt → its own remediation sprint** (`s1-legacy-suite-remediation`), sequenced AFTER the u24 gate. hiveMind 55 (completions/role-prompts/doc-drift/raw-tmux/JSONL-delegation/fork-UUID), otmux real reds, c2 2. Owned, ordered, driven to zero — not "pre-existing, ignore."
+
+**S3 merge: stays HELD** (was already gated on u24 green; now ALSO on macos.latest-baseline confirming the 83 are pre-existing-shared, not regressions).
+
 ## config — fail lines
 ```
   ✗ FAIL: config.save did not capture TRON_TEST_CUSTOM_VAR
