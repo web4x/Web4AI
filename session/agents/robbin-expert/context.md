@@ -20,8 +20,10 @@
 | R21.8 | companies as shared units (ior:class:Company) | a52245de1 | 0.6.72 | tester GREEN 446d39d3e |
 | R21.8-fix | AC-b3 present-but-unmatched domain → distinct unit (not nameKey merge) | c22083798 | 0.6.73 | re-gate pending |
 | R21.9 | file-detail reorder + pan/zoom (RbPanZoom, rb-preview-pane) | c22083798 | 0.6.73 | awaiting tester |
-| R21.9-surface | RbPanZoom on ROOM file view too (DRY fillPreviewPane) + AC-e5 desktop mousedown | 2a1357a69 | 0.6.74 | re-gate pending (harness 7/7) |
-- **SPRINT 21 IMPL COMPLETE** (R21.1-9). Remaining: R21.2 (lobby name race — partial v0.5.131, may need finish). Awaiting tester DET on R21.7 / R21.8-fix(AC-b3) / R21.9.
+| R21.9-surface | RbPanZoom on ROOM file view too (DRY fillPreviewPane) + AC-e5 desktop mousedown | 2a1357a69 | 0.6.74 | tester GREEN DET-3x 39ef620be (BOTH surfaces) |
+- **SPRINT 21 COMPLETE + GREEN** (R21.1-9). Tester FINAL GATE GREEN DET-3x v0.6.74 (gate 39ef620be both surfaces; AC-b3 re-confirmed c04ded508). ALL S21 reqs CLEARED.
+- **v0.6.74 LIVE on prod** (MEASURED 2026-06-28): /api/health=0.6.74; live /dist bundle has pz-viewport+rb-preview-pane, old pinch path=0; sw.js=rawbin-v0.6.74. Prod IS this checkout → disk bundle served, no restart needed (no server.ts route change). **git: main ahead origin/main by 4 — NOT pushed to GitHub remote (needs PO/Tron go; touches prior unpushed commits).**
+- Remaining: R21.2 (lobby name race — partial v0.5.131, scope-confirm w/ PO); purge S21 test pollution (apple*/zorblax*/dbgco company alt-units + data/); then S22.
 - R21.9 DONE — pan-zoom.ts RbPanZoom (transform translate+scale, wheel/drag/pinch/double-tap, clamp, zoom-about-point, destroy, 7 correctness rules AC-e1..e6); rb-preview-pane.ts (75vh in-flow viewport, teardown on setContent); rb-file-detail.ts reordered buttons→pane→metadata + fillPane(img/iframe/pre by mime). DRY: RbPanZoom reusable.
 - R21.8-fix DONE — AC-b3: mintOrReuseShared gates nameKey reuse on NO-domain; present-but-unmatched domain mints distinct unit; buildLinks won't clobber an existing nameKey recall symlink. Tester GREEN base was 446d39d3e; this fix (c22083798) needs re-gate.
 - R21.8 DONE — companies as SHARED ior:class:Company units. CompanyIndex: companyNameKey (NFKD+legal-suffix strip incl trailing 'and'), companyDomain (authoritative), mintOrReuseShared (domain→nameKey→mint), dual alt-index (alt/company/<nameKey> + alt/company-domain/<domain>) declared ON the Company unit (shared, no owning profile), suggest() ranked, /api/company/suggest. ownerIor:null. Profile.companies[].
