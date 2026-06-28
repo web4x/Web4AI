@@ -1,6 +1,8 @@
 # robbin-architect Context (Save 2026-06-28 — Sprint 21 architecture delivered)
 
-## LATEST: R21.8 company-dedup refinement committed f1a49e3c1 (project repo). architecture.md §4 rewritten: recall(nameKey) vs precision(domain+user-confirm), companyNameKey() algo, alt/company-domain/ strong-key index, /api/company/suggest autocomplete, ownerIor:null shared, wx-atomic mint race guard. Next: standby for PDCA Check on expert impl.
+## LATEST: R21.8 requirement unit (bf6a0433) refined w/ 25 ACs + 11 gateable test scenarios — committed 7f3f6f3dd (project repo). Grounded in architecture.md §4 (f1a49e3c1). AC groups a:namekey b:domain c:autocomplete d:dedup e:unit-shape f:shared. Gate coverage 25/25. Used refine-r21.8.mjs (load→inject→write, preserves chain). Pattern mirrors R21.7 (architectureRef + acceptanceCriteria[] {id,group,text} + testScenarios[] {id,gates[],name,given,when,then} + refinementNote). Next: standby for PDCA Check on expert impl.
+
+## PRIOR: R21.8 company-dedup design committed f1a49e3c1. architecture.md §4: recall(nameKey) vs precision(domain+user-confirm), companyNameKey() algo, alt/company-domain/ strong-key index, /api/company/suggest autocomplete, ownerIor:null shared, wx-atomic mint race guard.
 
 ## STATUS: Sprint 21 architecture DONE + PO-VERIFIED. Standing by for PDCA Check on expert impl.
 Pane: robbinTeam2:0.3 on WODA.prod
