@@ -1,5 +1,7 @@
 # robbin-architect Context (Save 2026-06-28 — Sprint 21 architecture delivered)
 
+## LATEST: R21.8 company-dedup refinement committed f1a49e3c1 (project repo). architecture.md §4 rewritten: recall(nameKey) vs precision(domain+user-confirm), companyNameKey() algo, alt/company-domain/ strong-key index, /api/company/suggest autocomplete, ownerIor:null shared, wx-atomic mint race guard. Next: standby for PDCA Check on expert impl.
+
 ## STATUS: Sprint 21 architecture DONE + PO-VERIFIED. Standing by for PDCA Check on expert impl.
 Pane: robbinTeam2:0.3 on WODA.prod
 Model: Opus 4.6 (1M)
