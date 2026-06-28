@@ -1,6 +1,8 @@
 # robbin-architect Context (Save 2026-06-28 — Sprint 21 architecture delivered)
 
-## LATEST (PDCA CHECK): Reviewed expert R21.5 (d4aad5081) + R21.6 (f420c79de) vs my ACs.
+## LATEST: R21.9 design deep-dive DONE (my call: design-ahead > idle) — commit 47a427780 (project repo). architecture.md §6 expanded with RbPanZoom transform gesture handler (zoom-about-point math, desktop wheel/drag, touch pan/pinch/double-tap, 7 hard-won correctness rules) + reorder (buttons→75vh in-flow viewport→metadata). R21.9 unit 21e792e0 refined: 22 ACs (a:reorder b:transform c:desktop d:touch e:correctness f:reuse) + 12 TS, gate 22/22. Measured current code first: rb-file-detail renders metadata-first + content-preview uses native iframe pinch-zoom @400px (insufficient → needs transform handler). Next: standby for R21.8/R21.9 impl review.
+
+## PRIOR (PDCA CHECK): Reviewed expert R21.5 (d4aad5081) + R21.6 (f420c79de) vs my ACs.
 - R21.5 EMAIL = COMPLIANT. Server wiring verified (resolveKeyToProfile→IDENTIFY→KNOWN_KEY_CHALLENGE server.ts:1928-31; indexProfileEmail 213). 2 MINOR: (e3) mintAndLink returns normalized KEY string not Email IOR; (c2) normalizeEmail server-side only, not confirmed shared client-side. Both low-sev, behavior correct.
 - R21.6/R21.3 PHONE = 1 MEDIUM GAP: normalizePhone (PhoneIndex.ts) just strips non-digits + prepends '+', does NOT yield true +CountryCode. Measured: '015253844085'→'+015253844085', '00491525384085'→'+00491525384085' — both pass isValidPhoneKey(+\d{6,15}) but are WRONG E.164. Risk: same number in +49/0049/0152 forms → DIFFERENT alt-keys → device-link/dedup MISS. Happy path (+CC present, incl seeded Tron phone) works. Flagged to PO. Fix is expert's (00→+ convert; reject/flag national-without-CC).
 
