@@ -749,3 +749,20 @@ even though version showed the new number.
 **How to apply:** after ANY server.ts change, restart: `tmux send-keys -t rawbin C-c`
 (x2) then `npm run dev`, then curl the ACTUAL new route (not just /api/health) before
 reporting live. Version-string match ≠ route live.
+
+## Contact-unit DRY pattern: alt-UUID index + first-class unit (R21.3→R21.6, 2026-06-28)
+Phone (R21.3/R21.6) and Email (R21.5) are the SAME shape — build new contact types by
+mirroring, not reinventing. Two concerns per type:
+1. **Alt-UUID lookup** = `<Index>.registerSymlink(profileUuid, raw)` → `alt/<kind>/<normKey>.scenario.json`
+   declared on the PROFILE unit's unitLinks[] (so the symlink resolves to the profile). This is
+   what device-link (R21.4 resolveKeyToProfile) reads → model.uuid.
+2. **First-class unit + relationship** = `<Index>.mintAndLink(profileUuid, raw, v4uuid)` mints
+   ior:class:<Kind> {normField, ownerIor:profile}, pushes into Profile.<kind>s[] (idempotent
+   dedup by normalized value), then registerSymlink.
+Caller passes the uuid (crypto.randomUUID server-side) so the shared scenario module stays
+crypto-free (client-bundle safe — globalThis.crypto unreliable on node16/18).
+**How to apply:** for R21.7 Address / R21.8 Company — copy EmailIndex/PhoneIndex; Company is
+SHARED (ownerIor:null, dedup by nameKey, alt/company/<nameKey> declared on the COMPANY unit not
+a profile since many profiles share it — the ONE case where the link lives on the resolved unit
+itself). Always: normalize first, idempotent dedup, measure via temp-dir esbuild harness +
+(for device-link) a live wss probe before reporting.

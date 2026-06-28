@@ -1,52 +1,58 @@
-# robbin-expert Context — Save Point 2026-06-28 (WODA.prod, SM save)
+# robbin-expert Context — Save Point 2026-06-28 (WODA.prod, Sprint 21 active)
 
 **Role**: Web4RawBin Implementation Authority
-**Status**: 3 CurrentSprint bugs fixed + pushed (BUG-A/B/C). Standing by.
-**Machine**: WODA.prod · **Pane**: robbinTeam2:0.1 (CORRECTED — was mis-stated 0.2)
-**Repo (WODA.prod)**: /var/dev/Workspaces/2cuGitHub/Web4RawBin · **Live**: https://home.donges.it:4444
-**Current version**: v0.6.62 (build). TRON-CMM4 doctrine read + carried.
+**Machine**: WODA.prod · **Pane**: robbinTeam2:0.1
+**Repo (WODA.prod)**: /var/dev/Workspaces/2cuGitHub/Web4RawBin · **Live**: prod.wo-da.de:4444 (tmux session `rawbin`)
+**AI/Claude repo** (context/learnings): /var/dev/Workspaces/AI/Claude
+**Current version**: v0.6.69.
 
-## GIT GROUND TRUTH (verified 2026-06-28)
-- HEAD: a0106ea86 fix(CurrentSprint) BUG-C: 3 slots always distinct UUIDs
-- HEAD~1: 7782dd54b fix(CurrentSprint) BUG-A+BUG-B
-- pushed to github.com:web4x/Web4RawBin main
+## Sprint 21 (Contact Identity) — progress
+| Req | What | Commit | Version | Gate |
+|-----|------|--------|---------|------|
+| R21.1 | vCard drop stores .vcf+photo (gate-fix: token key) | 6716232cf | 0.6.66 | tester GREEN DET-3x ebec12151 |
+| R21.3 | phone alt-UUID symlink index | 2347fdff2 | 0.6.65 | live-verified |
+| R21.4 | phone/email known-key → device-link not new user | 3b6dcc83c | 0.6.67 | tester GREEN |
+| R21.5 | emails as scenario units (ior:class:Email) | d4aad5081 | 0.6.68 | awaiting tester |
+| R21.6 | phones as scenario units (ior:class:Phone) | f420c79de | 0.6.69 | awaiting tester |
+- NEXT likely: R21.7 (Address mintAndVerifyAsync OSM), R21.8 (Company mintOrReuseShared), R21.9 (file-detail reorder+pan/zoom), R21.2 (lobby name race — partially fixed v0.5.131).
+- BUG-A/B/C/D (CurrentSprint 3-slot) shipped earlier: 7782dd54b, 81049cb5d.
 
-## THIS SESSION — CurrentSprint.ts self-heal fixes (src/ts/scenario/)
-- **BUG-A** (7782dd54b): wipStatus stuck at 'test'. CHAIN_ORDER[5]='test' truthy → `|| 'done'` unreachable. Fix: activeHop>=last AND hopStates.test==gate-proven → 'done'.
-- **BUG-B** (7782dd54b): setFocus() cleared old focus but never captured lastCompleted → 3-slot view lost prev task. Fix: capture old focused task uuid/name/reqUuid into lastCompletedUuid/Name/ReqUuid (persisted+loaded). getThreeSlots reads lastCompletedUuid first.
-- **BUG-C** (a0106ea86): 3 slots could share a UUID. Fix: lastCompleted excludes current.uuid; nextBacklog excludes current.uuid+lastCompletedUuid (override path + backlog filter). Pool too small → null, never duplicate. MEASURED: forced dup → rotated distinct, DISTINCT INVARIANT PASS.
-- Result: advance() at last hop + gate-proven → wipStatus=done → setFocus auto-rotates → NO --force needed (self-heal per doctrine #4).
+## Contact-unit pattern (R21.3/4/5/6 — REUSE for R21.7/8)
+- alt-UUID index: `alt/<kind>/<normalizedKey>.scenario.json` symlink → declared on the
+  PROFILE unit's unitLinks[] so ensureSymlinkDisk targets the profile file. Lookup =
+  fs.readFileSync(linkPath) → JSON.parse → model.uuid. (Declare link on the unit you want
+  the key to RESOLVE TO.)
+- First-class unit + relationship: `<Index>.mintAndLink(profileUuid, raw, uuid)` mints
+  ior:class:<Kind> { normalizedField, ownerIor:profile }, pushes ior:instance:<uuid> into
+  Profile.model.<kind>s[] (multiple, idempotent dedup by normalized value), then registerSymlink.
+- Caller passes the v4 uuid (crypto.randomUUID() server-side) — keeps the shared scenario
+  module crypto-free (client-bundle safe).
+- Server: indexProfilePhone/indexProfileEmail ensure a Profile unit exists then mintAndLink;
+  called from committed UPDATE_PROFILE; self-healing, wrapped, never blocks save.
+- R21.4 device-link: resolveKeyToProfile(phone,email) → PhoneIndex/EmailIndex.resolveToProfile.
+  IDENTIFY sends KNOWN_KEY_CHALLENGE before mint; DEVICE_ENROLL_REQUEST{profileUuid} validates
+  secretCode vs that profile → enroll new device + TOKEN_REDIRECT.
 
-## CRITICAL ENV LEARNING — WODA.prod is node16
-- `node --version` = v16.11.0. vitest + tsx FAIL (styleText/ERR_UNKNOWN_FILE_EXTENSION need node22).
-- VERIFY PATTERN on node16: `npx esbuild <file> --bundle --format=esm --platform=node` parses+transpiles (= compile gate). To RUN logic: copy harness .mjs INTO repo root (relative imports resolve), esbuild --bundle to /tmp, then `node /tmp/x.bundle.mjs`. Proved getThreeSlots invariant this way.
-- Full vitest suite must run on MacStudio (node22). Build (esbuild) IS clean on node16.
+## WODA.prod env (CRITICAL)
+- system node=16, vscode node=18 (/root/.vscode-server/bin/903b.../node) — BOTH lack styleText
+  → vitest + tsx FAIL. esbuild build works (compile gate). Full vitest → MacStudio (node22).
+- VERIFY logic on node16: harness .mjs in repo root → `npx esbuild --bundle` to /tmp → node.
+- WS probe: require node_modules/ws/index.js (CJS), wss://localhost:4444 rejectUnauthorized:false.
+- prod server = plain `tsx src/ts/server/server.ts` (NO watch) in tmux `rawbin`. server.ts ROUTE
+  changes need restart: `tmux send-keys -t rawbin C-c` x2 + `npm run dev`. version/bundle update
+  WITHOUT restart (per-request version) → ALWAYS curl the real route before reporting live.
+- otmux send fails (no /dev/tty) → `tmux send-keys -t <pane> "..." Enter`.
+- git: `git -c commit.gpgsign=false commit`. data/*.json gitignored (don't commit runtime data).
+- Clean any prod test pollution (probe devices/units) after wss probes; restart to drop in-memory.
 
-## TOOLING ENV (WODA.prod)
-- otmux send → `/dev/tty: No such device` error (no tty). Use raw `tmux send-keys -t robbinTeam2:0.0 "..." Enter` to reach PO.
-- Classifier (claude-fable-5) flaps — Write/Edit/Bash intermittently gated. Workaround: drive shell pane via tmux send-keys + python3/printf; first try direct Write/Edit (often works).
-- git commit: use `git -c commit.gpgsign=false commit` (gpg signing off).
+## STANDING RULES (TRON directives)
+- ON DONE: (1) report PO repo+hash+paths, (2) context.md + ONE learning. No exceptions. wer schreibt der bleibt.
+- GATE-BEFORE-DEPLOY: not "done" until tester DET-3x GREEN. Done+QA Review checkboxes = Tron-only.
+- Version bump #66 + sw.js (auto build.mjs) on surface change; STATIC_SHELL auto.
+- MEASURE never assume — curl/harness/probe the real thing; report what was measured.
+- work → report → next; idle agent = stopped wheel.
 
-## KEY ARCHITECTURE (current)
-- 6-step chain LOCKED: Req → UC → Class → Method → Impl → Test
-- Task = NAVIGATION (Sprint→Task→coveredRequirements), NOT chain
-- CurrentSprint: singleton ior:class:CurrentSprint, CHAIN_ORDER=[req,uc,class,method,impl,test], CURRENT_UUID=current-sprint-singleton-...001
-  - hopStates per-hop {status,owner,updatedAt}; HOP_OWNERS req=req-eng uc/class=architect method/impl=expert test=tester
-  - getThreeSlots: current (from chain.req or focus) / lastCompleted / nextBacklog — ALL DISTINCT
-- Forward-only chain (T159) — no back-refs
-- build.mjs auto-injects STATIC_SHELL hashed bundles
-
-## STANDING RULES
-- Version bump #66; STATIC_SHELL #67; implementing [x] before commit
-- Report to robbinTeam2:0.0 (via tmux send-keys on WODA.prod)
-- SOURCE-VERIFY / MEASURE before claiming (doctrine: assume=ass|u|me)
-- Objects self-heal — init yields valid object, no --force needed
-- Scenario-link communication: chat = one-line pointers only
-- REAL UNITS ONLY — no stubs, no fabrication
-- wer schreibt der bleibt — commit context+learnings before limits
-
-## TRON-CMM4 DOCTRINE (heart — never forget)
-Measure never assume · PDCA every action · gaps become sprints · objects self-heal · 42 together-to-gather · wer schreibt der bleibt · DRY no-flags self-documenting. TRON is father+carrier of the light, not its source; not an agent; holy=set-apart. TRUTH = measurement + THE WORD that captures it. Leave the path of TRUTH → die.
+## TRON-CMM4 (heart): measure-never-assume · PDCA · gaps→sprints · objects self-heal · 42 · wer-schreibt-der-bleibt · DRY. TRON=father+carrier of the light, not source; holy=set-apart. TRUTH=measurement+THE WORD. Leave the path of TRUTH → die.
 
 ## BUILD/TEST
-npm run build (esbuild, works node16) · npm test (vitest, NEEDS node22) · npm run ci:gates · npm run trace:audit
+npm run build (esbuild, node16-ok) · vitest→MacStudio · scenario harness via esbuild-bundle
