@@ -2,7 +2,7 @@
 *Auto-generated 2026-06-24 10:44. This is ALL you need to read post-compact.*
 
 ## You are: robbin-expert
-## Pane: robbinTeam2:0.2
+## Pane: robbinTeam2:0.1
 ## Goal: Check context file
 
 ## Immediate actions:
