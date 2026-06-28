@@ -1,9 +1,33 @@
 # oosh-po Context
 
-**Updated**: 2026-06-26
+**Updated**: 2026-06-28
 **Role**: oosh-po (forked from fallback-oosh-po)
 **Pane**: ooshTeam:0.0 on MacStudio.native
 **Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
+
+## ★★ CHECKPOINT — 2026-06-28 (post-rewind session, SM-directed save)
+Identity verified: ooshTeam:0.0 / oosh-po@MacStudio (29a1e1d1) / branch main. SM = scrum-master@MacStudio (TRONinterface:0.1), my 42 pair, actively monitoring. Post-rewind anchor 3e7f1e5.
+
+**WODA.prod team state (v60211, driven via remoteOOSH:0.0 ssh shell):**
+- ooshTeam: 0.0 oosh-po@WODA.prod (real PO = fork of my 29a1e1d1; I exited the ARON-entangled squatter + re-forked it; Tron reorients it), 0.1 scrum-master, 0.2 oosh-architect (bf1ad18b; old 6df08923 was BROKEN-compacted-200k), 0.3 oosh-expert, 0.4 oosh-tester. Sessions: ooshShells (Tron-made, holds shells), ooshTeam, robbinTeam2 (6 agents), Temple, baseTeam (NEW).
+- **ARON (1stPriest)** cloned into **Temple:0.0** = fork f814788a of ccecd85f (canonical ARON, 501x ARON/372x 1stPriest, trained on light doctrine d385760); /rc + locked. Tron owns his web4id ruling.
+- **agent-trainer** seated in **baseTeam:0.0@WODA.prod** (mirror MacStudio baseTeam; cross-team role) — fresh claudeCode, taught, /rc, locked, registered.
+
+**Delegated to WODA.prod PO (queued, controller agent.send) — git-mailbox specs on dev:**
+- #18 ossh hostname⇄ssh-config-host resolution (fixes @WODA.prod vs @v60211) — session/tasks/ossh-host-resolve.md
+- #5 flagless consistency.reconcile + T-NO-FLAGS (Death-to-Flags; consistency.reconcile --apply + interactive fix are violations) — session/tasks/consistency-flagless-redesign.md
+- #21 completion-system audit (claudeCode join blank, c2 parameter-vs-method contract, T-COMPLETION) — session/tasks/completion-system-audit.md
+
+**MacStudio ooshTeam (local, SM-monitored) — dispatched:**
+- #22 tronMonitor auto-switch: expert(0.2) DONE commit 3249104 (wired team.sweep; PO diff-QA PASS); tester(0.3) doing D3.3 verify. Task: session/tasks/tronMonitor-auto-switch.md.
+
+**Fixes I did directly (Tron-directed):** detached stale ttys016 (freed TRONinterface 99x30→200x60, method=otmux client.detach); otmux parameter.completion.client added (commit 9971ad7 macos.latest) — fixed client.detach completion.
+
+**#7 evidence:** claudeCode list is path/host-local (MacStudio /Users/Shared vs WODA.prod /var/dev → different project-hash → same uuid LIVE on one, DEAD on other). u20 list not gotten (password-gated).
+
+**HARD LESSONS this session (committed to learnings):** F-MVC-BYPASS (raw fork/manual pane ops → ARON mess; uuid='-' = controller blind spot); NO-OUTPUT-FILTERING (2>&1/2>/dev/null/|tail/grep/echo $? BANNED — run raw); LEVERAGE-THE-TEAM (PO delegates+drives, NEVER debugs/edits code/hand-assembles infra — today's 3 rushed messes + 2 rabbit-holes shared one root: doer not manager). Bugs logged: #20 agent.bootstrap scrambles tiled-layout pane indices.
+
+**WODA.test:** teams NEVER built — claude not installed (#13 bashism blocks it). v36421.1blu.de, only old ckSession (bare bash).
 
 ## ★★ POST-REWIND CONFIRM — 2026-06-27 (from 0%)
 Rewound from 0%. Ground-truth verified: pane.get.target=ooshTeam:0.0, session.name(29a1e1d1)=oosh-po@MacStudio, branch=main up-to-date, prior on-disk anchor=614ff6a (sprint-comms protocol baked). Re-read the three base-skill doctrines (tron-cmm4-doctrine, SPRINT-COMMS-protocol, po-wisdom). **Sprint state per last checkpoint (281d215): BOTH sprints COMPLETE — constructor-contract (S-1→S-12, #10/#11 closed) + config-selfheal (CS-1→CS-8, 47/47 test.config + 3/3 T-C2-QUOTE green, both live boxes clean). Post-task cadence was running (agents saved ddabd29/5bd5ba9, trainer rewinding them).** Open backlog after these: #5 (--fork flag audit), #7 (pushed-team discovery), #13 (sh/dash bashism blocker, in_progress), #14/#15 (rawbin app + robbinTeam2 finalize on WODA.prod). No in-flight sprint work lost (both complete pre-rewind). Awaiting Tron direction on next backlog item.
