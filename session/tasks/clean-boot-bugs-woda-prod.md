@@ -22,13 +22,15 @@ After `env -i`, `$HOME` is empty → `"$HOME/.local/bin/env"` expands to `"/.loc
 
 This is Claude Code's env file (written by the `claude` installer). Not an OOSH file, but `.bashrc` sources it unconditionally.
 
-**Fix**: guard the source:
+**Fix (Tron directive): `this` must discover `$HOME`.** The `this` bootstrap is responsible for establishing ALL fundamental env vars — HOME included. If `$HOME` is empty (after `env -i`, in a cron, in a minimal container), `this` must resolve it BEFORE anything else runs:
 ```bash
-[ -n "$HOME" ] && [ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
+# In this.init, FIRST thing — before any path that uses $HOME:
+: ${HOME:=$(eval echo ~$(id -un 2>/dev/null || echo root))}
+export HOME
 ```
-Or resolve HOME first: `HOME="${HOME:-$(eval echo ~$(id -un))}"` before the source line.
+Then `.bashrc:226` (`". $HOME/.local/bin/env"`) works — it doesn't need its own guard because `this` has already resolved HOME. This is the self-care principle: `this` initialises ALL required state, downstream never worries about missing fundamentals.
 
-**Self-care principle violation**: the bootstrap doesn't validate that `$HOME` is set before using it in a path. A self-healing boot would detect the missing `$HOME` and either resolve it or skip gracefully — never try to source a path rooted at `/`.
+**Do NOT put a guard in `.bashrc`** — that's a bandaid. The fix belongs in `this` where all env discovery lives (same layer as CONFIG_PATH, OOSH_DIR resolution).
 
 ## BUG 2: user.env still contains `source` lines — config.validate code is on dev but data file not regenerated
 
