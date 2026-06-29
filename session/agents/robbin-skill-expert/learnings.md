@@ -377,6 +377,18 @@ completion count is the chain scoreboard, and it said 20/285. Reported TRUTH, no
 green PO expected. This is the textbook functional-first-then-backfill cost — flag it at close,
 don't let "deployed + tests pass" be mistaken for "traceably done." Gap → next sprint.
 
+### Sprint 21 FINAL verified (e977a1526) — debt paid down, traceable close
+After the GREEN-on-tests/OPEN-on-chain flag, expert+tester ACTIONED the R21-marker-checklist:
+expert re-minted fabricated uuids uuidgen-fresh (v4) + placed markers on named methods + wired;
+tester added 8 Test units + [test:uuid:] + Impl.tests[] wiring. INDEPENDENTLY re-measured (not
+relayed): scoreboard det-3x = 28/285 (8 R21 reqs credit; R21.2 excluded per expert — gate stayed
+faithful, OPEN not false-green). lintMarkers det-3x = 184 (from 193): orphan-markers 5->0,
+prefix-collisions 21->17 — R21 LINT-CLEAN, 0 R21-tagged. The 4 R21 fabricated-uuid collisions
+cleared by re-mint exactly as the checklist's cross-cutting cleanup predicted. LESSON: the
+checklist that named the REAL blocker (strict name-match, not "add marker") + the re-mint cleanup
+drove a clean fix in one pass — precise diagnosis = precise dispatch. Verify-don't-relay held:
+I reproduced 28/285 myself before confirming the tester's number.
+
 ## Re-measure 2026-06-28 (SM save-checkpoint)
 Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276→285 (more reqs).
 3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert
