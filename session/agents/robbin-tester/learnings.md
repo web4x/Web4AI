@@ -188,3 +188,6 @@ R21.5/6 gate creates its own committed user, adds phone/email, then resolves the
 - Desktop: HTML5 drag works. Match .vcf by EXTENSION not MIME (empty on Windows).
 - Mobile: NO native file drag. Must have input type=file fallback.
 - Playwright: setInputFiles() for input, synthetic dispatchEvent for drop handler.
+
+## SystemTester WS-join + serve-time dedup (v0.6.84, 2026-06-29)
+To gate a serve-time-computed list (Room.allMemberInfo dedup) you must JOIN the room — the scenario unit holds the RAW members; the deduped list only exists in ROOM_JOINED.members. WS join as SystemTester WITHOUT a browser: welcome -> IDENTIFY{playerToken:ce981242} -> wait for PROFILE -> UPDATE_PROFILE{name:'SystemTester'} (else JOIN_ROOM -> ERROR 'Profile required') -> JOIN_ROOM{roomId,playerName,playerToken} -> read ROOM_JOINED.members -> LEAVE_ROOM. Zero new users (reuses ce981242). The member badge's playerToken is the RESOLVED primary (so "Link Account targets primary" == member.playerToken===primary, not a redirectTo tombstone).
