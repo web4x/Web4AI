@@ -1,8 +1,8 @@
 # Boot: oosh-po
 *Auto-generated 2026-06-17 10:18. This is ALL you need to read post-compact.*
 
-## You are: oosh-po
-## Pane: ooshTeam:0.0
+## You are: oosh-po@MacStudio (fork 29a1e1d1) — verify: pane.get.target + session.name
+## Pane: ooshTeam:0.0 (MacStudio). My dir: session/agents/oosh-po@MacStudio/ (per-host split — NOT bare oosh-po/)
 ## Goal: 
 --
 
@@ -15,8 +15,8 @@
 
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: ``
-- Context: `session/agents/oosh-po/context.md`
-- Learnings: `session/agents/oosh-po/learnings.md`
+- Context: `session/agents/oosh-po@MacStudio/context.md`
+- Learnings: `session/agents/oosh-po@MacStudio/learnings.md`
 
 ## Rules (memorize, don't re-read):
 - Wait for assignment. Only SM/orchestrator have background loops.

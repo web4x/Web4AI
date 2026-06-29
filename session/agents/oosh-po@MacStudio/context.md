@@ -5,6 +5,9 @@
 **Pane**: ooshTeam:0.0 on MacStudio.native
 **Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## ★★ POST-REWIND CONFIRM — 2026-06-29 (from 1%, near-ceiling)
+Rewound from ~1% free. Ground truth: pane.get.target=ooshTeam:0.0, session.name(29a1e1d1)=oosh-po@MacStudio, branch main (pulled clean to f865811). **PER-HOST DIR SPLIT now LIVE (#23, commit f865811): my files = `session/agents/oosh-po@MacStudio/` (bare `oosh-po/` is EMPTY; @WODA.prod fork → `oosh-po@WODA.prod/`). Boot prompt still says bare `oosh-po/` — STALE pre-split path; I write my anchor to `oosh-po@MacStudio/`. OPEN: agent-trainer owes @host-aware boot/recovery hook resolution (until then each fork's boot.md must name its own @host dir — my boot.md still says oosh-po/, needs fixing).** Pulled the @WODA.prod fork's work (node-provisioning sprint PARKED 8b6ff6e, ARON-cycle anchors, robbin agent saves). Prior anchor 5fa2697. Doctrines (tron-cmm4, SPRINT-COMMS, po-wisdom) known/stable. Open threads unchanged: #22 tronMonitor (tester D3.3 verify), WODA.prod dev queue #18/#5/#21 report-backs, bugs team.status-stale-snapshot + remoteOOSH ssh-drop, #14 rawbin RUNNING. 42-pair (me+SM) was near ceiling pre-rewind → SM rewind was ordered (verify SM health on resume — TRONinterface:0.1). On resume: re-verify identity, check SM, fix my boot.md @host path, await Tron / drive open report-backs.
+
 ## ★★ STATUS + REWIND-ORDER — 2026-06-29
 Teams status (live `otmux tree`, both hosts HEALTHY, all agents 2.1.195 active):
 - **WODA.prod (v60211)**: ooshTeam (po/SM/architect/expert/tester, 5 live + BUG6-verify shell), robbinTeam2 (6 live), Temple (ARON live), baseTeam (agent-trainer live), **rawbin (npm app RUNNING — #14 progress)**, ooshShells.
