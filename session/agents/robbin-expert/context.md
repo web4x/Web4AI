@@ -13,7 +13,8 @@
 (2) DATA: Class 4e678ce3→sprint-21.puml; Method 9c21f3b5→rb-file-detail.ts:25; Impl f8b113b7 path FIXED→src/public/ts/trace/rb-file-detail.ts:25.
 (3) RENDERER detail-superseded.ts renderChainPathSection: per-hop renderSourceLink on own line (Class→.puml viewer, Method/Impl→.ts:line).
 **BLOCKED on activation:** the API change needs a prod `rawbin` server restart — DENIED by deploy classifier (needs explicit Tron/PO authorization). Client renderer + 3 unit sourceFiles are live on disk, but source links WON'T show until the API returns per-child sourceFile (graceful: no breakage, just absent). **Restart cmd for authorizer (in rawbin pane, PATH already node18 v18.17.1):** C-c x2 then `npm exec tsx src/ts/server/server.ts`; then curl /api/trace/children/<uuid> to confirm child.sourceFile.
-## R22.4 QUEUED (v0.6.78, after R22.3 live): PNGs in /md/ file browser must be clickable + open like SVGs (URL /md/test/visual/). Extend the SVG click handler to PNG/image mime types.
+## R22.4 DONE in code — commit 9c052bd9a (v0.6.78), pushed. server.ts /md/ listing: replaced .svg-only clickable group with isImage() (svg|png|jpe?g|gif|webp|bmp|ico|avif) → all images 🖼 <a href>; excluded from "others". ALSO server.ts → SAME restart as R22.3 (batched: one restart = v0.6.78 with R22.3 API + R22.4 images).
+## BLOCKER (both R22.3 + R22.4): prod rawbin restart DENIED by deploy classifier — needs explicit Tron/PO authorization. Restart cmd (rawbin pane, node18 v18.17.1 on PATH): C-c x2 then `npm exec tsx src/ts/server/server.ts`; verify: curl /api/health (expect 0.6.78) + /api/trace/children/<uuid> (child.sourceFile present) + /md/test/visual/ (PNGs are <a href>). Client bundles already live on disk.
 
 ## v0.6.75 UI fixes (commit 61b21fbf6, pushed, LIVE on prod — MEASURED 2026-06-29)
 Architect diag 35bec7d. **Bug#1** dup "Traceability Chain: No chain": deleted INLINE renderSingularChain
