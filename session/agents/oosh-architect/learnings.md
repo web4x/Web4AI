@@ -105,7 +105,11 @@
 - Integration tests (T-ENV-INSTALL) must cover the full lifecycle: fresh emit, corrupt→heal, never-prompt, never-fail (RC=0 on all broken inputs), subshell roundtrip. These are the acceptance criteria from the spec, not just unit checks.
 - When testing config.save on corrupted input, config.save uses LIVE env vars (still set in shell) to resolve fundamentals — so it can heal even when the FILE is garbage. This is by design (harvest-resolve-merge).
 
-## OOSH death-to-flags (design discipline — caught by Tron 2026-06-29)
-- ANY oosh method signature is ALL-POSITIONAL. No `--flags`, no `--` separator. I drafted `odocker.run.ephemeral <image> [--opt] -- <args>` — wrong. Correct: `odocker.run.ephemeral <image> <workdir> <args…>`; runtime opts (--rm, --security-opt, -v, -w) live INSIDE the method.
-- Distinction: passthrough args to a FOREIGN containerized CLI (e.g. `-tsvg` to the plantuml binary) are NOT oosh-method flags — they're opaque payload forwarded to another program. Those are fine. The rule binds the OOSH interface, not what you forward.
-- Apply at DESIGN time, not review time — flags creep into "convenience" signatures.
+## object.verb IS the no-flag principle (Tron, 2026-06-29 — the deeper teaching)
+- **OOSH expresses options as object.verb method dispatch, NOT flags.** The verb namespace IS the option space. A variant = a more specific method, never a `--flag`.
+- Example: `odocker.run` / `odocker.run.sshd` / `odocker.run.ephemeral` — `sshd`/`ephemeral` are VERBS encoding what `--sshd`/`--rm` would. The method name carries the meaning that a flag would carry.
+- So when tempted to add an option, the OOSH question is NOT "flag or positional?" — it's **"what is the object.verb for this?"** Push the variation into the method name.
+- Method signatures are then thin + positional for genuine PARAMETERS (the nouns the verb acts on): `odocker.run.ephemeral <image> <workdir> <args…>`. Runtime concerns (--rm, seccomp, -v/-w) live INSIDE the verb's implementation.
+- Distinction preserved: passthrough payload to a FOREIGN containerized CLI (`-tsvg` to the plantuml binary) is NOT an oosh flag — it's opaque args forwarded to another program. The rule binds the OOSH interface, not what you forward.
+- I drafted `odocker.run.ephemeral <image> [--opt] -- <args>` first — wrong (flags). The verb `ephemeral` already encodes the option; no flag needed.
+- Apply at DESIGN time: name the verbs, don't reach for flags.
