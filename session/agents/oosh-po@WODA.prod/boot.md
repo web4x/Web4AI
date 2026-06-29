@@ -1,8 +1,9 @@
-# Boot: oosh-po
-*Auto-generated 2026-06-17 10:18. This is ALL you need to read post-compact.*
+# Boot: oosh-po@WODA.prod
+*This is ALL you need to read post-compact. Per-host split 2026-06-29 (agent-dirs-per-host-split.md).*
 
-## You are: oosh-po
-## Pane: ooshTeam:0.0
+## You are: oosh-po@WODA.prod  (NOT @MacStudio — that's the other fork)
+## Pane: ooshTeam:0.0 on WODA.prod (v60211), uuid 29a1e1d1
+## Your dir: session/agents/oosh-po@WODA.prod/  (NEVER write the shared session/agents/oosh-po/)
 ## Goal: 
 --
 
@@ -15,8 +16,8 @@
 
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: ``
-- Context: `session/agents/oosh-po/context.md`
-- Learnings: `session/agents/oosh-po/learnings.md`
+- Context: `session/agents/oosh-po@WODA.prod/context.md`
+- Learnings: `session/agents/oosh-po@WODA.prod/learnings.md`
 
 ## Rules (memorize, don't re-read):
 - Wait for assignment. Only SM/orchestrator have background loops.

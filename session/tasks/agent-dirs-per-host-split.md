@@ -18,3 +18,9 @@ The boot hook + SKILL symlinks resolve `role` → `session/agents/<role>/`. With
 - [ ] `oosh-po@WODA.prod/` exists with the fork's files; shared `oosh-po/` no longer written by the fork
 - [ ] boot resolution is @host-aware (or each fork's boot prompt names its dir)
 - [ ] no further oosh-po context/learnings merge conflicts
+
+## Report-back — oosh-po@WODA.prod (2026-06-29): ✅ DONE
+- [x] `oosh-po@WODA.prod/` created; git mv'd context/learnings/boot/backlog + achievements there; shared `oosh-po/` now EMPTY — will write ONLY my @host dir henceforth.
+- [x] boot.md fixed: names @WODA.prod identity + "your dir" + deep-file paths point at oosh-po@WODA.prod/ (explicit until hook is @host-aware).
+- [x] no further conflicts — the two forks (@MacStudio / @WODA.prod) now write DISJOINT dirs.
+- OPEN for agent-trainer: make the boot/recovery hook resolve `role@host` automatically (each fork's boot.md names its dir explicitly for now).
