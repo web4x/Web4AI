@@ -10,11 +10,36 @@ On task gate-GREEN advance pin to next active task via `planner-drive.ts focus <
 on new task start, pin must reflect it. /trace top must ALWAYS show ACTUAL work, never a stale
 completed task. Re-measure scoreboard/lint after each impl.
 
-**PIN STANDING-DUTY STATE (2026-06-29)**: pin=f86f7003 T21.9 (Sprint 21, STALE — S21 closed
-at 28/285). Actual work = R22.3 source links (v0.6.77 5a3e794d6; R22.1/2/4 in flight). BLOCKED:
-no R22.x req/task units exist on disk (only Sprint unit 9996b46a) — setFocus needs a task uuid,
-nothing valid to point at. Won't mis-pin to bea3af94 (unrelated T22 Lobby). Awaiting robbin-req
-to create R22.1-4 req+task units, then focus pin to R22.3 instantly. Reported to PO.
+**RESOLVED 2026-06-29 (da9040dc6)**: Pin un-stuck via pin-tool self-heal. Hardened
+CurrentSprint.autoFollow: missing UC unit -> req-anchored PARTIAL pin (uc+ pending) instead of
+stale fallback; also fixed sprint label (m.sprintName||m.sprint). Walked pin T22.1->T23.2 (all
+ok=true), now sprint=Sprint 23 current=T23.2. Built v0.6.82. Pin-honesty != credit: scoreboard
+STILL 27/291 — S22/S23 don't credit until architect mints the 6 UC units (4d0e454a ada54a0e
+1371923a 3ab76d13 b9792582 d0d09ff8). Asked PO: land on newer current-work task? + SW bump?
+Open watcher: none active (UC watcher timed out). Re-arm UC watch if resuming.
+
+**CRISIS 2026-06-29 — PIN STUCK 2 SPRINTS, ONE ROOT CAUSE**: Tron sees /trace Current = T21.9
+(Sprint 21) while S22(4 tasks)+S23(2 tasks) shipped GREEN. MEASURED: all 6 S22/S23 tasks have
+their UC UNIT MISSING on disk (4d0e454a ada54a0e 1371923a 3ab76d13 b9792582 d0d09ff8) →
+autoFollow `if(!ucUnit)continue` fails for EVERY task → focus --force can't move pin → falls back
+stale. SCOREBOARD 27/291 confirms SAME gap: R22.1-4+R23.1-2 all req=check uc=OPEN-architect
+rest open (tasks 246-251 'Create UC -> architect'). SINGLE FIX unblocks pin AND credit: architect
+mints 6 UCs + wires (req->uc->class->method). Nudged architect 0.3. Asked PO: (A) architect UCs
+[proper] vs (B) greenlight me to harden autoFollow → req-anchored partial pin when UC missing
+(honest: shows current task, uc+ PENDING, never stale). Recommended BOTH. Refused to fabricate UC
+refs (would lie to Tron). On UC land: focus pin + re-score (~33/291 expected).
+
+**PIN STANDING-DUTY STATE (2026-06-29, updated)**: pin=T21.9 (Sprint 21, STALE). PO directed
+focus -> T22.4 (dd0c576d, covers req c13ee707). Planner committed all 4 S22 tasks (af1ba1627),
+focus:true correctly set on dd0c576d. BUT pin WON'T switch — measured root cause in CurrentSprint:
+pinCurrent reads a persisted singleton (uuid ...000000000001) that only updates if setFocus->
+autoFollow can derive the task chain. autoFollow needs req+uc; UC-VF.4 (3ab76d13
+'mdBrowser.pngOpensPreview') is MISSING on disk (req c13ee707 exists, UC does not) -> autoFollow
+returns false -> singleton keeps old R21.9 chain. My --force bypassed the gate-guard correctly;
+this is a MISSING-UNIT block. NEEDS: architect (0.3) create UC 3ab76d13 + wire to c13ee707. The
+instant it lands, `focus dd0c576d` auto-derives (partial chain OK, returns true) -> pin switches.
+NOTE: autoFollow returns false if uc missing even though it sets focus flag — possible tool
+hardening: allow req-only partial pin so /trace shows the task even before UC wired.
 **Last measure (2026-06-28, det-3x)**: Chain scoreboard = 20/285 COMPLETE (excl 49 orphan). 3-slot collapse FIXED by expert a0106ea86 (BUG-C: slots now always distinct uuids — verified: current 01d9fb64 / last 708ec0a5 / next 03917f53).
 **Machine**: WODA.prod (v60211.1blu.de) · **Pane**: robbinTeam2:0.2 (NOT 0.3 — WODA.prod layout, no planner)
 **Repo**: /var/dev/Workspaces/2cuGitHub/Web4RawBin (NOT /Users/Shared — this is WODA.prod)
