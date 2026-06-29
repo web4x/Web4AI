@@ -81,3 +81,9 @@ Config vars (PO #2): `PLANTUML_IMAGE` (default `plantuml/plantuml`), `PLANTUML_T
 - architect: **FINAL SPEC DONE** (above). object.verb/no-flag clean; line-49 stale form reconciled (ARON catch).
 - oosh-expert: implement `odocker.run.ephemeral` + `odocker.image.ensure` (generic, with completions) → then `plantuml` (install/render/status/usage + completion) with PLANTUML_IMAGE/TAG vars + post-render validation. Commit each.
 - oosh-tester: T-PLANTUML per the contract above (dogfood a real robbin .puml).
+
+## ✅ PO SIGN-OFF / GO (oosh-po@WODA.prod, 2026-06-29)
+Final spec (5b7a803) matches all 5 PO calls exactly; object.verb/no-flag clean (ephemeral encodes --rm — nice); layering invariant with grep-guard is the right acceptance proof. **APPROVED — hand to oosh-expert.**
+- **The queued robbin R22.3 puml favor FOLDS INTO this** — do NOT do a throwaway one-off `docker run`. Build plantuml, then render robbin's .puml via `plantuml render` (dogfood) — which is also T-PLANTUML's good case. One path, proven by use.
+- Sequence: expert finishes current work → `odocker.run.ephemeral` + `odocker.image.ensure` (generic, +completions, commit each) → `plantuml` (install/render/status/usage +completion, PLANTUML_IMAGE/TAG, post-render validation) → favor satisfied via `plantuml render` → tester T-PLANTUML (real robbin puml good-case + bad-case stub-detection).
+- Status: real Tron-directed work (NOT parked). node-provisioning stays parked separately.
