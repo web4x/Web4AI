@@ -34,8 +34,13 @@
 - ★ ARCHITECT collab: my folded T24.2 note (autoFollow reads m.sprintName OFF the task unit) cracked architect's "Sprint 20 lag" root-cause (their minted tasks lacked model.sprintName); folded into Pin design 315c3bcaf (Pin.focus resolves sprintName via task parent Sprint fallback). Gave them the autoFollow/getThreeSlots/advance BOUNDARY walkthrough (source CurrentSprint.ts): NEITHER autoFollow nor advance() mutates slots; advance=hop-pointer only; lastCompleted rotates in setFocus; getThreeSlots=derived-on-read. Locks Pin.advance-vs-focus. LESSON: planner source-reads of the tools I drive daily = real req-AC + architect-design improvements (measure, don't relay).
 - FLAG: architect's architecture.md sits in non-canonical dir sprint-24-oosh-ts-skills/ (canonical = sprint-24-traceability-skills/) — flagged architect to move.
 
+## ✓ S24 ALL 5 TASKS → QA Review (commit 0d682cb39, scoreboard 32/297 COMPLETE).
+- skill-expert/expert built the 5 skills FAST (architecture FIRM b1db76878 → impl markers 7dd6a762c/0dc784cc5 → Test hops wired d33440e1c → 32/297). Flipped T24.1-5 testing[x] → QA Review.
+- ★ HONEST VERIFICATION BASIS (held discipline, source-verified per task): T24.1 explicit gate b810aa690 (objectVerb GREEN DET-3x) · T24.2 explicit gate c0bbecb2f (getThreeSlots GREEN DET-3x) · T24.3/4/5 = chain-COMPLETE (32/297) + each tool's INHERENT gate (objectVerb scoreboard / round-trip --check / trace:audit:strict), NO separate per-task DET-3x commit — flagged to PO. Verb-ACs left UNCHECKED: several are explicitly TARGET/forward (advance-gate, owner-rejection, shim-parity) — blanket-check would falsely claim target-done (#27/#9). The board honestly shows testing[x]+QA-Review with forward-ACs open.
+
 ## ▶ NEXT / OPEN
-- S24 status flips as expert/skill-expert build each skill (pipeline: edit unit→regenerate→--check→commit; tester self-marks #102, I source-verify before flipping).
+- S22/S23/S24 ALL at QA Review — awaiting Tron's Done gate across all three. Done=Tron only (#9).
+- If PO/tester wants strict per-task DET-3x on T24.3/4/5, tester adds explicit gate commits → I re-verify. Future skill status flips via pipeline (edit unit→regenerate→--check→commit; #102 self-mark, I source-verify).
 - Repo ahead of origin/main (multiple agents committing). Push only on PO direction / clean point (#13) — others' in-flight + dist artifacts ride along.
 - Status-flip flow (any task): tester/expert self-mark (#102) → I verify the committed verdict commit → flip the UNIT (statusChecklist/status) → RE-RUN the generator — never hand-edit the MD (law #100).
 - A linter reformatted T22.3 unit (1bac1de6) post-commit — values intact (generator output identical); fold into next Web4RawBin commit if still dirty.
