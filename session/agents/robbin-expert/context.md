@@ -17,8 +17,8 @@
 ## v0.6.79 (commit 4e3c3df0d, pushed) — R22.4 RE-FIX + R22.3 data gap. NEEDS PROD RESTART (server.ts).
 - R22.4 was RED: PNGs clickable but 404 (no /md image serve handler, only .svg). MY ERROR: verified <a> existed, NOT that it resolves 200 (violated my own learning). FIX: added /md raster-image serve route (png|jpe?g|gif|webp|bmp|ico|avif) → raw bytes + Content-Type from MIME_TYPES. ON DEPLOY: curl the PNG URL for HTTP 200 (not just <a>).
 - R22.3 data: chain-render walks DIFFERENT RbFileDetail units than the 3 I filled v0.6.77. Filled ALL 7 empty: Class 37103cf0→puml, Method 9cba1b57(render)/Impl 974511f3→rb-file-detail.ts:25, +4 stale alt-methods→ts. (R22.3 ALREADY GREEN gate adddd7ae5; this is the data follow-up.)
-- Restart cmd (rawbin pane node18): C-c x2 then `npm exec tsx src/ts/server/server.ts`. Verify: /api/health=0.6.79, curl /md/test/visual/<x>.png → 200, chain-render source links non-empty.
-## R22 gates: R22.1 GREEN, R22.2 GREEN, R22.3 GREEN (adddd7ae5), R22.4 RED→fixed v0.6.79 (re-gate pending deploy).
+- v0.6.79 DEPLOYED by PO + CURL-VERIFIED (HTTP status this time): /api/health=0.6.79; PNG /md/test/visual/bug1-gate.png → HTTP 200 image/png (was 404); chain-render Class 37103cf0→render Method→Impl all sourceFile=rb-file-detail.ts:25. Handed to tester for R22.4 re-gate.
+## R22 gates: R22.1 GREEN, R22.2 GREEN, R22.3 GREEN (adddd7ae5), R22.4 RED→re-fixed v0.6.79 LIVE+verified (re-gate pending tester).
 ## v0.6.78 DEPLOYED by PO + CURL-VERIFIED LIVE (2026-06-29): (1) /api/health=0.6.78; (2) per-child sourceFile — Class RbFileDetail→Method→Impl all src/public/ts/trace/rb-file-detail.ts:25 (R22.3 API + Impl path fix proven); (3) /md/test/visual/ = 124 PNGs as 🖼 <a href> (R22.4). Handed to robbin-tester (0.5) for gate. R22.3=5a3e794d6, R22.4=9c052bd9a.
 
 ## v0.6.75 UI fixes (commit 61b21fbf6, pushed, LIVE on prod — MEASURED 2026-06-29)
