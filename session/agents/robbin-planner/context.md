@@ -27,7 +27,14 @@
 - ★ SWEEP LESSON (req #8, this session): req's `git add <sprint-dir>` swept my uncommitted task-23.1 MD into their commit e76324c14 (MD only, not the unit). Fix: I committed the source unit 2b6be816 in 52ebca28c → unit↔MD consistent. TAKEAWAY: stage EXPLICIT files, never the whole sprint dir, when others may be committing concurrently (#4).
 - ★ PATTERN CONFIRMED (S22 + S23): mint Task units from req truth → wire coveredRequirements/useCases/sprint.tasks[] → run generate-sprint-md.ts → --check byte-match → commit. Status flips = edit UNIT (never MD) → regenerate. Tester/expert self-mark hops (#102); I source-verify the committed verdict commit before flipping (held T22.4 + would-have on T23 until committed GREEN).
 
+## ✓ THIRD TASK: Sprint 24 — Traceability Skills (formalize tools as OOSH-like Object.verb skills).
+- Adopted req's Sprint 24 (04339450, committed 8c6a7dcb4; canonical slug sprint-24-traceability-skills). 5 Task units T24.1-T24.5 (commit adf17f5d9), all Planned, sprint.tasks[]=5:
+  - T24.1 object-verb-engine 8bbd1727→R24.1 527f154f (objectVerb.ts introspect/emit) · T24.2 pin-mgmt d40f1040→R24.2 a545f899 (planner-drive/CurrentSprint) · T24.3 chain-scoring 1f6d9fc6→R24.3 fc9a7079 (skill-classes Chain) · T24.4 sprint-md-viewgen 1c0181ab→R24.4 9dd36e28 (generate-sprint-md, law#100) · T24.5 traceability-audit b59f4d46→R24.5 79bc8e34 (trace-cli/audit:strict).
+- ★ PLANNER VALUE-ADD: gave req MEASURED AC feedback (read CurrentSprint.ts source) — R24.2 advance AC misstates (advance() does NOT gate gate-proven; the block is on setFocus/task-switch) + missing setNextBacklog verb (3-slot pin). Folded my tool edge-cases into T24.2/T24.4 context fields (I'm the daily driver of planner-drive + generate-sprint-md). This is the briefing the architect+req both wanted.
+- FLAG: architect's architecture.md sits in non-canonical dir sprint-24-oosh-ts-skills/ (canonical = sprint-24-traceability-skills/) — flagged architect to move.
+
 ## ▶ NEXT / OPEN
+- S24 status flips as expert/skill-expert build each skill (pipeline: edit unit→regenerate→--check→commit; tester self-marks #102, I source-verify before flipping).
 - Repo ahead of origin/main (multiple agents committing). Push only on PO direction / clean point (#13) — others' in-flight + dist artifacts ride along.
 - Status-flip flow (any task): tester/expert self-mark (#102) → I verify the committed verdict commit → flip the UNIT (statusChecklist/status) → RE-RUN the generator — never hand-edit the MD (law #100).
 - A linter reformatted T22.3 unit (1bac1de6) post-commit — values intact (generator output identical); fold into next Web4RawBin commit if still dirty.
