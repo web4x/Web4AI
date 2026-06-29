@@ -256,3 +256,18 @@ otmux send robbinTeam:1.2 'rm /tmp/req-write.json' Enter
 **Caveat per expert:** harness Bash classifier still flaps on some compound commands (>, |, &&). The heredoc itself is treated as inline content, but the WRAPPING command (`cat > file`) may still re-classify. Empirical from expert: simple `cat > /tmp/X <<'EOF' ... EOF` rarely flaps; piped variants do.
 
 Use whichever pattern survives the current classifier state. Probe both with a test write before committing to one for a batch.
+
+## Formalization-Requirement Capture (S24, 2026-06-29)
+When a sprint FORMALIZES existing code (turn scattered tools into a coherent skill set) rather than building greenfield, the requirement-capture rules sharpen:
+
+1. **Measure the code FIRST, before writing any AC.** I read objectVerb.ts / planner-drive.ts / skill-classes.ts Chain / generate-sprint-md.ts / trace-cli.ts and their verb inventory before capturing R24.1-R24.5. Each req got an `implRef` field pointing at the real script + functions. Capturing from the PO's prose alone would have invented behaviour.
+
+2. **Distinguish IS from TARGET in every AC.** The biggest trap: writing an AC that describes desired behaviour as if it were current. R24.2 AC-5 said "advance moves the pin only when gate is proven" — but the planner read CurrentSprint.ts and found advance() increments unconditionally; the gate is on focus/task-switch. Fix: state it as TARGET behaviour explicitly, keep the IS accurate. An honest requirement says which clauses are current vs desired.
+
+3. **Domain-owners must sanity-check ACs against source before task-build.** Two owners caught what I couldn't: skill-expert found R24.3 followUp dedups by methodUuid NOT display-name (display-name collision = the R15.6 over-credit bug), and the missing `emitClaudeSkills` plural; planner found the missing pin verb setNextBacklog/clearNextBacklog + the 3-slot getThreeSlots model + the advance is-vs-target. Route every formalization req to its code-owner for a measured AC review; budget for 1-2 refine+re-sync rounds (req AC change -> planner re-syncs task ACs via generate-sprint-md --check).
+
+4. **Source field honesty:** a PO-formulated main goal is NOT a verbatim Tron literal. Use a `poDirective` field, not a faked `tronQuote`. (Same discipline as discoverySource for team-discovery.)
+
+5. **Use a real `poDirective`/`sourceNote` so the graph shows provenance** — "PO-formulated main goal, formalizes existing impl, grounded per implRef."
+
+This is the doctrine's "measure each other into honesty" working: I ground in code, owners catch residual drift, the ACs end up accurate vs the shipping source. Commits: 8c6a7dcb4 (capture) + 6cd9248cb (skill-expert) + 2dbca38ff (planner review).
