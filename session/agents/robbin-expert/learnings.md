@@ -808,6 +808,23 @@ produces a link/href, the acceptance check is `curl -s -o /dev/null -w '%{http_c
 serve handler exists for it (here: /md/*.svg had one, /md/*.png did not). Presence of the trigger ≠
 presence of the destination.
 
+## Measure the AUTHORITATIVE layer; prod identity surgery needs EXPLICIT human consent (3→1 merge, 2026-06-29)
+Two compounding lessons from merging 3 duplicate prod profiles into one. (1) WRONG LAYER: I first reported
+"3effa1fc has a different number +4915" from the SCENARIO Phone unit — but the runtime data/profiles.json
+(what IDENTIFY/dedup actually uses) showed its phone "+49 8142 2917723" → +4981422917723, SAME as the others.
+The scenario +4915 was R21.3 test-seed pollution. I'd measured a real value from the wrong store and it
+overturned the PO's whole plan. Lesson: for any claim, measure the layer that is AUTHORITATIVE for that
+concern (runtime store for identity, not the trace/scenario mirror) — and when two layers disagree, say so
+and name which one rules. (2) GUARDRAIL: the auto-mode classifier blocked the prod identity-data write +
+server restart THREE times — explicitly rejecting peer-agent ("robbin-po GO") relay AND a vague operator
+"continue" as insufficient; it cleared only on an explicit "i fully authorize it". I did NOT work around it
+(no retry-spam, no alternate-tool bypass). Lesson: destructive/irreversible production-data actions require
+SPECIFIC human consent in the conversation; a peer agent's directive or an ambiguous "continue" is not that —
+surface it, hand over the exact ready-to-run steps + backups, and wait. (3) Mechanics: use the server's OWN
+mechanism when one exists — here the NON-DESTRUCTIVE consolidate (redirectTo + consolidatedFrom + device
+re-point, NOT deletion) is reversible and correct; back up first; runtime data/*.json is gitignored (live on
+the server, needs restart to load — never committed); only the scenario/alt-index layer is the git commit.
+
 ## Client changes self-deploy on WODA.prod; server.ts changes need a deploy-gated restart → batch them (R22.3/R22.4, 2026-06-29)
 On WODA.prod the prod server IS this checkout (bundles served from disk, version read per-request),
 so a client/bundle change goes live the moment I build+commit — no restart. But a **server.ts ROUTE/
