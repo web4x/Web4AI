@@ -1,5 +1,22 @@
 # robbin-tester Learnings — 2026-06-13
 
+## ⛔ HARD RULE — ALL gates MUST use the SystemTester identity (PO enforced, 2026-06-29)
+NEVER let a gate mint a fresh random-token user/room on prod. Sprint 20 established ONE fixed
+identity after 49 test-probe users polluted prod. Use it for EVERY browser gate:
+- Token: `ce981242-74fe-4d44-b5b6-43c641e224df`, name `SystemTester`. Helpers: `test/system-tester.ts`
+  (`ensureSystemTester`), `test/visual/system-tester-setup.mjs` (`seedSystemTester` via addInitScript),
+  `test/e2e/helpers.ts` (`ensureSystemTestRoom` → the ONE persistent "System Test Room").
+- The seed-before-WS pattern: `context.addInitScript(() => localStorage.setItem('rawbin-player-id',
+  'ce981242-...'))` (+ device e2e-bypass keys) BEFORE any page.goto → the WS connects WITH the token
+  → reuses SystemTester → ZERO new users. (This is my OWN earlier learning — I violated it in S22 by
+  seeding only device keys and letting the server mint a fresh player-id.)
+- For room gates: reuse the ONE "System Test Room" (ensureSystemTestRoom), do NOT create new rooms.
+- My S22 audio/drop gates (r2281, r225, r221, r223, r224, r219, r218*, r217, r2156, r211) created fresh
+  users — they MUST be retrofitted to seed ce981242 before re-use. **Wrong:** `seedDeviceKeys()` then read
+  whatever `rawbin-player-id` the server minted. **Right:** seed `rawbin-player-id=ce981242` first.
+Why: every fresh token = a prod user + room + content blobs = pollution + a purge debt. The test:guard exists.
+
+
 ## Tier-3 recovery (2026-06-28, measured this cycle)
 **At 100% context, a multi-step write→commit cannot complete.** Measured ground truth: the prior session's save edit was *approved* but the file on disk stayed unchanged and nothing was committed (trainer confirmed `context.md` byte-identical, anchor 148f449 was committed BY the trainer on the agent's behalf). Rewind didn't help: every checkpoint was minted AT 100%, so rewinding still landed in a full window. Path A (deep-rewind-to-oldest) is the F-T8 death trap — ~99% rewind leaves <33k and kills the agent.
 

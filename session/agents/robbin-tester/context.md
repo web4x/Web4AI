@@ -52,6 +52,7 @@ REMAINING (flagged to PO, needs coordinated restart — do NOT live-edit): data/
 - *** S22 R22.1-R22.4 ALL GREEN DET-3x. *** Live v0.6.79.
 - R22.5 audio+YouTube preview GREEN DET-3x v0.6.80 (gate 0eb5f64cc) — fillPreviewPane: audio/*-><audio controls>, Heartspaces .url(2746ab4a)-><iframe youtube.com/embed/a-_CuBOu6BA>. Synthetic File-unit fixture for audio (created+deleted, 0 pollution).
 - v0.6.81 MP3-drop-UPLOAD GREEN DET-3x (gate 972434733) — real drop (rb-room-files-dropped CustomEvent) -> dispatch allowlist(audio/) -> upload -> <audio>. Fixture trap: identical bytes dedup by content-hash -> unique bytes/drop. Cleaned 8 leftover test rooms.
+- S22 PURGE DONE (commit 4a28e3def): 0 test units remaining (3749->3748); profiles 3 real, content 0 test, data/users 2 real (Tron+Heartspaces). RULE VIOLATION corrected: my S22 gates minted fresh tokens instead of SystemTester ce981242. SEE learnings HARD RULE — all future gates MUST seed rawbin-player-id=ce981242 + reuse System Test Room.
 - CHAIN-DEBT (R21) CLOSED e977a1526 (20->28/285).
 Wired 8 R21 Test hops (R21.2 excluded — Impl open-expert). Created Test units + [test:uuid:] markers in gate files + Impl.tests[]->Test for R21.1,3,4,5,6,7,8,9. Test crediting is LENIENT (Test unit in idx + marker in test/ + Impl.tests[] ref; no strict-AST). chain tooling: `npx tsx scripts/objectVerb.ts chain scoreboard|lintMarkers`. det-2x = 28/285. See learnings "Wiring Test hops".
 
