@@ -10,6 +10,14 @@ On task gate-GREEN advance pin to next active task via `planner-drive.ts focus <
 on new task start, pin must reflect it. /trace top must ALWAYS show ACTUAL work, never a stale
 completed task. Re-measure scoreboard/lint after each impl.
 
+**PIN LIVE-TRACKING (2026-06-29, latest)**: Pin now follows current work via hardened autoFollow.
+Sequence: walked T22.1->T23.2 (da9040dc6) -> held T23.2 -> advanced to **T23.3** (5f282c18,
+'Identity merge cleans up room membership', req 75853976) on PO signal. Current /trace pin =
+Sprint 23/T23.3, req done, uc+ pending (T23.3 In Progress, tester gating). My pin commit 78495aad4
+<- planner task 52ebca28c (linear, no conflict). Version at v0.6.84 (expert). PO holds pin per
+task until gate signal (learning #125). Scoreboard 27/291 — architect's 6 S22/S23 UCs + R23.x UCs
+still pending for credit. WATCHERS: none active.
+
 **RESOLVED 2026-06-29 (da9040dc6)**: Pin un-stuck via pin-tool self-heal. Hardened
 CurrentSprint.autoFollow: missing UC unit -> req-anchored PARTIAL pin (uc+ pending) instead of
 stale fallback; also fixed sprint label (m.sprintName||m.sprint). Walked pin T22.1->T23.2 (all
