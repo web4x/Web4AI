@@ -796,6 +796,20 @@ the shared unit, mint-or-reuse ladder. AND: my temp-dir harness CAUGHT the AC-a4
 ship — ALWAYS encode the AC's literal example ("GmbH & Co KG"→acme) as a harness assertion, not
 just the happy path. The bug you measure is the bug you don't ship.
 
+## A bug's "family" = views that RENDER the defect, not every view that DEFINES it (v0.6.75, 2026-06-29)
+Architect's lesson #124 said "fix the whole peer family, not just the screenshotted view." Right — but
+I MEASURED the family before swinging: renderLinks (the broken `<div data-ref>` forward-links) was
+copy-pasted into 5 detail views, yet only 3 (task/req/usecase) actually CALL it in render(); rb-class/
+implementation-detail have DEAD copies (defined, never rendered) + in class's case a dead click handler.
+Fixing dead code ships risk for zero user benefit and muddies the diff. So the family to fix = the views
+where the defect is LIVE (grep for the CALL site `${renderLinks(`, not just the definition). Flagged the
+dead copies for a separate DRY cleanup. Also: when a directive assumes an artifact exists (PO: "set
+Task.sourceFile to its sprint task MD"), MEASURE that it exists first — the per-task MD files did NOT
+exist (only planning.md), so a literal path would 404; I pointed sourceFile at the real planning.md so
+the 📂 link actually resolves, and reported the per-task-MD gap as planner work. Don't ship a link to a
+file you didn't confirm exists. (DRY win: extracted scenarioBrowserHref so the <a href> rows + the
+Scenario field share ONE URL builder — the canonical extraction the original bug lacked.)
+
 ## Chain credits the MARKER's host member, not the unit — read the scanner before tagging (R21 chain-debt, 2026-06-29)
 "Add [impl:uuid:] markers" was HALF the work and the WRONG framing for half the reqs. The markers
 mostly already existed but didn't credit. I read buildStrictImplSet (skill-classes.ts) FIRST instead

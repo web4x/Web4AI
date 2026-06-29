@@ -4,7 +4,18 @@
 **Machine**: WODA.prod · **Pane**: robbinTeam2:0.1
 **Repo (WODA.prod)**: /var/dev/Workspaces/2cuGitHub/Web4RawBin · **Live**: prod.wo-da.de:4444 (tmux session `rawbin`)
 **AI/Claude repo** (context/learnings): /var/dev/Workspaces/AI/Claude
-**Current version**: v0.6.74 (R21.1-9 impl complete + E.164/AC-b3 + R21.9 surface-fix).
+**Current version**: v0.6.75 LIVE (detail-view UI fixes: dup-chain + clickable Forward Links).
+
+## v0.6.75 UI fixes (commit 61b21fbf6, pushed, LIVE on prod — MEASURED 2026-06-29)
+Architect diag 35bec7d. **Bug#1** dup "Traceability Chain: No chain": deleted INLINE renderSingularChain
+block (+ dead singularChain import + const chain) from rb-task/requirement/usecase-detail; canonical
+renderChainPathSection (own heading) is sole chain section. **Bug#2** Forward Links not clickable:
+rows now real <a href> via new DRY scenarioBrowserHref() in detail-children.ts (reused by
+scenarioBrowserLinkFromIor); removed JS .dv-link click handler. + 9 S21 Task units sourceFile→
+planning.md (per-task MD files DON'T exist → planner duty S22; pointed at real planning.md so 📂
+link works). Family-scope nuance: renderLinks is DEAD (uncalled) in rb-class/implementation-detail
+→ left untouched (no live bug); flagged for DRY cleanup. Chain NOT regressed (R21 8/8). Live: /api/health
+0.6.75, /trace=trace-page-SE3ZQ27T, sw=rawbin-v0.6.75.
 
 ## Sprint 21 (Contact Identity) — progress
 | Req | What | Commit | Version | Gate |
