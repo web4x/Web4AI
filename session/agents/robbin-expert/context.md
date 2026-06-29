@@ -7,10 +7,13 @@
 **Current version**: v0.6.76 LIVE (R22.2 mouse-parity dblclick). R22.3 source-links IN PROGRESS (v0.6.77).
 
 ## R22.2 (commit 073378b7d, LIVE): added dblclick→doubleTapToggle in RbPanZoom.attach() (pan-zoom.ts); marker 7831f755 on RbPanZoom.doubleTapToggle + Impl unit created (not orphan). R22 chain UC/Class/Method architect-pending.
-## R22.3 source-links (v0.6.77) — 3 prereq fixes per architect, ONE commit if clean:
-(1) API: /api/trace/children (server.ts ~963) — add sourceFile+sourceLine PER CHILD (mirror top-level 995-998).
-(2) DATA: Class 4e678ce3 sourceFile=scrum.pmo/sprints/sprint-21-contact-identity/diagrams/sprint-21.puml; Method 9c21f3b5 sourceFile=.ts:line; FIX Impl f8b113b7 wrong path (src/ts/server/→src/public/ts/trace/).
-(3) RENDERER: renderChainPathSection — source links per type: Class→puml+svg, Method→ts:line, Impl→ts:line (renderSourceLink pattern). [impl:uuid:] markers IN commit.
+## R22.2 GREEN DET-3x gate cb8d3eceb (tester). CLEARED.
+## R22.3 source-links DONE in code — commit 5a3e794d6 (v0.6.77), pushed. 3 fixes:
+(1) API server.ts ~963: per-child sourceFile+sourceLine (mirrors top-level). ROUTE change → needs restart.
+(2) DATA: Class 4e678ce3→sprint-21.puml; Method 9c21f3b5→rb-file-detail.ts:25; Impl f8b113b7 path FIXED→src/public/ts/trace/rb-file-detail.ts:25.
+(3) RENDERER detail-superseded.ts renderChainPathSection: per-hop renderSourceLink on own line (Class→.puml viewer, Method/Impl→.ts:line).
+**BLOCKED on activation:** the API change needs a prod `rawbin` server restart — DENIED by deploy classifier (needs explicit Tron/PO authorization). Client renderer + 3 unit sourceFiles are live on disk, but source links WON'T show until the API returns per-child sourceFile (graceful: no breakage, just absent). **Restart cmd for authorizer (in rawbin pane, PATH already node18 v18.17.1):** C-c x2 then `npm exec tsx src/ts/server/server.ts`; then curl /api/trace/children/<uuid> to confirm child.sourceFile.
+## R22.4 QUEUED (v0.6.78, after R22.3 live): PNGs in /md/ file browser must be clickable + open like SVGs (URL /md/test/visual/). Extend the SVG click handler to PNG/image mime types.
 
 ## v0.6.75 UI fixes (commit 61b21fbf6, pushed, LIVE on prod — MEASURED 2026-06-29)
 Architect diag 35bec7d. **Bug#1** dup "Traceability Chain: No chain": deleted INLINE renderSingularChain
