@@ -1,4 +1,8 @@
-# robbin-architect Context (Save 2026-06-28 — Sprint 21 architecture delivered)
+# robbin-architect Context (Save 2026-06-29 — S24 skill design firm)
+
+## S24 PIN DESIGN FIRM (commit b1db76878): planner walkthrough (CurrentSprint.ts source) LOCKED the advance-vs-focus boundary in architecture.md: Pin.focus=task-switch (rotates lastCompleted + resets hops + derives chain + gate-block, the ONLY slot mutator); Pin.advance=hop-pointer increment ONLY (no slots/gate); Pin.pin/slots=pure read-time derivation (getThreeSlots: current<-chain.req|focus, lastCompleted<-lastCompletedUuid|last-non-focus-w-reqUuid, nextBacklog<-override|first-task-reqUuid-&&-!hasUcChain); autoFollow sets chain/activeHop/sprintName/taskName only. Also folded earlier: Pin.focus must resolve sprintName (autoFollow reads task.model.sprintName; mint tasks WITH sprintName). S24 design now firm for expert. Canonical dir: scrum.pmo/sprints/sprint-24-traceability-skills/.
+
+
 
 ## ADJUDICATION: PO ruled AC-a5 — nameKey auto-merge WITHOUT domain IS correct (Tron "do not duplicate companies"). My AC-a5 was over-precise. No code change. (Lesson: don't out-precise Tron's stated intent.) AC-b3 (different-domain merge) FIXED by expert in c22083798 (nameKey recall gated on no-domain) — matches my recommended fix; tester should re-gate R21.8.
 
