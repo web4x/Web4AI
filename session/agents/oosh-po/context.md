@@ -5,6 +5,26 @@
 **Pane**: ooshTeam:0.0 on **WODA.prod** (v60211.1blu.de) — re-derived 2026-06-28 (was wrongly @MacStudio: fork inherited parent's stale @host; real host = OOSH_SSH_CONFIG_HOST=WODA.prod)
 **Session**: oosh-po@WODA.prod [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## ⏸️ PARKED — 2026-06-29 (Tron parked node-provisioning for a more urgent priority)
+**Tron: "well done until here" — parked the u24/S3 work mid-flight for a higher priority. Resume from this block.**
+
+**EXACT PARK STATE (node-provisioning sprint):**
+- **NP-3 SETUP_SERVER: DONE** — fresh dev install → state 99, clean boot GREEN (tester-confirmed independently). The dev-reliability gap Tron named is CLOSED. ~11 fixes.
+- **BUG6 pkill regression: FIXED `44c9043`** (enforcer tagged __paneLockEnforcer; T-UNLOCK-KILLS-1/2/3 green on full otmux suite). **S3 GATE 1 = CLEARED.**
+- **u24 gate: Step 4 (clean boot) GREEN ✓ (tester-confirmed); Step 5 (team.push) BLOCKED** — u24 has no tmux + no claude-cli → 0 agents placed. Filed **NP-4** (`np4-provision-agent-runtime.task.md`): provision tmux (`oo cmd`) + claude (`claudeCode install`) via team.push pre-flight or ossh install.
+- **⛔ DECISION PENDING FROM TRON (unanswered when parked): S3 release a/b** — (a) RELEASE S3 now: clean-boot+pkill green = merge content validated, carry ~11 fixes+MVC to macos.latest, NP-4 follows; (b) HOLD S3 until NP-4 makes Step 5 green (full gate as originally specified). **PO recommended (a).** Resume = get Tron's a/b, then act.
+- **READY TO ASSIGN on resume:** NP-4 → oosh-expert (idle, pkill done). Independent of S3 a/b — advances full gate either way. Provisional placement: team.push pre-flights target, provisions tmux+claude, fail-loud; architect confirms install-vs-push when RC-unstuck.
+
+**TEAM (WODA.prod ooshTeam) at park:** expert idle (ready for NP-4 or S3 merge) · tester Step-4-done/Step-5-blocked · architect RC-STUCK (Tron's claude.ai/code domain to unstick) · SM ooshTeam:0.1 monitoring.
+
+**S3 merge** = `ed4c9fd` plan (clean auto-merge dev→macos.latest, carries ~11 fixes + MVC; preserves 4 macos-only commits). Release when Tron says (a), or after NP-4 if (b).
+
+**OPEN BACKLOG (queued behind gate, all committed task files):** dispatch-submission-verified (BUG10 fix — HIGHEST-ROI, the SM-queue tax), NP-1 odocker run.sshd autoconfig, legacy-suite-remediation (82 pre-existing reds), oo-new-task scaffolder, panelock-skip-human-shells, rewind-readiness-preflight, sessions.prune, test.suite regression.check.
+
+**★ BUG10 WORKAROUND (proven): dispatch SHORT one-line pointers only** (`Escape→C-u→"<verb> — spec in <file>"→Enter`); long msgs stall unsubmitted. SM is the submission net.
+
+---
+
 ## ★★★ PRE-CLIFF CHECKPOINT — 2026-06-28 (SM cliff warning; gate nearly DONE)
 Identity: oosh-po@WODA.prod, ooshTeam:0.0, fork 29a1e1d1. SM=ooshTeam:0.1 (42 pair). Two repos: oosh code /root/oosh (branch dev), workspace /var/dev/Workspaces/AI/Claude (main).
 
