@@ -14,11 +14,11 @@ The render is an **ephemeral one-shot**: `docker run --rm --security-opt seccomp
 **Three options:**
 | Opt | Approach | Trade-off |
 |-----|----------|-----------|
-| **A (architect lean)** | Add ONE generic primitive to odocker: `odocker.run.ephemeral <image> [--opt …] -- <args…>` = `docker run --rm [opts] <image> <args>`. plantuml delegates to it. | odocker stays generic (it's "run any image one-shot", knows no plantuml); future one-shot tools reuse it. Small, clean addition. |
+| **A (architect lean)** | Add ONE generic primitive to odocker — **all-positional, NO FLAGS** (OOSH death-to-flags): `odocker.run.ephemeral <image> <workdir> <args…>` = internally `docker run --rm --security-opt seccomp=unconfined -v <workdir>:<workdir> -w <workdir> <image> <args…>`. plantuml delegates to it. | odocker stays generic ("run any image one-shot in a mounted dir", knows no plantuml); future one-shots reuse it. Small, clean. |
 | B | plantuml creates a DockerWorkspace (Dockerfile `FROM plantuml/plantuml`) + uses `odocker.build`/`odocker.run`. | Heavyweight for a CLI one-shot; leaves a long-lived container; overkill. |
 | C | plantuml calls raw `docker run` directly. | Breaks the layering — plantuml would know `docker`, not just `odocker`. Rejected. |
 
-**Architect recommendation: Option A.** It keeps odocker domain-agnostic while giving plantuml a clean delegation target. `--security-opt seccomp=unconfined` rides through as a passthrough opt (plantuml owns *that it's needed*; odocker just forwards opts).
+**Architect recommendation: Option A.** Keeps odocker domain-agnostic, gives plantuml a clean delegation target. **NO FLAGS on the OOSH interface** — `<image> <workdir> <args…>` are positional; the docker-runtime opts (`--rm`, `--security-opt seccomp=unconfined`, `-v`, `-w`) live INSIDE odocker (it's the docker expert — seccomp is a Docker-20.10.7 runtime concern, not a plantuml concern). plantuml call becomes: `odocker run.ephemeral plantuml/plantuml "$DIR" -tsvg <files>` — where `-tsvg` etc. are passthrough args to the *containerized plantuml binary* (NOT oosh-method flags — passthrough to a foreign CLI is allowed; oosh method signatures stay flag-free).
 
 ## Proposed `plantuml` method surface
 - `plantuml.install` — ensure the `plantuml/plantuml` image is present (pull if missing). **Idempotent, self-healing** (constructor contract): run anytime → image available.

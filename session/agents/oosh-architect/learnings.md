@@ -104,3 +104,8 @@
 - PlantUML activity diagrams with swimlanes work well for multi-script lifecycle flows.
 - Integration tests (T-ENV-INSTALL) must cover the full lifecycle: fresh emit, corrupt→heal, never-prompt, never-fail (RC=0 on all broken inputs), subshell roundtrip. These are the acceptance criteria from the spec, not just unit checks.
 - When testing config.save on corrupted input, config.save uses LIVE env vars (still set in shell) to resolve fundamentals — so it can heal even when the FILE is garbage. This is by design (harvest-resolve-merge).
+
+## OOSH death-to-flags (design discipline — caught by Tron 2026-06-29)
+- ANY oosh method signature is ALL-POSITIONAL. No `--flags`, no `--` separator. I drafted `odocker.run.ephemeral <image> [--opt] -- <args>` — wrong. Correct: `odocker.run.ephemeral <image> <workdir> <args…>`; runtime opts (--rm, --security-opt, -v, -w) live INSIDE the method.
+- Distinction: passthrough args to a FOREIGN containerized CLI (e.g. `-tsvg` to the plantuml binary) are NOT oosh-method flags — they're opaque payload forwarded to another program. Those are fine. The rule binds the OOSH interface, not what you forward.
+- Apply at DESIGN time, not review time — flags creep into "convenience" signatures.
