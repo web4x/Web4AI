@@ -39,8 +39,9 @@
 - Endpoints often echo the normalized form (e.g. /api/phone `key:normalizePhone(raw)` in 200 AND 404) — assert transforms directly, zero-pollution.
 - Race-free AC capture: to prove "created false then async-flips true" use a GARBAGE input that never verifies (stays false, observable anytime) alongside a REAL one that flips.
 
-## POLLUTION owed to purge (flagged to PO repeatedly)
-Tagged prod test users/units: r211persist-*, r2156-* (email/phone units), r217-* (address units), R21.4 phantom c56e7ba7. ~15-20 users + units. Needs purge tool/pass.
+## POLLUTION PURGE — DONE 2026-06-29 (commit db20121b4, Web4RawBin repo)
+Removed 215 files (133 scenario/index test units + 82 alt symlinks). index 3765->3632; alt company 26->1, domain 21->0, email 19->1, phone 19->1 (survivors = Cerulean + Tron). Live API: test suggest 11->0, test phone 200->404; Tron+Cerulean intact. Method: SAFE-uuid hard-exclude + alt-deleted-by-resolved-target + measure before/after (see learnings: safe prod-data purge).
+REMAINING (flagged to PO, needs coordinated restart — do NOT live-edit): data/profiles.json (gitignored, in-memory-backed) still has test userProfiles incl R21.4 phantom c56e7ba7. + 1 untracked scenario/content/<hash> of unverified origin left untouched.
 
 ## Session 2026-06-15/16 — S20 gates (v0.6.50→0.6.62)
 - R20.28 preview-buttons: GREEN DET-3x (Preview 167px + NewTab, cv-preview-toggle). Gate 772f0aa4.
