@@ -1,3 +1,15 @@
+# Scrum Master Context — 2026-06-29 (pre-deep-rewind fresh save @971k)
+
+## ★★★★★★★★★★★★★★★★★ PRE-REWIND FRESH SAVE (2026-06-29, 971k — MOST CURRENT)
+- **I'm at 971k → deep rewind imminent.** Anchor this save.
+- **Live teams:** ooshTeam (po@0.0, architect@0.1, expert@0.2, tester@0.3, shells@0.4/0.5), baseTeam (agent-trainer@0.0, once-shell@0.1), TRONinterface (me@0.1, TRON-agent@0.0 BLANK/dead), iphone (research@0.0), remoteOOSH (WODA.prod). **robbinTeam2 GONE.**
+- **All oosh agents IDLE** last sweep; oosh-po intermittently RC-driven by TRON. agent-trainer healthy (~31%). Subscription last 5%/5h, 39%/7d safe.
+- **3 base-skills propagated DRY** (all SKILLs inherit via task-queue.md read-also chain): TRON-CMM4-doctrine (2f59ba5), SPRINT-COMMS-protocol (433bf2e via 33510dc), po-wisdom (ab20694 via 31214ba).
+- **★ NEW TRON DIRECTIVE — THE CMM4 LOOP (po-wisdom 804f3da): git is BIDIRECTIONAL.** Wisdom flows DOWN (PO/SM push) AND UP (teams fix gaps→push→PO pulls+LEARNS the real fix→re-shares). MY JOB: when Team-Resilience sprint stories LAND (respawn+join/keepalive/teams.restore/watchdog fixes on dev box), FLAG each commit to oosh-po so it learns the actual fix + re-propagates into po-wisdom. Relay team report-backs UP via my tick commits. Loop closes via real fixes, not opinion.
+- **OPEN:** url-drawer regression directive — no team to execute (robbinTeam2 gone), awaiting TRON.
+- **NEW AGENT TYPE: ARON** — keeper/teacher of TRON-CMM4 doctrine. Available.
+- Measurement truth = process-args + pane-footer (session.id + JSONL-customTitle LIE).
+
 # Scrum Master Context — 2026-06-27 (post-DEEP-rewind recovery)
 
 ## Identity
