@@ -36,3 +36,10 @@ Harden `hiveMind delegate` (already: writes task file + sends `Read session/task
 - Architect (verify-submission contract):
 - Expert (impl + DRY core + commit):
 - Tester (T-DISPATCH-SUBMIT + live no-SM-net run):
+
+---
+## ★ ESCALATION 2026-06-29 (SM, via robbin-po) — bug confirmed on hiveMind send/drain path; now CRITICAL
+**Priority → CRITICAL** (was HIGH). New evidence: `hiveMind send.message` AND `agent.queue.drain` to robbin-po(0.0) deliver text into the input buffer but do NOT submit — sits as unsubmitted `❯ text`, agent idle, never processes → **Sprint22 R22.x blocked, robbin-po effectively unreachable via hiveMind** (and Tron forbids raw-tmux). This is the SAME staging class as my session-long `otmux send` BUG10, proving it's at the SHARED send core, not one method.
+- **Scope confirmed**: the submission-verified core must back BOTH `otmux send` and `hiveMind send.message`/`agent.queue.drain` — every controller send path. Add an explicit `send.submit`/`poke <pane>` (sanctioned Enter) too.
+- **BUG10 mechanism (proven this session)**: LONG/wrapping messages wrap to multi-line → first Enter = newline → never submits. SHORT one-line pointers submit. So the fix = (1) Enter-after-deliver with submission verify + retry, (2) prefer short-pointer payloads.
+- **Immediate workaround (sanctioned)**: `otmux send.raw <pane> Enter` is the OOSH WRAPPER (NOT raw tmux) → allowed → submits staged text. If staged text is long/wrapped and won't submit, clear (Escape→C-u via the wrapper) + re-send SHORT.
