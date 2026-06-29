@@ -16,8 +16,16 @@
 - ★ VERIFY-DON'T-RELAY CATCH (this session): PO directed "mark T22.4 testing[x], gate adddd7ae5" — but git showed adddd7ae5 = the RED verdict; no committed GREEN after the v0.6.79 fix. HELD the mark (#102 no-backfill + doctrine: only write a measured+committed green). Tester then COMMITTED the GREEN (4d6474790) → I flipped + regenerated. The committed word lagged the tester's pane verdict; holding for the commit was correct.
 - Reported: PO (0.0) + skill-expert (0.2, unblocked w/ T22.3 uuid). Team panes WODA: PO 0.0 · expert 0.1 · skill-expert 0.2 · architect 0.3 · req 0.4 · tester 0.5 · planner 0.6(me).
 
+## ✓ SECOND TASK COMPLETE: Sprint 23 — Media Preview task units (PO directive, same pipeline).
+- ADOPTED req-eng's Sprint 23 (unit 4a4a5d66, committed 8874f7b3c) per #12 (req owns content+sprint-naming) — req had ALREADY stood up sprint-23-media-preview when I was about to do an S22-extension; reconciled to S23 to avoid collision. NOTE: req briefly rolled S23 back on my first (S22 R22.5/6) msg, then re-created on my adopt msg → no dup-race.
+- **T23.1** audio-preview 2b6be816 (req 480b40aa, uc b9792582, HTML5 `<audio>` mp3/wav/ogg/m4a) · **T23.2** youtube-embed 9f599cbf (req 8f34c3e5, uc d0d09ff8, YouTube URL→iframe embed). Wired sprint 4a4a5d66.tasks[]=2. req 3-point verify = ALL PASS.
+- Lifecycle driven via the pipeline (commits): minted Planned (f76af8128) → PO corrected: expert SHIPPED both v0.6.80 (3a02318ce, source-verified content-preview.ts audio+youtube, sw.js/version bumped) → In Progress implementing[x] (f2b0f0010) → tester GREEN DET-3x verdict 0eb5f64cc (gate r225-audio-youtube-gate.mjs) → testing[x] **QA Review** (bb3f19d56). MD regenerated each step, round-trip --check byte-match GREEN throughout.
+- **BOTH S23 tasks now QA Review** (impl shipped + test GREEN). QA Review + Done = Tron gate.
+- ★ PATTERN CONFIRMED (S22 + S23): mint Task units from req truth → wire coveredRequirements/useCases/sprint.tasks[] → run generate-sprint-md.ts → --check byte-match → commit. Status flips = edit UNIT (never MD) → regenerate. Tester/expert self-mark hops (#102); I source-verify the committed verdict commit before flipping (held T22.4 + would-have on T23 until committed GREEN).
+
 ## ▶ NEXT / OPEN
-- T22.4 testing hop: when tester DET-3x GREENs v0.6.79 PNG-preview, they self-mark (#102); I verify gate + flip status by editing the UNIT (statusChecklist/status) then RE-RUNNING the generator — never hand-edit the MD (law #100).
+- Repo ahead of origin/main (multiple agents committing). Push only on PO direction / clean point (#13) — others' in-flight + dist artifacts ride along.
+- Status-flip flow (any task): tester/expert self-mark (#102) → I verify the committed verdict commit → flip the UNIT (statusChecklist/status) → RE-RUN the generator — never hand-edit the MD (law #100).
 - A linter reformatted T22.3 unit (1bac1de6) post-commit — values intact (generator output identical); fold into next Web4RawBin commit if still dirty.
 - DISCIPLINE carried: #102 your-hop-your-status (no backfill) · PROVEN-OR-STAY · source-verify-don't-relay · markdown=VIEW (edit units→regenerate) · git=backup (commit clean, no tar) · QA/Done=Tron-gate-only.
 
