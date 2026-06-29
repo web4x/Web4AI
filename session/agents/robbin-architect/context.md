@@ -2,7 +2,11 @@
 
 ## ADJUDICATION: PO ruled AC-a5 — nameKey auto-merge WITHOUT domain IS correct (Tron "do not duplicate companies"). My AC-a5 was over-precise. No code change. (Lesson: don't out-precise Tron's stated intent.) AC-b3 (different-domain merge) FIXED by expert in c22083798 (nameKey recall gated on no-domain) — matches my recommended fix; tester should re-gate R21.8.
 
-## LATEST (PDCA CHECK R22.1, v0.6.75 61b21fbf6) = GREEN, both bugs fixed across all 3 peers.
+## LATEST (R22.2 + R22.3 diagnoses, reported):
+**R22.2 mouse/touch parity:** pan-zoom.ts — ZOOM (wheel==pinch) and PAN (mouse-drag==1-finger, both gated scale>1) ALREADY at parity. ONE GAP: no dblclick handler; doubleTapToggle only called from touchend. FIX (1 line): this.on('dblclick', e => this.doubleTapToggle(e.clientX,e.clientY)) — doubleTapToggle already converts coords + does reset<->2x.
+**R22.3 per-type source links** (design from R20.23-27 / 03d617855): render Class=puml+svg, Method/Impl=.ts via /md/ on chain nodes (renderChainPathSection, reuse renderSourceLink). 3 GAPS upstream of renderer: (1) API: /api/trace/children children[] entries lack sourceFile (only queried node has it, server.ts:1001) — add per-child sourceFile/sourceLine at ~963. (2) DATA: S21 Class 4e678ce3 + Method 9c21f3b5 sourceFile EMPTY; Impl f8b113b7 sourceFile wrong (src/ts/server/ vs real src/public/ts/trace/rb-file-detail.ts) — fill-source-locations must populate+correct. (3) DECISION: S21 has 1 puml not per-class — link all classes to sprint-21.puml+svg or generate per-class? PO call.
+
+## PRIOR (PDCA CHECK R22.1, v0.6.75 61b21fbf6) = GREEN, both bugs fixed across all 3 peers.
 - (1) singularChain refs = 0 in rb-task/requirement/usecase-detail ✓ Bug#1 old path GONE.
 - (2) forward-link rows now real anchors: `<a class=dv-link href=scenarioBrowserHref(refUuid(lref))>` (orange) ✓ Bug#2 fixed — links to scenario MD.
 - (3) renderChainPathSection = sole chain section: verified 1 import + 1 call per file (grep -c showed 2 = import+call, NOT two calls), 0 inline Traceability-Chain headings ✓.
