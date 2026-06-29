@@ -28,7 +28,10 @@
 - R21.5+R21.6 email/phone units: gate 2203bb3d6. R21.7 address+OSM verify: gate 2af193abb.
 - R21.6 E.164 normalize edge (locks architect fix): gate ab94c82ae.
 - R21.8 companies shared units (suggest+create, nameKey strip, dedup, ownerIor null): gate 446d39d3e.
-- **S21 COMPLETE: R21.1-R21.8 + E.164-edge ALL GREEN DET-3x on prod.** Awaiting S22 or purge directive.
+- R21.8 AC-b3 domain-mismatch->distinct company: gate c04ded508 (needs UNIQUE domains per iter — domain is global-authoritative).
+- R21.9 file-detail pan/zoom BOTH surfaces (TRACE rb-file-detail + ROOM rb-preview-pane.setContent; 75vh, wheel, pinch, reset): gate 39ef620be.
+- **S21 COMPLETE @ v0.6.74: R21.1-R21.9 + E.164-edge + AC-b3 ALL GREEN DET-3x on prod.** Awaiting S22 or purge directive.
+- KEY robustness: wss session.ready MUST gate on server PROFILE msg (not identify-sent) else UPDATE_PROFILE races 'Not identified'. Use fresh short-lived sessions; retry transient https/empty-msg/read-during-write. Browser gates: mount component directly when app-nav can't reach it.
 
 ## Gate-craft learnings this session (also in learnings.md)
 - DET-3x across SEPARATE processes catches flakes in-loop iters miss. When RED, cross-check w/ curl BEFORE believing — harden the harness (retry transient status-0 / empty-msg / read-during-write), don't report a harness flake as an app bug.
@@ -36,8 +39,12 @@
 - Endpoints often echo the normalized form (e.g. /api/phone `key:normalizePhone(raw)` in 200 AND 404) — assert transforms directly, zero-pollution.
 - Race-free AC capture: to prove "created false then async-flips true" use a GARBAGE input that never verifies (stays false, observable anytime) alongside a REAL one that flips.
 
-## POLLUTION owed to purge (flagged to PO repeatedly)
-Tagged prod test users/units: r211persist-*, r2156-* (email/phone units), r217-* (address units), R21.4 phantom c56e7ba7. ~15-20 users + units. Needs purge tool/pass.
+## POLLUTION PURGE — DONE 2026-06-29 (commit db20121b4, Web4RawBin repo)
+Removed 215 files (133 scenario/index test units + 82 alt symlinks). index 3765->3632; alt company 26->1, domain 21->0, email 19->1, phone 19->1 (survivors = Cerulean + Tron). Live API: test suggest 11->0, test phone 200->404; Tron+Cerulean intact. Method: SAFE-uuid hard-exclude + alt-deleted-by-resolved-target + measure before/after (see learnings: safe prod-data purge).
+REMAINING (flagged to PO, needs coordinated restart — do NOT live-edit): data/profiles.json (gitignored, in-memory-backed) still has test userProfiles incl R21.4 phantom c56e7ba7. + 1 untracked scenario/content/<hash> of unverified origin left untouched.
+
+## CHAIN-DEBT CLOSED 2026-06-29 (commit e977a1526): scoreboard 20->28/285
+Wired 8 R21 Test hops (R21.2 excluded — Impl open-expert). Created Test units + [test:uuid:] markers in gate files + Impl.tests[]->Test for R21.1,3,4,5,6,7,8,9. Test crediting is LENIENT (Test unit in idx + marker in test/ + Impl.tests[] ref; no strict-AST). chain tooling: `npx tsx scripts/objectVerb.ts chain scoreboard|lintMarkers`. det-2x = 28/285. See learnings "Wiring Test hops".
 
 ## Session 2026-06-15/16 — S20 gates (v0.6.50→0.6.62)
 - R20.28 preview-buttons: GREEN DET-3x (Preview 167px + NewTab, cv-preview-toggle). Gate 772f0aa4.

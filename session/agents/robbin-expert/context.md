@@ -4,7 +4,7 @@
 **Machine**: WODA.prod · **Pane**: robbinTeam2:0.1
 **Repo (WODA.prod)**: /var/dev/Workspaces/2cuGitHub/Web4RawBin · **Live**: prod.wo-da.de:4444 (tmux session `rawbin`)
 **AI/Claude repo** (context/learnings): /var/dev/Workspaces/AI/Claude
-**Current version**: v0.6.73 (R21.1-9 impl complete + E.164/AC-b3 fixes).
+**Current version**: v0.6.74 (R21.1-9 impl complete + E.164/AC-b3 + R21.9 surface-fix).
 
 ## Sprint 21 (Contact Identity) — progress
 | Req | What | Commit | Version | Gate |
@@ -20,7 +20,24 @@
 | R21.8 | companies as shared units (ior:class:Company) | a52245de1 | 0.6.72 | tester GREEN 446d39d3e |
 | R21.8-fix | AC-b3 present-but-unmatched domain → distinct unit (not nameKey merge) | c22083798 | 0.6.73 | re-gate pending |
 | R21.9 | file-detail reorder + pan/zoom (RbPanZoom, rb-preview-pane) | c22083798 | 0.6.73 | awaiting tester |
-- **SPRINT 21 IMPL COMPLETE** (R21.1-9). Remaining: R21.2 (lobby name race — partial v0.5.131, may need finish). Awaiting tester DET on R21.7 / R21.8-fix(AC-b3) / R21.9.
+| R21.9-surface | RbPanZoom on ROOM file view too (DRY fillPreviewPane) + AC-e5 desktop mousedown | 2a1357a69 | 0.6.74 | tester GREEN DET-3x 39ef620be (BOTH surfaces) |
+- **SPRINT 21 COMPLETE + GREEN** (R21.1-9). Tester FINAL GATE GREEN DET-3x v0.6.74 (gate 39ef620be both surfaces; AC-b3 re-confirmed c04ded508). ALL S21 reqs CLEARED.
+- **v0.6.74 LIVE on prod** (MEASURED 2026-06-28): /api/health=0.6.74; live /dist bundle has pz-viewport+rb-preview-pane, old pinch path=0; sw.js=rawbin-v0.6.74. Prod IS this checkout → disk bundle served, no restart needed (no server.ts route change). **git: main ahead origin/main by 4 — NOT pushed to GitHub remote (needs PO/Tron go; touches prior unpushed commits).**
+- **R21 CHAIN-DEBT CLOSED (expert side)** commit 6b2048f19 (pushed origin/main): 8/8 Impl hops credit (R21.1,3,4,5,6,7,8,9), det-3x 8/8/8, lintMarkers 0 R21 orphans/collisions. All fabricated 2100xx uuids re-minted fresh (f2174329/c709147a/801f53b3/ce2501d3/cc6df739/4a7d30bb/f8b113b7; d1337706 kept). R21.2 HELD (feature deferred S22). Test hops routed to robbin-tester (8 [test:uuid:]) → 28/285 after tester.
+- Decisions DONE: push origin/main (HEAD 6b2048f19); purge=tester(0.5); R21.2=defer S22.
+- **S21 CHAIN FULLY TRACED — MEASURED 28/285 (tester wired 8 Test hops, e977a1526).** R21.1,3,4,5,6,7,8,9 ALL fully COMPLETE (Impl check + Test check, verified det). R21.2 (renderNameOnConnect Impl) = sole remaining R21 node, deferred S22. Sprint 21 = functional GREEN + chain-traced.
+- Remaining: R21.2 + purge in S22.
+
+## Chain crediting rule (buildStrictImplSet, skill-classes.ts:135-167) — MEASURED 2026-06-29
+An `[impl:uuid:U label]` credits U ONLY if: (1) idx.has(U) [unit exists], AND (2) the marker
+HEADS or sits INSIDE a NAMED member (function/method/field-arrow) whose name name-matches the
+label's method-token (equality OR substring either direction; `labelMethod = last '.'-segment of
+first non-R/FLAG token`). Anon-arrow host, data-const/prop host, or file-head (→ first decl) = NO
+credit. The Method/Impl UNIT name is IRRELEVANT to crediting — only the SOURCE marker's label +
+host member. refCount>1 (impl shared by >1 Method) = NEVER credited. A Method with N impls needs
+ALL N to credit+test → de-dup to ONE. Tools: Chain.wireImplNode(methodUuid) mints fresh impl
+named after Method + wires; Chain.renameUuid(old) atomic 3-sweep (unit+refs+source/test/md markers).
+Run via node18 (/root/.vscode-server/bin/*/node) + node_modules/.bin/tsx scripts/objectVerb.ts Chain <verb> (npx tsx fails on node16).
 - R21.9 DONE — pan-zoom.ts RbPanZoom (transform translate+scale, wheel/drag/pinch/double-tap, clamp, zoom-about-point, destroy, 7 correctness rules AC-e1..e6); rb-preview-pane.ts (75vh in-flow viewport, teardown on setContent); rb-file-detail.ts reordered buttons→pane→metadata + fillPane(img/iframe/pre by mime). DRY: RbPanZoom reusable.
 - R21.8-fix DONE — AC-b3: mintOrReuseShared gates nameKey reuse on NO-domain; present-but-unmatched domain mints distinct unit; buildLinks won't clobber an existing nameKey recall symlink. Tester GREEN base was 446d39d3e; this fix (c22083798) needs re-gate.
 - R21.8 DONE — companies as SHARED ior:class:Company units. CompanyIndex: companyNameKey (NFKD+legal-suffix strip incl trailing 'and'), companyDomain (authoritative), mintOrReuseShared (domain→nameKey→mint), dual alt-index (alt/company/<nameKey> + alt/company-domain/<domain>) declared ON the Company unit (shared, no owning profile), suggest() ranked, /api/company/suggest. ownerIor:null. Profile.companies[].

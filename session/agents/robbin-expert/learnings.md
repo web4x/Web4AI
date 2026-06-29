@@ -796,6 +796,43 @@ the shared unit, mint-or-reuse ladder. AND: my temp-dir harness CAUGHT the AC-a4
 ship — ALWAYS encode the AC's literal example ("GmbH & Co KG"→acme) as a harness assertion, not
 just the happy path. The bug you measure is the bug you don't ship.
 
+## Chain credits the MARKER's host member, not the unit — read the scanner before tagging (R21 chain-debt, 2026-06-29)
+"Add [impl:uuid:] markers" was HALF the work and the WRONG framing for half the reqs. The markers
+mostly already existed but didn't credit. I read buildStrictImplSet (skill-classes.ts) FIRST instead
+of guessing, and that single measurement defined every action: a marker credits ONLY if its unit
+exists AND the marker heads/sits-in a NAMED member whose name name-matches the LABEL's method-token
+(substring either way). Three traps it revealed: (1) file-head markers attach to the first decl
+(e.g. normalizePhone) → never the intended method; (2) the conceptual chain-method name (renderName
+OnConnect, resolveOrEnroll, mintAndVerifyAsync) often has NO literal function — so label the marker
+after the REAL host (resolveKeyToProfile, mintAddress, render) since the Method/Impl unit name is
+IRRELEVANT to crediting; (3) a Method with TWO impls can't complete until de-duped to one (refCount>1
+= never credited). Tools beat hand-JSON: Chain.wireImplNode mints+wires+names a fresh impl; Chain.
+renameUuid atomically rewrites unit+refs+source markers (so place the marker, THEN re-mint to kill
+the fabricated-2100xx prefix-collisions). **How to apply:** before any "add markers/close chain" task,
+READ the strict-scan that grades it and encode its exact rule; measure with scoreboard+lintMarkers
+det-3x before AND after; stage chain-scenario units by EXPLICIT uuid path (never `git add scenario/`)
+to keep test-pollution out of the commit. And honor the defer: R21.2 feature was deferred → I did NOT
+fabricate a marker for partial code (a marker must have real complete code behind it).
+
+## One-surface-fixed ≠ feature-done: chase EVERY consumer + e5 desktop≠touch (R21.9 surface, v0.6.74, 2026-06-28)
+Tron said pan/zoom "in room file details" but R21.9 only landed it on rb-file-detail (trace
+browser). The ROOM file view (RoomView.openFilePreview) goes through a DIFFERENT path:
+content-preview.ts renderContentPreview, which still had the OLD @400px iframe `touch-action:
+pinch-zoom`. Lesson: when a directive names a surface, `grep -rn` the render function across
+ALL consumers BEFORE declaring done — renderContentPreview had 3 callers (RoomView,
+rb-detail-view, rb-file-detail) and I'd only fixed one. The DRY cure: extract ONE shared
+`fillPreviewPane(pane,uuid,mime,name,token)` mime→content builder; retire the legacy path at
+the SOURCE (content-preview emits <rb-preview-pane>); delete the duplicate that had drifted
+(rb-file-detail's private fillPane). Then every surface fixes at once and can't drift again.
+**AC-e5 had a real gap:** gesturing() (iframe pointer-events:none mid-gesture) fired ONLY on
+touchstart — desktop mouse-drag of a zoomed PDF/HTML still let the iframe swallow the drag.
+Touch-eligibility and mouse-eligibility are SEPARATE code paths; an AC that says "during
+gesture" means BOTH pointer types — add the call to mousedown too. **How to apply:** (1) for any
+"make X work here" directive, enumerate every code path that renders X (grep the function name)
+and fix at the shared source, not the one surface in front of you; (2) DOM-mock harness on node
+(fake addEventListener capturing handlers + style objects) PROVES pointer/transform logic
+without jsdom — 7/7 here caught nothing broken but turned "I think e5 works" into measured TRUTH.
+
 ## Pan/zoom controller + the post-gate-fix re-gate discipline (R21.9 + R21.8 AC-b3, 2026-06-28)
 RbPanZoom (pan-zoom.ts) is a reusable transform controller: CSS translate(tx,ty)scale(s),
 transform-origin 0 0; zoom-about-point keeps the cursor/pinch-midpoint stationary

@@ -29,6 +29,11 @@ Seed-empty-learnings rule codified in boot.md Fresh-Boot Checklist (50a11c5). 5 
 ### 2026-06-28 CONTEXT CRISIS fork pass (IN PROGRESS — executor)
 SM declared crisis on robbinTeam2, multiple agents saturating. Method = TRUE FORK (Path B: /exit + `claude --name <role>` + /model option-1 **1M** + RC + rename@WODA.prod + boot from files). Shallow rewind proven NOT to reduce context on full bases. PRIORITY: (1) skill-expert 0.2 772k — fork when its save commits (anchor 40aaa4c baseline). (2) expert 0.1 818k+rate-limited — HOLD until R21.6 reported (PO call), then fork. (3) req 0.4 261k + architect 0.3 227k (saved 5762a47) — after. Verify each <10% used before declaring RECOVERED → report SM. I am at ~266-300k (healthy). Ensure 1M via /model picker (—model claude-opus-4-8 alone may not be the [1m] variant).
 
+### Crisis pass OUTCOMES (2026-06-28)
+- **0.2 skill-expert RECOVERED** (1M, 22% used, anchor 4109ee9). **0.1 expert RECOVERED** (1M, 4.8% used, anchor ab744f2 — expert kept it as current/today anchor, sound). Both TRUE-FORK in-place (no swap).
+- **CRITICAL LESSON — 1M needs `s` not Enter**: in /model picker, Enter = "set as default" (applies to NEW sessions, KEEPS current at 200k → shows "Kept model as Opus 4.8"). `s` = "use this session only" → "Set model to Opus 4.8 (1M context) for this session only" = ACTUALLY switches. Fresh `claude --name` defaults to option 5 (claude-opus-4-8, **200k**), NOT 1M. EVERY fork: /model → opt 2 → **`s`**. Verify ✔ moves + "for this session only" confirms.
+- **tester likely on 200k** (forked earlier with Enter) — fix at next idle (was 9m+ deep gate work, don't disrupt). 0.4 req 261k / 0.3 architect 227k healthy, await SM. SM double-booted 0.1 (harmless, coord noted: when SM signals fork, I drive full boot).
+
 ## Recent Work (2026-06-22 to 2026-06-27)
 
 ### Rewinds Executed

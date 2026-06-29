@@ -23,20 +23,19 @@ The u24 gate. CORE #6 GREEN (pure-state config 20/0 on pristine ubuntu:24.04; 5 
 - [x] odocker u24 running (port 9024), ssh-reachable (`9a87d34`)
 - [x] ossh config.create u24 (→ becomes NP-1 automatic)
 - [x] fresh dev install → pure-state config, no manual cleanup (CORE #6 PASS)
-- [ ] clean boot green on u24 (env -i bash, config pure, color, pane.self, CURRENT) — BLOCKED by NP-3
-- [ ] ooshTeam pushed to u24, agents live + discoverable (claudeCode list + hiveMind)
+- [~] clean boot green on u24 — EXPERT-VERIFIED on pristine u24 (state 99, env -i bash→OOSH_MODE=dev, oo on PATH, config validate passes, 0 stderr, config 20/0); awaiting TESTER formal Step-4 independent confirm
+- [ ] ooshTeam pushed to u24, agents live + discoverable (claudeCode list + hiveMind) — tester Step 5
 - [ ] TEST GATE marked GOOD
-- Owner: oosh-expert → oosh-tester → PO/Tron gate
+- Owner: oosh-expert (✅ install+boot) → oosh-tester (Step 4+5, NEXT after S1 baseline) → PO/Tron gate
 
-### NP-3: SETUP_SERVER install state machine completes 32→62 on a real server — IN PROGRESS
-The dev reliability gap. macOS STUBS the server tail (no port reference) → dev is first real exerciser; all 5 = FIX dev. Spec: `session/tasks/setup-server-statemachine-tail.md` (architect S-A done `ced7c4e`).
-- [ ] BUG5 result-vs-error contamination (error.log → $RESULT → filename) fixed at source [FOUNDATIONAL]
-- [ ] BUG3 `ossh prereqs.install` defined/wired
-- [ ] BUG2 `state.declaration` defined/replaced
-- [ ] BUG1 `config ci` removed-unless-real
-- [ ] BUG4 `2cuGitHub` alias created before clone (sequencing)
-- [ ] SETUP_SERVER reaches state 62 on fresh u24 install → root `.bashrc` wired → unblocks NP-2 clean boot
-- Owner: oosh-architect (S-A done) → oosh-expert (S-B) → oosh-tester
+### NP-3: SETUP_SERVER install state machine completes on a real server — ✅ DONE
+The dev reliability gap. macOS STUBS the server tail (no port reference) → dev is first real exerciser; all = FIX dev. Spec: `session/tasks/setup-server-statemachine-tail.md` (architect S-A `ced7c4e`).
+- [x] BUG5 result-vs-error contamination fixed at source `2b68265`
+- [x] BUG1-class method-name `get.key.name→key.name.get` `d546947`; BUG2 state.declaration `044dc75`; BUG1+3 `edbbabc`; BUG6 key.pull path `376020e`
+- [x] state-32→33 batch (404→in-repo hermetic asset, create-if-missing) `ffb38c9`
+- [x] DRIVER fix `278d5a7` — `state next` was called once (line 503 commented) → loop to terminal → **machine reaches 99/finished**
+- [x] root `.bashrc` wired in-chain as SETUP_SERVER state `bee01a1` (idempotent + backup) → **env -i bash = working OOSH shell on pristine u24**
+- ~11 fixes total. Owner: architect (S-A) → expert (S-B ✅) → tester (verifies in NP-2)
 
 ## Dependency order
 NP-3 (state machine completes) → unblocks NP-2 (clean boot + push) → NP-2 gate GOOD.

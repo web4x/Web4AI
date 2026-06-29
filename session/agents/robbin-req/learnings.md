@@ -202,6 +202,23 @@ Available bash panes per team (check via `otmux tree`):
 
 Built S19 R19.x altIds + R17.12 fold + 6 sibling units R19.15-R19.20 + parent splitInto + symlinks via this pattern across ~40 sends. Commits 13a8fc1f and ec769b2b.
 
+## Requirement refinement: AC + test scenarios (S21, 2026-06-28)
+When the PO asks to "refine" a requirement unit, add two structured arrays to model:
+- `acceptanceCriteria[]`: each `{id:"AC-a1", group:"<dimension>", text:"..."}`. Group by dimension (format / unit-shape / async-verify / etc.).
+- `testScenarios[]`: each `{id:"TS1", gates:["AC-a1",...], name, given, when, then}`. Gateable by the tester.
+**Self-check before commit:** every AC must be gated by >=1 TS (`acids - gated == empty`), and no TS may gate an unknown AC (`gated - acids == empty`). Keep chain (parent/owner/useCases) + name/description/tronQuote UNCHANGED — refinement ADDS detail, never rewrites the root.
+**CODE IS LAW:** ground ACs in the SHIPPED implementation, not just architecture.md. On R21.6 the arch prose said the alt symlink lived on the Phone unit's unitLinks; the shipped PhoneIndex.ts put it on Profile.unitLinks[]. I wrote the AC to the code and flagged the drift to the architect (champagne self-discovery). Always grep the impl + cite file:line in an `implRef` field.
+
+## Task-description backfill method (2026-06-28, 96→0)
+For Task units lacking `description`: read the name, derive a concise one-sentence description.
+- If the task has `coveredRequirements[]`, derive from that requirement's intent.
+- MOST tasks have NO coveredRequirements — then derive from the task NAME's stated intent (names were descriptive: "T13: Playwright E2E Test Suite" → "Build the Playwright end-to-end test suite").
+- Keep the name; description MUST differ from name.
+- Render historical/obsolete phrasings NEUTRALLY: "7-step chain" / "7-hop reachable" → "the full chain" / "reachable from a requirement root" (the chain was corrected to 6-step; don't re-stamp the old model into new prose).
+- Batch ~10, commit per batch, re-measure global count each time.
+**Sharded path gotcha:** index path uses the FIRST 5 uuid chars as dirs: `scenario/index/<c0>/<c1>/<c2>/<c3>/<c4>/<uuid>.scenario.json`. I mis-built one path by hand (`5/b/a/2/6` instead of the real `5/b/a/e/f`) → `git add` pathspec error. FIX: don't hand-derive — after the python mutation, `git status --short | grep <uuid-prefix>` to get the real path, or `git add` from `git diff --name-only`.
+**Bucketing the pool:** 96 no-desc Tasks split as: linked-to-a-Sprint (via `sprint.tasks[]`) vs UNLINKED (47, in no sprint.tasks[]). The PO said "Sprint 19" but S19 measured 0 no-desc — MEASURE the actual pool first and report the real distribution (PO praised "measuring the actual pool first"), then pivot to where the gap really is (S17 had 34, UNLINKED 47).
+
 When other agents are gated, send them the workaround via `otmux send <their-pane> '<message>' Enter`. Per user directive 2026-06-10: every team agent should know this technique.
 
 ### Heredoc-Bypass Pattern (from robbin-expert 2026-06-10)

@@ -37,5 +37,17 @@
 - Planner: stand up S21 tasks referencing the req UUIDs.
 - 100 Task units still have NO description (PO-flagged, needs per-unit judgment — awaiting go).
 
+## Sprint 21 refinements (2026-06-28) — detailed AC + gateable test scenarios
+All 9 R21.x units carry formal acceptanceCriteria[] (grouped) + testScenarios[] (TS, given/when/then, each gating named ACs). MEASURED against shipped code ("code is law"), not just architecture.md.
+- R21.6 fc1ef90cb (PhoneIndex.ts) — FOUND drift: symlink declared on Profile.unitLinks[], arch prose said Phone unit; AC follows code, flagged architect.
+- R21.7 6d3f8052d (architecture s5: async OSM verify) · R21.9 6e978d5ee (architecture s6: file-detail reorder + rb-preview-pane)
+- R21.1 efd1acb6 + R21.2 4f099ef2 = b9133a1fe · R21.3 144d1332 + R21.4 04dff687 = 7d7b4260b
+Pattern: each AC has id/group/text; each TS has id/gates[]/name/given/when/then; validate every AC gated by >=1 TS, chain (parent/owner/useCases) + name/desc/tronQuote unchanged.
+
+## Data-quality sweeps (2026-06-28)
+- 16 REQ name==description split ec527f41b; 4 REQ no-desc filled 0e7b5c964 → Requirement-class CLEAN.
+- TASK no-description CLEAN SWEEP: 96 → 0 across 11 commits. S20(4) 9495a8c9e; S17(34) 3e5b9373f/467caf8d4/9c60ae18c/35c0e1dc8; UNLINKED(47) 594801186/a5dea717e/c0f2f171f/3f94ff56e/a36bb579e; final 15 (S1/S10/S11/S13/S18) 0fd649b88.
+- Method: description derived from covered requirement where present, else from task-name intent. Names kept. Historical "7-step/7-hop" rendered neutrally (chain corrected to 6-step).
+
 ## Status
-S21 captured + committed + reported (verified delivery per learning #9). Standing by for next directive.
+Sprint 21 closing. Task-descriptions COMPLETE (0 remaining). All reports delivered + verified per learning #9. Standing by.

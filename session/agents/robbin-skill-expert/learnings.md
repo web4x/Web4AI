@@ -365,6 +365,30 @@ naming the method, not re-adding. FAKE_SUFFIX regex is NARROW (`/-a1b2-4c3d|-a2b
 — `-58d9-4417-8480-` fabricated uuids do NOT match it, so they're scanned (verified the real regex
 before blaming it — a near-miss wrong hypothesis). Checklist: scrum.pmo/R21-marker-checklist.md.
 
+### Sprint 21 CLOSE measurement (v0.6.74 @39ef620be) — GREEN-on-tests, OPEN-on-chain
+PO called sprint-close after tester reported "R21.9 GREEN". MEASURED (det-3x/det-2x):
+scoreboard STILL 20/285 (target was 29) — R21.1-9 chain ALL OPEN. The functional fix+test
+shipped & deployed, but the traceability marker/unit/wiring work (R21-marker-checklist.md) was
+NOT done. Worse: R21.9's functional commit ADDED 2 NEW orphan markers (5826ca42-210009 pan-zoom.ts,
+5826ca42-210099 rb-preview-pane.ts) — chain debt GREW. lint 193 total, 9 R21-tagged open (4
+prefix-collisions un-re-minted + 5 orphans). Slots clean (collapse fix holds).
+DOCTRINE: "tester GREEN" = functional gate only; it is NOT chain-complete. The canonical
+completion count is the chain scoreboard, and it said 20/285. Reported TRUTH, not the convenient
+green PO expected. This is the textbook functional-first-then-backfill cost — flag it at close,
+don't let "deployed + tests pass" be mistaken for "traceably done." Gap → next sprint.
+
+### Sprint 21 FINAL verified (e977a1526) — debt paid down, traceable close
+After the GREEN-on-tests/OPEN-on-chain flag, expert+tester ACTIONED the R21-marker-checklist:
+expert re-minted fabricated uuids uuidgen-fresh (v4) + placed markers on named methods + wired;
+tester added 8 Test units + [test:uuid:] + Impl.tests[] wiring. INDEPENDENTLY re-measured (not
+relayed): scoreboard det-3x = 28/285 (8 R21 reqs credit; R21.2 excluded per expert — gate stayed
+faithful, OPEN not false-green). lintMarkers det-3x = 184 (from 193): orphan-markers 5->0,
+prefix-collisions 21->17 — R21 LINT-CLEAN, 0 R21-tagged. The 4 R21 fabricated-uuid collisions
+cleared by re-mint exactly as the checklist's cross-cutting cleanup predicted. LESSON: the
+checklist that named the REAL blocker (strict name-match, not "add marker") + the re-mint cleanup
+drove a clean fix in one pass — precise diagnosis = precise dispatch. Verify-don't-relay held:
+I reproduced 28/285 myself before confirming the tester's number.
+
 ## Re-measure 2026-06-28 (SM save-checkpoint)
 Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276→285 (more reqs).
 3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert

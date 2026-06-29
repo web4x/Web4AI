@@ -19,6 +19,10 @@ ssh u24 'grep -E "^state=|stateValue" ~/config/current.state.machine.env'   # ch
 ```
 **5 install-transport bugs FIXED (gate)**: rsync push+pull remote-probe→scp (4397ac2,8a3c02d), mode ssh→root (4397ac2), ssh-keygen -N'' hang (99fb694), odocker run.sshd sshHostPort (9a87d34); +container seccomp.
 **SETUP_SERVER S-B (architect: ALL 5 = FIX dev, zero ports — macOS stubs the tail)**:
+**✅✅ S-B COMPLETE 2026-06-28 — CLEAN BOOT GREEN on pristine u24. Handed to tester (S-C) for Step 4+5.** Fresh dev install → state 99 finished, root .bashrc wired, `env -i bash` = working OOSH shell (OOSH_MODE=dev, oo on PATH, config valid, 0 errors). ~11 fixes: BUG5 2b68265, method-name d546947, BUG2 044dc75, BUG1+3 edbbabc, BUG6 376020e, 33-62 batch ffb38c9, driver-loop 278d5a7 (the structural key: continue.local looped `state next` to terminal vs single call), root-bashrc bee01a1 (state 33 installs bashrcTemplate in-chain) + 5 gate install-transport. S3 macos.latest merge STILL HELD pending full gate. Detail: setup-server-statemachine-tail.md.
+
+---
+## (archived) earlier S-B progress
 **7 BUGS FIXED (all architect-5 + 2 siblings); machine chains 0→32 cleanly; STOPS at state-33 setup (new batch).**
 - ✅ BUG5 contamination `2b68265` — create.result(this:319) strips ANSI; err.log+important.log coerce stdout/empty LOG_DEVICE→/dev/stderr.
 - ✅ method-name `d546947` — `ossh get.key.name`→`ossh key.name.get` at ossh:533 + ossh:1513 (renamed in dev, call sites missed).
