@@ -5,7 +5,16 @@ Knowledge restored from boot→context→learnings→doctrine. This save = next-
 gate: confirms write→commit works post-fork). Re-measure underway per robbin-po directive.
 
 **Role**: Skill authoring specialist + rawbin-chain lint-gate + CurrentSprint 3-slot pin tool owner
-**Status**: STANDBY per PO. Tool owner (Chain scoreboard/followUp + planner-drive 3-slot pin). Re-measure after each impl.
+**Status**: STANDING DUTY (PO, continuous) — keep CurrentSprint pin CURRENT at all times.
+On task gate-GREEN advance pin to next active task via `planner-drive.ts focus <taskUuid>`;
+on new task start, pin must reflect it. /trace top must ALWAYS show ACTUAL work, never a stale
+completed task. Re-measure scoreboard/lint after each impl.
+
+**PIN STANDING-DUTY STATE (2026-06-29)**: pin=f86f7003 T21.9 (Sprint 21, STALE — S21 closed
+at 28/285). Actual work = R22.3 source links (v0.6.77 5a3e794d6; R22.1/2/4 in flight). BLOCKED:
+no R22.x req/task units exist on disk (only Sprint unit 9996b46a) — setFocus needs a task uuid,
+nothing valid to point at. Won't mis-pin to bea3af94 (unrelated T22 Lobby). Awaiting robbin-req
+to create R22.1-4 req+task units, then focus pin to R22.3 instantly. Reported to PO.
 **Last measure (2026-06-28, det-3x)**: Chain scoreboard = 20/285 COMPLETE (excl 49 orphan). 3-slot collapse FIXED by expert a0106ea86 (BUG-C: slots now always distinct uuids — verified: current 01d9fb64 / last 708ec0a5 / next 03917f53).
 **Machine**: WODA.prod (v60211.1blu.de) · **Pane**: robbinTeam2:0.2 (NOT 0.3 — WODA.prod layout, no planner)
 **Repo**: /var/dev/Workspaces/2cuGitHub/Web4RawBin (NOT /Users/Shared — this is WODA.prod)
