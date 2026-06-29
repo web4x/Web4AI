@@ -46,6 +46,8 @@ REMAINING (flagged to PO, needs coordinated restart — do NOT live-edit): data/
 ## S22 gates (live version climbing): 
 - R22.1 GREEN DET-3x v0.6.75 (gate c6560f97f) — one Traceability Chain section + clickable orange /md/ forward links, all 3 detail views.
 - R22.2 GREEN DET-3x v0.6.76 (gate cb8d3eceb) — desktop dblclick zoom-toggle (2x@point/reset), FULL RED(v0.6.75)->GREEN(v0.6.76). 
+- R22.3 source links GREEN DET-3x v0.6.78 (gate adddd7ae5) — Class→.puml/Method→.ts:line/Impl→.ts:line clickable 📂.
+- R22.4 clickable PNGs RED DET-3x v0.6.78 — REAL BUG: PNGs clickable but link 404s (no .png serve handler; only .svg@1352). Awaiting expert fix + re-gate r224.
 - CHAIN-DEBT (R21) CLOSED e977a1526 (20->28/285).
 Wired 8 R21 Test hops (R21.2 excluded — Impl open-expert). Created Test units + [test:uuid:] markers in gate files + Impl.tests[]->Test for R21.1,3,4,5,6,7,8,9. Test crediting is LENIENT (Test unit in idx + marker in test/ + Impl.tests[] ref; no strict-AST). chain tooling: `npx tsx scripts/objectVerb.ts chain scoreboard|lintMarkers`. det-2x = 28/285. See learnings "Wiring Test hops".
 
