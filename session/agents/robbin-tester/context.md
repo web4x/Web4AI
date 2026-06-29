@@ -50,6 +50,7 @@ REMAINING (flagged to PO, needs coordinated restart — do NOT live-edit): data/
 - R22.4 clickable PNGs: RED v0.6.78 (clickable but 404, no .png serve handler) -> GREEN DET-3x v0.6.79 (expert added /md raster-image handler server.ts:1366, /md/<x>.png->200). FULL RED->GREEN. gate r224 (in adddd7ae5).
 - R22.3 RbFileDetail data-gap I flagged: expert filled the 7 chain-walk units (4e3c3df0d) -> RbFileDetail now shows rb-file-detail.ts:25 + Class sprint-21.puml. discrepancy CLOSED.
 - *** S22 R22.1-R22.4 ALL GREEN DET-3x. *** Live v0.6.79.
+- R22.5 audio+YouTube preview GREEN DET-3x v0.6.80 (gate 0eb5f64cc) — fillPreviewPane: audio/*-><audio controls>, Heartspaces .url(2746ab4a)-><iframe youtube.com/embed/a-_CuBOu6BA>. Synthetic File-unit fixture for audio (created+deleted, 0 pollution).
 - CHAIN-DEBT (R21) CLOSED e977a1526 (20->28/285).
 Wired 8 R21 Test hops (R21.2 excluded — Impl open-expert). Created Test units + [test:uuid:] markers in gate files + Impl.tests[]->Test for R21.1,3,4,5,6,7,8,9. Test crediting is LENIENT (Test unit in idx + marker in test/ + Impl.tests[] ref; no strict-AST). chain tooling: `npx tsx scripts/objectVerb.ts chain scoreboard|lintMarkers`. det-2x = 28/285. See learnings "Wiring Test hops".
 
