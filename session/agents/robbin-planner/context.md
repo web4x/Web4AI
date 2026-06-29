@@ -38,8 +38,12 @@
 - skill-expert/expert built the 5 skills FAST (architecture FIRM b1db76878 → impl markers 7dd6a762c/0dc784cc5 → Test hops wired d33440e1c → 32/297). Flipped T24.1-5 testing[x] → QA Review.
 - ★ HONEST VERIFICATION BASIS (held discipline, source-verified per task): T24.1 explicit gate b810aa690 (objectVerb GREEN DET-3x) · T24.2 explicit gate c0bbecb2f (getThreeSlots GREEN DET-3x) · T24.3/4/5 = chain-COMPLETE (32/297) + each tool's INHERENT gate (objectVerb scoreboard / round-trip --check / trace:audit:strict), NO separate per-task DET-3x commit — flagged to PO. Verb-ACs left UNCHECKED: several are explicitly TARGET/forward (advance-gate, owner-rejection, shim-parity) — blanket-check would falsely claim target-done (#27/#9). The board honestly shows testing[x]+QA-Review with forward-ACs open.
 
+## ✓ S25 — Apple DnD (measure-first): T25.1 stood up (commit 55cde10b8).
+- Frame (PO): Apple DnD items are URL SCHEMES (mailto/webcal/calshow/maps/geo/tel/x-apple-reminder), NOT files — routed on the R23.2 YouTube model. Phase 1 = R25.1 comprehensive DnD LOGGING instrument (8 ACs) to reveal which schemes Apple sends; R25.2+ per-scheme handlers DEFERRED until Tron-room logs (measure-first).
+- T25.1 06544a45 → R25.1 649e9f4c + uc 5fc59adc, sprint c7d700c6.tasks[]=1. Status In Progress implementing[x] (source-verified expert ship v0.6.86 625d96d25, RoomView.ts drop handler). testing OPEN (no committed tester GREEN yet). My earlier drop-dispatcher/content-preview brief to req was spot-on — R25.1 instruments exactly RoomView.ts:178 + drop-dispatcher routeUnknown:81.
+
 ## ▶ NEXT / OPEN
-- S22/S23/S24 ALL at QA Review — awaiting Tron's Done gate across all three. Done=Tron only (#9).
+- S22/S23/S24 ALL at QA Review — awaiting Tron's Done gate. S25 T25.1 In Progress (testing pending tester GREEN). Done=Tron only (#9).
 - If PO/tester wants strict per-task DET-3x on T24.3/4/5, tester adds explicit gate commits → I re-verify. Future skill status flips via pipeline (edit unit→regenerate→--check→commit; #102 self-mark, I source-verify).
 - Repo ahead of origin/main (multiple agents committing). Push only on PO direction / clean point (#13) — others' in-flight + dist artifacts ride along.
 - Status-flip flow (any task): tester/expert self-mark (#102) → I verify the committed verdict commit → flip the UNIT (statusChecklist/status) → RE-RUN the generator — never hand-edit the MD (law #100).
