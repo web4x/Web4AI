@@ -17,6 +17,16 @@ Sprint 23/T23.3, req done, uc+ pending (T23.3 In Progress, tester gating). My pi
 <- planner task 52ebca28c (linear, no conflict). Version at v0.6.84 (expert). PO holds pin per
 task until gate signal (learning #125). WATCHERS: none active.
 
+**S24 CLOSED 2026-06-29 (32/297 det-3x, commit 7353f7989)**: Sprint 24 (Traceability Skills —
+formalizing MY tools: objectVerb engine, pin, Chain scoring, sprint-md, trace-audit) CLOSED GREEN
++ traceable. R24.1-5 all credit. Sprint closed via MARKER batch (expert [impl:uuid:] on named
+methods + tester [test:uuid:], 0 new logic) — exactly as I measured/predicted. Pin walked
+T24.1->T24.5, now Current=T24.5 Last=T24.4 Next=none. getThreeSlots fix (v0.6.85) verified —
+sprint-scoped, no phantom. FINDINGS flagged for R24.2 pin formalization: (a) pin depth != scoreboard
+credit (pin=unit+wire, scoreboard=+marker); (b) complete task pins show wip=req depth=0 (setChain
+resets activeHop=0). My S24 AC review (R24.1/R24.3) landed in req's reqs (6cd9248cb incl AC-6
+delegation finding). chain-skills-formalization.md = my design contribution (02a509520).
+
 **LATEST 2026-06-29 (commit 3dd6bc314)**: (1) R22-R23-marker-checklist.md written+committed — 6
 chains (R22.1-4+R23.1-2) block at Impl+Test (Group B), target 27->33/297, R21 hard-rules baked in.
 (2) R23.3 UC fc7356af MINTED per PO (architect omitted it) -> R23.3 req+uc=check; pin T23.3 advanced
