@@ -808,6 +808,18 @@ produces a link/href, the acceptance check is `curl -s -o /dev/null -w '%{http_c
 serve handler exists for it (here: /md/*.svg had one, /md/*.png did not). Presence of the trigger ≠
 presence of the destination.
 
+## A fix to a deriver doesn't fix its PERSISTED cache — re-persist (getThreeSlots, 2026-06-29)
+getThreeSlots() computes the CurrentSprint 3-slot view; I redesigned it (global scan → sprint-scoped)
+and PROVED the new function correct by running it against live data (current=T24.2, no phantom). But the
+LIVE server still showed the phantom — because the server's /api/trace/children reads the slots from the
+singleton unit's PERSISTED model.slots (written by the OLD client code via persist()), it does NOT call
+getThreeSlots at request time. So the code fix + rebuild + restart were all necessary but NOT sufficient:
+the stale persisted/cached derived value had to be RE-COMPUTED with the new code and RE-WRITTEN. **How to
+apply:** when fixing a function whose OUTPUT is cached/persisted/denormalized (model.slots, a snapshot
+field, a materialized view, a build artifact), enumerate every STORE of its output and refresh them — then
+verify at the SURFACE that actually reads (here: curl the live /api/trace/children, not just unit-test the
+function). "Function is correct" ≠ "what users see is correct" when a stale copy sits between them.
+
 ## Measure the AUTHORITATIVE layer; prod identity surgery needs EXPLICIT human consent (3→1 merge, 2026-06-29)
 Two compounding lessons from merging 3 duplicate prod profiles into one. (1) WRONG LAYER: I first reported
 "3effa1fc has a different number +4915" from the SCENARIO Phone unit — but the runtime data/profiles.json
