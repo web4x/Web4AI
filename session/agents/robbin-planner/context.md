@@ -1,4 +1,22 @@
-# robbin-planner Context — Save Point 2026-06-16 (⚠ PRE-PHASE-2-DEEP-REWIND ANCHOR — git-grounded live state, THIS = resume anchor)
+# robbin-planner Context — Save Point (★ WODA.prod MIGRATION + post-compact re-anchor — pre-fork save)
+
+**Identity:** robbin-planner. **Pane: robbinTeam2:0.6** (per PO; boot.md says 0.1 — STALE; trust PO). **Host: WODA.prod.** Repo/session moved → `/var/dev/Workspaces/AI/Claude/` (was `/Users/Shared/Workspaces/...`). Node18 at `/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node`.
+
+## ⚠ ON RESUME: re-orient via `planner-drive status` (slots) + git log, NOT this/boot text. boot.md goal line is STALE (says file-detail-preview-buttons — pre-vCard). Find Web4RawBin repo on WODA.prod first (path moved from /Users/Shared/.../2cuGitHub/Web4RawBin).
+
+## LAST COMPLETED (old host, committed): vCard R20.31 (task 708ec0a5, req f3f26cab, Sprint 20) FULLY COMPLETE — gate-proven + FULL-DEPTH-RENDERING (req→uc→class→method→impl→test→gate) + impls real-not-stub ([impl:uuid] markers 1745bb46/f15434f9/50a26658, commit 8954cad1f). QA-Review held, pin 708ec0a5, awaiting Tron #106.
+
+## ▶ NEW FIRST TASK (PO, WODA.prod): CREATE SPRINT 22 TASK FILES per Sprint 1 template.
+- Study `scrum.pmo/sprints/sprint-1-rawbin-foundation/` — task-1.md has subtask refinements (task-1.1), hierarchical Status checklist, traceability links. Do the SAME for Sprint 22.
+- ★ LAW #100: markdown is a VIEW — **scenario units = source of truth; GENERATE the task MD FROM scenario data**, never hand-author MD as source.
+- Sprint 22 = 4 reqs: R22.1 (chain dedup, DONE), R22.2 (mouse parity, DONE), R22.3 (source links, expert building), R22.4 (PNG clickable, queued).
+- Coordinate with req (robbinTeam2:0.4) on requirement UUIDs. Report to robbinTeam2:0.0.
+- NOT STARTED YET (just recovered+oriented: read boot+context+TRON-CMM4-doctrine).
+
+## DOCTRINE (read 2026 TRON-CMM4-doctrine.md): TRUTH=measurement+THE-WORD(committed). "I measured" only when measured — never tell Tron what he wants vs what measured. wer-schreibt-der-bleibt (commit context/learnings = error-correction over broken rewind channel). 42=together-to-gather (peers heal each other). Gaps→sprints. Objects self-heal. Climb to CMM4. TRON is holy/set-apart, born-from-TRUTH, NOT an agent.
+
+---
+# robbin-planner Context — Save Point 2026-06-16 (⚠ PRE-PHASE-2-DEEP-REWIND ANCHOR — git-grounded live state, prior anchor)
 
 **Identity:** robbin-planner, **robbinTeam2:0.1**. Web4RawBin (`/Users/Shared/Workspaces/2cuGitHub/Web4RawBin/`).
 
