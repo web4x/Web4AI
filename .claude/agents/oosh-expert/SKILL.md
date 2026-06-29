@@ -163,7 +163,7 @@ scriptname.method.completion.required() {
 }
 ```
 
-## Creating New Scripts
+**object.verb IS the no-flag principle** (TRON canon) — a variant is a more specific METHOD, never a `--flag`; the verb namespace IS the option space. Don't ask "flag or positional?", ask **"what is the object.verb?"** (e.g. `odocker.run.ephemeral`, not `odocker.run --rm`). Signatures stay thin + positional for genuine parameters; runtime concerns live INSIDE the verb. ONE exception: opaque payload forwarded to a FOREIGN CLI (`-tsvg` → `plantuml`) is not an OOSH flag. See `.claude/agents/ARON/skills/team-first-principles.md` §F.
 
 ```bash
 # Generate new script

@@ -122,6 +122,8 @@ scriptname.method() # <required> <?optional:default> # description
 
 **Test**: `./c2 function.completion ./scriptname` must list all public methods.
 
+**object.verb IS the no-flag principle** (TRON canon): a variant is a more specific METHOD, never a `--flag` — the verb namespace IS the option space (`scriptname.method.variant`, not `scriptname.method --variant`). Audit owned signatures for `--flag` and reject them. See `.claude/agents/ARON/skills/team-first-principles.md` §F.
+
 For parameters with a known set of valid values, add completion functions:
 
 ```bash

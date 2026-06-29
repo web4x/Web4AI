@@ -126,6 +126,14 @@ fi
 ```
 **Why**: `EPERM 1 Operation not permitted` tells a developer nothing useful. `path does not exist: /User/donges/.ssh` tells the user exactly what to fix. Every error a user can trigger must have a human sentence.
 
+### 5. No `--flag` in the Signature → Design Defect
+A reviewed method signature carrying a `--flag` is a **design defect**, not a passing test. **object.verb IS the no-flag principle** — the variation belongs in the method NAME, not a flag (`odocker.run.ephemeral`, never `odocker.run --rm`). Reject it and point back to the verb that should have encoded the option.
+```bash
+# Flag the signature comment for any OOSH --flag
+grep -nE '\.\w+\(\).*--[a-z]' scriptname && echo "DESIGN DEFECT: --flag should be an object.verb"
+```
+ONE exception: opaque payload forwarded to a FOREIGN CLI (`-tsvg` → the `plantuml` binary) is not an OOSH flag. See `.claude/agents/ARON/skills/team-first-principles.md` §F.
+
 ### Known Bug Reference: claudeCode context.read
 `claudeCode context.read` failed when called without the optional `target_pane` param because the method required it internally. This is the exact class of bug these checks catch — optional params that aren't actually optional. Always verify optional params have working defaults.
 

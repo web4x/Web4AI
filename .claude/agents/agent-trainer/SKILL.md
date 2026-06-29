@@ -309,7 +309,8 @@ Symlinked to `.cursor/skills/` for Cursor IDE access.
 When you discover these patterns, ensure they are in ALL relevant SKILL.md files:
 
 - **OOSH-Only Rule**: Never use raw tmux commands (`tmux send-keys`, `tmux capture-pane`, etc.). Always use `otmux` and `hiveMind` wrappers.
-- **No Skip Permissions**: Never use `--dangerously-skip-permissions`. ScrumMaster handles all approvals.
+- **No Skip Permissions**: Never use `--dangerously-skip-permissions`. ScrumMaster handles all approvals. (NOTE: this is the CLI `--dangerously-skip-permissions` no-flag — a DIFFERENT no-flag from the OOSH-design one below. Do not conflate when propagating.)
+- **object.verb IS the no-flag principle** (TRON canon, 2026-06-29 — the DEEP form): propagate this exact phrasing, never the shallow "no flags". In OOSH the verb namespace IS the option space — a variant is a more specific METHOD (`odocker.run.ephemeral`), never a `--flag`; ask "what is the object.verb?". Targets are agents that DESIGN/REVIEW OOSH interfaces (oosh-expert, product-owner, oosh-tester, script-product-owner, developer). ONE exception: opaque payload forwarded to a FOREIGN CLI is not an OOSH flag. Single source — link it, don't re-paste: `.claude/agents/ARON/skills/team-first-principles.md` §F.
 - **Context Preservation**: At 20% context remaining, STOP work, save state to `session/agents/<role>/context.md`, run `/compact`.
 - **Save Before Compact**: NEVER run `/compact` without saving state first. Sequence is always STOP → SAVE → `/compact`.
 - **Named Sessions**: Every Claude Code session must have a name matching the agent role. No unnamed sessions.
