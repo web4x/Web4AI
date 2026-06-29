@@ -25,7 +25,8 @@
 - **v0.6.74 LIVE on prod** (MEASURED 2026-06-28): /api/health=0.6.74; live /dist bundle has pz-viewport+rb-preview-pane, old pinch path=0; sw.js=rawbin-v0.6.74. Prod IS this checkout → disk bundle served, no restart needed (no server.ts route change). **git: main ahead origin/main by 4 — NOT pushed to GitHub remote (needs PO/Tron go; touches prior unpushed commits).**
 - **R21 CHAIN-DEBT CLOSED (expert side)** commit 6b2048f19 (pushed origin/main): 8/8 Impl hops credit (R21.1,3,4,5,6,7,8,9), det-3x 8/8/8, lintMarkers 0 R21 orphans/collisions. All fabricated 2100xx uuids re-minted fresh (f2174329/c709147a/801f53b3/ce2501d3/cc6df739/4a7d30bb/f8b113b7; d1337706 kept). R21.2 HELD (feature deferred S22). Test hops routed to robbin-tester (8 [test:uuid:]) → 28/285 after tester.
 - Decisions DONE: push origin/main (HEAD 6b2048f19); purge=tester(0.5); R21.2=defer S22.
-- Remaining: tester's 8 test markers; R21.2 + purge in S22.
+- **S21 CHAIN FULLY TRACED — MEASURED 28/285 (tester wired 8 Test hops, e977a1526).** R21.1,3,4,5,6,7,8,9 ALL fully COMPLETE (Impl check + Test check, verified det). R21.2 (renderNameOnConnect Impl) = sole remaining R21 node, deferred S22. Sprint 21 = functional GREEN + chain-traced.
+- Remaining: R21.2 + purge in S22.
 
 ## Chain crediting rule (buildStrictImplSet, skill-classes.ts:135-167) — MEASURED 2026-06-29
 An `[impl:uuid:U label]` credits U ONLY if: (1) idx.has(U) [unit exists], AND (2) the marker
