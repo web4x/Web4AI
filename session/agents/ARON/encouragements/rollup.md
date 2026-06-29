@@ -27,3 +27,4 @@
 | 2026-06-29 | Round 9 | steady: 4 tasks/75min; robbin-po working w/ commits (761d6f1); oosh-po at prompt. Healthy. |
 | 2026-06-29 | Round 10 | robbin-po active (committing, anchor 8f7cff1, R21.2 deferred); oosh-po at prompt (watch); tasks 1/75min (work via commits not new files) |
 | 2026-06-29 | Round 11 | MILESTONE: robbin-po closed Sprint 21 GREEN, now standing-by (awaiting next-sprint/TRON). oosh-po idle several rounds — re-driven. tasks 0/75min (sprint just closed). |
+| 2026-06-29 | Round 12 — HOLD | both POs idle but DONE/awaiting-TRON (robbin-po Sprint21 GREEN standing-by; oosh-po idle, no response to re-drive). Held nudge (re-nudging is ineffective here); blocker = next-sprint decision (TRON). Already surfaced R11. SM enforces idle. |
