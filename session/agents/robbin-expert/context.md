@@ -15,7 +15,10 @@ scenarioBrowserLinkFromIor); removed JS .dv-link click handler. + 9 S21 Task uni
 planning.md (per-task MD files DON'T exist → planner duty S22; pointed at real planning.md so 📂
 link works). Family-scope nuance: renderLinks is DEAD (uncalled) in rb-class/implementation-detail
 → left untouched (no live bug); flagged for DRY cleanup. Chain NOT regressed (R21 8/8). Live: /api/health
-0.6.75, /trace=trace-page-SE3ZQ27T, sw=rawbin-v0.6.75.
+0.6.75, /trace=trace-page-SE3ZQ27T, sw=rawbin-v0.6.75. **TESTER GREEN DET-3x gate c6560f97f
+(R22.1 CLEARED):** 1 chain section on all 3 views (0 inline h4), clickable orange <a>/md/ forward
+links proven on Task+Requirement; UseCases have 0 forward links in graph (nothing to click, <a> fix
+source-confirmed). Per-task MD generation still open for S22 (planner).
 
 ## Sprint 21 (Contact Identity) — progress
 | Req | What | Commit | Version | Gate |
