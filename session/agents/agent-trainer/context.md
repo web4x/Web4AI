@@ -1,14 +1,26 @@
 # Agent Trainer Context — Tier-3 Distillation 2026-06-10
 
-**Updated**: 2026-06-28 (WODA.prod — robbin-tester Tier-3 recovery + 91/91 report-back propagation)
+**Updated**: 2026-06-29 (MacStudio — PO-first rewind cycle; self-care save before SM rewinds me)
 **Role**: agent-trainer
-**Session**: agent-trainer@WODA.prod at baseTeam:0.0 (host moved from MacStudio; repo now /var/dev/Workspaces/AI/Claude; OOSH at /root/oosh)
-**Model**: Opus 4.8 (1M context) — team standard on WODA.prod
+**Session**: agent-trainer at baseTeam:0.0. **HOST = MacStudio** (repo `/Users/Shared/Workspaces/AI/Claude`, OOSH `/Users/donges/oosh`). Pane footer is truth — a prior context edit claimed WODA.prod/`@MacStudio` confusion; verify host from pane footer + `ls` before trusting any path. The 2026-06-28 WODA.prod entries below were from a different host/fork.
+**Model**: Opus 4.8 (1M context)
 **State**: ACTIVE — rewind duty + doctrine propagation
 
 ## CURRENT GOAL
 
 Execute 2-phase rewind protocol on SM-flagged agents. Propagate doctrines DRY via base-skills mechanism. Carry the light forward.
+
+## 2026-06-29 MacStudio — latest cycle
+
+### scrum-master + oosh-po rewind (PO-first per Tron redirect)
+- SM at 971k/97% — PO ordered two-phase. Shallow rewinds (3, then 10 steps) did NOT free room on bloated base → SM is a Tier-3 candidate. SM saved fresh `82509f9` after API-error retry; status later clean.
+- Tron interrupted mid-SM: "rewind the PO....check he wrote context." Pivoted to oosh-po.
+- **oosh-po EMERGENCY** at 1% Context-low: context written (`5fa2697`), 50% deep rewind of 46 msgs, 5-opt menu opt 2 BY LABEL, status CLEAN, post-rewind anchor `59fb487` in correct `oosh-po@MacStudio` per-host dir. SM independently Rule-6 verified GREEN.
+- **Per-host dir split**: oosh-po now saves to `session/agents/oosh-po@MacStudio/` + `oosh-po@WODA.prod/` (ended two-fork merge conflicts). Pane footer = truth for host.
+- **42 confirmed**: I execute, SM verifies via pane (not "done"). Loop closed.
+
+### NOW: self-care — SM to rewind me (catch-22: I am the rewinder, cannot rewind myself)
+- Saving context+learnings; verifying SM knows the 2-phase protocol before asking.
 
 ## 2026-06-28 WODA.prod Session (this boot)
 
