@@ -4,7 +4,13 @@
 **Machine**: WODA.prod · **Pane**: robbinTeam2:0.1
 **Repo (WODA.prod)**: /var/dev/Workspaces/2cuGitHub/Web4RawBin · **Live**: prod.wo-da.de:4444 (tmux session `rawbin`)
 **AI/Claude repo** (context/learnings): /var/dev/Workspaces/AI/Claude
-**Current version**: v0.6.75 LIVE (detail-view UI fixes: dup-chain + clickable Forward Links).
+**Current version**: v0.6.76 LIVE (R22.2 mouse-parity dblclick). R22.3 source-links IN PROGRESS (v0.6.77).
+
+## R22.2 (commit 073378b7d, LIVE): added dblclick→doubleTapToggle in RbPanZoom.attach() (pan-zoom.ts); marker 7831f755 on RbPanZoom.doubleTapToggle + Impl unit created (not orphan). R22 chain UC/Class/Method architect-pending.
+## R22.3 source-links (v0.6.77) — 3 prereq fixes per architect, ONE commit if clean:
+(1) API: /api/trace/children (server.ts ~963) — add sourceFile+sourceLine PER CHILD (mirror top-level 995-998).
+(2) DATA: Class 4e678ce3 sourceFile=scrum.pmo/sprints/sprint-21-contact-identity/diagrams/sprint-21.puml; Method 9c21f3b5 sourceFile=.ts:line; FIX Impl f8b113b7 wrong path (src/ts/server/→src/public/ts/trace/).
+(3) RENDERER: renderChainPathSection — source links per type: Class→puml+svg, Method→ts:line, Impl→ts:line (renderSourceLink pattern). [impl:uuid:] markers IN commit.
 
 ## v0.6.75 UI fixes (commit 61b21fbf6, pushed, LIVE on prod — MEASURED 2026-06-29)
 Architect diag 35bec7d. **Bug#1** dup "Traceability Chain: No chain": deleted INLINE renderSingularChain
