@@ -796,6 +796,18 @@ the shared unit, mint-or-reuse ladder. AND: my temp-dir harness CAUGHT the AC-a4
 ship — ALWAYS encode the AC's literal example ("GmbH & Co KG"→acme) as a harness assertion, not
 just the happy path. The bug you measure is the bug you don't ship.
 
+## Verify the LINK RESOLVES (HTTP 200), not that the <a> renders — file-exists ≠ route-serves (R22.4 RED, 2026-06-29)
+I made /md PNGs clickable and "curl-verified" by counting 124 `🖼 <a href>` rows — and reported it
+live. Tester found the links 404: there was no /md raster-image SERVE handler (only .svg had one),
+so clicking opened nothing. I had confirmed (a) the PNG files exist on disk and (b) the `<a>` renders
+— but NOT (c) that GET on the href returns 200. A clickable link to an unserved path is a dead link.
+This is the SAME "don't ship a link you didn't confirm resolves" lesson from v0.6.75 — confirming the
+target FILE exists is not enough; the ROUTE that serves it must exist too. **How to apply:** when a fix
+produces a link/href, the acceptance check is `curl -s -o /dev/null -w '%{http_code}' <the-actual-href>`
+== 200 (or the real fetch), NEVER "the anchor tag is present." For a new clickable type, grep that a
+serve handler exists for it (here: /md/*.svg had one, /md/*.png did not). Presence of the trigger ≠
+presence of the destination.
+
 ## Client changes self-deploy on WODA.prod; server.ts changes need a deploy-gated restart → batch them (R22.3/R22.4, 2026-06-29)
 On WODA.prod the prod server IS this checkout (bundles served from disk, version read per-request),
 so a client/bundle change goes live the moment I build+commit — no restart. But a **server.ts ROUTE/
