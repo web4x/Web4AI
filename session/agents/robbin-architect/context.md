@@ -2,6 +2,10 @@
 
 ## ADJUDICATION: PO ruled AC-a5 — nameKey auto-merge WITHOUT domain IS correct (Tron "do not duplicate companies"). My AC-a5 was over-precise. No code change. (Lesson: don't out-precise Tron's stated intent.) AC-b3 (different-domain merge) FIXED by expert in c22083798 (nameKey recall gated on no-domain) — matches my recommended fix; tester should re-gate R21.8.
 
+## LATEST: SPRINT 21 TRACEABILITY REWORK DONE — commit 5d409e03c (project repo). PO-authorized override of "don't create tasks" (no planner on WODA.prod). Created 9 ior:class:Task units T21.1-T21.9 (Web4Articles pattern: SHORT name != DETAILED desc; coveredRequirements[]->R21.x; useCases[]->UC; ownerIor->Sprint21). Wired Sprint21 1bdfaafa tasks[]=9. Advanced CurrentSprint pin off Sprint-20 T-drawer-full-width to Sprint 21/T21.9 (verified pinCurrent sprintName="Sprint 21"). req(0.4) triple-verified all 9 req UUIDs. 9/9 task verify PASS.
+- Task UUIDs: T21.1 0c1b375e, T21.2 a25e2787, T21.3 1bae9710, T21.4 e83dc244, T21.5 3960168e, T21.6 af9dc6cc, T21.7 18845496, T21.8 842d4f01, T21.9 f86f7003.
+- PIN MECHANISM (WODA.prod): planner-drive.ts needs tsx via Node18 — `<node18> node_modules/tsx/dist/cli.mjs scripts/planner-drive.ts <verb>` (plain `npx tsx` picks wrong node → ERR_UNKNOWN_FILE_EXTENSION). focus <task> sets chain+task but NOT sprintName; setChain <req> <uc> <class> <method> <impl> <test> "Sprint N" "Task" sets sprintName too. Pin persists to CurrentSprint unit.
+
 ## FINAL PDCA (v0.6.74 2a1357a69): all 3 flagged items RESOLVED — GREEN.
 - AC-f2 DRY ✓: content-preview.ts old @400px iframe pinch-zoom RETIRED → <rb-preview-pane>/RbPanZoom; grep '400px|pinch-zoom' = NONE REMAINING; RbPanZoom now imported by RoomView (room) + rb-detail-view + rb-file-detail + content-preview (trace). Old path GONE, proven by removal.
 - AC-e5 ✓: pan-zoom.ts:53 mousedown now calls gesturing() → iframe pointer-events:none on desktop drag too.
