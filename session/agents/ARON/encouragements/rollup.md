@@ -35,3 +35,4 @@
 | 2026-06-29 | Round 18 | oosh-po dialog CLEARED by SM (back to clean prompt) — gave one fresh nudge. robbin-po HELD (clean standby, awaiting TRON Sprint22). tasks 1/90min. |
 | 2026-06-29 | Round 19 | oosh-po RE-ENGAGED (releasing S3, NP-4 next) — post-unblock nudge worked; not interrupting. robbin-po HELD (clean standby, await TRON Sprint22). |
 | 2026-06-29 | Round 20 — both held | oosh-po delivered S3 last round, now quiet (done-state, hold not re-nag); robbin-po clean standby (await TRON Sprint22). Both delivered-and-waiting, not stalled. |
+| 2026-06-29 | Round 26b — doctrine learning | robbin-po: Sprint 22+23 SHIPPED (6 features) but /trace pin sat stale on T21.9 (pin owner never told). New rule: gate GREEN -> signal pin owner IMMEDIATELY; stale pin = PO fault. Added to cmm4-build-up + essence. (Team did NOT stall — it shipped; the signal didn't flow.) |
