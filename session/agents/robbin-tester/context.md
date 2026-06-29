@@ -43,6 +43,9 @@
 Removed 215 files (133 scenario/index test units + 82 alt symlinks). index 3765->3632; alt company 26->1, domain 21->0, email 19->1, phone 19->1 (survivors = Cerulean + Tron). Live API: test suggest 11->0, test phone 200->404; Tron+Cerulean intact. Method: SAFE-uuid hard-exclude + alt-deleted-by-resolved-target + measure before/after (see learnings: safe prod-data purge).
 REMAINING (flagged to PO, needs coordinated restart — do NOT live-edit): data/profiles.json (gitignored, in-memory-backed) still has test userProfiles incl R21.4 phantom c56e7ba7. + 1 untracked scenario/content/<hash> of unverified origin left untouched.
 
+## CHAIN-DEBT CLOSED 2026-06-29 (commit e977a1526): scoreboard 20->28/285
+Wired 8 R21 Test hops (R21.2 excluded — Impl open-expert). Created Test units + [test:uuid:] markers in gate files + Impl.tests[]->Test for R21.1,3,4,5,6,7,8,9. Test crediting is LENIENT (Test unit in idx + marker in test/ + Impl.tests[] ref; no strict-AST). chain tooling: `npx tsx scripts/objectVerb.ts chain scoreboard|lintMarkers`. det-2x = 28/285. See learnings "Wiring Test hops".
+
 ## Session 2026-06-15/16 — S20 gates (v0.6.50→0.6.62)
 - R20.28 preview-buttons: GREEN DET-3x (Preview 167px + NewTab, cv-preview-toggle). Gate 772f0aa4.
 - R20.30 traceability-chain depth: GREEN — chain descends Class→Method→Impl→Test (RbDetailDrawer deep-link, ~27s async resolve). Differs from All-Children. RED baseline v0.6.57 "Loading chain..." → GREEN v0.6.59.
