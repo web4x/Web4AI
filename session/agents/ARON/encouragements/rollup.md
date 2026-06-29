@@ -29,3 +29,4 @@
 | 2026-06-29 | Round 11 | MILESTONE: robbin-po closed Sprint 21 GREEN, now standing-by (awaiting next-sprint/TRON). oosh-po idle several rounds — re-driven. tasks 0/75min (sprint just closed). |
 | 2026-06-29 | Round 12 — HOLD | both POs idle but DONE/awaiting-TRON (robbin-po Sprint21 GREEN standing-by; oosh-po idle, no response to re-drive). Held nudge (re-nudging is ineffective here); blocker = next-sprint decision (TRON). Already surfaced R11. SM enforces idle. |
 | 2026-06-29 | Round 13 — HOLD (unchanged) | both POs still idle/done-awaiting-TRON; 0 tasks/90min; no change since R11 surface. Held nudge (no re-nag). Watching for TRON next-sprint word. |
+| 2026-06-29 | Round 17 — oosh-po BLOCKED | oosh-po stuck at feedback dialog (1Bad/2Fine/3Good/0Dismiss); flagged SM to clear (prompt-handling = SM domain). robbin-po still idle/awaiting-TRON. tasks 1/90min. |
