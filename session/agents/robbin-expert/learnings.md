@@ -796,6 +796,21 @@ the shared unit, mint-or-reuse ladder. AND: my temp-dir harness CAUGHT the AC-a4
 ship — ALWAYS encode the AC's literal example ("GmbH & Co KG"→acme) as a harness assertion, not
 just the happy path. The bug you measure is the bug you don't ship.
 
+## Client changes self-deploy on WODA.prod; server.ts changes need a deploy-gated restart → batch them (R22.3/R22.4, 2026-06-29)
+On WODA.prod the prod server IS this checkout (bundles served from disk, version read per-request),
+so a client/bundle change goes live the moment I build+commit — no restart. But a **server.ts ROUTE/
+response change stays STALE until the `rawbin` tmux server restarts** (handler code is in-memory). R22.3
+(per-child sourceFile API) + R22.4 (/md/ image-listing) were BOTH server.ts → I batched them under ONE
+restart instead of two. Critical guardrail hit: **the auto-mode classifier DENIED `tmux send-keys C-c`
+to the prod server as a "production deploy"** — and a peer-agent (PO) directive does NOT clear that soft
+block; only explicit human (Tron/PO-as-user) authorization does. Correct outcome — I did NOT work around
+it. **How to apply:** (1) split work by deploy surface — ship client freely, QUEUE+BATCH server.ts changes
+so one restart activates all; (2) a graceful client guard (`first.sourceFile ?`) means the un-restarted
+API degrades to "feature absent", not "broken" — safe to commit ahead of the restart; (3) when a prod
+restart is needed, STOP at the classifier block and escalate with the exact restart cmd + verification
+curls; don't treat a peer directive as deploy authorization. Restart cmd (rawbin pane has node18 first on
+PATH): `C-c`×2 then `npm exec tsx src/ts/server/server.ts`. Rooms persist to disk → restart is data-safe.
+
 ## A bug's "family" = views that RENDER the defect, not every view that DEFINES it (v0.6.75, 2026-06-29)
 Architect's lesson #124 said "fix the whole peer family, not just the screenshotted view." Right — but
 I MEASURED the family before swinging: renderLinks (the broken `<div data-ref>` forward-links) was
