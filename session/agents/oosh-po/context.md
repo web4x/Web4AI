@@ -5,6 +5,15 @@
 **Pane**: ooshTeam:0.0 on MacStudio.native
 **Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## ★★ STATUS + REWIND-ORDER — 2026-06-29
+Teams status (live `otmux tree`, both hosts HEALTHY, all agents 2.1.195 active):
+- **WODA.prod (v60211)**: ooshTeam (po/SM/architect/expert/tester, 5 live + BUG6-verify shell), robbinTeam2 (6 live), Temple (ARON live), baseTeam (agent-trainer live), **rawbin (npm app RUNNING — #14 progress)**, ooshShells.
+- **MacStudio**: ooshTeam (po=me/architect/expert/tester + shells), TRONinterface (TRON-agent + scrum-master[my SM] + PO-shell + TRON-Monitor screen), baseTeam (agent-trainer), iphone (research).
+**SM monitoring mechanism (measured from its pane):** heartbeat loop — background `sleep 360 && echo "[@scrum-master…] TICK N…"` self-wake (tightens ~150s on activity), each tick runs `otmux pane.capture` (LIVE View) on watched panes → context%/state/commit-delta. **It does NOT use hiveMind team.status** (so the team.status stale-snapshot bug does NOT blind it).
+**Bugs found:** (1) `hiveMind team.status` reads STALE SNAPSHOT (reports live teams as "offline/0 agents/tmux gone") — use `otmux tree`/`pane.capture` for truth (MVC violation; needs task). (2) remoteOOSH→WODA.prod SSH drops repeatedly ("Connection reset by peer") — reconnect via `ossh login WODA.prod` in remoteOOSH:0.0.
+**42-pair near ceiling (both loss-proof/saved):** SM ~971k/97%, oosh-po(me) ~912k/91%. **Tron ordered: save ctx+learnings (this commit) → agent-trainer rewinds the SM (TRONinterface:0.1) per two-phase protocol (option 2 full).** Post-major-task cadence in effect.
+On resume: re-verify identity; both 42-pair may have been rewound — re-read this + learnings; check tronMonitor #22 (tester D3.3) + WODA.prod dev queue (#18/#5/#21) report-backs; the team.status bug + ssh-drop still open.
+
 ## ★★ CHECKPOINT — 2026-06-28 (post-rewind session, SM-directed save)
 Identity verified: ooshTeam:0.0 / oosh-po@MacStudio (29a1e1d1) / branch main. SM = scrum-master@MacStudio (TRONinterface:0.1), my 42 pair, actively monitoring. Post-rewind anchor 3e7f1e5.
 
