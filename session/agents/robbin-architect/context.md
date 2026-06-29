@@ -2,7 +2,13 @@
 
 ## ADJUDICATION: PO ruled AC-a5 — nameKey auto-merge WITHOUT domain IS correct (Tron "do not duplicate companies"). My AC-a5 was over-precise. No code change. (Lesson: don't out-precise Tron's stated intent.) AC-b3 (different-domain merge) FIXED by expert in c22083798 (nameKey recall gated on no-domain) — matches my recommended fix; tester should re-gate R21.8.
 
-## LATEST (UI BUG DIAGNOSIS — design fix reported, expert to implement):
+## LATEST (PDCA CHECK R22.1, v0.6.75 61b21fbf6) = GREEN, both bugs fixed across all 3 peers.
+- (1) singularChain refs = 0 in rb-task/requirement/usecase-detail ✓ Bug#1 old path GONE.
+- (2) forward-link rows now real anchors: `<a class=dv-link href=scenarioBrowserHref(refUuid(lref))>` (orange) ✓ Bug#2 fixed — links to scenario MD.
+- (3) renderChainPathSection = sole chain section: verified 1 import + 1 call per file (grep -c showed 2 = import+call, NOT two calls), 0 inline Traceability-Chain headings ✓.
+- VERDICT: OK to gate. Family fix landed in all 3 detail views. Reported to PO.
+
+## PRIOR (UI BUG DIAGNOSIS — design fix reported, expert to implement):
 **Bug #1 "Traceability Chain: No chain" duplicate above real chain:** rb-task-detail.ts render() emits inline `<h4>Traceability Chain</h4> ${renderSingularChain(singularChain(graph,uuid))}` → "No chain" (graph-walk finds no forward steps for a Task). Then loadDetailData() calls renderChainPathSection() which emits ITS OWN <h4>Traceability Chain</h4> + correct server-walk chain. = 2 headings (empty above, correct below). SAME in rb-requirement-detail.ts:50-51 + rb-usecase-detail.ts:48-49 (all 3 peers!). Extraction-without-removal: expert ADDED renderChainPathSection (10b5d42af) but didn't REMOVE old inline renderSingularChain. FIX: delete the inline `<h4>Traceability Chain</h4>+renderSingularChain` block + dead singularChain import + `const chain=` line from ALL 3 views; keep renderChainPathSection (canonical, own heading).
 **Bug #2 Forward Links not real links:** renderLinks() emits `<div class="dv-link" data-ref>` (JS-navigate, not <a href>, goes to trace nav not MD). FIX: render as `<a href>` using scenarioBrowserLinkFromIor pattern (/md/scenario/index/<shard>/?highlight=<uuid>.scenario.json) so "profile.dropVCard" links to the UC's scenario MD; + add a Task-MD link (set Task.sourceFile to sprint task MD or derive from slug). NOTE slug mismatch: my tasks slug=task-t21-1, PO example=task-21.1-vcard-drop — align readable slug or derive MD link from sourceFile.
 
