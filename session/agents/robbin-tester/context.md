@@ -43,6 +43,8 @@
 Removed 215 files (133 scenario/index test units + 82 alt symlinks). index 3765->3632; alt company 26->1, domain 21->0, email 19->1, phone 19->1 (survivors = Cerulean + Tron). Live API: test suggest 11->0, test phone 200->404; Tron+Cerulean intact. Method: SAFE-uuid hard-exclude + alt-deleted-by-resolved-target + measure before/after (see learnings: safe prod-data purge).
 REMAINING (flagged to PO, needs coordinated restart — do NOT live-edit): data/profiles.json (gitignored, in-memory-backed) still has test userProfiles incl R21.4 phantom c56e7ba7. + 1 untracked scenario/content/<hash> of unverified origin left untouched.
 
+## S23: phone-as-identity merge gate (d1fc47e84) — RED baseline v0.6.81: (1)normalize GREEN (2)challenge GREEN (3)MERGE RED — mobile->3effa1fc != landline->2703628c, 3 Marcel Donges profiles. Awaiting expert merge -> re-gate GREEN. Pollution-free curl+wss (SystemTester-compliant).
+
 ## S22 gates (live version climbing): 
 - R22.1 GREEN DET-3x v0.6.75 (gate c6560f97f) — one Traceability Chain section + clickable orange /md/ forward links, all 3 detail views.
 - R22.2 GREEN DET-3x v0.6.76 (gate cb8d3eceb) — desktop dblclick zoom-toggle (2x@point/reset), FULL RED(v0.6.75)->GREEN(v0.6.76). 
