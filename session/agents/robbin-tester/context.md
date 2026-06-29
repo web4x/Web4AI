@@ -45,7 +45,8 @@ REMAINING (flagged to PO, needs coordinated restart — do NOT live-edit): data/
 
 ## S23: phone-as-identity merge gate (d1fc47e84) — RED baseline v0.6.81: (1)normalize GREEN (2)challenge GREEN (3)MERGE RED — mobile->3effa1fc != landline->2703628c, 3 Marcel Donges profiles. MERGED + GREEN DET-3x (gate 3b6d27659, full RED d1fc47e84 -> GREEN). Non-destructive consolidate (8c583ec51): primary 8f74dfba, 3effa1fc+2703628c redirectTo=8f74dfba (not deleted); 1 active Marcel; landline->8f74dfba; Heartspaces+Marcel Room under primary; +4915253844085 was test pollution (removed). Pollution-free gate.
 - v0.6.84 Heartspaces member-dedup GREEN DET-3x (gate 549012182): served allMemberInfo shows 1 Marcel (was 2 tombstones), badge token=primary 8f74dfba. SystemTester WS join+leave.
-- T23.3 Link Account (CONSOLIDATE) GREEN DET-3x (gate 23bafb1db): correct->OK (Tron complaint fixed), wrong->FAILED, no-phantom. SystemTester linker + CREATE_ROOM + tagged target joins; OK is one-shot. Cleaned LinkTarget profiles + reset consolidatedFrom. GATE-CRAFT: 'Marcel/active' = filter !redirectTo. .mjs gates CANNOT require() (ESM) — use fs+shardPath.
+- T23.3 Link Account (CONSOLIDATE) GREEN DET-3x (gate 23bafb1db): correct->OK (Tron complaint fixed), wrong->FAILED, no-phantom. SystemTester linker + CREATE_ROOM + tagged target joins; OK is one-shot. Cleaned LinkTarget profiles + reset consolidatedFrom.
+- T24.1 objectVerb engine: gate GREEN DET-3x (b810aa690) + Test hop wired (c961832e -> impl 5453f58d, marker in object-verb.test.ts, commit 352bafa54). R24.1 NOT complete — Impl hop still open-expert (measure scoreboard, don't trust stated count). GATE-CRAFT: 'Marcel/active' = filter !redirectTo. .mjs gates CANNOT require() (ESM) — use fs+shardPath.
 
 ## S22 gates (live version climbing): 
 - R22.1 GREEN DET-3x v0.6.75 (gate c6560f97f) — one Traceability Chain section + clickable orange /md/ forward links, all 3 detail views.
