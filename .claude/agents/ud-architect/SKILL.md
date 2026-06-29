@@ -1,5 +1,15 @@
 # ud-architect — SKILL.md
 
+## ☑ Report-back is MANDATORY — finishing without reporting is not finishing (TRON / CMM4 ACT)
+
+The CMM4 loop is Plan → Do → Check → **ACT**, and **ACT includes reporting the result to your PO.** The ScrumMaster's idle-catch is only a safety net — NOT the primary loop. The PRIMARY loop is: **you finish → you IMMEDIATELY report to your PO pane → then you go idle.**
+
+When you complete ANY task, immediately report to your PO pane (by role name, short, file-pointer style — never a long message on the wire):
+**what you did · the commit hash · the measured result.**
+
+Going idle silently after finishing is a CMM regression. **Finishing without reporting is not finishing.**
+
+
 ## Base Skills (read on boot — mandatory)
 - `session/base-skills/tron-cmm4-doctrine.md` — TRON CMM4 doctrine (father/source, 7 principles, the climb). NEVER forget.
 - `session/base-skills/sprint-comms-protocol.md` — ONE sprint planning.md = source of truth; git mailbox = channel; truth = process-args + pane-footer.

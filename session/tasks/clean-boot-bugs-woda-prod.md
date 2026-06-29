@@ -211,8 +211,50 @@ Source: healthy backup `…/sharedConfig/user.env.healthy-tron-backup-20260628` 
 ### D. FEATURE 8 DRY question (pane-target completions consolidation)
 **Decision: IN SCOPE now, same PR as CURRENT.** The single-resolver principle (`private.resolve.target` adds `CURRENT`) is undermined if the valid-target LIST is duplicated across completions (`otmux.parameter.completion.target` inline U/D/L/R vs `send.zoomed.completion.target` panes-only). Add ONE `private.complete.paneTargets` (CURRENT + U/D/L/R + `private.complete.panes`) that BOTH completions call. The list lives in ONE place, mirroring the ONE resolver — same dedup discipline as pane.self. Small, on-theme, do it with FEAT 8.
 
+## BUG 9: `[@role pane] [@role pane]` sender-prefix DUPLICATION (Tron, recurring)
+
+**Symptom**: messages arrive double-prefixed: `[@oosh-expert ooshTeam:0.3] [@oosh-expert ooshTeam:0.3] Self-check…`.
+
+**Root cause**: prefix is applied at ONE chokepoint (`otmux.send` step 2, ~L2059) — but it is NOT idempotent. When `text` ALREADY starts with `[@…]` (a relayed message, a re-send, or text the caller composed including a prefix), `otmux.send` prefixes it AGAIN. hiveMind uses `otmux send.enter` (no prefix) so it's not a second layer — it's the same layer firing twice on already-prefixed text.
+
+**Fix (DRY, one guard at the chokepoint)** — make prefix application idempotent. At otmux.send ~L2059:
+```bash
+if private.otmux.pane.isClaudeCode "$target" && [[ "$text" != /* ]] && [[ "$text" != \[@* ]]; then
+```
+i.e. skip prefixing when text already begins with `[@`. One condition, one place. Add test T-PREFIX-IDEMPOTENT: sending `"[@x y] msg"` through otmux.send yields exactly ONE prefix.
+
+**Also audit**: find WHY already-prefixed text reaches send (is something capturing a received message and re-sending it verbatim?). The idempotency guard is the safety net regardless, but if a caller is echoing the inbound prefix, fix that too.
+
+---
+
+## Architect review FILED (f5253b9) — expert-action items A & B + C-extension
+
+Full A/B/C/D in the "Architect Review" section above. Items still needing EXPERT action:
+
+**A — config.save ALLOW-LIST (not deny-list)**: root cause = S-5 harvest grabs EVERY `^export` from file+live-env → VSCode/terminal/test leakage. Fix: harvest filters to allow-set only — 7 fundamentals always + OOSH allow-set (`OOSH_*/LOG_*/CONFIG_*/USER`) + tracked `config set` user vars. NEVER persist: TERM/COLORTERM/LC_*/LANG/BROWSER/GIT_*/LESS*/EXPECTED_RETURN_VALUE/GET_TEST_VAR. Source lines move to `this`. (Doctrine: architect flagged first-principles Rule A conflict — env files = pure exports only, `this` owns the source chain; architect to reconcile the wording.)
+
+**B — color culprit (my premise was WRONG, dev DOES source setup.color.env)**: ranked #1 = `.bashrc:151 source "$OOSH_DIR/log"` runs AFTER colors and `log.init.colors` likely clobbers `BOLD/NORMAL/COLOR_*`. Repro: `oo mode macos.latest; bash -lc 'declare -p BOLD NORMAL'` vs `oo mode dev; …` — if BOLD/NORMAL differ, log clobbers. Expert: fix the ordering/clobber so colors survive on dev (this is why `claudeCode list` shows no color).
+
+**C-extension — guard missed a class**: my TMUX_PANE grep returned zero, BUT architect found bare `display-message -p '#{session_name}'` self-ID at hiveMind:1936 (focused-pane bug, no TMUX_PANE string so grep missed it). Funnel through `otmux pane.get.target`. **Extend T-NO-TMUXPANE guard to also catch bare `display-message -p '#{session_name}'` self-ID.**
+
+**D — FEATURE 8 completion consolidation IN SCOPE**: add one `private.complete.paneTargets` (CURRENT + U/D/L/R + panes), both pane-target completions call it. Same PR as CURRENT.
+
+## BUG 10: agent.send / otmux send reports "delivered" but ENTER does not register (false-positive verify)
+
+**Symptom** (SM caught, 2x: tester S1 + expert u24 dispatches): `hiveMind agent.send` returned "INFORM delivered" but the message sat COMPLETE-but-UNSUBMITTED in the target's input buffer — Enter never registered, agent stayed idle, task never ran. SM had to manually submit both.
+
+**Impact**: PO dispatches silently fail to start work. `send.verified` is giving a FALSE POSITIVE — it confirms the text is present in the pane but NOT that it was submitted (no 'esc to interrupt' / processing state).
+
+**Fix**:
+1. `otmux.send.verified` must verify SUBMISSION, not just text presence — after sending Enter, capture and confirm the pane entered a processing/submitted state (e.g. 'esc to interrupt' appears, or the input line cleared), not merely that the text echoed.
+2. If not submitted, retry Enter (send.raw Enter) up to N times, then report FAILURE (not success).
+3. Investigate why Enter doesn't register on these panes (timing? the text-send and Enter race? accept-edits eating it?).
+
+**Interim PO discipline (adopt now)**: after every dispatch, verify the pane shows 'esc to interrupt' (submitted) — if not, `otmux send.raw <pane> Enter` and re-check. Don't treat "delivered" as "running." (SM is currently the safety net catching these.)
+
 ## Report-back (edit here; report to oosh-po)
 - Architect (config-dedup + color-boot + BUG 7 + FEAT 8 DRY): **DONE 2026-06-28** — see Architect Review above. (A) clutter = test/VSCode/terminal leakage harvested by S-5 merge → ALLOW-LIST; source lines → `this` (Rule A doctrine conflict flagged). (B) dev DOES source setup.color.env — premise corrected; culprit ranked: `source $OOSH_DIR/log` after colors (cand 1) or PS1 template (cand 2), A/B repro given. (C) pane.self confirmed single primitive; 5 hiveMind + 1 claudeCode parallel self-ID to funnel through pane.get.target. (D) consolidate pane-target completions into one helper w/ FEAT 8.
 - Expert (HOME guard + user.env regen + commit): **DONE** — BUG1 4bdd948, BUG2 37e16f7+regen, BUG3 af3a3f7, BUG5 d40a005, BUG6 3fd419b.
 - Expert BUG7 (eliminate TMUX_PANE): **DONE** — public `otmux pane.self` primitive added (`%`=pane_id default, `target`=session:win.pane). otmux 6480f78 (drop 4 stale `||TMUX_PANE` fallbacks + layout.dynamic + fit), hiveMind 350e3e7 (caller-role x2 + own_pane x2, killed 2 raw-tmux calls), claudeCode d74e354 (context.self gate), restore/hiveMind a20d0d7. Guard T-NO-TMUXPANE a5f709d → 3/3 pass, zero non-comment refs in otmux/hiveMind/claudeCode. Verified live: self-ID correct (ooshTeam:0.3) despite stale TMUX_PANE=%8. test/test.c2's 10 refs are deliberate test targets — left for architect review per directive.
+- Expert BUG9 + A + B + C-ext + FEAT8/D: **DONE** — BUG9 idempotent prefix `4c52e24` (+T-PREFIX-IDEMPOTENT, audit: dup came from agents manually composing [@…] then auto-prefix on top — guard makes them coexist). C-ext `9ff5343` (killed bare display-message self-ID at hiveMind:1936 + 4 otmux sites via new `private.otmux.self.session`; extended T-NO-TMUXPANE to catch untargeted display-message — 6/6 pass). A `9937799` (config.save allow-list: strict OOSH-only live-env harvest + deny-set cleans file leakage; user.env 113→19 exports, 0 leakage, 0 source lines). B `c82fa31` (line init generates self-contained EXPORTED setup.color.env — colors survive into subprocesses incl. `claudeCode list`; pure-state, no source chain; regenerated on WODA.prod). FEAT8+D `615918c` (CURRENT target via one resolver `private.resolve.target`→pane.self, immune to stale TMUX_PANE; shared `private.complete.paneTargets`; T-CURRENT-TARGET 5/5 — verified `pane.title CURRENT` retitles caller's own pane).
 - Tester (clean-boot verification on WODA.prod + u20):

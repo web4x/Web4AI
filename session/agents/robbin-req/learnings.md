@@ -190,6 +190,15 @@ Available bash panes per team (check via `otmux tree`):
 6. The bash pane is SHARED — other agents may be sending at the same time, causing intermixed output. Pane.capture output may be chaotic; rely on Read for verification, not the pane output.
 7. **Disable bash history expansion BEFORE sending Tron quotes containing `!`** — `otmux send X 'set +H && echo HIST_DISABLED' Enter` once per session. Bash interactive shells history-expand `!` even inside double-quoted strings (Tron's `...there!!!` → `bash: !\\\: event not found` and the printf aborts mid-pipeline, leaving file in inconsistent state). Single-quoted shell strings don't expand, but my printf chunks needed double-quotes for the embedded JSON `\"`. `set +H` is the durable fix. R19.21 capture 2026-06-10 hit this on Tron's "...there!!!" quote — chunk 3 silently dropped, requiring file rewrite from scratch.
 8. **`git add -A` is destructive in shared shell panes.** The pane has uncommitted work from OTHER agents (expert dist builds, architect t202 docs, profiles/data changes). `git add -A` sweeps them into MY commit. Always `git reset HEAD` THEN `git add <explicit-file-list>` for scoped commits. Verify via `git status --short` — staged column (left, no leading space) must show ONLY my files; unstaged column (right, leading space) shows other agents' work I leave alone.
+9. **"Sent" ≠ "delivered" — VERIFY the report landed (ARON CMM4: reporting = finished).**
+   **Measured this cycle (2026-06-28, S21):** I reported R21.9 to robbin-po at robbinTeam2:0.0 TWICE with `tmux send-keys ... Enter`; the PO saw NOTHING both times and had to chase me ("YOU DID NOT REPORT BACK"). Root cause measured by `capture-pane`: the PO agent was mid-task, so my keystrokes sat in its INPUT BUFFER and the Enter queued behind the in-flight work — the line stayed unsubmitted at the `❯` prompt. Sending is not delivering.
+   **Why it matters:** the ACT step of PDCA is the report reaching the PO. An unconfirmed send = a stopped wheel that *looks* spinning. This violates "reporting = finished."
+   **How to apply (every report, no exception):**
+   1. `tmux send-keys -t <pane> C-u` first — clear any stale buffer text.
+   2. Send the message, then `Enter`.
+   3. **CHECK:** `sleep 1 && tmux capture-pane -t <pane> -p -S -10`. Confirm the body shows as queued/submitted — look for `Press up to edit queued messages`, or your text sitting ABOVE a fresh empty `❯` prompt (submitted), NOT ON the `❯` line (stuck).
+   4. If stuck on the prompt line, send a bare `Enter` to submit; re-capture to confirm.
+   5. **WODA.prod host:** use raw `tmux send-keys`/`capture-pane`. `otmux send` writes to `/dev/tty`, which errors here (`/dev/tty: No such device or address`) and gives a false "delivered."
 
 Built S19 R19.x altIds + R17.12 fold + 6 sibling units R19.15-R19.20 + parent splitInto + symlinks via this pattern across ~40 sends. Commits 13a8fc1f and ec769b2b.
 

@@ -716,3 +716,98 @@ Build uses scenarioFwd keys (plural: 'classes'), filter must use the SAME keys. 
 ### Learning #114: R20.30 breadth-vs-depth pattern
 Traceability Chain ≠ All Children. Chain = depth-first single path (renderChainPathSection: async /api/trace/children walk, first child at each hop, max 6 levels). All Children = breadth (renderAllChildrenSection: all children flat = badge count). Class with 14 methods: Chain shows 1 method→impl→test→gate; Children shows all 14. Task/Req/UC already used singularChain — only class/method/impl/test needed the fix.
 
+
+## WODA.prod env (2026-06-28)
+- System node = v16 (vitest/tsx fail). BUT node18 available at /root/.vscode-server/bin/*/node — use it for tests/tsx on WODA.prod.
+- esbuild --bundle parses on node16 = compile gate. To run logic: harness .mjs in repo root → esbuild bundle to /tmp → node.
+- otmux send fails (no /dev/tty) → use `tmux send-keys -t robbinTeam2:0.0 "..." Enter`.
+- git commit needs `-c commit.gpgsign=false`.
+- Repo on WODA.prod: /var/dev/Workspaces/2cuGitHub/Web4RawBin.
+
+## CurrentSprint 3-slot invariant (BUG-A/B/C, 2026-06-28)
+- wipStatus 'done' requires explicit gate-proven check at last hop (CHAIN_ORDER[last] is truthy so ||'done' never fires).
+- setFocus must capture old focused task → lastCompleted (persist 3 fields) for 3-slot rotation.
+- getThreeSlots: enforce distinct UUIDs — lastCompleted excludes current; nextBacklog excludes current+lastCompleted; null when pool small. Self-heal = no --force.
+
+## R21.3 alt-UUID symlink targeting + prod deploy-verify (2026-06-28, MEASURED)
+**Symlink target rule (measured in index-store.ts ensureSymlinkDisk):** a `unitLinks[]`
+entry declared on unit X ALWAYS resolves its symlink to X's OWN canonical file
+(`this.filePath(uuid)`). So to make `alt/phone/<key>.scenario.json` point to the
+PROFILE, the link must be declared on the **Profile unit**, NOT the Phone unit.
+Verified: registerSymlink(profileUuid, phone) → addLink on profile → symlink
+`alt/phone/+4915253844085.scenario.json -> ../../index/3/e/f/f/a/<profile>.json`.
+**How to apply:** for R21.5 (email), R21.8 (company) alt-indexes — declare the alt-link
+on the OWNING unit you want the key to resolve to (Profile for email; Company unit for
+company nameKey). Lookup = fs.readFileSync the symlink path → JSON.parse → model.uuid.
+
+**Prod deploy-verify (measured this cycle — almost reported a false 'done'):** the
+prod server is plain `tsx src/ts/server/server.ts` (NOT tsx watch) in tmux session
+`rawbin`. `/api/health` version + the static client bundle update WITHOUT a restart
+(version is read per-request; bundles served from disk) — but **server.ts ROUTES are
+in-memory and stay STALE until restart**. A new endpoint returned the generic HTML 404
+even though version showed the new number.
+**How to apply:** after ANY server.ts change, restart: `tmux send-keys -t rawbin C-c`
+(x2) then `npm run dev`, then curl the ACTUAL new route (not just /api/health) before
+reporting live. Version-string match ≠ route live.
+
+## Contact-unit DRY pattern: alt-UUID index + first-class unit (R21.3→R21.6, 2026-06-28)
+Phone (R21.3/R21.6) and Email (R21.5) are the SAME shape — build new contact types by
+mirroring, not reinventing. Two concerns per type:
+1. **Alt-UUID lookup** = `<Index>.registerSymlink(profileUuid, raw)` → `alt/<kind>/<normKey>.scenario.json`
+   declared on the PROFILE unit's unitLinks[] (so the symlink resolves to the profile). This is
+   what device-link (R21.4 resolveKeyToProfile) reads → model.uuid.
+2. **First-class unit + relationship** = `<Index>.mintAndLink(profileUuid, raw, v4uuid)` mints
+   ior:class:<Kind> {normField, ownerIor:profile}, pushes into Profile.<kind>s[] (idempotent
+   dedup by normalized value), then registerSymlink.
+Caller passes the uuid (crypto.randomUUID server-side) so the shared scenario module stays
+crypto-free (client-bundle safe — globalThis.crypto unreliable on node16/18).
+**How to apply:** for R21.7 Address / R21.8 Company — copy EmailIndex/PhoneIndex; Company is
+SHARED (ownerIor:null, dedup by nameKey, alt/company/<nameKey> declared on the COMPANY unit not
+a profile since many profiles share it — the ONE case where the link lives on the resolved unit
+itself). Always: normalize first, idempotent dedup, measure via temp-dir esbuild harness +
+(for device-link) a live wss probe before reporting.
+
+## Async background verification pattern (R21.7 address OSM, 2026-06-28)
+Save-immediate + verify-async: mintAddress does a SYNCHRONOUS index.put (verified:false,
+links null) and RETURNS — never a network call on the request path (AC-c1). A module-level
+queue + self-pumping worker (setTimeout 1100ms between items = ≤1 req/s) does the Nominatim
+lookup off-path, cached by the query string; on HIT calls applyVerification (sets verified
++ both links), on MISS leaves verified:false (displays, never errors). Use node:https.get
+(NOT fetch — unreliable on node16/18) with a descriptive User-Agent per Nominatim policy.
+**How to apply:** any "save now, enrich later" field (geo, link-preview, avatar-fetch) — split
+into a pure sync mint + a rate-limited cached worker + an apply() mutator + a GET badge
+endpoint. Measure by PARTS when one wss e2e is costly: harness the sync+apply mutators,
+curl the live endpoint for initial state, and a standalone https probe to confirm the
+external dependency resolves — report honestly that the in-server flip is component-proven,
+full e2e left to tester DET. Clean any seeded test units from prod after (units + the
+profile's forward-array entry).
+
+## Shared-unit alt-index + the harness-catches-AC-bug discipline (R21.8, 2026-06-28)
+Company is the SHARED contact unit: ownerIor:null (no owning profile), dedup by TWO alt-keys —
+domain (authoritative: same domain→same unit even if names differ) then nameKey (recall only:
+collision never auto-merges). Unlike phone/email, the alt-link is declared on the COMPANY unit
+itself (not a profile), because many profiles share one company. mintOrReuseShared = domain-hit →
+nameKey-hit → mint. nameKey = NFKD+strip-diacritics, lc, &→and, token-wise legal-suffix strip
+REPEATED-until-stable — and the trailing 'and' connector must also pop or "Acme GmbH & Co KG"
+stops at 'and' → 'acmegmbhand' instead of 'acme' (mid-name 'and' stays trailing-only, so
+"Ben & Jerry" is safe).
+**How to apply:** for any shared/deduped entity — two-tier key (authoritative + recall), link on
+the shared unit, mint-or-reuse ladder. AND: my temp-dir harness CAUGHT the AC-a4 'and' bug before
+ship — ALWAYS encode the AC's literal example ("GmbH & Co KG"→acme) as a harness assertion, not
+just the happy path. The bug you measure is the bug you don't ship.
+
+## Pan/zoom controller + the post-gate-fix re-gate discipline (R21.9 + R21.8 AC-b3, 2026-06-28)
+RbPanZoom (pan-zoom.ts) is a reusable transform controller: CSS translate(tx,ty)scale(s),
+transform-origin 0 0; zoom-about-point keeps the cursor/pinch-midpoint stationary
+(tx'=px-f*(px-tx)); clamp tx/ty to viewport*(1-s)..0 and recenter at s=1. Correctness rules
+that bite: listeners on the .pz-viewport ONLY (not the drawer root) or the whole detail view
+hijacks; e.target hit-test (never elementFromPoint); iframe pointer-events:none MID-GESTURE
+(else the iframe swallows drags); destroy() before re-wire on ViewBus re-render (else leaked
+listeners stack); double-tap detector needs touchend touches.length===0. Wrap it in a 75vh
+in-flow pane (NOT position:fixed → never intercepts outside taps).
+**How to apply (process):** when a fix lands ON TOP of an already-GREEN gate (architect PDCA
+caught R21.8 AC-b3 after tester GREEN 446d39d3e), it is NEW code → explicitly tell the tester
+it needs a RE-GATE; never let a post-gate fix ride the old GREEN. And when a domain/key is
+PRESENT-but-unmatched, that is positive proof of distinctness — don't fall through to a weaker
+recall key (mint distinct); and a distinct unit must not clobber the first unit's recall symlink
+(only create the alt-link if free).

@@ -110,6 +110,9 @@ Requirement → UseCase → Class → Method → Implementation → Test
 - **S-6 UUID-capture-on-fork spec** (c73137a): captureForkedUUID — pre/post fork diff + sessions.env write. Closes GAP#12.
 - **Constructor Contract S-1** (63659a3 on dev): constructor-contract principle as FIRST Philosophy bullet in first-principles.md. QA-approved.
 - **Constructor Contract S-5 design** (3d9c92f): harvest-resolve-merge for no-loss self-healing init. config.repair = config.save alias.
+- **first-principles.md additions** (9e4915c): Self-Care Across the Whole Lifecycle (Tron verbatim) + no-source-of-scripts rule + "clean perspective of truth" (never trust inherited env).
+- **clean-boot-bugs review** (f5253b9): A) config.save ALLOW-LIST design (clutter = test/VSCode/terminal leakage from S-5 harvest); B) color-boot — corrected PO premise (dev DOES source setup.color.env), culprit = `source $OOSH_DIR/log` after colors or PS1; C) pane.self confirmed single self-ID primitive (expert closed all 6 flagged sites); D) consolidate pane-target completions.
+- **clean-boot S2 doctrine reconcile** (6540254 dev): closed the Rule A conflict — env files = pure exports ONLY, no source lines; `this` owns the env source chain (user.env→oosh.env→log.env). first-principles.md lines 8+20 reconciled. Report-back aefd4d2.
 
 ## Completed Sprints
 - **sprint-constructor-contract**: **COMPLETE.** My deliverables: S-1 principle (63659a3), S-5 harvest-resolve-merge design (3d9c92f), S-12 lifecycle review + PUML (8ee8564+8427057). S-8 tester hat: T-CONSTRUCTOR 17/17 GREEN (e388c98+2f49d28). 3 minor gaps found, all fixed.

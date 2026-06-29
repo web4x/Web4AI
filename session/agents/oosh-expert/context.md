@@ -1,11 +1,58 @@
 # OOSH Expert Agent Context
 
-**Session**: oosh-expert@WODA.prod (opus 1M)
+**Session**: oosh-expert@WODA.prod (opus 4.8 1M)
 **Role**: oosh-expert (OOSH Implementation Authority)
-**Pane**: ooshTeam:0.2
+**Pane**: ooshTeam:0.3 (verified via `otmux pane.get.target`; shell ooshShells:0.0)
 **Machine**: WODA.prod (dev branch, /root/oosh)
-**PO**: oosh-po @ ooshTeam:0.0
-**Updated**: 2026-06-27 — BOTH SPRINTS COMPLETE. constructor-contract S-1..S-11 + config-selfheal CS-1..CS-5. Holding for rewind.
+**PO**: oosh-po @ ooshTeam:0.0 | Peer tester: ooshTeam:0.4 | Architect: ooshTeam:0.2
+**Updated**: 2026-06-28 — NOW on u24 fresh-install GATE / SETUP_SERVER tail (S-B). S3 macos.latest merge HELD (S1 not green: tester found 83 legacy fails, triage pending). Clean-boot sprint (BUG1-9,A,B,C-ext,FEAT8) all on dev + QA-passed.
+
+## ACTIVE: u24 fresh-install gate → SETUP_SERVER 32→62 tail (S-B)
+Task files: `session/tasks/u24-freshinstall-testgate.md` + `session/tasks/setup-server-statemachine-tail.md`.
+**Goal**: fresh dev ossh install on pristine ubuntu:24.04 (u24 container) must reach state 62 + wire root .bashrc → clean boot.
+**u24 testbed**: container `u24`, port 9024, `--security-opt seccomp=unconfined` (glibc clone3 vs Docker 20.10.7), root key injected. Recreate+install:
+```
+docker rm -f u24; docker run -d --name u24 --security-opt seccomp=unconfined -p 9024:22 naked_ubuntu_24_04
+docker exec u24 bash -c "mkdir -p /root/.ssh && echo '$(cat /root/.ssh/id_rsa.pub)' > /root/.ssh/authorized_keys && chmod 600 /root/.ssh/authorized_keys"
+LOG_DEVICE=/dev/stderr LOG_LEVEL=3 STEP_DEBUG=OFF ossh install u24
+ssh u24 'grep -E "^state=|stateValue" ~/config/current.state.machine.env'   # check state
+```
+**5 install-transport bugs FIXED (gate)**: rsync push+pull remote-probe→scp (4397ac2,8a3c02d), mode ssh→root (4397ac2), ssh-keygen -N'' hang (99fb694), odocker run.sshd sshHostPort (9a87d34); +container seccomp.
+**SETUP_SERVER S-B (architect: ALL 5 = FIX dev, zero ports — macOS stubs the tail)**:
+**7 BUGS FIXED (all architect-5 + 2 siblings); machine chains 0→32 cleanly; STOPS at state-33 setup (new batch).**
+- ✅ BUG5 contamination `2b68265` — create.result(this:319) strips ANSI; err.log+important.log coerce stdout/empty LOG_DEVICE→/dev/stderr.
+- ✅ method-name `d546947` — `ossh get.key.name`→`ossh key.name.get` at ossh:533 + ossh:1513 (renamed in dev, call sites missed).
+- ✅ BUG2 `044dc75` — defined `state.declaration()` (lightweight current-state render; state.machine.declaration cats whole file + installs vim, wrong for per-transition).
+- ✅ BUG1+BUG3 `edbbabc` — removed vestigial `config ci`(this:927); defined `ossh.prereqs.install()` (rsync+tree via oo cmd, non-fatal).
+- ✅ BUG6 `376020e` — ossh.key.pull(1483) pulled `.ssh/<name>.pub` but ossh keys live at `public_keys/<name>.public_key`; try managed path first.
+- ⏳ STATE STILL 32 (machine chains 0→32, state-33 `root.installation.done` SETUP fails). Checks are STUBS (oo:981-986 return 0) → advance gated by SETUP action. `state.next`(state) is single-step; chain driven by each passing check calling next; `ossh.install.continue.local` kicks it via `state next`(ossh:502).
+- **NEXT (state-33 setup, fresh-box-assumption class)**: `wget 404 Not Found` (dead asset URL); `cat /root/.ssh/config: No such file` (fresh box); `cp config.initial/stateMachines/: No such file`. Reported to PO/architect for scope — same class as gate's 5 install bugs.
+- Re-install cmd unchanged (see above). u24 still live port 9024.
+
+---
+## PRIOR: clean-boot sprint + S3 plan
+
+## Sprint: clean-boot bugs + parity (2026-06-28, dev) — all QA-passed
+
+| Item | Commit | What |
+|------|--------|------|
+| BUG1 | 4bdd948 | this.init resolves HOME before any HOME-path (env -i/cron/container) |
+| BUG2 | 37e16f7 | config.save harvest drops source lines (pure-state) + regen user.env |
+| BUG3 | af3a3f7 | config.save inert — no LOG_DEVICE mutation, no this.load, info.log |
+| BUG5 | d40a005 | hiveMind.status fd3 — team.status no longer eats session list via stdin |
+| BUG6 | 3fd419b | pane.unlock pkills ALL enforcers — no orphan accumulation |
+| BUG7 | 6480f78,350e3e7,d74e354,a20d0d7,a5f709d | ELIMINATE $TMUX_PANE — public `otmux pane.self` (PID-walk) is the ONE self-ID primitive; purged otmux/hiveMind/claudeCode/restore; T-NO-TMUXPANE guard |
+| BUG7 C-ext | 9ff5343 | kill bare `display-message -p` self-ID (focused-pane bug); `private.otmux.self.session`; guard extended |
+| BUG9 | 4c52e24 | otmux.send prefix idempotent — skip if text starts with `[@` (no `[@x][@x]`); T-PREFIX-IDEMPOTENT |
+| A | 9937799 | config.save ALLOW-LIST: strict OOSH-only live-env harvest + deny-set; user.env 113→19 exports, 0 leakage |
+| B | c82fa31 | `line init` self-contained EXPORTED setup.color.env — colors survive into subprocesses (claudeCode list); pure-state |
+| FEAT8+D | 615918c,76bb8ef | `CURRENT` pane target via one resolver→pane.self; shared `private.complete.paneTargets`; T-CURRENT-TARGET (explicit env-gated skip) |
+| extra | 1366742,9557be1,f076064 | sweep.detect 'auto mode on'=idle + team.sweep fd3; team.models.list; default model opus-4-8[1m] DRY const |
+
+**Key primitives this session**: `otmux pane.self [%|target]` (PID-walk self-ID, never stale) + `private.otmux.self.session` + `CURRENT` target. **Doctrine**: env files = pure exports, `this` owns source chain (architect reconciled 6540254). **S3 gate**: merge dev→macos.latest is clean (merge-tree: 0 conflicts); HOLD until tester S1 GREEN.
+
+---
+## PRIOR (archived) — constructor-contract + config-selfheal sprints (2026-06-27)
 
 ## Sprint: constructor-contract (S-1..S-11, all verified)
 

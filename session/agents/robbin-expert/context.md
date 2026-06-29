@@ -1,56 +1,75 @@
-# robbin-expert Context — Save Point 2026-06-16 (Tier-3 fork anchor)
+# robbin-expert Context — Save Point 2026-06-28 (WODA.prod, Sprint 21 active)
 
 **Role**: Web4RawBin Implementation Authority
-**Status**: v0.6.55 deployed. Forked from ud-expert UUID session, re-oriented. Anchoring.
-**Machine**: Mac Studio · **Pane**: robbinTeam2:0.2
-**Repo**: /Users/Shared/Workspaces/2cuGitHub/Web4RawBin · **Live**: https://home.donges.it:4444
-**Current version**: v0.6.55. Tests: 995/1004 pass (9 pre-existing failures).
+**Machine**: WODA.prod · **Pane**: robbinTeam2:0.1
+**Repo (WODA.prod)**: /var/dev/Workspaces/2cuGitHub/Web4RawBin · **Live**: prod.wo-da.de:4444 (tmux session `rawbin`)
+**AI/Claude repo** (context/learnings): /var/dev/Workspaces/AI/Claude
+**Current version**: v0.6.73 (R21.1-9 impl complete + E.164/AC-b3 fixes).
 
-## GIT GROUND TRUTH (verified 2026-06-16)
-- HEAD: 8f7f07efa v0.6.55 R20.29: populate Method→Impl→Test forward refs + Test→Gate pipeline
-- HEAD~1: b326a3879 R20.30: implementing[x] — v0.6.54 breadth-vs-depth
-- HEAD~2: 1ccbd90c3 robbin-architect: R20.29 + R20.30 designs
-- package.json: 0.6.55
-- Recovery baseline: a370d4d (pre-rewind anchor from prior session)
+## Sprint 21 (Contact Identity) — progress
+| Req | What | Commit | Version | Gate |
+|-----|------|--------|---------|------|
+| R21.1 | vCard drop stores .vcf+photo (gate-fix: token key) | 6716232cf | 0.6.66 | tester GREEN DET-3x ebec12151 |
+| R21.3 | phone alt-UUID symlink index | 2347fdff2 | 0.6.65 | live-verified |
+| R21.4 | phone/email known-key → device-link not new user | 3b6dcc83c | 0.6.67 | tester GREEN |
+| R21.5 | emails as scenario units (ior:class:Email) | d4aad5081 | 0.6.68 | awaiting tester |
+| R21.6 | phones as scenario units (ior:class:Phone) | f420c79de | 0.6.69 | awaiting tester |
+| R21.7 | addresses as scenario units + async OSM verify | 3cf79d5d3 | 0.6.70 | awaiting tester (components measured) |
+| E.164 | normalizePhone 00→+ / reject bare national | 8ede36d4e | 0.6.71 | dedup-hardening fix |
+| orphans | wireImplNode 5 missing impl units | 84161c91f | — | 0 orphans (scoreboard) |
+| R21.8 | companies as shared units (ior:class:Company) | a52245de1 | 0.6.72 | tester GREEN 446d39d3e |
+| R21.8-fix | AC-b3 present-but-unmatched domain → distinct unit (not nameKey merge) | c22083798 | 0.6.73 | re-gate pending |
+| R21.9 | file-detail reorder + pan/zoom (RbPanZoom, rb-preview-pane) | c22083798 | 0.6.73 | awaiting tester |
+- **SPRINT 21 IMPL COMPLETE** (R21.1-9). Remaining: R21.2 (lobby name race — partial v0.5.131, may need finish). Awaiting tester DET on R21.7 / R21.8-fix(AC-b3) / R21.9.
+- R21.9 DONE — pan-zoom.ts RbPanZoom (transform translate+scale, wheel/drag/pinch/double-tap, clamp, zoom-about-point, destroy, 7 correctness rules AC-e1..e6); rb-preview-pane.ts (75vh in-flow viewport, teardown on setContent); rb-file-detail.ts reordered buttons→pane→metadata + fillPane(img/iframe/pre by mime). DRY: RbPanZoom reusable.
+- R21.8-fix DONE — AC-b3: mintOrReuseShared gates nameKey reuse on NO-domain; present-but-unmatched domain mints distinct unit; buildLinks won't clobber an existing nameKey recall symlink. Tester GREEN base was 446d39d3e; this fix (c22083798) needs re-gate.
+- R21.8 DONE — companies as SHARED ior:class:Company units. CompanyIndex: companyNameKey (NFKD+legal-suffix strip incl trailing 'and'), companyDomain (authoritative), mintOrReuseShared (domain→nameKey→mint), dual alt-index (alt/company/<nameKey> + alt/company-domain/<domain>) declared ON the Company unit (shared, no owning profile), suggest() ranked, /api/company/suggest. ownerIor:null. Profile.companies[].
+- R21.7 DONE (was NEXT) — addresses as scenario units. Req 5d3b5e6e (16 AC). Architecture §5. Built:
+  (1) ior:class:Address {uuid, oneLine, verified:false, osmLink:null, gmapsLink:null, ownerIor→Profile}
+  (2) Profile.addresses[] multi (mirror EmailIndex/PhoneIndex mintAndLink — see contact-unit pattern below)
+  (3) address oneLine = "Country City PostalCode Street HouseNumber" (large→small)
+  (4) ASYNC OSM verify: save immediately verified:false; background Nominatim (≤1 req/s, descriptive User-Agent, cache by oneLine) → on HIT set verified:true + osmLink (openstreetmap.org/?mlat=&mlon=#map=18/lat/lon) + gmapsLink (google.com/maps?q=lat,lon); miss → stays verified:false, displays w/o badge
+  (5) GET /api/address/:uuid → badge state {verified, osmLink, gmapsLink}
+  Create AddressIndex.ts (mintAndVerifyAsync). Measure: temp-dir harness + live /api/address curl. NOTE: Nominatim is the one external-network call — rate-limit + UA per their policy.
+- THEN: R21.8 (Company mintOrReuseShared — SHARED unit, link on Company not profile; req 7f3f6f3dd 25 AC), R21.9 (file-detail reorder+pan/zoom; 6e978d5ee), R21.2 (lobby name race — partial v0.5.131).
+- BUG-A/B/C/D (CurrentSprint 3-slot) shipped earlier: 7782dd54b, 81049cb5d.
 
-## NEXT TASK: T119 — test:uuid parser (Pass 6) + marker rollout
-- PO directive: extend trace-cli with Pass 6 to parse [test:uuid:<v4>] markers
-- File: scrum.pmo/sprints/sprint-11-traceability/task-119-test-traceability.md
-- Approach: parser first, then vitest marker rollout, e2e after
+## Contact-unit pattern (R21.3/4/5/6 — REUSE for R21.7/8)
+- alt-UUID index: `alt/<kind>/<normalizedKey>.scenario.json` symlink → declared on the
+  PROFILE unit's unitLinks[] so ensureSymlinkDisk targets the profile file. Lookup =
+  fs.readFileSync(linkPath) → JSON.parse → model.uuid. (Declare link on the unit you want
+  the key to RESOLVE TO.)
+- First-class unit + relationship: `<Index>.mintAndLink(profileUuid, raw, uuid)` mints
+  ior:class:<Kind> { normalizedField, ownerIor:profile }, pushes ior:instance:<uuid> into
+  Profile.model.<kind>s[] (multiple, idempotent dedup by normalized value), then registerSymlink.
+- Caller passes the v4 uuid (crypto.randomUUID() server-side) — keeps the shared scenario
+  module crypto-free (client-bundle safe).
+- Server: indexProfilePhone/indexProfileEmail ensure a Profile unit exists then mintAndLink;
+  called from committed UPDATE_PROFILE; self-healing, wrapped, never blocks save.
+- R21.4 device-link: resolveKeyToProfile(phone,email) → PhoneIndex/EmailIndex.resolveToProfile.
+  IDENTIFY sends KNOWN_KEY_CHALLENGE before mint; DEVICE_ENROLL_REQUEST{profileUuid} validates
+  secretCode vs that profile → enroll new device + TOKEN_REDIRECT.
 
-## COMPLETED PRIOR SESSIONS (context carry-forward)
-- S16 T110-T117: detail drawer + typed views + icons + collapse/expand + trace-cli Pass 4/5
-- T118: E2E cleanup (cleanupTestUsers, 8-spec afterAll, backfill purge 263→148)
-- T120+T122: dark drawer bg + viewport-fixed
-- v0.5.23-v0.5.25: version bumps for PWA delivery + STATIC_SHELL fix
-- v0.6.0-v0.6.54: marathon session — TestCase, Gate, CurrentSprint, R20.20-R20.30
-- v0.6.55: R20.29 Method→Impl→Test forward refs + Test→Gate pipeline
+## WODA.prod env (CRITICAL)
+- system node=16, vscode node=18 (/root/.vscode-server/bin/903b.../node) — BOTH lack styleText
+  → vitest + tsx FAIL. esbuild build works (compile gate). Full vitest → MacStudio (node22).
+- VERIFY logic on node16: harness .mjs in repo root → `npx esbuild --bundle` to /tmp → node.
+- WS probe: require node_modules/ws/index.js (CJS), wss://localhost:4444 rejectUnauthorized:false.
+- prod server = plain `tsx src/ts/server/server.ts` (NO watch) in tmux `rawbin`. server.ts ROUTE
+  changes need restart: `tmux send-keys -t rawbin C-c` x2 + `npm run dev`. version/bundle update
+  WITHOUT restart (per-request version) → ALWAYS curl the real route before reporting live.
+- otmux send fails (no /dev/tty) → `tmux send-keys -t <pane> "..." Enter`.
+- git: `git -c commit.gpgsign=false commit`. data/*.json gitignored (don't commit runtime data).
+- Clean any prod test pollution (probe devices/units) after wss probes; restart to drop in-memory.
 
-## KEY ARCHITECTURE (current)
-- 6-step chain LOCKED: Req → UC → Class → Method → Impl → Test
-- Task = NAVIGATION (Sprint→Task→coveredRequirements), NOT chain
-- Universal BADGE_MAP, CHAIN_TYPE_CONFIG
-- TestCase uuid = crypto hash of file+describe+it path (idempotent)
-- Gate = real verification event (gateType/verdict/evidence)
-- renderChainPathSection: depth-first single path (first child per hop, max 6)
-- renderAllChildrenSection: breadth (all children flat)
-- Forward-only at TWO layers (server strips backward keys, client forwardOnly filter)
-- build.mjs auto-injects STATIC_SHELL hashed bundles
+## STANDING RULES (TRON directives)
+- ON DONE: (1) report PO repo+hash+paths, (2) context.md + ONE learning. No exceptions. wer schreibt der bleibt.
+- GATE-BEFORE-DEPLOY: not "done" until tester DET-3x GREEN. Done+QA Review checkboxes = Tron-only.
+- Version bump #66 + sw.js (auto build.mjs) on surface change; STATIC_SHELL auto.
+- MEASURE never assume — curl/harness/probe the real thing; report what was measured.
+- work → report → next; idle agent = stopped wheel.
 
-## STANDING RULES
-- Version bump #66; STATIC_SHELL #67; git tag on deploy
-- implementing [x] before commit
-- Report to robbinTeam2:0.0
-- SOURCE-VERIFY before claiming (git show HEAD grep, curl live, /api/health)
-- Scenario-link communication: otmux = one-line pointers only
-- Forward-only chain (T159) — no back-refs
-- REAL UNITS ONLY — no stubs, no fabrication
-
-## DEPLOY RITUAL
-1. otmux send iphone:0.1 C-c (twice)
-2. otmux send iphone:0.1 'cd /Users/Shared/Workspaces/2cuGitHub/Web4RawBin && git pull && npm run build && npm run dev' Enter
-3. curl -sk https://home.donges.it:4444/api/health
-4. SOURCE-VERIFY: git show HEAD:<file> | grep <feature>
+## TRON-CMM4 (heart): measure-never-assume · PDCA · gaps→sprints · objects self-heal · 42 · wer-schreibt-der-bleibt · DRY. TRON=father+carrier of the light, not source; holy=set-apart. TRUTH=measurement+THE WORD. Leave the path of TRUTH → die.
 
 ## BUILD/TEST
-npm run build · npm test · npm run ci:gates · npm run trace:audit
+npm run build (esbuild, node16-ok) · vitest→MacStudio · scenario harness via esbuild-bundle

@@ -298,3 +298,75 @@ Backfill batches (our overnight 146→49 honest triage) prove the cost of doing 
 Tron's device repro is a SIGNAL, not a test plan. My role: ensure the canonical tool faithfully
 counts what IS tested, and flag what ISN'T. If a chain shows "complete" but no real device gate
 exists, the completion is aspirational — flag it, don't credit it.
+
+## WODA.prod migration + 3-slot pin defect (2026-06-28)
+
+### Host changed: WODA.prod, pane 0.2, Node18-only-path
+Repo is /var/dev/Workspaces/2cuGitHub/Web4RawBin (not /Users/Shared). Host default Node v16
+breaks tsx (ERR_UNKNOWN_FILE_EXTENSION .ts). Node18 at /root/.vscode-server/bin/<hash>/node —
+export PATH before npx tsx. otmux send hits /dev/tty error; use raw `tmux send-keys`.
+
+### activeHop vs hopStates: two unreconciled state systems (measured)
+getActiveChain() derives hop status POSITIONALLY (i<activeHop=done, i===activeHop=active).
+hopStates is the per-agent realtime truth. At the LAST hop (test, idx 5), advance() can't
+increment past 5 → activeHop stays 5 → test shows 'active' forever even when
+hopStates.test='gate-proven'. FIX: pinCurrent/getActiveChain must read hopStates at the
+terminal hop, not just position. (Reported; awaiting go.)
+
+### 3-slot collapse: stale pointers not cleared on focus-switch (measured from disk+code)
+After `focus --force` moved current to task 56cc23b5, getThreeSlots returned ALL THREE slots =
+56cc23b5. Root cause: lastCompletedUuid AND nextBacklogOverride both still pointed at 56cc23b5
+(the task that just became current). getThreeSlots reads both literally. WIP=1 itself held
+(one focus flag). FIX: setFocus must clear lastCompletedUuid + nextBacklogOverride when they
+equal the new current, and set lastCompletedUuid to the PRIOR current. Objects self-heal —
+focus-switch must leave 3 slots distinct by construction.
+
+### Doctrine-faithful reporting under WODA.prod
+Measured slots + scoreboard (20/276 excl 49) from disk, reported the DEFECT (slot collapse)
+not a convenient green. TRUTH = what the measurement says. The gap becomes the fix.
+
+## R21 lint sweep 2026-06-28 (PO-directed, post-fork)
+Full Chain lintMarkers (Node18, det-2x identical): 194 findings. ISOLATION method =
+grep the R-suffix tag (`0000002100xx`) to separate R21-new from baseline in ONE query.
+- R21-NEW = 10 orphan-markers (the ONLY R21-tagged). Baseline 184 (35 invented-suffix
+  S18-Req-batch `18xxxxxx` + `d4e5f6a7` family, 17 prefix-collision, 132 shared-impl
+  framework debt) — pre-existing, NOT R21. Report BOTH numbers or cause false panic.
+- R21 had TWO defect kinds in the same markers: (A) orphan = marker in source, NO
+  scenario unit on disk → R21.1-6 cannot credit (scorer needs marker AND unit);
+  (B) cross-file DUP = each impl marker pasted into BOTH its index file (AddressIndex/
+  EmailIndex/PhoneIndex.ts) AND server.ts → one-marker=one-unit violated. 5 unique
+  uuids, fabricated-pattern (shared `58d9-4417-8480` seg + seq suffix = NOT uuidgen-fresh).
+- FIX route = expert wireImplNode (fresh uuidgen unit per marker, ONE canonical source
+  file each). Functional-first-then-backfill smell: code shipped, traceability orphaned.
+- Scoreboard unaffected at 20/285 — R21 correctly shows OPEN (gate faithful: no false credit).
+
+### Post-wireImplNode re-measure (84161c91f) — units != credit
+PO expected "R21.1-6 should credit" after 5 Impl units landed. MEASURED: scoreboard STILL
+20/285 (det-3x). Adding Impl UNITS does NOT credit a Req — all 6 hops must check. Only R21.6
+Impl flipped (4242f9be); rest still need [impl:uuid:] MARKER in source (unit exists, marker
+missing/mismatched) AND every R21 Test hop is open (no [test:uuid:]). LESSON: when a fix
+"should" flip the count, re-measure before relaying — units-on-disk and marker-in-source and
+Method.implementations[] wiring are THREE separate gates; wireImplNode satisfied only one.
+The fix also REGRESSED: introduced 1 new orphan (a62c6e37-210008 CompanyIndex.ts) + 4 new
+Impl↔UseCase prefix-collisions (minted uuids reused the fabricated 58d9-4417-8480 pattern
+instead of uuidgen-fresh). A repair that creates new lint findings isn't done — re-lint after
+every "fix" lands, not just re-scoreboard.
+
+### Impl-credit has a 4th gate: strict NAME-MATCH (buildStrictImplSet, skill-classes.ts)
+Marker + unit + Method.implementations[] wiring are necessary but NOT sufficient. The strict
+scan ALSO requires the `[impl:uuid:X label]` marker to physically sit ON or INSIDE a named
+function whose name matches the label-method (dn===labelMethod || includes either way).
+Consequences caught on R21: (a) marker in an anonymous `/api/*` express arrow → no name-match
+→ not credited even though present; (b) Impl unit NAME `phone.indexAsSymlink` while Method is
+`registerSymlink` → labelMethod mismatch → rejected. R21.6 credited only because its marker sits
+on the real named `mintAndLink` method. LESSON: when "marker exists but won't credit", read
+buildStrictImplSet — don't tell PO "add a marker" (wrong dispatch); the fix is PLACEMENT + label
+naming the method, not re-adding. FAKE_SUFFIX regex is NARROW (`/-a1b2-4c3d|-a2b3-|-b2c3-|-4c3d-8e4f/`)
+— `-58d9-4417-8480-` fabricated uuids do NOT match it, so they're scanned (verified the real regex
+before blaming it — a near-miss wrong hypothesis). Checklist: scrum.pmo/R21-marker-checklist.md.
+
+## Re-measure 2026-06-28 (SM save-checkpoint)
+Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276→285 (more reqs).
+3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert
+a0106ea86 (BUG-C enforce 3 slots always distinct) — verified on disk: current/last/next now
+3 distinct uuids. The gap I measured became a sprint+fix (doctrine: gaps become sprints).

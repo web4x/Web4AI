@@ -1,5 +1,21 @@
 # OOSH Expert Learnings
 
+## NEW: log functions writing to stdout contaminate $(...) captures (2026-06-28, BUG5 2b68265)
+
+`error.log`/`important.log` (all log fns) write to `$LOG_DEVICE`. If LOG_DEVICE is stdout/empty AND the log call happens inside a command substitution `$(fn)`, the ANSI-colored log text is captured into the value. Victim: `ossh.id.file.get` does `error.log "..."; important.log "..."; echo "$RESULT"` — caller `$(ossh.id.file.get)` captured ERROR>+IMPORTANT> lines → built path `.ssh/<ESC>ERROR>.pub` → brace_expand crash + scp file-not-found. **Two-part source fix**: (1) `create.result` strips ANSI from `$RESULT` at the single chokepoint (`case "$RESULT" in *$'\e'*) sed strip ;;`); (2) every log fn coerces empty/stdout LOG_DEVICE→/dev/stderr so errors NEVER reach fd1. **Rule**: a function whose stdout is a return value (echoes RESULT) must ensure NO log call leaks to fd1; logs go to stderr or a file. Errors must never populate RESULT.
+
+## NEW: fresh-box ossh install — rsync needs BOTH ends, keygen must be -N "" (2026-06-28, gate 4397ac2/8a3c02d/99fb694)
+
+A pristine ubuntu:24.04 has NO rsync → `private.ossh.rsync`/`.pull` checked LOCAL rsync only (rsync needs it on both ends). Fix: probe the REMOTE host too (cheap over the open ControlMaster) → scp fallback. Also `ssh-keygen` without `-N ""` PROMPTS for passphrase → hangs FOREVER on closed ssh stdin (froze install at state 32, 0-CPU process = stdin wait). Always `-N "" -q` for non-interactive keygen. Also installer contract drifted: `ossh install` called `./oosh mode ssh` but new `init/oosh` only accepts `mode root <host> <configRemote|_> <branch>`. **Rule**: any command run over ssh/cron must be non-interactive (no passphrase/overwrite/confirm prompts) — closed stdin = infinite hang, not error. Diagnose hangs by walking the remote process tree to the 0-CPU leaf + its fds.
+
+## NEW: ubuntu:24.04 under old Docker — clone3/seccomp + apt docker-clean (2026-06-28, gate)
+
+glibc 2.39 (noble) uses `clone3` for threads; Docker 20.10.7's default seccomp BLOCKS clone3 → git/curl `getaddrinfo() thread failed to start` (DNS via getent works, threaded resolver doesn't). Run container with `--security-opt seccomp=unconfined`. Also `apt update` aborts on noble: the `docker-clean` apt Post-Invoke hook fails under old Docker → `rm -f /etc/apt/apt.conf.d/docker-clean` before apt-get. Both are host-Docker-version issues, not OOSH bugs, but block any fresh-install test on this box.
+
+## NEW: macOS stubs the SETUP_SERVER server-tail — dev is first real exerciser (2026-06-28, S-A architect)
+
+The SETUP_SERVER state-machine states 32-62 (root server setup) are STUBBED on macos.latest (`private.check.root.dev.keys.installed → return 0`). State DECLARATIONS are identical both branches, but macOS never does the real work → "macos.latest boots more reliably" is true at boot/config layer but the server tail has NO working macOS reference to port from. **All tail bugs = FIX dev, zero ports.** Lesson: "the more stable branch" isn't a universal reference — verify it actually EXERCISES the path before deciding port-vs-fix.
+
 ## NEW: config.clean sort -u reorders lines — use awk dedup (2026-06-27, CS-1 d583281)
 
 `sort -u` deduplicates but REORDERS — fundamentals move after source lines, breaks the source chain order. `awk '!seen[$0]++'` deduplicates while preserving insertion order. Always prefer awk dedup over sort -u when line order matters.
