@@ -17,6 +17,15 @@ Sprint 23/T23.3, req done, uc+ pending (T23.3 In Progress, tester gating). My pi
 <- planner task 52ebca28c (linear, no conflict). Version at v0.6.84 (expert). PO holds pin per
 task until gate signal (learning #125). WATCHERS: none active.
 
+**S25 CHAIN-CLOSED 2026-06-30 (34/299 det-3x, commit 92e794765)**: Sprint 25 (Apple DnD: logging
++ WebItem handling) closed. R25.1 (DnD logging/routeUnknown) + R25.2 (WebItem/createAndLaunch)
+both 6/6 credit. Same recurring pattern proven AGAIN: tester-GREEN (functional) + architect
+"fully-wired" (units exist) are NOT credit — the [impl:uuid:] marker on named method + [test:uuid:]
+marker are the actual gates; scoreboard moved 32->34 only when the marker batch landed. I flagged a
+SCOPE GAP mid-sprint (T25.1=logging only, v0.6.87 handling untracked) -> PO minted R25.2/T25.2.
+Pin walked T25.1->T25.2 live. NEAR-MISS: almost dismissed a watcher fire as 'stale' — read it, it was
+the real 34/299 scoreboard move. ALWAYS read the watcher output, never assume stale.
+
 **S24 CLOSED 2026-06-29 (32/297 det-3x, commit 7353f7989)**: Sprint 24 (Traceability Skills —
 formalizing MY tools: objectVerb engine, pin, Chain scoring, sprint-md, trace-audit) CLOSED GREEN
 + traceable. R24.1-5 all credit. Sprint closed via MARKER batch (expert [impl:uuid:] on named
