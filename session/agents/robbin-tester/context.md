@@ -48,7 +48,7 @@ REMAINING (flagged to PO, needs coordinated restart — do NOT live-edit): data/
 - T23.3 Link Account (CONSOLIDATE) GREEN DET-3x (gate 23bafb1db): correct->OK (Tron complaint fixed), wrong->FAILED, no-phantom. SystemTester linker + CREATE_ROOM + tagged target joins; OK is one-shot. Cleaned LinkTarget profiles + reset consolidatedFrom.
 - T24.1 objectVerb engine: gate GREEN DET-3x (b810aa690) + Test hop wired (c961832e -> impl 5453f58d, marker in object-verb.test.ts, commit 352bafa54). R24.1 NOT complete — Impl hop still open-expert (measure scoreboard, don't trust stated count).
 - getThreeSlots sprint-scope GATE GREEN DET-3x (c0bbecb2f): 3 slots all Sprint 24, no T-drawer-full-width phantom.
-- R25.2 WebItem v0.6.88 PER-AC (gate d2496c395): .url/.webloc FILE->WebItem + image->File GREEN; bare/scheme URL drop->File NOT WebItem RED (dispatchUrl .url-naming shadows extractUrl bare fallback). Routed to expert.
+- R25.2 WebItem v0.6.88 PER-AC (gate d2496c395): .url/.webloc FILE->WebItem + image->File GREEN; bare-URL->File RED v0.6.88 -> GREEN DET-3x v0.6.89 (gate 92dca4478, extractUrl bare-line fallback 603be9b57). FULL RED->GREEN. All 5 per-AC GREEN; deferred favicon-RENDERING/folders/google-bookmarks/skill/migration flagged.
 - T24.2-5 4 Test hops WIRED (d33440e1c): scoreboard 28->32/297; R24.1-R24.5 all complete. Gates r241/r242/r245. GATE-CRAFT: 'Marcel/active' = filter !redirectTo. .mjs gates CANNOT require() (ESM) — use fs+shardPath.
 
 ## S22 gates (live version climbing): 
