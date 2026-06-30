@@ -1,5 +1,7 @@
 # robbin-architect Context (Save 2026-06-30 — R25.2 WebItem design)
 
+## R25.4 WIRED (commit 578cc84f5): req minted R25.4 (225b18a6) for BUG2+BUG3. My design call = TWO UCs on a SHARED Class RbDetailDrawer (d86af73d, methods=[onGrabBarPointer, minimize]): UC1 c6df9164 drawer.grabBarMouseParity -> Method onGrabBarPointer; UC2 2438307a (NEW, I added to req.useCases[]) drawer.minimizeToggle -> Method minimize. Impls designAhead (bug-fix not shipped, sourceFile rb-detail-drawer.ts). Derive 2/2 PASS. BUG1 still = R25.2 impl scope (rb-webitem-detail + tagMap webitem + Open). S25 = c7d700c6, now 4 reqs.
+
 ## 3 DRAWER BUGS diagnosed (Tron, 2026-06-30) — reported, await req-mint:
 - BUG1 WebItem drawer EMPTY: rb-detail-drawer.ts:115-118 tagMap has NO "webitem" entry -> falls back to generic rb-detail-view (only special-cases file:110-112); no rb-webitem-detail.ts; launcher card + Open(scheme->app: message:/mailto:->Mail) never built. -> FOLD into R25.2 (webItem.createAndLaunch, currently DESIGN-AHEAD). Fix = add rb-webitem-detail + tagMap webitem entry + launcher card.
 - BUG2 grab-bar mouse drag missing: handle binds ONLY touchstart/move/end (lines 38-40, e.touches[0].clientY); no mouse handlers. Sibling to R22.2 mouse-parity (diff component). -> NEW REQ.
