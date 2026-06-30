@@ -40,7 +40,8 @@
 
 ## ✓ S25 — Apple DnD (measure-first): T25.1 stood up (commit 55cde10b8).
 - Frame (PO): Apple DnD items are URL SCHEMES (mailto/webcal/calshow/maps/geo/tel/x-apple-reminder), NOT files — routed on the R23.2 YouTube model. Phase 1 = R25.1 comprehensive DnD LOGGING instrument (8 ACs) to reveal which schemes Apple sends; R25.2+ per-scheme handlers DEFERRED until Tron-room logs (measure-first).
-- T25.1 06544a45 → R25.1 649e9f4c + uc 5fc59adc, sprint c7d700c6.tasks[]=1. Status In Progress implementing[x] (source-verified expert ship v0.6.86 625d96d25, RoomView.ts drop handler). testing OPEN (no committed tester GREEN yet). My earlier drop-dispatcher/content-preview brief to req was spot-on — R25.1 instruments exactly RoomView.ts:178 + drop-dispatcher routeUnknown:81.
+- T25.1 06544a45 → R25.1 649e9f4c + uc 5fc59adc (logging instrument, In Progress implementing[x] v0.6.86 625d96d25; 3-point verify PASS). My drop-dispatcher/content-preview brief was spot-on (R25.1 instruments RoomView.ts:178 + routeUnknown:81).
+- T25.2 7c526ba6 → R25.2 f8097d7c + uc 2dc9f063 (Phase-2 WebItem: unified ior:class:WebItem bookmark/.url/.webloc, 8 ACs). sprint c7d700c6.tasks[]=2. Status In Progress implementing[x] (d7b3e53d9). ★ HONEST SCOPE (#27): v0.6.87 (018398f17) shipped preview-launcher-card + open + accept-all-schemes; REMAINING = full WebItem MODEL + drop->unit + folders + import(.url/.webloc/bookmarks). Flagged tester to check PER-AC when gating (not blanket-green). Closed the orphan (architect 9ae3ac6f5 + v0.6.87 had no req unit). R-I split R25.2.A-E available if unified proves coarse.
 
 ## ▶ NEXT / OPEN
 - S22/S23/S24 ALL at QA Review — awaiting Tron's Done gate. S25 T25.1 In Progress (testing pending tester GREEN). Done=Tron only (#9).
