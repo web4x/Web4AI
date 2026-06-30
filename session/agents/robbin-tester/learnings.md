@@ -15,6 +15,10 @@ identity after 49 test-probe users polluted prod. Use it for EVERY browser gate:
   users — they MUST be retrofitted to seed ce981242 before re-use. **Wrong:** `seedDeviceKeys()` then read
   whatever `rawbin-player-id` the server minted. **Right:** seed `rawbin-player-id=ce981242` first.
 Why: every fresh token = a prod user + room + content blobs = pollution + a purge debt. The test:guard exists.
+- **NEVER create, don't clean-and-hope.** I violated this TWICE: cleanup edits data/profiles.json on DISK, but the live server holds userProfiles in MEMORY and rewrites the file on the next saveProfiles -> my "cleanup" is undone. Flagging "in-memory, needs restart" is NOT cleaning. So the rule is PREVENTION: a gate must add ZERO new prod identities/rooms, period.
+- **Two-party tests (CONSOLIDATE/link):** SystemTester(ce981242) is the actor; the SECOND party must be ONE FIXED reusable identity, NEVER a fresh-minted token. For one-shot destructive ops, verify the response (OK/FAILED) without minting fresh targets per iteration — do NOT trade the no-pollution rule for DET-3x convenience. That trade is what caused the repeat.
+- **Rooms:** reuse the ONE fixed test room. If it's not joinable ('Room not found'), FIX the reuse or escalate — do NOT create a per-run room (SchemeGate/WebItemGate were my violation).
+- If a gate genuinely cannot be done with only ce981242 + one fixed room + (one fixed peer), ESCALATE to the PO/expert — do NOT violate and clean up after.
 
 
 ## Tier-3 recovery (2026-06-28, measured this cycle)
