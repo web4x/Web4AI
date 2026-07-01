@@ -18,6 +18,9 @@ A resize that assumes the element's bottom == viewport bottom (`startHeight + Δ
 ### Dangling refs never render a raw UUID
 A tree/child builder that falls back to `name: ref.slice(0,8)` shows a raw UUID for a removed unit. Skip dangling refs (return null → .filter(Boolean)) AND purge them from the owner's list — never surface a UUID as a display name.
 
+### NEAR-MISS: never bulk-mutate prod data on an unverified assumption (v0.7.1 R25.7)
+I wrote a repair that dropped scenario-Room-unit members whose token had "no profile" — assuming member tokens == profile tokens. WRONG: most member `ior:instance:<token>` tokens are NOT profile tokens (member ids / old tokens), so it collapsed 171 members across 35 rooms (HeartSpace 8→0, test rooms 28→0, 61→1). Caught it because the output was absurd; it was UNCOMMITTED so `git checkout -- scenario/index` reverted cleanly (zero harm). LESSONS: (1) before a bulk data mutation, VERIFY the assumption on 2-3 samples first (is this token actually a profile?); (2) a repair that zeroes most rows is a red flag — stop, don't commit; (3) prefer a DISPLAY-layer fix (hide) over a DATA mutation (delete) when self-healing — allMemberInfo skipping disconnected+profile-less orphans fixed R25.7 with no deletion. Also: room members live in room.members (WS), NOT room.json persistedMembers (0 for 6c04f959) — fix at the display/aggregation layer, not the load path.
+
 ### Identity pollution is a MINT-TIME gap, not a cleanup problem
 Automated test drops that carry a known phone skip KNOWN_KEY_CHALLENGE (needs user interaction) → mint a NEW profile each time. Tombstoning one-by-one is whack-a-mole; the durable fix is blocking new-profile-on-known-phone in the no-challenge path. Report the ROOT, don't just re-clean.
 
