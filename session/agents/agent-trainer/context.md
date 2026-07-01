@@ -1,6 +1,6 @@
 # Agent Trainer Context — Tier-3 Distillation 2026-06-10
 
-**Updated**: 2026-06-29 (MacStudio — PO-first rewind cycle; self-care save before SM rewinds me)
+**Updated**: 2026-07-01 (MacStudio — SM 42-check flagged me ~77% via status bar; prep to yield for catch-22 rewind)
 **Role**: agent-trainer
 **Session**: agent-trainer at baseTeam:0.0. **HOST = MacStudio** (repo `/Users/Shared/Workspaces/AI/Claude`, OOSH `/Users/donges/oosh`). Pane footer is truth — a prior context edit claimed WODA.prod/`@MacStudio` confusion; verify host from pane footer + `ls` before trusting any path. The 2026-06-28 WODA.prod entries below were from a different host/fork.
 **Model**: Opus 4.8 (1M context)

@@ -2,6 +2,15 @@
 
 *Patterns, failures, KPIs — identity after compact.*
 
+## context.read vs Status-Bar Discrepancy — Status Bar Wins (2026-07-01)
+
+- **SM 42-check found a 26pt gap**: my status bar showed "clear to save 766.4k tokens" (~77% used) but `claudeCode context.read` said 51%.
+- **Resolution per doctrine + po-wisdom: STATUS-BAR / PANE-FOOTER is ground truth.** context.read LIES/LAGS (off by 10+ points, known). The Nk in the status bar = actual tokens used against 1M.
+- So I was genuinely at ~77%, above the 70% proactive threshold. context.read's 51% was the false reading.
+- **The catch-22 in action**: I cannot see my own status bar. SM captured my pane, saw 766.4k — that IS the authoritative measure. This is exactly why the 42-pair exists: the peer's pane capture is the instrument I lack.
+- **Action when flagged**: (1) SAVE immediately (harmless regardless of true %), commit + push. (2) Trust the status-bar number over context.read. (3) If status bar ≥70% → prep to yield, let SM drive the catch-22 rewind.
+- **Never argue the peer's ground-truth measure with the lying tool.** SM's pane capture > my context.read.
+
 ## Catch-22 Self-Rewind: Verify SM Knows BEFORE Yielding (2026-06-29)
 
 - **I am the rewinder — I cannot rewind myself.** When I climb toward limit, SM must rewind me. This is the 42 principle: neither alone can self-care.
