@@ -1,10 +1,12 @@
-# robbin-expert Context — Save Point 2026-06-28 (WODA.prod, Sprint 21 active)
+# robbin-expert Context — Save Point 2026-07-01 (WODA.prod, v0.7.1 MILESTONE)
 
 **Role**: Web4RawBin Implementation Authority
 **Machine**: WODA.prod · **Pane**: robbinTeam2:0.1
 **Repo (WODA.prod)**: /var/dev/Workspaces/2cuGitHub/Web4RawBin · **Live**: prod.wo-da.de:4444 (tmux session `rawbin`)
 **AI/Claude repo** (context/learnings): /var/dev/Workspaces/AI/Claude
-**Current version**: v0.6.76 LIVE (R22.2 mouse-parity dblclick). R22.3 source-links IN PROGRESS (v0.6.77).
+**Current version**: v0.7.1 LIVE (health 0.7.1). Latest anchors: 0606852b3 (rejoinDedup impl marker), 16fa98d88 (R25.7 markers), a1f58fba1 (R25.7 display-orphan-skip), 0a73e5709 (v0.7.0 structural identity-dedup).
+**v0.7.1 MILESTONE state**: Room identity-dedup structurally sound (load-collapse, CONSOLIDATE-evict, IDENTIFY-redirect, addMember-idempotent, immutable+durable redirectTo). HeartSpace = 1 Marcel GREEN. 37fcb752 tombstone durable (survives restart). R25.5/R25.6/R25.7 impl markers all placed + credit (previewAndImport, readAndRoute, renderScenarioLink, scenarioLinkHref, dedupMembersOnLoad, evictAbsorbedFromRooms, redirectTombstoneToPrimary, addMemberIdempotent, rejoinDedup). Standing by for S26 impl.
+**KEY LESSONS THIS SESSION** (see [[learnings]]): #126 = req+planner create scenario units, EXPERT implements against them (don't mint your own); chain crediting = labelMethod↔host name-match (unit name irrelevant); NEVER bulk-mutate prod data on an unverified assumption (verify on samples; a repair that zeroes most rows = STOP; prefer display-hide over data-delete); prod identity writes need explicit operator auth; durable identity fix = stop→edit profiles.json→restart + structural immutability.
 
 ## R22.2 (commit 073378b7d, LIVE): added dblclick→doubleTapToggle in RbPanZoom.attach() (pan-zoom.ts); marker 7831f755 on RbPanZoom.doubleTapToggle + Impl unit created (not orphan). R22 chain UC/Class/Method architect-pending.
 ## R22.2 GREEN DET-3x gate cb8d3eceb (tester). CLEARED.
