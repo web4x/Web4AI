@@ -1,7 +1,22 @@
-# robbin-po Context — save #32 (2026-07-01, Sprints 21-25 COMPLETE, 44/301, SCENARIO FIRST rule)
+# robbin-po Context — save #33 (2026-07-01, Sprint 26 FEDERATION COMPLETE, 53/310)
 
-## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #32 — READ FIRST) ★★★★★★★★★★★★★★★★★
-**★ 5 sprints delivered this session. v0.6.96 LIVE prod.wo-da.de:4444. Scoreboard 20→44/301. SCENARIO FIRST (rule #126) — never backfill again.**
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #33 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ 6 sprints delivered this session. v0.7.7 LIVE prod.wo-da.de:4444. Scoreboard 20→53/310. Federation END-TO-END: drag a scenario between RawBin servers → real unit recreated locally w/ provenance (NOT a URL ref). SCENARIO FIRST (#126) held everywhere except 2 urgent-fix slips (v0.7.6, v0.7.7) — chains completed retroactively.**
+
+### SPRINT 26 — FEDERATION (COMPLETE, 52→53/310)
+- T26.1 federated-ior (ior:instance:<uuid>@<host>) | T26.2 grants (HMAC 5min TTL)
+- T26.3 /api/scenario endpoints (6/7, keypair auth honest-open) | T26.4 resolveChildrenLazily | T26.5 reconcileConflict
+- T26.6/T26.7 /api/federation/import (v0.7.7) — E2E wiring: drop federated-ref → server fetch → lazy resolve → conflict reconcile → store w/ originHost/originIor provenance. GREEN DET-3x.
+- Chain WHOLE: R26.6 e289f96e → UC 32f30eee → Class FederationApi 6456d811 → Method importScenario c4506b11 → Impl 3132c189 → Test 638f94d3
+- ⚠ #126 SLIP: v0.7.6 (task-detail) + v0.7.7 (federation) shipped code BEFORE req → completed bottom-up retroactively. Durable fix = req-first even for urgent.
+
+### OPEN NOW
+- Tester: gate v0.7.6 task-detail (📄 MD link 200 + statusChecklist ☑/☐ render)
+- Req: task-detail triage — MD-link vs R22.1 overlap; statusChecklist NEW → S27
+- Planner: reconcile DUP sprint-26 dirs (sprint-26-federation vs sprint-26-rawbin-federation) + align R26.7→R26.6 label
+
+### PRIOR (save #32)
+**★ 5 sprints delivered. v0.6.96. Scoreboard 20→44/301. SCENARIO FIRST (rule #126) — never backfill again.**
 
 ### DELIVERED
 - Sprint 21: 9 features (Contact Identity) v0.6.63→74, 28/301 chains
