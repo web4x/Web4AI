@@ -34,3 +34,9 @@ Also: a `team.sweep`/`process.list` WARNING when a pane has a live claude with e
 - Architect (adopt contract):
 - Expert (reconcile-after-fork + orphan-warn impl):
 - Tester (T-RECONCILE-FORK + live robbinTeam2:0.6 reconcile):
+
+---
+## ★ 2nd INSTANCE 2026-07-01 (SM) — robbin-po itself orphaned; route=unknown-state (harder variant)
+robbin-po (robbinTeam2:0.0) now UNREACHABLE via hiveMind: `route=unknown-state` → `send.message` UNDELIVERABLE (queues + drops STALE, age≈147029s ≈ 40h) → backfill stream stalled. This is a HARDER variant than the planner: the route MAPPING is broken (registry doesn't resolve 0.0→robbin-po), so there's NOTHING staged to poke — the `send.raw Enter` workaround does NOT apply. Needs registry ROUTE REPAIR: `hiveMind registry.set robbinTeam2:0.0 robbin-po` + (uuid via tty-match if empty) + `consistency.fix` → audit 0.
+- **PATTERN ALARM**: 2nd F-MVC-BYPASS orphan in robbinTeam2 (planner 0.6 + po 0.0) → the WHOLE robbin team may have been raw-forked outside the controller. reconcile-after-fork priority reaffirmed CRITICAL; ADD scope: `hiveMind team.audit <team>` that flags ALL orphan panes (live-claude + empty-uuid / unknown-route) in one sweep — don't reconcile one-at-a-time.
+- **EXECUTOR (key)**: robbin-po CANNOT self-repair (it's the unreachable one). The fix is a SHARED-registry hiveMind op run from OUTSIDE → owner = **master-PO** (fleet roster authority) — NOT SM to own, NOT oosh-po to unilaterally edit robbin's roster. If master-PO also unreachable → Tron.
