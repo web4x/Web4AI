@@ -35,3 +35,7 @@ Measure: snapshot roles/sessions.env + `process.list` route BEFORE and AFTER a h
 - Architect (root-cause measurement):
 - Expert (source fix + auto-heal + interim watchdog):
 - Tester (T-ROUTE-AUTOHEAL + robbin-po stability):
+
+---
+## ★ ROOT-CAUSE LEAD 2026-07-01 (oosh-po, during Tron-authorized repair) — hiveMind fd-leak (EMFILE)
+Repairing robbin-po, `hiveMind consistency.audit` threw: `EMFILE ... Too many open files` at hiveMind:9748 — DESPITE `ulimit -n = 1048576` (huge). So this is a genuine **file-descriptor LEAK in hiveMind** (opens per-session/pane files without closing), not a low limit. **STRONG root-cause hypothesis for the recurring route=unknown-state**: under load (many RC events / sweeps), hiveMind exhausts fds → route resolution's file opens FAIL → route reads as `unknown-state` → recovers when fds are reclaimed (~the ~10min cadence). Fix the fd leak (close every opened fd; audit/route-resolve must not accumulate) → likely resolves the recurrence at source. Repair status: robbin-po reachable NOW (registry.set + reconcile clean 0 violations), but this leak = the durable target.
