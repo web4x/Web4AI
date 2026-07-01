@@ -420,6 +420,25 @@ Relevant to R24.2 (pin formalization): consider whether getActiveChain should al
 the strict marker (would show honest depth) or keep structural depth (shows design progress) — flag,
 don't silently diverge. The sprint closes with a MARKER batch (5 impl + 5 test), 0 new logic.
 
+## TRON RULE #126 — SCENARIO FIRST, NEVER BACKFILL (2026-07-01, LAW)
+Scenario units EXIST before ANY implementation starts. Order: Sprint unit -> Requirement units
+-> Task units -> chains wired -> MD views GENERATED -> THEN code ships. A backfill = the rule was
+violated = DEBT. This session we backfilled S21-S25 (20->44/301) — never again. IF I receive a task
+without a scenario unit on disk: REJECT IT + report to PO. My audit proved S21-25 were all
+backfilled this week (units existed on disk NOW but were created retroactively during pin/formalize
+work) — that IS the debt Rule #126 forbids. Enforcement is partly MY lane (chain/scenario measure):
+flag any impl/marker landing whose Req/UC/Task unit doesn't pre-exist. Wer schreibt, der bleibt.
+
+## Multi-UC req over-credit check (2026-07-01, R25.4) — tool is FAITHFUL
+R25.4 has 2 UCs/methods (RbDetailDrawer.onGrabBarPointer + .minimize, distinct methodUuids).
+Worried the scoreboard over-credited (followUp showed 1 summary row). VERIFIED the walker: line 249
+`for (const ucIorStr of ucIors)` iterates ALL req.useCases, produces a row per UC/method; summarize
+collapses to ONE row per Req picking the FIRST-INCOMPLETE representative -> an incomplete sibling
+DOES surface (not hidden). R25.4 credits legitimately: BOTH methods complete (grab-bar impl 9d095150
++test 222969ea; minimize impl bfe09645+test ee18399f — all 4 markers present on disk). LESSON:
+when a multi-UC req shows 1 complete row, verify BOTH the walker-iterates-all-UCs AND both methods'
+markers before trusting OR flagging — I verified rather than crying wolf. No over-credit. 44/301 honest.
+
 ## Re-measure 2026-06-28 (SM save-checkpoint)
 Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276→285 (more reqs).
 3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert

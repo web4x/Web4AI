@@ -17,6 +17,15 @@ Sprint 23/T23.3, req done, uc+ pending (T23.3 In Progress, tester gating). My pi
 <- planner task 52ebca28c (linear, no conflict). Version at v0.6.84 (expert). PO holds pin per
 task until gate signal (learning #125). WATCHERS: none active.
 
+**S25 FULLY COMPLETE + RULE #126 (2026-07-01, 44/301 det-3x)**: S25 all 4 reqs credit
+(R25.1 routeUnknown, R25.2 createAndLaunch, R25.3 recognizeIdentity, R25.4 grab-bar+minimize —
+both methods). Scoreboard 44/301 det-3x (expert 11 impl markers 0cddc012c + tester test hops).
+No over-credit: verified followUp walks ALL UCs + surfaces first-incomplete (R25.4 2-method chain
+legit). Pin on T25.4. lint: orphans ~0, 132 shared-impl = pre-existing framework debt.
+**TRON RULE #126 (LAW, enforce)**: SCENARIO FIRST — units EXIST before any impl. Sprint->Req->
+Task->chains->MD-generated->THEN code. Backfill = rule violated = debt. This session backfilled
+S21-25 (the debt); NEVER AGAIN. Task without a scenario unit -> REJECT + report PO. See learnings.
+
 **SCENARIO AUDIT S21-25 BEFORE-BASELINE (2026-07-01)**: Tron claimed "no sprint scenarios since
 S20"; MEASURED from disk across 4 artifact layers — ALL PRESENT, premise contradicted. Index
 Sprint/Req/Task units exist+wired (S21:9/9/9/9, S22:4/4/4/4, S23:3/3/3/3, S24:5/5/5/5, S25:4/4/4
