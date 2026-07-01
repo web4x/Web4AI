@@ -72,3 +72,19 @@ Scenario units EXIST before ANY implementation: Sprint unit -> Requirement units
 - R25.6 scenario link on ALL detail views: uuid 24509e35-8627-402a-ba93-ed959fef3a5b, UC dc468781-714b-429d-8dff-2ee243a81e51 — MINTED 2026-07-01 commit 394e6645b. Every detail component shows a 📄 Scenario link to its underlying scenario unit.
 - Mint both in Sprint 25 (c7d700c6), scenario-first, overview 4->6. Then ping planner/architect, report PO.
 - Task 2 owed: 3-point verify ALL S21-25 tasks per-sprint (was interrupted; re-run when planner backfill confirmed).
+
+## S25 completion + S26 Federation (2026-07-01, since c75f283)
+**S25 Apple DnD — 7 reqs, all req+task+wiring GREEN (per-sprint 3-point verify ALL PASS):**
+- R25.5 clipboard preview+import 2066ba12 (2 UCs: previewAndImport + readAndRoute) · R25.6 scenario-link-all-detail-views 24509e35 (2 UCs: scenarioLink + scenarioLinkResolve) — minted scenario-first 394e6645b.
+- R25.7 room-membership dedup by resolved identity (STRUCTURAL) 585b6b9c — 4 UCs on Class Room (dedupMembersOnLoad/evictAbsorbedFromRooms/redirectTombstoneToPrimary/addMemberIdempotent) + 7 ACs incl one-time gated repair; from architect design 662c0cc0f. Committed 72bc8c04a, wired 748122237, T25.7 f39e3215a verified. crossRef R23.3 (structural hardening).
+- GATE-LABEL DEDUP: v0.6.97/98 gates mislabeled clipboard=R26.1/scenario-link=R26.2; those are R25.5/R25.6. Recorded gateLabelDrift note (4192c997c), NO dup minted (Rule 9). Gates to relabel R26->R25.
+
+**S26 RawBin Federation — GREENFIELD, fully chained scenario-first (5 reqs, 27 ACs):**
+- Sprint 1d98197d. From architect design 7e940cf81 (federated-scenario-transfer). Principle: STRUCTURE eager, PAYLOAD lazy, IDENTITY by-reference.
+- R26.1 e8744de9 federated IOR (ior@host provenance + pluggable loader) · R26.2 e36d585c cross-origin DnD federated-ref protocol · R26.3 05d21385 server-to-server fetch API · R26.4 71b44e05 lazy child resolve · R26.5 f7e4c1cc conflict reconcile.
+- 4 Classes: IORResolver/DropDispatcher/FederationApi + Transfer (SHARED R26.4+R26.5, 2 methods). R26.4/R26.5 crossRef R25.7 (foreign members by-reference, NEVER minted — no re-dup). securityNote cross-cutting (signed+scoped+expiring grants, trust list, never-execute-foreign-JSON).
+- Chain: reqs 926017353 -> UCs/Classes 7efe38ab9 -> tasks ba302def6 -> ALL before code (designAhead). T26.1-T26.5 3-point verify ALL PASS.
+- 5 OPEN DESIGN DECISIONS in planning.md await Tron/PO (inline-vs-lazy threshold, auth tiers, updatedAt/version field, remap reuse, R25.7 members tie-in).
+
+## Fleet state 2026-07-01
+S21(9)/S22(4)/S23(3)/S24(5)/S25(7)/S26(5) = 33 reqs, all req+task+wiring layers chain-clean, source-of-truth on disk. Scenario-first (#126) held for S25.5-7 + all S26. Repeatable pipeline: measure design/code -> decompose (Rule 10) -> mint units scenario-first -> ping planner(tasks)/architect(UC+wire)/skill-expert(chain-tool ACs) -> 3-point verify each task commit -> record dedup/drift on-disk (wer schreibt der bleibt).
