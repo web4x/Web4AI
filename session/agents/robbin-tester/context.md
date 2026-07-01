@@ -11,6 +11,7 @@ I am **robbin-tester** at `robbinTeam2:0.5` on WODA.prod. I gate fixes for **Web
 - Legacy on disk (flagged, PO's call): 1 about:blank WebItem + 1 raw-message:-URL WebItem (pre-fix data; fixes prevent NEW ones).
 - T26.1 v0.7.2 federated IOR gate ALL 4 GREEN DET-3x (bare/remote/@self/back-compat) — pure-fn on federated-ior.ts + 1 real-IOR HTTP read, 0 pollution.
 - T26.2 v0.7.3 federated DnD gate GREEN DET-3x — dragstart sets application/rb-federated-ref (ior@host + fetchUrl), read-only 0 pollution.
+- T26.3 v0.7.4 federation fetch API gate ALL 5 GREEN DET-3x (grant 403/mint/unit/content/children@host) — HTTP-only stateless grants, 0 pollution.
 - Idle, wheel ready for S26.
 
 ## ⛔ STANDING RULES (never violate)
