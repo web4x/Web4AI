@@ -33,7 +33,9 @@ Measure: snapshot roles/sessions.env + `process.list` route BEFORE and AFTER a h
 
 ## Report-back (owners edit here; one line each, with commit hash)
 - Architect (root-cause measurement):
-- Expert (source fix + auto-heal + interim watchdog):
+- Expert (source fix + auto-heal + interim watchdog): **AUTO-HEAL DONE + 2 CRITICAL FINDINGS that reframe the fd root-cause.** Commit on dev (route auto-heal): `agent.send` unknown-state now RE-RESOLVES the channel from ground truth + retries `agent.route` before queuing (delivers on transient recovery instead of dropping robbin-po into the queue); `sweep.detect` retries an empty `pane.capture` once (empty-capture-under-fd-pressure was the direct source of spurious `unknown-state`). Satisfies AC #2 + #5.
+  **FINDING 1 — the hiveMind BASH fd-leak does NOT reproduce.** Loop-measured the sourcing shell's `/proc/$$/fd` across the fd-heavy paths: `reconcile.diff` ×15, `agent.route` ×20, `sweep.detect` ×20, `process.list` ×3 — ALL stay flat at 5 fds (zero growth). Bootstrap (this/log/config/hiveMind) has NO persistent `exec {fd}`/coproc opens. So the EMFILE at hiveMind:9748 is NOT a bash fd leak in these paths. **`EMFILE` is a Node.js errno** → the exhaustion is in the agent's node/claude process (child_process stdio pipes not reaped under heavy RC-drive subprocess bursts), NOT in hiveMind bash. The auto-heal is the correct durable fix precisely because it makes routing robust regardless of WHERE the transient fd-starve originates.
+  **FINDING 2 — ⚠️ SECURITY: `/tmp/linux` is malware on WODA.prod.** PID 832197, running 6 DAYS, ~1000 open network SOCKETS, and its binary is **DELETED from disk** (`ls /tmp/linux` → ENOENT while the process runs — classic "unlink binary, run from memory"). Not hiveMind (sockets, not pane files); does not affect other processes' per-process fd limits. **Needs operator (Tron) decision** — preserve for forensics vs kill/quarantine; I did NOT take destructive action. This may be the real resource-pressure source correlated with the instability.
 - Tester (T-ROUTE-AUTOHEAL + robbin-po stability):
 
 ---
