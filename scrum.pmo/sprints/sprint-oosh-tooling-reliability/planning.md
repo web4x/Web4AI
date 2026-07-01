@@ -48,3 +48,6 @@ OTR-1 + OTR-2 FIRST (they're the active throttle; nothing else matters if dispat
 
 ## Definition of done (sprint)
 An agent can run the entire team lifecycle — dispatch, monitor, unblock, fork, reconcile — through oosh wrappers ALONE, with zero raw-tmux/raw-claude fallback, across sustained RC-driving and cross-team ops. Then the doctrine is re-mandated.
+
+## TIER 1 (added) — OTR-11: boot/identity resolution is failing (live symptom)
+`session/agents/unknown/boot.md` was auto-overwritten 2026-07-01 10:11: identity detection FAILED to resolve a role → wrote an "unknown (identity detection failed)" boot (clobbering a scrum-master boot). This is the boot-resolution gap flagged in `agent-dirs-per-host-split.md` (agent-trainer follow-up), now CONFIRMED live. With per-host dirs (`role@host/`), the boot/recovery hook must resolve `role@host` from ground truth (tty-match pane→uuid→registry) — and NEVER silently produce an "unknown" that clobbers a real agent's boot. Same root family as OTR-2/OTR-3 (registry/route/uuid integrity). Owner: agent-trainer (boot hook) + hiveMind-expert (resolution). **HIGH.**
