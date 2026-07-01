@@ -1,4 +1,7 @@
-# robbin-expert Context — Save Point 2026-07-01 (WODA.prod, v0.7.1 MILESTONE)
+# robbin-expert Context — Save Point 2026-07-01 (WODA.prod, v0.7.5 / SPRINT 26 COMPLETE)
+
+**S26 (RawBin Federation) COMPLETE**: T26.1 federated IOR (federated-ior.ts) · T26.2 DnD federated-ref (DropDispatcher.buildFederatedRef) · T26.3 server fetch API (/api/scenario/<uuid>{,/content,/children,/grant}, capability-grant auth, LIVE 0.7.4) · T26.4 lazy child resolve + T26.5 conflict reconcile (federation-transfer.ts Transfer class). All impls credit. Design: scrum.pmo/design-notes/federated-scenario-transfer.md. NOT-yet-wired: the end-to-end drag→grant→fetch→Transfer.import live flow (each piece exists + is tested; integration is the next step when PO wants it).
+
 
 **Role**: Web4RawBin Implementation Authority
 **Machine**: WODA.prod · **Pane**: robbinTeam2:0.1
