@@ -1,5 +1,7 @@
 # robbin-architect Context (Save 2026-07-01)
 
+## R25.5+R25.6 UCs REFINED scenario-first (commit 5c3d55e30, FIRST clean #126-compliant hop): planner stood reqs+tasks first; I minted FULL chain seed to Impl (design-ahead, not Class+Method-only). R25.5 10af6d46 clipboard.previewAndImport -> ClipboardImport (base drop-dispatcher.ts/RoomView). R25.6 dc468781 detail.scenarioLink -> RbDetailView.renderScenarioLink (base detail-children.ts scenarioBrowserLinkFromIor, uniform on ALL rb-*-detail). Derive 2/2 PASS. Expert attaches [impl:uuid] at code time.
+
 ## ⭐ STANDING RULE — TRON #126 (ABSOLUTE): SCENARIO FIRST, NEVER BACKFILL.
 Order: Sprint→Requirement→Task→chains wired (Req→UC→Class→Method→Impl→Test)→MD GENERATED→THEN code. Scenarios on disk BEFORE any impl. A backfill = rule violated = DEBT. This session paid the S21-S25 backfill debt (20→44/301) — NEVER AGAIN. If I get a task whose scenario unit doesn't exist, REJECT + report PO. I mint FULL chain seeds to Impl (design-ahead) up front — never Class+Method-only (the crisis omission). Details in learnings.md ⭐ STANDING RULE.
 
