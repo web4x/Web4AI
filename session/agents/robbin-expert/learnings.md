@@ -1,5 +1,25 @@
 # robbin-expert Learnings — 2026-05-22/23/24
 
+## Session 2026-06-28→07-01 (v0.6.74→0.6.96 + S21-25 chain)
+
+### TRON RULE #126 — SCENARIO FIRST, NEVER BACKFILL
+Scenario units EXIST before ANY implementation: Sprint → Requirement → Task → chains wired → MD GENERATED, THEN code. A backfill = the rule was violated (this session backfilled S21-25, 20→44/301 — that was DEBT). If a task arrives WITHOUT a scenario unit, REJECT it and report to PO. Wer schreibt, der bleibt.
+
+### Chain markers: crediting is labelMethod↔host name-match, NOT unit-name
+Conceptual backfill unit names (renderNameOnConnect, attachMouse, recognizeIdentity…) rarely equal a real function. buildStrictImplSet credits when the marker's uuid sits on a member whose name matches MY label's method-token — the unit's name is irrelevant. So place [impl:uuid:X] on the real host + label it to name-match that host (e.g. onGrabBarPointer→onMouseDown, recognizeIdentity→switchToUnlock). const-arrow (`const isImage = …`) AND class field-arrows (`onMouseDown = (e)=>`, `static resolveToken = …`) DO credit. A single Requirement can have >1 Method — after wiring, grep the scoreboard for sibling open-impls (R25.4 = onGrabBarPointer AND minimize) or the total lands one short.
+
+### UTF-8 multipart filenames: decode binary→utf8
+Reading the multipart body as 'binary' (Latin-1) for a safe split corrupts a UTF-8 filename (für→fÃ¼r). Fix at extraction: `Buffer.from(name, 'binary').toString('utf-8')`.
+
+### Position-aware drag: anchor to the actual edge, not offsetHeight-delta
+A resize that assumes the element's bottom == viewport bottom (`startHeight + Δ`) jumps once a media query repositions it. Capture `getBoundingClientRect().bottom` at drag-start → `newH = startBottom - clientY`. Correct in every layout.
+
+### Dangling refs never render a raw UUID
+A tree/child builder that falls back to `name: ref.slice(0,8)` shows a raw UUID for a removed unit. Skip dangling refs (return null → .filter(Boolean)) AND purge them from the owner's list — never surface a UUID as a display name.
+
+### Identity pollution is a MINT-TIME gap, not a cleanup problem
+Automated test drops that carry a known phone skip KNOWN_KEY_CHALLENGE (needs user interaction) → mint a NEW profile each time. Tombstoning one-by-one is whack-a-mole; the durable fix is blocking new-profile-on-known-phone in the no-challenge path. Report the ROOT, don't just re-clean.
+
 ## Architecture Decisions
 
 ### Room.ts API: RoomMember objects, not separate args
