@@ -10,6 +10,13 @@
 
 Execute 2-phase rewind protocol on SM-flagged agents. Propagate doctrines DRY via base-skills mechanism. Carry the light forward.
 
+## LOCAL SCOPE (2026-07-01 SM 42-reconcile — MEASURED via `otmux sessions`)
+
+**My host = MacStudio. Local tmux sessions ONLY**: TRONinterface (Tron+SM), baseTeam (me), iphone, ooshTeam (po/architect/expert/tester + shells), remoteOOSH.
+- **NO robbinTeam2 locally.** The robbinTeam2:0.1/0.2 (expert/skill-expert) items in the 2026-06-28 WODA.prod entries below are STALE for this host — they belong to WODA.prod REMOTE (owned by the WODA.prod trainer; cross-machine is asymmetric — I CANNOT reach their panes live) OR are from before robbinTeam2 was killed locally. DROPPED from my active queue.
+- **My actual rewind scope on MacStudio**: ooshTeam agents (oosh-po/architect/expert/tester) + myself (SM drives). That's it. Do not act on cross-machine agents.
+- **Lesson**: after a rewind/reboot, ALWAYS `otmux sessions` to reconcile queue against real local sessions before trusting context.md's pending list. Cross-host context entries go stale.
+
 ## 2026-06-29 MacStudio — latest cycle
 
 ### scrum-master + oosh-po rewind (PO-first per Tron redirect)
