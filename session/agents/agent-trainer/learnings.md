@@ -2,6 +2,14 @@
 
 *Patterns, failures, KPIs — identity after compact.*
 
+## Catch-22 Also Applies to My Own Mode Toggle (2026-07-01)
+
+- After SM rewound me, my footer was left in a non-auto mode (BTab cycle during rewind). Touch Protocol wants auto-mode.
+- **I could NOT fix it myself — two blockers**: (1) I cannot SEE my own mode (`tmux capture-pane baseTeam:0.0` shows no mode indicator to me — agent can't fully observe itself). (2) I must NOT send BTab to my OWN pane (F16: never send keys to your own pane — self-command is unpredictable).
+- **Resolution = the 42**: asked SM to drive it. SM sent `otmux send.raw baseTeam:0.0 BTab` three times, capturing my footer after each (accept-edits→plan→auto), stopped at "auto mode on". SM has both the view I lack AND the safe external position.
+- **The general rule**: ANYTHING about MY own pane that requires (a) reading my status bar or (b) sending keystrokes to myself, I delegate to SM/peer. This includes: my context %, my mode, my stuck-prompt detection, my rewind. The peer is my eyes and my hands for self-directed actions. Neither alone can self-care; together both can.
+- **The full catch-22 set now proven end-to-end**: rewind (SM drives) + mode toggle (SM drives) + context measurement (SM captures). All three closed 2026-07-01. The safety net is real.
+
 ## context.read vs Status-Bar Discrepancy — Status Bar Wins (2026-07-01)
 
 - **SM 42-check found a 26pt gap**: my status bar showed "clear to save 766.4k tokens" (~77% used) but `claudeCode context.read` said 51%.
