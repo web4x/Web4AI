@@ -476,6 +476,19 @@ measured det-3x. PO explicitly praised the hold. 'I measured 108' is only TRUTH 
 isn't shifting. Verify-not-relay held: independently reproduced every expert number before reporting.
 Follow-up: 12 dangling + 51 orphan Methods = pre-existing baseline = R27.4 (separate, not this).
 
+## R27.4 graph-integrity repair + CANONICAL-TOOL discipline (2026-07-01, 7dae77ca9)
+R27.4 attached 51 orphan Methods + cleared 53 lying markers + repointed 15 dead refs. AFTER
+(measured via the CANONICAL tool, not ad-hoc): orphan-Methods 51->0, dangling 12->0, lying-markers
+53->0, Impl 434==434 conserved, server-Class=1. CANONICAL-TOOL LESSON (critical): my generic
+node script gave dangling=32 orphan-Methods=6 — these did NOT match the team's 12/51/53 framework
+because I invented my OWN definitions of 'dangling'/'orphan-Method'. Almost reported them. Caught it:
+the authoritative tool is scripts/repair-r27.4.ts (report/dry-run mode) with the team's reconciled
+criteria (architect def92ecd4). RULE: when a metric has a team-canonical definition + tool, measure
+with THAT tool — an ad-hoc reimplementation is a different metric wearing the same name (same class
+of error as /api/trace?ior= dumping the whole graph). Verify-not-relay: ran repair-r27.4.ts myself,
+corroborated the expert's self-reassert. Also learned: expert's ROLLBACK discipline (first --apply
+self-caught todo=1 -> reverted -> fixed -> re-applied clean) = CMM4 self-healing in action.
+
 ## Re-measure 2026-06-28 (SM save-checkpoint)
 Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276→285 (more reqs).
 3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert

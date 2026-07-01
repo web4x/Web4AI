@@ -23,8 +23,11 @@ active. R27.3 (per-task MD, 404 fix) GREEN. R27.2 over-count correction APPLIED:
 fan-out NOT credit), lint flat 184, scoreboard 53/314. Independently verified + reported clean
 before/after. Pin on Sprint 27 / T27.3 (advanced off stale S26 via c7c4171c8; disk+server both S27).
 CORRECTED an earlier over-claim: /api/trace?ior= dumps WHOLE graph (not the current-slot) — flagged
-to PO, recommend visual /trace check for the literal Current widget. R27.4 = 12 dangling + 51 orphan
-Methods (pre-existing baseline, separate). Watchers: none active.
+to PO, recommend visual /trace check for the literal Current widget. R27.4 DONE (7dae77ca9):
+orphan-Methods 51->0, dangling 12->0, lying-markers 53->0, Impl 434==434, Class=111 (108+3 guard
+mints). Measured via CANONICAL repair-r27.4.ts report-mode (NOT ad-hoc — my generic node gave
+32/6, wrong definitions; team tool is authoritative). lying-marker CI clear to go strict. R27.2+R27.4
+= full over-count correction: graph honest, dangling-free, dedup'd. Watchers: none active.
 
 **S26 CHAIN-CLOSED 2026-07-01 (52/309 det-3x, commit b572494f6)**: Sprint 26 (Federation —
 Clipboard UX + Universal Traceability) CLOSED. R26.1-5 all 6/6: resolveFederated, buildFederatedRef,
