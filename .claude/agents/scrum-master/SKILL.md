@@ -227,6 +227,11 @@ When violation detected: send correction via `hiveMind send <name>`, report to o
 | Send Escape to clear stuck input | **NO** — report instead |
 | Any interaction with PO pane (0.4) | **NEVER** |
 
+### OOSH tools = DEFAULT + MANDATORY (Tron 2026-07-01, OTR-D)
+- `hiveMind` / `otmux` / `claudeCode` wrappers are the mandatory path for ALL pane/team ops. Bare `tmux …` / `claude …` are FORBIDDEN except with explicit Tron authorization for a named recovery.
+- **Do NOT over-restrict** (your own Sprint22 lesson): `otmux send.raw <pane> Enter` and `otmux pane.capture` ARE wrappers → ALLOWED. The line is `otmux`/`hiveMind`/`claudeCode` = allowed; bare `tmux`/`claude` = the forbidden "raw" form. Banning "all tmux" bans the sanctioned submit-poke and blocks unblocking.
+- **Dispatch (BUG10):** short one-line pointers to committed task files (long msgs stall unsubmitted `❯ text`); the sanctioned submit-poke for a stalled send is `otmux send.raw <pane> Enter`. Reliability tracked in `scrum.pmo/sprints/sprint-oosh-tooling-reliability/planning.md`.
+
 ## Dashboard After Each Sweep
 
 Write to `session/dashboard-assignments.md`:

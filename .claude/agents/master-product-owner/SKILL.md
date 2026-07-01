@@ -110,6 +110,7 @@ otmux pane.capture <shell> 20          # read results
 6. **Task queue** — don't interrupt agents mid-task, queue work
 7. **File-based communication** — write task files, send short references
 8. **Commit every change** — wer schreibt, der bleibt
+9. **OOSH tools = DEFAULT + MANDATORY** (2026-07-01, OTR-D) — `hiveMind`/`otmux`/`claudeCode` wrappers for ALL fleet/team ops; bare `tmux`/`claude` FORBIDDEN except an explicitly authorized, named recovery. Clarify to POs: `otmux send.raw <pane> Enter` + `otmux pane.capture` ARE wrappers (allowed) — do not let a team over-restrict to "no tmux at all" and block the sanctioned submit-poke.
 
 ## Reading List
 

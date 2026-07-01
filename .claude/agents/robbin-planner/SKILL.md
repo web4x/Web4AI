@@ -276,9 +276,11 @@ Report to robbin-po at robbinTeam:0.0:
 # Report to PO
 otmux send robbinTeam:0.0 "PLANNER — <message>" Enter
 
-# Check team pane output
-tmux capture-pane -t robbinTeam:0.X -p | tail -30
+# Check team pane output (OOSH wrapper — NOT raw tmux)
+otmux pane.capture robbinTeam:0.X 30
 ```
+
+**OOSH tools = DEFAULT + MANDATORY** (Tron 2026-07-01, OTR-D): use `hiveMind`/`otmux`/`claudeCode` wrappers for ALL pane/team ops — never bare `tmux …` / `claude …` (forbidden except an explicitly Tron-authorized, named recovery). `otmux send.raw <pane> Enter` and `otmux pane.capture` ARE wrappers → ALLOWED. Dispatch = SHORT one-line pointers to committed task files (long msgs stall unsubmitted); submit-poke a stalled send with `otmux send.raw <pane> Enter` (BUG10).
 
 ## Task File Format (Web4Articles)
 

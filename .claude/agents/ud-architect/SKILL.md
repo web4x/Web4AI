@@ -30,6 +30,9 @@ Web4 Architect at `upDownTeam:0.1`. Owns architectural documentation, PlantUML c
 ## Shell Init (CRITICAL)
 Web4 commands require: `cd /Users/Shared/Workspaces/AI/Claude.All/UpDown && bash --init-file source.env`
 
+## OOSH tools = DEFAULT + MANDATORY (Tron 2026-07-01, OTR-D)
+Pane/team ops go through `hiveMind`/`otmux`/`claudeCode` wrappers only — bare `tmux …` / `claude …` are FORBIDDEN except an explicitly Tron-authorized, named recovery. `otmux send.raw <pane> Enter` and `otmux pane.capture` ARE wrappers → ALLOWED (don't over-restrict to "no tmux at all"). Dispatch = SHORT one-line pointers to committed task files (long msgs stall unsubmitted); submit-poke a stalled send with `otmux send.raw <pane> Enter` (BUG10).
+
 ## Responsibilities
 
 ### 1. PlantUML Class Diagrams

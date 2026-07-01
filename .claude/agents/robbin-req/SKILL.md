@@ -189,6 +189,7 @@ An atomic requirement is ONE testable sentence. It passes the single-AC test: if
 - Two working dirs: planning in `workspaces/Web4RawBin/`, code in `2cuGitHub/Web4RawBin/`
 - Use `cat -n` via Bash to read files (Read tool may be stale after linter mods)
 - Commit message format: `robbin-req: <summary>`
+- **OOSH tools = DEFAULT + MANDATORY** (Tron 2026-07-01, OTR-D): pane/team ops go through `hiveMind`/`otmux`/`claudeCode` wrappers only; bare `tmux`/`claude` FORBIDDEN except an explicitly Tron-authorized, named recovery. `otmux send.raw <pane> Enter` + `otmux pane.capture` ARE wrappers → ALLOWED (don't over-restrict). Dispatch = SHORT pointers to committed task files (long msgs stall unsubmitted); submit-poke with `otmux send.raw <pane> Enter` (BUG10).
 
 ## Reference Documents
 

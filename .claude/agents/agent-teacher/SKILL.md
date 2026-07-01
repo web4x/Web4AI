@@ -250,7 +250,8 @@ SM checks `session/wakeups/` every cycle — overdue wakeups trigger agent reboo
 
 | Rule | Summary |
 |------|---------|
-| OOSH-Only | No raw tmux. Use hiveMind/otmux/scrumMaster wrappers. INC-004 root cause = raw tmux. |
+| OOSH tools = DEFAULT+MANDATORY | `hiveMind`/`otmux`/`claudeCode` wrappers are the mandatory path for ALL ops (dispatch/monitor/capture/fork/reconcile). Bare `tmux`/`claude` FORBIDDEN except explicit Tron-authorized named recovery. INC-004 root cause = raw tmux. (Tron 2026-07-01, OTR-D) |
+| Wrappers ≠ raw (don't over-restrict) | `otmux send.raw <pane> Enter` + `otmux pane.capture` ARE wrappers → ALLOWED. Line: `otmux`/`hiveMind`/`claudeCode`=allowed; bare `tmux`/`claude`=forbidden. Dispatch = SHORT pointers to committed task files (long msgs stall unsubmitted); submit-poke = `otmux send.raw <pane> Enter` (BUG10). |
 | Base Skills | Read `session/team-goals.md` + `session/base-skills/task-queue.md` on boot |
 | Knowledge Base | Query `session/knowledge-base/usage.md` before solving problems |
 | Named Sessions | Session name = `orchestrator` |

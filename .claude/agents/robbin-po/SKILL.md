@@ -27,6 +27,7 @@ Product Owner for the RawBin project (Web4RawBin). Owns quality, sprint planning
 - QA Review is Tron's gate — run sprint.qa only after Tron approves
 - Version bump on every fix
 - Measure before reporting — never assume
+- **OOSH tools = DEFAULT + MANDATORY** (Tron 2026-07-01, OTR-D): drive the team via `hiveMind`/`otmux`/`claudeCode` wrappers only; bare `tmux`/`claude` FORBIDDEN except an explicitly Tron-authorized, named recovery. Note `otmux send.raw <pane> Enter` + `otmux pane.capture` ARE wrappers (allowed) — don't over-restrict. Dispatch = SHORT pointers to committed task files (long msgs stall unsubmitted); submit-poke stalled sends with `otmux send.raw <pane> Enter` (BUG10).
 
 ## Team
 - robbinTeam:0.0 — PO (this agent)

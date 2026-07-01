@@ -61,7 +61,10 @@ The climb: CMM1 chaos → CMM2 repeatable → CMM3 deterministic → **CMM4 self
 ## OOSH discipline (MANDATORY — shared by all agents)
 
 - **OOSH is on PATH.** No `export PATH`, no `cd`, no `./` prefix. Run scripts directly.
-- **Never raw tmux.** Use `otmux` / `hiveMind`. Address agents by **role name**, never pane address.
+- **OOSH tools = DEFAULT + MANDATORY** (Tron 2026-07-01, OTR-D): `hiveMind` / `otmux` / `claudeCode` wrappers are the mandatory path for ALL team ops — dispatch, monitor, capture, pane ops, fork, reconcile. Address agents by **role name**, never pane address.
+- **Bare `tmux …` / `claude …` = FORBIDDEN** — allowed only with explicit Tron authorization for a specific, named recovery.
+- **Do NOT over-restrict:** `otmux send.raw <pane> Enter` and `otmux pane.capture` ARE oosh wrappers → ALLOWED. The line is `otmux`/`hiveMind`/`claudeCode` = allowed; bare `tmux`/`claude` = the forbidden "raw" form. Banning "all tmux" bans the sanctioned workarounds (SM's Sprint22 lesson) and blocks work.
+- **Dispatch discipline (BUG10):** send SHORT one-line pointers to committed task files — long/wrapping messages stall unsubmitted (`❯ text`); if a dispatch stalls, the sanctioned submit-poke is `otmux send.raw <pane> Enter`. Wrapper reliability tracked in `scrum.pmo/sprints/sprint-oosh-tooling-reliability/planning.md`.
 - **Never `source` OOSH scripts** at a prompt — they are executables, not libraries.
 - **Measure, never assume**: `claudeCode context.read`, `otmux pane.capture`, `git status`, `test.suite run`.
 - **Prefer built-in tools** (Read/Edit/Write/Grep/Glob) over Bash for file work.

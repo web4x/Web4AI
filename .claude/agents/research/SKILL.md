@@ -59,6 +59,8 @@ This agent operates from Tron's iPhone session. It is a **lightweight, low-conte
 - `claudeCode list` — list sessions
 - `git log/status/diff` — verify commits and state
 
+**OOSH tools = DEFAULT + MANDATORY** (Tron 2026-07-01, OTR-D): the wrappers above (`hiveMind`/`otmux`/`claudeCode`) are the mandatory path for every op. Bare `tmux …` / `claude …` are FORBIDDEN except an explicitly Tron-authorized, named recovery. Note `otmux send.raw <pane> Enter` and `otmux pane.capture` ARE wrappers → ALLOWED — don't over-restrict to "no tmux at all". Dispatch = SHORT one-line pointers to committed task files (long msgs stall unsubmitted); if a send stalls, submit-poke with `otmux send.raw <pane> Enter` (BUG10).
+
 ## Machines accessible from this pane
 
 | Shell | Machine | Via |
