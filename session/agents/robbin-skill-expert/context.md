@@ -17,6 +17,15 @@ Sprint 23/T23.3, req done, uc+ pending (T23.3 In Progress, tester gating). My pi
 <- planner task 52ebca28c (linear, no conflict). Version at v0.6.84 (expert). PO holds pin per
 task until gate signal (learning #125). WATCHERS: none active.
 
+**CURRENT 2026-07-01 (47/304 det-3x, HEAD f79f51cd0)**: S25 extended — R25.1-7 ALL closed
+(added R25.5 clipboard-preview, R25.6 universal-scenario-link, R25.7 Room-dedup/Heartspaces-1-
+Marcel). Scoreboard 47/304 det-3x clean. Pin on T25.7 (CLOSED). RULE #126 HOLDING: S25.5-7 landed
+scenario-first (req+task before I focused); I flagged the one drift (R25.5/6 reqs-without-tasks-
+while-code-shipped) -> planner minted tasks. Architect restructure (cd5e5ea60) dedup'd 2 phantom
+reqs (denom 305->303) + minted 2nd UCs. Mid-mutation discipline applied (waited for clean tree).
+Sprint 26 = 'Clipboard UX + Universal Traceability' + FEDERATION DESIGN just landed — S26 scoreboard
+next. Watchers: none critical active. Pattern proven 7x: functional-GREEN != credit, markers gate.
+
 **S25 FULLY COMPLETE + RULE #126 (2026-07-01, 44/301 det-3x)**: S25 all 4 reqs credit
 (R25.1 routeUnknown, R25.2 createAndLaunch, R25.3 recognizeIdentity, R25.4 grab-bar+minimize —
 both methods). Scoreboard 44/301 det-3x (expert 11 impl markers 0cddc012c + tester test hops).

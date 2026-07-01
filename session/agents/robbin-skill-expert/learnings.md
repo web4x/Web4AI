@@ -439,6 +439,27 @@ DOES surface (not hidden). R25.4 credits legitimately: BOTH methods complete (gr
 when a multi-UC req shows 1 complete row, verify BOTH the walker-iterates-all-UCs AND both methods'
 markers before trusting OR flagging — I verified rather than crying wolf. No over-credit. 44/301 honest.
 
+## Mid-mutation measurement discipline (2026-07-01, S25.5/6)
+A watcher fired on a denominator FLAP (305->303) with NO new commit — another agent was
+live-restructuring R25.5/6 units UNCOMMITTED (deleting a dup Requirement + 2 Tasks, +10 mods).
+I did NOT report the flap as a settled number — a count measured on a DIRTY working tree isn't
+reproducible, and "I measured 44/303" would be false while the tree mutates under me. Waited for
+the restructure to COMMIT (HEAD move + `git status` clean=0), THEN measured det-3x on the clean
+tree. LESSON: gate every "authoritative" scoreboard on a CLEAN tree (git status scenario/index =
+0 dirty). Re-arm watchers to fire on the COMMIT (HEAD change + clean), not on denominator flaps.
+Shared-live-repo state moves mid-analysis — the committed word is the only reproducible truth.
+Also: the architect's restructure DEDUP'd 2 phantom reqs (305->303 healthier) + minted the 2nd
+UCs — the flap was legit consolidation, not corruption; measuring-not-panicking classified it right.
+
+## S25 completion cadence (functional-GREEN -> marker-batch -> credit)
+R25.1-7 ALL closed via the identical loop, proven 7x: expert ships code -> tester gates GREEN
+(FUNCTIONAL, proves behavior) -> scoreboard UNCHANGED (chain not credited) -> expert adds
+[impl:uuid:] on named method + tester adds [test:uuid:] -> canonical scoreboard moves +1. The
+pin (unit+wire) reads "impl done / depth=5" OPTIMISTICALLY before the marker exists; the scoreboard
+(unit+wire+marker) is authoritative. Every single time I reported the canonical number over the
+green/pin optimism, and every single time the number only moved on the markers. This IS the honest-
+count discipline made routine. #126 now enforced: reqs+tasks land scenario-first (I flag drift).
+
 ## Re-measure 2026-06-28 (SM save-checkpoint)
 Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276→285 (more reqs).
 3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert
