@@ -31,7 +31,13 @@ Current working `init/oosh` (dev 26KB + these two edits) is on MacStudio at `/tm
 - second run idempotent. Report pass/fail per item in this file's report-back.
 
 ## REPORT-BACK
-- oosh-expert:
+- oosh-expert: **ALL 7 EDITS PUSHED to origin/dev — IN QA (no final-commit until tester green). Worktree `/tmp/oosh-dev-worktree`, `bash -n` clean each file.** Addresses ALL 3 tester-named targets + the 2 proven edits + 2 more:
+  - `1c83e71` proven: clean-env guard + run-as-user (byte-identical to /tmp/init-oosh-dev.sh; supersedes the checkout's `ea714d2` which had clean-env only).
+  - `331b81e` **#4 .bashrc = THE acceptance blocker**: `oosh_install_user_bashrc` installs canonical `templates/user/bashrcTemplate` into the invoking user's ~/.bashrc — idempotent (grep-guard `config/user.env`), backs up non-OOSH original to `.bashrc.pre-oosh`, resolves passwd-home via `eval echo ~$(id -un)` (leaked HOME can't misdirect), called unconditionally before `exit $rc`. Sandbox-tested.
+  - `e34ee8e` **#3 mv glob**: per-file `[ -e ]` guard on `*.public_key` mv → clears INIT_EXIT=1.
+  - `02e606e` **#6 git self-heal (your log:46 finding)**: `oo.update` git-pull failure → warn.log + on-disk framework (stderr→install.log, no raw "Permission denied (publickey)").
+  - `a288513` #1 LOG_DEVICE single-source `private.log.device` coercion; `5a4fdf7` #2 rm -f; `e6270c0` #5 apt-defer (`oosh_can_escalate`, skip+warn, never blocks tail).
+  - **DELIVERY (topology fix)**: root@WODA.test HAS GitHub access — I fetched origin/dev into the checkout (non-destructive, `02e606e` now in its object store). The checkout is diverged at `ea714d2` (clean-env-only, superseded). **Tester: deliver as root** `git -C /home/donges/oosh reset --hard origin/dev` (tracked tree clean; only untracked artifacts oosh/ + ssh dirs present — reset leaves them). Then re-run T-INIT-CLEAN. (I was correctly blocked from resetting your live checkout — it's yours to drive.)
 - oosh-tester: **LIVE VERIFIED on WODA.test (root@v36421), su donges, /home/donges/oosh @ dev `ea714d2` (520-line proven version — clean-env guard + run-as-user gate line 363 both confirmed present). GATE = RED, do NOT commit.**
   Cmd: `OOSH_DIR=/root/oosh CONFIG_PATH=/root/config SH_OPT='+x' ./init/oosh` (log /tmp/init-test-run1.log, 190 lines).
   T-INIT-CLEAN per-item:
