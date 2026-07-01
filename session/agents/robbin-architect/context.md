@@ -1,5 +1,11 @@
 # robbin-architect Context (Save 2026-06-30 — R25.2 WebItem design)
 
+## CHAIN COVERAGE AUDIT S21-S25 (commit 6a5c5fa61 closed R25.3 gap). Per-sprint req->uc->class->method->impl->test:
+- S21: 9/9/9/9/8/8 (R21.2 noImpl). S22: 4/4/4/4/0/0 (ALL stop at Method). S23: 3/3/3/3/1/0 (R23.1/2 noImpl; R23.3 noTest). S24: 5/5/5/5/5/5 FULL. S25: 4/4/4/4/4/2 (R25.3/4 noTest).
+- ROOT CAUSE of Impl gaps: S22/S23 UCs minted in the missing-UC CRISIS as Class+Method ONLY (no Impl) — I only started minting Impl at S24. Code SHIPS (R22.1/3/4 GREEN in PDCA; R23.1/2 shipped) → BACKFILL 7 Impls (S22 x4, S23 x2, S21 R21.2) pointing at shipped source. ASKED PO to proceed. Test gaps = tester champagne pending / R25.4 designAhead.
+- R25.3 gap CLOSED: UC c461d975 onboarding.recognizeIdentity -> Class Onboarding -> Method -> Impl (ProfileEditor.ts, ships). req d0acb05d.
+- 7 IMPLS BACKFILLED (commit 95c136127) — ALL S21-S25 derive to IMPL 25/25. Measured shipped-presence per file for honest designAhead: R21.2 RoomBrowser.ts, R22.1 detail-superseded.ts, R22.2 pan-zoom.ts, R22.4 server.ts, R23.1/R23.2 content-preview.ts (all REAL); R22.3 detail-superseded.ts DESIGN-AHEAD (chain-node source-link renderer grep=0, not shipped — matches my R22.3 gap report). FINAL COVERAGE: S21 9/9/9/9/8, S22 4/4/4/4/0, S23 3/3/3/3/0, S24 5/5/5/5/5, S25 4/4/4/4/2. REMAINING = Test layer only (tester champagne). Architect chain-integrity COMPLETE to Impl.
+
 ## R25.4 WIRED (commit 578cc84f5): req minted R25.4 (225b18a6) for BUG2+BUG3. My design call = TWO UCs on a SHARED Class RbDetailDrawer (d86af73d, methods=[onGrabBarPointer, minimize]): UC1 c6df9164 drawer.grabBarMouseParity -> Method onGrabBarPointer; UC2 2438307a (NEW, I added to req.useCases[]) drawer.minimizeToggle -> Method minimize. Impls designAhead (bug-fix not shipped, sourceFile rb-detail-drawer.ts). Derive 2/2 PASS. BUG1 still = R25.2 impl scope (rb-webitem-detail + tagMap webitem + Open). S25 = c7d700c6, now 4 reqs.
 
 ## 3 DRAWER BUGS diagnosed (Tron, 2026-06-30) — reported, await req-mint:
