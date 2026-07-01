@@ -5,6 +5,9 @@
 **Pane**: ooshTeam:0.0 on MacStudio.native
 **Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## ★★ POST-REWIND CONFIRM — 2026-07-01 (zero-loss, Phase 1 saved bc4dc7f)
+Rewound. Ground truth verified: pane.get.target=ooshTeam:0.0, uname=MacStudio/Darwin, branch main clean, HEAD=bc4dc7f (Phase 1 anchor). customTitle oosh-po@MacStudio (fork 2b65b769 per boot prompt — KEPT, not re-renamed). Recent sprint = init-constructor (init/oosh self-heal on WODA.test): tester RUN5 8084ab3 (RESIDUAL-1 CLOSED INIT_EXIT=0, RESIDUAL-2 open: raw /dev/stderr on login = unguarded write outside log), expert a034dd1+b7c14ba (both residuals claimed closed). **NEW TRON TASK on resume: tester tests `hiveMind team.save` vs `hiveMind status` — does team.save carry same team|shell|agent|uuid combos as status? Show results + WAIT.** On resume: verify identity, drive the team.save/status comparison, then RESIDUAL-2, then #26/#27 init clean-env.
+
 ## ⚡ PHASE-1 ANCHOR FROM 0% — 2026-07-01: Rewinding at ceiling (Room freed, deeper Phase 1). ACTIVE: init/oosh IS the constructor on WODA.test (donges@v36421, /home/donges/oosh; remoteOOSH:0.0=donges@WODA.test, 0.1=WODA.test) — assume NOTHING initialized, blank slate, build the object + self-heal/self-care to full operability. Added clean-env-first unset guard to init/oosh (#26); running it as donges exposed init does NOT self-derive CONFIG_PATH → /config → cascade fail (color envs, loop.file.lines, /dev/stdout, early exit) = constructor-contract gap #27 (ties #12). Fixes → oosh-expert on dev w/ T-INIT-CLEAN test. Stopgap: export CONFIG_PATH=/home/donges/config before ./init/oosh. On resume: verify identity (29a1e1d1@MacStudio, ooshTeam:0.0), read learnings, drive #26/#27. Backups on WODA.test: init/oosh.orig-dev-26k.
 
 ## ★★ POST-REWIND CONFIRM — 2026-06-29 (from 1%, near-ceiling)
