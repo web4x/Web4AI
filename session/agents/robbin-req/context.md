@@ -51,3 +51,24 @@ Pattern: each AC has id/group/text; each TS has id/gates[]/name/given/when/then;
 
 ## Status
 Sprint 21 closing. Task-descriptions COMPLETE (0 remaining). All reports delivered + verified per learning #9. Standing by.
+
+## S22-S25 arc (2026-06-28 → 07-01) — scenario-first requirement capture
+Established pipeline per sprint: mint Sprint unit + Requirement units (parent/ownerIor->sprint, useCases->UC placeholder, name!=description, tronQuote/poClarification, acceptanceCriteria[] grouped, implRef/designRef to shipping code) + sprints.json symlinks + requirements.md/planning.md + overview row. Then ping planner (builds task units: mint->wire coveredRequirements/useCases/sprint.tasks[]->generate-sprint-md-->--check->commit), architect (UC refine+wire Class->Method->Impl->Test), skill-expert (chain-tool ACs). I run 3-point verify (name!=desc, coveredRequirements->Rxx.y, sprint.tasks[] complete, 1:1 no over-coverage) on every task commit.
+
+**Sprints on disk (all req units clean, source-of-truth confirmed 2026-07-01):**
+- S21 Contact Identity 1bdfaafa — 9 reqs R21.1-9
+- S22 Traceability View Fixes 9996b46a — 4 reqs R22.1-4 (R22.2 drawer pan/zoom mouse-parity, refinedBy R25.4)
+- S23 Media Preview 4a4a5d66 — 3 reqs R23.1 audio / R23.2 youtube / R23.3 identity-merge-cleanup
+- S24 Traceability Skills 04339450 — 5 reqs R24.1-5 (formalize objectVerb/planner-drive/skill-classes-Chain/generate-sprint-md/trace-cli as Object.verb skills; skill-expert+planner measured-review refined ACs)
+- S25 Apple DnD c7d700c6 — R25.1 DnD-logging / R25.2 WebItem(6/8 honest, folders+bookmarks backlog) / R25.3 vCard-onboarding-device-link / R25.4 drawer grab-bar-mouse+X-minimize (2 UCs)
+
+**Key uuids:** R21.4 device-link 04dff687, R21.1 vCard efd1acb6, R22.2 b7000fa1, R23.2 youtube 8f34c3e5, R25.2 WebItem f8097d7c, R25.4 drawer 225b18a6 (UCs c6df9164 grabBarMouseParity + 2438307a minimizeToggle).
+
+## TRON RULE #126 — SCENARIO FIRST, NEVER BACKFILL (2026-07-01)
+Scenario units EXIST before ANY implementation: Sprint unit -> Requirement units -> Task units -> chains wired -> MD views GENERATED. Code ships AFTER scenarios on disk. A backfill = the rule was violated. This session backfilled S21-25 (20->44/301) = DEBT, never again. If I receive a task without a scenario unit: REJECT + report PO. requirements.md + planning.md are GENERATED VIEWS (law #100, GENERATED-FROM-SCENARIO-UNITS header); the scenario unit is truth.
+
+## PENDING (next incarnation — complete these)
+- R25.5 clipboard preview-in-dialog: uuid 2066ba12-6bd8-42b1-9377-25c82fd944e0, UC 10af6d46-b5b7-46d8-8fe8-3289d8f09d72 — NOT YET MINTED (uuids generated). PO: drop-area click/tap -> dialog PREVIEWS clipboard content (type icon + content preview) before yes/no -> on yes import via drop-dispatcher routing (URLs->WebItem, images->File, text->file).
+- R25.6 scenario link on ALL detail views: uuid 24509e35-8627-402a-ba93-ed959fef3a5b, UC dc468781-714b-429d-8dff-2ee243a81e51 — NOT YET MINTED. Every detail component shows a 📄 Scenario link to its underlying scenario unit.
+- Mint both in Sprint 25 (c7d700c6), scenario-first, overview 4->6. Then ping planner/architect, report PO.
+- Task 2 owed: 3-point verify ALL S21-25 tasks per-sprint (was interrupted; re-run when planner backfill confirmed).

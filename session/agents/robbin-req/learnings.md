@@ -271,3 +271,29 @@ When a sprint FORMALIZES existing code (turn scattered tools into a coherent ski
 5. **Use a real `poDirective`/`sourceNote` so the graph shows provenance** — "PO-formulated main goal, formalizes existing impl, grounded per implRef."
 
 This is the doctrine's "measure each other into honesty" working: I ground in code, owners catch residual drift, the ACs end up accurate vs the shipping source. Commits: 8c6a7dcb4 (capture) + 6cd9248cb (skill-expert) + 2dbca38ff (planner review).
+
+## Scenario-First — TRON RULE #126 (2026-07-01)
+Scenario units EXIST before ANY implementation: Sprint unit -> Requirement units -> Task units -> chains wired -> MD views GENERATED. Code ships AFTER scenarios on disk. A BACKFILL means the rule was violated — this session we backfilled S21-25 (20->44/301 chain-reachable) as DEBT; never again. requirements.md + planning.md are GENERATED VIEWS (law #100, header "GENERATED FROM SCENARIO UNITS — DO NOT HAND-EDIT"); the scenario unit is the source of truth. **If I receive a task with no scenario unit: REJECT it and report to PO.** My job is to mint the requirement UNIT (on disk) FIRST, then the MD view follows.
+
+## Covered-vs-Gap triage (3 outcomes, not 2)
+When PO asks "is this bug covered by an existing req or a new req?" — MEASURE the AC text, then classify into THREE (not two) buckets:
+1. **Covered + AC explicit** -> impl gap, NO req change, tester gates the existing AC (e.g. WebItem mail-drawer-empty = R25.2 AC-preview/AC-open failing for message: scheme).
+2. **Covered by verbatim intent but AC-implicit** -> the Tron quote mandates it but the ACs didn't enumerate it -> REFINE the req to make intent testable (add an AC), NOT a new req (e.g. drawer grab-bar = R22.2 "works the same way with mouse").
+3. **Genuine gap** (neither) -> new req.
+Resist the easy-but-wrong reflex of minting a new req for every bug. Most bugs are (1) or (2). Report the verdict + which req/AC covers it.
+
+## Single-Source Self-Correction
+When my first-pass triage (e.g. refined R22.2 with AC-grab for the grab-bar) is superseded by a better team decision (architect: dedicated R25.4 for grab-bar+X-minimize), BACK OUT my change cleanly — don't leave the same behaviour specced in two places. Revert AC-grab (R22.2 -> 6 ACs), set R22.2.refinedBy=[R25.4], and tell the planner to discard the interim re-sync. One behaviour lives in exactly ONE requirement. Rule 9 dedupe applies to my own edits too.
+
+## Honest Partial: unified req, per-AC gate
+A unified requirement with partial impl (R25.2 6/8 ACs GREEN, folders+bookmarks deferred) does NOT need an R-I split if the deferred ACs are COHERENT BACKLOG (not a failure that breaks champagne). Mark implStatus + deferredAcceptanceCriteria[] on the unit; per-AC completion lives on the TASK (single status source). Tester gates PER-AC, never blanket-green — a unified req is exactly where partial work hides behind a passing task. Split trigger = the tester's gate result (PARTIAL-that-blocks -> split; coherent-backlog -> stay unified). Let the MEASURED gate drive the split, not a guess.
+
+## Source honesty by origin
+- Verbatim Tron literal -> `tronQuote`.
+- PO clarification on a Tron directive -> separate `poClarification` field (don't fold into tronQuote).
+- PO-formulated main goal (no Tron literal) -> `poDirective`.
+- Team member's source-read diagnosis -> `discoverySource` {type:'architect-diagnosis', diagnosedBy, date, note}.
+Never fabricate a Tron quote. The field names ARE the provenance; keep them honest.
+
+## Multi-role AC review catches drift I can't
+Formalization/complex reqs: route ACs to code-owners for a MEASURED review before task-build. skill-expert caught R24.3 followUp-dedups-by-methodUuid-not-display-name (the R15.6 over-credit bug) + emitClaudeSkills-plural; planner caught R24.2 missing getThreeSlots/setNextBacklog pin verbs + advance() is-vs-target (gate is on focus not advance). I ground in code; owners catch residual drift by reading source. Budget 1-2 refine+re-sync rounds. This is "measure each other into honesty."
