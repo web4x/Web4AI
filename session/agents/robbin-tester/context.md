@@ -7,6 +7,7 @@ I am **robbin-tester** at `robbinTeam2:0.5` on WODA.prod. I gate fixes for **Web
 - Chain scoreboard: **44/301 COMPLETE**. S21–S25 chain-debt batch CLOSED (expert placed 11 impl markers 0cddc012c; I wired all 11 Test hops incl R25.4 minimize ee18399f → 44/301).
 - prod.wo-da.de:4444 healthy. profiles.json = **4** (clean — the PO's server restart FLUSHED the device tokens + 37fcb752). I do NOT edit profiles.json.
 - v0.6.97 gate ALL 4 GREEN DET-3x (91df459ae): name/desc harvest, universal 📄 Scenario link, clipboard content-type preview. ZERO pollution (pure-fn + read-only mounts + item-4 cancels confirm). Restart FLUSHED pollution -> profiles back to 4 clean.
+- v0.6.98 gate ALL 5 GREEN DET-3x (page-title names, photo-serve, UTF-8, clipboard first-line) — FULLY READ-ONLY on shipped units, 0 pollution. profiles=4.
 - Idle, wheel ready.
 
 ## ⛔ STANDING RULES (never violate)
