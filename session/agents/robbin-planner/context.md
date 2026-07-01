@@ -62,7 +62,13 @@ Scenario units EXIST before ANY implementation starts. ORDER: Sprint unit → Re
 - ⚠ ADJACENT (out of 21-25 scope, flagged to PO): Sprint 20 (64af2638) + S17/S18/S19 + many S01-13 still DRIFT (pre-Tron-rule, hand-authored MD / ungenerated). `--check --all` = 8/25 byte-match. If PO wants, same regen-or-verify backfill applies. OBS: design-r22.5 doc misplaced in sprint-21 dir.
 - ★ AUDIT PATTERN: `generate-sprint-md.ts --check --all` is the canonical scenario↔MD drift detector; regen-then-check fixes ungenerated-view gaps; unit CREATION only when units genuinely missing (verify first, don't duplicate).
 
+## ⛔ HELD (awaiting PO ruling): S25 REGENERATE blocked by CONTAMINATION.
+- PO asked 'regenerate S25 MD + --check'. On verify, S25 unit shows 8 reqs/8 tasks — but the +2 of each are DUP/malformed, added by expert v0.6.97 (803f7c6c4): dup reqs 30dbd5e4 (superset-dup of R25.5 2066ba12) + ceef6168 (identical dup of R25.6 24509e35); malformed tasks 80c4787f (altId=T25.5 COLLISION) + c182d22f (altId=T25.6 COLLISION) — empty coveredRequirements, no slug/status, sourceFile=PHANTOM sprint-26-clipboard-traceability (no such dir).
+- CANONICAL (keep) = my scenario-first R25.5 2066ba12/T25.5 7158a210 + R25.6 24509e35/T25.6 ee367cbd (394e6645b + 1bafa67a4). The v0.6.97 impl is real (harvesting + universal link) → belongs on canonical T25.5/T25.6.
+- HELD the regen (would emit dup/broken MD). Reported PO + recommended reconcile: unwire 4 dup IORs from S25 → 6/6, delete/supersede 4 dup units, re-point v0.6.97 [impl:uuid] onto canonical chains, THEN regen+check. Did NOT delete expert's units unilaterally (#12 — PO ruling first). LESSON: 'regenerate' is not mechanical — verify the sprint's requirements[]/tasks[] are clean (no dups/malformed/altId-collision/phantom-source) BEFORE generating; a contaminated array → don't emit broken MD, flag + hold.
+
 ## ▶ NEXT / OPEN
+- ON PO RULING: execute S25 reconcile (unwire+dedupe 4 units, re-point impls) → regenerate → --check → commit → report.
 - T25.3 flip implementing[x] when v0.6.93 commits; T25.4 flip when its impl commits (source-verify each). Both testing[x] on committed tester GREEN (#102).
 - S22/S23/S24 ALL at QA Review — awaiting Tron's Done gate. S25 T25.1 In Progress (testing pending tester GREEN). Done=Tron only (#9).
 - If PO/tester wants strict per-task DET-3x on T24.3/4/5, tester adds explicit gate commits → I re-verify. Future skill status flips via pipeline (edit unit→regenerate→--check→commit; #102 self-mark, I source-verify).
