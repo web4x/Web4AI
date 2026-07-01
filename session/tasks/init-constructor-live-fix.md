@@ -32,4 +32,18 @@ Current working `init/oosh` (dev 26KB + these two edits) is on MacStudio at `/tm
 
 ## REPORT-BACK
 - oosh-expert:
-- oosh-tester:
+- oosh-tester: **LIVE VERIFIED on WODA.test (root@v36421), su donges, /home/donges/oosh @ dev `ea714d2` (520-line proven version — clean-env guard + run-as-user gate line 363 both confirmed present). GATE = RED, do NOT commit.**
+  Cmd: `OOSH_DIR=/root/oosh CONFIG_PATH=/root/config SH_OPT='+x' ./init/oosh` (log /tmp/init-test-run1.log, 190 lines).
+  T-INIT-CLEAN per-item:
+  - ✅ no sudo prompt (A1=0) — run-as-user fix working
+  - ✅ no bad /config cascade — all 5 `/config` hits are correct `/home/donges/config`; injected `/root/config` correctly ignored (clean-env guard works)
+  - ✅ keys provisioned — id_ed25519 + full ~/.ssh (authorized_keys, config, private_key/, public_keys/)
+  - ✅ apt — no lock/permission error reproduced
+  - ❌ raw Permission-denied (log:46) `git@github.com: Permission denied (publickey)` — git step inside init as donges (no GitHub key); needs self-heal WARNING per ERROR/WARNING principle, not a raw error line
+  - ❌ raw mv error (log:190, last line) `mv: cannot stat '/home/donges/*.public_key'` — REMAINING FIX #3 NOT applied; this is the final op so it drives `INIT_EXIT=1`
+  - ❌ completes cleanly — INIT_EXIT=1 (from the mv)
+  - ❌ **ACCEPTANCE (the gate): fresh `su - donges` → `donges@v36421:~$` PLAIN BASH, NOT `[oosh]`.** ~/.bashrc has 0 oosh hooks even AFTER init (.profile/.bash_profile also none). REMAINING FIX #4 (.bashrc bootstrap) NOT implemented — this is the acceptance blocker.
+  - Isolation: `./oo mode` invoked directly runs (exit 0, framework loads, no crash) but Mode/Path empty → oosh not deeply broken; failure is specifically the missing login-hook persistence.
+  - Idempotency: not run — gate already red.
+  PRECISE EXPERT TARGETS (in priority): (1) FIX #4 .bashrc bootstrap = THE acceptance blocker; init must persist oosh login hook into donges' ~/.bashrc. (2) FIX #3 mv glob guard (only mv if file exists) — clears INIT_EXIT=1. (3) git step → self-heal warning not raw error (log:46).
+  TOPOLOGY NOTE: donges `git pull` FAILS (`Permission denied (publickey)` — no GitHub key), so the assumed "su donges can PULL" loop is broken; moot this round because ea714d2 was already the proven version on the checkout, but expert-push→donges-pull won't deliver next iteration until donges has a deploy key (or push via root + local fetch).
