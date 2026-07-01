@@ -460,6 +460,22 @@ pin (unit+wire) reads "impl done / depth=5" OPTIMISTICALLY before the marker exi
 green/pin optimism, and every single time the number only moved on the markers. This IS the honest-
 count discipline made routine. #126 now enforced: reqs+tasks land scenario-first (I flag drift).
 
+## R27.2 over-count correction: 163->108 Class dedup (2026-07-01, commit 18a8703e2)
+THE big before/after. Class units 163->108 (-55 dup), Method 415->353 (-62 dup) = 117 dup
+structural units removed; Impl CONSERVED 431==431 (repoint-union, not delete); 0-new-dangling;
+active chains intact (spot-verified R25.6/2179d235 still 6/6 myself). KEY MEASUREMENT INSIGHT:
+the completion NUMERATOR HELD AT 53 across the collapse — the duplicate Class/Method units were
+structural FAN-OUT, NOT credit-inflation. So honest completion was already correct; the dedup makes
+the graph 117 nodes leaner WITHOUT changing truth. lint flat 184 (dups weren't lint findings).
+INSTRUMENTATION LESSON: the collapse metric was the raw Class-UNIT-COUNT, NOT scoreboard num/denom/
+lint — I almost armed watchers on the wrong metric; caught it by asking 'what does 163->108 actually
+count' and measuring Class=163 directly first. Watch the metric that MOVES, not the convenient one.
+MID-MUTATION WIN (real-time): caught the collapse in-flight at dirty=380 with Class already 108 on
+disk — did NOT report it (a 380-dirty tree is a moving target); held for the clean commit, THEN
+measured det-3x. PO explicitly praised the hold. 'I measured 108' is only TRUTH on ground that
+isn't shifting. Verify-not-relay held: independently reproduced every expert number before reporting.
+Follow-up: 12 dangling + 51 orphan Methods = pre-existing baseline = R27.4 (separate, not this).
+
 ## Re-measure 2026-06-28 (SM save-checkpoint)
 Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276→285 (more reqs).
 3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert

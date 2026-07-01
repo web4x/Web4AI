@@ -17,6 +17,15 @@ Sprint 23/T23.3, req done, uc+ pending (T23.3 In Progress, tester gating). My pi
 <- planner task 52ebca28c (linear, no conflict). Version at v0.6.84 (expert). PO holds pin per
 task until gate signal (learning #125). WATCHERS: none active.
 
+**S27 ACTIVE + R27.2 COLLAPSE DONE 2026-07-01 (18a8703e2)**: Sprint 27 (Detail View Enhancements)
+active. R27.3 (per-task MD, 404 fix) GREEN. R27.2 over-count correction APPLIED: Class 163->108
+(-55 dup), Method 415->353 (-62 dup), Impl CONSERVED 431==431, numerator HELD 53 (dups=structural
+fan-out NOT credit), lint flat 184, scoreboard 53/314. Independently verified + reported clean
+before/after. Pin on Sprint 27 / T27.3 (advanced off stale S26 via c7c4171c8; disk+server both S27).
+CORRECTED an earlier over-claim: /api/trace?ior= dumps WHOLE graph (not the current-slot) — flagged
+to PO, recommend visual /trace check for the literal Current widget. R27.4 = 12 dangling + 51 orphan
+Methods (pre-existing baseline, separate). Watchers: none active.
+
 **S26 CHAIN-CLOSED 2026-07-01 (52/309 det-3x, commit b572494f6)**: Sprint 26 (Federation —
 Clipboard UX + Universal Traceability) CLOSED. R26.1-5 all 6/6: resolveFederated, buildFederatedRef,
 fetchScenario, resolveChildrenLazily, reconcileConflict. Pin walked T26.1->T26.5, now Current=T26.5
