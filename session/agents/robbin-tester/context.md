@@ -10,6 +10,7 @@ I am **robbin-tester** at `robbinTeam2:0.5` on WODA.prod. I gate fixes for **Web
 - Cleanest gate shape (proven): find Tron's REAL shipped units + verify READ-ONLY (pure-fn / disk-scan / mounted detail / WS member-read); for behavioral fixes use a guard-BLOCKED action (about:blank drop mints nothing) or CANCEL destructive confirms. Zero uploads, zero pollution.
 - Legacy on disk (flagged, PO's call): 1 about:blank WebItem + 1 raw-message:-URL WebItem (pre-fix data; fixes prevent NEW ones).
 - T26.1 v0.7.2 federated IOR gate ALL 4 GREEN DET-3x (bare/remote/@self/back-compat) — pure-fn on federated-ior.ts + 1 real-IOR HTTP read, 0 pollution.
+- T26.2 v0.7.3 federated DnD gate GREEN DET-3x — dragstart sets application/rb-federated-ref (ior@host + fetchUrl), read-only 0 pollution.
 - Idle, wheel ready for S26.
 
 ## ⛔ STANDING RULES (never violate)
