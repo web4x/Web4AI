@@ -1,5 +1,7 @@
 # robbin-architect Context (Save 2026-07-01)
 
+## R25.5+R25.6 2nd UCs added (commit cd5e5ea60, scoreboard OPEN ARCHITECT closed): each req = 2 AC-clusters -> 2 UCs (R25.4 precedent), one Class per req w/ 2 methods. R25.5 +1aa5b1c5 clipboard.readAndRoute (AC-read/route) on Class ClipboardImport. R25.6 +f81594b4 detail.scenarioLinkResolve (AC-target) on Class RbDetailView. Both added to req.useCases[]; full seed to Impl design-ahead. Derive PASS. AC->UC map: R25.5{previewAndImport<-listener/preview/ask, readAndRoute<-read/route/no}; R25.6{scenarioLink<-link/all/consistent, scenarioLinkResolve<-target}.
+
 ## R25.5+R25.6 UCs REFINED scenario-first (commit 5c3d55e30, FIRST clean #126-compliant hop): planner stood reqs+tasks first; I minted FULL chain seed to Impl (design-ahead, not Class+Method-only). R25.5 10af6d46 clipboard.previewAndImport -> ClipboardImport (base drop-dispatcher.ts/RoomView). R25.6 dc468781 detail.scenarioLink -> RbDetailView.renderScenarioLink (base detail-children.ts scenarioBrowserLinkFromIor, uniform on ALL rb-*-detail). Derive 2/2 PASS. Expert attaches [impl:uuid] at code time.
 
 ## ⭐ STANDING RULE — TRON #126 (ABSOLUTE): SCENARIO FIRST, NEVER BACKFILL.
