@@ -3,13 +3,13 @@
 ## Who / where
 I am **robbin-tester** at `robbinTeam2:0.5` on WODA.prod. I gate fixes for **Web4RawBin** (live at prod.wo-da.de:4444) with **DET-3x** (deterministic 3-run) verification. Report gate verdicts to `robbinTeam2:0.0` (PO). Node18: `/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node`. Gates live in `test/visual/*.mjs` (repo `/var/dev/Workspaces/2cuGitHub/Web4RawBin`).
 
-## Current state (2026-07-01, v0.6.96)
-- Chain scoreboard: **47/304 COMPLETE**. S21–S25 chain-debt batch CLOSED (expert placed 11 impl markers 0cddc012c; I wired all 11 Test hops incl R25.4 minimize ee18399f → 44/301).
-- prod.wo-da.de:4444 healthy. profiles.json = **4** (clean — the PO's server restart FLUSHED the device tokens + 37fcb752). I do NOT edit profiles.json.
-- v0.6.97 gate ALL 4 GREEN DET-3x (91df459ae): name/desc harvest, universal 📄 Scenario link, clipboard content-type preview. ZERO pollution (pure-fn + read-only mounts + item-4 cancels confirm). Restart FLUSHED pollution -> profiles back to 4 clean.
-- v0.6.98 gate ALL 5 GREEN DET-3x (page-title names, photo-serve, UTF-8, clipboard first-line) — FULLY READ-ONLY on shipped units, 0 pollution. profiles=4.
-- v0.7.0 gate (094a1c34b): (2) ✏️ Edit pencil, (3) about:blank drop blocked (guard), (4) bare message: URL name = "Email message" — GREEN DET-3x, 0 pollution. (1) R25.7 Heartspaces GREEN on v0.7.1 (a1f58fba1, orphan-ghost skip) — full RED->GREEN. Was RED on v0.7.0 — 2 Marcels not 1: persisted-2703628c keeps raw tombstone token (redirectTo=8f74dfba) UNRESOLVED (persisted-37fcb752 DID resolve). 3→2 not 3→1. Routed to expert; re-gate (1) after fix. Legacy flagged: 1 about:blank + 1 raw-msg-url WebItem.
-- Idle, wheel ready.
+## Current state (2026-07-01, v0.7.1) — standing by for S26 gates
+- Chain scoreboard: **47/304 COMPLETE**. S21–S25 chain-debt batch + all S25 (incl R25.7 4-method dedup) CLOSED. Wiring pattern: each req may have multiple UC methods — the scoreboard surfaces the next open hop after each Test wire, so measure after every wire and report the true count (don't trust the stated target).
+- prod.wo-da.de:4444 healthy. profiles.json = **4** (3 Marcel + SystemTester). I do NOT edit profiles.json — a server restart flushes uncommitted device tokens by loading clean disk.
+- Gates GREEN this session: v0.6.97 (name/desc, 📄 link, clipboard preview), v0.6.98 (page-title, photo-serve, UTF-8, clipboard first-line), v0.7.0/v0.7.1 (Heartspaces 1 Marcel [RED→GREEN], ✏️ Edit pencil, about:blank blocked, message: name). Gates in `test/visual/r25*.mjs`.
+- Cleanest gate shape (proven): find Tron's REAL shipped units + verify READ-ONLY (pure-fn / disk-scan / mounted detail / WS member-read); for behavioral fixes use a guard-BLOCKED action (about:blank drop mints nothing) or CANCEL destructive confirms. Zero uploads, zero pollution.
+- Legacy on disk (flagged, PO's call): 1 about:blank WebItem + 1 raw-message:-URL WebItem (pre-fix data; fixes prevent NEW ones).
+- Idle, wheel ready for S26.
 
 ## ⛔ STANDING RULES (never violate)
 1. **RULE #126 SCENARIO FIRST, NEVER BACKFILL.** Sprint→Req→Task units + chains wired + MD generated BEFORE code ships. Task without an existing scenario unit → REJECT + report to PO. Never mint units / wire a Test hop to backfill retroactively.
