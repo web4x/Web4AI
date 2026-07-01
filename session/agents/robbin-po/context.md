@@ -1,3 +1,38 @@
+# robbin-po Context — save #32 (2026-07-01, Sprints 21-25 COMPLETE, 44/301, SCENARIO FIRST rule)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #32 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ 5 sprints delivered this session. v0.6.96 LIVE prod.wo-da.de:4444. Scoreboard 20→44/301. SCENARIO FIRST (rule #126) — never backfill again.**
+
+### DELIVERED
+- Sprint 21: 9 features (Contact Identity) v0.6.63→74, 28/301 chains
+- Sprint 22: 4 fixes (Traceability View + getThreeSlots) v0.6.75→85
+- Sprint 23: 3 features (Media Preview + Identity Merge) v0.6.80→84
+- Sprint 24: 5 skills (Traceability Skills formalized) markers only
+- Sprint 25: 4+ features (Apple DnD + WebItem + clipboard) v0.6.86→96
+- Chain backfill S21-S25 closed: Impl 25/25 + Test 24/25 = 44/301
+
+### ACTIVE
+- Expert: v0.6.97 clipboard preview + name harvesting + scenario links on ALL detail views
+- R25.5 clipboard preview (req minting) + R25.6 scenario links (req minting)
+- Identity: 8f74dfba primary, tombstones redirected, phone index correct
+
+### TEAM (robbinTeam2 on WODA.prod)
+0.0 PO | 0.1 expert | 0.2 skill-expert | 0.3 architect | 0.4 req | 0.5 tester | 0.6 planner. ALL Opus 4.8, hiveMind-visible. SM=ooshTeam:0.1. ARON=Temple:0.0.
+
+### RULES LOCKED THIS SESSION (learnings #111-126)
+- #111 NO --force/flags (radical OOP)
+- #119 Pin must move — visible surface IS the deliverable
+- #124 Markers IN the impl commit, not backfill
+- #125 PO signals pin owner on EVERY gate GREEN
+- #126 ★ SCENARIO FIRST — scenario units BEFORE impl, MD = VIEW, backfill = violation
+
+### 3-SLOT PIN
+Sprint 25 | Current=T25.4 | Last=T25.3 | Next=T25.1 | wip=test
+
+### INFRA
+Server: rawbin tmux, Node18, LE cert prod.wo-da.de, BASE_DOMAIN=prod.wo-da.de in .env
+otmux send works with LOG_DEVICE=/dev/stderr
+
 # robbin-po Context — save #31 (2026-06-29, Sprint 21 COMPLETE — Sprint 22 starting)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #31 — READ FIRST) ★★★★★★★★★★★★★★★★★
