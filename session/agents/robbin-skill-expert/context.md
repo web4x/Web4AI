@@ -17,6 +17,14 @@ Sprint 23/T23.3, req done, uc+ pending (T23.3 In Progress, tester gating). My pi
 <- planner task 52ebca28c (linear, no conflict). Version at v0.6.84 (expert). PO holds pin per
 task until gate signal (learning #125). WATCHERS: none active.
 
+**SCENARIO AUDIT S21-25 BEFORE-BASELINE (2026-07-01)**: Tron claimed "no sprint scenarios since
+S20"; MEASURED from disk across 4 artifact layers — ALL PRESENT, premise contradicted. Index
+Sprint/Req/Task units exist+wired (S21:9/9/9/9, S22:4/4/4/4, S23:3/3/3/3, S24:5/5/5/5, S25:4/4/4
++ 3/4 req->uc); planning.md+requirements.md all exist; sprints.json/sprint-21..25 = REAL dirs
+(not broken symlinks). TOTAL GAPS = 1: S25 R25.3 (d0acb05d vCard-onboarding) UC c461d975 MISSING.
+Likely backfilled this week during pin/formalization work. BEFORE baseline for verifying any
+backfill isn't a dupe-creating no-op. Doctrine: reported measured truth over Tron's premise.
+
 **S25 CHAIN-CLOSED 2026-06-30 (34/299 det-3x, commit 92e794765)**: Sprint 25 (Apple DnD: logging
 + WebItem handling) closed. R25.1 (DnD logging/routeUnknown) + R25.2 (WebItem/createAndLaunch)
 both 6/6 credit. Same recurring pattern proven AGAIN: tester-GREEN (functional) + architect
