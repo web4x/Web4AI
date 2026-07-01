@@ -8,7 +8,7 @@ I am **robbin-tester** at `robbinTeam2:0.5` on WODA.prod. I gate fixes for **Web
 - prod.wo-da.de:4444 healthy. profiles.json = **4** (clean — the PO's server restart FLUSHED the device tokens + 37fcb752). I do NOT edit profiles.json.
 - v0.6.97 gate ALL 4 GREEN DET-3x (91df459ae): name/desc harvest, universal 📄 Scenario link, clipboard content-type preview. ZERO pollution (pure-fn + read-only mounts + item-4 cancels confirm). Restart FLUSHED pollution -> profiles back to 4 clean.
 - v0.6.98 gate ALL 5 GREEN DET-3x (page-title names, photo-serve, UTF-8, clipboard first-line) — FULLY READ-ONLY on shipped units, 0 pollution. profiles=4.
-- v0.7.0 gate (094a1c34b): (2) ✏️ Edit pencil, (3) about:blank drop blocked (guard), (4) bare message: URL name = "Email message" — GREEN DET-3x, 0 pollution. (1) R25.7 Heartspaces dedup RED — 2 Marcels not 1: persisted-2703628c keeps raw tombstone token (redirectTo=8f74dfba) UNRESOLVED (persisted-37fcb752 DID resolve). 3→2 not 3→1. Routed to expert; re-gate (1) after fix. Legacy flagged: 1 about:blank + 1 raw-msg-url WebItem.
+- v0.7.0 gate (094a1c34b): (2) ✏️ Edit pencil, (3) about:blank drop blocked (guard), (4) bare message: URL name = "Email message" — GREEN DET-3x, 0 pollution. (1) R25.7 Heartspaces GREEN on v0.7.1 (a1f58fba1, orphan-ghost skip) — full RED->GREEN. Was RED on v0.7.0 — 2 Marcels not 1: persisted-2703628c keeps raw tombstone token (redirectTo=8f74dfba) UNRESOLVED (persisted-37fcb752 DID resolve). 3→2 not 3→1. Routed to expert; re-gate (1) after fix. Legacy flagged: 1 about:blank + 1 raw-msg-url WebItem.
 - Idle, wheel ready.
 
 ## ⛔ STANDING RULES (never violate)
