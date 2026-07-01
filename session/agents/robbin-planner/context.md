@@ -77,6 +77,11 @@ Scenario units EXIST before ANY implementation starts. ORDER: Sprint unit → Re
 - ✓ R26.1/R26.2 DEDUP CLOSED (5acc2ff01, PO ruled dup-labels): 0 R26/S26 scenario units (dup units already deleted 598ec1e); R26.1/R26.2 exist ONLY as v0.6.97/98 gate-file comment-labels → expert/tester to relabel R26→R25. Canonical R25.5 2066ba12 + R25.6 24509e35 intact. req gateLabelDrift note 4192c997c. ★ SCENARIO-FIRST PAYOFF (#126): the canonical unit already existing made the dup catchable BEFORE mint — that's the whole point of units-first.
 - ★ SWEEP DEFEATED: after the earlier reconcile got swept into architect's cd5e5ea60, I now commit FAST w/ explicit paths — T25.7/flip/dedup all landed as clean planner commits (f39e3215a/55f47b82b/5acc2ff01), no sweep.
 
+## ✓ SPRINT 26 — RawBin Federation (2026-07-01, commit ba302def6): T26.1-T26.5 stood up scenario-first.
+- Sprint 1d98197d (theme: federated scenario transfer, architect design 7e940cf81). 5 Task units, all Planned (greenfield, design-ahead, NO code — #126 units-before-code): T26.1 906e391d federated-IOR-provenance (R26.1 e8744de9) · T26.2 491028f2 cross-origin-DnD-ref (R26.2 e36d585c) · T26.3 e36f7645 server-to-server-fetch-API (R26.3 05d21385) · T26.4 9e94c188 lazy-child-resolve (R26.4 71b44e05, crossRef R25.7 members-by-ref) · T26.5 7dd49936 conflict-reconcile (R26.5 f7e4c1cc). sprint.tasks[]=5, 27 ACs, MD round-trip GREEN.
+- ★ ANTI-DUP GUARD APPLIED + PASSED: after the R26.1/R26.2-label dedup, I MEASURED that 0 T26 tasks cover any R25.x before building — confirmed these are the CANONICAL federation R26.x (distinct from the mislabeled v0.6.97/98 gate comments). The guard is now a build-time cross-check: verify coveredRequirements have no R25.x overlap before minting.
+- Architect to UC-refine the 5 (#18); I mint Impl units for any missing chain nodes on request (pattern: R25.7 rejoinDedup dffda1dc).
+
 ## ▶ NEXT / OPEN
 - T25.3 flip implementing[x] when v0.6.93 commits; T25.4 flip when its impl commits (source-verify each). Both testing[x] on committed tester GREEN (#102).
 - S22/S23/S24 ALL at QA Review — awaiting Tron's Done gate. S25 T25.1 In Progress (testing pending tester GREEN). Done=Tron only (#9).
