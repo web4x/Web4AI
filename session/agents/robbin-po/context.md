@@ -1,6 +1,32 @@
-# robbin-po Context — save #33 (2026-07-01, Sprint 26 FEDERATION COMPLETE, 53/310)
+# robbin-po Context — save #34 (2026-07-01, Sprint 27 IN FLIGHT — R27.2 CLASS-DEDUP MIGRATION DONE)
 
-## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #33 — READ FIRST) ★★★★★★★★★★★★★★★★★
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #34 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ R27.2 55-unit Class-dedup migration COMPLETE + committed clean (anchor 18a8703e2). Class 163→108, distinct Impl 431==431 (repoint-not-delete union), 0-new-dangling, ALL active chains intact. The class-per-req sprawl over-count debt is GONE + locked out by construction.**
+
+### SPRINT 27 — Detail View + Data Quality (IN FLIGHT)
+- R27.1 statusChecklist render — ✅ GREEN + traced (Impl 31f420b0)
+- R27.3 per-task-MD 404 fix (v0.7.8) — ✅ GREEN DET-3x. Root=SLUG DRIFT (slugify(sprintName)≠pinned dir); fixed via model.slug pinning (SAME fix as dup sprint-26 dir). taskMdHref resolves from pinned slug, ignores planning.md collapse.
+- R27.2 class-dedup invariant + 55-unit migration — ✅ DONE (18a8703e2). Canonical rule FINAL: LIVE-most-refs (efficiency) + shipped-marker-preserved-by-HARD-CONSTRAINT (correctness). RbDetailView canonical=f2f84ce3-6f8f (NOT most-methods proxy).
+- R27.4 graph-integrity (12 dangling + 51 orphan) — NEXT, unblocked (unchanged by R27.2). 10 dead-bbbc→repoint canonical, 1 dead Method fcf6dae1, 1 TODO-string, 51 orphan Methods.
+
+### R27.2 — 6 MEASURE-BEFORE-ACT CATCHES (the doctrine working, zero corruption)
+1. keep-biggest would DELETE protected active-chain units → canonical=active-chain/marker-carrying, not most-methods
+2. baseline verifier found 12 dangling+51 orphan PRE-EXISTING → INV2 becomes DELTA gate (0-NEW not 0-absolute)
+3. alive-vs-dead RbDetailView → 8-char PREFIX COLLISION (f2f84ce3-6f8f LIVE vs f2f84ce3-bbbc DEAD); both measures right → LESSON: never truncate uuids in reconcile
+4. impl-union: 62 same-name collapses would DROP [impl] markers → INV1b no-impl-lost (431==431), REPOINT ownerIor not delete
+5. collapse-count 62/45/40/34 NOT stable + NOT a gate → gate on CONSERVATION (431==431/108/0-orphan/0-new/2179d235-derives)
+6. dirty-tree near-miss: almost snapshotted 108 as settled on 380-dirty tree → gate on CLEAN+committed, not just applied
+
+### GATE PATTERN (proven, reuse for R27.4 + all migrations)
+dry-run+count table → TWO independent disk verifiers (req 3-point + architect PDCA) hard-green → machine gateOk=TRUE self-gate → atomic+rollbackable+self-assert(actual==predicted) --apply → post-apply re-verify on mutated disk → COMMIT → measure on CLEAN tree only.
+
+### SCOREBOARD (skill-expert firing settled before/after)
+BEFORE ddd1ba7a1: Class=163, 53/313, lint 184. AFTER 18a8703e2: Class=108, Method 415→353, scoreboard ~53/314 (numerator FLAT — dedup removes over-count, doesn't add credit = HONEST). Impl=431 conserved.
+
+### PRIOR (save #33)
+**★ 6 sprints delivered. v0.7.7. Scoreboard 20→53/310. Federation END-TO-END live.**
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #33) ★★★★★★★★★★★★★★★★★
 **★ 6 sprints delivered this session. v0.7.7 LIVE prod.wo-da.de:4444. Scoreboard 20→53/310. Federation END-TO-END: drag a scenario between RawBin servers → real unit recreated locally w/ provenance (NOT a URL ref). SCENARIO FIRST (#126) held everywhere except 2 urgent-fix slips (v0.7.6, v0.7.7) — chains completed retroactively.**
 
 ### SPRINT 26 — FEDERATION (COMPLETE, 52→53/310)
