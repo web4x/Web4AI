@@ -676,7 +676,7 @@ Every tool bootstraps itself. No pre-baked dependencies, no manual setup. The so
 |---------|---------|
 | **Naked images** | Docker containers have SSH only. oosh installs itself via ossh — no deps in Dockerfile. |
 | **Walking sticks become tools** | Shell scripts (buildDockerfile, runDockerfile) evolve into proper oosh-wrapped tools (odocker build, odocker run). |
-| **OOSH naming convention** | Each wrapped tool follows: tmux->otmux, ssh->ossh, docker->odocker. Own script, own completion, no flags. |
+| **OOSH naming convention** | Each wrapped tool follows: tmux->otmux, ssh->ossh, docker->odocker. Own script, own completion, no flags. **object.verb IS the no-flag principle** — the verb namespace IS the option space; a variant is a more specific method (`odocker.run.ephemeral`), never a `--flag`. When reviewing, reject `--flag` signatures and ask "what is the object.verb?". See `.claude/agents/ARON/skills/team-first-principles.md` §F. |
 
 ### PO governance of web4x
 

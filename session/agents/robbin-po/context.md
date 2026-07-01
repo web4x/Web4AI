@@ -1,3 +1,36 @@
+# robbin-po Context — save #31 (2026-06-29, Sprint 21 COMPLETE — Sprint 22 starting)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #31 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ Sprint 21 COMPLETE. 28/285 scoreboard (was 20). v0.6.74 LIVE prod.wo-da.de:4444. Team idle-standby, all clean. Sprint 22 starting.**
+
+### DELIVERED Sprint 21 (Contact Identity & Enrichment)
+- 9/9 features GREEN DET-3x: vCard store, lobby name, phone/email index+device-link, phone/email/address/company as scenario units, file detail reversal+pan/zoom
+- 12 releases v0.6.63→v0.6.74, chain 20→28/285 (R21.2 deferred S22)
+- Architect PDCA caught 3 real gaps (E.164, AC-b3 domain, AC-f2 DRY) — all fixed before gate
+- Data quality: 96→0 Task no-desc, 16→0 Req name==desc
+- Code fixes: CurrentSprint BUG-A/B/C/D (object self-heals), report-back 91/91 SKILL.md
+- Test pollution purged (215 files), GitHub pushed, lint 193→184
+
+### TEAM (robbinTeam2 on WODA.prod)
+0.0 PO(me) | 0.1 expert (fresh fork, clean) | 0.2 skill-expert (fresh fork, clean) | 0.3 architect (clean 213k) | 0.4 req (clean) | 0.5 tester (clean). ALL Opus 4.8. SM=ooshTeam:0.1. ARON=Temple:0.0. All saved+anchored.
+
+### PROCESS LOCKED (learnings #111-124)
+- NO --force/flags (radical OOP, #111). LOG_DEVICE=/dev/stderr on headless (#112). Verify "esc to interrupt" after dispatch (#123). hiveMind not raw tmux (#118). Pin must move — visible surface IS the deliverable (#119). Silent build failures = guard every output (#120). RC-staged != submitted (#121). Gate catches what source-verify can't (#122). Markers IN the impl commit, not backfill (#124).
+
+### 3-SLOT PIN (measured)
+Current: 01d9fb64 T-drawer-full-width | Last: 708ec0a5 T-vcard-enrich-store | Next: 03917f53 T-shard-cleanup. WIP=1, wipStatus=req.
+
+### SPRINT 22 SCOPE (Tron via ARON)
+- R21.2 finish (lobby name renderNameOnConnect impl — deferred from S21)
+- New features TBD (awaiting Tron directive)
+- Chain marker discipline: markers IN each impl commit (learning #124)
+- profiles.json phantom purge (coordinated restart)
+
+### INFRA (WODA.prod)
+- Server: rawbin tmux session, Node18 via VS Code path, Let's Encrypt prod.wo-da.de cert
+- otmux send works with LOG_DEVICE=/dev/stderr (oosh log /dev/tty fix filed, not landed)
+- hiveMind registry clean, boot.md pane numbers correct
+
 # robbin-po Context — save #30 (2026-06-16 ~18:25, DEEP-REWIND recovery — HALT LIFTED, new vCard task)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #30 — READ FIRST) ★★★★★★★★★★★★★★★★★

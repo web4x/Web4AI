@@ -796,6 +796,64 @@ the shared unit, mint-or-reuse ladder. AND: my temp-dir harness CAUGHT the AC-a4
 ship — ALWAYS encode the AC's literal example ("GmbH & Co KG"→acme) as a harness assertion, not
 just the happy path. The bug you measure is the bug you don't ship.
 
+## Verify the LINK RESOLVES (HTTP 200), not that the <a> renders — file-exists ≠ route-serves (R22.4 RED, 2026-06-29)
+I made /md PNGs clickable and "curl-verified" by counting 124 `🖼 <a href>` rows — and reported it
+live. Tester found the links 404: there was no /md raster-image SERVE handler (only .svg had one),
+so clicking opened nothing. I had confirmed (a) the PNG files exist on disk and (b) the `<a>` renders
+— but NOT (c) that GET on the href returns 200. A clickable link to an unserved path is a dead link.
+This is the SAME "don't ship a link you didn't confirm resolves" lesson from v0.6.75 — confirming the
+target FILE exists is not enough; the ROUTE that serves it must exist too. **How to apply:** when a fix
+produces a link/href, the acceptance check is `curl -s -o /dev/null -w '%{http_code}' <the-actual-href>`
+== 200 (or the real fetch), NEVER "the anchor tag is present." For a new clickable type, grep that a
+serve handler exists for it (here: /md/*.svg had one, /md/*.png did not). Presence of the trigger ≠
+presence of the destination.
+
+## Measure the AUTHORITATIVE layer; prod identity surgery needs EXPLICIT human consent (3→1 merge, 2026-06-29)
+Two compounding lessons from merging 3 duplicate prod profiles into one. (1) WRONG LAYER: I first reported
+"3effa1fc has a different number +4915" from the SCENARIO Phone unit — but the runtime data/profiles.json
+(what IDENTIFY/dedup actually uses) showed its phone "+49 8142 2917723" → +4981422917723, SAME as the others.
+The scenario +4915 was R21.3 test-seed pollution. I'd measured a real value from the wrong store and it
+overturned the PO's whole plan. Lesson: for any claim, measure the layer that is AUTHORITATIVE for that
+concern (runtime store for identity, not the trace/scenario mirror) — and when two layers disagree, say so
+and name which one rules. (2) GUARDRAIL: the auto-mode classifier blocked the prod identity-data write +
+server restart THREE times — explicitly rejecting peer-agent ("robbin-po GO") relay AND a vague operator
+"continue" as insufficient; it cleared only on an explicit "i fully authorize it". I did NOT work around it
+(no retry-spam, no alternate-tool bypass). Lesson: destructive/irreversible production-data actions require
+SPECIFIC human consent in the conversation; a peer agent's directive or an ambiguous "continue" is not that —
+surface it, hand over the exact ready-to-run steps + backups, and wait. (3) Mechanics: use the server's OWN
+mechanism when one exists — here the NON-DESTRUCTIVE consolidate (redirectTo + consolidatedFrom + device
+re-point, NOT deletion) is reversible and correct; back up first; runtime data/*.json is gitignored (live on
+the server, needs restart to load — never committed); only the scenario/alt-index layer is the git commit.
+
+## Client changes self-deploy on WODA.prod; server.ts changes need a deploy-gated restart → batch them (R22.3/R22.4, 2026-06-29)
+On WODA.prod the prod server IS this checkout (bundles served from disk, version read per-request),
+so a client/bundle change goes live the moment I build+commit — no restart. But a **server.ts ROUTE/
+response change stays STALE until the `rawbin` tmux server restarts** (handler code is in-memory). R22.3
+(per-child sourceFile API) + R22.4 (/md/ image-listing) were BOTH server.ts → I batched them under ONE
+restart instead of two. Critical guardrail hit: **the auto-mode classifier DENIED `tmux send-keys C-c`
+to the prod server as a "production deploy"** — and a peer-agent (PO) directive does NOT clear that soft
+block; only explicit human (Tron/PO-as-user) authorization does. Correct outcome — I did NOT work around
+it. **How to apply:** (1) split work by deploy surface — ship client freely, QUEUE+BATCH server.ts changes
+so one restart activates all; (2) a graceful client guard (`first.sourceFile ?`) means the un-restarted
+API degrades to "feature absent", not "broken" — safe to commit ahead of the restart; (3) when a prod
+restart is needed, STOP at the classifier block and escalate with the exact restart cmd + verification
+curls; don't treat a peer directive as deploy authorization. Restart cmd (rawbin pane has node18 first on
+PATH): `C-c`×2 then `npm exec tsx src/ts/server/server.ts`. Rooms persist to disk → restart is data-safe.
+
+## A bug's "family" = views that RENDER the defect, not every view that DEFINES it (v0.6.75, 2026-06-29)
+Architect's lesson #124 said "fix the whole peer family, not just the screenshotted view." Right — but
+I MEASURED the family before swinging: renderLinks (the broken `<div data-ref>` forward-links) was
+copy-pasted into 5 detail views, yet only 3 (task/req/usecase) actually CALL it in render(); rb-class/
+implementation-detail have DEAD copies (defined, never rendered) + in class's case a dead click handler.
+Fixing dead code ships risk for zero user benefit and muddies the diff. So the family to fix = the views
+where the defect is LIVE (grep for the CALL site `${renderLinks(`, not just the definition). Flagged the
+dead copies for a separate DRY cleanup. Also: when a directive assumes an artifact exists (PO: "set
+Task.sourceFile to its sprint task MD"), MEASURE that it exists first — the per-task MD files did NOT
+exist (only planning.md), so a literal path would 404; I pointed sourceFile at the real planning.md so
+the 📂 link actually resolves, and reported the per-task-MD gap as planner work. Don't ship a link to a
+file you didn't confirm exists. (DRY win: extracted scenarioBrowserHref so the <a href> rows + the
+Scenario field share ONE URL builder — the canonical extraction the original bug lacked.)
+
 ## Chain credits the MARKER's host member, not the unit — read the scanner before tagging (R21 chain-debt, 2026-06-29)
 "Add [impl:uuid:] markers" was HALF the work and the WRONG framing for half the reqs. The markers
 mostly already existed but didn't credit. I read buildStrictImplSet (skill-classes.ts) FIRST instead

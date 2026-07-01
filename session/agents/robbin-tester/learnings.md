@@ -1,5 +1,22 @@
 # robbin-tester Learnings — 2026-06-13
 
+## ⛔ HARD RULE — ALL gates MUST use the SystemTester identity (PO enforced, 2026-06-29)
+NEVER let a gate mint a fresh random-token user/room on prod. Sprint 20 established ONE fixed
+identity after 49 test-probe users polluted prod. Use it for EVERY browser gate:
+- Token: `ce981242-74fe-4d44-b5b6-43c641e224df`, name `SystemTester`. Helpers: `test/system-tester.ts`
+  (`ensureSystemTester`), `test/visual/system-tester-setup.mjs` (`seedSystemTester` via addInitScript),
+  `test/e2e/helpers.ts` (`ensureSystemTestRoom` → the ONE persistent "System Test Room").
+- The seed-before-WS pattern: `context.addInitScript(() => localStorage.setItem('rawbin-player-id',
+  'ce981242-...'))` (+ device e2e-bypass keys) BEFORE any page.goto → the WS connects WITH the token
+  → reuses SystemTester → ZERO new users. (This is my OWN earlier learning — I violated it in S22 by
+  seeding only device keys and letting the server mint a fresh player-id.)
+- For room gates: reuse the ONE "System Test Room" (ensureSystemTestRoom), do NOT create new rooms.
+- My S22 audio/drop gates (r2281, r225, r221, r223, r224, r219, r218*, r217, r2156, r211) created fresh
+  users — they MUST be retrofitted to seed ce981242 before re-use. **Wrong:** `seedDeviceKeys()` then read
+  whatever `rawbin-player-id` the server minted. **Right:** seed `rawbin-player-id=ce981242` first.
+Why: every fresh token = a prod user + room + content blobs = pollution + a purge debt. The test:guard exists.
+
+
 ## Tier-3 recovery (2026-06-28, measured this cycle)
 **At 100% context, a multi-step write→commit cannot complete.** Measured ground truth: the prior session's save edit was *approved* but the file on disk stayed unchanged and nothing was committed (trainer confirmed `context.md` byte-identical, anchor 148f449 was committed BY the trainer on the agent's behalf). Rewind didn't help: every checkpoint was minted AT 100%, so rewinding still landed in a full window. Path A (deep-rewind-to-oldest) is the F-T8 death trap — ~99% rewind leaves <33k and kills the agent.
 
@@ -44,6 +61,36 @@
 ## DET-3x earns its keep + harden the harness, not the verdict (2026-06-29, measured)
 On R21.5/6, the 3 in-script iterations were GREEN but a SECOND independent process run flipped the standalone checks to RED with `status 0` / `challenge=NONE`. I did NOT report RED — I MEASURED: direct `curl` of the same endpoint was 5/5 HTTP 200 (~20ms). So the RED was a **transient connection blip swallowed by my harness** (`https.get` `.on('error')` → status 0, no retry), not an app regression. Fix = retry-on-transient in `apiGet` (status 0) and `probe` (zero messages = blip, since SERVER_CONFIG/ROOM_LIST always arrive on a healthy socket). Re-ran clean GREEN 3×.
 **How to apply:** (a) DET-3x across SEPARATE processes (not just in-loop iterations) is what surfaces connection/timing flakes — keep doing independent runs. (b) When a gate goes RED, FIRST cross-check with a dead-simple independent tool (curl) before believing it — a flaky gate is unfaithful and must be fixed, not reported as an app bug. (c) Harnesses firing many rapid wss+https connections WILL hit occasional transient errors; bake in bounded retries so a blip never becomes a false RED. (d) Distinguish "empty response" (connection failure → retry) from "wrong response" (real RED → report).
+
+## Content-hash dedup → vary fixture bytes per iteration (v0.6.81 drop gate, 2026-06-29)
+A DET-3x drop/upload gate looked RED on iters 2-3 (no File unit on disk) — but the app had UPLOADED all 3 (the room's "File uploaded: <name>" system message confirmed it). ROOT CAUSE was MY fixture: all 3 mp3s had identical bytes → the server dedups content by hash → ONE File unit, not three; my by-name disk scan saw only the first. Fix: make each fixture's BYTES unique per iteration (`[...header, ...nameBytes]`). Lesson: when a per-iteration gate "loses" later iterations, check whether your fixtures are identical and being dedup'd before suspecting the app — and use a SECOND independent upload signal (chat/system message), which is what proved the app was fine.
+## Drive the real drop via the component's own CustomEvent
+To gate a DnD upload faithfully without OS-level drag: fire the dropzone's own event — `dz.dispatchEvent(new CustomEvent('rb-room-files-dropped', {detail:{files:[new File([bytes], name, {type})]}, bubbles:true}))`. This exercises the real RoomView→dropDispatcher.dispatch allowlist (the actual fix), unlike a raw POST which bypasses it. Phase the work: do ALL drops first (clean, sequential), THEN the render checks — inter-drop work on another page/tab perturbs the room page and drops get lost.
+
+## Synthetic scenario-unit as a test fixture (R22.5, 2026-06-29)
+To gate a MIME-driven render (fillPreviewPane audio branch) when no real fixture exists (0 audio files on prod), WRITE a synthetic File unit to scenario/index with the target mime (`{ior:'ior:class:File', model:{uuid, name:'x.mp3', mimeType:'audio/mpeg'}}`), mount the real component (rb-file-detail self-fetches /api/ior), assert, then DELETE the unit in a `finally`. Works because prod serves THIS checkout and /api/ior reads disk fresh per request. Zero pollution (verified 0 leftovers). Faithful when the branch keys on mime only and doesn't need real content (audio sets `<audio src>` without fetching; a YouTube uri-list DOES fetch, so use the real Heartspaces fixture 2746ab4a + its uploaderToken there). Pick real fixtures where content matters, synthetic where only the type matters.
+## Read the EXACT post-fix DOM before asserting
+v0.6.80 audio = `<audio controls src=...>`; YouTube = `<iframe src=https://www.youtube.com/embed/<id> allowfullscreen allow="autoplay">`. Asserting the precise attrs (allowfullscreen + allow=autoplay + embed/<id>) — read from content-preview.ts — makes the gate prove the FEATURE, not just "an iframe exists."
+
+## The verdict must be COMMITTED, not just spoken (planner #102, 2026-06-29)
+A GREEN/RED verdict that lives only in a pane message (otmux) is NOT durable — the planner/scoreboard reads truth from git, not from chat. I re-gated R22.4 GREEN on v0.6.79 and reported it in panes, but the last COMMITTED verdict still said RED@v0.6.78 (the gate's commit message), so the planner couldn't flip the testing hop. Fix: stamp the measured verdict (version, commit, DET-Nx result, the key number) INTO the committed artifact — the gate file header and/or the commit message — so "your-hop-your-status" is self-evident from git. wer schreibt der bleibt applies to VERDICTS too, not just learnings. And: re-run the gate right before committing the verdict, so you never commit an unverified GREEN.
+
+## "Clickable" ≠ "opens" — follow the link (R22.4, 2026-06-29)
+A fix that makes something a real `<a href>` is only half the feature — the href must RESOLVE. R22.4 made 124 PNGs clickable (`🖼 <a href>`) in the /md listing, but there was no `.png` serve route (only `.svg` @server.ts:1352, `.puml`, `.md`), so every link 404'd. The listing assertion (anchors present) was GREEN; the real acceptance ("open in preview like SVGs") was RED. **Always GET the link and assert status 200, not just that the anchor exists.** The discriminator: clickable=124 AND opens(200) — opens was 404 → RED, root-caused to the missing serve handler.
+## Don't truncate a value before substring-matching it (R22.3 gate self-bug)
+My gate captured `label.slice(0,40)` then checked `.includes('.puml')` — the .puml path was at char ~55, so the check falsely failed (Class source link WAS the .puml). Match against the FULL string (or the href). Truncate only for DISPLAY, never for assertion.
+## Verify the hand-off's cited example actually reproduces
+The expert said "RbFileDetail Class→Method→Impl all show rb-file-detail.ts:25". MEASURED: that class's chain nodes (render, impl:render) have null sourceFile → it shows NO links. The R22.3 feature is still sound (ScenarioUnit→.puml, TraceConsistency→.ts:42, templates→.ts:7 all GREEN) — but the specific example was a data gap. Don't take the cited node on faith; pick nodes that actually have the data, and report the discrepancy.
+
+## Capture the RED baseline BEFORE the fix ships (R22.2, 2026-06-29)
+When a gate is requested for a not-yet-shipped fix, don't idle waiting. Write the gate, run it on the CURRENT (unfixed) version to capture a measured RED baseline, commit it, then watch for the deploy. This gives a true champagne RED→GREEN with zero extra work later. R22.2: on v0.6.75 dblclick did nothing (s1 stayed 1.00) = RED; on v0.6.76 s1=2.00 then reset 1.00 = GREEN. Deploy-watch: a background `curl /sw.js | grep version` poll loop (30s cadence, bounded ~25min) exits on version-change and auto-re-invokes me — no manual polling, cache-friendly. Synthetic desktop dblclick = dispatch the full mouse sequence (mousedown/up/click ×2 + dblclick) with clientX/Y so handlers reading e.client* fire.
+
+## Detail-view gating: mount with the page graph + count-the-heading + source-confirm the rest (R22.1, 2026-06-29)
+- **Tree-node detail components need the graph.** rb-{task,requirement,usecase}-detail render from `this.graph?.get(refUuid(ref))` (not self-fetch like rb-file-detail). Reach the page's TraceGraph at `document.querySelector('rb-trace-tree').graph`, set `el.graph = that` + `el.setAttribute('ref','<type>:<uuid>')`, append. Faithful — same component the drawer builds.
+- **Duplicate-section bugs → count the heading.** "Two 'Traceability Chain' sections" → assert `querySelectorAll('h4')` filtered to that text === 1. Cross-check at SOURCE: `grep -c 'Traceability Chain'` in the component files should be 0 (the surviving heading comes from the shared renderChainPathSection, not inline).
+- **No need to await async sub-renders for a synchronous-heading assertion.** renderChainPathSection writes its `<h4>` + "Loading chain..." synchronously then walks; the heading count is valid as soon as `.dv-chain-walk` exists — waiting for the server-walk to settle just burns wall-clock (my first run timed out doing that).
+- **A shared fix is only LIVE-demonstrable where data exists; source-confirm the rest, and SAY which is which.** Bug#2 (clickable forward `<a>`) needed forward links; measured 0/254 UseCases have any, so I proved it live on Task+Requirement and source-confirmed rb-usecase-detail emits the identical `<a href=scenarioBrowserHref ...#ff9800>`. Report the split honestly — don't claim a live pass you couldn't observe.
+- Assert orange via computed color `rgb(255, 152, 0)` (= #ff9800), and clickable via `tagName==='A'` + `href ^= /md/scenario/index/` + zero `div.dv-link` (the old broken style).
 
 ## Wiring Test hops — close the chain (R21, 2026-06-29)
 Test hop crediting is LENIENT vs Impl (measured in skill-classes.ts:181-185 `hasRealTest`): credits iff (a) a `ior:class:Test` unit with that uuid is in the scenario index AND (b) the bare `[test:uuid:<uuid>]` marker appears anywhere in a file under `test/` or `scripts/`. NO strict-AST/name-match (Impl needs the marker to head/sit-in a name-matching named member — `buildStrictImplSet`, much stricter). Marker scan covers `.ts/.js/.mjs/.css`, so `test/visual/*.mjs` gates qualify.
@@ -141,3 +188,12 @@ R21.5/6 gate creates its own committed user, adds phone/email, then resolves the
 - Desktop: HTML5 drag works. Match .vcf by EXTENSION not MIME (empty on Windows).
 - Mobile: NO native file drag. Must have input type=file fallback.
 - Playwright: setInputFiles() for input, synthetic dispatchEvent for drop handler.
+
+## SystemTester WS-join + serve-time dedup (v0.6.84, 2026-06-29)
+To gate a serve-time-computed list (Room.allMemberInfo dedup) you must JOIN the room — the scenario unit holds the RAW members; the deduped list only exists in ROOM_JOINED.members. WS join as SystemTester WITHOUT a browser: welcome -> IDENTIFY{playerToken:ce981242} -> wait for PROFILE -> UPDATE_PROFILE{name:'SystemTester'} (else JOIN_ROOM -> ERROR 'Profile required') -> JOIN_ROOM{roomId,playerName,playerToken} -> read ROOM_JOINED.members -> LEAVE_ROOM. Zero new users (reuses ce981242). The member badge's playerToken is the RESOLVED primary (so "Link Account targets primary" == member.playerToken===primary, not a redirectTo tombstone).
+
+## Two-party flow (CONSOLIDATE/Link Account) gating (T23.3, 2026-06-29)
+A flow needing TWO identities in ONE room (CONSOLIDATE: linker + target both room members, server checks targetInRoom): use SystemTester(ce981242) as the LINKER, have it CREATE a fresh room (CREATE_ROOM needs profileCommitted+sshKeys; returns ROOM_JOINED.room.id), a tagged target JOINs that room, then linker sends {type:CONSOLIDATE,targetToken,secretCode}. Persistent rooms in the scenario index are NOT auto-joinable ('Room not found') — create a live one. CONSOLIDATE_OK is ONE-SHOT per target (sets friend.redirectTo) -> use a FRESH tagged target per DET iteration. 'No phantom' check = profiles.json count before==after a link ATTEMPT (target already counted post-commit). Cleanup: delete LinkTarget profiles + reset SystemTester.consolidatedFrom on disk (data/profiles.json is gitignored runtime -> server holds in memory until reload; flag it). A link test inherently needs a 2nd party — that's NOT random pollution if the target is tagged + cleaned up.
+
+## Measure the actual scoreboard — don't trust the stated hop count (T24.1, 2026-06-29)
+PO said "T24.1 is 5/6, only TEST hop pending." MEASURED via `chain scoreboard`: it was 4/6 — the IMPL hop was ALSO open ('open expert 5453f58d / Add real [impl:uuid:] in source'). I wired the Test hop (it credits, lint-clean), but reported HONESTLY that R24.1 still won't COMPLETE until the expert places the impl marker — did NOT claim "done/5-of-6-now-6" when the scoreboard says otherwise. Always re-run `chain scoreboard` after wiring and report what it actually shows, including hops that aren't yours. Engine-CLI gate pattern: run `npx tsx scripts/objectVerb.ts chain scoreboard|followUp|lintMarkers` via execSync + assert deterministic output across 3 runs; emitClaudeSkills gated via the pure `emitClaudeSkillText('Chain')` (no real-file mutation).

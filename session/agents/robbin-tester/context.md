@@ -43,7 +43,22 @@
 Removed 215 files (133 scenario/index test units + 82 alt symlinks). index 3765->3632; alt company 26->1, domain 21->0, email 19->1, phone 19->1 (survivors = Cerulean + Tron). Live API: test suggest 11->0, test phone 200->404; Tron+Cerulean intact. Method: SAFE-uuid hard-exclude + alt-deleted-by-resolved-target + measure before/after (see learnings: safe prod-data purge).
 REMAINING (flagged to PO, needs coordinated restart — do NOT live-edit): data/profiles.json (gitignored, in-memory-backed) still has test userProfiles incl R21.4 phantom c56e7ba7. + 1 untracked scenario/content/<hash> of unverified origin left untouched.
 
-## CHAIN-DEBT CLOSED 2026-06-29 (commit e977a1526): scoreboard 20->28/285
+## S23: phone-as-identity merge gate (d1fc47e84) — RED baseline v0.6.81: (1)normalize GREEN (2)challenge GREEN (3)MERGE RED — mobile->3effa1fc != landline->2703628c, 3 Marcel Donges profiles. MERGED + GREEN DET-3x (gate 3b6d27659, full RED d1fc47e84 -> GREEN). Non-destructive consolidate (8c583ec51): primary 8f74dfba, 3effa1fc+2703628c redirectTo=8f74dfba (not deleted); 1 active Marcel; landline->8f74dfba; Heartspaces+Marcel Room under primary; +4915253844085 was test pollution (removed). Pollution-free gate.
+- v0.6.84 Heartspaces member-dedup GREEN DET-3x (gate 549012182): served allMemberInfo shows 1 Marcel (was 2 tombstones), badge token=primary 8f74dfba. SystemTester WS join+leave.
+- T23.3 Link Account (CONSOLIDATE) GREEN DET-3x (gate 23bafb1db): correct->OK (Tron complaint fixed), wrong->FAILED, no-phantom. SystemTester linker + CREATE_ROOM + tagged target joins; OK is one-shot. Cleaned LinkTarget profiles + reset consolidatedFrom.
+- T24.1 objectVerb engine: gate GREEN DET-3x (b810aa690) + Test hop wired (c961832e -> impl 5453f58d, marker in object-verb.test.ts, commit 352bafa54). R24.1 NOT complete — Impl hop still open-expert (measure scoreboard, don't trust stated count). GATE-CRAFT: 'Marcel/active' = filter !redirectTo. .mjs gates CANNOT require() (ESM) — use fs+shardPath.
+
+## S22 gates (live version climbing): 
+- R22.1 GREEN DET-3x v0.6.75 (gate c6560f97f) — one Traceability Chain section + clickable orange /md/ forward links, all 3 detail views.
+- R22.2 GREEN DET-3x v0.6.76 (gate cb8d3eceb) — desktop dblclick zoom-toggle (2x@point/reset), FULL RED(v0.6.75)->GREEN(v0.6.76). 
+- R22.3 source links GREEN DET-3x v0.6.78 (gate adddd7ae5) — Class→.puml/Method→.ts:line/Impl→.ts:line clickable 📂.
+- R22.4 clickable PNGs: RED v0.6.78 (clickable but 404, no .png serve handler) -> GREEN DET-3x v0.6.79 (expert added /md raster-image handler server.ts:1366, /md/<x>.png->200). FULL RED->GREEN. gate r224 (in adddd7ae5).
+- R22.3 RbFileDetail data-gap I flagged: expert filled the 7 chain-walk units (4e3c3df0d) -> RbFileDetail now shows rb-file-detail.ts:25 + Class sprint-21.puml. discrepancy CLOSED.
+- *** S22 R22.1-R22.4 ALL GREEN DET-3x. *** Live v0.6.79.
+- R22.5 audio+YouTube preview GREEN DET-3x v0.6.80 (gate 0eb5f64cc) — fillPreviewPane: audio/*-><audio controls>, Heartspaces .url(2746ab4a)-><iframe youtube.com/embed/a-_CuBOu6BA>. Synthetic File-unit fixture for audio (created+deleted, 0 pollution).
+- v0.6.81 MP3-drop-UPLOAD GREEN DET-3x (gate 972434733) — real drop (rb-room-files-dropped CustomEvent) -> dispatch allowlist(audio/) -> upload -> <audio>. Fixture trap: identical bytes dedup by content-hash -> unique bytes/drop. Cleaned 8 leftover test rooms.
+- S22 PURGE DONE (commit 4a28e3def): 0 test units remaining (3749->3748); profiles 3 real, content 0 test, data/users 2 real (Tron+Heartspaces). RULE VIOLATION corrected: my S22 gates minted fresh tokens instead of SystemTester ce981242. SEE learnings HARD RULE — all future gates MUST seed rawbin-player-id=ce981242 + reuse System Test Room.
+- CHAIN-DEBT (R21) CLOSED e977a1526 (20->28/285).
 Wired 8 R21 Test hops (R21.2 excluded — Impl open-expert). Created Test units + [test:uuid:] markers in gate files + Impl.tests[]->Test for R21.1,3,4,5,6,7,8,9. Test crediting is LENIENT (Test unit in idx + marker in test/ + Impl.tests[] ref; no strict-AST). chain tooling: `npx tsx scripts/objectVerb.ts chain scoreboard|lintMarkers`. det-2x = 28/285. See learnings "Wiring Test hops".
 
 ## Session 2026-06-15/16 — S20 gates (v0.6.50→0.6.62)

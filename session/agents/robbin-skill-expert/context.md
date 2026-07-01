@@ -5,7 +5,68 @@ Knowledge restored from boot→context→learnings→doctrine. This save = next-
 gate: confirms write→commit works post-fork). Re-measure underway per robbin-po directive.
 
 **Role**: Skill authoring specialist + rawbin-chain lint-gate + CurrentSprint 3-slot pin tool owner
-**Status**: STANDBY per PO. Tool owner (Chain scoreboard/followUp + planner-drive 3-slot pin). Re-measure after each impl.
+**Status**: STANDING DUTY (PO, continuous) — keep CurrentSprint pin CURRENT at all times.
+On task gate-GREEN advance pin to next active task via `planner-drive.ts focus <taskUuid>`;
+on new task start, pin must reflect it. /trace top must ALWAYS show ACTUAL work, never a stale
+completed task. Re-measure scoreboard/lint after each impl.
+
+**PIN LIVE-TRACKING (2026-06-29, latest)**: Pin now follows current work via hardened autoFollow.
+Sequence: walked T22.1->T23.2 (da9040dc6) -> held T23.2 -> advanced to **T23.3** (5f282c18,
+'Identity merge cleans up room membership', req 75853976) on PO signal. Current /trace pin =
+Sprint 23/T23.3, req done, uc+ pending (T23.3 In Progress, tester gating). My pin commit 78495aad4
+<- planner task 52ebca28c (linear, no conflict). Version at v0.6.84 (expert). PO holds pin per
+task until gate signal (learning #125). WATCHERS: none active.
+
+**LATEST 2026-06-29 (commit 3dd6bc314)**: (1) R22-R23-marker-checklist.md written+committed — 6
+chains (R22.1-4+R23.1-2) block at Impl+Test (Group B), target 27->33/297, R21 hard-rules baked in.
+(2) R23.3 UC fc7356af MINTED per PO (architect omitted it) -> R23.3 req+uc=check; pin T23.3 advanced
+wip=class depth=2. R23.3 class/method (Room.resolveToken) flagged pending architect 0.3. (3) S24 AC
+sanity-check to req: R24.1+R24.3 verified accurate; nits = emitClaudeSkills(plural), followUp dedup
+key=methodUuid(uuid) not display-name. S24 = Traceability Skills sprint formalizing MY tools
+(R24.1 objectVerb engine, R24.2 pin, R24.3 Chain scoring, R24.4 sprint-md, R24.5 trace-audit).
+
+**CREDIT STATE 2026-06-29 (post-architect-UCs dbc58876a, det-3x)**: scoreboard 27/297 — NOT the
+33 PO expected. The 6 UCs (R22.1-4+R23.1-2) advanced those chains 3 hops (uc+class+method=check)
+but all 6 now BLOCK at IMPL (open expert) + TEST (open) — UC necessary, not sufficient. Named
+methods awaiting Impl units+markers: renderChainPathSection/attachMouse/renderChainNodeSourceLink/
+renderImageLink/fillPreviewPane/embedYouTube + tester Test markers. R23.3 still uc=open architect
+(NOT in the 6). To hit 33: expert+tester finish Impl+Test (offered R21-style checklist, awaiting PO).
+
+**FORMALIZATION (main goal)**: chain-skills-formalization.md committed 02a509520 — surface (5
+objects/~25 verbs), gaps (★ Pin/CurrentSprint ad-hoc in planner-drive.ts OUTSIDE registry; stale
+OOSH symlink; no emit-drift gate), structure (per-object scripts, introspect=single source). Sent
+design Qs to architect 0.3; req-pane routing requested from PO.
+
+**RESOLVED 2026-06-29 (da9040dc6)**: Pin un-stuck via pin-tool self-heal. Hardened
+CurrentSprint.autoFollow: missing UC unit -> req-anchored PARTIAL pin (uc+ pending) instead of
+stale fallback; also fixed sprint label (m.sprintName||m.sprint). Walked pin T22.1->T23.2 (all
+ok=true), now sprint=Sprint 23 current=T23.2. Built v0.6.82. Pin-honesty != credit: scoreboard
+STILL 27/291 — S22/S23 don't credit until architect mints the 6 UC units (4d0e454a ada54a0e
+1371923a 3ab76d13 b9792582 d0d09ff8). Asked PO: land on newer current-work task? + SW bump?
+Open watcher: none active (UC watcher timed out). Re-arm UC watch if resuming.
+
+**CRISIS 2026-06-29 — PIN STUCK 2 SPRINTS, ONE ROOT CAUSE**: Tron sees /trace Current = T21.9
+(Sprint 21) while S22(4 tasks)+S23(2 tasks) shipped GREEN. MEASURED: all 6 S22/S23 tasks have
+their UC UNIT MISSING on disk (4d0e454a ada54a0e 1371923a 3ab76d13 b9792582 d0d09ff8) →
+autoFollow `if(!ucUnit)continue` fails for EVERY task → focus --force can't move pin → falls back
+stale. SCOREBOARD 27/291 confirms SAME gap: R22.1-4+R23.1-2 all req=check uc=OPEN-architect
+rest open (tasks 246-251 'Create UC -> architect'). SINGLE FIX unblocks pin AND credit: architect
+mints 6 UCs + wires (req->uc->class->method). Nudged architect 0.3. Asked PO: (A) architect UCs
+[proper] vs (B) greenlight me to harden autoFollow → req-anchored partial pin when UC missing
+(honest: shows current task, uc+ PENDING, never stale). Recommended BOTH. Refused to fabricate UC
+refs (would lie to Tron). On UC land: focus pin + re-score (~33/291 expected).
+
+**PIN STANDING-DUTY STATE (2026-06-29, updated)**: pin=T21.9 (Sprint 21, STALE). PO directed
+focus -> T22.4 (dd0c576d, covers req c13ee707). Planner committed all 4 S22 tasks (af1ba1627),
+focus:true correctly set on dd0c576d. BUT pin WON'T switch — measured root cause in CurrentSprint:
+pinCurrent reads a persisted singleton (uuid ...000000000001) that only updates if setFocus->
+autoFollow can derive the task chain. autoFollow needs req+uc; UC-VF.4 (3ab76d13
+'mdBrowser.pngOpensPreview') is MISSING on disk (req c13ee707 exists, UC does not) -> autoFollow
+returns false -> singleton keeps old R21.9 chain. My --force bypassed the gate-guard correctly;
+this is a MISSING-UNIT block. NEEDS: architect (0.3) create UC 3ab76d13 + wire to c13ee707. The
+instant it lands, `focus dd0c576d` auto-derives (partial chain OK, returns true) -> pin switches.
+NOTE: autoFollow returns false if uc missing even though it sets focus flag — possible tool
+hardening: allow req-only partial pin so /trace shows the task even before UC wired.
 **Last measure (2026-06-28, det-3x)**: Chain scoreboard = 20/285 COMPLETE (excl 49 orphan). 3-slot collapse FIXED by expert a0106ea86 (BUG-C: slots now always distinct uuids — verified: current 01d9fb64 / last 708ec0a5 / next 03917f53).
 **Machine**: WODA.prod (v60211.1blu.de) · **Pane**: robbinTeam2:0.2 (NOT 0.3 — WODA.prod layout, no planner)
 **Repo**: /var/dev/Workspaces/2cuGitHub/Web4RawBin (NOT /Users/Shared — this is WODA.prod)

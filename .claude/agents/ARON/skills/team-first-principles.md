@@ -37,7 +37,8 @@
 ## F. OOSH discipline
 - **OOSH wrappers only** — never raw `tmux`/`claude`/`ssh`/`find`/`stat`/`date`; raw system calls only inside `private.*`.
 - **Never `source` OOSH scripts; never pipe OOSH output; never `2>/dev/null` or `2>&1`** — errors are data; use log levels for verbosity.
-- **camelCase; positional args only (no --flags; sub-modes = separate methods); signature comments** `# <req> <?opt:default> # desc`. Self-documenting.
+- **object.verb IS the no-flag principle** (TRON, 2026-06-29 — the deeper teaching). OOSH expresses options through **method dispatch (object.verb), NOT flags**; the verb namespace IS the option space. A variant is a more specific **method**, never a `--flag` (e.g. `odocker.run` / `odocker.run.sshd` / `odocker.run.ephemeral` — `sshd`/`ephemeral` are VERBS encoding what `--sshd`/`--rm` would). So the OOSH design question is never "flag or positional?" but **"what is the object.verb for this?"** — push the variation into the method name. ONE exception: opaque payload forwarded to a FOREIGN/containerized CLI (`-tsvg` → the `plantuml` binary) is NOT an OOSH flag; the rule binds the OOSH interface, not what you forward. Apply at DESIGN time — flags creep into "convenience" signatures. *(Canon: oosh-architect learnings c15ae14; live design `session/tasks/plantuml-oosh-script-design.md`.)*
+- **camelCase; positional args only (no --flags; sub-modes = separate methods); signature comments** `# <req> <?opt:default> # desc`. Self-documenting. (Signatures stay thin + positional for genuine PARAMETERS — the nouns the verb acts on, e.g. `odocker.run.ephemeral <image> <workdir> <args…>`; runtime concerns live INSIDE the verb.)
 - **No compound commands** (`cd x && y`) — permission tax + sandbox blocks them; scripts are on PATH (no `./`).
 - **Git:** never `rebase`/`pull --rebase` (merge only; `pull.rebase=false`); one-line commits; **explicit path staging** (not `git add -A`); never `git stash`.
 

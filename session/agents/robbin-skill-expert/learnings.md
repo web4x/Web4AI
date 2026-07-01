@@ -389,6 +389,37 @@ checklist that named the REAL blocker (strict name-match, not "add marker") + th
 drove a clean fix in one pass — precise diagnosis = precise dispatch. Verify-don't-relay held:
 I reproduced 28/285 myself before confirming the tester's number.
 
+### Pin-tool self-heal: autoFollow req-anchored partial (2026-06-29, da9040dc6)
+CRISIS: /trace pin stuck 2 sprints (showed Sprint 21 T21.9 while S22+S23 shipped). MEASURED
+root cause: all 6 S22/S23 tasks reference UC units the architect never created on disk;
+CurrentSprint.autoFollow did `if(!ucUnit)continue` → failed for EVERY task → fell back to the
+last good (stale) singleton. focus --force could NOT move it (this is a MISSING-UNIT block, not
+the gate-guard). Scoreboard 27/291 confirmed SAME gap (all 6: uc=OPEN architect).
+FIX (mine — I own the pin tool): when ucUnit missing, anchor on req + take the partial branch
+(refs.uc='' so activeHop lands on uc=pending); also read m.sprintName||m.sprint for the label.
+Honest: shows the CURRENT task with uc+ PENDING, NEVER fabricates credit, never goes stale.
+Walked pin T22.1->T23.2 (all focus ok=true), landed Sprint 23/T23.2.
+LESSONS: (1) a pin/measurement tool must DEGRADE GRACEFULLY (show current + mark gaps pending),
+never silently fall back to a 2-sprint-stale value — staleness is itself a lie to the human.
+(2) pin-honesty != credit: making the pin show a task does NOT credit its req (scoreboard stayed
+27/291); credit still needs the real UC units. Keep the two faithful and SEPARATE. (3) Don't
+fabricate chain refs to force a green pin — refused even under URGENT pressure. (4) Measured the
+EXACT field bug (m.sprint vs m.sprintName) only because I traced autoFollow line-by-line — the
+sprint label had been silently stale too. Architect still owes 6 UCs for real credit (gap->sprint).
+
+### Pin depth != scoreboard credit — impl unit+wire vs strict marker (2026-06-29)
+S24: pin showed T24.1 depth=5 (impl DONE, test active); PO inferred "5/6, just needs Test".
+MEASURED against canonical scoreboard: R24.1-5 are 4/6 — impl=OPEN + test=OPEN. The Impl UNITS
+all exist (5/5, traced to existing code) AND are wired, so the PIN's getActiveChain marks impl
+done (it counts unit-existence + wiring). But ZERO [impl:uuid:] markers in source (0/5) → the
+strict canonical measure (buildStrictImplSet, needs marker ON the named method) withholds impl
+credit. LESSON: the PIN and the SCOREBOARD use DIFFERENT impl-done criteria — pin = unit+wire
+(structural/optimistic), scoreboard = unit+wire+marker (proven). When asked "how done is X", answer
+from the CANONICAL scoreboard, never the pin's depth — the pin nearly led PO to a wrong 5/6.
+Relevant to R24.2 (pin formalization): consider whether getActiveChain should align impl-done with
+the strict marker (would show honest depth) or keep structural depth (shows design progress) — flag,
+don't silently diverge. The sprint closes with a MARKER batch (5 impl + 5 test), 0 new logic.
+
 ## Re-measure 2026-06-28 (SM save-checkpoint)
 Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276→285 (more reqs).
 3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert

@@ -96,6 +96,7 @@ scriptname.method() # <required> <?optional:default> # description
   # implementation
 }
 ```
+**object.verb IS the no-flag principle** (TRON canon): positional args only, never `--flags`. A variant is a more specific METHOD (`scriptname.method.variant`), not a flag — the verb namespace IS the option space. See `.claude/agents/ARON/skills/team-first-principles.md` §F.
 
 ### Completion Function
 ```bash
