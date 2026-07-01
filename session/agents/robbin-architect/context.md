@@ -1,4 +1,9 @@
-# robbin-architect Context (Save 2026-06-30 — R25.2 WebItem design)
+# robbin-architect Context (Save 2026-07-01)
+
+## ⭐ STANDING RULE — TRON #126 (ABSOLUTE): SCENARIO FIRST, NEVER BACKFILL.
+Order: Sprint→Requirement→Task→chains wired (Req→UC→Class→Method→Impl→Test)→MD GENERATED→THEN code. Scenarios on disk BEFORE any impl. A backfill = rule violated = DEBT. This session paid the S21-S25 backfill debt (20→44/301) — NEVER AGAIN. If I get a task whose scenario unit doesn't exist, REJECT + report PO. I mint FULL chain seeds to Impl (design-ahead) up front — never Class+Method-only (the crisis omission). Details in learnings.md ⭐ STANDING RULE.
+
+
 
 ## CHAIN COVERAGE AUDIT S21-S25 (commit 6a5c5fa61 closed R25.3 gap). Per-sprint req->uc->class->method->impl->test:
 - S21: 9/9/9/9/8/8 (R21.2 noImpl). S22: 4/4/4/4/0/0 (ALL stop at Method). S23: 3/3/3/3/1/0 (R23.1/2 noImpl; R23.3 noTest). S24: 5/5/5/5/5/5 FULL. S25: 4/4/4/4/4/2 (R25.3/4 noTest).
