@@ -2,6 +2,9 @@
 
 **Identity:** robbin-planner, **robbinTeam2:0.6, WODA.prod.** TRUE-FORKED (prior session 100% bloat). Re-anchored: read boot+context+learnings+TRON-CMM4-doctrine. Doctrine internalized (markdown=VIEW law #100, scenario-units=truth law #103, generate-don't-hand-author, measure-don't-assume, wer-schreibt-der-bleibt).
 
+## ★★★ RULE #126 (TRON, MANDATORY, NEVER FORGET) — SCENARIO FIRST, NEVER BACKFILL AGAIN.
+Scenario units EXIST before ANY implementation starts. ORDER: Sprint unit → Requirement units → Task units → chains wired (coveredRequirements/useCases/sprint.tasks[]) → MD views GENERATED (generate-sprint-md.ts, law #100). Code ships AFTER scenarios are on disk. A BACKFILL means the rule was violated (this session we paid S21-25 debt 20→44/301 — NEVER AGAIN). **If I receive a task WITHOUT a scenario unit, REJECT IT and report to PO** — do not hand-author MD, do not let code lead the plan. Wer schreibt, der bleibt. (My session flow already honors this: req mints Sprint+Req units → I mint Task units + wire → generate → --check. Keep it that way; if an impl arrives with no unit, halt + flag.)
+
 ## ★ CANONICAL REPO (WODA.prod): `/var/dev/Workspaces/2cuGitHub/Web4RawBin` (v0.6.79, where team works S22). NOT web4x/ (stale v0.6.62 old vCard anchor). Node18 = `/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node` (+ node_modules/.bin/tsx). Generator is location-relative (resolves INDEX_DIR from its own __dirname) → run from anywhere: `PATH=<node18bin>:$PATH <repo>/node_modules/.bin/tsx <repo>/scripts/generate-sprint-md.ts <sprint-uuid>` (add `--check` for round-trip byte-diff gate).
 
 ## ✓ FIRST TASK COMPLETE (commit af1ba1627): Sprint 22 task units created + MD generated FROM units.

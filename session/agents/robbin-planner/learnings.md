@@ -1,5 +1,21 @@
 # robbin-planner Learnings — 2026-05-24
 
+## 46. RULE #126 — SCENARIO FIRST, NEVER BACKFILL AGAIN (Tron via PO, 2026-07-01, MANDATORY)
+
+Scenario units are the PLAN and MUST exist on disk BEFORE any implementation starts. Canonical order, no exceptions:
+1. **Sprint** scenario unit (ior:class:Sprint)
+2. **Requirement** scenario units (ior:class:Requirement) wired into `Sprint.requirements[]`
+3. **Task** scenario units (ior:class:Task) with `coveredRequirements[]` + `useCases[]` wired + added to `Sprint.tasks[]`
+4. **MD views GENERATED** from the units via `generate-sprint-md.ts` (law #100 — markdown is a VIEW, never hand-authored source), verified `--check` byte-match.
+
+**Code ships AFTER the scenarios are on disk.** A BACKFILL (creating/generating scenario artifacts for work that already shipped) means the rule was already violated. This session we paid the S21-S25 backfill debt (scoreboard 20→44/301); that was DEBT, never to be repeated.
+
+**Enforcement (planner pre-gate):** if I receive a task/impl directive WITHOUT a scenario unit backing it, **REJECT it and report to PO** — do NOT hand-author an MD, do NOT let code lead the plan. Halt and flag the missing unit.
+
+**Why:** the scenario units are the single source of truth (law #103); the MD is a deterministic projection. Letting code ship first inverts truth→view into view-chasing-code, which produces exactly the drift the S21-25 (and S17-20) backfill exposed. `generate-sprint-md.ts --check --all` is the canonical drift detector.
+
+**How I already comply (keep it):** req mints Sprint+Requirement units → I mint Task units + wire chains → run the generator → `--check` GREEN → commit. That flow IS the rule; the only failure mode is an impl arriving with no unit — then halt+flag, don't backfill silently.
+
 ## 45. Scenario-Link Communication standard — chat is pointer-only (Tron 2026-06-10, ack)
 
 Acknowledging standard `[standard:uuid:0525f028-150c-4163-b3a8-a753df5581d9]` (`scrum.pmo/standards/scenario-link-communication.md`, authored by me 2026-06-10, commit `4acbae00`).
