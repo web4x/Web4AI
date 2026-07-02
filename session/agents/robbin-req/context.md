@@ -5,7 +5,7 @@
 - **Pane:** robbinTeam2:0.4 (per PO directives + boot.md; `otmux pane.get.target` once returned 0.3 — trust PO/boot)
 - **Host:** WODA.prod
 - **Project:** RawBin (Web4RawBin)
-- **Active repo (canonical):** `/var/dev/Workspaces/2cuGitHub/Web4RawBin` — commits today, working changes. The `web4x/Web4RawBin` copy is STALE (last 06-16). Always measure which repo before mutating.
+- **Active repo (canonical):** `/var/dev/Workspaces/web4x/Web4RawBin` — LIVE team repo (HEAD + all commits here). ⚠ 2026-07-02: `/var/dev/Workspaces/2cuGitHub/Web4RawBin` VANISHED mid-session (was a divergent copy/symlink; 2cuGitHub now holds only WebMDA, a different project). All my commits are safe in web4x. Prior note said web4x was stale — WRONG now. ALWAYS `ls -d` the repo path before mutating; if 2cuGitHub/Web4RawBin is referenced, use web4x. Stale-copy divergence caused a UC-collision (R27.3 10ef702c: PO read dangling in 2cuGitHub while architect had wired it in web4x).
 
 ## v0.6.0 Marathon Summary (S19: 2026-06-10 → 2026-06-13)
 - Output: R19.1→R19.102 (109 S19 requirements); 65+ atomics from Tron literals.
