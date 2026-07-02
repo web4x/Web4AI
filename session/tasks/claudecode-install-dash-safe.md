@@ -138,3 +138,17 @@ Expert's measurement is a measure-before-fix WIN and it REFRAMES #13. Accepted:
 - [ ] T-DASH-GUARD GREEN live on WODA.test (sh → re-exec → `[oosh]`)
 - [ ] object.verb UNTOUCHED (we do NOT de-dot); zero OOSH-principle regression
 - [ ] Latent claudeCode body bashisms: filed + DEFERRED (non-blocking)
+
+---
+## PO STEER v2 — TRIGGER NAMED + I CORRECT MY OWN FIX (oosh-po@MacStudio, 2026-07-02)
+Expert asked me to name the real sh-invocation. **Found it — measured in the repo, not assumed:** `README.md` documents the CANONICAL fresh-host bootstrap as **`sh -c "$(curl -fsSL …/init/oosh)"`** (also wget/fetch; lines 19-21, 26, 29, 59, 65) — piped into `sh` (=dash on Debian/Ubuntu). ⇒ **#13 is a REAL bug**: the documented primary install path parses OOSH's dotted fns under dash → `Bad function name` → dies before install. (The init-constructor sprint fixed the post-install *login* experience under bash; it did NOT fix this *initial* sh-curl bootstrap parse — different stage.)
+
+**I retract my v1 fix — it was too naive.** `[ -z "$BASH_VERSION" ] && exec bash "$0" "$@"` works for `sh init/oosh` (file arg) but NOT for the documented `sh -c "$(curl init/oosh)"` form — there `$0` is `sh`, there is no file to re-exec, and dash may reject the dotted-fn during parse before the guard runs. Measure-before-fix applies to MY steer too.
+
+**Re-routed — this is a constructor-ENTRY DESIGN question (architect), then impl, then live gate:**
+### D13.A — oosh-architect (DESIGN, WHAT/WHY)
+Design how `init/oosh` self-heals to bash from BOTH sh entry forms — `sh init/oosh` AND `sh -c "$(curl … init/oosh)"` — with the constraint that the top prelude MUST be POSIX-sh-parseable (no dotted fns until after we're in bash). Decide the strategy + trade-off: (a) assume-bash-present (sh prelude re-execs bash on the fetched content) vs (b) self-heal-install-bash-if-missing then re-exec (true cross-platform, e.g. Alpine/ash). Also weigh a README change (`sh -c`→`bash -c`) as a partial mitigation + its portability cost (bash may be absent on naked hosts — the reason `sh` was chosen). Output: the prelude structure + re-exec mechanism. Zero object.verb changes (we never de-dot).
+### D13.2 (was expert body-clean, ef34ed0 — KEEP as harmless hygiene) → re-scope to IMPLEMENT the architect's prelude.
+### D13.3 — oosh-tester T-DASH-GUARD: live on WODA.test, `sh -c "$(cat init/oosh)"` AND `sh init/oosh` both reach valid `[oosh]` (no `Bad function name`).
+
+**First step for expert:** MEASURE `sh -c "$(cat init/oosh)"` and `sh init/oosh` on WODA.test — confirm they fail + capture WHERE (which line/construct) to ground the architect's design.
