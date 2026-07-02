@@ -48,3 +48,11 @@ otmux send "does not complete the session / totally broken" for: (a) the agent-t
 - Architect (diagnosis vs macos.latest): **DONE 2026-07-02** — hypothesis CONFIRMED, 2 mechanisms: (M1) dev runs verify+poke on ALL targets; macos.latest old send had NONE → dev's fragile `>`-verify on shells → false rc2 → poke → "not completed." (M2) `isClaudeCode` treats `pane_current_command==node` as claude unconditionally → Escape into a node shell → hang. Fix: branch send.smart on kind (claude=full contract UNCHANGED/5-5-safe; non-claude=stage+Enter, no Escape, no poke, light-confirm) + harden isClaudeCode's node case + session→active-pane→kind. Full spec above.
 - Expert (fix + commit):
 - Tester (T-SEND-SESSION):
+
+---
+## ✅ g.1 DIAGNOSIS done + fix APPROVED (architect `e6eb721`, oosh-po 2026-07-02)
+Hypothesis CONFIRMED — 2 mechanisms:
+- **M1**: dev `send.smart` runs verify+poke on ALL targets; macos.latest old send had NONE (stage+Enter) → dev's fragile `>`-prompt verify on a SHELL → false rc2 → poke → "not completed."
+- **M2**: `isClaudeCode` treats `pane_current_command==node` as claude UNCONDITIONALLY (any node tool matches!) → Escape fires into a node shell → hang.
+**FIX (approved)**: branch `send.smart` on KIND — **claude = full OTR-1 contract UNCHANGED (5/5 preserved)**; **non-claude = stage+Enter, NO Escape, NO poke, light-confirm**; + harden `isClaudeCode` node case; + session→active-pane→kind resolution. Essence: verify+poke+Escape is a CLAUDE protocol; non-claude = fire+light-confirm.
+**Expert fix → tester T-SEND-SESSION** (regression guard — the send path OTR-1's tests missed).
