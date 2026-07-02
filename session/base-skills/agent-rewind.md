@@ -57,6 +57,22 @@ Agent must report:
 
 All 5 correct = rewind success. Any wrong = retrain needed.
 
+## Driving It via otmux (concrete commands)
+
+The picker is a LIVE TUI at the client's UI layer. **Capture after every keystroke — never fire blind.** A key can navigate yet fail to render the next menu (the oosh-expert 100%+running-shells failure). `pane.capture` is your eyes; assuming is how you corrupt an agent.
+
+| Step | Command |
+|------|---------|
+| Resolve target by ROLE (never a hardcoded pane) | `target=$(hiveMind resolve <role>)` |
+| Touch protocol FIRST (BTab toggles the picker too) | `otmux send.raw "$target" BTab` → `otmux pane.capture "$target" 6` (confirm `auto mode on`) |
+| Open picker (`/rewind` needs Enter) | `otmux send.enter "$target" "/rewind"` → capture 20 (did it render?) |
+| Walk back to a checkpoint (deep — ~50%, not 3 steps) | `otmux send.raw "$target" Up` → capture 20 → repeat until highlight sits on a boot/retrain prompt |
+| Select that rewind point | `otmux send.raw "$target" Enter` → capture 20 (the 1/2/3/4 menu appears) |
+| Choose option 2 "Restore conversation" | `otmux send.raw "$target" Down` → capture 12 (CONFIRM option 2 highlighted) → `otmux send.raw "$target" Enter` |
+| Verify it landed | `otmux pane.capture "$target" 25` |
+
+Rules baked in: `send.enter` for `/rewind`, `send.raw` for navigation (a stray Enter on an arrow desyncs the picker). If a submit stalls, the sanctioned poke is `otmux send.raw "$target" Enter` (or `otmux send.poke`). If capture shows the picker navigates but won't draw the restore menu, otmux can't force it — that's the bottom of the ladder: Tron drives, or authorize a TRUE-FORK from the committed checkpoint.
+
 ## Why This Matters
 - /clear = total training destruction = CMM1 panic
 - /rewind option 2 = conversation fork with context recovery = CMM4

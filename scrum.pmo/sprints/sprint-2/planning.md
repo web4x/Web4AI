@@ -20,18 +20,22 @@ node provisioning+hardening, tooling hygiene, plantuml.
 |------|-------|----------|--------|
 | [task-s2-a](./task-s2-a-teamsave-status-parity.md) | teams.save/status MVC parity | CRITICAL (do-first) | ✅ **DONE** — 3/3 GREEN on live (`cc641b7`), PO QA PASS, reported to MacStudio |
 | [task-s2-b](./task-s2-b-dispatch-submission-verified.md) | dispatch submission-verified (BUG10) | CRITICAL | ✅ **DONE** — impl `96ccff2`+`a9fbea5`, tester T-DISPATCH-SUBMIT 5/5 GREEN, PO QA PASS (BUG10 closed) |
-| [task-s2-c](./task-s2-c-registry-route-identity.md) | registry / route / identity integrity | CRITICAL/HIGH | route auto-heal shipped; **OTR-3 reconcile-after-fork DESIGN done** (I2b crux) → expert impl; boot-id open |
+| [task-s2-c](./task-s2-c-registry-route-identity.md) | registry / route / identity integrity | CRITICAL/HIGH | **c.0 LANDING**: local `45951ad` (9-field tuple+kind, agents.discover TITLE-first, identity.resolve) + remote `0d9d162` (ossh-exec, kills PF3). NEXT (send-priority): g.4 — send.smart/isClaudeCode consume c.0 kind → real agents get claude path. Then C.2/C.3. |
 | [task-s2-d](./task-s2-d-node-provisioning-hardening.md) | node provisioning + hardening | HIGH | hardening baked (u20/u24); autoconfig + runtime open |
 | [task-s2-e](./task-s2-e-tooling-hygiene.md) | tooling hygiene | MEDIUM/LOW | planned |
-| [task-s2-f](./task-s2-f-plantuml-script.md) | plantuml OOSH script | HIGH (Tron: next priority) | impl DONE (`1cb40ee`+`0638344`) → tester T-PLANTUML gate |
+| [task-s2-f](./task-s2-f-plantuml-script.md) | plantuml OOSH script | HIGH (Tron: next priority) | ✅ **DONE** — T-PLANTUML 5/5 + docs + architect independent-render PASS (55785B svg, non-author); minor doc-gap follow-up |
+| [task-s2-h](./task-s2-h-team-sweep-fleet-dashboard.md) | team.sweep fleet dashboard (all teams + bg-shells + context-warn) | HIGH (Tron) | DESIGN done (ec32300); IMPL PENDING behind c.0 (expert building c.0 in OTR-3) — shell-column not live yet |
+| [task-s2-i](./task-s2-i-shell-reaper.md) | shell.reap — reap accumulated bg shells (fd-leak/persist-thru-rewind) | HIGH (Tron/SM) | DESIGN done (4d670b5) safe-by-construction, kill-by-PID-not-pkill (BUG6 lesson) → expert impl (after h) |
+| [task-s2-g](./task-s2-g-otmux-send-reliability.md) | otmux send reliability + c2 parity + dev↔macos.latest | HIGH (Tron: otmux send "broken") | **★ SEND = ABSOLUTE HIGHEST (Tron: CRITICAL INFRA).** g.1 ✅ DONE (verified) · g.2 c2=DEV ✅ · g.3 DEV-leads-all ✅ · **g.4 OPEN (real agents→shell path) = fix NOW via c.0 kind** · g.5 T-SEND-MATRIX 11grp/50cell COMPLETE (2a6e3fa, superset=zero-regress) → tester (D3+E5 first = live-dup guards) · dup✓(fccdad8+d4e3ae0 drain, tester 5/5 — awaiting TRON live) · g.1✓ · C.2✓ · **g.4✓(6213ad6 pane.get-newline root)** · g.4✓ · **g.6✓(bcd8f84: root=log.init.colors echo-to-stdout, fix : >>)** · g.5 T-SEND-MATRIX in progress · **send-family CODE-CLOSED, awaiting Tron live + 4 tester verifications** |
 
 ## Sequence & priority (live — 2026-07-02)
-1. [task-s2-a](./task-s2-a-teamsave-status-parity.md) (parity) — ✅ **DONE** (PO QA PASS, reported MacStudio).
-2. [task-s2-f](./task-s2-f-plantuml-script.md) (plantUML) — impl DONE → **open gates**: tester T-PLANTUML · expert authors usage-doc · architect independently renders a .puml→.svg from docs.
-3. [task-s2-b](./task-s2-b-dispatch-submission-verified.md) (BUG10/OTR-1) — ✅ **DONE** (T-DISPATCH-SUBMIT 5/5 GREEN, PO QA PASS — dispatch throttle closed).
-4. [task-s2-c](./task-s2-c-registry-route-identity.md) (OTR-3) — DESIGN done → **expert impl** (I2b via parity reader + tty-adopt + team.audit) → tester T-RECONCILE-FORK. (route auto-heal already shipped; boot-identity still open.)
-5. [task-s2-d](./task-s2-d-node-provisioning-hardening.md) / [task-s2-e](./task-s2-e-tooling-hygiene.md) — as capacity.
-**Open gates I'm waiting on**: tester T-PLANTUML; expert plantUML-docs + OTR-3 impl; architect plantUML render; then tester T-RECONCILE-FORK. (parity + BUG10 = DONE.)
+1. [task-s2-a](./task-s2-a-teamsave-status-parity.md) (parity) — ✅ **DONE**.
+2. [task-s2-f](./task-s2-f-plantuml-script.md) (plantUML) — ✅ **DONE** (T-PLANTUML 5/5 + docs + architect render PASS; minor doc-gap follow-up).
+3. [task-s2-b](./task-s2-b-dispatch-submission-verified.md) (BUG10/OTR-1) — ✅ **DONE** (dispatch throttle closed).
+4. **[task-s2-g.1](./task-s2-g.1-otmux-send-session-regression.md) — NEW PRIORITY (Tron): otmux send "doesn't complete session" — likely OTR-1's send.smart regressing non-dispatch/session sends (dev-only, macos.latest has old send). Architect diagnose vs macos.latest → expert fix → tester T-SEND-SESSION.** (+ g.2 c2 parity, g.3 branch newer/reliable.)
+5. [task-s2-c](./task-s2-c-registry-route-identity.md) (OTR-3 + C-family) — DESIGN complete + coherence-verified → **expert impl** (blocked on expert /rewind).
+6. [task-s2-d](./task-s2-d-node-provisioning-hardening.md) / [task-s2-e](./task-s2-e-tooling-hygiene.md) — as capacity.
+**Open gates**: task-s2-g.1 (architect diagnose — the broken otmux send, blocks ARON rewind + Tron's send); expert /rewind → C-family impl. (parity + BUG10 + plantUML = DONE.)
 
 ## Closed / carried-done (context, not open)
 - **SECURITY u20 malware**: RESOLVED — host clean, u20 destroyed+rebuilt hardened, odocker loopback+key-only (once.sh `41ca4e4`), feeds [task-s2-d](./task-s2-d-node-provisioning-hardening.md). [task-s2-d.0-security-u20-incident.md](./task-s2-d.0-security-u20-incident.md)

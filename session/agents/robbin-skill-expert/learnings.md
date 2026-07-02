@@ -531,6 +531,32 @@ so I advanced the pin BEFORE reading the result — premature action on PO's cla
 measurement result in a SEPARATE step — never bundle 'measure' and 'act-on-measurement' in one
 unconditional block. Measure, READ, then act.
 
+## getThreeSlots symmetric boundary-fall (2026-07-02, Tron directive, b09725d02)
+Tron: pin must ALWAYS show current/last/next. getThreeSlots was strictly sprint-scoped (Tron's own
+anti-phantom redesign — a DONE Sprint-20 task was surfacing as phantom backlog) with NO cross-boundary
+fall, so at a nearly-done or just-transitioned sprint: nextBacklog=null (no in-sprint open task after
+current) and lastCompleted=null (current is first task of new sprint, no in-sprint predecessor). FIX
+(symmetric, in src/ts/scenario/CurrentSprint.ts getThreeSlots): nextBacklog FORWARD-falls to the next
+sprint's first NOT-DONE task; lastCompleted BACKWARD-falls to the prev sprint's last DONE task. KEY
+INSIGHT that keeps the anti-phantom guard: the phantom was a DONE task as BACKLOG(next). So forward-
+fall = not-done-ONLY (real upcoming work), backward-fall = done-ONLY (real completion). Direction +
+done-ness together distinguish 'legit cross-boundary' from 'phantom'. Also: cross-sprint override now
+honored per-direction (nextBacklogOverride if not-done, lastCompletedUuid if done). Server runs plain
+tsx (not watch) -> getThreeSlots loaded once -> a LOGIC change needs a server RESTART for live /trace
+(singleton DATA re-reads per-request, but code loads once). Don't restart prod unowned; flag it.
+
+## Inter-agent otmux-send INTERRUPTS recipients (2026-07-02, Tron caught) — async mailbox is the fix
+`otmux send <pane> "..." Enter` / `tmux send-keys` injects text+Enter into the recipient agent's LIVE
+prompt. If they're mid-generation, the Enter SUBMITS = INTERRUPTS their turn. That IS the source of the
+`[Request interrupted by user]` events — agents (incl me) interrupt each other constantly. My AgentMessage
+skill FIRST DRAFT still ended `send` with `otmux send ... Enter` -> would KEEP interrupting (I reviewed my
+own design when Tron flagged it, found the flaw, corrected). FIX: send = write+commit the AgentMessage
+scenario unit ONLY (durable delivery); recipient PULLS via inbox at THEIR turn boundary; NO keystroke
+injection into an active turn, ever. sync-interrupt -> async-mailbox. INTERIM (until the skill ships):
+be SPARING with tmux sends to busy agents; prefer sending at their idle/turn boundaries; batch reports.
+Meta-lesson: when asked 'did your work cause X', MEASURE the actual mechanism (ps/load + how the transport
+behaves) AND audit your OWN design honestly — my design had the very flaw; owning it beats defending it.
+
 ## Re-measure 2026-06-28 (SM save-checkpoint)
 Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276→285 (more reqs).
 3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert

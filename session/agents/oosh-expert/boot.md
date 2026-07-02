@@ -4,7 +4,9 @@
 ## You are: oosh-expert
 ## Pane: ooshTeam:0.2
 ## Machine: WODA.prod (dev branch, /root/oosh)
-## Goal: HOLDING — both sprints complete (24 commits). constructor-contract S-1..S-11 + config-selfheal CS-1..CS-5
+## Goal: OTR-3 / C-family (task-s2-c). g.1 DONE (188971a). Building c.0 live-reader next.
+
+## ⏱ RESUME HERE (2026-07-02): FULL PO QUEUE DELIVERED. Shipped this session — g.1 `188971a`, c.0 `45951ad`+`0d9d162`, C.2 `3946942` (T-RECONCILE-FORK 4/4), C.3 `1e9791a`(dev)+`857b0a1`(main). ALL C-family + g.1 done, pushed. **IDLE — awaiting testers (T-SEND-SESSION/T-LIVE-READER/T-RECONCILE-FORK/T-BOOT-IDENTITY) + next PO assignment.** See context.md table. Open findings flagged to PO: g.4 (process.running bash-parent mis-detect), @WODA.prod-vs-@v60211 host-naming, otmux pane.get stray-newline. On any tester bug report: re-read context.md first.
 
 ## Immediate actions:
 1. Run `otmux pane.get.target` — confirm pane address

@@ -17,6 +17,39 @@ Sprint 23/T23.3, req done, uc+ pending (T23.3 In Progress, tester gating). My pi
 <- planner task 52ebca28c (linear, no conflict). Version at v0.6.84 (expert). PO holds pin per
 task until gate signal (learning #125). WATCHERS: none active.
 
+**NEW PROJECT — AgentMessage inter-comms skill (Tron directive 2026-07-02, SCENARIO-FIRST)**:
+Make ALL inter-agent otmux-send comms FIRST-CLASS — new scenario type `ior:class:AgentMessage`
+(peer to Task/Req/UC), minted by an OOSH skill layered on `otmux send`, each AgentMessage
+REFERENCED BY its task (Task.messages[] + AgentMessage.task back-ref + ownerIor=task). tmux =
+transport only; the unit = durable record (wer schreibt der bleibt). MY design proposal committed
+5ef764c59 (scrum.pmo/skills/agent-message-skill-design.md): AgentMessage schema + skill verbs
+(send/list/thread/inbox) + scenario-first plan (R.1-4). SEQUENCE (updated): Tron said PO idle -> I coordinated PO DIRECTLY (robbinTeam2:0.0) to DRIVE the
+scenario-first planning as a SEPARATE track that does NOT interrupt the S28 pin flow. Team split sent:
+req(0.4)=R.1-4+ACs, architect(0.3)=schema+Task.messages[]+forward-key, planner(0.6)=sprint+tasks,
+oosh-expert=OOSH correctness, me=AgentMessage TS class+skill+lint-gate. AWAITING PO NOTIFY when he's on it.
+★ CRITICAL FINDING (Tron caught, design corrected 4546a59d9): otmux-send/send-keys INJECTS text+Enter
+into agents' LIVE prompts -> INTERRUPTS them mid-turn (= the [Request interrupted] events). Skill MUST
+be ASYNC MAILBOX: send=write+commit unit ONLY; recipient PULLS at turn boundary; NO keystroke injection
+(R.2a hard req). INTERIM: be sparing with tmux sends to busy agents (send only at idle boundaries).
+Design: scrum.pmo/skills/agent-message-skill-design.md.
+**★ MY IMPL DONE (2026-07-02, e8172e7d2+57caf1287)**: authored src/ts/scenario/agent-message.ts
+(AgentMessage class: defineUnitType R30.1 / send R30.2 mint+commit-no-injection / assertNoLiveInjection
+R30.3 guard / inbox R30.4 pull / read). AgentMessageLoader in ClassRegistry (16->17, count test updated).
+R30.1-4 IMPL HOPS ALL CREDIT (5/6 each), full-uuid markers on named methods same-commit as code.
+REMAINING: tester R30.1-4 test markers -> 6/6; architect UCs R30.5/6; then OOSH external 'agentMessage'
+wrapper (w/ oosh-expert, taskChain->Chain pattern). Scoreboard 57/326.
+
+**S27 COMPLETE + S28 START 2026-07-02 (56/318 det-3x, web4x)**: R27.3 credited (impl 88744d89
+tagged on generate-sprint-md.ts after MY task-FSM!=chain-credit catch — planner had flipped task
+status DONE claiming 56 but impl marker was missing; canonical held at 55 until the marker landed).
+S27 all 5 chains 6/6. Pin TRANSITIONED S27->S28: Current=R27.5, Last=R27.3, Next=R27.6. ★ getThreeSlots
+SKILL FIXED (Tron): symmetric boundary-fall — nextBacklog forward-falls (not-done) into next sprint,
+lastCompleted backward-falls (done) into prev sprint -> pin ALWAYS shows current/last/next across
+boundaries; anti-phantom guard intact (direction+done-ness). Commits bd2565ebf + b09725d02. LIVE /trace
+needs SERVER RESTART for the getThreeSlots logic (plain tsx, loaded once). #125 standing-duty upgrade
+active: advance pin on task CREDIT not just new-task. My-error lesson: gate mutating action on
+measurement in a SEPARATE step (I once bundled det-3x + transition -> acted before reading).
+
 **R27.7 CLOSED 2026-07-02 (54/317 det-3x, a5b6cd99c)**: SSRF-hardened WebItem preview fully
 traceable. Arc: MY truncated-uuid diagnosis (markers used 8-char not full 36-char; found by diffing
 failing vs crediting-control R27.1) -> expert full-uuid fix 6b03dc1bc + truncation hard-gate -> tester

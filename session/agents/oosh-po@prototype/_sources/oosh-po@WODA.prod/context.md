@@ -1,5 +1,3 @@
-> **Source note:** consolidated into `../../context.md` (oosh-po@prototype) — 2026-07-02, syncStatus CONSOLIDATED. See ../../REVIEW.md.
-
 # oosh-po Context
 
 **Updated**: 2026-06-28

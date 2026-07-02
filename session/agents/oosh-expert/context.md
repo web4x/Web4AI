@@ -120,3 +120,65 @@ ssh u24 'grep -E "^state=|stateValue" ~/config/current.state.machine.env'   # ch
 ## Notes
 - WODA.prod has no /dev/tty — use LOG_DEVICE=/dev/stdout
 - u20 = born-broken repro box (symlinked ~/config)
+
+---
+## ⚡⚡ LATEST WODA.prod SESSION (ooshTeam:0.3) — 2026-07-02 (opus 4.8), g.1 DONE + OTR-3 STARTED
+**Re-anchored after identity drift** (had drifted to hiveMind-expert/MacStudio in-conversation; corrected — I am oosh-expert @ ooshTeam:0.3 on WODA.prod, dev, /root/oosh).
+
+### ✅ task-s2-g.1 otmux-send session/manual regression — DONE `188971a` (dev, pushed)
+Architect diag+spec APPROVED (e6eb721). Fix = branch `send.smart` on target KIND:
+- **non-claude** (shell/ssh/session-to-shell) → `stage + submit(Enter)`, NO Escape, NO poke, light-confirm rc0 (mirrors macos.latest reliable sendEnter). Kills M1 (verify+poke ran on ALL targets → fragile `>`-verify → false rc2 → poke-hang).
+- **claude** → full OTR-1 path byte-for-byte preserved (T-DISPATCH-SUBMIT **5/5** re-run green).
+- **isClaudeCode node hardening** (M2): moved `node` from unconditional-claude into the `claudeCode process.running`-gated arm (bash/zsh/sh/node all gated). node alone ≠ claude.
+- **session→active-pane** (point 4): `private.resolve.target` resolves a BARE real session name (via `has-session`) → active `sess:win.pane`.
+Live-verified WODA.prod (shell rc0 1s, node→non-claude, bare-session dispatched). Task file report-back filled; PO pinged. Awaiting tester **T-SEND-SESSION**.
+**⚠ FOLLOW-UP FINDING (logged in g.1 task, flagged to PO)**: `claudeCode process.running` returns rc1 for a REAL bash-parent claude pane (the PO @ ooshTeam:0.0) → isClaudeCode mis-classifies real agents as shells → send delivers but skips prefix+verify. PRE-EXISTING (gate fd085c4), NOT a g.1 regression; g.1's `(shell)` log made it visible. Recommended dedicated task g.4 — likely tied to OTR-3 live-reader/detection. **DO NOT widen g.1.**
+
+### ✅ OTR-3 / C-family PROGRESS (task-s2-c) — c.0 + C.2 DONE; C.3 next
+- **c.0 live-reader DONE**: `45951ad` (local: 9-field canonical tuple host|session|address|tty|role|uuid|kind|title|cwd, TITLE-first agents.discover, protected wrapper, identity.resolve, migrated role.uuid/teams.save) + `0d9d162` (remote: teams.env host column, ossh-exec remote sourcing, remote-unreachable marker, team.host/team.host.set). All acceptance verified. Ready T-LIVE-READER.
+- **C.2 reconcile-after-fork DONE**: `3946942` — **T-RECONCILE-FORK 4/4 GREEN**. I2b in reconcile.check.i2 (batch live-uuid heal cache→live) + `hiveMind team.audit <session>` (orphan/empty-uuid/dead-route, exit=count). **ENABLING FIX**: session.discover was NOT cache-immune for forks (JSONL customTitle `@WODA.prod` vs pane title `@v60211` mismatch → S2 fallback) → fixed by correlating on ROLE (`%%@*`) not @host-qualified title + trimming otmux pane.get's stray-newline artifact. Non-regr: teamsave-parity 3/3, dispatch-submit 5/5, claudeCode 83/55==baseline, live sessions.env bc6f6673 undisturbed.
+- **2 spin-off findings flagged to PO** (separate tasks): (a) host-naming `@WODA.prod`(sshConfigHost) vs `@v60211`(hostname-s) inconsistency — C.3 is natural home to canonicalize; (b) `otmux pane.get` prepends stray leading newline (this-dispatch artifact) — broad latent, worked-around in session.discover.
+- **C.3 boot-identity DONE**: `1e9791a` (oosh/dev: hiveMind.protected.identity.resolve wrapper) + `857b0a1` (Web4AI/main: pre-compress.sh rewrite). Hook now anchors on `otmux pane.self` (pane.self VERIFIED resolves in-hook → oosh-expert@ooshTeam:0.3), role@host via shared identity.resolve, @host-aware ROLE_DIR, FAIL-SAFE quarantine to `_unresolved/<pane>-<pid>.boot.md` (NEVER unknown/), retired session/agents/unknown/. Kept $TMUX_PANE as last-resort fallback (noted for tester). Ready T-BOOT-IDENTITY.
+
+### 🎉 ENTIRE OTR-3 / C-FAMILY COMPLETE (+ g.1). This session's ships (all dev/main, pushed):
+| Piece | Commit(s) | Status |
+|-------|-----------|--------|
+| g.1 send KIND-branch | 188971a | ✅ VERIFIED T-SEND-SESSION 3/3 + T-DISPATCH-SUBMIT 5/5 |
+| c.0 live-reader local | 45951ad | await T-LIVE-READER (not yet written) |
+| c.0 live-reader remote | 0d9d162 | await T-LIVE-READER (not yet written) |
+| C.1 route auto-heal | 3452eae (prior) | shipped |
+| C.2 reconcile-after-fork | 3946942 | ✅ VERIFIED T-RECONCILE-FORK 4/4 GREEN (isolation held) |
+| C.3 boot-identity | 1e9791a + 857b0a1 | await T-BOOT-IDENTITY (not yet written) |
+Tester on T-SEND-MATRIX A-K cells; will pick up T-LIVE-READER + T-BOOT-IDENTITY per PO prioritization.
+**Findings status:** g.4 ✅ DONE `6213ad6` (PO-APPROVED + tester-VERIFIED T-KIND-CLASSIFY 12/12) — process.find tty trim, bash-parent claude=CLAUDE. **g.6 ✅ DONE `bcd8f84`** (RECURRING ROOT ELIMINATED): traced the stray-newline to **`log.init.colors()`** (called by otmux.start before every dispatch) probing LOG_DEVICE writability with `echo "" > $LOG_DEVICE` → with LOG_DEVICE=/dev/stdout the blank-line lands on STDOUT → the artifact that broke C.2/C.3/g.4. Fix: non-emitting `: >> $LOG_DEVICE` probe (5 sites; also fixes latent log-file truncate). Verified clean + non-regr (log 45/0). C.2/C.3/g.4 trims kept as belt-and-suspenders. Awaiting T-PANEGET-CLEAN.
+- **SEND-FAMILY + recurring-root FULLY CLOSED + tester-VERIFIED** (code): g.1✅ g.2✅ g.3✅ g.4✅(T-KIND-CLASSIFY 12/12) g.5✅ g.6✅(T-PANEGET-CLEAN 3/3, +[S] guard blocks the scar returning) + dup drain d4e3ae0(verified). **Remaining (not code): Tron live-confirm dup gone; testers author T-LIVE-READER (c.0) + T-BOOT-IDENTITY (C.3).** Architect framed g.6 as part of the LOG_DEVICE-on-stdout contamination FAMILY (with BUG5 + E.1 structured-output-log-guard) → E.1 is the systemic guard for this class.
+- **NOTE (OTR-1 verify noise, not a bug in my work):** now g.4 routes sends to bash-parent agents through the CLAUDE path; sending to a BUSY agent (e.g. PO at 100% ctx) returns rc2 "STAGED but UNVERIFIED after 3 pokes" — the message DID land (verified in convo), verify just can't confirm submit while the agent renders. Cosmetic/noise; if it bothers callers, it's an OTR-1 verify-timing tune (separate).
+- Still open (flagged, not mine to fix solo): host-naming @WODA.prod(sshConfigHost) vs @v60211(hostname-s).
+**Full PO queue delivered.** Awaiting tester verifications (T-SEND-SESSION/T-LIVE-READER/T-RECONCILE-FORK/T-BOOT-IDENTITY).
+
+### 🔬 URGENT "all-messages-duplicate" regression — INVESTIGATED, it's a FIXTURE ARTIFACT (2026-07-02, doc 4808a6d in task-s2-g.5)
+SM escalated an urgent dup-fix ("all messages DUPLICATE / double-invoke") that was queued to me; investigated end-to-end. **CONCLUSION: `otmux send` delivers EXACTLY ONCE — no double-invoke.** Proof: the tester's `mk_fake_claude` D3/E5 fixture runs `cat` with terminal echo ON → any correct single send shows the msg on 2 lines (input-echo + cat stdout) → count=2. Raw baseline `send-keys` ALSO =2 (otmux send adds zero dup). With `stty -echo` (only program stdout counts): `otmux send` = **count 1**, prefix once, on the FULL claude path (pane cmd=claude → stage→submit→verify→poke). So D3/E5 `-eq 1` is unsatisfiable under echo-on cat = artifact, not a send bug.
+- **Fixture fix (told tester ooshTeam:0.4):** add `stty -echo` in mk_fake_claude → then correct=1 (green), real-double=2 (red). Tester's file, they apply.
+- **PARTIALLY resolved then REOPENED**: `otmux send` primitive delivers once (fixture artifact, true) BUT that was INCOMPLETE — there WAS a real end-to-end dup. PO pushed back (Tron still saw dups). fccdad8 (Marcel) fixed the ENQUEUE side (agent.send auto-heal rc2 re-queue). **I found + fixed the REMAINING half: `d4e3ae0`.**
+- **✅ REAL DUP FIXED `d4e3ae0`**: `hiveMind.agent.queue.drain` dequeued ONLY on rc0 → a message delivered with **rc2 (staged-but-ON-pane, OTR-1 honest rc)** was KEPT queued + **RE-DELIVERED every drain cycle** (SM-cycle + agent.unblock idle hook) → Tron saw N copies. PROVEN: 1 msg, 3 drains → was 3 deliveries (still queued), now 1 (dequeued). FIX: dequeue on rc0 OR rc2 (both on-pane, mirrors fccdad8); keep only rc3/rc1 (not-on-pane, no silent drop — Sprint22 Hole 2 preserved). Non-regr: send-matrix 8/8, dispatch RC0/RC2/RC3/NODROP green.
+- **✅ tester-VERIFIED (d4e3ae0)**: GATE-SRC updated to new policy + explicit guard that keep-set never contains rc2 (catches future regression back to every-cycle re-deliver). T-DISPATCH-SUBMIT 5/5, send-matrix 8/8, NODROP green (rc3 kept, Sprint22 Hole-2 preserved).
+- **⚠ ONLY OPEN**: **NOT declared fixed until TRON confirms LIVE** (no dups at his interface). If they persist: candidate 2 (SM/drain running STALE sourced hiveMind — needs re-exec to pick up d4e3ae0) or candidate 3 (agent re-sends on rc2/"uncertain" from MAIN inform path). Policy (rc2→dequeue) flagged to PO/architect.
+- **LEARNING**: "fixture artifact" was right about the primitive but I stopped too early — didn't trace the full queue→drain end-to-end path. PO's "reproduce the ACTUAL end-to-end path to Tron" was the correct redirection. The dup was in the DELIVERY loop (drain), not the send primitive.
+- Reminder: my own sends to PO take the "(shell)" path (g.4 process.running mis-detect) but still deliver.
+
+### (superseded) NEXT — OTR-3 / C-family (task-s2-c) — original plan
+PO queue order: **build c.0 live-reader → flip agents.discover TITLE-first → C.2 → C.3. Commit each.** Specs read: task-s2-c (parent), c.0, coherence-pass d25bc18. Tester RED ready: `test/test.reconcile-fork` (4/4 FAIL by design, isolated).
+**c.0 = canonicalize+EXTEND the shipped `private.hiveMind.live.tupleset` (hiveMind:1309), NOT reinvent.** My implementation plan:
+1. **FLIP `agents.discover` role to TITLE-first** (hiveMind:1274-1280 is registry-first + uses raw title): role = `role.fromTitle(pane_title)` (bash/zsh→empty guard built-in) THEN cross-check registry. Required shared step (c.0 projection + parity both depend).
+2. **Extend `live.tupleset`** to canonical **9-field** `host|session|address|tty|role|uuid|kind|title|cwd` (was 8-field `sess|addr|role|uuid|title|cwd|model|kind`): +tty (add `#{pane_tty}` to the existing batch list-panes at 1315, strip /dev/), +host (=HIVEMIND_HOST), drop empty `model` (derive-on-demand), reorder.
+3. **teams.env host column** (`session|description|host`) + **remote sourcing**: per in-scope team, host==local→read locally; host==remote→`ossh exec <host> "hiveMind protected.live.tupleset <session>"`; unreachable→explicit `kind=remote-unreachable` MARKER row (NEVER silent-omit — kills PF3).
+4. **`hiveMind.protected.live.tupleset`** wrapper (CLI/test + remote-exec entry).
+5. **`private.hiveMind.identity.resolve <pane>`** = projection (tupleset filtered to pane.self → role@host). C.3 consumes; C.2 consumes tty+uuid.
+6. **Migrate consumers** to new field order: `role.uuid` awk (1344: was $3=role/$4=uuid → now $5=role/$6=uuid), `teams.save` (3298: remap tupleset→the 8-field SNAPSHOT schema which stays unchanged — snapshot format is a SEPARATE persisted contract, do NOT change it, just remap).
+**Plan to split into 2 commits**: (A) local canonicalize + flip + wrapper + identity.resolve + consumer migration; (B) teams.env host column + remote-exec sourcing. Each coherent+testable. Then C.2 (I2b batch live-uuid + fork uuid-adopt + tty-match orphan adopt + team.audit; greens test.reconcile-fork) → C.3 (pre-compress.sh anchor on `otmux pane.self`, role@host from live title, @host dir, fail-safe never writes shared unknown/ sink).
+**Reuse**: `role.fromTitle` (130), tty-matcher (~2812), otmux tty format (2373), `ossh exec`. **Watch**: snapshot schema `snapshot.row.valid` is 8-field — keep teams.save writing THAT; identity.resolve is title-first ground truth.
+
+## ⚡ CURRENT WODA.prod SESSION (ooshTeam:0.3) — 2026-07-02, saved pre-cliff (appended)
+DONE (all dev, pushed): security rebuild (u20+u24 KEY-ONLY loopback-bound; incident RESOLVED); parity PF1-4 (shared reader `private.hiveMind.live.tupleset`; teams.save+team.list consume it; `hiveMind role.uuid` live-preferred; PF5 3/3 cc641b7); plantUML task-s2-f.1 (odocker run.ephemeral+image.ensure 1cb40ee; plantuml 0638344; docs/plantuml.md a51c9ed; T-PLANTUML 5/5); OTR-2 route auto-heal (3452eae).
+**OTR-1 (task-s2-b.1) DONE**: 96ccff2 otmux core (send.stage/submit/poke/verify; send.smart→honest rc{0,2,3,1}; REGION-verify not text-presence — kills BUG10 false-pos), a9fbea5 hiveMind (agent.queue.drain gates dequeue rc0 = no-silent-drop; delegate=pointer-only thru core), 0cc1b9e timing (settle 1.3s — verifying too early false-STAGE-reads submitted pane → harmful Escape-poke; live-caught). Tester T-DISPATCH-SUBMIT next. Supersedes BUG10.
+**⏭ NEXT — NOT STARTED: OTR-3** = scrum.pmo/sprints/sprint-2/task-s2-c.2-reconcile-after-fork.md (PO design): I2b (batch live-uuid vs cached via `private.hiveMind.live.tupleset`) + fork-event uuid-adopt + tty-match orphan adopt + team.audit + route auto-heal. Tester T-RECONCILE-FORK. READ SPEC FIRST. Reuse: live.tupleset (parity reader), otmux send.verify (region), hiveMind role.uuid (live uuid).
