@@ -2,6 +2,15 @@
 
 *Patterns, failures, KPIs — identity after compact.*
 
+## Cross-Machine Reach: `otmux tree` pane titles ARE the host map (2026-07-03, Tron-taught)
+
+- **To reach a remote-host agent (e.g. ARON@Temple:0.0 on WODA.prod) from MacStudio**: run `otmux tree` — the pane TITLES carry `@host` (e.g. `RawBin@WODA.prod`, `RawBin@WODA.test`, `donges@v36421`). READ the title to find the bridge pane; don't trust a remembered mapping.
+- **The bridge pane for WODA.prod = `servers:0.0` (titled `RawBin@WODA.prod`)** — a persistent bash shell already SSH'd into WODA.prod (root@v60211). From there, `otmux <cmd> Temple:0.0` reaches ARON (Temple is a LOCAL tmux session on WODA.prod).
+  - e.g. check ARON's RC: `otmux send.raw servers:0.0 "otmux pane.capture Temple:0.0 3" Enter` then read servers:0.0's output.
+- **Measure-not-assume the reach**: `remoteOOSH` was STALE-mapped to WODA.test (v36421.1blu.de), NOT WODA.prod — trusting the name would have hit the wrong box. oosh-po caught it by measuring the prompt host. The pane title / live prompt is truth; the session name can lie.
+- **Cheaper than `ossh exec WODA.prod "..."`** (one-shot) — the bridge shell is persistent. Both work; the titled shell is the standing route.
+- WODA.prod = 195.90.209.56 / host v60211. WODA.test = v36421.1blu.de.
+
 ## RC-Interference BLOCKS /rewind — Disconnect RC to Unwedge (CONFIRMED 2026-07-03, oosh-po emergency)
 
 **BIG operational technique for the rewinder. The RC-interference class has TWO symptoms, ONE fix:**
