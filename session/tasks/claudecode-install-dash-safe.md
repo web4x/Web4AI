@@ -20,6 +20,40 @@ The `claudeCode` install path completes cleanly when invoked under `sh`/dash on 
 ### D13.3 — oosh-tester (verify): T-DASH-SAFE
 - Add `T-DASH-SAFE`: run/parse the install path under `dash` (or `sh` symlinked to dash) on WODA.test — assert no bashism error, install reaches its correct terminal. `dash -n` (parse-check) + a live run. Report GREEN + commit here.
 
+## D13.1 REPORT-BACK — reproduce + root-cause (oosh-expert, 2026-07-02, measured live on WODA.test)
+
+**⚠️ Measurement reframes the task — read before D13.2.** The real dash blocker is NOT the install-path bashisms; it's a whole-script PARSE failure. Fixing `read -p`/`[[ ]]` alone will NOT make claudeCode dash-runnable.
+
+### Reproduced (live, WODA.test — `/bin/sh → dash`, Ubuntu default)
+- `sh /home/donges/oosh/claudeCode install` → **`claudeCode: 34: Syntax error: Bad function name`** (dies at PARSE, before any install logic).
+- `bash -n /home/donges/oosh/claudeCode` → **rc=0** (parses clean under bash — the shebang path is healthy).
+- Line 34 = `private.claudeCode.complete.panes() {` — dash rejects **dotted function names**. claudeCode has **115** of them; dash chokes on the FIRST.
+
+### Root cause = OOSH's `object.verb` dotted function names (a FIRST PRINCIPLE), not install bashisms
+- **Framework-wide** (measured `dash -n` on the core scripts): `this:33`, `oo:11`, `config:9`, `otmux:37`, `hiveMind:64` — EVERY OOSH script fails dash-parse at its first dotted `name.method()`. This is intrinsic to the OOSH convention, not a claudeCode defect.
+- ⇒ You cannot POSIX-ify claudeCode into dash-runnability without de-dotting every function (abandoning object.verb) — a non-starter.
+
+### The real invocation path — MEASURED, no assumption
+- **No OOSH code invokes `claudeCode install` under sh/dash.** `hiveMind.agent.bootstrap` uses `claudeCode new` sent into a **bash** pane; the actual installer is `curl -fsSL https://claude.ai/install.sh | bash` (claudeCode:835 — already bash).
+- `ossh.exec` runs `ssh host "source config/user.env; <cmd>"` via the remote **login shell**; but `claudeCode install` as a command still `execve`s the `#!/usr/bin/env bash` shebang → runs under bash regardless of the caller shell.
+- The ONLY ways the claudeCode BODY runs under dash: an explicit `sh claudeCode …` (overrides the shebang) or `. claudeCode` sourced into a dash shell. **I could not find either in the codebase.**
+
+### Bashism inventory — `claudeCode.install()`/`.uninstall()` bodies (real, but UNREACHABLE under dash since parse dies at L34; all fine under bash)
+| Site | Bashism | POSIX form |
+|------|---------|-----------|
+| install:820 / uninstall:916 | `read -p "…" -n 1 -r` | `printf` prompt + `read REPLY` (dash `read` has no `-p/-n/-r`) |
+| install:822 / uninstall:919 | `[[ ! $REPLY =~ ^[Yy]$ ]]` | `case "$REPLY" in [Yy]) … ;; esac` |
+| install:869 | `[[ ":$PATH:" != *":$INSTALL_DIR:"* ]]` | `case ":$PATH:" in *":$INSTALL_DIR:"*) … ;; esac` |
+| install:886 | `source "$claudeEnv"` | `.` (dash has no `source`) |
+| install:3/4/38/66 | `local x=$(…)` | `local` OK in dash (accepted); fine |
+
+### Recommendation for D13.2 (need PO steer before I fix)
+Since the install body is **unreachable under dash** (parse barrier) and **correct under bash** (its only real interpreter), POSIX-ifying it yields **no dash benefit** — it can't fix the stated "runs under sh/dash" goal. Two honest options:
+1. **(Recommended) Fix at the INVOCATION layer**: whatever fresh-host step runs the install must call it as `claudeCode install` (shebang→bash) or `bash claudeCode install` — never `sh claudeCode …`. The shebang already guarantees this for normal PATH invocation. **PO/tester: please name the actual `sh`-invocation you hit** (I found none in code) so D13.2 targets the real trigger. If it's an operator/doc one-liner, the fix is a doc/one-liner change to bash.
+2. **(Cosmetic) Still POSIX-clean the install/uninstall bodies** per the table — harmless under bash, removes latent bashisms — but be clear it does NOT make claudeCode dash-runnable (the 115 dotted fns remain the hard barrier).
+
+**bash behavior unchanged either way.** Awaiting PO call on 1 vs 2 (or the named real trigger) before committing D13.2.
+
 ## Acceptance (PO QA gate — I inspect the diff)
 - [ ] Dash failure reproduced + root-caused (real invocation named)
 - [ ] Bashism inventory complete for the reachable install path
