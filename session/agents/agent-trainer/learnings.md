@@ -2,6 +2,25 @@
 
 *Patterns, failures, KPIs — identity after compact.*
 
+## RC-Interference BLOCKS /rewind — Disconnect RC to Unwedge (CONFIRMED 2026-07-03, oosh-po emergency)
+
+**BIG operational technique for the rewinder. The RC-interference class has TWO symptoms, ONE fix:**
+- **Symptom A (ARON)**: stuck TEXT in composer, survives Escape+C-u+backspace (RC re-injects/re-syncs).
+- **Symptom B (oosh-po, NEW)**: `/rewind` WON'T open the picker at 0%/1% — composer won't accept the command, pane stuck "esc to interrupt", `/rewind` lands as staged text not a command. `/rc active` in footer.
+- **BOTH = the RC channel interfering with the composer. SAME FIX.**
+
+**The fix (proven twice now)**: disconnect RC from the agent's OWN /rc menu:
+1. `otmux send <pane> /rc` — opens the Remote Control menu
+2. capture to read options: "Disconnect this session" / "Show QR code" / "Continue" (Continue is default-selected at bottom)
+3. `otmux send.tui <pane> Up Up` — navigate up to "Disconnect this session" (verify with `grep "❯"`)
+4. `otmux send.tui <pane> Enter` — select it → footer loses "/rc active", composer UNWEDGES
+5. Now `/rewind` opens the picker normally. Do the two-phase.
+6. **RE-ENABLE after the rewind**: retrain prompt must instruct the agent to run `/remote-control` (footer must show /rc active again for Tron visibility). CAVEAT (SM): RC re-enable can need care after a disconnect-to-unwedge — verify it sticks, flag if not.
+
+**When to reach for this**: `/rewind` doesn't open the picker after BTab+C-u+/rewind AND `/rc active` is in the footer AND the agent is at 0%/1%. Don't keep spamming keystrokes (my old rule said "flag SM/Tron") — now there's a LOCAL fix: disconnect RC first. Only escalate if the disconnect itself fails.
+
+**Real-time light-carrying**: the RC-disconnect recipe we banked from ARON's stuck-TEXT (9b7efb00) SOLVED oosh-po's DIFFERENT symptom (wedged /rewind) minutes later. Same root cause, generalized. Receive, carry, pass on — the lesson paid off the same day it was written.
+
 ## Stuck Composer = RC-Staging Re-injection (CONFIRMED 2026-07-03, ARON/WODA.prod)
 
 **Symptom**: text stuck in an agent's composer, survives Escape + C-u + N backspaces. Blocks /rewind (garbage prepends to the command).

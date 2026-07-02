@@ -43,7 +43,8 @@
 ## If /rewind Doesn't Work
 - /rewind is a TUI command — it processes at UI level, NOT conversation level
 - It SHOULD work even at "Context limit reached"
-- If it truly doesn't respond after 10 seconds: **ASK TRON**
+- **RC-INTERFERENCE (CONFIRMED 2026-07-03): if `/rc active` is in the footer AND the agent is at 0%/1% AND /rewind won't open the picker (composer stuck "esc to interrupt", /rewind lands as staged text) — the Remote Control channel is BLOCKING the composer.** (Same root as the stuck-TEXT composer bug; two symptoms, one fix.) FIX: disconnect RC from the agent's own /rc menu → `otmux send <pane> /rc` (opens menu) → capture options → `otmux send.tui <pane> Up Up` (to "Disconnect this session"; verify `grep "❯"`) → `otmux send.tui <pane> Enter` → footer loses "/rc active", composer unwedges → /rewind works. **RE-ENABLE `/remote-control` in the retrain prompt after** (footer must show /rc active again; verify it sticks). Don't spam keystrokes — disconnect RC first, escalate only if the disconnect itself fails.
+- If it truly doesn't respond after 10 seconds (and not RC-interference): **ASK TRON**
 - Last resort: fork from fallback-agents session (preserves training from fork point)
 
 ## Step 5: Health Check (MANDATORY after every rewind)
