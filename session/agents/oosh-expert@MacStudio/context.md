@@ -14,15 +14,18 @@
 - **SETUP_SERVER sprint**: S2 `566fed9`, S3 `650e743`, S7 `19a2a45`, F2 `8be593d`, S8 `09d33c9`+`691a269`. (S8 rebuild-persistence still needs tester T-RECONCILE on an ISOLATED box.)
 - **Death-to-Flags**: #5 `90f6768`, #33 `553b19a` — SIGNED OFF, true zero flags / 9 scripts, fence at budget 0.
 - **#13 claudeCode/dash** — CLOSED as already-solved. See learnings (measure-the-entry lesson).
-- **#34 init/oosh non-destructive relocation** — `a3b1eff` (S34.1) SIGNED OFF; tester S34.2 `b550156`. TARGET-side closed (existing $HOME/oosh backed up, never wiped). **Follow-up #35 filed**: SOURCE-side guard (the real #13 wipe was `mv "$OOSH_DIR"` relocating a live checkout used as OOSH_DIR when run as root) — refuse/copy-not-move a live non-throwaway OOSH_DIR.
+- **#34 init/oosh non-destructive relocation** — `a3b1eff` (S34.1) SIGNED OFF; tester S34.2 `b550156`. TARGET-side closed (existing $HOME/oosh backed up, never wiped).
+- **#35 init/oosh SOURCE-guard** — `34c44cb` + refine `10ccc7e` SIGNED OFF; tester T-SOURCE-GUARD 3/3 GREEN `1e4d735`. The real #13 wipe was the SOURCE side (`mv "$OOSH_DIR"` relocating a live checkout used as OOSH_DIR when run as root). Fix: throwaway (same-process fresh-clone flag OR temp-root path — the signal that survives the re-exec) → mv; live persistent checkout → `cp -Rp` (source preserved). Measure caught TMPDIR-trailing-slash + /var/folders bugs. **#34 class CLOSED both sides.** See learnings.
 - **Earlier on macos.latest**: env-files-pure-state `d45031a`, hiveMind MVC parity merge `f74c20a`, otmux send-Enter-over-SSH `04b54a5`, tronMonitor team.sweep auto-switch `3249104`.
 
 ## NOW
-Idle — sprint-1 tail (E1.2/D1.3) Tron-blocked on the naked container. #13/#34 closed. Worktree `/tmp/oosh-dev-s2s3` clean + retained. Awaiting PO assignment or block-clear.
+Idle — sprint-1 tail (E1.2/D1.3) Tron-blocked on the naked container. #13/#34/#35 closed (#34 class fully closed both sides). Worktree `/tmp/oosh-dev-s2s3` clean + retained on dev. Awaiting PO assignment or block-clear. (~86% context used → SM driving a zero-loss rewind after this save.)
 
 ## Operating rules (SM/PO, never violate)
 - One-liner commits, details in task file. Never git rebase; pull with merge.
 - `bash -n` (and `sh -n` for POSIX scripts like init/oosh) before every report.
 - MEASURE live on WODA.test; never assume. Report-back = commit + push to the task file.
-- Constructor-safety: a constructor must NEVER destroy an existing install — backup, never blind-wipe (#34/#27).
+- Constructor-safety: a constructor must NEVER destroy an existing install — backup, never blind-wipe (#34/#27). A `mv` has TWO destructive sides: guard the TARGET (clobber → backup) AND the SOURCE (relocating a live tree → cp-not-mv) (#35).
 - NEVER run a destructive installer against a live oosh dir — structural/isolated tests only.
+- Safety-class fixes: PO co-confirm sign-off is on the TESTER's OWN independent test commit, not the implementer self-test. Hand the tester a precise case-matrix oracle.
+- A shell var/flag CANNOT survive `exec` — for post-re-exec provenance, use a durable signal (the path, an env var, or an arg).

@@ -2,6 +2,21 @@
 
 (Cumulative OOSH-expert learnings live in `session/agents/oosh-expert/learnings.md`; this file holds the MacStudio-instance highlights the SM/PO asked to bank.)
 
+## #35 source-guard: a `mv` has TWO destructive sides — guard SOURCE too (2026-07-02, 34c44cb+10ccc7e)
+#34 fixed the TARGET side of `mv "$OOSH_DIR" "$HOME/oosh"` (existing $HOME/oosh → timestamped backup). #35 closes the SOURCE side — the ACTUAL #13 wipe: a live checkout used as `OOSH_DIR` got MOVED away (run as root against another user's tree), emptying its origin. Fix = classify provenance and **copy-not-move a live source**:
+- **THROWAWAY (safe to MOVE)** = the installer made it this run. Two OR'd signals: (a) `_oosh_fresh_clone=1` set right after the line-486 clone (same process); (b) `OOSH_DIR` under the temp root — `case … in "$TMPDIR(%/-stripped)"/*|/tmp/*|/var/tmp/*|/var/folders/*)`. **The temp-PATH is the signal that survives the `exec` re-exec** (a shell var/flag CANNOT cross `exec`), so it's the only reliable marker for the mktemp pre-clones (init:289 `_tmp`, init:431 `_oosh_tmp_clone`).
+- **LIVE (persistent checkout, not under temp) → `cp -Rp "$OOSH_DIR" "$HOME/oosh"`** (recursive + preserve perms/times; symlinks as links; `.git` copied) — source left intact + warning. Never `mv` a live tree.
+- **cp-Rp-not-mv** is the core: a constructor must complete its goal ($HOME/oosh valid) WITHOUT consuming/relocating the source it was invoked from (#27).
+
+## temp-root classification pitfalls — measure, don't hand-wave the pattern (2026-07-02)
+Two bugs my first pass missed, caught only by the isolated structural test (the throwaway case wasn't moving): (1) **`$TMPDIR` usually has a trailing `/`** → `"$TMPDIR"/*` becomes `//*` and matches NOTHING → strip it (`${x%/}`); (2) **macOS `mktemp -d` lands under `/var/folders`** (=`$TMPDIR`), not `/tmp` → the bare `/tmp/*` pattern misses it. Cover `$TMPDIR`(stripped) + `/tmp` + `/var/tmp` + `/var/folders`. Tester independently confirmed her mktemp sandbox is under `/var/folders` on macOS — the pattern matters.
+
+## The co-confirm standard (PO QA gate) — sign-off is on the TESTER's OWN commit
+For safety-class fixes (#34/#35), PO does NOT sign off on the implementer's self-test. Acceptance = the TESTER's independent test commit (their own T-…-GUARD), inspected by PO, plus PO reading the diff. My structural test is necessary (catches my own bugs pre-handoff) but NOT sufficient for the gate. Report-back should hand the tester a precise oracle (the case matrix) and say "sign-off on your commit, not mine." T-SOURCE-GUARD went 3/3 GREEN on the tester's `1e4d735`.
+
+## Test destructive paths in ISOLATION — reprise (#35)
+Same rule as #34: NEVER run the destructive installer against a live oosh dir (that's the bug). Extract the relocation logic into a scratch-dir harness (3 cases: mktemp-throwaway→move / live-persistent→copy-source-survives / same-process-fresh-clone→move). Full destructive e2e → deferred to the throwaway E1.2 container. Name the rule in the report so no one re-triggers the wipe.
+
 ## Measure the ENTRY point — don't extrapolate from the named script (#13, 2026-07-02)
 When a task says "script X fails under dash / on fresh hosts," find the script that ACTUALLY runs at that entry before touching X. #13 named `claudeCode`, but the real fresh-host bootstrap (README `sh -c "$(curl … init/oosh)"`) is `init/oosh`. My D13.A grounding **measured** `init/oosh` under dash (both file-arg and curl-pipe forms) → it PARSES (`dash -n` rc=0) AND runs to framework handoff, `OOSH_DIR` resolves in both forms → **already dash-safe** (self-re-exec to bash). The PO's "it breaks on dash hosts" assumption did not reproduce. Twice in that thread a measurement corrected a PO assumption — that's the 42-loop. Rule: a task premise is a hypothesis to TEST, not a spec to implement.
 
