@@ -106,3 +106,14 @@ T-DISPATCH-SUBMIT: RC0→B1 · RC2-POKE→B2/D1 · RC3→B3 · GATE-SRC→F1 · 
 - Architect (full coverage matrix): **DONE 2026-07-02** — `T-SEND-MATRIX`, 10 groups / 43 cells, EXHAUSTIVE + SUPERSET of the 8 existing (mapping above → zero regression). Covers: KIND (A, incl. g.1 node false-POS + g.4 bash-parent false-NEG + A6 kind-from-c.0), rc0/2/3/1 (B), region-vs-light verify (C), poke/no-poke/idempotency (D), prefix (E), drain-rc0-gate/no-drop (F), HAZARDS (G: never-Escape-foreground otmux:3119, never-pkill BUG6), wrap/BUG10 (H), session/dead/directional (I), local+remote (J). Testability tagged [S]/[B]/[I]; fully isolated. This is THE permanent send regression-guard. Tester implements.
 - Tester (radical suite + zero-regression):
 - PO gate:
+
+---
+## ✅ PO SIGN-OFF on T-SEND-MATRIX (oosh-po@WODA.prod, cc8dbdf) + Tron's-5-essentials mapping
+Approved — 43 cells / 10 groups, proven superset of the 8 existing (zero regression), exhaustive, [S]/[B]/[I]-tagged, fully isolated. THE permanent send regression-guard.
+**Tron's 5 essentials (2026-07-02) mapped — 3 covered, 2 REQUIRE explicit adds:**
+1. **"send always auto-commits with enter"** → B1 + C1/C3 (region-verify=submitted) + H1 (wrap→poke→rc0). ✓ covered.
+2. **"local, remote"** → J1 local · J2 remote-reaches+completes · J3 remote-unreachable no-hang/no-silent. ✓ covered.
+3. **"never duplicates"** → D3 (idempotent submit/poke — message appears ONCE, not 3×). ✓ covered.
+4. **"has sender info ONCE"** → E1/E2 partial. **REQUIRED ADD → E5** `[B]`: sender prefix `[@role pane]` appears EXACTLY ONCE — never doubled across submit+poke+re-send (the BUG9 idempotent-prefix guard: `[[ text != \[@* ]]`).
+5. **"recognizes single keys over messages"** → D2/G4/I4 partial. **REQUIRED ADD → NEW GROUP K (single-key recognition)**: `send.raw <key>` where key ∈ {Enter, Escape, C-u, Tab, U/D/L/R} is treated as a KEY → raw key event, NO prefix, NO message-verify, NO poke, NO queue. A single key ≠ a message. (K1 Enter, K2 Escape, K3 C-u, K4 directional, K5 Tab; + `[S]` guard: the key-path bypasses prefix/verify.)
+**Architect: fold E5 + Group K into T-SEND-MATRIX → then tester implements the full suite → PO gate.** All cells green + zero regression = otmux send critical-infra LOCKED.
