@@ -71,6 +71,11 @@ STEP 1 mailbox reconcile: DONE — pushed 175 commits (5305f47..725fc4c), origin
   - **T-STATUS-ENUM: 🔴 FAIL [PF3]** — `hiveMind team.list` OMITS 2 live teams that tree.detailed + teams.save both see: `rawbin`, `u20`. (View enumeration ⊊ live teams.)
   - **T-FRESHNESS: 🔴 FAIL [PF4]** — planted a stale NEWEST snapshot with a bogus uuid for a live agent (ARON); the newest-file a cold-start consumer reads serves `deadbeef-…` vs `live=f814788a-…`. Proves a stale on-disk snapshot yields a wrong-uuid identity.
   - Aligned with the architect's frame: the tests assert exactly `tree.detailed(T) == teams.save(T) == status(T)`, so routing all three through the ONE shared live reader turns all three GREEN by construction. Self-cleaning (removes the planted stale file); `teams.save` runs once (~2min — that's the PF1 slowness the shared-reader collapse also fixes). **Expert: make GREEN via the shared-reader move (PF2 full tupleset, PF3 enumerate-via-reader, PF4 live-derive/timestamp-gate).** Run: `test.suite run teamsave-parity`. Committed dev.
+  - **✅ GREEN CONFIRMED (red→green complete, dev `cc641b7` after expert `9ddcf35`+`9dce682`) — 3/3 PASS:**
+    - **T-TEAMSAVE-PARITY ✓** — fresh snapshot contains all **20/20** live panes (PF2 fixed: shared-reader captures agents AND shells).
+    - **T-STATUS-ENUM ✓** — `team.list` shows all **7/7** live teams incl. the previously-missing **rawbin + u20** (PF3 fixed: enumerates live sessions).
+    - **T-FRESHNESS ✓** — accepted the expert's contract point: pointed the consumer read at **`hiveMind role.uuid $PROBE_ROLE`** (live-derived) instead of the raw file. Independently verified it's a REAL immunity test, not a rubber-stamp: with a bogus (`deadbeef…`) uuid planted as the NEWEST snapshot, `role.uuid ARON` still returns the **LIVE** `f814788a…`; the test records `rawStale=deadbeef…` to prove the stale file really carried the wrong value → a regression to raw-file reads would flip it RED (PF4 fixed: timestamp-gated + live-preferred resolver).
+    - Parity invariant `tree.detailed(T) == teams.save(T) == status(T)` now holds — measured green on live WODA.prod. **PF5 done; ready for PO QA gate.**
 - PO QA gate: 
 
 ---
