@@ -1,6 +1,7 @@
-> ⬆ **[Sprint 2 · task-s2-e](../../scrum.pmo/sprints/sprint-2/task-s2-e-tooling-hygiene.md)** — this spec is traced from that sprint-2 task.
+> ⬆ **[Sprint 2 · task-s2-e](./task-s2-e-tooling-hygiene.md)** — sub-task; back to parent task.
 
 # Improvement: `pane.lock` must refuse human/non-Claude shells (no flicker war)
+[task:uuid:a76a26c7-d418-4e51-b350-93dcb750baab]
 
 **From**: oosh-po (ARON cycle — 1 improvement as task)
 **Owner**: oosh-architect (decide detection contract) → oosh-expert (impl, use `oo new.method` if adding helpers) → oosh-tester

@@ -17,9 +17,9 @@
 - up
   - [Sprint 2 Planning](./planning.md)
 - down
-  - [hivemind-route-autoheal.task.md](../../../session/tasks/hivemind-route-autoheal.task.md) — C.1 route auto-heal + fd/EMFILE root-cause
-  - [hivemind-reconcile-after-fork.task.md](../../../session/tasks/hivemind-reconcile-after-fork.task.md) — C.2 adopt orphans + team.audit
-  - [agent-dirs-per-host-split.md](../../../session/tasks/agent-dirs-per-host-split.md) — C.3 boot/identity resolution (OTR-11)
+  - [task-s2-c.1-route-autoheal.md](./task-s2-c.1-route-autoheal.md) — C.1 route auto-heal + fd/EMFILE root-cause
+  - [task-s2-c.2-reconcile-after-fork.md](./task-s2-c.2-reconcile-after-fork.md) — C.2 adopt orphans + team.audit
+  - [task-s2-c.3-boot-identity-per-host.md](./task-s2-c.3-boot-identity-per-host.md) — C.3 boot/identity resolution (OTR-11)
 
 ## Description
 **Role: architect (design) → expert (impl) → tester (validate)**

@@ -1,6 +1,7 @@
-> ⬆ **[Sprint 2 · task-s2-d](../../scrum.pmo/sprints/sprint-2/task-s2-d-node-provisioning-hardening.md)** — this spec is traced from that sprint-2 task.
+> ⬆ **[Sprint 2 · task-s2-d](./task-s2-d-node-provisioning-hardening.md)** — sub-task; back to parent task.
 
 # NP-4: provision agent runtime (tmux + claude-cli) on a fresh node
+[task:uuid:f7a5e4a7-8dbd-48f7-b192-3ef9b330e3d2]
 
 **From**: oosh-po (u24 gate Step 5 finding; ARON cycle improvement)
 **Owners**: oosh-architect (where: install-step vs team.push-prereq) → oosh-expert (impl) → oosh-tester (verify Step 5)

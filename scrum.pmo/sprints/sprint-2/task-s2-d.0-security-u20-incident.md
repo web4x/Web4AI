@@ -1,6 +1,7 @@
-> ⬆ **[Sprint 2 · task-s2-d](../../scrum.pmo/sprints/sprint-2/task-s2-d-node-provisioning-hardening.md)** — this spec is traced from that sprint-2 task.
+> ⬆ **[Sprint 2 · task-s2-d](./task-s2-d-node-provisioning-hardening.md)** — sub-task; back to parent task.
 
 # 🚨 SECURITY INCIDENT — u20 container compromised, root malware /tmp/linux
+[task:uuid:6db673ac-ca48-466f-b5b2-60f95d118880]
 
 **From**: oosh-po@WODA.prod (found by oosh-expert during OTR-2) · **Date**: 2026-07-01 · **Status**: OPEN — AWAITING TRON DECISION (forensics vs contain/kill)
 **Severity**: CRITICAL · **Destructive action taken: NONE** (forensics preserved per expert + PO)

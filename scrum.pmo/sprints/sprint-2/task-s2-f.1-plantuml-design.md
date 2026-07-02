@@ -1,6 +1,7 @@
-> ⬆ **[Sprint 2 · task-s2-f](../../scrum.pmo/sprints/sprint-2/task-s2-f-plantuml-script.md)** — this spec is traced from that sprint-2 task.
+> ⬆ **[Sprint 2 · task-s2-f](./task-s2-f-plantuml-script.md)** — sub-task; back to parent task.
 
 # Design: `plantuml` OOSH script — dockerized PlantUML render, managed via odocker
+[task:uuid:c0461c65-656a-450d-b2c4-b0a310bffdc9]
 
 **Type**: CO-DESIGN (architect ↔ PO) · **From**: oosh-architect (Tron directive: "generate a plantuml oosh script to install and manage the odocker image and usage; talk to the PO and design it together") · **Date**: 2026-06-29
 **Status**: DRAFT — architect proposal + open decisions for PO. Design together, then hand to expert.

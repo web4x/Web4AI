@@ -17,8 +17,8 @@
 - up
   - [Sprint 2 Planning](./planning.md)
 - down (detailed spec + evidence)
-  - [sprint-teamsave-status-parity-FIX.md](../../../session/tasks/sprint-teamsave-status-parity-FIX.md) — full spec + report-backs
-  - [teamsave-vs-status-parity.md](../../../session/tasks/teamsave-vs-status-parity.md) — tester evidence
+  - [task-s2-a.1-parity-fix-spec.md](./task-s2-a.1-parity-fix-spec.md) — full spec + report-backs
+  - [task-s2-a.2-parity-evidence.md](./task-s2-a.2-parity-evidence.md) — tester evidence
   - once.sh@dev: [hiveMind](https://github.com/Cerulean-Circle-GmbH/once.sh/blob/dev/hiveMind) `9ddcf35` (shared reader) · [test/test.teamsave-parity](https://github.com/Cerulean-Circle-GmbH/once.sh/blob/dev/test/test.teamsave-parity) `9fd5f95`
 
 ## Description

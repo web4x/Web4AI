@@ -1,6 +1,7 @@
-> ⬆ **[Sprint 2 · task-s2-e](../../scrum.pmo/sprints/sprint-2/task-s2-e-tooling-hygiene.md)** — this spec is traced from that sprint-2 task.
+> ⬆ **[Sprint 2 · task-s2-e](./task-s2-e-tooling-hygiene.md)** — sub-task; back to parent task.
 
 # DRY guard: structured-output methods must not leak LOG_DEVICE lines
+[task:uuid:ff7f0b3a-a99d-4c94-a4eb-77ee8b3b1986]
 
 **From**: oosh-architect (CMM4 systemic-pattern flag, 2026-06-29) — captured by oosh-po@WODA.prod
 **Owners**: oosh-architect (convention design) → oosh-expert (impl) → oosh-tester (verify)

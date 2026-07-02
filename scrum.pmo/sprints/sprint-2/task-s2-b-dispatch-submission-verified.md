@@ -17,7 +17,7 @@
 - up
   - [Sprint 2 Planning](./planning.md)
 - down
-  - [dispatch-submission-verified.md](../../../session/tasks/dispatch-submission-verified.md) — spec + APPROVED contract + PO sign-off
+  - [task-s2-b.1-submission-verified-contract.md](./task-s2-b.1-submission-verified-contract.md) — spec + APPROVED contract + PO sign-off
 
 ## Description
 **Role: architect (contract ✅) → expert (impl) → tester (validate)**

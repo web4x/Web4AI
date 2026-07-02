@@ -1,6 +1,7 @@
-> ⬆ **[Sprint 2 · task-s2-c](../../scrum.pmo/sprints/sprint-2/task-s2-c-registry-route-identity.md)** — this spec is traced from that sprint-2 task.
+> ⬆ **[Sprint 2 · task-s2-c](./task-s2-c-registry-route-identity.md)** — sub-task; back to parent task.
 
 # hiveMind reconcile-after-fork — adopt orphan (raw-forked) agents into the controller
+[task:uuid:1d5d3363-c3f8-43f0-9bb7-cdeb98d62933]
 
 **From**: oosh-po@WODA.prod (SM flag: robbin-planner robbinTeam2:0.6 invisible to roster — F-MVC-BYPASS)
 **Owners**: oosh-architect (adopt contract) → oosh-expert/hiveMind-expert (impl) → oosh-tester (verify)

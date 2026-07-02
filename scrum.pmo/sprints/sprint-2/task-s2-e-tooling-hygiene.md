@@ -17,12 +17,12 @@
 - up
   - [Sprint 2 Planning](./planning.md)
 - down (one spec each)
-  - [structured-output-log-guard.task.md](../../../session/tasks/structured-output-log-guard.task.md) — E.1
-  - [panelock-skip-human-shells.md](../../../session/tasks/panelock-skip-human-shells.md) — E.2
-  - [rewind-readiness-preflight.md](../../../session/tasks/rewind-readiness-preflight.md) — E.3
-  - [test-suite-regression-check.task.md](../../../session/tasks/test-suite-regression-check.task.md) — E.4
-  - [oo-new-task-scaffolder.md](../../../session/tasks/oo-new-task-scaffolder.md) — E.5
-  - [claudecode-sessions-prune.task.md](../../../session/tasks/claudecode-sessions-prune.task.md) — E.6
+  - [task-s2-e.1-structured-output-log-guard.md](./task-s2-e.1-structured-output-log-guard.md) — E.1
+  - [task-s2-e.2-panelock-skip-human-shells.md](./task-s2-e.2-panelock-skip-human-shells.md) — E.2
+  - [task-s2-e.3-rewind-readiness-preflight.md](./task-s2-e.3-rewind-readiness-preflight.md) — E.3
+  - [task-s2-e.4-regression-check.md](./task-s2-e.4-regression-check.md) — E.4
+  - [task-s2-e.5-oo-new-task-scaffolder.md](./task-s2-e.5-oo-new-task-scaffolder.md) — E.5
+  - [task-s2-e.6-sessions-prune.md](./task-s2-e.6-sessions-prune.md) — E.6
 
 ## Description
 **Role: architect (where needed) → expert → tester**

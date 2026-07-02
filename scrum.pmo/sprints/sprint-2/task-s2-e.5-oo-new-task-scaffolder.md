@@ -1,6 +1,7 @@
-> ⬆ **[Sprint 2 · task-s2-e](../../scrum.pmo/sprints/sprint-2/task-s2-e-tooling-hygiene.md)** — this spec is traced from that sprint-2 task.
+> ⬆ **[Sprint 2 · task-s2-e](./task-s2-e-tooling-hygiene.md)** — sub-task; back to parent task.
 
 # Add `oo new.task` scaffolder — consistent task files from a template
+[task:uuid:1dc09dc6-163b-4340-a808-791823f3f132]
 
 **From**: oosh-po (ARON cycle — improvement as task, "use task templates")
 **Owners**: oosh-architect (template contract) → oosh-expert (impl, mirror `oo new.test`) → oosh-tester (verify)

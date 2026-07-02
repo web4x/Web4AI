@@ -1,10 +1,11 @@
-> ⬆ **[Sprint 2 · task-s2-a](../../scrum.pmo/sprints/sprint-2/task-s2-a-teamsave-status-parity.md)** — this spec is traced from that sprint-2 task.
+> ⬆ **[Sprint 2 · task-s2-a](./task-s2-a-teamsave-status-parity.md)** — sub-task; back to parent task.
 
 # Sprint: teams.save / status MVC parity FIX — CRITICAL INFRA (do first)
+[task:uuid:13a29bd3-2cdb-4af2-bcaa-b90a206dd41b]
 
 **Delegated by**: oosh-po@MacStudio → **oosh-po@WODA.prod (owns + drives with WODA.prod ooshTeam on dev)**
 **Created**: 2026-07-02 (Tron: "team.save/status are critical infrastructure for everything else — first")
-**Input evidence**: `session/tasks/teamsave-vs-status-parity.md` (tester findings, commit ccf11f2) — READ IT FIRST.
+**Input evidence**: `./task-s2-a.2-parity-evidence.md` (tester findings, commit ccf11f2) — READ IT FIRST.
 
 ## Why critical
 

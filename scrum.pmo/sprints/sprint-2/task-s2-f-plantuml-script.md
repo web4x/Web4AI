@@ -17,7 +17,7 @@
 - up
   - [Sprint 2 Planning](./planning.md)
 - down
-  - [plantuml-oosh-script-design.md](../../../session/tasks/plantuml-oosh-script-design.md) — co-design + final spec + PO sign-off
+  - [task-s2-f.1-plantuml-design.md](./task-s2-f.1-plantuml-design.md) — co-design + final spec + PO sign-off
 
 ## Description
 **Role: architect (spec ✅) → expert (impl) → tester (T-PLANTUML)**

@@ -32,10 +32,10 @@ node provisioning+hardening, tooling hygiene, plantuml.
 4. [task-s2-d](./task-s2-d-node-provisioning-hardening.md) / [task-s2-e](./task-s2-e-tooling-hygiene.md) / [task-s2-f](./task-s2-f-plantuml-script.md) — as capacity; task-s2-f (plantuml) parallel when expert free.
 
 ## Closed / carried-done (context, not open)
-- **SECURITY u20 malware**: RESOLVED — host clean, u20 destroyed+rebuilt hardened, odocker loopback+key-only (once.sh `41ca4e4`), feeds [task-s2-d](./task-s2-d-node-provisioning-hardening.md). [SECURITY-u20-malware-incident.md](../../../session/tasks/SECURITY-u20-malware-incident.md)
+- **SECURITY u20 malware**: RESOLVED — host clean, u20 destroyed+rebuilt hardened, odocker loopback+key-only (once.sh `41ca4e4`), feeds [task-s2-d](./task-s2-d-node-provisioning-hardening.md). [task-s2-d.0-security-u20-incident.md](./task-s2-d.0-security-u20-incident.md)
 - **Parity PF2/PF3**: GREEN (shared reader `private.hiveMind.live.tupleset`, once.sh `9ddcf35`).
 - **OTR-D doctrine** (oosh-tools=default): propagated to 91 SKILL.md (`94b84fc`).
 - **Node-provisioning NP-2/NP-3**: u24 clean-boot GREEN + SETUP_SERVER→99 (DONE); S3 dev→macos merge PARKED pending Tron a/b.
 
 ## Provenance (migrated from — now superseded by this sprint)
-`sprint-oosh-tooling-reliability` (OTR-1..11), `sprint-node-provisioning` (NP-1..4), and loose `session/tasks/*.md` specs. Those spec files remain as detailed references (linked from each task's Traceability-down); THIS sprint is the authoritative live plan.
+`sprint-oosh-tooling-reliability` (OTR-1..11) and `sprint-node-provisioning` (NP-1..4) are banner-marked SUPERSEDED. The detailed specs formerly loose under `session/tasks/*.md` have been **MIGRATED into this folder** as sub-tasks (`task-s2-<letter>.<n>-*.md`), each given a `[task:uuid:…]` and bidirectionally linked to its parent task. This sprint is now **self-contained** and the single authoritative live plan.

@@ -1,6 +1,7 @@
-> ⬆ **[Sprint 2 · task-s2-a](../../scrum.pmo/sprints/sprint-2/task-s2-a-teamsave-status-parity.md)** — this spec is traced from that sprint-2 task.
+> ⬆ **[Sprint 2 · task-s2-a](./task-s2-a-teamsave-status-parity.md)** — sub-task; back to parent task.
 
 # Task: hiveMind team.save vs hiveMind status — tuple parity check
+[task:uuid:763913e9-f57d-495f-9275-9835fc024bd7]
 
 **From**: oosh-po@MacStudio
 **To**: oosh-tester@MacStudio
