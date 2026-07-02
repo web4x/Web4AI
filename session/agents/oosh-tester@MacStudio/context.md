@@ -16,7 +16,10 @@ As **root**: `git -C /home/donges/oosh fetch origin && git -C /home/donges/oosh 
 - **F3** released arm: closed via function-level RESULT probe (branch pins OOSH_MODE — see learnings).
 - **F2 / T-NO-SUDO-HANG**: naked constructor no longer blocks on sudo password (`sudo -n`, defers to user band RESULT=20). `test.no.sudo.hang` 7/7 GREEN.
 - **E-FLAGS.2 / T-NO-FLAGS**: Death-to-Flags fence — `test.no.flags`, budget tightened 1→0 after otmux `--force` cleanup (#33). 0 signature-flag + 0 soft-value. GREEN both envs. Independent co-confirm commit 75250dc = what let PO sign off.
-- **#13 / T-DASH-GUARD** (`test.dash.guard`, dev a8f7728): CLOSED as already-solved. init/oosh already bash-self-heals (POSIX-sh + re-exec @287 before any dotted-fn source). 5/5 both envs, NON-DESTRUCTIVE fence. PO-accepted.
+- **#13 / T-DASH-GUARD** (`test.dash.guard`, dev a8f7728): CLOSED. init/oosh already bash-self-heals (POSIX-sh + re-exec @287). 5/5 both envs. PO-accepted.
+- **#34 / T-INSTALL-NONDESTRUCTIVE** (`test.install.nondestructive`, dev b550156): CLOSED (signed off 68254e1e on my independent test). existing $HOME/oosh→timestamped .pre-oosh backup, rm -f symlink-gated, no rm -rf, + isolated sandbox marker-survives. 4/4 both envs.
+- **/root/oosh residue RESET** (my #13 incident had relocated the donges checkout there): re-cloned root-owned dev at b550156. Box clean.
+- **#35 filed** (from my root-cause): SOURCE-guard — refuse/copy-not-move a live OOSH_DIR (a3b1eff fixed TARGET side only).
 
 ## Open / handed off (all on the S5 throwaway container — the common unblock)
 - **S5 Step 2 (P2 container)**: STOPPED per "no-rabbit-hole". Infra proven (`odocker run.sshd` provisions naked_ubuntu sshd), 2 frictions: donges not in docker group (odocker as root only); naked container needs authorized_keys before ossh install. Awaiting PO go / friction fix.
