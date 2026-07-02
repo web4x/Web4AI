@@ -44,7 +44,23 @@ STEP 1 mailbox reconcile: DONE — pushed 175 commits (5305f47..725fc4c), origin
 - Then: WODA.prod PO QA gate → report up to oosh-po@MacStudio (git mailbox: report-back inline + push) → Tron promote.
 
 ### Report-back (owners edit inline)
-- Architect (MVC design): 
+- Architect (MVC design): **DONE 2026-07-02 — the frame that GATES PF1-4.**
+
+  **MODEL OF RECORD = the live process tree, read via `otmux tree.detailed` (proc-args).** The running system (processes/panes) is the ground-truth Model; `tree.detailed` is its canonical, COMPLETE projection: the tuple-set **(session, address, kind[agent|shell], role, uuid|—)** for EVERY live pane across EVERY live team. `kind` is live-derived from proc-args (claude proc → agent; bash/ssh/screen → shell), never cached-guessed. `uuid` comes from the claude process args (pane_pid → walk → session UUID).
+
+  **ROOT CAUSE (from the evidence): THREE divergent enumeration paths.** `tree.detailed` sees everything; `teams.save` rolls its own lossy enumeration (drops shells non-deterministically, PF2); `status`/`team.list` roll a third (omit whole teams, remoteOOSH, PF3). They disagree because each re-implements enumeration. **PROOF the fix is right: agent uuids are already GREEN across all three — precisely because they SHARE proc-args discovery there.** Extend that sharing to shells + team-enumeration and parity holds by construction.
+
+  **THE FIX — ONE live reader, THREE consumers (DRY collapse):**
+  1. **Single shared live reader.** Factor tree.detailed's proc-args enumeration into ONE reusable producer emitting the canonical tuple-set (e.g. `private.hiveMind.live.tupleset` / reuse tree.detailed's engine). This is the DRY core; the other two consumers call it, never re-enumerate.
+  2. **`status` / `team.list` = read the Model LIVE** via the shared reader; enumerate EVERY team/pane it sees; ZERO snapshot dependency for a live-answerable question → **PF3 fixed, PF4 stale-read impossible.**
+  3. **`teams.save` = serialize the COMPLETE shared-reader tuple-set** (agents AND shells, every team) at time T, stamped T → **PF2 fixed** (complete + deterministic — no per-window partial drop). Reusing the batch reader also kills the ~2min per-pane probe → **PF1 slowness fixed** (save becomes as fast as tree.detailed; the 2min = it's NOT using the batch reader today).
+  4. **`snapshot` = TIMESTAMP-GATED CACHE, never authority.** Used ONLY when live is unavailable (cross-host restore, post-death). On read: staleness = now − snapshot.TS; if live is available → ignore cache and derive live; if live is gone → use cache only within TTL, else FAIL LOUD (constructor-contract "never silently broken"). Stale uuid/title (proven: scrum-master 35916ccb vs live dfcea556; remoteOOSH titles) becomes structurally impossible.
+
+  **PARITY INVARIANT (what PF5 asserts, holds BY CONSTRUCTION once #1-3 land):** for the same live system at time T — `tree.detailed(T)` == `teams.save(T)` == `status/team.list(T)` on the tuple-set (team, pane, role, uuid, kind). Any divergence = a consumer re-enumerating instead of calling the shared reader.
+
+  **MVC reconciliation (no contradiction with the 4-script model):** the ultimate Model is the LIVE running system; `otmux tree.detailed` (View instrument) reads it via proc-args and its output IS the model-of-record projection; `claudeCode` is the per-session identity FACADE tree.detailed consults (pane_pid→claude args→UUID); `hiveMind` (Controller) MUST treat the live projection as authoritative and its persisted stores (snapshot/registry/sessions.env) as caches. **Live proc-args > persisted cache, always** — same law as "prefer pane title (live) over JSONL (eventual)."
+
+  **PF1-4 handoff to expert:** PF1 = teams.save canonical + team.save alias, both → shared reader (fixes name AND slowness). PF2 = save serializes the FULL shared-reader tupleset. PF3 = status/team.list enumerate via shared reader. PF4 = live-answerable reads never touch snapshot; snapshot reads timestamp-gated + fail-loud when stale. All four are the SAME move: route through the one live reader.
 - Expert (PF1): 
 - Expert (PF2): 
 - Expert (PF3): 
