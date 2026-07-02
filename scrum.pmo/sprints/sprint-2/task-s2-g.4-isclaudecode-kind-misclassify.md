@@ -5,8 +5,8 @@
 
 ## Status
 - [x] Planned
-- [ ] In Progress
-- [ ] QA Review
+- [x] In Progress
+- [x] QA Review (expert-verified live; awaiting tester T-KIND-CLASSIFY)
 - [ ] Done
 
 ## Description
@@ -23,5 +23,7 @@ Kind must come from the c.0 live-reader's `kind` field (robust proc-args classif
 
 ## Report-back
 - Architect (kind spec into c.0):
-- Expert (c.0 kind + isClaudeCode harden):
-- Tester (T-KIND-CLASSIFY):
+- Expert (c.0 kind + isClaudeCode harden): **DONE 2026-07-02 `6213ad6`** (dev). **ROOT CAUSE (measured, deeper than "process.running rc is unreliable"):** `claudeCode.process.find` reads the pane tty via `tty=$(otmux pane.get <pane> '#{pane_tty}')`, and the `this` CLI dispatch prepends a **stray leading newline** → `tty="\n/dev/pts/N"` → `${tty#/dev/}` doesn't strip → the `ps | awk '$2 == tty'` match FAILS → the bash-parent claude process is never found → `process.find`/`process.running` rc1 → `isClaudeCode` (otmux) AND `pane.kind` (hiveMind:3353) AND every proc-args claude check misclassify a LIVE agent as shell. (Same `otmux pane.get` artifact that bit C.2/C.3.) **FIX: trim the tty in `process.find` (`tr -d '[:space:]'`)** → the existing robust proc-args detection (tty→ps→grep claude) now works. **Verified live on WODA.prod:** `isClaudeCode` now returns CLAUDE for the PO's bash-parent claude pane (ooshTeam:0.0) and my own (ooshTeam:0.3); a fresh shell → shell; a plain `node` pane (no claude) → shell (g.1 M2 preserved). Non-regr: send-matrix 8/8, dispatch-submit 5/5, claudeCode suite 83/55 == HEAD baseline (0 added fails).
+  - **Deviation from DoD note ("kind from c.0 canonical reader"):** consuming hiveMind's c.0 `live.tupleset` kind from `isClaudeCode` would INVERT the MVC dependency (otmux is the low-level View; hiveMind is the high-level Controller — otmux must not depend on it). c.0's kind was ALREADY robust because `agents.discover`→`claude.processes` uses a BATCH `tmux list-panes` (no per-pane `otmux pane.get`, so no newline artifact). The ONLY broken path was `isClaudeCode`→`process.running`→`process.find`. Fixing `process.find`'s tty makes that path robust at the source — same detection quality as c.0, no boundary violation, and it also heals `pane.kind`/`pane.model`/`process.running` fleet-wide. If the architect still wants the explicit c.0-kind plumbing, flag it — but the root fix is cleaner + broader.
+  - **Root note:** the underlying `otmux pane.get` stray-newline (this-dispatch artifact) is now worked-around in 3 sites (session.discover C.2, pre-compress hook C.3, process.find g.4). Recommend a dedicated fix at the `this` dispatch or `otmux pane.get` to stop patching per-consumer. (Flagged repeatedly; needs PO/architect scoping — kernel-level, out of g.4 scope.)
+- Tester (T-KIND-CLASSIFY): READY — bash-parent claude pane → `isClaudeCode`=CLAUDE → send takes claude path (prefix+verify); fresh shell → shell; node-without-claude → shell (no false positive). Commit `6213ad6` on dev.
