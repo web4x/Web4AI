@@ -1,4 +1,4 @@
-> ⬆ **[Sprint 2 · Epic A](../../scrum.pmo/sprints/sprint-2/task-s2-a-teamsave-status-parity.md)** — this spec is traced from that epic.
+> ⬆ **[Sprint 2 · task-s2-a](../../scrum.pmo/sprints/sprint-2/task-s2-a-teamsave-status-parity.md)** — this spec is traced from that sprint-2 task.
 
 # Task: hiveMind team.save vs hiveMind status — tuple parity check
 

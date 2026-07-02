@@ -1,4 +1,4 @@
-> ⬆ **[Sprint 2 · Epic F](../../scrum.pmo/sprints/sprint-2/task-s2-f-plantuml-script.md)** — this spec is traced from that epic.
+> ⬆ **[Sprint 2 · task-s2-f](../../scrum.pmo/sprints/sprint-2/task-s2-f-plantuml-script.md)** — this spec is traced from that sprint-2 task.
 
 # Design: `plantuml` OOSH script — dockerized PlantUML render, managed via odocker
 

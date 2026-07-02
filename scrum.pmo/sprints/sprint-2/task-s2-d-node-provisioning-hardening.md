@@ -37,4 +37,4 @@ A fresh Linux node → reachable → dev-oosh installed → team-ready, in the f
 - `team.push` places live agents (tmux+claude present); verified by push + discoverability
 - T-RUNSSHD-AUTOCONFIG, T-PROVISION-RUNTIME green
 
-*Sprint 2 — Controller Reliability · Epic D*
+*Sprint 2 — Controller Reliability · task-s2-d*

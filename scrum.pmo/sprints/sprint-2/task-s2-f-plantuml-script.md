@@ -32,4 +32,4 @@ New `plantuml` domain script rendering .puml→.svg via odocker (never raw docke
 - robbin R22.3 render runs through `plantuml render` (not a one-off)
 - T-PLANTUML green
 
-*Sprint 2 — Controller Reliability · Epic F*
+*Sprint 2 — Controller Reliability · task-s2-f*

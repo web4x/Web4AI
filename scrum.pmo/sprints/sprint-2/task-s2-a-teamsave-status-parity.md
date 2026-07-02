@@ -35,4 +35,4 @@ teams.save (Model persistence) and status/team.list (live View) must agree. Root
 - Stale snapshot cannot yield a wrong-uuid answer (fail-loud or provably resolver-only)
 - PO QA gate PASS → report to oosh-po@MacStudio (git mailbox)
 
-*Sprint 2 — Controller Reliability · Epic A (CRITICAL, do-first)*
+*Sprint 2 — Controller Reliability · task-s2-a (CRITICAL, do-first)*

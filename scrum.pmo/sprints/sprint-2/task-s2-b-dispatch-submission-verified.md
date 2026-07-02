@@ -32,4 +32,4 @@ The shared send core (`otmux send` + `hiveMind send.message`/`agent.queue.drain`
 - drain never drops on unknown-route; short-pointer payloads default
 - T-DISPATCH-SUBMIT green → closes BUG10
 
-*Sprint 2 — Controller Reliability · Epic B (CRITICAL)*
+*Sprint 2 — Controller Reliability · task-s2-b (CRITICAL)*

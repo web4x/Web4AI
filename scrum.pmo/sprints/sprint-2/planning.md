@@ -15,7 +15,7 @@ node provisioning+hardening, tooling hygiene, plantuml.
 **Constraint:** WIP=1 per agent; short-pointer dispatch (BUG10); SCENARIO-FIRST (tests on disk before impl); measure-don't-assume (tester runs tests, PO gates on the report); OOSH wrappers only.
 **Branches:** task/sprint files → `web4x/Web4AI@main`; code → `Cerulean-Circle-GmbH/once.sh@dev`.
 
-## Epics
+## Tasks
 | Task | Title | Priority | Status |
 |------|-------|----------|--------|
 | [task-s2-a](./task-s2-a-teamsave-status-parity.md) | teams.save/status MVC parity | CRITICAL (do-first) | IN PROGRESS — PF2/PF3 GREEN, PF4 QA-HELD, PF5 red delivered |
@@ -26,16 +26,16 @@ node provisioning+hardening, tooling hygiene, plantuml.
 | [task-s2-f](./task-s2-f-plantuml-script.md) | plantuml OOSH script | MEDIUM (Tron directive) | signed off → impl |
 
 ## Sequence & priority
-1. **Epic A** (parity) — do-first CRITICAL infra; PF4 gated on architect fail-loud-vs-resolver ruling → expert → tester re-run → PO gate → report MacStudio PO.
-2. **Epic B** (BUG10) — the fleet dispatch throttle; contract ready, expert impl after Epic A.
-3. **Epic C** — route auto-heal shipped (watch post-malware); reconcile-after-fork + team.audit + boot-identity next.
-4. **Epic D/E/F** — as capacity; F (plantuml) parallel when expert free.
+1. [task-s2-a](./task-s2-a-teamsave-status-parity.md) (parity) — do-first CRITICAL infra; PF4 gated on architect fail-loud-vs-resolver ruling → expert → tester re-run → PO gate → report MacStudio PO.
+2. [task-s2-b](./task-s2-b-dispatch-submission-verified.md) (BUG10) — the fleet dispatch throttle; contract ready, expert impl after task-s2-a.
+3. [task-s2-c](./task-s2-c-registry-route-identity.md) — route auto-heal shipped (watch post-malware); reconcile-after-fork + team.audit + boot-identity next.
+4. [task-s2-d](./task-s2-d-node-provisioning-hardening.md) / [task-s2-e](./task-s2-e-tooling-hygiene.md) / [task-s2-f](./task-s2-f-plantuml-script.md) — as capacity; task-s2-f (plantuml) parallel when expert free.
 
 ## Closed / carried-done (context, not open)
-- **SECURITY u20 malware**: RESOLVED — host clean, u20 destroyed+rebuilt hardened, odocker loopback+key-only (once.sh `41ca4e4`), feeds Epic D. [SECURITY-u20-malware-incident.md](../../../session/tasks/SECURITY-u20-malware-incident.md)
+- **SECURITY u20 malware**: RESOLVED — host clean, u20 destroyed+rebuilt hardened, odocker loopback+key-only (once.sh `41ca4e4`), feeds [task-s2-d](./task-s2-d-node-provisioning-hardening.md). [SECURITY-u20-malware-incident.md](../../../session/tasks/SECURITY-u20-malware-incident.md)
 - **Parity PF2/PF3**: GREEN (shared reader `private.hiveMind.live.tupleset`, once.sh `9ddcf35`).
 - **OTR-D doctrine** (oosh-tools=default): propagated to 91 SKILL.md (`94b84fc`).
 - **Node-provisioning NP-2/NP-3**: u24 clean-boot GREEN + SETUP_SERVER→99 (DONE); S3 dev→macos merge PARKED pending Tron a/b.
 
 ## Provenance (migrated from — now superseded by this sprint)
-`sprint-oosh-tooling-reliability` (OTR-1..11), `sprint-node-provisioning` (NP-1..4), and loose `session/tasks/*.md` specs. Those spec files remain as detailed references (linked from each epic's Traceability-down); THIS sprint is the authoritative live plan.
+`sprint-oosh-tooling-reliability` (OTR-1..11), `sprint-node-provisioning` (NP-1..4), and loose `session/tasks/*.md` specs. Those spec files remain as detailed references (linked from each task's Traceability-down); THIS sprint is the authoritative live plan.

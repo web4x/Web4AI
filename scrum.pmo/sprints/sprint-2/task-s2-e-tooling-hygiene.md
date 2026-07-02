@@ -26,7 +26,7 @@
 
 ## Description
 **Role: architect (where needed) → expert → tester**
-Quality/hygiene gaps that erode trust but don't force raw fallback. Do as capacity allows behind Epics A–C.
+Quality/hygiene gaps that erode trust but don't force raw fallback. Do as capacity allows behind the CRITICAL tasks (a–c).
 
 ## Open items
 - [ ] **E.1** structured-output log-guard — DRY guard so structured stdout can't leak LOG_DEVICE lines (3rd in family).
@@ -39,4 +39,4 @@ Quality/hygiene gaps that erode trust but don't force raw fallback. Do as capaci
 ## Definition of Done
 - Each sub-item: fix + its named test green; no regressions.
 
-*Sprint 2 — Controller Reliability · Epic E*
+*Sprint 2 — Controller Reliability · task-s2-e*

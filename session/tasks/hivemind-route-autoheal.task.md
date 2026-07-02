@@ -1,4 +1,4 @@
-> ⬆ **[Sprint 2 · Epic C](../../scrum.pmo/sprints/sprint-2/task-s2-c-registry-route-identity.md)** — this spec is traced from that epic.
+> ⬆ **[Sprint 2 · task-s2-c](../../scrum.pmo/sprints/sprint-2/task-s2-c-registry-route-identity.md)** — this spec is traced from that sprint-2 task.
 
 # hiveMind route auto-heal — durable fix for RECURRING route=unknown-state under RC-drive
 

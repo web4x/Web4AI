@@ -35,4 +35,4 @@ One root family behind BUG10-adjacent chaos: registry/route/uuid drift under loa
 - orphans adoptable + detectable via one audit; boot hook resolves role@host correctly
 - tests: T-ROUTE-AUTOHEAL, T-RECONCILE-FORK
 
-*Sprint 2 — Controller Reliability · Epic C*
+*Sprint 2 — Controller Reliability · task-s2-c*

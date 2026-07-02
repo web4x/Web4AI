@@ -1,4 +1,4 @@
-> ⬆ **[Sprint 2 · Epic B](../../scrum.pmo/sprints/sprint-2/task-s2-b-dispatch-submission-verified.md)** — this spec is traced from that epic.
+> ⬆ **[Sprint 2 · task-s2-b](../../scrum.pmo/sprints/sprint-2/task-s2-b-dispatch-submission-verified.md)** — this spec is traced from that sprint-2 task.
 
 # Improvement: make `hiveMind delegate` the submission-verified, pointer-only dispatch primitive
 
