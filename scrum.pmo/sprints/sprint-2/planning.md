@@ -24,7 +24,7 @@ node provisioning+hardening, tooling hygiene, plantuml.
 | [task-s2-d](./task-s2-d-node-provisioning-hardening.md) | node provisioning + hardening | HIGH | hardening baked (u20/u24); autoconfig + runtime open |
 | [task-s2-e](./task-s2-e-tooling-hygiene.md) | tooling hygiene | MEDIUM/LOW | planned |
 | [task-s2-f](./task-s2-f-plantuml-script.md) | plantuml OOSH script | HIGH (Tron: next priority) | ✅ **DONE** — T-PLANTUML 5/5 + docs + architect independent-render PASS (55785B svg, non-author); minor doc-gap follow-up |
-| [task-s2-h](./task-s2-h-team-sweep-fleet-dashboard.md) | team.sweep fleet dashboard (all teams + bg-shells + context-warn) | HIGH (Tron) | PLAN → architect design |
+| [task-s2-h](./task-s2-h-team-sweep-fleet-dashboard.md) | team.sweep fleet dashboard (all teams + bg-shells + context-warn) | HIGH (Tron) | DESIGN done (ec32300) — pure projection of c.0 → expert impl (after c.0) |
 | [task-s2-g](./task-s2-g-otmux-send-reliability.md) | otmux send reliability + c2 parity + dev↔macos.latest | HIGH (Tron: otmux send "broken") | **HIGHEST PRIORITY (Tron: otmux send).** g.1 DONE (188971a)→tester T-SEND-SESSION · g.2 c2=DEV ✅ · g.3 DEV-leads-all ✅ · g.4 isClaudeCode kind mis-classify (fixed via c.0 robust kind) |
 
 ## Sequence & priority (live — 2026-07-02)

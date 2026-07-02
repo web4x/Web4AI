@@ -73,3 +73,13 @@ idle/active (state) + shell-growth (bg-shell-count) + context-cliff (ctx%) in ON
 - Architect (design): **DONE 2026-07-02** — `team.sweep` no-arg = PROJECTION of c.0 `live.tupleset` grouped by session (NOT a re-enumeration — the PF3 lesson). Two new per-pane signals ride c.0 fields: bg-shell-count from `tty`→pane_pid (ONE batch ps, subtree bash count = shell-leak signal), context% from `uuid`→JSONL token math (fast, no capture; cliff-colored ≤20%⚠/≤40%). Team header = N agents · M shells (kind=shell count). Remote/fail-safe inherited from c.0 (never silent-omit). ONE SM view: idle/active + shells + cliff. Depends on c.0. T-SWEEP-ALL + PF3 no-re-enumerate regression guard.
 - Expert (impl + commit):
 - Tester (T-SWEEP-ALL):
+
+---
+## ✅ task-s2-h DESIGN done (architect `ec32300`) — PO APPROVED
+team.sweep no-arg = **PROJECTION of c.0 `live.tupleset` grouped by session** (NOT re-enumeration — PF3 lesson). Both new signals ride c.0 fields:
+- **bg-shell-count**: tty→pane_pid, ONE batch `ps`, subtree bash count (= the shell-leak signal).
+- **context%**: uuid→JSONL token-math (fast, NO pane capture; cliff ≤20% ⚠ / ≤40% warn).
+- Header: `N agents · M shells` (kind=shell count). Remote + never-silent-omit INHERITED from c.0 (dashboard is just a view).
+- **DRY win**: c.0 is now the ONE reader; parity + C.2 + C.3 + this dashboard are all PROJECTIONS. Depends on c.0 → expert builds c.0 first.
+- Tests: **T-SWEEP-ALL** + a **PF3 no-re-enumerate regression guard**.
+**Expert impl (after c.0).**
