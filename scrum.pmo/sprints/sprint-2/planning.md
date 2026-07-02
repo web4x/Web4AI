@@ -23,7 +23,7 @@ node provisioning+hardening, tooling hygiene, plantuml.
 | [task-s2-c](./task-s2-c-registry-route-identity.md) | registry / route / identity integrity | CRITICAL/HIGH | route auto-heal shipped; reconcile+audit+boot-id open |
 | [task-s2-d](./task-s2-d-node-provisioning-hardening.md) | node provisioning + hardening | HIGH | hardening baked (u20/u24); autoconfig + runtime open |
 | [task-s2-e](./task-s2-e-tooling-hygiene.md) | tooling hygiene | MEDIUM/LOW | planned |
-| [task-s2-f](./task-s2-f-plantuml-script.md) | plantuml OOSH script | MEDIUM (Tron directive) | signed off → impl |
+| [task-s2-f](./task-s2-f-plantuml-script.md) | plantuml OOSH script | HIGH (Tron: next priority) | impl DONE (`1cb40ee`+`0638344`) → tester T-PLANTUML gate |
 
 ## Sequence & priority
 1. [task-s2-a](./task-s2-a-teamsave-status-parity.md) (parity) — do-first CRITICAL infra; PF4 gated on architect fail-loud-vs-resolver ruling → tester re-run → PO gate → report MacStudio PO. **(architect+tester lane — does NOT need the expert.)**
