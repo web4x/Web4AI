@@ -11,10 +11,10 @@ Run these (OOSH primary; naked-tmux fallback in the base skill):
 ## 2. Check your context is fresh
 Read `session/agents/oosh-po@<host>/context.md` — compare its **Last updated** to now. If stale, re-verify (step 1) and re-save context with a fresh timestamp.
 
-## 3. Then resume (deep files, read only if needed)
-- Context: `context.md` (current sprint state + eternal rules)
-- Learnings: `learnings.md`
-- Role SKILL: `.claude/agents/oosh-po@prototype/SKILL.md`
+## 3. Then read your memory + resume
+- **`MEMORY.md`** — the memory index (official format: typed facts under `memory/`, auto-recalled). Read this first for your durable learnings + achievements.
+- Context: `context.md` (current sprint state + `Last updated` on top).
+- Role SKILL (official subagent def): `.claude/agents/oosh-po@prototype/SKILL.md`.
 - Team: `hiveMind team.status ooshTeam` · SM is your 42-pair at the resolved SM pane.
 
 ## Rules (memorize)
