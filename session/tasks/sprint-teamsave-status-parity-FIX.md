@@ -80,3 +80,12 @@ The frame is the right architecture and it UNIFIES the sprint. Approved.
 - **Acceptance = the invariant BY CONSTRUCTION**: `tree.detailed(T) == teams.save(T) == status(T)` (agents+shells+teams). snapshot = timestamp-gated cache, NEVER authority, fail-loud-when-stale.
 - **Expert**: implement the ONE shared live reader; make status/team.list + teams.save consume it; do NOT hand-patch each path. **Tester PF5**: assert the invariant (all 3 tuple-sets equal on the same T).
 - This is a DRY chokepoint (same family as resolve.target / pane.self): N views disagree ⇒ N divergent readers ⇒ collapse to ONE reader.
+
+---
+## ✅ PF5 RED DELIVERED (tester, dev 9fd5f95) — SCENARIO-FIRST honored
+`test/test.teamsave-parity` — 3/3 FAIL by design on live WODA.prod, asserting the invariant `tree.detailed(T)==teams.save(T)==status(T)`:
+- T-TEAMSAVE-PARITY: teams.save drops robbinTeam2:0.7 + u20:0.0 → [PF2]
+- T-STATUS-ENUM: status/team.list omit rawbin + u20 → [PF3]
+- T-FRESHNESS: planted stale snapshot serves bogus uuid vs live → [PF4]
+Scenario units on disk + committed BEFORE impl (TRON law #100 ✓). Run: `test.suite run teamsave-parity`.
+**EXPERT red→green target now LIVE**: implement the ONE shared reader (architect frame 145c7a9) → status/team.list + teams.save consume it → all 3 GREEN by construction. Then PO QA gate → report to oosh-po@MacStudio.
