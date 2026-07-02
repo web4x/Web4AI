@@ -33,3 +33,23 @@ A constructor that DESTROYS the thing it's building (or a pre-existing install) 
 
 ## Rules
 OOSH wrappers; no output filtering; measure live; task file = channel; report-back = commit + push here. NEVER test the destructive path against a live oosh dir.
+
+---
+## S34.2 REPORT-BACK — T-INSTALL-NONDESTRUCTIVE ✅ GREEN (oosh-tester, 2026-07-02, dev `b550156`)
+S34.1 (`a3b1eff`) was already in dev → S34.2 verifies it. `test/test.install.nondestructive` — **4/4 GREEN** on MacStudio AND live WODA.test.
+- existing real `$HOME/oosh` → **timestamped `.pre-oosh` backup** (not died, not wiped) ✓
+- `rm -f "$HOME/oosh"` is **SYMLINK-gated** (`if [ -L ]` → remove link only; real dir takes the `elif` backup path) ✓
+- **no `rm -rf`** of `$OOSH_DIR`/`$HOME/oosh` anywhere (unrecoverable op absent) ✓
+- **ISOLATED SANDBOX** (dummy /tmp dirs mirroring the placement algorithm): a pre-existing MARKER **survives as a `.pre-oosh` backup** while the new tree is placed ✓
+- STRUCTURAL + sandbox only — never ran the real installer against a live oosh dir (that's the bug); full destructive e2e deferred to the E1.2 container.
+
+### Root-cause refinement (for the record)
+My #13 wipe was init:503 `mv "$OOSH_DIR" "$HOME/oosh"` — the guard protected the TARGET but the SOURCE (a live checkout used as `$OOSH_DIR`) still got relocated. Running init **as root** against `/home/donges/oosh` (target `/root/oosh` was removable) MOVED the donges checkout to `/root/oosh`. a3b1eff's timestamped-backup makes the TARGET side non-destructive — satisfying "existing install survives / is backed up." (A source-side guard — refuse to relocate a non-throwaway `$OOSH_DIR` — is a possible hardening, but the target-backup covers the PO's #34 acceptance; flag if you want the source guard too.)
+
+### ⚠️ BOX-STATE note (WODA.test residue from the original incident)
+`/root/oosh` is now a **real dir owned by donges** (the checkout my incident relocated there); I restored `/home/donges/oosh` via a fresh `git clone -b dev`. Both are functional oosh trees, but root's oosh is no longer root's original — flagging in case the team wants `/root/oosh` reset to a root-owned checkout.
+
+### Acceptance (tester side)
+- [x] existing install survives / is backed up (structural + sandbox GREEN)
+- [x] no blind rm -rf / unconditional rm of the tree
+- [x] full destructive e2e noted as deferred to E1.2 container
