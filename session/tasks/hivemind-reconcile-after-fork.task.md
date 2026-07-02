@@ -1,3 +1,5 @@
+> ⬆ **[Sprint 2 · Epic C](../../scrum.pmo/sprints/sprint-2/task-s2-c-registry-route-identity.md)** — this spec is traced from that epic.
+
 # hiveMind reconcile-after-fork — adopt orphan (raw-forked) agents into the controller
 
 **From**: oosh-po@WODA.prod (SM flag: robbin-planner robbinTeam2:0.6 invisible to roster — F-MVC-BYPASS)

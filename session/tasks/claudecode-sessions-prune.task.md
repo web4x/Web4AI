@@ -1,3 +1,5 @@
+> ⬆ **[Sprint 2 · Epic E](../../scrum.pmo/sprints/sprint-2/task-s2-e-tooling-hygiene.md)** — this spec is traced from that epic.
+
 # claudeCode sessions.prune — archive DEAD sessions + clean test-project artifacts
 
 **From**: oosh-po

@@ -17,9 +17,10 @@
 - up
   - [Sprint 2 Planning](./planning.md)
 - down
-  - session/tasks/odocker-runsshd-autoconfig.md (D.1 — NP-1 auto ssh-config)
-  - session/tasks/np4-provision-agent-runtime.task.md (D.2 — NP-4 tmux+claude on node)
-  - session/tasks/SECURITY-u20-malware-incident.md (D.0 — hardening origin, RESOLVED)
+  - [odocker-runsshd-autoconfig.md](../../../session/tasks/odocker-runsshd-autoconfig.md) — D.1 (NP-1) auto ssh-config
+  - [np4-provision-agent-runtime.task.md](../../../session/tasks/np4-provision-agent-runtime.task.md) — D.2 (NP-4) tmux+claude on node
+  - [SECURITY-u20-malware-incident.md](../../../session/tasks/SECURITY-u20-malware-incident.md) — D.0 hardening origin (RESOLVED)
+  - once.sh@dev: [odocker](https://github.com/Cerulean-Circle-GmbH/once.sh/blob/dev/odocker) `41ca4e4` (loopback+key-only)
 
 ## Description
 **Role: architect → expert → tester**

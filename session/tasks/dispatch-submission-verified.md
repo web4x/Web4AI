@@ -1,3 +1,5 @@
+> ⬆ **[Sprint 2 · Epic B](../../scrum.pmo/sprints/sprint-2/task-s2-b-dispatch-submission-verified.md)** — this spec is traced from that epic.
+
 # Improvement: make `hiveMind delegate` the submission-verified, pointer-only dispatch primitive
 
 **From**: oosh-po (ARON hourly CMM4 — brainstorm ONE improvement, build-up in love)

@@ -17,9 +17,9 @@
 - up
   - [Sprint 2 Planning](./planning.md)
 - down (detailed spec + evidence)
-  - session/tasks/sprint-teamsave-status-parity-FIX.md (full spec + report-backs)
-  - session/tasks/teamsave-vs-status-parity.md (tester evidence)
-  - once.sh@dev: hiveMind `9ddcf35` (shared reader), test/test.teamsave-parity `9fd5f95`
+  - [sprint-teamsave-status-parity-FIX.md](../../../session/tasks/sprint-teamsave-status-parity-FIX.md) — full spec + report-backs
+  - [teamsave-vs-status-parity.md](../../../session/tasks/teamsave-vs-status-parity.md) — tester evidence
+  - once.sh@dev: [hiveMind](https://github.com/Cerulean-Circle-GmbH/once.sh/blob/dev/hiveMind) `9ddcf35` (shared reader) · [test/test.teamsave-parity](https://github.com/Cerulean-Circle-GmbH/once.sh/blob/dev/test/test.teamsave-parity) `9fd5f95`
 
 ## Description
 **Role: architect (frame) → expert (impl) → tester (validate) → PO (gate)**

@@ -1,3 +1,5 @@
+> ⬆ **[Sprint 2 · Epic E](../../scrum.pmo/sprints/sprint-2/task-s2-e-tooling-hygiene.md)** — this spec is traced from that epic.
+
 # Add `oo new.task` scaffolder — consistent task files from a template
 
 **From**: oosh-po (ARON cycle — improvement as task, "use task templates")

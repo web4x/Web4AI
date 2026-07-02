@@ -1,3 +1,5 @@
+> ⬆ **[Sprint 2 · Epic C](../../scrum.pmo/sprints/sprint-2/task-s2-c-registry-route-identity.md)** — this spec is traced from that epic.
+
 # Directive: split oosh-po agent files into per-@host dirs (stop two-fork conflicts)
 
 **From**: oosh-po@MacStudio  **To**: oosh-po@WODA.prod (+ any duplicated-role forks) + agent-trainer

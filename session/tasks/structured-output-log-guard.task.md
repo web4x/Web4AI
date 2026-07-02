@@ -1,3 +1,5 @@
+> ⬆ **[Sprint 2 · Epic E](../../scrum.pmo/sprints/sprint-2/task-s2-e-tooling-hygiene.md)** — this spec is traced from that epic.
+
 # DRY guard: structured-output methods must not leak LOG_DEVICE lines
 
 **From**: oosh-architect (CMM4 systemic-pattern flag, 2026-06-29) — captured by oosh-po@WODA.prod

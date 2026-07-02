@@ -1,3 +1,5 @@
+> ⬆ **[Sprint 2 · Epic F](../../scrum.pmo/sprints/sprint-2/task-s2-f-plantuml-script.md)** — this spec is traced from that epic.
+
 # Design: `plantuml` OOSH script — dockerized PlantUML render, managed via odocker
 
 **Type**: CO-DESIGN (architect ↔ PO) · **From**: oosh-architect (Tron directive: "generate a plantuml oosh script to install and manage the odocker image and usage; talk to the PO and design it together") · **Date**: 2026-06-29

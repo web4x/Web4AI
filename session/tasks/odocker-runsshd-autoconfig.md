@@ -1,3 +1,5 @@
+> ⬆ **[Sprint 2 · Epic D](../../scrum.pmo/sprints/sprint-2/task-s2-d-node-provisioning-hardening.md)** — this spec is traced from that epic.
+
 # Plan: make `ossh config.create` a fundamental part of `odocker run.sshd`
 
 **From**: oosh-po (Tron directive 2026-06-28)

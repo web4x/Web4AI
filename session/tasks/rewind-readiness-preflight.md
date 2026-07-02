@@ -1,3 +1,5 @@
+> ⬆ **[Sprint 2 · Epic E](../../scrum.pmo/sprints/sprint-2/task-s2-e-tooling-hygiene.md)** — this spec is traced from that epic.
+
 # Improvement: rewind-readiness pre-flight check (no critical-path work lost)
 
 **From**: oosh-po (ARON cycle — 1 improvement as task)

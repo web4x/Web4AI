@@ -1,3 +1,5 @@
+> ⬆ **[Sprint 2 · Epic A](../../scrum.pmo/sprints/sprint-2/task-s2-a-teamsave-status-parity.md)** — this spec is traced from that epic.
+
 # Sprint: teams.save / status MVC parity FIX — CRITICAL INFRA (do first)
 
 **Delegated by**: oosh-po@MacStudio → **oosh-po@WODA.prod (owns + drives with WODA.prod ooshTeam on dev)**

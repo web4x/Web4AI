@@ -17,12 +17,12 @@
 - up
   - [Sprint 2 Planning](./planning.md)
 - down (one spec each)
-  - session/tasks/structured-output-log-guard.task.md (E.1)
-  - session/tasks/panelock-skip-human-shells.md (E.2)
-  - session/tasks/rewind-readiness-preflight.md (E.3)
-  - session/tasks/test-suite-regression-check.task.md (E.4)
-  - session/tasks/oo-new-task-scaffolder.md (E.5)
-  - session/tasks/claudecode-sessions-prune.task.md (E.6)
+  - [structured-output-log-guard.task.md](../../../session/tasks/structured-output-log-guard.task.md) — E.1
+  - [panelock-skip-human-shells.md](../../../session/tasks/panelock-skip-human-shells.md) — E.2
+  - [rewind-readiness-preflight.md](../../../session/tasks/rewind-readiness-preflight.md) — E.3
+  - [test-suite-regression-check.task.md](../../../session/tasks/test-suite-regression-check.task.md) — E.4
+  - [oo-new-task-scaffolder.md](../../../session/tasks/oo-new-task-scaffolder.md) — E.5
+  - [claudecode-sessions-prune.task.md](../../../session/tasks/claudecode-sessions-prune.task.md) — E.6
 
 ## Description
 **Role: architect (where needed) → expert → tester**

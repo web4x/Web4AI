@@ -1,3 +1,5 @@
+> ⬆ **[Sprint 2 · Epic E](../../scrum.pmo/sprints/sprint-2/task-s2-e-tooling-hygiene.md)** — this spec is traced from that epic.
+
 # Improvement: `pane.lock` must refuse human/non-Claude shells (no flicker war)
 
 **From**: oosh-po (ARON cycle — 1 improvement as task)

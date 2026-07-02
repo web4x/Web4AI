@@ -1,3 +1,5 @@
+> ⬆ **[Sprint 2 · Epic C](../../scrum.pmo/sprints/sprint-2/task-s2-c-registry-route-identity.md)** — this spec is traced from that epic.
+
 # hiveMind route auto-heal — durable fix for RECURRING route=unknown-state under RC-drive
 
 **From**: oosh-po@WODA.prod (SM: robbin-po route corruption RECURS ~10min after registry.set)

@@ -1,3 +1,5 @@
+> ⬆ **[Sprint 2 · Epic D](../../scrum.pmo/sprints/sprint-2/task-s2-d-node-provisioning-hardening.md)** — this spec is traced from that epic.
+
 # NP-4: provision agent runtime (tmux + claude-cli) on a fresh node
 
 **From**: oosh-po (u24 gate Step 5 finding; ARON cycle improvement)

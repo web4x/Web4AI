@@ -17,9 +17,9 @@
 - up
   - [Sprint 2 Planning](./planning.md)
 - down
-  - session/tasks/hivemind-route-autoheal.task.md (C.1 — route auto-heal + fd/EMFILE root-cause)
-  - session/tasks/hivemind-reconcile-after-fork.task.md (C.2 — adopt orphans + team.audit)
-  - (C.3 boot/identity resolution — OTR-11; see agent-dirs-per-host-split.md)
+  - [hivemind-route-autoheal.task.md](../../../session/tasks/hivemind-route-autoheal.task.md) — C.1 route auto-heal + fd/EMFILE root-cause
+  - [hivemind-reconcile-after-fork.task.md](../../../session/tasks/hivemind-reconcile-after-fork.task.md) — C.2 adopt orphans + team.audit
+  - [agent-dirs-per-host-split.md](../../../session/tasks/agent-dirs-per-host-split.md) — C.3 boot/identity resolution (OTR-11)
 
 ## Description
 **Role: architect (design) → expert (impl) → tester (validate)**
@@ -28,7 +28,7 @@ One root family behind BUG10-adjacent chaos: registry/route/uuid drift under loa
 ## Open items
 - [x] **C.1 route auto-heal** — `agent.send` re-resolves unknown-route from live + retries before queue (SHIPPED). Watch: does route=unknown-state recurrence STOP now the u20 malware (1001 sockets → EMFILE suspect) is gone? Confirm the fd-exhaustion source.
 - [ ] **C.2 reconcile-after-fork + team.audit** — adopt raw-forked orphans (tty-match → registry.set → consistency.fix); `team.audit` flags ALL orphans (live-claude+empty-uuid/unknown-route) in one sweep. (architect designing.)
-- [ ] **C.3 boot/identity resolution** — hook must resolve `role@host` from ground truth; never emit an "unknown" boot that clobbers a real agent (live artifact seen `session/agents/unknown/boot.md`).
+- [ ] **C.3 boot/identity resolution** — hook must resolve `role@host` from ground truth; never emit an "unknown" boot that clobbers a real agent (live artifact seen [session/agents/unknown/boot.md](../../../session/agents/unknown/boot.md)).
 
 ## Definition of Done
 - route survives sustained RC-driving (no recurrence); unknown-route auto-heals, never silent-drops
