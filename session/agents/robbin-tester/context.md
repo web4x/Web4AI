@@ -6,7 +6,7 @@
 - **Node:** node18 = `/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node` (tsx/browser gates). **node22 = `/opt/node22/bin` (use `PATH=/opt/node22/bin:$PATH npx vitest run <file>` for vitest — required; node18 lacks it).**
 - **DONE:** R27.7 security chain CLOSED (scoreboard **55/317**, v0.7.10, commit a5b6cd99c). Everything S21–S27-so-far gated GREEN.
 - **R27.1** statusChecklist DONE (wired dc94cff0->31f420b0 -> 55/317; r264 GREEN). **R27.3** per-task-MD: behavior GREEN (r265) but chain OPEN at architect (UC missing, #126 gap — code shipped v0.7.8 before chain built); I wire the Test hop when the impl marker lands.
-- **NEXT:** S27 dispatch pending. When a task arrives: RULE #126 first (does the scenario unit exist? if not → REJECT + report). Then gate DET-3x, prefer read-only on real units, report to PO.
+- **NEXT:** S27 dispatch pending — incl an upcoming TUI-fix gate (restart via remoteShells:0.2 WODA.prod + observe the LIVE TUI there, not an agent pane — Tron directive). When a task arrives: RULE #126 first (does the scenario unit exist? if not → REJECT + report). Then gate DET-3x, prefer read-only on real units, report to PO.
 - **Tests I own (R27.7):** `proxy-fetch-guard.test.ts` = 12 tests (5 guardUrl SSRF + sanitizeHtml + 2 GAP bypass [1b0b7123 ::ffff-hex, 8ce68dcc rebind-pin] + 4 fetchSanitized [12e2f21a/ec56967a/a30f134e/77d2d547]). 12/12 DET-3x node22. previewByType marker 3458dd89 in r252.
 - **Wheel-ready after rewind.**
 
@@ -37,4 +37,5 @@ SystemTester ce981242 · Tron primary 8f74dfba (tombstones 3effa1fc/2703628c/37f
 - `npx tsx scripts/objectVerb.ts chain scoreboard|followUp|lintMarkers` — chain measurement (node18 fine).
 - `PATH=/opt/node22/bin:$PATH npx vitest run test/vitest/<f>.test.ts` — vitest (node22 required).
 - Wire a Test hop: mint `ior:class:Test` unit (sourceFile→gate) + `// [test:uuid:<u>] <req> <method>` marker in the test file + push `ior:instance:<test>` to Impl.model.tests[]. Bridge each Test to the gate that VERIFIES its impl. Verify impl markers are in `src/` (grep) before wiring — measure, don't trust the stated hop count.
+- **Server restarts + live TUI observation = remoteShells session** (NOT agent panes): remoteShells:0.2 = WODA.prod (npm), remoteShells:0.3 = WODA.test. Restart there + watch the live TUI in remoteShells:0.2. (Where the in-memory-pollution restart-flush actually happens.)
 - SSRF proxy: `/api/proxy?url=` (403 blocked / 200 external); guard = `ProxyFetch.guardUrl` (proxy-fetch.ts), rate-limit fedRateOk 30/60s.
