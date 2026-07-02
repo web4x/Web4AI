@@ -65,3 +65,6 @@ Hypothesis CONFIRMED — 2 mechanisms:
 
 ## Reference for the fix (from g.3): macos `04b54a5` SSH-send Escape-before-Enter
 macos.latest's `04b54a5` (SSH-send: Escape-before-Enter) is a macos-unique send technique — expert/architect: REVIEW it while fixing g.1; the non-claude/SSH/session send path may want that technique (possible macos→dev reverse-port). Don't blind-copy; evaluate vs the branch-on-kind design.
+
+## ✅ g.1 IMPL DONE (expert `188971a`, dev) — → tester T-SEND-SESSION
+send.smart branches on target KIND: non-claude = stage+Enter, NO poke/NO Escape; claude = full OTR-1 contract UNCHANGED (T-DISPATCH-SUBMIT still 5/5); isClaudeCode node-case hardened; session→active-pane→kind. Live-verified WODA.prod. **Gate: tester T-SEND-SESSION** (regression guard — the session/shell send path OTR-1 missed). PO gates on the tester report.
