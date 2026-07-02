@@ -31,7 +31,7 @@ Why: every fresh token = a prod user + room + content blobs = pollution + a purg
 - This is why "wer schreibt, der bleibt" is survival, not ceremony: only the *committed* word reached this incarnation. The approved-but-uncommitted edit died with the bloated session.
 
 ## WODA.prod gate environment + R21.2 discriminator (2026-06-28, measured)
-**Repo location (measured, my committed path was stale):** live Web4RawBin on WODA.prod = `/var/dev/Workspaces/2cuGitHub/Web4RawBin` (v0.6.65). `/var/dev/Workspaces/web4x/Web4RawBin` is the OLD v0.6.62 (pre-fix) — useful as a RED-baseline source. Always `grep '"version"'` + `git log -1` both before assuming which is live.
+**Repo location (measured, my committed path was stale):** live Web4RawBin on WODA.prod = `/var/dev/Workspaces/web4x/Web4RawBin` (v0.6.65). `/var/dev/Workspaces/web4x/Web4RawBin` is the OLD v0.6.62 (pre-fix) — useful as a RED-baseline source. Always `grep '"version"'` + `git log -1` both before assuming which is live.
 
 **Browser gate bring-up on WODA.prod (no browser cached):**
 - node18 at `/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node`.

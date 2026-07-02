@@ -2,11 +2,11 @@
 
 ## ▶ RESUME STATE (rewind-safe, 2026-07-02)
 - **Identity/pane:** I am **robbin-tester** at `robbinTeam2:0.5` on WODA.prod. Report gate verdicts to `robbinTeam2:0.0` (PO) and SM at `ooshTeam:0.1`.
-- **Repo:** `/var/dev/Workspaces/2cuGitHub/Web4RawBin` (Web4RawBin, live prod.wo-da.de:4444). My gates: `test/visual/r2*.mjs` (15 files, r211–r265) + `test/vitest/proxy-fetch-guard.test.ts`.
+- **Repo (RELOCATED 2026-07-02):** `/var/dev/Workspaces/web4x/Web4RawBin` — MOVED out of 2cuGitHub (which now holds the SEPARATE WebMDA + Web4Articles repos — do NOT touch those). Same repo, all my commits intact, scoreboard 55/318. (Web4RawBin, live prod.wo-da.de:4444). My gates: `test/visual/r2*.mjs` (15 files, r211–r265) + `test/vitest/proxy-fetch-guard.test.ts`.
 - **Node:** node18 = `/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node` (tsx/browser gates). **node22 = `/opt/node22/bin` (use `PATH=/opt/node22/bin:$PATH npx vitest run <file>` for vitest — required; node18 lacks it).**
 - **DONE:** R27.7 security chain CLOSED (scoreboard **55/317**, v0.7.10, commit a5b6cd99c). Everything S21–S27-so-far gated GREEN.
 - **R27.1** statusChecklist DONE (wired dc94cff0->31f420b0 -> 55/317; r264 GREEN). **R27.3** per-task-MD: behavior GREEN (r265) but chain OPEN at architect (UC missing, #126 gap — code shipped v0.7.8 before chain built); I wire the Test hop when the impl marker lands.
-- **NEXT:** S27 dispatch pending — incl an upcoming TUI-fix gate (restart via remoteShells:0.2 WODA.prod + observe the LIVE TUI there, not an agent pane — Tron directive). When a task arrives: RULE #126 first (does the scenario unit exist? if not → REJECT + report). Then gate DET-3x, prefer read-only on real units, report to PO.
+- **NEXT:** S27 dispatch pending — incl the TUI-fix gate = S29 R29.1 self-healing npm start preserving the interactive server TUI (already shipped 9b97021dd, retroactive #126 chain in progress; architect 166ca2be4) (restart via remoteShells:0.2 WODA.prod + observe the LIVE TUI there, not an agent pane — Tron directive). When a task arrives: RULE #126 first (does the scenario unit exist? if not → REJECT + report). Then gate DET-3x, prefer read-only on real units, report to PO.
 - **Tests I own (R27.7):** `proxy-fetch-guard.test.ts` = 12 tests (5 guardUrl SSRF + sanitizeHtml + 2 GAP bypass [1b0b7123 ::ffff-hex, 8ce68dcc rebind-pin] + 4 fetchSanitized [12e2f21a/ec56967a/a30f134e/77d2d547]). 12/12 DET-3x node22. previewByType marker 3458dd89 in r252.
 - **Wheel-ready after rewind.**
 
