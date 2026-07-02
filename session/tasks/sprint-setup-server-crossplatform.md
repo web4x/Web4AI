@@ -41,11 +41,20 @@ Read carefully: `state` engine, `oo`'s SETUP_SERVER definition (state-add order 
 4. How **P1 and P2** each drive SETUP_SERVER to the SAME correct terminal (per privilege: user-mode terminal vs full root/server terminal).
 Deliver design to this file. No code.
 
-### S2 — Expert: state order + XOR redirect in `oo`  ·  Owner: oosh-expert  ·  Status: READY (S1 approved)
+### S2 — Expert: state order + XOR redirect in `oo`  ·  Owner: oosh-expert  ·  Status: ✅ DONE (`566fed9`) — awaiting tester
 Implement corrected state-add order + mode-check redirect-on-`OOSH_MODE` in `oo`. NO `state` engine edits. `bash -n` clean.
+**report-back (expert `566fed9`)**: All in `oo`, zero `state`-engine edits, `bash -n` clean.
+- **D1** reorder (oo:570-575): `[20] user.rights.only · [21] user.mode.release · [22] user.mode.dev · [23] user.installation.done` — done now AFTER the mode branch.
+- **D2** both mode checks rewritten to ALWAYS return 0 + steer via numeric RESULT (returning 1 was the stall). Indices resolved dynamically with `state.find SETUP_SERVER <name> id` (measured live: echoes clean numeric, e.g. `23`) — NO hardcoded 21/22/23, survives reorder. release-arm: `released`→accept, else redirect→`find(user.mode.dev)`. dev-arm: `dev`→accept, else redirect→`find(user.installation.done)`. Mirrors the proven privilege redirect (oo:641-656). Both OOSH_MODE values converge on user.installation.done (design §C traces).
+- **C.1** single OOSH_MODE derivation seam at the mode-band entry (`private.check.user.rights.only`, [20]): `[ -z "$OOSH_MODE" ] && export OOSH_MODE=released` — P2 already exports `dev` before the machine; naked P1 defaults released. One place, no scattered defaults, no engine edit.
+- Verified engine redirect contract live (state.check: check rc 0 + numeric RESULT≠current → `stateFound=$RESULT` jump). **Tester S4/S6: `state next` should cross the XOR for BOTH OOSH_MODE values, no stall at 21.**
 
-### S3 — Expert: platform-default derivation  ·  Owner: oosh-expert  ·  Status: READY (S1 approved)
+### S3 — Expert: platform-default derivation  ·  Owner: oosh-expert  ·  Status: ✅ DONE (`650e743`) — awaiting tester
 Replace hardcoded platform paths with os-derived defaults in config init (+ `oo`) for component modes + odocker workspaces.
+**report-back (expert `650e743`)**: `bash -n` clean (config, oo, odocker). Verified derivation A/B (darwin→/Users/Shared, linux→/home/shared, override preserved).
+- **Single seam in `config.init`**: derive `OOSH_SHARED_BASE` keyed on `$OOSH_OS` → `OOSH_COMPONENTS_DIR` + `ODOCKER_WORKSPACES`. All pure-state exports; OOSH_-prefixed persist via `config save oosh OOSH`→oosh.env. `${VAR:-}` preserves operator/CI overrides.
+- **Consumers de-hardcoded**: `oo.mode.base.get` reads `OOSH_COMPONENTS_DIR` (fallback derives from `OOSH_SHARED_BASE`, no `/Users/Shared`); `odocker:14` `:=` derives from `OOSH_SHARED_BASE`. macOS literals dropped.
+- **⚠️ One design note for architect/PO**: S1 §D said "keyed on `$OOSH_OS` via os detection." MEASURED ground truth: `os.check.env` has ZERO callers and `OOSH_OS` is empty even in an established donges shell on WODA.test; `os` **auto-dispatches on source** (`os.start "$@"` at tail) so it can't be run in-process, and it doesn't echo OOSH_OS. So I establish `OOSH_OS` from `$OSTYPE` at this ONE seam, mirroring os.check.env's exact patterns (darwin*/linux*/cygwin/msys/freebsd*). If you'd rather add a side-effect-free `os` accessor (e.g. `os os` echoes OOSH_OS) and have config.init consume it, that's a small follow-up — flag me. **Tester T-PLATFORM-DEFAULTS**: assert derived (not hardcoded), correct per platform, override honored.
 
 ### S4 — Tester: verify P1 (self-bootstrap)  ·  Owner: oosh-tester  ·  Status: BLOCKED (needs S2/S3)
 On a naked box (WODA.test): `init/oosh` reaches correct mode-aware terminal via `state next` (no stall), platform-correct paths, idempotent. Show raw `state next`/`state of`.
