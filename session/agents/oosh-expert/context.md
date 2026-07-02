@@ -120,3 +120,9 @@ ssh u24 'grep -E "^state=|stateValue" ~/config/current.state.machine.env'   # ch
 ## Notes
 - WODA.prod has no /dev/tty — use LOG_DEVICE=/dev/stdout
 - u20 = born-broken repro box (symlinked ~/config)
+
+---
+## ⚡ CURRENT WODA.prod SESSION (ooshTeam:0.3) — 2026-07-02, saved pre-cliff (appended)
+DONE (all dev, pushed): security rebuild (u20+u24 KEY-ONLY loopback-bound; incident RESOLVED); parity PF1-4 (shared reader `private.hiveMind.live.tupleset`; teams.save+team.list consume it; `hiveMind role.uuid` live-preferred; PF5 3/3 cc641b7); plantUML task-s2-f.1 (odocker run.ephemeral+image.ensure 1cb40ee; plantuml 0638344; docs/plantuml.md a51c9ed; T-PLANTUML 5/5); OTR-2 route auto-heal (3452eae).
+**OTR-1 (task-s2-b.1) DONE**: 96ccff2 otmux core (send.stage/submit/poke/verify; send.smart→honest rc{0,2,3,1}; REGION-verify not text-presence — kills BUG10 false-pos), a9fbea5 hiveMind (agent.queue.drain gates dequeue rc0 = no-silent-drop; delegate=pointer-only thru core), 0cc1b9e timing (settle 1.3s — verifying too early false-STAGE-reads submitted pane → harmful Escape-poke; live-caught). Tester T-DISPATCH-SUBMIT next. Supersedes BUG10.
+**⏭ NEXT — NOT STARTED: OTR-3** = scrum.pmo/sprints/sprint-2/task-s2-c.2-reconcile-after-fork.md (PO design): I2b (batch live-uuid vs cached via `private.hiveMind.live.tupleset`) + fork-event uuid-adopt + tty-match orphan adopt + team.audit + route auto-heal. Tester T-RECONCILE-FORK. READ SPEC FIRST. Reuse: live.tupleset (parity reader), otmux send.verify (region), hiveMind role.uuid (live uuid).
