@@ -36,3 +36,8 @@ One root family behind BUG10-adjacent chaos: registry/route/uuid drift under loa
 - tests: T-ROUTE-AUTOHEAL, T-RECONCILE-FORK
 
 *Sprint 2 — Controller Reliability · task-s2-c*
+
+---
+## ✅ C.3 / OTR-11 boot-identity DESIGN done (architect `52bdb7e`, task-s2-c.3) — PO APPROVED
+Root cause: the boot hook (`pre-compress.sh:L13`) is the LAST `$TMUX_PANE` holdout BUG7 missed → stale pane → falls to 'unknown' → clobbers shared `session/agents/unknown/boot.md` (the live artifact I flagged). Fix: anchor on `otmux pane.self`; resolve role@host from LIVE pane title (> registry/env cache); @host-aware dir pick (**auto-closes the per-host boot-resolution directive** from agent-dirs-per-host-split); FAIL-SAFE never writes the shared unknown sink (skip+warn / quarantine-unique) + retire `unknown/` as a target; shared `identity.resolve` + team.audit flags it (with C.2). Same live-is-truth family. **Expert impl + tester T-BOOT-IDENTITY.**
+- **C-family status**: C.1 route auto-heal = SHIPPED; C.2 reconcile-after-fork = DESIGN done; C.3 boot-identity = DESIGN done. Expert impl of C.2+C.3 awaits the expert rewind (100%/saved ec981f3, Tron /rewind pending).
