@@ -107,3 +107,10 @@ Final spec (5b7a803) matches all 5 PO calls exactly; object.verb/no-flag clean (
 - **DOGFOOD verified** (PO synthesis): GOOD real robbin `r20-2-grab-bar-chain.puml` → 5139B real svg rc=0; BAD mode-conflict puml → "Error line 3" detected, rc=1.
 - **FOLLOW-UP tracked**: `plantuml.check` pre-render lint (3 content-error classes) — NOT v1 per PO #3.
 - **→ oosh-tester**: T-PLANTUML ready — good robbin puml→real svg rc=0; bad puml→stub detected rc=1; `odocker image.ensure` idempotent; `odocker run.ephemeral` self-cleans.
+
+---
+## ★ ADDED ACCEPTANCE (Tron 2026-07-02) — tester-tested + architect-documented + architect-rendered
+1. **Tester T-PLANTUML** (not expert self-dogfood): good .puml→real svg; bad→detected error-stub (rc≠0, not shipped); `run.ephemeral` --rm cleanup + `image.ensure` idempotent; grep-guard = 0 `docker` calls in plantuml. Tester reports; PO gates on the report.
+2. **Docs for oosh-architect**: expert authors a usage doc (install/render/status, PLANTUML_IMAGE/TAG, the odocker layering) — enough that the architect uses the tool WITHOUT reading the source.
+3. **oosh-architect independently renders**: the architect (a non-author) compiles a real `.puml → .svg` via `plantuml render`, using only the docs, and reports the produced svg. This is the true proof the tool is usable — not the builder's own run.
+Ordering: expert docs → architect reads+renders (reports svg) ; tester T-PLANTUML in parallel → all three green = PO gate.

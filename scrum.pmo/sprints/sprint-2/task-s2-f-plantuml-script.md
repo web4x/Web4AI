@@ -24,12 +24,16 @@
 Two-layer split (TRON 2026-07-02): **odocker** = generic docker image/container LIFECYCLE plumbing (2 new generic primitives `run.ephemeral`, `image.ensure`). **`plantuml`** = the SOLE interface for USING plantUML docker — `install` manages the plantUML IMAGE lifecycle + brings it UP+READY (via `odocker.image.ensure` + readiness check); `render` USES the ready image (via `odocker.run.ephemeral`) → .puml→.svg + post-render stub-detection. PLANTUML_IMAGE/TAG pinned; object.verb/no-flag; plantuml has ZERO `docker` calls (grep-guard). Serves the robbin R22.3 render (dogfood). Full spine in [task-s2-f.1](./task-s2-f.1-plantuml-design.md).
 
 ## Open items
-- [ ] Expert: implement `odocker.run.ephemeral` + `odocker.image.ensure` (generic, +completions) → then `plantuml` (install/render/status/usage +completion, config vars, validation).
-- [ ] Tester: T-PLANTUML — good robbin .puml→real svg (dogfood); bad .puml→detected error-stub (not shipped); odocker primitives idempotent + `--rm` cleanup.
+- [x] Expert: implement `odocker.run.ephemeral` + `odocker.image.ensure` (generic, +completions) → then `plantuml` (install/render/status/usage +completion, config vars, validation). (`1cb40ee`+`0638344`)
+- [ ] **Tester: T-PLANTUML** — good robbin .puml→real svg; bad .puml→detected error-stub (not shipped); odocker primitives idempotent + `--rm` cleanup; grep-guard 0 `docker` calls in plantuml. Report results (PO gates on the report).
+- [ ] **Docs for oosh-architect** — a usage doc (install/render/status, config vars, the layering) so the architect can use the tool without reading the source. Expert authors; lives with the script docs / referenced from here.
+- [ ] **oosh-architect independently renders** a real .puml → .svg via `plantuml render` (NOT the expert's self-dogfood) — proves the tool is usable by a non-author from the docs alone. Architect reports the svg produced.
 
 ## Definition of Done
 - `plantuml render <dir>` → validated .svg; layering invariant (plantuml has ZERO `docker` calls — grep-guard)
 - robbin R22.3 render runs through `plantuml render` (not a one-off)
-- T-PLANTUML green
+- **T-PLANTUML green (tester-run, PO-gated)**
+- **plantUML documented for the oosh-architect** (usage/how-to)
+- **oosh-architect has compiled a .puml→.svg with the `plantuml` oosh script** (independent dogfood) and reported it
 
 *Sprint 2 — Controller Reliability · task-s2-f*
