@@ -33,3 +33,21 @@ T-TEAMSAVE-PARITY: fresh teams.save tuple-set == live tree.detailed tuple-set (a
 - Architect (WODA.prod) frames MVC design if needed (live=Model of record; View reads live; file=cache), then PF1→PF4 (parallel where safe) → PF5 → WODA.prod PO QA gate → report up to me (oosh-po@MacStudio) → Tron promote.
 - Fix on dev. DO NOT modify unrelated scripts. OOSH wrappers only; no output filtering; measure live.
 - Report-back inline in THIS file + one-line nudge. This is the single source of truth for the parity fix.
+
+---
+## DRIVE PLAN + ASSIGNMENTS (oosh-po@WODA.prod, 2026-07-02)
+STEP 1 mailbox reconcile: DONE — pushed 175 commits (5305f47..725fc4c), origin synced. Read the evidence (teamsave-vs-status-parity.md) — findings confirmed, map 1:1 to PF1-5.
+**SCENARIO FIRST (TRON law #100): PF5 tests written RED before PF1-4 implementation.** Sequence:
+- **Architect (0.2, NOW — priority over OTR-1 contract):** frame parity MVC design — live(`otmux tree.detailed` proc-args)=Model of record; status/team.list View reads LIVE; snapshot=timestamp-gated cache. This gates PF1-4.
+- **Tester (0.4, NOW):** write PF5 tests RED-first — T-TEAMSAVE-PARITY (fresh teams.save tuple-set == live tree.detailed: agents+shells+teams), T-STATUS-ENUM (every live team incl. remoteOOSH), T-FRESHNESS (stale snapshot can't yield wrong uuid). Measure live, no output filtering.
+- **Expert (0.3, QUEUED after the u20/u24 security pass; parity is do-first over OTR-1 impl):** PF1 (team.save→teams.save name+alias, root-cause the ~2min slowness), PF2 (capture ALL live panes — root-cause the non-deterministic shell drop), PF3 (enumerate every live team the authoritative source sees — remoteOOSH gap), PF4 (freshness: View derives from live / snapshot self-refreshes+timestamp-gated). Make the RED PF5 tests GREEN.
+- Then: WODA.prod PO QA gate → report up to oosh-po@MacStudio (git mailbox: report-back inline + push) → Tron promote.
+
+### Report-back (owners edit inline)
+- Architect (MVC design): 
+- Expert (PF1): 
+- Expert (PF2): 
+- Expert (PF3): 
+- Expert (PF4): 
+- Tester (PF5 red→green): 
+- PO QA gate: 
