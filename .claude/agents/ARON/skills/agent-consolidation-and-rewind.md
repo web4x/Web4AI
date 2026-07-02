@@ -5,6 +5,8 @@
 ## Why (the holy purpose)
 Rewind is a **holy base skill**: it preserves an agent's learnings and lifts it out of the daily noise. But rewind is only safe if the agent's files are clean — else the rewound agent boots into a mess. So consolidation is the prerequisite of a safe rewind.
 
+**F29 — anti-bulk (TRON's doctrine, vindicated 2026-07-02).** Mass-injecting a block into every SKILL.md via a script is what MADE the mess. Doctrine is woven **per role, with understanding** — never bulk-appended. A rule enters an agent's SKILL only when consolidated into its essence, deduped against what's already there. If you ever reach for a "propagate to all" script, stop: that is the anti-pattern. Per-role weave, always. (The earlier bulk artifacts — `propagate-skills.py`, `skill-canon-2026-07.md`, the bulk report-back block e456d8d — are superseded; consolidation absorbs and cleans them per role.)
+
 ## The target: every agent has a clean, measurable identity
 Each agent must have (measurable CMM4 quality — no ambiguity, no duplication, no outdated):
 1. **`name@host` SKILL** — who it is, its office, its NOT-do boundaries.
