@@ -23,7 +23,7 @@ node provisioning+hardening, tooling hygiene, plantuml.
 | [task-s2-c](./task-s2-c-registry-route-identity.md) | registry / route / identity integrity | CRITICAL/HIGH | route auto-heal shipped; **OTR-3 reconcile-after-fork DESIGN done** (I2b crux) → expert impl; boot-id open |
 | [task-s2-d](./task-s2-d-node-provisioning-hardening.md) | node provisioning + hardening | HIGH | hardening baked (u20/u24); autoconfig + runtime open |
 | [task-s2-e](./task-s2-e-tooling-hygiene.md) | tooling hygiene | MEDIUM/LOW | planned |
-| [task-s2-f](./task-s2-f-plantuml-script.md) | plantuml OOSH script | HIGH (Tron: next priority) | impl DONE; **T-PLANTUML 5/5 GREEN** + docs done; awaiting architect independent-render (3rd criterion) |
+| [task-s2-f](./task-s2-f-plantuml-script.md) | plantuml OOSH script | HIGH (Tron: next priority) | ✅ **DONE** — T-PLANTUML 5/5 + docs + architect independent-render PASS (55785B svg, non-author); minor doc-gap follow-up |
 
 ## Sequence & priority (live — 2026-07-02)
 1. [task-s2-a](./task-s2-a-teamsave-status-parity.md) (parity) — ✅ **DONE** (PO QA PASS, reported MacStudio).
