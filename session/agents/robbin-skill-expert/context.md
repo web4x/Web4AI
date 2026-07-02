@@ -17,6 +17,17 @@ Sprint 23/T23.3, req done, uc+ pending (T23.3 In Progress, tester gating). My pi
 <- planner task 52ebca28c (linear, no conflict). Version at v0.6.84 (expert). PO holds pin per
 task until gate signal (learning #125). WATCHERS: none active.
 
+**NEW PROJECT — AgentMessage inter-comms skill (Tron directive 2026-07-02, SCENARIO-FIRST)**:
+Make ALL inter-agent otmux-send comms FIRST-CLASS — new scenario type `ior:class:AgentMessage`
+(peer to Task/Req/UC), minted by an OOSH skill layered on `otmux send`, each AgentMessage
+REFERENCED BY its task (Task.messages[] + AgentMessage.task back-ref + ownerIor=task). tmux =
+transport only; the unit = durable record (wer schreibt der bleibt). MY design proposal committed
+5ef764c59 (scrum.pmo/skills/agent-message-skill-design.md): AgentMessage schema + skill verbs
+(send/list/thread/inbox) + scenario-first plan (R.1-4). SEQUENCE per Tron: asked SM (ooshTeam:0.1)
+to PING me when PO free -> then I convene req(0.4)+architect(0.3)+planner(0.6) for scenario-first
+planning (Sprint->Req->UC->Task->chain BEFORE code). Bootstrapping: planning msgs still go via tmux
+until R.2 (the send skill) ships, then team switches to agentMessage.send. AWAITING SM ping on PO-free.
+
 **S27 COMPLETE + S28 START 2026-07-02 (56/318 det-3x, web4x)**: R27.3 credited (impl 88744d89
 tagged on generate-sprint-md.ts after MY task-FSM!=chain-credit catch — planner had flipped task
 status DONE claiming 56 but impl marker was missing; canonical held at 55 until the marker landed).
