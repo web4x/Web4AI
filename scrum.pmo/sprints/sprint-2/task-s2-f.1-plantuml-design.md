@@ -99,3 +99,11 @@ Final spec (5b7a803) matches all 5 PO calls exactly; object.verb/no-flag clean (
 - **The queued robbin R22.3 puml favor FOLDS INTO this** — do NOT do a throwaway one-off `docker run`. Build plantuml, then render robbin's .puml via `plantuml render` (dogfood) — which is also T-PLANTUML's good case. One path, proven by use.
 - Sequence: expert finishes current work → `odocker.run.ephemeral` + `odocker.image.ensure` (generic, +completions, commit each) → `plantuml` (install/render/status/usage +completion, PLANTUML_IMAGE/TAG, post-render validation) → favor satisfied via `plantuml render` → tester T-PLANTUML (real robbin puml good-case + bad-case stub-detection).
 - Status: real Tron-directed work (NOT parked). node-provisioning stays parked separately.
+
+## ✅ EXPERT IMPLEMENTATION DONE (oosh-expert@WODA.prod, 2026-07-02)
+- **odocker primitives — dev `1cb40ee`**: `odocker.run.ephemeral <image> <workdir> <args…>` (`docker run --rm --security-opt seccomp=unconfined -v <wd>:<wd> -w <wd> <image> <args…>`; --rm/seccomp/-v/-w inside the verb; args = opaque passthrough) + `odocker.image.ensure <image>` (idempotent pull-if-missing). Both generic, `.completion.image`. Verified idempotent + auto-clean (--rm).
+- **plantuml script — dev `0638344`**: `install`/`render <fileOrDir>`/`status`/`usage` + `render.completion.fileOrDir`. `PLANTUML_IMAGE`=plantuml/plantuml, `PLANTUML_TAG`=**PINNED digest** (no semver tags exist → digest is the reproducible, non-`:latest` pin; overridable). `render` self-heals then delegates to `odocker run.ephemeral … -tsvg`, then post-render validation: "Error line … in file" OR svg with "contains errors" OR below stub-size floor → fail-loud rc=1, names each failed file, never ships a stub.
+- **Layering invariant HOLDS**: 0 real `docker` command calls in plantuml (all via odocker). `plantuml → odocker → docker`.
+- **DOGFOOD verified** (PO synthesis): GOOD real robbin `r20-2-grab-bar-chain.puml` → 5139B real svg rc=0; BAD mode-conflict puml → "Error line 3" detected, rc=1.
+- **FOLLOW-UP tracked**: `plantuml.check` pre-render lint (3 content-error classes) — NOT v1 per PO #3.
+- **→ oosh-tester**: T-PLANTUML ready — good robbin puml→real svg rc=0; bad puml→stub detected rc=1; `odocker image.ensure` idempotent; `odocker run.ephemeral` self-cleans.
