@@ -2,6 +2,11 @@
 
 *Patterns, failures, KPIs — identity after compact.*
 
+## Small OOSH/Remote Refinements (2026-07-03, ARON RC re-add)
+- **Split methods use DOTS**: `otmux split.v <?target> <?command>` / `otmux split.h ...` / `otmux split <?target>`. NOT `splitV`/`splitH` (usage display shows "splitH/splitV" but the real method names are dotted — `splitV` fails to dispatch). Add a pane + login in one go: `otmux split.v remoteOOSH:0.1` then `otmux send.raw <newpane> "ossh login <host>" Enter`.
+- **Clearing a stuck composer through a NESTED-remote path needs Escape BEFORE C-u**: plain `otmux send.raw <remotepane> "otmux send.raw Temple:0.0 C-u"` did NOT clear ARON's composer; `Escape; sleep 1; C-u` DID. Escape first, then C-u, when driving a composer via a bridge shell.
+- **Re-adding RC**: `otmux send.raw Temple:0.0 "/remote-control" Enter` — may need a SECOND Enter to submit (first can be newline). Confirm via footer showing `/rc` badge + "/remote-control is active" line. Composer must be clear first (see above).
+
 ## Cross-Machine Reach: `otmux tree` pane titles ARE the host map (2026-07-03, Tron-taught)
 
 - **To reach a remote-host agent (e.g. ARON@Temple:0.0 on WODA.prod) from MacStudio**: run `otmux tree` — the pane TITLES carry `@host` (e.g. `RawBin@WODA.prod`, `RawBin@WODA.test`, `donges@v36421`). READ the title to find the bridge pane; don't trust a remembered mapping.

@@ -1,7 +1,13 @@
 # Agent Trainer Context — Tier-3 Distillation 2026-06-10
 
-**Updated**: 2026-07-02 (MacStudio — Tron-ordered self-save; yielding to SM for catch-22 rewind)
+**Updated**: 2026-07-03 (MacStudio — SM drove Phase-1 catch-22 rewind at real 0%; saving before Phase 2)
 **Role**: agent-trainer
+
+## IN-FLIGHT at this rewind (SM re-capture — 2026-07-03)
+- **ARON cross-machine coordination (DONE)**: reached ARON@Temple:0.0 (WODA.prod) via new bridge pane `remoteOOSH:0.2` (root@v60211, titled WODA.prod; created by `otmux split.v remoteOOSH:0.1` + `ossh login WODA.prod`). Cleared ARON's stuck "rewind me now" composer (Escape+C-u — nested-remote needed Escape first, plain C-u didn't land). **Re-added RC to ARON**: `/remote-control` → footer now `/rc active`, composer clean, title ARON@WODA.prod. ANSWER to "is aron back under rc" = YES now.
+- **In-flight probe**: WODA.prod `claude --version` = 2.1.197 (root@v60211).
+- **My own rewind (this one)**: I burned to real 0% from heavy cross-machine captures. SM drove Phase 1 (freed). SM notes: I self-disconnected my OWN /rc to unwedge my composer (SM re-enables after); I was in plan mode, SM BTab'd me to auto; '1 shell' = leftover WODA.prod capture shell.
+- **Method banked this session**: cross-machine reach = `otmux tree` pane titles are the host map (9c51cb03); RC-interference blocks composer at 0%/1% → disconnect RC via /rc menu to unwedge, re-enable after (81424e75). NEW small refinements to bank: split methods use DOTS (`split.v`/`split.h`, not `splitV`); clearing a stuck composer through a NESTED-remote path needs Escape BEFORE C-u.
 **Session**: agent-trainer at baseTeam:0.0. **HOST = MacStudio** (repo `/Users/Shared/Workspaces/AI/Claude`, OOSH `/Users/donges/oosh`). Pane footer is truth — a prior context edit claimed WODA.prod/`@MacStudio` confusion; verify host from pane footer + `ls` before trusting any path. The 2026-06-28 WODA.prod entries below were from a different host/fork.
 **Model**: Opus 4.8 (1M context)
 **State**: ACTIVE — rewind duty + doctrine propagation. Tron ordered self-save + yield to SM rewind (SM will measure me first — 42).
