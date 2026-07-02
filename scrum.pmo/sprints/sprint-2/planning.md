@@ -25,7 +25,7 @@ node provisioning+hardening, tooling hygiene, plantuml.
 | [task-s2-e](./task-s2-e-tooling-hygiene.md) | tooling hygiene | MEDIUM/LOW | planned |
 | [task-s2-f](./task-s2-f-plantuml-script.md) | plantuml OOSH script | HIGH (Tron: next priority) | ✅ **DONE** — T-PLANTUML 5/5 + docs + architect independent-render PASS (55785B svg, non-author); minor doc-gap follow-up |
 | [task-s2-h](./task-s2-h-team-sweep-fleet-dashboard.md) | team.sweep fleet dashboard (all teams + bg-shells + context-warn) | HIGH (Tron) | DESIGN done (ec32300); IMPL PENDING behind c.0 (expert building c.0 in OTR-3) — shell-column not live yet |
-| [task-s2-i](./task-s2-i-shell-reaper.md) | shell.reap — reap accumulated bg shells (fd-leak/persist-thru-rewind) | HIGH (Tron/SM) | PLAN → architect design (ties OTR-2 fd + task-s2-h count) |
+| [task-s2-i](./task-s2-i-shell-reaper.md) | shell.reap — reap accumulated bg shells (fd-leak/persist-thru-rewind) | HIGH (Tron/SM) | DESIGN done (4d670b5) safe-by-construction, kill-by-PID-not-pkill (BUG6 lesson) → expert impl (after h) |
 | [task-s2-g](./task-s2-g-otmux-send-reliability.md) | otmux send reliability + c2 parity + dev↔macos.latest | HIGH (Tron: otmux send "broken") | **g.1 ✅ DONE (T-SEND-SESSION 3/3 + T-DISPATCH-SUBMIT 5/5, PO QA PASS — send-broken FIXED)** · g.2 c2=DEV ✅ · g.3 DEV-leads-all ✅ · g.4 → via c.0 kind (expert) |
 
 ## Sequence & priority (live — 2026-07-02)

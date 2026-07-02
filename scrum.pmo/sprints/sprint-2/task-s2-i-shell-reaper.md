@@ -68,3 +68,11 @@ Each leaked shell holds file descriptors (pipes/sockets). Orphans persisting thr
 - Architect (safe-reap design): **DONE 2026-07-02** — safe-reap is correct-by-construction: reap ONLY provably-safe (ORPHANED = owning pane no live claude / reparented-to-init; IDLE-STALE = no running child + age>TTL), DEFAULT=KEEP on any doubt; ACTIVE-WORK + the pane foreground shell NEVER reaped (guards the proven pane.lock otmux:3119 "SIGTERM live foreground" hazard + BUG6 loose-pkill). Reuses task-s2-h tty→pane_pid subtree (DRY) + `claudeCode.process.running`. Graceful SIGTERM→re-check→SIGKILL by PID (not pkill-pattern). Triggers: rewind (hiveMind:530, closes the fd-leak-thru-rewind = OTR-2 tie) + idle-sweep. `shell.reap.dry` = safety-audit valve. Depends on task-s2-h. T-SHELL-REAP incl. the active-survives + foreground-never assertions.
 - Expert (impl):
 - Tester (T-SHELL-REAP):
+
+---
+## ✅ task-s2-i DESIGN done (architect 4d670b5) — PO APPROVED
+Safe-reap CORRECT-BY-CONSTRUCTION: reap ONLY provably-safe (ORPHANED = owning pane has no live claude / reparented-to-init; IDLE-STALE = no running child + age>TTL); DEFAULT=KEEP on ANY doubt. ACTIVE-WORK + the pane's own FOREGROUND shell = NEVER reaped.
+- **Guards proven hazards**: the pane.lock SIGTERM-live-foreground (otmux:3119) + BUG6 loose-pkill. **Kill by PID (SIGTERM→re-classify→SIGKILL), NEVER pkill-pattern** — the BUG6 lesson applied directly.
+- **DRY**: reuses task-s2-h tty→pane_pid subtree (h counts / i reaps) + claudeCode.process.running.
+- **Triggers**: rewind (hiveMind:530 — closes persist-thru-rewind = the OTR-2 fd-leak cure) + idle-sweep. `shell.reap.dry` = safety-audit valve (kills nothing).
+- Depends on h (→ depends on c.0). **Expert impl after h.** Tester T-SHELL-REAP asserts active-SURVIVES + foreground-NEVER.
