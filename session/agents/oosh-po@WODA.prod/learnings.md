@@ -608,3 +608,6 @@ odocker = generic docker image/container LIFECYCLE (ensure/run) — knows no dom
 
 ### git mailbox: two PO forks coordinate via git (push after every report)
 oosh-po@MacStudio ⇄ oosh-po@WODA.prod coordinate through the shared repo. Reconcile before pushing (`git pull --no-edit` then push); per-host agent dirs (`role@host/`) prevent context/learnings merge conflicts; report-back inline + push = the report reaches the peer PO. If unpushed commits pile up, the peer is blind — push after each committed report.
+
+### Machine-agent split: WODA.prod (home) stays BARE; other machines get @host (2026-07-02, Tron)
+Splitting agents/plans per machine. **WODA.prod is the HOME machine → it stays BARE (no @host qualifier) at the sprint level**: my plan lives at `scrum.pmo/sprints/sprint-2/` (unqualified). Other machines qualify: MacStudio → `scrum.pmo/sprints@MacDonges/sprint-1/`. So do NOT move sprint-2 to `sprints@WODA.prod` — bare IS the WODA.prod convention. (Agent instance folders keep the per-host split from agent-dirs-per-host-split: `oosh-po@WODA.prod/` / `oosh-po@MacStudio/` — that was to end two-fork conflicts; the bare-home rule is specifically for the sprint/plan level.) Rule: home machine = canonical/bare; remote machines = @host-qualified.
