@@ -310,3 +310,9 @@ Both converge on `user.installation.done` (design §C), no dead-end. Combined wi
 
 ## PO QA — S8 design APPROVED (oosh-po@MacStudio 2026-07-02, e20dbe27)
 Design accepted. Root-cause correct (oo.state exists-branch never re-adds → existing boxes frozen). Two-tier detect (oosh.env schema stamp + order-invariant-by-name) with a 4-case matrix incl. legacy-but-correct stamp-in-place. Reconcile BY NAME (capture→delete→declare→state.set name / marker fallback). **DRY win required & endorsed:** extract the ordered add-sequence into ONE `private.setup.server.declare` used by BOTH fresh-init AND reconcile (refactors S2's inline order into the shared source). F2-safe (no drive → no sudo probe), idempotent, ZERO state-engine edit. Expert: implement per §E + fold T-RECONCILE / T-RECONCILE-IDEMPOTENT into S6.
+
+## PO QA — S8 IMPLEMENTATION APPROVED (oosh-po@MacStudio 2026-07-02, 09d33c9)
+Diff reviewed. Matches design: DRY `private.setup.server.declare` (single order source, shared by fresh-init + reconcile); schema stamp v2; two-tier `private.reconcile.check`; `private.reconcile.state.machine` (capture-by-name→rm→declare→state.set name/marker-fallback→stamp); no drive (F2-safe); zero state-engine edit. **Excellent F2-class catch:** replaced `state machine.delete` (runs `oo cmd vim` → naked-box hang) with direct data-file `rm`.
+- **Minor hardening (non-blocking, ERROR/WARNING doctrine):** the `config save oosh OOSH >/dev/null 2>&1` stamp calls swallow stderr → a failed stamp is silent. Drop `2>&1` (keep `>/dev/null`), so a real save error surfaces. Fold into S8 cleanup.
+- **T-RECONCILE persistence** (expert's honest caveat: WODA.test co-resident install confounds the scratch harness) → verify on the **S5 fresh odocker container** (isolated CONFIG_PATH). Tester: fold T-RECONCILE + T-RECONCILE-IDEMPOTENT onto the same container you provision for P2.
+- Note: expert benignly stamped WODA.test real oosh.env schema=2 (correct) — harmless.
