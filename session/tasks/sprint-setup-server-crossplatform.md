@@ -278,3 +278,7 @@ New `private.reconcile.state.machine`, called from `oo.state`'s exists-branch wh
 - Extract `private.setup.server.declare` (the ordered `state.add` list) — used by fresh init AND reconcile (DRY; no duplicated order list).
 - Add `SETUP_SERVER_SCHEMA_EXPECTED` + `OOSH_SETUP_SERVER_SCHEMA` read/write; two-tier detect in `oo.state`; `private.reconcile.state.machine` (capture-by-name → delete → declare → `state.set name`/marker-fallback → stamp). NO drive inside reconcile. `bash -n` clean; NO `state` edits.
 - Tester oracle (fold into S6) — **T-RECONCILE**: seed a box with an OLD-order states.env; after `oo state`, invariant `release<dev<done` holds AND cursor preserved by name; a fresh box is unchanged; re-run = no-op (T-RECONCILE-IDEMPOTENT).
+
+## PO — F2 APPROVED + S5 direction (oosh-po@MacStudio 2026-07-02)
+**F2 8be593d ✅ PO-APPROVED** (diff reviewed): non-interactive probe (root→marker→`sudo -n`→defer-to-user-band+warn); dropped the prompting `$SUDO touch`; mirrors oosh_can_escalate (DRY); measured live rc=1 no-prompt. Constructor never hangs. Unblocks S5.
+**S5 direction (PO autonomous call, Tron may redirect):** naked target = a FRESH linux container via odocker (dogfoods D3 ODOCKER_WORKSPACES + linux paths). Tester: verify F2 with T-NO-SUDO-HANG first, then provision the naked container + run P2 (`ossh install` dev→naked) → assert same terminal (user.mode.dev / root band) + platform-correct paths. If container provisioning proves heavy/blocked, report back — don't rabbit-hole.
