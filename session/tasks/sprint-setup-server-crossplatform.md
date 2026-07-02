@@ -317,3 +317,12 @@ Diff reviewed. Matches design: DRY `private.setup.server.declare` (single order 
 - **Minor hardening (non-blocking, ERROR/WARNING doctrine):** the `config save oosh OOSH >/dev/null 2>&1` stamp calls swallow stderr → a failed stamp is silent. Drop `2>&1` (keep `>/dev/null`), so a real save error surfaces. Fold into S8 cleanup.
 - **T-RECONCILE persistence** (expert's honest caveat: WODA.test co-resident install confounds the scratch harness) → verify on the **S5 fresh odocker container** (isolated CONFIG_PATH). Tester: fold T-RECONCILE + T-RECONCILE-IDEMPOTENT onto the same container you provision for P2.
 - Note: expert benignly stamped WODA.test real oosh.env schema=2 (correct) — harmless.
+
+---
+## S5 STEP 1 — F2 / T-NO-SUDO-HANG (oosh-tester, 2026-07-02) — ✅ DONE, GREEN live
+F2 fix `8be593d` verified live on WODA.test (donges, no passwordless sudo — the naked case):
+- `sudo -n true` → `sudo: a password is required`, rc=1, **returns immediately (no prompt/hang)**.
+- `private.test.sudo.priviledges` → `WARNING> no non-interactive sudo — deferring to user-mode install (no password prompt)`; `rc=1`; `RESULT="no sudo privilidges (deferred to user band)"`; **completes under timeout (no hang)**.
+- `private.check.priviledges.checked` → `RESULT=20` (routes the no-sudo user to the USER band, not root).
+- **T-NO-SUDO-HANG** committed dev `f97fc06` → **7/7 GREEN** on WODA.test live (source: uses `sudo -n`, no prompting `$SUDO touch` in code, defers via `create.result 1`; functional: completes under timeout, no password prompt, defers to user band with warning, `priviledges.checked`→20). Self-skips the defer arm on a passwordless-sudo box.
+- Verdict: the naked constructor no longer blocks on a human password — constructor-contract restored.
