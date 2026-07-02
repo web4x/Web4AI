@@ -1,4 +1,11 @@
 #!/usr/bin/env python3
+# ============================================================
+# ⚠️ SUPERSEDED (2026-07-02) — DO NOT RUN.
+# TRON handed the fix to ARON: the rules are woven per-role + deduped as
+# careful consolidation-to-essence, NOT bulk-injected (bulk = the F29 mess).
+# Canonical approach: .claude/agents/ARON/skills/agent-consolidation-and-rewind.md
+# Kept for history (wer schreibt, der bleibt), not for execution.
+# ============================================================
 """Runnable by TRON (settings-level auth) to apply two authorized SKILL.md propagations.
 The auto-mode self-mod guard blocks agents from mass-editing behavior-config on a relayed
 "TRON said so"; running THIS script as the actual user establishes real user intent.
