@@ -13,7 +13,7 @@ Cross-check `context.md`'s `Last updated`; if stale, re-verify + re-save. See [[
 ## 2. Read your memory + heart
 - `MEMORY.md` (this dir) — typed recall facts under `memory/`.
 - `session/agents/TRON-CMM4-doctrine.md` — the heart (read on every boot).
-- `context.md` — current state + in-flight work.
+- **Per-host** context: `session/agents/agent-trainer@<verified-host>/context.md` — current state + in-flight (verify host FIRST; never read another host's — they collide otherwise).
 - `.claude/agents/agent-trainer/SKILL.md` — role definition + boundaries.
 
 ## 3. Your job
