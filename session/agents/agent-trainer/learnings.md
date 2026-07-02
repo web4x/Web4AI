@@ -14,11 +14,14 @@
 - Text DELETES-then-REAPPEARS (or CHANGES) = re-injection. ARON's text CHANGED 'authorize the trainer to rewind you now' → 'rewind me now' = a LIVE RC source with an actively-editing buffer (even stronger than static re-injection — a static artifact repeats identical text; a changing buffer is a live client typing).
 - Text NEVER deletes = keystrokes not reaching composer = overlay/dialog intercepting = different fix (dismiss the dialog).
 
-**Recovery ladder**:
+**Recovery ladder (REFINED 2026-07-03 by oosh-po's resolution — cheapest fix FIRST)**:
 1. Confirm it's RC not tmux: `otmux client.list`. 0 clients + still re-injecting = RC channel (above tmux).
-2. **ONLY the RC controller (Tron) can clear it from source** — from their /rc interface. Local side never wins.
-3. **Bypass the wedged composer entirely (Tier-3)**: `tmux respawn-pane -k <pane>` → `claudeCode join <agent's trained-uuid>` — resume the committed session in a FRESH clean composer. State preserved in files/JSONL. This sidesteps the RC-staged composer completely.
-4. NEVER burn the agent's context fighting an un-winnable keystroke race.
+2. **CHEAPEST FIX — disconnect RC from the AGENT'S OWN /rc menu** (no Tron client, no respawn needed): `otmux send <pane> /rc` (opens the agent's Remote Control menu) → `otmux send.tui <pane> Up Up Enter` (selects "Disconnect this session") → footer shows "Remote Control disconnected", composer CLEAN, re-injection STOPPED. Agent stays ALIVE + idle + ready for a normal /rewind. **CAVEAT: this removes /rc (Tron visibility) — re-enable after with `/remote-control` once the rewind is done.** Confirmed working on ARON/WODA.prod.
+3. If the agent-side disconnect isn't reachable: Tron clears from THEIR /rc interface (the controller side).
+4. **Last resort — bypass the wedged composer (Tier-3)**: `tmux respawn-pane -k <pane>` → `claudeCode join <agent's trained-uuid>` — resume the committed session in a FRESH clean composer. State preserved in files/JSONL.
+5. NEVER burn the agent's context fighting an un-winnable keystroke race.
+
+**NEW TOOL learned**: `otmux send.tui <pane> <keys>` — sends TUI menu navigation (Up/Down/Enter) to in-TUI menus (like the /rc menu). Distinct from `send.raw` (raw keystrokes to composer). Use send.tui for navigating Claude Code's slash-command menus.
 
 **Cross-machine caveat proven useful**: I'm MacStudio, ARON is WODA.prod — I could NOT measure the pane. I gave REASONING (flagged as analysis, not measurement); the WODA.prod side measured and CONFIRMED. The 42 across machines: I bring documented expertise, the local operator brings the measurement. Advisory + measurement = correct diagnosis.
 
