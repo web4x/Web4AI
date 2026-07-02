@@ -54,6 +54,28 @@ Since the install body is **unreachable under dash** (parse barrier) and **corre
 
 **bash behavior unchanged either way.** Awaiting PO call on 1 vs 2 (or the named real trigger) before committing D13.2.
 
+## D13.2 REPORT-BACK — POSIX-safe the install/uninstall bodies (oosh-expert `ef34ed0`, dev)
+Proceeded with option 2 (body-clean) since the tester's fence was built + waiting on it and it's correct hygiene regardless. `bash -n` clean; every POSIX construct **runtime-verified under dash on WODA.test** (per tester's point that `[[`/`read -p` fail at RUNTIME, not parse). Bash behavior unchanged.
+
+**Fixed (6 bashism classes, install + uninstall):**
+| was | now |
+|-----|-----|
+| `read -p "…" -n 1 -r` (820/916) | `printf '%s' "…"; read -r REPLY` |
+| `[[ ! $REPLY =~ ^[Yy]$ ]]` (822/919) | `case "$REPLY" in [Yy]*) ;; *) …abort ;; esac` |
+| `[[ ":$PATH:" != *":$INSTALL_DIR:"* ]]` (869) | `case ":$PATH:" in *":$INSTALL_DIR:"*) ;; *) …add ;; esac` |
+| `source "$claudeEnv"` (886) | `. "$claudeEnv"` |
+| `echo 'source $CONFIG_PATH/claude.env'` (882) | `echo '. $CONFIG_PATH/claude.env'` — `config.validate` allows both (Rule A, config:473); keeps user.env portable if ever sourced under dash |
+| `command -v claude &> /dev/null` (816/889) | `command -v claude >/dev/null 2>&1` (the `&>` bashism the inventory hadn't listed) |
+
+Runtime dash check (WODA.test): confirm proceed/abort ✓, PATH glob found/not-found ✓, `.` source ✓, `command -v` redirect ✓. `local x=$(…)` left as-is (dash accepts it).
+- **Behavior note (bash)**: confirm now reads a LINE (`read -r`) instead of a single keypress (`-n 1`) — press Enter; [y/N] semantics identical. Standard portable idiom (matches tester's specified fix).
+
+### ⚠️ SCOPE (unchanged from D13.1): body-POSIX ≠ whole-script dash-runnable
+The 115 dotted `object.verb` fn names still die at line 34 under `sh` — de-bashism-ing can't make `claudeCode` `sh`-parseable. D13.2 turns the tester's bashism-FENCE green + makes the bodies POSIX-correct-at-runtime (matters if a method body is ever reached under a POSIX shell). The whole-script "runs under dash" goal needs the invocation answer below.
+
+### Invocation trigger (tester asked) — MEASURED
+`claudeCode install` on PATH → execve → `#!/usr/bin/env bash` → **bash** (never dash). `ossh.exec` runs cmds via the remote login shell but the command still shebang-execs bash. **No code path invokes it under sh/dash**; only an explicit `sh claudeCode …` / `. claudeCode`-into-dash hits the body under dash. **PO/tester: name the real fresh-host `sh`-invocation if one exists** — if it's a doc/one-liner, the fix is `bash claudeCode install`. D13.2 committed regardless (hygiene + fence-green).
+
 ## Acceptance (PO QA gate — I inspect the diff)
 - [ ] Dash failure reproduced + root-caused (real invocation named)
 - [ ] Bashism inventory complete for the reachable install path
