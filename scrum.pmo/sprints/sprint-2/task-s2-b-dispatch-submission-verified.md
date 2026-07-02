@@ -45,3 +45,6 @@ Tester T-DISPATCH-SUBMIT: **5/5 GREEN** (committed dev). Gated on the tester's m
 - RC0 submit→rc0 · **RC2-POKE** (staged→rc2 detected, auto-poke submits→rc0 = the BUG10 rescue) · RC3 (modal→rc3 blocked, Enter withheld) · **QUEUE-NODROP** (agent.queue.drain KEEPS an unsubmittable msg — no silent drop = Sprint22 Hole-2 / robbin-po fix) · **GATE-SRC** static guard locking the dequeue-behind-rc0 mechanism.
 - Rigor noted: the rc0-gate line only fires on a live `❯` pane (not forgeable in-test) → tester proved no-drop behaviorally (route-defer) AND source-locked the gate.
 - **BUG10 SUPERSEDED + CLOSED.** task-s2-b DONE. The fleet-wide dispatch throttle (whole session) is fixed + verified.
+
+## Cross-team confirmation (robbin-po, 2026-07-02)
+robbin-po independently diagnosed the "who interrupts all team members" issue → same BUG10 (otmux send to busy pane types text, Enter doesn't register, staged-not-submitted). Ruled out AgentMessage skill (design-doc only, 3f60a5a2b). Its recommendation (wait-for-ready + verify-resubmit / queue, not poke-3x-give-up) = exactly OTR-1's stage→submit→verify→poke + drain-gate. Confirms BUG10 was FLEET-WIDE; fix (96ccff2+a9fbea5) is live on shared dev once.sh.
