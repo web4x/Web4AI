@@ -29,7 +29,7 @@
 - The suite is the PERMANENT otmux-send regression guard (any future send change runs it)
 
 ## ARCHITECT COVERAGE MATRIX (oosh-architect, 2026-07-02) — EXHAUSTIVE, the permanent send regression-guard
-**Suite name `T-SEND-MATRIX`. 10 groups (A–J), 43 cells. SUPERSET of T-DISPATCH-SUBMIT(5)+T-SEND-SESSION(3) — mapping in §Superset. Each cell tags its testability: `[S]`=static source-assert (unforgeable live state, grep the code — as GATE-SRC does), `[B]`=behavioral (real tmux pane), `[I]`=isolated (planted fixture). Contract under test = OTR-1 verified-submission + g.1 kind-branch. `send.verify` rc: 0 submitted · 2 staged · 3 blocked · 1 error.**
+**Suite name `T-SEND-MATRIX`. 11 groups (A–K), 50 cells. SUPERSET of T-DISPATCH-SUBMIT(5)+T-SEND-SESSION(3) — mapping in §Superset. Each cell tags its testability: `[S]`=static source-assert (unforgeable live state, grep the code — as GATE-SRC does), `[B]`=behavioral (real tmux pane), `[I]`=isolated (planted fixture). Contract under test = OTR-1 verified-submission + g.1 kind-branch. `send.verify` rc: 0 submitted · 2 staged · 3 blocked · 1 error.**
 
 ### GROUP A — KIND classification (root of correctness; g.1 false-POSITIVE + g.4 false-NEGATIVE)
 Kind decides the WHOLE protocol → pin every kind.
@@ -65,6 +65,7 @@ Kind decides the WHOLE protocol → pin every kind.
 - **E2** `[S/B]` claude + pointer (`/…` or `[@…`) → NO prefix (pass-through) — the OTR-1 prefix guard.
 - **E3** `[B]` non-claude (shell) → NO prefix.
 - **E4** `[B]` bash-parent-claude (A3) → gets prefix+verify (the g.4 correctness win — real agent not silently downgraded).
+- **E5** `[B/S]` **prefix EXACTLY ONCE — never doubled (BUG9 idempotent-prefix).** The sender prefix (`[@role]`) appears ONCE and only once across submit + poke + re-send. Guard `[[ "$text" != \[@* ]]`: text already carrying `[@…` is NOT re-prefixed; poke/re-send (text-free) never add a second prefix. Assert: a message already starting with `[@` gets NO added prefix; after poke×N the `[@` prefix count in the delivered text == **1**. *(Tron essential.)*
 
 ### GROUP F — queue.drain gates rc0, no-drop (subsumes GATE-SRC + NODROP)
 - **F1** `[S]` drain dequeues ONLY after rc 0 (gate line before break before dequeue). *(=GATE-SRC)*
@@ -94,8 +95,17 @@ Kind decides the WHOLE protocol → pin every kind.
 - **J2** `[B/I]` **remote pane** (remote-host team via ossh) → send reaches it; protocol applied per its kind; completes (rc0) — no local-only assumption.
 - **J3** `[B/I]` remote UNREACHABLE → rc 1/marker, **never hang, never silent success**. *remote fail-safe (mirrors c.0 never-silent-omit).*
 
+### GROUP K — single-key recognition (`send.raw` = a KEY event, NOT a message) *(Tron essential)*
+A single key is **not** a message → `otmux.send.raw <target> <key…>` sends a RAW key event with **NO prefix, NO verify, NO poke, NO queue**. This is the orthogonal primitive: `send.raw` is the key-sender (submit/poke are built ON it); `send`/`send.smart` is the message-sender (full OTR-1 contract). The matrix pins that a key never accidentally gets the message contract.
+- **K1** `[B]` `send.raw <pane> Enter` → one Enter key event; NO prefix / NO verify / NO poke / NO queue.
+- **K2** `[B]` `send.raw <pane> Escape` → raw Escape; no message contract. *(And per G: Escape via send.raw is the caller's explicit intent — distinct from the auto-Escape that fires ONLY on a claude submit.)*
+- **K3** `[B]` `send.raw <pane> C-u` → raw C-u (clear input line); no prefix/verify/poke/queue.
+- **K4** `[B]` `send.raw <pane> Tab` → raw Tab (completion trigger); no message contract.
+- **K5** `[B]` `send.raw <pane> U|D|L|R` → directional key/target navigation; no message contract.
+- **K6** `[S]` **structural guard**: the `send.raw` path invokes NONE of prefix/verify/poke/queue (grep — key-only, distinct from `send.smart`). A key ≠ a message, by construction.
+
 ### Superset proof (ZERO regression — every existing cell is subsumed)
-T-DISPATCH-SUBMIT: RC0→B1 · RC2-POKE→B2/D1 · RC3→B3 · GATE-SRC→F1 · NODROP→F2. T-SEND-SESSION: SHELL-COMPLETES→C4 · NON-CLAUDE-PATH→A2/D2/G1 · BARE-SESSION→I1. **All 8 ⊂ the 43. g.5 ⊇ both suites.**
+T-DISPATCH-SUBMIT: RC0→B1 · RC2-POKE→B2/D1 · RC3→B3 · GATE-SRC→F1 · NODROP→F2. T-SEND-SESSION: SHELL-COMPLETES→C4 · NON-CLAUDE-PATH→A2/D2/G1 · BARE-SESSION→I1. **All 8 ⊂ the 50. g.5 ⊇ both suites.**
 
 ### Notes for the tester
 - Live claude `❯` state isn't forgeable → those cells are `[B]` on a real agent pane OR `[S]` source-asserts (as GATE-SRC does). Prefer `[I]` planted fixtures (fake prompt text in a scratch pane) where a live claude isn't needed — the region-verify parses TEXT, so a scratch pane echoing a `❯ staged` line exercises C1/C2 without a real agent.
@@ -103,7 +113,7 @@ T-DISPATCH-SUBMIT: RC0→B1 · RC2-POKE→B2/D1 · RC3→B3 · GATE-SRC→F1 · 
 - Run in CI on ANY otmux/send change = the permanent guard.
 
 ## Report-back
-- Architect (full coverage matrix): **DONE 2026-07-02** — `T-SEND-MATRIX`, 10 groups / 43 cells, EXHAUSTIVE + SUPERSET of the 8 existing (mapping above → zero regression). Covers: KIND (A, incl. g.1 node false-POS + g.4 bash-parent false-NEG + A6 kind-from-c.0), rc0/2/3/1 (B), region-vs-light verify (C), poke/no-poke/idempotency (D), prefix (E), drain-rc0-gate/no-drop (F), HAZARDS (G: never-Escape-foreground otmux:3119, never-pkill BUG6), wrap/BUG10 (H), session/dead/directional (I), local+remote (J). Testability tagged [S]/[B]/[I]; fully isolated. This is THE permanent send regression-guard. Tester implements.
+- Architect (full coverage matrix): **DONE 2026-07-02** (+ Tron's 2 REQUIRED ADDS folded in) — `T-SEND-MATRIX`, **11 groups / 50 cells**, EXHAUSTIVE + SUPERSET of the 8 existing (mapping above → zero regression). Covers: KIND (A, incl. g.1 node false-POS + g.4 bash-parent false-NEG + A6 kind-from-c.0), rc0/2/3/1 (B), region-vs-light verify (C), poke/no-poke/idempotency (D), prefix incl. **E5 prefix-EXACTLY-ONCE / BUG9 idempotent-prefix** (E), drain-rc0-gate/no-drop (F), HAZARDS (G: never-Escape-foreground otmux:3119, never-pkill BUG6), wrap/BUG10 (H), session/dead/directional (I), local+remote (J), **NEW GROUP K single-key recognition (`send.raw <key>` = raw key event, NO prefix/verify/poke/queue — a key ≠ a message)**. Tron's 5 essentials all covered: auto-commit(B/C/H) · local+remote(J) · never-dup(D3) · **E5 prefix-once** · **K single-key**. Testability tagged [S]/[B]/[I]; fully isolated. THE permanent send regression-guard. Tester implements.
 - Tester (radical suite + zero-regression):
 - PO gate:
 
