@@ -489,6 +489,20 @@ of error as /api/trace?ior= dumping the whole graph). Verify-not-relay: ran repa
 corroborated the expert's self-reassert. Also learned: expert's ROLLBACK discipline (first --apply
 self-caught todo=1 -> reverted -> fixed -> re-applied clean) = CMM4 self-healing in action.
 
+## Truncated-uuid marker = doesn't credit (2026-07-02, R27.7) + SELF-CORRECTION
+R27.7 impl markers were in source, ON the named method (previewByType), unit + wiring present —
+yet impl=open. FIRST diagnosis (WRONG): 'standalone comment not on named member'. CORRECTED after
+line-by-line read: the comment sits directly on previewByType(); the REAL bug is the marker uses a
+TRUNCATED 8-char uuid `[impl:uuid:accc6a00]` while the scorer needs the FULL 36-char (control R27.1
+credits with `impl:uuid:31f420b0-e99e-458f-9c29-df4152940f77`). All 3 R27.7 impl markers truncated;
+test 3458dd89 marker MISSING entirely. NEW MARKER-BUG VARIANT for the checklist: (a) truncated-uuid
+(8-char, scorer regex/idx.has needs full 36) — telltale: marker present + on named member + unit
+exists but open. Fix = expand to full uuid. DISCIPLINE: I explicitly CORRECTED my own wrong first
+diagnosis to PO ('earlier I said X — that was WRONG; verified against the crediting control'). A
+wrong interpretation stated as fact is a lie even if the underlying measurement was real — correct it
+loudly. Method: diff the FAILING marker against a CREDITING control marker (R27.1) — the delta (short
+vs full uuid) IS the bug. Add truncated-uuid to lintMarkers as a kind.
+
 ## Re-measure 2026-06-28 (SM save-checkpoint)
 Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276→285 (more reqs).
 3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert
