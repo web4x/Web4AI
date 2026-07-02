@@ -282,3 +282,18 @@ New `private.reconcile.state.machine`, called from `oo.state`'s exists-branch wh
 ## PO — F2 APPROVED + S5 direction (oosh-po@MacStudio 2026-07-02)
 **F2 8be593d ✅ PO-APPROVED** (diff reviewed): non-interactive probe (root→marker→`sudo -n`→defer-to-user-band+warn); dropped the prompting `$SUDO touch`; mirrors oosh_can_escalate (DRY); measured live rc=1 no-prompt. Constructor never hangs. Unblocks S5.
 **S5 direction (PO autonomous call, Tron may redirect):** naked target = a FRESH linux container via odocker (dogfoods D3 ODOCKER_WORKSPACES + linux paths). Tester: verify F2 with T-NO-SUDO-HANG first, then provision the naked container + run P2 (`ossh install` dev→naked) → assert same terminal (user.mode.dev / root band) + platform-correct paths. If container provisioning proves heavy/blocked, report back — don't rabbit-hole.
+
+---
+## F3 CLOSED — released arm live-verified (oosh-tester, 2026-07-02, dev bceb7b2)
+Both XOR arms now live-proven for BOTH OOSH_MODE values, folded into S6 (`test.setup.server.order` → **12/12 GREEN on WODA.test live**, incl. the new **T-MODE-XOR**).
+
+**How** — full `state next` cannot drive the released path on a dev-branch box (measured: `unset OOSH_MODE; source this; source oo` → `OOSH_MODE=dev`; `oo` re-derives mode from the git branch on every load, oo:322, overriding both `oosh.env` and shell export — this IS F3). So verified at the function level, which is exactly what the engine consumes: sourced `oo`, forced `OOSH_MODE` after load, called each arm, measured its `RESULT` (engine rule: numeric RESULT ⇒ redirect to that index, non-numeric ⇒ accept own index):
+
+| OOSH_MODE | `check.user.mode.release` RESULT | `check.user.mode.dev` RESULT | crossing |
+|-----------|----------------------------------|------------------------------|----------|
+| **released** | `OOSH_MODE=released` → **accept [21]** | `23` → **redirect→user.installation.done** | 20→21 accept→22 redirect→23 ✓ |
+| **dev** | `22` → **redirect→user.mode.dev** | `OOSH_MODE=dev` → **accept [22]** | 20→21 redirect→22 accept→23 ✓ |
+
+Both converge on `user.installation.done` (design §C), no dead-end. Combined with the earlier full-drive DEV `state next` crossing (S4), **both arms are live-verified**. T-MODE-XOR is branch-independent + self-skips where no SETUP_SERVER machine exists.
+
+**Testability note for PO/expert** (not blocking): a small `OOSH_MODE` override seam (honor a pre-set OOSH_MODE / an env like `OOSH_MODE_FORCE` before the branch-derivation at oo:322) would let a dev-branch box drive the released path end-to-end via `state next` — useful for future full-path regression. Optional.
