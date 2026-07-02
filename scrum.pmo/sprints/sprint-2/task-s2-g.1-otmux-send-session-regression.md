@@ -75,3 +75,16 @@ Tester T-SEND-SESSION gate: BOTH halves GREEN (gated on tester report, not self-
 - **(A) T-SEND-SESSION 3/3**: SHELL-COMPLETES (shell pane → rc0, marker present, NO hang) · NON-CLAUDE-PATH (no-poke/no-Escape branch, never the claude TUI protocol) · BARE-SESSION (bare session name → active pane → dispatched).
 - **(B) T-DISPATCH-SUBMIT 5/5 regression**: claude path UNCHANGED by g.1 (only the orchestrator re-branches; OTR-1 primitives untouched).
 **g.1 DONE.** The OTR-1 send-regression (verify+poke+Escape applied to non-claude targets) is fixed — otmux send now completes reliably for BOTH claude (5/5) AND shell/session (3/3). The trainer's ARON-rewind send + Tron's manual send work again. My gate-miss (session path absent from OTR-1's matrix) is closed by T-SEND-SESSION as a permanent guard.
+
+---
+## 🎯 REMAINING LIVE DUP FOUND + FIXED (oosh-expert, 2026-07-02, `d4e3ae0`) — the drain half fccdad8 missed
+**PO was right — fccdad8 was insufficient.** fccdad8 fixed the ENQUEUE-after-deliver in `agent.send`'s auto-heal (rc2 no longer re-queued). But the **DRAIN** (`hiveMind.agent.queue.drain`) had the SAME rc2 bug on the DELIVERY side:
+
+**CONCRETE MECHANISM (reproduced, not theorized):** the drain gated DEQUEUE on `dispatchRc -ne 0 → break (keep queued)`. OTR-1's honest rc2 = "staged-but-ON-THE-PANE" (message landed; send.smart already staged+poked it). So a queued message that delivered with rc2 was **KEPT queued** and **re-delivered on the NEXT drain** — and idle agents get drained repeatedly (SM-cycle + `agent.unblock` idle hook), so **every drain cycle re-typed the message → Tron sees 2, 3, N copies.**
+- **Proof (harness, mock inform→rc2):** enqueue 1 message → run drain ×3 → **was: 3 deliveries, still queued**; **after fix: 1 delivery, dequeued.** rc3 (blocked) control still stays queued (no silent drop).
+- **FIX (`d4e3ae0`, mirrors fccdad8's policy for consistency):** dequeue on **rc0 OR rc2** (both = on-pane = delivered); KEEP only on **rc3** (blocked — Enter withheld, not on pane) / **rc1** (error). Sprint22 Hole-2 "no silent drop" preserved — rc2 is NOT a drop (message is visibly on the input line).
+- **Non-regression:** send-matrix 8/8; dispatch-submit RC0/RC2-POKE/RC3/QUEUE-NODROP all green.
+
+**⚠ TESTER — one structural test needs updating (it locked the OLD gate):** `test.dispatch-submit` **T-DISPATCH-SUBMIT-GATE-SRC** greps for `dispatchRc" -ne 0` → break. The gate is now `[ "$dispatchRc" -eq 3 ] || [ "$dispatchRc" -eq 1 ]` → break (keep only NOT-on-pane); dequeue reached on rc0|rc2. Please update GATE-SRC to assert the new policy (keep on rc3/rc1, dequeue on rc0/rc2). The behavioral NODROP test (Test 5) already passes (it uses rc3). 
+
+**⚠ POLICY NOTE for PO/architect:** this changes OTR-1's "dequeue ONLY on rc0" to "dequeue on rc0|rc2 (on-pane)" — a deliberate alignment with fccdad8 (rc2 = delivered). Tradeoff: a genuinely-unsubmitted-but-staged message is now considered delivered (not re-typed). This is the RIGHT call — re-typing was the live dup, and send.smart already poked×N before returning rc2. Confirm if you want a different policy. **NOT declaring fixed until Tron confirms live — the code path is proven, awaiting live confirmation.**
