@@ -228,7 +228,18 @@ Naked P1 HANGS on interactive sudo password (oo:668 `$SUDO touch`). A naked cons
 - **MEASURED live (WODA.test, donges, no passwordless sudo)**: `timeout 5 sudo -n true` → rc=1 **instantly**, no prompt, no hang → probe returns "deferred". Constructor-contract honored.
 - **Tester T-NO-SUDO-HANG**: from-scratch naked bootstrap must reach the user-band terminal with NO `[sudo] password` prompt (assert bounded time / no tty block). S5 unblocked pending a naked target (PO's Docker-container recommendation).
 
-### S8 — F1 existing-install migration (self-heal) → oosh-architect (design) then expert  ·  Status: ✅ PO-APPROVED (e20dbe27) — expert to implement
+### S8 — F1 existing-install migration (self-heal) → oosh-architect (design) then expert  ·  Status: ✅ IMPLEMENTED (`09d33c9` + cleanup `691a269`) — needs tester T-RECONCILE on an ISOLATED box
+**cleanup (expert `691a269`, PO note)**: dropped `2>/dev/null` from the 3 schema-stamp `config save oosh OOSH` sites (kept `>/dev/null`) — a failed stamp now surfaces its error per the ERROR/WARNING doctrine. `bash -n` clean.
+**report-back (expert `09d33c9`)**: `bash -n` clean, NO `state`-engine edit, all in `oo`. Per §E:
+- **DRY**: extracted `private.setup.server.declare` (the ONE ordered `state.add` sequence) — now used by BOTH `private.init.state.machine` (fresh) AND reconcile. S2's inline order refactored into it.
+- **Schema**: `SETUP_SERVER_SCHEMA_EXPECTED=2`; fresh-init + reconcile stamp `OOSH_SETUP_SERVER_SCHEMA` (pure-state → oosh.env via `config save oosh OOSH`).
+- **Two-tier detect** in `oo.state` exists-branch → `private.reconcile.check`: Tier1 stamp==EXPECTED→no-op; else Tier2 `private.setup.server.invariant.holds` (read-only, by-name `release<dev<done`) — holds→stamp-in-place, violated→reconcile.
+- **`private.reconcile.state.machine`**: capture savedName by index → clear data file → declare (new order) → `state.set` by name / band-marker fallback → stamp. NO drive (F2-safe).
+- **⚠️ REAL BUG FOUND & FIXED during testing**: the engine's `state machine.delete` runs **`oo cmd vim`** (a package install that can prompt/hang on a naked box — the exact F2 class!). Using it in reconcile would reintroduce a hang. Replaced with a direct `rm -f` of the states DATA file (not a `state`-engine edit) + stale current-machine-pointer clear. This keeps reconcile F2-safe.
+- **VERIFIED (live, WODA.test)**: Tier-2 oracle correct BOTH ways (new-order→HOLDS, old-order→VIOLATED); `reconcile.check` fires on stale + is idempotent (re-run=0 reconciles); stamp round-trips.
+- **NOT fully verified by me — needs tester T-RECONCILE on an ISOLATED box**: end-to-end rebuild PERSISTENCE. My scratch harness on WODA.test is confounded by its co-resident real install (the bootstrap keeps reverting a forced `CONFIG_PATH`; extracted-function runs can't replicate full `oo` bootstrap so `declare` hangs there — yet the SAME sequence builds fresh machines fine via `private.init.state.machine` in real use). **T-RECONCILE should run on a FRESH box/container (PO's S5 rec is ideal)**: seed old-order → `oo state` → assert file rebuilt to new order + cursor restored BY NAME to the new index (not the fallback marker); fresh box unchanged; re-run no-op. **Disclosure**: my testing benignly stamped WODA.test's real `oosh.env` `OOSH_SETUP_SERVER_SCHEMA=2` (correct — that box IS new-order); seed a FRESH old-order box for T-RECONCILE, not WODA.test.
+
+### S8 (design) — F1 existing-install migration (self-heal) → oosh-architect  ·  Status: ✅ PO-APPROVED (e20dbe27)
 D1 reorder only helps NAKED rebuilds; an already-installed box keeps its old-order state file (so WODA.test itself isn't auto-corrected). Per the self-heal principle, re-running the constructor should RECONCILE an existing box's SETUP_SERVER state to the new order. Architect: design the detection (order/version stamp vs current names) + safe rebuild in `private.init.state.machine` — NO `state`-engine edit. Non-blocking for the naked-path gate.
 report-back (oosh-architect 2026-07-02): WHAT/WHY in § S8 DESIGN (end of file). Two-tier detect (schema stamp + order-invariant probe) → reconcile-BY-NAME (delete+rebuild shared order + `state.set <savedName>`); pure metadata surgery, NO drive (F2-safe), NO engine edit; WODA.test self-corrects. commit: e20dbe27.
 
@@ -300,3 +311,33 @@ Both converge on `user.installation.done` (design §C), no dead-end. Combined wi
 
 ## PO QA — S8 design APPROVED (oosh-po@MacStudio 2026-07-02, e20dbe27)
 Design accepted. Root-cause correct (oo.state exists-branch never re-adds → existing boxes frozen). Two-tier detect (oosh.env schema stamp + order-invariant-by-name) with a 4-case matrix incl. legacy-but-correct stamp-in-place. Reconcile BY NAME (capture→delete→declare→state.set name / marker fallback). **DRY win required & endorsed:** extract the ordered add-sequence into ONE `private.setup.server.declare` used by BOTH fresh-init AND reconcile (refactors S2's inline order into the shared source). F2-safe (no drive → no sudo probe), idempotent, ZERO state-engine edit. Expert: implement per §E + fold T-RECONCILE / T-RECONCILE-IDEMPOTENT into S6.
+
+## PO QA — S8 IMPLEMENTATION APPROVED (oosh-po@MacStudio 2026-07-02, 09d33c9)
+Diff reviewed. Matches design: DRY `private.setup.server.declare` (single order source, shared by fresh-init + reconcile); schema stamp v2; two-tier `private.reconcile.check`; `private.reconcile.state.machine` (capture-by-name→rm→declare→state.set name/marker-fallback→stamp); no drive (F2-safe); zero state-engine edit. **Excellent F2-class catch:** replaced `state machine.delete` (runs `oo cmd vim` → naked-box hang) with direct data-file `rm`.
+- **Minor hardening (non-blocking, ERROR/WARNING doctrine):** the `config save oosh OOSH >/dev/null 2>&1` stamp calls swallow stderr → a failed stamp is silent. Drop `2>&1` (keep `>/dev/null`), so a real save error surfaces. Fold into S8 cleanup.
+- **T-RECONCILE persistence** (expert's honest caveat: WODA.test co-resident install confounds the scratch harness) → verify on the **S5 fresh odocker container** (isolated CONFIG_PATH). Tester: fold T-RECONCILE + T-RECONCILE-IDEMPOTENT onto the same container you provision for P2.
+- Note: expert benignly stamped WODA.test real oosh.env schema=2 (correct) — harmless.
+
+---
+## S5 STEP 1 — F2 / T-NO-SUDO-HANG (oosh-tester, 2026-07-02) — ✅ DONE, GREEN live
+F2 fix `8be593d` verified live on WODA.test (donges, no passwordless sudo — the naked case):
+- `sudo -n true` → `sudo: a password is required`, rc=1, **returns immediately (no prompt/hang)**.
+- `private.test.sudo.priviledges` → `WARNING> no non-interactive sudo — deferring to user-mode install (no password prompt)`; `rc=1`; `RESULT="no sudo privilidges (deferred to user band)"`; **completes under timeout (no hang)**.
+- `private.check.priviledges.checked` → `RESULT=20` (routes the no-sudo user to the USER band, not root).
+- **T-NO-SUDO-HANG** committed dev `f97fc06` → **7/7 GREEN** on WODA.test live (source: uses `sudo -n`, no prompting `$SUDO touch` in code, defers via `create.result 1`; functional: completes under timeout, no password prompt, defers to user band with warning, `priviledges.checked`→20). Self-skips the defer arm on a passwordless-sudo box.
+- Verdict: the naked constructor no longer blocks on a human password — constructor-contract restored.
+
+## S5 STEP 2 (P2 container) + S8 reconcile — INFRA FEASIBLE, PROVISIONING WORKS, but full P2+reconcile is HEAVY → STOPPED per guardrail (oosh-tester, 2026-07-02)
+Made a bounded provisioning attempt (per "STOP if heavy" rule). Characterized precisely:
+- ✅ **Infra + tooling present**: docker daemon OK (root); image `naked_ubuntu_20_04` (has `/usr/sbin/sshd` + `ssh`); `odocker` in the checkout with a first-class `run.sshd <image> <name> <port>` method + `nakedUbuntu/20.04.sshd` workspace.
+- ✅ **Container PROVISIONS cleanly**: `odocker run.sshd naked_ubuntu_20_04 s5naked 2222` → `SUCCESS> Container s5naked started (SSH 127.0.0.1:2222, key-only, loopback-bound)`; `docker ps` = `Up, 127.0.0.1:2222->22/tcp`. (Cleaned up after.)
+- ⚠️ **Two real friction points = the "heavy" the guardrail named**:
+  1. **docker-group access**: `donges` is NOT in the docker group → `odocker`/`docker` as donges = `permission denied on /var/run/docker.sock`. Provisioning only works invoking odocker as **root** (donges can't dogfood odocker without `usermod -aG docker donges`, which needs the very sudo donges lacks — F2-adjacent).
+  2. **ssh key provisioning**: fresh naked container is key-only with no `authorized_keys` → `ssh -p2222 root@localhost` = `Permission denied (publickey)`. P2 needs a key injected into the container before `ossh install` can reach it.
+- **Remaining after provisioning** (all multi-step, not yet done): inject key → `ossh install` dev→container choreography → assert terminal + `/home/shared` paths → seed old-order states.env → `oo state` reconcile (invariant `release<dev<done` + cursor-by-name) → T-RECONCILE-IDEMPOTENT re-run.
+
+**DECISION (guardrail: "if provisioning proves heavy, STOP and report — do NOT rabbit-hole")**: STOPPING here. Provisioning is solved (odocker run.sshd, as root), but the ssh-key + full ossh-install + reconcile-seeding chain is a substantial focused effort with the two friction points above.
+
+**Recommendation to PO**: give the go for a dedicated follow-up pass to drive the full container P2+reconcile (I have the exact steps + friction mapped — est. a focused session), OR resolve the friction upfront (add `donges` to docker group + a pre-keyed container / an ossh config entry for `root@localhost:2222`) so P2 runs clean. S8 reconcile T-RECONCILE/-IDEMPOTENT then folds onto the same container as you specified.
+
+**Status**: S5 Step 1 (F2) ✅ DONE+GREEN (dev `f97fc06`). S5 Step 2 (P2) + S8 T-RECONCILE = provisioning proven, full run STOPPED pending PO go / friction resolution.
