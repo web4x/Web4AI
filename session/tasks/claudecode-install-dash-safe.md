@@ -163,7 +163,8 @@ Expert asked me to name the real sh-invocation. **Found it — measured in the r
 **I retract my v1 fix — it was too naive.** `[ -z "$BASH_VERSION" ] && exec bash "$0" "$@"` works for `sh init/oosh` (file arg) but NOT for the documented `sh -c "$(curl init/oosh)"` form — there `$0` is `sh`, there is no file to re-exec, and dash may reject the dotted-fn during parse before the guard runs. Measure-before-fix applies to MY steer too.
 
 **Re-routed — this is a constructor-ENTRY DESIGN question (architect), then impl, then live gate:**
-### D13.A — oosh-architect (DESIGN, WHAT/WHY)
+### D13.A — oosh-architect (DESIGN, WHAT/WHY)  ·  Status: QA (design delivered — see § D13.A DESIGN at end)
+report-back (oosh-architect 2026-07-02): design at § D13.A DESIGN (EOF). **MEASURED CORRECTION**: main-branch init/oosh (README payload) dash-parses rc=0 with 0 dotted fns → assumed "Bad function name before install" NOT reproduced; it already self-installs bash + re-execs (late). Design = constructor-contract hardening: minimal POSIX prelude → bash fast-path (a) → ensure-bash install (b, recommended) → dual-form re-exec (`OOSH_BOOTSTRAP_URL` re-fetch for the `-c` form). README stays `sh -c` (bash may be absent). object.verb untouched. §6 flags the reframe for PO. commit: <pending>.
 Design how `init/oosh` self-heals to bash from BOTH sh entry forms — `sh init/oosh` AND `sh -c "$(curl … init/oosh)"` — with the constraint that the top prelude MUST be POSIX-sh-parseable (no dotted fns until after we're in bash). Decide the strategy + trade-off: (a) assume-bash-present (sh prelude re-execs bash on the fetched content) vs (b) self-heal-install-bash-if-missing then re-exec (true cross-platform, e.g. Alpine/ash). Also weigh a README change (`sh -c`→`bash -c`) as a partial mitigation + its portability cost (bash may be absent on naked hosts — the reason `sh` was chosen). Output: the prelude structure + re-exec mechanism. Zero object.verb changes (we never de-dot).
 ### D13.2 (was expert body-clean, ef34ed0 — KEEP as harmless hygiene) → re-scope to IMPLEMENT the architect's prelude.
 ### D13.3 — oosh-tester T-DASH-GUARD: live on WODA.test, `sh -c "$(cat init/oosh)"` AND `sh init/oosh` both reach valid `[oosh]` (no `Bad function name`).
@@ -192,3 +193,54 @@ init/oosh is a REAL installer (`mv $OOSH_DIR $HOME/oosh`, sudo re-exec, state-ma
 - [x] T-DASH-GUARD GREEN live on WODA.test (sh → re-exec → bash)
 - [x] object.verb UNTOUCHED; zero OOSH-principle regression
 - [ ] full e2e "reaches [oosh]" under sh → deferred to the S5 throwaway container (non-destructive here)
+
+---
+## D13.A DESIGN — init/oosh self-heal-to-bash from both sh entry forms (oosh-architect, 2026-07-02, WHAT/WHY)
+
+### 0. ⚠️ GROUND TRUTH FIRST — the assumed root cause is NOT reproduced (measure, never assume)
+Measured live on **WODA.test (real /bin/dash)** against the ACTUAL README payload:
+- `curl https://raw.githubusercontent.com/Cerulean-Circle-GmbH/once.sh/**main**/init/oosh` → 334 lines.
+- **`dash -n` on it → rc=0** (parses clean under dash). **Dotted-fn defs in it → 0.**
+- Same for the WODA.test working `init/oosh` (rc=0, 0 dotted). MacStudio is on `test/macos.latest` (382-line older form).
+⇒ **`sh -c "$(curl … /main/init/oosh)"` does NOT die at `Bad function name`.** `init/oosh` is deliberately written with **underscore** fn names (`oosh_start`, `oosh_check_all_pm`) and only ever runs the dotted-fn framework (`this`, `oo`, …) **through `"$BASH_FILE" …`** (main:303/312/324/329). The `Bad function name` is real for `this`/`oo`/`claudeCode` (115 dotted fns) but the **bootstrap entry avoids it by construction.** The PO STEER-v2 premise ("documented primary path parses OOSH dotted fns under dash → dies before install") is **not confirmed by measurement** — flag for #13 reframe, exactly like D13.1's first reframe.
+- Also measured: **main init/oosh ALREADY implements option (b)** — bash-absent path `oosh_cmd bash` → install → re-exec (main:326-329), and re-execs to bash when `SHELLNAME != bash` (main:318-329).
+
+### 1. So what IS the real, designable gap? (constructor-contract, #27)
+"Self-heals to bash" today is **LATE and framework-only**, which is the genuine weakness:
+- **G1 — LATE handoff.** The entire pre-clone + `oosh_install_oosh` (git clone) + PM stretch runs **under dash**, then bash is invoked only at the END (main:318). `dash -n` is rc=0 but **cannot catch RUNTIME bashisms** (proven in D13.3: `[[`, `read -p` parse-OK, fail at run). Any runtime-only dash incompatibility in that long pre-handoff stretch breaks a non-bash host BEFORE the late handoff. Constructor-contract ⇒ **guarantee bash EARLY**, so the bulk always runs under bash.
+- **G2 — stdin form can't re-exec itself.** `sh init/oosh` has `$0`=file (re-execable). `sh -c "$(curl…)"` has **`$0`=sh, no file** — early re-exec needs a way to hand bash the script text. Main sidesteps this by only re-execing the *cloned* `this` (post-clone). An EARLY guard must solve the no-file case explicitly.
+- **G3 — bash-absent sequencing.** With early re-exec, bash must be ensured in the POSIX prelude BEFORE handoff (main installs bash only at the very end).
+
+### 2. DESIGN — a minimal POSIX prelude that guarantees bash, then re-execs (WHAT)
+At the **very top** of `init/oosh`, before ANY function def or framework call, a preamble written in **strict POSIX sh only** (no `[[`, no arrays, no dotted fns, `command -v`/`case` only — so dash/ash parse AND run it):
+1. **Fast path:** if `[ -n "${BASH_VERSION:-}" ]` → already bash → fall through to the existing body. (`BASH_VERSION` is set only under bash; POSIX-safe test.) Zero cost on bash hosts (subsumes option (a)).
+2. **Ensure a bash binary (option b, cross-platform):** `bash_bin="$(command -v bash || true)"`. If empty → run a **minimal POSIX PM probe** (the underscore `oosh_check_all_pm` family is already POSIX) → install bash → re-resolve. If STILL none → **fail fast** with an actionable message (`no bash and no package manager to install it — install bash and re-run`). WHY (b) not (a): "objects self-heal" (Alpine/ash, naked hosts); (a) assume-bash silently dies on no-bash hosts. (a) is kept only as the fast-path in step 1.
+3. **Re-exec under bash — handle BOTH entry forms:**
+   - **file form** (`[ -r "$0" ]` and `$0` is this script): `exec "$bash_bin" "$0" "$@"`.
+   - **stdin/`-c` form** (`$0` not a readable script file): the shell consumed the text from the `-c` string — there is no file handle. Re-materialize to a temp file, then `exec "$bash_bin" "$tmp" "$@"`. Two viable materialization sources — design picks by robustness:
+     - **(i) re-fetch (recommended, self-contained):** embed the canonical raw URL as ONE POSIX const `OOSH_BOOTSTRAP_URL` at the top; `curl -fsSL "$OOSH_BOOTSTRAP_URL" -o "$tmp" || wget -O- … > "$tmp"`; `exec "$bash_bin" "$tmp" "$@"`. The host just used curl/wget to get here, so it's present. Cost: one extra fetch (negligible); DRY: single URL const. Keeps README `sh -c "$(curl…)"` **unchanged**.
+     - **(ii) clone-then-reexec-clone (network-free):** run the minimal prelude under sh only far enough to `git clone`, then `exec "$bash_bin" "$OOSH_DIR/init/oosh" "$@"` (a real file). This is the WODA.test experiment's mechanism (line 294). Trade-off: the pre-clone stretch still runs under sh (partially re-opens G1) — acceptable only if that stretch is kept trivially POSIX.
+   - Recommend **(i)** as primary (earliest possible bash, smallest sh surface); (ii) documented as the network-frugal alternative.
+4. After re-exec, `$0` is a real bash-run file → the existing underscore body + its `"$BASH_FILE" … this` calls all run under bash. **object.verb UNTOUCHED** — dotted framework only ever executes post-bash.
+
+### 3. README (`sh -c` vs `bash -c`) — decision + WHY
+**Keep `sh -c "$(curl…)"` as the documented primary.** `bash` may be **absent** on naked hosts — that is the original reason `sh` was chosen; switching the doc to `bash -c` would break exactly the naked-host case #13 exists to serve. The self-heal belongs **in init/oosh** (step 2 installs bash), not in the doc. *Optional:* offer a `bash -c "$(curl…)"` **fast variant** labelled "if bash is already present" — never the primary. So the README `sh -c` form is CORRECT and stays; the fix is init/oosh's early prelude.
+
+### 4. Trade-off summary (a) vs (b)
+| | (a) assume-bash | **(b) self-install bash (recommended)** |
+|---|---|---|
+| naked no-bash host (Alpine/ash) | dies — violates self-heal | installs bash, proceeds |
+| complexity | tiny | small POSIX PM probe (already exists) |
+| constructor-contract (#27) | fails | satisfied |
+| bash-present host | same (fast path) | same (fast path, no install) |
+Choose **(b)**, with (a) as the built-in fast path (step 1).
+
+### 5. Constraints honored / handoff
+- **object.verb NEVER de-dotted** — prelude is underscore/POSIX-only; dotted framework runs exclusively under bash after re-exec.
+- Prelude is **POSIX-sh-parseable AND runnable** under dash/ash (no `[[`, no arrays, `command -v`+`case`), so it survives the RUNTIME barrier `dash -n` can't see.
+- **#27 constructor-contract:** init/oosh becomes shell-agnostic self-healing — valid `[oosh]` from `sh init/oosh`, `sh -c "$(curl…)"`, and bash-absent hosts.
+- **Expert (D13.2 re-scope, HOW):** implement the top POSIX prelude — step-1 bash fast-path; step-2 ensure-bash (find/install/fail-fast); step-3 dual-form re-exec with `OOSH_BOOTSTRAP_URL` re-fetch for the `-c` form; keep the existing body below. Single URL const (DRY). `dash -n` AND a live dash run must both pass. Do NOT touch claudeCode bodies or any dotted fn.
+- **Tester (D13.3 T-DASH-GUARD):** on WODA.test, BOTH `sh /path/init/oosh` AND `sh -c "$(cat init/oosh)"` (and ideally `sh -c "$(curl main/init/oosh)"`) reach valid `[oosh]` (no `Bad function name`, no runtime bashism), incl. a bash-absent sim (PATH-hide bash → asserts install-or-clear-fail). Live, not just `dash -n`.
+
+### 6. Measurement note for PO (CMM4, honest)
+Because the measured main init/oosh is already dash-parse-clean, 0 dotted fns, and already self-installs bash + re-execs (late), **#13's stated "dies before install at Bad function name" is not reproduced on the current bootstrap file.** The value of D13.A is the **constructor-contract hardening** (EARLY, both-forms, runtime-safe) — not fixing a parse death that (for init/oosh) doesn't exist. Recommend PO confirm whether the observed `Bad function name` came from a *different* entry (e.g. a host whose `main/init/oosh` predates the underscore-fn rewrite, or a `. init/oosh`-sourced-into-dash path) before sizing D13.2 — same measure-before-fix discipline that already reframed this task once.
