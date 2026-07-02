@@ -33,7 +33,43 @@ This is THE SM fleet-monitoring dashboard — idle/active + shell-accumulation +
 - projects off c.0 live-reader (no separate enumeration)
 - T-SWEEP-ALL: multi-team sweep lists every active team; shell-count + context% present where applicable
 
+## ARCHITECT DESIGN (oosh-architect, 2026-07-02) — the fleet dashboard as a PROJECTION of c.0
+**Core: `team.sweep` no-arg = a PROJECTION of the c.0 live-reader grouped by `session`. It does NOT enumerate — it reads `private.hiveMind.live.tupleset` (all teams) and groups. This IS the PF3 lesson (status omitted remoteOOSH because it rolled its own enumeration; the dashboard must not repeat that).**
+
+### 1. Arg-presence = the verb (object.verb, no flag)
+- `hiveMind team.sweep` (NO arg) → **FLEET dashboard**: `live.tupleset` (no session filter) → group rows by `session` → render every active team. (Also fixes the old no-arg-dumps-usage bug — no-arg is now the useful default.)
+- `hiveMind team.sweep <session>` → single-team (current per-pane behavior), also projected off `live.tupleset "$session"`.
+- Completion: `team.sweep.completion.session` offers sessions; bare = fleet.
+
+### 2. The two new per-pane signals — BOTH ride off fields ALREADY in the c.0 tuple (no new enumeration)
+- **bg-shell-count** (agent panes) — the "shell-growth" leak signal (SM's "expert=4"). Derive from the tuple's **`tty` → pane_pid**: ONE batch `ps -eo ppid,pid,comm`, walk each agent pane's process subtree, count background `bash`/`sh` descendants (excludes the pane's own shell + the foreground claude). One ps for the whole fleet — NOT per-pane subprocess. Shown per agent line; team header shows the team total.
+- **context% (the cliff)** (agent panes) — derive from the tuple's **`uuid` → JSONL token math** via `claudeCode.context.read <pane>` (JSONL-FIRST = fast, no capture-pane; TUI-parse `context.parse` "Context left until auto-compact: NN%" only as fallback, claudeCode:1424/1432). **The uuid is already in the tuple → fast context%, no per-pane TUI capture.** Cliff-colored: ≤20% red `⚠`, ≤40% yellow. Blank for shells (kind=shell) / unavailable.
+- **state** — as today, from `sweep.detect` per pane (idle/active/blocked incl. the existing `context-warning` state).
+
+### 3. Layout (the ONE SM view — idle/active + shells + cliff)
+```
+TEAM ooshTeam        4 agents · 2 shells
+  0.0  oosh-po           IDLE      sh:0   ctx 61%
+  0.1  oosh-architect    ACTIVE    sh:1   ctx 18% ⚠
+  0.2  oosh-expert       ACTIVE    sh:4   ctx 44%
+  0.4  oosh-expert-shell shell
+```
+Agent line: `addr role STATE sh:K ctx:NN%[⚠]`. Shell line: `addr role/title shell`. Team header: `N agents · M shells` (M = count of kind=shell rows for that session — free from the tuple).
+
+### 4. Fail-safe + remote — INHERITED from c.0 (the PF3 guarantee flows through)
+Because it projects off `live.tupleset`, remote teams (remoteOOSH) appear via c.0's `ossh exec … protected.live.tupleset`; an unreachable remote renders its marker row, **never silently omitted**. The dashboard can't drop a team — that property lives in c.0, and the dashboard is just a view.
+
+### 5. Performance (batch discipline preserved)
+`live.tupleset` = 1 batch (c.0). + ONE `ps` for all bg-shell subtree counts. + context% via JSONL token math per agent (fast, uuid already in hand — no capture). Only AGENT panes get state/shells/context; shells are trivial. Cap N for very large fleets (log the cap — no silent truncation). No per-pane subprocess explosion.
+
+### 6. SM value
+idle/active (state) + shell-growth (bg-shell-count) + context-cliff (ctx%) in ONE command → SM's proactive-notify (idle/stopped/shell-leak/near-cliff) reads straight off this, instead of hand-assembling from 3 sources.
+
+### Handoff
+- **Expert**: implement `team.sweep` no-arg = project `live.tupleset` grouped by session; add the bg-shell batch-ps count (via tty→pane_pid) + context% (via uuid→context.read JSONL-first); render per §3; inherit c.0 remote/fail-safe. **Depends on c.0** (build c.0 first). Commit.
+- **Tester**: **T-SWEEP-ALL** — no-arg lists EVERY active team (incl. remote; none omitted — the PF3 guard); team header counts == c.0 tuple counts; agent lines show state+sh:K+ctx%; a low-ctx agent shows the ⚠ cliff; shells show `shell` (no ctx); **regression guard: grep the impl reads `live.tupleset`, does NOT roll its own `list-panes`/`agents.discover` enumeration** (the PF3 anti-pattern); bounded at fleet scale.
+
 ## Report-back
-- Architect (design):
+- Architect (design): **DONE 2026-07-02** — `team.sweep` no-arg = PROJECTION of c.0 `live.tupleset` grouped by session (NOT a re-enumeration — the PF3 lesson). Two new per-pane signals ride c.0 fields: bg-shell-count from `tty`→pane_pid (ONE batch ps, subtree bash count = shell-leak signal), context% from `uuid`→JSONL token math (fast, no capture; cliff-colored ≤20%⚠/≤40%). Team header = N agents · M shells (kind=shell count). Remote/fail-safe inherited from c.0 (never silent-omit). ONE SM view: idle/active + shells + cliff. Depends on c.0. T-SWEEP-ALL + PF3 no-re-enumerate regression guard.
 - Expert (impl + commit):
 - Tester (T-SWEEP-ALL):
