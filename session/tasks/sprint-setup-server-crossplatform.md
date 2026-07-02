@@ -326,3 +326,18 @@ F2 fix `8be593d` verified live on WODA.test (donges, no passwordless sudo — th
 - `private.check.priviledges.checked` → `RESULT=20` (routes the no-sudo user to the USER band, not root).
 - **T-NO-SUDO-HANG** committed dev `f97fc06` → **7/7 GREEN** on WODA.test live (source: uses `sudo -n`, no prompting `$SUDO touch` in code, defers via `create.result 1`; functional: completes under timeout, no password prompt, defers to user band with warning, `priviledges.checked`→20). Self-skips the defer arm on a passwordless-sudo box.
 - Verdict: the naked constructor no longer blocks on a human password — constructor-contract restored.
+
+## S5 STEP 2 (P2 container) + S8 reconcile — INFRA FEASIBLE, PROVISIONING WORKS, but full P2+reconcile is HEAVY → STOPPED per guardrail (oosh-tester, 2026-07-02)
+Made a bounded provisioning attempt (per "STOP if heavy" rule). Characterized precisely:
+- ✅ **Infra + tooling present**: docker daemon OK (root); image `naked_ubuntu_20_04` (has `/usr/sbin/sshd` + `ssh`); `odocker` in the checkout with a first-class `run.sshd <image> <name> <port>` method + `nakedUbuntu/20.04.sshd` workspace.
+- ✅ **Container PROVISIONS cleanly**: `odocker run.sshd naked_ubuntu_20_04 s5naked 2222` → `SUCCESS> Container s5naked started (SSH 127.0.0.1:2222, key-only, loopback-bound)`; `docker ps` = `Up, 127.0.0.1:2222->22/tcp`. (Cleaned up after.)
+- ⚠️ **Two real friction points = the "heavy" the guardrail named**:
+  1. **docker-group access**: `donges` is NOT in the docker group → `odocker`/`docker` as donges = `permission denied on /var/run/docker.sock`. Provisioning only works invoking odocker as **root** (donges can't dogfood odocker without `usermod -aG docker donges`, which needs the very sudo donges lacks — F2-adjacent).
+  2. **ssh key provisioning**: fresh naked container is key-only with no `authorized_keys` → `ssh -p2222 root@localhost` = `Permission denied (publickey)`. P2 needs a key injected into the container before `ossh install` can reach it.
+- **Remaining after provisioning** (all multi-step, not yet done): inject key → `ossh install` dev→container choreography → assert terminal + `/home/shared` paths → seed old-order states.env → `oo state` reconcile (invariant `release<dev<done` + cursor-by-name) → T-RECONCILE-IDEMPOTENT re-run.
+
+**DECISION (guardrail: "if provisioning proves heavy, STOP and report — do NOT rabbit-hole")**: STOPPING here. Provisioning is solved (odocker run.sshd, as root), but the ssh-key + full ossh-install + reconcile-seeding chain is a substantial focused effort with the two friction points above.
+
+**Recommendation to PO**: give the go for a dedicated follow-up pass to drive the full container P2+reconcile (I have the exact steps + friction mapped — est. a focused session), OR resolve the friction upfront (add `donges` to docker group + a pre-keyed container / an ossh config entry for `root@localhost:2222`) so P2 runs clean. S8 reconcile T-RECONCILE/-IDEMPOTENT then folds onto the same container as you specified.
+
+**Status**: S5 Step 1 (F2) ✅ DONE+GREEN (dev `f97fc06`). S5 Step 2 (P2) + S8 T-RECONCILE = provisioning proven, full run STOPPED pending PO go / friction resolution.
