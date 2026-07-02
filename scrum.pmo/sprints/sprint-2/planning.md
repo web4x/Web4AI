@@ -25,12 +25,13 @@ node provisioning+hardening, tooling hygiene, plantuml.
 | [task-s2-e](./task-s2-e-tooling-hygiene.md) | tooling hygiene | MEDIUM/LOW | planned |
 | [task-s2-f](./task-s2-f-plantuml-script.md) | plantuml OOSH script | HIGH (Tron: next priority) | impl DONE (`1cb40ee`+`0638344`) → tester T-PLANTUML gate |
 
-## Sequence & priority
-1. [task-s2-a](./task-s2-a-teamsave-status-parity.md) (parity) — do-first CRITICAL infra; PF4 gated on architect fail-loud-vs-resolver ruling → tester re-run → PO gate → report MacStudio PO. **(architect+tester lane — does NOT need the expert.)**
-2. **[task-s2-f](./task-s2-f-plantuml-script.md) (plantUML) — NEXT PRIORITY (Tron directive 2026-07-02).** Spec signed off → expert implements now (2 odocker primitives + plantuml script). Runs in parallel with the parity architect/tester lane.
-3. [task-s2-b](./task-s2-b-dispatch-submission-verified.md) (BUG10) — the fleet dispatch throttle; contract ready, expert impl after plantUML.
-4. [task-s2-c](./task-s2-c-registry-route-identity.md) — route auto-heal shipped (watch post-malware); reconcile-after-fork + team.audit + boot-identity next.
+## Sequence & priority (live — 2026-07-02)
+1. [task-s2-a](./task-s2-a-teamsave-status-parity.md) (parity) — ✅ **DONE** (PO QA PASS, reported MacStudio).
+2. [task-s2-f](./task-s2-f-plantuml-script.md) (plantUML) — impl DONE → **open gates**: tester T-PLANTUML · expert authors usage-doc · architect independently renders a .puml→.svg from docs.
+3. [task-s2-b](./task-s2-b-dispatch-submission-verified.md) (BUG10/OTR-1) — impl DONE (region-verify, drain-gated) → **gate**: tester T-DISPATCH-SUBMIT.
+4. [task-s2-c](./task-s2-c-registry-route-identity.md) (OTR-3) — DESIGN done → **expert impl** (I2b via parity reader + tty-adopt + team.audit) → tester T-RECONCILE-FORK. (route auto-heal already shipped; boot-identity still open.)
 5. [task-s2-d](./task-s2-d-node-provisioning-hardening.md) / [task-s2-e](./task-s2-e-tooling-hygiene.md) — as capacity.
+**Open gates I'm waiting on**: tester T-PLANTUML + T-DISPATCH-SUBMIT; expert plantUML-docs + OTR-3 impl; architect plantUML render.
 
 ## Closed / carried-done (context, not open)
 - **SECURITY u20 malware**: RESOLVED — host clean, u20 destroyed+rebuilt hardened, odocker loopback+key-only (once.sh `41ca4e4`), feeds [task-s2-d](./task-s2-d-node-provisioning-hardening.md). [task-s2-d.0-security-u20-incident.md](./task-s2-d.0-security-u20-incident.md)
