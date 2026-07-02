@@ -27,7 +27,7 @@ A naked system reaches a **correct, mode-aware, platform-appropriate** oosh inst
 ## Stories
 
 ### S1 — Architect: design (careful read → WHAT/WHY)  ·  Owner: oosh-architect  ·  Status: QA (design delivered — see "S1 DESIGN" below)
-report-back: design delivered in-file (§ S1 DESIGN). Measured ground truth from `state`, `oo` SETUP_SERVER, `init/oosh`, `ossh`. Ready for PO QA → then S2/S3. commit: <pending>.
+report-back: design delivered in-file (§ S1 DESIGN). Measured ground truth from `state`, `oo` SETUP_SERVER, `init/oosh`, `ossh`. Ready for PO QA → then S2/S3. commit: 96edb4a.
 Read carefully: `state` engine, `oo`'s SETUP_SERVER definition (state-add order + all `private.check.*`), `init/oosh` (P1 bootstrap), `ossh install` (P2). Produce a design doc covering:
 1. Corrected state order (mode branch before `user.installation.done`) — expressed as `oo`'s state-add sequence.
 2. XOR redirect mechanism — how the mode checks return the active-`OOSH_MODE` index so `state next` crosses release⊕dev.
