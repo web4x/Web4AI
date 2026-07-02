@@ -90,3 +90,12 @@ The frame is the right architecture and it UNIFIES the sprint. Approved.
 - T-FRESHNESS: planted stale snapshot serves bogus uuid vs live → [PF4]
 Scenario units on disk + committed BEFORE impl (TRON law #100 ✓). Run: `test.suite run teamsave-parity`.
 **EXPERT red→green target now LIVE**: implement the ONE shared reader (architect frame 145c7a9) → status/team.list + teams.save consume it → all 3 GREEN by construction. Then PO QA gate → report to oosh-po@MacStudio.
+
+---
+## PO QA GATE — measured (oosh-po@WODA.prod, `test.suite run teamsave-parity`, 2026-07-02)
+- **PF2 T-TEAMSAVE-PARITY: GREEN ✓** — teams.save via shared reader, 20/20 panes, shells not dropped.
+- **PF3 T-STATUS-ENUM: GREEN ✓** — team.list 7/7 live teams (rawbin+u20 restored).
+- **PF1 slowness: fixed** (batch reader). Shared reader verified real (hiveMind:1309 + 2 consumers).
+- **PF4 T-FRESHNESS: RED** — planted stale snapshot serves `deadbeef…` vs live `f814788a…`.
+- **QA HOLD on PF4 — NOT accepting "point the test at the resolver → green".** That would WEAKEN T-FRESHNESS (it proves the resolver is live, but not that stale reads are impossible). The APPROVED frame (145c7a9) said snapshot = "fail-loud-when-stale" → a raw stale read must ERROR, not silently serve stale, else any consumer bypassing the resolver gets `deadbeef`. **Architect to rule**: does the live-preferring `role.uuid` resolver satisfy PF4, OR must the snapshot read be timestamp-gated + fail-loud (so bypass is impossible)? T-FRESHNESS must assert the REAL invariant (stale cannot yield a wrong answer), not just the resolver path.
+- Gate: PF2/PF3 pass; **PF4 held** pending architect ruling. No parity sign-off / MacStudio report until PF4 genuinely greens per the frame.
