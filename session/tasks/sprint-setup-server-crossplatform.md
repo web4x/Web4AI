@@ -3,6 +3,11 @@
 **Owner (PO)**: oosh-po@MacStudio · **Created**: 2026-07-02 (Tron-directed)
 **Single source of truth** (SPRINT-COMMS): stories below carry Status/Owner/inline report-back. Git mailbox = channel. Tick as commits land.
 
+## Branch model (Tron 2026-07-02 — governs this sprint)
+- **`dev` = the OS-INDEPENDENT master dev.** Cross-platform truth lives here. This sprint (esp. D3 platform-derived defaults) is exactly the work of *making dev os-independent* → **do this sprint on `dev`.**
+- **`macos.latest` = the platform-specific dev.** Latest features land here first, then get generalized → flow **down into `dev`** as platform-independent.
+- Direction of flow: feature → macos.latest (platform-specific) → made platform-independent → **dev (master)**. So "promote" is NOT dev→macos.latest; dev is the master. The init-constructor + this work being on dev is correct.
+
 ## Goal
 
 A naked system reaches a **correct, mode-aware, platform-appropriate** oosh installation via BOTH install paths — with ALL install/branch logic in the **`oo`** custom script (the one that runs the SETUP_SERVER machine), and **ZERO edits to the `state` engine** (Tron hard constraint). Install locations are **derived from platform defaults**, never hardcoded.
@@ -26,7 +31,8 @@ A naked system reaches a **correct, mode-aware, platform-appropriate** oosh inst
 
 ## Stories
 
-### S1 — Architect: design (careful read → WHAT/WHY)  ·  Owner: oosh-architect  ·  Status: QA (design delivered — see "S1 DESIGN" below)
+### S1 — Architect: design (careful read → WHAT/WHY)  ·  Owner: oosh-architect  ·  Status: ✅ PO-APPROVED (f4aea76)
+**PO QA (oosh-po@MacStudio 2026-07-02): APPROVED.** Zero state-engine edits (XOR via existing numeric-RESULT redirect, mirrors proven privilege branch oo:631-646); DRY+reorder-proof (`state.find` for indices, `os check.env` for bases — no literals); D2 traces converge on user.installation.done for BOTH OOSH_MODE values; D3 hardcodes located (oo:218, odocker:14) + single derivation in config init as pure-state exports. Cleared to implement.
 report-back: design delivered in-file (§ S1 DESIGN). Measured ground truth from `state`, `oo` SETUP_SERVER, `init/oosh`, `ossh`. Ready for PO QA → then S2/S3. commit: 96edb4a.
 Read carefully: `state` engine, `oo`'s SETUP_SERVER definition (state-add order + all `private.check.*`), `init/oosh` (P1 bootstrap), `ossh install` (P2). Produce a design doc covering:
 1. Corrected state order (mode branch before `user.installation.done`) — expressed as `oo`'s state-add sequence.
@@ -35,10 +41,10 @@ Read carefully: `state` engine, `oo`'s SETUP_SERVER definition (state-add order 
 4. How **P1 and P2** each drive SETUP_SERVER to the SAME correct terminal (per privilege: user-mode terminal vs full root/server terminal).
 Deliver design to this file. No code.
 
-### S2 — Expert: state order + XOR redirect in `oo`  ·  Owner: oosh-expert  ·  Status: BLOCKED (needs S1)
+### S2 — Expert: state order + XOR redirect in `oo`  ·  Owner: oosh-expert  ·  Status: READY (S1 approved)
 Implement corrected state-add order + mode-check redirect-on-`OOSH_MODE` in `oo`. NO `state` engine edits. `bash -n` clean.
 
-### S3 — Expert: platform-default derivation  ·  Owner: oosh-expert  ·  Status: BLOCKED (needs S1)
+### S3 — Expert: platform-default derivation  ·  Owner: oosh-expert  ·  Status: READY (S1 approved)
 Replace hardcoded platform paths with os-derived defaults in config init (+ `oo`) for component modes + odocker workspaces.
 
 ### S4 — Tester: verify P1 (self-bootstrap)  ·  Owner: oosh-tester  ·  Status: BLOCKED (needs S2/S3)
