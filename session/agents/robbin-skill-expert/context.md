@@ -143,7 +143,7 @@ NOTE: autoFollow returns false if uc missing even though it sets focus flag — 
 hardening: allow req-only partial pin so /trace shows the task even before UC wired.
 **Last measure (2026-06-28, det-3x)**: Chain scoreboard = 20/285 COMPLETE (excl 49 orphan). 3-slot collapse FIXED by expert a0106ea86 (BUG-C: slots now always distinct uuids — verified: current 01d9fb64 / last 708ec0a5 / next 03917f53).
 **Machine**: WODA.prod (v60211.1blu.de) · **Pane**: robbinTeam2:0.2 (NOT 0.3 — WODA.prod layout, no planner)
-**Repo**: /var/dev/Workspaces/2cuGitHub/Web4RawBin (NOT /Users/Shared — this is WODA.prod)
+**Repo**: /var/dev/Workspaces/web4x/Web4RawBin ← MIGRATED 2026-07-02 (was /var/dev/Workspaces/2cuGitHub/Web4RawBin; that OLD path is stale). All pin/scoreboard/lint work now in web4x path. Verified git+scorer run there (det-3x 55/317).
 **Node**: host default is v16 (tsx FAILS). Node 18 at /root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node — `export PATH="$(dirname that):$PATH"` BEFORE npx tsx.
 **otmux broken here**: `otmux send` hits /dev/tty error; use `tmux send-keys -t robbinTeam2:0.0 "..." Enter` instead.
 
