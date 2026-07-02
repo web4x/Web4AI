@@ -187,3 +187,5 @@ Run via node18 (/root/.vscode-server/bin/*/node) + node_modules/.bin/tsx scripts
 
 ## BUILD/TEST
 npm run build (esbuild, node16-ok) · vitest→MacStudio · scenario harness via esbuild-bundle
+
+## TWO-DRIVE (2026-07-02): (A) npm start SELF-HEALING (8a46bd5dd) — start=node scripts/start.mjs, re-exec under node18+, prod restarted fresh + verified. (B) R27.7 v0.7.9 (9d2213b2e) — WebItem type-aware preview drawer + SSRF-guarded CORS proxy: type-router [impl accc6a00] declared scheme→kind map (regression-proof), preview-first layout + reset-zoom overlay (RbPanZoom preserved) + iframe→proxy fallback, ProxyFetch [ba8f38c0 guardUrl / 31c58c73 fetchSanitized] SSRF guard (scheme allowlist + resolved-IP block + DNS-rebind + per-redirect re-guard + caps + sanitize + CSP + rate-limit/audit), GET /api/proxy verified live (403 on metadata/file/loopback, 200 example.com per PO), 5 adversarial tests. 3 impl markers credit. THEN: node20+ gap CLOSED — /opt/node22 v22.23.1 as `node22` (system node16 untouched); vitest R27.7 6/6 under node22 (installed @rolldown/binding-linux-x64-gnu); ci:gates + start.mjs prefer node22. See [[web4rawbin-node-toolchain]].
