@@ -16,14 +16,14 @@ node provisioning+hardening, tooling hygiene, plantuml.
 **Branches:** task/sprint files → `web4x/Web4AI@main`; code → `Cerulean-Circle-GmbH/once.sh@dev`.
 
 ## Epics
-| Epic | Title | Priority | Status | Task file |
-|------|-------|----------|--------|-----------|
-| **A** | teams.save/status MVC parity | CRITICAL (do-first) | IN PROGRESS — PF2/PF3 GREEN, PF4 QA-HELD, PF5 red delivered | [task-s2-a](./task-s2-a-teamsave-status-parity.md) |
-| **B** | dispatch submission-verified (BUG10) | CRITICAL | contract APPROVED → impl | [task-s2-b](./task-s2-b-dispatch-submission-verified.md) |
-| **C** | registry / route / identity integrity | CRITICAL/HIGH | route auto-heal shipped; reconcile+audit+boot-id open | [task-s2-c](./task-s2-c-registry-route-identity.md) |
-| **D** | node provisioning + hardening | HIGH | hardening baked (u20/u24); autoconfig + runtime open | [task-s2-d](./task-s2-d-node-provisioning-hardening.md) |
-| **E** | tooling hygiene | MEDIUM/LOW | planned | [task-s2-e](./task-s2-e-tooling-hygiene.md) |
-| **F** | plantuml OOSH script | MEDIUM (Tron directive) | signed off → impl | [task-s2-f](./task-s2-f-plantuml-script.md) |
+| Task | Title | Priority | Status |
+|------|-------|----------|--------|
+| [task-s2-a](./task-s2-a-teamsave-status-parity.md) | teams.save/status MVC parity | CRITICAL (do-first) | IN PROGRESS — PF2/PF3 GREEN, PF4 QA-HELD, PF5 red delivered |
+| [task-s2-b](./task-s2-b-dispatch-submission-verified.md) | dispatch submission-verified (BUG10) | CRITICAL | contract APPROVED → impl |
+| [task-s2-c](./task-s2-c-registry-route-identity.md) | registry / route / identity integrity | CRITICAL/HIGH | route auto-heal shipped; reconcile+audit+boot-id open |
+| [task-s2-d](./task-s2-d-node-provisioning-hardening.md) | node provisioning + hardening | HIGH | hardening baked (u20/u24); autoconfig + runtime open |
+| [task-s2-e](./task-s2-e-tooling-hygiene.md) | tooling hygiene | MEDIUM/LOW | planned |
+| [task-s2-f](./task-s2-f-plantuml-script.md) | plantuml OOSH script | MEDIUM (Tron directive) | signed off → impl |
 
 ## Sequence & priority
 1. **Epic A** (parity) — do-first CRITICAL infra; PF4 gated on architect fail-loud-vs-resolver ruling → expert → tester re-run → PO gate → report MacStudio PO.
