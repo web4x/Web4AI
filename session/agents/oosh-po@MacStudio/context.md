@@ -5,6 +5,14 @@
 **Pane**: ooshTeam:0.0 on MacStudio.native
 **Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## ★★ SESSION PROGRESS — 2026-07-02 (SETUP_SERVER sprint + parity delegation)
+**BRANCH MODEL (Tron, eternal):** `dev`=OS-INDEPENDENT MASTER (cross-platform truth); `macos.latest`=platform-specific dev (features land there → generalized → flow DOWN into dev). NO "promote up"; dev is master. So init-constructor + SETUP_SERVER work on dev is correct.
+**init-constructor:** PO-signed-off @c0e6036 on dev (8052265). Done.
+**SETUP_SERVER cross-platform sprint (#30, MINE on dev)** — sprint-setup-server-crossplatform.md: S1 design PO-approved (f4aea76); S2 D1-reorder+D2-XOR-redirect-via-state.find PO-approved (566fed9); S3 platform-derived defaults (OOSH_SHARED_BASE seam in config.init → OOSH_COMPONENTS_DIR/ODOCKER_WORKSPACES) PO-approved (650e743); S7 os.os single-source accessor PO-approved (19a2a45). **Tester running S4(P1 self-bootstrap)/S5(P2 ossh install)/S6(regression: T-STATE-ORDER+T-PLATFORM-DEFAULTS+T-OS-DISCRIMINATOR) on WODA.test — awaiting.** Then PO QA gate → done on dev (no promote).
+**Parity (#28 done→#31 delegated):** teams.save/status parity — agent|uuid GREEN, RED on shell-drop/enum-gap/freshness/naming(team.save→teams.save). Delegated to WODA.prod PO (nudge delivered+submitted via remoteOOSH:0.1). Sprint: sprint-teamsave-status-parity-FIX.md (PF1-5).
+**BLOCKER #32:** WODA.prod local main 175 commits AHEAD of origin (never pushed — mailbox broken). Their pull stalls in merge editor. WODA.prod PO must reconcile (pull→resolve→push). I do NOT git-op their repo (overstepped once, recovered). remoteOOSH:0.1 = live ssh into WODA.prod (v60211); remoteOOSH:0.0 = WODA.test (v36421, my install box). SSH drops intermittently.
+**MacStudio ooshTeam healthy:** 0.0 po(me) / 0.1 architect / 0.2 expert / 0.3 tester (all 2.1.195), 0.4/0.5 shells. Expert+architect+tester all responsive this session.
+
 ## ★★ POST-REWIND CONFIRM — 2026-07-01 (zero-loss, Phase 1 saved bc4dc7f)
 Rewound. Ground truth verified: pane.get.target=ooshTeam:0.0, uname=MacStudio/Darwin, branch main clean, HEAD=bc4dc7f (Phase 1 anchor). customTitle oosh-po@MacStudio (fork 2b65b769 per boot prompt — KEPT, not re-renamed). Recent sprint = init-constructor (init/oosh self-heal on WODA.test): tester RUN5 8084ab3 (RESIDUAL-1 CLOSED INIT_EXIT=0, RESIDUAL-2 open: raw /dev/stderr on login = unguarded write outside log), expert a034dd1+b7c14ba (both residuals claimed closed). **NEW TRON TASK on resume: tester tests `hiveMind team.save` vs `hiveMind status` — does team.save carry same team|shell|agent|uuid combos as status? Show results + WAIT.** On resume: verify identity, drive the team.save/status comparison, then RESIDUAL-2, then #26/#27 init clean-env.
 
