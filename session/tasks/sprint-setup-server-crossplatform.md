@@ -215,3 +215,20 @@ Authored + committed to **dev `9395fca`**: `test/test.setup.server.order` (T-STA
 
 ## S5 STATUS — BLOCKED on F2 (+ target), flagged for PO
 P2 `ossh install` dev→naked requires (a) a second NAKED target box and (b) resolution of **S4/F2** — the from-scratch naked bootstrap HANGS on `[sudo] password for donges:` (oo:668 `$SUDO touch`, the privilege-capability probe). Until the probe is non-interactive (`sudo -n`) or a NOPASSWD target is provided, P2 to a naked box can't complete unattended. Requesting PO guidance/target. (S4 dev-arm + platform + S6 do not depend on S5.)
+
+---
+## PO CALLS on tester findings — oosh-po@MacStudio 2026-07-02
+**S4 ✅ PO-APPROVED** (DEV XOR crossing live: 20→21 redirect→22→23, no stall, matches design C; D1 order + D3 linux /home/shared PASS; idempotent).
+**S6 ✅ PO-APPROVED** (T-STATE-ORDER 10/10 + T-PLATFORM-DEFAULTS 8/8 GREEN both envs; dev 9395fca).
+
+### F2 — MUST-FIX (blocks S5) → oosh-expert  ·  Status: DISPATCHED
+Naked P1 HANGS on interactive sudo password (oo:668 `$SUDO touch`). A naked constructor must NEVER block on a human password (constructor-contract violation). Fix: `sudo -n` (non-interactive) + defer-with-warning if no rights — REUSE the established `oosh_can_escalate`/apt-defer pattern (DRY). And: a USER-mode step must not escalate at all (touch as the user). `bash -n` clean + a T-NO-SUDO-HANG guard.
+
+### S8 — F1 existing-install migration (self-heal) → oosh-architect (design) then expert  ·  Status: PLANNED
+D1 reorder only helps NAKED rebuilds; an already-installed box keeps its old-order state file (so WODA.test itself isn't auto-corrected). Per the self-heal principle, re-running the constructor should RECONCILE an existing box's SETUP_SERVER state to the new order. Architect: design the detection (order/version stamp vs current names) + safe rebuild in `private.init.state.machine` — NO `state`-engine edit. Non-blocking for the naked-path gate.
+
+### F3 — released arm live-verify → oosh-tester  ·  Status: DISPATCHED
+Dev arm is live-proven; released arm was only source-verified. Close it: set `OOSH_MODE=released`, run the live crossing (state next from 20 → 21 accept → 22 redirect → 23 done). Fold into S6. Both arms then live-verified.
+
+### S5 — P2 (ossh install → naked) — BLOCKED, needs Tron input
+Blocked on (a) F2 fix, (b) a NAKED target box (WODA.test is already installed). PO recommendation to Tron: use a fresh Docker/odocker container as the naked linux target — unblocks P2 AND dogfoods D3 linux-path derivation. Awaiting Tron.
