@@ -5,8 +5,8 @@
 
 ## Status
 - [x] Planned
-- [ ] In Progress
-- [ ] QA Review
+- [x] In Progress
+- [x] QA Review (expert-verified live; awaiting tester T-SEND-SESSION)
 - [ ] Done
 
 ## Description
@@ -46,8 +46,8 @@ otmux send "does not complete the session / totally broken" for: (a) the agent-t
 
 ## Report-back
 - Architect (diagnosis vs macos.latest): **DONE 2026-07-02** — hypothesis CONFIRMED, 2 mechanisms: (M1) dev runs verify+poke on ALL targets; macos.latest old send had NONE → dev's fragile `>`-verify on shells → false rc2 → poke → "not completed." (M2) `isClaudeCode` treats `pane_current_command==node` as claude unconditionally → Escape into a node shell → hang. Fix: branch send.smart on kind (claude=full contract UNCHANGED/5-5-safe; non-claude=stage+Enter, no Escape, no poke, light-confirm) + harden isClaudeCode's node case + session→active-pane→kind. Full spec above.
-- Expert (fix + commit):
-- Tester (T-SEND-SESSION):
+- Expert (fix + commit): **DONE 2026-07-02 `188971a`** (dev). Implemented all 3 per approved spec: (1) **kind-branch `send.smart`** — detect `isClaudeCode` ONCE up front; non-claude → `stage + submit(Enter)`, NO Escape, NO poke, NO verify loop, light-confirm rc0; claude → full OTR-1 path preserved byte-for-byte. (2) **`isClaudeCode` node hardening (M2)** — moved `node` from unconditional-claude into the `claudeCode process.running`-gated arm (same as bash/zsh/sh); `node` alone ≠ claude. (3) **session→active-pane (point 4)** — `private.resolve.target` resolves a BARE session name (real session only, via `has-session`) to its active `sess:win.pane`, so session sends branch on the active pane's kind. **Live-verified on WODA.prod**: shell send rc0 in 1s (was ~5s poke-hang) + command executed; node pane → isClaudeCode rc1 (non-claude, no Escape); bare-session → dispatched to active pane; **T-DISPATCH-SUBMIT 5/5 (claude path non-regressed)**.
+- Tester (T-SEND-SESSION): READY — send to shell/session/manual target completes (no poke-hang / Escape-interrupt); node-pane-without-claude-child takes shell path; verify OTR-1 claude rc-dispatch still 5/5. Commit `188971a` on dev.
 
 ---
 ## ✅ g.1 DIAGNOSIS done + fix APPROVED (architect `e6eb721`, oosh-po 2026-07-02)
