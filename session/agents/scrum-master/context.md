@@ -1,5 +1,24 @@
 # Scrum Master Context — 2026-07-03 (live save)
 
+## ★★★★★★★★★★★★★★★★★★★ TRAINER REWIND PREP (2026-07-03 — HELP IT IN PHASE 1) ★★★
+**agent-trainer(baseTeam:0.0) is at REAL 0% ("Context limit reached", status-bar "Context low (0% remaining)", context.read=0) — needs rewind NOW. I drive its catch-22 rewind (protocol doc 20260621T1100Z). Capturing its state so I feed back what the retrain-from-anchor MISSES.**
+
+### Its retrain restores from (COMMITTED — survives): context.md@MacStudio + learnings, which now include its EVOLVED role/knowledge:
+- **ROLE CHANGED (TRON 2026-07-02, 0f3a312c):** trainer is now a **Consolidation-to-Essence → Safe-Rewind PARTNER, NOT a /rewind executor.** 7-step per-role consolidation procedure, official 5-file shape, provenance in ARON's REVIEW.md, F29 anti-bulk, 42-with-ARON. boot.md leads with this.
+- **RC-INTERFERENCE / stuck-composer BANK (81424e75/9b7efb00/43f00616):** /rc channel blocks the composer at 0%/1% (stuck-text + wedged-/rewind, RC above tmux-client layer, injects even with 0 clients). FIX = agent's OWN /rc menu Disconnect via `otmux send.tui Up Up Enter` (cheapest, no Tron/respawn). Re-enable RC after.
+- **PER-HOST SPLIT (4801efe4):** agent-trainer@WODA.prod/context.md separate from @MacStudio (stop collisions). boot.md reads per-host context (verify host first). Shared memory/boot/learnings stay in agent-trainer/ (DRY).
+- **CROSS-MACHINE REACH (9c51cb03):** otmux tree pane titles = host map; servers:0.0=RawBin@WODA.prod = bridge to ARON@Temple:0.0. Measure the reach; session name can lie.
+
+### THE GAP it will MISS (in-flight since last context.md save — RELAY in Phase 1):
+1. **In-flight task:** it was checking WODA.prod claude version (`claude --version`→**2.1.197** on root@v60211) via a remote capture shell — part of a cross-machine/ARON coordination task (result: WODA.prod on 2.1.197). The 1m7s cogitation + this task's purpose = uncommitted, LOST on rewind.
+2. **It self-DISCONNECTED its own RC** (used its BANK technique to unwedge the composer at 0%) → post-rewind RC is OFF → **Touch Protocol must re-enable /rc.**
+3. **It's in PLAN MODE** (mode cycled off auto) → Touch Protocol must BTab-cycle back to **auto mode on** (I drive it — it can't see/self-touch its mode: accept-edits→plan→auto).
+4. **"1 shell still running"** (the WODA.prod capture shell) = leftover bg shell, may linger post-rewind.
+
+### PHASE 1 PLAN (it's at 0%, so Phase-1-FIRST): send.raw BTab→C-u→/rewind→Up 2-3→'Restore conversation' BY LABEL (frees room) → then order it SAVE (now it can) → verify commit → Phase-2 ~50% NEVER top → retrain boot→context(@MacStudio)→learnings IN ORDER → Touch (BTab to auto + re-enable /rc) → Rule-6. RELAY the 4 gap items above so its fresh save re-captures them. Last pre-emergency save: 159e7f5f (+ per-host 4801efe4 + the 4 learnings commits).
+
+
+
 ## ★★★★★★★★★★★★★★★★★★ CURRENT STATE (2026-07-03 — MOST CURRENT)
 - **Identity:** scrum-master@MacStudio, TRONinterface:0.1, Opus. Reports to TRON. 42-pair with agent-trainer(baseTeam:0.0) + coordinates oosh-po(ooshTeam:0.0).
 - **Live teams (otmux):** ooshTeam (0.0 po, 0.1 architect, 0.2 expert, 0.3 tester, 0.4/0.5 shells), baseTeam (0.0 trainer, 0.1 once-shell), TRONinterface (0.1 me, 0.0 TRON-agent = context-limited/idle→route via robbin... no: via oosh-po + RC), iphone (research), remoteOOSH (WODA.prod). **robbinTeam2 GONE.** RECONCILE queue vs live sessions every reboot (cross-host entries go stale).
