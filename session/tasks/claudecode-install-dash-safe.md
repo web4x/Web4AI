@@ -169,3 +169,26 @@ Design how `init/oosh` self-heals to bash from BOTH sh entry forms — `sh init/
 ### D13.3 — oosh-tester T-DASH-GUARD: live on WODA.test, `sh -c "$(cat init/oosh)"` AND `sh init/oosh` both reach valid `[oosh]` (no `Bad function name`).
 
 **First step for expert:** MEASURE `sh -c "$(cat init/oosh)"` and `sh init/oosh` on WODA.test — confirm they fail + capture WHERE (which line/construct) to ground the architect's design.
+
+---
+## D13.3 (RE-TARGETED) REPORT-BACK — T-DASH-GUARD ✅ GREEN + reframe-closes (oosh-tester, 2026-07-02, dev `a8f7728`)
+`test/test.dash.guard` — **5/5 GREEN** on MacStudio AND live WODA.test.
+
+### FINDING: init/oosh ALREADY self-heals the shell — the reframe reframe-CLOSES
+Measured (non-destructive): init/oosh is **`#!/usr/bin/env sh`** (POSIX bootstrap by design), has **0 dotted fns**, **`dash -n init/oosh` → rc 0** (parses end-to-end under dash), and already **re-execs into bash at line 287** (`exec "$_newbash" "$0" "$@"`, after ensuring bash 4+/git, pre-clone). So a naked `/bin/sh` host does NOT die `Bad function name` — init runs POSIX up to the re-exec, execs bash, then sources the dotted-fn framework under bash. **No new guard was needed; the constructor is already defended.** (The expert's `ef34ed0` is the separate DEFERRED cosmetic — POSIX-cleaning the claudeCode install/uninstall BODIES — good hygiene, but not the shell-guarantee; the guarantee is init/oosh's pre-existing re-exec.)
+
+### T-DASH-GUARD assertions (all GREEN, non-destructive)
+1. init/oosh shebang is POSIX sh.
+2. `dash -n init/oosh` parses clean end-to-end (no Bad function name; unlike claudeCode which dies at its first dotted fn).
+3. init/oosh re-execs into bash (`exec … "$0"` @287).
+4. the bash re-exec PRECEDES any dotted-fn sourcing (else dash would die at runtime) — re-exec@287, first dotted source = none in init/oosh.
+5. LIVE isolated mechanism: a tiny script with init's exact guard, run under `dash` with `BASH_VERSION` cleared (`env -u` — else the parent bash leaks it and the guard never fires), re-execs into a real bash (`REEXEC_OK=5.0.17` on WODA, `5.3.9` on MacStudio).
+
+### ⚠️ DESTRUCTIVE-INSTALLER lesson (why the test is structural, not a full run)
+init/oosh is a REAL installer (`mv $OOSH_DIR $HOME/oosh`, sudo re-exec, state-machine handoff). During the D13.3 baseline I ran the full `dash init/oosh` under a timeout — it partially executed and **wiped `/home/donges/oosh`** (killed mid-`mv`); I re-cloned dev to restore the box. → T-DASH-GUARD is deliberately NON-DESTRUCTIVE (parse + source-structure + isolated mechanism probe). A full end-to-end "reaches a live `[oosh]` shell" requires a THROWAWAY box — that's the **S5 naked container** job (folds naturally with P2). Flagging: do NOT run the full init installer against a live team checkout.
+
+### Acceptance (reframed) — tester side
+- [x] init/oosh self-re-execs under bash when launched via sh/dash (**confirmed ALREADY-guarded** — pre-existing re-exec @287)
+- [x] T-DASH-GUARD GREEN live on WODA.test (sh → re-exec → bash)
+- [x] object.verb UNTOUCHED; zero OOSH-principle regression
+- [ ] full e2e "reaches [oosh]" under sh → deferred to the S5 throwaway container (non-destructive here)
