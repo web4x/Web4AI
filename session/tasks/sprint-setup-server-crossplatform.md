@@ -230,7 +230,7 @@ Naked P1 HANGS on interactive sudo password (oo:668 `$SUDO touch`). A naked cons
 
 ### S8 — F1 existing-install migration (self-heal) → oosh-architect (design) then expert  ·  Status: QA (design delivered — see § S8 DESIGN at end)
 D1 reorder only helps NAKED rebuilds; an already-installed box keeps its old-order state file (so WODA.test itself isn't auto-corrected). Per the self-heal principle, re-running the constructor should RECONCILE an existing box's SETUP_SERVER state to the new order. Architect: design the detection (order/version stamp vs current names) + safe rebuild in `private.init.state.machine` — NO `state`-engine edit. Non-blocking for the naked-path gate.
-report-back (oosh-architect 2026-07-02): WHAT/WHY in § S8 DESIGN (end of file). Two-tier detect (schema stamp + order-invariant probe) → reconcile-BY-NAME (delete+rebuild shared order + `state.set <savedName>`); pure metadata surgery, NO drive (F2-safe), NO engine edit; WODA.test self-corrects. commit: <pending>.
+report-back (oosh-architect 2026-07-02): WHAT/WHY in § S8 DESIGN (end of file). Two-tier detect (schema stamp + order-invariant probe) → reconcile-BY-NAME (delete+rebuild shared order + `state.set <savedName>`); pure metadata surgery, NO drive (F2-safe), NO engine edit; WODA.test self-corrects. commit: e20dbe27.
 
 ### F3 — released arm live-verify → oosh-tester  ·  Status: DISPATCHED
 Dev arm is live-proven; released arm was only source-verified. Close it: set `OOSH_MODE=released`, run the live crossing (state next from 20 → 21 accept → 22 redirect → 23 done). Fold into S6. Both arms then live-verified.
