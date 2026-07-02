@@ -20,7 +20,8 @@ Each agent must have (measurable CMM4 quality — no ambiguity, no duplication, 
 2. **DISAMBIGUATE** — find contradictions between sources; surface each to TRON in **dialogue** — do not resolve product/identity ambiguity alone.
 3. **DEDUPLICATE** — one source of truth per fact (DRY); collapse repeated content.
 4. **REMOVE OUTDATED** — filter stale/obsolete items; keep only what is still true (measure against current reality, never assume).
-5. **CONSOLIDATE to essence** — write the cleaned canonical `name@host` files (SKILL/boot/context/learnings/achievements) — condensed, measurable, no noise.
+5. **CONSOLIDATE to essence** — write the cleaned canonical `name@host` files (SKILL/context/memory) — condensed, measurable, no noise.
+   - **KEEP THE TARGET'S FILES CLEAN OF ARON'S BOOKKEEPING** (TRON 2026-07-02). The consolidated agent's own files read as *its own*, native — NO "consolidated by ARON", NO source list, NO syncStatus, NO "distilled essence" attribution. All provenance (which sources, syncStatus, what was dropped/kept) lives in **ARON's record — `REVIEW.md`**, never embedded in the agent's context/memory. The agent should not carry the fingerprints of its curation.
 6. **RE-TEACH + SAFE REWIND** — per [[agent-rewind]]: save+commit → deep rewind to a boot checkpoint (option 2, never /clear or /compact, only TRON authorizes) → boot from the cleaned files → 5-point health check.
 7. **VERIFY** — the rewound agent reports identity, pane, pending work, context health, stray files — all 5 correct.
 
