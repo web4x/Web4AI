@@ -63,3 +63,28 @@ Since the install body is **unreachable under dash** (parse barrier) and **corre
 
 ## Rules
 OOSH wrappers only; no output filtering; measure live on WODA.test; task file = channel, chat = one-line nudge; report-back = commit + push here.
+
+---
+## D13.3 PREP — T-DASH-SAFE harness built + baseline measured (oosh-tester, 2026-07-02, WODA.test/v36421)
+Harness `test/test.dash.safe` written + verified as a working detector (holding the GREEN commit until D13.2 lands, per PO).
+
+### Baseline (measured live, WODA.test — has /bin/dash)
+- **`dash -n /home/donges/oosh/claudeCode` → `34: Bad function name`.** Whole-file dash is impossible BY DESIGN: OOSH dotted method names (`claudeCode.install()`) are invalid in POSIX. So the real dash-path is NARROWER than the whole script — **D13.1 must name the exact fresh-host invocation** (claudeCode has a bash shebang, so `sh -c 'claudeCode install'` still execs under bash; the dash failure must be a SOURCED/inlined bootstrap or a `/bin/sh` stage — needs the expert's measured reproduce).
+
+### Bashism inventory — reachable path = `claudeCode.install()` (line 810)
+| line | bashism | POSIX fix |
+|------|---------|-----------|
+| 820 | `read -p "…" -n 1 -r` | dash `read` has no `-p`/`-n`: `printf '%s' prompt; read -r REPLY` |
+| 822 | `[[ ! $REPLY =~ ^[Yy]$ ]]` | `case "$REPLY" in [Yy]*) … esac` |
+| 869 | `[[ ":$PATH:" != *":$INSTALL_DIR:"* ]]` | `case ":$PATH:" in *":$INSTALL_DIR:"*) … esac` |
+| 886 | `source "$claudeEnv"` | `. "$claudeEnv"` |
+| 882 | writes `echo 'source $CONFIG_PATH/claude.env'` into CONFIG_FILE | write `. $CONFIG_PATH/claude.env` (dash sources it later) |
+(`local` at 812/813/847/875 — dash supports it as an extension; low priority, leave unless PO wants strict POSIX.)
+
+### ⚠️ Method finding (important for D13.2 + acceptance)
+**`dash -n` is INSUFFICIENT to catch these** — measured: `dash -n` on the isolated install body returns rc=0 even WITH the bashisms present, because dash parses `[[` as a *command name* and `read -p` parses fine; both fail at **RUNTIME**, not parse-time. → T-DASH-SAFE relies on **(A) a bashism-pattern FENCE** (deterministic, catches all 5 above) **+ (C) a LIVE run** under dash (runtime). The `dash -n` parse-check (B) stays as a cheap guard for *syntactic* bashisms (arrays `=( )`, bad redirects) but will not, by itself, prove dash-safety here. So the acceptance "runs clean under sh/dash" needs a real live invocation, not just a parse check.
+
+### Harness status
+- (A) FENCE: currently **5/5 detecting** (RED, bashisms present) → flips GREEN when D13.2 removes them.
+- (B) dash -n parse (install body, brace-depth-extracted + undotted wrapper): PASS/guards syntax.
+- (C) LIVE run: placeholder — add once D13.1 names the invocation + D13.2 lands, then drive it under dash non-interactively, assert no runtime bashism + reaches terminal. Report GREEN + commit then.
