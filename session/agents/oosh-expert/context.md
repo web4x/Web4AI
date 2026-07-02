@@ -138,8 +138,19 @@ Live-verified WODA.prod (shell rc0 1s, node→non-claude, bare-session dispatche
 - **c.0 live-reader DONE**: `45951ad` (local: 9-field canonical tuple host|session|address|tty|role|uuid|kind|title|cwd, TITLE-first agents.discover, protected wrapper, identity.resolve, migrated role.uuid/teams.save) + `0d9d162` (remote: teams.env host column, ossh-exec remote sourcing, remote-unreachable marker, team.host/team.host.set). All acceptance verified. Ready T-LIVE-READER.
 - **C.2 reconcile-after-fork DONE**: `3946942` — **T-RECONCILE-FORK 4/4 GREEN**. I2b in reconcile.check.i2 (batch live-uuid heal cache→live) + `hiveMind team.audit <session>` (orphan/empty-uuid/dead-route, exit=count). **ENABLING FIX**: session.discover was NOT cache-immune for forks (JSONL customTitle `@WODA.prod` vs pane title `@v60211` mismatch → S2 fallback) → fixed by correlating on ROLE (`%%@*`) not @host-qualified title + trimming otmux pane.get's stray-newline artifact. Non-regr: teamsave-parity 3/3, dispatch-submit 5/5, claudeCode 83/55==baseline, live sessions.env bc6f6673 undisturbed.
 - **2 spin-off findings flagged to PO** (separate tasks): (a) host-naming `@WODA.prod`(sshConfigHost) vs `@v60211`(hostname-s) inconsistency — C.3 is natural home to canonicalize; (b) `otmux pane.get` prepends stray leading newline (this-dispatch artifact) — broad latent, worked-around in session.discover.
-- **⏭ NEXT: C.3 boot-identity** (task-s2-c.3-boot-identity-per-host.md, design 52bdb7e): anchor pre-compress.sh (L13, last $TMUX_PANE holdout) on `otmux pane.self`; resolve role@host from LIVE title (use c.0 identity.resolve projection) > registry/env; @host-aware dir pick; FAIL-SAFE never writes shared session/agents/unknown/boot.md sink (skip+warn/quarantine) + retire unknown/ target. Tester T-BOOT-IDENTITY.
-- **Also flagged earlier**: g.4 = claudeCode process.running mis-detects bash-parent claude panes.
+- **C.3 boot-identity DONE**: `1e9791a` (oosh/dev: hiveMind.protected.identity.resolve wrapper) + `857b0a1` (Web4AI/main: pre-compress.sh rewrite). Hook now anchors on `otmux pane.self` (pane.self VERIFIED resolves in-hook → oosh-expert@ooshTeam:0.3), role@host via shared identity.resolve, @host-aware ROLE_DIR, FAIL-SAFE quarantine to `_unresolved/<pane>-<pid>.boot.md` (NEVER unknown/), retired session/agents/unknown/. Kept $TMUX_PANE as last-resort fallback (noted for tester). Ready T-BOOT-IDENTITY.
+
+### 🎉 ENTIRE OTR-3 / C-FAMILY COMPLETE (+ g.1). This session's ships (all dev/main, pushed):
+| Piece | Commit(s) | Status |
+|-------|-----------|--------|
+| g.1 send KIND-branch | 188971a | T-DISPATCH-SUBMIT 5/5; await T-SEND-SESSION |
+| c.0 live-reader local | 45951ad | await T-LIVE-READER |
+| c.0 live-reader remote | 0d9d162 | await T-LIVE-READER |
+| C.1 route auto-heal | 3452eae (prior) | shipped |
+| C.2 reconcile-after-fork | 3946942 | T-RECONCILE-FORK 4/4 GREEN |
+| C.3 boot-identity | 1e9791a + 857b0a1 | await T-BOOT-IDENTITY |
+**Open findings flagged to PO (separate tasks):** g.4 (claudeCode process.running mis-detects bash-parent claude panes → g.1 send took shell path to PO); host-naming @WODA.prod(sshConfigHost) vs @v60211(hostname-s) inconsistency (C.3 partially addresses via role-strip; canonicalization still open); otmux pane.get prepends stray leading newline (this-dispatch artifact, worked around in session.discover + hook).
+**NOW: idle — full PO queue delivered. Awaiting tester verifications (T-SEND-SESSION/T-LIVE-READER/T-RECONCILE-FORK/T-BOOT-IDENTITY) + next PO assignment.**
 
 ### (superseded) NEXT — OTR-3 / C-family (task-s2-c) — original plan
 PO queue order: **build c.0 live-reader → flip agents.discover TITLE-first → C.2 → C.3. Commit each.** Specs read: task-s2-c (parent), c.0, coherence-pass d25bc18. Tester RED ready: `test/test.reconcile-fork` (4/4 FAIL by design, isolated).

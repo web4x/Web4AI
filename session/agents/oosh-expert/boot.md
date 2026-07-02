@@ -6,7 +6,7 @@
 ## Machine: WODA.prod (dev branch, /root/oosh)
 ## Goal: OTR-3 / C-family (task-s2-c). g.1 DONE (188971a). Building c.0 live-reader next.
 
-## ⏱ RESUME HERE (2026-07-02): SHIPPED this session — g.1 `188971a` (send KIND-branch, T-DISPATCH-SUBMIT 5/5), c.0 `45951ad`+`0d9d162` (canonical live-reader), C.2 `3946942` (reconcile-after-fork, T-RECONCILE-FORK 4/4). All on dev, pushed. Awaiting testers T-SEND-SESSION / T-LIVE-READER / T-RECONCILE-FORK. **NEXT: C.3 boot-identity** (task-s2-c.3-boot-identity-per-host.md, design 52bdb7e) — anchor pre-compress.sh on otmux pane.self, role@host from live title via c.0 identity.resolve, @host dir, fail-safe never write shared unknown/ sink. See context.md "OTR-3 / C-family PROGRESS" block. Flagged for PO: g.4 (process.running bash-parent mis-detect), host-naming @WODA.prod-vs-@v60211, otmux pane.get stray-newline.
+## ⏱ RESUME HERE (2026-07-02): FULL PO QUEUE DELIVERED. Shipped this session — g.1 `188971a`, c.0 `45951ad`+`0d9d162`, C.2 `3946942` (T-RECONCILE-FORK 4/4), C.3 `1e9791a`(dev)+`857b0a1`(main). ALL C-family + g.1 done, pushed. **IDLE — awaiting testers (T-SEND-SESSION/T-LIVE-READER/T-RECONCILE-FORK/T-BOOT-IDENTITY) + next PO assignment.** See context.md table. Open findings flagged to PO: g.4 (process.running bash-parent mis-detect), @WODA.prod-vs-@v60211 host-naming, otmux pane.get stray-newline. On any tester bug report: re-read context.md first.
 
 ## Immediate actions:
 1. Run `otmux pane.get.target` — confirm pane address
