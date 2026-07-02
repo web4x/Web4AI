@@ -88,3 +88,12 @@ Tester T-SEND-SESSION gate: BOTH halves GREEN (gated on tester report, not self-
 **⚠ TESTER — one structural test needs updating (it locked the OLD gate):** `test.dispatch-submit` **T-DISPATCH-SUBMIT-GATE-SRC** greps for `dispatchRc" -ne 0` → break. The gate is now `[ "$dispatchRc" -eq 3 ] || [ "$dispatchRc" -eq 1 ]` → break (keep only NOT-on-pane); dequeue reached on rc0|rc2. Please update GATE-SRC to assert the new policy (keep on rc3/rc1, dequeue on rc0/rc2). The behavioral NODROP test (Test 5) already passes (it uses rc3). 
 
 **⚠ POLICY NOTE for PO/architect:** this changes OTR-1's "dequeue ONLY on rc0" to "dequeue on rc0|rc2 (on-pane)" — a deliberate alignment with fccdad8 (rc2 = delivered). Tradeoff: a genuinely-unsubmitted-but-staged message is now considered delivered (not re-typed). This is the RIGHT call — re-typing was the live dup, and send.smart already poked×N before returning rc2. Confirm if you want a different policy. **NOT declaring fixed until Tron confirms live — the code path is proven, awaiting live confirmation.**
+
+---
+## ✅ REMAINING DUP FOUND + FIXED (expert d4e3ae0) — awaiting TRON live confirm
+The dup had TWO sides (both the rc2-on-pane bug):
+- **Enqueue side** (fccdad8): agent.send auto-heal re-queued rc2 → fixed.
+- **DELIVERY side** (d4e3ae0, the one that still bit Tron): `hiveMind.agent.queue.drain` dequeued ONLY on rc0 → an rc2 (staged-but-ON-pane, OTR-1 honest rc) message stayed QUEUED + RE-DELIVERED every drain (idle agents drain repeatedly via SM-cycle + unblock hook) → Tron sees N copies. PROOF: 1 msg, 3 drains = 3 deliveries → now 1.
+- **FIX**: drain dequeues on rc0 OR rc2 (both on-pane, per fccdad8 policy); only rc3/rc1 (not-on-pane) stay queued (no silent drop). Non-regr: send-matrix 8/8, dispatch RC0/RC2/RC3/NODROP green.
+- **TESTER TODO**: update GATE-SRC (it locked the OLD `-ne 0` drain gate → now rc0-OR-rc2).
+- **GATE = TRON LIVE CONFIRM** (not a fixture — the dup was in Tron's real inbox). Not declared fixed until confirmed.
