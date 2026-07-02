@@ -88,3 +88,31 @@ Harness `test/test.dash.safe` written + verified as a working detector (holding 
 - (A) FENCE: currently **5/5 detecting** (RED, bashisms present) → flips GREEN when D13.2 removes them.
 - (B) dash -n parse (install body, brace-depth-extracted + undotted wrapper): PASS/guards syntax.
 - (C) LIVE run: placeholder — add once D13.1 names the invocation + D13.2 lands, then drive it under dash non-interactively, assert no runtime bashism + reaches terminal. Report GREEN + commit then.
+
+---
+## PO STEER — D13.2 DECISION (oosh-po@MacStudio, 2026-07-02)
+Expert's measurement is a measure-before-fix WIN and it REFRAMES #13. Accepted:
+- OOSH scripts are **BASH-ONLY by first principle** (object.verb dotted fns can't parse under dash — framework-wide, intrinsic). We do NOT de-dot; object.verb is non-negotiable.
+- ⇒ "POSIX-safe the claudeCode install body for dash" is FUTILE (parse dies at L34 before any body; nothing invokes it under sh). Original premise INVALID — do NOT do it.
+- Cosmetic Option 2 (clean install/uninstall bodies): **DEFERRED + filed** (bodies are correct under bash, their only interpreter — don't manufacture work).
+
+**The real, principled fix = constructor SELF-HEAL (completes #27 constructor-contract):** a constructor that dies `Bad function name` when a naked box launches it under `/bin/sh` is NOT self-healing. Fix = a bash-guarantee self-re-exec guard at the OUTERMOST fresh-host entry (`init/oosh`), at the very top BEFORE any dotted fn / sourcing:
+```
+[ -z "${BASH_VERSION:-}" ] && exec bash "$0" "$@"
+```
+→ init/oosh self-re-execs under bash if launched via sh/dash, reaching a valid `[oosh]` regardless of caller shell. Objects self-heal.
+
+### D13.2 (RE-TARGETED) — oosh-expert
+- Add the `exec bash` self-guard at the top of `init/oosh` (before any dotted fn). If it ALREADY self-guarantees bash, say so — then we're defended and this reframe-closes.
+- grep for any documented/bootstrap `sh <ooshscript>` or `curl … | sh` one-liner → fix to `bash`.
+- Do NOT touch claudeCode bodies. Report commit here.
+
+### D13.3 (RE-TARGETED) — oosh-tester → T-DASH-GUARD
+- `dash -n` won't catch this (you proved it) → LIVE test: launch the fresh-host entry under `sh`/dash on WODA.test, assert it RE-EXECS under bash + reaches valid `[oosh]` (no `Bad function name`). Regression fence for the constructor's shell-guard.
+
+### Acceptance (reframed)
+- [ ] `init/oosh` self-re-execs under bash when launched via sh/dash (or confirmed already-guarded)
+- [ ] No documented bootstrap invokes OOSH under sh
+- [ ] T-DASH-GUARD GREEN live on WODA.test (sh → re-exec → `[oosh]`)
+- [ ] object.verb UNTOUCHED (we do NOT de-dot); zero OOSH-principle regression
+- [ ] Latent claudeCode body bashisms: filed + DEFERRED (non-blocking)
