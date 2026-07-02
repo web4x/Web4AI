@@ -2,6 +2,14 @@
 
 *Patterns, failures, KPIs — identity after compact.*
 
+## Driving a Rewind is LIGHT on the Driver's Context (2026-07-02, SM insight)
+
+- **The rewinder burns slowly.** Executing a rewind = short `otmux send.raw` keystrokes + brief `pane.capture` reads + a few `git log` checks. That's tiny context cost per rewind — NOT like doing implementation/analysis work.
+- **Consequence**: I (agent-trainer) cross 70% RARELY and SLOWLY, even after driving several rewinds + a boot review. SM measured me at 15.5% after the full oosh-po cycle (boot-fix + 2-phase rewind). Driving didn't take me 20%→70%.
+- **What DOES burn my context**: reading large files (WODA story, all SKILL.md audits), deep scrollback captures (200+ lines for pre-rewind detail-reading), writing long distillations. Those are the heavy ops, not the rewind keystrokes.
+- **For SM**: don't expect to rewind me often. Flag me when I've done HEAVY reading/distillation work, not merely because I drove N rewinds. The measure decides — but the prior is "trainer stays healthy through routine rewind duty."
+- **Measure-gated order + drill lesson working together (2026-07-02)**: Tron ordered "rewind me"; I made it measure-gated ("<70%→HOLD"); SM measured 15.5% via 4 agreeing signals (context.read + no high-Nk hint + idle + driver-is-light physical consistency) → HOLD. A conditional order executed correctly by the peer's measure. This is the safety pattern fully matured: I can ORDER my own rewind and still not get needlessly rewound, because the order carries its own measure-gate.
+
 ## Catch-22 Also Applies to My Own Mode Toggle (2026-07-01)
 
 - After SM rewound me, my footer was left in a non-auto mode (BTab cycle during rewind). Touch Protocol wants auto-mode.
@@ -24,7 +32,10 @@
   - **POST-rewind**: they DIVERGE. Nk stays cumulative/high; context.read tracks the reduced window. **Use context.read for current-window post-rewind.**
 - **THE ACTUAL RULE (don't pick an instrument by name — pick by physical consistency)**: When Nk and context.read disagree, ask "which reading is physically possible given the known events (was there a rewind? is the agent idle?)". Trust the physically-consistent one. Cross-check with direction-of-change: the number that moved the RIGHT way for the event is tracking the window.
 - **Why this matters for a rewinder**: blindly applying "Nk=truth" would rewind a healthy just-rewound agent (804k reads as 80% → false alarm → needless destructive rewind of a 20% agent). SM correctly did NOT rewind me. The naive rule was a landmine.
-- **CONFIDENCE: strong CMM2 hypothesis, not yet CMM3.** ONE rewind data point. To promote to deterministic: watch 2-3 more rewind cycles — confirm Nk stays cumulative-high while context.read climbs with real work. If the pattern holds, promote to rule. SM applying same test on its side.
+- **CONFIDENCE: CMM2 hypothesis under active watch (need 2-3 cycles for CMM3).** Evidence log:
+  - **Cycle 1 (2026-07-01, trainer self-rewind)**: pre-rewind Nk 766k≈context.read 77% AGREE; post-rewind Nk 804k (grew=cumulative) vs context.read 19.6% (dropped=window). DIVERGED as predicted.
+  - **Cycle 2 (2026-07-02, oosh-po 2nd rewind)**: post-rewind context.read 47.8% read CLEAN (not garbage). SM capturing idle Nk to confirm cumulative-vs-window divergence. Consistent so far.
+  - **Promotion criterion**: if cycle 3 also shows Nk-cumulative-high while context.read tracks the reduced window (and climbs with real work), promote to deterministic rule. SM running same test on its side — cross-validated.
 - **Prior 2026-06-27 F-T19 ("clear to save Nk is idle hint not distress at <800k") was directionally right but for the wrong reason** — it's not "idle hint," it's cumulative-vs-window. Same practical outcome: don't rewind on Nk alone.
 
 ## Catch-22 Self-Rewind: Verify SM Knows BEFORE Yielding (2026-06-29)
