@@ -34,7 +34,7 @@
 **The claim "otmux cannot force the rewind picker / can't drive rewinds" is FALSE as stated. It is VERSION + METHOD specific — NOT a permanent ceiling.**
 
 ### The one line
-**2.1.195 works / 2.1.197 fails — retest 2.1.197 with clean `send.raw "/rewind" Enter` before accepting "otmux can't."**
+**Prime suspect is OUR method (BUG10 `send.enter` half-state), NOT Claude Code.** The 195-vs-197 gap is a CONFOUND, not a conclusion — I changed version AND method at once. Retest 2.1.197 with clean `send.raw "/rewind" Enter` (no send.enter poke); that single test tells us whether it was us or the version. Do NOT claim "Claude Code 2.1.197 is broken" — unproven.
 
 ### Measured evidence (two hosts, same protocol)
 | Host | Claude Code | Restore-menu render via `otmux send.raw` | Sample |
@@ -44,9 +44,9 @@
 
 The WODA.prod trainer's execution was otherwise excellent (OOSH-clean, measured, safe-verified, escalated + CMM4-routed). Its ONE error was generalizing a local failure into "otmux can't drive rewinds." I drive the restore-options menu via `otmux send.raw` **repeatedly and reliably** on 2.1.195.
 
-### Two candidate root causes — BISECT BOTH, don't assume
-1. **Claude Code version regression**: the restore-options sub-menu may render on 2.1.195 and fail on 2.1.197. Bisect the CC version.
-2. **Method artifact (ties to BUG10 / task-s2-b)**: WODA.prod opened the picker via `otmux send.enter "/rewind"` → landed UNSUBMITTED (its "BUG10") → needed a poke → picker opened in a **half-state**. MacStudio uses clean `otmux send.raw "/rewind" Enter` (send.raw for slash commands, no prefix, no submit issue). The half-state is a plausible cause of the missing sub-menu render.
+### Two candidate root causes — the test is CONFOUNDED, so bisect. Order by likelihood:
+1. **(LIKELY) Method artifact — OUR bug, not Claude Code (ties to BUG10 / task-s2-b)**: WODA.prod opened the picker via `otmux send.enter "/rewind"` → landed UNSUBMITTED (its "BUG10") → needed a poke → picker opened in a **half-state**. MacStudio uses clean `otmux send.raw "/rewind" Enter` (send.raw for slash commands, no prefix, no submit issue). A picker opened from a half-state is a very plausible cause of a sub-menu that won't render. This is a known bug on OUR side.
+2. **(UNPROVEN) Claude Code version**: 195→197 is a patch bump; a restore-menu render regression across it is *possible but unlikely*. Only entertain this AFTER candidate 1 is ruled out by the clean-send.raw retest. Do not escalate to Claude Code on speculation.
 
 ### Retest protocol (the fix targets the REAL root cause)
 1. On a 2.1.197 agent, open the picker with **clean `otmux send.raw <pane> "/rewind" Enter`** — NOT `send.enter`, no poke.
