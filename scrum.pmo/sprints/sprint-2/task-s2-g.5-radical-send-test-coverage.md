@@ -132,3 +132,17 @@ Approved — 43 cells / 10 groups, proven superset of the 8 existing (zero regre
 ## ✅ g.5 matrix COMPLETE + PO APPROVED (architect 2a6e3fa) — 11 groups / 50 cells
 E5 (prefix EXACTLY ONCE, [[text!=@*]] BUG9 guard — [@ count==1 after poke×N) + GROUP K (single-key recognition: send.raw <key> = raw key event, NO prefix/verify/poke/queue; send.raw=primitive, send.smart=message-sender) FOLDED. Still superset of the 8 → ZERO regression. Tron's 5 all covered: auto-commit(B/C/H) · local+remote(J) · never-dup(D3) · sender-once(E5) · single-keys(K).
 **URGENT LINK**: D3 (never-duplicate) + E5 (prefix-once) are the GUARDS for the LIVE "all messages duplicate" regression → tester implements those FIRST (RED now → expert's double-invoke fix greens them = verifies the cure). **Tester → implement T-SEND-MATRIX (D3+E5 first) → PO gate.**
+
+---
+## 🔬 EXPERT INVESTIGATION — the "double-invoke" is a FIXTURE ARTIFACT, not a send bug (oosh-expert@WODA.prod, 2026-07-02)
+Assigned to "fix the double-invoke" that D3/E5 guard. **Measured it end-to-end on WODA.prod — `otmux send` delivers EXACTLY ONCE. There is no double-invoke in the send primitive.**
+
+**The proof (decisive):** the `mk_fake_claude` fixture runs `cat` with the pane's terminal in **cooked mode (echo ON)**. So a *single correct* send shows the message on TWO lines: (1) the terminal's **input-echo** of the staged keystrokes, then (2) `cat`'s **stdout** after Enter. `grep -c` counts both → **2 for ANY correct send.**
+- **Baseline control**: a raw `tmux send-keys -l "X"; send-keys Enter` (the minimal possible correct send, no OOSH) into the same cat fixture → **count = 2** (identical to `otmux send`). So `otmux send` adds ZERO duplication over the theoretical minimum.
+- **Echo-OFF control (isolates the real signal)**: same fixture with `stty -echo` (only `cat`'s stdout counts, no input-echo) → `otmux send <pane> "MSG"` → **count = 1**, and the sender prefix `[@oosh-expert ooshTeam:0.3]` appears **exactly once** (no prefix-doubling). The pane's `pane_current_command` was `claude` → this exercised the **full CLAUDE path** (stage→submit→verify→poke), and it still delivered ONCE.
+
+**Conclusion:** D3 (`-eq 1`) and E5 (`[@`-count `-eq 1`) are **unsatisfiable for any correct send** under echo-on `cat` (correct=2, a real double would be 4). They measure input-echo+output, not delivery count. `otmux send` / `send.smart` (both shell and claude paths) submit the message a single time with a single prefix.
+
+**Fixture fix (tester's call — I don't edit test files):** make `mk_fake_claude` put the pane in raw mode so only the program's stdout is measured — send `stty -echo` before launching the fake claude (`tmux send-keys "$FC_PANE" "stty -echo; PATH=... claude" Enter`). Then D3/E5 read the true delivery count: **correct send = 1** (GREEN), a genuine double-invoke = 2 (RED). This makes the guards actually discriminate.
+
+**On the LIVE "all messages duplicate" symptom:** it is NOT reproducible through `otmux send` (proven once-only above). If real agents still observe duplicates, the double is at a HIGHER layer — need the concrete repro (which sender, which command: `hiveMind agent.send` vs `otmux send` vs `broadcast` vs the pre-compress resume's `Enter Enter`, and sender→receiver panes). I traced `agent.send`/`agent.inform` → single delivery per route (inform XOR queue, no enqueue-on-inform). Requesting the exact reproduction to chase a real higher-layer double; the send primitive itself is clean.
