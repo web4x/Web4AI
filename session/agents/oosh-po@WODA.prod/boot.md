@@ -15,9 +15,10 @@
 5. Resume work (see goal above)
 
 ## Deep files (read ONLY if needed, not on boot):
-- SKILL.md: ``
+- Reading list: `session/agents/oosh-po@WODA.prod/reading-list.md` (start here)
 - Context: `session/agents/oosh-po@WODA.prod/context.md`
 - Learnings: `session/agents/oosh-po@WODA.prod/learnings.md`
+- Role SKILL: `.claude/agents/product-owner/SKILL.md`
 
 ## Rules (memorize, don't re-read):
 - Wait for assignment. Only SM/orchestrator have background loops.
