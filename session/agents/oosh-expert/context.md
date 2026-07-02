@@ -150,7 +150,13 @@ Live-verified WODA.prod (shell rc0 1s, node→non-claude, bare-session dispatche
 | C.2 reconcile-after-fork | 3946942 | T-RECONCILE-FORK 4/4 GREEN |
 | C.3 boot-identity | 1e9791a + 857b0a1 | await T-BOOT-IDENTITY |
 **Open findings flagged to PO (separate tasks):** g.4 (claudeCode process.running mis-detects bash-parent claude panes → g.1 send took shell path to PO); host-naming @WODA.prod(sshConfigHost) vs @v60211(hostname-s) inconsistency (C.3 partially addresses via role-strip; canonicalization still open); otmux pane.get prepends stray leading newline (this-dispatch artifact, worked around in session.discover + hook).
-**NOW: idle — full PO queue delivered. Awaiting tester verifications (T-SEND-SESSION/T-LIVE-READER/T-RECONCILE-FORK/T-BOOT-IDENTITY) + next PO assignment.**
+**Full PO queue delivered.** Awaiting tester verifications (T-SEND-SESSION/T-LIVE-READER/T-RECONCILE-FORK/T-BOOT-IDENTITY).
+
+### 🔬 URGENT "all-messages-duplicate" regression — INVESTIGATED, it's a FIXTURE ARTIFACT (2026-07-02, doc 4808a6d in task-s2-g.5)
+SM escalated an urgent dup-fix ("all messages DUPLICATE / double-invoke") that was queued to me; investigated end-to-end. **CONCLUSION: `otmux send` delivers EXACTLY ONCE — no double-invoke.** Proof: the tester's `mk_fake_claude` D3/E5 fixture runs `cat` with terminal echo ON → any correct single send shows the msg on 2 lines (input-echo + cat stdout) → count=2. Raw baseline `send-keys` ALSO =2 (otmux send adds zero dup). With `stty -echo` (only program stdout counts): `otmux send` = **count 1**, prefix once, on the FULL claude path (pane cmd=claude → stage→submit→verify→poke). So D3/E5 `-eq 1` is unsatisfiable under echo-on cat = artifact, not a send bug.
+- **Fixture fix (told tester ooshTeam:0.4):** add `stty -echo` in mk_fake_claude → then correct=1 (green), real-double=2 (red). Tester's file, they apply.
+- **Reported to PO ooshTeam:0.0** (landed). Traced agent.send/agent.inform = single delivery per route (inform XOR queue). **If live dup is real, it's HIGHER layer — REQUESTED concrete repro (which sender/command/panes).** Do NOT fabricate a send-primitive "fix" — it's clean. **BLOCKED awaiting: tester fixture fix re-run + concrete live repro (if any).**
+- Reminder: my own sends to PO take the "(shell)" path (g.4 process.running mis-detect) but still deliver.
 
 ### (superseded) NEXT — OTR-3 / C-family (task-s2-c) — original plan
 PO queue order: **build c.0 live-reader → flip agents.discover TITLE-first → C.2 → C.3. Commit each.** Specs read: task-s2-c (parent), c.0, coherence-pass d25bc18. Tester RED ready: `test/test.reconcile-fork` (4/4 FAIL by design, isolated).
