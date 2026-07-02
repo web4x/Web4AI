@@ -16,10 +16,14 @@ As **root**: `git -C /home/donges/oosh fetch origin && git -C /home/donges/oosh 
 - **F3** released arm: closed via function-level RESULT probe (branch pins OOSH_MODE — see learnings).
 - **F2 / T-NO-SUDO-HANG**: naked constructor no longer blocks on sudo password (`sudo -n`, defers to user band RESULT=20). `test.no.sudo.hang` 7/7 GREEN.
 - **E-FLAGS.2 / T-NO-FLAGS**: Death-to-Flags fence — `test.no.flags`, budget tightened 1→0 after otmux `--force` cleanup (#33). 0 signature-flag + 0 soft-value. GREEN both envs. Independent co-confirm commit 75250dc = what let PO sign off.
+- **#13 / T-DASH-GUARD** (`test.dash.guard`, dev a8f7728): CLOSED as already-solved. init/oosh already bash-self-heals (POSIX-sh + re-exec @287 before any dotted-fn source). 5/5 both envs, NON-DESTRUCTIVE fence. PO-accepted.
 
-## Open / handed off
-- **S5 Step 2 (P2 container + S8 T-RECONCILE)**: STOPPED per PO "no-rabbit-hole" guardrail. Infra proven (`odocker run.sshd` provisions a naked_ubuntu sshd container), but 2 frictions: donges not in docker group (odocker only works as root); naked container needs authorized_keys injection before ossh install. Awaiting PO go / friction resolution.
-- **S8 reconcile** (expert 09d33c9) needs T-RECONCILE on the SAME fresh container (co-resident WODA.test reverts CONFIG_PATH).
+## Open / handed off (all on the S5 throwaway container — the common unblock)
+- **S5 Step 2 (P2 container)**: STOPPED per "no-rabbit-hole". Infra proven (`odocker run.sshd` provisions naked_ubuntu sshd), 2 frictions: donges not in docker group (odocker as root only); naked container needs authorized_keys before ossh install. Awaiting PO go / friction fix.
+- **S8 reconcile** (expert 09d33c9): T-RECONCILE + T-RECONCILE-IDEMPOTENT on the SAME fresh container (co-resident WODA.test reverts CONFIG_PATH).
+- **#13 full e2e** ("reaches [oosh]" under sh): deferred to the same container (non-destructive on live boxes).
+- **#34 (I found this)**: constructor must not destroy an existing install — full init wiped `/home/donges/oosh` mid-`mv`; verify isolated on the E1.2 container, NEVER a live oosh dir. Restore recipe in [[oosh-tester-learnings]].
+→ ONE fresh linux container unblocks S5(P2) + S8(reconcile) + #13(e2e) + #34(safety), all gated on the same docker-group + key-injection setup.
 
 ## Status
-Contexts healthy, no rewind. Idle-hold after this save. [[oosh-tester-learnings]]
+Contexts healthy, no rewind. #13 + Death-to-Flags shipped. Free/idle-hold. [[oosh-tester-learnings]]
