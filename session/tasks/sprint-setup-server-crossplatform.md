@@ -56,13 +56,13 @@ Replace hardcoded platform paths with os-derived defaults in config init (+ `oo`
 - **Consumers de-hardcoded**: `oo.mode.base.get` reads `OOSH_COMPONENTS_DIR` (fallback derives from `OOSH_SHARED_BASE`, no `/Users/Shared`); `odocker:14` `:=` derives from `OOSH_SHARED_BASE`. macOS literals dropped.
 - **⚠️ One design note for architect/PO**: S1 §D said "keyed on `$OOSH_OS` via os detection." MEASURED ground truth: `os.check.env` has ZERO callers and `OOSH_OS` is empty even in an established donges shell on WODA.test; `os` **auto-dispatches on source** (`os.start "$@"` at tail) so it can't be run in-process, and it doesn't echo OOSH_OS. So I establish `OOSH_OS` from `$OSTYPE` at this ONE seam, mirroring os.check.env's exact patterns (darwin*/linux*/cygwin/msys/freebsd*). If you'd rather add a side-effect-free `os` accessor (e.g. `os os` echoes OOSH_OS) and have config.init consume it, that's a small follow-up — flag me. **Tester T-PLATFORM-DEFAULTS**: assert derived (not hardcoded), correct per platform, override honored.
 
-### S4 — Tester: verify P1 (self-bootstrap)  ·  Owner: oosh-tester  ·  Status: BLOCKED (needs S2/S3)
+### S4 — Tester: verify P1 (self-bootstrap)  ·  Owner: oosh-tester  ·  Status: READY (S2+S3 PO-approved)
 On a naked box (WODA.test): `init/oosh` reaches correct mode-aware terminal via `state next` (no stall), platform-correct paths, idempotent. Show raw `state next`/`state of`.
 
-### S5 — Tester: verify P2 (ossh install dev→naked)  ·  Owner: oosh-tester  ·  Status: BLOCKED (needs S2/S3)
+### S5 — Tester: verify P2 (ossh install dev→naked)  ·  Owner: oosh-tester  ·  Status: READY (S2+S3 PO-approved)
 `ossh install` dev-mode from a working box onto a naked system reaches the SAME correct end-state.
 
-### S6 — Tester: regression tests  ·  Owner: oosh-tester  ·  Status: BLOCKED (needs S2/S3)
+### S6 — Tester: regression tests  ·  Owner: oosh-tester  ·  Status: READY (S2+S3 PO-approved)
 T-STATE-ORDER (mode branch precedes done; `state next` crosses XOR on both OOSH_MODE values) + T-PLATFORM-DEFAULTS (derived, not hardcoded; correct per platform).
 
 ## S1 DESIGN (oosh-architect, 2026-07-02) — WHAT/WHY only; expert owns HOW
@@ -141,3 +141,13 @@ S1 → (S2, S3 parallel) → (S4, S5, S6 parallel) → PO QA gate → Tron promo
 - DO NOT modify the `state` script. Fix only `oo` (SETUP_SERVER checks/order) + config init (platform defaults).
 - OOSH wrappers only; no output filtering; measure live on WODA.test.
 - Architect = WHAT/WHY, Expert = HOW, Tester = verify. Report-back in THIS file + one-line nudge.
+
+---
+## PO QA — S2+S3 reviewed (oosh-po@MacStudio 2026-07-02)
+- **S2 566fed9 APPROVED** — D1 reorder (done AFTER mode arms), D2 both arms `create.result 0` + `state.find … id` (dynamic, no literal indices), C.1 single OOSH_MODE seam in `user.rights.only`, zero `state`-engine edits. Matches design.
+- **S3 650e743 APPROVED (functional)** — single OOSH_SHARED_BASE seam in config.init, pure-state exports, `${VAR:-}` override preserved, oo.mode.base.get + odocker drop macOS literals. Correct on all platforms.
+- **Answer to expert's design note (os accessor):** YES, single-source it → **S7** below. Interim inline `$OSTYPE` case is acceptable ONLY because it's guarded by `[ -z "$OOSH_OS" ]` (auto-defers once `os` sets it). Do not duplicate platform truth long-term.
+- S4/S5/S6 unblocked → tester.
+
+### S7 — Expert+os-expert: single-source the OS discriminator  ·  Owner: oosh-expert (+os-expert)  ·  Status: PLANNED (non-blocking follow-up)
+The `$OSTYPE → OS` mapping now lives in BOTH `os.check.env` AND `config.init` (S3 interim). Platform truth must have ONE source (the whole point of D3). Make `os` establish `OOSH_OS` as pure state on run (or add a side-effect-free `os` accessor that echoes the discriminator), then `config.init` DROPS its inline `$OSTYPE` case and consumes `$OOSH_OS`. No behavior change (config.init already guards `[ -z "$OOSH_OS" ]`). Add T-OS-DISCRIMINATOR (one source, correct per platform). Does NOT block S4/S5/S6 — tests written now stay valid.
