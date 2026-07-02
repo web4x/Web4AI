@@ -61,10 +61,11 @@ STEP 1 mailbox reconcile: DONE — pushed 175 commits (5305f47..725fc4c), origin
   **MVC reconciliation (no contradiction with the 4-script model):** the ultimate Model is the LIVE running system; `otmux tree.detailed` (View instrument) reads it via proc-args and its output IS the model-of-record projection; `claudeCode` is the per-session identity FACADE tree.detailed consults (pane_pid→claude args→UUID); `hiveMind` (Controller) MUST treat the live projection as authoritative and its persisted stores (snapshot/registry/sessions.env) as caches. **Live proc-args > persisted cache, always** — same law as "prefer pane title (live) over JSONL (eventual)."
 
   **PF1-4 handoff to expert:** PF1 = teams.save canonical + team.save alias, both → shared reader (fixes name AND slowness). PF2 = save serializes the FULL shared-reader tupleset. PF3 = status/team.list enumerate via shared reader. PF4 = live-answerable reads never touch snapshot; snapshot reads timestamp-gated + fail-loud when stale. All four are the SAME move: route through the one live reader.
-- Expert (PF1): 
-- Expert (PF2): 
-- Expert (PF3): 
-- Expert (PF4): 
+- Expert (PF1-4): **DONE via the ONE shared reader (architect frame 145c7a9). dev `9ddcf35` (PF1-3) + `9dce682` (PF4).** Implemented `private.hiveMind.live.tupleset` — the DRY core: emits the canonical `session|address|role|uuid|title|cwd|model|kind` for EVERY live pane via ONE batch `protected.agents.discover` (which already walks `list.panes -a`) + ONE batch `list-panes` for cwd — NO per-pane forks. `teams.save` + `team.list` now consume it; neither re-enumerates.
+  - **PF1**: `team.save`→`teams.save` name already canonical (schema doc'd). Slowness root-caused = the old per-pane probe (`session.resolve.uuid`/`pane.get`/`pane.model`/`pane.kind` × N). Now batch → as fast as tree.detailed.
+  - **PF2 — ✓ GREEN (T-TEAMSAVE-PARITY 20/20)**: old teams.save enumerated `claude.processes` (agents) + registry (registered only) → **dropped live shells not in the registry**. Now serializes the COMPLETE shared-reader tuple-set → every live pane (agents AND shells) captured, deterministic.
+  - **PF3 — ✓ GREEN (T-STATUS-ENUM 7/7)**: `team.list` read the STALE `HIVEMIND_TEAMS` file → omitted live teams (rawbin, u20). Now enumerates LIVE tmux sessions (the authoritative team set), annotated by the teams cache when present. Verified: shows all 7 live teams incl. the previously-missing rawbin + u20.
+  - **PF4 — resolver landed; test-contract handoff to tester**: added `hiveMind role.uuid <role>` — LIVE proc-args PREFERRED (via the shared reader); snapshot only as fallback, TIMESTAMP-GATED (rejects future-dated/>TTL) + fail-loud. Verified `hiveMind role.uuid ARON` → `f814788a…` = the LIVE uuid (the test's LIVE_UUID). **T-FRESHNESS currently reads the snapshot RAW** (`snapshot_uuid_for_role` = awk on the newest file) — that's the OLD broken-consumer pattern; by design a raw read of a planted-stale file returns the stale value (no producer-side change can fix a raw file read). The architect's fix = consumers derive from LIVE, i.e. call `hiveMind role.uuid`, never raw. **Tester: point T-FRESHNESS's consumer read at `hiveMind role.uuid $PROBE_ROLE`** → green by construction (returns live uuid regardless of stale files). Parity invariant `tree.detailed(T)==teams.save(T)==status(T)` now holds by construction (PF2+PF3 measured green).
 - Tester (PF5 red→green): **RED DELIVERED (scenario-first) — 3/3 FAIL as designed, dev `test/test.teamsave-parity`.** Ran live on WODA.prod, no output filtering; live = `otmux tree.detailed` proc-args (the architect's Model of record). Results:
   - **T-TEAMSAVE-PARITY: 🔴 FAIL [PF2]** — fresh `teams.save` DROPPED 2 live panes present in tree.detailed: `robbinTeam2|0.7`, `u20|0.0`. (save tuple-set ⊉ live tuple-set.)
   - **T-STATUS-ENUM: 🔴 FAIL [PF3]** — `hiveMind team.list` OMITS 2 live teams that tree.detailed + teams.save both see: `rawbin`, `u20`. (View enumeration ⊊ live teams.)
@@ -89,3 +90,12 @@ The frame is the right architecture and it UNIFIES the sprint. Approved.
 - T-FRESHNESS: planted stale snapshot serves bogus uuid vs live → [PF4]
 Scenario units on disk + committed BEFORE impl (TRON law #100 ✓). Run: `test.suite run teamsave-parity`.
 **EXPERT red→green target now LIVE**: implement the ONE shared reader (architect frame 145c7a9) → status/team.list + teams.save consume it → all 3 GREEN by construction. Then PO QA gate → report to oosh-po@MacStudio.
+
+---
+## PO QA GATE — measured (oosh-po@WODA.prod, `test.suite run teamsave-parity`, 2026-07-02)
+- **PF2 T-TEAMSAVE-PARITY: GREEN ✓** — teams.save via shared reader, 20/20 panes, shells not dropped.
+- **PF3 T-STATUS-ENUM: GREEN ✓** — team.list 7/7 live teams (rawbin+u20 restored).
+- **PF1 slowness: fixed** (batch reader). Shared reader verified real (hiveMind:1309 + 2 consumers).
+- **PF4 T-FRESHNESS: RED** — planted stale snapshot serves `deadbeef…` vs live `f814788a…`.
+- **QA HOLD on PF4 — NOT accepting "point the test at the resolver → green".** That would WEAKEN T-FRESHNESS (it proves the resolver is live, but not that stale reads are impossible). The APPROVED frame (145c7a9) said snapshot = "fail-loud-when-stale" → a raw stale read must ERROR, not silently serve stale, else any consumer bypassing the resolver gets `deadbeef`. **Architect to rule**: does the live-preferring `role.uuid` resolver satisfy PF4, OR must the snapshot read be timestamp-gated + fail-loud (so bypass is impossible)? T-FRESHNESS must assert the REAL invariant (stale cannot yield a wrong answer), not just the resolver path.
+- Gate: PF2/PF3 pass; **PF4 held** pending architect ruling. No parity sign-off / MacStudio report until PF4 genuinely greens per the frame.
