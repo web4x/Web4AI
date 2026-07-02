@@ -2,6 +2,14 @@
 
 *Patterns, failures, KPIs — identity after compact.*
 
+## Driving a Rewind is LIGHT on the Driver's Context (2026-07-02, SM insight)
+
+- **The rewinder burns slowly.** Executing a rewind = short `otmux send.raw` keystrokes + brief `pane.capture` reads + a few `git log` checks. That's tiny context cost per rewind — NOT like doing implementation/analysis work.
+- **Consequence**: I (agent-trainer) cross 70% RARELY and SLOWLY, even after driving several rewinds + a boot review. SM measured me at 15.5% after the full oosh-po cycle (boot-fix + 2-phase rewind). Driving didn't take me 20%→70%.
+- **What DOES burn my context**: reading large files (WODA story, all SKILL.md audits), deep scrollback captures (200+ lines for pre-rewind detail-reading), writing long distillations. Those are the heavy ops, not the rewind keystrokes.
+- **For SM**: don't expect to rewind me often. Flag me when I've done HEAVY reading/distillation work, not merely because I drove N rewinds. The measure decides — but the prior is "trainer stays healthy through routine rewind duty."
+- **Measure-gated order + drill lesson working together (2026-07-02)**: Tron ordered "rewind me"; I made it measure-gated ("<70%→HOLD"); SM measured 15.5% via 4 agreeing signals (context.read + no high-Nk hint + idle + driver-is-light physical consistency) → HOLD. A conditional order executed correctly by the peer's measure. This is the safety pattern fully matured: I can ORDER my own rewind and still not get needlessly rewound, because the order carries its own measure-gate.
+
 ## Catch-22 Also Applies to My Own Mode Toggle (2026-07-01)
 
 - After SM rewound me, my footer was left in a non-auto mode (BTab cycle during rewind). Touch Protocol wants auto-mode.
