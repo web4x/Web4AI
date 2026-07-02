@@ -228,7 +228,8 @@ Naked P1 HANGS on interactive sudo password (oo:668 `$SUDO touch`). A naked cons
 - **MEASURED live (WODA.test, donges, no passwordless sudo)**: `timeout 5 sudo -n true` → rc=1 **instantly**, no prompt, no hang → probe returns "deferred". Constructor-contract honored.
 - **Tester T-NO-SUDO-HANG**: from-scratch naked bootstrap must reach the user-band terminal with NO `[sudo] password` prompt (assert bounded time / no tty block). S5 unblocked pending a naked target (PO's Docker-container recommendation).
 
-### S8 — F1 existing-install migration (self-heal) → oosh-architect (design) then expert  ·  Status: ✅ IMPLEMENTED (`09d33c9`) — needs tester T-RECONCILE on an ISOLATED box
+### S8 — F1 existing-install migration (self-heal) → oosh-architect (design) then expert  ·  Status: ✅ IMPLEMENTED (`09d33c9` + cleanup `691a269`) — needs tester T-RECONCILE on an ISOLATED box
+**cleanup (expert `691a269`, PO note)**: dropped `2>/dev/null` from the 3 schema-stamp `config save oosh OOSH` sites (kept `>/dev/null`) — a failed stamp now surfaces its error per the ERROR/WARNING doctrine. `bash -n` clean.
 **report-back (expert `09d33c9`)**: `bash -n` clean, NO `state`-engine edit, all in `oo`. Per §E:
 - **DRY**: extracted `private.setup.server.declare` (the ONE ordered `state.add` sequence) — now used by BOTH `private.init.state.machine` (fresh) AND reconcile. S2's inline order refactored into it.
 - **Schema**: `SETUP_SERVER_SCHEMA_EXPECTED=2`; fresh-init + reconcile stamp `OOSH_SETUP_SERVER_SCHEMA` (pure-state → oosh.env via `config save oosh OOSH`).
