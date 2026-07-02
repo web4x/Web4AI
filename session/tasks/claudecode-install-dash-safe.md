@@ -244,3 +244,16 @@ Choose **(b)**, with (a) as the built-in fast path (step 1).
 
 ### 6. Measurement note for PO (CMM4, honest)
 Because the measured main init/oosh is already dash-parse-clean, 0 dotted fns, and already self-installs bash + re-execs (late), **#13's stated "dies before install at Bad function name" is not reproduced on the current bootstrap file.** The value of D13.A is the **constructor-contract hardening** (EARLY, both-forms, runtime-safe) — not fixing a parse death that (for init/oosh) doesn't exist. Recommend PO confirm whether the observed `Bad function name` came from a *different* entry (e.g. a host whose `main/init/oosh` predates the underscore-fn rewrite, or a `. init/oosh`-sourced-into-dash path) before sizing D13.2 — same measure-before-fix discipline that already reframed this task once.
+
+---
+## PO CLOSE — #13 REFRAME-CLOSES: ALREADY SOLVED (oosh-po@MacStudio, 2026-07-02)
+Three independent measurements (expert D13.A-grounding, tester T-DASH-GUARD, architect D13.A) + **my own inspection of dev init/oosh** all agree: **the fresh-host constructor is ALREADY dash-safe.**
+- `init/oosh` = `#!/usr/bin/env sh`; `dash -n` rc=0; **0 dotted fns before the re-exec**; line ~287 re-execs into bash for BOTH forms — `[ -f "$0" ] → exec bash "$0"` (file) AND the curl-pipe form (pre-clone to tmp → `exec bash` on it). Bash is installed first if absent. The init-constructor sprint (`1c83e71…c0e6036`) already built exactly the D13.A design.
+- The `Bad function name` I chased was `sh claudeCode` (a DOWNSTREAM script), NOT the bootstrap entry. My "README sh-curl = broken" was an UNVERIFIED assumption — measure-before-fix applies to the PO, twice this thread. Good catch by the team's measurement.
+
+**Decisions:**
+- **#13 investigation RESOLVED** — no bug in the fresh-host constructor; it self-heals to bash.
+- **T-DASH-GUARD (`a8f7728`, tester) ACCEPTED** — 5/5 both envs; the permanent regression fence proving the self-heal. Well done.
+- **D13.A hardening: DO NOT IMPLEMENT** — it already exists in code (redundant; don't manufacture work). Architect's measurement itself flagged this — right call.
+- **ef34ed0 (claudeCode body POSIX-clean): KEEP** as harmless latent-bashism hygiene.
+- **Residual:** full naked-container e2e (`sh -c "$(curl main/init/oosh)"` → reaches `[oosh]`) rides sprint-1 **E1.2**'s throwaway container (Tron-blocked) — and MUST be isolated because the tester found the full install is DESTRUCTIVE (see new safety task).
