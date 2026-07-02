@@ -19,15 +19,15 @@
 **Role**: architect (design: what's safe to reap) → expert (impl) → tester (T-SHELL-REAP).
 
 ## Requirements
--  (object.verb, no-flag) — identify STALE/orphaned background bash subtrees per pane (the SAME tty→pane_pid subtree task-s2-h counts) and terminate the stale ones.
+- `shell.reap <pane|all>` (object.verb, no-flag) — identify STALE/orphaned background bash subtrees per pane (the SAME tty→pane_pid subtree task-s2-h counts) and terminate the stale ones.
 - **Self-care safety**: NEVER kill a shell doing active work (a running command / live child); reap only idle/orphaned/detached shells. Reap opportunistically on rewind + idle-sweep.
 - Persist-thru-rewind is the key leak: a rewind forks fresh ctx but leaves the old bg shells → reap them at/after rewind.
 - DRY: reuse the batch-ps subtree logic task-s2-h uses for the count.
 
 ## Definition of Done
--  terminates stale bg shells, leaves active ones untouched
+- `shell.reap` terminates stale bg shells, leaves active ones untouched
 - post-rewind shell count returns to baseline (leak closed)
-- T-SHELL-REAP: seed stale bg shells → reap → count drops, an active shell survives
+- T-SHELL-REAP: seed stale bg shells then reap → count drops, an active shell survives
 
 ## Report-back
 - Architect (safe-reap design):
