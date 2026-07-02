@@ -204,3 +204,14 @@ OOSH_COMPONENTS_DIR="/home/shared/Workspaces/AI/Claude/components/OOSH"
 - **S6 regression tests**: authoring T-STATE-ORDER + T-PLATFORM-DEFAULTS next (this turn / follow-up).
 - **S5 (P2 ossh install dev→naked)**: needs a SECOND naked target box + is gated by F2 (sudo prompt during naked bootstrap). Flagging for target availability before I drive it. Will verify once F2's interactivity is resolved or a NOPASSWD target is provided.
 Box left: machine at `user.installation.done` (new order), OOSH_MODE=dev (branch). No source changed — diagnostic only.
+
+---
+## S6 REPORT-BACK — Tester regression tests (oosh-tester, 2026-07-02) — ✅ DONE, GREEN in BOTH envs
+Authored + committed to **dev `9395fca`**: `test/test.setup.server.order` (T-STATE-ORDER, 10 assertions) + `test/test.platform.defaults` (T-PLATFORM-DEFAULTS, 8 assertions).
+- **T-STATE-ORDER** — mode branch state-added BEFORE `user.installation.done`; both mode arms always-succeed + redirect via `state.find` (no literal 21/22/23, no `return 1` stall); zero mode-check logic in the `state` engine (Tron constraint); live check parses `states.env` directly (skips stub/legacy machines — no reliance on `machine.exists`, which false-returns 0, or `state.find` as a standalone cmd).
+- **T-PLATFORM-DEFAULTS** — `config` derives `OOSH_SHARED_BASE` keyed on `OOSH_OS` (darwin+linux present); override preserved (`${VAR:-}`); `oo.mode.base.get` consumes `OOSH_COMPONENTS_DIR` with **no `/Users/Shared` in code** (comment-aware grep — the fixed body's comment literally says "never a hardcoded /Users/Shared"); `odocker` derives `ODOCKER_WORKSPACES` from `OOSH_SHARED_BASE`; per-platform base correct.
+- **VERIFIED GREEN**: (a) MacStudio dev worktree → 10/10 + 8/8; (b) **WODA.test live linux** → 10/10 incl. `live indices ordered: release(21),dev(22) < done(23)` + 8/8 incl. `linux base is /home/shared`. Both the source contract AND the real rebuilt machine confirm D1/D2/D3.
+- Tests are self-skipping off-target (stub states file → live check skips; non-dev `oo` → source asserts still valid once the fix flows to macos.latest).
+
+## S5 STATUS — BLOCKED on F2 (+ target), flagged for PO
+P2 `ossh install` dev→naked requires (a) a second NAKED target box and (b) resolution of **S4/F2** — the from-scratch naked bootstrap HANGS on `[sudo] password for donges:` (oo:668 `$SUDO touch`, the privilege-capability probe). Until the probe is non-interactive (`sudo -n`) or a NOPASSWD target is provided, P2 to a naked box can't complete unattended. Requesting PO guidance/target. (S4 dev-arm + platform + S6 do not depend on S5.)
