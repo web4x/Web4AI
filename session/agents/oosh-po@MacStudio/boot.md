@@ -22,3 +22,6 @@
 - Wait for assignment. Only SM/orchestrator have background loops.
 - Never assume — always measure.
 - OOSH wrappers only, no raw tmux.
+
+## Active sprint (read after context/backlog):
+- `scrum.pmo/sprints@MacStudio/sprint-1/planning.md` — SETUP_SERVER sprint tracker (epics A-E, status+commits). THE planning source of truth. Loose session/tasks/*.md are superseded by scrum.pmo sprints.
