@@ -14,6 +14,20 @@ OOSH abandons flags — the method name carries the verb, positional params carr
 - **Audit ALL oosh method signatures for `--`-style flags** (`grep -nE '\-\-[a-z]' hiveMind otmux claudeCode ossh odocker oo config` and inspect). List every violation found; fix the hiveMind ones in-scope, file the rest back here for triage.
 - Preserve behavior exactly (DRY, no MVC churn beyond the flag redesign). Report-back the commit(s) + the audit list in this file.
 
+**report-back (oosh-expert `90f6768`, dev)** — `bash -n` clean; tester fence already GREEN (`d126aa3`, 0 signature-flag violations / 8 scripts, confirms `--fork` gone).
+
+- **`--fork` — already flagless (provenance)**: MEASURED `git log -S'--fork'` → removed in **`c6033dd`** "teams.restore: positional 'fork|join' arg instead of --fork flag" (task-c1-hivemind-cold-start-restore.md). Current state: `hiveMind.teams.restore() # <?snapshotFile> <?mode:join|fork> <?sessionFilter>` (positional), and `teams.migrate` drives it via `hiveMind teams.restore fork` (hiveMind:4067) — no `--`. 0 literal `--fork` in the OOSH scripts. Acceptance #1 satisfied by prior work; co-confirmed here.
+
+- **Flag audit (8 scripts: hiveMind otmux claudeCode ossh odocker oo config this)** — 116 raw `--` hits triaged into:
+  - **FIXED in-scope (hiveMind, this commit `90f6768`)** — stale `--apply` in DOCS advertising a non-existent flag (a user typing `--apply` gets it silently mis-parsed as `$1` session). The real form is flagless positional `apply` / the object.verb `consistency.reconcile.apply`:
+    - `hiveMind:5301` help echo `consistency.reconcile --apply` → `consistency.reconcile.apply`
+    - `hiveMind:4998` comment `via --apply` → `via positional 'apply'`
+    - (`consistency.reconcile()` signature itself was already flagless: `<?mode:dry-run|apply>`.)
+  - **FILED-FOR-TRIAGE (out of hiveMind scope — PO opening as follow-up)**:
+    - `otmux:685` `otmux.layout.restore() # <session> <?force> …(force value: --force …)` — the `<?force>` param accepts the soft-VALUE `--force`. Not a dispatch flag but a `--`-shaped value; PO confirmed filed, non-blocking for #5.
+  - **NOT violations (external-binary flags — legitimately excluded)**: `claude --resume/--fork-session/--model` (claudeCode:452/474/493), plus `git`, `ssh`/`scp`/`rsync`, `docker`, `apt`/`brew`, `tmux` flags throughout. These are flags of the wrapped external tools, not OOSH method signatures/dispatch — OOSH wrappers are *allowed* to pass them through.
+  - **Net OOSH-method-signature violations remaining**: **0** (only the otmux soft-value filed above), matching the tester's fence.
+
 ### E-FLAGS.2 — oosh-tester (verify): T-NO-FLAGS
 - Add `T-NO-FLAGS` to the relevant `test/test.<script>`: assert the redesigned restore/migrate work via the flagless form, AND a guard that greps the method surface for `--`-flags and fails if any reappear (regression fence).
 - Verify live on WODA.test where relevant. Report-back GREEN + commit here.
