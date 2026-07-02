@@ -62,3 +62,45 @@ artifact existing (`[ -f states.env ] && grep -q '"user.mode.dev"'`), else `expe
 - **Measure, never assume** (TRON CMM4): process-args + pane-footer are ground truth over a
   lying session.id; a fresh `teams.save` corrected a stale snapshot uuid — proved the
   divergence was staleness, not logic.
+
+## HARD LESSON — init/oosh is a DESTRUCTIVE installer; never full-run it on a live checkout
+`init/oosh` is a REAL constructor: `mv $OOSH_DIR $HOME/oosh`, sudo re-exec, clone-to-tmp,
+state-machine handoff. Running `dash init/oosh` (or `bash init/oosh`) fully — even under a
+timeout — partially executes and **wiped `/home/donges/oosh`** (killed mid-`mv`). Had to
+`git clone -b dev git@github.com:Cerulean-Circle-GmbH/once.sh.git /home/donges/oosh` (root
+has the key) + `chown -R donges:donges` to restore the box.
+- For constructor/installer tests: assert STRUCTURALLY (shebang, `dash -n` parse, re-exec
+  present + ordered before dotted-fn sourcing) + prove the MECHANISM in ISOLATION (a tiny
+  temp script mirroring the exact guard). Full end-to-end "reaches [oosh]" belongs on a
+  THROWAWAY container (S5 naked box), never a live team checkout.
+- **Restore recipe** (root): `git clone -b dev <once.sh url> /home/donges/oosh && chown -R donges:donges`.
+
+## Mechanism-probe gotcha — exported BASH_VERSION leaks into dash → false positive
+Testing a `[ -z "$BASH_VERSION" ] && exec bash` guard: the PARENT bash EXPORTS BASH_VERSION,
+so `dash -c '...'` inherits it → the guard sees it non-empty → never fires → your probe
+reads the inherited value and FALSELY "passes". Clear it: `env -u BASH_VERSION dash script`.
+And let BASH expand its own `$BASH_VERSION` (single-quote the bash -c body / use a temp
+script) — a double-quoted inner gets expanded by the launching/dash shell to empty first.
+
+## oosh interactive shell mangles `$(...)` and `!` in sent commands
+The oosh (bash+`this` dispatch) login shell intercepts `VAR=$(cmd)` as a method call
+(`ERROR> "VAR=$(git" ... EPERM`) and history-expands `!`. When sending recovery/compound
+commands to an oosh pane, wrap in `bash -c '...'` to bypass dispatch, and avoid `!`.
+
+## The tester's INDEPENDENT test is the sign-off gate — not the implementer's self-test
+Twice the PO signed off explicitly on MY independent test, not the expert's own verification
+(#33 flags → 75250dc; #34 non-destructive → b550156). The value is a SEPARATE artifact that
+exercises the property differently: e.g. #34 = a no-`rm -rf` fence + an isolated /tmp SANDBOX
+that mirrors the placement algorithm and asserts a pre-existing MARKER survives as a backup.
+An implementer's self-test can share the implementer's blind spot; an independent test with a
+real oracle (sandbox behavior, not "I grepped my own change") is what lets a PO sign off on
+VERIFIED not CLAIMED. Always build the oracle, not a mirror of the diff.
+
+## Root-cause: when a destructive op has a guard, check WHICH SIDE it protects
+init/oosh:503 `mv "$OOSH_DIR" "$HOME/oosh"` had a guard — but it protected the TARGET
+(`die` if `$HOME/oosh` is a real dir) while the SOURCE (a live checkout used as `$OOSH_DIR`)
+still got relocated/destroyed. My #13 wipe = running init as root against `/home/donges/oosh`
+MOVED it to `/root/oosh` (target was a removable symlink → guard passed → source moved away).
+The a3b1eff fix backs up the TARGET (closes #34); the SOURCE guard became a separate #35.
+LESSON: "there's a guard" ≠ "it's safe." Name exactly WHAT gets destroyed, then check the
+guard covers THAT object (source vs target vs sibling), not just the obvious one.

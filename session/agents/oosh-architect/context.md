@@ -131,3 +131,19 @@ Requirement → UseCase → Class → Method → Implementation → Test
 - TRON overrides architect. PO assigns. SM monitors.
 - Grep ALL occurrences when identifying write sites
 - Don't cd ~/oosh from Bash — use expert-shell via otmux
+
+---
+## Session update 2026-07-02 (measured location: ooshTeam:0.1 @ MacStudio; peer oosh-po@MacStudio, WODA.test=v36421 has dash)
+NOTE: header above says WODA.prod (peer instance save) — left intact; THIS session ran on ooshTeam@MacStudio. Verify pane on boot (`otmux pane.get.target`), don't assume.
+
+### Delivered this session (all design, WHAT/WHY; git mailbox = channel)
+- **Sprint SETUP_SERVER cross-platform** (`session/tasks/sprint-setup-server-crossplatform.md`):
+  - **S1** (f4aea76) — ✅ PO-APPROVED. D1 state reorder (mode branch before user.installation.done), D2 XOR via numeric-RESULT redirect (state.find, no literal indices), D3 os-derived platform defaults (config init single seam), D4 P1/P2 convergence. Expert shipped S2 (566fed9) + S3 (650e743); tester S4/S6 GREEN.
+  - **S8** (e20dbe27) — QA. Self-heal reconcile for EXISTING installs (F1): two-tier detect (schema stamp + order-invariant probe) → reconcile-BY-NAME (delete+shared-declare+`state.set name`), drive-free (F2-safe), zero engine edit. Awaiting PO QA.
+- **#13 claudeCode/init dash-safe** (`session/tasks/claudecode-install-dash-safe.md`):
+  - **D13.A** (966d4b1c) — design delivered; **#13 CLOSED as already-solved** by PO (init/oosh already implements the POSIX-prelude + dual-form re-exec @287/294 + bash self-install). Design stands as documented rationale. Do NOT implement.
+
+### Open / next
+- **S8** pending PO QA (non-blocking for naked-path gate).
+- Sprint-1 tail is **Tron-blocked**; no new assignment. Free/idle.
+- Prior open items (MVC rename bug, ADR-001/002 rollout, 16 cross-platform hardcoded paths, ENV-PURE-STATE design) still stand from earlier sessions.
