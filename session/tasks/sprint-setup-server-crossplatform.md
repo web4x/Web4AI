@@ -149,5 +149,9 @@ S1 → (S2, S3 parallel) → (S4, S5, S6 parallel) → PO QA gate → Tron promo
 - **Answer to expert's design note (os accessor):** YES, single-source it → **S7** below. Interim inline `$OSTYPE` case is acceptable ONLY because it's guarded by `[ -z "$OOSH_OS" ]` (auto-defers once `os` sets it). Do not duplicate platform truth long-term.
 - S4/S5/S6 unblocked → tester.
 
-### S7 — Expert+os-expert: single-source the OS discriminator  ·  Owner: oosh-expert (+os-expert)  ·  Status: PLANNED (non-blocking follow-up)
+### S7 — Expert+os-expert: single-source the OS discriminator  ·  Owner: oosh-expert (+os-expert)  ·  Status: ✅ DONE (`19a2a45`) — awaiting tester
 The `$OSTYPE → OS` mapping now lives in BOTH `os.check.env` AND `config.init` (S3 interim). Platform truth must have ONE source (the whole point of D3). Make `os` establish `OOSH_OS` as pure state on run (or add a side-effect-free `os` accessor that echoes the discriminator), then `config.init` DROPS its inline `$OSTYPE` case and consumes `$OOSH_OS`. No behavior change (config.init already guards `[ -z "$OOSH_OS" ]`). Add T-OS-DISCRIMINATOR (one source, correct per platform). Does NOT block S4/S5/S6 — tests written now stay valid.
+**report-back (expert `19a2a45`)**: Chose the side-effect-free accessor. `bash -n` clean (os, config).
+- **`os.os()`** (os:672) — echoes the discriminator via `os.check.env` (which owns the `$OSTYPE→OOSH_OS` case); `info.log` is >3-gated so at default level the only output is the value. Now the mapping has exactly ONE home (`os.check.env`).
+- **`config.init`** drops its inline `$OSTYPE` case → `[ -z "$OOSH_OS" ] && export OOSH_OS="$(os os 2>/dev/null)"`. Behavior-identical (still guarded).
+- **MEASURED**: isolated fn test darwin→`darwin`, linux→`linux-gnu`; faithful full-checkout bootstrap on WODA.test (cloned real oosh, overlaid os+config) → `os os` = `linux-gnu` clean (the earlier empty was a /tmp scratch-copy artifact, not a dispatch bug). Coordination: I own `os` as oosh-expert (CLAUDE.md); flag os-tester for **T-OS-DISCRIMINATOR**.
