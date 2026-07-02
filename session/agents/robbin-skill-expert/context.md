@@ -32,6 +32,12 @@ into agents' LIVE prompts -> INTERRUPTS them mid-turn (= the [Request interrupte
 be ASYNC MAILBOX: send=write+commit unit ONLY; recipient PULLS at turn boundary; NO keystroke injection
 (R.2a hard req). INTERIM: be sparing with tmux sends to busy agents (send only at idle boundaries).
 Design: scrum.pmo/skills/agent-message-skill-design.md.
+**★ MY IMPL DONE (2026-07-02, e8172e7d2+57caf1287)**: authored src/ts/scenario/agent-message.ts
+(AgentMessage class: defineUnitType R30.1 / send R30.2 mint+commit-no-injection / assertNoLiveInjection
+R30.3 guard / inbox R30.4 pull / read). AgentMessageLoader in ClassRegistry (16->17, count test updated).
+R30.1-4 IMPL HOPS ALL CREDIT (5/6 each), full-uuid markers on named methods same-commit as code.
+REMAINING: tester R30.1-4 test markers -> 6/6; architect UCs R30.5/6; then OOSH external 'agentMessage'
+wrapper (w/ oosh-expert, taskChain->Chain pattern). Scoreboard 57/326.
 
 **S27 COMPLETE + S28 START 2026-07-02 (56/318 det-3x, web4x)**: R27.3 credited (impl 88744d89
 tagged on generate-sprint-md.ts after MY task-FSM!=chain-credit catch — planner had flipped task
