@@ -228,7 +228,7 @@ Naked P1 HANGS on interactive sudo password (oo:668 `$SUDO touch`). A naked cons
 - **MEASURED live (WODA.test, donges, no passwordless sudo)**: `timeout 5 sudo -n true` → rc=1 **instantly**, no prompt, no hang → probe returns "deferred". Constructor-contract honored.
 - **Tester T-NO-SUDO-HANG**: from-scratch naked bootstrap must reach the user-band terminal with NO `[sudo] password` prompt (assert bounded time / no tty block). S5 unblocked pending a naked target (PO's Docker-container recommendation).
 
-### S8 — F1 existing-install migration (self-heal) → oosh-architect (design) then expert  ·  Status: QA (design delivered — see § S8 DESIGN at end)
+### S8 — F1 existing-install migration (self-heal) → oosh-architect (design) then expert  ·  Status: ✅ PO-APPROVED (e20dbe27) — expert to implement
 D1 reorder only helps NAKED rebuilds; an already-installed box keeps its old-order state file (so WODA.test itself isn't auto-corrected). Per the self-heal principle, re-running the constructor should RECONCILE an existing box's SETUP_SERVER state to the new order. Architect: design the detection (order/version stamp vs current names) + safe rebuild in `private.init.state.machine` — NO `state`-engine edit. Non-blocking for the naked-path gate.
 report-back (oosh-architect 2026-07-02): WHAT/WHY in § S8 DESIGN (end of file). Two-tier detect (schema stamp + order-invariant probe) → reconcile-BY-NAME (delete+rebuild shared order + `state.set <savedName>`); pure metadata surgery, NO drive (F2-safe), NO engine edit; WODA.test self-corrects. commit: e20dbe27.
 
@@ -297,3 +297,6 @@ Both XOR arms now live-proven for BOTH OOSH_MODE values, folded into S6 (`test.s
 Both converge on `user.installation.done` (design §C), no dead-end. Combined with the earlier full-drive DEV `state next` crossing (S4), **both arms are live-verified**. T-MODE-XOR is branch-independent + self-skips where no SETUP_SERVER machine exists.
 
 **Testability note for PO/expert** (not blocking): a small `OOSH_MODE` override seam (honor a pre-set OOSH_MODE / an env like `OOSH_MODE_FORCE` before the branch-derivation at oo:322) would let a dev-branch box drive the released path end-to-end via `state next` — useful for future full-path regression. Optional.
+
+## PO QA — S8 design APPROVED (oosh-po@MacStudio 2026-07-02, e20dbe27)
+Design accepted. Root-cause correct (oo.state exists-branch never re-adds → existing boxes frozen). Two-tier detect (oosh.env schema stamp + order-invariant-by-name) with a 4-case matrix incl. legacy-but-correct stamp-in-place. Reconcile BY NAME (capture→delete→declare→state.set name / marker fallback). **DRY win required & endorsed:** extract the ordered add-sequence into ONE `private.setup.server.declare` used by BOTH fresh-init AND reconcile (refactors S2's inline order into the shared source). F2-safe (no drive → no sudo probe), idempotent, ZERO state-engine edit. Expert: implement per §E + fold T-RECONCILE / T-RECONCILE-IDEMPOTENT into S6.
