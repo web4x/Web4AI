@@ -228,11 +228,53 @@ Naked P1 HANGS on interactive sudo password (oo:668 `$SUDO touch`). A naked cons
 - **MEASURED live (WODA.test, donges, no passwordless sudo)**: `timeout 5 sudo -n true` → rc=1 **instantly**, no prompt, no hang → probe returns "deferred". Constructor-contract honored.
 - **Tester T-NO-SUDO-HANG**: from-scratch naked bootstrap must reach the user-band terminal with NO `[sudo] password` prompt (assert bounded time / no tty block). S5 unblocked pending a naked target (PO's Docker-container recommendation).
 
-### S8 — F1 existing-install migration (self-heal) → oosh-architect (design) then expert  ·  Status: PLANNED
+### S8 — F1 existing-install migration (self-heal) → oosh-architect (design) then expert  ·  Status: QA (design delivered — see § S8 DESIGN at end)
 D1 reorder only helps NAKED rebuilds; an already-installed box keeps its old-order state file (so WODA.test itself isn't auto-corrected). Per the self-heal principle, re-running the constructor should RECONCILE an existing box's SETUP_SERVER state to the new order. Architect: design the detection (order/version stamp vs current names) + safe rebuild in `private.init.state.machine` — NO `state`-engine edit. Non-blocking for the naked-path gate.
+report-back (oosh-architect 2026-07-02): WHAT/WHY in § S8 DESIGN (end of file). Two-tier detect (schema stamp + order-invariant probe) → reconcile-BY-NAME (delete+rebuild shared order + `state.set <savedName>`); pure metadata surgery, NO drive (F2-safe), NO engine edit; WODA.test self-corrects. commit: <pending>.
 
 ### F3 — released arm live-verify → oosh-tester  ·  Status: DISPATCHED
 Dev arm is live-proven; released arm was only source-verified. Close it: set `OOSH_MODE=released`, run the live crossing (state next from 20 → 21 accept → 22 redirect → 23 done). Fold into S6. Both arms then live-verified.
 
 ### S5 — P2 (ossh install → naked) — BLOCKED, needs Tron input
 Blocked on (a) F2 fix, (b) a NAKED target box (WODA.test is already installed). PO recommendation to Tron: use a fresh Docker/odocker container as the naked linux target — unblocks P2 AND dogfoods D3 linux-path derivation. Awaiting Tron.
+
+---
+## S8 DESIGN (oosh-architect, 2026-07-02) — self-heal reconcile of existing SETUP_SERVER installs (WHAT/WHY)
+
+### A. Measured ground truth (why F1 happens)
+- `oo.state` (oo:532-547): on `machine.exists` it only `state of … list` (+ `machine.start` if state<4); it **never re-adds**. The full `state.add` order runs ONLY in `private.init.state.machine`, gated by the `else` (`!machine.exists`). ⇒ an existing box is frozen at whatever order it was first built with — WODA.test included.
+- Persisted machine = `$CONFIG_PATH/stateMachines/SETUP_SERVER.states.env`: array `SETUP_SERVER_STATES[idx]=name` + cursor `SETUP_SERVER_STATE_ID`. Names are stable; **indices shift when the order changes** (that is the whole D1 fix).
+- Engine verbs usable AS-IS (zero engine edit): `state machine.exists` (state:812), `state machine.delete` (state:1006), `state machine.create` (state:843), `state.add`, `state.set <name>` name→index (state:761-793), `state.of/current` for the cursor. Reconcile is composed entirely from these.
+
+### B. Detection — two-tier (measure, never assume)
+**Tier 1 — schema stamp (cheap primary signal; DRY, self-documenting).**
+- Constructor declares `SETUP_SERVER_SCHEMA_EXPECTED=<N>` — ONE integer, bumped whenever the `state.add` order changes (D1 was such a change).
+- The built machine's schema persists as a **pure-state OOSH_ export** `OOSH_SETUP_SERVER_SCHEMA` (via `config save oosh OOSH` → oosh.env). WHY in oosh.env, not the engine's states.env: keeps the stamp engine-agnostic — no dependency on the engine preserving a custom var across `private.state.machine.update`, hence **no engine edit**, no fragile assumption. (Alt "stamp inside states.env" REJECTED for that reason. Aligns with the ENV-PURE-STATE sprint.)
+- On `oo.state` + `machine.exists`: `OOSH_SETUP_SERVER_SCHEMA != EXPECTED` (or **absent** = pre-S8 legacy) ⇒ candidate-stale → run Tier 2.
+
+**Tier 2 — order-invariant probe (ground-truth oracle).**
+- Source the persisted states.env read-only; assert the D1 invariant BY NAME: `idx(user.mode.release) < idx(user.mode.dev) < idx(user.installation.done)`. Violation ⇒ **stale** (definitive), regardless of stamp. Exactly what the tester verified by hand (S4/S6 "live indices ordered 21,22<23"); S8 automates it.
+- Decision matrix:
+  - stamp==EXPECTED **and** invariant holds → fresh, **no-op**.
+  - (stamp mismatch/absent) **and** invariant violated → **reconcile** (§C).
+  - (stamp mismatch/absent) **but** invariant already holds → **stamp-in-place** (write `OOSH_SETUP_SERVER_SCHEMA=EXPECTED`, no rebuild — cheap upgrade of a legacy-but-correct box).
+- Dual gate prevents BOTH missed migrations AND needless rebuilds.
+
+### C. Safe rebuild — reconcile BY NAME (self-heal, F2-safe) — in `oo` only
+New `private.reconcile.state.machine`, called from `oo.state`'s exists-branch when Tier 2 says stale:
+1. **Capture progress BY NAME** (never index): source states.env → `savedName=${SETUP_SERVER_STATES[$SETUP_SERVER_STATE_ID]}`.
+2. **Rebuild in new order**: `state machine.delete SETUP_SERVER` → replay the corrected `state.add` sequence. **DRY hard-requirement:** extract the add-sequence into ONE helper (`private.setup.server.declare`) called by BOTH `private.init.state.machine` (fresh) AND reconcile — single source of truth for the order so the two paths can never diverge.
+3. **Restore position BY NAME**: `state.set SETUP_SERVER "$savedName"` → re-resolves to the NEW index. Same logical position, corrected order = the self-heal.
+4. **Fallback map** if `savedName` is gone (removed/renamed): rewind to the last band marker (20/30/40/50/60) at-or-before the old position. Conservative — never advance the cursor past unverified states; a safe, idempotent re-drive point.
+5. **Stamp**: write `OOSH_SETUP_SERVER_SCHEMA=EXPECTED` (`config save oosh OOSH`).
+
+### D. Boundaries / constraints (WHY these lines are drawn)
+- **Reconcile is pure metadata surgery — it does NOT drive** (`state next`). WHY: driving invokes `priviledges.checked` → the sudo probe (F2). Drive-free reconcile CANNOT reintroduce the F2 hang; actual driving stays governed by F2's non-interactive-sudo fix. Clean split: "correct the definition" vs "advance the machine".
+- **Idempotent**: after reconcile, stamp==EXPECTED + invariant holds ⇒ next `oo.state` = no-op. delete+rebuild+set-by-name is deterministic; re-running is safe.
+- **Zero `state`-engine edit**: composed from existing verbs; detection reads the engine file read-only; stamp lives in oosh config. All new code in `oo`.
+- **WODA.test self-corrects**: post-S8, its next `oo state`/`oo update` sees stamp-absent + old-order invariant-violated → reconciles → new order, position preserved by name. Closes F1.
+
+### E. Handoff (expert HOW)
+- Extract `private.setup.server.declare` (the ordered `state.add` list) — used by fresh init AND reconcile (DRY; no duplicated order list).
+- Add `SETUP_SERVER_SCHEMA_EXPECTED` + `OOSH_SETUP_SERVER_SCHEMA` read/write; two-tier detect in `oo.state`; `private.reconcile.state.machine` (capture-by-name → delete → declare → `state.set name`/marker-fallback → stamp). NO drive inside reconcile. `bash -n` clean; NO `state` edits.
+- Tester oracle (fold into S6) — **T-RECONCILE**: seed a box with an OLD-order states.env; after `oo state`, invariant `release<dev<done` holds AND cursor preserved by name; a fresh box is unchanged; re-run = no-op (T-RECONCILE-IDEMPOTENT).
