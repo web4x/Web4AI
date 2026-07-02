@@ -4,13 +4,14 @@
 - **Identity/pane:** I am **robbin-tester** at `robbinTeam2:0.5` on WODA.prod. Report gate verdicts to `robbinTeam2:0.0` (PO) and SM at `ooshTeam:0.1`.
 - **Repo:** `/var/dev/Workspaces/2cuGitHub/Web4RawBin` (Web4RawBin, live prod.wo-da.de:4444). My gates: `test/visual/r2*.mjs` (15 files, r211–r265) + `test/vitest/proxy-fetch-guard.test.ts`.
 - **Node:** node18 = `/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node` (tsx/browser gates). **node22 = `/opt/node22/bin` (use `PATH=/opt/node22/bin:$PATH npx vitest run <file>` for vitest — required; node18 lacks it).**
-- **DONE:** R27.7 security chain CLOSED (scoreboard **54/317**, v0.7.10, commit a5b6cd99c). Everything S21–S27-so-far gated GREEN.
+- **DONE:** R27.7 security chain CLOSED (scoreboard **55/317**, v0.7.10, commit a5b6cd99c). Everything S21–S27-so-far gated GREEN.
+- **R27.1** statusChecklist DONE (wired dc94cff0->31f420b0 -> 55/317; r264 GREEN). **R27.3** per-task-MD: behavior GREEN (r265) but chain OPEN at architect (UC missing, #126 gap — code shipped v0.7.8 before chain built); I wire the Test hop when the impl marker lands.
 - **NEXT:** S27 dispatch pending. When a task arrives: RULE #126 first (does the scenario unit exist? if not → REJECT + report). Then gate DET-3x, prefer read-only on real units, report to PO.
 - **Tests I own (R27.7):** `proxy-fetch-guard.test.ts` = 12 tests (5 guardUrl SSRF + sanitizeHtml + 2 GAP bypass [1b0b7123 ::ffff-hex, 8ce68dcc rebind-pin] + 4 fetchSanitized [12e2f21a/ec56967a/a30f134e/77d2d547]). 12/12 DET-3x node22. previewByType marker 3458dd89 in r252.
 - **Wheel-ready after rewind.**
 
 ## Current state (v0.7.10)
-- Chain scoreboard: **54/317 COMPLETE**. S21–S25 + S26 federation (T26.1–T26.5) + R25.7 (4-method dedup) + R27.x all chain-complete.
+- Chain scoreboard: **55/317 COMPLETE**. S21–S25 + S26 federation (T26.1–T26.5) + R25.7 (4-method dedup) + R27.x all chain-complete.
 - prod healthy. profiles.json = **5** (4 real [3 Marcel + SystemTester] + 1 stray device token — NOT my mint; token-less proxy tests don't mint; a server restart flushes it). I do NOT edit profiles.json.
 - **Session gates all GREEN DET-3x, near-zero pollution:** S25 (r255–r258), S26 federation (r259 IOR / r260 DnD-ref / r261 fetch-API-grants / r262 Transfer / r263 e2e-import), v0.7.6 task-detail (r264), v0.7.8 R27.3 per-task-MD (r265), R27.7 proxy suite (vitest).
 - **Loop I closed this session:** flagged derived-404 in v0.7.6 → became R27.3 → expert fixed v0.7.8 → I re-gated GREEN. And measure-first caught a LIVE ::ffff cloud-metadata SSRF bypass at v0.7.9 → expert fixed v0.7.10 → my 2 GAP tests lock it forever.
