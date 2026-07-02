@@ -65,7 +65,11 @@ STEP 1 mailbox reconcile: DONE — pushed 175 commits (5305f47..725fc4c), origin
 - Expert (PF2): 
 - Expert (PF3): 
 - Expert (PF4): 
-- Tester (PF5 red→green): 
+- Tester (PF5 red→green): **RED DELIVERED (scenario-first) — 3/3 FAIL as designed, dev `test/test.teamsave-parity`.** Ran live on WODA.prod, no output filtering; live = `otmux tree.detailed` proc-args (the architect's Model of record). Results:
+  - **T-TEAMSAVE-PARITY: 🔴 FAIL [PF2]** — fresh `teams.save` DROPPED 2 live panes present in tree.detailed: `robbinTeam2|0.7`, `u20|0.0`. (save tuple-set ⊉ live tuple-set.)
+  - **T-STATUS-ENUM: 🔴 FAIL [PF3]** — `hiveMind team.list` OMITS 2 live teams that tree.detailed + teams.save both see: `rawbin`, `u20`. (View enumeration ⊊ live teams.)
+  - **T-FRESHNESS: 🔴 FAIL [PF4]** — planted a stale NEWEST snapshot with a bogus uuid for a live agent (ARON); the newest-file a cold-start consumer reads serves `deadbeef-…` vs `live=f814788a-…`. Proves a stale on-disk snapshot yields a wrong-uuid identity.
+  - Aligned with the architect's frame: the tests assert exactly `tree.detailed(T) == teams.save(T) == status(T)`, so routing all three through the ONE shared live reader turns all three GREEN by construction. Self-cleaning (removes the planted stale file); `teams.save` runs once (~2min — that's the PF1 slowness the shared-reader collapse also fixes). **Expert: make GREEN via the shared-reader move (PF2 full tupleset, PF3 enumerate-via-reader, PF4 live-derive/timestamp-gate).** Run: `test.suite run teamsave-parity`. Committed dev.
 - PO QA gate: 
 
 ---
