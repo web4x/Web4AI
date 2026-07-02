@@ -10,6 +10,7 @@ I am **robbin-tester** at `robbinTeam2:0.5` on WODA.prod. I gate fixes for **Web
 - **Cleanest gate shape (proven all session):** verify against Tron's REAL shipped units READ-ONLY — pure-fn (tsx import) / disk-scan / mounted detail / WS member-read / HTTP-GET-with-stateless-grant; for behavioral fixes use a guard-BLOCKED action (about:blank mints nothing) or CANCEL destructive confirms. No uploads, no deletes, no pollution.
 - Legacy on disk (flagged, PO's call): 1 about:blank WebItem + 1 raw-message:-URL WebItem (pre-fix data; fixes prevent NEW ones).
 - v0.7.6 task-detail gate GREEN DET-3x (r264): 📄 MD link serves 200 + statusChecklist ☑/☐ hierarchy. Read-only (real /trace graph). FLAGGED derived-404 -> became R27.3, FIXED v0.7.8 (08bd6e55b) + re-gated GREEN r265 (pinned-slug dir, --check byte-match).
+- R27.7 v0.7.10 SSRF suite: added 2 architect-found bypass tests (GAP1 ::ffff IPv4-mapped-IPv6-hex, GAP2 DNS-rebind pin) -> proxy-fetch-guard.test.ts 8/8 DET-3x node22 (474671bf0). MEASURE-FIRST caught GAP1 LIVE at v0.7.9 (guardUrl allowed ::ffff:metadata); expert fixed v0.7.10; live prod 403. node22=/opt/node22/bin. R27.7 drawer type-router has NO vitest suite (verify via live component). vitest markers 1b0b7123/8ce68dcc for chain.
 - Idle, wheel ready for the next sprint.
 
 ## ⛔ STANDING RULES (never violate)
