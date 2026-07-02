@@ -531,6 +531,20 @@ so I advanced the pin BEFORE reading the result — premature action on PO's cla
 measurement result in a SEPARATE step — never bundle 'measure' and 'act-on-measurement' in one
 unconditional block. Measure, READ, then act.
 
+## getThreeSlots symmetric boundary-fall (2026-07-02, Tron directive, b09725d02)
+Tron: pin must ALWAYS show current/last/next. getThreeSlots was strictly sprint-scoped (Tron's own
+anti-phantom redesign — a DONE Sprint-20 task was surfacing as phantom backlog) with NO cross-boundary
+fall, so at a nearly-done or just-transitioned sprint: nextBacklog=null (no in-sprint open task after
+current) and lastCompleted=null (current is first task of new sprint, no in-sprint predecessor). FIX
+(symmetric, in src/ts/scenario/CurrentSprint.ts getThreeSlots): nextBacklog FORWARD-falls to the next
+sprint's first NOT-DONE task; lastCompleted BACKWARD-falls to the prev sprint's last DONE task. KEY
+INSIGHT that keeps the anti-phantom guard: the phantom was a DONE task as BACKLOG(next). So forward-
+fall = not-done-ONLY (real upcoming work), backward-fall = done-ONLY (real completion). Direction +
+done-ness together distinguish 'legit cross-boundary' from 'phantom'. Also: cross-sprint override now
+honored per-direction (nextBacklogOverride if not-done, lastCompletedUuid if done). Server runs plain
+tsx (not watch) -> getThreeSlots loaded once -> a LOGIC change needs a server RESTART for live /trace
+(singleton DATA re-reads per-request, but code loads once). Don't restart prod unowned; flag it.
+
 ## Re-measure 2026-06-28 (SM save-checkpoint)
 Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276→285 (more reqs).
 3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert

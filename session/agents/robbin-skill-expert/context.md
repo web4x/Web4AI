@@ -17,6 +17,17 @@ Sprint 23/T23.3, req done, uc+ pending (T23.3 In Progress, tester gating). My pi
 <- planner task 52ebca28c (linear, no conflict). Version at v0.6.84 (expert). PO holds pin per
 task until gate signal (learning #125). WATCHERS: none active.
 
+**S27 COMPLETE + S28 START 2026-07-02 (56/318 det-3x, web4x)**: R27.3 credited (impl 88744d89
+tagged on generate-sprint-md.ts after MY task-FSM!=chain-credit catch — planner had flipped task
+status DONE claiming 56 but impl marker was missing; canonical held at 55 until the marker landed).
+S27 all 5 chains 6/6. Pin TRANSITIONED S27->S28: Current=R27.5, Last=R27.3, Next=R27.6. ★ getThreeSlots
+SKILL FIXED (Tron): symmetric boundary-fall — nextBacklog forward-falls (not-done) into next sprint,
+lastCompleted backward-falls (done) into prev sprint -> pin ALWAYS shows current/last/next across
+boundaries; anti-phantom guard intact (direction+done-ness). Commits bd2565ebf + b09725d02. LIVE /trace
+needs SERVER RESTART for the getThreeSlots logic (plain tsx, loaded once). #125 standing-duty upgrade
+active: advance pin on task CREDIT not just new-task. My-error lesson: gate mutating action on
+measurement in a SEPARATE step (I once bundled det-3x + transition -> acted before reading).
+
 **R27.7 CLOSED 2026-07-02 (54/317 det-3x, a5b6cd99c)**: SSRF-hardened WebItem preview fully
 traceable. Arc: MY truncated-uuid diagnosis (markers used 8-char not full 36-char; found by diffing
 failing vs crediting-control R27.1) -> expert full-uuid fix 6b03dc1bc + truncation hard-gate -> tester
