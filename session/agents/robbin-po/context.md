@@ -1,3 +1,26 @@
+# robbin-po Context — save #35 (2026-07-02, R27.7 WebItem preview drawer + npm-start/node22 infra — ALL DONE)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #35 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ Prod v0.7.10 LIVE + SAFE. Both Tron drives DONE + hardened. Node infra recurrence-proof on all 3 paths.**
+
+### DELIVERED THIS ARC (2026-07-02)
+- **npm start SELF-HEALING** (start.mjs, commit 8a46bd5dd): plain-node launcher, re-execs under node18+/node22, npm-i-if-missing, kills old, builds, spawns tsx. One-shot, prereq=npm only. ROOT was system node16 < tsx4.x needs node18+.
+- **node22.23.1 side-by-side** (/opt/node22, non-disruptive to system node16 + vscode node18) — the face432 task finally done. vitest + ci:gates run under node22. start+test+ci:gates ALL self-heal to node22 (with-node20.mjs, e222f9a1f). BUGFIX: prepend REALPATH bindir (/opt/node22/bin) not the symlink dir (/usr/local/bin) or PATH keeps old node.
+- **R27.7 WebItem type-aware preview drawer v0.7.10** (SAFE, architect-signed): declared scheme→kind type-router (regression-proof: http/https/pdf→previewable, mailto/tel/message/calendar→launcher; the v0.7.8 mailto-routed-all regression cannot recur). Preview-first layout (action-row→pane→details), reset-zoom OVERLAY in pane (R22.2 preserved). Server-side CORS proxy w/ SSRF guard.
+- **★ SSRF SECURITY SAVE**: architect's INDEPENDENT adversarial harness caught 2 LIVE exploitable prod bypasses the expert suite AND my curl both MISSED (both were circular — same forms): GAP1 IPv4-mapped IPv6 (::ffff:127.0.0.1 hex-normal reached internal), GAP2 DNS-rebind TOCTOU (fetch re-resolved, ignored vetted ip). Fixed v0.7.10 (extract embedded-v4 both forms + connect-pin to guard.ip), independently re-verified (GAP2 rebind staged end-to-end). ProxyFetch.guardUrl = own traceable chain w/ 8 adversarial tests.
+
+### FEEDBACK LOCKED (memories saved)
+- DRIVE the build, don't ask obvious go — Tron's request/bug IS the order; plan scenario-first THEN drive with SM ALWAYS; no artificial YOU-DECIDE questions.
+- VERIFY with independent method (not a re-run — self-certifies blind spots). SSRF proof: only the different tool caught the bypasses.
+- MEASURE a stable state (not mid-flight/dirty/uncommitted).
+
+### SPRINT 27 (DONE) = R27.1 statusChecklist / R27.2 class-dedup 163→108 / R27.3 per-task-MD / R27.4 graph-integrity 8/8 / R27.7 WebItem preview v0.7.10
+### S28 (staged scenario-first, awaits build) = R27.5 ref-slot registry (2 axes: ref-integrity + node-well-formedness) / R27.6 true-dangling repair (96)
+
+### TEAM (robbinTeam2 on WODA.prod) 0.0 PO|0.1 expert|0.2 skill-expert|0.3 architect|0.4 req|0.5 tester|0.6 planner. SM=ooshTeam:0.1.
+
+---
+
 # robbin-po Context — save #34 (2026-07-01, Sprint 27 IN FLIGHT — R27.2 CLASS-DEDUP MIGRATION DONE)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #34 — READ FIRST) ★★★★★★★★★★★★★★★★★

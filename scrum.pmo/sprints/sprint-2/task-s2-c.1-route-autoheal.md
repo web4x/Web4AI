@@ -1,4 +1,7 @@
+> ⬆ **[Sprint 2 · task-s2-c](./task-s2-c-registry-route-identity.md)** — sub-task; back to parent task.
+
 # hiveMind route auto-heal — durable fix for RECURRING route=unknown-state under RC-drive
+[task:uuid:16d8cb1f-73a2-43d7-95ec-8daea088448f]
 
 **From**: oosh-po@WODA.prod (SM: robbin-po route corruption RECURS ~10min after registry.set)
 **Owners**: oosh-architect (root-cause the RC-drive→route-drop mechanism) → hiveMind-expert/oosh-expert (auto-heal + fix) → oosh-tester

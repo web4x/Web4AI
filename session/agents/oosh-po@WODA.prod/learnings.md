@@ -588,3 +588,23 @@ The submit-poke for a BUG10-stalled pane is `otmux send.raw <pane> Enter` — an
 
 ### ★ PO does NOT run tests — tester runs, PO gates on the REPORT (Tron, 2026-07-02)
 I ran `test.suite run teamsave-parity` myself to "measure" for the QA gate. Tron: "why do you have a running test task. thats the testers job." **The QA gate = the TESTER runs the suite + reports results; the PO REVIEWS the reported result and makes the gate DECISION (pass/hold/reject).** Running the test myself is the same "don't do the doer's work" overreach corrected before (leverage-the-team) — just wearing a QA disguise. The distinction: MEASURE-don't-assume does NOT mean I execute the measurement; it means I require a MEASURED report (from the tester) rather than accepting a claim. My legitimate QA acts: read the tester's reported results, judge them against the invariant, refuse to green a weakened test, route design questions to the architect. NOT: run test.suite, grep the code, edit the fix. Reflex before any Bash in a QA context: "is this the tester's/expert's execution?" If yes → delegate + gate on the report.
+
+## Sprint-2 planning/consolidation — durable learnings (2026-07-02, Tron-driven)
+
+### The formal sprint artifact = sprint-1 template (Tron: "your planning became a total mess")
+Scattering specs across `session/tasks/*.md` + ad-hoc sprint dirs IS the mess. The PO's authoritative plan is ONE sprint folder built to the **sprint-1 template**: `planning.md` (goal/overview/task-table/sequence/DoD) + per-task files `task-<sprint>.<letter>[.<n>]-<owner|desc>.md`, each with `[task:uuid:…]`, a Status checklist (Planned→In Progress{refinement/tests/impl/testing}→QA Review→Done), Traceability (up/down), Description(role), DoD. **Consolidate: migrate open specs INTO the sprint folder (`git mv` preserves history), rename to sub-task convention, give each a UUID.** The sprint is self-contained + the single source; old sprints get a SUPERSEDED banner, not deletion.
+
+### Traceability must be BIDIRECTIONAL + clickable on GitHub
+Down-links (task→sub-task) AND backlinks (sub-task→parent) — relative `./` within a folder, `../../../` across folders (from `scrum.pmo/sprints/sprint-2/` to repo root = 3 up), full `https://github.com/<org>/<repo>/blob/<branch>/<path>` for OTHER repos (once.sh code). Verify every link resolves (`ls` the resolved path). One term only — when the table column is "Task", purge "Epic" everywhere (header, sequence, backlinks, footers) or it reads inconsistent.
+
+### QA gate: HOLD a red test — never let it be weakened to pass (proven this session)
+When the expert wanted to green PF4 by pointing T-FRESHNESS at its own resolver, I HELD it (that's test-weakening). The hold FORCED a strong test: the tester planted a `deadbeef` stale snapshot and proved the resolver returns LIVE — the REAL invariant. Then it passed on merit. **A test edited to pass is a cover-up, not a fix. The hold is the tool that turns a weak green into a real one.** (The Heart: measure; F-PREEXISTING: failure is failure.) And I GATE on the tester's measured report — I never run the suite myself (Tron: "that's the tester's job").
+
+### DRY-chokepoint solves "N views disagree"
+Parity root cause = 3 divergent enumeration paths → fix = ONE shared reader (`private.hiveMind.live.tupleset`), N consumers; invariant holds BY CONSTRUCTION. Same family as `resolve.target`, `pane.self`, config allow-list. **When views/caches disagree, look for N divergent readers and collapse to one; the proof it's right is often "the part they already share is already correct" (agent uuids were green because all 3 shared proc-args there).**
+
+### Layering: domain script = sole usage interface; generic tool = lifecycle plumbing (plantUML)
+odocker = generic docker image/container LIFECYCLE (ensure/run) — knows no domain. `plantuml` = the SOLE interface to USE plantUML: `install` manages the image lifecycle + brings it UP+READY (via odocker.image.ensure + readiness), `render` uses it (via odocker.run.ephemeral). Domain script has ZERO calls to the underlying tool's underlying (0 `docker` in plantuml — grep-guard). Wrapper pattern (claudeCode→claude). **Split: generic-lifecycle-tool vs domain-usage-interface; the domain script never reaches past its delegate.**
+
+### git mailbox: two PO forks coordinate via git (push after every report)
+oosh-po@MacStudio ⇄ oosh-po@WODA.prod coordinate through the shared repo. Reconcile before pushing (`git pull --no-edit` then push); per-host agent dirs (`role@host/`) prevent context/learnings merge conflicts; report-back inline + push = the report reaches the peer PO. If unpushed commits pile up, the peer is blind — push after each committed report.

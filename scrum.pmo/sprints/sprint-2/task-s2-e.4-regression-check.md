@@ -1,4 +1,7 @@
+> ⬆ **[Sprint 2 · task-s2-e](./task-s2-e-tooling-hygiene.md)** — sub-task; back to parent task.
+
 # `test.suite regression.check <baseBranch>` — systematize regression-vs-preexisting triage
+[task:uuid:e7786de4-b57e-4af2-bbbc-1faa008a637f]
 
 **From**: oosh-po (ARON cycle — improvement as task, via _TEMPLATE)
 **Owners**: oosh-architect (contract) → test.suite-expert/oosh-expert (impl) → oosh-tester (verify)

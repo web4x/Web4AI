@@ -1,4 +1,7 @@
+> ⬆ **[Sprint 2 · task-s2-e](./task-s2-e-tooling-hygiene.md)** — sub-task; back to parent task.
+
 # claudeCode sessions.prune — archive DEAD sessions + clean test-project artifacts
+[task:uuid:ff7339b7-ddab-411e-a701-4b1e8e2b1a5d]
 
 **From**: oosh-po
 **Owners**: oosh-architect (archive-not-delete contract) → claudeCode-expert (impl) → oosh-tester (verify)

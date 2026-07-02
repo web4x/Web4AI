@@ -88,3 +88,25 @@ Scenario units EXIST before ANY implementation: Sprint unit -> Requirement units
 
 ## Fleet state 2026-07-01
 S21(9)/S22(4)/S23(3)/S24(5)/S25(7)/S26(5) = 33 reqs, all req+task+wiring layers chain-clean, source-of-truth on disk. Scenario-first (#126) held for S25.5-7 + all S26. Repeatable pipeline: measure design/code -> decompose (Rule 10) -> mint units scenario-first -> ping planner(tasks)/architect(UC+wire)/skill-expert(chain-tool ACs) -> 3-point verify each task commit -> record dedup/drift on-disk (wer schreibt der bleibt).
+
+## S27 Detail-View + S28 Graph-Integrity (2026-07-01 → 07-02, THIS session)
+**S27 Detail View Enhancements c1c63a2e — 5 reqs (R27.1,2,3,4,7); R27.2+R27.4+R27.7 DONE.**
+- R27.1 90b82d00 statusChecklist render (v0.7.6 retroactive) · R27.3 4f6d6402 per-task-MD (fix 📄 404) · numbering collision R27.2-vs-R27.3 resolved (I committed R27.2 first).
+- R27.2 64965538 ONE-canonical-Class-per-code-class (by-construction invariant + gated migration): audit found 163 Class units/55 dup across 23 code-classes. Migration LANDED clean actual==predicted: 163->108, distinct Impl 431==431 (repoint-not-delete union of 45 same-name pairs), INV2 delta 0-new, 4 active-chain canonicals kept (IORResolver b4eaa489/Room 2172dc56/RbDetailDrawer d86af73d/RbDetailView f2f84ce3-6f8f). Two-independent-clears gate (architect PDCA + my 3-point+INV1b). trace-audit.ts strict-gates dup-Class.
+- R27.4 e205f7c3 graph-integrity (DONE 8/8): 12 dangling UC-refs + 51 orphan-Methods repaired. All 51 ATTACH (0 prune — all real impl+sourceFile), 37 stale designStage markers cleared, 15 bbbc ref-repoints (10 UC + 5 Method.ownerIor — I caught the +5 ownerIor slot-miss), 1 server Class created via mintOrReuseClass. Expert self-caught a TODO gap -> revert -> reapply (atomic-rollback worked).
+- R27.7 54002f11 WebItem type-aware preview drawer (Tron regression v0.7.8 + enhancement, DONE 11/11): 2 UCs (webItemDrawer.previewByType d48b4dda + webItem.serverProxyFetch 543ff7aa), 11 ACs. REUSED canonical RbDetailDrawer d86af73d (R27.2 invariant held on a live feature). SSRF hard-guard: ProxyFetch 09f4cdce -> guardUrl 5 adversarial + fetchSanitized 4 (incl never-execute PROD-CRITICAL) = 9 tests + previewByType routing-regression-gate (r252-webitem-gate.mjs, mailto->launcher AND http->previewable DET-3x) = 10 tests, all chain-to-Test. crossRef R22.2.
+
+**S28 Graph-Integrity Foundation fabc9784 — 2 reqs (scaffolded, awaits Tron go):**
+- R27.5 f48fbf5d RE-SCOPED (calibrate-orphan -> canonical ref-slot registry + calibration) + MOVED S27->S28. 7 ACs incl AC-no-uuid-audit. UC 5ff15c57.
+- R27.6 3a7d4df2 true-dangling repair (Method.impl 51 + Test.parent 32 + Test.verifies 12 + Test.methods 1 = 96 real, under the ~500 token-false-pos + walk-gap noise). UC a07def59. Architect registry 05da0584a/76c3a102b.
+- The 2207-audit-orphan reconciled = BENIGN broad metric (unreachable-from-Req via CANONICAL_FORWARD, all-types), NOT debt; R27.4=51 Methods is the real defect. CI orphan gate = METHOD-scoped not all-types.
+
+## Key learnings THIS session (see learnings.md)
+- NEVER truncate uuids in a reconcile report (8-char prefix collision: f2f84ce3-6f8f LIVE vs f2f84ce3-bbbc DEAD caused a multi-agent false-contradiction; proof = raw JSON model.class + os.path.exists on FULL uuid).
+- Bash-backtick eats FIELD VALUES not just MD markers (undefined.scenario.json, no model.uuid) -> mints via FILE not backtick-in-bash-string; post-mint no-uuid scan. Folded into R27.5 AC-no-uuid-audit.
+- Wrong-field measurement (impl via Method.implementations[] not impl/impls) -> READ raw structure before concluding.
+- Measure a STABLE state, never a mutation in-flight (67 uncommitted = don't grade). Per-AC gate ALL ACs, not just the security subset (caught previewByType shipped with unlinked test).
+- Gated-migration pattern (R27.2/R27.4): dry-run+count -> two-independent-clears -> atomic+rollbackable+self-assert -> post-verify actual==predicted. INV1b = no-impl-lost (repoint-not-delete).
+
+## Fleet state 2026-07-02
+S21-28: R27.2/R27.4/R27.7 DONE; S28 R27.5/R27.6 scaffolded awaiting Tron go. R27.2 by-construction invariant now paying off on live features (R27.7 reused canonical). All scenario-first, chains complete, 0 #126 debt, 0 malformed units (3839).

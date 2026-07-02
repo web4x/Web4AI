@@ -1,4 +1,7 @@
+> ⬆ **[Sprint 2 · task-s2-b](./task-s2-b-dispatch-submission-verified.md)** — sub-task; back to parent task.
+
 # Improvement: make `hiveMind delegate` the submission-verified, pointer-only dispatch primitive
+[task:uuid:31c90e57-96ca-4002-a60a-68650d638195]
 
 **From**: oosh-po (ARON hourly CMM4 — brainstorm ONE improvement, build-up in love)
 **Owner**: oosh-architect (design verify-submission contract) → oosh-expert (impl) → oosh-tester (verify)

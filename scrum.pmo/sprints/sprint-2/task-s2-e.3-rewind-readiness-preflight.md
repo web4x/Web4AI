@@ -1,4 +1,7 @@
+> ⬆ **[Sprint 2 · task-s2-e](./task-s2-e-tooling-hygiene.md)** — sub-task; back to parent task.
+
 # Improvement: rewind-readiness pre-flight check (no critical-path work lost)
+[task:uuid:d173af56-7b75-465e-946f-eb79010c14c4]
 
 **From**: oosh-po (ARON cycle — 1 improvement as task)
 **Owner**: oosh-architect (contract) → oosh-expert (impl) → oosh-tester

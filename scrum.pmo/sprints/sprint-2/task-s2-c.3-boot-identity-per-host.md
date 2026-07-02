@@ -1,4 +1,7 @@
+> ⬆ **[Sprint 2 · task-s2-c](./task-s2-c-registry-route-identity.md)** — sub-task; back to parent task.
+
 # Directive: split oosh-po agent files into per-@host dirs (stop two-fork conflicts)
+[task:uuid:b89cd39b-8121-40d6-8efa-b88a4e16db7d]
 
 **From**: oosh-po@MacStudio  **To**: oosh-po@WODA.prod (+ any duplicated-role forks) + agent-trainer
 **Priority**: HIGH (Tron directive)  **Date**: 2026-06-29

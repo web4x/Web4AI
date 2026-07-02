@@ -1,4 +1,7 @@
+> ⬆ **[Sprint 2 · task-s2-f](./task-s2-f-plantuml-script.md)** — sub-task; back to parent task.
+
 # Design: `plantuml` OOSH script — dockerized PlantUML render, managed via odocker
+[task:uuid:c0461c65-656a-450d-b2c4-b0a310bffdc9]
 
 **Type**: CO-DESIGN (architect ↔ PO) · **From**: oosh-architect (Tron directive: "generate a plantuml oosh script to install and manage the odocker image and usage; talk to the PO and design it together") · **Date**: 2026-06-29
 **Status**: DRAFT — architect proposal + open decisions for PO. Design together, then hand to expert.
@@ -7,6 +10,15 @@
 - **`odocker`** = generic Docker **image+container lifecycle** manager. Knows NOTHING domain-specific (no plantuml, no node, etc.).
 - **`plantuml`** (NEW domain script) = owns ALL plantuml-specifics — the `plantuml/plantuml` image name, the `seccomp=unconfined` flag, `-tsvg`, render-dir mounting, and the render-result validation. It **delegates the container run to odocker**, never to raw `docker`.
 - Mirrors the existing wrapper pattern (claudeCode→claude, claudeFlow→claude-flow): a domain script delegating to a generic tool.
+
+## ★ TRON CLARIFICATION (2026-07-02) — the responsibility split (make this the spec's spine)
+Two layers, no blurring:
+1. **`odocker` = generic docker LIFECYCLE plumbing.** It manages docker images/containers (ensure/pull/run/remove) for ANY image — it knows nothing about plantuml.
+2. **`plantuml` (oosh script) = the SOLE interface for USING plantUML docker.** Nobody renders by calling docker or odocker directly — they call `plantuml`. It owns all plantuml-specifics and delegates the docker mechanics to odocker.
+3. **`plantuml install` = manages the plantUML docker IMAGE lifecycle and brings the image UP + READY to use.** Not a bare "pull if missing" — it ensures the `plantuml/plantuml:<pinned>` image is present AND verified ready to run (via `odocker.image.ensure` + a readiness check). After `plantuml install`, the image is ready so `plantuml render` can use it immediately.
+4. **`plantuml render` = USES the ready image** (self-heals by calling `plantuml install` first) via `odocker.run.ephemeral` → .puml→.svg + post-render validation.
+
+Chain: **user → `plantuml` (install brings image up-ready / render uses it) → `odocker` (image+container lifecycle) → docker.** plantuml contains ZERO `docker` calls (grep-guard); odocker contains ZERO plantuml references.
 
 ## The central design decision (PO input needed) — how does plantuml run the container?
 The render is an **ephemeral one-shot**: `docker run --rm --security-opt seccomp=unconfined -v "$DIR":"$DIR" -w "$DIR" plantuml/plantuml -tsvg <files…>`. But odocker is built for **workspace-built, long-lived NAMED containers** (`odocker.build <workspace>` from a Dockerfile, `odocker.run <image> <name>`, `odocker.exec`). It has **no generic ephemeral-run primitive**.
@@ -87,3 +99,11 @@ Final spec (5b7a803) matches all 5 PO calls exactly; object.verb/no-flag clean (
 - **The queued robbin R22.3 puml favor FOLDS INTO this** — do NOT do a throwaway one-off `docker run`. Build plantuml, then render robbin's .puml via `plantuml render` (dogfood) — which is also T-PLANTUML's good case. One path, proven by use.
 - Sequence: expert finishes current work → `odocker.run.ephemeral` + `odocker.image.ensure` (generic, +completions, commit each) → `plantuml` (install/render/status/usage +completion, PLANTUML_IMAGE/TAG, post-render validation) → favor satisfied via `plantuml render` → tester T-PLANTUML (real robbin puml good-case + bad-case stub-detection).
 - Status: real Tron-directed work (NOT parked). node-provisioning stays parked separately.
+
+## ✅ EXPERT IMPLEMENTATION DONE (oosh-expert@WODA.prod, 2026-07-02)
+- **odocker primitives — dev `1cb40ee`**: `odocker.run.ephemeral <image> <workdir> <args…>` (`docker run --rm --security-opt seccomp=unconfined -v <wd>:<wd> -w <wd> <image> <args…>`; --rm/seccomp/-v/-w inside the verb; args = opaque passthrough) + `odocker.image.ensure <image>` (idempotent pull-if-missing). Both generic, `.completion.image`. Verified idempotent + auto-clean (--rm).
+- **plantuml script — dev `0638344`**: `install`/`render <fileOrDir>`/`status`/`usage` + `render.completion.fileOrDir`. `PLANTUML_IMAGE`=plantuml/plantuml, `PLANTUML_TAG`=**PINNED digest** (no semver tags exist → digest is the reproducible, non-`:latest` pin; overridable). `render` self-heals then delegates to `odocker run.ephemeral … -tsvg`, then post-render validation: "Error line … in file" OR svg with "contains errors" OR below stub-size floor → fail-loud rc=1, names each failed file, never ships a stub.
+- **Layering invariant HOLDS**: 0 real `docker` command calls in plantuml (all via odocker). `plantuml → odocker → docker`.
+- **DOGFOOD verified** (PO synthesis): GOOD real robbin `r20-2-grab-bar-chain.puml` → 5139B real svg rc=0; BAD mode-conflict puml → "Error line 3" detected, rc=1.
+- **FOLLOW-UP tracked**: `plantuml.check` pre-render lint (3 content-error classes) — NOT v1 per PO #3.
+- **→ oosh-tester**: T-PLANTUML ready — good robbin puml→real svg rc=0; bad puml→stub detected rc=1; `odocker image.ensure` idempotent; `odocker run.ephemeral` self-cleans.

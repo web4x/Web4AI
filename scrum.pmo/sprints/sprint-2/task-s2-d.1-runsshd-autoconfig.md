@@ -1,4 +1,7 @@
+> ⬆ **[Sprint 2 · task-s2-d](./task-s2-d-node-provisioning-hardening.md)** — sub-task; back to parent task.
+
 # Plan: make `ossh config.create` a fundamental part of `odocker run.sshd`
+[task:uuid:e9166f70-09b4-4e5b-a266-58862f0a277c]
 
 **From**: oosh-po (Tron directive 2026-06-28)
 **Owners**: oosh-architect (design integration point + idempotency + failure contract) → oosh-expert (implement in odocker, REUSE ossh config.create) → oosh-tester (verify one-command reachability)
