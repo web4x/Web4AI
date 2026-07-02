@@ -20,7 +20,7 @@ node provisioning+hardening, tooling hygiene, plantuml.
 |------|-------|----------|--------|
 | [task-s2-a](./task-s2-a-teamsave-status-parity.md) | teams.save/status MVC parity | CRITICAL (do-first) | ✅ **DONE** — 3/3 GREEN on live (`cc641b7`), PO QA PASS, reported to MacStudio |
 | [task-s2-b](./task-s2-b-dispatch-submission-verified.md) | dispatch submission-verified (BUG10) | CRITICAL | ✅ **DONE** — impl `96ccff2`+`a9fbea5`, tester T-DISPATCH-SUBMIT 5/5 GREEN, PO QA PASS (BUG10 closed) |
-| [task-s2-c](./task-s2-c-registry-route-identity.md) | registry / route / identity integrity | CRITICAL/HIGH | C-family FULLY DESIGNED + COHERENCE-VERIFIED (2 contradictions fixed d25bc18: role title-first, c.2→live.tupleset) + T-RECONCILE-FORK red ✅ → **all expert impl, blocked ONLY on expert /rewind** |
+| [task-s2-c](./task-s2-c-registry-route-identity.md) | registry / route / identity integrity | CRITICAL/HIGH | **c.0 LANDING**: local `45951ad` (9-field tuple+kind, agents.discover TITLE-first, identity.resolve) + remote `0d9d162` (ossh-exec, kills PF3). NEXT (send-priority): g.4 — send.smart/isClaudeCode consume c.0 kind → real agents get claude path. Then C.2/C.3. |
 | [task-s2-d](./task-s2-d-node-provisioning-hardening.md) | node provisioning + hardening | HIGH | hardening baked (u20/u24); autoconfig + runtime open |
 | [task-s2-e](./task-s2-e-tooling-hygiene.md) | tooling hygiene | MEDIUM/LOW | planned |
 | [task-s2-f](./task-s2-f-plantuml-script.md) | plantuml OOSH script | HIGH (Tron: next priority) | ✅ **DONE** — T-PLANTUML 5/5 + docs + architect independent-render PASS (55785B svg, non-author); minor doc-gap follow-up |
