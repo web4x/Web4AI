@@ -1,3 +1,5 @@
+> **⚠️ SUPERSEDED by [sprint-2](../sprint-2/planning.md) (2026-07-02).** Consolidated there with correct templates + UUIDs. This file preserved for provenance only — do NOT drive from it.
+
 # Sprint: OOSH Tooling Reliability — make oosh tools the mandatory default again
 
 **Epic / North Star** (Tron directive 2026-07-01): the OOSH team tools (`hiveMind` / `otmux` / `claudeCode`) must be reliable enough to be the **MANDATORY DEFAULT** for every team operation — so no agent ever needs to fall back to raw `tmux` / raw `claude`. This session, tooling gaps (BUG10 unsent dispatches, recurring route corruption) repeatedly FORCED raw-tool fallback and stalled cross-team work. Fix every gap that breaks the default; then re-assert the doctrine.

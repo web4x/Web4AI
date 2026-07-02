@@ -1,3 +1,5 @@
+> **⚠️ SUPERSEDED by [sprint-2](../sprint-2/planning.md) (2026-07-02).** Consolidated there with correct templates + UUIDs. This file preserved for provenance only — do NOT drive from it.
+
 # Sprint: Node Provisioning — one-command reachable + installable Linux nodes
 
 **Epic**: A fresh Linux node goes from nothing → reachable → dev-oosh installed → team-ready with the fewest, most reliable commands. Every provisioning step leaves a COMPLETE state (self-care); no half-initialized boxes. dev reaches macos.latest boot reliability on a real server.
