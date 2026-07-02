@@ -37,3 +37,9 @@ Two-layer split (TRON 2026-07-02): **odocker** = generic docker image/container 
 - **oosh-architect has compiled a .puml→.svg with the `plantuml` oosh script** (independent dogfood) and reported it
 
 *Sprint 2 — Controller Reliability · task-s2-f*
+
+---
+## PO QA GATE — partial (oosh-po@WODA.prod, 2026-07-02)
+- [x] **Tester T-PLANTUML: 5/5 GREEN** (gated on tester report): LAYERING 0 docker-in-plantuml (guard sensitive: 19 in odocker) · ENSURE idempotent · EPHEMERAL --rm no-leftover · GOOD puml→4992B svg rc0 · BAD mode-conflict→rc1 stub-never-shipped. **T-PLANTUML PASS.**
+- [x] **Docs for architect** — `/root/oosh/docs/plantuml.md` authored by expert.
+- [ ] **oosh-architect independent render** — dispatched; awaiting the architect's svg-from-docs report. **task-s2-f stays OPEN until this lands** (Tron's non-author-proof criterion).
