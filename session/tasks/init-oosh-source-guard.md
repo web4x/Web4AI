@@ -20,3 +20,20 @@ The constructor must not destroy the SOURCE it was invoked from. If `OOSH_DIR` p
 
 ## Rules
 OOSH wrappers; no output filtering; measure live; task file = channel; report-back = commit+push here; NEVER test the destructive path against a live oosh dir. Sign-off is on the TESTER's independent commit, not the implementer self-test.
+
+---
+## S35.2 PREP — T-SOURCE-GUARD harness built + baseline (oosh-tester, 2026-07-02, WODA.test/dev)
+`test/test.source.guard` written + verified as a working detector (holding the GREEN commit until S35.1, per pattern).
+
+### Baseline — S35.1 NOT yet landed
+init/oosh relocation (`mv "$OOSH_DIR" "$HOME/oosh"`, ~L513) still blind-moves the SOURCE — no live-vs-throwaway detection. Structural fence currently **RED** (correctly flags the gap) → flips GREEN when S35.1 adds the guard.
+
+### Intel for S35.1 (measured) — how to tell throwaway from live
+- **Throwaway source = the installer's own fresh clone**, always under a `mktemp -d`: init:289 `_tmp="$(mktemp -d)"` → `git clone … "$_tmp/once.sh"`; init:431 `_oosh_tmp_clone="$(mktemp -d)"`. So a throwaway `$OOSH_DIR` lives under a temp/`/tmp` path (and/or equals the tracked `_oosh_tmp_clone`).
+- **Live source = a persistent checkout** (e.g. `/home/donges/oosh`, a git work-tree not under mktemp). Cleanest detections: `case "$OOSH_DIR" in "$_oosh_tmp_clone"|/tmp/*) mv ;; *) cp -a / refuse ;;` OR `git -C "$OOSH_DIR" rev-parse --is-inside-work-tree` + not-a-temp.
+- Recommend **copy-not-move** for live (source preserved, install proceeds) over refuse — keeps the fresh-host bootstrap working even if someone points it at a real checkout.
+
+### Harness (ready; commits GREEN when S35.1 lands)
+- **(A) STRUCTURAL fence**: relocation must guard a live SOURCE (copy/refuse) not blind-mv. RED now (proves detection) → GREEN post-fix. Flexible pattern (accepts `cp -a`/`_oosh_tmp_clone`/`/tmp` case/`is-inside-work-tree`/refuse).
+- **(B) ISOLATED SANDBOX** (the acceptance ORACLE, both GREEN now — locks the contract): LIVE checkout source (has .git+MARKER, persistent) → **SURVIVES at origin** AND placed at $HOME/oosh (copied); THROWAWAY clone (under a temp root) → **RELOCATES** (moved; fresh path unchanged). Touches no real oosh dir.
+- STRUCTURAL + sandbox only; full destructive e2e → E1.2 container. My OWN committed test is the gate (not the expert self-test).
