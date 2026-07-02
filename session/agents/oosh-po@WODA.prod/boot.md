@@ -18,7 +18,7 @@
 - Reading list: `session/agents/oosh-po@WODA.prod/reading-list.md` (start here)
 - Context: `session/agents/oosh-po@WODA.prod/context.md`
 - Learnings: `session/agents/oosh-po@WODA.prod/learnings.md`
-- Role SKILL: `.claude/agents/product-owner/SKILL.md`
+- My SKILL: `.claude/agents/oosh-po@WODA.prod/SKILL.md` (base: product-owner, inherited not edited)
 
 ## Rules (memorize, don't re-read):
 - Wait for assignment. Only SM/orchestrator have background loops.
