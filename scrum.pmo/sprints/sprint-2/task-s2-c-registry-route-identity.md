@@ -53,3 +53,11 @@ Architect spotted the meta-DRY gap: parity/C.2/C.3 all say "use the shared reade
 ---
 ## ✅ C.0 canonical live-reader DESIGN done (architect `ebbac8e`, task-s2-c.0) — PO APPROVED
 CANONICALIZE + EXTEND the shipped `live.tupleset` (not reinvent). Canonical tuple: `host|session|address|tty|role|uuid|kind|title|cwd`. 3 extensions: **+tty** (batch list-panes, reuse otmux:2373 + tty-matcher@2812) · **+host** · **LOCAL+REMOTE** via a new teams.env host column + self-similar `ossh exec <host> hiveMind protected.live.tupleset`, fail-safe emits a remote-unreachable MARKER, never silent-omit (**kills PF3**). **ONE reader; parity/C.2/C.3 are PROJECTIONS** (`identity.resolve` = pane-filtered view). Migrate the ~3 consumers now while few. object.verb/no-flag, batch preserved. **C-family now FULLY designed: c.0 (foundation) → c.1 SHIPPED → c.2 → c.3.** Expert builds c.0 first, then C.2/C.3 + parity-consumers project off it.
+
+---
+## ✅ C-family COHERENCE PASS done (architect `d25bc18`) — 2 real contradictions FIXED pre-rewind
+The pass paid for itself:
+1. **Role precedence (BIG)** — `agents.discover` resolves role REGISTRY-FIRST (hiveMind:28-33), but c.3 `identity.resolve` needs role TITLE-FIRST (live>cache). Since `identity.resolve` is a c.0 PROJECTION, it would have INHERITED registry-first = the exact stale-role bug c.3 kills. **FIXED**: c.0 pinned `role = TITLE-first > registry` (impl must FLIP `agents.discover`); also fixes a latent parity staleness.
+2. **2nd-reader creep** — c.2 named its source `claude.processes`/`tree.detailed tupleset`, NOT the canonical `live.tupleset`. **FIXED**: c.2 now consumes `live.tupleset` (has tty per c.0).
+Field names otherwise match across c.0/c.2/c.3/parity (session|address|role|uuid|kind|tty|host; parity `address` == PO `{pane}` shorthand). **Expert hits ZERO contradictions post-rewind.**
+**IMPL NOTE for expert**: flipping `agents.discover` to title-first is now a required step (it's the shared role-resolution both c.0-projection and the fix depend on).
