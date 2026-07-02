@@ -27,4 +27,4 @@
 - `CLAUDE.md` (workspace) + `components/OOSH/dev.claude/CLAUDE.md` (agent workflow).
 
 ## Planning-effort updates (2026-07-02)
-Added §2 (sprint-1 template + sprint-2 as the authoritative self-contained plan) and §3 (skill-canon) after Tron's consolidation directive — the sprint is the single source; PO gates on the tester's report and never runs tests itself.
+Machine-split convention (Tron 2026-07-02): WODA.prod=HOME=BARE at sprint level (sprint-2 stays in scrum.pmo/sprints/, NOT sprints@WODA.prod); other machines = sprints@host (MacStudio→sprints@MacDonges). Added §2 (sprint-1 template + sprint-2 authoritative) + §3 (skill-canon). PO gates on the tester report; never runs tests.
