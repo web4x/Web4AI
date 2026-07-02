@@ -26,10 +26,11 @@ node provisioning+hardening, tooling hygiene, plantuml.
 | [task-s2-f](./task-s2-f-plantuml-script.md) | plantuml OOSH script | MEDIUM (Tron directive) | signed off → impl |
 
 ## Sequence & priority
-1. [task-s2-a](./task-s2-a-teamsave-status-parity.md) (parity) — do-first CRITICAL infra; PF4 gated on architect fail-loud-vs-resolver ruling → expert → tester re-run → PO gate → report MacStudio PO.
-2. [task-s2-b](./task-s2-b-dispatch-submission-verified.md) (BUG10) — the fleet dispatch throttle; contract ready, expert impl after task-s2-a.
-3. [task-s2-c](./task-s2-c-registry-route-identity.md) — route auto-heal shipped (watch post-malware); reconcile-after-fork + team.audit + boot-identity next.
-4. [task-s2-d](./task-s2-d-node-provisioning-hardening.md) / [task-s2-e](./task-s2-e-tooling-hygiene.md) / [task-s2-f](./task-s2-f-plantuml-script.md) — as capacity; task-s2-f (plantuml) parallel when expert free.
+1. [task-s2-a](./task-s2-a-teamsave-status-parity.md) (parity) — do-first CRITICAL infra; PF4 gated on architect fail-loud-vs-resolver ruling → tester re-run → PO gate → report MacStudio PO. **(architect+tester lane — does NOT need the expert.)**
+2. **[task-s2-f](./task-s2-f-plantuml-script.md) (plantUML) — NEXT PRIORITY (Tron directive 2026-07-02).** Spec signed off → expert implements now (2 odocker primitives + plantuml script). Runs in parallel with the parity architect/tester lane.
+3. [task-s2-b](./task-s2-b-dispatch-submission-verified.md) (BUG10) — the fleet dispatch throttle; contract ready, expert impl after plantUML.
+4. [task-s2-c](./task-s2-c-registry-route-identity.md) — route auto-heal shipped (watch post-malware); reconcile-after-fork + team.audit + boot-identity next.
+5. [task-s2-d](./task-s2-d-node-provisioning-hardening.md) / [task-s2-e](./task-s2-e-tooling-hygiene.md) — as capacity.
 
 ## Closed / carried-done (context, not open)
 - **SECURITY u20 malware**: RESOLVED — host clean, u20 destroyed+rebuilt hardened, odocker loopback+key-only (once.sh `41ca4e4`), feeds [task-s2-d](./task-s2-d-node-provisioning-hardening.md). [task-s2-d.0-security-u20-incident.md](./task-s2-d.0-security-u20-incident.md)
