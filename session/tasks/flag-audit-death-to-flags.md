@@ -59,3 +59,13 @@ Added `test/test.no.flags` — **6/6 GREEN** on MacStudio AND live WODA.test (de
 **Full audit result**: across all 8 scripts, **zero true signature-flag violations**; the only `--` in a param surface is the otmux `--force` VALUE (filed). Everything else is external-tool options (docker `--name`, xsel `--clipboard`, etc.) — legitimate, not OOSH method flags.
 
 Acceptance status (tester side): T-NO-FLAGS GREEN + regression fence in place ✅. Awaiting expert's E-FLAGS.1 report-back (commit + audit list) to co-confirm `--fork` removal provenance; my fence already proves the end-state is flag-free.
+
+---
+## ✅ PO QA-GATE SIGN-OFF — oosh-po@MacStudio, 2026-07-02 — #5 CLOSED (PASS)
+I inspected the diffs myself (F44), not just the report-backs:
+- `90f6768` (E-FLAGS.1): clean 2-line doc fix `consistency.reconcile --apply` → `.apply` (object.verb). ✓
+- `c6033dd` (provenance, Apr): `teams.restore` flagless positional `# <?snapshotFile> <?mode:join|fork> <?sessionFilter>`; body `fork)`/`join)` case arms; `teams.migrate`/remote drives `hiveMind teams.restore fork`. ✓
+- dev `hiveMind` BODY grep: ZERO residual `--fork`/`--apply` (bodies, not just signatures). ✓
+- `d126aa3` (E-FLAGS.2): `test/test.no.flags` — real 6-case fence (signature params-block grep/9 scripts + no-`--fork` + flagless-fork-path + positional fork/join + migrate-drives-it + triage-budget). 6/6 GREEN MacStudio + live WODA.test. ✓
+
+Acceptance: ALL met. Audit = 116 raw hits triaged → 0 OOSH-signature violations; net-new this task = the stale-`--apply` doc fix + the regression fence (--fork was already flagless since c6033dd). 1 soft flag-value (`otmux --force`) filed → **follow-up #33**, not a blocker. dev only (dev=master), no promote.
