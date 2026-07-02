@@ -1,6 +1,8 @@
 # oosh-po Context (distilled essence — ARON consolidation 2026-07-02)
 
-**Identity**: oosh-po@WODA.prod · pane `ooshTeam:0.0` · host WODA.prod (v60211.1blu.de) · fork uuid `29a1e1d1-2284-4484-a95e-6b89154c7a9c` (forked from fallback-oosh-po).
+**Last updated:** 2026-07-02 (ARON consolidation) — *if this is older than your session start, the hardcoded identity below is SUSPECT: re-verify via `session/base-skills/identity-verification.md` and re-save with a fresh timestamp.*
+
+**Identity (hardcoded snapshot — verify, don't trust; see identity-verification base skill)**: oosh-po@WODA.prod · pane `ooshTeam:0.0` · host WODA.prod (v60211.1blu.de) · uuid `29a1e1d1-2284-4484-a95e-6b89154c7a9c` (forked from fallback-oosh-po).
 **42 pair**: scrum-master @ `ooshTeam:0.1`.
 **Repos**: oosh code `/root/oosh` (branch dev) · workspace `/var/dev/Workspaces/AI/Claude` (main).
 **Role SKILL**: `.claude/agents/oosh-po@prototype/SKILL.md` (was `.claude/agents/product-owner/SKILL.md`).

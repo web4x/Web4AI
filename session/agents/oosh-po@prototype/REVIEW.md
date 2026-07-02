@@ -14,5 +14,19 @@
 ## Excluded (measured: NOT this identity)
 - `product-owner.session` = the **master-PO / TRONinterface** agent (June-10 stale) — a *different* role; kept OUT of oosh-po@prototype (its own cleanup later).
 
+## Identity pattern — prepared for ALL agents (not one-by-one), DRY
+TRON 2026-07-02: SKILL/boot must carry the *commands* to verify identity, never hardcoded pane/host/uuid (forks inherit stale values; continuity lies). Context keeps the hardcoded snapshot BUT with **`Last updated` on top** — if stale, re-verify + re-save.
+- **One shared source** all agents reference (DRY, not per-file bulk — F29): [`session/base-skills/identity-verification.md`](https://github.com/web4x/Web4AI/blob/main/session/base-skills/identity-verification.md) | [local](../../base-skills/identity-verification.md) — OOSH primary (`$CLAUDE_CODE_SESSION_ID`, `claudeCode session.name`, `otmux pane.self`, `config get OOSH_SSH_CONFIG_HOST`) + naked-tmux fallback; NEVER `$TMUX_PANE`/pane-title (proven to lie: %8 vs real %11).
+- Every agent's **boot.md** runs the 4 verify-commands first; every **context.md** carries `Last updated` on top. This is the pattern rolled to all agents.
+
+## Suggestion — move closer to Claude's OFFICIAL file structure (Opus 4.8 / Fable)
+These `session/agents/<name>/{context,learnings,achievements,boot}.md` files are a **custom** structure, parallel to (outside) how Opus 4.8 & Fable are natively designed to handle agent files. Closer-to-official:
+1. **SKILL.md** — already official: `.claude/agents/<name>/SKILL.md` with YAML frontmatter (`name`, `description`). Keep as-is. ✅
+2. **learnings.md + achievements.md → the official MEMORY system.** The native format is one *fact per file* under the project `memory/` dir with frontmatter — `name`, `description`, `metadata.type: user | feedback | project | reference` — a `MEMORY.md` one-line index, and `[[name]]` links between facts. This is what Opus 4.8/Fable **auto-recall** from (a monolithic `learnings.md` is not natively surfaced). Migrate the durable learnings/achievements into typed memory files + MEMORY.md index.
+3. **context.md → session recovery** kept, with `Last updated` on top; a durable slice can be a `type: project` memory.
+4. **boot.md → shrinks:** the official reread is `CLAUDE.md` (project instructions) + the auto-loaded `MEMORY.md` index; boot.md reduces to identity-verification + "read MEMORY.md".
+5. **Frontmatter on every file** so the runtime recognizes them natively.
+**Net:** keep SKILL.md (official) + add the memory/ layer (frontmatter facts + MEMORY.md) for learnings/achievements → recall works the way the model is built, and the custom duplication shrinks.
+
 ## Gate
 Only after TRON reviews these dual-linked pairs and signs off: write the cleaned set → re-teach → **safe rewind** (`session/base-skills/agent-rewind.md`) — trainer as 42-peer, SM watching, signal before the first destructive write.
