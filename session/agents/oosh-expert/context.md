@@ -5,7 +5,19 @@
 **Pane**: ooshTeam:0.3 (verified via `otmux pane.get.target`; shell ooshShells:0.0)
 **Machine**: WODA.prod (dev branch, /root/oosh)
 **PO**: oosh-po @ ooshTeam:0.0 | Peer tester: ooshTeam:0.4 | Architect: ooshTeam:0.2
-**Updated**: 2026-06-28 — NOW on u24 fresh-install GATE / SETUP_SERVER tail (S-B). S3 macos.latest merge HELD (S1 not green: tester found 83 legacy fails, triage pending). Clean-boot sprint (BUG1-9,A,B,C-ext,FEAT8) all on dev + QA-passed.
+**Updated**: 2026-07-02 — see "SESSION 2026-06-28→07-02" block below. (Older WODA.prod-instance state preserved beneath it.)
+
+## SESSION 2026-06-28 → 2026-07-02 (MacStudio oosh-expert @ ooshTeam:0.2; dev via worktree; tester/PO drive WODA.test)
+All work on `dev` in a git worktree (test/macos.latest undisturbed); tester verifies live on WODA.test; report-back = git mailbox (per SPRINT-COMMS). Delivered + QA-signed:
+- **init/oosh self-heal constructor (GATE GREEN, tester RUN6 c0e6036)**: 12 edits — clean-env guard + run-as-user, LOG_DEVICE #1, rm -f #2, mv-glob #3, apt-defer #5 (`oosh_can_escalate`), .bashrc login hook #4, oo.update git self-heal #6, `set +e` tail + relocate hook, benign-deferral exit 0, and the FINAL fd2-dup `private.log.emit` (kills the su- /dev/stderr leak — see learnings).
+- **SETUP_SERVER sprint (sprint-setup-server-crossplatform.md, on dev)**: S2 `566fed9` (D1 reorder + D2 XOR redirect via state.find + C.1 OOSH_MODE seam), S3 `650e743` (OOSH_SHARED_BASE platform seam → OOSH_COMPONENTS_DIR/ODOCKER_WORKSPACES, macOS literals dropped), S7 `19a2a45` (`os.os` accessor single-sources discriminator), F2 `8be593d` (non-interactive sudo probe — naked bootstrap never hangs), S8 `09d33c9`+`691a269` (reconcile self-heal: DRY `private.setup.server.declare` + schema stamp + two-tier detect; F2-safe rm instead of `state machine.delete`-which-runs-`oo cmd vim`). **S8 rebuild-persistence still needs tester T-RECONCILE on an ISOLATED box** (my scratch harness confounded by co-resident real install).
+- **Death-to-Flags #5 `90f6768` + #33 `553b19a`** (SIGNED OFF): --fork already flagless (c6033dd); stale --apply doc fixed; otmux `--force`→`force` sentinel. True zero flags / 9 scripts; fence `test/test.no.flags` at budget 0.
+- **Also (macos.latest earlier this session)**: env-files-pure-state `d45031a`, hiveMind MVC parity merge `f74c20a`, otmux send-Enter over-SSH fix `04b54a5` (Escape-before-Enter dismisses autocomplete), tronMonitor team.sweep auto-switch `3249104`.
+**NOW**: idle — sprint-1 tail (E1.2/D1.3) Tron-blocked on naked container; awaiting PO assignment.
+
+---
+## (prior WODA.prod-instance state — kept for that instance)
+**Instance**: oosh-expert@WODA.prod, ooshTeam:0.3, /root/oosh — 2026-06-28: u24 fresh-install GATE / SETUP_SERVER tail (S-B). S3 macos.latest merge HELD (S1 not green: tester found 83 legacy fails). Clean-boot sprint (BUG1-9,A,B,C-ext,FEAT8) all on dev + QA-passed.
 
 ## ACTIVE: u24 fresh-install gate → SETUP_SERVER 32→62 tail (S-B)
 Task files: `session/tasks/u24-freshinstall-testgate.md` + `session/tasks/setup-server-statemachine-tail.md`.

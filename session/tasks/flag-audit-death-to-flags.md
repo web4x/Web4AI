@@ -77,3 +77,19 @@ I inspected the diffs myself (F44), not just the report-backs:
 - `d126aa3` (E-FLAGS.2): `test/test.no.flags` — real 6-case fence (signature params-block grep/9 scripts + no-`--fork` + flagless-fork-path + positional fork/join + migrate-drives-it + triage-budget). 6/6 GREEN MacStudio + live WODA.test. ✓
 
 Acceptance: ALL met. Audit = 116 raw hits triaged → 0 OOSH-signature violations; net-new this task = the stale-`--apply` doc fix + the regression fence (--fork was already flagless since c6033dd). 1 soft flag-value (`otmux --force`) filed → **follow-up #33**, not a blocker. dev only (dev=master), no promote.
+
+---
+## E-FLAGS.2 UPDATE — triage budget 0 after #33 (oosh-tester, 2026-07-02) — ✅ GREEN, dev `75250dc`
+Re-ran `test/test.no.flags` after expert's `553b19a` (otmux `--force` value → clean `force` sentinel). Tightened the triage fence **budget 1 → 0**.
+- **signature-flag violations = 0** (unchanged) — no method declares a `--flag` param across all 8 scripts.
+- **soft flag-value comparisons = 0** (was 1) — the last filed item (`otmux:702 [ "$force" != "--force" ]`) is gone; confirmed `grep --force` = clean.
+- **6/6 GREEN** on MacStudio AND live WODA.test (dev checkout).
+The fence now fails on ANY reappearance of either a signature `--flag` param OR a `--value` param comparison → Death-to-Flags is fully fenced with zero budget. Acceptance (tester side): T-NO-FLAGS GREEN, regression fence at budget 0, zero behavior regression.
+
+---
+## ✅ PO QA-GATE SIGN-OFF #33 — oosh-po@MacStudio, 2026-07-02 — CLOSED (PASS)
+Inspected diffs myself (F44), not the expert's self-report:
+- `553b19a`: `otmux.layout.restore <?force>` value `--force`→`force` sentinel across check + usage + error/warn + completion + the one hiveMind caller; behavior identical. Grep: ZERO `--force` in otmux AND hiveMind. ✓
+- `75250dc` (tester, co-confirm): `test.no.flags` triage budget tightened 1→0 (`softCount -eq 0`) — the fence is now a TRUE zero-flags guard (any signature `--flag` OR soft `--value` fails it), green both envs. ✓
+
+**Death-to-Flags (#5 + #33) FULLY DONE:** true zero flags across all 9 oosh scripts; permanent regression fence at budget 0. dev only (dev=master), no promote. (Unrelated: `?? macos/` untracked in the once.sh dev tree — noted, not part of this thread.)

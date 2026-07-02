@@ -1,5 +1,29 @@
 # OOSH Expert Learnings
 
+## NEW: fd2-dup beats path-reopen — the `su -` /dev/stderr leak (2026-07-01, c0e6036)
+After `su -` the controlling tty stays root-owned. A log writer that REOPENS the `/dev/stderr` PATH (`>>/dev/stderr` = open `/proc/self/fd/2` → the root tty) gets **EACCES at open()** → `bash: /dev/stderr: Permission denied` at EVERY login. But writing the ALREADY-OPEN fd2 via a **dup (`>&2`)** does NOT reopen — the kernel checked permission only at the original open() by root — so the su'd user's write SUCCEEDS. Fix pattern: `private.log.emit` writes terminal logs via `>&2`, files via `>>"$LOG_DEVICE"`. Two WRONG attempts first (measure!): (1) redirect-order `2>/dev/null >>/dev/stderr` — `/dev/stderr` is fd2-relative so it FOLLOWS the just-redirected fd2 to /dev/null (false positive); (2) `readlink -f /dev/stderr`+`[ -w ]` — resolves differently per su/-c context. You canNOT writability-probe an fd2-alias by reopening it. Live A/B under real PTY: broken=6 leaks, fixed=0.
+
+## NEW: redirection ORDER — `2>/dev/null` must precede a failing `>>` to suppress the open error (2026-07-01)
+`cmd >>/badpath 2>/dev/null` still LEAKS "bash: /badpath: Permission denied" — bash opens `>>` left-to-right and reports the failed open to the ORIGINAL fd2 before `2>/dev/null` applies. `cmd 2>/dev/null >>/badpath` suppresses it. (But for /dev/stderr specifically this creates the fd2-self-follow trap above — use `>&2` dup instead.)
+
+## NEW: engine verb `state machine.delete` runs `oo cmd vim` (F2-class hazard) (2026-07-02, 09d33c9)
+`state.machine.delete` has a hidden `oo cmd vim` (package install) — using it in a self-heal/reconcile path could PROMPT/HANG on a naked box (the exact F2 bug). Compose reconcile from a direct `rm -f "$CONFIG_PATH/stateMachines/<m>.states.env"` (data removal ≠ engine edit) + clear the current-machine pointer, then re-declare. ALWAYS read an engine verb's body before composing with it.
+
+## NEW: constructor must never block on a password — `sudo -n` probe (2026-07-01, 8be593d)
+Naked P1 self-bootstrap hung on `$SUDO touch` (interactive `[sudo] password`). Capability probe MUST be non-interactive: `command -v sudo && sudo -n true` (mirrors init/oosh `oosh_can_escalate`); no rights → warn + defer to user band, never prompt. Also: a user-HOME file (`~/.sudo_as_admin_successful`) needs NO sudo — never touch it as root.
+
+## NEW: CONFIG_PATH can't be redirected on a co-resident real install (2026-07-02)
+Scratch-testing a state machine on a box that has a real OOSH install is confounded: the login re-sources the real `user.env` (`export CONFIG_PATH=/home/donges/config`) and the bootstrap keeps reverting a forced `CONFIG_PATH`. Faithful test needs an ISOLATED box/container (or re-pin CONFIG_PATH AFTER every `source`). A full-checkout CLONE with file-overlay beats a /tmp scratch-copy (which breaks sibling resolution → usage leaks).
+
+## NEW: `os` auto-dispatches on source → use the `os os` accessor (2026-07-02, 19a2a45)
+`os` ends with `os.start "$@"` → sourcing it RUNS it (os.info). So it can't set OOSH_OS in-process. os.check.env has ZERO callers; OOSH_OS is empty even in an established shell. Fix: side-effect-free `os.os()` echoes the discriminator (runs os.check.env, echoes $OOSH_OS); consumers do `OS="$(os os)"`. Single home for the $OSTYPE→OS mapping.
+
+## NEW: XOR state branch via numeric-RESULT redirect; `state.find <name> id` for indices (2026-07-01, 566fed9)
+`state.check` contract: a `private.check.<state>` that returns 0 AND sets a numeric `RESULT` ≠ current index → engine JUMPS (`stateFound=$RESULT`). Model a release⊕dev XOR by making BOTH mode checks ALWAYS return 0 and redirect-forward on the non-matching mode (returning 1 = HOLD = the stall). Resolve target indices with `state.find SETUP_SERVER <name> id` (echoes clean numeric) — NEVER hardcode indices; survives reorders.
+
+## NEW: external-tool flags are NOT OOSH flag violations (2026-07-02, #5 audit)
+Death-to-Flags governs OOSH method SIGNATURES/dispatch. `claude --fork-session`, `git --oneline`, `ssh/scp/rsync/docker/apt/tmux` flags in wrapper bodies are the WRAPPED tool's flags — legitimate pass-through. The fence greps the params-block (between 1st and 2nd `#` of `name() # <params> # desc`), not bodies. Also watch soft flag-VALUES (a positional whose magic value is `--x`, e.g. otmux `--force`) — clean to a plain sentinel (`force`) for true zero.
+
 ## NEW: state machine driver must LOOP to terminal — a single `state next` leaves it stuck (2026-06-28, 278d5a7)
 
 `SETUP_SERVER` install stalled at state 32 with ZERO errors after clearing all setup bugs. Root cause was NOT a per-state bug — it was the DRIVER: `ossh.install.continue.local` called `state next` exactly ONCE (the second call was commented out). One `state next` advances ONE transition (a check may jump several via RESULT-as-number), but the 33→62 tail needs ~6. Fix: loop `state next` until terminal (`stateLast` reached / no-progress), guarded cap. **Lesson**: when a state machine stops cleanly mid-chain with no error, suspect the DRIVER (how many times next is called / whether it loops), not the state actions. `state.next` delegates advance to `$script.check`; if that script's `.check` fn is absent it silently no-ops. Diagnose by grepping the highest `Set state of … to: [N]` in the log vs the target.
