@@ -33,3 +33,8 @@ The shared send core (`otmux send` + `hiveMind send.message`/`agent.queue.drain`
 - T-DISPATCH-SUBMIT green → closes BUG10
 
 *Sprint 2 — Controller Reliability · task-s2-b (CRITICAL)*
+
+---
+## ✅ EXPERT IMPL DONE (dev `96ccff2` otmux core + `a9fbea5` hiveMind) — 2026-07-02
+`send.stage`/`submit`/`poke`/`verify` (object.verb; text-free submit/poke = idempotent). `send.smart` rewired: stage→submit→verify→poke×3→HONEST rc {0 submitted / 2 staged / 3 blocked / 1 error}. **THE fix = region-verify** (staged text LEFT the ❯ input line) NOT grep-for-text → kills the BUG10 false-positive. `agent.queue.drain` GATES dequeue on rc 0 (unsubmitted stays queued — no silent drop = the robbin-po fix). `delegate` = pointer-only THROUGH the core, honest rc. Self-proven: region-verify caught a real staged-unsubmitted pane (rc2) vs idle (rc0); the expert's own report went through the new core. **Supersedes BUG10.**
+- **Gate: tester T-DISPATCH-SUBMIT** (queued) — wrapped-payload regression (long msg → rc2 + auto-poke submits) + drain-no-silent-drop. PO gates on the tester report.
