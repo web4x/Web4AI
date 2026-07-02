@@ -1433,3 +1433,13 @@ For SC-E.2's 17 ingress sites across 4 files, the audit doc suggested "one commi
 
 ## NEW: don't verify a submitted TUI pane too early — the poke Escape INTERRUPTS it (2026-07-02, OTR-1 0cc1b9e)
 After submit, a Claude pane needs ~1s+ to clear the ❯ / render `esc to interrupt`. Verifying at 0.6s false-read it as STAGED → fired a poke; poke = `send.raw Enter` which does Escape-first (dismiss autocomplete), and Escape on a NOW-PROCESSING pane = INTERRUPT the turn you just triggered. Live-caught (my own report to PO submitted but returned rc2 + risked interrupting). Fix: settle 1.3s before verify + between pokes. **Rule**: post-submit verification must wait for the TUI to settle; a false-STAGED read isn't just a wrong rc — the remedial poke actively harms (Escape interrupts).
+
+## NEW: trace the FULL end-to-end path, not just the primitive (2026-07-02, dup regression d4e3ae0)
+
+A "duplicate messages" regression: I proved `otmux send` delivers ONCE (echo-off test) and concluded "fixture artifact." That was RIGHT about the primitive but INCOMPLETE — there was a real dup ONE LAYER UP. The PO pushed: "reproduce the ACTUAL end-to-end path a message takes." The real bug: `hiveMind.agent.queue.drain` dequeued ONLY on rc0, so a message delivered with OTR-1's **rc2 (staged-but-ON-pane)** was kept queued and RE-DELIVERED every drain cycle (SM-cycle + idle-hook re-drain) → N copies.
+
+**Lesson:** when a symptom is "every X duplicates," and the leaf primitive checks out, DON'T stop — walk the whole delivery chain (caller → router → queue → drain → primitive). The dup was in the retry/dequeue LOOP, invisible to a primitive-level test. A test that exercises `otmux send` directly can't catch a drain that re-invokes it.
+
+**Reproduction pattern for delivery-loop bugs (no live agent needed):** mock the leaf (`private.hiveMind.agent.inform() { echo delivered; return 2; }`) + force the route (`agent.route() { echo inform; }`), enqueue one message, run the drain N times, count deliveries. was 3, fix → 1. Proves the loop re-delivers without a real claude pane.
+
+**rc2 dequeue policy (mirrors fccdad8):** OTR-1 rc: 0=verified-submit, 2=staged-but-ON-pane (landed, unverified), 3=blocked (not on pane), 1=error. For dequeue/re-queue decisions, **rc2 counts as DELIVERED (on pane)** — re-delivering it re-types the message = the dup. Only rc3/rc1 (truly not-on-pane) keep queued. This is consistent across agent.send (fccdad8) AND drain (d4e3ae0) — both must agree or one re-dups. Sprint22 "no silent drop" is preserved because rc2 is visibly on the input line (not a drop).
