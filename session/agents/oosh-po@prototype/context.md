@@ -6,11 +6,9 @@
 **Role SKILL**: `.claude/agents/oosh-po@prototype/SKILL.md` (was `.claude/agents/product-owner/SKILL.md`).
 **Per-host**: this is the WODA.prod fork. The `@MacStudio` fork is separate. `@prototype` is the clean canonical base both re-derive from.
 
-## Dual links (bidirectional review refs — cleaned ⇄ source, with syncStatus)
-This distilled file is linked *both ways* to its sources so the consolidation can be reviewed cleaned⇄source:
-- ⇄ [source: oosh-po@WODA.prod/context.md](./_sources/oosh-po@WODA.prod/context.md) — `syncStatus: CONSOLIDATED` (293 lines → this essence; identity + eternal rules kept, 7 rewind checkpoints + superseded June-28 park DROPPED). *(back-link added in that file)*
-- ⇄ [source: oosh-po@MacStudio/context.md](./_sources/oosh-po@MacStudio/context.md) — `syncStatus: MERGED-STILL-TRUE-ONLY` (per-host fork; only still-true bits pulled).
-- Review index: [REVIEW.md](./REVIEW.md).
+## Sources (consolidated from — see REVIEW.md for dual links + syncStatus)
+- `_sources/oosh-po@WODA.prod/context.md` — CONSOLIDATED (293 lines → this essence; identity + eternal rules kept; 7 rewind checkpoints + superseded June-28 park dropped).
+- `_sources/oosh-po@MacStudio/context.md` — merged still-true bits only (per-host fork).
 
 ## Current state
 *(set on each save; the live agent writes its own current sprint state here. Prior June-28 node-provisioning/S3 park is SUPERSEDED — team is on sprint-setup-server-crossplatform.)*
