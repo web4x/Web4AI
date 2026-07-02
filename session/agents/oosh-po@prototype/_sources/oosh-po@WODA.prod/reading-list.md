@@ -14,8 +14,8 @@
 - `scrum.pmo/sprints/sprint-1-state-correctness/` — **the TEMPLATE reference**: `planning.md` + `task-<sprint>.<n>-<owner>-<desc>.md` with `[task:uuid:…]`, Status checklist, Traceability up/down, DoD. Match this shape (Tron: "use the correct templates").
 
 ## 3. Doctrine / process
-- SCENARIO FIRST (TRON law #100) + PO law #125 (gate GREEN→signal downstream) — DOCTRINE I follow. NOTE: `skill-canon-2026-07.md` is SUPERSEDED; do NOT self-append rules. ARON weaves them per-role + deduped (consolidation-to-essence).
-- `.claude/agents/oosh-po@WODA.prod/SKILL.md` — MY SKILL/identity. Base role = shared `.claude/agents/product-owner/SKILL.md` (I inherit it; NEVER edit it).
+- `session/tasks/skill-canon-2026-07.md` — TRON law #100 (SCENARIO FIRST) + PO law #125 (gate GREEN → signal downstream). Both in my SKILL.
+- `.claude/agents/product-owner/SKILL.md` — my role definition (shared PO role; reading list lives HERE in my folder, not there).
 
 ## 4. OOSH architecture + core scripts (once.sh @dev, `/root/oosh`)
 - `components/OOSH/dev.claude/docs/oosh-architecture.md` — technical reference.
