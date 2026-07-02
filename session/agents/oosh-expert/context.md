@@ -122,6 +122,30 @@ ssh u24 'grep -E "^state=|stateValue" ~/config/current.state.machine.env'   # ch
 - u20 = born-broken repro box (symlinked ~/config)
 
 ---
+## ⚡⚡ LATEST WODA.prod SESSION (ooshTeam:0.3) — 2026-07-02 (opus 4.8), g.1 DONE + OTR-3 STARTED
+**Re-anchored after identity drift** (had drifted to hiveMind-expert/MacStudio in-conversation; corrected — I am oosh-expert @ ooshTeam:0.3 on WODA.prod, dev, /root/oosh).
+
+### ✅ task-s2-g.1 otmux-send session/manual regression — DONE `188971a` (dev, pushed)
+Architect diag+spec APPROVED (e6eb721). Fix = branch `send.smart` on target KIND:
+- **non-claude** (shell/ssh/session-to-shell) → `stage + submit(Enter)`, NO Escape, NO poke, light-confirm rc0 (mirrors macos.latest reliable sendEnter). Kills M1 (verify+poke ran on ALL targets → fragile `>`-verify → false rc2 → poke-hang).
+- **claude** → full OTR-1 path byte-for-byte preserved (T-DISPATCH-SUBMIT **5/5** re-run green).
+- **isClaudeCode node hardening** (M2): moved `node` from unconditional-claude into the `claudeCode process.running`-gated arm (bash/zsh/sh/node all gated). node alone ≠ claude.
+- **session→active-pane** (point 4): `private.resolve.target` resolves a BARE real session name (via `has-session`) → active `sess:win.pane`.
+Live-verified WODA.prod (shell rc0 1s, node→non-claude, bare-session dispatched). Task file report-back filled; PO pinged. Awaiting tester **T-SEND-SESSION**.
+**⚠ FOLLOW-UP FINDING (logged in g.1 task, flagged to PO)**: `claudeCode process.running` returns rc1 for a REAL bash-parent claude pane (the PO @ ooshTeam:0.0) → isClaudeCode mis-classifies real agents as shells → send delivers but skips prefix+verify. PRE-EXISTING (gate fd085c4), NOT a g.1 regression; g.1's `(shell)` log made it visible. Recommended dedicated task g.4 — likely tied to OTR-3 live-reader/detection. **DO NOT widen g.1.**
+
+### ⏳ NEXT — OTR-3 / C-family (task-s2-c) — STARTED, reading specs; c.0 NOT yet coded
+PO queue order: **build c.0 live-reader → flip agents.discover TITLE-first → C.2 → C.3. Commit each.** Specs read: task-s2-c (parent), c.0, coherence-pass d25bc18. Tester RED ready: `test/test.reconcile-fork` (4/4 FAIL by design, isolated).
+**c.0 = canonicalize+EXTEND the shipped `private.hiveMind.live.tupleset` (hiveMind:1309), NOT reinvent.** My implementation plan:
+1. **FLIP `agents.discover` role to TITLE-first** (hiveMind:1274-1280 is registry-first + uses raw title): role = `role.fromTitle(pane_title)` (bash/zsh→empty guard built-in) THEN cross-check registry. Required shared step (c.0 projection + parity both depend).
+2. **Extend `live.tupleset`** to canonical **9-field** `host|session|address|tty|role|uuid|kind|title|cwd` (was 8-field `sess|addr|role|uuid|title|cwd|model|kind`): +tty (add `#{pane_tty}` to the existing batch list-panes at 1315, strip /dev/), +host (=HIVEMIND_HOST), drop empty `model` (derive-on-demand), reorder.
+3. **teams.env host column** (`session|description|host`) + **remote sourcing**: per in-scope team, host==local→read locally; host==remote→`ossh exec <host> "hiveMind protected.live.tupleset <session>"`; unreachable→explicit `kind=remote-unreachable` MARKER row (NEVER silent-omit — kills PF3).
+4. **`hiveMind.protected.live.tupleset`** wrapper (CLI/test + remote-exec entry).
+5. **`private.hiveMind.identity.resolve <pane>`** = projection (tupleset filtered to pane.self → role@host). C.3 consumes; C.2 consumes tty+uuid.
+6. **Migrate consumers** to new field order: `role.uuid` awk (1344: was $3=role/$4=uuid → now $5=role/$6=uuid), `teams.save` (3298: remap tupleset→the 8-field SNAPSHOT schema which stays unchanged — snapshot format is a SEPARATE persisted contract, do NOT change it, just remap).
+**Plan to split into 2 commits**: (A) local canonicalize + flip + wrapper + identity.resolve + consumer migration; (B) teams.env host column + remote-exec sourcing. Each coherent+testable. Then C.2 (I2b batch live-uuid + fork uuid-adopt + tty-match orphan adopt + team.audit; greens test.reconcile-fork) → C.3 (pre-compress.sh anchor on `otmux pane.self`, role@host from live title, @host dir, fail-safe never writes shared unknown/ sink).
+**Reuse**: `role.fromTitle` (130), tty-matcher (~2812), otmux tty format (2373), `ossh exec`. **Watch**: snapshot schema `snapshot.row.valid` is 8-field — keep teams.save writing THAT; identity.resolve is title-first ground truth.
+
 ## ⚡ CURRENT WODA.prod SESSION (ooshTeam:0.3) — 2026-07-02, saved pre-cliff (appended)
 DONE (all dev, pushed): security rebuild (u20+u24 KEY-ONLY loopback-bound; incident RESOLVED); parity PF1-4 (shared reader `private.hiveMind.live.tupleset`; teams.save+team.list consume it; `hiveMind role.uuid` live-preferred; PF5 3/3 cc641b7); plantUML task-s2-f.1 (odocker run.ephemeral+image.ensure 1cb40ee; plantuml 0638344; docs/plantuml.md a51c9ed; T-PLANTUML 5/5); OTR-2 route auto-heal (3452eae).
 **OTR-1 (task-s2-b.1) DONE**: 96ccff2 otmux core (send.stage/submit/poke/verify; send.smart→honest rc{0,2,3,1}; REGION-verify not text-presence — kills BUG10 false-pos), a9fbea5 hiveMind (agent.queue.drain gates dequeue rc0 = no-silent-drop; delegate=pointer-only thru core), 0cc1b9e timing (settle 1.3s — verifying too early false-STAGE-reads submitted pane → harmful Escape-poke; live-caught). Tester T-DISPATCH-SUBMIT next. Supersedes BUG10.

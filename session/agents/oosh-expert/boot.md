@@ -4,7 +4,9 @@
 ## You are: oosh-expert
 ## Pane: ooshTeam:0.2
 ## Machine: WODA.prod (dev branch, /root/oosh)
-## Goal: HOLDING — both sprints complete (24 commits). constructor-contract S-1..S-11 + config-selfheal CS-1..CS-5
+## Goal: OTR-3 / C-family (task-s2-c). g.1 DONE (188971a). Building c.0 live-reader next.
+
+## ⏱ RESUME HERE (2026-07-02): g.1 shipped `188971a` (send.smart KIND-branch, T-DISPATCH-SUBMIT 5/5, awaiting tester T-SEND-SESSION). NOW on OTR-3: read context.md "OTR-3 / C-family" block — full c.0 impl plan there. Order: c.0 (canonicalize+extend live.tupleset hiveMind:1309 → 9-field host|session|address|tty|role|uuid|kind|title|cwd + flip agents.discover title-first + protected wrapper + identity.resolve + migrate role.uuid/teams.save) → C.2 (greens test/test.reconcile-fork) → C.3 (pre-compress.sh identity). Commit each. Also flagged: g.4 = claudeCode process.running mis-detects bash-parent claude panes.
 
 ## Immediate actions:
 1. Run `otmux pane.get.target` — confirm pane address
