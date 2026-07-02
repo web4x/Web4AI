@@ -49,3 +49,7 @@ Architect spotted the meta-DRY gap: parity/C.2/C.3 all say "use the shared reade
 
 ## ✅ T-RECONCILE-FORK RED delivered (tester, dev test/test.reconcile-fork) — scenario-first
 4/4 FAIL by design, FULLY ISOLATED (temp HIVEMIND_SESSIONS/REGISTRY; live registry md5 UNCHANGED bc6f6673 — zero real-agent route disturbed; dynamic live-anchor Temple:0.0). FORKUUID/EMPTY-UUID (I2b skipped) · AUDIT-ORPHAN/DEAD-UUID (team.audit = Unknown method, not built). Each asserts healed-uuid==live-proc-args-truth → expert's I2b(via c.0 reader)+team.audit green them by construction. The OTR-3 red is ready.
+
+---
+## ✅ C.0 canonical live-reader DESIGN done (architect `ebbac8e`, task-s2-c.0) — PO APPROVED
+CANONICALIZE + EXTEND the shipped `live.tupleset` (not reinvent). Canonical tuple: `host|session|address|tty|role|uuid|kind|title|cwd`. 3 extensions: **+tty** (batch list-panes, reuse otmux:2373 + tty-matcher@2812) · **+host** · **LOCAL+REMOTE** via a new teams.env host column + self-similar `ossh exec <host> hiveMind protected.live.tupleset`, fail-safe emits a remote-unreachable MARKER, never silent-omit (**kills PF3**). **ONE reader; parity/C.2/C.3 are PROJECTIONS** (`identity.resolve` = pane-filtered view). Migrate the ~3 consumers now while few. object.verb/no-flag, batch preserved. **C-family now FULLY designed: c.0 (foundation) → c.1 SHIPPED → c.2 → c.3.** Expert builds c.0 first, then C.2/C.3 + parity-consumers project off it.
