@@ -2,6 +2,26 @@
 
 *Patterns, failures, KPIs — identity after compact.*
 
+## Stuck Composer = RC-Staging Re-injection (CONFIRMED 2026-07-03, ARON/WODA.prod)
+
+**Symptom**: text stuck in an agent's composer, survives Escape + C-u + N backspaces. Blocks /rewind (garbage prepends to the command).
+
+**Root cause (CONFIRMED by measurement)**: Remote Control (`/remote-control`, /rc active) STAGING re-injection. Tron's RC client holds pending text; RC re-syncs the composer from that staged buffer every time the local side clears it. Local keystrokes RACE the re-stage and LOSE.
+
+**RC operates ABOVE the tmux client layer** — the key refinement: WODA.prod measured `otmux client.list` = **0 tmux clients** yet the text kept re-injecting. RC is a SEPARATE channel (remote/websocket), NOT a tmux attachment. So `detach`/`client.list` will find NOTHING to detach and will NEVER fix it. Don't waste time detaching tmux clients for an RC-staged composer.
+
+**The decisive TELL** (distinguishes re-injection from overlay/no-focus):
+- Text DELETES-then-REAPPEARS (or CHANGES) = re-injection. ARON's text CHANGED 'authorize the trainer to rewind you now' → 'rewind me now' = a LIVE RC source with an actively-editing buffer (even stronger than static re-injection — a static artifact repeats identical text; a changing buffer is a live client typing).
+- Text NEVER deletes = keystrokes not reaching composer = overlay/dialog intercepting = different fix (dismiss the dialog).
+
+**Recovery ladder**:
+1. Confirm it's RC not tmux: `otmux client.list`. 0 clients + still re-injecting = RC channel (above tmux).
+2. **ONLY the RC controller (Tron) can clear it from source** — from their /rc interface. Local side never wins.
+3. **Bypass the wedged composer entirely (Tier-3)**: `tmux respawn-pane -k <pane>` → `claudeCode join <agent's trained-uuid>` — resume the committed session in a FRESH clean composer. State preserved in files/JSONL. This sidesteps the RC-staged composer completely.
+4. NEVER burn the agent's context fighting an un-winnable keystroke race.
+
+**Cross-machine caveat proven useful**: I'm MacStudio, ARON is WODA.prod — I could NOT measure the pane. I gave REASONING (flagged as analysis, not measurement); the WODA.prod side measured and CONFIRMED. The 42 across machines: I bring documented expertise, the local operator brings the measurement. Advisory + measurement = correct diagnosis.
+
 ## Driving a Rewind is LIGHT on the Driver's Context (2026-07-02, SM insight)
 
 - **The rewinder burns slowly.** Executing a rewind = short `otmux send.raw` keystrokes + brief `pane.capture` reads + a few `git log` checks. That's tiny context cost per rewind — NOT like doing implementation/analysis work.
