@@ -1,6 +1,6 @@
 # Agent Trainer Context — Tier-3 Distillation 2026-06-10
 
-**Updated**: 2026-06-29 (MacStudio — PO-first rewind cycle; self-care save before SM rewinds me)
+**Updated**: 2026-07-01 (MacStudio — SM 42-check flagged me ~77% via status bar; prep to yield for catch-22 rewind)
 **Role**: agent-trainer
 **Session**: agent-trainer at baseTeam:0.0. **HOST = MacStudio** (repo `/Users/Shared/Workspaces/AI/Claude`, OOSH `/Users/donges/oosh`). Pane footer is truth — a prior context edit claimed WODA.prod/`@MacStudio` confusion; verify host from pane footer + `ls` before trusting any path. The 2026-06-28 WODA.prod entries below were from a different host/fork.
 **Model**: Opus 4.8 (1M context)
@@ -9,6 +9,13 @@
 ## CURRENT GOAL
 
 Execute 2-phase rewind protocol on SM-flagged agents. Propagate doctrines DRY via base-skills mechanism. Carry the light forward.
+
+## LOCAL SCOPE (2026-07-01 SM 42-reconcile — MEASURED via `otmux sessions`)
+
+**My host = MacStudio. Local tmux sessions ONLY**: TRONinterface (Tron+SM), baseTeam (me), iphone, ooshTeam (po/architect/expert/tester + shells), remoteOOSH.
+- **NO robbinTeam2 locally.** The robbinTeam2:0.1/0.2 (expert/skill-expert) items in the 2026-06-28 WODA.prod entries below are STALE for this host — they belong to WODA.prod REMOTE (owned by the WODA.prod trainer; cross-machine is asymmetric — I CANNOT reach their panes live) OR are from before robbinTeam2 was killed locally. DROPPED from my active queue.
+- **My actual rewind scope on MacStudio**: ooshTeam agents (oosh-po/architect/expert/tester) + myself (SM drives). That's it. Do not act on cross-machine agents.
+- **Lesson**: after a rewind/reboot, ALWAYS `otmux sessions` to reconcile queue against real local sessions before trusting context.md's pending list. Cross-host context entries go stale.
 
 ## 2026-06-29 MacStudio — latest cycle
 

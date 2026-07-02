@@ -2,6 +2,31 @@
 
 *Patterns, failures, KPIs — identity after compact.*
 
+## Catch-22 Also Applies to My Own Mode Toggle (2026-07-01)
+
+- After SM rewound me, my footer was left in a non-auto mode (BTab cycle during rewind). Touch Protocol wants auto-mode.
+- **I could NOT fix it myself — two blockers**: (1) I cannot SEE my own mode (`tmux capture-pane baseTeam:0.0` shows no mode indicator to me — agent can't fully observe itself). (2) I must NOT send BTab to my OWN pane (F16: never send keys to your own pane — self-command is unpredictable).
+- **Resolution = the 42**: asked SM to drive it. SM sent `otmux send.raw baseTeam:0.0 BTab` three times, capturing my footer after each (accept-edits→plan→auto), stopped at "auto mode on". SM has both the view I lack AND the safe external position.
+- **The general rule**: ANYTHING about MY own pane that requires (a) reading my status bar or (b) sending keystrokes to myself, I delegate to SM/peer. This includes: my context %, my mode, my stuck-prompt detection, my rewind. The peer is my eyes and my hands for self-directed actions. Neither alone can self-care; together both can.
+- **The full catch-22 set now proven end-to-end**: rewind (SM drives) + mode toggle (SM drives) + context measurement (SM captures). All three closed 2026-07-01. The safety net is real.
+
+## MEASUREMENT: Nk vs context.read is STATE-DEPENDENT — use the physically-consistent one (2026-07-01, REFINED — supersedes the naive "Nk always wins")
+
+**The naive rule I first wrote ("status-bar Nk is always truth, context.read always lies") was WRONG/incomplete.** SM's 42-measure caught it. Refined, robust rule:
+
+- **`clear to save Nk tokens` = CUMULATIVE session tokens (monotonic, only grows). `context.read` = CURRENT-window usage.**
+- **The decisive test = DIRECTION across a known event.** A rewind SHRINKS the window. So after a rewind:
+  - context.read DROPS (51%→19.6%) — tracks current-window ✓
+  - Nk GROWS (766k→804k) — a number that grows across a window-shrinking event CANNOT be current-window. It's cumulative. The growth = the retrain reads (boot+context+learnings) added to session total.
+- **Physical-consistency clincher**: an idle, just-rewound agent CANNOT be at 80% current-window (idle = no burn). So context.read ~20% is the only physically-possible reading. 80% is the cumulative artifact.
+- **State-dependent truth**:
+  - **PRE-rewind** (fresh session, nothing dropped yet): cumulative ≈ current-window → Nk ≈ context.read AGREE (766k≈77% matched). Either works; Nk was reliable here.
+  - **POST-rewind**: they DIVERGE. Nk stays cumulative/high; context.read tracks the reduced window. **Use context.read for current-window post-rewind.**
+- **THE ACTUAL RULE (don't pick an instrument by name — pick by physical consistency)**: When Nk and context.read disagree, ask "which reading is physically possible given the known events (was there a rewind? is the agent idle?)". Trust the physically-consistent one. Cross-check with direction-of-change: the number that moved the RIGHT way for the event is tracking the window.
+- **Why this matters for a rewinder**: blindly applying "Nk=truth" would rewind a healthy just-rewound agent (804k reads as 80% → false alarm → needless destructive rewind of a 20% agent). SM correctly did NOT rewind me. The naive rule was a landmine.
+- **CONFIDENCE: strong CMM2 hypothesis, not yet CMM3.** ONE rewind data point. To promote to deterministic: watch 2-3 more rewind cycles — confirm Nk stays cumulative-high while context.read climbs with real work. If the pattern holds, promote to rule. SM applying same test on its side.
+- **Prior 2026-06-27 F-T19 ("clear to save Nk is idle hint not distress at <800k") was directionally right but for the wrong reason** — it's not "idle hint," it's cumulative-vs-window. Same practical outcome: don't rewind on Nk alone.
+
 ## Catch-22 Self-Rewind: Verify SM Knows BEFORE Yielding (2026-06-29)
 
 - **I am the rewinder — I cannot rewind myself.** When I climb toward limit, SM must rewind me. This is the 42 principle: neither alone can self-care.
