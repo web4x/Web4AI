@@ -48,3 +48,12 @@ Tester T-DISPATCH-SUBMIT: **5/5 GREEN** (committed dev). Gated on the tester's m
 
 ## Cross-team confirmation (robbin-po, 2026-07-02)
 robbin-po independently diagnosed the "who interrupts all team members" issue → same BUG10 (otmux send to busy pane types text, Enter doesn't register, staged-not-submitted). Ruled out AgentMessage skill (design-doc only, 3f60a5a2b). Its recommendation (wait-for-ready + verify-resubmit / queue, not poke-3x-give-up) = exactly OTR-1's stage→submit→verify→poke + drain-gate. Confirms BUG10 was FLEET-WIDE; fix (96ccff2+a9fbea5) is live on shared dev once.sh.
+
+---
+## ✅ DUP REGRESSION RESOLVED (architect fccdad8) — PO QA PASS (2026-07-02)
+**Tron#1 "all messages duplicate" — was REAL, now fixed + verified.**
+- **ROOT CAUSE (architect, by reproduction)**: `agent.send` unknown-state → AUTO-HEAL → inform delivers the message (rc2 staged = ON PANE), but the old `if rc==0` let rc2 `;&` FALL THROUGH to the queue → enqueue → idle-drain RE-DELIVERS = every message twice (2 prefixes, 1st carries the ^[ claude-submit Escape). OTR-1's HONEST rc2 EXPOSED the pre-existing `;&` fall-through; **fd-pressure (shell leak, task-s2-i) → many sends hit unknown-state → "ALL messages."**
+- **FIX** (`fccdad8`): staged(rc2)=already-delivered → `return`, NEVER re-queue; only rc3/rc1 (not-on-pane) fall through. Each message now sends ONCE. Primary inform route was already fine — only the auto-heal path fell through.
+- **VERIFIED**: tester D3/E5 GREEN 8/8 (`1cb0aca`) with corrected fixture (`stty -echo` — the earlier RED was a fixture echo-artifact, tester retracted+owned).
+- **CONNECTION**: fd-pressure = the trigger → task-s2-i (shell.reap) + OTR-2 reduce recurrence.
+- **PO QA GATE: PASS.** Dup dead + regression-locked by D3/E5.
