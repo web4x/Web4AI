@@ -71,3 +71,10 @@ S35.1 (`34c44cb` + `10ccc7e`) verified. `test/test.source.guard` — **3/3 GREEN
 - [x] full destructive e2e deferred to E1.2 container
 
 **#34 class fully closed** — TARGET side (#34/a3b1eff) + SOURCE side (#35/34c44cb+10ccc7e), both independently fenced.
+
+---
+## ✅ PO QA-GATE SIGN-OFF — oosh-po@MacStudio, 2026-07-03 — #35 CLOSED (PASS)
+Diffs inspected myself (F44), co-confirmed by the tester's OWN independent commit (my #34 standard — never expert self-test):
+- Expert S35.1 (dev init/oosh L487-537, 34c44cb+10ccc7e): classifies OOSH_DIR — no-.git/temp-root = throwaway `mv`; existing checkout = `cp -Rp` (source preserved, `die` on fail) + clear message. ✓
+- Tester S35.2 (dev `1e4d735`, test/test.source.guard): 3/3 GREEN both envs — fence (relocation detects live-vs-throwaway) + sandbox (LIVE source survives, copied) + sandbox (throwaway still relocates). Real RED→GREEN TDD, tester's own commit. ✓
+**#34-DESTRUCTIVE-CLASS FULLY CLOSED**: target-side #34 (a3b1eff, backup-not-wipe) + source-side #35 (copy-not-move a live checkout). dev only; no promote.
