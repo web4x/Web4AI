@@ -56,3 +56,6 @@ Hypothesis CONFIRMED — 2 mechanisms:
 - **M2**: `isClaudeCode` treats `pane_current_command==node` as claude UNCONDITIONALLY (any node tool matches!) → Escape fires into a node shell → hang.
 **FIX (approved)**: branch `send.smart` on KIND — **claude = full OTR-1 contract UNCHANGED (5/5 preserved)**; **non-claude = stage+Enter, NO Escape, NO poke, light-confirm**; + harden `isClaudeCode` node case; + session→active-pane→kind resolution. Essence: verify+poke+Escape is a CLAUDE protocol; non-claude = fire+light-confirm.
 **Expert fix → tester T-SEND-SESSION** (regression guard — the send path OTR-1's tests missed).
+
+## Reference for the fix (from g.3): macos `04b54a5` SSH-send Escape-before-Enter
+macos.latest's `04b54a5` (SSH-send: Escape-before-Enter) is a macos-unique send technique — expert/architect: REVIEW it while fixing g.1; the non-claude/SSH/session send path may want that technique (possible macos→dev reverse-port). Don't blind-copy; evaluate vs the branch-on-kind design.

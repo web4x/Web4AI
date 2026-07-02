@@ -43,3 +43,7 @@ It is a **dev→macos.latest FORWARD merge** (dev 966 ahead), NOT a cherry-pick-
 ## Report-back
 - Architect (per-capability analysis): **DONE 2026-07-02** — dev canonical on ALL (otmux/c2/boot/install); dev 966 ahead, macos 4 unique. macos "reliability" = older/simpler, not superior. Direction: **dev→macos per capability, gated on dev-green** (g.1 fix + C.2/C.3). Reverse-port candidates = ONLY the 4 macos-unique commits (esp. `04b54a5` SSH-send Escape-before-Enter — review vs dev send). S3 = forward merge dev→macos, preserve the 4.
 - PO (reconcile plan):
+
+---
+## ✅ g.3 DONE (architect `359a1f0`) — DEV leads ALL capabilities; "macos more reliable" = older/simpler, NOT superior
+Per-capability: **DEV leads all 4** (otmux/c2/boot/install). Dev is **966 commits ahead**; macos.latest has only **4 unique** commits. So "macos.latest is more reliable" = it's OLDER + SIMPLER (fewer features exercised → fewer visible bugs), NOT superior. **Reconcile = forward dev→macos per capability, GATED on dev-green (g.1 fix + C.2/C.3).** ONLY reverse-port candidates = the 4 macos-unique commits — esp. **`04b54a5` SSH-send Escape-before-Enter** (review vs dev send — may be a real macos→dev port relevant to g.1). **S3 = forward merge dev→macos, preserve the 4.** Resolves the long-running premise: dev is the source of truth; macos is the lagging target.

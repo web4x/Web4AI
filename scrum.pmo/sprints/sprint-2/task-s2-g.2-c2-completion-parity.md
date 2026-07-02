@@ -36,3 +36,7 @@
 ## Report-back
 - Expert/architect (c2 diff + verdict): **DONE 2026-07-02 (architect)** — c2 completion DIVERGENT; canonical = DEV (3 fixes macos lacks: `'''`-crash guard + `bash -n`-before-source [f13f35d], param-completion + count-fix [d83907b]); dev is test-proven (T-C2-QUOTE 3/3, 53729c0). Fix = forward-port dev→macos.latest (merge/port, not redesign). Wiring identical; only completion logic diverges.
 - Tester (parity check): after the port — `T-C2-PARITY`: c2 completion identical both branches; T-C2-QUOTE (broken method.env → no crash, file valid) passes on macos.latest too.
+
+---
+## ✅ g.2 DONE (architect `359a1f0`) — c2 DIVERGENT, canonical = DEV
+Dev has 3 c2 fixes macos.latest LACKS: `'''`-crash guard + `bash -n` [`f13f35d`], param-completion [`d83907b`]; test-proven (T-C2-QUOTE). **Fix = forward-port dev→macos** (dev is correct). Not a dev bug.
