@@ -62,3 +62,27 @@ artifact existing (`[ -f states.env ] && grep -q '"user.mode.dev"'`), else `expe
 - **Measure, never assume** (TRON CMM4): process-args + pane-footer are ground truth over a
   lying session.id; a fresh `teams.save` corrected a stale snapshot uuid — proved the
   divergence was staleness, not logic.
+
+## HARD LESSON — init/oosh is a DESTRUCTIVE installer; never full-run it on a live checkout
+`init/oosh` is a REAL constructor: `mv $OOSH_DIR $HOME/oosh`, sudo re-exec, clone-to-tmp,
+state-machine handoff. Running `dash init/oosh` (or `bash init/oosh`) fully — even under a
+timeout — partially executes and **wiped `/home/donges/oosh`** (killed mid-`mv`). Had to
+`git clone -b dev git@github.com:Cerulean-Circle-GmbH/once.sh.git /home/donges/oosh` (root
+has the key) + `chown -R donges:donges` to restore the box.
+- For constructor/installer tests: assert STRUCTURALLY (shebang, `dash -n` parse, re-exec
+  present + ordered before dotted-fn sourcing) + prove the MECHANISM in ISOLATION (a tiny
+  temp script mirroring the exact guard). Full end-to-end "reaches [oosh]" belongs on a
+  THROWAWAY container (S5 naked box), never a live team checkout.
+- **Restore recipe** (root): `git clone -b dev <once.sh url> /home/donges/oosh && chown -R donges:donges`.
+
+## Mechanism-probe gotcha — exported BASH_VERSION leaks into dash → false positive
+Testing a `[ -z "$BASH_VERSION" ] && exec bash` guard: the PARENT bash EXPORTS BASH_VERSION,
+so `dash -c '...'` inherits it → the guard sees it non-empty → never fires → your probe
+reads the inherited value and FALSELY "passes". Clear it: `env -u BASH_VERSION dash script`.
+And let BASH expand its own `$BASH_VERSION` (single-quote the bash -c body / use a temp
+script) — a double-quoted inner gets expanded by the launching/dash shell to empty first.
+
+## oosh interactive shell mangles `$(...)` and `!` in sent commands
+The oosh (bash+`this` dispatch) login shell intercepts `VAR=$(cmd)` as a method call
+(`ERROR> "VAR=$(git" ... EPERM`) and history-expands `!`. When sending recovery/compound
+commands to an oosh pane, wrap in `bash -c '...'` to bypass dispatch, and avoid `!`.
