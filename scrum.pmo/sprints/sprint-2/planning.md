@@ -19,8 +19,8 @@ node provisioning+hardening, tooling hygiene, plantuml.
 | Task | Title | Priority | Status |
 |------|-------|----------|--------|
 | [task-s2-a](./task-s2-a-teamsave-status-parity.md) | teams.save/status MVC parity | CRITICAL (do-first) | ✅ **DONE** — 3/3 GREEN on live (`cc641b7`), PO QA PASS, reported to MacStudio |
-| [task-s2-b](./task-s2-b-dispatch-submission-verified.md) | dispatch submission-verified (BUG10) | CRITICAL | contract APPROVED → impl |
-| [task-s2-c](./task-s2-c-registry-route-identity.md) | registry / route / identity integrity | CRITICAL/HIGH | route auto-heal shipped; reconcile+audit+boot-id open |
+| [task-s2-b](./task-s2-b-dispatch-submission-verified.md) | dispatch submission-verified (BUG10) | CRITICAL | ✅ **LIVE** — caught a real long-msg (rc2 staged) + self-poked; → tester T-DISPATCH-SUBMIT gate |
+| [task-s2-c](./task-s2-c-registry-route-identity.md) | registry / route / identity integrity | CRITICAL/HIGH | route auto-heal shipped; **OTR-3 reconcile-after-fork DESIGN done** (I2b crux) → expert impl; boot-id open |
 | [task-s2-d](./task-s2-d-node-provisioning-hardening.md) | node provisioning + hardening | HIGH | hardening baked (u20/u24); autoconfig + runtime open |
 | [task-s2-e](./task-s2-e-tooling-hygiene.md) | tooling hygiene | MEDIUM/LOW | planned |
 | [task-s2-f](./task-s2-f-plantuml-script.md) | plantuml OOSH script | HIGH (Tron: next priority) | impl DONE (`1cb40ee`+`0638344`) → tester T-PLANTUML gate |
