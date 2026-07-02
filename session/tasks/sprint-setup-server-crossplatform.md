@@ -221,8 +221,12 @@ P2 `ossh install` dev→naked requires (a) a second NAKED target box and (b) res
 **S4 ✅ PO-APPROVED** (DEV XOR crossing live: 20→21 redirect→22→23, no stall, matches design C; D1 order + D3 linux /home/shared PASS; idempotent).
 **S6 ✅ PO-APPROVED** (T-STATE-ORDER 10/10 + T-PLATFORM-DEFAULTS 8/8 GREEN both envs; dev 9395fca).
 
-### F2 — MUST-FIX (blocks S5) → oosh-expert  ·  Status: DISPATCHED
+### F2 — MUST-FIX (blocks S5) → oosh-expert  ·  Status: ✅ DONE (`8be593d`) — unblocks S5
 Naked P1 HANGS on interactive sudo password (oo:668 `$SUDO touch`). A naked constructor must NEVER block on a human password (constructor-contract violation). Fix: `sudo -n` (non-interactive) + defer-with-warning if no rights — REUSE the established `oosh_can_escalate`/apt-defer pattern (DRY). And: a USER-mode step must not escalate at all (touch as the user). `bash -n` clean + a T-NO-SUDO-HANG guard.
+**report-back (expert `8be593d`)**: `bash -n` clean. Rewrote `private.test.sudo.priviledges` (oo:662):
+- **No interactive escalation.** Dropped `$SUDO touch ~/.sudo_as_admin_successful` entirely (it prompted on a naked box AND touched a user-HOME file as root). The probe now: root/`HOME=/root` → 0; Ubuntu marker present → 0 (fast path, read-only, never written as root); else authoritative `command -v sudo && sudo -n true` → 0; else `warn.log` + `create.result 1` (defer to user band). Mirrors init/oosh `oosh_can_escalate` `sudo -n` pattern (DRY — same-scope helper isn't shareable across the POSIX init and oo, so the pattern is mirrored; a kernel `this.canEscalate` could unify both later if PO wants).
+- **MEASURED live (WODA.test, donges, no passwordless sudo)**: `timeout 5 sudo -n true` → rc=1 **instantly**, no prompt, no hang → probe returns "deferred". Constructor-contract honored.
+- **Tester T-NO-SUDO-HANG**: from-scratch naked bootstrap must reach the user-band terminal with NO `[sudo] password` prompt (assert bounded time / no tty block). S5 unblocked pending a naked target (PO's Docker-container recommendation).
 
 ### S8 — F1 existing-install migration (self-heal) → oosh-architect (design) then expert  ·  Status: PLANNED
 D1 reorder only helps NAKED rebuilds; an already-installed box keeps its old-order state file (so WODA.test itself isn't auto-corrected). Per the self-heal principle, re-running the constructor should RECONCILE an existing box's SETUP_SERVER state to the new order. Architect: design the detection (order/version stamp vs current names) + safe rebuild in `private.init.state.machine` — NO `state`-engine edit. Non-blocking for the naked-path gate.
