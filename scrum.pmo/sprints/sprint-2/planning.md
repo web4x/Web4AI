@@ -28,10 +28,10 @@ node provisioning+hardening, tooling hygiene, plantuml.
 ## Sequence & priority (live — 2026-07-02)
 1. [task-s2-a](./task-s2-a-teamsave-status-parity.md) (parity) — ✅ **DONE** (PO QA PASS, reported MacStudio).
 2. [task-s2-f](./task-s2-f-plantuml-script.md) (plantUML) — impl DONE → **open gates**: tester T-PLANTUML · expert authors usage-doc · architect independently renders a .puml→.svg from docs.
-3. [task-s2-b](./task-s2-b-dispatch-submission-verified.md) (BUG10/OTR-1) — impl DONE (region-verify, drain-gated) → **gate**: tester T-DISPATCH-SUBMIT.
+3. [task-s2-b](./task-s2-b-dispatch-submission-verified.md) (BUG10/OTR-1) — ✅ **DONE** (T-DISPATCH-SUBMIT 5/5 GREEN, PO QA PASS — dispatch throttle closed).
 4. [task-s2-c](./task-s2-c-registry-route-identity.md) (OTR-3) — DESIGN done → **expert impl** (I2b via parity reader + tty-adopt + team.audit) → tester T-RECONCILE-FORK. (route auto-heal already shipped; boot-identity still open.)
 5. [task-s2-d](./task-s2-d-node-provisioning-hardening.md) / [task-s2-e](./task-s2-e-tooling-hygiene.md) — as capacity.
-**Open gates I'm waiting on**: tester T-PLANTUML + T-DISPATCH-SUBMIT; expert plantUML-docs + OTR-3 impl; architect plantUML render.
+**Open gates I'm waiting on**: tester T-PLANTUML; expert plantUML-docs + OTR-3 impl; architect plantUML render; then tester T-RECONCILE-FORK. (parity + BUG10 = DONE.)
 
 ## Closed / carried-done (context, not open)
 - **SECURITY u20 malware**: RESOLVED — host clean, u20 destroyed+rebuilt hardened, odocker loopback+key-only (once.sh `41ca4e4`), feeds [task-s2-d](./task-s2-d-node-provisioning-hardening.md). [task-s2-d.0-security-u20-incident.md](./task-s2-d.0-security-u20-incident.md)
