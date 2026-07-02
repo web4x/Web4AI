@@ -68,3 +68,10 @@ macos.latest's `04b54a5` (SSH-send: Escape-before-Enter) is a macos-unique send 
 
 ## ✅ g.1 IMPL DONE (expert `188971a`, dev) — → tester T-SEND-SESSION
 send.smart branches on target KIND: non-claude = stage+Enter, NO poke/NO Escape; claude = full OTR-1 contract UNCHANGED (T-DISPATCH-SUBMIT still 5/5); isClaudeCode node-case hardened; session→active-pane→kind. Live-verified WODA.prod. **Gate: tester T-SEND-SESSION** (regression guard — the session/shell send path OTR-1 missed). PO gates on the tester report.
+
+---
+## ✅ PO QA GATE — g.1 PASS (oosh-po@WODA.prod, 2026-07-02, on tester report)
+Tester T-SEND-SESSION gate: BOTH halves GREEN (gated on tester report, not self-run):
+- **(A) T-SEND-SESSION 3/3**: SHELL-COMPLETES (shell pane → rc0, marker present, NO hang) · NON-CLAUDE-PATH (no-poke/no-Escape branch, never the claude TUI protocol) · BARE-SESSION (bare session name → active pane → dispatched).
+- **(B) T-DISPATCH-SUBMIT 5/5 regression**: claude path UNCHANGED by g.1 (only the orchestrator re-branches; OTR-1 primitives untouched).
+**g.1 DONE.** The OTR-1 send-regression (verify+poke+Escape applied to non-claude targets) is fixed — otmux send now completes reliably for BOTH claude (5/5) AND shell/session (3/3). The trainer's ARON-rewind send + Tron's manual send work again. My gate-miss (session path absent from OTR-1's matrix) is closed by T-SEND-SESSION as a permanent guard.
