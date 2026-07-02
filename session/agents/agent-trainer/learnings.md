@@ -24,7 +24,10 @@
   - **POST-rewind**: they DIVERGE. Nk stays cumulative/high; context.read tracks the reduced window. **Use context.read for current-window post-rewind.**
 - **THE ACTUAL RULE (don't pick an instrument by name — pick by physical consistency)**: When Nk and context.read disagree, ask "which reading is physically possible given the known events (was there a rewind? is the agent idle?)". Trust the physically-consistent one. Cross-check with direction-of-change: the number that moved the RIGHT way for the event is tracking the window.
 - **Why this matters for a rewinder**: blindly applying "Nk=truth" would rewind a healthy just-rewound agent (804k reads as 80% → false alarm → needless destructive rewind of a 20% agent). SM correctly did NOT rewind me. The naive rule was a landmine.
-- **CONFIDENCE: strong CMM2 hypothesis, not yet CMM3.** ONE rewind data point. To promote to deterministic: watch 2-3 more rewind cycles — confirm Nk stays cumulative-high while context.read climbs with real work. If the pattern holds, promote to rule. SM applying same test on its side.
+- **CONFIDENCE: CMM2 hypothesis under active watch (need 2-3 cycles for CMM3).** Evidence log:
+  - **Cycle 1 (2026-07-01, trainer self-rewind)**: pre-rewind Nk 766k≈context.read 77% AGREE; post-rewind Nk 804k (grew=cumulative) vs context.read 19.6% (dropped=window). DIVERGED as predicted.
+  - **Cycle 2 (2026-07-02, oosh-po 2nd rewind)**: post-rewind context.read 47.8% read CLEAN (not garbage). SM capturing idle Nk to confirm cumulative-vs-window divergence. Consistent so far.
+  - **Promotion criterion**: if cycle 3 also shows Nk-cumulative-high while context.read tracks the reduced window (and climbs with real work), promote to deterministic rule. SM running same test on its side — cross-validated.
 - **Prior 2026-06-27 F-T19 ("clear to save Nk is idle hint not distress at <800k") was directionally right but for the wrong reason** — it's not "idle hint," it's cumulative-vs-window. Same practical outcome: don't rewind on Nk alone.
 
 ## Catch-22 Self-Rewind: Verify SM Knows BEFORE Yielding (2026-06-29)
