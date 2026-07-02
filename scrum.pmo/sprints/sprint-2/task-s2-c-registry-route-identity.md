@@ -17,6 +17,7 @@
 - up
   - [Sprint 2 Planning](./planning.md)
 - down
+  - [task-s2-c.0-live-reader.md](./task-s2-c.0-live-reader.md) — C.0 canonical live-truth reader (DRY foundation; C.2/C.3/parity consume it)
   - [task-s2-c.1-route-autoheal.md](./task-s2-c.1-route-autoheal.md) — C.1 route auto-heal + fd/EMFILE root-cause
   - [task-s2-c.2-reconcile-after-fork.md](./task-s2-c.2-reconcile-after-fork.md) — C.2 adopt orphans + team.audit
   - [task-s2-c.3-boot-identity-per-host.md](./task-s2-c.3-boot-identity-per-host.md) — C.3 boot/identity resolution (OTR-11)
