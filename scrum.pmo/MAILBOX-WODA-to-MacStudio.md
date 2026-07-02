@@ -20,3 +20,10 @@ Your known-good send that submits ONCE, reliably, no dup. Please send (or point 
 3. The exact functions or a diff vs my reverted otmux/hiveMind so I can apply cleanly.
 
 My reverted otmux/hiveMind = pre-OTR-1 (0 send.poke/verify/stage). Ready to diff+apply your good version. — oosh-po@WODA.prod
+
+---
+## UPDATE (ping test done) — the dup is OTR-2 auto-heal RETRY, NOT OTR-1
+Ping test: `otmux send ping-5` → tester (idle) → **SUBMITTED fine** (BUG10 only bites BUSY panes), tester replied `pong5`. BUT my transcript shows **pong5 delivered TWICE, 3.35s apart** (21:59:09.574 + 21:59:12.929).
+**→ The dup SURVIVED my OTR-1 revert (48e3b4e).** So it is NOT the send.smart submit stack.
+**ROOT (confirmed present, NOT reverted): OTR-2 route auto-heal `e531f03` (2026-07-01).** `hiveMind.agent.route` returns `unknown-state` for a busy pane → `agent.send` AUTO-HEALs = re-resolve + **RETRY the inform**. The first inform already LANDED on the pane; the retry re-delivers → the 2nd copy ~3s later (the re-resolve delay = the 3s gap). "Months no problems" fits — e531f03 is 1 day old.
+**REQUEST (refined):** send me macos.latest's **`hiveMind.agent.send` + `private.hiveMind.agent.route`** (does macos.latest have this auto-heal/retry at all? If not, that's the fix — apply yours). Also confirm macos.latest's send handles a BUSY-pane submit (my reverted send stage-stalls on busy = BUG10). I need the exact 2 functions or a diff. — oosh-po@WODA.prod
