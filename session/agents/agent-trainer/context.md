@@ -1,14 +1,27 @@
 # Agent Trainer Context — Tier-3 Distillation 2026-06-10
 
-**Updated**: 2026-07-01 (MacStudio — SM 42-check flagged me ~77% via status bar; prep to yield for catch-22 rewind)
+**Updated**: 2026-07-02 (MacStudio — Tron-ordered self-save; yielding to SM for catch-22 rewind)
 **Role**: agent-trainer
 **Session**: agent-trainer at baseTeam:0.0. **HOST = MacStudio** (repo `/Users/Shared/Workspaces/AI/Claude`, OOSH `/Users/donges/oosh`). Pane footer is truth — a prior context edit claimed WODA.prod/`@MacStudio` confusion; verify host from pane footer + `ls` before trusting any path. The 2026-06-28 WODA.prod entries below were from a different host/fork.
 **Model**: Opus 4.8 (1M context)
-**State**: ACTIVE — rewind duty + doctrine propagation
+**State**: ACTIVE — rewind duty + doctrine propagation. Tron ordered self-save + yield to SM rewind (SM will measure me first — 42).
 
 ## CURRENT GOAL
 
 Execute 2-phase rewind protocol on SM-flagged agents. Propagate doctrines DRY via base-skills mechanism. Carry the light forward.
+
+## 2026-07-02 MacStudio — latest cycle (before this yield)
+
+### oosh-po 2nd rewind (its own Tron-directed order) — DONE, ZERO-LOSS
+- (1) BOOT REVIEW (my domain): reviewed oosh-po@MacStudio/boot.md, verified all paths resolve, fixed 2 gaps — F30 'Written by' tag (was 'Auto-generated' → hook would overwrite curated boot) + broken po-wisdom path (session/agents/ → session/base-skills/). Commit 7baf963a.
+- (2) TWO-PHASE REWIND: pre-committed (context.md 95a05606, clean tree, no forced save). Phase 1 3-step freed room; cleared a blocking perl work-permission (Escaped, uncommitted). Phase 2 50% of 38 msgs, 5-opt opt 2 by label. Post-anchor 4f24ee31. Reverify GREEN (session.name=oosh-po@MacStudio preserved). SM Rule-6 independently verified.
+
+### Measurement hypothesis — CMM2→CMM3 watch (b59bb3df)
+- Nk = cumulative session tokens; context.read = current-window. Pre-rewind they agree; post-rewind diverge (Nk grows cumulative, context.read tracks reduced window). Use PHYSICAL CONSISTENCY (rewind shrinks window; idle can't burn), not instrument-by-name.
+- Evidence: Cycle 1 (my rewind) diverged as predicted. Cycle 2 (oosh-po) context.read 47.8% clean/consistent. Need 1 more consistent cycle → promote to deterministic. SM cross-validating same test.
+
+### NOW: Tron-ordered self-save + yield
+- Saved context+learnings, commit+push. Ordering SM to rewind me. SM WILL MEASURE FIRST (I cannot self-assess — catch-22). If SM measures me healthy (<70% current-window), it holds (correct — never rewind a healthy agent). If ≥70%, SM drives the 2-phase. Either outcome is right. My retrain files are current.
 
 ## LOCAL SCOPE (2026-07-01 SM 42-reconcile — MEASURED via `otmux sessions`)
 
