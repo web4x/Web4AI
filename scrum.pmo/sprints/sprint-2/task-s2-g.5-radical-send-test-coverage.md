@@ -127,3 +127,8 @@ Approved — 43 cells / 10 groups, proven superset of the 8 existing (zero regre
 4. **"has sender info ONCE"** → E1/E2 partial. **REQUIRED ADD → E5** `[B]`: sender prefix `[@role pane]` appears EXACTLY ONCE — never doubled across submit+poke+re-send (the BUG9 idempotent-prefix guard: `[[ text != \[@* ]]`).
 5. **"recognizes single keys over messages"** → D2/G4/I4 partial. **REQUIRED ADD → NEW GROUP K (single-key recognition)**: `send.raw <key>` where key ∈ {Enter, Escape, C-u, Tab, U/D/L/R} is treated as a KEY → raw key event, NO prefix, NO message-verify, NO poke, NO queue. A single key ≠ a message. (K1 Enter, K2 Escape, K3 C-u, K4 directional, K5 Tab; + `[S]` guard: the key-path bypasses prefix/verify.)
 **Architect: fold E5 + Group K into T-SEND-MATRIX → then tester implements the full suite → PO gate.** All cells green + zero regression = otmux send critical-infra LOCKED.
+
+---
+## ✅ g.5 matrix COMPLETE + PO APPROVED (architect 2a6e3fa) — 11 groups / 50 cells
+E5 (prefix EXACTLY ONCE, [[text!=@*]] BUG9 guard — [@ count==1 after poke×N) + GROUP K (single-key recognition: send.raw <key> = raw key event, NO prefix/verify/poke/queue; send.raw=primitive, send.smart=message-sender) FOLDED. Still superset of the 8 → ZERO regression. Tron's 5 all covered: auto-commit(B/C/H) · local+remote(J) · never-dup(D3) · sender-once(E5) · single-keys(K).
+**URGENT LINK**: D3 (never-duplicate) + E5 (prefix-once) are the GUARDS for the LIVE "all messages duplicate" regression → tester implements those FIRST (RED now → expert's double-invoke fix greens them = verifies the cure). **Tester → implement T-SEND-MATRIX (D3+E5 first) → PO gate.**
