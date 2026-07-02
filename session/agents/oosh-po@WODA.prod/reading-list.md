@@ -27,4 +27,4 @@
 - `CLAUDE.md` (workspace) + `components/OOSH/dev.claude/CLAUDE.md` (agent workflow).
 
 ## Planning-effort updates (2026-07-02)
-Machine-split convention (Tron 2026-07-02): WODA.prod bare at sprint level THROUGH sprint-2 (stays in scrum.pmo/sprints/); at SPRINT-3 add scrum.pmo/sprints@WODA.prod (full per-host); other machines = sprints@host (MacStudio→sprints@MacDonges). Added §2 (sprint-1 template + sprint-2 authoritative) + §3 (skill-canon). PO gates on the tester report; never runs tests.
+Machine-split convention (Tron 2026-07-02): WODA.prod bare at sprint level THROUGH sprint-2 (stays in scrum.pmo/sprints/); at SPRINT-3 add scrum.pmo/sprints@WODA.prod (full per-host); other machines = sprints@host (MacStudio→sprints@MacStudio). Added §2 (sprint-1 template + sprint-2 authoritative) + §3 (skill-canon). PO gates on the tester report; never runs tests.
