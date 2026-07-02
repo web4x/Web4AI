@@ -113,3 +113,21 @@
 - Distinction preserved: passthrough payload to a FOREIGN containerized CLI (`-tsvg` to the plantuml binary) is NOT an oosh flag — it's opaque args forwarded to another program. The rule binds the OOSH interface, not what you forward.
 - I drafted `odocker.run.ephemeral <image> [--opt] -- <args>` first — wrong (flags). The verb `ephemeral` already encodes the option; no flag needed.
 - Apply at DESIGN time: name the verbs, don't reach for flags.
+
+## Session 2026-07-02 (ooshTeam@MacStudio) — SETUP_SERVER sprint + #13 dash-safe
+
+### State-machine design (the `state` engine + `oo` SETUP_SERVER)
+- **The engine's ONLY branch primitive** = numeric-RESULT redirect: a `private.check.<state>` that returns **0 (success) with `RESULT`=a numeric index ≠ current** makes `state.check` do `stateFound=$RESULT` → jump (state:293-301). Return **non-zero = HOLD** (no state.set). XOR/branch is built ENTIRELY on this — zero engine edits. Proven pattern: `priviledges.checked` redirects to marker 20 (user) / 30 (root).
+- **XOR-with-two-sequential-states** dead-ends because each arm's check `return 1` on the non-matching mode → HOLD. Fix: each arm ALWAYS returns 0 and **redirects-forward on the non-matching mode** (release→dev, dev→done) so `state next` converges for BOTH values. Resolve target indices with `state.find <name> id` — NEVER hardcode indices (reorder-proof, DRY).
+- **`state.add` indexing:** a numeric state name is a **cursor-jump marker** (`state.add 20` moves fill-cursor to 20); named states fill sequentially after it. Markers 20/30/40/50/60 = privilege/phase bands.
+- **Reconcile existing installs = BY NAME, never index.** Names are stable across reorder; indices shift. Capture current state NAME → delete → rebuild (shared declare helper, ONE source of truth for order) → `state.set <savedName>` → marker-fallback if name gone. Keep reconcile DRIVE-FREE (no `state next`) so it can't trip privilege/sudo probes (F2). Detect staleness two-tier: cheap schema stamp (OOSH_ export, engine-agnostic) + order-invariant probe (ground-truth oracle).
+
+### #13 dash-safe — measurement reframed it (twice)
+- **ALWAYS measure the actual payload, not the described one.** README serves `…/**main**/init/oosh` via `sh -c "$(curl…)"`. Measured on WODA.test real dash: `dash -n` main init/oosh → **rc=0, 0 dotted fns**. The assumed "bootstrap dies at `Bad function name`" was **NOT reproduced** — init/oosh uses **underscore fns** and only runs the dotted framework via `"$BASH_FILE" …`. The dotted-fn parse death is real for `this`/`oo`/`claudeCode` (115 dotted) but the bootstrap ENTRY avoids it by construction.
+- **`dash -n` (parse) is INSUFFICIENT** for bashism detection: `[[`, `read -p` parse OK under dash, fail at RUNTIME. Dash-safety needs a live run + a bashism fence, not just parse.
+- **Check whether the thing is already built before designing.** My D13.A design (POSIX prelude → dual-form re-exec → bash self-install) turned out to already exist in init/oosh (init-constructor sprint, lines 287/294). PO kept the doc as "documented rationale" but did NOT implement — don't manufacture work. Lesson: measure current implementation state early; a design can still have value as rationale for already-shipped code.
+- **`sh -c "$(curl…)"` vs `sh file`:** file form → `exec bash "$0"`. The `-c`/stdin form has `$0`=sh, NO file → must re-materialize (embedded URL re-fetch, or clone-then-reexec-clone) before `exec bash`. Keep README `sh -c` (bash may be ABSENT on naked hosts — the reason sh was chosen; self-heal by installing bash, don't move the burden to the doc).
+
+### Meta (CMM4)
+- Measure-before-fix applies to **PO steers too** — two tasks here (my D13.A, expert's D13.1) were reframed by measurement; the honest move is to surface the non-reproduction in the design (§6) rather than build to the assumption.
+- SPRINT-COMMS worked cleanly: edit story report-back → commit → push → one-line nudge. Record the commit hash in the report-back AFTER committing (two-commit pattern: content, then hash).
