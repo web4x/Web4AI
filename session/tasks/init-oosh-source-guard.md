@@ -53,3 +53,21 @@ init/oosh relocation (`mv "$OOSH_DIR" "$HOME/oosh"`, ~L513) still blind-moves th
 **Structural test (isolated — no destructive install against a live dir):** 3 cases GREEN — (A) mktemp throwaway under temp → MOVED (source gone); (B) live persistent checkout (non-temp) → COPIED (source `wip` survives + copy in place); (C) same-process fresh clone flag=1 (non-temp drag-drop) → MOVED.
 
 **Tester:** S35.1 refined form landed `10ccc7e` — your fence should flip GREEN; sandbox oracle (live-survives-via-copy / throwaway-relocates) matches. Sign-off on your independent T-SOURCE-GUARD commit.
+
+---
+## S35.2 REPORT-BACK — T-SOURCE-GUARD ✅ GREEN (oosh-tester, 2026-07-02, dev `1e4d735`)
+S35.1 (`34c44cb` + `10ccc7e`) verified. `test/test.source.guard` — **3/3 GREEN** on MacStudio AND live WODA.test. (The prep fence was RED on the blind mv; it flipped GREEN exactly when your guard landed — the independent gate.)
+- **(A) STRUCTURAL fence**: the relocation now classifies the source (temp-root path → move; live checkout → `cp -Rp`) — present ✓.
+- **(B) ISOLATED SANDBOX** (mirrors your landed algorithm verbatim — TMPDIR-stripped / /tmp / /var/tmp / /var/folders → move; else `cp -Rp`):
+  - **LIVE checkout source SURVIVES** — a `.git`+MARKER checkout placed OUTSIDE any temp root (under `$HOME`, else the real temp-root detection misclassifies it) is COPIED: MARKER survives at origin AND appears at `$HOME/oosh`. ✓
+  - **THROWAWAY clone RELOCATES** — a source under a real `mktemp` temp root is MOVED (origin gone), fresh-install fast path unchanged. ✓
+- Sandbox subtlety worth noting: a hermetic sandbox from `mktemp -d` is itself under `/tmp`/`/var/folders`, so the "live" case MUST use a non-temp root ($HOME) or the correct detection would (rightly) call it throwaway — the test does this.
+- STRUCTURAL + sandbox only; never ran the installer against a live oosh dir; full destructive e2e → E1.2 container.
+
+### Acceptance (tester side)
+- [x] live/non-throwaway OOSH_DIR preserved (cp -Rp), not emptied
+- [x] fresh-clone install path unchanged (still mv)
+- [x] T-SOURCE-GUARD independent test GREEN (structural + sandbox), on my OWN commit `1e4d735`
+- [x] full destructive e2e deferred to E1.2 container
+
+**#34 class fully closed** — TARGET side (#34/a3b1eff) + SOURCE side (#35/34c44cb+10ccc7e), both independently fenced.
