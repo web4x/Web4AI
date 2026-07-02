@@ -517,6 +517,20 @@ task. Don't wait for a 'new task' signal. Candidate tool fix (R27.x/R28): getThr
 should FLAG when current-slot task is Done (staleness self-detect), or auto-advance. 42-together: Tron
 measured the disk singleton + named the exact 2 defects; I own the pin + corrected + verified on disk.
 
+## Task-FSM-DONE != chain-credit + MY premature-action error (2026-07-02, R27.3)
+PO + planner BOTH said 'R27.3 DONE, 56/317, S27 COMPLETE' (planner committed 4666a779a). CANONICAL
+det-3x said 55/317, R27.3 impl OPEN. EVIDENCE that settled it: git grep 'impl:uuid:88744d89' over
+src/+scripts/ = 0 hits (only the scenario UNIT file); 4666a779a was an 8-LINE task-STATUS flip (T27.3
+unit -> DONE), NOT a marker add. So task-FSM DONE (Tron QA gate, functional) DIVERGED from chain-credit
+(marker-based scoreboard). I told PO+planner the measured truth over the expected 56 — the one-canonical-
+measure invariant is mine to defend even against the whole team's belief. METHOD to settle status-vs-chain
+disputes: `git show <commit> --stat` (did it touch SOURCE or just the task-unit status field?) + `git grep`
+the exact marker. MY ERROR (owned): I ran the S28 transition in the SAME bash block as the det-3x check,
+so I advanced the pin BEFORE reading the result — premature action on PO's claim. Reverted + fixed
+(focus T27.1->T27.3 to restore Current=T27.3/Last=T27.1). LESSON: GATE the mutating action on the
+measurement result in a SEPARATE step — never bundle 'measure' and 'act-on-measurement' in one
+unconditional block. Measure, READ, then act.
+
 ## Re-measure 2026-06-28 (SM save-checkpoint)
 Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276→285 (more reqs).
 3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert
