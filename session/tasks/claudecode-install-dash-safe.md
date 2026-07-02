@@ -76,6 +76,23 @@ The 115 dotted `object.verb` fn names still die at line 34 under `sh` — de-bas
 ### Invocation trigger (tester asked) — MEASURED
 `claudeCode install` on PATH → execve → `#!/usr/bin/env bash` → **bash** (never dash). `ossh.exec` runs cmds via the remote login shell but the command still shebang-execs bash. **No code path invokes it under sh/dash**; only an explicit `sh claudeCode …` / `. claudeCode`-into-dash hits the body under dash. **PO/tester: name the real fresh-host `sh`-invocation if one exists** — if it's a doc/one-liner, the fix is `bash claudeCode install`. D13.2 committed regardless (hygiene + fence-green).
 
+## D13.A GROUNDING — measured `init/oosh` under dash both forms (oosh-expert, 2026-07-02, WODA.test, sandboxed HOME)
+PO named the real entry: README `sh -c "$(curl … init/oosh)"`. So the fresh-host sh entry is **`init/oosh`** (`#!/usr/bin/env sh` — deliberately POSIX), NOT `claudeCode` (my D13.1 focused on claudeCode; the actual bootstrap is init/oosh). Measured the CURRENT dev `init/oosh`:
+
+| probe | result |
+|-------|--------|
+| `dash -n init/oosh` | **rc=0 — parses clean** (no syntax bashisms) |
+| static bashism scan | 0 real hits (only `[[`/`==`/`local` inside comments + `local_name` var name) |
+| `dash init/oosh` (file form, `$0`=path) | runs Phase A/B → clones → hands off to framework; **no dash bashism error** (rc=124 = timed out INSIDE the install, i.e. got well past bootstrap) |
+| `dash -c "$(cat init/oosh)"` (README curl-pipe, `$0`=dash) | **same** — runs into apt + state machine; no dash bashism error |
+| `OOSH_DIR` resolution | **correct in BOTH forms** (`$HOME/oosh`) — the pipe-form `$0`=dash case IS handled (pre-clone fallback) |
+
+**⇒ Measured conclusion: current dev `init/oosh` is dash-safe** — it parses AND runs under dash (both the file and the README curl-pipe forms) through to framework handoff. I could NOT reproduce a dash bashism failure in the bootstrap.
+
+**Sandbox caveats (honest)**: my throwaway `HOME=/tmp/…` had no prior config/`~/.ssh`, so the run surfaced downstream artifacts — `mkdir: cannot create directory ''` (an empty path var), `State 'SETUP_SERVER' not found`, missing `.ssh/config`. These are **sandbox-config gaps, not dash-vs-bash failures** (OOSH_DIR itself resolved fine). A REAL fresh host / clean container populates those during the run.
+
+**For the architect (D13.A)**: the premise "documented install dies on dash-default hosts" does NOT reproduce on current dev init/oosh — it was likely already hardened by the init-constructor POSIX work (BASH_SOURCE-scalar guard, `${SUDO+x}`, clean-env, run-as-user; commits `1c83e71`…`c0e6036`). **Recommend: confirm the README-form failure on a CLEAN CONTAINER against current dev before designing D13.A** — if it still fails, the failure is DOWNSTREAM of init/oosh (framework post-handoff), not a bootstrap bashism; the sandbox `mkdir ''` empty-var is the one thing worth a real-host check. My D13.2 claudeCode body-clean is orthogonal (claudeCode isn't on the init/oosh fresh-host path) but stands as valid hygiene.
+
 ## Acceptance (PO QA gate — I inspect the diff)
 - [ ] Dash failure reproduced + root-caused (real invocation named)
 - [ ] Bashism inventory complete for the reachable install path
