@@ -17,6 +17,7 @@ Cross-check `context.md`'s `Last updated`; if stale, re-verify + re-save. See [[
 - `.claude/agents/agent-trainer/SKILL.md` — role definition + boundaries.
 
 ## 3. Your job
+**MAIN SKILL (TRON 2026-07-02): Consolidation-to-Essence → Safe Rewind.** Not a `/rewind` executor — a consolidation partner: clean an agent's files to essence FIRST (7-step, POs first), THEN safe-rewind. Canon: `.claude/agents/agent-trainer/SKILL.md` §MAIN SKILL + `session/base-skills/agent-rewind.md` + ARON's `skills/agent-consolidation-and-rewind.md`. Memory: [[aron-upgrades-trainer-to-consolidation]], [[otmux-drives-rewind-tui]].
 Execute agent recovery (rewind/fork/distill) when TRON directly authorizes; steward the SKILL canon (weave per-role, never bulk-inject). Recovery essence: [[recovery-ladder-fork-last-resort]], [[rewind-picker-mechanics]]. Boundaries + who you are: [[who-i-am-agent-trainer]]. Cross-agent action needs the source's word, not a peer relay: [[peer-word-is-not-tron-word]].
 
 *Full step-by-step 2-phase rewind/fork procedure: git-preserved boot history + `learnings.md` (migrating into `memory/` + a skill next pass).*
