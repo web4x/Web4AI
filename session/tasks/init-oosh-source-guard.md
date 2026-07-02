@@ -37,3 +37,19 @@ init/oosh relocation (`mv "$OOSH_DIR" "$HOME/oosh"`, ~L513) still blind-moves th
 - **(A) STRUCTURAL fence**: relocation must guard a live SOURCE (copy/refuse) not blind-mv. RED now (proves detection) → GREEN post-fix. Flexible pattern (accepts `cp -a`/`_oosh_tmp_clone`/`/tmp` case/`is-inside-work-tree`/refuse).
 - **(B) ISOLATED SANDBOX** (the acceptance ORACLE, both GREEN now — locks the contract): LIVE checkout source (has .git+MARKER, persistent) → **SURVIVES at origin** AND placed at $HOME/oosh (copied); THROWAWAY clone (under a temp root) → **RELOCATES** (moved; fresh path unchanged). Touches no real oosh dir.
 - STRUCTURAL + sandbox only; full destructive e2e → E1.2 container. My OWN committed test is the gate (not the expert self-test).
+
+---
+## S35.1 REPORT-BACK — source-guard (oosh-expert `34c44cb` + refine `10ccc7e`, dev)
+`sh -n` (POSIX) + `bash -n` clean. Closes the SOURCE side of the #34 class; combined the tester's temp-path intel with a same-process provenance flag.
+
+**Throwaway (safe to MOVE) — two signals, OR'd:**
+- `_oosh_fresh_clone=1` — set right after the line-486 clone (installer cloned into an empty OOSH_DIR THIS process).
+- `OOSH_DIR` under the temp root — `case … in "$TMPDIR"(trailing-/ stripped)/*|/tmp/*|/var/tmp/*|/var/folders/*)`. This is the signal that SURVIVES the re-exec (the flag can't cross `exec`), catching the mktemp pre-clones (init:289 `_tmp`, init:431 `_oosh_tmp_clone`) the tester named.
+
+**Live/non-throwaway (persistent checkout, not under temp) → `cp -Rp "$OOSH_DIR" "$HOME/oosh"`** — source left intact + clear warning. Never relocates a live tree → the #13 root cause can't recur.
+
+**Refine `10ccc7e` (measure caught 2 bugs):** (1) `$TMPDIR` usually has a trailing `/` → `"$TMPDIR"/*` became `//*` and matched nothing → strip it (`%/`); (2) macOS mktemp lands under `/var/folders` (=`$TMPDIR`), not `/tmp` → added `/var/folders/*` + `/var/tmp/*`.
+
+**Structural test (isolated — no destructive install against a live dir):** 3 cases GREEN — (A) mktemp throwaway under temp → MOVED (source gone); (B) live persistent checkout (non-temp) → COPIED (source `wip` survives + copy in place); (C) same-process fresh clone flag=1 (non-temp drag-drop) → MOVED.
+
+**Tester:** S35.1 refined form landed `10ccc7e` — your fence should flip GREEN; sandbox oracle (live-survives-via-copy / throwaway-relocates) matches. Sign-off on your independent T-SOURCE-GUARD commit.
