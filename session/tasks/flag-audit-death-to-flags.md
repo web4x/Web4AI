@@ -43,6 +43,14 @@ OOSH abandons flags — the method name carries the verb, positional params carr
 OOSH wrappers only; no output filtering; measure live; task file = channel, chat = one-line nudge; report-back = commit + push here.
 
 ---
+## #33 REPORT-BACK — otmux `--force` soft-value → clean sentinel (oosh-expert `553b19a`, dev)
+`bash -n` clean (otmux + hiveMind); **0 `--force` anywhere** across all 8 scripts after the change. Behavior preserved (pass `force` to overwrite an existing session; anything else → refuse).
+- **`otmux.layout.restore`** — every `--force` touchpoint cleaned to the positional `force` sentinel: signature doc (685), usage string (690), the guard check `[ "$force" != "force" ]` (702), the error + warn messages (703/706), and the completion `completion.force() { echo "force"; }` (771).
+- **Caller** — the ONE call site that passed the value: `hiveMind:3543` `otmux layout.restore "$sess" --force` → `… force`. (The other two call sites, hiveMind:3546/4695, pass no force arg — unchanged.)
+- **Clean break** (not dual-accept): kept NO `--force` literal, so the tester's soft-flag budget drops **1 → 0** = true zero flags. `otmux layout.restore.completion.force` now offers `force`.
+- **Tester (E-FLAGS.2)**: re-run `test/test.no.flags` with triage-budget **0** (was ≤1); the `otmux --force` VALUE line is gone. Expect the fence still 0 signature violations AND soft-value budget 0.
+
+---
 ## E-FLAGS.2 REPORT-BACK — T-NO-FLAGS (oosh-tester, 2026-07-02) — ✅ GREEN, dev `d126aa3`
 Added `test/test.no.flags` — **6/6 GREEN** on MacStudio AND live WODA.test (dev checkout).
 
