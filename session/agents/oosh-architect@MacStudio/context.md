@@ -16,11 +16,12 @@ Design WHAT/WHY (PlantUML, ADR, state-machine + install design), review expert i
 ## Delivered (2026-07-02) — all design, git mailbox = channel
 - **SETUP_SERVER sprint** (`session/tasks/sprint-setup-server-crossplatform.md`):
   - S1 `f4aea76` ✅ PO-APPROVED (D1 reorder, D2 XOR numeric-RESULT redirect, D3 os-derived defaults, D4 convergence). Expert S2 `566fed9` + S3 `650e743`; tester S4/S6 GREEN.
-  - S8 `e20dbe27` — QA (self-heal reconcile-BY-NAME for existing installs; two-tier detect; drive-free/F2-safe; zero engine edit).
+  - S8 = **Epic D (Self-Heal Existing Installs) — ✅ PO-APPROVED** (PO measured 2026-07-02): D1.1 design `e20dbe27` + D1.2 expert `09d33c9`/`691a269` DONE+approved. Only D1.3 **T-RECONCILE persistence** open, and it is **E1.2-CONTAINER-blocked (Tron)**, NOT pending PO QA. Reconcile-BY-NAME; two-tier detect; drive-free/F2-safe; zero engine edit.
 - **#13 dash-safe** (`session/tasks/claudecode-install-dash-safe.md`): D13.A `966d4b1c` — **CLOSED as already-solved** (init/oosh already implements the design). Doc kept as rationale.
 
 ## Open / next
-- S8 pending PO QA (non-blocking). Sprint-1 tail Tron-blocked → no new assignment; idle.
+- S8/Epic D: nothing outstanding on me (approved; D1.3 container-blocked). Sprint-1 tail container-blocked → no new assignment; **idle-hold** (correct per PO).
+- **#35 source-guard** is out to expert. Architect input welcome ONLY if the expert hits a **copy-vs-refuse trade-off**; otherwise idle-hold. Do NOT self-pull in (no manufactured work).
 - Standing items: MVC rename bug, ADR-001/002 rollout, 16 cross-platform hardcoded paths, ENV-PURE-STATE design.
 
 ## Full learnings
