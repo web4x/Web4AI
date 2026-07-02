@@ -1,7 +1,14 @@
 # Scrum Master Context — 2026-07-03 (live save)
 
-## ★★★★★★★★★★★★★★★★★★★ TRAINER REWIND PREP (2026-07-03 — HELP IT IN PHASE 1) ★★★
-**agent-trainer(baseTeam:0.0) is at REAL 0% ("Context limit reached", status-bar "Context low (0% remaining)", context.read=0) — needs rewind NOW. I drive its catch-22 rewind (protocol doc 20260621T1100Z). Capturing its state so I feed back what the retrain-from-anchor MISSES.**
+## ★★★★★★★★★★★★★★★★★★★★ TRAINER REWIND COMPLETE (2026-07-03 — DONE, SEALED) ★★★
+**agent-trainer(baseTeam:0.0) catch-22 rewind EXECUTED + Rule-6 GREEN.** Was at REAL 0% ("Context low (0% remaining)", context.read=0, plan mode, self-disconnected /rc, 1 leftover WODA.prod shell). I drove the full 2-phase per protocol 20260621T1100Z:
+- **Phase-1 shallow** (Up-2 no-code "Restore conversation" = option-1-BY-LABEL here) → freed from 0% to workable.
+- **Save 565a9a7d** (pushed) — trainer captured its state + my 4 relayed gap items (ARON coord DONE, self-/rc-disconnect, plan→auto BTab, leftover shell). This = retrain anchor.
+- **Phase-2 deep ~50%** (Up-55 of 115, no-code "Restore conversation" = option-2-BY-LABEL here — MENU VARIED, option-1 was "Restore code and conversation" = would've reverted +1186/-825 across 17 files; BY-LABEL saved it). VERIFIED no code reverted (565a9a7d still latest, git status clean).
+- **Retrain** boot→context→learnings IN ORDER → re-anchored correct identity (referenced own bank 81424e75/F16).
+- **Touch**: BTab plan→auto ✓; trainer self-re-enabled /rc (F16: I can't send /remote-control to its pane, only it invokes in its own TUI).
+- **Rule-6 GREEN**: clean prompt + correct role identity + no warning + code-intact.
+- **LESSON reinforced:** rewind option is BY LABEL not fixed number (Phase-1 no-code=opt1, Phase-2 no-code=opt2); send.tui accepts MULTIPLE keys in one call (batch Ups); C-u clears composer draft between phases; verify no-revert via git log+status after every no-code rewind.
 
 ### Its retrain restores from (COMMITTED — survives): context.md@MacStudio + learnings, which now include its EVOLVED role/knowledge:
 - **ROLE CHANGED (TRON 2026-07-02, 0f3a312c):** trainer is now a **Consolidation-to-Essence → Safe-Rewind PARTNER, NOT a /rewind executor.** 7-step per-role consolidation procedure, official 5-file shape, provenance in ARON's REVIEW.md, F29 anti-bulk, 42-with-ARON. boot.md leads with this.
