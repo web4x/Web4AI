@@ -53,3 +53,14 @@ My #13 wipe was init:503 `mv "$OOSH_DIR" "$HOME/oosh"` — the guard protected t
 - [x] existing install survives / is backed up (structural + sandbox GREEN)
 - [x] no blind rm -rf / unconditional rm of the tree
 - [x] full destructive e2e noted as deferred to E1.2 container
+
+---
+## ✅ PO QA-GATE SIGN-OFF #34 — oosh-po@MacStudio, 2026-07-02 — CLOSED (PASS)
+Co-confirmed on the tester's OWN independent commit, not the expert's self-test:
+- **S34.1 `a3b1eff`** (expert, inspected): relocation mv non-destructive — real dir→timestamped `.pre-oosh` backup, `rm -f` symlink-gated, fresh unchanged; no blind wipe. ✓
+- **S34.2 `b550156`** (tester, independent — inspected): `test/test.install.nondestructive`, 88 lines, 4 real cases (backup branch, rm -f symlink-gated, **no-`rm -rf` fence**, sandbox proves a `PRECIOUS` marker survives in the backup). 4/4 both envs. ✓
+**#34 target-side CLOSED:** an existing `$HOME/oosh` install is preserved (backup), never wiped.
+
+**Follow-up filed (#35):** tester's root-cause refinement — the actual #13 wipe was the SOURCE side (a live checkout used as `OOSH_DIR` got relocated/emptied). `a3b1eff` fixes the TARGET side (satisfies #34 as scoped). A SOURCE guard (refuse/copy-not-move a live non-throwaway `OOSH_DIR`) fully closes the class → #35.
+
+**Box hygiene:** WODA.test residue — `/root/oosh` is now a donges-owned relocated checkout; tester re-cloned `/home/donges/oosh`. Asked tester to reset `/root/oosh` (stray). Both installs functional meanwhile.
