@@ -11,6 +11,15 @@
 - **`plantuml`** (NEW domain script) = owns ALL plantuml-specifics — the `plantuml/plantuml` image name, the `seccomp=unconfined` flag, `-tsvg`, render-dir mounting, and the render-result validation. It **delegates the container run to odocker**, never to raw `docker`.
 - Mirrors the existing wrapper pattern (claudeCode→claude, claudeFlow→claude-flow): a domain script delegating to a generic tool.
 
+## ★ TRON CLARIFICATION (2026-07-02) — the responsibility split (make this the spec's spine)
+Two layers, no blurring:
+1. **`odocker` = generic docker LIFECYCLE plumbing.** It manages docker images/containers (ensure/pull/run/remove) for ANY image — it knows nothing about plantuml.
+2. **`plantuml` (oosh script) = the SOLE interface for USING plantUML docker.** Nobody renders by calling docker or odocker directly — they call `plantuml`. It owns all plantuml-specifics and delegates the docker mechanics to odocker.
+3. **`plantuml install` = manages the plantUML docker IMAGE lifecycle and brings the image UP + READY to use.** Not a bare "pull if missing" — it ensures the `plantuml/plantuml:<pinned>` image is present AND verified ready to run (via `odocker.image.ensure` + a readiness check). After `plantuml install`, the image is ready so `plantuml render` can use it immediately.
+4. **`plantuml render` = USES the ready image** (self-heals by calling `plantuml install` first) via `odocker.run.ephemeral` → .puml→.svg + post-render validation.
+
+Chain: **user → `plantuml` (install brings image up-ready / render uses it) → `odocker` (image+container lifecycle) → docker.** plantuml contains ZERO `docker` calls (grep-guard); odocker contains ZERO plantuml references.
+
 ## The central design decision (PO input needed) — how does plantuml run the container?
 The render is an **ephemeral one-shot**: `docker run --rm --security-opt seccomp=unconfined -v "$DIR":"$DIR" -w "$DIR" plantuml/plantuml -tsvg <files…>`. But odocker is built for **workspace-built, long-lived NAMED containers** (`odocker.build <workspace>` from a Dockerfile, `odocker.run <image> <name>`, `odocker.exec`). It has **no generic ephemeral-run primitive**.
 

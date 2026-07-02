@@ -21,7 +21,7 @@
 
 ## Description
 **Role: architect (spec ✅) → expert (impl) → tester (T-PLANTUML)**
-New `plantuml` domain script rendering .puml→.svg via odocker (never raw docker). Layering: 2 new GENERIC odocker primitives (`run.ephemeral`, `image.ensure`) + `plantuml` (install/render/status), PLANTUML_IMAGE/TAG pinned, post-render stub-detection (self-care). object.verb/no-flag throughout. Serves the queued robbin R22.3 puml render (dogfood).
+Two-layer split (TRON 2026-07-02): **odocker** = generic docker image/container LIFECYCLE plumbing (2 new generic primitives `run.ephemeral`, `image.ensure`). **`plantuml`** = the SOLE interface for USING plantUML docker — `install` manages the plantUML IMAGE lifecycle + brings it UP+READY (via `odocker.image.ensure` + readiness check); `render` USES the ready image (via `odocker.run.ephemeral`) → .puml→.svg + post-render stub-detection. PLANTUML_IMAGE/TAG pinned; object.verb/no-flag; plantuml has ZERO `docker` calls (grep-guard). Serves the robbin R22.3 render (dogfood). Full spine in [task-s2-f.1](./task-s2-f.1-plantuml-design.md).
 
 ## Open items
 - [ ] Expert: implement `odocker.run.ephemeral` + `odocker.image.ensure` (generic, +completions) → then `plantuml` (install/render/status/usage +completion, config vars, validation).
