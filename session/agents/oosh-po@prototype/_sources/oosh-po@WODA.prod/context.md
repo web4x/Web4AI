@@ -1,3 +1,5 @@
+> ⇄ **Dual-link back-ref:** consolidated into [oosh-po@prototype/context.md](../../context.md) — `syncStatus: CONSOLIDATED 2026-07-02` (this 293-line file distilled to the prototype essence; identity + eternal rules kept, historical rewind checkpoints + superseded June-28 park dropped). Review: [REVIEW.md](../../REVIEW.md).
+
 # oosh-po Context
 
 **Updated**: 2026-06-28
