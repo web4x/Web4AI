@@ -5,6 +5,9 @@
 **Pane**: ooshTeam:0.0 on MacStudio.native
 **Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## ★★ NEAR-CEILING CHECKPOINT — 2026-07-02 (~13% free, rewind-ready)
+**Sprint tracking FORMALIZED (Tron directive):** created `scrum.pmo/sprints@MacDonges/sprint-1/` (commit 20dd8916) — planning.md + 5 epic parents (A state-order/XOR, B platform-defaults, C no-sudo-hang, D self-heal-reconcile, E install-path-verify) + 15 UUID-stamped role subtasks, sprint-0 template. Consolidates the scattered session/tasks SETUP_SERVER files. **SETUP_SERVER code ALL DONE+PO-approved on once.sh/dev** (S1 f4aea76, S2 566fed9, S3 650e743, S7 19a2a45, F2 8be593d, F3 bceb7b2, S8 09d33c9+691a269; tests 9395fca/f97fc06). ONLY OPEN: E1.2 (P2 ossh→naked) + D1.3 (T-RECONCILE persistence) — BOTH need a naked container; BLOCKED on Tron (donges not in docker group + authorized_keys injection). **#32 RESOLVED:** WODA.prod reconciled, mailbox synced; a parallel `scrum.pmo/sprints/sprint-2/` (other PO) now tracks parity(s2-a)/u20-security(s2-d.0)/tooling(s2-e)/plantuml. **Learning F-FILTER-GIT:** NO `2>&1|tail`/`2>/dev/null` on git cmds (system self-guards now). On resume: verify identity (uname=MacStudio, ooshTeam:0.0), check tester's container result (E1.2/D1.3), get Tron's docker-group call, close sprint-1 QA gate. All durable in git (planning.md + task files + sprint-setup-server-crossplatform.md report-backs).
+
 ## ★★ SESSION PROGRESS — 2026-07-02 (SETUP_SERVER sprint + parity delegation)
 **BRANCH MODEL (Tron, eternal):** `dev`=OS-INDEPENDENT MASTER (cross-platform truth); `macos.latest`=platform-specific dev (features land there → generalized → flow DOWN into dev). NO "promote up"; dev is master. So init-constructor + SETUP_SERVER work on dev is correct.
 **init-constructor:** PO-signed-off @c0e6036 on dev (8052265). Done.
