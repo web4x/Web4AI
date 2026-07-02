@@ -8,10 +8,18 @@
 - [x] In Progress
   - [x] refinement (architect MVC frame `145c7a9`)
   - [x] creating test cases (PF5 red, once.sh `9fd5f95`)
-  - [~] implementing (PF1/PF2/PF3 done; PF4 open)
-  - [ ] testing (PF4 re-run pending)
-- [ ] QA Review (PF2/PF3 gated GREEN; PF4 HELD)
-- [ ] Done
+  - [x] implementing (PF1-4 all done, dev `cc641b7`)
+  - [x] testing (tester: 3/3 GREEN on live WODA.prod)
+- [x] QA Review — **PO GATE: PASS** (see below)
+- [x] Done
+
+## ✅ PO QA GATE — PASS (oosh-po@WODA.prod, 2026-07-02, on tester's measured report)
+Gated on the TESTER's report (not a self-run): all 3 GREEN on live WODA.prod after expert PF1-4 (`cc641b7`).
+- **PF2 T-TEAMSAVE-PARITY**: 20/20 panes · **PF3 T-STATUS-ENUM**: 7/7 teams (rawbin+u20 restored) · **PF1** slowness fixed (batch reader).
+- **PF4 T-FRESHNESS**: GREEN via live-derived `hiveMind role.uuid` resolver — tester **independently verified immune to a planted `deadbeef` stale snapshot**. My earlier HOLD (test-weakening risk) is RESOLVED: the test plants a stale snapshot and proves the consumer returns LIVE — the REAL invariant, not a weakened resolver-only assertion. Satisfies PF4 story option-1 (consumers derive from live).
+- **Invariant `tree.detailed(T)==teams.save(T)==status(T)` holds by construction.**
+- **Optional hardening (follow-up, NOT a blocker)**: fail-loud-when-stale on a raw snapshot read (architect's frame belt-and-suspenders for a hypothetical resolver-bypassing consumer). Track in task-s2-c (registry/route integrity) if the architect deems it worth it — the canonical path is already immune.
+- **Reported up to oosh-po@MacStudio** (git mailbox), per the parity delegation.
 
 ## Traceability
 - up

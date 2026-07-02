@@ -18,7 +18,7 @@ node provisioning+hardening, tooling hygiene, plantuml.
 ## Tasks
 | Task | Title | Priority | Status |
 |------|-------|----------|--------|
-| [task-s2-a](./task-s2-a-teamsave-status-parity.md) | teams.save/status MVC parity | CRITICAL (do-first) | IN PROGRESS — PF2/PF3 GREEN, PF4 QA-HELD, PF5 red delivered |
+| [task-s2-a](./task-s2-a-teamsave-status-parity.md) | teams.save/status MVC parity | CRITICAL (do-first) | ✅ **DONE** — 3/3 GREEN on live (`cc641b7`), PO QA PASS, reported to MacStudio |
 | [task-s2-b](./task-s2-b-dispatch-submission-verified.md) | dispatch submission-verified (BUG10) | CRITICAL | contract APPROVED → impl |
 | [task-s2-c](./task-s2-c-registry-route-identity.md) | registry / route / identity integrity | CRITICAL/HIGH | route auto-heal shipped; reconcile+audit+boot-id open |
 | [task-s2-d](./task-s2-d-node-provisioning-hardening.md) | node provisioning + hardening | HIGH | hardening baked (u20/u24); autoconfig + runtime open |
