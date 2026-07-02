@@ -54,4 +54,9 @@ An `unknown-route`/`empty-uuid` finding → `consistency.reconcile.apply` re-der
 ## Report-back (edit here)
 - Architect (reconcile-after-fork design): **DONE 2026-07-02** — see above. Crux: OTR-3 completes the SKIPPED I2b check (cached-uuid==live-uuid, hiveMind:~5047) which is exactly what fork breaks; heals via the parity batch-uuid reader (DRY) on the existing post-fork event + SM-sweep net; tty-match adopts orphans (uuid always, role only-if-derivable); team.audit surfaces empty-uuid/unknown-route → route auto-heals through reconcile.apply.
 - Expert (impl + commit):
-- Tester (T-RECONCILE-FORK):
+- Tester (T-RECONCILE-FORK): **RED DELIVERED (scenario-first, before OTR-3 impl) — 4/4 FAIL as designed, dev `test/test.reconcile-fork`.** Measured live on WODA.prod; fully ISOLATED via temp `HIVEMIND_SESSIONS`/`HIVEMIND_REGISTRY` copies — **live registry UNTOUCHED** (verified: live sessions.env md5 `bc6f6673` unchanged across the run; no real-agent route disturbed). Dynamic live-anchor (Temple:0.0/ARON/f814788a). Results:
+  - **FORKUUID 🔴** — planted a stale (bogus `deadbeef…`) cached uuid for a live agent (post-fork drift); after `consistency.reconcile apply` the cache is STILL bogus → **I2b not implemented** (the SKIPPED cached-uuid==live-uuid half).
+  - **EMPTY-UUID 🔴** — empty uuid on a live pane; reconcile leaves it empty (`healed=''`) → I2b/tty-adopt not implemented.
+  - **AUDIT-ORPHAN 🔴** — roleless live pane; `hiveMind team.audit <session>` → `Unknown method` (team.audit not created yet).
+  - **DEAD-UUID 🔴** — sessions.env uuid matching no live process; `team.audit` → `Unknown method`.
+  - Each test asserts the OBSERVABLE contract (healed uuid == live proc-args truth / audit names unknown-route), so §1-5 turn them GREEN by construction: I2b via the shared parity reader heals FORKUUID+EMPTY; `team.audit` grades AUDIT-ORPHAN+DEAD. Run: `test.suite run reconcile-fork`. Committed dev. **Handoff to expert — make GREEN.**
