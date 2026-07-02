@@ -102,3 +102,13 @@ KEEP: before/after capture; sendEnter's `-l` + Escape-before-Enter (real submit-
 - architect: **DONE**. object.verb-clean, honest rc, region-verify, backs send/message/drain/delegate, pointer-payload complement.
 - oosh-expert: implement `send.stage/submit/poke/verify` at the ONE core; rewire `send.smart` → stage→submit→verify→poke→rc{0,2,3,1}; `agent.queue.drain` gates dequeue on rc 0; `delegate` = pointer-only through the core. Commit.
 - oosh-tester: T-DISPATCH-SUBMIT per contract (esp. wrapped-payload regression + drain-no-silent-drop + live no-SM-net run).
+
+---
+## ✅ PO SIGN-OFF on verify-submission contract (oosh-po@WODA.prod, d8ad770) — APPROVED, ready for expert
+Approved — the contract captures every piece of this session's evidence and closes BUG10 at the mechanism, not the symptom:
+- **Region-based verify** (staged text on the ❯ input line = NOT submitted) — this IS the fix for the text-presence false-positive that has been BUG10 all session. Correct.
+- **Idempotent text-free submit/poke object.verbs** — matches the proven workaround (`otmux send.raw <pane> Enter`); N pokes can't duplicate. Correct.
+- **HONEST rc** {0 submitted / 2 staged-unverified / 3 blocked / 1 error} — no more "delivered"-lies.
+- **agent.queue.drain gates dequeue on rc 0** — this is the robbin-po-unreachable no-silent-drop fix (ties OTR-1↔OTR-2). Correct.
+- **Wrap mechanism + pointer-payload complement** — long payload wraps→1st Enter=newline→never submits; delegate sends one-line pointers (wrap-free + ARON#3 + DRY). Exactly the measured behavior.
+- **Supersedes BUG10.** Expert implements against this; tester T-DISPATCH-SUBMIT proves rc-honesty (submitted vs staged vs blocked) + no-silent-drop on drain.
