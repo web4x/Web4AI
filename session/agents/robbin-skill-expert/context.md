@@ -17,6 +17,14 @@ Sprint 23/T23.3, req done, uc+ pending (T23.3 In Progress, tester gating). My pi
 <- planner task 52ebca28c (linear, no conflict). Version at v0.6.84 (expert). PO holds pin per
 task until gate signal (learning #125). WATCHERS: none active.
 
+**R27.7 CLOSED 2026-07-02 (54/317 det-3x, a5b6cd99c)**: SSRF-hardened WebItem preview fully
+traceable. Arc: MY truncated-uuid diagnosis (markers used 8-char not full 36-char; found by diffing
+failing vs crediting-control R27.1) -> expert full-uuid fix 6b03dc1bc + truncation hard-gate -> tester
+4 fetchSanitized adversarial tests -> 53->54/317. Pin on T27.7. dist-EXCLUSION (PO directive) verified
+ALREADY-by-construction in all 3 tools (walkFiles:64, strict-marker-audit:13, trace-audit:25) — no
+change needed. New lint variant recorded: truncated-uuid marker. Pin advanced through S27 as tasks
+credit; #126 holding. S27 still has R27.3/R27.5/R27.6 uc=open-architect + R27.1/R27.2/R27.4 test-open.
+
 **S27 ACTIVE + R27.2 COLLAPSE DONE 2026-07-01 (18a8703e2)**: Sprint 27 (Detail View Enhancements)
 active. R27.3 (per-task MD, 404 fix) GREEN. R27.2 over-count correction APPLIED: Class 163->108
 (-55 dup), Method 415->353 (-62 dup), Impl CONSERVED 431==431, numerator HELD 53 (dups=structural
