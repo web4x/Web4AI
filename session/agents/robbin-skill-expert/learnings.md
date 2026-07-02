@@ -503,6 +503,20 @@ wrong interpretation stated as fact is a lie even if the underlying measurement 
 loudly. Method: diff the FAILING marker against a CREDITING control marker (R27.1) — the delta (short
 vs full uuid) IS the bug. Add truncated-uuid to lintMarkers as a kind.
 
+## #125 pin-staleness RECURRENCE (2026-07-02) — advance on CREDIT, not just on new-task-start
+Tron/PO caught the pin STALE again: focus:true stuck on T27.7 AFTER it credited/DONE (54/317),
+lastCompletedUuid 2 completions stale (T27.3, but T27.4+T27.7 finished after). ROOT CAUSE of MY gap:
+I focus a task when it BECOMES current, but I only re-advance when a NEW task is signaled — I never
+advance when the PINNED task COMPLETES. So a credited-but-pinned task leaves Current stale + freezes
+lastCompleted. FIX (one setFocus call): focus the genuine current active task (the In-Progress one,
+measured from task statuses) — setFocus auto-sets lastCompleted = prior-focus-holder (T27.7). Result:
+Current=T27.1(In-Prog), Last=T27.7(most-recent DONE), Next=null (honest — no un-started task left).
+STANDING-DUTY UPGRADE (close the #125 hole for good): after ANY scoreboard credit/move, CHECK if the
+focus:true task is now Done/credited -> if yes, the pin is STALE -> advance to the current In-Progress
+task. Don't wait for a 'new task' signal. Candidate tool fix (R27.x/R28): getThreeSlots/pinCurrent
+should FLAG when current-slot task is Done (staleness self-detect), or auto-advance. 42-together: Tron
+measured the disk singleton + named the exact 2 defects; I own the pin + corrected + verified on disk.
+
 ## Re-measure 2026-06-28 (SM save-checkpoint)
 Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276→285 (more reqs).
 3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert
