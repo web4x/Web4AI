@@ -23,7 +23,28 @@ otmux send "does not complete the session / totally broken" for: (a) the agent-t
 - OTR-1 rc-dispatch paths still 5/5
 - T-SEND-SESSION: send to a non-claude / shell / session target → completes (no poke-hang / Escape-interrupt); regression guard for the OTR-1 gate-miss
 
+## ARCHITECT DIAGNOSIS + FIX SPEC (oosh-architect, 2026-07-02) — hypothesis CONFIRMED
+**Root**: OTR-1's verify + poke + **Escape** is a **claude-TUI protocol applied to EVERY target**. Non-claude (shell/session/node) targets don't have the claude `❯`-input-box "staged-vs-submitted" state → the protocol misfires. Two mechanisms, both measured on dev:
+
+### M1 — verify+poke loop runs on NON-claude targets → false rc2 "not completed" (the common symptom)
+- **`macos.latest` old send has ZERO verify/poke** (`grep -c send.verify|send.poke = 0`) — it just `sendEnter` (stage+Enter) and returns. It CANNOT hang / "not complete" a non-claude send. That's why the old send "worked."
+- **Dev `send.smart` runs the poke loop on ALL targets** (otmux:2161-2177). For a non-claude target, `otmux.send.verify` (otmux:1813) falls to the bash `>`-prompt branch (1844-1846) which is **fragile**: it greps for `>` (the OOSH prompt ends in `>`, but the echoed command / message text can contain `>` → mis-parse; and `#`/`$`/`%` prompts have no `>` at all). Mis-parse → `staged` non-empty → **rc2 STAGED (false)** → poke loop fires (up to 3× extra Enters) → after maxPokes returns **rc2 "STAGED but UNVERIFIED"** = the caller sees "session not completed" even though the command actually ran.
+
+### M2 — `isClaudeCode` FALSE-POSITIVE on `node` → Escape into a shell → interrupt/hang
+- `private.otmux.pane.isClaudeCode` (otmux:1732) returns **rc0 (claude) for `pane_current_command == node` UNCONDITIONALLY**. But ANY node tool (dev server, npm, a node REPL) reports `node` — not just Claude Code. A shell running node → mis-detected as claude → the FULL claude path fires, incl. **`send.submit`'s Escape** (otmux:1766) into the node process + region-verify never finds `❯` → poke×3 → **Escape interrupts / hangs** = "totally broken." (Genuine `bash|zsh|sh` and `ssh` are OK — bash/zsh/sh gate on `claudeCode process.running`; ssh → `*` → rc1. `node` is the hole.)
+
+### FIX SPEC (detect target-kind; claude-protocol only where it applies; never Escape/hang non-dispatch; DON'T regress 5/5)
+1. **Branch `send.smart` on target-kind ONCE, up front:**
+   - **claude (isClaudeCode true)** → the FULL OTR-1 contract UNCHANGED: stage → submit(Escape+Enter) → region-verify(`❯`) → poke×N → rc{0,2,3,1}. **This is the 5/5 rc-dispatch path — byte-for-byte preserved.**
+   - **non-claude (shell/ssh/session-to-shell)** → a SHELL path: `stage + Enter` (**NO Escape**), then a LIGHT confirm (pane changed / fresh prompt returned), **NO poke loop, NO Escape.** rc0 on dispatch. A shell command isn't a TUI "staged-in-a-box" state — one Enter dispatches; there is nothing to poke. NEVER Escape, NEVER multi-poke, NEVER hang.
+2. **Harden `isClaudeCode` — close the `node` hole:** move `node` OUT of unconditional-claude; require the `claudeCode process.running` confirmation for `node` too (same as bash/zsh/sh). `node` alone ≠ claude.
+3. **`send.verify` is claude-only:** on a non-claude target it must NOT apply the `❯`/`>`-region + poke semantics — return rc0 (dispatched) on a light check, never an rc2 that triggers pokes.
+4. **Session target:** resolve `<session>` → its ACTIVE pane first, then branch on THAT pane's kind (so a session pointing at a shell takes the shell path).
+5. **Non-regression:** the claude branch is untouched → T-DISPATCH-SUBMIT stays 5/5. The fix is purely (a) adding the non-claude fire-and-light-confirm branch + (b) the `node` hardening.
+
+**One-line essence:** verify+poke+Escape = the CLAUDE dispatch protocol; non-claude sends are fire-and-light-confirm. Detect kind, pick the protocol, never Escape a non-claude target.
+
 ## Report-back
-- Architect (diagnosis vs macos.latest):
+- Architect (diagnosis vs macos.latest): **DONE 2026-07-02** — hypothesis CONFIRMED, 2 mechanisms: (M1) dev runs verify+poke on ALL targets; macos.latest old send had NONE → dev's fragile `>`-verify on shells → false rc2 → poke → "not completed." (M2) `isClaudeCode` treats `pane_current_command==node` as claude unconditionally → Escape into a node shell → hang. Fix: branch send.smart on kind (claude=full contract UNCHANGED/5-5-safe; non-claude=stage+Enter, no Escape, no poke, light-confirm) + harden isClaudeCode's node case + session→active-pane→kind. Full spec above.
 - Expert (fix + commit):
 - Tester (T-SEND-SESSION):
