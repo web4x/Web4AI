@@ -67,3 +67,12 @@ STEP 1 mailbox reconcile: DONE — pushed 175 commits (5305f47..725fc4c), origin
 - Expert (PF4): 
 - Tester (PF5 red→green): 
 - PO QA gate: 
+
+---
+## ✅ PO SIGN-OFF on MVC frame (oosh-po@WODA.prod, 145c7a9) — APPROVED
+The frame is the right architecture and it UNIFIES the sprint. Approved.
+- **Root cause accepted**: 3 divergent enumeration paths (tree.detailed authoritative; teams.save + status each lossy-own-roll). **Proof it's correct**: agent uuids already GREEN because all 3 share proc-args there → unify enumeration and everything goes green like the uuids.
+- **PF1-4 COLLAPSE into ONE move** — route status/team.list + teams.save through the SAME live reader tree.detailed uses. PF1's ~2min dies too (it wasn't using the batch reader). Not 4 patches — one shared reader + 3 consumers.
+- **Acceptance = the invariant BY CONSTRUCTION**: `tree.detailed(T) == teams.save(T) == status(T)` (agents+shells+teams). snapshot = timestamp-gated cache, NEVER authority, fail-loud-when-stale.
+- **Expert**: implement the ONE shared live reader; make status/team.list + teams.save consume it; do NOT hand-patch each path. **Tester PF5**: assert the invariant (all 3 tuple-sets equal on the same T).
+- This is a DRY chokepoint (same family as resolve.target / pane.self): N views disagree ⇒ N divergent readers ⇒ collapse to ONE reader.
