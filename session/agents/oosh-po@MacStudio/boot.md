@@ -39,3 +39,10 @@
 - `session/agents/SPRINT-COMMS-protocol.md` — planning.md = single source; git mailbox = channel; commit+PUSH = the report
 - `session/agents/po-wisdom.md` — PO delegates/drives, never codes/debugs; leverage the team
 - `session/base-skills/task-queue.md` — task tracking
+
+## Planning templates & HOW TO PLAN (PO core skill):
+- **Template = `scrum.pmo/sprints/sprint-0-lifecycle-consolidation/`** — copy its structure:
+  - `planning.md` — Sprint Goal · Overview (host/branch/team/repo) · Constraints · Foundation · Task List (EPIC → Task → role subtasks, checkbox+status+commit) · Dependencies · Definition of Done · Risk · PO/Created footer
+  - `task-<epic><n>-<slug>.md` (parent): back-link · title + `[task:uuid:…]` · Status checklist (Planned→In Progress{refinement,test cases,implementing,testing}→QA Review→Done) · Traceability up/down · Task Description · Context · Intention
+  - `task-<epic><n>.<sub>-<role>-<slug>.md` (subtask): role IN filename (expert/architect/tester); back-link · uuid · Status · Traceability up · Description(Role:) · Commit(s)
+- **HOW TO PLAN:** PO writes planning.md + parents; decompose each Task into role-ordered subtasks (architect design → expert impl → tester verify) with NO blocking deps; UUID-stamp (`uuidgen`); every done subtask carries its commit; tick status as commits land; planning.md is the single source of truth (SPRINT-COMMS). Sprints live in `scrum.pmo/sprints@<host>/sprint-N/` — validate `<host>` against `uname -n` (F-HOST-TYPO). My exemplar: `scrum.pmo/sprints@MacStudio/sprint-1/`.
