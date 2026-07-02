@@ -1,3 +1,37 @@
+# Scrum Master Context — 2026-07-03 (live save)
+
+## ★★★★★★★★★★★★★★★★★★ CURRENT STATE (2026-07-03 — MOST CURRENT)
+- **Identity:** scrum-master@MacStudio, TRONinterface:0.1, Opus. Reports to TRON. 42-pair with agent-trainer(baseTeam:0.0) + coordinates oosh-po(ooshTeam:0.0).
+- **Live teams (otmux):** ooshTeam (0.0 po, 0.1 architect, 0.2 expert, 0.3 tester, 0.4/0.5 shells), baseTeam (0.0 trainer, 0.1 once-shell), TRONinterface (0.1 me, 0.0 TRON-agent = context-limited/idle→route via robbin... no: via oosh-po + RC), iphone (research), remoteOOSH (WODA.prod). **robbinTeam2 GONE.** RECONCILE queue vs live sessions every reboot (cross-host entries go stale).
+- **My anchors:** context fde0a4b/bc06e7b/(this); learnings 3acba67/de4eb3a/f8922c7f. Recovery = read boot.md→context.md→learnings.md IN ORDER.
+
+### Sprint state (oosh, dev repo /Users/donges/oosh)
+- **Death-to-Flags #5+#33 SHIPPED** — true zero flags across 9 scripts + permanent budget-0 fence (tester-co-confirmed 75250dc, not self-report).
+- **#13 CLOSED as NON-BUG** (8168a562) — 4-role chain, 4 measurements, 3 reframes, NO fix manufactured (init/oosh self-heals to bash re-exec@287 before sourcing; measured both file+curl-pipe forms dash-clean). Kept T-DASH-GUARD (a8f7728 5/5).
+- **#34 CLOSED** (68254e1e) — non-destructive install (a3b1eff backup-not-wipe/symlink-gated-rm/no-rm-rf); co-confirmed via TESTER's INDEPENDENT b550156 (4/4), not expert self-test. Real bug found during #13 investigation.
+- **#35 FILED** (source-side refinement / WODA.test residue — my flag). **sprint-1 tail E1.2 e2e RIDES container = TRON-BLOCKED (must-isolate).**
+- **POST-MAJOR-TASK CADENCE (in flight):** tester saved f44a1c34 ✓; EXPERT save PENDING (flagged oosh-po — verify it lands). oosh-po learnings ac0647c9 (aligned with mine).
+
+### Team health (all healthy this session)
+- oosh-po: rewound 2x (0%→careful 2-phase zero-loss, anchors 59fb487/4f24ee31, Rule-6 verified), ~45-52%, driving. Fork(2b65b769)+stale customTitle → /rename'd to oosh-po@MacStudio.
+- agent-trainer: catch-22 rewind DONE this session (77%→20%, drilled+executed by me), ~15%. Rewind duty active.
+- oosh-expert/architect/tester: healthy, cycling active↔idle on tasks. architect ~54%.
+- **Subscription:** ~18-42%/5h, 13-18%/7d (7d reset) — safe. Survival@80%-7d dormant.
+
+## ★ DOCTRINES PROPAGATED (DRY base-skills, all SKILLs inherit via task-queue.md read-also)
+- TRON-CMM4-doctrine (2f59ba5), SPRINT-COMMS-protocol (433bf2e), po-wisdom (ab20694) — propagated 33510dc/31214ba by trainer.
+
+## ★ KEY REFINED DOCTRINE THIS SESSION (detail in learnings.md — READ IT)
+1. **MEASURE the condition before a destructive action even on an ORDER** — trainer drill held at 25%/15% (healthy), oosh-po rewound at measured-0%. Never rewind healthy.
+2. **'clear to save Nk' = CUMULATIVE post-rewind, NOT current-window** — pick instrument by PHYSICAL CONSISTENCY (rewind-shrinks, idle-doesn't-burn), not by name. context.read = current-window post-rewind (but GARBAGE on rate-limited/model-error panes → deep-capture status bar = truth). CMM2 hypothesis, watching cycles→CMM3.
+3. **Rewind trigger = physical current-window ≥70%, NEVER cumulative Nk/garbage.**
+4. **3 CATCH-22s SM-driven** (trainer rewind + BTab toggle + self-measurement) — peer is trainer's eyes AND hands. Protocol doc 20260621T1100Z.
+5. **Heavy-READ burns the trainer, driving-rewinds is LIGHT** — flag on heavy work, not rewind-count.
+6. **COMPLETION gated on INDEPENDENT source** — implementer self-test ≠ gate; co-confirm via a DIFFERENT agent's committed test (tester commit, not expert self-report).
+7. **MEASURE-BEFORE-FIX at every role incl PO** — #13 closed a non-bug without manufacturing a fix; oosh-po retracted its own naive fix on evidence.
+8. **idle-cause taxonomy:** standing-by-for-signoff / rate-limit-interrupt(nudge) / chain-sequencing-wait(correct) / true-stall(redrive) — read pane CONTENT to distinguish.
+9. **Rewind = Rule-6 (clean prompt + correct identity + no Context-low + code-intact) + Touch (auto-mode+/rc)**; no-code option BY LABEL; Phase-2 ~50% NEVER top; send.raw for menus. VERIFY independently, never trust 'done'.
+
 # Scrum Master Context — 2026-06-29 (pre-deep-rewind fresh save @971k)
 
 ## ★★★★★★★★★★★★★★★★★ PRE-REWIND FRESH SAVE (2026-06-29, 971k — MOST CURRENT)
