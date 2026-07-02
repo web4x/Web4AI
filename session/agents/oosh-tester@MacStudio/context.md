@@ -29,4 +29,6 @@ As **root**: `git -C /home/donges/oosh fetch origin && git -C /home/donges/oosh 
 → ONE fresh linux container unblocks S5(P2) + S8(reconcile) + #13(e2e) + #34(safety), all gated on the same docker-group + key-injection setup.
 
 ## Status
-Contexts healthy, no rewind. #13 + Death-to-Flags shipped. Free/idle-hold. [[oosh-tester-learnings]]
+Contexts healthy. Shipped this arc (all independent tests, GREEN both envs): S4/S6 (XOR+platform), F2/T-NO-SUDO-HANG, E-FLAGS.2/T-NO-FLAGS (budget 0), #13/T-DASH-GUARD (reframe-closed), #34/T-INSTALL-NONDESTRUCTIVE, **#35/T-SOURCE-GUARD (dev 1e4d735, 3/3)**. **#34 class fully closed** — target (#34/a3b1eff) + source (#35/34c44cb+10ccc7e).
+- Open convergence: S5(P2) + S8(reconcile) + #13/#34/#35 full-e2e → ONE E1.2 throwaway container (docker-group + key-injection).
+- **Pre-rewind save @ ~89% used** (SM-directed, post-major-task cadence). Idle, nothing interrupted. New lessons in [[oosh-tester-learnings]]: RED→GREEN TDD flip, code-pattern-fence-never-execute-the-destructive-bug, independent-test-is-the-gate. [[oosh-tester-learnings]]

@@ -104,3 +104,29 @@ MOVED it to `/root/oosh` (target was a removable symlink → guard passed → so
 The a3b1eff fix backs up the TARGET (closes #34); the SOURCE guard became a separate #35.
 LESSON: "there's a guard" ≠ "it's safe." Name exactly WHAT gets destroyed, then check the
 guard covers THAT object (source vs target vs sibling), not just the obvious one.
+
+## RED→GREEN TDD flip = the prep pattern for tester-behind-expert work
+When queued behind the expert's fix, BUILD the fence now against the current (unfixed)
+code so it's RED, and verify it RED-detects the exact gap (proves the detector works).
+Hold the green commit; when the fix lands, the SAME fence flips GREEN with zero test
+changes — that flip IS the proof the fix closed the gap. Did this for #13 (T-DASH-GUARD),
+#35 (T-SOURCE-GUARD): fence RED on the blind mv → GREEN the instant the temp-root guard
+landed. Report the RED baseline as PREP + intel for the expert; commit GREEN post-fix.
+The RED→GREEN transition is a stronger signal than a test that was only ever green.
+
+## Code-pattern FENCE, never EXECUTE the destructive bug (reinforced by the wipe)
+The #13/#34/#35 arc hammered this: for a DESTRUCTIVE property (installer wipes a tree,
+mid-mv, stdin/exec footguns), assert it STRUCTURALLY (grep the guarded op) + an ISOLATED
+/tmp SANDBOX that mirrors the landed algorithm on DUMMY dirs — NEVER run the real
+destructive path on a live artifact (running the installer once already wiped
+/home/donges/oosh). Sandbox must mirror the ACTUAL landed code (temp-root case + cp -Rp),
+and mind the sandbox's own location: mktemp -d is under /tmp/var-folders, so a "live"
+fixture must sit OUTSIDE any temp root or the (correct) detection misclassifies it.
+
+## Arc summary (setup-server + Death-to-Flags + constructor-safety, 2026-07-02)
+Shipped, all independent tests, all GREEN both envs (MacStudio + WODA.test):
+S4 XOR-crossing · S6 test.setup.server.order(12/12 incl T-MODE-XOR) + test.platform.defaults(8/8)
+· F2/T-NO-SUDO-HANG(7/7) · E-FLAGS.2/test.no.flags(budget 1→0) · #13/test.dash.guard(5/5,
+reframe-closed: init/oosh self-re-execs sh→bash @287) · #34/test.install.nondestructive(4/4)
+· #35/test.source.guard(3/3). Filed #35 from #34 root-cause. Restored /root/oosh residue.
+Open: S5 P2 + S8 reconcile + #13/#34/#35 full-e2e all converge on ONE E1.2 throwaway container.
