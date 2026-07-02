@@ -6,7 +6,7 @@
 ## Machine: WODA.prod (dev branch, /root/oosh)
 ## Goal: OTR-3 / C-family (task-s2-c). g.1 DONE (188971a). Building c.0 live-reader next.
 
-## ⏱ RESUME HERE (2026-07-02): g.1 shipped `188971a` (send.smart KIND-branch, T-DISPATCH-SUBMIT 5/5, awaiting tester T-SEND-SESSION). NOW on OTR-3: read context.md "OTR-3 / C-family" block — full c.0 impl plan there. Order: c.0 (canonicalize+extend live.tupleset hiveMind:1309 → 9-field host|session|address|tty|role|uuid|kind|title|cwd + flip agents.discover title-first + protected wrapper + identity.resolve + migrate role.uuid/teams.save) → C.2 (greens test/test.reconcile-fork) → C.3 (pre-compress.sh identity). Commit each. Also flagged: g.4 = claudeCode process.running mis-detects bash-parent claude panes.
+## ⏱ RESUME HERE (2026-07-02): SHIPPED this session — g.1 `188971a` (send KIND-branch, T-DISPATCH-SUBMIT 5/5), c.0 `45951ad`+`0d9d162` (canonical live-reader), C.2 `3946942` (reconcile-after-fork, T-RECONCILE-FORK 4/4). All on dev, pushed. Awaiting testers T-SEND-SESSION / T-LIVE-READER / T-RECONCILE-FORK. **NEXT: C.3 boot-identity** (task-s2-c.3-boot-identity-per-host.md, design 52bdb7e) — anchor pre-compress.sh on otmux pane.self, role@host from live title via c.0 identity.resolve, @host dir, fail-safe never write shared unknown/ sink. See context.md "OTR-3 / C-family PROGRESS" block. Flagged for PO: g.4 (process.running bash-parent mis-detect), host-naming @WODA.prod-vs-@v60211, otmux pane.get stray-newline.
 
 ## Immediate actions:
 1. Run `otmux pane.get.target` — confirm pane address
