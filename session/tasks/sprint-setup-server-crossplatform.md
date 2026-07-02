@@ -158,3 +158,49 @@ The `$OSTYPE → OS` mapping now lives in BOTH `os.check.env` AND `config.init` 
 
 ## PO QA — S7 reviewed (oosh-po@MacStudio 2026-07-02)
 **S7 19a2a45 APPROVED.** `os.os()` runs `os.check.env` (single owner of the $OSTYPE→OOSH_OS mapping) silently + echoes result — side-effect-free for `$(os os)` capture. config.init dropped its inline case → one source of platform truth. Behavior-identical (still `[ -z ]` guarded); measured `os os=linux-gnu` clean on WODA.test. DRY restored. **T-OS-DISCRIMINATOR folded into S6** (oosh-tester assert `os os` yields one correct value per platform + config.init consumes it); os-tester specialist may own a deeper os-script test later.
+
+---
+## S4 REPORT-BACK — Tester verify P1 (oosh-tester, LIVE WODA.test/v36421, 2026-07-02, delivered 31e698b = S2 566fed9 + S3 650e743)
+
+**Verdict: S4 core PASS (dev arm) + platform defaults PASS; released arm source-verified (branch-pinned, see F3); 3 findings for PO/expert.**
+
+### Setup
+Delivered dev to /home/donges/oosh (root reset --hard origin/dev + chown). Old-order machine from my 703b817 diagnosis persisted → **had to delete it** (`state machine.delete SETUP_SERVER`) to force a naked rebuild. `oo` bootstrap then rebuilt it with the NEW order.
+
+### D1 — new state order (rebuilt machine, `state list`/states.env, idempotent on re-ensure)
+```
+[20]="user.rights.only" [21]="user.mode.release" [22]="user.mode.dev" [23]="user.installation.done"
+```
+✅ mode branch now BEFORE `user.installation.done`. Stable across re-ensure (idempotent).
+
+### D2 — XOR crossing via `state next` (RAW)
+**DEV arm (OOSH_MODE=dev — the box's actual, branch-derived) — FULLY VERIFIED:**
+```
+state=user.rights.only(20)
+ next#1 → "Going to set … [21] user.mode.release" → WARNING> will overwrite stateFound: 21 with private.check.user.mode.release RESULT=22 → stateValue=user.mode.dev(22)
+ next#2 → "Going to set … [23] user.installation.done"                                        → stateValue=user.installation.done(23)
+ next#3 → "Going to set … [30] root.rights" → ERROR> did not go well … Something went wrong! → HOLDS at user.installation.done(23)
+```
+✅ NO STALL. Crosses the XOR (21 release-arm redirects→22 via `state.find`, dynamic index, no hardcode), lands on `user.installation.done`, then correctly HOLDS there because `root.rights`(30) fails for a non-root user. Matches design §C dev trace exactly.
+
+**RELEASED arm — source-verified + mechanism-proven, NOT drivable live here (F3):** check logic (oo:715-745) is correct — `user.mode.release`: released→accept 21 / else→`state.find(user.mode.dev)`; `user.mode.dev`: dev→accept 22 / else→`state.find(user.installation.done)`. Both converge on `user.installation.done`. The redirect PRIMITIVE is proven live (the dev-arm RESULT=22 redirect fired). Could NOT drive the released path end-to-end because **OOSH_MODE is derived from the git branch** (oo:322 `export OOSH_MODE="$branch"`; box on `dev` → OOSH_MODE=dev, un-overridable via export/`config set`/`config save`).
+
+### D3 — platform-derived defaults (from init2 log, live linux box)
+```
+OOSH_OS="linux-gnu"   OOSH_SHARED_BASE="/home/shared"
+OOSH_COMPONENTS_DIR="/home/shared/Workspaces/AI/Claude/components/OOSH"
+```
+✅ Linux-correct, NOT the macOS `/Users/Shared`. Derived (S3 seam), not hardcoded.
+
+### Idempotent
+✅ Re-ensure keeps new order + state at `user.installation.done`; no double-add.
+
+### FINDINGS (do NOT block dev-arm acceptance; PO/expert review)
+- **F1 — reorder does NOT migrate existing installs.** `oo` (550-560) rebuilds the machine ONLY when `!machine.exists`; an existing box keeps its OLD-order machine. The D1 fix reaches only *naked* boxes. I had to `state machine.delete` to get the new order. → existing installs need a migration/rebuild path, or a version-bump that forces re-add.
+- **F2 — naked P1 self-bootstrap HANGS on a sudo PASSWORD PROMPT.** Rebuilding+driving from scratch runs `priviledges.checked` → `private.test.sudo.priviledges` (oo:662-682) → `$SUDO touch ~/.sudo_as_admin_successful` (oo:668). On a naked box with no cached sudo it **prompts for a password** (`[sudo] password for donges:`) and blocks the unattended bootstrap. Prompt goes to /dev/tty (not the log). Tension with the proven run-as-user/no-sudo fix + Tron's defer-privilege principle: the sudo *capability probe* should be non-interactive (e.g. `sudo -n` and treat failure as "no sudo → user band").
+- **F3 — OOSH_MODE is branch-derived and un-overridable per-run** (oo:322). Testing the released arm live needs a release-branch checkout (or an OOSH_MODE override seam). Not a defect per se, but it means the released path can't be exercised on a dev box.
+
+### S5 / S6 status
+- **S6 regression tests**: authoring T-STATE-ORDER + T-PLATFORM-DEFAULTS next (this turn / follow-up).
+- **S5 (P2 ossh install dev→naked)**: needs a SECOND naked target box + is gated by F2 (sudo prompt during naked bootstrap). Flagging for target availability before I drive it. Will verify once F2's interactivity is resolved or a NOPASSWD target is provided.
+Box left: machine at `user.installation.done` (new order), OOSH_MODE=dev (branch). No source changed — diagnostic only.
