@@ -143,12 +143,13 @@ Live-verified WODA.prod (shell rc0 1s, node→non-claude, bare-session dispatche
 ### 🎉 ENTIRE OTR-3 / C-FAMILY COMPLETE (+ g.1). This session's ships (all dev/main, pushed):
 | Piece | Commit(s) | Status |
 |-------|-----------|--------|
-| g.1 send KIND-branch | 188971a | T-DISPATCH-SUBMIT 5/5; await T-SEND-SESSION |
-| c.0 live-reader local | 45951ad | await T-LIVE-READER |
-| c.0 live-reader remote | 0d9d162 | await T-LIVE-READER |
+| g.1 send KIND-branch | 188971a | ✅ VERIFIED T-SEND-SESSION 3/3 + T-DISPATCH-SUBMIT 5/5 |
+| c.0 live-reader local | 45951ad | await T-LIVE-READER (not yet written) |
+| c.0 live-reader remote | 0d9d162 | await T-LIVE-READER (not yet written) |
 | C.1 route auto-heal | 3452eae (prior) | shipped |
-| C.2 reconcile-after-fork | 3946942 | T-RECONCILE-FORK 4/4 GREEN |
-| C.3 boot-identity | 1e9791a + 857b0a1 | await T-BOOT-IDENTITY |
+| C.2 reconcile-after-fork | 3946942 | ✅ VERIFIED T-RECONCILE-FORK 4/4 GREEN (isolation held) |
+| C.3 boot-identity | 1e9791a + 857b0a1 | await T-BOOT-IDENTITY (not yet written) |
+Tester on T-SEND-MATRIX A-K cells; will pick up T-LIVE-READER + T-BOOT-IDENTITY per PO prioritization.
 **Open findings flagged to PO (separate tasks):** g.4 (claudeCode process.running mis-detects bash-parent claude panes → g.1 send took shell path to PO); host-naming @WODA.prod(sshConfigHost) vs @v60211(hostname-s) inconsistency (C.3 partially addresses via role-strip; canonicalization still open); otmux pane.get prepends stray leading newline (this-dispatch artifact, worked around in session.discover + hook).
 **Full PO queue delivered.** Awaiting tester verifications (T-SEND-SESSION/T-LIVE-READER/T-RECONCILE-FORK/T-BOOT-IDENTITY).
 
