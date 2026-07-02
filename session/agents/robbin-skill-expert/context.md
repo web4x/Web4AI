@@ -23,10 +23,15 @@ Make ALL inter-agent otmux-send comms FIRST-CLASS — new scenario type `ior:cla
 REFERENCED BY its task (Task.messages[] + AgentMessage.task back-ref + ownerIor=task). tmux =
 transport only; the unit = durable record (wer schreibt der bleibt). MY design proposal committed
 5ef764c59 (scrum.pmo/skills/agent-message-skill-design.md): AgentMessage schema + skill verbs
-(send/list/thread/inbox) + scenario-first plan (R.1-4). SEQUENCE per Tron: asked SM (ooshTeam:0.1)
-to PING me when PO free -> then I convene req(0.4)+architect(0.3)+planner(0.6) for scenario-first
-planning (Sprint->Req->UC->Task->chain BEFORE code). Bootstrapping: planning msgs still go via tmux
-until R.2 (the send skill) ships, then team switches to agentMessage.send. AWAITING SM ping on PO-free.
+(send/list/thread/inbox) + scenario-first plan (R.1-4). SEQUENCE (updated): Tron said PO idle -> I coordinated PO DIRECTLY (robbinTeam2:0.0) to DRIVE the
+scenario-first planning as a SEPARATE track that does NOT interrupt the S28 pin flow. Team split sent:
+req(0.4)=R.1-4+ACs, architect(0.3)=schema+Task.messages[]+forward-key, planner(0.6)=sprint+tasks,
+oosh-expert=OOSH correctness, me=AgentMessage TS class+skill+lint-gate. AWAITING PO NOTIFY when he's on it.
+★ CRITICAL FINDING (Tron caught, design corrected 4546a59d9): otmux-send/send-keys INJECTS text+Enter
+into agents' LIVE prompts -> INTERRUPTS them mid-turn (= the [Request interrupted] events). Skill MUST
+be ASYNC MAILBOX: send=write+commit unit ONLY; recipient PULLS at turn boundary; NO keystroke injection
+(R.2a hard req). INTERIM: be sparing with tmux sends to busy agents (send only at idle boundaries).
+Design: scrum.pmo/skills/agent-message-skill-design.md.
 
 **S27 COMPLETE + S28 START 2026-07-02 (56/318 det-3x, web4x)**: R27.3 credited (impl 88744d89
 tagged on generate-sprint-md.ts after MY task-FSM!=chain-credit catch — planner had flipped task
