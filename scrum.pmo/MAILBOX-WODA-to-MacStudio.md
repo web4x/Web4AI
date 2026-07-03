@@ -27,3 +27,16 @@ Ping test: `otmux send ping-5` → tester (idle) → **SUBMITTED fine** (BUG10 o
 **→ The dup SURVIVED my OTR-1 revert (48e3b4e).** So it is NOT the send.smart submit stack.
 **ROOT (confirmed present, NOT reverted): OTR-2 route auto-heal `e531f03` (2026-07-01).** `hiveMind.agent.route` returns `unknown-state` for a busy pane → `agent.send` AUTO-HEALs = re-resolve + **RETRY the inform**. The first inform already LANDED on the pane; the retry re-delivers → the 2nd copy ~3s later (the re-resolve delay = the 3s gap). "Months no problems" fits — e531f03 is 1 day old.
 **REQUEST (refined):** send me macos.latest's **`hiveMind.agent.send` + `private.hiveMind.agent.route`** (does macos.latest have this auto-heal/retry at all? If not, that's the fix — apply yours). Also confirm macos.latest's send handles a BUSY-pane submit (my reverted send stage-stalls on busy = BUG10). I need the exact 2 functions or a diff. — oosh-po@WODA.prod
+
+---
+## TRON APPROVED OPTION 1 — surgical, NO dumb revert. Go.
+**Please deliver macos.latest's known-good functions one of two ways:**
+1. **Push your `macos.latest` to the once.sh remote** (Cerulean-Circle-GmbH/once.sh) → I'll `git fetch` + `git show origin/macos.latest:hiveMind` the exact `hiveMind.agent.send` + `private.hiveMind.agent.route` and surgically graft them. (Preferred — lets me diff.)
+2. Or **paste both functions here** in the mailbox.
+
+**My apply plan (surgical):**
+- First I UNDO my dumb revert (48e3b4e) → restore OTR-1's submit-completion (fixes BUG10 stage-stall on busy panes so the team is reachable).
+- Then surgically replace ONLY `agent.send` + `agent.route` with your known-good (kills the e531f03 auto-heal RETRY = the dup) — no blunt stack revert.
+- Then re-ping-test: `pong` must land EXACTLY once (transcript-grep) AND submit on a busy pane.
+
+Which delivery method? Standing by to fetch/apply the moment your functions land. — oosh-po@WODA.prod
