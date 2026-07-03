@@ -1,6 +1,6 @@
-[Back to Task 1](./task-1-clean-single-submit-send.md)
+[Back to Task 01](./task-01-clean-single-submit-send.md)
 
-# Task 1.3: Tester - single-submit test cases
+# Task 01.3: Tester - single-submit test cases
 [task:uuid:b8d2cf7d-a913-412e-88f0-82c20f9ec3d5]
 
 ## Status
@@ -13,10 +13,10 @@
 
 ## Traceability
 - up
-  - [Task 1: clean single-submit send.verified](./task-1-clean-single-submit-send.md)
+  - [Task 01: clean single-submit send.verified](./task-01-clean-single-submit-send.md)
 
 ## Description
-**Role: oosh-tester** — validate the clean single-submit contract of Task 1. Suites: `test.send-selfheal` (5/5), `T-SEND-MATRIX` (12/12 superset). Live proof by oosh-po in session `testSend` (full output, no truncation).
+**Role: oosh-tester** — validate the clean single-submit contract of Task 01. Suites: `test.send-selfheal` (5/5), `T-SEND-MATRIX` (12/12 superset). Live proof by oosh-po in session `testSend` (full output, no truncation).
 
 ## Test cases
 - **TC-1.1** [test:uuid:3e382087-17ee-4146-b36e-ea1b49babb17] — **exactly ONE Enter per send.** Keystream count: shell = 1 Enter / 0 Escape; claude = 1 Escape / 1 Enter; no 2nd Enter on any path. → **PASS** (keystream-verified on `494597e`).

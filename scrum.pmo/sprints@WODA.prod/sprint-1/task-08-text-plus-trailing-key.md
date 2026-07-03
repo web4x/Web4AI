@@ -1,7 +1,7 @@
 [Back to Planning Sprint 1 @ WODA.prod](./planning.md)
 
-# Task 3: Case: bash-SHELL target
-[task:uuid:91e7cf57-4ee6-4265-a122-b875ef6baeeb]
+# Task 08: Case: text + trailing key
+[task:uuid:8fd1297d-70ce-4daa-ad00-14160cb0e649]
 
 ## Status
 - [x] Planned
@@ -14,12 +14,12 @@
   - [Sprint 1 Planning @ WODA.prod](./planning.md)
 
 ## Description
-**Case [S] shell-provable** — exercises: send.smart to a bash shell (kind=shell).
-**Expected:** NO prefix, NO Escape, stage + ONE Enter, rc0 dispatch; verify light (no ❯)
+**Case [S] shell-provable** — exercises: otmux send <t> "text" Enter.
+**Expected:** text delivered then ONE Enter (no redundant 2nd Enter)
 
 ## Test case
-- **TC-3** [test:uuid:44f89f9c-54a7-4d59-ac8f-f366b37a956f] — assert: NO prefix, NO Escape, stage + ONE Enter, rc0 dispatch; verify light (no ❯).
-  - **Proven by:** Task 1 + send-matrix A2/E3/G1 + live testSend.
+- **TC-8** [test:uuid:e4b604d5-729d-4077-81ec-99390ed7963e] — assert: text delivered then ONE Enter (no redundant 2nd Enter).
+  - **Proven by:** Task 01 TC-1.1 + send-matrix case-2.
   - **Go-through (live):** predict the behavior → run in session `testSend` (or a claude pane for [C], a remote host for [R]) → capture (full output, no truncation) → verify expected == actual → TRON accepts.
 
 ---

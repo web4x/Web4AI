@@ -1,6 +1,6 @@
-[Back to Task 1](./task-1-clean-single-submit-send.md)
+[Back to Task 01](./task-01-clean-single-submit-send.md)
 
-# Task 1.2: Expert - remove-poke impl
+# Task 01.2: Expert - remove-poke impl
 [task:uuid:2271c9e0-9657-4416-8704-beff4beee302]
 
 ## Status
@@ -11,7 +11,7 @@
 
 ## Traceability
 - up
-  - [Task 1: clean single-submit send.verified](./task-1-clean-single-submit-send.md)
+  - [Task 01: clean single-submit send.verified](./task-01-clean-single-submit-send.md)
 
 ## Description
 **Role: oosh-expert**

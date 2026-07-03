@@ -1,6 +1,6 @@
 [Back to Planning Sprint 1 @ WODA.prod](./planning.md)
 
-# Task 1: `send.verified` clean single-submit (poke removed)
+# Task 01: `send.verified` clean single-submit (poke removed)
 [task:uuid:fa66cc8a-f073-4b4d-8192-36de1c8a9f7e]
 
 ## Naming Conventions
@@ -26,9 +26,9 @@
   - up
     - [Sprint 1 Planning @ WODA.prod](./planning.md)
   - down
-    - [Task 1.1: Architect - remove-poke clean-send design](./task-1.1-architect-remove-poke-design.md)
-    - [Task 1.2: Expert - remove-poke impl](./task-1.2-expert-remove-poke-impl.md)
-    - [Task 1.3: Tester - single-submit test cases](./task-1.3-tester-single-submit-tests.md)
+    - [Task 01.1: Architect - remove-poke clean-send design](./task-01.1-architect-remove-poke-design.md)
+    - [Task 01.2: Expert - remove-poke impl](./task-01.2-expert-remove-poke-impl.md)
+    - [Task 01.3: Tester - single-submit test cases](./task-01.3-tester-single-submit-tests.md)
 
 ## Task Description
 Make every send a single, verified submit. The Enter must COMMIT (the idle-only Escape dismisses the autocomplete that otherwise turns Enter into a swallowed newline). Delivery is verified once by capture, never by re-Entering. The reliability lives in doing the one submit right, and — for a genuinely staged message — in the drain layer re-driving a fresh single-shot, not in an in-place poke loop.

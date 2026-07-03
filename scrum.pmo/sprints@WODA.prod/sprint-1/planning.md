@@ -20,15 +20,15 @@ oosh-po@WODA.prod (drive + QA gate) · oosh-architect (design) · oosh-expert (i
 ## Traceability
 - Source: TRON directive 2026-07-03 (dedicated send-reliability sprint; pre-plan all cases as flat tasks)
   - down
-    - [Task 1: clean single-submit send.verified (poke removed)](./task-1-clean-single-submit-send.md)
-    - [Task 2: non-claude verify -> rc0 (fix false-rc2-on-shell)](./task-2-nonclaude-verify-rc0.md)
-    - [Task 3: Case: bash-SHELL target](./task-3-shell-target.md)
-    - [Task 4: Case: claude-TUI target](./task-4-claude-target.md)
-    - [Task 5: Case: bash-parent claude (kind false-negative g.4)](./task-5-bash-parent-claude.md)
-    - [Task 6: Case: node shell, not claude (kind false-positive g.1)](./task-6-node-shell-not-claude.md)
-    - [Task 7: Case: single key](./task-7-single-key.md)
-    - [Task 8: Case: text + trailing key](./task-8-text-plus-trailing-key.md)
-    - [Task 9: Case: all-keys chain](./task-9-all-keys-chain.md)
+    - [Task 01: clean single-submit send.verified (poke removed)](./task-01-clean-single-submit-send.md)
+    - [Task 02: non-claude verify -> rc0 (fix false-rc2-on-shell)](./task-02-nonclaude-verify-rc0.md)
+    - [Task 03: Case: bash-SHELL target](./task-03-shell-target.md)
+    - [Task 04: Case: claude-TUI target](./task-04-claude-target.md)
+    - [Task 05: Case: bash-parent claude (kind false-negative g.4)](./task-05-bash-parent-claude.md)
+    - [Task 06: Case: node shell, not claude (kind false-positive g.1)](./task-06-node-shell-not-claude.md)
+    - [Task 07: Case: single key](./task-07-single-key.md)
+    - [Task 08: Case: text + trailing key](./task-08-text-plus-trailing-key.md)
+    - [Task 09: Case: all-keys chain](./task-09-all-keys-chain.md)
     - [Task 10: Case: /command opens a picker](./task-10-slash-command-picker.md)
     - [Task 11: Case: [@sender] prefix exactly once (BUG9)](./task-11-at-prefix-once.md)
     - [Task 12: Case: long / wrapping message (g.7)](./task-12-long-wrapping.md)
@@ -41,15 +41,15 @@ oosh-po@WODA.prod (drive + QA gate) · oosh-architect (design) · oosh-expert (i
 ## Tasks
 | Task | Title | Status |
 |------|-------|--------|
-| [Task 1](./task-1-clean-single-submit-send.md) | send.verified clean single-submit (poke removed) | ✅ **DONE — QA-ACCEPTED (TRON)** |
-| [Task 2](./task-2-nonclaude-verify-rc0.md) | non-claude verify -> rc0 (fix false-rc2-on-shell) | 🔲 PROPOSED — awaiting approval |
-| [Task 3](task-3-shell-target.md) | Case: bash-SHELL target — [S] shell-provable | 🔲 Planned (to go through) |
-| [Task 4](task-4-claude-target.md) | Case: claude-TUI target — [C] needs claude target | 🔲 Planned (to go through) |
-| [Task 5](task-5-bash-parent-claude.md) | Case: bash-parent claude (kind false-negative g.4) — [C] needs claude target | 🔲 Planned (to go through) |
-| [Task 6](task-6-node-shell-not-claude.md) | Case: node shell, not claude (kind false-positive g.1) — [S] shell-provable | 🔲 Planned (to go through) |
-| [Task 7](task-7-single-key.md) | Case: single key — [S] shell-provable | 🔲 Planned (to go through) |
-| [Task 8](task-8-text-plus-trailing-key.md) | Case: text + trailing key — [S] shell-provable | 🔲 Planned (to go through) |
-| [Task 9](task-9-all-keys-chain.md) | Case: all-keys chain — [S] shell-provable | 🔲 Planned (to go through) |
+| [Task 01](./task-01-clean-single-submit-send.md) | send.verified clean single-submit (poke removed) | ✅ **DONE — QA-ACCEPTED (TRON)** |
+| [Task 02](./task-02-nonclaude-verify-rc0.md) | non-claude verify -> rc0 (fix false-rc2-on-shell) | 🔲 PROPOSED — awaiting approval |
+| [Task 03](task-03-shell-target.md) | Case: bash-SHELL target — [S] shell-provable | 🔲 Planned (to go through) |
+| [Task 04](task-04-claude-target.md) | Case: claude-TUI target — [C] needs claude target | 🔲 Planned (to go through) |
+| [Task 05](task-05-bash-parent-claude.md) | Case: bash-parent claude (kind false-negative g.4) — [C] needs claude target | 🔲 Planned (to go through) |
+| [Task 06](task-06-node-shell-not-claude.md) | Case: node shell, not claude (kind false-positive g.1) — [S] shell-provable | 🔲 Planned (to go through) |
+| [Task 07](task-07-single-key.md) | Case: single key — [S] shell-provable | 🔲 Planned (to go through) |
+| [Task 08](task-08-text-plus-trailing-key.md) | Case: text + trailing key — [S] shell-provable | 🔲 Planned (to go through) |
+| [Task 09](task-09-all-keys-chain.md) | Case: all-keys chain — [S] shell-provable | 🔲 Planned (to go through) |
 | [Task 10](task-10-slash-command-picker.md) | Case: /command opens a picker — [C] needs claude target | 🔲 Planned (to go through) |
 | [Task 11](task-11-at-prefix-once.md) | Case: [@sender] prefix exactly once (BUG9) — [C] needs claude target | 🔲 Planned (to go through) |
 | [Task 12](task-12-long-wrapping.md) | Case: long / wrapping message (g.7) — [C] needs claude target | 🔲 Planned (to go through) |

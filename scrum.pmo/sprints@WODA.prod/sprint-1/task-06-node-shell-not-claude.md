@@ -1,6 +1,6 @@
 [Back to Planning Sprint 1 @ WODA.prod](./planning.md)
 
-# Task 6: Case: node shell, not claude (kind false-positive g.1)
+# Task 06: Case: node shell, not claude (kind false-positive g.1)
 [task:uuid:783a7633-dafc-4c56-8004-faec1f9ba950]
 
 ## Status

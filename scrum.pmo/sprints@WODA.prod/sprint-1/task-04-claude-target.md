@@ -1,6 +1,6 @@
 [Back to Planning Sprint 1 @ WODA.prod](./planning.md)
 
-# Task 4: Case: claude-TUI target
+# Task 04: Case: claude-TUI target
 [task:uuid:81f8b88e-80b5-4ef7-9bc7-80579522f169]
 
 ## Status
