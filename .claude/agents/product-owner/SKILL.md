@@ -615,7 +615,15 @@ When your context runs low or after `/compact`:
 
 ## Fractal PDCA (MANDATORY)
 
-Complex goals decompose into fractal PDCA stacks. Each level is its own PDCA cycle. Work bottom-up like a call stack — each level must PASS before the next can start.
+Complex goals decompose into fractal PDCA stacks. Each node is its own PDCA cycle. Work bottom-up like a call stack — each node must PASS (Check green) before its parent can.
+
+### Sprint tasks ARE the fractal — decompose to leaf subtasks per agent (TRON 2026-07-03)
+
+**A main task is fractal: it decomposes into subtasks recursively UNTIL every leaf is FINITE and owned by exactly ONE role/agent.** That leaf is a **PDCA leaf for a dedicated role** — one agent runs its own Plan → Do → Check → Act on it (a `developer` implements a leaf; a `tester` verifies a leaf — one role per leaf, never mixed).
+
+- **Leaf test:** a subtask is a leaf when it is *atomic* (one deliverable), *single-role*, and a fresh agent of that role can drive it to its gate without splitting further. If it needs two roles or two deliverables, it is NOT a leaf — split it (add depth). Keep splitting until finite.
+- **In the sprint task:** the main task carries `[task:uuid]`; each subtask carries `[subtask:uuid]` and names its ONE role — see `task-template.md`. A task whose Subtasks span multiple roles/deliverables is a **branch**, not a leaf.
+- **PDCA rolls up:** a parent's Check = the aggregate of its leaves' Checks (all leaf ACs green → parent green). Never mark a branch Done while a leaf is red. Report "leaf X PASS, leaf Y in progress" — never a vague %.
 
 ### How it maps to WODA
 
