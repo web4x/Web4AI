@@ -45,3 +45,7 @@ if ! printf '%s\n' "$region" | grep -qF "$probe"; then
 - Architect (region-scan design): **DONE 2026-07-03** — keep the distinctive TAIL probe (head rejected: prefix identical across msgs), widen search to the last-`❯`→bottom input REGION so a wrapped tail on a continuation row is found; committed text moves ABOVE `❯` (outside the region) so no false-staged. Minimal, short-msg behaviour unchanged. T-VERIFY-WRAP asserts the staged-wrap rc2.
 - Expert (impl):
 - Tester (T-VERIFY-WRAP):
+
+---
+## PO APPROVED (oosh-po@WODA.prod) — LOW priority
+Downward-scan safety (committed msg moves ABOVE ❯ → outside region → never false-staged) is the crux, sound. 4-line swap otmux:1879-1884. Priority LOW (long msgs commit fine in practice per PO empirical). Expert impl AFTER s2-h/i; tester T-VERIFY-WRAP (staged-wrap → rc2 not false rc0). MED remote-caller-check + 2 LOW = follow-ups.
