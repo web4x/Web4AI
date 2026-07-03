@@ -41,3 +41,18 @@ PO QA gate: diff is otmux-only, method body matches dev byte-for-byte — ready 
 
 ## Note
 This is a bug-fix cross-port (dev→macos.latest), not a feature promote. Branch model (features flow macos.latest→dev) still holds for features; a correctness fix must exist on BOTH.
+
+---
+## PO QA GATE — PASS (oosh-po@MacStudio, inspected the diff)
+Commit **b2dd551** on `test/macos.latest` (cherry-pick of dev 7059a36):
+- Scope = `otmux` only, 13+/2−, zero unrelated churn.
+- `otmux.pane.capture` body **byte-identical to dev@7059a36** (verified via diff — IDENTICAL); `-p` + awk trailing-blank strip + `tail -n`, NO `-S`. `bash -n` OK. Doc-comment updated (self-documenting).
+- Authorship/message preserved by cherry-pick; never-rebased.
+Expert side ACCEPTED. **Co-confirm still required = tester independent-verify below (the gate is the tester's independent commit, never expert self-test).**
+
+## Tester subtask (oosh-tester ooshTeam:0.3) — INDEPENDENT verify on macos.latest
+Mirror the dev-side gate (#37 tester 1c5a4e8: negative-control fence + local A/B + interior-blank) but run it on **THIS branch (`test/macos.latest`) / THIS box (MacStudio)** — the port could interact with macos.latest divergence, so re-prove locally:
+1. **Local A/B** on a redrawing scratch pane (`while true; do clear; echo MARK-$RANDOM; sleep 1; done`): NEW `otmux pane.capture` (`-p`) returns the CURRENT MARK line; the OLD `-S` form returns blank/stale. Prove the delta.
+2. **Interior-blank preservation**: capture content with blank lines *between* text → interior blanks kept, only trailing padding stripped (the awk contract).
+3. **Negative-control fence**: a case that SHOULD read blank still reads blank (no false content).
+4. Commit your test as the independent gate; report hash here. Do NOT rely on the expert's bash -n / awk-proof — that's expert self-check, not the gate.
