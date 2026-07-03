@@ -7,6 +7,12 @@
 
 ## Procedure
 
+### Step 0: Pre-rewind AGREEMENT (MANDATORY — while the agent is IDLE, before the picker opens)
+A modal picker BLOCKS the agent's own UI — once it's open the agent cannot guide you live (PROVEN: ARON never saw its own open picker, couldn't direct the driver). So a peer drives solo — which is only safe if you **agree everything first, while the agent is idle**:
+1. **STORED?** The agent confirms ALL work committed + pushed — `context.md` pre-rewind anchor updated, learnings, any KB output. You VERIFY independently: `git status` clean for its files, `git log`/push confirmed. Wer schreibt, der bleibt — uncommitted work dies in the rewind.
+2. **WHERE?** The agent names its TARGET checkpoint in its own words (e.g. "restore to before I collected oosh-po sources" / "after the method was written"). You AGREE together (42) and write it down.
+3. Only THEN open the picker and drive SOLO to the agreed target — no live guidance needed because you pre-agreed. (Match the description to a checkpoint label as you navigate.)
+
 ### Step 1: Rewind 1 step (free room for save)
 1. Send `/rewind` to the agent pane
 2. Arrow Up 1 step
