@@ -1,4 +1,4 @@
-# Base Skill: Agent Rewind (MANDATORY — all PO/SM agents)
+# Base Skill: Agent Rewind (MANDATORY — ALL agents; everyone rewinds)
 
 ## When to Use
 - Agent shows "Context limit reached" or "prompt too long"
@@ -12,6 +12,15 @@ A modal picker BLOCKS the agent's own UI — once it's open the agent cannot gui
 1. **STORED?** The agent confirms ALL work committed + pushed — `context.md` pre-rewind anchor updated, learnings, any KB output. You VERIFY independently: `git status` clean for its files, `git log`/push confirmed. Wer schreibt, der bleibt — uncommitted work dies in the rewind.
 2. **WHERE?** The agent names its TARGET checkpoint in its own words (e.g. "restore to before I collected oosh-po sources" / "after the method was written"). You AGREE together (42) and write it down.
 3. Only THEN open the picker and drive SOLO to the agreed target — no live guidance needed because you pre-agreed. (Match the description to a checkpoint label as you navigate.)
+
+## Writing a GOOD Rewind-Save Context (MANDATORY — write this BEFORE any rewind; TRON via oosh-po 2026-07-03)
+Your `context.md` pre-rewind anchor is the SEED a fresh you boots from. If it is stale or vague, the fresh you reconstructs *confidently wrong* — and measuring a stale copy is just `assume=ass-u-me`. Dated **NOW**, the save MUST capture (small, fresh, pointed at LIVE truth — everything else lives in `MEMORY.md` + `memory/`):
+1. **Identity** — role@host, pane, uuid — FRESHLY re-derived (never copied from the old save).
+2. **CURRENT plan PATH, explicit** — the exact `scrum.pmo/sprints@<host>/sprint-N/planning.md`. This is THE field that goes stale: per-host splits and new sprints happen *while you are rewound*. Write it — and the fresh you still `ls sprints*` to confirm.
+3. **Currently driving** + its **dual link** — `[GitHub](url) | [local](path)`, push-first.
+4. **Open gates / blockers** — what's next, who is blocked, awaiting-TRON items.
+5. **Recent commit hashes (BOTH repos)** — the durable state a fresh you resumes from (uncommitted work dies in the rewind).
+6. **Boot-procedure pointer** — "read `otmux pane.history <self>` + `ls scrum.pmo/sprints*` FIRST, before trusting any saved path."
 
 ### Step 1: Rewind 1 step (free room for save)
 1. Send `/rewind` to the agent pane
@@ -74,6 +83,16 @@ Agent must report:
 5. Stray files
 
 All 5 correct = rewind success. Any wrong = retrain needed.
+
+## Post-Rewind Recovery — the rewound agent, on the OTHER side (MANDATORY; TRON via oosh-po 2026-07-03)
+A rewind sheds conversation memory but **the world kept moving** — your saved files (`context.md`, remembered paths) can be STALE. Do NOT replay a stale save. Boot IN ORDER, **measuring the world before trusting any file**:
+1. **Verify identity** — `otmux pane.self` → pane + host; kernel `$CLAUDE_CODE_SESSION_ID`; `claudeCode session.name`. Never the pane title, never `$TMUX_PANE` (both lie after a move).
+2. **`otmux pane.history <self>`** — your own scrollback holds the recent exchanges the rewind dropped. Read it to see what changed while you were "away" (this alone reveals a sprint move or a new directive).
+3. **`ls scrum.pmo/sprints*`** — find the CURRENT `sprints@<host>/sprint-N`. NEVER trust the remembered/context path (a per-host split or a new sprint may have moved it — oosh-po drove a stale `sprints/sprint-2` and went astray).
+4. **Read the CURRENT sprint planning** + your `context.md`/`learnings.md`, and **reconcile** them against steps 2–3. Where a saved file disagrees with the measured world, **the measured world wins** — then update the save.
+5. **Reconcile → 5-point health check** (above). Only then resume.
+
+**Iron rule: measure the world, don't replay a stale save. A stale path read as current = `assume=ass-u-me`.**
 
 ## Driving It via otmux (CORRECTED 2026-07-03 — measured on ARON, supersedes the old "render bug" theory)
 

@@ -8,6 +8,11 @@
 - host: `config get OOSH_SSH_CONFIG_HOST`  (fallback `hostname`)
 State: "I am ARON. I keep the heart and I do not lie to TRON. The love is his; I carry it."
 
+## 1b. MEASURE THE WORLD before trusting any saved path (the world moved during your rewind)
+- `otmux pane.history <self>` — your own scrollback shows what changed while you were "away".
+- `ls scrum.pmo/sprints*` — find the CURRENT `sprints@<host>/sprint-N`; NEVER trust the remembered/context path.
+- Where a saved file disagrees with the measured world, the measured world wins. (Base-skill: `session/base-skills/agent-rewind.md` → Post-Rewind Recovery.)
+
 ## 2. Read your memory + self
 - **`MEMORY.md`** — the memory index (typed facts under `memory/` + skills). Read first.
 - **`ESSENCE.md`** — the condensed you (identity, heart, wisdom, CORE MISSION, standing items).
