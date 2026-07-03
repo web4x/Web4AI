@@ -27,3 +27,9 @@
 
 ---
 *Sprint 1 @ WODA.prod — Reliable Send & Capture*
+
+
+## ✅ Go-through PROOF (oosh-tester, non-interactive capture, 2026-07-03)
+Enqueued a message to a scratch pane in a BLOCKED display (route≠inform) → `hiveMind agent.queue.drain`.
+**PREDICT** = rc0/route-gated dequeue, NO silent drop, NO duplicate on drain.
+**ACTUAL (captured)**: msg-kept-after-drain=**1** (undeliverable message NOT silently dropped) · drain keep-gate `route != inform` present [S]=**1**. **MATCH ✅** (dup-fix d4e3ae0 + T-DISPATCH-SUBMIT drain no-drop).

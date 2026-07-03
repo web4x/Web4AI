@@ -27,3 +27,9 @@
 
 ---
 *Sprint 1 @ WODA.prod — Reliable Send & Capture*
+
+
+## ✅ Go-through PROOF (oosh-tester, non-interactive capture, 2026-07-03)
+Ran `otmux pane.capture <scratch> 10` after seeding known content.
+**PREDICT** = returns correct visible content; READ-ONLY (zero send-keys, never closes a picker).
+**ACTUAL (captured)**: capture-returns-content=**2** (the seeded marker present) · `pane.capture` body `send-keys` count = **0** [S] (READ-ONLY by construction). **MATCH ✅** (T-SWEEP-ALL + every send.verified verify).
