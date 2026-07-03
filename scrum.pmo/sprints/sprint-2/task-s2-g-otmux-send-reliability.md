@@ -53,7 +53,30 @@ The WODA.prod trainer's execution was otherwise excellent (OOSH-clean, measured,
 2. If the restore-options menu renders → it was the BUG10 half-state. Fix = method (send.raw), and this is NOT a version wall. Fold into task-s2-b.
 3. If it STILL fails clean → genuine 2.1.197 render regression. Escalate to Claude Code with the 2.1.195-works / 2.1.197-fails bisect.
 
-### RESOLVED 2026-07-03 — measured verdict (agent-trainer, three exonerations)
+### CORRECTED & TRULY RESOLVED 2026-07-04 — Claude Code 2.1.197 is NOT broken; my INSTRUMENT was
+
+**Retract the "2.1.197 programmatic-input regression" verdict below. It was WRONG — caused by an unreliable read tool, not a real Claude Code bug.**
+
+**Definitive test (dedicated scratch sessions on WODA.prod, same machine, all 4 CC versions installed locally at `~/.local/share/claude/versions/`):**
+- Launched **2.1.197** in a throwaway `tmux` session, drove it with clean `otmux send.raw`:
+  - text+Enter → **submitted, got responses** (`● apple` ×2)
+  - `C-u` → **cleared composer**
+  - `/rewind` → **picker opened**
+  - `Up` + `Enter` → **restore-options sub-menu RENDERED** (`❯ 1. Restore conversation … 4. Never mind`)
+- **The ENTIRE rewind flow works on 2.1.197 under clean programmatic send.raw.** Full stop.
+
+**The real bug — my measuring instrument.** `otmux pane.capture <pane>` read *through the WODA.prod bridge* returned BLANK/STALE content: it missed 2.1.195's trust prompt, missed 2.1.197's `apple` responses, and falsely showed composers as "won't clear" and menus as "won't render." **Every "2.1.197 failure" in the retracted verdict below was an artifact of that unreliable read** — not Claude Code.
+- **Reliable read through the bridge**: `tmux capture-pane -t <pane> -p | grep -vE '^[[:space:]]*$'`. This ALWAYS showed the true content.
+- **Unreliable**: `otmux pane.capture` through the bridge dropped content. → **NEW REAL TOOLING BUG for this sprint: `otmux pane.capture` reliability reading remote/bridged panes.**
+
+**The WODA.prod trainer's original "otmux cannot force the picker" was almost certainly the same unreliable-capture artifact and/or its `send.enter` (BUG10) method — not a 2.1.197 defect.**
+
+**Answers to the version questions**: 193/195/196/197 all installed on WODA.prod; 197 is newest and WORKS. **No downgrade needed.** The symlink `~/.local/bin/claude -> versions/2.1.197` is fine to keep.
+
+**Lesson banked (agent-trainer)**: when reading panes through a bridge, `otmux pane.capture` is unreliable — use `tmux capture-pane -p | grep`. I chased a phantom for an entire investigation because I trusted a lying instrument. Measure the measurer.
+
+---
+### [RETRACTED] RESOLVED 2026-07-03 — measured verdict (agent-trainer, three exonerations)
 
 Ran the controlled tests. Chain of elimination:
 
