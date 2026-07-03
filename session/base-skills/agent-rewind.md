@@ -1,6 +1,17 @@
 # Base Skill: Agent Rewind (MANDATORY — ALL agents; everyone rewinds)
 
 ## When to Use
+
+### PRIMARY: PREVENT the cliff — order the rewind PROACTIVELY (TRON 2026-07-03, the main learning)
+**The reactive triggers below are FAILURES of prevention, not the intended cue.** Every hard case in this skill — RC-interference, the wedged composer, no-room-to-save, the picker at 0% — happens ONLY because the agent already hit the wall. **Order the rewind at ≤90% used (≥10% free), never wait for the cliff.** At 10% free the composer is clean, there's room to save the anchor, and the rewind is a calm 3-minute operation instead of a rescue.
+
+This is a **CMM4 controlled feedback loop**, and it's HARD (owed as its own sprint — SM/scrumMaster domain):
+- **Truth over MULTIPLE sources** — an agent CANNOT read its own context (the 42 principle). Predict/measure it externally: pane footer (`Context low`/`N% remaining`), `claudeCode context.read`, transcript token count, message-count trend. Cross-check ≥2 (one instrument lies).
+- **Continuous monitoring** — the SM sweeps every agent every cycle, tracks each one's context %, and *predicts the trajectory* (growth rate → time-to-90%).
+- **Controlled loop** — when a projection crosses the threshold, the SM orders the save + rewind *before* 90% used. Proportional: faster-growing agents get ordered earlier. Adjust the model from measured outcomes.
+- Goal: **no agent ever reaches "Context limit reached" again.** The cliff is a defect to be designed out, not a state to rescue from.
+
+### REACTIVE (already too late — you're now in rescue mode, expect the hard cases):
 - Agent shows "Context limit reached" or "prompt too long"
 - Agent shows "/clear to save Nk tokens" with low free space
 - Agent stops responding to prompts
