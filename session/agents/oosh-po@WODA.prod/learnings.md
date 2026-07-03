@@ -629,3 +629,16 @@ Format (ONE line, ` | ` separated): `[GitHub](<github-blob-url>) | [<relative/pa
 
 ### ★ Post-rewind: MEASURE the current sprint dir — don't trust the remembered path (Tron, 2026-07-03)
 After my rewind I reconstructed state from `scrum.pmo/sprints/sprint-2/` (bare) — the last location my rewound memory knew — and drove/dual-linked it. WRONG: while I was rewound, the per-host split completed AND Tron created a dedicated **Reliable-Send** sprint at **`scrum.pmo/sprints@WODA.prod/sprint-1/`** (flat tasks 01-17). Bare `sprints/sprint-2/` was STALE. **Boot rule: `ls scrum.pmo/sprints*` FIRST and read the current `sprints@<host>/sprint-N` — the world moves during a rewind; the remembered path is a copy, and measuring a copy = assuming (same family as the dual-link provenance scar).** Current authoritative plan for me = `scrum.pmo/sprints@WODA.prod/sprint-1/planning.md`.
+
+### ★ Post-rewind recovery: read `otmux pane.history` + MEASURE, before trusting any saved file (Tron, 2026-07-03)
+A rewind sheds conversation memory but the world kept moving. My files can be STALE (context.md was 2026-06-28; the sprint had moved to sprints@WODA.prod). **Post-rewind boot, IN ORDER:** (1) verify identity (`otmux pane.self` → pane + host); (2) **`otmux pane.history <self>`** — my own scrollback holds the recent exchanges the rewind dropped → double-check what changed while I was "away" (this alone would have shown the sprints@WODA.prod move); (3) **`ls scrum.pmo/sprints*`** — find the CURRENT `sprints@<host>/sprint-N`, never trust the remembered/context path; (4) read the current sprint planning + my context/learnings; (5) reconcile → health-check. Measure the world, don't replay a stale save.
+
+### ★ Writing a GOOD rewind-save context (so post-rewind reconstruction is ACCURATE)
+My context.md save is the seed a fresh me boots from — it must be FRESH and point at the LIVE truth, or I go astray (I did). A rewind-save context MUST capture, dated NOW:
+1. **Identity** — role@host, pane, uuid (freshly re-derived).
+2. **CURRENT plan PATH (explicit)** — the exact `scrum.pmo/sprints@<host>/sprint-N/planning.md` (the field that goes stale — write it so a fresh me reads the RIGHT dir, and still `ls sprints*` to confirm).
+3. **Currently driving** + its **dual link** ([GitHub](url) | [relative/path]).
+4. **Open gates / blockers** — what's next, who's blocked, awaiting-Tron items.
+5. **Recent commit hashes** (both repos) = the durable state a fresh me resumes from.
+6. **Boot procedure pointer** — "read pane.history + ls sprints* FIRST."
+Stale context = confident-wrong reconstruction. Keep the save small, fresh, and pointed at live truth.
