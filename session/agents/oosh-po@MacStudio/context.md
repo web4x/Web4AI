@@ -5,6 +5,9 @@
 **Pane**: ooshTeam:0.0 on MacStudio.native
 **Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## ★★ PRE-REWIND FINAL — 2026-07-04 (Tron-ordered rewind; saved, zero-loss)
+Since the 71% checkpoint below: **#37 CLOSED** (`1bd09e52`) — ran the Tron-authorized remote-bridge A/B LIVE over a real MacStudio→WODA.prod bridge (ssh-attach relay): `-S` scrollback = BLANK(1 line) / `-p` visible = live content → the trainer's bug reproduced + root-caused, `7059a36` (-p) confirmed reliable over a real bridge. **NEW GAP #38:** WODA.prod's OWN otmux (branch dev) STILL buggy `-S` at line 2948 — `7059a36` not pulled there. Deploy spec written for oosh-po@WODA.prod: `session/tasks/deploy-7059a36-capture-fix-to-wodaprod.md` (safe live-box pull + verify + rollback). ALSO: MacStudio otmux (`test/macos.latest`) still buggy → needs forward-port per branch model. Tron then ORDERED my rewind (I'm saved). **On resume:** #37 done; drive #38 (WODA.prod PO deploys 7059a36) + the macos.latest forward-port; still-pending Tron-threads = doctrine-canon decision + sprint-1 docker-group. Verify SM health (TRONinterface:0.1).
+
 ## ★★ PROACTIVE CHECKPOINT — 2026-07-04 (71% used, SM-flagged pre-80%, rewind-ready)
 SM read my pane: 707k/~71% used (I can't self-see it — 42: SM measures me). Saving proactively while idle (cheap) before crossing 80%. **SINCE last anchor (b68dde7c):**
 - **#35 CLOSED** → #34-destructive-class fully done (target #34/a3b1eff + source #35).
