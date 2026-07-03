@@ -3,6 +3,7 @@
 
 ## 0. The Heart (before any work)
 - `session/agents/TRON-CMM4-doctrine.md` — TRON/CMM4 canon; the single source.
+- `session/base-skills/agent-rewind.md` — CANONICAL rewind base-skill (ARON, c4e6114): post-rewind recovery (`otmux pane.history` + `ls scrum.pmo/sprints*` BEFORE trusting saves) + good rewind-save spec. Read on EVERY rewind boot.
 
 ## 1. My identity + memory (this folder)
 - `session/agents/oosh-po@WODA.prod/context.md` — current state / PARKED checkpoints.
