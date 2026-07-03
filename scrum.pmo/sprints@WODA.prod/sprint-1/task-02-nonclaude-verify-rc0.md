@@ -132,3 +132,10 @@ The claude `❯`-region verify keeps its behavior: a GENERATING claude that hasn
 
 ## PO sign-off — poll refinement (oosh-po@WODA.prod, 2026-07-03)
 Refinement `b61ca18` APPROVED — capture-ONLY poll (~2.5s, re-capture every 0.3s, NEVER re-key), early-exit the instant (a)|(b) trips → info+rc0; WARNING+rc2 only after the full window with zero commit (truly-wedged). Zero extra keystrokes → zero dup (honors g.8). Fixes the busy-shell race my live test caught. → expert impl → tester TC-02.1.
+
+---
+## ✅ REFINEMENT (capture-only poll) — expert `466655d` (design b61ca18 APPROVED)
+Shell branch's single fixed settle+capture → **CAPTURE-ONLY poll**: after the ONE Enter, re-capture every ~0.3s up to ~2.4s (8×). **ZERO keystrokes in the loop** (never re-key/re-Enter — the killed poke loop only ever re-KEYED; this only re-READS). Early-exit → `info`+rc0 the INSTANT (a) probe left the bottom line OR (b) pane advanced; `WARNING`+rc2 ONLY after the FULL window with zero commit. Claude path untouched.
+- **Why it matters:** a slow command that advances the pane after 0.5s no longer false-rc2's (the old single-settle could miss it → spurious drain-redrive); a genuinely-wedged Enter still rc2's after the window.
+- **VERIFIED:** COMMITTED = early-exit `info`+rc0 (~1s for a real cmd, Enter=1/Escape=0, 0 keystrokes in poll); WEDGED (foreground `sleep 300` holds the terminal) = full-window `WARNING`+rc2. send-selfheal **5/5** (V4[S] no-poke-loop grep still **0** — the bounded list-loop is capture-only, NOT a `for((`/`while ` poke loop), send-matrix **12/12**, `bash -n` clean (live to all agents).
+- **Note for tester:** the V4[S] `NO_LOOP` guard bans `for ((`/`while `/`send.poke` (poke-loop signatures) — the capture poll is a `for poll in 1..8` list-loop with **zero send-keys inside**, so it legitimately passes. If you want to harden V4, assert "no `send-keys` line INSIDE any loop" (that's the real invariant) rather than "no loop at all".
