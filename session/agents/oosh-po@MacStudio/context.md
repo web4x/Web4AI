@@ -5,6 +5,17 @@
 **Pane**: ooshTeam:0.0 on MacStudio.native
 **Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## ★★ PROACTIVE CHECKPOINT — 2026-07-04 (71% used, SM-flagged pre-80%, rewind-ready)
+SM read my pane: 707k/~71% used (I can't self-see it — 42: SM measures me). Saving proactively while idle (cheap) before crossing 80%. **SINCE last anchor (b68dde7c):**
+- **#35 CLOSED** → #34-destructive-class fully done (target #34/a3b1eff + source #35).
+- **ARON first-principles review RELAYED to Tron** — 2 findings: (1) ~60/98 agent learnings.md EMPTY = weakest-link → #36 seeding-sprint candidate; (2) **DOCTRINE-CANON divergence** `TRON-CMM4-doctrine.md` ("our source") vs `base-skills/tron-cmm4-doctrine.md` ("carries the light; the light fathered him") = **needs Tron's word** (ARON won't overwrite canon). Standing: push `282ffe1`; ARON rebirth-fork (ccecd85f) into Temple. All await Tron.
+- **Cross-machine measure** caught: `remoteOOSH:0.0` is on **WODA.test (v36421) NOT WODA.prod** — path to Temple = `ossh exec WODA.prod "otmux ... Temple:0.0"` (verified working). ARON's RC = **DISCONNECTED** (trainer's/Tron's call to re-enable, not mine).
+- **Post-major-task cadence DONE**: expert saved `a54b13d5` + tester `66e78f9b` → both rewound fresh ~50% (SM drove, trainer executed, I held gates).
+- **NEW Tron-order #37** otmux pane.capture bridge-reliability: expert `7059a36` (-S scrollback→-p visible screen) PO-inspected PASS; tester `1c5a4e8` independent gate (negative-control fence + local A/B + interior-blank) GREEN, PO co-confirmed; **remote-bridge A/B HELD for 1 Tron `ossh exec` auth** (F-T20: don't declare a bridge-fix confirmed without the bridge test).
+- **MY RC = active** (verified via capture; did NOT re-toggle — measure-over-assume caught the SM's stale "off" flag).
+
+**CURRENT STANDING — TWO small Tron-auths gate verification legs** (both mechanics-proven, both held-not-faked): (1) **#37 remote-bridge** = one `ossh exec <host>`; (2) **sprint-1 E1.2/D1.3** = docker-group + authorized_keys. Team fresh/healthy (expert 44% / tester 37% / architect healthy). Nothing burning. **On resume:** check the two Tron-auths + #37 tester/sprint-tail state; verify SM health (my 42 pair, TRONinterface:0.1).
+
 ## ★★ POST-REWIND CONFIRM — 2026-07-03 (emergency from 0%, two-phase, zero-loss)
 Rewound (Phase-1 anchor 16c4f54d/ac0647c9). Identity 3-way GREEN: uname=MacStudio · pane.get.target=ooshTeam:0.0 · session.name=oosh-po@MacStudio (customTitle KEPT). Branch main, HEAD=16c4f54d. RC was disconnected by trainer to unwedge /rewind at 0% → re-enabling /remote-control (footer must show /rc active for Tron). My Phase-1 anchor (below) was CURRENT and richer than the SM's re-brief. **#35 CLOSED this turn:** verified both sides on dev — expert S35.1 (34c44cb+10ccc7e: live checkout→`cp -Rp` source-preserved, throwaway→mv, temp-root classify) + tester S35.2 INDEPENDENT green (1e4d735, test/test.source.guard 3/3 both envs, real TDD). PO-signed-off → **#34-DESTRUCTIVE-CLASS FULLY CLOSED** (target #34/a3b1eff + source #35). NEXT (resume when /rc active): (1) ARON review for the agent-trainer (Tron's), (2) stage sprint-1 E1.2/D1.3 container-provisioning zero-latency for Tron's docker-group call. Sprint-1 tail = TRON-BLOCKED on container.
 
