@@ -97,3 +97,10 @@ The dup had TWO sides (both the rc2-on-pane bug):
 - **FIX**: drain dequeues on rc0 OR rc2 (both on-pane, per fccdad8 policy); only rc3/rc1 (not-on-pane) stay queued (no silent drop). Non-regr: send-matrix 8/8, dispatch RC0/RC2/RC3/NODROP green.
 - **TESTER TODO**: update GATE-SRC (it locked the OLD `-ne 0` drain gate → now rc0-OR-rc2).
 - **GATE = TRON LIVE CONFIRM** (not a fixture — the dup was in Tron's real inbox). Not declared fixed until confirmed.
+
+---
+## ✅ SEND CRITICAL-INFRA FIXED + PO QA PASS (2026-07-03) — the dup+BUG10 saga CLOSED
+**Root (finally):** the `[@…` prefix opens Claude Code's @-mention autocomplete; Enter SELECTS the suggestion instead of submitting → text stages uncommitted (BUG10). Prior fixes oscillated dup↔no-submit. **Tron's law:** self-heal = VERIFY the commit, never resend.
+**Fix (`2fdce8e`, once.sh dev):** `otmux.send.verified` — stage text ONCE (literal) → Escape (dismiss autocomplete, IDLE-ONLY, never interrupt a generating agent) + Enter → verify text COMMITTED (probe left the `❯` line) → poke ENTER-ONLY if staged (never re-type text = dup structurally impossible). send.smart Step-4 resend-retry removed.
+**Tester FORMAL VERIFY (test/test.send-selfheal 5/5, GREEN):** (1) commits reliably — V1 idle rc0, V2 @-prefix-autocomplete rc0; (2) exactly-1 delivery — V1+V2 recipient-transcript=1 never 2, V5[S] Enter-only poke + single `send-keys -l` = dup structurally impossible; BONUS no-interrupt — V3 generating→0 Escape, V4[S] Escape gated by `!$gen`. Live: ping-8 committed poke1/3, pong8=1.
+**Wrong layers ruled out (do not re-touch):** hiveMind agent.send auto-heal / queue / drain rc2 (OTR-1/OTR-2) were NOT the dup — it was the `otmux send` View layer. **PO QA GATE: PASS.**
