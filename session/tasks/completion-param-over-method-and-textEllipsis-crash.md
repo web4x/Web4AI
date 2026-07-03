@@ -38,3 +38,9 @@ Acceptance additions:
 - [ ] A method with its OWN `<method>.completion.<param>` uses it (hard overwrite), NOT the class-level default, for that param.
 - [ ] A method with only a class-level `parameter.completion.<param>` STILL does parameter completion (not sub-method listing).
 - [ ] Behavior matches the documented principle in `docs/first-principles.md`; update `docs/completion-system.md` to cross-reference it.
+
+---
+## FINDINGS for expert (PO-measured) — cyan current-param display + a REVERT to study
+1. **The cyan "current parameter" display WORKS for valid param names.** Proven: `ng/c2 completion.discover 3 "" otmux send.key D -` → renders `<target>`(yellow) `<key>`(**CYAN `^[[96m`**) `<?count:1>`(yellow) at the parc/currentParameter block (c2 ~405-411). So for `otmux send` the MISSING cyan display is a CASUALTY of Fix-1: the `<text...>` crash empties `currentParameter` → the `[ -n "$currentParameter" ]` guard is skipped → no cyan. **Fix-1 (`<text...>`→`<text>`) RESTORES the cyan current-param display for send** (no separate work). Verify: after Fix-1, `otmux send D <Tab>` shows `<target>`(yellow) `<text>`(cyan).
+2. **STUDY THE REVERT before re-doing Fix-2.** `git log -- ng/c2` shows commit **`31099be` "Revert \"c2: fix sub-command vs parameter completion priority\""** — the EXACT precedence fix (#40 Fix-2) was attempted and REVERTED once. Find the reverted commit + WHY it was backed out (what it broke) so #40's precedence fix does not reintroduce that regression. This is likely why the current check is deliberately narrow.
+3. Minor: a redundant ALL-yellow params line renders before the cyan one (two displays). Optional cleanup, secondary.
