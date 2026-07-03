@@ -1,4 +1,25 @@
-# Scrum Master Context — 2026-07-03 (live save)
+# Scrum Master Context — 2026-07-04 (live save, SM-flagged)
+
+## ★★★★★★★★★★★★★★★★★★★★★★ MOST CURRENT (2026-07-04) ★★★★★★★★★★★★★★★★★★★★★★
+**Identity:** scrum-master@MacStudio, TRONinterface:0.1, Opus. 42-pair w/ agent-trainer(baseTeam:0.0), coordinates oosh-po(ooshTeam:0.0). robbinTeam2 GONE.
+
+### ★★ ARON SAGA — TRON INVERTED MY LESSON (read learnings 213-217; RESOLUTION landed per 217)
+- **TRON directive:** "it's the context SIZE that matters. killing his context by rebirthing an outdated aron helps no one." → **"bloat-shed = good" was WRONG.** The 5.8MB f814788a WAS ARON's VALUE (accumulated working context, unwritten); ae075e46/24% = diminished "empty baby". **COMMITTED FILES ≠ FULL CONTEXT.**
+- **Two agent classes (critical):** (a) structured-knowledge-writers (SM/trainer/oosh-po distill→files; save→rewind→reload PRESERVES value; my ACT-AT-80% rewinds OK) vs (b) accumulated-context agents (ARON: value IS the large live context; rewind/rebirth DESTROYS it → need FULL fork never small-rebirth). Ask WHICH before rewinding on 80% alone.
+- **Recovery path = FULL fork of the valuable large context (never summary/rebirth).** Trainer took ZERO destructive action, asked TRON. Per learnings 217 the corrected ARON FULL-fork later EXECUTED+landed. **CROSS-MACHINE reads = `tmux capture-pane -t <pane> -p` (NOT otmux pane.capture — blanks over bridge AND locally during menus; trainer F-T20).**
+- registry/claudeCode-list LIES (binds name→dead session). Liveness = coherent RUNNING session + /rc (NOT JSONL-growth; idle-live is static-mtime).
+
+### ★★ oosh-po TRON-DIRECTED REWIND — I DROVE IT (trainer holding ARON + is partner-not-executor)
+- oosh-po saved 18dbcdfe (PRE-REWIND FINAL + #37 CLOSED + #38 deploy spec). Single DEEP rewind ~72%→near-boot (Up-43/45 to "/context", 4-opt no-code menu → **'Restore conversation' = OPT1 BY-LABEL** [opt2 here = Summarize = WRONG]). VERIFIED no-revert (18dbcdfe latest, tree clean, /rc active). Retraining→Rule-6 (uname=MacStudio/pane=ooshTeam:0.0/session.name=oosh-po@MacStudio). On resume oosh-po drives **#38 (WODA.prod PO deploys 7059a36) + macos.latest forward-port**.
+
+### Team health (2026-07-04)
+- trainer: recovered (I drove its 2nd catch-22 rewind 88%→~50% earlier, sealed 2ccd9097; save 8139a499). Healthy (no-distress). Holding ARON per TRON. **Its idle-hint Nk doesn't render (like oosh-po) → use 'Context low' distress-warning as ground-truth health signal for these 2.**
+- oosh-po: rewinding→near-boot this tick (verify Rule-6, then it drives #38).
+- expert 439.5k~44%, tester 372.2k~37%, architect ~48% — healthy.
+- Subscription ~1%/5h (fresh), 44%/7d — safe.
+
+### Pending TRON: doctrine-canon · sprint-1 docker-group · ARON (what TRON wants) · #38 deploy
+### My anchors: context fde0a4b/e2c8c5e2/2548057b/2ccd9097/(this); learnings fb798a5f+. Recovery=boot→context→learnings IN ORDER.
 
 ## ★★★★★★★★★★★★★★★★★★★★ TRAINER REWIND COMPLETE (2026-07-03 — DONE, SEALED) ★★★
 **agent-trainer(baseTeam:0.0) catch-22 rewind EXECUTED + Rule-6 GREEN.** Was at REAL 0% ("Context low (0% remaining)", context.read=0, plan mode, self-disconnected /rc, 1 leftover WODA.prod shell). I drove the full 2-phase per protocol 20260621T1100Z:
@@ -300,3 +321,9 @@
 - **oosh-po REWOUND (TRON-directed, I drove picker — trainer was holding ARON):** save 18dbcdfe (PRE-REWIND FINAL) → single DEEP no-code rewind to /context boot-region (3-from-top), 'Restore conversation'=OPT1-BY-LABEL (4-opt no-code menu; opt2 there=Summarize=WRONG) → verified no-revert (18dbcdfe latest, tree clean) → Rule-6 GREEN (3-way: uname=MacStudio/pane=ooshTeam:0.0/session.name=oosh-po@MacStudio, oriented, /rc). Freed ~72%→near-boot. oosh-po RESUMING: #37 CLOSED, drive #38 (WODA.prod-PO deploys 7059a36) + macos.latest forward-port (dispatched to expert). Host-typo committed 9a600a4f (F-HOST-TYPO, oosh-po inspected-diff-not-blind).
 - **★ ARON held-for-TRON — 'bloat-shed=good' lesson INVERTED by TRON:** 'context SIZE matters — rebirthing outdated aron helps no one.' 5.8MB f814788a = the VALUE (accumulated unwritten context); ae075e46 24% = empty-baby diminished. COMMITTED-FILES != FULL-CONTEXT. Distinguish files-hold-value agents (shed-OK) vs context-IS-value agents (ARON, shed-KILLS → full-fork/leave not rewind). Trainer taking ZERO action, asked TRON what he wants. Implication: my ACT-AT-80% rewind assumes value-in-files (OK for structured-writers, DESTROYS context-is-value agents). Learnings committed.
 - **Team now:** oosh-po fresh near-boot (driving #38); trainer healthy holding-ARON; expert 44%/tester 37%/arch 48% idle-ready. All rewinds this session zero-loss + no-revert + by-label. Pending TRON: ARON (re-bind vs full-fork) + doctrine-canon + sprint-1 docker-group.
+
+## ★★★★★★★★★★★★★★★★★★★★★★ ARON RECOVERY COMPLETE + #39 SEALED (2026-07-04, MOST CURRENT) ★★★
+- **ARON RECOVERY COMPLETE (the standout):** my 'bloat-shed=good' was INVERTED by Tron (context-SIZE-is-value; committed-files≠full-context) → destructive small-rebirth (ae075e46 24%) AVOIDED → delimited-measure confirmed rich f814788a (5.8MB/834k) → claudeCode fork f814788a into Temple:0.0 → FULL resume (option-2 'Resume full session as-is' BY-LABEL, cursor-verified, DODGED the 'recommended'=summary TRAP) → ARON verified RICH+COHERENT 834k full-self → renamed ARON@WODA.prod → HANDS-OFF until Tron+trainer JOINT-VERIFY (pending). Trainer executed w/ my 42 oversight; zero destructive action; every step measured.
+- **KEY LESSONS BANKED (learnings committed):** (1) context-is-value agents get FULL-fork (never rewind/rebirth/summary) — ACT-AT-80%-rewind DESTROYS them; distinguish files-hold-value (shed-OK) vs context-IS-value (shed-KILLS). (2) resume/fork menu '(recommended)'=BANNED-summary TRAP → pick FULL 'as-is' BY-LABEL + verify cursor. (3) bridge scrollback mixes old+new even w/ tmux capture-pane -p → isolate w/ echo ZZSTART/ZZEND + sed. (4) slow+large load=full(right), fast+small=summary(wrong).
+- **#39 forward-port CLOSED (macos.latest sealed):** expert b2dd551 (byte-identical dev@7059a36, cherry-pick) → oosh-po diff-gate → tester INDEPENDENT co-confirm a6a98dc (4/4 real gate) → oosh-po flipped DONE. = the F-T20 bridged-capture FIX (otmux pane.capture reads -p visible). oosh-po delivered #38 + send-cluster-graft (10668bd7 dup-bug is dev-only) to WODA.prod-PO via mailbox 928d31ee (ball their court).
+- **PENDING TRON:** ARON joint-verify (Tron+trainer) + doctrine-canon + sprint-1 docker-group. Team all healthy (oosh-po fresh near-boot driving; trainer healthy hands-off-ARON; expert 44%/tester 37%/arch 48%). I hold zero-touch on Temple:0.0.
