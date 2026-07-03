@@ -70,3 +70,12 @@ Mirror the dev-side gate (#37 tester 1c5a4e8: negative-control fence + local A/B
 **pane.history** (off-screen) untouched by the fix — separate function, no regression.
 **F-T20 discipline:** oracle = raw `tmux -p` + explicit render sleep, so empty==empty cannot pass (the lie-instrument trap that fooled the first inline A/B on the dev side).
 **Verdict:** forward-port `b2dd551` INDEPENDENTLY VERIFIED on macos.latest. All acceptance boxes satisfiable — over to PO co-confirm of my commit `a6a98dc`.
+
+## PO QA — tester gate CODE inspected (a6a98dc) = REAL independent gate ✓
+`test/test.otmux` +T-CAPTURE-BRIDGE (4 subtests), inspected by oosh-po:
+- T-1 FENCE: comment-stripped grep for `-S` on pane.capture cmd; negative-control (RED on pre-b2dd551).
+- T-2 A/B: wrapper == raw `tmux -p` oracle (non-blank + parity).
+- T-3: interior blank preserved (awk d>b+1), trailing stripped.
+- T-4 DECISIVE: redrawing pane — new `-p` reads live MARK, old `-S` stale, **+ no-op guard NEW!=OLD** (bug real & resolved).
+- Skip-guards (no-tmux) + session cleanup present. Commit asserts measured GREEN 4/4.
+Not a stub — genuine independent co-confirm mirroring dev gate 1c5a4e8 + decisive redraw delta. **PO code-satisfied. #39 flips DONE on SM's tester green+idle confirm.**
