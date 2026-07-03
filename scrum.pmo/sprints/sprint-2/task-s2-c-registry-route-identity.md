@@ -61,3 +61,12 @@ The pass paid for itself:
 2. **2nd-reader creep** — c.2 named its source `claude.processes`/`tree.detailed tupleset`, NOT the canonical `live.tupleset`. **FIXED**: c.2 now consumes `live.tupleset` (has tty per c.0).
 Field names otherwise match across c.0/c.2/c.3/parity (session|address|role|uuid|kind|tty|host; parity `address` == PO `{pane}` shorthand). **Expert hits ZERO contradictions post-rewind.**
 **IMPL NOTE for expert**: flipping `agents.discover` to title-first is now a required step (it's the shared role-resolution both c.0-projection and the fix depend on).
+
+---
+## ✅ C-FAMILY TESTER GATES — PO QA PASS (2026-07-03)
+- **c.0 T-LIVE-READER 4/4 PASS** (dev): LR-9FIELD (26 rows canonical 9-field, tty+host populated) · LR-IDENTITY (identity.resolve==reader row ARON@v60211) · LR-REMOTE-MARKER (unreachable→remote-unreachable marker, PF3 fail-safe, no silent drop) · LR-ISOLATION (live teams.env md5 unchanged).
+- **C.2 T-RECONCILE-FORK 4/4 PASS** (3946942, earlier).
+- **g.4 T-KIND-CLASSIFY 12/12 PASS** (6213ad6).
+- **g.6 T-PANEGET-CLEAN 3/3 PASS** (bcd8f84).
+- **C.3 T-BOOT-IDENTITY** (857b0a1) — tester running next.
+**PO QA GATE: c.0 / C.2 / g.4 / g.6 = PASS.** C-family closes when T-BOOT-IDENTITY lands.
