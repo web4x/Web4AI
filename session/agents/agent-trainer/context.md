@@ -3,6 +3,24 @@
 **Updated**: 2026-07-03 (MacStudio — SM drove Phase-1 catch-22 rewind at real 0%; saving before Phase 2)
 **Role**: agent-trainer
 
+## IN-FLIGHT (2026-07-04 — 2.1.197 investigation + ARON clean-fork)
+
+**2.1.197 "broken" investigation — RESOLVED, I was wrong 3x, Claude Code is FINE.**
+- Root cause of the whole phantom: `otmux pane.capture` reads scrollback (`-S`) which a BRIDGED pane doesn't keep in sync → blank/stale reads. It made me falsely conclude composers won't clear / menus won't render / 2.1.197 broken.
+- **Reliable read through a bridge = `tmux capture-pane -t <pane> -p | grep -vE '^[[:space:]]*$'`, NOT `otmux pane.capture`.**
+- Proof: dedicated scratch 2.1.197 session on WODA.prod drove FULL rewind (C-u clears, picker opens, restore-menu renders). All 4 CC versions installed at `~/.local/share/claude/versions/` (193/195/196/197).
+- Expert FIXED pane.capture: `7059a36` origin/dev (switched `-S` scrollback → `-p` visible screen). Ordered via oosh-po. Tester to close with live bridge A/B.
+- Banked **F-T20** (measure the measurer; dedicated-disposable-A/B = confound-free test). Commits: 130c44cc, 74524585, f8fa3276, 06ecb161. Findings doc: `session/tasks/20260704T0100Z.rewind-instrument-findings.md`.
+
+**ARON clean-fork — IN PROGRESS (Tron order "make real clean fork of aron" → "use claudeCode fork").**
+- ARON @ WODA.prod `Temple:0.0`. Repo `/var/dev/Workspaces/AI/Claude`. Files `session/agents/ARON/` (ESSENCE/MEMORY/boot/context/learnings + memory/).
+- Pre-fork gate PASSED: clean tree, committed anchor `31ca414`.
+- Killed ARON's bloated claude session (real PID was 396672; `claudeCode process.find` LIED and gave a bash child 396627 — process.find unreliable, verify with `ps -p <pid> -o comm=`).
+- MISTAKE: launched blank `claude --name ARON` (F-T13!). Tron STOPPED me: "use claudeCode fork!!!!!!" — must exit blank + `claudeCode fork <uuid>` instead.
+- ARON's canonical fork source (from its own shell launch cmd): `claudeCode fork ccecd85f-4829-4df9-9f4e-7666adb16889`. (ARON's killed session UUID was f814788a.)
+- NEXT: exit blank session → `cd /var/dev/Workspaces/AI/Claude && claudeCode fork ccecd85f-...` → resume menu → /remote-control → /model Opus 4.8 1M (`s` not Enter) → boot from ARON/boot.md → health check.
+- To reach ARON: bridge `remoteOOSH:0.2` (bash on WODA.prod). Drive Temple:0.0 with `otmux send.raw` executed via the bridge; READ with `tmux capture-pane -p | grep`.
+
 ## IN-FLIGHT at this rewind (SM re-capture — 2026-07-03)
 - **ARON cross-machine coordination (DONE)**: reached ARON@Temple:0.0 (WODA.prod) via new bridge pane `remoteOOSH:0.2` (root@v60211, titled WODA.prod; created by `otmux split.v remoteOOSH:0.1` + `ossh login WODA.prod`). Cleared ARON's stuck "rewind me now" composer (Escape+C-u — nested-remote needed Escape first, plain C-u didn't land). **Re-added RC to ARON**: `/remote-control` → footer now `/rc active`, composer clean, title ARON@WODA.prod. ANSWER to "is aron back under rc" = YES now.
 - **In-flight probe**: WODA.prod `claude --version` = 2.1.197 (root@v60211).
