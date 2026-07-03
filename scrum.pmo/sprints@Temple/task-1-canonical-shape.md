@@ -5,14 +5,14 @@
 [task:uuid:70ed0f88-3c95-4676-bb7c-d15ce15b8ac7]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] Planned
+- [x] In Progress
+  - [x] refinement
+  - [x] creating test cases
+  - [x] implementing
+  - [x] testing
+- [x] QA Review
+- [ ] Done   ← pending: apply ruling to planning-templates.md (add AC↔test)
 
 ## Traceability
 - Source: Sprint T1, TRON directive "clarify task by task; scalable wins over primitive"
@@ -41,8 +41,10 @@ Fix the base shape so every downstream rule (sections, ids, status, roles) hangs
    [GitHub](https://github.com/web4x/Web4AI/blob/main/scrum.pmo/sprints@Temple/templates/task-template.hybrid.md) | [scrum.pmo/sprints@Temple/templates/task-template.hybrid.md](./templates/task-template.hybrid.md)
 
 ## Acceptance Criteria
-- [ ] TRON rules the shape: **hybrid** / bless-fork / pure-Web4.
-- [ ] `planning-templates.md` updated to the ruled shape, with a provenance line ("no Web4 template exists; derived from real sprints + WODA hybrid").
+- [x] TRON rules the shape → **Web4 canonical (option 1).** (Hybrid rejected: mixed headers+comments = not a template.)
+- [ ] `planning-templates.md` updated to **Web4 canonical shape + AC↔test link** (with provenance line).
+- [ ] A CLEAN reusable template (Web4 shape, no inline comments) produced — **each Acceptance Criterion links to the test that verifies it** (AC↔test traceability, the gap TRON found in option 1).
 
 ## QA Audit & User Feedback
-- _(awaiting TRON's ruling)_
+- **TRON 2026-07-03 (verbatim):** "its 1. 3 mixes heders and comments and can never be a template. 1 contains exaples and uuids.,, it lacks tthe test to the acceptance criterias"
+- **Ruling:** shape = **option 1, Web4 canonical.** Option 3 (ARON hybrid) REJECTED — a template must be clean headers, no mixed commentary. **Add the missing piece:** each Acceptance Criterion must link to its verifying test (AC↔test), which Web4 canonical lacks.
