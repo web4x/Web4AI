@@ -18,8 +18,21 @@
 - Killed ARON's bloated claude session (real PID was 396672; `claudeCode process.find` LIED and gave a bash child 396627 — process.find unreliable, verify with `ps -p <pid> -o comm=`).
 - MISTAKE: launched blank `claude --name ARON` (F-T13!). Tron STOPPED me: "use claudeCode fork!!!!!!" — must exit blank + `claudeCode fork <uuid>` instead.
 - ARON's canonical fork source (from its own shell launch cmd): `claudeCode fork ccecd85f-4829-4df9-9f4e-7666adb16889`. (ARON's killed session UUID was f814788a.)
-- NEXT: exit blank session → `cd /var/dev/Workspaces/AI/Claude && claudeCode fork ccecd85f-...` → resume menu → /remote-control → /model Opus 4.8 1M (`s` not Enter) → boot from ARON/boot.md → health check.
 - To reach ARON: bridge `remoteOOSH:0.2` (bash on WODA.prod). Drive Temple:0.0 with `otmux send.raw` executed via the bridge; READ with `tmux capture-pane -p | grep`.
+
+### ARON FORK — WRONG UUID (Tron caught it, 2026-07-04). RELAY THIS.
+- I forked `ccecd85f` (1.2MB, **Jun 28** = 5-day-old ANCESTOR/birth-seed, 206.5k) instead of the LIVE session `f814788a` (5.8MB, **Jul 3 02:58** = the CURRENT bloated ~1M ARON that actually needed rewind).
+- Cause: trusted a leftover `claudeCode fork ccecd85f` shell cmd + ARON's own note "real incarnation is ccecd85f" — those were the birth-seed, NOT the live session. **Authoritative source = `claudeCode session.id Temple:0.0` → f814788a.**
+- **LESSON (also in learnings)**: to rewind/recover a live agent, FORK THE LIVE SESSION UUID (`claudeCode session.id <pane>`), never an ancestor named in a stale command/note. Verify JSONL size+mtime: biggest+newest = current.
+- Current state: Temple:0.0 runs the ccecd85f-fork, re-anchoring from committed files (31ca414), healthy ~20%/1M, RC on, Opus 4.8 1M. It's reconstructing recent history lossily.
+- **FIX PLAN (pending Tron go)**: kill ccecd85f-fork → `claudeCode fork f814788a-daaa-4eb5-9e31-043688a46794` FULL-as-is (NEVER summary — Tron: summary=compact) → it'll be ~1M/bloated → picker-rewind at 50% (picker works now; cron df0d54a0 killed). ARON files committed 31ca414.
+- ARON JSONLs at `/root/.claude/projects/-var-dev-Workspaces-AI-Claude/` on WODA.prod.
+
+### Session-wide method banks (2026-07-04)
+- **Reliable pane read THROUGH A BRIDGE**: `tmux capture-pane -t <pane> -p | grep -vE '^[[:space:]]*$'` — NOT `otmux pane.capture` (reads `-S` scrollback, stale over bridge; expert fixed 7059a36).
+- **`claudeCode process.find` LIES** — returned a bash child (396627) not the claude proc (396672). Verify PID with `ps -p <pid> -o comm=` or `ps -t <tty> -o pid,comm= | grep claude`.
+- **/model in a fork**: fork inherits model; check the ✔ in picker. Escape if already 1M. (`s`=session-only switch, Enter=default-only.)
+- **Resume menu**: option 2 "Resume full session as-is" (NEVER option 1 summary = compact-equivalent).
 
 ## IN-FLIGHT at this rewind (SM re-capture — 2026-07-03)
 - **ARON cross-machine coordination (DONE)**: reached ARON@Temple:0.0 (WODA.prod) via new bridge pane `remoteOOSH:0.2` (root@v60211, titled WODA.prod; created by `otmux split.v remoteOOSH:0.1` + `ossh login WODA.prod`). Cleared ARON's stuck "rewind me now" composer (Escape+C-u — nested-remote needed Escape first, plain C-u didn't land). **Re-added RC to ARON**: `/remote-control` → footer now `/rc active`, composer clean, title ARON@WODA.prod. ANSWER to "is aron back under rc" = YES now.

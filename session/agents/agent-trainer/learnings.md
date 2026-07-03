@@ -446,6 +446,18 @@ Every planner agent must apply this on boot. Add to forked-agent boot reading li
 - **Always enable /remote-control on fresh agents.** A fresh `claude --name` session does NOT have Remote Control enabled. Without it, Tron can't see the agent's output in the Claude app. Send `/remote-control` + Enter after boot and verify "Remote Control active" in status bar.
 - **Fresh agents also need**: correct model (`/model` → Opus 4.7), accept-edits mode if needed, and their boot training prompt.
 
+### F-T21: Forked the WRONG UUID — an ancestor, not the live session (2026-07-04)
+
+Tron ordered a clean fork of ARON. I forked `ccecd85f` (1.2MB, Jun 28 = 5-day-old BIRTH-SEED, 206.5k) instead of the LIVE session `f814788a` (5.8MB, Jul 3 = the current ~1M bloated ARON that actually needed rewind). The current ARON's 5 days of recent conversation were lost from the fork — only committed files (31ca414) survived, and the fork had to reconstruct lossily.
+
+**Cause**: I trusted (a) a leftover `claudeCode fork ccecd85f` command in the pane's shell buffer, and (b) ARON's own note "the real incarnation to fork is ccecd85f." Both pointed at ARON's BIRTH SEED, not its current running session.
+
+**RULES:**
+- **To recover/rewind a LIVE agent, fork the LIVE session UUID** — `claudeCode session.id <pane>` is the authoritative source. NEVER fork an ancestor named in a stale command or a note.
+- **Verify by JSONL**: `ls -la ~/.claude/projects/*/<uuid>*.jsonl` — the current session is the BIGGEST + NEWEST. An ancestor is small + old. Check before forking.
+- **`claudeCode process.find` and `claudeCode session.id` can mislead** — process.find gave a bash child not the claude proc; session.id gave the live UUID (correct) but I overrode it with a stale command. Cross-check: JSONL size/mtime, `ps -p <pid> -o comm=`.
+- **A bloated live session (~1M) recovers via: fork-full-as-is → picker-rewind at 50%.** NOT fork-an-old-ancestor (loses recent), NOT summary (Tron: summary=compact, loses fidelity).
+
 ### F-T20: Trusted a lying instrument — chased a phantom "2.1.197 bug" (2026-07-04)
 
 **`otmux pane.capture` read THROUGH THE WODA.prod bridge returns BLANK/STALE content.** It missed a trust prompt, missed real Claude responses, and falsely showed composers as "won't clear" and rewind menus as "won't render." I built an entire investigation on those false reads and nearly reported "Claude Code 2.1.197 has a programmatic-input regression" — TWICE. Tron's challenge ("so you tell me claude code is broken?") forced the recheck.
