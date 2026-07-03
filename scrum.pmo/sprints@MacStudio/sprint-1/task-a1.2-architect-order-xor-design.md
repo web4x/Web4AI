@@ -20,4 +20,4 @@ Design corrected `state.add` order (mode branch before done) + XOR redirect-on-O
 **Commit(s):** `f4aea76`  (once.sh/dev)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*

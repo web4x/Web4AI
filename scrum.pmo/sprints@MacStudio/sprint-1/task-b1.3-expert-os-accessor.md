@@ -20,4 +20,4 @@ Add side-effect-free `os.os` (owns the `$OSTYPE→OOSH_OS` mapping via os.check.
 **Commit(s):** `19a2a45`  (once.sh/dev)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*

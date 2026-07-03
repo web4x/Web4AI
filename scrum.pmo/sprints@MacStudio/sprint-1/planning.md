@@ -4,7 +4,7 @@
 A naked system reaches a **correct, mode-aware, platform-appropriate** OOSH installation via BOTH install paths (P1 self-bootstrap `init/oosh`, P2 `ossh install` dev→naked), with ALL install/branch logic in the **`oo`** custom script (the SETUP_SERVER machine driver) and **ZERO edits to the `state` engine**. Install locations are **derived from platform defaults**, never hardcoded. Existing installs **self-heal** to the corrected state order.
 
 ## Sprint Overview
-- **Host:** MacDonges (donges@MacStudio) · **Test box:** WODA.test (v36421)
+- **Host:** MacStudio (donges@MacStudio) · **Test box:** WODA.test (v36421)
 - **Branch model (Tron):** `dev` = OS-INDEPENDENT master; `macos.latest` = platform-specific staging (features flow macos.latest → generalized → **down into dev**). This sprint lands on **`dev`** — no promote-up.
 - **Team:** oosh-architect (design), oosh-expert (impl), oosh-tester (verify) — MacStudio ooshTeam
 - **Code repo:** `Cerulean-Circle-GmbH/once.sh` (branch `dev`) · **Mailbox:** `web4x/Web4AI` (branch `main`)
@@ -97,4 +97,4 @@ F1 (parity) — parallel, delegated to WODA.prod
 ---
 **Product Owner:** oosh-po@MacStudio (ooshTeam:0.0)
 **Created:** 2026-07-02
-**Sprint:** Sprint 1 @MacDonges — SETUP_SERVER Cross-Platform + State Correctness
+**Sprint:** Sprint 1 @MacStudio — SETUP_SERVER Cross-Platform + State Correctness

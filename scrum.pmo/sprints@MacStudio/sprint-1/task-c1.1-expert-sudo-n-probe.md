@@ -20,4 +20,4 @@ Replace prompting `$SUDO touch` with root/marker/`sudo -n` probe; no rights → 
 **Commit(s):** `8be593d`  (once.sh/dev)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*

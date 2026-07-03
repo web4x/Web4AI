@@ -20,4 +20,4 @@ Verify live both arms converge on user.installation.done for BOTH OOSH_MODE valu
 **Commit(s):** `9395fca + bceb7b2`  (once.sh/dev)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*

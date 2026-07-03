@@ -20,4 +20,4 @@ Verify a naked run never prompts / never hangs; sudo-less defers to user band; 7
 **Commit(s):** `f97fc06`  (once.sh/dev)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*

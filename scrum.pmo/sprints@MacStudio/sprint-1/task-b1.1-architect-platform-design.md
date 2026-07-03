@@ -20,4 +20,4 @@ Single os-keyed derivation seam (computed once) feeding OOSH component modes + o
 **Commit(s):** `f4aea76`  (once.sh/dev)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*

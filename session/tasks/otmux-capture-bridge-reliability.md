@@ -39,3 +39,22 @@
 
 **BLOCKED — remote bridge leg:** the *literal* "over the WODA.prod bridge (ossh exec WODA.prod)" A/B is denied by the auto-mode classifier (prod remote exec, peer-directed, no established user intent). The non-prod substitute **WODA.test** is also denied (same rule). Needs **user (Tron) authorization** for one `ossh exec <host>` bridge A/B, or a settings permission rule. The LOCAL A/B above proves the same parity invariant the bridge requires (fix reads the *visible screen*, never scrollback → nothing for a bridge to desync); the remote leg would be confirmation on a real relay, not a new risk surface.
 **Lie-instrument note (F-T20):** my first zsh-context inline A/B returned empty==empty and falsely reported "MATCH" — discarded; the committed test uses raw-tmux oracle + explicit render sleep so empty-vs-empty cannot pass.
+
+---
+## PO QA CO-CONFIRM — oosh-po@MacStudio, 2026-07-04 — PARTIAL (local PROVEN, remote leg Tron-gated)
+Inspected the tester's OWN commit `1c5a4e8` (co-confirm standard) + expert `7059a36`:
+- **Fence (T-1): SIGNED-OFF** — parses the real `capture-pane` command, asserts no `-S`; NEGATIVE-CONTROL proven (flips RED on the buggy macos.latest `-S` code) = a real gate, not a tautology. ✓
+- **Local A/B (T-2) + interior-blank (T-3): SIGNED-OFF** — raw-`tmux -p` oracle, parity confirmed, no blank/stale, interior blanks preserved; F-T20-hardened (raw oracle + render sleep, empty==empty cannot pass). ✓
+- **Remote WODA.prod/.test bridge A/B: HELD — needs ONE Tron `ossh exec <host>` auth** (auto-mode classifier denies peer-directed remote exec). Transitivity says it's airtight (fix == the trainer's proven-reliable `tmux -p`; awk/tail bridge-agnostic), BUT per measure-the-measurer / F-T20 I will NOT declare the bridge-fix confirmed without the actual bridge A/B — that's the very over-claim this task fixes.
+**Verdict:** fix is correct + locally proven + regression-fenced; #37 stays OPEN at QA-partial pending the one Tron-authorized bridge A/B. Same Tron-gate class as sprint-1 E1.2/D1.3 (mechanics proven, live-remote leg needs Tron's OK).
+
+---
+## PO REMOTE-BRIDGE A/B — oosh-po@MacStudio, 2026-07-04 — GATE CLOSED (Tron-authorized, decisive live repro)
+Tron authorized + directed the held remote leg. I ran it live over a real MacStudio→WODA.prod bridge (a MacStudio pane ssh-attached to a WODA.prod redrawing scratch = the exact relay-desync condition), then compared read methods ON the bridged pane:
+- **`-p` visible screen (the FIX's method):** CURRENT content — CAP-A-TOP / CAP-C-MID / CAP-D + live `v60211` status bar. RELIABLE.
+- **`-S` scrollback (old form) AND `otmux pane.capture` (macos.latest buggy `-S`):** **1 line — BLANK.** The lying instrument, reproduced exactly (this is what made the trainer see "composer won't clear / menu won't render / 2.1.197 broken").
+- **Fix pipeline (7059a36: `-p` + awk trailing-strip + tail) over the bridge:** matches the live visible frame. CONFIRMED.
+**∴ Root cause CONFIRMED** (a relayed pane's `-S` scrollback desyncs/blanks; `-p` is live) **and 7059a36 RESOLVES it over a real bridge.** All 3 legs GREEN (fence + local A/B + remote-bridge). **#37 CLOSED.**
+
+### ⚠ DEPLOYMENT GAP (→ follow-up #38)
+WODA.prod's OWN otmux (branch `dev`) STILL has the buggy `-S` at line 2948 — **`7059a36` is NOT pulled to WODA.prod**. The fix is committed to `origin/dev` but not deployed to WODA.prod's checkout, so WODA.prod tooling keeps hitting the lying instrument until it `git pull`s dev. (Do NOT unilaterally pull a live box — WODA.prod PO's call.)

@@ -27,4 +27,4 @@ The D1 reorder (Epic A) only helps NAKED rebuilds; an already-installed box keep
 - **How:** two-tier detect (schema stamp + order-invariant-by-name) → reconcile BY NAME (capture→delete-data-file→`declare`→`state.set name`/marker-fallback→stamp). No drive (F2-safe). DRY: one `private.setup.server.declare` shared by fresh-init + reconcile.
 
 ---
-*Sprint 1 @MacDonges · Epic D: Self-Heal Existing Installs · Priority 1*
+*Sprint 1 @MacStudio · Epic D: Self-Heal Existing Installs · Priority 1*

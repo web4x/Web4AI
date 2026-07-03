@@ -20,4 +20,4 @@ Two-tier detect (oosh.env schema stamp + order-invariant-by-name probe) → reco
 **Commit(s):** `e20dbe27`  (once.sh/dev)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*

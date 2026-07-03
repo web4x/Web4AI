@@ -20,4 +20,4 @@ T-RECONCILE + T-RECONCILE-IDEMPOTENT on an ISOLATED box (seed old-order states.e
 **Commit(s):** — (blocked)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*

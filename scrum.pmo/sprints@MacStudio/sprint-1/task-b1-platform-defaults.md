@@ -28,4 +28,4 @@ Measured hardcodes: `oo:218` component base, `odocker:14` workspaces. `os.check.
 - **How:** `os.os` accessor → `config.init` derives `OOSH_SHARED_BASE`→`OOSH_COMPONENTS_DIR`/`ODOCKER_WORKSPACES` as pure-state exports; consumers drop literals; `${VAR:-}` preserves operator override.
 
 ---
-*Sprint 1 @MacDonges · Epic B: Cross-Platform Defaults · Priority 1*
+*Sprint 1 @MacStudio · Epic B: Cross-Platform Defaults · Priority 1*

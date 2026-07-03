@@ -20,4 +20,4 @@ Provision a fresh linux container via `odocker run.sshd` (proven clean) and run 
 **Commit(s):** — (blocked)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*
