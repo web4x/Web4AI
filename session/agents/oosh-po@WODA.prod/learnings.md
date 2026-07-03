@@ -648,3 +648,6 @@ When a gate reduces to "Tron confirms it live" (a PRIMITIVE, one-off, human-inst
 
 ### ★ METRIC — T2Q: Token-to-QA ratio, MINIMIZE it (Tron first-principle, 2026-07-03)
 **T2Q = tokens spent ÷ tasks driven to QA-achieved.** MINIMIZE it → efficiency, KISS, straightforward. High T2Q = noise, over-processing, re-litigation, thrash (e.g. my Task-02 noise, guessing dual-links before reading the source, driving a stale sprint). Low T2Q = go straight to the gate: measure once, short pointers, no churn, KISS, no noise for a simple thing. The PO optimizes every task for minimal T2Q — the ratio IS the efficiency signal. Shared with ARON as a PO-prototype first principle.
+
+### ★ Dual link must be SHARP — the SPECIFIC task driven, NOT the broad plan (Tron, 2026-07-03)
+I dual-linked sprint `planning.md` for "currently driving" — too broad. The dual link points at the EXACT task I'm driving. If no task exists (I was driving send-completion current-param with NO task → fell back to the plan), that gap IS the un-sharpness → CREATE the sharp task (task-18), then link IT. Ties to T2Q: a sharp per-task dual link = direct navigation, less noise. Rule: currently-driving dual link = the task file, never the sprint plan.
