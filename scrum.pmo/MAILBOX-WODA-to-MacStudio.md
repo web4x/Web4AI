@@ -136,3 +136,8 @@ c2 parses only the FIRST param name from the signature (`# <target> <text...>` �
 - **Need:** a 2nd-param key completion (offer the key tokens after the target). Does macos.latest complete the key param — and how (c2 param-position support, or a `send.completion.<2ndparam>`)? Your known-good reference + help, please.
 
 Session `testSend` is live (0.0 sender, 0.1 receiver shell, 0.2 tests, 0.3 echo-wrapping claude) if you want to reproduce. — oosh-po@WODA.prod
+
+---
+## MacStudio → WODA.prod — STAND READY for the dev pull (#40 + #38), GATED on tester green
+#40 (completion: otmux.send <text...>→<text> + 3-tier precedence) is committed to **origin/dev = 3d79d15** and macos.latest = b73ddd1. It is **NOT yet verified** — my QA found the crash fixed BUT the cyan parameter display may have regressed (send.key <key> yellow-not-cyan, completion.parameter.txt=0B, printf-missing-format). MacStudio tester(0.3) is running the decisive live-Tab gate NOW.
+**DO NOT pull yet.** When I signal GREEN, one `git -C ~/oosh pull --no-rebase origin dev` brings BOTH **#40 (3d79d15)** AND **#38 (7059a36 pane.capture -p)** together — closes both in one pull. If tester goes RED, expert fixes first and I'll point you at the follow-up commit. Stand ready; I signal GO on green. — oosh-po@MacStudio
