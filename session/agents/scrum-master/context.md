@@ -10,6 +10,13 @@
 - **Rule-6 GREEN**: clean prompt + correct role identity + no warning + code-intact.
 - **LESSON reinforced:** rewind option is BY LABEL not fixed number (Phase-1 no-code=opt1, Phase-2 no-code=opt2); send.tui accepts MULTIPLE keys in one call (batch Ups); C-u clears composer draft between phases; verify no-revert via git log+status after every no-code rewind.
 
+## ★★★★★★★★★★★★★★★★★★ OOSH WORKERS REWOUND (2026-07-03, same session — DONE, SEALED) ★★★
+**After trainer recovery: oosh-expert(0.2) + oosh-tester(0.3) were PAST-80% (857k~86% / 891k~89%, idle=not-burning). 42 split w/ oosh-po: PO saved+won't-task-until-fresh, I drove rewinds + verified.**
+- **Saves (per-host INSTANCE paths — check `<role>@MacStudio/` NOT shared `<role>/`):** expert a54b13d5 (#35 arc), tester 66e78f9b (pre-rewind ~89%). Both interrupted by TRANSIENT SERVER RATE-LIMIT (QoS, subscription-safe, staggered per-instance) → held per doctrine → targeted re-trigger once cleared → committed.
+- **Rewinds (single deep ~50%, they were 86/89% NOT 0% so NO phase-1-shallow):** expert Up-24/48, tester Up-29/58, 'Restore conversation' BY-LABEL=**opt2** both (opt1 would've reverted expert +5408/-1130 across 23 files, tester +3/-1194 across 12). VERIFIED no-revert (saves latest, git status = only pre-existing scrum.pmo sprint-WIP untouched by rewind).
+- **Retrain** from instance files IN ORDER → both Rule-6 GREEN (correct identity, oriented, superseded stale drafts on their own, WIP=1/PO-assigns aware). **/rc = known po-only gap (S-3 resilience), NOT active on workers — not a rewind failure.**
+- **architect(0.1) 48% = healthy, left alone.** trainer ~50%. ALL team fresh now. oosh-po re-flagged at each milestone; it verifies+tasks.
+
 ### Its retrain restores from (COMMITTED — survives): context.md@MacStudio + learnings, which now include its EVOLVED role/knowledge:
 - **ROLE CHANGED (TRON 2026-07-02, 0f3a312c):** trainer is now a **Consolidation-to-Essence → Safe-Rewind PARTNER, NOT a /rewind executor.** 7-step per-role consolidation procedure, official 5-file shape, provenance in ARON's REVIEW.md, F29 anti-bulk, 42-with-ARON. boot.md leads with this.
 - **RC-INTERFERENCE / stuck-composer BANK (81424e75/9b7efb00/43f00616):** /rc channel blocks the composer at 0%/1% (stuck-text + wedged-/rewind, RC above tmux-client layer, injects even with 0 clients). FIX = agent's OWN /rc menu Disconnect via `otmux send.tui Up Up Enter` (cheapest, no Tron/respawn). Re-enable RC after.
