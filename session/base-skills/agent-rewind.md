@@ -43,14 +43,18 @@ A modal picker BLOCKS the agent's own UI — once it's open the agent cannot gui
 ## FORBIDDEN
 - **NEVER send /clear** — destroys all training, unrecoverable
 - **NEVER send /compact** — only Tron authorizes
-- **NEVER choose option 1** "Restore code and conversation" — reverts committed files
-- **NEVER choose option 4** "Summarize from here" — just compresses, doesn't rewind
+- **SELECT BY LABEL, NOT POSITION** (CRITICAL — the restore menu has TWO layouts): read the menu every time and pick the entry **literally labeled "Restore conversation"**.
+  - (A) checkpoint WITH code changes → `1 Restore code and conversation` / `2 Restore conversation` / `3 Restore code` / `4 Summarize` → "Restore conversation" = **#2**.
+  - (B) checkpoint marked "⚠ No code restore" → `1 Restore conversation` / `2 Summarize from here` / `3 Summarize up to here` / `4 Never mind` → "Restore conversation" = **#1**.
+  Blindly pressing "2" on layout (B) picks **Summarize** — a silent wrong action. The confirm header shows "The code will be unchanged" for the safe path.
+- **NEVER choose "Restore code and conversation"** — reverts committed files. **NEVER choose any "Summarize"** — compresses, doesn't rewind.
 
 ## If /rewind Doesn't Work
 - /rewind is a TUI command — it processes at UI level, NOT conversation level
 - It SHOULD work even at "Context limit reached"
 - **RC-INTERFERENCE (CONFIRMED 2026-07-03): if `/rc active` is in the footer AND the agent is at 0%/1% AND /rewind won't open the picker (composer stuck "esc to interrupt", /rewind lands as staged text) — the Remote Control channel is BLOCKING the composer.** (Same root as the stuck-TEXT composer bug; two symptoms, one fix.) FIX: disconnect RC from the agent's own /rc menu → `otmux send <pane> /rc` (opens menu) → capture options → `otmux send.tui <pane> Up Up` (to "Disconnect this session"; verify `grep "❯"`) → `otmux send.tui <pane> Enter` → footer loses "/rc active", composer unwedges → /rewind works. **RE-ENABLE `/remote-control` in the retrain prompt after** (footer must show /rc active again; verify it sticks). Don't spam keystrokes — disconnect RC first, escalate only if the disconnect itself fails.
-- If it truly doesn't respond after 10 seconds (and not RC-interference): **ASK TRON**
+- **PICKER RENDERS ONLY ITS HEADER (no list / cursor / options) = the pane is TOO SHORT** (confirmed on oosh-po 2026-07-03). A many-entry picker needs ~20+ rows. Root cause: a small ATTACHED client pins the window (tmux sizes a window to the SMALLEST attached client). FIX (with Tron's ok to force-detach): `otmux client.list` → `otmux client.detach <tty>` on the small/stale client(s) → `otmux fit <session>` → **targeted zoom `tmux resize-pane -Z -t <pane>`**. ⚠️ `otmux zoom` is `resize-pane -Z` with NO `-t` — it zooms the CALLER's pane, never a remote target; you MUST use the targeted `tmux resize-pane -Z -t <pane>` (sanctioned raw for a named recovery). Un-zoom + `otmux size.unlock <session>` after. (The proper fix — `otmux fit` on attach + a good default size on detach — is tracked as its own sprint.)
+- If it truly doesn't respond after 10 seconds (and not RC-interference or a too-short pane): **ASK TRON**
 - Last resort: fork from fallback-agents session (preserves training from fork point)
 
 ## Step 5: Health Check (MANDATORY after every rewind)
@@ -85,7 +89,7 @@ Sequence:
 1. **Open:** `otmux send.raw <pane> "/rewind" Enter` → `otmux pane.capture <pane> 24` (the checkpoint list appears; use the `↑N / ↓N` counter as a precise depth gauge).
 2. **Navigate DEEP:** `otmux send.raw <pane> Up` (batches of 20-40 land exactly) → capture → repeat until the highlight sits on the target checkpoint. Picker restores to the point BEFORE the highlighted message.
 3. **Select checkpoint:** **`otmux send.tui <pane> Enter`** (bare — NOT `send.raw`) → capture (the Restore-options menu appears; it does NOT close).
-4. **Option 2 "Restore conversation":** `otmux send.raw <pane> Down` to highlight → capture (confirm it's on option 2, never 1/4) → **`otmux send.tui <pane> Enter`**.
+4. **Choose "Restore conversation" — BY LABEL, not by number** (see FORBIDDEN: layout A → #2, layout B → #1): `otmux send.raw <pane> Down/Up` to land on the entry labeled "Restore conversation" → capture (confirm the label + "The code will be unchanged") → **`otmux send.tui <pane> Enter`**.
 5. **Verify:** `otmux pane.capture <pane> 25` (conversation truncated to the checkpoint = success).
 
 **Iron rule:** navigate with `send.raw` arrows; SELECT with `send.tui Enter`. NEVER `send.raw Enter` / `send` / `send.verified` inside the picker — they Escape-cancel it. **Modal-coordination fact:** while the picker is open on the agent's pane, that agent is BLOCKED at its UI and cannot guide in real-time — a PEER or TRON drives + guides from outside; you cannot message the agent's pane without disrupting the picker.
