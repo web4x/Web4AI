@@ -5,8 +5,8 @@
 
 ## Status
 - [x] Planned
-- [ ] In Progress
-- [ ] QA Review
+- [x] In Progress
+- [x] QA Review (guards+auth+trigger expert-verified; live picker-drive → tester T-REWIND-DRIVE)
 - [ ] Done
 
 ## Description
@@ -68,7 +68,9 @@ The message poke-loop (`send.verified`) pokes ENTER to commit a staged message. 
 
 ## Report-back
 - Architect (drive design): **DONE 2026-07-03** — `otmux.rewind.drive` (View: SELF+IDLE guards, post/verify-picker/navigate-capture-between-keys/select/verify, FAIL-SAFE on the known select-stall → Escape out, agent unharmed, rc2 Tron-drive/TRUE-FORK) + `hiveMind.agent.rewind` (Controller: Tron-auth + DURING_REWIND quiesce = the poke-guard so no message Enter hits the picker). Correct-by-construction: verify every step, never leave the agent worse off, DURING_REWIND cleared on every exit. Reuses send.verified + the manual rewind-TUI pattern + the state machine. T-REWIND-DRIVE incl. the select-stall-unharmed + poke-held cells.
-- Expert (impl):
+- Expert (impl): **DONE 2026-07-03 `ef8ec82`** (dev). **`otmux.rewind.drive <pane> <?option:2>`** (View, otmux) — GUARD1 SELF-refuse (`pane==pane.self`→rc1) + GUARD2 IDLE-only (`esc to interrupt` or no `❯`→rc3), both BEFORE any keystroke; post `/rewind` (literal + Escape autocomplete-dismiss + Enter) → VERIFY picker opened (else fail-safe rc2); navigate Down to option 2 with capture-after-EVERY-key (picker-vanish→fail-safe); select BARE Enter (NO preceding ESC — Tron insight); verify sub-menu rendered→rc0, else **KNOWN select-stall → `private.otmux.rewind.failsafe` (Escape out → verify agent UNHARMED at idle ❯ → rc2)**; never blind-re-Enter. **`hiveMind.agent.rewind <name> <?option> <?auth>`** (Controller, hiveMind) — resolve name→pane; **Tron-auth DEFAULT-REFUSE** (needs `authorized` arg or `HIVEMIND_REWIND_AUTHORIZED=1`); **DURING_REWIND set FIRST** (poke-guard → `agent.route`→rewind-hold holds ALL sends, no Enter into picker) → delegate to `otmux.rewind.drive` → **DURING_REWIND cleared on EVERY exit** → **`shell.reap "$pane"` on rc0 ONLY** (verified rewind = old claude replaced → orphaned shells → the PO's persist-thru-rewind fd-leak auto-cure, safe via the T-SHELL-REAP-passed reaper; a stall/refuse changed nothing → no reap). rc{0 rewound / 2 stalled-safe / 3 busy / 1 self-or-error}.
+  - **VERIFIED (safe surface, no real rewind):** SELF-refuse ✓, IDLE-refuse (scratch shell pane) ✓, Tron-auth default-refuse ✓ (before touching pane), DURING_REWIND clear-on-every-exit ✓, shell.reap fires on rc0 ✓ / NOT on rc2-stall ✓.
+  - **⚠ NEEDS TESTER LIVE-VERIFY (T-REWIND-DRIVE — destructive, needs a sacrificial/idle peer, e.g. ARON %11):** the actual picker post→navigate→select→verify/fail-safe path. **Two assumptions to CALIBRATE:** (1) **picker-open + sub-menu signatures** are best-guess regexes (`rewind|restore|Select a|↑↓` open; `restore (from|to)|rewound|Restored|which message` success) — the real Claude /rewind picker text may differ; tune from a live capture. (2) **Tron-auth mechanism** — no code rule existed, so I implemented explicit default-refuse (arg/env); architect to confirm vs any intended rule. The KNOWN select-stall means rc2-fail-safe is the EXPECTED common outcome (not a failure).
 - Tester (T-REWIND-DRIVE):
 
 ---
