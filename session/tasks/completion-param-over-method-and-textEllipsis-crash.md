@@ -64,3 +64,15 @@ Tester live-Tab RED confirmed the "separate finding" was a REAL regression (the 
 **Fix (1 line, chokepoint, self-heal):** `grep '^declare ' result.env >> current.method.env` — the sourced env now contains ONLY `declare` statements regardless of upstream log noise. Strictly additive (declares kept, noise dropped; empty→same as before).
 **Verified (expert, worktree):** `current.method.env` all-`declare` + `bash -n` clean; `completion.parameter.txt` populated (`target/key/OPTIONAL_count`); `otmux send.key D` renders `<target>`(yellow) `<^[[96mkey^[[33m>`(**CYAN**) `<?count:1>`(yellow). Definitive = tester's live-Tab re-run.
 **#41 handoff (root fix, later):** this chokepoint band-aids the c2 CONSUMER. The ROOT is `config.save` (and any `console.log`) leaking to fd1 during a `$()`/redirect capture — same class as the BUG-5 "logs must never reach fd1" rule. #41 = coerce `console.log`'s device off fd1 (or stop `config.save` running/logging inside completion bootstrap) so no consumer needs to filter. Cross-ref learnings "error.log writes to stdout" + macos.latest `33da219`.
+
+---
+## CYAN-HIGHLIGHT FIX (RED-2, triple-confirmed → landed) — oosh-expert: dev `25081bd` + macos.latest `6b1ee31` (display block byte-identical), pushed
+The leak fix (`2484ffc`) populated `completion.parameter.txt` but cyan STILL didn't fire (tester live: `currentParameter=""` → the `[ -n "$currentParameter" ]` guard was skipped → all-yellow).
+**Root cause (display layer, 2nd defect):** the highlight did `sed "s|$currentParameter|$CYAN…$YELLOW|"` on `METHOD_PARAMETER` — fragile 3 ways + a hard dependency:
+1. **OPTIONAL params never highlighted** — `completion.parameter.txt` stores `OPTIONAL_count` but the display shows `<?count:1>`; the name never matched (MEASURED: parc=2 → NONE cyan).
+2. **substring collision** — `target` ⊂ `targetPane` highlights the wrong token.
+3. **sed metachars** in a name break the expression.
+4. depends on `PARAMETER_COMPLETION[parc]` being non-empty at display time — the tester's `currentParameter=""` case → guard skipped → nothing cyan.
+**Fix:** colour the **parc-th `<...>` token BY POSITION** (iterate `METHOD_PARAMETER` tokens, cyan the parc-th `<…>`, rest yellow). Uses only `METHOD_PARAMETER` + `parc` — drops the `currentParameter`/`sed`/`PARAMETER_COMPLETION` dependency for the display (`currentParameter` retained for the value-completion call). 
+**Verified (expert, worktree — all positions):** parc0→`<target>` CYAN, parc1→`<key>` CYAN, parc2→`<?count:1>` CYAN (the optional that was broken), others yellow. `bash -n` OK both branches.
+**F-T20 flag (honest):** my synthetic `completion.discover` harness could NOT reproduce "nothing cyan" (it showed cyan for word 2/3 — the word-index it passes differs from real Tab's COMP_CWORD), so the **tester's real-Tab is the arbiter of this fix, not my harness.** The rewrite eliminates the exact machinery (currentParameter/sed) the tester measured empty, so it should fix real-Tab regardless. → tester live-Tab re-run.
