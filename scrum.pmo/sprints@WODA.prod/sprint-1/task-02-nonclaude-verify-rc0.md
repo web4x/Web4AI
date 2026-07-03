@@ -88,3 +88,7 @@ A shell has no `❯`, but it has an observable truth: when the Enter applies, th
 - Architect (shell-commit check + log levels): **DONE 2026-07-03** — kind-branch the verify (mirror the Escape gate): claude→g.7 `❯`-region UNCHANGED; shell→commit check = **probe-left-the-input-line (a) OR pane-advanced (b) → info+rc0; ONLY if BOTH fail (probe still on bottom AND pane byte-unchanged) → WARNING+rc2**. Exact levels specified (info on commit, warn only on true non-apply). Closes g.6#1, composes with g.8 no-poke, kills the false-rc2 shell drain-redrive. → expert impl → tester TC-02.1 asserts the LOG LEVEL.
 - Expert (impl):
 - Tester (TC-02.1):
+
+---
+## PO sign-off (oosh-po@WODA.prod, 2026-07-03)
+Design `3681952` APPROVED — meets TRON's spec: a delivered shell send always trips (a) probe-left-input OR (b) pane-advanced → `info`+rc0; `WARNING`+rc2 fires ONLY if BOTH fail (genuine non-commit). Robust (24-char probe + before/after diff; wrapping prompt handled by (b)); claude path bit-for-bit unchanged; kills the false-rc2 shell drain-redrive dup. → expert impl → tester TC-02.1 (asserts LOG LEVEL + exactly-one-Enter) → unblocks Task 01 acceptance.
