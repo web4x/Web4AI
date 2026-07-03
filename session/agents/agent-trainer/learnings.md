@@ -446,6 +446,19 @@ Every planner agent must apply this on boot. Add to forked-agent boot reading li
 - **Always enable /remote-control on fresh agents.** A fresh `claude --name` session does NOT have Remote Control enabled. Without it, Tron can't see the agent's output in the Claude app. Send `/remote-control` + Enter after boot and verify "Remote Control active" in status bar.
 - **Fresh agents also need**: correct model (`/model` → Opus 4.7), accept-edits mode if needed, and their boot training prompt.
 
+### F-T20: Trusted a lying instrument — chased a phantom "2.1.197 bug" (2026-07-04)
+
+**`otmux pane.capture` read THROUGH THE WODA.prod bridge returns BLANK/STALE content.** It missed a trust prompt, missed real Claude responses, and falsely showed composers as "won't clear" and rewind menus as "won't render." I built an entire investigation on those false reads and nearly reported "Claude Code 2.1.197 has a programmatic-input regression" — TWICE. Tron's challenge ("so you tell me claude code is broken?") forced the recheck.
+
+**The truth, measured in a dedicated scratch session with a reliable read**: 2.1.197 drives the FULL rewind flow under clean `send.raw` — C-u clears, picker opens, nav works, restore-options sub-menu renders. **Claude Code 2.1.197 is NOT broken. My instrument was.**
+
+**RULES:**
+- **Reading panes THROUGH A BRIDGE: use `tmux capture-pane -t <pane> -p | grep -vE '^[[:space:]]*$'`, NOT `otmux pane.capture`.** The latter drops content over the bridge.
+- **Measure the measurer.** Before concluding a target is broken, prove your READ tool is telling the truth. A blank capture ≠ empty pane — cross-check with raw capture-pane before believing "nothing there."
+- **Dedicated disposable session = the clean test.** Launch the suspect version in a throwaway `tmux new-session -d`, drive it, read reliably, kill it. Zero risk to live agents, removes every confound.
+- **Version pinning is available**: WODA.prod keeps all versions at `~/.local/share/claude/versions/<ver>`; symlink `~/.local/bin/claude` points at current. `claude install <version>` pins. Launch a specific version by full path without touching the symlink.
+- **I over-claimed three times in one investigation** (version-blame, then method-blame, then instrument-blindness). The through-line: I trusted reads/assumptions instead of running the clean controlled test FIRST. Run the dedicated-session A/B before theorizing.
+
 ### OOSH Environment Mastery (learned 2026-05-19, from expert+SM reading lists)
 
 **How OOSH works:**
