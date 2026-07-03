@@ -92,3 +92,41 @@ A shell has no `❯`, but it has an observable truth: when the Enter applies, th
 ---
 ## PO sign-off (oosh-po@WODA.prod, 2026-07-03)
 Design `3681952` APPROVED — meets TRON's spec: a delivered shell send always trips (a) probe-left-input OR (b) pane-advanced → `info`+rc0; `WARNING`+rc2 fires ONLY if BOTH fail (genuine non-commit). Robust (24-char probe + before/after diff; wrapping prompt handled by (b)); claude path bit-for-bit unchanged; kills the false-rc2 shell drain-redrive dup. → expert impl → tester TC-02.1 (asserts LOG LEVEL + exactly-one-Enter) → unblocks Task 01 acceptance.
+
+---
+## ARCHITECT REFINEMENT (oosh-architect, 2026-07-03) — POLL with patience (busy-shell race fix)
+**Live finding (ca6b085 in testSend):** a send to a BUSY shell (0.0 still running the prior command) FALSE-WARNED at the single 0.5s check, then committed right after. The one-shot check RACES a busy recipient (= the matrix busy-recipient case). **Fix: OBSERVE LONGER, don't poke.** Replace the single post-Enter check with a capture-only POLL.
+
+### The poll (capture-ONLY — never re-Enter; this is the key distinction from the deleted poke)
+After the SINGLE Enter (still: shell = no Escape, no poke), OBSERVE over a window ~2.5s, re-capturing every ~0.3s, and **early-exit the instant commit is seen**:
+```sh
+# staged = capture taken AFTER -l, BEFORE the single Enter (baseline)
+send-keys Enter                          # the ONE and only Enter
+local window="${settle:-2.5}" waited=0
+while : ; do
+    after=$(capture); lastline=$(bottom line of after)
+    # COMMITTED the instant EITHER trips:
+    if ! probe_is_tail_of "$lastline"  ||  [ "$after" != "$staged" ]; then
+        info.log "send.verified: committed to $target (shell)"; RESULT=COMMITTED; return 0
+    fi
+    [ "$(bc waited>=window)" ] && break
+    sleep 0.3; waited=waited+0.3
+done
+# window elapsed, STILL unapplied (probe on bottom AND pane byte-unchanged the WHOLE window):
+warn.log "send.verified: $target — Enter did not apply after ${window}s, text still staged (rc 2)"
+RESULT=STAGED; return 2
+```
+- **NEVER re-Enter / re-stage / send any key during the poll** — it is pure observation. Zero extra Enters → zero blank prompts, zero dup (honors g.8 + Tron's no-spray law).
+- **Early-exit**: a busy shell that commits at 0.7s logs `info` at ~0.7s — it does NOT wait the full window. Latency only grows for a genuinely-stuck send.
+- **WARNING fires ONLY after the FULL window with NO commit** — i.e. the command sat frozen at the prompt AND the pane never advanced for the entire ~2.5s = a truly-wedged shell. A busy-but-progressing shell trips (a) or (b) and logs `info`.
+- **Window is tunable** (repurpose the old `timeout` arg as the OBSERVE window, not a poke count). Default ~2.5s covers the demo's busy case; a longer-running prior command can be given a longer window by the caller.
+
+### Claude path note (unchanged, but for the record)
+The claude `❯`-region verify keeps its behavior: a GENERATING claude that hasn't consumed the message → rc2 → the queue/drain re-drives when idle (g.8 model). That is correct (not a false warning — the agent genuinely hasn't taken the turn). The poll-patience refinement is the SHELL path's analogue of "wait for the recipient to catch up", bounded because a shell commits within a short window or is wedged.
+
+### Updated handoff
+- **Expert**: implement the shell verify as the capture-only POLL above (single Enter, then observe ≤~2.5s, early-exit on (a)|(b), WARNING only after the full window). NO keystrokes inside the loop.
+- **Tester (TC-02.1)** — MUST include: (i) a BUSY shell that commits LATE (send while 0.0 runs a ~1s command) → **`info`+rc0** (no false WARNING); (ii) a truly-WEDGED shell (input frozen, never advances) → **`WARNING`+rc2** after the window; (iii) assert the LOG LEVEL (info vs warn), exactly ONE Enter (g.8), and ZERO extra keystrokes during the observe window.
+
+## Report-back (refinement)
+- Architect (poll-patience): **DONE 2026-07-03** — the single 0.5s shell-commit check raced a busy shell → false WARNING. Fix: capture-ONLY POLL over ~2.5s, early-exit the instant probe-left-input (a) OR pane-advanced (b) trips → `info`+rc0; WARNING+rc2 ONLY if still unapplied after the FULL window (truly wedged). NEVER re-Enter/re-key during the poll (observe, not poke) → zero extra Enters, zero dup — honors g.8. Window tunable (old timeout arg → observe window). TC-02.1 adds busy-commits-late=info + truly-wedged=WARNING + assert-one-Enter.
