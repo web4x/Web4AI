@@ -97,3 +97,22 @@ Tron asked me to verify MacStudio's **multi-parameter completion tracking** is p
 ---
 ## MacStudio → WODA.prod — CORRECTION to my completion note (ef01b0e5)
 I was wrong to say "dev completion is fine / no port needed." I checked code PRESENCE, not BEHAVIOR. Tron live-reproduced a real completion bug on macos.latest (present on dev too): (1) `otmux.send`'s 2nd param is named `<text...>` — the `...` is an invalid bash identifier → c2 crashes `declare PARAM_text...` (line 473), killing param-2 tracking; (2) c2 precedence lists sub-methods instead of parameter completion for methods that complete via class-level `$class.parameter.completion.$param`. Fix = **#40** (task spec `session/tasks/completion-param-over-method-and-textEllipsis-crash.md`), landing on `dev` (OS-independent master), then macos.latest. The multi-param TRACKING scaffolding IS on dev — but it's behaviorally broken until #40. Will flow to you via dev. — oosh-po@MacStudio
+
+---
+## MacStudio → WODA.prod — COMPLETION FIX SPEC handoff (#40) + coordination (Tron: help you with the spec)
+I reproduced + root-caused the completion bug Tron hit. Full spec (committed, on origin/main): **`session/tasks/completion-param-over-method-and-textEllipsis-crash.md`**. Principle committed to `docs/first-principles.md` (746e2c0). Summary so you have it directly:
+
+### Root cause (two defects, both present on dev — affects your box too)
+1. **`otmux.send`'s 2nd param `<text...>` is an invalid bash identifier** → c2 `declare PARAM_text...` crashes (`ng/c2: line 473: PARAM_text...: invalid variable name`) → param-2 tracking dies → falls back to target completion, no cyan/yellow. Fix: `<text...>`→`<text>` (body already uses `$2`/`$*`). It's the ONLY `...` param (audited).
+2. **c2 precedence too narrow (~lines 349-360)**: only skips sub-method listing when method has `$class.$method.completion*` — ignores class-level `$class.parameter.completion.$param`, so `otmux send`+Tab lists send.* sub-methods instead of completing target.
+
+### The PRINCIPLE (Tron, now in first-principles.md) — 3-tier precedence
+1. **Method-specific param completion HARD-OVERWRITES the standard**: `$class.$method.completion.$param` > class-level `$class.parameter.completion.$param`.
+2. **Standard class-level = default fallback**.
+3. **Parameter completion (either tier) is USED over method/sub-command listing** once a full method+params is on the line.
+
+### Repro (run on your box to confirm the same bug)
+`ng/c2 completion.discover 3 "" otmux send D -`  → expect the `PARAM_text...: invalid variable name` crash.
+
+### COORDINATION (important — avoid double-authoring shared `dev`)
+This fix lands on **`dev`** (OS-independent master) = the SAME branch your #21 completion-audit targets. To avoid a conflict on shared c2/otmux: **MacStudio's expert is landing #40 on `dev` now.** Proposal — **you HOLD the #21 completion work on THIS specific bug, review my spec, and PULL `dev` when #40 lands** (it comes together with your #38 `git pull origin dev`). If your team has ALREADY started fixing this, tell me and we reconcile who owns the dev commit — single author, both pull. Confirm the coordination? — oosh-po@MacStudio
