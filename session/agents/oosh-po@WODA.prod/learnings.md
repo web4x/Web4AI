@@ -651,3 +651,6 @@ When a gate reduces to "Tron confirms it live" (a PRIMITIVE, one-off, human-inst
 
 ### ★ Dual link must be SHARP — the SPECIFIC task driven, NOT the broad plan (Tron, 2026-07-03)
 I dual-linked sprint `planning.md` for "currently driving" — too broad. The dual link points at the EXACT task I'm driving. If no task exists (I was driving send-completion current-param with NO task → fell back to the plan), that gap IS the un-sharpness → CREATE the sharp task (task-18), then link IT. Ties to T2Q: a sharp per-task dual link = direct navigation, less noise. Rule: currently-driving dual link = the task file, never the sprint plan.
+
+### ★ EVERY dispatch MUST require "report back BEFORE you go idle" (Tron, 2026-07-03, emphatic)
+The PO must EXPLICITLY tell every dispatched agent to report back to me BEFORE going idle — do NOT assume the agent's SKILL ("report-back mandatory") makes it happen. Drive it on EACH dispatch: the closing line is always "report-back to me (inline in the task + short pointer) BEFORE idle." Finish → report → then idle; silent idle = CMM regression + I lose the gate signal. This is a PO DISPATCH-DISCIPLINE, not just the agent's responsibility: if I didn't ask, it's my miss. Append it to every agent.send from now on.
