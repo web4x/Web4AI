@@ -200,3 +200,13 @@
 - Add report-back line with: date + commit + test count + pass/fail + what was verified
 - One-line ping to PO via otmux send after each verified task
 - Task files are single source of truth — not chat messages
+
+### Capture-bridge verification (2026-07-04) — pane.capture -p fix (dev 7059a36 → macos.latest b2dd551)
+- **Redrawing-pane delta is the decisive local repro**: scratch pane `while true; do clear; echo REDRAW-MARK-$RANDOM; sleep 1; done`. NEW `-p` reads the live MARK; OLD `-S` scrollback form reads `[]` blank. Proves (a) fix reads live content, (b) NEW≠OLD → fix is not a no-op. Stronger than a static-pane A/B.
+- **Negative-control the fence or it's a tautology**: assert the same grep flips RED on the buggy `-S` code before trusting a GREEN on the fixed code.
+- **F-T20 lie-instrument**: a zsh-context inline A/B returned empty==empty and falsely reported MATCH. ALWAYS oracle against raw `tmux capture-pane -p` + an explicit render `sleep`, so empty-vs-empty cannot pass.
+- **Bash tool is zsh — sourcing oosh hangs**: run oosh via `bash -c '...'` (works) or the tester-shell pane; never source `this` in the Bash tool directly.
+- **Fence must strip comments**: the fix's own doc-comment mentions `-S`; grep the `capture-pane` command line only (`grep -v '^[[:space:]]*#'`) or it false-positives.
+- **Two-repo commit pattern**: CODE/tests → the oosh repo branch (dev / test/macos.latest, push origin); REPORT-BACK → workspace `main` (session/tasks, push origin). Mailbox is live — `git pull --no-edit` before push on main.
+- **Remote bridge exec is user-gated**: `ossh exec WODA.prod` AND `WODA.test` both denied by auto-mode classifier when peer-directed (no user intent). Surface for Tron auth; do NOT bypass. Local redrawing-delta proves the same invariant (fix reads visible screen, nothing for a bridge to desync).
+- Gate commits: dev `1c5a4e8`, macos.latest `a6a98dc`.

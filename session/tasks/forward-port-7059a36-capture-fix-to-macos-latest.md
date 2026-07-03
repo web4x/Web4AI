@@ -41,3 +41,32 @@ PO QA gate: diff is otmux-only, method body matches dev byte-for-byte — ready 
 
 ## Note
 This is a bug-fix cross-port (dev→macos.latest), not a feature promote. Branch model (features flow macos.latest→dev) still holds for features; a correctness fix must exist on BOTH.
+
+---
+## PO QA GATE — PASS (oosh-po@MacStudio, inspected the diff)
+Commit **b2dd551** on `test/macos.latest` (cherry-pick of dev 7059a36):
+- Scope = `otmux` only, 13+/2−, zero unrelated churn.
+- `otmux.pane.capture` body **byte-identical to dev@7059a36** (verified via diff — IDENTICAL); `-p` + awk trailing-blank strip + `tail -n`, NO `-S`. `bash -n` OK. Doc-comment updated (self-documenting).
+- Authorship/message preserved by cherry-pick; never-rebased.
+Expert side ACCEPTED. **Co-confirm still required = tester independent-verify below (the gate is the tester's independent commit, never expert self-test).**
+
+## Tester subtask (oosh-tester ooshTeam:0.3) — INDEPENDENT verify on macos.latest
+Mirror the dev-side gate (#37 tester 1c5a4e8: negative-control fence + local A/B + interior-blank) but run it on **THIS branch (`test/macos.latest`) / THIS box (MacStudio)** — the port could interact with macos.latest divergence, so re-prove locally:
+1. **Local A/B** on a redrawing scratch pane (`while true; do clear; echo MARK-$RANDOM; sleep 1; done`): NEW `otmux pane.capture` (`-p`) returns the CURRENT MARK line; the OLD `-S` form returns blank/stale. Prove the delta.
+2. **Interior-blank preservation**: capture content with blank lines *between* text → interior blanks kept, only trailing padding stripped (the awk contract).
+3. **Negative-control fence**: a case that SHOULD read blank still reads blank (no false content).
+4. Commit your test as the independent gate; report hash here. Do NOT rely on the expert's bash -n / awk-proof — that's expert self-check, not the gate.
+
+---
+## TESTER REPORT-BACK — oosh-tester@MacStudio (ooshTeam:0.3), 2026-07-04 — INDEPENDENT GATE GREEN
+**Commit (my OWN gate):** `a6a98dc` on `test/macos.latest` (pushed origin) — `test/test.otmux` T-CAPTURE-BRIDGE block (89 insertions). Independent of the expert's `bash -n`/awk self-check.
+**Pre-checks (measured):** HEAD `b2dd551`, tree clean (only untracked `macos/`); active working-tree `otmux pane.capture` command = `capture-pane -t "$target" -p` — **no `-S`**.
+**Ran on THIS box/branch** via `test.suite run otmux 1 T-CAPTURE-BRIDGE` → **4/4 GREEN**:
+- **T-CAPTURE-BRIDGE-1 (fence):** pane.capture command carries no `-S`. Negative-control: same fence flips **RED** on the pre-b2dd551 `-p -S "-${lines}"` form → real gate, not a tautology. ✅
+- **T-CAPTURE-BRIDGE-2 (static A/B parity):** `otmux pane.capture` **==** raw `tmux capture-pane -p` oracle (trailing-blank-stripped, `tail N`), no blank/stale. ✅
+- **T-CAPTURE-BRIDGE-3 (interior blank):** interior blank between `CAP-B` and `CAP-D` preserved (only trailing padding stripped — the awk contract). ✅
+- **T-CAPTURE-BRIDGE-4 (REDRAWING-pane delta — decisive local repro):** scratch pane `while true; do clear; echo REDRAW-MARK-$RANDOM; sleep 1; done`. NEW `-p` → `REDRAW-MARK-24735` (live); OLD `-S` form → **`[]` blank**. Asserts (a) fix reads live redrawing content, (b) NEW≠OLD → fix is **not a no-op**. ✅ This is the exact desync that blanked `-S` and produced the trainer's phantom "broken pane".
+
+**pane.history** (off-screen) untouched by the fix — separate function, no regression.
+**F-T20 discipline:** oracle = raw `tmux -p` + explicit render sleep, so empty==empty cannot pass (the lie-instrument trap that fooled the first inline A/B on the dev side).
+**Verdict:** forward-port `b2dd551` INDEPENDENTLY VERIFIED on macos.latest. All acceptance boxes satisfiable — over to PO co-confirm of my commit `a6a98dc`.
