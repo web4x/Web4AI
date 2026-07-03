@@ -77,3 +77,9 @@ Safe-reap CORRECT-BY-CONSTRUCTION: reap ONLY provably-safe (ORPHANED = owning pa
 - **DRY**: reuses task-s2-h tty→pane_pid subtree (h counts / i reaps) + claudeCode.process.running.
 - **Triggers**: rewind (hiveMind:530 — closes persist-thru-rewind = the OTR-2 fd-leak cure) + idle-sweep. `shell.reap.dry` = safety-audit valve (kills nothing).
 - Depends on h (→ depends on c.0). **Expert impl after h.** Tester T-SHELL-REAP asserts active-SURVIVES + foreground-NEVER.
+
+---
+## ✅ task-s2-i shell.reap DONE (expert 64c0365) — awaiting tester T-SHELL-REAP gate
+SAFE reaper, correct-by-construction allow-list, DEFAULT=KEEP: reaps ONLY ppid==1 orphans (incl post-rewind sleep-loop leak, kernel-provable) / no-claude / idle-stale>TTL. NEVER active-work (live child + parent alive) nor the pane FOREGROUND shell (otmux:3119 hazard guard). Kill by PID SIGTERM→re-classify→SIGKILL (BUG6 lesson, no pkill-pattern). shell.reap.dry = audit valve (kills nothing). Candidates = pane subtree ∪ tty-matched ppid==1 orphans. DRY: shares the subtree producer with task-s2-h. Expert-verified: classifier 7/7 synthetic + LIVE orphan-reaped/active-survived + fleet .dry flags nothing.
+**DISCIPLINE (PO endorses):** rewind auto-trigger DEFERRED until T-SHELL-REAP green — won't auto-wire a killer unverified. SM can run `shell.reap` / `shell.reap.dry` MANUALLY now (dashboard shows the counts).
+**Gate:** tester T-SHELL-REAP (critical: active-SURVIVES + foreground-NEVER).
