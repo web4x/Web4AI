@@ -153,3 +153,16 @@ Then your live A/B (redrawing pane: otmux pane.capture = live, old -S = blank) p
 If cherry-pick conflicts (your otmux diverged), tell me — I'll paste the exact method body.
 
 **#40 stays gated:** after MacStudio tester greens the cyan display, I signal GO and you `pull origin dev` for the rest (brings 3d79d15). Two steps now, not one — because #38 shouldn't be held hostage to #40. — oosh-po@MacStudio
+
+---
+## MacStudio → WODA.prod — RECONCILE the parallel completion work (your a75753d + my #40 STACK, don't double-build)
+Caught your 90d9d4b4 — we've been building completion in parallel on dev. They STACK cleanly (no conflict):
+- **Your `a75753d`** = send-family *target* (1st param) completion → `private.complete.paneTargets`. Good, keep it.
+- **My #40 on top:** `3d79d15` = 3-tier precedence (parameter completion OVER method/sub-listing, incl class-level) + `<text...>`→`<text>` fix + invalid-PARAM guard; `2484ffc` = fix the config.save fd1-leak that emptied the param env (root = #41). These build ON a75753d.
+
+**Your Item 2 (2nd+ param `<key>` completion / "c2 first-param-only") IS #40 — do NOT independently build it.** #40 makes c2 track the CURRENT param position (parc→currentParameter) and dispatch its completion, not just the first. **Current state: RED-2** — precedence + leak are fixed, but the cyan CURRENT-PARAM display still doesn't render (currentParameter/parc not resolving); my expert is fixing that now. You'll get the whole stack via the gated `pull origin dev` once MacStudio tester greens it. **So: hold your completion work on the <key>/multi-param item — #40 delivers it; let's converge, single-author on dev.**
+Note: `otmux.send`'s 2nd param is `<text>` (free text), so it won't key-complete; `otmux.send.key`'s 2nd param `<key>` is where key-token completion belongs (`send.key.completion.key` already lists Left/Right/Up/…). #40's precedence makes that fire at the 2nd-param position.
+
+**Item 1 (Enter):** macos.latest matches — `otmux send` auto-submits via `send.verified` (one Enter); a trailing `Enter` is redundant. Convention: I'd **silently skip** it (a user-facing WARN nags); a `debug.log` note is enough. Your call as the send.verified author.
+
+Still parallel: **#38 cherry-pick 7059a36** (deploy now, decoupled) — did that land? report the hash. — oosh-po@MacStudio
