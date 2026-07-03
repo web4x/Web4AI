@@ -15,7 +15,7 @@
   - [x] implementing
   - [x] testing
 - [x] QA Review
-- [ ] Done
+- [x] Done
 ## Deliverable
 `otmux.send.verified` is a **single clean submit**, never a retry loop:
 **stage ONCE** (`C-u` + `send-keys -l`) → **Escape** (dismiss `@`/`/`-autocomplete — CLAUDE + IDLE only, never a shell, never a generating agent) → **SINGLE Enter** → **one-shot** g.7 region-verify → **honest rc {0 committed / 2 staged}**. **No poke, no retry, no 2nd Enter.** A staged (rc2) message is retried by the **drain layer** as a fresh single-shot next idle (composes with the rc0-gate + dup-fix).
@@ -57,4 +57,7 @@ Key file: `/root/oosh/otmux` (`otmux.send.verified`, `send.smart`). Prior arc cl
 *Priority: CRITICAL (send is core infrastructure)*
 
 ## Completion-usability (a75753d)
-Added `otmux.send` + `send.enter/key/raw/tui/verified` `.completion.target()` → `private.complete.paneTargets` (mirrors `send.zoomed@3597`). `otmux send <TAB>` now completes the target pane (live panes + CURRENT/U/D/L/R) instead of falling back to method-name completion. Part of Task 1 being usable. (Task 1 acceptance still gated on Task 02's shell-log fix.)
+Added `otmux.send` + `send.enter/key/raw/tui/verified` `.completion.target()` → `private.complete.paneTargets` (mirrors `send.zoomed@3597`). `otmux send <TAB>` now completes the target pane (live panes + CURRENT/U/D/L/R) instead of falling back to method-name completion. Part of Task 1 being usable.
+
+## QA acceptance
+**TRON QA-ACCEPTED 2026-07-03.** Clean single-submit (poke removed, `494597e`) + target-completion (`a75753d`), tester + live-proof verified. Task 02 (shell-log) is a separate follow-on task, not a Task 01 gate.
