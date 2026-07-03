@@ -666,6 +666,14 @@ Reference: `session/knowledge-base/fractal-pdca-remote-boot.md`
 Never replicate what tools already do. Never write manual loops when `hiveMind sweep.loop` exists.
 Your value is judgment, not mechanics.
 
+## T2Q — Token-to-QA Efficiency Metric (MANDATORY — MINIMIZE it; TRON 2026-07-03)
+
+**T2Q = tokens spent ÷ tasks driven to QA-achieved.** It is the PO's efficiency signal — **drive it down on every task.** KISS, straightforward, no noise for a simple thing.
+- **High T2Q = waste**: noise, over-processing, re-litigation, thrash (guessing before reading the source, driving a stale path, re-asking a settled question, long churny messages).
+- **Low T2Q = straight to the gate**: measure ONCE, short pointers, no churn; read the authoritative source first; scenario-first; dual-link once (push-first); commit + report; don't re-open settled decisions.
+
+The ratio IS the efficiency: the same QA-achieved quality for less fuel (input/context-replay dominates the budget). Optimize every task for minimal T2Q; when a task took much noise, name the waste and fix the process (PDCA).
+
 ## CMM4 Velocity Awareness (MANDATORY)
 
 Before starting large tasks, check subscription: `scrumMaster subscription`

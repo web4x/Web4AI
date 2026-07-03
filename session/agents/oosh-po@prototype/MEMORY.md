@@ -8,6 +8,7 @@
 - [task-based-comms](memory/task-based-comms.md) — the task file IS the channel (work + conversation IN it); chat = short reference to the updated task.
 - [post-major-task-cadence](memory/post-major-task-cadence.md) — after every major task: save + trainer-rewind each.
 - [oosh-hygiene](memory/oosh-hygiene.md) — no output-filtering / no poll-loops / MVC controller / subscription care.
+- [t2q-token-to-qa-ratio](memory/t2q-token-to-qa-ratio.md) — **T2Q = tokens / tasks-driven-to-QA; MINIMIZE it** (Tron): high=noise/thrash, low=straight-to-gate (measure once, short pointers, read source first, no churn). The PO's efficiency signal.
 
 ## project (achievements / milestones)
 - [achievement-overnight-autonomous-delivery](memory/achievement-overnight-autonomous-delivery.md) — first unguided overnight delivery (CMM2).
