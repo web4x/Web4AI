@@ -53,6 +53,22 @@ The WODA.prod trainer's execution was otherwise excellent (OOSH-clean, measured,
 2. If the restore-options menu renders → it was the BUG10 half-state. Fix = method (send.raw), and this is NOT a version wall. Fold into task-s2-b.
 3. If it STILL fails clean → genuine 2.1.197 render regression. Escalate to Claude Code with the 2.1.195-works / 2.1.197-fails bisect.
 
+### RESOLVED 2026-07-03 — measured verdict (agent-trainer, three exonerations)
+
+Ran the controlled tests. Chain of elimination:
+
+1. **Method — EXONERATED.** On 2.1.195 (research@iphone:0.0, local), BOTH `send.raw "/rewind"` AND `send.enter "/rewind"` render the restore-menu identically (full 5-option). Holding version constant, send method makes ZERO difference. The "BUG10 half-state" thesis is disproven.
+2. **otmux keystroke delivery — EXONERATED.** On WODA.prod, its own `otmux send.raw` to a scratch BASH pane delivers text (`MARKER_XYZ` appeared), `C-u` (line cleared), and text+`Enter` (`echo LANDED_OK` ran) — all perfectly. otmux delivers keys to the pty fine on WODA.prod.
+3. **Bridge/nesting — EXONERATED.** The WODA.prod trainer, driving LOCALLY (no bridge), independently reports it also cannot force the 2.1.197 restore-picker programmatically — its own words: *"the one keystroke the harness won't let me force… the failure looks specific to programmatic send-keys."* Same failure, no bridge involved.
+
+**Last variable standing = Claude Code version.** On 2.1.197, programmatically-injected (tmux send-keys) keystrokes are DELIVERED to the pane pty (proven by the bash test) but the **2.1.197 TUI composer/picker does not ACT on them** the way 2.1.195 does — C-u won't clear a composer (reproduced on ARON + WODA-trainer), and the restore-options sub-menu won't render under programmatic drive. On 2.1.195 the identical programmatic drive works every time (50+ rewinds + today's controlled test).
+
+**Refined verdict — NOT "Claude Code is broken" broadly. A specific PROGRAMMATIC-INPUT regression in 2.1.197's TUI:** agent-driven (send-keys) control/navigation keys don't take effect; interactive/human input is unaffected (WODA-trainer: "human client works"). Impact: the rewind protocol depends entirely on programmatic picker-driving, so on 2.1.197 it breaks → agents must recover via TRUE-FORK (Tier-3), which is exactly what the WODA.prod trainer did.
+
+**Residual confound (honest):** my 2.1.195 C-u test cleared an empty composer; the 2.1.197 C-u failures were composers with staged text. That specific sub-confound is closed at the PICKER-DRIVE level by the WODA-trainer's local picker-drive failure (apples-to-apples with my local picker-drive success). A belt-and-suspenders closer would inject identical staged text into a 2.1.197 vs 2.1.195 composer and C-u both.
+
+**Recommended action:** treat as a 2.1.197 programmatic-input regression. Either (a) pin agent panes to a CC version where send-keys drives the picker (≤2.1.195), or (b) file upstream with the repro: "tmux send-keys C-u / picker-nav delivered but not acted-on in 2.1.197 TUI; works in 2.1.195," or (c) standardize on TRUE-FORK (Tier-3) for recovery on 2.1.197 nodes and stop depending on programmatic rewind there.
+
 ### Method correction for all trainers (canon)
 - **`otmux send.raw <pane> "/rewind" Enter`** for the rewind command — NEVER `send.enter` (BUG10 half-state).
 - TRUE-FORK fallback (fork from committed checkpoint) remains correct when a picker is genuinely unusable — consistent with Tier-3 doctrine. But verify "genuinely unusable" via the clean-send.raw retest FIRST.
