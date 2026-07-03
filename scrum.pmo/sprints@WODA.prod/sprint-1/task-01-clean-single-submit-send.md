@@ -14,7 +14,7 @@
   - [x] implementing (expert 1.2 — commit `494597e`)
   - [x] testing (tester 1.3)
 - [x] QA Review
-- [x] **Done — QA-ACCEPTED (TRON 2026-07-03)**
+- [ ] **Done — QA acceptance PENDING Task 02 log-fix** (a delivered shell send must `info.log` "committed", NOT `WARNING rc2`; a WARNING is cast ONLY when the Enter genuinely did not apply)
 
 ## Deliverable
 `otmux.send.verified` is a **single clean submit**, never a retry loop:
