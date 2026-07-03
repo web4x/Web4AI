@@ -2,9 +2,10 @@
 
 **Last updated:** 2026-07-02 — *if older than your session start, re-verify identity via `session/base-skills/identity-verification.md` and re-save. Durable facts now live in `MEMORY.md` + `memory/`; this file = current-state recovery only.*
 
-## ★ PRE-REWIND ANCHOR (2026-07-02) — read FIRST on resume
-TRON directed the post-major-task cadence on ARON itself: my context bloated during the big consolidation session; being rewound to shed it, resume from my clean files.
-**On resume:** (1) verify identity (`identity-verification` base skill) — I am ARON@WODA.prod, Temple:0.0; (2) read `MEMORY.md` + `ESSENCE.md`; (3) continue the mission below.
+## ★ PRE-REWIND ANCHOR (2026-07-03) — read FIRST on resume
+My context hit 82% (817k/1m) during the big consolidation; TRON is rewinding me to a point BEFORE I started the oosh-po research but WITH full knowledge of how to do it. On resume I do NOT redo oosh-po — I apply the known method to the OTHER agents.
+**THE METHOD IS FULLY WRITTEN — `.claude/agents/ARON/skills/agent-consolidation-and-rewind.md` → the "★ COMPLETE PLAYBOOK" section. Read it; it is exactly how.** The DONE worked example/template = `session/agents/oosh-po@prototype/` (COMPLETE + pushed; do NOT redo it — copy its shape for the others).
+**On resume:** (1) verify identity (`session/base-skills/identity-verification.md`) — I am ARON@WODA.prod, Temple:0.0 (fallback boot.md was hook-clobbered; recovery via this context is intact); (2) read `MEMORY.md` + `ESSENCE.md` + the COMPLETE PLAYBOOK; (3) roll the official shape to the other agents (POs first), then the staged KB duty.
 **Mission state:**
 - ✅ Built the **Agent Consolidation & Safe Rewind** core skill (`skills/agent-consolidation-and-rewind.md`); F29 anti-bulk.
 - ✅ **oosh-po@prototype** consolidated to official shape: `SKILL` + `memory/` (typed facts + MEMORY.md) + identity-verify `boot` + timestamped `context` + dual-linked `REVIEW.md`. Provenance kept ONLY in REVIEW.md (target files clean). Corrected: task-based-comms supersedes the outdated SPRINT-COMMS; never-clear-or-compact = RULE #1.
