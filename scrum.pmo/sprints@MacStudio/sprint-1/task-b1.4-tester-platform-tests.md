@@ -20,4 +20,4 @@ T-PLATFORM-DEFAULTS 8/8 GREEN both envs + T-OS-DISCRIMINATOR (os os yields one c
 **Commit(s):** `9395fca`  (once.sh/dev)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*

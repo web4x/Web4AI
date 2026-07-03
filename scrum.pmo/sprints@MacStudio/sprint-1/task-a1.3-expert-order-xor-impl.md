@@ -20,4 +20,4 @@ D1 `state.add` reorder + D2 both mode checks `create.result 0` and redirect via 
 **Commit(s):** `566fed9`  (once.sh/dev)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*

@@ -26,4 +26,4 @@ Discovered by the tester exercising the naked path (not assuming). Fix mirrors `
 - **How:** root/marker/`sudo -n` probe; failure → `RESULT=20` (user band) + warning.
 
 ---
-*Sprint 1 @MacDonges · Epic C: Constructor Safety · Priority 0*
+*Sprint 1 @MacStudio · Epic C: Constructor Safety · Priority 0*

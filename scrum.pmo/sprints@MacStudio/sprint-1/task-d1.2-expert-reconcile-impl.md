@@ -20,4 +20,4 @@ Implement shared `private.setup.server.declare` + `private.reconcile.check` + `p
 **Commit(s):** `09d33c9 + 691a269`  (once.sh/dev)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*

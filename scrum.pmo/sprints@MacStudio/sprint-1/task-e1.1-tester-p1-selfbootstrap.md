@@ -20,4 +20,4 @@ Naked `init/oosh` → user.installation.done via `state next` (no stall), platfo
 **Commit(s):** `9395fca`  (once.sh/dev)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*

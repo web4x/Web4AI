@@ -27,4 +27,4 @@ P1 is verified (dev XOR crossing, platform paths, idempotent — A1.4). P2 needs
 - **Blocker (Tron):** `donges` not in `docker` group (needs sudo) + container needs `authorized_keys` injection.
 
 ---
-*Sprint 1 @MacDonges · Epic E: Install-Path Verification · Priority 1*
+*Sprint 1 @MacStudio · Epic E: Install-Path Verification · Priority 1*

@@ -28,4 +28,4 @@ Tron observed a box at `user.installation.done` with two unreached user states p
 - **How:** reorder the `state.add` sequence; make both mode checks `create.result 0` and steer via numeric RESULT resolved by `state.find` (the engine's existing redirect primitive).
 
 ---
-*Sprint 1 @MacDonges · Epic A: State-Machine Correctness · Priority 0*
+*Sprint 1 @MacStudio · Epic A: State-Machine Correctness · Priority 0*

@@ -20,4 +20,4 @@
 **Commit(s):** `650e743`  (once.sh/dev)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*

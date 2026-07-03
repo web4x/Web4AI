@@ -20,4 +20,4 @@ Diagnose SETUP_SERVER order live on WODA.test: dump state list with indices, ide
 **Commit(s):** `703b817`  (once.sh/dev)
 
 ---
-*Sprint 1 @MacDonges*
+*Sprint 1 @MacStudio*
