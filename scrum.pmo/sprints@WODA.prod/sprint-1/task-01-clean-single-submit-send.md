@@ -10,12 +10,12 @@
 ## Status
 - [x] Planned
 - [x] In Progress
-  - [x] refinement (architect design 1.1)
-  - [x] implementing (expert 1.2 — commit `494597e`)
-  - [x] testing (tester 1.3)
+  - [x] refinement
+  - [x] creating test cases
+  - [x] implementing
+  - [x] testing
 - [x] QA Review
-- [ ] **Done — QA acceptance PENDING Task 02 log-fix** (a delivered shell send must `info.log` "committed", NOT `WARNING rc2`; a WARNING is cast ONLY when the Enter genuinely did not apply)
-
+- [ ] Done
 ## Deliverable
 `otmux.send.verified` is a **single clean submit**, never a retry loop:
 **stage ONCE** (`C-u` + `send-keys -l`) → **Escape** (dismiss `@`/`/`-autocomplete — CLAUDE + IDLE only, never a shell, never a generating agent) → **SINGLE Enter** → **one-shot** g.7 region-verify → **honest rc {0 committed / 2 staged}**. **No poke, no retry, no 2nd Enter.** A staged (rc2) message is retried by the **drain layer** as a fresh single-shot next idle (composes with the rc0-gate + dup-fix).

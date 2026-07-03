@@ -6,11 +6,12 @@
 ## Status
 - [x] Planned
 - [ ] In Progress
+  - [ ] refinement
   - [ ] creating test cases
+  - [ ] implementing
   - [ ] testing
 - [ ] QA Review
 - [ ] Done
-
 ## Traceability
 - up
   - [Task 02: non-claude verify — detect commit, log correctly](./task-02-nonclaude-verify-rc0.md)

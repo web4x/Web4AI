@@ -6,11 +6,12 @@
 ## Status
 - [x] Planned
 - [x] In Progress
+  - [x] refinement
   - [x] creating test cases
+  - [x] implementing
   - [x] testing
 - [x] QA Review
-- [x] Done (all cases PASS)
-
+- [x] Done
 ## Traceability
 - up
   - [Task 01: clean single-submit send.verified](./task-01-clean-single-submit-send.md)

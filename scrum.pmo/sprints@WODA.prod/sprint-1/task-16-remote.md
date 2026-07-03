@@ -12,7 +12,6 @@
   - [ ] testing
 - [ ] QA Review
 - [ ] Done
-
 ## Traceability
 - up
   - [Sprint 1 Planning @ WODA.prod](./planning.md)

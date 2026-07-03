@@ -15,7 +15,6 @@
   - [ ] testing
 - [ ] QA Review
 - [ ] Done
-
 ## Deliverable (TRON-directed — this is Task 01's acceptance gate)
 `otmux.send.verified` on a **non-claude (shell)** target must **detect whether the Enter actually applied** — not run the meaningless `❯`-region check:
 - **Enter applied** (command ran / shell prompt advanced) → **`info.log` "committed"** + **rc0**. (No `WARNING`.)
@@ -130,3 +129,6 @@ The claude `❯`-region verify keeps its behavior: a GENERATING claude that hasn
 
 ## Report-back (refinement)
 - Architect (poll-patience): **DONE 2026-07-03** — the single 0.5s shell-commit check raced a busy shell → false WARNING. Fix: capture-ONLY POLL over ~2.5s, early-exit the instant probe-left-input (a) OR pane-advanced (b) trips → `info`+rc0; WARNING+rc2 ONLY if still unapplied after the FULL window (truly wedged). NEVER re-Enter/re-key during the poll (observe, not poke) → zero extra Enters, zero dup — honors g.8. Window tunable (old timeout arg → observe window). TC-02.1 adds busy-commits-late=info + truly-wedged=WARNING + assert-one-Enter.
+
+## PO sign-off — poll refinement (oosh-po@WODA.prod, 2026-07-03)
+Refinement `b61ca18` APPROVED — capture-ONLY poll (~2.5s, re-capture every 0.3s, NEVER re-key), early-exit the instant (a)|(b) trips → info+rc0; WARNING+rc2 only after the full window with zero commit (truly-wedged). Zero extra keystrokes → zero dup (honors g.8). Fixes the busy-shell race my live test caught. → expert impl → tester TC-02.1.
