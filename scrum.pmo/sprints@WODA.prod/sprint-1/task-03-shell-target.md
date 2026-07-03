@@ -5,25 +5,30 @@
 
 ## Status
 - [x] Planned
-- [ ] In Progress
-  - [ ] refinement
-  - [ ] creating test cases
-  - [ ] implementing
-  - [ ] testing
-- [ ] QA Review
+- [x] In Progress
+  - [x] refinement
+  - [x] creating test cases
+  - [x] implementing
+  - [x] testing
+- [x] QA Review
 - [ ] Done
-## Traceability
-- up
-  - [Sprint 1 Planning @ WODA.prod](./planning.md)
 
 ## Description
-**Case [S] shell-provable** — exercises: send.smart to a bash shell (kind=shell).
-**Expected:** NO prefix, NO Escape, stage + ONE Enter, rc0 dispatch; verify light (no ❯)
+Send to a bash-shell target (kind=shell). The shell path must add NO `[@` prefix, send NO Escape (a shell has no autocomplete to dismiss and must not be interrupted), stage the text and submit with exactly ONE Enter, deliver exactly once, and log `info` (Task 02) — never a false `WARNING`.
 
 ## Test case
-- **TC-3** [test:uuid:44f89f9c-54a7-4d59-ac8f-f366b37a956f] — assert: NO prefix, NO Escape, stage + ONE Enter, rc0 dispatch; verify light (no ❯).
-  - **Proven by:** Task 01 + send-matrix A2/E3/G1 + live testSend.
-  - **Go-through (live):** predict the behavior → run in session `testSend` (or a claude pane for [C], a remote host for [R]) → capture (full output, no truncation) → verify expected == actual → TRON accepts.
+**TC-03** [test:uuid:44f89f9c-54a7-4d59-ac8f-f366b37a956f]
+
+| Field | Value |
+|---|---|
+| **Command** | `otmux send testSend:0.1 "echo T3C-SHELL"` |
+| **Recipient state** | 0.1 = idle bash shell |
+| **Prediction** | NO `[@` prefix · NO Escape · stage + exactly ONE Enter · 0.1 runs it → prints `T3C-SHELL` exactly once · log `info` "committed (shell — prompt advanced)" + rc0 · no `WARNING` |
+| **Actual** | 0.1 printed `T3C-SHELL` **once** · no prefix · no Escape · one Enter · `info`/rc0, **no `WARNING`** (post Task 02 poll fix `466655d`) |
+| **Match** | ✅ YES |
+
+**Proven by:** live testSend (T3C) + send-matrix A2/E3/G1 + Task 01 (one-Enter) + Task 02 (shell-log).
+**Note:** pre-Task-02, this send delivered but false-`WARNING`ed (rc2); Task 02's poll fix made the log `info`. Delivery was always correct; the log is now correct too.
 
 ---
 *Sprint 1 @ WODA.prod — Reliable Send & Capture*
