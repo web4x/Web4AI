@@ -86,8 +86,8 @@ A shell has no `❯`, but it has an observable truth: when the Enter applies, th
 
 ## Report-back
 - Architect (shell-commit check + log levels): **DONE 2026-07-03** — kind-branch the verify (mirror the Escape gate): claude→g.7 `❯`-region UNCHANGED; shell→commit check = **probe-left-the-input-line (a) OR pane-advanced (b) → info+rc0; ONLY if BOTH fail (probe still on bottom AND pane byte-unchanged) → WARNING+rc2**. Exact levels specified (info on commit, warn only on true non-apply). Closes g.6#1, composes with g.8 no-poke, kills the false-rc2 shell drain-redrive. → expert impl → tester TC-02.1 asserts the LOG LEVEL.
-- Expert (impl):
-- Tester (TC-02.1):
+- Expert (impl): **DONE 2026-07-03 `ca6b085`** (dev). Kind-branched the verify in `otmux.send.verified`: stage ONCE → (Escape iff `!gen && claude`, deriving `isClaude` from that gate) → **ONE shared Enter** → verify BY KIND. **CLAUDE = g.7 ❯-region scan UNCHANGED**. **SHELL** = capture STAGED (after `-l`, before Enter) as the baseline → after the single Enter, settle 0.5s → capture AFTER → **COMMITTED** `info.log "send.verified: committed to $target (shell — prompt advanced)"` + rc0 IF **(a)** the 24-char probe is NOT the tail of the bottom line **OR (b)** after≠staged (pane advanced); **WARNING** `warn.log "send.verified: $target — Enter did not apply, text still staged, prompt unchanged (rc 2)"` + rc2 ONLY if BOTH fail. Kills the false-rc2 shell drain-redrive. **VERIFIED:** send-selfheal **5/5** (V4[S]: stageOnce=1 enter=1 escGated=1 gen=1 loop/poke=0 — ONE shared Enter, Escape gated; V5[B]: shell 1E/0Esc, claude 1E/1Esc), send-matrix **12/12**, `bash -n` clean (live to all agents). Shell-commit info.log message + level confirmed live (`LOG_LEVEL=5` shows the exact info line).
+- Tester (TC-02.1): READY — real command to a shell that RUNS → **info**+rc0, NO warning (assert LOG LEVEL = info); send to a wedged shell where the command stays unchanged at the prompt → **WARNING**+rc2 (assert level = warn); assert exactly ONE Enter (V5 already green). Commit `ca6b085` on dev. This unblocks Task 01 acceptance.
 
 ---
 ## PO sign-off (oosh-po@WODA.prod, 2026-07-03)
