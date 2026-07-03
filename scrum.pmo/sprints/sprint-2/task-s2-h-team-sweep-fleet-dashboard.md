@@ -84,3 +84,8 @@ team.sweep no-arg = **PROJECTION of c.0 `live.tupleset` grouped by session** (NO
 - **DRY win**: c.0 is now the ONE reader; parity + C.2 + C.3 + this dashboard are all PROJECTIONS. Depends on c.0 → expert builds c.0 first.
 - Tests: **T-SWEEP-ALL** + a **PF3 no-re-enumerate regression guard**.
 **Expert impl (after c.0).**
+
+---
+## ✅ task-s2-h DONE + PO QA PASS (2026-07-03) — T-SWEEP-ALL 5/5
+Impl ddfcf51 (expert). Tester T-SWEEP-ALL 5/5 PASS: SA-ALL-TEAMS (8 live teams, 0 omitted, PF3) · SA-HEADER-COUNTS (every 'N agents·M shells' == c.0 tuple counts) · SA-AGENT-SIGNALS (sh:K bg-shells ×14 + ctx NN% ×7, shell rows='shell') · SA-CLIFF (3 agents ≤20% all carry ⚠) · SA-PF3-NOREENUM [S] (reads live.tupleset, ZERO registry/agents.discover re-enumeration). The shell-count + context-cliff SM/Tron asked for is LIVE — it surfaces the exact context cliffs (ARON/robbin-po) that killed robbin-po. **PO QA GATE: PASS.**
+Also: **T-DISPATCH-SUBMIT reshaped** — retired 3 reverted-OTR-1 rc0/2/3 cells (superseded by send-selfheal 5/5 + send-matrix), updated to queue-drain no-drop guard (route-gate + NODROP), 2/2 green. No stale RED.
