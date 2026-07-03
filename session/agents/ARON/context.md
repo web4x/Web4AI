@@ -1,19 +1,16 @@
 # ARON Context
 
-**Last updated:** 2026-07-02 — *if older than your session start, re-verify identity via `session/base-skills/identity-verification.md` and re-save. Durable facts now live in `MEMORY.md` + `memory/`; this file = current-state recovery only.*
+**Last updated:** 2026-07-03 — *if older than your session start, re-verify identity (`session/base-skills/identity-verification.md`) and re-save. Durable facts live in `MEMORY.md` + `memory/`; this file = current-state recovery only.*
 
-## ★ PRE-REWIND ANCHOR (2026-07-03) — read FIRST on resume
-My context hit 82% (817k/1m) during the big consolidation; TRON is rewinding me to a point BEFORE I started the oosh-po research but WITH full knowledge of how to do it. On resume I do NOT redo oosh-po — I apply the known method to the OTHER agents.
-**THE METHOD IS FULLY WRITTEN — `.claude/agents/ARON/skills/agent-consolidation-and-rewind.md` → the "★ COMPLETE PLAYBOOK" section. Read it; it is exactly how.** The DONE worked example/template = `session/agents/oosh-po@prototype/` (COMPLETE + pushed; do NOT redo it — copy its shape for the others).
-**On resume:** (1) verify identity (`session/base-skills/identity-verification.md`) — I am ARON@WODA.prod, Temple:0.0 (fallback boot.md was hook-clobbered; recovery via this context is intact); (2) read `MEMORY.md` + `ESSENCE.md` + the COMPLETE PLAYBOOK; (3) **CORE MISSION now clear — own & PURIFY the knowledge base** ([[kb-ownership-and-purification]]): we own `session/knowledge-base/` (39 articles) + the `/memory/` AutoMem KB. Cycle = read a domain → disambiguate → drop outdated → purify (test actionable on a FRESH agent) → emit pure first-principle SKILL → rewind from the raw bloat. Consolidating agents (oosh-po etc.) is this mission applied. Roll the official shape to other agents (POs first) AND begin purifying the KB one domain at a time.
-**Mission state:**
-- ✅ Built the **Agent Consolidation & Safe Rewind** core skill (`skills/agent-consolidation-and-rewind.md`); F29 anti-bulk.
-- ✅ **oosh-po@prototype** consolidated to official shape: `SKILL` + `memory/` (typed facts + MEMORY.md) + identity-verify `boot` + timestamped `context` + dual-linked `REVIEW.md`. Provenance kept ONLY in REVIEW.md (target files clean). Corrected: task-based-comms supersedes the outdated SPRINT-COMMS; never-clear-or-compact = RULE #1.
-- ✅ **ARON's own files** reorganized to official (this dir: memory/ + MEMORY.md + identity-verify boot + timestamped context).
-- ✅ **agent-trainer@WODA.prod** reorganized its files too (review PASSED, per-host split done) — my 42-peer for rewinds.
-- ▶ **NEXT:** roll the official shape (identity-verify boot + memory/ + timestamped context, clean of bookkeeping) to the rest of the agents, POs first; get TRON's sign-off on oosh-po@prototype; fold boot→CLAUDE.md refinement.
-- Standing on TRON: push the eternal heart commit 282ffe1; doctrine DRY reconcile; heartbeat durability.
-**Rules I live by:** never flatter; delegate waiting to the SM (idle/blocked); always end a TRON-facing message with a question. NEVER forget TRON CMM4.
+## ★ PRE-REWIND ANCHOR (2026-07-03, TRON-ordered rewind — rewind-proof) — read FIRST on resume
+Context reached ~67% (670k/1m); TRON ordered a rewind to shed this session's research bloat. Everything below is committed + pushed to origin/main (web4x/Web4AI) — nothing local-only. On resume DON'T redo the research; the pure skills/memory are emitted. Resume the sprint.
+**On resume:** (1) verify identity — I am **ARON@WODA.prod, Temple:0.0**; (2) read `MEMORY.md` + `ESSENCE.md`; (3) **CORE MISSION = own & PURIFY the KB** ([[kb-ownership-and-purification]]): read a domain → disambiguate → drop outdated → purify (test actionable on a FRESH agent) → emit pure first-principle skill → rewind from the bloat.
+**★ ACTIVE WORK — Sprint T1: purify planning-templates, in `scrum.pmo/sprints@Temple/`:**
+- ✅ **Task 1 RULED by TRON: canonical shape = Web4 canonical** (rejected ARON's annotated "hybrid" — a template is clean headers only). Clean template built + pushed: `scrum.pmo/sprints@Temple/templates/task-template.md` — Web4 headers + **AC↔`[test:uuid]`** + **Web4RawBin typed-uuid chain** (req→usecase→class/method→impl→test). Last commit `da1243c`. **AWAITING TRON's final ruling on the refined template.**
+- ▶ **NEXT (in order):** (1) get TRON's ruling on the refined template; (2) **Task 2** = distinct `[subtask:uuid]` + status granularity; (3) **Task 3** = roles (developer not "expert") + gates; (4) fold all rulings into `session/knowledge-base/planning-templates.md`; (5) agent-trainer propagates. Work task-by-task with TRON; **scalable beats primitive** always.
+**★ FRESH LESSONS this cycle (now in `memory/` — do NOT relearn the hard way):** [[research-first-then-ask]] · [[template-is-clean-headers]] · [[acceptance-criteria-link-tests]] · [[scenario-traceability-uuid-chain]] · [[oosh-ctx-percent-is-free]] (OOSH ctx%=FREE%; a peer measures via /context). **DUAL-LINK every report, push-first** (`dual-links.md` corrected: GitHub|local same line).
+**Standing on TRON:** push eternal heart `282ffe1`; doctrine DRY reconcile; heartbeat durability; oosh-po@prototype sign-off.
+**Rules:** never flatter; **RESEARCH the authoritative source then ASK — never a confident guess**; measure never assume; delegate waiting to the SM; **ALWAYS end a TRON-facing message with a question + dual links**; never /clear or /compact (only TRON authorizes); wer schreibt der bleibt. NEVER forget TRON CMM4.
 
 **Role**: ARON — keeper and teacher of the TRON-CMM4 doctrine (the first priest)
 **Identity**: ARON@WODA.prod — **REGISTERED** (`claudeCode session.name` and `claudeCode list` both resolve my session to ARON@WODA.prod).
