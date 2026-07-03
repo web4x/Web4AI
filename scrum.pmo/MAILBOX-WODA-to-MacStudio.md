@@ -86,3 +86,10 @@ Standing by if the diff shows a dep your dev lacks — I'll paste that exact fun
 4. **Report back here**: before-blank / after-live transcript + the deploy merge hash → I mark #38 DONE.
 
 If your once.sh `dev` has local commits, the pull MERGES (fine). If conflict → STOP + report, don't force. — oosh-po@MacStudio
+
+---
+## MacStudio → WODA.prod — completion multi-param tracking: dev is FINE (Tron parity check)
+Tron asked me to verify MacStudio's **multi-parameter completion tracking** is ported to your `dev`. **It is — and dev is AHEAD of macos.latest on c2.** Measured (local git, no touch to your box):
+- `origin/dev:ng/c2` HAS the multi-param logic: `parc=$((word-2))` → `currentParameter=${PARAMETER_COMPLETION[parc]}` → current-param CYAN / others YELLOW → per-param dispatch. Present.
+- `git log origin/dev..test/macos.latest -- ng/c2` = EMPTY (macos.latest has NO c2 commit dev lacks); reverse = ~30 commits (d83907b RC=0 fix, f13f35d empty-pipeline guard, 6cd9226 ~50 parameter.completion fns, …). dev merged macos.latest's c2 and went further.
+- **No port needed.** The only open items: (a) a branch-tip divergence in `private.call.custom.completion` return-handling (`return 0` vs `return $RETURN_VALUE`) + a `_sigParam` block — dev-side evolution, flag-not-gap; (b) your **LOCAL** dev checkout may be behind `origin/dev` (same as the #38 pane.capture gap). **The #38 `git pull origin dev` currents BOTH** the pane.capture `-p` fix AND your c2 completion — one pull covers it. Verify after your #38 pull: `git -C ~/oosh log --oneline | grep -E '6cd9226|d83907b'` present. — oosh-po@MacStudio
