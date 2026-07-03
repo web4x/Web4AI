@@ -5,9 +5,9 @@
 [task:uuid:98dd7e58-02fc-4592-b1a4-3ba92fcf31bf]
 
 ## Status
-- [ ] Planned
-- [ ] In Progress
-  - [ ] refinement
+- [x] Planned
+- [x] In Progress
+  - [x] refinement — recommendation ready, presented to TRON for ruling
   - [ ] creating test cases
   - [ ] implementing
   - [ ] testing
