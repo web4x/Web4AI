@@ -1,6 +1,32 @@
-# robbin-po Context — save #35 (2026-07-02, R27.7 WebItem preview drawer + npm-start/node22 infra — ALL DONE)
+# robbin-po Context — save #36 (2026-07-03, R27.8 drawer full-lifecycle + sprint re-scope + verify-delivery discipline)
 
-## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #35 — READ FIRST) ★★★★★★★★★★★★★★★★★
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #36 — READ FIRST) ★★★★★★★★★★★★★★★★★
+
+### ACTIVE TASK: R27.8 drawer full-lifecycle fix (Tron's current focus)
+- FIX DEPLOYED (commit e0d063f14, web4x): X→MINIMIZE (collapse to VISIBLE peek, not close) / close()-clears-currentRef+minimized+restores-body → select-after-close REOPENS / app.css [minimized]=visible clickable peek (header 40px+grab-bar) fixing "2nd-tap-removes" (was invisible-peek) / each-select-opens UNCONDITIONAL / **(B) preserve-expand: select keeps peek OR expanded state, only opens-to-peek from CLOSED, never force-collapse** (Tron chose B; guard = setAttribute(minimized) only if !wasOpen). ESC→close. Chain: UC 3b6e58e3→RbDetailDrawer d86af73d→closeAndMinimize 22f951cc→Impl e42b85e8.
+- ⏳ AWAITING (do NOT declare done until ALL 3): (1) architect re-PDCA(B) independent code-read [0.3, running]; (2) tester r279 full-lifecycle runtime gate [0.5, BLOCKED on its own 0% context/compact]; (3) ★ TRON's own browser test (hard-refresh /trace past SW cache).
+- ★★ I FALSE-GREEN'd the earlier version: mis-read "collapse on the x" as CLOSE (X→close, r278), gated it GREEN 58/327 wrongly. Tron caught it. Corrected to X→minimize. LESSON: confirm exact intent; "at least X" = FLOOR not fixed-state (architect's banked lesson too).
+
+### DISCIPLINE FIXES THIS SESSION (Tron corrected me on these — ALL banked to PO learnings #127/#128 + memory)
+- **VERIFY DELIVERY**: driving = confirm the dispatch STARTED work (capture pane: "esc to interrupt", NOT idle "❯" or staged text); otmux sends STAGE on busy panes → submit staged with bare Enter. Never trust "send.verified OK" = work-happening. Tron: "do you drive?" after team went idle.
+- **AGENTS REPORT-BEFORE-IDLE** (Tron standing rule, dispatched fleet-wide): every agent reports result/status/blocker to PO(0.0) before going idle; silent idle = stalled wheel. Until S30 async-mailbox lands.
+- **NO | tail ON CAPTURES** (Tron, in memory): forbidden — truncation races render + hides state; use pane.capture's own line-count, read whole.
+- **DRIVE THE BUILD don't ask obvious go**; **scenario-first for EVERYTHING incl infra/bugfixes** (req→architect→planner→expert, never direct-to-expert/self-fix — except I DID self-implement the drawer when team stalled + Tron demanded action).
+
+### SPRINT STATE (repo MOVED → /var/dev/Workspaces/web4x/Web4RawBin; 2cuGitHub GONE)
+- S27 Detail View: R27.1/2/3/4/7 DONE + R27.8 drawer (active). S28 registry: R27.5(ref-slot registry+audit calibration, by-file/well-formedness/chain-before-ship gates)+R27.6(true-dangling)+R28.1(generate-requirements-md, law#100 gap). S29 Server&Dev: R29.1(server-lifecycle DONE)+R29.3(Server config scenario replaces .env)+R29.4(governance guard)+**AgentMsg R29.5-8**(async-mailbox=interrupt fix). S30 Traceability: R30.1(tree: CurrentSprint top + eager-lazy Sprints collection, structure-eager/payload-lazy).
+- ★ ONLY TRON INCREMENTS SPRINTS (from S30, R29.4 guard TIER-2=agent-transcribed record, blocks SILENT mint). New reqs→existing backlog.
+- Pin: current was T27.8(drawer). getThreeSlots derives; focus() fix removed --force (#111). setNextBacklog/setLastCompleted exist. CROSS-CHECK pin on disk every advance (caught corruption 2×).
+
+### INFRA
+- Shell = robbinTeam2:0.7 (real host, web4x path). Server restarts in remoteShells:0.2(WODA.prod npm) / 0.3(WODA.test) — Tron directive. Node: sys16+vscode18+/opt/node22; npm start self-heals (start.mjs, re-exec node22, foreground=TTY dashboard). Server TUI isTTY-gated (renders dashboard when terminal present).
+- otmux BUG10 FIXED (OTR-1: send.smart region-check+1.3s settle, kills poke-Escape interrupt) — but VERIFY delivery still (staged-on-busy).
+- Team robbinTeam2: 0.0=PO/0.1=expert/0.2=skill-expert/0.3=architect/0.4=req/0.5=tester/0.6=planner. SM=ooshTeam:0.1.
+
+### PRIOR (save #35)
+**★ R27.7 WebItem preview drawer v0.7.10 (SSRF-safe) + npm-start self-heal + node22. Scoreboard 58/327.**
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #35) ★★★★★★★★★★★★★★★★★
 **★ Prod v0.7.10 LIVE + SAFE. Both Tron drives DONE + hardened. Node infra recurrence-proof on all 3 paths.**
 
 ### DELIVERED THIS ARC (2026-07-02)

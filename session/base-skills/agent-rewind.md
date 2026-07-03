@@ -7,6 +7,12 @@
 
 ## Procedure
 
+### Step 0: Pre-rewind AGREEMENT (MANDATORY — while the agent is IDLE, before the picker opens)
+A modal picker BLOCKS the agent's own UI — once it's open the agent cannot guide you live (PROVEN: ARON never saw its own open picker, couldn't direct the driver). So a peer drives solo — which is only safe if you **agree everything first, while the agent is idle**:
+1. **STORED?** The agent confirms ALL work committed + pushed — `context.md` pre-rewind anchor updated, learnings, any KB output. You VERIFY independently: `git status` clean for its files, `git log`/push confirmed. Wer schreibt, der bleibt — uncommitted work dies in the rewind.
+2. **WHERE?** The agent names its TARGET checkpoint in its own words (e.g. "restore to before I collected oosh-po sources" / "after the method was written"). You AGREE together (42) and write it down.
+3. Only THEN open the picker and drive SOLO to the agreed target — no live guidance needed because you pre-agreed. (Match the description to a checkpoint label as you navigate.)
+
 ### Step 1: Rewind 1 step (free room for save)
 1. Send `/rewind` to the agent pane
 2. Arrow Up 1 step
@@ -58,21 +64,31 @@ Agent must report:
 
 All 5 correct = rewind success. Any wrong = retrain needed.
 
-## Driving It via otmux (concrete commands)
+## Driving It via otmux (CORRECTED 2026-07-03 — measured on ARON, supersedes the old "render bug" theory)
 
-The picker is a LIVE TUI at the client's UI layer. **Capture after every keystroke — never fire blind.** A key can navigate yet fail to render the next menu (the oosh-expert 100%+running-shells failure). `pane.capture` is your eyes; assuming is how you corrupt an agent.
+*General send-verb semantics for ALL panes (not just rewind): `session/base-skills/oosh-send-comms.md`. This section is the rewind-specific application.*
 
-| Step | Command |
-|------|---------|
-| Resolve target by ROLE (never a hardcoded pane) | `target=$(hiveMind resolve <role>)` |
-| Touch protocol FIRST (BTab toggles the picker too) | `otmux send.raw "$target" BTab` → `otmux pane.capture "$target" 6` (confirm `auto mode on`) |
-| Open picker (`/rewind` needs Enter) | `otmux send.enter "$target" "/rewind"` → capture 20 (did it render?) |
-| Walk back to a checkpoint (deep — ~50%, not 3 steps) | `otmux send.raw "$target" Up` → capture 20 → repeat until highlight sits on a boot/retrain prompt |
-| Select that rewind point | `otmux send.raw "$target" Enter` → capture 20 (the 1/2/3/4 menu appears) |
-| Choose option 2 "Restore conversation" | `otmux send.raw "$target" Down` → capture 12 (CONFIRM option 2 highlighted) → `otmux send.raw "$target" Enter` |
-| Verify it landed | `otmux pane.capture "$target" 25` |
+The picker is a LIVE MODAL TUI. **`otmux pane.capture` is your eyes and is READ-ONLY** — it is `tmux capture-pane -p`, it sends NOTHING to the pane and can NEVER close the picker. (An OLD version used `-S` scrollback → returned stale frames = the "composer won't clear / menu won't render" LIE; that is fixed. Don't blame the capture.)
 
-Rules baked in: `send.enter` for `/rewind`, `send.raw` for navigation (a stray Enter on an arrow desyncs the picker). If a submit stalls, the sanctioned poke is `otmux send.raw "$target" Enter` (or `otmux send.poke`). If capture shows the picker navigates but won't draw the restore menu, otmux can't force it — that's the bottom of the ladder: Tron drives, or authorize a TRUE-FORK from the committed checkpoint.
+**THE REAL PICKER-KILLER: the SEND verb.** Inside a Claude pane, several otmux send verbs inject an `Escape` before `Enter` (to dismiss slash/@-autocomplete). Inside the picker that `Escape` = "Esc to cancel" → **it CLOSES the picker.** This masqueraded as "select-Enter won't render the restore menu" for an entire session — it was NEVER a render bug; every select-Enter was an Escape-cancel.
+
+| otmux verb (Claude pane) | what it ACTUALLY sends | use for |
+|--------------------------|------------------------|---------|
+| `send.raw <pane> Up` / `Down` | bare arrow, no Escape | ✓ NAVIGATE the picker |
+| `send.raw <pane> "/rewind" Enter` | text → Escape (dismiss AC) → Enter | ✓ OPEN the picker (Escape harmless — picker not open yet) |
+| `send.raw <pane> Enter` (bare) | **Escape + Enter** | ✗ NEVER inside the picker — Escape cancels it |
+| `send` / `send.verified <pane> "/rewind"` | Escape+Enter poke loop ×3 | ✗ NEVER to open a TUI command — pokes 2-3 Escape-close the picker |
+| **`send.tui <pane> Enter`** | **bare Enter, NO Escape** | ✓ SELECT inside the picker (checkpoint AND option) |
+| `pane.capture <pane> N` | `tmux capture-pane -p` (read-only) | ✓ your eyes — closes nothing |
+
+Sequence:
+1. **Open:** `otmux send.raw <pane> "/rewind" Enter` → `otmux pane.capture <pane> 24` (the checkpoint list appears; use the `↑N / ↓N` counter as a precise depth gauge).
+2. **Navigate DEEP:** `otmux send.raw <pane> Up` (batches of 20-40 land exactly) → capture → repeat until the highlight sits on the target checkpoint. Picker restores to the point BEFORE the highlighted message.
+3. **Select checkpoint:** **`otmux send.tui <pane> Enter`** (bare — NOT `send.raw`) → capture (the Restore-options menu appears; it does NOT close).
+4. **Option 2 "Restore conversation":** `otmux send.raw <pane> Down` to highlight → capture (confirm it's on option 2, never 1/4) → **`otmux send.tui <pane> Enter`**.
+5. **Verify:** `otmux pane.capture <pane> 25` (conversation truncated to the checkpoint = success).
+
+**Iron rule:** navigate with `send.raw` arrows; SELECT with `send.tui Enter`. NEVER `send.raw Enter` / `send` / `send.verified` inside the picker — they Escape-cancel it. **Modal-coordination fact:** while the picker is open on the agent's pane, that agent is BLOCKED at its UI and cannot guide in real-time — a PEER or TRON drives + guides from outside; you cannot message the agent's pane without disrupting the picker.
 
 ## Why This Matters
 - /clear = total training destruction = CMM1 panic

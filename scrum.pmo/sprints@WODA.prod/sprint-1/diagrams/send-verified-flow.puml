@@ -1,0 +1,46 @@
+@startuml send-verified-flow
+title send.verified — clean flow (g.8 no-poke + task-02 shell poll)
+caption Dual-link ⬆ owning tasks: sprint-1/task-02-nonclaude-verify-rc0.md  &  sprint-2/task-s2-g.8-send-verified-remove-poke.md
+skinparam backgroundColor #FFFFFF
+skinparam activity {
+  BackgroundColor #E8F5E9
+  BorderColor #2E7D32
+  DiamondBackgroundColor #FFF3E0
+}
+
+start
+:C-u (clear stale input);
+:stage text ONCE  (send-keys -l);
+note right: distinctive tail probe = last 24 chars
+
+if (isClaudeCode?) then (CLAUDE)
+  if (idle? (no "esc to interrupt")) then (idle)
+    :Escape — dismiss @-mention / slash autocomplete;
+    note right: THE reliability mechanism\nso the ONE Enter lands
+  else (generating)
+    :skip Escape (never interrupt);
+  endif
+  :SINGLE Enter;
+  :settle;
+  if (probe left the ❯ input region?\n(last ❯ row -> bottom, g.7)) then (yes)
+    #C8E6C9:info: committed;
+    stop
+  else (no)
+    #FFCDD2:rc2 STAGED\n(caller re-drives via drain);
+    stop
+  endif
+else (SHELL / non-claude)
+  :SINGLE Enter  (NO Escape, NO poke);
+  repeat :re-CAPTURE only (never re-Enter);
+    note right: OBSERVE, not poke\nzero extra Enters -> zero dup
+  repeat while (window <= ~2.5s\nAND not committed?) is (keep polling)
+  ->exit;
+  if ((a) probe left input\nOR (b) pane advanced?) then (committed)
+    #C8E6C9:info: committed to <t> (shell);
+    stop
+  else (still unapplied after full window)
+    #FFE0B2:WARNING + rc2\n(truly wedged shell);
+    stop
+  endif
+endif
+@enduml

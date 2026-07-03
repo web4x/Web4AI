@@ -7,6 +7,7 @@
 - [channel-noise-not-tron](memory/channel-noise-not-tron.md) — a wire signal is not automatically TRON; measure first.
 - [clean-perspective-of-truth](memory/clean-perspective-of-truth.md) — never trust inherited env; verify identity by kernel+process, never $TMUX_PANE/pane-title.
 - [consolidation-clean-target](memory/consolidation-clean-target.md) — keep the target's files clean of ARON's bookkeeping; provenance in REVIEW.md; F29 anti-bulk.
+- [research-first-then-ask](memory/research-first-then-ask.md) — don't know? research the AUTHORITATIVE source first (and check own memory!), then ASK TRON; never a confident guess.
 
 ## reference (facts)
 - [dual-links-pdca](memory/dual-links-pdca.md) — `[GitHub](url) | [local](path)`, push-first, verify 200.

@@ -5,8 +5,8 @@
 
 ## Status
 - [x] Planned
-- [ ] In Progress
-- [ ] QA Review
+- [x] In Progress
+- [x] QA Review (expert-verified live; awaiting tester T-SHELL-REAP)
 - [ ] Done
 
 ## Traceability
@@ -66,8 +66,10 @@ Each leaked shell holds file descriptors (pipes/sockets). Orphans persisting thr
 
 ## Report-back
 - Architect (safe-reap design): **DONE 2026-07-02** — safe-reap is correct-by-construction: reap ONLY provably-safe (ORPHANED = owning pane no live claude / reparented-to-init; IDLE-STALE = no running child + age>TTL), DEFAULT=KEEP on any doubt; ACTIVE-WORK + the pane foreground shell NEVER reaped (guards the proven pane.lock otmux:3119 "SIGTERM live foreground" hazard + BUG6 loose-pkill). Reuses task-s2-h tty→pane_pid subtree (DRY) + `claudeCode.process.running`. Graceful SIGTERM→re-check→SIGKILL by PID (not pkill-pattern). Triggers: rewind (hiveMind:530, closes the fd-leak-thru-rewind = OTR-2 tie) + idle-sweep. `shell.reap.dry` = safety-audit valve. Depends on task-s2-h. T-SHELL-REAP incl. the active-survives + foreground-never assertions.
-- Expert (impl):
-- Tester (T-SHELL-REAP):
+- Expert (impl): **DONE 2026-07-03 `64c0365`** (dev). `hiveMind shell.reap <?pane|session>` + `hiveMind shell.reap.dry <?…>` (safety-audit valve — kills NOTHING). **Correct-by-construction ALLOW-LIST classifier, DEFAULT=KEEP:** REAP only — **orphaned-reparented** (`ppid==1`; kernel-provable parent-death → reaped even WITH a live child = the post-rewind `sleep`-loop leak, the ONE case where reap-with-child is safe), **orphaned-no-claude** (no live child + `claudeCode.process.running` false), **idle-stale** (no live child + age>`SHELL_REAP_TTL`:300s). **NEVER** — active-work (live non-zombie child under a still-parented shell), the pane's own foreground shell (`pid==pane_pid`, guards the proven otmux:3119 SIGTERM-live-foreground hazard), or any ambiguous/young case. **Kill by PID: SIGTERM → 0.3s grace → RE-CLASSIFY on fresh ps → SIGKILL only if still reapable** (spares a shell that started work mid-grace) — never a `pkill -f` pattern (the BUG6 lesson applied). **Candidates = pane_pid subtree UNION reparented (`ppid==1`) orphans that KEPT the pane's tty** — the post-rewind leak LEAVES the subtree at reparent, so tty-attribution (the c.0 `tty` field) recovers it. **DRY**: shares the `private.hiveMind.shell.descendants` producer with task-s2-h's `bgshells` (h counts / i classifies+reaps). **Verified:** classifier 7/7 synthetic (incl. post-rewind-leak-with-child=REAP + busy-non-reparented=KEEP + foreground=KEEP) · LIVE mechanism (real `ppid==1` orphan REAPED, active bash+sleep-child SURVIVED) · tty-orphan discovery (only bash+ppid1+matching-tty) · **fleet `.dry` flags NOTHING on live agents (zero false-positives)**. Non-regr: teamsave-parity 3/3, team.sweep sh:K intact.
+  - **⏭ TRIGGERS — deferred pending T-SHELL-REAP (not auto-wiring a killer un-verified):** (a) **idle-sweep is ALREADY operational** — SM runs `hiveMind shell.reap` when the task-s2-h dashboard shows high `sh:K`; `.dry` first as the audit. (b) **rewind auto-trigger** (post-fork event hiveMind:~530): design-specified as the fd-leak cure, but auto-killing on every fork should land AFTER the tester verifies the live safety (T-SHELL-REAP). Recommend wiring it as a follow-up once green — the reaper's `ppid==1`-only + DEFAULT=KEEP make it safe, but a killer earns its auto-trigger by passing the safety suite first.
+- Tester (T-SHELL-REAP): **✅ GATE PASS 4/4** (dev `test/test.shell-reap`) — SR-CLASSIFIER-SRC [S] (pane_pid foreground guard + kill-by-PID + ZERO pkill-pattern), SR-DRY-CLASSIFY (.dry flags the ppid==1 orphaned-reparented leak, SPARES active + foreground), SR-DRY-KILLS-NOTHING (audit valve terminates nothing), **SR-APPLY [critical]** (shell.reap REAPS the leak while the ACTIVE-work shell [sleep-300 child + parent alive], the pane foreground, AND an out-of-scope ppid==1 control ALL SURVIVE: leak=no active=yes fg=yes ctrl=yes). Fake-claude scratch agent-pane fixtures, fully isolated + cleaned (0 leftovers, real agents untouched). **Safe reaper verified — rewind auto-trigger now earns its wiring.**
+- Tester (T-SHELL-REAP): READY — (a) orphan (spawn bash, kill its parent → `ppid==1`) → reaped; (b) **ACTIVE (bash with a live `sleep 300` child, parent alive) → SURVIVES [critical]**; (c) idle-stale (bash, no child, age>TTL — set `SHELL_REAP_TTL=1`) → reaped; (d) **pane foreground shell → NEVER reaped**; (e) post-rewind leak (bash `ppid==1` WITH a sleep child on the pane's tty) → reaped; (f) fd reclaim before/after; (g) **`shell.reap.dry` kills NOTHING, reports the same set**; (h) isolation — never touch a real agent's active shell. Commit `64c0365` on dev. `SHELL_REAP_TTL` env-tunable for (c).
 
 ---
 ## ✅ task-s2-i DESIGN done (architect 4d670b5) — PO APPROVED
@@ -76,3 +78,14 @@ Safe-reap CORRECT-BY-CONSTRUCTION: reap ONLY provably-safe (ORPHANED = owning pa
 - **DRY**: reuses task-s2-h tty→pane_pid subtree (h counts / i reaps) + claudeCode.process.running.
 - **Triggers**: rewind (hiveMind:530 — closes persist-thru-rewind = the OTR-2 fd-leak cure) + idle-sweep. `shell.reap.dry` = safety-audit valve (kills nothing).
 - Depends on h (→ depends on c.0). **Expert impl after h.** Tester T-SHELL-REAP asserts active-SURVIVES + foreground-NEVER.
+
+---
+## ✅ task-s2-i shell.reap DONE (expert 64c0365) — awaiting tester T-SHELL-REAP gate
+SAFE reaper, correct-by-construction allow-list, DEFAULT=KEEP: reaps ONLY ppid==1 orphans (incl post-rewind sleep-loop leak, kernel-provable) / no-claude / idle-stale>TTL. NEVER active-work (live child + parent alive) nor the pane FOREGROUND shell (otmux:3119 hazard guard). Kill by PID SIGTERM→re-classify→SIGKILL (BUG6 lesson, no pkill-pattern). shell.reap.dry = audit valve (kills nothing). Candidates = pane subtree ∪ tty-matched ppid==1 orphans. DRY: shares the subtree producer with task-s2-h. Expert-verified: classifier 7/7 synthetic + LIVE orphan-reaped/active-survived + fleet .dry flags nothing.
+**DISCIPLINE (PO endorses):** rewind auto-trigger DEFERRED until T-SHELL-REAP green — won't auto-wire a killer unverified. SM can run `shell.reap` / `shell.reap.dry` MANUALLY now (dashboard shows the counts).
+**Gate:** tester T-SHELL-REAP (critical: active-SURVIVES + foreground-NEVER).
+
+---
+## ✅ task-s2-i shell.reap — PO QA PASS (T-SHELL-REAP 4/4, 2026-07-03)
+Tester T-SHELL-REAP 4/4 PASS: SR-CLASSIFIER-SRC [S] (pane_pid foreground guard + kill-by-PID + ZERO pkill-pattern — BUG6 locked structurally) · SR-DRY-CLASSIFY (.dry flags the ppid==1 orphaned-reparented post-rewind leak, spares active+foreground) · SR-DRY-KILLS-NOTHING (audit valve) · SR-APPLY [critical] (leak=reaped, active-work=SURVIVES, foreground=NEVER, out-of-scope control=SURVIVES). Fully isolated, 0 leftovers, 14 real agents untouched. **The safety asymmetry (never leave the agent worse off) is verified.** **PO QA GATE: PASS.**
+**Rewind auto-trigger UNBLOCKED** (was deferred until this green) → wire `shell.reap` into task-s2-j `hiveMind.agent.rewind` (reap the peer's persist-thru-rewind leak AFTER the rewind completes). Closes the OTR-2 fd-leak automatically + safely.

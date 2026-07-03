@@ -5,8 +5,8 @@
 
 ## Status
 - [x] Planned
-- [ ] In Progress
-- [ ] QA Review
+- [x] In Progress
+- [x] QA Review (expert-verified live; awaiting tester T-SWEEP-ALL)
 - [ ] Done
 
 ## Traceability
@@ -71,8 +71,9 @@ idle/active (state) + shell-growth (bg-shell-count) + context-cliff (ctx%) in ON
 
 ## Report-back
 - Architect (design): **DONE 2026-07-02** — `team.sweep` no-arg = PROJECTION of c.0 `live.tupleset` grouped by session (NOT a re-enumeration — the PF3 lesson). Two new per-pane signals ride c.0 fields: bg-shell-count from `tty`→pane_pid (ONE batch ps, subtree bash count = shell-leak signal), context% from `uuid`→JSONL token math (fast, no capture; cliff-colored ≤20%⚠/≤40%). Team header = N agents · M shells (kind=shell count). Remote/fail-safe inherited from c.0 (never silent-omit). ONE SM view: idle/active + shells + cliff. Depends on c.0. T-SWEEP-ALL + PF3 no-re-enumerate regression guard.
-- Expert (impl + commit):
-- Tester (T-SWEEP-ALL):
+- Expert (impl + commit): **DONE 2026-07-03 `ddfcf51`** (dev). `team.sweep` rewritten as a **PROJECTION of the c.0 `live.tupleset`** (grouped by session) — no-arg = ALL active teams, `<session>` scopes to one. **PF3-clean**: reads `live.tupleset` (grep `HIVEMIND_REGISTRY` in the fn = 0); the only `list-panes` call is the legit pane→pane_pid batch (bg-shell roots), not a re-enumeration. Two new per-pane signals ride c.0 fields: **bg-shells `sh:K`** (tty→pane_pid via ONE `tmux list-panes` batch + ONE `ps -eo ppid,pid,comm` snapshot → awk subtree walk counting bash/sh/zsh descendants; excludes the pane's own shell + the foreground claude) and **context% `ctx NN%`** (uuid→`claudeCode context.read`, JSONL-first; cliff-colored ≤20% red ⚠ / ≤40% yellow). Header `N agents · M shells` (kind counts from the tuple); shell rows = `shell`; remote-unreachable marker surfaced (never omitted — inherited from c.0). Extracted `private.hiveMind.sweep.paneState` (state via sweep.detect+content) + `private.hiveMind.sweep.bgshells` helpers. **Live-verified WODA.prod:** 8 teams swept; cliff ⚠ fires (ARON 13%, robbin-po 9%, robbin-tester 0%); SELF-skip on own pane; real ⚠/· UTF-8. Non-regr: teamsave-parity 3/3, send-matrix 12/12. **NOTE (calibration for tester):** `sh:K` counts ALL shell descendants — includes transient tool-bash (fluctuates with activity) + the wrapper chain; the LEAK signal is sustained growth, not the absolute baseline (idle≈1-3, active/leaky higher). **Unrelated flag:** `test.dispatch-submit` is 1/5 RED but that's the **OTR-1 revert** fallout (it asserts the reverted rc2/rc3/GATE-SRC contract — `keepsRc2` etc.), NOT this change (my diff touches 0 send.verified/drain lines) — tester should retire/update dispatch-submit for the reverted send.
+- Tester (T-SWEEP-ALL): **✅ GATE PASS 5/5** (dev `test/test.sweep-all`) — SA-ALL-TEAMS (8/8 live teams, 0 omitted — PF3 guard), SA-HEADER-COUNTS (every `N agents · M shells` == c.0 tuple counts), SA-AGENT-SIGNALS (sh:K + ctx NN% present, shell rows = `shell`), SA-CLIFF (3 agents ≤20% all carry ⚠), SA-PF3-NOREENUM [S] (fn reads live.tupleset, 0 HIVEMIND_REGISTRY/agents.discover). task-s2-h verified.
+- Tester (T-SWEEP-ALL): READY — no-arg lists EVERY active team (incl. remote via c.0 ossh-exec; unreachable → marker, never omitted); header counts == c.0 tuple counts; agent lines show STATE + sh:K + ctx NN% (low-ctx shows ⚠); shells show `shell`; **PF3 regression guard: grep the fn reads `live.tupleset`, NOT `HIVEMIND_REGISTRY`/`agents.discover` enumeration** (the `list-panes` for pane_pid is allowed); bounded at fleet scale. Commit `ddfcf51` on dev.
 
 ---
 ## ✅ task-s2-h DESIGN done (architect `ec32300`) — PO APPROVED
@@ -83,3 +84,8 @@ team.sweep no-arg = **PROJECTION of c.0 `live.tupleset` grouped by session** (NO
 - **DRY win**: c.0 is now the ONE reader; parity + C.2 + C.3 + this dashboard are all PROJECTIONS. Depends on c.0 → expert builds c.0 first.
 - Tests: **T-SWEEP-ALL** + a **PF3 no-re-enumerate regression guard**.
 **Expert impl (after c.0).**
+
+---
+## ✅ task-s2-h DONE + PO QA PASS (2026-07-03) — T-SWEEP-ALL 5/5
+Impl ddfcf51 (expert). Tester T-SWEEP-ALL 5/5 PASS: SA-ALL-TEAMS (8 live teams, 0 omitted, PF3) · SA-HEADER-COUNTS (every 'N agents·M shells' == c.0 tuple counts) · SA-AGENT-SIGNALS (sh:K bg-shells ×14 + ctx NN% ×7, shell rows='shell') · SA-CLIFF (3 agents ≤20% all carry ⚠) · SA-PF3-NOREENUM [S] (reads live.tupleset, ZERO registry/agents.discover re-enumeration). The shell-count + context-cliff SM/Tron asked for is LIVE — it surfaces the exact context cliffs (ARON/robbin-po) that killed robbin-po. **PO QA GATE: PASS.**
+Also: **T-DISPATCH-SUBMIT reshaped** — retired 3 reverted-OTR-1 rc0/2/3 cells (superseded by send-selfheal 5/5 + send-matrix), updated to queue-drain no-drop guard (route-gate + NODROP), 2/2 green. No stale RED.
