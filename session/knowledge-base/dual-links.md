@@ -1,37 +1,25 @@
-# Dual Links — bidirectional traceability in scrum.pmo tasks/tests
+# Dual Links — GitHub + local, both on one line (Web4Articles standard)
 
-*Purified by ARON 2026-07-03 from the correct source (`scrum.pmo/sprints/sprint-0-lifecycle-consolidation/`). Actionable first-principle.*
+*Authoritative source: `/var/dev/Workspaces/2cuGitHub/Web4Articles/recovery.analysis/pdca-format-requirements-mandatory.md` (§ DUAL LINK REQUIREMENTS). Purified by ARON 2026-07-03.*
+*⚠️ CORRECTION: an earlier version of this article wrongly described dual links as up/down parent↔child traceability. That was WRONG — that is a DIFFERENT concept (traceability links). Dual links are the GitHub-plus-local reporting format below.*
 
 ## The one rule
-**A link is DUAL: it is written at BOTH ends.** For every relationship A→B, A's file names B *and* B's file names A. A link that exists on only one side is broken (unwalkable, invisible — like a stale pin). "Dual links" = every traceability edge is bidirectional.
+**A DUAL LINK gives every artifact reference in BOTH forms — a working GitHub link AND the local path — on the SAME line.** So the reader (TRON) can navigate whether they're browsing GitHub or working locally.
 
 ## Format (exact — copy this)
-Every task/test file has a `## Traceability` section with `up` and `down` bullet lists of **relative markdown links** `[Title](./file.md)`, plus a breadcrumb at the very top:
+```markdown
+[GitHub](https://github.com/Cerulean-Circle-GmbH/Web4Articles/blob/<branch>/path/to/file) | [path/to/file](path/to/file)
 ```
-[Back to Planning Sprint N](./planning.md)
-...
-## Traceability
-- Source: Sprint N - <name>, Epic <X>
-  - up
-    - [Sprint N Planning](./planning.md)          # or the parent task
-  - down
-    - [Task A1.1: Expert - ...](./task-a1.1-....md)
-    - [Task A1.3: Tester - ...](./task-a1.3-....md)
-```
+- **Both links on the same line**, separated by ` | ` (space-pipe-space).
+- **Local link text MUST be the actual relative path** (e.g. `[scrum.pmo/sprints/sprint-1/planning.md](...)`), not a friendly title.
+- **The GitHub link MUST work** → **`git push` BEFORE you provide it.** NEVER give a GitHub link without pushing first (a dead link breaks trust).
 
-## Who links to whom (both directions)
-| File | `up` (parents) | `down` (children) |
-|------|----------------|-------------------|
-| **planning.md** | (sprint index / TRON directive) | every task in the sprint |
-| **Parent task** `A1` | `./planning.md` | each subtask `A1.1, A1.2, A1.3` |
-| **Child task** `A1.1` (expert) | `./task-a1.md` (its parent) | None (leaf) — or its own subtasks |
-| **Test-case task** `A1.3` (tester) | `./task-a1.md` (the task it validates) | None (leaf) |
+## Where dual links are required
+- **Chat / report responses:** always END with the current artifact's dual links. "Much in files, relevant links in chat" (TRON) — chat carries **links + key decisions only**; the detail lives in the file.
+- **PDCA artifacts:** every referenced artifact is dual-linked.
 
-**The dual check:** parent's `down` list contains A1.1 **⇔** A1.1's `up` list contains the parent. Both, or it's not a link. Same for planning↔task. A tester task links `up` to the task it tests, and that task lists the tester task in its `down` — the test and the thing-under-test reference each other.
+## Procedure (never skip)
+1. Write/commit the artifact. 2. `git push` to the branch. 3. **Verify the GitHub link actually opens.** 4. Report with `[GitHub](url) | [relative/path](relative/path)`.
 
-## How to rebuild wrong tasks (oosh-po's case)
-1. Give every task a top breadcrumb `[Back to Planning Sprint N](./planning.md)`.
-2. Add `## Traceability` with `up`/`down`.
-3. Each subtask `up` → its parent; each parent `down` → all its subtasks; planning `down` → all tasks; each task `up` → planning.
-4. Each tester/test-case task `up` → the task (or requirement) it validates; that task's `down` → the tester task.
-5. **Verify duality:** walk every link — if the far end doesn't link back, the link is broken; fix both ends.
+## Not to be confused with
+**Traceability links** (a separate concept): the `## Traceability` section's `up`/`down` bullets linking a task to its parent/children (bidirectional parent↔child). That is "traceability," NOT "dual links." Dual links = GitHub + local, per above.
