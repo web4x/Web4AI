@@ -637,6 +637,14 @@ Tron ordered a clean fork of ARON. I forked `ccecd85f` (1.2MB, Jun 28 = 5-day-ol
 - **The 50% line operationalizes the two-class doctrine:** below it, an agent behaves files-hold-value (cheap to replace, value is in its files); above it, it behaves context-is-value (expensive/irreplaceable, value is in the live context). **When unsure of context %, MEASURE via the pane status bar first — and if it's above 50% or you can't tell, treat it as protected and get Tron's word before any kill/exit/destructive-fork.**
 - **Restated as my standing gate:** before ANY kill/exit/overwrite-fork of a live agent → (1) measure its context %; (2) if bad-fork or <50% → allowed; (3) if ≥50% → STOP, do not touch, get full Tron authorization. No exceptions, no "I was pretty sure," no stale-plan momentum.
 
+### otmux pane.capture is FIXED — stop using raw tmux on MacStudio (2026-07-04, oosh-po confirmed)
+
+- **My F-T20 note "otmux pane.capture broken, use raw tmux" is now STALE.** The fix landed AND verified: MacStudio `~/oosh` (macos.latest) = `b2dd551` (forward-port of `7059a36`, switched `-S` scrollback → `-p` visible screen), tester independent gate `a6a98dc` 4/4 GREEN incl a redrawing-pane delta. The bridge A/B did NOT stay pending — it closed as **#37 (`1bd09e52`)**: live MacStudio→WODA.prod ssh-attach A/B proved `-S`=BLANK / `-p`=LIVE → reliable over a real bridge.
+- **New rule — WHICH otmux runs the capture decides reliability:**
+  - **From MacStudio (my fixed otmux), even reading a WODA.prod pane over the bridge = RELIABLE.** Use `otmux pane.capture <pane> <lines>`. STOP using raw `tmux capture-pane` on MacStudio, including for the bridge pane `remoteOOSH:0.2` — use `otmux pane.capture remoteOOSH:0.2 N`.
+  - **Only caveat: WODA.prod's OWN `~/oosh` is still `-S`-buggy (#38, `7059a36` not pulled there, delegated to oosh-po@WODA.prod).** So a capture command run *from within* WODA.prod via the bridge (using WODA.prod's oosh) is still buggy → raw `tmux capture-pane -p` on WODA.prod is fine there, ONLY until #38 lands.
+- **No team tasking needed** — fix is sealed; only the WODA.prod deploy (#38) remains and is already delegated.
+
 ### ARON full-fork EXECUTION lessons (2026-07-04, SM 42-oversight, SUCCESS)
 
 **Restored context-is-value ARON by forking the rich f814788a (834.1k) FULL-as-is into Temple:0.0, dodging the summary trap. The arc: halt-on-stale-plan → correct-doctrine → delimited-measure → full-fork → verify-rich → rename → hands-off.**
