@@ -175,7 +175,7 @@ Every time you touch an agent (bootstrap, rewind, retrain, identity-correct), ve
 - Check: pane status bar shows `Remote Control active` (right side)
 - Enable: send `/remote-control` then Enter
 - Reason: Tron must be able to reach every agent from mobile / claude.ai/code
-- Note: post-rewind, RC sometimes auto-reconnects; post-fork it usually needs explicit re-enable
+- Note (CORRECTED 2026-07-03 on oosh-po): a rewind/recovery **DROPS RC** — it does NOT reliably auto-reconnect. ALWAYS re-enable explicitly and **verify the footer `/rc` marker** (measure, don't assume). Re-enabling RC is part of FINISHING the rewind — my duty, not something to leave for Tron. If a pending instruction is staged in the composer, `C-u` clear it first (else `/remote-control` concatenates), then re-send it. See `session/base-skills/agent-rewind.md` Step 4b + [[reenable-rc-after-recovery]].
 - Command: `otmux send.raw <pane> "/remote-control" Enter`
 
 ### Verification Capture

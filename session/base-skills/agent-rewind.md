@@ -40,6 +40,13 @@ A modal picker BLOCKS the agent's own UI — once it's open the agent cannot gui
 1. Send boot file reference: "Read session/tasks/<role>-boot.md"
 2. Verify agent responds with role identity
 
+### Step 4b: RE-ENABLE Remote Control (MANDATORY — a rewind/recovery DROPS RC)
+Disconnecting RC is part of the recovery (RC-interference fix, or Tron disconnects to unwedge). **A rewind is NOT finished until RC is back on** (Touch Protocol). After the health check:
+1. Composer must be CLEAR first — if a pending instruction is staged, `C-u` to clear it (re-send it in step 3), else `/remote-control` concatenates.
+2. `otmux send.raw <pane> "/remote-control" Enter` → capture → confirm footer shows **`/rc`** and "/remote-control is active".
+3. Re-send any instruction you cleared (`otmux send.verified <pane> "<the instruction>"`) so the agent resumes.
+4. Measure, don't assume: the footer `/rc` marker is the proof RC is live.
+
 ## FORBIDDEN
 - **NEVER send /clear** — destroys all training, unrecoverable
 - **NEVER send /compact** — only Tron authorizes
