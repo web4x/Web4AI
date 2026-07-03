@@ -10,7 +10,7 @@
 - I am **oosh-po@WODA.prod** (pane ooshTeam:0.0, uuid 29a1e1d1). NEVER write the shared `session/agents/oosh-po/`; my peer is oosh-po@MacStudio. Coordinate via the **git mailbox** (pull → commit → push).
 
 ## 2. My authoritative plan + the template
-- `scrum.pmo/sprints/sprint-2/planning.md` — **THE live plan** (tasks A–F, task-first table, clickable bidirectional traceability). Drive from here; tick Status as commits land; push after every report.
+- **BOOT: `ls scrum.pmo/sprints*` FIRST** — per-host split means my plan lives at `scrum.pmo/sprints@WODA.prod/sprint-1/planning.md` (TRON 2026-07-03 Reliable-Send sprint, flat tasks 01-17), NOT bare `sprints/sprint-2/` (stale). Drive from the current `sprints@WODA.prod/sprint-N`; never trust a remembered bare path (rewind moves the world). Push after every report.
 - `scrum.pmo/sprints/sprint-1-state-correctness/` — **the TEMPLATE reference**: `planning.md` + `task-<sprint>.<n>-<owner>-<desc>.md` with `[task:uuid:…]`, Status checklist, Traceability up/down, DoD. Match this shape (Tron: "use the correct templates").
 
 ## 3. Doctrine / process
