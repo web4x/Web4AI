@@ -20,6 +20,12 @@
   - [task-s2-g.1](./task-s2-g.1-otmux-send-session-regression.md) — otmux send session/manual regression (OTR-1?)
   - [task-s2-g.2](./task-s2-g.2-c2-completion-parity.md) — c2 completion parity dev↔macos.latest
   - [task-s2-g.3](./task-s2-g.3-branch-newer-reliable.md) — dev vs macos.latest: newer/more-reliable + reconcile
+  - [task-s2-g.4](./task-s2-g.4-isclaudecode-kind-misclassify.md) — isClaudeCode kind mis-classify (bash-parent claude)
+  - [task-s2-g.5](./task-s2-g.5-radical-send-test-coverage.md) — T-SEND-MATRIX exhaustive send coverage (permanent guard)
+  - [task-s2-g.6](./task-s2-g.6-send-verified-coherence-review.md) — send.verified coherence review (found the wrap/remote/shell gaps)
+  - [task-s2-g.7](./task-s2-g.7-verify-region-scan.md) — verify region-scan (wrap hardening)
+  - [task-s2-g.8](./task-s2-g.8-send-verified-remove-poke.md) — REMOVE the poke (Escape+single-Enter, honest rc)
+  - [send-capture-demo-matrix.md](./send-capture-demo-matrix.md) — testSend demo matrix (send×capture×case, predict→test→prove)
 
 ## Description
 **From Tron (2026-07-02):** otmux send is failing for the agent-trainer (rewinding ARON) AND for Tron's own shell — *"does not complete the session, seems totally broken."* Review what's going on; check if dev's otmux is **as reliable as macos.latest**; check if **c2 completion works the same in both branches**; determine if **macos.latest is newer or more reliable**.

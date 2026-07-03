@@ -1,4 +1,5 @@
 > ⬆ **[Sprint 2 · task-s2-g](./task-s2-g-otmux-send-reliability.md)** — sub-task; back to parent task.
+> 🖼 diagram (dual-link): [send-verified-flow.svg](../sprints@WODA.prod/sprint-1/diagrams/send-verified-flow.svg) — the clean flow this task defines (its .puml caption links back up to g.8).
 
 # Task S2-G.8: REMOVE the poke — send.verified = Escape+single-Enter, honest rc (Tron directive)
 

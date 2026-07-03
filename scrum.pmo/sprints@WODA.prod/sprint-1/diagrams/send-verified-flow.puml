@@ -1,5 +1,6 @@
 @startuml send-verified-flow
 title send.verified — clean flow (g.8 no-poke + task-02 shell poll)
+caption Dual-link ⬆ owning tasks: sprint-1/task-02-nonclaude-verify-rc0.md  &  sprint-2/task-s2-g.8-send-verified-remove-poke.md
 skinparam backgroundColor #FFFFFF
 skinparam activity {
   BackgroundColor #E8F5E9

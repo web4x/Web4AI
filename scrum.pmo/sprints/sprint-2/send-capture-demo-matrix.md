@@ -1,3 +1,5 @@
+> ⬆ **[Sprint 2 · task-s2-g](./task-s2-g-otmux-send-reliability.md)** — parent task (dual-link: parent links down to this).
+
 # testSend DEMO MATRIX — send + capture reliability (otmux + hiveMind)
 **For Tron's live predict→test→prove. Session `testSend`, 4 oosh SHELLS.** Architect enumeration (oosh-architect 2026-07-03). Legend: **[S]** works on a bare shell (demo-direct) · **[C]** needs a CLAUDE target (real agent pane, or the `pane_current_command=claude` fixture) · **[R]** needs a remote host.
 

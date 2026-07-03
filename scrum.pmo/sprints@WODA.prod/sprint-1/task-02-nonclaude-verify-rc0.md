@@ -28,6 +28,7 @@ A delivered shell send is `info`; a `WARNING` fires **only** when the send truly
     - [Sprint 1 Planning @ WODA.prod](./planning.md)
   - down
     - [Task 2.1: Tester - shell commit-detect / log-level test](./task-02.1-tester-shell-rc0-tests.md)
+    - [diagram: send-verified-flow](./diagrams/send-verified-flow.svg) ([.puml](./diagrams/send-verified-flow.puml)) — the clean send.verified flow this task's shell-poll feeds (dual-link: the .puml caption points back up here)
 
 ## Task Description
 Task 01's live proof showed a shell send that **committed** (the shell ran the command) yet logged `WARNING: STAGED (not committed) — rc 2`. The g.7 `❯`-verify is claude-specific; a shell has no `❯`, so it can't see the commit. Fix: give the non-claude verify a **shell-commit check** (did the prompt advance / did the command echo+run) so it reports the truth — `info`+rc0 on commit, `WARNING`+rc2 only on genuine non-apply. Also removes the false-rc2 → drain re-drive dup risk on the `agent.send`→shell path.
