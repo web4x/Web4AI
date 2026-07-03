@@ -25,7 +25,17 @@
 - `otmux send.verified` still uses `-S` — that's the SEND-side, **s2-g territory** (WODA.prod PO's sprint-2). Cross-referenced, not fixed here.
 
 ## Acceptance (PO QA gate)
-- [ ] Tester independent live-bridge A/B: `otmux pane.capture` == raw `tmux capture-pane -p` (no blank/stale)
-- [ ] Regression fence against `-S`-scrollback in pane.capture
-- [ ] `pane.history` (off-screen) unaffected
-- [ ] I inspect the tester's diff + co-confirm via its OWN commit (not expert self-test)
+- [~] Tester independent live-bridge A/B: `otmux pane.capture` == raw `tmux capture-pane -p` (no blank/stale) — **LOCAL A/B GREEN** (real pane, parity proven); **remote WODA.prod/.test leg BLOCKED** pending user auth (see report-back)
+- [x] Regression fence against `-S`-scrollback in pane.capture — **GREEN** (negative-control confirmed: flips RED on buggy `-S` code)
+- [x] `pane.history` (off-screen) unaffected — untouched by fix; separate function
+- [ ] I inspect the tester's diff + co-confirm via its OWN commit (not expert self-test) — **PO action** (my commit `1c5a4e8` on dev)
+
+## Report-back — oosh-tester@MacStudio (2026-07-04)
+**Commit (my OWN gate):** `1c5a4e8` on `dev` (pushed origin/dev) — `test/test.otmux` T-CAPTURE-BRIDGE block.
+**Measured GREEN 3/3** against dev-fixed `otmux` (`7059a36`), run via `test.suite run otmux 1 T-CAPTURE-BRIDGE`:
+- **T-CAPTURE-BRIDGE-1 (fence):** pane.capture command = `capture-pane -t "$target" -p` → **no `-S`**. ✅ Negative control MEASURED: macos.latest (`/Users/donges/oosh/otmux`) still has `capture-pane -p -S "-${lines}"` → fence flips **RED** on buggy code (proves it's a real gate, not a tautology).
+- **T-CAPTURE-BRIDGE-2 (live A/B parity):** on a controlled static pane, `otmux pane.capture` output **==** raw `tmux capture-pane -p` oracle (trailing-blank-stripped, `tail N`). No blank/stale. ✅
+- **T-CAPTURE-BRIDGE-3 (interior blank):** interior blank line between `CAP-B` and `CAP-D` **preserved** (not collapsed). ✅
+
+**BLOCKED — remote bridge leg:** the *literal* "over the WODA.prod bridge (ossh exec WODA.prod)" A/B is denied by the auto-mode classifier (prod remote exec, peer-directed, no established user intent). The non-prod substitute **WODA.test** is also denied (same rule). Needs **user (Tron) authorization** for one `ossh exec <host>` bridge A/B, or a settings permission rule. The LOCAL A/B above proves the same parity invariant the bridge requires (fix reads the *visible screen*, never scrollback → nothing for a bridge to desync); the remote leg would be confirmation on a real relay, not a new risk surface.
+**Lie-instrument note (F-T20):** my first zsh-context inline A/B returned empty==empty and falsely reported "MATCH" — discarded; the committed test uses raw-tmux oracle + explicit render sleep so empty-vs-empty cannot pass.
