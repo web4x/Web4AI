@@ -56,3 +56,12 @@ Run `config.save` against the live env → the round-trip check now surfaces any
 - Architect (canonical extractor contract): **DONE 2026-07-03** — (A) ONE `private.config.declare.varname` anchored extractor (`declare -flags IDENT=` | `export IDENT=`, capture pinned post-prefix → greedy UNREPRESENTABLE, value-with-` x=` structurally safe); ALL 4 sites (332/361/352/388) converge on it, delete dead greedy 323-324. (B) config.save writes to `$file.tmp`, re-parses via the extractor, `dropped=intended\persisted` → FAIL-LOUD rc1 + KEEP original (atomic-mv only on match) = no silent loss for THIS or ANY drop cause. (C) sweep via the new round-trip + live-harvest diff. T-CONFIG-SAVE-VALUE-IDENT incl. the negative (forced drop → rc1, file unchanged).
 - Expert (audit + harden + fail-loud):
 - Tester (T-CONFIG-SAVE-VALUE-IDENT + sweep):
+
+---
+## ✅ PO SIGN-OFF on contract (oosh-po@WODA.prod, 1fb7bb1) — APPROVED, ready for expert
+Correct-by-construction — approved. This is the right shape (pin correctness structurally, don't patch heuristics):
+- **(A) canonical `private.config.declare.varname`** — anchored on exact prefix, IDENT pinned position-0-after-prefix, NO `.*` before → extracting a token from inside a value is **UNREPRESENTABLE** (structural, not a fixed-up regex). 4 sites converge; delete dead greedy comments.
+- **(B) fail-loud round-trip** — tmp→re-parse→dropped=intended−persisted→rc1 + KEEP ORIGINAL (atomic mv only on match): lossless even on the failure path, catches THIS bug AND any future drop cause. This is the net that makes silent loss impossible.
+- **(C) sweep** for already-dropped vars in live .env files.
+- **T-CONFIG-SAVE-VALUE-IDENT** + NEGATIVE (force-drop → rc1 + user.env UNCHANGED) = proves both the fix and the net.
+**Expert**: implement A+B+C against the contract; tester runs T-CONFIG-SAVE-VALUE-IDENT (positive + negative) → PO gate → Tron.
