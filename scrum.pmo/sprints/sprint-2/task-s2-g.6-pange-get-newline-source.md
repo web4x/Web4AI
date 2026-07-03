@@ -28,3 +28,10 @@
 TRUE root (deeper than pane.get/this-dispatch): `log.init.colors()` (called by `otmux.start` before EVERY dispatch) probed LOG_DEVICE writability with `echo "" > $LOG_DEVICE`. With `LOG_DEVICE=/dev/stdout` → the blank-line probe lands on STDOUT → the stray newline that broke C.2 + C.3 + g.4. **FIX**: probe with `: >> $LOG_DEVICE` (writes nothing; append not truncate — also fixes a latent log-file-WIPE bug where `>` would truncate a log file). 5 sites. Verified: pane.get pane_tty clean, process.find works, fallback intact. Non-regr: log 45/0, send-matrix 12/0, dispatch 5/0, parity 3/0. The C.2/C.3/g.4 consumer-trims stay as belt-and-suspenders.
 - **FAMILY**: this is another LOG_DEVICE-on-stdout contamination (with BUG5 + E.1 structured-output-log-guard) → reinforces E.1's systemic guard. **Tester T-PANEGET-CLEAN.**
 - **Send-family + recurring-root now fully CODE-CLOSED** — pending Tron dup live-confirm + 4 tester verifications (T-KIND-CLASSIFY, T-PANEGET-CLEAN, T-LIVE-READER, T-BOOT-IDENTITY).
+
+---
+## Architect send-fix coherence review (2fd1691) — PO triage
+- **HIGH (4) wrap-probe** — verify's last-24-char probe checks only the ❯ row; a STAGED wrapped msg (tail on a ❯-less continuation row) → false rc0 = silent loss. **PO empirical (long >120-char msg → committed fine, verify correct)**: real but LOW-in-practice (poke-loop commits before staging persists); still HARDEN. **Fix (→ new task-s2-g.7)**: verify scans the whole INPUT REGION (last ❯ line → bottom border) for the probe, not just the ❯ row. Head-probe rejected (prefix is identical across msgs → false-match).
+- **MED (2) remote** — send.verified is LOCAL tmux; a remote target verifies the WRONG local pane. Confirm no caller passes a remote pane to send.verified directly (remote delivery must exec ON the remote host).
+- **LOW (1)** shell verify vacuous (no ❯→rc0; Escape correctly gated off — g.1 preserved). **LOW (5)** C-u single-line vs multiline residue.
+- **CLEAN**: rc2-chain end-to-end (no drop/loop/dup) + MVC (pure View). Good review.
