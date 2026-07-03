@@ -20,6 +20,12 @@
   - [Sprint N Planning](./planning.md)
 - down
   - [Task N.1: <role> - <title>](./task-N.1-<role>-<slug>.md)
+- chain (req → usecase → class/method → impl → test):
+  - `[requirement:uuid:<v4>]` <slug>
+  - `[usecase:uuid:<v4>]` <slug>
+  - `[class:uuid:<v4>]` · `[method:uuid:<v4>]`
+  - `[implementation:uuid:<v4>]`
+  - `[test:uuid:<v4>]`
 
 ## Goal
 <what this task delivers, in one line>
@@ -37,8 +43,8 @@
 - <requirement>
 
 ## Acceptance Criteria
-- [ ] AC1: <testable criterion> — verified by [TS1](./task-N.M-tester-<slug>.md#ts1)
-- [ ] AC2: <testable criterion> — verified by [TS2](./task-N.M-tester-<slug>.md#ts2)
+- [ ] AC1: <testable criterion> — `[test:uuid:<v4>]` [TS1](./task-N.M-tester-<slug>.md#ts1)
+- [ ] AC2: <testable criterion> — `[test:uuid:<v4>]` [TS2](./task-N.M-tester-<slug>.md#ts2)
 
 ## Deliverables
 - <path/to/file>
