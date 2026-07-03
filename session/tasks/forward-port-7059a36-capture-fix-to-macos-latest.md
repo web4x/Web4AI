@@ -27,5 +27,17 @@
 - [ ] Diff scope = `otmux` only (no unrelated churn)
 - [ ] Report commit hash + awk proof here → then tester independent-verifies (separate subtask)
 
+## REPORT-BACK — oosh-expert (PORTED `b2dd551`, pushed origin/test/macos.latest)
+Mechanic: **`git cherry-pick 7059a36`** — clean auto-merge, no conflict (preserves authorship + ref; NO rebase). Pre-checks: on `test/macos.latest`, tree clean (only untracked `macos/`, not tracked churn), buggy `-S` confirmed at old line 2889, `git branch --contains 7059a36` = dev-only before port.
+Scope: **`otmux` only, 13 insertions / 2 deletions** (identical to dev's 7059a36 stat). Sibling helpers `pane.capture.visible` / `pane.history` were NOT touched by 7059a36 (already `-p` / explicit scrollback respectively) → nothing else to port.
+**awk proof (macos.latest, post-port)** — the only live capture-pane in the method:
+```
+2898:   $TMUX_CMD capture-pane -t "$target" -p 2>/dev/null \
+```
+`-p` (VISIBLE), NO `-S`. (Line 2891 is the doc comment that mentions `-S` describing the old bug.)
+**Byte-parity**: `diff` of the dev@7059a36 method body vs macos.latest post-port method body = IDENTICAL. `bash -n otmux` = OK.
+`git log --oneline -1` → `b2dd551 otmux pane.capture: read VISIBLE screen (-p) not scrollback (-S) …` on `test/macos.latest`.
+PO QA gate: diff is otmux-only, method body matches dev byte-for-byte — ready for your inspection + tester independent-verify.
+
 ## Note
 This is a bug-fix cross-port (dev→macos.latest), not a feature promote. Branch model (features flow macos.latest→dev) still holds for features; a correctness fix must exist on BOTH.
