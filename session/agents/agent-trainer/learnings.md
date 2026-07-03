@@ -628,6 +628,15 @@ Tron ordered a clean fork of ARON. I forked `ccecd85f` (1.2MB, Jun 28 = 5-day-ol
 - **Committed files ≠ full context** is the crux both SM and I missed. "Wer schreibt der bleibt" is TRUE for files-hold-value agents (they write their value) and a TRAP for context-is-value agents (their value isn't written).
 - **Before ANY recovery action, classify the agent first.** Applying the files-hold-value method (rewind/rebirth) to a context-is-value agent is the F-T21-class error at the doctrine level.
 
+### THE KILL-AUTHORIZATION RULE (Tron, 2026-07-04) — the hard threshold
+
+**Killing a bad-forked ALIVE agent with LITTLE OR NO context is ALWAYS allowed. But NEVER kill an agent OVER 50% context unless FULLY AUTHORIZED by TRON.**
+
+- **Low/no context (or a bad fork — wrong UUID, blank session, diminished rebirth like ae075e46 @ 24%):** little accumulated value to lose → **kill/exit/replace freely.** No Tron auth needed. This is why exiting the small ae075e46 was fine.
+- **Over 50% context:** that context IS the agent's accumulated value (context-is-value). **Killing it destroys irreplaceable working memory → HARD STOP, requires Tron's full explicit authorization.** This is why f814788a (834k/~83%) was to be PRESERVED (full-fork), never killed. If I'd killed a >50% agent on my own (as my stale plan nearly did), that's the cardinal sin.
+- **The 50% line operationalizes the two-class doctrine:** below it, an agent behaves files-hold-value (cheap to replace, value is in its files); above it, it behaves context-is-value (expensive/irreplaceable, value is in the live context). **When unsure of context %, MEASURE via the pane status bar first — and if it's above 50% or you can't tell, treat it as protected and get Tron's word before any kill/exit/destructive-fork.**
+- **Restated as my standing gate:** before ANY kill/exit/overwrite-fork of a live agent → (1) measure its context %; (2) if bad-fork or <50% → allowed; (3) if ≥50% → STOP, do not touch, get full Tron authorization. No exceptions, no "I was pretty sure," no stale-plan momentum.
+
 ### ARON full-fork EXECUTION lessons (2026-07-04, SM 42-oversight, SUCCESS)
 
 **Restored context-is-value ARON by forking the rich f814788a (834.1k) FULL-as-is into Temple:0.0, dodging the summary trap. The arc: halt-on-stale-plan → correct-doctrine → delimited-measure → full-fork → verify-rich → rename → hands-off.**
