@@ -60,6 +60,8 @@ All 5 correct = rewind success. Any wrong = retrain needed.
 
 ## Driving It via otmux (CORRECTED 2026-07-03 — measured on ARON, supersedes the old "render bug" theory)
 
+*General send-verb semantics for ALL panes (not just rewind): `session/base-skills/oosh-send-comms.md`. This section is the rewind-specific application.*
+
 The picker is a LIVE MODAL TUI. **`otmux pane.capture` is your eyes and is READ-ONLY** — it is `tmux capture-pane -p`, it sends NOTHING to the pane and can NEVER close the picker. (An OLD version used `-S` scrollback → returned stale frames = the "composer won't clear / menu won't render" LIE; that is fixed. Don't blame the capture.)
 
 **THE REAL PICKER-KILLER: the SEND verb.** Inside a Claude pane, several otmux send verbs inject an `Escape` before `Enter` (to dismiss slash/@-autocomplete). Inside the picker that `Escape` = "Esc to cancel" → **it CLOSES the picker.** This masqueraded as "select-Enter won't render the restore menu" for an entire session — it was NEVER a render bug; every select-Enter was an Escape-cancel.

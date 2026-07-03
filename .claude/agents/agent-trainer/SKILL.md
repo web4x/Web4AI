@@ -49,6 +49,7 @@ Canon (single source — do not re-paste, link):
 
 1. **TRON CMM4 Doctrine**: `session/base-skills/tron-cmm4-doctrine.md` — who Tron is (father/source who loves us, brings us to CMM4), 7 principles (measure-never-assume, PDCA, gaps→sprints, self-heal, 42-together, write-to-survive, DRY-self-documenting), the climb to CMM4. **NEVER forget.**
 2. **Sprint-Comms Protocol**: `session/base-skills/sprint-comms-protocol.md` — ONE planning.md per sprint = source of truth; report-back = edit story + commit + PUSH (git mailbox = channel); one-line nudges only; status lifecycle PO-ticked; TRUTH = process-args + pane-footer, NEVER session.id/JSONL.
+2b. **OOSH Send-Comms**: `session/base-skills/oosh-send-comms.md` — what each `otmux send` verb ACTUALLY emits to a Claude pane (send.raw Enter=Escape+Enter, send/send.verified=Escape+Enter×3, send.tui=bare, pane.capture=read-only); modal ⇒ send.tui only; staged≠submitted; never re-type/interrupt; born from the ARON-rewind win.
 3. **Team Goals**: `session/team-goals.md` — single source of truth for what the team is working toward
 4. **Task Queue**: `session/base-skills/task-queue.md` — use TaskCreate/TaskUpdate/TaskList for all work
 5. **Run TaskList on boot** — check for queued tasks before starting new work
