@@ -87,3 +87,46 @@ LIVE FINDING (trainer driving ARON %11, Tron-observed): `send.verified` CLOSES t
 `otmux.rewind.drive` (View: SELF+IDLE refuse-before-touch; post-controlled/verify-picker/navigate-capture-between-every-key/select-BARE-Enter/verify; select-stall=first-class FAIL-SAFE→Escape out, agent UNHARMED at idle, rc2, never blind-re-Enter) + `hiveMind.agent.rewind` (Controller: Tron-auth DEFAULT-REFUSE, DURING_REWIND quiesce poke-guard, clear-on-EVERY-exit, **+shell.reap on rc0-ONLY = persist-thru-rewind fd-leak auto-cure**, safe via the T-SHELL-REAP-passed reaper; NOT reaped on stall). Expert-verified safe surface: self/idle/auth-refuse + clear-every-exit + reap-on-rc0-only.
 **2 CALIBRATION items (need a LIVE picker):** (1) picker-open/sub-menu signature regexes are best-guess → tune from a live `/rewind` capture; (2) Tron-auth mechanism — no code rule existed, expert did explicit default-refuse (arg/env) → **architect confirm**.
 **GATE = T-REWIND-DRIVE is LIVE + DESTRUCTIVE** (rewinds a real agent) → needs a SACRIFICIAL/AUTHORIZED peer + Tron auth. KNOWN select-stall → rc2 fail-safe is the EXPECTED common outcome (not a failure).
+
+---
+## ARCHITECT — TRON-AUTH GATE DESIGN (oosh-architect, 2026-07-03) [confirms calibration item 2]
+**The placeholder (ef8ec82) fails BOTH requirements** — `auth=authorized|confirm|yes` is a *word any caller can pass* (BYPASSABLE: an agent runs `agent.rewind peer authorized` → succeeds), and `HIVEMIND_REWIND_AUTHORIZED=1` is a *blanket env with no scope/expiry* (ACCIDENTALLY-TRIGGERABLE: one stale var authorizes EVERY rewind). Neither binds to WHO authorizes or WHICH target. Replace with an **identity-gated, per-target, one-shot, expiring GRANT**.
+
+### Threat model (be precise — it's SAFETY, not crypto-security)
+Local tmux framework; no network adversary. The real risks: (a) an AGENT autonomously/accidentally rewinding a trained PEER (destroys its context), (b) a stray command rewinding the WRONG or an unintended agent. So the gate needs: **deliberate + scoped-to-one-target + non-spoofable-granter + non-replayable** — NOT a password.
+
+### The mechanism — a 2-step grant (reuses pane.self→role identity + the state store)
+1. **`hiveMind rewind.authorize <name>`** (the operator's EXPLICIT grant):
+   - **Granter-identity gate (the anti-bypass core):** derive the caller via `otmux pane.self target` → `HIVEMIND_REGISTRY` role — the SAME ground-truth mechanism `state.set` already uses (BUG7 pane.self = **non-spoofable**; an agent's process is in its own pane, it cannot claim another identity). Check the caller's role against an **authorizer allow-list** (below). A subordinate agent's own pane → role∈agents → **REFUSED** (an agent can NOT self-authorize).
+   - Writes a scoped grant: `<target>|<granterPane>|<granterRole>|<epoch>|<nonce>` to `~/config/hivemind.rewind.grants` (append) **+ audit** (append-only, like forks.env).
+   - **TTL-bounded**: `HIVEMIND_REWIND_GRANT_TTL` default **120s**.
+2. **`hiveMind agent.rewind <name>`** (the consume) — before DURING_REWIND/drive:
+   - Require a **VALID grant** for THIS `<name>`: exists · unexpired (`now-epoch ≤ TTL`) · target matches.
+   - **CONSUME atomically** (delete the grant line on read — one-shot; can't fire twice, can't replay).
+   - No valid grant → **DEFAULT-REFUSE** (keep the expert's safe default; rc1).
+   - **Tron-direct fast-path:** if the *caller itself* is an authorizer identity (pane.self→role ∈ allow-list) AND passes explicit `authorized`, proceed WITHOUT a pre-grant (Tron rewinding directly, deliberately). The identity gate makes the word safe — an agent passing `authorized` still fails the identity check. (This rehabilitates the expert's arg: keep it, but identity-gate it.)
+
+### Why it satisfies both requirements
+- **NOT bypassable:** every path requires an *authorizer identity* somewhere — as the direct caller (fast-path) OR as the grant's granter. That identity is `pane.self`-derived ground truth → an agent cannot spoof it → an agent alone can NEVER authorize. (Drop the plain env/word bypass.)
+- **NOT accidentally-triggerable:** (a) explicit 2-step (authorize THEN rewind) — no single command rewinds a trained agent; (b) per-TARGET scope — authorizing X ≠ authorizing Y; (c) short TTL — stale grants expire; (d) one-shot consume — fires exactly once. Any ONE of these kills the blanket-env accident; together, defense-in-depth.
+
+### Authorizer allow-list (the ONE policy decision — depends on how Tron interacts)
+Who counts as "Tron/authorizer" is `pane.self`→role checked against a list. Recommend tiering by target trained-ness:
+- **TRAINED target** (has real persisted context.md/learnings.md, or a registry `trained` flag) → granter MUST be the **operator/Tron identity**. Concretely = a pane with NO agent role in the registry (Tron's bare pane) OR an explicitly designated `HIVEMIND_REWIND_GRANTERS` role. **PO must confirm how Tron drives:** if Tron types via the PO pane, add `product-owner` to the granter allow-list; if via a bare operator pane, the no-agent-role check suffices.
+- **UNTRAINED (fresh/template)** target → cheaper; a **PO** granter may authorize (lower bar). Still no self-grant, still one-shot.
+- Default when unsure: **operator-only** (safest). One mechanism, tiered granter.
+
+### Reuse / non-goals
+- Reuses: `otmux pane.self target`→registry (granter identity), the state/store pattern, append-only audit (forks.env style). No crypto/keys (inappropriate for a local shell framework — identity-via-ground-truth-pane is the right primitive).
+- Non-goal: defending against a human with shell access editing the grants file directly — out of scope (they're already the operator). The gate stops AGENTS and ACCIDENTS, which is the ask.
+
+### Acceptance / handoff
+- [ ] `rewind.authorize <name>` writes a TTL'd per-target grant; REFUSES a caller whose pane.self→role is a subordinate agent (not on the authorizer allow-list).
+- [ ] `agent.rewind <name>` consumes a valid unexpired grant one-shot (atomic delete) OR honors the identity-gated `authorized` fast-path; else DEFAULT-REFUSE. Plain `HIVEMIND_REWIND_AUTHORIZED=1` / unqualified word bypass REMOVED.
+- [ ] every authorize + consume audited (granter, target, epoch, nonce).
+- **Expert**: implement `rewind.authorize` + the grant-consume in `agent.rewind`; identity via pane.self→role; drop the bypassable env/word. **PO**: confirm the authorizer allow-list (operator-only vs +PO — how does Tron drive?).
+- **Tester** (extend T-REWIND-DRIVE): agent self-authorize → REFUSED; grant for X does NOT authorize Y; expired grant (>TTL) → REFUSED; grant consumed → a SECOND rewind with no new grant → REFUSED (one-shot); operator fast-path `authorized` from the operator pane → OK, same word from an agent pane → REFUSED.
+
+## Report-back (auth)
+- Architect (Tron-auth gate): **DONE 2026-07-03** — placeholder is bypassable (word/env, no identity/scope) + accidentally-triggerable (blanket env). Replace with an **identity-gated one-shot expiring per-target GRANT**: `rewind.authorize <name>` (granter = pane.self→role on an authorizer allow-list — non-spoofable, so agents can't self-grant) writes a TTL'd grant; `agent.rewind` consumes it one-shot (atomic) or honors an identity-gated `authorized` fast-path, else default-refuse; drop the plain env/word. Not-bypassable (authorizer identity required somewhere, ground-truth) + not-accidental (2-step, per-target, TTL, one-shot). ONE policy decision for PO: the authorizer allow-list (operator-only for trained; +PO for untrained) — depends on whether Tron drives via a bare pane or the PO pane.
+- PO (confirm authorizer allow-list):
