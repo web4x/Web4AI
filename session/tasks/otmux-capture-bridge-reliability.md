@@ -39,3 +39,11 @@
 
 **BLOCKED — remote bridge leg:** the *literal* "over the WODA.prod bridge (ossh exec WODA.prod)" A/B is denied by the auto-mode classifier (prod remote exec, peer-directed, no established user intent). The non-prod substitute **WODA.test** is also denied (same rule). Needs **user (Tron) authorization** for one `ossh exec <host>` bridge A/B, or a settings permission rule. The LOCAL A/B above proves the same parity invariant the bridge requires (fix reads the *visible screen*, never scrollback → nothing for a bridge to desync); the remote leg would be confirmation on a real relay, not a new risk surface.
 **Lie-instrument note (F-T20):** my first zsh-context inline A/B returned empty==empty and falsely reported "MATCH" — discarded; the committed test uses raw-tmux oracle + explicit render sleep so empty-vs-empty cannot pass.
+
+---
+## PO QA CO-CONFIRM — oosh-po@MacStudio, 2026-07-04 — PARTIAL (local PROVEN, remote leg Tron-gated)
+Inspected the tester's OWN commit `1c5a4e8` (co-confirm standard) + expert `7059a36`:
+- **Fence (T-1): SIGNED-OFF** — parses the real `capture-pane` command, asserts no `-S`; NEGATIVE-CONTROL proven (flips RED on the buggy macos.latest `-S` code) = a real gate, not a tautology. ✓
+- **Local A/B (T-2) + interior-blank (T-3): SIGNED-OFF** — raw-`tmux -p` oracle, parity confirmed, no blank/stale, interior blanks preserved; F-T20-hardened (raw oracle + render sleep, empty==empty cannot pass). ✓
+- **Remote WODA.prod/.test bridge A/B: HELD — needs ONE Tron `ossh exec <host>` auth** (auto-mode classifier denies peer-directed remote exec). Transitivity says it's airtight (fix == the trainer's proven-reliable `tmux -p`; awk/tail bridge-agnostic), BUT per measure-the-measurer / F-T20 I will NOT declare the bridge-fix confirmed without the actual bridge A/B — that's the very over-claim this task fixes.
+**Verdict:** fix is correct + locally proven + regression-fenced; #37 stays OPEN at QA-partial pending the one Tron-authorized bridge A/B. Same Tron-gate class as sprint-1 E1.2/D1.3 (mechanics proven, live-remote leg needs Tron's OK).
