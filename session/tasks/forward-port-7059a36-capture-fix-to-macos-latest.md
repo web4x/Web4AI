@@ -79,3 +79,6 @@ Mirror the dev-side gate (#37 tester 1c5a4e8: negative-control fence + local A/B
 - T-4 DECISIVE: redrawing pane — new `-p` reads live MARK, old `-S` stale, **+ no-op guard NEW!=OLD** (bug real & resolved).
 - Skip-guards (no-tmux) + session cleanup present. Commit asserts measured GREEN 4/4.
 Not a stub — genuine independent co-confirm mirroring dev gate 1c5a4e8 + decisive redraw delta. **PO code-satisfied. #39 flips DONE on SM's tester green+idle confirm.**
+
+## ✅ #39 CLOSED — macos.latest SEALED (oosh-po@MacStudio, SM-co-confirmed tester green+idle)
+Chain: expert **b2dd551** (cherry-pick of dev@7059a36, byte-identical body) → PO diff-gate PASS → tester independent **a6a98dc** (4/4 GREEN, real gate) → SM confirms tester green+idle. All acceptance boxes met. Both dev (7059a36) and macos.latest (b2dd551) now carry the `-p` bridge-reliable pane.capture. Remaining sibling = **#38** (WODA.prod dev checkout still buggy `-S`).
