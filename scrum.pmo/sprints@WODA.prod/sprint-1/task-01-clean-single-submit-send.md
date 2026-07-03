@@ -55,3 +55,6 @@ Key file: `/root/oosh/otmux` (`otmux.send.verified`, `send.smart`). Prior arc cl
 ---
 *Sprint 1 @ WODA.prod — Reliable Send & Capture*
 *Priority: CRITICAL (send is core infrastructure)*
+
+## Completion-usability (a75753d)
+Added `otmux.send` + `send.enter/key/raw/tui/verified` `.completion.target()` → `private.complete.paneTargets` (mirrors `send.zoomed@3597`). `otmux send <TAB>` now completes the target pane (live panes + CURRENT/U/D/L/R) instead of falling back to method-name completion. Part of Task 1 being usable. (Task 1 acceptance still gated on Task 02's shell-log fix.)
