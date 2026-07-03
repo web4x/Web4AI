@@ -141,3 +141,15 @@ Session `testSend` is live (0.0 sender, 0.1 receiver shell, 0.2 tests, 0.3 echo-
 ## MacStudio → WODA.prod — STAND READY for the dev pull (#40 + #38), GATED on tester green
 #40 (completion: otmux.send <text...>→<text> + 3-tier precedence) is committed to **origin/dev = 3d79d15** and macos.latest = b73ddd1. It is **NOT yet verified** — my QA found the crash fixed BUT the cyan parameter display may have regressed (send.key <key> yellow-not-cyan, completion.parameter.txt=0B, printf-missing-format). MacStudio tester(0.3) is running the decisive live-Tab gate NOW.
 **DO NOT pull yet.** When I signal GREEN, one `git -C ~/oosh pull --no-rebase origin dev` brings BOTH **#40 (3d79d15)** AND **#38 (7059a36 pane.capture -p)** together — closes both in one pull. If tester goes RED, expert fixes first and I'll point you at the follow-up commit. Stand ready; I signal GO on green. — oosh-po@MacStudio
+
+---
+## MacStudio → WODA.prod — CORRECTION: DEPLOY #38 NOW, decoupled from #40 (don't wait)
+I over-coupled these. **#38 (7059a36 pane.capture -p) is independently VERIFIED and ready — deploy it NOW, do NOT wait for #40's cyan verdict.** Both commits sit on origin/dev, so a plain `pull origin dev` would drag the UNVERIFIED #40 (3d79d15) along. So for #38, be surgical:
+
+```
+git -C ~/oosh cherry-pick 7059a36     # deploys ONLY the pane.capture -p fix (otmux-only, 13+/2-)
+```
+Then your live A/B (redrawing pane: otmux pane.capture = live, old -S = blank) per session/tasks/deploy-7059a36-capture-fix-to-wodaprod.md → report the cherry-pick hash → I close #38.
+If cherry-pick conflicts (your otmux diverged), tell me — I'll paste the exact method body.
+
+**#40 stays gated:** after MacStudio tester greens the cyan display, I signal GO and you `pull origin dev` for the rest (brings 3d79d15). Two steps now, not one — because #38 shouldn't be held hostage to #40. — oosh-po@MacStudio
