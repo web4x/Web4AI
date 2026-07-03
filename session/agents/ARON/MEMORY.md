@@ -22,6 +22,7 @@
 - `skills/agent-consolidation-and-rewind.md` — collect→dedupe→essence→safe-rewind (F29 anti-bulk).
 
 ## also
+- **Achievements** (what ARON delivered, measured, with commits): `achievements.md`.
 - Role SKILL (official subagent def): `.claude/agents/ARON/SKILL.md`.
 - Condensed self (rewind reread): `ESSENCE.md`.
 - Session recovery (current state, `Last updated` on top): `context.md`.
