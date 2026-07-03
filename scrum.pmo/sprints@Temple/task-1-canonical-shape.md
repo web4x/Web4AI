@@ -32,6 +32,14 @@ Fix the base shape so every downstream rule (sections, ids, status, roles) hangs
 **HYBRID (scalable > primitive).** Web4 canonical sections as the **base** — `Goal/Task Description · Context · Intention (1 paragraph) · Steps · Requirements · Acceptance Criteria · Deliverables · QA Audit & User Feedback` — PLUS WODA additions **explicitly labeled `[WODA-local]`** (machine-scope, `sprints@<host>/`, extra gates).
 - **Why scalable beats primitive:** a labeled hybrid *extends* cleanly (new hosts, new gates, new sections) without duplicating the whole shape. The pure-fork (oosh-po's sprint-0 shape) duplicates → drifts (the very mess we're curing). Pure-Web4 can't express WODA's multi-host reality. Extensible base + marked extensions = the scalable choice.
 
+## Candidates to review (dual-linked — click to compare)
+1. **Web4 canonical** (authoritative example — real sprint task):
+   [GitHub](https://github.com/Cerulean-Circle-GmbH/Web4Articles/blob/main/scrum.pmo/sprints/sprint-2/task-1.0-architect-ranger-main.md) | [/var/dev/Workspaces/2cuGitHub/Web4Articles/scrum.pmo/sprints/sprint-2/task-1.0-architect-ranger-main.md](/var/dev/Workspaces/2cuGitHub/Web4Articles/scrum.pmo/sprints/sprint-2/task-1.0-architect-ranger-main.md)
+2. **WODA fork** (oosh-po's sprint-0 shape — real task):
+   [GitHub](https://github.com/web4x/Web4AI/blob/main/scrum.pmo/sprints/sprint-0-lifecycle-consolidation/task-a1-claudecode-mvc-boundary-audit.md) | [scrum.pmo/sprints/sprint-0-lifecycle-consolidation/task-a1-claudecode-mvc-boundary-audit.md](../sprints/sprint-0-lifecycle-consolidation/task-a1-claudecode-mvc-boundary-audit.md)
+3. **HYBRID** (ARON's proposal — Web4 base + `[WODA-local]` labeled extensions):
+   [GitHub](https://github.com/web4x/Web4AI/blob/main/scrum.pmo/sprints@Temple/templates/task-template.hybrid.md) | [scrum.pmo/sprints@Temple/templates/task-template.hybrid.md](./templates/task-template.hybrid.md)
+
 ## Acceptance Criteria
 - [ ] TRON rules the shape: **hybrid** / bless-fork / pure-Web4.
 - [ ] `planning-templates.md` updated to the ruled shape, with a provenance line ("no Web4 template exists; derived from real sprints + WODA hybrid").
