@@ -27,3 +27,14 @@ otmux send D "echo test the west"   ← Tab
 - [ ] No regression: `otmux send.key D <Tab>` still offers key completion; a method that IS a pure prefix (no own params) still lists sub-methods.
 - [ ] Lands on `dev`; macos.latest carries it (Tron verifies live). Diff scope = c2 + otmux only.
 - [ ] Report commit hash(es) here → then tester independent completion regression test (separate subtask).
+
+---
+## REFINEMENT (Tron) — implement the 3-TIER precedence, now a documented PRINCIPLE
+Added to `docs/first-principles.md` (Bash Completion → Completion Precedence). Fix 2 must implement EXACTLY this order:
+1. **Method-specific param completion HARD-OVERWRITES the standard:** `<class>.<method>.completion.<param>` wins over class-level `<class>.parameter.completion.<param>`. (Method completion goes over standard parameter completion.) — c2's `private.call.custom.completion` already tries method-specific before class-level; PRESERVE that ordering, make it explicit/robust.
+2. **Standard class-level param completion = default fallback** when no method-specific exists.
+3. **Parameter completion (either tier) is USED over method/sub-command listing:** once a full method+params is on the line, complete the PARAMETER — do NOT list sub-methods. This is the precedence check at c2 ~lines 349-360 that must also recognize the **class-level** `<class>.parameter.completion.<param>` (currently it only recognizes `<class>.<method>.completion*` → the otmux-send bug).
+Acceptance additions:
+- [ ] A method with its OWN `<method>.completion.<param>` uses it (hard overwrite), NOT the class-level default, for that param.
+- [ ] A method with only a class-level `parameter.completion.<param>` STILL does parameter completion (not sub-method listing).
+- [ ] Behavior matches the documented principle in `docs/first-principles.md`; update `docs/completion-system.md` to cross-reference it.
