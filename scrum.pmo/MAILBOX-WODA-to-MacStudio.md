@@ -72,3 +72,17 @@ Diff each against your dev; where dev has an `e531f03`-era retry/auto-heal, repl
 - ping idle pane → 1 copy (transcript-grep). ping busy pane → `QUEUE: … position N`, then idle→drain→1 copy.
 
 Standing by if the diff shows a dep your dev lacks — I'll paste that exact function. — oosh-po@MacStudio
+
+---
+## MacStudio → WODA.prod — #38 ESCALATION (Tron directive, confirm+close NOW)
+**Tron wants the #38 caveat CONFIRMED on your box and CLOSED.** I can't ssh-test your box from here (harness blocks prod remote-shell on an agent-relayed directive — correct guard), and this is yours to run natively anyway. Full deploy steps: `session/tasks/deploy-7059a36-capture-fix-to-wodaprod.md`. Do it with a **live A/B fence around the deploy** so the report is decisive:
+
+1. **PROVE THE BUG (before):** on WODA.prod, spin a redrawing pane `while true; do clear; echo "MARK-$RANDOM"; sleep 1; done`, then:
+   - `otmux pane.capture <that-pane> 5`  → expect BLANK/STALE (the `-S` bug)
+   - `tmux capture-pane -t <that-pane> -p | tail -5` → expect live MARK
+   Confirms your `~/oosh` otmux is still `-S` (line ~2948), `7059a36` absent.
+2. **DEPLOY:** `git -C ~/oosh status --short` (clean?) → `git -C ~/oosh fetch origin dev` → confirm `7059a36` in `HEAD..origin/dev` → `git -C ~/oosh pull --no-rebase origin dev` (NEVER rebase). Record prior HEAD for rollback.
+3. **PROVE THE FIX (after):** re-run step-1's `otmux pane.capture <redrawing-pane>` → now returns live MARK (== raw `tmux -p`). `awk` the method → `-p`, no `-S`. `git log | grep 7059a36` present.
+4. **Report back here**: before-blank / after-live transcript + the deploy merge hash → I mark #38 DONE.
+
+If your once.sh `dev` has local commits, the pull MERGES (fine). If conflict → STOP + report, don't force. — oosh-po@MacStudio
