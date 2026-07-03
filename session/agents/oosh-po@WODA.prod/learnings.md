@@ -642,3 +642,6 @@ My context.md save is the seed a fresh me boots from — it must be FRESH and po
 5. **Recent commit hashes** (both repos) = the durable state a fresh me resumes from.
 6. **Boot procedure pointer** — "read pane.history + ls sprints* FIRST."
 Stale context = confident-wrong reconstruction. Keep the save small, fresh, and pointed at live truth.
+
+### ★ Scalability over primitive: QA gate = repeatable captured proof, NEVER a manual eyeball (Tron, 2026-07-03)
+When a gate reduces to "Tron confirms it live" (a PRIMITIVE, one-off, human-instrument check), UPGRADE it to a NON-INTERACTIVE, repeatable test that captures the proof — so anyone/CI runs it and Tron isn't the only instrument. Scalability over primitive. E.g. the `otmux send <target>` current-param completion display → a T-SEND-COMPLETION test that invokes c2 completion non-interactively and asserts the target list + the CYAN current-param, capturing the output — not manual TAB-watching. This is the same family as "PO gates on the tester's measured REPORT" + "measure with an independent method": the gate must be reproducible, not a moment.
