@@ -1,39 +1,57 @@
-[Back to Sprint 1 @ WODA.prod](./planning.md)
+[Back to Planning Sprint 1 @ WODA.prod](./planning.md)
 
 # Task 1: `send.verified` clean single-submit (poke removed)
 [task:uuid:fa66cc8a-f073-4b4d-8192-36de1c8a9f7e]
 
+## Naming Conventions
+- Tasks: `task-<n>-<short-description>.md`
+- Subtasks: `task-<n>.<m>-<role>-<short-description>.md` (role in filename)
+
 ## Status
 - [x] Planned
-- [x] In Progress (refinement · test cases · impl · testing)
+- [x] In Progress
+  - [x] refinement (architect design 1.1)
+  - [x] implementing (expert 1.2 — commit `494597e`)
+  - [x] testing (tester 1.3)
 - [x] QA Review
-- [x] **Done — QA-ACCEPTED (TRON, 2026-07-03)**
+- [x] **Done — QA-ACCEPTED (TRON 2026-07-03)**
 
-## Description
-A send is **type text → press Enter, once**. `otmux.send.verified` must NOT be a retry loop.
-Final contract (once.sh@dev `494597e`, arc `fccdad8`/`d4e3ae0`/`6213ad6`/`bcd8f84`/g.7):
-- **stage ONCE** (`C-u` clear + `send-keys -l`)
-- **Escape** to dismiss `@`/`/`-autocomplete — **CLAUDE + IDLE only** (never a shell, never a generating agent → never interrupts)
-- **SINGLE Enter** — the Escape makes that one Enter *submit* (not a swallowed newline)
-- **one-shot** g.7 region-verify → **honest rc {0 committed / 2 staged}**
-- **NEVER re-Enter / NEVER poke.** A staged (rc2) message is retried by the **drain layer** as a *fresh single-shot* on next idle (C-u-clean, composes with the rc0-gate + dup-fix) — the caller decides, the send never auto-sprays.
+## Deliverable
+`otmux.send.verified` is a **single clean submit**, never a retry loop:
+**stage ONCE** (`C-u` + `send-keys -l`) → **Escape** (dismiss `@`/`/`-autocomplete — CLAUDE + IDLE only, never a shell, never a generating agent) → **SINGLE Enter** → **one-shot** g.7 region-verify → **honest rc {0 committed / 2 staged}**. **No poke, no retry, no 2nd Enter.** A staged (rc2) message is retried by the **drain layer** as a fresh single-shot next idle (composes with the rc0-gate + dup-fix).
+**Commit:** `once.sh@dev 494597e` (poke loop deleted; keystream-verified: shell 1 Enter/0 Escape, claude 1 Escape/1 Enter).
 
-## Root causes closed (why this was hard)
-Dup came from re-delivery (enqueue `fccdad8` + drain `d4e3ae0`); BUG10 "Enter=newline" came from the `[@`/`/` autocomplete eating the Enter (fixed by the idle-only Escape); the **poke loop itself** sprayed blank Enters (shell 2×) and risked picker mis-selects — deleted in `g.8`.
+## Traceability
+- Source: Sprint 1 @ WODA.prod, TRON directive 2026-07-03
+  - up
+    - [Sprint 1 Planning @ WODA.prod](./planning.md)
+  - down
+    - [Task 1.1: Architect - remove-poke clean-send design](./task-1.1-architect-remove-poke-design.md)
+    - [Task 1.2: Expert - remove-poke impl](./task-1.2-expert-remove-poke-impl.md)
+    - [Task 1.3: Tester - single-submit test cases](./task-1.3-tester-single-submit-tests.md)
 
-## Test cases
-- **TC-1.1** [test:uuid:3e382087-17ee-4146-b36e-ea1b49babb17] — **exactly ONE Enter per send.** Keystream count: shell = 1 Enter / 0 Escape; claude = 1 Escape / 1 Enter. No 2nd Enter on any path. → **PASS** (expert keystream-verified `494597e`).
-- **TC-1.2** [test:uuid:ead5acdc-57ae-49ac-9980-c7d8ff7e12c5] — **no duplicate.** A single send is delivered exactly once. → **PASS** (live testSend: `CLEAN-RX-from-0.0` printed once; `test.send-selfheal` 5/5; `T-SEND-MATRIX` D3).
-- **TC-1.3** [test:uuid:a003e3f0-b6fb-49fb-a9bf-949cd5d811f4] — **no stray-Enter spray on a shell.** Zero blank prompts after the send. → **PASS** (live testSend: one prompt after `CLEAN-RX`, vs pre-fix TEST-1's 3 blank ` >` prompts).
-- **TC-1.4** [test:uuid:48388150-fb02-4bfc-ad13-da547550f189] — **honest rc, no re-Enter.** rc0 committed / rc2 staged; on rc2 the log says `NOT re-Entered (drain/caller retries fresh)`. → **PASS** (live testSend log; `T-SEND-MATRIX` rc contract).
+## Task Description
+Make every send a single, verified submit. The Enter must COMMIT (the idle-only Escape dismisses the autocomplete that otherwise turns Enter into a swallowed newline). Delivery is verified once by capture, never by re-Entering. The reliability lives in doing the one submit right, and — for a genuinely staged message — in the drain layer re-driving a fresh single-shot, not in an in-place poke loop.
 
-## QA record (step-by-step)
-1. architect design (`g.8 5668c71`) — PO signed off ✅
-2. tester cases (`test.send-selfheal`, `T-SEND-MATRIX` superset) ✅
-3. expert impl (`494597e` — poke loop deleted, keystream-verified) ✅
-4. tester run: send-selfheal 5/5, send-matrix 12/12 ✅
-5. **PO independent proof** (live testSend, full output, no truncation): single Enter, delivered once, zero poke logs, zero blank-spray ✅
-6. **TRON final acceptance: 2026-07-03** ✅
+## Context
+Key file: `/root/oosh/otmux` (`otmux.send.verified`, `send.smart`). Prior arc closed the dup (`fccdad8` enqueue, `d4e3ae0` drain), the stray-newline (`bcd8f84`), the kind mis-classify (`6213ad6`), the wrap region-verify (g.7). This task removes the poke loop itself (g.8 `494597e`).
 
-## Definition of Done  — MET
-- exactly one Enter/send · delivered once · no interrupt (idle-only Escape) · honest rc · no poke/retry in send (retry = drain layer) · proven live + tester suites + TRON-accepted.
+## Intention
+### Why This Task Exists
+1. **A send is not a retry machine** — "type text, press Enter, once."
+2. **Never interrupt a working agent** — the Escape (the interrupt vector) fires idle-only.
+3. **Exactly-once** — no duplicate, no stray-Enter spray.
+
+### Problems This Task Solves
+- **Poke-spray:** the retry loop stamped `poke 1/3`/`poke 2/3` and sprayed blank Enters (2× on a shell; picker mis-select risk on claude).
+- **Enter=newline (BUG10):** `@`/`/`-autocomplete swallowed the Enter → text staged, never submitted.
+- **Duplicate delivery:** re-Entering / re-delivery duplicated messages.
+
+### How This Task Solves Them
+- **Delete the poke loop**; single Escape (idle-only) makes the one Enter submit.
+- **One-shot verify** → honest rc; rc2 → the **drain** retries fresh (not an in-place poke).
+- Composes with the enqueue/drain rc0-gate + dup-fix → exactly-once, no interrupt.
+
+---
+*Sprint 1 @ WODA.prod — Reliable Send & Capture*
+*Priority: CRITICAL (send is core infrastructure)*
