@@ -122,6 +122,17 @@ ssh u24 'grep -E "^state=|stateValue" ~/config/current.state.machine.env'   # ch
 - u20 = born-broken repro box (symlinked ~/config)
 
 ---
+## 🔴🔴 MAJOR SHIFT (2026-07-03) — TRON REVERTED THE OTR-1 SEND STACK. Re-orient before touching send.
+While I was on g.4/g.6, Tron/others made big changes to the send path:
+- **`48e3b4e` REVERTED the entire OTR-1 send stack** → back to the "months-good single-delivery send" (send.smart now uses old `otmux.send.verified` + retry-Enter; NO stage/submit/verify/poke, NO honest rc2/rc3).
+- **`8e27759` REMOVED the auto-heal inline-inform** from agent.send → `unknown-state` now falls straight to `queue` (types NOTHING; drain delivers once when idle).
+- **`c92d375`** otmux send skip redundant trailing Enter (a real-root dup fix).
+**Consequences for MY work:**
+- **g.1 kind-branch = REVERTED (gone)** — it was built on OTR-1's send.smart. (grep 'branch on target KIND' otmux = 0.)
+- **fccdad8 (auto-heal rc2 guard) + d4e3ae0 (drain rc2 dequeue) = SUPERSEDED/reverted** with the OTR-1 stack. The current drain always-dequeues after one dispatch (no rc-keep). **Do NOT re-add them — that fights Tron's revert (the reverted send has no rc2 semantics).**
+- **g.4 (`6213ad6` process.find tty trim, claudeCode) + g.6 (`bcd8f84` log.init.colors probe, log) = SURVIVED** (separate files, not the send stack).
+**DUP re-investigation (PO ground truth 2026-07-03: pong2 = 2 real user turns into a BUSY claude):** the mechanism PO described (unknown-state → auto-heal inform types Escape+text+Enter → verify rc3/rc1 → ;&-queue → drain turn2) **can no longer happen** — 8e27759 removed the inline inform. **HARNESS-PROVEN on current code**: busy recipient (route=unknown-state) → 0 inline informs, queued once → drain-when-idle → 1 delivery, dequeued. Single delivery. **Reported to PO + asked: does your 2-turn transcript PREDATE 48e3b4e+8e27759? If before → already fixed; if it RECURRED after → new hole, need timestamp/commit + which agent sent pong2.** Told SM (ooshTeam:0.1) to monitor live. **Do NOT edit the send path blind — Tron reverted it deliberately + multiple agents are actively fixing; coordinate.** Awaiting PO answer on timing before any live busy-claude 2→1 test.
+
 ## ⚡⚡ LATEST WODA.prod SESSION (ooshTeam:0.3) — 2026-07-02 (opus 4.8), g.1 DONE + OTR-3 STARTED
 **Re-anchored after identity drift** (had drifted to hiveMind-expert/MacStudio in-conversation; corrected — I am oosh-expert @ ooshTeam:0.3 on WODA.prod, dev, /root/oosh).
 
