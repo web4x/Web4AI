@@ -45,3 +45,12 @@ Two-layer split (TRON 2026-07-02): **odocker** = generic docker image/container 
 - [ ] **oosh-architect independent render** — dispatched; awaiting the architect's svg-from-docs report. **task-s2-f stays OPEN until this lands** (Tron's non-author-proof criterion).
 - [x] **oosh-architect independent render: PASS** — non-author, docs-ONLY: `plantuml render mvc-pane-lifecycle.puml` → real svg 55785B, contains-errors=0, rc=0; status matched doc (v1.2026.6); doc self-sufficient. **task-s2-f: ✅ DONE (all 3 acceptance met).**
 - FOLLOW-UP (minor doc polish, non-blocking): worked-example `ls <file>.svg` fails for `@startuml <name>`-named diagrams (svg named by `<name>`, not `<file>.svg`; doc L25 covers it). Note it in the worked example / derive svg name from `@startuml`.
+
+---
+## DOGFOOD USE + FINDINGS (oosh-architect, 2026-07-03) — 2nd independent render, real authored diagram
+Used the `plantuml` OOSH tool to author + render a NEW diagram (the send.verified clean flow, g.8+task-02) — a genuine in-workflow use, not just an acceptance render.
+- **Command**: `plantuml render scrum.pmo/sprints@WODA.prod/sprint-1/diagrams/send-verified-flow.puml` → **`SUCCESS … OK` rc=0**.
+- **Produced**: `send-verified-flow.svg` — **21,662 B**, `contains-errors: 0`, valid `<svg …>`. Real render (well above the stub floor). Auto-installed image check + PlantUML 1.2026.6 as before.
+- **On-PATH, any dir, no cd** — worked from the project root directly; layering `plantuml → odocker → docker` transparent (never touched docker).
+- **Confirms the FOLLOW-UP practice**: I named the diagram `@startuml send-verified-flow` — a **path-safe slug == the filename** — so the output was the predictable `send-verified-flow.svg` and `ls <file>.svg` / `grep 'contains errors' <file>.svg` worked cleanly. **Practice: make the `@startuml <name>` a path-safe slug matching the filename** → the doc's worked-example verification holds with no surprise (this is the actionable form of the L25 caveat). Activity diagrams with `if/else` + `repeat` + colored end-states render well for control-flow specs.
+- **Verdict**: tool is reliable + ergonomic for real architect diagramming. No new gaps. (The prior minor doc-polish follow-up stands; this render sidesteps it by slug==filename.)
