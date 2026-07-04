@@ -72,3 +72,12 @@ Reviewed the tester's CAPTURED proof (reviewed, not re-run — PO gates on the r
 - **PO gate: PASS** → these 7 are Done-ready pending **TRON acceptance** (the final step in the QA workflow).
 - **task-02 correction**: NOT dropped — DONE (`466655d` poll fix made shell-send log `info` not false-`WARNING`/rc2; T03 depends on it).
 - **task-18 cyan**: root cause FIXED (`9d65d12` — declare-anchored varname extraction; METHOD_PARAMETER now populates). Remaining = tester's captured CYAN-render proof → PO gate → Tron.
+
+---
+## Coherence review (architect c5d07d9) — 4 GAPS found (oosh-po driving, 2026-07-04)
+Accepted. 10/15 cases covered; 4 gaps → fixes routed:
+- **Gap A [HIGH, load-bearing]** — send.verified rests on `capture`, KNOWN-unreliable on bridged/remote panes → **phantom rc0 (verify silently LIES)**. → **architect designs** verify-can't-lie-on-remote (capture-reliability or non-capture confirm). Affects task-17/16.
+- **Gap B [MED]** — task-05 send.smart kind false-negatives bash-parent-claude (not wired to c.0/g.4) → real agent silently loses prefix+verify. → expert wire kind to c.0/g.4.
+- **Gap C [MED, load-bearing pair w/ A]** — task-16 remote has NO send.verified route (local-tmux only). → expert add ossh-exec-on-remote route (after A's capture-reliability design).
+- **Gap D [LOW]** — task-08 text+trailing-Enter double-submits on a claude. → expert fix.
+Sequence: architect Gap A design NOW → expert (after config.save): B, D, then C+A-impl → tester verifies each. Detail: send-verified-coherence-review.md.
