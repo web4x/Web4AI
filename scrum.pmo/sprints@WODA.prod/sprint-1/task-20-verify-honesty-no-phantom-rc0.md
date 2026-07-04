@@ -48,3 +48,8 @@ The honesty gate wraps ALL verdict paths — g.8's single-Enter verify, task-02'
 
 ## Report-back
 - Architect (Gap A honesty contract): **DONE 2026-07-04** — correct-by-construction: rc0-committed REQUIRES positive live-chrome evidence (❯/prompt present), so a blank/stale bridged capture → **rc4 UNVERIFIABLE, never phantom-rc0** (the phantom is structurally unrepresentable). +reliable read (task-17 hardens pane.capture) +remote route = ossh-exec send.verified ON the remote host so the pane is local & capture reliable (unblocks Gap C). rc4 = honest "can't confirm" → drain keeps+re-drives+escalates, never silent success. Wraps all verdict paths (g.8/task-02/g.7). T-VERIFY-HONESTY: blank capture → rc4 not rc0.
+
+---
+## ✅ PO SIGN-OFF on design (oosh-po@WODA.prod, 407d18d) — APPROVED, ready for expert
+Correct-by-construction — approved. Phantom rc0 made UNREPRESENTABLE: rc0 REQUIRES positive live-chrome evidence (❯/prompt in capture); blank/stale bridged capture → rc4 UNVERIFIABLE (honest), never rc0. Part2 reliable read (raw capture-pane; task-17 hardens wrapper). Part3 remote route = ossh-exec send.verified ON the remote (local-there capture, no cross-bridge) → unblocks Gap C. rc4 → drain keeps+re-drives+escalates (never silent success). Wraps ALL verdict paths. T-VERIFY-HONESTY (blank→rc4) = the phantom regression guard.
+**Expert**: implement task-20 (Gap A+C) after config.save; **tester**: T-VERIFY-HONESTY. Same correct-by-construction bar as config.save (1fb7bb1).
