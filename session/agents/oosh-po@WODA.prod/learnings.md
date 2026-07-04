@@ -654,3 +654,6 @@ I dual-linked sprint `planning.md` for "currently driving" — too broad. The du
 
 ### ★ EVERY dispatch MUST require "report back BEFORE you go idle" (Tron, 2026-07-03, emphatic)
 The PO must EXPLICITLY tell every dispatched agent to report back to me BEFORE going idle — do NOT assume the agent's SKILL ("report-back mandatory") makes it happen. Drive it on EACH dispatch: the closing line is always "report-back to me (inline in the task + short pointer) BEFORE idle." Finish → report → then idle; silent idle = CMM regression + I lose the gate signal. This is a PO DISPATCH-DISCIPLINE, not just the agent's responsibility: if I didn't ask, it's my miss. Append it to every agent.send from now on.
+
+### ★ EVERY response to Tron includes the dual link to the CURRENT sharp task (Tron, 2026-07-04, 2x)
+Not just when asked — ALWAYS. Each status/report to Tron leads with the current sharp task's dual link: `[GitHub](https://github.com/web4x/Web4AI/blob/main/<path>) | [<path>](<path>)`. The "current sharp task" = the ONE I'm driving toward the next gate (not the sprint plan, not a done task). Pushed-first so the GitHub link resolves.
