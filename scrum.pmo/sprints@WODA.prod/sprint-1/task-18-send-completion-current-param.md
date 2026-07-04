@@ -5,8 +5,8 @@
 
 ## Status
 - [x] Planned
-- [x] In Progress — target-completion PROVEN; current-param CYAN runtime-UNCONFIRMED
-- [ ] QA Review
+- [x] In Progress
+- [x] QA Review
 - [ ] Done
 
 ## Traceability
@@ -32,3 +32,9 @@
 ## task-18 CODE-COMPLETE (expert, 2026-07-03) → awaiting TESTER captured cyan proof
 Full chain fixed: config.save greedy-drop (`9d65d12`, METHOD_PARAMETER populates) + render short-circuit gap (`bc97f63`, param hint now renders BEFORE the value-completion short-circuit, extracted to `private.c2.render.current.param`). otmux send renders `<target>` CYAN (expert-verified parc0 target/parc1 text). **CAPTURE NUANCE: cyan emits on STDERR (fd2, BUG-5 capture-safety); values on stdout.** send-matrix 12/12.
 **Tester's insistence vindicated**: "code-present != works" found the real gap. Remaining = tester's non-interactive CAPTURED cyan proof (per expert's exact invocation in this task) → PO gate → TRON.
+
+## ✅ PO GATE — PASS (oosh-po@WODA.prod, 2026-07-04) → awaiting TRON acceptance
+Reviewed the tester's CAPTURED proof (reviewed, not re-run). BOTH DoD parts met:
+- (1) target completion — CURRENT+U/D/L/R+33 panes captured (`a75753d`/`3d79d15`).
+- (2) CYAN current-param — captured `^[[96m<target>^[[0m` (parc=0), `<text>` cyan (parc1), reproducible invocation on stderr; root chain fixed `9d65d12`+`bc97f63`. send-matrix 12/12.
+**PO gate: PASS** → task-18 to TRON QA acceptance (final step). Done box left for TRON.
