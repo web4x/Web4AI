@@ -17,7 +17,6 @@
   - [ ] testing
 - [ ] QA Review
 - [ ] Done
-<!-- KNOWLEDGE: The status IS the single truth of where the task stands (measure, never assume from chat). Each role checks its OWN sub-box (refinement/test-cases/implementing/testing) as work GENUINELY completes — not optimistically. QA Review + Done are TRON's gate ONLY: never self-checked, only after an explicit "TN QA approved by TRON" commit. Order is a pipeline: refine → test-cases → implement → test → QA. -->
 
 ## Traceability
 - Source: <sprint / epic / directive>

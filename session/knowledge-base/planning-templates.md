@@ -5,15 +5,17 @@
 ## 1. Structure
 - **`planning.md`** per sprint: `[sprint:uuid:…]`, Sprint Goal, Machine scope, Naming Conventions, Team, Traceability (`down` → every task), Tasks table, QA workflow.
 - **Parent task** `task-<NN>-<desc>.md`, own `[task:uuid:…]`.
-- **Sub-tasks** `task-<NN>.<m>-<role>-<desc>.md` — **role in the filename** (`-architect-`/`-expert-`/`-tester-`), own `[task:uuid:…]`. **Test cases live in the tester sub-task**, each `[test:uuid:…]`.
+- **Sub-tasks** `task-<NN>.<m>-<role>-<desc>.md` — **role in the filename** (`-architect-`/`-expert-`/`-tester-`), own a **distinct `[subtask:uuid:…]`** (TRON 2026-07-04 — distinct id, NOT `[task:uuid]`, for unambiguous cross-references at any depth). **Test cases live in the tester sub-task**, each `[test:uuid:…]`.
 - When pre-planning a matrix of scenarios: each case is a **flat task** (no subtasks) if the operator asks for that.
 
 ## 2. Naming & numbering
 - `task-<NN>-...` — **zero-pad single digits (01–09)** so they sort before 10+.
 - Sub-tasks `task-<NN>.<m>-<role>-...`.
 
-## 3. Status checklist — MACHINE-READABLE, NEVER ANNOTATED
-The canonical list (main AND sub-tasks), checkboxes only — **no trailing text, no commits, no dates, no "(pending X)"**:
+## 3. Status checklist — MACHINE-READABLE & WRITABLE, NEVER ANNOTATED (TRON 2026-07-04)
+Checkboxes ONLY — no trailing text, no commits, no dates, **no comments**, no "(pending X)". Tooling reads AND WRITES this block, so anything but boxes breaks it. **Main tasks and sub-tasks use DIFFERENT status templates** (TRON ruling):
+
+Main task (full pipeline):
 ```
 ## Status
 - [ ] Planned
@@ -25,7 +27,16 @@ The canonical list (main AND sub-tasks), checkboxes only — **no trailing text,
 - [ ] QA Review
 - [ ] Done
 ```
-**History / who-did-what / commits / dates → go in the SUB-TASKS (or a Deliverable/QA-record section), NOT on the status line.** The status list must be machine-readable and updatable.
+
+Sub-task (a single-role PDCA leaf — flat; the pipeline substeps and the TRON QA/Done gate live on the PARENT, not the leaf):
+```
+## Status
+- [ ] Planned
+- [ ] In Progress
+- [ ] Done
+```
+
+**History / who-did-what / commits / dates → a Deliverable or QA-record section, NEVER on or beside the status block.** The status block must stay machine-readable and updatable.
 
 ## 4. Two DIFFERENT link concepts (do not confuse)
 - **Traceability links** (in-file `## Traceability`): bidirectional `up`/`down` — **written at BOTH ends** (parent's `down` ⇔ child's `up`; planning's `down` ⇔ task's `up`; a tester task `up`→ what it validates ⇔ that task `down`→ the tester). Relative markdown `[Title](./file.md)` + top breadcrumb `[Back to …](./planning.md)`. A one-sided link is broken. See [[traceability-links]].
