@@ -1,7 +1,17 @@
 [Back to Planning Sprint 1 @ WODA.prod](./planning.md)
 
 # Task 20: send.verified HONESTY — no phantom-rc0 on an unreliable capture (Gap A) + remote route (Gap C)
-[task:uuid:g-a-verify-honesty]
+[task:uuid:d6728858-bedf-4ae5-9e79-e5e158292481]
+
+## Status
+- [x] Planned
+- [x] In Progress
+  - [x] refinement
+  - [ ] creating test cases
+  - [ ] implementing
+  - [ ] testing
+- [ ] QA Review
+- [ ] Done
 
 ## Traceability
 - up

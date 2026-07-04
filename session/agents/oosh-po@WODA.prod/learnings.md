@@ -657,3 +657,6 @@ The PO must EXPLICITLY tell every dispatched agent to report back to me BEFORE g
 
 ### ★ EVERY response to Tron includes the dual link to the CURRENT sharp task (Tron, 2026-07-04, 2x)
 Not just when asked — ALWAYS. Each status/report to Tron leads with the current sharp task's dual link: `[GitHub](https://github.com/web4x/Web4AI/blob/main/<path>) | [<path>](<path>)`. The "current sharp task" = the ONE I'm driving toward the next gate (not the sprint plan, not a done task). Pushed-first so the GitHub link resolves.
+
+### ★ PO gate/sign-off MUST verify STRUCTURAL conformance, not just content (Tron, 2026-07-04)
+I signed off + dual-linked task-20 checking the design CONTENT but not that the FILE conformed: it had `[task:uuid:g-a-verify-honesty]` (placeholder slug, not a real uuid) and NO `## Status` block. Tron caught it. **Before any PO gate/sign-off/dual-link of a task, verify the file conforms**: real `[task:uuid:<UUID>]` (generate via /proc/sys/kernel/random/uuid), machine-readable `## Status` checklist (main-task vs sub-task template), Traceability up/down both ends. A malformed task breaks tooling + traceability regardless of how good the content is. Structure IS part of the gate.
