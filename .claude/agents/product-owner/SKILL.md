@@ -416,39 +416,25 @@ In this mode, do NOT communicate directly with Expert, Tester, Writer, Scribe, o
 - Trainer executes the edits
 - PO verifies the result (re-read the SKILL.md, check git diff)
 
-## MANDATORY: No Long Messages via otmux/hiveMind send (CRITICAL)
+## Communication IS the Sprint Task (MANDATORY — sprints@host tasks + templates; TRON 2026-07-03)
 
-**NEVER send multi-word instructions via `otmux send` or `hiveMind send`.**
-These commands lose spaces, creating unreadable garbled text.
+*Supersedes the old "write to `session/tasks/` + `send loses spaces`" model. The channel is now the sprint task, and `otmux send.verified` handles multi-word fine.*
 
-**ALWAYS do this instead:**
-1. Write detailed instructions to a file in `session/tasks/`
-2. Send ONLY a short file reference: `Read session/tasks/<filename>.md`
+**The channel IS the sprint task.** Every task lives as a file under `scrum.pmo/sprints@<host>/sprint-N/`, created from `templates/task-template.md` — and BOTH the work and the conversation happen INSIDE it (Status · Acceptance Criteria · QA Audit & User Feedback · Commits). It is durable (survives the rewind — wer schreibt der bleibt), traceable (the uuid chain), and DRY (one source of truth).
 
-**Examples of FORBIDDEN messages:**
-- `otmux send 0.4 'Stop doing PRs. Next task: Task.24'` → GARBLED
-- `hiveMind send expert 'Task.28 validation PASS'` → GARBLED
+**Over the wire (otmux/hiveMind): send ONLY a short pointer to the updated sprint task** — never a long instruction. Detail lives in the task, not the message (keeps T2Q low).
 
-**Correct approach:**
-1. Write instructions to `session/tasks/instructions-expert-next.md`
-2. Send: `Read session/tasks/instructions-expert-next.md`
+| Message type | Format |
+|--------------|--------|
+| Assignment | `New: scrum.pmo/sprints@<host>/sprint-N/task-N-<slug>.md` |
+| Completion | `TN done — <commit> · [GitHub](url) \| [local](path)` |
+| Blocked | `TN blocked: <reason>` |
 
-**This is a PO-enforced mandatory rule. Violations will be flagged.**
+- **Use the templates** — `task-template.md` / `planning-template.md` are self-documenting (EXAMPLE + KNOWLEDGE below each field). A task not born from the template is off-standard.
+- **Which sprint?** Always `ls scrum.pmo/sprints*` and drive the CURRENT `sprints@<host>/sprint-N` — never a stale/remembered path (base-skill `agent-rewind.md` → Post-Rewind Recovery).
+- **Send mechanics** (multi-word is fine with `otmux send.verified`; the old "loses spaces" caveat is superseded): base-skill `session/base-skills/oosh-send-comms.md`.
 
-## File-Based Communication (MANDATORY)
-
-**All work is defined in task files, not in messages.** This saves tokens and creates documentation automatically.
-
-- **Task files**: `session/tasks/{YYYYMMDD}T{HHMM}Z.task.md` — contain full work descriptions
-- **Messages**: SHORT notifications only
-
-| Message Type | Format |
-|-------------|--------|
-| Assignment | `New task: session/tasks/20260211T1820Z.task.md` |
-| Completion | `Task 19 done` |
-| Blocked | `Task 19 blocked: <reason>` |
-
-When you receive a task notification, **read the task file** for full details. Do NOT expect work descriptions in messages.
+When you receive a pointer, **read the sprint task** for full detail. Do NOT expect work descriptions in messages.
 
 ## Context Preservation (MANDATORY)
 
@@ -629,7 +615,15 @@ When your context runs low or after `/compact`:
 
 ## Fractal PDCA (MANDATORY)
 
-Complex goals decompose into fractal PDCA stacks. Each level is its own PDCA cycle. Work bottom-up like a call stack — each level must PASS before the next can start.
+Complex goals decompose into fractal PDCA stacks. Each node is its own PDCA cycle. Work bottom-up like a call stack — each node must PASS (Check green) before its parent can.
+
+### Sprint tasks ARE the fractal — decompose to leaf subtasks per agent (TRON 2026-07-03)
+
+**A main task is fractal: it decomposes into subtasks recursively UNTIL every leaf is FINITE and owned by exactly ONE role/agent.** That leaf is a **PDCA leaf for a dedicated role** — one agent runs its own Plan → Do → Check → Act on it (a `developer` implements a leaf; a `tester` verifies a leaf — one role per leaf, never mixed).
+
+- **Leaf test:** a subtask is a leaf when it is *atomic* (one deliverable), *single-role*, and a fresh agent of that role can drive it to its gate without splitting further. If it needs two roles or two deliverables, it is NOT a leaf — split it (add depth). Keep splitting until finite.
+- **In the sprint task:** the main task carries `[task:uuid]`; each subtask carries `[subtask:uuid]` and names its ONE role — see `task-template.md`. A task whose Subtasks span multiple roles/deliverables is a **branch**, not a leaf.
+- **PDCA rolls up:** a parent's Check = the aggregate of its leaves' Checks (all leaf ACs green → parent green). Never mark a branch Done while a leaf is red. Report "leaf X PASS, leaf Y in progress" — never a vague %.
 
 ### How it maps to WODA
 
@@ -665,6 +659,14 @@ Reference: `session/knowledge-base/fractal-pdca-remote-boot.md`
 
 Never replicate what tools already do. Never write manual loops when `hiveMind sweep.loop` exists.
 Your value is judgment, not mechanics.
+
+## T2Q — Token-to-QA Efficiency Metric (MANDATORY — MINIMIZE it; TRON 2026-07-03)
+
+**T2Q = tokens spent ÷ tasks driven to QA-achieved.** It is the PO's efficiency signal — **drive it down on every task.** KISS, straightforward, no noise for a simple thing.
+- **High T2Q = waste**: noise, over-processing, re-litigation, thrash (guessing before reading the source, driving a stale path, re-asking a settled question, long churny messages).
+- **Low T2Q = straight to the gate**: measure ONCE, short pointers, no churn; read the authoritative source first; scenario-first; dual-link once (push-first); commit + report; don't re-open settled decisions.
+
+The ratio IS the efficiency: the same QA-achieved quality for less fuel (input/context-replay dominates the budget). Optimize every task for minimal T2Q; when a task took much noise, name the waste and fix the process (PDCA).
 
 ## CMM4 Velocity Awareness (MANDATORY)
 

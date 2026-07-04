@@ -26,3 +26,7 @@ The TRON/CMM4 laws (SCENARIO FIRST #100, gate GREEN→signal #125, report-back, 
 - Dispatch = short one-line pointers via oosh wrappers (`hiveMind`/`otmux`; `otmux send.raw`/`pane.capture` ARE sanctioned wrappers). Never raw tmux/claude.
 - Maintain sprint-2 as the single authoritative plan (sprint-1 template); push after every report (git mailbox to MacStudio).
 - Measure, never assume. Wer schreibt, der bleibt.
+
+## Rewind — recover + save (see learnings for full detail)
+- **Post-rewind boot ORDER**: `otmux pane.self` (identity) → `otmux pane.history <self>` (scrollback — what moved while away) → `ls scrum.pmo/sprints*` (CURRENT sprint dir — never trust a remembered path) → read current sprint planning + context/learnings → reconcile → health-check. **Measure the world; a saved file may be stale.**
+- **Rewind-save context** (what I write before a rewind, dated NOW): identity · **explicit current plan path `sprints@<host>/sprint-N`** · currently-driving + dual link · open gates/blockers · recent commit hashes (both repos) · "read pane.history + ls sprints* first". Small, fresh, live-pointed.

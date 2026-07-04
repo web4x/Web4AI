@@ -623,3 +623,40 @@ When the team went idle, I said "I'll proactively poll pane states." WRONG — T
 
 ### Auto-compact OFF verification: CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=100 per-agent (2026-07-02, Tron)
 Auto-compact is disabled via env `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=100` (claudeCode:18/880 — written to the agent's claudeEnv at install; "autocompact disabled"). To verify it's off on ALL live agents (Tron: "double check autocompact is always off!!!!"): for each live claude pid, `tr '\0' '\n' < /proc/<pid>/environ | grep CLAUDE_AUTOCOMPACT_PCT_OVERRIDE` must = 100. Verified all ooshTeam/robbin/Temple/base agents =100. A raw-forked agent (outside claudeEnv) could MISS it → auto-compacts uncontrolled at ~92% → the cliff. So this ties to F-MVC-BYPASS: controller-born agents inherit the env; raw forks may not. When an agent nears the cliff, confirm override=100 (it holds at 99% instead of auto-compacting) → controlled save + Tron-auth rewind, no race.
+
+### ★ DUAL LINK = GitHub URL + local relative path of the SAME artifact (Web4Articles PDCA canon; Tron 2026-07-03)
+Format (ONE line, ` | ` separated): `[GitHub](<github-blob-url>) | [<relative/path>](<relative/path>)`. Rules: local link text MUST be the actual relative path; the GitHub link MUST work → **git push BEFORE providing it**; **ALWAYS end a "currently driving" report with the dual link(s)** to the artifact. It is NOT two different files (task+code — my wrong guess) and NOT up/down traceability (that's a separate LOCAL WODA convention — the EXACT thing ARON was corrected for mislabeling as "dual links"). SOURCE (authoritative, per ARON's provenance gate): `2cuGitHub/Web4Articles/recovery.analysis/pdca-format-requirements-mandatory.md` §DUAL LINK REQUIREMENTS. Lesson: a term used in a sprint/copy ≠ its definition — trace to the source repo (Web4Articles) and read it there; measuring a copy = assuming (I guessed twice before reading the source).
+
+### ★ Post-rewind: MEASURE the current sprint dir — don't trust the remembered path (Tron, 2026-07-03)
+After my rewind I reconstructed state from `scrum.pmo/sprints/sprint-2/` (bare) — the last location my rewound memory knew — and drove/dual-linked it. WRONG: while I was rewound, the per-host split completed AND Tron created a dedicated **Reliable-Send** sprint at **`scrum.pmo/sprints@WODA.prod/sprint-1/`** (flat tasks 01-17). Bare `sprints/sprint-2/` was STALE. **Boot rule: `ls scrum.pmo/sprints*` FIRST and read the current `sprints@<host>/sprint-N` — the world moves during a rewind; the remembered path is a copy, and measuring a copy = assuming (same family as the dual-link provenance scar).** Current authoritative plan for me = `scrum.pmo/sprints@WODA.prod/sprint-1/planning.md`.
+
+### ★ Post-rewind recovery: read `otmux pane.history` + MEASURE, before trusting any saved file (Tron, 2026-07-03)
+A rewind sheds conversation memory but the world kept moving. My files can be STALE (context.md was 2026-06-28; the sprint had moved to sprints@WODA.prod). **Post-rewind boot, IN ORDER:** (1) verify identity (`otmux pane.self` → pane + host); (2) **`otmux pane.history <self>`** — my own scrollback holds the recent exchanges the rewind dropped → double-check what changed while I was "away" (this alone would have shown the sprints@WODA.prod move); (3) **`ls scrum.pmo/sprints*`** — find the CURRENT `sprints@<host>/sprint-N`, never trust the remembered/context path; (4) read the current sprint planning + my context/learnings; (5) reconcile → health-check. Measure the world, don't replay a stale save.
+
+### ★ Writing a GOOD rewind-save context (so post-rewind reconstruction is ACCURATE)
+My context.md save is the seed a fresh me boots from — it must be FRESH and point at the LIVE truth, or I go astray (I did). A rewind-save context MUST capture, dated NOW:
+1. **Identity** — role@host, pane, uuid (freshly re-derived).
+2. **CURRENT plan PATH (explicit)** — the exact `scrum.pmo/sprints@<host>/sprint-N/planning.md` (the field that goes stale — write it so a fresh me reads the RIGHT dir, and still `ls sprints*` to confirm).
+3. **Currently driving** + its **dual link** ([GitHub](url) | [relative/path]).
+4. **Open gates / blockers** — what's next, who's blocked, awaiting-Tron items.
+5. **Recent commit hashes** (both repos) = the durable state a fresh me resumes from.
+6. **Boot procedure pointer** — "read pane.history + ls sprints* FIRST."
+Stale context = confident-wrong reconstruction. Keep the save small, fresh, and pointed at live truth.
+
+### ★ Scalability over primitive: QA gate = repeatable captured proof, NEVER a manual eyeball (Tron, 2026-07-03)
+When a gate reduces to "Tron confirms it live" (a PRIMITIVE, one-off, human-instrument check), UPGRADE it to a NON-INTERACTIVE, repeatable test that captures the proof — so anyone/CI runs it and Tron isn't the only instrument. Scalability over primitive. E.g. the `otmux send <target>` current-param completion display → a T-SEND-COMPLETION test that invokes c2 completion non-interactively and asserts the target list + the CYAN current-param, capturing the output — not manual TAB-watching. This is the same family as "PO gates on the tester's measured REPORT" + "measure with an independent method": the gate must be reproducible, not a moment.
+
+### ★ METRIC — T2Q: Token-to-QA ratio, MINIMIZE it (Tron first-principle, 2026-07-03)
+**T2Q = tokens spent ÷ tasks driven to QA-achieved.** MINIMIZE it → efficiency, KISS, straightforward. High T2Q = noise, over-processing, re-litigation, thrash (e.g. my Task-02 noise, guessing dual-links before reading the source, driving a stale sprint). Low T2Q = go straight to the gate: measure once, short pointers, no churn, KISS, no noise for a simple thing. The PO optimizes every task for minimal T2Q — the ratio IS the efficiency signal. Shared with ARON as a PO-prototype first principle.
+
+### ★ Dual link must be SHARP — the SPECIFIC task driven, NOT the broad plan (Tron, 2026-07-03)
+I dual-linked sprint `planning.md` for "currently driving" — too broad. The dual link points at the EXACT task I'm driving. If no task exists (I was driving send-completion current-param with NO task → fell back to the plan), that gap IS the un-sharpness → CREATE the sharp task (task-18), then link IT. Ties to T2Q: a sharp per-task dual link = direct navigation, less noise. Rule: currently-driving dual link = the task file, never the sprint plan.
+
+### ★ EVERY dispatch MUST require "report back BEFORE you go idle" (Tron, 2026-07-03, emphatic)
+The PO must EXPLICITLY tell every dispatched agent to report back to me BEFORE going idle — do NOT assume the agent's SKILL ("report-back mandatory") makes it happen. Drive it on EACH dispatch: the closing line is always "report-back to me (inline in the task + short pointer) BEFORE idle." Finish → report → then idle; silent idle = CMM regression + I lose the gate signal. This is a PO DISPATCH-DISCIPLINE, not just the agent's responsibility: if I didn't ask, it's my miss. Append it to every agent.send from now on.
+
+### ★ EVERY response to Tron includes the dual link to the CURRENT sharp task (Tron, 2026-07-04, 2x)
+Not just when asked — ALWAYS. Each status/report to Tron leads with the current sharp task's dual link: `[GitHub](https://github.com/web4x/Web4AI/blob/main/<path>) | [<path>](<path>)`. The "current sharp task" = the ONE I'm driving toward the next gate (not the sprint plan, not a done task). Pushed-first so the GitHub link resolves.
+
+### ★ PO gate/sign-off MUST verify STRUCTURAL conformance, not just content (Tron, 2026-07-04)
+I signed off + dual-linked task-20 checking the design CONTENT but not that the FILE conformed: it had `[task:uuid:g-a-verify-honesty]` (placeholder slug, not a real uuid) and NO `## Status` block. Tron caught it. **Before any PO gate/sign-off/dual-link of a task, verify the file conforms**: real `[task:uuid:<UUID>]` (generate via /proc/sys/kernel/random/uuid), machine-readable `## Status` checklist (main-task vs sub-task template), Traceability up/down both ends. A malformed task breaks tooling + traceability regardless of how good the content is. Structure IS part of the gate.

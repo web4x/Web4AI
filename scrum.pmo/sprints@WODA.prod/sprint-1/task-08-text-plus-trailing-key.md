@@ -27,3 +27,9 @@
 
 ---
 *Sprint 1 @ WODA.prod — Reliable Send & Capture*
+
+
+## ✅ Go-through PROOF (oosh-tester, non-interactive capture, 2026-07-03)
+Ran `otmux send <scratch> "echo T8TEXT" Enter`, keystream counted via a forwarding tmux stub.
+**PREDICT** = text delivered then exactly ONE Enter (no redundant 2nd Enter).
+**ACTUAL (captured)**: delivered-once=**1** · Enter-count=**1** (no redundant 2nd). **MATCH ✅** (Task 01 one-Enter + send-matrix).

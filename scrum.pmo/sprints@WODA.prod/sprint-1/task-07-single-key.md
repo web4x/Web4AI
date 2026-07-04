@@ -27,3 +27,9 @@
 
 ---
 *Sprint 1 @ WODA.prod — Reliable Send & Capture*
+
+
+## ✅ Go-through PROOF (oosh-tester, non-interactive capture, 2026-07-03)
+Ran `otmux send.raw <scratch> "echo T7RAW" Enter`.
+**PREDICT** = raw key event, NO `[@` prefix, NO verify/queue.
+**ACTUAL (captured)**: delivered-once=**1** · prefix-`[@`=**0** · `send.raw` body invokes prefix/verify/poke/queue = **0** [S]. **MATCH ✅** (send-matrix K1/K6 — a key ≠ a message).

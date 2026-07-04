@@ -63,3 +63,21 @@ oosh-po@WODA.prod (drive + QA gate) · oosh-architect (design) · oosh-expert (i
 predict -> run (in testSend / claude pane / remote) -> capture (full output) -> verify expected==actual -> PO gate -> **TRON acceptance** -> Done.
 
 *Sprint 1 @ WODA.prod — Reliable Send & Capture*
+
+---
+## ✅ PO GATE — [S] shell-provable cases (oosh-po@WODA.prod, 2026-07-03) → awaiting TRON acceptance
+Reviewed the tester's CAPTURED proof (reviewed, not re-run — PO gates on the report). **7/7 PASS, predict==actual:**
+- T03 shell send (once/0-prefix/info+rc0/0-WARNING) · T06 node→not-claude (rc1, no false-claude) · T07 send.raw (raw key/0 poke-queue) · T08 text+Enter (**exactly 1 Enter, no dup** — Tron#1 vector) · T09 all-keys chain (sequential/0-prefix) · T15 queue drain (**undeliverable KEPT, no silent drop, route-gated**) · T17 pane.capture (**0 send-keys, READ-ONLY**).
+- **Scalable/repeatable**: `goethrough-proof.sh` committed (re-runnable capture, not eyeball) — the T2Q/scalability principle satisfied.
+- **PO gate: PASS** → these 7 are Done-ready pending **TRON acceptance** (the final step in the QA workflow).
+- **task-02 correction**: NOT dropped — DONE (`466655d` poll fix made shell-send log `info` not false-`WARNING`/rc2; T03 depends on it).
+- **task-18 cyan**: root cause FIXED (`9d65d12` — declare-anchored varname extraction; METHOD_PARAMETER now populates). Remaining = tester's captured CYAN-render proof → PO gate → Tron.
+
+---
+## Coherence review (architect c5d07d9) — 4 GAPS found (oosh-po driving, 2026-07-04)
+Accepted. 10/15 cases covered; 4 gaps → fixes routed:
+- **Gap A [HIGH, load-bearing]** — send.verified rests on `capture`, KNOWN-unreliable on bridged/remote panes → **phantom rc0 (verify silently LIES)**. → **architect designs** verify-can't-lie-on-remote (capture-reliability or non-capture confirm). Affects task-17/16.
+- **Gap B [MED]** — task-05 send.smart kind false-negatives bash-parent-claude (not wired to c.0/g.4) → real agent silently loses prefix+verify. → expert wire kind to c.0/g.4.
+- **Gap C [MED, load-bearing pair w/ A]** — task-16 remote has NO send.verified route (local-tmux only). → expert add ossh-exec-on-remote route (after A's capture-reliability design).
+- **Gap D [LOW]** — task-08 text+trailing-Enter double-submits on a claude. → expert fix.
+Sequence: architect Gap A design NOW → expert (after config.save): B, D, then C+A-impl → tester verifies each. Detail: send-verified-coherence-review.md.

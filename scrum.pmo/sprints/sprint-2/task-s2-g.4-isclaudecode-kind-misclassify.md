@@ -6,8 +6,8 @@
 ## Status
 - [x] Planned
 - [x] In Progress
-- [x] QA Review (expert-verified live; awaiting tester T-KIND-CLASSIFY)
-- [ ] Done
+- [x] QA Review
+- [x] Done — tester T-KIND-CLASSIFY 5/5 PASS, PO QA PASS
 
 ## Description
 **Expert finding (fd085c4-era, PRE-EXISTING — NOT a g.1 regression; g.1's kind-branch merely EXPOSED it):** `claudeCode process.running` returns rc1 for a claude pane whose parent is bash → `isClaudeCode` classifies a REAL agent as `(shell)` → on send it takes the non-claude path (skips prefix + verify). Message still delivers, but a real agent silently loses prefix+verify = a send-CORRECTNESS gap. **otmux-send family = Tron's HIGHEST priority.**
@@ -35,3 +35,6 @@ ROOT CAUSE (deeper than "process.running unreliable"): `process.find` reads tty 
 - VERIFIED: isClaudeCode = CLAUDE for bash-parent panes (Tron 0.0 + expert 0.3); shell→shell; node-no-claude→shell (g.1 M2 kept). Non-regr: send-matrix 8/8, dispatch 5/5, claudeCode==baseline.
 - **Tester T-KIND-CLASSIFY** verifies. **Send-family complete pending Tron dup live-confirm.**
 - **RECURRING-ROOT FLAG → task-s2-g.6**: `otmux pane.get` stray-newline caused C.2 + C.3 + g.4 (all trimmed at the consumer). Fix at SOURCE (pane.get shouldn't emit it) = DRY; the per-consumer trims become belt-and-suspenders.
+
+## ✅ g.4 PO QA GATE — PASS (oosh-po@WODA.prod, 2026-07-03, on tester report)
+Tester T-KIND-CLASSIFY 5/5 (in send-matrix 12/12, dev): A1 direct-claude→CLAUDE+prefix · A3 REAL bash-parent agent (Temple:0.0)→isClaudeCode=CLAUDE via tty-trim→claude path (prefix+verify) · A2/E3 fresh-shell→shell (no prefix, delivered once) · A4 node-no-claude→shell (no false-pos, g.1 M2 held) · A6 kind from proc-args (c.0/g.4 canonical). Isolated (real agents read-only, md5 unchanged). **g.4 DONE.**

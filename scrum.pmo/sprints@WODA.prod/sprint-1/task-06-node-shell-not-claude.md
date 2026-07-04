@@ -27,3 +27,9 @@
 
 ---
 *Sprint 1 @ WODA.prod — Reliable Send & Capture*
+
+
+## ✅ Go-through PROOF (oosh-tester, non-interactive capture, 2026-07-03)
+Ran a scratch pane running `node -e 'setInterval(…)'` → classified via the g.4 canonical mechanism `claudeCode process.running`.
+**PREDICT** = cmd=node classifies SHELL (not-claude), NO false-claude/Escape.
+**ACTUAL (captured)**: `cmd=node` · `process.running rc=1` (rc≠0 = not-claude = shell path, no Escape). **MATCH ✅** (send-matrix A4/G2, g.1 M2 false-positive guard).

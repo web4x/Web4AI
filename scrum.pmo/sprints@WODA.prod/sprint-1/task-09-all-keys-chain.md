@@ -27,3 +27,9 @@
 
 ---
 *Sprint 1 @ WODA.prod — Reliable Send & Capture*
+
+
+## ✅ Go-through PROOF (oosh-tester, non-interactive capture, 2026-07-03)
+Ran `otmux send <scratch> Down Down Enter`, keystream counted via a forwarding tmux stub.
+**PREDICT** = ALL raw keys (Down Down Enter), NO `[@` prefix, sequential.
+**ACTUAL (captured)**: keys-sent = `Down Down Enter` (down=**2**, enter=**1**) · prefix-`[@`=**0**. **MATCH ✅** (send-matrix K5).

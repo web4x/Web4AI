@@ -32,3 +32,9 @@ Send to a bash-shell target (kind=shell). The shell path must add NO `[@` prefix
 
 ---
 *Sprint 1 @ WODA.prod — Reliable Send & Capture*
+
+
+## ✅ Go-through PROOF (oosh-tester, non-interactive capture, 2026-07-03)
+Ran `otmux send <scratch-bash> "echo T3C-SHELL"` (isolated scratch pane, LOG_LEVEL=4 capture).
+**PREDICT** = no `[@` prefix · no Escape · exactly 1 Enter · prints once · info/rc0 · no WARNING.
+**ACTUAL (captured)**: `rc=0` · prints-once=**1** · prefix-`[@`=**0** · log `committed`(info)=**1** · `WARNING`=**0**. **MATCH ✅** — scalable/repeatable (test.sprint1 go-through + TC-02.1 + send-matrix A2/E3).
