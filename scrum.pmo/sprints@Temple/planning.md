@@ -13,11 +13,12 @@ Produce the purified, authoritative-grounded `session/knowledge-base/planning-te
 - Distinct id markers: `[task:uuid]` (parent), `[subtask:uuid]` (child), `[sprint:uuid]` (planning) — Web4-grounded + scalable.
 
 ## Task List
-- [ ] [Task 1: Canonical task shape — hybrid vs fork vs pure-Web4](./task-1-canonical-shape.md)
+- [x] [Task 1: Canonical task shape — hybrid vs fork vs pure-Web4](./task-1-canonical-shape.md)
   **Priority:** 1 — everything downstream depends on the shape.
-- [ ] [Task 2: Sub-task identity + status granularity](./task-2-subtask-identity-and-status.md)
+- [x] [Task 2: Sub-task identity + status granularity](./task-2-subtask-identity-and-status.md)
   **Priority:** 2
 - [ ] [Task 3: Role vocabulary + gates](./task-3-roles-and-gates.md)
+  **Priority:** 3 — In Progress (refinement)
   **Priority:** 3
 
 ## Traceability

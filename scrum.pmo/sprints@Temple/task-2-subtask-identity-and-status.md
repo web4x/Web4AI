@@ -11,8 +11,8 @@
   - [ ] creating test cases
   - [x] implementing
   - [ ] testing
-- [ ] QA Review
-- [ ] Done
+- [x] QA Review
+- [x] Done
 
 ## Traceability
 - up
@@ -33,4 +33,4 @@ Two sub-questions. (a) **Id marker:** Web4 uses a *distinct* `[subtask:uuid]` fo
 ## QA Audit & User Feedback
 - 2026-07-04: TRON ruled — (a) **distinct `[subtask:uuid]`** = YES; (b) **sub-tasks use a DIFFERENT (flat) status template**, not uniform; and **the Status block must be machine-readable AND writable — NEVER annotated with comments**.
 - Implemented (single source + references, DRY): `session/knowledge-base/planning-templates.md` §1 (subtask id → `[subtask:uuid]`) + §3 (split main-full / sub-flat status, "never annotated"); removed the Status guidance comment from `task-template.md`; created `templates/subtask-template.md` (flat status, distinct `[subtask:uuid]`, one role) which references §3.
-- Awaiting TRON QA Review.
+- 2026-07-04: **TRON QA approved** — Task 2 Done.
