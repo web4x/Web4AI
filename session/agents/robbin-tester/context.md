@@ -15,6 +15,7 @@
   - **2 Tron bugs the gate MUST catch (architect 0.3 exact repro):** (a) NOT a close() — minimize() collapsing to an INVISIBLE peek: after expand, REAL mousedown-drag-mouseup on .drawer-handle ending height<=120 (or call minimize()) → assert [minimized] peek VISIBLE (height>0, grab-bar clickable, ref+open still set). BUG=peek height 0/invisible (looks removed). CSS fix: app.css rb-detail-drawer[minimized]=header 40px + grab-bar display:flex. (b) close() now clears panel.dataset.currentRef + removeAttribute(minimized) + restores body.display → re-select SAME node re-renders: X/ESC close → re-select SAME node → assert reopens AND body VISIBLE AND panel re-rendered (BUG was stale content/hidden body via renderDetailForRef :100 early-return currentRef===ref).
   - HARD INVARIANT: each select opens from ANY state (closed/peek/expanded), never leaves closed.
   - My r279 (commit that RED-measured old X→close) uses SYNTHETIC click + ref-set which does NOT catch these — MUST use REAL mousedown/mouseup drag (bug a) + REAL select path (bug b, same-node re-select). Coordinate remains with architect if repro unclear.
+- R27.8 drawer lifecycle DONE: enhanced r279-drawer-lifecycle-gate.mjs GREEN DET-3x prod (722235006). bug(a) VISIBLE peek (offsetHeight>0 + grab-bar clickable, not height-0), bug(b) close→re-select re-renders (detailPanel.currentRef + content). Full state machine + (B) stay-expanded/peek. Chain complete (58/327). Verifies 7ae7e5a74+e0d063f14 (Impl e42b85e8).
 - **Wheel-ready after rewind.**
 
 ## Current state (v0.7.10)
@@ -35,6 +36,7 @@
 - **Behavioral fixes without pollution:** guard-BLOCKED action (about:blank / SSRF loopback mints nothing) or CANCEL destructive confirms.
 - **Drive a detail component standalone:** grab `document.querySelector('rb-trace-tree').graph` → set `el.graph` + `el.setAttribute('ref','<type>:<uuid>')` (rb-task-detail needs the graph; rb-webitem/file-detail take `uuid`).
 - **Test server-side fetch behind an SSRF guard:** `vi.spyOn(ProxyFetch,'guardUrl').mockResolvedValue({allow:true,ip:'127.0.0.1'})` → point `fetchSanitized` at an in-test `http.createServer` mock (loopback is guard-blocked by design).
+- **Drawer lifecycle (rb-detail-drawer):** select = real openFilePreview path (setAttribute ref+open on #room-file-preview); grab-bar=.drawer-handle click (toggle peek↔expand), X=.drawer-close (→minimize), ESC=close. Assert VISIBLE peek via d.offsetHeight>0 + .drawer-handle offsetHeight>0 (bug=invisible/height-0). Assert re-render via detailPanel.dataset.currentRef + content length (bug=stale/no-reopen). serviceWorkers:block to bypass SW cache.
 - **In-test mock origin** serves script/oversized(>5MB)/slow(hang→8s timeout)/bad-content-type bodies.
 
 ## Key real-data uuids (PROTECT in any purge)
