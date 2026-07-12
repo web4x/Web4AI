@@ -1,5 +1,38 @@
 # robbin-skill-expert Context — Save Point 2026-06-28 POST-FORK (WODA.prod, STANDBY)
 
+## ★★★ RESUME-NOW (2026-07-12 pre-rewind save — READ THIS FIRST) ★★★
+**BOOT: the world MOVED — before acting, `git log --oneline -15` + `ls scrum.pmo/sprints/` + read the
+CurrentSprint singleton on disk. Do NOT assume sprint/task numbers below are still current.**
+- **Repo (CRITICAL)**: `/var/dev/Workspaces/web4x/Web4RawBin` (migrated; OLD `2cuGitHub` path is STALE).
+  Node18 at /root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node. Pane robbinTeam2:0.2.
+- **★ STANDING RULE (Tron, MANDATORY)**: ALWAYS report to robbin-po (robbinTeam2:0.0) BEFORE going idle
+  (result/status/blocker). NEVER silent idle. Every turn ends with a PO report.
+- **SESSION CONSTRAINT**: `npx tsx <script>` RUNS and background POLLING-WATCHERS were DENIED (2026-07-07).
+  git + Read + Edit WORK. So: operate REACTIVELY (act when pinged, not on pollers); measure via git-log +
+  Read of scenario units, not tsx-loops. If a chain measure genuinely needs tsx and it's denied = BLOCKER, tell PO.
+- **PIN state (last set, confirmed by architect fb7da3790)**: singleton = Sprint 28. Current=T27.5
+  (ref-slot registry, 179fafeb) / LastCompleted=T27.8 (drawer, 19700836) / NextBacklog=T27.6 (dangling,
+  600fa089). Lesson: cached `slots` can be right while override FIELDS empty — set nextBacklogOverride +
+  lastCompletedUuid explicitly (I edited singleton directly since tsx denied).
+- **ACTIVE TASK**: standing by REACTIVELY to chain-credit + ADVANCE the pin as T27.5 lands (#125 rule =
+  advance on CREDIT/completion, not just new-task). Await PO/team ping.
+- **MY SKILL FIXES (in code, git-safe across rewind)**: getThreeSlots symmetric boundary-fall
+  (b09725d02 — fwd not-done to next sprint, back done to prev sprint; pin ALWAYS 3 slots). NEEDS server
+  RESTART for live /trace (plain tsx, code loads once) — PO's call, don't restart prod.
+- **S30 AgentMessage skill (Tron directive, my big deliverable)**: async mailbox = the interrupt fix
+  (otmux send/send-keys INJECTS text+Enter -> interrupts recipients mid-turn). MY IMPL DONE: authored
+  src/ts/scenario/agent-message.ts (defineUnitType R30.1 / send R30.2 mint+commit-NO-injection /
+  assertNoLiveInjection R30.3 guard / inbox R30.4 pull / read). AgentMessageLoader in ClassRegistry
+  (16->17, count test fixed). R30.1-4 IMPL HOPS CREDIT. Commits e8172e7d2 + 57caf1287 + 3db3959.
+  REMAINING: tester R30.1-4 test markers; architect R30.5/6 UCs; then OOSH external 'agentMessage'
+  wrapper (w/ oosh-expert, taskChain->Chain pattern). Design: scrum.pmo/skills/agent-message-skill-design.md.
+- **RECENT COMMITS (web4x)**: fb7da3790 pin-overrides · 0fd48ba standing-rule+pin · 3db3959 AgentMsg-anchor
+  · e8172e7d2 AgentMsg-class · 57caf1287 test-count · b572494f6/b09725d02 pin boundary-fall.
+- **DUAL LINKS**: see full session history below (S21-S30 arc: chain scoreboard, marker discipline,
+  R27.2/4 over-count correction, R27.7 truncated-uuid, task-FSM!=chain-credit, pin self-heal, AgentMessage).
+## ★★★ END RESUME-NOW ★★★
+
+
 **FORK NOTE (2026-06-28)**: Context-recovery fork by scrum-master (prior session saturating ~772k).
 Knowledge restored from boot→context→learnings→doctrine. This save = next-cycle anchor (F-T17
 gate: confirms write→commit works post-fork). Re-measure underway per robbin-po directive.
