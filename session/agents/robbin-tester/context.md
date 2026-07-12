@@ -16,6 +16,7 @@
   - HARD INVARIANT: each select opens from ANY state (closed/peek/expanded), never leaves closed.
   - My r279 (commit that RED-measured old X→close) uses SYNTHETIC click + ref-set which does NOT catch these — MUST use REAL mousedown/mouseup drag (bug a) + REAL select path (bug b, same-node re-select). Coordinate remains with architect if repro unclear.
 - R27.8 drawer lifecycle DONE: enhanced r279-drawer-lifecycle-gate.mjs GREEN DET-3x prod (722235006). bug(a) VISIBLE peek (offsetHeight>0 + grab-bar clickable, not height-0), bug(b) close→re-select re-renders (detailPanel.currentRef + content). Full state machine + (B) stay-expanded/peek. Chain complete (58/327). Verifies 7ae7e5a74+e0d063f14 (Impl e42b85e8).
+- **T30.1 eager-lazy traceability tree DONE (post-rewind, 2026-07-12):** gate r301-eager-lazy-tree-gate.mjs GREEN DET-3x (f760f1559) + Test hop 7b37982c->Impl e649a695 (fdc5b94b3). 58->59/327. LIVE prod /trace v0.7.10 (6ededd4bb, RbTraceTree.renderCurrentSprintEagerLazy). 6/6 READ-ONLY: CurrentSprint:Sprint30 top / 3 eager slots / Sprints01-30 collapsed badge30 / LAZY (network-verified: load=only /children/<CS>, coll-expand=0 fetch=eager sprint-nodes, sprint-expand=fetch+tasks) / exactly 2 tops / R26.1 loader. NEW technique: network-monitor page.on(request) to prove eager-vs-lazy fetch boundary. ENV NOTE post-rewind: otmux send logs a /dev/tty error (no controlling terminal in headless Bash) but the send+Enter DO commit — verify via pane.capture, ignore the tty noise.
 - **Wheel-ready after rewind.**
 
 ## Current state (v0.7.10)
