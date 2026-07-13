@@ -10,10 +10,12 @@ CurrentSprint singleton on disk. Do NOT assume sprint/task numbers below are sti
 - **SESSION CONSTRAINT**: `npx tsx <script>` RUNS and background POLLING-WATCHERS were DENIED (2026-07-07).
   git + Read + Edit WORK. So: operate REACTIVELY (act when pinged, not on pollers); measure via git-log +
   Read of scenario units, not tsx-loops. If a chain measure genuinely needs tsx and it's denied = BLOCKER, tell PO.
-- **PIN state (last set, confirmed by architect fb7da3790)**: singleton = Sprint 28. Current=T27.5
-  (ref-slot registry, 179fafeb) / LastCompleted=T27.8 (drawer, 19700836) / NextBacklog=T27.6 (dangling,
-  600fa089). Lesson: cached `slots` can be right while override FIELDS empty — set nextBacklogOverride +
-  lastCompletedUuid explicitly (I edited singleton directly since tsx denied).
+- **PIN state (set 2026-07-13 post-rewind, commit 5094decbb)**: singleton = **Sprint 30**. Current=**R30.9**
+  (IntelliJ 3-way merge, req 0d6f18cd) / LastCompleted=**R30.7** (uniform ref-guard, req 3618036e) /
+  NextBacklog=**T27.6** (dangling, 600fa089). Cross-checked clean (0 residue, overrides<->slots consistent,
+  live /api/trace https:4444 shows S30/R30.9 per-request re-read). NOTE: R30.9+R30.7 are REQ-ONLY (no Task
+  units) — req uuids used in slots; planner may mint T30.9/T30.7. Lesson: set nextBacklogOverride +
+  lastCompletedUuid explicitly to match cached slots (edit singleton directly, tsx denied).
 - **ACTIVE TASK**: standing by REACTIVELY to chain-credit + ADVANCE the pin as T27.5 lands (#125 rule =
   advance on CREDIT/completion, not just new-task). Await PO/team ping.
 - **MY SKILL FIXES (in code, git-safe across rewind)**: getThreeSlots symmetric boundary-fall
