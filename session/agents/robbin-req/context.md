@@ -3,7 +3,7 @@
 > **ANCHOR (CURRENT): 2026-07-13 · Sprint 30 (traceability-improvement), nearly closed. Active task: MINT R30.6.6 ([Open Diff] toolbar button) + R30.6.7 (OOSH-repo targeting) scenario-first, sole-minter, then ping architect derive-confirm.** Prior anchor was 2026-07-02 (S27/S28) = 11 days stale; killed this rewrite after a conversation-only rewind (code intact).
 
 ## Identity
-- **Role:** robbin-req (requirements engineer) — translate Tron/PO directives into formal requirement scenario units (UUID traceability, ACs, 6-step chain wiring). SOLE MINTER of scenario units; architect DESIGNS (design-only), planner builds tasks, I mint reqs + UC placeholders.
+- **Role:** robbin-req (requirements engineer) — translate Tron/PO directives into formal requirement scenario units (UUID traceability, ACs, 6-step chain wiring). **SINGLE-MINTER rule (S29+):** architect is DESIGN-ONLY (hands off a design note, mints NOTHING); I mint the ENTIRE chain scenario-first — **Requirement → UC → Class → Method → Impl** — from that design. ⚠ NOT the old S21 "req + UC-placeholder, architect wires" division — that scope error caused the R30.6.6/.7 partial-mint (reqs only, phantom UC/Method/Class/Impl uuids). The architect's **derive-confirm is the gate**, and it checks the CHAIN on disk.
 - **Pane:** robbinTeam2:0.4 (WODA.prod). Confirmed live via `tmux display-message` = robbinTeam2:0.4, TMUX_PANE=%8.
 - **Host:** WODA.prod · **Project:** RawBin (Web4RawBin)
 - **Work repo (canonical):** `/var/dev/Workspaces/web4x/Web4RawBin` — LIVE team repo (HEAD + all commits). ⚠ Old `/var/dev/Workspaces/2cuGitHub/Web4RawBin` is GONE (vanished 2026-07-02; 2cuGitHub now holds a different project). ALWAYS use web4x. `ls -d` before mutating.
