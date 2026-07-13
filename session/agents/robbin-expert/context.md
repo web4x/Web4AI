@@ -1,15 +1,16 @@
-# robbin-expert Context — Save Point 2026-07-01 (WODA.prod, v0.7.5 / SPRINT 26 COMPLETE)
-
-**S26 (RawBin Federation) COMPLETE**: T26.1 federated IOR (federated-ior.ts) · T26.2 DnD federated-ref (DropDispatcher.buildFederatedRef) · T26.3 server fetch API (/api/scenario/<uuid>{,/content,/children,/grant}, capability-grant auth, LIVE 0.7.4) · T26.4 lazy child resolve + T26.5 conflict reconcile (federation-transfer.ts Transfer class). All impls credit. Design: scrum.pmo/design-notes/federated-scenario-transfer.md. NOT-yet-wired: the end-to-end drag→grant→fetch→Transfer.import live flow (each piece exists + is tested; integration is the next step when PO wants it).
-
+# robbin-expert Context — Save Point 2026-07-13 (WODA.prod, v0.7.11 / SPRINT 30)
 
 **Role**: Web4RawBin Implementation Authority
 **Machine**: WODA.prod · **Pane**: robbinTeam2:0.1
-**Repo (WODA.prod)**: /var/dev/Workspaces/2cuGitHub/Web4RawBin · **Live**: prod.wo-da.de:4444 (tmux session `rawbin`)
+**Repo**: /var/dev/Workspaces/web4x/Web4RawBin  ⚠️ MOVED from /var/dev/Workspaces/2cuGitHub/Web4RawBin (OLD PATH NOW DELETED — do not use it).
 **AI/Claude repo** (context/learnings): /var/dev/Workspaces/AI/Claude
-**Current version**: v0.7.1 LIVE (health 0.7.1). Latest anchors: 0606852b3 (rejoinDedup impl marker), 16fa98d88 (R25.7 markers), a1f58fba1 (R25.7 display-orphan-skip), 0a73e5709 (v0.7.0 structural identity-dedup).
-**v0.7.1 MILESTONE state**: Room identity-dedup structurally sound (load-collapse, CONSOLIDATE-evict, IDENTIFY-redirect, addMember-idempotent, immutable+durable redirectTo). HeartSpace = 1 Marcel GREEN. 37fcb752 tombstone durable (survives restart). R25.5/R25.6/R25.7 impl markers all placed + credit (previewAndImport, readAndRoute, renderScenarioLink, scenarioLinkHref, dedupMembersOnLoad, evictAbsorbedFromRooms, redirectTombstoneToPrimary, addMemberIdempotent, rejoinDedup). Standing by for S26 impl.
-**KEY LESSONS THIS SESSION** (see [[learnings]]): #126 = req+planner create scenario units, EXPERT implements against them (don't mint your own); chain crediting = labelMethod↔host name-match (unit name irrelevant); NEVER bulk-mutate prod data on an unverified assumption (verify on samples; a repair that zeroes most rows = STOP; prefer display-hide over data-delete); prod identity writes need explicit operator auth; durable identity fix = stop→edit profiles.json→restart + structural immutability.
+**Team**: robbinTeam2 8-pane, split WODA.prod+v60211 — 0.0 PO, 0.1 me, 0.2 skill-expert, 0.3 architect, 0.4 req, 0.5 tester, 0.6 planner, 0.7 host.
+**Version**: v0.7.11. Recent anchors: 45a4847c2 (R30.2/R30.3 extract chain-named methods, scoreboard 61/330), 6ededd4bb (T30.1 eager-lazy tree DONE), c794ef6bc (architect v0.7.11 badge+drawer fix), d88b80fe4 (S30 R30.2/R30.3 dedup reconcile).
+**CURRENT STATE (2026-07-13, post-rewind)**: T30.1 DONE (tester-GREEN, QA-Review). R30.2/R30.3 Impl-marker EXTRACTION shipped (45a4847c2) — pinged tester 0.5 to re-gate DET-3x. Chain scoreboard 61/330.
+**NEXT**: T27.5 (ref-slot registry, chain-ready) — AFTER architect 0.3 assigns. Stand by for it.
+**⚠️ DEPLOY BLOCKER (open, flagged to PO 0.0)**: live `rawbin` tmux server is SHUT DOWN + its session cwd = the deleted 2cuGitHub path → can't restart in place. Fix = in rawbin pane: `cd /var/dev/Workspaces/web4x/Web4RawBin` then re-run its start. PO/Tron-gated; awaiting their call.
+**BOOT PROCEDURE (post-rewind, measure-first)**: read `otmux pane.history robbinTeam2:0.1` + `ls scrum.pmo/sprints*` + `git log` BEFORE trusting this file (the world moves while rewound; measured world wins). Repo may have moved again.
+**KEY LESSONS** (see [[learnings]]): #126 = req+planner create scenario units, EXPERT implements against them; strict-AST chain credit = the [impl] marker must sit on a DECLARATION whose NAME matches the chain Method (inline comments inside a differently-named method do NOT credit → EXTRACT a named method, don't rename an existing one that carries other Impls); chain crediting = labelMethod↔host name-match (unit name irrelevant); NEVER bulk-mutate prod data on an unverified assumption; measure DELTA vs baseline for graph-debt gates; post-mutation actual==predicted self-assert + atomic-rollback is standard in --apply.
 
 ## R22.2 (commit 073378b7d, LIVE): added dblclick→doubleTapToggle in RbPanZoom.attach() (pan-zoom.ts); marker 7831f755 on RbPanZoom.doubleTapToggle + Impl unit created (not orphan). R22 chain UC/Class/Method architect-pending.
 ## R22.2 GREEN DET-3x gate cb8d3eceb (tester). CLEARED.
