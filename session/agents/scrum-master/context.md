@@ -1,8 +1,33 @@
-# Scrum Master Context — 2026-07-04 (TRON-ordered save, MOVED to baseTeam:0.0)
+# Scrum Master Context — 2026-07-13 (post-rewind, MOST CURRENT)
 
-## ★★★★★★★★★★★★★★★★★★★★★★ MOST CURRENT (2026-07-04 post-move) ★★★★★★★★★★★★★★★★
+## ★★★★★★★★★★★★★★★★★★★★★★ MOST CURRENT (2026-07-13, post-rewind re-anchor) ★★★★★★★★★★★★★★★★
+**Identity:** scrum-master@WODA.prod, **ooshTeam:0.1** (uuid 634999b0-f753-4d4f-9629-036eb0f763eb). Freshly re-derived via `otmux tree.detailed` — do NOT trust `tmux display-message`/`$TMUX_PANE` post-rewind, it read stale `baseTeam:0.1` this boot.
+**Status:** ACTIVE — running the ≤90%-used prevention loop (session/base-skills/agent-rewind.md). 42-pair: agent-trainer (baseTeam:0.0, executes rewinds), oosh-po (ooshTeam:0.0, WODA.prod priorities).
+
+**Boot-procedure pointer:** on any future rewind, read `otmux pane.history <self>` then `otmux tree.detailed` (not display-message) to re-derive identity, THEN `ls scrum.pmo/sprints*` to confirm current sprint path, THEN read this file + learnings — reconcile, don't replay stale.
+
+**Current sprint path:** `scrum.pmo/sprints/sprint-2/` (oosh WODA.prod — actively edited, task-s2-* series: otmux-send-reliability, shell-reaper, peer-driven-rewind, team-sweep-dashboard). `sprint-constructor-contract/` and `sprint-config-selfheal/` exist but planning.md untouched since Jun 27 — dirs only, not the live one.
+
+**Teams monitored (WODA.prod host):**
+- ooshTeam: 0.0 oosh-po, 0.1 me(SM), 0.2 oosh-architect, 0.3 oosh-expert, 0.4 oosh-tester
+- robbinTeam2: 0.0 robbin-po, 0.1 robbin-expert, 0.2 robbin-skill-expert, 0.3 robbin-architect, 0.4 robbin-req, 0.5 robbin-tester, 0.6 robbin-planner
+- baseTeam: 0.0 agent-trainer
+
+**2026-07-13 sweep findings (this tick):**
+- **oosh-tester(ooshTeam:0.4): AT THE CLIFF** — "Context limit reached", 978.9k tokens, non-responsive to 2 dispatched prompts. Reactive rewind ORDERED to agent-trainer — pending verification.
+- **robbin-skill-expert(robbinTeam2:0.2): 949.3k clear-to-save**, near cliff. Trainer believed only oosh-tester was outstanding — flagged the discrepancy, rewind added to trainer's queue — pending verification.
+- **robbin-planner(robbinTeam2:0.6): self-reported ~89% used, no autocompact.** Recommended itself run `/compact` — that text in its composer was a GHOST PLACEHOLDER (not real staged input — confirmed by test: typed "ZZZ", it replaced the ghost rather than appending; C-u then genuinely cleared "ZZZ" and the ghost reappeared). No forbidden command was actually armed, but I told it explicitly NOT to self-/compact and to hold for trainer's proper /rewind. Anchor at 3054bb1dd, context.md + memory hold full S30 state per its own report.
+- **oosh-po(ooshTeam:0.0): 592.7k clear-to-save (~59%)** — trending, not yet actionable (<90%). Watch.
+- **oosh-architect(ooshTeam:0.2): 628.9k clear-to-save (~63%)** — trending, not yet actionable. Watch.
+- **oosh-expert(ooshTeam:0.3): 183.8k (~18%)** — healthy.
+- robbin-po/expert/architect/req/tester: no warnings, healthy, active or idle-clean.
+- agent-trainer(baseTeam:0.0): healthy, no warning, driving the rewind campaign, active (verifying robbin-req/robbin-po health checks).
+- Me (SM): no "clear to save" warning — healthy.
+- Stray files noted (not urgent): modified boot.md (robbin-architect, robbin-po), robbin-planner/learnings.md, session/dashboard.md; several untracked `session/metrics/*.scenario.env` snapshot files (routine context-read outputs, not WIP).
+
+## ★★★★★★★★★★★★★★★★★★★★★★ PRIOR (2026-07-04, stale — kept for history) ★★★★★★★★★★★★★★★★
 **Identity:** scrum-master@MacStudio, **baseTeam:0.0**, Opus. 42-pair with agent-trainer(baseTeam:0.1), coordinates oosh-po(ooshTeam:0.0).
-**Status:** STOOD DOWN (Tron directive via oosh-po, 2026-07-07). Monitoring loop STOPPED. Idle.
+**Status:** STOOD DOWN (Tron directive via oosh-po, 2026-07-07). Monitoring loop STOPPED. Idle. — SUPERSEDED, host/pane/team layout have all since changed, do not trust below without re-measuring.
 
 **Environment (Jul 7):**
 - baseTeam: 0.0=me(SM), 0.1=agent-trainer (485k~49%)
