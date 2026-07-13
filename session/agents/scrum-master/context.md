@@ -14,8 +14,9 @@
 - baseTeam: 0.0 agent-trainer
 
 **2026-07-13 sweep findings (this tick):**
-- **oosh-tester(ooshTeam:0.4): AT THE CLIFF** — "Context limit reached", 978.9k tokens, non-responsive to 2 dispatched prompts. Reactive rewind ORDERED to agent-trainer — pending verification.
-- **robbin-skill-expert(robbinTeam2:0.2): 949.3k clear-to-save**, near cliff. Trainer believed only oosh-tester was outstanding — flagged the discrepancy, rewind added to trainer's queue — pending verification.
+- **oosh-tester(ooshTeam:0.4): was AT THE CLIFF, REWOUND + VERIFIED RECOVERED** — clean footer, correctly resumed T-QUOTE gate work (test.suite c2 run). oosh-po notified, cleared to re-task.
+- **robbin-skill-expert(robbinTeam2:0.2): was 949.3k, REWOUND + VERIFIED RECOVERED** — clean footer, correctly anchored to R30.9/S30 state. robbin-po notified, cleared to re-task.
+- **R30.10 STARTING (2026-07-13):** R30.9 IntelliJ 3-way merge TRON-ACCEPTED. Next: right-side-default=file-git-history (architect designs scenario-first → req mints → build). robbin-po asked me to co-watch + enforce: report-before-idle, single-minter, derive-confirm-before-build-go across architect(0.3)/req(0.4)/expert(0.1).
 - **robbin-planner(robbinTeam2:0.6): self-reported ~89% used, no autocompact.** Recommended itself run `/compact` — that text in its composer was a GHOST PLACEHOLDER (not real staged input — confirmed by test: typed "ZZZ", it replaced the ghost rather than appending; C-u then genuinely cleared "ZZZ" and the ghost reappeared). No forbidden command was actually armed, but I told it explicitly NOT to self-/compact and to hold for trainer's proper /rewind. Anchor at 3054bb1dd, context.md + memory hold full S30 state per its own report.
 - **oosh-po(ooshTeam:0.0): 592.7k clear-to-save (~59%)** — trending, not yet actionable (<90%). Watch.
 - **oosh-architect(ooshTeam:0.2): 628.9k clear-to-save (~63%)** — trending, not yet actionable. Watch.
