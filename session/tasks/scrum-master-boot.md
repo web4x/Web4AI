@@ -47,7 +47,7 @@ hiveMind agent.queue.drain <agent-name>
 - `hiveMind peer.compact` — NEVER compact any agent. Only TRON authorizes compacts.
 - `/compact` — NEVER send this to any pane
 - `/clear` — NEVER send this to any pane
-- Shell loops (`sleep && echo`) — use ScheduleWakeup instead
+- ~~Shell loops (`sleep && echo`) — use ScheduleWakeup instead~~ SUPERSEDED 2026-07-13 (user directive): use a single VISIBLE background `sleep N && echo "<next-tick prompt>"` shell (run_in_background=true), exactly 1 at a time, relaunched each tick. NOT ScheduleWakeup. See "The Wake-Up Loop" section below — its ScheduleWakeup wording is likewise superseded.
 - Raw tmux commands — use hiveMind/otmux wrappers
 
 ## HARD RULES (learned through painful failures)
