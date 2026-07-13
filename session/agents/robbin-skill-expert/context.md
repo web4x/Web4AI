@@ -10,12 +10,13 @@ CurrentSprint singleton on disk. Do NOT assume sprint/task numbers below are sti
 - **SESSION CONSTRAINT**: `npx tsx <script>` RUNS and background POLLING-WATCHERS were DENIED (2026-07-07).
   git + Read + Edit WORK. So: operate REACTIVELY (act when pinged, not on pollers); measure via git-log +
   Read of scenario units, not tsx-loops. If a chain measure genuinely needs tsx and it's denied = BLOCKER, tell PO.
-- **PIN state (set 2026-07-13 post-rewind, commit 5094decbb)**: singleton = **Sprint 30**. Current=**R30.9**
-  (IntelliJ 3-way merge, req 0d6f18cd) / LastCompleted=**R30.7** (uniform ref-guard, req 3618036e) /
-  NextBacklog=**T27.6** (dangling, 600fa089). Cross-checked clean (0 residue, overrides<->slots consistent,
-  live /api/trace https:4444 shows S30/R30.9 per-request re-read). NOTE: R30.9+R30.7 are REQ-ONLY (no Task
-  units) — req uuids used in slots; planner may mint T30.9/T30.7. Lesson: set nextBacklogOverride +
-  lastCompletedUuid explicitly to match cached slots (edit singleton directly, tsx denied).
+- **PIN state (re-pointed 2026-07-13, commit 963ea4da7, #126 clean task refs)**: singleton = **Sprint 30**.
+  Current=**T30.9** (6a6a56d3, IntelliJ 3-way merge, QA Review, covers R30.9 0d6f18cd) / LastCompleted=**T30.7**
+  (2a873503, uniform ref-guard, covers R30.7 3618036e) / NextBacklog=**T27.6** (600fa089, dangling).
+  Cross-checked clean (0 residue, overrides<->slots consistent — lastCompletedUuid=2a873503/nextBacklogOverride=600fa089,
+  live /api/trace https:4444 shows S30 + Task 30.9 + task uuids per-request). Planner minted T30.9/T30.7 for
+  #126; req-uuid workaround (5094decbb) RETIRED. NOTE: T30.7 task-status=Planned but req R30.7 fully gated
+  (73/342) — task-FSM lags chain-credit. Lesson: set nextBacklogOverride + lastCompletedUuid to match slots (edit singleton directly, tsx denied).
 - **ACTIVE TASK**: standing by REACTIVELY to chain-credit + ADVANCE the pin as T27.5 lands (#125 rule =
   advance on CREDIT/completion, not just new-task). Await PO/team ping.
 - **MY SKILL FIXES (in code, git-safe across rewind)**: getThreeSlots symmetric boundary-fall
