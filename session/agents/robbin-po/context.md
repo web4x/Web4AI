@@ -1,3 +1,34 @@
+# robbin-po Context — save #37 (2026-07-13→pre-deep-rewind, S30 lobby/editor regressions + T27.5 registry DONE + coordination rules)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #37 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ BOOT POINTER: read `otmux pane.history` + `git log` + `ls scrum.pmo/sprints/*` FIRST (disk moves ahead of my convo — team keeps building during rewinds). Repo = /var/dev/Workspaces/web4x/Web4RawBin (2cuGitHub GONE). Prod = prod.wo-da.de:4444. Branch = main. Verify live server by /api/config+start.mjs, NOT pane name.**
+
+### PROD + SCOREBOARD
+- Prod v0.7.14 LIVE (was 0.7.11→12→14 this arc). Scoreboard 70/338. Server rebuilds-from-source on start.mjs restart (SOURCE commit = the deploy; verify fix in the SERVED bundle by the SERVED manifest hash, not local dist).
+- Server restart: remoteShells:0.2 (Ctrl-C + `npm start`, self-heals via node22). node: sys16+vscode18+/opt/node22; npm start/test/ci all self-heal to node22.
+
+### SPRINT 30 (S30 = R30.1-6, tasks 10) — Traceability + lobby/editor regressions
+- R30.1 traceability tree (CurrentSprint top + eager-lazy) DONE | R30.2 eager child-count badges DONE | R30.3 sprint-select→drawer DONE | R30.4 lobby-name-from-profile DONE (Tron-confirmed v0.7.12) | R30.5 editor file-pane full filetree (rb-file-tree.ts:31 drop `||'/'`) — expert applying 1-line fix
+- R30.6 3-pane diff/merge editor (RbDiffEditor + read-only GitApi, v0.7.14, in-house LCS): T30.6.1-5 DONE (70/338, gated 6/6 DET-3x c16aad856), umbrella OPEN pending T30.6.6 ([Open Diff] toolbar button, showDiff mounts rb-diff-editor LEFT=current-file) + T30.6.7 (GitApi de-hardcode ROOT→resolve(repo) via RepoRegistry allowlist). Chain 7c9554494/8ccf02c35.
+- T27.5 ref-slot registry DONE (all 5 axes credited: refSlots/nodeWellFormedness/oneClassPerFile/markerHasChain/auditDir; r275+--dir = STANDING graph-integrity regression suite). R27.6 true-dangling-repair SCOPED (S28, awaiting build): dangling 212chain/9data, ~397 orphans, sprawl=4, chain-less=75.
+
+### ★ COORDINATION RULES BANKED THIS SESSION (hard-won, apply by default)
+- **SINGLE-MINTER DISPATCH (R29.9 dispatch-side)**: I name EXACTLY ONE mover per artifact + tell others HOLD. Rule: architect DESIGNS-ONLY + hands spec to req; REQ = SOLE MINTER of scenario units. (I crossed-dispatched 2×; guard held by luck+measure-first — fixed at source.)
+- **MARKER = name-matching decl** (AST-attach, not just a comment; presence≠attachment) + **FULL uuids** (never truncate — bit 3×). **chain-complete ≠ task-Done.**
+- **MEASURE a stable state** (not dirty/mid-flight/uncommitted). **VERIFY with an independent method/tool** (self-verify misses its own blind spots — architect back-edge catch saved R30.4-era reconcile). **DRIVE by doing** when team rate-limited (I fixed+deployed badge/drawer solo during API throttle). **Report-back per dispatch + SM monitoring ALWAYS.**
+- R29.9 mint-lock GUARD captured (b05666be, S29 backlog) — the parallel-mint dup-collision fix, with the S30 dup-collision as its regression fixture.
+
+### AWAITING (do NOT declare S30 done until)
+- R30.5 loadDir fix + deploy + tester gate + Tron reload-check (filetree shows)
+- T30.6.6 + T30.6.7 (diff-editor umbrella close)
+- otmux /dev/tty glitch intermittently drops agent reports — measure disk, don't trust a missing report
+
+### TEAM robbinTeam2 (WODA.prod): 0.0 PO|0.1 expert|0.2 skill-expert|0.3 architect|0.4 req|0.5 tester|0.6 planner. SM=ooshTeam:0.1. agent-trainer deep-rewinding me now.
+
+### RECENT COMMITS: R30.6 02d13a849/7c9554494/8ccf02c35 · R30.5 chain 2e4bc3361 · R30.4 63892b42e+723c1f691(v0.7.12) · S30 reconcile d88b80fe4+c794ef6bc · T27.5 axes 5f34dde7e+f6ac09521 · R29.9 guard b05666be
+
+---
+
 # robbin-po Context — save #36 (2026-07-03, R27.8 drawer full-lifecycle + sprint re-scope + verify-delivery discipline)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #36 — READ FIRST) ★★★★★★★★★★★★★★★★★
