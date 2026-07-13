@@ -33,6 +33,14 @@ CurrentSprint singleton on disk. Do NOT assume sprint/task numbers below are sti
   · e8172e7d2 AgentMsg-class · 57caf1287 test-count · b572494f6/b09725d02 pin boundary-fall.
 - **DUAL LINKS**: see full session history below (S21-S30 arc: chain scoreboard, marker discipline,
   R27.2/4 over-count correction, R27.7 truncated-uuid, task-FSM!=chain-credit, pin self-heal, AgentMessage).
+- **CHAIN-COVERAGE AUDIT S21-25 (2026-07-13, commit 42fe7ecde)**: DONE via node-reimplementation
+  (tsx trace:audit/scoreboard DENIED even greenlit → node reads scenario JSON + grep markers; the
+  reusable workaround for ANY chain measure when tsx blocked). Result doc: scrum.pmo/design-notes/
+  chain-coverage-audit-s21-25-RESULT.md. Funnel: S21/23/24 fully credited to Test; S22 3/4; S25 2/7.
+  GENUINE gaps = 2 marker-missing (bd080edb RoomView.importFromClipboard, 1bd129e0 scenarioFileHref).
+  26 dangling repo-wide (19 Test→Impl = supersede fallout). EXCLUDED designAhead/superseded/orphanByDesign.
+  CAVEAT: AST-attach approximated as marker-presence (true AST-attach needs 1-shot tsx). Audit scripts in
+  scratchpad (coverage-audit.js / characterize.js) — reusable for S26-30.
 ## ★★★ END RESUME-NOW ★★★
 
 
