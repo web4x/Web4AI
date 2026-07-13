@@ -1,3 +1,26 @@
+# robbin-po Context — save #38 (2026-07-13 post-deep-rewind, S30 DIFF-EDITOR ARC COMPLETE + IntelliJ 3-way merge LIVE)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #38 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ BOOT: read git log + ls scrum.pmo/sprints/* + THIS FIRST. Repo=/var/dev/Workspaces/web4x/Web4RawBin. Prod=prod.wo-da.de:4444. Verify live by /api/config, restart=remoteShells:0.2 (Ctrl-C+npm start, node22). Team robbinTeam2 0.0-0.6, SM=ooshTeam:0.1. Recovered clean from deep-rewind (anchor #37 pushed, disk ahead of convo — measure disk).**
+
+### PROD v0.7.18 · SCOREBOARD ~73→81/342 (R30.9 8 impls crediting)
+### S30 DIFF-EDITOR ARC — COMPLETE + LIVE (the big win this session)
+- R30.6 3-pane diff editor + read-only GitApi (DONE, gated) | R30.6.6 [Open Diff] toolbar button→showDiff LEFT=current (Tron-verified live) | R30.6.7 OOSH RepoRegistry multi-repo targeting (DONE, security reject-first) | R30.7 uniform git-ref guard GitApi.guardRef (DONE, tester's own leniency finding→hardening→RED→GREEN, the CMM4 loop)
+- ★ R30.9 IntelliJ-faithful base-aware 3-way MERGE — LIVE v0.7.18 (f4f06990b). RE-ARCH of rb-diff-editor: textarea+in-house-LCS → 3 Monaco + node-diff3 (VENDORED MIT, src/public/ts/vendor/diff3.ts). Layout Local(ro)|Result(editable full-Monaco, starts as BASE)|Repository(ro); ✨Apply-All-Non-Conflicting (Tron's 'magic wand'); gutter ◄/► accept-left/right; conflict color-code; syncScroll3; 2-way no-base fallback. BASE=GitApi.mergeBase (verified on OOSH main,dev→6571a8a4 real ancestor = Tron's target). 8/8 impl markers credit; SUPERSEDED R30.6.1(computeDiff)/R30.6.3(renderHunks/takeHunk) — markers removed, Impls supersededBy-annotated, 0 orphan. Monaco stays CDN/AMD (rb-code-editor loader), esbuild bundles node-diff3 only.
+- ★ WHY CUSTOM (Tron ruled 'IntelliJ at ANY overhead cost'): Monaco=2-way only; CM6=2-way; @codingame/monaco-vscode-api=VS Code merge editor (VS-Code UX, NOT IntelliJ, heavy); VS Code issue #37350 PROVES even MS diverged from IntelliJ's layout. So (C) custom = 3 Monaco + node-diff3 (base-aware diff3 = the IntelliJ magic-wand behavior) is the ONLY IntelliJ-faithful path. Refs: VS Code mergeEditor (MIT) + IntelliJ-community (Apache-2.0) algorithm.
+
+### AWAITING (do NOT declare S30 fully done until)
+- R30.9 tester DET-3x + req per-method chain-to-Test (credit) + ★ TRON visual IntelliJ-fidelity review (the real acceptance)
+- R30.5 filetree (fix in code loadDir 0b026300) — planner marks Done; confirm Tron reload-verify
+- backlog: R27.6 true-dangling (S28), R30.8 free
+
+### DISCIPLINE WINS (post-rewind, all held)
+- SINGLE-MINTER (req sole) → ARCHITECT DERIVE-CONFIRM (the gate) → PO build-go BEHIND it (I jumped it once on R30.6.6, harmless [expert verifies units pre-marker], learned: HOLD behind derive).
+- MINT-GAP caught by 3 independent measures (architect derive + tester + expert pre-build) — req's mint was Req-only (old S21 division); req UPGRADED verify = walk CHAIN on disk (Req→UC→Class→Method→Impl+reverse-links) before report. No recurrence after.
+- MARKER=IMPL-uuid ALWAYS (never Method) — req's gate caught a SYSTEMATIC method-uuid bug (all 3 R30.6.7); expert now verifies Impl-not-Method before placing.
+- VERIFY-DELIVERY: send.verified≠submitted; sends STAGE on busy panes → bare-Enter poke submits (caught staged build-go/mint-go 2×). MEASURE DISK, idle pane hides committed work.
+- VERIFY w/ INDEPENDENT tool (tester probes BODY not status → caught commits-ref leniency + no-shell-injection); measure-not-message (architect wouldn't claim a 400 auth blocked it from seeing).
+
 # robbin-po Context — save #37 (2026-07-13→pre-deep-rewind, S30 lobby/editor regressions + T27.5 registry DONE + coordination rules)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #37 — READ FIRST) ★★★★★★★★★★★★★★★★★
