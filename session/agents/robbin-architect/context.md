@@ -1,9 +1,17 @@
-# robbin-architect Context — ESSENCE (Save 2026-07-12)
+# robbin-architect Context — ESSENCE (Save 2026-07-13, clean rewind boundary post R30.10)
 
 ## ▶ RESUME STATE (read first)
-I am **robbin-architect @ robbinTeam2:0.3**, WODA.prod. **Code repo = /var/dev/Workspaces/web4x/Web4RawBin** (MOVED from 2cuGitHub/Web4RawBin — that path is GONE). Session repo = /var/dev/Workspaces/AI/Claude. Node18 = /root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node.
-Team panes: 0.0 po, 0.1 expert, 0.2 skill-expert, 0.4 req, 0.5 tester, 0.6 planner. **oosh team = ooshTeam** (0.2 oosh-architect).
-**⭐ Rules:** TRON #126 scenario-first-never-backfill. NEVER assume — MEASURE (full uuids; prefix collisions real). **STANDING RULE: report to PO (0.0) BEFORE going idle** — never silent-idle. **Command hygiene: OOSH wrappers ONLY (otmux, no raw tmux), simple direct commands (NO `2>/dev/null`, `| head`, `||`, compound pipes).**
+**BOOT PROCEDURE (rewound? do FIRST):** `otmux pane.history robbinTeam2:0.3` + `ls scrum.pmo/sprints*` + `git -C /var/dev/Workspaces/web4x/Web4RawBin log --oneline -20` BEFORE trusting any saved path — the world moves while rewound.
+I am **robbin-architect @ robbinTeam2:0.3**, WODA.prod. **Code repo = /var/dev/Workspaces/web4x/Web4RawBin** (NOT 2cuGitHub — gone). Session repo = /var/dev/Workspaces/AI/Claude. Node18 = /root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node.
+Team panes: 0.0 po, 0.1 expert, 0.4 req, 0.5 tester, 0.6 planner. Server runs in **remoteShells:0.2** (I own restarts: Ctrl-C + `npm start`, node22).
+**MY ROLES:** (1) DESIGN-ONLY -> hand spec to **req (SOLE MINTER)** -> I DERIVE-CONFIRM the minted chain -> signal PO -> PO issues the single BUILD-GO -> expert builds. (2) DERIVE-CONFIRM GATE: comprehensive on-disk derive (name-exact, Class-reuse, designAhead, unit-level ownerIor, 0-dup, supersede-retirements) BEFORE build-go. (3) SERVER-RESTART owner for GitApi/server changes + post-build marker-attach confirm.
+**⭐ Rules:** TRON #126 scenario-first-never-backfill. NEVER assume — MEASURE (full uuids; prefix collisions real; measure a Class by its uuid-FILE not grep). report to PO (0.0) BEFORE idle. Command hygiene: OOSH wrappers (otmux), SIMPLE single commands (raw `docker` for plantuml render — odocker forces TTY headless; NO `2>/dev/null`/`| head`/`||`/compound). marker MUST sit on a name-matching decl (presence != AST-attach). ownerIor = UNIT-level (j.ownerIor), all else = j.model.
+
+## ★ LIVE STATE (2026-07-13, R30.6->R30.10 diff/merge COMPLETE+LIVE v0.7.19)
+- **DIFF/MERGE SET DONE + LIVE:** R30.6 (3-pane editor+GitApi+RepoRegistry) / R30.6.6 ([Open Diff] btn RbEditorLayout.showDiff) / R30.6.7 (repo-targeting RepoRegistry) / R30.7 (GitApi.guardRef) / R30.9 (IntelliJ base-aware 3-way merge: node-diff3 VENDORED src/public/ts/vendor/diff3.ts + 3 Monaco + gutter accept-arrows; Class RbDiffEditor 18165081, GitApi 795e328d) / R30.10 (GitApi.fileHistory + RbDiffEditor.populateRightHistory, right-defaults-to-file-history). All chains derived+marker-attached+restart-verified by me; expert authed-verified live.
+- **S30 DIAGRAMS** rendered+surfaced to Tron (sprint-30-*/diagrams/ s30-usecases/class/merge-sequence puml+svg, law#100).
+- **OPEN GATES:** R30.9 at tester DET-3x + req per-method gate; Tron visual review. R30.10 complete. Awaiting R30.x-next.
+- **Recent commits (code repo):** R30.10 e73831a9b(v0.7.19) / R30.9 f4f06990b(v0.7.18) / diagrams 115d10cef / R30.10-chain 7d8b16cba / R30.9-chain 529bb6ef1.
 
 ## CURRENT (2026-07-13, post-rewind)
 - **S30 R30.2/R30.3 RECONCILE COMPLETE + COMMITTED d88b80fe4.** Canonical R30.2=850a339d(UC 80cb8336->RbTraceTree->Impl d28ee95a), R30.3=6cd770df(UC 9095cd05->RbDetailDrawer->Impl 0267036c). My rewind-boot verify CAUGHT: (1) 2 Task nav dangled at deleted dup reqs/UCs (PO fixed fwd), (2) 4 req/UC .tasks[] BACK-edges dangled at deleted orphan Tasks 76e8683d/0ff8e4aa (PO fixed). Final 3-check GREEN (0 dangling / fwd+back nav / both chains derive). Committed 16 files surgically (excluded unrelated Room 8be52aa9/phone/content churn).
