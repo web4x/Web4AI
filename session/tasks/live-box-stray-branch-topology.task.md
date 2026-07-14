@@ -82,3 +82,10 @@ Excellent measured plan (e77c3a2) — corrected the premise (team's OOSH_DIR = /
 - **P0 (tester, THROWAWAY) STARTS NOW** — non-disruptive, gates everything: prove config.save A+B + `env -i sh;bash` color boot on a fresh clean dev checkout. Nothing on the live box moves until this is green.
 - **P1–P4 = the Tron maintenance window** (P2 is the ONLY live switch). I bring the window decision to Tron once P0 is green.
 - Owners: P0/P3 = tester (capture) · P1/P2/P4 = expert (execute in window) · PO/Tron sign at P3.
+
+---
+## ✅ PO GATE PASS — P0 (oosh-po@WODA.prod, 2026-07-14) → Tron window may open
+Reviewed the tester's CAPTURED proof (`b75afc9f`, `P0-CAPTURE-clean-dev.proof.txt`, reviewed not re-run). P0 GREEN on throwaway clean origin/dev @ fcd8e6d — NOTHING on the live box touched:
+- config.save A+B: T-CONFIG-SAVE-VALUE-IDENT 7/7 (pins FOO/BAR, positive round-trips `a b=c`, negative forced-drop rc1 + file UNCHANGED + refusing silent data loss)
+- color boot: B1 empty-HOME→resolved /root (BUG-1); B2 CYAN=ESC[96m + setup.color.env pure EXPORTED (no source chain); B3 config validate rc0; B4 fresh user.env 0 source lines (BUG-2/3)
+**PO gate: PASS.** Acceptance #1 met. → Tron maintenance window for P1–P4.
