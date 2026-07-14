@@ -139,3 +139,7 @@ Architect-ruled: auto file-history default moves RIGHT→LEFT (populateRightHist
 - HOLD df875176b + req 630394b91 until R30.11 lands + scoreboard 0-false-open → PO pushes ALL 3 together.
 - MY R30.11 GATE AC (DET-3x): (1) clears the impl-level-supersede class to retired-not-open; (2) does NOT mask REAL opens (fires only on valid supersededBy→live successor); (3) R30.10 fileHistory UC stays tracked (not wholesale-hidden); (4) dangling supersededBy pointer does NOT clear a hop. Prevents green-washing.
 - STANDING BY for R30.11 build ping.
+
+## RECONCILED: R30.17 retirement ON ORIGIN + R30.11 needs build (2026-07-14)
+- ALL on origin (ahead=0): df875176b + req 630394b91 + f8e6d1ea4. R30.15 gone-from-open; R30.10+R30.6.1+R30.6.3 = impl-supersede class (expected-until-R30.11). R30.17 GREEN+complete+retired-clean.
+- R30.11 MINTED: impl 7f15c149 (walkChainCoverage, skill-classes.ts:193) NEEDS BUILDING (expert/architect) + test open (my gate). WHEN BUILT: gate with locked anti-green-wash AC → confirm exactly R30.10/R30.6.1/R30.6.3 clear to retired-not-open + NO real open masked + R30.10 fileHistory UC (e9cfaab3) stays tracked + dangling-supersededBy rejected. Then place test marker → req mints R30.11 Test → wire.
