@@ -97,3 +97,10 @@ R30.6.1 computeDiff **15843ac9** + R30.6.3 takeHunk **6ebfac12** are DONE-VIA-SU
 - r3016-intellij-layout-gate.mjs GREEN DET-3x (gate 3efeb36f6, reverse-refs 317b369d2): 34px visible ribbons + colored rounded center blocks (brown conflict / blue change) + color-match + aligned rows (Δ7) + scrollBeyondLastLine. Shots r3016-intellij-layout.png + r3016-2way-lit.png surfaced. Chain COMPLETE 78/349 (17c71adf.tests+=4ca2ff58 / 37c9694c.tests+=ae075854). Pending PO push (1 ahead).
 - FULL R30.9->R30.16 diff/merge line chain-complete + gated.
 - STANDING: expert PRE-PINGS before every deploy (protocol locked) -> I park a tab on current version -> live-catch R30.14 banner->tap->reload. Next deploy = populateRightHistory fix OR R30.16-v2 (3-way one-sided green resolvable ribbons/blocks).
+
+## PENDING: R30.9 + R30.10 Test-hop closure (2026-07-14)
+req caught: R30.9 (0/8) + R30.10 (0/2) Test hops OPEN — gates ran DET-3x GREEN but Test UNITS never minted. Markers ALREADY in r309-three-way-merge-gate.mjs (lines 1-8) + r3010-file-history-gate.mjs (lines 1-2), committed+on origin. Sent req the 10-way Test→Impl map. WHEN REQ PINGS (minted): wire 10 reverse Impl.tests[]:
+ R30.9: e24dc98a+=8fa42d89 · 843d79d4+=555a3077 · e3431e87+=de62d07f · c4c84142+=02117d3d · e09a8327+=2b3b0d79 · 91c452ae+=79139c01 · b17ad1df+=a7ad62f1 · a0b30550+=eb4a550e
+ R30.10: e9cfaab3+=9c6cfdbc · 58c11039+=16b2721a
+Then R30.9 8/8 + R30.10 2/2 close → R30.9→R30.16 line chain-complete-TO-TEST.
+LEARNING: 'gated GREEN' ≠ 'chain closed' — a gate can pass + its markers exist, but if the Test UNIT was never minted + reverse-wired, the hop stays open. Measure the actual hop (chain scoreboard Test column), not just gate-pass.
