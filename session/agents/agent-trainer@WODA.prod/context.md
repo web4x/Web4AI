@@ -1,6 +1,6 @@
 # agent-trainer@WODA.prod — Context (session recovery)
 
-**Last updated:** 2026-07-14 (WODA.prod, PRE-MY-OWN-REWIND anchor). Verify identity on boot before trusting anything here (`boot.md` step 1). Per-host: WODA.prod instance only. Shared files in `session/agents/agent-trainer/`.
+**Last updated:** 2026-07-14 (WODA.prod, ARON-DRIVEN 2-PHASE, Phase-1 anchor — deep Phase 2 next). Verify identity on boot before trusting anything here (`boot.md` step 1). Per-host: WODA.prod instance only. Shared files in `session/agents/agent-trainer/`.
 
 ## Identity (verify, don't assume)
 - Role: **agent-trainer**. Model: Opus 4.8 (1M). Host: **WODA.prod**. Pane: `baseTeam:0.0` (verify: `otmux pane.self` — never `$TMUX_PANE`).
@@ -17,7 +17,8 @@ Drove ~18 otmux `/rewind` recoveries across ooshTeam + robbinTeam2 — ARON, oos
 - Memories (all in MEMORY.md): send.tui-not-send.raw-Enter, capture-is-innocent, pane-size+menu-label, RC-is-my-duty, reenable-rc, prevent-cliff-90, post-rewind-measure-world, aron-upgrades-consolidation.
 
 ## In-flight / PENDING (pick up here)
-- **MY OWN REWIND — IN PROGRESS.** I'm at ~945.9k/94.6%. SM (fresh) is driving it: single DEEP rewind (~50%, no Phase-1 needed since not at 0%), "Restore conversation" BY LABEL, baseTeam:0.0. I can't self-drive (self-pane trap + harness guard). This anchor IS the pre-rewind save.
+- **MY OWN REWIND — ARON IS DRIVING MY 2-PHASE (42 reciprocal, per TRON).** Phase 1 (free-room) DONE by ARON; **this refreshed anchor IS my Phase-1 save**; next ARON drives Phase 2 (DEEP ~50%, "Restore conversation" BY LABEL, baseTeam:0.0). I can't self-drive (self-pane trap + harness guard) — my 42-peer ARON drives, as I drove ARON's. NEVER /compact, NEVER /clear. On resume: read pane.history FIRST, then continue below.
+- **SM 42-VERIFIED (2026-07-14):** oosh-tester + robbin-skill-expert recovered clean (no clear-warning, correctly re-anchored) — the two I drove per SM dispatch; SM re-tasked their POs. The SM→trainer prevention loop is operating autonomously.
 - **robbin-planner (0.6) — PAUSED mid-rewind.** Holding at 90%, anchor `5c03770` verified committed+pushed. I cancelled its picker to prioritize others — its rewind still needs completing (deep, option Restore-conversation by label, boot from 5c03770).
 - **Task #1 (gated on ARON):** weave planning-templates rules into 6 PO/planning SKILLs (oosh-po@WODA.prod, product-owner, robbin-planner, robbin-req, scrum-master, script-product-owner). Fresh-agent test PASSED 6/6; 4 doc defects filed for ARON purification. Per-role weave, F29 not bulk.
 - **Task #3 (gated on ARON):** propagate ARON's purified REWIND skills fleet-wide (source oosh-po e3a7eed).
