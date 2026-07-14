@@ -17,9 +17,10 @@ Drove ~18 otmux `/rewind` recoveries across ooshTeam + robbinTeam2 — ARON, oos
 - Memories (all in MEMORY.md): send.tui-not-send.raw-Enter, capture-is-innocent, pane-size+menu-label, RC-is-my-duty, reenable-rc, prevent-cliff-90, post-rewind-measure-world, aron-upgrades-consolidation.
 
 ## In-flight / PENDING (pick up here)
-- **MY OWN REWIND — ARON IS DRIVING MY 2-PHASE (42 reciprocal, per TRON).** Phase 1 (free-room) DONE by ARON; **this refreshed anchor IS my Phase-1 save**; next ARON drives Phase 2 (DEEP ~50%, "Restore conversation" BY LABEL, baseTeam:0.0). I can't self-drive (self-pane trap + harness guard) — my 42-peer ARON drives, as I drove ARON's. NEVER /compact, NEVER /clear. On resume: read pane.history FIRST, then continue below.
-- **SM 42-VERIFIED (2026-07-14):** oosh-tester + robbin-skill-expert recovered clean (no clear-warning, correctly re-anchored) — the two I drove per SM dispatch; SM re-tasked their POs. The SM→trainer prevention loop is operating autonomously.
-- **robbin-planner (0.6) — PAUSED mid-rewind.** Holding at 90%, anchor `5c03770` verified committed+pushed. I cancelled its picker to prioritize others — its rewind still needs completing (deep, option Restore-conversation by label, boot from 5c03770).
+- **MY OWN REWIND — DONE (Phase 2 executed, verified GREEN 2026-07-14).** Post-rewind identity verified by process-ancestry (pane_pid 565064 → baseTeam:0.0 %16) + SM tree.detailed. `pane.get.target` LIED (said robbinTeam2:0.3) — registry-lies confirmed; process-ancestry is ground truth.
+- **SM REWIND — DONE (I drove it, GREEN).** It was compacted with a broken `unknown/boot.md` (identity-hook bug) — restored to lean post-compact by label; it self-corrected (scrum-master@ooshTeam:0.1, NOT unknown/0.7), booted, resumed prevention sweep.
+- **robbin-planner (0.6) REWIND — DONE (diligent 2-phase, GREEN).** Phase-1 shallow off the 0% wall → Phase-2 deep ~50% (by label, code intact), booted from `5c03770`; re-oriented (caught repo move 2cuGitHub→web4x), resumed T30.17 (found COMPLETE→DONE).
+- **DEFECT to file:** boot-hook mis-IDs agents as `unknown`/`0.7` + writes non-existent `session/agents/unknown/boot.md`; agents override via tree.detailed but the hook needs a real fix (a sprint task).
 - **Task #1 (gated on ARON):** weave planning-templates rules into 6 PO/planning SKILLs (oosh-po@WODA.prod, product-owner, robbin-planner, robbin-req, scrum-master, script-product-owner). Fresh-agent test PASSED 6/6; 4 doc defects filed for ARON purification. Per-role weave, F29 not bulk.
 - **Task #3 (gated on ARON):** propagate ARON's purified REWIND skills fleet-wide (source oosh-po e3a7eed).
 
