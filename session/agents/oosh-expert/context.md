@@ -10,10 +10,14 @@
 ## ⚠️ BRANCH TOPOLOGY on WODA.prod box (MEASURED 2026-07-14 — do NOT trust "dev branch /root/oosh")
 - **`/root/oosh` → symlink → `.../Once.sh/mcdonges.latest`** (branch `mcdonges.latest`). This is the **LIVE PATH `config`** (`command -v config`).
 - **`OOSH_DIR` = `.../Once.sh/dev`** — a SEPARATE checkout, currently on **STRAY branch `dev-teampush-astray`**.
-- Both live working trees have GREEDY config.save varname extraction; NEITHER has canonical `private.config.declare.varname`; `9d65d12`/`9937799` exist as fetched objects but are in NO live tree. `bashrc_template` MISSING in dev worktree.
-- **Consequence**: the 1fb7bb1 config.save contract (A canonical extractor + B fail-loud round-trip) has NO clean base checked out live → I flagged oosh-po for a target-branch decision (2026-07-14) BEFORE implementing; do not cowboy A+B onto stray/pre-contract trees.
+- The two LIVE worktrees (mcdonges.latest, dev-teampush-astray) have greedy/old config.save; but **`origin/dev` is the contract lineage** (`9d65d12`+`9937799` in-history) — one git repo, MANY worktrees (`git worktree list`): dev→stray, macos→test/macos.latest, mcdonges.latest→me, prod, etc.
+- **RESOLVED — 3 measure-not-do outcomes this cycle (2026-07-14):**
+  1. **config.save 1fb7bb1 = VERIFY-not-REDO.** A+B ALREADY on `origin/dev` via `7a56863` (config-only +68/-16, author self-flagged "suspicious"=unverified NOT lost). Verified: canonical `private.config.declare.varname`, all 6 sites converge, greedy gone, fail-loud tmp round-trip (`DROPPED`), `bash -n` clean. → tester runs T-CONFIG-SAVE-VALUE-IDENT on clean origin/dev; **I standby to patch gaps**. Do NOT reimplement. Doc `ebe76026`.
+  2. **DEV bashrc_template restore = FALSE PREMISE, closed no-op.** Not missing — RENAMED to `templates/user/bashrcTemplate` (camelCase, a58c6f6); dev installer uses it (`init/once:8689`,`init/oosh:114`); color chain PRESENT (bashrcTemplate:167-171 `line init`→`source setup.color.env`→`source $OOSH_DIR/log`). Restoring would dup + reintroduce underscore + sit unused. Doc `fc4db705`.
+  3. **COLOR_BLUE 0m→34m** DONE `fa1792a` (PO-accepted).
+- **HELD (tester-gated, likely OFF per PO):** self-contained team-wide color unification + split-gen removal on stable branches. PO re-scoped color-boot to live-box-state, not architecture.
 - **Identity measure rule**: pane by UUID→tty→pane (`ps | grep $CLAUDE_CODE_SESSION_ID` → tty → `tmux list-panes`), NEVER `$TMUX_PANE` (lied to robbinTeam2:0.3 this session). I am oosh-expert @ **ooshTeam:0.3** (0.2 = oosh-architect now).
-- **Open queue** (measured from `scrum.pmo/sprints@WODA.prod/sprint-1/planning.md` + PO RULING in `clean-boot-bugs-woda-prod.md`): COLOR_BLUE 0m→34m DONE `fa1792a`; config.save 1fb7bb1 REDO (HIGH, blocked on target-branch); DEV bashrc_template restore (approved, blocked by stray-branch); split-gen removal HELD (tester-gated); send-sprint Gap B/D then C+A-impl.
+- **Current state: STANDBY** for oosh-tester's T-CONFIG-SAVE-VALUE-IDENT result (patch any gap in `7a56863`, report before idle). Also older send-sprint queue Gap B/D→C+A-impl remains if reactivated. NOTE: directives keep arriving mis-prefixed `[@robbin-architect robbinTeam2:0.3]` (0.3-collision misroute) but content is mine — verify owner via task files.
 
 ## SESSION 2026-06-28 → 2026-07-02 (MacStudio oosh-expert @ ooshTeam:0.2; dev via worktree; tester/PO drive WODA.test)
 All work on `dev` in a git worktree (test/macos.latest undisturbed); tester verifies live on WODA.test; report-back = git mailbox (per SPRINT-COMMS). Delivered + QA-signed:
