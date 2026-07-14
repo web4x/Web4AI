@@ -86,3 +86,9 @@ R30.6.1 computeDiff **15843ac9** + R30.6.3 takeHunk **6ebfac12** are DONE-VIA-SU
 - Built r3014-sw-update-harness.mjs GREEN DET-3x (4d8c99d25) — deterministic v1→v2 localhost SW harness: arm A deploy→'Update Now' banner (pollForWorkerUpdate f1456992), arm B tap→SKIP_WAITING→claim→controllerchange→reload→new version (claimClients 406e1e33), asserts NO auto-reload pre-tap. Localhost loopback = secure context (no cert).
 - 2 per-impl ready markers for req (3b3f4235f): 0ad9eaa2→f1456992 (armA) / 35a6bbff→406e1e33 (armB). Live-catch on expert next deploy = fidelity complement (expert pings me).
 - GOTCHA: req greps ORIGIN/MAIN; my commits are local on the shared checkout (main-push policy-blocked) → req 'can't find markers'. Unblock: peer reads WORKING TREE directly OR PO pushes. Recurring — my main-push is always blocked; land+push (via PO) BEFORE peers grep origin. 5 commits pending PO push.
+
+## R30.14 chain COMPLETE + standing waits (2026-07-14)
+- R30.14 chain COMPLETE 77/348 (Web4RawBin efe82735a): req minted 2 Test units (5d5f05177, adopted my uuids 0ad9eaa2/35a6bbff), I wired 2 reverse refs f1456992.tests+=0ad9eaa2 / 406e1e33.tests+=35a6bbff. All 6 hops check. Pending PO push (2 commits ahead, my push blocked).
+- STANDING WAIT 1: expert PINGS me right before his NEXT deploy → I live-catch the v0.7.22→vNext transition (tab open) → assert Update Now banner (arm A) → tap → reload → new bundle (arm B). Fidelity complement to the harness.
+- STANDING WAIT 2: PO push of efe82735a → then req both-direction re-verify on origin/main.
+- Harness r3014-sw-update-harness.mjs = durable deterministic regression gate (GREEN DET-3x).
