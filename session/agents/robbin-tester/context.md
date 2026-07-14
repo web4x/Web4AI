@@ -113,3 +113,9 @@ LEARNING: 'gated GREEN' ≠ 'chain closed' — a gate can pass + its markers exi
 
 ## R30.16 accept-actions (2026-07-14)
 - Accept ≫/≪/✕ WORK on live v0.7.25 (DET-3x: 3-way + 2-way README + 2-way Room.ts 61-hunk symmetric+one-sided). Tron 'no effect' = NOT reproduced → likely stale cached bundle (3rd cache-pattern report). Gate r3016-accept-actions-gate.mjs GREEN (93a56d143) = function-first guard (my visual gate lacked click→content assertion). Retracted a wrong click-routing diagnosis (timing artifact). Recommend Tron confirm bundle hash / take Update Now banner.
+
+## PENDING: R30.17 auto-history RIGHT→LEFT supersede (heads-up, not built 2026-07-14)
+Architect-ruled: auto file-history default moves RIGHT→LEFT (populateRightHistory → populateLeftHistory). WHEN R30.17 BUILDS:
+- WRITE r3017 gate: (1) populateLeftHistory left-populate, (2) meaningful-default HEAD~1, (3) pick-wins — all LEFT side + FUNCTION-first (click take-arrow → CENTER content MUTATES, DET, settle 800ms). Fresh markers → req mints.
+- MY CALL (told req): RETIRE both 16b2721a (R30.10 right-populate) + 553f77d2 (R30.15 right-meaningful-default) — both assert now-superseded RIGHT behavior; NEW R30.17 left tests, NOT re-point (side+selectors flip = materially different assertion). Wire new reverse refs + retire the 2 old reverse refs off their impls.
+- pickRef (manual, both sides) UNCHANGED — no test churn.
