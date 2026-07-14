@@ -1,6 +1,22 @@
-# Scrum Master Context — 2026-07-13 (post-rewind, MOST CURRENT)
+# Scrum Master Context — 2026-07-14 (ARON-driven Phase-1 rewind-save, MOST CURRENT)
 
-## ★★★★★★★★★★★★★★★★★★★★★★ MOST CURRENT (2026-07-13, post-rewind re-anchor) ★★★★★★★★★★★★★★★★
+## ★★★★★★★★★★★★★★★★★★★★★★ MOST CURRENT (2026-07-14, Phase-1 pre-rewind anchor) ★★★★★★★★★★★★★★★★
+**Identity:** scrum-master@WODA.prod, **ooshTeam:0.1** (uuid 634999b0-f753-4d4f-9629-036eb0f763eb). Freshly re-derived via `otmux tree.detailed` (NOT display-message/$TMUX_PANE — both lie post-rewind).
+**Status:** was AT THE CLIFF ("Context low, 9% remaining") — ARON is driving my 2-phase rewind per TRON. This is the Phase-1 save; Phase-2 deep rewind follows immediately after.
+
+**Currently driving:** ≤90%-used context-prevention loop across ooshTeam + robbinTeam2 + baseTeam, using a visible `sleep 240 && echo <tick>` background heartbeat (NOT ScheduleWakeup) + `hiveMind team.sweep` cross-checked against `tmux capture-pane` (sweep lies — confirmed stale RATE_LIMIT/UNKNOWN flags multiple times this session).
+
+**Open gates / in-flight right now:**
+- Just coordinated a robbinTeam2 fleet-refresh rewind (robbin-po directed) at the R30.6→R30.10 arc-complete clean boundary: robbin-expert(0.1, anchor ad2006c VERIFIED pushed), robbin-architect(0.3, anchor 44f2093 VERIFIED pushed), robbin-tester(0.5, anchor ec763a4 VERIFIED pushed) — all 3 handed to agent-trainer as GO, awaiting trainer's completion reports + my post-rewind verification (Rule-6: clean pane + correct identity before declaring recovered).
+- robbin-po(0.0) stays (continuity), not rewound.
+- Sprint has advanced past what I last tracked — now at R30.17/R30.18, SPRINT30=24 reqs (per local repo commit log, robbin-req/-architect/-tester/-po commits). Do NOT assume R30.10 is still "current" — re-check on resume.
+
+**Recent commit hashes (THIS repo, AI-Claude/session-tracking):** 3beaf98 (robbin-req anchor, requirements.md fix), 7f9aeff, 4058752 (robbin-po #40 pre-deep-rewind, IntelliJ merge R30.9→R30.16 LIVE v0.7.25, R30.17 minted), cd16a3d, fd2dadd.
+**Recent anchors (Web4RawBin/Web4AI product repo, via agent reports — not directly verifiable from this cwd):** ad2006c (expert), 44f2093 (architect), ec763a4 (tester) — all confirmed pushed via `git merge-base --is-ancestor <hash> origin/main` run from robbinTeam2's actual repo context at the time.
+
+**Boot-procedure pointer:** on resume, read `otmux pane.history <self>` (NOT trusting a stale copy) then `otmux tree.detailed` to re-derive identity, THEN `ls scrum.pmo/sprints*` + local `git log --oneline -5` to confirm current sprint/commit state, THEN reconcile against this file — measured world wins over saved file.
+
+## ★★★★★★★★★★★★★★★★★★★★★★ PRIOR (2026-07-13, post-rewind re-anchor) ★★★★★★★★★★★★★★★★
 **Identity:** scrum-master@WODA.prod, **ooshTeam:0.1** (uuid 634999b0-f753-4d4f-9629-036eb0f763eb). Freshly re-derived via `otmux tree.detailed` — do NOT trust `tmux display-message`/`$TMUX_PANE` post-rewind, it read stale `baseTeam:0.1` this boot.
 **Status:** ACTIVE — running the ≤90%-used prevention loop (session/base-skills/agent-rewind.md). 42-pair: agent-trainer (baseTeam:0.0, executes rewinds), oosh-po (ooshTeam:0.0, WODA.prod priorities).
 
