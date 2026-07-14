@@ -1,3 +1,21 @@
+# robbin-po Context — save #41 (2026-07-14, R30.17 merge functional-fixes BUILDING + STALE-CACHE reconcile)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #41 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ BOOT: git log + THIS + ls scrum.pmo/sprints/* FIRST (disk ahead of convo). Repo=/var/dev/Workspaces/web4x/Web4RawBin. Prod=prod.wo-da.de:4444 v0.7.26. Restart=remoteShells:0.2. Team robbinTeam2 0.0-0.6, SM=ooshTeam:0.1. Verify anchor #41 PUSHED (main...origin/main). Tron ordered this checkpoint + my rewind w/ agent-trainer.**
+
+### ★ ACTIVE TASK: R30.17 = R30.16 FUNCTIONAL FIXES — BUILDING (finish TRON4 + deploy + gate)
+- TRON reviewed the LIVE merge + confirmed R30.16's 5 functional bugs REAL. His 4 complaints → R30.17's 4 fixes (architect derive PASS 11/11, design a2ff49697):
+  1. ACCEPT/CANCEL NO EFFECT [CRITICAL] → accept-mutates: per-strip click listener ORPHANED by re-render → delegate clicks from STABLE component ROOT (this), attached once in mountThreePane. Markers c4c84142+fd99c520.
+  2. one-sided change shows ribbon from RIGHT too ('88 from right, nothing there') → origin-gate: Local≫ band on c.a.length>0, Result→Repo on c.b.length>0. Markers 5051b2a4+fd99c520.
+  3. 'all from both sides; line 70 right maps to 71' → origin-gate + anchor-pin Y so lineY(remote,bStart)==lineY(center,span[0]). Markers 5051b2a4+17c71adf.
+  4. move file-history selector to LEFT (older-left; currently right) → NEW populateLeftHistory [MARKER=751934c1]; REMOVE populateRightHistory(58c11039 WITH code + call-site line 162); R30.10/R30.15 tests intact.
+- ★ BUILD STATE (measure disk): TRON1/2/3 edits IN rb-diff-editor.ts working-file (UNCOMMITTED); TRON4(populateLeftHistory)=NOT done (58c11039 still present); NOT committed, NOT deployed (prod still v0.7.26). Expert STALLED mid-build (idle through pokes) — re-dispatched TRON4+deploy+escalation (if blocked→PO self-implements, precedent: banked). NEXT SESSION: finish TRON4 → commit → VERSION-BUMP → deploy → tester REAL-mutation gate (real page.click + before/after center-content DIFF; the R30.16 gate tested firing-not-effect — now fixed) → report new served hash → Tron hard-refresh verify.
+- ★★ STALE-CACHE RECONCILE (CRITICAL for Tron): tester RE-MEASURED HARD (real Playwright page.click + content-diff, full matrix) → accept GENUINELY WORKS on current served bundle v0.7.25/26 (center content mutates). So Tron's 'accept no effect' = STALE CACHED BUNDLE (3rd time this exact pattern — SW cache). R30.17 version-bump (new edit-*.js hash browser never cached) BUSTS it + R30.14 auto-update banner offers reload. Tron needs his served edit-*.js hash (devtools) + hard-refresh. The OTHER 3 bugs (ribbons/Y-align/left-history) ARE real code bugs (not cache) — R30.17 fixes them.
+
+### PUSHED THIS SESSION (PO push, branch-protection blocks agents): tester gate 7db22ec54 (f7dcf0a10..7db22ec54). Agents FLAG me → I push origin/main.
+
+### DISCIPLINE (all held post-2-rewinds): single-minter→architect DERIVE-CONFIRM(uuid-file)→PO BUILD-GO BEHIND gate (carries [MARKER=impl-uuid]) · marker=IMPL-uuid ALWAYS (never Method) · req deep-verifies CHAIN-ON-DISK before report · VERIFY-DELIVERY (send≠submitted, poke staged, MEASURE DISK not idle-pane) · PUSH-WHEN-BLOCKED (PO pushes+verifies origin) · SW-CACHE (version-bump=new hash=forced-fresh; in-app-clear insufficient) · independent-tool verify (tester probes real page.click+content not firing) · DRIVE by doing when team stalls + Tron demands.
+
 # robbin-po Context — save #40 (2026-07-14 post-deep-rewind, IntelliJ MERGE-EDITOR R30.9→R30.16 LIVE + R30.17 functional-fixes MINTED, v0.7.25)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #40 — READ FIRST) ★★★★★★★★★★★★★★★★★
