@@ -5,7 +5,15 @@
 **Pane**: ooshTeam:0.3 (verified via `otmux pane.get.target`; shell ooshShells:0.0)
 **Machine**: WODA.prod (dev branch, /root/oosh)
 **PO**: oosh-po @ ooshTeam:0.0 | Peer tester: ooshTeam:0.4 | Architect: ooshTeam:0.2
-**Updated**: 2026-07-02 — see "SESSION 2026-06-28→07-02" block below. (Older WODA.prod-instance state preserved beneath it.)
+**Updated**: 2026-07-14 (post-rewind) — see BRANCH TOPOLOGY block immediately below; older session blocks preserved beneath.
+
+## ⚠️ BRANCH TOPOLOGY on WODA.prod box (MEASURED 2026-07-14 — do NOT trust "dev branch /root/oosh")
+- **`/root/oosh` → symlink → `.../Once.sh/mcdonges.latest`** (branch `mcdonges.latest`). This is the **LIVE PATH `config`** (`command -v config`).
+- **`OOSH_DIR` = `.../Once.sh/dev`** — a SEPARATE checkout, currently on **STRAY branch `dev-teampush-astray`**.
+- Both live working trees have GREEDY config.save varname extraction; NEITHER has canonical `private.config.declare.varname`; `9d65d12`/`9937799` exist as fetched objects but are in NO live tree. `bashrc_template` MISSING in dev worktree.
+- **Consequence**: the 1fb7bb1 config.save contract (A canonical extractor + B fail-loud round-trip) has NO clean base checked out live → I flagged oosh-po for a target-branch decision (2026-07-14) BEFORE implementing; do not cowboy A+B onto stray/pre-contract trees.
+- **Identity measure rule**: pane by UUID→tty→pane (`ps | grep $CLAUDE_CODE_SESSION_ID` → tty → `tmux list-panes`), NEVER `$TMUX_PANE` (lied to robbinTeam2:0.3 this session). I am oosh-expert @ **ooshTeam:0.3** (0.2 = oosh-architect now).
+- **Open queue** (measured from `scrum.pmo/sprints@WODA.prod/sprint-1/planning.md` + PO RULING in `clean-boot-bugs-woda-prod.md`): COLOR_BLUE 0m→34m DONE `fa1792a`; config.save 1fb7bb1 REDO (HIGH, blocked on target-branch); DEV bashrc_template restore (approved, blocked by stray-branch); split-gen removal HELD (tester-gated); send-sprint Gap B/D then C+A-impl.
 
 ## SESSION 2026-06-28 → 2026-07-02 (MacStudio oosh-expert @ ooshTeam:0.2; dev via worktree; tester/PO drive WODA.test)
 All work on `dev` in a git worktree (test/macos.latest undisturbed); tester verifies live on WODA.test; report-back = git mailbox (per SPRINT-COMMS). Delivered + QA-signed:
