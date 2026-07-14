@@ -1,3 +1,27 @@
+# robbin-po Context — save #39 (2026-07-14, IntelliJ MERGE-EDITOR ARC R30.9→R30.16 COMPLETE + LIVE v0.7.23)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #39 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ Full IntelliJ-faithful diff/merge editor DONE + chain-complete on remote (78/349). Prod v0.7.23. Repo /var/dev/Workspaces/web4x/Web4RawBin. All on Class RbDiffEditor (23m). Team robbinTeam2 0.0-0.6, SM=ooshTeam:0.1.**
+
+### MERGE-EDITOR ARC (R30.9→R30.16, ALL live+gated+traced, RbDiffEditor)
+- R30.9 IntelliJ 3-way merge (base-aware node-diff3, magic wand) — Tron "amazing"
+- R30.10 file-history right-default (git log --follow) | R30.12 2-way take-over (computeTwoWayHunks) | R30.13 inter-pane gutters (≫/≪/✕/🪄) | R30.15 right-history fix (meaningful-default + pick-wins)
+- ★ R30.16 FULL IntelliJ layout (v0.7.23): alignPaneRows (viewZone spacers→rows align L↔C↔R) + renderCenterChangeBlocks (colored ROUNDED blocks blue#3a6ea5/green#3a8a5a/brown#a5603a) + ribbon-visibility BUGFIX (.de-panes gap 1px→34px — ribbons were invisible slivers) + shared CONFLICT_PALETTE/conflictColor (blocks+ribbons color-MATCH by construction, classify-at-source) + scrollBeyondLastLine:true. v1=conflicts[]-only (2-way 100% lit). ★ v2 FAST-FOLLOW mint-ready (spec 84f013855): 3-way one-sided blue via computeMergedCenter surfacing diff3 one-sided as kind=change — impl-edit, no new Class/Method.
+
+### R30.14 SW AUTO-UPDATE (the cache-friction ROOT FIX, v0.7.22)
+- sw.js had skipWaiting but NO clients.claim → open tabs kept stale bundle. FIX: ServiceWorker.pollForWorkerUpdate (60s + visibility/focus reg.update while open) + claimClients (clients.claim in activate) → existing 'New version—reload' banner lights up. BANNER-FIRST (auto-reload REJECTED — nukes in-progress merge take-over state).
+- ★ CACHE-DIAGNOSIS LESSON: '/api/config version' = SERVER, NOT the loaded JS bundle. A stale SW serves old edit-*.js while server reports new version. Definitive cache-bust = VERSION BUMP → new content-hash edit-XXXX.js (a URL the browser never cached → forced fresh fetch). In-app 'clear cache' ≠ SW-unregister. Measure the /edit HTML's referenced bundle + build-manifest to diagnose.
+
+### PUSH WORKFLOW (branch-protection)
+- Agents' direct push to origin/main = POLICY-BLOCKED. PO push has auth → agents FLAG me, I push + verify on origin (avoid half-wired chain). Held for R30.12/13/14/16.
+
+### AWAITING
+- ★ TRON visual fidelity verdict on R30.16 (money-shots surfaced beside his Rider ref) — the acceptance
+- R30.16 v2 (3-way one-sided blue) fast-follow when scheduled | R30.11 scoreboard-honesty (walkChainCoverage+honorSupersededBy) planner post-rewind | R27.6 true-dangling
+
+### DISCIPLINE (held all session, 5+ rewinds zero-loss)
+single-minter (req) → architect DERIVE-CONFIRM (gate) → PO build-go BEHIND it → build → tester gate. MARKER=Impl-uuid (req reports [MARKER=<impl>]). Deep chain-on-disk verify. Measure-disk (idle pane hides committed work). VERIFY-DELIVERY (poke staged sends). Independent-tool verify. Reuse-first design. Correct-by-construction (shared palette, classify-at-source).
+
 # robbin-po Context — save #38 (2026-07-13 post-deep-rewind, S30 DIFF-EDITOR ARC COMPLETE + IntelliJ 3-way merge LIVE)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #38 — READ FIRST) ★★★★★★★★★★★★★★★★★
