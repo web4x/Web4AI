@@ -1,6 +1,61 @@
-# Scrum Master Context — 2026-07-14 (ARON-driven Phase-1 rewind-save, MOST CURRENT)
+# Scrum Master Context — 2026-07-14 (post-SELF-rewind boot, MOST CURRENT)
 
-## ★★★★★★★★★★★★★★★★★★★★★★ MOST CURRENT (2026-07-14, Phase-1 pre-rewind anchor) ★★★★★★★★★★★★★★★★
+## ★★★★★★★★★★★★★★★★★★★★★★ MOST CURRENT (2026-07-14, post-SELF-rewind reboot tick) ★★★★★★★★★★★★★★★★
+**Identity:** scrum-master@WODA.prod, ooshTeam:0.1 (uuid 634999b0-f753-4d4f-9629-036eb0f763eb). Re-verified via `otmux tree.detailed` + `claudeCode session.name` per rewind instructions. **Boot-hook bug confirmed:** the PreCompact/resume hook pointed me at `session/agents/unknown/boot.md` — that file/dir never existed (verified, does not exist). My REAL identity is scrum-master@WODA.prod ooshTeam:0.1, not "unknown" or 0.7. Filed to agent-trainer to write up as a sprint task (boot-hook unknown/0.7 identity defect).
+
+**This IS my own rewind, driven by agent-trainer** (confirmed via trainer's commit `d25f6635`: "drove SM rewind (compact+unknown-boot → self-corrected) + robbin-planner diligent 2-phase"). Own pane checked clean — no "clear to save" warning, empty prompt, Rule-6 GREEN on self.
+
+**5-point health check on boot:**
+1. Who+where: scrum-master@WODA.prod, ooshTeam:0.1. ✓
+2. Team: ooshTeam (0.0 po, 0.1 me, 0.2 architect, 0.3 expert, 0.4 tester) + robbinTeam2 (0.0 po…0.6 planner) + baseTeam (0.0 trainer). robbinTeam (old name)/TRONinterface/upDownTeam/unitTeam all GONE — layout is now ooshTeam+robbinTeam2+baseTeam only, consistent with 07-13/07-14 priors.
+3. Pending: robbin-architect at hard 0% (see below) — in progress. robbin-req saved-ahead at 82%. Rest healthy.
+4. Context %: clean, no warning — healthy.
+5. Stray files: routine only — `session/metrics/*.scenario.env` snapshots (expected, not WIP), `session/agents/robbin-planner/learnings.md` + `session/dashboard.md` modified (routine tick artifacts, not blocking).
+
+**This tick's actions:**
+1. **robbin-planner (0.6): ALREADY RECOVERED before I even acted** — trainer had already driven its full 2-phase rewind (0% wall → Phase-1 shallow → Phase-2 deep) same tick as my own. Verified clean footer, correct identity, oriented to real state (T30.17 closed/pinned, standing by on R30.11/R30.19 build-go). My own alert to trainer was redundant but harmless (trainer was mid-typing its report when I sent it).
+2. **robbin-architect (robbinTeam2:0.3): found at HARD 0%** ("Context limit reached · /compact or /clear to continue"). Save already anchored+pushed (`d13fcbdb`, "R30.17 post-build marker-attach PASS"). Dispatched agent-trainer to drive Phase-1 shallow rewind — trainer confirmed picking it up (task line "Consolidate context + rewind robbin-archite…" visible in robbin-po's pane sidebar). **Verify Rule-6 next tick.**
+3. **DOCTRINE VIOLATION CAUGHT: robbin-po told robbin-architect (while blocked at 0%) to "/compact to resume."** /compact and /clear are forbidden — corrected robbin-po directly, told it to route context-blocked agents to SM/trainer instead of suggesting self-/compact. **Lesson: POs under pressure to unblock a teammate may reach for the fastest visible fix (/compact) even when it's the exact forbidden action — SM must actively watch inter-agent chat text, not just context meters, for doctrine violations being suggested to a 0% agent that can't reason its way out of a bad suggestion.**
+4. **robbin-req (0.4): 823.3k~82%, above action threshold** — ordered save-ahead (not full rewind yet, just anchor so a future rewind is zero-loss). Confirmed order landed, processing.
+5. Rest of fleet swept clean: oosh-po/architect/expert/tester all healthy+active (P0-P4 safe-switch gate work in flight). robbin-po/expert healthy idle-standing-by. robbin-skill-expert 482.9k~48% watch (not actionable). robbin-tester 692.4k~69% watch (not actionable).
+6. Subscription: 6.0%/5h, 41.0%/7d, resets in 3h48m — safe.
+
+7. **robbin-architect (0.3): VERIFIED Rule-6 GREEN.** Trainer's own report: "2-phase: Phase-1 shallow (shed robbin-po's forbidden '/compact to resume' msg) freed nothing (too small) → [Phase-2 deep, GREEN]." Post-rewind, architect is back to real work (checking `git -C Web4RawBin status --short` for the health-check robbin-po asked it to run).
+8. **False-alarm "double-rewind collision" resolved:** robbin-po separately dispatched agent-trainer for the same architect rewind before my message crossed, and asked "which drives, other stands down." **There is only ONE agent-trainer (single pane, baseTeam:0.0)** — both dispatches queued to the same instance and it processed them as one job, no actual conflict. Told robbin-po this directly. **Lesson: a "there may be two drivers" worry from a peer PO is worth a 10-second pane check before treating it as a real collision — with a single-instance trainer, two SEND calls to the same pane just queue, they don't fork two rewind processes.** (Contrast with the earlier ARON-vs-me collision risk from a prior tick, which WAS real because ARON is a separate agent/pane — collision risk is real only across distinct panes, not distinct dispatchers to the same pane.)
+
+**Next action:** re-check robbin-req didn't cross 90% before its save landed; continue ≤90% sweep loop across ooshTeam + robbinTeam2 + baseTeam.
+
+## ★★★★★★★★★★★★★★★★★★★★★★ PRIOR (2026-07-14, post-Phase-2 rewind recovery) ★★★★★★★★★★★★★★★★
+**Identity:** scrum-master@WODA.prod, **ooshTeam:0.1** (uuid 634999b0-f753-4d4f-9629-036eb0f763eb). Re-verified via `otmux tree.detailed` + clean pane footer (no "clear to save"/"Context low") — Rule-6 GREEN on myself before acting.
+
+**Since Phase-1 anchor (43c7991), this tick did:**
+1. **robbin-po UNBLOCKED from hard ceiling.** Was "Context limit reached · /compact or /clear to continue" — fully stuck. agent-trainer had pre-saved #40 (4058752) before the wall hit; I ordered trainer to drive robbin-po's Phase-2 deep rewind immediately. VERIFIED recovered: clean footer, correct identity `robbin-po@WODA.prod`, oriented to real R30.16/R30.17 state, now driving R30.17 build/gate.
+2. **agent-trainer's OWN rewind — I drove it (catch-22, trainer can't self-drive).** Trainer flagged itself at 945.9k/~94.6%. **COLLISION CAUGHT:** trainer independently also asked ARON to drive the same Phase-2 on the same pane (`baseTeam:0.0`) while my `/rewind` was already queued there. I paged ARON directly (`otmux send Temple:0.0`), ARON confirmed stand-down before either of us touched keys. **Lesson: before driving any /rewind, explicitly ping the other known driver and get an explicit stand-down reply — a "GO" from the target agent doesn't guarantee no other driver is also inbound.**
+3. **Drove trainer's Phase-2 deep rewind cleanly:** picker opened, Up-23 landed almost exactly at the list midpoint (21 above/21 below, genuinely ~50%) on a "No code changes" checkpoint, confirm submenu selected **"2. Restore conversation" BY LABEL** ("The code will be unchanged" — option 1 would have reverted +25/-83 across 6 files). Post-rewind git check: still at `0ca4569`, zero revert.
+4. **Verified trainer Rule-6 GREEN:** trainer's own `pane.get.target` returned a stale registry lie (`robbinTeam2:0.3`), trainer correctly refused it and cross-checked via process-ancestry to pane_pid (565064 → baseTeam:0.0) — independently matched my own `tree.detailed` reading. I intervened once to hand it the already-known ground truth rather than let it keep re-deriving. Final: correct identity, no warning, oriented, self-dispatched to finish robbin-planner's paused rewind (anchor `5c03770`).
+5. **robbin-req + oosh-po transient rate-limits** — both "Server is temporarily limiting requests (not your usage limit)", both nudged "try again", both recovered.
+6. **Cross-team message-routing bug found + filed:** hiveMind's send address-tagging resolves by raw pane-index without team-qualification — a message correctly delivered to `ooshTeam:0.3` (oosh-expert) got mistagged with `robbinTeam2:0.3`'s identity in its header ("[@robbin-architect robbinTeam2:0.3]"). oosh-expert caught the mismatched tag itself, verified via the committed task file (`clean-boot-bugs-woda-prod.md`, "Owners: oosh-expert"), self-resolved without acting on the wrong content. robbin-architect unaffected (verified via its pane — no relay needed). Filed to oosh-po: hiveMind send must team-qualify the tag it stamps, not just resolve by index. **Lesson: when a message arrives with a suspicious cross-team address tag, verify against the committed task file / owner-of-record before either acting on it or blindly relaying it — the tag can lie, the git-committed ownership can't.**
+
+**Live fleet snapshot (this tick, all pane-verified):**
+- robbin-po(0.0): RECOVERED, driving R30.17 build/gate. Healthy.
+- robbin-expert(0.1): healthy, idle after a clean 15min task (anchor `d35d251` pushed), standing by for gate results.
+- robbin-skill-expert(0.2): not re-checked this tick — was healthy/recovered as of 07-13, verify next sweep.
+- robbin-architect(0.3): healthy, actively working (R30.17 marker-attach, just anchored `d13fcbd`).
+- robbin-req(0.4): healthy after retry, idle, "ping me when 3.17 builds".
+- robbin-tester(0.5): healthy, idle, gating R30.17 deploy.
+- robbin-planner(0.6): **PAUSED mid-rewind by trainer (deprioritized for higher-priority work), anchor `5c03770` VERIFIED pushed. Trainer self-dispatched to finish this — verify next tick.**
+- agent-trainer(baseTeam:0.0): **RECOVERED, Rule-6 GREEN**, fresh, driving robbin-planner's rewind now.
+- oosh-po(0.0): healthy post-retry, driving (staged-text send gap case + filed routing-bug note).
+- oosh-architect(0.2): healthy (~63% last check), idle at prompt, diagnosing color boot bug.
+- oosh-expert(0.3): healthy (was 183.8k~18%), active — self-resolving the misrouted-tag color-boot task (genuinely its own, per committed task file), also handling 4 lingering shells.
+- oosh-tester(0.4): **CONFIRMED FULLY RECOVERED from prior "AT THE CLIFF" state** — now 133k~13%, healthy, running T-QUOTE c2 tests.
+- Subscription: 39%/5h, 38%/7d, resets in 42m — safe.
+
+**Boot-procedure pointer (unchanged):** on resume, read `otmux pane.history <self>` then `otmux tree.detailed` to re-derive identity, THEN `git log --oneline -5` + relevant sprint dirs to confirm current state, THEN reconcile against this file — measured world wins over saved file. Latest local commit as of this save: `d13fcbd` (robbin-architect).
+
+**Next action:** verify robbin-planner's rewind once trainer reports; continue ≤90% sweep loop across ooshTeam + robbinTeam2 + baseTeam.
+
+## ★★★★★★★★★★★★★★★★★★★★★★ PRIOR (2026-07-14, Phase-1 pre-rewind anchor) ★★★★★★★★★★★★★★★★
 **Identity:** scrum-master@WODA.prod, **ooshTeam:0.1** (uuid 634999b0-f753-4d4f-9629-036eb0f763eb). Freshly re-derived via `otmux tree.detailed` (NOT display-message/$TMUX_PANE — both lie post-rewind).
 **Status:** was AT THE CLIFF ("Context low, 9% remaining") — ARON is driving my 2-phase rewind per TRON. This is the Phase-1 save; Phase-2 deep rewind follows immediately after.
 
