@@ -197,6 +197,38 @@ Source: healthy backup `…/sharedConfig/user.env.healthy-tron-backup-20260628` 
 
 **A/B REPRO:** `oo mode macos.latest; bash -lc 'declare -p BOLD NORMAL; declare -p|grep -c COLOR_; echo PS1=$PS1'` vs `oo mode dev; …` — BOLD/NORMAL differ → `log` clobbers; PS1 differs → prompt template.
 
+---
+
+#### B (UPDATE 2026-07-14, oosh-architect@WODA.prod — SUPERSEDES the ranking above)
+
+Re-measured read-only on the live WODA.prod box (NO `oo mode` per PO ruling). My earlier claim "*3. `line init` SKIPPED on both → DATA identical → NOT cause*" is **WRONG** — the data is NOT identical and the generator diverged. **True root cause is a two-layer branch split:**
+
+**Layer 1 — the boot-chain template exists on only one branch.**
+`git cat-file -e <branch>:templates/user/bashrc_template`:
+- `origin/test/macos.latest` → **EXISTS**
+- `origin/dev` → **MISSING** · `origin/macos.latest` (short) → **MISSING**
+
+So the `.bashrc` that carries the color-source chain (`line init` → `source setup.color.env` → `source $OOSH_DIR/log`) is only laid/refreshed by a **test/macos.latest** install/`oo update`. A dev install has no template to regenerate it. (This live box's `/root/.bashrc` still HAS the chain at 147–151, but it DIFFERS from the test/macos.latest template = hand-edited/older; the chain survives here only because it was installed earlier.)
+
+**Layer 2 — `line init` uses two DIFFERENT color-generation strategies (dev vs test/macos.latest), and their GUARDS disagree.** `git diff origin/dev origin/test/macos.latest -- line` (54 lines):
+
+| | **dev** (`-`) | **test/macos.latest** (`+`) |
+|---|---|---|
+| setup.color.env | self-contained: writes fully-`export`ed `COLOR_*` vars directly INTO setup.color.env, then **`rm`s** color.env/color.names.env/bold.color.names.env | split: setup.color.env only holds ESC/BOLD/NORMAL + **`source color.env` / color.names.env / bold.color.names.env** |
+| color.env | (deleted — folded into setup.color.env) | written separately: `export COLOR_RED="${ESC}31m"` … |
+| **regen guard** | `if ! grep -q '^export COLOR_RED=' setup.color.env` | `if ! [ -f color.env ]` |
+
+**Why colors break on dev (the guard collision):** the live `setup.color.env` (regenerated **today 20:07**) is **test/macos.latest split-style** — it `source`s color.env etc. and contains **no** `export COLOR_RED=` line. dev's `line` guard tests exactly that line in setup.color.env → guard is TRUE → **dev keeps regenerating** setup.color.env in self-contained style AND `rm`s the split color.env/names files — but the split-style setup.color.env still `source`s those now-deleted files → **sourcing a deleted file = colors vanish**. The two strategies actively fight on a box that flips branches; net = unreliable/empty colors on dev.
+
+**Latent content quirk (both branches, not the boot cause):** `export COLOR_BLUE="${ESC}0m"` maps BLUE → reset — any UI using `COLOR_BLUE` renders colorless. Fix opportunistically.
+
+**FIX DIRECTION (architect → expert; verify per ruling):** pick ONE strategy on all branches. Recommend **dev's self-contained + fully-exported** setup.color.env (aligns with pure-state + subprocess-survival + no in-file source chain per Rule-A reconciliation in §A) — then DELETE the split-file generation and the `source color.env` lines from `line` on test/macos.latest, and unify the regen guard. Also restore the `bashrc_template` on dev (or confirm the installer no longer needs it) so a dev install lays the color chain. Map `COLOR_BLUE` to a real blue (`34m`/`94m`).
+
+**VERIFICATION GAPS (expert/tester — I was permission-blocked, did NOT assume):**
+- `cat -v`/`od` on color.env to confirm the ESC (0x1b) byte is present vs the value being literal `[31m` — **denied**, unconfirmed.
+- `ls color.names.env bold.color.names.env` in `$CONFIG_PATH` to confirm the sourced split files exist or were `rm`d — **denied**, unconfirmed.
+- The A/B `oo mode` repro (above) — **not run** per PO ruling (no `oo mode` on this live box).
+
 ### C. BUG 7 — pane.self single self-ID primitive (dedup)
 **CONFIRMED single primitive:** `private.otmux.pane.self()` (otmux:2747, PID/ppid-walk). Public funnels (`pane.self`, `pane.get.target`, `current`) all route through it. otmux internals (1298/1341/1384/1899) already migrated — the `|| ${TMUX_PANE}` fallbacks are ALREADY removed. **otmux fully deduped.**
 
@@ -257,4 +289,5 @@ Full A/B/C/D in the "Architect Review" section above. Items still needing EXPERT
 - Expert (HOME guard + user.env regen + commit): **DONE** — BUG1 4bdd948, BUG2 37e16f7+regen, BUG3 af3a3f7, BUG5 d40a005, BUG6 3fd419b.
 - Expert BUG7 (eliminate TMUX_PANE): **DONE** — public `otmux pane.self` primitive added (`%`=pane_id default, `target`=session:win.pane). otmux 6480f78 (drop 4 stale `||TMUX_PANE` fallbacks + layout.dynamic + fit), hiveMind 350e3e7 (caller-role x2 + own_pane x2, killed 2 raw-tmux calls), claudeCode d74e354 (context.self gate), restore/hiveMind a20d0d7. Guard T-NO-TMUXPANE a5f709d → 3/3 pass, zero non-comment refs in otmux/hiveMind/claudeCode. Verified live: self-ID correct (ooshTeam:0.3) despite stale TMUX_PANE=%8. test/test.c2's 10 refs are deliberate test targets — left for architect review per directive.
 - Expert BUG9 + A + B + C-ext + FEAT8/D: **DONE** — BUG9 idempotent prefix `4c52e24` (+T-PREFIX-IDEMPOTENT, audit: dup came from agents manually composing [@…] then auto-prefix on top — guard makes them coexist). C-ext `9ff5343` (killed bare display-message self-ID at hiveMind:1936 + 4 otmux sites via new `private.otmux.self.session`; extended T-NO-TMUXPANE to catch untargeted display-message — 6/6 pass). A `9937799` (config.save allow-list: strict OOSH-only live-env harvest + deny-set cleans file leakage; user.env 113→19 exports, 0 leakage, 0 source lines). B `c82fa31` (line init generates self-contained EXPORTED setup.color.env — colors survive into subprocesses incl. `claudeCode list`; pure-state, no source chain; regenerated on WODA.prod). FEAT8+D `615918c` (CURRENT target via one resolver `private.resolve.target`→pane.self, immune to stale TMUX_PANE; shared `private.complete.paneTargets`; T-CURRENT-TARGET 5/5 — verified `pane.title CURRENT` retitles caller's own pane).
+- Architect COLOR-BOOT RE-DIAGNOSIS (oosh-architect@WODA.prod, **2026-07-14**): **SUPERSEDES my 2026-06-28 §B ranking** (see "§B UPDATE" in the review). Read-only re-measure (no `oo mode` per PO ruling) found the real root cause is a **two-layer branch split**, not downstream log/PS1: (1) `templates/user/bashrc_template` EXISTS only on `test/macos.latest`, **MISSING on `dev`** → dev install never lays the color chain; (2) `line init` diverged — **dev = self-contained exported setup.color.env** (expert fix `c82fa31`), **test/macos.latest = split `source color.env`+names**, and their regen GUARDS disagree (`grep export COLOR_RED` vs `[ -f color.env ]`). Live box's setup.color.env was re-clobbered **today 20:07 in split-style**, so `c82fa31` is being UNDONE by a test/macos.latest boot; dev then `rm`s the split files that the split setup.color.env still `source`s → colors vanish. **FIX (→ expert):** unify on dev's self-contained strategy across ALL branches, delete split generation + `source color.env` lines, unify the guard, restore `bashrc_template` on dev, map `COLOR_BLUE` 0m→34m. **Verify (expert/tester):** ESC-byte in color.env (`cat -v`), split-file existence, A/B `oo mode` repro — all 3 I was permission-blocked from and did NOT assume.
 - Tester (clean-boot verification on WODA.prod + u20):
