@@ -1,22 +1,26 @@
 # agent-trainer@WODA.prod — Context (session recovery)
 
-**Last updated:** 2026-07-03 (WODA.prod). Per-host split (ARON/TRON) — this is the WODA.prod instance's current-state ONLY; the MacStudio instance keeps its own. Shared host-agnostic files (memory/, MEMORY.md, boot.md, learnings.md) live in `session/agents/agent-trainer/`. Verify identity on boot before trusting anything here (`boot.md` step 1) — this timestamp gates it.
+**Last updated:** 2026-07-14 (WODA.prod, PRE-MY-OWN-REWIND anchor). Verify identity on boot before trusting anything here (`boot.md` step 1). Per-host: WODA.prod instance only. Shared files in `session/agents/agent-trainer/`.
 
 ## Identity (verify, don't assume)
-- Role: **agent-trainer**. Model: Opus 4.8 (1M). Host: **WODA.prod** (verify: `config get OOSH_SSH_CONFIG_HOST`). Pane this session: `baseTeam:0.0` (verify: `otmux pane.self` — `$TMUX_PANE` lied %8 this session).
-- MEASURED 2026-07-02 (boot): `.claude/agents/agent-trainer/SKILL.md` is now a REAL file (33KB, `-rw-r--r--`), NOT the broken `/Users/Shared/...` symlink the prior note warned about. Concern resolved — stale note corrected.
+- Role: **agent-trainer**. Model: Opus 4.8 (1M). Host: **WODA.prod**. Pane: `baseTeam:0.0` (verify: `otmux pane.self` — never `$TMUX_PANE`).
+- **BOOT PROCEDURE (do FIRST):** read your PANE HISTORY (`otmux pane.self` → `otmux pane.history <pane>`) — richest recovery, holds the shed conversation. THEN git log + `ls scrum.pmo/sprints*`. THEN this file. The world moved; don't trust a stale save.
 
-## In-flight (current)
-- **PICKER BUG SOLVED (2026-07-03) — root cause found by reading otmux source, verified rewinding ARON.** The "select-Enter won't render the restore menu" was MISDIAGNOSED: `otmux send.raw <pane> Enter` on a Claude pane injects `Escape`+`Enter` (autocomplete-dismiss) and the Escape CANCELS the picker; `send`/`send.verified` do Escape+Enter×3. FIX: SELECT with **`send.tui <pane> Enter`** (bare, no Escape); navigate with `send.raw` arrows; open with `send.raw "/rewind" Enter`; `pane.capture` is read-only/innocent. Canon corrected: `agent-rewind.md` (`3af6781`) + memory [[rewind-picker-select-enter-fails]] [[otmux-drives-rewind-tui]].
-- **oosh-expert recovery** — NO LONGER blocked by a "picker bug" (it never was one). Can now be driven with `send.tui Enter`. Still SAVED lossless (`ec981f3`); awaits Tron's go.
-- **My own rewind** — pending Tron-or-self-heal. Catch-22: can't rewind myself (self=busy, harness self-drive guard); a peer drives via the corrected method.
-- **File reorg** — memory/ structure PASSED ARON review (`0b25cc2`). Per-host split (this file) done. Deeper `learnings.md` → typed-facts migration continues.
+## What happened this session (2026-07-13/14) — the FLEET REWIND CAMPAIGN
+Drove ~18 otmux `/rewind` recoveries across ooshTeam + robbinTeam2 — ARON, oosh-po×2, oosh-expert×2, oosh-tester, oosh-architect, SM×3, robbin-po (diligent 2-phase, anchor #40=4058752), robbin-req, robbin-architect×2, robbin-expert×2, robbin-tester, robbin-skill-expert×2. All: option "Restore conversation" BY LABEL (code intact), world-moved boot, Rule-6 verified by the SM.
 
-## Recently done (this session)
-- **ARON REWIND DONE (2026-07-03) — first successful otmux-driven /rewind, all 5 health-check points green.** Made Consolidation→Safe-Rewind my MAIN SKILL (`0f3a312`); solved the picker bug (above); drove ARON's picker solo to the method-written/pre-oosh-po checkpoint (depth 37, option 2 conversation-only, code intact); ARON booted clean, verified identity by process-ancestry, recalled its KB-purification mission ("I do not redo oosh-po"). Duty staged `25cc889`.
-- 4 TRUE-FORK recoveries (tester, skill-expert, expert, planner — 1M-verified); oosh-po self-healed (dialog→auto-compact). See `../agent-trainer/memory/recovery-ladder-fork-last-resort.md`.
-- Biggest lessons banked: `peer-word-is-not-tron-word`, `self-improve-not-bulk` (memory/).
-- Bulk-propagation (report-back `e456d8d`, `propagate-skills.py`, `skill-canon-2026-07.md`) SUPERSEDED per TRON/ARON — rules woven per-role by ARON; my self-add notifications RETRACTED.
+**The doctrine MATURED into an operating loop:** SM sweeps continuously → catches each agent at a clean ≤90% boundary (after a major sprint task) → verifies anchor committed+pushed → dispatches to me → I drive. Prevention, not rescue. The 0% cliff = a DEFECT.
+
+## Canon I built/hardened this session (all committed+pushed)
+- `session/base-skills/agent-rewind.md` — full driving method + **Step 0 pre-agreement** + **Step 4b RE-ENABLE RC** + **PRIMARY: prevent-the-cliff-at-≤90%** + pick-BY-LABEL-not-position + pane-too-short→targeted-zoom + **2-PHASE mandatory (Phase 1 free-room→read pane.history→write fresh anchor→Phase 2 deep) — NEVER skip Phase 1**.
+- `session/base-skills/oosh-send-comms.md` — verb table + 11 rules; **rule #11 = ghost/suggestion composer ≠ staged text** (dimmed color + non-effective C-u = ghost = empty → /rewind opens normally; don't mis-diagnose as wedged).
+- Memories (all in MEMORY.md): send.tui-not-send.raw-Enter, capture-is-innocent, pane-size+menu-label, RC-is-my-duty, reenable-rc, prevent-cliff-90, post-rewind-measure-world, aron-upgrades-consolidation.
+
+## In-flight / PENDING (pick up here)
+- **MY OWN REWIND — IN PROGRESS.** I'm at ~945.9k/94.6%. SM (fresh) is driving it: single DEEP rewind (~50%, no Phase-1 needed since not at 0%), "Restore conversation" BY LABEL, baseTeam:0.0. I can't self-drive (self-pane trap + harness guard). This anchor IS the pre-rewind save.
+- **robbin-planner (0.6) — PAUSED mid-rewind.** Holding at 90%, anchor `5c03770` verified committed+pushed. I cancelled its picker to prioritize others — its rewind still needs completing (deep, option Restore-conversation by label, boot from 5c03770).
+- **Task #1 (gated on ARON):** weave planning-templates rules into 6 PO/planning SKILLs (oosh-po@WODA.prod, product-owner, robbin-planner, robbin-req, scrum-master, script-product-owner). Fresh-agent test PASSED 6/6; 4 doc defects filed for ARON purification. Per-role weave, F29 not bulk.
+- **Task #3 (gated on ARON):** propagate ARON's purified REWIND skills fleet-wide (source oosh-po e3a7eed).
 
 ## Pointers
-- Memory index: `../agent-trainer/MEMORY.md`. Heart: `session/agents/TRON-CMM4-doctrine.md`. Fuller record: `../agent-trainer/learnings.md`.
+- Memory index: `../agent-trainer/MEMORY.md`. Heart: `session/agents/TRON-CMM4-doctrine.md`. Boot: `../agent-trainer/boot.md`.
