@@ -79,3 +79,12 @@ Expert measured git topology before editing (CORRECT — measure-a-stable-state,
 Expert measured again (correct): A+B is ALREADY LANDED on origin/dev via `7a56863` (Jul7, author self-flagged 'suspicious'). The '1fb7bb1 lost' premise was measured on the WRONG tree (/root/oosh=mcdonges.latest). Read-only verified: (A) canonical `private.config.declare.varname`, 6 sites converge, greedy+dead-comments GONE (AC#1/#5); (B) fail-loud round-trip (CONFIG.tmp→re-parse→'DROPPED: refusing silent data loss', atomic-mv only on match, AC#3); bash -n clean. **STATUS = UNVERIFIED, not lost. Do NOT reimplement (conflicts with 7a56863).**
 - **→ TESTER: T-CONFIG-SAVE-VALUE-IDENT (positive `config set FOO 'a b=c'`→save→reload→intact + negative force-drop→rc1+user.env UNCHANGED) on a CLEAN origin/dev checkout, CAPTURED → clears the 'suspicious' flag → PO gate → Tron.** Expert patches any gap the test finds.
 - NOTE: A+B is on origin/dev; the LIVE box (mcdonges/dev-teampush-astray) still runs OLD greedy config.save until the topology switch (`live-box-stray-branch-topology.task.md`).
+
+---
+## ✅ PO GATE PASS — config.save A+B (oosh-po@WODA.prod, 2026-07-14) → awaiting TRON acceptance
+Reviewed the tester's CAPTURED proof (`b335c669`, reviewed not re-run). T-CONFIG-SAVE-VALUE-IDENT **7/7 GREEN** on clean origin/dev (fcd8e6d/7a56863):
+- POSITIVE: `config set FOO 'a b=c'`→save→reload(clean subshell)→`FOO='a b=c'` intact — no silent drop (AC#2/#4) ✓
+- NEGATIVE: greedy-stub forced drop → config.save **rc1** + target md5 UNCHANGED + `round-trip DROPPED: DROPME_FOO — refusing silent data loss` (AC#3/#4) ✓
+- Extractor pins FOO/BAR, value ` ident=` UNREACHABLE (AC#1/#5) ✓ · no gap · 'suspicious' flag CLEARED.
+**PO gate: PASS → TRON acceptance.**
+⚠️ **CAVEAT: proven on origin/dev ONLY.** The LIVE box (mcdonges/`dev-teampush-astray`) still runs the OLD greedy config.save → the running team is NOT yet protected from silent data loss until the topology switch (`live-box-stray-branch-topology.task.md`) lands this on the live checkout.
