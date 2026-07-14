@@ -18,7 +18,7 @@
 | `otmux pane.capture <p> N` | `tmux capture-pane -p` — **READ-ONLY, sends nothing** | your EYES; measure between every step | (harmless — never blame it) |
 | `otmux pane.history <p>` | scrollback dump, read-only | content scrolled OFF-screen | — |
 
-## The ten hard-won rules
+## The eleven hard-won rules
 
 1. **Capture is innocent.** `pane.capture` = `tmux capture-pane -p`; it emits nothing and can NEVER close a menu or clear a composer. (An OLD `-S` scrollback version returned stale frames = the "lying instrument" that faked "composer won't clear / menu won't render." Fixed. Don't blame the capture.)
 2. **The Escape is the hidden actor.** Send verbs inject `Escape` to dismiss Claude's slash/`@`-autocomplete so Enter actually submits. That Escape is *needed* before a submit but *deadly* inside a modal (it's the modal's "Esc to cancel"). Know which state the pane is in before you send Enter.
@@ -30,6 +30,7 @@
 8. **A multi-line composer needs multiple `C-u`.** `C-u` kills ONE line; a restored/pasted multi-line block needs one `C-u` per line (watch "Ctrl+Y to paste deleted text" shrink the block).
 9. **Measure a STABLE state.** Captures can race the render — take 2 captures a few seconds apart before concluding; don't grade a moving target. And **NEVER `| tail`/`| head` a capture** (forbidden — use the verb's own line-count arg). [[feedback_no_tail_head_on_captures]] [[measure-a-stable-state-not-a-moving-target]]
 10. **Address by role; a modal blocks its own agent.** Resolve fresh (`hiveMind resolve <role>`), never hardcode a pane. And while a picker/modal is open on an agent's pane, THAT agent is blocked at its UI — it can't act or be messaged without disruption; a **peer/TRON drives from outside**.
+11. **A suggested (ghost) prompt ≠ real staged text — the composer may actually be EMPTY.** Claude shows a dimmed placeholder/suggestion in the input that LOOKS like typed text but isn't. Two tells (TRON 2026-07-14): **(a) COLOR** — a suggestion renders dimmed/grey, real text is solid; **(b) NON-EFFECTIVE `C-u`** — clearing *real* text prints **"Ctrl+Y to paste deleted text"** and the line empties (rule #8); a ghost gives **no such feedback** because there is nothing to cut. A ghost = empty composer → `/rewind` and any command open/submit **normally** (typing just replaces the suggestion). **Do NOT mis-diagnose a ghost as a wedged composer / RC-interference.** (Lived: ARON's SM rewind — I stalled the Phase-2 picker believing a "proceed with phase 2" *suggestion* blocked it; a non-effective C-u proved it was a ghost and `/rewind` opened cleanly.)
 
 ## Where this is used
 - **Driving `/rewind`:** full step-by-step in `session/base-skills/agent-rewind.md` → "Driving It via otmux" (open `send.raw "/rewind" Enter` → navigate `send.raw` arrows → select `send.tui Enter` → Option 2).
