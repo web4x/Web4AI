@@ -77,3 +77,7 @@ R30.6.1 computeDiff **15843ac9** + R30.6.3 takeHunk **6ebfac12** are DONE-VIA-SU
 - R30.13 chain COMPLETE 75/346 (Web4RawBin e33a58bb7): req minted 3 Test units scenario-first (8b940f72f, my measured uuids), I wired 3 reverse Impl→Test refs (fd99c520.tests+=79bb0097 / 5051b2a4+=f3300b75 / 65c465fa+=72808ca7). Bidirectional. All 6 hops check.
 - TECH-DEBT FIXED (PO call = retarget not mark-superseded): r30merge-visual-gate.mjs .de-accept-bar → inter-pane gutter ≫/≪ selectors (fe3cf06b7); CASE1 GREEN DET-3x + CASE2 GREEN on live UI. Correct-by-construction: gate tracks the live UI. Take-over selector now .de-gutter-right [data-cid][data-act=right].
 - 2 commits (fe3cf06b7 + e33a58bb7) ahead of origin/main — flagged PO to push (my main-push policy-blocked); pending remote landing for req both-direction re-verify.
+
+## Room.ts render-repro + R30.14 (2026-07-14)
+- Tron Room.ts 'no R30.13' = CACHE not render (repro f9a3615fc: large 2-way renders fine, 61 hunks/24 on-screen icons/ribbons/counter). Secondary: populateRightHistory default-newest=0-diff. curl /api/files needs auth → use in-browser.
+- R30.14 SW auto-update served+wired (sw.js claimClients+SKIP_WAITING, bundle pollForWorkerUpdate+banner+controllerchange→reload, v0.7.22 edit-6DEK4LSR.js). True E2E needs a version transition — proposed live-catch OR local 2-version harness; bridge marker when req mints R30.14 Test hop.
