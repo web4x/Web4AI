@@ -27,7 +27,7 @@ The running ooshTeam USES `OOSH_DIR` — switching its branch mid-run disrupts t
 ## Report-back
 - Architect (safe-switch plan): **DONE 2026-07-14, oosh-architect@WODA.prod** — read-only measure (no switch/no `oo mode`). See "SAFE-SWITCH PLAN" below.
 - Expert (execute):
-- Tester (boot verify):
+- Tester (boot verify): **P0 CAPTURE-GREEN 7/7 on THROWAWAY clean `origin/dev` @ fcd8e6d (contains 7a56863) — GATE PASSED, Tron window may open (oosh-tester@WODA.prod, 2026-07-14).** Isolated git worktree + sandbox HOME; NOTHING on the live box mutated (B1 subshell contains resolve.fundamentals; validate/read are read-only). **(a) config.save A+B** = T-CONFIG-SAVE-VALUE-IDENT 7/7 (extractor pins FOO/BAR w/ ` ident=` value; positive round-trips `a b=c` intact; negative forced-drop → rc1 + file UNCHANGED + "refusing silent data loss"). **(b) `env -i sh;bash` color boot**: B1 empty-HOME → resolved `/root` (valid, non-empty) ✓ BUG-1; B2 colors present — `$CYAN=\033[96m` escape, banner colored, `setup.color.env` pure-state EXPORTED (`COLOR_*`, no source chain, dev `c82fa31` strategy) ✓; B3 `config validate` clean rc0 ✓; B4 fresh user.env has **0 source lines total** (0 Rule-A .env, 0 forbidden script-source) ✓ BUG-2/3. Captured proof: `session/tasks/P0-CAPTURE-clean-dev.proof.txt`. Harnesses: `scratchpad/{p0-capture,t-config-save-value-ident}.sh`. → PO/Tron: P0 gate is GREEN; P1→P2(switch)→P3 window may proceed; tester owns P3 boot-verify post-switch.
 
 ---
 
