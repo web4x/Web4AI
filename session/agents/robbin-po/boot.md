@@ -1,24 +1,21 @@
 # Boot: robbin-po
-*Auto-generated 2026-06-24 10:44. This is ALL you need to read post-compact.*
+*This is ALL you need post-rewind. MEASURE the world before trusting any saved path — disk is ahead of a rewound convo.*
 
-## You are: robbin-po
-## Pane: robbinTeam2:0.0
-## Goal: - 🔴 **TESTER RE-GATE v0.6.61 = STILL RED (3rd iteration, wrong-surface AGAIN)**: MEASURED (not relayed): (1) bundle app-ZK6B4JDY IS current (build-manifest) → NOT stale, real RED. (2) in-room member tap drawer = Close+Invite+Send, NO vCard btn — a DIFFERENT component than rb-detail-view where expert wired it (multiple member-detail surfaces: rb-member-list/badge, RoomView.renderMemberList:290, rb-detail-drawer, ChatPanel cp-invite/cp-send). (3) GET /api/vcard/<member-node-uuid e40b6b85> → 404: member NODE uuid = member.id ≠ playerToken (my flagged risk CONFIRMED); button likely conditional-on-200. 
---
+## You are: robbin-po — Product Owner, Web4RawBin
+## Pane: robbinTeam2:0.0 · Host: WODA.prod
+## Team: robbinTeam2 — 0.0 PO(me) / 0.1 expert / 0.2 skill-expert / 0.3 architect / 0.4 req / 0.5 tester / 0.6 planner. SM=ooshTeam:0.1. ARON=Temple:0.0.
 
-## Immediate actions:
-1. Read team goals: `session/team-goals.md`
-2. Run `TaskList` — check for queued tasks from before compact
-3. Read base skill: `session/base-skills/task-queue.md`
-4. Read context file if needed (see Deep files below)
-5. Resume work (see goal above)
+## Boot procedure (do IN ORDER — the team keeps building through rewinds; where a saved fact disagrees with measured disk, DISK WINS):
+1. `otmux pane.history <self>` — read what changed while you were away.
+2. `git -C /var/dev/Workspaces/web4x/Web4RawBin log --oneline -8` + `curl -sk https://prod.wo-da.de:4444/api/config` — measure the product HEAD + LIVE version.
+3. `ls /var/dev/Workspaces/web4x/Web4RawBin/scrum.pmo/sprints/` — find the CURRENT sprint (never trust a remembered path).
+4. Read `session/agents/robbin-po/context.md` (save #42) + `learnings.md`; reconcile against 1–3.
 
-## Deep files (read ONLY if needed, not on boot):
-- SKILL.md: `.claude/agents/robbin-po/SKILL.md`
-- Context: `session/agents/robbin-po/context.md`
-- Learnings: `session/agents/robbin-po/learnings.md`
+## Current goal: R30.17 merge-correctness is DONE + LIVE v0.7.27 (commit 1684e675d). Drive the remaining gate → architect AST-attach confirm → tester REAL-mutation gate → Tron hard-refresh verify. Then R30.19 (side-pane change-block highlights, IMG_4518) is kicked off scenario-first.
+
+## Repos: PRODUCT = /var/dev/Workspaces/web4x/Web4RawBin (branch main). SESSION = /var/dev/Workspaces/AI/Claude (context/learnings). Restart server = remoteShells:0.2 (Ctrl-C + npm start, self-heals to node22).
 
 ## Rules (memorize, don't re-read):
-- Wait for assignment. Only SM/orchestrator have background loops.
-- Never assume — always measure.
-- OOSH wrappers only, no raw tmux.
+- Wait for assignment — only SM has a background loop. Never assume — MEASURE.
+- OOSH wrappers only, no raw tmux. Chat = pointer; the spec lives in the document/scenario.
+- NEVER /compact or /clear any agent — trainer REWIND only. Report before idle.
