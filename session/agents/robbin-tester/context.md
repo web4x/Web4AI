@@ -132,3 +132,10 @@ Architect-ruled: auto file-history default moves RIGHT→LEFT (populateRightHist
 ## R30.17 retirement steps 1+2 DONE + HELD (2026-07-14)
 - df875176b (LOCAL, HELD — not pushed): 751934c1.tests=[4dca421e], fd99c520.tests=[79bb0097,9f755c32], 58c11039.tests=[] (retired 16b2721a+553f77d2). R30.17 chain COMPLETE (check 751934c1|check 4dca421e).
 - ⚠ BLOCKER before push: scoreboard shows R30.10+R30.15 = 'open expert 58c11039 | open tester' (2 FALSE-OPENS). Cause: R30.17 removed populateRightHistory from source (impl marker 58c11039 gone) + I removed its tests; objectVerb scorer does NOT honor supersededBy (old R30.6.1/6.3 gap). Flagged req to annotate R30.10/R30.15 (or impl/method) retired + PO to HOLD push. WHEN REQ ANNOTATES: re-run scoreboard → confirm retired-not-open → push df875176b + req's annotation together → req re-verifies both-directions.
+
+## R30.11 honorSupersededBy DECISION + HOLD (2026-07-14)
+- MEASURED (req 630394b91 on shared HEAD): R30.15 GONE from open (T-TOOL-1 @193, excluded 50→51) ✓; R30.10 STILL open ×1 (populateRightHistory hop) — has a LIVE fileHistory UC (e9cfaab3/9c6cfdbc reused by R30.17) so req-supersede would trip T-TOOL-2 inflation. R30.10 open = impl-level-supersede class (same as R30.6.1 15843ac9 / R30.6.3 6ebfac12, already on origin).
+- PO DECISION: build R30.11 honorSupersededBy at IMPL level (scorer/skill-classes.ts walkChainCoverage = expert/architect build; I GATE). Clears R30.10+R30.15+R30.6.1/6.3 → 0-false-open.
+- HOLD df875176b + req 630394b91 until R30.11 lands + scoreboard 0-false-open → PO pushes ALL 3 together.
+- MY R30.11 GATE AC (DET-3x): (1) clears the impl-level-supersede class to retired-not-open; (2) does NOT mask REAL opens (fires only on valid supersededBy→live successor); (3) R30.10 fileHistory UC stays tracked (not wholesale-hidden); (4) dangling supersededBy pointer does NOT clear a hop. Prevents green-washing.
+- STANDING BY for R30.11 build ping.
