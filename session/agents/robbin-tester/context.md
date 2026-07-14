@@ -123,3 +123,8 @@ Architect-ruled: auto file-history default moves RIGHT→LEFT (populateRightHist
 - R30.17 SUPERSEDE MAP (req-confirmed, annotated 6bbee09e4): Impl 58c11039 (populateRightHistory) supersededBy Impl 751934c1 (populateLeftHistory); Method 3dd2173b supersededBy af9bcfef. → BOTH tests 16b2721a + 553f77d2 retire WHOLESALE. When R30.17 code lands: r3017 gate's new left Test markers wire to Impl 751934c1 (populateLeftHistory). req annotates 16b2721a+553f77d2 supersededBy the new left tests.
 - R30.16 accept RESOLVED: works on live v0.7.25 (REAL page.click + content-diff, DET-3x, gate 7db22ec54). Tron 'no effect' = stale cache (3rd pattern); R30.17 version-bump busts it. Gate now uses real hit-tested clicks (AC template for R30.17).
 - ON R30.17 DEPLOY: also REPORT the served edit-*.js hash (curl /edit) so we confirm the fresh bundle is live for Tron.
+
+## R30.17 GATED (v0.7.27, hash edit-53EHOESP.js) — 2026-07-14
+- r3017-left-history-gate.mjs GREEN DET-3x (07ad75585): (A) populateLeftHistory 751934c1 — .de-history on LOCAL pane, LEFT older-default HEAD~1 (b1ce574d≠working 84673c1e), RIGHT=working, non-zero diff, pick-wins (_leftUserPicked); (B) one-sided origin-gated arrows fd99c520 — del(a>0,b=0)→≫only, add(a=0,b>0)→≪only. Accept-mutates+off-by-one+✕ covered by r3016-accept-actions-gate (real page.click, GREEN on v0.7.27). Served hash reported (busts Tron cache).
+- R30.17 MODEL FLIP: LEFT=older(HEAD~1 default), RIGHT=working, .de-history on LOCAL. Accept data-act still left/right (≫/≪), selectors unchanged.
+- PENDING req mint (markers 4dca421e→751934c1, 9f755c32→fd99c520): THEN wire 751934c1.tests+=4dca421e + fd99c520.tests+=9f755c32, REMOVE 16b2721a+553f77d2 from 58c11039.tests[] (superseded), req annotates the 2 retired supersededBy 4dca421e, push.
