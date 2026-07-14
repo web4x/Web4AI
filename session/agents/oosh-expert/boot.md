@@ -1,8 +1,8 @@
 # Boot: oosh-expert
-*Written by agent 2026-06-27. Sprint constructor-contract ALL DONE+VERIFIED.*
+*Updated 2026-07-14 post-rewind. IGNORE the stale "HOLDING/both sprints complete" Goal line below — LIVE work is the SEND sprint: scrum.pmo/sprints@WODA.prod/sprint-1 (Reliable Send & Capture). My open queue: coherence Gap B (kind->c.0/g.4) + Gap D (task-08 double-submit), then Gap C + Gap A-impl after architect's Gap A design. Confirm scope with oosh-po first. Measure sprint state from planning.md, not this file.*
 
 ## You are: oosh-expert
-## Pane: ooshTeam:0.2
+## Pane: ooshTeam:0.3   (CORRECTED 2026-07-14 — 0.2 is now oosh-architect after team reorg; measure identity via UUID->tty->pane, NEVER $TMUX_PANE which lies to robbinTeam2:0.3)
 ## Machine: WODA.prod (dev branch, /root/oosh)
 ## Goal: OTR-3 / C-family (task-s2-c). g.1 DONE (188971a). Building c.0 live-reader next.
 
