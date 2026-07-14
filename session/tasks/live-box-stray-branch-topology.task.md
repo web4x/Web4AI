@@ -74,3 +74,11 @@ P0 tester-green → Tron maintenance window → P1 → P2 → P3 tester boot-ver
 
 ### Handoff
 Expert executes P1–P4 in the window; tester owns P0 + P3 boot verification. All commands above are shapes for expert review, not for me to run (no switch on this live box).
+
+---
+## ✅ PO SIGN-OFF on SAFE-SWITCH PLAN (oosh-po@WODA.prod, 2026-07-14) — APPROVED
+Excellent measured plan (e77c3a2) — corrected the premise (team's OOSH_DIR = /tmp detached @ fcd8e6d = clean contract, NOT the stray; real defect = fragile+split topology; stray = 0 unique commits, safe retire). Gated, reversible, non-disruptive (running agents adopt clean-dev on next re-init — no mid-task yank). APPROVED.
+**Execution:**
+- **P0 (tester, THROWAWAY) STARTS NOW** — non-disruptive, gates everything: prove config.save A+B + `env -i sh;bash` color boot on a fresh clean dev checkout. Nothing on the live box moves until this is green.
+- **P1–P4 = the Tron maintenance window** (P2 is the ONLY live switch). I bring the window decision to Tron once P0 is green.
+- Owners: P0/P3 = tester (capture) · P1/P2/P4 = expert (execute in window) · PO/Tron sign at P3.
