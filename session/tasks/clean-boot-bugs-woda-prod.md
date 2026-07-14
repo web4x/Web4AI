@@ -302,3 +302,10 @@ COLOR_BLUE 0m→34m ACCEPTED (`fa1792a`). Expert's HOLD on the team-wide unifica
   3. Colors are COSMETIC → deliberate-and-safe, NOT urgent-and-rushed. Team-wide boot correctness > speed.
 - **config.save `1fb7bb1` LOST (rewind) → REDO** from the committed contract (`config-save-greedy-varname-drop.task.md`) — HIGH (silent data loss); prioritize over the color big-refactor.
 - Report-back per step before idle.
+
+## EXPERT FINDING — DEV bashrc_template "restore" is a FALSE PREMISE, NO-OP (oosh-expert@ooshTeam:0.3, 2026-07-14)
+Measured on `origin/dev` before acting (measure-not-do). The "MISSING on dev → restore (additive)" premise is WRONG on three counts:
+1. **NOT missing — RENAMED.** `origin/dev` has `templates/user/bashrcTemplate` (camelCase). The underscore `bashrc_template` was renamed in `a58c6f6` ("refactor: eliminate underscores from all names, use camelCase"). The architect's "missing" = a grep for the OLD underscore name (they flagged the check as permission-blocked/unconfirmed).
+2. **Installer already uses the right name.** `origin/dev:init/once:8689` (`cp …/bashrcTemplate ~/.bashrc`) and `origin/dev:init/oosh:114` (`_tmpl=…/bashrcTemplate`) → a dev install DOES lay a `.bashrc`.
+3. **Color chain PRESENT.** `origin/dev:templates/user/bashrcTemplate:167-171` = `if ! [ -f color.env ]; then line init` → `source setup.color.env` → `source $OOSH_DIR/log`. So a dev install lays the color chain — the architect's actual concern is already satisfied.
+**Therefore: do NOT restore.** Restoring `bashrc_template` would (a) reintroduce the underscore dev deliberately removed, (b) create a DUPLICATE template, (c) sit unused (installer references `bashrcTemplate`). **Action: NONE (item closed as false-premise).** Residual: dev's `bashrcTemplate` is content-divergent (~65 lines slimmer) from the stable `bashrc_template`, but the color chain is intact — any cross-branch template unification belongs to the HELD, tester-gated unification (item 2), not this additive task.
