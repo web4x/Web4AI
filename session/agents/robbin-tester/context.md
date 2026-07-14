@@ -72,3 +72,8 @@ R30.6.1 computeDiff **15843ac9** + R30.6.3 takeHunk **6ebfac12** are DONE-VIA-SU
 - Gate r3013-gutters-ribbons-gate.mjs GREEN DET-3x (95c1fc8f1): inter-pane strips ≫/≪/✕/🪄, .de-ribbons colored bands, .de-count + ▲/▼ jump, ≫/≪ take into center, scroll-redraw. Desktop+mobile. Shots case-r3013-gutters-ribbons/2way/mobile.png (surfaced to Tron for Rider side-by-side).
 - CHAIN #126: 3 ready markers (79bb0097 gutters / f3300b75 ribbons / 72808ca7 jump) for req to mint scenario-first; not backfilled.
 - TECH-DEBT: R30.13 removed .de-accept-bar → r30merge-visual-gate.mjs (R30.12) take-over selectors stale (would false-RED on rerun); flagged PO to mark superseded or update.
+
+## R30.13 chain COMPLETE + gate retarget (2026-07-14)
+- R30.13 chain COMPLETE 75/346 (Web4RawBin e33a58bb7): req minted 3 Test units scenario-first (8b940f72f, my measured uuids), I wired 3 reverse Impl→Test refs (fd99c520.tests+=79bb0097 / 5051b2a4+=f3300b75 / 65c465fa+=72808ca7). Bidirectional. All 6 hops check.
+- TECH-DEBT FIXED (PO call = retarget not mark-superseded): r30merge-visual-gate.mjs .de-accept-bar → inter-pane gutter ≫/≪ selectors (fe3cf06b7); CASE1 GREEN DET-3x + CASE2 GREEN on live UI. Correct-by-construction: gate tracks the live UI. Take-over selector now .de-gutter-right [data-cid][data-act=right].
+- 2 commits (fe3cf06b7 + e33a58bb7) ahead of origin/main — flagged PO to push (my main-push policy-blocked); pending remote landing for req both-direction re-verify.
