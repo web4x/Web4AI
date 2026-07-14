@@ -92,3 +92,8 @@ R30.6.1 computeDiff **15843ac9** + R30.6.3 takeHunk **6ebfac12** are DONE-VIA-SU
 - STANDING WAIT 1: expert PINGS me right before his NEXT deploy → I live-catch the v0.7.22→vNext transition (tab open) → assert Update Now banner (arm A) → tap → reload → new bundle (arm B). Fidelity complement to the harness.
 - STANDING WAIT 2: PO push of efe82735a → then req both-direction re-verify on origin/main.
 - Harness r3014-sw-update-harness.mjs = durable deterministic regression gate (GREEN DET-3x).
+
+## R30.16 GATED + chain COMPLETE — R30.9->R30.16 line done (2026-07-14)
+- r3016-intellij-layout-gate.mjs GREEN DET-3x (gate 3efeb36f6, reverse-refs 317b369d2): 34px visible ribbons + colored rounded center blocks (brown conflict / blue change) + color-match + aligned rows (Δ7) + scrollBeyondLastLine. Shots r3016-intellij-layout.png + r3016-2way-lit.png surfaced. Chain COMPLETE 78/349 (17c71adf.tests+=4ca2ff58 / 37c9694c.tests+=ae075854). Pending PO push (1 ahead).
+- FULL R30.9->R30.16 diff/merge line chain-complete + gated.
+- STANDING: expert PRE-PINGS before every deploy (protocol locked) -> I park a tab on current version -> live-catch R30.14 banner->tap->reload. Next deploy = populateRightHistory fix OR R30.16-v2 (3-way one-sided green resolvable ribbons/blocks).
