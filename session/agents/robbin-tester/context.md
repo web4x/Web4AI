@@ -81,3 +81,8 @@ R30.6.1 computeDiff **15843ac9** + R30.6.3 takeHunk **6ebfac12** are DONE-VIA-SU
 ## Room.ts render-repro + R30.14 (2026-07-14)
 - Tron Room.ts 'no R30.13' = CACHE not render (repro f9a3615fc: large 2-way renders fine, 61 hunks/24 on-screen icons/ribbons/counter). Secondary: populateRightHistory default-newest=0-diff. curl /api/files needs auth → use in-browser.
 - R30.14 SW auto-update served+wired (sw.js claimClients+SKIP_WAITING, bundle pollForWorkerUpdate+banner+controllerchange→reload, v0.7.22 edit-6DEK4LSR.js). True E2E needs a version transition — proposed live-catch OR local 2-version harness; bridge marker when req mints R30.14 Test hop.
+
+## R30.14 SW auto-update harness + marker-visibility gotcha (2026-07-14)
+- Built r3014-sw-update-harness.mjs GREEN DET-3x (4d8c99d25) — deterministic v1→v2 localhost SW harness: arm A deploy→'Update Now' banner (pollForWorkerUpdate f1456992), arm B tap→SKIP_WAITING→claim→controllerchange→reload→new version (claimClients 406e1e33), asserts NO auto-reload pre-tap. Localhost loopback = secure context (no cert).
+- 2 per-impl ready markers for req (3b3f4235f): 0ad9eaa2→f1456992 (armA) / 35a6bbff→406e1e33 (armB). Live-catch on expert next deploy = fidelity complement (expert pings me).
+- GOTCHA: req greps ORIGIN/MAIN; my commits are local on the shared checkout (main-push policy-blocked) → req 'can't find markers'. Unblock: peer reads WORKING TREE directly OR PO pushes. Recurring — my main-push is always blocked; land+push (via PO) BEFORE peers grep origin. 5 commits pending PO push.
