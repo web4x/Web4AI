@@ -67,3 +67,8 @@ R30.6.1 computeDiff **15843ac9** + R30.6.3 takeHunk **6ebfac12** are DONE-VIA-SU
 - Gate test/visual/r30merge-visual-gate.mjs: CASE1 2-way take-over RED→GREEN flip GREEN DET-3x (computeTwoWayHunks def2c0f2 renders ◄/► in 2-way; ► pulls first-version into center #RawBin→#Web4RawBin, bar 'take-over #0 (Local)'→'(Repo)'). CASE2 true-3way IntelliJ-parity GREEN. Shots test-results/merge-visual/case1-03/04 + case2-01..03 (surfaced to Tron).
 - Chain COMPLETE 74/345 (Web4RawBin e592b723a): req minted Test c1a2e5b7 scenario-first (8bd921ee1, my ready uuid) → I wired reverse def2c0f2.tests[]+=c1a2e5b7 + [test:uuid:c1a2e5b7] marker bridges CASE1. All 6 hops check.
 - NOTE: git push origin main BLOCKED by branch-protection (PR/user auth). Commits are local on the shared WODA.prod checkout — same-disk re-verify works; flag PO/user if a remote push is needed.
+
+## R30.13 IntelliJ gutters+ribbons — DONE (2026-07-14)
+- Gate r3013-gutters-ribbons-gate.mjs GREEN DET-3x (95c1fc8f1): inter-pane strips ≫/≪/✕/🪄, .de-ribbons colored bands, .de-count + ▲/▼ jump, ≫/≪ take into center, scroll-redraw. Desktop+mobile. Shots case-r3013-gutters-ribbons/2way/mobile.png (surfaced to Tron for Rider side-by-side).
+- CHAIN #126: 3 ready markers (79bb0097 gutters / f3300b75 ribbons / 72808ca7 jump) for req to mint scenario-first; not backfilled.
+- TECH-DEBT: R30.13 removed .de-accept-bar → r30merge-visual-gate.mjs (R30.12) take-over selectors stale (would false-RED on rerun); flagged PO to mark superseded or update.
