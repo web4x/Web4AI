@@ -199,6 +199,9 @@ Source: healthy backup `…/sharedConfig/user.env.healthy-tron-backup-20260628` 
 
 ---
 
+#### B (RECONCILED 2026-07-14b — premise below DISPROVEN by expert; issue re-scoped)
+**Correction:** my "`bashrc_template` MISSING on dev" was WRONG — I checked only the snake_case path; it was RENAMED to camelCase **`bashrcTemplate`** (a58c6f6) and IS on dev; the installer uses it → a fresh dev install DOES lay the color chain. So color-boot is **NOT an architecture bug** — it is **LIVE-BOX STATE**: this box's `/root/oosh` is on stray `mcdonges.latest` and its `setup.color.env` was clobbered by a cross-branch boot. Remediation moved to the topology safe-switch: **`session/tasks/live-box-stray-branch-topology.task.md`** (my SAFE-SWITCH PLAN there; P3 re-init restores colors). The `line`-strategy-divergence + `COLOR_BLUE 0m` notes below remain valid cleanup, but are downstream of unifying the live box onto clean dev.
+
 #### B (UPDATE 2026-07-14, oosh-architect@WODA.prod — SUPERSEDES the ranking above)
 
 Re-measured read-only on the live WODA.prod box (NO `oo mode` per PO ruling). My earlier claim "*3. `line init` SKIPPED on both → DATA identical → NOT cause*" is **WRONG** — the data is NOT identical and the generator diverged. **True root cause is a two-layer branch split:**
