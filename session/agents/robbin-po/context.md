@@ -6,6 +6,11 @@
 ### ★ R30.17 = R30.16 FUNCTIONAL FIXES — DONE + LIVE v0.7.27 (1684e675d, PO-verified served) — remaining: architect AST-confirm + tester gate + Tron re-verify
 - ★ COMPLETED after checkpoint: expert finished all 4 (commit 1684e675d, pushed). NEW served hash edit-53EHOESP.js (was EONO6TTD) = BUSTS Tron stale cache. PO-verified: /api/config=0.7.27, served populateLeftHistory PRESENT + populateRightHistory GONE. Markers: NEW 751934c1(populateLeftHistory) / kept c4c84142/fd99c520/5051b2a4/17c71adf / removed 58c11039-with-code (call-site repointed left, !st.ref recursion-guard). REMAINING: architect confirm AST-attach(5) → tester REAL-center-mutation+one-sided-ribbon+line-map+left-history gate → Tron hard-refresh verify.
 
+### ★ NEXT TASK (Tron, post-R30.17): R30.19 = SIDE-PANE change-block highlights (screenshot IMG_4518)
+- BUG: change-block highlights (colored rounded blocks) render ONLY in CENTER Result pane; LEFT(Local)+RIGHT(Repository) source panes show changed lines with NO block highlight (just gutter arrows). IntelliJ highlights the block in ALL 3 panes (matching color) so you SEE which source block merges + ribbon connects highlighted-source→highlighted-center.
+- FIX (RbDiffEditor): extend renderCenterChangeBlocks → also render side-blocks on hunk source-lines (left=a-lines, right=b-lines) via shared CONFLICT_PALETTE/conflictColor (block+ribbon color-match by construction, like R30.16); origin-aware (left-only→Local+Center block, right-only→Repo+Center, both→all 3) reusing R30.17 a>0/b>0 gating. crossRef R30.16+R30.13.
+- STATE: req minting scenario-first + architect designing (dispatched at wind-down). Next session: req chain → architect derive-confirm → PO build-go → expert build → tester gate → Tron verify.
+
 ### (prior active-task note, now superseded — R30.17 built)
 - TRON reviewed the LIVE merge + confirmed R30.16's 5 functional bugs REAL. His 4 complaints → R30.17's 4 fixes (architect derive PASS 11/11, design a2ff49697):
   1. ACCEPT/CANCEL NO EFFECT [CRITICAL] → accept-mutates: per-strip click listener ORPHANED by re-render → delegate clicks from STABLE component ROOT (this), attached once in mountThreePane. Markers c4c84142+fd99c520.
