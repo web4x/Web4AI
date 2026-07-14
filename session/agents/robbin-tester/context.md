@@ -62,3 +62,8 @@ SystemTester ce981242 · Tron primary 8f74dfba (tombstones 3effa1fc/2703628c/37f
 ## SUPERSEDED-not-open (R30.6.1/6.3 — resolved 2026-07-13 by PO)
 R30.6.1 computeDiff **15843ac9** + R30.6.3 takeHunk **6ebfac12** are DONE-VIA-SUPERSEDE, NOT open hops. MEASURED: both Impls carry `supersededBy: ior:instance:0d6f18cd-1496-4672-8fee-5a38eeb728dc` (the R30.9 3-Monaco+diff3 merge rebuild that retired in-house-LCS). My Test hops on both stay GREEN (1 test each). In gate accounting: superseded = done, do NOT expect/credit an impl-marker.
 - TOOLING FLAG (open, PO-aware): `chain scoreboard` scorer does NOT honor `supersededBy` — it still prints these 2 as `open expert … Add real [impl:uuid:] in source`. So 73/343 shows 2 phantom-open Impl hops. Correct-by-construction fix = scorer excludes supersededBy units (like orphanByDesign's 50). Until then, mentally subtract these 2 from "open".
+
+## R30.12 2-way take-over (v0.7.20) — DONE + chain COMPLETE (2026-07-14)
+- Gate test/visual/r30merge-visual-gate.mjs: CASE1 2-way take-over RED→GREEN flip GREEN DET-3x (computeTwoWayHunks def2c0f2 renders ◄/► in 2-way; ► pulls first-version into center #RawBin→#Web4RawBin, bar 'take-over #0 (Local)'→'(Repo)'). CASE2 true-3way IntelliJ-parity GREEN. Shots test-results/merge-visual/case1-03/04 + case2-01..03 (surfaced to Tron).
+- Chain COMPLETE 74/345 (Web4RawBin e592b723a): req minted Test c1a2e5b7 scenario-first (8bd921ee1, my ready uuid) → I wired reverse def2c0f2.tests[]+=c1a2e5b7 + [test:uuid:c1a2e5b7] marker bridges CASE1. All 6 hops check.
+- NOTE: git push origin main BLOCKED by branch-protection (PR/user auth). Commits are local on the shared WODA.prod checkout — same-disk re-verify works; flag PO/user if a remote push is needed.
