@@ -3,7 +3,10 @@
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #41 — READ FIRST) ★★★★★★★★★★★★★★★★★
 **★ BOOT: git log + THIS + ls scrum.pmo/sprints/* FIRST (disk ahead of convo). Repo=/var/dev/Workspaces/web4x/Web4RawBin. Prod=prod.wo-da.de:4444 v0.7.26. Restart=remoteShells:0.2. Team robbinTeam2 0.0-0.6, SM=ooshTeam:0.1. Verify anchor #41 PUSHED (main...origin/main). Tron ordered this checkpoint + my rewind w/ agent-trainer.**
 
-### ★ ACTIVE TASK: R30.17 = R30.16 FUNCTIONAL FIXES — BUILDING (finish TRON4 + deploy + gate)
+### ★ R30.17 = R30.16 FUNCTIONAL FIXES — DONE + LIVE v0.7.27 (1684e675d, PO-verified served) — remaining: architect AST-confirm + tester gate + Tron re-verify
+- ★ COMPLETED after checkpoint: expert finished all 4 (commit 1684e675d, pushed). NEW served hash edit-53EHOESP.js (was EONO6TTD) = BUSTS Tron stale cache. PO-verified: /api/config=0.7.27, served populateLeftHistory PRESENT + populateRightHistory GONE. Markers: NEW 751934c1(populateLeftHistory) / kept c4c84142/fd99c520/5051b2a4/17c71adf / removed 58c11039-with-code (call-site repointed left, !st.ref recursion-guard). REMAINING: architect confirm AST-attach(5) → tester REAL-center-mutation+one-sided-ribbon+line-map+left-history gate → Tron hard-refresh verify.
+
+### (prior active-task note, now superseded — R30.17 built)
 - TRON reviewed the LIVE merge + confirmed R30.16's 5 functional bugs REAL. His 4 complaints → R30.17's 4 fixes (architect derive PASS 11/11, design a2ff49697):
   1. ACCEPT/CANCEL NO EFFECT [CRITICAL] → accept-mutates: per-strip click listener ORPHANED by re-render → delegate clicks from STABLE component ROOT (this), attached once in mountThreePane. Markers c4c84142+fd99c520.
   2. one-sided change shows ribbon from RIGHT too ('88 from right, nothing there') → origin-gate: Local≫ band on c.a.length>0, Result→Repo on c.b.length>0. Markers 5051b2a4+fd99c520.
