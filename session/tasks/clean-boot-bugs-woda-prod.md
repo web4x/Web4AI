@@ -309,3 +309,11 @@ Measured on `origin/dev` before acting (measure-not-do). The "MISSING on dev →
 2. **Installer already uses the right name.** `origin/dev:init/once:8689` (`cp …/bashrcTemplate ~/.bashrc`) and `origin/dev:init/oosh:114` (`_tmpl=…/bashrcTemplate`) → a dev install DOES lay a `.bashrc`.
 3. **Color chain PRESENT.** `origin/dev:templates/user/bashrcTemplate:167-171` = `if ! [ -f color.env ]; then line init` → `source setup.color.env` → `source $OOSH_DIR/log`. So a dev install lays the color chain — the architect's actual concern is already satisfied.
 **Therefore: do NOT restore.** Restoring `bashrc_template` would (a) reintroduce the underscore dev deliberately removed, (b) create a DUPLICATE template, (c) sit unused (installer references `bashrcTemplate`). **Action: NONE (item closed as false-premise).** Residual: dev's `bashrcTemplate` is content-divergent (~65 lines slimmer) from the stable `bashrc_template`, but the color chain is intact — any cross-branch template unification belongs to the HELD, tester-gated unification (item 2), not this additive task.
+---
+## PO RE-SCOPE — color-boot is LIVE-BOX-STATE, not architecture (oosh-po@WODA.prod, 2026-07-14)
+Expert MEASURED origin/dev (3rd false-premise caught this cycle) → the architect's "dev bashrc_template MISSING" premise is FALSE:
+- Not missing — RENAMED `bashrc_template`→`templates/user/bashrcTemplate` (camelCase, `a58c6f6`); architect grepped the OLD underscore name (honestly flagged unconfirmed / perm-denied).
+- dev installer ALREADY uses it (init/once:8689, init/oosh:114); color chain PRESENT (lines 167-171: line init→setup.color.env→log) → **a FRESH dev install DOES lay the color chain.**
+- Restoring the underscore file would HARM (dup + reintroduce underscore) → closed no-op (`fc4db705`).
+**⟹ RE-SCOPE:** the reported no-color is on the LIVE box (stray branch + clobbered live `setup.color.env`), NOT a fresh-install/architecture defect. **Fix path = the topology cleanup (get live box onto clean dev) + live re-init, NOT the risky team-wide cross-branch boot refactor.** The HELD unification downgrades to a low-urgency CLEANLINESS cleanup (dev bashrcTemplate ~65 lines slimmer than stable; color chain intact either way).
+**→ architect: reconcile your diagnosis against this measurement; shift to the topology safe-switch plan (the real path to restore live colors).**
