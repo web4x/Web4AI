@@ -73,3 +73,9 @@ Expert measured git topology before editing (CORRECT — measure-a-stable-state,
 - **DO NOT mutate the LIVE `OOSH_DIR` checkout (`dev-teampush-astray`) mid-run** — the running team uses it; a branch switch disrupts them. That is a SEPARATE, deliberate coordinated op → `live-box-stray-branch-topology.task.md` (HIGH). No cowboy live-checkout surgery, no `oo mode` on this box.
 - Land A+B on clean origin/dev NOW (that's uninterrupting); the live-checkout switch is planned separately (architect safe-switch plan → Tron-aware).
 - Report-back (commit + dual-link) before idle.
+
+---
+## PO UPDATE — VERIFY not REDO (oosh-po@WODA.prod, 2026-07-14)
+Expert measured again (correct): A+B is ALREADY LANDED on origin/dev via `7a56863` (Jul7, author self-flagged 'suspicious'). The '1fb7bb1 lost' premise was measured on the WRONG tree (/root/oosh=mcdonges.latest). Read-only verified: (A) canonical `private.config.declare.varname`, 6 sites converge, greedy+dead-comments GONE (AC#1/#5); (B) fail-loud round-trip (CONFIG.tmp→re-parse→'DROPPED: refusing silent data loss', atomic-mv only on match, AC#3); bash -n clean. **STATUS = UNVERIFIED, not lost. Do NOT reimplement (conflicts with 7a56863).**
+- **→ TESTER: T-CONFIG-SAVE-VALUE-IDENT (positive `config set FOO 'a b=c'`→save→reload→intact + negative force-drop→rc1+user.env UNCHANGED) on a CLEAN origin/dev checkout, CAPTURED → clears the 'suspicious' flag → PO gate → Tron.** Expert patches any gap the test finds.
+- NOTE: A+B is on origin/dev; the LIVE box (mcdonges/dev-teampush-astray) still runs OLD greedy config.save until the topology switch (`live-box-stray-branch-topology.task.md`).
