@@ -1,3 +1,24 @@
+# robbin-po Context — save #40 (2026-07-14 post-deep-rewind, IntelliJ MERGE-EDITOR R30.9→R30.16 LIVE + R30.17 functional-fixes MINTED, v0.7.25)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #40 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ BOOT: git log + THIS + ls scrum.pmo/sprints/* FIRST (disk moves ahead of convo — team keeps building during rewinds). Repo=/var/dev/Workspaces/web4x/Web4RawBin. Prod=prod.wo-da.de:4444 v0.7.25. Verify live by /api/config. Restart=remoteShells:0.2 (Ctrl-C+npm start, node22). Team robbinTeam2 0.0=PO/0.1=expert/0.2=skill-expert/0.3=architect/0.4=req/0.5=tester/0.6=planner; SM=ooshTeam:0.1.**
+
+### ★ ACTIVE TASK: R30.17 = R30.16 FUNCTIONAL CORRECTNESS (minted cdeda1bb1, architect design a2ff49697) — awaiting derive-confirm → PO build-go → build
+- R30.16 shipped the VISUAL IntelliJ layout (v0.7.23) but architect found 5 FUNCTIONAL bugs → R30.17 fixes: (1) accept-mutates (accept ►/◄ must actually push the hunk into center), (2) one-sided-ribbons (ribbons for one-sided changes not just conflicts), (3) Y-align correctness, (4) LEFT-history (history belongs on LEFT not right). + SUPERSEDE populateRightHistory→populateLeftHistory (6bbee09e4, annotation-only, R30.10/R30.15 chains intact). DRIVE: architect derive-confirm → I build-go (behind gate, carries [MARKER=impl-uuid]) → expert builds pure-client → tester function-first gate → surface beside Tron's Rider ref.
+
+### S30 DIFF/MERGE ARC R30.9→R30.17 (the session's headline, ALL on RbDiffEditor)
+- R30.9 3-way IntelliJ merge + magic wand (Tron "AMAZING") | R30.10 file-history (superseded→left by R30.17) | R30.12 2-way take-over (Tron screenshot gap) | R30.13 inter-pane gutters + connector ribbons | R30.14 SW auto-update (clients.claim+pollForWorkerUpdate — fixes stale-bundle; v0.7.25 live-catch) | R30.15 right-history meaningful-default+pick-wins (v0.7.24, superseded by R30.17) | R30.16 FULL IntelliJ layout v0.7.23 (alignPaneRows + widen-gutter=visible-ribbons + scrollBeyondLastLine:true + renderCenterChangeBlocks colored-rounded-blocks; classify-at-source kind→blocks+ribbons match) — DONE+gated, chain R30.9→R30.16 complete to Test. Scoreboard 77/348.
+- ★ TRON FIDELITY THREAD (drove R30.13→R30.17): wanted TRUE IntelliJ — connector ribbons (were 1px slivers=gap:1px→widen 34px), aligned line-numbers (viewZone spacers), scroll-to-last-line (scrollBeyondLastLine was FALSE), center colored-rounded-blocks (blue/green/red per hunk-kind), + functional accept-mutates. Reference = Rider merge screenshot (blue/green/red center blocks + ribbons + gutter icons).
+
+### BACKLOG: R30.11 scoreboard-honesty (walkChainCoverage+honorSupersededBy+repointSupersededTests, planner post-rewind) | R27.6 true-dangling (S28)
+
+### DISCIPLINE BANKED (hard-won, apply by default)
+- SINGLE-MINTER (req sole) → ARCHITECT DERIVE-CONFIRM (the gate, by uuid-FILE) → PO BUILD-GO BEHIND it (never jump the gate). MARKER=[impl:uuid:<IMPL-uuid>] ALWAYS (never Method); req reports "[MARKER=<impl-uuid>]" so build-go carries it (no re-map). chain-complete≠task-Done. req deep-verifies CHAIN-ON-DISK before report.
+- VERIFY-DELIVERY: send.verified≠submitted; sends STAGE on busy panes → bare-Enter poke submits (caught 4×). MEASURE DISK, idle pane hides committed work.
+- PUSH-WHEN-BLOCKED: branch-protection denies AGENT push to main → agent flags PO → PO pushes origin/main → VERIFY on origin (fresh-clone view). No half-wired gap.
+- SW-CACHE stale (Tron couldn't see deploys): version bump = NEW bundle hash = URL browser never cached → forces fresh fetch (in-app clear/SW-unregister insufficient); R30.14 auto-update = permanent fix.
+- Independent-tool verify (tester probes BODY not status); measure-a-stable-state (not dirty/mid-flight); DRIVE the build don't ask obvious go (Tron's bug-report IS the order).
+
 # robbin-po Context — save #39 (2026-07-14, IntelliJ MERGE-EDITOR ARC R30.9→R30.16 COMPLETE + LIVE v0.7.23)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #39 — READ FIRST) ★★★★★★★★★★★★★★★★★
