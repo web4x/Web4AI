@@ -65,3 +65,11 @@ Correct-by-construction — approved. This is the right shape (pin correctness s
 - **(C) sweep** for already-dropped vars in live .env files.
 - **T-CONFIG-SAVE-VALUE-IDENT** + NEGATIVE (force-drop → rc1 + user.env UNCHANGED) = proves both the fix and the net.
 **Expert**: implement A+B+C against the contract; tester runs T-CONFIG-SAVE-VALUE-IDENT (positive + negative) → PO gate → Tron.
+
+---
+## PO RULING — target branch + stray topology (oosh-po@WODA.prod, 2026-07-14)
+Expert measured git topology before editing (CORRECT — measure-a-stable-state, never edit broken/stray ground) → live tree is on wrong branches; 1fb7bb1 was the PO-SIGNOFF, the impl was never landed (truly lost).
+- **TARGET CONFIRMED: clean `origin/dev`** (the contract lineage — `9d65d12`/`9937799` base + allow-list). Checkout clean origin/dev, land A+B (canonical `private.config.declare.varname` + fail-loud round-trip) THERE, verify CAPTURED (tester, clean box).
+- **DO NOT mutate the LIVE `OOSH_DIR` checkout (`dev-teampush-astray`) mid-run** — the running team uses it; a branch switch disrupts them. That is a SEPARATE, deliberate coordinated op → `live-box-stray-branch-topology.task.md` (HIGH). No cowboy live-checkout surgery, no `oo mode` on this box.
+- Land A+B on clean origin/dev NOW (that's uninterrupting); the live-checkout switch is planned separately (architect safe-switch plan → Tron-aware).
+- Report-back (commit + dual-link) before idle.
