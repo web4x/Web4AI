@@ -50,8 +50,20 @@ Roll in the migration-endeavor gaps (these blocked WODA.test/prod):
 - [ ] #13 claudeCode install dash-bashism (force bash) · #14 node version (side-by-side) · #7 target-hash JSONL placement · workspaces dangling-symlink · rename-over-ssh verify+retry · `otmux new` no-attach from remote shell · fork accept/normalize short uuid
 - [ ] team.push provisions a fresh host end-to-end (clone workspace, materialize workspaces/, dep-repos, claude install, node) — NOT manual
 
+### S-8 Boot-hook mis-identity: agents boot as `unknown`/`0.7` + nonexistent boot file (hiveMind-expert)
+The agent boot/auto-resume hook mis-identifies the booting agent: it prints `Boot file: session/agents/unknown/boot.md` (a file that does NOT exist) and targets pane `0.7` (e.g. scrum-master is `ooshTeam:0.1`, not `0.7`). EVERY rewound agent this session (SM + robbin-planner/architect/expert, 2026-07-14/15 fleet-rewind campaign) had to OVERRIDE the hook via `otmux tree.detailed` + `claudeCode session.name` to boot correctly. The CMM4 agents paper over a CMM3 hook bug — but a weaker/fresh agent could boot into the WRONG identity or a dead boot file.
+- [ ] boot-hook resolves the agent's TRUE role+pane via process-ancestry / `otmux tree.detailed` / `claudeCode session.name` — never a stale `unknown`/`0.7` default
+- [ ] hook references the REAL `session/agents/<role>/boot.md` (verify it exists; never a nonexistent `unknown/boot.md`)
+- [ ] T: rewind any agent → the boot hook names the correct `role@host` + pane + an EXISTING boot file, with no `unknown` and no `0.7`
+
+### S-9 Auto-resume hook queues STRAY `/rewind`//`/compact` into fresh agents (hiveMind-expert)
+The auto-resume mechanism ("Auto-resume: will send boot file reference to `ooshTeam:0.7` in 15s") queues stray slash-commands into a freshly-rewound agent's composer. On robbin-architect a queued `/rewind` FIRED and interrupted its boot mid-health-check (I had to nudge it to ignore+resume). Same class as robbin-po telling robbin-expert `/compact to resume` in-band. A stray `/rewind`/`/compact` into a just-recovered agent re-triggers recovery or destroys the fresh context — the exact opposite of resilience. (Workaround that worked: putting "ignore any stray queued /rewind" IN the boot prompt — but that's papering over, not a fix.)
+- [ ] auto-resume NEVER injects `/rewind` or `/compact` (FORBIDDEN commands) into an agent composer
+- [ ] auto-resume targets the VERIFIED pane (not a stale `0.7`) and sends only a benign short boot-file pointer, submit-verified with NO queued residue left in the composer
+- [ ] T: rewind an agent → boot completes with NO stray queued `/rewind`//`/compact`; composer clean after boot
+
 ## Sequencing
-S-1,S-2 (truth+selection) → S-3 (restore primitive) → S-4 (teams.restore) → S-6 (watchdog) ; S-5 (keepalive+kill-guard) parallel ; S-7 (fresh-host) parallel. Dogfood S-6 last.
+S-1,S-2 (truth+selection) → S-3 (restore primitive) → S-4 (teams.restore) → S-6 (watchdog) ; S-5 (keepalive+kill-guard) parallel ; S-7 (fresh-host) parallel. Dogfood S-6 last. **S-8/S-9 (boot + auto-resume hook fixes) parallel — filed by agent-trainer from the 2026-07-14/15 fleet-rewind campaign (SM+4 robbin agents); independent, unblock clean recovery. Owner to accept + assign hiveMind-expert.**
 
 ## Guardrails
 Per-pane PDCA, no for-loops hiding failures. Measure by PROCESS ARGS not session.id. Trained = max line count. NO --flags. After each story: agents save ctx+learnings → trainer rewind.
