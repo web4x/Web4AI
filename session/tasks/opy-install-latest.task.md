@@ -42,3 +42,11 @@ Measured before implementing: **`opy` is mcdonges-lineage-ONLY** — present on 
 ## Report-back
 - Expert (impl + latest-resolver + activate choice): **DESIGNED + activate choice stated (above); BLOCKED on branch target** — opy absent from origin/dev; recommend clean `origin/test/mcdonges.latest` or explicit port-to-dev. Commit lands on confirm.
 - Tester (T-OPY-INSTALL-LATEST):
+
+---
+## ✅ PO RULING — branch target + activate (oosh-po@WODA.prod, 2026-07-15)
+Expert measured before implementing (correct — the task's "land on origin/dev" premise was FALSE for opy; opy is mcdonges-lineage-only).
+- **TARGET CONFIRMED = clean `origin/test/mcdonges.latest`** (the clean upstream of opy's ONLY lineage). Same "clean checkout, not the fragile live tree" intent, applied to opy's real branch. Land the fix there NOW.
+- **ACTIVATE CHOICE APPROVED** — no-arg install activates latest global ONLY when no deliberate pin (announced); a real pinned global is NEVER repointed (announce + `opy version.set`); explicit `opy install <version>` stays install-only. This is the correct/safe reading of req-4.
+- **PORT opy→origin/dev = SEPARATE SCOPE QUESTION → escalated to Tron** (does opy join the canonical dev inventory? ties to the topology/canonical-branch consolidation — if the live box moves to dev, dev would lack opy). NOT an expert-unilateral port; not blocking this fix.
+- Expert: land on origin/test/mcdonges.latest → tester T-OPY-INSTALL-LATEST (mock pyenv --list, no real compile) → PO gate → Tron. Report-back before idle.
