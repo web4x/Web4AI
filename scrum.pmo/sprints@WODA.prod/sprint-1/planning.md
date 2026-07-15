@@ -89,3 +89,11 @@ Expert measured origin/dev (measure-not-do #4+#5 this cycle): NO reimpl needed.
 - **Gap D (task-08 double-submit): RESOLVED** — otmux:2054-2073 Case-2 skips the redundant trailing Enter (keeps non-Enter keys). TC-8 already proved 1-Enter on shell.
 - **→ TESTER: go-through on a CLAUDE target** (task-19 fixture) — TC-5 (classify-claude/g.4) + TC-8 (exactly-one-Enter on claude) → captured → PO gate → Tron. NOT reimplementation.
 - **META**: the "gaps" were stale-tree artifacts; origin/dev already carries the fixes → the TOPOLOGY SWITCH delivers ALL of them (config.save + g.4 + Gap D + colors) to the live team at once.
+
+---
+## ✅ PO GATE PASS — Gap B/D (oosh-po@WODA.prod, 2026-07-15) + reference correction
+Reviewed the tester's CAPTURED proof (`9ff9565`, reviewed not re-run). **Gap B/D VERIFIED GREEN 17/17 on a CLAUDE target** (task-19 fixture, clean origin/dev @ fcd8e6d):
+- TC-5 classify-claude: A1 direct claude→claude · A3 BASH-PARENT claude→CLAUDE (g.4 tty-trim) · A4 node→shell guard · A6 process.running source · live registry md5 UNCHANGED (12/12)
+- TC-8 exactly-one-Enter: claude=1 Enter/1 Escape (V5) · V4 zero send-keys in any loop (poke-spray impossible)
+**PO gate: PASS → TRON acceptance.**
+**REFERENCE CORRECTION (tester dual-link-integrity catch):** the commit `0f48888d` cited in the expert report + my note `c69f5c8c` **DOES NOT EXIST**. Actual landed fixes = `6213ad6` (g.4 tty-trim = Gap B) + `466655d`/`79bd3ea` (poke removed = Gap D) — all verified present. Dangling reference retired (measure-source-not-copy).
