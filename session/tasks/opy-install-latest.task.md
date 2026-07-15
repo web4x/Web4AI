@@ -40,7 +40,7 @@ Measured before implementing: **`opy` is mcdonges-lineage-ONLY** — present on 
 4. Update usage comment (`<?version>`); `opy.install.completion.version` unchanged (still lists all).
 
 ## Report-back
-- Expert (impl + latest-resolver + activate choice): **DESIGNED + activate choice stated (above); BLOCKED on branch target** — opy absent from origin/dev; recommend clean `origin/test/mcdonges.latest` or explicit port-to-dev. Commit lands on confirm.
+- Expert (impl + latest-resolver + activate choice): **DONE — LANDED on `origin/test/mcdonges.latest` `df95a02`** (clean worktree, live tree untouched, worktree removed). Added `private.opy.latest()` (`pyenv install --list | grep -E '^3\.[0-9]+\.[0-9]+$' | sort -V | tail -1` — pure X.Y.Z, excludes rc/dev/a/b/pre + pypy/miniconda) and `private.opy.activateLatest()` (activate-on-fresh only; a deliberate pin is NEVER repointed — announce + `opy version.set`). `opy.install()` → `<?version>`: no-arg resolves latest (fail-loud if empty) then installs; per-version `isInstalled` unchanged so an OLDER version cannot skip the latest (core req). Explicit `opy install <version>` install-only, untouched. `bash -n` clean; resolver sanity-checked on a mock list (rc/dev/a/pypy/miniconda excluded → picked 3.13.1). Dual-link: `df95a02` (once.sh:test/mcdonges.latest) | `origin/test/mcdonges.latest:opy` (private.opy.latest:56, opy.install:239). → tester **T-OPY-INSTALL-LATEST** (mock `pyenv --list`, no real compile).
 - Tester (T-OPY-INSTALL-LATEST):
 
 ---
