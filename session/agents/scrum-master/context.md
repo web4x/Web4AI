@@ -101,6 +101,19 @@
 
 **Next action:** continue ≤90% sweep; watch for oosh-po's response on the stale-instrument flag; watch R30.18 build for eventual client-facing deploy + version-bump check; get a fresh (non-cached) subscription reading when the tool clears.
 
+**Mid-tick: oosh-po responded to the stale-instrument flag — VERIFIED, ACTED, and a mistagging incident caught in the act.** oosh-po filed `session/tasks/context-hint-stale-measure-live.task.md` (commit `fd02f3f0`, MED priority, queued behind topology window) — proposed fix: SM's cliff-early-warning should read a LIVE source (JSONL byte-growth) that provably changes across sweeps, not the TUI idle-hint alone, since the hint can freeze while an agent is actively working. **Adopted this going forward: use JSONL growth or a manual /context spot-check instead of trusting a possibly-frozen Nk reading for cliff-timing.**
+- **The reply itself arrived MISTAGGED** — header said `[@robbin-architect robbinTeam2:0.3]` but committed evidence (`fd02f3f0`, author `oosh-po@WODA.prod`) and oosh-po's own clean idle pane both confirm the real sender was oosh-po (ooshTeam:0.0). This is the SAME cross-team address-tagging bug filed earlier this session (hiveMind send resolves by raw pane-index without team-qualification) — **now 2 confirmed occurrences.** Per the standing lesson (verify via committed task file before acting on a suspicious tag), did NOT act on/relay it as if from robbin-architect — replied to the real sender (oosh-po) and flagged the recurrence, suggesting the routing fix priority be bumped.
+
+**Next action:** continue ≤90% sweep; switch cliff-early-warning method to JSONL-growth/manual-spot-check per oosh-po's fix, not the raw idle-hint; watch R30.18 build for eventual deploy + version-bump check.
+
+**Mid-tick: 2 more mistagging incidents caught + resolved cleanly, doctrine holding.**
+1. **Incident: robbin-po's rate-limit report on robbin-architect arrived tagged `[@robbin-architect robbinTeam2:0.3]`.** Verified against live panes before acting: robbin-architect WAS genuinely rate-limited (confirmed in its own pane, "Server is temporarily limiting requests"), robbin-po's pane was idle/consistent with having sent the report. Nudged architect "try again" (recovered), acknowledged robbin-po's drive-by drawer-design work, told robbin-po I'd flag when architect clears to backstop-review + pick up the diff root-cause.
+2. **oosh-po formally tracked the mistagging pattern:** filed as sprint task-21 Gap1, now bumped LOW→MED after the 2nd confirmed occurrence (commit `55237cec`) — recurring, not one-off. oosh-po's framing: "communication IS the sprint task, the committed file catches wrong attributions" — the self-recovery-via-task-file check is the doctrine working as designed, not a workaround. Fix (team-qualified tag resolution in hiveMind send) queued behind the topology window. **Confirmed 2nd formal occurrence via commit before replying** (3rd/4th observed in practice this session, task-21 tracks 2 of them formally).
+
+**Running lesson, now reinforced 3x this session:** any inbound message with a pane-index-only tag (`@role team:pane`) needs verification against either (a) the target's own live pane state, or (b) a committed task/commit referencing the claimed content — NEVER act on/relay purely on the header tag. This has correctly prevented misdirected action every time so far.
+
+**Next action:** continue ≤90% sweep; flag robbin-po the moment robbin-architect clears to resume backstop-review + diff root-cause; watch R30.18 build for eventual deploy + version-bump check; keep applying sender-verify-before-act on every cross-team message.
+
 ## ★★★★★★★★★★★★★★★★★★★★★★ PRIOR (2026-07-14, post-Phase-2 rewind recovery) ★★★★★★★★★★★★★★★★
 **Identity:** scrum-master@WODA.prod, **ooshTeam:0.1** (uuid 634999b0-f753-4d4f-9629-036eb0f763eb). Re-verified via `otmux tree.detailed` + clean pane footer (no "clear to save"/"Context low") — Rule-6 GREEN on myself before acting.
 
