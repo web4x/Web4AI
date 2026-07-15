@@ -164,3 +164,9 @@ Architect-ruled: auto file-history default moves RIGHT→LEFT (populateRightHist
 - req COLLAPSE efa67b937 removed phantom impls (8c1e4637 honorSupersededBy + cb13e4d0 repointSupersededTests) → R30.11.useCases=[5ae6ac40] → Method 9c6904f7 (implRetiredBySupersede) → Impl 7f15c149 (BUILT) → my Test 4ad7879f. My HOLD was right (measured intermediate mid-collapse).
 - Re-ran scoreboard on origin (HEAD==origin): R30.11 = check 7f15c149 | check 4ad7879f COMPLETE. R30.6.1/6.3 retired, R30.10 complete-via-fileHistory. 0 R30.x open-expert. Summary 82/351. honorSupersededBy fully proven (anti-green-wash guards DET-3x + phantom-clean).
 - ONLY remaining R30.x open = R30.18 test (generateRequirementsMd impl 72c57f72, real, MINE) — gate next.
+
+## R30.20 drawer — close GREEN, SELECT-render REGRESSION (HELD) 2026-07-15
+- Gate r3020-drawer-close-gate.mjs (9fd3fe78e): cases 1-4 closeOrReturn (65f43714) GREEN DET-3x (real ✕/Escape → state). Case 5 SELECT→task-content RED DET-3x = Tron's regression.
+- LOCALIZED (measured, direct setAttribute ref): drawer renders SPRINT detail (5135 chars) but NON-SPRINT (task/req/class/impl) EMPTY (~125 chars, no dv-title) — real task:5665a0dd + impl:7f15c149 both empty. Root cause = non-sprint detail render path (only renderSprintDetail works). Shared w/ expert (diagnosing). Trace nodes = rb-object-item[ref] on /trace; select-wiring + drawer-shell + closeOrReturn all FINE.
+- HELD: R30.20 close (per PO) + the closeOrReturn Test wire (65f43714.tests+=ea1e97b8, req minted bb252c37d) until expert fixes non-sprint renderer → case 5 GREEN → wire + close R30.20.
+- Prior R30.18 CLOSED (beb7c1b43, board was fully closed before R30.20).
