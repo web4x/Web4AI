@@ -182,3 +182,9 @@ Architect-ruled: auto file-history default moves RIGHT→LEFT (populateRightHist
 - R30.21 CLOSED (e60340530): 159fb8f0.tests=[cc76beea], check|check. R30.20+R30.21 both closed. Pending PO push + req re-verify.
 - R30.22 (selectionDriven, visible-on-first-select) = ONLY R30.x open: impl e927ecfe OPEN (expert building), test hop already check 0b7d18d9 (asked req if 0b7d18d9 is placeholder or expects my visible-gate marker). WHEN EXPERT SHIPS R30.22: gate content-VISIBLE-on-first-select (drawer body display:flex / visible offsetHeight>0, NOT just DOM-present — R30.21 was DOM-present; R30.22 is VISIBLE). Peek/minimized body:display:none clips it on first select until grab-bar expand.
 - Drawer Tron-done: R30.20(close ✓) + R30.21(render ✓) + R30.22(visible, coming).
+
+## R30.22 GREEN — DRAWER TRON-DONE (2026-07-15)
+- r3022-visible-on-select-gate.mjs GREEN DET-3x (0dbed3c8d, v0.7.32 app-5Y3QK3GS.js): (1) SELECT fresh drawer → opens EXPANDED visible immediately (minimized=false, body display:flex, h=360>peek, detail 4686 chars, no grab-bar); (2) X→minimize; (3) grab-bar→toggle; (4) ESC→close; (5) R30.21 re-run still GREEN (no regression). openExpanded (e927ecfe) via onSelectionChanged + attributeChangedCallback(ref).
+- *** DRAWER TRON-DONE: R30.20(close) + R30.21(render) + R30.22(visible) all GREEN. ***
+- PENDING: req mints R30.22 Test off marker 8cce5ae7 → Impl e927ecfe → I wire e927ecfe.tests+=8cce5ae7 → R30.22 closes → board fully closed. NOTE: scoreboard R30.22 'check 0b7d18d9' = crossRef pre-existing detailDrawer.fullWidth test (impl da9462f5), NOT the openExpanded verification; 8cce5ae7 is the real one.
+- Pushes pending PO: R30.18/R30.20/R30.21/R30.22 gate+wiring commits.
