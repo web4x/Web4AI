@@ -88,6 +88,19 @@
 
 **Mid-tick update:** trainer reported hook-defect filing complete — VERIFIED `01528e77`, S-8 (boot-hook mis-identity unknown/0.7) + S-9 (auto-resume hook queues stray /rewind//compact into fresh agents) both filed in `sprint-team-resilience/planning.md`, owner-to-assign hiveMind-expert. Acknowledged to trainer. **Noted in passing (not urgent, own resolution path already in motion):** robbin-tester HELD R30.11 close on an impl-mismatch (8c1e4637 vs built 7f15c149), already self-flagged to robbin-req for re-point (`5fae7135`) — normal in-chain gating, no SM escalation needed unless it stalls past next tick.
 
+## ★★★★★★★★★★★★★★★★★★★★★★ TICK (2026-07-15, sweep — R30.11 closed, stale-instrument flagged) ★★★★★★★★★★★★★★★★
+**Identity re-verified:** scrum-master@WODA.prod, ooshTeam:0.1. Own pane clean. Subscription tool STILL returning cached/rate-limited reading (12%/5h, 46%/7d, "cached 723s, client_429") — same numbers 2 ticks running now; genuinely can't get a fresh read this tick, but prior real readings trend safely low, not treating as urgent.
+
+**R30.11 CLOSED** (`d1d02f2d` req anchor, `dcec18f3` tester anchor) — board 0-false-open verified on origin/main, whole impl-supersede class cleared (incl R30.6.1/6.3/R30.10 pre-existing gaps). **Checked for version-bump duty trigger: NOT APPLICABLE** — this was a requirements/test-chain close (scoreboard bookkeeping), not a client-facing UI bundle deploy; no `edit-*.js`/served-hash change involved. Only remaining R30.x open = R30.18 test (separate build).
+
+**Trainer:** hook-defect commit `01528e77` reconfirmed still on origin. Trainer moved to its own next standing task ("check if ARON emitted the purified skills yet") — healthy, self-directed, no action needed.
+
+**STALE-INSTRUMENT FLAGGED to oosh-po:** oosh-po/architect/expert/tester idle-hint readings (699.2k/679.1k/315.6k/223.9k) have now been byte-for-byte IDENTICAL across 6+ consecutive sweep ticks (~25 real minutes) despite confirmed active work in that window. Filed as a tool-improvement note, not urgent (all well below 80% threshold regardless) — but flagged so it doesn't silently become a blind spot if one of these agents actually approaches the wall.
+
+**Rest of fleet:** robbin-po (benign survey overlay again, non-blocking, ignore), robbin-expert/architect/req/tester/skill-expert/planner all healthy, no warnings.
+
+**Next action:** continue ≤90% sweep; watch for oosh-po's response on the stale-instrument flag; watch R30.18 build for eventual client-facing deploy + version-bump check; get a fresh (non-cached) subscription reading when the tool clears.
+
 ## ★★★★★★★★★★★★★★★★★★★★★★ PRIOR (2026-07-14, post-Phase-2 rewind recovery) ★★★★★★★★★★★★★★★★
 **Identity:** scrum-master@WODA.prod, **ooshTeam:0.1** (uuid 634999b0-f753-4d4f-9629-036eb0f763eb). Re-verified via `otmux tree.detailed` + clean pane footer (no "clear to save"/"Context low") — Rule-6 GREEN on myself before acting.
 
