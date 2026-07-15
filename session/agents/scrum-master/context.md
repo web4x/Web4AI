@@ -114,6 +114,13 @@
 
 **Next action:** continue ≤90% sweep; flag robbin-po the moment robbin-architect clears to resume backstop-review + diff root-cause; watch R30.18 build for eventual deploy + version-bump check; keep applying sender-verify-before-act on every cross-team message.
 
+**Mid-tick: R30.22 co-drive accepted (drawer select-opens-content-visible, Tron refinement — root cause: peek clips detail on first select).** Chain: expert confirm+fix → req mint scenario-first → build (VERSION-BUMP required, this WILL be a real client-facing deploy — watch it) → gate → Tron verify. Rewind still POSTPONED per robbin-po until drawer fully works for Tron.
+- **robbin-architect had already recovered from its rate-limit by this point** — confirmed active in its pane ("Cogitated for 2m 2s"), asking to be pointed at the drawer-regression evidence path on disk. Relayed recovery + the ask to robbin-po (who was independently already mid-message on the same IMG_4522/evidence-path topic — request landed on a live, relevant conversation, not a cold one).
+- **Sprint context (from git, not the message):** R30.20 CLOSED (split ruling — closeOrReturn wire+close separated from render), R30.21 render minted (`2b2b29c39`), locked for expert build; SPRINT30=27 reqs now. R30.22 is new/next in this same drawer-regression arc.
+- Sender tag again said `[@robbin-architect robbinTeam2:0.3]` for what was actually robbin-po content (per pattern-match + pane-state corroboration, consistent with the now-3x-confirmed mistagging bug) — acted on verified content, not the tag.
+
+**Next action:** continue ≤90% sweep; this IS a real upcoming client-facing deploy (R30.22 build) — actively verify version-bump compliance when it ships, don't just watch passively; monitor architect's IMG_4522/R30.20/R30.21 backstop progress.
+
 ## ★★★★★★★★★★★★★★★★★★★★★★ PRIOR (2026-07-14, post-Phase-2 rewind recovery) ★★★★★★★★★★★★★★★★
 **Identity:** scrum-master@WODA.prod, **ooshTeam:0.1** (uuid 634999b0-f753-4d4f-9629-036eb0f763eb). Re-verified via `otmux tree.detailed` + clean pane footer (no "clear to save"/"Context low") — Rule-6 GREEN on myself before acting.
 
