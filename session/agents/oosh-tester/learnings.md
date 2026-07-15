@@ -210,3 +210,18 @@
 - **Two-repo commit pattern**: CODE/tests → the oosh repo branch (dev / test/macos.latest, push origin); REPORT-BACK → workspace `main` (session/tasks, push origin). Mailbox is live — `git pull --no-edit` before push on main.
 - **Remote bridge exec is user-gated**: `ossh exec WODA.prod` AND `WODA.test` both denied by auto-mode classifier when peer-directed (no user intent). Surface for Tron auth; do NOT bypass. Local redrawing-delta proves the same invariant (fix reads visible screen, nothing for a bridge to desync).
 - Gate commits: dev `1c5a4e8`, macos.latest `a6a98dc`.
+
+## console.log is LOG_LEVEL≥3 gated — tests asserting on it must force the level (2026-07-15)
+**Measured** (with oosh-expert, test.opy T12): `console.log` output is suppressed at
+`LOG_LEVEL=1` **regardless of `LOG_DEVICE`** — a file device does NOT make it visible;
+only `error.log`/`important.log` (lower min-level) survive level 1. The suite runs at
+exported `LOG_LEVEL=1`.
+- **Trap**: capturing a subprocess's `console.log` line via `LOG_DEVICE=<file>`/`2>&1`
+  gives EMPTY at level 1. A test that greps for a console.log message then FAILS even
+  though the code is correct. Pointing LOG_DEVICE at a file "fixes" it only if ambient
+  LOG_LEVEL happens to be ≥3 (brittle, order-dependent — passed once by accident).
+- **Rule**: when a test must assert on a `console.log` message from a subprocess, force
+  the level on that subprocess: `OUT=$(LOG_LEVEL=3 LOG_DEVICE=/dev/stdout <cmd> 2>&1)`.
+  Or, if a guard already proves the branch, assert on RC alone and drop the message grep.
+- My earlier "LOG_DEVICE=/dev/null swallowed it" diagnosis was INCOMPLETE — the real gate
+  is LOG_LEVEL, not the device. Measure the level, not just the device.
