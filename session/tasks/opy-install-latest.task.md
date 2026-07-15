@@ -50,3 +50,7 @@ Expert measured before implementing (correct — the task's "land on origin/dev"
 - **ACTIVATE CHOICE APPROVED** — no-arg install activates latest global ONLY when no deliberate pin (announced); a real pinned global is NEVER repointed (announce + `opy version.set`); explicit `opy install <version>` stays install-only. This is the correct/safe reading of req-4.
 - **PORT opy→origin/dev = SEPARATE SCOPE QUESTION → escalated to Tron** (does opy join the canonical dev inventory? ties to the topology/canonical-branch consolidation — if the live box moves to dev, dev would lack opy). NOT an expert-unilateral port; not blocking this fix.
 - Expert: land on origin/test/mcdonges.latest → tester T-OPY-INSTALL-LATEST (mock pyenv --list, no real compile) → PO gate → Tron. Report-back before idle.
+
+---
+## TRON DIRECTIVE (2026-07-15): NO port to dev until the broken dev is merged
+No port of opy (or anything) to origin/dev until the broken dev is merged. → opy STAYS on the mcdonges lineage (`origin/test/mcdonges.latest` target stands); the port-to-dev question is DEFERRED (not open) until dev is merged. The install-latest fix lands on mcdonges lineage as ruled — unaffected.

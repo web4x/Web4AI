@@ -89,3 +89,7 @@ Reviewed the tester's CAPTURED proof (`b75afc9f`, `P0-CAPTURE-clean-dev.proof.tx
 - config.save A+B: T-CONFIG-SAVE-VALUE-IDENT 7/7 (pins FOO/BAR, positive round-trips `a b=c`, negative forced-drop rc1 + file UNCHANGED + refusing silent data loss)
 - color boot: B1 empty-HOME→resolved /root (BUG-1); B2 CYAN=ESC[96m + setup.color.env pure EXPORTED (no source chain); B3 config validate rc0; B4 fresh user.env 0 source lines (BUG-2/3)
 **PO gate: PASS.** Acceptance #1 met. → Tron maintenance window for P1–P4.
+
+---
+## TRON DIRECTIVE (2026-07-15): topology switch to dev DEFERRED until the broken dev is merged
+Tron: "no port to dev until the broken dev is merged." → dev is broken/INCOMPLETE (confirmed by the opy finding: dev lacks mcdonges-lineage tools like opy). **The P1–P4 live switch to origin/dev is ON HOLD until dev is merged/whole** — switching now would strand the missing tools. P0 stays validated (config.save + colors green on origin/dev); the window does NOT open until dev-merge lands. The dev-completeness gap-check (dev vs live-tree tool inventory) folds into the dev-merge, not a pre-switch step now.
