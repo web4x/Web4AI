@@ -1,0 +1,36 @@
+=== opy under test: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/oosh-opy/opy @ df95a02 ===
+contains df95a02: YES
+
+############ RESOLVER — private.opy.latest excludes rc/alpha/dev/pypy/… ############
+  private.opy.latest -> '3.13.2'  (expect 3.13.2)
+  PASS: resolver picks 3.13.2 (rc/a/dev/t/pypy/miniconda/anaconda excluded)
+
+############ (a) no-arg opy install resolves + installs latest (fresh) ############
+  rc=0 installed=[3.13.2] global=[3.13.2]
+  PASS: (a) opy install rc0
+  PASS: (a) latest 3.13.2 INSTALLED from no-arg
+  PASS: (a) fresh box → 3.13.2 activated as global
+
+############ (b) CORE: older version installed does NOT skip latest ############
+  rc=0 installed=[3.12.8 3.13.2 ] install_calls=[3.13.2 ]
+  PASS: (b) opy install rc0 with older 3.12.8 present
+  PASS: (b) [CORE] latest 3.13.2 was INSTALLED — older 3.12.8 did NOT cause a skip
+
+############ (c) explicit opy install <version> idempotent (per-version) ############
+  rc=0 install_calls_for_3.13.2=0 global_before=[] global_after=[]
+  PASS: (c) explicit install rc0
+  PASS: (c) already-installed → ZERO re-install (idempotent per-version)
+  PASS: (c) explicit path is install-only (global untouched)
+
+############ (d) activate-on-fresh-only — DELIBERATE PIN not repointed ############
+  rc=0 global_after=[3.12.8] (pin was 3.12.8)
+  announce: [0mopy.install: latest 3.13.2 installed; global left at 3.12.8 (deliberate pin). Activate latest: opy version.set 3.13.2
+  PASS: (d) opy install rc0
+  PASS: (d) latest 3.13.2 still installed
+  PASS: (d) deliberate pin 3.12.8 NOT repointed (global preserved)
+  PASS: (d) announced pin-left + how to activate (opy version.set)
+
+==================================================================
+  T-OPY-INSTALL-LATEST:  PASS=13  FAIL=0
+  ALL GREEN — opy install-latest verified on clean origin/test/mcdonges.latest
+==================================================================
