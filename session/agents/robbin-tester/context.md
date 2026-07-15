@@ -153,3 +153,9 @@ Architect-ruled: auto file-history default moves RIGHT→LEFT (populateRightHist
 - Gate test/visual/r3011-honor-supersede-gate.ts (commit 99be5b51a). Chain.implRetiredBySupersede (impl 7f15c149, skill-classes.ts:204). Anti-green-wash guards PROVEN DYNAMICALLY (injected dangling+chained fake impls, called the fn, cleaned up — not happy-path-only): valid 58c11039→751934c1 retires; AC4 dangling→null; AC2 chained(succ superseded)→null; no-supersede→null. Integration: clears EXACTLY R30.6.1/6.3 (retired) + R30.10 (now COMPLETE via live fileHistory UC e9cfaab3); real opens R30.11 test + R30.18 test PRESERVED (0-false-open, no green-wash).
 - Run: npx tsx test/visual/r3011-honor-supersede-gate.ts (imports Chain/ScenarioIndex; calls private impl via bracket).
 - PENDING: expert pushes build 15856b8d1 → req mints R30.11 Test off marker 4ad7879f → I wire 7f15c149.tests+=4ad7879f → R30.11 chain closes + board 0-false-open on origin. Then S30 22/24 (per expert). Remaining opens = R30.18 test (mine, separate).
+
+## R30.11 close HELD — impl-mismatch (2026-07-15)
+- Gate GREEN (99be5b51a) + build 15856b8d1 on origin. My wiring b037bd83d (7f15c149.tests+=4ad7879f) LOCAL/HELD.
+- ⚠ MISMATCH after req re-point 1d4d1d804: R30.11 chain resolves to Impl 8c1e4637 (TraceAudit.honorSupersededBy, NO src marker, tests=[] → open expert+open tester) but BUILT code = Impl 7f15c149 (Chain.implRetiredBySupersede, has marker + my Test 4ad7879f). R30.11's own hops open = new mini-false-open. R30.6.1/6.3 retired ✓ + R30.10 complete ✓ (the 3 target-clears WORK).
+- FIX (req): re-point R30.11 UC→method→impl to built 7f15c149 + retire/remove stale 8c1e4637. Then R30.11=check 7f15c149|check 4ad7879f COMPLETE, board 0-false-open. My wiring stays correct.
+- HELD my push until req re-points + scoreboard confirms 0-false-open. WHEN REQ PINGS re-pointed: re-run scoreboard → confirm R30.11 closed + 0-false-open → flag PO push (b037bd83d + req re-point together).
