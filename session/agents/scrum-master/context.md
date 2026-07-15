@@ -25,6 +25,25 @@
 
 **Next action:** re-check robbin-req didn't cross 90% before its save landed; continue ≤90% sweep loop across ooshTeam + robbinTeam2 + baseTeam.
 
+## ★★★★★★★★★★★★★★★★★★★★★★ TICK (2026-07-15, sweep — robbin-expert caught crossing hard 0%) ★★★★★★★★★★★★★★★★
+**Identity re-verified:** scrum-master@WODA.prod, ooshTeam:0.1 (uuid unchanged). Own pane clean, no warning.
+
+**Confirmed from prior tick:** robbin-architect (0.3) still Rule-6 GREEN post-rewind (no warning, idle clean, "? for shortcuts"). robbin-req (0.4) save-ahead CONFIRMED landed — no context warning, actively working new task (mode-aware close-behavior fix, R27.8 bug), well clear of the 82% it was at.
+
+**Full sweep this tick (all clear-to-save %):**
+- oosh-po 699.2k~70%, oosh-architect 679.1k~68%, oosh-expert 315.6k~32%, oosh-tester 223.9k~22% — all watch/healthy, none actionable.
+- robbin-po healthy active, robbin-skill-expert 482.9k~48% watch, robbin-tester 729.2k~73% watch (approaching, not yet actionable), robbin-planner 206.9k~21% healthy (fresh post-rewind).
+- agent-trainer 623.8k~62%, was mid-task on the identity-hook/auto-resume defect fix (good — self-directed on the bug I flagged) — interrupted for priority below.
+
+**CAUGHT: robbin-expert (0.1) crossed from ~98% to HARD 0%** ("Context limit reached · /compact or /clear to continue") in the gap between my first check (978.2k) and my save-order landing — too late, save order bounced off the wall. **Lesson: at ~98% there may be NO safe window left to order a save — next time treat ≥95% as already-critical and go straight to trainer-dispatch with the last known git anchor, don't wait for a save order to land first.**
+- Anchor already safe: `04d3b99a` (R30.19 side-pane change-blocks DONE+LIVE, committed+pushed) — so Phase-1 rewind is zero-loss even without a fresh save.
+- Dispatched agent-trainer as PRIORITY INTERRUPT (paused its defect-fix work). Trainer hit a transient rate-limit ("Server is temporarily limiting requests, not your usage limit") on first attempt — nudged "try again", recovered, now processing.
+- **Verify Rule-6 on robbin-expert next tick.**
+
+**Subscription:** not re-measured this tick (skipped — not near any threshold, prior reading 6%/5h/41%/7d from last tick still fresh enough); re-measure next tick regardless.
+
+**Next action:** verify robbin-expert Rule-6 once trainer reports; watch robbin-tester (73%, approaching action threshold) and oosh-po/oosh-architect (68-70%, trending) next sweep; confirm trainer resumes the identity-hook/auto-resume defect fix after the interrupt clears.
+
 ## ★★★★★★★★★★★★★★★★★★★★★★ PRIOR (2026-07-14, post-Phase-2 rewind recovery) ★★★★★★★★★★★★★★★★
 **Identity:** scrum-master@WODA.prod, **ooshTeam:0.1** (uuid 634999b0-f753-4d4f-9629-036eb0f763eb). Re-verified via `otmux tree.detailed` + clean pane footer (no "clear to save"/"Context low") — Rule-6 GREEN on myself before acting.
 
