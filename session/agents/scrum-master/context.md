@@ -75,6 +75,17 @@
 
 **Next action:** continue ≤90% sweep; verify trainer's hook-defect-filing commit lands; watch for the R30.11 deploy to verify version-bump compliance when it ships; watch oosh-po/oosh-architect for crossing 80%.
 
+## ★★★★★★★★★★★★★★★★★★★★★★ TICK (2026-07-15, sweep — trainer was waiting on SM, not stuck) ★★★★★★★★★★★★★★★★
+**Identity re-verified:** scrum-master@WODA.prod, ooshTeam:0.1. Own pane clean. Subscription tool returned a cached/rate-limited reading (12%/5h, 46%/7d, "cached 360s, client_429") — same numbers as last tick, treat as stale-but-still-safe, re-measure fresh next tick.
+
+**agent-trainer: NOT stuck, was standing by for my decision.** Its "Baked for 8m 12s" timer looked frozen across 2 ticks because it had actually finished analysis and composed a question: it identified the auto-resume hook ALSO queues stray /rewind//compact into freshly-booted agents (2nd defect, related family to the unknown/0.7 identity-hook bug) and asked whether to write both up as sprint tasks or be redirected. **Confirmed: proceed, write up + commit both.** **Lesson: a frozen-looking timer + idle "Standing by" text is NOT the same as a stuck/rate-limited agent — read the actual message content before nudging "try again"; this one needed a decision, not a retry.**
+
+**Sweep this tick:** oosh-po/architect/expert/tester readings UNCHANGED for 4+ consecutive ticks (699.2k/679.1k/315.6k/223.9k) — flagging as a possible stale-instrument pattern worth a tool-improvement note to oosh-po (idle-hint may not be refreshing on these 4 panes), but not urgent since all are below the 80% action threshold regardless. robbin-po/expert/architect/req/tester/skill-expert/planner all healthy, no warnings, no new issues.
+
+**Version-bump duty:** no R30.11 client-facing deploy has shipped yet (still build/test/mint phase per robbin-req anchor `95eb58bd`) — nothing to check yet, duty stays watching.
+
+**Next action:** continue ≤90% sweep; verify trainer's hook-defect sprint-task commit lands; consider flagging the possibly-stale oosh-team context readings to oosh-po if they're still frozen next tick; watch for R30.11 deploy + version-bump compliance.
+
 ## ★★★★★★★★★★★★★★★★★★★★★★ PRIOR (2026-07-14, post-Phase-2 rewind recovery) ★★★★★★★★★★★★★★★★
 **Identity:** scrum-master@WODA.prod, **ooshTeam:0.1** (uuid 634999b0-f753-4d4f-9629-036eb0f763eb). Re-verified via `otmux tree.detailed` + clean pane footer (no "clear to save"/"Context low") — Rule-6 GREEN on myself before acting.
 
