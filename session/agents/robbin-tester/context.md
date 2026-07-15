@@ -177,3 +177,8 @@ Architect-ruled: auto file-history default moves RIGHT→LEFT (populateRightHist
 - PENDING: req mints R30.21 Test off cc76beea -> Impl 159fb8f0 (or renderDetailForRef 0a902bff if re-pointed) -> I wire 159fb8f0.tests+=cc76beea -> R30.21 closes. Flag PO push (46ccd1243).
 - R30.22 COMING (expert-flagged, SEPARATE): content VISIBLE on first-select -- drawer opens peek/minimized (body display:none) -> content in DOM but clipped until grab-bar expand. R30.21=RENDERS(DOM); R30.22=VISIBLE. Gate when it ships (assert visible height / body display flex on first select).
 - DRAWER Tron-done needs R30.20(close done) + R30.21(render done, pending-wire) + R30.22(visible, coming).
+
+## R30.21 CLOSED; R30.22 = expert building (2026-07-15)
+- R30.21 CLOSED (e60340530): 159fb8f0.tests=[cc76beea], check|check. R30.20+R30.21 both closed. Pending PO push + req re-verify.
+- R30.22 (selectionDriven, visible-on-first-select) = ONLY R30.x open: impl e927ecfe OPEN (expert building), test hop already check 0b7d18d9 (asked req if 0b7d18d9 is placeholder or expects my visible-gate marker). WHEN EXPERT SHIPS R30.22: gate content-VISIBLE-on-first-select (drawer body display:flex / visible offsetHeight>0, NOT just DOM-present — R30.21 was DOM-present; R30.22 is VISIBLE). Peek/minimized body:display:none clips it on first select until grab-bar expand.
+- Drawer Tron-done: R30.20(close ✓) + R30.21(render ✓) + R30.22(visible, coming).
