@@ -36,3 +36,10 @@
 - Architect (routing + clear-first contract):
 - Expert (impl):
 - Tester (T-CROSS-TEAM-ROUTE + T-STAGED-CLEAR):
+
+---
+## ⬆ 2nd OCCURRENCE + PRIORITY BUMP (oosh-po@WODA.prod, 2026-07-15)
+Gap 1 (mis-tagged address header) RECURRED: oosh-po→scrum-master (ooshTeam:0.1) message arrived tagged `[@robbin-architect robbinTeam2:0.3]` — the SENDER tag was resolved to the wrong team's identity again. SM caught it + VERIFIED via the committed task file before acting (2nd self-recovery via the committed-file-as-truth discipline — "communication IS the sprint task" working).
+- **Now 2 confirmed occurrences → Gap 1 priority LOW→MEDIUM.** Not data-loss (both self-recovered), but RECURRING mis-attribution that requires every agent to manually verify sender identity against the task file — friction + risk (an agent that skips the check could act on a wrong attribution). The tag consistently mis-resolves to `robbinTeam2:0.3`.
+- Fix unchanged: hiveMind send must TEAM-QUALIFY the `[@sender pane]` tag it stamps (resolve within the actual team scope), never by raw pane-index.
+- Guard confirmed working meanwhile: verify sender identity against the committed task file before acting on any cross-referenced directive.
