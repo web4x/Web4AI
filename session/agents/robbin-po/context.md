@@ -1,5 +1,33 @@
-# robbin-po Context — save #42 (2026-07-14, R30.17 merge-correctness DONE + LIVE v0.7.27; R30.19 next — gate+verify remain)
-*(supersedes #41; older saves #29–#41 collapsed to HISTORY below — full text recoverable via `git show`)*
+# robbin-po Context — save #43 (2026-07-15, S30 R30.9–R30.22 ALL DONE + DRAWER fully fixed Tron-confirmed; NEXT=diff-completeness IMG_4522)
+*(supersedes #42; older saves collapsed to HISTORY below — full via `git show`)*
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #43 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ BOOT: `git -C /var/dev/Workspaces/web4x/Web4RawBin log --oneline -8` + `curl -sk https://prod.wo-da.de:4444/api/config` + `ls scrum.pmo/sprints/` FIRST — DISK WINS over any saved fact. Then this + learnings.md. Prod=prod.wo-da.de:4444 LIVE v0.7.32. Repo=/var/dev/Workspaces/web4x/Web4RawBin (main, pushed). Team robbinTeam2 0.0-0.6, SM=ooshTeam:0.1, ARON=Temple:0.0. Restart=remoteShells:0.2.**
+
+### ★★★ ACTIVE BLOCKER (Tron — REWIND POSTPONED until this is fixed): TRACE-VIEW SELECT REGRESSION from R30.20
+- BUG: R30.20 drawer fix (v0.7.29) fixed in-room X→chat BUT broke the TRACE-VIEW drawer — selecting a task/class/node does NOT add content to the drawer (no detail renders). Tron: "in room regression fixed, now the drawer outside of the room is broken, does not add content on select."
+- ★ MEASURED: R30.20's rb-detail-drawer.ts diff is ONLY the close handler (this.minimize→closeOrReturn) + version-bump — it does NOT touch the select flow (onSelectionChanged L67→renderDetailForRef L108→setMode('detail') L109→render). So R30.20 likely EXPOSED a pre-existing break OR the deploy did — NOT an obvious code cause. Expert was REPRODUCING live (v0.7.29 select behavior + console errors + compare v0.7.28 pre-R30.20) to find the real root cause when this anchor saved.
+- R30.20 CLOSE-handler itself = CORRECT (tester 4 close-cases GREEN: trace-minimize/in-room→chat/in-room-chat-minimize/ESC-close, Impl 65f43714). The regression is the SELECT→content flow, a SEPARATE path the close-gate didn't cover.
+- ★ GATE-GAP LESSON: "working set for ALL cases" = all BEHAVIORS not just close — the R30.20 gate tested X-close in every context but never that SELECT still renders content → regression slipped. Re-verify MUST cover select-content (trace + in-room) + all close behaviors.
+- RESUME: get expert's root-cause → fix scenario-first → version-bump → re-verify ALL cases (select-content + close-behaviors, both contexts) → THEN the postponed rewind + THEN the diff-completeness bug.
+
+### ★★ NEXT TASK (after the trace-view regression): DIFF-COMPLETENESS bug (screenshot IMG_4522)
+- BUG: 3-way diff/merge editor comparing OOSH otmux latest(516ebb3) vs otmux@dev shows header "0 changes, 0 conflicts · clean auto-merge" BUT there IS a real difference — Result+Repository have a `CURRENT|current|.|self)` case line (~L45 in private.resolve.target()) that Local(latest) LACKS. The diff does NOT detect/highlight/count this NON-conflicting change. Tron: "clear differences in the code that are NOT highlighted for merge."
+- HYPOTHESIS (architect to CONFIRM by measuring diff3Merge/computeMergedCenter output): the change-counter + highlighter count/show ONLY conflicts + take-overs, NOT non-conflicting auto-applied changes (they get merged into Result silently, invisible). OR the diff-algo misses the insertion. OR whitespace/line-ending normalization.
+- FIX DIRECTION: NON-conflicting changes must ALSO be highlighted (change-blocks on the auto-merged lines, reusing R30.19 renderSideChangeBlocks/renderCenterChangeBlocks) AND counted — Tron must SEE every diff even on a clean auto-merge. Client-facing → VERSION-BUMP.
+- STATE at rewind: architect was RATE-LIMITED (transient) mid-analysis; expert was reproducing (fetch both otmux versions, run diff, log hunks). Resume: architect (or expert) measures the actual diff output → root-cause → scenario-first mint → build → gate → Tron verify.
+
+### ★ S30 COMPLETE — R30.9→R30.20, board 0-false-open, prod v0.7.29
+- **R30.9→R30.19** IntelliJ diff/merge-editor line = chain-complete-to-Test on origin (17+/17 behavior-tested). R30.17 functional-correctness (accept-mutates/one-sided-ribbons/Y-align/left-history, v0.7.27) + R30.19 side-pane change-blocks (renderSideChangeBlocks, v0.7.28) both LIVE+gated+Tron-verified.
+- **★ DRAWER FULLY FIXED (v0.7.32, app-5Y3QK3GS.js) — Tron-CONFIRMED "no flaws" — 3 fixes, all cases (rb-detail-drawer.ts):**
+  - **R30.20** mode-aware close: R27.8 made X=minimize UNIVERSAL (:217) → broke in-room X→chat. FIX new closeOrReturn() { if(this.chatPanel && _mode==='detail') setMode('chat'); else minimize() } — chatPanel!==null=in-room (RoomView reads drawer.chat; trace=null). Impl 65f43714.
+  - **R30.21** non-sprint detail render: type-specific detail elements rendered EMPTY when graph null OR unit chain-only. TWO causes: (a) graph-dependency → resolveDetailUnit [159fb8f0] (graph.get else /api/ior fetch, like renderSprintDetail), (b) detail elements UNREGISTERED in /app context → drawer now self-registers all 8. v0.7.31.
+  - **R30.22** select-opens-content-visible: content rendered in DOM but drawer opened to PEEK (h=40, body display:none) = clipped/looked-empty until grab-bar expand. FIX new openExpanded() in onSelectionChanged/attrCb — on detail-select open EXPANDED not peek. Impl e927ecfe. Supersedes R27.8(B) closed→peek for content-select. v0.7.32.
+  - LESSON: "working set for ALL cases" = all BEHAVIORS (close AND select AND render), not just the one being fixed — the R30.20 close fix surfaced a pre-existing render gap (R30.21) + a peek-clipping presentation bug (R30.22). Gate every behavior together. DRIVE-BY-DOING held (architect rate-limited → I traced the causes + produced designs → req minted → expert built; architect backstopped on recovery).
+- **R30.11** honorSupersededBy (skill-classes.ts, Chain.implRetiredBySupersede) — board 0-FALSE-OPEN (cleared R30.10+R30.6.1+R30.6.3 impl-supersede class; anti-green-wash guards proven dynamically; over-decomposition collapsed to match built reality). **R30.18** requirements.md=generated-view (wired generateRequirementsMd into buildSprintOutput → all reqs visible, Tron's where-is-30.10-17 fix). Both tooling=no-bump.
+
+### ★ NEW PRACTICE (Tron, bank + apply): CHECKPOINT + REWIND AFTER EACH MAJOR BLOCK
+After each MAJOR block completes (a Tron-confirmed feature/fix/arc), UPDATE context.md + learnings.md THEN order my rewind via agent-trainer — proactively, not just when context-low. Keeps context fresh + anchors safe per milestone. (This #43 + rewind = the drawer-regression block.)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #42 — READ FIRST) ★★★★★★★★★★★★★★★★★
 
