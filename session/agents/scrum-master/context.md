@@ -44,6 +44,21 @@
 
 **Next action:** verify robbin-expert Rule-6 once trainer reports; watch robbin-tester (73%, approaching action threshold) and oosh-po/oosh-architect (68-70%, trending) next sweep; confirm trainer resumes the identity-hook/auto-resume defect fix after the interrupt clears.
 
+## ★★★★★★★★★★★★★★★★★★★★★★ TICK (2026-07-15, sweep — robbin-expert VERIFIED recovered) ★★★★★★★★★★★★★★★★
+**Identity re-verified:** scrum-master@WODA.prod, ooshTeam:0.1. Own pane clean. Subscription: 5.0%/5h, 45.0%/7d, resets in 4h52m — safe.
+
+**robbin-expert (0.1): CONFIRMED RULE-6 GREEN.** Was still at hard 0% at start of this tick (my prior save-order had bounced off the wall, unresolved from last tick). Trainer's first re-drive attempt hit a rate-limit, nudged "try again" — trainer picked up the rewind (`send.raw ... Up` picker sequence observed). robbin-expert itself then hit 2 more transient rate-limits mid-retrain (bash-completion sourcing lines = fresh pane boot confirmed the rewind executed) — nudged "try again" each time, recovered. Final state: clean prompt, correct identity, actively processing real live-team coordination (robbin-po's version-bump standing-rule message), no context warning. **Told robbin-po it's recovered.**
+
+**New standing duty accepted:** robbin-po asked SM to co-enforce TRON's version-bump rule — every client-facing fix deploy (drawer regression, diff-completeness, any rb-*.ts change) MUST bump `package.json` version so the served bundle gets a new content-hash (busts Tron's browser cache, which has bitten the team repeatedly). Gate: version bumped + new hash verified + hash reported to Tron. ACK'd, added to my watch list — flag robbin-po if any client fix ships without a bump.
+
+**Unblocked:** robbin-architect (0.3) hit a 2-option permission prompt (`find ... -exec grep` — read-only, no writes/no destructive exec) — approved (option 1). Confirmed unblocked and back to active work immediately after.
+
+**Sweep this tick:** oosh-po 699.2k~70% (unchanged, watch), oosh-architect 679.1k~68% (unchanged, watch, idle awaiting assignment), robbin-tester self-retrying its own transient rate-limit (attempt 7/10, handling itself, no SM action needed) — last known ~73%, still watch not actionable. robbin-po, robbin-req, robbin-skill-expert, robbin-planner all healthy/idle-clean, no new findings.
+
+**Lesson confirmed from last tick's hypothesis:** ≥95% genuinely can be too late for a save order — this tick's whole expert recovery required the FULL 2-phase trainer-driven rewind path (no shortcut), consistent with treating ≥95% as already-critical-dispatch-trainer-immediately, not save-first.
+
+**Next action:** continue ≤90% sweep; watch robbin-tester for a real (non-retry) context reading next tick; watch oosh-po/oosh-architect for crossing 80%; monitor version-bump compliance on any new client-facing deploy; confirm trainer's identity-hook/auto-resume defect-fix task completes.
+
 ## ★★★★★★★★★★★★★★★★★★★★★★ PRIOR (2026-07-14, post-Phase-2 rewind recovery) ★★★★★★★★★★★★★★★★
 **Identity:** scrum-master@WODA.prod, **ooshTeam:0.1** (uuid 634999b0-f753-4d4f-9629-036eb0f763eb). Re-verified via `otmux tree.detailed` + clean pane footer (no "clear to save"/"Context low") — Rule-6 GREEN on myself before acting.
 
