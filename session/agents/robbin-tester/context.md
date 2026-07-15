@@ -159,3 +159,8 @@ Architect-ruled: auto file-history default moves RIGHT→LEFT (populateRightHist
 - ⚠ MISMATCH after req re-point 1d4d1d804: R30.11 chain resolves to Impl 8c1e4637 (TraceAudit.honorSupersededBy, NO src marker, tests=[] → open expert+open tester) but BUILT code = Impl 7f15c149 (Chain.implRetiredBySupersede, has marker + my Test 4ad7879f). R30.11's own hops open = new mini-false-open. R30.6.1/6.3 retired ✓ + R30.10 complete ✓ (the 3 target-clears WORK).
 - FIX (req): re-point R30.11 UC→method→impl to built 7f15c149 + retire/remove stale 8c1e4637. Then R30.11=check 7f15c149|check 4ad7879f COMPLETE, board 0-false-open. My wiring stays correct.
 - HELD my push until req re-points + scoreboard confirms 0-false-open. WHEN REQ PINGS re-pointed: re-run scoreboard → confirm R30.11 closed + 0-false-open → flag PO push (b037bd83d + req re-point together).
+
+## R30.11 CLOSED + BOARD 0-FALSE-OPEN (2026-07-15)
+- req COLLAPSE efa67b937 removed phantom impls (8c1e4637 honorSupersededBy + cb13e4d0 repointSupersededTests) → R30.11.useCases=[5ae6ac40] → Method 9c6904f7 (implRetiredBySupersede) → Impl 7f15c149 (BUILT) → my Test 4ad7879f. My HOLD was right (measured intermediate mid-collapse).
+- Re-ran scoreboard on origin (HEAD==origin): R30.11 = check 7f15c149 | check 4ad7879f COMPLETE. R30.6.1/6.3 retired, R30.10 complete-via-fileHistory. 0 R30.x open-expert. Summary 82/351. honorSupersededBy fully proven (anti-green-wash guards DET-3x + phantom-clean).
+- ONLY remaining R30.x open = R30.18 test (generateRequirementsMd impl 72c57f72, real, MINE) — gate next.
