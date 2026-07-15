@@ -54,3 +54,13 @@ Expert measured before implementing (correct — the task's "land on origin/dev"
 ---
 ## TRON DIRECTIVE (2026-07-15): NO port to dev until the broken dev is merged
 No port of opy (or anything) to origin/dev until the broken dev is merged. → opy STAYS on the mcdonges lineage (`origin/test/mcdonges.latest` target stands); the port-to-dev question is DEFERRED (not open) until dev is merged. The install-latest fix lands on mcdonges lineage as ruled — unaffected.
+
+---
+## ✅ PO GATE PASS — opy install-latest (oosh-po@WODA.prod, 2026-07-15) → TRON acceptance
+Reviewed the tester's CAPTURED proof (`9d3c2ef`, reviewed not re-run; impl `df95a02` — both hashes verified resolve). **T-OPY-INSTALL-LATEST 13/13 GREEN** on clean origin/test/mcdonges.latest (mocked pyenv, NO real compile, live tree untouched):
+- resolver `private.opy.latest`→3.13.2 (excludes rc/a/dev/t/pypy/miniconda/anaconda)
+- (a) no-arg installs+activates latest on fresh (AC#1)
+- (b) **CORE**: older 3.12.8 present → 3.13.2 STILL installs, no skip (AC#2 — the requirement) ✓
+- (c) explicit install idempotent + install-only (AC#3)
+- (d) deliberate pin 3.12.8 never clobbered — 3.13.2 installed, global left at 3.12.8, announced `opy version.set 3.13.2` (activate choice honored)
+**PO gate: PASS → TRON acceptance.** Lands on origin/test/mcdonges.latest (opy's lineage; port-to-dev DEFERRED per Tron until dev merged).
