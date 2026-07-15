@@ -25,6 +25,20 @@
 - [ ] `opy install <version>` still idempotent per-version
 - [ ] T-OPY-INSTALL-LATEST: mock/stub pyenv `--list` → latest resolves correctly; no-skip-on-older proven (avoid a real multi-minute CPython compile in the test)
 
+## ⚠️ BRANCH BLOCKER (oosh-expert@ooshTeam:0.3, 2026-07-15) — target needs confirm before landing
+Measured before implementing: **`opy` is mcdonges-lineage-ONLY** — present on `mcdonges.latest` + `origin/test/mcdonges.latest`; **ABSENT on `origin/dev`, `origin/test/macos.latest`, `origin/prod`.** So "land on CLEAN origin/dev" is impossible as-stated (the file isn't there). The task's own "current behavior" was measured on `/root/oosh` = mcdonges.latest.
+- **RECOMMEND target = clean `origin/test/mcdonges.latest`** (the clean upstream of the ONLY lineage that carries opy) — same "clean checkout, not the fragile live tree" intent, applied to opy's real branch. **Alternative = port `opy` into `origin/dev`** (bigger scope: introduces a new script to dev's inventory) — needs an explicit Tron/PO call, not an expert-unilateral port.
+- Fix is fully designed + ready; will commit to the confirmed branch immediately.
+
+## ACTIVATE-AFTER-INSTALL CHOICE (stated per requirement 4)
+**No-arg `opy install` (latest) activates latest as global ONLY when no deliberate pin exists** (`pyenv global` empty or `system` → `pyenv global <latest>`, announced). **If a real version is already pinned globally → do NOT repoint** — announce "latest <v> installed; global left at <current>; activate via `opy version.set <latest>`". **Explicit `opy install <version>` stays install-only** (never touches global). Rationale: honors "install latest yields a usable latest" on fresh setups, while NEVER silently (or even loudly) clobbering a deliberate pin — the safest reading of req-4's "UNLESS install-only is safer / do not silently repoint".
+
+## DESIGN (ready to land)
+1. `private.opy.latest()` = `private.opy.pyenv install --list | sed 's/^[[:space:]]*//' | grep -E '^3\.[0-9]+\.[0-9]+$' | sort -V | tail -1` (pure X.Y.Z; excludes rc/dev/a/b/pre + pypy/miniconda/anaconda).
+2. `opy.install()` `<?version>`: no-arg → `version=$(private.opy.latest)` (fail-loud if empty) → existing `private.opy.isInstalled "$version"` already means an OLDER version can't cause a skip (it checks the *specific* latest) — core requirement met. Explicit `<version>` path unchanged/idempotent.
+3. No-arg path calls `private.opy.activateLatest` (the choice above).
+4. Update usage comment (`<?version>`); `opy.install.completion.version` unchanged (still lists all).
+
 ## Report-back
-- Expert (impl + latest-resolver + activate choice):
+- Expert (impl + latest-resolver + activate choice): **DESIGNED + activate choice stated (above); BLOCKED on branch target** — opy absent from origin/dev; recommend clean `origin/test/mcdonges.latest` or explicit port-to-dev. Commit lands on confirm.
 - Tester (T-OPY-INSTALL-LATEST):
