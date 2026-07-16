@@ -96,3 +96,6 @@ When a trained session is RESTORED, its customTitle carries the OLD host (robbin
 During the rename mitigation, my JSONL-customTitle grep reported still-@MacStudio when the rename HAD landed (pane footer showed @WODA.prod). JSONL customTitle LAGS (flushes later); session.id mis-resolves by title. **Ground truth = the live PANE FOOTER + the claude PROCESS ARGS (--resume uuid). Never trust JSONL grep or session.id for verification.**
 - [ ] teams.restore + any verify step reads PANE FOOTER / process args, NOT JSONL customTitle or session.id
 - [ ] document the truth-sources in hiveMind usage: process-args=resumed-uuid, pane-footer=current-customTitle
+
+## Deferred / Backlog (NOT this sprint — parked, see project backlog)
+- **BL-1 — version-mismatch crisis: `mcdonges.latest` (stable, current) vs `dev` (+690 lines: config.save contract + color + bashrcTemplate).** We are intentionally on the STABLE `mcdonges.latest` line; reconciling the two versions is DEFERRED (Tron, 2026-07-16, not priority now). Entry: `scrum.pmo/backlog.md` §BL-1. Box-level topology/safe-switch it depends on: `session/tasks/live-box-stray-branch-topology.task.md`.
