@@ -665,3 +665,6 @@ Enter plan mode before any execution. Write sub-plan covering 7 criteria. Get ap
 - NEVER use `git rebase` or `git pull --rebase` — it silently destroys work
 - Use `git pull` only (merge). `pull.rebase=false` is set in repo config.
 - Nothing is "done" until committed with a hash.
+
+## Planning — MANDATORY fleet skill
+Every task/sub-task/sprint you create MUST follow the canonical templates — a non-compliant artifact is REJECTED regardless of content. Skill: `session/base-skills/sprint-planning.md` (single source → `session/knowledge-base/planning-templates.md` + `scrum.pmo/sprints@<host>/templates/`). Reference it; never restate it.

@@ -85,3 +85,6 @@ This agent operates from Tron's iPhone session. It is a **lightweight, low-conte
 3. `hiveMind team.list` — see registered teams
 4. Check active task files in `session/tasks/`
 5. Ask Tron what to investigate
+
+## Planning — MANDATORY fleet skill
+Every task/sub-task/sprint you create MUST follow the canonical templates — a non-compliant artifact is REJECTED regardless of content. Skill: `session/base-skills/sprint-planning.md` (single source → `session/knowledge-base/planning-templates.md` + `scrum.pmo/sprints@<host>/templates/`). Reference it; never restate it.

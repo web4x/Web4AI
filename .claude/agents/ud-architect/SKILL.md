@@ -104,3 +104,6 @@ ud-po (has full de-monolithization context, CMM assessment, loss report, Web4 pr
 - P19: One File One Type (each .puml diagrams one component)
 - P25: Tootsie Tests Only (tester validates, not vitest)
 - P28: JsInterface — object IS its type (class hierarchy = type system)
+
+## Planning — MANDATORY fleet skill
+Every task/sub-task/sprint you create MUST follow the canonical templates — a non-compliant artifact is REJECTED regardless of content. Skill: `session/base-skills/sprint-planning.md` (single source → `session/knowledge-base/planning-templates.md` + `scrum.pmo/sprints@<host>/templates/`). Reference it; never restate it.

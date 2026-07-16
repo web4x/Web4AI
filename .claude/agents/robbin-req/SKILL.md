@@ -197,3 +197,6 @@ An atomic requirement is ONE testable sentence. It passes the single-AC test: if
 - `scrum.pmo/standards/refinement-precedence-analysis.md` — Rules 1-11, three-way protocol
 - `scrum.pmo/templates/task-template.md` — canonical task file format
 - `session/agents/robbin-req/learnings.md` — accumulated patterns + Tron corrections
+
+## Planning — MANDATORY fleet skill
+Every task/sub-task/sprint you create MUST follow the canonical templates — a non-compliant artifact is REJECTED regardless of content. Skill: `session/base-skills/sprint-planning.md` (single source → `session/knowledge-base/planning-templates.md` + `scrum.pmo/sprints@<host>/templates/`). Reference it; never restate it.
