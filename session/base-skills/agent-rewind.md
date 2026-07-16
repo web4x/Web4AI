@@ -130,7 +130,9 @@ Sequence:
 4. **Choose "Restore conversation" — BY LABEL, not by number** (see FORBIDDEN: layout A → #2, layout B → #1): `otmux send.raw <pane> Down/Up` to land on the entry labeled "Restore conversation" → capture (confirm the label + "The code will be unchanged") → **`otmux send.tui <pane> Enter`**.
 5. **Verify:** `otmux pane.capture <pane> 25` (conversation truncated to the checkpoint = success).
 
-**Iron rule:** navigate with `send.raw` arrows; SELECT with `send.tui Enter`. NEVER `send.raw Enter` / `send` / `send.verified` inside the picker — they Escape-cancel it. **Modal-coordination fact:** while the picker is open on the agent's pane, that agent is BLOCKED at its UI and cannot guide in real-time — a PEER or TRON drives + guides from outside; you cannot message the agent's pane without disrupting the picker.
+**Iron rule:** navigate with `send.raw` arrows; SELECT with `send.tui Enter`. NEVER `send.raw Enter` / `send` / `send.verified` inside the picker — they Escape-cancel it.
+
+**Two gotchas (measured on robbin-req):** (1) **Clear the composer FULLY before `/rewind`** — a long multi-line staged message needs MANY `C-u` (15+, not a few); if it's not empty, `/rewind` appends as TEXT (not submitted) and no picker opens. (2) **VERIFY the picker actually opened (capture) BEFORE navigating** — if it didn't open, your `Up` arrows just SCROLL the pane ("Scroll wheel is sending arrow keys"), not navigate. Never navigate blind. **Modal-coordination fact:** while the picker is open on the agent's pane, that agent is BLOCKED at its UI and cannot guide in real-time — a PEER or TRON drives + guides from outside; you cannot message the agent's pane without disrupting the picker.
 
 ## Why This Matters
 - /clear = total training destruction = CMM1 panic
