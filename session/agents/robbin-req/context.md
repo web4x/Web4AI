@@ -28,7 +28,10 @@ Index unit `scenario/index/<u0..u4>/<uuid>.scenario.json`: `ior:class:Requiremen
 ## TRON RULE #126 — SCENARIO FIRST, NEVER BACKFILL
 Units EXIST before code: Sprint→Req→Task→chains→MD views. Receive a task with no unit → REJECT + report PO. "Wer schreibt, der bleibt."
 
-## ★ requirements.md is HAND-MAINTAINED (Tron caught this 2026-07-14)
+## ★ requirements.md is now GENERATED (R30.18 DEPLOYED 2026-07-16 — interim hand-write rule RETIRED)
+Header now reads `<!-- GENERATED FROM SCENARIO UNITS — DO NOT HAND-EDIT -->`. After minting a req unit, REGENERATE the view: `/opt/node22/bin/node --import tsx scripts/generate-sprint-md.ts <sprint-uuid>` (SprintViewGenerator, marker 72c57f72). It's deterministic — only the new req's block changes; commit requirements.md + the units (NOT the 26 byte-identical planning/task-MD regens — planner's domain). Do NOT hand-write blocks anymore (my mint-script block-insert now no-ops on the generated file — correct). Latest req R30.25 (a604a1b5) minted this way (529795387).
+
+## ★ (superseded) requirements.md was HAND-MAINTAINED (Tron caught this 2026-07-14)
 generate-sprint-md emits planning.md + task-MDs ONLY, NOT requirements.md (its line-6 WARNs "hand-maintained until R28.1"). I minted R30.6-R30.19 all session but skipped requirements.md → plannings INVISIBLE in the app. FIXED S30 (all 25 blocks from units, e190db49f). **INTERIM RULE: write the requirements.md block SAME-COMMIT as every req mint.** DURABLE FIX = R30.18 (requirements.md=generated-view, SprintViewGenerator.generateRequirementsMd, awaits build). Meta-lesson: verify the surface the USER reads, not just the chain-on-disk.
 
 ## Prior arc (detail in git + learnings.md)
