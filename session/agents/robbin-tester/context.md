@@ -203,3 +203,9 @@ STANDING RULES held: SystemTester-only (ce981242); scenario-first #126 (never ba
 - FLAGGED minor label nuance (not a gap): .de-count M = conflicts.length INCLUDING kind:change → one-sided-only shows '2 changes, 2 conflicts' though 0 TRUE conflicts. Suggested M filter kind==='conflict'. PO's call.
 - PENDING: req mints R30.23 Test off ab33b3e8 → Impl a0b30550 (distinct test on shared impl, keep R30.9 eb4a550e) → I wire a0b30550.tests+=ab33b3e8.
 - R30.23 was the exact gap I flagged in my FIRST merge gates (base-aware auto-merge showed 0 changes for one-sided) — now fixed.
+
+## R30.23 CLOSED — BOARD FULLY CLOSED (2026-07-16)
+- R30.23 wired (e07baf8ed): a0b30550.tests=[eb4a550e R30.9, ab33b3e8 R30.23], check|check. 0 R30.x open. Whole diff/merge+drawer arc R30.9→R30.23 gated + chained to Test. Pending PO push (1 ahead) + req both-directions re-verify.
+- Standing minor flags (PO's call): R30.23 .de-count M-label counts kind:change as conflicts (2 changes/2 conflicts for 0 true); R30.18 regen removed '## Traceability Matrix' section (generated-view discipline).
+- Standing PENDING mints (added-coverage, not blocking): R30.22 Test off 8cce5ae7→e927ecfe (r3022 gate); both R30.22+R30.23 distinct-tests on their impls.
+- R30.14 live-catch fidelity bonus still queued (next real deploy, sequencing locked).
