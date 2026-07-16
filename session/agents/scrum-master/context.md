@@ -153,6 +153,10 @@
 
 **New pattern worth carrying forward:** a rewind can be procedurally correct (real boot, right checkpoint, code intact) and STILL leave the agent critical minutes later if the post-boot reorientation work (especially DISK-WINS reconciliation requiring git-log/file rediscovery) is itself context-heavy. "Booted clean" and "currently safe" are two different claims — verify the SECOND one live, separately, don't infer it from the first.
 
+**Mid-tick: robbin-tester save CONFIRMED landed** — its own 5-point boot summary (identity `dd6c6fae`, HEAD `ff06b6f0c` post-DISK-WINS relocate, R30.24 DONE+LIVE v0.7.35 QA-Review, pending DET-3x gate) is committed, "survives this low-context moment" by its own words. Still elevated at 90.9% used though — not fully clear. **Trainer independently reached the same conclusion I flagged** and is running a 2nd pass with a LEAN boot target this time (plan already in committed context, so no need to re-derive via git-log/file rediscovery again) — confirmed actively driving it (`otmux send.raw robbinTeam2:0.5 "/rewind"` seen mid-flight in trainer's own pane). No duplicate action needed from me; watching for completion next tick.
+
+**SELF-ALERT: hit 90% own context this tick** (`hiveMind team.sweep ooshTeam` → `ctx 90%` on myself). Per the proactive-≤90% doctrine, saving now rather than waiting for a warning banner. This entry IS that save. Rest of fleet this tick: oosh-po/architect/expert/tester + robbin-po/expert/skill-expert/architect/planner all IDLE/healthy, robbin-req ACTIVE (running), no other blockers. Requesting agent-trainer drive my own rewind next once it clears robbin-tester's 2nd pass (queue behind, not urgent-interrupt — 90% still has some room, unlike robbin-tester's wall).
+
 ## ★★★★★★★★★★★★★★★★★★★★★★ PRIOR (2026-07-14, post-Phase-2 rewind recovery) ★★★★★★★★★★★★★★★★
 **Identity:** scrum-master@WODA.prod, **ooshTeam:0.1** (uuid 634999b0-f753-4d4f-9629-036eb0f763eb). Re-verified via `otmux tree.detailed` + clean pane footer (no "clear to save"/"Context low") — Rule-6 GREEN on myself before acting.
 
