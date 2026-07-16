@@ -188,3 +188,12 @@ Architect-ruled: auto file-history default moves RIGHT→LEFT (populateRightHist
 - *** DRAWER TRON-DONE: R30.20(close) + R30.21(render) + R30.22(visible) all GREEN. ***
 - PENDING: req mints R30.22 Test off marker 8cce5ae7 → Impl e927ecfe → I wire e927ecfe.tests+=8cce5ae7 → R30.22 closes → board fully closed. NOTE: scoreboard R30.22 'check 0b7d18d9' = crossRef pre-existing detailDrawer.fullWidth test (impl da9462f5), NOT the openExpanded verification; 8cce5ae7 is the real one.
 - Pushes pending PO: R30.18/R30.20/R30.21/R30.22 gate+wiring commits.
+
+## ═══ CONSOLIDATED STATE SNAPSHOT (2026-07-16) ═══
+BOARD: S30 scoreboard 0 R30.x open, 87/355 COMPLETE. The whole diff/merge + drawer arc gated + chained.
+- CLOSED this session (all GREEN DET-3x, chains both-directions on origin): R30.9→R30.16 merge-editor line (17/17 genuinely behavior-tested), R30.11 honorSupersededBy (anti-green-wash guards proven dynamically), R30.17 left-history+one-sided, R30.18 requirements.md generated-view, R30.19 side-blocks, R30.20 drawer close, R30.21 detail-render (10 types), R30.22 drawer visible-on-first-select.
+- DRAWER TRON-DONE: R30.20(close)+R30.21(render)+R30.22(visible) all GREEN.
+PENDING (not blocked on me):
+- R30.22 real-behavior Test: marker 8cce5ae7→Impl e927ecfe in r3022-visible-on-select-gate.mjs; req to mint → I wire e927ecfe.tests+=8cce5ae7 (added coverage; R30.22 already reads check via crossRef test 0b7d18d9 = pre-existing detailDrawer.fullWidth, NOT the openExpanded verification).
+- R30.14 LIVE-CATCH (fidelity bonus): full-visible banner→tap→reload on next REAL deploy. Protocol LOCKED w/ expert: pre-ping → I send "★ PARKED-CONFIRMED on vN" → THEN expert pushes (prevents the deploy-beats-park race that missed 3 windows). Tool: r3014-livecatch-tool.mjs (shadow-DOM aware). R30.14 already PROVEN (arm A live-confirmed on 0.7.25 reg.waiting + harness DET-3x).
+STANDING RULES held: SystemTester-only (ce981242); scenario-first #126 (never backfill-mint; place ready marker, req mints, I wire); function-first (assert CENTER/state CONTENT changes via REAL page.click, not dispatchEvent, settle-before-read); reproduce the REAL case; measure the scoreboard on origin before calling closed; own misfires fast+loud.
