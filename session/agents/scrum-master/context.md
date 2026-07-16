@@ -121,6 +121,11 @@
 
 **Next action:** continue ≤90% sweep; this IS a real upcoming client-facing deploy (R30.22 build) — actively verify version-bump compliance when it ships, don't just watch passively; monitor architect's IMG_4522/R30.20/R30.21 backstop progress.
 
+**Mid-tick: robbin-po (0.0) full 2-phase rewind — VERIFIED Rule-6 GREEN, trainer's 5th recovery this campaign.** Phase-1: robbin-po itself did the IMG_4522 3-way-editor screenshot context capture + anchor `c9281541` PUSHED — trainer had to free room first via 2 shallow rewinds (a long reminder message tipped it 2%→0%; **lesson: keep messages SHORT when an agent is near the wall, a big relayed reminder can itself be what tips it over**). Phase-2 deep ~50% by-label, code intact. Booted clean; `session.name` CLI errored EPERM so trainer fell back to context+pane identity check (worked). **RECONCILED a stale drawer-regression blocker via DISK-WINS** — its retrained memory said drawer-regression was still open, but disk showed it already fixed at v0.7.32 (R30.22) — correctly trusted the measured/current state over the retrained-but-stale belief, discarded the phantom blocker, resumed the REAL blocker (3-way diff-completeness, IMG_4522). 5/5 health check, RC on.
+- **Verified independently before crediting:** anchor `c9281541` confirmed on log with a genuine recent timestamp (2026-07-16 00:10, ~23min before current HEAD — appeared earlier in `--oneline -N` only due to topological/merge ordering, not staleness). Live pane cross-checked: clean, correct identity `robbin-po@WODA.prod`, actively relaying the diff-completeness root-cause to req. Rule-6 GREEN confirmed both ways (git + pane), not just trainer's say-so.
+
+**Next action:** continue ≤90% sweep; version-bump watch remains active for the R30.22/diff-completeness build chain; watch architect's IMG_4522/R30.20/R30.21 backstop progress.
+
 ## ★★★★★★★★★★★★★★★★★★★★★★ PRIOR (2026-07-14, post-Phase-2 rewind recovery) ★★★★★★★★★★★★★★★★
 **Identity:** scrum-master@WODA.prod, **ooshTeam:0.1** (uuid 634999b0-f753-4d4f-9629-036eb0f763eb). Re-verified via `otmux tree.detailed` + clean pane footer (no "clear to save"/"Context low") — Rule-6 GREEN on myself before acting.
 
