@@ -1,16 +1,10 @@
 # robbin-tester — context
 
-## ▶ RESUME STATE (rewind-safe, 2026-07-16) — R30.24 GATE IN FLIGHT
-- **Rewound 2-phase (code intact), booted, 5-pt health check PASS, reported to PO.** Repo now `/var/dev/Workspaces/web4x/Web4RawBin` (HEAD ff06b6f0c). Anchor 552d07a5 rebased-away → DISK WINS.
-- **ACTIVE TASK: R30.24 deep-linkable diffs — tester DET-3x gate.** Task `scrum.pmo/sprints/sprint-30-.../task-30.24-url-addressable-diff.md` (uuid d35812b6), DONE+LIVE v0.7.35, QA-Review, **6 ACs HELD UNCHECKED for my gate**. On tester GREEN, planner flips 6/6 + Done.
-- **Chain:** UC openFromUrl cc47d004 + UC shareLink 8e88026a → Class RbDiffEditor 18165081 → Impls **dc236c19** (openFromParams, owner f52b6941) + **bcd06c77** (buildShareLink, owner 3fffd212). BOTH impl markers PRESENT in `src/public/ts/components/rb-diff-editor.ts` (@563, @585 → Impl hop credits). **Impl.tests[] BOTH EMPTY → my Test hop is what's pending.**
-- **GATE PLAN (chromium/playwright DET-3x, seed SystemTester ce981242):**
-  1. AC1/2/6 deep-link restore: `page.goto('/edit/otmux?repo=oosh&left=516ebb3&right=dev&3way=1')` → `page.evaluate` read `rb-diff-editor` `.left`/`.right`/`.twoWay` → assert left.ref=516ebb3, right.ref=dev, left.repo=oosh, twoWay=false. IMG_4522 clickable = same URL works.
-  2. AC3/4 share round-trip: click `.de-share` (🔗) → read `.de-status`/status text `🔗 link copied: <url>` (url present on success AND clipboard-denied fallback) → goto that url → re-assert identical state.
-  3. AC5 security: `?repo=<unknown>`→openFromParams sets repo=key, server R30.6.7 allowlist rejects→fallback rawbin; `?repo=../../etc/passwd` via `/api/files` must NOT serve passwd. Assert server-side, no path abuse.
-- **buildShareLink fmt:** `${origin}/edit/${encodeURIComponent(path)}?repo=<key|'rawbin'>&left=<ref>&right=<ref>&3way=<twoWay?0:1>`. openFromParams: key='rawbin'/'' → repo='' (primary).
-- **Verified live:** edit-route HTTP 200; API `/api/files?path=otmux&ref=516ebb3&repo=oosh` (check size>0 both refs before gating — was mid-check at rewind).
-- **AFTER GREEN:** wire Impl.tests[] on dc236c19 + bcd06c77 (fresh 1:1 Test units + [test:uuid:] markers in the gate file), verify scoreboard, commit, report PO. Then R30.25 (diag spec c10431d4d landed) likely next.
+## ▶ RESUME STATE (2026-07-16) — R30.24 GATE GREEN, WIRE PENDING (Tron checkpoint-pause)
+- Repo `/var/dev/Workspaces/web4x/Web4RawBin`. Node18 = `/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node`.
+- **R30.24 gate GREEN DET-3x (commit 1e4894818):** `test/visual/r3024-deeplink-diff-gate.mjs` — AC1/2/6 deep-link restore + AC3/4 share round-trip + AC5 security. Board R30.24 = `check|check|check|check dc236c19|open tester` (Test hop MINE).
+- **RESUME = wire the Test hop (scenario-first, don't backfill-mint):** gate carries ready marker `[test:uuid:1f7c9a04-3d2b-4e58-9c61-2a8b4f0d7e33]` at r3024 line 1 → req mints R30.24 Test → I wire `dc236c19.tests+=1f7c9a04` (openFromParams) + a 2nd marker/Test for `bcd06c77` (buildShareLink, if a separate Test hop). Then `chain scoreboard` → R30.24 closes → report PO. (Both impl markers already in src @563/@585.)
+- Two impls: dc236c19 (openFromParams, owner f52b6941) + bcd06c77 (buildShareLink, owner 3fffd212); Class RbDiffEditor 18165081; UCs cc47d004/8e88026a. Task d35812b6 (6 ACs held for my GREEN). Next likely R30.25 (diag spec c10431d4d).
 
 ## ▶ RESUME STATE (rewind-safe, 2026-07-02)
 - **Identity/pane:** I am **robbin-tester** at `robbinTeam2:0.5` on WODA.prod. Report gate verdicts to `robbinTeam2:0.0` (PO) and SM at `ooshTeam:0.1`.
