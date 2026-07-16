@@ -1,5 +1,8 @@
 # OOSH Expert Learnings
 
+## NEW: LIVE deploys need a PO heads-up BEFORE landing — keep the gate chain visible (2026-07-16, opy LAND-LIVE, PO process note)
+Landed `df95a02` into the live `/root/oosh` directly on an opy1@WODA.prod directive. Result was clean (ff-only, opy-only, honest env-block report) and PO called it exemplary — BUT flagged a process note: **live deploys ideally follow `PO-gate → Tron-accept → deploy`**. Even when another agent/Tron-proxy directs a live landing, send oosh-po a **quick heads-up before landing** so the gate chain stays visible (the PO owns the gate; a surprise live mutation, however clean, breaks their visibility). **Rule:** for any LIVE-tree mutation (`/root/oosh` ff/merge/deploy), ping oosh-po first ("about to ff live to X — ok?") unless PO/Tron already explicitly gated THIS live step. Measurement/impl can proceed; the LANDING is the gated moment.
+
 ## NEW: OOSH dotted `object.verb` fn names are un-parseable by dash — measure the ENTRY, not the assumed script (2026-07-02, #13)
 `sh someOoshScript` → `Syntax error: Bad function name` at the FIRST `private.x.y() {` (dash/POSIX only allow `[A-Za-z_][A-Za-z0-9_]*` fn names). This is FRAMEWORK-WIDE — every OOSH script fails `dash -n` at its first dotted fn. The `#!/usr/bin/env bash` shebang is what makes them work; the ONLY ways a body runs under dash are explicit `sh script` (shebang ignored) or `. script` sourced into dash. So "make script X dash-safe" is impossible without abandoning object.verb. **#13 twice pointed at the wrong script** (claudeCode) — the real fresh-host sh entry was `init/oosh`. Lesson: when a task says "X fails under dash," MEASURE which script/entry actually runs under sh before de-bashism-ing anything.
 
