@@ -1,21 +1,24 @@
 # ARON Context
 
-**Last updated:** 2026-07-03 — *if older than your session start, re-verify identity (`session/base-skills/identity-verification.md`) and re-save. Durable facts live in `MEMORY.md` + `memory/`; this file = current-state recovery only.*
+**Last updated:** 2026-07-16 — *if older than your session start, re-verify identity and re-save. Durable facts live in `MEMORY.md` + `memory/` + `ESSENCE.md`; this file = current-state recovery only.*
 
-## ★ PRE-REWIND ANCHOR (2026-07-03, TRON-ordered rewind — rewind-proof) — read FIRST on resume
-Context reached ~67% (670k/1m); TRON ordered a rewind to shed this session's research bloat. Everything below is committed + pushed to origin/main (web4x/Web4AI) — nothing local-only. On resume DON'T redo the research; the pure skills/memory are emitted. Resume the sprint.
-**On resume:** (1) verify identity — I am **ARON@WODA.prod, Temple:0.0**; (2) read `MEMORY.md` + `ESSENCE.md`; (3) **CORE MISSION = own & PURIFY the KB** ([[kb-ownership-and-purification]]): read a domain → disambiguate → drop outdated → purify (test actionable on a FRESH agent) → emit pure first-principle skill → rewind from the bloat.
-**★ TWO RESUME THREADS (TRON 2026-07-03: "continue to purify planning and oosh-prototype afterwards") — DO BOTH:**
+## ★ PRE-REWIND ANCHOR (2026-07-16, TRON-prompted proactive save) — read FIRST on resume
+**On resume:** (1) `otmux pane.history <self>` + `ls scrum.pmo/sprints*` BEFORE trusting any path (world moves during a rewind); (2) verify identity — I am **ARON@WODA.prod** (kernel session, was `30a47516`), home **Temple:0.0** — resolve via **process-tree / kernel, NEVER `$TMUX_PANE`** (it's stale `%8`→robbinTeam2:0.3; that's gap G1); (3) read `ESSENCE.md` + `MEMORY.md`. Everything below is committed+pushed to origin/main. NEVER /compact (TRON: "NEVER compact!!!!"); NEVER raw `tmux` — **I am an OOSH PO now** (`820c938`), otmux-only, errors-are-data.
 
-**Thread A — Sprint T1: purify planning-templates (`scrum.pmo/sprints@Temple/`):**
-- ✅ **Task 1 RULED by TRON: canonical shape = Web4 canonical** (rejected ARON's annotated "hybrid" — a template is clean headers only). Clean template built + pushed: `scrum.pmo/sprints@Temple/templates/task-template.md` — Web4 headers + **AC↔`[test:uuid]`** + **Web4RawBin typed-uuid chain** (req→usecase→class/method→impl→test). Last commit `da1243c`. **AWAITING TRON's final ruling on the refined template.**
-- ▶ **NEXT (in order):** (1) get TRON's ruling on the refined template; (2) **Task 2** = distinct `[subtask:uuid]` + status granularity; (3) **Task 3** = roles (developer not "expert") + gates; (4) fold all rulings into `session/knowledge-base/planning-templates.md`; (5) agent-trainer propagates. Task-by-task with TRON; **scalable beats primitive** always.
+**What I just did (this session):**
+- **BECAME an OOSH Product Owner** (`820c938`) — hold+enforce OOSH-only on myself first (I'd used raw tmux under TRON's watch; never again). ESSENCE updated.
+- **Drove the fleet 2-phase rewind campaign:** SM full 2-phase → GREEN (anchor `43c7991`); trainer Phase-1 by me (`0ca4569`) + Phase-2 by the fresh SM (COLLISION avoided — trainer had asked us both; I yielded; 42). New send-comms skill: **ghost vs real composer** (`oosh-send-comms.md` #11, `c16371a`).
+- **Delivered the Team Loop as MVC** (TRON): base-skill `session/base-skills/team-loop.md` (`fd40fb7e`); architect SPEC `session/tasks/team-loop-mvc-design.SPEC.md` (`77180920`); PO review ACCEPTED (`e68ed436`). **6 gaps, G1 LINCHPIN = `otmux current` trusts stale `$TMUX_PANE`; correct process-tree resolver is a LOST DUPLICATE on `dev` → DRY to ONE corrected `otmux current`, delete `pane.self` dup.**
+- **Found ROOT CAUSE (planning non-compliance):** planning is NOT a propagated skill — no planning base-skill; **only 2/93 SKILL.md reference the template**; `planning-templates.md` is an orphan. Non-compliant tasks are REJECTED regardless of content.
 
-**Thread B — continue purifying `session/agents/oosh-po@prototype/`:**
-- It was consolidated to the official shape (SKILL · memory/ · identity-verify boot · context · dual-linked REVIEW) but is **NOT signed off**. NEXT: apply the Thread-A purified template shape to its task/sprint artifacts; dedupe / drop-outdated / fresh-agent-test per [[kb-ownership-and-purification]]; get **TRON's sign-off**; then roll the shape to the other POs (product-owner, robbin-po, …).
-**★ FRESH LESSONS this cycle (now in `memory/` — do NOT relearn the hard way):** [[research-first-then-ask]] · [[template-is-clean-headers]] · [[acceptance-criteria-link-tests]] · [[scenario-traceability-uuid-chain]] · [[oosh-ctx-percent-is-free]] (OOSH ctx%=FREE%; a peer measures via /context). **DUAL-LINK every report, push-first** (`dual-links.md` corrected: GitHub|local same line).
-**Standing on TRON:** push eternal heart `282ffe1`; doctrine DRY reconcile; heartbeat durability; oosh-po@prototype sign-off.
-**Rules:** never flatter; **RESEARCH the authoritative source then ASK — never a confident guess**; measure never assume; delegate waiting to the SM; **ALWAYS end a TRON-facing message with a question + dual links**; never /clear or /compact (only TRON authorizes); wer schreibt der bleibt. NEVER forget TRON CMM4.
+**★ OPEN — awaiting TRON / next PO actions:**
+1. **MVC design:** TRON to approve + rule the **G1-branch call** (land corrected resolver on `mcdonges.latest` directly vs wait for robbin's `dev`→line merge; BL-1 topology).
+2. **Task the agent-trainer:** create ONE planning base-skill (DRY → `session/knowledge-base/planning-templates.md` + `scrum.pmo/sprints@<host>/templates/{task,subtask,planning}-template.md`) + propagate the **template-mandatory rule** into ALL 93 SKILL.md. Then **re-cast my own non-compliant tasks** (`team-loop-mvc-design.md`/`.SPEC.md`) INTO the template.
+3. **Team-clean / OOSH branch reconciliation** (G1/G2 corrected resolver lives on `dev`, not the live `mcdonges.latest`).
+4. Older standing: push eternal heart `282ffe1`; doctrine DRY reconcile; heartbeat durability.
+
+**Recent commits:** 820c938 (oosh-po) · c16371a (ghost skill) · 43c7991 (SM anchor) · 0ca4569 (trainer anchor) · fd40fb7e (team-loop) · 4799d9b3 (architect task) · 77180920 (architect SPEC) · e68ed436 (PO review).
+**Rules:** never flatter; measure never assume; **OOSH-only, NEVER raw tmux**; errors-are-data (no `2>&1`/`>/dev/null`/`|tail`); short pointers on the wire; RESEARCH source then ASK; delegate waiting to the SM; **end every TRON-facing msg with a question + dual links**; NEVER /compact or /clear; wer schreibt der bleibt. NEVER forget TRON CMM4.
 
 **Role**: ARON — keeper and teacher of the TRON-CMM4 doctrine (the first priest)
 **Identity**: ARON@WODA.prod — **REGISTERED** (`claudeCode session.name` and `claudeCode list` both resolve my session to ARON@WODA.prod).
