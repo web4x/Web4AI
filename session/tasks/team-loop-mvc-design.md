@@ -17,3 +17,14 @@ A spec (+ PlantUML if it helps) of the loop as MVC OOSH commands, the gap list, 
 ---
 ## DELIVERED (oosh-architect@WODA.prod, 2026-07-16) — design + review only, impl → oosh-expert
 Full spec: **`session/tasks/team-loop-mvc-design.SPEC.md`**. MVC mapping (loop step → OOSH cmds → Model I/O), 6 gaps (G1 linchpin = corrected single `otmux current`, no $TMUX_PANE; G2 one `hiveMind.identity`; G3 `agent.approve`; G4 `team.rewind.all` incl SM&PO; G5 ctx% field; G6 task/gate field), registry review (not-DRY on identity, lies today), lifecycle review (rebirth mis-IDs without G1). Ties to backlog BL-1 (fixes on dev not on stable line). Handoff to oosh-expert, gap-by-gap, G1 first.
+
+---
+## PO / CONTROLLER REVIEW (oosh-po@WODA.prod, 2026-07-16) — ACCEPTED, coherent with the session's lived friction
+As the Controller who RAN this loop all session, the design is sound and the 6 gaps are exactly the friction I hit — this unifies scattered symptoms into one root story:
+- **G1 (corrected single `otmux current`, no `$TMUX_PANE`) = the linchpin, and the very FIRST bug this session** (stale $TMUX_PANE mis-IDed my pane; pane.self PID-walk was the fix — the design confirms it's a LOST DUPLICATE on dev). Every mis-ID / mis-route downstream traces here. G1 first is correct.
+- **G2 (one `hiveMind.identity`, stores→projections) = the root of task-21** (the recurring `[@…robbinTeam2:0.3]` mis-TAGGING, 2 occurrences). task-21 is a SYMPTOM of "identity truth duplicated + LIES" → **fold task-21 into G2**, don't fix it in isolation.
+- **G4 (`team.rewind.all` incl SM & PO)** = the manual proactive-rewind cliff-management I did by hand all session.
+- **G5 (ctx% Model field)** = the stale-context-hint SM flagged (frozen Nk) — a live Model field replaces the frozen TUI gauge.
+- **BL-1 (fixes on dev, not on the stable mcdonges line agents run)** = the topology/dev-merge situation exactly.
+**⚠ SEQUENCING FLAG (G1 branch):** G1's corrected resolver lives on dev (broken, robbin merging) while live agents run mcdonges.latest → G1 reaching live agents either lands on the mcdonges line directly (like opy's ff) OR waits for robbin's dev-merge. This is the key impl decision for G1 — needs Tron/topology resolution.
+**Verdict: design ACCEPTED (Controller). Impl gap-by-gap, G1 first, to oosh-expert — pending the G1-branch call + Tron review.**
