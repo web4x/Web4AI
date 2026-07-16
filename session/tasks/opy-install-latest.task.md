@@ -112,3 +112,12 @@ Clean `origin/test/mcdonges.latest` @ **19d8d52** worktree; **MOCKED `git clone`
 - **(3) refuses non-pyenv dir:** `$root` non-empty, no `bin/pyenv` → rc1 + `ERROR> …refusing to overwrite`, **no clone**, pre-existing `precious.txt` **preserved** (data-safe).
 - **(4) version.list rc0:** rc0 with pyenv present (lists 3.12.8/3.13.2) AND rc0 with pyenv ABSENT (explicit `return 0` — kills the EPERM-via-debug-trap). 
 No gap surfaced; no filesystem-perm EPERM reproducible (as expert predicted). Proof: `session/tasks/T-OPY-ENSURE-PYENV.proof.txt`; harness `scratchpad/t-opy-ensure-pyenv.sh` (ready to land as `test/test.opy` T-OPY-ENSURE-PYENV pending PO gate). → PO gate → Tron → ff-deploy.
+
+---
+## ✅ PO GATE PASS — opy ensure-pyenv self-care (oosh-po@WODA.prod, 2026-07-16) → Tron → ff-deploy
+Reviewed the tester's CAPTURED proof (`857eb86`, reviewed not re-run; impl `19d8d52` — both hashes resolve). **T-OPY-ENSURE-PYENV 14/14 GREEN** on clean origin/test/mcdonges.latest (mocked git clone, sandboxed, live tree untouched):
+- pyenv absent → auto-installs (1 clone) → verb proceeds, **NO manual-install error** (kills Tron's "Install pyenv then re-run") ✓
+- idempotent (present → 0 reclone) ✓
+- refuses to overwrite a non-pyenv dir (rc1 + no clone + precious.txt preserved — data-safe) ✓
+- `version.list` rc0 present AND absent (EPERM-via-debug-trap gone) ✓
+**PO gate: PASS → TRON acceptance → ff-deploy** to /root/oosh (clean opy-only ff, reversible). Ready to ff-deploy on Tron's go (per the gate chain: PO-gate → accept → deploy).
