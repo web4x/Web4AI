@@ -1,0 +1,37 @@
+=== opy under test: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/oosh-opy/opy @ 19d8d52 ===
+contains 19d8d52: YES
+
+############ (1) pyenv ABSENT -> AUTO-INSTALL -> proceeds, NO manual-install error ############
+  pyenvBin before: ''  (expect empty = absent)
+  ensurePyenv rc=0  clone_calls=1  pyenvBin now='/tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/opy-ep.2046673/pyenv/bin/pyenv'
+  auto msg: [0mopy: pyenv not found — auto-installing (git clone → /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/opy-ep.2046673/pyenv)…
+  PASS: (1) ensurePyenv rc0 (verb would proceed)
+  PASS: (1) pyenv auto-installed at $PYENV_ROOT/bin/pyenv
+  PASS: (1) exactly one git clone issued (auto-install path)
+  PASS: (1) NO manual-install error emitted (self-care, not fail-loud)
+  PASS: (1) announced auto-install
+  PASS: (1) verb proceeds: opy.version.list rc0 after auto-install
+
+############ (2) idempotent — pyenv PRESENT -> installPyenv does NOT reclone ############
+  installPyenv rc=0  new_clone_calls=0
+  PASS: (2) installPyenv rc0 when already present
+  PASS: (2) idempotent: ZERO reclone (bin/pyenv present short-circuits)
+
+############ (3) REFUSES to overwrite a NON-pyenv dir ############
+  installPyenv rc=1  clone_calls=0
+  refuse msg: ERROR> opy.installPyenv: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/opy-ep.2046673/pyenv exists and is non-empty but has no bin/pyenv — refusing to overwrite. Move it aside and re-run.[0m
+  PASS: (3) rc1 — refuses to proceed on non-pyenv dir
+  PASS: (3) emitted 'refusing to overwrite'
+  PASS: (3) did NOT clone/overwrite
+  PASS: (3) pre-existing data preserved (not clobbered)
+
+############ (4) opy version.list returns rc0 (present AND absent) ############
+  present: rc=0 list=[3.12.8 3.13.2]
+  PASS: (4) opy version.list rc0 (pyenv present)
+  absent: rc=0
+  PASS: (4) opy version.list rc0 even when pyenv ABSENT (kills EPERM)
+
+==================================================================
+  T-OPY-ENSURE-PYENV:  PASS=14  FAIL=0
+  ALL GREEN — opy self-care (ensure/install pyenv) verified on clean origin/test/mcdonges.latest
+==================================================================
