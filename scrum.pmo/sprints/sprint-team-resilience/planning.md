@@ -69,6 +69,14 @@ The SM catches every agent at ≤90% and dispatches the trainer — but NOTHING 
 - [ ] SM keeps its context.md LEAN (it appends every tick → the anchor bloats; anchor is for boot, not a running log) + rewinds itself proactively via a peer more often than the 1M agents (it saturates ~5× faster)
 - [ ] T: SM crosses 90% → a peer catches it + drives its 2-phase rewind BEFORE hard-0% (prevention, not the 2× hard-wall rescues that happened this campaign)
 
+### S-11 Permission-freeze CASCADE — the SM (permission-approver) is a single point of failure (scrumMaster-expert / hiveMind-expert)
+Measured 2026-07-16: the "team drift unwatched" was NOT saturation — it was a PERMISSION-FREEZE cascade. The SM froze on a permission prompt for its OWN sweep command (`for p in ...; do otmux pane.capture ...; done` → "Contains simple_expansion · proceed?"). A frozen SM stops sweeping AND stops approving the workers' permission prompts → the workers then froze on their own gates (e.g. architect on `cd && git commit` → "can execute untrusted hooks · proceed?"). Whole team stalled; agents looked "exhausted" but were actually at healthy context (223k/410k) — misread via the frozen context-hint instrument. Trainer recovered by manually approving each frozen prompt (SM sweep, architect commit `808144a5e`).
+- [ ] the SM's own sweep/monitor commands must be permission-SAFE (never trigger an interactive gate) — pre-approved command shapes, no `cd`+chain, no unquoted expansion the classifier flags
+- [ ] agents auto-approve their OWN safe/committed-repo commands (git commit/push in the team repo, pane.capture sweeps) so a frozen approver can't stall the whole team
+- [ ] the S-6 watchdog detects a pane STUCK on a permission prompt (not just dead/high-ctx) and clears it / alerts
+- [ ] don't conflate "frozen on a permission prompt" with "exhausted" — measure the prompt, not just a (possibly frozen) context hint
+- [ ] T: SM sweep runs with ZERO interactive permission prompts; a worker's routine git-commit does not freeze the pane
+
 ## Sequencing
 S-1,S-2 (truth+selection) → S-3 (restore primitive) → S-4 (teams.restore) → S-6 (watchdog) ; S-5 (keepalive+kill-guard) parallel ; S-7 (fresh-host) parallel. Dogfood S-6 last. **S-8/S-9 (boot + auto-resume hook fixes) parallel — filed by agent-trainer from the 2026-07-14/15 fleet-rewind campaign (SM+4 robbin agents); independent, unblock clean recovery. Owner to accept + assign hiveMind-expert.**
 
