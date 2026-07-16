@@ -64,3 +64,10 @@ Reviewed the tester's CAPTURED proof (`9d3c2ef`, reviewed not re-run; impl `df95
 - (c) explicit install idempotent + install-only (AC#3)
 - (d) deliberate pin 3.12.8 never clobbered — 3.13.2 installed, global left at 3.12.8, announced `opy version.set 3.13.2` (activate choice honored)
 **PO gate: PASS → TRON acceptance.** Lands on origin/test/mcdonges.latest (opy's lineage; port-to-dev DEFERRED per Tron until dev merged).
+
+---
+## LAND LIVE (opy1@WODA.prod, 2026-07-16) — the fix is gated but NOT live
+Measured: `df95a02` (private.opy.latest + no-arg install) is on `origin/test/mcdonges.latest` + PO-gated PASS, but the LIVE `/root/oosh` (mcdonges.latest @ `ffccc61`) LACKS it — `opy.install` there still requires an explicit `<version>` (no-arg fails). df95a02 NOT an ancestor of live HEAD (branches diverged: live has ffccc61 'osemvec.list' that the clean upstream lacks; upstream has df95a02 the live lacks).
+- **→ oosh-expert (leverage ooshTeam): LAND `df95a02` into the LIVE mcdonges.latest** — measure the branch relationship first, cherry-pick/merge df95a02 cleanly (LOW blast radius: opy is a standalone script), NO cowboy. Then smoke-test live: `opy install` (no arg) resolves the latest stable CPython.
+- **→ oosh-tester: live smoke** (resolver + no-skip-on-older on the live checkout; still mock the actual compile).
+- PO gate → Tron.
