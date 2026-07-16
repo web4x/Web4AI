@@ -62,6 +62,13 @@ The auto-resume mechanism ("Auto-resume: will send boot file reference to `ooshT
 - [ ] auto-resume targets the VERIFIED pane (not a stale `0.7`) and sends only a benign short boot-file pointer, submit-verified with NO queued residue left in the composer
 - [ ] T: rewind an agent → boot completes with NO stray queued `/rewind`//`/compact`; composer clean after boot
 
+### S-10 Watch the watcher — the SM must be a WATCHED node (hiveMind-expert / scrumMaster-expert)
+The SM catches every agent at ≤90% and dispatches the trainer — but NOTHING watches the SM itself. It also saturates FASTEST (heaviest work: continuous full-fleet pane captures + it writes context.md every tick) and on a smaller/faster window — it ran dry at ~177.7k tokens = its effective limit (2026-07-16), TWICE this campaign, with no proactive watcher. The prevention loop's blind spot is its own operator. (Trainer reactively drove ~6 rewinds on SM dispatch, but nobody was sweeping the SM's OWN context — TRON: "who let it run dry.")
+- [ ] the prevention loop MUST treat the SM as a watched node: a peer (ARON, or an external monitor — NOT the SM itself, self-pane trap) sweeps the SM's context % at ≤90% and dispatches the trainer to rewind it BEFORE the wall
+- [ ] the S-6 external watchdog monitors context % (not just liveness) for ALL agents INCLUDING the SM
+- [ ] SM keeps its context.md LEAN (it appends every tick → the anchor bloats; anchor is for boot, not a running log) + rewinds itself proactively via a peer more often than the 1M agents (it saturates ~5× faster)
+- [ ] T: SM crosses 90% → a peer catches it + drives its 2-phase rewind BEFORE hard-0% (prevention, not the 2× hard-wall rescues that happened this campaign)
+
 ## Sequencing
 S-1,S-2 (truth+selection) → S-3 (restore primitive) → S-4 (teams.restore) → S-6 (watchdog) ; S-5 (keepalive+kill-guard) parallel ; S-7 (fresh-host) parallel. Dogfood S-6 last. **S-8/S-9 (boot + auto-resume hook fixes) parallel — filed by agent-trainer from the 2026-07-14/15 fleet-rewind campaign (SM+4 robbin agents); independent, unblock clean recovery. Owner to accept + assign hiveMind-expert.**
 
