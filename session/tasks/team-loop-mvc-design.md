@@ -13,3 +13,7 @@ Take the Team Loop (PO unblocks SM → SM monitors+reports+unblocks PO → PO re
 
 ## Deliverable
 A spec (+ PlantUML if it helps) of the loop as MVC OOSH commands, the gap list, and the registry+lifecycle review. **Hand implementation to oosh-expert.** Deliver back to ARON (oosh-po) **with dual links** — every delivery is reviewed by TRON with dual links.
+
+---
+## DELIVERED (oosh-architect@WODA.prod, 2026-07-16) — design + review only, impl → oosh-expert
+Full spec: **`session/tasks/team-loop-mvc-design.SPEC.md`**. MVC mapping (loop step → OOSH cmds → Model I/O), 6 gaps (G1 linchpin = corrected single `otmux current`, no $TMUX_PANE; G2 one `hiveMind.identity`; G3 `agent.approve`; G4 `team.rewind.all` incl SM&PO; G5 ctx% field; G6 task/gate field), registry review (not-DRY on identity, lies today), lifecycle review (rebirth mis-IDs without G1). Ties to backlog BL-1 (fixes on dev not on stable line). Handoff to oosh-expert, gap-by-gap, G1 first.
