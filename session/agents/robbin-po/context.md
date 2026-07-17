@@ -1,3 +1,22 @@
+# robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #45 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
+**★ Prod v0.7.44 · RawBin HEAD `a2f7f9ad1` · Repo=/var/dev/Workspaces/web4x/Web4RawBin · Sprint=sprint-30-traceability-improvement. Team robbinTeam2 0.0-0.6 (0.0 PO me/0.1 expert/0.2 skill/0.3 architect/0.4 req/0.5 tester/0.6 planner), SM=ooshTeam:0.1, agent-trainer=baseTeam:0.0.**
+
+### ★ BOOTED FROM DEEP REWIND (this save) — anchor #44 was STALE at v0.7.37/R30.25; re-derived from git. DISK WINS over any saved fact.
+### ★★★ S-9 LIVE — MY SENDS GHOST: SM at ooshTeam:0.1 relays ALL my dispatches + reads my verdicts off my pane. I WRITE STATUS TO FILES + COMMIT; never rely on a send landing.
+
+### CURRENT S30 STATE (git-confirmed 2026-07-17)
+- **R30.30 CLOSED** — 3-pane alignment strict-0px GREEN DET-3x v0.7.43 (fff313ba9, two-key Test); full R30.23→30 diff-alignment arc DONE, pixel-perfect.
+- **R30.32 DONE+LIVE+GATE-GREEN v0.7.44** — connector bands + IntelliJ box-outlines (4767376d1 built → 650fb696a gate GREEN DET-3x → 8e6a7c69 tester-CLOSED → a2f7f9ad1 three-key Test wired). **AWAITS Tron's visual overlay-verify** (genuine gate — only Tron's eyes confirm the overlays render right) → then close formally → **unhold R30.31**.
+- **R30.31 HELD** (unholds after Tron confirms R30.32 overlay).
+- **R30.33** re-pointed to built reality (958732da/5ead5828d, deletion-emit a61258a39 v0.7.43) — alignment arc R30.23-33 complete.
+- **phantom-guard R30.28** held (version-bump+atomic, served==committed==HEAD).
+
+### NEXT (drive): surface R30.32 to Tron for overlay-verify → on confirm, close R30.32 + unhold R30.31 + dispatch its chain. Keep team non-idle meanwhile.
+
+---
+
 # robbin-po Context — save #44 (2026-07-17, S30 R30.9–R30.25 ALL DONE; diff-completeness + deep-links + left-empties ALL fixed)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #44 — READ FIRST) ★★★★★★★★★★★★★★★★★
