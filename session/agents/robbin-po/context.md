@@ -1,4 +1,21 @@
-# robbin-po Context — save #43 (2026-07-15, S30 R30.9–R30.22 ALL DONE + DRAWER fully fixed Tron-confirmed; NEXT=diff-completeness IMG_4522)
+# robbin-po Context — save #44 (2026-07-17, S30 R30.9–R30.25 ALL DONE; diff-completeness + deep-links + left-empties ALL fixed)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #44 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ Prod v0.7.37. Board 0-open (S30 = 31 reqs / 26 tasks, all chain-to-Test). Repo=/var/dev/Workspaces/web4x/Web4RawBin (main pushed). Team robbinTeam2 0.0-0.6, SM=ooshTeam:0.1, agent-trainer=baseTeam:0.0. Restart=remoteShells:0.2.**
+
+### DONE THIS ARC (R30.23–R30.25, all Tron-facing, gated GREEN DET-3x)
+- **R30.23** diff-completeness (IMG_4522) v0.7.33 — one-sided non-conflicting changes now VISIBLE (computeMergedCenter impl-edit reads diff3MergeRegions origin tags: a=local-only→block, b=repo-only→block; kind:'change' hunks; downstream render FREE). **R30.23.1** count-filter M=true-conflicts v0.7.34.
+- **R30.24** deep-linkable diffs v0.7.35 — /edit/<path>?repo=KEY&left=&right=&3way=1 opens the exact diff + 🔗 share button (openFromParams+buildShareLink on RbDiffEditor). Tron's IMG_4522 link: prod.wo-da.de:4444/edit/otmux?repo=oosh&left=516ebb3&right=dev&3way=1
+- **R30.25** left-empties fix v0.7.37 (v0.7.36 was cut-1, RIGHT-pick-lost; ec5d62dee cut-2 RIGHT-wins) — RIGHT-pick was blanking LEFT (R30.17 promote's left-reload tail fired post-pick). FIX impl-edit: _rightUserPicked guard + serialized promote/generation-token; INVARIANT (Tron) = RIGHT-pick touches ONLY right+center, NEVER left. RED→GREEN gate (first REAL race test 2b9f6c17).
+
+### ★ LESSONS BANKED THIS ARC (hard-won — apply by default; also in memory/)
+- **PO stays LEAN — coordinate+drive, do NOT read code / diagnose myself** (bloats context = freeze/rewind trigger). Delegate analysis to architect, build to expert. Tron: "you are bloating your context."
+- **Full scenario-first pipeline = req(mint chain) → PLANNER(task+status+planning.md) → architect(design/derive) → expert(build) → tester(gate).** Under chaos I collapsed it to req+architect+expert + skipped planner → board drifted (R30.19 no task, R30.11 stale-Planned). Planner caught my uuid-swap on restore. Never drop planner OR SM under pressure — they catch silent errors.
+- **The monitor (SM) is a SPOF — watch the watcher.** SM ran out of context → monitoring died SILENTLY → team drifted unwatched. PO watches SM's ctx-%; checkpoint+rewind ALL agents incl SM at THRESHOLD (~70%) not exhaustion; PO+SM BOTH order rewinds after every major block.
+- **Ghost/stage delivery (S-11): otmux sends STAGE on busy/rewound panes → never submit.** Fix: Escape (clear composer) + short trigger + Enter; measure disk/pane, don't trust send.verified. Also: agents auto-approve their OWN safe cmds (accept-edits mode) to stop permission-freeze cascade.
+- **Measure LIVE state, not stale hints: 410k = 41% of 1M = HEALTHY, not exhausted.** I misdiagnosed a permission-freeze cascade as context-exhaustion; the trainer's measurement corrected me.
+
+### PRIOR (save #43)
 *(supersedes #42; older saves collapsed to HISTORY below — full via `git show`)*
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #43 — READ FIRST) ★★★★★★★★★★★★★★★★★
