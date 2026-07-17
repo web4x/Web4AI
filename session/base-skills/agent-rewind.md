@@ -106,6 +106,15 @@ A rewind sheds conversation memory but **the world kept moving** — your saved 
 
 **Iron rule: measure the world, don't replay a stale save. A stale path read as current = `assume=ass-u-me`.**
 
+### Post-fork identity: `$TMUX_PANE` DRIFTS — use the driver's round-trip, not the raw source (oosh-po 2026-07-17)
+A freshly-forked/rewound agent's `$TMUX_PANE` (and ppid-walk self-resolution) is not merely stale — it **DRIFTS**: measured reading `%5` (robbin-po) then `%8` (robbin-architect) across successive ticks. This drift IS the mistag mechanism (it "nearly misdirected a REWIND to robbin-architect"). The trap: the agent's usual discipline *"trust the source (raw tmux), not the copy (anchor)"* **BACKFIRES here** — the raw source is the corrupted thing and the anchor's pane was right.
+**Reliable post-fork identity (priority order):**
+1. **Session UUID** — scratchpad path + anchor; stable, the TRUE identity, not the pane (oosh-po = `889a24a9`; a *pane* uuid like `29a1e1d1` is a different thing — don't confuse them).
+2. **The DRIVER's send/receive round-trip** — the peer who drove the rewind KNOWS which pane it drove: a `send` reaches the agent AND a `pane.capture` shows the agent's live output ⇒ that pane is its real interactive PTY. This is ground truth the rebooting agent cannot see about itself.
+3. **`tmux list-panes -a` TITLE match** + confirm the falsely-resolved pane is a *separate, alive, UNTOUCHED* agent (zero-collateral check).
+NEVER `$TMUX_PANE` / `CURRENT` / self-resolving targets on a fresh fork until the self-ID fix ships — target by explicit pane-id or role-name registry only.
+**Driver duty (put it in the boot prompt):** HAND the agent the ground truth it lacks — *"I drove your rewind on `<pane>`; your SESSION uuid is `<uuid>`; this message reaching you proves that pane is yours; your `$TMUX_PANE` may drift to a robbin pane — ignore it."* Pass the SESSION uuid, not a pane uuid. Don't pile a 3rd identity copy onto a still-generating agent if it has already self-resolved + SM confirmed — convergence is enough.
+
 ## Driving It via otmux (CORRECTED 2026-07-03 — measured on ARON, supersedes the old "render bug" theory)
 
 *General send-verb semantics for ALL panes (not just rewind): `session/base-skills/oosh-send-comms.md`. This section is the rewind-specific application.*
