@@ -54,7 +54,10 @@
 - Expert probe: DESKTOP 1600px orient=h single path M510→C→544→L1055; MOBILE 390px orient=v stacked M14,153→neck→446. 61 paths each. Screenshots sent to Tron.
 - ★ MARKER RECONCILE: build-go said impl ab145dab but ACTUAL method marker = **5051b2a4** (renderConnectorRibbons); expert measured + built there. Chain must re-point to built reality (R30.11 pattern) → planner.
 - ★ OPEN RISK — PROMINENCE: splines are 0.30 translucent; the REJECTED boxes were 0.28 (near-identical). Tron called faint a defect. GATE must measure ribbon prominence vs the Rider target objectively, not just "path exists". Expert deferred prominence to Tron (has both screenshots) + offered to bolden.
-- ★ GATE IN FLIGHT: tester independent pixel-gate v0.7.47 both orientations vs diagrams/R30.32-TARGET png — structure (one spline not boxes) + prominence (our fill vs target fill vs bg). Architect backstops. → Tron verdict.
+- ★★★ GATE GREEN DET-3x (tester independent, commit 62457de11, test/visual/r3034-spline-pixel-gate.mjs, Test marker 9e4c1a67): STRUCTURE ✓ both orientations (desktop across prom 156/157, mobile stacked-down prom 100) + PROMINENCE ✓ ours 157 vs Rider target 164 = 95% AS-PROMINENT not fainter. My 0.30≈0.28 worry SETTLED BY MEASUREMENT (boxes-vs-spline + real contrast, not the opacity number). Independent (chroma-filtered, measured ≠ expert probe). Test hop wiring: GO. → awaits Tron final visual sign-off → close R30.34 + unhold R30.31.
+
+### ★ BOARD FULLY HONEST + COMPLETE (planner 47f90e534 + 37c26bbac): S30 = 39 reqs = 37 tasks + R30.6 rollup + R30.32 superseded → 0 UNCOVERED. #126 gaps backfilled chain-to-Test (T30.18/20/21/22/30/33); T30.28 atomic-deploy DONE by-construction (invariant guard served==committed==HEAD, [[correct-by-construction]]); MARKER RECONCILED 5051b2a4 (R30.11); T30.29 mod-region-resync HONEST IN-PROGRESS (STILL RED v0.7.42, tester caught own false-green — NOT green-washed). byte-match GREEN.
+- OPEN BUILDS: T30.34 (spline, gate in flight, priority-1) + T30.27 (line-align) + T30.29 (RED, active). R30.31 held.
 
 ---
 
