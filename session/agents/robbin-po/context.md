@@ -66,6 +66,11 @@
 - ★ T30.34 accurate status = gate-GREEN + CHAIN-COMPLETE (5-check, e35d7bfaa) + expert IDLE = QA-Review / AWAITING-TRON-SIGN-OFF, NOT actively-building. On Tron OK → DONE + unhold R30.31. If Tron says 'bolder' → expert primed to widen necks + bolden, trivial re-gate.
 - ONLY THING GATING A CLEAN SPRINT = Tron's R30.34 visual verdict (ship 95%-prominent as-is, or bolden).
 
+### ★ T30.9 last-3 hops RESOLVED (tester read-only assessment — doctrine working):
+- #2 renderHunks 37636aaa + #3 populateRightHistory 58c11039 = SUPERSEDED → RETIRE via supersededBy-honor (R30.11 pattern), NOT tester Tests (a Test = FALSE-CREDIT; tester correctly refused). Planner retiring.
+- #1 save a88b2b53 = real hop, BLOCKED for a pollution-safe gate (PUT /api/files overwrite-only, no scratch/delete, classifier correctly blocks prod writes the tester didn't create). CLOSURE = correct-by-construction: expert builds a by-construction safe-save-test mechanism (dry-run flag on PUT preferred, reusable) — NOT a sanctioned prod write. DEFERRED until after Tron R30.34 verdict (expert kept free for a possible bolden). save = T30.9's ONE tracked-open coverage item, honest not green-washed. [[verify-with-independent-method]] [[correct-by-construction]] [[dont-force-prod-mutation-build-safe-test]]
+- R30.9 scoreboard row already COMPLETE via computeMergedCenter; Tron-accepted stands.
+
 ### ★ BOARD FULLY HONEST + COMPLETE (planner 47f90e534 + 37c26bbac): S30 = 39 reqs = 37 tasks + R30.6 rollup + R30.32 superseded → 0 UNCOVERED. #126 gaps backfilled chain-to-Test (T30.18/20/21/22/30/33); T30.28 atomic-deploy DONE by-construction (invariant guard served==committed==HEAD, [[correct-by-construction]]); MARKER RECONCILED 5051b2a4 (R30.11); T30.29 mod-region-resync HONEST IN-PROGRESS (STILL RED v0.7.42, tester caught own false-green — NOT green-washed). byte-match GREEN.
 - OPEN BUILDS: T30.34 (spline, gate in flight, priority-1) + T30.27 (line-align) + T30.29 (RED, active). R30.31 held.
 
