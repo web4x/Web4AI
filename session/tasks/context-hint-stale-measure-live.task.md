@@ -23,3 +23,6 @@ The `clear to save Nk` string is Claude Code's TUI render (may only refresh on t
 - Architect/scrumMaster-expert (live-source contract):
 - Expert (impl):
 - Tester (T-CONTEXT-LIVE):
+
+## Real instance (2026-07-17) — the frozen hint nearly triggered a needless PO rewind-prep
+SM read the TUI token-hint as ~80% for oosh-po and flagged a proactive-rewind. Trainer's LIVE `context.read` measured **19.2% USED** — the TUI hint was stale by ~60 points. Zero harm (anchor saved anyway, good discipline) but it's concrete proof: **the frozen TUI hint must not gate cliff/rewind decisions; use the LIVE source** (context.read / JSONL growth). Direct justification for G5 (live ctx% Model field) + this task. SM owned the mis-read.
