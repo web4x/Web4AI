@@ -1,7 +1,7 @@
 # Team Dashboard
 
-**Updated**: 2026-02-19T17:03:40Z (2026-02-19 18:03 CET)
-**Session**: projectTeam
+**Updated**: 2026-07-13T13:08:48Z (2026-07-13 15:08 CEST)
+**Session**: robbinTeam2
 
 ## Git Status
 
@@ -9,47 +9,42 @@
 |-------|-------|
 | Branch | `main` |
 | Status | uncommitted changes |
-| Last commit | `27da848 Add wakeup monitoring to SM Loop + verify FIRST 3 ACTIONS (G0 WS2)` |
+| Last commit | `aee9c12 robbin-planner: anchor — S30 3-agent race (my reconcile added a 3rd conflicting write); HANDS-OFF, architect finalizing; lesson: STOP+one-finalizer on first collision` |
 
 ## Subscription
 
 | Metric | Value |
 |--------|-------|
-| 5-hour usage | 0% |
-| 7-day usage | 0% |
+| 5-hour usage | - |
+| 7-day usage | - |
 
 ## Tasks
 
 | Metric | Value |
 |--------|-------|
-| Total task files | 214 |
-| Today's tasks | 9 |
+| Total task files | 232 |
+| Today's tasks | 0 |
 
 ## Team Status
 
 | Agent | Pane | Context | Velocity | State |
 |-------|------|---------|----------|-------|
-| orchestrator | 0.0 | 38% | - | unknown |
-| oosh-expert | 0.1 | 57.1% | - | unknown |
-| oosh-tester | 0.2 | 51.2% | - | completed |
-| scrum-master | 0.3 | 36.0% | - | active |
-| product-owner | 0.4 | 100.0% | - | unknown |
-| agent-trainer | 0.5 | 25.8% | - | unknown |
-| task-agent | 1.2 | 35.8% | - | completed |
-| woda-writer | 1.0 | 100.0% | - | active |
-| woda-scribe | 1.1 | 100.0% | - | active |
-| developer | 1.3 | 51.6% | - | unknown |
-| script-product-owner | 1.4 | 41.2% | - | unknown |
-| orchestrator | 0.0:0. | 100.0% | - | unknown |
+| robbin-expert | 0.1 | unknown | - | unknown |
+| robbin-skill-expert | 0.2 | unknown | - | completed |
+| robbin-architect | 0.3 | 0% | - | unknown |
+| robbin-req | 0.4 | unknown | - | unknown |
+| robbin-tester | 0.5 | unknown | - | unknown |
+| robbin-planner | 0.6 | 79% | - | unknown |
+| robbin-po|1782894522 | 0.0 | unknown | - | unknown |
 
 ## Recent Commits
 
 ```
-27da848 Add wakeup monitoring to SM Loop + verify FIRST 3 ACTIONS (G0 WS2)
-135e203 Add Wakeup Registration to all 81 SKILL.md files (G0 WS2)
-62e81c2 Add Chapter 82 "The Override" — human overrides emergency standby, scribe saves dispatch pattern, 16-hour writer, governance hierarchy
-72147fc Purge remaining hardcoded pane commands from context + KB files
-68486b0 Auto-save: scrum-master pre-compact 16:44
+aee9c12 robbin-planner: anchor — S30 3-agent race (my reconcile added a 3rd conflicting write); HANDS-OFF, architect finalizing; lesson: STOP+one-finalizer on first collision
+037d8be robbin-planner: anchor — S30 T30.2/T30.3 reconciled to canonical reqs after parallel-mint collision; lesson: re-verify canonical when minting mid-churn
+bb26139 robbin-tester: context — canonical R30.2=850a339d/R30.3=6cd770df, standing by (Impl not-yet-in-src), r302 ready to bridge
+36596a5 robbin-tester: context — S30 R30.2/R30.3 gate GREEN (r302), measure-first S30=3 catch, chain-ready-to-bridge
+503104d robbin-planner: anchor — S30 task-list current (T30.1 QA-Rev + T30.2/T30.3 In-Progress, all 3 render for Tron); caught+fixed re-lazy-desc before commit
 ```
 
 ## Recovery
