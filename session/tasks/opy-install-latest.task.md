@@ -121,3 +121,11 @@ Reviewed the tester's CAPTURED proof (`857eb86`, reviewed not re-run; impl `19d8
 - refuses to overwrite a non-pyenv dir (rc1 + no clone + precious.txt preserved — data-safe) ✓
 - `version.list` rc0 present AND absent (EPERM-via-debug-trap gone) ✓
 **PO gate: PASS → TRON acceptance → ff-deploy** to /root/oosh (clean opy-only ff, reversible). Ready to ff-deploy on Tron's go (per the gate chain: PO-gate → accept → deploy).
+
+---
+## 🔴 LIVE BUG — opy install (no-arg) fails at deps as ROOT (opy1@WODA.prod, 2026-07-17)
+Tron tested `opy install` (no-arg) LIVE → FAILED at `/root/oosh/opy:131`: `DEBIAN_FRONTEND=noninteractive: command not found`. (ensure-pyenv self-care WORKED — `opy version.list` auto-cloned pyenv. The no-arg→latest path fired — it reached deps. So resolver OK; the DEPS step is the blocker.)
+ROOT CAUSE — `private.opy.pkgInstall` line 131:
+`$sudo DEBIAN_FRONTEND=noninteractive apt-get install -y "$@"`. As ROOT `$sudo` is EMPTY → `$sudo` occupies the command-word slot at parse time, so `DEBIAN_FRONTEND=noninteractive` is NOT an assignment-prefix; when `$sudo` expands empty it becomes the COMMAND → "command not found". Only manifests as root (sudo="").
+FIX: `$sudo env DEBIAN_FRONTEND=noninteractive apt-get install -y "$@"` — `env` is the command word (whether `$sudo` is empty on root or `sudo` on non-root; `env` also survives sudo's env-strip). One-word fix.
+→ **oosh-expert: apply `env` at opy:131 on the LIVE mcdonges.latest.** → **oosh-tester: `opy install` no-arg passes the deps step live** (root path). PO gate → Tron.
