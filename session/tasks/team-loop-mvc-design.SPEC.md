@@ -77,3 +77,35 @@ Sound and complete in shape; the registry-update points:
 Each gap = its own sprint story; tester writes the guard (e.g. extend `T-NO-TMUXPANE` to assert zero `$TMUX_PANE` self-ID after G1). **No code changed by me — design + review only.**
 
 > Note: G1/G2 corrected resolver already exists on `dev` but not on the live `mcdonges.latest` line — ties into backlog **BL-1** (version-mismatch: dev fixes not on the stable line). Expert should land G1 on the line agents actually run.
+
+---
+## G1 — IMPLEMENTATION-READY DESIGN (oosh-architect, 2026-07-17; measured on live mcdonges.latest, branch-agnostic)
+
+### Measured live-line reality (df95a02) — WORSE than "stale alias"
+- `otmux.pane.get.target` (otmux:2683) resolves self from **`${TMUX_PANE}`** → stale/wrong pane after fork/move/rewind. `otmux.current` (2686) = bare alias → same bug.
+- **`otmux pane.self` is CALLED but NOT DEFINED** on this line (0 occurrences in `otmux`), yet invoked by hiveMind:2113/2496/2555/8108 + claudeCode:1620 → those calls dispatch to an unknown method → return **empty** → self-ID silently broken. (The corrected PID-walk `pane.self` exists only on `dev` = the "lost duplicate.")
+- Net: the loop's Model gets identity from a resolver that is either **wrong** (current→$TMUX_PANE) or **missing** (pane.self→undefined). Fix both with ONE resolver.
+
+### The ONE canonical resolver (algorithm — never `$TMUX_PANE`)
+`private.otmux.pane.resolve()` — resolve the executing pane by walking the process tree to its controlling tmux pane:
+1. Start at `$$` (this shell). Walk `$PPID` up the chain (`/proc/<pid>/stat` field 4, or `ps -o ppid=`).
+2. For each ancestor pid, ask tmux which pane hosts it: `tmux list-panes -a -F '#{pane_pid} #{session_name}:#{window_index}.#{pane_index} #{pane_id}'` → match `pane_pid` (or any descendant pid) to the ancestor.
+3. First match = the real pane. Return `session:win.pane` (or `%id` with `target` arg). Cache per-process (pid-keyed) for the call's lifetime only.
+4. No tmux / no match → rc1 (CI/script) — callers already guard.
+   *Rationale:* the process tree is ground truth and survives fork/move/rewind; `$TMUX_PANE` is a spawn-time snapshot that goes stale. This is the same PID-walk the `dev` `pane.self` uses — port it, don't reinvent.
+
+### DRY consolidation — ONE resolver, everything delegates
+- `otmux.current()` → `private.otmux.pane.resolve` (canonical name per task).
+- `otmux.pane.get.target()` → delegate to it (DELETE the `${TMUX_PANE}` line 2683).
+- `otmux.pane.self()` → define as thin alias to it (existing callers keep working).
+- **Caller sites to leave as-is once the resolver is correct** (they already call the right verb): hiveMind:2113/2496/2555 (`pane.self target`), 8108 (`pane.self`); claudeCode:1620 (`context.self`).
+- **Caller sites still on raw `$TMUX_PANE` to repoint** through the resolver: otmux send-prefix self-res 1806–1818, session-resolve 1268–1272, `fit` 1307–1316; and kill the stale comment "Self-pane resolution MUST use $TMUX_PANE (Tron P0 #3)" (superseded — $TMUX_PANE lies after move).
+- End state: **zero `$TMUX_PANE` in any self-ID path**; one resolver; `current`/`pane.self`/`pane.get.target` are one truth.
+
+### Tester guard (extend T-NO-TMUXPANE)
+1. Static: `grep -nE 'TMUX_PANE' otmux hiveMind claudeCode` → zero self-ID uses (only legit target-injection in tests).
+2. Positive: in a real tmux pane, export a DELIBERATELY WRONG `TMUX_PANE=%999`, then assert `otmux current` == `otmux pane.self` == the ACTUAL pane (resolver ignores the poisoned env var). This is the regression that proves the move/rewind lie is fixed.
+3. Definedness: `type -t otmux.pane.self` non-empty (the live "called-but-undefined" break).
+
+### Branch note (ties BL-1 / Tron's G1-branch call)
+The break above is on the LIVE `mcdonges.latest` line. `dev` already has the PID-walk `pane.self` but is unmerged/broken. Wherever Tron lands G1, the resolver must end up on the line agents actually run — else the loop's Model stays untrue. Expert executes; I'm design+review only.
