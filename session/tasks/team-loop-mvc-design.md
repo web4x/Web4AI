@@ -33,3 +33,10 @@ As the Controller who RAN this loop all session, the design is sound and the 6 g
 Architect made G1 IMPLEMENTATION-READY (f8dcf89c, branch-agnostic) + measured a WORSE live break: `otmux pane.self` is CALLED but UNDEFINED on mcdonges.latest → self-ID returns EMPTY, atop `otmux current`/`pane.get.target` trusting stale `$TMUX_PANE`. **This broken live self-ID is the ROOT of the recurring mis-TAGGING (task-21/G2) — a wrong/empty self-ID produces a wrong `[@sender]` tag.**
 - **BRANCH DECISION: mcdonges.latest (the line agents run).** This is a fix on the CURRENT live lineage (like opy), NOT a port to the deferred/broken dev — so it's allowed + I'm ruling it (not blocked on dev-merge). It MUST land where agents run to fix live self-ID.
 - Impl (expert) on clean mcdonges.latest → tester gates (static zero-$TMUX_PANE + poisoned TMUX_PANE=%999 regression + pane.self-definedness) → ff-deploy on Tron go (fleet-wide identity = high blast radius, Tron-aware deploy).
+
+## ✅ PO GATE PASS — G1 self-ID root fix (oosh-po@WODA.prod, 2026-07-17) → Tron → ff-deploy
+Reviewed the tester's CAPTURED proof (`594f297`, reviewed not re-run; impl `93de8ac` — both hashes resolve). **T-NO-TMUXPANE EXTENDED 7/7 GREEN** on clean mcdonges.latest:
+- static: ZERO active `$TMUX_PANE` self-ID code in otmux/hiveMind/claudeCode (only ban-comments) ✓
+- POISONED `TMUX_PANE=%999` → `pane.self`/`current`/`pane.get.target` ALL return the REAL pane (env-immune — the move/rewind lie is DEAD) ✓
+- `pane.self` DEFINED + resolves; each caller gets its OWN real pane (tester=0.4, expert=0.3) ✓ · closes the 42-context pane.self-missing gap (AC4)
+**PO gate: PASS → TRON → ff-deploy** to mcdonges.latest (the line agents run). This is the mis-tagging/mis-routing root fix. Ready to ff-deploy WITH opy on Tron's go.
