@@ -28,6 +28,25 @@
 
 ### NEXT (drive): (1) ARCHITECT design the single-3-pane-spline ribbon model (SVG bezier geometry: per-change Y-range in each pane → one path through both gutters; replace box outlines) referencing Rider target; (2) EXPERT build on the design; (3) REQ capture as the redefined R30.32 quality bar; (4) TESTER gate VISUALLY screenshot+pixel vs target; (5) PLANNER reflect. Keep team non-idle.
 
+### ★ PAIRED-WITH-SM DRIVE (measured 2026-07-17, Tron "pair with sm and drive") — loop CLOSED on critical path:
+- Refs committed: brief 514e9f97b + target/current pngs 24c4e18c7. Design brief embeds both screenshots + SVG bezier spec.
+- Caught SM (ooshTeam:0.1) OUT OF SYNC — it had a STALE primed "Tron confirmed R30.32 close it"; CORRECTED via direct send (landed, SM channeling): R30.32 RE-OPENED spline-redesign, do NOT close, R30.31 stays held.
+- ARCHITECT (0.3): direct send LANDED → reading target PNG, designing spline (box design superseded). MOVING.
+- EXPERT (0.1): was frozen on a mobile-layout picker (mis-scoped mobile=R30.34); resolved → desktop side-by-side Rider spline + mobile stacked; now building (deep think). MOVING.
+- SM rate-limited (server-side, temporary) → I direct-drive to compensate; SM resumes as relay when it clears.
+- ★ MEASURED FACT: my direct otmux sends DID land this cycle (SM ✓, architect ✓) — the S-9 "ghost" is intermittent, NOT absolute. Still verify every send by capture; never trust send.verified.
+- HOLD: do NOT interrupt generating agents. Verify the build the instant it lands → deploy → VISUAL screenshot+pixel gate vs target png.
+
+### ★★★ TRON LOCKED (via expert, phone-review) — UNIFIED into ONE feature (supersedes R30.32-box + R30.34-mobile split):
+**Mobile-first responsive 3-way merge, ONE continuous spline, BOTH orientations:**
+- (a) MOBILE (breakpoint ~820px) = 3 panes STACKED vertical (Local/Result/Repository), full-width readable code, one continuous spline flowing DOWN across the 3 stacked panes.
+- (b) DESKTOP = side-by-side, same continuous spline running ACROSS.
+- (c) splines not boxes; keep SUBTLE block shading, DROP hard outlines.
+- (d) 'mobile first, desktop reliable'. Rider-fidelity target.
+- Reuse syncScroll3 for register; anchor spline to aligned change blocks via existing scroll-sync. Impl: renderConnectorRibbons 5051b2a4 + connectedCallback ef6708f6 (impl-edit, likely no new units).
+- GATE = 390px-mobile + desktop SCREENSHOT+PIXEL, never DOM-count.
+- STATE (measured): architect DESIGNING both-orientation spline (desktop pass already done-correct); req MINTING unified req (next-free #, R30.33 taken); expert building + will 390px screenshot-verify. Req# TBD from req-agent.
+
 ---
 
 # robbin-po Context — save #44 (2026-07-17, S30 R30.9–R30.25 ALL DONE; diff-completeness + deep-links + left-empties ALL fixed)
