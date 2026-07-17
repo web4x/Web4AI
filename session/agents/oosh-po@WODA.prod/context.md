@@ -5,6 +5,12 @@
 **Pane**: ooshTeam:0.0 on **WODA.prod** (v60211.1blu.de) — re-derived 2026-06-28 (was wrongly @MacStudio: fork inherited parent's stale @host; real host = OOSH_SSH_CONFIG_HOST=WODA.prod)
 **Session**: oosh-po@WODA.prod [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## ✅ DEPLOYED 2026-07-17 (post-rewind, Tron said "pull it")
+G1+opy fast-forwarded onto LIVE /root/oosh (mcdonges.latest df95a02→93de8ac, clean FF, 2 commits).
+- **93de8ac G1 self-ID** — VERIFIED live: `otmux current`/`pane.get.target` return ooshTeam:0.0 (my true pane) even with TMUX_PANE=%999; poisoned-$TMUX_PANE mis-tag root ELIMINATED. Session no-CURRENT constraint LIFTED.
+- **19d8d52 opy ensure-pyenv self-care** — live (gated green T-OPY-ENSURE-PYENV).
+NEXT: (a) gate context.read 1M-detection on tester report; (b) team-loop G2-G6 gap-sprints (G2 folds task-21 mis-tag); (c) re-derive the real G1 test-proof commit (anchor's 594f297 was wrong).
+
 ## 🔴 REWIND-NOW ANCHOR — 2026-07-17, 85% (Tron ORDERED my rewind; THIS block is the seed)
 BOOT: `otmux pane.history CURRENT` + `ls scrum.pmo/sprints*` first. Identity: oosh-po@WODA.prod, ooshTeam:0.0 — RE-DERIVE live uuid (last known 889a24a9). GitHub prefix = github.com/web4x/Web4AI/blob/main/.
 **READY-TO-DEPLOY on Tron's go (both land mcdonges.latest = the live line agents run; clean opy-style ff; NOT dev-ports so NOT blocked on robbin's dev-merge):**
