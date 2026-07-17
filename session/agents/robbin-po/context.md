@@ -49,6 +49,13 @@
 - ★ REQ MINTED (6f29c189c pushed): **R30.34 = 53ab62ed-7ced-429a-945f-8b639faa4237** "Mobile-first responsive 3-way merge with ONE continuous spline ribbon (both orientations)". SUPERSEDES R30.32 (supersededBy annotated; boxes rejected, never shipped). UC merge.responsiveSplineRibbon c3f9ea4c → impl renderConnectorRibbons ab145dab (trapezoids/boxes → ONE cubic-bezier SVG path). 6 Tron-LOCKED ACs. crossRef R30.32+R30.13+R30.28. SPRINT30=39. R30.31 still held (line-mapping).
 - ★ NEXT VERIFY (req flag): architect design must LAND as a committed artifact (not just a think) before expert builds — verify-delivery. Then expert build on it → deploy atomic → 390px+desktop pixel gate → Tron.
 
+### ★★★ R30.34 BUILT + LIVE v0.7.47 (commit 834bd5830, atomic R30.28) — expert screenshot-verified BOTH orientations:
+- ONE cubic-bezier SVG path per change spanning Local→Result→Repo (no boxes, no disjoint bands). Orientation-aware: DESKTOP >820px sweeps ACROSS (horizontal tangents absorb Y-offset); MOBILE ≤820px stacked flows DOWN (left-margin ribbon + necks). connectedCallback ef6708f6 media-query row↔column @820px + matchMedia/resize→layout. Box-outlines dropped → subtle line-tint. syncScroll3 registers both. No new units.
+- Expert probe: DESKTOP 1600px orient=h single path M510→C→544→L1055; MOBILE 390px orient=v stacked M14,153→neck→446. 61 paths each. Screenshots sent to Tron.
+- ★ MARKER RECONCILE: build-go said impl ab145dab but ACTUAL method marker = **5051b2a4** (renderConnectorRibbons); expert measured + built there. Chain must re-point to built reality (R30.11 pattern) → planner.
+- ★ OPEN RISK — PROMINENCE: splines are 0.30 translucent; the REJECTED boxes were 0.28 (near-identical). Tron called faint a defect. GATE must measure ribbon prominence vs the Rider target objectively, not just "path exists". Expert deferred prominence to Tron (has both screenshots) + offered to bolden.
+- ★ GATE IN FLIGHT: tester independent pixel-gate v0.7.47 both orientations vs diagrams/R30.32-TARGET png — structure (one spline not boxes) + prominence (our fill vs target fill vs bg). Architect backstops. → Tron verdict.
+
 ---
 
 # robbin-po Context — save #44 (2026-07-17, S30 R30.9–R30.25 ALL DONE; diff-completeness + deep-links + left-empties ALL fixed)
