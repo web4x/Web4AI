@@ -26,3 +26,6 @@ The `clear to save Nk` string is Claude Code's TUI render (may only refresh on t
 
 ## Real instance (2026-07-17) — the frozen hint nearly triggered a needless PO rewind-prep
 SM read the TUI token-hint as ~80% for oosh-po and flagged a proactive-rewind. Trainer's LIVE `context.read` measured **19.2% USED** — the TUI hint was stale by ~60 points. Zero harm (anchor saved anyway, good discipline) but it's concrete proof: **the frozen TUI hint must not gate cliff/rewind decisions; use the LIVE source** (context.read / JSONL growth). Direct justification for G5 (live ctx% Model field) + this task. SM owned the mis-read.
+
+## CORRECTION (2026-07-17) — the false-80% root was context.read, NOT a frozen TUI hint
+Measure-source-not-copy: I attributed today's false-80% to a "frozen TUI hint." The agent-trainer MEASURED the real root — `context.read` divides by MAX_TOKENS=200k and fails to detect 1M for a LIVE-/model-switched agent <200k (SM 80.6% vs live 18%). That is a `context.read` DEFECT, filed separately: `context-read-1M-detection-defect.task.md`. (The frozen-Nk-across-ticks observation may still be a separate TUI issue, but it was NOT the cause of the 80% alarm.)

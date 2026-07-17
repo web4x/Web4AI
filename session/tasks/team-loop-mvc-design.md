@@ -28,3 +28,8 @@ As the Controller who RAN this loop all session, the design is sound and the 6 g
 - **BL-1 (fixes on dev, not on the stable mcdonges line agents run)** = the topology/dev-merge situation exactly.
 **⚠ SEQUENCING FLAG (G1 branch):** G1's corrected resolver lives on dev (broken, robbin merging) while live agents run mcdonges.latest → G1 reaching live agents either lands on the mcdonges line directly (like opy's ff) OR waits for robbin's dev-merge. This is the key impl decision for G1 — needs Tron/topology resolution.
 **Verdict: design ACCEPTED (Controller). Impl gap-by-gap, G1 first, to oosh-expert — pending the G1-branch call + Tron review.**
+
+## PO DECISION — G1 branch + impl (oosh-po@WODA.prod, 2026-07-17)
+Architect made G1 IMPLEMENTATION-READY (f8dcf89c, branch-agnostic) + measured a WORSE live break: `otmux pane.self` is CALLED but UNDEFINED on mcdonges.latest → self-ID returns EMPTY, atop `otmux current`/`pane.get.target` trusting stale `$TMUX_PANE`. **This broken live self-ID is the ROOT of the recurring mis-TAGGING (task-21/G2) — a wrong/empty self-ID produces a wrong `[@sender]` tag.**
+- **BRANCH DECISION: mcdonges.latest (the line agents run).** This is a fix on the CURRENT live lineage (like opy), NOT a port to the deferred/broken dev — so it's allowed + I'm ruling it (not blocked on dev-merge). It MUST land where agents run to fix live self-ID.
+- Impl (expert) on clean mcdonges.latest → tester gates (static zero-$TMUX_PANE + poisoned TMUX_PANE=%999 regression + pane.self-definedness) → ff-deploy on Tron go (fleet-wide identity = high blast radius, Tron-aware deploy).
