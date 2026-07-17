@@ -45,7 +45,9 @@
 - (d) 'mobile first, desktop reliable'. Rider-fidelity target.
 - Reuse syncScroll3 for register; anchor spline to aligned change blocks via existing scroll-sync. Impl: renderConnectorRibbons 5051b2a4 + connectedCallback ef6708f6 (impl-edit, likely no new units).
 - GATE = 390px-mobile + desktop SCREENSHOT+PIXEL, never DOM-count.
-- STATE (measured): architect DESIGNING both-orientation spline (desktop pass already done-correct); req MINTING unified req (next-free #, R30.33 taken); expert building + will 390px screenshot-verify. Req# TBD from req-agent.
+- STATE (measured): architect DESIGNING both-orientation spline (desktop pass already done-correct); req MINTING unified req (next-free #, R30.33 taken); expert building + will 390px screenshot-verify.
+- ★ REQ MINTED (6f29c189c pushed): **R30.34 = 53ab62ed-7ced-429a-945f-8b639faa4237** "Mobile-first responsive 3-way merge with ONE continuous spline ribbon (both orientations)". SUPERSEDES R30.32 (supersededBy annotated; boxes rejected, never shipped). UC merge.responsiveSplineRibbon c3f9ea4c → impl renderConnectorRibbons ab145dab (trapezoids/boxes → ONE cubic-bezier SVG path). 6 Tron-LOCKED ACs. crossRef R30.32+R30.13+R30.28. SPRINT30=39. R30.31 still held (line-mapping).
+- ★ NEXT VERIFY (req flag): architect design must LAND as a committed artifact (not just a think) before expert builds — verify-delivery. Then expert build on it → deploy atomic → 390px+desktop pixel gate → Tron.
 
 ---
 
