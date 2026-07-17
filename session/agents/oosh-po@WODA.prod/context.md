@@ -5,6 +5,23 @@
 **Pane**: ooshTeam:0.0 on **WODA.prod** (v60211.1blu.de) — re-derived 2026-06-28 (was wrongly @MacStudio: fork inherited parent's stale @host; real host = OOSH_SSH_CONFIG_HOST=WODA.prod)
 **Session**: oosh-po@WODA.prod [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## 🎯 PROACTIVE-SAVE ANCHOR — 2026-07-17 (~80%; trainer DOWN so no rewind yet — zero-loss when it returns)
+**BOOT FIRST**: `otmux pane.history CURRENT` + `ls scrum.pmo/sprints*` (per session/base-skills/agent-rewind.md) — the world moves while out. **Identity**: oosh-po@WODA.prod (base role = product-owner SKILL), ooshTeam:0.0 / pane %17, LIVE session 889a24a9 — RE-DERIVE from tree.detailed, never trust this copy.
+
+**CURRENT PLAN**: `scrum.pmo/sprints@WODA.prod/sprint-1/planning.md` — "Reliable Send & Capture" (my sprint; the send-verified/BUG10 productization). Nearly the whole sprint is PO-gated GREEN on origin/dev, awaiting Tron acceptance.
+
+**CURRENTLY DRIVING (dual-link the TASK each response to Tron; GitHub prefix = github.com/web4x/Web4AI/blob/main/):**
+- **opy ensure-pyenv self-care** — GATED GREEN (T-OPY-ENSURE-PYENV 14/14, proof 857eb86), READY to ff-deploy to /root/oosh ON TRON'S GO. `session/tasks/opy-install-latest.task.md`. Kills Tron's "install pyenv manually" — opy now auto-installs pyenv (OOSH self-care).
+- **team-loop MVC design** — Controller-reviewed + ACCEPTED (e68ed436); impl gap-by-gap, G1-first → oosh-expert. `session/tasks/team-loop-mvc-design.md`.
+
+**OPEN — AWAITING TRON:** (1) opy ff-deploy GO. (2) G1-branch decision (G1=corrected `otmux current`, no $TMUX_PANE; lives on BROKEN dev vs LIVE mcdonges.latest — land mcdonges-line like opy, or wait dev-merge?). (3) ACCEPTANCE BATCH (all PO-gated on origin/dev): config.save A+B · task-18 cyan · 7 [S] cases · Gap B/D · opy install-latest · opy ensure-pyenv.
+
+**HELD (tracked, NOT driven) — robbin's dev-merge (3-way editor):** topology switch (`live-box-stray-branch-topology.task.md`, P0 GREEN, P1-P4=Tron window) + ALL ports to dev. Tron: NO port/switch to dev until robbin merges the broken dev. Reopen when dev whole.
+
+**RECENT COMMITS (workspace main):** e68ed436 team-loop review · 282c01a9 opy ensure-pyenv gate · 4fecc507 opy land-live · 61fe530f no-port-until-dev-merged. Code (once.sh): opy self-care `19d8d52` on origin/test/mcdonges.latest; `df95a02` opy install-latest LIVE on /root/oosh.
+
+**★ OPERATING RULES (also learnings.md):** every Tron response leads with the current sharp TASK dual link · every dispatch closes "report-back before idle" + clear-first (Escape+C-u via otmux send.raw) before send (staged-text blocks agent.send) · PO does NOT run tests/grep/edit — delegate + gate on CAPTURED report · verify a cited commit HASH resolves before propagating · OOSH self-care = auto-install recoverable deps (never fail-loud-manual; fail-loud only unrecoverable) · NO `| tail`/`| head` (denied in settings 2026-07-17) · SM "idle" → gate report + DISPATCH NEXT (not remind) · measure-source-not-copy.
+
 ## 🎯 CURRENT — 2026-07-03 (pre-rewind save; near-cliff at 9%)
 **BOOT FIRST**: `otmux pane.history <self>` + `ls scrum.pmo/sprints*` (per session/base-skills/agent-rewind.md). **Identity**: oosh-po@WODA.prod, ooshTeam:0.0, **LIVE session uuid 889a24a9** (re-derived post-rewind 2026-07-03 from tree.detailed; pre-rewind was 29a1e1d1 — measure-source-not-copy).
 **CURRENT PLAN (explicit path — do NOT default to bare sprints/sprint-2, that's STALE)**: `scrum.pmo/sprints@WODA.prod/sprint-1/planning.md` — "Reliable Send & Capture" (flat tasks 01-17). Dual link: [GitHub](https://github.com/web4x/Web4AI/blob/main/scrum.pmo/sprints@WODA.prod/sprint-1/planning.md) | [scrum.pmo/sprints@WODA.prod/sprint-1/planning.md](scrum.pmo/sprints@WODA.prod/sprint-1/planning.md)
