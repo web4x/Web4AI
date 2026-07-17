@@ -15,7 +15,18 @@
 
 ### ★★★ PROCESS LAW (2nd false-green in a row — R30.30 circular oracle → R30.32 DOM-count): VISUAL features are gated by SCREENSHOT+PIXEL only, NEVER by DOM/element counts. A verifier must NOT share the fix's frame. [[verify-with-independent-method]]
 
-### NEXT (drive): (1) tester re-gate R30.32 VISUALLY on v0.7.46 screenshot+pixel; (2) req mint R30.34 mobile 3-pane responsive layout; (3) planner task+planning.md for R30.34 + reflect R30.32 re-open→re-fix. Keep team non-idle.
+### ★★★ R30.32 REDESIGN — Tron REJECTED boxes (2 screenshots, target=Rider Merge Revisions vs our v0.7.46). Directive VERBATIM: "use SPLINES instead of boxes. clear CONTINUOUS mapping. ONE spline ACROSS 3 editors." Quality gap is DRAMATIC. This SUPERSEDES the box/band rendering — v0.7.46 is NOT acceptance.
+**ACCEPTANCE (from target screenshot = JetBrains Rider 3-way merge connectors):**
+- Per change region, ONE continuous filled curved ribbon (cubic-bezier SVG path), NOT rectangles/box-outlines. Kill the boxes.
+- The SINGLE ribbon spans ALL THREE editors: Local change-range → curves across LEFT gutter → Result change-range → curves across RIGHT gutter → Repository change-range. One closed shape per change, continuous through both gutters.
+- Ribbon maps corresponding line-ranges even when they sit at DIFFERENT Y in each pane (the curve absorbs the vertical offset — like the target's flowing bands L20-24→R20-26).
+- Conflicts = red/pink continuous ribbon; changes = blue/green continuous ribbon. Inline accept controls (×/») stay but must NOT occlude the ribbon.
+- Visual bar = the Rider screenshot: smooth, professional, unmistakable mapping at a glance.
+- Client-facing → VERSION-BUMP + atomic (R30.28). GATE = SCREENSHOT+PIXEL vs target aesthetic (per [[visual-features-gate-by-pixel]]), NEVER element-count.
+
+### ALSO OPEN: R30.34 mobile-responsive 3-pane (panes overlap on phone Safari) — req to mint, lower priority than the spline redesign.
+
+### NEXT (drive): (1) ARCHITECT design the single-3-pane-spline ribbon model (SVG bezier geometry: per-change Y-range in each pane → one path through both gutters; replace box outlines) referencing Rider target; (2) EXPERT build on the design; (3) REQ capture as the redefined R30.32 quality bar; (4) TESTER gate VISUALLY screenshot+pixel vs target; (5) PLANNER reflect. Keep team non-idle.
 
 ---
 
