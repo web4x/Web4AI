@@ -6,14 +6,16 @@
 ### ★ BOOTED FROM DEEP REWIND (this save) — anchor #44 was STALE at v0.7.37/R30.25; re-derived from git. DISK WINS over any saved fact.
 ### ★★★ S-9 LIVE — MY SENDS GHOST: SM at ooshTeam:0.1 relays ALL my dispatches + reads my verdicts off my pane. I WRITE STATUS TO FILES + COMMIT; never rely on a send landing.
 
-### CURRENT S30 STATE (git-confirmed 2026-07-17)
-- **R30.30 CLOSED** — 3-pane alignment strict-0px GREEN DET-3x v0.7.43 (fff313ba9, two-key Test); full R30.23→30 diff-alignment arc DONE, pixel-perfect.
-- **R30.32 DONE+LIVE+GATE-GREEN v0.7.44** — connector bands + IntelliJ box-outlines (4767376d1 built → 650fb696a gate GREEN DET-3x → 8e6a7c69 tester-CLOSED → a2f7f9ad1 three-key Test wired). **AWAITS Tron's visual overlay-verify** (genuine gate — only Tron's eyes confirm the overlays render right) → then close formally → **unhold R30.31**.
-- **R30.31 HELD** (unholds after Tron confirms R30.32 overlay).
-- **R30.33** re-pointed to built reality (958732da/5ead5828d, deletion-emit a61258a39 v0.7.43) — alignment arc R30.23-33 complete.
-- **phantom-guard R30.28** held (version-bump+atomic, served==committed==HEAD).
+### CURRENT S30 STATE (git-confirmed 2026-07-17, updated post false-green)
+- **R30.30 CLOSED** — 3-pane alignment strict-0px GREEN DET-3x v0.7.43 (fff313ba9, two-key Test); R30.23→30 arc pixel-perfect.
+- **R30.32 RE-FIXED v0.7.46 (HEAD 13ae22ac6) — GATE RE-OPENED.** v0.7.44 gate was a **FALSE-GREEN** (tester/expert verified off a DOM path-count 110/34px, NOT rendered pixels → Tron saw NO connectors). Root: fill-opacity 0.28 → band pixel [39,67,98] ≈ invisible on ~#111 gutter + single-line bands hid behind »/× icons. FIX (13ae22ac6): fill 0.28→0.9 + white 1.5px hairline → pixel [53,100,150], expert screenshot-CONFIRMED visible. **MUST re-gate VISUALLY (screenshot+pixel-sample at a change row), NEVER element-count.** Then Tron verify → close → unhold R30.31.
+- **R30.31 HELD** (unholds after R30.32 visually closes).
+- **NEW GAP → R30.34 (to mint):** Tron's screenshot was MOBILE Safari — the 3 Monaco panes overlap/cramp on a narrow viewport = SEPARATE responsive-layout bug (3-pane diff doesn't fit mobile). Connectors now render on DESKTOP; mobile needs its own req.
+- **R30.33** re-pointed to built reality (deletion-emit v0.7.43). **phantom-guard R30.28** held.
 
-### NEXT (drive): surface R30.32 to Tron for overlay-verify → on confirm, close R30.32 + unhold R30.31 + dispatch its chain. Keep team non-idle meanwhile.
+### ★★★ PROCESS LAW (2nd false-green in a row — R30.30 circular oracle → R30.32 DOM-count): VISUAL features are gated by SCREENSHOT+PIXEL only, NEVER by DOM/element counts. A verifier must NOT share the fix's frame. [[verify-with-independent-method]]
+
+### NEXT (drive): (1) tester re-gate R30.32 VISUALLY on v0.7.46 screenshot+pixel; (2) req mint R30.34 mobile 3-pane responsive layout; (3) planner task+planning.md for R30.34 + reflect R30.32 re-open→re-fix. Keep team non-idle.
 
 ---
 
