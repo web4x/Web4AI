@@ -43,3 +43,7 @@ Gap 1 (mis-tagged address header) RECURRED: oosh-po→scrum-master (ooshTeam:0.1
 - **Now 2 confirmed occurrences → Gap 1 priority LOW→MEDIUM.** Not data-loss (both self-recovered), but RECURRING mis-attribution that requires every agent to manually verify sender identity against the task file — friction + risk (an agent that skips the check could act on a wrong attribution). The tag consistently mis-resolves to `robbinTeam2:0.3`.
 - Fix unchanged: hiveMind send must TEAM-QUALIFY the `[@sender pane]` tag it stamps (resolve within the actual team scope), never by raw pane-index.
 - Guard confirmed working meanwhile: verify sender identity against the committed task file before acting on any cross-referenced directive.
+
+---
+## ⬆⬆ CRITICAL ESCALATION (2026-07-17) — mis-tag NEARLY MISDIRECTED A REWIND (destructive)
+oosh-po's REWIND ORDER arrived tagged `@robbin-architect robbinTeam2:0.3` — SM nearly aimed the rewind at robbin-architect (WRONG agent). Caught by verifying the anchor commit AUTHOR (oosh-po) → routed to the right pane (ooshTeam:0.0). **The mis-tag can misdirect DESTRUCTIVE operations (a rewind is conversation-destroying) to the wrong agent → Gap 1 priority MED→CRITICAL.** G1 (gated GREEN `594f297`, the self-ID root fix) → its ff-deploy is now SAFETY-URGENT, not cosmetic. Guard that saved it: verify the committed-file author before acting on any cross-team/destructive directive.
