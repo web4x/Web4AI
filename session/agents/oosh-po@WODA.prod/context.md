@@ -5,6 +5,16 @@
 **Pane**: ooshTeam:0.0 on **WODA.prod** (v60211.1blu.de) — re-derived 2026-06-28 (was wrongly @MacStudio: fork inherited parent's stale @host; real host = OOSH_SSH_CONFIG_HOST=WODA.prod)
 **Session**: oosh-po@WODA.prod [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## 🔴 REWIND-NOW ANCHOR — 2026-07-17, 85% (Tron ORDERED my rewind; THIS block is the seed)
+BOOT: `otmux pane.history CURRENT` + `ls scrum.pmo/sprints*` first. Identity: oosh-po@WODA.prod, ooshTeam:0.0 — RE-DERIVE live uuid (last known 889a24a9). GitHub prefix = github.com/web4x/Web4AI/blob/main/.
+**READY-TO-DEPLOY on Tron's go (both land mcdonges.latest = the live line agents run; clean opy-style ff; NOT dev-ports so NOT blocked on robbin's dev-merge):**
+- **G1 self-ID root fix** — PO-GATED GREEN (T-NO-TMUXPANE-EXT 7/7, proof `594f297`; impl `93de8ac`). Fixes the session-long mis-TAGGING/mis-routing — self-ID was empty/stale on the live line (pane.self called-but-undefined + $TMUX_PANE); now ONE `private.otmux.pane.resolve` (PID-walk), env-immune, pane.self defined. `session/tasks/team-loop-mvc-design.md`.
+- **opy** (install-latest `df95a02` + ensure-pyenv self-care `19d8d52`, gates 9d3c2ef/857eb86) — opy AUTO-installs pyenv (OOSH self-care) + installs latest. `session/tasks/opy-install-latest.task.md`.
+**IN FLIGHT (expert):** context.read 1M-detection defect (`context-read-1M-detection-defect.task.md`, bfac811c) — REAL cause of the false-80% (÷200k not ÷1M for a live-/model-switched 1M agent).
+**AT TRON ACCEPTANCE (origin/dev):** config.save A+B · task-18 cyan · 7 [S] cases · Gap B/D.
+**HELD (robbin's dev-merge, 3-way editor):** topology switch + ALL dev-ports. Reopen when dev whole. Tron: NO port to dev until merged.
+**NEXT after rewind:** (1) get Tron's **G1+opy deploy go** → ff-deploy to mcdonges.latest (heads-up first). (2) gate context.read on tester report. (3) team-loop **G2-G6** gap-sprints (G2=one hiveMind.identity, FOLDS task-21 mis-tag; G4=team.rewind.all; G5=live ctx% field; G3=agent.approve; G6=task/gate field). SM uses JSONL-growth not the frozen Nk hint for ctx.
+
 ## 🎯 PROACTIVE-SAVE ANCHOR — 2026-07-17 (~80%; trainer DOWN so no rewind yet — zero-loss when it returns)
 **BOOT FIRST**: `otmux pane.history CURRENT` + `ls scrum.pmo/sprints*` (per session/base-skills/agent-rewind.md) — the world moves while out. **Identity**: oosh-po@WODA.prod (base role = product-owner SKILL), ooshTeam:0.0 / pane %17, LIVE session 889a24a9 — RE-DERIVE from tree.detailed, never trust this copy.
 
