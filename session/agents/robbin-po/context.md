@@ -1,3 +1,26 @@
+# robbin-po Context — save #46 (2026-07-18, FLEET-REWIND BOUNDARY — merge-editor arc DONE)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #46 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
+**★ Prod v0.7.60 · Repo=/var/dev/Workspaces/web4x/Web4RawBin · Sprint=sprint-30. Team robbinTeam2 0.0 PO(me)/0.1 expert/0.2 skill/0.3 architect/0.4 req/0.5 tester/0.6 planner · SM=ooshTeam:0.1 · trainer=baseTeam:0.0.**
+BOOT: `git -C web4x/Web4RawBin log --oneline -8` + `grep version package.json` + `ls scrum.pmo/sprints/sprint-30*/` FIRST. DISK WINS.
+
+### ★★★ WHOLE MERGE-EDITOR ARC DONE + gated GREEN (prod v0.7.60), QA-Review awaiting Tron:
+Everything Tron drove: reject-boxes → both-versions center (dark=old/highlight=new, ≫/≪ add+coexist, ✕ remove) → coloring (add=green/del=red/mod=blue/conflict=brown) → merge actions → resolution checkmark (derived-primary + manual OVERRIDE; solid=≤1line/resolved, outlined=2line; ✕ auto-resolves+jumps) → brighter-current nav → 2-block per-side render (Local↔centerLeft + Repo↔centerRight, content-bounded BOTH sides) → conflict-merge optimization (state-dependent per-line buttons: line-in-center→✕ / not-in→≫/≪; one-sided also gets ✕) → count '31/78 open conflicts'. ALL independently gated GREEN by tester (which self-caught ~7 sampler false-REDs, code right every time). Task-order clean+numeric T30.1→37, accountable (0 #126 gaps; T30.8 unused, T30.31 line-mapping=backlog LIKELY-SUBSUMED by R30.27/29/30+R30.34, T30.32 superseded→R30.34).
+
+### ★★★ OPEN (for the FRESH post-rewind team): SAVE-404 BUG (Tron): all resolved but Save→'save failed (404)'. Same family as C (otmux looked up in wrong repo). FIX: (1) Save ALWAYS writes to the file in the CURRENT checked-out branch/commit (correct repo path, no 404); (2) CENTER pane header shows 'filename@currentBranch' (e.g. otmux@<branch>). Req minting the req now. Then architect→expert→tester(gate on REAL deep-link)→Tron QA.
+### AWAITING TRON: QA-visual verify (merge editor v0.7.60) + R30.14 bootstrap-reload (closes clean-release) + T30.31 close-as-subsumed-or-spec + BUG-2 (LEFT-empty R30.25, his repro).
+
+### ★★★ KEY LEARNINGS THIS ARC (apply by default):
+- FUEL GAUGE (both ways): SM reports EVERY agent's context-% EVERY status, ALARM ≤20% remaining; PO proactively rewinds BETWEEN big builds — DON'T let anyone hit the 0% wall (bit us once; then applied right = clean proactive rewind, 0 lost). [[prevent-cliff-proactive-rewind-90]]
+- GATE ON TRON'S ACTUAL VIEW: 2 blind spots (left-ribbon, File-not-found) PASSED gates because they checked SYNTHETIC fixtures/proxies, not Tron's REAL deep-link. Gate visual/UI on the actual URL + screenshot. [[visual-features-verify-by-screenshot-not-dom]]
+- SM REPORTS, never commands (build-go = PO only). 'built+live' = deploy-commit + version-bump + CODE grep-verified — never a ghost/mint/design. [[dont-force-prod-mutation-build-safe-test]]
+- COMMIT BEFORE VERIFY (build.mjs IS deploy; a wall can't defeat an already-committed R30.28 atomic).
+- SCENARIO-FIRST always (req mints → architect designs → expert builds → tester independent gate); reconcile divergences (caught pure-derived vs derived+override = the keep-both gap). Tron: 'build it, review at QA' = no design-gate, he reviews at QA.
+
+### ★ FLEET REWIND IN PROGRESS (Tron ordered, this save is my pre-rewind checkpoint): trainer driving all robbinTeam2 0.1-0.6 + me(0.0 last); each agent checkpointed; save-404 req captured; nothing lost (all committed, v0.7.60).
+
+---
+
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #45 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
