@@ -5,9 +5,10 @@
 
 ### ★★★ TRON REVIEW (2026-07-18) — optimization 'landed well, autoresolve works, WORLD CLASS' + 3 POLISH fixes (architect root-causing → expert fixes; Tron reviews at QA):
 - (A) RENDERING: 2-line both-versions OPEN changes (line 143++) draw MESSY blue ribbon connectors to left+right — should be CLEAN one-per-side like the single-line at 138.
-- (B) LOGIC: auto-resolve (x→auto-resolve+jump) SKIPPED a GREEN (non-conflicting) change — jump must not skip green/non-conflicting.
-- (C) FALSE ERROR: 'File not found' shows at top even when the 3-way diff renders fine — suppress when diff works (only genuine missing file). 
-- ALSO: reconcile-corrected optimization (derived+override) building; these 3 fold in.
+- (B) LOGIC (Tron sharpened): jumpToChange (skip-to-next, used by BOTH up/down nav AND auto-resolve) NEVER lands on RED (delete) or GREEN (add/one-sided) changes — systematic filter bug (only lands on conflicts). FIX: walk ALL kinds (add/delete/modify/conflict).
+- (C) FALSE ERROR: 'File not found' shows at top even when the 3-way diff renders fine — suppress when diff works (only genuine missing file).
+- (D) RIBBON SPANS EMPTIES: the SVG overlay ribbon stretches across blank/empty lines instead of bounding to the actual change content — LIKELY SAME ROOT as (A) = ribbon vertical-extent geometry. Fix A+D together (content-bounded ribbons).
+- ★ OPTIMIZATION DONE + LIVE + VERIFIED v0.7.58 (expert f65408a0c) — built REQ's derived+override model (v0.7.57 pure-derived SUPERSEDED): 2-line→both x no >>/<<; x rm-side→derived-resolved+auto-jump; override force-resolves a KEEP-BOTH (the gap I caught = FIXED). Expert PROACTIVELY checkpointed (d5bf580c) + will flag before ≤20% = fuel-gauge lesson applied by builder. → tester independent gate on v0.7.58. The 3 polish fixes (A/B/C) come next (architect root-causing → expert).
 
 ### ★★★★★ MERGE-EDITOR ARC COMPLETE (2026-07-18, prod v0.7.56): ALL built + LIVE + independently gated GREEN + Test-wired — both-versions merge (e57f587d7) + coloring add/del/mod/conflict (32f976921) + merge actions >>/<</x (Tron-verified line 38) + resolution checkmark (08f2e05e1) + brighter-current nav (135b82795) + 2-block render (e5b8df258). Tester: 4 self-caught false-REDs across the arc, code right every time. Task-order A+C done. → REMAINING: Tron VISUAL verify (screenshots in panel) + his ONE bootstrap reload (closes clean-release R30.14). Survived an expert 0% wall with 0 work lost (commit-before-verify + trainer rewind code-intact). Context-% monitoring now standing (SM reports every cycle, alarm ≤20%).
 
