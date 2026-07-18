@@ -45,3 +45,5 @@ S19-S26: R19.1-102, contact identity, media, traceability skills, Apple DnD (R25
 
 ## Key learnings (full text in learnings.md)
 chain-report MARKER=Impl-uuid · adopt-downstream-marker-uuid (measure, don't invent) · requirements.md hand-maintained · a mint-go can be retracted (back out surgically, not git-checkout) · git add -A re-bit me → explicit file list from mint script · design-note > looser PO wording · measure a Class by its uuid-named FILE not grep-the-string · correct-by-construction on my own tooling.
+
+> **[2026-07-18] R30.35 diff-coloring-by-kind + per-block merge actions MINTED 48dda0612 — impl-edit computeMergedCenter[a0b30550: derive kind from diff3 oLength/abLength/stable + CONFLICT_PALETTE add=green/delete=red/modify=blue/conflict=brown] + acceptChange[843d79d4: take-local/take-repo/dismiss per kind], markers stay; UCs merge.kindColoring 9c41a415 + merge.blockActions d7493e80; DELETE=red fixes the all-one-sided=blue bug; crossRef R30.9/16/28; architect designs after R30.14 root-cause. R30.31 line-mapping = BACKLOG (deferred concept, no spec; PO: unheld=unblocked NOT scheduled — do NOT speculatively mint). SPRINT30=40.**
