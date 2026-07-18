@@ -57,7 +57,8 @@
   - openChangeCount gate rework → Tron model (resolution=GREEN-CHECKMARK toggle; ✕/≫/≪ RESET to unresolved; openChangeCount=UNRESOLVED, dec-on-checkmark/inc-on-action) — when R30.37 deploys.
   - R30.37 (resolution toggle) gate.
   - R30.38 (2-block: a both-versions change = TWO per-side blocks left-to-center + right-to-center) gate. (R30.35-REFINE rendering commit already in tree.)
-- **NEXT: R30.37 + R30.38 + count-rework on their deploys. Tron's LEFT-empty (BUG-2, R30.25) still parked (do not force).** git push WORKING.
+- **R30.37 resolution toggle — PRIMARY INDEPENDENT VERIFY (expert's was context-wall-interrupted), PASS GREEN DET-3x on v0.7.55 (0a378695d):** `test/visual/r3037-resolution-toggle-gate.mjs` (this IS the reworked count-gate → Tron's checkmark/unresolved model). (1) ✓ de-resolve toggles current change OUTLINED→SOLID (pixel [37,37,38]→[46,204,113]); (2) openChangeCount 'K to resolve' DEC on ✓ (61→60); (3) ≫/≪/✕ RESET to unresolved (button outlined + count 60→61). Wired two-key Test 6d2b9f84→toggleResolved c86a104d + openChangeCount 8b6abf77. NO false-RED this run (checked source model + button-pixel first). Commits 08f2e05e1 + d8332cbab.
+- **NEXT: R30.38 (2-block: a both-versions change = TWO per-side blocks) gate on its deploy. Tron's LEFT-empty (BUG-2, R30.25) still parked (do not force).** git push WORKING.
 - Standing waits: expert PRE-PINGS before every deploy → I "★ PARKED-CONFIRMED on vN" → then he pushes (R30.14 live-catch fidelity bonus, tool `r3014-livecatch-tool.mjs`, shadow-DOM aware; R30.14 already PROVEN). My git push to origin/main is policy-blocked → land via PO push, and peers must read WORKING TREE (not origin) until pushed.
 
 ## ⛔ STANDING RULES (never violate)
