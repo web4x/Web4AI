@@ -72,7 +72,12 @@
 - ★ CORRECT-BY-CONSTRUCTION: media query CONFIRMED REMOVED IN SOURCE (0 matches) — regression CAN'T RECUR (mechanism gone, not just hidden).
 - ★ THE WIDTH-RANGE GATE REPLACES the single-1600px gate that caused ALL 3 MISSES — standing R30.34 gate now. [[visual-features-verify-by-screenshot-not-dom]]
 - ★ CHAIN-COMPLETE (Test hop wired b4871de2a): 5051b2a4.tests[]=[f3300b75,6b1d4e83,9e4c1a67,2a7f5c94] (R30.13 jump + R30.32 bands + R30.34 prominence + R30.34 AC-6 always-3-col/width-range/scroll-track). check×5. r3034-responsive-widths-gate.mjs = STANDING regression-lock 1920→390 + scroll-track.
-- ★ SAGA CLOSED (team side): 819.98px flip root-caused → expert reverted → range gate GREEN DET-3x → wired. Board-synced b6d350258 (planner CAUGHT AC-drift: task had stale stacked-mobile ACs vs refined always-3-col req — re-synced 6/6). T30.34 QA-Review awaiting Tron confirm columns → DONE + unhold R30.31.
+- ★★★ SAGA CLOSED + TRON-CONFIRMED (2026-07-18): Tron confirmed v0.7.48 layout FIXED (always 3 columns, alignment holds whole otmux file, SVG rounding good-enough / pixel-perfect NOT required). 819.98px flip → revert → range gate GREEN DET-3x → wired → Tron-accepted. Board-synced b6d350258 (planner caught AC-drift, re-synced 6/6). → planner flipping T30.34 → DONE + UNHOLD R30.31 (line-mapping now active). MY P0 + full recovery, ACCEPTED.
+
+### ★★★ NEW WORK (Tron, scenario-first — plan no hotfix): DIFF COLORING SEMANTICS + MERGE ACTIONS (req capturing as next-free req, likely R30.35):
+- COLORING (currently all one-sided=BLUE=WRONG): ADDITION (one side adds lines)=GREEN; DELETION (line removed from result, e.g. local-only line dropped)=RED (currently BLUE=the bug); MODIFICATION (both present, changed)=BLUE; CONFLICT (both diverge)=RED/BROWN.
+- MERGE ACTIONS per block (IntelliJ, Tron tested): '>>' take Local→Result (DELETION → re-adds the deleted line); '<<' take Repo→Result; 'x' dismiss/delete block from center.
+- TECH (expert input): kind derivable in computeMergedCenter a0b30550 (oLength==0→ADD / abLength==0→DELETE / both>0→MODIFY / stable:false→CONFLICT); extend ConflictKind + CONFLICT_PALETTE (add=green/delete=red/modify=blue/conflict=brown); acceptChange 843d79d4 / dismiss per kind; ribbons/side-blocks already color by conflictColor(c). Chain: req AC → architect design (after R30.14) → expert build → screenshot gate.
 
 ### ★★★★★ NEW P0 (Tron FURIOUS 2026-07-18) — CLEAN RELEASES, NO HARD RELOADS. "cleanly releases!!! version bump!!! no f***ing hard reloads or any shit."
 - DEFECT: me telling Tron to hard-reload to get the new bundle IS the problem. A version bump must AUTO-PROPAGATE to running clients; a manual hard-reload must NEVER be required. (This also blocks clean R30.34 confirm — he shouldn't need to reload to see columns.)
