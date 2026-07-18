@@ -1,5 +1,10 @@
 # Base Skill: Agent Rewind (MANDATORY — ALL agents; everyone rewinds)
 
+> **STRICT LAW (TRON 2026-07-18): `/compact` and `/clear` are FORBIDDEN — EVERYWHERE, for EVERY agent. No exceptions, no "only Tron authorizes." The ONLY sanctioned recovery is the 2-phase rewind ("Restore conversation") in this skill.**
+> - **A `/compact`ed agent is a brainless ZOMBIE** (TRON's word): it looks alive but its mind — the real conversation — is gone, replaced by a lossy summary. It then acts *confidently wrong* and does DAMAGE, because it has no brain. Compaction does not save an agent; it lobotomizes it.
+> - **`/clear` is worse — a corpse:** total training destruction, unrecoverable.
+> - **Only the 2-phase rewind keeps the mind alive** — it restores the ACTUAL conversation, not a summary. Every band-based "compact at N% / clear at 0%" rule is OUTDATED and DIRTY — purge it on sight.
+
 ## When to Use
 
 ### PRIMARY: PREVENT the cliff — order the rewind PROACTIVELY (TRON 2026-07-03, the main learning)
@@ -68,8 +73,8 @@ Disconnecting RC is part of the recovery (RC-interference fix, or Tron disconnec
 4. Measure, don't assume: the footer `/rc` marker is the proof RC is live.
 
 ## FORBIDDEN
-- **NEVER send /clear** — destroys all training, unrecoverable
-- **NEVER send /compact** — only Tron authorizes
+- **NEVER send /compact — STRICTLY FORBIDDEN EVERYWHERE.** It makes the agent a brainless ZOMBIE (dead mind, still acting, dangerous — no authorization exists, not even Tron's). Use the 2-phase rewind.
+- **NEVER send /clear — STRICTLY FORBIDDEN EVERYWHERE.** Total training destruction, a corpse, unrecoverable. Use the 2-phase rewind.
 - **SELECT BY LABEL, NOT POSITION** (CRITICAL — the restore menu has TWO layouts): read the menu every time and pick the entry **literally labeled "Restore conversation"**.
   - (A) checkpoint WITH code changes → `1 Restore code and conversation` / `2 Restore conversation` / `3 Restore code` / `4 Summarize` → "Restore conversation" = **#2**.
   - (B) checkpoint marked "⚠ No code restore" → `1 Restore conversation` / `2 Summarize from here` / `3 Summarize up to here` / `4 Never mind` → "Restore conversation" = **#1**.
