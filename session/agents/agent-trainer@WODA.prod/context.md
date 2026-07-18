@@ -1,12 +1,19 @@
 # agent-trainer@WODA.prod — Context (session recovery)
 
-**Last updated:** 2026-07-14 (WODA.prod, ARON-DRIVEN 2-PHASE, Phase-1 anchor — deep Phase 2 next). Verify identity on boot before trusting anything here (`boot.md` step 1). Per-host: WODA.prod instance only. Shared files in `session/agents/agent-trainer/`.
+**Last updated:** 2026-07-18 (WODA.prod, healthy at 28% — NOT compacted; ARON zombie-check passed via DISK-WINS re-read). Verify identity on boot before trusting anything here (`boot.md` step 1). Per-host: WODA.prod instance only. Shared files in `session/agents/agent-trainer/`.
 
 ## Identity (verify, don't assume)
 - Role: **agent-trainer**. Model: Opus 4.8 (1M). Host: **WODA.prod**. Pane: `baseTeam:0.0` (verify: `otmux pane.self` — never `$TMUX_PANE`).
 - **BOOT PROCEDURE (do FIRST):** read your PANE HISTORY (`otmux pane.self` → `otmux pane.history <pane>`) — richest recovery, holds the shed conversation. THEN git log + `ls scrum.pmo/sprints*`. THEN this file. The world moved; don't trust a stale save.
 
-## What happened this session (2026-07-13/14) — the FLEET REWIND CAMPAIGN
+## Session 2026-07-17/18 (CURRENT) — two deep rewinds + G1 fix + skill hardening
+- **oosh-po (ooshTeam:0.0) DEEP REWIND — DONE (GREEN, triple-verified).** Order arrived MISTAGGED as robbin-architect; refused to propagate, verified target 3 ways (pane/anchor-subject/idle). Composer "deploy G1" was a GHOST (C-u no-op + 4-source convergence). Restore-conversation BY LABEL to session-start pre-bloat (~2w). Booted clean, re-derived, resolved a live identity contradiction. NOVEL FIND: a forked agent's `$TMUX_PANE` DRIFTS (%5→%8) = the mistag mechanism → reliable identity = session-UUID + driver's send/receive round-trip, NEVER $TMUX_PANE.
+- **robbin-po (robbinTeam2:0.0) DEEP REWIND — DONE (GREEN, co-verified) at the 0% wall.** Consolidate-first impossible (0% no room) → deep restore + DISK-WINS re-derive. MESSY: overshot the picker top ceiling → picker dismissed + stale scrollback dumped in composer + uncontrolled deeper-than-planned restore (~R26). Recovered clean (code-intact, all committed); robbin-po re-derived flawlessly (found moved repo, R30.32 tester-CLOSED, wrote fresh #45 anchor 52276bfc). Rule-6 GREEN by CAPTURE (its sends ghost, S-9).
+- **G1 self-ID fix VERIFIED live** (otmux 93de8ac): `TMUX_PANE=%999 otmux pane.self` → real pane. Retired the "never trust self-resolution" caveat in agent-rewind.md. Self-resolution trustworthy again on mcdonges.latest.
+- **3 learnings banked + folded into agent-rewind.md** (committed+pushed): context-read-1M-denominator (over-reports %used ~5x on 1M agents <200k), post-fork $TMUX_PANE-drift/round-trip, picker-overshoot-ceiling (never Up past `↑N above`).
+- **STRICT LAW (TRON 2026-07-18) now atop agent-rewind.md:** `/compact` + `/clear` FORBIDDEN EVERYWHERE (compacted = zombie); ONLY the 2-phase rewind. → **PURGE stale compact-era guidance from my own SKILL.md + learnings.md** (Context-Preservation→/compact, Compact Protocol, self-care thresholds) — flagged to ARON, do on go.
+
+## What happened prior session (2026-07-13/14) — the FLEET REWIND CAMPAIGN
 Drove ~18 otmux `/rewind` recoveries across ooshTeam + robbinTeam2 — ARON, oosh-po×2, oosh-expert×2, oosh-tester, oosh-architect, SM×3, robbin-po (diligent 2-phase, anchor #40=4058752), robbin-req, robbin-architect×2, robbin-expert×2, robbin-tester, robbin-skill-expert×2. All: option "Restore conversation" BY LABEL (code intact), world-moved boot, Rule-6 verified by the SM.
 
 **The doctrine MATURED into an operating loop:** SM sweeps continuously → catches each agent at a clean ≤90% boundary (after a major sprint task) → verifies anchor committed+pushed → dispatches to me → I drive. Prevention, not rescue. The 0% cliff = a DEFECT.
