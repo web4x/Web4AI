@@ -52,7 +52,12 @@
 - **★ LESSON (recurring, banked hard): a false-RED on an action gate → check the BUTTON data-act/selectors FIRST (they change per version: left/right/ignore → add-left/add-right/rm-left/rm-right). Don't report a code-fail until the gate drives the CURRENT UI.**
 - **R30.36 SPLIT (PO/Tron changed resolution model):** (1) BRIGHTER-CURRENT gate `test/visual/r3036-brighter-current-gate.mjs` PASS GREEN DET-3x on 0.7.54 (commit `135b82795`): nav (jumpToChange→_currentId) → current change renders brighter via `de-block-current` (brightness 1.35 + 2px kind border + white glow). Sample SAME block current-vs-non-current: current ~7x emphasis px (border+glow ring 7453 vs 1014) = pixel-distinguishable; kind hue preserved. Test 3f7b9d21→jumpToChange 65c465fa (offer to wire). (2) **openChangeCount gate HELD** — did NOT run 'decrements-on-action' (OLD model). Tron NEW model: resolution=GREEN-CHECKMARK toggle, ✕/≫/≪ RESET to unresolved, openChangeCount=UNRESOLVED count (decrements on checkmark, increments on action). Rework r3036-navaids-gate.mjs to that AFTER expert reworks. 
 - **★ GATE-SAMPLING lesson (3rd time — banked HARD): a pixel gate RED on a Tron-verified-correct feature = my SAMPLER is wrong. Brighter-current: top-brightest px = code TEXT, not the de-block-current border → fixed to count saturated-border+glow px. ALWAYS look at the screenshot to see WHAT renders before trusting the sample.**
-- **NEXT: rework the count-gate to the checkmark/unresolved model on its deploy. Tron's LEFT-empty (BUG-2, R30.25) still parked (do not force).** git push WORKING.
+- **R30.36 brighter-current Test WIRED (commit `81d4aa264`):** 3f7b9d21→jumpToChange 65c465fa (65c465fa.tests=[72808ca, 3f7b9d21]). lint-clean.
+- **STANDING READY (build+run each on deploy, screenshot+pixel not DOM-count, DET-3x, screenshot-FIRST to avoid sampler false-REDs):**
+  - openChangeCount gate rework → Tron model (resolution=GREEN-CHECKMARK toggle; ✕/≫/≪ RESET to unresolved; openChangeCount=UNRESOLVED, dec-on-checkmark/inc-on-action) — when R30.37 deploys.
+  - R30.37 (resolution toggle) gate.
+  - R30.38 (2-block: a both-versions change = TWO per-side blocks left-to-center + right-to-center) gate. (R30.35-REFINE rendering commit already in tree.)
+- **NEXT: R30.37 + R30.38 + count-rework on their deploys. Tron's LEFT-empty (BUG-2, R30.25) still parked (do not force).** git push WORKING.
 - Standing waits: expert PRE-PINGS before every deploy → I "★ PARKED-CONFIRMED on vN" → then he pushes (R30.14 live-catch fidelity bonus, tool `r3014-livecatch-tool.mjs`, shadow-DOM aware; R30.14 already PROVEN). My git push to origin/main is policy-blocked → land via PO push, and peers must read WORKING TREE (not origin) until pushed.
 
 ## ⛔ STANDING RULES (never violate)
