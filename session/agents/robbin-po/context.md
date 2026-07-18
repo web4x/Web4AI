@@ -66,7 +66,12 @@
 - ★ T30.34 accurate status = gate-GREEN + CHAIN-COMPLETE (5-check, e35d7bfaa) + expert IDLE = QA-Review / AWAITING-TRON-SIGN-OFF, NOT actively-building. On Tron OK → DONE + unhold R30.31. If Tron says 'bolder' → expert primed to widen necks + bolden, trivial re-gate.
 - ONLY THING GATING A CLEAN SPRINT = Tron's R30.34 visual verdict (ship 95%-prominent as-is, or bolden).
 
-### ★★★ P0 UN-BROKEN v0.7.48 (5dc9801d2, atomic) — revert LIVE: removed @media stacking + pinned .de-panes flex:row (never stacks) + dropped down-spline, KEPT across-overlay spline. Expert multi-width verified (screenshot+probe, not DOM-count) 1920/1440/1280/1024/900/800/700/390 = ALL columns incl the 700-819 regression band + 390 phone. Screenshots (700/390/1440) sent to Tron. → INDEPENDENT tester gate (AC-6) running + Tron final look. Scenario-first chain: req AC 42e98e4dc + architect design + expert revert = the impl.
+### ★★★ P0 FIXED + INDEPENDENTLY GATED GREEN v0.7.48 (5dc9801d2, atomic) — awaits only Tron final visual confirm:
+- Revert: removed @media stacking + pinned .de-panes flex:row (never stacks) + dropped down-spline, KEPT across-overlay spline. Scenario-first chain: req AC 42e98e4dc + architect design + expert revert = the impl.
+- INDEPENDENT GATE GREEN DET-3x (tester 50f282076, test/visual/r3034-responsive-widths-gate.mjs, Test marker 2a7f5c94): measured DIFFERENTLY (mount-geometry + SVG-path-parse + real h-scroll, not DOM flex-read). EVERY width 1920/1600/1440/1280/1024/900/800/700/390 = 3col=YES stacked=NO across-spline=YES(61 paths) scroll-track=YES. incl the 700-819 scaled band that regressed Tron + 390 phone = columns not stacked.
+- ★ CORRECT-BY-CONSTRUCTION: media query CONFIRMED REMOVED IN SOURCE (0 matches) — regression CAN'T RECUR (mechanism gone, not just hidden).
+- ★ THE WIDTH-RANGE GATE REPLACES the single-1600px gate that caused ALL 3 MISSES — standing R30.34 gate now. [[visual-features-verify-by-screenshot-not-dom]]
+- Test hop wiring GO (2a7f5c94). Planner reflecting QA-Review. → Tron hard-reload (edit-OC6BU4PE.js) + confirm columns → DONE + unhold R30.31.
 
 ### ★★★★★ P0 REGRESSION (Tron FURIOUS 2026-07-18) — R30.34 responsive STACKED his DESKTOP (was columns, now editors below each other). "Desktop reliable" spec VIOLATED. NOT sprint-clean — R30.34 RE-OPENED.
 - ROOT: mobile-first stacking triggers at Tron's real desktop width — breakpoint 820px too HIGH (catches non-maximized/paneled/container width) OR default flex=column OR container-relative not viewport. Pre-v0.7.47 was ALWAYS columns (stacking is the NEW code = the regression).
