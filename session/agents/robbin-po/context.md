@@ -66,6 +66,8 @@
 - ★ T30.34 accurate status = gate-GREEN + CHAIN-COMPLETE (5-check, e35d7bfaa) + expert IDLE = QA-Review / AWAITING-TRON-SIGN-OFF, NOT actively-building. On Tron OK → DONE + unhold R30.31. If Tron says 'bolder' → expert primed to widen necks + bolden, trivial re-gate.
 - ONLY THING GATING A CLEAN SPRINT = Tron's R30.34 visual verdict (ship 95%-prominent as-is, or bolden).
 
+### ★★★ P0 UN-BROKEN v0.7.48 (5dc9801d2, atomic) — revert LIVE: removed @media stacking + pinned .de-panes flex:row (never stacks) + dropped down-spline, KEPT across-overlay spline. Expert multi-width verified (screenshot+probe, not DOM-count) 1920/1440/1280/1024/900/800/700/390 = ALL columns incl the 700-819 regression band + 390 phone. Screenshots (700/390/1440) sent to Tron. → INDEPENDENT tester gate (AC-6) running + Tron final look. Scenario-first chain: req AC 42e98e4dc + architect design + expert revert = the impl.
+
 ### ★★★★★ P0 REGRESSION (Tron FURIOUS 2026-07-18) — R30.34 responsive STACKED his DESKTOP (was columns, now editors below each other). "Desktop reliable" spec VIOLATED. NOT sprint-clean — R30.34 RE-OPENED.
 - ROOT: mobile-first stacking triggers at Tron's real desktop width — breakpoint 820px too HIGH (catches non-maximized/paneled/container width) OR default flex=column OR container-relative not viewport. Pre-v0.7.47 was ALWAYS columns (stacking is the NEW code = the regression).
 - ★★★ 3rd VERIFICATION MISS THIS SAGA (DOM-count ×2 → now viewport-mismatch): tester gate passed at headless 1600px ONLY, never tested Tron's real width. LESSON: gate VISUAL/RESPONSIVE across the RANGE of REAL widths (1024-1920 desktop = columns, 390 = stack), at Tron's ACTUAL viewport — a single headless width is not the gate. [[visual-features-verify-by-screenshot-not-dom]]
