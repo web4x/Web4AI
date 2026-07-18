@@ -71,7 +71,15 @@
 - INDEPENDENT GATE GREEN DET-3x (tester 50f282076, test/visual/r3034-responsive-widths-gate.mjs, Test marker 2a7f5c94): measured DIFFERENTLY (mount-geometry + SVG-path-parse + real h-scroll, not DOM flex-read). EVERY width 1920/1600/1440/1280/1024/900/800/700/390 = 3col=YES stacked=NO across-spline=YES(61 paths) scroll-track=YES. incl the 700-819 scaled band that regressed Tron + 390 phone = columns not stacked.
 - ★ CORRECT-BY-CONSTRUCTION: media query CONFIRMED REMOVED IN SOURCE (0 matches) — regression CAN'T RECUR (mechanism gone, not just hidden).
 - ★ THE WIDTH-RANGE GATE REPLACES the single-1600px gate that caused ALL 3 MISSES — standing R30.34 gate now. [[visual-features-verify-by-screenshot-not-dom]]
-- Test hop wiring GO (2a7f5c94). Planner reflecting QA-Review. → Tron hard-reload (edit-OC6BU4PE.js) + confirm columns → DONE + unhold R30.31.
+- ★ CHAIN-COMPLETE (Test hop wired b4871de2a): 5051b2a4.tests[]=[f3300b75,6b1d4e83,9e4c1a67,2a7f5c94] (R30.13 jump + R30.32 bands + R30.34 prominence + R30.34 AC-6 always-3-col/width-range/scroll-track). check×5. r3034-responsive-widths-gate.mjs = STANDING regression-lock 1920→390 + scroll-track.
+- ★ SAGA CLOSED (team side): 819.98px flip root-caused → expert reverted → range gate GREEN DET-3x → wired. Board-synced b6d350258 (planner CAUGHT AC-drift: task had stale stacked-mobile ACs vs refined always-3-col req — re-synced 6/6). T30.34 QA-Review awaiting Tron confirm columns → DONE + unhold R30.31.
+
+### ★★★★★ NEW P0 (Tron FURIOUS 2026-07-18) — CLEAN RELEASES, NO HARD RELOADS. "cleanly releases!!! version bump!!! no f***ing hard reloads or any shit."
+- DEFECT: me telling Tron to hard-reload to get the new bundle IS the problem. A version bump must AUTO-PROPAGATE to running clients; a manual hard-reload must NEVER be required. (This also blocks clean R30.34 confirm — he shouldn't need to reload to see columns.)
+- Likely root: cached index.html → old bundle hash / no version-or-build-hash poll / service-worker not updating / R30.14 'sw-auto-update' not covering it.
+- DRIVING scenario-first (NO hotfix): architect (0.3) = measure R30.14 sw-auto-update state + root-cause why v0.7.48 didn't reach Tron without hard-reload + DESIGN clean auto-update (client detects new version → hot-swap or one-click prompt, never manual reload). req (0.4) = refine/mint the AC (invariant: v-bump auto-propagates, no hard-reload ever; gate = deploy new version → client auto-updates). Then expert build → tester gate.
+- [[version-bump-mandatory-on-client-fix]] [[commit-build-atomically-with-deploy]]
+- BUG-2 (Tron LEFT-empty R30.25) still parked pending his repro steps.
 
 ### ★★★★★ P0 REGRESSION (Tron FURIOUS 2026-07-18) — R30.34 responsive STACKED his DESKTOP (was columns, now editors below each other). "Desktop reliable" spec VIOLATED. NOT sprint-clean — R30.34 RE-OPENED.
 - ROOT: mobile-first stacking triggers at Tron's real desktop width — breakpoint 820px too HIGH (catches non-maximized/paneled/container width) OR default flex=column OR container-relative not viewport. Pre-v0.7.47 was ALWAYS columns (stacking is the NEW code = the regression).
