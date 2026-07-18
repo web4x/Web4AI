@@ -17,7 +17,9 @@ Everything Tron drove: reject-boxes → both-versions center (dark=old/highlight
 - COMMIT BEFORE VERIFY (build.mjs IS deploy; a wall can't defeat an already-committed R30.28 atomic).
 - SCENARIO-FIRST always (req mints → architect designs → expert builds → tester independent gate); reconcile divergences (caught pure-derived vs derived+override = the keep-both gap). Tron: 'build it, review at QA' = no design-gate, he reviews at QA.
 
-### ★ FLEET REWIND IN PROGRESS (Tron ordered, this save is my pre-rewind checkpoint): trainer driving all robbinTeam2 0.1-0.6 + me(0.0 last); each agent checkpointed; save-404 req captured; nothing lost (all committed, v0.7.60).
+### ★ FLEET REWIND (Tron ordered) — TARGETED per decision (b): wall ROOT CAUSE = bare `claude --name` bypasses the claudeCode wrapper's 1M default → 200k. 200k WALLERS (fork-fresh-1M, WARM): 0.1 expert [DONE], 0.2 skill, 0.6 planner. HEALTHY 1M (LEAVE, keep warm context): 0.3 architect, 0.4 req, 0.5 tester, 0.0 me. Going-forward: ALWAYS launch via wrapper. [[prevent-cliff-proactive-rewind-90]]
+### ★ INFRA CHANGE (post cross-machine fork): prod.wo-da.de:4444 IS v60211 (shared clone; CLIENT builds auto-deploy from dist/, no restart). ★ SERVER-side changes (server.ts, e.g. the save-404 PUT endpoint) NEED a RESTART — prod server MOVED remoteShells:0.2 → v60211/pts/28 (node scripts/start.mjs pid 1543565); EXPERT has restart-authority (local operator), verify served==committed==HEAD after.
+### ★ SAVE-404: deploy-path VERIFIED (expert builds here reach prod). Fix likely SERVER-SIDE (save PUT hits MAIN repo, file's in oosh — mirror C read-path routing). Chain when fresh req back: req mint → architect → expert build+RESTART → tester gate on REAL deep-link → Tron QA.
 
 ---
 
