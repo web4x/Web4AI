@@ -105,6 +105,7 @@
 2. **SystemTester ONLY** for prod gates: token `ce981242-74fe-4d44-b5b6-43c641e224df`. Seed via `addInitScript` BEFORE goto. Never mint fresh random users/rooms.
 3. **NEVER create / don't clean-and-hope.** In-memory pollution (dangling refs, phantom profiles) clears ONLY on a server restart, not disk cleanup. Never delete a dropped unit (creates dangling refs). Every gate is READ-ONLY by construction OR explicitly restores — verify read-only BEFORE running.
 4. **Measure the ACTUAL state — never the stated count.** Re-run `chain scoreboard` on origin (HEAD==origin), grep src for impl markers, probe CURRENT behavior before a security test (a green suite can hide a live bypass). Report what's real, including hops that aren't mine. "Gated GREEN" ≠ "chain closed" (a hop stays open until its Test UNIT is minted + reverse-wired).
+5. **SHARED WORKING TREE — explicit `git add <my own file paths>` ONLY, NEVER `-A` or `.` (SM R30.51).** All robbinTeam agents share ONE RawBin working tree; `git add -A/.` sweeps other agents' uncommitted edits into MY commit = wrong attribution + risk of committing someone's half-finished work. Commit PROMPTLY after editing to shrink the uncommitted window. (I already do explicit paths — keep it.)
 
 ## Proven gate techniques
 - Read-only on real shipped units: pure-fn (tsx import) / disk-scan / mounted detail component / WS member-read / HTTP-GET-with-stateless-grant.
