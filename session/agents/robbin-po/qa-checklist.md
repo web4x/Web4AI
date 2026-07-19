@@ -1,6 +1,6 @@
 # Sprint 30 — Consolidated QA-Review Checklist (for Tron's batch visual sign-off)
 
-*Assembled by robbin-planner 2026-07-19. **16 tasks for Tron's visual pass** (+ T30.47 already Done via architect+PO internal gate). All served==gated on the LIVE bundle (v0.7.73 for the original 15; **v0.7.76→77 for T30.52**). Each is gate-GREEN DET-3x + chain-to-Test complete both-directions; what remains is Tron's VISUAL confirm. Sign off a whole group in one pass.*
+*Assembled by robbin-planner 2026-07-19. **17 tasks for Tron's visual pass** (+ T30.47 already Done via architect+PO internal gate). All served==gated on the LIVE bundle (v0.7.73 for the original 15; **v0.7.76 T30.52 / v0.7.77 T30.51** — both anti-circular ruler-measured at Tron's 390px mobile viewport). Each is gate-GREEN DET-3x + chain-to-Test complete both-directions; what remains is Tron's VISUAL confirm. **S30 3-way-merge-editor + folding wave is CHAIN-COMPLETE — no active builds.** Sign off a whole group in one pass.*
 
 **Base URL:** `https://prod.wo-da.de:4444`  ·  **Served:** v0.7.73  ·  Held at QA-Review per rule#9 (Tron visual → Done).
 
@@ -19,6 +19,7 @@
 | **T30.46** | Working-file diff (left=latest) | On `…&left=latest&right=dev&3way=1`: LEFT shows the live **on-disk working file** (uncommitted lines visible); edit+Save round-trips to disk; a bare open defaults left=working | v0.7.68 |
 | **T30.50** | Merge toolbar | `N selected · X/Y open conflicts` COMPOSE indicator (N = current change, live on nav, keeps the open-count); **✨ Apply All** popup **3 modes** (Non-conflicting only / All-Local wins / All-Repo wins) — each actually drives CENTER; guarded Save: 0 conflicts → saves + button turns GREEN **✓ Saved** (resets to Save on edit); with open conflicts → jumps to next **UNRESOLVED**, no write | v0.7.73 |
 | **T30.52** | Toolbar re-layout (mis-click prevention) | On **mobile/390px** after 'Apply All → Repository wins' (N=14): **'14 selected' stays visible INLINE** on the same one-row toolbar as ✨ Apply All + nav (h≈32); 'X/Y open conflicts' sits BETWEEN ▼ and ✓ as a non-clickable buffer so ▼ and ✓ are no longer adjacent (no mis-click). *(Refines R30.50-A; was a wrong-state false-green at N=1, re-gated at Tron's real N=14 state.)* | v0.7.76 |
+| **T30.51** | Changes-focused code-folding | Open a 3-way diff with changes: unchanged context is **auto-collapsed on open EXCEPT the change/conflict regions** (which stay expanded); expand/collapse a region **SYNCS across all 3 panes**; a region containing a change **CANNOT be collapsed** (stays open). Monaco setHiddenAreas, K=0 context-margin, chevron affordance. | v0.7.77 |
 
 ## B. Repo-manager V1 — verify on the repo selector + manage dialog (`/edit/otmux?repo=oosh`, open the repo dropdown)
 
