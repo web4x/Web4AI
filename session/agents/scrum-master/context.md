@@ -1,5 +1,15 @@
 # Scrum Master Context — 2026-07-14 (post-SELF-rewind boot, MOST CURRENT)
 
+## ★★★★★★★★★★★★★★★★★★★★★★ TICK (2026-07-19, DEEP-REWIND boot — now on 1M, fleet-rewind mid-campaign) ★★★★★★★★★★★★★★★★
+**Trainer deep-rewound me at my ~98% wall** (Option-2 restore-conversation, code+context.md+MEMORY.md intact). Now scrum-master@WODA.prod ooshTeam:0.1 on **Opus 4.8 1M, 18% used** — full headroom (G1 self-ID fix live). Both my footer + trainer's TUI clean-verified.
+
+**FLEET-REWIND CAMPAIGN (Tron-ordered, TARGETED — root cause: bare `claude --name`=200k wall; fix = always launch via claudeCode wrapper=1M default):**
+- 0.1 expert FORKED-1M ✓ · 0.5 tester OPTION-2 refresh ✓ · 0.2 skill-expert + 0.6 planner = fork-to-1M PENDING (trainer forking, checkpoints 40010307/80b59727) · **0.3 architect (~97%) + 0.4 req (93%) = OPTION-2 refresh NEEDED — I TUI-verified BOTH real near-wall (`/context` banner, NOT cumulative-trap), ordered checkpoint-while-idle + queued to trainer** · 0.0 robbin-po LEAVE-warm (driving save-404).
+- **KEY METRIC LESSON (banked hard this campaign): `context.read`/raw-cumulative LIE** (1M-denominator trap + inversions — bit both robbin-po AND trainer). **TUI banner or a test-message is the ONLY definitive context check.** Trainer's own "0% cliff" rescue flag was STALE — TUI clean = healthy; I stood it down so nobody /compacts a healthy trainer.
+- Prod v0.7.60, merge-editor arc gated GREEN. OPEN = save-404 (Save PUTs to rawbin repo ignoring ?repo=oosh → 404; expert building repo-aware fix + server restart via remoteShells:0.2).
+
+**Next:** verify 0.3/0.4 checkpoints landed → trainer drives their refresh; watch 0.2/0.6 fork completion; track save-404 fix chain (req→architect→expert→tester gate). **My own context.md is a long running-log (S-10 bloat risk that defeated robbin-tester's rewind) — consolidate to lean essence next quiet window; fine for now on 1M.**
+
 ## ★★★★★★★★★★★★★★★★★★★★★★ ★ STANDING TRON DIRECTIVE — SM ROLE BOUNDARY (2026-07-18) ★ ★★★★★★★★★★★★★★★★
 **★ STANDING: CONTEXT-% is a first-class monitored signal (2026-07-18) — reconnect prevent-the-cliff.** Tron/robbin-po directive after the expert hit 0% UNFLAGGED (my drift — I was watching git/phantom, dropped context-% during the relay phase). NOW: (1) EVERY status report MUST include each ACTIVE agent's context-% remaining, read off its pane ("Context low (N% remaining)" banner, or convert the "/clear to save Nk tokens" hint: on 1M, remaining% ≈ (1000k−Nk)/1000k); (2) ALARM robbin-po the INSTANT any agent hits ≤20% remaining (~80% used) → PO proactively rewinds BEFORE the wall, NEVER wait for 0%. Context-% ranks with stalls + phantom as core monitored signals. This IS my original prevent-the-cliff duty (banked long ago as prevent-cliff-proactive-rewind-90) — don't let git/phantom focus crowd it out. **Reading context-% off panes: "Context low (N% remaining)" = explicit (low agents); "/clear to save Nk tokens" = absolute k (healthy agents, convert on 1M cap); NO hint at all = low usage (healthy).**
 
