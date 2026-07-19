@@ -1,3 +1,16 @@
+# robbin-po Context — save #52-delta (2026-07-19 POST-BOOT from #51, Option-2 refresh @clean boundary)
+
+## ★★★★★ #52 DELTA — READ FIRST (DISK-WINS; supersedes #51's "R30.51 gated GREEN") ★★★★★
+**BOOT confirmed: pane.self=%5 ✓, /context REAL total=41% (555k free) healthy ✓, prod v0.7.77, git-derived. Both R30.51/R30.52 were QA-Review — but Tron just REJECTED R30.51.**
+
+### ★★★ TRON REJECTED R30.51 code-folding (screenshots IMG_4572/4573) — BAD + BROKEN:
+- The **setHiddenAreas** "hide-lines" approach YANKS lines out → crammed non-contiguous line-numbers (38,73,128,207,380…) + chaotic overlapping ribbons = unreadable. Tron: "you should not hide lines… this is currently bad and broken, revert it."
+- **TRON RULES the redesign:** (1) do NOT hide lines — use Monaco's **STANDARD collapse/expand (NATIVE folding**: gutter chevron + '⋯' placeholder keeping the region as one foldable line); (2) fold by **METHOD boundaries** (oosh/bash fn defs); (3) collapse corresponding **UNCHANGED** blocks **SYNCED across all 3 editors**, change-regions stay EXPANDED. **This REVERSES the #51 architect decision (setHiddenAreas NOT FoldingController) — Tron overrode it.**
+- DRIVING scenario-first: **EXPERT reverting** the broken v0.7.77 folding NOW (un-break prod → all-lines verbose view). **ARCHITECT redesigning** on native Monaco folding (custom method-boundary fold-range provider + programmatic collapse of unchanged method-blocks cross-ref'd to diff + sync fold/unfold ×3 + chevron). **REQ capturing** (amend-vs-new-# refinementOf R30.51). Then expert builds redesign → tester gates @390 real-mobile → Tron.
+- R30.52 toolbar stays QA-Review (not rejected). Everything else in #51 stands.
+
+---
+
 # robbin-po Context — save #51 (2026-07-19, PRE-REWIND CHECKPOINT @69% autocompact-OFF — R30.51 folding + R30.52 toolbar GATED GREEN, clean boundary)
 
 ## ★★★★★★★★★★★★★ CURRENT STATE (#51 — READ FIRST, DISK-WINS) ★★★★★★★★★★★★★
