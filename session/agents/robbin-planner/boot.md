@@ -6,7 +6,7 @@
 ## Repo: /var/dev/Workspaces/web4x/Web4RawBin  (old 2cuGitHub GONE)
 
 ## CURRENT (prod v0.7.65, 2026-07-19):
-- SPRINT30 = 53 reqs / 51 tasks = **35 Done + 13 QA-Review + 2 In-Progress + 1 BACKLOG**. Sprint uuid 2173e549. (R30.48 f06068ff security-backlog; R30.49 37b58836 delete-for-removable → **T30.49 tasked** a0fbda2fd.)
+- SPRINT30 = 53 reqs / 52 tasks = **35 Done + 13 QA-Review + 2 In-Progress + 1 Planned + 1 BACKLOG**. Sprint uuid 2173e549. (R30.48 security-backlog; R30.49→T30.49 delete a0fbda2fd; **R30.50 32abea56 merge-toolbar → T30.50 7ed31b36 PLANNED/build-after** ec4ea90ee.)
 - ★ **PIN LIVE (Tron directive)**: current=**T30.45** (manage panel, UC6 built v0.7.70, UC7 to build/blocked — In-Progress@impl) / lastCompleted=T30.34 / nextBacklog=T30.44. Commit df479ee10 (moved T30.42→T30.45 as T30.42/43 flipped). ▶ KEEP MOVING current as each task flips (planner-drive focus <FULL-uuid>, natural NO --force #111; NEVER fabricate uuid tail #17 — tool rejects non-Task).
 - 2 In-Progress-BLOCKED-ON-BUILD (expert builds on architect final-matrix green-light): **T30.45** UC7 worktree-switch (current) + **T30.49** 7887c199 delete-for-removable. T30.49 chain complete-to-Test BY REUSE (unregister Impl 559b508b ↔ Test 6f6edecd); pending = delete-UI→unregister wiring. Both 0-built-ACs (honest).
 - 13 QA-Review: T30.9/14/35/36/37/38/39/40/41 + **T30.46** (working-file) + **T30.47** (foundation, served==gated re-gate 1e6ffa99f, 5/5, D1→R30.48) + **T30.42** (dialog/sentinel, r3042 GREEN, 2/3) + **T30.43** (add-local .git-only, r3043 GREEN, ACs synced to 7, 4/7, D1/D4 backlog). Most await Tron VISUAL; T30.47 = internal gate → Done via architect+PO.
