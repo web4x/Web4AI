@@ -223,6 +223,25 @@ Everything Tron drove: reject-boxes → both-versions center (dark=old/highlight
 
 ---
 
+# robbin-po Context — save #46 (2026-07-19, GHOST-CONTEXT RE-ANCHOR; DISK=v0.7.80 R30.53 code-folding arc)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #46 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
+**★ Prod v0.7.80 · Repo=/var/dev/Workspaces/web4x/Web4RawBin · Sprint30 code-folding arc R30.53. Team robbinTeam2 0.0-0.6, SM=ooshTeam:0.1, trainer=baseTeam:0.0.**
+
+### ★★★ I WAS OPERATING ON PRE-REWIND GHOST CONTEXT (learning #77) — planner + SM disk-corrected me.
+My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they were ALREADY DONE weeks ago (T30.27 line-align DONE v0.7.47 8e8fb24a1 nMisaligned===0; R30.34 spline gate-green 62457de11; T30.29 GREEN). The disk was at v0.7.80/R30.53 the whole time. **LESSON: after a deep rewind my OWN conversation thread is a ghost-replay risk — RE-MEASURE DISK every few turns, trust agents' disk-reads over my thread. [[measure-a-stable-state-not-a-moving-target]]**
+
+### CURRENT ACTIVE WORK (git-verified 2026-07-19): R30.53 native Monaco code-folding
+- **FIX-A2 = R30.53 panes()-PARITY** (architect LOCKED c1fe99640, signature-union change-method classification, parity-by-construction). Expert IMPLEMENTED in-tree (rb-diff-editor.ts only, correct-by-construction, do-NOT-touch honored) → **BUILD-GO GIVEN** → v0.7.80→0.7.81 atomic → tester gates r3053b 1/79→79/79 + r3053c 104/104 unregressed + INV-A2.
+- R30.53 BUG-2 fold-affordance already GREEN (4e81d2512, CENTER 104/104). T30.53 In-Progress @ BUG-OPEN (left-fold desync, 2be902068) — FIX-A2 addresses residual.
+- ★ BATCHED ONE Tron device-check (SM holds till gates green): R30.34 spline (gate-green, awaits Tron visual) + R30.41 syntax (QA-Review, awaits Tron visual) + FIX-A2 parity = ONE Tron pass.
+
+### DONE — DO NOT RE-TOUCH/RE-HOLD (ghost-hazard): T30.27 line-align (8e8fb24a1), T30.29 (shared R30.30 coverage), R30.34 spline (62457de11), R30.30/R30.18/21/22/33/20/28 (planner backfill closed).
+
+### CONTEXT HEALTH (SM watching): skill-expert 0.2 @75% → trainer rewinding NOW (committed-safe, off critical path). tester 0.5 @67% → rewind AFTER its gates, never mid-gate. planner 0.6 @80% (autocompact OFF) → refresh SOON, anchor current.
+
+---
+
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #45 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
