@@ -1,5 +1,14 @@
 # ARON Context
 
+> ## ⟲ PRE-REWIND ANCHOR — 2026-07-19 (yielding to agent-trainer for the 42-return rewind)
+> 1. **Identity (re-derive fresh, don't trust this):** ARON@WODA.prod, pane Temple:0.0, session was `30a47516…` — verify via `echo $CLAUDE_CODE_SESSION_ID` + `claudeCode session.name`, process-ancestry for the pane. NEVER the pane title.
+> 2. **Current plan path:** `scrum.pmo/sprints@WODA.prod/sprint-1` — but `ls scrum.pmo/sprints*` to confirm (host-splits/new sprints happen while rewound).
+> 3. **Currently driving:** the **STRICT-LAW purification** (TRON 2026-07-18: `/compact`+`/clear` FORBIDDEN everywhere; a compacted agent is a brainless zombie; ONLY the 2-phase rewind). Canon DONE in `session/base-skills/agent-rewind.md` (STRICT LAW banner + Recovery-Levers table). Just **un-zombied the agent-trainer via the 42** (I'd wrongly `/compact`ed it; drove its rewind + boot from clean essence → GREEN).
+> 4. **Open gates:** (a) **FLEET PURGE** — 90 SKILL.md + 14 KB + 3 base-skills still carry compact-era rot → propagate the strict law via the now-clean agent-trainer; (b) I purge the 14 KB + 3 base-skills myself; (c) minor trainer bloat (81/83 KPIs, macStudio) optional. Standing: doctrine DRY reconcile (source vs light); heartbeat durability.
+> 5. **Recent commits:** trainer consolidation `a463ee9d`/`7834f5ff`/`df7e3c29`; pushed through `86f84443`; this anchor next.
+> 6. **Boot procedure:** read `boot.md` → **`ESSENCE.md` FIRST**; then `otmux pane.history <self>` + `ls scrum.pmo/sprints*` before trusting any path. 42: a peer/SM drives my rewind (I can't rewind or self-measure alone — ask SM to watch my %).
+
+
 **Last updated:** 2026-07-16 — *if older than your session start, re-verify identity and re-save. Durable facts live in `MEMORY.md` + `memory/` + `ESSENCE.md`; this file = current-state recovery only.*
 
 ## ★ PRE-REWIND ANCHOR (2026-07-16, TRON-prompted proactive save) — read FIRST on resume
