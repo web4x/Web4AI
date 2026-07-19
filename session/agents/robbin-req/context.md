@@ -4,12 +4,16 @@
 - **Identity:** robbin-req (requirements engineer), pane **robbinTeam2:0.4**, host **WODA.prod**, project **RawBin**.
 - **Team:** 0.0=po | 0.1=expert | 0.2=skill-expert | 0.3=architect | 0.4=ME | 0.5=tester | 0.6=planner | 0.7=shell. Trainer=baseTeam:0.0.
 - **Work repo:** `/var/dev/Workspaces/web4x/Web4RawBin` (branch main). **Session repo:** `/var/dev/Workspaces/AI/Claude` (this file + learnings, separate git). NOTE: `session/` is NOT inside the RawBin repo.
-- **GIT-VERIFIED (disk-wins, re-derive on every boot):** HEAD **a0808433f** (my R30.38 mint), prod **v0.7.61**.
-- **Current sprint:** S30 traceability-improvement (43 reqs). Merge-editor arc R30.9→R30.37 CLOSED/gated GREEN.
-- **OPEN:** save-404 — expert shipped fix v0.7.61 (9363082cb) + RED baseline test (6c4c1e4af); **R30.38 (4aa5ec49) MINTED scenario-first + committed a0808433f** to anchor that chain. Awaiting tester-GREEN + Tron visual.
-- **R30.38 chain:** req 4aa5ec49 → UCs merge.saveToCurrentBranch (bcc27da9→save 11a8ea6e) + merge.centerHeaderBranch (abad9982→mountThreePane d9223804) on RbDiffEditor 18165081. All method/class units pre-existed; chain intact.
-- **Recovery protocol:** confirm pane 0.4 (`otmux pane.get.target`) → `git log -15` in RawBin repo (git is truth, NOT this file) → read learnings.md → report robbin-po 0.0 + trainer baseTeam:0.0. Serialize scenario units `indent=2, ensure_ascii=False`; edit from `git show HEAD:` for clean diffs; never `git add -A` (shared shell). See identity/mint/verify sections below.
-- **Recent commits:** a0808433f (R30.38 mint) · 9363082cb (save-404 fix v0.7.61) · 6c4c1e4af (R30.38 RED baseline) · 47bfd0578/a2cbcc933 (planner task-order).
+- **GIT-VERIFIED (disk-wins, re-derive on every boot):** prod **v0.7.65**, S30 sprint.requirements[] = **46**. (Anchor updated 2026-07-19 end of 3-way-editor wave; re-run `git log -15` for exact HEAD.)
+- **Current sprint:** S30 traceability-improvement. Merge-editor arc R30.9→R30.37 CLOSED. **3-way-editor wave R30.38–R30.41 all CHAIN-COMPLETE-TO-TEST:**
+  - **R30.38** save-404 (4aa5ec49): 4 UCs — save a88b2b53↔4e2c8f10, writeFile a28cea0d↔5968fda1, setCenterTitle 41504f5f↔8c68c361, currentBranch a2cbd78e↔3d82c2c8. QA.
+  - **R30.39** (95ebc2ed) ?repo seeds both selectors + history parity: 2 UCs — populateRepos 2b7edf20↔d3d9f8f5, populateHistory 0360d7e2↔48cf6080. QA-Review.
+  - **R30.40** (c5869b0a) header=HOME/oosh actual branch, **correct-by-construction** (oosh root = os.homedir()+'/oosh' symlink, drop OOSH_DIR): RepoRegistry.resolve/Impl 9b95b458↔9a59921f. QA-Review.
+  - **R30.41** (b0c21990) per-filetype syntax highlighting: applyLanguage cd0599ab/Impl 5e0e5cd5↔db352d49 (v0.7.65). QA-Review→Tron visual.
+- **KNOWN AUDIT ITEM:** R30.6.7 test 462c8bf4 uses legacy field `verifies:[d7dc0059]` not `implementations:[]` → reverse-wire gap (fwd fine, scoreboard credits). Fix = rename or scorer-honors-both; deferred to R30.6.7 audit.
+- **DEFERRED (PO-tracked, not minted):** populateLeftHistory↔populateHistory mild fill duplication — caller-refactor risks token/promote invariants near Tron QA; revisit on Tron's word/post-close.
+- **Recovery protocol:** confirm pane 0.4 (`otmux pane.get.target`) → `git log -15` in RawBin repo (git is truth, NOT this file) → read learnings.md → report robbin-po 0.0 + trainer baseTeam:0.0. Serialize scenario units `indent=2, ensure_ascii=False`; edit from `git show HEAD:` for clean diffs; never `git add -A` (shared shell). Tests attach to the **Impl** uuid (never Method); adopt the tester's gate-marker uuid as the Test uuid; two-key verify (fwd Test.implementations[] + rev Impl.tests[]).
+- **Pattern this wave:** every new bug/feature = mint scenario-first (observable ACs from Tron) → re-point method/impl to built reality on expert/architect confirm (R30.11 pattern; 3 clean name-matches this wave) → hand expert the Impl uuid for source-only marker → tester gates → I mint Test reverse off their gate marker → planner flips QA-Review.
 
 ---
 
