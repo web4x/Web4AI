@@ -11,7 +11,8 @@
 - ⚠ MARKER-UUID recurring (3rd catch): my build-go handed Method uuids as [impl] markers; expert resolved Method→implementations[0]→real Impl uuid before placing. FIX: I hand IMPL uuids (or say 'resolve Method→Impl'); expert's resolve is a reliable safety net but stop making it work.
 
 ### ★ PUSH-TO-ORIGIN flagged to Tron (his operator call): RawBin origin behind ~4 commits (all local + prod-live disk-wins); push-to-main classifier-blocked. Options offered: backup-branch (I can, no main-touch) / authorize main-push / leave. Awaiting Tron; won't push (outward-facing) w/o his word.
-### ★ STILL: 13 QA-Review await Tron visual.
+### ★ T30.47 (RepoRegistry foundation, INTERNAL) → DONE — architect+PO co-signed (evidence-based: shipped repo-registry.ts vs §10.1; dormant D1/D2/D4 guards real+re-wire-commented = correct-by-construction R30.48 re-entry, 8 name-matched markers chain-complete, builtins protected, ZERO client add/delete exposure in V1 trusted-local scope). Internal Done-gate, correctly NOT a Tron pass.
+### ★★★ V1 WAVE R30.42-50 COMPLETE + GATED. Board ~36 Done + 16 QA-Review (batch checklist handed to Tron: session/agents/robbin-po/qa-checklist.md) + T30.44 backlog. COMPLETE-AWAITING-TRON (QA verdicts / fresh feature-bug / push-auth). NOTHING to build. Origin behind (Tron push-auth). This is a CLEAN milestone boundary — good proactive-refresh point if PO context climbs.
 
 ---
 
