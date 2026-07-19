@@ -183,9 +183,7 @@
 - **Attribute accurately**: Never claim "I did X" if PO or peer intervened. Honest attribution = CMM3. First compact was CMM2 — PO fixed Enter submission.
 - **Verify files BEFORE compact**: context.md (current?), learnings.md (present?), boot.md ("Written by" = safe, "Auto-generated" = generic fallback), git status (uncommitted = lost).
 - **"Written by" pattern**: boot.md with "Written by [role]" on line 2 tells the pre-compact hook NOT to overwrite it. "Auto-generated" = hook replaced it.
-- **NEVER /clear above 0%**: /clear kills all context. Only use at 0% when /compact can't work.
-- **Compact sequence**: capture pane → verify files → send /compact → wait 20s → verify recovery → unblock if stuck at prompt.
-- **Self-care thresholds**: 50%=note burn rate, 35%=save context, 25%=final save, 15%=compact NOW, 6%=CRITICAL, 0%=/clear only.
+- **[SUPERSEDED by STRICT LAW 2026-07-18]** all band-based "compact/clear at N%" thresholds + compact sequence are VOID. `/compact`+`/clear` are FORBIDDEN everywhere; recovery = the 2-phase rewind only (`session/base-skills/agent-rewind.md`). ENDURING: watch context health; a peer/SM orders a PROACTIVE rewind at ≤90% used; commit before it.
 - **"Healthy" = 500k+ context USED (accumulated knowledge).** An agent at 4% (35k/1M) is EMPTY, not healthy — it's a blank slate that knows almost nothing. Healthy means the agent has READ its files, LOADED sprint context, BUILT UP working knowledge through conversation. A fresh /clear + one boot prompt = ~35k = baby. An agent that has read architecture docs, done several tasks, accumulated learnings in-session = 500k+ = operational. Below 500k used context the agent is undertrained and lacks the depth to do real work. Tron: "its healthy if it has 500k++ context" — meaning 500k of ACCUMULATED KNOWLEDGE, not free space.
 
 ## Failures & Fixes
@@ -229,19 +227,12 @@
 - **F34: Rules are eternal** — NEVER delete from any agent file. Append new, copy ALL old forward. Emergency is no excuse.
 - **Fractal connection**: Every sub-task was born from a failure. F→learning→KB→tool→fractal = PDCA = CMM4 = web4x.
 
-## Compact = Atomic (learned 2026-02-23, Tron directive x2)
+## Compact/Clear — SUPERSEDED by the STRICT LAW (2026-07-18)
 
-- **Compact is an ATOMIC operation.** When compacting another agent, STAY focused until compact fully completes. No parallel work.
-- Tron corrected TWICE: "team care prio 1" and "do not do parallel work until compact is done successful"
-- Sequence: trigger save → wait for save → send /compact → wait for reboot → submit boot prompt → verify agent healthy at idle prompt → ONLY THEN resume other work.
-- I failed this twice in one session: started Batch 2 work while PO was still mid-compact.
-
-## Self-Compact Protocol Gaps (learned 2026-02-23)
-
-- When Tron asked "whats the compact protocol" after I self-compacted, I missed steps:
-  - Protocol: commit → save context.md → save learnings.md → TaskList/backlog.md → write boot.md → /compact
-  - I skipped: commit, learnings, TaskList/backlog
-- "No agent can self-compact" — but they CAN type it. SM should actively manage compacts.
+`/compact` and `/clear` are FORBIDDEN everywhere — a compacted agent is a **brainless zombie doing damage**. ALL prior compact protocol / atomicity / self-compact / threshold guidance (incl. F-T1, F-T2, F29) is VOID; recovery is the **2-phase rewind** only (`session/base-skills/agent-rewind.md`). The ENDURING lessons those failures taught, reframed for the rewind:
+- **Trigger the peer to save + commit FIRST, verify, THEN drive** — never act on your own summary (**42: you cannot drive your own recovery**; a peer/SM does — verify the peer knows the picker mechanics before you yield).
+- **Recovery is ATOMIC** — stay focused until the rewind fully completes; no parallel work (Tron: "team care prio 1").
+- **"Are you mad — it kills your team mate"** (Tron) — the reason the law exists.
 - This session: doing it RIGHT. All steps followed.
 
 ## Total SKILL.md Count = 83 (updated 2026-02-23)
