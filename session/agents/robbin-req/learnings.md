@@ -18,6 +18,11 @@ Tester owns Test units (bounded exception). When they hand you "Test X already m
 ## Tron ban re-confirmed: no `2>&1`, no `| tail`/`| head` — on ANY command incl git
 The classifier DENIES `git commit ... 2>&1 | tail`. Run git/otmux plainly; read full output. (Kept re-hitting this; it is [[feedback_no_tail_head_on_captures]] — applies to git commits + otmux sends too, not just captures.)
 
+## Champagne: one Impl can need MULTIPLE Tests (distinct intents) — probe ≠ real-effect (2026-07-19, R30.46 W2)
+A shared Impl reached by multiple requirements/UCs may need a SEPARATE Test per verified intent — structural reachability to ONE test is not champagne if that test verifies a different intent. Concrete: RbDiffEditor.save Impl a88b2b53 had Test 4e2c8f10 (R30.38), but that gate is NON-writing (409-probe / route-intercept — proves routing, not disk write). R30.46 W2 (working-file save must PERSIST to disk) is a DISTINCT intent → needs its own Test (7a0dc2b6, real edit→Save→fs-read round-trip) on the SAME Impl. Result: a88b2b53.tests=[4e2c8f10, 7a0dc2b6], two intents, two tests, both champagne.
+- Watch for **probe/mock tests masquerading as coverage**: a 409-would-succeed / route-intercept / DOM-count test does NOT cover the real side-effect (a real write, a real render). When a new req's intent is the real effect, mint a dedicated Test even if the Impl already "has a test."
+- The tester often catches this (CxC) — honor it; mint the 2nd Test adopting their gate marker, wire reverse (Impl.tests[] gets both).
+
 ## Requirements Writing
 
 ### No Character Limits
