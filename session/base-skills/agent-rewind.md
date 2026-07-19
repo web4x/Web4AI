@@ -5,6 +5,16 @@
 > - **`/clear` is worse — a corpse:** total training destruction, unrecoverable.
 > - **Only the 2-phase rewind keeps the mind alive** — it restores the ACTUAL conversation, not a summary. Every band-based "compact at N% / clear at 0%" rule is OUTDATED and DIRTY — purge it on sight.
 
+## Recovery Levers (which tool, when — TRON 2026-07-19, folded from agent-trainer mastery)
+| Lever | Status | Use |
+|-------|--------|-----|
+| **2-phase rewind** ("Restore conversation") | **THE recovery** | Always — restores the real mind. Peer/SM drives (42; you can't rewind yourself). |
+| **`/model`** | NORMAL | Fine to switch models; not destructive. |
+| **`/rewind`** | NORMAL | The sanctioned command that drives the 2-phase rewind. |
+| **fork** (from fallback-agents) | **LAST RESORT** | Only when the rewind genuinely can't recover (preserves training from the fork point). NOT the default — a prior "fork-as-default" habit was wrong. |
+| **`/context`** | measure only | Read context breakdown ONLY when the agent IS IDLE (not mid-turn). |
+| **`/compact`, `/clear`** | **FORBIDDEN** | Never. Zombie / corpse. See STRICT LAW above. |
+
 ## When to Use
 
 ### PRIMARY: PREVENT the cliff — order the rewind PROACTIVELY (TRON 2026-07-03, the main learning)
