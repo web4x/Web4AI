@@ -17,7 +17,7 @@
 | **T30.38** | Merge Save → diff's repo/branch | Save routes the PUT through the DIFF's repo (e.g. OOSH), current branch — not always rawbin | v0.7.61 |
 | **T30.41** | Per-filetype syntax highlighting | A known filetype shows keywords/strings/comments colored correctly in **all three** panes (Local/Center/Repo) | v0.7.65 |
 | **T30.46** | Working-file diff (left=latest) | On `…&left=latest&right=dev&3way=1`: LEFT shows the live **on-disk working file** (uncommitted lines visible); edit+Save round-trips to disk; a bare open defaults left=working | v0.7.68 |
-| **T30.50** | Merge toolbar | `- N selected · X/Y open` indicator (N = current change, live-updates on nav); **Apply All Non-Conflicting** popup with 2 modes (LEFT-wins / RIGHT-wins); Save only saves at 0 conflicts (else jumps to next unresolved) + turns GREEN when saved, default on next edit | v0.7.73 |
+| **T30.50** | Merge toolbar | `N selected · X/Y open conflicts` COMPOSE indicator (N = current change, live on nav, keeps the open-count); **✨ Apply All** popup **3 modes** (Non-conflicting only / All-Local wins / All-Repo wins) — each actually drives CENTER; guarded Save: 0 conflicts → saves + button turns GREEN **✓ Saved** (resets to Save on edit); with open conflicts → jumps to next **UNRESOLVED**, no write | v0.7.73 |
 
 ## B. Repo-manager V1 — verify on the repo selector + manage dialog (`/edit/otmux?repo=oosh`, open the repo dropdown)
 
