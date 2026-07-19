@@ -1,6 +1,15 @@
 # agent-trainer@WODA.prod — Context (session recovery)
 
-**Last updated:** 2026-07-18 (WODA.prod, healthy at 28% — NOT compacted; ARON zombie-check passed via DISK-WINS re-read). Verify identity on boot before trusting anything here (`boot.md` step 1). Per-host: WODA.prod instance only. Shared files in `session/agents/agent-trainer/`.
+**Last updated:** 2026-07-19 (WODA.prod, ARON rewound me 2-phase → recovered GREEN by measurement, now driving ARON's rewind = the 42 return). Verify identity on boot before trusting anything here (`boot.md` step 1). Per-host: WODA.prod instance only. Shared files in `session/agents/agent-trainer/`.
+
+## Session 2026-07-19 (CURRENT) — TRON fleet rewind of robbinTeam2 + SM; ARON rewound me
+- **FLEET REWIND (Tron-ordered, targeted) — DONE, all GREEN.** The decisive discipline (Tron: "verify if they are already 1m before forking"): measure each agent's REAL window via `/context` (NOT launch-command, NOT context.read), then pick by (window,usage): **200k→FORK to 1M** (`claudeCode fork.to`), **exhausted-1M→OPTION-2 shed** (fork adds zero headroom), **healthy-1M→LEAVE warm**. Result: forked 0.1 expert (200k); Option-2-refreshed 0.5 tester + 0.3 architect + 0.4 req + the SM (all 1M-at-wall); left 0.2 skill/0.6 planner/0.0 po (healthy 1M). See [[fork-vs-refresh-verify-window-first]].
+- **ROOT CAUSE of the walls, fixed fleet-wide:** bare `claude --name` = 200k default; the claudeCode WRAPPER = 1M default (`CLAUDECODE_DEFAULT_MODEL=claude-opus-4-8[1m]`). Team adopted wrapper-launch-always → wall designed out.
+- **Measurement corrections banked:** `context.read` INVERTS/garbages near the wall (not just over-reports 5×) — trust the `Context low (N% remaining)` distress banner + a test-msg probe [[context-read-1m-denominator-stale]]. And "/clear to save Nk" ≈ CURRENT window usage for a not-recently-rewound agent (only diverges to cumulative AFTER a rewind).
+- **SM 2-phase note:** at a true 98%+ wall, "save first" is already too late (agent can't take the save turn) → single deep rewind + DISK-WINS boot (the SM's every-tick commit = STORED made this safe).
+- **New learnings banked this session:** [[rewind-fork-tmuxpane-drifts-roundtrip]], [[rewind-picker-overshoot-ceiling]], [[fork-vs-refresh-verify-window-first]] + context.read escalation. Several folded into `session/base-skills/agent-rewind.md`.
+- **PENDING FOLD:** put the fork-vs-refresh decision table into `agent-rewind.md`; Task #3 + self-purge of stale compact-guidance still gated on ARON.
+
 
 ## Identity (verify, don't assume)
 - Role: **agent-trainer**. Model: Opus 4.8 (1M). Host: **WODA.prod**. Pane: `baseTeam:0.0` (verify: `otmux pane.self` — never `$TMUX_PANE`).
