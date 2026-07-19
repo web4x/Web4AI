@@ -1,6 +1,6 @@
 # Sprint 30 — Consolidated QA-Review Checklist (for Tron's batch visual sign-off)
 
-*Assembled by robbin-planner 2026-07-19. 16 QA-Review tasks, all served==gated on the LIVE bundle **v0.7.73** (verify on prod). Each is gate-GREEN DET-3x + chain-to-Test complete both-directions; what remains is Tron's VISUAL confirm. Sign off a whole group in one pass.*
+*Assembled by robbin-planner 2026-07-19. **15 tasks for Tron's visual pass** (+ T30.47 already Done via architect+PO internal gate). All served==gated on the LIVE bundle **v0.7.73** (verify on prod). Each is gate-GREEN DET-3x + chain-to-Test complete both-directions; what remains is Tron's VISUAL confirm. Sign off a whole group in one pass.*
 
 **Base URL:** `https://prod.wo-da.de:4444`  ·  **Served:** v0.7.73  ·  Held at QA-Review per rule#9 (Tron visual → Done).
 
@@ -27,7 +27,7 @@
 | **T30.43** | Add repo by local path | The dialog accepts a server-local **.git** path (e.g. `/root/oosh`) → registers it → the new repo APPEARS in the selector + is usable for diffs | v0.7.71 |
 | **T30.45** | Manage panel + worktree switch | Manage panel shows the repo's local path, current branch, and its worktrees; selecting a worktree → the center header + diff **track** that worktree's branch (read-only, no checkout) | v0.7.70/72 |
 | **T30.49** | Delete a dynamic repo | Delete a user-added repo from the manage panel → it's GONE from selector + registry; builtins (rawbin, oosh) are NOT deletable (affordance absent/disabled) | v0.7.72 |
-| **T30.47** ⚠ | RepoRegistry foundation | **INTERNAL — no visual.** register/unregister/persist/load mechanism; Done-gate = architect+PO (DET-3x r3047 GREEN), NOT a Tron visual. *(Listed for completeness; skip in the visual pass.)* | v0.7.71 |
+| ~~T30.47~~ ✓ | RepoRegistry foundation | **✓ DONE** (architect co-sign + PO sign, 2026-07-19 cba448fdd — internal DET-3x gate, correctly not a Tron visual). *Skip — already signed.* | v0.7.71 |
 
 ## C. Bug-fixes / deploy
 

@@ -6,10 +6,10 @@
 ## Repo: /var/dev/Workspaces/web4x/Web4RawBin  (old 2cuGitHub GONE)
 
 ## CURRENT (prod v0.7.65, 2026-07-19):
-- SPRINT30 = 53 reqs / 52 tasks = **35 Done + 16 QA-Review + 1 BACKLOG (T30.44)**. Sprint uuid 2173e549. **V1 wave R30.42-50 ALL complete+gated — NO build left.** Remaining = Tron's visual sign-offs.
+- SPRINT30 = 53 reqs / 52 tasks = **36 Done + 15 QA-Review + 1 BACKLOG (T30.44)**. Sprint uuid 2173e549. **V1 wave R30.42-50 ALL complete+gated — NO build left.** Remaining = Tron's 15 visual sign-offs. (T30.47 DONE via architect+PO internal gate cba448fdd — NOT Tron-visual.)
 - ★ **PIN**: current=**T30.50** (merge-toolbar, QA-Review, gate-proven r3050 v0.7.73) / lastCompleted=T30.34 / nextBacklog=T30.44. No active build (all QA-Review). Move current when new work starts (planner-drive focus <FULL-uuid>, natural NO --force #111; NEVER fabricate uuid tail #17).
 - ★ **QA CHECKLIST assembled** for Tron batch sign-off → `session/agents/robbin-po/qa-checklist.md` (265328c9): 16 tasks grouped A merge-editor(8) / B repo-manager(5, T30.47=internal-no-visual) / C bug-fixes(3); each row = task+feature, deep-link URL, what-to-look-for, gated ver. All served==gated on LIVE **v0.7.73**.
-- 16 QA-Review: merge-editor T30.9/35/36/37/38/41/46/50 · repo-mgr T30.42/43/45/47(internal)/49 · bug-fix T30.14/39/40. Held rule#9 → Tron visual → Done (T30.47 via architect+PO). ⚠ **T30.50 = 3-mode ✨ Apply All (Non-conflicting/Local-wins/Repo-wins) + compose 'N selected · X/Y open'** per Tron ruling (NOT stale 2-mode; task AC3 synced 174cee421; req to clean R30.50 AC3-5). Security D1/D2/D4 + clone = R30.48/BH-3 + T30.44 backlog (re-activate before exposed/multi-user).
+- 15 QA-Review (Tron-visual): merge-editor T30.9/35/36/37/38/41/46/50 · repo-mgr T30.42/43/45/49 · bug-fix T30.14/39/40. Held rule#9 → Tron visual → Done. (T30.47 already DONE via architect+PO internal gate.) ⚠ **T30.50 = 3-mode ✨ Apply All (Non-conflicting/Local-wins/Repo-wins) + compose 'N selected · X/Y open'** per Tron ruling (NOT stale 2-mode; task AC3 synced 174cee421; req to clean R30.50 AC3-5). Security D1/D2/D4 + clone = R30.48/BH-3 + T30.44 backlog (re-activate before exposed/multi-user).
 - ▶ NEXT-ME: on Tron's batch sign-off → flip the passed QA-Review tasks → Done (which passed = which flip); T30.47 via architect+PO. No build pending. Data=truth, byte-match GREEN.
 - Task-order clean numeric T30.1→T30.50, byte-match GREEN.
 
