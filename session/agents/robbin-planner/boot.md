@@ -22,7 +22,8 @@
 `NODE18=/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda`
 `PATH="$NODE18:$PATH" $R/node_modules/.bin/tsx $R/scripts/generate-sprint-md.ts <sprint-uuid> [--check]`  (also planner-drive.ts)
 ⚠ Bash: NO `cd` into web4x (denied) — use `git -C "$R"` + absolute paths; no loops/heredocs; glob the SPECIFIC uuid (`{uuid}*`), never `dir/*[0]`.
-⚠ otmux /dev/tty glitch: send → capture-verify target pane (empty `❯` = delivered).
+⚠ STAGE-DISCIPLINE (SM, STRUCTURAL — shared RawBin tree): `git add` EXPLICIT own file paths ONLY — NEVER `-A` / `.` / a whole dir. The sprint-MD dir holds req's requirements.md → add the specific planning.md + task-slug.md I regen, not the dir. Commit PROMPTLY (incl. planner-drive `focus` side-effects: it clears the prev task's `focus:true` flag → commit that task unit too). Verify `git status --short` after — leave other agents' uncommitted units alone.
+⚠ otmux /dev/tty glitch: send → capture-verify target pane (empty `❯` = delivered). NO backticks in the send string (bash runs them as cmd-subst) — use plain words.
 
 ## Rules (memorize):
 - #126 SCENARIO FIRST: Sprint→Req→Task→chains→generated MD; code ships AFTER. Task w/o unit = REJECT+flag PO.
