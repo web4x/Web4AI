@@ -6,11 +6,11 @@
 ## Repo: /var/dev/Workspaces/web4x/Web4RawBin  (old 2cuGitHub GONE)
 
 ## CURRENT (prod v0.7.65, 2026-07-19):
-- SPRINT30 = 53 reqs / 52 tasks = **35 Done + 15 QA-Review + 1 In-Progress + 1 BACKLOG**. Sprint uuid 2173e549. (R30.48 security-backlog; R30.49→T30.49 delete; R30.50→T30.50 merge-toolbar.)
-- ★ **PIN LIVE (Tron directive)**: current=**T30.50** (merge-toolbar, BUILDING PO green-light A→C2→C1→B — In-Progress@impl) / lastCompleted=T30.34 / nextBacklog=T30.44. Commit 1cbcc7728 (moved T30.45→T30.50 as T30.45/49 flipped). ▶ KEEP MOVING current as each task flips (planner-drive focus <FULL-uuid>, natural NO --force #111; NEVER fabricate uuid tail #17 — tool rejects non-Task).
-- 15 QA-Review: T30.9/14/35/36/37/38/39/40/41 + **T30.46** (working-file) + **T30.47** (foundation, 5/5, internal gate→Done via architect+PO) + **T30.42** (dialog/sentinel r3042, 2/3) + **T30.43** (add-local .git-only r3043, 4/7, D1/D4 backlog) + **T30.45** (manage: UC6 manageInfo v0.7.70 + UC7 switch r3045 v0.7.72, synced 6 D3 ACs, 5/6) + **T30.49** (delete r3049 v0.7.72, 4/4, D4→R30.48). All served==gated; most await Tron VISUAL.
-- REPO-MANAGER V1 (architect §10): **DONE building** — T30.42/43/45/47/49 → QA-Review; **T30.44 clone = BACKLOG**. Security D1/D2/D4 + multi-user = R30.48 + **BH-3 DEFERRED-RISK** (re-activate before exposed/multi-user deploy).
-- ▶ NEXT-ME: (a) **T30.50** gate (screenshot DET-3x Tron viewport) → flip QA-Review + move current; (b) 15 QA-Review Tron-visual sign-offs (T30.47 via architect+PO); (c) move current as work flips. Data=truth, keep byte-match GREEN (Tron: don't lag).
+- SPRINT30 = 53 reqs / 52 tasks = **35 Done + 16 QA-Review + 1 BACKLOG (T30.44)**. Sprint uuid 2173e549. **V1 wave R30.42-50 ALL complete+gated — NO build left.** Remaining = Tron's visual sign-offs.
+- ★ **PIN**: current=**T30.50** (merge-toolbar, QA-Review, gate-proven r3050 v0.7.73) / lastCompleted=T30.34 / nextBacklog=T30.44. No active build (all QA-Review). Move current when new work starts (planner-drive focus <FULL-uuid>, natural NO --force #111; NEVER fabricate uuid tail #17).
+- ★ **QA CHECKLIST assembled** for Tron batch sign-off → `session/agents/robbin-po/qa-checklist.md` (265328c9): 16 tasks grouped A merge-editor(8) / B repo-manager(5, T30.47=internal-no-visual) / C bug-fixes(3); each row = task+feature, deep-link URL, what-to-look-for, gated ver. All served==gated on LIVE **v0.7.73**.
+- 16 QA-Review: merge-editor T30.9/35/36/37/38/41/46/50 · repo-mgr T30.42/43/45/47(internal)/49 · bug-fix T30.14/39/40. Held rule#9 → Tron visual → Done (T30.47 via architect+PO). Security D1/D2/D4 + clone = R30.48/BH-3 + T30.44 backlog (re-activate before exposed/multi-user).
+- ▶ NEXT-ME: on Tron's batch sign-off → flip the passed QA-Review tasks → Done (which passed = which flip); T30.47 via architect+PO. No build pending. Data=truth, byte-match GREEN.
 - Task-order clean numeric T30.1→T30.50, byte-match GREEN.
 
 ## Immediate actions on boot:
