@@ -1,6 +1,16 @@
 # robbin-po Context — save #50 (2026-07-19, BOOTED from #49 post Option-2 refresh — GREEN-LIT the build push)
 
-## ★ #50 BOOT-CONFIRM (DISK-WINS re-derived): my conversation was rewound to the syntax-highlight milestone but DISK is at v0.7.71 (#49 authoritative). Identity pane.self=%5 ✓, /context=41% total (589k free) healthy ✓. EXECUTED the #49 boot action: GREEN-LIT the UC7(T30.45)+delete-for-removable(T30.49) build push to all 4 agents (expert build / req mint+re-point / tester gate DET-3x pollution-safe / planner flip→QA-Review). Now driving that build → deploy → gate → Tron. LESSON re-applied: build exists ⇒ DRIVE (not hold). Next after this push: R30.50 toolbar-opt (architect design-derive pending, build-after) + 13 QA-Review await Tron visual + push-to-main needs Tron auth.
+## ★ #50 BOOT-CONFIRM (DISK-WINS re-derived): my conversation was rewound to the syntax-highlight milestone but DISK is at v0.7.71 (#49 authoritative). Identity pane.self=%5 ✓, /context=41% total (589k free) healthy ✓. EXECUTED the #49 boot action: GREEN-LIT the UC7(T30.45)+delete-for-removable(T30.49) build push. LESSON re-applied: build exists ⇒ DRIVE (not hold).
+
+### ★★★ #49 PUSH DONE + GATED GREEN DET-3x v0.7.72 (tester ebdf8b080, Tron real URL):
+- UC7 worktree-switch (switchWorktree 1a86a852, client-side, re-pointed bbedbf378): ref-pick switches active side ref, content loads, header tracks. ★ D3 PROVEN = oosh 'git worktree list' HEADs BYTE-IDENTICAL before+after each switch 3/3 (server NO checkout / NO HEAD mutation).
+- DELETE-for-removable (r3049, DELETE /api/git/repos?key= → unregister 559b508b): register dynamic→delete→gone 3/3; builtins rawbin+oosh→400 PROTECTED still-present; 🗑 UI affordance for dynamic; POLLUTION-SAFE (builtins-only after). Markers: UC7 771e2e83, DELETE e4741c65 → req mints Tests reverse → planner flips T30.45/T30.49 QA-Review.
+- ★ CAUGHT a stalled hand-off (verify-delivery): deploy landed v0.7.72 but tester never pinged → I measured served==0.7.72 + DELETE handler present → pinged tester → gate ran GREEN. (Don't assume the ping landed.)
+
+### ★★★ R30.50 3-way toolbar NOW BUILDING (green-lit expert, A→C2→C1→B): Tron RULED both forks (kept via AskUserQuestion): (B) 3-MODE Apply-All (openApplyAllMenu 8ea1cc48 + applyAllFromSide 5fa11089; keep applyAllNonConflicting 91c452ae as 'Non-conflicting only'; relabel 'Apply All'); (A) COMPOSE '.de-count' = 'N selected · X/Y open' (keep open-count; '• modified' migrates to Save button C2). C1 saveOrJumpToConflict 76e3ab69 (jump next UNRESOLVED-filtered), C2 updateSaveButtonState d84c5886 (green-when-saved). Req re-pointed 32cd493ed (5 UCs). Design-note=spec (architect). → tester gates on deploy.
+
+### ★ PUSH-TO-ORIGIN flagged to Tron (his operator call): RawBin origin behind ~4 commits (all local + prod-live disk-wins); push-to-main classifier-blocked. Options offered: backup-branch (I can, no main-touch) / authorize main-push / leave. Awaiting Tron; won't push (outward-facing) w/o his word.
+### ★ STILL: 13 QA-Review await Tron visual.
 
 ---
 
