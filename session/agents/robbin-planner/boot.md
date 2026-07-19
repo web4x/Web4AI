@@ -6,11 +6,11 @@
 ## Repo: /var/dev/Workspaces/web4x/Web4RawBin  (old 2cuGitHub GONE)
 
 ## CURRENT (prod v0.7.65, 2026-07-19):
-- SPRINT30 = 52 reqs / 50 tasks = **35 Done + 10 QA-Review + 1 In-Progress-BUILDING + 3 V1-ACTIVE-QUEUED + 1 BACKLOG**. Sprint uuid 2173e549.
-- 10 QA-Review AWAIT Tron VISUAL: T30.9/T30.14/T30.35/36/37/T30.38/T30.39/40/T30.41 + **T30.46** (working-file, flipped 2026-07-19 bb20b1a68; gate r3046 GREEN DET-3x, chain both-directions, served==gated v0.7.68; W4 parked, W2 persistence test 7a0dc2b6).
-- 1 In-Progress-BUILDING (commit e7b806e3b): **T30.47** 97c00946 (R30.47 RepoRegistry foundation, built v0.7.67 → tester gating NOW; on GREEN → flip QA-Review + report board).
-- REPO-MANAGER V1 scope (architect §10, commit 6ce896b49): **3 V1-ACTIVE-QUEUED** (safe subset, build after R30.46) = T30.42 dialog/sentinel · T30.43 add-local **.git-only** (D2 guard deferred) · T30.45 manageInfo/switch. **1 BACKLOG** = T30.44 clone-by-URL (arbitrary-clone surface excluded). Security-hardening D1/D2/D4 + multi-user = **BH-3 DEFERRED-RISK** (re-activate before exposed/multi-user deploy).
-- ▶ NEXT-ME: **nothing to build** — watch T30.47 tester-gate (→flip), V1 endpoint builds (ping-per-method), 10 QA-Review Tron-visual flips. WATCH + flip, don't jump ahead. REQ-flag open: R30.43/44 req-level ACs still full-scope (req's call to align).
+- SPRINT30 = 53 reqs / 50 tasks = **35 Done + 10 QA-Review + 1 In-Progress-HELD + 3 V1-BUILDING + 1 BACKLOG**. Sprint uuid 2173e549. (R30.48 f06068ff security-backlog added.)
+- 10 QA-Review AWAIT Tron VISUAL: T30.9/T30.14/T30.35/36/37/T30.38/T30.39/40/T30.41 + **T30.46** (working-file, bb20b1a68; gate r3046 GREEN, chain both-directions, W2 test 7a0dc2b6, W4 parked).
+- **T30.47 HELD (do NOT flip)** 97c00946: gate 8269634c0 GREEN but chain-to-Test INCOMPLETE — RepoRegistry mechanism impls register 6c408f9b / unregister 559b508b / persist 854943d3 / load 2c67c8d1 (active, dA=F) have 0 wired Tests; resolve wired; guards→R30.48 backlog (0-test expected). Awaiting Test-mint — ❓PO deciding: I mint off gate vs wait for req (flapping). A green gate ≠ wired Tests (R29.1).
+- REPO-MANAGER V1 (architect §10, 6ce896b49): **3 V1-BUILDING** = T30.42 dialog/sentinel (code v0.7.71 00bed95b0) · T30.43 add-local **.git-only** (built v0.7.69, allowlist DORMANT, gating) · T30.45 manageInfo (v0.7.70) + worktree-switch (UC 47c2c3ea synced). **1 BACKLOG** = T30.44 clone (excluded). Security D1/D2/D4 + multi-user = R30.48 + **BH-3 DEFERRED-RISK** (re-activate before exposed/multi-user deploy).
+- ▶ NEXT-ME: (a) on PO word → mint T30.47 mechanism Tests or wait req; (b) **stand ready** to task/wire UC1/UC2 (dialog/sentinel) + UC7 (switch) the MOMENT req mints the UC units — watch req COMMITS (classifier flapping); (c) req owns R30.43/44 AC-sync (in flight); (d) 10 QA-Review Tron-visual flips. Data=truth, keep planning.md byte-match GREEN as V1 builds fast (Tron directive: don't lag).
 - Task-order clean numeric T30.1→T30.47, byte-match GREEN.
 
 ## Immediate actions on boot:
