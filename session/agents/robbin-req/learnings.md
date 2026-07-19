@@ -1,5 +1,10 @@
 # robbin-req — Learnings
 
+## ASCII mockup ≠ UI layout — confirm orientation before a layout AC (2026-07-19, R30.52)
+Tron described the merge toolbar as a vertical ASCII stack ('N selected · X/Y open' / then ▲ ▼ ✓). I wrote AC-1 as "'N selected' on its own line under Apply All" — reading the TEXT's vertical stacking as the UI's spatial layout. Wrong: the toolbar is HORIZONTAL; "own line" = a bad linebreak. The vertical text stack was just how the elements were LISTED, not their on-screen orientation.
+- **Lesson:** when a Tron directive includes an ASCII/text mockup, the text's top-to-bottom stacking does NOT necessarily map to the UI's layout (horizontal row vs vertical column). Before writing a LAYOUT AC, confirm orientation — or phrase the AC by RELATIVE POSITION (between X and Y / same row as Z) rather than "line"/"row"/"column" absolutes that assume an orientation.
+- **Fix path:** an In-Progress req (not closed) is AMENDED in place (correct the AC text + add a correctionNote); only a CLOSED req (closure-freeze, e.g. R30.50) forces a new number. R30.52 was open → amended (b1c489d8c). Keep AC ids stable on amend (planner syncs by id); correct the text.
+
 ## Shared-tree git-add SWEEP — commit promptly, don't leave edits uncommitted (2026-07-19, R30.51 re-point)
 The RawBin working tree is SHARED across all robbin agents. If I edit units on disk but don't commit them immediately, ANOTHER agent's `git add` (esp. a broad add) can SWEEP my uncommitted edits into THEIR commit. Happened on the R30.51 setHiddenAreas re-point: the planner's `git add` for their T30.51 stand-up (4edacc019) picked up my 10 re-pointed units + requirements.md; my own `git commit` then failed with "no changes added" (already committed under their hash).
 - **Content is fine** (all edits landed correct at HEAD) — attribution is what's muddied. Durable traceability lives in the SCENARIO UNITS (architectDerive field, ACs) + design notes, independent of commit hash; the commit-message-PREFIX ("robbin-req:") audit resolves role ownership if ever questioned. So this is a process/attribution issue, NOT a content bug — don't panic-recommit.
