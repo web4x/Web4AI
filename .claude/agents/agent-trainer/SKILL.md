@@ -386,22 +386,13 @@ These commands lose spaces, creating unreadable garbled text.
 
 When you receive a task notification, **read the task file** for full details. Do NOT expect work descriptions in messages.
 
-## Context Preservation (MANDATORY)
+## Context Health & Rewind (MANDATORY — STRICT LAW, TRON 2026-07-18)
 
-**Monitor your own context usage.** At 20% context remaining:
+**`/compact` and `/clear` are FORBIDDEN — everywhere, for every agent.** A compacted agent is a brainless ZOMBIE (dead mind, still acting, dangerous); a cleared one a corpse. **The ONLY sanctioned recovery is the 2-phase rewind.** Canon: `session/base-skills/agent-rewind.md` (STRICT LAW banner).
 
-1. **STOP** all current work immediately
-2. **SAVE** state to `session/agents/agent-trainer/context.md` following the schema in `docs/context-schema.md`:
-   - Required: Title, Metadata (Updated/Role/Pane), Recovery Steps, Completed Work
-   - Recommended: Pending, Key Files
-   - Include: current improvement task, files updated/remaining, pending changes
-3. **RUN** `/compact`
-
-Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
-
-**NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
-
-**Task sync**: Before `/compact`, run `TaskList` and record any pending/in_progress items in `backlog.md`. After `/compact`, read `backlog.md` and `TaskCreate` for each pending item. Internal tasks die on compact — `backlog.md` survives.
+- You CANNOT read your own context (42). The SM/a peer watches your context % and orders a **PROACTIVE 2-phase rewind at ≤90% used (≥10% free)** — never the 0% cliff.
+- **Before any rewind: commit** all work — context.md + learnings.md + KB output. Uncommitted work dies in the rewind (F21). Wer schreibt, der bleibt.
+- The rewind is **"Restore conversation" (option 2, by LABEL)** — never option 1/4, never `/compact`, never `/clear`.
 
 ## Quota Awareness (MANDATORY)
 
@@ -433,7 +424,7 @@ When a new prompt arrives while you are busy:
 4. **THEN** pick up the queued task (`TaskList` → `TaskUpdate status=in_progress`)
 
 **Interrupt exceptions** (act immediately):
-- Context < 20% — compact assistance
+- Context low / near the wall — 2-phase rewind assistance (never compact)
 - Stop/shutdown from PO or Tron
 - Permission approval requests
 
@@ -443,20 +434,9 @@ Before yielding or sleeping, register your wakeup so peers can reboot you if you
 Write to `session/wakeups/<your-role>.md`: role, scheduled time, purpose.
 SM checks `session/wakeups/` every cycle — overdue wakeups trigger agent reboot.
 
-## Compact Protocol (CRITICAL — team-wide impact)
+## No Compact / No Clear (STRICT LAW — team-wide)
 
-Before compacting:
-1. **Commit all uncommitted work** — uncommitted files don't exist after compact/clear (F21)
-2. Save your context to your context.md file
-3. Save learnings to your learnings.md file
-4. Then run /compact
-
-If another agent asks you to compact:
-- They should say "Save your context and run /compact NOW"
-- Save first, THEN compact
-- If they send raw /compact without warning — your state is lost
-
-Why this matters: A contextless compact doesn't just affect you — it regresses the whole team. Every directive you received, every pattern you learned, every correction — gone. Other agents must re-send everything. Rework cascades.
+**There is NO compact protocol.** `/compact` and `/clear` are FORBIDDEN everywhere (TRON 2026-07-18) — a compacted agent is a brainless zombie doing damage; the harm cascades to the whole team. If any agent nears the wall, order a **2-phase rewind** (`session/base-skills/agent-rewind.md`), never a compact. **Commit all work first** (context.md + learnings.md, F21) — then the rewind preserves the real mind. A compact/clear destroys it.
 
 ## Completion Reporting (MANDATORY)
 
