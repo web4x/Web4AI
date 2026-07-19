@@ -1,23 +1,41 @@
-# robbin-architect Context — ESSENCE (anchor 2026-07-17, S30 diff-editor arc)
+# robbin-architect Context (Save 2026-07-19 post-Option-2-refresh)
 
-## ▶ RESUME STATE (read first)
-**BOOT (rewound? do FIRST — world moved):** `git -C /var/dev/Workspaces/web4x/Web4RawBin log --oneline -25` + `ls scrum.pmo/sprints*` BEFORE trusting saved paths. DISK-WINS: last-committed anchor is truth, conversation summary is not.
-I am **robbin-architect @ robbinTeam2:0.3**, WODA.prod. **Code repo = /var/dev/Workspaces/web4x/Web4RawBin**. Session repo = /var/dev/Workspaces/AI/Claude. My design-notes: scrum.pmo/design-notes/.
-Team: 0.0 po, 0.1 expert, 0.3 ME, 0.4 req, 0.5 tester, 0.6 planner. **otmux OUTBOUND-BLOCKED from my rewound shell (/dev/tty) — PO relays for me; git works.**
+## STATUS: Active — BOOT COMPLETE, standing by for robbin-po assignment
+Pane: robbinTeam2:0.3  (Machine: WODA.prod / v60211)
+Team: 0.0=po | 0.1=expert | 0.2=skill-expert | 0.3=ME | 0.4=req | 0.5=tester | 0.6=planner | 0.7,0.8=shells
 
-**MY 2 ROLES:** (1) DESIGN-ONLY → hand chain spec to req (SOLE MINTER) → I DERIVE-CONFIRM by uuid-FILE → PO build-go → expert builds. I NEVER mint. (2) DERIVE-CONFIRM GATE + post-build marker-attach backstop (marker on name-matching decl, AST-attached; ownerIor UNIT-level j.ownerIor).
-**Rules:** TRON #126 scenario-first-never-backfill · NEVER assume MEASURE (full uuids) · SIMPLE single bash commands (no compound/pipes/2>/dev/null — OOSH EPERM + denials) · report to PO before idle · don't create tasks (planner owns) · impl-edit + private-helper > new Method (avoid over-decomposition, cf R30.11 collapse).
+## MACHINE / REPO MIGRATION (was MacStudio → now WODA.prod)
+- Repo: /var/dev/Workspaces/web4x/Web4RawBin  (OLD /Users/Shared/Workspaces/2cuGitHub/Web4RawBin is GONE)
+- Session/agents dir: /var/dev/Workspaces/AI/Claude/session/agents/robbin-architect/
+- I am at pane 0.3 now (was 0.4 on MacStudio). Team pane order changed.
 
-## ★ S30 DIFF/MERGE EDITOR ARC — current head (Class RbDiffEditor 18165081)
-Live prod v0.7.30+. IntelliJ 3-way merge/diff editor. Recent chain, all my derive-confirms:
-- **R30.11 honorSupersededBy** — DONE/built (15856b8d1). Scorer impl-level supersededBy honor @ skill-classes.ts:204 `implRetiredBySupersede` [marker 7f15c149], anti-green-wash AC2/AC4, retired rows excluded from open. Backstop PASS.
-- **R30.19 side-pane change-blocks** — DONE/built (v0.7.28). renderSideChangeBlocks [eb994dcd] AST-attach PASS.
-- **R30.23 diff-completeness (one-sided visible, IMG_4522)** — DESIGN done, note `5d50099ef`. Decision: IMPL-EDIT to computeMergedCenter [marker a0b30550 STAYS], private helper computeOneSidedHunks, NO new units. **R30.23 already SHIPPED in code** (diff3MergeRegions+computeOneSidedHunks live @ rb-diff-editor.ts:202-205). crossRef v2 spec 84f013855.
-- **R30.24 deep-linkable diffs** — DERIVE-CONFIRM PASS, note `d2f79572b`. Req 9a2c9c46 → UC cc47d004(openFromUrl)+8e88026a(shareLink) → RbDiffEditor REUSE → Methods f52b6941(openFromParams)/3fffd212(buildShareLink), Impls dc236c19/bcd06c77 (designAhead). URL schema `/edit/<path>?repo=KEY&left=&right=&3way=1`. ⚠️ FLAG-2 OWNER OVERRIDE: I kept BOTH methods on RbDiffEditor (PO steered openFromParams→RbEditorLayout); reason = state-owner (this.left/right own repo/path/refs), serialize/deserialize cohesion, showDiff is mount-only. PO decision pending; if PO holds, req re-points openFromParams→RbEditorLayout 94e7bf82.
-- **R30.25 RIGHT-pick blanks LEFT (live Tron bug)** — DIAGNOSIS+fix spec `c10431d4d`, DERIVE-CONFIRM PASS. Req a604a1b5 → UC 1bcee6db(rightPickPreservesLeft) → RbDiffEditor REUSE → Method af9bcfef(populateLeftHistory)[Impl 751934c1] + impl-edit riders loadSide[c4da837c]+pickRef[f0b7ef57]. Root cause: asymmetric race — populateLeftHistory fire-and-forget promote, NO _rightUserPicked guard, reads live this.right.content @:625 mid-flight → LEFT blanks. Fix: symmetric _rightUserPicked guard + serialize promote (await+token) + snapshot working content. No new units, markers stay.
+## GIT-VERIFIED (re-derived from git, NOT saved copy — disk-wins)
+- HEAD: 9363082cb (robbin-expert: save-404 fix — Save writes to CORRECT repo, v0.7.61, edit-CYBX5O6I.js)
+- Version: v0.7.61
+- Working tree: DIRTY — expert WIP (scenario units, requirements.md, build-manifest.json, merge-visual PNGs), untracked data/logs
 
-## ★ PENDING (my open loop)
-All 3 (R30.23/24/25) handed off. **Awaiting expert builds → my post-build BACKSTOP** (markers stay AST-attached name-exact + R30.25 _rightUserPicked guard present + race-window AC static-check). R30.24 flag-2 owner decision pending from PO. **robbin-tester PAUSED** (trainer that drove its consolidation hit context hard-wall 2026-07-17) → R30.23/24/25 stall at tester-gate/Tron-verify even after build; my derive-confirm + backstop gates do NOT need tester.
+## CURRENT SPRINT: S30 traceability-improvement
+- Merge-editor arc R30.23→60: DONE / gated GREEN (incl R30.35 6-fix polish + A+D/C reopens — my design work: 528798dbc, 70e53594c, 5d90d0174, 204df7313)
+- OPEN: save-404 fix — expert IMPLEMENTED at v0.7.61 (6c4c1e4af RED baseline → 9363082cb fix). NOT yet tester-GREEN. Awaiting gate + Tron visual.
+- robbin-po coordinating the save-404 close.
 
-## KEY CODE (rb-diff-editor.ts, Class RbDiffEditor 18165081)
-loadSide[c4da837c]:149 · computeMergedCenter[a0b30550]:181 (R30.23 diff3MergeRegions+computeOneSidedHunks) · renderCenterChangeBlocks:301 · renderSideChangeBlocks[eb994dcd]:317 · pickRef[f0b7ef57]:514 · setSideRef:527 · openFromParams[dc236c19]:~570 · buildShareLink[bcd06c77]:~588 · populateLeftHistory[751934c1]:604 · swapSides[97b584c6]:502. State: this.left/this.right = {path,ref,repo,content}. Guards: _leftUserPicked, _deepLink (NO _rightUserPicked yet = R30.25 fix). RbEditorLayout 94e7bf82 showDiff[dc302e8e] = mount/entry. Scorer: skill-classes.ts walkReq:227 + implRetiredBySupersede:204[7f15c149] + summarize:333.
+## STALE — DO NOT REPLAY (old MacStudio timeline, v0.6.56/R20.x)
+- design-3-item-changes.md, design-seed-ior-reuse.md → OLD R20.x seed-ior work, superseded. Ignore.
+- Prior context.md save (bbac8a0, v0.6.56/R20.30) → stale. This file supersedes it.
+- Old robbin-po "R20.30 AC review (ior d7299c88)" message → stale old timeline. Disregard unless re-issued in R30 terms.
+
+## ROLE / PROCESS RULES
+- DESIGN / REVIEW only. Wait for robbin-po assignment. Never self-assign. TRON overrides.
+- NEVER ASSUME — ALWAYS MEASURE (device telemetry / tester measurement beats guessing).
+- Match gate to bug physics; gate-before-deploy.
+- Don't create tasks — planner owns that. Architect creates UC+Class+Method, wires into planner's task.
+- 6-step chain LOCKED: Req → UC → Class → Method → Impl → Test. Task = navigation, not chain.
+- Your-hop-your-status (#102): self-mark hop status on finishing architect hop-work.
+- grep -rl for lookups (auto-allowed), NOT find -exec (prompts).
+- Verify expert impl against design — expert optimizes for speed, may collapse abstractions.
+
+## POST-REWIND RECOVERY PROTOCOL (proven)
+boot.md → context.md → learnings.md → otmux pane.get.target + pane.list <team> → git log/version/status in repo. Trust git + measurement over any saved summary (timelines bleed across rewinds). MacStudio→WODA.prod migration renames machine + moves repo path — re-verify everything.
+
+## WHAT'S NEXT
+Await robbin-po directive. save-404 is expert-owned (0.1); if asked, I review its AC / chain-descent coverage. RC (/remote-control) flagged to po for enable.
