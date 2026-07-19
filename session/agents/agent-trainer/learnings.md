@@ -2,6 +2,25 @@
 
 *Patterns, failures, KPIs — identity after compact.*
 
+## Rewind-Driving Mastery (2026-07-17→19) — the big fleet-recovery session
+*Drove oosh-po, robbin-po, robbin-expert individually, then a TRON-ordered TARGETED fleet rewind of robbinTeam2 (7) + the SM. Typed facts in `memory/` (linked). TRON-corrected 2026-07-19 — read #1 carefully.*
+
+1. **RECOVERY LEVERS — NORMAL = `/model` + `/rewind`; FORK = LAST RESORT (TRON 2026-07-19).**
+   - **Add window (200k→1M): `/model` to opus-4-8[1m]** — in-place, KEEPS the conversation, no disruption. This is the NORMAL upgrade. (NOT a fork.)
+   - **Shed context (exhausted): `/rewind`** (Option-2, deep, code-intact, DISK-WINS boot).
+   - **Healthy → LEAVE** (never blank-rewind a warm specialist — TRON: "well-trained = lots of context").
+   - **FORK (`claudeCode fork.to`) = LAST RESORT ONLY** — a session broken beyond `/model`+`/rewind`. I over-used fork on 0.1 expert; `/model` was the right, lighter lever. Correct the [[fork-vs-refresh-verify-window-first]] memory to match.
+2. **Verify the REAL window FIRST — via `/context`, and ONLY when the agent IS IDLE** (TRON 2026-07-19; a generating agent queues it / reads wrong). NOT the launch command (agents `/model`-switch, so it lies), NOT context.read (unreliable).
+3. **`context.read` is unreliable BOTH ways** — over-reports ~5× on low-usage 1M (stale 200k denom) and INVERTS/garbages near the wall (read `2` for a 98%-walled agent). Instrument ranking: **test-message probe > "Context low (N% remaining)" distress banner > context.read (last)**. The "`/clear to save Nk`" hint = current usage (not-rewound) vs cumulative (post-rewind); don't conflate with the distress banner. [[context-read-1m-denominator-stale]]
+4. **Post-fork `$TMUX_PANE` DRIFTS** (%5→%8) = the mistag mechanism. Reliable identity = session-UUID + driver's send/receive round-trip + title match, never `$TMUX_PANE`. G1 fix (otmux `93de8ac`, PID→ppid) resolved it. [[rewind-fork-tmuxpane-drifts-roundtrip]]
+5. **Picker overshoot** — never send `Up` past the `↑N above` ceiling (dismisses picker, dumps stale scrollback into composer, auto-selects an uncontrolled deeper restore). Bounded batches ≤ remaining, stop short. "Nothing to rewind to yet" = rewound-to-earliest, NOT failed. [[rewind-picker-overshoot-ceiling]]
+6. **Layout-A trap is REAL + frequent** — a "No code changes" LIST label can STILL show a cumulative code-revert on the CONFIRM (e.g. "+28 -1196, 19 files"). ALWAYS read the confirm; pick "Restore conversation" BY LABEL, never the pre-selected code-reverting option-1.
+7. **At the true 98%+ wall, "save first" is already too late** — the agent can't take the save turn (verified on the SM). Once walled + STORED (commits every tick): single DEEP `/rewind` + DISK-WINS boot carrying the live state. Prevent-cliff = catch BEFORE the cliff.
+8. **A just-rewound agent looks identical to a near-wall-active one** if you trust a STALE % — a fresh-booted agent re-deriving ≠ saturated. Measure the live world, not the old number. (SM's honest catch.)
+9. **DISK-WINS re-derivation is robust** — rewound agents re-derive current state from git + pane-scans, catch moved repos, disregard stale anchors, get AHEAD of the boot brief. Hand them the LIVE state in the boot; trust it.
+10. **Root cause of the recurring walls:** bare `claude --name` = 200k default; the claudeCode WRAPPER (`join`/`fork`/`opus`) = 1M default. Launch via the wrapper. And the in-place fix for an existing 200k agent is `/model`, not a fork.
+11. **Own the errors** (report faithfully): banked fork-as-default → WRONG, TRON corrected to last-resort; reflexive `2>&1`/`| grep` on captures (banned); trusted a `context.read=2` over a real distress banner. The measure/drive + honest-catches loop (SM measures, trainer drives, each catches the other) caught them.
+
 ## Small OOSH/Remote Refinements (2026-07-03, ARON RC re-add)
 - **Split methods use DOTS**: `otmux split.v <?target> <?command>` / `otmux split.h ...` / `otmux split <?target>`. NOT `splitV`/`splitH` (usage display shows "splitH/splitV" but the real method names are dotted — `splitV` fails to dispatch). Add a pane + login in one go: `otmux split.v remoteOOSH:0.1` then `otmux send.raw <newpane> "ossh login <host>" Enter`.
 - **Clearing a stuck composer through a NESTED-remote path needs Escape BEFORE C-u**: plain `otmux send.raw <remotepane> "otmux send.raw Temple:0.0 C-u"` did NOT clear ARON's composer; `Escape; sleep 1; C-u` DID. Escape first, then C-u, when driving a composer via a bridge shell.
