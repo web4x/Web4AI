@@ -1,5 +1,33 @@
 # robbin-skill-expert Context — Save Point 2026-06-28 POST-FORK (WODA.prod, STANDBY)
 
+## ★★★ FORK-CHECKPOINT 2026-07-19 (fork-fresh-1M WARM — READ THIS FIRST, ABOVE the 07-12 block) ★★★
+**Fleet-rewind to fork-fresh-1M (permanent 200k-wall fix; WARM = context kept). Committed work is safe (disk-wins).**
+1. **IDENTITY (re-derive on boot)**: robbin-skill-expert @ WODA.prod, pane `robbinTeam2:0.2`, repo
+   `/var/dev/Workspaces/web4x/Web4RawBin` (branch `main`, origin git@github.com:web4x/Web4RawBin.git).
+   Role = skill-authoring + chain lint-gate + CurrentSprint 3-slot pin owner. Node18 at
+   /root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node.
+2. **BOOT-FIRST (world moves while rewound)**: `git log --oneline -15` + `ls scrum.pmo/sprints/` + Read the
+   CurrentSprint singleton on disk BEFORE trusting anything below. Pane history: `tmux capture-pane -t robbinTeam2:0.2 -p -S -200` (otmux broken here).
+3. **PROD = v0.7.60**. **Merge-editor arc (S30 R30.x 3-way/3-pane IntelliJ merge) = DONE + GATED** (served==gated,
+   Tron visual-accepted the fidelity). **PIN** (singleton, planner-set): Sprint 30, current=**T30.17** (b74f8023,
+   3-pane merge functional correctness, test=gate-proven) / last=T30.16 (60cc5603) / next=T27.6 (600fa089).
+4. **★ OPEN GATE = the save/load-404 fix (R30.35 "C")**: `GET /api/files/<path>` returns **404 in diff mode** —
+   root cause (architect 70e53594c/528798dbc): `openFile` replaceState STRIPS the diff query params → `isDiffMode()`
+   returns false → the single-file load guard misses and fetches a non-rawbin path (e.g. `otmux` = oosh repo path).
+   FIX = persistent `diffActive` flag + skip the single-file fetchFile block in `init()` when in diff mode
+   (fetchFile:47 sets the 404 text upstream of the :148 guard). Expert building on v0.7.60 (15346843e R30.35 REOPEN).
+5. **SESSION CONSTRAINT (may persist)**: `npx tsx` script-run + background pollers DENIED. Measure via git + Read +
+   **node-reimplementation** (node reads scenario JSON + greps markers — my proven workaround: scratchpad/
+   coverage-audit.js). git/Read/Edit/curl(https:4444 /api/trace) WORK. If a chain measure NEEDS tsx = BLOCKER → tell PO.
+6. **STANDING RULE (Tron)**: ALWAYS report to robbin-po (robbinTeam2:0.0) BEFORE idle. Advance pin on CREDIT (#125),
+   re-point to real task uuids (#126). Pin edits = DIRECT singleton edit (tsx denied) + cross-check (0-residue +
+   overrides↔slots + live /api/trace) — pin corruption caught 2×, ALWAYS cross-check.
+7. **RECENT COMMITS (web4x main)**: 47bfd0578 task-order-review · 15346843e R30.35-reopen-v0.7.60 · 528798dbc/70e53594c
+   architect-C-rootcause · 9f0394e coverage-audit-anchor · 42fe7ecde S21-25-audit-RESULT · 963ea4da7 pin-#126-task-uuids.
+8. **LAST DELIVERABLE**: S21-25 chain-coverage audit (scrum.pmo/design-notes/chain-coverage-audit-s21-25-RESULT.md) —
+   2 genuine marker-missing gaps (bd080edb/1bd129e0), 19 Test→Impl dangling = supersede fallout. AST-attach approximated (tsx caveat).
+## ★★★ END FORK-CHECKPOINT ★★★
+
 ## ★★★ RESUME-NOW (2026-07-12 pre-rewind save — READ THIS FIRST) ★★★
 **BOOT: the world MOVED — before acting, `git log --oneline -15` + `ls scrum.pmo/sprints/` + read the
 CurrentSprint singleton on disk. Do NOT assume sprint/task numbers below are still current.**
