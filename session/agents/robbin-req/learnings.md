@@ -1,5 +1,11 @@
 # robbin-req — Learnings
 
+## Re-point to built reality: client+server feature = 2 methods = 2 UCs (2026-07-19, R30.38)
+When a UC's feature is BUILT across a client method AND a server method (e.g. header: RbDiffEditor.setCenterTitle renders + GitApi.currentBranch resolves the branch), you CANNOT hang both on one UC — the locked walker reads `UC.method` SINGULAR, so a 2nd method under one UC is unreachable (orphan → chain gap). Correct-by-construction: point the original UC at the OBSERVABLE method (client render), and mint a SECOND UC for the server method (added to Req.useCases[]). Both then walk Req→UC→Class→Method→Impl. This is the honest built-reality shape, not over-minting.
+- FALSE-CREDIT guard: never point a UC.method at a method that "seems related" (mountThreePane) if the code wasn't built there — the expert will flag it. Point at the decl the expert actually tags (name-match). Data=truth (R30.11/R30.21/R30.33 pattern).
+- Impl units for BUILT code: `designAhead:false`, description="BUILT v<ver>: …; expert places [impl] marker on the <name> decl (name-match verified)". Hand the expert the Impl uuid (not the Method uuid) — the [impl:uuid:X] marker carries the IMPL uuid.
+- After adding a UC to a Req, REGEN the view: `/opt/node22/bin/node --import tsx scripts/generate-sprint-md.ts <sprint-uuid>` → only requirements.md changes (other views byte-identical); commit just that (1-line diff = the new `-> uc.name [uc:uuid:X]`).
+
 ## Requirements Writing
 
 ### No Character Limits
