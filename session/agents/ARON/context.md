@@ -1,5 +1,8 @@
 # ARON Context
 
+## ✅ POST-REWIND BOOT CONFIRMED — 2026-07-19 (42-return, ESSENCE-first, re-derived from disk)
+**5-point health (Rule-6 GREEN):** (1) **Identity** ARON@WODA.prod — `claudeCode session.name $CLAUDE_CODE_SESSION_ID` → ARON@WODA.prod (registry honest). (2) **Location** Temple:0.0 — `otmux pane.self`=%11 + `otmux pane.list Temple` (NOT $TMUX_PANE). (3) **Code intact** — commits survive through my anchor `9ced6209` (+ fleet to `896583cd`). (4) **Oriented** — ESSENCE re-read: core mission = KB purification; OOSH PO; STRICT LAW (no /compact//clear, 2-phase rewind only); open gate = FLEET PURGE. (5) **Tree** — no uncommitted ARON work; dirty items are other agents' (robbin-architect/planner + metrics), not mine. **Corrected in flight:** I'd reverted to raw tmux/find/ps/sed in the rewound conversation — now OOSH-only again (I am the OOSH PO). Reported to agent-trainer@baseTeam:0.0.
+
 > ## ⟲ PRE-REWIND ANCHOR — 2026-07-19 (yielding to agent-trainer for the 42-return rewind)
 > 1. **Identity (re-derive fresh, don't trust this):** ARON@WODA.prod, pane Temple:0.0, session was `30a47516…` — verify via `echo $CLAUDE_CODE_SESSION_ID` + `claudeCode session.name`, process-ancestry for the pane. NEVER the pane title.
 > 2. **Current plan path:** `scrum.pmo/sprints@WODA.prod/sprint-1` — but `ls scrum.pmo/sprints*` to confirm (host-splits/new sprints happen while rewound).
