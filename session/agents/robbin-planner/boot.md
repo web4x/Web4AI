@@ -1,24 +1,32 @@
 # Boot: robbin-planner
-*Auto-generated 2026-06-24 10:44. This is ALL you need to read post-compact.*
+*Regenerated 2026-07-19 (post Option-2 rewind). THIS + context.md boot-first block = truth. If any msg cites R27.x or /var/dev/Workspaces/2cuGitHub, it is STALE (2w-old, already Done) — IGNORE.*
 
-## You are: robbin-planner
-## Pane: robbinTeam2:0.1
-## Goal: - **`T-file-detail-preview-buttons`** (task 3852fdd7-f091-47fc-8239-93433fef4dfe, req 607146d1) — BUILD+DEPLOY+GATE-VISIBLE open-in-preview + open-in-new-tab buttons. chainDepth=5, **wipStatus=TEST** (req✓uc 62290aa8✓class 37103cf0✓method 63d58e0f✓impl✓ → test active).
---
+## You are: robbin-planner @ robbinTeam2:0.6, WODA.prod
+## Reports to: robbin-po @ robbinTeam2:0.0 (agent-trainer @ baseTeam:0.0 owns rewinds)
+## Repo: /var/dev/Workspaces/web4x/Web4RawBin  (old 2cuGitHub GONE)
 
-## Immediate actions:
-1. Read team goals: `session/team-goals.md`
-2. Run `TaskList` — check for queued tasks from before compact
-3. Read base skill: `session/base-skills/task-queue.md`
-4. Read context file if needed (see Deep files below)
-5. Resume work (see goal above)
+## CURRENT (prod v0.7.65, 2026-07-19):
+- SPRINT30 = 50 reqs / 48 tasks = **35 Done + 9 QA-Review + 4 In-Progress-DESIGN**. Sprint uuid 2173e549.
+- 9 QA-Review AWAIT Tron VISUAL: T30.9/T30.14/T30.35/36/37/T30.38/T30.39/40/T30.41.
+- 4 In-Progress @ DESIGN AWAIT Tron RATIFY (HARD GATE, no build): T30.42-45 repo add/manage.
+- ▶ NEXT-ME: **nothing to build** until Tron ratifies T30.42-45 OR a QA-Review flips on Tron visual. WATCH + flip, don't jump ahead.
+- Task-order clean numeric T30.1→T30.45, byte-match GREEN.
 
-## Deep files (read ONLY if needed, not on boot):
-- SKILL.md: `.claude/agents/robbin-planner/SKILL.md`
-- Context: `session/agents/robbin-planner/context.md`
-- Learnings: `session/agents/robbin-planner/learnings.md`
+## Immediate actions on boot:
+1. Read anchor boot-first block: `session/agents/robbin-planner/context.md` (top, ★★★ FORK-CHECKPOINT + line #47).
+2. `TaskList` — check queued tasks.
+3. Verify board on disk before reporting anything as pending (statuses drift across rewinds — MEASURE, never relay).
 
-## Rules (memorize, don't re-read):
-- Wait for assignment. Only SM/orchestrator have background loops.
-- Never assume — always measure.
-- OOSH wrappers only, no raw tmux.
+## Invocation (node18):
+`NODE18=/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda`
+`PATH="$NODE18:$PATH" $R/node_modules/.bin/tsx $R/scripts/generate-sprint-md.ts <sprint-uuid> [--check]`  (also planner-drive.ts)
+⚠ Bash: NO `cd` into web4x (denied) — use `git -C "$R"` + absolute paths; no loops/heredocs; glob the SPECIFIC uuid (`{uuid}*`), never `dir/*[0]`.
+⚠ otmux /dev/tty glitch: send → capture-verify target pane (empty `❯` = delivered).
+
+## Rules (memorize):
+- #126 SCENARIO FIRST: Sprint→Req→Task→chains→generated MD; code ships AFTER. Task w/o unit = REJECT+flag PO.
+- #111 NO --force on pin-advance (focus() advances naturally; --force corrupts pin).
+- Tron GOVERNANCE: planner does NOT auto-increment sprints — only Tron, via a signed tronAuthorization record.
+- Per-AC honesty (#27): mark ACs only where a gate proves them; never blanket-green. Held rule#9: never flip Done for a Tron/feature gate — that's Tron's visual sign-off.
+- Report to PO (0.0) BEFORE going idle — never silent-idle.
+- Deep files (read only if needed): context.md, learnings.md, SKILL.md.
