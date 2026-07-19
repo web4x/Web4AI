@@ -6,6 +6,18 @@ When a UC's feature is BUILT across a client method AND a server method (e.g. he
 - Impl units for BUILT code: `designAhead:false`, description="BUILT v<ver>: …; expert places [impl] marker on the <name> decl (name-match verified)". Hand the expert the Impl uuid (not the Method uuid) — the [impl:uuid:X] marker carries the IMPL uuid.
 - After adding a UC to a Req, REGEN the view: `/opt/node22/bin/node --import tsx scripts/generate-sprint-md.ts <sprint-uuid>` → only requirements.md changes (other views byte-identical); commit just that (1-line diff = the new `-> uc.name [uc:uuid:X]`).
 
+## Intention-verification: pollution-safe gate split (2026-07-19, R30.38 writeFile)
+When a Test would need a DESTRUCTIVE side-effect on a real resource (e.g. a literal 200-WRITE to the real oosh/otmux repo — the server appends per write), do NOT force it. The honest, champagne-valid split:
+- The DANGEROUS-to-mutate real resource is probed NON-destructively for the security invariant: path-traversal → 403 (sanitizePath), `?repo=<key>` resolve → would-200 (409 non-writing probe), no-404.
+- The literal success side (AC "HTTP 200, file written") rides a GRAND end-to-end gate on a SAFE write target (here the r3035 test file itself), DET-3x.
+Verdict rule: the requirement's intent is fully covered ACROSS the gate suite — security invariant verified directly on the real thing, literal-success verified on the safe thing. That is CHAMPAGNE, not a gap. Don't demand a polluting write just to have "one gate do everything." (Tester banked this as doctrine; architect may override for a sanctioned write+git-restore, but req-eng does not require it.)
+
+## Two-key verify tester-minted Tests (do-not-re-mint)
+Tester owns Test units (bounded exception). When they hand you "Test X already minted+wired", VERIFY both directions — Test.implementations[]→Impl AND Impl.tests[]→Test — and confirm Test.ownerIor→Impl. Only MINT the ones they hand you as a bare gate-marker uuid (adopt it as the Test uuid). Tests attach to the IMPL uuid, never the Method uuid (I mis-checked 11a8ea6e the Method; the wiring is on a88b2b53 the Impl).
+
+## Tron ban re-confirmed: no `2>&1`, no `| tail`/`| head` — on ANY command incl git
+The classifier DENIES `git commit ... 2>&1 | tail`. Run git/otmux plainly; read full output. (Kept re-hitting this; it is [[feedback_no_tail_head_on_captures]] — applies to git commits + otmux sends too, not just captures.)
+
 ## Requirements Writing
 
 ### No Character Limits
