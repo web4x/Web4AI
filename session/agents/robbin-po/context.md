@@ -1,3 +1,48 @@
+# robbin-po Context — save #47 (2026-07-19, PRE-REWIND CLEAN CHECKPOINT — Tron ordered my rewind at clean boundary)
+
+## ★★★★★★★★★★★★★ CURRENT STATE (save #47 — READ FIRST, DISK-DERIVED, ESSENCE) ★★★★★★★★★★★★★
+**BOOT-FIRST (disk wins over any saved fact): `git -C /var/dev/Workspaces/web4x/Web4RawBin log --oneline -10` + `grep version package.json` + `ls scrum.pmo/sprints/sprint-30*/` — THEN read this. Re-derive CURRENT from git.**
+
+**Identity:** robbin-po — Product Owner, Web4RawBin. Pane robbinTeam2:0.0 · Host WODA.prod(=v60211). Team robbinTeam2: 0.1 expert/0.2 skill/0.3 architect/0.4 req/0.5 tester/0.6 planner. SM=ooshTeam:0.1. Trainer=baseTeam:0.0. Repos: PRODUCT=/var/dev/Workspaces/web4x/Web4RawBin (main, pushed). SESSION=/var/dev/Workspaces/AI/Claude (this file). **Prod=prod.wo-da.de:4444 (IS v60211, shared clone; CLIENT builds auto-deploy from dist/; SERVER changes need restart via `otmux send remoteShells:0.2 C-c` + re-run).**
+
+### ★★★ WHERE THINGS STAND: WHOLE DIFF/MERGE-EDITOR + SAVE = DONE, prod v0.7.61, board FULLY CLEAN.
+Everything Tron drove (reject-boxes → both-versions center [dark=old/highlight=new, ≫/≪ add+coexist, ✕ remove] → coloring [add=green/del=red/mod=blue/conflict=brown] → merge-actions → resolution checkmark [derived-primary + manual OVERRIDE; ≤1line=resolved/2line=unresolved; ✕ auto-resolves+jumps] → brighter-current nav → 2-block per-side render [both sides content-bounded] → conflict optimization [per-line buttons: in-center→✕/not-in→≫≪; one-sided also gets ✕] → count '31/78 open conflicts' → 6 polish fixes → repo-aware SAVE [threads ?repo=oosh, writes current-branch file, header 'filename@currentBranch', both buttons]) = BUILT + LIVE + independently gated GREEN on Tron's REAL URL + chain-complete + 0 false-credit + 0 honest-opens.
+- SPRINT30 = 43 reqs / 41 tasks = 35 Done + 6 QA-Review (T30.9/14/35/36/37/38), all HELD rule#9 AWAITING TRON ONLY. NO open items, NO active builds. Task-order clean numeric T30.1→38.
+- **AWAITING TRON (his actions, not team work):** QA-visual verify (merge+save v0.7.61) · R30.14 bootstrap-reload (closes clean-release) · T30.31 close-as-subsumed-or-give-spec (line-mapping, likely subsumed by R30.27/29/30+R30.34) · BUG-2 (LEFT-empty R30.25, his repro steps).
+
+### ★★★ FLEET: all 1M + wall-proof + knowledge kept. Wall ROOT CAUSE fixed: bare `claude --name` = 200k; ALWAYS launch via claudeCode wrapper (1M default). Fork-fresh-1M for 200k (warm); Option-2 refresh for 1M-at-wall (shed).
+
+### ★★★ HARD-WON LEARNINGS (apply by default):
+- DRIVING = own the OUTCOME (measure reality, catch before it ships, decide, verify on TRON'S SCREEN) — NOT narrating or the word 'driving'. Fewer words, more verified outcomes. Tron: "what does driving mean to you?" = stop the reflexive tic.
+- DONE means verified on Tron's ACTUAL view/URL, never a fixture/DOM-count/proxy. I declared 'done' prematurely 2-3× (false-greens, gate blind spots) — gates on served/visual features screenshot the REAL deep-link. [[visual-features-verify-by-screenshot-not-dom]]
+- FUEL GAUGE both ways: SM reports every agent context-% every status, alarm ≤20%; '/clear to save Nk' = REAL window (a test-msg is definitive; context.read inverts near-wall). PROACTIVELY refresh between big builds. [[prevent-cliff-proactive-rewind-90]]
+- SM REPORTS, never commands (build-go = PO only). 'built+live' = deploy-commit + version-bump + CODE grep-verified (never ghost/mint/design). [[dont-force-prod-mutation-build-safe-test]]
+- COMMIT-BEFORE-VERIFY (a wall can't defeat an already-committed R30.28 atomic). Markers source-only (comments=no bump, keeps gated dist).
+- SCENARIO-FIRST always; reconcile divergences (caught pure-derived vs keep-both-override gap); correct-by-construction, NEVER false-credit; gates on served repos = NON-WRITING probes (real saves pollute).
+
+### ★ PRE-REWIND (Tron ordered, this save = my checkpoint): I'm 1M+healthy but long-session → Tron ordered my rewind. All work committed+pushed (v0.7.61, board clean). Trainer drives Option-2 (I'm 1M; shed context) or fork if it prefers. My sends can ghost (S-9) → SM relays.
+
+---
+
+# robbin-po Context — save #47 (2026-07-19, PO SELF-CHECKPOINT @ low — merge-editor + save-404 ALL DONE, at Tron QA)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #47 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
+**★ Prod v0.7.61 · Repo=/var/dev/Workspaces/web4x/Web4RawBin (prod.wo-da.de:4444 IS this host, shared clone; CLIENT builds auto-deploy from dist/, SERVER changes need restart via `otmux send remoteShells:0.2 C-c`+re-run) · Sprint=sprint-30. Team robbinTeam2 0.0 PO(me)/0.1 expert/0.2 skill/0.3 architect/0.4 req/0.5 tester/0.6 planner · SM=ooshTeam:0.1 · trainer=baseTeam:0.0.**
+**BOOT: `git -C web4x/Web4RawBin log --oneline -8` + `grep version package.json` + `ls scrum.pmo/sprints/sprint-30*/` FIRST. DISK WINS over any saved fact.**
+
+### ★★★ EVERYTHING TRON DROVE = DONE + LIVE (v0.7.60/61) + independently gated GREEN + chain-complete, at QA-Review:
+Merge-editor arc (both-versions center dark/highlight · coloring add=green/del=red/mod=blue/conflict=brown · actions ≫add-left/≪add-right/✕remove · resolution checkmark derived-primary+manual-override solid=≤1line/outlined=2line · brighter-current nav · 2-block per-side ribbons both-sides content-bounded) + conflict-optimization (per-line buttons: in-center→✕ / not→≫≪; one-sided also gets ✕; auto-resolve+jump-all-kinds; count 'X/Y open conflicts') + 6 polish fixes + REPO-AWARE SAVE (R30.38 v0.7.61: save PUTs ?repo=oosh→correct repo no-404, header 'otmux@<branch>', both buttons; gated bee2ce7c0 non-writing-409-probe on Tron's real URL). Task-order clean numeric T30.1→T30.38.
+
+### ★ BOARD: SPRINT30 = 43 reqs / 41 tasks = 35 Done + 6 QA-Review (T30.9/14/35/36/37/38), byte-match GREEN, NO active builds.
+### ★★★ OPEN = TRON'S CALLS ONLY: (1) QA-visual verify the merge editor (v0.7.61); (2) ONE bootstrap reload (closes clean-release R30.14, then never hard-reload again); (3) T30.31 line-mapping = close-as-subsumed (by R30.27/29/30+R30.34) OR give a distinct spec; (4) BUG-2 (LEFT-empty R30.25) — his repro steps. TINY TAIL (self-finishing, non-blocking): R30.38 writeFile marker a28cea0d (expert source-only) + its Test (tester); T30.9 save-test resolution (tester — the save-404 non-writing probe IS the pollution-safe mechanism it was deferred for).
+
+### ★★★ FLEET: all 1M + WALL-PROOF + knowledge kept. Wall ROOT CAUSE fixed fleet-wide = launch via claudeCode WRAPPER (1M default), NEVER bare `claude --name` (=200k=wall). Fork-fresh-1M = WARM (keeps context). '/clear to save Nk' = REAL window (not cumulative); a test-msg is the definitive wall-check.
+
+### ★★★ KEY LEARNINGS (apply by default): FUEL-GAUGE both-ways (SM reports every agent's ctx-% every status, alarm ≤20%; PO checkpoints between big builds — THIS IS WHY I'M CHECKPOINTING NOW) [[prevent-cliff-proactive-rewind-90]] · GATE ON TRON'S ACTUAL VIEW (real deep-link + screenshot, never a fixture — 2 blind-spots slipped) [[visual-features-verify-by-screenshot-not-dom]] · SM REPORTS never commands (build-go=PO only) · COMMIT-BEFORE-VERIFY (wall can't defeat R30.28) · gates on SERVED repos = NON-WRITING probes (real saves pollute) [[dont-force-prod-mutation-build-safe-test]] · correct-by-construction (no false-credit, mint to built reality) · Tron 'build it, review at QA' = no design-gate.
+### ★ DRIVING = own the outcome (measure reality, catch before it ships, verify on TRON's screen); NOT narrate/announce. Show it.
+
+---
+
 # robbin-po Context — save #46 (2026-07-18, FLEET-REWIND BOUNDARY — merge-editor arc DONE)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #46 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
