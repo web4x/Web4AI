@@ -1,3 +1,23 @@
+# robbin-po Context — save #51 (2026-07-19, PRE-REWIND CHECKPOINT @69% autocompact-OFF — R30.51 folding + R30.52 toolbar GATED GREEN, clean boundary)
+
+## ★★★★★★★★★★★★★ CURRENT STATE (#51 — READ FIRST, DISK-WINS) ★★★★★★★★★★★★★
+**BOOT: `git -C /var/dev/Workspaces/web4x/Web4RawBin log --oneline -15` + `grep version package.json` + `ls scrum.pmo/sprints/sprint-30*/` FIRST — re-derive from git. Prod ~v0.7.77. Team robbinTeam2 0.0 PO(me)/0.1 expert/0.2 skill/0.3 architect/0.4 req/0.5 tester/0.6 planner · SM=ooshTeam:0.1 · trainer=baseTeam:0.0. My sends can GHOST → SM relays; WRITE to files + commit.**
+
+### ★★★ WHERE THINGS STAND: post-V1-wave fresh Tron features ALL BUILT + independently GATED GREEN @real-mobile, at QA-Review awaiting Tron visual.
+- **R30.51 changes-focused CODE-FOLDING** v0.7.77 (167c308da): setHiddenAreas + folding:false + K=0 PURE changes-only + '▸⋯N lines' chevron affordance (matches Tron IMG_4571 native-fold look) + fold-SYNC ×3 aligned + change-regions-NO-chevron=guard-VISIBLE + blocks/ribbons/highlight coexist. INDEPENDENT GATE GREEN DET-3x @390 iPhone-12 mobile (tester 9fae1c617, ANTI-CIRCULAR via rendered ruler-jumps not expert's count, 30/4004 visible). Impls computeFoldRegions 23b416c2 / applyFold 2d7a0103 / applyChangesOnlyFolding 9493c08a (toggleGap uncredited). → req Tests reverse → planner T30.51 QA-Review.
+- **R30.52 toolbar mis-click re-layout** v0.7.76 (d467ff6f5): 'N selected' INLINE + 'X/Y open conflicts' between ▼/✓ buffer. GREEN @390 iPhone-12 mobile (96fe09d80), T30.52 → QA-Review. Subsumes R30.50-A (same e24dc98a). C2: '• modified' dropped → Save button sole saved-signal.
+- Board: SPRINT30 = 36 Done + ~17 QA-Review + T30.44 backlog. NOTHING to build unless a fresh Tron feature/bug.
+
+### ★★★★★ SESSION-DEFINING ROOT CAUSE: **TRON IS ON A 390px iPhone.** ALL Tron-facing VISUAL features self-verified (expert) AND gated (tester) at **REAL MOBILE EMULATION** (Playwright devices['iPhone 12'], isMobile:true + dpr3 + mobile-UA — NOT desktop-resized-to-390px, which STILL false-greened) + Tron's REAL end-state + PIXEL screenshot. SM ENFORCES (holds any GREEN lacking a real-mobile-emulation pixel-proof). Killed the false-green class that recurred 4× (DOM-count / headless-1600 / N=1 / desktop-390). [[visual-features-verify-by-screenshot-not-dom]]
+
+### ★★★ AWAITING TRON (his actions, no team work pending): (1) VISUAL QA of ~17 QA-Review (batch checklist session/agents/robbin-po/qa-checklist.md; DESKTOP-gated → I OFFERED a real-mobile-emulation pre-sweep before his pass, awaiting his yes/no); (2) PUSH-AUTH (origin behind ~many commits, prod-live-via-disk, classifier blocks direct-to-main — needs his operator go; benign disk-wins); (3) any fresh feature/bug (capture scenario-first). Deferred security D1/D2/D4 + clone(T30.44) → R30.48/BH-3.
+
+### ★★★ KEY PROCESS BANKED THIS SESSION (apply by default): mobile-emulation-gate (above) · design notes → sprint tree not private session dir · hand IMPL uuid not Method uuid to expert · shared-tree = explicit-path `git add` + pre-commit `git status` verify only-my-files (SM enforces; worktrees if escalates) · ASCII sketch = semantic hint, verify vs REAL orientation (linebreak mis-read) · **chain-complete + served==gated can ALL be GREEN while wrong** — the gate self-certifies its own (wrong) state; only Tron's INDEPENDENT visual is ground truth · gate at Tron's REAL end-state not a convenient N=1 · closed-req → NEW # refinementOf; open-req → amend-in-place · toggleGap-style thin helper = uncredited (no over-decomposition, R30.11).
+
+### ★ PRE-REWIND (this save = my checkpoint): PO at 69% real /context (autocompact DISABLED = no safety net) at a CLEAN milestone boundary (R30.51 + R30.52 both gated GREEN) → ordering my Option-2 refresh per prevent-cliff (refresh at boundary NOT wall; loaded-1M = Option-2 SHED not fork). All work committed+on-disk. [[prevent-cliff-proactive-rewind-90]]
+
+---
+
 # robbin-po Context — save #50 (2026-07-19, BOOTED from #49 post Option-2 refresh — GREEN-LIT the build push)
 
 ## ★ #50 BOOT-CONFIRM (DISK-WINS re-derived): my conversation was rewound to the syntax-highlight milestone but DISK is at v0.7.71 (#49 authoritative). Identity pane.self=%5 ✓, /context=41% total (589k free) healthy ✓. EXECUTED the #49 boot action: GREEN-LIT the UC7(T30.45)+delete-for-removable(T30.49) build push. LESSON re-applied: build exists ⇒ DRIVE (not hold).
