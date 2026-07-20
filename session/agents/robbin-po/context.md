@@ -16,8 +16,8 @@
 
 ### OPEN (drive, NO-REDO) — updated:
 1. ✅ node-pty ABI RESOLVED (architect ground-truth: rebuilt node22, real RW proven). R31.4 terminal mechanism VERIFIED.
-2. ★ CRITICAL PATH: itemView-TREE bug (R31.3 served renders OLD tree not rb-trace-tree) — architect DIAGNOSING → expert fix → tester catch. Blocks Tron's R31.4 device test (tree = how you select a pane → terminal). Terminal is proven but the FLOW (tree→select→terminal) needs the tree rendering.
-3. Independent SECURITY GATE R31.2 (tester, DET-3x): reject-dir 403 all server-manager routes + ws, INV-G1/2/3, fail-closed. Owner happy-path (200+interactive) = Tron real-session (only he has owner cookie).
+2. ★ itemView-TREE bug ROOT-CAUSED (architect): NOT server (bundle rebuilt+wired, v0.7.92 correct per my curl) — it's a STALE SERVICE WORKER. sw.js network-first list (:77) OMITS /server-manager + /profile → iOS PWA serves cached OLD page. FIX (expert building): add /server-manager + /profile to network-first list (SW already bumps CACHE_NAME v0.7.92 + deletes old on activate = self-heals). Tron IMMEDIATE unblock = hard-reload to activate v0.7.92 SW. NOTE: /profile omitted too → R31.1 section also cache-stale on device. This refines my 'verify served' lesson: served-correct can still be CLIENT-SW-stale.
+3. ✅ SECURITY GATE R31.2 GREEN DET-3x independent (tester 0cbde48a6, raw HTTP/ws+grep+live-browser ≠ architect method): all 8 routes non-owner-403 (choke server.ts:892 INV-G1), COOKIE-MINT GUARD (non-owner POST /session → 403 no Set-Cookie = can't mint owner cookie), INV-G2 literal==1, INV-G3 ws-reject-no-socket, fail-closed, never-shell. Owner-accept (r311a 200+interactive) HELD for Tron real-session. → place R31.2 security Test marker → req mint.
 4. Tron DEVICE test R31.4 = full owner flow (login→tree→select pane→interactive terminal) — AFTER tree fix.
 5. view-drift 2/31 reconcile. CARRYOVER: R30.53 QA-Review Tron device.
 ### CARRYOVER: Sprint 30 R30.53 QA-Review — Tron device codicon-render confirm still open.
