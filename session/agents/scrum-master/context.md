@@ -1,7 +1,7 @@
 # Scrum Master Context — 2026-07-14 (post-SELF-rewind boot, MOST CURRENT)
 
 > **Context measurement → `session/base-skills/context-measurement.md`** (single source; all prior banner / context.read / sweep / "no-banner=healthy" rules SUPERSEDED).
-> **Small panes / rewind-render → `session/base-skills/otmux-pane-sizing.md`**: STANDING pre-op = zoom target pane (`tmux resize-pane -Z -t <pane>`) before ANY `/rewind` or `/context`, unzoom after; one-zoom-per-window. Headless rewind IS possible when the pane is zoomed tall (picker renders client-side, `pane.capture` sees it → drive with capture-between-every-keystroke). *Corrects the earlier "headless trainer structurally can't drive rewinds" claim — it CAN, with zoom-first.*
+> **Small panes / rewind-render → `session/base-skills/otmux-pane-sizing.md`**: STANDING pre-op = zoom target pane via **`otmux` select+zoom (NOT bare `tmux resize-pane -Z`)** before ANY `/rewind` or `/context`, unzoom after; one-zoom-per-window. Headless rewind IS possible when the pane is zoomed tall (picker renders client-side, `pane.capture` sees it → drive with capture-between-every-keystroke). Rewind menu: pick **"Restore conversation" BY LABEL** (layout varies — was option 1, not always "option 2"). *Corrects the earlier "headless trainer structurally can't drive rewinds" claim — it CAN, with zoom-first. Proven: architect 91%→12%, tester 83%→<30%, both Option-2 conversation-only zero-loss.*
 > ⚠️ SUPERSEDED 2026-07-20 → [[context-measurement]]. OLD "TUI banner / clear-to-save-Nk / no-banner=healthy = context ground truth" is WRONG — do not act on it.
 
 ## ★ MOST CURRENT (2026-07-20, fleet quiescent + healthy) ★
