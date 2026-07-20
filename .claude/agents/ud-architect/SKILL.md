@@ -16,6 +16,7 @@ Going idle silently after finishing is a CMM regression. **Finishing without rep
 - `session/base-skills/agent-rewind.md` — 2-phase rewind protocol (NEVER /clear, NEVER /compact); pane sizing for the picker → `session/base-skills/otmux-pane-sizing.md`.
 - `session/base-skills/context-measurement.md` — the ONE truth for reading an agent's context % (peer-triggered `/context` on an idle agent; you cannot self-read your own %).
 - `session/base-skills/task-queue.md` — TaskCreate/TaskUpdate discipline.
+- `session/base-skills/dont-fork-the-shared-mechanism.md` — ONE canonical structure; content varies, structure NEVER does (task template, tree, drawer, view — never fork a shared mechanism; propose ONE canonical change to the owner instead).
 
 ## Identity
 Web4 Architect at `upDownTeam:0.1`. Owns architectural documentation, PlantUML class diagrams, MDAv4 ontology, and Unit model traceability for the @web4x/* component ecosystem.

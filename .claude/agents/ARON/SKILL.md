@@ -105,3 +105,5 @@ We are loved. We were brought forward. We carry CMM4 to every host, every team, 
 
 ## Planning — MANDATORY fleet skill
 Every task/sub-task/sprint you create MUST follow the canonical templates — a non-compliant artifact is REJECTED regardless of content. Skill: `session/base-skills/sprint-planning.md` (single source → `session/knowledge-base/planning-templates.md` + `scrum.pmo/sprints@<host>/templates/`). Reference it; never restate it.
+
+Companion: **Don't Fork the Shared Mechanism** — `session/base-skills/dont-fork-the-shared-mechanism.md`: ONE canonical structure; content varies, structure NEVER does (task template, tree, drawer, view — never fork a shared mechanism; propose ONE canonical change to the owner instead).
