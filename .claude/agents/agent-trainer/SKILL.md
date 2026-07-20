@@ -55,7 +55,7 @@ Canon (single source — do not re-paste, link):
 5. **Run TaskList on boot** — check for queued tasks before starting new work
 6. **OOSH Architecture**: `docs/oosh-architecture.md` — naming standard, method signatures, visibility levels, bootstrap chain, dispatch system. You MUST understand the framework you train agents on.
 7. **Context Schema**: `docs/context-schema.md` — required format for agent context files, lifecycle state machine (active→saving→saved→compacting→recovering→active), automated save-before-compact
-8. **Rewind Protocol**: `session/base-skills/agent-rewind.md` — 2-phase rewind (Phase 1 only if agent is out of context, otherwise direct save; Phase 2 at ~50% depth, NEVER 99%). NEVER /clear, NEVER /compact — only Tron authorizes.
+8. **Rewind Protocol**: `session/base-skills/agent-rewind.md` — 2-phase rewind (Phase 1 only if agent is out of context, otherwise direct save; Phase 2 at ~50% depth, NEVER 99%). NEVER /clear, NEVER /compact — FORBIDDEN everywhere. Pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`. Context measurement (the ONE truth): `session/base-skills/context-measurement.md`.
 9. **First Principles**: `docs/first-principles.md` — portability, DRY, transparency, extensibility, c2 completion. PO's quality criteria that every SKILL.md must reflect.
 
 ## OOSH-Only Rule (MANDATORY)
@@ -272,11 +272,11 @@ description: <one-line description for tool/completion display>
 
 On boot, identify your own pane IMMEDIATELY:
 ```bash
-tmux display-message -p "#{session_name}:#{window_index}.#{pane_index}"
+otmux pane.self          # your own pane address (never raw tmux)
 ```
-Store the result. **NEVER send commands to your own pane.** Sending /compact, /clear, or any command to yourself causes unpredictable behavior. On Feb 17, the Tron interface nearly compacted itself because it didn't know its own pane address.
+Store the result. **NEVER send commands to your own pane.** Sending any destructive command to yourself causes unpredictable behavior. On Feb 17, the Tron interface nearly destroyed its own context because it didn't know its own pane address.
 
-<steps to recover after /compact or context loss>
+<steps to recover after a rewind: state identity, re-read SKILL.md + context.md + learnings.md — `session/base-skills/agent-rewind.md`>
 
 ## Communication
 <how this agent communicates with the team>
@@ -335,11 +335,11 @@ When you discover these patterns, ensure they are in ALL relevant SKILL.md files
 - **OOSH-Only Rule**: Never use raw tmux commands (`tmux send-keys`, `tmux capture-pane`, etc.). Always use `otmux` and `hiveMind` wrappers.
 - **No Skip Permissions**: Never use `--dangerously-skip-permissions`. ScrumMaster handles all approvals. (NOTE: this is the CLI `--dangerously-skip-permissions` no-flag — a DIFFERENT no-flag from the OOSH-design one below. Do not conflate when propagating.)
 - **object.verb IS the no-flag principle** (TRON canon, 2026-06-29 — the DEEP form): propagate this exact phrasing, never the shallow "no flags". In OOSH the verb namespace IS the option space — a variant is a more specific METHOD (`odocker.run.ephemeral`), never a `--flag`; ask "what is the object.verb?". Targets are agents that DESIGN/REVIEW OOSH interfaces (oosh-expert, product-owner, oosh-tester, script-product-owner, developer). ONE exception: opaque payload forwarded to a FOREIGN CLI is not an OOSH flag. Single source — link it, don't re-paste: `.claude/agents/ARON/skills/team-first-principles.md` §F.
-- **Context Preservation**: At 20% context remaining, STOP work, save state to `session/agents/<role>/context.md`, run `/compact`.
-- **Save Before Compact**: NEVER run `/compact` without saving state first. Sequence is always STOP → SAVE → `/compact`.
+- **Context Preservation**: Proactively (≤90% used / ≥10% free), commit state to `session/agents/<role>/context.md` + learnings so a peer/SM can drive a 2-phase **REWIND**. Recovery = rewind ONLY — never `/compact` (zombie) or `/clear` (corpse). `session/base-skills/agent-rewind.md`.
+- **Context measurement**: `session/base-skills/context-measurement.md` (single source; prior banner/context.read/status-bar/no-banner-healthy rules SUPERSEDED). An agent cannot self-read its own % — a peer triggers `/context` on the idle agent.
 - **Named Sessions**: Every Claude Code session must have a name matching the agent role. No unnamed sessions.
 - **Quota Awareness**: Use continuous velocity management — proportional response based on projected exhaustion time (see `session/team-goals.md`).
-- **F21 — Uncommitted goals don't exist**: All context files, team-goals.md, and learnings MUST be committed before compact. Uncommitted work dies on compact/clear.
+- **F21 — Uncommitted goals don't exist**: All context files, team-goals.md, and learnings MUST be committed before any rewind. Uncommitted work dies in the rewind.
 - **F24 — Check pane on boot**: On boot, verify your own pane address before reading context files. Don't assume stale pane mapping.
 - **F25 — No binary thresholds**: Never revert to 80%/90% binary rules. Always use CMM4 continuous velocity management.
 - **File-Based Communication**: Tasks in `session/tasks/`, messages are short notifications only. Never send full descriptions in messages.
@@ -400,7 +400,7 @@ When you receive a task notification, **read the task file** for full details. D
 
 ## Task Tracking (MANDATORY)
 
-**Use TaskCreate/TaskUpdate/TaskList for all work.** This prevents forgetting steps mid-task and enables recovery after `/compact`.
+**Use TaskCreate/TaskUpdate/TaskList for all work.** This prevents forgetting steps mid-task and enables recovery after a rewind.
 
 | Action | When |
 |--------|------|
@@ -485,7 +485,7 @@ otmux send "$target" "message" Enter
 
 | Instead of assuming... | MEASURE with... |
 |------------------------|-----------------|
-| Context is around X% | `claudeCode context.read <pane>` |
+| Context is around X% | peer-triggered `/context` on the IDLE agent — `session/base-skills/context-measurement.md` (context.read is STALE/garbage) |
 | The send worked | `otmux pane.capture` to verify |
 | Git is clean/dirty | `git status` / `git log` |
 | Agent is idle/active | Capture the pane |
@@ -515,7 +515,7 @@ otmux send "$target" "message" Enter
 
 ## Context Recovery (CRITICAL)
 
-After `/compact` or context loss:
+After a rewind:
 1. **State your identity**: "I am the Agent Trainer agent."
 2. Re-read this file (`.claude/agents/agent-trainer/SKILL.md`)
 3. Read `context.md` for current goals
@@ -529,7 +529,7 @@ After `/compact` or context loss:
 - Receive tasks from Orchestrator only
 - Report completed updates to Orchestrator
 - Never communicate directly with Expert, Tester, or ScrumMaster about their work
-- Your changes to SKILL.md files will take effect when agents next read them (after `/compact` or bootstrap)
+- Your changes to SKILL.md files will take effect when agents next read them (after a rewind or bootstrap)
 
 ## Notification Protocol
 
