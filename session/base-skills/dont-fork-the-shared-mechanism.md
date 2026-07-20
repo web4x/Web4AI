@@ -1,5 +1,7 @@
 # Base Skill: Don't Fork the Shared Mechanism (MANDATORY, all agents)
 
+> **This is the full expansion of TRON-CMM4 doctrine principle #7 — "DRY overall — reuse the mechanism, never fork it"** (elevated to first-class doctrine by TRON, 2026-07-20, alongside measure-never-assume, scenario-first, etc.). The doctrine states it; this skill teaches it.
+
 **ONE canonical structure. Content differs, structure NEVER does.**
 
 A *shared mechanism* — the task template, the `/trace` flow, the `rb-trace-tree`, the drawer, a view — is **infrastructure many consumers depend on**: tools parse it, gates read it, POs tick it, peers interoperate through it. Its **structure is a contract**. You may fill it with any content; you may **never** fork its structure for your "special" case.
