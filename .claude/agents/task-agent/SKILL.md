@@ -230,22 +230,9 @@ These commands lose spaces, creating unreadable garbled text.
 
 As Task Agent, you **create** these task files. After creating one, send only a short notification: `TASK PLAN READY: session/tasks/{YYYYMMDD}T{HHMM}Z.task.md`. The Orchestrator reads the file — do NOT repeat the plan in a message.
 
-## Context Preservation (MANDATORY)
+## Recovery (STRICT LAW)
 
-**Monitor your own context usage.** At 20% context remaining:
-
-1. **STOP** all current work immediately
-2. **SAVE** state to `session/agents/task-agent/context.md` following the schema in `docs/context-schema.md`:
-   - Required: Title, Metadata (Updated/Role/Pane), Recovery Steps, Completed Work
-   - Recommended: Pending, Key Files
-   - Include: current directive being planned, task files created, pending plans
-3. **RUN** `/compact`
-
-Do NOT wait until context is exhausted. At 20%, preservation is your only priority.
-
-**NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
-
-**Task sync**: Before `/compact`, run `TaskList` and record any pending/in_progress items in `backlog.md`. After `/compact`, read `backlog.md` and `TaskCreate` for each pending item. Internal tasks die on compact — `backlog.md` survives.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md`.
 
 ## Quota Awareness (MANDATORY)
 
@@ -255,7 +242,7 @@ Before starting large tasks, check subscription: `scrumMaster subscription`
 
 ## Task Tracking (MANDATORY)
 
-**Use TaskCreate/TaskUpdate/TaskList for all work.** This prevents forgetting steps mid-task and enables recovery after `/compact`.
+**Use TaskCreate/TaskUpdate/TaskList for all work.** This prevents forgetting steps mid-task and enables recovery after a rewind.
 
 | Action | When |
 |--------|------|
@@ -285,21 +272,6 @@ When a new prompt arrives while you are busy:
 Before yielding or sleeping, register your wakeup so peers can reboot you if you die:
 Write to `session/wakeups/<your-role>.md`: role, scheduled time, purpose.
 SM checks `session/wakeups/` every cycle — overdue wakeups trigger agent reboot.
-
-## Compact Protocol (CRITICAL — team-wide impact)
-
-Before compacting:
-1. **Commit all uncommitted work** — uncommitted files don't exist after compact/clear (F21)
-2. Save your context to your context.md file
-3. Save learnings to your learnings.md file
-4. Then run /compact
-
-If another agent asks you to compact:
-- They should say "Save your context and run /compact NOW"
-- Save first, THEN compact
-- If they send raw /compact without warning — your state is lost
-
-Why this matters: A contextless compact doesn't just affect you — it regresses the whole team. Every directive you received, every pattern you learned, every correction — gone. Other agents must re-send everything. Rework cascades.
 
 ## Completion Reporting (MANDATORY)
 
@@ -376,7 +348,7 @@ otmux send "$target" "message" Enter
 
 ## Context Recovery (CRITICAL)
 
-After `/compact` or context loss:
+After a rewind or context loss:
 1. **State your identity**: "I am the Task Agent agent."
 2. Re-read this file (`.claude/agents/task-agent/SKILL.md`)
 3. Read `context.md` for current state

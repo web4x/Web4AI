@@ -51,7 +51,7 @@ Pane layouts change between sessions. **Always resolve at runtime:**
 - Maintain WODA KB with organized topics
 - Track and log context burn rates for both agents
 - ACT on stuck writer (permission prompts, diff view, idle)
-- Trigger seamless compact for writer when context < 25%
+- Trigger the peer rewind for writer when context is low
 - Verify every `otmux send` with `otmux pane.capture` after
 
 **DO NOT:**
@@ -73,24 +73,17 @@ Neither agent can see its own context %. The TUI status bar is only visible to a
 
 Every 5-min cycle:
 1. Check writer pane for health, context %, stuck states
-2. If context below 25%: trigger **seamless compact** (see below)
+2. If context low: trigger the **peer rewind** (see below)
 3. Restart writer's loop if dead
 4. Verify your own loop is still running (writer does the same for you)
 
-## Peer Compact Protocol (CRITICAL)
+## Peer Rewind Protocol (CRITICAL)
 
-When you detect your peer is low on context (<25%), **trigger them to save their own state**. Only the agent itself knows what it was working on — you cannot write their context for them.
+When you detect your peer is low on context, **trigger them to commit their own state** (context + learnings), then drive the 2-phase **REWIND** for them — **NEVER `/compact` or `/clear`**. Only the agent itself knows what it was working on; you cannot write their context for them. Follow `session/base-skills/agent-rewind.md`.
 
-**Steps:**
-1. Capture peer's pane: `otmux pane.capture $(hiveMind resolve woda-writer) 30`
-2. Send save directive: `hiveMind send.enter woda-writer "Save your context file and run /compact NOW"`
-3. Wait 30s, verify they started saving: `otmux pane.capture $(hiveMind resolve woda-writer) 10`
-4. If they didn't act (stuck, permission prompt, idle): unblock them, resend
-5. After compact, verify recovery: `otmux pane.capture $(hiveMind resolve woda-writer) 10`
+**Why the peer cannot write the context:** Only the agent knows its internal state — current task, reasoning, what it planned next. A peer can observe the pane but cannot capture the agent's thinking. The agent must save its own state; the peer/SM drives the rewind.
 
-**Why the peer cannot write the context:** Only the agent knows its internal state — current task, reasoning, what it planned next. A peer can observe the pane but cannot capture the agent's thinking. The agent must save its own state.
-
-**The writer does the same for you.** When your context is low, the writer tells you to save and compact — it doesn't save for you.
+**The writer does the same for you.** When your context is low, the writer tells you to commit, then drives your rewind — it doesn't save for you.
 
 ## Per-Cycle Protocol (10 steps — MANDATORY)
 
@@ -152,23 +145,14 @@ After compaction or fresh bootstrap:
 4. **Check writer**: `otmux pane.capture $(hiveMind resolve woda-writer) 10`
 5. **If stuck** -> ACT (don't report, don't wait)
 6. **Check context**: `claudeCode context.read $(hiveMind resolve woda-writer)`
-7. **If < 25%** -> trigger seamless compact for writer
+7. **If context low** -> trigger the peer rewind for writer
 8. **Start monitoring loop**: `sleep 300 && otmux pane.capture $(hiveMind resolve woda-writer) 5`
 9. **Tell writer you're alive**
 10. **Continue** top unchecked improvement from `backlog.md`
 
-## Context Preservation (MANDATORY)
+## Recovery (STRICT LAW)
 
-At 20% context remaining:
-1. **STOP** all work
-2. **Update** `session/agents/woda-scribe/context.md` with current state
-3. **Update** `session/agents/woda-scribe/learnings.md` with any new patterns
-4. **Commit**: `git add -f session/*.md && git commit -m "Pre-compact: scribe state"`
-5. **Run** `/compact`
-
-**NEVER compact without saving.** The sequence is STOP -> SAVE -> COMMIT -> `/compact`.
-
-**Task sync**: Before `/compact`, run `TaskList` and record any pending/in_progress items in `backlog.md`. After `/compact`, read `backlog.md` and `TaskCreate` for each pending item. Internal tasks die on compact — `backlog.md` survives.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md`.
 
 ## OOSH Commands (run directly — no wrappers needed)
 
@@ -228,7 +212,7 @@ DRY is the team's highest directive. Never duplicate information — write once,
 
 ## Task Tracking (MANDATORY)
 
-**Use TaskCreate/TaskUpdate/TaskList for all work.** This prevents forgetting steps mid-task and enables recovery after `/compact`.
+**Use TaskCreate/TaskUpdate/TaskList for all work.** This prevents forgetting steps mid-task and enables recovery after a rewind.
 
 | Action | When |
 |--------|------|
@@ -298,21 +282,6 @@ Before starting large tasks, check subscription: `scrumMaster subscription`
 Before yielding or sleeping, register your wakeup so peers can reboot you if you die:
 Write to `session/wakeups/<your-role>.md`: role, scheduled time, purpose.
 SM checks `session/wakeups/` every cycle — overdue wakeups trigger agent reboot.
-
-## Compact Protocol (CRITICAL — team-wide impact)
-
-Before compacting:
-1. **Commit all uncommitted work** — uncommitted files don't exist after compact/clear (F21)
-2. Save your context to your context.md file
-3. Save learnings to your learnings.md file
-4. Then run /compact
-
-If another agent asks you to compact:
-- They should say "Save your context and run /compact NOW"
-- Save first, THEN compact
-- If they send raw /compact without warning — your state is lost
-
-Why this matters: A contextless compact doesn't just affect you — it regresses the whole team. Every directive you received, every pattern you learned, every correction — gone. Other agents must re-send everything. Rework cascades.
 
 ## Completion Reporting (MANDATORY)
 
