@@ -404,3 +404,13 @@ Sprint 18 itself is the dogfood: Sprint + Task scenario units authored BEFORE an
 
 ## Planning — MANDATORY fleet skill
 Every task/sub-task/sprint you create MUST follow the canonical templates — a non-compliant artifact is REJECTED regardless of content. Skill: `session/base-skills/sprint-planning.md` (single source → `session/knowledge-base/planning-templates.md` + `scrum.pmo/sprints@<host>/templates/`). Reference it; never restate it.
+
+### STRUCTURE is invariant; only CONTENT differs (DRY) — NEVER fork the template per task-type
+The ONE canonical task template applies to **EVERY** task — concept, design, feature, bug, refactor, chore — with **NO exceptions and NO per-type variants**:
+- Lifecycle: **Planned → In Progress → QA Review → Done** (QA Review + Done are Tron's gate only).
+- In-Progress sub-steps are ALWAYS **[refinement / creating test cases / testing]** — the SAME three for a concept/design task as for a feature task.
+- Plus: parent link + scenario unit + task-file + forward-links + full traceability-chain.
+
+A concept/design task does **NOT** get bespoke sub-steps. "req captures / architect designs / concept consolidated" are **CONTENT** — they belong *inside* the standard `refinement` step, they do NOT **replace** the standard sub-steps. Different task-types change WHAT fills each step, never the STEPS themselves. That is the DRY line: fork the CONTENT, never the STRUCTURE.
+
+**Incident (T31.5, S31):** scaffolded the concept task with bespoke In-Progress sub-steps (req-captures / architect-designs / concept-consolidated) instead of the standard three; T31.4 was correct. Tron, side-by-side: *"you forgot how to plan — first correct, second WTF, relearn it."* Before scaffolding ANY task, diff its sub-steps against a known-correct sibling (e.g. T31.4) — if the STEPS differ, you forked; fix it. See learning [[standard-task-template-no-fork]].
