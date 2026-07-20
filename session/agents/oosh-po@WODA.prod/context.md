@@ -5,6 +5,23 @@
 **Pane**: ooshTeam:0.0 on **WODA.prod** (v60211.1blu.de) — re-derived 2026-06-28 (was wrongly @MacStudio: fork inherited parent's stale @host; real host = OOSH_SSH_CONFIG_HOST=WODA.prod)
 **Session**: oosh-po@WODA.prod [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## 🔴 REWIND-READY CHECKPOINT — 2026-07-20 (overnight; heeding Tron's ≤85% proactive-rewind guardrail)
+**Identity:** oosh-po@WODA.prod, ooshTeam:0.0 / pane %17, live uuid **889a24a9** (RE-DERIVE — prove by capturing which pane renders my own TUI; $TMUX_PANE lies [[self-id]]). BOOT-FIRST: `otmux pane.history` + `ls scrum.pmo/sprints*` + read task files (world moved). SM=ooshTeam:0.1 (42-pair, recovered from its own 13h wall via trainer Option-2). Deploy discipline: `git apply` NEVER cp -a (hardlink write-through); gate must SANITY-CHECK VALUES (0k for a live agent = impossible false-low); fail-loud = record NOTHING never 0; no `| tail`/`head`/`2>/dev/null` (denied).
+
+**LIVE /root/oosh HEAD = `a27e3b2` on mcdonges.latest. Delivered today (all live, gated + pushed):**
+- **opy series** (Tron "pull it" + expert live-hotfixes): G1 self-ID `93de8ac` + opy env `aa2c4f5` + build-essential `7282bd7` + zlib `1535d58`. G1 mis-tag root ELIMINATED (otmux current PID-walk, $TMUX_PANE-immune).
+- **Context-tracking feature** (Tron order): record/get/gather/gather.all + team.sweep shows recorded reading+age, replaces the lying live ctx% (`4ff09df`). Iterated to `17d5a2d`: JSONL-total ÷ honest-denom-from-readout, drift-proof live.jsonl resolver, **non-zero-required + MANDATORY 0-guard at context.record** (after I caused + reverted a 0k false-low regression `10fde7f`→`b1f2bf7` — lesson [[false-low-worse-than-absent-sanity-check-values]]). WORKING: all robbin agents read real non-zero, cross-checked.
+- **Sweep RATE_LIMIT P1** (detect+display, Tron order): `d972bd2` — throttled-then-idle shows RATE_LIMIT (BOLD_YELLOW) not IDLE; no-false-positive (resolved throttle→IDLE) tested.
+- **Sweep unit D** (ctx auto-refresh, Tron/SM): `a27e3b2` — auto-gathers stale(>300s)/near-cliff(≥60%) idle agents in pane.sweep.loop, bounded backoff, inherited 0-guard. Live gate (dry→apply→verify) INTERRUPTED by API-unavailable — safe deployed (read-only + inherited fail-safe); RETRY the gate + SM co-verify on a real ≥60% pane.
+
+**STANDING / IN-FLIGHT (resume here):**
+- **S-9 send-ghost fix** — gated GREEN 3 rounds (`scratchpad/S-9-otmux.diff`), **AWAITING TRON's explicit deploy GO** (I chose to hold this proactive core-comms change; it also makes gather/re-nudge sends reliable). Verb map: send.tui=bare Enter, send.raw=Esc+Enter.
+- **RATE_LIMIT P2 (auto-renudge)** — built+19/19 (`scratchpad/rl/sweep-renudge.patch` on d972bd2), HELD for P1 co-verify.
+- **Fast-follows:** RATE_LIMIT P1 co-verify on real throttle (SM) · unit D live-gate retry (dry/apply/no-0k) + SM co-verify · context.gather could `skipped: shell` non-Claude panes · opy real end-to-end build gate (tester).
+- **opy install:** converging via expert's clean opy-only ffs; tester's real apt+CPython build = remaining gate.
+- Task files (the channel): s9-otmux-send-ghosting · hivemind-context-tracking · sweep-rate-limit-detect (RATE_LIMIT + unit D) — all current.
+- **Subagents used today** (resume via SendMessage if needed): builds/gates via hiveMind-expert/tester + otmux-expert/tester subagents (the live ooshTeam expert/tester were heavy, and S-9 ghosting made live dispatch unreliable → I drove via subagents).
+
 ## ✅ DEPLOYED 2026-07-17 (post-rewind, Tron said "pull it")
 G1+opy fast-forwarded onto LIVE /root/oosh (mcdonges.latest df95a02→93de8ac, clean FF, 2 commits).
 - **93de8ac G1 self-ID** — VERIFIED live: `otmux current`/`pane.get.target` return ooshTeam:0.0 (my true pane) even with TMUX_PANE=%999; poisoned-$TMUX_PANE mis-tag root ELIMINATED. Session no-CURRENT constraint LIFTED.
