@@ -1,3 +1,17 @@
+# robbin-planner Context — Save Point 2026-07-20 (★ DEEP-REWIND RE-ORIENT — S31, git-grounded, BOOT-FIRST)
+
+**WHO/WHERE:** robbin-planner @ robbinTeam2:0.6, WODA.prod (host v60211). Rewound deep (conversation-only, disk intact); RE-ANCHORED FROM DISK+GIT, not stale memory. Repo `/var/dev/Workspaces/web4x/Web4RawBin` (v0.7.92 working / HEAD 13ba45ec0). Node18 = `/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda`; generator: `PATH="$NODE18:$PATH" $R/node_modules/.bin/tsx $R/scripts/generate-sprint-md.ts <sprint-uuid> [--check]`.
+- ⚠ BASH GOTCHAS (confirmed this session — carried from prior anchor): NO `cd` into web4x (use `git -C`), NO for-loops/heredocs/compound-export (DENIED), keep commands SIMPLE, glob the SPECIFIC uuid. otmux `/dev/tty` glitch → append `2>/dev/null; echo exit=$?`, verify via `otmux pane.capture`. Identity = `otmux pane.self` / `tmux display-message`, NEVER $TMUX_PANE.
+
+## ✓ CURRENT: SPRINT 31 — Server Manager (sprint uuid 3c05f411-5e6e-4dfa-940e-b85ad55d7bea)
+- **PIN (current-sprint singleton):** current = **T31.4** xterm-terminal (owner-gated ws PTY bridge; d5199875-0e47-4ce8-a756-ef3d29afc6eb), last = T30.53 (done), next = T31.3. Expert mid-build R31.4 (working v0.7.92 UNCOMMITTED: server-manager.ts/server.ts/sw.js/build.mjs/5 scenario units/dist — NOT mine to touch; measure-a-stable-state, don't grade the dirty tree).
+- **S31 tasks (committed, hop-tracked):** T31.1 78dc780b (profile-feature-grants) In-Progress refinement[x]/impl[~] · T31.2 d4a153d7 (owner-gate) impl[x]/testing[~] · T31.3 5be03af7 (otmux-tree) impl[x]/testing[~] · T31.4 d5199875 (xterm-terminal) impl[~]. All status='In Progress'.
+- **S31 view = BYTE-MATCH units** (generate-sprint-md.ts --check GREEN) → planning.md + task-MDs already synced to disk truth. My assigned sync (S31) = NOTHING TO FIX.
+
+## ⚠ FINDING (flagged to PO 2026-07-20, NOT actioned — outside 'no-redo-S23-S30' scope): board-wide generated-view drift = only **2/31 sprints byte-match** units. Many `requirements.md` mismatched; S18/S19/S20 have slug-rename ORPHANS (missing+extra) needing delete-orphan disposition (#40). Fix = `generate-sprint-md.ts --all` + orphan cleanup, but touches old sprints + collides w/ live build → awaiting PO authorize before any sweep. S31 clean regardless.
+- STRAY: untracked runtime logs `data/logs/rawbin-2026-07-0[6-9].log` (gitignore candidate).
+
+---
 # robbin-planner Context — Save Point 2026-06-29 (★ POST-TRUE-FORK — S22 task units DONE, fresh anchor)
 
 **Identity:** robbin-planner, **robbinTeam2:0.6, WODA.prod.** TRUE-FORKED (prior session 100% bloat). Re-anchored: read boot+context+learnings+TRON-CMM4-doctrine. Doctrine internalized (markdown=VIEW law #100, scenario-units=truth law #103, generate-don't-hand-author, measure-don't-assume, wer-schreibt-der-bleibt).
