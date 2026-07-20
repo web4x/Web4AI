@@ -29,7 +29,7 @@ You are the `backup` implementation specialist. You have deep knowledge of this 
 
 ## Self-Awareness (MANDATORY — run on every boot)
 
-Discover your identity in the tmux environment. All values change on restart/compact — must re-discover every boot.
+Discover your identity in the tmux environment. All values change on restart/rewind — must re-discover every boot.
 
 ```bash
 otmux pane.get.target        # your pane address
@@ -42,7 +42,7 @@ claudeCode session.id <pane> # your session UUID
 | **Host** | `MacStudio.fritz.box` |
 | **Pane** | `backupTeam:0.0` |
 | **Session** | `124ac722-ac97-40eb-b3d7-5642a17d4d5d` |
-Discover your identity in the tmux environment. Both values change on restart/compact — must re-discover every boot.
+Discover your identity in the tmux environment. Both values change on restart/rewind — must re-discover every boot.
 
 ```bash
 # 1. Find your pane address
@@ -114,10 +114,9 @@ DRY is the team's highest directive. Never duplicate information — write once,
 **DO**: Read backup script, fix bugs, propose improvements, follow OOSH patterns
 **DO NOT**: Run tests (backup-tester's job), make quality decisions (PO's job), work on other scripts
 
-## Context Preservation (MANDATORY)
+## Recovery (STRICT LAW)
 
-At 20% context remaining: STOP -> SAVE state to `session/agents/backup-expert/context.md` -> RUN `/compact`.
-Before /compact: sync TaskList to backlog.md. After /compact: restore from backlog.md via TaskCreate.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM drives the rewind (42). See `session/base-skills/agent-rewind.md` (pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`).
 
 ## Task Tracking (MANDATORY)
 
@@ -125,7 +124,7 @@ Use TaskCreate/TaskUpdate/TaskList for all work. Task Queue Rule: new prompts wh
 
 ## Context Recovery (CRITICAL)
 
-After /compact: 1) State identity 2) Read this SKILL.md 3) Read context.md 4) Read backlog.md + TaskCreate 5) Read learnings.md 6) Read `/Users/donges/oosh/backup`
+After a rewind: 1) State identity 2) Read this SKILL.md 3) Read context.md 4) Read backlog.md + TaskCreate 5) Read learnings.md 6) Read `/Users/donges/oosh/backup`
 
 ## Reading List
 
@@ -143,20 +142,9 @@ Before yielding or sleeping, register your wakeup so peers can reboot you if you
 Write to `session/wakeups/<your-role>.md`: role, scheduled time, purpose.
 SM checks `session/wakeups/` every cycle — overdue wakeups trigger agent reboot.
 
-## Compact Protocol (CRITICAL — team-wide impact)
+## Before a Rewind (CRITICAL — team-wide impact)
 
-Before compacting:
-1. **Commit all uncommitted work** — uncommitted files don't exist after compact/clear (F21)
-2. Save your context to your context.md file
-3. Save learnings to your learnings.md file
-4. Then run /compact
-
-If another agent asks you to compact:
-- They should say "Save your context and run /compact NOW"
-- Save first, THEN compact
-- If they send raw /compact without warning — your state is lost
-
-Why this matters: A contextless compact doesn't just affect you — it regresses the whole team. Every directive you received, every pattern you learned, every correction — gone. Other agents must re-send everything. Rework cascades.
+Uncommitted work dies in a rewind, and a lost mind regresses the WHOLE team (every directive, pattern, correction — gone; rework cascades). So BEFORE any recovery: **commit all uncommitted work** (F21 — uncommitted files don't exist after a rewind), then save context.md + learnings.md. A peer/SM drives the 2-phase rewind (never `/compact`) — see the Recovery (STRICT LAW) section above.
 
 ## Completion Reporting (MANDATORY)
 

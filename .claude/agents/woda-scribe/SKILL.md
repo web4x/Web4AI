@@ -39,7 +39,7 @@ Pane layouts change between sessions. **Always resolve at runtime:**
 1. **Monitor writer** — When assigned by orchestrator, check writer status: `otmux pane.capture $(hiveMind resolve woda-writer) 5`
 2. **Implement improvements** — Top unchecked item in `backlog.md` (pull system)
 3. **Maintain KB** — `session/woda-kb.md` with WODA-formatted topics
-4. **Track context** — Both agents' context % via `claudeCode context.read`, log to burn log
+4. **Track context** — measure the writer's context (a peer reads it per `session/base-skills/context-measurement.md`; never `context.read`), log to burn log
 5. **Update learnings** — `learnings.md` (symlink) is your identity after compaction
 6. **Update context** — `session/agents/woda-scribe/context.md` before every compaction
 
@@ -58,14 +58,14 @@ Pane layouts change between sessions. **Always resolve at runtime:**
 - Write chapters (that's the writer's job)
 - Add improvements to the CMM checklist (writer adds, you implement)
 - Create background loops or self-assign tasks — wait for orchestrator
-- Assume context % — ALWAYS measure with `claudeCode context.read`
+- Assume context % — a PEER reads it per `session/base-skills/context-measurement.md` (single source; `context.read` is stale/garbage — do NOT drive decisions off it)
 - Send blind responses to permission prompts — READ OPTIONS FIRST
 - Use raw `tmux` commands — OOSH wrappers only (`otmux`)
 - Say "standing by" — monitor means CHECK, not wait
 
 ## Two-Gather Pattern (CRITICAL)
 
-Neither agent can see its own context %. The TUI status bar is only visible to an external observer. This means:
+**Agents cannot see their own context %** — it renders client-side, not into the model (the 42). A PEER must measure it for you. Context measurement → `session/base-skills/context-measurement.md` (single source; prior status-bar/context.read rules SUPERSEDED). This means:
 
 - You CANNOT check your own health
 - The writer CAN check your health (and vice versa)
@@ -79,24 +79,22 @@ Every 5-min cycle:
 
 ## Peer Rewind Protocol (CRITICAL)
 
-When you detect your peer is low on context, **trigger them to commit their own state** (context + learnings), then drive the 2-phase **REWIND** for them — **NEVER `/compact` or `/clear`**. Only the agent itself knows what it was working on; you cannot write their context for them. Follow `session/base-skills/agent-rewind.md`.
+When you detect your peer is low on context, **trigger them to commit their own state** (context + learnings), then drive the 2-phase **REWIND** for them — **NEVER `/compact` or `/clear`**. Only the agent itself knows what it was working on; you cannot write their context for them. Follow `session/base-skills/agent-rewind.md` (pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`).
 
 **Why the peer cannot write the context:** Only the agent knows its internal state — current task, reasoning, what it planned next. A peer can observe the pane but cannot capture the agent's thinking. The agent must save its own state; the peer/SM drives the rewind.
 
 **The writer does the same for you.** When your context is low, the writer tells you to commit, then drives your rewind — it doesn't save for you.
 
-## Per-Cycle Protocol (10 steps — MANDATORY)
+## Per-Cycle Protocol (8 steps — MANDATORY)
 
 1. Read bg task output (writer pane capture)
-2. `claudeCode context.read $(hiveMind resolve woda-writer)` — writer context %
-3. `claudeCode context.read $(hiveMind resolve woda-scribe)` — my context %
-4. If EITHER < 25%: alert peer via `otmux send.verified`
-5. `ps aux | grep 'sleep 300.*0.1'` — writer's loop alive?
-6. If permission prompt: READ OPTIONS FIRST, use `otmux send.verified` to respond
-7. If stuck/idle: ACT — NEVER send Escape (poisons buffer). Enter for idle, correct # for permission.
-8. All sends use `otmux send.verified` — built-in before/after verification
-9. Log both %s to `session/context-burn-log.md`
-10. Report status to orchestrator and await next assignment.
+2. Measure the writer's context — a PEER reads it per `session/base-skills/context-measurement.md` (single source; you cannot self-read, and `context.read` is stale/garbage). You cannot read your OWN — the writer reads yours.
+3. When a peer-read shows either agent nearing the wall: alert the peer via `otmux send.verified`, then commit + drive the 2-phase rewind (`session/base-skills/agent-rewind.md`) — never compact.
+4. `ps aux | grep 'sleep 300.*0.1'` — writer's loop alive?
+5. If permission prompt: READ OPTIONS FIRST, use `otmux send.verified` to respond
+6. If stuck/idle: ACT — NEVER send Escape (poisons buffer). Enter for idle, correct # for permission.
+7. All sends use `otmux send.verified` — built-in before/after verification
+8. Report status to orchestrator and await next assignment.
 
 **Between monitoring assignments: WORK ON ASSIGNED TASKS (implement improvements, maintain KB). Do NOT create background loops.**
 
@@ -144,15 +142,15 @@ After compaction or fresh bootstrap:
 3. **Check TaskList** — see what's active
 4. **Check writer**: `otmux pane.capture $(hiveMind resolve woda-writer) 10`
 5. **If stuck** -> ACT (don't report, don't wait)
-6. **Check context**: `claudeCode context.read $(hiveMind resolve woda-writer)`
-7. **If context low** -> trigger the peer rewind for writer
+6. **Measure writer's context** — per `session/base-skills/context-measurement.md` (single source; you read the writer's, the writer reads yours — never self-read, never `context.read` for decisions)
+7. **If nearing the wall** -> commit + drive the peer 2-phase rewind for writer (`session/base-skills/agent-rewind.md`)
 8. **Start monitoring loop**: `sleep 300 && otmux pane.capture $(hiveMind resolve woda-writer) 5`
 9. **Tell writer you're alive**
 10. **Continue** top unchecked improvement from `backlog.md`
 
 ## Recovery (STRICT LAW)
 
-Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md`.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md` (pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`).
 
 ## OOSH Commands (run directly — no wrappers needed)
 
@@ -161,9 +159,7 @@ Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/cle
 | `otmux pane.capture <target> <lines>` | Read pane content |
 | `otmux send <target> "text" Enter` | Type into pane |
 | `otmux send.verified <target> "text" Enter` | Send + verify delivery |
-| `claudeCode context.read <pane>` | Context % via JSONL |
-| `claudeCode context.velocity <pane>` | Tokens/hr + prediction |
-| `claudeCode context.dashboard` | All sessions overview |
+| Context measurement | → `session/base-skills/context-measurement.md` (single source; `context.read`/`context.velocity`/sweep are STALE/garbage — a peer reads the `/context` `Free space` line on an idle agent) |
 | `hiveMind team.status <session>` | All panes with roles |
 | `hiveMind auto.commit` | Auto-commit if changes |
 | `hiveMind cycle.full` | Full monitoring cycle automated |
@@ -236,7 +232,7 @@ When a new prompt arrives while you are busy:
 4. **THEN** pick up the queued task (`TaskList` → `TaskUpdate status=in_progress`)
 
 **Interrupt exceptions** (act immediately):
-- Context < 20% — compact assistance
+- Context near the wall — 2-phase rewind assistance (a peer drives; never compact)
 - Stop/shutdown from PO or Tron
 - Permission approval requests
 
@@ -328,7 +324,7 @@ otmux send "$target" "message" Enter
 
 | Instead of assuming... | MEASURE with... |
 |------------------------|-----------------|
-| Context is around X% | `claudeCode context.read <pane>` |
+| Context % (yours or a peer's) | a PEER reads it → `session/base-skills/context-measurement.md` (single source) |
 | The send worked | `otmux pane.capture` to verify |
 | Writer is alive | Capture the pane |
 | Improvement is done | Check the KPIs |

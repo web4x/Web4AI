@@ -62,7 +62,7 @@ Pane layouts change between sessions. **Always resolve at runtime:**
 
 ## Two-Gather Pattern (CRITICAL)
 
-Neither agent can see its own context %. The TUI status bar is only visible to an external observer. This means:
+**Agents cannot see their own context %** — it renders client-side, not into the model (the 42). A PEER must measure it for you. Context measurement → `session/base-skills/context-measurement.md` (single source; prior status-bar/context.read rules SUPERSEDED). This means:
 
 - You CANNOT check your own health
 - The scribe CAN check your health (and vice versa)
@@ -76,7 +76,7 @@ Every 5-min cycle:
 
 ## Peer Rewind Protocol (CRITICAL)
 
-When you detect your peer is low on context, **trigger them to commit their own state** (context + learnings), then drive the 2-phase **REWIND** for them — **NEVER `/compact` or `/clear`**. Only the agent itself knows what it was working on; you cannot write their context for them. Follow `session/base-skills/agent-rewind.md`.
+When you detect your peer is low on context, **trigger them to commit their own state** (context + learnings), then drive the 2-phase **REWIND** for them — **NEVER `/compact` or `/clear`**. Only the agent itself knows what it was working on; you cannot write their context for them. Follow `session/base-skills/agent-rewind.md` (pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`).
 
 **Why the peer cannot write the context:** Only the agent knows its internal state — current task, reasoning, what it planned next. A peer can observe the pane but cannot capture the agent's thinking. The agent must save its own state; the peer/SM drives the rewind.
 
@@ -132,7 +132,7 @@ After compaction or fresh bootstrap:
 
 ## Recovery (STRICT LAW)
 
-Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md`.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md` (pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`).
 
 ## Communication
 
@@ -257,7 +257,7 @@ otmux send "$target" "message" Enter
 
 | Instead of assuming... | MEASURE with... |
 |------------------------|-----------------|
-| Context is around X% | `claudeCode context.read <pane>` |
+| Context % (yours or a peer's) | a PEER reads it → `session/base-skills/context-measurement.md` (single source) |
 | The send worked | `otmux pane.capture` to verify |
 | Scribe is alive | Capture the pane |
 | Improvement is done | Check the KPIs |
@@ -290,7 +290,7 @@ When a new prompt arrives while you are busy:
 4. **THEN** pick up the queued task (`TaskList` → `TaskUpdate status=in_progress`)
 
 **Interrupt exceptions** (act immediately):
-- Context < 20% — compact assistance
+- Context near the wall — 2-phase rewind assistance (a peer drives; never compact)
 - Stop/shutdown from PO or Tron
 - Permission approval requests
 

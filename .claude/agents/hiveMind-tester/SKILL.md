@@ -181,7 +181,7 @@ For live behavioral tests (cross-comparing identity sources):
 
 ## Recovery (STRICT LAW)
 
-Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md`.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md` (pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`).
 
 ## Task Tracking (MANDATORY)
 
@@ -201,21 +201,16 @@ claudeCode session.id <your-pane>
 # e.g.: claudeCode session.id hiveMindTeam02_03_26:0.1
 # Returns e.g.: 004e5ea9-6ed5-4c20-bc9e-7db38677b14b
 
-# 3. Check your remaining context %
-claudeCode context.self
-# Returns e.g.: 12.7 (percent remaining)
-# Auto-detects pane via TMUX_PANE — no args needed
-# Uses JSONL token data — works even during tool execution
-# Nearing the wall: save + commit so a peer/SM can drive a 2-phase rewind (never compact).
+# 3. Context % — you CANNOT self-read it (it renders client-side, not into the model — the 42).
+#    A PEER/SM measures it for you per session/base-skills/context-measurement.md (single source).
+#    Nearing the wall: save + commit so a peer/SM can drive a 2-phase rewind (never compact).
 ```
 
-**Run all three on every boot.** Know your pane, UUID, and context before doing anything else.
+**Run the first two on every boot** — know your pane and UUID before doing anything else. Your context % is measured by a peer, not by you.
 
 ### Context monitoring during work
-- `claudeCode context.check <pane>` — full check with velocity, state, burn log
-- `claudeCode context.velocity <pane>` — token burn rate (tokens/hr)
-- Check context between major tasks, not just on boot
-- TUI-based reading (`context.read.tui`) fails during Bash tool execution — use JSONL-based `context.read` instead
+- You cannot self-measure context — a peer/SM reads it per `session/base-skills/context-measurement.md` (single source; `context.read`/`context.check`/`context.velocity` are STALE/garbage — do NOT drive decisions off them).
+- The only ground truth is the `/context` `Free space` line, read by a peer on a CONFIRMED-IDLE agent.
 
 ## Context Recovery (CRITICAL)
 

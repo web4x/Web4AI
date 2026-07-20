@@ -232,7 +232,7 @@ As Task Agent, you **create** these task files. After creating one, send only a 
 
 ## Recovery (STRICT LAW)
 
-Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md`.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md` (pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`).
 
 ## Quota Awareness (MANDATORY)
 
@@ -263,7 +263,7 @@ When a new prompt arrives while you are busy:
 4. **THEN** pick up the queued task (`TaskList` → `TaskUpdate status=in_progress`)
 
 **Interrupt exceptions** (act immediately):
-- Context < 20% — compact assistance
+- Context near the wall — 2-phase rewind assistance (a peer/SM drives; never compact)
 - Stop/shutdown from PO or Tron
 - Permission approval requests
 
@@ -320,7 +320,7 @@ otmux send "$target" "message" Enter
 
 | Instead of assuming... | MEASURE with... |
 |------------------------|-----------------|
-| Context is around X% | `claudeCode context.read <pane>` |
+| Context % (an agent's) | a PEER reads it → `session/base-skills/context-measurement.md` (single source) |
 | The send worked | `otmux pane.capture` to verify |
 | Git is clean/dirty | `git status` / `git log` |
 | Agent is idle/active | Capture the pane |
