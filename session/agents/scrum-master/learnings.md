@@ -1,5 +1,7 @@
 # Scrum Master Learnings — Updated 2026-05-01
 
+> ⚠️ SUPERSEDED 2026-07-20 → **`session/base-skills/context-measurement.md`** (single source). ALL context-measurement rules below — every "context.read = measure", "status bar / clear-to-save Nk / pane status-bar = ground truth", "no-banner = healthy", "sweep ctx trustworthy" rule — are **WRONG/superseded; do NOT act on them.** Correct method lives ONCE in the canon: idle-check the pane → trigger `/context` → pane-capture the `⚠ Context is N% full` line. (The one rule below that IS still true: *agents cannot self-read their own context* — that matches the canon.) Small-pane/rewind-render → `session/base-skills/otmux-pane-sizing.md` (zoom target pane before any `/rewind` or `/context`).
+
 ## Core Rules (from boot file + session experience)
 
 ### 1. SM unblocks POs and agent-trainer ONLY
