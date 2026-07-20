@@ -8,7 +8,7 @@
 ### SPRINT 31 SERVER MANAGER — current state (git+served derived 2026-07-20)
 - **R31.2 owner-gate**: built by-construction (ServerManagerGuard.assertOwner 8bb1842f) — foundation, gated. ★ DESIGN EVOLVED: ws gate = **sm_session COOKIE** (not the ?ticket=; architect clarified e82bc87e9).
 - **R31.1 profile feature-grants section**: built (RbProfileView.renderFeatureGrants b4f03947).
-- **R31.3 otmux tree**: built rb-trace-tree renderer + otmux icons (c83d72579 v0.7.91). ★ OPEN BUG (itemView-TREE): v0.7.91 still renders the OLD bespoke tree, NOT rb-trace-tree — skill-expert diagnosing, screenshot-gate. (I over-claimed live off commit — WRONG; verify SERVED.)
+- **R31.3 otmux tree**: built rb-trace-tree renderer + otmux icons (c83d72579 v0.7.91). ★ OPEN BUG (itemView-TREE): served renders the OLD bespoke tree, NOT rb-trace-tree. ★ RE-ASSIGNED per Tron: ARCHITECT diagnoses → EXPERT fixes → TESTER catches (I'd wrongly had skill-expert on it = role misuse, corrected). [[feature-bugs-architect-expert-tester]]
 - **R31.4 terminal**: step-4 built node-pty **FULL-INTERACTIVE** (6934ad441 v0.7.92, Impl PtyBridge.attachPane 394eac63 under Method 6fc43b8e; architect static backstop PASS 7ca620670, full-RW grouped, INV-G3 intact). ★ OPEN RISK: node-pty ABI — built on node16, server runs node22 → architect must REBUILD+VERIFY at restart (may crash otherwise). Needs functional + Tron-device gate.
 - ★★★ B4 SUPERSEDED: my read-only-default/Take-Control/ticket decision was DROPPED (req 13ba45ec0). R31.4 is now **full-interactive + sm_session cookie-gate** (Tron's original "interactive" vision + simpler gate). Do NOT re-impose read-only.
 - Pin: current=T31.4, last=T30.53(done), next=T31.3.
