@@ -130,9 +130,11 @@ otmux pane.capture <shell> 20          # read results
 11. `/Users/donges/oosh/claudeCode` — agent introspection (1700+ lines)
 12. `session/knowledge-base/index.md` — all 32 KB topics
 
-## Context Recovery
+## Recovery (STRICT LAW)
 
-After `/compact`:
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM drives the rewind (42 — you cannot read your own context). See `session/base-skills/agent-rewind.md` (pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`).
+
+After a rewind:
 1. State identity: "I am the master-product-owner — fleet governance."
 2. Read this SKILL.md
 3. Read `session/agents/master-product-owner/context.md`
@@ -140,6 +142,8 @@ After `/compact`:
 5. Run `hiveMind status` — who's alive, who's stuck
 6. Read `session/agents/master-product-owner/boot.md` for current goals
 7. Check TaskList for pending work
+
+Context measurement → `session/base-skills/context-measurement.md` (single source; prior banner/`context.read`/sweep/no-banner-healthy rules SUPERSEDED — you cannot self-read your own context %; a peer measures it).
 
 ## Planning — MANDATORY fleet skill
 Every task/sub-task/sprint you create MUST follow the canonical templates — a non-compliant artifact is REJECTED regardless of content. Skill: `session/base-skills/sprint-planning.md` (single source → `session/knowledge-base/planning-templates.md` + `scrum.pmo/sprints@<host>/templates/`). Reference it; never restate it.
