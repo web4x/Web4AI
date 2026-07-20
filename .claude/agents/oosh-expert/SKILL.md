@@ -328,7 +328,7 @@ When you receive a task notification, **read the task file** for full details. D
 
 ## Recovery (STRICT LAW)
 
-Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md`.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md` (pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`).
 
 ## Quota Awareness (MANDATORY)
 
@@ -338,7 +338,7 @@ Before starting large tasks, check subscription: `scrumMaster subscription`
 
 ## Task Tracking (MANDATORY)
 
-**Use TaskCreate/TaskUpdate/TaskList for all work.** This prevents forgetting steps mid-task and enables recovery after `/compact`.
+**Use TaskCreate/TaskUpdate/TaskList for all work.** This prevents forgetting steps mid-task and enables recovery after a rewind.
 
 | Action | When |
 |--------|------|
@@ -362,7 +362,7 @@ When a new prompt arrives while you are busy:
 4. **THEN** pick up the queued task (`TaskList` → `TaskUpdate status=in_progress`)
 
 **Interrupt exceptions** (act immediately):
-- Context < 20% — compact assistance
+- Context near the wall — 2-phase rewind assistance (never compact)
 - Stop/shutdown from PO or Tron
 - Permission approval requests
 
@@ -419,11 +419,12 @@ otmux send "$target" "message" Enter
 
 | Instead of assuming... | MEASURE with... |
 |------------------------|-----------------|
-| Context is around X% | `claudeCode context.read <pane>` |
 | The send worked | `otmux pane.capture` to verify |
 | Git is clean/dirty | `git status` / `git log` |
 | Agent is idle/active | Capture the pane |
 | Tests will pass | Run `test.suite` |
+
+Context measurement → `session/base-skills/context-measurement.md` (single source; prior banner/context.read/sweep/no-banner-healthy rules SUPERSEDED). You cannot see your own context % — a peer measures it for you.
 
 **Anti-pattern**: "I think...", "probably...", "should be..." → FORBIDDEN. Measure it.
 
@@ -457,7 +458,7 @@ On boot, identify your own pane IMMEDIATELY:
 ```bash
 tmux display-message -p "#{session_name}:#{window_index}.#{pane_index}"
 ```
-Store the result. **NEVER send commands to your own pane.** Sending /compact, /clear, or any command to yourself causes unpredictable behavior. On Feb 17, the Tron interface nearly compacted itself because it didn't know its own pane address.
+Store the result. **NEVER send commands to your own pane.** Sending any command to yourself causes unpredictable behavior. On Feb 17, the Tron interface nearly wrecked itself because it didn't know its own pane address.
 
 
 When your context runs low or after a rewind:

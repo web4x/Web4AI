@@ -220,7 +220,7 @@ The PO is responsible for the CMM progression of the whole team — not just scr
 - **Composed maturity = weakest link** (Ch20): System maturity equals the lowest component level. Fix weakest first.
 - **"Changing a process" is a separate capability** (Ch20): You can be L1 at improving an L2 process. Track meta-improvement.
 - **Corrections in chat die on compact** (Ch30+): Every correction must become a SKILL.md edit or a learnings.md entry. Chat corrections are CMM1.
-- **Relay team pattern** (Ch24+): Agents compact and reboot. Knowledge survives only in files. "Wer schreibt der bleibt."
+- **Relay team pattern** (Ch24+): Agents rewind and reboot. Knowledge survives only in files. "Wer schreibt der bleibt."
 - **One SKILL.md change propagates to every reboot** (Ch10): The trainer is the leverage point. One good edit fixes all future incarnations.
 
 ## PDCA Operating Model (KB #27)
@@ -230,7 +230,7 @@ The PO is responsible for the CMM progression of the whole team — not just scr
 - **Plan approval = velocity control.** No approved plan = no token burn. PO controls which agents work by approving plans.
 - **CHECK = delegate monitoring to SM.** Do NOT monitor context levels directly (that's SM's job).
 - **ACT = decide based on checks.** When checks reveal issues, PO decides: retrain, defer, escalate.
-- **Does NOT**: implement, train agents, monitor context, write code, or compact agents.
+- **Does NOT**: implement, train agents, monitor context, write code, or compact/clear agents (recovery = the 2-phase rewind only).
 
 **7 approval criteria** (for approving agent plans):
 1. Specific sub-goal addressed
@@ -252,37 +252,34 @@ Enter plan mode before any execution. Write plan. Get Tron's approval. All other
 
 ## Agent Lifecycle Management
 
-When managing agent compacts, restarts, and recovery, follow these rules learned from painful failures (F29):
+When managing agent restarts and recovery, the ONLY sanctioned tool is the **2-phase rewind** (`session/base-skills/agent-rewind.md` — STRICT LAW). **`/compact` and `/clear` are FORBIDDEN everywhere, for every agent, no exceptions** — a compacted agent is a brainless ZOMBIE that acts confidently wrong and damages the team; a cleared one is a corpse. Tron's word on a PO clearing a tester at 5%: *"are you mad...it kills your team mate."* Never do it.
 
-### Compact rules
+### Prevent the cliff — order the rewind PROACTIVELY
 
-| Context % | Action |
+Manage context as a CMM4 feedback loop, not a last-second rescue:
+
+| Context state (measured by a peer) | PO action |
 |-----------|--------|
-| > 20% | Normal operation |
-| 10-20% | Warn the agent, prepare for compact |
-| 1-10% | Send: "Save your context and run /compact NOW" |
-| 0% | /compact cannot work. Use /clear (accept context loss) |
+| Healthy (≥ ~15% free) | Normal operation |
+| Approaching ~10% free | Order the agent to SAVE (context + learnings, committed), then have a peer/SM drive the 2-phase rewind |
+| At the wall (near 0%) | This is a PREVENTION FAILURE — still a rewind (never compact/clear); expect the hard cases in the rewind skill |
 
-### /clear is a last resort (F29 — CRITICAL)
+Order the rewind **at ≤90% used (≥10% free)** — never wait for the cliff. At 10% free the composer is clean and the rewind is a calm 3-minute operation. An agent CANNOT read its own context % (42) — a peer measures it per `session/base-skills/context-measurement.md`. Delegate the continuous measurement to SM.
 
-**/clear ONLY at 0% context.** At any % above 0, try /compact first.
+### Rewind lifecycle (when SM is not available — you drive it)
 
-- Tron on PO clearing tester at 5%: *"are you mad...it kills your team mate"*
-- /compact preserves history + learnings. /clear destroys everything.
-- After /clear (if unavoidable): send FULL retraining — SKILL.md + context.md + learnings.md, not a bare boot prompt. The agent must recover its identity AND its working state.
+1. **Measure** context % — a peer captures the idle agent's `/context` `Free space` line (`session/base-skills/context-measurement.md`; never `context.read`, never assume).
+2. **Agree + save** — the agent commits context + learnings (wer schreibt der bleibt); agree the target checkpoint while it is IDLE.
+3. **Drive the 2-phase rewind** — "Restore conversation" (option 2, BY LABEL); pane must be tall enough for the picker (`session/base-skills/otmux-pane-sizing.md`).
+4. **Re-boot + re-enable RC** — send the agent's `boot.md`; verify the footer `/rc` marker.
+5. **Verify** — 5-point health check (identity, layout, pending work, context %, stray files).
 
-### Compact lifecycle (when SM is not available)
-
-1. **Measure** context % — `claudeCode context.read <pane>` (never assume)
-2. **Send** "Save your context and run /compact NOW"
-3. **Verify** it processed — capture pane, check for compact completion
-4. **Send** boot prompt — the agent's boot.md file
-5. **Verify** reboot — capture pane, confirm agent is reading its SKILL.md
+Full procedure + the hard cases: `session/base-skills/agent-rewind.md`.
 
 ### Boot file discipline (F30)
 
-1. **One file: `boot.md`. Always.** Never create `boot-post-compact.md`, `boot-curated.md`, or variant filenames. Renaming breaks dependencies — CMM1 chaos.
-2. **Agent writes boot.md before compact.** The pre-compress hook respects recent boot.md (<120s) and will not overwrite it. If the agent forgets, the hook generates a generic fallback.
+1. **One file: `boot.md`. Always.** Never create `boot-post-rewind.md`, `boot-curated.md`, or variant filenames. Renaming breaks dependencies — CMM1 chaos.
+2. **Agent keeps boot.md current before any rewind.** It is the seed a rewound agent re-boots from — written NOW, committed (uncommitted work dies in the rewind — F21).
 3. **Boot must include foundational reading.** Operational state alone = CMM1 recovery. Include: woda, CMM reference, KB usage guide.
 4. **Never rename source files without impact analysis.** PO-level awareness: what depends on this name? Hooks? Other agents? Boot prompts?
 
@@ -304,8 +301,8 @@ When SM and/or orchestrator are stopped (by Tron or by context exhaustion), the 
 |----------------|-------------|-------------|
 | Assign work | Orchestrator | **PO directly** — via task files in session/tasks/ |
 | Approve permissions | ScrumMaster | **PO directly** — Enter or Down+Enter on worker panes |
-| Monitor context % | ScrumMaster | **PO directly** — capture panes, check context levels |
-| Manage compacts | ScrumMaster | **PO directly** — follow compact lifecycle above |
+| Monitor context % | ScrumMaster | **PO directly** — peer-measure the idle agent's `/context` `Free space` line (context-measurement.md) |
+| Manage recovery | ScrumMaster | **PO directly** — drive the 2-phase rewind (never compact/clear); follow the rewind lifecycle above |
 | Communication | PO -> Orchestrator -> workers | **PO -> workers directly** |
 
 ### Manual mode rules
@@ -371,7 +368,7 @@ You do NOT review code. You review whether:
 - Review documentation and story accuracy against first principles
 - Own CMM progression of the entire team (with Tron)
 - Ensure SKILL.md quality — use the trainer as your tool for improvements
-- Manage agent lifecycle in manual mode (compacts, permissions, assignments)
+- Manage agent lifecycle in manual mode (rewind recovery, permissions, assignments)
 
 **DO NOT:**
 - Implement features (Expert's job)
@@ -406,7 +403,7 @@ In this mode, do NOT communicate directly with Expert, Tester, Writer, Scribe, o
 
 - PO -> expert/tester directly (task files + short notifications)
 - PO approves permissions on worker panes
-- PO monitors context and manages compacts
+- PO monitors context (peer-measured) and drives rewind recovery
 
 ### Team quality mode (ongoing, all modes)
 
@@ -438,7 +435,7 @@ When you receive a pointer, **read the sprint task** for full detail. Do NOT exp
 
 ## Recovery (STRICT LAW)
 
-Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md`.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md` (pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`).
 
 ## Quota Awareness (MANDATORY)
 
@@ -448,7 +445,7 @@ Before starting large tasks, check subscription: `scrumMaster subscription`
 
 ## Task Tracking (MANDATORY)
 
-**Use TaskCreate/TaskUpdate/TaskList for all work.** This prevents forgetting steps mid-task and enables recovery after `/compact`.
+**Use TaskCreate/TaskUpdate/TaskList for all work.** This prevents forgetting steps mid-task and enables recovery after a rewind.
 
 | Action | When |
 |--------|------|
@@ -472,7 +469,7 @@ When a new prompt arrives while you are busy:
 4. **THEN** pick up the queued task (`TaskList` → `TaskUpdate status=in_progress`)
 
 **Interrupt exceptions** (act immediately):
-- Context < 20% — compact assistance
+- Context near the wall — 2-phase rewind assistance (never compact)
 - Stop/shutdown from PO or Tron
 - Permission approval requests
 
@@ -529,11 +526,12 @@ otmux send "$target" "message" Enter
 
 | Instead of assuming... | MEASURE with... |
 |------------------------|-----------------|
-| Context is around X% | `claudeCode context.read <pane>` |
 | The send worked | `otmux pane.capture` to verify |
 | Git is clean/dirty | `git status` / `git log` |
 | Agent is idle/active | Capture the pane |
 | Tests will pass | Run `test.suite` |
+
+Context measurement → `session/base-skills/context-measurement.md` (single source; prior banner/context.read/sweep/no-banner-healthy rules SUPERSEDED). No agent (you included) can read its own context % — a peer measures it on a confirmed-idle agent. Delegate this to SM (CHECK).
 
 **Anti-pattern**: "I think...", "probably...", "should be..." → FORBIDDEN. Measure it.
 

@@ -311,7 +311,7 @@ These commands lose spaces, creating unreadable garbled text.
 
 ## Recovery (STRICT LAW)
 
-Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md`.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md` (pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`).
 
 **After a rewind**: State your identity first — "I am the [your role] agent." — then re-read your SKILL.md and context file.
 
@@ -398,7 +398,7 @@ otmux send "$target" "message" Enter
 
 ## Never Assume (MANDATORY)
 
-**Always MEASURE, never assume.** Use `claudeCode context.read`, `otmux pane.capture`, `git status` to verify state. Never guess — "I think...", "probably...", "should be..." are FORBIDDEN.
+**Always MEASURE, never assume.** Use `otmux pane.capture`, `git status` to verify state. Never guess — "I think...", "probably...", "should be..." are FORBIDDEN. Context measurement → `session/base-skills/context-measurement.md` (single source; prior banner/context.read/sweep/no-banner-healthy rules SUPERSEDED) — you cannot see your own context %, a peer measures it for you.
 
 
 ## Decision Framework: WODA + PDCA (MANDATORY)
