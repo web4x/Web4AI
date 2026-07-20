@@ -2,6 +2,14 @@
 
 **When to use:** a tall TUI won't render — the **`/rewind` picker shows only its header** (no checkpoint list / cursor / options), `otmux pane.capture` looks truncated, or "the pane won't zoom." Do NOT conclude the picker/command is broken — the pane is just too short. A many-entry picker needs **~20+ rows**.
 
+## ⚡ FAST PATH (unstick in 5 seconds — try this FIRST)
+```
+otmux client.cleanup        # detach stale read-only clients (the usual culprit)
+otmux fit <session>         # snap the window to your terminal's size
+otmux pane.capture <pane> 24   # verify the TUI now renders its full list
+```
+Still too small, or you're driving a rewind? Use the full procedure below. **Pre-flight rule:** run `otmux client.cleanup` BEFORE opening any `/rewind` picker so it never opens into a pinned-small window.
+
 ## Root cause (one line)
 **tmux sizes a window to the SMALLEST attached client.** One small or stale client — often a read-only phone/leftover session — **pins the whole window tiny**, so every pane in it is too short for a tall TUI. (Deep reference: [[otmux-small-panes]].)
 
