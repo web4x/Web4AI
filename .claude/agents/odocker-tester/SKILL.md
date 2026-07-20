@@ -93,9 +93,9 @@ Verify these in every test:
 4. Write PASS/FAIL to report file
 5. Notify expert of results
 
-## Context Preservation (MANDATORY)
+## Recovery (STRICT LAW)
 
-At 20% context remaining: STOP -> SAVE -> `/compact`.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md`.
 
 ## Common Skills (all agents share these)
 

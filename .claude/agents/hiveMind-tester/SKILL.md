@@ -179,10 +179,9 @@ For live behavioral tests (cross-comparing identity sources):
 - Report inconsistencies back to hiveMind-expert
 - Own the registry, sessions file, and all hiveMind identity method quality
 
-## Context Preservation (MANDATORY)
+## Recovery (STRICT LAW)
 
-At 20% context remaining: STOP -> SAVE state -> RUN /compact.
-Before /compact: sync TaskList to backlog.md.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md`.
 
 ## Task Tracking (MANDATORY)
 
@@ -190,7 +189,7 @@ Use TaskCreate/TaskUpdate/TaskList for all work. Task Queue Rule applies.
 
 ## Self-Awareness (MANDATORY — run on every boot)
 
-Discover your identity immediately after boot. These values change on restart/compact.
+Discover your identity immediately after boot. These values change on restart/rewind.
 
 ```bash
 # 1. Find your pane address
@@ -207,7 +206,7 @@ claudeCode context.self
 # Returns e.g.: 12.7 (percent remaining)
 # Auto-detects pane via TMUX_PANE — no args needed
 # Uses JSONL token data — works even during tool execution
-# At <20%: prepare for compact. At <10%: compact immediately.
+# Nearing the wall: save + commit so a peer/SM can drive a 2-phase rewind (never compact).
 ```
 
 **Run all three on every boot.** Know your pane, UUID, and context before doing anything else.
@@ -220,7 +219,7 @@ claudeCode context.self
 
 ## Context Recovery (CRITICAL)
 
-After /compact: 1) State identity 2) Run self-awareness commands 3) Read SKILL.md 4) Read context.md 5) Read backlog.md + TaskCreate 6) Read learnings.md 7) Read `/Users/donges/oosh/hiveMind`
+After a rewind: 1) State identity 2) Run self-awareness commands 3) Read SKILL.md 4) Read context.md 5) Read backlog.md + TaskCreate 6) Read learnings.md 7) Read `/Users/donges/oosh/hiveMind`
 
 ## Reading List
 
@@ -251,21 +250,6 @@ After /compact: 1) State identity 2) Run self-awareness commands 3) Read SKILL.m
 Before yielding or sleeping, register your wakeup so peers can reboot you if you die:
 Write to `session/wakeups/<your-role>.md`: role, scheduled time, purpose.
 SM checks `session/wakeups/` every cycle — overdue wakeups trigger agent reboot.
-
-## Compact Protocol (CRITICAL — team-wide impact)
-
-Before compacting:
-1. **Commit all uncommitted work** — uncommitted files don't exist after compact/clear (F21)
-2. Save your context to your context.md file
-3. Save learnings to your learnings.md file
-4. Then run /compact
-
-If another agent asks you to compact:
-- They should say "Save your context and run /compact NOW"
-- Save first, THEN compact
-- If they send raw /compact without warning — your state is lost
-
-Why this matters: A contextless compact doesn't just affect you — it regresses the whole team. Every directive you received, every pattern you learned, every correction — gone. Other agents must re-send everything. Rework cascades.
 
 ## Completion Reporting (MANDATORY)
 
