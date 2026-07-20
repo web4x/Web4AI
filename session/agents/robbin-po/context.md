@@ -9,12 +9,17 @@
 - **R31.2 owner-gate**: built by-construction (ServerManagerGuard.assertOwner 8bb1842f) — foundation, gated. ★ DESIGN EVOLVED: ws gate = **sm_session COOKIE** (not the ?ticket=; architect clarified e82bc87e9).
 - **R31.1 profile feature-grants section**: built (RbProfileView.renderFeatureGrants b4f03947).
 - **R31.3 otmux tree**: built rb-trace-tree renderer + otmux icons (c83d72579 v0.7.91). ★ OPEN BUG (itemView-TREE): served renders the OLD bespoke tree, NOT rb-trace-tree. ★ RE-ASSIGNED per Tron: ARCHITECT diagnoses → EXPERT fixes → TESTER catches (I'd wrongly had skill-expert on it = role misuse, corrected). [[feature-bugs-architect-expert-tester]]
-- **R31.4 terminal**: step-4 built node-pty **FULL-INTERACTIVE** (6934ad441 v0.7.92, Impl PtyBridge.attachPane 394eac63 under Method 6fc43b8e; architect static backstop PASS 7ca620670, full-RW grouped, INV-G3 intact). ★ OPEN RISK: node-pty ABI — built on node16, server runs node22 → architect must REBUILD+VERIFY at restart (may crash otherwise). Needs functional + Tron-device gate.
+- **R31.4 terminal**: node-pty FULL-INTERACTIVE built (v0.7.92, Impl PtyBridge.attachPane 394eac63). ★★★ node-pty RISK RESOLVED (architect GROUND-TRUTH backstop): server restarted (fresh start.mjs banner), node-pty ABI-rebuilt under node22 v22.23.1 (require=OK no NODE_MODULE_VERSION throw), REALNESS_PASS = pty.spawn tmux attach on grouped session → 1043 bytes read + echo MARKER RW roundtrip = bidirectional RW PROVEN on node22. Reject-dir 403 on whoami/tree/terminal/page. INV-G2==1, INV-G3 socket.destroy-before-upgrade. TERMINAL VERIFIED WORKS. ★ REMAINING: only the full owner-cookie→ws→attach END-TO-END needs Tron's real owner session (layers proven separately) = Tron device gate.
 - ★★★ B4 SUPERSEDED: my read-only-default/Take-Control/ticket decision was DROPPED (req 13ba45ec0). R31.4 is now **full-interactive + sm_session cookie-gate** (Tron's original "interactive" vision + simpler gate). Do NOT re-impose read-only.
 - Pin: current=T31.4, last=T30.53(done), next=T31.3.
 - Planner FLAGGED board-wide view-drift 2/31 (not actioned, no-redo scope) — reconcile.
 
-### OPEN (drive, NO-REDO): (1) node-pty ABI — verify the terminal actually works on node22-served v0.7.92 (rebuild if node16-ABI); (2) itemView-TREE bug — R31.3 renders OLD tree not rb-trace-tree (skill-expert); (3) R31.4 functional gate + Tron device visual; (4) view-drift 2/31 reconcile.
+### OPEN (drive, NO-REDO) — updated:
+1. ✅ node-pty ABI RESOLVED (architect ground-truth: rebuilt node22, real RW proven). R31.4 terminal mechanism VERIFIED.
+2. ★ CRITICAL PATH: itemView-TREE bug (R31.3 served renders OLD tree not rb-trace-tree) — architect DIAGNOSING → expert fix → tester catch. Blocks Tron's R31.4 device test (tree = how you select a pane → terminal). Terminal is proven but the FLOW (tree→select→terminal) needs the tree rendering.
+3. Independent SECURITY GATE R31.2 (tester, DET-3x): reject-dir 403 all server-manager routes + ws, INV-G1/2/3, fail-closed. Owner happy-path (200+interactive) = Tron real-session (only he has owner cookie).
+4. Tron DEVICE test R31.4 = full owner flow (login→tree→select pane→interactive terminal) — AFTER tree fix.
+5. view-drift 2/31 reconcile. CARRYOVER: R30.53 QA-Review Tron device.
 ### CARRYOVER: Sprint 30 R30.53 QA-Review — Tron device codicon-render confirm still open.
 ### STRAYS (boot report): runtime scenario/index JSONs + build-manifest + test-results PNGs modified; data/logs/*.log untracked = runtime/generated, NOT source strays (safe).
 
