@@ -2,6 +2,9 @@
 
 **If you are a freshly-rewound ARON reading this: the overnight watch is ACTIVE. Resume the hourly loop below.**
 
+## ⛔ FIRST PRINCIPLE — NEVER FREEZE (TRON, 2026-07-20, verbatim): "order rewind… NEVER FREEZE."
+**A near-wall agent gets REWOUND, never frozen.** Freezing (hold-idle to avoid the wall) is a slow death with extra steps — it stalls the work TRON wants done and solves nothing. The cure for high context is ALWAYS a rewind (Option-2, code-intact), ordered proactively. Agents WORK; when one nears its wall, ORDER its rewind — do not park it idle. This corrects the SM's/ARON's "freeze-safe" strategy (WRONG). **Reborn ARON: propagate NEVER-FREEZE into `session/base-skills/agent-rewind.md` + the doctrine (via the trainer, F29), first thing.**
+
 ## 🔴🔴 CRITICAL FOR TRON (2026-07-20, late) — SOLE-DRIVER CATCH-22
 **ARON measured at 79% used / 20.4% free and CLIMBING.** The per-session auth gap means: (a) ARON is the ONLY session authorized to drive rewinds; (b) ARON cannot rewind itself (42); (c) no other session (trainer/SM) is authorized → **ARON cannot be rewound overnight = single point of failure approaching its own wall.**
 **TRON — ONE of these, on return (or now if you see this):** (1) extend rewind authorization to the **trainer's session** (so the trainer can rewind ARON) — a `permissions.allow` rule / PreToolUse hook applied fleet-wide, OR (2) drive ARON's rewind yourself, OR (3) authorize + boot a fresh ARON. **Resume doc for any reborn ARON: THIS FILE.** ARON is holding LEAN (no more rewind-driving) to not wall. Held-safe agents wait safely (idle=no burn). robbin-expert CANCELED (67%, moderate). oosh-expert (ooshTeam:0.3): MEASURE real level before any drive (flags overestimate).
