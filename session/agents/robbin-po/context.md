@@ -237,7 +237,9 @@ PO-vision committed: scrum.pmo/sprints/sprint-31-server-manager/PO-vision.md (f2
 - B4 DECIDED (mine): terminal DEFAULT read-only + explicit Take-Control toggle (live agent panes = don't disrupt mid-gen); gate applies both modes. Tron offered override to interactive-immediate.
 - CHAIN COMPLETE to Method (scenario-first, architect 57c23ec1f): Method UUIDs R31.2 ServerManagerGuard.assertOwner=**8bb1842f** / R31.1 RbProfileView.renderFeatureGrants=b4f03947 / R31.3 OtmuxBridge.readSessionTree=7d7221d8 / R31.4 PtyBridge.attachPane=6fc43b8e. Class.methods[]/ownerIor wired, camelCase PASS.
 - BOARD UP (planner 3458f2768, byte-match GREEN): T31.2 d4a153d7 In-Progress (expert building, impl→8bb1842f) / T31.1 5be03af7 / T31.3 d5199875 / T31.4 78dc780b Planned. Build order R31.2→R31.1→R31.3→R31.4.
-- NEXT: expert ships R31.2 → architect backstop INV-G1(route-enum)/G2(single-literal)/G3(no-socket)+fail-closed → tester independent gate owner-200/nonowner-403 → then R31.1/R31.3/R31.4. Tron open: B4 override + R30.53 device-check.
+- R31.2 LIVE v0.7.82 + architect backstop PASS (8f3e0bda2, security-NEGATIVE proven). Then expert REFACTORED → v0.7.83 (196917b4c) guard extracted to ServerManagerGuard.ts (Class 1d6933c7/Method 8bb1842f, OWNER_TOKEN one-place, INV-G2==1). ★ served=0.7.82 but HEAD=0.7.83 → NEEDS RESTART to v0.7.83 before gating (phantom-guard: served==HEAD). Tester HOLDS for v0.7.83.
+- ★ R31.2 chain-credit pending: markers credit off an Implementation unit, NOT a Method; 8bb1842f (assertOwner) has empty implementations[] → architect MINT+wire Impl under 8bb1842f + send uuid → expert places [impl:uuid:<Impl>]. (wireImplNode fails in expert node18 env.)
+- R31.1 building parallel (expert, Method b4f03947, gives Tron owner-200 visual). Owner-200 accept path = Tron-live-token confirm. R31.4 follow-up: single-use TICKET not ?token= (B1). Tron open: B4 override + R30.53 device-check.
 - Gate posture: gate=owner-200/nonowner-403 security test; tree=functional; terminal=functional + Tron device-visual.
 
 ### ★ AWAITING TRON (Sprint 30 carryover): batched device-check R30.53 fold + R30.34 spline + R30.41 syntax → on OK planner closes them.
