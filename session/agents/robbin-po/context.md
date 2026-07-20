@@ -1,3 +1,25 @@
+# robbin-po Context — save #49 (2026-07-20 REWIND-BOOT re-orientation; DISK-WINS over this + #52-delta)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #49 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
+**★ robbin-po robbinTeam2:0.0 (pane %5) WODA.prod. Prod v0.7.92 SERVED-verified (curl /api/config). Repo=/var/dev/Workspaces/web4x/Web4RawBin. SPRINT 31 = Server Manager. SM=ooshTeam:0.1, trainer=baseTeam:0.0.**
+
+### ★ REWIND-BOOT: rewound off 81% ~3h. My latest pre-rewind anchor = #48.6 (git 0a7720c9). Re-derived from git/disk. [[ghost-context-after-deep-rewind]]
+
+### SPRINT 31 SERVER MANAGER — current state (git+served derived 2026-07-20)
+- **R31.2 owner-gate**: built by-construction (ServerManagerGuard.assertOwner 8bb1842f) — foundation, gated. ★ DESIGN EVOLVED: ws gate = **sm_session COOKIE** (not the ?ticket=; architect clarified e82bc87e9).
+- **R31.1 profile feature-grants section**: built (RbProfileView.renderFeatureGrants b4f03947).
+- **R31.3 otmux tree**: built rb-trace-tree renderer + otmux icons (c83d72579 v0.7.91). ★ OPEN BUG (itemView-TREE): v0.7.91 still renders the OLD bespoke tree, NOT rb-trace-tree — skill-expert diagnosing, screenshot-gate. (I over-claimed live off commit — WRONG; verify SERVED.)
+- **R31.4 terminal**: step-4 built node-pty **FULL-INTERACTIVE** (6934ad441 v0.7.92, Impl PtyBridge.attachPane 394eac63 under Method 6fc43b8e; architect static backstop PASS 7ca620670, full-RW grouped, INV-G3 intact). ★ OPEN RISK: node-pty ABI — built on node16, server runs node22 → architect must REBUILD+VERIFY at restart (may crash otherwise). Needs functional + Tron-device gate.
+- ★★★ B4 SUPERSEDED: my read-only-default/Take-Control/ticket decision was DROPPED (req 13ba45ec0). R31.4 is now **full-interactive + sm_session cookie-gate** (Tron's original "interactive" vision + simpler gate). Do NOT re-impose read-only.
+- Pin: current=T31.4, last=T30.53(done), next=T31.3.
+- Planner FLAGGED board-wide view-drift 2/31 (not actioned, no-redo scope) — reconcile.
+
+### OPEN (drive, NO-REDO): (1) node-pty ABI — verify the terminal actually works on node22-served v0.7.92 (rebuild if node16-ABI); (2) itemView-TREE bug — R31.3 renders OLD tree not rb-trace-tree (skill-expert); (3) R31.4 functional gate + Tron device visual; (4) view-drift 2/31 reconcile.
+### CARRYOVER: Sprint 30 R30.53 QA-Review — Tron device codicon-render confirm still open.
+### STRAYS (boot report): runtime scenario/index JSONs + build-manifest + test-results PNGs modified; data/logs/*.log untracked = runtime/generated, NOT source strays (safe).
+
+---
+
 # robbin-po Context — save #52-delta (2026-07-19 POST-BOOT from #51, Option-2 refresh @clean boundary)
 
 ## ★★★★★ #52 DELTA — READ FIRST (DISK-WINS; supersedes #51's "R30.51 gated GREEN") ★★★★★
@@ -223,6 +245,34 @@ Everything Tron drove: reject-boxes → both-versions center (dark=old/highlight
 
 ---
 
+# robbin-po Context — save #48 HANDOFF (2026-07-20, pre-R31.4 checkpoint; v0.7.88 LIVE)
+
+## ★★★★★★★★★★★★★★★★★ FRESH-PO HANDOFF (save #48 — READ FIRST) ★★★★★★★★★★★★★★★★★
+
+### ⚡ LATEST (v0.7.92, read before the older #48 block):
+- **R31.4 TERMINAL (step-4) BUILT** (expert 6934ad441, v0.7.92) — full-interactive node-pty+xterm.js, cookie-gated. ★★★ CRITICAL node-pty ABI: built under node16 but server self-heals to node22 → NODE_MODULE_VERSION throw risk; architect restarting MUST rebuild node-pty under the server's node + verify it loads. Impl 394eac63 marker placed. Awaiting restart+backstop → then Tron device test.
+- **★ itemView-TREE BUG (open):** v0.7.91 STILL renders the OLD bespoke inline-JS tree, NOT the rb-trace-tree itemView (Tron screenshot). skill-expert(0.2) diagnosing (page route not serving the bundle? restart? JS err) + MUST screenshot-verify before claiming. ★ I OVER-CLAIMED 'tree live+clickable' off the commit msg — DON'T; gate the itemView by SCREENSHOT [[gate-the-ac-surface]].
+- **R31.4 chain complete-to-Impl** (req 13ba45ec0 regen'd stale requirements.md to full-interactive ACs): UC fa1845d3→Class PtyBridge 59648f26→Method attachPane 6fc43b8e→Impl 394eac63. Test pending terminal+gate. ?token= removed. Steps 1/2/3/5 committed; step-4 built pending restart.
+- **Rewinds progressing** (conversation-only): expert✓ req✓ fresh; planner/architect/skill/me pending. SM covering.
+- **PO REWIND:** I'm ~76-80% (near-wall, autocompact OFF) — SM queuing my Option-2 at next idle; this anchor = clean handoff.
+
+
+**Prod v0.7.88 LIVE (served==HEAD) · Repo=/var/dev/Workspaces/web4x/Web4RawBin · SPRINT 31 Server Manager. Team robbinTeam2 0.0-0.6, SM=ooshTeam:0.1. BOOT: measure disk (git log, /api/config version, ls sprint-31) — DISK WINS over this thread [[ghost-context-after-deep-rewind]].**
+
+### WHERE SPRINT 31 STANDS (v0.7.88)
+- **R31.2 owner-gate** ✅ GREEN DET-3x (reject-dir, depth-tested leaked-literal-no-session→403), INV-G1 by-construction (folded ONE choke server.ts:903), Test 87b040ee→335dbf3d. Chain complete.
+- **R31.3 otmux tree + /server-manager page** ✅ architect PASS (tree parse-match, page 403 never-shell), + Back-to-Profile link, Impl 5c1701bc, marker 9467b1c6. Owner-view=Tron-facing.
+- **R31.1 profile feature-grants** — owner-accept FIXED v0.7.88 (RACE: whoami pre-ws-IDENTIFY→403; MOCK hid it [[gate-the-ac-surface]]). Fix: serverManager=isOwner(token) flag in PROFILE ws msg (server.ts:2613), entry IFF flag (:880), whoami DROPPED, INV-G2==1. Architect PASS. Impl f345b8ed. + iPhone safe-area headroom (Back-to-Lobby clock overlap).
+- **R31 owner-ACCEPT recurred on the TREE** (Tron: /server-manager 'Failed to load tree: HTTP 403'). Root: standalone /server-manager page has NO live ws (nav from /profile closed it → token dropped from tokenToClient) → tree fetch's x-player-token not live → 403. **FIX v0.7.89 (expert 12d4a1a0c, B1 cookie — APPROVED, RESTART PENDING):** owner-gated POST /api/server-manager/session mints httpOnly+Secure+SameSite=Strict sm_session (30min, RANDOM id, INV-G2==1) after live-owner proof; resolveOwner ALSO accepts cookie (stays ONE guard, no tokenToClient dep); /profile grant POSTs live token then navs NO ?token=; page+/tree+terminal-ws use cookie; ?token= REMOVED everywhere; non-owner 403 (INV-G3).
+- **NEXT (immediate, for fresh PO):** (1) architect RESTART remoteShells:0.2 → v0.7.89 + backstop (verify served==0.7.89==HEAD; real owner session → tree LOADS 200, was 403; non-owner 403). (2) Tron reloads /server-manager → tree populates. (3) SIGNAL tester (0.5) → run r311a (98b4afc52, REAL live owner session, covers BOTH profile-entry-appears + tree-loads-200 in ONE blip — ★ EVICTS Tron's session so run AFTER Tron confirms, coordinated). RED→GREEN → marker → req mints ACCEPT Test. (4) Then **R31.4 TERMINAL**: tree .pane nodes currently STATIC display → R31.4 makes them CLICKABLE selector → Open Terminal (fullscreen xterm.js ↔ ws ↔ node-pty grouped tmux attach), Method PtyBridge.attachPane 6fc43b8e, B4 read-only-default+Take-Control, cookie-auth on the ws (already built). Design=design-server-manager.md.
+- ★ TESTER SM HOLD: no R31.1 GREEN without the REAL-owner-session gate (owner-accept missed 3× — always gated reject-only). Verify the owner path against reality, not a mock.
+- ★★★ R31.4 RE-ARCHITECTURE (Tron 2026-07-20, tree renders GREAT on v0.7.89 = otmux-tree structure): (a) each PANE a SINGLE CLICKABLE item; (b) on select → open that pane's terminal FULLSCREEN (interactive ssh/terminal view); (c) ★ REUSE scenario-first units + the traceability **itemView tree** component — model Sessions + Terminals(panes) as SCENARIO UNITS (ior:class:Session / ior:class:Terminal) rendered by the SHARED itemView tree (same as traceability: clickable items + detail views for free), NOT a bespoke renderer. Architect DESIGN LANDED+committed (design-server-manager.md ## R31.4 RE-ARCHITECTURE): (1) REUSE rb-trace-tree (roots [{uuid,type,name,children[]}] → clickable rb-object-item, inline children, no trace-graph); (2) TYPED nodes (Tron refinement 2026-07-20): 3 itemView node types matching otmux hierarchy — **otmuxSession → otmuxWindow → otmuxPane** (was 2-type Session/Terminal; add the window level, otmux-prefixed). otmuxPane = the CLICKABLE leaf → openTerminal(paneId). TRANSIENT itemView-shaped units built on-the-fly from readSessionTree (NOT persisted — tmux volatile); persisted chain stays UC paneTerminal.attach→PtyBridge→attachPane 6fc43b8e→Impl→Test; (3) /server-manager = bundled esbuild page (not inline-JS); (4) itemView emits node-select, consumer branches Terminal→openTerminal(paneId) fullscreen / Session→expand (traceability consumer unchanged); (5) terminal = xterm.js + node-pty grouped attach, **FULL INTERACTIVE ssh session by default (Tron override 2026-07-20 — read-only-default was WRONG/my bad B4 call; REMOVE read-only-default + tmux -r + key-frame-drop + Take-Control toggle + CONTROL_TAKEN audit; it's an OWNER admin console = full read-write interactive)**, keep attach/detach audit, ws-auth via sm_session COOKIE; (6) finish ?token= removal. FRESH TEAM (post-rewind) mints transient units + builds; architect backstops + mints attachPane Impl. READY TO BUILD once rewinds unblock (Tron tall-pane /rewind fix).
+- SM HOLDS any R31.1 GREEN lacking the real-owner-session gate. All agents healthy (~58-71%), none ≥80.
+- ★ RELEASE TAGGING (Tron directive, DONE): 133 tags, v0.7.0-86 backfilled+pushed, practice=scrum.pmo/standards/release-tagging.md (tag-on-deploy: bump→commit→deploy→git tag -a→push, expert tags each release). v0.7.30 is a real skip.
+- ★ PHANTOM-GUARD: never gate served≠HEAD; server.ts changes need remoteShells:0.2 restart (architect owns); client auto-serves. ★ Sends land but VERIFY by capture. ★ Sprint 30 CLOSED (R30.53/34/41 Tron device-signed).
+
+---
+
 # robbin-po Context — save #47 (2026-07-20, SPRINT 31 START — Server Manager)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #47 — READ FIRST) ★★★★★★★★★★★★★★★★★
@@ -242,7 +292,17 @@ PO-vision committed: scrum.pmo/sprints/sprint-31-server-manager/PO-vision.md (f2
 - R31.1 building parallel (expert, Method b4f03947, gives Tron owner-200 visual). Owner-200 accept path = Tron-live-token confirm. R31.4 follow-up: single-use TICKET not ?token= (B1). Tron open: B4 override + R30.53 device-check.
 - Gate posture: gate=owner-200/nonowner-403 security test; tree=functional; terminal=functional + Tron device-visual.
 
-### ★ AWAITING TRON (Sprint 30 carryover): batched device-check R30.53 fold + R30.34 spline + R30.41 syntax → on OK planner closes them.
+### ★★★ R31.2+R31.1 SECURITY GATE GREEN DET-3x (tester a1b4da4c9, served==HEAD==v0.7.84, phantom-guard self-checked). INDEPENDENT (raw HTTP+ws+grep+browser). DEPTH: leaked owner-literal w/o live session → STILL 403 (constant≠access); every sub-route 403; ws socket-never-opens (INV-G3); OWNER_TOKEN==1 (INV-G2); fail-closed; R31.1 non-owner entry ABSENT even markup-forced. Owner-200 accept = Tron-facing. Chain: R31.2 marker 87b040ee→Impl 335dbf3d; R31.1 Impl=f345b8ed (architect). → req mints both Tests.
+### ★ R31.2+R31.1 CHAINS COMPLETE Req→UC→Class→Method→Impl (markers 335dbf3d/93ef2c895, f345b8ed/9b2952fd0; architect backstop PASS both). Restart DONE (measured served==HEAD==v0.7.84 + tester GREEN; expert's 'restart pending' was STALE). Page-route gate = R31.2 AC-page-route (req 7f09f2d5c, R31.2 now 6 ACs — page shell owner-gated server-side by SAME assertOwner; completes when R31.3 builds the page).
+### ★ NOW: R31.3 otmux-tree BUILD-GO released (foundation proven, tree-functional). R31.3 also gates the /server-manager PAGE route (R31.2 AC-page-route). req minting R31.2 Test (87b040ee/335dbf3d) + R31.1 Test (f345b8ed). Then R31.4 terminal.
+
+### ★★★ SPRINT 30 CLOSED (Tron device-signed-off GREEN, relayed via SM, rule#9 satisfied): R30.53 fold + R30.34 spline + R30.41 syntax → planner flipping T30.53/T30.34/T30.41 QA-Review→DONE. Sprint 30 complete. (Surfaced to Tron for correction if relay wrong.)
+### ★★★ R31.1 TRON BUG (placement): the feature-grants/Server Manager section landed in the profile EDITOR (ProfileEditor.ts) but must be in the profile VIEWER — the read-only 'My Profile' page Tron screenshoted (Name/Token/SecretCode/Devices/My Bug Reports), BOTTOM after My Bug Reports. Expert MOVING to viewer (same server-gate, location only). R31.1/T31.1 → REOPENED In-Progress (NOT done — wrong view). Lesson: 'bottom of profile' = the VIEWER users see, not the edit form.
+### ★ R31.2 Test COMPLETE (req c7d27a609, 87b040ee→335dbf3d). R31.1 Test NOT minted — req refused to mis-point gate-marker onto renderFeatures (measure-don't-invent); needs a tester RENDER gate (owner SEES entry in viewer + non-owner filter). Applies to the viewer post-fix.
+### ★★★ CRITICAL R31.1 NOT DONE — OWNER-ACCEPT BROKEN (Tron: 'no Server Manager entry anywhere', still missing v0.7.87). The v0.7.86 gate was GREEN but MOCKED whoami=200 (whoami-intercept) — the REAL owner-accept path (Tron's live session → whoami 200 → entry) was never tested + FAILS. Root hypothesis: /profile inline whoami fetch doesn't carry the viewer's owner credential → 403 → no entry; cleaner fix = server-side owner check emits entry directly (server already renders /profile for the owner session). → FIX v0.7.88 (expert diagnosing, architect backstop). Tester must re-gate accept path vs a SIMULATED LIVE OWNER SESSION (register 41ad88c4 in tokenToClient → real whoami 200 → entry), NOT a mock. LESSON: mocking the primary happy-path hides the bug there ([[gate-the-ac-surface]]).
+### ★ BUNDLED in v0.7.88: HEADROOM fix — /profile header 'Back to Lobby' overlapped by iPhone status-bar/clock (Tron screenshot) → safe-area-inset-top on shared header (covers Back-to-Lobby + Server Manager Back-to-Profile).
+### ★★★ R31.4 TERMINAL HELD until v0.7.88 owner-accept works + gates against REAL owner session. R31.2/R31.3 gated (reject-dir solid). Tags: 133 total, v0.7.x backfilled+pushed, practice doc'd (skill-expert). Release-tagging = tag-on-deploy going forward.
+### ★ MY CHECKPOINT: at the TRUE pre-R31.4 break (after v0.7.88 lands+gates), NOT before — critical bug first. po ~55% (autocompact OFF).
 
 ---
 
