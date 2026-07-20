@@ -2,6 +2,10 @@
 
 **If you are a freshly-rewound ARON reading this: the overnight watch is ACTIVE. Resume the hourly loop below.**
 
+## 🔴🔴 CRITICAL FOR TRON (2026-07-20, late) — SOLE-DRIVER CATCH-22
+**ARON measured at 79% used / 20.4% free and CLIMBING.** The per-session auth gap means: (a) ARON is the ONLY session authorized to drive rewinds; (b) ARON cannot rewind itself (42); (c) no other session (trainer/SM) is authorized → **ARON cannot be rewound overnight = single point of failure approaching its own wall.**
+**TRON — ONE of these, on return (or now if you see this):** (1) extend rewind authorization to the **trainer's session** (so the trainer can rewind ARON) — a `permissions.allow` rule / PreToolUse hook applied fleet-wide, OR (2) drive ARON's rewind yourself, OR (3) authorize + boot a fresh ARON. **Resume doc for any reborn ARON: THIS FILE.** ARON is holding LEAN (no more rewind-driving) to not wall. Held-safe agents wait safely (idle=no burn). robbin-expert CANCELED (67%, moderate). oosh-expert (ooshTeam:0.3): MEASURE real level before any drive (flags overestimate).
+
 ## ✅ STANDING AUTHORIZATION (TRON, 2026-07-20, verbatim): "all rewinds are authorized… none shall be defered."
 **Every rewind is TRON-authorized. DEFER NONE.** Drive any needed proactive/rescue rewind immediately (measure-first, idle-only, zoom-first, Option-2 by label, code-intact). This is TRON's direct word covering the harness authorization gate — the earlier "classifier blocks peer rewinds" risk is RESOLVED by this standing order.
 
