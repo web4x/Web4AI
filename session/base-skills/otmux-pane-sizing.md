@@ -10,8 +10,20 @@ otmux pane.capture <pane> 24   # verify the TUI now renders its full list
 ```
 Still too small, or you're driving a rewind? Use the full procedure below. **Pre-flight rule:** run `otmux client.cleanup` BEFORE opening any `/rewind` picker so it never opens into a pinned-small window.
 
-## Root cause (one line)
-**tmux sizes a window to the SMALLEST attached client.** One small or stale client — often a read-only phone/leftover session — **pins the whole window tiny**, so every pane in it is too short for a tall TUI. (Deep reference: [[otmux-small-panes]].)
+## Root cause — TWO levels (both must be tall enough)
+1. **Window level: tmux sizes a window to the SMALLEST attached client.** One small/stale client — often a read-only phone or leftover bridge — **pins the whole window tiny** (measured: a 57×34 window). Fix: detach it (`client.cleanup`) + `fit`/`size.lock`.
+2. **Pane level: a split window divides that height.** Even a big 252×63 window, split 7 ways, gives **~19–20-row panes** — still too short for a picker (needs ~20+). Fix: **zoom the target pane** (fills the window) before the TUI op.
+
+**Why it matters for headless drivers (the trainer-stall root cause):** the `/rewind` picker and `/context` render **CLIENT-SIDE — to the pane's screen**, not into the model. A headless peer driving via `otmux pane.capture` reads that rendered screen — so it **can** see and drive the picker, **but ONLY if the pane is tall enough to render it.** On a too-short pane the picker renders blank/header-only → `pane.capture` returns blank → the driver flies blind and stalls. That is not a broken picker; it is an unzoomed/pinned pane. (Deep reference: [[otmux-small-panes]].)
+
+## STANDING PRE-OP — before ANY `/rewind` or `/context` on a split-window pane
+**Zoom the target pane so it fills the window (tall enough to render), then un-zoom after.**
+- OOSH verb `otmux zoom` / `pane.zoom` toggles the **caller's** pane only — there is **no OOSH verb to zoom a REMOTE target yet** (GAP → **urgent sprint**, below). Until it ships, the sanctioned recovery is raw `tmux resize-pane -Z -t <pane>` — the ONE named-recovery exception (same standing as in `agent-rewind.md`), un-zoom with `-Z` again after.
+- **one-zoom-per-window:** un-zoom any prior zoomed pane first (a stuck zoom is the "won't zoom" bug).
+- Pre-flight `otmux client.cleanup` too, so the window itself isn't pinned small.
+
+## Headless-safe rewind driving IS possible (not human-only)
+A headless peer (SM/ARON/trainer) CAN drive a rewind — the picker is capturable once the pane renders. Requirements: (a) window not pinned (`client.cleanup`), (b) **target pane zoomed tall**, (c) **`pane.capture` between EVERY keystroke** (never blind-send by assumed geometry — that overshoots the ceiling and dismisses the picker). An attached human isn't required; a *rendered, captured* pane is.
 
 ## The deterministic fix (OOSH-only — never raw tmux)
 ```
