@@ -1,3 +1,20 @@
+# robbin-po Context — save #50 (2026-07-20 OVERNIGHT autonomous PO drive; TRON away, ARON hourly watch)
+
+## ★★★★★ OVERNIGHT STATE (save #50 — READ FIRST) ★★★★★
+**Prod v0.7.99. Directive session/tasks/aron-overnight-po-directive.md: reflect(learnings banked), drive scenario-first S31 gap-closure, DON'T burn to wall (save+commit, flag ARON rewind ≤85%; I'm ~57%). Don't interrupt busy agents; coordinate idle. Commit+push all.**
+
+### DAY LEARNINGS BANKED (memory/): DRY-overall=TRON-CMM4 doctrine #7 (ARON 28f7a265; don't-fork-the-shared-mechanism: drawer/tree/template/badges/viewers). capture-gate (req captures behavior-clarifications as AC first). gate-the-AC-surface. clarification-must-reach-requirement+view. standard-task-template-no-fork (FOUR steps). ghost-context-after-deep-rewind. feature-bugs=architect/expert/tester. visual-features-gate-by-pixel. cmm4-po-queue-feedback-check-trajectory.
+
+### S31 STATUS (git-derived, overnight):
+- ✅ Task-views synced + T31.5 conceptOnly HONESTY fix DONE (planner 14d7c0126): T31.4 title de-fullscreened→'interactive DEFAULT-DRAWER'; T31.5 only-refinement-checked, honest status, traceability=req+facet-ACs+design docs. ✅ R31.4 drawer AC=floating-overlay-like-/trace FINAL (3df22258d).
+- R31.4 drawer + R31.3 badge DRY ROOT-FIX deployed v0.7.99 (86c4033fb — drawer=.trace-page flex child; badge=childRefCount colon-immune; forks RETIRED). ★ NEEDS RESTART (server bits) + REAL GATE (tester: drawer-overlay-like-/trace + badge==N + /trace+/scenario regression) + Tron device. NEVER relay 'fixed' off static.
+- PIN bug root-caused (architect 2de33eabc: frozen model.slots, no recompute, current lacks !done guard → stuck S30-done; +planner CurrentSprint.ts:210 prefers stale this.taskName over live cu.model.name). FIX=recompute-on-read + WIP-by-construction + prefer-live-name → architect hands expert (code) + planner (status-data). IN FLIGHT.
+- conceptOnly-lifecycle model CONFIRMED provisionally (honest status, no green-wash) → awaits Tron ratify. T31.6 (R31.6 pan/zoom) being scaffolded (planner, conceptOnly std template).
+- Tooling gap #102 (node22 self-mark) held — unblockable.
+- OVERNIGHT DISPATCHED (idle agents): architect=restart+backstop+pin-handoff; planner=T31.6+conceptOnly+pin-status; tester=DRY-gate standby.
+
+---
+
 # robbin-po Context — save #49 (2026-07-20 REWIND-BOOT re-orientation; DISK-WINS over this + #52-delta)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #49 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
