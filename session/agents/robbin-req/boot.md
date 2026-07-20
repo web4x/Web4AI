@@ -30,9 +30,9 @@ Design: `scrum.pmo/sprints/sprint-31-server-manager/design-server-manager.md` (9
 Sprint unit = 3c05f411. All 4 UCs re-pointed off design-ahead onto built Class+Method (0afac21ab); chains resolve to Method (R31.2 to Test, R31.1+R31.3 to Impl).
 
 ## Pending triggers (post-rewind, resume these)
-- R31.1: DONE to Test (96d0d227↔f345b8ed, 827b8175d, tester two-keying). Remaining = owner-VISIBLE end-to-end is Tron device-facing (separate acceptance); placement editor→VIEWER fix in flight (no AC change, spec already viewer).
-- R31.2: DONE to Test, two-key-verified by tester. AC-page-route PENDING R31.3 page build (architect verifies choke-point extension live then).
-- **R31.3: tester gate marker on Impl 5c1701bc (built v0.7.85) → mint R31.3 Test.** ← next likely trigger.
+- R31.1: DONE + tester TWO-KEY-VERIFIED both-dir (96d0d227↔f345b8ed, 827b8175d). Remaining = owner-VISIBLE end-to-end is Tron device-facing (separate acceptance); placement editor→VIEWER fix in flight (no AC change, spec already viewer).
+- R31.2: DONE + tester two-key-verified (87b040ee↔335dbf3d). AC-page-route PENDING R31.3 page build (architect verifies choke-point extension live then).
+- **R31.3: tester gates Impl 5c1701bc on the architect's served==v0.7.86 signal → hands you the test:uuid → mint R31.3 Test.** ← next trigger.
 - **R31.4: expert ships Impl → architect mints Impl unit → tester marker → mint Test.** (10 ACs, terminal Tron-device visual gate.)
 
 ## Mint/re-point pattern (banked)
