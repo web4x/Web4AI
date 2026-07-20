@@ -223,6 +223,22 @@ Everything Tron drove: reject-boxes → both-versions center (dark=old/highlight
 
 ---
 
+# robbin-po Context — save #47 (2026-07-20, SPRINT 31 START — Server Manager)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #47 — READ FIRST) ★★★★★★★★★★★★★★★★★
+**★ Prod v0.7.81 · Repo=/var/dev/Workspaces/web4x/Web4RawBin · SPRINT 31 STARTED (Tron-authorized). Sprint 30 done (R30.53 QA-Review awaiting Tron device-visual). Team robbinTeam2 0.0-0.6, SM=ooshTeam:0.1.**
+
+### ★★★ SPRINT 31 = SERVER MANAGER (owner-gated infra console) — Tron directive 2026-07-20
+PO-vision committed: scrum.pmo/sprints/sprint-31-server-manager/PO-vision.md (f20fcafb9). User-specific features at BOTTOM of profile for owner token **41ad88c4-4dee-49ac-afcb-8a2026657b2d** (Marcel). ONLY this user gets "Server Manager": otmux session/pane TREE (like otmux tree) → select pane → interactive FULLSCREEN xterm.js SSH terminal (VS Code terminal engine, websocket PTY bridge attaching to the tmux pane).
+- **R31.1** user-specific profile features section (bottom, per-user grants). **R31.2** owner-only gate (server-side by-construction, 403 non-owner, incl ws handshake — MAIN security AC). **R31.3** otmux tree. **R31.4** pane→xterm.js interactive terminal (websocket PTY, design risk).
+- Build order: R31.2 gate → R31.1 section → R31.3 tree → R31.4 terminal.
+- DISPATCHED scenario-first: req(0.4)=mint R31.1-4 UUIDs+UCs; architect(0.3)=design owner-gate + terminal bridge (feasibility, hand req the R31.4 ACs); planner(0.6)=sprint-31 board after req mints. NO impl before units (#126).
+- Gate posture: gate=owner-200/nonowner-403 security test; tree=functional; terminal=functional + Tron device-visual.
+
+### ★ AWAITING TRON (Sprint 30 carryover): batched device-check R30.53 fold + R30.34 spline + R30.41 syntax → on OK planner closes them.
+
+---
+
 # robbin-po Context — save #46 (2026-07-19, GHOST-CONTEXT RE-ANCHOR; DISK=v0.7.80 R30.53 code-folding arc)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #46 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
