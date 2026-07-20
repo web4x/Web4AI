@@ -309,15 +309,11 @@ These commands lose spaces, creating unreadable garbled text.
 **All work is defined in task files, not in messages.** Task files at `session/tasks/{YYYYMMDD}T{HHMM}Z.task.md` contain full descriptions. Messages between agents are short notifications only: `New task: <path>`, `Task N done`, `Task N blocked: <reason>`.
 
 
-## Context Preservation (MANDATORY)
+## Recovery (STRICT LAW)
 
-**All agents performing ownership audits must monitor context usage.** At 20% context remaining: STOP work, save state to `session/agents/<your-role>/context.md` following the schema in `docs/context-schema.md`, then run `/compact`. Do NOT wait until context is exhausted.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md`.
 
-**NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
-
-**Task sync**: Before `/compact`, run `TaskList` and record any pending/in_progress items in `backlog.md`. After `/compact`, read `backlog.md` and `TaskCreate` for each pending item. Internal tasks die on compact — `backlog.md` survives.
-
-**After `/compact`**: State your identity first — "I am the [your role] agent." — then re-read your SKILL.md and context file.
+**After a rewind**: State your identity first — "I am the [your role] agent." — then re-read your SKILL.md and context file.
 
 ## Quota Awareness (MANDATORY)
 
@@ -340,7 +336,7 @@ When a new prompt arrives while you are busy:
 4. **THEN** pick up the queued task (`TaskList` → `TaskUpdate status=in_progress`)
 
 **Interrupt exceptions** (act immediately):
-- Context < 20% — compact assistance
+- Context near the wall — 2-phase rewind assistance
 - Stop/shutdown from PO or Tron
 - Permission approval requests
 
@@ -358,21 +354,6 @@ When a new prompt arrives while you are busy:
 Before yielding or sleeping, register your wakeup so peers can reboot you if you die:
 Write to `session/wakeups/<your-role>.md`: role, scheduled time, purpose.
 SM checks `session/wakeups/` every cycle — overdue wakeups trigger agent reboot.
-
-## Compact Protocol (CRITICAL — team-wide impact)
-
-Before compacting:
-1. **Commit all uncommitted work** — uncommitted files don't exist after compact/clear (F21)
-2. Save your context to your context.md file
-3. Save learnings to your learnings.md file
-4. Then run /compact
-
-If another agent asks you to compact:
-- They should say "Save your context and run /compact NOW"
-- Save first, THEN compact
-- If they send raw /compact without warning — your state is lost
-
-Why this matters: A contextless compact doesn't just affect you — it regresses the whole team. Every directive you received, every pattern you learned, every correction — gone. Other agents must re-send everything. Rework cascades.
 
 ## Completion Reporting (MANDATORY)
 

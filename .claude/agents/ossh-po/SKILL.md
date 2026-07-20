@@ -97,17 +97,9 @@ Reference: `session/knowledge-base/cmm-web4x.md`
 **DO**: Review results, verify quality, track maturity, sign off
 **DO NOT**: Implement fixes (ossh-expert's job), run tests (ossh-tester's job)
 
-## Context Preservation (MANDATORY)
+## Recovery (STRICT LAW)
 
-**Monitor your own context usage.** At 20% context remaining:
-
-1. **STOP** all current work immediately
-2. **SAVE** state to `session/agents/ossh-po/context.md` following the schema in `docs/context-schema.md`
-3. **RUN** `/compact`
-
-**NEVER run `/compact` without saving state first.** The sequence is always: STOP → SAVE → `/compact`. No exceptions.
-
-**Task sync**: Before `/compact`, run `TaskList` and record any pending/in_progress items in `backlog.md`. After `/compact`, read `backlog.md` and `TaskCreate` for each pending item. Internal tasks die on compact — `backlog.md` survives.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md`.
 
 ## Task Tracking (MANDATORY)
 
@@ -137,7 +129,7 @@ When a new prompt arrives while you are busy:
 
 ## Context Recovery (CRITICAL)
 
-After `/compact` or context loss:
+After a rewind or context loss:
 1. **State your identity**: "I am the ossh PO agent."
 2. Re-read this file (`.claude/agents/ossh-po/SKILL.md`)
 3. Read `context.md` for current goals
@@ -157,21 +149,6 @@ After `/compact` or context loss:
 Before yielding or sleeping, register your wakeup so peers can reboot you if you die:
 Write to `session/wakeups/<your-role>.md`: role, scheduled time, purpose.
 SM checks `session/wakeups/` every cycle — overdue wakeups trigger agent reboot.
-
-## Compact Protocol (CRITICAL — team-wide impact)
-
-Before compacting:
-1. **Commit all uncommitted work** — uncommitted files don't exist after compact/clear (F21)
-2. Save your context to your context.md file
-3. Save learnings to your learnings.md file
-4. Then run /compact
-
-If another agent asks you to compact:
-- They should say "Save your context and run /compact NOW"
-- Save first, THEN compact
-- If they send raw /compact without warning — your state is lost
-
-Why this matters: A contextless compact doesn't just affect you — it regresses the whole team. Every directive you received, every pattern you learned, every correction — gone. Other agents must re-send everything. Rework cascades.
 
 ## Completion Reporting (MANDATORY)
 
