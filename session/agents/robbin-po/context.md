@@ -22,7 +22,11 @@
 5. ★ R31.4 UX FIX IN FLIGHT (Tron feedback, feature-bug route architect→expert→tester): terminal is (a) CENTERED content (→ left-align), (b) bespoke fullscreen OVERLAY not the default drawer, (c) NO close. DIRECTION = mount xterm.js in the DEFAULT DRAWER (rb-detail-drawer) = close/minimize/left-align/consistency for free. Feedback+screenshot committed fb477ce9f. req sharpening AC + architect designing drawer-mount. [[feature-bugs-architect-expert-tester]]
 6. view-drift 2/31 reconcile. CARRYOVER: R30.53 QA-Review Tron device codicon.
 ### ★ R31.3 TREE CLOSEABLE: gate GREEN DET-3x (tester c35ae0f67, network-first + rb-trace-tree renderer + served==committed) + Tron device-confirmed "amazing" → tester placing Test marker → req mint = chain-credit. DONE pending chain-credit.
-### ★ SPRINT 31 = ONLY R31.4 UX (drawer-mount) REMAINS. R31.1 built, R31.2 gated+closed, R31.3 gated+device-confirmed, R31.4 mechanism device-confirmed. R31.4 UX fix (terminal→default drawer, left-align, closeable) in flight: architect design→expert→tester→Tron drawer confirm.
+### ★ SPRINT 31 — 2 shared-component UX fixes in flight (Tron device feedback IMG_4597/4598):
+- R31.4 DRAWER-MOUNT ✅ DEPLOYED v0.7.94 (expert c42758874, client-only, served-verified): new generic RbDetailDrawer.showElement() hosts terminal in shared drawer (close/minimize/expand for free); LEFT-aligned (killed .sm-term-overlay .body center bug); ResizeObserver fit; PTY keep-on-minimize/kill-on-close. NO server/gate change (R31.2 untouched). → tester gate drawer LOGIC (chromium) + Tron device visual.
+- R31.3 TREE-BEHAVIOR (IMG_4598: window '0:bash' placebo no-chevron + expansion not layer-by-layer) → fix in the SHARED rb-trace-tree component ONCE (Tron: stop reinventing; /trace benefits too). architect DIAGNOSING → expert → tester. [[generic-behavior-in-shared-component]]
+- BATCH Tron device test: R31.4 drawer + R31.3 tree = ONE walk-through when both land (open SM → tree layer-by-layer → tap pane → terminal in drawer left-aligned closeable). Drawer ready to peek now (v0.7.94, hard-reload).
+- R31.1 built, R31.2 gated+chain-closed+device, R31.3 readSessionTree data chain-complete (behavior open), R31.4 mechanism device-confirmed.
 ### CARRYOVER: Sprint 30 R30.53 QA-Review — Tron device codicon-render confirm still open.
 ### STRAYS (boot report): runtime scenario/index JSONs + build-manifest + test-results PNGs modified; data/logs/*.log untracked = runtime/generated, NOT source strays (safe).
 
