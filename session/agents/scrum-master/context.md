@@ -1,5 +1,8 @@
 # Scrum Master Context — 2026-07-14 (post-SELF-rewind boot, MOST CURRENT)
 
+> ⚠️ **DEPRECATED-PENDING-ARON-PURGE (2026-07-20): CONTEXT-MEASUREMENT RULES BELOW ARE SUPERSEDED.** Any older line in this file (esp. lines ~8, 30, 356-358, 546, 607, 667, 683, 712) that says "TUI banner / 'clear to save Nk' hint / pane status-bar = ground truth," "no banner = healthy," "context.read %USED is usable," or "sweep ctx is trustworthy" is **WRONG/incomplete — do NOT act on it.** CANONICAL METHOD (verified 2026-07-20): (1) team.sweep ctx %s are STALE ~1h — ignore. (2) Agents CANNOT self-read /context (renders client-side, not to model) — never ask an agent its own %. (3) TO MEASURE: confirm the pane is IDLE+STOPPED via read-only capture FIRST, then trigger `/context` on it, then pane-capture and read the `⚠ Context is N% full` line (present = ≥80%; absent = <~80%). Only /context an agent that can easily continue after. (4) The "Context low (N% remaining)" banner appears too LATE (near-wall) — absence ≠ healthy. (5) Rewinds are driven by an ATTACHED-CLIENT (Tron/ARON), not the headless trainer (headless can't see the client-side picker). Awaiting ARON's canonical supersession-record format to purge the contradictions fleet-wide.
+
+
 ## ★★★★★★★★★★★★★★★★★★★★★★ TICK (2026-07-19, DEEP-REWIND boot — now on 1M, fleet-rewind mid-campaign) ★★★★★★★★★★★★★★★★
 **Trainer deep-rewound me at my ~98% wall** (Option-2 restore-conversation, code+context.md+MEMORY.md intact). Now scrum-master@WODA.prod ooshTeam:0.1 on **Opus 4.8 1M, 18% used** — full headroom (G1 self-ID fix live). Both my footer + trainer's TUI clean-verified.
 
