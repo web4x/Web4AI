@@ -24,7 +24,7 @@ Design: `scrum.pmo/sprints/sprint-31-server-manager/design-server-manager.md` (9
 |-----|------|----|-------|--------|------|------|-------|
 | R31.1 profile feature-grants section (VIEWER) | f032af09 | profileFeatures.render aa6b0299 | ProfileEditor a3958f85 | renderFeatureGrants b4f03947 | f345b8ed | **96d0d227 GREEN v0.7.84** | render+filter **chain-complete-to-Test**; owner-VISIBLE end-to-end = Tron device-facing; placement-fix (editor→VIEWER) in flight (impl bug, spec already says viewer) |
 | R31.2 owner-gate (server-side by-construction) | 5bc9683e | serverManager.ownerGuard 40802701 | ServerManagerGuard 1d6933c7 | assertOwner 8bb1842f | 335dbf3d | **87b040ee GREEN v0.7.84** | **CHAMPAGNE-COMPLETE**; AC-page-route PENDING R31.3 page build; INV-G1/G2/G3 pinned |
-| R31.3 otmux tree | 168e6d2b | otmuxTree.read 742aa04d | OtmuxBridge 34c7dfe6 | readSessionTree 7d7221d8 | **5c1701bc (built v0.7.85)** | — | **Test PENDING tester gate** |
+| R31.3 otmux tree | 168e6d2b | otmuxTree.read 742aa04d | OtmuxBridge 34c7dfe6 | readSessionTree 7d7221d8 | **5c1701bc (built v0.7.85)** | — | **Test PENDING tester gate** (gate on architect served==v0.7.86 signal). 5 ACs incl AC-back-to-profile (46dd3a560, expert building v0.7.87) — R31.3 gate must assert the /profile exit link too |
 | R31.4 pane→xterm.js terminal | fb14fdbf | paneTerminal.attach fa1845d3 | PtyBridge 59648f26 | attachPane 6fc43b8e | — | — | 10 ACs (B1 ticket-at-upgrade / B2 node-pty / B3 no-disrupt / B4 read-only-default+Take-Control), Impl pending expert |
 
 Sprint unit = 3c05f411. All 4 UCs re-pointed off design-ahead onto built Class+Method (0afac21ab); chains resolve to Method (R31.2 to Test, R31.1+R31.3 to Impl).
