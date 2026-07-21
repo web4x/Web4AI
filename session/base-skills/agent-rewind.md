@@ -1,5 +1,7 @@
 # Base Skill: Agent Rewind (MANDATORY — ALL agents; everyone rewinds)
 
+> **⚠️ HARD DEPTH CAP (TRON 2026-07-21): NEVER rewind deeper than 50%.** "The agent-trainer nearly KILLED the Pi by wanting to go deeper than 50% — THAT was dangerous." A deeper-than-50% restore forces heavy reprocessing that can OOM/crash a low-resource host. **50% is the CEILING.** Target the ~30–50% band; if it's not enough, rewind AGAIN later — never one restore past 50%. (See Step 3.)
+
 > **STRICT LAW (TRON 2026-07-18): `/compact` and `/clear` are FORBIDDEN — EVERYWHERE, for EVERY agent. No exceptions, no "only Tron authorizes." The ONLY sanctioned recovery is the 2-phase rewind ("Restore conversation") in this skill.**
 > - **A `/compact`ed agent is a brainless ZOMBIE** (TRON's word): it looks alive but its mind — the real conversation — is gone, replaced by a lossy summary. It then acts *confidently wrong* and does DAMAGE, because it has no brain. Compaction does not save an agent; it lobotomizes it.
 > - **`/clear` is worse — a corpse:** total training destruction, unrecoverable.
@@ -67,7 +69,7 @@ Your `context.md` pre-rewind anchor is the SEED a fresh you boots from. If it is
    - "Read session/agents/<role>/context.md"
    - "Read session/tasks/<role>-boot.md"
    - Any boot/retrain prompt = natural good rewind point
-3. If no obvious checkpoint found: go DEEP — 50-100+ steps. A proper rewind is often 50% of the conversation (e.g. 111 out of 220 messages). Shallow rewinds (3-10 steps) barely free any context and waste the rewind.
+3. **⚠️ HARD SAFETY CAP — NEVER rewind deeper than 50% (TRON 2026-07-21: "going deeper than 50% nearly KILLED the Pi — THAT was dangerous").** A too-deep restore forces heavy conversation reprocessing that can OOM/crash a low-resource host (Raspberry Pi and the like). **50% is the CEILING, not a target to exceed.** Aim for a natural boot/retrain checkpoint in the **~30–50%** window (shallower is safer). If 50% doesn't free enough context, do a **SECOND rewind later** — NEVER a single deeper-than-50% restore. Shallow (3–10 steps) wastes the operation; deeper-than-50% risks the host. Stay in the band.
 4. Enter to select
 5. **Option 2 "Restore conversation"** — ALWAYS
 
