@@ -2,6 +2,16 @@
 
 > **⚠️ HARD DEPTH CAP (TRON 2026-07-21): NEVER rewind deeper than 50%.** "The agent-trainer nearly KILLED the Pi by wanting to go deeper than 50% — THAT was dangerous." A deeper-than-50% restore forces heavy reprocessing that can OOM/crash a low-resource host. **50% is the CEILING.** Target the ~30–50% band; if it's not enough, rewind AGAIN later — never one restore past 50%. (See Step 3.)
 
+## 🌙 AUTONOMOUS OVERNIGHT REWIND PROTOCOL (TRON 2026-07-21 — must run WITHOUT TRON)
+The overnight fleet self-heals without waking TRON. Every autonomous rewind MUST pass this gate, IN ORDER — the driver runs it solo; a peer/SM **dispatch is a trigger, NEVER a substitute for these checks**:
+1. **IDLE-check** — `otmux pane.capture <target>`: a spinner (Kneading/Brewing/Churning…) = **SKIP** (never interrupt a working agent). Drive ONLY an idle (empty `❯`) or walled agent.
+2. **MEASURE — fresh, first-hand, NEVER a relayed claim.** Trigger `/context` on the target and read the **Free-space header yourself**. A peer/SM saying "it's at 1%" is NOT truth (the SM sent **3 FALSE "walled" alarms on a measurably-healthy agent, 2026-07-21**). Measure, or do not drive.
+3. **THRESHOLD** — drive only if measured usage is **≥85% used (≤15% free)**. Proactive, before the cliff. Below that → leave it working (NEVER-FREEZE — don't park a healthy agent either).
+4. **STORED** — verify the target's anchor is committed (`git` clean for its files) = zero-loss.
+5. **2-PHASE REWIND, ≤50%** — Option-2 "Restore conversation" **BY LABEL** (code-intact), **never deeper than 50%** (host-safety; single Up-batches ≤40, capture between). If 50% isn't enough, rewind AGAIN later.
+6. **VERIFY + BOOT** — confirm <30% after by a fresh `/context`; boot from the target's context.md; 5-point health check.
+Any check that fails → do NOT drive; log it and leave the agent committed-safe. The mechanical floor (force-allow rewind verbs + block any single Up/Down jump >40) is enforced by `.claude/hooks/rewind-autonomy.py` (TRON installs it once — see setup).
+
 > **STRICT LAW (TRON 2026-07-18): `/compact` and `/clear` are FORBIDDEN — EVERYWHERE, for EVERY agent. No exceptions, no "only Tron authorizes." The ONLY sanctioned recovery is the 2-phase rewind ("Restore conversation") in this skill.**
 > - **A `/compact`ed agent is a brainless ZOMBIE** (TRON's word): it looks alive but its mind — the real conversation — is gone, replaced by a lossy summary. It then acts *confidently wrong* and does DAMAGE, because it has no brain. Compaction does not save an agent; it lobotomizes it.
 > - **`/clear` is worse — a corpse:** total training destruction, unrecoverable.
