@@ -1,3 +1,26 @@
+# robbin-po Context — save #53 (2026-07-22, SPRINT 31 SOFTWARE-COMPLETE; R31.8c UI-refine in flight; DISK=v0.7.119)
+
+## ★★★★★ CURRENT STATE (save #53 — READ FIRST, DISK-WINS re-derive from git) ★★★★★
+**robbin-po robbinTeam2:0.0 (%5). Prod v0.7.119 served. SM=ooshTeam:0.1, trainer=baseTeam:0.0. Gate-fix LIVE (rewind-autonomy.py hook = peer rewinds auto-fire ~85%). My ctx 78% @ save → SM drives my rewind (SM's lane; I flag+let-it-drive, don't double-fire).**
+
+### SPRINT 31 = SOFTWARE-COMPLETE (all 6 gates GREEN DET-3x @390, scenario-first #126-clean, DRY no-forks):
+- **R31.4** drawer ✅ · **R31.5** MVC-foundation ✅ (all 7 pieces: rb-compartment/rb-strip/rb-snap-nav/rb-woda + reused drawer/editor; AC-INV-PRESENTATION @390) · **R31.7** version single-source via ONE ior:class:Config unit ✅ (build.mjs generates pkg/sw/manifest; INV-V1; boot-stamp getVersion guards = expert TODO) · **R31.8c** Feature model ✅ (data+security+children+functional all chain-to-Test + hardened; FIX-2 opaque sha256[:16] refs no-token; INV-F1..6).
+- **R31.8c DEVICE-CONFIRMED FUNCTIONAL** by Tron (IMG_4616 @390): FM works — Features expand → granted-user children → drawer → Revoke.
+
+### ★ FRONTIER: R31.8c FM-detail REFINE (Tron IMG_4616, 3 ACs, in flight) — brief scrum.pmo/sprints/sprint-31-server-manager/R31.8c-fm-detail-feedback.md:
+1. children = ITEMVIEWS to the USER SCENARIO (not opaque-uuid rows; ref STAYS opaque FIX-2, resolve server-side).
+2. detail = user's FULL MASKED profile (RbProfileDetail), not name+id+button.
+3. drawer layout = actions(Revoke) UNDER grab-bar, content BELOW.
+- ARCHITECT designed (a754ac8f5): 1 NEW node Method grantedUserProfile 218b4733 (owner-gated masked-resolver by opaque id) + impl-edits (allowedUsersChildren enrich, RbProfileDetail.mount full-profile+layout). ★ NEW INV-F7 = server-side resolve, response MASKED-ONLY (name/avatar/masked-ids), NEVER raw token/secretCode; endpoint owner-gated; Revoke stays hardcoded-owner INV-F4.
+- REQ minted grantedUserProfile chain + INV-F7 AC (3eec10db3); R31.8 = 13 UCs / 18 ACs. EXPERT UNBLOCKED (Method 218b4733).
+- NEXT: expert builds (server resolver+endpoint + 2 client impl-edits = SERVER change → REAL restart + verify-by-pid) → tester @390 (real-user rows, tap→full masked profile, Revoke-under-bar, NO token in any response, non-owner 403) → Tron device re-verify.
+
+### CHAIN-HYGIENE (req, non-blocking): two-key R31.5 Impls (5.3 4301b9cc/5.5 c9cf2a82/5.6 4e26dedb) + R31.7 guards + tester markers (functional/5.7/slice-d supersede a52393fb).
+### ★ TRON OPEN: (1) R31.8c device re-verify after refine; (2) 'arch'→'Marcel Donges' profile-name restore (architect test-pollution of owner 41ad88c4; I offered, awaiting his OK/self-set); (3) SECURITY+ENCRYPTION direction — his roadmap gate (MVC-foundation + ServerManager/FeatureManager finished) NOW MET → phase unblocked after the refine.
+### DELIVERY LESSONS (banked memory/): verify-by-pid not /api/config ([r]!=restart); DRY=single typed Config unit + native scenario-unit itemViews + shared drawer no forks; fleet-rewinds=SM's lane (I flag, don't double-fire); refresh at clean boundary ~80%.
+
+---
+
 # robbin-po Context — save #52 (2026-07-22, P0 LEAK FIXED-LIVE; rewound-boot; DISK=v0.7.113)
 
 ## ★★★★★ CURRENT STATE (save #52 — READ FIRST, DISK-DERIVED) ★★★★★
