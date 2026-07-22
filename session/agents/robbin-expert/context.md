@@ -1,4 +1,6 @@
-# robbin-expert Context — Save Point 2026-07-22 (WODA.prod, v0.7.118 / SPRINT 31)
+# robbin-expert Context — Save Point 2026-07-22 (WODA.prod, v0.7.119 / SPRINT 31)
+
+**★ R31.8c root-expander fix (commit 15d58df39, v0.7.119, CLIENT-only) [2026-07-22]** — tester @390 caught: rb-trace-tree renderItems dropped root.hasChildren for LAZY roots (featureRoots hasChildren:true, no inline children) → FeatureManager roots had no expander → granted-user children unreachable → revoke-from-child dead. FIX (SHARED, both root paths): :186 PATH-B buildSeedNode hasChildren arg + :153 PATH-A re-render has-children → (children.length>0 || root.hasChildren===true). NO-REGRESSION (reasoned; architect backstopping): /trace uses graph/fetch path not renderItems; /server-manager roots have inline children → unchanged; only lazy roots gain the correct expander (additive). Awaiting architect no-regress confirm + tester re-gate @390. [was a latent bug in my R31.3 renderItems root builder.]
 
 **★★ R31.5 COMPLETE — all 7 pieces shipped [2026-07-22] (PO batched zero-block runway GO).** WODA bars|compartments[] responsive layout, positioning≠function, one-model-two-instances. CLIENT-only, no restart. All safe-by-construction (net-new unimported OR additive-default-unchanged → /trace+editor+room+server-manager unregressed); tester gates @390. Impls (each marker on name-matching decl, wired ownerIor→Method):
 • 5.1 RbCompartment.applyPresentation — impl 4d7e2a91→7e611ee4 (rb-compartment.ts)
