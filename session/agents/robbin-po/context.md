@@ -15,6 +15,25 @@
 
 ---
 
+# robbin-po Context — save #50 (2026-07-22, S31 near-complete; version-integrity built)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #50 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
+**★ robbin-po robbinTeam2:0.0 (pane %5) WODA.prod. Prod v0.7.103. Repo=/var/dev/Workspaces/web4x/Web4RawBin (pushed b9ea6a93d+). Session repo=web4x/Web4AI (pushed). SPRINT 31 Server Manager. SM=ooshTeam:0.1, trainer=baseTeam:0.0. My ctx ~60%; rewind threshold=80% (1M runway); self-order via Tron/hook. [[rewind-threshold-80-for-1m-agents]]**
+
+### SPRINT 31 STATE (git-derived 2026-07-22)
+- **Server Manager CORE device-proven** (Tron IMG_4597): tree "amazing" (R31.3), terminal works (ran ll, R31.4 attach). R31.2 owner-gate GREEN+chain-closed.
+- **R31.7 version-integrity BUILT v0.7.103** (expert 4a4f69985/9e4ed295a): ONE ior:class:Config typed unit source → build.mjs generateVersion stamps pkg/sw/manifest/__BUILD_VERSION__ (all==0.7.103); server reads build-stamp not per-request pkg; start.mjs INV-V1(agreement)+INV-V3(scoped tree-clean landmine guard). Version bump = ONE field edit. Chain UC 83e3891a→Method dee42cc1→Impl b5eb6953. NEEDS real restart (architect) → req re-verify + tester mutate-one-source gate. [[dry-config-single-source-typed-scenario-units]]
+- **R31.4 UX** (Tron device feedback + lifecycle) = ONE drawer build (expert builds after R31.7): drawer-mount + left-align + close + AC-auto-close/INV-T1 (teardown on ANY switch-away, kills sm_* leak) + AC-maximize(A, 100dvh). Architect design ac36618ec, req formalizing. ★ C/D true single-pane isolation HELD for Tron (grouped tmux sessions share windows → literal zoom disrupts; A=maximize-drawer no-disrupt shipping).
+- **R31.8 Feature unit type MINTED** (648136ad6): ior:class:Feature (bidirectional Feature↔Impl + Feature.allowedUsers↔profile.features) + ServerManager 16604eee + FeatureManager 2980b7d9 instances; R31.1/R31.2 reframed. Security (architect 83836631a): FeatureManager grant-WRITES hardcoded-owner root-of-trust; feature ACCESS data-driven (in allowedUsers); INV-F1..5 preserve INV-G; no self-grant hole. Expert builds after R31.4.
+- **INCIDENT resolved**: phantom-7.99 = manual git-checkout landmine (3 files to 0.7.99), architect restored+restart, no code lost. R31.7 = the durable fix.
+- **Expert WALLED then recovered** (98%→65%); Tron HOOK FIX = agents auto-rewind at ~85% now (no auth-wait). LESSON: never message a near-wall agent. [[rewind-threshold-80-for-1m-agents]]
+
+### TRON ROADMAP (sequence, awaiting his call on ordering): finish S31 (drawer/version/Feature; ServerManager+FeatureManager = security path) → fix MVC foundation (WODA views + scenario models) → THEN security + encryption. "commit intermediary" until then (done). Data = scenarios (typed). [[feature-bugs-architect-expert-tester]]
+
+### OPEN for Tron: (1) C/D single-pane terminal isolation (A shipping first); (2) MVC-foundation sequencing (now-parallel vs after-S31); (3) R31.4 drawer + R31.7 gate + R31.8 build = his device confirms as they land.
+
+---
+
 # robbin-po Context — save #49 (2026-07-20 REWIND-BOOT re-orientation; DISK-WINS over this + #52-delta)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #49 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
