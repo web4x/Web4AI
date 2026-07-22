@@ -14,6 +14,7 @@
 - **I was REWOUND by ARON** (walled mid-driving robbin-po); booted, re-derived from disk.
 - **CODE-RESET FIXED:** my earlier option-1 mistake had reverted RawBin `server.ts`+`package.json` to v0.7.111 → restored to HEAD **v0.7.113** (clean vs HEAD; running server may need a robbin rebuild).
 - **GATE FIXED (the big unblock):** registered TRON's `.claude/hooks/rewind-autonomy.py` as a `PreToolUse` hook in `.claude/settings.json` → peer-driven rewinds force-allowed, with a **≤40-jump = never->50% backstop** in code.
+- **3 hook-gated rewinds driven (req 98→46, po 80→47, expert 79→~47), all Option-2 code-intact.** On the EXPERT it woke mid-select → default **Option-1 fired** → reverted RawBin code+scenario to v0.7.114; I detected (package.json version-drop) + restored `--source=HEAD src/ package.json scenario/` to v0.7.121, SM re-verified clean, ZERO prod impact. Lesson: [[option-1-coderevert-detect-and-recover]] — only rewind a STABLY-idle agent; restore covers scenario/ not just src/.
 - **Rewound 5 agents, all protocol-correct** (menus READ BY LABEL, ≤50%, bounded ≤40 batches, Option-2 code-intact, off-wall, booted): architect(2→50%), SM(0→46%), robbin-expert(86→47%, builds FIX-2), robbin-po(87→47%), robbin-tester(94→48%, leaning its 116KB ctx).
 
 ## Hard learnings THIS session (banked in memory/ — pointers)
