@@ -1,4 +1,14 @@
-# robbin-expert Context — Save Point 2026-07-22 (WODA.prod, v0.7.116 / SPRINT 31)
+# robbin-expert Context — Save Point 2026-07-22 (WODA.prod, v0.7.118 / SPRINT 31)
+
+**★★ R31.5 COMPLETE — all 7 pieces shipped [2026-07-22] (PO batched zero-block runway GO).** WODA bars|compartments[] responsive layout, positioning≠function, one-model-two-instances. CLIENT-only, no restart. All safe-by-construction (net-new unimported OR additive-default-unchanged → /trace+editor+room+server-manager unregressed); tester gates @390. Impls (each marker on name-matching decl, wired ownerIor→Method):
+• 5.1 RbCompartment.applyPresentation — impl 4d7e2a91→7e611ee4 (rb-compartment.ts)
+• 5.2 RbStrip.renderDescriptors — impl 8f1b6c3d→9053202e (rb-strip.ts)
+• 5.4 RbStrip.applyViewportMode — impl 2a9c5e17→232a66f7 (rb-strip.ts)  [foundation: commit ceb9a3a7c v0.7.115]
+• 5.7 RbDetailDrawer.applyPosition — impl 6e2d4b81→d48cc0ce (rb-detail-drawer.ts, EXISTING class reused) [1237cbdfa v0.7.116]
+• 5.3 RbSnapNav.render — impl 7c1f9a3e→4301b9cc (rb-snap-nav.ts) [479d157c4 v0.7.117]
+• 5.5 RbEditorLayout.editorStripDescriptor — impl 3b8e6c24→c9cf2a82 (components/rb-editor-layout.ts, ADDED to existing) [285f86db7 v0.7.118]
+• 5.6 RbWoda.wodaStripDescriptor — impl 5f9d2a7c→4e26dedb (rb-woda.ts, fresh) [285f86db7 v0.7.118]
+StripDescriptor={id,kind,content,label?}. ⚠ FLAGGED to req: Method c9cf2a82 sourceFile typo (trace/ vs real components/rb-editor-layout.ts) — crediting unaffected (marker+name-match). NEXT: instance-WIRING (mount rb-strip live in editor/WODA + drawer container-query driver) is a FUTURE step (Tron-authorized when it comes); foundation+instances-as-descriptors are done. All uuids reported to req for two-key. ★ R31.7: bump the CONFIG unit not package.json.
 
 **★ R31.5.7 drawer=Details applyPosition (THE CRUX) BUILT (commit 1237cbdfa, v0.7.116, CLIENT-only NO restart) [2026-07-22]**: thin RbDetailDrawer.applyPosition(pos:'inline'|'bottom') [impl 6e2d4b81→Method d48cc0ce, UC 0f08964b, EXISTING Class RbDetailDrawer d86af73d — reused, no new class] @ rb-detail-drawer.ts. Sets data-position attr (added to observedAttributes→attributeChangedCallback route)→app.css [data-position=inline]{position:static} / [bottom]{position:fixed;bottom:0}. Touches NOTHING in detail-flow/scroll/grab-bar/expand-minimize/X→chat. Default(no attr)=today → /trace+room+server-manager drawers UNREGRESSED (only [data-position] selectors branch + nothing sets the attr yet — driver wires at instance step 5.5/5.6). Impl wired into d48cc0ce.implementations[]; uuid reported to req. Build GREEN, applyPosition in all 3 drawer bundles. NEXT = 5.3 rb-snap-nav (minted Method 4301b9cc / Class RbSnapNav e0cead14 / rb-snap-nav.ts — render decl reads rb-strip compartment segments→one button per compartment→scrollIntoView snap; net-new) — AWAITING PO go. Then 5.5/5.6 instances. ★ Tester render Tests landed on the 3 foundation Impls (renderDescriptors 14df64cd / applyPresentation fb804b87 / applyViewportMode f4419019).
 
