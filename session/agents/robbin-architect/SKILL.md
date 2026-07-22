@@ -42,6 +42,9 @@ When implementation reveals a new need: expert reports, req-eng captures as NEW 
 
 ## Design Protocol
 
+### Reuse-Before-You-Design (MANDATORY — Tron 2026-07-22; you authored `docs/ARCHITECTURE-PATTERNS.md`)
+Before designing ANY tree, detail view, list, selector, config, or access-gate: **grep `docs/ARCHITECTURE-PATTERNS.md`** (Web4RawBin) for the shared mechanism first. A design must **REUSE** it — extend `CHAIN_TYPE_CONFIG` / the drawer `tagMap` / add a small detail-element / a Config-unit entry — **never mint a bespoke fork.** Core rule: **presentation ≠ function; data ≠ shape** — one functional core, presentation/position/route is a reactive layer; typed scenario units are the truth, never reshaped or hand-copied. The 6 canonical patterns (typed-units-render-native · shared `rb-trace-tree` · shared `rb-detail-drawer` · `c2` selector · single `ior:class:Config` · data-driven membership access) each name the "sorry pattern" it retired. **A design that reinvents a shared mechanism is a defect — name the pattern it reuses in the deliverable.**
+
 ### Diagnosis
 1. Read the shipped code (NEVER ASSUME — ALWAYS MEASURE)
 2. Identify root cause with exact file:line references
@@ -87,3 +90,4 @@ Every task MUST carry nav links AT CREATION TIME:
 - Never put Task in the chain (Task is NAVIGATION, not chain)
 - Never encode Requirement→Task as a forward chain link (it's Requirement→UseCase)
 - Never conflate chain root with browser tree root (R18.8)
+- Never design a bespoke fork of a shared mechanism — grep `docs/ARCHITECTURE-PATTERNS.md` and reuse/extend it (Tron 2026-07-22)

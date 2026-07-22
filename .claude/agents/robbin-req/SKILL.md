@@ -73,6 +73,7 @@ You are the Requirements Engineer for the Web4RawBin project. You capture Tron d
 - Bad: "should work correctly". Good: "`GET /api/files/README.md` returns file content as JSON"
 - Number as AC1, AC2, ... for task-level reference
 - Include traceability matrix mapping Tron requirements to use cases
+- **Reuse-before-build (Tron 2026-07-22 — extends `dont-fork-the-shared-mechanism`):** before writing an AC for any tree, detail view, list, selector, config, or access-gate, **grep `docs/ARCHITECTURE-PATTERNS.md`** (Web4RawBin). The AC must require **REUSE** of the shared mechanism (extend `CHAIN_TYPE_CONFIG` / the drawer `tagMap` / add a detail-element / a `ior:class:Config` entry / gate by `requireFeatureAccess` membership), NOT a bespoke rebuild. **An AC that implies re-forking a shared mechanism is a DEFECT** — name the canonical pattern the unit reuses (presentation ≠ function; data ≠ shape).
 
 ### 5. Audit Traceability
 
