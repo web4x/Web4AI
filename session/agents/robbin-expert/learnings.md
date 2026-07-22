@@ -945,3 +945,63 @@ it needs a RE-GATE; never let a post-gate fix ride the old GREEN. And when a dom
 PRESENT-but-unmatched, that is positive proof of distinctness — don't fall through to a weaker
 recall key (mint distinct); and a distinct unit must not clobber the first unit's recall symlink
 (only create the alt-link if free).
+
+## Sprint 31 (Server Manager) — durable learnings [2026-07-20..22]
+
+**RETIRE THE FORK, don't patch it (DRY-by-construction).** When a shared mechanism keeps needing repeated
+patches, the patch IS the smell — reuse the shared path's native data. (a) BADGE: the otmux tree badge
+round-tripped a bespoke `nodeChildCount` colon-keyed side-map (re-patched R30.2, R31.3, v0.7.97 own-count,
++ the split(':')[1] colon bug); real fix = stamp the node's OWN child-REFERENCE count on
+`node.dataset.childRefCount` at build + `computeBadges=max(domCount,childRefCount)` → no map/key, colon-immune.
+(b) TERMINAL: forked `showElement` diverged from /trace's drawer (scroll/handle/silent-no-op); fix = make it a
+FIRST-CLASS detail-view (`rb-terminal-detail`) via the standard selection→renderDetailForRef path = /trace chrome
+by construction. **Apply:** at the 3rd+ patch to a shared thing, STOP, copy how the non-buggy sibling does it,
+propose the fork-retirement scenario-first. Keep heavy deps out of shared bundles: only the TAG STRING in the
+shared map, import/define the element ONLY in the consuming bundle (xterm stayed out of /trace, verified 0).
+
+**A composite-key uuid breaks split(':').** otmux uuids embed colons (`sess:NAME`, `win:S:idx`); `ref.split(':')[1]`
+returns the FRAGMENT not the uuid → map miss → badge 0. **Apply:** use `refUuid(ref)` (after the FIRST colon) for
+every ref→uuid; never `split(':')[1]` when a uuid may contain a colon.
+
+**A native addon must be built for the SERVER's node ABI, not the install-time node.** node-pty compiled under node16
+at `npm i`; prod runs node22 → NODE_MODULE_VERSION throw. **Apply:** flag the server's `node -v` to whoever restarts;
+`npm rebuild <dep>` under the server node. Flagging the ABI up front let the architect rebuild before it hit prod.
+
+**REBUILD ≠ RESTART; /api/config version is a deploy CONFOUND.** remoteShells:0.2 `[r]` (server.ts stdin keypress)
+runs `npm run build` (CLIENT only) — it does NOT restart the tsx server.ts process. `/api/config` reads package.json
+PER-REQUEST → shows the FILE version not the running PROCESS → every server-side ship (pin/cookie/boot-sweep) LOOKED
+deployed but wasn't (3.5h-old pid). **Apply:** server ships need Ctrl-C + `npm start` (start.mjs SIGTERMs ports +
+respawns fresh tsx). PROVE a restart by PID-CHANGE + a BEHAVIOR probe (boot-sweep 0-orphans / a decoy), NEVER the
+version string. Hardening (flagged): stamp version at process-boot in a module constant.
+
+**ONE DRIVER per prod pane.** Two of us ran Ctrl-C+npm start concurrently (double-restart); start.mjs port-kill saved
+it but it was avoidable — I flagged the race then reached in anyway. **Apply:** before touching a shared prod pane,
+confirm no peer is mid-op; if a peer owns it, hand them the runbook and let them drive.
+
+**After a rewind, verify working-tree == HEAD before any build/restart.** The tree was silently reverted to 0.7.99
+(stripping my R31 wiring) while HEAD=0.7.102 — a landmine the next restart would have deployed; the running process
+was fine, the TREE was the hazard. **Apply:** `git diff HEAD` on your source first thing post-rewind; a clean-looking
+/api/config doesn't prove a clean tree.
+
+**Deriver fixes are dead if the serve path reads a frozen cache.** The pin's getThreeSlots had NO live caller — the
+server served the persisted `model.slots` snapshot, so every prior fix improved dead code. Fix = recompute-on-read
+(`CurrentSprint.slotsFrom(idx)` = stateless throwaway instance on the fresh per-request index). **Apply:** trace the
+SERVE path, not just the deriver; if the server reads a cache, the fix must recompute-on-read (self-heal).
+
+**Lifecycle cleanup must cover process-death, not just happy close paths.** PtyBridge killed the grouped tmux session
+on ws close/error/exit (0 in-session orphans) but a restart/crash WITH an attached terminal orphans it (tmux outlives
+node → cleanup never fires). Fix = BOOT-SWEEP (`reapOrphans`: at boot none attached → all `sm_*` orphans → safe kill).
+**Apply:** for any external resource a process owns, add a boot-time reap for what a crash/restart leaves behind.
+
+**A public mount method must self-heal its structure, never silent-return.** `showElement` did `if(!detailPanel)return`;
+a FRESH drawer (createElement+append, showElement as first interaction) had no `.drawer-panel-detail` because
+`detailPanel` (unlike `body`) doesn't lazy-render → silent no-op → pane-tap did nothing. **Apply:** a getter that
+doesn't lazy-render is a first-interaction trap; the entry method must render()-if-missing + create the target.
+
+**bash `otmux send` interprets backticks/$()/<>/#{} even inside double quotes.** Twice a tmux message with backticks ran
+as a shell command (npm ERR ENOENT). **Apply:** keep tmux message text PLAIN — no backticks, $(), <, >, #{}.
+
+**Continuous-work self-audit = MEASURE each domain, flag REAL gaps scenario-first.** The `?token=` query-auth leak and
+the orphan boot-sweep gap both came from measuring (not assuming) my own shipped domains; each went flag→req AC→PO
+dispatch→build, never unilaterally built. **Apply:** when idle, audit your LIVE domains by measurement; a real gap goes
+scenario-first, a clean domain is reported clean.
