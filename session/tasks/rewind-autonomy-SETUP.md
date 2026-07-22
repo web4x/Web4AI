@@ -26,8 +26,16 @@ if data.get("tool_name") != "Bash":
     sys.exit(0)
 cmd = ((data.get("tool_input") or {}).get("command") or "")
 
-DRIVE = re.compile(r'\botmux\s+(send\.raw|send\.tui|send\.key|pane\.(?:capture|select|list|history)|zoom|selectPane|sp)\b')
+# Continuous-operation verbs the classifier gates as "workload interference":
+# peer rewind-drive, SM sweep/unblock, cross-pane sends, TUI navigation, health reads.
+DRIVE = re.compile(
+    r'\b(?:'
+    r'otmux\s+(?:send\S*|pane\.\S+|selectPane|sp|zoom|panes|fit)'
+    r'|hiveMind\s+(?:send\S*|unblock\S*|sweep\S*|monitor|resolve|agent\.(?:verify|bootstrap|send))'
+    r'|claudeCode\s+(?:context\.\S+|session\.\S+|join\.\S+)'
+    r')\b')
 ZOOM = re.compile(r'\btmux\s+resize-pane\s+-Z\b')  # sanctioned recovery zoom only
+# NOT allowed (still gated / never auto): kill*, rm*, /clear, /compact, git push, settings edits.
 
 jump = re.search(r'\b(?:Up|Down)\s+(\d{2,})\b', cmd)
 if jump and int(jump.group(1)) > 40 and ('send.' in cmd or DRIVE.search(cmd)):
