@@ -15,6 +15,22 @@
 
 ---
 
+# robbin-po Context — save #51 (2026-07-22, S31 fully staged to build-boundary; awaiting Tron rewind-auth)
+
+## ★★★★★ CURRENT STATE (save #51 — READ FIRST) ★★★★★
+**★ robbin-po robbinTeam2:0.0 (%5). Prod v0.7.103. RawBin HEAD bf73baec2 (pushed; key flaps intermittently, push when up). My ctx ~70% climbing to 80% — checkpoint+self-order rewind near 80% (SM flags; only Tron/Bash-rule authorizes). SM now OWNS context-wall-guard as #1 duty. [[sm-primary-duty-context-wall-guard]]**
+
+### S31 BOARD (planner 7e91888ba, 15 tasks, honest+byte-match GREEN):
+- DONE: T31.2 owner-gate, T31.7 version-integrity (v0.7.103, single-source Config, anti-confound proven).
+- QA-Review (Tron gate): T31.1 profile, T31.3 tree (Tron 'amazing' fb477ce9f + render-gate c35ae0f67, held for explicit Done-ratify), T31.6 pan/zoom (concept, ratify not build).
+- IN-PROGRESS BUILDS (staged, need expert): T31.4 drawer-UX (ac36618ec: mount+left-align+close+auto-close/INV-T1+maximize-A; C/D single-pane HELD for Tron); T31.5 WODA/MVC-foundation umbrella + 5.1-5.7 atomics (UUIDs 6be68334/86d72090/0a24ac9e/be4e57a6/3c3e1cac/2f707d67/8243b2fc, dependency-ordered, AC-INV-PRESENTATION positioning!=function cross-cutting); T31.8 FeatureManager (design 83836631a root-of-trust; units ServerManager 16604eee + FeatureManager 2980b7d9 seeded Tron; slice: requireFeatureAccess→grant/revoke-hardcoded-owner→bootstrap→profile m.features render).
+- BUILD ORDER (expert): FeatureManager FIRST → R31.4 drawer → R31.5 pieces.
+
+### ★★★ BLOCKED: whole BUILD front frozen on TRON REWIND-AUTH (req 86% + expert 74% held-safe-checkpointed, SM caught both; SM/PO CANNOT authorize=Rule 10). Tron: rewind robbin-req + rewind robbin-expert in baseTeam:0.0, OR add the durable otmux-send Bash rule (3rd auth-block, now 2 agents). [[rewind-threshold-80-for-1m-agents]]
+### TRON OPEN (non-block): C/D terminal single-pane isolation; R31.5=the MVC-foundation (positioning!=function); then security+encryption. Data=typed scenarios, commit-intermediary.
+
+---
+
 # robbin-po Context — save #50 (2026-07-22, S31 near-complete; version-integrity built)
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #50 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
