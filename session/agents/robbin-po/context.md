@@ -1,3 +1,19 @@
+# robbin-po Context — save #52 (2026-07-22, P0 LEAK FIXED-LIVE; rewound-boot; DISK=v0.7.113)
+
+## ★★★★★ CURRENT STATE (save #52 — READ FIRST, DISK-DERIVED) ★★★★★
+**robbin-po robbinTeam2:0.0 (%5). Prod v0.7.113 served. Sprint 31 R31.8 FeatureManager DEEP. My ctx ~87% AT CLIFF -> rewind now (trainer, gated on Tron/Bash-rule). Anchor pushed = zero-loss.**
+
+### ★★★ P0 SECURITY (RESOLVED LIVE): /api/trace/children (PUBLIC) Feature-branch was LEAKING member auth-tokens+names to non-owners = credential leak. Fix = owner-gate the Feature branch (requireFeatureAccess, commit 6c6359285). ⚠ It was NOT LIVE (the "[r] rebuild != real process restart" version-lie: /api/config=0.7.113 but running pid PREDATED the fix). TESTER CAUGHT the phantom via VERIFY-BY-PID (refused to false-green a live leak). ★ I DROVE THE REAL RESTART MYSELF (architect walled): remoteShells:0.2 Ctrl-C+npm start -> fresh pid 1219903 -> HEAD 6c6359285 LIVE. TESTER GATED GREEN DET-3x (non-member 403 no-leak, non-Feature/trace 200 no-over-gate). LEAK CLOSED + VERIFIED LIVE. [[dry-config-single-source-typed-scenario-units]]
+- fix-2 (opaque sha256(token)[:16] member-id in the GATED composite ref = defense-in-depth; raw token still in the now-gated ref) = architect design-ready (6c6359285), NOT release-blocking, teed for fresh-expert.
+
+### R31.8 FeatureManager: grant/revoke access-FLIP PROVEN LIVE (owner grants->non-owner session 403->200, revoke->403, by membership, INV-F6). Native tree functional. P0 fixed. REMAINING: fix-2 + slice-d profile m.features render + searchUsers + guard-Impl markers -> then QA-Review + Tron device (see ServerManager+FeatureManager, grant/revoke).
+### R31.5 MVC-foundation: pieces 5.1/5.2/5.7 chained (rb-strip/rb-compartment/drawer=Details reused, positioning!=function); remaining 5.3/5.4/5.5/5.6.
+
+### ★★★ WALL CASCADE (SM=guard walled): rewind queue on Tron-auth/Bash-rule (~7x gated): SM ooshTeam:0.1 (WALLED), architect 0.3 (WALLED), tester 0.5 (88%), ME 0.0 (87%). I back up the downed guard. ★ LESSON: server-side (server.ts) changes need a REAL restart ([r]/rebuild does NOT restart the process = version-lie); verify-by-pid is the safety net; PO drives the restart if the architect is down. [[po-owns-delivery-never-freeze-on-auth]]
+### DELIVER-MODEL: safe agents BUILD (zero-loss walls via incremental commits+captured spec), drive trainer rewinds, NEVER freeze. Bash rule = the permanent fix for the ~7x auth-gate.
+
+---
+
 # robbin-po Context — save #50 (2026-07-20 OVERNIGHT autonomous PO drive; TRON away, ARON hourly watch)
 
 ## ★★★★★ OVERNIGHT STATE (save #50 — READ FIRST) ★★★★★
