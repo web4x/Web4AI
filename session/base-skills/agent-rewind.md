@@ -10,7 +10,7 @@ The overnight fleet self-heals without waking TRON. Every autonomous rewind MUST
 4. **STORED** — verify the target's anchor is committed (`git` clean for its files) = zero-loss.
 5. **2-PHASE REWIND, ≤50%** — Option-2 "Restore conversation" **BY LABEL** (code-intact), **never deeper than 50%** (host-safety; single Up-batches ≤40, capture between). If 50% isn't enough, rewind AGAIN later.
 6. **VERIFY + BOOT** — confirm <30% after by a fresh `/context`; boot from the target's context.md; 5-point health check.
-Any check that fails → do NOT drive; log it and leave the agent committed-safe. The mechanical floor (force-allow rewind verbs + block any single Up/Down jump >40) is enforced by `.claude/hooks/rewind-autonomy.py` (TRON installs it once — see setup).
+Any check that fails → do NOT drive; log it and leave the agent committed-safe.
 
 > **STRICT LAW (TRON 2026-07-18): `/compact` and `/clear` are FORBIDDEN — EVERYWHERE, for EVERY agent. No exceptions, no "only Tron authorizes." The ONLY sanctioned recovery is the 2-phase rewind ("Restore conversation") in this skill.**
 > - **A `/compact`ed agent is a brainless ZOMBIE** (TRON's word): it looks alive but its mind — the real conversation — is gone, replaced by a lossy summary. It then acts *confidently wrong* and does DAMAGE, because it has no brain. Compaction does not save an agent; it lobotomizes it.
