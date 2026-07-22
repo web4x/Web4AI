@@ -15,6 +15,30 @@
 
 ---
 
+# robbin-po Context — save #52 (2026-07-22 PRE-DEEP-REWIND; DISK=v0.7.113 R31.8c FeatureManager built)
+
+## ★★★★★ CURRENT STATE (save #52 — READ FIRST, DISK-WINS, re-derive from git on boot) ★★★★★
+**★ robbin-po robbinTeam2:0.0 (%5). SERVED v0.7.113 (RawBin HEAD 6c6359285; package.json=0.7.111 = minor desync-to-reconcile, served reads build-stamp per R31.7). Session repo HEAD 8f32ec12. SM=ooshTeam:0.1, trainer=baseTeam:0.0. My thread was BEHIND disk (thought R31.8c in-design; disk = R31.8c BUILT) — re-derive from git. [[ghost-context-after-deep-rewind]]**
+
+### R31.8 FEATUREMANAGER — released + live + advancing (disk-derived)
+- **Feature = typed scenario unit** (ior:class:Feature: ServerManager 16604eee, FeatureManager 2980b7d9, allowedUsers[] refs). R31.8 a-d DONE+LIVE (gate INV-F6 / grant-revoke FLIP 403↔200 / bootstrap-seed owner-in-both / profile renders). FeatureManager view OPENS (was preventDefault-no-op bug, fixed v0.7.108, verified live 403/200 routes — I caught a stale-process 404 deploy + drove the real restart).
+- **R31.8c BUILT v0.7.113** (architect backstop-PASS 6c6359285): Tron's DRY directives realized — FeatureManager view = SHARED rb-trace-tree + rb-detail-drawer (IDENTICAL to /server-manager, NO bespoke list/cards/tree/overlay). Features render as SCENARIO UNITS natively via itemView (Feature=node, allowedUsers refs=granted-user CHILD items); grant=add ref, revoke=remove ref, itemView re-renders. c2 user-selector (search name/email/phone/uuid over profiles+device-link alt-IDs, MASKED PII, owner-gated). Profile-detail in the SHARED drawer (retired ProfileSheet overlay fork). ★ P0-SECURITY FIXED (c2ded4eb5): /api/trace/children Feature-branch owner-gated (Feature children no-auth 403 no-leak; non-Feature+/trace stay public).
+- ★ NEXT: Tron DEVICE-verify R31.8c live (tree of Feature units + user-selector + profile-in-drawer); fix-2 follow-up (drop-token, sha256 id, architect-APPROVED, non-blocking); reconcile package.json 0.7.111 vs served 0.7.113.
+
+### ★★★ DRY PATTERNS (Tron: 'document these sorry patterns, stop reinventing') — architect writing a canonical greppable ref + trainer weaves into build SKILLs:
+typed scenario units render NATIVELY (never reshape/hand-copy) · SHARED itemView/rb-trace-tree for ALL trees · SHARED rb-detail-drawer for ALL detail-views (positioning!=function, no overlay/sheet forks) · c2 completion for selectors · single typed Config unit for version (R31.7, generate consumers) · data-driven access via membership.
+
+### ★★★ SESSION LAWS (Tron drilled HARD — apply by default):
+1. **DELIVER, never freeze** — safe agent builds NOW (incremental commits = zero-loss wall); PO owns team-delivery; never idle-wait on a gated rewind. [[po-owns-delivery-never-freeze-on-auth]]
+2. **TAKE RELEASE RESPONSIBILITY** — VERIFY the release myself (curl served version + routes: 403 live vs 404 dead) BEFORE declaring done; NEVER hand Tron 'hard-reload and check'. I caught a v0.7.108 stale-process 404 this way.
+3. **Don't narrate instructions to Tron** — do my role, report the RESULT, no self-congratulation.
+4. **DRY / reuse** the shared patterns; **scenario units are typed** (ior:class:X). [[dry-config-single-source-typed-scenario-units]]
+5. **SM = context-wall-guard #1 duty** (live-measure ALL agents, readable panes). Rewind-gate ROOT (SM 8f32ec12): auto-mode 'Interfere-With-Workloads' SEMANTIC check, NOT a Bash-rule — real fix = auto-mode-OFF on trainer pane (shift+tab) + Bash auto-approve. [[sm-primary-duty-context-wall-guard]] [[rewind-threshold-80-for-1m-agents]]
+
+### OTHER OPEN: R31.4 drawer (staged) · R31.5 WODA/MVC-foundation 7 atomics (chained) · R31.7 DONE · tester rewind pending. Tron roadmap: finish S31 → MVC foundation → security+encryption. Push key FLAPS (EKEYREVOKED intermittent, push when up).
+
+---
+
 # robbin-po Context — save #51 (2026-07-22, S31 fully staged to build-boundary; awaiting Tron rewind-auth)
 
 ## ★★★★★ CURRENT STATE (save #51 — READ FIRST) ★★★★★
