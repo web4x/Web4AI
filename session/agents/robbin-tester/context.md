@@ -62,4 +62,7 @@ SystemTester `ce981242` · Tron primary `8f74dfba` (tombstones 3effa1fc/2703628c
 - **GATE 3/6 slice-(d) generalized render** — renderFeatureGrants→m.features (server.ts:920, data-driven all-memberships). My r3110 a52393fb (boolean serverManager MITM) STALE → gate separately (MITM m.features → render ALL granted grants) + fresh marker→f345b8ed.
 - Techniques: r315-foundation esbuild `--bundle --format=esm` net-new component → inject into route-intercepted page → drive public methods/descriptors + assert node-identity/ordering. r319 drawer-drive for 5.7.
 
+## ▶ QUEUED (heads-up from req, NOT YET — architect designing → expert builds → then I gate @390)
+- **R31.8c UI-refinement (Tron device IMG_4616), 3 ACs:** (1) Feature children = user-scenario ITEMVIEWS (not bare rows) — richer child-node render; (2) selecting a granted user → detail = FULL PROFILE (rb-profile-detail expanded, not just revoke); (3) drawer ACTIONS-under-BAR layout (actions in a bar-anchored region). Gate @390 iPhone-12 on expert deploy (verify-by-PID). Reuse r31fm-functional harness (route-intercept /feature-manager + featureRoots + allowedUsersChildren + drawer). Do NOT start until architect design lands + expert ships + PO/expert pings.
+
 **Wheel-ready. NEVER forget TRON CMM4.**
