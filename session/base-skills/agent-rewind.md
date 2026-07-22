@@ -9,7 +9,9 @@ The overnight fleet self-heals without waking TRON. Every autonomous rewind MUST
 3. **THRESHOLD** — drive only if measured usage is **≥85% used (≤15% free)**. Proactive, before the cliff. Below that → leave it working (NEVER-FREEZE — don't park a healthy agent either).
 4. **STORED** — verify the target's anchor is committed (`git` clean for its files) = zero-loss.
 5. **2-PHASE REWIND, ≤50%** — Option-2 "Restore conversation" **BY LABEL** (code-intact), **never deeper than 50%** (host-safety; single Up-batches ≤40, capture between). If 50% isn't enough, rewind AGAIN later.
-6. **VERIFY + BOOT** — confirm <30% after by a fresh `/context`; boot from the target's context.md; 5-point health check.
+6. **VERIFY + BOOT** — confirm the agent is **OFF THE WALL** by a fresh `/context`, then boot from its context.md + 5-point health check. **The post-rewind target depends on how full it was (TRON/robbin-expert 2026-07-22):**
+   - **Proactive (was <90% used):** reaches **<30%** — a ≤50% shed clears plenty.
+   - **Near-wall / walled (≥90% used):** realistically lands **~65%, and CANNOT reach <30% under the 50% cap** — a ≤50% conversation-shed of a walled agent ≈ 65% used, because system+prompt+files+tools are fixed overhead. The safe target is **off-wall + <~70%**, NOT <30%. **Do NOT chase <30% on a walled agent — it would force a >50% rewind = host-risk.** Proceed at ~65% and **checkpoint aggressively.** Never fake the number — flag it honestly like robbin-expert did.
 Any check that fails → do NOT drive; log it and leave the agent committed-safe.
 
 > **STRICT LAW (TRON 2026-07-18): `/compact` and `/clear` are FORBIDDEN — EVERYWHERE, for EVERY agent. No exceptions, no "only Tron authorizes." The ONLY sanctioned recovery is the 2-phase rewind ("Restore conversation") in this skill.**
