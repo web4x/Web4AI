@@ -1,3 +1,18 @@
+# robbin-po Context — save #54 (2026-07-23, R31.8c ROUND-3 deliver-literally; DISK=v0.7.124)
+
+## ★★★★★ CURRENT STATE (save #54 — READ FIRST, DISK-WINS) ★★★★★
+**robbin-po robbinTeam2:0.0 (%5). Served v0.7.124 (round-2 restart-verified pid 3371150/3371161). SM=ooshTeam:0.1 measures, I DRIVE robbin-team rewinds (gate-hook auto-fires). Sprint 31 R31.8c FeatureManager, ROUND-3 in flight.**
+
+### ★★★ R31.8c ROUND-3 = DELIVER LITERALLY (Tron rejected round-2 3x on device — I kept injecting caution he never asked for). Brief db297e699 + architect design 0cd05131a.
+- ★ PO+architect OWN the scope-creep: I steered uuid to a sha256 HASH ('some other uuid'); we built a NEW masked mini-card not THE real viewer; INV-F7 masking scrambled Tron's OWN owner-console data. [[deliver-literally-dont-inject-caution]]
+- KEY UNLOCK (architect measured): the REAL user uuid EXISTS — ior:class:User carries a v4 uuid DISTINCT from token (Marcel User-unit=37fcb752, token=41ad88c4). So subtitle = REAL User-unit uuid (not token, not hash).
+- ROUND-3 DELIVER: (1) subtitle=real User-unit uuid; (2) drawer=THE ACTUAL /profile viewer, full REAL data (drop masking); (3) MIGRATE /profile to the shared RbProfileView NOW (identical render=proof it's real); (4) RETIRE sha256/opaque-avatar/INV-F7-owner-masking. KEEP non-owner 403 (the REAL security, untouched); token-to-non-owner-delegate=FUTURE flag only.
+- ROUND-2 SUPERSEDED: 6/6 gated GREEN v0.7.124 but it's the REJECTED surface — NOT presented to Tron, NOT chain-credited. req HELD all 4 markers (NET 0 round-2 Tests), folds into round-3 with supersededBy provenance (no silent overwrite). AC4 collapsed-badge=0 was a real tester catch → 1-line fix e60062afa v0.7.124 (rb-trace-tree:186 root.childCount->serverChildCount).
+- ROUTE: architect design DONE → req captures round-3 ACs (supersede opaque-userId+masked ACs, provenance) → expert builds → tester gates drawer @390 AGAINST /profile (same viewer + real data + real User-uuid; non-owner 403) → Tron device.
+- ★ REWIND CADENCE: tester rewound at clean 80% boundary (round-3 not built=zero-loss). expert 64%, req fresh. I drive, SM measures post-rewind.
+
+---
+
 # robbin-po Context — save #53 (2026-07-22, SPRINT 31 SOFTWARE-COMPLETE; R31.8c UI-refine in flight; DISK=v0.7.119)
 
 ## ★★★★★ CURRENT STATE (save #53 — READ FIRST, DISK-WINS re-derive from git) ★★★★★
