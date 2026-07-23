@@ -1,3 +1,20 @@
+# robbin-po Context — save #55 (2026-07-23, R31.8c ROUND-4 REAL-INTERACTIVE-GREEN; DISK=v0.7.127)
+
+## ★★★★★ CURRENT STATE (save #55 — READ FIRST) ★★★★★
+**robbin-po robbinTeam2:0.0 (%5). Served v0.7.127 (restart-verified fresh pid 63513, uptime by MY curl). R31.8c FeatureManager ROUND-4 CHAIN-CLOSED, pending ONLY Tron device re-verify. SM=ooshTeam:0.1 (I drive robbin-team rewinds, SM measures). Driving WITH the SM (Tron directive).**
+
+### ★★★★★ R31.8c FEATUREMANAGER — 4-round device-QA arc DONE, real-interactive-GREEN:
+- Tron device walk-throughs drove 4 rounds. FINAL fixes: v0.7.126 (shared ProfileView builder + inline children reactive tree + no-graph fix) + v0.7.127 round-4-FIX (shared profileViewDataForToken merges deviceRecords for BOTH feeds = drawer===/profile incl Devices; childRefCount badge re-stamp = live badge decrement).
+- ★★★ THE REAL-INTERACTIVE GATE IS THE WIN: tester's real owner-interactive @390 (seed owner+cookie+CLICK revoke, DEVICE-HAVING user SystemTester=6) caught 2 bugs round-3's seeded-structural gate HID → fixed → SAME gate RED→GREEN DET-3x screenshot-verified (a2be85f4e). Chain-closed 9652e3be9: 2 Tests, 6 device-QA ACs MET honestly, 0 rejected-surface Tests across ALL 4 rounds.
+- ★ LESSONS BANKED: [[deliver-literally-dont-inject-caution]] (3-round uuid/viewer saga = I injected caution Tron never asked) + [[gate-with-representative-data-not-edge-entity]] (0-device owner MASKED the devices bug; device-user exposed it) + gate-the-REAL-interactive-flow-not-seeded-structural + measure-real-data-before-mutating (near owner-LOCKOUT averted: forcing 37fcb752-primary would've 403'd Tron; 41ad88c4 IS his real primary uuid).
+- ★ REMAINING TO CLOSE R31.8c: (1) Tron DEVICE re-verify (screenshots surfaced); (2) cosmetic — name 'arch'→'Marcel Donges' (architect ws-IDENTIFY test-pollution, offered, await Tron OK/self-set), accept 41ad88c4 (his real primary uuid).
+
+### ★ SPRINT 31 broader OPEN (surface to Tron AFTER R31.8c closes, as a batch): T31.1 profile-section device-visual · T31.3 server-tree Done-ratify · T31.6 concept-ratify · T31.4 drawer-UX (auto-close+maximize) · T31.5 MVC 5.5/5.6 Impls (scenario-first).
+
+### ★ FLEET/REWIND (tonight): 4 clean pre-consumption rewinds (expert 50/40, architect 52) all zero-loss code-intact; gate-hook auto-fires ~85%; I commit anchors before firing (zero-loss); SM measures post-rewind; ARON guards the trainer; pick-by-LABEL (layouts flip at 'no code restore' checkpoints).
+
+---
+
 # robbin-po Context — save #54 (2026-07-23, R31.8c ROUND-3 deliver-literally; DISK=v0.7.124)
 
 ## ★★★★★ CURRENT STATE (save #54 — READ FIRST, DISK-WINS) ★★★★★
