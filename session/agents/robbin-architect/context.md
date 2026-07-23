@@ -324,3 +324,7 @@ SERVER race-close = MEASURED PASS (my independent gate): seeded owner->cookie-> 
 CLIENT drawer-dedupe = STATIC-PASS, BROWSER-ONLY (node ws yields 1 sm_; 2-ws double is browser drawer) -> tester DET-3x @390 = authoritative gate (handed off 0.5).
 VERDICT: SERVER PASS measured; FULL T31.4 PASS AWAITS tester DET-3x @390 GREEN (1 sm_/open 0 leak all paths) + I re-confirm sm_=0 post-run. NOT claiming by-construction (lesson applied). Reported PO. Current server pid 1124323 v0.7.132.
 NEXT: tester DET-3x @390 -> on GREEN I close T31.4 backstop (+ confirm sm_=0). Then Tron device batch. Also await tester @390 R31.8c-round4/R31.5 + Tron sign-offs.
+
+## ★ T31.4 INV-T1 CLOSED — GATE-VERIFIED PASS (verdict 274f0b61f) 2026-07-23
+Tester DET-3x @390 GREEN (a30081afc): 1 sm_/open, 0 leak ALL paths (close/deselect/minimize/esc/pane-switch/maximize-close), elem-probe 1 element/1 ws (was 2), maximize + /trace+/scenario single-render regression + non-owner 403 GREEN. MY server race-close measured (normal sm_=1->0; race x4->0). sm_=0 re-confirmed post-run, pid 1124323 stable, served==committed==0.7.132. Pair: CLIENT drawer single-render guard + SERVER PtyBridge readyState!==1 race-close, each at correct level. INV-T1 marker 6f78a86f->req. EARNED not asserted — the corrected process (v0.7.131 wrong-level/asserted -> PO caught -> re-diagnosed drawer+race level -> gate-verified). T31.4 ready for Tron device batch.
+NEXT: T31.4 done. Await Tron device batch + tester @390 (R31.8c-round4/R31.5) + PO directive. No open architect BUILD action. Server pid 1124323 v0.7.132.
