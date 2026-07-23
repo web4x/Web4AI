@@ -11,6 +11,13 @@
 - ROUTE: architect design DONE → req captures round-3 ACs (supersede opaque-userId+masked ACs, provenance) → expert builds → tester gates drawer @390 AGAINST /profile (same viewer + real data + real User-uuid; non-owner 403) → Tron device.
 - ★ REWIND CADENCE: tester rewound at clean 80% boundary (round-3 not built=zero-loss). expert 64%, req fresh. I drive, SM measures post-rewind.
 
+### ★★★ ROUND-3 UUID CRUX RESOLVED (the 3-round repeat-miss) — INVERTED PREMISE + LOCK-OUT AVERTED:
+- Tron rejected the sha256 hash, wanted 'real uuid'. I steered to opaque hash (miss). Then Tron chose CONSOLIDATE temp(41ad88c4)→rich(37fcb752). ★ ARCHITECT MEASURED data/profiles.json (c99c49598) — PREMISE INVERTED: 41ad88c4 is ALREADY the PRIMARY consolidated identity (chain 37fcb752→8f74dfba→41ad88c4; 41ad88c4 has phone/secretCode + IS OWNER_TOKEN). 37fcb752 = THIN TOMBSTONE. Forcing 37fcb752-primary → Tron fails assertOwner → 403 → OWNER LOCKOUT. I RETRACTED the consolidation-execute order to expert (safety); NO mutation ran.
+- RESOLVER profileUuidOf a1c4e5f0 / tokenOfProfileUuid b2d5f6a1 ALREADY return 41ad88c4 CORRECT-BY-CONSTRUCTION (follow redirectTo→primary; no guess/no sha256/no mutation), two-key clean (a0840c4f3). Ships as-is.
+- OPEN (Tron, COSMETIC only, no code impact — subtitle=resolver output): accept 41ad88c4 (his REAL primary uuid, ==token by construction — RECOMMENDED, zero-risk) vs risky re-home to 37fcb752 (thinner record + lockout risk). req HELD the record PENDING-TRON (a7a60c7b6), Tron's 448f6837f ruling kept in history SUPERSEDED (Rule 11).
+- LESSON: measure the real data (profiles.json not scenario units) BEFORE a mutation; a 'consolidate' that inverts reality = lockout. [[deliver-literally-dont-inject-caution]] [[measure-a-stable-state-not-a-moving-target]]
+- ROUND-3 REST building: RbProfileView real /profile layout + real data + retire sha256/masking + /profile→shared-viewer migration (the proof). expert then ONE batched REAL restart (ckpt-2+3+migration, verify-by-pid) → tester gate @390 vs /profile → Tron walk-through. non-owner 403 SACRED throughout.
+
 ---
 
 # robbin-po Context — save #53 (2026-07-22, SPRINT 31 SOFTWARE-COMPLETE; R31.8c UI-refine in flight; DISK=v0.7.119)
