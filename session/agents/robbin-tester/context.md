@@ -62,10 +62,19 @@ SystemTester `ce981242` · Tron primary `8f74dfba` (tombstones 3effa1fc/2703628c
 - **GATE 3/6 slice-(d) generalized render** — renderFeatureGrants→m.features (server.ts:920, data-driven all-memberships). My r3110 a52393fb (boolean serverManager MITM) STALE → gate separately (MITM m.features → render ALL granted grants) + fresh marker→f345b8ed.
 - Techniques: r315-foundation esbuild `--bundle --format=esm` net-new component → inject into route-intercepted page → drive public methods/descriptors + assert node-identity/ordering. r319 drawer-drive for 5.7.
 
-## ▶▶ NEXT GATE — R31.8c grantedUserProfile (IMG_4616), BUILT v0.7.120 but ⛔ NEEDS A REAL RESTART before gating (verify-by-PID; server-side resolver + new endpoint won't be live until Ctrl-C→npm start, fresh pid ≠ 1314990)
-- Chain: FeatureManager 9f7f345a → grantedUserProfile 218b4733 → **Impl 8a3f6d21** (marker FeatureManager.ts:200) + thin owner-gated GET `/api/feature-manager/granted-user`. Impl-edits: allowedUsersChildren **ad622052** (child enrich {avatar+masked-subtitle}) + RbProfileDetail.mount **3f61d7d8** (full masked profile + Revoke-under-grab-bar). req: a301ae659.
-- **GATE @390 iPhone-12 (verify-by-PID FIRST — new pid):** (1) child rows show real user AVATAR + MASKED-identifier (NOT a name-repeat); (2) tap a granted user → FULL MASKED profile (avatar / identifiers / counts) in rb-profile-detail; (3) Revoke UNDER the grab-bar; (4) opaque FIX-2 ref (`<feat>:<16hex>`, no raw token); (5) non-owner → 403; (6) **★INV-F7: NO raw token / NO secretCode in ANY response body** (grep every response). Reuse r31fm-functional harness (route-intercept /feature-manager + featureRoots + allowedUsersChildren + drawer) BUT this needs the LIVE server resolver/endpoint → real restart, real (non-intercepted) endpoint probes for INV-F7.
-- On GREEN → markers → req mints Tests onto 8a3f6d21 (+ ad622052/3f61d7d8 if I assert their new behavior distinctly).
-- ⚠ CONTEXT: flagged rewind at ~72% before this gate (would cross 80%); restart must happen first anyway.
+## ▶▶ R31.8c ROUND-2 RENDERED gate — RUN, RED (real bug), commit 44e972e07 pushed. Server RESTARTED (pid 3371161 fresh, served==committed v0.7.123, verify-by-PID ✓).
+- `test/visual/r31r2-rendered-gate.mjs` DET-3x @390. **5/6 ACs GREEN:** (1) drawer=FULL rb-profile-view [4e1c8a92], (2) Revoke UNDER grab-bar viewer-below [3f61d7d8], (3) child subtitle=OPAQUE uid d5e3bb07a1f4c9e2 [ad622052], (5) revoke→POST+fm-tree-refresh, INV-F7 (non-owner 403 no-leak + no raw-token/secret in drawer). **AC4 RED (REAL BUG):** collapsed feature badge=0 not real count(2). ROOT: featureRoots emits childCount (server FeatureManager.ts:145) but **rb-trace-tree.ts:186** (tree.items PATH-B) drops it — passes root.hasChildren (expander, prior fix) NOT root.childCount→serverChildCount. FIX: :186 → `buildSeedNode(...,root.description, undefined, undefined, root.childCount)`. Reported PO+expert. NOT marking while RED.
+- **▶ ON EXPERT FIX → re-run r31r2 (verify-by-PID new pid if restart) → AC4 GREEN → 6/6 → send markers 4e1c8a92 (full-profile render) + ad622052 (opaque subtitle) + 3f61d7d8 (revoke-under-bar layout) [+ the :186 childCount fix Impl if a distinct AC] → req mints → two-key.** Harness: route-intercept /feature-manager + featureRoots(childCount) + children(description=uid) + granted-user(masked) + POST(revoke); mock-owner whoami→200.
+- (superseded round-1 spec below kept for trace)
+## ▶ (round-1, superseded by round-2 above)
+- ★ ROUND-1 stubbed the surface → gate the RENDERED DOM @390px, NOT the flow. Chain: UC profile.viewFull 84cdc9ec → Class RbProfileView 51bb30cb → Method render 422f22f8 → **Impl 4e1c8a92 (NEW shared full-profile viewer <rb-profile-view>)** + 5 impl-edits. req: b36635678.
+- **GATE @390 iPhone-12 RENDERED (verify-by-PID FIRST):**
+  1. **AC-detail-full-profile** — FM drawer shows the FULL profile via `<rb-profile-view>` (NOT a name+phone stub).
+  2. **AC-drawer-actions-layout** — Revoke UNDER the grab-bar.
+  3. **AC-item-description-full-uuid** — granted-user SUBTITLE == OPAQUE userId sha256[:16] (e.g. `d5e3bb07a1f4c9e2`) — NOT masked-phone (+49…723), NOT raw token.
+  4. **AC-tree-auto-update-on-action** — grant/revoke AUTO-refreshes the tree (≥ what Refresh does).
+  5. **AC-collapsed-child-count-eager** — collapsed feature badge = REAL child count, NOT 0.
+- On GREEN → send [test:uuid] marker(s) + path → req mints render Test(s) onto the relevant Impl (4e1c8a92 + impl-edits if asserted distinctly) + wire → two-key. Tron device-verify after.
+- ⚠ CONTEXT: recommended rewind at ~72% before this gate (5 rendered ACs would cross 80%); restart must happen first regardless. Reuse r31fm-functional harness (route-intercept /feature-manager + featureRoots + allowedUsersChildren + drawer) but drive the RENDERED DOM on the restarted server.
 
 **Wheel-ready. NEVER forget TRON CMM4.**
