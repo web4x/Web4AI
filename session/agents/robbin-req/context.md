@@ -1,6 +1,7 @@
 # robbin-req — Context
 
 ## ★ CHECKPOINT (2026-07-24, pre-proactive-rewind @ CLEAN BOUNDARY — READ FIRST) ★
+- ★ R31.7 CLOSED (2026-07-24): all 8 ACs MET, chain-complete-to-Test (getVersion boot-frozen Method 8155cf84->Impl f8c198bb->Test ff91ca36, GREEN v0.7.135). T31.7 DONE (ef66ffa9b, no-device per PO). VERSION-LIE + verify-by-pid STRUCTURALLY DEAD (per-request fs read retired; BOOT_VERSION module-const server.ts:62/68). S31 = Done 5 / QA-Review 11 / In-Progress 0, gated ONLY on Tron device batch. Queue EMPTY.
 - prod v0.7.134 (re-derive git log -15). I AM THE CAPTURE GATE ([[capture-gate-behavior-clarifications]]). Identity robbin-req@robbinTeam2:0.4 (verify otmux pane.self, NOT $TMUX_PANE).
 - ★ S31 = Done 5 / QA-Review 11 / In-Progress 0 — ALL gated on the TRON DEVICE BATCH (external). My req queue was EMPTY at rewind = clean boundary.
 - **R31.9 round-2 CLOSED**: both ACs MET (AC-fullwidth-intermediate-tier 4fcc23a14 = drawer 100vw both routes; AC-scroll-past-drawer 80448203a = last item clears, regression closed), gate GREEN DET-3x v0.7.134 (/trace+SM), RECONCILE-ONLY (1-line app.css:398 revert rides Impl ff684e10 RbDetailDrawer.fullWidth, no new node). Architect owned the root (app.css:398 position:fixed). T31.9→QA-Review (planner 473664117). Non-regression asserts held.
