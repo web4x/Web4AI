@@ -145,4 +145,9 @@ SystemTester `ce981242` · Tron primary `8f74dfba` (tombstones 3effa1fc/2703628c
 - Marker `ccb4a810`→observePosition 240c539f. **CLOSED: two-key VERIFIED both-dir full-uuid on origin (req 140e197a7) — fwd 240c539f.tests[]=[ccb4a810], rev ccb4a810.implementations[]=[240c539f]+ownerIor+status:pass+sourceFile→r319bp.** R31.9 chain-complete-to-Test; only Tron device re-verify remains. r311a owner-accept STILL HELD (Tron device).
 - **/context 54% (543k/1M) at this point — staying lean.**
 
+## R31.7 INV-V4 boot-frozen version — GREEN DET-3x v0.7.135 (2026-07-24, commit 272c91474 pushed) — version-lie killer
+- `test/visual/r317v4-boot-frozen-version-gate.mjs`. INDEPENDENT + NON-MUTATING (PO-approved, anti-circular vs architect decoy-injection). Proven BY CONSTRUCTION: getVersion()=return BOOT_VERSION (module-load const IIFE, server.ts:62/68), /api/config uses getVersion(), exactly 1 module-scope package.json readFileSync (no per-request fs) → rebuild/decoy CAN'T change /api/config without a real restart. + RUNTIME: served==committed==build-manifest==0.7.135, /api/config==/api/health single-source, stable×5 no-drift.
+- ★ TECHNIQUE banked: prove a "frozen-at-boot" invariant WITHOUT mutating shared prod — SOURCE-AUDIT the mechanism (const reads a boot value, handler has no per-request fs) + empirical stable-poll + version==committed==manifest; two independent methods agreeing with the author's decoy = anti-circular high-confidence, no prod write. ★ caught own regex sampler (`[^)]*` stopped at nested paren in the module-load line → line-scoped `[^\n]*`).
+- Marker `ff91ca36` → req mints onto the getVersion/INV-V4 impl → flips AC → planner flips T31.7 Done. verify-by-pid RETIRED. **context ~36% free — near edge, staying lean.**
+
 **Wheel-ready. NEVER forget TRON CMM4.**
