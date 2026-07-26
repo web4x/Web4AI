@@ -177,4 +177,21 @@ SystemTester `ce981242` · Tron primary `8f74dfba` (tombstones 3effa1fc/2703628c
 - **R31.7 INV-V1/V3 (req asked): NOT gated yet — 81151504 (versionGuardTreeClean/INV-V3) tests=[] + ee8bbaba (versionGuardAgreement/INV-V1) tests=[].** My r317v4 gate covers INV-V4 (getVersion boot-frozen, ff91ca36) + behaviorally the AGREEMENT (served==committed==manifest + config==health)=INV-V1 property → can place ee8bbaba marker on r317v4; INV-V3 tree-clean needs a small added assertion→81151504. ON PO GO.
 - **⚠ /context: was 54% at R31.9; +2 FeatureManager gates + R31.10 this turn = likely elevated. Flagged req/PO — a rewind may be warranted before the R31.7 INV-V1/V3 pair for a clean run.** r311a owner-accept STILL HELD (Tron device).
 
+## ▶▶ BANKED FOR REWIND (PO-approved 2026-07-26, clean boundary: R31.8/R31.10 closed, nothing in flight) — R31.7 + R31.11
+**On boot: identity `otmux pane.self`(%10=robbin-tester@robbinTeam2:0.5); self-verify served /api/config .version FIRST (phantom-guard); report fresh-up + /context to PO. Then TWO gate tasks, DET-3x @390, SystemTester-only, verify-served==HEAD:**
+
+### TASK A — R31.7 INV-V1/V3 version-guard (PO GO CONFIRMED, gate fresh)
+- Impls (both `tests=[]`, need Tests): **INV-V1 versionGuardAgreement `ee8bbaba`** (Build.versionGuardAgreement impl) · **INV-V3 versionGuardTreeClean `81151504`** (Build.versionGuardTreeClean impl). Sibling INV-V4 getVersion ALREADY gated (r317v4-boot-frozen-version-gate.mjs, marker ff91ca36, GREEN).
+- RECON on start: `grep -rnE "versionGuardAgreement|versionGuardTreeClean" src/ts` (likely a Build class) → read each impl's CONTRACT. INV-V1 agreement = served==committed==build-manifest + /api/config==/api/health agree (my r317v4 ALREADY asserts this behaviorally → likely just place `[test:uuid]`→ee8bbaba in r317v4 IF its asserts match INV-V1's contract; verify first). INV-V3 tree-clean = build/version guard on a clean tree (needs a NEW/added assertion → gate it, marker→81151504).
+- On GREEN: place the 2 markers → hand req (0.4) to mint+wire → two-key. NON-MUTATING (source-audit + read-only probes; version-guard = do NOT trigger a real build/restart).
+
+### TASK B — R31.11 big full regression (STAND-READY, gate when expert deploys + pings)
+- Scope (PO): **S31 nests + S30 no-dup + /trace both modes.** RECON on start: find the R31.11 requirement/spec (`grep -rl R31.11 scrum.pmo` + scenario Req unit) → the exact ACs. Likely: (a) S31 NESTED tree rendering (compartment/drawer nests render correctly), (b) S30 NO-DUPLICATE-node invariant preserved (no dup tree nodes — the S30 arc), (c) /trace in BOTH trace-mode AND scenario/non-trace mode render clean. Reuse: r3195/r319 (tree-drive), r3110mode-resolve (both-modes /api/trace/children), r3027 (no-dup/alignment). @390 iPhone-12. Self-verify served==HEAD (R31.11 bumps the version).
+- On GREEN: place marker(s) → req mints.
+
+### STANDING / reuse (all committed+pushed on origin)
+- Gate files: r317v4 (version INV-V4), r3110mode-resolve (both-modes resolution), r318fm-server/client (FeatureManager), r319bp (breakpoint), r315composed (diff/merge), r3195/r319 (tree), r312 (owner-security). system-tester-setup.mjs = seedSystemTester.
+- Key uuids: observePosition e8097351 · onGrabBarPointer sibling 2aded7b5 · UC drawer.observePosition cc45a580-a401-4cee-9995-a10d7691bf40 · Feature SM 16604eee / FM 2980b7d9. Server-manager choke server.ts:822; chainMethod fix server.ts:1644 (e86f0736).
+- ⛔ r311a owner-accept STILL HELD (Tron device — no eviction). SystemTester ce981242-74fe-4d44-b5b6-43c641e224df. NO `2>&1`/tail/head on captures (Tron law). git add my-own-paths only (never -A). Every gate READ-ONLY-by-construction OR restores. Screenshot-first on any pixel/geometry RED (sampler-suspect); prefer non-virtualized signals.
+
 **Wheel-ready. NEVER forget TRON CMM4.**
