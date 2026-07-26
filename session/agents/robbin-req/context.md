@@ -1,5 +1,15 @@
 # robbin-req — Context
 
+## ★ RESUME (2026-07-26, post-proactive-rewind @ CLEAN BOUNDARY dc07b1d4d — READ FIRST) ★
+- prod ~v0.7.135+, re-derive git log. Identity robbin-req@robbinTeam2:0.4 (otmux pane.self). I AM CAPTURE GATE.
+- S31 COMPLETENESS drive (Tron R31-completeness-directive.md). PO scoped me LEAN req-lane only.
+- ★ DONE this session: R31.7 CLOSED (8/8, version-lie dead). ITEM-1 = R31.10 CAPTURED (dc07b1d4d): tree resolves correct UC.method in EVERY view (trace+non-trace), never sibling-fallback when UC.method set; 2 ACs; CODE fix, architect owns topology; chain mints onto built fix.
+- ★ PENDING (fresh-me finishes): (1) R31.5 rollup UC + R31.6 concept UC — WAITING architect (0.3) for target Class/Method: R31.5 umbrella→composed-layout rollup method (RbEditorLayout? strip-composition); R31.6 pan/zoom CONCEPT→designed shared RbPanZoom viewer-base Class/Method, terminate HONESTLY at design/concept (NO Impl/Test, complete concept-chain UC→Class→Method). Mint on architect targets, wire req.useCases[], regen, commit each.
+- ★ R31.8 = TESTER-GATES-FIRST (PO-confirmed): 6 Impls (RbFeatureDetail.applyGrant/userComplete/mount, FeatureManager.searchUsers/grantedUserProfile/tokenOfProfileUuid) have NO valid gated test (only superseded r31r2-rendered-gate 4 unbound markers on rejected sha256/masked surface). DO NOT fabricate. Tester writes 6 real @390 gates → hands markers → I mint+wire measured.
+- use-cases.puml = HANDED to architect (0.3).
+- Gotchas: no-false-credit (R31.8 flag was RIGHT) · adopt-tester-markers-not-invent · scenario-json indent VARIES (detect) · git-add-explicit · generate-sprint-md.ts:164 status-blind (AC-met truth = unit ac.status).
+
+
 ## ★ CHECKPOINT (2026-07-24, pre-proactive-rewind @ CLEAN BOUNDARY — READ FIRST) ★
 - ★ R31.7 CLOSED (2026-07-24): all 8 ACs MET, chain-complete-to-Test (getVersion boot-frozen Method 8155cf84->Impl f8c198bb->Test ff91ca36, GREEN v0.7.135). T31.7 DONE (ef66ffa9b, no-device per PO). VERSION-LIE + verify-by-pid STRUCTURALLY DEAD (per-request fs read retired; BOOT_VERSION module-const server.ts:62/68). S31 = Done 5 / QA-Review 11 / In-Progress 0, gated ONLY on Tron device batch. Queue EMPTY.
 - prod v0.7.134 (re-derive git log -15). I AM THE CAPTURE GATE ([[capture-gate-behavior-clarifications]]). Identity robbin-req@robbinTeam2:0.4 (verify otmux pane.self, NOT $TMUX_PANE).
