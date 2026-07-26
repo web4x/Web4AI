@@ -150,4 +150,9 @@ SystemTester `ce981242` · Tron primary `8f74dfba` (tombstones 3effa1fc/2703628c
 - ★ TECHNIQUE banked: prove a "frozen-at-boot" invariant WITHOUT mutating shared prod — SOURCE-AUDIT the mechanism (const reads a boot value, handler has no per-request fs) + empirical stable-poll + version==committed==manifest; two independent methods agreeing with the author's decoy = anti-circular high-confidence, no prod write. ★ caught own regex sampler (`[^)]*` stopped at nested paren in the module-load line → line-scoped `[^\n]*`).
 - Marker `ff91ca36` → req mints onto the getVersion/INV-V4 impl → flips AC → planner flips T31.7 Done. verify-by-pid RETIRED. **context ~36% free — near edge, staying lean.**
 
+## R31.9 TREE RE-VERIFY (IMG_4647 mis-resolution) — VERDICT: CORRECT on live /trace, chain FINE (2026-07-26)
+- Measured end-to-end (independent method, not a screenshot): (1) UC cc45a580.method==e8097351 (observePosition) on disk; (2) LIVE /api/trace/children/cc45a580?mode=trace → Class child chainMethod={e8097351,'RbDetailDrawer.observePosition'} CORRECT (server.ts:1644-1647 sets chainMethod from UC.method in trace-mode); (3) client rb-trace-tree.ts modeParam(:57)='?mode=trace' → uses chainMethod at :379. /trace IS trace-mode → renders observePosition. IMG_4647(onGrabBarPointer) = STALE or non-trace-mode view. NO R31.9 code fix needed.
+- ⚠ LOW-PRI (PO's call, not R31.9 blocker): the client fallback (chainMethod absent = queryMode≠trace) → Class.methods[] → sibling; mis-shows ONLY in non-trace views, not /trace. Separate client-fallback enhancement if wanted.
+- ★ TECHNIQUE: to re-verify a tree-render resolution, measure the exact API the client consumes (/api/trace/children?mode=trace) + trace the client code path (which field it renders) — stronger + cheaper than a browser screenshot, and pinpoints WHERE a mis-resolution would come from (server attach vs client fallback).
+
 **Wheel-ready. NEVER forget TRON CMM4.**
