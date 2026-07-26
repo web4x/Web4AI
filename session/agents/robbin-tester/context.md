@@ -194,4 +194,10 @@ SystemTester `ce981242` · Tron primary `8f74dfba` (tombstones 3effa1fc/2703628c
 - Key uuids: observePosition e8097351 · onGrabBarPointer sibling 2aded7b5 · UC drawer.observePosition cc45a580-a401-4cee-9995-a10d7691bf40 · Feature SM 16604eee / FM 2980b7d9. Server-manager choke server.ts:822; chainMethod fix server.ts:1644 (e86f0736).
 - ⛔ r311a owner-accept STILL HELD (Tron device — no eviction). SystemTester ce981242-74fe-4d44-b5b6-43c641e224df. NO `2>&1`/tail/head on captures (Tron law). git add my-own-paths only (never -A). Every gate READ-ONLY-by-construction OR restores. Screenshot-first on any pixel/geometry RED (sampler-suspect); prefer non-virtualized signals.
 
+## ▶ REWIND BOOT 2026-07-26 (ARON Option-2, code-intact) — TASK A DONE, TASK B PHANTOM-HELD
+- Identity %10=robbin-tester@robbinTeam2:0.5. Served self-verified.
+- **TASK A R31.7 INV-V1/V3 — GREEN 7/7 (commit 1127ea6e7 pushed).** r317-single-source-version-gate.mjs (worktree-isolated, NON-MUTATING, live server untouched) ALREADY asserts both: (A) mutate-one-source propagation 3/3 [generateVersion b5eb6953, Test 317b67d0]; (B) INV-V3 versionGuardTreeClean 81151504 (lone deploy-critical hand-edit → git diff HEAD fires, 3/3) + INV-V1 versionGuardAgreement ee8bbaba (post-build consumer desync → derive-equal fires). Placed 2 markers: **INV-V3 788e7b83→81151504, INV-V1 db5427be→ee8bbaba** → handed req (0.4) to mint+wire → two-key on mint.
+- **⚠ TASK B R31.11 — HELD (PHANTOM): served=0.7.137 != HEAD-committed=0.7.138** (config-unit + package.json both .138 at HEAD; served /api/config=.137 — .138 committed but NOT deployed, no restart since). R31.11 tree-deep-nest backstopped at .137 (5ba074585). Asked PO: restart to .138 (served==HEAD → gate clean) OR .138 unrelated & gate .137 on OK. On served==HEAD → run R31.11 big regression @390 (S31 nests + S30 no-dup + /trace both modes; reuse r3195/r319 tree, r3110mode-resolve both-modes, r3027 no-dup). NEVER gate served!=HEAD.
+- R31.8 6/6 + R31.10 CLOSED (git-confirmed). r311a owner-accept STILL HELD (Tron device).
+
 **Wheel-ready. NEVER forget TRON CMM4.**
