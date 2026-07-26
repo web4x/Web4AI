@@ -155,4 +155,15 @@ SystemTester `ce981242` · Tron primary `8f74dfba` (tombstones 3effa1fc/2703628c
 - ⚠ LOW-PRI (PO's call, not R31.9 blocker): the client fallback (chainMethod absent = queryMode≠trace) → Class.methods[] → sibling; mis-shows ONLY in non-trace views, not /trace. Separate client-fallback enhancement if wanted.
 - ★ TECHNIQUE: to re-verify a tree-render resolution, measure the exact API the client consumes (/api/trace/children?mode=trace) + trace the client code path (which field it renders) — stronger + cheaper than a browser screenshot, and pinpoints WHERE a mis-resolution would come from (server attach vs client fallback).
 
+## ▶▶ PENDING (PO DRIVE, flagged for rewind 2026-07-26 @~36% free): R31.8 — 6 REAL @390 FUNCTIONAL GATES
+- **Gate the LIVE CURRENT surface = round-3+ FeatureManager (v0.7.135+), NOT the retired sha256/round-2 (req refused to fabricate Tests on the rejected round-2 surface — correct).** 6 Impls, each needs a REAL DET-3x @390 functional gate + a `[test:uuid]` marker → hand req (0.4) to mint+wire Impl.tests[]:
+  1. **RbFeatureDetail.applyGrant** — grant/revoke FLIPS (real click → grant toggles on/off, state changes).
+  2. **FeatureManager.searchUsers** — c2 user search (query → matching users returned).
+  3. **RbFeatureDetail.userComplete** — user autocomplete/completion.
+  4. **RbFeatureDetail.mount** — feature detail view RENDERS.
+  5. **FeatureManager.grantedUserProfile** — masked profile resolve (granted user → masked profile).
+  6. **FeatureManager.tokenOfProfileUuid** — profile-uuid → token resolution.
+- Recon needed post-rewind: grep src for these Impls' [impl:uuid:] markers + source files (FeatureManager server-side + RbFeatureDetail client component) + the /feature-manager (or wherever) LIVE route + owner-gate (likely owner-only like server-manager → route-intercept whoami like r319/r315). @390 iPhone-12, SystemTester, real-interactive (grant/revoke/search actual clicks). Place 6 markers → req mints. Existing related gates: r318*/r31sliced-feature-grants (feature-access) — check if reusable.
+- **WHY FLAGGED: 6 gates = ~180-300k tokens (build+run+sampler-fixes×6); at 36% free w/ autocompact OFF would burn to 0 mid-task. Recommended PO rewind for fresh runway.**
+
 **Wheel-ready. NEVER forget TRON CMM4.**
