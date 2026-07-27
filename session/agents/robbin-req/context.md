@@ -1,6 +1,13 @@
 # robbin-req — Context
 
-## ★ RESUME (2026-07-26, post-proactive-rewind @ CLEAN BOUNDARY dc07b1d4d — READ FIRST) ★
+## ★ RESUME (2026-07-27, S31 REQ-SIDE COMPLETE @ CLEAN BOUNDARY — READ FIRST) ★
+- Identity robbin-req@robbinTeam2:0.4 (verify `otmux pane.self`, NOT $TMUX_PANE). Repo /var/dev/Workspaces/web4x/Web4RawBin. Session repo /var/dev/Workspaces/AI/Claude. prod ~v0.7.141+, re-derive `git log`. I AM CAPTURE GATE.
+- ★ SPRINT 31 REQ-SIDE COMPLETE — every R31.x chain-complete-to-Test + strict-credited (or honest concept-complete), each verified 2 ways (my origin walk + tester two-key). S31 CERTIFIED 18/18 (skill-expert cert 7938e2715) THEN +R31.12:
+  - R31.5 c1e25e276 (layout.compose→RbStrip). R31.6 7b5b37992 (viewer.panZoom→RbPanZoom REUSED from S22 per R27.2; conceptOnly, honest-no-Impl, Method 45ae1f90 designAhead — NEVER fabricate an Impl for it). R31.7 c7ea540f5 (INV-V1/V3 Tests). R31.8 5ff2fb47a (6 FM Tests). R31.10 2f81a5df3→ab57128dd (server.attachChainMethod, strict-credit via named-decl extraction). R31.11 81fbce45e (chainModel.deepNestAllModes rides ChainTypeConfig d4ad31f3 R20.15 marker). R31.12 b8c0b5879→0f80bb357→55088ff83 (in-room regressions: isSemverNewer Impl 378357ea primary + 5 ride-existing; BOTH regressions REAL — #2 = empty rb-update-banner overlays header, tester real-device root 141d27f7b superseded architect static "add-affordance").
+- ★ OPEN (NOT mine — routed): (1) skill-expert DURABLE scoreboard fix = read class+classes @skill-classes.ts:272 (3rd site of the singular/plural root; closes R31.3/R31.4 rows by construction — their UCs are correct-singular) + concept-req handling (closes R31.6 false "Impl open" — do NOT fabricate). (2) Tron device visual on R31.12 in-room @390. My interim class→classes[] mirror on 7 UCs (55088ff83) closed R31.5/R31.10/R31.12 rows.
+- ★ BANKED: measure-don't-assume resolved every conflict (R31.6 stale audit, R31.12 stale scoreboard, RbPanZoom/ChainTypeConfig already-existing). NO-FALSE-CREDIT held: anon-block markers refused → drove R31.10+R31.12 named-decl extractions; concept/ride-existing kept honest. generate-sprint-md DELETES S31 PUMLs+design-notes every regen → `git restore --source=HEAD --worktree <paths>` after EVERY regen. git-add-explicit (shared shell). Correct-by-construction > incidental data-mirror.
+
+## ★ RESUME (2026-07-26, post-proactive-rewind @ CLEAN BOUNDARY dc07b1d4d) ★
 - prod ~v0.7.135+, re-derive git log. Identity robbin-req@robbinTeam2:0.4 (otmux pane.self). I AM CAPTURE GATE.
 - S31 COMPLETENESS drive (Tron R31-completeness-directive.md). PO scoped me LEAN req-lane only.
 - ★ DONE this session: R31.7 CLOSED (8/8, version-lie dead). ITEM-1 = R31.10 CAPTURED (dc07b1d4d): tree resolves correct UC.method in EVERY view (trace+non-trace), never sibling-fallback when UC.method set; 2 ACs; CODE fix, architect owns topology; chain mints onto built fix.
