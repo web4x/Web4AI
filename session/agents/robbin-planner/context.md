@@ -1,3 +1,14 @@
+# robbin-planner Context — Save Point 2026-07-27 (★ POST-REWIND RE-ORIENT — S31 scope re-derived from DISK)
+
+**WHO/WHERE:** robbin-planner @ robbinTeam2:0.6, WODA.prod. Rewound Option-2 (conversation-only, code intact); landed 66%, 332k runway. RE-DERIVED CURRENT FROM DISK (task units = truth), thread was 5-days stale. Repo `/var/dev/Workspaces/web4x/Web4RawBin`. Generator via node18 as prior anchor.
+## ✓ S31 SCOPE (measured from task units 2026-07-27, reported to PO):
+- **DONE (5):** T31.2 owner-gate · T31.3 otmux-tree · T31.4 terminal · T31.7 single-source-version · T31.8 Feature/FeatureManager.
+- **QA-REVIEW (11, functional complete → awaiting Tron device/ratify):** T31.1 profile-grants · T31.5 WODA umbrella + T31.5.1-5.7 · T31.6 pan/zoom concept · T31.9 detail-container-CSS-responsive.
+- **★ OPEN — reqs minted, NO covering task (TRUE remaining scope, need stand-up):** R31.10 trace-tree resolves correct UC.method every view (no sibling-fallback) · R31.11 trace-tree deep-nests full chain · R31.12 in-room chat + room-title→settings @390 · R31.13 deterministic build (same source→same bundle hashes). R31.13 = last req (no R31.14).
+- Sprint has 20 reqs / 9 top-level tasks (+7 T31.5.x children). ⚠ req.tasks[] back-ref UNRELIABLE (R31.1-4 show 0 but ARE covered) — coverage = whether a task-31.N.md file exists. planning.md (generated) current for T31.1-9; R31.10-13 not in it (no tasks).
+- ▶ NEXT-ME: on PO go, stand up T31.10-T31.13 (scaffold-from-req pattern: os.makedirs index dir first). Then S31 = all QA-Review(Tron device)/Done. Classifier was briefly unavailable mid-turn (retry bash).
+
+---
 # robbin-planner Context — Save Point 2026-07-20 (★ DEEP-REWIND RE-ORIENT — S31, git-grounded, BOOT-FIRST)
 
 **WHO/WHERE:** robbin-planner @ robbinTeam2:0.6, WODA.prod (host v60211). Rewound deep (conversation-only, disk intact); RE-ANCHORED FROM DISK+GIT, not stale memory. Repo `/var/dev/Workspaces/web4x/Web4RawBin` (v0.7.92 working / HEAD 13ba45ec0). Node18 = `/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda`; generator: `PATH="$NODE18:$PATH" $R/node_modules/.bin/tsx $R/scripts/generate-sprint-md.ts <sprint-uuid> [--check]`.
