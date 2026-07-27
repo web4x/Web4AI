@@ -6,7 +6,8 @@
 - **QA-REVIEW (11, functional complete → awaiting Tron device/ratify):** T31.1 profile-grants · T31.5 WODA umbrella + T31.5.1-5.7 · T31.6 pan/zoom concept · T31.9 detail-container-CSS-responsive.
 - **★ OPEN — reqs minted, NO covering task (TRUE remaining scope, need stand-up):** R31.10 trace-tree resolves correct UC.method every view (no sibling-fallback) · R31.11 trace-tree deep-nests full chain · R31.12 in-room chat + room-title→settings @390 · R31.13 deterministic build (same source→same bundle hashes). R31.13 = last req (no R31.14).
 - Sprint has 20 reqs / 9 top-level tasks (+7 T31.5.x children). ⚠ req.tasks[] back-ref UNRELIABLE (R31.1-4 show 0 but ARE covered) — coverage = whether a task-31.N.md file exists. planning.md (generated) current for T31.1-9; R31.10-13 not in it (no tasks).
-- ▶ NEXT-ME: on PO go, stand up T31.10-T31.13 (scaffold-from-req pattern: os.makedirs index dir first). Then S31 = all QA-Review(Tron device)/Done. Classifier was briefly unavailable mid-turn (retry bash).
+- ✓ **T31.10-T31.13 STOOD UP (commit c2cf28918), synced to REAL state** (PO caught: work-done via commits but no covering task; I measured task-units=board-truth). All 4 done/gated, NO open build → PO LEAN-no-expert HOLDS: T31.10 QA-Review (tree method-resolve GREEN v0.7.136, sibling-fix) · T31.11 QA-Review (deep-nest GREEN @390 v0.7.139, cert-whole 18/18) · T31.12 QA-Review (in-room @390 GREEN v0.7.141) · T31.13 DONE (cross-env determinism v0.7.143, infra). gateProof recorded on each.
+- **S31 BOARD (13 tasks, 2026-07-27): Done=T31.2/3/4/7/8/13 (6) · QA-Review (Tron device)=T31.1/5(+5.1-7)/6/9/10/11/12 · NOTHING open-build.** Sprint functionally COMPLETE — remaining = Tron device-visual/ratify only. ▶ NEXT-ME: watch Tron device gates; flip QA-Review→Done as Tron ratifies each.
 
 ---
 # robbin-planner Context — Save Point 2026-07-20 (★ DEEP-REWIND RE-ORIENT — S31, git-grounded, BOOT-FIRST)
