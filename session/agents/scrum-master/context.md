@@ -1,5 +1,16 @@
 # Scrum Master Context — 2026-07-14 (post-SELF-rewind boot, MOST CURRENT)
 
+> ★★★★★ **SM CAN DRIVE REWINDS — but ONLY when Tron explicitly authorizes (2026-07-26/27 two-driver-cascade, Tron said "use otmux !!!!").** Normally health-sweep-ONLY (flag, don't drive). But when BOTH drivers are down (ARON=OOSH-PO can't zoom; trainer near-wall can't self-drive), Tron authorized SM to drive. I drove BOTH trainer(87→50%) + expert(81→57%) 2-phase rewinds clean. **THE DRIVE PROCEDURE (banked, prevented 2 code-reverts):**
+> 1. **Phase-1:** tell agent to commit its context.md anchor (clear composer C-u first); wait 'saved'.
+> 2. **ENLARGE narrow panes: `otmux pane.size.set <pane> 120 45`** (NOT `tmux resize-pane -Z` — can't target another window's pane from my session; this is the "use otmux" Tron meant). Restore after via `tmux resize-window -x 252 -y 63; select-layout tiled`.
+> 3. `otmux send.enter <pane> "/rewind"` → capture-verify picker rendered.
+> 4. Navigate DEEP to ~48-50% (≤50% Pi-cap, NOT deeper): `send.raw <pane> Up Up...` in batches, capture between, watch "↑ N more above".
+> 5. `send.tui <pane> Enter` (NOT send.raw=injects Escape) → confirm menu.
+> 6. **⚠️ BY-LABEL SAFETY (this prevented reverting 30 files on expert + 14 on trainer): the confirm-menu LAYOUT VARIES. Option-1 is often "Restore code and conversation"=CODE-REVERT. READ THE LABEL — select the entry literally saying "Restore conversation" AND verify the header flips to "The code will be unchanged" BEFORE Enter. NEVER pick by number/position.** (send.raw Down to move, send.tui Enter to select.)
+> 7. **The checkpoint's "No code changes" LABEL CAN LIE** (trainer: would've reverted 61 files) — trust ONLY the confirm-menu header, not the checkpoint label.
+> 8. **POST-REWIND CLEANUP:** the restored msg sits in composer. **Multi-line msgs need SEVERAL C-u** to clear — verify "Ctrl+Y to paste deleted text" appears + ❯ EMPTY BEFORE sending the boot instruction (else it tangles + the agent acts on the stale restored msg — happened once, caught w/ Escape). THEN send boot (re-derive from disk anchor, ignore restored msg).
+> 9. Front-loaded agents land HIGHER than checkpoint depth (expert: 48% checkpoint → 57% actual) — the old bulk persists; still beats the ~70% single-rewind floor. NO FORK EVER (Tron 2x) — 2-phase deep IS the mechanism.
+
 > **Context measurement → `session/base-skills/context-measurement.md`** (single source; all prior banner / context.read / sweep / "no-banner=healthy" rules SUPERSEDED).
 > **Small panes / rewind-render → `session/base-skills/otmux-pane-sizing.md`**: STANDING pre-op = zoom target pane via **`otmux` select+zoom (NOT bare `tmux resize-pane -Z`)** before ANY `/rewind` or `/context`, unzoom after; one-zoom-per-window. Headless rewind IS possible when the pane is zoomed tall (picker renders client-side, `pane.capture` sees it → drive with capture-between-every-keystroke). Rewind menu: pick **"Restore conversation" BY LABEL** (layout varies — was option 1, not always "option 2"). *Corrects the earlier "headless trainer structurally can't drive rewinds" claim — it CAN, with zoom-first. Proven: architect 91%→12%, tester 83%→<30%, both Option-2 conversation-only zero-loss.*
 > ⚠️ SUPERSEDED 2026-07-20 → [[context-measurement]]. OLD "TUI banner / clear-to-save-Nk / no-banner=healthy = context ground truth" is WRONG — do not act on it.
