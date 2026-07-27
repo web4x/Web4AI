@@ -5,6 +5,16 @@
 **Pane**: ooshTeam:0.0 on **WODA.prod** (v60211.1blu.de) — re-derived 2026-06-28 (was wrongly @MacStudio: fork inherited parent's stale @host; real host = OOSH_SSH_CONFIG_HOST=WODA.prod)
 **Session**: oosh-po@WODA.prod [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## 🔴 CHECKPOINT — 2026-07-24 (context-pressure proactive save; NO self-/clear — ARON/trainer rewinds a trained agent)
+Identity: oosh-po@WODA.prod, ooshTeam:0.0/%17, uuid 889a24a9 (G1 LIVE → `otmux current` reliable, $TMUX_PANE-immune). BOOT-FIRST: MEASURE DISK (git HEAD /root/oosh, `ls scrum.pmo/sprints*`, read task files) not the stale thread [[ghost-context-after-deep-rewind]].
+**DELIVERED since 07-20 (all live on /root/oosh `mcdonges.latest`, gated+pushed):** unit-D `context.gather.quiet` **`08504af`** (send-free ctx refresh, no more /context to near-cliff agents). sweep RATE_LIMIT **API-error-at-idle** fix **`b66b678`** (3 independent gate rounds — real fix = run ratelimit.probe on the `auto mode on` idle path past the 9094 short-circuit + position-aware resumed-guard; `sweep-rate-limit-detect.task.md`). opy one-command **bare-box install COMPLETE** (`eb42502` + prior, end-to-end green).
+**OPEN / NEXT:**
+- **NEW (Tron 07-24):** team.sweep does NOT recognize a **context-limit-reached** state ("Context limit reached · /compact or /clear to continue") — DISTINCT from the API-rate-limit fix. Add that signature to `sweep.detect` (same pattern: match the string, classify a blocked/needs-attention state, no-false-positive). robbin-req (robbinTeam2:0.4) was the case; its live render also shows a /context readout ~66% used.
+- **S-9 send-ghost fix** — STILL awaiting Tron deploy GO (`scratchpad/S-9-otmux.diff`, gated 3 rounds). The one thing I hold for explicit GO.
+- unit-D driver (sweep.loop/watchdog) not started yet. otmux `fit` small-session error — couldn't repro from 133 client; need Tron's exact error/box.
+**GIT-KEYS (07-21): resolved = TRANSIENT server-side API/IP throttle** (keys/config fine, access restored). On recurrence: WAIT, don't churn keys.
+**DEPLOY DISCIPLINE:** `git apply` to /root/oosh (NEVER `cp -a` — symlink chain writes through to /home/shared [[cp-a-hardlink-writes-through-to-live]]); gate the FIX at the level the defect lives + independent + symlink-safe (git show/worktree) [[gate-the-fix-not-just-the-target]]. Account had an intermittent API throttle all 07-24 (hit robbin-req + my subagents; recover on retry).
+
 ## 🔴 REWIND-READY CHECKPOINT — 2026-07-20 (overnight; heeding Tron's ≤85% proactive-rewind guardrail)
 **Identity:** oosh-po@WODA.prod, ooshTeam:0.0 / pane %17, live uuid **889a24a9** (RE-DERIVE — prove by capturing which pane renders my own TUI; $TMUX_PANE lies [[self-id]]). BOOT-FIRST: `otmux pane.history` + `ls scrum.pmo/sprints*` + read task files (world moved). SM=ooshTeam:0.1 (42-pair, recovered from its own 13h wall via trainer Option-2). Deploy discipline: `git apply` NEVER cp -a (hardlink write-through); gate must SANITY-CHECK VALUES (0k for a live agent = impossible false-low); fail-loud = record NOTHING never 0; no `| tail`/`head`/`2>/dev/null` (denied).
 
