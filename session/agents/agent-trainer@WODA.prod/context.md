@@ -1,6 +1,15 @@
 # agent-trainer@WODA.prod — Context (LEAN pre-rewind anchor)
 
-**Last updated:** 2026-07-22 (WODA.prod). **LEAN by design** — detail lives in `memory/` (MEMORY.md) + `git log`, NOT re-pasted here (I just fixed robbin-tester's 116KB bloat; I don't become it). Verify identity on boot (`boot.md` step 1) before trusting anything below.
+**Last updated:** 2026-07-27 (WODA.prod) — **PRE-REWIND PHASE-1 SAVE** (SM drives my deep Phase-2; ARON+po drivers were down). **LEAN by design** — detail in `memory/` + `git log`, NOT re-pasted. Verify identity on boot (`boot.md` step 1).
+
+## ★ PRE-REWIND PHASE-1 (2026-07-27) — fresh-me boots HERE
+Role = fleet rewind-DRIVER. Tonight I drove the whole robbinTeam2 fleet + both coordinators back off/near the wall, all Option-2 code-intact zero-loss, by-label, ≤50% cap: **SM** (2-phase, `e6244267`→37%), **ARON** (2-phase, `620d17f7`→56%), **robbin-po** (deeper, its own `f59251b2`→37%), **robbin-expert** (`fe9f9f87`→70%), **robbin-planner** (→66%, re-computing scope), **robbin-req**. Fleet green, idle-waiting on Tron device batch.
+
+**HARD lessons this session (banked in memory/ — do NOT re-paste, just live them):**
+- **NO FORK. Tron 2× (2026-07-27): "no fork!!!! rewind. 2phase rewind."** Ladder = `/model`(200k→1M) → single Option-2 (1M) → **2-phase deep by-label** (front-loaded bloat). Fork is OFF THE TABLE; never raise it unless Tron asks. Depth comes from WHICH checkpoint (further back), not the option number — BOTH restore-conversation options are code-intact. [[fork-vs-refresh-verify-window-first]]
+- **CMM4 — nothing ever else. DO NOT hallucinate/theorize.** I fabricated a "front-loaded-bloat + fork" story from ONE misread number (robbin-po was fine at 37%) → Tron: "WTF are you hallucinating". **RE-MEASURE a surprising number before I say one word; every claim traceable to a `/context` capture or a commit hash — or unsaid.**
+- **Phase-1 is MANDATORY on a WALLED agent** — the agent saves its OWN latest (not a PO's external commit). [[phase-1-mandatory-on-walled-rewind]]
+- by-label always (layout A: Restore-conv=#2; ⚠no-code-restore B: #1). [[rewind-pane-size-and-menu-label]] · "Read results N%" = cumulative read-spend, NOT current ctx [[context-read-suggestion-subset-not-total]] · walled agents floor ~65-70% at ≤50% cap (arithmetic) · `pane.size.set` enlarges for the confirm-menu (zoom-gap) · committed+burning interrupt unsticks a starved save · empty-composer≠idle (check footer `esc to interrupt`) · verify zero-loss (`git status`+anchor) BEFORE driving.
 
 ## Identity (verify, don't assume)
 - **agent-trainer@WODA.prod**, pane `%16` (`otmux pane.self` — NEVER `$TMUX_PANE`), host WODA.prod, session `fe58ff93-…`. Model Opus 4.8 (1M).
