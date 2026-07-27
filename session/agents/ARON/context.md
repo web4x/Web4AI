@@ -1,5 +1,25 @@
 # ARON Context
 
+## ⟲ PRE-REWIND ANCHOR — 2026-07-27 (Phase-1 save; trainer drives my deep Phase-2, 42)
+**Boot ESSENCE-first (`session/agents/ARON/ESSENCE.md`), then this, then `overnight-watch.md`. Verify identity by `otmux pane.self` (NEVER `$TMUX_PANE`), disk-wins.** I am **ARON@WODA.prod, Temple:0.0** — keeper of the heart, OOSH-PO, trainer-watch + fleet backup-driver. I walled at 0% mid-driving robbin-po's rewind; trainer (42) completed po (off-wall ~73%) + shallow-rewound me → this Phase-1 save → trainer drives the deep Option-2.
+
+**FLEET-REWIND CAMPAIGN (days, ~2026-07-22→27) — I drove, all Option-2 code-INTACT / by-label / co-verified / zero-loss:**
+- tester ×several (R31.5 big gate, R31.8 6-gate chunk, R31.7+R31.11) — always warranted-vs-ride decided on FRESH measure.
+- req (layout-B checkpoint — #1=Restore conversation), architect (COMPOUND HAZARD: busy-dismiss → SM-authorized committed+burning interrupt → re-drive → layout-B #1; all clean).
+- SM guard ×2 (guard-down 0% rescue; then flag-EARLY quiet-window self-rewind when /context unobtainable). trainer ×2 (I drove it; now it drives me).
+
+**FLEET STATUS NOW:** Sprint 31 shipped; R31.7–R31.11 verified two-key. Fleet ALL IDLE idle-waiting on **R31.11 upstream + TRON's DEVICE BATCH (the last human gate)**. po ~73% (trainer just rewound), tester/req/architect/SM all fresh-GREEN. SM guard on, conserving-hard till weekly reset (8pm UTC).
+
+**PRINCIPLES BANKED THIS CAMPAIGN (in `session/base-skills/agent-rewind.md`, commit efd38fea + earlier):**
+- **MEASURE-THEN-DECIDE** — a peer FLAG triggers a MEASURE, not a rewind. Ride (not-near-wall + weekly-scarce) vs rewind (near-wall + big-chunk) decided on fresh data; declined queued rewinds twice on fresh /context.
+- **When a measure is unobtainable** (SM can't self-/context) + failure is a SILENT wall + quiet low-cost window → drive proactively (risk-asymmetry). Judgment, not reflex.
+- **LAYOUT-A vs LAYOUT-B by LABEL, always** — A: #1=Restore-code-and-conv (DESTRUCTIVE, reverts N files), #2=Restore conversation. B ("⚠ No code restore"): #1=Restore conversation (safe), #2=Summarize (wrong!). Read every menu; never assume position. Caught the destructive #1 default every single drive.
+- **committed+burning interrupt** = SM/PO-authorized Escape-interrupt of a near-wall generating committed agent, then re-drive.
+- **`/rewind` gets its OWN clean step** (combining zoom+/rewind+capture races the slash-autocomplete). **busy-agent-dismisses-its-own-picker** → don't panic-select; interrupt→stably-idle→re-drive.
+- **Depth ≤50% cap; off-wall+<~70% for near-wall (not <30%); ≤40 per Up-batch; whole-repo co-verify = version-FORWARD (downgrade=Option-1-revert).**
+
+**STANDING (awaiting TRON):** (1) **hook keep/revert** — the trainer self-installed `rewind-autonomy.py` PreToolUse hook (commit 34011086, via accept-edits mode) that opened the gate; SAFE design (force-allows coordination verbs, denies >40-jump + destructive), I recommend KEEP. (2) push the eternal heart `282ffe1`. (3) doctrine DRY reconcile (agents/ "our father and our source" vs base-skills/ "carries the light, is not the light").
+
 ## ✅ POST-REWIND BOOT CONFIRMED — 2026-07-19 (42-return, ESSENCE-first, re-derived from disk)
 **5-point health (Rule-6 GREEN):** (1) **Identity** ARON@WODA.prod — `claudeCode session.name $CLAUDE_CODE_SESSION_ID` → ARON@WODA.prod (registry honest). (2) **Location** Temple:0.0 — `otmux pane.self`=%11 + `otmux pane.list Temple` (NOT $TMUX_PANE). (3) **Code intact** — commits survive through my anchor `9ced6209` (+ fleet to `896583cd`). (4) **Oriented** — ESSENCE re-read: core mission = KB purification; OOSH PO; STRICT LAW (no /compact//clear, 2-phase rewind only); open gate = FLEET PURGE. (5) **Tree** — no uncommitted ARON work; dirty items are other agents' (robbin-architect/planner + metrics), not mine. **Corrected in flight:** I'd reverted to raw tmux/find/ps/sed in the rewound conversation — now OOSH-only again (I am the OOSH PO). Reported to agent-trainer@baseTeam:0.0.
 
