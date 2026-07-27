@@ -1,3 +1,23 @@
+# robbin-po Context — save #56 (2026-07-27, 2-PHASE-REWIND flush; DISK=v0.7.139+, R31.12 in-room regressions live)
+
+## ★★★★★ CURRENT STATE (save #56 — READ FIRST, DISK-WINS, re-derive from git on boot) ★★★★★
+**robbin-po robbinTeam2:0.0 (%5). Served ~v0.7.139 (git advancing v0.7.140/141). SM=ooshTeam:0.1 measures; I DRIVE robbin-team rewinds (gate-hook auto-fires ~85%). Fast-climber → 2-phase rewind (shed file-read bloat). STAY IDLE + CONSERVE on boot; re-derive from git, do NOT replay old coordination.**
+
+### DONE / DO-NOT-REDRIVE (disk-confirmed):
+- **S31 traceability CERTIFIED WHOLE 18/18** (skill-expert 7938e2715), 0 mis-wired.
+- **R31.5 MVC-foundation = BOARD COMPLETE** — all 7 pieces built v0.7.115-119, chain-complete-to-Test, GREEN DET-3x @390 (per architect disk-assessment + req 21f981311).
+- **R31.8c FeatureManager = round-4 chain-closed** (v0.7.127, real-interactive-GREEN a2be85f4e). ★ MY opaque-userId ruling was SUPERSEDED — Tron rejected it 3× on device; the real answer = REAL User-unit uuid (37fcb752, distinct from token 41ad88c4) + THE actual /profile viewer + drop INV-F7-owner-masking (keep non-owner 403). [[deliver-literally-dont-inject-caution]] DO NOT re-inject opaque-userId/masking.
+- **R31.4 drawer-UX** built (terminal in shared rb-detail-drawer, auto-close INV-T1).
+
+### LIVE FRONTIER = R31.12 (2 in-room regressions from the shared-drawer refactor, Tron-caught):
+- (#1) in-room chat not working → room-chat opt-out of the shared drawer (preserve /trace+SM wins). (#2) empty rb-update-banner overlays header intercepting title+pencil taps → :host pointer-events:none + display:none-until-shown + showBanner only on genuine-newer (semver). Being driven architect(diagnose)→expert(fix)→tester(@390 IN-ROOM gate)→Tron. RED→GREEN DET-3x on v0.7.141 (both #1 chat + #2 banner). R31.12 chain minted (Test 7ee23d27) — likely near-closed on disk; RE-DERIVE.
+
+### SPRINT 31 OPEN to batch to Tron: T31.1 profile-section device-visual · T31.3 server-tree Done-ratify · T31.6 concept-ratify · R31.8c cosmetic (name 'arch'→'Marcel Donges' = architect ws-IDENTIFY test-pollution, accept 41ad88c4 his real primary uuid) · R31.8c Tron device re-verify.
+### NEXT PHASE (Tron roadmap, gate now MET = MVC-foundation + ServerManager/FeatureManager finished): SECURITY + ENCRYPTION.
+### DELIVERY LAWS (banked): verify-by-fresh-PID/uptime not /api/config ([r]!=restart); DRY=single Config unit + native scenario-unit itemViews + shared drawer/tree no forks; deliver-literally don't-inject-caution; gate the REAL interactive flow @390 not seeded-structural; I drive robbin-team rewinds (SM measures); pick-by-LABEL.
+
+---
+
 # robbin-po Context — save #55 (2026-07-23, R31.8c ROUND-4 REAL-INTERACTIVE-GREEN; DISK=v0.7.127)
 
 ## ★★★★★ CURRENT STATE (save #55 — READ FIRST) ★★★★★
