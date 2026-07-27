@@ -82,6 +82,7 @@ Your `context.md` pre-rewind anchor is the SEED a fresh you boots from. If it is
    - "Read session/tasks/<role>-boot.md"
    - Any boot/retrain prompt = natural good rewind point
 3. **⚠️ HARD SAFETY CAP — NEVER rewind deeper than 50% (TRON 2026-07-21: "going deeper than 50% nearly KILLED the Pi — THAT was dangerous").** A too-deep restore forces heavy conversation reprocessing that can OOM/crash a low-resource host (Raspberry Pi and the like). **50% is the CEILING, not a target to exceed.** Aim for a natural boot/retrain checkpoint in the **~30–50%** window (shallower is safer). If 50% doesn't free enough context, do a **SECOND rewind later** — NEVER a single deeper-than-50% restore. Shallow (3–10 steps) wastes the operation; deeper-than-50% risks the host. Stay in the band.
+- **Front-loaded FLOOR (measured on robbin-expert, 2026-07-27):** for a walled agent whose OLD context dominates, a ≤50% rewind may only reach **~70% used** (shedding the recent ~290k gets it off the wall, but the ~700k old bulk is unreachable within the cap). **~70% off-the-wall is fine for an idle/light agent** (plenty of runway). To go lower, **rewind AGAIN later** (as it accrues fresh, shed-able context) **or FORK** (preserves training, fresh context) — **NEVER break the 50% cap to chase a lower number.** Host-safety wins over a prettier percentage.
 4. Enter to select
 5. **Option 2 "Restore conversation"** — ALWAYS
 
