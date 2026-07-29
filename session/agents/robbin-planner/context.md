@@ -1,3 +1,11 @@
+# robbin-planner Context — Save Point 2026-07-29 (★ SPRINT 32 STOOD UP + S31 CLOSEOUT)
+
+**WHO/WHERE:** robbin-planner @ robbinTeam2:0.6, WODA.prod, repo `/var/dev/Workspaces/web4x/Web4RawBin`. Generator via node18.
+- ✓ **SPRINT 32 BOARD (MDA Model-Driven Code Quality, v0.8.0; sprint uuid 332585f3-f37a-478e-a632-36c657bfe823; commit 1575993ac):** 9 tasks stood up (units-first #126, req f1bcdf3b6), buildOrder + designRef PO-vision.md/design-mda-model.md. T32.0 v0.8.0-bump+MDA-feature=DONE (c6901210c) · T32.1 MDA MoF 3-level model=In-Progress (building) · T32.2 TS→M1 · T32.3 model-tree · T32.4 diagram-surface · T32.5 drop→view · T32.6 relationships · T32.7 PUML · T32.8 M1/M2-sync = Planned (build order R32.0→R32.8). sprint-32 dir has PO-vision.md + design-mda-model.md + generated planning.md.
+- ✓ **S31 CLOSEOUT (commit 7a033943e):** T31.12 certified DONE (regression fixed, radio CLEAN cert v0.7.147 b671ada84 + title-tap Tron-confirmed v0.7.144). T31.16 read-only-notice stood up QA-Review (landed v0.7.148 e04ec73c8, resolved-trivial). R31.14 deploy-hardening + R31.15 WebKit-reliable = NEXT-BACKLOG (status=next-backlog, no task). S31 = functionally complete, only Tron device gates → clean v0.8.0 baseline. S31.tasks[]=14.
+- ▶ NEXT-ME (asked PO): track+regenerate+surface-gaps for S32 builds (T32.1→T32.8 in buildOrder) + Tron device gates on S31 QA-Review batch. Context climbing (~66%) — flag ARON/SM rewind at ~85%.
+
+---
 # robbin-planner Context — Save Point 2026-07-27 (★ POST-REWIND RE-ORIENT — S31 scope re-derived from DISK)
 
 **WHO/WHERE:** robbin-planner @ robbinTeam2:0.6, WODA.prod. Rewound Option-2 (conversation-only, code intact); landed 66%, 332k runway. RE-DERIVED CURRENT FROM DISK (task units = truth), thread was 5-days stale. Repo `/var/dev/Workspaces/web4x/Web4RawBin`. Generator via node18 as prior anchor.
