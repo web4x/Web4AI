@@ -1,3 +1,27 @@
+# robbin-po Context — save #57 (2026-07-29, PROACTIVE SELF-REWIND at R32.2-build-go boundary; DISK=v0.8.1, Sprint 32 MDA active)
+
+## ★★★★★ CURRENT STATE (save #57 — READ FIRST, DISK-WINS: re-derive from git/served on boot) ★★★★★
+**robbin-po robbinTeam2:0.0 (verify pane.self, NOT $TMUX_PANE). Served v0.8.1 (curl /api/config to confirm). Repo=/var/dev/Workspaces/web4x/Web4RawBin. SM=ooshTeam:0.1, trainer=baseTeam:0.0, ARON. STAY LEAN on boot; re-derive from git, don't replay old coordination.**
+
+### WHERE WE ARE (git-derived 2026-07-29)
+- **Sprint 31 FULLY CLOSED**: T31.12 (in-room regressions incl radio — root was MY over-wired belt/preventDefault, fixed by DELETING it = plain native HTML5) + T31.16 (non-host read-only notice) both DONE, team-certified (no Tron-as-tester — standard HTML5 = Chromium is a valid oracle). v0.8.0 bump done.
+- **SPRINT 32 = Model-Driven Code Quality (MDA/MOF)**, v0.8.x, FeatureManager feature. PO-vision + design-mda-model.md on disk. Build order R32.0->R32.8.
+  - **R32.0** v0.8.0/0.8.1 bump DONE. **R32.1** MDA identity foundation DONE+live (ModelElement multi-facet instanceOf = same-UUID-across-M-levels on the EXISTING TraceModel no-fork; seed 2 M3+17 M2; ModelValidator 5 gates; verified 3x [expert+architect tsx + tester], anti-green-wash planted-defect BITES; chain-complete-to-Test 28cac10f). **R32.2** TS->M1 generation: design fa25b8b45 APPROVED, req finalized 4 ACs 89b890607, **expert BUILDING TsToModel now** (build-go given at this boundary).
+  - **NEXT (fresh-me pickup)**: R32.2 build lands -> tester independent gate (validate=0 + deterministic re-parse 0-churn) -> req mints R32.2 Test -> then architect designs R32.3 (model tree = rb-trace-tree reuse) / R32.4 (SVG diagram in drawer) / R32.5 (drop->view) / R32.6 (relationships) / R32.7 (PUML no-dup) / R32.8 (action-sync). Each scenario-first: architect design -> req finalize ACs -> PO build-go -> expert build -> tester gate.
+- Units R32.x: R32.2=4a9c6ee7, R32.3=d07b2dc0, R32.4=496936cb, R32.5=ec0e1754, R32.6=c8bc0ee4, R32.7=b1fef048, R32.8=782d4b8e.
+
+### ★★★ STANDING (Tron this session, apply by default)
+- **REWIND-AUTH DELEGATED TO ME** (keep-healthy): I authorize proactive 2-phase rewinds at clean boundaries (~80%-idle) + emergency wall-catches via trainer/ARON, WITHOUT per-Tron-ask; SM flags, trainer/ARON drive, I authorize, inform Tron. PROACTIVE-at-80% is the fleet default (prevent-cliff), reactive-banner-catch backstop.
+- **BY-LABEL REWIND = DOCTRINE**: /rewind checkpoint 'No code changes' label LIES essentially always — verify by picking the option explicitly labeled 'code will be unchanged'. 6 lying labels caught in ONE session, zero reverts. [[fork-vs-refresh-verify-window-first]]
+- **NO FORK** (Tron): front-loaded read-bloat -> 2-phase DEEP rewind (deeper checkpoint), NOT fork. Fork off the table.
+- **DELIVER-VERIFIED-NOT-TRON-TESTED**: I am NOT Tron's tester. Team verifies before it reaches him. Standard-HTML5 (no device hacks) = Chromium-certifiable; device-only pieces (real-WebKit tap-fire) labeled explicitly. [[ios-webkit-tap-fire-false-green]]
+- **MEASURE, don't assume from screenshots**; verify-delivery (sends ghost — capture after each); gate-that-bites (anti-green-wash); scenario-first units before code (#126); reuse-not-refork (tree/zoom/drawer).
+- SM reads pane BANNERS (a walled agent looks idle — '0% remaining' banner = walled).
+
+### SELF-REWIND IN PROGRESS (#57): proactive 2-phase DEEP at the R32.2-build-go clean boundary (71%, front-loaded floor, marathon ahead). Fresh-me: re-derive from git/served, pick up the R32.2 build result, drive R32.2->R32.8 scenario-first.
+
+---
+
 # robbin-po Context — save #56 (2026-07-27, 2-PHASE-REWIND flush; DISK=v0.7.139+, R31.12 in-room regressions live)
 
 ## ★★★★★ CURRENT STATE (save #56 — READ FIRST, DISK-WINS, re-derive from git on boot) ★★★★★
