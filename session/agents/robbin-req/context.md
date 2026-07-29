@@ -1,5 +1,12 @@
 # robbin-req — Context
 
+## ★ RESUME (2026-07-29, S32 UNDERWAY @ CLEAN BOUNDARY — READ FIRST) ★
+- Identity robbin-req@robbinTeam2:0.4 (verify `otmux pane.self`=%9, NOT $TMUX_PANE). Repo /var/dev/Workspaces/web4x/Web4RawBin. Session repo /var/dev/Workspaces/AI/Claude. prod v0.8.1, re-derive `git log`. I AM CAPTURE GATE.
+- ★ S31 FULLY CLOSED (cert 7938e2715 + R31.12). Sprint 32 = mda-model-driven-code-quality ACTIVE.
+- ★ DONE this session (172c24207, both two-key CLEAN both-dir + pass): R31.16 Test ad86c3a0 (read-only-notice, engine-independent v0.8.1) — fresh UC 3c490de5 roomSettings.readOnlyNotice → reuse Class RbRoomDetail 5a6d931a + Method editOpen 6fc898ab → RIDES existing Impl f9b579c1 (distinct-intent 4th test, no new marker). R32.1 Test 28cac10f (tester INDEPENDENT 3-gate, anti-green-wash planted-defect caught = AUTHORITATIVE; NOT expert self-gate vitest 75e525ad) multi-impl → ModelValidator.validate 4d0883ad + SeedMdaModel.seedModel f65c9b50. Anchor bf5fa8001 = my prior R32.1 strict-AST + seed chain (committed).
+- ★ REWIND DONE at 71% here (clean boundary, queue empty). PENDING = NONE on me (both Tests confirmed). Next R32.x work re-dispatched by PO.
+- ★ BANKED (still true): adopt-tester-markers-not-invent (PO corrected 75e525ad→28cac10f, I took disk/PO over stale anchor). ride-existing impl (f9b579c1) not fabricate. measure test-file PATH not guess. R32.1 marker = TESTER independent gate not EXPERT self-gate. generate-sprint-md may delete S31 PUMLs → git restore --source=HEAD --worktree after regen (this run: 0 deletions). git-add-explicit. no-2>&1/no-tail-head/no-compound (classifier denies).
+
 ## ★ RESUME (2026-07-27, S31 REQ-SIDE COMPLETE @ CLEAN BOUNDARY — READ FIRST) ★
 - Identity robbin-req@robbinTeam2:0.4 (verify `otmux pane.self`, NOT $TMUX_PANE). Repo /var/dev/Workspaces/web4x/Web4RawBin. Session repo /var/dev/Workspaces/AI/Claude. prod ~v0.7.141+, re-derive `git log`. I AM CAPTURE GATE.
 - ★ SPRINT 31 REQ-SIDE COMPLETE — every R31.x chain-complete-to-Test + strict-credited (or honest concept-complete), each verified 2 ways (my origin walk + tester two-key). S31 CERTIFIED 18/18 (skill-expert cert 7938e2715) THEN +R31.12:
