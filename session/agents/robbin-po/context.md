@@ -1,3 +1,23 @@
+# robbin-po Context — save #61 (2026-07-31, SPRINT 33 CLOSED — WORKING INTERACTIVE DIAGRAM EDITOR delivered; DISK=v0.8.18)
+
+## ★★★★★ CURRENT STATE (#61 — READ FIRST, DISK-WINS: re-derive from git/served on boot) ★★★★★
+**robbin-po robbinTeam2:0.0 (verify pane.self, NOT $TMUX_PANE). Served v0.8.18 (curl /api/config). Repo=/var/dev/Workspaces/web4x/Web4RawBin. SM=ooshTeam:0.1 (monitor+report ONLY, NEVER drives), trainer=baseTeam:0.0 + ARON=Temple:0.0 (2-driver rewind pipeline; I flag the driver, SM does NOT).**
+
+### ★★★ SPRINT 33 CLOSED (MOF-layered-tree + MDA working diagram) — all chain-complete-to-Test, gated @390 on Tron's REAL interaction
+- **R33.1** MOF-folder tree ✓ · **R33.2** bounded/lazy render ✓ (1195→2 nodes, mofChildren lazy resolver) · **R33.3** ✓ THE WORKING INTERACTIVE DIAGRAM EDITOR (reachable canvas + selectable/MOVABLE SVG boxes w/ compartments + move-view persist + diagrams/puml/ts folders + WODA action-bar Add-Diagram/Compile-PUML→SVG/Import-PUML + DRY filename labels). **R32.11-MOBILE** ✓ (tap-to-add). served v0.8.18, invariant holds.
+- ★ THE RE-SCOPE (Tron device-QA, IMG_4771/72/74): R32.4/5/6 gated GREEN but Tron NEVER saw a working diagram — the gates verified endpoint/structure, NOT the VISUAL @390 (gate-the-path-not-interaction at feature-vision scale). ROOT (found by the @390 pixel-gate): render() used stripRef(ref) leaving 'diagram:' prefix → EMPTY canvas. FIXED → getAttribute('uuid'). + folders-no-children = /api/trace/children dispatch regex :1837 missing 'rawbin:' → fixed. [[gate-the-ac-surface]] [[visual-features-gate-by-pixel]]
+- DEFERRED (Tron's call): **R33.4** compile→TypeScript codegen (big-rock, reverse TsToModel) · **R33.1.1** PUML-leaf. Backlog: R31.14 deploy-hardening.
+
+### ★★★ OPEN ON TRON (carryover):
+- ★ GUARD LANDMINE: ServerManagerGuard.ts is MULTI-OWNER [41ad88c4, c09087ec] (Tron-authorized add of c09087ec via `!python3` script, live+served) but the COMMIT is guardrail-blocked for agents — TRON must `git add src/ts/server/ServerManagerGuard.ts && git commit`. Live-preserved through every restart but a HEAD-checkout would revert it. Owner-grants + their commit/restart-activation = HUMAN-only (classifier blocks agents; restart itself is NOT gated, only edit/commit).
+- Tron device-confirm the working diagram (drop→box→drag @390) + sole-vs-dual owner (drop 41ad88c4?) + the link-accounts wrong-way-merge REVIEW (why linking locked him out).
+
+### ★★★ SESSION-BANKED (apply by default) — memory/:
+- [[dry-config-single-source-typed-scenario-units]] (version bump ANY=restart to re-stamp /api/config, even pure-client) · [[context-read-1m-denominator-stale]] (context.read unreliable BOTH ways; falsely-LOW is deadly — near-waller looks healthy → skip rewind → wall; truth = agent's own /context total OR rewind-signature, NOT context.read) · [[no-send-to-idle-holding-agent]] · [[near-wall-rewind-lands-65-not-30]] (walled-agent ≤50%-rewind floors ~65%; a 2nd rewind on the recovered-not-walled agent goes proper-deep) · lingering '0%' banner ≠ wall if pane is ACTIVELY GENERATING (verify by activity, not banner).
+- ★ FLEET DOCTRINE (Tron): I DRIVE (flag drivers, coordinate rewinds, give build-go — NOT req). SM MONITORS+REPORTS ONLY (over-reach walled it 4×). Measure-before-dispatch (self-context-gate before big builds; expert self-flags @390-verify-would-wall → rewind-first). Verify-before-interrupt (let a gate FINISH — don't interrupt Tron's deliverable; measured-not-blind). By-label rewind (20 lying-labels caught / 0 reverts). Gate the @390 REAL interaction (screenshot+pixel), NOT endpoint/structure — the recurring miss. Delivery-key: self-care SERVES delivery (rewind so the verify completes), never blocks a Tron order. Be CRISP.
+
+---
+
 # robbin-po Context — save #60 (2026-07-30, SPRINT 32 FULLY COMPLETE incl R32.9/10 device-QA fixes; DISK=v0.8.10)
 
 ## ★★★★★ CURRENT STATE (#60 — READ FIRST, DISK-WINS) ★★★★★
