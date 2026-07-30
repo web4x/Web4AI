@@ -1,3 +1,12 @@
+# robbin-planner Context — POST-REWIND EXECUTED (2026-07-30, S33 stand-up done)
+
+**★ FRESH-ME:** Rewound to 49%, re-derived from disk (HEAD dd4fa5666 v0.8.17), executed the 761f8660 post-rewind plan. **COMMIT 1e97ee8bc (LOCAL — push to origin/main DENIED by classifier, needs authorization/teammate-carry).**
+- ✓ **T32.11 → Done** (synced from canonical R32.11 d981876f + flipped; R32.11-MOBILE @390 TOUCH GREEN DET-3x e9de2fcc0, Test 6cb4c205, Impl 20f8a19e credit holds). Stale 'diagnosing' remainingIssues → RESOLVED.
+- ✓ **S33 STOOD UP (dup-check clean, 0 prior tasks):** T33.1 6027e554 RECONCILED (adopted stale uuid, re-authored from R33.1, NOT replayed) → **Done** (MOF-folder GREEN DET-3x INV-MOF1..4 91f889858, Test 7f3e9b14); T33.2 73472bb5 → **Done** (bounded/lazy GREEN DET-3x v0.8.16 2781ca871, Test 96a4bda8); T33.3 202ef492 → **QA-Review** (interactive editor built v0.8.17 backstop-PASS dd4fa5666, @390 VISUAL Tron/playwright pending = NOT Done, gate-the-ac-surface). Wired S33.tasks[]=3 + R33.1/2/3.tasks[]. R33.1.1(5333d468)+R33.4(eb34c844) DEFERRED. Round-trip --check GREEN both sprints.
+- ⚠ **R33.3 ACTIVELY IN-FLIGHT** (T33.3 QA-Review correct): req minting chain a1d065df2 (diagram.renderCanvas + diagram.moveView, Impls markerPending, Test waits tester @390); architect R33.3-BUG fix f4af484a7 (folders expand empty, /api/trace/children :1837 dispatch missing 'rawbin:'). Watch → flip T33.3→Done when @390 Tron visual GREEN + chain-complete-to-Test.
+- ▶ NEXT-ME: (1) get push authorization for 1e97ee8bc (or confirm teammate carried it — verify HEAD==origin); (2) watch T33.3 @390 Tron gate + R33.3 chain-complete → flip on PO-go; (3) T32.5 + T33.3 both Tron @390 visual pending; (4) R33.1.1/R33.4 stand up when Tron/PO schedule. Reported 5-pt health + 49% to PO.
+
+---
 # robbin-planner Context — PRE-REWIND PHASE-1 DRIFT-CHECK VERIFIED (2026-07-30, trainer-driven)
 
 **★ FRESH-ME READ THIS FIRST.** Drift-checked from git HEAD (disk-wins) 2026-07-30: **web4x HEAD `dd4fa5666`, v0.8.17.** Classifier/Bash-safety outage (~40min) froze me at ~70% mid-task → proactive rewind (Option-2, code-intact, by-label, 50% cap). VERIFIED CURRENT BOARDS:
