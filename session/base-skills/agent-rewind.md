@@ -2,6 +2,8 @@
 
 > **⚠️ DEPTH CAP — HOST-DEPENDENT (TRON 2026-07-21, refined 2026-07-27).** On a **LOW-RESOURCE host** (Raspberry Pi, iSH, Termux): **NEVER rewind deeper than 50%** — "the agent-trainer nearly KILLED the Pi by going deeper than 50%"; a deep restore's reprocessing OOM/crashes it. On a **CAPABLE host** (server like WODA.prod/`v60211`, MacStudio): **go as deep as the clean-boundary checkpoint needs** to shed front-loaded read-bloat — the OOM risk isn't there, and a deep 2-phase beats a fork. **Measure the host before capping depth.** (See Step 3.)
 
+> **▸ Short pane won't render the picker / confirm-menu? ENLARGE it OOSH-clean (no raw tmux, no hand-off — RETIRES that workaround).** `otmux pane.size <target>` (note WxH) → **`otmux pane.size.set <target> 120 45`** → drive the picker → restore `otmux fit <session>` + `otmux tiled`. **`pane.size.set` targets a REMOTE pane** (unlike caller-only `zoom`/`pane.resize` — that was the gap I kept hitting). Same method reads a too-short pane's `/context` Free-space line. Full method: `session/base-skills/context-measurement.md`.
+
 ## 🌙 AUTONOMOUS OVERNIGHT REWIND PROTOCOL (TRON 2026-07-21 — must run WITHOUT TRON)
 The overnight fleet self-heals without waking TRON. Every autonomous rewind MUST pass this gate, IN ORDER — the driver runs it solo; a peer/SM **dispatch is a trigger, NEVER a substitute for these checks**:
 1. **IDLE-check** — `otmux pane.capture <target>`: a spinner (Kneading/Brewing/Churning…) = **SKIP** (never interrupt a working agent). Drive ONLY an idle (empty `❯`) or walled agent.

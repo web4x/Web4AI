@@ -5,6 +5,14 @@
 ## THE ONE TRUTH
 **The only reliable context measurement is the `/context` display's `Free space: N (M%)` / `⚠ Context is N% full` line, read by a PEER via `otmux pane.capture` on a CONFIRMED-IDLE agent.** Nothing else is ground truth.
 
+### HOW to read it — peer-capture WITH ENLARGE (solves the short-pane scroll; OOSH-clean, no raw tmux)
+A multi-pane agent's pane is too short to render the `/context` header — it scrolls off, so you see only the category list / Suggestions, NEVER the `Free space` line. **ENLARGE the target pane first** (this is why a naive `pane.capture` "can't find the number"):
+1. `otmux pane.size <target>` — note its current WxH to restore later.
+2. `otmux pane.size.set <target> 120 45` — enlarge so `/context` renders in full. **`pane.size.set` targets a REMOTE pane** — `otmux zoom`/`pane.resize` are CALLER-only, useless for a remote target; this is the one that works.
+3. `otmux send.enter <target> "/context"` (idle-only) → `otmux pane.capture <target>` → read the `Free space: N (M%)` line.
+4. Restore: `otmux fit <session>` + `otmux tiled` (or `pane.size.set` back to the noted WxH).
+**Same enlarge/restore renders a `/rewind` picker + confirm-menu for DRIVING** — so this also retires the "can't zoom a remote pane to drive a rewind" blocker.
+
 ## The verified facts (2026-07-20 — SM fleet-rewind campaign + ARON's trainer-rewind, lived hard)
 1. **Agents CANNOT self-read `/context`.** It renders **client-side** (to the terminal), not into the model — so **no agent can report its own %.** This is the 42: a peer must measure it for you.
 2. **Reliable measure = peer-triggered `/context` on a CONFIRMED-IDLE agent, then `pane.capture` the `Free space` / `N% full` line.** That number is truth.
