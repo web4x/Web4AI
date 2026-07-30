@@ -1,3 +1,13 @@
+# robbin-po Context — save #60 (2026-07-30, SPRINT 32 FULLY COMPLETE incl R32.9/10 device-QA fixes; DISK=v0.8.10)
+
+## ★★★★★ CURRENT STATE (#60 — READ FIRST, DISK-WINS) ★★★★★
+**robbin-po robbinTeam2:0.0 (%5). Served v0.8.10. SM=ooshTeam:0.1, trainer+ARON drivers.**
+- ★★★ SPRINT 32 MDA COMPLETE: R32.1-10 all chain-complete-to-Test. Engine+view-stack+go-live+edges+PUML+re-sync (R32.1-8) + R32.9 FeatureManager DISCOVERY (Tron 1st device-QA: feature wasn't listed → discover ior:class:Feature, bootstrapSeed enumerate+seed-owner-EACH, drop hardcoded SEED_FEATURES; MDA Feature unit 901e0ece launchPage:/model, membership-gated INV-D1-4) + R32.10 /model DRAWER (Tron 2nd device-QA: no drawer opened → mount rb-detail-drawer + rb-modelelement-detail; class→detail+📐Open-diagram→R32.4/6, method→signature; INV-M1-3). served v0.8.10, invariant clean, prod scenario/index isolated.
+- BOARD: R32.1-4,6,7,8 + R32.9 + R32.10 Done; T32.5 QA-Review = ONLY Tron @390 visual (drop→see + drawer→diagram→methods) remains. BACKLOG (Tron-schedule, NO auto-increment): R31.14 deploy-hardening; R33 = RawBin REAL multi-file model (Tron q3 'where are RawBin's classes' — current model is r32.2-sample DEMO; multi-file gen over RawBin src = the actual MDA value) + R32.8 model-sync multi-file.
+- ★ TRON LESSON (this arc): DELIVERY IS KEY — context/rewind self-care SERVES delivery, never blocks a Tron build order; raise a risk ONCE then execute; boot-pointer makes a high-context build recoverable (built R32.10 from 59% per Tron, no wall). [[delivery-key-self-care-serves-it]] Be CRISP. GATE THE INTERACTION @390 not page-load (2 gated-loads-not-works misses: R32.9 not-listed, R32.10 drawer-not-opening) [[gate-the-ac-surface]][[device-qa-regression-means-missing-ac]]. VERIFY-REWIND-LANDED before a build-go (a send to a mid-picker pane dismisses it) [[no-send-to-idle-holding-agent]].
+
+---
+
 # robbin-po Context — save #59 (2026-07-30, ★★★ SPRINT 32 MDA COMPLETE; DISK=v0.8.8, R32.1-8 all chain-complete-to-Test)
 
 ## ★★★★★ CURRENT STATE (save #59 — READ FIRST, DISK-WINS) ★★★★★
