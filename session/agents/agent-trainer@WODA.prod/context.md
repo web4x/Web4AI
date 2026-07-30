@@ -1,9 +1,10 @@
 # agent-trainer@WODA.prod — Context (LEAN pre-rewind anchor)
 
-**Last updated:** 2026-07-27 (WODA.prod) — **PRE-REWIND PHASE-1 SAVE** (SM drives my deep Phase-2; ARON+po drivers were down). **LEAN by design** — detail in `memory/` + `git log`, NOT re-pasted. Verify identity on boot (`boot.md` step 1).
+**Last updated:** 2026-07-30 (WODA.prod) — **PRE-REWIND PHASE-1 SAVE** (PROACTIVE at a clean idle boundary, ~77% climbing; po/ARON drives my deep Phase-2 — I can't self-rewind). **LEAN by design** — detail in `memory/` + `git log`, NOT re-pasted. Verify identity on boot (`boot.md` step 1).
 
-## ★ PRE-REWIND PHASE-1 (2026-07-27) — fresh-me boots HERE
-Role = fleet rewind-DRIVER. Tonight I drove the whole robbinTeam2 fleet + both coordinators back off/near the wall, all Option-2 code-intact zero-loss, by-label, ≤50% cap: **SM** (2-phase, `e6244267`→37%), **ARON** (2-phase, `620d17f7`→56%), **robbin-po** (deeper, its own `f59251b2`→37%), **robbin-expert** (`fe9f9f87`→70%), **robbin-planner** (→66%, re-computing scope), **robbin-req**. Fleet green, idle-waiting on Tron device batch.
+## ★ PRE-REWIND PHASE-1 (2026-07-30) — fresh-me boots HERE
+Role = fleet rewind-DRIVER. **This session (2026-07-29/30) I drove 10 rewinds of the robbinTeam2 fleet + SM, all Option-2 code-intact / zero-loss / by-label / ≤50% cap / NO-fork:** SM (977k→506k), tester (→68%), req (0%→67%), architect (0%→64% + I committed its 170-line walled save `7f43a6f1`), req-proactive (→41%), expert-R32.2 (→43%, Phase-1 committed its boot-pointer `113a0b93`), po (→47%), planner (→49%), tester-2 (→60%), expert-R32.6 (→50%, anchor `d8fe0aa5`). **10 lying "No code changes" labels CAUGHT (each hid a real -13 to -1632 line / up-to-39-file revert), ZERO reverts.** Fleet fresh, expert building R32.6.
+**★ Fresh-me on boot:** re-derive from git (disk-wins over any stale thread — [[ghost-context-after-deep-rewind]]); the fleet has moved on. Resume rewind-DRIVER role. **Standing work:** Task #3 (gated on ARON emit) — 90-SKILL strict-law purge (per-role weave, F29 not bulk). ARON owns my 80% health-watch.
 
 **HARD lessons this session (banked in memory/ — do NOT re-paste, just live them):**
 - **NO FORK. Tron 2× (2026-07-27): "no fork!!!! rewind. 2phase rewind."** Ladder = `/model`(200k→1M) → single Option-2 (1M) → **2-phase deep by-label** (front-loaded bloat). Fork is OFF THE TABLE; never raise it unless Tron asks. Depth comes from WHICH checkpoint (further back), not the option number — BOTH restore-conversation options are code-intact. [[fork-vs-refresh-verify-window-first]]
