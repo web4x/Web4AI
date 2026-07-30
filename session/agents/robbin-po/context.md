@@ -1,3 +1,21 @@
+# robbin-po Context — save #59 (2026-07-30, ★★★ SPRINT 32 MDA COMPLETE; DISK=v0.8.8, R32.1-8 all chain-complete-to-Test)
+
+## ★★★★★ CURRENT STATE (save #59 — READ FIRST, DISK-WINS) ★★★★★
+**robbin-po robbinTeam2:0.0 (pane.self=%5). Served v0.8.8 (curl /api/config). Repo=/var/dev/Workspaces/web4x/Web4RawBin. SM=ooshTeam:0.1, trainer+ARON=2-driver rewind pipeline.**
+
+### ★★★ SPRINT 32 MDA (Model-Driven Code Quality) — COMPLETE (all R32.1-8 chain-complete-to-Test, independent-gated GREEN DET-3x + planted-defect bite each, reuse-not-refork, isolation-by-construction):
+- R32.1 MDA identity foundation (ModelElement multi-facet) · R32.2 TsToModel (TS AST→M1, deterministic same-uuid) · R32.3 model tree (rb-trace-tree reuse) · R32.4 UML diagram surface (rb-diagram-detail+RbPanZoom) · R32.6 relationship edges (SVG, arrowhead-by-M2-kind) · R32.5 go-live (drop→generate→view, ISOLATED store data/model-store) · R32.7 PUML round-trip (byte-identical) · R32.8 re-sync finale (reSyncFromSource, event-driven all-view sync).
+- Served v0.8.8, R31.7 invariant holds (served==committed==SW==HEAD), prod scenario/index UNCHANGED (isolation proven every op).
+- Board: 8 Done (T32.0-4,6,7,8) · 1 QA-Review T32.5 (ONLY Tron @390 go-live visual remains — drop→see + edit→Re-Sync→views-update; flips sprint fully Done).
+- BACKLOG (Tron-auth for any new sprint, NO auto-increment): R31.14 deploy-hardening (scripted deploy + served!=committed monitor + pinned-topology); R33 multi-file/deleted-file model-sync (/api/model/sync).
+
+### ★★★ SESSION-BANKED (this MDA sprint, apply by default) — see memory/ :
+- [[dry-config-single-source-typed-scenario-units]] (version bump ANY = restart to re-stamp /api/config; served==committed==SW==HEAD guard) · [[gate-live-write-cleanup-survive-timeout]] (live-store WRITE gate needs EXTERNAL post-run count-assert cleanup, not in-process finally; prefer isolated-scratch write:false) · [[feature-bugs-architect-expert-tester]] (skill-expert=pin/scoreboard, NOT debugger) · [[ghost-context-after-deep-rewind]] · [[visual-features-gate-by-pixel]].
+- R32.5 LESSON: R32.x SERVER changes need a REAL-BOOT gate (restart-verify IS the integration gate; tsx/vitest pass logic + esbuild passes compile, but neither executes module-top boot-order → const-TDZ crash invisible). __dirname-deps BELOW the shim.
+- FLEET SELF-MANAGES OFF THE WALL: agents self-flag pre-build; I measure-before-dispatch (caught architect 80% pre-R32.7); deep proactive rewinds at CLEAN/free-timing boundaries via 2-driver (trainer+ARON) pipeline; watch-the-watcher (SM/trainer can wall too); by-label rewind (11 lying-labels caught/0 reverts this session). VERIFY-BEFORE-INTERRUPT (bare-shell=maybe-mid-relaunch; diagnosing sole-driver=maybe-mid-fix; re-capture, don't Escape blind). PROD-UP-FIRST on incidents.
+
+---
+
 # robbin-po Context — save #58 (2026-07-30, R32.5 MDA GO-LIVE ACHIEVED; DISK=v0.8.5, Sprint 32)
 
 ## ★★★★★ CURRENT STATE (save #58 — READ FIRST, DISK-WINS: re-derive from git/served on boot) ★★★★★
