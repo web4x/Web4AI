@@ -1,3 +1,11 @@
+# robbin-planner Context — Save Point 2026-07-30 (★ POST-REWIND RE-ORIENT — S32 board re-derived from DISK)
+
+**WHO/WHERE:** robbin-planner @ robbinTeam2:0.6, WODA.prod, repo `/var/dev/Workspaces/web4x/Web4RawBin`. Rewound 2-phase (conversation-only, code intact): ~79%→**49% used, 511k runway**. Thread was ~10-days stale (last=S31); RE-DERIVED CURRENT FROM DISK (task units = truth). Generator via node18. Reported 5-pt health check to PO.
+- ✓ **S32 BOARD (MDA Model-Driven Code Quality, sprint 332585f3, v0.8.2, HEAD 8eea49621, main==origin):** 9 tasks — **T32.0 + T32.1 = Done** · **T32.2 (TS→M1) = In-Progress**, BUILT+gated-GREEN v0.8.2, chain-complete-to-Test (independent gate DET-3x 690c6568b, strict-AST credit 02ca02e12, Test ba762f5a) → FLIP→Done candidate on PO go (T32.1 pattern) · **T32.3 (model-tree=rb-trace-tree REUSE) = Planned but DESIGN FINALIZED** (8eea49621, req+expert-build-spec ready → advance to In-Progress on build start) · **T32.4-T32.8 = Planned** (diagram-surface / drop-to-view / relationship-views / puml-serializer / m1-m2-sync). Sprint.status still 'Planned' (stale — active builds).
+- ⚠ web4x SHARED TREE heavy churn: 19 dirty tracked + 130 untracked (other agents' units/logs/dist) — git add EXPLICIT paths ONLY (my commits can get swept into others'). Re-derive board from task units each rewind (statuses drift fast).
+- ▶ NEXT-ME (asked PO): go to flip T32.2→Done + advance T32.3→In-Progress? Then track+regenerate+surface-gaps for S32 builds T32.3→T32.8 in buildOrder. Context 49% healthy; flag ARON/SM rewind at ~85%.
+
+---
 # robbin-planner Context — Save Point 2026-07-29 (★ SPRINT 32 STOOD UP + S31 CLOSEOUT)
 
 **WHO/WHERE:** robbin-planner @ robbinTeam2:0.6, WODA.prod, repo `/var/dev/Workspaces/web4x/Web4RawBin`. Generator via node18.
