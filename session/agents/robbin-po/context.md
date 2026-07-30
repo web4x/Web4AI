@@ -1,3 +1,21 @@
+# robbin-po Context — save #58 (2026-07-30, R32.5 MDA GO-LIVE ACHIEVED; DISK=v0.8.5, Sprint 32)
+
+## ★★★★★ CURRENT STATE (save #58 — READ FIRST, DISK-WINS: re-derive from git/served on boot) ★★★★★
+**robbin-po robbinTeam2:0.0 (verify pane.self=%5, NOT $TMUX_PANE). Served v0.8.5 (curl /api/config). Repo=/var/dev/Workspaces/web4x/Web4RawBin. SM=ooshTeam:0.1, trainer+ARON=2-driver rewind pipeline. STAY LEAN on boot; re-derive from git.**
+
+### WHERE WE ARE (git-derived 2026-07-30) — Sprint 32 MDA (Model-Driven Code Quality)
+- **★ R32.5 GO-LIVE ACHIEVED** (v0.8.5): TS→model→LIVE tree+diagram. POST /api/model/generate → 5 M1 roots live on /api/model/tree (Circle/Point class, Shape interface, Id type, makeId fn), M2-facet icons+badges. ISOLATED store data/model-store (gitignored/resettable); prod scenario/index ModelElement=20 UNCHANGED (no-prod-mutation law proven). Idempotent. Chain-complete-to-Impl (010f3e23 isModelUnit); Test PENDING tester independent live gate (running) → then T32.5 Done.
+- **DONE**: R32.0 bump · R32.1 identity foundation · R32.2 TS→M1 generation · R32.3 model tree · R32.4 SVG diagram surface — ALL independent-gated GREEN + chain-complete-to-Test (each own-oracle + planted-defect bite). Board: 5 Done / T32.5 In-Progress / R32.6-8 + T-R31.14-backlog Planned.
+- **★ PROD-DOWN INCIDENT (resolved)**: R32.5 server change crashed boot (const MODEL_STORE/PROD_INDEX above __dirname shim = TDZ ReferenceError; hermetic tsx gate MISSED it, real-restart backstop CAUGHT it). Architect emergency-fixed (relocate consts) + committed atomically 3c93542d7, prod restored 0.8.5 ~6-7min down, invariant holds. LESSON: R32.x SERVER changes need a REAL-BOOT gate (restart-verify IS the integration gate; tsx/vitest passes logic, misses module-load-order crashes). Expert reviewing the emergency fix canonical.
+- **NEXT (fresh-me)**: tester R32.5 live gate GREEN → req Test → T32.5 Done → architect designs R32.6 (relationship EDGES/views on the diagram, the relatesTo→UmlAssociation/Generalization deferred from R32.3/4) → R32.7 PUML → R32.8 action-sync. Each scenario-first: architect design → req finalize ACs → PO build-go(after prev gates) → expert build → architect restart-backstop(if server) → tester independent gate → chain-credit. R31.14 deploy-hardening backlog after R32.x.
+
+### ★★★ STANDING DOCTRINE (Tron, apply by default)
+- REWIND-AUTH DELEGATED TO ME: proactive 2-phase at clean boundaries (~80% or self-flag), trainer/ARON drive (2-driver pipeline), I authorize + inform Tron (no per-ask). BY-LABEL rewind (labels lie, 9 caught/0 reverts). NO FORK (Tron). Deep-at-clean-boundary beats wall-floor.
+- MEASURE the authoritative layer, don't trust self-reports: /api/config (not context.read); VERIFY-BEFORE-INTERRUPT (a bare-shell = maybe mid-relaunch, re-capture; a diagnosing sole-driver = maybe mid-fix, don't Escape blind); served==committed==SW==HEAD every version bump (ANY bump incl client-only needs a restart to re-stamp /api/config [[dry-config-single-source-typed-scenario-units]]).
+- DELIVER-VERIFIED-NOT-TRON-TESTED (team gates before Tron; structural=Chromium-certifiable, device-only pieces labeled). SCENARIO-FIRST units before code (#126, IMPL-MINT onto built wiring). GATE-THAT-BITES (planted-defect, independent own-oracle, never self-check-as-gate). REUSE-NOT-REFORK (drawer/tree/pan-zoom/drop-dispatcher, ZERO mechanics touched). ISOLATION-BY-CONSTRUCTION (no-prod-mutation: isolated store, count-unchanged gate). PROD-UP-FIRST on incidents (restore last-good if not a fast fix, then diagnose). Feature-bug = architect→expert→tester (skill-expert=pin/scoreboard/traceability, NOT debugger). Watch-the-watcher (SM/trainer can wall too).
+
+---
+
 # robbin-po Context — save #57 (2026-07-29, PROACTIVE SELF-REWIND at R32.2-build-go boundary; DISK=v0.8.1, Sprint 32 MDA active)
 
 ## ★★★★★ CURRENT STATE (save #57 — READ FIRST, DISK-WINS: re-derive from git/served on boot) ★★★★★
