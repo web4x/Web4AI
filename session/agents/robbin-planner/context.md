@@ -1,3 +1,12 @@
+# robbin-planner Context — PRE-REWIND PHASE-1 DRIFT-CHECK VERIFIED (2026-07-30, trainer-driven)
+
+**★ FRESH-ME READ THIS FIRST.** Drift-checked from git HEAD (disk-wins) 2026-07-30: **web4x HEAD `dd4fa5666`, v0.8.17.** Classifier/Bash-safety outage (~40min) froze me at ~70% mid-task → proactive rewind (Option-2, code-intact, by-label, 50% cap). VERIFIED CURRENT BOARDS:
+- **S32 (In-Progress, 13 tasks):** T32.0-4 Done · **T32.5 QA-Review** (Tron @390 go-live visual) · T32.6/7/8 Done · T32.9/T32.10 Done · **T32.11 unit=In-Progress on disk BUT PO says R32.11-MOBILE DONE → FRESH-ME FLIP T32.11→Done (verify chain-complete-to-Test first)** · T-R31.14 Planned (backlog, after go-live).
+- **S33 (Planned, 5 reqs / 0 TASKS):** reqs R33.1/R33.2/R33.3/R33.1.1/R33.4 exist; PO: R33.1 done, R33.2 done, R32.11-MOBILE done, **R33.3 (interactive-editor RE-SCOPE) built v0.8.17 @390-verify-in-progress**, R33.1.1+R33.4 deferred. ZERO covering task units yet.
+- **★ DO-NOT-REPLAY:** my partial **T33.1 unit `6027e554` (written, UNWIRED, UNCOMMITTED) is STALE/SUPERSEDED** — I set it In-Progress but R33.1 is DONE. FRESH-ME: RECONCILE or DISCARD it, do NOT replay this thread's T33.1 stand-up. **T32.11 view-sync from canonical R32.11 (d981876f, req-canonicalized 6 ACs) did NOT run** — fresh-me syncs it.
+- **▶ FRESH-ME POST-REWIND PLAN:** (1) re-derive S32+S33 from git+disk (disk-wins, this thread's task-states may lie); (2) dup-check whether covering tasks exist for R33.1/R33.2/R33.3 before standing any up (#12 — req/architect create ahead); (3) reconcile/discard stale T33.1 6027e554; (4) sync T32.11 from canonical R32.11 + flip T32.11→Done (R32.11-MOBILE); (5) stand up missing S33 covering tasks + flip per verified chain-complete-to-Test on PO go; (6) report 5-pt health + fresh %. Discipline unchanged: verify-on-disk, flip-on-PO-go, gate-the-ac-surface, explicit-paths + push, adopt-not-fork (architect dirs), #43 placeholder-canonicalize.
+
+---
 # robbin-planner Context — Save Point 2026-07-30 (★ POST-REWIND RE-ORIENT — S32 board re-derived from DISK)
 
 **WHO/WHERE:** robbin-planner @ robbinTeam2:0.6, WODA.prod, repo `/var/dev/Workspaces/web4x/Web4RawBin`. Rewound 2-phase (conversation-only, code intact): ~79%→**49% used, 511k runway**. Thread was ~10-days stale (last=S31); RE-DERIVED CURRENT FROM DISK (task units = truth). Generator via node18. Reported 5-pt health check to PO.
