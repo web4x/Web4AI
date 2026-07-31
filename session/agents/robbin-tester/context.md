@@ -387,3 +387,9 @@ SystemTester `ce981242` · Tron primary `8f74dfba` (tombstones 3effa1fc/2703628c
 - R33.7.2 discoverRelated 8e8c1d75 GREEN DET-3x (r372, 944f7bf50): event-driven wireDrawerActions, 1-level neighbors add-viewed via route-intercept (pollution-safe) + refresh + INV-AR1 bite. Marker 54225f01 to req.
 - item-4 BUG-A path RED to GREEN (/md 200). RENDER held (BUG-B plantuml, Tron; marker b0c0d27d waits).
 - R33.7.4 onTreeReveal 9cdf5072 RED (r374, 5b5a32e5d) = CONFIRMED REAL BUG by architect (756528a0b): /api/trace/children parent:null (ownerIor/FWD_SCAN ignores memberOf; synthetic folders) so revealNode.fetchAncestorPath can not walk model tree. FIX=onTreeReveal must use R33.5 expandPath. KEEP r374 as authoritative RED baseline; re-gate after expert fix+bump then marker to req (2nd real bug the honest RED caught, after item-4).
+
+## R33.7 CLOSED (served==HEAD==0.8.30)
+- R33.7.4 onTreeReveal 9cdf5072 RED->GREEN DET-3x (r374 dfe803cc1): my RED (parent:null, architect-confirmed real bug) -> expert fix cd77af783 (revealModelElement->/api/ior mof path->expandPath) -> element now EXPANDS into view (absent->present). Scope: reveal/expand headless-verified; 2s scroll+flash cosmetic = architect served-/model oracle. Marker dac73307->9cdf5072 to req.
+- R33.7.2 UC1 buildEdges 8c68b925 GREEN DET-3x (r372b 99b567cf6): added element view -> edge auto-wires (2->3, control 2 no-fabricate), pollution-safe read-inject. r372 asserts refresh-fires; r372b asserts edge-RENDERS. Marker 2f6a1c3e->8c68b925 DISTINCT-intent to req.
+- R33.7 ALL GREEN: 7.1 zoom + 7.2 discover + 7.2-UC1 buildEdges + 7.4 reveal + item-4-path (render held on Tron plantuml). 2 real bugs caught by honest RED this arc (item-4 BUG-A + R33.7.4).
+- PENDING two-keys when req mints: dac73307<->9cdf5072, 2f6a1c3e<->8c68b925; + R33.7.1 persist 99a90d1e<->80440bf0 (dual-credit, req 95330999e).
