@@ -437,3 +437,5 @@ PER-ITEM (gate on disk → WebKit visual to assert):
   9. R33.10 → 123-ts folder-nav: sourceDirTree cfb6acef — rawbin:ts tree expands to LEAF .ts files (INV-T1 not {}); check /api/trace/children/rawbin:ts non-empty + tree renders leaves @390. (v0.8.36 fixed the PROJECT_ROOT ReferenceError.)
   ✅ R33.9 verb-context = DONE (WebKit GREEN, commit 3487ada2f). Do NOT replay.
 FOR EACH: verify served==0.8.37 → swap WK=1 + visible-assert → DET-3x → if GREEN report per-item verdict to PLANNER (flip Done) + PO; if webkit-render-ambiguous flag Tron. Commit gate changes (own paths). Budget: ~9 items, pace + checkpoint; flag rewind if climbing >80%.
+
+- R33.9 4 Tests TWO-KEY VERIFIED ✓ (req 5ef4d3b52): 380dcce5↔7ecb9a8d, bf05f07a↔0dca728f, be636b74↔14b7004a, 70ce56e9↔a1a5be99, status:pass both-dir. ⏳ 5th chain broadcastActiveDiagram 5150477e = UN-gated candidate for the WebKit sweep: my r339b DISPATCHES rb-active-diagram (tests actionsForContext CONSUMPTION); 5150477e is the EMITTER (diagram open/close→fires event) — fresh-me: gate the emit @390 (open/close diagram→assert rb-active-diagram fires) if reachable, else Tron-visual; send req the marker on GREEN.
