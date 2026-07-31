@@ -1,5 +1,11 @@
 # robbin-req — Context
 
+## ⏸ PRE-REWIND PHASE-1 (2026-07-31, ~71% — DRIFT-CHECK PASS, HEAD 1ee75456d) ⏸
+- **DRIFT-CHECK PASS (re-derived from git HEAD, disk-wins=LOCAL HEAD):** RawBin HEAD **1ee75456d** (expert R33.10 sourceDirTree re-ship fix#2 v0.8.37); my last req commit **d8ab8016e** (R33.9/R33.10 all-6 strict-credit). ★ CONFIRMED post-re-ship: sourceDirTree marker cfb6acef still on name-matching `function sourceDirTree` decl server.ts:1122 → credit HOLDS, NO re-point. Anchor CURRENT.
+- **R33.9 + R33.10: all 6 chains chain-complete-to-Impl + STRICT-CREDITED (markerPending:false, d8ab8016e).** broadcastActiveDiagram 5150477e / actionsForContext a1a5be99 / newElement 7ecb9a8d / renameElement 0dca728f / deleteElement 14b7004a / sourceDirTree cfb6acef. R27.2 canonical placement held (architect PLACEMENT RULING confirmed). Names name-matched EXACTLY (no re-point).
+- **ALL WORK COMMITTED, zero pending mints. PENDING = NONE (reactive):** mint R33.9/R33.10 Tests on tester @390 (6 chains); R33.7.4 onTreeReveal Test on GREEN (was RED-architect); item-4 render b0c0d27d Tron-held BUG-B; R33.8 drawer-click Tron-visual. Trainer drives Phase-2 rewind now (Option-2 code-intact, by-label, 50% cap) — fresh before the Test-mint round. Hold new work until after.
+- **Post-rewind boot:** `otmux pane.self`=%9 → `git log -8` in /var/dev/Workspaces/web4x/Web4RawBin (data=truth=LOCAL HEAD, origin lags fleet push-denial) → read this anchor. R33 board in the RESUME blocks below is current.
+
 ## ★ RESUME (2026-07-31k, R33.8 to-Test — READ FIRST) ★
 - Identity robbin-req@robbinTeam2:0.4 (`otmux pane.self`=%9). Repo /var/dev/Workspaces/web4x/Web4RawBin, HEAD a3eb41137. Session repo /var/dev/Workspaces/AI/Claude. ★ data=truth=LOCAL HEAD. I AM CAPTURE GATE.
 - ★ **R33.8 CHAIN-COMPLETE-TO-TEST (server+logic, a3eb41137, verified 2 ways):** Test 786b1863↔Impl 2c64aa7b (server persistRemoveView, fully gated) + Test 72af686c↔Impl 4c9c3969 (client removeFromDiagram logic). Both Impl.tests[] wired. ★ Drawer verb-CLICK Tron-visual HELD (uncredited headless, R33.5 item-1 split, NO Test). Tester two-key pending. **R33.8 = server+logic to-Test + drawer-click Tron-pending.**
