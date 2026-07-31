@@ -408,3 +408,6 @@ SystemTester `ce981242` · Tron primary `8f74dfba` (tombstones 3effa1fc/2703628c
 - NEXT (after rewind + expert build): R33.8 remove-from-diagram.
 - Standing regression gates: r371/b/c, r372/b, r374, r365b, r312, r3027/r3032/r3034-widths/r275/proxy-fetch-guard/r3025-deeplink, S31 feature-access.
 - HOLDING idle-safe for QUEUED durable rewind (driver busy; Tron backup-driver TBD). No new gates.
+
+## ▶ R33.8 GATED (served==HEAD==0.8.33)
+- ✅ Remove-from-diagram GREEN DET-3x @390 (r338-remove-gate.mjs, commit 8c19ca178). remove-view drops view-link→box gone; INV-RM1 ModelElement UNIT STAYS (/api/ior before+after=re-addable); planted-bite. Pollution-safe (DIAG byte-restore), phantom-guarded. Markers→req: 786b1863→2c64aa7b (server persistRemoveView, full) + 72af686c→4c9c3969 (client removeFromDiagram logic; /model drawer-CLICK Tron-visual held, R33.5 item-1 split). AWAITING req mint→two-key. /context 61% at gate-time.
