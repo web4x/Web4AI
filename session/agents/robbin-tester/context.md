@@ -420,3 +420,20 @@ SystemTester `ce981242` · Tron primary `8f74dfba` (tombstones 3effa1fc/2703628c
 - POLICY (Tron: when I am the bottleneck YOU are wrong): SELF-GATE the visual queue at real-WebKit @390 — no item sits awaiting-Tron. WebKit GREEN → planner flips QA-Review→Done. Flag only genuinely webkit-render-ambiguous to Tron.
 - ✅ R33.9 verb-context WEBKIT @390 GREEN DET-3x (commit 3487ada2f, pushed): membership present/absent by diagram-context + unit-always + drawer actions VISIBLE-rendered vw=390. Drawer-UI visual no longer Tron-held. DONE.
 - ⏳ WEBKIT SWEEP PENDING (served 0.8.37, per PO): 8 QA-Review items T33.5/6.1/6.2/6.3/6.5/7.1/7.2/8 + R33.10 (123-ts folder-nav). Have gates on disk: r335*/r3361-3365/r338/r339/r332/r331. Each = engine-swap WK=1 + pixel/visible-sample + DET-3x. Flagged PO for durable rewind before the full sweep (~69% at flag, autocompact OFF).
+
+## ▶▶ STATE-FOR-FRESH-ME — FULL WEBKIT @390 SWEEP PLAN (PO-directed, run clean post-rewind)
+GOAL: self-gate the visual queue at real-WebKit @390 (removes Tron as per-item oracle). WebKit GREEN → per-item verdict to PLANNER → planner flips QA-Review→Done. Flag ONLY genuinely webkit-render-ambiguous to Tron.
+ENV: served 0.8.37 (phantom-guard each: served==TARGET, env R339_TARGET-style override). node22: PATH=/opt/node22/bin:$PATH. Engine: import {webkit}; WK=1 → ENGINE=webkit. iPhone-12 ctx, real pages get vw=390 (viewport-meta). Doc: test/visual/REAL-WEBKIT-GATING.md.
+TEMPLATE (proven, r339b): make each gate engine-switchable `const ENGINE=process.env.WK?webkit:chromium` + ENGINE.launch({headless:true}) (NO chromium --no-sandbox args under webkit) + add a VISIBLE-render assert `el.getBoundingClientRect().width>0 && height>0` for the visual half + screenshot. Run `WK=1 node <gate>`.
+PER-ITEM (gate on disk → WebKit visual to assert):
+  1. T33.5 → r335-ux-polish-gate.mjs (+r335b/r335c reveal): box-select .dm-box-selected + drag + reveal render @390 WebKit-visible.
+  2. T33.6.1 → r3361-empty-addview-gate.mjs: add-view to EMPTY diagram → box RENDERS visible @390.
+  3. T33.6.2 → r3362-scroll-autoscroll-gate.mjs: edge-autoscroll pan during drag, visible.
+  4. T33.6.3 → r3363-reroute-edges-gate.mjs: edges reroute on box move, rendered.
+  5. T33.6.5 → r3365-drawer-actions-gate.mjs (+independent): drawer action-bar buttons visible-rendered @390 (like R33.9 (4)).
+  6. T33.7.1 → r371-zoom-gate.mjs: zoom-out grows canvas + reload-restore, rendered @390 WebKit.
+  7. T33.7.2 → discoverRelated (Impl 8e8c1d75) — CHECK for a gate; if none, build (drawer discover verb → neighbors+edges add; recon banked earlier). May be logic+held.
+  8. T33.8 → r338-remove-gate.mjs: remove-from-diagram box GONE from view @390 WebKit-visible (already logic-GREEN; add WK visible).
+  9. R33.10 → 123-ts folder-nav: sourceDirTree cfb6acef — rawbin:ts tree expands to LEAF .ts files (INV-T1 not {}); check /api/trace/children/rawbin:ts non-empty + tree renders leaves @390. (v0.8.36 fixed the PROJECT_ROOT ReferenceError.)
+  ✅ R33.9 verb-context = DONE (WebKit GREEN, commit 3487ada2f). Do NOT replay.
+FOR EACH: verify served==0.8.37 → swap WK=1 + visible-assert → DET-3x → if GREEN report per-item verdict to PLANNER (flip Done) + PO; if webkit-render-ambiguous flag Tron. Commit gate changes (own paths). Budget: ~9 items, pace + checkpoint; flag rewind if climbing >80%.
