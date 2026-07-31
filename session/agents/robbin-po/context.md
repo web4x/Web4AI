@@ -18,6 +18,17 @@
 
 ---
 
+# robbin-po Context — save #61 (2026-07-31, POST-WALL-REWIND @64% shallow-floor; DISK=v0.8.19, R33.5 in-flight)
+
+## ★★★★★ CURRENT STATE (#61 — READ FIRST, DISK-WINS: re-derive from git/served) ★★★★★
+**robbin-po robbinTeam2:0.0 (pane.self=%5). Served v0.8.19 (curl /api/config). SM=ooshTeam:0.1, trainer+ARON 2-driver. I walled once + trainer rewound me (Tron 'care for the po'); at 64% shallow-floor → SM flags trainer for a DEEPER 2nd rewind at ~78%/next-clean-idle. STAY LEAN/CRISP to not re-wall.**
+- S31/S32/S33 done. R33.5 diagram-UX-polish IN-FLIGHT (HEAD 0f0cb4646): items 2/3/4 chain-complete-to-Test (two-key verified 2 ways); ★ITEM1 addDiagram (Impl ffdd9347) = OPTION (a) real-gate DECIDED — tester adds owner sm_session cookie to @390 harness (R31.4 reuse, feature-gated /model loads, multi-owner-robust no hardcoded literal) → gate addDiagram→itemview → req mints item1 Test → R33.5 4/4. R33.4/R33.1.1 DEFERRED.
+- ★★★ OPEN (drive after R33.5 4/4): (1) TRON MULTI-OWNER guard commit — Tron got LOCKED OUT by link-profiles (wrong-way merge); added c09087ec-b6b8-44d2-9bbe-8a2b0e2230b6 as NEW Server+Feature-Manager owner (multi-owner OWNER_TOKEN, guard OPEN=verify/commit); THEN review link-accounts wrong-way-merge bug. (2) @390 PIXEL Tron visual.
+- DOCTRINE (intact): delivery-key (self-care SERVES delivery, raise-risk-once-execute, be CRISP); gate-the-INTERACTION @390 not page-load; verify-rewind-landed pre-build-go; fleet self-manages (2-driver, by-label, watch-the-watcher, verify-before-interrupt); measure-authoritative-layer (caught version-skew via /api/config; context.read unreliable use /context).
+- NEXT (fresh-me): re-derive git; drive R33.5 item1 @390 gate → 4/4 → then Tron multi-owner guard + link-accounts review + @390 pixel.
+
+---
+
 # robbin-po Context — save #60 (2026-07-30, SPRINT 32 FULLY COMPLETE incl R32.9/10 device-QA fixes; DISK=v0.8.10)
 
 ## ★★★★★ CURRENT STATE (#60 — READ FIRST, DISK-WINS) ★★★★★
