@@ -1,5 +1,10 @@
 # robbin-req — Context
 
+## ⏸ HOLD (2026-07-31, 82% no-self-stop — PO idle-HOLD, rewind QUEUED) ⏸
+- **ALL WORK COMMITTED, zero pending mints.** Last RawBin commit 4e0e2e8cf (R33.8 strict-credit); last session commit = this. Idle-conserving per PO until PO sequences my rewind (driver/trainer frozen, awaiting Tron backup-driver).
+- **PENDING ON ME = NONE right now (all reactive/expert+tester-gated):** (a) mint R33.8 Test(s) onto 4c9c3969(client)/2c64aa7b(server) when fresh-tester @390-gates (deferred post-rewind); (b) R33.9 (bd7ed14d rename/delete/new-class) architect design IF Tron prioritizes; (c) item-4 render (Tron BUG-B); (d) R33.7.1 done, R33.6.5 done.
+- **Post-rewind boot:** `otmux pane.self`=%9 → `git log -8` in /var/dev/Workspaces/web4x/Web4RawBin (data=truth=LOCAL HEAD, origin lags fleet push-denial) → read this anchor. R33 board below is current.
+
 ## ★ RESUME (2026-07-31j, device-bugs closed + R33.9 captured — READ FIRST) ★
 - Identity robbin-req@robbinTeam2:0.4 (`otmux pane.self`=%9). Repo /var/dev/Workspaces/web4x/Web4RawBin, last commit 49e53dd1e. Session repo /var/dev/Workspaces/AI/Claude. ★ data=truth=LOCAL HEAD. I AM CAPTURE GATE.
 - ★ **Both device-bug ACs CHAIN-COMPLETE-TO-TEST (232fd10c1, verified origin):** R33.7.1 endless-zoom Test 5e91b3c7↔eb468578 (applyCanvasGrow, repeated zoom 876→16000, GROW_MIN 0.02 no floor) + R33.6.5 single-Re-Sync Test 6b28f4d1↔34dec13f (render, fresh UC diagram.retireInDiagramToolbar 103e20cd). Tester two-key pending; only Tron device-visual remains.
