@@ -1,3 +1,15 @@
+# robbin-planner Context — S33 AUTHORITATIVE BOARD READOUT (2026-07-31, HEAD 8c19ca178 v0.8.33)
+
+**★ FRESH-ME:** board grew a LOT (R33.6.x/7.x/8/9 now exist). Re-derived from git (task board is STALE — only T33.1/2/3/5 have units; the rest derived from git gates). Reported authoritative board to PO (measure-only, NO builders).
+- **DONE:** T33.1 / T33.2 / T33.3.
+- **QA-REVIEW (machine-GREEN, Tron @390 pending):** T33.5 (item-1 reveal machine-gated v0.8.20; open=owner create-POST + @390) · R33.6.1 (drag-add-new CLOSED, Test 0aaae49a) · R33.6.2 (scroll-suppress v0.8.23) · R33.6.3 (reroute v0.8.24) · R33.6.5 (action-bar + dup-ReSync-fix v0.8.32) · R33.7.1 (canvas-grow PX v0.8.31 + endless-zoom regression fix v0.8.32) · R33.7.2 (discover-related GREEN) · **R33.7.4 (DEVICE-CONFIRMED works a36e85e22 = Done-eligible; anchor's RED was stale v0.8.29 → GREEN v0.8.30 dfe803cc1)** · R33.8 (remove-from-diagram GREEN DET-3x v0.8.33 HEAD).
+- **OPEN / NEEDS-BUILD:** R33.9 (class action-verbs rename/delete/new-class — CAPTURED only 49e53dd1e, PO no-dispatch, awaiting Tron priority) · R33.1.1/item-4-render (puml-render-section designed+scope-pinned fb7a58fe9, build-pending) · R33.4 (compile→TS codegen, Tron-deferred BIG-ROCK). **NOTHING truly RED.**
+- ⚠⚠ **STALE-TASK-BOARD FINDING:** 8 reqs (R33.6.1/6.2/6.3/6.5/7.1/7.2/7.4/8) are built+gated-GREEN with NO covering task unit — reqs raced ahead of tasks. RECOMMENDED to PO: stand up T33.6.x/7.x/8 = QA-Review (reflect reality) on PO go. LESSON [[the board CAN drift stale during off-turns]] — re-derive from git gates, not just task-unit files, when tasks lag reqs.
+- ✓ **BOARD-HYGIENE BACKFILL DONE (commit cafece04d, PO-authorized):** stood up 8 gated-GREEN task units mirroring the gates — **T33.7.4=Done** (device-confirmed); QA-Review: T33.6.1/6.2/6.3/6.5, T33.7.1/7.2, T33.8. **S33.tasks[]=12: 4 Done (T33.1/2/3/7.4) + 8 QA-Review (T33.5/6.1/6.2/6.3/6.5/7.1/7.2/8).** planning.md regenerated, round-trip GREEN.
+- ⚠ **R33.1.1 / item-4-render puml = RED / NOT cleanly build-authorized (architect 4716c86a0):** BUG-A (pumlChildren drops diagrams/ ref, server.ts:1082, one-line code fix — breaks BOTH render+import) + **BUG-B (prod host has NO plantuml: 501 ENOENT, `command -v plantuml`=none; boundary restart does NOT fix → OPS must install plantuml on host).** So R33.1.1 build blocked by an OPS dependency (BUG-B), not just code. Reported to PO.
+- ▶ NEXT-ME: (a) flip QA-Review→Done as Tron device-confirms each @390 (8 pending); (b) next-build R33.9 vs R33.1.1 = PO getting Tron pick (R33.1.1 also needs BUG-B plantuml-host-install ops); (c) multi-owner lockout root-cause (architect). Push: commits local (classifier-denied), teammate-carry (verify HEAD==origin).
+
+---
 # robbin-planner Context — POST-REWIND EXECUTED (2026-07-30, S33 stand-up done)
 
 **★ FRESH-ME:** Rewound to 49%, re-derived from disk (HEAD dd4fa5666 v0.8.17), executed the 761f8660 post-rewind plan. **COMMIT 1e97ee8bc (LOCAL — push to origin/main DENIED by classifier, needs authorization/teammate-carry).**
