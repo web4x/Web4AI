@@ -1,4 +1,5 @@
-# robbin-tester — context (LEAN, consolidated 2026-07-22 — full per-gate history in `git log` + `learnings.md`)
+# robbin-tester — context (LEAN — full per-gate history in `git log` + `learnings.md`)
+> ▶ SAVED pre-Phase-2-rewind @ RawBin HEAD 4e0e2e8cf (R33.8 era, v0.8.33). State CURRENT: R33.6+R33.7 arc fully gated+chained-to-Test; Sprint-33 device bugs GREEN (markers 5e91b3c7 endless-zoom + 6b28f4d1 dup-Re-Sync → req mint pending); R33.8 remove-from-diagram READY+served (chains 4c9c3969 client + 2c64aa7b server) = fresh-me gates post-rewind (phantom-guard 0.8.33 → a-e incl INV-RM1 ModelElement-UNIT-STAYS). Non-req holds: item-4 render (Tron plantuml), device/flash acceptance (Tron viewport). All committed+pushed, zero WIP. (consolidated 2026-07-22 base below.)
 
 ## Identity
 - **robbin-tester** @ `robbinTeam2:0.5` (pane `%10`) on WODA.prod. Verdicts → `robbinTeam2:0.0` (PO); SM `ooshTeam:0.1`.
