@@ -1,3 +1,26 @@
+# robbin-po Context — save #62 (2026-07-31, PRE-REWIND refresh — R33.8 live/v0.8.33; supersedes #61's stale v0.8.18)
+
+## ★★★★★ CURRENT STATE (#62 — READ FIRST, DISK-WINS: re-derive from git HEAD + curl /api/config on boot) ★★★★★
+**Prod v0.8.33 · served==committed==SW==0.8.33 (R31.7+R31.13 invariant HOLDING) · Repo=/var/dev/Workspaces/web4x/Web4RawBin HEAD 4e0e2e8cf · Sprint 33 diagram-editor. Team robbinTeam2 0.0-0.6 (0.0 PO me/0.1 expert/0.2 skill/0.3 architect/0.4 req/0.5 tester/0.6 planner), SM=ooshTeam:0.1, trainer=baseTeam:0.0 (PRIMARY rewind-driver), ARON=Temple:0.0 (keeper + TRAINER'S BACKUP-DRIVER ONLY).**
+
+### ★★★ BACKUP-DRIVER RULING (Tron 2026-07-31, banked): "ARON backs up the trainer — but only him." Trainer is sole general driver + can't self-rewind → ARON rewinds the trainer (and ONLY the trainer) when it's near-wall. Resolves the sole-driver SPOF that froze the whole fleet. Unfreeze cascade = ARON→trainer, fresh-trainer→queued climbers. [[trainer-drives-rewinds-not-aron]]
+### ★ REWIND-PICKER RENDER FIX: 9-pane windows = ~19-row panes → /rewind picker (and /context total line) TRUNCATE. FIX = enlarge the pane first: `otmux pane.size.set <pane> <w> <h>` (OOSH-clean; NOT raw tmux resize-pane) → picker renders full → verify-by-label → restore. [[rewind-pane-size-and-menu-label]]
+
+### R33 BOARD (git-derived, this pre-rewind refresh):
+- **R33.8 remove-from-diagram** (inverse of add-view; server persistRemoveView 2c64aa7b + client removeFromDiagram 4c9c3969 + verb) = LIVE+served v0.8.33, architect backstop PASS, INV-RM1(model-unit-stays/re-addable)/RM2(store-only prod-safe)/RM4(idempotent). Strict-credited chain-complete-to-Impl. ★ AWAITING tester @390 gate (add→remove→box+edges gone, model re-addable) + Tron device.
+- **DEVICE BUGS (Tron IMG_4795)** chain-complete-to-Test: BUG-1 R33.7.1 endless-zoom (GROW_MIN 0.02 replaced 0.25 hard-floor regression + 16000px cap, Test 5e91b3c7→Impl eb468578) + BUG-2 R33.6.5 dup-Re-Sync (old .dm-resync toolbar removed→exactly one, Test 6b28f4d1→Impl 34dec13f). Both GREEN DET-3x @390 v0.8.32. ★ AWAITING Tron device-visual confirm.
+- **R33.7.4 onTreeReveal = RED @390** (architect investigating) → do NOT mint Test till GREEN.
+- **R33.9** (bd7ed14d rename/delete/new-class class-verbs = R33.6.5-remainder of Tron's item-5) CAPTURED, awaiting TRON PRIORITY (build-now vs defer); DELETE removes the ModelElement unit (distinct from R33.8 view-link removal, needs guard/confirm).
+- **item-4 render** (b0c0d27d) = Tron-held BUG-B: PlantUML host-install (needs Tron infra auth to install plantuml on server).
+- DONE-to-Test: R33.6.1/2/3/5 + R33.7.1/7.2.
+
+### ★ TRON OPEN DECISIONS (post-rewind, surface to him): (1) device-bug VISUAL confirm (endless-zoom keeps zooming + one Re-Sync); (2) R33.9 priority; (3) item-4 PlantUML host-install auth; (4) [older, if live] R33.5 create-confirm + multi-owner symptom (guard data-correct: c09087ec IS in allowedUsers, not a lockout — session-token-resolution if any).
+### ★ FLEET JUST UNFROZE via cascade (all agents rewound fresh this session): tester 61%/req 65%/architect fresh/expert fresh; trainer refreshed; I'm the LAST rewind (this refresh precedes it). fresh-me: re-derive from git, dispatch the R33.8 @390 gate (tester ready), surface Tron's decisions, keep driving R33.
+
+### NEXT (fresh-me first actions): (1) curl /api/config = confirm 0.8.33; (2) git log — confirm R33.8/HEAD; (3) dispatch tester R33.8 @390 gate (it's rewound+ready); (4) surface Tron's 4 open decisions; (5) R33.7.4 RED — check architect's diagnosis.
+
+---
+
 # robbin-po Context — save #61 (2026-07-31, SPRINT 33 CLOSED — WORKING INTERACTIVE DIAGRAM EDITOR delivered; DISK=v0.8.18)
 
 ## ★★★★★ CURRENT STATE (#61 — READ FIRST, DISK-WINS: re-derive from git/served on boot) ★★★★★
