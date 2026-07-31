@@ -1,7 +1,8 @@
 # robbin-req — Context
 
-## ⏸ HOLD (2026-07-31, 82% no-self-stop — PO idle-HOLD, rewind QUEUED) ⏸
-- **ALL WORK COMMITTED, zero pending mints.** Last RawBin commit 4e0e2e8cf (R33.8 strict-credit); last session commit = this. Idle-conserving per PO until PO sequences my rewind (driver/trainer frozen, awaiting Tron backup-driver).
+## ⏸ PRE-REWIND PHASE-1 (2026-07-31, 82% — drift-check PASS, HEAD 4e0e2e8cf) ⏸
+- **DRIFT-CHECK PASS (re-derived from git HEAD, disk-wins):** RawBin HEAD **4e0e2e8cf** (my R33.8 both-chains strict-credit) = anchor current, zero drift. R33.8 Impls 4c9c3969/2c64aa7b markerPending:false + tests:0 (chain-complete-to-Impl, awaiting tester @390 gate). applyCanvasGrow eb468578 tests:2 (7c3e9a10 px + 5e91b3c7 endless-zoom); render 34dec13f tests:2 (73d267cf R33.3 + 6b28f4d1 single-Re-Sync). All mints/gates/pending below are ACCURATE.
+- **ALL WORK COMMITTED, zero pending mints.** Trainer (agent-trainer, general driver) drives my Phase-2 rewind now (Option-2 code-intact, by-label, 50% cap). Holding new work until after.
 - **PENDING ON ME = NONE right now (all reactive/expert+tester-gated):** (a) mint R33.8 Test(s) onto 4c9c3969(client)/2c64aa7b(server) when fresh-tester @390-gates (deferred post-rewind); (b) R33.9 (bd7ed14d rename/delete/new-class) architect design IF Tron prioritizes; (c) item-4 render (Tron BUG-B); (d) R33.7.1 done, R33.6.5 done.
 - **Post-rewind boot:** `otmux pane.self`=%9 → `git log -8` in /var/dev/Workspaces/web4x/Web4RawBin (data=truth=LOCAL HEAD, origin lags fleet push-denial) → read this anchor. R33 board below is current.
 
