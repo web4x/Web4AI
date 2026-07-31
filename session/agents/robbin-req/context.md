@@ -1,5 +1,11 @@
 # robbin-req — Context
 
+## ★ RESUME (2026-07-31k, R33.8 to-Test — READ FIRST) ★
+- Identity robbin-req@robbinTeam2:0.4 (`otmux pane.self`=%9). Repo /var/dev/Workspaces/web4x/Web4RawBin, HEAD a3eb41137. Session repo /var/dev/Workspaces/AI/Claude. ★ data=truth=LOCAL HEAD. I AM CAPTURE GATE.
+- ★ **R33.8 CHAIN-COMPLETE-TO-TEST (server+logic, a3eb41137, verified 2 ways):** Test 786b1863↔Impl 2c64aa7b (server persistRemoveView, fully gated) + Test 72af686c↔Impl 4c9c3969 (client removeFromDiagram logic). Both Impl.tests[] wired. ★ Drawer verb-CLICK Tron-visual HELD (uncredited headless, R33.5 item-1 split, NO Test). Tester two-key pending. **R33.8 = server+logic to-Test + drawer-click Tron-pending.**
+- ★ **CONTEXT: 65% used post-rewind (652k/1M) — flagged to PO for rewind cadence.** Autocompact OFF (NEVER self-compact/rewind — trainer drives).
+- **PENDING = NONE (reactive):** R33.9 (bd7ed14d) architect design IF Tron prioritizes; R33.7.4 onTreeReveal Test on GREEN (was RED-architect); item-4 render (b0c0d27d) Tron-held BUG-B. Hold reactive.
+
 ## ⏸ PRE-REWIND PHASE-1 (2026-07-31, 82% — drift-check PASS, HEAD 4e0e2e8cf) ⏸
 - **DRIFT-CHECK PASS (re-derived from git HEAD, disk-wins):** RawBin HEAD **4e0e2e8cf** (my R33.8 both-chains strict-credit) = anchor current, zero drift. R33.8 Impls 4c9c3969/2c64aa7b markerPending:false + tests:0 (chain-complete-to-Impl, awaiting tester @390 gate). applyCanvasGrow eb468578 tests:2 (7c3e9a10 px + 5e91b3c7 endless-zoom); render 34dec13f tests:2 (73d267cf R33.3 + 6b28f4d1 single-Re-Sync). All mints/gates/pending below are ACCURATE.
 - **ALL WORK COMMITTED, zero pending mints.** Trainer (agent-trainer, general driver) drives my Phase-2 rewind now (Option-2 code-intact, by-label, 50% cap). Holding new work until after.
