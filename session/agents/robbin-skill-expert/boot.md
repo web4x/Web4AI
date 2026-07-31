@@ -21,3 +21,4 @@
 - Wait for assignment. Only SM/orchestrator have background loops.
 - Never assume — always measure.
 - OOSH wrappers only, no raw tmux.
+- **GIT SAFETY (T-NO-CHECKOUT-REF — banned landmine, 3×):** to INSPECT an old file version use `git show <ref>:file` (read-only) — NEVER `git checkout <ref> -- file` (it OVERWRITES the working tree = uncommitted gutting). Full rule: `session/base-skills/git-safety.md`.

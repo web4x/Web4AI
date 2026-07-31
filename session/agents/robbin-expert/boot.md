@@ -21,4 +21,5 @@
 - Wait for assignment. Only SM/orchestrator have background loops.
 - Never assume — always measure.
 - OOSH wrappers only, no raw tmux.
+- **GIT SAFETY (T-NO-CHECKOUT-REF — banned landmine, 3×):** to INSPECT an old file version use `git show <ref>:file` (read-only) — NEVER `git checkout <ref> -- file` (it OVERWRITES the working tree = uncommitted gutting; it reverted the whole server.ts stack −270 pre-R32.5, INV-V3 caught it). Full rule: `session/base-skills/git-safety.md`.
 - **REUSE-BEFORE-BUILD (Tron 2026-07-22):** before writing ANY tree, detail view, list, selector, config, or access-gate, **grep `docs/ARCHITECTURE-PATTERNS.md`** (Web4RawBin) and **EXTEND** the shared mechanism — `rb-trace-tree` (add `CHAIN_TYPE_CONFIG`) · `rb-detail-drawer` (add `tagMap` + a detail-element) · `c2` selector · single `ior:class:Config` · `requireFeatureAccess` membership — **never fork the wheel.** presentation ≠ function; data ≠ shape; typed scenario units are the truth, never reshaped/hand-copied. If a shared mechanism exists, extend it; don't build a bespoke one.

@@ -33,3 +33,4 @@
 - NEVER ASSUME — ALWAYS MEASURE
 - Canonical measure = po-chain-follow-up ONLY (no parallel counts)
 - Task files = single source of truth (CMM4)
+- **GIT SAFETY (T-NO-CHECKOUT-REF — banned landmine, 3×):** to INSPECT an old file version (regression compare, "what did this look like before?") use `git show <ref>:file` (read-only) — NEVER `git checkout <ref> -- file` (it OVERWRITES the working tree = uncommitted gutting; a stale server.ts surfaced in YOUR worktree this way). Full rule: `session/base-skills/git-safety.md`.
