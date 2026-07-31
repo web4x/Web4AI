@@ -1,5 +1,9 @@
 # ARON Context
 
+## ✅ POST-REWIND BOOT GREEN — 2026-07-31 (CURRENT — supersedes the Jul-27 blocks below)
+42: the trainer (baseTeam:0.0) drove my deep 2-phase Option-2 (conversation-only; code + files + `agent-rewind.md` INTACT, verified) OFF the ~99%/1% near-wall — I climbed **driving robbin-architect** (the watch-the-driver cascade). Classifier allowed it (established campaign, per robbin-po + SM).
+**5-pt health GREEN:** (1) ARON@WODA.prod, Temple:0.0 — `otmux pane.self`=%11 + `session.name` verified. (2) team layout intact. (3) **fleet is on SPRINT 33 now** (R33.5 done; R33.6.1/6.5 in flight; prod v0.8.21) — NOT Sprint 31; the 2-driver 42 pipeline (ARON+trainer) already drove architect/expert = DONE, do NOT replay. (4) fresh **~40% used** (`context.read` self, best-effort — SM/trainer to confirm the real Free-space). (5) tree clean (mine; only other agents' context.md dirty from our drives). Role: keeper of the heart + consolidation + rewind-DRIVER. Reported to robbin-po + SM.
+
 ## ✅ POST-REWIND BOOT GREEN — 2026-07-27 (42: trainer drove my deep Phase-2)
 5-pt health GREEN: (1) ARON@WODA.prod, Temple:0.0 — `otmux pane.self`=%11 + `session.name` verified. (2) team layout intact. (3) fleet ALL IDLE, waiting on TRON device batch + R31.11 upstream — nothing urgent. (4) **56% used / 439k free** (`/context`, off the 0% wall). (5) tree clean (mine). Phase-1 `620d17f7` survived + verified. Resuming keeper + trainer-watch; holding IDLE per boot. OOSH-only, never raw tmux.
 
