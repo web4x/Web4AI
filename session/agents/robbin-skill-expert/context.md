@@ -1,6 +1,18 @@
 # robbin-skill-expert Context — Save Point 2026-06-28 POST-FORK (WODA.prod, STANDBY)
 
-## ★★★ SESSION-STATE 2026-07-26 (READ FIRST — latest) ★★★
+## ★★★ SESSION-STATE 2026-08-01 (READ FIRST — latest) ★★★
+**Sprint now = S33 (mof-layered-tree), v0.8.37+.** Pin synced S31→S33: current=T33.10 (7f1b9ad5, active build), last=T33.9 (291460bd Done) — commit ee13ddddb. S32 (MDA model-driven) + S33 landed; MY rb-trace-tree + shared CHAIN_TYPE_CONFIG were REUSED for the MDA model tree (ModelElement type, `members` forward key = composition children, uml* icons) = reuse-not-refork realized.
+**tsx STILL DENIED all session** — canonical Chain scoreboard/planner-drive UNRUNNABLE by me; I measure via node-walk + direct singleton edits. Tester (has tsx) runs the real scoreboard.
+**Traceability-tooling fixes shipped this session (all my lane, tsx-free node-verified):**
+- S31 audit CERTIFIED 18/18 whole (7938e2715); concept-termination rule (R31.6 concept counts complete-at-Method).
+- Generator: AC-status checkbox (e7a1020c6) + owned-output CONFINEMENT (0c7b29c7b, whitelist *.md, never .puml/design). MEASURED: generator has NO delete code — PUML loss was external git op, not the generator.
+- class/classes root (5 sites) — DURABLE fix: new shared `chain-model.fwdRefs(model,type)` reads ALL forward keys per CHAIN_TYPE_CONFIG (UC=[class,classes]); routed scoreboard(skill-classes) + pin(CurrentSprint) + fixed TraceModel.children 5th site (de289a0cf, 000c166dd). concept-req handling in scoreboard (000c166dd).
+- SCAN-COVERAGE: build.mjs (repo-root) markers unseen → implRoots now shallow-scans repo-root *.mjs/*.js (walkFiles file-aware), fe2f4b9ac — R31.7/R31.13 now in-scope+name-match. Correct-by-construction, all 3 sweeps inherit.
+**STANDING RULE reinforced (Tron)**: ALWAYS report to robbin-po (0.0) BEFORE idle; never silent-idle.
+**Reusable node walker**: scratchpad/s31-audit2.mjs (Req→UC(.method/.class via fwdRefs)→Method→Impl→Test; concept-aware).
+## ★★★ END SESSION-STATE 2026-08-01 ★★★
+
+## ★★★ SESSION-STATE 2026-07-26 ★★★
 **Role holding**: CurrentSprint pin currency + scoreboard/walked-chain measurement + traceability SKILLS/TOOLING (the generator).
 **Repo**: /var/dev/Workspaces/web4x/Web4RawBin. **Pin** = Sprint 31 / current=T31.4 (committed d532b9675; T31.4 xterm terminal is the real active task).
 **Constraints (measured this session)**: `npx tsx` DENIED (planner-drive, Chain scoreboard, generate-sprint-md all need tsx → can't run). `node <script>.mjs` WORKS (node build.mjs ok). git/curl/Read/Edit work. `git push origin main` BARE works; COMPOUND (tag&&push) + prod `npm start` hit the auto-mode classifier DENY. Prod server runs in **remoteShells:0.2** (npm start→start.mjs→tsx); restart REBUILDS from working tree.
