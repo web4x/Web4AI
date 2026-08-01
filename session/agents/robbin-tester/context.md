@@ -446,3 +446,11 @@ FOR EACH: verify served==0.8.37 → swap WK=1 + visible-assert → DET-3x → if
 - ⏳ REMAINING: (1) T33.5-item3-pan investigation/fix; (2) T33.7.2 discoverRelated (Impl 8e8c1d75, NOT built — /model-bundle drawer verb=discover → /api/ior neighbors relatesTo∪relatedFrom → add-view each WRITE→byte-restore → rb-diagram-refresh→buildEdges; reserved test uuid 54225f01); (3) 5th-chain broadcastActiveDiagram 5150477e emitter (open/close diagram→rb-active-diagram fires) gate if reachable else Tron-visual.
 - WebKit template (banked): `const ENGINE=process.env.WK?webkit:chromium` + `ENGINE.launch({headless:true, ...(WK?{}:{args:[--no-sandbox,--ignore-certificate-errors]})})`; run `WK=1 node <gate>`. WebKit ignores synthetic page.mouse for SVG surface gesture-pan (box-drag OK) — use in-page PointerEvents OR cross-ref r3362 for pan.
 - Flagged PO budget: checkpoint here (7 GREEN pushed) vs continue. Awaiting PO.
+
+## ▶ R33 SWEEP DONE (2026-08-01, served==HEAD==0.8.37)
+- ✅ R33.9 5th-chain broadcastActiveDiagram (r339-broadcast-active-diagram-gate.mjs, 3cf7c0987): GREEN DET-3x, marker 8f33daf4→Impl 5150477e, req minted cb75ed638, TWO-KEY VERIFIED ✓ both-dir. CLOSED.
+- ✅ R33.7.2 discoverRelated (r372-discover-related-gate.mjs, 08b8d654b): GREEN DET-3x, marker a02d7ae6→Impl 8e8c1d75 → AWAITING req mint→two-key. (Discover→exact 1-level relatesTo∪relatedFrom neighbors add-viewed self-excl, computed independently from /api/ior, route-intercept add-view=pollution-safe; planted no-diagram→0.)
+- ✅ R33.5 item3-pan RE-GATE (r335-ux-polish-gate.mjs, c6c1891c5): GREEN DET-3x — architect HARNESS-DRIFT diagnosis CONFIRMED (not product). Fix: setScale(1)+zoom-until->1-asserted(1.52)+un-clamped LEFT+UP drag+isolate selected-drag(reset+reselect). NO re-escalation. Items 2/3/4 all GREEN.
+- ✅ R33.10 marker placed 5d4b2fb5→Impl cfb6acef (server.sourceDirTree) in r3310-folder-nav-gate.mjs:2 (d5b7f639f) → AWAITING req adopt+mint→T33.10 Done.
+- R33.7.1 zoom (99a90d1e→301b71d4, 2499a8011) + item-4 BUG-A path GREEN done earlier this arc. item-4 RENDER held (BUG-B plantuml, Tron install).
+- PENDING two-keys (req to mint): a02d7ae6↔8e8c1d75 (discoverRelated), 5d4b2fb5↔cfb6acef (R33.10), 99a90d1e↔301b71d4 (zoom).
