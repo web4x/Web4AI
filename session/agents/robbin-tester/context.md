@@ -454,3 +454,4 @@ FOR EACH: verify served==0.8.37 → swap WK=1 + visible-assert → DET-3x → if
 - ✅ R33.10 marker placed 5d4b2fb5→Impl cfb6acef (server.sourceDirTree) in r3310-folder-nav-gate.mjs:2 (d5b7f639f) → AWAITING req adopt+mint→T33.10 Done.
 - R33.7.1 zoom (99a90d1e→301b71d4, 2499a8011) + item-4 BUG-A path GREEN done earlier this arc. item-4 RENDER held (BUG-B plantuml, Tron install).
 - PENDING two-keys (req to mint): a02d7ae6↔8e8c1d75 (discoverRelated), 5d4b2fb5↔cfb6acef (R33.10), 99a90d1e↔301b71d4 (zoom).
+- ✅ TWO-KEY CLOSED (req 8d60ba65e): a02d7ae6↔8e8c1d75 (discoverRelated) + 5d4b2fb5↔cfb6acef (R33.10) both status:pass both-dir. R33 sweep fully two-key CLOSED my end except R33.7.1 zoom mint (99a90d1e↔301b71d4) + item-4 render (Tron plantuml). Nothing mechanical pending.
