@@ -1,6 +1,13 @@
 # robbin-req — Context
 
-## ★ RESUME (2026-08-01b, ★★ SPRINT 33 COMPLETE 15/15 — CLEAN BOUNDARY, READ FIRST) ★
+## ★ RESUME (2026-08-02, ★ SPRINT 34 FORMALIZED — awaiting build-go, READ FIRST) ★
+- ★ **S34 mda-tree-refine FORMALIZED scenario-first (eb5053ce2, pushed) off architect design 0f312e4f8 (S34-mda-tree-refine-feedback.md ##ARCHITECT DESIGN, in sprint-33 dir).** Sprint STUB bbf0ac5f (I minted to parent the reqs; PLANNER owns/enriches — keep uuid+requirements[]). 6 req units + testable @390 ACs:
+  - **NEW (full chains at build-go, IMPL-MINT markerPending):** R34.1 793760f2 (A1 universal orange «Scenario»+«Edit» DEFAULT actions on ALL detail views, client), R34.2 fe463924 (A2 File/Folder real ior:class:Folder/File units in MODEL_STORE + exact location, server, R32.5 isolation/R32.2 det-uuid), R34.3 615048d8 (R-B Add-folder verb+/api/model/folder/create + remove-from-tree vs delete-unit-with-confirm-WARN).
+  - **RESIDUAL-WIRING (ride R33.9 actionsForContext/removeFromDiagram + R33.7.4 revealModelElement/expandPath — NO new verbs/Method/Impl):** R34.4 21d3df6c (R-C remove-from-diagram, wire active-diagram ctx), R34.5 6f604af0 (R-D1 auto-expand-on-navigate, wire trigger to R33.7.4), R34.6 ba3fe02e (R-D2 element-actions-on-class-select, wire detail-shown).
+  - Build order R-D1→R-C/D2→R-B→R-A (server A2/add-folder/delete need REAL restart at boundary). planning.md left UNTRACKED (planner board). ★ **PENDING ON ME = mint per-cluster UC→Class→Method→Impl chains AT PO BUILD-GO** (NEW=IMPL-MINT for expert to point; RESIDUAL=UC→existing built Method, no fabrication; names provisional/re-pointable). Reused classes: ModelView 35759641, RbTraceTree 5a057914, action-bar R33.6.5 setActions/showActionsForType, R33.9 model.ts actionsForContext.
+  - ★ LESSON: sprints are the planner's unit (S33 1a1de78b createdBy planner) — when I must parent new reqs before the board exists, mint a MINIMAL sprint STUB (createdBy_note: planner enrich, keep uuid+requirements[]) rather than block; flag it.
+
+## ★ RESUME (2026-08-01b, SPRINT 33 COMPLETE 15/15 — superseded by S34 above) ★
 - ★★ **S33 CLOSED 15/15 (planner 68c1be999, HEAD==origin).** R33.1.1 flipped Done: my credit-flip (39656aa1d markerPending=false) + AC-refine (efcd0f28e requirement==impl==gate) both verified; planner stood up T33.1.1 8be6074f mirroring my 4 renderPumlSource ACs, R33.1.1.tasks[]=[8be6074f] both-dir. **My reactive queue CLOSED. PENDING PROACTIVE = NONE. Zero pending mints.** Next = S34 / PO dispatch. All S33 truth in the block below + git.
 
 ## ★ RESUME (2026-08-01, S33 to-Test — R33.1.1 last Test DONE, superseded by 15/15 above) ★
