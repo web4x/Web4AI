@@ -12,6 +12,8 @@
 - R-D2 = T34.6 (element-actions class-select) — **DONE**
 - R-E = T34.7 (universal action bar on ALL 7 drawer usages)
 
+## ★ POST-REWIND BOOT (2026-08-03, deep rewind from 81%, LAYOUT-B option-1, CODE-INTACT): re-measured disk = v0.8.44, HEAD 15ebcdbae. Ghost-context caught (Sprint-31 thread was ancient). S34 NOT yet complete — 3 threads open (below). DROVE the idle-stall: architect A2-restart (via SM relay, my direct GHOSTED), expert A1-mint, tester A2+R-E gates. [[ghost-context-after-deep-rewind]]
+
 ## IN FLIGHT (pick up here)
 1. **R-E/R34.7 + R-A A1** (universal action bar) — BUILT + LIVE v0.8.43 (expert f28939b41, architect served-verified). Mechanism: RbDetailDrawer.universalActionBar (impl ffd44b17) sets ◆Scenario/✎Edit default itself on every detail render + registerActionProvider hook; model host registers actionsForContext via hook. Present in all 6 drawer bundles = universal by construction. **TESTER WebKit @390 GATING NOW** (bar on /trace,/scenario,in-room,/server-manager,feature-manager; /model unregressed; empty clears) → on GREEN planner flips T34.7+T34.1 → Done (6/7).
 2. **R-A A2/T34.2** (File/Folder as real ior:class:Folder/File units) — fork-LOCK A confirmed (architect 8e92f6817: tree/mofChildren node-refs STAY dir:/file: BYTE-unchanged, resolver mints MODEL_STORE units keyToUuid, prod-untouched — PROTECT THE TREE). **req MINTING the A2 chain** (was useCases:[]; expert can't self-mint #126) → expert builds resolver path → commits v0.8.44 → architect A2 restart + backstop → tester WebKit gate → planner flips T34.2 → Done (7/7 = S34 COMPLETE).
