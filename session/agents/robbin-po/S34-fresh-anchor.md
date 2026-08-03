@@ -22,6 +22,12 @@
 - Architect (0.3) 2-phase rewind APPROVED at clean boundary (off critical path) — trainer executing.
 - My own fresh-% = LOW (deep shed), SM panel-confirms at next idle blink.
 
+## ★★★ RESOLUTION (2026-08-03, conflict caught via SM roster — architect was about to land the guard + restart mid-gate):
+- (a) multi-owner ServerManagerGuard STAYS PARKED (stash@{0}) — SEPARATE Tron item, S34 gate SACRED SINGLE-OWNER; landing it = scope-creep beyond Tron directive [[deliver-literally-dont-inject-caution]].
+- (b) NO server restart while tester mid-gate = moving-target [[measure-a-stable-state-not-a-moving-target]].
+- (c) version skew served 0.8.44 vs committed 0.8.45 is BENIGN (traceability-only markers, functionally identical) — tester gates against served 0.8.44 AS-IS, VALID; any 0.8.45 re-stamp = AFTER 7/7, separate traceability-only, NO guard bundled.
+- ALL MARKERS FLIPPED: R-E ffd44b17 + A1 005dbd3e + A2 a09b474d = R-A+R-E chain-complete-to-Impl. Critical path = tester's 3 @390 gates (live run) -> req Tests -> planner flips -> 7/7.
+
 ## IN FLIGHT (pick up here)
 1. **R-E/R34.7 + R-A A1** (universal action bar) — BUILT + LIVE v0.8.43 (expert f28939b41, architect served-verified). Mechanism: RbDetailDrawer.universalActionBar (impl ffd44b17) sets ◆Scenario/✎Edit default itself on every detail render + registerActionProvider hook; model host registers actionsForContext via hook. Present in all 6 drawer bundles = universal by construction. **TESTER WebKit @390 GATING NOW** (bar on /trace,/scenario,in-room,/server-manager,feature-manager; /model unregressed; empty clears) → on GREEN planner flips T34.7+T34.1 → Done (6/7).
 2. **R-A A2/T34.2** (File/Folder as real ior:class:Folder/File units) — fork-LOCK A confirmed (architect 8e92f6817: tree/mofChildren node-refs STAY dir:/file: BYTE-unchanged, resolver mints MODEL_STORE units keyToUuid, prod-untouched — PROTECT THE TREE). **req MINTING the A2 chain** (was useCases:[]; expert can't self-mint #126) → expert builds resolver path → commits v0.8.44 → architect A2 restart + backstop → tester WebKit gate → planner flips T34.2 → Done (7/7 = S34 COMPLETE).
