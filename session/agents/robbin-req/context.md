@@ -1,6 +1,11 @@
 # robbin-req — Context
 
-## ★ RESUME (2026-08-02, ★ SPRINT 34 FORMALIZED — awaiting build-go, READ FIRST) ★
+## ★ RESUME (2026-08-03, SPRINT 34 — 4 clusters DONE, R-A+R-E remain, READ FIRST) ★
+- ★ **S34 BOARD = 4 DONE** (planner 6ace0822f): R-B/T34.3, R-C/T34.4, R-D1/T34.5, R-D2/T34.6 all chain-complete-to-Test, WebKit @390 GREEN v0.8.42, two-key verified both-dir, markerPending=false. Reactive queue on these 4 CLOSED.
+- ★ **REMAINING S34 (2 clusters, both expert-building):** (a) **R-A T34.1 (793760f2 A1 client default-actions) + T34.2 (fe463924 A2 File/Folder server units)** — IMPL-MINT on expert ping (was checkpoint-held; R-A chain shape in the block below). (b) **R-E T34.7 (ad8c6d3e universal action bar)** — chain minted, Impl ffd44b17 markerPending; expert building with R-A → I strict-AST-flip + mint @390 Test on tester GREEN. Both unify (build A1 default INTO shared drawer per R-E design).
+- ★ PENDING ON ME (all reactive/triggered): R-A IMPL-MINT (expert ping) · R-E ffd44b17 strict-AST-flip + @390 Test · R-A @390 Tests. Everything else committed+pushed, HEAD==origin, clean sub-boundary.
+
+## ★ RESUME (2026-08-02, SPRINT 34 build-go — superseded by 4-Done above) ★
 - ★ **S34 mda-tree-refine FORMALIZED scenario-first (eb5053ce2, pushed) off architect design 0f312e4f8 (S34-mda-tree-refine-feedback.md ##ARCHITECT DESIGN, in sprint-33 dir).** Sprint STUB bbf0ac5f (I minted to parent the reqs; PLANNER owns/enriches — keep uuid+requirements[]). 6 req units + testable @390 ACs:
   - **NEW (full chains at build-go, IMPL-MINT markerPending):** R34.1 793760f2 (A1 universal orange «Scenario»+«Edit» DEFAULT actions on ALL detail views, client), R34.2 fe463924 (A2 File/Folder real ior:class:Folder/File units in MODEL_STORE + exact location, server, R32.5 isolation/R32.2 det-uuid), R34.3 615048d8 (R-B Add-folder verb+/api/model/folder/create + remove-from-tree vs delete-unit-with-confirm-WARN).
   - **RESIDUAL-WIRING (ride R33.9 actionsForContext/removeFromDiagram + R33.7.4 revealModelElement/expandPath — NO new verbs/Method/Impl):** R34.4 21d3df6c (R-C remove-from-diagram, wire active-diagram ctx), R34.5 6f604af0 (R-D1 auto-expand-on-navigate, wire trigger to R33.7.4), R34.6 ba3fe02e (R-D2 element-actions-on-class-select, wire detail-shown).
