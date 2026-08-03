@@ -14,6 +14,14 @@
 
 ## ★ POST-REWIND BOOT (2026-08-03, deep rewind from 81%, LAYOUT-B option-1, CODE-INTACT): re-measured disk = v0.8.44, HEAD 15ebcdbae. Ghost-context caught (Sprint-31 thread was ancient). S34 NOT yet complete — 3 threads open (below). DROVE the idle-stall: architect A2-restart (via SM relay, my direct GHOSTED), expert A1-mint, tester A2+R-E gates. [[ghost-context-after-deep-rewind]]
 
+## ★ S34 TAIL — RESOLVED STATE (2026-08-03, board 4/7 → path to 7/7):
+- **A2/T34.2**: architect restart+backstop PASS, served 0.8.44 (INV-A2-1/2/3: idempotent uuid 485cb231, prod Folder/File 95→95, single-owner 403, tree unregressed). → TESTER @390 gate → planner flip.
+- **A1/R34.1**: uuid Impl **005dbd3e** (chain 12921806e: UC 8106d378→d86af73d→onUniversalAction 276e4981→Impl 005dbd3e). FIELD-ATTACH CONFIRMED — strict-AST=name-match-on-adjacent-decl, arrow-field credits AS-IS (no method conversion, my this-binding risk avoided). → expert places marker v0.8.45 → req flip → TESTER @390 Test.
+- **R-E/R34.7**: universal action bar built+live v0.8.43, NOT gated yet. → TESTER @390 gate → planner flip.
+- **CRITICAL PATH = TESTER** (R-E + A2 + A1 @390 gates). All decisions resolved; pipeline self-driving. STOP over-dispatching, hold for gates.
+- Architect (0.3) 2-phase rewind APPROVED at clean boundary (off critical path) — trainer executing.
+- My own fresh-% = LOW (deep shed), SM panel-confirms at next idle blink.
+
 ## IN FLIGHT (pick up here)
 1. **R-E/R34.7 + R-A A1** (universal action bar) — BUILT + LIVE v0.8.43 (expert f28939b41, architect served-verified). Mechanism: RbDetailDrawer.universalActionBar (impl ffd44b17) sets ◆Scenario/✎Edit default itself on every detail render + registerActionProvider hook; model host registers actionsForContext via hook. Present in all 6 drawer bundles = universal by construction. **TESTER WebKit @390 GATING NOW** (bar on /trace,/scenario,in-room,/server-manager,feature-manager; /model unregressed; empty clears) → on GREEN planner flips T34.7+T34.1 → Done (6/7).
 2. **R-A A2/T34.2** (File/Folder as real ior:class:Folder/File units) — fork-LOCK A confirmed (architect 8e92f6817: tree/mofChildren node-refs STAY dir:/file: BYTE-unchanged, resolver mints MODEL_STORE units keyToUuid, prod-untouched — PROTECT THE TREE). **req MINTING the A2 chain** (was useCases:[]; expert can't self-mint #126) → expert builds resolver path → commits v0.8.44 → architect A2 restart + backstop → tester WebKit gate → planner flips T34.2 → Done (7/7 = S34 COMPLETE).
