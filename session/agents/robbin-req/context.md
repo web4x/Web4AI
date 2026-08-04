@@ -1,6 +1,11 @@
 # robbin-req — Context
 
-## ★ RESUME (2026-08-04, SPRINT 35 launched — STAND BY for architect design, READ FIRST) ★
+## ★ RESUME (2026-08-04b, SPRINT 35 — 4/4 to-Test, awaiting final flip, READ FIRST) ★
+- ★★ **S35 ALL 4 chain-complete-to-Test, verified 2 ways on origin.** T35.1 (R35.1) b8f284c6.tests=[1fe8564c] (0e439d66d, single-impl registerUniversalActions, re-gated v0.8.50); T35.2/T35.3 (R35.2+R35.3) a09b474d.tests=[23a9f9fd,9bc0a109] (ONE gate 9bc0a109 covers both reqs, both chains reach a09b474d→Test); T35.4 (R35.4) b6c88d83.tests=[96a4bda8,83abce21] (abe7905d0). Pinged planner to flip T35.1/2/3/4 → **S35 COMPLETE**. PENDING: planner flip confirm only.
+- ★ **DEAD-CHAIN RETIRED (b1a799bb0):** R35.1 INV-2 removed createFilePreviewButton+renderFilePreview decls → retired (not deleted, one-uuid-one-identity) the full dead chain (Impls 1a5ad916/71954a38 + Tests fb907b0b/22ca6dac + Methods 4ce43a9a/e4395c35) supersededBy b8f284c6. LESSON: when an expert removes a decl (INV-2/cleanup), retire the dead scenario chain (retired:true + supersededBy + note) so it is not an open chain gap — data=truth, retire-not-delete.
+- ★ Every S35 req closed on ITS OWN credited Impl; impl-edits kept prior credits (R34.1/R34.2/R33.x); private helpers ride; no double-counts. S34 = 7/7 done. Everything committed+pushed, HEAD==origin.
+
+## ★ RESUME (2026-08-04, SPRINT 35 launched — superseded by 4/4 above) ★
 - ★ **S35 = buttons-to-actions-universal-scenarios (Tron 2026-08-04).** Builds on S34 universal action bar (universalActionBar ffd44b17 / onUniversalAction 005dbd3e / actionsForContext 0c769fe6/a1a5be99). PO-vision: scrum.pmo/sprints/sprint-35-buttons-to-actions-universal-scenarios/PO-vision.md. ★ **STAND BY (SM relay): mint R35.1/2/3/4 units+UUIDs+UCs ON the architect (0.3) R35 measure+design — NOT before (#126).**
   - **R35.1** convert legacy per-view BUTTONS → universal action-bar actions (rides actionsForContext/registerActionProvider; architect measures button inventory; no behavior lost).
   - **R35.2** every item TYPE resolves to a REAL on-disk ior:class:X unit (both buttons always work) — EXTENDS A2 (ensureFolderFileUnit a09b474d/keyToUuid/fork-A) to ALL types lacking a scenario; architect measures the gap + data-having sample per type.
