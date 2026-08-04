@@ -58,3 +58,8 @@ BUILD ORDER R35.2/3→R35.4→R35.1. BUILD-GO GIVEN for foundation R35.2/3 (via 
 - ★ RE-SEQUENCED (measured tester had stale S34 composer, hadn't started foundation gate): skip 0.8.46 gate → architect restart to 0.8.47 (final superset) → tester ONE-PASS gate R35.2/3/4 @390 → req Tests → planner flips T35.2/3/4.
 - R35.1 (buttons, client-only) build-go DEFERRED until R35.2/3/4 gate green (client deploy = moving-target for the running gate). Expert holds/preps, no deploy.
 - Served 0.8.46 (pre-restart). SM paired (relay+verify, my sends ghost). S33/S34 sprint-CLOSE still Tron governance.
+
+## S35 FINAL WAVE (2026-08-04): ALL 4 clusters chain-complete-to-Impl (R35.1 b8f284c6 registerUniversalActions / R35.2+R35.3 a09b474d ensureViewUnit / R35.4 b6c88d83 mofChildren). Disk-verified 0 tasks flipped yet, no Tests wired.
+- R35.1 built v0.8.49 client bundle (20bd079c3, aa02f2a78 flip), universal-actions.ts self-registered cross-view provider (architect f1726e904, single-impl per final design a1a5be99 untouched).
+- ★ SKEW: client bundle 0.8.49 but /api/config stuck 0.8.48 (client-only no restart) → ordered architect restart to sync /api/config=0.8.49 (R31.7 clean, version-bump-needs-restart rule).
+- FINAL SEQUENCE: architect restart→0.8.49 → tester ONE final @390 pass ALL 4 (R35.1 verbs fire cross-view + foundation R35.2/3/4 unregressed) → req mints ALL 4 Tests+wire+two-key → planner flips T35.1/2/3/4 = S35 COMPLETE. Verify Impl.tests[] + task-Done on disk before declaring (measure-not-relay). Multi-owner guard STILL parked. S33/S34/S35 sprint-CLOSE = Tron governance.
