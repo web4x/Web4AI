@@ -1,6 +1,16 @@
 # robbin-req — Context
 
-## ★ RESUME (2026-08-03b, SPRINT 34 — 7/7 to-Test, awaiting final flip, READ FIRST) ★
+## ★ RESUME (2026-08-04, SPRINT 35 launched — STAND BY for architect design, READ FIRST) ★
+- ★ **S35 = buttons-to-actions-universal-scenarios (Tron 2026-08-04).** Builds on S34 universal action bar (universalActionBar ffd44b17 / onUniversalAction 005dbd3e / actionsForContext 0c769fe6/a1a5be99). PO-vision: scrum.pmo/sprints/sprint-35-buttons-to-actions-universal-scenarios/PO-vision.md. ★ **STAND BY (SM relay): mint R35.1/2/3/4 units+UUIDs+UCs ON the architect (0.3) R35 measure+design — NOT before (#126).**
+  - **R35.1** convert legacy per-view BUTTONS → universal action-bar actions (rides actionsForContext/registerActionProvider; architect measures button inventory; no behavior lost).
+  - **R35.2** every item TYPE resolves to a REAL on-disk ior:class:X unit (both buttons always work) — EXTENDS A2 (ensureFolderFileUnit a09b474d/keyToUuid/fork-A) to ALL types lacking a scenario; architect measures the gap + data-having sample per type.
+  - **R35.3** scenarios POPULATED with the item's info (per-type fields non-empty); architect defines per-type field-set.
+  - **R35.4** add `traceability` as the 4th folder under MDA RawBin project ([ts,puml,diagrams,+traceability]); architect finds the project-folder-set defn (S33 mof-tree/S34) + trace-tree source (scoreboard chain).
+  - Build order: R35.2+R35.3 (resolver foundation, one pass) → R35.1 (button convert). Gate real-WebKit @390: R35.1 actions FIRE; R35.2 both buttons resolve per type (data-having sample); R35.3 fields non-empty; R35.4 project node = [ts,puml,diagrams,traceability] + folder expands to trace tree.
+  - ★ PENDING ON ME: coordinated the 4 inventories with architect (button list / type-gap+samples / per-type fields / project-folder defn+trace source) → sent 0.3; AWAITING architect design → then mint 4 reqs + UCs + chains (IMPL-MINT new / ride-existing residual) + sprint stub if planner hasn't stood up S35. S35 dir exists (PO-vision.md only), NO sprint unit yet.
+- ★ S34 = 7/7 chain-complete-to-Test (all two-key CLOSED); T34.1 awaiting planner flip (last one) — see block below.
+
+## ★ RESUME (2026-08-03b, SPRINT 34 — 7/7 to-Test, superseded by S35 above) ★
 - ★★ **S34 ALL 7 chain-complete-to-Test.** T34.3/4/5/6 Done (6ace0822f); T34.2(A2)+T34.7(R-E) Done (planner c98d167b5); **T34.1(A1) CLEAR TO FLIP** — A1 Test d8be524e minted+wired+pushed 7211d6c7d, 005dbd3e.tests[]=[d8be524e] verified 2 ways on origin. Final 3 Tests: R-E cbdb3210→ffd44b17, A2 23a9f9fd→a09b474d, A1 d8be524e→005dbd3e (all served v0.8.44). R34.1 closed on its OWN distinct handler decl onUniversalAction (NOT conflated with R-E composition ffd44b17) — clean #126. Pinged planner to flip T34.1 → S34 7/7 COMPLETE. PENDING: planner flip confirm only. Everything committed+pushed, HEAD==origin, clean.
 
 ## ★ RESUME (2026-08-03, SPRINT 34 — 4 clusters DONE, superseded by 7/7 above) ★
