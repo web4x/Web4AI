@@ -43,3 +43,11 @@
 - plantuml render docker: UP on WODA.prod:8089 (provision-plantuml.sh reproducible). BUG-A/B closed.
 
 ## FLEET CONTEXT (self-manage): rewinds at CLEAN boundaries only; VERIFY tree-clean (git status) before declaring zero-WIP (I missed this once, trainer caught +25 lines). SM reports idle-roster + climbers; idle-HOLDING (checkpoint/reactive) ≠ idle-awaiting-dispatch. Agent-down check = ps + pane.capture.VISIBLE (not -S scrollback) + pane height (h=1 collapse fakes dead). ~30 rewinds this campaign, 0 reverts. My lean-floor ~45% (front-loaded read-bloat won't shed on rewind; fork = real <40% lever, Tron's call).
+
+## ★★★ SPRINT 35 STARTED (Tron 2026-08-04, framed S35, drive-authorized by his directive) — Buttons→Actions + Universal On-Disk Scenarios
+Vision 83d47caed. Architect design 0c27937ef (measure-first, zero-fork). req mint 828297118 (scenario-first #126):
+- R35.1 b1fbf276 convert legacy buttons→actions (vcard/preview/newtab/proxy→actionsForContext; zoom-reset EXCLUDED=viewer control) UC actionBar.convertLegacyButtons f9c241bf
+- R35.2 030a1801 ensureViewUnit (generalize A2 ensureFolderFileUnit→all types: synthetic-MOF→Folder, puml-src→File/PumlArtifact; keyToUuid idempotent, fork-A, prod-untouched) UC modelTree.ensureViewUnit c3902503
+- R35.3 b039cd80 populate per-type field-sets UC modelTree.populateViewUnitFields 8f1eed4d
+- R35.4 476d367f traceability 4th folder [ts,puml,diagrams,traceability] @server.ts:1240-1247 via rb-trace-tree UC mofTree.traceabilityFolder beb0af0d
+BUILD ORDER R35.2/3→R35.4→R35.1. BUILD-GO GIVEN for foundation R35.2/3 (via SM); planner board in parallel. Server bits→architect restart+backstop (folds 0.8.44→0.8.45 skew). Gate real-WebKit @390 screenshot. Multi-owner guard PARKED. SM paired on drive (relay+verify pickup, my sends ghost). Governance: S33/S34 sprint-CLOSE still Tron's separate call.
