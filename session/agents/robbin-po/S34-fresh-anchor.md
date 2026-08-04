@@ -51,3 +51,10 @@ Vision 83d47caed. Architect design 0c27937ef (measure-first, zero-fork). req min
 - R35.3 b039cd80 populate per-type field-sets UC modelTree.populateViewUnitFields 8f1eed4d
 - R35.4 476d367f traceability 4th folder [ts,puml,diagrams,traceability] @server.ts:1240-1247 via rb-trace-tree UC mofTree.traceabilityFolder beb0af0d
 BUILD ORDER R35.2/3→R35.4→R35.1. BUILD-GO GIVEN for foundation R35.2/3 (via SM); planner board in parallel. Server bits→architect restart+backstop (folds 0.8.44→0.8.45 skew). Gate real-WebKit @390 screenshot. Multi-owner guard PARKED. SM paired on drive (relay+verify pickup, my sends ghost). Governance: S33/S34 sprint-CLOSE still Tron's separate call.
+
+## S35 PROGRESS (2026-08-04): R35.2/R35.3/R35.4 ALL chain-complete-to-Impl.
+- R35.2/R35.3 foundation shipped v0.8.46 (4b2954ed4), architect backstop PASS, re-pointed f24379e40. One Impl a09b474d (ensureViewUnit, impl-edit) + distinct-intent Tests. (I over-reached forcing a helper for R35.3; withdrew — markers attach to real decls, distinct TEST provides R35.3's explicit verification.)
+- R35.4 built v0.8.47 (506ac486f), moving-target guard HONORED (committed, NO restart, served stayed 0.8.46). Rides mofChildren b6c88d83 (traceabilityRoots private helper) + distinct Test. Chain 476d367f→beb0af0d→7c460f8a→b6c88d83.
+- ★ RE-SEQUENCED (measured tester had stale S34 composer, hadn't started foundation gate): skip 0.8.46 gate → architect restart to 0.8.47 (final superset) → tester ONE-PASS gate R35.2/3/4 @390 → req Tests → planner flips T35.2/3/4.
+- R35.1 (buttons, client-only) build-go DEFERRED until R35.2/3/4 gate green (client deploy = moving-target for the running gate). Expert holds/preps, no deploy.
+- Served 0.8.46 (pre-restart). SM paired (relay+verify, my sends ghost). S33/S34 sprint-CLOSE still Tron governance.
