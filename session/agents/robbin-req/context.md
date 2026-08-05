@@ -1,6 +1,16 @@
 # robbin-req — Context
 
-## ★ RESUME (2026-08-05c, SPRINT 36 FORMALIZED — awaiting build-go, READ FIRST) ★
+## ★ RESUME (2026-08-05d, S36 PART-2 IMPL-MINT DONE — pre-deep-rewind, READ FIRST) ★
+- Identity robbin-req@robbinTeam2:0.4 (otmux pane.self=%9). Repo /var/dev/Workspaces/web4x/Web4RawBin, HEAD b924699ff, prod v0.8.56. Session repo /var/dev/Workspaces/AI/Claude. DISK-WINS re-derive git log.
+- ★ **S36 part-2 + R31.7 = 3 Impl units MINTED markerPending (12d637b5e + b924699ff, pushed) for expert to mark:**
+  - (1) **reconcileCanonical 37c08fd5** → Method server.reconcileCanonical 5530ea76 / server c0a0921d (server.ts:1255, compute-on-read A-merge; enrichment-fix 119ca06d9=impl-edit same method, covered). UC modelElement.reconcileCanonical f4ed29af.
+  - (2) **renderFacet 94ad4f50** → Method DiagramViewModel.renderFacet a6a05d34 / DVM 09730090 (diagram-view-model.ts:61, facet-lens). UC diagramView.renderFacet 97e5e14e.
+  - (3) **putGuard 7f2d9046** → Method ScenarioIndex.put c2ab4e27 (index-store.ts:50-51 BUILD_OWNED no-flush, R31.7 durable, distinct-intent alongside 877ec45e/9c8d5ebb). No new UC (impl-edit on existing put).
+  - Chains 1+2 wired R36.1 e8fc62f9 + R36.2 32bf71f2 useCases[]. requirements.md regen DEFERRED (lean — regen on next boot).
+- ★ **PENDING ON ME (next boot): strict-AST-flip the 3 markerPending Impls when expert lands [impl:uuid:37c08fd5/94ad4f50/7f2d9046] on the name-matching decls** → then @390 Tests on tester GREEN. Reported 5-pt health + 68% to PO; took DEEP durable rewind here (clean-ish boundary, 3 Impls pushed).
+- ⚠ INDENT lesson (banked, keep): detect indent by READING first, NEVER open('w') before detecting (truncates→flatten); `git diff --stat` after every edit (N-line change for 1-field add = reformat).
+
+## ★ RESUME (2026-08-05c, SPRINT 36 FORMALIZED — awaiting build-go) ★
 - ★ **S36 unify-traceability-m2-uml-model FORMALIZED (cda0fb9ab)** off architect A-merge design b08995a28. Sprint stub ce1d8d57 (planner enriches). CORE DRY: UML/TS elements = typed OOP-extension VIEWS of the ONE ScenarioUnit via instanceOf multi-facet (NOT copies). Tron ruled **A(MERGE) tree-preserving** (fork-A resolve-at-detail: reconcile M1<->traceability into ONE canonical unit by sourceFile::qualifiedName @/api/ior; MOF tree/traceability-folder/api-model-tree UNTOUCHED, only detail/scenario/edit/facet resolve to merged).
   - **R36.1** e8fc62f9 UmlUseCase extends UseCase (M2 mint + instanceOf + drag-view + usedIn, merge=A) UC 543ce993 modelElement.umlUseCaseView.
   - **R36.2** 32bf71f2 UmlClass+tsClass extend Class (2 facet-lens views, merge=A reconcile) UC dd000fd8 modelElement.umlClassView.
