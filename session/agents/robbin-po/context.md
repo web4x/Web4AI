@@ -730,6 +730,13 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **CRITICAL PATH now = tester's 2 remaining gates** (R36.4 @390 mechanism + gesture-split · R36.3 re-generate) — req-independent, expert-independent. Tester self-sequencing.
 - **S36 STATUS**: version-guard durable ✅ · part-2 A+B+putGuard CLOSED ✅ · R36.4 built, @390 gate in-flight + inc-2 markers pending expert-unblock · R36.3 scoped, gate queued.
 
+## ★★★★★ R36.4 MECHANISM GREEN + tester proactive-rewind (session tail-6) ★★★★★
+- **★ R36.4 authored-trace MECHANISM GREEN DET-3x (tester 8b5026f85)**: idempotent (real keyToUuid, re-draw no-dup) + 403-gate (no-token AND non-owner). Engine-independent core. part-2 two-key VERIFIED closed (fb5ae5eb↔37c08fd5, e21b876d↔94ad4f50).
+- **AC SPLIT (tester, iOS-tap discipline)**: r364b = @390 WebKit VISUAL (buildTraceEdge dc101d02 overlay-render + reroute + 🔗-arm→click→click FLOW) — fresh-tester gate; real-iOS-TAP fire = Tron device.
+- **Tester PROACTIVE-REWIND @74%** (clean handoff written to its context.md: r364b + R36.3 scoped) BEFORE the heavy @390 jobs (walled it before) — I approved (NOT marginal-gain: prevents a likely wall). Trainer (66%) drives; fresh tester does r364b @390 + R36.3.
+- **req chain-crediting**: R36.4 mechanism Test d41ee143→authorTrace a79f6091 (two-key) + flip inc-2 markers (dc101d02/a79f6091) when expert reports (resumed post-rate-limit).
+- **REMAINING to S36-complete**: r364b @390 visual gate (fresh tester) + R36.3 re-generate gate (fresh tester) + inc-2 marker flip (req, pending expert) + real-iOS-tap gesture (Tron device). Delivery core all GREEN; verification tail = 2 fresh-tester gates + 1 Tron device check.
+
 ---
 
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
