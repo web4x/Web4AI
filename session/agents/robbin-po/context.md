@@ -737,6 +737,13 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **req chain-crediting**: R36.4 mechanism Test d41ee143→authorTrace a79f6091 (two-key) + flip inc-2 markers (dc101d02/a79f6091) when expert reports (resumed post-rate-limit).
 - **REMAINING to S36-complete**: r364b @390 visual gate (fresh tester) + R36.3 re-generate gate (fresh tester) + inc-2 marker flip (req, pending expert) + real-iOS-tap gesture (Tron device). Delivery core all GREEN; verification tail = 2 fresh-tester gates + 1 Tron device check.
 
+## ★★★★★ CONFIRMED STATE (session tail-7, all measured) ★★★★★
+- **R36.4 COMPLETE @0.8.59 (84284dc19)**: inc-2 markers PLACED (a79f6091 authorTrace + dc101d02 buildTraceEdge, AST-attached via behavior-preserving buildTraceEdge-extract refactor — expert HONEST-flagged the not-pure-marker-only, 7/7 re-verified, boot-check pass, config-clean). req flipping.
+- **Expert RIDES @71% authoritative** (SM /context on genuine-idle — CONFIRMS ride: not-near-wall, no imminent build, budget-aware measure-then-decide; rewind at next heavy-block-scope or ≥80%).
+- **Tester FRESH @44%** (post proactive prevent-wall rewind; shed crossed the 5m50s R36.4-GREEN heavy gen = real anti-wall gain) → gating r364b @390 VISUAL on served v0.8.59 (DISK-WINS: gates CURRENT version not its 0.8.58 handoff) → then R36.3 re-generate. real-iOS-tap=Tron device.
+- **★ PLANNER CATCH (verify-not-relay, ENDORSED)**: T36.2 NOT flipped Done — its usedin-survives-regen (side-index mechanism-c) is a KNOWN FORWARD-DEPENDENCY, UN-BUILT on disk, NOT closed by reconcileCanonical+renderFacet. Honest board: T36.5 Done / T36.1+T36.3 flip-on-req-confirm / T36.2 HELD (forward-dep) / T36.4 in-testing. **S36 is NOT 'all done' — T36.2 side-index-survives-regen is a tracked open forward-dep for a future increment.**
+- **Recovery infra self-maintaining**: trainer 66% (ARON watches, flags@80%) · ARON 54% · 42-reciprocal live.
+
 ---
 
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
