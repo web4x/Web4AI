@@ -775,6 +775,14 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **R36.5 GUARDRAIL RE-GATE (planner+architect, my decision = re-gate NOW)**: side-index swap (R36.2c) moved resolveUsedIn OFF-element; R36.5's Test 91a10db8 is STALE on-element → MUST re-gate on the usage-index backend (usedIn bidi + INV-T + INV-RM1 element-pristine + /api/ior-usedIn). R36.5 = Done-PENDING-re-gate (honest conditional; REDs→reopen like R35.4). Architect backstops.
 - **CRITICAL PATH = expert R36.3 fix** → tester re-gen cycle (R36.3 GREEN + T36.2 + R36.5 re-gate) → S36 FULLY COMPLETE. Tester ~40% self-manages.
 
+## ★★★★★ R36.3 + T36.2 GREEN — GATE-3 (R36.5) last (session tail-13) ★★★★★
+- **R36.3 RED→GREEN DET-3x** (tester c0ed32640, both bugs fixed via 2 fixes: crash .text + primitive-drop signatureType keyword-map; full typed sig 'public greet(name: string): void'; phantom-caught the 0.8.60→0.8.61 deploy). 3 markers → req.
+- **T36.2 survives-regen GREEN DET-3x** (5fcacef90) — GATE-PROVEN not asserted (add-view→usedIn→re-generate→SURVIVES + element byte-identical INV-RM1). Marker a81a82c4 → req.
+- **R36.3 IMPL-hop WIRE = (a) R30.11 shared-credit** (confirmed, joint verdict 2ebff228c + PRECEDENT a09b474d[R35.2+R35.3 shared both Done]): T1/T3→382f8644, T2→94ad4f50 distinct-intent, shared markers UNTOUCHED. NOT extract (gratuitous). skill-expert 0.2 scoreboard-OK (accept distinct-intent-on-shared / rule-tune 'open shared-x2' = TOOLING not build) → req wires → planner disk-verifies → T36.3 Done.
+- **Expert RIDES @77%** (r363 GREEN → ride-pending-verdict paid off, no speculative rewind, budget saved).
+- **TESTER pre-GATE-3 rewind APPROVED** (wall-prevention: 2 heavy gates done, wall-prone, can't-self-monitor, heavy R36.5 re-gate ahead) → routed via trainer-RE-MEASURE-FIRST (trainer hard-limit @73%: <78 trainer drives, ≥78 ARON drives trainer first). Fresh-tester does GATE-3 (R36.5 guardrail: bidi off-element usage-index + INV-T + element-pristine + /api/ior-usedIn).
+- **REMAINING**: R36.3 wire→T36.3 Done · GATE-3 R36.5 re-gate (fresh tester) → then S36 FULLY COMPLETE. + Tron R36.4 gesture device-tap.
+
 ---
 
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
