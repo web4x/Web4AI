@@ -755,6 +755,13 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **★★ R36.3 DOUBLE-CREDIT CONFLICT FULLY RESOLVED (joint verdict b4a02d1b5, architect+planner AGREE, DISK-VERIFIED)**: R30.11 SHARED-IMPL chain-credit, NO build. Ownership-verified: 382f8644's only Test=ba762f5a(R32.2 generation), 94ad4f50's only Test=e21b876d(R36.2 facet-paint) → R36.3's 3 Tests genuinely DISTINCT (T1 signature-extract / T2 signature-line CONTENT-not-paint / T3 method-vs-function) = NO double-credit, markers STAY R32.2/R36.2. req GREENLIT (final) → mint → tester @390 re-generate gate → T36.3 Done. Extract(B) rejected (hygiene churn). ★ MY LESSON: verify Impl-OWNERSHIP + distinct-intent-on-disk BEFORE a chain-credit greenlight (I greenlit prematurely; planner caught; architect disk-verified the fix). Whipsaw (mint→revert→re-apply→re-hold) settled, disk clean.
 - **HONEST BOARD**: T36.1/T36.4/T36.5 DONE · T36.2 In-Progress (forward-dep usedin-survives-regen) · T36.3 In-Progress (code-done, mint→@390-gate→Done). **S36 = R36.4 done + R36.3 minting→gate + T36.2 forward-dep open. Near-complete.**
 
+## ★★★★★ R36.3 CLEAN MINT + R36.4 BACKSTOPPED (session tail-10) ★★★★★
+- **★ R36.3 FINAL mint CLEAN (req 1470075c8, whipsaw ENDED, ownership-verified-first)**: R36.3's OWN chains — (data) UC methodSignature f5e4ecb2→Method enrichMethodSignature 68d1997e→RIDES 382f8644(R32.2); (render) UC methodFacetRender 8e39082a→Method renderMethodFacet d8818494→RIDES 94ad4f50(R36.2). Shared Impls UNTOUCHED (zero re-credit/flip, markers intact). 3 distinct-intent Tests PENDING. PATH: planner verifies 1470075c8 → fresh tester @390 re-generate gate → req mints the 3 Tests (T1 data+T3 mvf on 382f8644, T2 render on 94ad4f50) → T36.3 Done.
+- **★ R36.4 DOUBLE-VERIFIED complete**: tester functional @390 GREEN + architect invariant backstop PASS (static-reuse-no-fork, INV-T-by-construction tree-untouched, isolation MODEL_STORE-only, served==committed==0.8.59, matches b0d16ec5e). R36.1/2/4/5 all DONE+backstopped.
+- **req queue (held, disciplined — no premature action)**: R36.3 Tests (on tester GREEN) · T36.2 side-index · requirements.md regen (deferred).
+- **★ T36.2 CLARIFICATION**: its usedin-survives-regen side-index is UN-BUILT → needs a BUILD (architect design → expert build → tester gate), NOT just a Test. Scope AFTER R36.3 closes (future-increment). Sole remaining S36 open item.
+- **REMAINING to S36-close**: (1) tester rewind→R36.3 @390 gate→3 Tests→T36.3 Done; (2) T36.2 side-index build (future). + Tron R36.4 gesture device-tap (non-blocking).
+
 ---
 
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
