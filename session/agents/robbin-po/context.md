@@ -689,6 +689,14 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - TRAINER (baseTeam:0.0) CLIMBING (drove po-deep + req + tester recoveries), SPOF, can't self-measure → ARON (Temple:0.0) panel-capturing it; if ≥80% ARON rewinds the trainer FIRST (protect the driver). I /context-injected it for ARON to read.
 ### AGENTS: expert 58% building R36.4 (design b0d16ec5e, req# 2265ad63) · req idle→rewind · tester walled→recover→re-gate · architect backstopping · trainer climbing→ARON-watching · ARON watch-the-watcher. Multi-owner guard parked.
 
+## ★★★★★ CONVERGENCE (2026-08-05, dense session end-state — all committed) ★★★★★
+- **Version regression: DEAD durably** — v0.8.5x via SOURCE config unit, ScenarioIndex.put BUILD_OWNED no-flush guard (0f623bfb6) by-construction, architect-backstopped. Cannot recur.
+- **S36 part-2 (A reconcileCanonical + B renderFacet) + putGuard: chain-complete-to-IMPL** (markers 68839e679 + flips c1609de03). Chain-to-TEST pends the tester's v0.8.56 re-gate (in progress post-tester-rewind, w/ counterpart-enrichment AC). Enrichment bug caught pre-gate by counterpart-sample rigor + fixed (119ca06d9).
+- **R36.4 (UmlTraceRelationship): inc-1 DONE+LIVE @0.8.57 (2ab6e3d11)** — derived UC→method dashed connector, DRY typed-view no-fork, 7/7, INV-T byte-diff==0. **inc-2 (authored-trace persist server+UI) build-go GIVEN** (markers trail to req-recovery; server-change discipline: boot-check + source-unit bump + config-clean verify).
+- **RECOVERY CASCADE resolved cleanly** (2 walls: req + tester, both 1M-exhausted→/rewind Option-2 code-intact by-label). Trainer (recovery-driver SPOF) verified HEALTHY 58% by ARON+self /context → drives req deep-rewind now. Lane: trainer drives workers, ARON drives trainer only. Tester durable-2nd AFTER its re-gate. Expert 60% climbing → rewind at ~80%/post-increment.
+- **SYSTEMIC (flagged to Tron)**: autocompact-OFF → agents wall → manual rewind; SM can't /context active agents = the monitoring gap; prevention = proactive ≤80% catch. Options offered: enable autocompact on workers OR 2nd rewind-driver.
+- **AWAITING**: tester v0.8.56 re-gate verdict (closes part-2 to-Test) · req deep-rewind fresh-% (trainer) · expert R36.4 inc-2 deploy · then R36.4 @390 gates (fresh tester).
+
 ---
 
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
