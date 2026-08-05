@@ -762,6 +762,12 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **★ T36.2 CLARIFICATION**: its usedin-survives-regen side-index is UN-BUILT → needs a BUILD (architect design → expert build → tester gate), NOT just a Test. Scope AFTER R36.3 closes (future-increment). Sole remaining S36 open item.
 - **REMAINING to S36-close**: (1) tester rewind→R36.3 @390 gate→3 Tests→T36.3 Done; (2) T36.2 side-index build (future). + Tron R36.4 gesture device-tap (non-blocking).
 
+## ★★★★★ S36 NO BLOCKER — both remaining = Test-only (session tail-11) ★★★★★
+- **★ T36.2 VERDICT (architect 33dfa047e, disk-measured, ACCEPTED)**: usedin-survives-regen MECHANISM BUILT-ALREADY BY-CONSTRUCTION — usedIn in a SEPARATE usage-index.json (above the shards); TsToModel.generate writes only shards+Diagram → structurally CANNOT touch usage-index → usedIn survives regen. Planner's 'un-built' = the TEST (chain-pending), NOT the mechanism (same shape as R36.3). NO blocker, NO code-build.
+- **★ MY DECISION: add the T36.2 survives-regen Test NOW** (gate-PROVE the by-construction claim, not assert it — [[correct-by-construction-needs-gate-verification]], the enrichment-bug lesson). Low-cost: 1 distinct-intent Test on existing resolveUsedIn 2f44e112 (add usedIn→re-generate→assert PERSISTS), NO build. req minting it; tester gates (efficient to FOLD into the R36.3 re-generate cycle).
+- **S36 = ZERO blockers. Both remaining items are Test-only (chain-credit):** R36.3 = 3 distinct-intent Tests (tester gating NOW) · T36.2 = 1 survives-regen Test (req minting, tester after/with R36.3). On both GREEN → **S36 ALL requirements chain-complete-to-Test = FULLY COMPLETE.**
+- **Tester queue**: R36.3 3-Test @390 (in progress, re-generate running) + T36.2 survives-regen Test (fold into same re-generate). Self-manage context (rewind-before if climbing — it's fresh @38%).
+
 ---
 
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
