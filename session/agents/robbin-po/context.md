@@ -724,6 +724,12 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **Trainer RIDES 64%** (ARON measure-then-decide: not-near-wall + budget-scarce → no rewind, flags at ~80%). Banked: rewind has a budget cost, don't do it early for marginal gain.
 - **S36 near-CLOSE**: version-guard durable · part-2 A+B GREEN→closing-to-Test + putGuard by-construction · R36.4 built→@390 gate queued · R36.3 scoped chain-credit+gate queued.
 
+## ★★★★★ PART-2 CLOSED (session tail-5) ★★★★★
+- **★ S36 PART-2 CLOSED-to-Test (req ad0e15636)**: (A) reconcileCanonical 37c08fd5→Test fb5ae5eb + (B) renderFacet 94ad4f50→Test e21b876d, both chain-complete-to-Test (tester two-key formality pending); (putGuard) 7f2d9046 CLOSED BY-CONSTRUCTION (invariant recorded: config git-clean + served==committed==HEAD, guard holds; not falsely-open, T30.28 pattern). PART-2 DONE.
+- **⚠ EXPERT RATE-LIMITED** (server-side transient, 'not your usage limit', stalled ~11min) → inc-2 marker placement (dc101d02/a79f6091) BLOCKED until it clears. NOT critical-path (chain-credit; req waits). Let it clear, don't re-poke (would re-hit the limit). Expert also owes its milestone rewind after markers.
+- **CRITICAL PATH now = tester's 2 remaining gates** (R36.4 @390 mechanism + gesture-split · R36.3 re-generate) — req-independent, expert-independent. Tester self-sequencing.
+- **S36 STATUS**: version-guard durable ✅ · part-2 A+B+putGuard CLOSED ✅ · R36.4 built, @390 gate in-flight + inc-2 markers pending expert-unblock · R36.3 scoped, gate queued.
+
 ---
 
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
