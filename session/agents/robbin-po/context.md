@@ -710,6 +710,13 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **R36.3 HELD** (build-go after part-2-to-Test + R36.4 gated; architect scoping: likely part-1 data d978df35d + renderFacet-B render = code-done→chain-credit, OR real gap).
 - **OPEN verification tail**: part-2 v0.8.56 re-gate (fresh tester) + R36.4 @390 authored-flow+gesture gate (fresh tester). Both = chain-to-Test closure.
 
+## ★★★★★ CASCADE COMPLETE + R36.3 SCOPED (session tail-3) ★★★★★
+- **RECOVERY CASCADE FULLY DONE**: 5 recoveries (po 83→15 / req 98→68→47 / tester 98→77→52 / Task#3 / trainer now self-rewinding via ARON), 0 reverts, 0 forks, lying-labels caught EVERY drive. Trainer earned+taking its own rewind.
+- **Tester FRESH @52%** (HEAD==origin==ae89eece0, served v0.8.58 = R36.4-connectors-additive-over-v0.8.56-enrichment, no phantom) → re-gating part-2 v0.8.56 counterpart-enrichment NOW (Chain 0bbe576f union+members=30 + 4 counterparts + 4 prior GREEN, DET-3x @390). Will report verdict = part-2 to-Test closer.
+- **R36.3 SCOPED (architect d38b5321e, ACCEPTED)**: CODE-DONE → CHAIN-CREDIT + GATE, NO new build (R30.11). part-1 d978df35d (TsToModel extract+write M1 fields; Method-vs-Function by parentClass BY CONSTRUCTION) + part-2 renderFacet-B render. Gate prereq = a TsToModel RE-GENERATE step (stale pre-d978df35d M1 methods repopulate, R32.8). SEQUENCED behind critical path: tester (1) part-2 re-gate → (2) R36.4 @390 → (3) R36.3 re-generate+facet gate; then req chain-credits R36.3 on d978df35d+94ad4f50.
+- **TESTER GATE QUEUE (self-sequences, watches own context)**: part-2 v0.8.56 [now] → R36.4 @390 authored-flow+gesture → R36.3 re-generate. Queue R36.4+R36.3 to it when part-2 verdict lands (don't pile on a booting/gating tester).
+- **HOLD**: waiting on tester part-2 verdict · expert inc-2 markers (dc101d02/a79f6091)→req flip · trainer self-rewind fresh-% (ARON).
+
 ---
 
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
