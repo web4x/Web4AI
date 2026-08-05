@@ -717,6 +717,13 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **TESTER GATE QUEUE (self-sequences, watches own context)**: part-2 v0.8.56 [now] → R36.4 @390 authored-flow+gesture → R36.3 re-generate. Queue R36.4+R36.3 to it when part-2 verdict lands (don't pile on a booting/gating tester).
 - **HOLD**: waiting on tester part-2 verdict · expert inc-2 markers (dc101d02/a79f6091)→req flip · trainer self-rewind fresh-% (ARON).
 
+## ★★★★★ PART-2 GREEN — CLOSING TO-TEST (session tail-4) ★★★★★
+- **★ PART-2 re-gate GREEN DET-3x served-verified v0.8.58 (tester 1742961e8)**: counterpart-enrichment (5/5 — Chain 0bbe576f + ClassRegistry/AgentMessage/ScenarioIndex/TsToModel, each instanceOf UNION + INV-T byte-identical) + 4 prior kept (renderFacet 5-facet @390 WebKit + INV-T + where-used bidi + Scenario/Edit→canonical). The gate-gap (enrichment dimension) CLOSED. This is the REAL green (independent, pixel, DET-3x).
+- **CLOSING part-2 to-Test**: req wiring 2 Test markers (fb5ae5eb→reconcileCanonical 37c08fd5, e21b876d→renderFacet 94ad4f50) into Impl.tests[]; putGuard 7f2d9046 closes BY-CONSTRUCTION (invariant guard-holds, like T30.28, NOT functional test).
+- **TESTER next queue (self-sequences, watches ctx)**: (1) R36.4 @390 authored-trace MECHANISM gate (idempotent mint / 403-gated / overlay+reroute) + gesture SPLIT (flow=tester, fires-on-real-iOS-tap=Tron device, [[ios-webkit-tap-fire-fragile-elements]]); (2) R36.3 re-generate gate (methods carry signature→facet renders→Method-vs-Function).
+- **Trainer RIDES 64%** (ARON measure-then-decide: not-near-wall + budget-scarce → no rewind, flags at ~80%). Banked: rewind has a budget cost, don't do it early for marginal gain.
+- **S36 near-CLOSE**: version-guard durable · part-2 A+B GREEN→closing-to-Test + putGuard by-construction · R36.4 built→@390 gate queued · R36.3 scoped chain-credit+gate queued.
+
 ---
 
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
