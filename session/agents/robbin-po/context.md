@@ -664,7 +664,13 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **R36.5 FOUNDATION DONE** (27c98a562) — chain-complete-to-Test + WebKit @390 GREEN. R36.2(c) side-index moves usedIn off-element → tester re-gates R36.5 on R36.2 ship (guardrail AC 879f1c961).
 
 ### ★ IN FLIGHT (I just drove): EXPERT (0.1) building increment **(B) renderFacet** — renderFacet(canonical, facetType) facet-lens at /api/ior, built ONCE + reused by all projections on R32.4 surface (compute-on-read off (A)) + (B) client drag view-link. Version-bump+atomic, land BOTH markers (A was markerPending). Expert HEALTHY 47%/531.8k-free, no rewind. Go LANDED (was a ghost/unsubmitted suggestion — C-u no-op signature; fresh send landed it, expert now generating).
-### NEXT: verify (B) build lands → deploy → gate → markers credited. T30.29 CLOSED-Done (a244058d8, correct-by-construction). Board S30-era honest.
+### ★★★ (B) renderFacet DONE (60afefa5d) — part-2 complete (A 4db24e412 + B 60afefa5d), 6/6 verified, facet-lens built-once renders every view from canonical. Markers A+B markerPending → REQ mint reconcileCanonical + renderFacet Impls (expert didn't self-mint, #126 correct).
+### ★★★ VERSION REGRESSION 0.8.54→0.8.46 — ROOT DIAGNOSED (PO triage, delivery-blocker):
+- NOT a mystery process. The **running server** (PID 1549211 tsx server.ts, booted @0.8.46) FLUSHES the config-singleton scenario unit (scenario/index/c/o/n/f/i/config-singleton-0000-000000000001.scenario.json) back to disk @0.8.46 → worktree unit DIRTY(M) @0.8.46 while HEAD unit=0.8.54. The R31.7 build (start.mjs step 4) regenerates package.json/sw.js/manifest FROM that dirty unit → all stamp 0.8.46. Expert bumped package.json (a GENERATED consumer) → server/build clobbered it back. **Antipattern: served repo real-saves the BUILD-OWNED version unit** ([[gate-never-real-save-on-served-repo]], [[dry-config-single-source-typed-scenario-units]]).
+- HEAD is INV-V1-INCONSISTENT (committed): unit 0.8.54 vs package.json/sw 0.8.46. A clean checkout is already broken.
+- **FIX (R-boundary, expert):** (1) STOP the running server (the rogue writer); (2) bump the SOURCE config-singleton unit → 0.8.55 (NOT package.json — it's generated); (3) rebuild → consumers regenerate to 0.8.55; (4) commit ATOMICALLY (unit+package.json+sw+manifest all 0.8.55, INV-V1 green); (5) restart → /api/config==0.8.55; (6) verify worktree CLEAN (no re-dirty).
+- **DURABLE FIX (architect, so it cannot recur):** the server must NOT persist the build-owned version/config-singleton unit — exclude it from MODEL_STORE disk-flush / treat version read-only at runtime. Tron principle: make it impossible by construction.
+### NEXT: parallel — REQ mint 2 Impls · ARCHITECT diagnose+harden server-flush · EXPERT R-boundary version fix+restart → tester @390 gate (INV-T byte-diff==0, drag each facet renders from canonical). T30.29 CLOSED-Done (a244058d8).
 
 ---
 
