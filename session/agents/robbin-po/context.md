@@ -697,6 +697,12 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **SYSTEMIC (flagged to Tron)**: autocompact-OFF → agents wall → manual rewind; SM can't /context active agents = the monitoring gap; prevention = proactive ≤80% catch. Options offered: enable autocompact on workers OR 2nd rewind-driver.
 - **AWAITING**: tester v0.8.56 re-gate verdict (closes part-2 to-Test) · req deep-rewind fresh-% (trainer) · expert R36.4 inc-2 deploy · then R36.4 @390 gates (fresh tester).
 
+## ★★★★★ UPDATE (session tail) ★★★★★
+- **req BACK fresh @47%** (durable-2nd 98→68→47, code-intact, 0-revert) — re-derived clean, minting **buildTraceEdge** Impl for R36.4 inc-2 (marker trails, A+B pattern).
+- **part-2 to-TEST still OPEN**: only the STALE v0.8.55 gate (f8c201d39, gate-gap) exists; the v0.8.56 counterpart-enrichment re-gate is NOT done. Tester correctly HELD (77% too tight for the DET-3x @390 build+run+iterate job = would wall) → durable-2nd rewind FIRST, then re-gate fresh. I ENDORSED the tester's rewind-before-heavy-job judgment (better than my re-gate-first order — proactive anti-wall). tests[] empty until this re-gate GREEN + req wires them.
+- **Recovery tally**: po 83→15 · req 98→68→47 (2-stage) · tester 98→77→(durable-2nd in progress). Trainer 58-63% drives tester durable-2nd → then its OWN rewind (ARON, earned after 4 recoveries). 0 reverts / 0 forks / lying-labels caught every drive.
+- **Delivery live**: v0.8.57, part-2 A+B+putGuard credited-to-Impl, R36.4 inc-1 DONE, inc-2 building. Verification tail = fresh-tester v0.8.56 re-gate + R36.4 @390 gates.
+
 ---
 
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
