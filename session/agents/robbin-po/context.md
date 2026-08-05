@@ -650,7 +650,25 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 
 ---
 
-# robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44)
+# robbin-po Context — save #46 (2026-08-05, GHOST-CONTEXT CORRECTED; S36 R36.1/2/3 canonical-reconcile, v0.8.54)
+
+## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #46 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
+**★ Prod v0.8.54 · RawBin HEAD `4db24e412` · Sprint=S36 (canonical reconciliation). Repo=/var/dev/Workspaces/web4x/Web4RawBin. Team robbinTeam2 0.0-0.6, SM=ooshTeam:0.1, agent-trainer=baseTeam:0.0.**
+
+### ★★★ GHOST-CONTEXT CAUGHT (this save): my thread replayed as R30.34/v0.7.47/S30 (ANCIENT, long-closed) but DISK is S36/v0.8.54 — ~3wk/100+ commits ahead. The team builds through my rewinds. ALL #45.x anchors below are HISTORY. [[ghost-context-after-deep-rewind]] — re-measure disk every few turns; trust agents' disk-reads over my thread.
+
+### S36 CURRENT (git-confirmed 2026-08-05) — CANONICAL RECONCILIATION arc
+- **R36.1/2 part-2 (A) reconcileCanonical DONE** (4db24e412, markerPending) — compute-on-read A-merge at /api/ior; dedup by keyToUuid(sourceFile::qualifiedName); field-precedence (traceability=identity/chain, M1=structure/signature, UNION facets, usedIn side-index); NEVER writes (INV-T/isolation/INV-RM1 by construction). Architect design 0f13d9d87.
+- **R36.2(c) usedIn SIDE-INDEX** (95941e5c3) — transparent backend swap off-element (v0.8.54).
+- **R36.3 part-1 DATA** (d978df35d, v0.8.53) — Method/Function full signature + parentClass. R36.3 part-2 = UmlMethod/UmlFunction RENDER lands WITH R36.1/2 (one projection mechanism, no fork — architect b8c923b01). Function→Method CONVERSION = SOURCE refactor (source-derived facts follow source; preserve-across-regen ONLY for non-source metadata like usedIn).
+- **R36.5 FOUNDATION DONE** (27c98a562) — chain-complete-to-Test + WebKit @390 GREEN. R36.2(c) side-index moves usedIn off-element → tester re-gates R36.5 on R36.2 ship (guardrail AC 879f1c961).
+
+### ★ IN FLIGHT (I just drove): EXPERT (0.1) building increment **(B) renderFacet** — renderFacet(canonical, facetType) facet-lens at /api/ior, built ONCE + reused by all projections on R32.4 surface (compute-on-read off (A)) + (B) client drag view-link. Version-bump+atomic, land BOTH markers (A was markerPending). Expert HEALTHY 47%/531.8k-free, no rewind. Go LANDED (was a ghost/unsubmitted suggestion — C-u no-op signature; fresh send landed it, expert now generating).
+### NEXT: verify (B) build lands → deploy → gate → markers credited. T30.29 CLOSED-Done (a244058d8, correct-by-construction). Board S30-era honest.
+
+---
+
+# robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #45 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
 ### ★★★ NEW OPTIMIZATION (Tron 2026-07-18, post-arc) — STATE-DEPENDENT ACTIONS + AUTO-RESOLVE (refines R30.35 + R30.37): (1) x shows ONLY when center holds BOTH versions (per side); press left-x/right-x → remove that side → 1 in center → AUTO-RESOLVE + jump to next. (2) >>/<< shows when a side NOT in center; press → 2 lines=UNRESOLVED / 1 line=RESOLVED. Resolution DERIVES from center line-count (1=resolved/2=unresolved). ★ TRON: 'build it with NO review step — I review at QA.' RECONCILE DECISION (req 2f7e1606e, SOURCE OF TRUTH, I endorse): resolution DERIVED-PRIMARY (from center line-count 1=resolved/2=unresolved) + the R30.37 checkmark STAYS as (a) DERIVED INDICATOR + (b) MANUAL OVERRIDE (force-resolve a 2-line KEEP-BOTH / re-open a 1-line). NOT purely-derived — purely-derived has a real GAP: a valid keep-both merge (2 lines) could never be resolved → stays open forever. openChangeCount = 2-line-unresolved MINUS overrides. ★ CONFLICT CAUGHT: architect/expert built toward Option A (purely-derived); req's AC diverged to derived+override; I REDIRECTED expert+architect to req's version (the correct one). Flow: expert builds → tester gates → QA-Review → Tron reviews (can flip to manual-only or purely-derived).
