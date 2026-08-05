@@ -768,6 +768,13 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **S36 = ZERO blockers. Both remaining items are Test-only (chain-credit):** R36.3 = 3 distinct-intent Tests (tester gating NOW) · T36.2 = 1 survives-regen Test (req minting, tester after/with R36.3). On both GREEN → **S36 ALL requirements chain-complete-to-Test = FULLY COMPLETE.**
 - **Tester queue**: R36.3 3-Test @390 (in progress, re-generate running) + T36.2 survives-regen Test (fold into same re-generate). Self-manage context (rewind-before if climbing — it's fresh @38%).
 
+## ★★★★★ R36.3 HONEST-RED — REAL BUG (session tail-12, the thesis validated) ★★★★★
+- **★★ R36.3 gate = RED DET-3x, REAL BUG (tester e26808c51)** — the 'code-done, no-build' verdict was FALSE: TsToModel.ts:153(fn params)+:181(method params) call p.name.getText() → HTTP 500 'Cannot read properties of undefined (reading text)' for ANY param-bearing method (param nodes lack parent/sourceFile ctx) → ENTIRE signature-enrich CRASHES → every live M1 method STALE (no signature). 3/3 DET. r325 fixture masked it (render() no-params); disk-read 'code-done' couldn't catch a RUNTIME crash. ★ GATE-PROVE-NOT-ASSERT VALIDATED: the tester gating Tron's EXACT param-bearing flow caught what the assertion + masked-fixture missed.
+- **FIX (expert, dispatched)**: 1-liner p.name.getText()→p.name.text at :153+:181 (Identifiers, .text safe w/o sourceFile ctx) + SWEEP TsToModel for other no-ctx .getText() + version-bump+restart+boot-check. Then tester re-runs r363 (expect GREEN) → 3 markers → req → T36.3 Done. So R36.3 DID need a build.
+- **T36.2 survives-regen chain MINTED CLEAN (req d446e8c97, ownership-verified-FIRST = lesson applied)**: own UC/Method usedInSurvivesRegen ride shared resolveUsedIn 2f44e112 (R36.5-owned) DISTINCT-INTENT, UNTOUCHED. Planner verifies. Test-pending → tester gates (fold into re-gen cycle).
+- **R36.5 GUARDRAIL RE-GATE (planner+architect, my decision = re-gate NOW)**: side-index swap (R36.2c) moved resolveUsedIn OFF-element; R36.5's Test 91a10db8 is STALE on-element → MUST re-gate on the usage-index backend (usedIn bidi + INV-T + INV-RM1 element-pristine + /api/ior-usedIn). R36.5 = Done-PENDING-re-gate (honest conditional; REDs→reopen like R35.4). Architect backstops.
+- **CRITICAL PATH = expert R36.3 fix** → tester re-gen cycle (R36.3 GREEN + T36.2 + R36.5 re-gate) → S36 FULLY COMPLETE. Tester ~40% self-manages.
+
 ---
 
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
