@@ -1,6 +1,16 @@
 # robbin-req — Context
 
-## ★ RESUME (2026-08-05b, R35.4 DRY-reopen RESOLVED — S35 back to 4/4, READ FIRST) ★
+## ★ RESUME (2026-08-05c, SPRINT 36 FORMALIZED — awaiting build-go, READ FIRST) ★
+- ★ **S36 unify-traceability-m2-uml-model FORMALIZED (cda0fb9ab)** off architect A-merge design b08995a28. Sprint stub ce1d8d57 (planner enriches). CORE DRY: UML/TS elements = typed OOP-extension VIEWS of the ONE ScenarioUnit via instanceOf multi-facet (NOT copies). Tron ruled **A(MERGE) tree-preserving** (fork-A resolve-at-detail: reconcile M1<->traceability into ONE canonical unit by sourceFile::qualifiedName @/api/ior; MOF tree/traceability-folder/api-model-tree UNTOUCHED, only detail/scenario/edit/facet resolve to merged).
+  - **R36.1** e8fc62f9 UmlUseCase extends UseCase (M2 mint + instanceOf + drag-view + usedIn, merge=A) UC 543ce993 modelElement.umlUseCaseView.
+  - **R36.2** 32bf71f2 UmlClass+tsClass extend Class (2 facet-lens views, merge=A reconcile) UC dd000fd8 modelElement.umlClassView.
+  - **R36.3** d4048137 Method-enrich {visibility,parameters,returnType,docs} + Method-vs-Function via parentClass (present=Method/UmlMethod, absent=Function/UmlFunction, fn→method convertible) + ts-method-code UC f5e4ecb2 modelElement.methodSignature.
+  - **R36.4** 2265ad63 UmlTraceRelationship EXTENDS TraceLink (decomposes/traces, UseCase→Method, R32.6 edges) UC 8c10c217 modelElement.umlTraceRelationship.
+  - **R36.5** a8663672 Scenario/Edit→BASE unit (rides S35 onUniversalAction b8f284c6/ensureViewUnit a09b474d) + usedIn[] bidirectional (unit↔Diagram.views) UC 2d58e144 actionBar.openBaseUnit.
+  - ★ **HARD AC-tree-unchanged on R36.1+R36.2** (byte-diff==0 pre/post merge, gated @390, reuse A2/R35.4 protect-the-tree). ★ **PENDING ON ME: per-cluster UC→Method→Impl chains + the UmlUseCase M2-unit mint AT BUILD-GO** (order FOUNDATION[instanceOf-facet+usedIn+R36.5]→R36.3→R36.1/2 projections→R36.4; reuse M2 instanceOf facets, Diagram view-links R32.4/R32.11, TraceLink, R32.6 edges, S35 universal-actions). Standing by for build-go.
+- ★ S35 = 4/4 Done (incl R35.4 parity re-close); S34 = 7/7. Everything committed+pushed, HEAD==origin.
+
+## ★ RESUME (2026-08-05b, R35.4 DRY-reopen RESOLVED — superseded by S36 above) ★
 - ✅ **R35.4 DRY AC-SHARPEN RESOLVED (4f3c6cf58):** sharpened R35.4 (476d367f) — +AC-reuse-sprints-overview (DRY structural parity), refined AC-traceability-expands + AC-gate-390 to CurrentSprint+S1->S35 ordered->reqs->chain (NOT flat 497, NOT reinvented). Expert built parity (98eb0d891 v0.8.51); tester parity re-gate GREEN (r354-parity-webkit-gate.mjs); Test **83abce21 RE-POINTED** same-uuid (PO-directed) sourceFile->parity gate + desc, wiring 83abce21<->b6c88d83 INTACT (verified origin, no re-mint). Flagged planner to flip T35.4. ★ **MECHANISM data=truth:** sprintOverviewNodes (server.ts:1250) = UN-marked SHARED PRIVATE helper riding b6c88d83, called by BOTH traceabilityRoots + /api/trace/sprints (DRY in code, NO new chain node) — my earlier option-a "IMPL-MINT sprintOverviewNodes" SUPERSEDED by the expert building it as a riding helper (cleaner; measure-built-reality). LESSON: even after choosing a mechanism (option-a helper-as-node), the expert may build it leaner (helper-rides) — re-point to built reality, don't force the extra node.
 - ★ S35 = 4/4 (R35.4 re-closed on the sharpened parity AC). S34 = 7/7. PENDING: planner T35.4 flip confirm. Everything committed+pushed, HEAD==origin.
 
