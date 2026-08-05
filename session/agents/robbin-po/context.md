@@ -703,6 +703,13 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **Recovery tally**: po 83→15 · req 98→68→47 (2-stage) · tester 98→77→(durable-2nd in progress). Trainer 58-63% drives tester durable-2nd → then its OWN rewind (ARON, earned after 4 recoveries). 0 reverts / 0 forks / lying-labels caught every drive.
 - **Delivery live**: v0.8.57, part-2 A+B+putGuard credited-to-Impl, R36.4 inc-1 DONE, inc-2 building. Verification tail = fresh-tester v0.8.56 re-gate + R36.4 @390 gates.
 
+## ★★★★★ R36.4 COMPLETE (session tail-2, v0.8.58) ★★★★★
+- **R36.4 DONE @0.8.58 (ce843818d)**: inc-1 derived UC→method dashed connector (2ab6e3d11, 7/7 proven) + inc-2 authored UmlTraceRelationship (server authorTrace mints extends-TraceLink in MODEL_STORE, idempotent keyToUuid, POST/GET 403-gated; client overlay + 🔗 draw-gesture). BOOT-CHECK PASS (server-change discipline), config-clean, version via SOURCE unit. Expert HONEST-DEFER: gated-HTTP owner-flow + DOM gesture → tester @390 (no false-green).
+- **req minted inc-2 Impls** (ae89eece0): buildTraceEdge **dc101d02** (DVM.buildTraceEdge) + authorTrace **a79f6091** (server.authorTrace). Expert placing markers → req flips.
+- **REACTIVE QUEUES held (all agents self-coordinating)**: expert places inc-2 markers → milestone-rewind (climbing, clean R36.4-done boundary; queued behind tester durable-2nd + trainer own-rewind) · req flips inc-2 markers + wires part-2 tests[] on fresh-tester re-gate · tester durable-2nd→v0.8.56 re-gate→R36.4 @390 gate · architect scoping R36.3 (code-done→chain+gate? OR gap?) · trainer own-rewind (ARON) after tester.
+- **R36.3 HELD** (build-go after part-2-to-Test + R36.4 gated; architect scoping: likely part-1 data d978df35d + renderFacet-B render = code-done→chain-credit, OR real gap).
+- **OPEN verification tail**: part-2 v0.8.56 re-gate (fresh tester) + R36.4 @390 authored-flow+gesture gate (fresh tester). Both = chain-to-Test closure.
+
 ---
 
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
