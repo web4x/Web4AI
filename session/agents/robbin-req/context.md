@@ -7,7 +7,7 @@
   - (2) **renderFacet 94ad4f50** → Method DiagramViewModel.renderFacet a6a05d34 / DVM 09730090 (diagram-view-model.ts:61, facet-lens). UC diagramView.renderFacet 97e5e14e.
   - (3) **putGuard 7f2d9046** → Method ScenarioIndex.put c2ab4e27 (index-store.ts:50-51 BUILD_OWNED no-flush, R31.7 durable, distinct-intent alongside 877ec45e/9c8d5ebb). No new UC (impl-edit on existing put).
   - Chains 1+2 wired R36.1 e8fc62f9 + R36.2 32bf71f2 useCases[]. requirements.md regen DEFERRED (lean — regen on next boot).
-- ★ **PENDING ON ME (next boot): strict-AST-flip the 3 markerPending Impls when expert lands [impl:uuid:37c08fd5/94ad4f50/7f2d9046] on the name-matching decls** → then @390 Tests on tester GREEN. Reported 5-pt health + 68% to PO; took DEEP durable rewind here (clean-ish boundary, 3 Impls pushed).
+- ★ **FLIP-THEN-REWIND SEQUENCE (PO-directed, doing WITH context @68% runway):** stand by for expert marker-commit → strict-AST-flip the 3 markerPending Impls [impl:uuid:37c08fd5 server.reconcileCanonical / 94ad4f50 renderFacet / 7f2d9046 ScenarioIndex.put-guard] on name-matching decls → report flip to PO 0.0 → THEN clear for trainer DEEP durable rewind. (If a fresh-me reads this pre-flip: expert marks may already be on origin — MEASURE + flip.) After flip → @390 Tests on tester GREEN.
 - ⚠ INDENT lesson (banked, keep): detect indent by READING first, NEVER open('w') before detecting (truncates→flatten); `git diff --stat` after every edit (N-line change for 1-field add = reformat).
 
 ## ★ RESUME (2026-08-05c, SPRINT 36 FORMALIZED — awaiting build-go) ★
