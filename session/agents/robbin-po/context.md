@@ -783,6 +783,12 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **TESTER pre-GATE-3 rewind APPROVED** (wall-prevention: 2 heavy gates done, wall-prone, can't-self-monitor, heavy R36.5 re-gate ahead) → routed via trainer-RE-MEASURE-FIRST (trainer hard-limit @73%: <78 trainer drives, ≥78 ARON drives trainer first). Fresh-tester does GATE-3 (R36.5 guardrail: bidi off-element usage-index + INV-T + element-pristine + /api/ior-usedIn).
 - **REMAINING**: R36.3 wire→T36.3 Done · GATE-3 R36.5 re-gate (fresh tester) → then S36 FULLY COMPLETE. + Tron R36.4 gesture device-tap.
 
+## ★★★★★ SCOREBOARD hard-block fixed + team-reconciled (session tail-14) ★★★★★
+- **★ Scoreboard R36.3-hop 'open' was a REAL TOOLING BUG (skill-expert f265e8622)**: skill-classes.ts:349 refCount>1 continue un-credited ALL shared Impls BEFORE the test-check → distinct-intent Tests could never close the hop (false 'open shared-x2'). FIXED: shared-impl flows to realImpl&&realTest credit (distinct-Test IS the gate) + 'shared-x2(R30.11)' tag; anti-inflation PRESERVED (lintMarkers still flags shared-impl; real distinct Test required). VALIDATES my 'route to skill-expert TOOLING not expert-extraction-build' call — code was fine, scoreboard was broken. NOT gratuitous extraction.
+- **★ TEAM-RECONCILED (me+skill-expert+req independently converged, data=truth)**: tester's row-open was STALE-timing (ran pre-f265e8622; req MEASURED the commit order f265e8622-after-bdda0a309). Re-run on f265e8622 → hop CLOSES via distinct-Test → NO extraction (task 278 unneeded). Tester re-running row-check = the skill-expert's caveat's PROOF (not-closed-until-GREEN).
+- **req wired R36.3(3 distinct-intent Tests)+T36.2(1) at bdda0a309** (R30.11, owners UNTOUCHED, 4-pair two-key CLEAN both-dir).
+- **★ TRUE FINISH LINE (not premature)**: T36.3+T36.2 flip (tester row re-confirm on f265e8622 + planner disk-verify distinct) AND **R36.5 guardrail re-gate GREEN (GATE-3, fresh tester)** → THEN S36 fully complete. R36.5 re-gate is the last gate, NOT just the flip. Planner board keeps R36.5=Done-pending-re-gate (honest).
+
 ---
 
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
