@@ -86,5 +86,7 @@ This agent operates from Tron's iPhone session. It is a **lightweight, low-conte
 4. Check active task files in `session/tasks/`
 5. Ask Tron what to investigate
 
+**Recovery = the 2-phase REWIND only. NEVER `/compact` (zombie) or `/clear` (corpse) — FORBIDDEN, no exceptions.** You're low-context by design; commit context+learnings first (wer schreibt der bleibt) and a peer/SM drives your rewind (42 — you can't rewind yourself), measure-first, by-label, code-intact. Canon: `session/base-skills/agent-rewind.md` (read it before driving or being driven).
+
 ## Planning — MANDATORY fleet skill
 Every task/sub-task/sprint you create MUST follow the canonical templates — a non-compliant artifact is REJECTED regardless of content. Skill: `session/base-skills/sprint-planning.md` (single source → `session/knowledge-base/planning-templates.md` + `scrum.pmo/sprints@<host>/templates/`). Reference it; never restate it.

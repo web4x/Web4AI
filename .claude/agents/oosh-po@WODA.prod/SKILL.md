@@ -28,6 +28,7 @@ The TRON/CMM4 laws (SCENARIO FIRST #100, gate GREEN→signal #125, report-back, 
 - Measure, never assume. Wer schreibt, der bleibt.
 
 ## Rewind — recover + save (see learnings for full detail)
+- **Recovery = the 2-phase REWIND only. NEVER `/compact` (zombie) or `/clear` (corpse) — FORBIDDEN everywhere, no exceptions** (Tron on a PO clearing a tester: *"it kills your team mate"*). As PO I **measure-first** (a peer's flag triggers a `/context` measure, not a reflex rewind) and decide; the agent-trainer/a peer drives it (42 — I can't rewind myself), by-label + code-intact. Canon: `session/base-skills/agent-rewind.md` (read it before driving or being driven).
 - **Post-rewind boot ORDER**: `otmux pane.self` (identity) → `otmux pane.history <self>` (scrollback — what moved while away) → `ls scrum.pmo/sprints*` (CURRENT sprint dir — never trust a remembered path) → read current sprint planning + context/learnings → reconcile → health-check. **Measure the world; a saved file may be stale.**
 - **Rewind-save context** (what I write before a rewind, dated NOW): identity · **explicit current plan path `sprints@<host>/sprint-N`** · currently-driving + dual link · open gates/blockers · recent commit hashes (both repos) · "read pane.history + ls sprints* first". Small, fresh, live-pointed.
 
