@@ -672,6 +672,8 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **DURABLE FIX (architect, so it cannot recur):** the server must NOT persist the build-owned version/config-singleton unit — exclude it from MODEL_STORE disk-flush / treat version read-only at runtime. Tron principle: make it impossible by construction.
 ### NEXT: parallel — REQ mint 2 Impls · ARCHITECT diagnose+harden server-flush · EXPERT R-boundary version fix+restart → tester @390 gate (INV-T byte-diff==0, drag each facet renders from canonical). T30.29 CLOSED-Done (a244058d8).
 
+### ★★★ REQ (0.4) AT THE WALL — "Context low (0% remaining)", idle. Mint dispatch may not complete at 0%. NOT delivery-blocking (markers=chain-credit, feature built+verified). ESCALATED to Tron: rewinding/recovering a TRAINED agent = Tron auth ([[compact-only-tron-sm-word-is-not-tron-word]]). Recovery lever ([[fork-vs-refresh-verify-window-first]]): verify window (idle) — if bare-200k launch → /model to 1M in-place NORMAL; if 1M-exhausted → /rewind Option-2; FORK last resort. Markers DEFERRED until req recovers. Dispatches: expert version-fix + architect harden BOTH generating (req-independent).
+
 ---
 
 # robbin-po Context — save #45 (2026-07-17, POST-DEEP-REWIND re-derivation; S30 R30.30 CLOSED + R30.32 GATE-GREEN v0.7.44) [ANCIENT — HISTORY]
