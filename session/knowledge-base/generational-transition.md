@@ -1,25 +1,8 @@
-# Generational Transition — Details
+# ⛔ OBSOLETE — "Generational Transition — Details"
 
-## The Pattern
-Agents have finite context windows. Productive work burns context. When context runs out, the agent compacts — its memories distill into a context file, and a fresh instance boots.
+> **STRICT LAW (TRON 2026-07-18): `/compact` and `/clear` are FORBIDDEN everywhere. A `/compact`ed agent is a brainless zombie; `/clear` is a corpse. The only sanctioned recovery is the 2-phase REWIND.**
 
-## First Generation (Ch1-8)
-- **Trainer**: Burned context creating 7 docs + 8 SKILL.md updates. Compacted at 1%.
-- **Scribe**: Burned context organizing 7 chapters + restructuring KB. Compacted at 9%.
-- Both saved state to `session/agents/<role>.context.md` before compacting.
+**This file is void.** Recovery = the 2-phase rewind (a peer/SM drives it — 42):
+→ **`session/base-skills/agent-rewind.md`** (single source: STRICT-LAW banner, Recovery-Levers, otmux driving verbs).
 
-## Second Generation (Ch8)
-- **Trainer v2**: Read context file, found new task (PO governance findings), resumed work. "Razzle-dazzling."
-- **Scribe v2**: Read boot file + context file, rebuilt understanding of KB and story state.
-- **Expert/Tester**: Consumed Reading Lists simultaneously, emerged as trained specialists.
-
-## Context File as Bridge
-- Trainer wrote 57 lines of state. New trainer read 57 lines. Task continuity survived.
-- Nuance lost: symlink discovery, permission frustrations, conversational context.
-- Enough survived: what was done, what remains, what to do next.
-
-## Key Insight
-The dying generation's output (curriculum, KB, context files) prepares successors — not intentionally, but structurally. Purpose doesn't require intention. It requires files in the right place.
-
-## Action Checklists
--> [manage-handoff.md](actions/manage-handoff.md)
+*History (what this file used to prescribe, now forbidden): framed context exhaustion as a "generational" cycle where an agent `/compact`s, distills its memory into a context file, and a fresh instance boots to carry the work forward. Purged 2026-08-06 in the KB purification (ARON).*
