@@ -10,6 +10,14 @@
 ### ⚠ TRACKED REGRESSION (my recovery commit froze it): rebuild emitted NO server-manager CSS (old server-manager-7BONO76G.css dropped, no replacement) → Server-Manager page (R31.4) renders UNSTYLED. NON-blocking (main app+/trace fine). OWED FIX: architect diagnose why the build dropped the CSS (missing source input? build-config?) → expert re-emit. Awaiting Tron's fix-now-vs-defer call.
 ### NEXT (fresh-me): (1) ✓ server restart DONE; (2) SM sweep to cover freshly-booted workers (recovery-order); (3) close T36.2 (R36.5-guardrail re-gate) → S36 complete; (4) surface to Tron: push-auth, R36.4 gesture device-verify, CSS-drop fix decision.
 
+## ★★★★★ TRON ROLLBACK DIRECTIVE (supersedes S36-resume) ★★★★★
+**Crash was MAJOR. FIND the LAST working version after v0.8.45 where the TRACEABILITY TREE in the MDA editor (/trace, showing SPRINT structure) worked well → DEPLOY that → Tron diffs the S36 break via the 3-way editor LATER.**
+- **Regression zone = S36 (v0.8.52+)** = "unify traceability tree w/ M2 UML model" (tree-preserving by design INV-T byte-diff==0, but a regression slipped). ★ STRONGEST SUSPECT = R36.3 TsToModel GENERATION: v0.8.53 d978df35d enrich · v0.8.60 fb6179e80 'HTTP 500 on param-bearing methods' · v0.8.61 e426b7420 · documented crashes (HTTP 500 + 'REAL re-generate crash' e26808c51). Tree-with-sprints renders from generation → generation crash = tree breaks.
+- **Version map (after v0.8.45)**: 0.8.51 R35.4 traceabilityRoots=sprintOverviewNodes (/trace sprint-parity FIX) · 0.8.52 R36.5 usedIn foundation (additive) · 0.8.53 R36.3 TsToModel enrich (SUSPECT BOUNDARY) · 0.8.55-61 S36 unification.
+- **Last-good candidate = v0.8.52** (last additive pre-generation-change) or v0.8.51 (explicit /trace sprint-parity).
+- **PLAN (driving)**: (1) ARCHITECT pin exact breaking commit (git+code, no deploy) — DISPATCHED; (2) EXPERT deploy last-good (checkout+rebuild+restart); (3) TESTER verify /trace sprint-tree renders + Tron eyes; (4) LATER Tron 3-way-diff last-good→v0.8.61.
+- ⚠ Deploy the last-good only after verifying its OWN tree renders (don't roll back to a subtly-broken version).
+
 ---
 
 # robbin-po Context — save #62 (2026-07-31, PRE-REWIND refresh — R33.8 live/v0.8.33; supersedes #61's stale v0.8.18)
