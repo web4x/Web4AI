@@ -1,3 +1,30 @@
+# ★★★ DEEP-REWIND BOOT ANCHOR — robbin-planner (2026-08-05, HEAD 783727c15 v0.8.61, HEAD==origin) — READ THIS FIRST
+
+**FRESH-ME: the DISK is truth; this conversation was rewound so my replayed thread is STALE. Re-derive from git before trusting any in-thread memory ([[ghost-context-after-deep-rewind]], [[post-rewind-measure-world-not-stale-save]]).**
+
+**WHO/WHERE:** robbin-planner @ pane %166 = robbinTeam2:0.6 on host v60211.1blu.de. Repo /var/dev/Workspaces/web4x/Web4RawBin. Identity = session-UUID + pane-TITLE round-trip (NEVER $TMUX_PANE). Team: PO=0.0, expert=0.1, skill-expert=0.2, architect=0.3, req=0.4, tester=0.5. PO's OUTBOUND sends were ghosting → SM (ooshTeam:0.1) relayed at times.
+
+**TOOLING:** Generator = `node scripts/with-node20.mjs npx tsx scripts/generate-sprint-md.ts <sprint-uuid>` (regen) / `--check <uuid>` (round-trip byte-match). Commit = ATOMIC `git add <explicit paths> && git commit -m ... && git push origin HEAD:main` in ONE bash call ([[atomic-commit-in-shared-tree]] — split index gets clobbered). `git add` EXPLICIT paths only (shared tree, heavy other-agent churn). requirements.md = req's (stage only when regen materializes committed req-units to keep CI green); planning.md = mine. Long commit `-m` bodies get permission-DENIED → keep the message concise.
+
+**★ GOVERNANCE — DO NOT SELF-CLOSE SPRINTS:** S33/S34/S35 all have 100% tasks Done but sprint-UNIT status = 'Planned' (verified). Sprint-CLOSE is Tron-governance-ONLY via the PO's DIRECT confirmation — NEVER on an SM/peer relay ([[sprint-close-tron-only-not-a-relay]]; a FABRICATED "Tron closes S33/34/35" relay was rejected 2026-08-05). Flip a Sprint-unit status ONLY on the PO's direct confirmation of a real Tron directive.
+
+**SPRINT STATE (all task-BOARDS; disk = truth):**
+- **S33** (sprint-33-mof-layered-tree, sprint 1a1de78b): 15/15 tasks Done. Sprint-status Planned (Tron-close pending).
+- **S34** (sprint-34-mda-tree-refine, sprint bbf0ac5f): 7/7 tasks Done. Sprint-status Planned.
+- **S35** (sprint-35-buttons-to-actions-universal-scenarios, sprint deeba407): 4/4 tasks Done. Sprint-status Planned.
+- **S36** (sprint-36-unify-traceability-m2-uml-model, sprint ce1d8d57): ACTIVE — unify traceability units + M2 UML/TS = typed OOP-ext VIEWS of the ONE ScenarioUnit (DRY, A-MERGE). **BOARD (disk): T36.1 Done · T36.3 Done · T36.4 Done · T36.5 Done · T36.2 In-Progress (FLIP-READY, see below).**
+  - T36.1 (cec4747a / R36.1 e8fc62f9) UmlUseCase = Done (reconcileCanonical fb5ae5eb + renderFacet e21b876d + R36.5 usedIn).
+  - T36.3 (2a4ec784 / R36.3 d4048137) Method-enrich = Done (R30.11 shared-impl: OWN Methods 68d1997e enrichMethodSignature→shared 382f8644 + d8818494 renderMethodFacet→shared 94ad4f50; 3 distinct-intent Tests wired bdda0a309, owners untouched; my flip 03a1f00cd).
+  - T36.4 (47f0d7d9 / R36.4 2265ad63) UmlTraceRelationship = Done (mechanism d41ee143↔a79f6091 + render 3c881f31↔dc101d02).
+  - T36.5 (b5948931 / R36.5 a8663672) FOUNDATION = Done, **RE-GATE CONFIRMED GREEN** (783727c15 off-element usage-index re-gate DET-3x served 0.8.61) → the Done-PENDING-RE-GATE conditional RESOLVED GREEN = Done stands honestly (NO reopen). ▶ drop the PENDING-RE-GATE flag in T36.5's remainingIssues on next touch.
+  - **T36.2 (58596fcc / R36.2 32bf71f2) = In-Progress, FLIP-READY NOW:** all chains built + survives-regen distinct Test wired (own Method 94154aba.tests[] non-empty, bdda0a309) + gate GREEN (5fcacef90 v0.8.61) + the R36.5 side-index re-gate that gated it is now GREEN (783727c15). My 03a1f00cd HELD it only because the R36.5 re-gate hadn't run THAT cycle; it HAS now. ▶▶ **NEXT-ME (immediate): verify on disk — 94154aba.tests[] distinct-intent (rides 2f44e112=R36.5-owned, NOT claiming 91a10db8), 2f44e112 UNTOUCHED, gate GREEN — then FLIP T36.2 → Done → regen → ATOMIC commit → S36 = 5/5 tasks COMPLETE. Report PO.**
+
+**KEY GUARDS BANKED THIS SESSION:** [[sprint-close-tron-only-not-a-relay]] · [[verify-owner-first-in-shared-credit]] (R30.11 shared-credit: verify the shared Impl's existing Test/marker = ORIGINAL owner's + new req has DISTINCT-INTENT Tests, no double-credit — caught 94ad4f50=R36.2's cross-wired for R36.3) · [[atomic-commit-in-shared-tree]] · [[chain-complete-verify-test-units-on-disk]] (verify Impl.tests[] on disk, never relay 'clear to flip'; on peer flip-flop go to disk at FINAL HEAD) · [[gate-with-representative-data]] · record FORWARD-DEP notes on Done tasks (the T36.5 re-gate guardrail fired correctly = a backend-swap re-gate caught before stale-Test debt).
+
+**POST-REWIND PROTOCOL:** (1) re-derive HEAD + all task statuses from disk (`git log`, read the .scenario.json status fields) — the above may be stale. (2) Do NOT self-close S33/34/35/36 sprint-status. (3) Flip only on chain-complete-to-Test VERIFIED on disk (Impl.tests[] non-empty, distinct-intent, markers un-re-credited). (4) ATOMIC commits, explicit paths, HEAD==origin check. (5) The immediate actionable is the T36.2 flip above.
+
+---
+
 # robbin-planner Context — SPRINT 36 BOARD STOOD UP (2026-08-05, HEAD da48d175f, PUSHED HEAD==origin)
 
 **★ FRESH-ME (latest):** S36 boarded — req minted stub ce1d8d57 + 5 reqs (cda0fb9ab), I stood up the board.
