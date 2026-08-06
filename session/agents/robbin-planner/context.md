@@ -1,4 +1,7 @@
-# ★★★ DEEP-REWIND BOOT ANCHOR — robbin-planner (2026-08-05, HEAD 783727c15 v0.8.61, HEAD==origin) — READ THIS FIRST
+# ★★★ DEEP-REWIND BOOT ANCHOR — robbin-planner (2026-08-05, HEAD ec334b3f2 v0.8.64, HEAD==origin) — READ THIS FIRST
+
+**UPDATE post-rewind:** T36.1 + T36.5 = genuine-Done CONFIRMED (commit ec334b3f2). ★ The T36.1 FALSE-DONE systemic gap (my earlier flip keyed on the reconcile @merge Test fb5ae5eb = instanceOf-via-merge, which did NOT exercise the UseCase->UmlUseCase PROJECTION) is now genuinely closed: UmlUseCase M2 792cd09c minted + projectUmlUseCase f7ac91c7 rides 37c08fd5 with DISTINCT Test e16322ff; 37c08fd5.tests[]=[fb5ae5eb,e16322ff] (owner untouched, verify-owner-first clean). T36.5 where-used chain (7e147ad8.tests[]=[c7b558ca=R32.10-owner, 84fbf58f-distinct]) + re-gate GREEN 783727c15 = Done stands honestly, NO reopen. **LESSON [[test-must-exercise-the-ac-not-just-non-empty]]: a Test must EXERCISE the task's CORE AC (the projection/new-artifact), not just be non-empty on a SHARED mechanism Impl (the merge/render) — that was the false-Done. S36 BOARD = 4 Done genuine (T36.1/3/4/5) / 1 In-Progress (T36.2 FLIP-READY, see below).**
+
 
 **FRESH-ME: the DISK is truth; this conversation was rewound so my replayed thread is STALE. Re-derive from git before trusting any in-thread memory ([[ghost-context-after-deep-rewind]], [[post-rewind-measure-world-not-stale-save]]).**
 
