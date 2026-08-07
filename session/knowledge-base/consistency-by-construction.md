@@ -18,6 +18,15 @@ Consistency maintained by someone *remembering to check* is **CMM2** and drifts 
 
 The 3-sprint drift was **NOT** an unsurfaced TRON-decision — the work was already on 36; the team simply **failed to reflect it** (skill-expert/planner bookkeeping). The fix needed no TRON at all.
 
+## Closing a sprint (sprint-unit Planned→Done) = (a) TEAM, with an honesty precondition (2026-08-07)
+Closing a sprint whose board is 100% Done is **reflect-current-reality = TEAM bookkeeping.** The sprint-unit status is a **GENERATED view of its task board** (same class as the pin) — a fully-Done board closes its own sprint-unit; the team just does it. **"Tron-close-pending" as a sprint status is a PHANTOM GATE** — a redundant sprint-level TRON sign-off invented on top of already-accepted tasks = the **punt-to-TRON anti-pattern**, and it's what stranded 4 sprints in a dishonest "Planned."
+
+**PRECONDITION — the real acceptance gate lives at the TASK level, NOT the close:** "100% Done" must be HONEST. A task is Done only on its OWN acceptance — including **TRON's QA sign-off + the real deliverable verified to EXIST wherever that task's AC required it** ([[done-requires-tron-qa-and-real-deliverable]]). That gate is already *inside* each task's "Done"; sprint-close adds nothing on top.
+- **Every task honestly Done → the sprint DELIVERED by construction → the team closes it (Planned→Done), no TRON.**
+- **Any task marked Done without its required TRON-QA (auto-Done / false-green) → the board is NOT honestly 100% Done.** Fix = surface *that specific task's* QA to TRON (task-level detect-and-ASK) — never gate the whole sprint-close on a phantom sprint ceremony.
+
+**The only TRON acts here:** (1) the per-task QA already baked into "Done"; (2) CREATING the *next* sprint / direction (strategic). **Sprint-close itself = (a) TEAM.** So: **audit the S33–36 boards for honest Done (no un-QA'd user-facing task hiding as Done), then the team closes all 4** — that is reflecting reality, the roles TRON gave.
+
 ## SURFACE-TO-TRON — for STRATEGIC decisions only; detect-and-ASK, never detect-and-wait
 Making TRON the owner of a decision **without the team ASKING him** makes him a **BLIND BOTTLENECK** (a gate the authority never hears about fails exactly like no gate). BUT this applies **only to strategic decisions**, never to reflecting-current-reality (which the team just DOES).
 - When a **strategic** trigger appears (a new sprint / direction / backlog-jump is warranted), the SM + PO **proactively ASK TRON** — they do not sit idle "deferring."
