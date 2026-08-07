@@ -1137,3 +1137,22 @@ Tester RE-MEASURED accept HARD (real Playwright `page.click` + content-diff, ful
 
 ### DEEP DISCIPLINE INDEX (full text in learnings.md — the durable rules; cite by number)
 NOTHING is urgent, ALL is diligence (#1/#87). PO NEVER implements — delegate (#35); except self-implement when the team stalls AND Tron demands action. Scenario-first for EVERYTHING incl bugfixes (#126). Chat = a POINTER to the spec-in-the-document, never spec-in-chat (#79/#84); no anthropomorphic "pressure" excuse (#80). NEVER /compact or /clear an agent — trainer REWIND only (#53/#85). Measure, never assume; FULL-scan not sample (#88); RECONCILE conflicting measures, don't blindly defer (#89b). Tron's DEVICE is the acceptance test — instrument the real device when headless passes but his fails (#83). Version + sw.js + STATIC_SHELL bump ships to the PWA (#66/#67). Every report → immediate next delegation, never idle the team on a QA gate (#71/#86); QA is Tron's cadence, never a blocker (#68).
+
+## ★★★★★ S37 CONSOLIDATED STATE (2026-08-08, anchor #50) ★★★★★
+**Prod v0.8.65 · Sprint 37 consistency-by-construction · repo /var/dev/Workspaces/web4x/Web4RawBin**
+
+### SEALED (chain-complete-to-Test)
+- **R-C1** SprintPinResolver — pin computed from files, fail-closed sprintSlugOf; gate GREEN 11-check own-oracle; 4 Tests two-keyed 1:1.
+- **R-C3** ConsistencyGuard — refuseIfVacuous/assertNonVacuous/consistencyStrict (generalizes 3 ad-hoc guards); wired into ci:gates:raw (179bb5cda); **META-BITE**: a silent-stub guard FAILS while the real guard passes = gate proves its own prover.
+- **R-C5** drift grind 21→4 (residue = 4 S17-FROZEN, freeze respected). **R-C7** prover fail-closed (caught a real S20 phantom-write).
+- **Group-D**: all 3 live-but-uncredited features VERIFIED WORKING TODAY on served 0.8.65 (f1 templates / f2 singular-chain / f3 selection tap+longpress on REAL-WebKit @390 — tester re-measured env, no Tron-defer; only the physical-finger 500ms hold is a Tron sliver).
+- **BOARD**: 52 legacy tasks given MEASURED dispositions, **0 Done anywhere** (A1=24 / A2=15 held / B=3 delivered-pending / C=4 closed / D=4 / S=2). CI = 6 gates (a removed one restored + a new one added).
+
+### BLOCKED ON TRON (only these two)
+1. **T36.3 regen** — owner-gated POST /api/model/generate-project dir=src/ts/scenario; 403 for non-owner is CORRECT (no bypass/token-borrow allowed). Prepped: tar backup 541 files (not cp -a) · pre-counts 137 stale/1 fixture · preservation proven BY CONSTRUCTION (reconcile prunes only sourceFile-in-processed-set; 4 rel + 7 Diagram/Puml + usage-index all outside it) · fix proven scratch 134/134. On trigger: post-counts → bump-via-source-unit → boot-check → surface @390 phantom-guard → restore-tar if any preserved count drops (NO fix-forward).
+2. **QA batch sign-off** — scrum.pmo/tron-qa-batch.md A1=24 (citations verified by me).
+
+### IN FLIGHT / QUEUED
+expert: R-C1 refinement 2317976cd (frozen-scope isCurrentEra>18 single-source + cancelledReason-terminal = the REAL R-C6 pin unblocker) → then T36.3 on trigger → R-C6. req: Group-D §4 bounded then STOP (~72.5%, rewind after). tester: R-C1-refinement gate w/ stub-fails+drift-injection. architect: backstops armed (grep-lint no 2nd frozen boundary). planner: staging complete (~68%).
+### FLEET: trainer@37 = driver (gap CLOSED); rewind order req→planner→SM(68.7, fastest climber, can't self-/context: measure between wakeups). SM owns cadence; I flag only.
+### OPEN PRODUCT Qs FOR TRON: mobile 2-finger pinch-zoom (1cbad4ef, ruled NOT superseded = real gap) · optional physical-finger longpress spot-check.
