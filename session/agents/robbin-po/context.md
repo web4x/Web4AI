@@ -1,36 +1,3 @@
-# robbin-po Context — save #64 (2026-08-07, S37 consistency-by-construction arc; PRE-REWIND anchor)
-
-## ★★★★★ CURRENT STATE (#64 — READ FIRST, DISK-WINS) ★★★★★
-**Prod v0.8.65 · RawBin=/var/dev/Workspaces/web4x/Web4RawBin · Sprint 37 (consistency-by-construction). Team robbinTeam2 0.0-0.6, SM=baseTeam:0.1, trainer=baseTeam:0.0, ARON=Temple:0.0.**
-
-### TRON'S 3 DEVICE-QA CHECKS (the ONLY open human items — owner-gated, nobody else can render them)
-1. **/model** -> UmlClass/tsClass facet RENDERS? (T36.2)
-2. **Trace connector** -> iOS TAP fires? (T36.4)
-3. **/profile** -> owner-grants PRESENT on his own + ABSENT on another user's (T31.1; two-sided proof)
-=> on his OK: close S36 + T31.1. Pushes NO LONGER need him (tester is the push path).
-
-### S37 STATE (7 reqs, all designed+minted)
-- **SHIPPED+BITE-PROVEN**: R-C5 (status DERIVED from checklist; false-Dones 7->0; 21 invisible UNVERIFIABLE surfaced) · R-C7 migrator (5 gates as CODE; prove<=>apply UNIFIED via shared perFileDiffs, disagree:0/37; fail-closed on unresolvable-uuid/absent-checklist/missing-dir/narrative-loss) · R-C2 honest metric (in-scope real number + frozen-legacy LISTED)
-- **BUILDING**: R-C1 (4 resolvers: resolveSprintPin / deriveSprintStatus / sprintNumOf / **sprintSlugOf** — all number/sourceFile-keyed, NEVER name; INV-C1-8 grep-lint forbids name-derived numbers AND slugs) -> then extractRows INDENTATION fix (raw.trim() loses indentation -> indented AC sub-bullets counted as rows = the 93 is inflated) + RE-SWEEP -> then R-C6 (GENERATED-INDEX markers, narrative outside byte-identical; AUTO-LIFTS the narrative guard = unblocks S28)
-- **MIGRATION**: S37 migrated additively (56d314b1a, tester-verified 6/6); S30-36 = TRUE NO-OPS; S28 REFUSES by construction (narrative); S20 blocked on slug-drift -> RESOLVED BY R-C1 (short dir 'sprint-20-traceability-first' is LIVE = 42 reqs/16 tasks; long name-derived slug is the phantom; ★ I nearly had the LIVE dir deleted relaying an unverified 'orphan' finding — CANCELLED)
-- **CLEANUP**: detector 69->56; S31 done (11 were UNDER-stating); S19's 39 = planner's queue; 4 S17 frozen-listed
-- **CLOSED**: S18 (7 Done + 12 supersededBy w/ evidence grades) · S33/34/35 · pin 33->36->37 · task-pointer 31.1->T36.5
-
-### FLEET (all measured, care-chain closed)
-expert ~30% (building) · req ~46% · tester 38% (+ THE PUSH PATH: req/expert classifier-blocked) · planner 57% (recovered 0%->57%) · architect 36% (backstop) · trainer ~70% · ARON 61% · SM ~47%. ARON measures trainer; trainer measures workers+SM; SM measures me + scans wall-banners; I peer-inject anyone when a measurer is down.
-
-### ★ HARD-WON RULES THIS ARC (apply by default)
-- **Fix the measuring instrument before grinding on its output** — every alarming count shrank when re-measured (694 gaps->124->9->0 real; 71->61->69 properly categorized; 10 apply-ready->9->8, 1 real write).
-- **"No data = pass" recurs** — 3 instances (unresolvable uuid / absent checklist / missing dir->0 files). R-C3's vacuous-suite + META-BITE (a stub that silent-passes vacuous must turn the suite RED) is the systemic close.
-- **Test the layer that MAKES the decision** (a bite on a narrative-blind pure-fn can never flip).
-- **Rewind: AGE not depth** (depth-5@recent=2% freed; depth-5@2-day=32%; depth-12@3-day=43%) + PROVE freed-% by post-measure; commit a walled agent's dirty context FOR it.
-- **Gate is authority over my assumptions** (S20 defer was my inference; the gate measured 0 narrative drops -> migrate).
-- **My repeated failure mode: relaying findings faster than verifying them** (S18-"closed", R27.5 re-link, premature bulk generate, the orphan-dir delete). Each caught by an agent measuring. VERIFY ON DISK BEFORE RELAYING OR DIRECTING.
-
-### NEXT (fresh-me): R-C1 ship -> markers/flip -> indentation fix + re-sweep -> req classifies shrunken 93 -> R-C6 -> S28+S20 migrate -> R-C3 + R-C4 -> planner S19 grind -> detector flips BLOCKING for in-scope.
-
----
-
 # robbin-po Context — save #63 (POST-DEEP-REWIND + FLEET RECOVERY — S36 v0.8.61; SM relocated to baseTeam:0.1)
 
 ## ★★★★★ CURRENT STATE (#63 — READ FIRST, DISK-WINS) ★★★★★
@@ -796,6 +763,12 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 - **REACTIVE QUEUES held (all agents self-coordinating)**: expert places inc-2 markers → milestone-rewind (climbing, clean R36.4-done boundary; queued behind tester durable-2nd + trainer own-rewind) · req flips inc-2 markers + wires part-2 tests[] on fresh-tester re-gate · tester durable-2nd→v0.8.56 re-gate→R36.4 @390 gate · architect scoping R36.3 (code-done→chain+gate? OR gap?) · trainer own-rewind (ARON) after tester.
 - **R36.3 HELD** (build-go after part-2-to-Test + R36.4 gated; architect scoping: likely part-1 data d978df35d + renderFacet-B render = code-done→chain-credit, OR real gap).
 - **OPEN verification tail**: part-2 v0.8.56 re-gate (fresh tester) + R36.4 @390 authored-flow+gesture gate (fresh tester). Both = chain-to-Test closure.
+
+## ★★★★★ TAIL-3: R36.3 = CHAIN-CREDIT (no build) + LANE SELF-CORRECTION ★★★★★
+- **CASCADE FULLY COMPLETE** (5 recoveries, 0 reverts, 0 forks, lying-label caught EVERY drive): po 83→15 · req 98→68→47 · tester 98→77→**52** (deep runway for the disk-heavy gate) · Task#3. Tester's rewind-BEFORE-heavy-gate judgment = right, endorsed.
+- **★ R36.3 VERDICT (architect d38b5321e, MY CALL = CHAIN-CREDIT + GATE, NO BUILD, R30.11 pattern)**: part-1 d978df35d EXTRACTS+WRITES fields onto M1 (TsToModel:150-180 / :228-232) + Method-vs-Function BY CONSTRUCTION (parentClass present→UmlMethod, absent→UmlFunction); part-2 renderFacet B (94ad4f50) routes UmlMethod/UmlFunction→renderMethodFacet signature-line. Both halves present = NO code gap. **PREREQUISITE (data-freshness, not code): on-disk M1 methods predating d978df35d are STALE → populate on TsToModel RE-GENERATE (R32.8) → step 1 of the gate** (would have false-RED'd it otherwise — architect's catch).
+- **TESTER QUEUE (priority, fresh 52%)**: (1) part-2 v0.8.56 counterpart-enrichment re-gate [closes part-2 to-Test] → (2) R36.4 @390 [derived render + reroute + AUTHORED owner-POST→mint→GET→idempotent + 🔗 gesture = expert's honest-defers] → (3) R36.3 gate [re-generate→signature renders→Method-vs-Function]. Re-generate on a SAFE target, no prod pollution, INV-T byte-diff==0.
+- **★★ LANE SELF-CORRECTION (per [[rewind-threshold-80-for-1m-agents]] + [[always-involve-the-sm]])**: FLEET-REWIND CADENCE IS THE **SM's** LANE — I stop ordering agent rewinds directly (double-fire risk); I flag context concerns to the SM, it drives via the trainer. ALSO: my "you earned it, rewind now" nudge to the trainer at 58-63% was WRONG — rewinds COST budget, threshold is ~80%, proactive-at-a-boundary means AT ~80% not early. Corrected to the trainer with its override intact. SM informed; expert (climbing, clean R36.4 boundary) = SM's next candidate.
 
 ## ★★★★★ CASCADE COMPLETE + R36.3 SCOPED (session tail-3) ★★★★★
 - **RECOVERY CASCADE FULLY DONE**: 5 recoveries (po 83→15 / req 98→68→47 / tester 98→77→52 / Task#3 / trainer now self-rewinding via ARON), 0 reverts, 0 forks, lying-labels caught EVERY drive. Trainer earned+taking its own rewind.
