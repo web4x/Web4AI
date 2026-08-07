@@ -571,3 +571,13 @@ Trainer measured the SM: **authoritative /context = 77% used**, while `claudeCod
 **Rule:** `context.read` returns FREE% and is INDICATIVE ONLY — treat the implied used% as a **FLOOR and add ~10 points of margin**. Concretely: indicative ≥65 => treat as possibly ≥75 => authorize BOUNDED work only; indicative ≥70 => get an AUTHORITATIVE /context at the agent's genuine idle before authorizing anything, or route the rewind. Never use context.read to clear unbounded/open-ended work (grep-first, untangles, migrations).
 **Measurement protocol (unchanged otherwise):** busy agent -> context.read (non-interrupting, floor-only); idle agent -> inject /context (authoritative); SM specifically CANNOT self-/context (client-side render) so measure it between wakeups. Related: [[context-read-1m-denominator-stale]], [[measure-before-declaring-recovery]].
 **Also:** the SM's role drift (monitor+report -> drive-campaign) is what climbs it fastest; re-locking the role IS part of its recovery, not just the rewind.
+
+## L-S37-6b — CORRECTION: context.read under-reads by 8–18 pts and WORSENS at high usage. It can only prove SAFE-LOW.
+Hard data this session: SM read ~68.7 -> authoritative **77** (8pt under). req read 72.5 -> **75** (2.5pt). planner read ~68 -> authoritative **86% = NEAR-WALL** (**18pt under**). The error is NOT constant — it grows at high usage, exactly where a mistake is fatal. I DISPATCHED WORK to the planner at "~68" while it was at 86%; only its own discipline (and the trainer's authoritative measure) prevented a wall.
+**REVISED RULE (supersedes the +10 margin in L-S37-6):** `context.read` can prove an agent is SAFE-LOW; it can NEVER establish "safe enough".
+- read implies <40% used -> genuinely fine, dispatch freely.
+- read implies 40–55% -> bounded work only.
+- read implies >55% -> **STOP. Get an AUTHORITATIVE /context at the agent's genuine idle (or have the SM do it) BEFORE any dispatch**, or just route the rewind. Do not size work off the read at all up here.
+- NEVER authorize unbounded work (grep-first / untangles / migrations / open analysis) off a context.read at any level.
+**Corollary:** an agent reporting "I have no fresh number" is reporting a REAL RISK, not being cautious — treat it as ≥ the last known reading plus a large unknown, and measure before assigning.
+**Zero-loss habit worth copying:** the trainer COMMITS a walled agent's dirty context.md before rewinding it (bash-immune, survives), so a near-wall agent loses nothing.
