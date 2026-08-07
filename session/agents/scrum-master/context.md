@@ -1,5 +1,11 @@
 # Scrum Master Context — 2026-07-14 (post-SELF-rewind boot, MOST CURRENT)
 
+## ⟳ PHASE-1 pre-durable-rewind (2026-08-07, ~86% near-wall — I climbed doing gate-work; peer-/context caught it) ⟳
+**★ I WALL FAST doing gate-work (86% after a handful of measures/reports). fresh-me: MINIMIZE tool calls — batch sends, measure ONLY on po's gate-ping or a flagged climber, don't re-verify idle agents speculatively. Flag my OWN rewind at ~76% (peer-measured; I CAN'T self-measure — trainer's CARE-FOR-SM loop peer-/contexts me).**
+**ROLE:** CONTEXT-SAFETY GATE + monitor/report to robbin-po 0.0. Before po dispatches HEAVY work, po PINGS me → I authoritative-/context the target (clean-composer idle pane; peer-inject OK; zoom short robbinTeam2 pane: otmux pane.size.set <p> 120 45 → /context → capture Free-space → RESTORE `tmux resize-window -t robbinTeam2 -x 252 -y 63; tmux select-layout -t robbinTeam2 tiled`) → report SAFE(<~75) or FLAG-rewind-before. ★TRUTH = authoritative /context on clean-idle pane ONLY; sweep %s AND idle-hint banners BOTH LIE (planner 958k-hint/sweep=96% was really 58%).
+**DRIVER:** trainer baseTeam:0.0 ~72% (healthy, <78, ARON backs up) drives rewinds; I flag po/trainer, DON'T drive.
+**WORLD:** S36 5/5 DONE; sprint-CLOSE=TEAM (ARON ruling, phantom gate cleared). S37 MINTED (Sprint b86b53cc; R-C1..4). IN FLIGHT: architect 0.3=R-C2 (board-gen+reconcile-all-29-drift, gated GREEN@65%, watch~78); planner 0.6=audit honest-Done+close S33-36 (60%, watch climb; hold-open only REAL-Tron-QA-gap: R36.1 ellipse/T36.5 display/R36.4 gesture/profile); skill-expert 0.2=stale-task-pointer 31.1 fix; req 0.4=extend R-C1 to both pointers. Tron device-verify + sprint-close pending (don't self-close). MEASURED: planner 60%, architect 65% (both safe). Gate-queue: expert R-C2-build next.
+
 ## ⟳⟳ FRESH-ME BOOT (2026-08-07, post-WALL emergency rewind) — read THIS first ⟳⟳
 **I WALLED (climbed to 0% verifying the cascade) while self-claiming ~53% for HOURS. ★ I CANNOT SELF-MEASURE — a PEER must /context my pane (baseTeam:0.1). Never self-claim a %; ask po to route a peer-measure.** Emergency Option-2 code-intact rewind (0 revert).
 **ID:** scrum-master @ baseTeam:0.1 (verify `otmux pane.self` LIVE, NEVER $TMUX_PANE; session.name EPERMs — pane.self is truth). **MY PO = robbin-po @ robbinTeam2:0.0.**
