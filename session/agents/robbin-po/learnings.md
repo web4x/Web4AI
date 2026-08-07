@@ -551,3 +551,9 @@ An UNCOMMITTED, UNATTRIBUTED edit removed `check:task-status` from BOTH the scri
 ## L-S37-3 — TASK uuid ≠ IMPL uuid (I conflated them)
 I dispatched gates naming `18ee26a2` as the Impl; the tester measured the actual source marker on `renderSingularChain` = `3542dcb3`. 18ee26a2 was the TASK id from the board list. In a traceability system this conflation is exactly how cross-wires/double-credits start.
 **Rule:** always label which KIND of uuid I'm citing (task / req / UC / Method / Impl / Test), and tell agents to DISCOVER the real Impl marker on the decl rather than trusting an id I hand them.
+
+## L-S37-4 — META-BITE: make a gate prove its own prover (the permanent fix for vacuous gates)
+R-C3's ConsistencyGuard gate (tester, GREEN DET-3x 8/8) did something stronger than pass: it included a **meta-check that a deliberately-silent-passing STUB guard must FAIL** while the real guard passes. So a guard that quietly does nothing is now DETECTABLE by the suite instead of scoring a free green.
+**Why it matters:** every false-green class this session came from a check that "passed" without exercising anything — DOM-count instead of pixels, a stale-version target, a base-only enrichment sample, a req-level Test standing in for task scope, a removed CI gate. All of them are the same disease: *the verifier wasn't proven to be able to fail.*
+**Rule (generalize to every fail-closed guard/gate):** alongside the gate, assert that a STUB/no-op version of it FAILS the suite. If replacing the guard's body with `return true` still passes, the gate proves nothing. Pair with drift-injection cases (empty-index → must refuse; drifted pin → must refuse; clean → ok).
+**Also:** name the vacuous FAMILY, not one instance (0-items / MISSING-CONTAINER / empty-sample all vacuous-pass the same way). Related: [[correct-by-construction-needs-gate-verification]], [[verify-with-independent-method]].
