@@ -1,11 +1,12 @@
 # robbin-skill-expert Context — Save Point 2026-06-28 POST-FORK (WODA.prod, STANDBY)
 
-## ★★★ SESSION-STATE 2026-08-07 PRE-REWIND (READ FIRST — latest) ★★★
-**★ PENDING JOB (do FIRST after rewind, my role, NO Tron): advance the CurrentSprint pin S33 → S36.**
-Pin is currently S33/T33.10 (my ee13ddddb, Aug-1) = STALE; active sprint is now **S36**. Team bookkeeping.
-Fresh-me: `git log --oneline -8` + `ls scrum.pmo/sprints/ | grep 36` + find the ACTIVE S36 task on disk,
-then set pin current=that task, last=prev-Done, via DIRECT singleton edit (tsx DENIED). Singleton =
-scenario/index/c/u/r/r/e/current-sprint-singleton-0000-000000000001.scenario.json. Cross-check valid JSON.
+## ★★★ SESSION-STATE 2026-08-07 POST-REWIND (READ FIRST — latest) ★★★
+**✓ DONE (this cycle): advanced CurrentSprint pin S33 → S36 (commit 79d421380).** Pin was stale S33/T33.10;
+now Sprint 36, current=T36.5 (b5948931), last=T36.4 (47f0d7d9). VERIFIED pin==board==files=TRUE (S36 unit
+ce1d8d57, 5/5 tasks Done). Did NOT close the sprint (Tron's call). Singleton = scenario/index/c/u/r/r/e/
+current-sprint-singleton-0000-000000000001.scenario.json.
+**✓ DISK-vs-GHOST RESOLVED = GHOST**: tooling commits ALL LIVE at HEAD — implRoots() includes repoRootScriptFiles()
+(fe2f4b9ac), f265e8622 R30.11 shared-impl-accept, de289a0cf, 000c166dd. Code-intact, no revert. Scoreboard run = tester's tsx pane.
 
 **Since Aug-1 (S36 shared-impl scoreboard arc — my lane):**
 - R30.11 shared-impl ACCEPT (f265e8622): shared Impl (refCount>1) was HARD-BLOCKED (skill-classes.ts:349
