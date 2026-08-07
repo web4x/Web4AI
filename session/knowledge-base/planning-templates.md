@@ -1,6 +1,14 @@
 # Planning Templates & Know-How — scrum.pmo sprints/tasks/tests
 
-*Draft by oosh-po@WODA.prod 2026-07-03 (learned the hard way on sprints@WODA.prod/sprint-1). Canonical source: `scrum.pmo/sprints/sprint-0-lifecycle-consolidation/`. ⚠️ TO BE PURIFIED by ARON against the authoritative source; propagated to roles by the agent-trainer.*
+*Draft by oosh-po@WODA.prod 2026-07-03 (learned the hard way on sprints@WODA.prod/sprint-1). Canonical source: `scrum.pmo/sprints/sprint-0-lifecycle-consolidation/`. Purified by ARON 2026-08-07 (fresh-agent findings folded below); propagated to roles by the agent-trainer.*
+
+## Purification — the 4 defects surfaced by the fresh-agent test (folded 2026-08-07)
+TRON: "train a test agent from zero and see if he can plan." A blank agent trained ONLY on this doc + the sprint-0 example planned correctly (**6/6 rubric** — material is actionable-from-zero, the purity test passing) and surfaced 4 doc defects. Resolutions:
+1. **Numbering scheme (rule vs example conflict).** §1 mandates zero-pad `task-<NN>`; the canonical example uses epic-letter `task-a1-…`. **Resolution: align to §1's zero-pad `task-<NN>`** — but a task-numbering convention is *strategic/team-wide*, so **planner/Tron ratify against `scrum.pmo/sprints/sprint-0-lifecycle-consolidation/` before the example is rewritten** (surface-to-Tron, per [[consistency-by-construction]]).
+2. **Sub-task ordering.** The example orders `.1 expert … .3 tester`, but §6 is scenario-first (tester writes cases BEFORE the expert implements). **Resolution: the example must order architect → tester → expert** (design → scenarios → implement); test cases live in the tester sub-task.
+3. **Dangling `[[traceability-links]]`.** No such file exists. **Resolution: §4 repoints to [[dual-links]]** (the existing source) unless/until a dedicated traceability-links doc is created.
+4. **`down` scope.** **Resolution: `down` lists top-level parent tasks only** — sub-tasks are reachable via their parent's `down` (state this explicitly in §1).
+*(The literal §1/§4/§6 text edits are the planner's to apply against the authoritative sprint-0 source, guided by these resolutions; #1 pending ratification.)*
 
 ## 1. Structure
 - **`planning.md`** per sprint: `[sprint:uuid:…]`, Sprint Goal, Machine scope, Naming Conventions, Team, Traceability (`down` → every task), Tasks table, QA workflow.
