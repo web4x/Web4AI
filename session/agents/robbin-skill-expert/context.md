@@ -1,6 +1,30 @@
 # robbin-skill-expert Context — Save Point 2026-06-28 POST-FORK (WODA.prod, STANDBY)
 
-## ★★★ SESSION-STATE 2026-08-01 (READ FIRST — latest) ★★★
+## ★★★ SESSION-STATE 2026-08-07 PRE-REWIND (READ FIRST — latest) ★★★
+**★ PENDING JOB (do FIRST after rewind, my role, NO Tron): advance the CurrentSprint pin S33 → S36.**
+Pin is currently S33/T33.10 (my ee13ddddb, Aug-1) = STALE; active sprint is now **S36**. Team bookkeeping.
+Fresh-me: `git log --oneline -8` + `ls scrum.pmo/sprints/ | grep 36` + find the ACTIVE S36 task on disk,
+then set pin current=that task, last=prev-Done, via DIRECT singleton edit (tsx DENIED). Singleton =
+scenario/index/c/u/r/r/e/current-sprint-singleton-0000-000000000001.scenario.json. Cross-check valid JSON.
+
+**Since Aug-1 (S36 shared-impl scoreboard arc — my lane):**
+- R30.11 shared-impl ACCEPT (f265e8622): shared Impl (refCount>1) was HARD-BLOCKED (skill-classes.ts:349
+  `continue`) → un-credited before the test-check. TUNED to credit via realImpl && realTest (distinct-intent
+  Test = the gate), tag `shared-x2(R30.11)`. Tester's real run PROVED it (382f8644 resolved, Summary +5).
+- 94ad4f50 stranded-marker: EXPERT re-placed it adjacent to renderFacet (2dbd5323f); I logic-verified it now
+  binds to renderFacet → credits. strict-AST adjacency UNWEAKENED (correct — that guard caught the strand).
+- I was HOLDING to relay the tester's real scoreboard run to PO (the compile+credit proof).
+
+**★★ DISK-vs-GHOST DISCREPANCY (MEASURE, don't trust memory):** the post-/compact file-state notes showed
+`skill-classes.ts implRoots()` BACK to `[srcDir, ../scripts]` only — i.e. my scan-scope fix **fe2f4b9ac**
+(repo-root build.mjs) and possibly **f265e8622** (R30.11) may NOT be at HEAD on this disk. FRESH-ME FIRST:
+`git log --oneline -- src/ts/scenario/skill-classes.ts` + grep `repoRootScriptFiles`/`shared-x2` to confirm
+which tooling commits are LIVE before trusting them or re-reporting. (Possible reverted/rewound working tree.)
+
+**Constraint unchanged:** `npx tsx` DENIED all session — canonical Chain scoreboard runs on the TESTER's pane.
+## ★★★ END SESSION-STATE 2026-08-07 ★★★
+
+## ★★★ SESSION-STATE 2026-08-01 ★★★
 **Sprint now = S33 (mof-layered-tree), v0.8.37+.** Pin synced S31→S33: current=T33.10 (7f1b9ad5, active build), last=T33.9 (291460bd Done) — commit ee13ddddb. S32 (MDA model-driven) + S33 landed; MY rb-trace-tree + shared CHAIN_TYPE_CONFIG were REUSED for the MDA model tree (ModelElement type, `members` forward key = composition children, uml* icons) = reuse-not-refork realized.
 **tsx STILL DENIED all session** — canonical Chain scoreboard/planner-drive UNRUNNABLE by me; I measure via node-walk + direct singleton edits. Tester (has tsx) runs the real scoreboard.
 **Traceability-tooling fixes shipped this session (all my lane, tsx-free node-verified):**
