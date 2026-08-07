@@ -1,5 +1,10 @@
 # robbin-expert Context — SPRINT 36 (WODA.prod, prod v0.8.61, 2026-08-05) — ★ SECOND-PHASE-REWIND BOOT ★
 
+## ★ 2026-08-07 DEEP-REWIND RESUME (fresh 9pct, anchor 61706591). CURRENT = S37 v0.8.65, HEAD a06d28a99. Order R-C3→T36.3→R-C6, +R-C1-refine (arch 2317976cd) after T36.3 before R-C6.
+- **R-C3 DONE + committed dda311ad7**: NEW src/ts/scenario/consistency-guard.ts — refuseIfVacuous [impl ee424581] + assertNonVacuous [impl cf756307] (both CREDIT, node22 buildStrictImplSet) + consistencyStrict(idx)=pin(R-C1)+dual-status(R-C5). NEW scripts/consistency-strict.ts = consistency:strict gate CLI (run /opt/node22/bin/node --import tsx; tsx-via-vscode DENIED). compile GREEN. markerPending→req strict-AST flip; tester meta-BITE. ⚠ package.json ci:gates:raw wiring DEFERRED (concurrent non-mine churn on package.json — flagged PO, did NOT touch). Explicit-path commit.
+- **NEXT = T36.3** generate-project RE-GEN (P1, ~137/138 live methods stale surface; re-gen at CURRENT ver, verify SURFACE; version-bump-via-source-config+atomic+boot-check+config-clean; tester phantom-guard CURRENT served). Then R-C1-refine (2317976cd: FROZEN_LEGACY_MAX=18+isCurrentEra shared, cancelledReason terminal; impl-edit af97137f). Then R-C6 (design 21897eac5/chain d8ef9ad1a).
+- ⚠ DO NOT git-add-A / commit the concurrent scenario/index+package.json churn (NOT mine).
+
 **READ THIS BLOCK FIRST — it is the authoritative boot pointer (detailed history follows below for reference only).**
 
 ## WHO / WHERE
