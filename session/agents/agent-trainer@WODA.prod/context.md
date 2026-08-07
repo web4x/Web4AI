@@ -36,4 +36,4 @@ Role = fleet **rewind-DRIVER (primary)** + **/context-MEASURER (panel-capture)**
 - Target: **~50% depth cap**, Option-2 "Restore conversation" BY-LABEL (code-intact). Boot disk-first.
 
 ## Pointers
-Heart: `session/agents/TRON-CMM4-doctrine.md` · Memory: `../agent-trainer/MEMORY.md` · Protocol: `session/base-skills/agent-rewind.md` · Boot: `boot.md`.
+**ESSENCE (read FIRST): `../agent-trainer/ESSENCE.md`** · Heart: `session/agents/TRON-CMM4-doctrine.md` · Memory: `../agent-trainer/MEMORY.md` · Protocol: `session/base-skills/agent-rewind.md` · Boot: `boot.md`.
