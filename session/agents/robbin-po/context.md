@@ -704,7 +704,24 @@ My recent thread drove R30.34-spline / T30.27 / T30.29 as if CURRENT — they we
 
 ---
 
-# robbin-po Context — save #46 (2026-08-05, GHOST-CONTEXT CORRECTED; S36 R36.1/2/3 canonical-reconcile, v0.8.54)
+# robbin-po Context — save #48 (2026-08-07, GHOST #2 CORRECTED; **S37 consistency-by-construction, v0.8.65**)
+
+## ★★★★★★★★★★ CURRENT STATE (save #48 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★
+**★ Prod v0.8.65 · HEAD b94100751 · Sprint = sprint-37-consistency-by-construction. Repo=/var/dev/Workspaces/web4x/Web4RawBin. Team robbinTeam2 0.0-0.6, SM=ooshTeam:0.1, trainer=baseTeam:0.0, ARON=Temple:0.0.**
+
+### ★★★ GHOST-CONTEXT #2 (SAME session!) — my thread was tracking S36/v0.8.58 while disk had moved to **S37/v0.8.65**. Caught via req's mention of "S37 / R-C1 / 16-Active". **LESSON: my thread lags because the team ships FAST — RE-MEASURE DISK EVERY FEW TURNS (git log + version + sprint dirs), not just at boot.** [[ghost-context-after-deep-rewind]] · [[disk-wins-over-rewound-peer-thread]]
+
+### S37 = CONSISTENCY BY CONSTRUCTION (R-C1..R-C7). Disk-confirmed:
+- **R-C1 SprintPinResolver DONE+CREDITED** — 4 computed-from-files resolvers (expert 8ab2edb96; req strict-AST flipped 4 Impls markerPending→false, 65b93ad3f) + sprintSlugOf fallback chain (path-regex → model.slug-if-dir-exists → on-disk sprint-<num>-*, must-resolve-existing-dir FAIL-CLOSED, fb174a7d6/936caa456). Tester R-C1 gates pending.
+- **R-C7** prover fail-closed vacuous/slug-drift guard (f4534a9d7, caught an S20 phantom-write) + BITEs GREEN (a8dc1ffef, 1ae1a905e GENERATED_HEADER+hand-row closes the S19 hole) + 2 matcher-refine BITE Tests minted verify-owner-first (de7764089).
+- **R-C5** drift-grind batch-1: 6 reconciled, DRIFT 5 + MALFORMED 1 resolved, detector 21→15 (planner b94100751).
+- Sprint files: task-c1..c7 + design-rc1/rc2/rc2-migration/rc3/rc5/rc6 all on disk.
+### ★ MY DECISION (already given, req's "awaiting" was STALE): **16-Active = (a) CLOSE-STALE** (req's recommendation) → the 5 stale-Active task list goes to the PLANNER to close. Board hygiene = exactly S37's thesis (consistency by construction). Confirmed to req; it proceeds.
+### CARRIED FROM S36 (still open, lower priority than S37 flow): tester queue part-2 v0.8.56 counterpart re-gate → R36.4 @390 → R36.3 gate; R36.3 = CHAIN-CREDIT (no build) w/ double-credit guard armed both sides (94ad4f50=R36.2's, 382f8644=R32.2's).
+
+---
+
+# robbin-po Context — save #46 (2026-08-05, GHOST-CONTEXT CORRECTED; S36 R36.1/2/3 canonical-reconcile, v0.8.54) [HISTORY]
 
 ## ★★★★★★★★★★★★★★★★★ CURRENT STATE (save #46 — READ FIRST, DISK-DERIVED) ★★★★★★★★★★★★★★★★★
 **★ Prod v0.8.54 · RawBin HEAD `4db24e412` · Sprint=S36 (canonical reconciliation). Repo=/var/dev/Workspaces/web4x/Web4RawBin. Team robbinTeam2 0.0-0.6, SM=ooshTeam:0.1, agent-trainer=baseTeam:0.0.**
