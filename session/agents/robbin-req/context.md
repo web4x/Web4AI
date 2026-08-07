@@ -1,5 +1,17 @@
 # robbin-req — Context
 
+## ★★★ ANCHOR (2026-08-07, S37 R-C chains DONE — READ FIRST) ★★★
+- Identity robbin-req@robbinTeam2:0.4 (verify otmux pane.self — pane id DRIFTS %9->%10, title authoritative). Work repo /var/dev/Workspaces/web4x/Web4RawBin (main); session repo /var/dev/Workspaces/AI/Claude. DISK-WINS re-derive git log — a rewind restore-point can be WEEKS stale (I mis-oriented to S31/v0.7.91 once; real was S37/v0.8.65). CURRENT = **S37 consistency-by-construction, v0.8.65**.
+- ✅ **BITE Tests CLOSED (8d8122298, tester two-key CLEAN):** 223d2ff6->deriveStatusEnum 8a032c42 + 30d4b44a->assertStatusConsistent d86f0309 (R-C5) + ae106047->proveComplete 21e38b44 (R-C7 fail-closed refuse, distinct-intent alongside 0870c78b). R-C5 + R-C7-refuse chains CLOSE.
+- ✅ **3 R-C build-go chains MINTED (markerPending — expert places [impl:uuid], I strict-AST verify+flip):** R-C1 **b97201886** (SprintPinResolver 157d1764: resolveSprintPin 576af5f0->af97137f + deriveSprintStatus 50408e90->303639ce + sprintNumOf bbfc6d8b->e0f62b6c @ src/ts/scenario/sprint-pin-resolver.ts — DRY, kills 31.1->31/M2->2, INV-C1-8); R-C3 **5594c5994** (ConsistencyGuard 13cff277: refuseIfVacuous c8721430->ee424581 + assertNonVacuous 6328433a->cf756307 @ consistency-guard.ts — req 10 ACs incl AC-meta-BITE gate-proves-the-gate-prover); R-C6 **d8ef9ad1a** (SprintOverviewGenerator c85603ca: generateOverview 8b238215->1f38e07e + checkOverview 4873f41b->4d21edf3 @ generate-sprint-md.ts — preserved-region + frozen-legacy VISIBLE, req 8 ACs). S37 req-chain phase COMPLETE.
+- ⛔ **9 backfill "gaps" (S26/S27/S29) = ALL FALSE-POSITIVES** (measured: prose A=7 / cross-sprint B=1 R27.5->S28 / tombstone C=1 R29.2). I authored ZERO (would be 8 dup units). PO ruling: EXPERT matcher-refines (A row-header-only / B id-resolves-any-unit=satisfied / C skip [~], each fail-closed BITE). Evidence sent. S19 indented-sub-bullet=excludable (confirmed).
+- ★ **ONLY-LOCAL (push classifier-blocked for ALL agents — needs TRON hand; nothing lost, rewinds conversation-only):** 8d8122298 + b97201886 + 5594c5994 + d8ef9ad1a (+ expert 57b17547e). FLAG only-local milestones to PO.
+- ⏳ **NEXT:** (1) 93 in-scope needs-review sweep (S21=36/S25=14/S27=18/S29=19/S22=5/S24=1) classify ii-unit-wins vs iii-conflict-flag-PO (expect mostly ii, like S24); commit-per-sprint. (2) strict-AST verify+flip R-C1/R-C3/R-C6 Impls when expert marks. (3) S19 false-complete consult (prove PASS/apply REFUSE on hand-annotation = my class-A). Per-gap rule (i backfill / ii unit-wins / iii flag) saved 3 data-loss events.
+
+---
+
+# robbin-req — Context
+
 ## ★★★ UPDATE (2026-08-06 post-Phase-2-rewind — BOTH PENDING MINTS DONE) ★★★
 - ✅ **T36.5 where-used display MINTED + pushed (f9b3aab73):** R36.5 a8663672 +AC-whereused-display (@390 gate, VISIBLE-not-/api/ior); UC 862053c6 modelElement.whereUsedDisplay RIDES shared render Method c2da9192/Impl 7e147ad8 (R32.10-owned, UNTOUCHED, R30.11). Expert impl-edits RbModelElementDetail.render → "Where used" section.
 - ✅ **R36.1 UmlUseCase M2 MINTED + pushed (20fb71c6b):** UmlUseCase M2 metaclass 792cd09c (was ABSENT; kind=usecase, instanceOf M3-root a1d2e3f4-…0001); NEW Method server.projectUmlUseCase f7ac91c7 (owner server c0a0921d) RIDES shared reconcileCanonical Impl 37c08fd5 (R30.11, UNTOUCHED verified); wired UC 543ce993 umlUseCaseView (was method:None). Type-level projection (/api/ior unions UmlUseCase when ior===UseCase, compute-on-read → INV-T byte-diff==0). ⚠ expert unions **792cd09c** NOT design:180 typo ce1d8d57(=sprint uuid).
