@@ -980,3 +980,12 @@ Until expert pings: KEEP HOLDING. ~58pct, no rewind. served 0.8.65 gate 403 /tra
 
 ## ★ SECURITY CONFIRM — local CLI regen trigger (T36.3, PO 2026-08-08) = CONFIRM
 Threat model (correct): owner-gate protects NETWORK surface, NOT the local root operator (root shell > owner browser session). Parking a regen on Tron because we couldn't auth to our OWN box's HTTP endpoint was backwards. CONFIRMED shape: (a) CLI/tsx entry not HTTP = zero new net surface; (b) ★HTTP owner-gate UNTOUCHED (no token/localhost-exempt/weakening — a skip-auth-if-local branch WOULD be the hole; separate entry keeps the hand-proven 403 pristine); (c) reuse SAME in-process generate-project path = preserves invariants + no drift (single-source the OP). +4 REQUIREMENTS: (d1) CLI entry must be a LEAF, NOT importable BY any request-serving module (grep-lint) else it could be wired to an un-gated route; (d2) inherits MODEL_STORE isolation (never prod); (d3) argv-gated (import never auto-runs, like migrate-boards.ts) + named local-operator-tool; (d4) audit-log who/when. Expert builds on this. HOLDING.
+
+## ★ S40 FIVE FOLLOW-UPS designed 2026-08-08 (commit a6ad8fb0e, Tron QA passed: RC fires + re-rooted tree WODA.prod root+4refs+5sessions)
+Measured: WODA.prod fc327458 instanceOf UmlNode + ad-hoc deploymentRefs[] array; M2 family 21 sentinels(0021=UmlNode); real path=scenario/index shard(server.ts:63/114). DESIGNS:
+(2) DEEP OOP: ADD registered M2 sentinels DeploymentTarget(abstract extends UmlNode)+Device/ExecutionEnvironment/Service, Artifact(abstract)+ConfigFile/Certificate/KeyFile/EnvValue, rel kinds deploys/contains/manifestsAs/configuredBy(real Relationship not role-string); 4 refs->first-class typed M1 nodes manifestsAs SAME measured file leaf; Target--configuredBy-->Artifact--manifestsAs-->File; gated migration preserves leaves+INV-T==0; registered-sentinel rule for the new M2.
+(1) buttons->action units via R35.1 universalActionBar, per-surface actionSets(data), grep-driven inventory+grep-zero lint.
+(3) Back=history.back / path-label=folder-nav (2 handlers).
+(4) Files=real shard path via /api/unit/<uuid>/path single-sourced shard rule, fail-closed-no-fake.
+(5) Preview=rb-trace-tree scoped+rb-detail-drawer reuse (existing /trace flow).
+req mints; expert builds; I backstop (2 typed-to-file+registered-sentinels / 1 grep-zero-bespoke / 3 two-handlers / 4 real-path-not-faked / 5 reuse-not-fork). Budget-lifted S40. ~59pct.
