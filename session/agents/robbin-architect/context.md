@@ -934,3 +934,12 @@ S37 DESIGN STATUS: R-C1(+refine+shape+addendum)/R-C2/R-C3(+prefix-guard+retro-au
 ## ★ ITEM (4) APPROVED + FILE_HEADER PO-ruled + HOLDING 2026-08-08
 PO approved baseline-ratchet (esp. ID-SET-not-count catches swaps). FILE_HEADER=182: PO ruled it THEMSELVES = COMPLETE_FILE_SCOPE (distinct bucket, separately reported; a label naming an existing method must attach THERE) — CONVERGES with my just-committed addendum (e17e8b06e), my doc now defers to PO ruling (commit noted). Unblocks expert to wire BOTH marker gates + Q4 = last structural item before stop. Anon-handler B built (26e77e523, COMPLETE 324, residual ANON_HANDLER 37, FICTIONAL 0).
 HOLDING CONFIRMED: NO repair-1003, NO anon-handler build. All S37 designs on disk = zero-loss. ~52pct, no rewind. Await PO go. Day's win: fix-causes-before-symptoms + re-verified-own-289 + retracted-own-two-signal = trustworthy numbers.
+
+## ★ HOLD IS THE INSTRUCTION (PO, 2026-08-08) — no go pending; do NOT spin in a waiting state
+The ONLY remaining action this session = ONE backstop WHEN the expert lands the marker-gate wiring. Then hold again.
+★ BACKSTOP-ON-SHIP CHECKLIST (run when expert ships gate wiring; on host node22 like the S19 --prove):
+  (1) BOTH [impl] + [test] marker gates actually ENTER ci:gates:raw (grep the npm script — the PO flag: neither was in yet; verify both present, not just [test]).
+  (2) All buckets EMIT DISTINCTLY: [test] PROVEN-COMPLETE/UNPROVEN/PROVEN-FICTIONAL; [impl] COMPLETE/ANON_HANDLER(37)/COMPLETE_FILE_SCOPE/needs-reattach/FICTIONAL — FICTIONAL never folded into UNPROVEN, COMPLETE_FILE_SCOPE its own line.
+  (3) gate count == tester baseline == planner ranking via the ONE shared predicate (analyzeTestMarkers/isTestMarkerAttached + impl-marker-attach), over the SAME BROAD file-set (test/**.{ts,js,mjs} incl *-gate.mjs + src/**.{test,spec}.*); 672-marker denominator.
+  (4) Q4 planted-mis-attach BITE genuinely FAILS each gate (a stacked/misplaced/fabricated-labelled marker -> RED, proving the gate bites, not just passes).
+Then HOLD. All S37 designs committed zero-loss. ~52pct, NO rewind (idle free; rewind=full re-read). served 0.8.65 gate 403 /trace 200.
