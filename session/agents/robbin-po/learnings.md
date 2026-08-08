@@ -619,3 +619,15 @@ The SM read the expert at **82.7** ten minutes after the trainer had authoritati
 2. `claudeCode context.read` = a reliable **FLOOR** (under-reads 2–18pt, worse at high usage) — **EXCEPT immediately post-rewind, where it is meaningless**. Distrust it until it stabilises.
 3. An agent's own **self-estimate** = never decision-grade; errs in BOTH directions (tester guessed 70, was 52; trainer guessed 65, was 54).
 **The meta-rule that catches all three failure modes:** **RECONCILE THE NUMBER AGAINST WHAT JUST HAPPENED.** A measurement is not self-validating — if a rewind, a deploy, or a fix landed between the last reading and this one, the delta must be *physically plausible*. Both of the SM's inference errors today were the same shape (measuring after an intervention and not accounting for it); it caught this one proactively, which is the discipline actually learned rather than merely acknowledged.
+
+## L-S40-4 — MEASUREMENT ECONOMICS: observing costs BOTH sides, so measure only when the number changes a decision
+Three costs, all discovered today by watching them happen:
+1. **The MEASURER pays.** The SM climbed 68 -> 73 -> 75 almost entirely from running sweeps and zoom-measures *for me*. Its context was being spent to inform my dispatches, invisibly.
+2. **The MEASURED pays.** A `/context` injection costs the target ~1pt (trainer measured: 74.7 -> 75.6, and the uptick was the measurement itself, not the SM's own work).
+3. **So near a threshold, measuring can CAUSE the outcome it checks for.** At 75.6 against a 76 line, two more confirming measures would push it over — the observation becomes the wall.
+**RULE: measure only when the number will CHANGE A DECISION.**
+- Agent idle-by-design with nothing queued -> it cannot climb; measuring it is pure cost on both sides. **Don't.**
+- Decision is threshold-based, not value-based -> a FLOOR often settles it (the SM's `[47.8, ~66] < 76` call needed no precision). **Prefer the cheap read.**
+- About to dispatch substantial work -> measure. That is when the number is load-bearing.
+- Stable + idle + no pending dispatch -> **leave it alone**, even at 75.6. Especially at 75.6.
+**Corollary — reduce the load before paying for the burn:** cutting the SM's discretionary sweeps held it stable at ~75 for free, where a rewind would have cost weekly budget and a driver. The cheapest fix for a climbing agent is often to stop asking it for things.
