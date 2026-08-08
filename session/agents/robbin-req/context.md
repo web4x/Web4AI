@@ -20,6 +20,9 @@
 - **R-C6 awaits expert build**; R-C2 refined HONEST scope (generator-owned-green, not fake 37/37).
 - **R-C7 G2 backfill (Tron-bounded S21-S29 only, ~119 gaps; FREEZE S01-S18 legacy):** `migrate-board --prove <sprint>` (READ-ONLY) NAMES the authoritative gap list -> per-gap classify **(i) genuinely-missing->backfill / (ii) present-but-refined->UNIT WINS don't overwrite / (iii) conflicting-intent->FLAG PO**. HELD: expert re-sweeping w/ semantic matcher -> corrected (shorter) gap report; grind CORRECTED list post-rewind, commit-per-sprint. S24=(ii)unit-wins; S27-R27.5=deliberate-move-STAYS-S28 (check git history before "fixing").
 
+### A1=15 chain-integrity audit (2026-08-08, PO meanwhile-task) — 12 CLEAN / 3 MALFORMED
+Tests all able-to-fail (vacuity-passed), but 3 chains NOT well-formed: 54519bc4 (S20) PREFIX-COLLISION e4f5b693 (UC testCase.parseFromSource-2150 + Impl parse-test-cases.ts-c1d2, diff KINDS; Impl uuid e4f5b693-c1d2-4e3f-8a5b-6c7d8e9f0a1b = hand-crafted placeholder) · e83dc244 (R21.4) Impl cc6df739 ORPHAN-owner · 842d4f01 (R21.8) Impl 4a7d30bb ORPHAN-owner. RECO: 12 clean signable now, 3 hold until architect orphan-owner/collision sweep. ⚠ verifier bug caught pre-report: ownerIor is TOP-LEVEL not model.ownerIor (falsely flagged 13/15 first). Feeds architect pre-flight scan (orphan-owner 289 units / prefix-collision 18 groups = ACTIVE delivery blockers per PO).
+
 ### Tron QA batch (a70b45a31, scrum.pmo/tron-qa-batch.md)
 A1=24 / A2=15 / B=3 / D=4 / S=2 / C=4. NOTHING flipped Done (I recommend, Tron decides). A1=24 handed to Tron. B=3->QA-Review delivered-pending.
 
