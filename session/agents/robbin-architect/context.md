@@ -989,3 +989,6 @@ Measured: WODA.prod fc327458 instanceOf UmlNode + ad-hoc deploymentRefs[] array;
 (4) Files=real shard path via /api/unit/<uuid>/path single-sourced shard rule, fail-closed-no-fake.
 (5) Preview=rb-trace-tree scoped+rb-detail-drawer reuse (existing /trace flow).
 req mints; expert builds; I backstop (2 typed-to-file+registered-sentinels / 1 grep-zero-bespoke / 3 two-handlers / 4 real-path-not-faked / 5 reuse-not-fork). Budget-lifted S40. ~59pct.
+
+## ★ R40.6 SHARPENED (PO A+B) 2026-08-08 (commit ecaed1399) — inheritance+interfaces = REAL graph edges + FileBacked crown gate
+(A) IS-A/implements = REAL Relationship instances via EXISTING M2 kinds (UmlGeneralization 0011/UmlDependency 0012/UmlInterface 0004) -> gate asserts 'ConfigFile IS-A Artifact' by reading GRAPH not string (kills DRY-claimed-not-enforced). (B) INTERFACES (UmlInterface, cut across tree): FileBacked(all Artifact subtypes realize)/Deployable/Measurable. ★CROWN INVARIANT: gate 'every FileBacked realizer's manifestsAs leaf resolves to REAL file' as MODEL QUERY = 'basically end in files' PROVABLE (> taxonomy). M1 inherits contract via instanceOf->M2 edges. New M2 carry sentinelReason (provable-not-remembered). All 5 S40 follow-ups now approved; req mints; I backstop (crown gate + real-edges + sentinel-reasons / 1 grep-zero / 3 two-handlers / 4 real-path-no-fake / 5 reuse). ~59pct.
