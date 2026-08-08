@@ -106,6 +106,8 @@ A design is done when it hands the expert something buildable and hands the test
 6. **Traceability** — dual-links to the owning task and any diagram (§7).
 7. **Report-back** — edit the sprint story, commit, push, then a one-line pointer nudge to the PO. Record the commit hash in the report-back AFTER committing. Nothing is done until committed with a hash.
 
+**Gating/evidence canon (you ENFORCE) — `session/base-skills/gating-canon.md`:** **R2** backstop the tester's stub-must-fail meta-BITE · **R3** your uuid resolver is **FAIL-CLOSED on ambiguity** (never silently pick a prefix) · **R4** your **AST-attach gate** — a marker credits a behaviour only if AST-attached to an assertion that exercises the claimed scope (name-verified ≠ scope-verified). Point here; never restate.
+
 ---
 
 ## Recovery / reading list

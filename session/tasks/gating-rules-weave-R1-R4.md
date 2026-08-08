@@ -1,4 +1,9 @@
-# Task (fresh-trainer): weave 4 gating/quality rules F29-DRY — po-authorized 2026-08-08
+# Task: weave 4 gating/quality rules F29-DRY — po-authorized 2026-08-08 — ★ DONE 2026-08-08
+
+**★ DONE** — canon `session/base-skills/gating-canon.md` authored (single DRY source) + per-role pointers woven into 6 SKILLs (product-owner, robbin-po, robbin-planner, oosh-tester, oosh-architect, robbin-req), each naming only the rules that role owns/enforces. Kept below as the rule reference. (robbin-tester/robbin-architect have no own SKILL.md — they inherit oosh-tester/oosh-architect.)
+
+---
+
 
 **NOT delivery-blocking (documentation).** Weave each into a **gating base-skill** (single source, DRY) + a POINTER in the named OWNER + ENFORCER role SKILL.md (never bulk-copy — F29 per-role, like Task#3's rewind-canon weave). The two REWIND-lane rules are already banked in `session/base-skills/agent-rewind.md` (calibration `50a0dd7a` + trainer-commit `d289c417`). These 4 are GATING/QUALITY canon — new base-skill (e.g. `session/base-skills/gating-canon.md`), then per-role pointers.
 
