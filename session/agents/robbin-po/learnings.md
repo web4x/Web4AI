@@ -595,3 +595,11 @@ I told the team an 8-char prefix in prose was "readable but harmless" and only m
 **Rule (extends R3):** use FULL uuids in dispatches, reports, and design docs too — not just in markers. A peer cannot tell a shortened citation from a truncated value, so a prose prefix becomes a data claim. If brevity is needed, label it: "prefix 2fe84858… (full: …)".
 **Also:** MINT ≠ RE-MINT. "Doesn't resolve" has several causes — absent/un-minted, truncated, collided, orphaned — and they need different fixes. Diagnose which before prescribing.
 **Meta:** the tester tried to REFUTE my hypothesis rather than confirm it, and that is why this got caught. A subordinate measuring the boss's worry instead of validating it is the single most valuable behaviour in this team.
+
+## L-S40-1 — NEW CLASS: the RESOLVABLE-BUT-WRONG-QUESTION reference
+Tron asked for "a reference to the ssh config" of WODA.prod. Two wrong answers were available, and only one of them looked wrong:
+1. **Fabricated** — a ref to `Host WODA.prod` in `~/.ssh/config`. **No such entry exists** (architect measured). Obviously broken once measured.
+2. **Resolvable but WRONG-QUESTION** — a ref to `~/.ssh/config` itself. The file is REAL and the ref would RESOLVE, pass every well-formedness gate, and survive every audit we built today — while describing connections **outbound FROM** this host rather than how **this node** is configured as an endpoint. A truthful path answering the wrong question.
+**The correct referent set** (deployment-node semantics = how THIS NODE serves): `/etc/ssh/sshd_config` (inbound service) + `~/.ssh/public_keys/root.WODA.prod.public_key` (identity) + `.env` domain + `/etc/letsencrypt/live/<domain>/fullchain.pem` (TLS). The client file, if modelled at all, is a DISTINCT outbound-client ref — never conflated.
+**Why it matters:** every gate we hardened today checks that a reference RESOLVES. **None** of them check that it answers the question the requirement asked. That is a gap no invariant can close — it needs a human reading the requirement's INTENT against the artefact's MEANING.
+**Rule:** when minting a reference, ask both (a) does it resolve? and (b) does it answer the question the requirement asked? Prefer the artefact that describes the SUBJECT, not one that merely mentions it.
