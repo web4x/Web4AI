@@ -581,3 +581,10 @@ Hard data this session: SM read ~68.7 -> authoritative **77** (8pt under). req r
 - NEVER authorize unbounded work (grep-first / untangles / migrations / open analysis) off a context.read at any level.
 **Corollary:** an agent reporting "I have no fresh number" is reporting a REAL RISK, not being cautious — treat it as ≥ the last known reading plus a large unknown, and measure before assigning.
 **Zero-loss habit worth copying:** the trainer COMMITS a walled agent's dirty context.md before rewinding it (bash-immune, survives), so a near-wall agent loses nothing.
+
+## L-S37-6c — FULL CALIBRATION TABLE: the read is a FLOOR with VARIABLE error; SELF-ESTIMATES err BOTH ways; only the panel is truth
+All five data points this session (read/estimate -> authoritative /context):
+- SM 68.7 -> **77** (8 under) · req 72.5 -> **75** (2.5 under) · planner ~68 -> **86 NEAR-WALL** (18 under) · tester ~76 -> **79** (3 under) · trainer read 48.2-free (~51.8 used) -> **54** (2 under, essentially accurate).
+⇒ `context.read` is ALWAYS in the same direction (under-reads) but the size is VARIABLE (2–18pts) and the BIG misses happened at HIGH actual usage — i.e. it is least reliable exactly where a mistake is fatal. So: it can prove SAFE-LOW, never "safe enough". <40 dispatch freely / 40–55 bounded only / >55 authoritative-measure-or-rewind / never size unbounded work off it.
+⇒ **NEW: an agent's own by-volume SELF-ESTIMATE errs in BOTH directions** — the trainer self-estimated ~65 and was actually **54** (overshoot), while planner's soft number understated by 18. So never rewind on a self-estimate either: a rewind COSTS budget + a driver, so measure the panel before spending one (ARON correctly declined to drive a healthy trainer).
+⇒ Only `/context` (the panel) is truth. Everything else is a hint that must be labelled as such.
