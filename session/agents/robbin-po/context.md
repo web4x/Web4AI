@@ -1165,3 +1165,12 @@ expert: R-C1 refinement 2317976cd (frozen-scope isCurrentEra>18 single-source + 
 - **MIGRATION APPROVED**: the 335 **LOSE CREDIT NOW**, not deleted = visible re-attach backlog. **The scoreboard WILL drop hard and that is CORRECT.** My added refinement: the backlog must split (a) assertion-EXISTS-but-misplaced → mechanical re-attach vs (b) **NO assertion exists → the Test is FICTIONAL, a real test must be WRITTEN** (genuine untested-feature debt that must not hide inside a re-attach pile).
 - **TRON BATCH now: A1=21 → 3 SIGNABLE (task-level direct evidence) + 18 PENDING VACUITY AUDIT · A2=18.** Most of the 18 will likely fail the new rule.
 - Sequence: forward-guard + fail-closed FIRST (stop the hole growing) → classified backlog → repair-1003 (dry-run authorized, apply NOT yet) → T36.3 (Tron owner-trigger).
+
+## ★ GRAPH-INTEGRITY TAXONOMY (architect 739562865, provisional until shared collision-classify.ts re-runs)
+My earlier "~1003 confirmed corruptions" was IMPRECISE — it folded distinct problems. Corrected:
+- **AUTO-REPAIR ~730** = MOVEable-foreign-impl ~707 (list-ENTRIES) + UC.class 8 + owner-WRONG-TYPE 15 (Method 5 + Impl 10).
+- **SAME-NAME 89** = LEAVE ALONE (legit R30.11 shared-impl).
+- **UC-owner-non-Req 239** = 100% Sprint(186)+Task(53), ZERO other → ENTIRELY the ruled legacy-convention DEBT (canonical rule declared + forward-guarded, NO bulk-migrate). §4/BUG1 Sprint20 = separate specific live-chain fix.
+- **PREFIX collision 18 GROUPS / 67 member-units** (report both bases).
+- **★ ORPHAN-OWNER 289 DISTINCT units** (UC 130 + Method 15 + Impl 144) = its OWN visible counted debt, own detector isOrphanOwner(ownerIor empty|dangling), own fix (reverse-link Class.methods[]/Method.implementations[] or name-match), own spec. **LARGER than the auto-repair set** — surfaced ONLY because I required the remainder be tracked separately instead of left inside repair-1003.
+- **★ COUNTING-BASIS now LABELLED per category in the shared contract** (entries-vs-units differs: 707 entries vs 289 units) so a units-of-measure divergence can't recur — same single-source discipline applied to the unit of measure itself.
