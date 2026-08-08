@@ -1174,3 +1174,12 @@ My earlier "~1003 confirmed corruptions" was IMPRECISE — it folded distinct pr
 - **PREFIX collision 18 GROUPS / 67 member-units** (report both bases).
 - **★ ORPHAN-OWNER 289 DISTINCT units** (UC 130 + Method 15 + Impl 144) = its OWN visible counted debt, own detector isOrphanOwner(ownerIor empty|dangling), own fix (reverse-link Class.methods[]/Method.implementations[] or name-match), own spec. **LARGER than the auto-repair set** — surfaced ONLY because I required the remainder be tracked separately instead of left inside repair-1003.
 - **★ COUNTING-BASIS now LABELLED per category in the shared contract** (entries-vs-units differs: 707 entries vs 289 units) so a units-of-measure divergence can't recur — same single-source discipline applied to the unit of measure itself.
+
+## ★★★ #53 — 3-BUCKET BASELINE (planner, shared analyzeTestMarkers, PROVISIONAL: dirty-WIP state)
+**674 raw → 2 OUTSIDE-SCOPE-invalid (sw.js, rb-object-item.ts; 0-credit, flagged not dropped) → 672 in-scope:**
+- **45 PROVEN-COMPLETE (6.7%)** · **480 UNPROVEN (71%)** · **147 PROVEN-FICTIONAL (22%)**
+- Worst fictional: server.test.ts 68F · room.test.ts 53F · file-dnd-chain 13F.
+- 672 == the three-way agreed number (architect gate == planner count == tester baseline, four dimensions single-sourced).
+- ⚠ **MOVING TARGET** — test-marker-attach.ts is dirty WIP; per [[measure-a-stable-state-not-a-moving-target]] the AUTHORITATIVE baseline is the COMMITTED post-forward-guard-wiring run. Planner re-runs then + confirms no silent fork reintroduced.
+- Parse-fix CONFIRMED on disk (line 62 reworded, no early comment close, module compiles).
+**MEANING: of 672 test-marker credits, only ~45 were provably backed by an assertion that can fail.** That is the honest size of the scoreboard fiction — reported to Tron as provisional pending the committed run.
