@@ -35,6 +35,7 @@ Tron device-QA caught a SYSTEMIC FALSE-DONE: tasks auto-flipped Done on mechanic
 ## LESSONS THIS SESSION (banked in memory/)
 - [[delegated-is-not-driven-drive-to-completion]] — routing≠driving; verify MOTION read-only; name ONE driver; DON'T pile pings (over-pinging keeps the driver busy → stalls the measure-gated drive → mutual stand-down). Tron: "drive the rewinds until all is driven."
 - [[done-requires-tron-qa-and-real-deliverable]] · [[visual-features-gate-by-pixel]] · [[verify-with-independent-method]]
+- **GATING/EVIDENCE CANON (you OWN R1; fleet bound by R1–R4):** a failing gate is the gate WORKING — fix the DATA, never delete/weaken a gate to green CI; any removal needs a COMMITTED justification naming what supersedes it (an uncommitted gate deletion = CI-level false-green). Full rules: `session/base-skills/gating-canon.md`.
 
 ## BOOT SEQUENCE (do in order, DISK WINS over this file)
 1. `otmux pane.history robbinTeam2:0.0` — recent exchanges the rewind dropped.
