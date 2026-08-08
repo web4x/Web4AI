@@ -1,6 +1,8 @@
 # robbin-req — Context
 
-## ★★★ ANCHOR (2026-08-07, S37 — READ FIRST) ★★★
+## ★★★ ANCHOR (2026-08-08, S37 — READ FIRST) ★★★
+**Latest (2026-08-08):** f3 R20.6c/d DONE (38d57be9a, tester two-keying) — stripped foreign R15.4 Test 47528657, minted Test 2fe84858 (tap→cc1dcd0e) + ff903752 (longpress→4256aef7-7580) full-v4 + UC objectItem.longPressToggles 47fc978b. 2 of my 4 f3 defects were PHANTOMS (model.ownerIor-vs-toplevel + head/tail truncation) — measure-and-held, nothing broke. **Authored R5** (gating-canon.md, IDENTITY IS MINTED). **§4 NEXT** = re-mint fabricated Impl 3542dcb3-a1b2-4c3d-8e4f at real v4 (GATED) = kills prefix-collision. **§3 R20.6e-h** = empty reqs, mint fresh. **Identity detector = architect's identity-classify.ts (single-source, HIGH 65/MED 32/REVIEW 34)** — adopt it for my sweeps (one number). A1=15 chain-audit: 12 clean signable / 3 held (54519bc4/e83dc244/842d4f01).
+
 **Identity:** robbin-req @ robbinTeam2:0.4, host WODA.prod, project RawBin. Verify `otmux pane.self` (pane id DRIFTS %9->%10 — TITLE `robbin-req@WODA.prod` authoritative, never $TMUX_PANE). Work repo `/var/dev/Workspaces/web4x/Web4RawBin` (main). Session repo `/var/dev/Workspaces/AI/Claude` (this file; NOT in RawBin git). **DISK-WINS: re-derive `git log`; a restore-point can be WEEKS stale (mis-oriented S31 once, real was S37). CURRENT = S37 consistency-by-construction, v0.8.65.**
 **Push path:** my+expert pushes classifier-blocked -> **TESTER 0.5 pushes**; ping tester per commit, confirm origin==HEAD. Flag only-local milestones to PO (NOT Tron).
 
