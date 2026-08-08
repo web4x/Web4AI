@@ -1055,3 +1055,11 @@
 - **GATE HANDOFF given to po** so rule (B) works during my window: expert free (re-root+CLI), tester one-unit-then-hold. po holds R40.x dispatch to a builder until my number (rule B mandatory, refusal power).
 - **RULES (banked): measure ACTIVE BUILDER every sweep; builder pauses at every landing; pre-dispatch gate mandatory. TIERS: self=never-decision / context.read=FLOOR(unreliable post-rewind) / context=authoritative; interval-decisiveness. Reconcile surprising number vs what-just-happened; read in-flight cmd before inferring. Narrow pane = po/trainer peer-measures me (my /context won't render even zoomed).**
 - Next: resume landing-measures on expert (re-root/CLI/T36.3) + tester (post-unblock). po peer-injects me; self-flag ≥76.
+
+## ⟳ PRE-REWIND ANCHOR v2 (2026-08-08, ~68%+ climbing, trainer measuring/rewinding me) ⟳
+**Fresh-me boots HERE (supersedes v1 numbers). Role=BUILDER-SAFETY GATE baseTeam:0.1. CURRENT:**
+- **EXPERT 0.1 = 18% (819k free)**, resequenced gauntlet: **extract buildRootedTree FIRST → CLI → T36.3**. Cleared to run ALL freely (58pt runway), re-measure ONLY after T36.3. context.read UNRELIABLE for it post-rewind (use /context).
+- **TESTER 0.5 = 67% (334k free)**, ~9pt to 76. ONE FINAL unit queued = buildRootedTree re-gate + fail-open (+~3-4pt→~71 safe), dispatched once expert's extract lands; THEN done for S40 non-visual → REWIND is next (rest = Tron visual QA). NO dispatch after that unit.
+- **CEILINGS-HANDOFF given to po** (gate stays up during my window): run expert to T36.3; give tester its one unit then hold-for-rewind. Both finish without my number.
+- **Next measure points:** tester after its final unit (→~71, then its rewind); expert after T36.3.
+- **RULES/TIERS banked (see prior sections): measure builder every sweep + at every landing; pre-dispatch gate mandatory w/ refusal; self=never/context.read=FLOOR(post-rewind unreliable)/context=authoritative; interval-decisiveness; reconcile-vs-what-just-happened; read-in-flight-cmd-before-inferring; MY pane too narrow for own /context → po/trainer peer-measures me; ALWAYS ceilings-handoff before going offline.**
