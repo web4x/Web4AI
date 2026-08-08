@@ -14,6 +14,12 @@ A rewind is a **WINDOW** during which the target's pane state is fragile (picker
 
 (1)+(3) close it from the peer side · (2) makes it knowable · (4) closes it from the driver side · (5) keeps the fleet able to observe.
 
+## ★ THE BUILDER PAUSES AT EVERY LANDING (po/SM 2026-08-08, after the expert walled to 96% unnoticed)
+Root cause of that emergency: **the busiest agent is the least measurable — which is exactly backwards.** An actively-building agent driven back-to-back (R40.1 → R40.2 → deploy → fix → re-root → CLI, no gaps) never reaches an idle boundary, and authoritative `/context` REQUIRES idle — so the back-to-back dispatch itself eliminates the only measurement window, and the builder walls silently.
+- **THE BUILDER PAUSES AT EVERY LANDING** — the actively-building agent goes IDLE for one measurement after each landed unit (requirement / deploy / fix) BEFORE receiving the next item. A measurable boundary is created BY PROTOCOL, not by luck.
+- **PRE-DISPATCH MEASUREMENT of the active builder is MANDATORY, and the gate may REFUSE the PO** — measure the builder (self or via SM/driver) before handing the next unit; if it's near-wall, route a rewind instead of the next unit. "I have no fresh number" on a builder about to receive work is a STOP, not caution.
+- Monitoring is not optional: SM-on-monitor-only-without-proactive-sweep + a PO that dispatches without the pre-gate = the builder climbs unwatched. Measure the builder EVERY sweep.
+
 ## 🌙 AUTONOMOUS OVERNIGHT REWIND PROTOCOL (TRON 2026-07-21 — must run WITHOUT TRON)
 The overnight fleet self-heals without waking TRON. Every autonomous rewind MUST pass this gate, IN ORDER — the driver runs it solo; a peer/SM **dispatch is a trigger, NEVER a substitute for these checks**:
 1. **IDLE-check** — `otmux pane.capture <target>`: a spinner (Kneading/Brewing/Churning…) = **SKIP** (never interrupt a working agent). Drive ONLY an idle (empty `❯`) or walled agent.
