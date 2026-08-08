@@ -1218,3 +1218,8 @@ Predicate LOCKED + COMMITTED **012c844a3** (compiles, esbuild GREEN). Planner re
 ### §4 CLOSE (option (a), my ruling — no client deploy at 76% budget): marker REMOVED (expert a48a42040, comment-only, no bump, stated in msg) + req deletes Impl 15682c8a + **tester two-keys Test e97850c3 onto EXISTING Impl 91bea17d under R30.11 verify-owner-first** (I corrected an "it's moot" ping that would have dropped real credit). EXTRACT of a named chainExcludesSelf helper = RECORDED DEFERRAL with rationale, not dropped.
 ### FLEET HOLDING: architect ~53% · expert done · tester finishing the retargeted two-key · req finishing the unit delete · planner trigger-watch · SM monitor-only · trainer/ARON standby. All designs on disk = zero-loss.
 ### TRON-ONLY, UNCHANGED: (1) sign the 12 · (2) Generate Project dir=src/ts/scenario (T36.3).
+
+## ★ #57 — §4 FULLY CLOSED (tester two-key CLEAN, origin==HEAD==169491908)
+e97850c3 ↔ 91bea17d (renderSingularChain) two-keyed both directions; all 4 conditions verified: distinct-intent (chain-EXCLUDES-SELF) · 91bea17d.tests[] was EMPTY so no over-credit/over-write · owner 09611d71 untouched · gains exactly e97850c3. Impl 15682c8a deleted at 0-refs, marker removed BEFORE the delete (correct sequence: **remove the referrer before deleting the referent**), no version bump, served unchanged.
+**Net on this ONE chain: 2 false-closes caught (position, then name-match) + 1 near-DROP of real credit prevented ("it's moot").** 1 real defect + 4 phantoms + 1 un-minted Test. Every catch came from reading the artifact, not the report chain.
+**SESSION AT REST.** Fleet holding, all designs on disk, no discretionary work at 76% weekly. Remaining = TRON-ONLY: (1) sign the 12 · (2) Generate Project dir=src/ts/scenario.
