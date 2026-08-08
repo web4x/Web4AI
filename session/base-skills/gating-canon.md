@@ -1,6 +1,6 @@
-# Gating / Evidence Canon — the 5 rules (single DRY source; role SKILLs POINT here, never restate)
+# Gating / Evidence Canon — the 6 rules (single DRY source; role SKILLs POINT here, never restate)
 
-The scoreboard is only as honest as its gates. These four rules keep credit tied to reality. Owner + enforcer per rule; every role is BOUND by them. Banked from the 2026-08-08 scoreboard-fiction session (73 provably un-backable markers found). Companion: `session/base-skills/agent-rewind.md` (the rewind/measurement canon — incl. the context.read calibration rule).
+The scoreboard is only as honest as its gates. These rules keep credit tied to reality. Owner + enforcer per rule; every role is BOUND by them. Banked from the 2026-08-08 scoreboard-fiction session (73 provably un-backable markers found). Companion: `session/base-skills/agent-rewind.md` (the rewind/measurement canon — incl. the context.read calibration rule).
 
 ## R1 — NO-SILENT-GATE-REMOVAL
 **Owner: PO** (governance) · **Bound: all roles** · **Watchers: planner + tester**
@@ -27,3 +27,9 @@ The scoreboard is only as honest as its gates. These four rules keep credit tied
 > R3 governs how you **REFERENCE** an identity (full uuid, kind-stated, fail-closed); R5 governs how you **CREATE and COPY** one (minted, read from the unit on disk). **Read AND write identities in FULL, or the graph lies to you in both directions:** an 8-char prefix doesn't just risk crediting a foreign chain (R3) — it also **manufactures phantom defects** when you measure. Head-vs-tail of ONE uuid reads as "two duplicate Methods"; a prefix shared by two units reads as an "orphaned owner" or a "self-ref ownerIor." **Full uuids belong in dispatches, reports, and DESIGN DOCS too — not just in markers.** A peer cannot tell a *shortened citation* from a *truncated value*: an 8-char uuid written into a design doc travelled two hops as the fact "the Test is truncated" when the Test was simply **never minted**. "Doesn't resolve on disk" has distinct causes — **absent/un-minted · truncated · prefix-collided · orphaned** — each a different fix; **pin the cause before prescribing** (MINT ≠ RE-MINT). The spread vector is citing identities from prose (8-char prefixes in messages/reports/design docs) instead of the unit — so R5 closes the door R3 guards.
 >
 > Grounding: 2026-08-08 — a fabricated Impl uuid `e4f5b693-c1d2-4e3f-8a5b-6c7d8e9f0a1b` (ascending-pair) found poisoning task 54519bc4's chain; sweep found a fabricated **family** (real-8char-prefix + ascending-byte-pair tail: `e4f5b693-c1d2`, `3542dcb3-a1b2`, `01771d5b-a1b2`) plus hand-mint families (`16a010xx`, `17a00xxx`). Same session, f3 Test uuids were minted TRUNCATED (R3-violation in fresh work) — identity must be copied from the minted unit, never re-typed.
+
+## R6 — CERTIFICATION-SCOPE (the other half of R4)
+**Owners: req** (credit) **+ tester** (verification) · **Enforcer: architect**
+> A Test proving only PART of its requirement pins a machine-readable **`certificationScope`** field: (1) **what IS proven + on which SURFACE** (real / harness / non-owner / owner-page / device), and (2) **what is NOT proven + why** (owner-gated / device-only / deferred). A Test with **NO `certificationScope` = a claim of fully-proven-as-specified** — so its absence is itself a claim that must be TRUE. R4 says evidence must be able to fail; **R6 says the evidence's SCOPE must be declared** — a Test can be able-to-fail yet quoted for a surface it never touched, and scope-of-evidence closes that hole.
+>
+> Grounding: S40 2026-08-08 — R40.1 security-proven-by-construction but its UI is owner-page-pending; the Test pins that split rather than reading as fully-proven. (req learning `a78c98d2`)
