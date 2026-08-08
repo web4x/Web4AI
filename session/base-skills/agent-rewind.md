@@ -4,6 +4,16 @@
 
 > **▸ Short pane won't render the picker / confirm-menu? ENLARGE it OOSH-clean (no raw tmux, no hand-off — RETIRES that workaround).** `otmux pane.size <target>` (note WxH) → **`otmux pane.size.set <target> 120 45`** → drive the picker → restore `otmux fit <session>` + `otmux tiled`. **`pane.size.set` targets a REMOTE pane** (unlike caller-only `zoom`/`pane.resize` — that was the gap I kept hitting). Same method reads a too-short pane's `/context` Free-space line. Full method: `session/base-skills/context-measurement.md`.
 
+## ★ THE REWIND WINDOW PROTOCOL (fleet canon — po 2026-08-08, after a peer's mint clobbered a measurement)
+A rewind is a **WINDOW** during which the target's pane state is fragile (picker open · restored-message auto-resume · queued-message auto-process). The **driver owns the pane** for the whole window; every peer holds. The hole this closes: nobody knew a window was open, so req kept messaging the pane (a "quick mint") — it stayed hot and no clean `/context` read was possible.
+1. **The DRIVER OWNS THE PANE** for the window's duration — measurement, keystrokes, and comms all route through the driver.
+2. **ANNOUNCE the window.** Driver posts `REWIND WINDOW OPEN on <pane> — all comms via me` at open, and `WINDOW CLOSED, pane released` at close. Without an explicit open/close signal, peers cannot know to hold.
+3. **ALL PEERS route through the driver** while the window is open — PO, req, planner, expert, tester, SM alike. **No exception for "it's just a quick mint"** — a quick mint is exactly what kept the pane hot and blocked the read.
+4. **The driver CLEARS the queue** as part of the drive (check the footer for `Press up to edit queued messages`; queued pings auto-process post-rewind and clobber the landing + the measurement — see gotcha #4 below).
+5. **Read-only captures stay allowed for anyone** — `otmux pane.capture` costs the target nothing; that's how peers observe (and verify an anchor-flip) without touching the pane.
+
+(1)+(3) close it from the peer side · (2) makes it knowable · (4) closes it from the driver side · (5) keeps the fleet able to observe.
+
 ## 🌙 AUTONOMOUS OVERNIGHT REWIND PROTOCOL (TRON 2026-07-21 — must run WITHOUT TRON)
 The overnight fleet self-heals without waking TRON. Every autonomous rewind MUST pass this gate, IN ORDER — the driver runs it solo; a peer/SM **dispatch is a trigger, NEVER a substitute for these checks**:
 1. **IDLE-check** — `otmux pane.capture <target>`: a spinner (Kneading/Brewing/Churning…) = **SKIP** (never interrupt a working agent). Drive ONLY an idle (empty `❯`) or walled agent.
