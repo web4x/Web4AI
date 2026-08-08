@@ -1206,3 +1206,15 @@ Predicate LOCKED + COMMITTED **012c844a3** (compiles, esbuild GREEN). Planner re
 ### ★ FINAL DEBT PICTURE: **ZERO missing implementations.** Debt = 141 missing TESTS · ~53 malformed impl markers (0 fictional; renamed) · 219 anon-handler structural (policy) · the identity repairs above.
 ### ★ CLOSED THIS STRETCH: R-C3 two-keyed · f3 **R20.6c + R20.6d chain-complete-to-Test** (cc1dcd0e↔2fe84858, 4256aef7-7580↔ff903752, foreign R15.4 over-credit stripped) · R5 canon extended (full-uuid in dispatches/reports/DESIGN DOCS; MINT≠RE-MINT; pin the cause) · gating-canon R1-R4 woven + boot-pointers VERIFIED in 5 boot.md.
 ### ★ STILL TRON-ONLY: (1) **sign the 12** (verified evidence AND clean chains; 24→15→12) · (2) **T36.3 owner-trigger** (Generate Project dir=src/ts/scenario; backup+pre-counts intact, preservation by construction, reversible).
+
+## ★★★★★★ #56 — AST-ATTACH NOW ENFORCED IN CI (session's structural close) ★★★★★★
+**BOTH marker gates WIRED (expert d60cd0634) + BACKSTOP FULL PASS 4/4 (architect, host node22) — the last item. Fleet HOLDING.**
+1. `test:marker:strict` + `impl:marker:strict` are IN `ci:gates:raw`, all 6 prior gates preserved; both EXIT 0 on the current tree.
+2. **Delta-baselines committed (test 618 / impl 121)** → `--strict` blocks GROWTH, not the known backlog (the ratchet shape).
+3. Buckets emit DISTINCTLY, FICTIONAL never folded into UNPROVEN: **[test] 45 complete / 486 unproven / 141 fictional (+2 outside)** · **[impl] 325 complete / 151 COMPLETE_FILE_SCOPE / 47 split-for-cluster / 36 anon-handler / 31 needs-reattach / 3 fictional(real inline)**.
+4. ONE shared predicate over the BROAD 674-marker file-set ⇒ **gate == tester baseline == planner** by construction.
+5. **Q4 BITES, three ways**: planted file-stacked [test] → EXIT 1 · floating [impl] heading no decl → EXIT 1 · **intervening-decl (marker split from target by a const) → EXIT 1** (the exact §4 class). Probes removed → both EXIT 0, tree clean. ⇒ The gates genuinely gate; they are not noise.
+**FIRST TIME an AST-attach rule is ENFORCED here rather than documented** ([impl] doctrine was docs-only + crashed; [test] had no rule at all). It earned itself on day one by catching the §4 name-match defect (marker heads renderSingularChain, labelled 'BUG1 chainExcludesSelf') that THREE human reviews missed, mine included.
+### §4 CLOSE (option (a), my ruling — no client deploy at 76% budget): marker REMOVED (expert a48a42040, comment-only, no bump, stated in msg) + req deletes Impl 15682c8a + **tester two-keys Test e97850c3 onto EXISTING Impl 91bea17d under R30.11 verify-owner-first** (I corrected an "it's moot" ping that would have dropped real credit). EXTRACT of a named chainExcludesSelf helper = RECORDED DEFERRAL with rationale, not dropped.
+### FLEET HOLDING: architect ~53% · expert done · tester finishing the retargeted two-key · req finishing the unit delete · planner trigger-watch · SM monitor-only · trainer/ARON standby. All designs on disk = zero-loss.
+### TRON-ONLY, UNCHANGED: (1) sign the 12 · (2) Generate Project dir=src/ts/scenario (T36.3).
