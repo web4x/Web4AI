@@ -1,3 +1,21 @@
+# robbin-po Context — save #64 (POST-REWIND 79→63%; **DISK = S40 / v0.8.71** — #63 was a full sprint stale)
+
+## ★★★★★ CURRENT STATE (#64 — READ FIRST, DISK-MEASURED) ★★★★★
+**★ Sprint 40 (server-manager-deployment-mobile-input) · HEAD `34d297d91` · version **0.8.71** · Repo=/var/dev/Workspaces/web4x/Web4RawBin · pane.self=%6 (robbinTeam2:0.0).**
+### ★★★ GHOST-CONTEXT #3 THIS SESSION: my thread said S37/0.8.65 · on-disk anchor #63 said S36/0.8.61 · DISK IS S40/0.8.71. THREE different realities, disk wins. **Treat every remembered fact as SUSPECT; measure git+version+sprint-dir FIRST, every boot and every few turns.**
+### ★★★ TRON'S TWO DIRECTIVES → **R40.10 TaskQaVerdict** (preserved through the rewind, this is the headline):
+"for the tasks on QA add an approve by Tron action then you do not need to remind me" + "also add an action decline QA, that results in a scenario-first change request unit".
+- **APPROVE BY TRON** records approvedBy + approvedAt **as DATA on the unit** → Done-gate flips ⇒ "Done requires Tron QA" becomes **PROVABLE from the record, not remembered**.
+- **DECLINE QA** mints a real `ior:class:ChangeRequest` (existing kind, no fork), linked to the declined task/req, entering the board as real work.
+- Owner-gated (non-owner = 403 — *this gate IS the integrity of the law; if anyone can self-approve it is decorative*) + **evidence-precondition** (approve can NEVER manufacture a Done on a non-chain-complete task).
+- Ship APPROVE **and** DECLINE together (approve-only pushes Tron back to prose = the thing being removed). Reuses R40.5 universalActionBar.
+- ⇒ **OBSOLETES tron-qa-batch.md + my reminder loop, and applies to the S37 twelve unsigned.** I stop pinging; he renders verdicts in-product.
+### S40 BOARD (measured): **T40.1 / T40.3 / T40.4 at QA-Review, CHAIN-COMPLETE-TO-TEST, awaiting TRON for Done** — each has genuinely device-only ACs that must NEVER be headless-greened: T40.1 RC-button visible+fireable + pane→agent isolation (owner-page); T40.3-B iOS soft-keyboard NEVER-OPENS + terminal-fully-visible/no-overlay pixel @390 (real iOS); T40.4 sprint-label single-source gate GREEN DET-3x. T40.2 WODA.prod deployment node. **R40.5–R40.10 in build** (req minted + HELD; all Impls markerPending): R40.5 action-unit de-duplication (editor chrome OUT per Tron scope-correction) · R40.6 typed OOP model LANDED (12 M2 sentinels, IS-A/implements as REAL Relationship edges, crown invariant verified as a MODEL QUERY) · R40.7 EditorHeaderNav · R40.8 unitRealPath · R40.9 preview-traceability (reuse, zero new renderer) · R40.10 above.
+### RESUME ORDER: (1) surface T40.1-4 to Tron for owner/device QA + Done · (2) drive R40.5–R40.10 builds · (3) S37 twelve — via R40.10 once shipped, not via the batch file · (4) deferred (141-test campaign · repair-causes-first 43 refs/65 re-mints · anon-handler policy · baseline-ratchet).
+### ⚠ BUDGET: was 76% weekly → **CLOSING-ONLY posture**, no discretionary sweeps/rewinds (rewind only if near-wall OR substantial unfinishable work ahead). My ~16% freed = OLD-BULK FLOOR (front-loaded coordination history); deeper cuts go net-worse.
+
+---
+
 # robbin-po Context — save #63 (POST-DEEP-REWIND + FLEET RECOVERY — S36 v0.8.61; SM relocated to baseTeam:0.1)
 
 ## ★★★★★ CURRENT STATE (#63 — READ FIRST, DISK-WINS) ★★★★★
