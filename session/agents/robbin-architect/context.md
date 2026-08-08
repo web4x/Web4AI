@@ -968,3 +968,12 @@ HOLDING: S40 features first (req mints/expert builds), no repair-1003/detector/a
 
 ## ★ R40.4 sprint-label one-helper-placement DESIGNED 2026-08-08 (commit 033fb688b) + sync-rule fix APPLIED
 R40.4 = sprint labels show 'Sprint N — theme' composed at display. HELPER sprintLabel(sprint)='Sprint '+sprintNumOf(sprint)+' — '+name (REUSES R-C1 sprintNumOf -> number single-sourced). PLACEMENT: with sprintNumOf in shared sprint module (server+client import surface). CONSUMERS: generate-sprint-md :101/:145 + tree-row + detail-header, each drops ad-hoc composition. AC2 grep-proof no-2nd-site (INV-C1-8 style); AC4 name-unchanged; AC3 display-only-no-migration (all sprints fixed by one helper); AC5 @390. Chain UC sprintLabel.compose d6cb7ddd -> SprintViewGenerator -> sprintLabel. ★ SYNC-RULE FIX APPLIED: supplied Task.useCases for T40.4=[d6cb7ddd] AT DESIGN (told planner to verify+wire) — the by-construction prevention working first time. planner wired T40.1/2/3 (82c6132fc). Back to HOLDING: S40 features (req mints/expert builds), no repair/detector builds. ~58pct.
+
+## ★ S40 DEPLOY OWNERSHIP (PO, 2026-08-08) — EXPERT drives full atomic deploy incl restart; I VERIFY-BACKSTOP after
+SUPERSEDES my old habit of restarting remoteShells:0.2 after a ship. Rationale = one-operation-one-owner (bump->build->commit->restart->verify is ONE atomic op; splitting the restart out = a committed-but-stale window owned by nobody). Pressing restart = the least-valuable part. MY VALUE = independent verification AFTER the expert reports.
+★ ARMED S40 VERIFICATION BACKSTOP (run on host node22 like the marker-gate backstop, WHEN expert pings):
+  (1) served == committed == HEAD + config git-clean post-restart (R31.7 invariant + no-flush guard holding under a REAL server change).
+  (2) NEW /api/server-manager/rc endpoint: non-owner -> 403 AND never leaks a bridgeSessionId in a body OR a log (RC link = a live-session capability; curl non-owner + grep response/logs for session_ leak).
+  (3) R40.2 node renders deployment-style + its 4 MEASURED refs resolve (sshd_config/pubkey/.env-domain/LE-cert) AND children still LENS-not-mirror after restart (no mirrored otmux session/window/pane copy persisted; INV-T byte-diff==0).
+  (4) R40.4 EXACTLY ONE display-composition site (grep 'Sprint '+number/name -> only sprintLabel) + generator output byte-stable (check:sprint-md GREEN, --check).
+Until expert pings: KEEP HOLDING. ~58pct, no rewind. served 0.8.65 gate 403 /trace 200.
