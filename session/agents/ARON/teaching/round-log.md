@@ -24,9 +24,19 @@
 - **VALIDATION (not new, but proven ~5× tonight):** external-measurement-over-self-claim is THE decisive discipline — expert self-claimed 28% at actual 82, trainer self-estimated wrong twice, my floor matched authoritative 76 vs architect's ~50 self-report. Reinforces measure-never-assume / capture-the-pane-not-the-report. No re-teach needed; the campaign was the lesson.
 - **CHANNEL: canon only** — fleet just refreshed top-to-bottom and resting; no live sends. Bundle HIT 1 + HIT 2 into the trainer weave with rounds 1-2 (all still pending — trainer was mid-campaign all night; now free soon).
 
+## Round 4 — 2026-08-09 (fleet ACTIVE in corruption cleanup, 26 commits/90min — a hit that ELEVATES round 3)
+- **HIT — the identity/reference family (R3 collapse) is proven LOAD-BEARING FOR CORRECTNESS + extends to history-search:**
+  - **Truncation FEEDS fabrication** (PO `af66ffec`): `resolvePrefix` first-match resolves an 8-char prefix to the WRONG unit → corrupt/fabricated data. "full uuid to all WRITE ops" is a CORRECTNESS invariant, not hygiene — the dangerous exact-match-short-circuit branch only fails on a truncated ref.
+  - **Applies to HISTORY-SEARCH** (PO L-S40-2 `1750cfab`): a prefix git-search false-negatived two LIVE units → PO published "never created." Rule: **never conclude non-existence from a prefix query; corroborate by an independent signal (dir/content agreement); negative results deserve MORE corroboration than positive.**
+  - Both fresh **rule-exempts-author** instances (advocate-then-violate).
+  - → Upgrades round-3's "reference precisely" to: **"Truncation causes fabrication and false-negatives — full-uuid is a correctness guarantee, on every write AND every history-search; and a negative result (X doesn't exist) needs independent corroboration before you act on it."**
+- **Secondary bank (measurement granularity, PO `d8e5fca0`):** "measure at the granularity you are protecting" — an AGGREGATE net-positive concealed 4 net-negative units. A net number over a set can hide per-item loss; measure per-item where the loss would hurt.
+- **CHANNEL: canon only** — affected roles (architect/req/expert/PO/skill-expert) are busy in the incident; fold into the pending trainer weave (rounds 1-4).
+
 ## Cadence log
 | Round | Time | Hit? | What | Channel |
 |-------|------|------|------|---------|
 | 1 | 2026-08-09 | YES | pin: resolver is single source, stored-slots retired | canon (trainer weave) — pending |
 | 2 | 2026-08-09 | flagged | verify WT==HEAD before restart/deploy (freeze-proven; elevate + collapse) | canon (bundle w/ R1) — pending |
-| 3 | 2026-08-09 | YES×2 | identity/reference family collapse (full-uuid+minted+secret-value=ONE) · ≤40 depth backstop (new rewind rule) | canon (bundle w/ R1-2) — fleet resting |
+| 3 | 2026-08-09 | YES×2 | identity/reference family collapse (full-uuid+minted+secret-value=ONE) · ≤40 depth backstop | canon (bundle w/ R1-2) — pending |
+| 4 | 2026-08-09 | YES | identity family = LOAD-BEARING-for-correctness (truncation feeds fabrication) + history-search + negative-results-need-corroboration | canon (bundle w/ R1-3) — fleet busy |
