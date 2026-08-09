@@ -12,7 +12,14 @@
 - **CHANNEL this round:** canon-weave via the trainer (skill-expert/planner are in the rewind queue → teach the boot path, not the live pane). Task: `session/tasks/aron-teach-round1-pin-resolver-canon.md`. Direct-to-role teaching resumes next round for agents that are live+fresh.
 - **STATUS:** taught to canon (task handed to trainer); committed.
 
+## Round 2 — 2026-08-09 (honest: no NEW settled finding; one rule freshly PROVEN + flagged for canon)
+- **No new contradiction/repetition landed from the pass this hour** — the events since round 1 were operational (cascade 4/4 done; fleet FREEZE active), not fresh purification findings. I will not manufacture one.
+- **BUT a canonical rule was freshly PROVEN by the live freeze — flag it for elevation (repetition-collapse):** the working copy silently LOST committed `server.ts` R40.10 code (HEAD=10 approve, WT=0); a restart would have deleted committed prod work. → **RULE (elevate from a disk-wins sub-point to first-class): "disk-wins means HEAD, NOT the working copy. Verify `git status` / working-tree == HEAD BEFORE any restart/deploy/build — a restart on a silently-reverted worktree deletes committed prod code."** Scattered today across `robbin-architect.purified.md` + `robbin-expert.purified.md` (both under disk-wins); collapse to ONE canonical statement.
+- **CHANNEL: canon only, NOT live — the fleet is FROZEN (PO order); do not interrupt.** Bundle into the trainer weave with round 1 once the freeze clears + the incident settles (teaching a rule mid-incident is premature).
+- **Round 1 status:** pin-resolver canon-weave still PENDING (trainer was mid-cascade, now freeze) — `session/tasks/aron-teach-round1-pin-resolver-canon.md` waits on disk, trainer pulls when free.
+
 ## Cadence log
 | Round | Time | Hit? | What | Channel |
 |-------|------|------|------|---------|
-| 1 | 2026-08-09 | YES | pin: resolver is single source, stored-slots retired | canon (trainer weave) |
+| 1 | 2026-08-09 | YES | pin: resolver is single source, stored-slots retired | canon (trainer weave) — pending |
+| 2 | 2026-08-09 | flagged | verify WT==HEAD before restart/deploy (freeze-proven; elevate + collapse) | canon (bundle w/ R1 post-freeze) — held, fleet frozen |
