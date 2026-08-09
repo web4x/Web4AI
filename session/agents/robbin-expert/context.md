@@ -2,7 +2,9 @@
 
 **Identity:** robbin-expert · pane %13 = robbinTeam2:0.1 (verify by tmux round-trip title `robbin-expert@vNNNNN`, NEVER $TMUX_PANE). Repo MOVED: `/var/dev/Workspaces/web4x/Web4RawBin` (was 2cuGitHub). Context/learnings: `/var/dev/Workspaces/AI/Claude/session/agents/robbin-expert/`. Version SOURCE = the Config UNIT `scenario/index/c/o/n/f/i/config-singleton-0000-000000000001.scenario.json` → bump it, then `npm run build` (R31.7; package.json is a generated derivative). Prod server = tmux session `server` pane %18 (`npm start`, HTTPS :4444, prod.wo-da.de). Test host WODA.test = v36421/test.wo-da.de (drive via `ossh exec WODA.test` + `ossh scp`).
 
-**Served now:** Web4RawBin **v0.8.76** (prod) + WODA.test also 0.8.76.
+**Served now:** Web4RawBin **v0.8.77** (prod). [2026-08-09 rewind #2 by trainer, Option-2 by-label, 31pct fresh — did NOT replay stale R40.5 draft.]
+
+**★ R40.10 QA approve/decline control DONE + DEPLOYED v0.8.77 (5a19a37e3)** — campaign critical path (tester item-zero gate b82ac9e11 was RED = no client approve/decline UI; Tron couldn't approve anything). Built as R40.5 ACTION UNITS in `src/public/ts/trace/universal-actions.ts`: universalActionsFor('task')→[✓ Approve,✗ Decline] on the shared drawer bar (surfaces on any task detail); handleTaskVerdict POSTs owner-gated /api/task/<uuid>/{approve,decline}; HONEST 200/403/409 (server=sole Done-gate authority, NO client status pre-gate; 409 no-evidence surfaced). Decline prompts optional CR reason, CANCEL aborts. served==committed==HEAD, 0 boot errors, qa-approve in all bundles. [impl] marker on handleTaskVerdict PENDING req client-chain mint (host fn ready). Tester b82ac9e11 flips GREEN on re-run; Tron owner-tap @390 = final device sliver. HOLDING for SM landing measure.
 
 **JUST FINISHED tonight (all committed + pushed):**
 - S40 follow-ups: R40.7/8/9/10 (req-flipped), R40.5 de-dup lint, R40.12 music-player fix + marker aba7b795, keybar R40.3 v0.8.67.
