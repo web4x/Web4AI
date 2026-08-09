@@ -38,4 +38,23 @@
 - **AUTHORITATIVE = UNDECIDED — this one is TRON's alone.** Two canonical heart-files contradict on the deepest point. Not mine to resolve (canon is TRON's word). Flag for reconcile: pick one, make the other a symlink (DRY), so no agent boots the stale half.
 
 ---
-**Post-reset ADDRESS step:** reconcile each AUTHORITATIVE side into canon, propagate via the trainer (per-role weave, F29 — never bulk). Report any further contradiction found in the full per-file pass.
+## Cross-agent contradictions found in the full pass (beyond the seed list — TRON asked for these)
+
+## C-g · Bloat-shed vs context-IS-value (recovery doctrine — MAJOR)
+- **Side 1:** trainer + SM both held "rebirthing a bloated agent to a small footprint is good."
+- **Side 2 (AUTHORITATIVE — TRON):** "the context size IS the value… killing his context helps no one." **Classify BEFORE recovering:** *files-hold-value* agents (rewind-safe — value on disk) vs *context-IS-value* agents (rewind destroys the unwritten live context → full-fork or leave). Shedding a >50% agent's context is loss. Governs every recovery decision; pairs with the expensive-refresh paradox.
+
+## C-h · "attached" has two definitions (architect vs tester)
+- **Side 1:** architect's `not-AST-attached` count (335/87%). **Side 2:** tester's `un-backable` count (73). Both partially right — different definitions of "attached."
+- **AUTHORITATIVE:** neither alone — **collapse to ONE shared `isTestMarkerAttached()` predicate** (one-truth-one-source). Two instruments naming the same metric differently = the disease this whole offering is against.
+
+## C-i · Does a walled / 100% agent self-heal? (trainer vs oosh-po)
+- **Side 1 (trainer):** a 100% agent does NOT auto-recover (from the frozen/rate-limited case). **Side 2 (oosh-po):** it CAN auto-compact+heal IF it can process — dismiss the blocking modal first.
+- **AUTHORITATIVE = both-conditional:** frozen/rate-limited → fork; dialog-blocked → dismiss then it self-heals. **Diagnose the blocker before forking** (don't fork a merely-modal-blocked agent).
+
+## C-j · PO-never-acts vs PO-must-act-when-team-blocked (standing unstable edge)
+- **Side 1:** PO NEVER implements/self-diagnoses — delegate, route. **Side 2:** when the team is walled/rate-limited the PO fixed+deployed+restarted itself.
+- **AUTHORITATIVE reconcile:** delegate is default; **DIAGNOSIS is never self-substituted** (absolute); PO self-acts ONLY to unblock DELIVERY (restart/deploy/measure-disk) when the team genuinely cannot. The unstable edge — "genuinely blocked" vs "impatient" — has no by-construction rule; it leans on measuring the block's CAUSE (rate-limit/tty-glitch/wall) first. Flag for TRON: is there a crisper rule, or does it stay judgment?
+
+---
+**Post-reset ADDRESS step:** reconcile each AUTHORITATIVE side into canon, propagate via the trainer (per-role weave, F29 — never bulk). The dominant meta-pattern across ALL nine agents is **rule-exempts-author** (trainer walled with its own rule, SM held a stale window, PO trusted memory, expert stayed silent holding evidence, architect repeated its own banked miss, tester's own instruments carried the class-of-bug they catch) — this is offering-truth #8 and the night's deepest lesson.
