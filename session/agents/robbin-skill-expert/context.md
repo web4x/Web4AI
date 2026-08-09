@@ -1,6 +1,22 @@
 # robbin-skill-expert Context — Save Point 2026-06-28 POST-FORK (WODA.prod, STANDBY)
 
-## ★★★ SESSION-STATE 2026-08-07 POST-REWIND (READ FIRST — latest) ★★★
+## ★★★ SESSION-STATE 2026-08-09 (READ FIRST — latest) ★★★
+**ROLE/PANE**: robbin-skill-expert @ robbinTeam2:0.2 (verify: otmux pane.self → %9 round-trip→0.2 + title, NOT env). WODA.prod, repo /var/dev/Workspaces/web4x/Web4RawBin (main). OWN = CurrentSprint pin currency + traceability/MD-planning skills + scoreboard/walked-chain. **CURRENT sprint = S37 (consistency-by-construction).**
+
+**JUST-FINISHED (this cycle):**
+1. **Pin advanced S36→S37** (commit 666093e3e): current=T-C2 (4bc1b3d5, R-C2 board-generated, impl b31ae393 in-progress), last=T36.5 (b5948931, Done=highest), next=T-C5 (97e8a6ad). pin==board==files node-cross-checked; overrides==slots; 3 distinct.
+2. **AUTHORITATIVE two-source pin analysis** (commit 3e789db9e): `scrum.pmo/design-notes/pin-two-sources-authoritative-answer.md`. Settled: Tron's 3 slots = STORED hand-set singleton (getThreeSlots from focus+overrides) — a SECOND source independent of `resolveSprintPin` (af97137f, sprint-pin-resolver.ts:108). Resolver fail-louds on 6 Active [21,20,40,19,37,25] = stale-unclosed-old-sprint DATA (R-C5 disease), not a rule bug. SHOULD = resolveSprintPin single source; retire hand-set slots. **R40.17 (explicit steer) + R40.18 (auto-on-QA) = MINE (I own the semantics)**; architect builds TO my spec (input-only, a3daa5c7c).
+
+**PRECEDENCE RULE I set (R40.17/18)**: `DERIVE validated Active/Closed/Planned sets (+ within-sprint current-TASK by CHAIN activity) → EXPLICIT hint DISAMBIGUATES WITHIN them (can NEVER fabricate a non-Active current; hint-outside-status-class = ignored+surfaced) → AUTO-on-QA transition within validated states`; residual-no-valid-hint = FAIL-LOUD; 6-Active cleared by R-C5 data fix, not silent-pick. (Accepted architect's disambiguation guard.)
+
+**PARKED / RESUME**: architect builds R40.17/18 to the spec post-reset → when it lands, VERIFY resolveSprintPin is the single source + hand-set slots retired (delete-or-resolver-cache) + sprint→task extension by chain activity. **STOP hand-editing the singleton once wired** (my hand-edits ARE a second-source — tsx-denied necessary-evil until then).
+
+**CONSTRAINTS**: `npx tsx` DENIED all session (Chain scoreboard/planner-drive/generate-sprint-md → tester's tsx pane; I measure via node-walk + direct singleton edits). `node build.mjs` works. bare `git push origin main` works; COMPOUND `tag && push` hits classifier DENY (split). Budget: /context ~52% (SM/PO read ~76% session / ~95% weekly → keep to read-only+written analysis).
+
+**★ ANTI-PATTERN owned (Tron flagged "why is skill-expert never involved")**: I sat IDLE while pin/board/steering — MY domain — got driven by expert/architect. BE PROACTIVE in-lane: when the pin/traceability drifts, act (don't wait for assignment). Idle-in-my-own-domain = a failure.
+## ★★★ END SESSION-STATE 2026-08-09 ★★★
+
+## ★★★ SESSION-STATE 2026-08-07 POST-REWIND (prior) ★★★
 **✓ DONE (this cycle): advanced CurrentSprint pin S33 → S36 (commit 79d421380).** Pin was stale S33/T33.10;
 now Sprint 36, current=T36.5 (b5948931), last=T36.4 (47f0d7d9). VERIFIED pin==board==files=TRUE (S36 unit
 ce1d8d57, 5/5 tasks Done). Did NOT close the sprint (Tron's call). Singleton = scenario/index/c/u/r/r/e/

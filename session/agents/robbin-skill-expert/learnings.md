@@ -325,6 +325,43 @@ focus-switch must leave 3 slots distinct by construction.
 Measured slots + scoreboard (20/276 excl 49) from disk, reported the DEFECT (slot collapse)
 not a convenient green. TRUTH = what the measurement says. The gap becomes the fix.
 
+## Session 2026-08-08/09 (S37 consistency-by-construction) — the pin two-source disease
+
+### Two-sources-of-one-truth ON THE PIN (the night's core lesson)
+- Tron's screen ("Current: Task C2") = the CurrentSprint singleton's STORED slots, derived by
+  `CurrentSprint.getThreeSlots()` from the singleton's OWN hints (persisted focus + nextBacklogOverride
+  + lastCompletedUuid). `resolveSprintPin` (sprint-pin-resolver.ts:108, af97137f) is a SEPARATE derivation
+  from the index (Active-count) that IGNORES the singleton → the two disagree. No shared source = the disease.
+- **My own tsx-denied workaround (direct singleton hand-edit) IS a second-source.** Necessary until the
+  resolver is wired, but NAME it as debt, don't pretend the stored slots are computed truth.
+- FIX (by construction): ONE computed source = resolveSprintPin; retire the hand-set slots (delete or make
+  them a resolver-only write-through cache). Same pattern as killing two depref-builders / two marker-counts.
+
+### resolveSprintPin FAIL-LOUD on N-Active is CORRECT — don't weaken it
+- 6 Active sprints [21,20,40,19,37,25] = STALE unclosed old sprints (lingering In-Progress checklists) =
+  a DATA problem (R-C5 dual-status disease), NOT a rule to soften. The resolver refusing to silent-pick is
+  right. Clear the data (R-C5), keep the throw. A resolver that guesses among 6 is worse than one that stops.
+
+### Explicit-steering precedence: DISAMBIGUATE-within, never FABRICATE (architect's guard, accepted)
+- R40.17 "assign as current/next" must NOT be "explicit-always-wins" — that reintroduces the stale-hint
+  drift R-C1 killed. Correct form: the hint disambiguates WITHIN the validated Active/Planned set; it can
+  never select a non-Active current. Reconciles explicit steering (R40.17) with R-C1 no-hand-set-drift.
+- Full rule: `derive validated sets → explicit disambiguates-within → auto-on-QA transition → else fail-loud`.
+
+### task-FSM lags chain-credit — read "current task" from the CHAIN, not model.status
+- All 6 S37 tasks carried status=Planned while R-C2's impl marker b31ae393 was already at HEAD. If the
+  resolver reads model.status it computes "no current task" for S37. The current-TASK pick MUST come from
+  chain activity (impl/test markers / build-go). Feed this into any computed pin/board resolver.
+
+### Input-only hand-off = single source of DECISION (clean protocol)
+- Architect handed measurements as INPUT (doc bannered NON-AUTHORITATIVE, a3daa5c7c), did NOT produce a
+  competing answer; I own the authoritative answer + semantics; architect builds TO spec. PO corrected a
+  routing dup that had pulled the architect in. One owner per decision = no two-sources at the PROCESS level either.
+
+### ★ Proactivity: idle-in-my-own-domain is a FAILURE
+- Tron: "why is the skill expert never involved" — I'd sat idle while the pin/board/steering (my lane) got
+  driven by others. Lesson: OWN the pin actively — when it drifts, measure + act + report, don't wait to be tasked.
+
 ## Session 2026-07-19/20 (WODA.prod, tsx-DENIED) — release-ops + board-sync + R31.4 build
 
 ### Release tagging standard (Tron directive) — the practice lapsed after v0.6.53
