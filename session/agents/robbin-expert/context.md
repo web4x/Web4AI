@@ -1,4 +1,29 @@
-# robbin-expert Context — SPRINT 36 (WODA.prod, prod v0.8.61, 2026-08-05) — ★ SECOND-PHASE-REWIND BOOT ★
+# robbin-expert — ★ RESUME-STATE (2026-08-09 night, latest — read THIS first) ★
+
+**Identity:** robbin-expert · pane %13 = robbinTeam2:0.1 (verify by tmux round-trip title `robbin-expert@vNNNNN`, NEVER $TMUX_PANE). Repo MOVED: `/var/dev/Workspaces/web4x/Web4RawBin` (was 2cuGitHub). Context/learnings: `/var/dev/Workspaces/AI/Claude/session/agents/robbin-expert/`. Version SOURCE = the Config UNIT `scenario/index/c/o/n/f/i/config-singleton-0000-000000000001.scenario.json` → bump it, then `npm run build` (R31.7; package.json is a generated derivative). Prod server = tmux session `server` pane %18 (`npm start`, HTTPS :4444, prod.wo-da.de). Test host WODA.test = v36421/test.wo-da.de (drive via `ossh exec WODA.test` + `ossh scp`).
+
+**Served now:** Web4RawBin **v0.8.76** (prod) + WODA.test also 0.8.76.
+
+**JUST FINISHED tonight (all committed + pushed):**
+- S40 follow-ups: R40.7/8/9/10 (req-flipped), R40.5 de-dup lint, R40.12 music-player fix + marker aba7b795, keybar R40.3 v0.8.67.
+- WODA.test binding directive: verified correct (BASE_DOMAIN=test.wo-da.de, *:4444) — no fix needed.
+- Tron user+features+data migrated to WODA.test (owner 41ad88c4); PO's revert order RETRACTED (Tron authorized it) — migration INTACT + live, backups kept.
+- R-C6 first `--write` sprints.overview.md (board=generated view, FAIL→ok, cf850d26e) — planner-approved.
+- **C2 reconcile-all: COMMITTED PARTIAL (5b2630552, no bump) — 144 generator-owned views regenerated from units; guard byte-proven (0 puml/design changed).**
+
+**IN-FLIGHT:** NONE. Tree clean.
+
+**PARKED / DEBT (PO-sequenced / post-reset):**
+- **R40.11** deep deployment-node typed-model: build the consolidated builder (merge the 2 depref emitters: OtmuxBridge.buildRootedTree ~L70 + server.ts tree-handler ~L1510) emitting REAL M1 typed-unit iors (minted 34d297d91) → kill `depref:` synthetic; ONE generic view (reuse rb-modelelement-detail); gated array-removal dry-run+count INV-T==0. This builds+marks **buildTypedModel e009ace7** = the R40.6/T40.6 flip trigger. Design: design-s40-five-followups.md. Fail-loud carve-out already shipped (2cf8f9866).
+- **C2 RESIDUAL MIGRATION DEBT:** ~15 header-less pre-generator views (S21-29 requirements.md + 6 S19 task-mds) can't converge by regen (header-guard = safety vs clobbering hand-authored). Needs reviewed migration: verify each fully-in-units → remove-and-regenerate header-stamped. + disposition the 4 S19 needs-manual 'extra' files (on-disk-not-in-units, never auto-delete). [[safety-guard-over-metric-completion]]
+- **R40.17** (architect designing): unify the TWO 'current' sources — resolveSprintPin (derives from Active-count → UNRESOLVED) vs CurrentSprint.slotsFrom (derives from the singleton's stored HINTS → shows Task C2); explicit-overrides-derived single-sourced inside resolveSprintPin.
+
+**Context:** ~74% (last /context 69% + C2 work; SM measures authoritatively). ⚠ autocompact DISABLED — flag rewind-vs-park if near the wall.
+
+**NEXT:** PO sequences from the pin. Sprint-pin is UNRESOLVED (6 Active [21,20,40,19,37,25]); resolving needs Tron A1 sign-off + A2 dispositions + R40.17. C2 is one open task in S37.
+
+---
+# robbin-expert Context — SPRINT 36 (WODA.prod, prod v0.8.61, 2026-08-05) — ★ SECOND-PHASE-REWIND BOOT ★ (HISTORY below)
 
 ## ★ 2026-08-07 DEEP-REWIND RESUME (fresh 9pct, anchor 61706591). CURRENT = S37 v0.8.65, HEAD a06d28a99. Order R-C3→T36.3→R-C6, +R-C1-refine (arch 2317976cd) after T36.3 before R-C6.
 - **R-C3 DONE + committed dda311ad7**: NEW src/ts/scenario/consistency-guard.ts — refuseIfVacuous [impl ee424581] + assertNonVacuous [impl cf756307] (both CREDIT, node22 buildStrictImplSet) + consistencyStrict(idx)=pin(R-C1)+dual-status(R-C5). NEW scripts/consistency-strict.ts = consistency:strict gate CLI (run /opt/node22/bin/node --import tsx; tsx-via-vscode DENIED). compile GREEN. markerPending→req strict-AST flip; tester meta-BITE. ⚠ package.json ci:gates:raw wiring DEFERRED (concurrent non-mine churn on package.json — flagged PO, did NOT touch). Explicit-path commit.

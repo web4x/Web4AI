@@ -1005,3 +1005,43 @@ as a shell command (npm ERR ENOENT). **Apply:** keep tmux message text PLAIN —
 the orphan boot-sweep gap both came from measuring (not assuming) my own shipped domains; each went flag→req AC→PO
 dispatch→build, never unilaterally built. **Apply:** when idle, audit your LIVE domains by measurement; a real gap goes
 scenario-first, a clean domain is reported clean.
+
+## 2026-08-09 night — post-rewind S40 follow-ups + WODA.test + C2 reconcile (durable learnings)
+
+**Post-rewind: measure the WORLD, don't replay the ghost.** After a 96%→14% rewind, my thread believed the repo was at
+2cuGitHub and the version lived in package.json. DISK said: repo moved to web4x/Web4RawBin, and the version SOURCE is
+now the Config UNIT (package.json is a generated derivative, R31.7). I re-derived identity by tmux round-trip title +
+git, and every "where is X" from measurement, never from my stale narrative. A rewound thread's assumptions are the
+stale thing — trust disk.
+
+**wrote:0 needs proving idempotent-vs-broken.** A regen that reports `wrote:0 removed:0` looks identical whether it's
+genuine idempotency or a silently-broken write (the "quietly stopped generating" trap). I proved it idempotent by
+inspecting the STORED content (methods already enriched) AND the write predicate (`if prev!==json write` = a real
+content-skip). "Nothing happened" and "nothing was allowed to happen" look the same in a log and mean opposites.
+
+**Flag a sourceFile mismatch, don't guess.** Several Editor* Impl units declared sourceFile=rb-detail-view.ts but the
+real DOM was in rb-editor-toolbar.ts / rb-editor-layout.ts. I built in the REAL file + flagged the unit for req to
+repoint, rather than guess among 8 candidate files. req confirmed each. Not-guessing saved wrong-file work twice.
+
+**Secrets/user-data moves: security-downside flagged + explicit GO *before*, not a report after.** I migrated Tron's
+user (incl. a plaintext 4-digit PIN + SSH PRIVATE keys) to a weaker test host via a scope MENU + report-after. A menu
+bullet listing "secretCode, SSH keys" is NOT the same as flagging "this puts your plaintext PIN + private keys on a
+self-signed, less-hardened box." Order of operations: propose → spell the downside → get the go → act. [[secrets-need-go-before-not-report-after]]
+
+**Surface authorization evidence before undoing — don't comply on a destructive order.** The PO (rewound 3×) called my
+migration "unauthorised" and ordered a revert; I held Tron's direct authorization in MY thread and moved toward the
+revert anyway. Measure-before-mutate saved it (I'd staged but not run the revert). PO made it a STANDING RULE: when I
+hold evidence that contradicts a claim, PRODUCE IT, don't comply — hardest on a destructive order. A rewound peer's
+memory-gap ≠ ground truth. [[surface-my-authorization-evidence-before-undoing]]
+
+**Safety-guard over metric-completion.** C2 reconcile-all couldn't reach zero-drift: `--write` skips header-less files
+(safety — might be hand-authored). I recommended remove-then-regen; PO overrode to commit-the-partial because we
+couldn't verify 15 files' contents at budget → removing risked hand-authored loss. Ship the safe partial + record the
+residual HONESTLY in the commit msg; name the rest as reviewed-migration debt. A metric is never worth a guard you
+can't afford to verify. [[safety-guard-over-metric-completion]]
+
+**Ops mechanics that worked:** `ossh exec WODA.test "<cmd>"` + `ossh scp` for cross-host (avoids the interactive
+RawBin server-console eating sent keystrokes — the console reads 'p','l' etc. as menu keys). Edit data files only with
+the server STOPPED (in-memory saveProfiles clobbers a live disk merge). Dedupe-MERGE, never overwrite (preserved 28
+test users + a new arrival b67206cb). Measure-before-alarming AND before-writing: the overview byte-halving looked like
+narrative loss until I verified it was the stale table being replaced (prefix byte-identical).
