@@ -17,7 +17,7 @@
 - Work: `/var/dev/Workspaces/web4x/Web4RawBin` (branch main). Session: `/var/dev/Workspaces/AI/Claude` (this file, separate git). `session/` is NOT in the RawBin repo.
 
 ## CURRENT: Sprint 31 — Server Manager (owner-gated infra console), Tron-authorized 2026-07-20
-Build order: R31.2 gate → R31.1 → R31.3 → R31.4. Owner token = `41ad88c4-4dee-49ac-afcb-8a2026657b2d`.
+Build order: R31.2 gate → R31.1 → R31.3 → R31.4. Owner token = the owner literal (REDACTED per PO secret-value rule; value lives in /var/dev/security-local/ chmod-600; rotation is the real fix).
 Design: `scrum.pmo/sprints/sprint-31-server-manager/design-server-manager.md` (9920f6832, d4f7fee8c).
 
 | Req | uuid | UC | Class | Method | Impl | Test | State |
