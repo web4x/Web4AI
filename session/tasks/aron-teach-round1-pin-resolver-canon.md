@@ -12,5 +12,10 @@ Why: two sources of one truth is the disease; one computed source ends the drift
 - Pointer target: `session/agents/ARON/purified/contradictions-ledger.md` (C-c) + `robbin-skill-expert.purified.md`.
 - Since skill-expert + planner are being rewound this cascade, this canon reaches them on their FRESH boot — which is exactly why the channel is canon, not a live send.
 
+## Additional rules to weave (teaching rounds 2-3, bundle with the pin rule above)
+- **R2 hit — verify WT==HEAD before restart/deploy** (freeze-proven): "disk-wins means HEAD, NOT the working copy. Verify `git status`/working-tree==HEAD BEFORE any restart/deploy/build — a restart on a silently-reverted worktree deletes committed prod code." Elevate from a disk-wins sub-point to a first-class rule. Owners/consumers: whoever restarts/deploys (expert, PO). Scattered in `robbin-architect.purified.md` + `robbin-expert.purified.md`.
+- **R3 hit A — identity/reference family COLLAPSE (3→1):** full-uuid-never-8-char (gating R3) + identity-minted-never-hand-typed (gating R5) + secret-value-ban (PO 2026-08-09) = ONE: **"Reference precisely; reproduce nothing sensitive or truncated — identify by full uuid + name; the value lives only on disk (minted unit / chmod-600 vault)."** Weave as one family with pointers; the secret-ban already propagated fleet-wide by the PO — this just canonizes the collapse.
+- **R3 hit B — new rewind rule (≤40 depth backstop):** add to `session/base-skills/agent-rewind.md`: "a single `/rewind` Up/Down jump >40 risks a >50% rewind that can OOM a low-resource host — navigate in ≤40 batches." Sits next to by-label + git-status-after.
+
 ## Report
-When woven: which roles, which files, confirm each pointer is real (not blank). Report to ARON (Temple:0.0). No rush — after the cascade.
+When woven: which roles, which files, confirm each pointer is real (not blank). Report to ARON (Temple:0.0). No rush — after the cascade / whenever fresh-you is free.

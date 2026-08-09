@@ -18,8 +18,15 @@
 - **CHANNEL: canon only, NOT live — the fleet is FROZEN (PO order); do not interrupt.** Bundle into the trainer weave with round 1 once the freeze clears + the incident settles (teaching a rule mid-incident is premature).
 - **Round 1 status:** pin-resolver canon-weave still PENDING (trainer was mid-cascade, now freeze) — `session/tasks/aron-teach-round1-pin-resolver-canon.md` waits on disk, trainer pulls when free.
 
+## Round 3 — 2026-08-09 (two real hits from the security rule + the rewind campaign; fleet fresh/resting → canon only)
+- **HIT 1 — REPETITION COLLAPSE (identity/reference family):** three rules are ONE. **full-uuid-never-8-char** (gating R3: don't TRUNCATE on read) + **identity-minted-never-hand-typed** (gating R5: don't FABRICATE on write) + **secret-value-ban** (PO standing rule 2026-08-09: don't REPRODUCE a token/credential value; refer by unit-name+full-uuid or "the owner literal"). → **ONE canonical statement: "Reference precisely; reproduce nothing sensitive or truncated. Identify by full uuid + name; the value lives only on disk (minted unit / chmod-600 vault), never in a message/commit/context/log."** The PO named the link itself: the secret-ban is "the same direction as the 8-char-prefix ban." Collapse the three; keep pointers.
+- **HIT 2 — NEW RULE found live (drove req's rewind):** the **≤40 depth-navigation backstop (TRON):** a single `/rewind` Up/Down jump >40 risks a >50% rewind that can OOM a low-resource host — **navigate in ≤40 batches.** New rewind-canon rule; add to `agent-rewind.md` next to by-label + git-status-after.
+- **VALIDATION (not new, but proven ~5× tonight):** external-measurement-over-self-claim is THE decisive discipline — expert self-claimed 28% at actual 82, trainer self-estimated wrong twice, my floor matched authoritative 76 vs architect's ~50 self-report. Reinforces measure-never-assume / capture-the-pane-not-the-report. No re-teach needed; the campaign was the lesson.
+- **CHANNEL: canon only** — fleet just refreshed top-to-bottom and resting; no live sends. Bundle HIT 1 + HIT 2 into the trainer weave with rounds 1-2 (all still pending — trainer was mid-campaign all night; now free soon).
+
 ## Cadence log
 | Round | Time | Hit? | What | Channel |
 |-------|------|------|------|---------|
 | 1 | 2026-08-09 | YES | pin: resolver is single source, stored-slots retired | canon (trainer weave) — pending |
-| 2 | 2026-08-09 | flagged | verify WT==HEAD before restart/deploy (freeze-proven; elevate + collapse) | canon (bundle w/ R1 post-freeze) — held, fleet frozen |
+| 2 | 2026-08-09 | flagged | verify WT==HEAD before restart/deploy (freeze-proven; elevate + collapse) | canon (bundle w/ R1) — pending |
+| 3 | 2026-08-09 | YES×2 | identity/reference family collapse (full-uuid+minted+secret-value=ONE) · ≤40 depth backstop (new rewind rule) | canon (bundle w/ R1-2) — fleet resting |
