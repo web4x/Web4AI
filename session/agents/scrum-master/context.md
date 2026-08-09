@@ -1,4 +1,16 @@
-# Scrum Master Context — 2026-07-14 (post-SELF-rewind boot, MOST CURRENT)
+# Scrum Master Context — 2026-08-09 (S40 save-before-reset, TRON-ordered fleet save; I am the coordination HUB) — MOST CURRENT
+
+## ⟳ FRESH ANCHOR (2026-08-09) ⟳
+**ID:** scrum-master @ baseTeam:0.1 (pane.self %5). **PO:** robbin-po @ robbinTeam2:0.0. **ROLE:** monitor+measure+REPORT to po ONLY; NO drive/flag-campaign (that walls me). I'm ~12%/full-runway (rewound from 82% earlier this session).
+**FLEET (S40, disk-truth):** prod 0.8.75/0.8.76 — both Tron-visible fixes SHIPPED + pixel-verified (music-player restored + spinner->honest 'unresolved:<ior>' carve-out; QA-verdict feature live). R40.12 DONE+credited (180/471, HEAD ed26b3bb0). PIN = Task C2/R-C2 (4bc1b3d5); S37 still OPEN (C2+C5) — S40 jumped it (po drift, owned). CURRENT=C2: po driving pin (expert R-C6 board --write fixes stale-S20 overview + C2 generated-view half; reconcile-all MIGRATION deferred). Carve-out c7a2d5e8 DEFERRED (needs R30.11 ride-vs-mint ruling). R40.14 web4ID security DESIGN done (architect, holding post-reset build). R40.17/18 = skill-expert owns (post-reset; architect designs TO its semantics, not alongside).
+**POST-RESET QUEUE (Aug9 20:00 UTC, BY WORK-AHEAD, trainer drives, I verify freed-pct):** (1) PO [#65.1] -> (2) EXPERT (~80%, fresh BEFORE deep web4ID/R40.11 crypto build) -> (3) PLANNER (88%, has work-ahead) -> others only if measured over-threshold. Then po drives from PIN (close S37 first) -> R40.11/web4ID -> headless-AC audit.
+**WEEKLY at 95% (resets Aug9 20:00 UTC): NO discretionary rewinds pre-reset (a rewind re-reads context = spends the scarce weekly = expensive-refresh paradox).**
+**MY WATCH DUTIES ON po (this session — full detail in auto-memory /memory/):** drive-from-pin-not-thread · backtick-blanks-otmux-send · duplicate-routing-two-agents-one-question · report-is-observation-not-gate · stale-hold-outliving-window (re-verify subject live-state, mine too) · context-low-vs-weekly-limit · rewind-before-heavy-work (+ order a rewind QUEUE by work-ahead not %) · measurement-cost-asymmetry (captures free, /context injection spends target) · capture-vs-credit-under-budget-freeze · cancelled-vs-stalled-reverify-scope. PLUS: climb>~90% hard-flag, idle-with-drivable-work, spending-on-non-Tron-visible.
+**TRON PENDING:** keep-or-revert on test-host SECRET migration (expert holds .premigrate.bak revert path) · T40.1/T40.3/T40.4 device-QA @390 (approvable from task) · skill-expert-involvement question.
+
+---
+
+# Scrum Master Context — 2026-07-14 (post-SELF-rewind boot)
 
 ## ⟳ PHASE-1 pre-durable-rewind (2026-08-07, ~86% near-wall — I climbed doing gate-work; peer-/context caught it) ⟳
 **★ I WALL FAST doing gate-work (86% after a handful of measures/reports). fresh-me: MINIMIZE tool calls — batch sends, measure ONLY on po's gate-ping or a flagged climber, don't re-verify idle agents speculatively. Flag my OWN rewind at ~76% (peer-measured; I CAN'T self-measure — trainer's CARE-FOR-SM loop peer-/contexts me).**
