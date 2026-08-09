@@ -1335,3 +1335,46 @@ EXTENDS **R40.3** (suppress iOS keyboard + configurable Keyboard Controller shel
 ### ★ THE HARD PART IS RETENTION, not the toggle: an iOS soft keyboard OVERLAYS/pushes content, so with the native keyboard SHOWN the custom bar must still be reachable — i.e. it must sit ABOVE the keyboard (input-accessory-style) rather than being covered or unmounted. That is the AC most likely to fail on a real device while passing anything headless.
 ### ★ IMPLICATION FOR R40.3's DESIGN: suppression must become a **STATE, not a hard block** — R40.3 suppressed "by construction", but a toggle requires it to be re-enableable, so the suppress mechanism has to be a settable state with the bar as its owner. Flag to the architect: that is a change to R40.3's shape, not just an addition.
 ### ACs to carry: (1) FIRST-position key is the toggle (position is part of the requirement) · (2) toggles native keyboard shown/hidden · (3) ★ bar RETAINED + usable in BOTH states (above the keyboard, never covered/unmounted) · (4) input STILL REACHES THE PTY in both states (R40.3's anti-vacuity AC still holds — a bar that renders but sends nothing is the empty-container class) · (5) terminal remains usable/visible per R40.3's pixel ACs · (6) the key should be an ACTION UNIT per R40.5, not a bespoke button · (7) ★ DEVICE-ONLY VERIFICATION — real iOS @390, Tron's device; **NEVER headless-green** (R40.3-B was already device-only for exactly this reason: a headless browser cannot show or hide an iOS soft keyboard).
+
+## ★★★★★ #72 — SECURITY INCIDENT + CORRUPTION (2026-08-09) — READ FIRST AFTER ANY REWIND
+**NO SECRETS IN THIS FILE (new standing rule — the incident was CAUSED by writing operational secrets into a durable anchor on a PUBLIC repo). Reference by uuid/name only; exploit detail lives in /var/dev/security-local/ OUTSIDE any repo.**
+
+### 1. DISCLOSURE (verified, not speculation)
+- **BOTH repos are PUBLIC**: web4x/Web4RawBin AND web4x/Web4AI (unauthenticated GitHub API 200, measured twice by me + independently by SM). If Tron believes otherwise, the setting is not in effect — check org default / a public fork.
+- Published: R40.15 + R40.14 security designs, and **agent anchors containing the owner bearer token, other user tokens, plaintext-PIN facts, SSH privkey paths**. Worst file = robbin-po/context.md (mine, 29 hits). 8 agent files affected; oosh-*/ud-* ssh hits are BENIGN (their normal domain) — do not conflate.
+- **ROOT CAUSE = MINE**: I commissioned a vulnerability write-up into a repo whose visibility I never measured, and I had written operational secrets into anchors for durability. I demanded measurement of everyone and skipped my own output channel.
+- Mitigation ranking (SM's, better than my first framing): **make repos PRIVATE** = removes public access to history too, no hazardous rewrite. Redaction does NOT clear history. History-rewrite = ineffective + destructive → recommended AGAINST.
+
+### 2. OWNER-GATE IS A BEARER LITERAL (the severe part)
+- Owner check = hardcoded literal in ServerManagerGuard + FeatureManager + server.ts → **published literal = anyone passes every owner-gated route.** ServerManagerGuard protects the Server Manager **xterm/PTY ⇒ RCE-class**.
+- **CONTAINED LIVE, NO RESTART** (architect measured the real chain; expert/architect executed; commit **bfd06b1b5** pushed): terminal ws gates on `requireFeatureAccess` → `featureAllowedUsers` reads the **'Server Manager' Feature unit from DISK per request** (fail-closed, membership-ONLY per INV-F6, never the literal). Emptying allowedUsers ⇒ 403 before PtyBridge.attachPane. Verified: terminal 403 · tree/page 403 · **/trace 200 (blast radius contained)**.
+- **COMMITTED deliberately** so a future git-restore RE-APPLIES containment instead of reverting it (an uncommitted safety edit is what tonight's revert class destroys).
+- **RESTORE AFTER ROTATION — TWO independent sources**: (a) `cp /var/dev/security-local/SM-feature-16604eee-allowedUsers-PRESERVE.json` → unit path; (b) `git show bfd06b1b5^:scenario/index/1/6/6/0/4/16604eee-d844-4efb-bd4d-881433ca82a6.scenario.json` (3 members, verified recoverable).
+- Containment closed the SHELL only. The published literal still opens OTHER owner-gated routes ⇒ **ROTATION still required.**
+
+### 3. WORKING-TREE CORRUPTION (Option-1 code-revert) — DEFUSED
+- Mechanism (skill-expert): a busy agent's rewind picker auto-fired **Option-1 Restore-code-AND-conversation** → 14 tracked files reverted to a stale state, DELETING committed work (server.ts −1031 incl ALL approve endpoints, package.json version source, build.mjs, TraceModel/chain-model/skill-classes/server-manager/icons). Architect: matches NO commit in 400 + **ZERO injected exec/eval/spawn/route/gate-weakening ⇒ corruption, NOT a backdoor.** All 7 agents measured ZERO ownership.
+- **THE LANDMINE**: live process was HEAD-era in memory (tsx no hot-reload) so prod was fine, but **any restart would have compiled the gutted copy and deleted Tron's approve button.** Every pending action (R40.15, containment, rotation) required a restart.
+- **DEFUSED without restarting** (restore ⇒ landmine gone; running process untouched). Verified 3x independently: worktree==HEAD 0-diff ×8 · approve=10 · PtyBridge 3 refs · 4072 lines · version 0.8.77==config unit · src/ts clean. Preserved BOTH ways: snapshot /var/dev/security-local/corruption-snapshot-2026-08-09/ + `stash@{0}` labeled option1-revert-corruption-preserve.
+- Scenario units are NOT the same class (net-POSITIVE 198+/145−, 0 deleted) = ordinary churn.
+
+### 4. AWAITING TRON (nothing else blocks)
+1. **GO for ONE restart** = restored HEAD + **D2** permanent per-terminal containment (server.ts **:3353** on HEAD — the corrupt file's :2322 was the WRONG line) → then re-verify approve-live + INV-G 403 + **RE-RUN r4010 SERVER gate (its earlier green certified the CORRUPT source)**.
+2. **Owner-token rotation** — dual-validity window: consolidate 3 literal sites to ONE out-of-band loader → add new as also-valid → **PROVE Tron authenticates with NEW before killing OLD** (the prior assertOwner lockout was a forced swap with no overlap) → then {new} only → migrate allowedUsers mirrors. Secret generated on host, chmod-600 outside every repo, one-time owner-gated reveal, never logged/committed/in-context. Boot-check FAIL-CLOSED.
+3. **SSH key rotation** (new pubkey proven BEFORE removing old; privkeys never leave origin host). 4. **Repo visibility.** 5. Then R40.15 slice A+B → lift containment → endgame: owner-gate OFF the bearer literal onto challenge-response/keypair.
+
+### 5. CAMPAIGN STATE (Tron: "finish S30++ … bring them to QA")
+- **6 at QA-Review**: C1/C3/C5/C7 (S37) + T40.12 + **T40.7** (chain closed: Test e5b1c9a3-4d72-4e18-b90f-3a6c8d2e71f4 shared-credit over impls 6b4d7714-…-3015 + 197054f9-…-96c0, two-keyed both-dir). **0 Done anywhere** — Done is Tron's act via R40.10 approve.
+- **R40.10 approve/decline LIVE @0.8.77 + gate GREEN** (action units, shared drawer bar, server sole Done-authority, no client pre-gate). Device lane now: r4012 && r4011 && r4019 && r4010b.
+- EXCLUDED: T40.6 (Impl has no code host until deep R40.11) · T40.11 (UC absent on disk = unbuilt trap). Board re-derive from units = the mechanism (planner domain), never hand-flips.
+- **FREEZE ACTIVE**: no restart / no deploy / no src/ts commit. Scenario-unit, board, test-file lanes are FINE.
+
+### 6. MY ERRORS THIS SESSION (all caught by agents — bank them)
+1. Wrote secrets into a durable anchor without measuring where it published (**root cause of the disclosure**).
+2. Ordered gates against a **back-version** (v0.8.56 vs served 0.8.65) = would have been a phantom gate — tester refused.
+3. Dispatched work that was **already done**, and routed board-status to req instead of the **owning** planner (availability ≠ ownership).
+4. Cited **8-char uuid prefixes** as identifiers all session (prefix collisions are real — req proved one).
+5. Inflated a "pattern" of vanishing gate registrations; only ONE was real — tester audited, I downgraded.
+6. **Inferred an agent was DOWN from send failures + a bare-prompt capture** and nearly ordered a destructive relaunch; it was a ROUTE problem (SM healed via registry.set→queue). **Only a failed ROUND-TRIP proves death.**
+7. Loaded a **near-wall** agent with a heavy job (planner ~88%) — the same error that walled the architect twice.
+⇒ THE PATTERN: every one was caught by an agent measuring rather than deferring. That mutual checking IS the system working. Keep inviting it.
