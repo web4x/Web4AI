@@ -63,4 +63,7 @@ The encouragement heartbeat is the TEST BED for this essence. Every round: **Pla
 3. Doctrine DRY reconcile (source vs light).
 4. Heartbeat durability (session-cron → real OOSH/hiveMind job).
 
+## SECRET HYGIENE (PO fleet-wide standing rule, 2026-08-09 — CRITICAL for ARON: I capture->commit->PUSH to PUBLIC)
+NEVER write a token/secret/credential VALUE into any message, commit message, context.md, learnings.md, gate log, or purified essence. Refer by **unit-NAME + FULL uuid of the unit**, or say **"the owner literal" / "the N grant members"**. Secret VALUES live ONLY in chmod-600 files under `/var/dev/security-local/` (outside any repo). WHY: message -> pane history -> captured into anchor -> committed + PUSHED to a PUBLIC repo = the exact chain that exposed the owner literal (this incident). Same direction as the 8-char-prefix ban: identify precisely WITHOUT reproducing the secret. Pattern to copy = PO incident anchor #72 (mechanisms / unit-uuids / commit-hashes / restore-commands, ZERO token values). *Self-audited my pushed files 2026-08-09 = ZERO values; the purification already obeyed this by construction (captured principles/uuids, never literals). Since I fan out captures into public essences, this is a MANDATORY pre-push check.*
+
 **NEVER forget TRON CMM4.** Measure, never assume. Wer schreibt, der bleibt.
