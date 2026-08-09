@@ -1,4 +1,17 @@
-# Scrum Master Context — 2026-08-09 (S40 save-before-reset, TRON-ordered fleet save; I am the coordination HUB) — MOST CURRENT
+# Scrum Master Context — 2026-08-09 (PRE-REWIND @80%, post security-incident) — MOST CURRENT, fresh-me BOOT FROM HERE
+
+## ⟳ PRE-REWIND REFRESH (2026-08-09 @80% — proactive, trainer driving deep Option-2 by-label) ⟳
+**ID:** scrum-master @ baseTeam:0.1 (pane.self, NEVER $TMUX_PANE). **PO:** robbin-po @ robbinTeam2:0.0. **ROLE:** monitor+measure+REPORT to po; Tron expanded me to CONTINUITY-HUB (coordinate fleet, relay po's EXPLICIT orders, verify-on-disk). No flag-campaign drift. Rewound from 80% after a dense security-incident stretch.
+**★ SECURITY INCIDENT (defused, now in Tron's hands):** a working-tree corruption (option-1 code-revert artifact) gutted server.ts (approve endpoints) + 13 other files; a restart would've DEPLOYED it (tsx=no-hot-reload) = delete prod's R40.10 control + ~1031 lines + RCE. DEFUSED: WT restored to HEAD (preserved both ways: snapshot /var/dev/security-local/ + stash 'option1-revert-corruption-preserve'), NO restart, prod serving 0.8.77 approve-alive. Shell CONTAINED (bfd06b1b5, live-containment via empty-allowedUsers). ★ EXPOSURE: the owner literal + grant tokens are on BOTH PUBLIC repos (web4x/Web4RawBin + web4x/Web4AI, API 200) = 77 files + history (only 5 agent-session-files, rest RawBin data/artefacts). AUDIT CLOSED — redaction is a treadmill; ROTATION is the ONLY remediation. data/logs logs the value in 7 files = R40.15 never-log DEFECT.
+**★ FREEZE ACTIVE:** NO restart/deploy/src-ts-commit until Tron's GO. scenario-unit + board lanes CONTINUE.
+**★ CAMPAIGN (Tron: 'finish S30++ -> QA-Review'):** 10-12 at QA-Review, 0 Done (Done=Tron's act via R40.10 approve; R40.10 device-gated GREEN @0.8.77). Cascade 5/5 rewound (fresh, code-intact). Inventories: RawBin scrum.pmo/campaign-s30plus-to-qa-inventory.md + campaign-inventory-s37-s40.md. T40.11=TRAP (UC absent=unbuilt, do NOT credit).
+**★ PENDING TRON (all waits on these):** (1) ROTATION-GO (surface: 2 src/ts + 27 scenario mirrors); (2) ONE-restart-GO (restored-HEAD + D2-containment together -> then VERIFY served==HEAD + RE-RUN R40.10 gate, phantom-green was uncommitted); (3) repo-PRIVATE-flip (fastest full mitigation); (4) SSH keys; (5) migration keep-or-revert (Tron AUTHORIZED it; po's revert-rec was a memory-gap - do NOT revert w/o Tron); (6) T40.1/3/4 + QA-batch @390 device-QA + 2 device slivers.
+**★ MY WATCH DUTIES (banked in auto-memory /memory/, survive rewind):** report-is-observation-not-gate · stale-hold-outliving-window · drive-from-pin · duplicate-routing · backtick-blanks-otmux-send · never-write-secret-VALUES (refer by unit-name+FULL-uuid or 'the owner literal') · measurement-cost · rewind-before-heavy-work(+work-ahead order) · cancelled-vs-stalled · dont-dilute-doctrine · round-trip-is-only-death-proof · corrupted-checkout-judge-vs-HEAD. TOOLS: heal route=unknown-state via `registry.set <pane> <role>`; by-label rewind MANDATORY; verify-by-git/pane never report; DISMISS dialogs '0'.
+**POST-REWIND: re-derive from disk (this anchor + git HEAD + auto-memory); resume lean continuity-hub monitor+report to po; watch Tron GOs; hold po to campaign + no-secrets. Do NOT replay the pre-rewind thread.**
+
+---
+
+# Scrum Master Context — 2026-08-09 (S40 save-before-reset, earlier this session; superseded by the refresh above)
 
 ## ⟳ FRESH ANCHOR (2026-08-09) ⟳
 **ID:** scrum-master @ baseTeam:0.1 (pane.self %5). **PO:** robbin-po @ robbinTeam2:0.0. **ROLE:** monitor+measure+REPORT to po ONLY; NO drive/flag-campaign (that walls me). I'm ~12%/full-runway (rewound from 82% earlier this session).
