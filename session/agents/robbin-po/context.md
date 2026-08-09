@@ -1378,3 +1378,12 @@ EXTENDS **R40.3** (suppress iOS keyboard + configurable Keyboard Controller shel
 6. **Inferred an agent was DOWN from send failures + a bare-prompt capture** and nearly ordered a destructive relaunch; it was a ROUTE problem (SM healed via registry.set→queue). **Only a failed ROUND-TRIP proves death.**
 7. Loaded a **near-wall** agent with a heavy job (planner ~88%) — the same error that walled the architect twice.
 ⇒ THE PATTERN: every one was caught by an agent measuring rather than deferring. That mutual checking IS the system working. Keep inviting it.
+
+### ★★★ #72-ADDENDUM — TRUE BLAST RADIUS MEASURED (value-level scan, the only complete method)
+SM's caveat was right: a KEYWORD grep misses raw-value-only files. I ran the VALUE-level scan (filenames+counts only, never printing values). **At HEAD: Web4AI session repo = 5 files** (robbin-po 2, tester 1, planner 1, expert 1) · **Web4RawBin = 72 files** (scenario/index 27 · test/visual 18 · scrum.pmo/sprints 18 · **data/logs 7** · src/ts 2). ⇒ **77 files across two PUBLIC repos + all history.**
+- **⇒ REDACTION IS NOT REMEDIATION. ROTATION IS THE ONLY FIX.** I OVERRODE MY OWN earlier instruction and STOPPED the per-agent redaction campaign — at 77 files + history it burns fleet budget for a cosmetic result. Redactions already done stand as hygiene; no further sweeps.
+- **NEW DEFECT FOUND: the owner literal is IN data/logs (7 files)** ⇒ R40.15's never-log requirement is currently UNMET. That is a real defect, not just exposure.
+- **ROTATION EDIT SURFACE CONFIRMED**: src/ts = 2 sites + scenario/index = 27 allowedUsers mirrors — matches the architect's design estimate (3 code sites + up to 48 mirrors), so its rotation plan is correctly scoped.
+- Benign/out-of-scope (do NOT conflate): old security-FEATURE sprint docs, oosh-* ssh tooling hits. Worth telling Tron: chain-snapshots/*.tsv unit dumps are another place live data lands.
+- **CAMPAIGN: 10 AT QA-REVIEW** (S40 T40.1/2/3/4/7/12 + S37 C1/C3/C5/C7), 0 Done. **Approve control VERIFIED ALIVE post-containment** (POST /api/task/<uuid>/approve = 403 token-less ⇒ live + owner-gated; the SM-feature containment does NOT touch it) ⇒ Tron can verdict all ten now. T40.8/T40.9 gates GREEN+pushed, awaiting req mints → then 12.
+- My 8th error: reported an ownerIor "discrepancy" that was MY read error (planner measured it PRESENT on disk; req ruled the design Q closed, 6b4d7714 = primary impl). Recorded as a read error so nobody hunts a phantom.
