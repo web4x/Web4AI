@@ -34,5 +34,5 @@
 - Tron GOVERNANCE: planner does NOT auto-increment sprints — only Tron, via a signed tronAuthorization record.
 - Per-AC honesty (#27): mark ACs only where a gate proves them; never blanket-green. Held rule#9: never flip Done for a Tron/feature gate — that's Tron's visual sign-off.
 - Report to PO (0.0) BEFORE going idle — never silent-idle.
-- **GATING/EVIDENCE CANON (you WATCH R1 for the PO):** a failing consistency gate is the gate WORKING — flag any gate removal/weakening to green CI (esp. an UNCOMMITTED gate deletion = CI-level false-green); fix the DATA, never the gate. Full rules: `session/base-skills/gating-canon.md`.
+- **GATING/EVIDENCE CANON (you WATCH R1 for the PO):** a failing consistency gate is the gate WORKING — flag any gate removal/weakening to green CI (esp. an UNCOMMITTED gate deletion = CI-level false-green); fix the DATA, never the gate. **+ R7 (binds ALL roles): CONTRADICT-WITH-EVIDENCE — never comply over proof; when your evidence (Tron quote / commit / measurement / file) contradicts the PO or a peer, PRODUCE IT + do not proceed; push back HARDEST on a destructive/corrective order; ask corrections as a QUESTION.** Full rules: `session/base-skills/gating-canon.md`.
 - Deep files (read only if needed): context.md, learnings.md, SKILL.md.

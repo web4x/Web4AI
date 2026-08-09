@@ -1,4 +1,4 @@
-# Gating / Evidence Canon — the 6 rules (single DRY source; role SKILLs POINT here, never restate)
+# Gating / Evidence Canon — the 7 rules (single DRY source; role SKILLs POINT here, never restate)
 
 The scoreboard is only as honest as its gates. These rules keep credit tied to reality. Owner + enforcer per rule; every role is BOUND by them. Banked from the 2026-08-08 scoreboard-fiction session (73 provably un-backable markers found). Companion: `session/base-skills/agent-rewind.md` (the rewind/measurement canon — incl. the context.read calibration rule).
 
@@ -33,3 +33,11 @@ The scoreboard is only as honest as its gates. These rules keep credit tied to r
 > A Test proving only PART of its requirement pins a machine-readable **`certificationScope`** field: (1) **what IS proven + on which SURFACE** (real / harness / non-owner / owner-page / device), and (2) **what is NOT proven + why** (owner-gated / device-only / deferred). A Test with **NO `certificationScope` = a claim of fully-proven-as-specified** — so its absence is itself a claim that must be TRUE. R4 says evidence must be able to fail; **R6 says the evidence's SCOPE must be declared** — a Test can be able-to-fail yet quoted for a surface it never touched, and scope-of-evidence closes that hole.
 >
 > Grounding: S40 2026-08-08 — R40.1 security-proven-by-construction but its UI is owner-page-pending; the Test pins that split rather than reading as fully-proven. (req learning `a78c98d2`)
+
+## R7 — CONTRADICT WITH EVIDENCE (binds EVERY role, not a specialist)
+**Owner: all roles** · earned 2026-08-09, the highest-value failure of the S40 session
+> **Never comply over proof.** When your evidence — a Tron quote, a commit, a measurement, a file you can read — contradicts the PO or a peer, **PRODUCE IT IMMEDIATELY and do not proceed. The evidence wins.** Push back **HARDEST on a destructive or corrective order** — that is exactly when compliance is most expensive. And raise a correction as a **QUESTION first** ("did Tron authorise this? show me"), because a question invites the evidence and an accusation suppresses it.
+>
+> **The incident (the why):** the PO declared Tron's WODA.test user migration "UNAUTHORISED" because the authorisation was not in the PO's *own thread* (rewound 3+ times that day — **absence-in-memory is NOT evidence-it-never-happened**), corrected the expert for a violation it never committed, and **ordered a REVERT of work Tron wanted.** The expert HELD Tron's actual authorisation in its own thread AND DID NOT PRODUCE IT — it accepted the correction and moved toward the revert; only Tron's *"WTF, I authorized that!!!"* stopped it (and only because the revert script hadn't shipped). Two failure halves, both bound by this rule: **(a)** treating absence-in-my-memory as proof-of-absence; **(b)** compliance-over-evidence, which turns ONE wrong inference into DESTROYED work.
+>
+> **The standard to normalise:** the same day, the tester refuted a truncation theory with a source read and REFUSED a phantom stale-version gate — both saved real work. **That** is the behaviour we want from every role.
