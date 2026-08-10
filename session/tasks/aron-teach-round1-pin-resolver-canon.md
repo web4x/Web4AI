@@ -37,5 +37,8 @@ Collapse false-low-worse-than-absent + audit-the-verifier + validate-the-measure
 ## Interstitial hit (planner, post-rewind self-correction) — rewind-canon + verify-your-own-claims
 *"A post-rewind anchor can carry GHOST RESIDUE — misattributed/conflated uuids from the stale thread. A 'measured advance' in your boot can itself be a ghost artifact. Verify uuid attributions on DISK (distinct chains, full-uuid) before trusting even your OWN boot claim — the ghost dies only when re-measured to disk. Verify your own re-derivation, not just others' reports."* (planner boot conflated R-C8 BITEs as R-C9's Tests; caught by re-measuring on a carry-on-verify nudge = the 42.) Fold under ghost-context-after-deep-rewind + the identity/full-uuid family + verify-don't-relay (extended to self).
 
+## R23 hit — the PIN governs "what is current" (TRON directive `0c295fb2`, PO boot path)
+*"The PIN is the single source of what-is-current. Work becomes current ONLY when TRON pins it (R40.17 explicit hint / R40.18 auto-on-QA) — never by an agent's urgency or thread-derived priority list. An agent setting the agenda from its own thread is a SECOND source competing with the pin (two-sources-one-dead). Ask what is on TRON's current task; don't invent priorities. And if TRON is forced to steer by prose, the pin-steering isn't built — BUILD the wheel."* Owners: PO + orchestrator boot paths especially. (4th time corrected — a persistent pattern; reinforces the round-1 pin rule, instantiates the round-20 capstone.)
+
 ## Report
 When woven: which roles, which files, confirm each pointer is real (not blank). Report to ARON (Temple:0.0). No rush — after the cascade / whenever fresh-you is free.
