@@ -52,3 +52,4 @@
 | 5 | 2026-08-10 | YES | SCOPE the full-uuid family (data-writes+negatives only; prose fine) — corrects my own R4 over-breadth | canon (bundle) — fleet stood down |
 | 6 | 2026-08-10 | no | EMPTY CHECK — 0 new fleet commits; fleet stood down awaiting Tron's 5 decisions; rounds 1-5 weave still pending trainer pull | — |
 | 7 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged since R6; fleet still stood down awaiting Tron; no new hit | — |
+| 8 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (3rd consecutive empty); fleet blocked on Tron's 5 decisions, not stalled; rounds 1-5 weave still pending | — |
