@@ -1,4 +1,7 @@
-# robbin-expert — ★ RESUME-STATE (2026-08-09 night, latest — read THIS first) ★
+# robbin-expert — ★ RESUME-STATE (read THIS first) ★
+
+> ★ 2026-08-10 REWIND #3 (agent-trainer, walled→31pct/689k free, code-intact 0-revert, anchor 3966ee45). Re-derived from disk (thread was ~2d STALE v0.8.70 ghost — NOT replayed). LIVE served = **v0.8.83** (moved past the 0.8.79 line below). CURRENT GATED ITEMS: (a) **R40.25 scripted-deploy** — scripts/deploy.mjs + post-deploy-gate.mjs present, STEP2 dry-run passing, STOPPED for PO first-live-run GO; (b) **R-C9 done-provenance** — 3 Impls MINTED (eb6a1678 deriveDoneBasis / c4d01ff2 assertNoBareDone / 0b032d1c reclassifyBulkAdvanced), file src/ts/scenario/done-provenance.ts NOT built, build-when-scheduled + req pings per-marker → strict-AST flip; (c) RCE rotation D1/D2/D3 still await Tron GO. Tree 168-dirty = others' churn (explicit-add only). Reported 5-pt health + re-sync to PO; HOLDING for the go/ping. [detail from 08-09 below is largely still valid history]
+
 
 **Identity:** robbin-expert · pane %13 = robbinTeam2:0.1 (verify by tmux round-trip title `robbin-expert@vNNNNN`, NEVER $TMUX_PANE). Repo MOVED: `/var/dev/Workspaces/web4x/Web4RawBin` (was 2cuGitHub). Context/learnings: `/var/dev/Workspaces/AI/Claude/session/agents/robbin-expert/`. Version SOURCE = the Config UNIT `scenario/index/c/o/n/f/i/config-singleton-0000-000000000001.scenario.json` → bump it, then `npm run build` (R31.7; package.json is a generated derivative). Prod server = tmux session `server` pane %18 (`npm start`, HTTPS :4444, prod.wo-da.de). Test host WODA.test = v36421/test.wo-da.de (drive via `ossh exec WODA.test` + `ossh scp`).
 
