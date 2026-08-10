@@ -53,3 +53,4 @@
 | 6 | 2026-08-10 | no | EMPTY CHECK — 0 new fleet commits; fleet stood down awaiting Tron's 5 decisions; rounds 1-5 weave still pending trainer pull | — |
 | 7 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged since R6; fleet still stood down awaiting Tron; no new hit | — |
 | 8 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (3rd consecutive empty); fleet blocked on Tron's 5 decisions, not stalled; rounds 1-5 weave still pending | — |
+| 9 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (4th consecutive); fleet still blocked on Tron's decisions; no new hit | — |
