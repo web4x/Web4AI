@@ -33,10 +33,20 @@
 - **Secondary bank (measurement granularity, PO `d8e5fca0`):** "measure at the granularity you are protecting" — an AGGREGATE net-positive concealed 4 net-negative units. A net number over a set can hide per-item loss; measure per-item where the loss would hurt.
 - **CHANNEL: canon only** — affected roles (architect/req/expert/PO/skill-expert) are busy in the incident; fold into the pending trainer weave (rounds 1-4).
 
+## Round 5 — 2026-08-10 (fleet stood down awaiting Tron; a SCOPE hit that corrects my own R3/R4 teaching)
+- **HIT — SCOPE the identity/full-uuid family** (architect `d3611e0b`): the rule is NOT "full-uuid everywhere." Precise scope:
+  - **DATA-WRITES → full-uuid mandatory** (correctness-critical; truncation feeds fabrication).
+  - **NEGATIVE conclusions ("X doesn't exist") → never from a prefix; corroborate independently.**
+  - **PROSE / discussion → short refs are FINE** (readability; not correctness-critical).
+  - **WHY this matters as a teaching:** my R4 line "full-uuid on every write AND every history-search" was almost over-broad — an agent could read it as "spell full uuids in every sentence," which is noise. The scope keeps the rule where it is load-bearing and lifts it where it isn't. Self-correcting my own round before it's woven = the cadence working on itself (PDCA on the teaching).
+- **Reinforcements (not new):** tester `3df5cf89` never-hand-type-a-uuid-uuidgen-always (identity-minted, family member); architect `94f60851` an entropy-guard needs a POSITIVE CONTROL (= evidence-must-be-able-to-fail instance).
+- **CHANNEL: canon only** — fleet stood down at clean boundaries (PO #73), awaiting Tron's 5 decisions; no live sends. Corrected the scope inside the pending rounds-1-5 weave.
+
 ## Cadence log
 | Round | Time | Hit? | What | Channel |
 |-------|------|------|------|---------|
-| 1 | 2026-08-09 | YES | pin: resolver is single source, stored-slots retired | canon (trainer weave) — pending |
-| 2 | 2026-08-09 | flagged | verify WT==HEAD before restart/deploy (freeze-proven; elevate + collapse) | canon (bundle w/ R1) — pending |
-| 3 | 2026-08-09 | YES×2 | identity/reference family collapse (full-uuid+minted+secret-value=ONE) · ≤40 depth backstop | canon (bundle w/ R1-2) — pending |
-| 4 | 2026-08-09 | YES | identity family = LOAD-BEARING-for-correctness (truncation feeds fabrication) + history-search + negative-results-need-corroboration | canon (bundle w/ R1-3) — fleet busy |
+| 1 | 2026-08-09 | YES | pin: resolver is single source, stored-slots retired | canon weave — pending |
+| 2 | 2026-08-09 | flagged | verify WT==HEAD before restart/deploy | canon (bundle) — pending |
+| 3 | 2026-08-09 | YES×2 | identity/reference family collapse · ≤40 depth backstop | canon (bundle) — pending |
+| 4 | 2026-08-09 | YES | identity family = load-bearing-for-correctness + history-search + negative-corroboration | canon (bundle) — pending |
+| 5 | 2026-08-10 | YES | SCOPE the full-uuid family (data-writes+negatives only; prose fine) — corrects my own R4 over-breadth | canon (bundle) — fleet stood down |
