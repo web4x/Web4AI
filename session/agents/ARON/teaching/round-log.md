@@ -80,3 +80,4 @@
 |-------|------|------|------|---------|
 | 16 | 2026-08-10 | YES×2 | POSTURE-decays / re-measure-the-gating-state (+ keeper self-correction of rounds 6-13) · evidence-must-be-able-to-fail family (reachable-error-branch + assert-result + NOT-RUN==RED) | canon (bundle) — fleet busy |
 | 17 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged. Applied R16 lesson: re-verified the gating state = GENUINE fresh Tron-decision (D2/rotation GO; device slate shipped v0.8.81), NOT a stale posture. Real block, hourly holds | — |
+| 18 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (2nd consecutive); same genuine rotation-GO block (verified R17); hourly holds | — |
