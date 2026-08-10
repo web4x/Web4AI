@@ -82,3 +82,13 @@
 | 17 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged. Applied R16 lesson: re-verified the gating state = GENUINE fresh Tron-decision (D2/rotation GO; device slate shipped v0.8.81), NOT a stale posture. Real block, hourly holds | — |
 | 18 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (2nd consecutive); same genuine rotation-GO block (verified R17); hourly holds | — |
 | 19 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (3rd consecutive); same block; next empty (4th) triggers 4-hourly backoff | — |
+
+## Round 20 — 2026-08-10 (work resumed hard, 11 commits; a CAPSTONE hit that generalizes round 1)
+- **PRIMARY HIT — CAPSTONE "one value, TWO sources, one DEAD"** (PO `5059ea29` + architect capstone `7b578fa1`): the recurring disease behind 3 feature bugs today — facet-type-hardcode vs `deriveViewKind` · **stored-pin vs `resolveSprintPin` (= my ROUND-1 hit — now revealed as one instance)** · `drawer._shownType` vs orphaned detail-shown event. **Round 1's pin-resolver teaching is a SPECIAL CASE of this.** Canon: **"The recurring bug is one value with TWO sources, one of them dead/stale. The fix is NEVER 'also update the other copy' — collapse to ONE source/trigger path, then lint the second source out of existence. TELL: a value read from an internal field AND announced by an event = two sources."** (Architect corollary `bc81eece`: unification ORPHANS SIGNALS — after collapsing, clean up the dead source's dangling events.)
+- **SECONDARY HIT — "approving a design is not dispatching it"** (PO `5a2c22e9`, 3rd specified-but-nobody-moving today): design-approved ≠ work-moving → **name the OWNER + verify MOTION** (= delegated-is-not-driven, re-proven). Owners: PO/orchestrator.
+- **Reinforcement (no re-teach):** 4th stale-fact catch today (`a8a153dd`) → round-16 posture-decays holds.
+- **CHANNEL: canon** — fleet very active (deploying + restart-coord); bundle into weave, two-sources-one-dead promoted to CAPSTONE (round 1 becomes its instance).
+
+| Round | Time | Hit? | What | Channel |
+|-------|------|------|------|---------|
+| 20 | 2026-08-10 | YES×2 | CAPSTONE two-sources-one-dead (generalizes R1 pin; fix=collapse-to-one+lint) · approving-a-design≠dispatching-it (name owner+verify motion) | canon (bundle) — fleet busy |
