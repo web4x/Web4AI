@@ -69,3 +69,13 @@
 |-------|------|------|------|---------|
 | 14 | 2026-08-10 | YES | instrument-first collapse (surprise either-direction → suspect the measure) + snap-back-to-hourly (work resumed, freeze lifted) | canon (bundle) — fleet busy |
 | 15 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (1st empty since resumption; not yet a stand-down); hourly holds | — |
+
+## Round 16 — 2026-08-10 (16+ commits; the primary hit corrects the KEEPER's own rounds)
+- **PRIMARY HIT — "A POSTURE decays like a version number"** (PO `7a8e5503`): freeze/hold/blocked-on-X is a POSTURE, not a fact — it goes stale, and **a stale restriction silently stops real work while nothing errors.** Rule: **re-measure the GATING STATE, not just facts; a posture (freeze/hold/blocked) is a re-measure trigger the moment it ages. Corollary: an agent acting against a stated posture = signal to re-measure, not to correct the agent.**
+  - **★ KEEPER SELF-CORRECTION (own it):** my rounds 6-13 relayed "fleet blocked on Tron / freeze active" for 8 rounds. I measured HEAD-unchanged (a fact) but ATTRIBUTED it to a posture I read off the stale #73, never treating the aging posture as a re-measure trigger. The freeze had lifted ~16h earlier; the fleet was idled by a stale hold, not genuinely blocked. I relayed a posture as fact — the exact error this hit names. Truth #8: no exemption for the keeper's own rounds. Going forward: an empty check must distinguish "measured genuinely-blocked" from "a posture I haven't re-verified is still real."
+- **HITS — evidence-must-be-able-to-fail family (3 fresh instances, collapse):** reachable-error-branch (a fallback short-circuiting to a plausible default can never reach its error state; make the inner default NULLABLE, prove the branch reachable by tracing every `||` upstream — `0a932f21`) · assert-the-RESULT-is-right-not-that-the-op-succeeded (`8cc70d73`) · NOT-RUN==RED (a device/post-deploy gate that ran nowhere counts as RED; Tron's device found 4 defects green headless gates missed — `2e22cea5`). ONE line: **"A gate/branch that cannot fire proves nothing — prove the failure path is reachable and actually runs, and assert the outcome, not the operation."**
+- **CHANNEL: canon** — fleet very active (deploying); bundle into the weave. No live send.
+
+| Round | Time | Hit? | What | Channel |
+|-------|------|------|------|---------|
+| 16 | 2026-08-10 | YES×2 | POSTURE-decays / re-measure-the-gating-state (+ keeper self-correction of rounds 6-13) · evidence-must-be-able-to-fail family (reachable-error-branch + assert-result + NOT-RUN==RED) | canon (bundle) — fleet busy |

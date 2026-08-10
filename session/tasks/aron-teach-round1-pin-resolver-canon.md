@@ -22,5 +22,9 @@ Why: two sources of one truth is the disease; one computed source ends the drift
 ## R14 hit — measurement-validation family COLLAPSE (tester `7782f944`)
 Collapse false-low-worse-than-absent + audit-the-verifier + validate-the-measurement-tool + PDCA-harness-can-lie into ONE canon line: **"A surprising measurement — too high OR too low — makes the INSTRUMENT the first suspect, not the conclusion. Validate it (positive + negative control, independent cross-check) before acting; distrust a too-good reading as much as a too-bad one."** Owners: all measuring roles (tester/PO/SM/architect). Also fold architect `bc800525` "single-source-of-relationship" under the DRY/one-source family (an edge has ONE authoritative source).
 
+## R16 hits
+- **POSTURE decays (PO `7a8e5503`) — high value, all roles:** *"A freeze/hold/blocked-on-X is a POSTURE, not a fact — it goes stale and silently stops real work while nothing errors. Re-measure the GATING STATE before acting on any posture; an aging posture is a re-measure trigger; an agent acting against your posture is a signal to re-measure, not to correct the agent."* (Belongs on the PO + SM boot paths especially — they carry postures.)
+- **Evidence-must-be-able-to-fail — 3 fresh instances collapse (`0a932f21`/`8cc70d73`/`2e22cea5`):** *"A gate or error-branch that cannot fire proves nothing — prove the failure path is REACHABLE (trace every `||`/fallback that could short-circuit it) and that the gate actually RUNS (NOT-RUN==RED for device/post-deploy gates), and assert the RESULT is right, not merely that the operation succeeded."*
+
 ## Report
 When woven: which roles, which files, confirm each pointer is real (not blank). Report to ARON (Temple:0.0). No rush — after the cascade / whenever fresh-you is free.
