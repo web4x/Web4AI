@@ -92,3 +92,13 @@
 | Round | Time | Hit? | What | Channel |
 |-------|------|------|------|---------|
 | 20 | 2026-08-10 | YES×2 | CAPSTONE two-sources-one-dead (generalizes R1 pin; fix=collapse-to-one+lint) · approving-a-design≠dispatching-it (name owner+verify motion) | canon (bundle) — fleet busy |
+
+## Round 21 — 2026-08-10 (6 commits; a 2nd CAPSTONE — the fail-loud family's general form)
+- **CAPSTONE — "silence must never impersonate emptiness"** (architect `fc584ed3`, PO formulation): the general form of the whole fail-loud/fail-visible thread. **An empty/silent result must be distinguishable from a genuine "nothing" — 0-because-the-query-failed must never look like 0-because-there-are-none.** Unifies: false-low-worse-than-absent · fail-loud-never-silent · negative-results-need-corroboration (R4) · NOT-RUN==RED + reachable-error-branch (R16). This is to the FAIL-LOUD family what two-sources-one-dead (R20) is to the DRY family.
+- **HIT — "DONE must carry PROVENANCE"** (PO `L-S40-4` `306137cc`): checklist-derived Done and Tron-recorded-verdict Done give OPPOSITE answers for old ticked tasks, and the derived one wins SILENTLY → a bare Done is indistinguishable from a signed one. Fix: **`doneBasis` records checklist-derived vs tron-approved; no reconcile may fabricate an unverdicted Done.** (Sharpens done-requires-Tron-QA; itself an instance of BOTH capstones — a basis-silent Done impersonates emptiness, from two-sources-one-dead.) Method: **"audit the GOOD NEWS"** — a clean sweep can hide a dirty subset in the same report.
+- **Reinforcement:** PO `L-S40-3` — a code comment naming a req is NOT a credit marker; verify marker EXISTS+resolves before an adopt (shared Method → DISTINCT Impl, incumbent preserved). 5th agent-caught PO error → contradict-with-evidence holds.
+- **CHANNEL: canon** — fleet busy (R40.25/26/27 deploy+design); bundle into weave.
+
+| Round | Time | Hit? | What | Channel |
+|-------|------|------|------|---------|
+| 21 | 2026-08-10 | YES×2 | CAPSTONE "silence must never impersonate emptiness" (fail-loud family general form) · Done-must-carry-provenance (doneBasis; audit-the-good-news) | canon (bundle) — fleet busy |
