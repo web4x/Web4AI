@@ -58,3 +58,13 @@
 | 11 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (6th consecutive); stand-down holds; keeping hourly (no backoff requested) | — |
 | 12 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (7th consecutive); stand-down holds; hourly kept to catch the GO promptly | — |
 | 13 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (8th consecutive). 8 stable empties = over-sampling a frozen state -> retuning my cron hourly->4-hourly (CMM4); snap back to hourly on first detected activity | — |
+
+## Round 14 — 2026-08-10 (WORK RESUMED — freeze LIFTED, snap-back to hourly fired; a collapse hit)
+- **Status:** freeze LIFTED (`48792707`, Tron bugs A+B+C shipped v0.8.79; 16604eee restored, RCE knowingly-open pending rotation; D2/rotation await Tron GO). Fleet active again → **cadence snapped back hourly** (job `b5d5ebed`), now self-adaptive (backs off on ≥4 empties, snaps back on activity).
+- **HIT — REPETITION COLLAPSE (measurement-validation family):** tester `7782f944` "unexpected result in EITHER direction = suspect the instrument first (3 self-catches)." Collapses false-low-worse-than-absent + audit-the-verifier + validate-the-measurement-tool + the-PDCA-harness-can-lie into **ONE: "A surprising measurement — too high OR too low — makes the INSTRUMENT the first suspect, not the conclusion. Validate it (positive + negative control, independent cross-check) before acting. Distrust a too-good reading as much as a too-bad one."**
+- **Secondary bank:** architect `bc800525` "single-source-of-relationship" = a one-truth-one-source instance (an edge/relationship has ONE authoritative source, not stored redundantly). Fold under the DRY/one-source family.
+- **CHANNEL: canon** — fleet just resumed (busy); bundle into the trainer weave (now rounds 1-5 + this). No live send.
+
+| Round | Time | Hit? | What | Channel |
+|-------|------|------|------|---------|
+| 14 | 2026-08-10 | YES | instrument-first collapse (surprise either-direction → suspect the measure) + snap-back-to-hourly (work resumed, freeze lifted) | canon (bundle) — fleet busy |

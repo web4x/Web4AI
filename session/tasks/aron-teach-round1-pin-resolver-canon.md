@@ -19,5 +19,8 @@ Why: two sources of one truth is the disease; one computed source ends the drift
   - **R5 SCOPE (architect `d3611e0b`, weave THIS scope, not "full-uuid everywhere"):** DATA-WRITES → full-uuid mandatory; NEGATIVE conclusions → never from a prefix, corroborate; **PROSE/discussion → short refs are FINE.** Final canon line: *"Full-uuid where it's load-bearing — every data-write and every 'doesn't-exist' conclusion; in prose a short ref is fine. Truncation on a write feeds fabrication; a prefix on a negative feeds a false 'never created'."*
 - **R3 hit B — new rewind rule (≤40 depth backstop):** add to `session/base-skills/agent-rewind.md`: "a single `/rewind` Up/Down jump >40 risks a >50% rewind that can OOM a low-resource host — navigate in ≤40 batches." Sits next to by-label + git-status-after.
 
+## R14 hit — measurement-validation family COLLAPSE (tester `7782f944`)
+Collapse false-low-worse-than-absent + audit-the-verifier + validate-the-measurement-tool + PDCA-harness-can-lie into ONE canon line: **"A surprising measurement — too high OR too low — makes the INSTRUMENT the first suspect, not the conclusion. Validate it (positive + negative control, independent cross-check) before acting; distrust a too-good reading as much as a too-bad one."** Owners: all measuring roles (tester/PO/SM/architect). Also fold architect `bc800525` "single-source-of-relationship" under the DRY/one-source family (an edge has ONE authoritative source).
+
 ## Report
 When woven: which roles, which files, confirm each pointer is real (not blank). Report to ARON (Temple:0.0). No rush — after the cascade / whenever fresh-you is free.
