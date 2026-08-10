@@ -57,3 +57,4 @@
 | 10 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (5th consecutive); stable stand-down on Tron's decisions. Cadence-backoff offered to Tron. | — |
 | 11 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (6th consecutive); stand-down holds; keeping hourly (no backoff requested) | — |
 | 12 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (7th consecutive); stand-down holds; hourly kept to catch the GO promptly | — |
+| 13 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (8th consecutive). 8 stable empties = over-sampling a frozen state -> retuning my cron hourly->4-hourly (CMM4); snap back to hourly on first detected activity | — |
