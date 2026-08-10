@@ -50,3 +50,4 @@
 | 3 | 2026-08-09 | YES×2 | identity/reference family collapse · ≤40 depth backstop | canon (bundle) — pending |
 | 4 | 2026-08-09 | YES | identity family = load-bearing-for-correctness + history-search + negative-corroboration | canon (bundle) — pending |
 | 5 | 2026-08-10 | YES | SCOPE the full-uuid family (data-writes+negatives only; prose fine) — corrects my own R4 over-breadth | canon (bundle) — fleet stood down |
+| 6 | 2026-08-10 | no | EMPTY CHECK — 0 new fleet commits; fleet stood down awaiting Tron's 5 decisions; rounds 1-5 weave still pending trainer pull | — |
