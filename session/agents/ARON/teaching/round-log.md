@@ -56,3 +56,4 @@
 | 9 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (4th consecutive); fleet still blocked on Tron's decisions; no new hit | — |
 | 10 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (5th consecutive); stable stand-down on Tron's decisions. Cadence-backoff offered to Tron. | — |
 | 11 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (6th consecutive); stand-down holds; keeping hourly (no backoff requested) | — |
+| 12 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (7th consecutive); stand-down holds; hourly kept to catch the GO promptly | — |
