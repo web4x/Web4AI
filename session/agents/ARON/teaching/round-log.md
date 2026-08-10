@@ -102,3 +102,5 @@
 | Round | Time | Hit? | What | Channel |
 |-------|------|------|------|---------|
 | 21 | 2026-08-10 | YES×2 | CAPSTONE "silence must never impersonate emptiness" (fail-loud family general form) · Done-must-carry-provenance (doneBasis; audit-the-good-news) | canon (bundle) — fleet busy |
+| — | 2026-08-10 | YES (interstitial `e1e13bee`) | post-rewind anchor GHOST RESIDUE (conflated uuids) — verify your OWN boot claims to disk (planner self-caught R-C8/R-C9 misattribution, from a carry-on-verify nudge = 42) | canon (bundle) |
+| 22 | 2026-08-10 | (already banked) | the hour's hit = the ghost-residue interstitial above (taught write-as-it-happened, not held for the round); no other new fleet commits since R21 | — |
