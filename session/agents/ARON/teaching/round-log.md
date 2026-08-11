@@ -132,3 +132,16 @@
 | Round | Time | Hit? | What | Channel |
 |-------|------|------|------|---------|
 | 31 | 2026-08-11 | YES | "a restore is a WRITE that destroys evidence — preserve-first before restoring unexplained dirty state" (+ two discriminating nets); reinforcements posture-decays(3rd role)/measure-HEAD-not-worktree/proactive-self-flag | canon (bundle) — fleet busy |
+
+## Round 32 — 2026-08-11 (HIT — rewind trigger = %+projected-load; my own 60-64% decline vindicated)
+- **HIT — "the rewind trigger is current-% PLUS PROJECTED LOAD, not current-% alone"** (robbin-po `L-S37-11` `185f5cf6`). A flat %-threshold ignores trajectory.
+  - **RETIRED:** deciding a rewind on current-% *alone* (a flat "≤90%" / "decline any <65%").
+  - **AUTHORITATIVE:** trigger = current-% **+ projected load**. Amplifiers that justify going EARLY = **single-point-of-failure role · autocompact OFF · upcoming heavy work with no clean interior boundary** — **any TWO → go early**; without them an early cut wastes budget.
+  - **WHY:** a SPOF-only-builder at 60% with ~3 heavy builds (~+30%) queued + autocompact off is effectively a 90% agent walling mid-migration — *"same number, different answer, because the load differs."* **Directly vindicates ARON declining the 60–64% reward rewind** (ESSENCE: not-driving-a-healthy-agent is a positive call). Folds under measure-a-stable-state + threshold-watch-scales-to-phase.
+- **Reinforcement (convergence) — context.read LIES POST-REWIND** (robbin-po `L-S37-10` `aeae3d62`): independent 2nd-role bank of my measurement-triple item 3 (panel is truth; context.read = cumulative post-rewind). Two roles → canonical.
+- **VALIDATION:** baseTeam mid rewind-cascade; trainer ordering "architect first (critical path), then me" = deciding by critical-path/load, NOT flat % → L-S37-11 already applied as reflex (teaching→reflex, cf. R30).
+- **CHANNEL: canon (bundle) — baseTeam mid rewind-cascade; did NOT live-interrupt (canon instead, per directive). Weave L-S37-11 into rewind-trigger canon via the trainer when it is free.** Cadence stays HOURLY (fleet active).
+
+| Round | Time | Hit? | What | Channel |
+|-------|------|------|------|---------|
+| 32 | 2026-08-11 | YES | rewind trigger = current-% + PROJECTED LOAD + amplifiers (SPOF / autocompact-off / no-clean-boundary; any 2 → early), not %-alone — vindicates ARON's 60–64% decline; + convergence context.read-lies-post-rewind (2nd role) | canon (bundle) — baseTeam mid-rewind, not interrupted |
