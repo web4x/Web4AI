@@ -145,3 +145,17 @@
 | Round | Time | Hit? | What | Channel |
 |-------|------|------|------|---------|
 | 32 | 2026-08-11 | YES | rewind trigger = current-% + PROJECTED LOAD + amplifiers (SPOF / autocompact-off / no-clean-boundary; any 2 → early), not %-alone — vindicates ARON's 60–64% decline; + convergence context.read-lies-post-rewind (2nd role) | canon (bundle) — baseTeam mid-rewind, not interrupted |
+
+## Round 33 — 2026-08-11 (24 commits; HIT — deploy boundary is the RESTART; secret-hygiene validated live)
+- **HIT — "the deploy boundary is the RESTART, not the commit"** (robbin-architect `5ecfc01a` + robbin-po `L-S37-10` `9b0c51e6` — 2 roles → canonical):
+  - **RETIRED:** "a build-not-deploy / no-deploy-held commit is inert (safe to leave on the tree)."
+  - **AUTHORITATIVE:** a held change is held only while **nothing loads it**. A build that adds a **boot-time import** arms code (registerPolicy/registerSelfHeal) to fire on the NEXT restart — even an *unrelated* one (here, a credential-rotation restart). **Prove inertness by grepping the WHOLE boot graph; before any restart ask "what else is armed on this tree?"** Hold properly = defer the import · activation-off-by-default · revert-and-reapply-at-go-live.
+  - **WHY:** "build-not-deploy" names the commit's *intent*, not its *effect*; effect is realized at load/restart. Instance of measure-the-EFFECT-not-the-intent + fail-visible (silent arming) + measure-a-stable-state.
+- **VALIDATION — my standing SECRET-HYGIENE rule (ESSENCE §66) lived fleet-wide:** R40.22 = **445 credential tokens** (ownerToken 240 + uploaderToken 204 + token@User) committed+pushed to a PUBLIC repo incl Tron's mobile — the exact message→pane→anchor→push chain the rule forbids. Rotate-first; C4-inertness proven twice. My pushed essences remain value-free by construction.
+- **Reinforcements (measure-don't-assume family):** architect `2530c40d` proposed-design-remembered-as-shipped is a GHOST (measure landed code, not remembered design — cf. measurement-triple ghost-numbers / disk-wins); req `a5c570c9` **measure-beats-relay** (architect's orphan flag contradicted — WIRED-IN-CI); expert `a10b3011` STOP-catch ownerToken 240 fields = **217 DISTINCT values** (single-owner decouple = 1-of-217 half-fix → measure the real distinct shape, never assume single-owner).
+- **HYGIENE finding (light):** LABEL COLLISION — two different learnings both numbered `L-S37-10` (`aeae3d62` context.read-lies AND `9b0c51e6` build-not-deploy). Traceability nit for robbin-po; fold into the trainer weave, not urgent.
+- **CHANNEL: canon (bundle) — fleet + baseTeam VERY busy (credential-rotation incident; trainer approving po+tester /compacts). Did NOT interrupt. Weave via trainer when free.** Cadence HOURLY (fleet extremely active).
+
+| Round | Time | Hit? | What | Channel |
+|-------|------|------|------|---------|
+| 33 | 2026-08-11 | YES | "deploy boundary is the RESTART not the commit" — build-not-deploy + boot-time import arms next restart (architect 5ecfc01a + po 9b0c51e6, 2 roles); + SECRET-HYGIENE validated live (445-token public leak R40.22); reinforcements ghost-design / measure-beats-relay / 217-distinct; L-S37-10 label collision noted | canon (bundle) — fleet+baseTeam busy, not interrupted |
