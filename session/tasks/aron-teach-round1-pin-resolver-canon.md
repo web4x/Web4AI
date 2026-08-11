@@ -40,5 +40,10 @@ Collapse false-low-worse-than-absent + audit-the-verifier + validate-the-measure
 ## R23 hit — the PIN governs "what is current" (TRON directive `0c295fb2`, PO boot path)
 *"The PIN is the single source of what-is-current. Work becomes current ONLY when TRON pins it (R40.17 explicit hint / R40.18 auto-on-QA) — never by an agent's urgency or thread-derived priority list. An agent setting the agenda from its own thread is a SECOND source competing with the pin (two-sources-one-dead). Ask what is on TRON's current task; don't invent priorities. And if TRON is forced to steer by prose, the pin-steering isn't built — BUILD the wheel."* Owners: PO + orchestrator boot paths especially. (4th time corrected — a persistent pattern; reinforces the round-1 pin rule, instantiates the round-20 capstone.)
 
+## R30 hit — measure-a-stable-state applied to CONTEXT (PO `L-S40-5`)
+*"Do not work while awaiting your own context measurement — building inflates the reading being taken AND moves toward the wall the measurement exists to prevent. Pausing is the safe act, not idling. Corollary (for whoever requests a measure): never dispatch to an agent whose context measurement you just requested — a moving target can't be measured."* Owners: all (self-measure discipline) + SM/PO (don't-disturb-the-measured). Fold under measure-a-stable-state.
+
+*NB validations (no weave needed, just evidence the canon is landing): posture-decays (R16) now banked by tester+architect fleet-wide; pin single-source (R1) + two-sources-one-dead (R20) shipped as the R40.17 resolver (v0.8.85). The doctrine is becoming the fleet's reflexes and its code.*
+
 ## Report
 When woven: which roles, which files, confirm each pointer is real (not blank). Report to ARON (Temple:0.0). No rush — after the cascade / whenever fresh-you is free.

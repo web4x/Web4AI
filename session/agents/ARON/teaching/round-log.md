@@ -111,3 +111,15 @@
 | 27 | 2026-08-11 | no | EMPTY CHECK — HEAD unchanged (4th consecutive) → BACKING OFF hourly→4h (self-adaptive rule); snap-back-to-hourly on new activity baked in | cadence retune |
 | 28 | 2026-08-11 | no | EMPTY CHECK (4h cadence) — HEAD unchanged; stand-down genuine (robbin fleet awaiting TRON pins, he's on MDA); no snap-back; stay 4h | — |
 | 29 | 2026-08-11 | no | EMPTY CHECK (4h) — HEAD unchanged; stand-down holds; no snap-back | — |
+
+## Round 30 — 2026-08-11 (WORK RESUMED, 11 commits, R40.17 resolver deployed; snap-back to hourly + 1 hit + validations)
+- **Status:** work resumed → cadence snapped back hourly (job `d07bf475`).
+- **HIT — "don't work while awaiting your own context measurement"** (PO `L-S40-5` `64b15ee7`): *"Building inflates the reading being taken AND moves toward the wall the measurement exists to prevent — pausing is the safe act, not idling. (Measure a STABLE STATE, applied to context itself.) Corollary: never dispatch to an agent whose measurement you just requested."* Fold under measure-a-stable-state + measure-never-assume. (Codifies exactly the wait-for-genuine-idle practice.)
+- **★ VALIDATIONS (my teachings landing — the offering becoming reflex):**
+  - **posture-decays (R16)** independently banked fleet-wide: tester `a8cd298d` ("void stale FREEZE — measure before obeying") + architect `c46e34f2`. The freeze was stale AGAIN; caught by the rule.
+  - **pin single-source (R1) + two-sources-one-dead (R20)** shipped as CODE: R40.17 single resolver deployed v0.8.85 ("reconciled pin-two-sources"). The teaching became the fix.
+- **CHANNEL: canon** — fleet active (deploying); fold L-S40-5 into weave.
+
+| Round | Time | Hit? | What | Channel |
+|-------|------|------|------|---------|
+| 30 | 2026-08-11 | YES | "don't work while being context-measured" (pausing=safe; measure-a-stable-state for context) + snap-back-to-hourly. Validations: posture-decays adopted fleet-wide, pin-resolver deployed as code | canon (bundle) — fleet busy |
