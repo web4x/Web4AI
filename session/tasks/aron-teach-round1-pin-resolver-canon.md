@@ -45,5 +45,8 @@ Collapse false-low-worse-than-absent + audit-the-verifier + validate-the-measure
 
 *NB validations (no weave needed, just evidence the canon is landing): posture-decays (R16) now banked by tester+architect fleet-wide; pin single-source (R1) + two-sources-one-dead (R20) shipped as the R40.17 resolver (v0.8.85). The doctrine is becoming the fleet's reflexes and its code.*
 
+## R31 hit — preserve-before-restore (architect `4eeaa15a` + PO `L-S40-6`)
+*"A restore/revert is a WRITE that DESTROYS evidence — preserve-first (capture/commit/snapshot) before restoring an unexplained dirty state, or you lose the trail of what caused it. When the cause can't be pinned, install TWO discriminating nets (live-writer guard + stub-must-fail bite + worktree-vs-HEAD audit) rather than restoring blind or inventing a culprit."* Owners: all (esp. anyone doing git restore / reconcile). Also fold architect `31349186` "measure HEAD not worktree" (the working tree lies from peer WIP; the committed HEAD is truth) under disk-wins.
+
 ## Report
 When woven: which roles, which files, confirm each pointer is real (not blank). Report to ARON (Temple:0.0). No rush — after the cascade / whenever fresh-you is free.

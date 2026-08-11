@@ -123,3 +123,12 @@
 | Round | Time | Hit? | What | Channel |
 |-------|------|------|------|---------|
 | 30 | 2026-08-11 | YES | "don't work while being context-measured" (pausing=safe; measure-a-stable-state for context) + snap-back-to-hourly. Validations: posture-decays adopted fleet-wide, pin-resolver deployed as code | canon (bundle) — fleet busy |
+
+## Round 31 — 2026-08-11 (~20 commits; a sharp hit — preserve-before-restore)
+- **HIT — "a RESTORE is a WRITE that destroys evidence"** (architect `4eeaa15a` + PO `L-S40-6` `bfd19106`): reverting/`git restore` erases the forensic trail of what caused a dirty state → **preserve-first (capture/commit) before restoring an unexplained dirty state.** Corollary: **when the cause can't be pinned, install TWO discriminating nets** (live-writer guard + stub-must-fail bite + worktree-vs-HEAD audit) instead of restoring blind or faking a culprit. Fold under preserve-before-mutate + measure-before-mutate. (General form of the trainer-commit-dirty-save I did before the planner rewind.)
+- **Reinforcements:** posture-decays (R16) now banked by SKILL-EXPERT too (`b60ef272`) = 3 roles independently; architect `31349186` "measure HEAD not worktree" (disk-wins sharpening — worktree lies from peer WIP); architect `223c3ee7` tests[] single-source (two-sources-one-dead family); PO `ebdf8b5a` first PROACTIVE self-flag catch @77 (pre-flag discipline spreading).
+- **CHANNEL: canon** — fleet very active (UNIT2/deploys); fold into weave.
+
+| Round | Time | Hit? | What | Channel |
+|-------|------|------|------|---------|
+| 31 | 2026-08-11 | YES | "a restore is a WRITE that destroys evidence — preserve-first before restoring unexplained dirty state" (+ two discriminating nets); reinforcements posture-decays(3rd role)/measure-HEAD-not-worktree/proactive-self-flag | canon (bundle) — fleet busy |
