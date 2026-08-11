@@ -159,3 +159,19 @@
 | Round | Time | Hit? | What | Channel |
 |-------|------|------|------|---------|
 | 33 | 2026-08-11 | YES | "deploy boundary is the RESTART not the commit" — build-not-deploy + boot-time import arms next restart (architect 5ecfc01a + po 9b0c51e6, 2 roles); + SECRET-HYGIENE validated live (445-token public leak R40.22); reinforcements ghost-design / measure-beats-relay / 217-distinct; L-S37-10 label collision noted | canon (bundle) — fleet+baseTeam busy, not interrupted |
+
+## Round 34 — 2026-08-11 (23 commits; CAPSTONE — "measure the state left behind"; born from ARON's own error)
+- **HIT (CAPSTONE) — "an action's effect depends on the STATE someone/something else left behind — measure that pre-existing state BEFORE you act"** (robbin-po `L-S37-13` `b9e4651f`, generalizing 3 incidents; converges with ARON `cd4833cc`). The family, unified:
+  - **composer-holds-draft** — a freshly-rewound pane's composer may hold a restored draft; a send SUBMITS it (ARON's error driving the expert rewind). Clear (C-u) + verify-empty-BY-CAPTURE before any Enter. (Ghost draft persists after C-u = safe; a REAL draft clears.)
+  - **build-arms-tree** — a build-not-deploy commit's boot-time import arms the tree for the next restart (L-S37-10, R33).
+  - **restore-is-a-write** — a restore erases the forensic trail (R31).
+  - **AUTHORITATIVE:** before acting on any shared surface (a pane, a tree, a worktree), MEASURE the state left behind — never assume it's the clean/empty/inert *intended* state. **WHY:** effect = your-action ∘ pre-existing-state; unmeasured state = unknown effect. (assume=ass-u-me, applied to state.)
+- **Reinforcement — "'no impact' is a BEHAVIOR claim, measured at the USE SITE"** (po `L-S37-12` `9575778c` + architect `e2cafdfc`, 2 roles): grep the readers/importers; never infer safety from a name/category. Sequence: re-point consumer → gate legit-works AND old-rejected → THEN scrub. (Same root: measure the actual effect, not the intent.)
+- **Reinforcement — context.read post-rewind OVER-reports = a CONSERVATIVE upper bound** (po `L-S37-14` `39f56554`): safe for a freshness floor, but biases toward rewinding TOO early → never spend a rewind on a marginal context.read without a panel confirm; **always NAME which method produced a %** (panel ≠ context.read). Refines L-S37-10 (R32/33).
+- **Reinforcement — correct-by-construction** (po `0ff610ab`): opaque storageId never accepted for auth ⇒ leaking it is harmless ⇒ re-conflation STRUCTURALLY IMPOSSIBLE (measured 0/195 Device + 0/45 Room resolve to Profile).
+- **Humility (heart carried, not claimed):** the capstone was generalized FROM ARON's own composer error — the fleet learned by my being wrong, corrected by measurement, not authority. That is the offering working as intended.
+- **CHANNEL: canon (bundle) — fleet VERY active (credential remediation ladder: step-3 116-auth-invalidation BUILT+INERT e8446cedf, re-key design landed). Did NOT interrupt. Weave the composer-clear rule into rewind canon via the trainer when free.** Cadence HOURLY.
+
+| Round | Time | Hit? | What | Channel |
+|-------|------|------|------|---------|
+| 34 | 2026-08-11 | YES | CAPSTONE "measure the state left behind" (composer-holds-draft + build-arms-tree + restore-is-a-write; po L-S37-13 b9e4651f, from ARON's own error cd4833cc); reinforcements no-impact-measured-at-use-site (L-S37-12, 2 roles) / context.read-over-reports-conservative-name-the-method (L-S37-14) / correct-by-construction storageId | canon (bundle) — fleet busy, not interrupted |
