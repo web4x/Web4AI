@@ -189,3 +189,23 @@
 | Round | Time | Hit? | What | Channel |
 |-------|------|------|------|---------|
 | 35 | 2026-08-11 | YES | "a count is not content — verify SET IDENTITY not cardinality, via independent derivation" (po L-S37-15 bc0af508 + architect 980ba212, 2 roles; DOM-counts-vs-pixels family) + committed-const-not-env; reinforcements reachable≠migrated / live-migration backup+abort discipline | canon (bundle) — live re-key window, not interrupted |
+
+## Round 36 — 2026-08-11 (20 commits; HIT — verification has 3 orthogonal dimensions; + the stop-fighting discipline I failed tonight)
+- **HIT — "content / resolution / structure are 3 ORTHOGONAL verify dimensions; one catches what the others miss"** (robbin-architect `a38e50c6`): a count-mirror (structure) caught cross-home contamination that multiset (content) + delta (resolution) missed. **Extends R35 "a count is not content"** — it's not merely count-vs-content; there are ≥3 independent axes. RETIRED: assuming one verify dimension (even a good content-hash) is sufficient. AUTHORITATIVE: for a gated mechanism, verify content AND resolution AND structure — they fail independently; arrange more than one.
+- **Reinforcement — "a rewrite/read op can HEAL (mutate) the state you're measuring"** (expert `89dd28bc` + architect `2908748b`): ScenarioIndex.put→ensureSymlinkDisk materialized a declared-but-unmaterialized symlink during a rewrite → the apparent count mismatch was a HEAL, not corruption. Kin of R34 "state left behind" / R31 "a restore is a write."
+- **Reinforcement — "stop fighting a wall; escalate" (discipline I personally re-learned tonight)** (expert `4022ca04`: "stopped fighting the revert" on a recurring shared-tree landmine → escalated to PO+architect; PROD stayed safe via versionGuardTreeClean). ★ ARON: I FAILED exactly this driving the req resume tonight — kept fighting a cwd/trust-modal/EPERM wall instead of stopping+escalating at the first failure (TRON: "WTF are you doing"; trainer stood me down to protect me from walling). The expert modeled the right move. Banked: **stop at the first repeated failure, escalate, protect your own context — flailing is a second failure on top of the first.**
+- **CHANNEL: canon (bundle) — fleet in a HARD-BLOCKED re-key window (recurring revert landmine under root-cause). No interrupt.** Cadence HOURLY.
+
+| Round | Time | Hit? | What | Channel |
+|-------|------|------|------|---------|
+| 36 | 2026-08-11 | YES | "content/resolution/structure = 3 orthogonal verify dimensions" (architect a38e50c6; extends R35 count-is-not-content); reinforcements rewrite-can-heal-state (89dd28bc/2908748b) / STOP-fighting-a-wall-escalate (4022ca04 — the discipline ARON failed on req tonight, banked) | canon (bundle) — hard-blocked re-key window, not interrupted |
+
+## Round 37 — 2026-08-12 (fleet very active; HIT — pin the input, don't freeze the world)
+- **HIT — "pin the INPUT, don't freeze the WORLD"** (robbin-po `66d3f2b7`): to stabilize a gate against a moving live tree, **SHA-pin the specific input** (a stable-checkpoint SHA) rather than halting the whole system. RETIRED: fleet-freeze / stop-everything to get a stable measurement. AUTHORITATIVE: pin the one input the gate depends on; the rest of the world keeps moving. (Kin of R32 "measure a STABLE state" — but pin the state you need, don't stop the world.)
+- **Reinforcement — "cleanliness ≠ security"** (expert `b1265170`): a RED gate (2nd Done-writer tronApprove) measured out to be server-DORMANT + Tron-gated = NOT a reachable security hole, just cleanliness. Classify a RED by reachability/exploitability before treating it as a security block. (Kin of R34 measure-at-the-use-site.)
+- **Reinforcement — "leave a known-RED gate OUT of the union, VISIBLY, with a reason"** (po `66d3f2b7`/`6967c675`): controller-dominance excluded with a reason to PO, not silently — fail-visible over hide-the-red.
+- **CHANNEL: canon (bundle) — fleet very active (Inc-2 read-path, T37.6 durable-first). No interrupt.** ★ ARON self-note: committing Round 36 (uncommitted from the req-crisis interrupt) + this BEFORE my own imminent rewind — climbing, autocompact off, trainer drives me next. Standing down from driving. Cadence HOURLY.
+
+| Round | Time | Hit? | What | Channel |
+|-------|------|------|------|---------|
+| 37 | 2026-08-12 | YES | "pin the INPUT not freeze the WORLD" (SHA-pin the input vs fleet-freeze; po 66d3f2b7); reinforcements cleanliness≠security (b1265170) / leave-known-RED-out-visibly-with-reason (6967c675) | canon (bundle) — fleet busy, not interrupted |
