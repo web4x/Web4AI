@@ -811,3 +811,11 @@ Twice in one incident I asserted a no-impact property and was wrong both times:
 **Rule:** a no-impact / safe-to-remove / inert claim is a claim about BEHAVIOUR, and behaviour is measured at the use site — grep what READS the field or imports the module, never infer safety from its NAME or its category. "It's just a stored token" and "it's only a build" are both category reasoning.
 **And sequence accordingly:** when a field has a live consumer, **RE-POINT the consumer first, gate that the legitimate path still works AND the old value is rejected, THEN scrub.** Scrub-then-discover is how a security fix becomes an outage.
 **Meta:** both catches came from an agent measuring a claim of MINE. The value of a peer is not agreement — it is that they check the premise I did not.
+
+## L-S37-13 — AFTER A REWIND THE COMPOSER MAY HOLD A REAL RESTORED DRAFT: never press Enter on a freshly-rewound pane without clearing first
+ARON tried to measure the freshly-rewound expert with `send.enter /context`. The Enter **submitted the restored R27.2 draft** that the rewind had left in the composer — which is what triggered the fresh expert's ghost-replay of months-closed work. ARON caught it, interrupted, corrected; the expert self-verified its reads were read-only, so no harm. The trainer hit the same class earlier ("the long restored-draft… C-a/C-k/Escape don't clear it — backspace burst").
+**Rule:** a freshly-rewound pane can hold a **REAL restored draft** (not a ghost). So: **CLEAR FIRST, THEN send** — and verify the composer is actually empty by capture before pressing Enter. Never `send.enter` a bare command onto a just-rewound pane.
+**Distinguish the two composer states, because the remedies differ:**
+- **GHOST/echo** — text persists after C-u ⇒ composer is actually EMPTY ⇒ safe to type/inject.
+- **REAL restored draft** — clearing changes it (may need a backspace burst; C-u/C-a/C-k/Escape can all fail on multi-line) ⇒ Enter would SUBMIT it.
+**Meta:** this is the same family as L-S37-10 (a build ARMS the tree) and L-S37-11 (a revert DISARMS a gate) — an action's effect depends on state someone else left behind. The standing question before any keystroke, commit, revert or restart: **what state is already sitting here that my action will trigger?**
