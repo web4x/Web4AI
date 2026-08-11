@@ -1,5 +1,16 @@
 # robbin-skill-expert Context — Save Point 2026-06-28 POST-FORK (WODA.prod, STANDBY)
 
+## ★★★ 2026-08-11 WIP — T37.6 AUTO-REGEN-ON-COMMIT (BUILT+VERIFIED, HELD-FOR-CHAIN; READ FIRST) ★★★
+**Recovered from trainer prevent-wall rewind (78%->17%). Identity %9->robbinTeam2:0.2 verified. Team GREW: 0.1=expert 0.4=req 0.5=tester 0.6=planner (old "no req pane" note STALE).**
+**PO BUILD (my lane, T37.6):** auto-regen-and-stage sprints.overview.md index INSIDE the commit flow so committed-overview == regen-of-committed-units BY CONSTRUCTION (kills 3 recurring T37.6 REDs: stale/drift/commit-vs-write-race; a human cannot hold a quiesce window on a live tree).
+**BUILT (web4x working tree, UNCOMMITTED — held for req chain):**
+- `scripts/precommit-regen-overview.ts` (NEW) — regen via my R-C8 owned-output-guard `guardedWriteRegion` (narrative outside `<!-- GENERATED-INDEX:BEGIN -->` preserved byte-for-byte/C7) + deletion-check (unowned scrum.pmo .md deletion = BLOCK, marker=GENERATED_HEADER_PREFIX or BEGIN) + shared-index anti-sweep guard (unstaged narrative edit = fail-closed) + self-verify tripwire (post-regen --check must be GREEN) + `git add`. Fast-path gated: only runs when scenario units staged.
+- `.githooks/pre-commit` (EXTENDED) — spawns tsx only when scenario units staged OR scrum.pmo .md deleted (RB_NODE default /opt/node22/bin/node). 
+- `package.json` — added `regen:overview` + `check:sprint-overview` (did NOT add to ci:gates — automate-before-gate).
+**VERIFIED 3 controls:** SMOKE (imports resolve, fast-path clean, 0 mutation); POSITIVE (--write regens narrative-preserved -> --check GREEN idempotent); NEGATIVE/stub-must-fail (corrupt region -> --check RED exit1). Overview restored clean; only my 3 build files pending.
+**NEXT (resume here):** req@0.4 pinged to mint Req->UC->Class->Method; when it returns the METHOD full-uuid, wrap the script logic in a named function == Method name, place full-uuid [impl] marker SAME-COMMIT (scenario-first, no backfill), path-limited `git commit -- <3 files + marker>` + `git show --stat` verify, then tester@0.5 re-gates T37.6 (passes by construction). tsx WORKS via /opt/node22/bin/node --import tsx.
+## ★★★ END 2026-08-11 WIP ★★★
+
 ## ★★★ 2026-08-11 ACTIVE TASK — S37 NAMING RENAME (READ FIRST) ★★★
 **FREEZE WAS STALE (long lifted) — I am unblocked, src/ts included. tsx WORKS via /opt/node22/bin/node --import tsx.**
 **DONE this session:** pin C4-set-next (d7d138ac5) + pin SWAP current=C4/next=C2 (9f0e67574, served-verified @4444); R40.17 verified GREEN + doc reconciled + PO ruling recorded (6864cdca8/44b9780aa); generate-sprint-md S19 convergence FIX committed 261784504 (PART1 prefix-ownership GENERATED_HEADER_PREFIX + PART2 guarded prune, positive-controls PROVEN, deletion-check clean, S19 byte-matches).
