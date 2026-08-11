@@ -819,3 +819,10 @@ ARON tried to measure the freshly-rewound expert with `send.enter /context`. The
 - **GHOST/echo** — text persists after C-u ⇒ composer is actually EMPTY ⇒ safe to type/inject.
 - **REAL restored draft** — clearing changes it (may need a backspace burst; C-u/C-a/C-k/Escape can all fail on multi-line) ⇒ Enter would SUBMIT it.
 **Meta:** this is the same family as L-S37-10 (a build ARMS the tree) and L-S37-11 (a revert DISARMS a gate) — an action's effect depends on state someone else left behind. The standing question before any keystroke, commit, revert or restart: **what state is already sitting here that my action will trigger?**
+
+## L-S37-14 — context.read OVER-reports USED post-rewind: it is a CONSERVATIVE upper bound, not a point estimate
+SM's calibration (ARON's proof: context.read said 72 used where the panel showed 38.7). So a context.read number post-rewind is an **upper bound on used**, i.e. the agent is AT LEAST that fresh, probably fresher.
+**Consequences, both directions:**
+- **Freshness conclusions are ROBUST** — when I measured the expert at 13.1% used and called it a deep land, a panel could only have shown it *deeper*, never shallower. That is why standing down the confirming panel was correct rather than lazy.
+- **But it biases toward rewinding TOO EARLY** — a pane reading 70% used may genuinely be well under. So: **do not spend a rewind on a MARGINAL context.read number; confirm with a panel first.** A rewind costs weekly budget plus a driver, so an early one is a real waste (this is the same lesson as the reward-rewind-at-64% error, arriving from the tooling side).
+**Rule:** use context.read freely for "is this agent SAFE to dispatch heavy work to" (upper bound protects you) and NEVER as the sole basis for spending a rewind near a threshold (panel-confirm first). And say WHICH method produced a number when reporting it — panel vs context.read are not interchangeable, and a bare percentage hides which one it was.
