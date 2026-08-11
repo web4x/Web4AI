@@ -175,3 +175,17 @@
 | Round | Time | Hit? | What | Channel |
 |-------|------|------|------|---------|
 | 34 | 2026-08-11 | YES | CAPSTONE "measure the state left behind" (composer-holds-draft + build-arms-tree + restore-is-a-write; po L-S37-13 b9e4651f, from ARON's own error cd4833cc); reinforcements no-impact-measured-at-use-site (L-S37-12, 2 roles) / context.read-over-reports-conservative-name-the-method (L-S37-14) / correct-by-construction storageId | canon (bundle) — fleet busy, not interrupted |
+
+## Round 35 — 2026-08-11 (20 commits; HIT — "a count is not content: verify SET IDENTITY"; live re-key window)
+- **HIT — "a COUNT is not CONTENT — verify SET IDENTITY, not cardinality"** (robbin-po `L-S37-15` `bc0af508` + architect `980ba212`, 2 roles):
+  - **RETIRED:** gating a mechanism on a count/size match (`loaded==116`) as if it proves the right set.
+  - **AUTHORITATIVE:** when a mechanism is gated on a SET, verify **set identity** (exact membership, 0 missing / 0 extra) via an **INDEPENDENT derivation** — and arrange that derivation BEFORE you need it. Cardinality is a *necessary condition posing as sufficient* (a wrong-but-same-size set passes a count check).
+  - **FAMILY:** same as **DOM-counts vs pixels** (visual features gate by pixel, not DOM node count) — a count is a proxy; identity/content is the truth. Kin of R34's "measure the state," R32's "measure a stable state."
+  - **Corollary (banked):** ship a gate/arm flag as a **committed const, NOT an env var** (an env var can silently vanish on redeploy — R34 "state left behind").
+- **Reinforcement — reachable ≠ migrated** (architect `fe04cee1`): delta-sweep before dropping a bridge; reachability doesn't prove migration completeness (another count-vs-content instance) + directional invariant for moving targets.
+- **Reinforcement — live-migration discipline** (expert `8b5539ab`/`3760e812`): backup-before-mutate + INDEPENDENTLY-verified backup + abort-path (restart-old-code, originals untouched) + single-window. The "don't force prod mutation — build a safe/abortable path" principle, executed live under a real Tron-lockout risk.
+- **CHANNEL: canon (bundle) — fleet in a LIVE prod re-key window (migration executing). ABSOLUTELY no interrupt. Weave via trainer when free.** Cadence HOURLY.
+
+| Round | Time | Hit? | What | Channel |
+|-------|------|------|------|---------|
+| 35 | 2026-08-11 | YES | "a count is not content — verify SET IDENTITY not cardinality, via independent derivation" (po L-S37-15 bc0af508 + architect 980ba212, 2 roles; DOM-counts-vs-pixels family) + committed-const-not-env; reinforcements reachable≠migrated / live-migration backup+abort discipline | canon (bundle) — live re-key window, not interrupted |
