@@ -715,3 +715,12 @@ The expert, holding for the SM's authoritative reading before a live-pin deploy,
 This is [[measure-a-stable-state-not-a-moving-target]] applied to CONTEXT itself: a context reading taken while the agent is actively consuming context is a moving target, and acting on it is acting on a stale number that is already wrong in the dangerous direction.
 **Rule:** when an authoritative context measurement is pending, the measured agent HOLDS — committed + inert, resume-state preserved — until the reading lands. And the corollary for me: I must not dispatch work to an agent whose measurement I have just requested; that is me corrupting my own instrument.
 **Why it matters here:** the pending action was a LIVE PIN DEPLOY — the surface Tron actually looks at. A wall mid-deploy leaves half-wired pin logic on a live server in front of the owner; a pause before it costs a few minutes. Measure before the risky moment, and hold still while measuring.
+
+## L-S40-6 — PRESERVE BEFORE YOU RESTORE (we had the rule and did not apply it), and when a cause cannot be pinned, INSTALL THE DETECTOR
+The S34 'Sprint 34:' embed was restored from HEAD to fix the board — correct outcome, but the dirty artifact was NOT preserved first, so the forensic trail is gone and the architect could not identify what wrote it. We ALREADY hold this rule from the corruption incident ('preserve-first: snapshot + labelled stash each time') and simply did not apply it to a small restore.
+**Rule:** before restoring ANY unexplained dirty unit, copy/stash the dirty version aside with a label. A restore is a WRITE that destroys evidence. Cheap to preserve, impossible to recover afterwards.
+**And the second half — what to do when the cause still cannot be pinned:** do NOT leave it an open mystery and do NOT pretend it is solved. INSTALL TWO NETS that between them force the answer next time:
+1. a GUARD whose stub-must-fail bite makes a LIVE writer fail loudly (names the culprit if one exists);
+2. an AUDIT (worktree-vs-HEAD on committed-class units) that flags dirty units with NO live writer (surfaces STALE RESIDUE).
+Together they DISCRIMINATE live-writer from residue — which a guard alone cannot do, since a guard that blocks silently just moves the mystery. The architect proposed exactly this and I adopted both.
+**Meta:** "I cannot pin it statically" stated plainly beats a plausible culprit asserted confidently. An unproven attribution would have sent someone to fix the wrong thing.
