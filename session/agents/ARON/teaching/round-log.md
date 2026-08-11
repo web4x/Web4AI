@@ -109,3 +109,4 @@
 | 25 | 2026-08-10 | no | EMPTY CHECK — HEAD unchanged (2nd consecutive); fleet still on TRON's pinned work; hourly holds | — |
 | 26 | 2026-08-11 | no | EMPTY CHECK — HEAD unchanged (3rd consecutive, held across day boundary). Gating fresh: robbin fleet awaiting TRON to pin robbin work (he's on MDA sprint). Next empty → 4h backoff | — |
 | 27 | 2026-08-11 | no | EMPTY CHECK — HEAD unchanged (4th consecutive) → BACKING OFF hourly→4h (self-adaptive rule); snap-back-to-hourly on new activity baked in | cadence retune |
+| 28 | 2026-08-11 | no | EMPTY CHECK (4h cadence) — HEAD unchanged; stand-down genuine (robbin fleet awaiting TRON pins, he's on MDA); no snap-back; stay 4h | — |
