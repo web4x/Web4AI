@@ -809,3 +809,13 @@ NEXT (post-rewind, PO bound-the-work per piece; SM gives ctx# before large): r30
 
 ## ▶ QUEUED (future, PO-scheduled) — R40.38 orphan-method-marker lint gate (req d4662bbd2, campaignScope=OUTSIDE, NOT tonight)
 - AC5 stub-must-fail ON THE CHECK: synthetic marked-uncalled-unsuperseded method → flagged RED; called-or-superseded → not. Build only when PO schedules.
+
+## ▶ R40.37 INC-1 SHIPPED — r4037 RE-POINTED GREEN (2026-08-12, HEAD b0ca0fe10, detected by gate-break not ping)
+- ★ MEASURE-FIRST: my prep gate BROKE ('applicableActionsFor is not a function') → inc-1 (5925bc7e1) had shipped. Traced each move + re-pointed:
+  - applicableActionsFor + UNIVERSAL_DECLS + types CONSOLIDATED into NEW `src/public/ts/trace/action-applicability.ts` (pure module); universal-actions.ts now only wires registerUniversalActions. → r4037 imports both from action-applicability.ts.
+  - APPROVE_STATUSES client-importer moved universal-actions.ts:8 → action-applicability.ts:4 (ONE def task-status-constants.ts:8 still; server.ts:81 + action-applicability import it). Updated single-source check.
+  - CONTAINER-DECL MIGRATION LANDED (model.ts has appliesTo) → that pending cell CLEARED. §B still uses a representative decl (engine-proof); OFFERED PO to upgrade §B to REAL container decls.
+  - folder verb createPhysicalWithUnit→**mintRealUnit** (UC2) tracked in the built-detection.
+- r4037 = GREEN 10 cells + stub-must-fail@check + APPROVE_STATUSES single-source. ONLY PENDING: rollback-actually-rolls-back (folder.mintRealUnit NOT built yet → on ship: force unit-put throw → assert dir rmdir'd/no orphan). AC-6-device @390 = Tron's.
+- **inc-2 NOT shipped** (actionsForContext still live in model.ts) → r339b/r34e/r34 re-point to applicableActionsFor still QUEUED (do on inc-2 ship).
+- AWAITING PO: (a) upgrade §B to real container decls now? (b) build rollback cell when mintRealUnit lands. Context ~60%. origin==HEAD==b0ca0fe10 clean.
