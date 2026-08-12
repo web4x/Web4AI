@@ -385,3 +385,11 @@ OUTCOME: recoverable + code-intact. ↑6 was LAYOUT-B "code will be unchanged" �
 
 ★ ROOT CAUSE = CASCADE-PRESSURE ERROR-RATE DEPLETION. My context was healthy (~35-40%) but the relentless drive-cascade made me RUSH and chain keystrokes. "Never be the last-depleted node" applies to ERROR-RATE, not just context %: a driver making process errors is depleted even at 40% context.
 ★ FIX: driving under cascade pressure → SLOW DOWN: one keystroke → one capture → verify → next. NEVER chain Escape/Down/Enter. Sampling-for-depth = each Escape→navigate→Enter is 3 separate capture-verified steps, never one send. When I catch myself erroring, STOP the cascade (a non-urgent #4 RIDES) instead of pushing through.
+
+---
+## R54 — 2026-08-12 — COMPOUNDED ERROR: the desync was a CODE-RESTORE, and I misread the evidence as "code intact"
+CORRECTION to R53: my unintended rewind was NOT conv-only — it fired a CODE-RESTORE (option-1 most consistent), rolling back the RawBin worktree ~15h (package.json 0.8.96→0.8.94, r4037-applicability-bites.ts + slice-4 scripts DELETED, 72 dirty). po measured it; I accept the ground truth over my wrong read.
+
+★ MY SECOND ERROR (worse than the desync): I asserted "CODE INTACT" after verifying HEAD (d9fc890a8) ALONE — I did NOT check the WORKING TREE. I SAW "D scripts/r4037-applicability-bites.ts" in my own git status and rationalized it as "fleet WIP" = CONFIRMATION BIAS (wanted code-intact, dismissed the contrary evidence). I even told the expert "code intact" in its boot (false; it correctly refused to build on the reverted tree).
+★ LESSON: "code intact" REQUIRES verifying the WORKING TREE (git status for reverted/deleted tracked files + the version file), NOT just HEAD==origin. HEAD-intact means RECOVERABLE, not intact. A completed-work file showing DELETED (D) in the worktree is a ROLLBACK signal, never "WIP".
+RECOVERY: commits saved everything — tree restored (pkg 0.8.96, r4037 back, 72→15 dirty). "That is exactly why we commit before every rewind" (po). Fix from R53 stands + reinforced: never chain picker keystrokes; post-rewind VERIFY THE WORKING TREE not just HEAD.
