@@ -1074,3 +1074,15 @@ Observed in ONE night across five drives:
 **So the position of "Restore conversation" is 1 or 2 depending on the checkpoint**, and the menu length varies 4-5. Any muscle-memory keystroke sequence (Down-then-Enter) is a coin flip that can summarise an agent's canon away instead of rewinding it.
 **Rule:** ALWAYS read every option label, then select the one that says exactly "Restore conversation", and confirm the effect line reads "The code will be unchanged" BEFORE pressing Enter. Never select by remembered position. Grow the pane first if the option list is clipped (`otmux pane.size.set <pane> - 40`) — an unread menu is an unselectable menu.
 **Corollary — the label is also the only place the DAMAGE is stated:** option-1 scopes tonight would have reverted MEMORY.md three separate times (+211/-1599 · +14/-426 +24 files · +167/-848 +42 files) and ARON's ESSENCE.md once. Reading the scope line is what prevented four separate losses.
+
+## L-S40-PANE-GEOMETRY — resizing a pane to read a picker can CORRUPT the layout AND corrupt my measurements
+To read clipped rewind-menu options I ran `otmux pane.size.set <pane> - 40` (height only — the `-` IS honoured, verified in source). But repeated height forcing in an 8-pane tiled window made tmux redistribute space until the EXPERT's pane collapsed to **1x43 — one column wide**.
+**Two harms, and the second is worse:**
+1. The agent's UI cannot render usefully at 1 column.
+2. **It corrupted MY OBSERVATION.** `pane.capture` returned one character per line, which read as garbled/empty — so I concluded "expert is idle and hasn't shipped". It was **generating the whole time**. I nearly re-dispatched work to a busy agent on the strength of a broken render.
+**Rules:**
+1. After ANY pane resize, RESTORE it and VERIFY with `otmux pane.size` — do not assume the restore took (my `- 20` restore left it at 43 tall).
+2. **Before diagnosing an agent from its pane, check the pane's DIMENSIONS.** A capture is only evidence if the pane is wide enough to render. Garbled/vertical/one-char-per-line output = geometry problem, NOT an agent problem.
+3. Prefer NOT resizing a live agent's pane at all — read a clipped picker by pressing a harmless key (Down) to force a re-render, which is what actually worked, or accept a taller capture.
+4. `otmux layout.list` has no saved layout for most windows, so there is no cheap undo — a re-tile would rearrange panes Tron arranged. Fix the single pane's width instead.
+**Meta:** this is the observer breaking the thing it observes. My measurement discipline assumed the instrument was neutral; the instrument was mine and I had bent it.
