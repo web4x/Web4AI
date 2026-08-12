@@ -1065,3 +1065,12 @@ The ARCHITECT walled at 0% mid-task on Tron's brand-new order. I had measured th
 2. Weight the sweep by OUTPUT VOLUME, not by complaint volume: whoever produced the most reasoning since the last sweep gets measured first.
 3. Ask the SM to enumerate the roster and read all of it — "nobody flagged" is not evidence anyone is safe (same shape as [[false-low-worse-than-absent-sanity-check-values]]).
 4. A walled agent mid-task loses the in-flight reasoning, not the committed work — which is why scenario-first minting BEFORE design (rule #126) saved this one: req had already minted the requirement, task and UCs, so the fresh architect resumes from disk instead of from scratch.
+
+## L-S40-THREE-LAYOUTS — the rewind menu has AT LEAST THREE layouts: by-label is the only survivable rule
+Observed in ONE night across five drives:
+- **LAYOUT-A** (4 options, code snapshot present): 1 Restore code+conversation · 2 Restore conversation · 3 Restore code · 4 Summarize from here. → the safe pick is **2**.
+- **LAYOUT-B** (checkpoint marked "⚠ No code restore", ARON's): 1 **Restore conversation** · 2 Summarize from here · 3 Summarize up to here · 4 Never mind. → the safe pick is **1**; pressing Down-then-Enter here SUMMARISES instead of rewinding.
+- **LAYOUT-C** (5 options, tester's): 1 code+conv · 2 conv · 3 code · 4 summarize-from · 5 summarize-to. → safe pick **2**.
+**So the position of "Restore conversation" is 1 or 2 depending on the checkpoint**, and the menu length varies 4-5. Any muscle-memory keystroke sequence (Down-then-Enter) is a coin flip that can summarise an agent's canon away instead of rewinding it.
+**Rule:** ALWAYS read every option label, then select the one that says exactly "Restore conversation", and confirm the effect line reads "The code will be unchanged" BEFORE pressing Enter. Never select by remembered position. Grow the pane first if the option list is clipped (`otmux pane.size.set <pane> - 40`) — an unread menu is an unselectable menu.
+**Corollary — the label is also the only place the DAMAGE is stated:** option-1 scopes tonight would have reverted MEMORY.md three separate times (+211/-1599 · +14/-426 +24 files · +167/-848 +42 files) and ARON's ESSENCE.md once. Reading the scope line is what prevented four separate losses.
