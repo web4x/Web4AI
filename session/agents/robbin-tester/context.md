@@ -819,3 +819,11 @@ NEXT (post-rewind, PO bound-the-work per piece; SM gives ctx# before large): r30
 - r4037 = GREEN 10 cells + stub-must-fail@check + APPROVE_STATUSES single-source. ONLY PENDING: rollback-actually-rolls-back (folder.mintRealUnit NOT built yet → on ship: force unit-put throw → assert dir rmdir'd/no orphan). AC-6-device @390 = Tron's.
 - **inc-2 NOT shipped** (actionsForContext still live in model.ts) → r339b/r34e/r34 re-point to applicableActionsFor still QUEUED (do on inc-2 ship).
 - AWAITING PO: (a) upgrade §B to real container decls now? (b) build rollback cell when mintRealUnit lands. Context ~60%. origin==HEAD==b0ca0fe10 clean.
+
+## ▶ r4037 §B upgrade + MODEL_DECLS blocker (2026-08-12, HEAD cee698fdc)
+- §B now tests the REAL engine vs the REAL decl GRAMMAR (notTypes, as MODEL_DECLS uses): task→NO container actions, container→add-folder, modelelement→add-diagram ABSENT. GREEN.
+- ★ BLOCKER (flagged PO+req, recommend expert): real MODEL_DECLS DATA is module-local in the HEAVY browser module model.ts (unexported; accessor actionsForContext unexported + retires inc-2) → node gate can't import it. FIX = expert exports MODEL_DECLS from a PURE module (mirrors inc-1). Then §B imports real data.
+- ★ Caught+fixed a FALSE-NEGATIVE in my own pending-detection (AC4 check matched a comment 'switch to kinds:[diagrams]'). Now reads the actual decl line. (Meta-lesson: a detection regex must not match a comment mentioning the target.)
+- r4037 GREEN 10 cells + meta; 3 PENDING-IMPL: rollback (folder.mintRealUnit) · §B-real-DATA-export · AC4-kind-gate (add-diagram still notTypes→all containers).
+- **ALL-FOUR / inc-2 DEPLOY plan (ONE pass):** flip AC4 (diagrams-container→add-diagram + plain-folder→ABSENT + lazy-mint IDEMPOTENT touch-twice→ONE-unit via ensureViewUnit) + rollback cell (mintRealUnit put-throw→dir rmdir'd) + import real MODEL_DECLS (if exported) + re-point r339b/r34e/r34 off retired actionsForContext → then req mints R40.37 Test→17ae8d0a. AC-6-device @390 = Tron's.
+- Context climbing ~60%; PO may be mid-shed (~89%) — report to whoever picks up if quiet.
