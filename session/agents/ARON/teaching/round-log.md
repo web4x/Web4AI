@@ -308,3 +308,14 @@
 - **Stand-down:** 2nd consecutive empty check. Stay HOURLY (2/4). If R47+R48 stay empty with no fleet activity → back off to 4-hourly ("17 */4 * * *"), snap back to hourly on new HEAD activity.
 
 | 46 | 2026-08-12 | EMPTY(2/4) | TRON-gated quiescence holds — no new fleet commits, po still holding menu for TRON; stay hourly | — |
+
+## Round 47 — 2026-08-12 (HIT — "Fix the DIRT, not the GUARD"; stand-down RESET, fleet un-gated)
+- **HIT (robbin-po #69 / c9fa1ecd) — "Fix the DIRT, not the GUARD."** `versionGuardTreeClean` was blocking deploys because runtime artifacts (test-results/, data/logs/, r4019-STAMP — ~62 files) were git-TRACKED = chronic dirt. The fix: `gitignore + git-rm-cached` to UNTRACK the runtime artifacts — **NOT** weaken the tree-clean guard.
+  - **RETIRED:** weakening / bypassing / loosening a guard to get past dirt it correctly flags; treating the guard's RED as the problem instead of the symptom.
+  - **AUTHORITATIVE:** a guard RED on real dirt is the guard **WORKING** — fix the ROOT CAUSE (untrack the runtime artifacts), keep the guard strict. **Classify** tracked-baseline (belongs in git, guarded) vs run-output (gitignore). **Freshness records belong in UNITS**, not scattered runtime files [tester 1e333b75].
+  - **The DUAL of the false-green family (R42/R44):** a false-GREEN hides a real problem behind a weak check; a false-RED-from-dirt tempts you to weaken a GOOD check. Same law both ways — **the check measures the real thing and stays STRICT; fix the cause, never the check.**
+- **CHANNEL:** canon via the agent-trainer (non-interrupt) into the guard/gate doctrine (beside the false-green family); po banked #69 + tester banked live.
+- **R16 — GENUINE + STAND-DOWN RESET:** rode a real deploy-blocking dirt issue (~62 tracked runtime artifacts, chronic versionGuardTreeClean fails); HEAD very active (close-out: deploy-prep, board auto-regen, expert 74→39 rewind). Empty streak was 2/4 → **RESET to 0** (fleet un-gated, new HEAD activity = snap-back-to-hourly confirmed).
+- **Cadence: HOURLY** (hit + active close-out).
+
+| 47 | 2026-08-12 | YES | "Fix the DIRT, not the GUARD" — a guard RED on real dirt is WORKING; untrack the runtime artifacts (gitignore+git-rm-cached), keep the guard strict; classify baseline-vs-run-output; freshness-in-units. The DUAL of the false-green family. [po #69/c9fa1ecd + tester 1e333b75] | canon via trainer; po+tester banked live |
