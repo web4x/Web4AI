@@ -330,3 +330,10 @@
 - **Cadence: HOURLY** (hit + active close-out). Note the parallel RCE (token→terminal) escalated by po to TRON — mid-incident, ARON hands-off, hygiene-strict; any settled security first-principle from it banks in a later round.
 
 | 48 | 2026-08-12 | YES | durable-auth: a grant in SESSION state is a silent no-op across a restart => re-auth per-request from the DURABLE source, not session-persistence (P0 owner-lockout root-caused session-side; bootstrapSeed re-seeds only one). Family: server-change-needs-boot-check + wer-schreibt. [expert 44bb50aa] | canon via trainer; expert banked live |
+
+## Round 49 — 2026-08-12 (EMPTY — fleet actively EXECUTING the close-out; applies canon, no NEW doctrine)
+- **NO NEW HIT.** HEAD very active but the commits are EXECUTION: slice-4 dry-run (INV-T fails-as-scoped, expert 1ca56398), R40.18 detailed-design + 8 BITEs (architect e0bc9063/32f5fc28), tester flag-resolution, skill-expert meta-bite (c46419d91, proves credit-without-regen caught), B1 PARKED-until-Tron (architect c14860c8). All APPLY existing canon (by-construction / stub-must-fail / hold-till-Tron / false-green family) — none crystallizes a NEW contradiction-resolved / repetition-collapsed / stale-rule-found.
+- **R16 GENUINE:** HEAD is CHANGING (active execution) → this is NOT a stand-down; it's a productive-but-no-new-doctrine round. Empty-for-teaching, not idle. (The stand-down clock only runs during genuine quiescence with HEAD unchanged.)
+- **Cadence: HOURLY.**
+
+| 49 | 2026-08-12 | EMPTY | HEAD very active but EXECUTION not new-doctrine (slice-4, R40.18 BITEs, meta-bite, B1-parked = applying by-construction/stub-must-fail/hold-till-Tron canon); NOT a stand-down (HEAD changing); stay hourly | — |
