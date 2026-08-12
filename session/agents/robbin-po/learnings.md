@@ -1032,3 +1032,14 @@ I ordered the planner to "regen S21-29 requirements.md" to clear a red CI gate, 
 2. Ordering a fix to make a gate green is how data gets destroyed. Ask first: is the gate right, or is the gate's SCOPE wrong?
 3. An agent refusing my instruction on measured grounds is the system WORKING. Two did here; both were right; the correct response is to thank them and fix my premise, not to re-assert.
 4. When a checker and a writer disagree about which files they own, that is a single-source violation — align them on ONE predicate, prove the alignment didn't blind the check (plant real drift, assert RED), and record the excluded set as named debt.
+
+## L-S40-UNBOOTED — "build-not-deploy" ACCUMULATES UNBOOTED CODE: it detonates on the next unrelated deploy
+The R40.18 restart caused an ~8-MINUTE PROD OUTAGE (Tron connected). Root was NOT R40.18: `FeatureManager.bootstrapSeed` iterated the `loadProtectedIdentities()` OBJECT instead of its `.ids` -> TypeError -> the retry path `startServers(true)` DOUBLE-BOUND :4000 -> EADDRINUSE crash-loop. That code was B1 owner-safety work landed **BUILD-NOT-DEPLOY** and **never booted** — the R40.18 restart was its FIRST EVER BOOT, weeks/hours later and for a completely unrelated reason.
+**The systemic trap:** a "build-not-deploy, it's inert, it's safe" policy is only safe for the RUNNING server. It converts each such commit into a latent BOOT-BOMB that fires on whoever next restarts, for whatever unrelated reason. The blast lands on an innocent deploy and looks like that deploy's fault.
+**It is the DISGUISE pattern again** ([[L-S40-MECHANIZE]]): the rule "a server change needs a boot-check" existed and was even quoted by me in the deploy order — but **build-not-deploy does not LOOK like a deploy**, so the boot-check discipline never fired on it.
+**Rules:**
+1. Any build-not-deploy landing that touches server-boot paths must get a **SCRATCH BOOT-SMOKE** at landing time (boot against a scratch config, assert /api/config responds, discard) — mechanically, not by remembering.
+2. Treat the FIRST deploy after any parked/inert landing as high-risk: expect unbooted code, have the rollback ready, and boot-check before declaring success.
+3. Audit what else is parked-and-unbooted BEFORE the next restart, not after (the B1 inert wiring — homeKeyFor sites, initStorageMap, REKEY_APPLIED, regrowth-kill — has still never booted).
+4. A crash-retry path that re-binds a port turns one TypeError into a crash-LOOP. Retry logic must not re-acquire a resource it may already hold.
+**Credit:** the expert reported the outage unprompted, in full, with root cause and blast radius — that is the behaviour I want when something breaks.
