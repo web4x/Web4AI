@@ -1086,3 +1086,10 @@ To read clipped rewind-menu options I ran `otmux pane.size.set <pane> - 40` (hei
 3. Prefer NOT resizing a live agent's pane at all — read a clipped picker by pressing a harmless key (Down) to force a re-render, which is what actually worked, or accept a taller capture.
 4. `otmux layout.list` has no saved layout for most windows, so there is no cheap undo — a re-tile would rearrange panes Tron arranged. Fix the single pane's width instead.
 **Meta:** this is the observer breaking the thing it observes. My measurement discipline assumed the instrument was neutral; the instrument was mine and I had bent it.
+
+## L-S40-BOTH-DIRECTIONS — information loss at the PO node runs BOTH ways: unrelayed outward AND unabsorbed inward
+Tonight I lost information in both directions at my own node:
+- **OUTWARD (3x):** an ack that reached me never reached the agent blocked on it (statusSymbol), a Tron ruling never reached the architect waiting for it (the SPLIT), a co-owner approval sat unrelayed while the planner held. Fix already adopted: relay verbatim, immediately.
+- **INWARD (1x):** I raised an "ARON is driving UNMEASURED" alarm and escalated it — when the SM had ALREADY measured ARON (30% used, gold panel) and reported it. The measurement existed; I hadn't absorbed the report. I burned my own and the SM's attention re-establishing a fact we already held.
+**Rule:** before raising an alarm or asking for a measurement, CHECK WHETHER IT WAS ALREADY REPORTED. My own doctrine (measure, don't assume) has a twin: **read what was already measured before measuring again.** Duplicate measurement is cheaper than a false assumption, but it is not free — and an alarm raised on stale ignorance costs the team's trust in my alarms.
+**Practical guard:** when a report is dense (multi-agent sweeps, several numbers), extract the numbers into my own anchor as I read them, so they survive my attention rather than my memory. A number I did not write down is a number I will re-ask for.
