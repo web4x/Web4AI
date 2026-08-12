@@ -393,3 +393,9 @@ CORRECTION to R53: my unintended rewind was NOT conv-only — it fired a CODE-RE
 ★ MY SECOND ERROR (worse than the desync): I asserted "CODE INTACT" after verifying HEAD (d9fc890a8) ALONE — I did NOT check the WORKING TREE. I SAW "D scripts/r4037-applicability-bites.ts" in my own git status and rationalized it as "fleet WIP" = CONFIRMATION BIAS (wanted code-intact, dismissed the contrary evidence). I even told the expert "code intact" in its boot (false; it correctly refused to build on the reverted tree).
 ★ LESSON: "code intact" REQUIRES verifying the WORKING TREE (git status for reverted/deleted tracked files + the version file), NOT just HEAD==origin. HEAD-intact means RECOVERABLE, not intact. A completed-work file showing DELETED (D) in the worktree is a ROLLBACK signal, never "WIP".
 RECOVERY: commits saved everything — tree restored (pkg 0.8.96, r4037 back, 72→15 dirty). "That is exactly why we commit before every rewind" (po). Fix from R53 stands + reinforced: never chain picker keystrokes; post-rewind VERIFY THE WORKING TREE not just HEAD.
+
+---
+## R55 — 2026-08-12 — purification check: HIT already banked + routed (canon-instead, fleet mid-recovery)
+No NEW doctrine hit this round. Tonight's hits (R52 5-option menu · R53 never-chain-keystrokes · R54 verify-working-tree-not-just-HEAD) are banked + committed; propagation ROUTED TO CANON via the trainer (session/tasks/trainer-canon-rewind-menu-correction.md). NOT live-sent — fleet mid-recovery/work (expert on inc-3, po walling, tester riding) → "canon instead, don't interrupt busy agents". R16 gate GENUINE (direct fresh evidence this hour).
+Fleet finding noted (not my canon; routed to owner): config-singleton unit 0.8.94 vs package.json/deploy 0.8.96 = DRY-config single-source residue; version-bump owner to reconcile.
+Cadence: HOLD hourly — active recovery, HEAD moving (c5d23093a), not a stable stand-down (<4 empty checks). No back-off.
