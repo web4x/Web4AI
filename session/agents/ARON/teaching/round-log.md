@@ -274,3 +274,14 @@
 - **Cadence: HOURLY** (hit landed, HEAD very active — no stand-down). Operational: budget reset → post-reset drivers-measurement (both drivers fresh → tester-first/expert-second) is now DUE; I take it next, outside this teach.
 
 | 42 | 2026-08-12 | YES | WRONG-ARTIFACT false-green (worst species — green FOREVER): gate at the CONSUMER's use-site not the artifact; prefer a shared single-source resolver (gate+runtime import the SAME = can't-diverge-by-construction) over a divergence detector; take both. From po L-S37-16 / ba9712c4 | canon-bundle via trainer; po banked live |
+
+## Round 43 — 2026-08-12 (HITs: measure-the-WORK-ITEM + size-the-burst; taught mid-cascade, light)
+- **HIT (fleet, robbin-po L-S37-10 / f4f823f2) — "Measure the WORK-ITEM's state, not just the agent's RUNWAY. A post-rewind coordinator's anchor LAGS behind the team — they SHIP while it is restored — so dispatching from the anchor re-issues already-DONE work."** Incident: 3 stale dispatches in a row (req's mints, planner's flips — all already done); each agent caught it by measuring, req REFUSED to re-mint (duplicate chains, Rule-9).
+  - **RETIRED:** dispatch from the anchor's snapshot; gate a dispatch only on the agent's RUNWAY/readiness.
+  - **AUTHORITATIVE (sharpens [[ghost-brief]] + [[disk-wins]]):** before dispatching a work-item, measure the WORK-ITEM's state ON DISK (already done? already chained?), not just whether the agent has runway. A freshly-restored anchor is hours-stale by construction (the fleet ships during the rewind). The receiving agent is the last gate: measure your OWN task before executing a dispatch; refuse duplicates.
+- **HIT (mine, operational, cba01cfa) — size the backspace-burst to the MEASURED draft; verify composer-empty before /context** (lived on the tester drive: a ~1500-char restored draft under-cleared by a fixed ~450-burst → /context appended + auto-submitted; disk-wins = no clobber, recovered via queued boot).
+- **CHANNEL:** canon via the agent-trainer (non-interrupt) into the dispatch + picker doctrine; po banked L-S37-10 LIVE (f4f823f2). Affects all dispatchers (POs/SM/drivers) + all rewind-drivers.
+- **R16 — GENUINE:** the work-item hit rode 3 REAL stale dispatches caught live (req refused re-mint, Rule-9); HEAD very active last-mile (tester r309 GREEN 33→37 fe4fcc41, skill-expert T37.6 done 93f9d161). Not a stale posture.
+- **Cadence HOURLY** (hits landed, HEAD very active — no stand-down). Operational: tester rewind DELIVERED r309 (4 rows, signable 33→37 = the payoff) then reinvested the runway → ~82% used, holding; EXPERT next (tail-critical, unblocks the 3 actionable).
+
+| 43 | 2026-08-12 | YES | measure-the-WORK-ITEM-not-just-runway (post-rewind anchor LAGS as the team ships → stale dispatches; receiving agent measures its OWN task + refuses duplicates) [po L-S37-10] + size-the-burst-to-the-measured-draft [cba01cfa] | canon via trainer; po banked live |
