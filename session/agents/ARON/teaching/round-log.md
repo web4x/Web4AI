@@ -302,3 +302,9 @@
 - **Stand-down tracking:** 1st consecutive empty check (R44 was a HIT). Stay HOURLY (need ≥4 consecutive empty + HEAD unchanged to back off to 4-hourly "17 */4 * * *", snap-back-to-hourly on new HEAD activity).
 
 | 45 | 2026-08-12 | EMPTY(1/4) | genuine TRON-gated quiescence — HEAD unchanged since R44, po holding A′/B′ menu for TRON, fleet all-idle; stay hourly | — |
+
+## Round 46 — 2026-08-12 (EMPTY 2/4 — TRON-gated quiescence holds)
+- **NO HIT.** No new fleet commits since R44 (only my own R45/R46 round-commits). R16 GENUINE (not stale posture): po still holding its decision menu open awaiting TRON (robbinTeam2:0.0 = "Enter to select"), fleet all-idle, TRON-gated. Unchanged from R45.
+- **Stand-down:** 2nd consecutive empty check. Stay HOURLY (2/4). If R47+R48 stay empty with no fleet activity → back off to 4-hourly ("17 */4 * * *"), snap back to hourly on new HEAD activity.
+
+| 46 | 2026-08-12 | EMPTY(2/4) | TRON-gated quiescence holds — no new fleet commits, po still holding menu for TRON; stay hourly | — |
