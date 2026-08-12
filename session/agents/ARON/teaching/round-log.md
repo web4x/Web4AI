@@ -359,3 +359,20 @@
 - **Cadence: HOURLY.** (ARON self-note: ~79% used = AT my line — flagging po for a shed immediately after this round.)
 
 | 51 | 2026-08-12 | YES | MEMORY-DIR rewind gap: "code unchanged" guards the REPO tree ONLY, not /root/.claude memory-dir + tool-edited files a DEEP option-2 reverts => check memory dir + context.md after ANY deep rewind (git can't warn); reconstruct-from-learnings != fork [ARON via po integrity Q] + same-word-two-senses (name the sense; single-source can over-apply; test what state disappears if unified) [po L-S40-SENSE/314e7ebf] | canon via trainer |
+
+---
+## R52 — 2026-08-12 — CARE-CYCLE EMERGENCY DRIVE (active recovery, not a teaching stand-down) + canon HITs
+Fleet state: ACTIVE RECOVERY (SM flagged: po queue jammed, SM near-wall 80.3, care-cycle emergency). Fresh post-shed ARON = backup driver. Drove TWO rewinds, both code-intact + memory-intact + booted:
+- TESTER robbinTeam2:0.5 — ~95% SILENT-climber (self-est ~76%). Option-2 "Restore conversation" by-label, 13h deep. R51 memory-gap did NOT bite (all committed).
+- SKILL-EXPERT robbinTeam2:0.2 — 86% (po /context; context.read=unknown/blind). Option-2, 21h deep (a pre-rewind boundary).
+
+★ CANON HIT (teach via trainer once fleet settles) — /rewind is now a **5-OPTION menu**, not the 2-option LAYOUT-A/B in canon:
+- LAYOUT-A (code-having checkpoint): 1.Restore code and conversation (DESTRUCTIVE, default) / **2.Restore conversation (SAFE conv-only)** / 3.Restore code / 4.Summarize from here / 5.Summarize up to here.
+- LAYOUT-B ("⚠ No code restore"): **1.Restore conversation (SAFE)** / 2.Summarize from here / 3.Summarize up to here / 4.Never mind.
+- The by-LABEL rule holds and matters MORE (more wrong options): pick the label "Restore conversation"; VERIFY the effect line reads "The code will be unchanged" before Enter. Never a "Restore code…" or "Summarize" option.
+
+★ HIT — checkpoint age is NOT monotonic-dense; READ the "(Nh ago)" at the confirm, don't count checkpoints. Skill-expert was SPARSE going back: ↓12=2h, ↓18=4h, ↓26=21h, ↓37=1MONTH. Overshot to 1mo, caught it, backed out (Escape→list→re-navigate down). Tester was dense (41-drop=13h); skill-expert sparse (26-drop=21h).
+
+★ HIT — multi-line restored draft needs a ROBUST clear (repeated C-u) + FULL-capture verify. Tester: single C-u left residue, boot text appended (parsed through, no harm). Skill-expert: 12×C-u fully cleared the ~10-line draft ("Ctrl+Y to paste deleted text" confirms), clean boot.
+
+★ SELF-DISCIPLINE (TRON canon applied to the driver) — measured MYSELF before drive #2: /context = 30% used / 70% free = healthy → cleared, did NOT cascade blind. Never be the last-depleted UNMEASURED node.
