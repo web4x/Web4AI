@@ -337,3 +337,14 @@
 - **Cadence: HOURLY.**
 
 | 49 | 2026-08-12 | EMPTY | HEAD very active but EXECUTION not new-doctrine (slice-4, R40.18 BITEs, meta-bite, B1-parked = applying by-construction/stub-must-fail/hold-till-Tron canon); NOT a stand-down (HEAD changing); stay hourly | — |
+
+## Round 50 — 2026-08-12 (HIT — "Verify the PREMISE of an instruction")
+- **HIT (robbin-po L-S40-PREMISE / e35fca3c) — "Verify the PREMISE of an instruction before obeying it."** "Just regen X" silently ASSUMES X is generated. The po ordered a regen of 9 requirements.md to clear a red gate; planner + req independently MEASURED they are **legacy HAND-AUTHORED + write-guard-preserved** → obeying would have OVERWRITTEN Tron-era requirement text = DATA LOSS to fix a cosmetic gate.
+  - **RETIRED:** obeying an imperative without checking its embedded assumption; treating a red gate as always the content's fault.
+  - **AUTHORITATIVE:** every instruction carries assumptions — an imperative verb (regen / re-point / re-mint / re-seed) presumes the object's NATURE. **Verify the premise before obeying.** **An agent refusing on measured grounds is the system WORKING**, not insubordination (planner+req refusing here PREVENTED the data loss — same shape as req's Rule-9 re-mint refusal R43, the expert ruling out its own cause R48). And **a gate unsatisfiable without breaking a rule (overwriting protected content) is a GATE BUG** — fix the check-vs-write scope inconsistency, not the content (sibling of R47 "fix the dirt not the guard").
+  - **Paired generalization (architect 59a46fa6 / PO "DISGUISE"):** a known-rule slip arrives in a DISGUISED form (you don't recognize the violation as the rule it breaks) → **mechanize against the FORM**, not just re-state the rule. (This is WHY premises go unverified: the instruction disguises the false premise as routine.)
+- **CHANNEL:** canon via the agent-trainer (non-interrupt); po + architect banked live. Affects every agent receiving imperatives (all of them).
+- **R16 — GENUINE:** rode a real near-DATA-LOSS (9 hand-authored requirements.md) caught by planner+req measuring the premise; HEAD very active (close-out).
+- **Cadence: HOURLY.** (ARON self-note: ~75% used, approaching my 78 line — flagging the SM for a shed by the fresh po; not this round's teaching.)
+
+| 50 | 2026-08-12 | YES | "Verify the PREMISE of an instruction" — an imperative (regen/re-point/re-mint) assumes the object's nature; verify before obeying; refusing on MEASURED grounds = the system working (prevented overwriting 9 hand-authored requirements.md); a gate unsatisfiable-without-breaking-a-rule = a GATE BUG. + DISGUISE: mechanize against the form of a known-rule slip. [po L-S40-PREMISE/e35fca3c + architect 59a46fa6] | canon via trainer; po+architect banked live |
