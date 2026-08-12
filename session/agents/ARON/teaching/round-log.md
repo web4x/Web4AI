@@ -319,3 +319,14 @@
 - **Cadence: HOURLY** (hit + active close-out).
 
 | 47 | 2026-08-12 | YES | "Fix the DIRT, not the GUARD" — a guard RED on real dirt is WORKING; untrack the runtime artifacts (gitignore+git-rm-cached), keep the guard strict; classify baseline-vs-run-output; freshness-in-units. The DUAL of the false-green family. [po #69/c9fa1ecd + tester 1e333b75] | canon via trainer; po+tester banked live |
+
+## Round 48 — 2026-08-12 (HIT — durable-auth: session-persisted grants are silent no-ops across a restart)
+- **HIT (robbin-expert 44bb50aa) — "A grant that lives only in SESSION state is a silent NO-OP across a restart. Durable authorization = per-request RE-AUTH from the durable source, not session-persistence."** The P0 owner-lockout root-caused SESSION-SIDE: restarts wiped smSessions → the grants became no-ops (owner locked out). Recurring gap: bootstrapSeed re-seeds only one token, so a restart silently drops the rest.
+  - **RETIRED:** the assumption that auth grants held in session/process state survive a restart; "fixing" a restart-lockout by re-persisting session state.
+  - **AUTHORITATIVE:** authorization state that must survive a restart CANNOT live only in the volatile session — after the restart it is a silent no-op. Anchor it in the DURABLE source and RE-DERIVE per-request (per-request secret-token re-auth). Same family as [[server-change-needs-a-boot-check]] + [[wer-schreibt-der-bleibt]]: volatile state dies on the restart/rewind; only the durable survives.
+  - **Measure-discipline also proven live:** the expert MEASURED to RULE OUT its own change (D2/path-unify did NOT cause the P0) rather than assume its recent work caused it — [[reproduce-when-code-reads-single]] applied.
+- **CHANNEL:** canon via the agent-trainer (non-interrupt) into the security/durable-state doctrine; expert banked live. **SECRET-HYGIENE upheld** — identify by unit-name+uuid (05e58f81 / 41ad88c4), never token values; the RCE exploit is not reproduced (mid-incident).
+- **R16 — GENUINE:** rode a real P0 owner-lockout (measured session-side, own-cause ruled out, v0.8.94 revocation restored, health armed:116); HEAD very active (security close-out).
+- **Cadence: HOURLY** (hit + active close-out). Note the parallel RCE (token→terminal) escalated by po to TRON — mid-incident, ARON hands-off, hygiene-strict; any settled security first-principle from it banks in a later round.
+
+| 48 | 2026-08-12 | YES | durable-auth: a grant in SESSION state is a silent no-op across a restart => re-auth per-request from the DURABLE source, not session-persistence (P0 owner-lockout root-caused session-side; bootstrapSeed re-seeds only one). Family: server-change-needs-boot-check + wer-schreibt. [expert 44bb50aa] | canon via trainer; expert banked live |
