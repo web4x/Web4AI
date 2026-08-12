@@ -376,3 +376,12 @@ Fleet state: ACTIVE RECOVERY (SM flagged: po queue jammed, SM near-wall 80.3, ca
 ★ HIT — multi-line restored draft needs a ROBUST clear (repeated C-u) + FULL-capture verify. Tester: single C-u left residue, boot text appended (parsed through, no harm). Skill-expert: 12×C-u fully cleared the ~10-line draft ("Ctrl+Y to paste deleted text" confirms), clean boot.
 
 ★ SELF-DISCIPLINE (TRON canon applied to the driver) — measured MYSELF before drive #2: /context = 30% used / 70% free = healthy → cleared, did NOT cascade blind. Never be the last-depleted UNMEASURED node.
+
+---
+## R53 — 2026-08-12 — MY ERROR: chained picker keystrokes → unintended ~1mo-deep rewind (recoverable, code-intact)
+Driving the EXPERT rewind (#3) under the relentless po cascade (po dumping #3+#4 while walling at 95%), I CHAINED Escape+Down+Enter in ONE send WITHOUT capturing between keystrokes — the EXACT rule I banked in R52 hours ago. It desynced and fired an unintended rewind at the ↑6 "(1mo ago)" checkpoint (I was sampling toward ~8h; the sparse-tail put ↑6 at 1mo).
+
+OUTCOME: recoverable + code-intact. ↑6 was LAYOUT-B "code will be unchanged" → conv-only, no code touched. Verified: RawBin HEAD d9fc890a8 intact (S37/inc-3/R40.37 all committed); 72 dirty = fleet WIP, not a revert. Expert self-healed (disk-first boot, ignored the 1mo-stale thread); I queued the correct-reality boot (inc-3, v0.8.96).
+
+★ ROOT CAUSE = CASCADE-PRESSURE ERROR-RATE DEPLETION. My context was healthy (~35-40%) but the relentless drive-cascade made me RUSH and chain keystrokes. "Never be the last-depleted node" applies to ERROR-RATE, not just context %: a driver making process errors is depleted even at 40% context.
+★ FIX: driving under cascade pressure → SLOW DOWN: one keystroke → one capture → verify → next. NEVER chain Escape/Down/Enter. Sampling-for-depth = each Escape→navigate→Enter is 3 separate capture-verified steps, never one send. When I catch myself erroring, STOP the cascade (a non-urgent #4 RIDES) instead of pushing through.
