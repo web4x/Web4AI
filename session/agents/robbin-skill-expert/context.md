@@ -1,5 +1,12 @@
 # robbin-skill-expert Context — Save Point 2026-06-28 POST-FORK (WODA.prod, STANDBY)
 
+## ★★★ 2026-08-12 ACTIVE — BOARD AUTO-REGEN (PO-assigned, extend my T37.6 pattern) + R40.18 answered (READ FIRST) ★★★
+**WHY:** Tron worked overnight, tasks advanced, THE SPRINT BOARD (scrum.pmo/campaign-scoreboard.md) NEVER CHANGED. My T37.6 hook auto-regens sprints.overview.md by construction, but the campaign board is NOT in the hook — planner runs it manually (vigilance-dependent, PO deferred 3x).
+**MEASURED (read the code, not memory):** scripts/campaign-scoreboard.mjs READS units + only console.logs (NO writeFileSync) -> planner HAND-TRANSCRIBES -> stale. Board (93 lines) is MIXED: machine-MEASURED (Headline counts / Per-sprint table / Remaining-by-blocker / per-task remaining lists) + hand-CURATED (Drive-order / Last-mile expert queue / Deferred-backlog / Exclude). No ownership marker.
+**DESIGN (single-source, fail-closed, mirrors overview hook):** wrap ONLY measured sections in a GENERATED-INDEX BEGIN/END region (curated preserved byte-for-byte, C7); add --write to campaign-scoreboard.mjs via my R37.8 guardedWriteRegion; wire into precommit hook (Task/chain unit change -> regen+stage board in same commit); stub-must-fail (script has --bite already; add region-drift RED). ★ BLOCKED ON: PO go for the measured-vs-curated SECTION SPLIT (it is the planner LIVE board — don't clobber curation). Build immediately on go.
+**R40.18 ANSWERED (measured): SMALL/CONTAINED, not a real build.** getThreeSlots (CurrentSprint.ts:213-220) ALREADY derives current = FIRST NOT-DONE in-sprint task (single-source via resolveSprintPin; stored 2nd-source slots retired by R40.17) -> already auto-advances on DONE. R40.18 = extend the advance predicate to step past QA-Review (advance-on-QA) + bite + lastCompleted picks up QA-d task. SEMANTIC FOR TRON: advance-at-QA vs stay-until-Done (his call, changes the displayed pin). Sequence after board.
+## ★★★ END 2026-08-12 ACTIVE ★★★
+
 ## ★★★ 2026-08-11 WIP — T37.6 AUTO-REGEN-ON-COMMIT (BUILT+VERIFIED, HELD-FOR-CHAIN; READ FIRST) ★★★
 **Recovered from trainer prevent-wall rewind (78%->17%). Identity %9->robbinTeam2:0.2 verified. Team GREW: 0.1=expert 0.4=req 0.5=tester 0.6=planner (old "no req pane" note STALE).**
 **PO BUILD (my lane, T37.6):** auto-regen-and-stage sprints.overview.md index INSIDE the commit flow so committed-overview == regen-of-committed-units BY CONSTRUCTION (kills 3 recurring T37.6 REDs: stale/drift/commit-vs-write-race; a human cannot hold a quiesce window on a live tree).
