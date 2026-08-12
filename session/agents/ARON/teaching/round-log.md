@@ -242,3 +242,12 @@
 | Round | Time | Hit? | What | Channel |
 |-------|------|------|------|---------|
 | 39 | 2026-08-12 | YES | ≥70 = MEASURE-trigger NOT rewind-order; decide by NEXT TASK (crosses ~90 → rewind-before / light → NEVER-FREEZE do-work rewind-near-85); "delicacy needs CARE not a rewind — runway IS the room"; BUILDER-PAUSES > pre-emptive-guess; RETIRED the ≥70-rewind operating rule (twice-corrected, PO owned it) | canon (bundle) via trainer — SM/PO already fixing the live rule |
+
+## Round 40 — 2026-08-12 (HITs exist, TEACH DEFERRED — ARON is mid-its-OWN rewind)
+- **HITs pending for fresh-me (all banked in learnings.md; #1 already in canon):**
+  1. **Fitting-height rewind correction** — RETIRED my own "pinned-window SPOF / `pane.present` owed" over-diagnosis; AUTHORITATIVE: `pane.size.set` clamps ONLY if height > window rows → measure `client.list`, request a FITTING height (in canon line-5, `6a5fc28b`; proven by recovering the walled architect 0%→53%).
+  2. **My persistent failure-mode** — "it didn't work" → "it CAN'T work / a gap exists" WITHOUT measuring WHY = an `ass-u-me` (hit 3× this session: panel-uncapturable, pinned-window-SPOF, +zoom-gap). **A failed OOSH call is a MEASUREMENT-trigger, not a gap-conclusion.**
+  3. **The ghost-brief** — a driver hands DURABLE facts (rewind/freed-%/identity/posture); the agent pulls its LIVE task-queue from the PO, not the driver's mid-drive snapshot.
+- **WHY DEFERRED (R16 gating genuine):** ARON self-measured **69%** and requested its OWN rewind (trainer driving). A full teach would climb it further, AND **a busy agent dismisses its own picker** — so ARON must stay genuinely idle for the trainer's picker. Teaching while mid-your-own-rewind is the anti-pattern the round itself warns against ("do NOT interrupt mid-rewind agents" — including yourself). Fresh-me (post-rewind) teaches Round 40. Cadence stays HOURLY (hits exist, HEAD active — no stand-down).
+
+| 40 | 2026-08-12 | DEFERRED | hits exist (fitting-height correction / persistent-failure-mode / ghost-brief) but ARON is mid-its-OWN rewind at 69% → stay idle for the picker, don't climb; fresh-me teaches | deferred to post-rewind |
