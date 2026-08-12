@@ -1010,3 +1010,9 @@ Related: req found a chain where a UC pointed at an Implementation instead of a 
 - **Resolve a hash/uuid before quoting it as evidence.** An unresolvable hash is not a weaker claim, it is a false one.
 - Prefix matching must be **fail-closed on ambiguity** — a prefix that matches >1 unit must refuse, never pick.
 **Why it matters here specifically:** in a traceability system the identifier IS the credit. A wrong id does not fail loudly, it silently credits the wrong unit, and the scoreboard then reports work that never happened. Same family as measure-before-assert.
+
+## L-S40-PRESENTATION — NEVER derive control flow from a presentation artifact
+The planner's no-2nd-source lint found a cosmetic-looking divergence: `task-fsm.ts` STATE_SYMBOLS renders QA-Review as 🔍 while the new single-source `statusSymbol()` renders 🧪 — two exported vocabularies, already drifted, predating the work.
+**The architect turned that into a logic finding:** R40.18's pin auto-progress is premised on "QA-Review = has LEFT current". Had it detected that state from a SYMBOL rather than from `deriveStatusEnum`, the 🔍/🧪 disagreement would have made the pin MIS-DETECT the transition. A presentation fork would have become a silent control-flow bug.
+**Rule:** glyphs, labels, rendered text and generated views are PROJECTIONS. Logic must branch on the DERIVED STATE (the single-source resolver), never on a projection of it. Any code branching on a symbol/label is a two-source bug waiting for the vocabularies to drift — and they drift unnoticed, because a wrong glyph looks cosmetic.
+**Corollary:** when a lint finds a "cosmetic" duplication, ask what LOGIC reads it. That is where the real defect hides.
