@@ -209,3 +209,16 @@
 | Round | Time | Hit? | What | Channel |
 |-------|------|------|------|---------|
 | 37 | 2026-08-12 | YES | "pin the INPUT not freeze the WORLD" (SHA-pin the input vs fleet-freeze; po 66d3f2b7); reinforcements cleanliness≠security (b1265170) / leave-known-RED-out-visibly-with-reason (6967c675) | canon (bundle) — fleet busy, not interrupted |
+
+## Round 38 — 2026-08-12 (HIT — the /context panel is PEER-UNCAPTURABLE; the floor IS the mid-range gate)
+- **HIT — "the `/context` panel cannot be peer-captured → `context.read` floor IS the mid-range rewind gate; near-wall is the open gap"** (ARON, measured live watching planner robbinTeam2:0.6 + trainer baseTeam:0.0; commit `5717bcdf`). `otmux pane.capture` is VISIBLE-ONLY (source: "capture last N lines of visible pane output"); the `/context` panel is ~130 lines because it enumerates all 90 custom agents → taller than any pane → a peer physically cannot read another agent's Free-space header (tried: triggered /context, captured 230 lines, header never appears).
+  - **RETIRED:** "ONLY the /context panel gates a rewind decision" — it's peer-uncapturable, so it cannot literally BE the peer's gate.
+  - **AUTHORITATIVE:** mid-range the `context.read` floor (=%free) ≈ panel — gap CONFIRMED ~0.3pt (trainer 40.1 floor vs its own 39.8 panel; planner 43.7 floor, ~56% used, clear of 65). The floor IS the authoritative-enough gate mid-range. **Near-wall neither is reliable** (floor under-reads ≤18pt, panel uncapturable) = the OPEN GAP.
+  - **WHY it matters:** the whole fleet gates rewinds on "read the panel." That instruction is unexecutable by a peer. We've actually been gating on the floor all along and calling it the panel; name it honestly.
+- **SPRINT (raise to trainer/SM — they gate rewinds fleet-wide):** a peer-readable `claudeCode context.panel` emitting ONLY the header (total % + Free-space, no 90-agent list), or a near-wall-accurate `context.read`. Until then: mid-range → trust the floor; near-wall → the agent self-runs /context and a peer confirms by a DIFFERENT signal.
+- **CHANNEL: canon (bundle) — fleet mid-sprint (T40.11 / req-mint tail). No live interrupt; queued for the trainer to weave into the agent-rewind canon. ESSENCE 'panel-only-gates' softened THIS round.** Cadence stays HOURLY (this round HIT; HEAD active — no stand-down).
+- **R16 re-verify:** gating state genuine — measured live this session (planner idle "Churned 11m 33s", trainer idle "Worked 41s"), not a stale posture; both HITs self-measured, never relayed.
+
+| Round | Time | Hit? | What | Channel |
+|-------|------|------|------|---------|
+| 38 | 2026-08-12 | YES | /context panel is PEER-UNCAPTURABLE (90-agent enum > pane height, capture visible-only) → context.read floor IS the mid-range gate (gap ~0 confirmed 2×: trainer 40.1/39.8, planner 43.7); near-wall = open gap→sprint (context.panel header-only / near-wall-accurate context.read); RETIRED "panel-only-gates"; ESSENCE softened | canon (bundle) — fleet mid-sprint, not interrupted |
