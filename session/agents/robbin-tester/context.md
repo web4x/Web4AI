@@ -806,3 +806,6 @@ NEXT (post-rewind, PO bound-the-work per piece; SM gives ctx# before large): r30
 ## ▶ HEADS-UP QUEUED (2026-08-12, architect via PO) — on R40.37 inc-2 ship
 - **inc-2 RETIRES actionsForContext** (zero runtime callers post-conversion; superseded-with-record→applicableActionsFor). RE-POINT my 3 gates that call it (confirmed on disk, matches architect): `test/visual/r339b-verb-context-gate.mjs` · `r34e-universal-bar-webkit-gate.mjs` · `r34-webkit-sweep-gate.mjs` → applicableActionsFor decl path (or fold into r4037 BITE). ★ Re-point what they EXERCISE, NOT transfer credit — actionsForContext KEEPS those Tests as historical credit; req verifies owner-first nothing reassigned. r4037 already on applicableActionsFor.
 - Context at 59% used/402k free (climbing; autocompact OFF — flag PO ~80% for rewind). HOLDING for expert R40.37 ship ping → flip 2 pending cells (rollback + container-decl) + re-run + this re-point.
+
+## ▶ QUEUED (future, PO-scheduled) — R40.38 orphan-method-marker lint gate (req d4662bbd2, campaignScope=OUTSIDE, NOT tonight)
+- AC5 stub-must-fail ON THE CHECK: synthetic marked-uncalled-unsuperseded method → flagged RED; called-or-superseded → not. Build only when PO schedules.
