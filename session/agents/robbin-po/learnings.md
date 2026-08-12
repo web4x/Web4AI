@@ -997,3 +997,16 @@ TRON VERBATIM: *"We are currently NOT on ANY security from my order. its just YO
 4. State a risk ONCE, then execute his order. Repeating it is nagging and it substitutes my priority for his.
 5. Keep the SM's watch-duty live: "flag me the moment I put my priority above his standing order, or gate delivery on a question he did not ask."
 **Meta:** my self-check failed twice; a peer's/checkpoint's external record caught it. Durable external checks beat self-vigilance.
+
+## L-S40-IDENT — IDENTIFIERS AND LABELS ARE A CLAIM ABOUT A REFERENT: verify the referent
+Three instances in one session, two of them mine:
+1. **I quoted anchor hashes that do not resolve** (36aef85e / 25fde0ec; the live one was a9ac9f3a7) — the expert caught it on a disk-measured boot.
+2. **I cited a TASK uuid as an IMPL uuid** (18ee26a2 vs the real marker 3542dcb3) — the tester caught it, twice.
+3. **The architect's a/b labels swapped mid-message** on the AC-5 split — and since that split defines exactly what TRON still owes, a swapped label would have mis-scoped his work. req was about to formalize from it.
+Related: req found a chain where a UC pointed at an Implementation instead of a Method, an Impl whose ownerIor self-referenced, and TWO units likely sharing an 8-char prefix.
+**Rules:**
+- Name by **CONTENT, not letters/numbers** in any decision doc or acceptance split — a content-name cannot silently swap (AC-5-AUTO / AC-5-DEVICE, never 5a/5b).
+- Always state **WHICH KIND** an id is beside it (task / req / UC / Method / Impl / Test / commit).
+- **Resolve a hash/uuid before quoting it as evidence.** An unresolvable hash is not a weaker claim, it is a false one.
+- Prefix matching must be **fail-closed on ambiguity** — a prefix that matches >1 unit must refuse, never pick.
+**Why it matters here specifically:** in a traceability system the identifier IS the credit. A wrong id does not fail loudly, it silently credits the wrong unit, and the scoreboard then reports work that never happened. Same family as measure-before-assert.
