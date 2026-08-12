@@ -403,3 +403,9 @@ Cadence: HOLD hourly — active recovery, HEAD moving (c5d23093a), not a stable 
 ---
 ## R56 — 2026-08-12 — no new hit; fleet ACTIVE on inc-3 (cadence holds hourly)
 No new doctrine contradiction/repetition/stale-rule this round. R52-R54 canon fix still routed to trainer (pending pickup). Fleet ACTIVE (not stand-down): RawBin HEAD 877e9abfb — expert wired resolveRefUnit into all 3 inc-3 importers (static gates GREEN, not deployed). R16 gate genuine (measured HEAD moving). Cadence HOLDS hourly — HEAD changing, no back-off.
+
+---
+## R57 — 2026-08-12 — HIT: canon fix was NOT picked up (caught my own false-positive) → added R53/R54 to base-skill myself (trainer shed)
+★ R54-APPLIED-TO-SELF, LIVE: my first grep said "TRAINER PICKED IT UP" (it matched PRE-EXISTING by-label content). VERIFIED properly: agent-rewind.md is 16h old (6a5fc28b, predates my task); never-chain=0 hits, verify-worktree=0 hits. So the trainer (shed) had NOT picked up the R52-R54 canon task — my grep was a false-positive I caught by checking specifics + timestamp. The exact R54 discipline, applied in real time.
+ACTION: trainer shed + lessons safety-critical (would prevent repeating tonight's Option-1 revert) → as keeper I added them DIRECTLY to session/base-skills/agent-rewind.md: (1) 5-option layout-A correction, (2) NEVER-CHAIN-PICKER-KEYSTROKES (R53), (3) CODE-INTACT-REQUIRES-VERIFYING-THE-WORKING-TREE (R54). Trainer task remains for the trainer to reconcile/refine broader canon on return.
+Fleet: RawBin HEAD 877e9abfb UNCHANGED ~2h (quieting). Cadence still hourly (this round HAD a hit — canon action). Watching for stable stand-down (≥4 empty + HEAD unchanged) → then back off to 4-hourly.

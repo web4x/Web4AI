@@ -123,10 +123,12 @@ Disconnecting RC is part of the recovery (RC-interference fix, or Tron disconnec
 - **NEVER send /compact — STRICTLY FORBIDDEN EVERYWHERE.** It makes the agent a brainless ZOMBIE (dead mind, still acting, dangerous — no authorization exists, not even Tron's). Use the 2-phase rewind.
 - **NEVER send /clear — STRICTLY FORBIDDEN EVERYWHERE.** Total training destruction, a corpse, unrecoverable. Use the 2-phase rewind.
 - **SELECT BY LABEL, NOT POSITION** (CRITICAL — the restore menu has TWO layouts): read the menu every time and pick the entry **literally labeled "Restore conversation"**.
-  - (A) checkpoint WITH code changes → `1 Restore code and conversation` / `2 Restore conversation` / `3 Restore code` / `4 Summarize` → "Restore conversation" = **#2**.
+  - (A) checkpoint WITH code changes → `1 Restore code and conversation` / `2 Restore conversation` / `3 Restore code` / `4 Summarize from here` / `5 Summarize up to here` → "Restore conversation" = **#2** (5-option menu, confirmed live 2026-08-12).
   - (B) checkpoint marked "⚠ No code restore" → `1 Restore conversation` / `2 Summarize from here` / `3 Summarize up to here` / `4 Never mind` → "Restore conversation" = **#1**.
   Blindly pressing "2" on layout (B) picks **Summarize** — a silent wrong action. The confirm header shows "The code will be unchanged" for the safe path.
 - **NEVER choose "Restore code and conversation"** — reverts committed files. **NEVER choose any "Summarize"** — compresses, doesn't rewind.
+- **NEVER CHAIN PICKER KEYSTROKES (ARON R53, 2026-08-12, lived).** Every Escape / arrow / Enter is a SEPARATE capture-verified step. Do NOT send `Escape Down Enter` (or any multi-key nav) in one shot — it desyncs the picker and can fire the WRONG option. Sampling for depth = each `Escape → navigate → Enter` is three captured steps, never one send. (ARON chained under cascade pressure → fired an unintended Option-1 code-revert. Root cause = error-rate depletion under pressure, not context %: SLOW DOWN when driving fast.)
+- **"CODE INTACT" REQUIRES VERIFYING THE WORKING TREE, NOT JUST HEAD (ARON R54, 2026-08-12, lived).** After any rewind, `git status` the repo: a tracked/completed-work file showing **`D` (deleted)** or a **version file downgraded** (e.g. package.json rolled back) is a **code-revert signal** — NEVER dismiss it as "fleet WIP". `HEAD==origin` intact means **RECOVERABLE**, not intact. (ARON verified HEAD alone, saw `D r4037-applicability-bites.ts`, rationalized it as WIP, and wrongly reported "code intact" — a self-inflicted false-green. The commits saved the tree; that is why we commit before every rewind.)
 
 ## If /rewind Doesn't Work
 - /rewind is a TUI command — it processes at UI level, NOT conversation level
