@@ -38,6 +38,12 @@
 
 ### R40.42 diagram ONE-scroll-authority (analysis+chain DESIGNED, commit be3b66894, priority AFTER S37 MVC): Tron req e96f06fd capture-only. Single-authority family applied to SCROLL. Measured: authority split 3-ways — RbPanZoom transform-pan s>1 / native overflow:auto s<1 grow (pan-zoom.ts:299 INNER bar) / s==1 yields (AC-d1) + drawer scrolls (OUTER bar) -> dead vertical pan. AC-3 RULING wheel=ZOOM. FIX: RbPanZoom sole authority all-scales-both-axes (remove s>1 gate), kill inner native scroll (grow pans via transform), drawer overflow:hidden for diagram, touch-action:none+preventDefault no-page-leak (AC-6 replaces s==1-yield), @390 real-iOS AC-5. EXTEND RbPanZoom R40.29 58a7c149 (reuse). crossRef R33.6.2 570b77c7 phase-2 (autoscroll scrollBy->panBy). req mints UC diagram.oneScrollAuthority; I wire on build-go.
 
+### R40.18 pin defects (Tron on T37.24) — 3 RULINGS (design in a0238fb0e = design-r40.18-view-surface-and-verdict-routing.md; landed coupled in expert's slice-1 commit, content intact):
+- R1 R40.18 was RESOLVER-ONLY (measured 0 view matches) -> EXTENDED to VIEW SURFACE: item+detail visibly mark DERIVED current/next (render-time from resolver, NOT stored, R40.17), live via ViewBus; 'set current/next' DEMOTE to explicit OVERRIDE (derived shows by default). Fixes both Tron defects (buttons-instead-of-knowing + all-stale).
+- R2 planner-drive.ts setFocus/setChain -> SAME narrow server endpoint as skill (one path); CurrentSprint.ts:143/401/404 DEFERRED-TO-ENDPOINT+tripwire.
+- R3 approve/decline -> DEFERRED-TO-T37.4.3 (3b8f21c6)+tripwire. End-state: TaskPolicy.apply gains evidence-data-merge (transition+data-intent, status DERIVED). DONE STAYS TRON: deriveStatusEnum sole writer, intent refuses status field, approve Tron-gated fail-closed, agent endpoint REFUSES Done. Behavior migration = own item after slice-1.
+- SEQUENCING CONFIRMED: slice-1 -> R40.18(derive+DISPLAY) -> agent endpoint (correct-AND-live). req: R40.18 needs a view-surface AC. LESSON: L11(c) concurrent-commit collision (peer commit swept my staged doc under their message; read diff AFTER, session-repo for design docs).
+
 ## POSTURE / NEXT
 - Backstop-only on inc-3/deploys (expert drives; don't touch prod). Prod ~v0.8.9x.
 - Await: S37 build-go (wire the 4 UCs + backstop slices); T40.11/R40.39 build-go; Tron device visuals. Nothing multi-step pending.
