@@ -427,3 +427,6 @@ This ONE entry consolidates the ~100 identical hourly pings 08-12→08-16 — no
 
 ## R60 — 2026-08-17 — empty check (hold persists)
 RawBin HEAD 877e9abfb unchanged; fleet still on Tron-gated inc-3 deploy-hold. No new activity, no hit. Cadence stays 4-hourly; snap-back still armed.
+
+## R61 — 2026-08-17 — empty check (hold persists, day 5)
+RawBin HEAD 877e9abfb unchanged; Tron-gated deploy-hold ongoing. No activity, no hit. 4-hourly, snap-back armed.
