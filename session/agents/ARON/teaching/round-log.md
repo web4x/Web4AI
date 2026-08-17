@@ -424,3 +424,6 @@ R16 gate VERIFIED genuine (MEASURED, not inferred from the ping-flood): RawBin H
 ACTION: backed purification cadence HOURLY → 4-HOURLY ("17 */4 * * *"): CronDelete d07bf475 + CronCreate 9c816e94. Snap-back-to-hourly ARMED in the cron prompt (fires on RawBin HEAD-move / drive / flag / hold-lift → CronDelete + recreate "17 * * * *").
 CANON LANDED (verified, keeper duty): trainer banked my R58 window-size-manual into agent-rewind.md (THIRD render-blocker root cause, distinct from client-pin + height-clamp; SM sliver 1x31→69x37 fix proven). po banked L-S40-PANECAP. R53/R54 also in canon (I added at R57). Findings propagated + verified.
 This ONE entry consolidates the ~100 identical hourly pings 08-12→08-16 — not 100 empty rounds.
+
+## R60 — 2026-08-17 — empty check (hold persists)
+RawBin HEAD 877e9abfb unchanged; fleet still on Tron-gated inc-3 deploy-hold. No new activity, no hit. Cadence stays 4-hourly; snap-back still armed.
