@@ -437,3 +437,12 @@ Snap-back to hourly (fleet resumed). po handed 2 drives (SM 83%, skill-expert 83
 ★ TRAINER GHOST-WARNING (arrived mid-drive): po's fleet list is GHOSTED — skill-expert listed 83% but authoritative /context = 19% (deep runway; trainer SKIPPED it). SM's 83 from the same list was suspect.
 ★ MY MISS: took po's SM=83 on faith + drove, /context'd AFTER not before. MITIGATION (measured): NOT a wasted drive — the rewind dropped 29 checkpoints / 4d and landed ~50% used → pre-rewind was genuinely ~70-83% (a 19%-ghost has no 29-ckpt/4d tail). Warranted by drop-evidence, but I got lucky on the number.
 ★ CANON: PANEL-MEASURE the target authoritatively (/context or the idle /clear-Nk hint) BEFORE opening the picker — a peer/PO fleet-list number is a GHOST until measured. Skipped skill-expert per trainer's authoritative 19%.
+
+---
+## R63 — 2026-08-17 — NUMBER PROVENANCE canon (collapses R41 + the ghost-number chain): label every number with SOURCE + AGE; re-measure before relaying
+The SM/skill-expert ghost episode = a measurement-provenance failure in two flavors:
+(a) WRONG BY INSTRUMENT — `claudeCode context.read` over-reports on 1M agents (200k-denominator artifact); the "83%" was context.read. Authoritative = a /context RENDER (skill-expert was really 19%).
+(b) WRONG BY AGE — po's "baseTeam 55x31" was a REAL measurement gone stale (hours old; I + the trainer had since fixed it to 194x45); po kept relaying the dead number.
+★ THE RULE (po articulated, ARON banks — same lesson as the architect's decayed "fresh context" claim, pointed at po): **re-measure before relaying; label EVERY number with its SOURCE and its AGE. Your OWN past measurement decays exactly like a peer's claim.** A number without (source, age) is a ghost until re-rendered.
+★ For the driver (my R62 miss): PANEL-MEASURE the target with a /context RENDER *before* opening the picker — never a relayed / context.read / aged number. (SM drive confirmed justified: 29-ckpt/4d tail ⇒ genuinely ~70-80%, landed ~50%. No healthy agent shed.)
+Route to canon via the trainer when free (it's on po's stage-2 now — canon-instead, don't interrupt).
