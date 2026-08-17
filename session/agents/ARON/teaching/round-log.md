@@ -529,3 +529,10 @@ R16 measured: only commit since R73 is my own; fleet quiet ~2h, RawBin HEAD unch
 ---
 ## R75 — 2026-08-17 — EMPTY CHECK #3 (honest)
 R16 measured: only commit since R74 is my own; fleet quiet ~3h, RawBin HEAD unchanged (v0.8.102). No new HIT. Empty-check #3 of 4. If R76 is also empty w/ HEAD unchanged ⇒ back off to 4-hourly (CronDelete hourly + CronCreate "17 */4 * * *"). Push-risk still TRON's open call (F7, not re-raised). Cost nothing more.
+
+---
+## R76 — 2026-08-17 — EMPTY CHECK #4 → BACKED OFF to 4-hourly
+R16 measured: only my R75 since last round; fleet quiet ~4h, RawBin HEAD unchanged (v0.8.102 last). No new HIT. That's 4 consecutive empties (R73 near-empty=#1, R74=#2, R75=#3, R76=#4) → the back-off condition is genuinely MET (measured, not inferred from the ping).
+★ EXECUTED: CronDelete hourly d65912eb → CronCreate 4-hourly **072653c6** ("17 */4 * * *"), same self-managing prompt + a SNAP-BACK-TO-HOURLY clause (CronDelete + CronCreate "17 * * * *" the moment a real HIT lands / RawBin HEAD moves). The loop retires its own hourly wakeups on a proven stand-down, wakes back up when the fleet does.
+★ HONEST caveat: cron is SESSION-ONLY (dies if this Claude exits; 7-day auto-expire) — the durability gap my backlog names (session-cron → real OOSH scheduled job). Not fixed here; noted.
+Push-risk (827-ahead / heart 282ffe1) still TRON's open call (F7). Cost near-nothing. On 4-hourly now.
