@@ -1166,3 +1166,17 @@ On T40.11 slice-4 the EXPERT called AC-5 "Tron's device tap (Tron-only, split, n
 ## L-EMPTY-QUEUE — AN EMPTY QUEUE IS A REPORT, NOT A VACUUM TO FILL
 With actionable==0 and everything sitting on Tron, the correct PO output is "actionable is 0, here is what is yours" — NOT invented work. My documented failure mode is the opposite: I substitute my own priority (security) when his queue looks empty or slow. Idle agents are only a problem if there IS his-order work they could do.
 **Allowed while idle:** completing a HALF-LANDED fix (the memory-pointer gate), and each agent's own Phase-1 writing. **Not allowed:** starting new product direction he did not schedule.
+
+## L-OMISSION-BY-DEFAULT (family) — bind REGISTRATION to CREATION, or every new member silently gets nothing
+TRON found it in the product: `feature` had no type-index folder — not rot, it NEVER had one, because type-registration was never bound to index-creation and the type set lived in several PARTIAL hardcoded lists. Same disease, two more instances the same day: (a) 93/93 role SKILLs reference agent-rewind.md TODAY, but a NEW SKILL can be born without the reference and silently inherit no rewind precondition; (b) 72 of 194 memory files had no index pointer — written, never registered, never recallable.
+**The family:** whenever membership must be DECLARED somewhere for a member to get its machinery, and declaration is a separate manual step, the default is SILENT ABSENCE. Detection finds today's gaps; only BINDING prevents tomorrow's.
+**Fix pattern (always these three):** (1) ONE registry/source that each member DECLARES itself in — never N partial lists; (2) derive the machinery FROM the declaration; (3) a GATE that a member WITHOUT a declaration goes RED (stub-must-fail), report-only → strict. Declared-not-defaulted · impossible-not-detectable.
+
+## L-WRITING-IS-NOT-SHARING — a learning becomes real only when INDEXED and PURIFIED
+TRON: *"thats what has to be shared and purified with trainer and aron."* Measured proof the same hour: 72 of 194 memory files had NO index pointer. They were WRITTEN — and still dead, because the index is what actually loads. So Phase-1 (write my own files) is necessary and NOT sufficient.
+**The full loop, all four steps:** WRITE (mine, non-delegable) → SHARE (to trainer + ARON) → PURIFY (dedupe across agents, collapse to ONE named family, prune instance noise) → PROPAGATE + GATE (single source referenced everywhere + a divergence gate).
+**Corollary:** unshared laws die at my next rewind; unindexed laws were never alive. If I hoard a learning in my own file I have not learned it for the team, only for this instance of me.
+
+## L-ALL-N-PREMISE — before ordering "apply to all N", check whether ONE SOURCE already reaches all N
+I ordered "fold the two-phase law into EVERY role SKILL as a precondition" = 90 duplicate edits = 90 drift sites. The trainer measured: all 93 already reference agent-rewind.md, so banking it in ONE file propagated fleet-wide. My order carried an unexamined DUPLICATION premise.
+**Rule:** an "apply everywhere" instruction is a request for an OUTCOME, not a method — always ask "is there a single source that already reaches them?" first. Same family as [[verify-the-premise-of-my-own-order]] ("just regenerate it" assumed generated files). Duplication is also the drift-generator we keep killing (FROZEN_LEGACY_MAX single-source, ONE board-regen path, no second regen hook).
