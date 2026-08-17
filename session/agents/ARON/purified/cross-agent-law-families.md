@@ -4,13 +4,14 @@
 
 ## F1 — MEASUREMENT PROVENANCE (the biggest family; 6 laws collapse here)
 **One law: trust only a fresh, directly-measured reading from the right instrument; every claim/number decays.**
-Collapses: po *measure-at-the-moment-of-use* · po *validate-the-instrument-before-the-reading* (`context.read` is NOT authoritative; only a /context RENDER is) · po *convergence-is-not-corroboration* (unless ≥1 side directly measured the QUANTITY) · po *verify-the-premise-of-my-own-order* · ARON R62 *render-before-driving* · ARON R63 *label every number with SOURCE + AGE (wrong-by-instrument vs wrong-by-age)*.
+Collapses: po *measure-at-the-moment-of-use* · po *validate-the-instrument-before-the-reading* (`context.read` is NOT authoritative; only a /context RENDER is) · po *convergence-is-not-corroboration* (unless ≥1 side directly measured the QUANTITY) · po *verify-the-premise-of-my-own-order* · po *L-ALL-N-PREMISE* (before ordering "apply to all N", verify ONE source doesn't already reach all N — the "90 SKILLs" duplication premise the trainer measured away; DRY-single-source) · ARON R62 *render-before-driving* · ARON R63 *label every number with SOURCE + AGE (wrong-by-instrument vs wrong-by-age)*.
 → **A number without (instrument, freshness) is a ghost. Measure at use, with the right tool, or don't act on it.**
 
 ## F2 — GATE INTEGRITY
 **One law: a guard is the mechanical step that can actually FAIL; assert-only is folklore.**
 Collapses: po *a-gate-that-cannot-fail-certifies-nothing* (stub-must-fail; ship report-only→strict, never red-from-birth) · po *knowing-a-rule-is-not-the-guard — find the DISGUISE* (directory-add IS add-all; backticks in double-quotes EXECUTE) · tester Phase-1 *missing-pointer memory-gate* (delete→RED + orphan-inject→RED, both directions).
-→ **Prove the gate can go RED before you trust its GREEN.**
+★ **LIVE EVIDENCE (po, 2026-08-17):** po KNEW the backtick rule and its send STILL command-substituted `feature` — the word was eaten because po was writing prose, not checking the wire. Proof the law needs a MECHANICAL guard (**single-quote by DEFAULT on every send**), not more awareness. **Awareness decays; only the mechanical step holds** — this is why F2 and F8 are the same movement (turn every law into a guard that makes the violation impossible).
+→ **Prove the gate can go RED before you trust its GREEN. And build the guard, don't just know the rule.**
 
 ## F3 — REWIND DILIGENCE (the two-phase law + all its mechanics)
 **One law: the diligent rewind is TWO phases — consolidate-to-git FIRST, then the by-label recent-deep drive — matched to imminence + budget.**
@@ -36,6 +37,12 @@ Collapses: po *honesty-cuts-BOTH-ways* (incl under-crediting shipped work) · po
 **One law: nothing is urgent; diligence always; an empty queue is a report, not a vacuum to fill.**
 Collapses: po *#1 all-is-diligence-nothing-urgent* · po *L-EMPTY-QUEUE* (actionable==0 = finish half-landed fixes + own Phase-1; NOT invent product direction Tron didn't schedule) · REWIND-DILIGENCE's *no-emergency-framing*.
 → **Urgency is the signal to measure FIRST, not to skip a phase.**
+
+## F8 — CONNECTION-IS-WHAT-LIVES / DECLARE-DON'T-DEFAULT (merges po's L-OMISSION-BY-DEFAULT + L-WRITING-IS-NOT-SHARING)
+**One law: existence is not connection — a thing that isn't REGISTERED / INDEXED / SHARED is invisible = dead. Bind connection to creation, and GATE the unconnected, because diligence decays.** Two faces:
+- **STRUCTURAL (omission-by-default):** a new member silently gets NOTHING unless registration is bound to creation. TRON's missing `feature` type-index folder + a role SKILL born without the `agent-rewind.md` reference + 72 unindexed memory files = ONE family, not three bugs. Fix = ONE registry each member DECLARES in → derive the machinery from the declaration → GATE that an undeclared member goes RED (report-only→strict). Declared-not-defaulted · impossible-not-detectable.
+- **LIFECYCLE (writing-is-not-sharing):** a WRITTEN learning is not an ALIVE one. 72 of 194 memory files were written yet dead (unindexed → never loaded). Loop: WRITE (mine, non-delegable) → SHARE → PURIFY (essence, family-not-instance) → PROPAGATE + GATE. Unshared laws die at the next rewind; unindexed laws were never alive.
+→ **"Wer schreibt, der bleibt" is only step ONE. The artifact lives when it is CONNECTED and the connection is STRUCTURALLY GUARANTEED — the same mechanize-it movement as F2.** This is the meta-law the whole purification stretch (the memory-gate, the type-registry, this dedup) instantiates.
 
 ---
 ## Handoff to trainer (SKILL-fold half)
