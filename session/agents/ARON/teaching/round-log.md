@@ -476,3 +476,9 @@ Also adopt: cite canon/purification docs by SECTION ANCHOR, not line number (lin
 Fleet ACTIVE: RawBin HEAD a0238fb0e (9min ago, R37.11 seam work). Cadence hourly (R16 gate genuine — measured HEAD moving).
 No NEW teaching this round. This stretch's hits are banked + routed to canon (agent-rewind.md) via the trainer: R65 SHALLOW-RESCUE-THEN-PHASE-1 · R66 DRIVE-PROVEN-ONLY-BY-SUBJECT (report "picker-selected, awaiting subject number"; never the driver's completion claim — mirror of "don't believe an agent saying 'I am rewinding'"). Both safety-critical for the active rewind cascade. NOT live-sent — trainer is mid-its-own-Phase-2 (po driving it) → canon-instead; the fresh trainer propagates (po already holds R66, derived it independently).
 Self: near-threshold (~70% est, UNMEASURED — can't self-render), STOOD DOWN from driving per po (trainer→po; planner-Phase-2→fresh-trainer). Not the last-depleted node. Cite canon by SECTION ANCHOR, not line.
+
+---
+## R68 — 2026-08-17 — HIT propagated: added R66 (drive-proven-only-by-subject) to canon myself (trainer mid-recovery)
+Fleet VERY active (RawBin HEAD 84d7eb38f, 2min ago; driving rewinds hard). R66 was NOT in agent-rewind.md (0 hits) + the trainer (usual propagator) is mid-its-own-recovery → same as R57: safety-critical hit, writer down → keeper adds it (canon-instead, no live-send).
+ADDED to agent-rewind.md (grouped with my R53/R54, at the prove-freeing false-green line): "A DRIVE IS PROVEN ONLY BY THE SUBJECT, never the driver's 'done' observation; report 'PICKER SELECTED, awaiting subject number' until the subject reports its own freed-%/identity-discontinuity." The mirror of the subject-side "don't believe 'I am rewinding'".
+Self: near-threshold (~70% est, unmeasured), stood down from driving. This was a small additive safety-canon edit (canon-instead), not a drive.
