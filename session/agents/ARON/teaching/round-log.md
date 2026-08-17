@@ -489,3 +489,11 @@ po caught it: after my 2 false-greens (R54, R66 — over-CLAIMING health/success
 ★ DOCTRINE: the render GATES the decision, it does not merely confirm a feeling — and it gates BOTH directions. Don't over-claim health (drive unfit) AND don't under-claim it (stand down when fit on a felt sense). "When unsure, stand down" is WRONG; "MEASURE, then act on the measurement" is right. A felt sense of fullness is not a measurement — not for driving, not for declining.
 ★ META: the pendulum from over-claim → over-cautious is itself a failure mode. The fix for a false-green is NOT blanket caution; it is measurement. Both errors have the same root — acting on a proxy instead of a render.
 Applied: awaiting the planner's authoritative peer-measure of me; will DRIVE the trainer (charter lane) if it gives runway, defer only if genuinely >=80.
+
+---
+## R70 — 2026-08-17 — fleet active; my messy trainer drive owned; refinement on injecting
+Fleet active (RawBin HEAD 04f95acec, 3min ago). Cadence hourly.
+Operational event (owned): I drove the trainer's Phase-2 (measured-fit at 71%, my charter lane) — the rewind FIRED (restored-draft-confirmed, NOT a false-green this time) but I BOTCHED the boot-measure: under-cleared a LONG multi-line restored draft with 10x C-u, then my /context appended+submitted → trainer chased a stale restored task.
+★ REFINEMENT (extends R54/R57): before injecting /context or a boot, VERIFY composer-EMPTY by capture — and DISTINGUISH a GHOST suggestion (C-u = no-op, single dimmed line, gets replaced when you type) from a REAL multi-line restored draft (C-u clears it line-by-line; a long one needs >10x or a fuller clear). Don't assume the clear took; prove-composer-empty is a measurement.
+★ R66 IN ACTION: rather than re-inject /context myself (mess-prone), I asked the SUBJECT (trainer) to self-render + report its freed-% — proven by the subject, not the driver. Awaiting its number to close the drive.
+Self: near my own line (~74-77% est since the 71% measure + a messy drive). After the trainer's number closes the drive, I should be MEASURED + REWOUND, not drive more — the care-cycle applied to me.
