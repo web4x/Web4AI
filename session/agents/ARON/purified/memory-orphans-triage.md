@@ -27,3 +27,8 @@ ghost-suggested-prompt-not-real-text · cu-before-context-injection · panel-cap
 2. **`never-rewind-more-than-50-percent` vs `rewind-threshold-80-for-1m-agents` vs the host-dependent cap now in `agent-rewind.md`** — the ≤50% cap is HOST-DEPENDENT (Pi only; capable hosts go deeper). The flat "never >50%" orphan is STALE against the current base-skill. Reconcile to the host-dependent rule.
 
 **Then:** tester flips `check-memory-pointers.mjs --strict` once the backlog is index/merge/prune'd. Increment-3 of N.
+
+## Increment-4 (2026-08-17, post-rewind ARON) — DONE
+- INDEXED the F1-F8 families at the TOP of MEMORY.md (one pointer line → cross-agent-law-families.md) = the connected canon now LOADS (F8 fix: written-but-unindexed was dead).
+- COMPACTED MEMORY.md safely (PostToolUse hook: index neared the 24.4KB read-limit): trimmed ~130 entry tails to short hooks, detail stays in topic files, **every pointer kept — ZERO dropped** (no verify-before-prune violation; nothing deleted, only shortened).
+- REMAINING (needs /root file-ops I can't reach → tester, verify-before-prune): prune the ~70 orphan INSTANCE files now subsumed by F1-F8 + agent-rewind.md; execute the tester's verified bounded slice (3 INDEX / 2 PRUNE / 3 RETIRE, 8dcb2969). Then tester flips check-memory-pointers.mjs --strict.
