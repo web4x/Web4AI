@@ -1,5 +1,7 @@
 # S37 slice-1 gate — SPEC (robbin-tester, 2026-08-17; build when req mints + expert builds)
 
+**STATUS 2026-08-17:** ✅ **AC-2 (bypass-lint) DONE** — test/visual/r3724-mutation-seam-bite.ts GREEN DET (live 0-un-allowed + planted-bypass-detected + comment-strip + seam-routed-clean + self-bite), marker `f2c48a91`→Impl e3729f51, sent req to wire. ⏳ **AC-1 (real-time MVC VALUE gate) PENDS** the R40.18 LIVE path (seam-stamp→backfill→predicate/view + publish→view-updates-live); gate the VALUE when that ships (predicate + provenance + build-order all baked below).
+
 **Task/pin:** S37 real-time MVC, sprint `b86b53cc` / task `ae01f065`. Slice-1 routes **~15 write sites** through the
 controller seam (`UnitController.apply` — the SOLE mutation entry I gated in T37.4.2: validate→apply→persist→emit).
 HIGH blast radius. This gate is mine. Two ACs:
