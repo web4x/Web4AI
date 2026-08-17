@@ -14,6 +14,7 @@ reflect the new value **live, without a page reload**.
 - Drive a REAL write through a controller action (not a synthetic setAttribute). Pollution-safe: reversible write on a
   scratch/system-test unit, or route-intercept the persist and drive the emit → view update; restore after.
 - Non-vacuous: assert the value CHANGED (before ≠ after in both views), and that NO `location.reload`/navigation happened.
+- ★ **PIN-CORRECTNESS (PO FYI 2026-08-17) — the CurrentSprint pin (Tron's live complaint) is one of the routed writes.** A LIVE-BUT-WRONG pin passes a naive liveness test. R40.18 derivation as first designed returns the SAME stale "current" (stored pin → 37.4 which is merely PLANNED; "first non-terminal in order" is ALSO 37.4) → architect is re-ruling the predicate. So the pin AC must assert the pin reflects the task **actually IN PROGRESS** (status == In Progress), not merely that it re-renders live. Gate the VALUE (which task), not just the liveness. Confirm the re-ruled predicate before asserting.
 
 ## AC-2 — binding lint: no-write-outside-the-seam + STUB-MUST-FAIL
 Static/AST lint: NO code mutates a unit's model/status outside `UnitController.apply` (all ~15 sites route through it).
