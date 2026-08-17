@@ -1180,3 +1180,16 @@ TRON: *"thats what has to be shared and purified with trainer and aron."* Measur
 ## L-ALL-N-PREMISE — before ordering "apply to all N", check whether ONE SOURCE already reaches all N
 I ordered "fold the two-phase law into EVERY role SKILL as a precondition" = 90 duplicate edits = 90 drift sites. The trainer measured: all 93 already reference agent-rewind.md, so banking it in ONE file propagated fleet-wide. My order carried an unexamined DUPLICATION premise.
 **Rule:** an "apply everywhere" instruction is a request for an OUTCOME, not a method — always ask "is there a single source that already reaches them?" first. Same family as [[verify-the-premise-of-my-own-order]] ("just regenerate it" assumed generated files). Duplication is also the drift-generator we keep killing (FROZEN_LEGACY_MAX single-source, ONE board-regen path, no second regen hook).
+
+## L-PIN-OVER-INVENTORY — a SCOPE BOUNDARY can hide the work TRON is actually on
+I reported "actionable 0" while the PIN pointed at sprint b86b53cc / task ae01f065 (task-37.20-shared-dnd-drop-contract, status Planned, its own context saying "chain pending architect drop-contract design"). Cause: the S30++ campaign inventory deliberately EXCLUDED reqs minted DURING the campaign (a boundary I ruled, to keep the campaign finishable). Side effect: it made the pin-current task INVISIBLE to my count, and Tron had to measure it for me.
+**Rule:** before ever reporting "nothing actionable", read the PIN (current sprint + current task) directly — a derived inventory answers "what is in scope", NOT "what are we on". When a derived number disagrees with the pin, THE PIN WINS.
+**Also:** any scope boundary I create must be reported ALONGSIDE what it excludes, and the board must show BOTH (scoped count AND pin-current), or the boundary silently becomes a blindfold. Same family as F8 existence!=connection: the task existed, it just was not connected to my measure.
+
+## L-INVITE-NEITHER — a binary framing from the PO can BIAS the diagnosis
+I asked the architect: is "not reflecting in realtime" ONE defect (views do not subscribe) or TWO (no mechanism + views cache)? It measured and answered **NEITHER**: the mechanism EXISTS, views DO subscribe, and the real disease is MVC-BY-CONVENTION in 3 parts (two buses / notify remembered-by-hand / 4 ad-hoc DnD payloads). Both of my hypotheses were wrong, and the right answer was outside my menu.
+**Rule:** when handing an expert a framing, explicitly invite "NEITHER — name what you actually measure". My hypotheses are a starting point, never the option set; a forced choice between my guesses is a leading question, and a diligent agent may try to fit its measurement into my frame.
+
+## L-PREREQ-SERVES-THE-PIN — building a pinned task's prerequisites is not deprioritising it
+T37.20 (the pinned task) is a DnD drop contract, but its real acceptance is "a drop makes the views update live" — which is PRODUCED by the controller seam + subscribe coverage. Shipping DnD first would resolve the payload and still not live-update = half value, root untouched.
+**Rule:** when a pinned task's acceptance DEPENDS on unbuilt prerequisites, build the prerequisites FIRST and say WHY in the same breath — "this serves your pinned task, it does not defer it". Unexplained resequencing of the pin looks exactly like ignoring it.
