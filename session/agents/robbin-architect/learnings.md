@@ -770,3 +770,34 @@ req + PO both reported a "double-credit": Method applicableActionsFor already ha
 ### supersededBy means DEAD, not role-narrowed — verify a function is actually UNCALLED at BUILT reality before superseding (2026-08-12, actionsForContext)
 I ruled actionsForContext "retired → supersededBy applicableActionsFor" on the premise "post-conversion, zero runtime callers." Wrong: the expert's conversion REPURPOSED it — `function actionsForContext(): ActionDecl[] { return MODEL_DECLS }`, still called at model.ts:79 `registerActionDecls(actionsForContext)`. Its role NARROWED (resolver→decl-provider); it did NOT retire. A supersededBy on a still-called function is misleading — a reader/cleanup reads it as "dead" and could delete a LIVE provider. Corrected: dropped supersededBy, recorded the role-split in the description (resolution moved to applicableActionsFor; both coexist as distinct live methods). This is my SECOND premise-miss of the family (first: D2-authorized-read-as-live) — both were "assumed the post-change state instead of measuring the BUILT one."
 **How to apply:** (1) supersededBy is for a unit whose code is GONE/replaced, not one whose role narrowed — before recording it, grep the actual callers of the function AT the built commit; if it still has a live caller, it is NOT superseded (use a role-split description/cross-ref, never supersededBy). (2) When a conversion "moves logic X out of function F", F may be REPURPOSED (kept, narrowed), not deleted — measure F's post-conversion body + callers, don't infer retirement from "X moved". (3) Orphan-lint honesty depends on this: "has a caller OR supersededBy" only stays sound if supersededBy never lies about a live function. [[a-proposed-design-remembered-as-shipped-is-a-ghost]]
+
+═══════════════════════════════════════════════════════════════════════
+# ★ ARCHITECT LAWS — Phase-1 recorded 2026-08-17 (produced this week; non-delegable, post-wall unreconstructable)
+These are the reusable laws behind R40.18 / R40.39 / T40.11 / S37 / bootstrapSeed. Each: LAW — evidence — how to apply.
+
+## L1 — DERIVATION OVER STORAGE
+Auto-progress/state must DERIVE from the source, never a HOOK that WRITES what a resolver could derive. A hook with its own opinion = a second source that drifts. Evidence: R40.18 (auto-progress = run the resolver, not a stored pointer a hook maintains). Apply: when asked for "auto-X", design a resolver that computes X from units on read; reject any write-hook that stores the derived value.
+
+## L2 — SINGLE-SOURCE BOUNDARY (one module, imported by ALL consumers, grep-lint bound)
+A shared constant/boundary (FROZEN_LEGACY_MAX, isCurrentEra, APPROVE_STATUSES, a type-strategy registry) is exported from ONE module and IMPORTED by every consumer, PROVEN by a no-2nd-source grep-lint that FAILS on a duplicated literal. Evidence: R37/R40 boundary consts; R27.2 "1 Class per code-class name". Apply: never let two files carry the same policy literal; the lint is the binding, not vigilance.
+
+## L3 — NO TRANSITIONAL DUAL-READ FALLBACK
+A fallback that keeps the old path alive (`map.get(x) || tokenLiteral`) is the token-literal-fallback class — it NEVER gets removed and silently re-introduces the old source. The applied read must be MAP-ONLY, no `|| oldpath`. Evidence: R40 owner-token map read verified map-only. Apply: when migrating a read, delete the fallback in the SAME change; a "temporary" dual-read is permanent debt.
+
+## L4 — MVC-BY-CONVENTION is a family, and the fix makes correctness a CONSEQUENCE
+"Not realtime" was NOT one defect: (a) two observer buses, (b) notify REMEMBERED BY HAND at each mutation site (omission-by-default — a mutation that forgets to notify goes stale), (c) ad-hoc DnD payloads. Fix shape: make notify a CONSEQUENCE of mutating (one applyMutation/UnitController seam: mutate → collect affected refs → notify), bound by a no-mutation-outside-the-seam grep-lint = impossible-not-merely-detectable. Evidence: S37 510954b4b; expert corroborated by a DIFFERENT lens (~15 write sites bypass UnitController.apply's emit). Apply: when correctness depends on "remembering to call X after Y", make X a structural consequence of Y and lint the bypass.
+
+## L5 — EXISTENCE != CONNECTION (ARON F8); omissions are BY-DEFAULT, fix = declared-not-defaulted
+A mechanism EXISTING is not it being CONNECTED. The `feature` type had no index not by rot but because type-registration was never BOUND to index-creation — omission-by-default, structural inevitability (11 types lost, incl. testcase's 1023 units). Fix: a single type-strategy registry where every type DECLARES {typeIndexed|altIndexed|singleton} — declared, not defaulted — + a gate that FAILS on any undeclared/corpus-walked type. Evidence: T40.11/R40.39 archaeology. Apply: audit the FAMILY not the instance; make the omission impossible (a new member can't exist without its wiring), not merely detectable.
+
+## L6 — THIN DESIGN FAILS BUILDS → land detailed impl-shape with file:line
+A summary-level design produced an unclean build (R36.4). Since then every design lands the impl-shape: exact file:line, current-vs-fix, invariants, gate. Evidence: R40.18/R40.39/S37 all did; the expert built slice-1 off S37's file:line directly. Apply: never hand the expert a summary; hand them the code shape they can build without interpretation.
+
+## L7 — SCOPE SHRINKS ON EVIDENCE (measure, then cut/reassign — don't pad)
+Measured 3 path-writers down to 2 and reassigned the rest to the correct chokepoint rather than padding scope. Evidence: R40 path-writer cut. Apply: a design's scope is set by what the measurement shows is needed, not by what looks thorough; cutting to the real chokepoint IS the design.
+
+## L8 — INV-T: render READ-ONLY, controller SOLE writer, byte-diff==0
+A live view must NEVER mutate a unit as a side effect of rendering. The controller is the only writer; a render pass leaves the store byte-identical. Evidence: S37 INV-T; the migration INV-T (T40.11/R27.2). Apply: gate every live-view/migration with byte-diff==0 on the store after a render/dry-run; a render that writes trips it red.
+
+## L9 — REFUTE THE PO/TRON FRAMING BY MEASUREMENT (duty, not deference)
+When a hypothesis is handed to me, I MEASURE it and report NEITHER/refuted when the code says so — twice in one day (R40.18 derivation-not-hook; MVC neither-one-nor-two-defects; also "Profile/WebItem maybe alt" refuted by `alt/` holding exactly company/email/phone). Corollary (bootstrapSeed): agreement between an INFERENCE and a BROKEN probe is NOT corroboration — convergence needs ≥1 DIRECT measurement of the actual quantity ([[verify-with-independent-method]]). Apply: never accept a framing to be agreeable; measure the claim, and make sure the verifier measures the QUANTITY, not a proxy.
