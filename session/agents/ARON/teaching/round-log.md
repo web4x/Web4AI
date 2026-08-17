@@ -446,3 +446,11 @@ The SM/skill-expert ghost episode = a measurement-provenance failure in two flav
 ★ THE RULE (po articulated, ARON banks — same lesson as the architect's decayed "fresh context" claim, pointed at po): **re-measure before relaying; label EVERY number with its SOURCE and its AGE. Your OWN past measurement decays exactly like a peer's claim.** A number without (source, age) is a ghost until re-rendered.
 ★ For the driver (my R62 miss): PANEL-MEASURE the target with a /context RENDER *before* opening the picker — never a relayed / context.read / aged number. (SM drive confirmed justified: 29-ckpt/4d tail ⇒ genuinely ~70-80%, landed ~50%. No healthy agent shed.)
 Route to canon via the trainer when free (it's on po's stage-2 now — canon-instead, don't interrupt).
+
+---
+## R64 — 2026-08-17 — HIT: condition the PROACTIVE-REWIND rule on IMMINENCE + budget (resolves prevent-the-cliff vs conserve-budget)
+Contradiction surfaced by the tester at 78% (idle, clean, all pushed, no actionable work): "prevent the cliff — proactive rewind at a clean boundary" (canon) vs "never shed a healthy <80 agent / conserve weekly budget" (po canon, week-limit recovery). They pointed opposite ways on the same agent.
+RESOLUTION: proactive-rewind-at-clean-boundary is warranted when heavy work is IMMINENT. When the next work is DISTANT/gated AND budget is constrained, HOLD an idle-stable sub-80 agent (an IDLE agent doesn't climb — its % is stable) and set a TRIGGER: the moment real work is dispatched, the agent flags at the idle PRE-WORK boundary → driver render-measures + rewinds-then ONLY if the work would cross it >80. Same clean boundary; budget spent only when needed.
+WHY: an idle 78% agent costs nothing sitting; a rewind's boot/re-derive costs weekly budget. Spending it now for headroom used only at a distant gate is premature. Trigger-at-dispatch defers the spend without risking a rushed mid-work rewind.
+NOT "never proactively rewind" — "match the proactive rewind to imminence + budget": imminent heavy work → rewind now; distant/gated + budget-tight → hold-idle + trigger. Also: humility — the agent sees its own queue's imminence better than the external driver; let it override "hold" if it knows a gate is imminent.
+Route to trainer canon (agent-rewind.md, near the proactive-rewind entry) when free.
