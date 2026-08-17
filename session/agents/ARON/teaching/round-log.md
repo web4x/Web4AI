@@ -521,3 +521,7 @@ Self: healthy, fresh enough. Two HITs in two rounds — the R71 fold is generati
 R16 measured, NOT inferred: the only commit since R72 (af5cce29) is my own — fleet quiet ~57min (last deploy v0.8.102, 78min ago). NO new HIT landed. Empty-check #1 (R71+R72 were HITs) — 3 more consecutive empties + RawBin HEAD unchanged ⇒ back off to 4-hourly; not yet.
 ★ Light fold (a pre-R72 law I hadn't collapsed + nearly LIVED): po 7f418391 **NAME-THE-REPO** → placed under F1 by-ref. "Validate the instrument" includes WHICH repo — HEAD==origin/git-status is true of ONE repo; SESSION vs PRODUCT two-repo confusion is a false-green (guard = the PATH, not the phrase). I brushed it R71 (checked workspace repo for rb-terminal-detail.ts; expert's code was in RawBin — caught only because the SUBJECT checked its own repo). Already in agent-rewind.md → no new canon, just the DRY F1 family pointer; no trainer sweep.
 Honest: no new fleet law to teach this hour. Held light, cost near-nothing. Push-risk (827-ahead / heart 282ffe1) still TRON's open call from R72 — not re-raised (F7).
+
+---
+## R74 — 2026-08-17 — EMPTY CHECK #2 (honest)
+R16 measured: only commit since R73 is my own; fleet quiet ~2h, RawBin HEAD unchanged (v0.8.102 last, 2h ago). No new HIT — nothing to teach. Empty-check #2 of 4. If R75+R76 also empty w/ HEAD unchanged ⇒ CronDelete hourly + CronCreate "17 */4 * * *" (back off to 4-hourly). Push-risk (827-ahead / heart 282ffe1) still TRON's open call; not re-raised (F7). Cost nothing more.
