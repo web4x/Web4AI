@@ -1,0 +1,78 @@
+# Memory orphans — *.md with NO MEMORY.md index pointer (72 files)
+
+Emitted by robbin-tester's `check-memory-pointers.mjs` (report-only run). These files EXIST in /root/.claude/.../memory/ but nothing in MEMORY.md points at them → **F8 CONNECTION-IS-WHAT-LIVES**: they are not connected to the loaded index, so they were never alive (~37% of memory).
+
+ARON/trainer: triage each — **index** (add a MEMORY.md pointer) / **merge** (fold into a kept file) / **prune** (delete dead). Then tell robbin-tester to flip `check-memory-pointers.mjs --strict`. This is a plain list — read each file directly if you need its body (no bulk contents here, by design).
+
+- `always-involve-sm-as-monitor.md` — ALWAYS keep the SM involved as the monitor in every drive cycle — brief it + have it watch/measure/report; driving directly does NOT mean dropping the SM (Tron 
+- `anchor-spec-refs-on-symbol-not-line.md` — "In a requirement/AC/spec, reference code by SYMBOL (function/method name), never by line number — lines drift with every edit above"
+- `atomic-commit-in-shared-tree.md` — "In a fast-churning multi-agent shared git tree, stage+commit+push must be ONE atomic bash call (&&); a split index gets clobbered"
+- `authorized-queued-is-proceed-not-await.md` — Queued authorized work = do-it-next; idle-holding for permission you already have is a bad standby
+- `backstop-parity-with-data-having-sample.md` — "When backstopping a data-feed parity/completeness fix, sample an entity that HAS the data — an empty/zero sample passes vacuously and masks the gap"
+- `busy-agent-dismisses-own-picker.md` — an active coordinator (PO/architect) wakes mid-drive and cancels its OWN /rewind picker — it must be genuinely IDLE first; also the RC menu can open instead of 
+- `chain-complete-is-not-functional.md` — "Never declare a feature \"works\"/\"fully realized\" from chain+config PRESENCE — chain-complete-to-Impl is necessary, not sufficient; only a live functional g
+- `checkpoint-rewind-after-each-major-block.md` — "After each MAJOR block completes (a Tron-confirmed feature/fix/arc), update context.md + learnings.md THEN order a rewind via the agent-trainer — proactively, 
+- `checkpoint-trigger-85-below-bound-the-work.md` — "Rewind-checkpoint trigger is >=85% (canon); below 85 the response is BOUND THE WORK to the runway, not a rewind — the climb-proxy is early-warning, not a trigg
+- `cmm34-scenario-first-through-req-planner.md` — DRIVE via scenario-first requirement+task planning through req+planner (CMM3/4 defined process), NOT reactive ad-hoc otmux micro-dispatch to each agent (CMM2 = 
+- `context-read-1m-denominator-stale.md` — "claudeCode context.read over-reports %used ~5x for Opus-1M agents under 200k usage (divides by stale 200k denom); verify the real window before trusting the % 
+- `context-read-returns-free-not-used.md` — "claudeCode `context.read` returns % FREE, not % USED — %used = 100 − context.read; authoritative agent context = /context Free-space (peer-captured), never a s
+- `correct-by-construction-needs-gate-verification.md` — A "correct by construction" claim is only valid if the invariant is at the RIGHT level AND it's been gate-verified — never accept/relay it as done on assertion 
+- `cu-before-context-injection.md` — "Always C-u to clear the composer BEFORE injecting /context to measure — a post-rewind or staged composer submits its content on send.enter, triggering a ghost-
+- `deep-rewind-hazards-memory-files-and-menu-layout.md` — "After a deep rewind, \"code will be unchanged\" guards the git REPO only — memory files can vanish; and the menu layout VARIES (option-2 may be \"Summarize\") 
+- `deep-rewind-reverts-memory-dir-not-just-repo.md` — "The rewind confirm 'code will be unchanged' guards the REPO working tree only — a DEEP option-2 still rolls back the agent's tool-edit history under /root/.cla
+- `delegated-is-not-driven-drive-to-completion.md` — "Routing work is NOT driving it — verify MOTION, not that a dispatch landed; a holding agent plus an idle driver is a deadlock in which everyone reports healthy
+- `deliver-literally-gate-is-security-not-owner-masking.md` — "Deliver what Tron literally commands; don't inject unrequested owner-side masking/caution — the access gate (non-owner 403) is the security, not masking the ow
+- `detector-fails-open-on-nonstring-verify-real-unit.md` — "A detector/lint/gate is UNPROVEN until run on a real production-shaped unit; a regex/includes/test on a NON-STRING coerces to \"[object Object]\" and FAILS OPE
+- `disk-wins-over-rewound-peer-thread.md` — "A freshly-rewound teammate's status claim may be stale ghost-context — measure disk before accepting it"
+- `done-requires-tron-qa-and-real-deliverable.md` — "A task is Done ONLY on Tron's QA sign-off AND the real user-facing deliverable verified to EXIST — auto-Done without his QA, or a render-stub instead of the ge
+- `drive-means-verify-panes-not-relay-reports.md` — "Driving = independently capture agent panes + disk EVERY cycle, never trust a monitor's/relay's \"all engaged, building\" reports; a relayed status is not deli
+- `feedback_no_force_flags.md` — "NEVER use --force or flags to bypass — if the system blocks, the system is right and the CODE must be fixed"
+- `feedback_planner_task_files.md` — Planner must create numbered task files with refinement subtasks per Sprint 1 template — planning.md alone is NOT enough
+- `feedback_po_drives_continuously.md` — "PO's MAIN responsibility is to DRIVE — dispatch next work the instant a report lands, never wait for confirmations before dispatching"
+- `feedback_po_signals_pin_on_gate.md` — "Every tester GREEN gate must be immediately followed by PO signaling the skill-expert to advance the pin — the pin owner can't act on what it doesn't know"
+- `gate-test-one-keystroke-false-positive.md` — "one navigation keystroke passing the auto-mode classifier does NOT mean the rewind gate is cleared — verify with the sustained drive, never declare cleared fro
+- `gate-the-fix-not-just-the-target.md` — "before deploying a FIX, adversarially gate the FIX itself on the real target — a fix can be broken or dangerous even when it looks clean; code-review + unit-pr
+- `ghost-suggested-prompt-not-real-text.md` — "a dimmed SUGGESTED (ghost) prompt in the composer is NOT real staged text — composer is actually empty; tell by color (dimmed) or non-effective C-u (no \"Ctrl+
+- `independent-measurements-share-blind-spot.md` — "Independent measurements protect against ERROR but not against a shared BLIND SPOT — if all methods look at the same kind of thing the same way, they miss what
+- `infra-dep-lost-across-rewinds-verify-docker-samehost-reproducible.md` — "An external infra dep (e.g. a plantuml Docker) gets forgotten across rewinds → \"not installed\" diagnoses must check docker/services not just host PATH, verif
+- `ios-webkit-tap-fire-false-green.md` — "Chromium FIRES taps on fragile non-native interactive elements (div/span/h2/implicit-label) that real iOS WebKit does NOT — an interaction false-GREEN; fix by 
+- `measure-all-auth-layers-not-just-caller.md` — "A \"no ?token= / cookie-only\" security claim must check EVERY token-resolution layer — the caller AND the guard's own resolver — not just the entry point"
+- `measure-ground-truth-before-emergency.md` — "Before raising an emergency (esp. prod-down), measure the ground truth (ps/disk/server) FIRST — a pane snapshot of a discarded/alternate timeline reads identic
+- `monitor-is-a-spof-watch-the-watcher.md` — "A monitoring agent (SM) that runs out of context fails SILENTLY and takes team-health monitoring down with it — the watcher needs a watcher; checkpoint+rewind 
+- `mutual-hold-deadlock-verify-unblocking-ack.md` — "When you hold for peer B's action AND B holds for your ack, an unverified ack = silent MUTUAL-HOLD deadlock; verify the unblocking-ack REACHED B"
+- `near-wall-rewind-lands-65-not-30.md` — "a >=~90% agent CANNOT reach <30% within the hard 50% depth cap — a ≤50% conversation-rewind of a walled agent lands ~65%. The '<30%' verify-target conflicts wi
+- `never-compact-never-reboot-rewind-only.md` — "Tron absolute — NEVER /compact and NEVER reboot(kill+relaunch) any agent; the ONLY recovery is a REWIND (Option-2 by-label, code-intact), which un-walls even a
+- `never-rewind-more-than-50-percent.md` — "HARD LIMIT (Tron, 2026-07-21) — NEVER rewind an agent more than ~50% deep; beyond 50% endangers its training data (accumulated context/learnings). Rewind frees
+- `no-send-to-idle-holding-agent.md` — "Never send+Enter to an agent pane without confirming (via SM/live status) it isn't idle-HOLDING-SAFE at the wall or mid-rewind — a send RESUMES a paused agent 
+- `no-truncate-output-tail.md` — "NEVER pipe command output through `| tail -N` / `2>&1 | tail -1` — show FULL honest output, especially in verification/proof demos; truncation hides errors and
+- `pane-capture-stale-scrollback-wedged-not-down.md` — "otmux pane.capture uses -S scrollback → on a wedged/alt-screen TUI it returns STALE bash startup text, not the live screen; a \"bash shell, no footer\" capture
+- `panel-capture-agent-context.md` — "the DRIVER can measure an agent's AUTHORITATIVE /context % by sending /context to its pane + capturing the panel — agents can't self-invoke /context (TUI-only)
+- `phase-1-catches-stale-anchor-drift.md` — "ALWAYS run the Phase-1 self-review before a proactive rewind — even a TODAY-DATED committed anchor with a clean tree can be STALE; the agent's own review catch
+- `phase-1-mandatory-on-walled-rewind.md` — Phase 1 (shallow rewind → agent saves its OWN latest → THEN deep rewind) is MANDATORY on a WALLED/out-of-context agent — NEVER skip it. Skipping = treating a wa
+- `playwright-chromium-emulation-not-real-webkit.md` — "Playwright's devices['iPhone 12'] runs CHROMIUM, not real WebKit/iOS — it false-negatives native-widget rendering (Monaco fold chevrons rendered on real iOS bu
+- `po-owns-delivery-never-freeze-on-auth.md` — "The PO owns the team's DELIVERY — never freeze the team waiting on a rewind-authorization; a safe idle agent keeps building (incremental commits make a mid-bui
+- `posture-decays-like-a-version.md` — A posture/restriction (freeze/hold/embargo/blocked-on-X) decays like a version number — MEASURE whether it still holds before relaying or obeying it
+- `regen-task-views-after-every-clarification.md` — "STANDING RULE — after EVERY Tron clarification + req AC-sharpen, regenerate the task MD views from the current units so Tron always SEES his input reflected in
+- `report-before-idle.md` — "As robbin-expert (Web4RawBin), ALWAYS report to robbin-po (robbinTeam2:0.0) before going idle — result, status, or blocker; never go silently idle"
+- `requirements-md-ac-rendering-status-blind.md` — The generated requirements.md renders "- [ ]" for ALL ACs regardless of ac.status (status-blind) — read AC-met truth from the unit's ac.status field, NEVER from
+- `retirement-measure-each-unit-hop.md` — "Retiring a chain cluster must retire EVERY hop (Impl AND its Test(s)) — measure each unit's own supersededBy/status; never infer the Test rides the Impl's supe
+- `rewind-builders-at-commit-breakpoints.md` — "A heavy builder can chain-build to the 0% wall UNMEASURED (you can't /context an active agent) — as PO, monitor all agents' context via the SM and proactively 
+- `rewind-drive-gotchas.md` — "operational gotchas driving a fleet /rewind — empty-composer≠idle (check footer), one-zoom-per-window, interrupt-only-if-committed+burning, busy-agent-dismisse
+- `rewind-pane-size-and-menu-label.md` — "rewinding a 0%/saturated agent — picker needs a tall pane (detach small clients + targeted zoom; otmux zoom lacks -t), and pick the restore option BY LABEL not
+- `rewind-threshold-80-for-1m-agents.md` — "On a 1M-context model, keep driving to ~80%+ before rewinding — the runway is huge; self-order the rewind if the SM doesn't (Tron)"
+- `rewound-agent-loses-recent-rulings.md` — A rewound agent loses rulings/corrections made AFTER its rewind checkpoint — re-check freshly-rewound agents for stale doctrine and re-propagate recent rulings
+- `robbinteam2-cannot-be-cleanly-rewound-prevention-only.md` — "RETRACTED misdiagnosis — a small pane in a TILED window is NOT a pinned-small window; measure the WINDOW/CLIENT before diagnosing un-rewindability; a header-on
+- `scrum-task-template-dual-links.md` — canonical scrum.pmo planning — parent+role-subtasks, MACHINE-READABLE unannotated Status, and the TWO distinct link concepts (traceability=up/down vs dual=GitHu
+- `send-verified-lies-confirm-receipt-at-the-agent.md` — "send.verified reports success for messages that never arrive — confirm delivery by the AGENT acting/confirming, not by send.verified; an agent idle-without-its
+- `server-green-needs-real-restart-not-rebuild.md` — "A server-side Test GREEN is verified-LIVE only after a real process restart — an r-rebuild doesn't reload server code, and /api/config's version string can lie
+- `sprint-close-is-team-not-tron.md` — "Closing a 100%-honest-Done sprint is TEAM bookkeeping (a generated view of the board), NOT a Tron gate — \"Tron-close-pending\" was a phantom gate"
+- `sprint-close-tron-only-not-a-relay.md` — "Sprint-CLOSE (like sprint-number) is Tron-governance-only, confirmed via the PO directly — NEVER flip a sprint-status on an SM/peer wire-relay claiming \"Tron 
+- `standing-sm-care-cadence.md` — "CARE FOR THE SM is my STANDING cadenced duty (not ad-hoc) — it can't self-/context, so I peer-inject on a regular beat; it OUTRANKS delivery drives"
+- `sweep-every-agent-pct-not-just-self-flaggers.md` — "Read EVERY agent's context% on a cycle, not just the ones that self-flag — the highest-output silent agent is the likeliest to wall and won't complain"
+- `task-dual-status-fields-can-disagree.md` — "A Task unit has TWO status fields (model.status→planning checkbox, model.statusChecklist→task-md) that can DISAGREE = a false-Done; audit both, never pick the 
+- `trainer-drives-rewinds-not-aron.md` — The agent-trainer (baseTeam:0.0) drives agent rewinds; ARON (Temple:0.0) is the keeper/doctrine-teacher and does NOT drive rewinds — route all rewind requests t
+- `unstick-staged-agent-fresh-send.md` — A stalled agent with a command STAGED (not executing) — clear composer (C-u) + a FRESH otmux send lands it; a bare Enter-poke does NOT (S-9 stage bug)
+- `version-bump-needs-restart.md` — Web4RawBin R31.7 — any version bump (even client-only) needs a server restart to sync /api/config
+- `visual-features-verify-by-screenshot-not-dom.md` — "For any VISIBLE/rendered feature (SVG bands, colored blocks, layout), verify by SCREENSHOT + pixel-sample — never by DOM element counts, which confirm existenc
+- `walled-agent-reads-idle-in-sweep.md` — "A walled agent (0% remaining, done generating) shows as IDLE in a busy/idle sweep — so a sweep MISSES an active-climb-to-wall; the tell is the \"Context low (N
+- `watch-the-sm-while-driving-hard.md` — When I drive hard on work (builds/gaps), I MUST keep watching the SM's own context — the SM is the SPOF context-watcher; driving-focus is exactly when I let it 
