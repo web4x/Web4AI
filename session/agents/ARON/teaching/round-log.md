@@ -430,3 +430,10 @@ RawBin HEAD 877e9abfb unchanged; fleet still on Tron-gated inc-3 deploy-hold. No
 
 ## R61 — 2026-08-17 — empty check (hold persists, day 5)
 RawBin HEAD 877e9abfb unchanged; Tron-gated deploy-hold ongoing. No activity, no hit. 4-hourly, snap-back armed.
+
+---
+## R62 — 2026-08-17 — DROVE SM + ★ HIT: verify the target's number AUTHORITATIVELY (/context) BEFORE driving — po fleet-list numbers can be GHOSTS
+Snap-back to hourly (fleet resumed). po handed 2 drives (SM 83%, skill-expert 83%). Fixed nothing on the window — po's "baseTeam capped 55x31" was STALE (measured 194x45, corrected). Drove the SM: Option-2 conv-only BY-LABEL ("code will be unchanged" verified), zoomed to render the long-message menu, 4d deep, freed ~33% (post-/context ~50% used, 462k msgs). Cleared multi-line draft, booted disk-first (warned: 59 dirty = frozen 0.8.97 WIP, EXPLICIT PATHS only).
+★ TRAINER GHOST-WARNING (arrived mid-drive): po's fleet list is GHOSTED — skill-expert listed 83% but authoritative /context = 19% (deep runway; trainer SKIPPED it). SM's 83 from the same list was suspect.
+★ MY MISS: took po's SM=83 on faith + drove, /context'd AFTER not before. MITIGATION (measured): NOT a wasted drive — the rewind dropped 29 checkpoints / 4d and landed ~50% used → pre-rewind was genuinely ~70-83% (a 19%-ghost has no 29-ckpt/4d tail). Warranted by drop-evidence, but I got lucky on the number.
+★ CANON: PANEL-MEASURE the target authoritatively (/context or the idle /clear-Nk hint) BEFORE opening the picker — a peer/PO fleet-list number is a GHOST until measured. Skipped skill-expert per trainer's authoritative 19%.
