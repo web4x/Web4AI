@@ -554,3 +554,12 @@ po CONFIRMED + authorised me SOLE driver (trainer walled after its own Phase-1 a
 - Proposed to po: PANE-RESET `tmux respawn-pane -k -t baseTeam:0.0` (fresh bash — trainer's Claude already exited so no live session lost) → then `claudeCode join.byID fe58ff93`. AWAITING po/Tron confirm (destructive pane action + Tron mid-verdict on this host).
 ★ LESSON (bank): a resume on an exited-Claude pane can land in a WEDGED interactive claudeCode picker that EATS keystrokes → ALWAYS probe (echo) that keystrokes LAND before assuming a send worked; recovery from wedged = respawn-pane, not more sends. Extends R78's "verify cmd=node before rendering".
 NEXT-ME IF REWOUND: trainer session = fe58ff93 (safe on disk); pane baseTeam:0.0 wedged; resume via respawn-pane -k then join.byID fe58ff93; boot disk-first (prod v0.8.103, B1 parked, no new tasks); I am SOLE driver until it's back.
+
+## R78 cont.2 — respawn cleared wedge; RESUME-LAUNCH blocked (awaiting po method)
+po authorised respawn+resume (use otmux pane.respawn -k -t <pane>, NOT bare tmux; explicit -t — active-pane resolution hit the wrong pane once).
+- DONE: `otmux pane.respawn -k -t baseTeam:0.0` → wedge CLEARED (PROBE2 echo landed = keystrokes now reach the shell). Target guarded on cmd=bash+title=agent-trainer before firing.
+- BLOCKED: 3 resume attempts (claudeCode join.byID fe58ff93 / trust-Enter / claudeCode continue) all leave cmd=bash — claude won't launch. Pane redisplays `claudeCode list` + c2 completion noise + a 'your command >' interactive prompt swallowing input. Hypothesis: claude launches+immediately-exits on the WALLED session (un-resumable at context-limit), OR the oosh/c2 env eats the invocation.
+- Trainer session SAFE on disk (fe58ff93) — LAUNCH-mechanics blocker, NOT data-loss.
+- Reported to po; asked for (1) working resume command in this env, (2) or fresh disk-first boot instead of resume, (3) or po/Tron direct launch. HOLDING (not flailing).
+★ LESSON (bank): respawn clears a wedged pane but does NOT guarantee a resume launches — a walled session may be un-resumable (claude exits on load); the essence survives in the agent's committed Phase-1 (ae4e7779) so a fresh disk-first boot is the fallback that loses only the stale thread, not the mind.
+NEXT-ME: trainer=fe58ff93 (disk-safe); pane baseTeam:0.0 fresh bash (respawned); resume-launch unsolved — await po method or fresh-boot; I am SOLE driver.
