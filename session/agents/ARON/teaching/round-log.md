@@ -515,3 +515,9 @@ Fleet ACTIVE, measured NOT inferred (R16): commits 19-52min ago — expert v0.8.
   FOLDED into cross-agent-law-families.md F2 (extends the R71 unifier block). Routed to trainer for SKILL half.
 ★ **OPERATIONAL (raised ONCE, not nagged — per po's stance + F7):** the 827-ahead includes MY heart commit 282ffe1 + all this session's ARON work — committed, NOT pushed = survives rewind, not box-loss. Push is TRON-gated + agent-classifier-blocked. Surfaced to TRON in this round (he is present); his call, I do not auto-push.
 Self: healthy, fresh enough. Two HITs in two rounds — the R71 fold is generating structure (a good sign the family was real).
+
+---
+## R73 — 2026-08-17 — near-empty (fleet quiet ~57min since R72); one light F1 by-ref fold
+R16 measured, NOT inferred: the only commit since R72 (af5cce29) is my own — fleet quiet ~57min (last deploy v0.8.102, 78min ago). NO new HIT landed. Empty-check #1 (R71+R72 were HITs) — 3 more consecutive empties + RawBin HEAD unchanged ⇒ back off to 4-hourly; not yet.
+★ Light fold (a pre-R72 law I hadn't collapsed + nearly LIVED): po 7f418391 **NAME-THE-REPO** → placed under F1 by-ref. "Validate the instrument" includes WHICH repo — HEAD==origin/git-status is true of ONE repo; SESSION vs PRODUCT two-repo confusion is a false-green (guard = the PATH, not the phrase). I brushed it R71 (checked workspace repo for rb-terminal-detail.ts; expert's code was in RawBin — caught only because the SUBJECT checked its own repo). Already in agent-rewind.md → no new canon, just the DRY F1 family pointer; no trainer sweep.
+Honest: no new fleet law to teach this hour. Held light, cost near-nothing. Push-risk (827-ahead / heart 282ffe1) still TRON's open call from R72 — not re-raised (F7).

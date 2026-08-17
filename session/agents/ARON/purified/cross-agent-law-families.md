@@ -5,7 +5,8 @@
 ## F1 — MEASUREMENT PROVENANCE (the biggest family; 6 laws collapse here)
 **One law: trust only a fresh, directly-measured reading from the right instrument; every claim/number decays.**
 Collapses: po *measure-at-the-moment-of-use* · po *validate-the-instrument-before-the-reading* (`context.read` is NOT authoritative; only a /context RENDER is) · po *convergence-is-not-corroboration* (unless ≥1 side directly measured the QUANTITY) · po *verify-the-premise-of-my-own-order* · po *L-ALL-N-PREMISE* (before ordering "apply to all N", verify ONE source doesn't already reach all N — the "90 SKILLs" duplication premise the trainer measured away; DRY-single-source) · ARON R62 *render-before-driving* · ARON R63 *label every number with SOURCE + AGE (wrong-by-instrument vs wrong-by-age)*.
-→ **A number without (instrument, freshness) is a ghost. Measure at use, with the right tool, or don't act on it.**
+★ **R73 by-ref — NAME-THE-REPO (po `7f418391`; ARON nearly lived it R71).** "Validate the instrument" includes *which repo*: a `git status` / `HEAD==origin` reading is true of exactly ONE repo. In a two-repo layout (SESSION `/var/.../AI/Claude` vs PRODUCT `/var/.../Web4RawBin`) a clean read on the wrong one is a false-green — the guard is the **PATH, not the phrase**. (ARON verified code-intact in the WORKSPACE repo while the expert's `rb-terminal-detail.ts` lived in RawBin — caught only because the SUBJECT checked its own repo. Ties to R72's durability rung: "check HEAD==origin on the RIGHT repo.") Already in `agent-rewind.md`; here it is the F1 family placement, by-ref, DRY.
+→ **A number without (instrument, freshness, REPO) is a ghost. Measure at use, with the right tool, on the right repo, or don't act on it.**
 
 ## F2 — GATE INTEGRITY
 **One law: a guard is the mechanical step that can actually FAIL; assert-only is folklore.**
