@@ -1128,3 +1128,15 @@ I swept the fleet with `claudeCode context.read` and relayed the results as FACT
 3. **Never rewind a healthy agent** — it costs weekly budget and destroys context for nothing; that cost is worse when resuming FROM a week limit.
 4. If I relayed a number, label its SOURCE. An unlabelled number becomes fact in someone else's plan — and mine became a rewind order.
 **Meta:** this is the third time this session a *relayed* number was wrong (SM's own estimate ran 15pt high; the architect's "fresh context" claim had decayed; now context.read). Numbers decay and numbers lie about their own precision — **measure at the moment of use, and say how you measured.**
+
+## L-S40-CONVERGENCE — two angles agreeing is NOT verification if NEITHER measures the quantity
+I declared "expert measured empirically + architect reasoned from code, two angles, ONE mechanism = a real answer" about a 45s boot hang caused by an alleged O(all-5677-units) sync scan. **Both were wrong.** Direct measurement: **boot serves in ~1.3s (3 runs, stable); the full-corpus index scan is 0.1s.**
+- The architect's code-reasoning ASSUMED `ScenarioIndex.get` was an uncached readFileSync-per-call. It isn't. An assumption inside a chain of correct logic still yields a false conclusion.
+- The expert's "hang" was a BROKEN PROBE: node's global `fetch()` rejects self-signed certs and does NOT honour `NODE_TLS_REJECT_UNAUTHORIZED` (that env only applies to tls/https, not undici). Every probe failed with DEPTH_ZERO_SELF_SIGNED_CERT, so "server up, presenting its cert" read as "never serving". Re-probed with `node:https {rejectUnauthorized:false}` → 1.3s.
+**The epistemic error is mine:** I treated CONVERGENCE as VERIFICATION. Two independent angles that agree feel like corroboration — but if NEITHER directly measures the quantity in question (here: boot wall-time), agreement only means they share a wrong premise or an artifact. **Corroboration requires at least ONE direct measurement of the actual quantity.**
+**Rules:**
+1. Before accepting convergence, ask: *did either of these actually MEASURE the thing, or do both infer it?* Two inferences agreeing = one hypothesis, not two.
+2. **Validate the instrument before believing the reading** — a failing probe and a failing subject look identical. (Same family as: a gate that cannot fail certifies nothing.)
+3. A refuted premise must be CHASED DOWN to every artifact it entered: I minted requirement R40.39 on the O(all-units) mechanism, and the architect's ruling doc asserts it. Both must be corrected, or a false mechanism becomes canon on disk.
+4. My own banked law applied to me: **a by-construction claim is false if merely asserted** — including when it is asserted by two agents at once.
+**What was actually wrong:** the 8-minute outage was the OLD TypeError double-bind crash-loop (fixed in HEAD), not a slow boot. The fix did not "unmask a stall"; there was no stall.
