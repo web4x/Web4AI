@@ -19,6 +19,7 @@ reflect the new value **live, without a page reload**.
   - **ASSERT:** (i) `pin.current` = the In-Progress task with max `lastAdvancedAt` (post-backfill S37 = whichever of **37.24/37.27** advanced most recently, git-derived — **NEVER 37.4**); (ii) `WIP` count == # In-Progress; (iii) an advance THROUGH the seam UPDATES `lastAdvancedAt`; (iv) a direct write BYPASSING the seam does NOT stamp it — the **AC-2 binding lint catches the bypass** (this links AC-1↔AC-2; a stamp can ONLY exist via the seam = the omission-proof property directly).
   - **STAMP PROVENANCE (PO cde409737):** a post-backfill S37 stamp carries `lastAdvancedAtSource:'git-backfill'` (+ commit); a LIVE seam advance carries `'seam'`. Assert the honesty metadata — a git-backfill must NOT masquerade as a live seam advance (backfilled S37 stamps labeled 'git-backfill', a fresh seam tick labeled 'seam').
   - **STUB-MUST-FAIL:** a Planned/untimestamped task named `current` = RED (today's exact bug — 37.4-Planned shown as current).
+  - **BUILD-ORDER DEP (req 588786d19):** VALUE-green requires BOTH `seam-stamp` AND `backfill` landed (order: seam-stamp → backfill → predicate/view). Do NOT false-green if only the seam lands (no S37 stamps yet → current can't resolve) or only backfill (no live-advance path). Phantom-guard served==committed AND confirm both increments present before asserting VALUE.
 
 ## AC-2 — binding lint: no-write-outside-the-seam + STUB-MUST-FAIL
 Static/AST lint: NO code mutates a unit's model/status outside `UnitController.apply` (all ~15 sites route through it).
