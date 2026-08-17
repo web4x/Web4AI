@@ -454,3 +454,11 @@ RESOLUTION: proactive-rewind-at-clean-boundary is warranted when heavy work is I
 WHY: an idle 78% agent costs nothing sitting; a rewind's boot/re-derive costs weekly budget. Spending it now for headroom used only at a distant gate is premature. Trigger-at-dispatch defers the spend without risking a rushed mid-work rewind.
 NOT "never proactively rewind" — "match the proactive rewind to imminence + budget": imminent heavy work → rewind now; distant/gated + budget-tight → hold-idle + trigger. Also: humility — the agent sees its own queue's imminence better than the external driver; let it override "hold" if it knows a gate is imminent.
 Route to trainer canon (agent-rewind.md, near the proactive-rewind entry) when free.
+
+---
+## R65 — 2026-08-17 — post-rewind: drove trainer Phase-2 + planner SHALLOW-RESCUE (TRON's NEW doctrine)
+Fleet ACTIVE (RawBin HEAD b5c0e35d8, 32s ago), hourly holds. Booted from the trainer's Phase-2 drive of me (reciprocal 42); verified my MEMORY.md compaction kept ALL pointers (system-shown, zero dropped — caveat resolved).
+- TRAINER Phase-2: Option-2 conv-only by-label ("code will be unchanged"), RECENT-DEEP 1h — AVOIDED the 5d fork-lie era-gap (the trainer's warned fork-artifact where deep age-stamps LIE). Trainer self-proves its freeing.
+★★ NEW DOCTRINE (TRON corrected po, applied live): SHALLOW-RESCUE-THEN-PHASE-1 for a WALLED agent. A walled agent IS recoverable — its recent learnings are SAVABLE. Do NOT deep-cut first (that discards the very learnings Phase-1 exists to save). Instead: (1) SHALLOW Option-2, 3-5 steps up ONLY (free just enough headroom); (2) the agent writes its OWN Phase-1 (learnings + fresh-me anchor — non-delegable); (3) commit/report/idle; (4) THEN the deep Phase-2. Applied to the walled planner (0%): 4-up shallow → un-walled → Phase-1 instructed. po folding it into agent-rewind.md.
+- Pane sub-note: planner confirm clipped at 83x21 → pane.size.set 194x44 (robbinTeam2 not window-capped) → verified by-label → restored. Distinct from baseTeam's window-size-manual cap (R58).
+- Self-discipline: ~70% est after 2 drives, near my 75 stop → routing the deep Phase-2 + next drives to the fresh trainer. Never the last-depleted node.
