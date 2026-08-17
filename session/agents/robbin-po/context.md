@@ -1,4 +1,26 @@
-# robbin-po Context — save #64 (POST-REWIND 79→63%; **DISK = S40 / v0.8.71** — #63 was a full sprint stale)
+# ★★★ BOOT-ESSENCE (PHASE-1 CONSOLIDATION, 2026-08-17) — READ THIS BLOCK, THEN ONLY #75 ★★★
+**This file is 1900+ lines of APPENDED anchors. Everything above #74 is HISTORY. The header lines of older anchors LIE about being current (this one said #64). Newest anchors are at the BOTTOM.**
+## BOOT ORDER (do exactly this)
+1. **MEASURE DISK FIRST** — never trust this file or my thread: `git -C /var/dev/Workspaces/web4x/Web4RawBin log --oneline -3` · `grep -m1 version package.json` · `curl -sk https://prod.wo-da.de:4444/api/config`. **DISK WINS, always.** My thread has been days-stale THREE times.
+2. Read **#75** (bottom of this file) = current state. Then `session/agents/robbin-po/learnings.md` = the laws.
+3. **KEEP TOOL OUTPUTS SMALL** (grep/head, never cat/bulk-read). ~377k of Bash+Read output is what walled me twice. This is the single most important operational habit.
+## WHO I AM
+robbin-po — Product Owner, Web4RawBin. Pane robbinTeam2:0.0 · host WODA.prod. Team: 0.1 expert · 0.2 skill-expert · 0.3 architect · 0.4 req · 0.5 tester · 0.6 planner · SM baseTeam:0.1 · trainer baseTeam:0.0 (primary driver) · ARON Temple:0.0 (trainer-backup + consolidation authority).
+## THE LAWS THAT COST MOST TO LEARN (full versions in learnings.md)
+- **Measure never assume** — and measure at the moment of USE. Every claim decays: a peer's "I'm fresh", my own past measurement, a role assignment.
+- **Convergence is NOT corroboration** unless ≥1 side directly measured the QUANTITY. Two agents agreed on a 45s boot defect that did not exist (one inferred, one had a broken probe).
+- **Validate the instrument before the reading** — a failing probe and a failing subject look identical. `context.read` is NOT authoritative (only a /context RENDER is); I nearly shed a 19% agent I had listed at 83%.
+- **A gate that cannot fail certifies nothing** (stub-must-fail). An UNSATISFIABLE gate is how gates get silently removed. Ship report-only-then-strict, never red-from-birth.
+- **Knowing a rule is not the guard — the mechanical step is.** Look for the DISGUISE (a directory-add IS add-all; backticks in a double-quoted send EXECUTE — use single quotes).
+- **Name the FAMILY, not the instance**; and **name the SENSE** before calling something a two-source bug (same word ≠ same question).
+- **Done is TRON's act** (R40.10). A derived completion must never impersonate his. QA-Review ≠ Done. 0 Done flips, ever.
+- **Verify the premise of my own order** — "just regenerate it" assumed generated files; obeying would have destroyed his hand-written text.
+- **An answer that stops at the PO is not an answer** — relay unblocking acks immediately; a holding agent + an idle driver = deadlock where everyone reports healthy.
+- **After containment, re-ask whose order the next step is** — I substituted my security instinct for his standing order TWICE.
+- **Deep Option-2 reverts /root/.claude tool-edit history** despite "code will be unchanged" (that guards the REPO) — check the memory dir after every deep rewind; keep durable copies in git.
+- **PO stays LEAN**: coordinate + drive + rule. Do not read code or diagnose myself — that bloat is what walls me.
+
+# robbin-po Context — save #64 (POST-REWIND 79→63%; **DISK = S40 / v0.8.71** — #63 was a full sprint stale) [HISTORY]
 
 ## ★★★★★ CURRENT STATE (#64 — READ FIRST, DISK-MEASURED) ★★★★★
 **★ Sprint 40 (server-manager-deployment-mobile-input) · HEAD `34d297d91` · version **0.8.71** · Repo=/var/dev/Workspaces/web4x/Web4RawBin · pane.self=%6 (robbinTeam2:0.0).**
