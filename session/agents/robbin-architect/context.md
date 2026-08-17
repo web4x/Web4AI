@@ -44,6 +44,8 @@
 - R3 approve/decline -> DEFERRED-TO-T37.4.3 (3b8f21c6)+tripwire. End-state: TaskPolicy.apply gains evidence-data-merge (transition+data-intent, status DERIVED). DONE STAYS TRON: deriveStatusEnum sole writer, intent refuses status field, approve Tron-gated fail-closed, agent endpoint REFUSES Done. Behavior migration = own item after slice-1.
 - SEQUENCING CONFIRMED: slice-1 -> R40.18(derive+DISPLAY) -> agent endpoint (correct-AND-live). req: R40.18 needs a view-surface AC. LESSON: L11(c) concurrent-commit collision (peer commit swept my staged doc under their message; read diff AFTER, session-repo for design docs).
 
+### Slice-1 routing rulings (2026-08-17, measured): agent-message.ts:77 (Task messages[]) -> DEFER-T37.4.3 (end-state EXTENDED: apply data-merge carries ALL non-status Task data incl messages[], transition-OPTIONAL, status derives unchanged, Done-stays-Tron intact). agent-message.ts:68/103 (AgentMessage) -> EXEMPT double-measured (no view subscribes + no caller of .send anywhere in-repo = dormant S30 mailbox) + L10 tripwires (caller-appears / view-renders -> re-audit). WebItem.ts:128 + file-unit.ts:100 + message-unit.ts:37/44 (Room.addChat) -> CLEAN creates via publish-fn DI (byte-identical + emit container ref, module stays decoupled). Expert adopted git commit -- <path> pathspec (mirror-half propagated). 7 sites routed/4 commits at checkpoint.
+
 ## POSTURE / NEXT
 - Backstop-only on inc-3/deploys (expert drives; don't touch prod). Prod ~v0.8.9x.
 - Await: S37 build-go (wire the 4 UCs + backstop slices); T40.11/R40.39 build-go; Tron device visuals. Nothing multi-step pending.
