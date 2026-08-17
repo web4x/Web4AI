@@ -1193,3 +1193,11 @@ I asked the architect: is "not reflecting in realtime" ONE defect (views do not 
 ## L-PREREQ-SERVES-THE-PIN — building a pinned task's prerequisites is not deprioritising it
 T37.20 (the pinned task) is a DnD drop contract, but its real acceptance is "a drop makes the views update live" — which is PRODUCED by the controller seam + subscribe coverage. Shipping DnD first would resolve the payload and still not live-update = half value, root untouched.
 **Rule:** when a pinned task's acceptance DEPENDS on unbuilt prerequisites, build the prerequisites FIRST and say WHY in the same breath — "this serves your pinned task, it does not defer it". Unexplained resequencing of the pin looks exactly like ignoring it.
+
+## L-STALE-RATIONALE — my JUSTIFICATION decays as fast as my data
+I told the expert "shed now, it is the FREE moment because you are blocked anyway". Seconds later the architect ruled the fork and it was UNBLOCKED — so it replied that the free-moment rationale no longer applied and building now = zero delay. It was right.
+**Rule:** a recommendation carries a PREMISE ("you are blocked", "nothing waits on you", "the queue is empty"). Re-check the premise AT THE MOMENT OF ACTION, not when I wrote it — and state the premise OUT LOUD so the agent can invalidate it for me. This is [[measure-at-the-moment-of-use]] applied to my own reasoning, not just to numbers.
+
+## L-DELEGATE-THE-RULE-NOT-THE-DECISION — hand over the threshold, not a round-trip
+Instead of measuring the expert myself and replying, I gave it: report your render, and apply this yourself — >=75 shed, 60-75 your call, <60 build. It measured (58pct), acted (stay+build), AND corrected my premise in the same breath. No round-trip, no idle waiting for me, and a better outcome than my own judgement would have produced (I had leaned shed).
+**Rule:** when an agent holds information I do not (its own render, its build sizes, its upcoming load), delegate the RULE + the reasoning, not the decision — and give it explicit authority to override me with measurement. A round-trip costs delivery time AND deprives the decision of the best-informed party. Corollary: the expert also chose to BANK ITS LEARNINGS FIRST as insurance before a big build, unprompted — that is Phase-1-continuously working once the law is theirs rather than mine to enforce.
