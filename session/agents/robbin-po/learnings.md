@@ -1157,3 +1157,12 @@ I declared "expert measured empirically + architect reasoned from code, two angl
 4. **NO EMERGENCY DEVIATION FROM A TRIVIAL PROCESS.** Treating a routine rewind as a crisis is how spectators, improvised steps and mistakes get added. Do the boring defined thing.
 5. **CMM3/CMM4 (why this must be DEFINED and MEASURED, not tribal):** Claude Code CHANGES ITS MENUS. A process carried as folklore breaks the next time the picker moves. So: the steps live in a written skill (CMM3 = defined), and we measure/refine them (CMM4 = managed) — which is also why we select BY LABEL not by number, so a menu reorder cannot silently pick "restore code".
 6. **The wall-guard's purpose is Phase-1 protection.** Measure context to protect the WRITING, not to stage a rescue.
+
+## L-AC-MAP — TWO OF MY OWN EXPERTS CAN DISAGREE ABOUT THE ACCEPTANCE CRITERION
+On T40.11 slice-4 the EXPERT called AC-5 "Tron's device tap (Tron-only, split, never headless-greened)" while the ARCHITECT called AC-5 "mandates the array-removal at INV-T==0" — and the architect's REJECTION of the cheaper option rested on its reading. Same AC number, two different contents, nobody noticed because each was internally coherent and both are trustworthy.
+**Rule:** when a build decision is justified BY an AC, make someone read the AC TEXT ON DISK and state the mapping (which AC number = which requirement) before the build. A wrong AC mapping ships correct code against the wrong acceptance — and it also misstates what TRON still owes us (a device tap is his; an INV-T proof is ours).
+**Family:** this is the identifier-precision family, same as citing a TASK uuid as an IMPL uuid and quoting anchor hashes that do not resolve (I did both). An identifier or an AC number is a CLAIM; verify it resolves before reasoning on it.
+
+## L-EMPTY-QUEUE — AN EMPTY QUEUE IS A REPORT, NOT A VACUUM TO FILL
+With actionable==0 and everything sitting on Tron, the correct PO output is "actionable is 0, here is what is yours" — NOT invented work. My documented failure mode is the opposite: I substitute my own priority (security) when his queue looks empty or slow. Idle agents are only a problem if there IS his-order work they could do.
+**Allowed while idle:** completing a HALF-LANDED fix (the memory-pointer gate), and each agent's own Phase-1 writing. **Not allowed:** starting new product direction he did not schedule.
