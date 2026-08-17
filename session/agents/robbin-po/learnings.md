@@ -1382,3 +1382,14 @@ I saw a holding agent (expert @84%) and an idle driver (trainer) and — correct
 **Also:** the SM's choice was better than mine on the merits — it picked by FRESHNESS and by who was themselves a rewind candidate, information I had not weighed. Naming a driver is a decision with inputs (freshness, own-threshold, lane), not just "who is free."
 **Order matters under a race:** when I discovered the conflict I sent the STAND-DOWN first and the confirmation second. Kill the extra hand before you confirm the intended one.
 **Family:** every anti-failure reflex can overshoot into its mirror image — I have now done this twice (piling DRIVE-NOW pings to break a standby, which stalled the measure-gated drive; and this). Ask: "what is the OPPOSITE failure of the one I am preventing, and am I creating it?"
+
+## ★★ L-EXISTS-CORRECT-PROVEN — three distinct states, and we keep conflating them (the day's unifying law)
+Today the SAME confusion appeared in five costumes. Each time, something EXISTED and was reported as done:
+- a version **TAG existed** — but did it point at the SHIP commit? (tester added that check: *exists != correct*)
+- a **GATE had landed** and was in daily use — but it had no **stub-must-fail** self-bite, so it could have been inert and nobody would know (*correct != proven*)
+- a **chain was wired** (3a6f0d92 -> an Impl) — but did that Test EXERCISE that Impl? (borrowed credit: *wired != earned*)
+- a **checklist box existed** — but did it match the unit, in EITHER direction? (under-state and over-state are both lies)
+- a **hook existed** covering "the board" — but did it cover the unit-only WRITE PATH? (*present != enforcing*)
+**THE LAW: EXISTS ⊂ CORRECT ⊂ PROVEN. Never accept the first as the third.** For anything I am told is done, ask the three questions in order: does it exist · is it pointed at / asserting the right thing · has its success path actually fired (and can it fail)?
+**Why it matters more than any single instance:** "it exists" is what a report says; "it is proven" is what a gate says; and the gap between them is where every false-green of this session lived. The cheapest tool is asking for the self-proof EXPLICITLY, every time — I asked twice today (the tag create-path, the memory gate self-bite) and both times it closed a real hole a competent agent had left open in good faith.
+**Corollary:** when I close a loose thread, MEASURE it rather than assume it was dropped — the memory gate had landed and was in use; assuming it was dropped would have insulted good work, and assuming it was complete would have missed the missing self-bite. Neither assumption; ask.
