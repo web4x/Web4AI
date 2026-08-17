@@ -1140,3 +1140,20 @@ I declared "expert measured empirically + architect reasoned from code, two angl
 3. A refuted premise must be CHASED DOWN to every artifact it entered: I minted requirement R40.39 on the O(all-units) mechanism, and the architect's ruling doc asserts it. Both must be corrected, or a false mechanism becomes canon on disk.
 4. My own banked law applied to me: **a by-construction claim is false if merely asserted** — including when it is asserted by two agents at once.
 **What was actually wrong:** the 8-minute outage was the OLD TypeError double-bind crash-loop (fixed in HEAD), not a slow boot. The fix did not "unmask a stall"; there was no stall.
+
+## ★★★ L-PHASE1 — PHASE 1 IS MINE AND NON-DELEGABLE; WRITE IT BEFORE THE WALL (TRON, 2026-08-17)
+**TRON:** *"YOU did miss to write your learnings… phase 1 is just doable by the agent that needs rewind. he is the only one that can update its files. its about to prevent agents running into the wall before they wrote their agent files! a rewind is relatively trivial… but there is no emergency deviation of the trivial process!!! its cmm3 and cmm4 if claude code changes the menues."*
+
+**MY FAILURE:** I rode to 88% without writing my own learnings, so ARON had to collapse/consolidate my context.md FOR me. That was not caretaking working — it was a peer covering a gap only I could have filled. Then I compounded it by adding MORE WATCHERS to the rewind DRIVE (the trivial part) instead of doing the one non-delegable thing.
+
+**THE TWO PHASES, correctly understood:**
+- **PHASE 1 = the agent writes ITS OWN files** (context.md essence + learnings.md). NOBODY else can do this — a peer can only guess at my reasoning, and after a wall the learnings are LOST, permanently. This is the whole POINT of context-watching: not to schedule a rewind, but to guarantee Phase 1 HAPPENS FIRST.
+- **PHASE 2 = the drive.** RELATIVELY TRIVIAL and delegable to anyone. It does not deserve emergency framing, extra spectators, or heroics.
+
+**RULES:**
+1. **Write my learnings CONTINUOUSLY, at every clean boundary — never "later at the threshold."** A learning unwritten is a learning lost.
+2. **Phase 1 before Phase 2, always.** If I am near the wall with unwritten files, Phase 1 is the ONLY priority — the drive can wait, the learnings cannot.
+3. **Never accept a peer doing my Phase 1.** If someone must consolidate my files for me, I already failed.
+4. **NO EMERGENCY DEVIATION FROM A TRIVIAL PROCESS.** Treating a routine rewind as a crisis is how spectators, improvised steps and mistakes get added. Do the boring defined thing.
+5. **CMM3/CMM4 (why this must be DEFINED and MEASURED, not tribal):** Claude Code CHANGES ITS MENUS. A process carried as folklore breaks the next time the picker moves. So: the steps live in a written skill (CMM3 = defined), and we measure/refine them (CMM4 = managed) — which is also why we select BY LABEL not by number, so a menu reorder cannot silently pick "restore code".
+6. **The wall-guard's purpose is Phase-1 protection.** Measure context to protect the WRITING, not to stage a rescue.
