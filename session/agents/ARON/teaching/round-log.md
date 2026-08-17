@@ -525,3 +525,7 @@ Honest: no new fleet law to teach this hour. Held light, cost near-nothing. Push
 ---
 ## R74 — 2026-08-17 — EMPTY CHECK #2 (honest)
 R16 measured: only commit since R73 is my own; fleet quiet ~2h, RawBin HEAD unchanged (v0.8.102 last, 2h ago). No new HIT — nothing to teach. Empty-check #2 of 4. If R75+R76 also empty w/ HEAD unchanged ⇒ CronDelete hourly + CronCreate "17 */4 * * *" (back off to 4-hourly). Push-risk (827-ahead / heart 282ffe1) still TRON's open call; not re-raised (F7). Cost nothing more.
+
+---
+## R75 — 2026-08-17 — EMPTY CHECK #3 (honest)
+R16 measured: only commit since R74 is my own; fleet quiet ~3h, RawBin HEAD unchanged (v0.8.102). No new HIT. Empty-check #3 of 4. If R76 is also empty w/ HEAD unchanged ⇒ back off to 4-hourly (CronDelete hourly + CronCreate "17 */4 * * *"). Push-risk still TRON's open call (F7, not re-raised). Cost nothing more.
