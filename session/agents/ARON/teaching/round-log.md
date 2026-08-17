@@ -540,3 +540,9 @@ Push-risk (827-ahead / heart 282ffe1) still TRON's open call (F7). Cost near-not
 ---
 ## R77 — 2026-08-17 — EMPTY (first 4-hourly round; still quiet)
 R16 measured: only my R76 since last round; fleet quiet ~7h total, RawBin HEAD unchanged (v0.8.102 last). No HIT, no resume → no snap-back; 4-hourly holds. Push-risk still TRON's open call (F7). Cost nothing more.
+
+---
+## R78 — 2026-08-17 — FLEET RESUMED → snapped back to HOURLY; + trainer EXIT anomaly caught
+R16 measured: fleet active again (trainer Phase-1 refresh 11s ago, req/expert/planner/po commits <20min, prod v0.8.103). Per the snap-back clause: CronDelete 4-hourly 072653c6 → CronCreate hourly **160c8306**. The loop re-armed itself on resume, both directions now proven (backed off R76, snapped back R78).
+★ OPERATIONAL CATCH (measure-not-assume held): po directed me to render-measure the trainer (climbing after driving planner 82→37). I did NOT fake a render — measured baseTeam:0.0 **cmd=bash** (raw shell, not Claude TUI) + `claudeCode list agent-trainer` EMPTY ⇒ the trainer's Claude session **EXITED** ~1min after committing Phase-1 (ae4e7779) + flagging me. Read: Phase-1-before-the-wall then WALLED/exited — doctrine held (it saved first; Phase-1 zero-loss). This is an EXIT (recovery=resume/relaunch), NOT a climb (Option-2 rewind). Reported to po; holding the pane (single-driver) pending po confirm nobody else is relaunching, then I drive the recovery as named driver.
+★ LESSON (bank): "render-measure X" presumes X is a LIVE Claude session — VERIFY cmd=node/claude before injecting /context; a pane at cmd=bash is an EXIT, not a measurable agent. Don't inject a render into a shell.
