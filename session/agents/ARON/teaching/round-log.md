@@ -585,3 +585,7 @@ Trainer STILL DOWN (baseTeam:0.0 cmd=bash) — awaiting Tron's ~20s relaunch (he
 ---
 ## R81 — 2026-08-18 — EMPTY #2 (fleet quiet ~3h; trainer still down)
 R16 measured: only my R80 since last round; fleet quiet ~3h, RawBin HEAD unchanged, trainer still down (baseTeam:0.0 cmd=bash). No HIT. Empty #2 of 4. Push-risk + trainer-relaunch both still TRON's (F7, not re-raised). Cost nothing more.
+
+---
+## R82 — 2026-08-18 — EMPTY #3 (fleet quiet ~4h; trainer still down)
+R16 measured: only my R81 since last round; fleet quiet ~4h, RawBin HEAD unchanged, trainer still down. No HIT. Empty #3 of 4 → R83 empty ⇒ back off to 4-hourly. Push-risk + trainer-relaunch still TRON's (F7). Cost nothing more.
