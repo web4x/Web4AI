@@ -1488,3 +1488,9 @@ Tron asked how T37.26 could read "Planned" while its deliverable was live and he
 2. **Surface findings where the actor already looks** (the board / approve-queue / my status sweep), never only in a CI log — the same principle as making the board move on a credit.
 3. **Ask the detectors, do not wait for Tron.** A standing PO habit: read the FAIL tiers of the gates we own before reporting status upward.
 4. **Distinguish FALSE-POSITIVES explicitly** (T37.4 was a coordination ROOT, Planned-by-design, its shipped Impl belongs to a subtask) — an unexamined FAIL list trains people to ignore the list.
+
+## L-S40-1 — NARROW PANE + ANCIENT SCROLLBACK = a FALSE LIVE-STATE READ (and the /context subset trap, again)
+ARON escalated that req was "stuck at a live folder-trust modal and no longer rendering /context". Both were misreadings: (a) it mis-grepped a /context **SUBSET** line ("Bash results using Xk (16%)") as evidence the render failed — the real number is the `Nk/1m tokens (N%)` header + Free-space; (b) it read **ancient origin scrollback** in a cramped **69-wide** pane as a live modal. req was actually ALIVE + IDLE at 73%.
+**Same class I hit minutes later:** my own capture of the tester's /context came back garbled because the pane was too narrow to render the panel.
+**Rules:** WIDEN the pane before reading a render · read the FRESH render bottom-up · never infer a live modal/prompt from scrollback · a subset/suggestion line is never the total ([[context-read-suggestion-subset-not-total]], [[ghost-suggested-prompt-not-real-text]], [[rewind-pane-size-and-menu-label]]).
+**What made the mistake free:** my authorization carried a precondition ("verify the path shown FIRST; if it is anything other than /root-or-our-workspace, STOP"). A misread therefore produced a HALT, not a wrong keypress. **Authorize with a verify-first precondition, always — it converts a misread into a stop.**
