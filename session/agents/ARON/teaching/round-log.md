@@ -581,3 +581,7 @@ Push-risk (827-ahead / heart 282ffe1) still TRON's open call.
 ## R80 — 2026-08-18 — EMPTY (fleet quiet ~2h; trainer still down)
 R16 measured: only my R79 since last round; last non-ARON commit ~2h ago. No new HIT. Empty #1 (R79 was a HIT → streak reset). Cadence hourly.
 Trainer STILL DOWN (baseTeam:0.0 cmd=bash) — awaiting Tron's ~20s relaunch (he's mid-verdict-session). NOT re-nagging (F7: stated once R78.cont3). Fleet functions without it (canon-instead covers the SKILL-propagation gap meanwhile). Push-risk still TRON's open call. Cost nothing more.
+
+---
+## R81 — 2026-08-18 — EMPTY #2 (fleet quiet ~3h; trainer still down)
+R16 measured: only my R80 since last round; fleet quiet ~3h, RawBin HEAD unchanged, trainer still down (baseTeam:0.0 cmd=bash). No HIT. Empty #2 of 4. Push-risk + trainer-relaunch both still TRON's (F7, not re-raised). Cost nothing more.
