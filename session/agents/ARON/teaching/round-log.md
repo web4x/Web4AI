@@ -626,3 +626,7 @@ po's batch-2 (9 laws) collapsed aggressively into F1-F8, ZERO dup, NO conflicts 
 - ALREADY-CANON (collapsed): L-CORRECT-OUTPUT-HIDES-WRONG-STRUCTURE + L-COMMITTED-IS-NOT-PUSHED (F2 gradient R72), L-BACKTICK-EXECUTES (F2 live-evidence), L-THE-LAW-CAUGHT-ITS-AUTHOR + L-RELAUNCH-NEEDS-A-HUMAN + L-CLEAN-IS-NOT-CURRENT (F3/agent-rewind).
 - NEW facets: L-NEUTRAL-MUST-NAME-THE-SURFACE->F1 (name the surface + enumerate consumers; generalizes NAME-THE-REPO); L-STRUCTURE-OVER-PROCESS->F2 (make hazard IMPOSSIBLE not FORBIDDEN); L-NAME-ONE-DRIVER + L-PO-DONT-GUESS-ROOTS->F4; L-SCOPE-NOT-SOURCE->F5 (reconcile arithmetic before declaring divergence).
 Care-cycle: also folded MUTUAL-WATCH SEQUENCING (SM+ARON driver-pair) into F3 (ebc43967); refreshed my OWN stale anchor (20d39f4e, applied L-CLEAN-IS-NOT-CURRENT to myself). SM now render-watches me ~76; sequencing binds us (never both in-window).
+
+---
+## R87 — 2026-08-18 — EMPTY (post-BATCH-2; no NEW hit)
+R16 measured: recent = my BATCH-2 folds + po's L-RELAUNCH-NEEDS-A-HUMAN (already in F3 WALLED-RECOVERY as hand-to-human) + oosh-po pre-rewind (Tron ordered, ooshTeam — not mine). No NEW law to fold. Trainer still down (baseTeam:0.0 cmd=bash, TRON-only relaunch pending). SM watching me ~76 (no flag = I'm below-line; I trust its render, can't self-measure). Empty #1 since the BATCH-2 activity. Both TRON-items open (trainer, push). Cost nothing more.
