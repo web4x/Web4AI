@@ -142,3 +142,26 @@ SM baseTeam:0.1 (53%, HAS the fleet-watch, event-driven) · trainer baseTeam:0.0
 - Never both drivers out unless the fleet is healthy (it is). ~78 = flag; an IDLE agent at 78 does not wall.
 - `claudeCode context.read` is DEAD for several panes; `pane.self` is broken host-wide. **Authoritative = inject /context on an IDLE pane and read the RENDER.** Pulse lags a fresh cut — use the panel post-rewind.
 ### ON TRON'S DESK: 24 approvals · the @390 device sitting · B1 PARKED · repos→PRIVATE · autocompact re-enable · 828+ unpushed session commits.
+
+## ★★★★★ #79 — CONTROL-VISIBILITY DEFECT FOUND+FIXED; ACCEPTANCE RUNNING (2026-08-18, at 41%) ★★★★★
+**PROD v0.8.113 served==committed (I verified). Acceptance STILL OPEN until Tab B moves.**
+
+### ★ SECOND TRON-FACING DEFECT — found while proving the first, now FIXED BOTH HALVES
+Surfaced when the tester was BLOCKED seeding landing-3 and first concluded "product is correct, my seed is wrong". **I refused that read** -> it re-measured and PROVED a real defect:
+- **Mechanism**: /api/ior enriched Task with CRs/PinRole/MdHref but **no attachTaskStatus** -> model.status as-stored (undefined) -> action-bar `status = obj?.status ?? rModel?.status` (rb-detail-drawer:483) -> `:477 absent => HIDE` ⇒ **control visibility followed GRAPH MEMBERSHIP, not STATUS**. Any QA-Review task opened OUT-OF-WINDOW (deep-link / prior sprint / post-rotation / by ref from /trace) hid Approve+Decline **from Tron, on his own actionable task** = mirror of his escalation (vanish at Done ⇒ must APPEAR when actionable). Invisible to any gate exercising only current-sprint tasks (T37.24 coverage-false-green shape).
+- **FIX HALF-1 v0.8.112** (ed3442d10): attachTaskStatus at /api/ior read boundary, m.status = deriveStatusEnum(statusChecklist), COMPUTE-ON-READ never writes, single-source, mirrors attach*. Probes: T37.25→'In Progress', T37.26→'Done' (were undefined). Architect backstop PASS.
+- **FIX HALF-2 v0.8.113** (8cceba6f0): `:477` silent-hide REPLACED by **fail-LOUD unresolved** — console.error + `data-status-unresolved` DOM attr ⇒ a regression can never SILENTLY re-mask the defect. Architect backstop PASS.
+- **v0.8.114 QUEUED**: a VISIBLE '⚠ status unresolved' badge — DOM-attr+console are loud to GATE/DEV but **SILENT TO TRON on-screen**, and he is the party the defect misled. ★ MY LOCKED REFINEMENT: gate that badge by **SCREENSHOT+PIXEL @390, never DOM-presence** (a DOM assert cannot prove he SEES it — same false-green class as the rejected connector-ribbon DOM-count).
+
+### ★ ACCEPTANCE STATE (the ONLY open question)
+- Landing-1 foundation GREEN (2119a0462) · Landing-2 /model CONNECTED closes gate-1 PARTIAL-PENDING-AUTH (c59d71316) · **Landing-3 RUNNING on 0.8.113**, two-sided + NON-EAGER (eager-seed via Sprint.tasks[] REJECTED as false-green).
+- **(A) APPEAR** non-eager actionable QA-Review · **(B) VANISH at Done from the BROADCAST ALONE** (client-2 passive, no reload) · **(C)** absent-status must not read as not-actionable + fail-loud observable, stub-must-fail both ways.
+- **4 TRAPS (mine)**: broadcast-vs-poll CAUSALITY · the proof must FAIL with broadcast suppressed · controls PRESENT-BEFORE→ABSENT-AFTER (never absence-only=vacuous) · NO-RELOAD as a POSITIVE sentinel.
+- **REPORTING**: A+B and C reported SEPARATELY, no rounding up. A+B GREEN != landing-3 GREEN.
+
+### ★ GATE-PRESENCE DOCTRINE — design FINAL, build AFTER Tron's verdict (my sequencing)
+Manifest + manifest-driven runner + self-registered check:gate-presence + frozen floor + per-gate stub-must-fail; retires the ~30-link && chain that let check:task-status be silently deleted. **Authorization is SEMANTIC**: a floor shrink needs a named successor that EXISTS and **MECHANICALLY TRIPS on the removed gate's own stub** (2c8a5998e) — not a flag, not a citation.
+
+### OWED / TRACKED
+req (frozen at ~73 pending drive, work-dispatch FROZEN by me) mints **"control visibility = derived status on ANY resolution path" + the OUT-OF-WINDOW gate**; architect a38cd7c91/ed3442d10 are the record until then · §4 chainExcludesSelf untangle (malformed chain: UC→Impl skips Method, self-ref ownerIor, 8-char PREFIX COLLISION) · v0.8.114 badge + its pixel gate.
+### ON TRON'S DESK: A1=24 approvals · 828+ unpushed session commits · autocompact re-enable (would end the wall→manual-rewind cycle) · @390 device · repos→PRIVATE.
