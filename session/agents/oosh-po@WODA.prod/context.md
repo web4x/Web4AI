@@ -367,3 +367,10 @@ Ground truth verified this turn:
 **What I did NOT do**: touch/clobber the WIP. oosh-expert HELD (caught it); §7 on hold.
 **What I DID (Tron directive)**: built `scrumMaster.pulse` (commit 0fffc75) = honest real-time team status, DECOUPLED from the broken hiveMind — the SM's trustworthy view while the mess stands. Verified live vs /context + cross-agent.
 **DEFERRED DECISION (Tron: "decide about your mess later")**: which refactor wins (hiveMind-expert restructure vs §7 single-source) + who lands/stashes the WIP. My recommendation: unify under hiveMind-expert (owner); reconcile the §7 design + 8 RED tests against its landed structure; oosh-expert stands down from the parallel build.
+
+---
+## ✅ CORRECTION (2026-08-18, later) — the "OPEN MESS" above was a PHANTOM (option-1 revert-blast, recovered)
+The "⚠ OPEN MESS" (conflicting hiveMind refactor deleting live.tupleset) was **MISDIAGNOSED by me**. Trainer's widened all-trees re-check (556b6848) found the truth: the **option-1 auto-fire during oosh-expert's rewind REVERTED 5 /root/oosh scripts to ANCIENT versions** (−3359L; hiveMind −3357 = back to before live.tupleset existed; the reverted otmux was missing pane.self = host-wide breakage). It was **NOT** a competing refactor / duplicate effort — a revert accident.
+**RECOVERED**: trainer git-stashed the reverted tree (reversible, `stash@{0}`) + restored /root/oosh to HEAD `0fffc75`. **VERIFIED by me**: tree clean, `live.tupleset` back (14 refs), hiveMind team.sweep works, pane.self works (%3).
+**Consequences**: NO real collision — §7 builds on the intact live.tupleset; the "deferred decision" is **MOOT**. The stash holds only revert-junk (ancient code, no real work) — safe to drop after Tron's ok. `scrumMaster.pulse` (0fffc75) still stands and is still useful (team.sweep's recorded readings are 29d-stale; pulse is live).
+**LESSON**: a dirty /root/oosh after a rewind = suspect an **option-1 revert-blast**, not a real WIP; a NARROW (session-only) post-rewind check HIDES a host-wide script revert — re-check ALL trees. See [[option-1-coderevert-detect-and-recover]].
