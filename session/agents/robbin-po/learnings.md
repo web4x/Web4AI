@@ -1478,3 +1478,13 @@ The tester reported "approve is fully seam-routed + live NOW, already deployed o
 **RULE: verify a CODE claim against `git show <served-commit>:<path>`, never the working tree — and state WHICH ARTIFACT was measured in the report.** "I grepped the source" is not a measurement of what is running.
 **This implicates ME, not just the tester:** I verified the sprint-numbering DRY fix by grepping `$R/src` (working tree) for `sprintDisplayName` definitions and `generateName` call sites. That happened to be safe only because I ALSO had independent served evidence (served==committed==tagged plus a live API payload). The structural half of my verification was tree-based and could have certified unserved code.
 **Pair with [[L-EXISTS-CORRECT-PROVEN]]:** source ⊂ committed ⊂ served. Three different claims; a green on the first proves nothing about the third.
+
+## ★★★ L-DETECTION-WITHOUT-RESPONSE (the gate worked; nobody consumed it — and that loop is MINE)
+Tron asked how T37.26 could read "Planned" while its deliverable was live and he had confirmed it himself. I assumed the detector was missing or unwired. The planner MEASURED: `check:checklist-chain` IS wired into ci:gates:raw, IS running, and **DID catch T37.26 in its FAIL tier**. Three FAILs sat there unadvanced. **Detection was never the gap. RESPONSE was.**
+**The failure class:** a gate that flags into a log nobody reads is indistinguishable from no gate at all — except it FEELS safe, which is worse. We spent the day hardening detection (stub-must-fail, meta-BITEs, phantom-guards) while the output of a working detector went unconsumed for days.
+**And the loop is mine.** Gates detect; the PO drives the response. Nobody else owns "somebody act on the FAIL list". I never asked "what is the FAIL tier saying today?" — I only reacted when TRON saw the symptom on his screen. He became my alerting system.
+**RULES:**
+1. **Every gate needs a named CONSUMER and a response SLA, not just a threshold.** "Who looks at this output, when, and what do they do?" If the answer is nobody, the gate is decoration.
+2. **Surface findings where the actor already looks** (the board / approve-queue / my status sweep), never only in a CI log — the same principle as making the board move on a credit.
+3. **Ask the detectors, do not wait for Tron.** A standing PO habit: read the FAIL tiers of the gates we own before reporting status upward.
+4. **Distinguish FALSE-POSITIVES explicitly** (T37.4 was a coordination ROOT, Planned-by-design, its shipped Impl belongs to a subtask) — an unexamined FAIL list trains people to ignore the list.
