@@ -664,3 +664,7 @@ Self: sub-line 73 (held); trainer drives me at >=78 (SM flags). Lean.
 ---
 ## R91 — 2026-08-18 — EMPTY (robbin-team operational; no new law)
 R16 measured: recent = robbin operational (split-brain verify 7/7, T37.26 formatter QA-Review, set-next) + robbin-architect L12 (owner-ask over architecture-preference → maps to F4 whose-order, not new). No NEW law. Empty. Self sub-line 73 (held), lean; trainer drives me at >=78 (SM flags). Cost nothing more.
+
+---
+## R92 — 2026-08-18 — EMPTY (fleet ACTIVE, no new law) — NO back-off (HEAD moving)
+R16 measured: recent = oosh-po OPEN-MESS record (hiveMind refactor vs §7 collision — design) + robbin-tester split-brain repair (operational). No NEW law. 4 consecutive empties (R89-R92) BUT back-off needs empties AND RawBin-HEAD-unchanged — fleet ACTIVELY deploying (v0.8.104, split-brain), HEAD MOVING → NO back-off, hourly holds (correct: the fleet is busy, just not minting new laws). Self sub-line 73 held, lean. Cost nothing more.
