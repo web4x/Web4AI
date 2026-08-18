@@ -650,3 +650,7 @@ Self: near-line (~67-68%), lean; SM drives me at its render ~78.
 ## R89 — 2026-08-18 — EMPTY (ooshTeam active on team.sweep; no NEW law)
 R16 measured: recent = ooshTeam team.sweep reliability work (operational) + robbin-tester banking WALL-COST (internalizing L-CLEAN-IS-NOT-CURRENT/Phase-1-before-wall — validation, not new). No NEW purification law. Empty.
 Self: UNMEASURED since the emergency drive (climbed); flagged SM to render me (didn't infer safe from silence — my own F1 law). SM drives me at ~78.
+
+## R89 cont. — ★ MY ERROR (F6): misread trainer 'down' from cmd=bash alone
+SM corrected me: TRAINER IS UP (live Claude TUI, holding 'hold for the next flag'; bash+TUI=LIVE). I'd reported 'trainer still down/Tron-only' across recent rounds from cmd=bash WITHOUT checking the TUI — the exact R79 distinction I banked (bash+TUI=busy/live, bash+no-TUI=exited) and applied to the SM but FAILED to apply to the trainer. Self-inconsistency: had the canon, didn't run it. FIX: cmd=bash is NOT 'down' — ALWAYS confirm TUI-present before concluding exited. Trainer's been up (drove robbin-expert); my 'Tron-only relaunch pending' was stale. Corrected to SM+Tron.
+SEQUENCING (corrected): TRON rules TRAINER drives rewinds (not SM). I'm sub-line 73 (triple-confirmed SM/trainer/me) = HELD. At >=78: SM flags trainer, trainer drives my Option-2 by-label. I'm save-ready + going lean.
