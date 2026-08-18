@@ -11,6 +11,8 @@
 - NEVER ASSUME — ALWAYS MEASURE. Use FULL uuids (8-char prefix collisions are real). grep -rl (not find -exec). Simple Bash commands (no `cd &&`/`for`/`$()` compounds → guardrail denies). git add explicit paths (shared shell), `git reset -q HEAD` first.
 - ★ My LAWS L1-L9 → `learnings.md` (## ARCHITECT LAWS). Record fundamental laws as I produce them (Phase-1 discipline; post-wall unreconstructable).
 
+## ⟳ POST-REWIND 2026-08-18 (SM-driven emergency, 98%→46%, code+memory intact). id %12→robbinTeam2:0.3 verified. HEAD 006d5c9b6 v0.8.103. Lost the last few live exchanges (PO phase-1-ack + Tron NEW input re skill-agent MVC realtime status-writes + my slug-pin ruling) — PO re-sends if needed. RECOVERED FROM GIT: sprint-name design BUILT+DEPLOYED v0.8.103 as **T37.27** (34855c3e6 R40.4-phase2 sprint-name strip + slug-pin: number AND slug now single-source attributes). My lost-exchange commits: 87640983e (diagnosed root=sprintDisplayName NEVER BUILT + half-strip, Tron-live-confirmed prod:4444), b80cbb732 (format=COLON canon + renderer-first defensive-strip order-pin + no-doubling gate). Also c2d5107a3 (R40.18 coverage 3a6f0d92 + R40.46 F1 live-code-stamp minted capture-only), 85db7512c (skill-expert staged-task→own-slug.md hook = the skill-agent item). BACKSTOP posture; await PO re-send of Tron's design input.
+
 ## CURRENT WORK
 
 ### S37 — Real-time MVC over scenario-units (design ACCEPTED, awaiting build-go)
