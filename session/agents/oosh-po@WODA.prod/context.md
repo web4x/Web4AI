@@ -5,7 +5,7 @@
 **Pane**: ooshTeam:0.0 on **WODA.prod** (v60211.1blu.de) — re-derived 2026-06-28 (was wrongly @MacStudio: fork inherited parent's stale @host; real host = OOSH_SSH_CONFIG_HOST=WODA.prod)
 **Session**: oosh-po@WODA.prod [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
-## 🔴 CHECKPOINT — 2026-07-24 (context-pressure proactive save; NO self-/clear — ARON/trainer rewinds a trained agent)
+## 🔴 REWIND-NOW SEED — 2026-07-24 (Tron ORDERED rewind; THIS block is the boot seed — read it first, then MEASURE DISK)
 Identity: oosh-po@WODA.prod, ooshTeam:0.0/%17, uuid 889a24a9 (G1 LIVE → `otmux current` reliable, $TMUX_PANE-immune). BOOT-FIRST: MEASURE DISK (git HEAD /root/oosh, `ls scrum.pmo/sprints*`, read task files) not the stale thread [[ghost-context-after-deep-rewind]].
 **DELIVERED since 07-20 (all live on /root/oosh `mcdonges.latest`, gated+pushed):** unit-D `context.gather.quiet` **`08504af`** (send-free ctx refresh, no more /context to near-cliff agents). sweep RATE_LIMIT **API-error-at-idle** fix **`b66b678`** (3 independent gate rounds — real fix = run ratelimit.probe on the `auto mode on` idle path past the 9094 short-circuit + position-aware resumed-guard; `sweep-rate-limit-detect.task.md`). opy one-command **bare-box install COMPLETE** (`eb42502` + prior, end-to-end green).
 **OPEN / NEXT:**
