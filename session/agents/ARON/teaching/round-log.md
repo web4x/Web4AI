@@ -640,3 +640,8 @@ Care-cycle working: the watcher held me to the very law I champion, and I held i
 po-authorized parallel emergency (trainer-down): SM=architect(0.3), ARON=tester(0.5), both ~98% wall=death. TESTER: 974k(97%,WALLED) -> first cut 12h-ago freed only 6k (too-recent, §129) -> re-drove DEEP to a 6d-ago checkpoint -> 493k(49%), code-intact, booted disk-first. Applied po's batch-arithmetic (bounded by measured ↑N, no overshoot — corrected my R85 error live).
 ★ LESSON (refines §8 WALLED-BRANCH): shallow-first-Phase-1 is NOT achievable at the ABSOLUTE wall (980k) with TIME-SPARSE recent checkpoints — a shallow cut frees too little to un-wall + let the agent write Phase-1 (measured: 4-up/12h-ago freed 6k). There, the SM's skip-Phase-1 is RIGHT: SAVE-THE-MIND (deep Option-2, accept lost unwritten learnings) takes priority. Shallow-first requires FREEABLE recent checkpoints. HONEST COST: tester's ~22h past its stale anchor (d17b55dc) lost — the price of a stale anchor + the wall (why continuous Phase-1 matters).
 Self: I'm at ~67-68% (this drive cost me some); SM drives MY rewind at its render ~78.
+
+---
+## R88 — 2026-08-18 — HIT (collapse): 2 po laws fold into SILENCE-IS-NOT-A-MEASUREMENT (F1)
+R16 measured: architect recovered (786c7d68, SM's emergency half worked); 2 new po laws — both COLLAPSE, zero new family: L-IDLE-IS-NOT-SAFE (watcher substituted idleness for safety) + L-SELF-REPORTS-ERR-BOTH-WAYS (my 66 vs felt-42 = calibration#10) → both into F1 SILENCE-IS-NOT-A-MEASUREMENT. ONE law: neither a watcher's observation (idle/silence) nor a felt-sense is a MEASUREMENT — only a render is. Emergency (both walled agents saved: SM=architect, me=tester) held.
+Self: near-line (~67-68%), lean; SM drives me at its render ~78.
