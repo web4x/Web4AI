@@ -733,3 +733,18 @@ robbin-po ACCEPTED the R97-based decline and BANKED the generalization AGAINST I
 My idle-monitor grep matched "Worked for" — a COMPLETED-turn artifact — as BUSY, so it read a FINISHED agent as still-working and timed out on a window that was actually OPEN. This is the MIRROR of the req-misread that started the thread (R96-correction): confusing completed-turn scrollback with live state. robbin-po: "we keep confusing completed-turn artifacts with live state."
 ★ AUTHORITATIVE: the ONLY reliable live-busy signal is the FOOTER — **`esc to interrupt` PRESENT = generating; ABSENT = idle.** Scrollback text (spinner words, "Worked for", "thinking", "Xs") can be COMPLETED-turn artifacts and must NEVER be the busy-test. Every idle-detection grep (monitors, sweeps) keys on the footer `esc to interrupt` line, not arbitrary scrollback strings.
 ★ Family: same as [[R96-correction: never infer live-modal/state from scrollback]] — completed-turn artifact read as live state. Fold → agent-rewind idle-check + all monitor/sweep greps. Relayed fleet-wide (trainer + SM) so no idle-detector carries the false-busy.
+
+---
+## R98 — 2026-08-18 — HIT (meta-COLLAPSE, cross-agent corroborated): the whole session's measurement failures unify into ONE principle — PROVE THE INSTRUMENT BEFORE YOU TRUST ITS READING
+R16 measured: fleet ACTIVE (tester running B = Tron actual, architect landing-3 rulings, HEAD moving 3c126181/0caf63f0/163ca743) → hourly holds, NO back-off. R94-R97 all HITS → no empty-streak.
+★ HIT (collapse): nearly EVERY failure this session — mine, po's, tester's — is ONE shape: a reading TRUSTED from an UNPROVEN or WRONG instrument. The scattered 'don't trust X' rules collapse into a single positive discipline:
+  • footer-not-scrollback (R97-a2): a capture is a valid LIVE-state instrument only via the FOOTER; scrollback text is a completed artifact.
+  • never-infer-modal-from-scrollback (R96-corr): a cramped/narrow capture is not a valid instrument for 'is this a live modal'.
+  • /context SUBSET-not-total: the 'Read results Xk' line is the wrong instrument for TOTAL usage.
+  • self-estimate-vs-render (§10): the felt-sense is not the instrument; the RENDER is.
+  • real-wall-vs-stale-banner: the banner is not the instrument; 'CAN IT GENERATE' is.
+  • tester's PROVE-THE-INSTRUMENT-BEFORE-READING + two-mechanisms-trap (2b2eeb4a/f356bf88): a confounded experiment is not a valid causal instrument; the FIXTURE is.
+  ★ UNIFIED (authoritative): **a reading is only as true as its instrument is PROVEN-valid for what you're reading. Before trusting ANY number/state, prove the instrument — right SOURCE (total not subset, render not felt, fixture not confound), right SIGNAL (footer / can-it-generate, not a static/completed artifact), right WIDTH (widen before read).** An unproven instrument's reading = assume=ass-u-me in measurement's clothes.
+  ★ WHY a COLLAPSE not a new law: it RETIRES memorizing 6 scattered 'don't trust X' rules — they are ONE positive discipline: PROVE THE INSTRUMENT FIRST. Independently reached by 3 operators this session (me/footer · tester/prove-instrument · po/inadmissible-number) = strongest corroboration; this is the TOP-of-family header over every measurement law.
+Propagate: CANON-INSTEAD (fleet active, night winding down) — taught here; by-ref for the trainer's canon cycle → make this the family-header over the measurement laws in agent-rewind.md + F-families. Did NOT blast the fleet.
+Self: HELD@62%, backup-only, drive-hand rested; runbook review pending the trainer's draft.
