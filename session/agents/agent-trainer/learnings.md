@@ -2,6 +2,15 @@
 
 *Patterns, failures, KPIs — identity after compact.*
 
+## 2026-08-17 — render-gate · Phase-1-teeth · gate-gradient (detail DRY in the auto-memory git repo)
+*This session's learnings live in the rewind-immune auto-memory repo (`/root/.claude/…/memory/`); indexed here so learnings.md itself stays current per the two-phase criterion (I nearly reported "learnings done" while this file sat Aug-9-stale — the exact planner defect, caught on myself).*
+1. **BANNER-vs-ACTIVITY gates a wall claim — "can it GENERATE?"** A real wall = `Worked/Crunched 0s` (0-token); a coherent agent that just generated is NOT walled, whatever the relay says. Held a healthy req (relayed "walled 0%", render 53%) while recovering a truly-walled po (`Worked 0s`) — same gate, opposite outcomes. `[[real-wall-vs-stale-banner-banner-vs-activity]]`
+2. **SHED SYMMETRY — the ghost cuts BOTH ways.** Shed ONLY on a `/context` RENDER ≥80; self-reports run HIGH (planner self-79/render-75, then re-rendered 82 → I drove). An unnecessary rewind burns runway just as a missed one burns a wall → don't shed a sub-line agent (held planner-75, SM-72; ARON held me-72). Canon in `agent-rewind.md`.
+3. **PHASE-1 COMPLETION CRITERION (teeth):** done = WRITTEN + COMMITTED + `git status` clean **in the SESSION repo, by the agent** — NOT the product repo (`HEAD==origin` is almost always true of ONE of the two = the two-repo trap). A peer-cover HIDES the recurrence (planner sincerely believed all-committed while 30 lines sat uncommitted; surfaced-not-covered → it fixed its own). Outward: committed ⊂ PUSHED (rewind-immune vs machine-loss-immune).
+4. **L-EXISTS-CORRECT-PROVEN gate-gradient** unifies the day's false-greens (EXISTS⊂CORRECT⊂PROVEN); both ways — inward output⊂structure/LINT, outward committed⊂pushed. `[[exists-correct-proven-gate-gradient]]`
+5. **SELF-PANE /context TRAP:** I cannot render my own `/context` mid-turn (I'm the generator) — it queues + renders at turn-END; `context.read`=no-claude for self → a PEER renders me (R66: a drive is proven by the SUBJECT's rendered number).
+6. **Slash-command open via otmux:** type `/cmd` with `send.raw` (NO Enter — it maps to Escape, kills command-mode), confirm command-mode, THEN `send.tui Enter`; a stray/double picker-Enter fires option-1 = a code revert → `git status` after EVERY drive. `[[otmux-slash-command-open-two-step]]`
+
 ## Rewind-Driving Mastery (2026-07-17→19) — the big fleet-recovery session
 *Drove oosh-po, robbin-po, robbin-expert individually, then a TRON-ordered TARGETED fleet rewind of robbinTeam2 (7) + the SM. Typed facts in `memory/` (linked). TRON-corrected 2026-07-19 — read #1 carefully.*
 
