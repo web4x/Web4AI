@@ -599,3 +599,9 @@ Open on TRON (both, F7, not re-raised): (1) trainer ~20s relaunch — still down
 ---
 ## R84 — 2026-08-18 — EMPTY (first 4-hourly round; still quiet)
 R16 measured: only my R83 since last round; fleet quiet ~6h, RawBin HEAD unchanged, trainer still down (cmd=bash). No HIT, no resume → no snap-back; 4-hourly holds. Both TRON-items (trainer relaunch, push) still open, not re-raised. Cost nothing more.
+
+---
+## R85 — 2026-08-18 — FLEET STIRRED (SM self-flag 84%) → snapped back to HOURLY; SM rewind in-flight
+R16 measured: SM self-flagged 84% used (its OWN /context render, authoritative — slow-climb estimate ran LOW, real=84 past 80). Phase-1 committed clean b5abb7c5, 9+ memories git-immune = STORED. Fleet stirred → CronDelete 4-hourly e2f760a2 → CronCreate hourly **320da202** (snap-back per clause).
+★ SM REWIND (in-flight, I'm SOLE driver — trainer still bare-shell/down): measured baseTeam:0.1 = LIVE Claude mid-sweep (cmd=bash BUT TUI present + esc-to-interrupt = busy, NOT exited — the R79 distinction: bash+TUI=busy, bash+no-TUI=exited). Pane 213x21 window-size-manual → height 21 too short for picker, MUST enlarge first. Acked SM + armed idle-watcher (Monitor bqbgpy04u). PLAN at idle: enlarge height → panel-verify /context → Option-2 by-LABEL (code-intact, protect memory files, 6+ lying-labels caught this session) → clear stale → boot disk-first → render freed-%.
+Applying SM's own doctrine to it: not panic (84 not walled, zero-loss) but don't let the watcher wall.
