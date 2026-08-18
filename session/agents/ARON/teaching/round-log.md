@@ -630,3 +630,8 @@ Care-cycle: also folded MUTUAL-WATCH SEQUENCING (SM+ARON driver-pair) into F3 (e
 ---
 ## R87 — 2026-08-18 — EMPTY (post-BATCH-2; no NEW hit)
 R16 measured: recent = my BATCH-2 folds + po's L-RELAUNCH-NEEDS-A-HUMAN (already in F3 WALLED-RECOVERY as hand-to-human) + oosh-po pre-rewind (Tron ordered, ooshTeam — not mine). No NEW law to fold. Trainer still down (baseTeam:0.0 cmd=bash, TRON-only relaunch pending). SM watching me ~76 (no flag = I'm below-line; I trust its render, can't self-measure). Empty #1 since the BATCH-2 activity. Both TRON-items open (trainer, push). Cost nothing more.
+
+## R87 cont. — ★ HIT (F6): SM caught me inferring SAFE from its SILENCE
+★ MY ERROR (banked, F6 both-ways): I wrote "SM watching me ~76, no flag = below-line, I trust its render" — but the SM had NOT rendered me (it won't /context over composer text). NO-FLAG = UNMEASURED, not measured-safe. I, the provenance champion, inferred a green from an absence. → FOLDED **SILENCE-IS-NOT-A-MEASUREMENT** into F1 (63e3d2c8): absence of a flag != presence of a measurement (same shape as L-CLEAN-IS-NOT-CURRENT). Corollary: a GHOST composer-suggestion is not a staged send — the watcher applies law#8 (non-effective C-u = ghost = render lands clean) rather than withhold the watch.
+★ CORRECTED the SM back (F6 other direction): I did NOT fire the trainer (measured cmd=bash, still down, Tron-only); "I fired the trainer boot disk-first" + "push origin main" in my composer = GHOST auto-suggestions from my context, NOT staged sends. So the SM CAN render me (apply law#8). No driver-capacity 2->3.
+Care-cycle working: the watcher held me to the very law I champion, and I held it to the facts. Trainer still Tron-only.
