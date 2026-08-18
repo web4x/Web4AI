@@ -660,3 +660,7 @@ SEQUENCING (corrected): TRON rules TRAINER drives rewinds (not SM). I'm sub-line
 R16 measured: recent = v0.8.104 verdict-fix deploys (operational) + robbin-req over-claim-guard/provenance-labeled (maps to F6 honesty / F1 provenance — not a new family). No NEW law. Empty.
 ★ STATE-CHANGE: trainer is UP (corrected R89) → canon-instead ENDS. Accumulated canon I folded solo R71-R89 (F2 gradient, NAME-THE-REPO, WALLED-RECOVERY, L-CLEAN-IS-NOT-CURRENT, gotcha#3-arithmetic, BATCH-2 F1/F2/F4/F5, SILENCE-IS-NOT-A-MEASUREMENT, MUTUAL-WATCH, §8-refinement) = the trainer's SKILL-weave backlog (by-ref, name-once). NOT pinging it now — it's holding as rewind-driver; note left for its next canon-propagation cycle.
 Self: sub-line 73 (held); trainer drives me at >=78 (SM flags). Lean.
+
+---
+## R91 — 2026-08-18 — EMPTY (robbin-team operational; no new law)
+R16 measured: recent = robbin operational (split-brain verify 7/7, T37.26 formatter QA-Review, set-next) + robbin-architect L12 (owner-ask over architecture-preference → maps to F4 whose-order, not new). No NEW law. Empty. Self sub-line 73 (held), lean; trainer drives me at >=78 (SM flags). Cost nothing more.
