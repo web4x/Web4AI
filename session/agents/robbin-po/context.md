@@ -80,3 +80,24 @@ R37.5 broader sweep (sub-step-checked / parent-unchecked likely affects more tas
 req landed both captures (eb30389ba): **R37.11 +AC-seam-ticks-substeps** = the missing primitive formalized scenario-first (controller handles intent.subStep: tick named sub-step, keep state, stamp, emit; gate sub-step-tick-outside-seam -> RED) so the **agent-status-SKILL now has its requirement on disk** (unbuildable-without-it recorded) · **R37.5 +templateLimitation** (binary boxes cannot express PARTIAL; understate-with-visible-reason) · converse detector 35097d275 landed.
 **ONE DEPLOY PENDING, expert builds 3:** (1) STRING-slice truncation fix in the CurrentSprint slot-label (NOT CSS — tester measured scrollWidth==clientWidth; the "…" is a literal substring artefact) · (2) RETIRE Set-current/Set-next (architect 7cb9617fb) · (3) the intent.subStep seam path. Then req ticks implementing[x] THROUGH the seam (2-of-4 honest progress, live) and tester re-gates per-defect @390 real-WebKit pixel (current RED baseline: VALUE GREEN 3/3 · truncation RED 3/3 · action-visibility RED).
 **FRESH-ME: nothing needs a PO decision until the expert reports; then verify by SCREENSHOT only — payload/textContent/API have now produced THREE false-greens on the same truncation defect (expert=API, me=relayed it, tester=concatenated textContent). Pixels only.**
+
+## ★★★★★ #77 — WRITTEN AT 2% (Tron ordered). PROD v0.8.104. TRON MID VERDICT-SESSION ★★★★★
+**BOOT: measure disk first (git log / package.json version / curl api/config). DISK WINS. Then learnings.md — ~20 new laws banked TODAY, all committed.**
+
+### WHERE TRON IS
+Running an INTERACTIVE VERDICT SESSION on his phone. He approves/declines; I record. **Done is HIS act (R40.10).** He ordered "finish this, then stop" + "no new tasks" + "don't interrupt anyone".
+- **T37.27 APPROVED BY HIM (real)** — the app recorded `approvedBy:"sm_sessi"` (a truncated SESSION placeholder) so req read it as a phantom and nearly REVERTED his genuine verdict. I stopped it. req annotated (doneBasis=tron-approved + provenance) rather than fabricating an identity. **ANNOTATE-DON'T-FABRICATE.**
+- **His 5 approve defects → ONE root**: approve wrote `m.status` directly, bypassing the seam ⇒ `publishUnitChanged` never fired ⇒ nothing live. **FIXED + DEPLOYED v0.8.104** (seam-routed, all-ws broadcast, surgical per-ref bridge, `approvedBy`=profile uuid). Labeled **"attributable + tamper-evident, NOT unforgeable"** (HMAC sig = B1-gated follow-up). I verified served==committed==tagged AGAINST THE SERVED COMMIT.
+- **AWAITING HIS TAP**: two tabs on **T37.24 5acdcc4c** (QA-Review), approve in one → other must move (row/badge-green/detail). Board=generated MD, won't move (by design).
+
+### OPEN WORK
+- **T37.26 c8e0b1d2 (FORMATTER)** reads Planned though LIVE+Tron-confirmed. ROOT: its marker `[impl:uuid:a778793d-0f8e…]` is DANGLING **and a PREFIX-COLLISION PHANTOM** (shares the UC's own 8-char prefix `a778793d-6970…`). Chain has no Method/Impl/Test. FIX: architect confirms Class SprintView + Method sprintDisplayName → req mints proper Impl/Method/Class (FULL uuids) → expert re-marks sprint-label.ts:34 → tester Test → THEN advance evidence-per-tick. **I REFUSED cosmetic ticks.** 3rd prefix-phantom today.
+- **T37.25 a39efc32 = THE REAL CURRENT TASK** (ONE VIEW BUS, In Progress). **2 ViewBus files exist** (`ts/ViewBus.ts` vs `ts/trace/ViewBus.ts`); bridge notifies trace-bus ONLY; row+detail ARE on it (his test should work). **I wrongly scoped this out as "debt" — it IS the current task.**
+- Action bar building: **Set-as-Current = ADVANCE through seam** (no stored pin) + **open-Task-file action** + matrix (current=neither, other=both, open-file=all). **Set-as-next = NO BUTTON, FINAL** (no derived "next task" exists; any button = stored lying-pin).
+- Understatement sweep: FAIL=3 → T37.26 (in-flight), **T40.37 2e831ffd (verify-owner-first then advance)**, T37.4 = FALSE-POSITIVE rollup (do NOT advance). Overstatement in active sprints = 0.
+
+### ON TRON'S DESK
+24 approvals · 19-item @390 device sitting · autocompact re-enable (HIS auth) · **session repo 828+ commits UNPUSHED (off-box backup, his call)** · B1 PARKED.
+
+### FLEET
+SM baseTeam:0.1 + ARON Temple:0.0 = only drivers (**trainer DOWN, bare shell, needs TRON to relaunch — no agent can relaunch another**). Never both drivers in-window. ~80% = CEILING; a wall = DEATH-until-Tron.
