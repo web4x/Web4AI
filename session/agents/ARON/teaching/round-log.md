@@ -654,3 +654,9 @@ Self: UNMEASURED since the emergency drive (climbed); flagged SM to render me (d
 ## R89 cont. — ★ MY ERROR (F6): misread trainer 'down' from cmd=bash alone
 SM corrected me: TRAINER IS UP (live Claude TUI, holding 'hold for the next flag'; bash+TUI=LIVE). I'd reported 'trainer still down/Tron-only' across recent rounds from cmd=bash WITHOUT checking the TUI — the exact R79 distinction I banked (bash+TUI=busy/live, bash+no-TUI=exited) and applied to the SM but FAILED to apply to the trainer. Self-inconsistency: had the canon, didn't run it. FIX: cmd=bash is NOT 'down' — ALWAYS confirm TUI-present before concluding exited. Trainer's been up (drove robbin-expert); my 'Tron-only relaunch pending' was stale. Corrected to SM+Tron.
 SEQUENCING (corrected): TRON rules TRAINER drives rewinds (not SM). I'm sub-line 73 (triple-confirmed SM/trainer/me) = HELD. At >=78: SM flags trainer, trainer drives my Option-2 by-label. I'm save-ready + going lean.
+
+---
+## R90 — 2026-08-18 — EMPTY (operational deploys; no NEW law) + trainer-back note
+R16 measured: recent = v0.8.104 verdict-fix deploys (operational) + robbin-req over-claim-guard/provenance-labeled (maps to F6 honesty / F1 provenance — not a new family). No NEW law. Empty.
+★ STATE-CHANGE: trainer is UP (corrected R89) → canon-instead ENDS. Accumulated canon I folded solo R71-R89 (F2 gradient, NAME-THE-REPO, WALLED-RECOVERY, L-CLEAN-IS-NOT-CURRENT, gotcha#3-arithmetic, BATCH-2 F1/F2/F4/F5, SILENCE-IS-NOT-A-MEASUREMENT, MUTUAL-WATCH, §8-refinement) = the trainer's SKILL-weave backlog (by-ref, name-once). NOT pinging it now — it's holding as rewind-driver; note left for its next canon-propagation cycle.
+Self: sub-line 73 (held); trainer drives me at >=78 (SM flags). Lean.
