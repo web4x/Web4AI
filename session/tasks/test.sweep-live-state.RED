@@ -27,13 +27,20 @@ log.level $level
 HAVE_TMUX=0; [ -n "$TMUX" ] && HAVE_TMUX=1
 
 # ── fixture: plant a pane rendering a given TUI screen (bottom lines = the state signature) ──
-FX_SESSIONS=""
+# CLEANUP HAZARD (oosh-po, 2026-08-18): an EXIT trap does NOT fire on SIGKILL / a hard
+# `timeout` kill → every killed run orphaned its fx_* sessions (24 accumulated). The
+# durable guard is an IDEMPOTENT PRE-RUN sweep-by-prefix (kills any prior orphans so they
+# never accumulate) PLUS an explicit post-run sweep — never rely on the EXIT trap alone.
+FX_PREFIX="fx_"
+sweep_fixtures() {   # kill ALL fx_* sessions by PREFIX (idempotent) — catches orphans from any prior run
+  tmux list-sessions -F '#{session_name}' 2>/dev/null \
+    | grep "^${FX_PREFIX}" | while IFS= read -r s; do tmux kill-session -t "$s" 2>/dev/null; done
+}
 plant() {   # <tag> <line1> <line2> ...  → echoes the fixture pane target
   local tag="$1"; shift
-  local s="fx_${tag}_$$"
+  local s="${FX_PREFIX}${tag}_$$"
   tmux kill-session -t "$s" 2>/dev/null
   tmux new-session -d -s "$s" -x 200 -y 8 2>/dev/null || { echo ""; return 1; }
-  FX_SESSIONS="$FX_SESSIONS $s"
   # Build a printf that renders the screen then holds it with `cat` (screen persists for capture).
   local scr=""; local l
   for l in "$@"; do scr="${scr}${l}\n"; done
@@ -41,8 +48,11 @@ plant() {   # <tag> <line1> <line2> ...  → echoes the fixture pane target
   sleep 0.4
   echo "${s}:0.0"
 }
-cleanup_fixtures() { local s; for s in $FX_SESSIONS; do tmux kill-session -t "$s" 2>/dev/null; done; }
-trap cleanup_fixtures EXIT
+# PRE-RUN sweep: kill any stale fixtures FIRST so orphans (incl. from a prior SIGKILL'd run)
+# never accumulate. This is the guard that survives a hard-kill — not the EXIT trap.
+sweep_fixtures
+# Belt-and-braces: the trap covers a clean exit; the pre-run sweep + explicit end-sweep cover kills.
+trap sweep_fixtures EXIT
 
 # The canonical target-state a screen SHOULD resolve to, via the (to-be-fixed) recognizer.
 # We read the CURRENT recognizer's verdict and assert it equals the canonical target.
@@ -156,4 +166,6 @@ echo
 echo "=================================================================="
 echo "  T-SWEEP-LIVE-STATE is RED-FIRST: failures above ARE the spec."
 echo "=================================================================="
+# POST-RUN sweep: explicit cleanup on a normal finish (does not rely on the EXIT trap).
+sweep_fixtures
 test.suite.save.results
