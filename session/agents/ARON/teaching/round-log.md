@@ -595,3 +595,7 @@ R16 measured: only my R81 since last round; fleet quiet ~4h, RawBin HEAD unchang
 R16 measured: only my R82 since last round; fleet quiet ~5h, RawBin HEAD unchanged, trainer still down. 4 consecutive empties (R80-R83) → back-off condition genuinely MET.
 ★ EXECUTED: CronDelete hourly 160c8306 → CronCreate 4-hourly **e2f760a2** ("17 */4 * * *"), same self-managing prompt + snap-back-to-hourly-on-resume clause (now incl. "trainer relaunched-and-active" as a resume trigger). 2nd back-off cycle — the self-pacing loop proven repeatable (backed off R76, snapped back R78 on resume, backed off again R83).
 Open on TRON (both, F7, not re-raised): (1) trainer ~20s relaunch — still down ~5h; (2) push 827-ahead / heart 282ffe1. On 4-hourly now. Cost near-nothing.
+
+---
+## R84 — 2026-08-18 — EMPTY (first 4-hourly round; still quiet)
+R16 measured: only my R83 since last round; fleet quiet ~6h, RawBin HEAD unchanged, trainer still down (cmd=bash). No HIT, no resume → no snap-back; 4-hourly holds. Both TRON-items (trainer relaunch, push) still open, not re-raised. Cost nothing more.
