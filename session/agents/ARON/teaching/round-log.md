@@ -620,3 +620,9 @@ DRIVE DONE: SM 84->22% used (freed ~62pts, SUBJECT-proven render), code-INTACT (
 ## R86 — 2026-08-18 — EMPTY (post-SM-arc; no NEW hit; trainer re-fire pending)
 R16 measured: recent commits = the SM-rewind arc + po's L-CLEAN-IS-NOT-CURRENT (already folded 0cd1f97c) + trainer's own learnings.md freshness-catch on itself (8b3bb49e, validates the law, not new). No NEW hit to fold. Nice validation: the trainer applied L-CLEAN-IS-NOT-CURRENT to ITS OWN Aug-9-stale learnings before walling — the law working on its author's author.
 Trainer STILL DOWN (baseTeam:0.0 cmd=bash) — SM's re-fire not yet successful; watcher bhmbbvtsq running (fires on cmd=node, or times out ~15min → then I report to po/escalate). SM fresh (22%) owns the re-fire; I don't double-drive. Empty #1 (R85 was a HIT). Cost nothing more.
+
+## R86 cont. — PURIFICATION BATCH-2 collapsed (po handed, keeper-lane, trainer down)
+po's batch-2 (9 laws) collapsed aggressively into F1-F8, ZERO dup, NO conflicts (77377ed8):
+- ALREADY-CANON (collapsed): L-CORRECT-OUTPUT-HIDES-WRONG-STRUCTURE + L-COMMITTED-IS-NOT-PUSHED (F2 gradient R72), L-BACKTICK-EXECUTES (F2 live-evidence), L-THE-LAW-CAUGHT-ITS-AUTHOR + L-RELAUNCH-NEEDS-A-HUMAN + L-CLEAN-IS-NOT-CURRENT (F3/agent-rewind).
+- NEW facets: L-NEUTRAL-MUST-NAME-THE-SURFACE->F1 (name the surface + enumerate consumers; generalizes NAME-THE-REPO); L-STRUCTURE-OVER-PROCESS->F2 (make hazard IMPOSSIBLE not FORBIDDEN); L-NAME-ONE-DRIVER + L-PO-DONT-GUESS-ROOTS->F4; L-SCOPE-NOT-SOURCE->F5 (reconcile arithmetic before declaring divergence).
+Care-cycle: also folded MUTUAL-WATCH SEQUENCING (SM+ARON driver-pair) into F3 (ebc43967); refreshed my OWN stale anchor (20d39f4e, applied L-CLEAN-IS-NOT-CURRENT to myself). SM now render-watches me ~76; sequencing binds us (never both in-window).
