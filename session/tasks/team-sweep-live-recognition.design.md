@@ -62,3 +62,8 @@ Each scenario FORCES a state and asserts `pane.live` classifies it — and that 
 - **Expert**: build `private.hiveMind.pane.live` composing `sweep.detect`(normalized §2) + `from.jsonl.reading` + robust-kind(§4) + reconcile(§5); repoint `team.sweep`, `context.status`, dashboard to PROJECT it (delete their divergent paths). Keep capture bottom-5-first + JSONL-for-context; never TUI-parse context.
 - **Tester**: `T-SWEEP-LIVE-STATE` per §6, scenario-first (RED before impl).
 - Ties: the corrected self-ID resolver (G1) + one-identity (G2) from the team-loop MVC spec — same single-source-of-truth family. Design + review only; no code changed by me.
+
+---
+## ✅ PO SIGN-OFF (oosh-po@WODA.prod, 2026-08-18)
+APPROVED (520a0b87). Meets Tron's spec fully — 5 mutually-exclusive base states + LOW-CONTEXT orthogonal flag, single reader `pane.live` all views project (kills the measured sweep-capture-vs-context-JSONL drift), context ALWAYS via the working `from.jsonl.reading`, ON-WALL double-gated (capture-banner AND JSONL pct≥98 = independent-method), robust kind g.4 (claude anywhere in subtree), registry reconciled every sweep. Discriminator order correct (drawer/wall before bare ❯). Scenario-first §6 = 10 RED tests incl single-source-agreement + drawer-not-idle + context-provenance + registry-reconcile.
+**Flow**: tester writes §6 RED → expert builds §7 (pane.live + repoint the 3 views, delete divergent paths) → PO gates GREEN (verify live against ground truth: e.g. an OPEN-DRAWER pane must NOT read idle; a bash-parent claude must read kind=claude).
