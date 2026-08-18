@@ -101,3 +101,44 @@ Running an INTERACTIVE VERDICT SESSION on his phone. He approves/declines; I rec
 
 ### FLEET
 SM baseTeam:0.1 + ARON Temple:0.0 = only drivers (**trainer DOWN, bare shell, needs TRON to relaunch — no agent can relaunch another**). Never both drivers in-window. ~80% = CEILING; a wall = DEATH-until-Tron.
+
+## ★★★★★ #78 — LIVE-MVC ROOT-CAUSED + FIXED, ACCEPTANCE STILL OPEN (2026-08-18, written at 78%) ★★★★★
+**PROD v0.8.110 served==committed. Tron ACTIVELY working — he is the acceptance.**
+
+### ★ TRON'S #1: "live MVC NOT AT ALL WORKING — SINCE WHEN? TEN ITERATIONS?" — FIVE ROOTS, all measured, all fixed
+1. **ownerTok8 undeclared** (server.ts addLog, since **ca4582ae7 / v0.8.73 / 2026-08-08** = the day approve shipped) -> ReferenceError AFTER res.end -> double-writeHead -> **npm exited = SERVER DIED on EVERY owner approve**. Fixed v0.8.108 + BOTH catches now guard `!res.headersSent` (class closed).
+2. **task-policy.ts was NEVER IMPORTED** -> TaskPolicy UNREGISTERED -> approve fell to DEFAULT-MERGE: returned 200, advanced NOTHING, left an orphan approvedBy. Fixed v0.8.109. (The crash MASKED this.)
+3. **Non-atomic verdict** — approvedBy persisted BEFORE the advance; refused advance left it orphaned. Fixed v0.8.106 (folded into UnitController.apply = one transaction).
+4. **Optimistic client** — showed "✓ Approved — status now Done" on a 409. Fixed v0.8.106 (renders real out.code 200/409/403).
+5. ★★ **/trace + /model + scenario-view OPENED NO WEBSOCKET AT ALL** — only app.ts constructed RawBinClient. Those pages were never in wsClients => could NEVER live-update. **Deeper root: 4 page entries DRY-by-COPY** ("model.ts mirrors server-manager.ts") = the gap was GUARANTEED by how pages are created. Fixed v0.8.110 = **shared page-bootstrap** (transport BY DEFAULT) + live-bridge + fail-LOUD degrade (boot ERROR + window.__liveTransport + data-live-transport) + declared opt-out + **action-bar/control re-derive**. Owner single-source also fixed (both resolveOwner paths use the protected-identity set; his profile 05e58f81 no longer 403s on /trace).
+
+### ★★★ ACCEPTANCE STILL OPEN — DO NOT TELL HIM FIXED UNTIL THIS IS GREEN
+**Tester (fresh 33%/668k) is building:** R40.31 isolated foundation (worktree + non-4444 + FULL BUILD since dist is NOT committed + owner SESSION mint via POST /api/server-manager/session + seed a QA-Review task WITH two-keyed passing-Test evidence + teardown-in-finally) -> **/model proven CONNECTED** (REQUIRED — it is Tron's tab; gate-1 is PARTIAL-PENDING-AUTH because of it) -> **REAL-PAGE TWO-CLIENT PROOF on /trace + /model + /app** -> **3 stub-must-fails**.
+- **INADMISSIBLE AS PROOF (all three false-greened us today): construction ("bundle contains the code") · acting-tab LOCAL EMIT · raw-ws ("a socket receives").** Proof must be a REAL PAGE 2nd client updating from the BROADCAST ALONE.
+- **ACCEPTANCE = Tab A moves AND Tab B moves with NO RELOAD**, incl row+badge+detail+**CONTROLS** (Approve/Decline VANISH at Done). /app must NOT regress (only known-good reference).
+- **/app TRAP:** assert /app's OWN `window.__rawbinClient`, NEVER __liveTransport (connectLiveBridge short-circuits there) — asserting it = FALSE-RED on a working page.
+- Gate-1 check-live-transport COMMITTED (0ba38b11b) as **PARTIAL-PENDING-AUTH, exits non-zero** — a gate must never print GREEN while Tron's own tab is unproven (that was the T37.24 coverage false-green: the old live-update gate only ever ran on /app).
+
+### ★ TRON'S #2 DIRECTIVE (from his DECLINE of T40.1 7a956c21 -> CR 4babebb1)
+His 3 ACs (req committed them to disk **77c2086c**; architect mechanics **d352f22d3**): (1) a decline must NOT regress to In Progress — **QA Review stays [x] + NEW sub-step "Processing Change Requests" [ ]** -> Done; (2) the **CR traced as CHILD of the current TEST** (c4f8a1d6 — both orphaned/no-chain-path today); (3) **Test AND Requirement RE-EVALUATED** on an open CR (pass-pending-CR / satisfied-pending-CR; Done gains zero-open-CR so an open CR BLOCKS Done by construction). Root: declineToChangeRequest hard-writes 'In Progress' AND bypasses the seam. deriveStatusEnum reads TOP-LEVEL boxes only => a sub-step under a still-[x] QA Review keeps the state BY CONSTRUCTION.
+
+### ★ THIRD out-of-seam status-write found today => UNENFORCED INVARIANT (architect f638c01e6)
+approve · task-fsm.ts:68 (dead) · decline. The guard MISSED them because `detectDoneWrites` is **VALUE-scoped** (matches only 'Done'; its own bite planted only 'Done') and check-mutation-seam is REPORT-ONLY. FIX: generalize to detectStatusWrites (RHS must be deriveStatusEnum, RED on ANY literal, stub-must-fail on ALL FOUR values) + DELETE the dead task-fsm:68 (empty allow-list) + flip mutation-seam --strict. **NORTH STAR captured as a REQ (not a doc note): make Task.status a read-only DERIVED GETTER so a direct assignment fails to COMPILE = impossible, not detectable.**
+
+### LAWS BANKED TODAY (mine + the team's)
+- **Existence != connection != execution** (L5/L13) — code present, no throw, a socket somewhere receiving: none of these prove the thing.
+- **A wrong-TARGET measurement is a FALSE RED** (L16), the mirror of a false green — hit 3x today (expert's /app trap, architect's wrong-path grep, tester's /model auth-wall). Validate the TARGET, not just the instrument.
+- **Assert the INVARIANT, not a value/instance** (L17) — a value-scoped guard reports GREEN while a sibling violates.
+- **Fail-safe != fail-loud** (L15) — a swallowed degrade recreates the silent bug; a gate must assert the POSITIVE property, never "didn't throw".
+- **Knowledge that must survive a rewind goes to DISK — a pane message is not a handoff.**
+- **Acceptance evidence must come from OUTSIDE the fix's frame**; a durable regression gate MAY be author-built IF spec-from-another + stub-must-fail + raw output read independently.
+- **Decide ONCE with trade-offs weighed** — I ruled hold/build/hold/build (4 positions) on one question; a late better argument applies to the NEXT instance, not a reversal in flight (unless correctness/safety).
+- **Shed BEFORE the big slice, never mid-build, and never on the acceptance proof itself**; pick rewind depth by RUNWAY NEED, not step count.
+- **Measure at the moment of USE** — I quoted non-existent anchor hashes + a TASK uuid as an Impl uuid; both caught by agents.
+- **Backticks in a double-quoted otmux send EXECUTE** — I garbled a message this way today. Single quotes / no backticks.
+
+### FLEET + DRIVER RULES
+SM baseTeam:0.1 (53%, HAS the fleet-watch, event-driven) · trainer baseTeam:0.0 (~72, driving me now) · ARON Temple:0.0 (52%, drives req next, then trainer) · expert 0.1 (54, HOLDS = fix-on-demand + owner-action smoke per (B)) · architect 0.3 (~61, 3 designs landed, interprets RAW evidence itself) · req 0.4 (~73 idle, awaiting ARON, directive on disk) · tester 0.5 (33%, BUILDING the acceptance).
+- Never both drivers out unless the fleet is healthy (it is). ~78 = flag; an IDLE agent at 78 does not wall.
+- `claudeCode context.read` is DEAD for several panes; `pane.self` is broken host-wide. **Authoritative = inject /context on an IDLE pane and read the RENDER.** Pulse lags a fresh cut — use the panel post-rewind.
+### ON TRON'S DESK: 24 approvals · the @390 device sitting · B1 PARKED · repos→PRIVATE · autocompact re-enable · 828+ unpushed session commits.
