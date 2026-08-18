@@ -358,3 +358,12 @@ Ground truth verified this turn:
 **ALL prior session deliverables** (test/macos.latest, green): #5 stop, #7 zoom, task#1 this-dispatch, DURING_REWIND, sweep.detect, c2 completion — code+tests, pushed.
 
 **Recovery**: read this + learnings; verify identity (pane.get.target + session.name 29a1e1d1); use the hiveMind CONTROLLER for agent ops (not raw otmux); `scrumMaster subscription` via shell; check team.status on WODA.prod for migration result.
+
+---
+## ⚠ OPEN MESS (2026-08-18) — conflicting hiveMind refactor; Tron deferred the decision
+**The collision**: /root/oosh (branch mcdonges.latest) carries a BIG uncommitted refactor by hiveMind-expert (hiveMind −2270 net, + claudeCode/odocker/ossh/otmux) that DELETES `private.hiveMind.live.tupleset` + `identity.resolve` + `protected.live.tupleset` — the c.0 canonical single-reader. My APPROVED §7 (`session/tasks/team-sweep-live-recognition.design.md`, `pane.live` single-source) was designed to PROJECT live.tupleset → **direct conflict**.
+**Root cause (mine to own)**: I assigned oosh-expert to build the pane.live sweep refactor WITHOUT checking that hiveMind-expert (the SCRIPT OWNER) was already mid-refactor in the SAME sweep/context area (its recent landed commits: RATE_LIMIT-at-idle, `context.gather.quiet`, auto-refresh stale-ctx, false-low guards). = duplicate + conflicting effort. See [[check-script-owner-before-assigning-refactor]].
+**Tool damage**: hiveMind is BROKEN mid-refactor — `team.sweep` errors (EPERM 8628), `from.jsonl.reading` fails (this.load), agent.sends returned no-output. Shared coordination degraded.
+**What I did NOT do**: touch/clobber the WIP. oosh-expert HELD (caught it); §7 on hold.
+**What I DID (Tron directive)**: built `scrumMaster.pulse` (commit 0fffc75) = honest real-time team status, DECOUPLED from the broken hiveMind — the SM's trustworthy view while the mess stands. Verified live vs /context + cross-agent.
+**DEFERRED DECISION (Tron: "decide about your mess later")**: which refactor wins (hiveMind-expert restructure vs §7 single-source) + who lands/stashes the WIP. My recommendation: unify under hiveMind-expert (owner); reconcile the §7 design + 8 RED tests against its landed structure; oosh-expert stands down from the parallel build.
