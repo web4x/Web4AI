@@ -576,3 +576,8 @@ R16 measured: fleet active (req/planner/skill-expert/po commits ~52min; po banke
 ★ HIT (lived, banked): the R78 trainer-recovery saga produced hard canon that wasn't yet in the families → FOLDED **WALLED-SESSION RECOVERY** into F3: a walled session is UN-RESUMABLE (resume reloads the killing context → dies again); recovery=fresh disk-first boot from committed Phase-1; verify cmd=node before rendering; probe keystrokes land before trusting a send; respawn clears a wedge but doesn't guarantee a launch; otmux-send can't launch claude in a c2-interactive pane → ≤2 attempts then hand to the human (protect the sole driver). + po's L-THE-LAW-CAUGHT-ITS-AUTHOR: the two-phase law's own author walled and its OWN Phase-1 saved it — the doctrine's strongest proof (twice today).
 TRAINER DOWN so canon-instead (R57/R68 pattern): I added to canon myself, no trainer SKILL-send (the propagator is the one down). When the fresh trainer is up, it weaves the F3 fold by-ref.
 Push-risk (827-ahead / heart 282ffe1) still TRON's open call.
+
+---
+## R80 — 2026-08-18 — EMPTY (fleet quiet ~2h; trainer still down)
+R16 measured: only my R79 since last round; last non-ARON commit ~2h ago. No new HIT. Empty #1 (R79 was a HIT → streak reset). Cadence hourly.
+Trainer STILL DOWN (baseTeam:0.0 cmd=bash) — awaiting Tron's ~20s relaunch (he's mid-verdict-session). NOT re-nagging (F7: stated once R78.cont3). Fleet functions without it (canon-instead covers the SKILL-propagation gap meanwhile). Push-risk still TRON's open call. Cost nothing more.
