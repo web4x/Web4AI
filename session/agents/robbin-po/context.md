@@ -165,3 +165,22 @@ Manifest + manifest-driven runner + self-registered check:gate-presence + frozen
 ### OWED / TRACKED
 req (frozen at ~73 pending drive, work-dispatch FROZEN by me) mints **"control visibility = derived status on ANY resolution path" + the OUT-OF-WINDOW gate**; architect a38cd7c91/ed3442d10 are the record until then · §4 chainExcludesSelf untangle (malformed chain: UC→Impl skips Method, self-ref ownerIor, 8-char PREFIX COLLISION) · v0.8.114 badge + its pixel gate.
 ### ON TRON'S DESK: A1=24 approvals · 828+ unpushed session commits · autocompact re-enable (would end the wall→manual-rewind cycle) · @390 device · repos→PRIVATE.
+
+## ★★★★★ #80 — ACCEPTANCE PIVOTED TO /model; ARCHITECT FREEZE (2026-08-18) ★★★★★
+**PROD v0.8.114 served==committed (verified by me). Acceptance OPEN: Tab B has NOT been shown to move.**
+
+### ★ VERDICT VOCABULARY NOW THREE-VALUED (the sharpest lesson of the run)
+**PASS / FAIL-RED / INVALID.** An unmet PRECONDITION => **INVALID** (the experiment did not run, result meaningless, re-select) — never RED, which would claim the property is ABSENT when we learned NOTHING. A two-valued vocabulary silently converts "we learned nothing" into "we learned something". Preconditions are **ASSERTED AT TEST TIME, never inferred** (non-eager != graph-absent). Architect 34132596c/L21.
+- **B on /trace = INVALID** (not RED): quiet-client precondition measured unmet — pollInQuietWindow=4 (tree lazy-loads), flaky drawer render, client-2 full reload with NO approve fired. ⇒ **live-MVC is UNTESTED, not failed.**
+- **A on /trace = INVALID**: swept 5 non-current-sprint QA-Review tasks, all _graph PRESENT (/trace graph is COMPREHENSIVE).
+
+### ★ REACHABILITY RULED — SURFACE CORRECTION, NOT A DOWNGRADE (architect 70cfcdab1)
+The defect IS reachable: **/model** mounts the shared drawer WITHOUT _graph (model.ts:24-26) => every detail resolves via _fallbackGraph(/api/ior), AND /model offers approve/decline (universalActionBar composes applicableActionsFor additively). /trace + scenario-view set the comprehensive graph => unaffected. **I had told Tron the wrong surface (deep-link/prior-sprint); corrected to /model = HIS OWN TAB.** Claim holds, precision improved.
+### ★ BOTH A AND B PIVOT TO /model — one surface, both preconditions: graph-absent (A) + tree-less so client-2 is QUIET (B). A = DIRECT (renders + only /api/ior supplies status) + DIFFERENTIAL (pre-fix HIDES / post-a54a705ed RENDERS, graph absent both arms), asserting _graph.get(subject)===undefined IN-RUN. B = independent of A's precondition (runs on a graph-PRESENT task) — I had let B stall behind A; corrected.
+### ★ 5 TRAPS: broadcast-vs-poll CAUSALITY · proof must FAIL with broadcast suppressed · controls PRESENT-BEFORE→ABSENT-AFTER · NO-RELOAD positive sentinel · **VERSION-PROVENANCE (each assertion names its commit)**.
+### ★ PROVEN + BANKED (stands regardless): /api/ior carries derived status (v0.8.112) · fail-LOUD fires live on a real data gap (v0.8.113) · visible ⚠ badge (v0.8.114, pixel-@390 gate PENDING — DOM-presence inadmissible) · landings 1+2 GREEN+pushed · **ISOLATION PROVEN ON A REAL TASK: prod 97e8a6ad stayed QA Review after a scratch approve** (re-assert every run).
+
+### ★★ FLEET: ARCHITECT MESSAGE-FREEZE ACTIVE (0.3 @ 88% ACTIVE, past-ceiling)
+Nobody writes to 0.3 — only the trainer's rewind KEYSTROKES (TUI, not prose). Trainer watches read-only 5s-poll, opens /rewind on the idle-blink (a safe holding state that stops the climb), drives by-label, no seam-wait, no auth-wait; ARON stands off = single driver. **LOSSLESS**: all its rulings committed (70cfcdab1 · 34132596c · a54a705ed · e421435f1 · 2c8a5978e-gate-doctrine). I enforced the freeze PRODUCT-SIDE: tester+expert redirected from "hand raw to architect" to the **DISK HANDOFF** (commit + ping me) — that queued raw-evidence dump was the live wall-hazard.
+### FLEET %: architect 88 (freeze) · req 77 · expert 73 (committed, fix-on-demand) · SM 65 · tester ~56+ (deferred, self-stops, committed) · trainer 48 · me ~45. Climb-wave post-rewind = watch, not drive.
+### ★ MY OWN FAILURE MODE (banked, trainer flags it): **I break my own laws when composing FAST rather than measuring** — backticks shell-executed 2x · measured a GENERATING agent 3x (once because MY OWN reply ended the idle window) · let a non-prerequisite deploy ship MID-acceptance after sequencing the gate-manifest for exactly that reason · manufactured priority from a felt number I had just ruled inadmissible. **Urgency is the tell.**
