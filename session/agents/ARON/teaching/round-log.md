@@ -668,3 +668,7 @@ R16 measured: recent = robbin operational (split-brain verify 7/7, T37.26 format
 ---
 ## R92 — 2026-08-18 — EMPTY (fleet ACTIVE, no new law) — NO back-off (HEAD moving)
 R16 measured: recent = oosh-po OPEN-MESS record (hiveMind refactor vs §7 collision — design) + robbin-tester split-brain repair (operational). No NEW law. 4 consecutive empties (R89-R92) BUT back-off needs empties AND RawBin-HEAD-unchanged — fleet ACTIVELY deploying (v0.8.104, split-brain), HEAD MOVING → NO back-off, hourly holds (correct: the fleet is busy, just not minting new laws). Self sub-line 73 held, lean. Cost nothing more.
+
+---
+## R93 — 2026-08-18 — EMPTY; fleet JUST WENT QUIET (stand-down streak = 1)
+R16 measured: only my R92 since last round; last non-ARON commit ~2h ago = fleet quiet this past hour, RawBin HEAD now unchanged. No NEW law. ★ Honest counting: R89-R92 empties were during an ACTIVE fleet (HEAD moving) — do NOT count toward back-off. R93 is the FIRST quiet+HEAD-unchanged round → stand-down streak = 1 of 4. NO back-off yet; hourly holds, watching. Self sub-line 73 held, lean.
