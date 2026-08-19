@@ -241,3 +241,14 @@ Architect ruled the settle-on-badge shape (c15055d04): discriminates **H1 artifa
 **MY PREDICTION: H1 (read-timing artifact), ~60/40.** Reasoning: v0.8.116 shipped a badge repaint alongside the fresh-wins precedence, and the controls provably flip from the broadcast alone in the same run — so the most likely story is the badge overwrite landing AFTER control-vanish, which is exactly what the old settle missed.
 **COMMITMENT: if the data says H2 (or H3) I accept it without argument and hand it straight to the expert.** I am recording this because I have twice this session caught myself reasoning from a stale/preferred frame; a prediction written after the fact is worthless. The architect locked its expectation too — two independent pre-registrations.
 **H3 would be the most important outcome:** a badge that flips in BOTH arms is poll-driven, i.e. NOT broadcast-MVC — that is trap-1 (broadcast-vs-poll) landing on the badge, and it would mean the badge never was live even though it looks live.
+
+## ★★★ #84 — BADGE RESOLVED: H1 ARTIFACT CONFIRMED, R40.31 GREEN (Tron's last open item)
+RAW 6f0606596 (pushed), evidence tail r4031-landing3-evidence.md — **I read it myself, not the summary**:
+- **Instrument self-test PASSED FIRST**: badgeSettleProven {detectsChange:true, cleanTimeout:true} => a 'never flipped' would have been trustworthy ⇒ **false-H2 ruled out**.
+- **Preconditions met**: drawer-open · present-before badge=='QA Review' (NOT vacuous) · passive + no-reload · v0.8.116 both arms.
+- **POSITIVE (broadcast ON)**: badge 'QA Review'→'Done' flipped=true, badgeLatency **1481ms** = **+509ms after controls (972ms)**; controls flipped; client-1 also Done.
+- **C1 (broadcast OFF)**: badge flipped=**false**, no WS frame, 0 polls ⇒ **H3 poll-driven ruled out**; the flip is BROADCAST-CAUSED.
+- prod 97e8a6ad unchanged, teardown clean, 0 leftover.
+⇒ **H1 distinctly** (not H2: it flipped · not H3: C1 inert · not INVALID: instrument proven + precond met). The old 'read-uncertain' is fully explained: the previous settle fired on **control-vanish, ~509ms before the badge settles**. The lag is benign.
+**MY PRE-REGISTRATION (#83, H1 ~60/40) was correct — and per our own rule that is NOT evidence.** What makes it GREEN is the DISCRIMINATOR: self-test admissibility + present-before + the C1 negative control. Architect's independent cold read pending = the closing signature.
+**R40.31 STATUS: controls PROVEN (earlier) + causality SEALED (581244186) + badge PROVEN (this) ⇒ live-MVC #1 fully resolved, pending the architect's read.**
