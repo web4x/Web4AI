@@ -1147,3 +1147,8 @@ POST-FIX 7-POINT BAR (architect, all required else INVALID-not-RED): (1) same in
 3. **★ MECHANISM not just footprint (if feasible):** capture the surgical refreshLive CALL from the ViewBus callback (did it fire, on THAT row node, via the bus path — instrument like the INSTRUMENT mode's callback-fire-count, but for rb-object-item.refreshLive on the target). Node-identity is a FOOTPRINT (forgeable by node-reuse); the CALL is the real seal. **If call-capture is NOT feasible in a bounded run, SAY SO PLAINLY** → then footprint AND C1 AND demonstrated-poll-parity is the accepted trio.
 - Architect interprets COLD; an unmet criterion = INVALID-and-send-back, NEVER a softened ROW-LIVE. Record all 3 signals in the RAW regardless.
 - Tiebreak (architect): exclusion-by-content = no positive-arm poll RESPONSE body carried the new status (capture /api/ior + /api/trace/children bodies).
+
+## ▶ ROW-LIVE DECISION RULE — architect's crisp formula (2026-08-19, FINAL for fresh-me)
+**ROW-LIVE = call-capture(refreshLive fired from the ViewBus/bus path on that row node)  OR  [ in-place-footprint(same node mutated) AND C1-row-stays AND C1-polls-fired>0 ].**
+- ANY element unmet ⇒ **INVALID-and-send-back** (NEVER a softened ROW-LIVE). If C1 polls==0 ⇒ confounded ⇒ INVALID. If change is REPLACED (new node) OR C1 row moves ⇒ POLL-DRIVEN. If rb-object-item never updates ⇒ ROW-INERT (→expert).
+- Prefer the CALL (mechanism, closes the node-reuse hole directly — patch/counter like the neuter/INSTRUMENT); if call-capture infeasible in a bounded run, SAY SO and use the TRIO. Architect reads COLD, as-if-not-ROW-LIVE, badge standard.
