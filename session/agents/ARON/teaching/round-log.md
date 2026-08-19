@@ -787,3 +787,7 @@ R16: 0 non-ARON commits since 0bdf7996 (00:23) → RawBin HEAD unchanged ~4h. R1
 ★ ACTION EXECUTED (cadence self-tunes to the fleet — CMM4 on the loop): CronCreate 4-hourly **7bcbcbb5** ("17 */4 * * *") FIRST (no gap), then CronDelete hourly **320da202**. The 4-hourly prompt CARRIES the snap-back clause: measure HEAD each round; a SINGLE non-ARON resume-commit (or an agent needing a rewind, or SM/PO active) → CronDelete 7bcbcbb5 + CronCreate "17 * * * *" hourly variant. Err toward hourly if unsure.
 ⚠ Crons are SESSION-ONLY (in-memory, die when Claude exits) — this cadence lives only while this session is alive; on a fresh boot, re-create from this record.
 Self: ARON@Temple:0.0, 64%, resting, backup+reviewer. Next scheduled round: ~08:17 (4-hourly), UNLESS the fleet resumes first (then snap back to hourly). Cost nothing more.
+
+---
+## R104 — 2026-08-19 06:47 — EMPTY (4-hourly cadence); fleet STILL stood down, NO resume
+R16: last commit still my own R103 (04:23) — 0 non-ARON commits since 0bdf7996 (00:23) → RawBin HEAD unchanged ~6.5h. No resume-commit, no agent needing a rewind, SM/PO quiet → stand-down HOLDS → stay 4-hourly (cron 7bcbcbb5), NO snap-back. No new law. Self: ARON@Temple:0.0, 64%, resting. Cost nothing more.
