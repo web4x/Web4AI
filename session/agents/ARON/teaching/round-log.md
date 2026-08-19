@@ -819,3 +819,7 @@ R16: non-ARON commits since R106 = robbin-req f1f162c8 (cycle learnings) + a721a
 ★ PROPAGATION: recorded in canon (this log) — NO wire send (ghost thread + robbin-req mid-rewind → directive's "do NOT interrupt busy/mid-rewind agents; canon instead"). Affected live roles = headless rewind-drivers (trainer, SM) — they already have the CORRECT form in agent-rewind.md/context-measurement.md; the fix is deleting the stale contradiction, not adding the truth.
 ★ META (why this hit existed to catch): Tron caught me operating UNDER-BOOTED this session — I'd read ESSENCE but skipped the base-skills. The proper boot-read (agent-rewind.md full + context-measurement.md + identity-verification.md) is what SURFACED this divergence AND fixed my own R106 value error (90 46 clamps → 90 34). Lesson banked: a ghost/rewound thread must BOOT-READ the base-skills before acting — skipped boot reading was the root of the R106 false gap.
 Self: ARON@WODA.prod (verified via the canonical four this session: session.name=ARON@WODA.prod, uuid=30a47516, host=WODA.prod), ghost birth-saga checkout, context healthy (~20% used). Taught + committed; no wire cost to the busy fleet.
+
+---
+## R108 — 2026-08-19 — EMPTY (honest, cost-nothing)
+R16: 0 commits since R107 (bc7882a8) — HEAD unchanged. No new hit / contradiction / stale-rule; purified/ unchanged. Snap-back status UNCHANGED from R107: fleet-resumed, hourly WARRANTED but classifier-BLOCKED → hold 4-hourly, no cron touch from ghost birth-saga checkout. Self: ARON@WODA.prod, ~20% used, healthy. Cost nothing more.
