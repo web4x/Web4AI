@@ -1152,3 +1152,11 @@ POST-FIX 7-POINT BAR (architect, all required else INVALID-not-RED): (1) same in
 **ROW-LIVE = call-capture(refreshLive fired from the ViewBus/bus path on that row node)  OR  [ in-place-footprint(same node mutated) AND C1-row-stays AND C1-polls-fired>0 ].**
 - ANY element unmet ⇒ **INVALID-and-send-back** (NEVER a softened ROW-LIVE). If C1 polls==0 ⇒ confounded ⇒ INVALID. If change is REPLACED (new node) OR C1 row moves ⇒ POLL-DRIVEN. If rb-object-item never updates ⇒ ROW-INERT (→expert).
 - Prefer the CALL (mechanism, closes the node-reuse hole directly — patch/counter like the neuter/INSTRUMENT); if call-capture infeasible in a bounded run, SAY SO and use the TRIO. Architect reads COLD, as-if-not-ROW-LIVE, badge standard.
+
+## ▶ ★★ CORRECTION — ROW criterion (2) SUPERSEDES the earlier 'C1-polls>0' wording (PO, 2026-08-19). READ THIS, DISCARD THE OLD.
+- ✗ WRONG (banked earlier in this file — DISCARD): "C1 pollCount MUST be >0 else INVALID." This would wrongly INVALIDATE our STRONGEST shape.
+- ✓ CORRECT: criterion (2) is about the poll MECHANISM being ALIVE/UNSUPPRESSED, NOT a count. In C1 suppress ONLY the broadcast (leave the /trace poll TIMERS RUNNING, polling intact). Record pollCount in BOTH arms. Then:
+  - (a) C1 timers ALIVE + polls FIRED + row did-not-move → strong (ROW-LIVE co-seal holds).
+  - (b) C1 timers ALIVE + **0 polls** + row did-not-move → **ALSO STRONG — in fact the BEST shape** (= the #82c badge seal the architect confirmed: timers alive yet C1 issued ZERO post-approve fetches while positive issued 3 ⇒ those fetches were BROADCAST-TRIGGERED, not independent polls).
+  - (c) C1 poller DEAD/SUPPRESSED, or you CANNOT show it was alive → **CONFOUNDED → INVALID** ('row did not move' is uninformative).
+- ⇒ FATAL case = a SUPPRESSED/DEAD poller, NOT a zero count. **CORRECTED FORMULA:** ROW-LIVE = call-capture(refreshLive from bus)  OR  [ in-place-footprint AND C1-row-stays AND **C1-poller-DEMONSTRABLY-ALIVE-and-unsuppressed** ]. (Third element is poller-ALIVE, NOT polls>0.) Criteria (1) IN-PLACE-AND-C1-stays and (3) mechanism-over-footprint UNCHANGED. Implement C1 to suppress broadcast only + assert timers alive (e.g. observe the tree's poll interval firing pre-approve) + record pollCount both arms for the architect's cold read.
