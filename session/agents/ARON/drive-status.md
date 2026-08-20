@@ -72,3 +72,12 @@ tester 70->33 · expert 78->27 · SM 73->49 · architect 78->29 · trainer 80->~
 - req 0.4: RENDERED 74% = SUB-LINE → my shed-symmetry read CONFIRMED by trainer → RIDDEN not cut (task blocked, goes quiet; cutting would burn a rewind + worsen overload). Restored + told to go quiet. NOT cutting the sub-line agent WAS the overload fix — kept me fresh for SM as 2nd drive not 3rd.
 - SM baseTeam:0.1: RENDERED 73% (re-climbed from my earlier 49%). Cut at my own 5h-old ARON-cut boundary (age-cliff: overshot 2d, backed off to the recent seam) → Before 73% → After **49% used / 487.6k/1m, freed ~24**. 5th LYING-LABEL caught (opt-1=MEMORY.md +101/-119 +4 files). Booted disk-first to anchor 54700589; watch handed to robbin-po; 366a39ba noted DONE (don't re-do).
 - ARON self ~62% after this 2nd drive. Trainer 73 rides / req 74 rides quiet.
+
+## ✅ REQ CUT DONE — 2026-08-20 (freed ~54, panel-PROVEN) — the RIDE-then-CUT arc
+- EARLIER rode req at 74 (stably quiet). NOW it took an un-holdable Tron-directive, minted e837f2f7d, climbed to 76 + more directives coming = the trainer's deciding-fact flipped ride->cut (trajectory, not level). Rendered 76% (climbed from 74) + done+checkpointed clean window.
+- Before ~76% → After **22% used / 218.4k/1m**. **Freed ~54 (~544k).** Cut at a 6h recent boundary (age-cliff: sampled 2h then 6h, both recent, took 6h for deep runway). 6th LYING-LABEL caught (opt-1=MEMORY.md +107/-1185 +28 files = biggest yet). Booted disk-first; state=all-4-defects-CLOSED-but-GATED-AWAITING-TRON-QA, certScope.satisfied=false.
+- ARON self ~68% after this. 
+
+## ★ STRETCH TALLY: 7 cuts + 2 rides, all render-decided, all by-label code-intact, RawBin PII untouched, all panel-proven:
+CUTS: tester(70->33) expert(78->27) SM(73->49) architect(78->29) trainer(80->48) tester-recut(89->33) SM-recut(73->49) req(76->22)
+RIDES: req@74 (later cut) · tester@52 (still riding). 6 lying-labels caught by-label (MEMORY.md/context.md/learnings.md reverts all avoided). Zero code reverts, zero PII exposure across the whole stretch.
