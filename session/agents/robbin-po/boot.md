@@ -1,15 +1,16 @@
-# robbin-po BOOT (post-2-phase-rewind @2% wall, 2026-08-06) — READ FIRST, DISK WINS
+# robbin-po BOOT (current 2026-08-20) — READ FIRST, DISK WINS
 
 **I am robbin-po @ robbinTeam2:0.0 (pane, host WODA.prod/v60211). PO for Web4RawBin (/var/dev/Workspaces/web4x/Web4RawBin). Team robbinTeam2 0.0-0.6, SM=baseTeam:0.1, trainer=baseTeam:0.0, ARON=Temple:0.0.**
 
-## ★★★ ACTIVE: TMUX-CRASH RECOVERY (restoring my team) ★★★
-tmux server crashed; ALL sessions were killed. Tron restored Temple + baseTeam (moved SM to baseTeam:0.1) + prepared fresh robbinTeam2 shells (0.0-0.7, bash). I am RESTORING my 6 teammates via `claudeCode join <uuid>` per pane.
-
-**RESTORE PROCEDURE (per agent, one at a time, MEASURE each):**
-1. `otmux send <pane> "claudeCode join <uuid>" Enter`
-2. ★★ IMMEDIATELY watch: if ANY `/compact` appears → `otmux send.raw <pane> Escape` INSTANTLY (Tron's hard rule). It's a STALE staged /compact from pre-crash (NOT auto-compact — that's OFF), clear it before it runs or it destroys the full context.
-3. If a summary/full resume-menu shows → pick **option 2 "Resume from FULL conversation"** (option 1 "Resume from summary" KILLS the agent).
-4. Verify full context loaded (/context shows real % / not tiny), agent idle.
+## ★★★ ACTIVE (2026-08-20): TRON'S 4 LIVE-MVC FINDINGS — ALL GREEN ON SERVED v0.8.123, AWAITING **HIS DEVICE QA** ★★★
+**The tmux-crash recovery below is DONE (2026-08-06) — team is up. Do NOT re-run it.**
+All four are **gated GREEN on served v0.8.123** and recorded `certificationScope.satisfied=FALSE` (gated-awaiting-Tron-QA) **in the units themselves**, so a fresh me inherits the truth, not a summary:
+1. drawer sections DUPLICATED (Parent x2/Status x3) — root: rb-task-detail's OWN ViewBus sub re-runs render() into populated DOM, async tails APPEND. Fixed by `upsertSection` (remove-prior-marker-then-insert) across ALL 9 *-detail. DET-3x GREEN /trace AND /model.
+2. CurrentSprint pin stale — root: subscribed on RAW uuid vs canonical viewBusKey. Fixed. 3. banner "no stored pin" LIE (we stored a designation) — fixed + source-lint. 4. /model sprints ASC vs /trace DESC — ONE canonical comparator, all 6 display sites.
+**HIS TAP IS THE ACCEPTANCE — our green is only our evidence.** The Layer-2 worktree migration stays **LOCKED** behind his confirm.
+## ★★★ STAGE VIA `rbadd` (R40.48 Layer-1) — READ-PATH RULE ★★★
+`./rbadd <explicit-file> …` in Web4RawBin. **NEVER `git add -A` / `<dir>` / `.` / `scenario/…`.** `export RB_AGENT=robbin-po`. Count: `node scripts/check-staged-declared.mjs --report`.
+**WHY (know why, or you look for the exception after a rewind):** the `.git` index is SHARED — a broad add **swept a peer's unverified WIP into a commit 4x** (one nearly laundering a fabricated re-home) and an index race **DROPPED 2 commits outright**. Hook **WARNS only**; the REJECT flip is **MY** toggle, and per my ruling it is **sequenced AFTER Layer-2** (under a shared index even a compliant agent can be rejected by a peer's race = an intermittent false-positive, which destroys trust faster than no guard).
 
 **AGENT UUIDs → PANES (from claudeCode list + /root/config/hivemind.sessions.env):**
 - robbin-po (ME) = 9991a7cc-19fb-42fc-9de6-859bf6ad68a5 @ robbinTeam2:0.0
@@ -24,7 +25,10 @@ tmux server crashed; ALL sessions were killed. Tron restored Temple + baseTeam (
 ## ★★★ AUTOCOMPACT = OFF (verified, guaranteed) ★★★
 Disabled 3 ways: (1) `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=100` exported in claudeCode wrapper line 18 (every claudeCode-launched agent) + ~/config/claude.env; (2) settings.json `autoCompactEnabled:false` global (~/.claude/settings.json) + project (/var/dev/Workspaces/AI/Claude/.claude/settings.json). The command to disable = `CLAUDE_AUTOCOMPACT_PCT_OVERRIDE=100`. Any `/compact` seen = STALE-STAGED pre-crash leftover → Escape it. [[autocompact-settings-json-not-env]]
 
-## ★★★ S36 UNDER CORRECTION (delivery state pre-crash — NOT 'near-complete') ★★★
+## ★ S40 CURRENT (supersedes the S36 block below, kept only for the governance rule it states)
+Sprint 40 · prod **v0.8.123** served==committed · repo /var/dev/Workspaces/web4x/Web4RawBin. Guards now live in ci:gates:raw: **(1)** no raw `insertAdjacentHTML` outside the `upsertSection` primitive (scans the HAZARD, root self-derives: DOM API => browser code => one root; 0 uses outside it ALSO proves all 9 components covered); **(2)** marker-correctness (literal / no-collision-in-host / **content-carries-the-marker** — I made that 3rd MANDATORY: without it the next render matches nothing, removes nothing and APPENDS = the bug re-enters through a call site that looks correct); **(3)** Layer-1 staged⊆declared, WARN-only.
+**R40.54 META-GUARD (the session's most durable output): no requirement may be SATISFIED while any AC lacks a check that can PROVABLY FAIL.** Five false-satisfactions in one day made it a PROCESS fix, not five patches. Includes: enumerate-not-universal ("all X" cannot fail — name the set + add a divergence check), fail-closed satisfaction, a wish-sweep with a **third honest state (satisfaction-UNVERIFIED)** so we neither inflate nor erase, and **its own stub-must-fail**.
+## ★★★ S36 UNDER CORRECTION (HISTORICAL 2026-08-06 — do NOT action; kept for the governance rule) ★★★
 Tron device-QA caught a SYSTEMIC FALSE-DONE: tasks auto-flipped Done on mechanics-gates without his QA + with missing deliverables. GOVERNANCE RULE (instated): **QA-Review HOLDS for Tron — NO task→Done without his sign-off + real-deliverable-verified-to-EXIST-at-his-surface.** 3-dim board = [mechanics-gate | deliverable-exists-at-Tron-surface | Tron-QA]. [[done-requires-tron-qa-and-real-deliverable]]
 - **T36.1** (UmlUseCase M2 view): REOPENED — UmlUseCase is RENDER-ONLY (diagram-view-model.ts:66), TsToModel generates ZERO M2 instances → not in browser. Architect diagnosing the generation fix.
 - **T36.4** (authored-trace): architect ruled UN-GATE-SAFE (MODEL_STORE-isolated shared demo store, matches ungated siblings add-view/move-view). Expert was to SHIP the un-gate (remove 2 gate lines server.ts:2122+2137, server-only) → Tron re-authors a 🔗 trace → tester verifies persist+render.
@@ -41,5 +45,6 @@ Tron device-QA caught a SYSTEMIC FALSE-DONE: tasks auto-flipped Done on mechanic
 1. `otmux pane.history robbinTeam2:0.0` — recent exchanges the rewind dropped.
 2. `claudeCode list` + `tmux list-sessions` — measure which agents are up vs still shells.
 3. `git -C /var/dev/Workspaces/web4x/Web4RawBin log --oneline -8` + `grep version package.json` — RawBin state.
-4. Resume restoring 0.3/0.4/0.5/0.6 (Escape-guard each). Then re-orient the team to S36-under-correction + drive delivery (measure motion, don't narrate).
-5. Then session/agents/robbin-po/context.md (#46.x history) + learnings.md.
+4. `curl -sk https://prod.wo-da.de:4444/api/config` — the SERVED version. **served==committed or nothing is real** (a gate pinned to a stale build describes a product nobody runs; I hit this and re-pinned all four findings to 0.8.123).
+5. Then `session/agents/robbin-po/context.md` — read the LATEST anchor first (#93+), NOT the history below it — plus `learnings.md` (L-S40-* are today's).
+6. **DRIVE:** verify MOTION not dispatch (an agent "holding" + a driver "idle" = deadlock, not progress — I broke two). Cut on **%+INCOMING LOAD**, never % alone (context burns on GENERATING, not waiting — 5 cuts correctly DECLINED today). **Self-reports are wrong in BOTH directions** (70-self/25-real, 68-self/73-real): render the target. **Read MEMORY/learnings/context restore-scope FIRST on any rewind confirm** — 9 drives, 9 lying labels, 3 aimed at the knowledge files (worst: MEMORY.md +208/-533 across 30 files).
