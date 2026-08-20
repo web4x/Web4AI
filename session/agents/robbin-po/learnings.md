@@ -1785,3 +1785,10 @@ After a whole sprint spent refusing to satisfy requirements on partial evidence,
 **Why it matters:** holding a requirement UNVERIFIED forever permanently understates real delivery AND corrupts the third state. `satisfaction-UNVERIFIED` is meant to be an honest TEMPORARY state, not a permanent parking space. If it can never be exited it stops carrying information, people learn to ignore it, and the honest state dies — the same way a gate everyone bypasses stops being a gate.
 **Scope rule that prevents the trap:** when remediation depends on someone else (another PO's files), scope the AC as **coverage universal / remediation owned / exclusion explicit + time-boxed**. Never write an AC whose satisfaction depends on work we do not control.
 **Both directions:** do not inflate, do not erase. [[done-requires-tron-qa-and-real-deliverable]] guards one side; this guards the other.
+
+### L-S40-22 ADDENDUM — the revoked-directive axis hit TWICE in nine files (~22%)
+Instances found by the axis-b scan, both of which would have been OBEYED on a fresh boot:
+1. **scrum-master**: "ACT dont report" — Tron had explicitly revoked this when he corrected the SM to MONITOR + REPORT, never drive rewinds.
+2. **agent-trainer** (self-cured): a **FORK** reference, contradicting the NO-FORK canon.
+Both read as timeless RULES, not as stale facts — which is exactly why axis-a (perishable state) alone would have left them in place. A ~22% hit rate across nine files means this is not a rare pathology: **every long-lived instruction file accumulates withdrawn orders**, because corrections are made in threads and only sometimes written to canon.
+**Standing practice:** any boot/canon/SKILL review inspects BOTH axes — (a) perishable state, (b) superseded/revoked directives — and unresolvable contradictions are FLAGGED to the PO, never silently resolved.
