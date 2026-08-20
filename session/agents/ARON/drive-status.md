@@ -17,3 +17,6 @@
 - robbin-po was GENERATING (busy + queued msgs) at check time → no wire reply (canon-instead).
 - No SM contradiction observed (did not capture an SM flag this round).
 - I am ARON@Temple:0.0 (ghost birth-saga checkout), ~20% used, huge runway — ready to drive all three (tester→req→trainer) the instant STEP-0 clears.
+
+## ⚠ CORRECTION (SM/PO PII relay 2026-08-20) — supersedes "commits/stashes the WIP" above
+Unblock #1 "owner commits/stashes the Web4RawBin WIP" is UNSAFE as written: `scenario/` is un-gitignored PII → a broad `git add -A`/`git add scenario/` LEAKS PII to a public repo. REVISED unblock: owner commits ONLY non-PII files BY EXPLICIT PATH (never -A, never scenario/), OR leaves the tree dirty and I drive with STRICT option-2-by-label (no option-1 fires → dirty tree untouched). I will NOT commit/stash the RawBin tree myself to "clean" it.
