@@ -22,7 +22,7 @@ git diff <ref> -- path/to/file       # compare working tree to <ref> (READ-ONLY)
 **Guard:** after ANY git op on a served repo, `git status --short` must be clean of unintended changes (INV-V3). If `checkout -- ` slipped, `git restore --source=HEAD <file>` to undo, then re-inspect with `git show`.
 
 ## Related git-safety rules (link, don't duplicate)
-- **`git add` explicit paths, never `-A`** — shared multi-agent shells hold others' uncommitted work; `git reset HEAD` then add explicit paths, verify the staged column is only yours.
+- **`git add` explicit paths, never `-A` (and never `git add scenario/`)** — shared multi-agent shells hold others' uncommitted work; `git reset HEAD` then add explicit paths, verify the staged column is only yours. **PII TEETH (Web4RawBin): `scenario/` has NO gitignore and carries real user PII — Profiles + private Messages — so a broad add COMMITS + PUSHES PII.** A driver's STEP-0 (full-commit-before-picker, across all 3 trees) **LEAVES RawBin runtime/PII dirt untouched — it never commits it**, only the named agent/session files it means to protect. (Policy fix: R40.47.)
 - **Never `git rebase` / `git pull --rebase`** — merge only (`pull.rebase=false`); rebase silently destroys work.
 - **Nothing is done until committed with a hash** — `git status` must be clean before a result is snapshotted (wer schreibt, der bleibt).
 - **After a regen that wipes files** (design-*.md / *.puml collateral): `git restore --source=HEAD --worktree <paths>` to restore.

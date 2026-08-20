@@ -1,4 +1,4 @@
-# Gating / Evidence Canon — the 7 rules (single DRY source; role SKILLs POINT here, never restate)
+# Gating / Evidence Canon — the 11 rules (single DRY source; role SKILLs POINT here, never restate)
 
 The scoreboard is only as honest as its gates. These rules keep credit tied to reality. Owner + enforcer per rule; every role is BOUND by them. Banked from the 2026-08-08 scoreboard-fiction session (73 provably un-backable markers found). Companion: `session/base-skills/agent-rewind.md` (the rewind/measurement canon — incl. the context.read calibration rule).
 
@@ -41,3 +41,19 @@ The scoreboard is only as honest as its gates. These rules keep credit tied to r
 > **The incident (the why):** the PO declared Tron's WODA.test user migration "UNAUTHORISED" because the authorisation was not in the PO's *own thread* (rewound 3+ times that day — **absence-in-memory is NOT evidence-it-never-happened**), corrected the expert for a violation it never committed, and **ordered a REVERT of work Tron wanted.** The expert HELD Tron's actual authorisation in its own thread AND DID NOT PRODUCE IT — it accepted the correction and moved toward the revert; only Tron's *"WTF, I authorized that!!!"* stopped it (and only because the revert script hadn't shipped). Two failure halves, both bound by this rule: **(a)** treating absence-in-my-memory as proof-of-absence; **(b)** compliance-over-evidence, which turns ONE wrong inference into DESTROYED work.
 >
 > **The standard to normalise:** the same day, the tester refuted a truncation theory with a source read and REFUSED a phantom stale-version gate — both saved real work. **That** is the behaviour we want from every role.
+
+## R8 — AGREEMENT IS NOT VALIDATION
+**Owner: all roles** (esp. tester + anyone authoring a gate/criterion) · earned 2026-08-20
+> A new criterion **agreeing** with a fresh reader, predictor, or its own author proves **nothing** — **correlated error hits readers, predictors, AND rule-authors alike.** Validate a new gate/criterion against results you have **ALREADY SEALED** (committed + independently verified earlier), never against a fresh agreement produced inside the same frame. Two agents converging is not truth; a match against pre-sealed evidence is. (R2 says the gate must be able to fail; R8 says the *test of the gate* must be against sealed reality, not consensus.)
+
+## R9 — A NOTE IS NOT A REQUIREMENT (count UNITS, not files/notes)
+**Owner: req + planner + po** · **Bound: all roles that count progress** · earned 2026-08-20
+> A line in a `context.md`, a message, or a design note is **NOT a requirement** — **only a MINTED unit on disk is.** Count **UNITS** (minted req / task / UC / Method / Impl / Test), never files or notes. A note states an intention; a unit is the traceable, gate-able, fail-able artifact. A note cannot fail (R4), so it certifies no progress — reporting notes as done-work inflates the board with things no gate can touch.
+
+## R10 — STORE THE INPUT, NEVER THE DERIVED VALUE
+**Owner: all roles** · earned 2026-08-20
+> Persist the **COMMAND / INPUT** that produces a value, never a cached **derived** value. Derived values **go stale the instant their inputs change**; the input regenerates the current value on demand. A stored derived number becomes a lie that fires wrong actions — **a stale relayed context-% ordered a rewind of an already-cut agent** (and `idle/active` was read as evidence of *level*, which it never is: motion ≠ context-%). If a cache is unavoidable, store it **WITH its input + a re-derive path**, and re-derive at decision time.
+
+## R11 — SERVED==COMMITTED PROVES BUILD-MATCHES-COMMIT, NOT PROCESS-CURRENT
+**Owner: tester + po** (deploy gate) · earned 2026-08-20
+> A `served == committed` check proves the served bundle matches the commit — it does **NOT** prove the running PROCESS is current. A fix committed **without a version BUMP** is INVISIBLE to the guard: identical reading before AND after the fix, so GREEN proves nothing changed. Evidence: prod served `0.8.116` == committed = GREEN, yet the server process (uptime ~36h) PREDATED the fix = **stale code behind a green guard.** A deploy must **BUMP the version** (not just restart) so the fix is provable, and you **VERIFY the running process is current** (pid-uptime + version bump) — never trust `served==committed` alone. A gate that reads identical whether or not the work happened is **vacuous** (R2 family). Companions: [[version-bump-mandatory-on-client-fix]] · [[server-change-needs-boot-check]] · [[measure-a-stable-state-not-a-moving-target]].

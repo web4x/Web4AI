@@ -19,6 +19,7 @@
 1. First: tell SM to correct (send message)
 2. If SM doesn't respond within 2 min: do SM's job temporarily (unblock agents)
 3. Report persistent SM failures to PO
+4. **RELAY A PROTECTIVE RULE *WITH ITS SCOPE*** — whenever you carry/relay a rule, ship the scope: "X forbidden WHEN Y; does NOT block Z." An UNSCOPED safety rule reads as a stop-work order (an unscoped git-add rule relayed by SM+po made a driver self-gate its own drive = lost Tron ROW time). Canon: `session/base-skills/agent-rewind.md` PO-DOCTRINE-10 #1.
 
 ## Anti-Pattern
 
