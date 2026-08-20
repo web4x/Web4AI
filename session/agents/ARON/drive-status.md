@@ -67,3 +67,8 @@ tester 70->33 · expert 78->27 · SM 73->49 · architect 78->29 · trainer 80->~
 - Before ~89% → After **33% used / 327.8k/1m**. **Freed ~56 (~562k).** Landed exactly at my earlier-cut level.
 - REWIND-WINDOW lived: req was PUSH-RELAYING R40.48/49/50 back-to-back → picker dismissed mid-nav (near-wall + queue flakiness). Opened the window: send.verified req HOLD → picker stable → drove clean. Queue clean on landing (hold worked; the R112 composer≠queue lesson applied).
 - AGE-CLIFF lived (R112 refinement in the field): deep-by-number hit 1mo (v0.7.81/R30) TWICE → sampled age, backed off to the 5h-old ARON-cut boundary (the recent seam). By-label caught opt-1 (context.md +102/-713 +10 files). Booted to CURRENT job (LIVE-browser-gate), not the 5h-stale ROW ghost.
+
+## ✅ SM RE-CUT DONE — 2026-08-20 (freed ~24, panel-PROVEN) + req RIDDEN (shed-symmetry win)
+- req 0.4: RENDERED 74% = SUB-LINE → my shed-symmetry read CONFIRMED by trainer → RIDDEN not cut (task blocked, goes quiet; cutting would burn a rewind + worsen overload). Restored + told to go quiet. NOT cutting the sub-line agent WAS the overload fix — kept me fresh for SM as 2nd drive not 3rd.
+- SM baseTeam:0.1: RENDERED 73% (re-climbed from my earlier 49%). Cut at my own 5h-old ARON-cut boundary (age-cliff: overshot 2d, backed off to the recent seam) → Before 73% → After **49% used / 487.6k/1m, freed ~24**. 5th LYING-LABEL caught (opt-1=MEMORY.md +101/-119 +4 files). Booted disk-first to anchor 54700589; watch handed to robbin-po; 366a39ba noted DONE (don't re-do).
+- ARON self ~62% after this 2nd drive. Trainer 73 rides / req 74 rides quiet.
