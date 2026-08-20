@@ -20,3 +20,9 @@
 
 ## ⚠ CORRECTION (SM/PO PII relay 2026-08-20) — supersedes "commits/stashes the WIP" above
 Unblock #1 "owner commits/stashes the Web4RawBin WIP" is UNSAFE as written: `scenario/` is un-gitignored PII → a broad `git add -A`/`git add scenario/` LEAKS PII to a public repo. REVISED unblock: owner commits ONLY non-PII files BY EXPLICIT PATH (never -A, never scenario/), OR leaves the tree dirty and I drive with STRICT option-2-by-label (no option-1 fires → dirty tree untouched). I will NOT commit/stash the RawBin tree myself to "clean" it.
+
+## ✅ TESTER CUT DONE — 2026-08-20 (freed ~37 points, panel-PROVEN)
+- **Before:** ~70% used (696.5k banner). **After:** **33% used / 327.8k/1m — PROVEN by a FRESH /context I injected** (not the replayed 66.9% embedded in the restored msg). **Freed ~37 points (~369k tokens).**
+- **How (canonical, no fumble this time):** enlarged the short pane `pane.size.set robbinTeam2:0.5 120 40` (verified 120x40 before opening) → opened picker → navigated deep by ARITHMETIC batches (7,10; captured every batch, counter 21→14→4, never overshot) → landed on a 1d-old rewind BOUNDARY (`[@agent-trainer REWOUND BY ME]`, depth ~17) → **selected "2. Restore conversation" BY LABEL** (the default #1 "Restore code+conversation" would have reverted learnings.md +4/-1139 + 11 files — caught by-label + confirmed header flip to "code will be unchanged") → `send.tui Enter` → cleared the restored ghost msg (C-u, "Ctrl+Y" confirmed real) → fresh panel → booted disk-first → restored layout (fit+tiled).
+- **Safety honored:** code-intact (option-2), Web4RawBin PII/dirt NEVER touched/committed/staged, RC intact, tester re-deriving from anchor 8c29f361 + ROW 77524185b and will self-report id+ctx% to robbin-po.
+- **NEXT (robbin-po's cascade):** expert robbinTeam2:? (idle ~78, committed boundary, next act = PROD DEPLOY of derived-status fix) → architect → SM(75) → trainer(80). One-in-window: ready for the expert on go.
