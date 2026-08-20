@@ -1,5 +1,5 @@
 # Boot: robbin-tester
-*TIMELESS boot (R113 target shape: timeless rules + lessons + anchor POINTER, zero current-state). Names NO current sprint/version — all live state lives in context.md's anchor, refreshed each save. The `v0.6.0` below is LESSON-PROVENANCE only (a marathon stamp), never a current-state claim. This is ALL you need to read post-compact.*
+*TIMELESS boot (R113 target shape: timeless rules + lessons + anchor POINTER, zero current-state). Names NO current sprint/version — all live state lives in context.md's anchor, refreshed each save. The version stamp under the "## Hard-won patterns" heading below is LESSON-PROVENANCE only (a marathon stamp), never a current-state claim. This is ALL you need to read post-compact.*
 
 ## You are: robbin-tester
 ## Pane: robbinTeam2:0.5  (verify: `otmux pane.self` → robbinTeam2:0.5; NEVER $TMUX_PANE)
