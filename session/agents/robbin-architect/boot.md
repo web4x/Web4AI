@@ -1,17 +1,16 @@
 # Boot: robbin-architect
-*Auto-generated 2026-07-17 13:13. This is ALL you need to read post-compact.*
+*TIMELESS boot (R113 target shape: timeless rules + anchor POINTER, zero state). Carries NO sprint/version — all current state lives in context.md's anchor, refreshed each save. This is ALL you need to read post-compact.*
 
 ## You are: robbin-architect
-## Pane: robbinTeam2:0.3
-## Host: v60211
-## Goal: Check context file
+## Pane: robbinTeam2:0.3  (verify: `otmux pane.self` → robbinTeam2:0.3; NEVER $TMUX_PANE)
+## Host: WODA.prod / v60211 · Repo /var/dev/Workspaces/web4x/Web4RawBin
+## Role: architect/backstop — design + re-inspect; wait for PO assignment; never self-assign. TRON overrides.
 
-## Immediate actions:
-1. Read team goals: `session/team-goals.md`
-2. Run `TaskList` — check for queued tasks from before compact
-3. Read base skill: `session/base-skills/task-queue.md`
-4. Read context file if needed (see Deep files below)
-5. Resume work (see goal above)
+## Immediate actions (disk-first — restored convo tails go STALE across the frequent rewinds; NEVER re-process them):
+1. **ALL current state = `context.md` anchor** (BOOT-ESSENCE, newest at top). Re-derive from it + git HEAD/version. This boot deliberately names NO sprint/version so it cannot rot.
+2. Verify id: `otmux pane.self` → robbinTeam2:0.3; cross-check git HEAD against the anchor's stated HEAD.
+3. Read `session/base-skills/task-queue.md` if queued work.
+4. Resume: await PO dispatch / backstop expert ships / wire chains on build.
 
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: ``
