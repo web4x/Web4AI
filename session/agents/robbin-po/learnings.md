@@ -1711,3 +1711,9 @@ I pushed the expert to derive its lint's scan ROOT (a directory boundary is a ha
 - **Measured invariant:** 0 raw `insertAdjacentHTML` anywhere in client source except the ONE `upsertSection` primitive — which simultaneously proves the fix covered all 9 components with no stragglers.
 **RULE:** when writing a guard, prefer *"this dangerous operation may appear ONLY inside the sanctioned primitive"* over *"these known components must behave."* The first is unevadable and self-scoping; the second needs a list of actors AND a definition of the shape, and both can drift.
 **Corollary:** the strongest guards need no discovery mechanism at all, because the hazard names itself.
+
+## L-S40-6 — CONTEXT BURNS ON GENERATION, NOT ON WAITING: tie the cut to INCOMING WORK, not to the number alone
+I treated req at 74% as urgent regardless of state. The SM corrected me: req is IDLE-QUIET (dispatches held, nothing pending, blocked on a marker) — a quiet agent does not climb, so **riding at 74 is safe**; its 70->74 was PAST work already done. Context is consumed by GENERATING, not by existing.
+**RULE:** the rewind trigger is `% + expected incoming load`, never `%` alone. High-% + genuinely quiet = RIDE (a rewind costs budget + a driver, both scarce). High-% + work arriving = CUT FIRST.
+**PROTOCOL when a Tron directive lands on a near-line agent — CUT AFTER CAPTURE:** capture the directive to DISK first (so it survives the cut), THEN cut, THEN the fresh agent executes from disk. Cutting before capture risks losing his words; letting a near-wall agent consume a big directive risks walling mid-execution. Capture-then-cut is the only ordering that loses nothing (#126 scenario-first: his directive becomes a durable unit before anyone acts on it).
+**Corollary:** "idle at high %" is a STABLE state, not an emergency — treat it as a scheduling convenience (cut it when a driver is free), not a fire.
