@@ -1640,3 +1640,12 @@ Tron's complaint was "I declined T40.1, a change request was created, and nothin
 **Rules:** (1) A requirement/AC exists only when it is a MINTED UNIT in the graph — a note in a context.md, a line in a commit message, or a claim in a status report is NOT a requirement, however confidently it is relayed. Same family as "a pane message is not a handoff." (2) App-minted units are UNTRACKED until someone commits them — an app write is not a durable write; verify git tracking, not just disk presence.
 **Diagnostic that would have caught it in seconds:** for any "we already captured that" claim, run `git show --stat <commit>` and count INDEX UNITS, not files. Zero units = zero requirement.
 **Why it matters beyond this bug:** a board can look fully traced while its requirements live in prose. That is a false-green at the DOCUMENTATION layer, and it is invisible to every gate we have — because gates check units, and there were none.
+
+## L-S40-9 — A PROTECTIVE RULE WITHOUT ITS BOUNDARY BECOMES AN OBSTRUCTION (3rd instance today)
+I broadcast a PII/git-add safety rule; the SM relayed it; **neither of us stated what it does NOT block.** ARON read it as covering its pre-drive STEP-0 check, paused the tester rewind on a PII-dirty tree, and stalled Tron's 4th acceptance criterion behind a rule that never applied — an Option-2 rewind commits nothing, stages nothing, touches no tree. Both of us made the same omission independently, and both owned it.
+**This is the THIRD time today a protective instinct backfired for the same structural reason:**
+1. **"C1 polls must fire >0 else INVALID"** — sounded more rigorous, actually INVERTED our own sealed proof (zero polls with live timers was the strongest evidence).
+2. **"You've earned a rewind" at 58-63%** — protective toward the agent, but rewinds cost budget + a driver; the threshold is ~80%.
+3. **The unscoped safety broadcast** — protective toward user data, but it read as a stop-work order and blocked the critical path.
+**Rule:** every protective rule must ship with (a) its SCOPE — what it governs, and explicitly what it does NOT — and (b) its COST — what it stops, and whether that stop is intended. A rule stated only as a prohibition will be obeyed maximally by a careful agent, and careful agents are exactly the ones we rely on.
+**Relay form to use:** "X is forbidden **when** Y. It does NOT block Z. If in doubt, the test is W." The 'does NOT block' clause is the load-bearing half — it is what lets a cautious agent keep moving.
