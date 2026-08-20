@@ -52,3 +52,12 @@ Unblock #1 "owner commits/stashes the Web4RawBin WIP" is UNSAFE as written: `sce
 ## ★ CASCADE RESULT: 4/5 CUT (all option-2 by-label, code-intact, RawBin PII untouched, panel-proven, booted disk-first):
 - tester 70->33 (~37) · expert 78->27 (~51) · SM 73->49 (~24) · architect 78->29 (~49)
 - HELD: trainer (busy@80 — awaits genuine idle). ~209k total context freed across 4 agents. Zero code reverts, zero PII exposure, 3 lying-labels caught by-label (expert opt-1=MEMORY.md+37files; SM opt-1=-97+4; architect layout-B-safe).
+
+## ✅ TRAINER CUT DONE — 2026-08-20 (5/5 cascade COMPLETE)
+- Was measured BUSY earlier (Pondering) → I HELD; re-measured this turn = genuinely IDLE (Brewed, no esc-to-interrupt) → drove it. Measure beat the relayed "idle" both directions.
+- Cut at 1d-old ARON-REWOUND boundary (82->48 landing) → expected **~48% used (freed ~32)**. 4th LYING-LABEL caught: list "No code changes" but option-1 = context.md +2/-350 + 9 files → selected "2. Restore conversation" (header code-unchanged).
+- ⚠ POST-CUT: a QUEUED SM message ("cut ARON as 5th target") auto-fired post-rewind (gotcha #4) before I could inject a clean /context → trainer re-orienting disk-wins. Panel-proof of its 48% PENDING its own self-render (its restored directive = "report freed-% to robbin-po"). Boundary-derived ~48%.
+- Trainer's fresh jobs: propagate doctrine 366a39ba into fleet SKILLs (robbin-po's priority) + render/decide ARON. NOTE: ARON(me)=47% used (<80) → NO cut of me warranted; trainer should hold on rendering me.
+
+## ★★ CASCADE COMPLETE 5/5 (all option-2 by-label, code-intact, RawBin PII untouched, ~4 lying-labels caught, booted disk-first):
+tester 70->33 · expert 78->27 · SM 73->49 · architect 78->29 · trainer 80->~48. ~240k+ freed. Zero code reverts, zero PII exposure. ARON self@47% — healthy.
