@@ -25,17 +25,17 @@ See the base skill for the exact steps — [[otmux-pane-sizing]]. In short: **`o
 
 ## Known gotchas (measured)
 - **one-zoom-per-window** — tmux allows ONE zoomed pane per window; a stuck zoom on another pane makes the target "refuse" to zoom. Un-zoom the prior pane first. (agent-trainer, 2026-07-20: the "tester won't zoom" bug was req still zoomed.)
-- **`otmux zoom` / `pane.zoom` have NO target** — they toggle the *caller's* pane. There is no OOSH verb to zoom a *remote* pane; do not fall back to raw `tmux resize-pane -Z -t` (OOSH-only discipline). The window-level resize almost always suffices.
+- **`otmux zoom` / `pane.zoom` have NO target** — they toggle the *caller's* pane. To size a *remote* pane, use **`otmux pane.size.set <target> <W> <fitting-H>`** (measure the window first; H clamps to window rows, e.g. `90 34`) — the authoritative verb; never raw `tmux resize-pane -Z -t`. The window-level resize also usually suffices.
 
 ## Why headless drivers stall (the client-side render fact)
 The `/rewind` picker and `/context` render **client-side — to the pane's screen**, not into the model. A headless peer driving via `otmux pane.capture` reads that rendered screen, so it **can** drive the picker — but **only if the pane is tall enough to render it.** On a too-short pane the picker renders blank/header-only, the capture returns blank, and the driver flies blind (this is why the trainer repeatedly stalled on rewinds). The cure is the two-level sizing fix (window + zoom), not a different driver.
 
-## Systemic fix (SPRINT — the durable CMM4 cure; gap → sprint)
-The recovery above is a manual workaround. The real fix is in `otmux` (owner: oosh-expert, via oosh-po):
-1. **🔴 URGENT — add a targeted zoom verb** `otmux pane.zoom <target>` / `otmux zoom <target>` (currently zoom has NO target → forces raw `tmux resize-pane -Z -t`). This is **blocking fleet rewinds today** (headless drivers can't OOSH-zoom the target pane before a picker) — promote it.
+## Systemic fix
+The manual recovery above has its durable cure in `otmux` (owner: oosh-expert, via oosh-po):
+1. **✅ RESOLVED — remote-target pane sizing SHIPPED:** `otmux pane.size.set <target> <W> <fitting-H>` sizes ANY target pane (measure the window first; H clamps to the window's rows, e.g. `90 34`). This retired the old "no target-zoom verb → forces raw `tmux resize-pane -Z -t`" gap — headless drivers now size the target pane before a picker with this verb (single-sourced in `context-measurement.md` + `agent-rewind.md`).
 2. **`otmux fit` automatically on attach** + a sane default window size on the last detach, so a small client never silently pins a driven session.
-3. **`otmux client.cleanup` + target-zoom baked into the rewind pre-flight** so a picker never opens into a pinned-small or unzoomed pane.
-Until shipped, the base skill ([[otmux-pane-sizing]]) is the CMM3 procedure every agent follows.
+3. **`otmux client.cleanup` + target-size baked into the rewind pre-flight** so a picker never opens into a pinned-small or unsized pane.
+The base skill ([[otmux-pane-sizing]]) is the procedure every agent follows.
 
 ## Cross-refs
 - `session/base-skills/otmux-pane-sizing.md` ([[otmux-pane-sizing]]) — the procedure.

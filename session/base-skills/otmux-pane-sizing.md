@@ -18,7 +18,7 @@ Still too small, or you're driving a rewind? Use the full procedure below. **Pre
 
 ## STANDING PRE-OP — before ANY `/rewind` or `/context` on a split-window pane
 **Zoom the target pane so it fills the window (tall enough to render), then un-zoom after.**
-- OOSH verb `otmux zoom` / `pane.zoom` toggles the **caller's** pane only — there is **no OOSH verb to zoom a REMOTE target yet** (GAP → **urgent sprint**, below). Until it ships, the sanctioned recovery is raw `tmux resize-pane -Z -t <pane>` — the ONE named-recovery exception (same standing as in `agent-rewind.md`), un-zoom with `-Z` again after.
+- To make a REMOTE target pane tall enough, use **`otmux pane.size.set <target> <W> <fitting-H>`** — the authoritative remote-pane-sizing verb (single-sourced in `context-measurement.md` + `agent-rewind.md`). **Measure the window first; H CLAMPS to the window's rows** (e.g. `90 34`, not `90 46` — an over-tall H just clamps). `otmux zoom` / `pane.zoom` toggle only the CALLER's pane (no target arg); for a remote target size it with `pane.size.set`, never raw tmux.
 - **one-zoom-per-window:** un-zoom any prior zoomed pane first (a stuck zoom is the "won't zoom" bug).
 - Pre-flight `otmux client.cleanup` too, so the window itself isn't pinned small.
 
@@ -49,7 +49,7 @@ otmux size.unlock <session>    # only if you used size.lock
 
 ## Rules
 - **one-zoom-per-window** — tmux allows only ONE zoomed pane per window. **Un-zoom the prior pane before zooming another** (the classic "the pane won't zoom" bug = a different pane is still zoomed).
-- **`otmux zoom` / `otmux pane.zoom` toggle the CALLER's pane only** (no target argument). There is **no OOSH verb to zoom a REMOTE pane** yet — that is a tracked GAP → sprint (see [[otmux-small-panes]]), **NOT a license for raw `tmux resize-pane -Z -t`**. In practice the window-level fix (steps 2–3) makes the picker render without any per-pane zoom.
+- **`otmux zoom` / `otmux pane.zoom` toggle the CALLER's pane only** (no target argument). To size a REMOTE target pane, use **`otmux pane.size.set <target> <W> <fitting-H>`** — the authoritative verb (measure the window first; H clamps to window rows; see `context-measurement.md` + `agent-rewind.md`). In practice the window-level fix (steps 2–3) also makes the picker render without any per-pane sizing.
 - **Prevent it:** for a session you'll drive rewinds on, `otmux size.lock <session> 200 50` up front so a later small client can't pin it.
 
 ## Cross-refs
