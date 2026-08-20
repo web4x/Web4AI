@@ -1760,3 +1760,15 @@ Three commits sat local-only for a long stretch and went onto Tron's desk as "ne
 **Rule:** a classifier refusal is a MOMENT, not a verdict. Sequence = refuse-to-work-around (always) -> RETRY later from a clean boundary -> escalate to Tron only if it persists across retries. I escalated an intermittent condition as a standing blocker and it sat on his desk for hours costing him attention it did not need.
 **What stays right:** never route around the classifier, never split/force/rewrite to sneak a push through. The discipline was correct; only the ESCALATION was premature.
 **Corollary:** re-measure any "blocked" item before repeating it to Tron — I restated it as blocked several times while it may already have been pushable. Ask once, then re-measure before asking again.
+
+## L-S40-19 — REWIND DEPTH TRADES AGAINST ERA-GAP, weighted by the NEXT task's era-sensitivity
+ARON refused a deeper (1-week) rewind boundary for the TRAINER and took a safe 2h boundary at ~48% instead, armed to re-cut at 80. Reason: the trainer's very next task was PROPAGATING boot files to END ghost-context — the one job where booting into a stale era is fatal. A deeper cut buys runway but widens the era-gap.
+**Rule:** pick depth by runway-need AND by how much the agent's NEXT task depends on knowing the current era. Propagators, minters and gate-authors are era-CRITICAL (cut shallow, boot disk-first); pure builders tolerate depth.
+
+## L-S40-20 — STATE-REMOVAL MUST MEAN *MOVE*, NEVER DELETE
+The boot cure (timeless rules + anchor pointer, zero state) risks destroying knowledge if an agent's ONLY copy of something lives in its boot.md. Guard given to the trainer: per file, RELOCATE the state to that agent's context.md/anchor -> verify the boot's pointer RESOLVES -> only THEN strip. Do the no-state agents (architect/skill-expert/tester) FIRST to build confidence, strip-first group after; report per-file so a mid-batch wall costs one file, not the batch.
+**Why it matters:** destroying knowledge while fixing the file whose staleness destroys knowledge would be the perfect self-own.
+
+## L-S40-21 — I KEEP ACTING ON NUMBERS I DID NOT RENDER (3x in one day)
+(1) inferred "fleet healthy" from a PROCESS-liveness sweep -> dispatched into the architect at 1% and walled it; (2) carried the expert at a stale ~54% when it was 31% (it had rejoined); (3) assumed ARON at ~20% when it was 45%.
+**The rule is not "render agents" — it is RENDER EVERY NUMBER AT THE MOMENT OF USE, including peers, drivers, and myself.** My own 32-point self-report error (relayed 46-50 while at 82) is the same defect pointed inward. Liveness != runway; a report is not a render; an old render is not a current one.
