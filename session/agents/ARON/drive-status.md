@@ -61,3 +61,9 @@ Unblock #1 "owner commits/stashes the Web4RawBin WIP" is UNSAFE as written: `sce
 
 ## ★★ CASCADE COMPLETE 5/5 (all option-2 by-label, code-intact, RawBin PII untouched, ~4 lying-labels caught, booted disk-first):
 tester 70->33 · expert 78->27 · SM 73->49 · architect 78->29 · trainer 80->~48. ~240k+ freed. Zero code reverts, zero PII exposure. ARON self@47% — healthy.
+
+## ✅ TESTER RE-CUT DONE — 2026-08-20 (freed ~56, panel-PROVEN; rewind-window + age-cliff both lived)
+- Trainer handed it (I'm ~50%, never-drive-depleted). RENDERED it authoritative myself = 89% near-wall (NOT the "wants rewind" relay — render decides). Cut warranted (>80 gate, big LIVE-browser-gate job pending).
+- Before ~89% → After **33% used / 327.8k/1m**. **Freed ~56 (~562k).** Landed exactly at my earlier-cut level.
+- REWIND-WINDOW lived: req was PUSH-RELAYING R40.48/49/50 back-to-back → picker dismissed mid-nav (near-wall + queue flakiness). Opened the window: send.verified req HOLD → picker stable → drove clean. Queue clean on landing (hold worked; the R112 composer≠queue lesson applied).
+- AGE-CLIFF lived (R112 refinement in the field): deep-by-number hit 1mo (v0.7.81/R30) TWICE → sampled age, backed off to the 5h-old ARON-cut boundary (the recent seam). By-label caught opt-1 (context.md +102/-713 +10 files). Booted to CURRENT job (LIVE-browser-gate), not the 5h-stale ROW ghost.
