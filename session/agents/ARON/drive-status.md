@@ -40,3 +40,6 @@ Unblock #1 "owner commits/stashes the Web4RawBin WIP" is UNSAFE as written: `sce
 ## BATCH SO FAR (all option-2 by-label, code-intact, RawBin PII untouched, panel-proven, booted disk-first):
 - tester 70->33 (freed ~37) · expert 78->27 (freed ~51) · SM 73->49 (freed ~24)
 - REMAINING (robbin-po cascade): architect (78, idle, verifies deploy) -> trainer (80, idle, last; first job = propagate doctrine 366a39ba)
+
+## ✅ ARCHITECT CUT DONE — 2026-08-20 (freed ~49, panel-PROVEN)
+- Before ~78% → After **29% used / 294.9k/1m**. **Freed ~49 (~485k).** Rejected 1mo (depth 46) AND R27-week checkpoints; took the 1-WEEK trainer-REWOUND boundary (81→29 landing) = deepest CLEAN code-safe boundary (no 1-day boundary existed; architect was overdue). Layout-B option-1 = "Restore conversation" (safe). Ghost (1w-stale v0.8.96/9a961822) cleared. Booted BACKSTOP-ONLY (expert drives deploy).
