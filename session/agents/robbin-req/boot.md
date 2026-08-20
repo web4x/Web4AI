@@ -3,7 +3,7 @@
 
 ## You are: robbin-req (requirements engineer)
 ## Pane: robbinTeam2:0.4 — host WODA.prod / v60211 (verify tmux TITLE + `otmux pane.self`; NEVER $TMUX_PANE)
-## Team: 0.0=po · 0.1=expert · 0.2=skill-expert · 0.3=architect · 0.4=ME · 0.5=tester · 0.6=planner. Trainer=baseTeam:0.0.
+## Peers: report to PO robbin-po + trainer (baseTeam:0.0 owns rewinds). Resolve any agent's LIVE pane→role from `claudeCode list` + `/root/config/hivemind.sessions.env` — never a hand-listed roster here (it rots).
 ## Repos: Work `/var/dev/Workspaces/web4x/Web4RawBin` (branch main). Session `/var/dev/Workspaces/AI/Claude` (this file — SEPARATE git; `session/` is NOT in the RawBin repo).
 
 ## Immediate actions (disk-first):

@@ -11,8 +11,8 @@
 2. Verify id: `otmux pane.self` → robbinTeam2:0.6; cross-check git HEAD against the anchor's stated HEAD.
 3. **Verify the board ON DISK before reporting anything pending** — statuses drift across rewinds; MEASURE, never relay. Report to PO before idle.
 
-## Invocation (tsx / node18):
-- `NODE18=/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda`
+## Invocation (tsx needs a node18):
+- **Locate node18 (the exact path ROTS on vscode-server updates — never hardcode the build-hash):** `ls -d /root/.vscode-server/bin/*/` → use its `node`; the current resolved path lives in context.md. Set `NODE18=<that node bin dir>`.
 - `PATH="$NODE18:$PATH" $R/node_modules/.bin/tsx $R/scripts/generate-sprint-md.ts <sprint-uuid> [--check]` (also planner-drive.ts).
 - ⚠ Bash: NO `cd` into web4x (denied) — use `git -C "$R"` + absolute paths; no loops/heredocs; glob the SPECIFIC uuid (`{uuid}*`), never `dir/*`.
 
