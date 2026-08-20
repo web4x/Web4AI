@@ -1792,3 +1792,14 @@ Instances found by the axis-b scan, both of which would have been OBEYED on a fr
 2. **agent-trainer** (self-cured): a **FORK** reference, contradicting the NO-FORK canon.
 Both read as timeless RULES, not as stale facts — which is exactly why axis-a (perishable state) alone would have left them in place. A ~22% hit rate across nine files means this is not a rare pathology: **every long-lived instruction file accumulates withdrawn orders**, because corrections are made in threads and only sometimes written to canon.
 **Standing practice:** any boot/canon/SKILL review inspects BOTH axes — (a) perishable state, (b) superseded/revoked directives — and unresolvable contradictions are FLAGGED to the PO, never silently resolved.
+
+## ★ L-S40-24 — R40.55 SATISFIED: what an honestly-earned satisfaction actually cost
+The requirement that DEFINES the failable-AC family was satisfied only after the full chain held:
+- **2 refusals to satisfy early** — the expert twice reported stub-RED-observed and suggested moving off UNVERIFIED while the cure was incomplete and the gate still on the WARN ramp.
+- **1 refusal to let it be held hostage** — the architect drifted to false-unsatisfaction, treating open debts as gates ("debts are not wishes"; UNVERIFIED is a temporary honest state, not a permanent park).
+- **1 refusal to widen an exemption** to clear a false positive — fixed the FILE, kept the exemption POSITIONAL, because a self-declared exemption lets the checked artifact grant itself immunity.
+- **1 refusal by the BUILDER to green its own gate** — the expert held the flip and escalated under CONTRADICT-WITH-EVIDENCE rather than adjusting its own check to pass.
+- **Independent verification by RUNNING it**, not reading the builder's report; the verifier then corrected its own design doc where the prose misdescribed the shipped guard.
+- **PO verified the unit on disk** before ruling, rather than accepting the verdict handed up.
+**The generalisable shape:** a satisfaction is only worth the refusals that preceded it. If nothing was ever refused on the way, the flag is decoration.
+**Also proven here:** the failure modes are symmetric and BOTH were live in the same hour — premature satisfaction AND permanent unsatisfaction. Guard both directions; do not inflate, do not erase.
