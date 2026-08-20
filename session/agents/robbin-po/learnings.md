@@ -1747,3 +1747,10 @@ I verified all 14 agent PROCESSES were alive (ps for `claude --resume`), correct
 ## L-S40-16 — R40.54 IS NOT ENFORCED (the meta-guard fails its own rule)
 Measured three ways: nothing in scripts/ or src/ts references R40.54 / "provably fail" / canFail / failable; the 36-gate ci:gates:raw chain contains no such gate (check:board/bite:board are campaign-scoreboard-region.ts); `satisfaction-UNVERIFIED` exists in exactly ONE scenario unit as inert data.
 ⇒ **The requirement forbidding satisfaction-without-a-provably-failable-check is itself a requirement whose ACs lack a provably-failable check.** boot.md calls it "the session's most durable output" — but unenforced doctrine is folklore, and folklore does not survive a rewind. Design routed (architect): enumerate-not-universal + fail-closed + third state + its own stub-must-fail, built AFTER Tron's two items clear.
+
+## L-S40-17 — A RELAYED % ERRS IN BOTH DIRECTIONS (and a REJOIN voids every prior reading)
+Within one hour the same root produced opposite failures:
+- **SM relayed req at 83%** -> would have shed a healthy agent. The trainer rendered req ITSELF: **24% used / 75.5% free** — a ~59-POINT ghost. Cause: req had **REJOINED** since the SM's render (pane was 93x1 with trust-folder scrollback); a rejoin spawns a fresh thread that re-derives, so every prior context reading for that agent became VOID while the relayed number lived on.
+- **I inferred "fleet healthy" from a PROCESS-liveness sweep** -> dispatched into the architect at 1% and walled it.
+**Root (identical):** acting on a number **nobody rendered at the moment of use**. Direction is incidental — it sheds a healthy agent as readily as it misses a walled one.
+**Rules:** (1) **DRIVER-RENDERS-TARGET** — whoever acts, measures, immediately before acting; a relay is a hint, never an input. (2) **A REJOIN/RESTART VOIDS the agent's context history** — re-render before any decision. (3) **Shed-symmetry**: never cut a sub-line agent; an unnecessary rewind burns runway AND budget AND risks canon on a lying label. (4) Geometry first — a 93x1 pane is undriveable and also breeds these misreads.
