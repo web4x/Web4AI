@@ -1828,3 +1828,12 @@ My rule "strict buckets may be PREDICATES; permissive buckets must be NAMED" was
 - **The discharge is CONDITIONAL, not precedent.** A FUTURE *non-uniform* permissive predicate is NOT discharged by visibility alone and needs named entries or a per-file assertion.
 **Why (c) is the load-bearing one:** `/^oosh-/` is safe because no `oosh-*` boot could ever be ours. A permissive prefix over a namespace that COULD contain our files would silently exempt our own work — visibility would show it, but nobody reads a line that has been green for a month.
 **Also correct here:** I declined a per-file-reason "synthesis" because for a UNIFORM class the reason is one true string copied N times = friction without safety. That decline is only valid *because* uniformity holds — on a non-uniform predicate the synthesis would be right.
+
+## ★ L-S40-28 — A REQUIREMENT HAS AT LEAST THREE INDEPENDENT TRUTH-AXES; CONFLATING ANY TWO IS A HALF-TRUTH
+Today R40.55 forced all three apart, and each had to be recorded separately on the unit:
+1. **SATISFACTION** — is the evidence proven? (every AC has a check that PROVABLY FAILS, observed not asserted)
+2. **CHAIN STATE** — minted / linked / **marker-attached** / **credited**. `mint != credit`: an [impl] credits ONLY on an AST-attached NAME-MATCHING decl, and chain-complete means Test verified ON DISK, never the mint alone.
+3. **DONE** — a real deliverable existing at TRON'S SURFACE + his QA sign-off.
+**None implies another.** R40.55 was SATISFIED while its chain was only minted-and-linked, with zero credit and no Done at all — all three true simultaneously, and any pairing of them would have been a lie.
+**The rename hazard that makes axis 2 sharp:** the decl was renamed (live -> assertCurrencyAndStatelessness). A marker attaching to the STALE name **credits nothing while the unit reads complete** — the failure a premature "complete-to-Test" would have concealed.
+**Practice:** record each axis explicitly, record the DEFINITION of the terms on the unit itself (so a rewound reader cannot mistake minted for credited), and when correcting an overstatement keep the wrong value VISIBLE (annotate-never-overwrite) so the record carries its own history.
