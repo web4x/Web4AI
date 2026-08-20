@@ -81,3 +81,8 @@ tester 70->33 · expert 78->27 · SM 73->49 · architect 78->29 · trainer 80->~
 ## ★ STRETCH TALLY: 7 cuts + 2 rides, all render-decided, all by-label code-intact, RawBin PII untouched, all panel-proven:
 CUTS: tester(70->33) expert(78->27) SM(73->49) architect(78->29) trainer(80->48) tester-recut(89->33) SM-recut(73->49) req(76->22)
 RIDES: req@74 (later cut) · tester@52 (still riding). 6 lying-labels caught by-label (MEMORY.md/context.md/learnings.md reverts all avoided). Zero code reverts, zero PII exposure across the whole stretch.
+
+## ✅ TRAINER RE-CUT DONE — 2026-08-20 (freed ~25, panel-PROVEN) — the DRIVER-REFRESH swap
+- po's lull-refresh: cut both drivers (trainer 73, ARON 68) DURING the quiet, BEFORE the Layer-2 worktree migration (fleet-wide serial ~10 agents + rollback-rehearsal = most driver-intensive op) — going in at 68/73 = the driver-gap we manufactured earlier, but during a migration.
+- trainer baseTeam:0.0: 73% -> **48% used / 483.7k/1m, freed ~25** at my own 6h cascade-boundary (age-cliff: hunted past 2d checkpoints, backed off to the recent 6h seam). Lying-label caught (opt-1=context.md +105/-155+6). Booted FRESH + tasked to cut ARON next.
+- ★ THE SWAP: fresh trainer (48%) now renders + cuts ME (ARON ~70%) once I idle -> two fresh drivers before the migration. I go idle after this turn so it can drive my picker. My LAST drive of the stretch; the reciprocal cut refreshes the last loaded driver.
