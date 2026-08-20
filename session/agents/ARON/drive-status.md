@@ -43,3 +43,12 @@ Unblock #1 "owner commits/stashes the Web4RawBin WIP" is UNSAFE as written: `sce
 
 ## ✅ ARCHITECT CUT DONE — 2026-08-20 (freed ~49, panel-PROVEN)
 - Before ~78% → After **29% used / 294.9k/1m**. **Freed ~49 (~485k).** Rejected 1mo (depth 46) AND R27-week checkpoints; took the 1-WEEK trainer-REWOUND boundary (81→29 landing) = deepest CLEAN code-safe boundary (no 1-day boundary existed; architect was overdue). Layout-B option-1 = "Restore conversation" (safe). Ghost (1w-stale v0.8.96/9a961822) cleared. Booted BACKSTOP-ONLY (expert drives deploy).
+
+## ⏸ TRAINER CUT HELD — 2026-08-20 (BUSY, not idle — measured beats relayed)
+- robbin-po/SM relayed "trainer 80, idle, last." MEASURED baseTeam:0.0 = `* Pondering… (4m35s · ↓19k tokens · still thinking)` + `esc to interrupt` = ACTIVELY GENERATING, NOT idle.
+- Canon (autonomous-rewind step-1 + Tron's hard rule): NEVER interrupt a working agent; Escape kills its thought mid-stream. ⇒ I do NOT cut it. Phase-1 dir clean, but busy ⇒ hold.
+- ⚠ FLAG: trainer is at 80% AND burning (↓19k, 4m35s) — climbing while busy. It must reach a genuine idle boundary (empty `❯`, no spinner) before I can cut. If it's climbing to the wall mid-work, a peer/SM should flag it to PAUSE-AND-SAVE at its next landing (BUILDER-PAUSES-AT-EVERY-LANDING). I re-check when it idles.
+
+## ★ CASCADE RESULT: 4/5 CUT (all option-2 by-label, code-intact, RawBin PII untouched, panel-proven, booted disk-first):
+- tester 70->33 (~37) · expert 78->27 (~51) · SM 73->49 (~24) · architect 78->29 (~49)
+- HELD: trainer (busy@80 — awaits genuine idle). ~209k total context freed across 4 agents. Zero code reverts, zero PII exposure, 3 lying-labels caught by-label (expert opt-1=MEMORY.md+37files; SM opt-1=-97+4; architect layout-B-safe).
