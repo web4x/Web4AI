@@ -31,3 +31,12 @@ Unblock #1 "owner commits/stashes the Web4RawBin WIP" is UNSAFE as written: `sce
 - Before ~78% → After **27% used / 273.5k/1m** (fresh panel I injected). **Freed ~51 (~500k).** Lands at the same 27% the trainer's 1d-old boundary held — consistent.
 - LYING-LABEL CAUGHT by-label: list said "No code changes" but option-1 would've reverted MEMORY.md +95/-963 + 37 files. Selected "2. Restore conversation" (header flipped to "code will be unchanged"). Code intact, RawBin PII untouched.
 - Rejected a 1mo-ago checkpoint (too deep) → chose the 1d-old trainer-REWOUND boundary (deep-by-age, like the tester). Ghost (stale f10d95fb draft) cleared. Booted disk-first to CURRENT anchor 5a/5b/5c v0.8.116 (deploy pending). Layout restored.
+
+## ✅ SM CUT DONE — 2026-08-20 (freed ~24, panel-PROVEN; trajectory-priority insert)
+- Before ~73% → After **49% used / 487.6k/1m** (fresh panel). **Freed ~24 (~240k).** Lands at the trainer's 1d-old 49% boundary — consistent. "Light drive" as robbin-po specified.
+- Priority-inserted AHEAD of the expert per robbin-po's TRAJECTORY rule (idle expert doesn't climb; pulsing SM does + walls SILENTLY = worst failure). I completed the expert first only because I was 1 keystroke from its verified confirm when the insert landed; then SM immediately.
+- By-label caught option-1 (would revert -97 + 4 files). Ghost (stale anchor 81a8d2c2) cleared. Booted to CURRENT anchor 54700589. SM handed its watch to robbin-po for the cut; post-boot it re-pulses + points the fresh trainer at doctrine 366a39ba.
+
+## BATCH SO FAR (all option-2 by-label, code-intact, RawBin PII untouched, panel-proven, booted disk-first):
+- tester 70->33 (freed ~37) · expert 78->27 (freed ~51) · SM 73->49 (freed ~24)
+- REMAINING (robbin-po cascade): architect (78, idle, verifies deploy) -> trainer (80, idle, last; first job = propagate doctrine 366a39ba)
