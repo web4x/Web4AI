@@ -458,3 +458,25 @@ Prod **v0.8.123 served == committed**. Sprint 40. Verify with: git log -1 · pac
 Layer-2 migration coordination when it unlocks: strictly SERIAL · per-agent CLEAN BOUNDARY · acceptance = a PROVEN commit->integrate ROUND-TRIP (never "the worktree exists") · skill-expert rehearsal WITH tested rollback FIRST · recovery drivers LAST · BOTH repos · agents self-integrate when clean, a CONFLICT ESCALATES TO ME.
 ### HARD-WON, APPLIES ON EVERY WAKE
 **Render every number at the moment of use** — peers, drivers, and myself (I acted on unrendered numbers 3x in one day: walled the architect off a liveness inference, carried a stale 54 for the expert that was 31, assumed ARON at 20 when it was 45; and I once relayed 46-50 while actually at 82). **Liveness != runway. A report is not a render. An old render is not a current one.** · **Stage via `rbadd`, explicit paths, NEVER -A** (shared index; broad adds swept peer WIP 4x, an index race dropped 2 commits). · **Single quotes in otmux sends, never backticks** (they execute and silently strip the payload). · **Ask Tron once; RE-MEASURE before re-raising** (I escalated an intermittent push-block as standing).
+
+## ★★★ RESUME-STATE (2026-08-21) — TRON FOUND A REAL DEFECT ON HIS OWN SCREEN ★★★
+**Prod v0.8.123 served==committed. THE ACTIVE ITEM: current-task single-source (R40.56).**
+
+### THE DEFECT (Tron's screenshots: T37.25 shows NO Set-as-Current, T37.24 does)
+He asked: "did you HARDCODE the current task to 37.25?" **Answer: NO hardcode** — uuid a39efc32 appears nowhere in src/ts or src/public/ts. **But he was RIGHT that it does not read the task he SET.** Measured first-hand:
+- `attachTaskPinRole` (server.ts:1400) sets pinRole via **`derivedCurrentTaskUuid` (server.ts:1388)**, which **IGNORES the stored designation** and picks **max `lastAdvancedAt` among In-Progress tasks** = a GUESS.
+- Meanwhile `make-current` (R40.49, server.ts:1868-71) **writes `singleton.currentTaskUuid` through the SEAM**, and `getThreeSlots` honors it explicit-wins-while-valid.
+⇒ **TWO definitions of "current" in one system.** The action bar (action-applicability.ts:34, `when: ctx.taskRole !== 'current'`) rides the GUESS ⇒ what Tron SETS ≠ what RENDERS. The In-Progress-only filter also means a QA-Review task can never be current — why T37.24 always shows the button.
+⇒ **`check:pin-single-source` shipped GREEN over this**: it is a 2-regex sprint-level ACTOR-BLOCKLIST, so a task-level second source of a new shape walked past. It asserts the WRONG property. (Same class as R40.55's boot hand-list.)
+
+### THE FIX — ORDER IS THE POINT (architect ea5674a0b, req R40.56 ac98cfde6, 7 ACs each gateRef+stubMustFail)
+1. **BUILD THE GATE FIRST + prove it REDs on TODAY'S UNMODIFIED TREE**, raw output kept. It must RED **citing `derivedCurrentTaskUuid` server.ts:1388 SPECIFICALLY** — architect backstops that it is not incidental (a gate that reds today for the wrong reason and greens later on an unrelated change = a FALSE red-green). **If it does not RED, or reds for another reason: STOP. Do NOT tune the gate until it reds — that is fitting the test to the answer.**
+2. THEN: delete derivedCurrentTaskUuid; compute pin slots ONCE per request via the same resolver as pin/scoreboard/tree; attachTaskPinRole reads slots.current.uuid. **compute-once-pass-down is an explicit AC** (a 2nd slotsFrom with different inputs is STILL a 2nd source). Eligibility **{Planned/InProgress/QA-Review}** everywhere (In-Progress-only = the invented status-policy Tron retired at T37.26, "reviewing IS working"). **Honest ABSENCE** on expiry/ambiguity, ties→absence, fail-closed.
+3. SAME gate flips GREEN. 4. + seeded-2nd-selection stub for future specimens. **Both evidences required** (live specimen + stub).
+- Client-facing ⇒ version-bump via SOURCE config unit, atomic, boot-check, served==committed. **Tron's tap on /trace is the acceptance — never our green.**
+
+### FLEET / CUTS (SM measures+flags, trainer drives — NOT my lane)
+expert 69% (self-flagged) → **cut at the phase-1/phase-2 boundary** (never mid-deploy; autocompact OFF = no self-rescue) · tester 74% → cut at its clean boundary BEFORE it gates this · req 48% (holds the redBaselineEvidence fill) · architect fresh · trainer ~55% · SM 44%.
+
+### ★ IDENTITY IS FAIL-CLOSED (L-S40-19, from req's catch)
+A pane TITLE can display ANOTHER agent's identity (req's pane briefly read `robbin-planner`; %14 is genuinely the planner). **Authoritative chain: `otmux pane.self` → %N → resolve %N in `tmux list-panes -a`.** Title is corroboration, NEVER proof. **pane.self WORKS (%6 → robbinTeam2:0.0 robbin-po, verified)** — my boot's identify-by-title rule was a tool's past breakage hardened into doctrine that outlived it. **Re-test a tool before enshrining its failure.** Why it outranks a false-green: a wrong AUTHOR is invisible in the artifact afterwards.
