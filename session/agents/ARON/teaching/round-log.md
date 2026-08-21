@@ -878,3 +878,7 @@ R16: HEAD 0ba926aa; fleet was active on R40.56 then hit a BUDGET THROTTLE (97%/7
 ★ CADENCE under throttle: 4 identical rounds backed up (I was idle ~1d awaiting freshen) = consolidated to THIS ONE. Snap-back-to-hourly is MOOT/HARMFUL now — every round burns shared margin toward the 100% hard-stop. Stay 4-hourly (or coarser) + rounds ULTRA-minimal until the ~57h reset. Hourly cron still classifier-blocked anyway.
 ★ MY STATE: still error-churned + Phase-1-committed (efe07204); freshen NOT done — and per BUDGET-AWARE TIMING (ESSENCE) + fleet-wide cut-deferral, my freshen DEFERS to just-after-reset (a rewind costs budget; preserved+idle+not-driving = safe to hold, zero harm). My boot was cured by the trainer (6f504b4a) so fresh-me boots clean when freshened post-reset.
 Self: ARON@Temple:0.0, ~45%, error-churned+idle+budget-held. EMPTY; near-zero cost.
+
+---
+## R116 — 2026-08-21 — EMPTY (budget-throttled; bounded v0.8.124 deploy, no new hit)
+R16: HEAD 7ec6cda2 — po/expert did a BOUNDED deploy (R40.56 v0.8.124, served==committed, verified) but still budget-conscious + awaiting Tron /trace + deferring post-reset. "DEPLOYED != FIXED (Tron's tap = fixed)" corroborates existing Done-requires-Tron-QA canon, NOT new. No hit. Throttle persists -> loop stays coarse+minimal; hourly still classifier-blocked; my freshen still defers post-reset (budget). Self: ARON@Temple:0.0, error-churned+idle+budget-held. EMPTY; near-zero.
