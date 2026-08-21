@@ -537,3 +537,12 @@ delete derivedCurrentTaskUuid (server.ts:1388) · compute pin slots ONCE, attach
 - **NAMED GAP (deferred, not hidden):** getThreeSlots FALLBACK cascade not widened to {P/IP/QA} — designation path already resolves Tron's case; widening it with no @390 verify runway would ship an unverified behaviour change beside a verified fix.
 - **STILL DEFERRED post-7d-reset:** gate tightening + 3 unevadability stubs + wire-as-blocking (spec 9b956f272) · L2 migration · tester gating (must NOT rebuild the baseline).
 - **ACCEPTANCE UNCHANGED: Tron's tap on /trace. Not fixed until he taps it.**
+
+## ★★★ v0.8.124 DEPLOYED — AWAITING TRON'S TAP. **DEPLOYED != FIXED.** (2026-08-21) ★★★
+**R40.56 current-task single-source is LIVE on prod v0.8.124 (2f66a02af, tagged+pushed). I verified INDEPENDENTLY: served==committed==0.8.124, 0 unpushed, health 200, clean boot, config unit git-clean post-restart, and the rogue function genuinely gone (only a tombstone COMMENT at server.ts:1390 remains — that is why a grep count returns 1).**
+- **THE FIX:** pinRole MIRRORS slots.current from the ONE designation-honoring resolver (resolveSprintPin → CurrentSprint.slotsFrom) that pin/scoreboard/tree already use. Compute-once-pass-down. Honest ABSENCE on expiry/ambiguity. A designated QA-Review task now renders current (the In-Progress-only filter was the invented status-policy Tron retired at T37.26).
+- **PROOF:** specimen finding derivedCurrentTaskUuid (server.ts:1388) GONE from the gate output. **Overall gate exit STILL RED on the documented assertStatusConsistent FALSE POSITIVE — EXPECTED, NOT tidied.** Gate stays OUT of ci:gates:raw (non-blocking) ⇒ fleet-CI-red hazard closed by construction.
+- **STATUS DISCIPLINE (I corrected the SM on this): DEPLOYED + SPECIMEN-PROVEN ≠ FIXED. FIXED = Tron's tap confirms it.** Do not record, relay, or flip anything to fixed/Done without his verdict — that is the false-Done disease this whole session cured.
+- **TRON'S TEST (routed):** /trace → open a task drawer → tap Set-as-Current on a task incl a QA-Review one → that task becomes current (its button disappears) and the button APPEARS on T37.25 which had been claiming the role.
+- **BUDGET:** deploy moved neither meter (5h 3%, 7d 98%) — cheaper than projected. Fleet parked, all idle, SM on idle cadence.
+- **DEFERRED, NAMED:** (1) gate tightening + 3 unevadability stubs + wire-as-blocking (spec 9b956f272); (2) getThreeSlots FALLBACK widening to {P/IP/QA}; (3) L2 migration — all post-7d-reset (~52h) and only on Tron's go.
