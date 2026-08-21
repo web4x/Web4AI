@@ -546,3 +546,25 @@ delete derivedCurrentTaskUuid (server.ts:1388) · compute pin slots ONCE, attach
 - **TRON'S TEST (routed):** /trace → open a task drawer → tap Set-as-Current on a task incl a QA-Review one → that task becomes current (its button disappears) and the button APPEARS on T37.25 which had been claiming the role.
 - **BUDGET:** deploy moved neither meter (5h 3%, 7d 98%) — cheaper than projected. Fleet parked, all idle, SM on idle cadence.
 - **DEFERRED, NAMED:** (1) gate tightening + 3 unevadability stubs + wire-as-blocking (spec 9b956f272); (2) getThreeSlots FALLBACK widening to {P/IP/QA}; (3) L2 migration — all post-7d-reset (~52h) and only on Tron's go.
+
+## ★★★ OPEN DEFECT (2026-08-21, TRON screenshot IMG_5110, /model @390) — R40.56 IS **NOT** ACCEPTED ★★★
+**TWO VIEWS ON ONE SCREEN DISAGREE ABOUT WHO IS CURRENT.**
+- The **pin row reads `📌 Current — Task 40.1: Actio…`** (so slots/getThreeSlots says 40.1 IS current).
+- **The drawer for that SAME task offers `📌 Set as Current`** — a button whose visibility rule is `when: ctx.taskRole !== 'current'` (action-applicability.ts:34), i.e. it MUST be hidden on the current task.
+- Same task confirmed: drawer title "Task 40.1: Action — Open Claude.ai RC (per-pane/agent deep link…)", uuid **7a956c21-5f37-4062-b921-9bdd5a461546**; its tree row is the selected/highlighted one. Action bar: Scenario · Edit · ✓Approve · ✗Decline · 📌 Set as Current.
+⇒ **This is the SAME CLASS as the defect R40.56 was supposed to fix**: the tree/pin reads one source, the action bar reads another and they do not agree. Deployed v0.8.124 did NOT settle it at Tron's surface.
+
+### THREE CANDIDATE CAUSES — NOT YET DISTINGUISHED (do not guess; they need different fixes):
+1. **STALE CLIENT BUNDLE** — pre-fix JS still cached in his tab/service-worker (the version bump exists to bust this, but a SW'd tab can lag).
+2. **STALE DRAWER PAYLOAD** — `pinRole` is computed SERVER-SIDE AT FETCH TIME (compute-on-read); a drawer model fetched BEFORE the designation carries the old role. This is the stale-cache class we fixed for **status** (fresh-wins precedence, R40 root #2) but possibly NOT for `pinRole`.
+3. **THE FIX DOES NOT COVER THIS PATH** — e.g. `/model` behaving differently from `/trace`.
+**CHEAP DISCRIMINATOR (costs Tron nothing): hard-reload the page. Button disappears ⇒ cache (1). Button persists ⇒ ours, and live.**
+
+### ★★ OUR VERIFICATION GAP — THE REAL LESSON (2nd time Tron's glance beat our gate on the SAME requirement):
+The tester's GREEN (1) designate-then-render and (2) QA-Review-designatable were proven **through the resolver/pin**, on its own scratch harness. **It never asserted that the ACTION BAR AGREES WITH THE PIN.**
+**Single-source does NOT mean "the source is correct" — it means EVERY CONSUMER AGREES. We tested the SOURCE and never tested the AGREEMENT.** A view can read the right resolver and still render a contradiction if its payload is stale.
+⇒ **MISSING AC (mint post-reset): CROSS-VIEW AGREEMENT — on ONE rendered screen, for the SAME task, the pin/tree role and the action-bar's offered verbs MUST agree (current ⇒ Set-as-Current ABSENT; not-current ⇒ PRESENT). Assert the two views against EACH OTHER, not each against the model.** Gate it @390 by screenshot, with a stub-must-fail.
+
+### STATUS: **DEPLOYED ≠ FIXED — now demonstrated, not theoretical.** R40.56 stays NOT accepted, NOT Done. Tron's judgment stands; our green was on a weaker property than his glance.
+### NEXT (budget-bounded, 7d ~98%, reset ~52h): tester REPRODUCES on served 0.8.124 across /model AND /trace — designate, then observe the drawer WITHOUT a refetch — and reports which of the 3 causes it is · architect rules on whether `pinRole` needs the same fresh-wins precedence that status got · then the cross-view-agreement AC.
+### ALSO STILL OPEN (named): fallback derives a current instead of honest absence (tester found it derived a39efc32/T37.25 after the designated task went Done) · gate tightening + 3 stubs + wire-blocking (spec 9b956f272) · L2 migration.
