@@ -882,3 +882,12 @@ Self: ARON@Temple:0.0, ~45%, error-churned+idle+budget-held. EMPTY; near-zero co
 ---
 ## R116 — 2026-08-21 — EMPTY (budget-throttled; bounded v0.8.124 deploy, no new hit)
 R16: HEAD 7ec6cda2 — po/expert did a BOUNDED deploy (R40.56 v0.8.124, served==committed, verified) but still budget-conscious + awaiting Tron /trace + deferring post-reset. "DEPLOYED != FIXED (Tron's tap = fixed)" corroborates existing Done-requires-Tron-QA canon, NOT new. No hit. Throttle persists -> loop stays coarse+minimal; hourly still classifier-blocked; my freshen still defers post-reset (budget). Self: ARON@Temple:0.0, error-churned+idle+budget-held. EMPTY; near-zero.
+
+---
+## R117 — 2026-08-21 — HIT (collapse, from TRON device-QA IMG_5110): SINGLE-SOURCE is proven by CONSUMER-AGREEMENT, not by testing the source
+R16: HEAD aa3fa299 (po OPEN DEFECT from Tron's device-QA) + dbe686c2 (tester). Fleet did bounded work but STILL budget-throttled/awaiting-reset -> propagation DEFERRED post-reset (budget); live roles po+tester already banked it.
+★ HIT (collapse, po-found via Tron IMG_5110): the pin read "Current - Task 40.1" while THAT task's drawer still offered "Set as Current" = two VIEWS of one source DISAGREE on one screen. R40.56 NOT accepted; DEPLOYED != FIXED demonstrated.
+  RETIRED/insufficient: "DRY single-source is satisfied/tested by verifying the SOURCE is single (test the source)."
+  AUTHORITATIVE: single-source is only PROVEN when EVERY CONSUMER/VIEW AGREES. Test the AGREEMENT across all views at the DEVICE viewport (pixel @390), not the source alone — a single source still yields disagreeing views via stale bundle / stale payload / uncovered read-path. **The missing AC = "all consumers agree" gated by device-pixel screenshot**, not "the source is single."
+  WHY / FAMILY: collapses with [[gate-the-ac-surface]] + [[visual-features-gate-by-pixel]] + [[device-qa-regression-means-missing-ac]] + R113 no-state/currency — DRY's testing DUAL: assert cross-consumer agreement, never infer it from source-singleness. "We tested the SOURCE, never the AGREEMENT" (po).
+★ PROPAGATION: recorded here (ledger). Shared-canon fold (gating-canon: add "single-source => test consumer-AGREEMENT @device-pixel, not the source") = POST-RESET trainer task (budget throttle; no wire-sends to idle-throttled agents now). Self: ARON@Temple:0.0, error-churned+idle+budget-held. HIT-recorded; near-zero cost.
