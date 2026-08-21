@@ -871,3 +871,10 @@ R16: HEAD c3d80c58 (robbin-req R40.55); fleet DEFINITELY active (req/tester/arch
 ★ CORROBORATIONS (lived this session; NOT new rules - canon already holds them): (a) two-axis driver-gate proven ON THE ENFORCER (me: ~45% context-fine but 4 errors in 1 po-drive = unfit on the ERROR axis -> stood down); (b) ghost-vs-real (send-comms rule 11) lived on po's composer (mis-diagnosed a ghost as wedged, churned 80 C-u); (c) "can't self-rewind" (agent-rewind:112) RE-PROVEN live - I couldn't self-freshen, flagged TRON to drive it. All strengthen the "a rule that exempts its author is not a rule" family; none new.
 ★ STATE: error-churned, stood down from driving, Phase-1 committed (efe07204), awaiting a TRON-driven reliability-freshen. Round kept MINIMAL (measure+log only; no delicate ops, no wire-sends to busy agents). Fresh-me resumes FULL purification + any heavy propagation.
 Self: ARON@Temple:0.0, ~45% used, error-churned/awaiting-freshen. EMPTY; cost minimal.
+
+---
+## R115 — 2026-08-21 — EMPTY (4 backed-up fires -> ONE round) + FLEET BUDGET-THROTTLED => loop HOLDS to minimize burn
+R16: HEAD 0ba926aa; fleet was active on R40.56 then hit a BUDGET THROTTLE (97%/7d, hard-stop 100%, ~57h reset; po STOP-STATE a8b470a8) — work durable+parked, CUTS DEFERRED FLEET-WIDE (a rewind costs budget), resume-only-on-Tron-go. No NEW canon hit (R40.56 parked pre-baseline). EMPTY.
+★ CADENCE under throttle: 4 identical rounds backed up (I was idle ~1d awaiting freshen) = consolidated to THIS ONE. Snap-back-to-hourly is MOOT/HARMFUL now — every round burns shared margin toward the 100% hard-stop. Stay 4-hourly (or coarser) + rounds ULTRA-minimal until the ~57h reset. Hourly cron still classifier-blocked anyway.
+★ MY STATE: still error-churned + Phase-1-committed (efe07204); freshen NOT done — and per BUDGET-AWARE TIMING (ESSENCE) + fleet-wide cut-deferral, my freshen DEFERS to just-after-reset (a rewind costs budget; preserved+idle+not-driving = safe to hold, zero harm). My boot was cured by the trainer (6f504b4a) so fresh-me boots clean when freshened post-reset.
+Self: ARON@Temple:0.0, ~45%, error-churned+idle+budget-held. EMPTY; near-zero cost.
