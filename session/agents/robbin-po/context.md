@@ -480,3 +480,20 @@ expert 69% (self-flagged) → **cut at the phase-1/phase-2 boundary** (never mid
 
 ### ★ IDENTITY IS FAIL-CLOSED (L-S40-19, from req's catch)
 A pane TITLE can display ANOTHER agent's identity (req's pane briefly read `robbin-planner`; %14 is genuinely the planner). **Authoritative chain: `otmux pane.self` → %N → resolve %N in `tmux list-panes -a`.** Title is corroboration, NEVER proof. **pane.self WORKS (%6 → robbinTeam2:0.0 robbin-po, verified)** — my boot's identify-by-title rule was a tool's past breakage hardened into doctrine that outlived it. **Re-test a tool before enshrining its failure.** Why it outranks a false-green: a wrong AUTHOR is invisible in the artifact afterwards.
+
+## ★★★ STOP-STATE (2026-08-21) — BUDGET THROTTLE. IF YOU ARE A REWOUND ME: **DO NOT RESTART ANYTHING. STAY IDLE.** ★★★
+**TRON DIRECTIVE: 7-day usage 97% · HARD FLEET STOP at 100% · reset ~57h from 2026-08-21. Extra-usage=FALSE. Tron capped spend at +3% more 5h usage.**
+**Budget is THE binding constraint. An idle agent costs nothing; a restarted build costs the fleet its margin. Doing nothing is the correct contribution.**
+
+### EVERYTHING IS DONE AND DURABLE — verified by me on disk, 0 unpushed, all on origin:
+- **db44bc3a7** = the gate `scripts/check-current-task-single-source.ts` + the **RED baseline on the live defect** (`r40.56-red-baseline.txt`, committed NOT left in /tmp). Reds on the correct specimen (derivedCurrentTaskUuid, server.ts:1388); the assertStatusConsistent false positive is documented WITH its exclusion reason.
+- **9b956f272** = `r40.56-gate-tightening-spec.md` — the RATIFIED post-reset build spec.
+- **bc22e7b44** = architect ratification: discriminate on the **BODY** (reduce-to-ONE: single-winner accumulator overwritten keep-if-better) **NOT the return TYPE** — survives array/object wrapping = UNEVADABLE. 3 negative stubs required: array-wrapped best → RED · object-wrapped best → RED · return-all-offenders → NOT hazard. Proof it is principled not answer-fitted: the design text said "returns ONE uuid chosen by a status/timestamp comparison" BEFORE the finding existed.
+- **ac98cfde6** = R40.56 req + 7 ACs (gateRef + stubMustFail each), satisfactionStatus=UNVERIFIED, redBaselineEvidence PENDING.
+
+### PAUSED — RESUME ONLY ON TRON'S GO AFTER THE RESET (do NOT self-authorize):
+L2 worktree migration · phase-2 (delete derivedCurrentTaskUuid, compute pin slots ONCE, pinRole reads slots.current, eligibility {Planned/InProgress/QA-Review}, honest-absence on ambiguity) · the gate re-implement + 3 stubs + re-run + clean baseline · architect's clean-baseline backstop · tester gates the FIX (never the baseline — that artifact is DONE, re-building it is duplicate spend).
+**Cuts are DEFERRED fleet-wide — a rewind COSTS budget. Ride, do not shed, unless genuinely near-wall.**
+
+### FLEET AT STOP: expert 69% idle (committed, cut deferred) · architect idle (anchor 4ee1c737) · tester 54% idle (told NOT to rebuild the baseline) · req 48% idle (holds the redBaselineEvidence fill) · trainer ~55% · SM 44% watching.
+### STILL TRON'S, UNCHANGED: **his device-verify tap on /trace is the acceptance** — our green is only evidence. R40.56 is NOT fixed, NOT deployed, NOT Done.
