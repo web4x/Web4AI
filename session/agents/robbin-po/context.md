@@ -513,3 +513,16 @@ L2 worktree migration · phase-2 (delete derivedCurrentTaskUuid, compute pin slo
 (1) gate tightened + 3 stubs + CLEAN RED captured + committed · (2) **prod UNTOUCHED** · (3) **shared CI chain UNAFFECTED**. Then STOP + report; that boundary is parkable INDEFINITELY at zero cost.
 ### PHASE-B (fix + green + version-bump via SOURCE config unit + ATOMIC DEPLOY + boot-check + served==committed) — **starts ONLY on measured headroom covering deploy+boot-check WITH surprise margin; else waits for the NEXT 5h reset. NEVER start the deploy without that headroom.** Likely its own fresh bucket.
 ### NOT IN SCOPE, STILL PAUSED: L2 migration (multi-agent, blows the cap) · tester gating (post-deploy; it must NOT rebuild the baseline — that artifact is DONE) · any cut (a rewind costs budget; expert at 47% needs none).
+
+## ⚠️⚠️ SUPERSEDED — the "READY-TO-ISSUE PHASE-A DISPATCH" ABOVE IS STALE. DO NOT ISSUE IT. ⚠️⚠️
+**(2026-08-21, after 7-day hit 98% = ~2% TOTAL for 52h.) The above says tighten-the-gate FIRST. That order was RE-SEQUENCED and has ALREADY BEEN ISSUED in its revised form. If you are a rewound me: do NOT re-issue either version — the expert is executing; MEASURE first (git log + ask SM), do not re-dispatch.**
+
+### WHY RE-SEQUENCED: with ~2% left for 52h, tighten-first would have burned the whole remainder on GATE PRECISION and left Tron with NO FIX until the 7-day reset. Wrong value trade.
+### ★ THE ARGUMENT THAT MAKES IT LEGITIMATE (not a discipline relaxation — hold me to this):
+**Gate-first is ALREADY SATISFIED at db44bc3a7.** Its purpose was to prove the gate REDS on the real defect BEFORE the fix, so we could never fit the test to the answer. Done and committed. **The tightening only removes a FALSE POSITIVE — it adds ZERO detection power for the specimen** — so THIS fix's proof is unaffected.
+### ISSUED (revised) PHASE-A = **THE FIX + DEPLOY**:
+delete derivedCurrentTaskUuid (server.ts:1388) · compute pin slots ONCE, attachTaskPinRole reads slots.current.uuid · compute-once-pass-down binding (2nd slotsFrom w/ different inputs = still a 2nd source) · eligibility {Planned/InProgress/QA-Review} · honest ABSENCE on expiry/ambiguity, ties→absence, fail-closed · **PROOF = SPECIMEN-LEVEL red→green: finding-1 (derivedCurrentTaskUuid server.ts:1388) GONE from the EXISTING gate's output** · version-bump via SOURCE config unit · atomic deploy · boot-check · served==committed.
+### ★★ THE OVERALL GATE EXIT WILL STAY **RED** on the documented assertStatusConsistent false positive. **THAT IS EXPECTED. DO NOT TIGHTEN THE GATE TO MAKE IT LOOK CLEAN — that is the answer-fitting we forbade all session. A red we understand beats a green we manufactured.** Report it as: specimen cleared, FP remains, gate not yet blocking.
+### Gate STAYS OUT of ci:gates:raw / non-blocking (cannot be wired blocking while the FP stands) ⇒ the fleet-CI-red hazard stays closed BY CONSTRUCTION.
+### DEFERRED to post-7d-reset (spec committed 9b956f272, nothing lost): gate tightening (reduce-to-ONE body-semantics) + 3 unevadability stubs + clean RED + wire as BLOCKING. Also still paused: L2 migration; tester gating (post-deploy, and it must NOT rebuild the baseline).
+### SM HOLDS THE DEPLOY GATE: at fix-committed it reports 7d headroom and flags deploy SAFE-or-HOLD. **NEVER inside the deploy. No deploy without headroom for deploy+boot-check.**
