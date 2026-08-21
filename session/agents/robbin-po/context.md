@@ -497,3 +497,19 @@ L2 worktree migration · phase-2 (delete derivedCurrentTaskUuid, compute pin slo
 
 ### FLEET AT STOP: expert 69% idle (committed, cut deferred) · architect idle (anchor 4ee1c737) · tester 54% idle (told NOT to rebuild the baseline) · req 48% idle (holds the redBaselineEvidence fill) · trainer ~55% · SM 44% watching.
 ### STILL TRON'S, UNCHANGED: **his device-verify tap on /trace is the acceptance** — our green is only evidence. R40.56 is NOT fixed, NOT deployed, NOT Done.
+
+## ★★★ READY-TO-ISSUE: PHASE-A DISPATCH (issue at the 5h reset; if you are a rewound me, send THIS verbatim to robbin-expert 0.1) ★★★
+**GO CONDITION: the 5h bucket has reset (fresh full window). NOT before. 7-day 3% is still the hard ceiling — spend only on this.**
+**EXPERT-ONLY. Everyone else idle INCLUDING ME. SM watches 5h live and flags early. Commit-as-you-go.**
+
+### PHASE-A SCOPE (reversible, no deploy, prod untouched):
+1. Re-implement the gate signature as **reduce-to-ONE BODY-SEMANTICS, not return TYPE** (architect ratification bc22e7b44 + spec 9b956f272): HAZARD = a function body that loops ior:class:Task, picks by recency/status, and selects ONE winner via a task-vs-TASK comparison (a running best overwritten keep-if-better). NOT-hazard = collect-all (push every match, task-vs-ITSELF per-item evaluation) — that is why assertStatusConsistent is a different hazard (status-offender detection, returns ALL not one-chosen).
+2. Build the **3 unevadability negative stubs**: (i) reduce-to-one returned ARRAY-wrapped → MUST RED · (ii) returned OBJECT-wrapped → MUST RED · (iii) return-all-offenders → NOT flagged. **The property is UNEVADABILITY, not scalar-ness** — a gate slipped past by changing return shape is the actor-blocklist failure in new clothing.
+3. Re-run → **CLEAN RED**: reds ONLY on derivedCurrentTaskUuid (server.ts:1388), the false positive gone. Capture raw output, commit it.
+### ★★ HARD BUILD CONDITION (mine, carried per SM lane — the split creates this hazard):
+**The new gate must NOT be blocking in the shared ci:gates:raw chain while the defect is still live.** After Phase A the gate correctly REDS on the live defect; if it is in the shared chain, CI is RED for the WHOLE FLEET across the A→B gap (hours, maybe until the 7-day reset) for a defect they did not cause and cannot fix under the throttle = self-inflicted fleet outage = right-requirement-wrong-rollout.
+⇒ **Leave it OUT of ci:gates:raw during Phase A** (standalone, run explicitly, clean-RED captured as evidence) **and wire it in as BLOCKING in the SAME Phase-B commit that turns it GREEN.** Acceptable alternative: WARN-only during the gap, flip-to-blocking in that same green commit. Same pattern as the Layer-1 staged-subset guard.
+### PHASE-A EXIT (SM verifies all three, else flags NOT-PARKABLE):
+(1) gate tightened + 3 stubs + CLEAN RED captured + committed · (2) **prod UNTOUCHED** · (3) **shared CI chain UNAFFECTED**. Then STOP + report; that boundary is parkable INDEFINITELY at zero cost.
+### PHASE-B (fix + green + version-bump via SOURCE config unit + ATOMIC DEPLOY + boot-check + served==committed) — **starts ONLY on measured headroom covering deploy+boot-check WITH surprise margin; else waits for the NEXT 5h reset. NEVER start the deploy without that headroom.** Likely its own fresh bucket.
+### NOT IN SCOPE, STILL PAUSED: L2 migration (multi-agent, blows the cap) · tester gating (post-deploy; it must NOT rebuild the baseline — that artifact is DONE) · any cut (a rewind costs budget; expert at 47% needs none).
