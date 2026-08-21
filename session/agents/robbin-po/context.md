@@ -526,3 +526,14 @@ delete derivedCurrentTaskUuid (server.ts:1388) · compute pin slots ONCE, attach
 ### Gate STAYS OUT of ci:gates:raw / non-blocking (cannot be wired blocking while the FP stands) ⇒ the fleet-CI-red hazard stays closed BY CONSTRUCTION.
 ### DEFERRED to post-7d-reset (spec committed 9b956f272, nothing lost): gate tightening (reduce-to-ONE body-semantics) + 3 unevadability stubs + clean RED + wire as BLOCKING. Also still paused: L2 migration; tester gating (post-deploy, and it must NOT rebuild the baseline).
 ### SM HOLDS THE DEPLOY GATE: at fix-committed it reports 7d headroom and flags deploy SAFE-or-HOLD. **NEVER inside the deploy. No deploy without headroom for deploy+boot-check.**
+
+## ★★★ CURRENT STOP (2026-08-21): FIX COMMITTED, PARKED PRE-DEPLOY, AWAITING MEASURED HEADROOM ★★★
+**IF YOU ARE A REWOUND ME: do NOT re-dispatch anything. The fix is DONE and PARKED. Ask the SM for the 7d+5h number, then GO or HOLD. Nothing else.**
+- **6468c5471 = THE FIX, committed + pushed** (expert anchor 58e470c5). Deleted derivedCurrentTaskUuid; pinRole now reads currentTaskUuidFromSlots(idx) = resolveSprintPin → CurrentSprint.slotsFrom → slots.current = the ONE designation-honoring source pin/scoreboard/tree use. Compute-once-pass-down. Honest ABSENCE on expiry/ambiguity/resolver-throw (Set-Current shows, never a guess). Eligibility {P/IP/QA} via the designation path (`!== Done`) — a designated QA-Review task now renders current.
+- **PROOF (honest):** specimen finding derivedCurrentTaskUuid (server.ts:1388) **GONE** from gate output. Overall exit **STILL RED** on the documented assertStatusConsistent FP — **EXPECTED; the gate was NOT tuned to look clean.** Server compiles. Report as: specimen cleared / FP remains / gate not yet blocking.
+- **NOT DEPLOYED. Prod still runs the OLD code.** State is parkable at ZERO cost: fix pushed, prod untouched, gate non-blocking so fleet CI unaffected.
+- **REMAINING = deploy tail only (~4-5 calls):** bump SOURCE config unit → npm build → restart → boot-check → served==committed.
+- **DECISION RULE (stated in advance, do not fit it to the answer): GO only if measured headroom covers deploy + boot-check WITH surprise margin. If marginal → HOLD.** A 52h wait is cheap; an inconsistent prod is not. SM holds the gate and reports 7d+5h; I do NOT guess budget.
+- **NAMED GAP (deferred, not hidden):** getThreeSlots FALLBACK cascade not widened to {P/IP/QA} — designation path already resolves Tron's case; widening it with no @390 verify runway would ship an unverified behaviour change beside a verified fix.
+- **STILL DEFERRED post-7d-reset:** gate tightening + 3 unevadability stubs + wire-as-blocking (spec 9b956f272) · L2 migration · tester gating (must NOT rebuild the baseline).
+- **ACCEPTANCE UNCHANGED: Tron's tap on /trace. Not fixed until he taps it.**
