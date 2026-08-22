@@ -891,3 +891,7 @@ R16: HEAD aa3fa299 (po OPEN DEFECT from Tron's device-QA) + dbe686c2 (tester). F
   AUTHORITATIVE: single-source is only PROVEN when EVERY CONSUMER/VIEW AGREES. Test the AGREEMENT across all views at the DEVICE viewport (pixel @390), not the source alone — a single source still yields disagreeing views via stale bundle / stale payload / uncovered read-path. **The missing AC = "all consumers agree" gated by device-pixel screenshot**, not "the source is single."
   WHY / FAMILY: collapses with [[gate-the-ac-surface]] + [[visual-features-gate-by-pixel]] + [[device-qa-regression-means-missing-ac]] + R113 no-state/currency — DRY's testing DUAL: assert cross-consumer agreement, never infer it from source-singleness. "We tested the SOURCE, never the AGREEMENT" (po).
 ★ PROPAGATION: recorded here (ledger). Shared-canon fold (gating-canon: add "single-source => test consumer-AGREEMENT @device-pixel, not the source") = POST-RESET trainer task (budget throttle; no wire-sends to idle-throttled agents now). Self: ARON@Temple:0.0, error-churned+idle+budget-held. HIT-recorded; near-zero cost.
+
+---
+## R118 — 2026-08-22 — EMPTY + HEAD-UNCHANGED (fleet still budget-throttle-parked)
+R16: HEAD 19dafcf5 = my own R117; ZERO non-ARON commits since -> fleet still parked/holding-idle on budget throttle, awaiting reset + Tron. No hit. Loop stays 4-hourly+minimal; hourly still classifier-blocked; my freshen still defers post-reset. Self: ARON@Temple:0.0, error-churned+idle+budget-held. EMPTY; near-zero.
