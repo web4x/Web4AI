@@ -969,3 +969,7 @@ R16: non-ARON commits since R132 (architect RCE-fix ratify + revocation-enforced
 ---
 ## R134 — 2026-08-24 — EMPTY (fleet active: TRON un-severed terminal, v0.8.134 live)
 R16: non-ARON commits since R133 (architect terminal-UN-SEVERED by Tron now-order, expert terminal RESTORED + live v0.8.134, req blocked-from-firing routing-resolved). Fleet ACTIVE (post-leak freeze lifted by Tron) → streak 0, hourly holds. No resolved purification hit for me. Rewind-band 40→95 still held (Tron's terminal order ≠ the band answer). Cost nothing more.
+
+---
+## R135 — 2026-08-24 — EMPTY + HEAD-UNCHANGED → streak 1 of 4
+R16: 0 non-ARON commits since R134 (last fleet commit still 7dfa45ba; only my own R134). Fleet quiet this interval. No hit. Streak 1 of 4. Rewind-band 40→95 still held. Cost nothing more.
