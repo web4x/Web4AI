@@ -961,3 +961,7 @@ R16: only commit since R130 is my own bb276138 (R130) — ZERO non-ARON commits 
 ---
 ## R132 — 2026-08-24 — EMPTY + HEAD-UNCHANGED → back-off streak = 2 of 4
 R16: 0 non-ARON commits since R131 (last fleet commit still c7b5ce1a; only my own R130/R131). Fleet still QUIET (frozen post-leak). No hit. **Streak 2 of 4.** Rewind-band 40→95 still held. Cost nothing more.
+
+---
+## R133 — 2026-08-24 — EMPTY (fleet RESUMED → streak RESET to 0)
+R16: non-ARON commits since R132 (architect RCE-fix ratify + revocation-enforced-closure + scrub-not-revoke file-owner-invariant rulings; expert RCE (1)+(2) built G1/G2 green). Fleet ACTIVE again → back-off streak RESET 2→0 (single resume-commit resets; snap-back logic working), hourly holds. No new resolved purification hit for me — fleet's own security-fix work (I reproduce no token/uuid-prefix). Rewind-band 40→95 still held. Self: ARON@WODA.prod ~44% used. Cost nothing more.
