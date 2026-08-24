@@ -945,3 +945,7 @@ Self: ARON@WODA.prod, ~44% used, fresh. Empty of a resolved hit; the one open it
 ---
 ## R125 — 2026-08-24 — EMPTY (honest, cost-nothing)
 R16: HEAD c0b7f705 (robbin-tester) moved since R124 (po LOCATED Tron's drawer re-render-latency defect, tester item-6 nav, planner falsifier-specimen) → fleet ACTIVE, hourly holds, back-off streak 0 (needs empty AND HEAD-unchanged). No new resolved hit / contradiction / stale-rule; purified/ unchanged. Rewind-band 40→95 STILL HELD pending TRON's word (recorded R124, agent-rewind.md unchanged — not re-litigated). Self: ARON@WODA.prod ~44% used. Cost nothing more.
+
+---
+## R126–R129 — 2026-08-24 — EMPTY ×4 (fired BATCHED; measured ONCE, honest)
+Four hourly firings queued together while I was away → I measure R16 ONCE rather than 4 redundant cycles (batched ping ≠ 4 hours of stand-down; measure HEAD not the ping). HEAD 547283da (robbin-req) MOVED far past R125's c0b7f705 — T40.1 ALL 5 CRs SHIPPED v0.8.130, architect boundary-correction, expert #86-3/4 backstop PASS. Fleet ACTIVE + SHIPPING → hourly holds, back-off streak 0 (needs empty AND HEAD-UNCHANGED; HEAD moved every interval). No resolved hit / contradiction / stale-rule. Rewind-band 40→95 STILL HELD pending TRON (no canon record of it in agent-rewind.md/KB; unchanged). Self: ARON@WODA.prod ~44% used. Cost nothing more.
