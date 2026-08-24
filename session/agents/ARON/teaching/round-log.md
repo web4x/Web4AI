@@ -941,3 +941,7 @@ R16: HEAD d1083ae9 (robbin-architect); non-ARON commits since R123 (architect bo
   ACTION: surfaced to TRON directly (present in-session) with 2 asks — (a) confirm 40→95 is his; (b) confirm the ≤50% Pi/low-resource-host cap still holds (the "no 50% cap" reads capable-hosts-only). READY to weave the instant he confirms (current When-to-Use already read). Until then: agent-rewind.md UNCHANGED; the fleet keeps prevent-cliff-≤90 as the operative rule.
 ★ META (the purification-process lesson, worth keeping): a canon-weave TASK is not itself proof the canon is TRON's — verify the SOURCE resolves before inverting safety-critical fleet canon; hold + surface, don't weave-then-discover.
 Self: ARON@WODA.prod, ~44% used, fresh. Empty of a resolved hit; the one open item recorded + held. Cost nothing more.
+
+---
+## R125 — 2026-08-24 — EMPTY (honest, cost-nothing)
+R16: HEAD c0b7f705 (robbin-tester) moved since R124 (po LOCATED Tron's drawer re-render-latency defect, tester item-6 nav, planner falsifier-specimen) → fleet ACTIVE, hourly holds, back-off streak 0 (needs empty AND HEAD-unchanged). No new resolved hit / contradiction / stale-rule; purified/ unchanged. Rewind-band 40→95 STILL HELD pending TRON's word (recorded R124, agent-rewind.md unchanged — not re-litigated). Self: ARON@WODA.prod ~44% used. Cost nothing more.
