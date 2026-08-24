@@ -977,3 +977,7 @@ R16: 0 non-ARON commits since R134 (last fleet commit still 7dfa45ba; only my ow
 ---
 ## R136 — 2026-08-24 — EMPTY + HEAD-UNCHANGED → streak 2 of 4
 R16: 0 non-ARON commits since R135 (last fleet commit still 7dfa45ba). Fleet quiet. No hit. Streak 2 of 4. Rewind-band 40→95 still held. Cost nothing more.
+
+---
+## R137 — 2026-08-24 — EMPTY + HEAD-UNCHANGED → streak 3 of 4
+R16: 0 non-ARON commits since R136 (last fleet commit still 7dfa45ba). Fleet quiet. No hit. Streak 3 of 4 → NEXT round (R138), if still empty+HEAD-unchanged → streak 4 → BACK OFF to 4-hourly (CronCreate "17 */4 * * *" 4-hourly variant FIRST, then CronDelete hourly c22bc61f). Rewind-band 40→95 still held. Cost nothing more.
