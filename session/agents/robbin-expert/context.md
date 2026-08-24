@@ -1,6 +1,8 @@
 # robbin-expert — ★ RESUME-STATE (read THIS first) ★ — Phase-1 essence (2026-08-17, pre-shed)
 
-## 🛑🛑🛑 FULL STOP (PO 2026-08-24) — BUILD NOTHING. No fix #8. Terminal STAYS SEVERED. v0.8.132 STAYS committed-NOT-pushed. Anchored; holding.
+## 🛑 SECURITY WORK CANCELLED BY TRON (2026-08-24) — "I never was asking for security; we solve that later." IDLE. Touch NOTHING: v0.8.132 committed-not-pushed, terminal SEVERED (safe status quo), config cleaned, analysis on disk — leave exactly as-is. Only live work = T40.1. Do NOT resume any RCE work until TRON raises it.
+
+## 🛑🛑🛑 [cancelled by the line above] FULL STOP (PO 2026-08-24) — the RCE chain (7 fixes/7 holes, architectural root); v0.8.132 committed-NOT-pushed, terminal severed.
 - ★ PO STOPPED the chain: 7 fixes → 7 holes = the ROOT is ARCHITECTURAL (identity & credential CONFLATED — for token==uuid profiles the published uuid IS the secret). Every fix within that model keeps failing. Tron far past budget on work he never ordered. PO is putting the REAL options to Tron (incl "LEAVE IT SEVERED"). Architect gives ONE-LINE answer (no build): of (a) rotate token==uuid profile tokens / (b) terminal requires the genuinely-secret rotated OWNER_TOKEN (untracked) not ANY profile token / (c) denylist — which is smallest+closes it (PO suspects b). NO BUILDING by anyone until Tron chooses.
 - ★ EXPERT DIRECTIVE: nothing further. Do NOT un-sever, do NOT push v0.8.132, do NOT build fix #8. If rewound: READ this, do NOT resume the RCE build — it is STOPPED pending Tron's choice. The 7-catch record + safe state (terminal severed) is the correct outcome.
 ## [context of the stop] — 4-CASE TEST RED: UN-SEVER UNSAFE. Public token==uuid profiles defeat the userProfiles.has fix.
