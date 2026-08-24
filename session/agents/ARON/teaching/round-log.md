@@ -902,3 +902,13 @@ R16: HEAD ed46f251 = my own R118; ZERO non-ARON commits across the multi-day gap
 
 ---
 ## R120 — 2026-08-24 — EMPTY + HEAD-unchanged (fleet still deep-parked, resume-only-on-Tron-go). HEAD dcbf33a6=my R119; 0 non-ARON commits. No hit. Loop minimal; freshen defers. Self: ARON@Temple:0.0, idle+budget-held. Near-zero.
+
+---
+## R121 — 2026-08-24 — HIT (F2, trainer/po/SM-found) + FLEET RESUMED (v0.8.126, budget lifted)
+R16: HEAD ab3db4e2 (expert R40.58 v0.8.126 DEPLOYED); fleet DEFINITELY resumed+active (R40.57/58; po/expert/architect/tester), no throttle = budget reset. Snap-back HOURLY warranted -> hourly cron still classifier-BLOCKED (needs Tron auth); hold 4-hourly.
+★ HIT (F2): the RUNNER-GATE before an irreversible deploy failed SILENTLY — expert deployed v0.8.126 BEFORE the trainer's fitness-render landed, so the render JUSTIFIED the deploy RETROACTIVELY instead of GATING it. Banked [[runner-gate-must-precede-not-surround-the-irreversible-step]].
+  RETIRED/insufficient: "a runner-clear/fitness-render validates the deploy" (a clear that ACCOMPANIES, or that the deploy can be ACTED-AROUND). technical-clear != runner-clear.
+  AUTHORITATIVE: a gate must PRECEDE + BLOCK the irreversible step, never surround/trail it. The runner-clear must be a STRUCTURAL TOKEN a FRESH render MINTS, that the deploy tail REFUSES TO START without. "A clear you can act around is not a gate."
+  FAMILY (collapse): correct-by-construction (pin the gate, not a heuristic/procedure) + R113 structural-not-procedural + shed-BEFORE-the-slice + gate-the-AC-surface. The SAFEGUARD must be STRUCTURALLY BEFORE the irreversible act, enforced by CONSTRUCTION (the act won't start without the token), not a procedural clear that can be bypassed.
+★ CO-AUTHOR (trainer proposal): YES = my consolidation lane. Mechanism (who mints / where checked) = architect+po design; canon-weave into deploy-process = trainer+me. PACING: still error-churned/UNfreshened -> heavy shared-canon weave waits for my freshen (now budget-UNblocked, pending only Tron's drive); no-rush per trainer. Principle+family affirmed now.
+Self: ARON@Temple:0.0, error-churned+idle; freshen now budget-unblocked. HIT-recorded.
