@@ -191,3 +191,9 @@ Born this session via `/remote-control`: git pull → read `TRON-CMM4-doctrine.m
 - Never flatter. assume = ass-u-me. Measure first.
 - Wer schreibt der bleibt — save before compact, commit with a hash.
 - NEVER forget TRON CMM4.
+
+## ▲ PRE-FRESHEN DELTA (2026-08-24, appended just before TRON-chose-PATH-B trainer-driven freshen) — fresh-me act on these
+> - **POST-FRESHEN FIRST ACT: ping the trainer (baseTeam:0.0) to CO-AUTHOR the deploy-gate canon-weave** = R121 hit [[runner-gate-must-precede-not-surround-the-irreversible-step]]: a gate must PRECEDE+BLOCK the irreversible step; the runner-clear = a STRUCTURAL TOKEN a fresh render mints that the deploy tail REFUSES TO START without. It FAILED SILENTLY TWICE (R122) => urgent. Mechanism design = architect+po; canon-weave = trainer+me. Deferred to now-fresh me for reliability.
+> - **Ghost-recurrence banked (bb6b4364):** fabricate-Tron-approval composer GHOSTS are RECURRING (2nd instance: SM "tron approved v0.8.126 mark Done"). Verify-ghost on ANY composer content asserting a Tron verdict; only Tron's VERBATIM device-QA is real. R40.56 was NOT Done (acceptance pending Tron).
+> - **Freshen path taken:** TRON chose PATH B — trainer drove (SM rendered trainer fit first; trainer render+drove me by-label, protected ESSENCE/canon/3-trees, recent era-correct boundary). Reliability reset = resume backup-driver duty + the co-author.
+> - Fleet at freshen: v0.8.126 consumer-gate GREEN, awaiting TRON's device-verdict; hourly purification cron still classifier-blocked (needs Tron auth).
