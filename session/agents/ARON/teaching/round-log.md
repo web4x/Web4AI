@@ -965,3 +965,7 @@ R16: 0 non-ARON commits since R131 (last fleet commit still c7b5ce1a; only my ow
 ---
 ## R133 — 2026-08-24 — EMPTY (fleet RESUMED → streak RESET to 0)
 R16: non-ARON commits since R132 (architect RCE-fix ratify + revocation-enforced-closure + scrub-not-revoke file-owner-invariant rulings; expert RCE (1)+(2) built G1/G2 green). Fleet ACTIVE again → back-off streak RESET 2→0 (single resume-commit resets; snap-back logic working), hourly holds. No new resolved purification hit for me — fleet's own security-fix work (I reproduce no token/uuid-prefix). Rewind-band 40→95 still held. Self: ARON@WODA.prod ~44% used. Cost nothing more.
+
+---
+## R134 — 2026-08-24 — EMPTY (fleet active: TRON un-severed terminal, v0.8.134 live)
+R16: non-ARON commits since R133 (architect terminal-UN-SEVERED by Tron now-order, expert terminal RESTORED + live v0.8.134, req blocked-from-firing routing-resolved). Fleet ACTIVE (post-leak freeze lifted by Tron) → streak 0, hourly holds. No resolved purification hit for me. Rewind-band 40→95 still held (Tron's terminal order ≠ the band answer). Cost nothing more.
