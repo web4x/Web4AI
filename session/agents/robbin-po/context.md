@@ -682,3 +682,25 @@ ORDER: (1) band R40.59 build-go — record redBaselineEvidence + mint Test · (2
 ### ★★ RULE, now fleet canon: **ACT on the best available evidence; CLAIM only on OBSERVATION.** (#3 builds on a real measured RED; the board-liveness CLAIM waits for item 6.)
 ### IN FLIGHT: architect ruling the **eligibility divergence** (code accepts anything not-Done; comment + 2 ACs say Planned/In-Progress/QA-Review — narrowing code vs widening ACs are DIFFERENT PRODUCT DECISIONS, never silently aligned) · tester corpus audit DONE (24 source-reading gates: **1 false-green risk r314 → VERDICT DEMOTED to non-gating, coverage hole NAMED**; 20 legit; 3 to req) · planner+skill-expert on live status progression (decision-latency half CLOSED for S40, honestly — 1 real under-record, nothing manufactured).
 ### MY OWN STATE: **75.5% (SM-measured, indicative). 80 = ALARM+SAVE and KEEP COORDINATING — not a cut. Near 90-95 = /compact, NOT a rewind** (my ~322k front-load floor bottoms a rewind at ~48 = the worst thrash). Root cause of my climb is my own over-wide measuring — grep/head tightly, never re-read whole files.
+
+## ★★★ ALARM-SAVE at 79.5% (2026-08-24) — ONE MEASUREMENT FROM CLOSING TRON'S DEFECT ★★★
+**IF YOU ARE A FRESH/COMPACTED ME: read THIS block first. Do not re-dispatch; VERIFY MOTION then act on the ONE OPEN QUESTION below.**
+
+### ★★ THE ONE OPEN QUESTION (everything else is settled):
+**Does the ACTION BAR's taskRole come from (X) the CONFIRMED-BROKEN no-arg getThreeSlots consumer, or (Y) a THIRD source?**
+- **(X) ⇒ the accessor fix CURES Tron's screenshot; item (5) can flip to GUARANTEED after the fix.**
+- **(Y) ⇒ the fix does NOT touch it and Tron taps and sees the same button a FIFTH time.**
+**The tester called it 'likely a re-derive TIMING artifact in my gate'. I REFUSED to let that stand** — that bar IS what Tron photographed (pin says Current 40.1 while the bar offers Set-as-Current), and a confirmed-broken consumer explains the same observation with no artifact required. **Tester tracing the real data path; expert+architect assisting. DO NOT close item (5) on the endpoint being green.**
+### ★ TRON'S PHOTOGRAPH IS THE SPECIFICATION: until that exact pairing is explained by a mechanism WE HAVE FIXED, his defect is OPEN — regardless of how many greens accumulate around it.
+
+### SETTLED BY MEASUREMENT (do not re-litigate):
+- **ONE defect: the NO-ARG getThreeSlots (.slots getter :179) drops currentTaskUuid ⇒ the designation override never fires ⇒ falls to the chain.req fallback.** Endpoint is CORRECT.
+- **Endpoint returns 40.1 correctly in TRON'S EXACT ORDER** (park 37.2 → designate 40.1 → check immediately, no settle/reload; also after 1.5s). ⇒ **NO live read-after-write staleness; architect bug-(ii) does NOT reproduce.** Park thread CLOSED.
+- Tester RETRACTED its 'endpoint=none' — it read a RETIRED pinRole/.taskUuid ⇒ undefined ⇒ false 'none'. Children carry **.uuid**. Served == disk == 40.1.
+- Design §94 had the culprit side INVERTED (architect owned it). **4-for-4: every code-reading was corrected by someone RUNNING it.**
+### FIX (architect ruled (b), expert BUILDING, gate-first): **ONE currentSlots(idx) accessor that SELF-READS this.model.currentTaskUuid, used by BOTH the endpoint AND the .slots getter/scoreboard.** NOT a param-default (a default still admits stale inputs = the hole survives). Elimination, not synchronisation. **VERIFY ON THE SERVED PROCESS, never a disk replay.**
+### DEPLOY: band (b84839b21) + #3 ship TOGETHER, ONE version, on MY combined go. Then tester's binding pass: items (1)-(4) found no new defects, (5) agreement must flip RED→GREEN, (6) regular-badge falsifier (runs BEFORE deploy — it is deploy-independent).
+### STANDARD: **tester GUARANTEES @390 on SERVED prod; TRON JUDGES.** Two states only — GUARANTEED or NOT-YET-GUARANTEED(because X). Not-guaranteed does NOT reach him.
+### NAMED FAILURE MODES (all earned this campaign): false-green · false-red · vacuous-pass · **DISK-GREEN** (verifying a replay, not the served system) · **RETIRED-FIELD-UNDEFINED** (a missing field reads as a legitimate empty ⇒ false NEGATIVE that feels like diligence).
+### RULES NOW CANON: **ACT on best evidence, CLAIM only on OBSERVATION** · **RUN it, don't reason it** · when accounts conflict, find the observation that DISCRIMINATES them · one change/one gate/one attribution · fix-builder ≠ proof-builder.
+### MY STATE: 79.5% AT ALARM. Keep coordinating, NO cut. **Near 90-95 ⇒ /compact, NOT a rewind** (322k read-floor bottoms a rewind at ~48 = worst thrash). SM reads me each tick, flags ~88-90.
