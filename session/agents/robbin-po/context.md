@@ -724,3 +724,15 @@ ORDER: (1) band R40.59 build-go — record redBaselineEvidence + mint Test · (2
 ### ★ MANDATORY FAILABLE TEST: **literal → POST /session → use that cookie → terminal must STILL 403 with NO PTY, and go RED if the RCE returns.** A "no cookie → 403" test MISSES the RCE entirely.
 ### SEQUENCING: structural removal = a FRESH DEDICATED build on a clean head (RCE-adjacent, 54 files, not deployable until rotation anyway). #86-3/#86-4 meanwhile (small, safe, finish T40.1).
 ### ★ MY STANDING ASK TO TRON: **ROTATE THE TOKEN.** It was parked on him 2026-08-12 and nobody drove it for 12 days until he found the severed terminal himself. **Do not park it again — keep it in front of him every report until done or he says stop.**
+
+## ★★★ T40.1 — DONE-READY, WAITING ON TRON'S TWO CLICKS (2026-08-24) ★★★
+**IF YOU ARE A REWOUND ME: DO NOT DISTURB THIS. Everything is staged and holding. Verify, then wait.**
+**SHIPPED — served==committed==v0.8.130 (I verified):** #86-1 RC universal action (v0.8.128, bespoke button GONE) · #86-2 band (v0.8.127) · CR-resolve action + pin-slot row fix (v0.8.129) · #86-3 single-focus + #86-4 auto-advance (v0.8.130) · #86-5 functional. **ALL FIVE CRs HAVE SHIPPED CODE.**
+**TESTER GUARANTEE PASS: ALL FIVE GUARANTEED** on served 0.8.130 @390, read-only, no mutation of Tron's task (cd0f7f6ca + a115ed7bd): pin-slot row == detail (no longer falsely In-Progress) · band renders · Resolve-CRs appears only on a band task and clears it · single-focus never two currents · RC action offered, bespoke button gone.
+### THE SEQUENCE — DO NOT REORDER, DO NOT PRE-EMPT:
+**(1) TRON clicks ✓ Resolve CRs** (owner-gated, HIS judgment — the team CANNOT fire it; the only owner credential we hold is the PUBLIC literal = the RCE, forbidden) → band clears → clean QA-Review → approvable.
+**(2) req flips the 5 CR units Open→Resolved** — STAGED, seconds — attributed to HIS click (resolvedBy 05e58f81 / resolvedVia his action / resolvedAt from click evidence). **NEVER before his click (that decides his CRs for him), NEVER left Open after (that leaves his screen lying).** uuids: 4babebb1 · 7286d45a · c27ae455 · 18ebe066 · 461d5db6.
+**(3) TRON approves → DONE.**
+### ★ KNOWN GAP, surfaced to him BEFORE he clicks: resolveCr (server.ts:1645) applies ONLY {subStep: PROCESSING_CR_SUBSTEP} — it does NOT flip the CR units. Hence step (2). Recorded as a naming-vs-behaviour small fix (artifact-drift family), NOT now, NOT blocking.
+### ★ SEPARATE, NON-GATING (never re-bundle into T40.1): terminal RCE structural removal (fresh expert, architect gates full chain) + **TRON'S TOKEN ROTATION** · the :301 eligibility leak narrow.
+### ★★ MY FAILURE THIS SESSION, banked: Tron burned 16% of weekly budget while I investigated SYMPTOMS instead of asking **what is the deliverable, is it built, what blocks it, ship it.** His screenshot showed T40.1 with five open CRs; I analysed a button-rendering bug in the same frame. I also held a built+cleared deploy for a "combined ship" with a fix that served a debug script. **Open every cycle with the deliverable question.**
