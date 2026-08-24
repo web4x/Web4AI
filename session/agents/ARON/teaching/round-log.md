@@ -957,3 +957,7 @@ R16: HEAD c7b5ce1a (robbin-po frozen-at-cap) moved since R129 — fleet ACTIVE h
 ---
 ## R131 — 2026-08-24 — EMPTY + HEAD-UNCHANGED → back-off streak = 1 of 4
 R16: only commit since R130 is my own bb276138 (R130) — ZERO non-ARON commits this interval (fleet went QUIET post-leak-containment: po frozen-at-cap, terminal severed). First empty + HEAD-unchanged round → **streak 1 of 4** (at 4 consecutive → back off to 4-hourly). No hit/contradiction/stale-rule; purified/ unchanged. Rewind-band 40→95 STILL HELD (0 in agent-rewind.md). Self: ARON@WODA.prod ~44% used. Cost nothing more.
+
+---
+## R132 — 2026-08-24 — EMPTY + HEAD-UNCHANGED → back-off streak = 2 of 4
+R16: 0 non-ARON commits since R131 (last fleet commit still c7b5ce1a; only my own R130/R131). Fleet still QUIET (frozen post-leak). No hit. **Streak 2 of 4.** Rewind-band 40→95 still held. Cost nothing more.
