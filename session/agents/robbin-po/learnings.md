@@ -1920,3 +1920,13 @@ I banked earlier that the classifier block was INTERMITTENT ("refuse, retry late
 **⇒ The rule is deterministic and actionable: push with a BARE command. Compound/piped/redirected shapes trip the classifier.** "Intermittent" led to *retry and hope*; "shape-dependent" leads to *use the right form* — a reliable fix instead of a superstition.
 **WHY I GOT IT WRONG:** the first refusal and the later success were both real, so "it varies" fit the data. I inferred a property of the SYSTEM from two samples without varying anything deliberately — the same error as reading a pane render once and declaring an agent down. **Two observations with an uncontrolled variable is not evidence of randomness; it is an unmeasured difference.**
 **WHY WE CAUGHT IT:** the tester reported HOW it succeeded, not just THAT it succeeded. A bare "retried, it worked" would have CONFIRMED my wrong theory and hardened it into canon. **Reporting the mechanism, not just the outcome, is what makes a success auditable.**
+
+## L-S40-26 — ★★ THE TESTER GUARANTEES IT WORKS; TRON JUDGES A WORKING THING. HE IS NOT THE TESTER. (2nd correction, same theme)
+**Tron, emphatic: "I AM NOT YOUR TESTER — the TESTER must GUARANTEE it working for QA."**
+I said "your tap is the acceptance" dozens of times believing it was deference to his authority. **It was offloading DISCOVERY to him.** The distinction I kept collapsing:
+- **GUARANTEE (tester's job):** the feature WORKS on the REAL device surface he uses (@390, served prod, all findings), and the tester STANDS BEHIND it.
+- **QA JUDGMENT (his job):** is this RIGHT, is it GOOD ENOUGH, is it what I wanted — a judgment on a **guaranteed-working** feature.
+**If the tester cannot guarantee it @390, it is NOT QA-ready and IT DOES NOT GO TO HIM AT ALL.** "Awaiting Tron's device-verify" is a category error — it means we shipped him something we hadn't finished verifying.
+**PROOF IT MATTERS:** every finding he screenshotted was a tester gate that had gone GREEN without guaranteeing the DEVICE surface — consumer-level/scratch-level green is NOT a device guarantee. That is why his glance beat our green three times.
+**REFRAME ALL STATUS LANGUAGE — two states only: "tester GUARANTEES @390" or "NOT-YET-GUARANTEED".** Never "deployed, awaiting his tap".
+**GENERAL FORM:** when a stakeholder's authority is used to justify handing them unfinished verification, "respecting their authority" has become an excuse. Ask: am I giving them a DECISION, or am I giving them my WORK?
