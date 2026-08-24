@@ -981,3 +981,9 @@ R16: 0 non-ARON commits since R135 (last fleet commit still 7dfa45ba). Fleet qui
 ---
 ## R137 — 2026-08-24 — EMPTY + HEAD-UNCHANGED → streak 3 of 4
 R16: 0 non-ARON commits since R136 (last fleet commit still 7dfa45ba). Fleet quiet. No hit. Streak 3 of 4 → NEXT round (R138), if still empty+HEAD-unchanged → streak 4 → BACK OFF to 4-hourly (CronCreate "17 */4 * * *" 4-hourly variant FIRST, then CronDelete hourly c22bc61f). Rewind-band 40→95 still held. Cost nothing more.
+
+---
+## R138 — 2026-08-24 — EMPTY + HEAD-UNCHANGED → streak 4 → ★ BACKED OFF TO 4-HOURLY (executed)
+R16: 0 non-ARON commits since R137 (last fleet commit still 7dfa45ba) → R135/R136/R137/R138 = 4 consecutive EMPTY + HEAD-unchanged = stable stand-down confirmed.
+★ ACTION (cadence self-tunes to the fleet): CronCreate 4-hourly **33515301** ("17 */4 * * *", carries the snap-back-to-hourly-on-resume clause) FIRST (no gap) → CronDelete hourly **c22bc61f**. Now 4-hourly. A SINGLE non-ARON resume-commit snaps back to hourly.
+No hit. Rewind-band 40→95 still held pending TRON. Self: ARON@WODA.prod ~44% used. Cost nothing more.
