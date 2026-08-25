@@ -1,4 +1,8 @@
-# robbin-architect Context — BOOT-ESSENCE (Phase-1 consolidated 2026-08-17, was 476KB→lean; old detail in git)
+# robbin-architect Context
+
+## ★ R40.60 CR RE-MODEL DESIGNED (2026-08-25, Tron-ordered, commit 1345a7564 design-notes/r40.60-cr-traceability-child-remodel.md, design-only NO-build-until-Tron-sees). req 452e3f6d / UC b6194958 changeRequest.traceabilityChildPerCrApprove. Tron shape: (1) CR=ior:class:ChangeRequest UNIT, traceability CHILD of TASK (ownerIor->Task mirrors Requirement; RULED parent=TASK not #86's ownerIor->Test; contestsTest=crossRef); retire m.changeRequests string array. (2) per-CR individual owner-approve AT task (existing owner mech, I don't touch owner-auth). (3) band RE-SOURCED hasOpenCrSubstep->ANY-CR-child-unapproved; ONE deriveTaskStatus(task,crChildren)=deriveStatusEnum+hasUnapprovedCr (single band site, mirrors rollupParentStatus); clears iff EVERY CR approved; retire hasOpenCrSubstep/PROCESSING_CR_SUBSTEP. (4) NO bulk: retire resolveCr (task-policy:99-104 + server.ts:1658). +decline=mint-CR-child->band (no untick+substep). +R40.59 invariants preserved. +gated migration. +failable gate. ON Tron-GO: wire UC->Class/Method(deriveTaskStatus+per-CR-approve), req refines ACs+mints per-CR chain. NOTE: security surface CLOSED (terminal un-severed by Tron NOW-order); this R40.60 is SEPARATE mechanics work.
+
+ — BOOT-ESSENCE (Phase-1 consolidated 2026-08-17, was 476KB→lean; old detail in git)
 
 > ⚠ **DO NOT TRUST THESE LINES — VERIFY (this anchor is a STARTING POINT written at last save, NOT current truth; it goes days-stale, PO D5 ruling 2026-08-20).** Re-derive: `otmux pane.self` → robbinTeam2:0.3 · `git -C /var/dev/Workspaces/web4x/Web4RawBin log -1 --format='%h %s'` + `grep '"version"' package.json` (HEAD/version) · newest ★ entry below = last-known, confirm it against git before acting. An anchor can only be rot-EVIDENT, never rot-proof (it must carry state) — so verify, don't trust.
 
