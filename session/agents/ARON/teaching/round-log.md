@@ -1003,3 +1003,7 @@ R16: 0 non-ARON commits since R140 (fleet commit still 7dfa45ba). Whole fleet st
 ---
 ## R142 — 2026-08-25 — EMPTY (4-hourly; fleet stood down)
 R16: 0 non-ARON commits since R141 (fleet commit still 7dfa45ba). Stand-down holds → 4-hourly. No hit. Rewind-band 40→95 still held. Cost nothing more.
+
+---
+## R143 — 2026-08-25 — EMPTY (4-hourly; fleet stood down)
+R16: 0 non-ARON commits since R142 (fleet commit still 7dfa45ba). 4-hourly holds. No hit. Rewind-band 40→95 still held. Cost nothing more.
