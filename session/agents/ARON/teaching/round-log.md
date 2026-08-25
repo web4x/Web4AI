@@ -991,3 +991,7 @@ No hit. Rewind-band 40→95 still held pending TRON. Self: ARON@WODA.prod ~44% u
 ---
 ## R139 — 2026-08-25 — EMPTY (4-hourly cadence; fleet STILL stood down, no resume)
 R16: 0 non-ARON commits since R138 (last fleet commit still 7dfa45ba, ~R134 era) → stand-down HOLDS across the date roll (08-24→08-25) → stay 4-hourly (33515301), NO snap-back. No hit. Rewind-band 40→95 still held. Cost nothing more.
+
+---
+## R140 — 2026-08-25 — EMPTY (4-hourly; fleet still stood down)
+R16: 0 non-ARON commits since R139 (fleet commit still 7dfa45ba). Stand-down holds → stay 4-hourly. No hit. Rewind-band 40→95 still held. Cost nothing more.
