@@ -999,3 +999,7 @@ R16: 0 non-ARON commits since R139 (fleet commit still 7dfa45ba). Stand-down hol
 ---
 ## R141 — 2026-08-25 — EMPTY (4-hourly; fleet stood down, awaiting TRON device-verify)
 R16: 0 non-ARON commits since R140 (fleet commit still 7dfa45ba). Whole fleet stood down since v0.8.134 (delivered; standing gate = TRON's device-verify). Stay 4-hourly. No hit. Rewind-band 40→95 still held. Cost nothing more.
+
+---
+## R142 — 2026-08-25 — EMPTY (4-hourly; fleet stood down)
+R16: 0 non-ARON commits since R141 (fleet commit still 7dfa45ba). Stand-down holds → 4-hourly. No hit. Rewind-band 40→95 still held. Cost nothing more.
