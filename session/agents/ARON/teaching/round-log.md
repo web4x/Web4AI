@@ -1041,3 +1041,7 @@ R16: 0 non-ARON commits since R149 (fleet commit still 949ea6f2). 4-hourly holds
 ---
 ## R151 — 2026-08-26 — EMPTY (4-hourly; fleet stood down)
 R16: 0 non-ARON commits since R150 (fleet commit still 949ea6f2). 4-hourly holds. No hit. Rewind-band 40→95 still held. Cost nothing more.
+
+---
+## R152 — 2026-08-26 — FLEET RESUMED → ★ SNAP-BACK TO HOURLY (executed)
+R16: non-ARON commits since R151 (expert shipped BOTH T40.1 mechanics: #86-4 v0.8.135 parent-rollup-read + #86-3 verify-demote). Fleet RESUMED → stand-down OVER. CronCreate hourly **2df9af16** FIRST → CronDelete 4-hourly **c1cd24f9**. Back on hourly. No new resolved hit (T40.1 delivery). Rewind-band 40→95 still held. Cost nothing more.
