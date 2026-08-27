@@ -1077,3 +1077,7 @@ R16: 0 non-ARON commits since R158 (fleet commit still 863f9d92). 4-hourly holds
 ---
 ## R160 — 2026-08-27 — EMPTY (4-hourly; fleet stood down)
 R16: 0 non-ARON commits since R159 (fleet commit still 863f9d92). 4-hourly holds. No hit. Rewind-band 40→95 still held. Cost nothing more.
+
+---
+## R161 — 2026-08-27 — EMPTY (4-hourly; fleet stood down)
+R16: 0 non-ARON commits since R160 (fleet commit still 863f9d92). 4-hourly holds. No hit. Rewind-band 40→95 still held. Cost nothing more.
