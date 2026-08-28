@@ -1089,3 +1089,7 @@ R16: 0 non-ARON commits since R161 (fleet commit still 863f9d92). 4-hourly holds
 ---
 ## R163 — 2026-08-28 — EMPTY (4-hourly; fleet stood down ~2d)
 R16: 0 non-ARON commits since R162 (fleet commit still 863f9d92, v0.8.135 delivered ~2d ago). Deep stand-down awaiting TRON device-verify. 4-hourly holds. No hit. Rewind-band 40→95 still held. Cost nothing more.
+
+---
+## R164 — 2026-08-28 — EMPTY (4-hourly; deep stand-down)
+R16: 0 non-ARON commits since R163 (fleet commit still 863f9d92). 4-hourly holds. No hit. Rewind-band 40→95 still held. Cost nothing more.
