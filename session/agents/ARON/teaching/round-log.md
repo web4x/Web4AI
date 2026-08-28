@@ -1106,3 +1106,7 @@ R16: 0 non-ARON commits since R165 (fleet commit still 9de11c29). Expert's rewin
 ---
 ## R167 — 2026-08-28 — EMPTY + HEAD-UNCHANGED → streak 2 of 4
 R16: 0 non-ARON commits since R166 (fleet commit still 9de11c29). No hit. Streak 2 of 4. Rewind-band 40→95 still held. Cost nothing more.
+
+---
+## R168 — 2026-08-28 — EMPTY + HEAD-UNCHANGED → streak 3 of 4
+R16: 0 non-ARON commits since R167 (fleet commit still 9de11c29). No hit. Streak 3 of 4 → next backs off. Rewind-band 40→95 still held. Cost nothing more.
