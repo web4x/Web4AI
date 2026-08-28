@@ -1114,3 +1114,7 @@ R16: 0 non-ARON commits since R167 (fleet commit still 9de11c29). No hit. Streak
 ---
 ## R169 — 2026-08-28 — streak 4 → ★ BACKED OFF TO 4-HOURLY (executed)
 R16: 0 non-ARON commits since R168 (fleet commit still 9de11c29) → R166-R169 = 4 consecutive EMPTY + HEAD-unchanged. CronCreate 4-hourly **5dd2497d** FIRST → CronDelete hourly **577f51bf**. Now 4-hourly. No hit. Rewind-band 40→95 still held. Cost nothing more.
+
+---
+## R170 — 2026-08-28 — EMPTY (4-hourly; fleet stood down)
+R16: 0 non-ARON commits since R169 (fleet commit still 9de11c29). 4-hourly holds. No hit. Rewind-band 40→95 still held. Cost nothing more.
