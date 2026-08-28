@@ -1093,3 +1093,8 @@ R16: 0 non-ARON commits since R162 (fleet commit still 863f9d92, v0.8.135 delive
 ---
 ## R164 — 2026-08-28 — EMPTY (4-hourly; deep stand-down)
 R16: 0 non-ARON commits since R163 (fleet commit still 863f9d92). 4-hourly holds. No hit. Rewind-band 40→95 still held. Cost nothing more.
+
+---
+## R165 — 2026-08-28 — FLEET RESUMING → ★ SNAP-BACK TO HOURLY (executed)
+R16: non-ARON commit since R164 — robbin-expert wrote a FRESH pre-rewind Phase-1 anchor (9de11c29). BOTH snap-back triggers: non-ARON commit AND an agent preparing a rewind. Stand-down OVER → CronCreate hourly **577f51bf** FIRST → CronDelete 4-hourly **be7a2373**. Back on hourly.
+NOTE: expert is rewind-READY (its own Phase-1 written) — the TRAINER is primary driver (I'm backup per my ESSENCE role-clarity); I do NOT self-assign the cut unless flagged. No new resolved purification hit. Rewind-band 40→95 still held. Cost nothing more.
