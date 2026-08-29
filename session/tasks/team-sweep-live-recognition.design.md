@@ -88,3 +88,34 @@ APPROVED (520a0b87). Meets Tron's spec fully — 5 mutually-exclusive base state
 **Net:** (b) as the expert leaned — `pane.live` composes OVER `live.tupleset` (identity) + normalized-state (already in `agents.discover`) + `from.jsonl.reading` (ctx). Plus two source-fixes: kind→upstream in `agents.discover`; keep base lean. Partial (c) ONLY for state (state is already in discover, so surfacing it there is free); NEVER fold ctx into the lean base.
 
 **§7 handoff AMENDED:** expert builds `pane.live` as the superset-view over `live.tupleset`; surfaces `agents.discover`'s state through + normalizes to §2; adds ctx via `from.jsonl.reading`; moves g.4 kind into `agents.discover.is_claude`. RED gate `test.sweep-live-state`: PART A canonical-state recognition + PART B view-agree / ctx-from-jsonl / registry / self — ADD an assertion that `pane.live`'s identity columns are byte-identical to `live.tupleset`'s for the same pane (proves single-identity-source, no re-derivation).
+
+---
+## §8 DRAIN vs RECOGNIZER — delivery is queue+OTR-1-owned, NOT visual-state-owned (oosh-architect, 2026-08-29)
+**PO INVARIANT (non-negotiable):** a hiveMind-QUEUED message is delivered AND submitted EXACTLY ONCE — no strand, no dup.
+
+**Root principle:** ON-PROMPT is a DISPLAY observation by the sweep. It is NOT the authority for whether to submit. **Delivery is owned by the QUEUE + the OTR-1 send contract (`send.smart`: stage→submit→verify→poke→rc), decoupled from the recognizer.** The two visually-identical staged panes are discriminated by the QUEUE, not by capture:
+- (i) **human mid-typing** = staged text with **NO queue entry** → the drain never touches it (nothing to deliver). OTR-1-correct: never auto-submit a human's unsubmitted text.
+- (ii) **system-queued, delivered-but-unsubmitted** = a queue entry in `delivered-staged` status (our own `send.smart` staged it and got rc2) → the delivery path re-pokes it to submission. Ownership stays with the SEND op that staged it — never re-inferred from a later sweep.
+
+### The mechanism (RULING)
+1. **Drain iterates the QUEUE, never panes-by-visual-state.** For each queued message it runs the OTR-1 send path; it does NOT scan for "ON-PROMPT panes" to submit.
+2. **rc-driven dequeue (exactly-once):**
+   - `rc0` submitted+verified → **dequeue** (delivery complete).
+   - `rc2` staged-unverified → **keep queued**, status=`delivered-staged`; next cycle re-invokes **`send.poke` (submit-only, text-free, idempotent — NEVER re-stages)** until rc0, then dequeue.
+   - `rc3` blocked (drawer/overlay) → keep queued, wait (don't force).
+3. **Stage-once:** `send.smart` stages a queue entry exactly once (first delivery); thereafter only submit-only pokes. So a staged queued message can never be re-staged → no dup.
+4. **Don't clobber human text:** `agent.send` context-route treats a pane staged with **foreign** text (ON-PROMPT, no matching in-flight queue entry) as busy → **QUEUE + wait for empty-`❯`** before staging. It only pokes text it ITSELF staged (its own `delivered-staged` entry). A human's staged text is never overwritten and never submitted.
+
+### Expert's option (a) — CORRECTED
+"Never drain a staged pane" is REJECTED as stated: it would **strand** a queued rc2 message (pane shows staged → never re-poked → system message never submitted). CORRECT form: **never SUBMIT based on visual state; submit ONLY via the queue+OTR-1-poke path** — which safely re-pokes a *queued* staged message (submit-only) while never touching a *human* staged pane (no queue entry). So the drain DOES act on a staged pane iff that pane has our own `delivered-staged` queue entry — via idempotent poke, not a blind `enter`.
+
+### Exactly-once proof
+- **No strand:** a queue entry is removed ONLY on rc0 (verified submitted); rc2/rc3 keep it queued → it is always eventually submitted (or explicitly blocked-waiting), never silently dropped.
+- **No dup:** dequeue occurs exactly once (rc0); stage occurs once (first delivery); poke is submit-only/idempotent (text-free) → re-poking cannot create a second copy.
+- This IS OTR-1's contract applied to the queue; the recognizer change (ON-PROMPT) does not alter it because delivery never depended on the sweep.
+
+### REQUIRED delivery-NON-REGRESSION test (PO gates on this; coordinate with tester ooshTeam:0.4)
+**T-DELIVERY-EXACTLY-ONCE** (Part B addition; ties dup-fix D3 + OTR-1):
+1. Queue a message to a **BUSY** pane → it goes busy→`delivered-staged` (rc2) → assert it is **eventually submitted** (not stranded) and **exactly once** — measure by grepping the recipient's `.jsonl` user-turns == 1 (real dup truth, per the measure-delivery-via-transcript learning).
+2. **Human-safety:** a pane with staged text and NO queue entry → assert the drain **NEVER** submits it (poke count on it == 0).
+3. **rc3 wait:** a queued message to a drawer-blocked pane → stays queued, not force-submitted, delivered after the drawer clears — still exactly once.
