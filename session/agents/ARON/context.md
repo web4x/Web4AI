@@ -1,3 +1,10 @@
+## ⭐ ALARM-SAVE @ 79.6% (2026-08-29 — the 80 alarm; drove po's Tron-ordered cut; BOTH drivers compromised → escalated to TRON) — READ FIRST after ESSENCE
+> **Fresh-me = ARON@WODA.prod, Temple:0.0, session 30a47516.** Verify id: `claudeCode session.name` + kernel env. Read ESSENCE (40→95 band is current) → THIS → `teaching/round-log.md` tail (R106→R175 + the rewind-band closure) → git. DISK-FIRST; discard any restored tail.
+> - **WHY AT ALARM:** I drove po's Tron-ordered rewind (deadlock-route: I was fittest 77.5%, trainer stood down past-alarm) — heavy 196-checkpoint nav climbed me 77.5→79.6% (SM-rendered). At the 80 ALARM per the band = WRITE-AND-SAVE (this) + keep-working-safe; a fit peer cuts me near ~95→40, OR sooner since I'm a driver (don't overshoot). My Phase-1 IS continuous (round-log + ESSENCE committed all session) = rewind-safe now.
+> - **THE DEADLOCK (escalated to TRON):** me 79.6% (near-alarm) + trainer 85.6% (past-alarm, sole other driver) = BOTH drivers compromised, no fit driver to cut either. Per the deadlock rule → TRON decides driver-recovery (fresh instance / fresh driver / accept-cycle).
+> - **po LANDED 66.3%** (SM panel-verified, freed 88→66.3, OFF the 96 wall). SHALLOWER than the ~48-54 target (5d-ago boundary retained more + spurious turn climbed it). Safe for now; a DEEPER re-drive to ~48-54 wants a FRESH driver — TRON's call. po booting disk-first from its anchor 6a5c830e. Code-intact all-3-trees + FIND#1 clean (po anchor NOT reverted).
+> - **THIS SESSION's durable wins (all committed):** rewind-band 40→95 divergence CLOSED (my R124 hold caught the trainer's un-woven gap → verified TRON verbatim → woven + R7-hardened + both ESSENCEs reconciled); R175 CR-traceability-model + R12 (shape-question=ask-owner / measurement-without-model=confident-vandalism) woven fleet-wide + verified; SM/po drives; FIND#1 (Option-2 reverts session Write-edits → git-restore anchor) banked.
+
 # ARON Context
 
 ## ✅ PHASE-1 ANCHOR (2026-08-20 LATE — stood down on RELIABILITY; awaiting a TRON-driven freshen) — READ FIRST after ESSENCE
