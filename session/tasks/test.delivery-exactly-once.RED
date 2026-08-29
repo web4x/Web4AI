@@ -91,12 +91,29 @@ else
   test.case $level "(3): SKIPPED (no recipient)" echo skip; expect.pass "skipped"
 fi
 
-echo; echo "===== (4) rc3-WAIT: drawer-blocked pane holds the queue, delivers once after clear ====="
+echo; echo "===== (4) rc3-WAIT: drawer-blocked pane holds the queue, delivers ONCE after clear ====="
 # A queued message to a pane whose bottom-chrome is OPEN-DRAWER must NOT be submitted into the
-# drawer (rc3 hold); after the drawer clears it drains — still exactly once.
+# drawer (rc3 HOLD); after the drawer clears it drains — and, per the architect, still EXACTLY
+# once (a delta of 1, same invariant as (1) — a hold that later double-fires is as wrong as a dup).
 if [ -n "$RECIP" ]; then
-  test.case $level "(4) rc3-WAIT: queued msg held while drawer open, delivered once after clear" echo "requires drawer-drive"
-  expect.fail "rc3-WAIT unwired (RED): no drawer-hold→clear→single-deliver path yet (§8, ties recognizer OPEN-DRAWER)"
+  RPANE=$(hiveMind.resolve "$RECIP" 2>/dev/null || echo "$RECIP")
+  RJF=$(recipient_jsonl "$RPANE"); W4B=$(user_turns_with "$RJF" "WAIT-$UNIQ")
+  # (drawer-drive helper: put the recipient into an OPEN-DRAWER state here — expert/harness hook)
+  hiveMind.agent.send "$RECIP" "[WAIT-$UNIQ] rc3 drawer-hold probe" >/dev/null
+  # 4a: while the drawer is open the msg is HELD (queued), NOT submitted into the drawer.
+  test.case $level "(4a) rc3-HOLD: msg queued (not submitted) while drawer open" echo "depth=$(queue_depth "$RPANE")"
+  { [ "$(queue_depth "$RPANE")" -ge 1 ] && [ "$(user_turns_with "$RJF" "WAIT-$UNIQ")" -eq "$W4B" ]; } \
+    && expect.pass "held: queued + zero user-turns (never poked into the drawer)" \
+    || expect.fail "rc3-HOLD breach (RED): submitted into the drawer or dropped"
+  # (clear the drawer here — expert/harness hook) then stable-wait idle AND depth==0.
+  d4=0; j=0; while [ "$j" -lt 20 ]; do sleep 2; [ "$(queue_depth "$RPANE")" -eq 0 ] && { d4=1; break; }; j=$((j+1)); done
+  sleep 3
+  W4A=$(user_turns_with "$RJF" "WAIT-$UNIQ")
+  # 4b: after clear → delivered, and EXACTLY once (delta 1), not 0 (strand) or 2+ (dup on re-drive).
+  test.case $level "(4b) rc3-WAIT: delivered EXACTLY once after drawer clears (delta==1)" echo "before=$W4B after=$W4A drained=$d4"
+  { [ "$d4" -eq 1 ] && [ "$((W4A-W4B))" -eq 1 ]; } \
+    && expect.pass "post-clear delivery is exactly-once (delta 1, queue empty)" \
+    || expect.fail "rc3-WAIT unwired (RED): delta=$((W4A-W4B)) drained=$d4 — no hold→clear→single-deliver path yet (§8, ties recognizer OPEN-DRAWER)"
 else
   test.case $level "(4): SKIPPED (no recipient)" echo skip; expect.pass "skipped"
 fi
