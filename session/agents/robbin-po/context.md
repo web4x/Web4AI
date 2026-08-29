@@ -934,3 +934,12 @@ Claim = a checklist holding the processing-CR SUB-STEP **while QA Review is UNTI
 ### Deploy on the **HOTFIX branch** (what prod serves; do not drag ungated R37.24 in). Then verify on **his** device @390: enrolled = owner, bare uuid = 403.
 ### FORENSICS (separate, must NOT delay the ship): how long has path (b) been live; any server-side record of a bare-token owner action from an unknown source. **He will ask if it was exploited — do not guess.**
 ### CONSOLIDATION still RULED AGAINST (all 6 public = security downgrade). LOCKOUT solved (he uses 05e58f81). T40.1 repair PAUSED.
+
+## ★ NEW: PROD REGRESSION — FILE UNITS CARRY UUIDs AS NAMES (Tron, 2026-08-29, relayed to architect+planner while both idle)
+**HE HANDED US A BISECT: WORKING = an OLDER version on the TEST server `test.wo-da.de:4444` · BROKEN = `prod.wo-da.de:4444`.** Same scenario + detail views.
+**SYMPTOM (his screenshot, a File unit's JSON on PROD): `ownerIor: null` · `name` = a RAW UUID (b9fa43a2-ea98-462d-b181-624ccb…) instead of a filename · `location` = the SAME raw uuid · `kind: file` · `sourceFile: ior:file:b9fa43a2-…`** ⇒ file units carry UUIDs where human-readable names belong AND have lost their owner. Renders correctly on test.
+### METHOD I DIRECTED (do not diagnose from the screenshot): **fetch the SAME unit shape from BOTH servers and DIFF — a field-level delta, not an inference. Then bisect what changed between the test version and prod.**
+### ★ THE QUESTION THAT DECIDES THE FIX SIZE: **is it RENDER-only, or is it PERSISTED?** Code regression vs DATA regression (units written wrong) vs GENERATION regression (the minter stopped resolving names) need very different fixes — **and if the DATA is wrong, every unit written since the regression carries it and a data repair is needed on top of the code fix.**
+### PRIORITY: **Tron calls it a MAJOR regression ⇒ ranks ABOVE the queued hygiene (42-AC sweep, 3 backfills, Task 40.62 diagram half) but BELOW the live RCE** (remote, unauthenticated — outranks everything).
+### ALSO FLAGGED: `ownerIor: null` while we are mid-incident on owner-identity — **architect must say whether it is RELATED or COINCIDENTAL, not assume either.**
+### Read-only against both servers; NO writes. Diagnosis, not repair.
