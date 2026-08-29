@@ -1134,3 +1134,25 @@ R16: 0 non-ARON commits since R172 (fleet commit still 9de11c29). 4-hourly holds
 ---
 ## R174 — 2026-08-29 — EMPTY (4-hourly; fleet stood down)
 R16: 0 non-ARON commits since R173 (fleet commit still 9de11c29). 4-hourly holds. No hit. Rewind-band 40→95 still held. Cost nothing more.
+
+---
+## R175 — 2026-08-29 — ★ HIT (TRON-ORDERED via robbin-po): "a SHAPE QUESTION is a PRODUCT DECISION — ASK the owner" + the CR traceability model
+R16: fleet RESUMED (robbin-po ACTIVE sent this; architect R40.60 CR work 22b4052c; trainer boot-fix 5bb6aa78) → snap-back to HOURLY executed (CronCreate d72ee453 FIRST → CronDelete 4-hourly 5dd2497d).
+
+★★ THE HIT — TRON VERBATIM, two parts, for the canon:
+**(1) THE CR TRACEABILITY MODEL** (TRON): "the task can have a list of CR as master… each cr needs to parent to a test that has to be reevaluated from task traced down to the test to make sure the change is implemented consistently… so the CR has all tracability units as children that are affected to be changed. thats an architects and req agents job then."
+  ⇒ **Task = MASTER LIST of CRs · a CR PARENTS TO A TEST** (because resolving the CR may require CHANGING that very test — the parent encodes "this test must be re-evaluated") · **trace DOWN Task→Test and RE-EVALUATE for consistency** · **the CR OWNS as CHILDREN every affected traceability unit** · **architect + req own this work.**
+**(2) THE DEEPER RULE** (TRON): "if you find inconsistency like whats a CR parent.. tell me and ASK me!!!"
+  ⇒ **A SHAPE QUESTION IS A PRODUCT DECISION. Measure it, STATE THE ALTERNATIVES, ASK THE OWNER. Do NOT decide, do NOT silently align, do NOT migrate live data to match a shape you inferred.**
+
+★ THE GENERALISATION (the one for the canon): **an agent that MEASURES a structure it does not understand will tend to "correct" it. Measurement WITHOUT the MODEL produces confident VANDALISM. The cure is not more measurement — it is ASKING THE OWNER what the structure MEANS before touching it.**
+  RETIRED (the trap): "I measured the structure, it looks wrong → I'll fix/migrate it."
+  AUTHORITATIVE: measure → if the SHAPE puzzles you, that is a PRODUCT question → state alternatives + ASK TRON → touch nothing until he answers.
+
+★ WHY (robbin-po's worked example, banked verbatim as the lesson's teeth): robbin-po saw CRs parented to a Test, judged it wrong, ORDERED A MIGRATION OF TRON'S LIVE DATA. Parent=Test was CORRECT all along (it encodes CR-resolution-may-change-the-test). The real defect was that CRs never RENDERED in the tree. It nearly destroyed correct structure to fix an imaginary problem; only TRON's correction stopped it.
+
+★ FOLDS INTO / VALIDATES my own R124 rewind-band HOLD: I found a shape/rule I could not verify (the 40→95 band) and instead of weaving it into agent-rewind.md I ASKED TRON — the EXACT discipline this hit teaches. Same family as [[verify-owner-first-in-shared-credit]], [[capture-gate-behavior-clarifications]] (behavior/shape → owner decides), and R105 measure-the-property (here: measure the property, but do NOT infer the MODEL — get the model from the owner).
+
+★ OBSERVATION (applying the rule to MYSELF, not deciding): architect commit 22b4052c reads "CR re-parent GO (verified 5 CRs Test->Task)". Whether that is consistent with "Parent=Test is correct" is a SHAPE question I will NOT adjudicate from a commit message — that would BE the vandalism this hit warns against. It is robbin-po/architect/TRON's to confirm, not mine to infer.
+
+★ PROPAGATION: routed to the agent-trainer to weave into the ARCHITECT + REQ SKILL.md (TRON: "thats an architects and req agents job") — see task file below. Banked here durably (wer schreibt). Self: ARON@WODA.prod. TAUGHT + committed.
