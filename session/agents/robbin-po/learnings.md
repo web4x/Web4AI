@@ -2124,3 +2124,11 @@ I routed operational calls to him — ship the recorder dormant or active? recon
 ## L-S40-39 — ★ I DROPPED A DIRECT QUESTION AND HE HAD TO ASK "AGAIN"
 He asked where 40.19-40.37 were. I did not answer. He re-asked with "again". **A dropped question from Tron is worse than a wrong answer — a wrong answer he can correct; a dropped one he must re-spend his attention on.**
 **RULE: a direct question from Tron gets measured and answered in the SAME turn, or explicitly parked with a stated return time. Never silently.**
+
+## L-S40-2 — COVERAGE IS STRUCTURAL, NOT A NAME-MATCH (req corrected my count 3x running)
+Tron asked "where are 40.19-40.70" THREE times. My answers kept being wrong, each in a different way:
+1. "26 never minted, ZERO units ever existed, nothing lost" — WRONG: conflated *no TASK unit* with *no unit at all*. The REQUIREMENTS existed the whole time.
+2. Re-measured by grepping `name|title|altId` for `40.x` → 63 reqs / 17 tasks / "46 missing". Still wrong.
+3. req re-measured **structurally** (does `req.tasks[]` or any `task.coveredRequirements` actually POINT at it?) → **66 reqs (R40.1-70, real gaps at 61/63/64/65), 19 covered, 47 MISSING**. The +1 over my count = R40.16: a task NAME-MENTIONS it, but that task's `coveredRequirements` points at a different req — so R40.16 is genuinely uncovered.
+**Rule: measure coverage/linkage by the LINK FIELDS, never by string-matching a number in a name.** A name-mention is not a link; a title match is not coverage. Same family as [[marker-attach-full-uuid-chain-vs-task]] and my task-uuid/impl-uuid conflation (L-S37-3) — in a graph, identity and linkage are structural facts, and grep only sees text.
+**Meta:** req refused to mint off my number and re-derived first *because* I had told it my previous answers to Tron were wrong. Publishing my own error made the next agent verify instead of inherit. Broadcasting a mistake is a control, not just an apology.
