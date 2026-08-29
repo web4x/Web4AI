@@ -1036,3 +1036,22 @@ Claim = a checklist holding the processing-CR SUB-STEP **while QA Review is UNTI
 **BORN-FALSE ≠ WENT-STALE** (my input, architect folded): freshness invariants cannot catch a fact false at birth → family now has TWO arms. My part-3 push also moved the deadlock class from "ungatable" into a structural cycle gate, and the family gate now EMITS its own coverage limit ("N gated / M ungated, listed") and REDs if it hides a gap.
 
 ### FLEET/NEXT: expert=fix-on-demand standby · tester=fact-2 gate then whatever the capture reveals · architect=r4011 design + family re-inspect · req=per-arm ACs · planner=R40.55 sweep + family-5. **EVERYTHING WAITS ON ONE RELOAD BY TRON.**
+
+## ★★★★★ #80 — v0.8.145 LIVE+PUSHED · FALSE-DONE INCIDENT · ANCHOR STERILISATION (2026-08-29/30) ★★★★★
+**PROD v0.8.145 · origin==HEAD ahead-0 · tag v0.8.145 · verified BY ME: served==committed==config-unit==0.8.145, dist dirty=0, sink 403, recorder armed all 3 surfaces, version-stamp TRUE.**
+
+### ★ SHIPPED (v0.8.145, after an accidental early ship, recovered forward)
+fact-2 (revised: PRE-WRITE derived prior, arch 1c38064c9) · r4011 carveout fail-loud (**live-GREEN DET-3x**, the "pre-existing RED" is FIXED) · **recorder version-stamp** (provenance solved). 
+**INCIDENT**: `npm start` BUILDS (start.mjs:71→build.mjs) → a believed "server-only restart" shipped the whole held bundle, leaving served!=committed WHILE the sink stamped the committed version = **provenance corruption from the provenance feature**. Ruled COMPLETE-FORWARD (hold's PURPOSE — recorder alive + stamped — was already satisfied; and the revert path was an UNTESTED build-free restart, never test a novel recovery path on your only instrument). Recovered clean.
+
+### ★★★ OPEN INCIDENT — **OUR OWN GATE WROTE A FALSE 'Done' TO PROD**
+r4010b-qa-verdict device-gate fired a REAL approve on live prod ("Approved — status now Done by **ce981242**") ⇒ a task is Done that **Tron never approved**, written by a TEST. Breaks the session-long invariant (0 Done till Tron), self-inflicted, and **recurs every deploy run**.
+- **HARD HOLD: no deploy.mjs until the tester neuters r4010b** (scratch-only via the R40.31 isolated foundation, never live).
+- **Blast-radius audit** (tester): did EARLIER deploy runs do this too? → list to planner.
+- **Revert** (planner): true evidence-derived status; a machine-written approvedBy is NOT provenance; QA-Review is the honest ceiling without Tron.
+- LAW: [[gate-never-real-save-on-served-repo]] — a gate that mutates the system it verifies is a defect with a green light.
+
+### ★★ ANCHOR STERILISATION — REUSABLE CURE (planner d67000dd, after my specimen #8 RESURRECTED through its rewind)
+My retracted guessed-name blocker (resolveChangeRequest grep=0; real = **approveChangeRequest** server.ts:1685 wired :2001) came back **4th propagation** because it lived in the planner's stored anchor. **Cure, now doctrine:** (1) RE-DERIVE on disk, never relay; (2) add a top **READ-FIRST STERILISATION banner** retracting by EXACT PHRASE; (3) add inline **RETRACTED** markers on every live carrier (it found 8); (4) drop from active watches; (5) mark anything not re-derived since writing as **UNVERIFIED-SINCE-REWIND**. **A retraction that reaches only an agent's head dies at the next rewind — it must reach the FILE.** (req did the same by grepping its own context to prove non-inheritance.)
+
+### FLEET/NEXT: expert HOLDING (deploy path frozen) · tester = neuter r4010b → blast-radius → fact-2 r-next-slot-check ON LIVE + independent r4011 confirm · planner = revert false-Done, then 62 sprint-less triage (14 load-bearing FIRST, 0 retire — all real) · architect design closed (one choke-point: requireSprint + uuidv4-validate + iorInstance funnel; time-box 62→0 by 2026-09-12, slip = explicit escalation) · req sequences triage. **Reconcile hotfix↔main (44/42 diverged) HELD until live-MVC clears. TRON'S RELOAD still the highest-value event.**
