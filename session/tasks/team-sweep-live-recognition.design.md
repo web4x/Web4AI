@@ -24,15 +24,15 @@ Base state is **mutually exclusive**, from CAPTURE of the bottom-5 TUI area (the
 | State | Recognition pattern (bottom-5 live TUI) | Method | Meaning |
 |---|---|---|---|
 | **ACTIVE** | `esc to int[errupt]` present | capture | generating/running |
-| **ON-PROMPT** | bare `❯`/`>` prompt line, NO esc-to-int, NO drawer, NO auto-mode bar | capture | cursor at prompt awaiting input |
-| **IDLE** | `⏵⏵ auto mode on` status bar, no esc-to-int, no drawer | capture | done/waiting (not at a fresh typed prompt) |
+| **ON-PROMPT** | `❯` with STAGED/unsubmitted text after the marker (drawer/wall/active already excluded) — auto-mode bar MAY be present | capture | typed-but-unsubmitted input sitting at the prompt = NOT ready (needs submit/clear; the OTR-1 staged-not-submitted state) |
+| **IDLE** | EMPTY `❯` (no staged text after the marker) + auto-mode bar, no esc-to-int, no drawer | capture | parked/done, ready for a new assignment |
 | **OPEN-DRAWER** =BLOCKED | any modal drawer: permission (`Do you want to` / `❯ 1. Yes`), `accept edits on`, menu/picker (numbered `Select`), autocomplete, tool-confirm, overlay/panel | capture | **blocked, NOT idle** — a drawer open ≠ ready; `drawer_detail` names which |
 | **ON-WALL** =BLOCKED-critical | context-wall / auto-compact prompt: `Context left until auto-compact: 0%`, `Context limit reached`, `/compact` confirm | capture (prompt) **+ JSONL confirm** (pct≥~98) | at the wall — needs rewind/relaunch |
 
 Plus ONE orthogonal overlay flag (NOT mutually exclusive — from JSONL, can co-occur with ANY base state):
 - **LOW-CONTEXT** (⚠) ← `from.jsonl.reading` `ctx_pct ≥ 80` (≤20% left). An agent can be `ACTIVE + ⚠LOW-CONTEXT`. This is the proactive-rewind trigger signal; it must be measured (JSONL), never TUI-guessed.
 
-**Discriminator note (ON-PROMPT vs IDLE):** both are "not blocked, not generating." ON-PROMPT = a bare prompt marker awaiting input; IDLE = the auto-mode status bar showing (agent parked). The bottom-5 order is: OPEN-DRAWER/ON-WALL checks FIRST (a drawer/wall can co-render a prompt), then ACTIVE (esc-to-int), then auto-mode→IDLE, then bare-prompt→ON-PROMPT. Order matters — a permission drawer often shows a `❯` too, so drawer must win over ON-PROMPT.
+**Discriminator note (ON-PROMPT vs IDLE) — CORRECTED 2026-08-29 (test A3 was right; adopt it):** both are "not blocked, not generating," and BOTH normally show the `⏵⏵ auto-mode` bar — so the auto-mode bar is NOT the discriminator. The real discriminator is **staged text after the `❯`**: EMPTY `❯` ⇒ IDLE (parked, ready); `❯ <unsubmitted text>` ⇒ ON-PROMPT (typed-but-not-submitted = not ready; the OTR-1 staged-not-submitted region check — text after the marker). The bottom-5 order: OPEN-DRAWER/ON-WALL FIRST (a drawer's `❯ 1. Yes` must not read as staged text), then ACTIVE (esc-to-int), then `❯`+staged-text ⇒ ON-PROMPT, then empty-`❯` ⇒ IDLE. (My original "auto-mode bar ⇒ IDLE" was wrong — the bar co-renders in both.)
 
 ## 3. Method split (the task's "capture for prompt/drawer/wall; JSONL for context/wall")
 - **CAPTURE** (bottom-5, retry-once-on-empty per sweep.detect's self-heal): ACTIVE, ON-PROMPT, IDLE, OPEN-DRAWER, ON-WALL-prompt.
