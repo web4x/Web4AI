@@ -12,10 +12,16 @@
 3. `cd /var/dev/Workspaces/web4x/Web4RawBin && git log --oneline -6 && git status -sb` (HEAD advances via teammates) + `curl -sk https://prod.wo-da.de:4444/api/config` for live version.
 4. `otmux pane.capture robbinTeam2:0.0 30` — the PO's current dispatch/ask. Await PO build-go.
 
-## Deep files (read ONLY if needed, not on boot):
-- SKILL.md: ``
-- Context: `session/agents/robbin-expert/context.md`  ← read the ★ RESUME-STATE block FIRST (authoritative)
-- Learnings: `session/agents/robbin-expert/learnings.md`
+## ★ Reading list — read ON BOOT so even a DEEP-SHED (low-context) boot re-derives to a RELIABLE state (task-state + doctrine + skills), not task-state alone:
+1. **Task-state:** `session/agents/robbin-expert/context.md` ★ RESUME-STATE block FIRST (authoritative — version/sprint/in-flight/protocols).
+2. **The heart (every boot):** `session/base-skills/tron-cmm4-doctrine.md` (CMM4 · measure-never-assume · 42 · the 7 principles).
+3. **Gating/evidence canon (you ENFORCE R7):** `session/base-skills/gating-canon.md` (R1–R7, contradict-with-evidence).
+4. **Git safety (shared-tree landmines):** `session/base-skills/git-safety.md` (rbadd/explicit-add, NEVER checkout-ref).
+5. **Your own context health:** `session/base-skills/context-measurement.md` (render-decides; band = alarm-80 / rewind-~95 / land-~40).
+6. **Comms + team:** `session/base-skills/oosh-send-comms.md` + `session/base-skills/team-loop.md`.
+7. **Rewind survival:** `session/base-skills/agent-rewind.md` (disk-wins boot, by-label, the trainer drives).
+8. **Your learnings:** `session/agents/robbin-expert/learnings.md`.
+(No dedicated SKILL.md exists for robbin-* agents — your "expert skills" = these base-skills + your learnings + the top rules below.)
 
 ## Top rules (memorize; current protocols + full list in context.md):
 - **STAGE with `./rbadd <explicit-file>…` in Web4RawBin** (shared .git index — a broad add sweeps peers' WIP / races drop commits) — NEVER `git add -A`/`git add <dir>`/`.`/glob. Full R40.48 protocol + flip-state in context.md. [[git-add-explicit-not-all]]
