@@ -27,7 +27,9 @@ MYID_SCRATCH_PREFIX="/tmp/test.myId.scratch."
 rm -rf ${MYID_SCRATCH_PREFIX}* 2>/dev/null          # PRE-RUN sweep: clear any prior killed-run orphans
 ORIG_HOME="$HOME"; ORIG_CURRENT_SSH_DIR="$CURRENT_SSH_DIR"
 # Prove non-mutation: record the LIVE config hash before we touch anything.
-LIVE_SSH_MD5_BEFORE=$(md5sum "$ORIG_HOME/.ssh/config" 2>/dev/null | awk '{print $1}')
+# NO 2>/dev/null — an unreadable file must SURFACE (a hidden read-failure would make
+# before=after=EMPTY → the safety assertion would FALSE-PASS on empty==empty).
+LIVE_SSH_MD5_BEFORE=$(md5sum "$ORIG_HOME/.ssh/config" | awk '{print $1}')
 MYID_SCRATCH="$(mktemp -d ${MYID_SCRATCH_PREFIX}XXXXXX)"
 export HOME="$MYID_SCRATCH/home"                     # HOME/.. (basehome) stays inside the scratch too
 mkdir -p "$HOME/.ssh/private_key" "$HOME/.ssh/public_keys" "$HOME/.ssh/ids/cerulean.githubCC"
@@ -242,9 +244,14 @@ fi
 # ============================================================================
 # GATE-SAFETY: prove the LIVE ~/.ssh was NEVER mutated by this run.
 # ============================================================================
-LIVE_SSH_MD5_AFTER=$(md5sum "$ORIG_HOME/.ssh/config" 2>/dev/null | awk '{print $1}')
+LIVE_SSH_MD5_AFTER=$(md5sum "$ORIG_HOME/.ssh/config" | awk '{print $1}')
 test.case $level "GATE-SAFETY: live ~/.ssh/config UNCHANGED by this test" echo "before=$LIVE_SSH_MD5_BEFORE after=$LIVE_SSH_MD5_AFTER"
-if [ "$LIVE_SSH_MD5_BEFORE" = "$LIVE_SSH_MD5_AFTER" ]; then
+# FAIL-LOUD on an empty hash: a safety net that can silently pass is the unverified
+# proxy we're killing. An empty md5 means the check ITSELF failed (file unreadable /
+# HOME not restored) — that must FAIL, never coast on empty==empty.
+if [ -z "$LIVE_SSH_MD5_BEFORE" ] || [ -z "$LIVE_SSH_MD5_AFTER" ]; then
+  expect.fail "GATE-SAFETY check FAILED to run: md5 empty (before='$LIVE_SSH_MD5_BEFORE' after='$LIVE_SSH_MD5_AFTER') — cannot prove non-mutation, refusing to false-pass"
+elif [ "$LIVE_SSH_MD5_BEFORE" = "$LIVE_SSH_MD5_AFTER" ]; then
   expect.pass "live ~/.ssh/config md5 unchanged (owner-verbs hit the scratch, not the served store)"
 else
   expect.fail "LIVE ~/.ssh/config MUTATED (before=$LIVE_SSH_MD5_BEFORE after=$LIVE_SSH_MD5_AFTER) — isolation breached"

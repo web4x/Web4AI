@@ -1,28 +1,9 @@
-### test.myId GATE-SAFETY isolation — proof (oosh-tester, 2026-08-29)
+### test.myId GATE-SAFETY isolation — HARDENED md5 assertion (oosh-tester, 2026-08-29)
 live ~/.ssh/config md5 BEFORE: d1ea6c473e5df8b307104325f93c4189
-  [isolated] HOME=/tmp/test.myId.scratch.FNonvz/home  CURRENT_SSH_DIR=/tmp/test.myId.scratch.FNonvz/home/.ssh (live ~/.ssh untouched)
-  ✓ PASS: P2a: returns non-zero on missing all params
-  ✓ PASS: P2b: returns non-zero on missing githubUrl and idName
-  ✓ PASS: P2c: returns non-zero on missing idName
-  ✓ PASS: MC3: completion stub exists
-  ✗ FAIL: MC4: error should mention param name, got: test/test.myId: line 97: myId.create.github.deploy.key: command not found
-  ✓ PASS: T1: new identity visible in myId list
-  ✓ PASS: T2a: directory exists
-  ✓ PASS: T2b: private key exists
-  ✓ PASS: T2c: public key exists
-  ✓ PASS: T2d: private_key copy exists
-  ✓ PASS: T2e: public_keys copy exists
-  ✓ PASS: T3: key is ed25519
-  ✗ FAIL: T4a: Host github-web4x.upDown.deployKey not in ~/.ssh/config
-  ✗ FAIL: T4b: IdentityFile does not reference upDown.deployKey.github-web4x
-  ✗ FAIL: T5: get.public.id output missing ssh-ed25519
-  ✓ PASS: R1: cerulean.githubCC intact
-  ✓ PASS: R2: RSA key intact
-  ✓ PASS: R3: Host github.com still present
-  ✓ PASS: R4: github.com still references cerulean.githubCC
+  [isolated] HOME=/tmp/test.myId.scratch.vg67IS/home  CURRENT_SSH_DIR=/tmp/test.myId.scratch.vg67IS/home/.ssh (live ~/.ssh untouched)
 │ Test 20: GATE-SAFETY: live ~/.ssh/config UNCHANGED by this test
-  ✓ PASS: live ~/.ssh/config md5 unchanged (owner-verbs hit the scratch, not the served store)
   Passed:      16
   Failed:      4
 live ~/.ssh/config md5 AFTER:  d1ea6c473e5df8b307104325f93c4189
-scratch orphans: 0
+orphans: 0
+empty-guard: empty->FAIL-LOUD (false-pass closed); unchanged->PASS (standalone-verified)
