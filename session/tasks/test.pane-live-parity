@@ -1,0 +1,88 @@
+#!/usr/bin/env bash
+# PANE.LIVE PARITY GATE (§7 Parts 2+3) on the branch (pane.live 28e9100, g.4 kind e599a39).
+# Part 3: pane.live is a SUPERSET-projection over live.tupleset — its identity columns must be
+#         VERBATIM (parity by construction). Proven SPINNER-SAFE: the raw title carries an
+#         animated glyph (✳/⠐/⠂/✻…) that changes frame-to-frame; the parity/stable-cols must
+#         normalize it, else identity drifts across reads (the pulse status-chrome lesson, title edition).
+# Part 2: g.4 robust-kind — is_claude/kind parity (bash-parent/node-wrapped claude = agent,
+#         claudeCode-join wrapper excluded); the agent count must match the tupleset kind column.
+level=$1; [ -z "$level" ] && level=1
+echo "starting: pane.live PARITY gate <LOG_LEVEL=$level> (branch under test)"
+source this
+source test.suite
+export LOG_DEVICE=/dev/null
+log.level $level
+
+TEAM="${PARITY_TEST_TEAM:-ooshTeam}"
+# strip the animated spinner prefix (same set as role.fromTitle) + trailing whitespace
+norm_title() { echo "$1" | sed -E 's/^(✳|⠐|⠂|✻|✢|✶)[[:space:]]*//; s/[[:space:]]+$//'; }
+
+LIVE=$(hiveMind protected.pane.live "$TEAM" 2>/dev/null)
+TUP=$(hiveMind protected.live.tupleset "$TEAM" 2>/dev/null)
+
+test.case $level "PRE: pane.live + tupleset both return rows" echo "live=$(printf '%s\n' "$LIVE" | grep -c .) tup=$(printf '%s\n' "$TUP" | grep -c .)"
+{ [ -n "$LIVE" ] && [ -n "$TUP" ]; } && expect.pass "both readers returned rows" || { expect.fail "empty reader output"; test.suite.save.results; exit 1; }
+
+echo; echo "===== PART 3 — identity VERBATIM parity (pane.live cols1-9 == tupleset), spinner-normalized ====="
+drift=""; titledrift=""
+while IFS='|' read -r host sess addr tty role uuid kind title cwd; do
+  [ -z "$addr" ] && continue
+  # matching pane.live row for this session:addr (cols 1-9 are identity)
+  lrow=$(printf '%s\n' "$LIVE" | awk -F'|' -v s="$sess" -v a="$addr" '$2==s && $3==a{print; exit}')
+  [ -z "$lrow" ] && { drift="$drift ${sess}:${addr}(missing-in-pane.live)"; continue; }
+  IFS='|' read -r lh ls la lt lrole luuid lkind ltitle lcwd _rest <<< "$lrow"
+  # stable identity cols must be EXACTLY verbatim
+  [ "$lh|$ls|$la|$lt|$lrole|$luuid|$lkind|$lcwd" = "$host|$sess|$addr|$tty|$role|$uuid|$kind|$cwd" ] \
+    || drift="$drift ${sess}:${addr}"
+  # title must match after spinner-normalization (raw may differ by animation frame)
+  [ "$(norm_title "$ltitle")" = "$(norm_title "$title")" ] || titledrift="$titledrift ${sess}:${addr}[live='$(norm_title "$ltitle")' tup='$(norm_title "$title")']"
+done <<< "$TUP"
+
+test.case $level "P3a: identity cols (host/sess/addr/tty/role/uuid/kind/cwd) VERBATIM" echo "${drift:-none}"
+[ -z "$drift" ] && expect.pass "every pane.live identity == tupleset (superset-projection verbatim)" || expect.fail "IDENTITY DRIFT: $drift"
+test.case $level "P3b: title parity after spinner-normalization" echo "${titledrift:-none}"
+[ -z "$titledrift" ] && expect.pass "titles match once the animated glyph is normalized" || expect.fail "TITLE DRIFT (post-normalize): $titledrift"
+
+echo; echo "===== PART 3 — SPINNER-SAFETY: stable identity across two reads ====="
+sleep 1
+LIVE2=$(hiveMind protected.pane.live "$TEAM" 2>/dev/null)
+rolechg=""; while IFS='|' read -r h s a t role u k title c _r; do
+  [ -z "$a" ] && continue
+  r2=$(printf '%s\n' "$LIVE2" | awk -F'|' -v s="$s" -v a="$a" '$2==s && $3==a{print $5; exit}')
+  [ -n "$r2" ] && [ "$r2" != "$role" ] && rolechg="$rolechg ${s}:${a}[${role}->${r2}]"
+done <<< "$LIVE"
+test.case $level "P3c: ROLE (spinner-stripped col) STABLE across reads" echo "${rolechg:-stable}"
+[ -z "$rolechg" ] && expect.pass "role identity stable frame-to-frame (spinner can't perturb it)" || expect.fail "ROLE flickered: $rolechg"
+
+echo; echo "===== PART 3 — MERIT CONTROL: normalization would rescue a real spinner-frame drift ====="
+# Gold-standard proof (not '0 matches'): two reads of the SAME pane at different animation
+# frames — a naive RAW-title parity WOULD trip; the normalized parity must NOT. (Live titles
+# already show per-pane glyph variance: ✳ vs ⠐ — the animation makes it time-variant too.)
+FRAME1='✳ oosh-po@WODA.prod'; FRAME2='⠂ oosh-po@WODA.prod'
+test.case $level "P3d: RAW title differs across spinner frames (hazard is real)" echo "f1=[$FRAME1] f2=[$FRAME2]"
+[ "$FRAME1" != "$FRAME2" ] && expect.pass "raw titles differ by animation frame — a naive parity would FALSE-FAIL" || expect.fail "control invalid"
+test.case $level "P3e: NORMALIZED title identical across frames (gate neutralizes the spinner)" echo "n1=[$(norm_title "$FRAME1")] n2=[$(norm_title "$FRAME2")]"
+[ "$(norm_title "$FRAME1")" = "$(norm_title "$FRAME2")" ] && expect.pass "spinner-normalized titles match — parity is spinner-safe ON MERIT" || expect.fail "normalization FAILED to neutralize the spinner"
+
+echo; echo "===== PART 2 — g.4 robust-kind parity (agent count) ====="
+# pane.live kind==agent count vs the tupleset kind column (same source) — and cross-check that
+# NO bash/node-wrapped real claude collapsed to shell (g.4 regression guard).
+LAGENTS=$(printf '%s\n' "$LIVE" | awk -F'|' '$7=="agent"{c++} END{print c+0}')
+TAGENTS=$(printf '%s\n' "$TUP"  | awk -F'|' '$7=="agent"{c++} END{print c+0}')
+test.case $level "P2a: pane.live agent-count == tupleset agent-count (kind parity)" echo "pane.live=$LAGENTS tupleset=$TAGENTS"
+[ "$LAGENTS" = "$TAGENTS" ] && expect.pass "kind parity: $LAGENTS agents both readers" || expect.fail "KIND DRIFT: pane.live=$LAGENTS vs tupleset=$TAGENTS"
+# g.4: every registered role-bearing pane that is a claude must be kind=agent (not shell).
+shellclaude=""; while IFS='|' read -r h s a t role u k title c _r; do
+  [ -z "$a" ] && continue
+  if [ "$k" = "shell" ] && claudeCode.process.running "${s}:${a}" 2>/dev/null; then
+    shellclaude="$shellclaude ${s}:${a}(claude-as-shell)"
+  fi
+done <<< "$LIVE"
+test.case $level "P2b: g.4 — no live claude misclassified as shell" echo "${shellclaude:-none}"
+[ -z "$shellclaude" ] && expect.pass "bash-parent/node-wrapped claude all kind=agent (g.4)" || expect.fail "g.4 REGRESSION: $shellclaude"
+
+echo
+echo "=================================================================="
+echo "  pane.live PARITY gate complete (branch)."
+echo "=================================================================="
+test.suite.save.results

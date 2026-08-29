@@ -1,0 +1,21 @@
+### §7 Parts 2+3 pane.live PARITY PRE-GATE — branch 8fdf1a7 (pane.live 28e9100, g.4 kind e599a39)
+hiveMind: /tmp/sweep-wt/hiveMind @ 8fdf1a7
+│ Test 1: PRE: pane.live + tupleset both return rows
+  ✓ PASS: both readers returned rows
+│ Test 2: P3a: identity cols (host/sess/addr/tty/role/uuid/kind/cwd) VERBATIM
+  ✓ PASS: every pane.live identity == tupleset (superset-projection verbatim)
+│ Test 3: P3b: title parity after spinner-normalization
+  ✓ PASS: titles match once the animated glyph is normalized
+│ Test 4: P3c: ROLE (spinner-stripped col) STABLE across reads
+  ✓ PASS: role identity stable frame-to-frame (spinner can't perturb it)
+│ Test 5: P3d: RAW title differs across spinner frames (hazard is real)
+  ✓ PASS: raw titles differ by animation frame — a naive parity would FALSE-FAIL
+│ Test 6: P3e: NORMALIZED title identical across frames (gate neutralizes the spinner)
+  ✓ PASS: spinner-normalized titles match — parity is spinner-safe ON MERIT
+│ Test 7: P2a: pane.live agent-count == tupleset agent-count (kind parity)
+  ✓ PASS: kind parity: 4 agents both readers
+│ Test 8: P2b: g.4 — no live claude misclassified as shell
+  ✓ PASS: bash-parent/node-wrapped claude all kind=agent (g.4)
+  Passed:      8
+  Failed:      0
+MERIT: live titles carry per-pane animated glyphs (0.0=✳ vs 0.4=⠐); P3d/P3e control proves a naive RAW-title parity WOULD false-fail across frames, normalization neutralizes it. Identity verbatim (P3a), role stable (P3c), kind parity 4==4 (P2a), no claude-as-shell (P2b/g.4).
