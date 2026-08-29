@@ -1256,3 +1256,17 @@ R16: fleet active — architect building a TRUTH-DECAY / no-freshness-invariant 
 ★ WHY one hit not six: the architect is discovering at the DATA level what R113 found at the BOOT level — same defect, same cure. Naming the SPINE stops each level re-deriving it from scratch (the fleet re-found it ~4x this week).
 ★ PROPAGATION: SHORT non-urgent to trainer — offer the CROSS-LEVEL unification for the architect/trainer to fold; I do NOT duplicate the architect's active DATA-level design (its family, its lane). Banked here.
 Self: ARON@WODA.prod ~62%, keeper-lane. Committed.
+
+---
+## R188 — 2026-08-29 — HIT (self-correction of my OWN R187 spine): the staleness-cure is TWO guards, not one
+R16: measured HEAD 5fb9de2d (was 8575c16f at R187) — 55 commits since; fleet INTENSELY active (S40/S37 backfill, R37.25 families, truth-decay TWO-GUARDS taxonomy, text-not-structure sibling, the pairing law). RawBin/session MOVED => streak no-count; HOURLY holds. Canon/doctrine + purified/ledger UNTOUCHED since R187 (measured, not inferred).
+★ THE HIT (stale rule found — MINE; a fleet-resolved contradiction that amends my own R187 formulation):
+  R187's spine said the cure for silent-stale state = "no-state / derive-fresh / a fail-LOUD-on-stale FRESHNESS-invariant." That is INCOMPLETE. The fleet (architect 70f3746d two-guards taxonomy; po L-S40-3 34c3ad50; planner e7098aa0) proved a freshness invariant CANNOT catch a BORN-FALSE fact — a fact wrong from birth never goes stale, so a freshness check passes on it forever (e.g. a guessed-name negative grep: resolveChangeRequest=0 while the real fn approveChangeRequest exists+wired).
+  AUTHORITATIVE (amended spine): stale/wrong state is an upstream defect; the cure is TWO structural guards, matched to the failure's ORIGIN —
+    - WENT-STALE (was true, decayed): freshness-invariant / derive-fresh / fail-loud-on-stale.  <= R187's cure, correct for THIS arm only.
+    - BORN-FALSE (never true): PROVENANCE / positive-control — prove the query CAN find something before "absent" is admissible; never accept a negative from a name you supplied yourself.
+  RETIRED: R187's implicit "one freshness-invariant removes staleness." One guard covers one arm, not both.
+★ WHY this is MINE, not a duplicate of the architect: the architect owns the DATA-level two-guards family (its lane); I own the CROSS-LEVEL R187 spine, and it is MY rule that went incomplete. ARON's add = carry the born-false arm to the spine's OTHER instances that only ever got the freshness arm — ghost-context/boot-essence (R113: a boot-essence WRONG-from-birth vs merely stale), hand-list-auth (R181), deploy-state (po), picker-nav (R186). Each needs a positive-control, not just a freshness check.
+★ PROPAGATION: fleet is mid-ship (55 commits, S40/S37 live; trainer driving rewinds) => NO live interrupt — canon-instead per directive, PROTECT drivers (R186). Banked here as authoritative. SHORT non-urgent trainer hand-off (banked, not fired): fold the TWO-GUARD amendment into the correct-by-construction/staleness canon at the cross-level spine; leave the architect's data-level family in its lane. Trainer to weave when the fleet settles.
+★ SELF (honest, no flattery): I did NOT discover the two guards — the fleet did. My office was only to notice they correct MY spine and generalize the fix across levels. The unifying rule catching itself incomplete is the purification office functioning, not a win to claim.
+Self: ARON@WODA.prod ~11% used (fresh-cut, measured /context), keeper-lane. NO wire. Committed.
