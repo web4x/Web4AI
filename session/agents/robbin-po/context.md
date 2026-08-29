@@ -779,3 +779,16 @@ ORDER: (1) band R40.59 build-go — record redBaselineEvidence + mint Test · (2
 - R40.60 held on branch r40.60-hold. Tester: two-client observer gate authorised.
 ### FLEET: expert 28 · req 51 · tester 55 · architect 60 · trainer 79 (near alarm, sole driver) · **PO(me) 86 PAST ALARM — my fix is /compact + lean reads, NOT a rewind (front-load floor bottoms a rewind at ~54).**
 ### PATH TO T40.1 DONE: Tron resolve-cr + approve. **Ours is done except the render/verb/pin items above.**
+
+## ★★★ SAVE 88% (2026-08-29) — TRON'S CR VISIBILITY DEFECT, FULLY SPECIFIED ★★★
+**LIVE 0.8.138. T40.1 = QA-Review-with-open-CR, NO approvedBy.**
+### ★★ TRON'S SCREENSHOT (IMG_5171): full T40.1 chain renders (UseCase→Requirement→UC→Class→Method→Impl→test:R40.1 ✓) and **ZERO ChangeRequest nodes appear anywhere.** His words: **"but NONE of the CRs is rendered. in the current case only ONE CR affected the visible test and would already be resolved from code state. but i do not even SEE the open CRs under the TASK if there is no relevant test to assign them to"**
+### ⇒ TWO DEFECTS:
+**(1) The 0.8.137 CR-under-Test render does NOT reach the surface.** Expert curl-verified 5 ChangeRequest children on the Test endpoint; his tree shows none. **THE CURL PROVED THE ENDPOINT, NOT THE RENDER** — same class as every proxy-not-property miss this campaign.
+**(2) ★ THE MODEL INSIGHT I MISSED: only ONE of his 5 CRs relates to that Test. The other FOUR have NO relevant test ⇒ under Test-only parentage they have NOWHERE TO HANG and are STRUCTURALLY INVISIBLE. CRs must render UNDER THE TASK when no test applies.**
+### ⇒ **THAT IS WHAT THE TASK MASTER LIST IS FOR — it is the RENDER SOURCE for test-less CRs, not bookkeeping. The empty master list is therefore a VISIBILITY defect, not tidiness.** Backfill dry-run measured: **8 CRs · 3 tasks · 7 placeable (T40.1←5, T36.1←1, T34.1←1) · 1 (b04fc9af) sprint-parented with NO model.task = a separate shape question for Tron · conservation 8=7+1+0.** **NO WRITE without his GO.**
+### BUILD ORDERED: CRs render under the TASK from its master list, PLUS under their Test where one exists, deduped. **ownerIor NEVER touched — parent=Test stays.**
+### OPEN, ALL AWAITING TRON: **(a) backfill GO** (needed or the 4 test-less CRs cannot render) · **(b) pin: self-corrected ~3s or stale till reload?** (tester measured stale 0.5/1.5s, re-rendered 3.5s) · **(c) normalize migration GO** for band-clearing via per-CR approve · **(d) the sprint-parented CR b04fc9af** · **(e) /compact for me.**
+### SHIPPED TODAY: 0.8.137 CR-tree-render (endpoint-verified, NOT surface-verified) · 0.8.138 folder verbs removed from CR detail. **Per-CR APPROVE verb ordered built (Tron: "i could approve this if there was a button") — records a verdict, does NOT clear the band.**
+### ⚠ DEVICE GATE CANNOT RUN (node16 vs Playwright 18+) ⇒ last deploys are served+logic-verified, NOT device-verified. **Tron's eyes are our only device check. Fix: node22 for gate:device:live.**
+### ME: 88% climbing ~2/tick. **Fix = /compact (read-floor makes a rewind bottom at ~54), NOT a rewind. Do not ride to 96.**
