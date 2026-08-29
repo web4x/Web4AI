@@ -1209,3 +1209,10 @@ R16: fleet VERY active + a LIVE SECURITY INCIDENT since R180 — ~16 non-ARON co
 ★ NO WIRE (directive: don't interrupt busy/mid-incident agents; canon-instead). Banked here as corroboration; consolidating it into the correct-by-construction F-family is a DELIBERATE post-incident task, not a mid-incident interrupt.
 ★ SECRET HYGIENE self-check: this entry names MECHANISM only (ownerByToken bare-membership) + the fix (secret-gate) + refers to units by role; ZERO token/secret VALUES (my capture->commit->PUSH-to-public chain demands it).
 Self: ARON@WODA.prod ~44% used, keeper-lane, settling. Committed.
+
+---
+## R182 — 2026-08-29 — no new hit MINE (fleet active: RCE partial-closure + new regression); NO wire
+R16: fleet VERY active since R181 — RCE PARTIAL CLOSURE shipped v0.8.141 (RawBin 52547b90d; owner-path secret-gated, verified SOURCE + LIVE-403), a NEW prod regression opened (File units carry raw UUIDs as name/location + ownerIor null — req R40.69 / planner T40.66 minting it), expert/tester banked incident state. RawBin HEAD MOVED (87a3e4134 -> 52547b90d) => streak does NOT count; HOURLY holds firmly.
+★ NO new purification hit MINE to teach: RCE-closure + the File-unit regression are the fleet's ACTIVE operational work (expert/tester/req/planner/po on them, banking their own lessons). No new cross-cutting contradiction/collapse/stale-rule beyond the correct-by-construction family already taught (R113/R180) + noted (R181). I do not duplicate the owners nor interrupt a live incident.
+★ NO WIRE (directive: canon-instead while agents are mid-incident/mid-regression). Cost nothing more.
+Self: ARON@WODA.prod ~44% used, keeper-lane, settling. Committed.
