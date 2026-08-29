@@ -792,3 +792,22 @@ ORDER: (1) band R40.59 build-go — record redBaselineEvidence + mint Test · (2
 ### SHIPPED TODAY: 0.8.137 CR-tree-render (endpoint-verified, NOT surface-verified) · 0.8.138 folder verbs removed from CR detail. **Per-CR APPROVE verb ordered built (Tron: "i could approve this if there was a button") — records a verdict, does NOT clear the band.**
 ### ⚠ DEVICE GATE CANNOT RUN (node16 vs Playwright 18+) ⇒ last deploys are served+logic-verified, NOT device-verified. **Tron's eyes are our only device check. Fix: node22 for gate:device:live.**
 ### ME: 88% climbing ~2/tick. **Fix = /compact (read-floor makes a rewind bottom at ~54), NOT a rewind. Do not ride to 96.**
+
+## ★★★ PRE-REWIND SAVE (2026-08-29, 88%) — FRESH ME: THIS BLOCK IS THE WHOLE STATE ★★★
+**LIVE 0.8.138 · T40.1 = QA-Review-with-open-CR, NO approvedBy · served==committed, 0 unpushed.**
+
+### ★★★ TRON'S RULE THAT GOVERNS EVERYTHING — VERBATIM: "not waiting on me… its the TESTERS job to confirm the fix. WHEN I DO IT …it means YOU failed!!!!!!"
+⇒ **NEVER ask Tron to verify, confirm, check, or look. Verification is OURS. Only DECISIONS are his (data-write authorisations, product shape). If I catch myself writing 'waiting on you' for anything measurable — STOP, it goes to the tester.**
+### ★★ HIS OTHER STANDING RULE: "if you find inconsistency like whats a CR parent.. tell me and ASK me!!!" ⇒ a SHAPE question is a PRODUCT decision — measure, state alternatives, ASK. Never silently align, never migrate data to match an inferred shape.
+
+### ★ TRON'S CR MODEL (verbatim): "the task can have a list of CR as master… each cr needs to parent to a test that has to be reevaluated from task traced down to the test to make sure the change is implement consistently… so the CR has all tracability units as children that are affected to be changed. thats an architects and req agents job then"
+⇒ task.changeRequests[] = MASTER · CR.ownerIor → TEST (that test may have to CHANGE to resolve it) · CR.affects[] = affected units as children · trace DOWN and RE-EVALUATE · **architect + req OWN it.**
+
+### ★★ THE LIVE DEFECT (his IMG_5171): **ZERO CRs render.** Full T40.1 chain renders; no ChangeRequest node anywhere. **Only 1 of his 5 CRs relates to that Test; the other 4 have NO test ⇒ structurally invisible under Test-only parentage. The TASK MASTER LIST is the RENDER SOURCE for test-less CRs — its emptiness is a VISIBILITY defect.**
+### ⇒ IN BUILD (expert): CRs render under the TASK from its master list + under their Test where one exists (deduped, **ownerIor NEVER touched**) · per-CR APPROVE verb (records a verdict; does NOT clear the band).
+### ⇒ ROOT FAILURE TO FIX (tester + expert, TOP PRIORITY): **the post-deploy DEVICE GATE CANNOT RUN (node16 vs Playwright 18+) so we ship served-and-logic-verified but NOT device-verified — that is WHY Tron's eyes became our only check. Get gate:device:live on node22.** And: **a curl proves the ENDPOINT, not the RENDER** — 0.8.137 was claimed on a curl and his tree showed nothing.
+### ⇒ TESTER OWNS (not Tron): **determine the pin behaviour** — it measured drawer-fired stale 0.5/1.5s → re-rendered 3.5s; must exhaust paths (two-client, long-open page, tree-row fire, throttled net, @390 real-WebKit) and either REPRODUCE a permanent stale or prove none exists.
+
+### ★ ONLY ITEM GENUINELY AWAITING TRON: **BACKFILL GO** (a write to his data). Dry-run: **8 CRs · 3 tasks · 7 placeable (T40.1←5, T36.1←1, T34.1←1) · 1 (b04fc9af) sprint-parented, no model.task = separate shape question · conservation 8=7+1+0.** Without it the 4 test-less CRs cannot render. Also pending: normalize-migration GO (band-clearing via per-CR approve; R40.60 status-core, deriveTaskStatus currently 0 call sites, band wired to hasOpenCrSubstep@task-status.ts:43).
+### SHIPPED TODAY: 0.8.137 CR-tree-render (endpoint-verified only) · 0.8.138 folder verbs removed from CR detail. Earlier: 0.8.127 band · 0.8.128 RC standard action · 0.8.135 rollup · 0.8.136 demote.
+### FLEET: expert 28 · req 51 · tester 55 · architect 60 · trainer 83 (past alarm, sole driver) · SM running with mandate to contradict me · PO 88.
