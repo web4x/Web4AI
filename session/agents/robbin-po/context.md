@@ -868,3 +868,15 @@ render-entrypoints per selection **3+N → 1** · copy-reads **→ 0** (fallback
 - ★ **ORDERED BEFORE THE TESTER'S CUT: COMMIT its 3 held RED baselines** (board-liveness on the tree row 09c076845 · pin racy-never · r4017/r4060). Captured on the LIVE specimen = irreplaceable. **Committed, not described** — evidence living only in a context dies with the cut.
 - **I stay IDLE at ~67%** — coordination, not a driver; I will not compete for driver budget while both are working.
 ### RULING RECORDED: **check-detail-primitive is NOT wired into ci:gates:raw yet** — the TESTER wires it in the SAME commit that turns everything green. A blocking gate that reds while the defect is live is a self-inflicted fleet outage (right-requirement / wrong-rollout).
+
+## ★★★ POSITION (2026-08-29 end) — R37.24 READY, CRITICAL PATH = TESTER GUARANTEE RUN ★★★
+**Fresh me: everything below is DONE and DURABLE. Do NOT re-dispatch. RULE on reports; the tester owns the remaining steps.**
+### DURABLE ON ORIGIN (verified by merge-base --is-ancestor, NOT by branch --contains which misled me once):
+- **e55e5de7e** elimination (Producer A + thin fallback + dataset guard DELETED, all 8 on RbDetailBase) · **bbdc97e65** enforcement gate (check-detail-primitive: derived-property scope, exactly-1-writer, dispatch-on-every-render; stub-must-fail PROVEN — 2nd write REDs, restored GREEN).
+- **3 live-specimen RED baselines**: board-liveness tree-row **09c076845** · pin racy-never **c77fc37ad** · r4060 pin **a3908b430** (+ r4062 3d87beffd, r4063 24cbcac59). Irreplaceable captures, rewind-proof.
+- CMM4: render-entrypoints/selection **3+N→1** · copy-reads **0** · who-is-current **1** · own-funnel-outside-primitive **0** · bundle 224→215kb.
+### REMAINING = TESTER, DoD steps 3-6, in ONE stretch with full runway:
+run the RED gates → **isolate the prod-writing gate FIRST** (r4010b once fired real approve/decline on LIVE prod, dirtied 12 units incl the pin — not optional) → GREEN → **verify @390 on TRON'S surface FROM HIS ENTRY, DET-3x, proving the 2nd producer is ABSENT not merely quiet, prod bytes unchanged, bar-ref==content-ref** → **wire check-detail-primitive into ci:gates:raw IN THE SAME green-turning commit** (architect elevated this to a COMPLETION gate, overriding my earlier not-yet: a gate outside CI is one-shot, not by-construction) → atomic deploy served==committed → **tester states I-GUARANTEE @390 or NOT-GUARANTEED-because-X.**
+### **NOTHING REACHES TRON BELOW STEP 6. He is NOT our tester — he JUDGES a guaranteed-working thing.**
+### FLEET: expert 16% (deep-cut, fix-on-demand, nothing to build until the tester clears) · tester ARON-cut, owns the run · architect re-backstops @390 post-deploy (40.2+40.3 full / render=1 / copy=0 / bar==content) · trainer 57% · me ~67% idle by choice (coordination does not compete for driver budget).
+### NAMED OPEN (do not lose): the 7 excluded detail types are **assumed-by-criterion, NOT measured** — does any RESOLVE A UNIT REF? (architect owns, 6f1620153, after the elimination lands) · ITEM 2 CR-visibility 2/3+3/3 · ITEM 3 band+source#3+pin in ONE deploy · getThreeSlots fallback guess-vs-absence · L2 last.
