@@ -1,0 +1,34 @@
+### FORMAL GATE: isolated test.myId vs BRANCH ossh (01eeb5b, oosh-expert/myid-deploy-config-wiring)
+ossh under test: /tmp/ossh-fix-wt/ossh
+live ~/.ssh/config md5 BEFORE: d1ea6c473e5df8b307104325f93c4189
+  ✓ PASS: P2a: returns non-zero on missing all params
+  ✓ PASS: P2b: returns non-zero on missing githubUrl and idName
+  ✓ PASS: P2c: returns non-zero on missing idName
+  ✓ PASS: MC3: completion stub exists
+  ✗ FAIL: MC4: error should mention param name, got: /root/oosh/test/test.myId: line 99: myId.create.github.deploy.key: command not found
+  ✓ PASS: T1: new identity visible in myId list
+  ✓ PASS: T2a: directory exists
+  ✓ PASS: T2b: private key exists
+  ✓ PASS: T2c: public key exists
+  ✓ PASS: T2d: private_key copy exists
+  ✓ PASS: T2e: public_keys copy exists
+  ✓ PASS: T3: key is ed25519
+│ Test 13: T4a: SSH config has Host github-web4x.upDown.deployKey
+  ✓ PASS: T4a: Host entry exists
+│ Test 14: T4b: IdentityFile points to new key
+  ✓ PASS: T4b: IdentityFile references correct identity
+│ Test 15: T5: ossh get.public.id prints public key
+  ✓ PASS: T5: public key output contains ssh-ed25519
+  ✓ PASS: R1: cerulean.githubCC intact
+  ✓ PASS: R2: RSA key intact
+│ Test 18: R3: SSH config still has Host github.com
+  ✓ PASS: R3: Host github.com still present
+│ Test 19: R4: Host github.com still points to cerulean
+  ✓ PASS: R4: github.com still references cerulean.githubCC
+│ Test 20: GATE-SAFETY: live ~/.ssh/config UNCHANGED by this test
+  ✓ PASS: live ~/.ssh/config md5 unchanged (owner-verbs hit the scratch, not the served store)
+  Passed:      19
+  Failed:      1
+live ~/.ssh/config md5 AFTER:  d1ea6c473e5df8b307104325f93c4189
+orphans: 0
+MERIT: T4a/T4b/T5 were RED on live ossh, GREEN on branch ossh = the fix works. 1 remaining fail=MC4 naming bug (independent).
