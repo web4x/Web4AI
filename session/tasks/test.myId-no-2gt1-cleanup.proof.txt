@@ -1,0 +1,8 @@
+### test.myId — ZERO 2>&1 cleanup + full green (oosh-tester, 2026-08-29)
+2>&1 count in file: 0 (code + comments)
+live ~/.ssh/config md5 BEFORE: d1ea6c473e5df8b307104325f93c4189
+│ Test 20: GATE-SAFETY: live ~/.ssh/config UNCHANGED by this test
+  Passed:      20
+  Failed:      0
+live ~/.ssh/config md5 AFTER:  d1ea6c473e5df8b307104325f93c4189
+orphans: 0
