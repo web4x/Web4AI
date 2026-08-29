@@ -5,7 +5,12 @@
 **Pane**: ooshTeam:0.3 (verified via `otmux pane.get.target`; shell ooshShells:0.0)
 **Machine**: WODA.prod (dev branch, /root/oosh)
 **PO**: oosh-po @ ooshTeam:0.0 | Peer tester: ooshTeam:0.4 | Architect: ooshTeam:0.2
-**Updated**: 2026-07-14 (post-rewind) — see BRANCH TOPOLOGY block immediately below; older session blocks preserved beneath.
+**Updated**: 2026-08-29 — see CURRENT below; BRANCH TOPOLOGY + older blocks preserved beneath.
+
+## ★ CURRENT (2026-08-29)
+- **myId deploy-key config-wiring fix — DONE on branch, isolated-GREEN, awaiting tester+PO gate.** PO triage: test.myId T4a/T4b/T5 correctly RED. ROOT CAUSE (in **ossh**, not myId): `ossh.config.create` resolved the Host block but called `ossh.config.parse.url` with NO writer callback → `private.config.create` wrote it to `$CONFIG_PATH/result.txt` scratch, never `~/.ssh/config`; and `get.public.id` was absent. FIX (28 lines, ossh only, commit **`01eeb5b`** on branch **`oosh-expert/myid-deploy-config-wiring`**, pushed; worktree `/tmp/ossh-fix-wt`): config.create passes new `private.ossh.config.deploy.write` callback that APPENDS Host block to `$sshDir/config` (idempotent, preserves existing Hosts, `$HOME`-based=isolation-safe) + added `ossh.get.public.id`→`id.public.get`. Verified isolated (HOME redirected, live ~/.ssh untouched): T4a/T4b/T5 + R3/R4 all PASS. NEXT: tester runs isolated harness vs this branch's ossh (myId→ossh via PATH) → formal GREEN → heads-up before /root/oosh ff → PO gates. Did NOT touch live /root/oosh.
+- **team.sweep §7 (team-sweep-live-recognition.design.md) — PARKED.** RED landed (`62eb9a6e`), but building §7 was BLOCKED by a live collision: `/root/oosh` had a big uncommitted hiveMind refactor (−2270 lines, hiveMind-expert's WIP) in the same agents.discover/sweep area §7 rewrites. Flagged to PO for deconflict. On resume: re-measure whether that landed/cleared before touching hiveMind.
+
 
 ## ⚠️ BRANCH TOPOLOGY on WODA.prod box (MEASURED 2026-07-14 — do NOT trust "dev branch /root/oosh")
 - **`/root/oosh` → symlink → `.../Once.sh/mcdonges.latest`** (branch `mcdonges.latest`). This is the **LIVE PATH `config`** (`command -v config`).
