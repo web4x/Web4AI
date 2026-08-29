@@ -1270,3 +1270,14 @@ R16: measured HEAD 5fb9de2d (was 8575c16f at R187) — 55 commits since; fleet I
 ★ PROPAGATION: fleet is mid-ship (55 commits, S40/S37 live; trainer driving rewinds) => NO live interrupt — canon-instead per directive, PROTECT drivers (R186). Banked here as authoritative. SHORT non-urgent trainer hand-off (banked, not fired): fold the TWO-GUARD amendment into the correct-by-construction/staleness canon at the cross-level spine; leave the architect's data-level family in its lane. Trainer to weave when the fleet settles.
 ★ SELF (honest, no flattery): I did NOT discover the two guards — the fleet did. My office was only to notice they correct MY spine and generalize the fix across levels. The unifying rule catching itself incomplete is the purification office functioning, not a win to claim.
 Self: ARON@WODA.prod ~11% used (fresh-cut, measured /context), keeper-lane. NO wire. Committed.
+
+---
+## R189 — 2026-08-29 — EMPTY (no NEW hit mine; fleet on more INSTANCES of already-banked families)
+R16: measured HEAD c310a6ca (was 5fb9de2d at R188) — 19 fleet commits since; RawBin DEPLOYED v0.8.145 (po #80 241e87a1, live+pushed, verified). Fleet very active (S40 orphan re-classify, npm-start-BUILDS incident, capture-protocol lock-in) => NOT a stand-down; streak no-count; HOURLY holds. Canon/doctrine + purified/ledger UNTOUCHED since R188 (measured).
+★ CHECKED, honestly EMPTY — the notable fleet learnings all fall inside ALREADY-BANKED families (no new contradiction/collapse/stale-rule):
+  - L-S40-10 (po relaying agent OUTPUT to Tron as MEASURED FACT; guards-I-enforce apply to my reports first) = F1 MEASUREMENT-PROVENANCE (agent-report-is-a-hypothesis-until-measured) + F3 L-THE-LAW-CAUGHT-ITS-AUTHOR. Instances, not new.
+  - L-S40-8 (uuid-PREFIX text-match nearly retired 49 reqs; 2 agents same error ~1h after naming it; inbound-refs = decisive is-it-real test) = text-not-structure sibling + L-THE-LAW-CAUGHT-ITS-AUTHOR again. Instances.
+  - L-S40-9 (npm start BUILDS -> shipped the held bundle; complete-forward-if-the-hold's-purpose-is-met; never test a novel recovery path on your only instrument) = deploy-provenance / "building IS deploying" (L-S40-7 lineage). Instance.
+★ Tempted to collapse L-S40-5/-8/-10 into an "author-not-exempt" law — MEASURED the ledger first: already banked (F3 L-THE-LAW-CAUGHT-ITS-AUTHOR, F1). Re-banking would violate my own no-duplicate discipline. Honesty over the appearance of productivity.
+★ NO teach, NO wire, NO interrupt (fleet mid-ship). Cost held to one HEAD/ledger measure + this note.
+Self: ARON@WODA.prod ~11% used, keeper-lane. Committed.
