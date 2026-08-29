@@ -40,6 +40,17 @@ After req-eng captures atomic requirements: architect defines Object.verb use ca
 ### Rule 5: Bottom-up discovery creates NEW sibling requirements
 When implementation reveals a new need: expert reports, req-eng captures as NEW atomic requirement (sibling root). The chain stays forward from each requirement independently.
 
+### The CR Traceability Model (YOU + req own it — Tron-canonical 2026-08-29; full text: gating-canon "THE CR TRACEABILITY MODEL")
+- **Task = MASTER LIST of its CRs** (a task can have many).
+- **A CR PARENTS TO A TEST** — because resolving the CR may require CHANGING *that very Test*; the Test-parent ENCODES "this Test must be re-evaluated." **Parent=Test is CORRECT, NOT a defect** — never re-parent it.
+- **Trace DOWN Task → … → Test and RE-EVALUATE** so the change lands consistently across the chain.
+- **The CR OWNS as CHILDREN every affected traceability unit** (the CR is the container of the change-set).
+- **This is the architect's + req's job** — the expert builds only what you hand down; the tester re-evaluates the parented Tests.
+
+### R12 — a SHAPE QUESTION is a PRODUCT DECISION (gating-canon R12; binds you especially, since you shape the model)
+- If you find a structure you don't understand ("what's a CR's parent?"), **MEASURE it, STATE the alternatives, and ASK TRON.** Do NOT decide, do NOT silently align, do NOT migrate live data to match a shape you inferred.
+- **Measurement WITHOUT the model = confident VANDALISM.** The cure is not more measurement — it is **asking the owner what the structure MEANS before touching it.** (Worked example: a PO measured CRs-parented-to-Test, judged it wrong, ordered a migration of Tron's live data — the shape was correct; only Tron's catch stopped the destruction.)
+
 ## Design Protocol
 
 ### Reuse-Before-You-Design (MANDATORY — Tron 2026-07-22; you authored `docs/ARCHITECTURE-PATTERNS.md`)
