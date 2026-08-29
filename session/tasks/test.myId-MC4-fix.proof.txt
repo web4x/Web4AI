@@ -1,0 +1,17 @@
+### test.myId MC4 naming fix — FULL GREEN on live (post-FF c3a905b), oosh-tester 2026-08-29
+live ~/.ssh/config md5 BEFORE: d1ea6c473e5df8b307104325f93c4189
+│ Test 1: P2a: no args returns error
+  ✓ PASS: P2a: returns non-zero on missing all params
+│ Test 2: P2b: 1 arg only returns error
+  ✓ PASS: P2b: returns non-zero on missing githubUrl and idName
+│ Test 3: P2c: 2 args only returns error
+  ✓ PASS: P2c: returns non-zero on missing idName
+│ Test 5: MC4: missing sshConfigName gives readable error
+  ✓ PASS: MC4: error message is human-readable (real fn myId.key.deploy.create)
+│ Test 20: GATE-SAFETY: live ~/.ssh/config UNCHANGED by this test
+  Passed:      20
+  Failed:      0
+live ~/.ssh/config md5 AFTER:  d1ea6c473e5df8b307104325f93c4189
+orphans: 0
+MERIT: renamed myId.create.github.deploy.key -> myId.key.deploy.create at all 4 call sites;
+  MC4 now reads the real error from LOG_DEVICE (no 2>&1); P2a/b/c were false-green on cmd-not-found(127), now pass on real validation.

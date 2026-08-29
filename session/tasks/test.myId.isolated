@@ -50,10 +50,9 @@ myid_isolation_teardown() {
 trap myid_isolation_teardown EXIT                    # belt-and-braces for a clean exit only
 echo "  [isolated] HOME=$HOME  CURRENT_SSH_DIR=$CURRENT_SSH_DIR (live ~/.ssh untouched)"
 
-# Exercise the REAL owner-verb IN the scratch so Phase 2 runs isolated (create+assert+teardown).
-# NOTE: the function is myId.key.deploy.create — the test's earlier myId.create.github.deploy.key
-# calls are an undefined-name no-op (flagged to PO as a separate naming bug).
-myId.key.deploy.create github-web4x "git@github.com:web4x/Web4AI.git" upDown.deployKey >/dev/null 2>&1
+# Exercise the REAL owner-verb (myId.key.deploy.create) IN the scratch so Phase 2 runs
+# isolated (create+assert+teardown). stdout suppressed; a real error still surfaces (no 2>&1).
+myId.key.deploy.create github-web4x "git@github.com:web4x/Web4AI.git" upDown.deployKey >/dev/null
 
 # ============================================================================
 # Phase 1: Pre-Implementation — Parameter Validation & Mandatory Checklist
@@ -61,7 +60,7 @@ myId.key.deploy.create github-web4x "git@github.com:web4x/Web4AI.git" upDown.dep
 
 # --- P2a: Missing all 3 params → error ---
 test.case.expect.error 1 "P2a: no args returns error" \
-  myId.create.github.deploy.key
+  myId.key.deploy.create
 if [ "$RETURN_VALUE" -ne 0 ]; then
   expect.pass "P2a: returns non-zero on missing all params"
 else
@@ -70,7 +69,7 @@ fi
 
 # --- P2b: Missing 2 params → error ---
 test.case.expect.error 1 "P2b: 1 arg only returns error" \
-  myId.create.github.deploy.key github-web4x
+  myId.key.deploy.create github-web4x
 if [ "$RETURN_VALUE" -ne 0 ]; then
   expect.pass "P2b: returns non-zero on missing githubUrl and idName"
 else
@@ -79,7 +78,7 @@ fi
 
 # --- P2c: Missing 1 param → error ---
 test.case.expect.error 1 "P2c: 2 args only returns error" \
-  myId.create.github.deploy.key github-web4x "git@github.com:web4x/Web4AI.git"
+  myId.key.deploy.create github-web4x "git@github.com:web4x/Web4AI.git"
 if [ "$RETURN_VALUE" -ne 0 ]; then
   expect.pass "P2c: returns non-zero on missing idName"
 else
@@ -95,10 +94,15 @@ else
 fi
 
 # --- MC4: Human-readable error message ---
+# err.log writes to $LOG_DEVICE (a file), NOT stderr — so capture the message FROM
+# LOG_DEVICE (no 2>&1: it's Tron-banned AND would only catch stderr, where the message
+# isn't). Temp log lives inside the swept scratch so it can't orphan on a kill.
 test.case $level "MC4: missing sshConfigName gives readable error" echo "checking"
-ERROR_OUTPUT=$(myId.create.github.deploy.key 2>&1)
+MC4_LOG="$MYID_SCRATCH/mc4.log"; : > "$MC4_LOG"
+LOG_DEVICE="$MC4_LOG" myId.key.deploy.create >/dev/null
+ERROR_OUTPUT=$(cat "$MC4_LOG")
 if echo "$ERROR_OUTPUT" | grep -qi "sshConfigName\|no.*provided\|usage"; then
-  expect.pass "MC4: error message is human-readable"
+  expect.pass "MC4: error message is human-readable (real fn myId.key.deploy.create)"
 else
   expect.fail "MC4: error should mention param name, got: $ERROR_OUTPUT"
 fi
