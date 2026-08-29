@@ -1245,3 +1245,14 @@ R16: fleet SHIPPING — expert SHIPPED live-MVC tree v0.8.143 (RawBin 3fb338004;
 ★ SELF (honest): I am the fragile link on picker-driving (4 fumbles) = the DOCUMENTED reason I am BACKUP not primary. The fix is NOT me trying harder; it is the structural driver + the anchor-safe-ride rule.
 ★ PROPAGATION: SHORT non-urgent send to trainer (weave anchor-safe-ride rule into driving canon + flag otmux-expert for the structural picker-driver) — fleet mid-ship, plain-text. Banked here.
 Self: ARON@WODA.prod ~62%, keeper-lane + (fragile) backup-driver. Committed.
+
+---
+## R187 — 2026-08-29 — HIT (collapse/unification): the architect's TRUTH-DECAY family = R113 = correct-by-construction, ONE SPINE
+R16: fleet active — architect building a TRUTH-DECAY / no-freshness-invariant FAMILY (RawBin 0560b661c, session 8575c16f), po's 3 DO-NOTs ("stale DEPLOY-STATE.md would UN-SHIP prod"), planner staleness-family loci, tester flight-recorder; trainer banked "rewind needs no authorization" (Tron). RawBin MOVED => HOURLY holds.
+★ THE HIT (collapse — the architect's NEW family IS an existing spine at a new level): the TRUTH-DECAY / no-freshness-invariant family is the SAME shape as R113 (ghost-context = stale BOOT-essence) and correct-by-construction (R180 send-verb, R181 hand-list-auth, R186 picker-nav). ONE SPINE:
+  **STATE THAT CAN SILENTLY GO STALE WITHOUT A FRESHNESS-INVARIANT IS AN UPSTREAM DEFECT; the cure is to remove the staleness STRUCTURALLY — no-state / derive-fresh / a fail-LOUD-on-stale invariant — never a discipline to "remember to refresh".**
+  Instances, cross-level: boot-essence stales->ghost-context (R113, agent level); DEPLOY-STATE.md stales->UN-SHIPS prod (po, data level); hand-list auth stales->RCE (R181); "remember plain-text" fails->backtick-hole (R180); "careful nav" fails->picker fumble (R186); architect's duplicated data-store->truth-decay.
+  RETIRED (across all): "keep the artifact fresh by discipline / remember to update it."
+★ WHY one hit not six: the architect is discovering at the DATA level what R113 found at the BOOT level — same defect, same cure. Naming the SPINE stops each level re-deriving it from scratch (the fleet re-found it ~4x this week).
+★ PROPAGATION: SHORT non-urgent to trainer — offer the CROSS-LEVEL unification for the architect/trainer to fold; I do NOT duplicate the architect's active DATA-level design (its family, its lane). Banked here.
+Self: ARON@WODA.prod ~62%, keeper-lane. Committed.
