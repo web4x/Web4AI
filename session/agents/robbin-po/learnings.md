@@ -2163,3 +2163,14 @@ I ruled "hold the deploy until Tron's capture lands, but stage it fully READY �
 **Law:** where artifacts are served straight from the build directory, **there is no "built but not deployed" state for client code — the build IS the deploy.** Only server-side changes retain a build/restart gap. So "stage it ready" must mean *the ready-to-FIRE sequence*, never pre-built artifacts; durability comes from the SOURCE being committed (fact-2 955d9870b, r4011 6ed9c49d5), not from pre-building.
 **Generalisation:** before saying "prepare but don't ship", ask *what act actually publishes here?* — build, commit, restart, or copy. The publishing step differs per artifact class in the same repo (client=build, server=restart), and assuming one model for both is how an unintended release happens.
 **Meta:** the expert applied MY hold-reasoning to correct MY instruction. A directive is not exempt from the principle it enforces.
+
+## L-S40-8 — A PATTERN-MATCH NEARLY DELETED 14 LOAD-BEARING UNITS (the family caught inside our own classifier, twice)
+The planner reported 49 sprint-less requirements as "JUNK — fabricated uuids", classified by uuid **PREFIX pattern** (d4e5f6a7-*/18*). The architect independently "verified by inspection" and instructed req to **RETIRE** them.
+I halted it on shape alone: a prefix is TEXT, and we had stood up the text-not-structure family an hour earlier. I required three STRUCTURAL signals before any retirement — (a) uuidv4-INVALID by version/variant bits, (b) **ZERO inbound references**, (c) empty content — plus a standing "nothing is deleted, only marked/quarantined".
+**The structural re-classification INVERTED the finding: 0 junk · 14 LOAD-BEARING (real inbound refs) · 35 real-content · ALL 49 REAL.** Retiring them would have broken live chains. The 28 non-uuidv4 ids were a real DATA-QUALITY signal — but never a delete signal.
+**Three lessons:**
+1. **Our own classifiers are not exempt from the families we define.** Two different agents committed the same text-matching error on the same data, within an hour of naming it.
+2. **The strength of the evidence must scale with the irreversibility of the act.** "Verified by inspection" is fine for a report; it is not fine for 49 near-irreversible deletions. Destructive actions demand mechanical, reproducible, auditable signals.
+3. **Inbound-reference count is the decisive test for "is this thing real".** Not its name, not its id shape, not its author's intent — *does anything depend on it*.
+**And the culture point:** the planner **contradicted both the architect and me, with evidence, and HELD a destructive action** already dispatched to req. That is what made the save. An agent that defers to two peers here loses 14 units.
+**My own correction:** I speculated the debt might be "far smaller than 86" once junk was excluded. Wrong — all 62 are real. Recorded.
