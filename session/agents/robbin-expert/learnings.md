@@ -1045,3 +1045,30 @@ RawBin server-console eating sent keystrokes — the console reads 'p','l' etc. 
 the server STOPPED (in-memory saveProfiles clobbers a live disk merge). Dedupe-MERGE, never overwrite (preserved 28
 test users + a new arrival b67206cb). Measure-before-alarming AND before-writing: the overview byte-halving looked like
 narrative loss until I verified it was the stale table being replaced (prefix byte-identical).
+
+## 2026-08-29 — "is it WIRED?" is a standing question for every guard (PO-elevated, found twice in two days)
+A guard/lint/check that EXISTS in the repo but is NOT wired into the enforcement chain (ci:gates / the actual run
+path) enforces NOTHING — and is WORSE than no guard, because it reads as COVERAGE on the board while silently
+allowing the very drift it claims to catch. Lived: `scripts/check-status-symbol.ts` exists (task-status.ts:116
+comment even names it "the no-2nd-source grep-lint") but is ABSENT from ci:gates (only `check:status-writes` is in
+package.json) → the task-status glyph duplicate-source recurred (server STATUS_GLYPHS had 🔁, client BADGE_MAP did
+not → gray raw-text on Tron's board). Same class the architect elevated the same week: "a guard outside the chain is
+one-shot, not by-construction." Existence ≠ enforcement (F8 existence-is-not-connection); an unwired guard is a
+false-green. **How to apply:** for EVERY guard I touch, grep ci:gates / package.json / the run path to CONFIRM it
+actually runs — never trust that a `check-*.ts` file's existence means it enforces. Wire an unwired guard into the
+chain in the SAME green-turning commit that lands the fix (never before it can pass — same rule as
+check-detail-primitive.mjs / check-staged-declared.mjs). [[correct-by-construction]] [[banked-centrally-is-not-operational]]
+
+## 2026-08-29 — measure the CODE before accepting a pattern-based framing (T40.1 band-glyph duplicate-source)
+PO framed the band-glyph bug as "two maps = duplicate source, one-source it." I MEASURED the code first and found it
+is NOT trivially one-sourced: server `statusSymbol` (task-status.ts) and client `BADGE_MAP` (rb-object-item.ts) are
+two DIFFERENT concerns that only overlap — different symbol vocabularies (client uses NONE of the server glyphs),
+different keys (derived-enum+band vs lowercased strings), client carries COLOR the server lacks, and BADGE_MAP spans
+ALL 7 object types incl test/gate pass/fail/gate-proven, not just Task status. Fully one-sourcing would CHANGE the
+glyphs on Tron's board = a UX call (his), not a refactor. PO: "my steer was the pattern; your 4 reasons are the CODE
+— the code wins." **How to apply:** a peer/PO's "just one-source it / it's a simple X" is a HYPOTHESIS — measure the
+actual shapes (vocab, keys, extra dimensions like color, type-scope) before accepting; if full one-source changes a
+Tron-visible surface, that's a shape ruling (architect) possibly needing Tron, not a refactor I decide. Scenario-first
+split (PO): a broken RENDER of an existing feature = bug-class under the OWNING unit (no new req = ceremony); NEW
+structural scope (extract a shared source + wire a lint) = its own minted req unit. Fix the user-visible surface
+first, harden the class second, never let hardening delay the user fix. [[correct-by-construction]] [[scenario-first-check-before-create]]
