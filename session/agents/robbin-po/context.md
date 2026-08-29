@@ -1015,3 +1015,24 @@ Claim = a checklist holding the processing-CR SUB-STEP **while QA Review is UNTI
 ### GUARDS STANDING: **no delete hotfix · no deploy main · no checkout main in served tree.** Reconcile (hotfix INTO main) is hygiene, AFTER live-MVC works on his device.
 ### FLEET: expert building fact-2 · tester recorder done, gating next · architect on the TRUTH-DECAY cure (corpus ≥8 incl its author and me; cure = derive-first ELSE stored-with-revalidation + VISIBLE-STALE, never stored-and-silent; S37 home confirmed) · req + planner standing up the family mint · SM holds the 3 DO-NOTs.
 ### ★ MY READ-FLOOR IS ~72% — a rewind buys ~20 points, no more. Do not expect a deep landing; work economically, grep tight, never re-read whole files.
+
+## ★★★★★ #79 — v0.8.144 SHIPPED + PUSHED · 47 TASKS CLOSED · RECORDER ARMED (2026-08-29/30) ★★★★★
+**PROD v0.8.144 served==committed==origin (ahead-0, tags v0.8.143+v0.8.144 pushed). Durable.**
+
+### ★ SHIPPED THIS CYCLE (one deploy, two things, gated)
+- **fact-2 NEXT-demotion fix** (5864f067b): displacement-by-derivation, three-tier NEXT (owner-explicit → masked-derived-current → auto-scan); silent-stale auto-write GONE; designate-next kept (already UI-retired R40.18 = no capability loss). Tester gating RED→GREEN on scratch@HEAD.
+- **Flight recorder LIVE + ARMED** (fact-1): survival gate **5/0/0** — served==committed 0.8.144 · sink `/api/diag/live-mvc` **403 not 404** · trigger present on ALL 3 served bundles, each **parsed from the served page** not remembered names. **Tron's ordinary reload = the capture trigger.** Discriminates: frame+0 listeners=STALE SUB · frame+render+no change=iOS RENDER · no frame=SUSPENDED SOCKET · threw=EXCEPTION.
+
+### ★ 47 TASK UNITS — TRON'S 3x QUESTION, CLOSED
+66 S40 reqs (R40.1-70, real gaps 61/63/64/65); **19 covered, 47 MISSING → all minted** (5 batches, origin/main 86ede21b6) + **staged from StepEvidence** (46b85394c): 7→QA-Review (shipped Impl + two-keyed Test, device-AC Tron-pending, approvedBy ABSENT), 39→Planned floor, **0 shadows** (structural pointer dup-check), **0 flipped Done**. All 68 MD views rendered (unit-without-view gap closed).
+- **OPEN**: R40.55 predicate-blindness — a Test-walk over Impl.tests[] is STRUCTURALLY BLIND to GATE-satisfied reqs ⇒ ordered a class SWEEP (how many of the 39 Planned are understated?). Under-crediting == inflating.
+
+### ★ r4011-carveout: PRE-EXISTING (2 independent methods: expert md5 client-bundles + tester diff BOTH halves) ⇒ shipped, NO rollback. **Routed to architect as its own tracked defect** — root R37.24 rb-detail-view RbDetailBase migration regressed synthetic-depref **fail-LOUD→renders EMPTY** (= fail-safe replacing fail-loud, AMEND-4/L15 class; user-visible to Tron). A RED nobody owns is how a defect hides.
+
+### ★★ MY 3 FAILURES THIS CYCLE → NOW STRUCTURAL GUARDS (truth-decay corpus: I am specimen #8 AND #10)
+1. **Guessed-name absence** — grepped an invented `resolveChangeRequest`, got 0, escalated to Tron 3x. Real fn = `approveChangeRequest`. ⇒ **Arm B**: an absence claim is inadmissible until the instrument is proven able to FIND something; an absence-escalation must ATTACH its positive control *in the same report* (would have stopped it at escalation #1).
+2. **Assert-one-half** — declared the recorder ARMED off the CLIENT bundle while the SINK was 404 = every capture inert. ⇒ **Pairing law**: a composed-system claim (ARMED/wired/deployed/covered-e2e) needs evidence from EACH part.
+3. **String-match coverage** — counted "46 missing" by grepping names; truth was 47 (structural: does anything POINT at it). ⇒ coverage/linkage is measured by LINK FIELDS, never text.
+**BORN-FALSE ≠ WENT-STALE** (my input, architect folded): freshness invariants cannot catch a fact false at birth → family now has TWO arms. My part-3 push also moved the deadlock class from "ungatable" into a structural cycle gate, and the family gate now EMITS its own coverage limit ("N gated / M ungated, listed") and REDs if it hides a gap.
+
+### FLEET/NEXT: expert=fix-on-demand standby · tester=fact-2 gate then whatever the capture reveals · architect=r4011 design + family re-inspect · req=per-arm ACs · planner=R40.55 sweep + family-5. **EVERYTHING WAITS ON ONE RELOAD BY TRON.**
