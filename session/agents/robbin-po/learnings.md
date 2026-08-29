@@ -2146,3 +2146,8 @@ I told Tron the flight recorder was "LIVE and ARMED" after verifying the CLIENT 
 **Cost of the version I shipped:** a false ARMED status to Tron on his #1 open complaint, on the one instrument that can diagnose it.
 **I am specimen #8 AND #10** in the truth-decay corpus (relayed-measurement, assert-one-half). Appearing twice in the same corpus, in the same role, two different ways, is not embarrassment — it is the evidence that the class is structural and needed a guard rather than more care.
 **Practice adopted ahead of the code:** before reporting an absence OR a composed-system status to Tron or the fleet, attach the per-part evidence in the same message. Related: [[assert-the-rendered-artifact-not-a-proxy]], [[correct-by-construction]].
+
+## L-S40-5 — ${...} EXPANDS IN A DOUBLE-QUOTED otmux send (same class as the backtick trap)
+Sending an architect message containing the literal pattern `ior:instance:${ref|rawRef}` produced `bash: bad substitution` — the shell expanded/blanked the `${...}` before otmux ever saw it. Same family as the banked backtick hazard: **a double-quoted send is SHELL INPUT first, message text second.**
+**Rule:** never put `${`, backticks, or `$(` in a double-quoted otmux send. Use single quotes, or describe the pattern in words/CAPS (e.g. "an ior:instance interpolation of a variable"). Verify by CAPTURE after sending anything containing shell metacharacters — I only knew it landed because I captured the pane.
+**Why it matters beyond cosmetics:** this time the meaning survived because the recipient knew its own code. A garbled ROLLBACK or DO-NOT-DEPLOY instruction would not be so forgiving. Related: [[backtick-blanks-otmux-send]].
