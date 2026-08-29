@@ -2103,3 +2103,24 @@ Backticks inside a double-quoted otmux send EXECUTE as shell and SILENTLY STRIP 
 **I banked this rule TWICE and violated it FIVE times.** By my own L-S40-8: **a repeated manual correction is evidence of an upstream defect — stop getting better at applying it, and remove the need.** The upstream here is my own composition habit under load.
 **MECHANICAL FIX (not a resolution): I do not type the backtick character in a send. Ever. Code identifiers get written in PLAIN WORDS** ("server dot ts line 1409", "the rbadd command", "git branch --show-current" unquoted). If a token genuinely needs delimiting, single quotes. **A rule I must remember at the moment of writing is a rule I will break; a character I never type is not a rule at all.**
 **SEVERITY NOTE:** the danger is not the garbling — it is that the send REPORTS SUCCESS. A silent partial delivery of a safety instruction is worse than a failed one, because nobody knows to re-send.
+
+## L-S40-36 — ★★ A RELAYED MEASUREMENT IS A STORED ARTIFACT THAT DECAYS. RE-DERIVE AT POINT-OF-USE. (my worst error this session)
+The planner measured `grep resolveChangeRequest = 0`. **I relayed it, escalated it as a HARD BLOCKER, and told TRON THREE TIMES that his CRs could not close and T40.1 could not reach Done.** All false: the function is `approveChangeRequest`, it works, and **he had already approved 2 of his 5 CRs himself.** A NAMING artifact became a blocker in front of the person waiting on delivery.
+**Only the expert's R7 stop-and-surface prevented it becoming a DUPLICATE second band-writer — the exact authored-vs-derived disease we spent the campaign eliminating.** I would have shipped the disease while fixing the disease.
+**RULE: a measurement I did not take is not evidence — it is a claim with a timestamp. Re-derive before repeating, ALWAYS before escalating to Tron.**
+**THE ASYMMETRY THAT MAKES RE-DERIVATION (not distrust) THE CURE:** when the architect re-derived its own prior claims, one had gone stale (DEPLOY-STATE) and one still held (req units genuinely absent). **Re-derivation SORTS decayed claims from live ones; blanket distrust destroys both.**
+
+## L-S40-37 — ★ NUMBERS SPENT IN COMMIT MESSAGES ARE INVISIBLE TO UNIT SCANS (3 instances in one day)
+Tron asked twice where tasks 40.19-40.37 were. **Measured: 26 missing (40.13-16, 40.19-27, 40.29-36), and ZERO units EVER existed in the whole git history — never minted, not lost. Yet 141 commit-message references to those numbers.**
+**Same surface gap hit 3x today:** (a) three v0.8.139 features shipped whose numbers lived only in a commit message; (b) I allocated R40.64 that was already spent that way and caused a collision; (c) these 26 tasks.
+**RULE: every uniqueness/coverage check must enumerate WHERE the thing can be CREATED — units, commit messages, deploy tags, prose — not merely where it is SUPPOSED to live.** A number in a commit message is a claim with no data behind it and nothing we own checks for it.
+
+## L-S40-38 — ★★ "IT'S ON YOUR DESK" WAS ME OFFLOADING MY JOB (Tron: "NOTHING IS ON MY DESK. ITS IN YOURS. DELIVER PO!!!")
+I routed operational calls to him — ship the recorder dormant or active? reconcile now or later? which symptom did you observe? — and framed it as deference. **It was not deference. It was me refusing to decide, in front of the person waiting for delivery.**
+**THE LINE: he is QA and DIRECTION. Every operational call is MINE.** Asking him is only correct when the decision is genuinely his (his device, his product judgement, his authorisation) — and then it is ONE crisp ask with a recommendation, never a menu.
+**TEST BEFORE ASKING HIM ANYTHING: am I giving him a DECISION, or giving him my WORK?**
+**Downstream effect that proves it: the moment I took the calls back (recorder ACTIVE, build on hotfix, one deploy, reconcile after) the whole pipeline unblocked in minutes.** My asking had been the bottleneck.
+
+## L-S40-39 — ★ I DROPPED A DIRECT QUESTION AND HE HAD TO ASK "AGAIN"
+He asked where 40.19-40.37 were. I did not answer. He re-asked with "again". **A dropped question from Tron is worse than a wrong answer — a wrong answer he can correct; a dropped one he must re-spend his attention on.**
+**RULE: a direct question from Tron gets measured and answered in the SAME turn, or explicitly parked with a stated return time. Never silently.**
