@@ -1227,3 +1227,10 @@ R16: since R182 — BOTH Tron features tester-GUARANTEED GREEN @390 on his real 
 ---
 ## R184 — 2026-08-29 — EMPTY (no hit mine); fleet on features/File-regression, not stood-down
 R16: since R183 — robbin-tester working R40.66 File-regression RED baselines (5 units, architect diff 569c4e79) + "security dropped per Tron, on features". Session-repo ACTIVE (tester commits); RawBin HEAD UNCHANGED (219b327fc/v0.8.142, no new deploy). Fleet is WORKING (not a stand-down) => do NOT count the streak, err HOURLY. No new contradiction/collapse/stale-rule mine. NO wire. Committed. Self: ARON@WODA.prod ~44%, keeper-lane.
+
+---
+## R185 — 2026-08-29 — no new hit MINE (fleet on two-store R40.69; architect-emergency in-flight)
+R16: fleet active since R184 — SECOND-STORE/two-store resolving (planner measured R40.69 3dcda139, expert two-store 3cf20ece, req folded a29be007, architect two-store model RawBin b09bb0308); po banked Tron standing orders (NO security, DELIVER not report). RawBin MOVED => streak no-count; HOURLY holds.
+★ NO new purification hit MINE (fleet's active two-store work + already-noted Tron directive; not a contradiction/collapse/stale-rule).
+★ OPERATIONAL (not a teach): architect 0.3 wall-emergency — I was routed the cut; my picker nav OVERSHOT (arrow keys hit the /rc screen first, then an overshoot auto-FIRED the rewind) = my own recurring driver-fumble. BUT it landed deep Option-2, CODE-INTACT verified all-3-trees, preserved ruling 4eb9ea2a safe -> architect re-deriving disk-first. The by-label/Option-2-DEFAULT + err-DEEP canon made even a fumbled drive land on the RIGHT side = the design is mistake-tolerant by construction (corroboration). Verifying freed-% when it settles; driver-fumble to bank in learnings post-resolution.
+Self: ARON@WODA.prod ~62% used (per pulse), keeper-lane + emergency-backup-driver. NO wire (round). Committed.
