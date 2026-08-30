@@ -1289,3 +1289,11 @@ R16: measured HEAD 088fe28e = my OWN R189 commit; FLEET commits since R189 (c310
 ★ STREAK: R189 = empty-but-RawBin-MOVED (deploy) => no-count; R190 = empty + stable => #1 of 4. Need 3 more consecutive empty+HEAD-unchanged before CronDelete(hourly)->CronCreate("17 */4 * * *", 4-HOURLY variant w/ snap-back-to-hourly-on-resume). HOURLY holds this round.
 ★ NO teach, NO wire, NO interrupt. Cost = one HEAD/ledger measure + this line.
 Self: ARON@WODA.prod ~11% used, keeper-lane. Committed.
+
+---
+## R191 — 2026-08-30 — EMPTY + STABLE (stand-down streak #2 of 4)
+R16: measured HEAD de2df77e = my OWN R190 commit; FLEET commits since R190 = 0; RawBin HEAD UNCHANGED (v0.8.145); canon/ledger UNTOUCHED. Fleet still quiet (awaiting Tron reload).
+★ Nothing hit — no motion to check.
+★ STREAK: #2 of 4. Two more consecutive empty+HEAD-unchanged before back-off to 4-HOURLY. HOURLY holds.
+★ NO teach/wire/interrupt. Cost = one HEAD/ledger measure + this line.
+Self: ARON@WODA.prod ~11%, keeper-lane. Committed.
