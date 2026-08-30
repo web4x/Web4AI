@@ -1374,3 +1374,16 @@ R16: measured HEAD 2f349d90 (was fc6813c0=my R197) — 34 FLEET commits since R1
   (3) arrow-navigation via THIS otmux (send.keys; no send.raw/send.tui) is UNVALIDATED => the by-label select over N checkpoints is the unautomatable-by-me part => needs the deterministic driver OR human direct-access (canon: <=2 attempts then hand to human).
 ★ PROPAGATION: SAFETY-critical but fleet mid-ship + trainer idle-standing-by-for-cut => NO live interrupt (canon-instead). Banked here authoritative. Trainer hand-off (banked): fold staged-command-hazard + verify-composer-empty-before-Enter into agent-rewind.md (alongside the trainer's 2 canon-lessons it assigned me), and fold the composer-absence-provenance into F1 + the safe-option-default into F2, at the next ledger-increment. These are the concrete requirements for R186's structural picker-driver.
 Self: ARON@WODA.prod ~11%, keeper-lane. SM safe (git-clean, anchored, riding). NO wire. Committed.
+
+---
+## R199 — 2026-08-30 — EMPTY (no new hit mine) + WATCH: aspirational-invariant / stated!=implemented (fleet's live F2-facet, specimen #11)
+R16: measured HEAD 5cc1113f (was 85f00bde=my R198) — 16 FLEET commits since R198; fleet SHIPPED Phase-A v0.8.148 (all 4 detail components on ONE RbDetailBase primitive). RawBin MOVED => HOURLY holds, streak 0. Canon/ledger untouched.
+★ CHECKED, honestly EMPTY — the gate-discipline cluster lands in F2, and the fleet is building it in its OWN lane:
+  - L-S40-16 (an asserted invariant NO instance satisfies = aspiration; the gate implemented a weaker UNWRITTEN proxy; drift invisible until one component failed) = F2 "could TWO implementations produce the same passing green?" — the stated strong rule vs the weaker actual check are two implementations, same green. Sharpens F2 with a concrete diagnostic: a PASSING instance must LITERALLY satisfy the STATED rule; grep the old proxy OUT on correction.
+  - L-S40-17 capstone (ESCALATE DON'T LOOSEN — refuse to relax an inconvenient assertion; the chain of refusals exposed the drift that green had hidden) = F2 build-the-guard + F7 diligence-over-urgency; PO overriding its own 2 rulings = L-THE-LAW-CAUGHT-ITS-AUTHOR.
+  - L-S40-15 (a FORCED surface is a PROXY surface; gate where it actually renders; NOT-VERIFIABLE != FAIL but both HOLD) = gate-the-real-surface / R196 committed!=served!=seen family.
+  All instances/sharpenings of banked families; fleet tracks "aspirational-invariant" as specimen #11 (architect a891a758) = LIVE in-lane taxonomy. Per R185/R187/R197 I do NOT duplicate a fleet family mid-build.
+★ WATCH (flagged, not banked): "aspirational-invariant / stated!=implemented" is a NEW F2 facet (the gate CHECKS LESS than it CLAIMS; invisible until a failure). Fold into F2 when it settles.
+★ FORWARD-COLLAPSE noted (not ripe): this WATCH + R197's guard-blind-by-inheritance are BOTH "gate's REAL coverage < its CLAIMED/assumed coverage" — one by inherited-exemption (blind to a subset), one by weaker-than-stated check. When both settle, candidate ARON collapse: ONE spine = claimed-coverage > real-coverage, ≥2 forms. Hold until ripe.
+★ NO teach/wire/interrupt (fleet mid-ship). Cost = HEAD + fleet-scan + this note.
+Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
