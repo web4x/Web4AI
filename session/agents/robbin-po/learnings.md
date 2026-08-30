@@ -2197,3 +2197,17 @@ I ran `grep -rl "5fbed155" data/ | head -3`, saw 3 log files, and told the exper
 **Rule: NEVER draw an ABSENCE conclusion from truncated output. COUNT FIRST (`wc -l`), then inspect.** A `head`/`tail` limit is a display convenience that silently converts "there is more" into "there is nothing" — and absence claims are exactly where I have failed repeatedly (guessed-name grep, half-checked pairing, this). Pair with the Arm-B positive control: if I am about to say "not there", the instrument must be shown able to find the thing, AND its output must not be clipped.
 **What made it harmless:** the expert **followed my instruction but REPORTED the contradicting evidence** ("I DID find it physically, left untouched per your do-not-hunt rule, flagging it") instead of silently obeying a wrong premise. An agent that just complies would have left me confidently wrong on the record. That is the culture doing the work again — 4 of my errors today were caught by agents, not by me.
 **Cost here:** near-zero (orphan has 0 inbound refs; the caller fix stops new mints). But the same error on a destructive instruction would not be near-zero — cf. the 49 "junk" units that were actually 14 load-bearing.
+
+## L-S40-12 ★★★ THE ROOT OF EVERYTHING TODAY: A STATUS FLAG IS NOT THE STATE
+The architect named it and it unifies BOTH families we built this session — truth-decay (a STALE stored status) and text-not-structure (a SELF-REPORT standing in for the hazard) are the same error in different clothes.
+**All of today's faces of it:**
+- `readyState` says OPEN while the socket delivers nothing (the iOS zombie) → cure: **unconditional refetch, verify by DOING**
+- a gate is GREEN because it **cannot fire** (blind-by-inheritance; 22 gates inert on a stale path)
+- an exemption a file **declares about itself**
+- a **version stamp** claiming 0.8.144 while serving other code
+- **existence != connection** (recorder client present, sink 404 — my "ARMED" claim)
+- a **relayed measurement** treated as a fact (my 3 false escalations to Tron)
+- a **truncated grep** read as absence (my `head -3` of 4 matches)
+- a **name/prefix/shape match** treated as identity (uuid-prefix "junk", guessed function name, string-matched coverage)
+**RULE:** any check gated on a STATUS — readyState / satisfied / covered / wired / version / inherits / marked / reported — must **verify by DOING**: refetch, round-trip, scan the hazard, resolve to the real unit, derive from HEAD, count before concluding absence. **A guard built on a self-report inherits that report's blind spot.**
+**Why this is MY lesson specifically:** every one of my failures today was trusting a status instead of observing the state — an agent's report, my own truncated output, a branch's disk contents standing in for Tron's screen. The team caught all of them by re-deriving. **The discipline is not "be more careful"; it is "measure the thing itself, every time, including when it is my own claim."**
