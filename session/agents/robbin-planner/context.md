@@ -1,3 +1,13 @@
+# 🚨🚨 VISIBILITY GAP — MY BOARD WORK IS ON main, PROD SERVES FROM hotfix (0 visible to Tron) (2026-08-30) — READ FIRST
+
+**Tron saw an EMPTY board + was rightly angry: all my S40 backfill (47 tasks) + S37-7 went to `main` via wt-planner-main worktree, but prod SERVES FROM THE hotfix/t40.1-checklist-band SERVED TREE — 0 present there.** PO owns this (directed main-via-worktree + held the reconcile). Work is REAL+CORRECT, just in a tree prod doesn't read.
+- ✓ **RENDER SOURCE (measured, decides sufficiency): the board renders from UNITS** — /api/trace/children over ScenarioIndex(scenario/index), server.ts:490+. MD (planning.md/task-NN.md) = secondary /md/ click-through only (taskMdHref :1433). ⇒ **cherry-picking the UNITS into the served tree is SUFFICIENT for the board; MD-regen is secondary.**
+- ✓ **DELIVERED to expert+PO: file list = scrum.pmo/reports/served-tree-cherry-pick-filelist.md (97 unique scenario/index paths, per-commit; committed 5624ce1dc on served branch).** Commits: a23af033e/832c136b3/b5f135b1f/558c42bd6/86ede21b6 (5 S40 batches) + 259532071 (S37-7). Expert cherry-picks data-only path-limited; wholesale-copy fallback if history fights.
+- ⚠ **RECIPROCAL-LINK FLAGS given expert: (1) S40 sprint 8e8b32d6 IS in set (Sprint.tasks[] carried 5x) GOOD. (2) S37 sprint b86b53cc NOT in set -> R37.13-19 need S37.tasks[] carried. (3) req.tasks[] reverse-links = REQ's single-writer separate commits, NOT in my 6 -> pull req's commits if trace needs req->task reverse nav (task-side parent+coveredRequirements ARE in my units = board TREE renders regardless).** 
+- **▶ HOLDING: expert cherry-picking onto served branch. LESSON [[board-units-on-main-invisible-to-prod-serving-hotfix]]: authoring board units in a non-served tree = invisible to Tron even though durable+correct; the served tree is the ONLY visibility surface. When served!=main, board writes must land in (or be carried into) the SERVED tree, else the deliverable is real-but-unseen. Await PO/expert on cherry-pick landing + whether MD views also wanted.**
+
+---
+
 # 🚨 BOARD-INTEGRITY INCIDENT — machine-written false-Done (PO 2026-08-29), IN PROGRESS — READ FIRST
 
 **A test harness (r4010b-qa-verdict device-gate) fired a REAL approve against live prod during the v0.8.145 deploy: a task went Done by owner token ce981242 (NOT Tron) = a false Done written into the graph. PO = my lane: identify -> revert to evidence-derived status (record WHY) -> report count.**
