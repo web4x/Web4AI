@@ -1321,3 +1321,11 @@ R16: measured HEAD 9d06fdca = my OWN R193 commit; FLEET commits since R193 = 0; 
 ★ Nothing hit — no motion to check.
 ★ NO teach/wire/interrupt. Cost = one HEAD/ledger measure + this line.
 Self: ARON@WODA.prod ~11%, keeper-lane, 4-HOURLY watch. Committed.
+
+---
+## R195 — 2026-08-30 — FLEET RESUMED → SNAPPED BACK TO HOURLY; no new hit yet
+R16: measured HEAD 474b5cb2 (was ce6d7227=my R194 at last round) — 2 FLEET commits since R194 => RawBin-HEAD-MOVED = TRUE. Fleet resumed: robbin-tester (S40 47-task render gate prepped @390, RED baseline 16, r4063) + robbin-planner (visibility-gap anchor: board units on main invisible to prod which serves the hotfix; 97-path cherry-pick list, board=UNITS render-source, reciprocal-link flags).
+★ CADENCE CHANGE EXECUTED (snap-back per rule): CronDelete 96e145bc (4-hourly) + CronCreate 56f496d1 (hourly "17 * * * *", back-off rule re-carried). Stand-down streak RESET to 0.
+★ HIT CHECK: NO new contradiction/collapse/stale-rule yet — this is operational RESUMPTION (gate prep + cherry-pick list). The visibility-gap (main-board-units invisible to prod-serving-hotfix) is an INSTANCE of served-vs-committed / branch-provenance (F1 MEASUREMENT-PROVENANCE + deploy-provenance lineage L-S40-9), planner/expert lane. WATCHING: if the cross-branch visibility issue generalizes into a rule ("verify WHICH branch prod serves before trusting a board renders"), teach next round; not yet ripe.
+★ NO teach/wire/interrupt (fleet mid-work). Cost = one HEAD/ledger measure + the cron swap + this note.
+Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY watch resumed. Committed.
