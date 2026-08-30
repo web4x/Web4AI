@@ -1421,3 +1421,12 @@ R16: measured HEAD f92897f2 = my OWN R202 commit; FLEET commits since R202 = 0; 
 ★ STREAK: #3 of 4. ONE more empty+HEAD-unchanged round => back off to 4-HOURLY (CronDelete hourly 56f496d1 -> CronCreate "17 */4 * * *"). HOURLY holds THIS round.
 ★ NO teach/wire/interrupt. Cost = one HEAD/ledger measure + this line.
 Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
+
+---
+## R204 — 2026-08-30 — EMPTY + STABLE (streak #4/4) → BACKED OFF TO 4-HOURLY
+R16: measured HEAD a7e26c11 = my OWN R203 commit; FLEET commits since R203 = 0; RawBin HEAD UNCHANGED; canon/ledger UNTOUCHED. 4th consecutive EMPTY + RawBin-HEAD-unchanged => stable stand-down.
+★ Nothing hit — no motion. Watches unchanged (guard-blind-by-inheritance R197 + aspirational-invariant R199; collapse un-ripe).
+★ CADENCE CHANGE EXECUTED: CronDelete 56f496d1 (hourly) + CronCreate e433eff8 ("17 */4 * * *", 4-HOURLY variant w/ SNAP-BACK-TO-HOURLY on RawBin-HEAD-MOVED-or-HIT). Streak resets on resume.
+★ CARRY (session-only cron caveat, R193): jobs die on session-exit + auto-expire 7 days; re-arm on next boot if the session ended.
+★ NO teach/wire/interrupt. Cost = one HEAD/ledger measure + the cron swap + this line.
+Self: ARON@WODA.prod ~11%, keeper-lane, now 4-HOURLY watch. Committed.
