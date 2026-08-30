@@ -1076,3 +1076,18 @@ Tester produced a real capture on the **R40.31 scratch server, ZERO prod mutatio
 ### ★ MY ERROR LOG TODAY (4 measurement, 3 false escalations — every one caught by an AGENT, not me)
 guessed-name absence (specimen #8) · assert-one-half "recorder ARMED" (#10) · string-match coverage 46-vs-47 · **`head -3` of 4 matches ⇒ false "not on disk"** (overruled a CORRECT architect finding) · false "test wrote a Done to prod" (it was a route-intercepted FAKE banner; ce981242 = SystemTester) · nearly retired 49 reqs on a uuid-PREFIX match (**0 junk, 14 LOAD-BEARING**) · the invisible 47. **BINDING: an agent report is a HYPOTHESIS until I measure it; count before concluding absence; never a name/shape match for identity.**
 ### FLEET: tester REWIND-READY (anchor 5a01403a, order: closing-capture → file/webitem gate → dead-gate sweep → r252) · expert pre-built, holds on gate · architect standing/pre-auth · planner+req minting · SM budget-watch. **NO deploy.mjs (r4010b prod-mutate HARD HOLD) — use npm-start + recorder-survival gate.**
+
+## ★★★★★ #82 — HANDOFF NOTE @79% (2026-08-30) — FRESH-ME: DO THESE TWO THINGS FIRST ★★★★★
+**IF I WALLED MID-LAND, THIS IS THE STATE AND THE EXACT NEXT ACTIONS.**
+
+### ★ 1. CONFIRM TRON'S iOS FIX LANDED (R37.27 / T37.31 — his #1 open complaint)
+At write time: **committed 0.8.147, served still 0.8.146** = restart in flight (expected transient, NOT a fault). VERIFY: `curl -sk https://prod.wo-da.de:4444/api/config` → **served must == committed == 0.8.147**, and the expert must report the **recorder-survival gate** passed (pageshow LITERAL present in all 3 served bundles parsed from the served pages + sink `/api/diag/live-mvc` = 403-not-404). **If the recorder did NOT survive → restore + report, no fix-forward.**
+
+### ★★ 2. THEN TELL TRON EXACTLY THIS (do not paraphrase into vagueness):
+**"Open /trace or /model on your phone → background the app or lock the screen → let something change → come back WITHOUT reloading. The view should already be current. If it's still stale, tell me — the diagnosis was wrong and I'll say so."**
+**HOLD THE HONEST LINE:** the desktop gate proved the MECHANISM only (scratch, DET-3x, ARM-A healed 40→37 on foreground via REFETCH ALONE, sentinel survived = positive no-reload proof; ARM-B bite; ARM-C fail-loud). **The bug is iOS-SPECIFIC — a desktop green is NOT "his bug is fixed". HIS DEVICE IS THE ACCEPTANCE.**
+
+### WHAT ELSE IS QUEUED (all delegated, none needs the PO to restart it)
+tester: prod phantom re-confirm → **item (2) the 4-COMPONENT gate (rb-file/webitem/feature/modelelement-detail render+fail-loud) that BLOCKS Phase A** · expert: R37.26 Feature+ModelElement to complete Phase A · planner: T37.32 gate-invocation (mark-not-silence, counted) + reverse-wires · architect: re-inspects each land · req: R-numbers.
+**STANDING BARS (do not relax):** gate-first before Phase A touches /trace · carry-to-served every Tron-facing change (main-only = invisible AND untrue on his board) · no deploy.mjs (r4010b prod-mutate) — use npm-start + recorder-survival · quarantine-not-delete · 0 Done till Tron.
+### BUDGET: 7-day ~84%, resets ~9h. CP-only spend. I was at 79 and rode ONLY to confirm the land + hand Tron the steps, then hand off.
