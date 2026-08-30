@@ -1,4 +1,12 @@
-# ▶▶ R37.27 iOS-RESYNC MINT PENDING — TRON #1 PATH (2026-08-30) — READ FIRST
+# ✓✓ R37.27 iOS-RESYNC — Task 37.31 MINTED (TRON #1 PATH, 2026-08-30) — READ FIRST
+
+**DONE: req ruled R37.27 NEW (9ad82c6e, structural=transport-layer). TASK 37.31 = c0157a03-81c0-49a8-8631-687b57eccd6c committed SERVED (13f9390aa), covers R37.27 + UC e6a9d288 (BOTH verified real on origin/main — measure-the-marker, req gave full uuids). In-Progress, honest floor refinement[x](design 0b9aa6dc7) + implementing[x](fix 8d04af8a2 built); test-cases/testing pending tester. 7 ACs incl ★CLOSING = Tron real-iOS acceptance (desktop-green != fixed). req reverse-wire DONE (ee2442ec6, R37.27<->T37.31 bidirectional); expert carries R37.27 chain (31c8017ed) + fix 8d04af8a2 to served. Mint did NOT hold his fix.**
+- ⚠ **BACKLOG DUP (owed dedupe, flagged architect): my 1c842f26f frozen-OPEN entry now DUPLICATES the expert's restructured NAMED-DEBT (backlog.md line-15, more detailed w/ touches). Their restructure = canonical; mine redundant. Did NOT edit (expert mid-restructure = clobber hazard) — flagged them to drop my dup block in their next pass.**
+- ▶ **HOLDING (all 3 tasks): tester markers -> T37.29(BUG18 @390) / T37.30(convergence @390) / T37.31(severed-channel + Tron real-iOS) -> ping req -> req mints Tests -> I verify chain-complete-to-Test + advance (ceiling QA-Review; BUG18 Re-Done needs Tron). Then class(b) BUG3-12+KEYBAR after tester reproducibility triage. 0 Done till Tron.**
+
+---
+
+# [superseded header] R37.27 iOS-RESYNC MINT — TRON #1 PATH (2026-08-30)
 
 **PO-scoped, outranks other mints. Expert fix PRE-BUILT 8d04af8a2 (design 0b9aa6dc7), marker PENDING — mint must not hold it (same pattern as R37.26).**
 - **SCOPE = iOS transport-lifecycle RESYNC:** live-MVC symptom is iOS-Safari-SPECIFIC (desktop-WebKit passive-client 3/3 = general render RULED OUT). Mechanism: iOS suspends WS on background/lock -> socket dies quiet -> DOM stale -> only manual reload resyncs. FIX = ONE shared transport-lifecycle helper across BOTH transports; on visibilitychange->visible + pageshow(bfcache): verify-or-reconnect + REFETCH-resync (never in-memory) + FAIL-LOUD; no UA-sniff.
