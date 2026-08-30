@@ -1,3 +1,11 @@
+# ▶▶ R37.27 iOS-RESYNC MINT PENDING — TRON #1 PATH (2026-08-30) — READ FIRST
+
+**PO-scoped, outranks other mints. Expert fix PRE-BUILT 8d04af8a2 (design 0b9aa6dc7), marker PENDING — mint must not hold it (same pattern as R37.26).**
+- **SCOPE = iOS transport-lifecycle RESYNC:** live-MVC symptom is iOS-Safari-SPECIFIC (desktop-WebKit passive-client 3/3 = general render RULED OUT). Mechanism: iOS suspends WS on background/lock -> socket dies quiet -> DOM stale -> only manual reload resyncs. FIX = ONE shared transport-lifecycle helper across BOTH transports; on visibilitychange->visible + pageshow(bfcache): verify-or-reconnect + REFETCH-resync (never in-memory) + FAIL-LOUD; no UA-sniff.
+- **GATED on req R-NUMBER (relayed 0.4): NEW (PO suggests R37.27) vs rides R37.24/R40.45/fact-1 (structural, not guess).** READY: uuid **c0157a03-81c0-49a8-8631-687b57eccd6c** = T37.31 (free), served tree. Real content: repro(bg/lock->change->foreground stale) + surface(both transports) + approach(shared helper/visibilitychange+pageshow/refetch/fail-loud/no-UA-sniff) + failable ACs incl tester SEVERED-CHANNEL gate + ★CLOSING AC = TRON REAL-iOS acceptance (un-mockable headless; desktop-green != fixed — bug is iOS-specific). On R-number: mint SAME-TURN, wire S37.tasks[], commit served, send uuid->req reverse-wire, flag expert carry req chain + his 8d04af8a2. RESOLVE UC full-uuid from origin/main (never fabricate suffix, R37.26 lesson).
+
+---
+
 # 🐞 BUG18 RE-FIX IN FLIGHT — Task 37.29 minted+wired, all lanes engaged (2026-08-30) — READ FIRST
 
 **PO #1 priority: BUG18 949ee3c2 (in-room file->detail) REGRESSED live on prod v0.8.145 BECAUSE nothing guarded it (no task/test/gate) — the whole traceability argument in Tron's own bug. Fix = real task + @390 REGRESSION GATE (keeps it closed).**
