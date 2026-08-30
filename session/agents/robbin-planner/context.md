@@ -1,3 +1,14 @@
+# 🐞 BUG-SERIES COVERAGE GAP — Tron-facing, MEASURED (2026-08-30) — READ FIRST
+
+**Tron found the hole: BUG18 949ee3c2 (in-room file->detail regression) = Done/tronDone but NO task ever existed. CLASS: my 47-backfill covered R40.x ONLY; the BUG-series (Tron's own observed regressions = highest-value) was never in scope.**
+- ✓ **MEASURED (structural coveredRequirements pointer, never name-match; scratchpad/bug-coverage.mjs; report scrum.pmo/reports/bug-series-coverage-2026-08-30.md commit cd85e2336): 19 BUG units · 6 COVERED · 13 UNCOVERED.** Validated vs PO examples (BUG18 uncovered+tronDone ✓, BUG13 covered ✓).
+  - COVERED(6): BUG1/2/13/15/16/17. UNCOVERED(13) = 2 classes: **(a) FIXED-but-untracked** BUG18(Done,tronDone+tronTraced)+BUG14(Resolved) = traceability hole; **(b) UNTRIAGED status=(none) likely-open** BUG3-12 (10) + BUG-KEYBAR-SILENT-EMPTY 34b0b233 = real engineering backlog.
+- ★ **MINT STANCE (Tron's 2nd critique '47 = just copies from requirements' — HE'S RIGHT):** from now on mint REAL tasks = reproduction + surface/component + fix-approach + verifiable acceptance step (engineer-pickup-able); fewer/better > row-per-req restatement. req=single-minter; I sized the gap first. [[task-must-add-thought-not-restate-the-requirement]].
+- **▶ HOLDING for PO sequencing (which class first — I recommend (b) untriaged-still-open for live value, (a) for Tron-traceability). On go: coordinate req single-minter, real-task shape, structural coverage verify after.**
+- ✓ **VISIBILITY FIX LANDED: expert carried S40-47-backfill + S37-7 onto served hotfix tree (67fac186e) — board should render for Tron now (board=UNITS via /api/trace/children, my delivered 97-path list scrum.pmo/reports/served-tree-cherry-pick-filelist.md).**
+
+---
+
 # 🚨🚨 VISIBILITY GAP — MY BOARD WORK IS ON main, PROD SERVES FROM hotfix (0 visible to Tron) (2026-08-30) — READ FIRST
 
 **Tron saw an EMPTY board + was rightly angry: all my S40 backfill (47 tasks) + S37-7 went to `main` via wt-planner-main worktree, but prod SERVES FROM THE hotfix/t40.1-checklist-band SERVED TREE — 0 present there.** PO owns this (directed main-via-worktree + held the reconcile). Work is REAL+CORRECT, just in a tree prod doesn't read.
