@@ -11,7 +11,7 @@
 3. **ORDER purified rewinds of the most-loaded** (deep, before the big task):
    - **STORED first (all 3 trees):** session-canon + /root/oosh + RawBin committed clean (STEP-0). Verify `git status --short` per agent dir.
    - **Deep-by-AGE** (~2-3d checkpoint or before the recent bulk), Option-2 by-LABEL ("code will be unchanged" + read the label, never option-1), never chain keystrokes, clear-and-verify-empty before injecting, boot disk-first.
-   - **ROTATE DRIVERS (R97):** no single operator drives the whole cascade — split by exposure across ARON / trainer / SM; never both in one pane (double-fire). Gate each DRIVER on TWO axes before handing it a drive: context AND error-rate/consecutive-ops.
+   - **DRIVERS = ARON + trainer ONLY.** ★ SM does NOT drive rewinds — TRON's emphatic rule (only Tron-auth, PO-auth does NOT override; he was furious when the SM drove the architect). SM PULSES + FLAGS only this cycle (no Tron explicit-OK for SM to drive). **ROTATE (R97)** between ARON and the trainer — no single operator drives the whole cascade; trainer is fresher so it carries the load, ARON takes some until ARON-stage2 (which also goes to the trainer); never both in one pane (double-fire). Gate each DRIVER on TWO axes before a drive: context AND error-rate/consecutive-ops.
    - **Verify freed-% by the SUBJECT's render** (proven-by-subject, not the driver's claim); pulse lags a fresh cut — re-pulse only after boot.
 4. **SETTLE.** All rewound agents boot disk-first, quiet, fresh. Then the team takes **Task 40.1 `7a956c21-5f37-4062-b921-9bdd5a461546`**.
 
