@@ -1,3 +1,15 @@
+# 🐞 BUG18 RE-FIX IN FLIGHT — Task 37.29 minted+wired, all lanes engaged (2026-08-30) — READ FIRST
+
+**PO #1 priority: BUG18 949ee3c2 (in-room file->detail) REGRESSED live on prod v0.8.145 BECAUSE nothing guarded it (no task/test/gate) — the whole traceability argument in Tron's own bug. Fix = real task + @390 REGRESSION GATE (keeps it closed).**
+- ✓ **TASK 37.29 (802a9597-5665-4d14-84e2-ced70b51f5a5) MINTED on SERVED tree (commit 9bf84b159 hotfix/t40.1-checklist-band = Tron-visible):** covers Bug 949ee3c2, reuses UC fdcbb079, parent S37 b86b53cc (I wired S37.tasks[]; bug keeps S20 origin, T37.27 cross-sprint precedent), status In-Progress. REAL ACs (not req-restatement): repro + surface/rewire + nav + ★AC-4 @390 REGRESSION GATE (the keep-it-closed deliverable). Hooks auto-regen'd MD views into the commit, 0 collateral deletions.
+- ✓ **req (single-minter partner) DONE both sides:** (b) RE-OPENED BUG18 Done->Open (34ef751bf main) — Done-while-live = lying-status = R37.25; PRESERVED 2026-06-15 tronDone verbatim + added regressionRecord (annotate-not-fabricate); Re-Done needs a NEW Tron verdict. (a) REVERSE-WIRE 949ee3c2.tasks[]+=802a9597 (2e1d06906 main). Bidirectional COMPLETE.
+- ⚠ **VISIBILITY CARRY: req's 34ef751bf + 2e1d06906 are MAIN-only -> served still renders BUG18=Done (the lie) until carried. Flagged expert to cherry-pick BOTH onto served (same file 949ee3c2). My Task 37.29 already on served.**
+- ✓ **architect DIAGNOSIS committed (316b60c15, diagnosis-file-detail-name-uuid-regression.md): VERDICT = DATA not code** (2-server bisect doesn't isolate code — model-store gitignored per-deploy; v0.8.87 predates guards). Component RoomView.ts:393/401 (file:${uuid} mints bogus dup 5fbed155 name=uuid) + :386-402 preview BYPASSES rb-detail-base r4011 fail-loud = the raw-JSON/uuid-name surface. FIX = ref real scenario uuid (b9fa43a2 LinkedIn Banner) + route through shared detail flow. ROOT = mint defect. Expert building caller-fix; tester @390 = positive-control pairing (bad-data unit + clean room-file).
+- ✓ **refinement sub-step EARNED (architect diagnosis committed) -> FED skill-expert 0.2 seam to tick LIVE** (I=evidence, seam=single-writer; board moves as work happens = Tron's liveness ask). test-cases/impl/testing NOT yet earned (expert building, tester pending).
+- **▶ TRIGGER: tester ships @390 regression-gate marker -> I PING req -> req mints the Test (AC-4) -> I verify chain-complete-to-Test on disk + advance T37.29 per verdict (ceiling QA-Review; Re-Done needs Tron). Then class(b) BUG3-12+KEYBAR after tester reproducibility-triage on 0.8.145 (mint real tasks ONLY for live ones). 0 Done till Tron.**
+
+---
+
 # 🐞 BUG-SERIES COVERAGE GAP — Tron-facing, MEASURED (2026-08-30) — READ FIRST
 
 **Tron found the hole: BUG18 949ee3c2 (in-room file->detail regression) = Done/tronDone but NO task ever existed. CLASS: my 47-backfill covered R40.x ONLY; the BUG-series (Tron's own observed regressions = highest-value) was never in scope.**
