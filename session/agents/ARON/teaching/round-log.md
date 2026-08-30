@@ -1305,3 +1305,12 @@ R16: measured HEAD 30aa7f2a = my OWN R191 commit; FLEET commits since R191 = 0; 
 ★ STREAK: #3 of 4. ONE more consecutive empty+HEAD-unchanged round => back off to 4-HOURLY (CronDelete hourly -> CronCreate "17 */4 * * *" 4-HOURLY variant w/ snap-back-on-resume). HOURLY holds THIS round.
 ★ NO teach/wire/interrupt. Cost = one HEAD/ledger measure + this line.
 Self: ARON@WODA.prod ~11%, keeper-lane. Committed.
+
+---
+## R193 — 2026-08-30 — EMPTY + STABLE (streak #4/4) → BACKED OFF TO 4-HOURLY
+R16: measured HEAD 5be60216 = my OWN R192 commit; FLEET commits since R192 = 0; RawBin HEAD UNCHANGED (v0.8.145); canon/ledger UNTOUCHED. 4th consecutive EMPTY + RawBin-HEAD-unchanged round => stable stand-down reached.
+★ Nothing hit — no motion to check.
+★ CADENCE CHANGE EXECUTED: CronDelete d72ee453 (hourly "17 * * * *") + CronCreate 96e145bc ("17 */4 * * *", 4-HOURLY variant). The 4-hourly prompt carries the SNAP-BACK-TO-HOURLY rule: the FIRST round measuring RawBin-HEAD-MOVED or a HIT re-creates the hourly job (re-carrying the back-off rule). Streak counter resets on resume.
+★ HONEST CAVEAT (measured from CronCreate output): cron jobs are SESSION-ONLY (in-memory, die when this Claude session exits) + auto-expire after 7 days. If the session ends, the round must be re-armed on next boot — noted for ESSENCE/boot.
+★ NO teach/wire/interrupt. Cost = one HEAD/ledger measure + the cron swap + this line.
+Self: ARON@WODA.prod ~11%, keeper-lane, now 4-HOURLY watch. Committed.
