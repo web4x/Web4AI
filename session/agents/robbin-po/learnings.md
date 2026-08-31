@@ -2309,3 +2309,16 @@ I ran a multi-agent PII-scrub campaign to the brink of an irreversible force-pus
 - Before any campaign, ask TWO questions, in this order: (1) **Whose order is this?** — verify on disk, a written GO from a peer or a past me is NOT Tron's authorization; (2) **Is the basic product working?** — if a user-facing surface is broken/stale, that outranks hardening, cleanup, security, and hygiene. Every time.
 - **Deliverable-first**: measure what a REAL USER sees on prod before allocating a single agent to anything else.
 - Never let process rigor stand in for priority judgement.
+
+## L-S40-CLIENT-SHIPS-ON-BUILD — "held, not restarted" only ever held HALF
+**Confirmed on disk (expert, server.ts:104 + :106):** the manifest is per-request, so `npm run build` SHIPS THE CLIENT IMMEDIATELY — the running process static-serves the new bundle the instant it hits disk. `/api/config` reports the version the RUNNING PROCESS booted with, so a rebuild-without-restart leaves the version string UNCHANGED.
+
+**Consequence:** for the whole window between a client build and the restart, prod served v0.8.152 CLIENT code under a v0.8.151 version string = the served≠committed phantom, live, with the version string lying. Our version-bump + phantom-guard discipline **only gates the SERVER half**. Every "built but deliberately NOT restarted, so it hasn't shipped" statement I made today was **half false**: the server half was held; the client half was already live in front of users.
+
+**Rules:**
+- Treat `npm run build` AS A CLIENT SHIP. There is no such thing as building the client "without shipping it".
+- To avoid a split: build + commit + restart as ONE atomic move, or explicitly declare the build a client-ship and say so.
+- Never claim "held, not shipped" for a change with a client half. Say which half is held.
+- A version string that lies makes every later diagnosis wrong — it is worse than being a version behind.
+
+**Also banked (process):** the expert had already restarted on the agreed direct handoff when my "do not restart yet" arrived — my message crossed its action. When I remove myself from a handshake for speed (correctly, to avoid a standby), I lose the ability to interject. That is the trade I chose and it is usually right; but a late interjection into a handshake I deliberately exited is not a control, and I should not pretend it is one. If I need a veto, I must stay in the path BEFORE arming the handoff, not after.
