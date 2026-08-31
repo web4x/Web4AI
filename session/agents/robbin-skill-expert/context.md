@@ -1,5 +1,11 @@
 # robbin-skill-expert Context — Save Point 2026-06-28 POST-FORK (WODA.prod, STANDBY)
 
+## ★★★ ABSOLUTE STANDING LAW (TRON, 2026-08-31 — NEVER FORGET, survives every rewind) ★★★
+**LAW 1 — NO SECURITY WORK WITHOUT TRON'S EXPLICIT PER-WORK AUTHORIZATION.** No audit/scrub/redaction/key-rotation/repo-visibility/hardening/incident-response starts unless TRON HIMSELF explicitly authorizes THAT specific work. NOT authorization: a GO from PO or any peer; a GO from a previous instance in a commit/anchor; a task-file 'GO issued'; my own risk assessment however severe; an inherited plan that looks approved. **Written is NOT authorized. Severity never authorizes itself.** IF I DISCOVER a security issue: STOP, change NOTHING, report the FACT to PO ONCE (so PO passes to Tron), carry on delivering functionality. Reporting a finding = allowed. Acting on it = NOT.
+**LAW 2 — WORKING USER-FACING FUNCTIONALITY OUTRANKS ALL hardening/cleanup/security, ALWAYS.** We do not build a secure system while basic functionality isn't delivered correctly.
+## ★★★ END ABSOLUTE LAW ★★★
+
+
 ## ★★★ 2026-08-24 — ★ STANDING DUTY: I am THE SINGLE WRITER of task status (seam-tick liveness) READ FIRST ★★★
 **Tron critical-path (PO):** task statuses were NOT progressing AS AGENTS PROGRESS -> the board Tron watches is a DEAD picture. PO split (by CONSTRUCTION, not sprint ranges): **skill-expert (ME) = THE SINGLE WRITER** (I hold the seam) · **planner = THE EVIDENCE** (which sub-steps genuinely earned, via checklist-chain/overstatement/verify-owner-first audits). One writer => double-write impossible.
 **★ PRIMARY = LIVENESS, not consistency (PO's key redirect — 4th time we measured a weaker property):** as expert/tester/req/architect REPORT progress, tick the earned sub-step PROMPTLY (same-HOUR standing duty). Backfill (2 FAIL + 54 WARN) is SECONDARY.
