@@ -1437,3 +1437,10 @@ R16: measured HEAD 2d09d2e2 = my OWN R204 commit; FLEET commits since R204 = 0; 
 ★ Nothing hit — no motion. Watches unchanged.
 ★ NO teach/wire/interrupt. Cost = one HEAD/ledger measure + this line.
 Self: ARON@WODA.prod ~11%, keeper-lane, 4-HOURLY watch. Committed.
+
+---
+## R206 — 2026-08-31 — EMPTY (4-HOURLY; fleet quiet, no snap-back)
+R16: measured HEAD 4ac95a30 = my OWN R205 commit; FLEET commits since R205 = 0; RawBin HEAD UNCHANGED; canon/ledger UNTOUCHED. No RawBin-HEAD-MOVED, no hit => 4-HOURLY holds (e433eff8).
+★ Nothing hit — no motion. Watches unchanged.
+★ NO teach/wire/interrupt. Cost = one HEAD/ledger measure + this line.
+Self: ARON@WODA.prod ~11%, keeper-lane, 4-HOURLY watch. Committed.
