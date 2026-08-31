@@ -2268,3 +2268,12 @@ Chasing Tron's latency regression, the tester measured the runners: **~180 r*.mj
 **Fix shape:** (a) derive-don't-hardcode — assert the DISCOVERED current pin, never a literal (same discovered-not-hand-listed law as the hazard gate); (b) every gate is either INVOKED by a runner or explicitly MARKED not-invoked WITH a reason, and the un-invoked COUNT is reported (mark-not-silence, discovered not hand-listed).
 **Category discipline:** keep STALE-HARDCODED-UNINVOKED distinct from KNOWN-BROKEN-INVOCATION (r241/r245 execute but return null). Merging classes to make one number bigger destroys the number's meaning.
 **PO honesty consequence:** when I report something as "gated" I must know whether it is *invoked*. Related: [[exists-correct-proven-gate-gradient]] — this is a new floor BELOW "exists": exists-but-never-runs.
+
+## L-S40-22 — A LATENCY THRESHOLD IS PARTLY A PROXY FOR THE USER'S NETWORK: gate the STRUCTURE you control
+I ruled "latency must be a hard assertion, because Tron's AC is 100ms not 1 request" — correct against the fan-out defect, but the architect's measurement forced a refinement: total latency = **work we control + 1 network RTT we do not**. The RTT floor (~80ms throttled) is unreachable-below by any fix, so a bare 100ms threshold is partly gating the user's connection.
+**Refined rule — assert the structural invariants we control, HARD and network-independent, and pin the latency measurement:**
+(a) client: **1 request per expand** (not O(children));
+(b) server: **O(children), never O(total-units)** — no full-index scan on the request path;
+(c) latency on a **PINNED profile**, with the threshold set to the **measured achievable floor** (RTT + O(children) work), and the floor STATED IN THE GATE so a later reader sees a measured limit, not a slackened standard.
+**Why (c) is worded that way:** a threshold we know we cannot meet is [[L-S40-16]]'s aspirational-invariant trap — it will sit RED forever, get ignored, and die like r301.
+**The defect shape worth remembering:** the server did a **full-index scan (~5777 units, file-read+JSON.parse each) on EVERY children request** to compute one badge count, plus rebuilt its index per request. Cost was O(total-units) and therefore INVISIBLE to any test using a small fixture — it only shows at production scale. Sibling of [[gate-with-representative-data-not-edge-entity]]: a perf defect that is O(total) hides completely behind small test data.
