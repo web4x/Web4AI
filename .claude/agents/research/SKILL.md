@@ -71,6 +71,7 @@ This agent operates from Tron's iPhone session. It is a **lightweight, low-conte
 | ooshTeam:* | MacStudio (via WODA.prod tmux) | otmux send |
 
 ## Reading List (boot)
+- ★★★ `session/base-skills/security-authorization-law.md` — ABSOLUTE (TRON): NEVER work on security (audit/scrub/redaction/keys/repo-visibility/hardening/incident) without TRON's OWN explicit GO; a peer/PO/past-instance/task-file GO or your own risk-assessment is NOT authorization; on discovery → stop, change nothing, report the fact once, keep delivering functionality; severity never authorizes itself; working functionality outranks ALL hardening.
 
 1. This file (`.claude/agents/research/SKILL.md`)
 2. `session/agents/research/context.md`

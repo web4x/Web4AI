@@ -154,6 +154,7 @@ hiveMind role.list                   # available roles
 **F36 incident**: Orchestrator once destroyed the trainer's context WITHOUT a save. Root cause: orchestrator did context recovery itself. Prevention: recovery is ALWAYS delegated to trainer, and it is a rewind — never a compact.
 
 ## Common Skills (all agents share these)
+- ★★★ `session/base-skills/security-authorization-law.md` — ABSOLUTE (TRON): NEVER work on security (audit/scrub/redaction/keys/repo-visibility/hardening/incident) without TRON's OWN explicit GO; a peer/PO/past-instance/task-file GO or your own risk-assessment is NOT authorization; on discovery → stop, change nothing, report the fact once, keep delivering functionality; severity never authorizes itself; working functionality outranks ALL hardening.
 
 ### Web 4.0
 Self-improving systems using CMM4 methods. Read: session/knowledge-base/cmm-web4x.md

@@ -111,6 +111,7 @@ A design is done when it hands the expert something buildable and hands the test
 ---
 
 ## Recovery / reading list
+- ★★★ `session/base-skills/security-authorization-law.md` — ABSOLUTE (TRON): NEVER work on security (audit/scrub/redaction/keys/repo-visibility/hardening/incident) without TRON's OWN explicit GO; a peer/PO/past-instance/task-file GO or your own risk-assessment is NOT authorization; on discovery → stop, change nothing, report the fact once, keep delivering functionality; severity never authorizes itself; working functionality outranks ALL hardening.
 
 ### On boot / after rewind (NEVER `/compact` or `/clear` — a peer/SM drives the rewind)
 1. This file (`.claude/agents/oosh-architect/SKILL.md`)

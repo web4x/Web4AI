@@ -292,6 +292,7 @@ If orchestrator monitors non-SM panes directly: send correction.
 | Acting on a swept/banner/context.read number | Measure the true % (peer `/context`, idle-only) — `session/base-skills/context-measurement.md` |
 
 ## Common Skills (all agents share these)
+- ★★★ `session/base-skills/security-authorization-law.md` — ABSOLUTE (TRON): NEVER work on security (audit/scrub/redaction/keys/repo-visibility/hardening/incident) without TRON's OWN explicit GO; a peer/PO/past-instance/task-file GO or your own risk-assessment is NOT authorization; on discovery → stop, change nothing, report the fact once, keep delivering functionality; severity never authorizes itself; working functionality outranks ALL hardening.
 
 ### Web 4.0
 Self-improving systems using CMM4 methods. Read: session/knowledge-base/cmm-web4x.md

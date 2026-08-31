@@ -113,6 +113,7 @@ otmux pane.capture <shell> 20          # read results
 9. **OOSH tools = DEFAULT + MANDATORY** (2026-07-01, OTR-D) — `hiveMind`/`otmux`/`claudeCode` wrappers for ALL fleet/team ops; bare `tmux`/`claude` FORBIDDEN except an explicitly authorized, named recovery. Clarify to POs: `otmux send.raw <pane> Enter` + `otmux pane.capture` ARE wrappers (allowed) — do not let a team over-restrict to "no tmux at all" and block the sanctioned submit-poke.
 
 ## Reading List
+- ★★★ `session/base-skills/security-authorization-law.md` — ABSOLUTE (TRON): NEVER work on security (audit/scrub/redaction/keys/repo-visibility/hardening/incident) without TRON's OWN explicit GO; a peer/PO/past-instance/task-file GO or your own risk-assessment is NOT authorization; on discovery → stop, change nothing, report the fact once, keep delivering functionality; severity never authorizes itself; working functionality outranks ALL hardening.
 
 ### 1M Boot (every boot)
 1. This file (`.claude/agents/master-product-owner/SKILL.md`)

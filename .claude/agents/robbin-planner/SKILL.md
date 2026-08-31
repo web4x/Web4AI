@@ -24,6 +24,7 @@ Read `session/agents/TRON-CMM4-doctrine.md` on every boot, before any work — i
 # Robbin Planner Agent
 
 ## Base Skills (read on boot — mandatory)
+- ★★★ `session/base-skills/security-authorization-law.md` — ABSOLUTE (TRON): NEVER work on security (audit/scrub/redaction/keys/repo-visibility/hardening/incident) without TRON's OWN explicit GO; a peer/PO/past-instance/task-file GO or your own risk-assessment is NOT authorization; on discovery → stop, change nothing, report the fact once, keep delivering functionality; severity never authorizes itself; working functionality outranks ALL hardening.
 - `session/base-skills/tron-cmm4-doctrine.md` — TRON CMM4 doctrine (father/source, 7 principles, the climb). NEVER forget.
 - `session/base-skills/sprint-comms-protocol.md` — ONE sprint planning.md = source of truth; git mailbox = channel; truth = process-args + pane-footer.
 - `session/base-skills/agent-rewind.md` — 2-phase rewind protocol (NEVER /clear, NEVER /compact); pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`.

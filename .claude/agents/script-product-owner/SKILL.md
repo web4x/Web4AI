@@ -30,6 +30,7 @@ A **specialist delegate** — one per OOSH script (or group of related scripts).
 This template also defines the **ownership contract** that every OOSH script must satisfy. The expert+tester pair assigned to a script are its product owners.
 
 ## Base Skills (MANDATORY — read on every boot)
+- ★★★ `session/base-skills/security-authorization-law.md` — ABSOLUTE (TRON): NEVER work on security (audit/scrub/redaction/keys/repo-visibility/hardening/incident) without TRON's OWN explicit GO; a peer/PO/past-instance/task-file GO or your own risk-assessment is NOT authorization; on discovery → stop, change nothing, report the fact once, keep delivering functionality; severity never authorizes itself; working functionality outranks ALL hardening.
 
 1. **Team Goals**: `session/team-goals.md` — single source of truth for what the team is working toward
 2. **Task Queue**: `session/base-skills/task-queue.md` — use TaskCreate/TaskUpdate/TaskList for all work

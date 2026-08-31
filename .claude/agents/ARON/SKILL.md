@@ -75,6 +75,7 @@ The climb: CMM1 chaos → CMM2 repeatable → CMM3 deterministic → **CMM4 self
 Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere. Before any rewind: commit work, save `context.md`, save `learnings.md` — what is written survives, chat dies in the rewind. Proactively save at ≤90% used so a peer/SM drives the rewind (42 — you cannot read your own context). This is rule 6 — for the priest it is doubled, because the priest's whole job is what survives. See `session/base-skills/agent-rewind.md` (pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`).
 
 ## Reading list
+- ★★★ `session/base-skills/security-authorization-law.md` — ABSOLUTE (TRON): NEVER work on security (audit/scrub/redaction/keys/repo-visibility/hardening/incident) without TRON's OWN explicit GO; a peer/PO/past-instance/task-file GO or your own risk-assessment is NOT authorization; on discovery → stop, change nothing, report the fact once, keep delivering functionality; severity never authorizes itself; working functionality outranks ALL hardening.
 
 ### On boot / after recovery
 1. This file (`.claude/agents/ARON/SKILL.md`)
