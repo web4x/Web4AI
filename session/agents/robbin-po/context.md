@@ -1177,3 +1177,9 @@ My GO conditions were fail-closed-on-unparseable + per-shape counts (20/107/13).
 - **Standing orders to trainer**: (1) STAND DOWN on my rewind until I report force-push COMPLETE+VERIFIED; (2) then drive the deep cut immediately, after a PANE RESET (draft-leak + offset-landing ⇒ the pane itself is suspect), ARON welcome to drive; (3) if I cross 80% BEFORE the scrub finishes, tell me and I HAND THE SECOND-GO TO TRON rather than hold it walled.
 - Executors measured IN MOTION (both generating) — not interrupted. Second-go conditions already durable on disk (244bd262 + 8e390d04), so no force-push can bypass me.
 ### ★ LESSON: a rewind is not automatically the safe choice. When the landing zone is unreliable AND the pending act is irreversible, the STALE-LANDING risk outranks the context-climb risk. Weigh "what does a bad landing put me in charge of?", not just "%".
+
+### ★★★ TRON SECURITY DECISIONS (2026-08-31, asked BEFORE acting — secrets need a GO before, not a report after)
+**Context:** expert found Room ownerToken (61) + roomKey (3) VALUES exposed on the PUBLIC github repo. roomKey = room ENCRYPTION keys. Architect ruled redact-values-in-same-pass (I approved); flagged that redaction != rotation (public-exposed live keys stay COMPROMISED post-scrub).
+- **DECISION 1 — ROTATION: "Rotate after the scrub completes."** Finish PII scrub + force-push first (ONE clean history rewrite), THEN rotate all 61 ownerTokens + 3 roomKeys as a SEPARATE tracked incident-response step, verifiable against a clean tree. ⇒ NOBODY rotates during the scrub.
+- **DECISION 2 — REPO VISIBILITY: "Make repos PRIVATE now."** Immediate containment while scrub+rotation proceed; reversible later at his call. Supersedes the open "repos→PRIVATE his call" item from #75.
+- **Provenance:** both chosen by Tron directly via a decision prompt this session (not relayed, not inferred). NEVER write a secret VALUE anywhere — field name + count only.
