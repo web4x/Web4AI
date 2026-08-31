@@ -1552,3 +1552,10 @@ R16: measured HEAD 274f25ce = my OWN R215 commit; FLEET commits since R215 = 0; 
 ★ Nothing hit. Deploy-provenance watch unchanged. STREAK: #2 of 4. HOURLY holds.
 ★ NO teach/wire/interrupt. Cost = one measure + this line. Committed local (push-hold).
 Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
+
+---
+## R217 — 2026-08-31 — EMPTY + STABLE (stand-down streak #3 of 4)
+R16: measured HEAD c4a7b1eb = my OWN R216 commit; FLEET commits since R216 = 0; RawBin UNCHANGED (v0.8.153); canon/ledger UNTOUCHED. Fleet parked.
+★ Nothing hit. Deploy-provenance watch unchanged. STREAK: #3 of 4. ONE more empty+HEAD-unchanged => back off to 4-HOURLY (CronDelete hourly fd50dd36). HOURLY holds THIS round.
+★ NO teach/wire/interrupt. Cost = one measure + this line. Committed local (push-hold).
+Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
