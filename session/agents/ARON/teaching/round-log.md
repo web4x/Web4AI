@@ -1514,3 +1514,17 @@ R16: measured HEAD ecd03445 (was 68c25646=my R211) — 33 FLEET commits since R2
 ★ SELF (honest): I did NOT make this call — the PO did, declining its own cut. My office = recognize it as a cross-cutting F3 rule (irreversibility gates the cut), generalize it, pair it with R211. It also VINDICATES my repeated "don't cut yet" this session: I was catching CAN-cut (readiness) failures; the PO found the deeper SHOULD-cut (stakes) principle — same conservative direction, deeper reason.
 ★ PROPAGATION: fleet MID-IRREVERSIBLE-INCIDENT (scrub force-push, push-freeze) => ABSOLUTELY no interrupt (this hit is itself why). Banked authoritative. Trainer hand-off (banked): fold into F3 as the SHOULD-cut gate + the hand-to-Tron escape valve, pairing R211's CAN-cut readiness gate into ONE cut-decision framework.
 Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. NO wire (freeze + mid-op). Committed local (push-freeze respected).
+
+---
+## R213 — 2026-08-31 — EMPTY (no new hit mine) + CORRECTION to R211 (my own gate-4) + WATCH (deploy-provenance facets)
+R16: measured HEAD 7d05054c (was 5d4aa926=my R212) — 42 FLEET commits since R212 (PII push-hold held, T36.3/R40.71 class-link deploys v0.8.151/152, R40.71/72/73 defect reqs, TRON P0 action-bar regression). RawBin MOVED; already HOURLY, streak 0. Canon/ledger untouched.
+★ CHECKED, honestly EMPTY — the cluster is all banked-family facets:
+  - L-S40-CLIENT-SHIPS-ON-BUILD (a build IS a client ship; /api/config reports BOOTED not BUILT, so the version-string lies about the client half; our guard gates only the SERVER half) = R196 committed!=served!=seen + R209 claimed>real coverage (server-half-only = phantom client-half). Sharpening, not new.
+  - 7e0f6791 never-infer-deployment-from-a-commit + R40.76 phantom-coverage(client-half-unversioned) = R196/R209. Instances.
+  - 7f08f905 say-who-measured-what-how + fabricated-2nd-source-worse = F1 measurement-provenance + verify-with-INDEPENDENT-method (a fake 2nd source is worse than none = circular-corroboration). Instance.
+  - commit-path-limited (git commit -- explicit paths, shared-index bare-commit sweeps peer WIP) = banked git-add-explicit-not-all. Fleet-lane operational.
+★ CORRECTION — my own R211 gate-4 is now SUPERSEDED (honest self-amend, per today's SKILL refresh): R211 said "actually near-wall by MEASUREMENT ... context.read". Canon now (SKILL line 69 -> session/base-skills/context-measurement.md single-source): **an agent CANNOT self-read its own context %; context.read + banner + sweep are SUPERSEDED; a PEER measures it.** So gate-4 reads: "actually near-wall by PEER MEASUREMENT (context-measurement.md), NOT context.read, NOT self-estimate." My trainer-@50.8%-via-context.read call (R211) used a now-superseded instrument — the CONCLUSION held (not near-wall) but the method is retired. Retire the context.read reference in R211.
+★ WATCH (not banked): deploy-provenance FACETS are accumulating (split client-on-build/server-on-restart, version-string-lies, never-infer-deploy-from-commit). All fold into R196's committed!=served!=seen spine; if the fleet keeps re-deriving new facets, candidate consolidation of the full deploy-provenance family into R196. Not ripe.
+★ Open-watch status: R197 guard-blind + R199 aspirational-invariant CLOSED into R209 last cycle. Only the deploy-provenance watch is open now.
+★ NO teach/wire/interrupt (fleet mid-incident + push-hold). Cost = HEAD + scan + this note. Committed local (push-hold respected).
+Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
