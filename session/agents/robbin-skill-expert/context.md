@@ -5,6 +5,10 @@
 **LAW 2 — WORKING USER-FACING FUNCTIONALITY OUTRANKS ALL hardening/cleanup/security, ALWAYS.** We do not build a secure system while basic functionality isn't delivered correctly.
 ## ★★★ END ABSOLUTE LAW ★★★
 
+## ★★★ 2026-08-31 PROD SURVEY (measure-only, v0.8.150 @390 WebKit) + FINDINGS ★★★
+Harness: scratchpad/prod-survey.mjs (webkit @390, localhost:4444 self-signed, absolute-import playwright + /opt/node22). Most surfaces RENDER. (1) / = OK menu. (2) /app = PROFILE-SETUP onboarding gate -> room list BEHIND it, NOT surveyable unprofiled (defect ONLY if a profiled user also sees it — needs profiled pass). (3) room-list/room = NOT reached. (4) /trace renders S37/Current=37.21/Last=36.5. (5) /scenario?ior= renders task header+actions. ★ FALSE-ALARM AVOIDED: 'access control checks' fetch errors = LOCALHOST SELF-SIGNED-CERT ARTIFACT (curl: /api/ior + /api/trace/children?mode=scenario both HTTP 200) — NOT a prod defect. ★★ REAL FINDING (MY LANE, actionable): CurrentSprint singleton PIN DRIFT — rendered current 37.21 == currentTaskUuid (1bf4acc5, faithful) BUT slots.current STALE = Task 37.2 (4bc1b3d5) != currentTaskUuid = two-source drift (stored slot stale vs derived). Fix candidate when PO greenlights. Caveats: self-signed localhost (not prod.wo-da.de) + fresh unprofiled user.
+## ★★★ END SURVEY ★★★
+
 
 ## ★★★ 2026-08-24 — ★ STANDING DUTY: I am THE SINGLE WRITER of task status (seam-tick liveness) READ FIRST ★★★
 **Tron critical-path (PO):** task statuses were NOT progressing AS AGENTS PROGRESS -> the board Tron watches is a DEAD picture. PO split (by CONSTRUCTION, not sprint ranges): **skill-expert (ME) = THE SINGLE WRITER** (I hold the seam) · **planner = THE EVIDENCE** (which sub-steps genuinely earned, via checklist-chain/overstatement/verify-owner-first audits). One writer => double-write impossible.
