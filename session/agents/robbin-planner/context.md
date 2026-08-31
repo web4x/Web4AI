@@ -1,3 +1,10 @@
+# 🔒 PII INCIDENT — report-leak REDACTED + bigger origin-exposure CLASSIFIED (2026-08-31) — READ FIRST
+
+- ✓ **MY REPORT LEAK (216c962ad) REDACTED:** I pasted a phone VALUE into the dirty-tree report while documenting the no-PII rule (the irony IS the lesson). Redacted by-reference (report 5d245068e + anchor e65cc7a7), value-gone verified, NOT pushed (local-only, all in the 135 local hotfix commits). History-scrub of 216c962ad = PO/Tron call (shared tree). Value also in: my earlier PO-pane msg (can't un-send) + scratchpad wt real-units (/tmp). [[classifying-pii-is-peak-leak-temptation]] banked.
+- ⚠⚠ **BIGGER (PO found via my /tmp thread): 20 contact-shaped units (phones+emails) TRACKED+PUSHED on origin/main = exposure LEFT THE MACHINE.** Classified VALUE-SAFE (grep -lq exit-code only, ZERO values anywhere; report 211fe71a0, uuids-only, NOT pushed): **REAL 1 (3effa1fc) / SYNTHETIC 0 / UNCLEAR 19 (->real per PO).** = NOT synthetic fixtures = reads as a REAL privacy incident -> PO escalating to Tron. Finer real/synth on the 19 = needs a VALUE-READING protocol (I did NOT do unprotocoled). ★ GUARD FINDING for structural req: 76f2cda7 className:None -> class-keyed PII grep returns ZERO -> detection MUST key on FIELD-SHAPE (phones/emails present) not class-name (discovered-not-hand-listed, R37.29/R37.31 family). Classification only, deleted/moved/rewrote NOTHING. Nothing moves till Tron.
+
+---
+
 # ✓✓ P0 PIN-UNBLOCK — RESOLVED (2026-08-31, expert end-to-end + live-verified) — READ FIRST
 
 **✓ RESOLVED: expert carried all remaining 9 units (7 sprint-37 tasks + transitive Req fcc34aa1 + UC 194398d2, f57d8188e pushed, transitive-closure fixpoint=0 dangling) + folded my sprint-40 5 (7a0a2d332) + RESTARTED server + LIVE-VERIFIED: pin = 'Sprint 37 — Active (designated)', 4 REAL children, NO fail-closed on /trace AND /model, recorder survived, R37.27 not regressed, served==committed==0.8.148. Live pin-resolution = the definitive round-trip proof (accepted, not re-swept per PO). Tron iOS verdict UNBLOCKED.**
