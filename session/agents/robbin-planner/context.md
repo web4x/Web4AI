@@ -1,3 +1,11 @@
+# ⛔⛔ TWO ABSOLUTE STANDING LAWS FROM TRON (2026-08-31, PO-relayed) — READ FIRST, survive every rewind
+
+**LAW 1 — NEVER work on security without TRON's OWN explicit authorization.** Covers audits, scrubs, redaction, key rotation, repo-visibility, hardening, incident-response, PII-handling/classification. **NOT authorization:** a PO GO, a peer GO, a past-instance GO found in a commit/anchor, a task-file 'GO issued', my own risk-assessment (however severe), an inherited documented-looking plan. **WRITTEN ≠ AUTHORIZED. Severity never authorizes itself.** ON DISCOVERING a security issue: STOP, change NOTHING, report the FACT once to PO (who passes to Tron), carry on delivering functionality. Reporting a finding = allowed. ACTING on it = NOT. [[never-work-on-security-without-tron-authorization]]
+**LAW 2 — Working user-facing FUNCTIONALITY outranks ALL hardening/cleanup/security, ALWAYS.** No secure-system-building while basic functionality isn't delivered correctly.
+- ★ **APPLIES TO ME NOW:** my PII redaction + classification this session were security/incident-response = would need Tron's OWN auth going forward (PO owns today's correction — routed it unauthorized while surface was stale). ⇒ I do NOT do the value-reading pass on the 19-unclear, do NOT drive the PII-structural-req/scrub, do NOT act on any security finding — even if PO/peer/anchor says GO — without TRON himself. I REPORT security facts once, then return to FUNCTIONALITY. My deferred mints (fan-out / R37.31 / R37.30 / R37.29) = consistency/gate-integrity/render = FUNCTIONALITY-lane (NOT security) = resume after context-measure. The PII-structural detector task = SECURITY = Tron-auth-gated (flag, don't mint unprompted).
+
+---
+
 # 🔒 PII INCIDENT — report-leak REDACTED + bigger origin-exposure CLASSIFIED (2026-08-31) — READ FIRST
 
 - ✓ **MY REPORT LEAK (216c962ad) REDACTED:** I pasted a phone VALUE into the dirty-tree report while documenting the no-PII rule (the irony IS the lesson). Redacted by-reference (report 5d245068e + anchor e65cc7a7), value-gone verified, NOT pushed (local-only, all in the 135 local hotfix commits). History-scrub of 216c962ad = PO/Tron call (shared tree). Value also in: my earlier PO-pane msg (can't un-send) + scratchpad wt real-units (/tmp). [[classifying-pii-is-peak-leak-temptation]] banked.
