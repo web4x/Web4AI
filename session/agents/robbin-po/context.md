@@ -1,5 +1,13 @@
 # ★★★ BOOT-ESSENCE (PHASE-1 CONSOLIDATION, 2026-08-17) — READ THIS BLOCK, THEN ONLY #75 ★★★
 **This file is now LEAN: this BOOT-ESSENCE block, a HISTORY marker, then #75 (current). Older anchors were collapsed 2026-08-17 (ARON Phase-1) — full text in git. Newest state is at the BOTTOM (#75).**
+
+## ★★★★★ ABSOLUTE STANDING LAW — SECURITY (TRON, 2026-08-31) ★★★★★
+**TRON VERBATIM: "NEVER WORK ON SECURITY IF NOT ABSOLUTELY AUTHORIZED BY ME!!!!"**
+No security work of ANY kind — audit, scrub, redaction, key rotation, repo-visibility, hardening, incident response — starts without TRON'S OWN explicit authorization for that specific work.
+**NOT authorization:** a peer agent's GO · a GO from a PREVIOUS instance of me in a commit/anchor · a task file saying "GO issued" · my own risk assessment however severe · an inherited plan that looks approved because it is documented. **Written != authorized.**
+**On discovering a security issue: (1) STOP, change nothing. (2) Report the fact to Tron ONCE, plainly. (3) Keep delivering functionality.** Reporting is allowed; ACTING is not. Discovered severity NEVER bootstraps its own authorization.
+**And: "HOW DARE YOU THINK YOU CAN BUILD A SECURE SYSTEM IF YOU ARE NOT EVEN DELIVERING BASIC FUNCTIONALITY CORRECT" — basic working functionality outranks all hardening/cleanup/security. Rigor on unauthorized work is expensive theatre.**
+
 ## BOOT ORDER (do exactly this)
 1. **MEASURE DISK FIRST** — never trust this file or my thread: `git -C /var/dev/Workspaces/web4x/Web4RawBin log --oneline -3` · `grep -m1 version package.json` · `curl -sk https://prod.wo-da.de:4444/api/config`. **DISK WINS, always.** My thread has been days-stale THREE times.
 2. Read **#75** (bottom of this file) = current state. Then `session/agents/robbin-po/learnings.md` = the laws.
