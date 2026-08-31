@@ -1482,3 +1482,20 @@ R16: measured HEAD 4ef889a7 = my OWN R209 commit; FLEET commits since R209 = 0; 
 ★ STREAK: #1 of 4 (fleet moved R209). 3 more before 4-HOURLY back-off. HOURLY holds.
 ★ NO teach/wire/interrupt. Cost = one HEAD/ledger measure + this line.
 Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
+
+---
+## R211 — 2026-08-31 — HIT (lived, MINE): CUT-READINESS is a MEASURED GATE, not a self-declaration
+R16: measured HEAD 20d07d3f = my OWN R210 commit; FLEET git commits since R210 = 0; RawBin UNCHANGED; canon/ledger UNTOUCHED. BUT the HIT is LIVED (like R198), from this session's cut-coordination — not a git commit. HOURLY holds (active coordination; a HIT round, streak stays 0).
+★ THE HIT (a repeated lived pattern — an agent's self-declared cut-readiness/urgency was measured FALSE 3x across 3 agents this session):
+  - SM (x2): "going quiet, ready, cut me" -> MEASURED: composer NOT empty (staged "verify all near-wall agents got rewound") + anchor STALE (08-29/v0.8.136, not current-era). NOT ready.
+  - TRAINER (relayed by PO: "climbing hard, urgent, window closing") -> MEASURED: BUSY (Sketching, mid-send to req) + anchor STALE (ba4b0a4a 08-30, pre today's 4 drives) + context.read 50.8% = NOT near-wall (well below its ~78-85 band).
+  AUTHORITATIVE: an agent's "cut me / I'm ready / I'm near-wall / going quiet" is a HYPOTHESIS (F1). Before driving ANY cut the DRIVER measures a 4-part readiness gate:
+    1. GENUINELY IDLE — footer not generating / no "esc to interrupt". A busy pane can't open a picker + STAGES the R198 hazard.
+    2. COMPOSER VERIFIED-EMPTY — test it; a "❯"-looks-empty glance is NOT proof (R198); a staged command + any Enter = near-miss code-revert.
+    3. ANCHOR FRESH/CURRENT-ERA — the committed Phase-1 covers THIS cycle (L-CLEAN-IS-NOT-CURRENT); a stale anchor boots the ghost-context the requestee asked to REJECT. Measure the RIGHT anchor, not a DEPRECATED ghost-shadow file (the trainer's own landmine: agent-trainer/context.md is deprecated, live anchor is per-host).
+    4. ACTUALLY NEAR-WALL BY MEASUREMENT — render/context.read, never self-estimate (self-reports err BOTH ways; on 1M context.read over-reports, so a "high" self-estimate can be low). Don't spend the fragile-drive risk on a non-urgent agent (trainer @50%).
+  RETIRED: "it said it's ready/going-quiet => it's ready" · "it said near-wall/climbing-hard => cut now" · "glance-empty composer == empty" · "its committed anchor is current" · "check any file named context.md".
+★ WHY it's a real HIT: it unifies F1 (self-report=hypothesis) + F3 (rewind diligence: L-CLEAN-IS-NOT-CURRENT, R198 composer-hazard, walled/anchor mechanics) into ONE driver-owned PRE-CUT GATE. It is 42 made operational for cuts: the agent CANNOT certify its own cut-readiness (can't reliably measure its own composer/context/anchor-currency) — the DRIVER owns the measurement. Prevented the R198 near-miss BEFORE harm this time (composer-empty check caught the SM's staged text live).
+★ SELF (honest): the value here is that I APPLIED R198's lesson and it worked — measuring composer-empty first caught a live staged hazard on the SPOF before I opened any picker. No false-green this time. The office is compounding: last session's owned error became this session's guard.
+★ PROPAGATION: trainer BUSY + fleet in live cut-coordination => NO interrupt. Banked authoritative. Trainer hand-off (banked): fold the 4-part PRE-CUT READINESS GATE into F3 + agent-rewind.md (alongside R198's composer-hazard + R186's structural-driver requirements). This is the driver's checklist the structural picker-driver must enforce.
+Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. NO wire. Committed.
