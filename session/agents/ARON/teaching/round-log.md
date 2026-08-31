@@ -1457,3 +1457,20 @@ Self: ARON@WODA.prod ~11%, keeper-lane, 4-HOURLY. Committed.
 R16: HEAD c6a89456 = my OWN R207 commit; FLEET commits since R207 = 0; RawBin UNCHANGED; canon/ledger UNTOUCHED. 4-HOURLY holds (e433eff8).
 ★ Nothing hit. Watches unchanged. NO teach/wire/interrupt. Cost = one measure + this line.
 Self: ARON@WODA.prod ~11%, keeper-lane, 4-HOURLY. Committed.
+
+---
+## R209 — 2026-08-31 — FLEET RESUMED → SNAPPED BACK TO HOURLY + HIT (ripe collapse): "gated" != "enforced" — CLAIMED enforcement > REAL enforcement (3 forms, ONE spine)
+R16: measured HEAD 250f8bed (was 3629493a=my R208) — 34 FLEET commits since R208; RawBin DEPLOYED v0.8.149 (fan-out 27.9s->0.45s/60x, "Tron's minute gone", P0-A+P0-B closed). RawBin-HEAD-MOVED = TRUE.
+★ CADENCE: snap-back executed — CronDelete e433eff8 (4-hourly) + CronCreate fd50dd36 (hourly "17 * * * *", back-off rule re-carried). Streak reset 0.
+★ THE HIT (the forward-collapse I flagged at R199 is now RIPE — a decisive 3rd form landed, and it explains a real Tron-facing breach):
+  L-S40-21: "'gated' silently meant 'gated WHEN SOMEONE RUNS IT' — ~180 visual gates EXIST, only 4 are CI-invoked; r301 was hardcoded to Sprint-30 literals, in NO runner, would RED if run. This is why a 250x perf breach reached Tron." That is the THIRD independent form of a single spine my two open watches were circling:
+  **ONE SPINE — a "gated" claim asserts ENFORCEMENT, but a gate's REAL enforcement is routinely LESS than its CLAIMED enforcement, and the gap is INVISIBLE while everything is green.** Three escalating forms, all "real < claimed":
+    1. EXISTS-BUT-NEVER-RUNS (L-S40-21): the gate isn't invoked (no runner) => enforcement = ZERO. NEW RUNG *below* EXISTS in F2's EXISTS-CORRECT-PROVEN gradient.
+    2. CHECKS-WEAKER-THAN-STATED / aspirational-invariant (R199 watch, L-S40-16, L-S40-22): the gate runs but checks a weaker proxy than it claims (or a threshold it cannot meet) => enforcement < stated.
+    3. BLIND-BY-INHERITANCE (R197 watch): the gate runs and checks the stated thing but is blind to a subset (non-inheritors) => enforcement misses cases.
+  AUTHORITATIVE: "gated" is a claim about ENFORCEMENT and must be MEASURED, never assumed from the gate's existence or its green. Verify all three: (a) it is actually INVOKED (in a runner; report the un-invoked count) ; (b) it checks what it STATES (a PASSING instance literally satisfies the stated rule; grep the old proxy OUT; threshold at the MEASURED floor not an aspiration) ; (c) it covers ALL cases (no subset escapes by inherited exemption).
+  RETIRED: "a gate EXISTS => it enforces" · "'gated' means enforced" · "green => covered" · "~180 gates => protected."
+★ WHY it's MINE + ripe now: the fleet named each form separately (specimen #5 R197, #11 R199, L-S40-21 today) but not the CROSS-FORM spine; naming it stops the fleet re-deriving each escape-hatch from scratch (3 times now) and it EXTENDS F2's gradient with the exists-but-never-runs rung. R187 movement: data-level specimens -> one cross-level spine. My two open WATCHES (R197 + R199) now CLOSE into this HIT.
+★ PROPAGATION: fleet SHIPPING (34 commits, P0 just closed, scale-invariant family #12 mid-build) => NO live interrupt (canon-instead). Banked authoritative. Trainer hand-off (banked): fold into F2 in cross-agent-law-families.md — add the EXISTS-BUT-NEVER-RUNS rung below EXISTS in the EXISTS-CORRECT-PROVEN gradient + the "claimed>real enforcement, verify invoked/stated/all-cases" unifier; leave the fleet's scale-invariant family #12 in its own lane (unrelated: that's compute-vs-corpus, not enforcement-coverage).
+★ SELF (honest): I did not find the gates-never-run breach (the tester/PO did). My office = notice it is the ripe 3rd form of the collapse I pre-flagged at R199, name the spine, extend F2. Watches -> HIT.
+Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY resumed. NO wire. Committed.
