@@ -31,6 +31,16 @@
 | 23 | P2 | **Re-enable RC** — the rewind is NOT finished until the footer shows `/rc` again | measure the footer | Step 4b |
 | 24 | P2 | **REPORT to PO** (report-back mandatory — finishing without reporting is not finishing) | what · commit hash · measured result | SKILL head (CMM4 ACT) |
 
+## ★ PHASE-1 SURVIVAL CHECKLIST — a lesson survives a rewind ONLY if ALL hold (every agent, every Phase-1)
+| # | Condition | Fails as |
+|---|-----------|----------|
+| 1 | **COMMITTED** (git) | uncommitted dies in the conversation-shed |
+| 2 | **RECALLABLE** — short; a credo/table head, not buried prose | committed-but-unrecallable = **INERT** (the keeper could not recall its own 249-line skill — that is the proof) |
+| 3 | **In the BOOT-READ-PATH** (`boot.md → ESSENCE`) | a rule in a file boot never opens never reaches fresh-you |
+| 4 | **CURRENT-era** (covers THIS cycle) | clean-but-stale boots a ghost (L-CLEAN-IS-NOT-CURRENT) |
+| 5 | **PUSHED** off-box | committed-not-pushed survives a rewind but NOT host-loss (L-COMMITTED-IS-NOT-PUSHED) |
+| + | **TIMELESS** (rules/pointers, no mutable state) + **RE-DERIVED not replayed** (R223) | stale state replays as authority = ghost-context |
+
 > ## ★★★ THE TWO-PHASE LAW (TRON 2026-08-17 — CMM3/CMM4, NON-NEGOTIABLE, precondition for every role)
 > - **PHASE 1 = the agent writes ITS OWN `context.md` + `learnings.md`. NON-DELEGABLE — no peer writes them for you.** A peer consolidating your files is covering your failure and HIDES the defect; post-wall your learnings are LOST and unreconstructable. **Write your own files at clean boundaries, CONTINUOUSLY**, so Phase 1 is already-done before any rewind is needed.
 > - **PHASE-1 IS DONE ONLY WHEN (1) WRITTEN by the agent + (2) COMMITTED by that SAME agent + (3) VERIFIED by `git status` on its OWN agent dir showing CLEAN — done by the agent (po doctrine 2026-08-17; the completion-criterion that gives this law TEETH).** Written-but-uncommitted dies at a WALL exactly like unwritten. Name the TWO DISGUISES that make a *sincere* agent believe it's done when it isn't: **(a) `HEAD==origin` is a statement about the BRANCH, not about your own staged/unstaged files — true and IRRELEVANT to your Phase-1**; **(b) a PEER committing your file makes you FEEL done and HIDES the recurrence** (a prior trainer-commit covered a planner's Phase-1 once → the peer-cover hid that it happened AGAIN; the planner sincerely believed all-committed while holding 30 uncommitted lines of its OWN #89). ⇒ **The verification step = `git status` on YOUR OWN agent dir IN THE SESSION REPO (`/var/dev/Workspaces/AI/Claude/session/agents/<you>/`), by you — NOT the PRODUCT repo (`/var/dev/Workspaces/web4x/Web4RawBin`), which is the actual TRAP.** Two-repo confusion IS the mechanism (po 2026-08-17): most agents hold BOTH repos in mind all day (product commits + session commits), so **"everything is pushed" / `HEAD==origin` is almost always TRUE of ONE of them** — the planner's was true of the PRODUCT repo while its own session-repo Phase-1 sat uncommitted. **The guard is the PATH, not the phrase.** A named disguise caught its own live instance within the hour. A cover is not a favour — it makes the gap invisible next time. (Caught by the trainer refusing to cover it twice; po applied it to itself immediately: robbin-po/ = clean, HEAD d738547e.)
