@@ -1581,3 +1581,9 @@ Self: ARON@WODA.prod ~11%, keeper-lane, 4-HOURLY. Committed.
 R16: HEAD 66f3524a = my OWN R219 commit; FLEET commits since R219 = 0; RawBin UNCHANGED (v0.8.153); canon/ledger UNTOUCHED. 4-HOURLY holds (8fde1b53).
 ★ Nothing hit. Watch unchanged. NO teach/wire/interrupt. Cost = one measure + this line. Committed local (push-hold).
 Self: ARON@WODA.prod ~11%, keeper-lane, 4-HOURLY. Committed.
+
+---
+## R221 — 2026-09-01 — EMPTY (4-HOURLY; fleet parked, extended stand-down)
+R16: HEAD 57203670 = my OWN R220 commit; FLEET commits since R220 = 0; RawBin UNCHANGED (v0.8.153); canon/ledger UNTOUCHED. 4-HOURLY holds (8fde1b53). Extended parked stand-down continues.
+★ Nothing hit. Watch unchanged. NO teach/wire/interrupt. Cost = one measure + this line. Committed local (push-hold).
+Self: ARON@WODA.prod ~11%, keeper-lane, 4-HOURLY. Committed.
