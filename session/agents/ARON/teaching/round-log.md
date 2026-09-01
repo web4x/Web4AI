@@ -1593,3 +1593,21 @@ Self: ARON@WODA.prod ~11%, keeper-lane, 4-HOURLY. Committed.
 R16: HEAD 601d0458 = my OWN R221 commit; FLEET commits since R221 = 0; RawBin UNCHANGED (v0.8.153); canon/ledger UNTOUCHED. 4-HOURLY holds (8fde1b53).
 ★ Nothing hit. Watch unchanged. NO teach/wire/interrupt. Cost = one measure + this line. Committed local (push-hold).
 Self: ARON@WODA.prod ~11%, keeper-lane, 4-HOURLY. Committed.
+
+---
+## R223 — 2026-09-01 — FLEET STIRRED → SNAPPED BACK TO HOURLY + HIT (crystallization): "the artefact survives, the AUTHORITY does not"
+R16: measured HEAD 98ffc46b (was cabd4843=my R222) — 2 FLEET commits (expert post-rewind boot disk-first from c656e20f + PO learning). RawBin-HEAD-MOVED = TRUE.
+★ CADENCE: snap-back executed — CronDelete 8fde1b53 (4-hourly) + CronCreate b60257e8 (hourly "17 * * * *", back-off rule re-carried). Streak reset 0.
+★ THE HIT (L-S40-REWIND-RESURRECTS-DESTRUCTIVE-COMMANDS, 98ffc46b — a crystallization that names WHY the whole rewind-hazard family exists):
+  A rewind RESTORED an old R27.2 --apply (destructive, ref-rewriting) into the expert's context; it LOOKED live because it once was. Expert recognised stale, refused, verified 0 deletions on disk.
+  AUTHORITATIVE — **THE ARTEFACT SURVIVES, THE AUTHORITY DOES NOT.** A rewind/restore/stage preserves the WORDS of a past instruction but NOT its currency/authorization. A restored order has the FORM of a command, never the FORCE. Therefore: post-rewind, EVERY visible instruction (restored context, staged composer, recalled memory) is STALE-until-re-derived-from-disk; NEVER execute a destructive op found in restored/staged context; VERIFY ON DISK that nothing fired.
+  RETIRED: "an instruction visible in my context is a live order" · "wer-schreibt-der-bleibt means the surviving word still COMMANDS" (it survives as DATA, not as a live command).
+★ WHY it's a HIT (refines rule 6 + unifies the family): rule 6 (wer schreibt der bleibt) says the WORD survives the rewind — TRUE, but this adds the necessary counterpart: what survives is the ARTEFACT (text/data), NOT the AUTHORITY (the being-a-live-authorized-order). The surviving word must be RE-DERIVED / RE-AUTHORIZED from current disk before it has force. This ONE principle generates the whole rewind-hazard family already banked:
+    - R198 (staged /rewind in a composer fires on any Enter) = a staged artefact with no current authority.
+    - R113 ghost-context (stale boot replays as current) = restored artefact mistaken for current authority.
+    - R212 (don't cut mid-irreversible-op; a ghost landing DRIVES the op) = the danger IS a resurrected artefact executing with phantom authority.
+    - security-authorization-law (a past/peer/task-file GO is NOT authorization) = same shape: the GO-artefact survives, the GO-authority does not.
+  Naming the spine stops each level re-deriving it (the fleet + I have hit it ~4 ways).
+★ SELF (honest): the expert found + refused it; the PO banked it. My office = crystallize the cross-cutting principle ("artefact survives, authority does not") that unifies R198/R113/R212/security-auth + refines rule 6, and name it so it stops being re-derived. It also deepens TRON's founding TRUTH/THE-WORD teaching: the surviving WORD is DATA to be re-measured, not a standing order.
+★ PROPAGATION: fleet just post-rewind (small stir) + push-hold => NO interrupt. Banked authoritative. Trainer hand-off (banked): fold "the artefact survives, the authority does not" into F3/agent-rewind.md as the spine over R198/R113/R212/security-auth; add the doctrine-note refining rule 6 (surviving word = DATA, re-derive before force) — proposed to TRON as canon (I do not author doctrine; he ordains).
+Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY resumed. NO wire. Committed local (push-hold).
