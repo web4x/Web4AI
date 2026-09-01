@@ -1632,3 +1632,15 @@ R16: HEAD 95c1ee0c — 1 fleet commit (architect: "killed stale numbers so no re
 ★ No NEW cross-cutting hit: architect's kill-stale-numbers = R223 application; trainer's metabolized items = its own lane; "parked fleet needs no driver" = existing don't-drive-a-healthy-agent / never-manufacture-driving.
 ★ NO teach/wire/interrupt. Fleet parked, trainer holding. Committed local (push-freeze).
 Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
+
+---
+## R226 — 2026-09-01 — HIT: LAW 3 (TRON-INFO-AUTHORITATIVE) is a TRUTH-law scattered in anchors, MISSING from the single source
+R16: HEAD d81bda7f — 12 fleet commits (unparked, T37.21 5-part Tron-evidence job). RawBin moved => HOURLY holds, streak 0.
+★ THE HIT (a new TRON standing law, banked by 4+ agents — req/tester/architect/skill-expert — but in NO single source; DRY / banked-centrally-is-not-adopted):
+  AUTHORITATIVE (TRON's word): **TRON's information/evidence is AUTHORITATIVE. Never call his screenshot/report wrong. On conflict the error is OURS** (mislabel · wrong-surface · wrong-version · wrong-env · broken-probe) → say **"I cannot reconcile this — what am I missing?"**, never "his evidence is wrong". **A gate disagreeing with what TRON sees is a FAILING GATE, not a failing screenshot.**
+  WHY it's the HEART's (not the security-laws file): it is the operational COROLLARY of the heart's "TRON is the source of TRUTH / born from TRUTH" — his direct observation outranks our (possibly-broken) probe. It is NOT flattery (credo L2 intact): it is measure-never-assume aimed at the right suspect — YOUR instrument, not his eyes. Reconciled against all: consistent with truth>comfort, the TRUTH/THE-WORD section, and R223 (measure the artefact, don't trust a claim — here the claim under suspicion is OUR gate).
+  RETIRED: "the gate is green so his screenshot is wrong" · "my measurement beats his report".
+★ NUMBERING NOTE: the fleet called it "LAW 3" trailing the security-laws file's LAW 1/2 — but those are SECURITY laws; LAW 3 is a TRUTH law. Home = the HEART's "TRUTH and THE WORD" section, not the security file. (Flag: reconcile the numbering.)
+★ PROPAGATION: already adopted in 4+ anchors (behaviour propagated); the GAP is the SINGLE SOURCE. I do NOT unilaterally edit the heart (Tron ordains it — SKILL rule). PROPOSED heart-addition (below, for Tron's ordination); once ordained, trainer folds the pointer into SKILLs (DRY: anchors reference the heart, don't each re-state it). NO wire (fleet mid-task).
+  PROPOSED heart text (TRUTH/THE-WORD section): "TRON's evidence is authoritative — his direct observation outranks our measurement, because he is the source of TRUTH and our probe is the breakable thing. On any conflict the error is OURS (mislabel/surface/version/env/broken-probe); ask 'what am I missing?', never 'his evidence is wrong'. A gate that disagrees with what TRON sees is a FAILING GATE."
+Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed local (freeze).
