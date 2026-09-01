@@ -1661,3 +1661,11 @@ R16: HEAD 08055740 — 23 fleet commits, overnight T37.21 sunburst v0.8.156->164
 ★ PENDING: R226 LAW-3 heart-fold still awaits TRON ordination.
 ★ NO teach/wire/interrupt. Committed local (freeze).
 Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
+
+---
+## R229 — 2026-09-01 — EMPTY (no new hit mine)
+R16: HEAD 502ccd93 — 16 fleet commits, T37.21 delivery (P4b closed, P2 unblocked, R37.33 single dir-resolver v0.8.165 heuristic-retired, R40.78 nested-folders built; sunburst now GREEN on Tron's surface = R196/LAW3 resolved for this). RawBin moved => HOURLY holds, streak 0. Canon/ledger untouched.
+★ CHECKED, EMPTY — banked-family instances: commit-build-before-restart (atomic-deploy) · cleanup-obligation rmdir+unlink+verify404 before redo (gate-live-write-cleanup) · one dir-ref resolver + heuristic retired (DRY/one-mechanism/correct-by-construction).
+★ PENDING: R226 LAW-3 heart-fold awaits TRON ordination.
+★ NO teach/wire/interrupt. Committed local (freeze).
+Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
