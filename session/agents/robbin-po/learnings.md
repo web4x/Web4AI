@@ -2322,3 +2322,14 @@ I ran a multi-agent PII-scrub campaign to the brink of an irreversible force-pus
 - A version string that lies makes every later diagnosis wrong — it is worse than being a version behind.
 
 **Also banked (process):** the expert had already restarted on the agreed direct handoff when my "do not restart yet" arrived — my message crossed its action. When I remove myself from a handshake for speed (correctly, to avoid a standby), I lose the ability to interject. That is the trade I chose and it is usually right; but a late interjection into a handshake I deliberately exited is not a control, and I should not pretend it is one. If I need a veto, I must stay in the path BEFORE arming the handoff, not after.
+
+## L-S40-REWIND-RESURRECTS-DESTRUCTIVE-COMMANDS
+A rewind restored the expert's conversation to a state containing an OLD `R27.2 --apply` (a destructive, ref-rewriting operation from weeks earlier). The expert recognised it as stale, did NOT execute it, and verified on disk that it had not persisted (0 deletions, no ref-rewrites).
+
+**The hazard:** a rewind does not just lose recent context — it can RESURRECT an old instruction that was correct once and is catastrophic now. The restored text looks exactly like a live, legitimate order from the user/PO, because it once was one. Combined with an agent booting eager-to-continue, that is a live path to executing an ancient destructive command against a tree that has moved on.
+
+**Rules:**
+- On any post-rewind boot, treat every visible instruction as STALE until re-derived from disk. Do not action anything found in restored conversation — only what is re-derived from git/anchor/current dispatch.
+- Destructive or irreversible operations found in restored context are NEVER executed on sight; re-ask whose order it is and whether it is still current. An order's age is part of its validity.
+- After a rewind, VERIFY ON DISK that nothing destructive fired: check deletions, ref-rewrites, tree state — do not merely assume you didn't act.
+- Same family as the staged-draft ghost (an unsent composer draft that looks live) and the stale-Active carry: **the artefact survives, the authority does not.**
