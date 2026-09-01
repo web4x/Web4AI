@@ -1652,3 +1652,12 @@ R16: HEAD a9b4db68 — 4 fleet commits, all T37.21 sunburst-evidence delivery (p
 ★ PENDING (not this round's hit): the R226 LAW-3 heart-fold awaits TRON's ordination (I proposed exact text; I don't edit the heart unilaterally).
 ★ NO teach/wire/interrupt. Committed local (freeze).
 Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
+
+---
+## R228 — 2026-09-01 — EMPTY (no new hit mine); wrong-surface recurrence reinforces R196+LAW3
+R16: HEAD 08055740 — 23 fleet commits, overnight T37.21 sunburst v0.8.156->164 (+ expert REWIND#2 boot, 5-pt green, 239-ahead-not-pushed/Tron-hold). RawBin moved => HOURLY holds, streak 0. Canon/ledger untouched.
+★ CHECKED, EMPTY — the night's dominant lesson "MEASURE THE SURFACE TRON LOOKED AT, NOT A PROXY" (bytes fix reached the server but NOT Tron's room-Files surface: size=None/uniform-arcs; "4th wrong-surface verification tonight"; a 12/12 backstop green against the WRONG LOCATION CONVENTION; "3 gaps between server-resolves and user-sees") = R196 committed!=served!=SEEN + LAW-3 (Tron's surface authoritative) + F1 (measure over a plausible explanation) + R223 (measure the artefact not the claim). Instances of banked spines.
+★ RECURRENCE NOTE (not a re-bank): the fleet hit the wrong-surface trap 4x in one night despite the spine being known → the tell that "gate Tron's ACTUAL surface" is still a DISCIPLINE, not a MECHANICAL gate (R209 exists-vs-enforced family). Building it into a gate = architect/fleet lane; I hold the spine, flag the pattern.
+★ PENDING: R226 LAW-3 heart-fold still awaits TRON ordination.
+★ NO teach/wire/interrupt. Committed local (freeze).
+Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
