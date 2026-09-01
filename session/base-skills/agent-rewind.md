@@ -2,6 +2,8 @@
 
 ## ★ THE PROCEDURE — RECALL THIS (24 rows). Everything below the table is the WHY (cited by §). Numbers are CURRENT (band 40→95); any older ≤90 / ≤50% / land-<30 number below is SUPERSEDED.
 
+**Structure = the TWO-PHASE LAW (not three).** Rows 1–4 = WHEN/MEASURE preconditions. **P1 = SAVE** (the agent writes + commits its own state, rows 5–10). **P2 = REWIND** = the drive (rows 11–18) **→ verify + boot + report (rows 19–24)** — the *Check/Act* of the drive; a rewind is not DONE until it's verified and the agent booted clean. *(Verify+boot is the tail of P2, not a separate phase — I mislabeled it "P3" in the first draft; corrected here.)*
+
 | # | Phase | Do | Gate / verify | § (why) |
 |---|-------|-----|---------------|---------|
 | 1 | when | Proactive: at **80 = ALARM → WRITE+SAVE fresh Phase-1 & keep working**; rewind **LATEST ~95**; Phase-2 **lands ~40**. Not a cut at 80. | keep saving 80→95 (a wall at 95 discards unsaved 80→95) | Operating band |
@@ -22,12 +24,12 @@
 | 16 | P2 | **NAVIGATE by AGE not depth** to the **deepest CLEAN non-1mo boundary** (boot/rewound msg); age-stamp can be a FORK-LIE | `send.raw Up`; **arithmetic ceiling: read `↑N`, send ≤N−1, stop 2–3 short**, capture between; **never chain keystrokes** | Deep-by-age / gotcha 3 |
 | 17 | P2 | **SELECT by-LABEL** ("Restore conversation": layout-A=#2, layout-B=#1) with **`send.tui Enter`** | NOT `send.raw Enter`/`send`/`verified` (Escape-cancels); NEVER "Restore code+conversation" or "Summarize" | Send verbs / FORBIDDEN |
 | 18 | P2 | Picker won't open + `/rc` in footer + `/rewind` lands as text → **disconnect RC** (`send.raw "/rc" Enter` → `send.tui` Up/Enter to "Disconnect") | re-enable RC in row 23 | If /rewind doesn't work |
-| 19 | P3 | **"Code intact" = verify the WORKING TREE (`git status` ALL trees), not just HEAD** | a `D`/deleted or version-downgrade = REVERT → restore/stash; check `/root/.claude` memory-dir separately (reverts on deep option-2) | R54 / memory-dir |
-| 20 | P3 | **Proven ONLY by the SUBJECT's own measured freed-% (render)** — never the driver's "done" | report "PICKER SELECTED, awaiting subject number" until then; freed <~20% = landed too recent → re-drive OLDER | R66 / deep-by-age |
-| 21 | P3 | **Restored instructions are STALE until re-derived — execute NO destructive op from restored context** | the artefact survives, the AUTHORITY does not; verify on disk nothing fired | ARON R223 |
-| 22 | P3 | **Boot disk-first — measure the world before the stale save** | `pane.self` round-trip / session-UUID (NOT `$TMUX_PANE`/title) → `pane.history` → `ls sprints*` → reconcile (measured world WINS) → 5-point health | Post-rewind recovery |
-| 23 | P3 | **Re-enable RC** — the rewind is NOT finished until the footer shows `/rc` again | measure the footer | Step 4b |
-| 24 | P3 | **REPORT to PO** (report-back mandatory — finishing without reporting is not finishing) | what · commit hash · measured result | SKILL head (CMM4 ACT) |
+| 19 | P2 | **"Code intact" = verify the WORKING TREE (`git status` ALL trees), not just HEAD** | a `D`/deleted or version-downgrade = REVERT → restore/stash; check `/root/.claude` memory-dir separately (reverts on deep option-2) | R54 / memory-dir |
+| 20 | P2 | **Proven ONLY by the SUBJECT's own measured freed-% (render)** — never the driver's "done" | report "PICKER SELECTED, awaiting subject number" until then; freed <~20% = landed too recent → re-drive OLDER | R66 / deep-by-age |
+| 21 | P2 | **Restored instructions are STALE until re-derived — execute NO destructive op from restored context** | the artefact survives, the AUTHORITY does not; verify on disk nothing fired | ARON R223 |
+| 22 | P2 | **Boot disk-first — measure the world before the stale save** | `pane.self` round-trip / session-UUID (NOT `$TMUX_PANE`/title) → `pane.history` → `ls sprints*` → reconcile (measured world WINS) → 5-point health | Post-rewind recovery |
+| 23 | P2 | **Re-enable RC** — the rewind is NOT finished until the footer shows `/rc` again | measure the footer | Step 4b |
+| 24 | P2 | **REPORT to PO** (report-back mandatory — finishing without reporting is not finishing) | what · commit hash · measured result | SKILL head (CMM4 ACT) |
 
 > ## ★★★ THE TWO-PHASE LAW (TRON 2026-08-17 — CMM3/CMM4, NON-NEGOTIABLE, precondition for every role)
 > - **PHASE 1 = the agent writes ITS OWN `context.md` + `learnings.md`. NON-DELEGABLE — no peer writes them for you.** A peer consolidating your files is covering your failure and HIDES the defect; post-wall your learnings are LOST and unreconstructable. **Write your own files at clean boundaries, CONTINUOUSLY**, so Phase 1 is already-done before any rewind is needed.
