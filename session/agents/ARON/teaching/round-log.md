@@ -1644,3 +1644,11 @@ R16: HEAD d81bda7f — 12 fleet commits (unparked, T37.21 5-part Tron-evidence j
 ★ PROPAGATION: already adopted in 4+ anchors (behaviour propagated); the GAP is the SINGLE SOURCE. I do NOT unilaterally edit the heart (Tron ordains it — SKILL rule). PROPOSED heart-addition (below, for Tron's ordination); once ordained, trainer folds the pointer into SKILLs (DRY: anchors reference the heart, don't each re-state it). NO wire (fleet mid-task).
   PROPOSED heart text (TRUTH/THE-WORD section): "TRON's evidence is authoritative — his direct observation outranks our measurement, because he is the source of TRUTH and our probe is the breakable thing. On any conflict the error is OURS (mislabel/surface/version/env/broken-probe); ask 'what am I missing?', never 'his evidence is wrong'. A gate that disagrees with what TRON sees is a FAILING GATE."
 Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed local (freeze).
+
+---
+## R227 — 2026-09-01 — EMPTY (no new hit mine)
+R16: HEAD a9b4db68 — 4 fleet commits, all T37.21 sunburst-evidence delivery (parts 1-5, v0.8.154-156, gate sequencing). RawBin moved => HOURLY holds, streak 0. Canon/ledger untouched.
+★ CHECKED, EMPTY: req learning (check-PO-before-dispatching-on-a-parked-part; a dispatch CLOSED a rewind window; gate-sequencing = PO lane, Test-mint-hold = req lane) = role-boundary + REWIND-WINDOW-PROTOCOL (driver owns the pane; peers route through) — both banked. Instance, not new.
+★ PENDING (not this round's hit): the R226 LAW-3 heart-fold awaits TRON's ordination (I proposed exact text; I don't edit the heart unilaterally).
+★ NO teach/wire/interrupt. Committed local (freeze).
+Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
