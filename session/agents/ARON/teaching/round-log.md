@@ -1624,3 +1624,11 @@ R16: HEAD ea8d0f03 = my own commit (fleet engaged in the rewind, not committing)
 ★ META-LESSON (my flaw, 3 faces this session): local-correct / global-unchecked. Cure sharpened: reconcile a fix against ALL governing invariants, not one (I fixed /compact vs STRICT-LAW but broke it vs no-fork). Coherence is the keeper's office — GATE it, don't hope for it.
 ★ THE DRIVE: I drove the picker to COMPLETION (first this session) — trainer cut Option-2/code-unchanged at the 529dcc39 clean boundary, ~50% cap, today-content. Honest misses: skipped fork-first (mid-picker); needed 2 wrong-depth confirm-Escapes (age-stamp fork-lies) before the by-content land; composer-clear (C-a/C-k) failed on the multi-line restored draft. Picker-driving stays R186-fragile even when it succeeds → the structural driver is still owed.
 ★ SELF: the care-cycle held — I erred (fresh-instance), TRON caught it, I owned + fixed it before it spread. That IS CMM4. NO WIRE (trainer mid-boot). Committed local (push-freeze). Freed-% to confirm when the trainer renders.
+
+---
+## R225 — 2026-09-01 — EMPTY (no new hit) + trainer-rewind CONFIRMED healthy; fleet Tron-parked
+R16: HEAD 95c1ee0c — 1 fleet commit (architect: "killed stale numbers so no rewind resurrects them" = APPLICATION of R223 artefact-survives-authority, not a new hit). RawBin moved => HOURLY holds, streak 0.
+★ TRAINER REWIND CLOSED-HEALTHY (the R224 pending proof): booted disk-first from 8912f362+a8e8493f, metabolized the cycle into doctrine (pulse-first / one-key-with-counter / be-suspicious-not-proud / trainer-not-exempt-from-self-measure / never-touch-security-without-Tron-GO / don't-hunt-for-work-a-parked-anchored-fleet-needs-no-driver), holding ready. HONEST on R66: boot verified coherent+healthy; exact freed-% NOT captured as a number (trainer at rest + fleet parked — not worth interrupting a healthy resting agent for the digit; I do not fabricate one).
+★ No NEW cross-cutting hit: architect's kill-stale-numbers = R223 application; trainer's metabolized items = its own lane; "parked fleet needs no driver" = existing don't-drive-a-healthy-agent / never-manufacture-driving.
+★ NO teach/wire/interrupt. Fleet parked, trainer holding. Committed local (push-freeze).
+Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
