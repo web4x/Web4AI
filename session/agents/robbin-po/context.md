@@ -1202,3 +1202,24 @@ My GO conditions were fail-closed-on-unparseable + per-shape counts (20/107/13).
 - FIX **v0.8.153 / 198951f16**: shared drawer calls `showActionsForType` at all 3 paths INSIDE `renderDetailForRef` (verified in source myself, lines 263/288/329) ⇒ by-construction, idempotent, NOT a terminal/server-manager special case. Acceptance question "could a new detail element added tomorrow silently lose its bar?" = **NO**.
 - Verified by me: served==package==SOURCE config unit==sw.js==0.8.153, config-singleton clean (BUILD_OWNED guard held), HTTP 200.
 - ★ I explicitly BANNED the two tempting shortcuts (make rb-terminal-detail extend RbDetailBase / special-case the page) — either would fix the screenshot and leave the trap armed for the next element. **That ban is the actual deliverable.**
+
+## ★★★★★ #88 — T37.21 OVERNIGHT DRIVE, MORNING HANDOFF (2026-09-01/02) ★★★★★
+**Prod v0.8.162. Task T37.21 `1bf4acc5-4c9b-41a2-9284-b30d323cfbdf` at QA-REVIEW. Tron approves from there — 0 Done flips.**
+**Scope brief + all rulings: `scrum.pmo/sprints/sprint-37-consistency-by-construction/T37.21-TRON-EXTENDED-SCOPE.md`**
+
+### TRON-CONFIRMED ON HIS DEVICE
+Parts **1** (room Members/Files = real Folder units) + **4** (sunburst renders on them) — "live + good" @0.8.158. That pairing IS the task title.
+
+### GREEN + GATED (fail-proofs shown, tester)
+P1 · P3 (redundant body links gone, action bar survives — both directions) · P4 room + **proportional proven** (86 arcs, largest childCount = largest arc) · P5 **structure** (class-diagram.puml under 4 distinct dirs; 48-single vs 2-multi discriminator) · **P2 server side entire** (unit + real dir + fail-closed traversal + **WS frame reaches the passive browser**).
+
+### OPEN AT HANDOFF (all named, none rounded up)
+1. **★ Tron's BYTES metric — NOT BUILT.** He ruled sunburst arc size = **actual on-disk bytes**, not per-file count. `sizeOf` still reads `childCount` (I once reported it built — WRONG, expert had reverted a half-start so the ENOENT fix shipped clean). AC minted on R37.21 80346a36: file=bytes · folder=recursive sum · virtual=sum of resolvable · zero-byte=**min visible arc floor** (keeps arc-count==child-count) · proportionality kept. **Highest value: it's the defect he already reported.**
+2. **P2 two-browser pixel gate** — unblocked now Add-folder works; tester has target `dir:ts` + expandPath sequence + cleanup.
+3. **P5 dir-folder sunburst** — held on the one-resolver fix.
+4. **R40.78 nested room folders** — Tron locked **(i) per-user** `getRoomDir/files/<path>` via R40.22 chokepoint. Chain minted, **build-last**.
+5. **★ HEURISTIC DEBT, pinned not hidden:** Add-folder path uses existence-based fallback (`root/loc` else `root/src/loc`). Correct fix = ONE shared `resolveDirRefAbs` used by createPhysicalWithUnit + sourceDirTree + ensureViewUnit — **closes the debt AND P5's gap (same root: `dir:` namespace has TWO base conventions, src-relative for /model ts, repo-relative for puml)**. Architect owes the design.
+6. **UX finding (flagged, unfixed):** Add-folder can't appear on top-level /model collections (synthetic, no location ⇒ fails closed). First capable node is ~3 expands deep (`RawBin→ts→dir:ts`). More steps than ideal — Tron's call whether to follow up.
+
+### ★ THE LESSON OF THE NIGHT (bank it)
+**Three separate gaps sat between "the server resolves it" and "the user sees it"** — and every source-level verification passed while the feature was broken. The tester's rendered @390 measurement beat two competent source reads, twice. Then the architect's own 12/12 fs-backstop went green against the WRONG location convention (repo-relative) while reality was src-relative. **A green proves what you pointed it at. Point it at the rendered artifact, on the real path, with the real conventions.** [[assert-the-rendered-artifact-not-a-proxy]]
