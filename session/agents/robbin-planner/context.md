@@ -2,6 +2,17 @@
 
 **✓ LIFTED (PO explicit, evidence measured): tree==HEAD==live==0.8.165 (all 3 agree); the 2 reverted SOURCE files RESTORED + verified BY CONTENT (resolveDirRefAbs back to 2 in server.ts where tree had 0; reDeriveDirectChildren back to 3 in rb-trace-tree.ts where tree had 0; matching HEAD); diff of src/dist/package.json vs HEAD = EMPTY (every build input aligned); build-input config-singleton unit CLEAN at 0.8.165. Build/restart/deploy CLEARED. ★ MY web4x commits UN-PAUSED (build inputs aligned to HEAD). Dirty scenario units = runtime data, NOT build inputs = not a deploy hazard. ★ UN-HELD the stop the moment PO lifted (a stale hold outliving its window is costliest [[measure-a-posture-before-obeying]] — same discipline as the push-freeze-outliving-purpose lesson).**
 - (historical, while active) STOP was ON BUILD/RESTART/DEPLOY + no discard/checkout/clean until PO's explicit lift.
+
+---
+
+# ⛔ STANDING RULE (PO<-SM, PERMANENT 2026-09-02): PRE-BUILD REVERT-CHECK + POST-REWIND STATUS-ALL-TREES — survive every rewind
+
+**★ Before ANY build/restart/deploy, verify the tree isn't silently rolled back — TWO cheap checks:**
+1. **VERSION agreement:** working-tree package.json == committed HEAD == live served.
+2. **★ CONTENT agreement (the one that actually matters):** grep a symbol from recent shipped work, count == HEAD (e.g. resolveDirRefAbs = 2 in server.ts; reDeriveDirectChildren = 3 in rb-trace-tree.ts). Check-1 alone is NOT enough — today the version was restored while SOURCE stayed reverted = a build would ship OLD CODE under a CORRECT version number, silently, nothing to warn.
+- **FAIL either -> do NOT build, REPORT. DIRECTION is the discriminator: deletion-heavy vs HEAD = revert damage -> restore; INSERTION-heavy = real WIP -> NEVER restore away.** A rewind rolls the WORKING tree backward without touching committed history; the builder is the last line before that ships over live.
+- **★ After ANY rewind anywhere in the fleet: git-status EVERY tree, not only the session repo** (that miss is exactly what let today's blast through unnoticed). APPLIES TO ME on every rewind — I check ALL web4x worktrees + the session repo, not just my own dir.
+- [[option-1-coderevert-detect-and-recover]] + [[check-tree-before-assigning-refactor]] + [[option2-code-unchanged-still-reverts-session-write-edits]] + [[measure-a-posture-before-obeying]].
 - ROOT: PO caught package.json BACKWARD (tree 0.8.155 < HEAD/live 0.8.165) = OPTION-1 REVERT-BLAST signature (a server never downgrades its own version; DIRECTION backward-vs-HEAD = the discriminator that separates revert-damage from runtime-mint-churn). A build reads the TREE -> would ship 0.8.155 (or regressed SOURCE under a correct version = WORSE, silent) OVER live 0.8.165.
 - ✓ package.json RESOLVED: PO restored it themselves (preserve-to-scratch -> checkout-HEAD -> verify tree==HEAD==live==0.8.165), told only SM -> fleet measured clean + couldn't reconcile with the standing warning.
 - ★ MY MOVE (PO affirmed right): measured clean, SURFACED the discrepancy to RECONCILE, did NOT treat my own clean read as CLEARANCE while a STOP stood, held. [[distrust-your-own-negative-reverify]] + **a clean read is NOT clearance under an outstanding warning**. LESSON (PO's, banked): broadcast a FIX with the SAME REACH as the STOP, or the fleet measures against a warning no longer true.
