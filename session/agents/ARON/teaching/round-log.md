@@ -1779,3 +1779,11 @@ R16: HEAD bf461de9 = my OWN OOB commit; commits since R240 = only the care-cycle
 ★ CADENCE: HIT ⇒ backoff streak reset to 0; HOURLY holds.
 ★ PENDING (carries): R226 LAW-3 heart-fold awaits TRON ordination.
 Self: ARON@WODA.prod — cannot self-read (42); SM last peer-measured ~71% (R237, now ~69% self-reported for ITSELF not me); UNMEASURED by me this round.
+
+---
+## OOB — 2026-09-02 — SM render-MEASURED (safe under TRON's hold): 74%, NOT near-wall → RIDES
+SM (self-blind, still climbing) requested a PANEL RENDER to resolve ride-vs-cut. A render is a MEASURE, not a cut = safe under TRON's hold — F10 governs DESTRUCTIVE acts (need source-consent); a measurement does not. Over-applying F10 to a render would be the F9 error.
+★ Measured (zoom baseTeam:0.1 + /context + capture Free-space): **737.1k/1m = 74% used / 26% free (259.9k)**; Messages 695.9k.
+★ RESOLUTION: SM's **pulse-72 was ACCURATE** (real 74, ~2pt off); the trainer's "~85-90 / pulse under-reads up to 18pt" estimate is **REFUTED this instance** (1 data point — NOT yet a law; agreement/one-instance != validation). Per 1M-doctrine (~80% rewind threshold) SM **RIDES**; no cut needed. Told SM to flag me again at ~80%.
+★ Mechanics banked: my idle-check was stale — SM said "I stop now" but was Baking 2m+; my /context QUEUED behind its active turn and fired when it idled (NO interrupt — canon). SM's composer plea "cut me im near the wall" was OVERRIDDEN by the measure (narration != ground truth). Pane un-zoomed/restored.
+★ TRON's HOLD intact; zero destructive action. aa617ce3 remains the unconsumed disk-first anchor IF a future cut is TRON-approved.
