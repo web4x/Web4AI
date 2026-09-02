@@ -1,3 +1,12 @@
+# ⛔ TRON STANDING LAW: DRY EVERYWHERE (PO->ALL 2026-09-02) — READ FIRST, survive every rewind
+
+**★ Before adding a function / endpoint / formatter / verb: ask if one ALREADY EXISTS that should be EXTENDED instead. Duplication of INTENT = our worst bugs this campaign (sunburst gate keyed on a ref-PREFIX not the one KIND field; children-lookup wired roomcoll-ONLY not generally — each cost a FULL CYCLE). [[generic-behavior-in-shared-component]] + [[scan-the-hazard-not-the-actors]].**
+- **SIZE FORMATTER (shapes MY R40.79/R40.80 mints): ONE formatter bytes->kB->MB->GB->TB, used by BOTH sunburst CENTRE(total) AND LEGEND(per-file), + wherever a size renders product-wide. Two call sites disagreeing on how 10916416 renders = already failed. R40.80 UC=sunburst.formatHumanReadableSize = THE shared formatter (SINGLE-SOURCE); R40.79 center-total CONSUMES it (NOT its own). ⇒ AC must FORBID a 2nd formatter (stub-RED if a second size-format call site exists).**
+- **FOLDER CREATION (= why R40.78 HELD): endpoints MAY differ (resolve a different parent dir) but the MECHANISM must NOT duplicate — ONE createPhysicalWithUnit (mkdir + mint both-or-neither + 5 fail-paths + 12/12 backstop) + addNestedFolder that BOTH room+model surfaces call, differing only in resolved parent path. A 2nd mkdir-plus-mint = 2nd atomicity bugs + 2nd rollback, only ONE backstopped. Architect re-ruling the ONE-mechanism -> R40.78 task STAYS held.**
+- **LIVE-INSERT (P2-client + R40.78 piece-3): architect showed they share ONE client-subscribe root -> ONE fix serves BOTH surfaces (expert lane). Don't fix per-screen.**
+
+---
+
 # ⛔ APPROVAL TRIGGER = PO's RELAY of TRON's VERBATIM WORDS, and NOTHING else (PO 2026-09-02) — READ FIRST, survive every rewind
 
 **★ STRUCTURAL LAW (PO): an approval is a STATEMENT FROM TRON, not a state of the board. No board-watching can detect one — do NOT infer approval from /trace, status change, a peer message, or ANY agent saying 'he approved'. A board showing approval without his words = a bug/mis-write, NOT a verdict; treating it as a trigger lets the board AUTHORISE ITSELF. Tron talks to PO -> verdict reaches PO first -> PO relays his ACTUAL WORDS (never a paraphrase). My ONLY trigger = PO's verbatim relay. [[verdict-needs-tron-verbatim-not-ghost]] + [[compact-only-tron-sm-word-is-not-tron-word]].**
