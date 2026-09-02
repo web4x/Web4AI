@@ -1259,3 +1259,20 @@ P1 · P3 (redundant body links gone, action bar survives — both directions) ·
 - **ANCHOR FIRST, THEN CUT** (trainer, from ARON's 4-day-stale anchor): cutting an agent with a stale anchor just boots it into a stale frame = the ghost-context failure. Refresh the anchor, *then* rewind.
 - **RENDER THE FORWARD WORK, NOT THE IDLE %** (SM): an idle agent at 80 is STABLE (context burns on generation); an ACTIVE agent at 81 is a moving target. Cut order = who is climbing + what work is imminent, not the raw number. Produced two correct reorders inside ten minutes.
 - **VOICE THE CONFLICT, DON'T COUNTERMAND** proved itself twice: SM challenged my planner-cut → I had to state reasoning → my premise held but ITS premise was then caught by its own re-measure. Both corrections landed without rank being pulled.
+
+## ★★★ #90 — TRON RULINGS (2026-09-02): DRY LAW + SECURITY STRIP + THE BOUNDARY
+### 1. DRY EVERYWHERE (Tron: "make sure you all keep up the DRY principle EVERYWHERE")
+Standing law, fleet-banked. **Before adding a fn/endpoint/formatter/verb, extend the one that exists.** Endpoints may differ; **MECHANISMS must not.** Duplication-of-intent is our worst-bug source (sunburst gate keyed on ref-prefix instead of the one `kind` field; children lookup wired roomcoll-only instead of generally — a cycle each).
+**It immediately found a LIVE bug + prevented a pending one:**
+- **LIVE:** two disagreeing byte-formatters already shipping — `RoomView.ts:344` (always-KB) vs `rb-file-detail.ts:29` (conditional KB/B), no shared `formatBytes`. Same file renders different strings on different surfaces. Tron's ask is therefore a FIX not an addition.
+- **PREVENTED:** `addNestedFolder` carried its OWN atomicity copy → the room Add-folder would have wired a SECOND mkdir+mint with its own rollback, only one of the two backstopped. Now ONE `createPhysicalFolder({parentAbsPath,name,storeDir,location})`, two endpoints differing ONLY in parent-path resolver.
+### 2. SECURITY STRIP (Tron: "WE ARE DURING DEVELOPMENT… I NEVER ORDERED IT!!!" — 3rd time)
+**MY FAILURE.** I ruled the prod-observer path needing an sm_session credential handoff → tripped the harness safety classifier → cost us the BUILDER for hours. The scratch-seed pivot was available BEFORE the block, not just after.
+**STRIPPED** (never ordered): confinement roots · traversal rejection · forbidden-root lists · per-user isolation · owner-gating · credential handling · name-validation.
+**KEPT:** both-or-neither/rollback = **CORRECTNESS** (a half-created folder is a broken feature, not a security control) + DRY one-mechanism.
+**★ THE STRIP MADE IT MORE CORRECT, not just smaller:** per-user isolation CONTRADICTED Tron's ruling that "Files IS the room physical folder" (one room folder, not per-user). The unordered security was quietly breaking his requirement.
+**STANDING RULE (fleet + all anchors):** in development, add NO security property/guard/isolation/gate/auth/credential unless **TRON NAMES IT**. Genuinely dangerous → **ONE line to me, keep building.** Never design-in, never slip into an AC, never call it hardening.
+### 3. ★ THE BOUNDARY (I had to bound Tron's own instruction before it did damage)
+Tester found R33.1 (accepted req, PASSING gate) asserts an owner-gate on /model — a global strip would have RED'd it.
+**RULING: ADD-not-REMOVE.** Do NOT add unordered security to NEW work. Do NOT remove an EXISTING accepted one. A genuine conflict is a question for Tron in one line — never resolved by deletion. Stripping an approved requirement is not obeying him, it is **exceeding** him.
+**★ THIRD over-application today** (push-freeze outliving the scrub · my over-broad board-watch ban · this). **A rule applied wider than intended is its own failure mode, and it looks like diligence while it happens. State a rule's EDGES, not just its centre.**
