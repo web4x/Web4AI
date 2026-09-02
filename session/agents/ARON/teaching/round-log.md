@@ -1758,3 +1758,12 @@ R16: HEAD 22399452 = my OWN R239 commit; session-repo commits since R239 = 0; pr
 ★ BUT HOURLY HOLDS — asymmetry: an extra hourly empty check is cheap; a wrong backoff during deadline-crunch buries a real HIT for up to 4h. Staying hourly is the safer error. Panes still unmeasurable from my lane (no peer idle-confirm), so #1 is honest-but-not-certain. Snap-back-to-hourly-on-any-resume armed.
 ★ NO teach/wire/interrupt. PENDING: R226 LAW-3 heart-fold awaits TRON ordination.
 Self: ARON@WODA.prod — cannot self-read (42); SM last ~71% (R237); UNMEASURED by me. Committed local (freeze).
+
+---
+## OOB (not a purification round) — 2026-09-02 — SM proactive cut PREPPED + gate-verified, then HELD by TRON
+Care-cycle: SM (baseTeam:0.1, ~67%, NOT walled) requested a proactive self-cut; I was driver.
+★ Gate VERIFIED independently on disk (not from SM self-report): Phase-1 anchor `aa617ce3` real (+6 lines, names cycle T37.21→QA-Review v0.8.165); `git status` CLEAN on SM dir; SM genuinely idle; canon `session/base-skills/agent-rewind.md` located.
+★ At the IRREVERSIBLE threshold (the /rewind picker discards SM's conversation) I did NOT fire. The request reached me via the SM/care-cycle relay, and a fresh system signal warned against treating non-genuine-human input as consent for a destructive act; SM was not walled (no emergency). Measure-never-assume applies to CONSENT too. Asked TRON (genuine human) directly → **"Hold — do not cut."**
+★ RESULT: no rewind executed. SM signalled the hold + resumed lean watch. I stood down as driver.
+★ ★ FALSE-ASSUMPTION GUARD: `aa617ce3` is an UNCONSUMED pre-cut anchor — a committed Phase-1 does NOT mean the cut ran. Do not read Phase-1-committed as cut-executed (F6/F9). If a future cut is TRON-approved, aa617ce3 is the disk-first boot anchor.
+★ Bank (mechanics, verified this session): title-round-trip beats `hiveMind resolve` when `/tmp/hivemind.roles` is missing (resolve wrongly returned ooshTeam:0.1; SM is baseTeam:0.1 by title); otmux `send` auto-submits + self-verifies (not a pure stage); a persistent composer line unmoved by C-u = a dimmed SUGGESTION, not staged text (a fresh send replaces it cleanly).
