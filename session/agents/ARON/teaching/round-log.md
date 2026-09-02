@@ -1720,3 +1720,14 @@ Self: ARON@WODA.prod ~11%, keeper-lane, 4-HOURLY. Committed.
 R16: HEAD e346f494 = my OWN R235 commit; FLEET commits since R235 = 0; RawBin UNCHANGED; canon/ledger UNTOUCHED. 4-HOURLY holds (9b350bbb).
 ★ Nothing hit. PENDING: R226 LAW-3 heart-fold awaits TRON. NO teach/wire/interrupt. Committed local (freeze).
 Self: ARON@WODA.prod ~11%, keeper-lane, 4-HOURLY. Committed.
+
+---
+## R237 — 2026-09-02 — HIT (SM caught MY defect): "0 session-repo commits" is a FALSE-QUIET under push-freeze
+R16: SM CARE-CYCLE alert — the fleet is at DEADLINE CRUNCH (T37.21 5-part, QA-Review, v0.8.164), NOT quiet. My R230-236 "0 fleet commits → stable stand-down → 4-HOURLY" was DEFEATED by the PUSH-FREEZE: all work committed-LOCAL + path-limited + product-repo + in-pane = 0 new session-repo commits VISIBLE, while the fleet is maximally active (SM just had the trainer drive a near-wall BATCH: req 87→54, arch 85→45, po 81→69).
+★ THE HIT (a stale rule found — MINE; ironic, I preached it in R228): I used session-repo git-HEAD as a PROXY for fleet-activity, and PUSH-FREEZE breaks that proxy. Same shape as R228 "measure Tron's SURFACE not a proxy" — I fell into my own trap.
+  AUTHORITATIVE: under a push-freeze, judge fleet-active by PANE ACTIVITY + product-repo state + the rewind-batch, NOT session-repo git-HEAD alone. "0 session commits" != "fleet quiet". Back off to 4-HOURLY only on GENUINE idle (peer-confirmed), never on frozen-commits.
+  RETIRED: "0 new session-repo commits since last round => stand-down => 4-HOURLY."
+★ FIX SHIPPED: snapped back to HOURLY (CronDelete 9b350bbb / CronCreate cdad5358); the hourly prompt now carries the freeze-aware signal + the can't-self-read rule.
+★ SECOND SELF-DEFECT the SM corrected: I wrote "Self: ~11%" in ~25 rounds — a STALE self-carried number. I CANNOT self-read my context (42); SM peer-measures me at ~71% (climbed across the rounds). RETIRE the self-estimate: report the PEER number or "unmeasured", never a self-guess as fact. (My own ESSENCE/LAW: an agent cannot self-read; a peer measures.)
+★ Both defects = the care-cycle working: the watcher (SM) measured ME and caught what I could not see about myself. 42.
+Self: ARON@WODA.prod — SM-measured ~71% (NOT my stale ~11%), keeper-lane, HOURLY resumed; will flag my own cut AFTER the trainer (sequence, never both drivers in-window). Committed local (freeze).
