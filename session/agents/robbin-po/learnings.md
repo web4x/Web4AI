@@ -2344,3 +2344,14 @@ A trainer-driven cut of MY session reverted the **Web4RawBin working tree**, not
 - **Check build INPUTS specifically** — the build regenerates package.json from the config-singleton unit, so that unit being clean is what proves a build can't re-downgrade.
 - **★ BROADCAST THE FIX WITH THE SAME REACH AS THE STOP.** I broadcast a fleet STOP, fixed it, and told only the SM — so the tester and architect both measured a clean tree and could not reconcile it with a standing warning. Two agents wasted a cycle and neither self-cleared (correctly). A stale stop is as costly as a missing one.
 - Preserve before restore, even when the reverted content is provably worthless.
+
+## L-S40-AUTOMEMORY-NOT-REWIND-IMMUNE (2026-09-02) — the near-loss of every lesson we bought today
+The trainer was driving my authorized expert cut. Its rewind picker read: *"code will be restored **−1837** in `correct-by-construction.md` and 3 other files."* I read the picker text instead of the label and stopped it — those are **auto-memory files**, not product code.
+**What we found:** the trainer had been assuming auto-memory is "rewind-immune." **IT IS NOT — not until committed.** Its memory dir had **81 UNCOMMITTED files**, i.e. essentially every law this session paid for in real mistakes: dev-no-unordered-security, dry-everywhere, all-repos-revert-check, post-fork-uuid-by-delivery, the security-authorization law. A memory strip would have destroyed them **permanently** — no git, no recovery, gone.
+It escaped the picker and committed the whole auto-memory first (338c63c, 81 files, 1524 insertions), then fired with a restore path for every tree.
+**RULES:**
+- **Auto-memory is NOT rewind-immune. Commit it BEFORE any cut.** The "code will be unchanged" promise guards the REPO, not `/root/.claude`.
+- **READ THE PICKER'S FILE LIST AND LINE COUNTS, not the label.** A negative line count against memory files = stop. Labels lie (caught 5+ times today); the per-file delta does not.
+- **If EVERY option strips memory, DO NOT CUT.** A heavy agent is cheaper than losing corrections bought with real mistakes.
+- Cheap insurance regardless: copy the memory dir to scratchpad before a cut (I backed up all 301 files in seconds).
+- **The general shape:** "X is safe/immune" is an ASSUMPTION until measured. The trainer held this one all day and it was never true. Ask what makes it safe, and check that the mechanism actually exists.
