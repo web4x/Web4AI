@@ -1276,3 +1276,26 @@ Standing law, fleet-banked. **Before adding a fn/endpoint/formatter/verb, extend
 Tester found R33.1 (accepted req, PASSING gate) asserts an owner-gate on /model — a global strip would have RED'd it.
 **RULING: ADD-not-REMOVE.** Do NOT add unordered security to NEW work. Do NOT remove an EXISTING accepted one. A genuine conflict is a question for Tron in one line — never resolved by deletion. Stripping an approved requirement is not obeying him, it is **exceeding** him.
 **★ THIRD over-application today** (push-freeze outliving the scrub · my over-broad board-watch ban · this). **A rule applied wider than intended is its own failure mode, and it looks like diligence while it happens. State a rule's EDGES, not just its centre.**
+
+## ★★★★★ #91 — POST-REVERT-BLAST, FLEET CLEAN, BLOCKED ON TRON (2026-09-02) ★★★★★
+**Prod v0.8.165 · tree==HEAD==served==0.8.165 VERIFIED BY CONTENT (resolveDirRefAbs=2 in server.ts, reDeriveDirectChildren=3 in rb-trace-tree.ts) · S40.**
+
+### WHAT HAPPENED THIS BOOT
+- Trainer's cut of me ALSO reverted the **RawBin product working tree** (it checked only the session repo — root cause, owned+banked by it). Damage: package.json 0.8.165→0.8.155 + server.ts (−86) + rb-trace-tree.ts (−31) rolled back pre-feature. HEAD + live always correct; **nothing committed ever at risk**.
+- **★ MY TRAP: I restored package.json FIRST, which made it MORE dangerous** — correct version over reverted code = a build ships regression with NO warning. Fix the SIGNAL last. Caught it, restored both src files, verified by CONTENT not version. 4 independent measures (me/architect/req/trainer) bound scope to exactly those files. Stop lifted with evidence.
+- Direction discriminator SAVED the tester's r4059 work (+80/−62 insertion-heavy = WIP, never restore). It then committed that WIP so a future blast can't reach it.
+- Preserved copies of all reverted files in scratchpad.
+
+### STANDING GUARDS NOW DURABLE IN EVERY AGENT'S OWN ANCHOR (not pane messages)
+1. **Pre-build/restart/deploy 2-check**: (a) version tree==HEAD==served; (b) **★ CONTENT** — grep a recent shipped symbol, count==HEAD (`grep -c resolveDirRefAbs src/ts/server/server.ts` == 2). (a) alone MISSED today's revert.
+2. **DIRECTION discriminator**: deletion-heavy vs HEAD = revert → restore; insertion-heavy = real WIP → **NEVER** restore away.
+3. **After ANY fleet rewind: git-status EVERY tree**, not just the session repo.
+4. Path-limited commits; **stage+commit atomically** (an auto-committer swept staged files twice today).
+- Deliberately NOT woven into 93 SKILLs — that needs Tron's own auth; per-agent anchors give durability free. Trainer proposes a narrower weave (build SKILLs + rewind base-skill) on his GO.
+
+### BLOCKED ON TRON — EXACTLY THREE THINGS (do not invent filler work)
+1. **Expert new-UUID relaunch** (same-UUID relaunch did NOT clear its gate) → unblocks the whole build chain (architect harness+lints staged, tester gates ready, req mints Tests off markers).
+2. **4 PNG uploads** into room a16262b8 → unblocks skill-expert byte-placement.
+3. **T37.21 approval** (verbatim words only; planner records provenance then flips Done — never on a paraphrase).
+
+### STANDING LAWS IN FORCE: no security work without TRON's own explicit auth (woven into all 93 SKILLs) · functionality outranks all hardening · security-STRIP in dev (no unordered guard/gate/isolation; mkdir+mint+both-or-neither; refuse-Done=R40.10 is CORRECTNESS, don't strip) · DRY-everywhere (ONE mechanism, endpoints differ only by parent-path) · push-hold on shared hotfix (PII in earlier peer commits) → commit LOCAL, deploy via served tree.
