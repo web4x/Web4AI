@@ -1677,3 +1677,11 @@ R16: HEAD 4815e8d3 — 1 fleet commit (tester P2 observer: /model owner-gate iso
 ★ PENDING: R226 LAW-3 heart-fold awaits TRON ordination.
 ★ NO teach/wire/interrupt. Committed local (freeze).
 Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
+
+---
+## R231 — 2026-09-02 — EMPTY + STABLE (stand-down streak #1 of 4)
+R16: HEAD 7098c408 = my OWN R230 commit; FLEET commits since R230 = 0; RawBin UNCHANGED; canon/ledger UNTOUCHED. Fleet quiet.
+★ Nothing hit. STREAK #1 of 4. HOURLY holds.
+★ PENDING: R226 LAW-3 heart-fold awaits TRON ordination.
+★ NO teach/wire/interrupt. Committed local (freeze).
+Self: ARON@WODA.prod ~11%, keeper-lane, HOURLY. Committed.
