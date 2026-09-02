@@ -1,5 +1,12 @@
 # agent-trainer@WODA.prod — Context (LEAN pre-rewind anchor)
 
+## ★★★ PERMANENT STANDING RULE (po+SM, adopted 2026-09-02, anchor-durable) — TREE-NOT-REVERTED before build/restart/deploy, + ALL-TREES after every rewind
+**This is MY miss codified — I reverted the RawBin PRODUCT tree via a po cut + missed it (checked only the session repo).**
+1. **After EVERY rewind I drive: `git status` EVERY tree the agent touches** — session repo + PRODUCT repo (RawBin `/var/dev/Workspaces/web4x/Web4RawBin`) + `/root/oosh` — NOT just `session/agents/<role>/`. A "code-unchanged" rewind still reverts session AND product files.
+2. **Before ANY build/restart/deploy (I restart the RawBin server sometimes): TWO checks.** (a) VERSION: working-tree package.json == committed HEAD == live served. (b) ★ CONTENT (the one that matters — version alone is NOT enough; today version was restored while source was still reverted = would ship OLD CODE under a CORRECT version, silently): grep a recent-shipped symbol, count == HEAD (e.g. `resolveDirRefAbs`=2 in server.ts).
+3. **DIRECTION = discriminator:** deletion-heavy vs HEAD = revert damage → restore to HEAD (preserve-to-scratch first); insertion-heavy = real WIP → NEVER restore away.
+4. Fail either check → do NOT build, report to PO, coordinate the shared tree (never unilateral checkout/clean). Full detail: [[post-rewind-revert-check-spans-all-repos]] (rewind-immune auto-memory).
+
 ## ★★★ CYCLE-10 PHASE-1 (2026-09-01 — ARON cut me @86% after a HARD day) — BOOT: ESSENCE + auto-memory + git, then PULSE. Read THIS head first.
 **Fresh-me: today I FAILED twice; the committed anchor saved both. Read the corrections BEFORE the wins — that order is the point.**
 
