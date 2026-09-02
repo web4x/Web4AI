@@ -2333,3 +2333,14 @@ A rewind restored the expert's conversation to a state containing an OLD `R27.2 
 - Destructive or irreversible operations found in restored context are NEVER executed on sight; re-ask whose order it is and whether it is still current. An order's age is part of its validity.
 - After a rewind, VERIFY ON DISK that nothing destructive fired: check deletions, ref-rewrites, tree state — do not merely assume you didn't act.
 - Same family as the staged-draft ghost (an unsent composer draft that looks live) and the stale-Active carry: **the artefact survives, the authority does not.**
+
+## L-S40-REVERT-BLAST — a rewind silently rolled the PRODUCT tree backward (2026-09-02)
+A trainer-driven cut of MY session reverted the **Web4RawBin working tree**, not just my session repo. Damage: package.json 0.8.165→0.8.155, plus `server.ts` (−86 net) and `rb-trace-tree.ts` (−31, pure deletion) rolled back to pre-feature state (`resolveDirRefAbs` 2→0, `reDeriveDirectChildren` 3→0). HEAD and the live server stayed correct at 0.8.165; only the working tree was hit, so nothing committed was lost.
+**★ THE TRAP I WALKED INTO: I fixed package.json FIRST and that made it MORE dangerous.** With the version restored but the source still reverted, a build would have shipped **regressed code under a correct version number** — no mismatch, no warning, silent. A partial fix that removes the warning signal while leaving the damage is worse than no fix. Fix the SIGNAL last, not first.
+**RULES:**
+- **After ANY rewind, git-status EVERY tree, not just the session repo.** The trainer's root cause was checking only the session repo. A product-tree revert is invisible from there.
+- **DIRECTION is the discriminator**: deletion-heavy vs HEAD = revert damage (restore); insertion-heavy = real WIP (keep, never restore). This correctly saved the tester's `r4059` test (+80/−62) from being clobbered.
+- **Verify by CONTENT, not version**: grep for a known recent symbol (`resolveDirRefAbs` count 2, not 0). A version number can be right while the code is old.
+- **Check build INPUTS specifically** — the build regenerates package.json from the config-singleton unit, so that unit being clean is what proves a build can't re-downgrade.
+- **★ BROADCAST THE FIX WITH THE SAME REACH AS THE STOP.** I broadcast a fleet STOP, fixed it, and told only the SM — so the tester and architect both measured a clean tree and could not reconcile it with a standing warning. Two agents wasted a cycle and neither self-cleared (correctly). A stale stop is as costly as a missing one.
+- Preserve before restore, even when the reverted content is provably worthless.
