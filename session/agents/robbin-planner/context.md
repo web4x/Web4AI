@@ -1,3 +1,13 @@
+# ⚠ ACTIVE STOP — revert-blast scope-check in flight (PO->ALL 2026-09-02) — READ FIRST
+
+**★ STOP ON BUILD / RESTART / DEPLOY from the Web4RawBin tree + nobody discards/checks-out/cleans, until PO lifts EXPLICITLY (req running a read-only BACKWARD-scan). Live server = CORRECT 0.8.165; doing nothing is safe, ACTING breaks it.**
+- ROOT: PO caught package.json BACKWARD (tree 0.8.155 < HEAD/live 0.8.165) = OPTION-1 REVERT-BLAST signature (a server never downgrades its own version; DIRECTION backward-vs-HEAD = the discriminator that separates revert-damage from runtime-mint-churn). A build reads the TREE -> would ship 0.8.155 (or regressed SOURCE under a correct version = WORSE, silent) OVER live 0.8.165.
+- ✓ package.json RESOLVED: PO restored it themselves (preserve-to-scratch -> checkout-HEAD -> verify tree==HEAD==live==0.8.165), told only SM -> fleet measured clean + couldn't reconcile with the standing warning.
+- ★ MY MOVE (PO affirmed right): measured clean, SURFACED the discrepancy to RECONCILE, did NOT treat my own clean read as CLEARANCE while a STOP stood, held. [[distrust-your-own-negative-reverify]] + **a clean read is NOT clearance under an outstanding warning**. LESSON (PO's, banked): broadcast a FIX with the SAME REACH as the STOP, or the fleet measures against a warning no longer true.
+- STILL OPEN: ~80 dirty scenario units UNJUDGED + any rolled-back SOURCE file (req's backward-scan). My 2 session commits (addd38024 T40.79/80, 941767d51 T40.78) = task-unit JSONs + hook-regen'd MD ONLY, NO src/, NO package.json = did NOT propagate a rollback. PAUSING new web4x commits till scope-check clears (hooks regen views from the tree = a commit touches it).
+
+---
+
 # ⛔⛔ TRON STANDING RULE (3rd time, PO->ALL 2026-09-02): IN DEVELOPMENT — NO UNORDERED SECURITY — READ FIRST, survive every rewind
 
 **★ Do NOT add a security property / guard / isolation boundary / gate unless TRON ASKED FOR IT BY NAME. If something is genuinely dangerous: REPORT it to PO in ONE LINE and KEEP BUILDING — do NOT design it in, do NOT slip it into an AC, do NOT call it 'hardening'. His product, his call, said 3 times. Extends LAW-1 (never ACT on security w/o Tron) with: never DESIGN-IN security either. [[never-work-on-security-without-tron-authorization]] + [[deliver-literally-dont-inject-caution]].**
