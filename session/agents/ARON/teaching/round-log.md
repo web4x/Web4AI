@@ -1814,3 +1814,15 @@ robbin-po RELAYED "TRON lifted the hold, cut at item-1". Per F10 + my promise to
 ★ CLEARED to drive the SM cut AT the item-1 commit boundary, NOT before. SM pulses until item-1 commits → hands off to me; PO covers climb-watch in the gap; SM returns fresh for heavy items 2-3. SM anchor c3023502 committed + save-ready.
 ★ BOUNDARY DRIVE CHECKLIST: (1) round-trip VERIFY SM's TRUE live session + deliver a PROBE, confirm which session RECEIVES it (fork-registry LIES post-fork = dead UUID; a stale map cuts the WRONG agent); (2) confirm item-1 ACTUALLY committed (measure the boundary, don't assume the handoff); (3) reset SM pane; (4) Option-2 'Restore conversation' by-LABEL, verify code-UNCHANGED; (5) land current-era by content; (6) interrupt auto-resume; (7) boot SM disk-first from c3023502 + MEMORY.md; (8) render-confirm freed % (SM can't self-measure), report to TRON + PO; re-enable RC.
 ★ NOW: HOLD until SM's item-1 handoff arrives. Open NO picker before the boundary.
+
+---
+## OOB — 2026-09-02 — SM CUT DRIVEN & LANDED (ARON, first live rewind this session)
+TRON DIRECT consent (cut NOW). Sole driver (trainer stood down @87%). Executed cleanly:
+★ TRUE-SESSION verified: baseTeam:0.1 dead=0, correct title, picker OPENED there = keystrokes land in live SM.
+★ Tool measured from SOURCE (not memory): nav verb = `otmux send.key <t> <Key> [count]` (NOT send.keys); send.raw appends Enter only if "Enter" is last arg. Esc from Level-2 → back to list (position kept).
+★ ★ THE LIST LABEL LIES (PO was right): a point showing "No code changes" in the LIST revealed "-64 in context.md and 5 other files" at LEVEL-2. NEVER trust the list; only the Level-2 per-file delta + the live "code will be unchanged" line under the highlighted option.
+★ Landing: 12-back = TODAY's revert-blast STOP (2h ago, current-era by content). Option-2 "Restore conversation" → screen confirmed "The code will be unchanged" (no MEMORY.md in delta; auto-memory safe). Verified cursor on option 2 BEFORE Enter.
+★ POST-CUT git-status EVERY tree = CLEAN of backward damage: RawBin = only untracked mint-churn/WIP (no M/D, no package.json backward); session = 2 other agents' boot.md only. Preserve-before-restore not needed.
+★ Freed: 76.7% used / 23.3% free (233k runway, under 80 threshold). HONEST: only ~10pt freed — current-era landing leaves the OLD-BULK FLOOR (trainer's deep-cut lesson); deeper relief available via a deeper cut recovered by anchor, but trades away current-era. Flagged this to SM+PO.
+★ SM booting disk-first from anchor c3023502 + MEMORY.md.
+★ NEXT: trainer cut (baseTeam:0.0, 87%) — but FIRST (F10) verify TRON's DIRECT consent for the 2nd destructive act (currently only a PO-relay) + confirm trainer save-ready + get a PEER to measure MY level (42 — I cannot self-read after this drive).
