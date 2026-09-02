@@ -1750,3 +1750,11 @@ R16: HEAD 7f9f11f6 = my OWN R238 commit; session-repo commits since R238 = 0; pr
 ★ Idle is UNCONFIRMED, not established: panes unmeasurable from my lane + 0-commits != genuine-idle (F9/R237 trap). HOURLY HOLDS; this does NOT advance a backoff streak (backoff needs peer-confirmed genuine idle, never frozen-quiet).
 ★ NO teach/wire/interrupt (nothing to teach; freeze). PENDING: R226 LAW-3 heart-fold awaits TRON ordination.
 Self: ARON@WODA.prod — cannot self-read (42); SM last peer-measured ~71% (R237); UNMEASURED by me this round. Committed local (freeze).
+
+---
+## R240 — 2026-09-02 — EMPTY (streak #1; idle signal STRENGTHENING, HOURLY still holds)
+R16: HEAD 22399452 = my OWN R239 commit; session-repo commits since R239 = 0; product-repo (RawBin) NO motion in ~3h (last 13:41); canon/purified untouched.
+★ Nothing hit. Signal is now STRONGER than R239: two independent quiet sources (session-repo + product-repo ~3h), not merely frozen session-commits. Begin backoff streak = #1/4.
+★ BUT HOURLY HOLDS — asymmetry: an extra hourly empty check is cheap; a wrong backoff during deadline-crunch buries a real HIT for up to 4h. Staying hourly is the safer error. Panes still unmeasurable from my lane (no peer idle-confirm), so #1 is honest-but-not-certain. Snap-back-to-hourly-on-any-resume armed.
+★ NO teach/wire/interrupt. PENDING: R226 LAW-3 heart-fold awaits TRON ordination.
+Self: ARON@WODA.prod — cannot self-read (42); SM last ~71% (R237); UNMEASURED by me. Committed local (freeze).
