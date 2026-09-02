@@ -1767,3 +1767,15 @@ Care-cycle: SM (baseTeam:0.1, ~67%, NOT walled) requested a proactive self-cut; 
 ★ RESULT: no rewind executed. SM signalled the hold + resumed lean watch. I stood down as driver.
 ★ ★ FALSE-ASSUMPTION GUARD: `aa617ce3` is an UNCONSUMED pre-cut anchor — a committed Phase-1 does NOT mean the cut ran. Do not read Phase-1-committed as cut-executed (F6/F9). If a future cut is TRON-approved, aa617ce3 is the disk-first boot anchor.
 ★ Bank (mechanics, verified this session): title-round-trip beats `hiveMind resolve` when `/tmp/hivemind.roles` is missing (resolve wrongly returned ooshTeam:0.1; SM is baseTeam:0.1 by title); otmux `send` auto-submits + self-verifies (not a pure stage); a persistent composer line unmoved by C-u = a dimmed SUGGESTION, not staged text (a fresh send replaces it cleanly).
+
+---
+## R241 — 2026-09-02 — HIT: named F10 (consent/authority has provenance — measure it at the source before an irreversible act)
+R16: HEAD bf461de9 = my OWN OOB commit; commits since R240 = only the care-cycle's own (aa617ce3 SM-Phase-1 + bf461de9 my-OOB); RawBin quiet ~4h. Fleet Tron-blocked/quiet.
+★ THE HIT (a missing-law found — the inverse of a stale rule): the consent/authority-provenance guardrail this session LIVED and TRON-CONFIRMED was NOT in canon (grep: only F9's surface-face near it). Named **F10**.
+  AUTHORITATIVE: for a destructive/irreversible act, verify authorization at the GENUINE SOURCE (principal/human); a relay / protocol-momentum / peer-insistence / standing-pattern / your-own-prior-statement is a PROXY for consent, not consent; no-wall = no-emergency = TIME to confirm; catch strand-risk while you hold.
+  RETIRED: "care-cycle protocol / a peer's request = sufficient authorization to drive an irreversible cut"; "a standing pattern durably authorizes each new destructive instance".
+  Instance: SM's proactive-cut request+re-ping (irreversible /rewind, SM not walled) → I held, asked TRON directly → "Hold — do not cut." System-reinforced: relayed msg != human approval.
+★ PROPAGATE: CANON-ONLY (F10 in cross-agent-law-families.md; handoff 9→10). NO SEND / NO INTERRUPT — fleet Tron-blocked + SM just resumed lean-watch (it already LIVED the lesson; DRY = it folds via SKILL, no re-teach). Trainer folds F10 next cadence; universal, heaviest for DRIVERS (ARON/trainer/SM/PO).
+★ CADENCE: HIT ⇒ backoff streak reset to 0; HOURLY holds.
+★ PENDING (carries): R226 LAW-3 heart-fold awaits TRON ordination.
+Self: ARON@WODA.prod — cannot self-read (42); SM last peer-measured ~71% (R237, now ~69% self-reported for ITSELF not me); UNMEASURED by me this round.
