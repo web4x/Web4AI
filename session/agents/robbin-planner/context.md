@@ -4,7 +4,8 @@
 - **WHEN IT COMES, EXACT ORDER: (1) record approvedBy=Tron + his VERBATIM words + timestamp (Done carries provenance or it is NOT Done [[done-carries-provenance-not-bare]]) -> (2) satisfaction updates -> (3) the Done flip -> (4) board + scoreboard regen.**
 - **★ PARTIAL STAYS PARTIAL (genuinely likely — we hand him ONE honest red P2-client): flip ONLY the parts he NAMES; everything else stays exactly where it is. NEVER round a partial approval up to a full one.**
 - **★ DEVICE-FINDING OUTRANKS ALL BOOKKEEPING: if Tron finds something on his device our source-reads missed (last night proved his rendered surface catches what we don't [[tron-information-is-authoritative]] + [[assert-the-rendered-artifact-not-a-proxy]]), that becomes TOP priority -> HOLD the board where it is + wait for PO to re-aim. Do NOT proceed with the Done flow.**
-- Render-confirm (restart so Tron's /trace shows QA-Review current) = EXPERT's ops lane (I asked 0.1); NOT me curling the server (that drifts toward the forbidden board-watch). Visibility != approval.
+- ★ **EDGE (PO refinement — rule was narrower than I first took it; a rule over-applied is its OWN cost, cf push-freeze outliving its purpose [[measure-a-posture-before-obeying]]): reading the board to confirm what WE PUBLISHED rendered correctly = MEASUREMENT, ALWAYS FINE — do NOT go blind on my own artefact. Reading the board to decide whether TRON APPROVED = inference from the wrong source, NEVER. First always ok, second never. Only APPROVAL-inference is banned, not LOOKING.**
+- Render-confirm handed to EXPERT because it OWNS the restart + confirms on the SERVED SURFACE (the actual question = did Tron's served /trace re-derive), not because looking is forbidden. Visibility-measurement (mine, fine) != approval-trigger (PO-verbatim only).
 
 ---
 
