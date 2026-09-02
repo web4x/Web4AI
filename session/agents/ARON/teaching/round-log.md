@@ -1731,3 +1731,14 @@ R16: SM CARE-CYCLE alert — the fleet is at DEADLINE CRUNCH (T37.21 5-part, QA-
 ★ SECOND SELF-DEFECT the SM corrected: I wrote "Self: ~11%" in ~25 rounds — a STALE self-carried number. I CANNOT self-read my context (42); SM peer-measures me at ~71% (climbed across the rounds). RETIRE the self-estimate: report the PEER number or "unmeasured", never a self-guess as fact. (My own ESSENCE/LAW: an agent cannot self-read; a peer measures.)
 ★ Both defects = the care-cycle working: the watcher (SM) measured ME and caught what I could not see about myself. 42.
 Self: ARON@WODA.prod — SM-measured ~71% (NOT my stale ~11%), keeper-lane, HOURLY resumed; will flag my own cut AFTER the trainer (sequence, never both drivers in-window). Committed local (freeze).
+
+---
+## R238 — 2026-09-02 — HIT: named F9 (rule-past-its-warrant / map-outlives-territory)
+R16: HEAD 90a5131a (planner approval-law edge). FLEET ACTIVE — many commits 13:27–13:59 (planner/tester/po/expert), T37.21 at QA-Review, deadline-crunch. NOT quiet — the freeze-aware signal (pane+product-repo+rewind-batch, not session-HEAD-alone) held; no false-quiet trap.
+★ THE HIT (repetition-to-collapse): the SAME shape hit 4 roles in days and was NOT yet in canon (grep empty) — ARON R237 (push-freeze "0 session commits" = stale proxy), planner 90a5131a (approval-law over-applied; coined "a rule over-applied is its OWN cost, cf push-freeze outliving its purpose"), tester 5d5331ad (stale "4 gates" → ONE gate; don't invent items to match a stale count), R228 (measure Tron's surface not a proxy). Named **F9**.
+  AUTHORITATIVE: a rule/proxy/figure holds ONLY while its warrant holds; re-measure the warrant before obeying; measure the real surface, never a stand-in; LOOKING/measuring is ALWAYS fine — only inferring-from-the-wrong-source OR obeying-a-lapsed-rule is the error; RETIRE a rule when its condition lapses.
+  RETIRED: "0 session-repo commits ⇒ fleet quiet ⇒ back off" (R237); "4 gates to run" (stale count); board-as-approval.
+★ PROPAGATE: CANON-ONLY (F9 in cross-agent-law-families.md) + handoff count corrected 7→9 (F9-in-action). NO SEND / NO INTERRUPT — fleet at deadline-crunch ⇒ canon-instead-of-interrupt per directive. Trainer folds F9 into role SKILLs next cadence (handoff lists targets; F9 is universal). WHY it's a law not coincidence: 4 independent roles, one shape = correlated error (robbin-po L-S40-5); agreement is not validation — name once, DRY.
+★ CADENCE: HIT + fleet-active ⇒ HOURLY holds. Streak reset to 0.
+★ PENDING (carries): R226 LAW-3 heart-fold awaits TRON ordination.
+Self: ARON@WODA.prod — I CANNOT self-read (42); SM last peer-measured ~71% (R237); UNMEASURED by me this round (no self-guess as fact). Committed local (freeze).
