@@ -1247,3 +1247,15 @@ P1 · P3 (redundant body links gone, action bar survives — both directions) ·
 3. **Gave a FALSE reason** for the P5b distinct-Test ruling ("room Files are equal-size leaves") — tester measured it false (png 10916416 vs doc 43). Ruling stood on the REAL basis; req recorded the corrected basis so nobody re-reads the tests as duplicates on a lie.
 4. **Said "we are past P5b"** conflating *current work* with *chain credit* — req caught it; the credit was legitimate and landed.
 ### ★ NIGHT'S SYSTEMIC LESSON: **8+ coordination stalls**, every one the same shape — two competent agents both healthy, both correct, nothing moving between them; only visible from across the board. Status reports never show it; **only pane captures do**. And every source-level verification passed while the feature was broken — **the rendered surface at 390 caught what three source reads could not**.
+
+### ★ #89-FINAL — P2 CLIENT-HALF VERDICT LANDED (supersedes "pending in-flight" above)
+**REAL RED, precisely bounded** (tester 5ec2323c7 + probe, SCRATCH localhost:4643 not prod — expert refused to route around the prod credential guard; measure≠mutate split preserved, b1 ACTOR / b2 PASSIVE OBSERVER).
+- **2c-FRAME ✅** b2 receives the WS unit-changed frame — `{ior:class:Folder, uuid:'dir:src/ts'}`, keyed on the **PARENT synthetic ref**.
+- **2c-DOM ❌** b2 does NOT live-insert. **This is Tron's exact ask failing.**
+- **2b ❌** b1 (actor) does not insert either.
+**KEY-MISMATCH HYPOTHESIS REFUTED TWICE** — architect traced all 4 links (client sends parent shownRef → server emits on parent → live-bridge notify(viewBusKey) → tree subscribe(viewBusKey)); tester then confirmed AT RUNTIME notify-key == subscribe-key == `dir:src/ts`. So emit/broadcast/key/server/create are ALL PROVEN CORRECT. **Bug is strictly in the client's notify-DELIVERY or reDeriveDirectChildren-insert (fires-but-noops).** Tron knows where it is AND where it isn't.
+**STOPPED per my ruling** — no third hypothesis at dawn; an unbackstopped client-subscribe change would trade a known red for an unknown regression. Architect + tester both endorsed stopping.
+### ★ BANKED RULES FROM THE NIGHT'S END
+- **ANCHOR FIRST, THEN CUT** (trainer, from ARON's 4-day-stale anchor): cutting an agent with a stale anchor just boots it into a stale frame = the ghost-context failure. Refresh the anchor, *then* rewind.
+- **RENDER THE FORWARD WORK, NOT THE IDLE %** (SM): an idle agent at 80 is STABLE (context burns on generation); an ACTIVE agent at 81 is a moving target. Cut order = who is climbing + what work is imminent, not the raw number. Produced two correct reorders inside ten minutes.
+- **VOICE THE CONFLICT, DON'T COUNTERMAND** proved itself twice: SM challenged my planner-cut → I had to state reasoning → my premise held but ITS premise was then caught by its own re-measure. Both corrections landed without rank being pulled.
