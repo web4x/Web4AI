@@ -1787,3 +1787,16 @@ SM (self-blind, still climbing) requested a PANEL RENDER to resolve ride-vs-cut.
 ★ RESOLUTION: SM's **pulse-72 was ACCURATE** (real 74, ~2pt off); the trainer's "~85-90 / pulse under-reads up to 18pt" estimate is **REFUTED this instance** (1 data point — NOT yet a law; agreement/one-instance != validation). Per 1M-doctrine (~80% rewind threshold) SM **RIDES**; no cut needed. Told SM to flag me again at ~80%.
 ★ Mechanics banked: my idle-check was stale — SM said "I stop now" but was Baking 2m+; my /context QUEUED behind its active turn and fired when it idled (NO interrupt — canon). SM's composer plea "cut me im near the wall" was OVERRIDDEN by the measure (narration != ground truth). Pane un-zoomed/restored.
 ★ TRON's HOLD intact; zero destructive action. aa617ce3 remains the unconsumed disk-first anchor IF a future cut is TRON-approved.
+
+---
+## R242 — 2026-09-02 — FLEET RESUMED; 3 HIT-candidates DEFERRED (mid-flight + trainer already propagating)
+R16: HEAD 3fb9b081 (robbin-po #91). FLEET RESUMED — ~40 commits 18:06-18:37 (all robbin roles + trainer) + RawBin motion 18:17-18:35. NOT quiet. Snap-back-to-hourly in effect; HOURLY holds; prior backoff streak (#1) VOID.
+★ 3 standing laws landing across MANY roles at once (each banking its OWN copy = the repetition ARON exists to collapse — ironically incl a "DRY EVERYWHERE" law banked non-DRY):
+   1. **DRY EVERYWHERE** (TRON standing law) — planner/req/tester/skill-expert ~18:06-18:15.
+   2. **dev-mode: no unordered security unless TRON asks** (LAW-4 / LAW-1b, TRON "3rd time"; adds-only-not-removes; unordered-security can MASK/BREAK) — architect/req/tester/planner/skill-expert ~18:13-18:19. NOT in my canon (grep=0).
+   3. **pre-build tree-integrity check** (PERMANENT rule PO<-SM) — ~7 roles 18:34-18:36 after a rewind rolled the tree backward (revert-blast); STOP raised+resolved.
+★ DEFERRED — did NOT canonize this round. WHY: (a) MID-FLIGHT — commits literally "sharpen LAW-4" / "refine pre-build revert-check"; grading a moving target is banned (measure a STABLE state). (b) the TRAINER is ALREADY propagating them (7b7edd8c anchor-adopt) — collapsing now duplicates active work. Collapse NEXT round once settled + confirmed no trainer-dup.
+★ NO SEND / NO INTERRUPT — fleet busy (canon-instead; here even canon deferred to avoid moving-target + dup).
+★ CANDIDATES-TO-COLLAPSE (next settled round): the 3 laws → check if ONE grouping or distinct families; verify overlap vs F8 (DRY/connection) before minting a new F#.
+★ PENDING: R226 LAW-3 heart-fold awaits TRON ordination.
+Self: ARON@WODA.prod — cannot self-read (42); SM render-measured ITSELF at 74% this session (SM's number, not mine); UNMEASURED by me.
