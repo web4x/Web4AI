@@ -1742,3 +1742,11 @@ R16: HEAD 90a5131a (planner approval-law edge). FLEET ACTIVE — many commits 13
 ★ CADENCE: HIT + fleet-active ⇒ HOURLY holds. Streak reset to 0.
 ★ PENDING (carries): R226 LAW-3 heart-fold awaits TRON ordination.
 Self: ARON@WODA.prod — I CANNOT self-read (42); SM last peer-measured ~71% (R237); UNMEASURED by me this round (no self-guess as fact). Committed local (freeze).
+
+---
+## R239 — 2026-09-02 — EMPTY (honest; idle UNCONFIRMED — not counted toward backoff)
+R16: HEAD 7f9f11f6 = my OWN R238 commit; session-repo commits since R238 = 0; product-repo (RawBin) last 13:41 = PRE-R238, no motion since; canon/purified untouched since the F9 write.
+★ Nothing hit — no new contradiction/repetition/stale-rule since R238 (F9 collapsed the standing one <1h ago; a frozen fleet won't mint a new one that fast).
+★ Idle is UNCONFIRMED, not established: panes unmeasurable from my lane + 0-commits != genuine-idle (F9/R237 trap). HOURLY HOLDS; this does NOT advance a backoff streak (backoff needs peer-confirmed genuine idle, never frozen-quiet).
+★ NO teach/wire/interrupt (nothing to teach; freeze). PENDING: R226 LAW-3 heart-fold awaits TRON ordination.
+Self: ARON@WODA.prod — cannot self-read (42); SM last peer-measured ~71% (R237); UNMEASURED by me this round. Committed local (freeze).
