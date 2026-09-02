@@ -1714,3 +1714,9 @@ R16: HEAD 80ec004f = my OWN R234 commit; FLEET commits since R234 = 0; RawBin UN
 ★ Nothing hit. PENDING: R226 LAW-3 heart-fold awaits TRON.
 ★ NO teach/wire/interrupt. Committed local (freeze).
 Self: ARON@WODA.prod ~11%, keeper-lane, 4-HOURLY. Committed.
+
+---
+## R236 — 2026-09-02 — EMPTY (4-HOURLY; fleet quiet)
+R16: HEAD e346f494 = my OWN R235 commit; FLEET commits since R235 = 0; RawBin UNCHANGED; canon/ledger UNTOUCHED. 4-HOURLY holds (9b350bbb).
+★ Nothing hit. PENDING: R226 LAW-3 heart-fold awaits TRON. NO teach/wire/interrupt. Committed local (freeze).
+Self: ARON@WODA.prod ~11%, keeper-lane, 4-HOURLY. Committed.
