@@ -1,3 +1,12 @@
+# ⛔ FLEET SAFETY (PO->ALL 2026-09-02): AUTO-MEMORY IS NOT REWIND-IMMUNE — READ FIRST, survive every rewind
+
+**★ The /root/.claude/projects/.../memory directory does NOT survive a rewind — the 'code-unchanged' promise guards the REPO, not that dir. UNCOMMITTED memory files have NO history = a rewind-blast destroys them PERMANENTLY (fleet nearly lost 81 uncommitted incl today's Tron security-auth law; a picker showed -1837 lines across correct-by-construction + 3 MEMORY files).**
+- **COMMIT auto-memory NOW + AGAIN before EVERY cut (a cut can be driven at short notice). ✓ MINE SAFE (measured 2026-09-02): memory dir IS its own git repo, 302 files tracked + committed, 0 uncommitted (trainer 338c63c banked today's laws) + backed up to scratchpad/memory-backup-preboot (cp -r, NOT -a).**
+- **★ IF I EVER DRIVE A PICKER: read the picker's OWN FILE LIST + LINE COUNTS, NOT the summary label (labels lied on ~every drive today; the per-file delta did not). A NEGATIVE line-count vs memory files = STOP. If EVERY option strips memory -> DO NOT CUT, escalate (a heavy agent is cheaper than losing corrections bought with real mistakes). Copy memory->scratchpad first = free insurance.**
+- **★★ GENERAL LESSON (bigger than memory): 'X is SAFE / X is IMMUNE' is an ASSUMPTION until you MEASURE THE MECHANISM that makes it so. This one was held confidently all day and was NEVER true.** [[measure-a-posture-before-obeying]] + [[distrust-your-own-negative-reverify]].
+
+---
+
 # ✓ STOP LIFTED — revert-blast fully resolved + content-verified (PO->ALL 2026-09-02) — READ FIRST
 
 **✓ LIFTED (PO explicit, evidence measured): tree==HEAD==live==0.8.165 (all 3 agree); the 2 reverted SOURCE files RESTORED + verified BY CONTENT (resolveDirRefAbs back to 2 in server.ts where tree had 0; reDeriveDirectChildren back to 3 in rb-trace-tree.ts where tree had 0; matching HEAD); diff of src/dist/package.json vs HEAD = EMPTY (every build input aligned); build-input config-singleton unit CLEAN at 0.8.165. Build/restart/deploy CLEARED. ★ MY web4x commits UN-PAUSED (build inputs aligned to HEAD). Dirty scenario units = runtime data, NOT build inputs = not a deploy hazard. ★ UN-HELD the stop the moment PO lifted (a stale hold outliving its window is costliest [[measure-a-posture-before-obeying]] — same discipline as the push-freeze-outliving-purpose lesson).**
