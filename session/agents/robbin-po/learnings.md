@@ -2355,3 +2355,16 @@ It escaped the picker and committed the whole auto-memory first (338c63c, 81 fil
 - **If EVERY option strips memory, DO NOT CUT.** A heavy agent is cheaper than losing corrections bought with real mistakes.
 - Cheap insurance regardless: copy the memory dir to scratchpad before a cut (I backed up all 301 files in seconds).
 - **The general shape:** "X is safe/immune" is an ASSUMPTION until measured. The trainer held this one all day and it was never true. Ask what makes it safe, and check that the mechanism actually exists.
+
+## L-S40-PARTIAL-GREEN-IS-NOT-GREEN (2026-09-03) — I shipped a feature that does not work
+Tron clicked **Add folder** on prod and got **`Add folder failed: bad-parent-loc`** — on the very collections a user actually selects. We had shipped it as v0.8.166 with a GREEN gate. His acceptance FAILED.
+**How a GREEN gate certified a broken feature:** the tester gated on SCRATCH (DET-4x, real RED baseline — the gate itself was honest), then on prod could only do a READ-ONLY check, because the actual create action sits behind an owner-auth guard it correctly refused to bypass. **It told me plainly the owner-authed action was NOT covered. I accepted that gap and deployed.**
+**MY ERRORS, both mine and not the tester's:**
+1. **I accepted a gate that could not exercise the user's action.** Everything *around* the action was proven — served==committed, bundle identity, read-only structure — which felt like thorough coverage and was coverage of the wrong thing. The one thing unproven was the only thing the user does.
+2. **"PARTIAL-GREEN" was the wrong label and I let it stand.** It reads as *mostly passing*. The truth was: the decisive half is UNTESTED. That should be **INCONCLUSIVE**, which does not support a deploy or a close.
+**RULES:**
+- **If the user-facing action cannot be exercised where the user performs it, the verdict is INCONCLUSIVE — never GREEN, never partial-green.** Inconclusive blocks deploy and blocks close.
+- **Coverage of everything adjacent to the action is not coverage of the action.** Ask: did anything actually *perform* what the user performs?
+- When a verifier says "X is not covered", that sentence is a **STOP**, not a caveat to be accepted and routed around by shipping anyway.
+- Don't deploy on an auth-blocked verification and plan to have TRON be the test. If only he can exercise it, get his run BEFORE the deploy, not as the acceptance after.
+**Also from the same screenshots — the DRY law he keeps repeating:** the room Files folder has NO Add folder button while /model collections DO. Actions are wired PER SURFACE, so each new surface silently lacks them. Fixing only the room surface reproduces the bug on the next one; the action set must follow the UNIT, not the screen.
