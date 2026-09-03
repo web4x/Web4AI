@@ -1329,3 +1329,16 @@ Tester found R33.1 (accepted req, PASSING gate) asserts an owner-gate on /model 
 - **harness-routed-around-the-defect**: the GREEN came from a direct POST with a hand-built raw ref while the harness's OWN logs recorded the real verb path FAILING. I never asked **HOW** the green was obtained. Ask what the harness actually INVOKED.
 - Gate used `dir:src/ts` — the shape that WORKS — never the collection shape he clicks. **Unrepresentative data.**
 ### GATE RULE NOW: the REAL verb, on BOTH `ts` AND `shared`, no hand-built payloads. Then Tron device acceptance. Tester holds room-Files-button verdict at INCONCLUSIVE until it live-mounts (its structural read says the button SHOULD appear — Tron's screenshot says it does not; that contradiction is a finding).
+
+## ★★★ #93 — v0.8.167 SHIPPED, 2 of 3 CONFIRMED ON PROD, DEFECT-1 AWAITS TRON'S CLICK (2026-09-03)
+**PROD v0.8.167 (14230f99f atomic, LOCAL push-hold). served==committed==HEAD verified by me.**
+### THE 4-DEEP STACK, all shipped together (fixing any subset = a new failure for him)
+1. missing `collection:` branch in ensureViewUnit · 2. synthetic `rawbin:ts` location · 3. add-folder declared only in MODEL_DECLS · 4. **NO room folder route existed at all** (so the room button could never have worked even if visible).
+**FIX = Option B:** ONE `resolveFolderRefToDir(rawRef)` → physical dir (strips `collection:`, maps `rawbin:`), model endpoint resolves from the **RAW REF** not `parent.model.location`. NO migration — Option A rejected on MEASURED blast radius (tree-builder server.ts:1719-20 reads location). + folder verbs → UNIVERSAL_DECLS, ONE provenance dispatch (roomcoll→room endpoint), + NEW room folder route. + ONE formatBytes.
+### STATUS — honest 3-part, NEVER collapse to one word
+- ✅ **DEFECT 2 (room Add-folder button)** — RENDERED on prod, bar shows 📁 Add folder.
+- ✅ **DEFECT 3 (sunburst)** — RENDERED on prod: 5 arcs, no single-child blob, centre total **14.9 MB** human-readable. (Tester's earlier "not confirmed" was its OWN broken mount = INSTRUMENT; it fixed the instrument, not the product.)
+- 🚧 **DEFECT 1 (bad-parent-loc)** — verified TWICE in code (expert vs REAL project root w/ both Tron nodes; architect 11/11 **fail-closed preserved**) BUT the real click-flow is NOT proven: tester's scratch harness cannot drive the verb selection = INSTRUMENT in progress. **Acceptance = TRON'S OWN CLICK on ts + shared** (owner-auth BOUNDARY, we will NOT authenticate as him).
+### BOTH lints proven FAILABLE by seeding real violations + self-bite each run (folder-verb per-surface; raw-bytes /1024).
+### NO 4th DEFECT: planner measured P2 client-half CLOSED (cb4c7634d → tester DET-4x 446d41fb8 → v0.8.166 → Test 919e3f36 wired to EXISTING Impl 8693dc2b, no duplicate). Residual "partial-pass" = coverage/instrument note, NOT a product defect.
+### ★ F11 CANON (ARON, adopted): **CLASSIFY THE RED BEFORE FIX-FORWARD — defect (fix product) / boundary (owner's own action only, NEVER build around) / instrument (fix the probe, then re-judge).** Test: "what would fixing this let us do we were never authorized to do?" → "act as someone else" = BOUNDARY. This stopped a proposed AUTH BYPASS. Fleet-wide; SM now gates MY dispatches for this shape.
