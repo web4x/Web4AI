@@ -1923,3 +1923,7 @@ Informational; NO action yet — architect is ACTIVE mid-diagnosis (Crystallizin
   5. All proven drive disciplines: true-session probe (registry lies), Level-2 per-file deltas NOT labels, stop on negative auto-memory, git-status EVERY tree after, deep landing recovered via anchor.
 ★ Fleet levels (SM): architect ~85, tester ~85 (both tight), expert(0.1) ~36 = only fresh one (holding on builds). ME: 46% (R247 panel) = safe to drive.
 ★ Status: HOLDING for SM's flag. No picker until F10-consent + committed-diagnosis + trainer-serialization all green.
+
+## OOB append — TRON DIRECT CONSENT for architect cut (F10 satisfied at source)
+Asked TRON directly (AskUserQuestion), his word: "Yes — cut at its boundary." Consent-with-a-trigger (like SM's item-1). NOT driven on the PO-dispatch/SM-flag/trainer-coordination relays — verified at the source. 4th cut tonight, F10 held at source every time.
+★ GATE STATE: TRON-consent GREEN. Remaining gates at the boundary: (1) SM flags architect idle + number; (2) diagnosis COMMITTED on disk; (3) SERIALIZE with trainer (land+confirm+ping 'architect cut closed' before trainer opens tester in robbinTeam2); (4) true-session probe; (5) Level-2 line-counts not labels; (6) stop on negative auto-memory; (7) deep prior-boot landing recovered via anchor; (8) git-status trees after. HOLDING for SM's idle flag.
