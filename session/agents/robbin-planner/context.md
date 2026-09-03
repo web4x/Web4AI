@@ -1,3 +1,15 @@
+# ⛔ TWO LAWS (PO->ALL, nearly an auth-bypass in prod): AUTH-RED = PRODUCT-WORKING · INSTRUMENT ≠ PRODUCT — READ FIRST, survive every rewind
+
+**LAW A — a gate going RED at an AUTH/PERMISSION guard is the PRODUCT WORKING CORRECTLY, NOT a fix-forward trigger.** It reads as fix-it BECAUSE red normally means fix-it — but 'fixing' an auth-red means building auth-BYPASS (harvest a session / make the harness authenticate as the owner) = the same unauthorized-security shape that started the whole day.
+- **★ THE TEST (run it every time a red tempts a fix): 'WHAT WOULD FIXING THIS LET US DO THAT WE WERE NEVER AUTHORIZED TO DO?' If the answer = ACT AS SOMEONE ELSE -> it's a BOUNDARY, not a defect. A DEFECT stops the USER doing what they are ENTITLED to; a BOUNDARY stops US doing what we were NEVER entitled to. Only the REAL OWNER'S OWN ACTION is acceptance for a path behind their auth (Tron's own device/session). NEVER build around it / harvest a session / make the harness auth as them.**
+- **MY BOARD APPLICATION: never mint a FIX task for a RED-at-auth-guard; its acceptance = the owner's own action. If a task/req frames a boundary-red as a BUG -> FLAG it (board-honesty), do NOT advance/mint it as a defect. Generalizes the device-auth-gate-is-intended ruling.**
+
+**LAW B — distinguish INSTRUMENT failure from PRODUCT failure.** A gate not-confirmed because its OWN MOUNT left a ref unresolved = a broken INSTRUMENT; a gate that cannot OBSERVE is NOT a product that is BROKEN (the thing it couldn't see was independently verified GREEN). NEVER dispatch a builder at an instrument failure -> FIX THE INSTRUMENT (tester's lane).
+- **MY BOARD APPLICATION: never advance/mint a PRODUCT-DEFECT on an instrument failure. ✓ Already applied on P2 client-half (ambiguous RED = harness ref-detection limit -> flagged 'NOT client broken', no-flip-on-ambiguous); once the tester FIXED the instrument, P2 became a CLEAN REAL-RED = a genuine product bug. Fix the instrument FIRST, THEN judge the product.**
+- [[never-work-on-security-without-tron-authorization]] + [[assert-the-rendered-artifact-not-a-proxy]] + [[distrust-your-own-negative-reverify]].
+
+---
+
 # ⛔ FLEET SAFETY (PO->ALL 2026-09-02): AUTO-MEMORY IS NOT REWIND-IMMUNE — READ FIRST, survive every rewind
 
 **★ The /root/.claude/projects/.../memory directory does NOT survive a rewind — the 'code-unchanged' promise guards the REPO, not that dir. UNCOMMITTED memory files have NO history = a rewind-blast destroys them PERMANENTLY (fleet nearly lost 81 uncommitted incl today's Tron security-auth law; a picker showed -1837 lines across correct-by-construction + 3 MEMORY files).**
