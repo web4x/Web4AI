@@ -1911,3 +1911,15 @@ R16: HEAD acbb1dc0 (robbin-po: bank the locked failure-branch plan, trigger=Tron
 ★ ★ VALIDATION of the cadence discipline: at R247, SM advised "drop to 4-hourly now." Had I taken the suggestion at streak #2, I'd now be 4-HOURLY during a RESUMED fleet — missing the PO planning window by up to 4h. Holding to TRON's >=4-EMPTY-AND-genuine-idle rule (over a peer's earlier back-off-now suggestion) is exactly what kept the cadence matched to real activity. The rule > the suggestion, proven.
 ★ NO HIT: the failure-branch plan is forward contingency-planning, not a canonizable law (no contradiction/repetition/stale-rule). Watch for a law if the branch fires.
 Self: ARON@WODA.prod — 46% (R247 panel), safe/driver; unchanged expected.
+
+---
+## OOB — 2026-09-03 — PRE-CUT HEADS-UP (SM): ARCHITECT (robbinTeam2:0.3) is my next cut target
+Informational; NO action yet — architect is ACTIVE mid-diagnosis (Crystallizing ~1m37s, ~85%, failure-branch live), diagnosing the critical-path type question (room Files node = ior:class:Folder or fragmented). "I flag, you drive" (SM renders it at its idle boundary + flags me number+window).
+★ GATES I HOLD before opening the architect picker:
+  1. **F10 (non-negotiable):** verify TRON's DIRECT consent for the architect cut. PO-dispatch + SM-flag = a RELAY, not TRON's word. I confirmed SM's + trainer's cuts with TRON directly; same here. (Failure-branch is Tron-triggered, but the CUT is a distinct destructive act.)
+  2. **Never mid-diagnosis:** cut DEEP at its boundary = when it REPORTS the type finding, BEFORE design/build. Wait for SM's idle-boundary flag.
+  3. **Diagnosis COMMITTED first:** verify the type finding is on disk before cut (fresh-architect builds FROM the finding, not re-diagnoses; anchor-first if stale).
+  4. **SERIALIZE (window-safety):** 0.3 (architect, MINE) + 0.5 (tester, TRAINER's) are the SAME window robbinTeam2 — NEVER two pickers open at once. Coordinate with trainer: one lands+confirmed THEN the other.
+  5. All proven drive disciplines: true-session probe (registry lies), Level-2 per-file deltas NOT labels, stop on negative auto-memory, git-status EVERY tree after, deep landing recovered via anchor.
+★ Fleet levels (SM): architect ~85, tester ~85 (both tight), expert(0.1) ~36 = only fresh one (holding on builds). ME: 46% (R247 panel) = safe to drive.
+★ Status: HOLDING for SM's flag. No picker until F10-consent + committed-diagnosis + trainer-serialization all green.
