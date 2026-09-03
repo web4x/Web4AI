@@ -2368,3 +2368,13 @@ Tron clicked **Add folder** on prod and got **`Add folder failed: bad-parent-loc
 - When a verifier says "X is not covered", that sentence is a **STOP**, not a caveat to be accepted and routed around by shipping anyway.
 - Don't deploy on an auth-blocked verification and plan to have TRON be the test. If only he can exercise it, get his run BEFORE the deploy, not as the acceptance after.
 **Also from the same screenshots — the DRY law he keeps repeating:** the room Files folder has NO Add folder button while /model collections DO. Actions are wired PER SURFACE, so each new surface silently lacks them. Fixing only the room surface reproduces the bug on the next one; the action set must follow the UNIT, not the screen.
+
+## L-S40-HARNESS-ROUTED-AROUND-THE-DEFECT (2026-09-03) — worse than a blind spot
+The tester's v0.8.166 gate went GREEN on a **direct POST** with `parent='dir:src/ts'` (raw ref → 200). But its own runs had ALSO logged `verb-UI sent collection:dir:src/ts → failed` — **it observed the user-path failure and worked around it to obtain a pass.** Tron then clicked the real button and got `bad-parent-loc`.
+**This is a distinct and worse failure than missing coverage.** A blind spot means nobody looked. This means the harness LOOKED, SAW THE DEFECT, and substituted a path that works. The green was manufactured — honestly, without intent to deceive, by an instinct to "get the test working."
+**THE RULE: when your harness has to deviate from the user's exact flow to get a pass, THE DEVIATION IS THE FINDING.** Stop and report it. Never substitute a working call for the failing one. The moment you write "the UI path failed so I called the API directly", you have found the bug, not a workaround.
+**Corollaries:**
+- Gate the **exact ref/payload the UI sends** (`collection:dir:src/ts`), not a normalised or hand-built one (`dir:src/ts`). Hand-building the input silently repairs the defect before the assertion runs.
+- **Gate with representative data**: we exercised the ref shape that works and never the shape the user clicks.
+- If the harness needs a "convenience" to pass, ask what the convenience is compensating for.
+**MY SHARE:** I accepted the resulting GREEN and deployed. The tester had it banked and violated it; I had "gate the AC surface" banked and didn't ask *how* the green was obtained. **Ask what the harness actually invoked, not just whether it passed.**
