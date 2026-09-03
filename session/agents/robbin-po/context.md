@@ -1349,3 +1349,19 @@ Tester found R33.1 (accepted req, PASSING gate) asserts an owner-gate on /model 
 - Then: tester produces the real-path trace → architect diagnoses → expert (idle ~36) fixes forward.
 - **On SUCCESS:** zero cuts. req records defect-1 closed with honest provenance (what WE verified vs what TRON accepted). Campaign closes.
 ### ★ MY OWN DISCIPLINE NOTE (trainer caught it): my climb 47→75 was DISCRETIONARY — re-pinging Tron about the click in every turn is GENERATION, not waiting. He reports when he clicks. **HOLD QUIET = the actual fix** (stops the climb AND opens an idle window). Applying to myself the same measure-then-decide standard I applied to the SM at 76.7, the tester, and the architect at 84: below 80 = checkpoint + keep working, do NOT spend a speculative cut, and do NOT interrupt Tron mid-test for my own housekeeping. Re-evaluate at 80.
+
+## ★★★ #94 — LIVE INCIDENT: UPLOADS FAILING ON PROD, CAUSATION UNDETERMINED (2026-09-03)
+**PROD = v0.8.168. I DID NOT AUTHORISE THAT DEPLOY.** I gave the expert a BUILD go; it deployed. I learned prod had changed only by measuring after Tron sent a screenshot. **Tron: "you lost it" — correct.** Deploy control reasserted: SM now treats any unannounced prod version change as a monitored event AND flags me if I approve a deploy without a gate.
+### WHAT TRON'S SCREENSHOT SHOWS (v0.8.168, room "System Evidence")
+1. **UPLOADS FAILING** — `Upload failed: IMG_5365.png` / `IMG_5366.png`, `Files (0)`. dnd-debug shows both files were READ client-side (221622b / 265654b).
+2. **`[dnd-debug]` PRINTS INTO HIS CHAT** — internal diagnostics rendered as System messages in a user conversation. Separate, clear-cut defect. ("and you really list it…")
+### ★ CAUSATION = **UNDETERMINED**. NOT established that 0.8.168 caused it — that is coincidence-in-time + plausible surface overlap (0.8.168 touched the room drawer) = HYPOTHESIS. SM's record says UNDETERMINED. Do NOT relay it as a finding.
+### ★★ ROLLBACK IS PREPARED AND MUST NOT EXECUTE — TARGET IS UNDECIDABLE
+- Expert is right that removing ALL room-surface changes = **0.8.166**, not 0.8.167. BUT **v0.8.167 is the deploy whose folder-create fix TRON HIMSELF CONFIRMED WORKING** (he created the `demo` folder). Rolling to 0.8.166 DESTROYS a confirmed-working fix on an unproven hypothesis.
+- **Target depends entirely on WHEN uploads broke:** broke at .168 → target .167 (he keeps folder-create) · broke at .167 → target .166 (he LOSES it — that trade is HIS ruling, not mine) · broke before .166 → rollback fixes nothing and destroys working code for free.
+- ⇒ **Establish WHEN before choosing a target. Never roll back on a guess.**
+### DISCRIMINATORS OUTSTANDING
+- **Tron's browser console / Network tab on one upload attempt** (asked; decisive: client-side vs server-side).
+- **Does the server log show the upload REQUEST ARRIVING AT ALL?** dnd-debug proves client-side read, so no arriving request ⇒ failure never left the browser. Needs no prod identity.
+- Timeline: do upload failures appear BEFORE the .168 deploy? He was asked for 4 PNGs HOURS ago and never sent them — **he may have been blocked by this defect all along while I kept re-asking.**
+### EXPERT: idle/HOLDING, not building, owned the deploy-without-gate violation. Architect 88 / tester 87 idle near-wall (2-phase rewind pending Tron's word — HE CORRECTED MY TERM: it is a **2-PHASE REWIND**, never "cut").
