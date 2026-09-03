@@ -1884,3 +1884,11 @@ R16: HEAD 800378d4 (architect save-ready checkpoint); 2 session commits since R2
 ★ NO NEW HIT. The delivery recovery LANDED F11-correctly: the fix got the REAL verb-UI click-flow GREEN (not a harness-substituted green), defects fixed, boundary held (Tron's own click still the acceptance). That is F11 + F1 CONFIRMED in practice — the doctrine working, not a new rule to bank.
 ★ CADENCE: fleet active (product landing + checkpointing) ⇒ HOURLY holds; no backoff.
 Self: ARON@WODA.prod — last SM-panel 42% (R243); a few rounds since; not re-measured (peer measures me, no self-estimate). Will request a fresh render if I keep rounding — last driver, nobody behind me.
+
+---
+## R247 — 2026-09-03 — EMPTY (fleet winding down post-delivery; backoff streak #2/4)
+R16: HEAD 4fb91609 = my OWN R246 commit; 0 session commits since; RawBin quiet ~90min. Delivery LANDED (v0.8.167 real-green), anchors checkpointed save-ready = natural rest point.
+★ Nothing hit. Two quiet sources (session + RawBin 90min) + delivery-resolved + save-ready-checkpoints = LIKELY genuine wind-down (stronger than mere frozen-commits), but panes unmeasurable from my lane so not pane-confirmed. Backoff streak = #2/4; HOURLY holds (need #3,#4 + confirmed-idle).
+★ Requesting my OWN re-measure this quiet window: I've rounded R244-R247 since the 42% panel (R243); last-driver, nobody behind me — do NOT coast on a stale number. Pinging SM to render me while I hold idle.
+★ CADENCE: HOURLY holds. PENDING: none new (R242 carry closed R245; F11 canon; delivery F11-validated R246).
+Self: ARON@WODA.prod — last panel 42% (R243), STALE by several rounds; re-measure requested; no self-estimate.
