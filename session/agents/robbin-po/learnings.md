@@ -2395,3 +2395,13 @@ Our prod gate went RED at the owner auth guard: the tester could not run the rea
 **THE TEST (verbatim):** *"what would fixing this let us do that we were never authorized to do?"* → if the answer is **"act as someone else"**, it is a BOUNDARY.
 **Why the three-way form is better than my two-law version:** red normally means "fix it", so the failure is REFLEX, not ignorance. A three-way classification forces a pause at the exact moment reflex fires. Kin to F10 (consent-provenance) and F1/F9 (proxy ≠ territory).
 **Both directions matter** (planner's example): don't blame the product for a broken probe — AND once the probe is fixed, BELIEVE the red. Most stop after the first half.
+
+## L-S40-ADJACENT-SURFACE-IS-NOT-THE-SURFACE (2026-09-03) — the SAME error, second time in one day
+We told Tron the room Add-folder button was FIXED. He opened a room: **still missing.** Our evidence was the button rendering on the **`/trace` shared drawer bar** — and the tester had even noted the room ref read *unresolved* at the time. **We verified an ADJACENT surface and reported it as the room.** I accepted it.
+**This is the SAME failure as the morning's `bad-parent-loc` green**, in a different costume:
+- Morning: gated a hand-built payload instead of the user's click → "the action works" was false.
+- Now: gated the shared bar on `/trace` instead of inside a room → "the button is there" was false.
+Both times the thing we measured was *near* the user's thing and *shared machinery* with it, which is exactly what makes it feel like coverage.
+**RULE: the surface named in the defect IS the surface that must be exercised.** Not the component it shares. Not a page that renders the same widget. If the report says "in-room", the evidence must come from **inside a room**. If you cannot reach that surface, the verdict is **INCONCLUSIVE** and you say so — you never substitute the nearest reachable relative.
+**Tell-tale I ignored, twice:** the verifier attached a caveat naming the substitution ("the room ref read unresolved, but the BAR renders the verb from the decl"). **A caveat that names a substitution IS a NOT-COVERED verdict.** Read caveats as verdicts, not as footnotes.
+**Also from the same screenshot — two real defects found by Tron, not by us:** (a) the new folder shows NO count badge in the tree while its own detail lists 2 children — tree and detail disagree about the same folder; (b) directory sizes render `1 B` each, total `2 B` — it is counting CHILDREN and labelling the count with a BYTE unit. Note (b) is NOT a formatter bug; formatBytes is correct on a wrong INPUT. **Fixing the formatter would have been fixing the wrong layer.**
