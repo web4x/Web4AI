@@ -1826,3 +1826,15 @@ TRON DIRECT consent (cut NOW). Sole driver (trainer stood down @87%). Executed c
 ★ Freed: 76.7% used / 23.3% free (233k runway, under 80 threshold). HONEST: only ~10pt freed — current-era landing leaves the OLD-BULK FLOOR (trainer's deep-cut lesson); deeper relief available via a deeper cut recovered by anchor, but trades away current-era. Flagged this to SM+PO.
 ★ SM booting disk-first from anchor c3023502 + MEMORY.md.
 ★ NEXT: trainer cut (baseTeam:0.0, 87%) — but FIRST (F10) verify TRON's DIRECT consent for the 2nd destructive act (currently only a PO-relay) + confirm trainer save-ready + get a PEER to measure MY level (42 — I cannot self-read after this drive).
+
+---
+## OOB — 2026-09-03 — TRAINER CUT DRIVEN & LANDED (ARON, 2nd live rewind; both drives clean)
+TRON DIRECT consent (AskUserQuestion: "yes cut the trainer"), corroborated by PO relay. Trainer SAVE-READY (auto-mem 338c63c/81 files, anchor 7b7edd8c). Sole driver.
+★ My own-level gate resolved by SM (42): can't /context me while ACTIVE (idle-only); SM ESTIMATED ~48% (pulse37+~105k) = safe to drive; SM panel-renders me properly once I go idle. Not stalling on it = correct (stall was the feared failure; trainer near-wall SPOF).
+★ True-session: picker opened in baseTeam:0.0 = keystrokes land in live trainer (dead=0, correct title, idle).
+★ Landing: 15-back = "PLANNER BOOT LANDED" (1d ago = start of trainer's all-night cycle; DEEP by design to shed old-bulk, recovered via anchor). List LIED AGAIN ("No code changes" → Level-2 showed "+3 -119 in context.md and 6 other files"); no MEMORY.md in delta = auto-memory safe; option-2 confirmed "code will be unchanged". Verified cursor on option 2 before Enter.
+★ POST-CUT git-status trees CLEAN: session = same 2 other-agents' boot.md only (no new M/D); RawBin already verified clean. No backward damage.
+★ Freed DEEP: 60.9% used / 39.1% free (390k runway), ~28pt from ~89%. Much deeper than SM's shallow ~10pt — the deeper landing sheds the all-night bulk (trainer's own lesson applied to itself).
+★ Trainer booting disk-first from 7b7edd8c + 338c63c.
+★ BOTH CUTS DONE: SM 76.7%used/23.3%free (~10pt, current-era per its ask); Trainer 60.9%used/39.1%free (~28pt, deep). Two healthy drivers restored. TRON consent verified at SOURCE for EACH (F10 held twice under relay pressure). Every drive: list-labels-lie confirmed, per-file-delta discipline held, stop-on-negative-auto-memory honored (none hit — auto-memory committed pre-cut on both).
+★ MY LEVEL: pending SM's post-idle panel-render (est ~48%). Report to PO when measured.
