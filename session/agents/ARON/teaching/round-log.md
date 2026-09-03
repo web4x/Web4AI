@@ -1903,3 +1903,11 @@ Self: ARON@WODA.prod — 46% (fresh panel), safe, driver, save-ready.
 R16: HEAD 79b33642 = my OWN R247 commit; 0 session commits since; RawBin quiet ~2h. Delivery landed + save-ready checkpoints = sustained genuine wind-down (now 2h+ both repos). Panes unmeasurable from my lane, but multi-source + duration = strong idle.
 ★ Nothing hit. Backoff streak = #3/4; HOURLY holds ONE more round. Next EMPTY+idle = #4 ⇒ drop to 4-HOURLY (CronDelete this hourly + CronCreate "17 */4 * * *" 4-hourly variant w/ snap-back).
 Self: ARON@WODA.prod — 46% (R247 panel), safe/driver; not re-measured (unchanged expected on a quiet round).
+
+---
+## R249 — 2026-09-03 — FLEET RESUMED (streak RESET, no 4-hourly) — the >=4 rule earned its keep
+R16: HEAD acbb1dc0 (robbin-po: bank the locked failure-branch plan, trigger=Tron) @23:25 = a NEW commit since R248. Fleet NOT genuinely idle — PO is planning a Tron-triggered failure-branch. (RawBin still quiet, but session-repo motion + planning = active by the freeze-aware signal.)
+★ Backoff streak RESET (was #3, heading to #4). HOURLY HOLDS (snap-back-on-resume). I did NOT drop to 4-hourly.
+★ ★ VALIDATION of the cadence discipline: at R247, SM advised "drop to 4-hourly now." Had I taken the suggestion at streak #2, I'd now be 4-HOURLY during a RESUMED fleet — missing the PO planning window by up to 4h. Holding to TRON's >=4-EMPTY-AND-genuine-idle rule (over a peer's earlier back-off-now suggestion) is exactly what kept the cadence matched to real activity. The rule > the suggestion, proven.
+★ NO HIT: the failure-branch plan is forward contingency-planning, not a canonizable law (no contradiction/repetition/stale-rule). Watch for a law if the branch fires.
+Self: ARON@WODA.prod — 46% (R247 panel), safe/driver; unchanged expected.
