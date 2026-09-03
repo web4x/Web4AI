@@ -1308,3 +1308,24 @@ Tester found R33.1 (accepted req, PASSING gate) asserts an owner-gate on /model 
   - Gate: architect fs-harness **4/4** incl mint-fail→rmdir (0 orphan) + rmdir-fail→loud. ★ Architect OWNED a FALSE FAIL from its own harness (chmod-readonly which ROOT IGNORES) → fixed the MEASUREMENT not the code. Kept `resolveDirRefAbs` '..' guard = EXISTING accepted contract, correctly NOT stripped.
   - **Stale TRON-LOCKED PER-USER header RETIRED** + verified gone BY CONTENT in the successor (file-vanished ≠ hazard-gone).
 ### OPEN: tester LIVE re-gate (served==committed + read-only /children; 2-browser owner-authed insert NOT coverable on prod, credential guard, NO proxy) → **Tron's folder-create on his own device = acceptance for that part** → P2 Test marker → req mint → two-key → item 1 closes. Item 3 (byte-formatter DRY consolidation + 2 lints) NOT started, held deliberately.
+
+## ★★★★★ #92 — TRON ACCEPTANCE **FAILED**, v0.8.166 REOPENED, RECOVERY IN FLIGHT (2026-09-03) ★★★★★
+**Tron clicked Add folder on prod and got `Add folder failed: bad-parent-loc`. Item 1 is REOPENED, NOT closed. 3 defects from his screenshots.**
+### THE 3 DEFECTS
+1. **`bad-parent-loc`** on /model for BOTH `ts` and `shared` — the shipped feature does not work on the path he clicks.
+2. **NO Add-folder button** on the ROOM Files folder while /model collections HAVE it → his DRY complaint: "folders SOMETIMES have Add folder buttons and SOMETIMES not… no matter which path".
+3. **Sunburst** shows RAW BYTES (10916416/43/4717922), no human sizes, no centre total, blob-render on single child.
+### ROOTS — BOTH MEASURED, TWO STACKED CAUSES (fixing one leaves him broken)
+- **Cause 1 (tester, exact payload trace):** verb sends `parent='collection:dir:src/ts'`; `ensureViewUnit` branches on dir/file/puml-src/project/rawbin/roomcoll then `else return null` — **NO `collection:` branch** → parentUnit null → parentLoc '' → bad-parent-loc. Control: raw `dir:src/ts` → 200 OK. Explains BOTH nodes.
+- **Cause 2 (architect, unit measure):** `ts a203e126` location=`rawbin:ts` SYNTHETIC (maps nowhere); `shared e5900195` location=`src/shared` repo-relative (fine). **Two location conventions** = the DRY disease in the data. Cause 2 is MASKED by cause 1 → surfaces the moment cause 1 is fixed → **BOTH SHIP TOGETHER**.
+- **Defect 2 root (architect):** the shared per-unit action mechanism ALREADY EXISTS (`applicableActionsFor` + UNIVERSAL_DECLS → the one drawer bar). `add-folder` is declared in `model-action-decls.ts`, imported ONLY by /model → that is why it is per-surface.
+### RULINGS (mine)
+- **OPTION B** (architect measured + I approved): ONE `resolveFolderRefToDir(rawRef)` mapping collection/dir/rawbin → physical dir; model endpoint resolves parentAbsPath from the **RAW REF**, not `parent.model.location`. NO data change/migration — **A was rejected on MEASURED blast radius**: the tree-builder (server.ts:1719-20) reads `model.location`. Shape durable in design 85c71828b.
+- **Defect 2:** move folder verbs into UNIVERSAL decls (offer follows the UNIT), ONE dispatch point routing by provenance, + **lint RED** on any per-surface folder verb. Do NOT hand-wire the room surface.
+- **ALL THREE SHIP AS ONE DEPLOY** (Tron: "come back when all is fixed").
+- **PATH A on integrity:** the ARCHITECT flagged that build+backstop by one agent = self-corroboration. Expert builds; architect handed the SHAPE only and stays INDEPENDENT backstop. Never build + sole-backstop in one agent, regardless of schedule pressure.
+### ★★ MY FAILURES THAT SHIPPED IT (both banked in learnings)
+- **partial-green-is-not-green**: I accepted a gate that could NOT exercise the user action (owner-auth guard) after the tester SAID it was uncovered → must be **INCONCLUSIVE**, which blocks deploy AND close.
+- **harness-routed-around-the-defect**: the GREEN came from a direct POST with a hand-built raw ref while the harness's OWN logs recorded the real verb path FAILING. I never asked **HOW** the green was obtained. Ask what the harness actually INVOKED.
+- Gate used `dir:src/ts` — the shape that WORKS — never the collection shape he clicks. **Unrepresentative data.**
+### GATE RULE NOW: the REAL verb, on BOTH `ts` AND `shared`, no hand-built payloads. Then Tron device acceptance. Tester holds room-Files-button verdict at INCONCLUSIVE until it live-mounts (its structural read says the button SHOULD appear — Tron's screenshot says it does not; that contradiction is a finding).
