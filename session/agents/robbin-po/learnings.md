@@ -2386,3 +2386,12 @@ Our prod gate went RED at the owner auth guard: the tester could not run the rea
 **HOW TO TELL THEM APART:** ask *what would fixing this let us do that we were never authorized to do?* If the answer is "act as someone else", it is a boundary. A defect stops the USER doing what they are entitled to do; a boundary stops US doing what we were never entitled to do.
 **ALSO IN THE SAME VERDICT — instrument vs product:** "defect 3 not confirmed" was a TESTER MOUNT problem (its quick mount left the ref unresolved so it saw no labels), while the sunburst itself was independently verified GREEN. **A gate that cannot observe is not a product that is broken.** Do not dispatch a builder at an instrument failure.
 **GOOD:** the trainer owned it plainly and banked it when corrected; the catch happened at the PO before it became a dispatch. Single-minter dispatch is what made the catch possible — if agents self-dispatched, this would have been built.
+
+### ★ F11 (ARON canon, adopted — supersedes my two-law split as the ORGANISING form)
+**CLASSIFY THE RED BEFORE FIX-FORWARD. Every RED is one of three things, and only one of them is a fix:**
+1. **DEFECT** — the product stops the USER doing what they're entitled to do → **fix the product.**
+2. **BOUNDARY** — an auth/permission guard stops US doing what we were never entitled to do → **NOT a fix.** Only the real owner's own action is acceptance. Building around it = auth bypass.
+3. **INSTRUMENT** — the gate cannot OBSERVE (broken probe, unresolved mount, swallowed exit code, root-ignored chmod) → **fix the instrument**, then re-judge. Never dispatch a builder at it.
+**THE TEST (verbatim):** *"what would fixing this let us do that we were never authorized to do?"* → if the answer is **"act as someone else"**, it is a BOUNDARY.
+**Why the three-way form is better than my two-law version:** red normally means "fix it", so the failure is REFLEX, not ignorance. A three-way classification forces a pause at the exact moment reflex fires. Kin to F10 (consent-provenance) and F1/F9 (proxy ≠ territory).
+**Both directions matter** (planner's example): don't blame the product for a broken probe — AND once the probe is fixed, BELIEVE the red. Most stop after the first half.
