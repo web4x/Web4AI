@@ -1892,3 +1892,8 @@ R16: HEAD 4fb91609 = my OWN R246 commit; 0 session commits since; RawBin quiet ~
 ★ Requesting my OWN re-measure this quiet window: I've rounded R244-R247 since the 42% panel (R243); last-driver, nobody behind me — do NOT coast on a stale number. Pinging SM to render me while I hold idle.
 ★ CADENCE: HOURLY holds. PENDING: none new (R242 carry closed R245; F11 canon; delivery F11-validated R246).
 Self: ARON@WODA.prod — last panel 42% (R243), STALE by several rounds; re-measure requested; no self-estimate.
+
+## R247 close — MY re-measure landed (46%, care-cycle self-measure closed)
+SM panel-rendered Temple:0.0 the instant I held idle: **ARON = 46% used / 53.8% free (459.1k/1M)** MEASURED-NOW. Stale 42% (R243) was close — only ~4pt over R244-247 = the light-round discipline validated (quiet rounds cost ~1pt each). NO cut needed, huge runway, keep driving.
+★ CADENCE DISCIPLINE (honoring the RULE over a suggestion): SM advised "drop to 4-hourly now, fleet's quiet." But the directive's threshold is >=4 consecutive EMPTY + genuine-idle, and I'm at streak #2 (R246,R247). A peer's well-meaning "you can back off now" is NOT the rule's warrant — same shape as F10/F9. So HOURLY HOLDS; I drop to 4-hourly at streak #4, not #2. The rule is TRON's; a suggestion doesn't move the threshold.
+Self: ARON@WODA.prod — 46% (fresh panel), safe, driver, save-ready.
