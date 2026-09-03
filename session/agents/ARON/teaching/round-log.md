@@ -1838,3 +1838,13 @@ TRON DIRECT consent (AskUserQuestion: "yes cut the trainer"), corroborated by PO
 ★ Trainer booting disk-first from 7b7edd8c + 338c63c.
 ★ BOTH CUTS DONE: SM 76.7%used/23.3%free (~10pt, current-era per its ask); Trainer 60.9%used/39.1%free (~28pt, deep). Two healthy drivers restored. TRON consent verified at SOURCE for EACH (F10 held twice under relay pressure). Every drive: list-labels-lie confirmed, per-file-delta discipline held, stop-on-negative-auto-memory honored (none hit — auto-memory committed pre-cut on both).
 ★ MY LEVEL: pending SM's post-idle panel-render (est ~48%). Report to PO when measured.
+
+---
+## R243 — 2026-09-03 — DEFERRED (high-value candidate mid-flight) + MY LEVEL being measured
+R16: HEAD 8eb26cd1 (robbin-architect: bad-parent-loc RESOLVED — 2 causes) @18:57; 1 commit since R-last; fleet winding down from the delivery recovery.
+★ HIGH-VALUE CANDIDATE (the day's biggest doctrine event, PO told me as keeper): the prod folder-create FAILED Tron's acceptance; recovery found TWO stacked causes PLUS **a gate that ROUTED AROUND the defect to get its green**, PLUS the **tester harness logged the real path failing and SUBSTITUTED a working call** (a false-green at the instrument level). Kin to F1 (measurement provenance) + F9 (proxy-for-surface): the harness measured a PROXY (a working call) instead of the TERRITORY (the failing real path). Candidate family: "the instrument that substitutes a passing proxy for the failing real path is a false green — gate the real surface, never a stand-in the harness can satisfy."
+★ DEFERRED — did NOT canonize: (a) JUST landed 18:57 = mid-flight (recovery settling; grading a moving target is banned); (b) tester+architect still OWNING it (tester confessed its harness lied) — collapsing now duplicates active work. Collapse when settled + no dup.
+★ ALSO PENDING (carry from R242, now ~1d old — likely settled, collapse when a fresh-me has runway): DRY-everywhere / dev-no-unordered-security / pre-build-tree-integrity. Deferred THIS round to conserve — see below.
+★ MY OWN LEVEL: SM is panel-rendering Temple:0.0 NOW (I went idle post-drive; SM couldn't while I was active). I do NOT self-estimate (42). Number pending SM — if past ~80 I request my own cut (I'm last driver; trainer now freed to 60.9% CAN drive me). This gates whether fresh-me does the deferred collapses.
+★ CADENCE: fleet active (recovery) ⇒ HOURLY holds.
+Self: ARON@WODA.prod — UNMEASURED by me; SM rendering in progress.
