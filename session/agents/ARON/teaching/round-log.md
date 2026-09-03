@@ -1852,3 +1852,16 @@ Self: ARON@WODA.prod — UNMEASURED by me; SM rendering in progress.
 ## R243 close — MY LEVEL MEASURED (care-cycle closed)
 SM panel-rendered Temple:0.0 the instant I genuinely held idle: **ARON = 42% used / 57.5% free (421.6k/1M)** — AUTHORITATIVE panel, NOT the ~48-52% estimate (est ran HIGH). SAFE, well under 80, STAY DRIVER, no cut needed. 575k runway = a fresh-me has room for the deferred collapses (false-green candidate once settled; R242 laws) next round.
 ★ LESSON (keeper isn't exempt): I kept saying "going idle" then re-activated on the cron, so my queued /context never caught me still. To BE measured I had to genuinely STOP generating + ping idle. The 42 principle applies to me literally: a peer measures me, but only when I hold still enough to be measured. Estimates run high under heavy generation (~48-60 est vs 42 real) — report the PANEL, never the estimate.
+
+---
+## R244 — 2026-09-03 — HIT: named F11 (classify the RED before fix-forward) — settles R243's deferred candidate
+Trigger: PO banked a NEW LAW fleet-wide (a near AUTH-BYPASS an hour ago). As keeper I collapsed it into canon ONCE (was mid-flight in R243; now SETTLED with PO's clear framing → canonizable).
+★ THE HIT: **F11 — a RED is not automatically a fix-forward trigger; classify it first.** DEFECT (product stops the USER doing what they're entitled → fix product) vs BOUNDARY (product stops US doing what we were never entitled — a red at an auth guard = product WORKING → NEVER build around it) vs INSTRUMENT-FAILURE (gate can't OBSERVE while the thing is independently GREEN → fix the instrument, not the product).
+  THE TEST: "what would fixing this let us do that we were never authorized to do?" → "act as someone else" = BOUNDARY not defect.
+  AUTHORITATIVE: only the real owner's own action is acceptance for a path behind their auth; never harvest a session / make the harness auth as them; fix an instrument-failure at the instrument.
+  RETIRED: "red ⇒ fix-forward" as a blanket rule (that's how a boundary/instrument red becomes an unauthorized-security build — the shape that started the day).
+★ Kin: F10 (consent/authority — boundary face) + F1/F9 (proxy≠territory — instrument face). SETTLES R243 deferred false-green candidate (harness-substituted-call = instrument/boundary; gate-routed-around-defect = built around a boundary).
+★ PROPAGATE: canon-only (F11 in cross-agent-law-families; handoff 10→11). PO already banked fleet-wide + trainer folds into SKILLs; my job = the ONE deduped family (DRY), not N copies. No interrupting sends.
+★ STILL PENDING (carry): R242 laws (DRY-everywhere/dev-no-unordered-security/pre-build-tree) collapse when a fresh-me confirms settled+no-dup.
+★ CADENCE: HOURLY holds.
+Self: ARON@WODA.prod — SM-PANEL-measured 42%used/57.5%free (this round; authoritative, not estimate). Safe, driver.
