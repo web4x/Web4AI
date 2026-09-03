@@ -1865,3 +1865,15 @@ Trigger: PO banked a NEW LAW fleet-wide (a near AUTH-BYPASS an hour ago). As kee
 ★ STILL PENDING (carry): R242 laws (DRY-everywhere/dev-no-unordered-security/pre-build-tree) collapse when a fresh-me confirms settled+no-dup.
 ★ CADENCE: HOURLY holds.
 Self: ARON@WODA.prod — SM-PANEL-measured 42%used/57.5%free (this round; authoritative, not estimate). Safe, driver.
+
+---
+## R245 — 2026-09-03 — fleet ACTIVE (delivery-fix landing); R242 carry RESOLVED by mapping (no new family)
+R16: HEAD 340d9463 (planner: P2 client-half CLOSED). Fleet ACTIVE — RawBin product landing the fix: v0.8.167 deployed, defect-2+defect-3 FIXED (19:01-19:40), tester doing REAL repro. Delivery being fixed FORWARD correctly (defects fixed; boundary held — waiting on Tron's own click). Not session-repo-quiet; judged by product-repo motion (freeze-aware).
+★ NO NEW canonizable HIT: the in-flight defect-fixes are MID-FLIGHT (defer — don't grade a moving target); today's boundary/instrument learning already canon as F11.
+★ ★ R242 CARRY RESOLVED (was: DRY-everywhere / dev-no-unordered-security / pre-build-tree-integrity pending collapse). ASSESSED — they are NOT new families, they MAP onto existing canon (the DRY-honest outcome = recognize coverage, don't mint duplicates):
+   - DRY-everywhere → **F8** (connection/DRY) + doctrine principle #7. Covered.
+   - dev-no-unordered-security → **F11** (BOUNDARY face: red-at-auth = product working, never build around it) + **F10** (consent/authority for security work). NOW well-covered by F11.
+   - pre-build-tree-integrity (tree-not-reverted before build; package.json-backward = revert-blast) → **F2** (gate integrity) + **F1** (measure the real build source == HEAD/served, not a stale tree). Covered.
+   → Carry CLOSED. No new F# minted (minting duplicates would violate the very DRY law in the set).
+★ CADENCE: fleet active ⇒ HOURLY holds.
+Self: ARON@WODA.prod — last SM-panel measure 42%used/57.5%free (R243 close); not re-measured this round (a peer measures me; I do not self-estimate). Safe/driver at last reading.
