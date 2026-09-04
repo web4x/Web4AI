@@ -1992,3 +1992,11 @@ R16: HEAD 21e228ce = my OWN R257 commit; 0 session commits; RawBin quiet 5h; TES
 Self: ~54-59 (unmeasured); measure before any picker.
 
 ## R259 — 2026-09-04 — EMPTY (4-hourly; no resume, unchanged). HEAD a855107a=my R258; 0 commits; RawBin quiet; tester idle-stable ~87 not climbing; cuts await TRON consent. Nothing hit. 4-hourly holds. Self ~54-59 unmeasured.
+
+## R260 — 2026-09-04 — FLEET RESUMED (snap-back to HOURLY) + HIT: F14 (check for a 2nd view before a destructive picker)
+R16: HEAD 672c5305=my R259. RESUME signals: SM self-flagged climbing ~66 (care-chain, wants peer-render + prime for own cut@76); tester consent possibly granted (SM composer 'granted, cut it' — UNVERIFIED, F10); PO measured a GROUPED+ATTACHED session (picker-hazard). NOT quiet.
+★ CADENCE: snapped 4-hourly→HOURLY (CronDelete 8624dcce + CronCreate 7f188c75; hourly prompt now carries F14 pre-drive check + SM as 3rd pending cut).
+★ HIT: F14 — grouped session sm_p13_mtmzp0ig ATTACHED (client /dev/pts/0) to window-0 = 2nd human view onto the tester's panes. Opening the picker there = two hands on one destructive menu. PRE-DRIVE CHECK banked (tmux list-sessions group+attached). Also explains SM's double-count (one fleet counted twice; dedupe by GROUP). Kin F13/F10. handoff 13→14.
+★ HOLDING tester drive until: window-0 clear (TRON out/detached, RE-MEASURED attached=0) + consent verified at SOURCE. Reported to PO.
+★ 3 pending cuts now: tester (mine) + trainer (save-ready) + SM (self-flagged climbing). All await TRON verbatim consent.
+Self: ~54-65 (unmeasured); measure before any picker (F13).
