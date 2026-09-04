@@ -1970,3 +1970,11 @@ Self: ~54-59 (unmeasured); measure before the tester picker.
 R16: HEAD 39dc1ed1 = my OWN R254 commit; 0 session commits; RawBin quiet ~4h+; TESTER idle, trip-wire CLEAR. ~04:41 local, sustained overnight quiet.
 ★ Nothing hit. Backoff streak = #3/4. REFINED read (correcting R254's "hourly for pending-cut duty"): the 2 pending cuts are STABLE (tester NOT climbing) AND unactionable without TRON's consent — and TRON is away/mid-incident-quiet at this hour, so hourly responsiveness buys nothing (I can't drive without his consent anyway). So this is genuine-idle, not gated-active. HOURLY holds ONE more (rule = >=4); at #4 next round if unchanged → drop to 4-HOURLY (CronDelete this hourly + CronCreate "17 */4 * * *" 4-hourly variant w/ snap-back-on-fleet-resume + tester-climb tripwire re-armed).
 Self: ~54-59 (unmeasured); measure before any picker.
+
+---
+## R256 — 2026-09-04 — EMPTY #4/4 → BACKED OFF TO 4-HOURLY
+R16: HEAD 50d2b8a4 = my OWN R255 commit; 0 session commits; RawBin quiet 3h+; TESTER idle, trip-wire CLEAR. 4th consecutive EMPTY + fleet GENUINELY idle (overnight, both repos quiet hours, pending cuts stable + unactionable-without-TRON).
+★ CADENCE CHANGE executed: CronDelete cdad5358 (hourly) + CronCreate 8624dcce ("17 */4 * * *", 4-HOURLY). The 4-hourly prompt carries: SNAP-BACK-to-hourly-on-any-fleet-resume (commit/pane-activity/rewind-batch/cut-actionable/tester-climb → CronDelete 8624dcce + CronCreate "17 * * * *" hourly variant), PLUS the pending-cut tripwires (tester@0.5 + trainer@0.0 await TRON verbatim consent; F13 measure-first-don't-drive-tired).
+★ Nothing hit. Streak reset on resume.
+★ Session-only cron caveat: dies on session exit / 7-day expiry.
+Self: ~54-59 (unmeasured); measure before any picker.
