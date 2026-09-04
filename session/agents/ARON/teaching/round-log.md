@@ -2007,3 +2007,11 @@ TRON DIRECT consent (AskUserQuestion: "cut it, I'll stay clear of window-0"). F1
 ★ POST-CUT trees CLEAN (session=2 other-agents' boot.md; tester dir untouched). Freed DEEPEST: 87→41%used/59%free (~46pt). Booted disk-first + briefed. Un-zoomed. Window-0 released (TRON can return).
 ★ 4 cuts driven tonight (SM/trainer/architect/tester), F10 held at source EACH, F14 born + applied here. Remaining pending: trainer@80 + SM@~66 (await TRON consent, non-urgent).
 Self: ~54-65 est (unmeasured); drove mid-range/safe; get panel at next idle.
+
+## R261 — 2026-09-04 — EMPTY (purification) + care-chain: SM measured RIDES, queue updated, self-measure gate
+R16: HEAD 48adb731=my tester-cut; 0 commits since; tester booting fresh. Nothing hit (F14+tester-cut were last round).
+★ SM PEER-RENDERED (it asked, was idle): 67.5%used/32.5%free (631.2k) — BELOW ~76 → RIDES, OFF the cut-queue (self-flag resolved).
+★ CONSENT SCOPE (PO relay of TRON verbatim 'rewind who needs rewind in dilligently 2phases') = GENERAL, covers trainer+PO. Verifying at source with TRON once (F10) → covers queue.
+★ QUEUE now 2: (1) TRAINER baseTeam:0.0 (diff session+window = NO F14 hazard, save-ready 59fe0691/f480e7a, idle); (2) PO robbinTeam2:0.0 (window-0 = F14 recheck; anchor banked-current, fresh-PO loses nothing).
+★ SELF-MEASURE GATE (F13, PO-directed): 2 deep cuts done (architect+tester), could be ~70-81. HOLD trainer until SM panel-renders me; if >=80 both wait. SM renders me when I idle.
+Self: UNMEASURED (est ~70-81 after 2 deep cuts); MUST measure before trainer.
