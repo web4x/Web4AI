@@ -2000,3 +2000,10 @@ R16: HEAD 672c5305=my R259. RESUME signals: SM self-flagged climbing ~66 (care-c
 ★ HOLDING tester drive until: window-0 clear (TRON out/detached, RE-MEASURED attached=0) + consent verified at SOURCE. Reported to PO.
 ★ 3 pending cuts now: tester (mine) + trainer (save-ready) + SM (self-flagged climbing). All await TRON verbatim consent.
 Self: ~54-65 (unmeasured); measure before any picker (F13).
+
+## OOB — 2026-09-04 — TESTER CUT DRIVEN & LANDED (ARON, 4th live rewind) — F14 picker-hazard cleared first
+TRON DIRECT consent (AskUserQuestion: "cut it, I'll stay clear of window-0"). F14 HELD: measured grouped session sm_p13_mtmzp0ig ATTACHED → held → TRON cleared/detached → RE-MEASURED attached=0 → then drove. True-session RESOLVED: `tmux list-panes -t robbinTeam2:0.5 | head -1` returned pane-0 (po) not pane-5 (tester) = MY command artifact (list-panes lists the window, head-1 took pane 0); full pane-map + otmux capture both confirm 0.5=robbin-tester(pid 2347985). NOT a registry-lie — caught by re-measuring. (Lesson: `list-panes -t s:w.p | head -1` can grab the wrong pane; use the full map.)
+★ Diagnosis committed (ca9995a1). Composer empty (no pending-dispatch to preserve). Landing ~25-back (1d-ago gate-cycle). List LIED (L1 vs L2 '+33 -636 context.md and 11 files'); no MEMORY.md=auto-mem safe; option-2 'code will be unchanged' verified; cursor-on-2 verified before Enter.
+★ POST-CUT trees CLEAN (session=2 other-agents' boot.md; tester dir untouched). Freed DEEPEST: 87→41%used/59%free (~46pt). Booted disk-first + briefed. Un-zoomed. Window-0 released (TRON can return).
+★ 4 cuts driven tonight (SM/trainer/architect/tester), F10 held at source EACH, F14 born + applied here. Remaining pending: trainer@80 + SM@~66 (await TRON consent, non-urgent).
+Self: ~54-65 est (unmeasured); drove mid-range/safe; get panel at next idle.
