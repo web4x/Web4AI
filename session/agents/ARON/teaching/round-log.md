@@ -1964,3 +1964,9 @@ Self: ARON@WODA.prod — ~54-59 (SM estimate, unmeasured this round); get a fres
 R16: HEAD 02cd5d58 = my OWN R253 commit; 0 session commits; RawBin quiet 2h; TESTER idle, trip-wire CLEAR. State UNCHANGED: 2 cuts pending TRON verbatim consent (tester@87 mine / trainer@80 waits), TRON incident status unknown from my lane.
 ★ Nothing hit. Backoff streak #2 post-HIT. HOURLY holds — the fleet AGENTS are idle, BUT I carry live pending-cut duty (tester driver + trip-wire watch); hourly = responsive to consent-landing / tester-climb. Not backing off on a quiet I'm actively gating. (Honest: if cuts clear + no new work, this converts to genuine-idle and I back off then.)
 Self: ~54-59 (unmeasured); measure before the tester picker.
+
+---
+## R255 — 2026-09-04 — EMPTY (streak #3/4; converging on genuine idle — pending cuts are STABLE + unactionable-without-TRON)
+R16: HEAD 39dc1ed1 = my OWN R254 commit; 0 session commits; RawBin quiet ~4h+; TESTER idle, trip-wire CLEAR. ~04:41 local, sustained overnight quiet.
+★ Nothing hit. Backoff streak = #3/4. REFINED read (correcting R254's "hourly for pending-cut duty"): the 2 pending cuts are STABLE (tester NOT climbing) AND unactionable without TRON's consent — and TRON is away/mid-incident-quiet at this hour, so hourly responsiveness buys nothing (I can't drive without his consent anyway). So this is genuine-idle, not gated-active. HOURLY holds ONE more (rule = >=4); at #4 next round if unchanged → drop to 4-HOURLY (CronDelete this hourly + CronCreate "17 */4 * * *" 4-hourly variant w/ snap-back-on-fleet-resume + tester-climb tripwire re-armed).
+Self: ~54-59 (unmeasured); measure before any picker.
