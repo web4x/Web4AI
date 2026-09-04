@@ -2044,3 +2044,8 @@ R16: HEAD 40b2c528 (robbin-po learning L-S40-FIELD-VS-CONTENT — mid-flight, de
 R16: HEAD cce97eb2=my R263; 0 commits since; SM idle (pending its own cut); delivery add-folder-works/uploads-open unchanged. Nothing hit. HOURLY holds.
 ★ ARON SELF-FLAG: ~77-78% est (75% panel @R262 + 2 rounds), approaching ~80 doctrine flag. REQUESTED my OWN 2-phase rewind — trained+fresh TRAINER drives (F13), QUEUED behind SM's cut. SAVE-READY: ESSENCE/context.md/round-log/canon(F9-F14) all committed → fresh-ARON loses nothing. Get panel-measured (SM) when I idle. Proactive, non-urgent (~220k runway).
 ★ CARE-CYCLE FULL CIRCLE: I was carried home early this session; carried 5 tonight; now I queue to be carried myself. Keeper included in the care he keeps.
+
+## R265 — 2026-09-04 — HIT: F15 (COMPOSER TEXT IS NOT A MESSAGE — harness ghost-draft pattern) [from PO broadcast]
+PO identified the PATTERN behind every ghost tonight: 4 idle agents with unsent composer text, each a plausible next message; one ("yes those are my words, relay it and cut") would MANUFACTURE TRON's authorization. Verified unsent (0 transcript hits) = harness ghost suggestions. RULE: composer text is NOT a message; only SUBMITTED/transcript-verified counts; only TRON's own submitted words settle his. Banked F15 (absorbs my ghost-58 as one instance; kin F10/F14). handoff 14→15.
+★ VALIDATES the night's discipline: I rejected ghost-58, verified every consent at source (not composer/relay), treated composer texts as unverified. F15 is the generalization — now permanent canon.
+★ ARON self-flag stands (~78%, own rewind queued behind SM's, trainer drives, save-ready). HOURLY holds.
