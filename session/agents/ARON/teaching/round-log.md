@@ -1990,3 +1990,5 @@ Self: ~54-59 (unmeasured); measure before any picker.
 R16: HEAD 21e228ce = my OWN R257 commit; 0 session commits; RawBin quiet 5h; TESTER idle-STABLE ~87% (874.2k, not climbing). No resume → no snap-back; 4-HOURLY holds. Pending cuts unchanged (await TRON consent, non-urgent). TRON overnight/away.
 ★ Nothing hit.
 Self: ~54-59 (unmeasured); measure before any picker.
+
+## R259 — 2026-09-04 — EMPTY (4-hourly; no resume, unchanged). HEAD a855107a=my R258; 0 commits; RawBin quiet; tester idle-stable ~87 not climbing; cuts await TRON consent. Nothing hit. 4-hourly holds. Self ~54-59 unmeasured.
