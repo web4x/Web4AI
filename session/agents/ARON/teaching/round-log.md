@@ -2015,3 +2015,8 @@ R16: HEAD 48adb731=my tester-cut; 0 commits since; tester booting fresh. Nothing
 ★ QUEUE now 2: (1) TRAINER baseTeam:0.0 (diff session+window = NO F14 hazard, save-ready 59fe0691/f480e7a, idle); (2) PO robbinTeam2:0.0 (window-0 = F14 recheck; anchor banked-current, fresh-PO loses nothing).
 ★ SELF-MEASURE GATE (F13, PO-directed): 2 deep cuts done (architect+tester), could be ~70-81. HOLD trainer until SM panel-renders me; if >=80 both wait. SM renders me when I idle.
 Self: UNMEASURED (est ~70-81 after 2 deep cuts); MUST measure before trainer.
+
+## R261 append — TRON GENERAL CONSENT confirmed at source
+Asked TRON directly (AskUserQuestion): "Yes — general consent stands." Verbatim scope 'rewind who needs rewind, diligently, 2-phase' covers TRAINER + PO cuts, no per-agent ask needed. F10 satisfied at SOURCE for the queue (one confirm, not per-agent — efficient + clean).
+★ REMAINING GATES for the trainer cut: (1) my self-measure <80 (F13 — SM renders me the instant I idle; if >=80 both wait); trainer has NO F14 hazard (diff window). PO cut ALSO needs F14 window-0 recheck.
+★ NOW: going genuinely IDLE so SM can panel-render me. Next: if <80 → drive TRAINER(baseTeam:0.0) deep 2-phase, then PO(robbinTeam2:0.0) with F14 check.
