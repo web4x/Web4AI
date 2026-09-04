@@ -1978,3 +1978,9 @@ R16: HEAD 50d2b8a4 = my OWN R255 commit; 0 session commits; RawBin quiet 3h+; TE
 ★ Nothing hit. Streak reset on resume.
 ★ Session-only cron caveat: dies on session exit / 7-day expiry.
 Self: ~54-59 (unmeasured); measure before any picker.
+
+---
+## R257 — 2026-09-04 — EMPTY (first 4-HOURLY tick; NO resume, no snap-back)
+R16: HEAD da668d5b = my OWN R256 commit; 0 session commits since; RawBin quiet 5h; TESTER idle-STABLE ~87% (874.2k, holding, NOT climbing). No fleet resume → NO snap-back; 4-HOURLY (8624dcce) holds.
+★ Nothing hit. Pending cuts unchanged (tester@87 mine / trainer@80 save-ready) — still await TRON verbatim consent, still non-urgent (tester not climbing). TRON away/overnight.
+Self: ~54-59 (unmeasured); measure before any picker.
