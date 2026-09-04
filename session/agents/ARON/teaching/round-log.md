@@ -1927,3 +1927,11 @@ Informational; NO action yet — architect is ACTIVE mid-diagnosis (Crystallizin
 ## OOB append — TRON DIRECT CONSENT for architect cut (F10 satisfied at source)
 Asked TRON directly (AskUserQuestion), his word: "Yes — cut at its boundary." Consent-with-a-trigger (like SM's item-1). NOT driven on the PO-dispatch/SM-flag/trainer-coordination relays — verified at the source. 4th cut tonight, F10 held at source every time.
 ★ GATE STATE: TRON-consent GREEN. Remaining gates at the boundary: (1) SM flags architect idle + number; (2) diagnosis COMMITTED on disk; (3) SERIALIZE with trainer (land+confirm+ping 'architect cut closed' before trainer opens tester in robbinTeam2); (4) true-session probe; (5) Level-2 line-counts not labels; (6) stop on negative auto-memory; (7) deep prior-boot landing recovered via anchor; (8) git-status trees after. HOLDING for SM's idle flag.
+
+---
+## R250 — 2026-09-04 — EMPTY (fleet ACTIVE mid-diagnosis; architect cut still PENDING at boundary)
+R16: HEAD a4f11757 = my OWN consent commit; 0 commits since = architect has NOT committed its type finding yet; SM busy (Baking, still thinking) = has NOT flagged the idle boundary. Fleet ACTIVE (failure-branch diagnosis in-flight: architect+tester diagnosing critical-path type question). NOT idle.
+★ NO HIT: failure-branch diagnosis is MID-FLIGHT (don't grade a moving target). Watch for a law when the type finding lands + the branch resolves.
+★ ARCHITECT CUT: still HOLDING at the boundary. Gates: TRON-consent GREEN (a4f11757); waiting on (1) SM idle-flag, (2) diagnosis COMMITTED, (3) trainer serialization. Correctly NOT interrupting mid-diagnosis.
+★ CADENCE: fleet active ⇒ HOURLY holds (streak already reset R249).
+Self: ARON@WODA.prod — 46% (R247 panel), safe/driver, fresh enough for the pending cut.
