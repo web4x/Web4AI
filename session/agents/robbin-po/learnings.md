@@ -2437,3 +2437,15 @@ I let the SM climb to a **hard wall (0%)** after it self-flagged at 83 — I sai
 - **The watcher needs a watcher, and that is ME.** The SM measured the whole fleet until it could no longer measure itself. It even banked a lean anchor *expecting* me to let this happen.
 - **Care is 2-PHASE and DILIGENT**: phase-1 off the wall, phase-2 deep durable at the next clean idle — never stop at phase-1 and call it done.
 - **Prevent, don't recover.** Every recovery this session was a prevention I skipped.
+
+## L-S40-NAME-IT-CARE — it is a DILIGENT 2-PHASE REWIND, never a "cut" (TRON, 2026-09-05)
+**TRON: "its NOT A CUT its a diligent 2 phase rewind WTF"**
+
+The word was doing real damage. **"Cut" frames it as harm** — shedding, loss, something done TO an agent that costs something, therefore something to justify and escalate. That framing is a direct cause of how I behaved: I treated agent care as a *decision requiring authorization* instead of *maintenance I simply perform*, and the SM walled at 0% while I asked the customer for permission.
+
+**A diligent 2-phase rewind is the opposite of harm.** It preserves: anchor committed first (zero-loss), code intact, committed work revert-proof, session preserved (a rewind is in-session — a RESTART is what kills a fork). It is CARE, it is routine, and it is owed BEFORE an agent suffers.
+
+**PHASE-1** = off the wall/climb. **PHASE-2** = deep durable at the next clean idle. Never stop at phase-1 and call it done.
+**DILIGENT** = the full discipline every time: round-trip-verify the true session AT rewind time (registries lie post-fork), Option-2 code-intact, READ the label don't trust it, preserve-before-restore, full two-check on EVERY tree after, panel-verify the freed number (context.read is flat wrong on forks), confirm a disk-first boot.
+
+**Rule:** name it correctly and the behaviour follows. Related: [[L-S40-TEAM-HEALTH-IS-MINE]] — caring for the team is the PO's job; Tron is the CUSTOMER.
