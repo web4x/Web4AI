@@ -1406,3 +1406,17 @@ The units ARE the one canonical thing. The chain makes duplication IMPOSSIBLE or
 **UNIFYING LAW: what belongs to the object lives ON the object — data (ONE physical store, other indexes = symlink trees) AND behaviour (ONE children() per type; surfaces ask the object).** model-store pulled DATA out; my proposed shared children-provider pulled BEHAVIOUR out — same mistake, and I endorsed it. Tron: "the Folder owns the children… you made OOP typescript a functional nightmare."
 **APPLY:** two code paths doing the same thing = TRACEABILITY DEFECT not a refactor · minting = DECLARING the canonical thing · gate for "is there exactly ONE" not "does it work" · guards scan the HAZARD (any derivation not via the interface) not known actors.
 **PLANNER'S INSIGHT:** the team was ALREADY doing this (verify-owner-first, no-2nd-Impl, one-formatter, one-folder-mechanism) and calling it bookkeeping — the practices were right, the FRAME was missing, which is why it never generalized from units to CODE STRUCTURE.
+
+## ★★★ #92 — r4022 4/4 GREEN, A5 RENDER PENDING (2026-09-05) ★★★
+**Prod v0.8.174 · tree restored + content-verified (room.fileUnits ×4, old cast ×0, build-inputs diff vs HEAD EMPTY).**
+### r4022 GATE RESULT (tester, on the EXACT deployed commit d2aa0426d, forced build = provenance-provable, DET-3x 3/3):
+A1 items-tree GREEN (no regression from .173) · A2 nested-accept GREEN (200; was 500 on .173, 403 on .172) · A3 nesting-correct GREEN · A4 one-store-units GREEN (units both present, bareDirs=0, dupStoreHits=0, same createFileUnit+addFileUnit path as files).
+- **A4 STATED SCOPE (do not round up)**: units-in-one-store proven DIRECTLY; "symlinked like files" proven by SHARED CODE PATH + items-tree rendering them as file-siblings, NOT by a symlink the scan resolved.
+- **SUNBURST reported APART**: untested by r4022 (separate view R40.79). Items-tree green ≠ sunburst green.
+### ★ WHY I HAVE NOT TOLD TRON IT WORKS: A1-A4 all prove the **WRITE** is nested (POST payload + store), none prove the **RENDER** is. Architect measured room files[] is **FLAT BY DESIGN** (hierarchy built from unit parent/children) ⇒ correct data can still draw a flat list. [[assert-the-rendered-artifact-not-a-proxy]]
+### A5 PENDING, split into TWO cases (gate with REPRESENTATIVE data, not the edge entity I created):
+- **A5a** new NestGateOuter/Inner render nested @390.
+- **A5b ★ THE ONE THAT DECIDES** — Tron's REAL content. Architect discriminator: FLAT = 'duplicates' at room-root depth as a SIBLING of Trash (same indent); NESTED = 'duplicates' INDENTED under Trash + Trash shows a chevron with 1 child.
+- **Tell Tron it works ONLY if BOTH green.** A5a green + A5b red is still a defect on his screen ⇒ GO the architect's 2 fix sites (items-tree render component consuming room files[]; /api/trace/children Folder-children path, detail-children.ts:32).
+### 2nd REVERT-BLAST (caught by the tester's pre-build two-check = the guard is load-bearing, not a slogan): tree was rolled back to 0.8.172 + old `room.model as any` cast while HEAD/live were 0.8.174. Preserved then restored from HEAD. Trainer owns the root: its post-cut check was a status-GLANCE and it dismissed build-input M files as "ambient churn"; it now runs the full two-check on every tree a cut touches.
+### ★ NEW STANDING RULE (broadcast, proven by both blasts): under the push-hold, COMMIT LOCALLY AND IMMEDIATELY — both blasts destroyed only UNCOMMITTED work; every committed lane survived. Push-hold blocks the PUSH, never the commit.
