@@ -2449,3 +2449,16 @@ The word was doing real damage. **"Cut" frames it as harm** — shedding, loss, 
 **DILIGENT** = the full discipline every time: round-trip-verify the true session AT rewind time (registries lie post-fork), Option-2 code-intact, READ the label don't trust it, preserve-before-restore, full two-check on EVERY tree after, panel-verify the freed number (context.read is flat wrong on forks), confirm a disk-first boot.
 
 **Rule:** name it correctly and the behaviour follows. Related: [[L-S40-TEAM-HEALTH-IS-MINE]] — caring for the team is the PO's job; Tron is the CUSTOMER.
+
+## L-S40-BROADCASTS-ARE-NOT-FREE — a fleet broadcast costs every recipient, and can kill a near-wall agent
+I broadcast a fleet-wide vocabulary correction to all 8 panes — **including the expert sitting at 80% in the exact pause we needed to rewind it in**. The broadcast **consumed that pause**; the trainer had to go re-catch a window I closed. Earlier in the same session I walled the architect at 0% with a long greenlight. **Twice I have damaged a near-wall agent with a message while lecturing the fleet about care.**
+
+**Two facts I had been ignoring:**
+1. **A broadcast is not free.** It costs context on EVERY recipient, multiplied by fleet size. I sent five+ broadcasts today (security law, commit rules, tree-fix, standing guard, vocabulary) and treated each as costless. That is real context spent on eight agents, some of whom were climbing.
+2. **A message to a near-wall agent is an act of harm**, not information. It can push it over, or close the pause a rewind needs.
+
+**RULES:**
+- **Before ANY broadcast, exclude near-wall agents and any agent sitting in a pause we need.** Check first; the list is not "everyone" by default.
+- **Prefer targeted sends** over broadcasts. If only the builder needs it, only the builder gets it.
+- **A near-wall agent receives NOTHING until it is rewound and reports fresh** — not even a correction, not even care instructions. Silence IS the care.
+- Corollary from the planner: agents make themselves easy to care for by committing work same-turn; I make them easy to care for by not spending their context.
