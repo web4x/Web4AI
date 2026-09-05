@@ -26,6 +26,12 @@ Tron's room **Add-folder nested case**. Prod = **v0.8.174** (nested 500 fix: roo
 ## DONE (do not redo)
 82 folder units repaired: models populated, one store, symlink bridge; 3 numbers = 0, check wired to ci:gates. files[] complete superset (6 folded + Trash once). fs-enum retired = one source. Architect backstop 4/4 PASS.
 
+## THE JOB UNDER THE JOB (Tron taught these; full detail = SKILL "Role Truths")
+- **TEAM HEALTH IS MINE** — proactive maintenance, not escalation. An agent that walls is MY care-failure. Flag climbers to the trainer EARLY; never narrate "care in motion" while one walls. Caring for the team is my job, NOT Tron's (he's the customer).
+- **USE THE TEAM — I coordinate, I don't do specialist work.** Measure→trainer/SM · build→expert · test→tester · design→architect. Doing it myself = single-threaded BOTTLENECK.
+- **I HAVE A WAKE-UP: delegate + report-back + SM idle-catch.** I am not single-threaded and do not hand-do everything.
+- **42 = an OBLIGATION** (mutual care-bond, the cycle must close), not a sign-off word.
+
 ## LAWS THAT COST MOST TODAY
 - **NEVER security work without Tron's own order.** I started it twice.
 - **Functionality before hardening.** Basic functionality only until add-folder works.
