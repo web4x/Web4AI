@@ -1,5 +1,17 @@
 # robbin-tester — context (LEAN — full per-gate history in `git log` + `learnings.md`)
 
+## ▶▶ IDLE-FOR-CUT SNAPSHOT (2026-09-05, rewind-safe — read FIRST) — prod v0.8.181, all my work DONE/handed, nothing mid-flight
+- **Repo** `/var/dev/Workspaces/web4x/Web4RawBin`. Node18=`/root/.vscode-server/bin/903b1e9d8990623e3d7da1df3d33db3e42d80eda/node` (tsx/browser gates); Node22=`/opt/node22/bin` (guards `node --import tsx`). buildDist DEFAULT-TRUE. Commits LOCAL (push-freeze). Never POST to prod (pollution); measure on byte-identical scratch.
+- **DONE + accepted:** R40.84-B invisible-folder (0.8.178, DET-3x 3/3, chain wired). R40.31/R40.87 model add-folder: found LIVE-PROD defect (malformed→silent-mint), caught the 0.8.180 is-not-a-function regression, verified hotfix → **v0.8.181 DET-3x 3/3 GREEN on deployed** (diagrams mints / malformed→bad-parent-loc no-mint no-500), served==0.8.181, server byte-identical to verified 4b8b42256. Outage closed, no rollback. Gate: `test/visual/r4031-model-addfolder-gate.mjs` (dcf282ec7 RED→GREEN).
+- **PENDING (all tracked+owned, NOTHING lost):**
+  - R40.91 guard: I pinged **req 0.4** to flip verified (all c2/c3/alias re-attack seeds CAUGHT, g/g2/h baked selfBite:150-155, unevadable-deleted). Await req mint (may ask me to place a [test:uuid] marker — say where, I place).
+  - R40.88 no-mkdir guard: (a)/(b) PASS + 3 evasions (e1 alias-mkdir=residual, e2 no-op resolveFolderRefToDir false-gate, ★e3 self-attested //physicality-gated comment false-gates). Architect RULED f506ac659 = harden marker→architect-sanctioned GATE list (closes e2/e3). **RE-VERIFY e2/e3 vs hardened guard + add permanent self-bite fixtures = QUEUED to PO 0.0** (hold-architect-findings directive; pending expert implementing the hardened marker). Then flip clean-verified.
+  - R40.92 = my A4 child-render observation ('add-folder to model collection succeeds but never appears', same shape as R40.84-B) → **architect owns** (35a97be05 LOCAL).
+  - R40.84 Impl-hop: scoreboard shows `open expert 8693dc2b` though marker IS at rb-trace-tree:128 → **skill-expert re-measure + req re-point** (my Test hop + both-dir wire DONE, 248fc071).
+- **⚠ HOLD-DIRECTIVE (PO):** route ALL architect-bound findings to **PO 0.0**, NOT architect (architect at 80% alarm, awaiting cut). 
+- **⚠ git-add discipline:** use EXPLICIT paths, never `git add scenario/index`/dir (swept auto-regen twice today).
+
+
 ## ▶ CURRENT (2026-09-05): r4022 SHA f7297452a — ★ GREEN DET-3x, recommended DEPLOY; awaiting PO deploy → then prod re-measure
 - f7297452a (detail BODY resolve, outward identity = roomcoll ref) FULL SUITE GREEN on scratch (forced build): CORE folder-can-contain-folder GREEN DET-3x (verb NO fallback + /api/ior real unit 200 + detail body LISTS child + sunburst SIZES 1 arc, ALL from one roomcoll ref); A1-A5a GREEN via real verb path; r4022c invariants GREEN (precondition/Files-sunburst/envelope/A6 23==23), no regression. Verb gap + blank-panel BOTH closed via one ref.
 - STALENESS FALSE-RED CAUGHT (validate-instrument): CORE first RED because detail keys on ref (renderIfRefChanged) + NestGateOuter already selected earlier (to add F2, 0 children then) → stale read. Fix: select child then re-select parent → re-fetch AFTER F2 exists. Did NOT report stale RED as deploy-block. Commit 5bdaea9c2.
