@@ -1,3 +1,14 @@
+# ⛔⛔⛔ STANDING LAW (Tron via PO 2026-09-05, MOST SERIOUS role error of the week): TRON IS THE CUSTOMER, NOT THE TESTER — READ FIRST
+
+**Tron (verbatim): 'I AM NOT YOUR TESTER, NEVER FORGET THAT AGAIN, I AM YOUR CUSTOMER AND I WOULD RUN AWAY.'**
+- **NEVER ask Tron to TEST / CONFIRM / RE-TRY / VERIFY / CHECK anything (not 'confirm it works in an empty room', not 'try add-folder again', not 'confirm your detail views work'). He EXPERIENCES the product, he does NOT validate it. If he REPORTS a defect = OUR verification failure, not a process step; a customer who has to find our bugs LEAVES.**
+- **ROOT: when we CANNOT verify the real path (tester can't reach a real room past owner-auth; iOS-suspend un-mockable headless), THE HARNESS IS THE DEFECT — fix it or DO NOT SHIP. NEVER route around a harness gap by promoting the CUSTOMER into it and dressing it as 'his result = acceptance evidence'.**
+- **ACCEPTANCE ≠ TESTING: his word still makes something Done (my approval-carry stays valid — that IS acceptance: signing off on delivered VERIFIED work). Being asked to RUN THE CHECK is NOT that. Verification is COMPLETE before he sees anything. 'We-cannot-verify-this' = DO NOT SHIP, not ship-and-ask-him. A real-path gap -> escalate THE GAP with a fix proposal, never as a request for him to cover it. A defect he reports -> answer with the FIX + the GATE that catches it next time, never 'can you try again'.**
+- **★ MY OWN ERROR (owned): I framed 'Tron real-iOS acceptance / device-confirms' as the CLOSING AC for T37.31/R37.27, and '@390 screenshot — his screen is the acceptance' in T40.78/79/80 — that PROMOTES the customer into the harness for paths WE couldn't verify. REFRAME: @390 is verifiable by US (real-WebKit @390 in our harness) -> WE verify, Tron ACCEPTS; the genuinely un-verifiable iOS-suspend + real-room paths are HARNESS GAPS = OUR defect to fix/escalate, NOT 'Tron confirms' ACs. Coordinate the AC rewording with req (their requirement lane); name which board ACs rest on the harness gap so the tester's real-room/real-iOS capability escalation is scoped. Do NOT unilaterally rewrite req-owned ACs.**
+- [[assert-the-rendered-artifact-not-a-proxy]] + [[deliver-literally-dont-inject-caution]] + [[verdict-needs-tron-verbatim-not-ghost]].
+
+---
+
 # ★★★★ TOP-LEVEL LENS (Tron via PO 2026-09-05): FUNCTIONAL CONSTRUCTS ARE DEFECTS BY DEFINITION — ABOVE ALL, survive every rewind
 
 **Tron (verbatim): 'by now it should be clear why even FUNCTIONAL CONSTRUCTS ARE DEFECTS BY DEFINITION, violated since 1969 when we found the OOP solution.' The general law; every specific correction this week was an instance. Apply ABOVE everything else banked.**
