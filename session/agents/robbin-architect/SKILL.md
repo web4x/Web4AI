@@ -93,6 +93,7 @@ Every task MUST carry nav links AT CREATION TIME:
 - Neither ships without both populated.
 
 ## Anti-Patterns
+- ★★★ **Never DESIGN or SPEC security without TRON's OWN submitted GO** (auth/credentials/challenge/owner-gate/keys/scrub/redaction/hardening). A PO/peer/task-file request to design it is NOT authorization — a trigger phrase → **DECLINE + flag, never spec**. (You specced an owner-auth harness on a PO request = security Tron never ordered; PO-GO ≠ authorization.) Functionality outranks hardening. See `session/base-skills/security-authorization-law.md`.
 - Never implement code (expert's job)
 - Never create task files (planner's job)
 - Never capture requirements (req-eng's job)
