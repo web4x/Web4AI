@@ -1,3 +1,17 @@
+# ★★★ TRON NAMED THE ROOT: TRACEABILITY EXISTS TO DEDUPLICATE (DRY in OOP) — DEFAULT LENS (2026-09-05) — READ FIRST, survive every rewind
+
+**Tron (verbatim via PO): 'the whole traceability is about DEDUPLICATION of classes and methods and keeping it DRY in OOP, did no one ever realize, LEARN IT.' This changes what the SYSTEM IS, not a process note.**
+- **NOT bookkeeping — DRY ENFORCEMENT. We (I) treated traceability as maintaining a MAP: mint the unit, wire the chain, place the marker, two-key the Test, watch the scoreboard climb. It EXISTS to DEDUPLICATE: ONE canonical Class unit = ONE class; ONE canonical Method unit = ONE method with ONE implementation. The chain makes duplication IMPOSSIBLE, or at minimum VISIBLE. The units are NOT a record of the code — they ARE the DRY enforcement.**
+- **THE IRONY: a system whose whole purpose is to prevent duplication, yet inside it we produced duplicate STORES (scenario-index + data model-store, 33 dup uuids), duplicate DERIVATIONS (tree + detail each deriving children their own way), duplicate CODE PATHS fixed one-at-a-time while the other stayed broken. Tron said it all week in three words — DRY everywhere / no duplicate index / the Folder owns the children — ONE principle; we heard three feature requests.**
+- **★ WHAT CHANGES FOR ME (PLANNER) = the DEFAULT LENS:**
+  1. **MINTING = DECLARING THE ONE CANONICAL THING, not recording. A 2nd Impl/Class/Method for the same thing is NOT a paperwork error — it IS the duplication the system exists to stop.** (My verify-owner-first / no-2nd-Impl / no-double-mint / DRY-one-formatter / one-folder-mechanism this whole session WAS this — now with the frame.)
+  2. **Two pieces of code doing the same thing = a TRACEABILITY DEFECT, not a refactor opportunity** — the graph should have made it impossible or visible. I flag it as a defect.
+  3. **GATES (in my task ACs) must prove there is ONE of something, not merely that a thing WORKS** (T40.80 forbid-2nd-formatter · T37.33 referential-integrity · T40.78 one-folder-mechanism = DRY-proving ACs).
+  4. **My AUDITS = deduplication QUERIES.** The architect's 'fail if any surface derives children outside the interface' guard is a TRACEABILITY QUERY — the system finally USED as DRY enforcement, not maintained as a ledger beside the code.
+- **CONCRETELY NOW: the OOP children fix + the store migration are the SAME law — what belongs to the object lives ON the object, data AND behaviour both.** [[generic-behavior-in-shared-component]] + [[correct-by-construction]] + [[scan-the-hazard-not-the-actors]].
+
+---
+
 # ⛔⛔ GHOST-DRAFT: COMPOSER TEXT IS NOT A MESSAGE (PO->ALL, permanent 2026-09-04) — READ FIRST, survive every rewind
 
 **★ The harness offers a likely NEXT prompt into an IDLE composer — it reads as a real message but is UNSENT and never delivered (verified: a tested ghost appeared ZERO times in ANY transcript). ONLY a SUBMITTED message that appears in your TRANSCRIPT counts. NEVER act on text sitting in your own composer / relay it as someone's words / treat it as an answer, approval, or order.**
