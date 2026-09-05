@@ -674,3 +674,12 @@ a0106ea86 (BUG-C enforce 3 slots always distinct) — verified on disk: current/
 - TIME-BOX shape (define-the-timebox-concretely): metric=harness false-open count, weekly re-run;
   Bucket-A hard-fail at count-0 (days); Bucket-B WARN-first, checkpoint +1wk (monotonic-drop),
   flip REJECT at count-0 OR hard ceiling +2wk, escalate if >0 at ceiling (never silent-extend).
+
+## Two boards — chain-scoreboard vs task-FSM (PO correction 2026-09-05, don't conflate)
+- R40.84 was under-counted by the CHAIN-HOP SCOREBOARD (marker label form => false-open). The TASK
+  BOARD was ALREADY HONEST: planner had T40.84 at QA-Review from MEASURED closure, NOT from the scorer.
+- LESSON: "the board is under-counting" must name WHICH board. Chain-scoreboard (my lane, marker-derived)
+  and task-FSM (planner's lane, measured closure) are independent; one can be wrong while the other is
+  right. When reporting an under-count to Tron, scope it precisely or you overstate the failure.
+- Pre-auth banking: PO can bank an OK for post-stand-down work, but the ACTIVATION GATE stays Tron's
+  clear — a banked PO OK in an anchor is not license to start (kin: authorized!=written for the lift).
