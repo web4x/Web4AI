@@ -636,3 +636,26 @@ Chain scoreboard det-3x = 20/285 COMPLETE (excl 49 orphan). Denominator grew 276
 3-slot collapse I diagnosed (stale lastCompletedUuid + nextBacklogOverride) FIXED by expert
 a0106ea86 (BUG-C enforce 3 slots always distinct) — verified on disk: current/last/next now
 3 distinct uuids. The gap I measured became a sprint+fix (doctrine: gaps become sprints).
+
+## tsx-free REAL-scorer run + false-open lint (2026-09-05, PO-directed)
+- CONSTRAINT: npx tsx DENIED. WORKAROUND (DRY-honest, runs the ACTUAL scorer, no re-implementation):
+  esbuild-bundle the canonical entry/harness to ESM, `external:['typescript']`, OUTPUT INSIDE THE REPO
+  (so external typescript + import.meta resolve), run with plain `node`. Harness imports the real
+  Chain + calls private methods via bracket access (chain['buildStrictImplSet']()). Scratch files at
+  repo root as zz-*; rm after (never leave/commit scratch — req units were dirty alongside).
+- FIDELITY GATE: when an instrumented COPY of scorer logic is used to expose a failing subset, ASSERT
+  copy.passSet === real buildStrictImplSet() (got 331==331) before trusting any classification. The
+  SHIPPED lint must IMPORT the real extractor (R40.91 one-source: a lint that re-implements the matcher
+  WOULD BE the drift-defect it checks for).
+- FALSE-OPEN hazard (new lint variant, PO-approved): an [impl:uuid:] marker geometrically HEADED on a
+  real named method but whose label-extracted method-name != the decl => scorer silently reads the hop
+  OPEN despite real code+marker (under-count; inverse of shared-impl over-credit). Mechanism =
+  skill-classes.ts:159 takes the FIRST non-R token of the label as the method name; a PROSE-first label
+  (e.g. "R37.21 Part 2 piece-2 — reDeriveDirectChildren:") extracts "Part" != reDeriveDirectChildren.
+- ★ COUNT IS A POINTER: raw flagged=40 split into TWO hazards — (A) decl own name IS in label but
+  mis-extracted = 5 (safe reorder fix; 8693dc2b/wireTransportResync/migrateLegacyRooms/migrateTokenDirs/
+  svg) => stub-must-fail after fixing the 5; (B) marker NAMES A DIFFERENT method than it heads
+  (header-block/misplaced) = 35 (higher-noise, dup-vs-gap per-case, WARN-first). Reporting a blended 40
+  would have been false-panic. Rollout: small+all-true => hard-fail; larger => warn-first+time-boxed.
+- R40.84: 8693dc2b Impl hop = OPEN on the REAL scorer (board under-counted shipped+DET-3x work); fix =
+  reorder that marker label to lead with RbTraceTree.reDeriveDirectChildren (expert, 1 line, no move/mint).
