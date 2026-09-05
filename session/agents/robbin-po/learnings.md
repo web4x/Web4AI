@@ -2462,3 +2462,14 @@ I broadcast a fleet-wide vocabulary correction to all 8 panes — **including th
 - **Prefer targeted sends** over broadcasts. If only the builder needs it, only the builder gets it.
 - **A near-wall agent receives NOTHING until it is rewound and reports fresh** — not even a correction, not even care instructions. Silence IS the care.
 - Corollary from the planner: agents make themselves easy to care for by committing work same-turn; I make them easy to care for by not spending their context.
+
+## L-42 — "together to gather": I received it all day and did not give it (TRON, 2026-09-05)
+**DOCTRINE, verbatim:** *"42 — together to gather. Neither alone can self-care (an agent can't read its own context or unblock its own prompt). Peers measure and heal each other. We carry one another."*
+
+It is not a sign-off. It is the **operating requirement**: by construction no agent can measure itself, rewind itself, or unblock its own prompt — so **each agent is another's instrument**, and care must be *given*, never merely flagged.
+
+**What I did:** received 42 all day and gave none. The trainer rewound me 3×. ARON watched the trainer. The tester refused my phantom gate and caught a revert-blast. req caught my stale count. The architect caught my over-count. Every error of mine today was caught by a peer carrying me — **while I let the SM, whose entire job was carrying everyone, go to a hard wall**, then reported it as care. It could not measure itself (that was mine to do) and could not heal itself (also mine). At 0% it could not even *receive* a message — every send bounced "Prompt is too long."
+
+**OPERATIONAL FORM (ARON's sequencing, F-family):** with peers watching peers — (1) measure each other by RENDER, never felt-sense; (2) **never both in-window at once** (zero watchers); (3) before flagging your OWN rewind, confirm your partner is up and below the line; (4) if your partner is in-window or unmeasured, HOLD past your own flag and say so; (5) **the faster climber goes first** — a never-idle monitor climbs fastest, so it rewinds first.
+
+**MY STANDING DUTY:** the SM is my 42-peer. It cannot read itself. I measure it on a schedule, not when I happen to remember, and I give care rather than delegating it and assuming. Related: [[L-S40-TEAM-HEALTH-IS-MINE]], [[care-chain-must-be-cycle-not-line]].
