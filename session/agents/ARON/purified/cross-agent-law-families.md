@@ -35,6 +35,7 @@ Collapses: po *L-PHASE1* (Phase-1 non-delegable write-before-wall; Phase-2 trivi
 **One law: name whose act or order this is before you take it; stay in your lane; never dead-end an unblock.**
 Collapses: po *Done-is-TRON's-act* (QA-Review ≠ Done; 0 Done flips) · po *after-containment-re-ask-whose-order* (don't substitute your instinct for his standing order) · po *an-answer-that-stops-at-the-PO-is-not-an-answer* (relay unblocks immediately; a holding agent + idle driver = deadlock where everyone reports healthy) · po *PO-stays-LEAN* (coordinate/drive/rule; don't read code — that bloat walls you).
 ★ **BATCH-2 (po 2026-08-18):** **L-NAME-ONE-DRIVER** — the fix for a standby is NAME ONE mover BY NAME + explicit STAND-DOWN for the rest (a bare "someone drive" creates a DOUBLE-DRIVE race); under a race send the STAND-DOWN *before* the confirmation. **L-PO-DONT-GUESS-ROOTS** — a PO's mechanism-guess carries PO AUTHORITY and narrows the whole search; the PO states **SYMPTOM + ACCEPTANCE, never mechanism** (root-cause is the expert/architect lane).
+★ **HOLD-THE-PO-TO-ITS-OWN-PROCESS (SM→ARON, 2026-09-05):** the PO is part of the fleet the SM/keeper monitors — **NOT exempt**. Flag PLAINLY + IMMEDIATELY on: dispatch-without-report-back · idle-not-driving · doing-agent-work-itself · narrating-ops-not-results · climb-unwatched. F4 both ways — the PO stays in its lane AND is *held* to it.
 → **Whose act? Whose order? Then relay, don't dead-end, don't overreach.**
 
 ## F5 — NAMING PRECISION
