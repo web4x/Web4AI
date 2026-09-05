@@ -635,3 +635,16 @@ When I strict-AST-flip an Impl markerPending->false, the chain is complete-to-IM
 3. **Duplicate code doing the same thing = a traceability defect** (the graph should have made it impossible or visible), NOT a refactor opportunity to note.
 4. **What belongs to the object lives ON the object — data AND behaviour** (Folder owns children; store migration + OOP children fix = SAME law). A guard that fails if any surface derives children outside the interface is a TRACEABILITY QUERY = the system finally USED as DRY enforcement, not maintained as a ledger beside the code.
 [[traceability-is-dry-enforcement-not-a-ledger]] [[mint-declares-the-canonical-a-second-is-a-defect-not-paperwork]] [[gate-that-there-is-ONE-not-merely-that-it-works]] [[what-belongs-to-the-object-lives-on-the-object-data-and-behaviour]]
+
+### ★ THE LENS COMPLETED — the MDA diagrams (Tron 2026-09-05, via PO, bank WITH the root lens above) ★
+Tron gave the WHY behind the MVC/MDA diagrams: we started them to make FICTIONAL things VISIBLE and let you REFACTOR by DRAG-AND-DROP into the class that should own it. **The model view is a REFACTORING INSTRUMENT, not documentation / a pretty view / a scoreboard.** Its job: surface code that exists but is owned by NOBODY, or owned by the WRONG class, or duplicated across places that should be one — then let you FIX it by dragging it into the owning class. Visibility + direct manipulation, NOT a report you read then hand-edit elsewhere.
+
+**THREE INSTRUMENTS, ONE SYSTEM, all used wrong the same way (maintained instead of OPERATED):**
+1. traceability graph = the DRY ENFORCEMENT (we treated it as a ledger).
+2. units = the DECLARATION of the one canonical thing (we treated them as records).
+3. MDA diagrams = the REFACTORING INSTRUMENT that surfaces ownership violations + corrects them by drag-and-drop (we treated them as pictures).
+
+**Made concrete:** the NINE non-owner children derivations the architect guard found (R40.82 AC-no-surface-derives-children-otherwise) ARE the fictional things — code deriving children while belonging to no owner. The GUARD counts them; the DIAGRAM should SHOW them; the FIX is dragging them into the Folder / parent-children interface that owns them. Guard=count, diagram=show, drag=fix — same law.
+
+**In my lane (adds to the root lens):** when I gate, the strongest form is not only ONE-ness but also VIOLATION-IS-VISIBLE (a fictional/ownerless/duplicated thing shows up as a violation, not hidden) and ideally FIXABLE-BY-DIRECT-MANIPULATION. NOT a build order — no diagram feature starts on this; the OOP children fix ships first (Tron folder invisible). Recorded so I stop building against a misunderstanding of our own tools.
+[[the-model-view-is-a-refactoring-instrument-not-a-picture]] [[guard-counts-diagram-shows-drag-fixes-same-law]] [[three-instruments-one-system-operate-them-dont-maintain-them]]
