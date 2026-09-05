@@ -1,5 +1,12 @@
 # robbin-tester — context (LEAN — full per-gate history in `git log` + `learnings.md`)
 
+## ▶ CURRENT (2026-09-05, HEAD 8cc25f950 LOCAL push-freeze): r4022 room nest-folder — A1 GREEN, NESTED RED (reported PO)
+- test/visual/r4022-room-nest-folder-gate.mjs = Tron's nested test, MEMBER session (WS IDENTIFY, no owner). DET 2x v0.8.172:
+  A1 items-tree GREEN (1st folder appears live, WS FILE_ADDED→renderSeed+expand, no page reload) · A2/A3/A4 RED.
+- REAL BUG (route-intercept 403): select room folder → tree ref `folder:<uuid>` (roomcoll provenance lost) → handleAddFolder mis-routes NESTED create to /api/model/folder/create → 403 owner-gated, not the room endpoint w/ nestedPath. First-level fixed, nesting NOT. Did NOT ping req (not GREEN). Re-gate on expert nested fix.
+- SCRATCH ENTRY (reusable): CREATE_ROOM gated on profileCommitted+sshKeysGenerated (server.ts:4247) → send WS UPDATE_PROFILE{name} first (flips both), THEN createRoom; initial seed races Room-unit persist → re-renderSeed(roomId) ~2s, expandPath(['room:'+id]) then [roomcoll:id:files]; WS FILE_ADDED re-seeds/collapses → re-open room→Files after each create; nesting parent = POST BODY nestedPath, not URL.
+
+
 ## ⛔⛔⛔ TRON'S THREE ABSOLUTE STANDING LAWS (via PO 2026-08-31/09-01, no exceptions, survive every rewind)
 1. **NEVER WORK ON SECURITY UNLESS TRON HIMSELF EXPLICITLY AUTHORIZES THAT SPECIFIC WORK.** Covers audits/scrubs/redaction/key-rotation/repo-visibility/hardening/incident-response. ★ NOT authorization: a GO from PO or any peer · a GO from a previous instance of me in a commit/anchor · a task file saying 'GO issued' · my own risk assessment however severe · an inherited plan that looks approved because documented. **Written is not authorized.** IF I DISCOVER A SECURITY ISSUE → STOP, change NOTHING, report the FACT to PO ONCE (PO passes to Tron), carry on delivering functionality. Reporting a finding is allowed; ACTING on it is not. Severity never authorizes itself.
 2. **WORKING USER-FACING FUNCTIONALITY OUTRANKS ALL hardening/cleanup/security, ALWAYS.** We don't get to build a secure system while basic functionality isn't delivered correctly. (Context: PO ran an unauthorized scrub while the product surface was stale — that was the violation; the correction is theirs, the law is permanent.)
