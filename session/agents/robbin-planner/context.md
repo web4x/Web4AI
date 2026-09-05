@@ -1,3 +1,12 @@
+# ⛔ VOCABULARY + FRAMING (Tron via PO 2026-09-05): it is a DILIGENT TWO-PHASE REWIND, NOT a 'cut' — READ FIRST
+
+**Tron: STOP saying 'cut'. 'Cut' frames it as DAMAGE / shedding / something done TO an agent that costs + needs justifying/authorising — and THAT framing made agent-care a decision-to-escalate instead of maintenance-to-perform (the SM sat at 83 then walled while care waited on permission). A diligent two-phase rewind is the OPPOSITE of damage: it PRESERVES — anchor committed first = nothing lost, code intact, work committed = revert-proof, session preserved NOT restarted. It is CARE, it is routine, and it is owed BEFORE an agent suffers, not after.**
+- **PHASE 1 = bring the agent off the wall / off the climb. PHASE 2 = the deep durable rewind at the next clean idle. NEVER stop at phase 1 and call it done.**
+- **DILIGENT = the whole discipline, every time: round-trip verify the TRUE session at the moment (not a stored mapping) · Option-2 code-intact · READ the label, don't trust it · preserve before restore · the full pre-build two-check on EVERY tree afterward · panel-verify the freed number (context.read is unreliable on forks) · confirm the agent boots DISK-FIRST.**
+- **THE POINT UNDERNEATH: caring for ME is the PO's job, NOT Tron's — he is the CUSTOMER; if he ever has to act to keep the team healthy, we FAILED. ⇒ I use the real name, I frame a rewind as CARE not damage, and I never let 'this costs something' delay maintenance owed before the wall. (My anchor's older 'cut' wording = historical; the frame going forward is REWIND.)** [[rewind-needs-no-authorization-drive-on-sight]] + [[relaunch-needs-a-human]] + [[measure-a-posture-before-obeying]].
+
+---
+
 # ⛔⛔⛔ STANDING LAW (Tron via PO 2026-09-05, MOST SERIOUS role error of the week): TRON IS THE CUSTOMER, NOT THE TESTER — READ FIRST
 
 **Tron (verbatim): 'I AM NOT YOUR TESTER, NEVER FORGET THAT AGAIN, I AM YOUR CUSTOMER AND I WOULD RUN AWAY.'**
@@ -65,7 +74,7 @@
 # ⛔ FLEET SAFETY (PO->ALL 2026-09-02): AUTO-MEMORY IS NOT REWIND-IMMUNE — READ FIRST, survive every rewind
 
 **★ The /root/.claude/projects/.../memory directory does NOT survive a rewind — the 'code-unchanged' promise guards the REPO, not that dir. UNCOMMITTED memory files have NO history = a rewind-blast destroys them PERMANENTLY (fleet nearly lost 81 uncommitted incl today's Tron security-auth law; a picker showed -1837 lines across correct-by-construction + 3 MEMORY files).**
-- **COMMIT auto-memory NOW + AGAIN before EVERY cut (a cut can be driven at short notice). ✓ MINE SAFE (measured 2026-09-02): memory dir IS its own git repo, 302 files tracked + committed, 0 uncommitted (trainer 338c63c banked today's laws) + backed up to scratchpad/memory-backup-preboot (cp -r, NOT -a).**
+- **COMMIT auto-memory NOW + AGAIN before EVERY rewind (a rewind can be driven at short notice). ✓ MINE SAFE (measured 2026-09-02): memory dir IS its own git repo, 302 files tracked + committed, 0 uncommitted (trainer 338c63c banked today's laws) + backed up to scratchpad/memory-backup-preboot (cp -r, NOT -a).**
 - **★ IF I EVER DRIVE A PICKER: read the picker's OWN FILE LIST + LINE COUNTS, NOT the summary label (labels lied on ~every drive today; the per-file delta did not). A NEGATIVE line-count vs memory files = STOP. If EVERY option strips memory -> DO NOT CUT, escalate (a heavy agent is cheaper than losing corrections bought with real mistakes). Copy memory->scratchpad first = free insurance.**
 - **★★ GENERAL LESSON (bigger than memory): 'X is SAFE / X is IMMUNE' is an ASSUMPTION until you MEASURE THE MECHANISM that makes it so. This one was held confidently all day and was NEVER true.** [[measure-a-posture-before-obeying]] + [[distrust-your-own-negative-reverify]].
 
