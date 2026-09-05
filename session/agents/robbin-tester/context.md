@@ -1,9 +1,10 @@
 # robbin-tester — context (LEAN — full per-gate history in `git log` + `learnings.md`)
 
-## ▶ CURRENT (2026-09-05, HEAD 8cc25f950 LOCAL push-freeze): r4022 room nest-folder — A1 GREEN, NESTED RED (reported PO)
-- test/visual/r4022-room-nest-folder-gate.mjs = Tron's nested test, MEMBER session (WS IDENTIFY, no owner). DET 2x v0.8.172:
-  A1 items-tree GREEN (1st folder appears live, WS FILE_ADDED→renderSeed+expand, no page reload) · A2/A3/A4 RED.
-- REAL BUG (route-intercept 403): select room folder → tree ref `folder:<uuid>` (roomcoll provenance lost) → handleAddFolder mis-routes NESTED create to /api/model/folder/create → 403 owner-gated, not the room endpoint w/ nestedPath. First-level fixed, nesting NOT. Did NOT ping req (not GREEN). Re-gate on expert nested fix.
+## ▶ CURRENT (2026-09-05, HEAD cb4092db1 LOCAL push-freeze): r4022 room nest-folder — A1 GREEN, NESTED RED on v0.8.173 (reported PO)
+- test/visual/r4022-room-nest-folder-gate.mjs = Tron's nested test, MEMBER session (WS IDENTIFY, no owner). DET 2x.
+  A1 items-tree GREEN (1st folder live, no reload; no regression) · A2/A3/A4 RED.
+- v0.8.173 provenance fix PARTIALLY landed: routing now CORRECT — nested create hits ROOM endpoint /api/room/<id>/folder w/ nestedPath=NestGateOuter (was /api/model/folder/create 403 on v0.8.172). BUT new server 500: 'Cannot read properties of undefined (reading files)' — server.ts:2464 reads (room.model as any).files; live Room (Room.ts:90) has NO .model, exposes room.fileUnits (Set, 145/266/4310). as-any cast hid the null-deref. FIX POINTER: iterate room.fileUnits (resolve uuid→unit, match model.location==roomcoll:<id>:files/<nrel>). Did NOT ping req (not GREEN). Re-gate on the room.fileUnits fix + redeploy.
+- (v0.8.172 prior baseline: nested mis-routed to /api/model/folder/create 403 owner-gated — that layer now fixed.)
 - SCRATCH ENTRY (reusable): CREATE_ROOM gated on profileCommitted+sshKeysGenerated (server.ts:4247) → send WS UPDATE_PROFILE{name} first (flips both), THEN createRoom; initial seed races Room-unit persist → re-renderSeed(roomId) ~2s, expandPath(['room:'+id]) then [roomcoll:id:files]; WS FILE_ADDED re-seeds/collapses → re-open room→Files after each create; nesting parent = POST BODY nestedPath, not URL.
 
 
