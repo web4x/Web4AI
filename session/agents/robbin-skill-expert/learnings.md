@@ -659,3 +659,18 @@ a0106ea86 (BUG-C enforce 3 slots always distinct) — verified on disk: current/
   would have been false-panic. Rollout: small+all-true => hard-fail; larger => warn-first+time-boxed.
 - R40.84: 8693dc2b Impl hop = OPEN on the REAL scorer (board under-counted shipped+DET-3x work); fix =
   reorder that marker label to lead with RbTraceTree.reDeriveDirectChildren (expert, 1 line, no move/mint).
+
+## false-open lint — refined (2026-09-05 cont.): MIX + correct-by-construction invariant
+- The ~35 "marker names a different method than it heads" are a MIX: ~12 relocatable (Impl's method
+  EXISTS in-file, marker non-adjacent = scoreboard-bug/real under-count) + ~24 method NOT in-file
+  (retired/renamed = backlog). ★ The exact split is FRAGILE to compute automatically (intended-method
+  identity is prose-buried; ownerIor resolution bounced 6->12) — and THAT fragility IS the disease.
+  Don't report a false-precise sub-count; give the certain facts (FIDELITY 331==331, 8693dc2b open,
+  40 total) + "it's a mix" + confidence caveat.
+- ★ DESIGN: don't classify the mess — enforce ONE correct-by-construction invariant: every
+  [impl:uuid:] marker MUST (1) head a named member AND (2) LEAD its label with that member's
+  Class.method token. Both hazard buckets violate it; stub violates it; reuse the scorer's extractor.
+  Fix drives count->0 (A=reorder label; B=relocate+reorder). Dissolves the need to classify.
+- TIME-BOX shape (define-the-timebox-concretely): metric=harness false-open count, weekly re-run;
+  Bucket-A hard-fail at count-0 (days); Bucket-B WARN-first, checkpoint +1wk (monotonic-drop),
+  flip REJECT at count-0 OR hard ceiling +2wk, escalate if >0 at ceiling (never silent-extend).
