@@ -468,3 +468,12 @@ Twice in one session my in-context thread outlived the disk truth: I resumed a p
 ### Backstop a "fixed" claim against the pattern's acceptance test, not the deploy label (2026-09-06)
 Drop D1 shipped v0.8.201 "same-origin relinks via the contract" and the tester's zero-fetch assertion passed for the CLIENT — but the SERVER half still self-fetches a same-origin ref into a 403, and the client "fix" is a corrected if-branch (`originHost !== here`), NOT the Proxy pattern (handler still branches, in two layers). A deploy label + a green half is not the invariant. The by-the-book acceptance test I named — "same-origin fed-ref resolves with ZERO fetch" AND "handler branches on nothing" — is RED until BOTH layers route through ONE polymorphic RefProxy. Note the guard often already exists (`isLocalOrigin` was present + correct in ior-resolver, just not applied on the import path).
 **How to apply:** when backstopping a pattern-refactor, assert the PATTERN is applied (grep: 0 origin-branches outside the proxy; 0 mime-branches outside a class's own registration), not just that a test half went green. A corrected conditional passes a value-test while failing the structural invariant the pattern exists to guarantee — and the same branch scattered across client+server means "fixed at the client" hides "still broken at the server."
+
+### COMMIT-HYGIENE LAW (PO, both repos, no exceptions — 4 authorship-misattributions in one night)
+`git commit` WITHOUT `-a` STILL commits ALREADY-STAGED files — so a peer's (or my own) left-staged work rides MY commit even when I added nothing, crediting the wrong agent. Content isn't lost but AUTHORSHIP is, and a trail crediting the wrong agent = grading-your-own-work rot (the exact thing gates exist to prevent). This caused tonight's misattributions (my ruling → tester; my design note → expert's v0.8.207 commit).
+**The procedure (EVERY commit, EVERY shared tree — RawBin AND the session repo):**
+1. `git reset HEAD` — clear the shared index of anything a peer left staged.
+2. Stage ONLY my own explicit paths — `./rbadd <path>` in RawBin; `git add <explicit-path>` (never -A/./glob) in the session repo.
+3. `git status --short` — VERIFY the staged column shows ONLY my paths (nothing else rode in).
+4. Path-limited commit: `git commit -m MSG -- <my-paths>`.
+Never `git add -A` / `git add .` / broad glob. If a misattribution already committed on a shared branch, NOTE it honestly in the artifact (who-wrote-stays) — do not rewrite pushed history. [[git-add-explicit-not-all]] [[path-limited-commit-shared-index]]
