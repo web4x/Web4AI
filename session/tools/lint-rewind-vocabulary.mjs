@@ -59,6 +59,7 @@ for (const h of enforced) byFile[h.file] = (byFile[h.file] || 0) + 1;
 console.log('=== ENFORCED canon (base-skills + role SKILLs) — HAZARD must be 0 ===');
 for (const f of Object.keys(byFile).sort((a, b) => byFile[b] - byFile[a])) console.log(`  ${String(byFile[f]).padStart(4)}  ${f}`);
 console.log('ENFORCED total:', enforced.length);
+if (process.argv.includes('--list')) for (const h of enforced) console.log(`  ${h.file}:${h.line}  [${h.hit}]  ${h.text}`);
 if (warn.length !== undefined && process.argv.includes('--warn')) {
   const warnByFile = {};
   for (const h of warn) warnByFile[h.file] = (warnByFile[h.file] || 0) + 1;

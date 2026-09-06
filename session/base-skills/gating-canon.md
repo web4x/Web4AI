@@ -52,7 +52,7 @@ The scoreboard is only as honest as its gates. These rules keep credit tied to r
 
 ## R10 — STORE THE INPUT, NEVER THE DERIVED VALUE
 **Owner: all roles** · earned 2026-08-20
-> Persist the **COMMAND / INPUT** that produces a value, never a cached **derived** value. Derived values **go stale the instant their inputs change**; the input regenerates the current value on demand. A stored derived number becomes a lie that fires wrong actions — **a stale relayed context-% ordered a rewind of an already-cut agent** (and `idle/active` was read as evidence of *level*, which it never is: motion ≠ context-%). If a cache is unavoidable, store it **WITH its input + a re-derive path**, and re-derive at decision time.
+> Persist the **COMMAND / INPUT** that produces a value, never a cached **derived** value. Derived values **go stale the instant their inputs change**; the input regenerates the current value on demand. A stored derived number becomes a lie that fires wrong actions — **a stale relayed context-% ordered a rewind of an already-rewind agent** (and `idle/active` was read as evidence of *level*, which it never is: motion ≠ context-%). If a cache is unavoidable, store it **WITH its input + a re-derive path**, and re-derive at decision time.
 
 ## R11 — SERVED==COMMITTED PROVES BUILD-MATCHES-COMMIT, NOT PROCESS-CURRENT
 **Owner: tester + po** (deploy gate) · earned 2026-08-20
