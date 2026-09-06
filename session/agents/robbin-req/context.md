@@ -1,4 +1,7 @@
 # robbin-req — Context
+**DnD NATURAL-CLASS TRACEABILITY (Tron directive via PO, check-before-create MEASURED, NOT minting ahead of architect table):** 5 natural classes {WebItem, Image, Email, Contact, CalendarEntry}. MEASURED: WebItem = Class 7c486fcb (canonical, 26 ior:class:WebItem instances, R25.2) REUSE+complete-chain; Email = Class 3bb26ebe REUSE; Contact = exists as VCARD bf440a63 (NOT Contact) = RECONCILE-naming (canonical ruling needed: Contact-natural + VCard-facet, or rename; do NOT mint a 2nd = dup-defect); Image = 0 Class unit = candidate-mint (or File-subtype per architect); CalendarEntry = 0 Class unit = candidate-mint (or ical-handler). NO duplicate Class units (no sprawl). NET: 2 reuse + 1 reconcile + 2 candidate-mints. ★ AWAITING architect exists/traceability table before mint/reconcile (PO: do-not-mint-ahead). On table: reuse+complete chains / reconcile VCard-vs-Contact onto ONE canonical / mint Image+CalendarEntry only if not-handled-elsewhere. This is the traceability half of Tron mimetype-oop-class-first. [[check-before-create-caught-VCard-is-Contact-reconcile-not-mint]]
+
+
 **FYI BANKED (architect, future mint, NOT now):** new Tron law today = MimeType-oop-class-first for ALL DnD (design 31aa81e36), composes with T37.20. When active + POST-outage-fix: mint UC dnd.dispatchByMimeType + a MimeType class chain (check-before-create vs T37.20 DndContract + the dnd UCs 5474886a/e3fcf5b3 first). Same capability-on-the-class law. NOT now (post-outage-fix). HOLDING.
 
 
