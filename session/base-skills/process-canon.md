@@ -42,5 +42,15 @@
 - **The PO RANKS work** — never push a ranking decision to the customer.
 - **Never ask Tron to approve fixing his own defect. Never make the customer the tester** (`[[tron-is-the-customer-never-the-tester]]`).
 
+## 7. REPRIORITIZATION (TRON-ordered 2026-09-06, 6 laws — the PO's re-rank doctrine)
+*Trigger: TRON ruled "r40.81 is the root of all and needs to be prio 1" + "deliver a WORKING system, not a loud failing system" + "I AM THE CUSTOMER, DELIVER AND DON'T ASK IF I WANT WHAT I ORDERED."*
+- **L1 — ROOT BEFORE LEAVES.** If N defects all resolve against ONE substrate, that substrate is **prio-1**. Rank by **dependency depth toward the root**, never by symptom loudness or recency — fixing leaves while the root is split means every defect returns in a new costume (a split store regenerates drop+upload+render+traceability forever).
+- **L2 — WORKING ACTION BEFORE DETECTION MACHINERY.** Lints, gates, fail-loud, rolled renders **NEVER outrank making the user's action succeed.** Guards SERVE delivery; they are not delivery. A loud failing system is still a failing system. (`[[safety-guard-over-metric-completion]]`)
+- **L3 — ROOT-NESS DOMINATES; READINESS ORDERS WITHIN A TIER.** A READY leaf never jumps a BLOCKING root; readiness only sequences items **at the same depth**. ("Rank follows readiness" was too flat.)
+- **L4 — THE CUSTOMER'S REQUEST IS THE ORDER.** The PO **RANKS**; never hand a ranking to the customer, never queue a clarification where the decision is ours. Asking him to confirm what he already ordered is an **INVENTED GATE** = the costliest failure class (it stalls delivery). (`[[tron-is-the-customer-never-the-tester]]`, `[[drive-dont-ask-obvious-go]]`)
+- **L5 — REPRIORITIZE WITHOUT INTERRUPTING.** Never yank a working agent to re-rank. Reprioritization is applied by **req+planner moving CURRENT/NEXT on the units**; agents **pull at their own boundaries**.
+- **L6 — A REPRIORITIZATION IS A WRITE, NOT A MESSAGE.** It lands on the **UNITS + the pin** (durable; generated views regenerated from units) — a pane message un-adopts on the next rewind. (`[[durable-adoption-not-a-pane-message]]`)
+- **Corollary (a re-rank touching LIVE DATA — the R40.81 apply):** the safety conditions are **DILIGENCE, not permission-asking** — relocate-not-delete, snapshot until the behaviour-pair is green, re-assert divergence AT apply-time. **Prio-1 = drive it NOW under those conditions, not ask whether to.**
+
 ## Connections
 Law canon: `radical-oop-law.md` (principle #8), `cross-agent-law-families.md` (F1–F8), the doctrine (`session/agents/TRON-CMM4-doctrine.md`). Processes are how those laws are *upheld*; when a process is violated, the wound becomes a sprint (doctrine #3).
