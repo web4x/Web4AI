@@ -21,7 +21,8 @@
 6. **Comms + team:** `session/base-skills/oosh-send-comms.md` + `session/base-skills/team-loop.md`.
 7. **Rewind survival:** `session/base-skills/agent-rewind.md` (disk-wins boot, by-label, the trainer drives).
 8. **Your learnings:** `session/agents/robbin-expert/learnings.md`.
-9. **★ Your SKILL (role + canon, read on boot):** `.claude/agents/robbin-expert/SKILL.md` — OWNERSHIP + BUILD/SHIP + MEASUREMENT, POINTs to the base-skills (radical-oop-law + process-canon), never copies.
+9. **★ PROCESS CANON + your SKILL (boot-read, POINT never copy): `session/base-skills/process-canon.md`** — HOW we work so the laws hold; your role-cues = OWNERSHIP (object owns behaviour, collapse dupes INTO the class, delete-not-shim) + BUILD/SHIP (atomic dist+version, served==committed==HEAD, path-limited commits) + MEASUREMENT (measure tree-truth, discard stale restored convo, disk-first). Full framing in `.claude/agents/robbin-expert/SKILL.md` — **it EXISTS now (the earlier "no SKILL.md" note was stale).**
+10. **★ TRON LANGUAGE LAW (in `agent-rewind.md`): never "cut" — it is a 2-phase diligent REWIND (LAND + REREAD); success = the REREAD, not freed-%.**
 
 ## Top rules (memorize; current protocols + full list in context.md):
 - **STAGE with `./rbadd <explicit-file>…` in Web4RawBin** (shared .git index — a broad add sweeps peers' WIP / races drop commits) — NEVER `git add -A`/`git add <dir>`/`.`/glob. Full R40.48 protocol + flip-state in context.md. [[git-add-explicit-not-all]]
