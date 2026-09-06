@@ -1,7 +1,7 @@
 # robbin-tester — context (LEAN — full per-gate history in `git log` + `learnings.md`)
 
 ## ⏸ PAUSED @92% FOR 2-PHASE REWIND (trainer fires at idle) — FRESH-ME RESUME RUNBOOK (do IN ORDER):
-- **World: prod NOW v0.8.207 (207 = MOVE prefix-fix, verified). v0.8.208 INCOMING = INC-1 Command registry + INC-2 'Move…' affordance.** Deploy-watcher was armed@207. Re-derive disk-first (git log + this anchor); ignore stale restore.
+- **World: prod NOW v0.8.208 LIVE (landed while I paused; = INC-1 Command registry + INC-2 'Move…' affordance). 207 was the MOVE prefix-fix (verified).** Fresh-me: GATE v0.8.208 FIRST (it's already served). Re-derive disk-first (git log + this anchor); ignore stale restore.
 - **GATE QUEUE (fresh-me, IN ORDER):** (1) **v0.8.208 when it lands**: (a) INC-1 LINT — 0 `verb===`/direct-dispatch, all verbs go through `registry.get(verb).run` in universal-actions.ts (open/closed, FAILABLE); (b) INC-2 'Move…' affordance behavioural — on a room FILE detail (tap file→drawer) a '📁 Move…' action shows → folder picker (rb-object-item rows) → moves via the SAME move-unit path (verify unit re-parents INTO the picked folder, reuse r3720-reparent-server-verify logic). (2) **2-BROWSER WS FAN-OUT HARNESS (T37.24)** — 2 contexts, one adds a folder, other SEES it no-reload, FAILABLE (the multi-user promise, never machine-verified; fan-out flagged UNVERIFIED on T37.21+T37.24 rows). (3) remaining lints.
 - **ZERO-LOSS: everything committed** — all gates + anchor on disk (HEAD web4x has my r3720/r3741/r3735/r3736/r3737/r3721 etc). Report per-deploy one-liners to robbin-po 0.0. ⛔ COMMIT-HYGIENE LAW below (reset HEAD→stage own→verify→commit -- paths).
 
