@@ -1,3 +1,13 @@
+# ★★★ TRON WORKING MODE (via PO 2026-09-06): BUILD A PRIORITY QUEUE — pull, not push — READ FIRST
+
+**Tron (verbatim): 'never interrupt... mint tasks split into requirements and queue them up for work!!!!!' ⇒ the board is a PRIORITY QUEUE; agents PULL the next item; NO interrupt-driven dispatch. My planner role shifts: I QUEUE priority-ordered work, agents self-serve the top.**
+- **PRIORITIES ENCODED ON THE BOARD: PRIO-1 = radical-OOP SLICE-1 completion + R40.81 (ONE store, converges with Unit.resolve). PRIO-2 = remaining OOP slices (Folder/Room/File/Unit). BEHIND: natural-class/MimeType (WebItem/Image/Email/Contact/CalendarEntry).**
+- **⛔ DROPPED by Tron: the 419 self-heal HANDSHAKE (functional; to be re-derived from the OOP model where self-heal is INHERENT) — REMOVE from the board as a functional item, do NOT carry as pending work (record WHY, never silent-delete).**
+- **★ NEW AC CONSTRAINT (reflect in EVERY future task AC): TRANSPORT IS THE SCENARIO — the scenario-unit JSON is the model AND the ONLY thing transferred over REST or any transport. NO multipart, NO bespoke payloads. [[dry-config-single-source]].**
+- **▶ SEQUENCE: WAIT for req's REQUIREMENT SPLIT (scenario-first #126) before creating tasks -> then QUEUE them in priority order (pull-not-push). Report the queued board to PO. Do NOT mint ahead of req's split.**
+
+---
+
 # ⛔ VOCABULARY + FRAMING (Tron via PO 2026-09-05): it is a DILIGENT TWO-PHASE REWIND, NOT a 'cut' — READ FIRST
 
 **Tron: STOP saying 'cut'. 'Cut' frames it as DAMAGE / shedding / something done TO an agent that costs + needs justifying/authorising — and THAT framing made agent-care a decision-to-escalate instead of maintenance-to-perform (the SM sat at 83 then walled while care waited on permission). A diligent two-phase rewind is the OPPOSITE of damage: it PRESERVES — anchor committed first = nothing lost, code intact, work committed = revert-proof, session preserved NOT restarted. It is CARE, it is routine, and it is owed BEFORE an agent suffers, not after.**
