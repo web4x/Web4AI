@@ -43,6 +43,7 @@
 - **Delegated is NOT driven** — verify MOTION (`[[delegated-is-not-driven-drive-to-completion]]`).
 - **The PO RANKS work** — never push a ranking decision to the customer.
 - **Never ask Tron to approve fixing his own defect. Never make the customer the tester** (`[[tron-is-the-customer-never-the-tester]]`).
+- **COMMIT HYGIENE — path-limited commit, EVERY shared tree** (RawBin AND session). **`git commit` without `-a` still commits already-STAGED files** — a peer's left-staged work rides YOUR commit and misattributes authorship. **CORRECT recipe: `git commit -m MSG -- <your/paths>` DIRECTLY** — commits only the named paths, IGNORES the index, does NOT ride or disturb peers' staged work (immune by construction). **VERIFY `git show --stat` = only YOUR files.** **NEVER**: `git add -A`/`.`/glob · bare `git commit` (rides staged peers) · **`git reset HEAD` on a SHARED tree** — it UNSTAGES peers' in-flight work (5 agents wipe each other); reset is safe ONLY in a PRIVATE tree. A wrong-author trail = grading-your-own-work rot (F6/F1 — a false attribution is a false claim in an artifact) (`[[git-add-explicit-not-all]]`, `[[path-limited-commit-shared-index]]`).
 
 ## 7. REPRIORITIZATION (TRON-ordered 2026-09-06, 6 laws — the PO's re-rank doctrine)
 *Trigger: TRON ruled "r40.81 is the root of all and needs to be prio 1" + "deliver a WORKING system, not a loud failing system" + "I AM THE CUSTOMER, DELIVER AND DON'T ASK IF I WANT WHAT I ORDERED."*
