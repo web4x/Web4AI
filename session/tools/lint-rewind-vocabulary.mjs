@@ -11,18 +11,24 @@ const ENFORCED = [
   { dir: 'session/base-skills', match: f => f.endsWith('.md') },
   { dir: '.claude/agents', match: f => f.endsWith('/SKILL.md') || f.endsWith('SKILL.md') },
 ];
-// WARN tier = agent-owned anchors/learnings (fixed per-agent on its own rewind; reported, not enforced-0 here).
-const WARN = [{ dir: 'session/agents', match: f => f.endsWith('.md') }];
+// WARN tier = agent-owned BOOT PATHS (current-head anchor block + learnings). stopAtHistory: deep-history/superseded BELOW the boundary is a RECORD — exempt (rewriting history is worse than the ban).
+const WARN = [{ dir: 'session/agents', match: f => f.endsWith('.md'), stopAtHistory: true }];
 
 // HAZARD: whole-word "cut" + rewind-sense hyphen compounds (deep-cut, post-cut, cut-point, re-cut, mid-cut, cut-decision...).
 // Word boundaries mean "shortcut"/"haircut"/"execute" never match. Whitelist genuinely-different senses.
 const HAZARD = /(?<![\w-])(cut|cuts|cutting|cut-[a-z]+|[a-z]+-cut)(?![\w])/gi;
 // ALLOWED: genuinely-different senses (NOT context-recovery), the NAMED/QUOTED banned term, and the ban statement itself.
 const WHITELIST = /(cut (a|the|this|our|another) (release|tag|version|branch|deal)|cuts? both ways|cut corners?|clear-?cut|clean-?cut|cut off|cut over|["'`]cut["'`]|(calling it|the word|the term|stop .{0,20}calling|never say|banned[^.]{0,30}word)[^.]{0,20}cut)/i;
+// history/superseded boundary — in an AGENT ANCHOR, everything BELOW this is a RECORD (exempt; rewriting history is worse). Boot/current-head is above it.
+const HISTORY_BOUNDARY = /(SESSION-STATE.*\bprior\b|\(prior\)|\bSUPERSEDED\b|##+\s*(HISTORY|ARCHIVE|DEEP-HISTORY|OLD)|<!--\s*rewind-lint:history)/i;
+// strip IDENTIFIERS (wiki-links [[..]], md link targets ](..), code spans `..`, *.md filenames) — a slug is not prose usage.
+function stripIdentifiers(line) {
+  return line.replace(/\[\[[^\]]*\]\]/g, ' ').replace(/\]\([^)]*\)/g, ' ').replace(/`[^`]*`/g, ' ').replace(/[\w./-]+\.md\b/g, ' ');
+}
 function hazardsInLine(line) {
-  if (WHITELIST.test(line)) return [];
-  const m = line.match(HAZARD);
-  return m || [];
+  const prose = stripIdentifiers(line);
+  if (WHITELIST.test(prose)) return [];
+  return prose.match(HAZARD) || [];
 }
 function scan(spec) {
   const out = [];
@@ -36,7 +42,11 @@ function scan(spec) {
         const rel = path.relative(ROOT, p);
         let content;
         try { content = fs.readFileSync(p, 'utf8'); } catch { continue; } // skip broken symlinks / unreadable
-        content.split('\n').forEach((ln, i) => { for (const h of hazardsInLine(ln)) out.push({ file: rel, line: i + 1, hit: h, text: ln.trim().slice(0, 100) }); });
+        const lines = content.split('\n');
+        for (let i = 0; i < lines.length; i++) {
+          if (spec.stopAtHistory && HISTORY_BOUNDARY.test(lines[i])) break; // below = record, exempt
+          for (const h of hazardsInLine(lines[i])) out.push({ file: rel, line: i + 1, hit: h, text: lines[i].trim().slice(0, 100) });
+        }
       }
     }
   };
