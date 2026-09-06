@@ -28,10 +28,11 @@
 - **Unchanged code can be the regression when the INPUT changes** (`[[reproduce-when-code-reads-single]]`).
 
 ## 5. FLEET-CARE
-- **Context burns on GENERATION, not waiting → cut the ACTIVE climber before the IDLE one** (`[[context-burns-on-generation-not-waiting]]`).
-- **Rewind BEFORE heavy work, never mid-measurement** (`[[rewind-before-heavy-work]]`). **Land + anchor + stop, THEN cut.**
-- **Never two cuts at once.** The **care-chain is a CYCLE** — watch the watcher, nobody exempt (incl. the PO) (`[[care-chain-must-be-cycle-not-line]]`).
-- **By-label selection** — labels lie (~7/7 today); read the CONFIRM, not the list. Diligent two-phase rewind, Option-2 code-intact; reset the pane on a confusing picker.
+- **It is a 2-PHASE DILIGENT REWIND, NEVER a "cut" (TRON verbatim, 2026-09-06: "STOP ALL CALLING IT CUT!!! its a 2 phase diligent rewind!!!! AND REREAD OF FILES").** **PHASE 1** = the rewind itself (by-label, Option-2 **code-intact**, land). **PHASE 2 = THE REREAD OF FILES** — anchor, SKILL, boot reading-list, disk state — and **re-derivation** from them. The rewind is **NOT complete at phase 1**; a landing without a diligent reread is an **INCOMPLETE rewind, not a success**. **SUCCESS = PHASE-2 COMPLETION, never freed-%** — reporting "84→22, freed 58%" as success while phase 2 is unverified is exactly how **stale-restore incidents** get through (an agent lands, does NOT re-read, and acts on an ancient conversation — a 7-week-old sprint). Judge by the reread, not the number. (`[[rewind-is-diligent-two-phase-care-not-a-cut]]`, `[[continue-summary-can-be-the-stale-rewound-session]]`, `[[post-rewind-measure-world-not-stale-save]]`)
+- **Context burns on GENERATION, not waiting → rewind the ACTIVE climber before the IDLE one** (`[[context-burns-on-generation-not-waiting]]`).
+- **Rewind BEFORE heavy work, never mid-measurement** (`[[rewind-before-heavy-work]]`). **Land + anchor + stop, then rewind — then verify the REREAD (phase 2) before declaring success.**
+- **Never two rewinds at once.** The **care-chain is a CYCLE** — watch the watcher, nobody exempt (incl. the PO) (`[[care-chain-must-be-cycle-not-line]]`).
+- **By-label selection** — labels lie (~7/7); read the CONFIRM, not the list; reset the pane on a confusing picker.
 
 ## 6. COORDINATION
 - **Pull-based queue** — agents PULL; **NEVER interrupt a working agent.**
