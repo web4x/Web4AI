@@ -1,4 +1,7 @@
 # robbin-req — Context
+**FYI BANKED (architect, future mint, NOT now):** new Tron law today = MimeType-oop-class-first for ALL DnD (design 31aa81e36), composes with T37.20. When active + POST-outage-fix: mint UC dnd.dispatchByMimeType + a MimeType class chain (check-before-create vs T37.20 DndContract + the dnd UCs 5474886a/e3fcf5b3 first). Same capability-on-the-class law. NOT now (post-outage-fix). HOLDING.
+
+
 **R40.89 AC-fold BANKED for lift (architect async/PO-directed, stand-down respected — do NOT fold now):** into R40.89 unit 893e78df, per design-r40.89-request-shape-qualification.md (ffd958f95). NEW failable AC: classifying a REQUEST-SHAPE iOS defect as defer-as-untestable => RED (wrong-classification); only real iOS RENDERING/device-API defects (class B) may be deferred. SPLIT: (A) REQUEST-SHAPE (header/boundary/encoding/field-order = what the client SENDS) = desktop-reproducible via node/curl raw, MUST be gated by us (worked example: the boundary-quoting upload bug r4090); (B) real rendering/device-API = genuinely deferred (code-proof+signature-only third state). Narrows R40.89 to the genuinely-deferred class. Aligns [[tron-is-customer-never-ask-him-to-verify]] + cannot-verify=do-not-ship + harness-gap-to-fix. ON LIFT: fold the AC (measure R40.89 current ACs first, check-before-create), ping architect for wording if wanted. HOLDING.
 
 
