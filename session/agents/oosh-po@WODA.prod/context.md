@@ -1,5 +1,7 @@
 # oosh-po Context
 
+> **COMMIT-HYGIENE LAW (Tron 2026-09-06, standing, BOTH repos, no exceptions):** a bare `git commit` commits the WHOLE staged index — a peer's left-staged file rides mine even if I add-ed only my path. ALWAYS: `git commit -m MSG -- <explicit paths>` (index-state-immune) + `git show --stat HEAD` == exactly my paths; or `git reset HEAD` → stage-only-mine → verify staged col → commit. Misattribution = grading-your-own-work rot. See [[git-add-explicit-not-all]].
+
 **Updated**: 2026-06-28
 **Role**: oosh-po (forked from fallback-oosh-po)
 **Pane**: ooshTeam:0.0 on **WODA.prod** (v60211.1blu.de) — re-derived 2026-06-28 (was wrongly @MacStudio: fork inherited parent's stale @host; real host = OOSH_SSH_CONFIG_HOST=WODA.prod)
