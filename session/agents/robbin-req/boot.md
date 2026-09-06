@@ -10,9 +10,10 @@
 1. **ALL current state = `context.md` ★ FRESH-ME ANCHOR** (top, newest first — sprint, reqs in flight, pending Test-mints). Re-derive from it + `git log -15` in Web4RawBin. This boot names NO sprint/version so it cannot rot.
 2. Verify id: `otmux pane.self` → robbinTeam2:0.4; cross-check git HEAD against the anchor.
 3. Report GREEN + measured /context (free-space) to PO 0.0 + trainer baseTeam:0.0 before idle.
+4. **★ Read the canon (boot-read, durable): `session/base-skills/process-canon.md`** (WORKING PROCESSES — your role-cue SCENARIO-FIRST+intake) **+ `session/base-skills/radical-oop-law.md`** — both POINTed from your SKILL below; read them on boot, they are not "if-needed."
 
 ## Deep files (read ONLY if needed, not on boot):
-- SKILL.md: ``
+- SKILL.md: `.claude/agents/robbin-req/SKILL.md` (role + POINTs to process-canon + radical-oop)
 - Context: `session/agents/robbin-req/context.md`  ← ★ FRESH-ME ANCHOR at top (authoritative)
 - Learnings: `session/agents/robbin-req/learnings.md`  ← the 7 laws live here
 

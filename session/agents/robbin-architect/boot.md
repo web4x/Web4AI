@@ -10,10 +10,11 @@
 1. **ALL current state = `context.md` anchor** (BOOT-ESSENCE, newest at top). Re-derive from it + git HEAD/version. This boot deliberately names NO sprint/version so it cannot rot.
 2. Verify id: `otmux pane.self` → robbinTeam2:0.3; cross-check git HEAD against the anchor's stated HEAD.
 3. Read `session/base-skills/task-queue.md` if queued work.
-4. Resume: await PO dispatch / backstop expert ships / wire chains on build.
+4. **★ Read the canon (boot-read, durable): `session/base-skills/process-canon.md`** (WORKING PROCESSES — your role-cue GATING+OWNERSHIP) **+ `session/base-skills/radical-oop-law.md`** — both POINTed from your SKILL below; read on boot, not "if-needed."
+5. Resume: await PO dispatch / backstop expert ships / wire chains on build.
 
 ## Deep files (read ONLY if needed, not on boot):
-- SKILL.md: ``
+- SKILL.md: `session/agents/robbin-architect/SKILL.md` (role + POINTs to process-canon + radical-oop)
 - Context: `session/agents/robbin-architect/context.md`
 - Learnings: `session/agents/robbin-architect/learnings.md`
 
