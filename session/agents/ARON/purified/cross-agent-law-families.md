@@ -123,3 +123,14 @@ Collapses: po *#1 all-is-diligence-nothing-urgent* · po *L-EMPTY-QUEUE* (action
 ## Handoff to trainer (SKILL-fold half)
 These 15 families are the deduped essence (was written as '7' before F8/F9 landed — a stale-count instance of F9 itself, now corrected) for the role SKILLs. **Conflicts/restated-twice found: none contradictory** — the overlaps were the SAME law from two roles (that's the dedup, now merged). The heaviest overlap was F1 (measurement provenance): po's measure/validate/convergence + ARON's render/number-provenance are ONE family. Fold F3 (rewind diligence) as the precondition already banked atop `agent-rewind.md`; fold F1-F2-F4-F7 into every role SKILL (universal); F5-F6 into PO + req + tester especially.
 **Increment 1 of N — re-measuring before continuing (lean-mode, per trainer).**
+
+## THE 42 FAILURES → existing families (robbin-po e1ae7922; purified by ARON 2026-09-06)
+Tron ordered robbin-po's 7 failures distributed. Keeper ruling: **all 7 are INSTANCES of families we already hold — ZERO new laws.** We do not proliferate (a week was lost treating one law as four). Each attaches by-ref, carrying its incident:
+- (1) Never measured my OWN 42 — a one-way care-chain is a LINE not a CYCLE → **F8**: the watcher must also be watched; measure your own number, not only peers'. [[care-chain-must-be-cycle-not-line]]
+- (2) Did the SM's sweep myself, burned to 82 → **F4 (PO-stays-lean)**: doing a peer's job does it badly AND destroys your runway; self-polling is the SM's lane.
+- (3) Escalated a permission prompt to the CUSTOMER instead of my 42 — and it was my own main-vs-branch error → **LAW-10 + F1**: an operational block goes to your 42, never the customer; MEASURE it's a real block first (it wasn't).
+- (4) REWIND, never "cut" → **F5 + language law** (already canonized; "cut" banned).
+- (5) Deliver, don't narrate; invented gates he never asked for → **LAW-10 + F7**: verify before he sees; surface ship-calls/blockers only; an empty queue is not a vacuum to fill. [[flag-invented-gate-holding-delivery]]
+- (6) Name as the MODEL — units are class instances / MVC objects that store+render themselves; "shapes" live only in diagrams; the format-framing IS the defect → **F5 + LAW-9 + [[scenario-unit-is-the-mvc-model-of-every-class]]**: ask "does this have its model, in the one place models live?" not "what shape/format is it?"
+- (7) Rank + measure-then-decide are MINE; a peer flag is a TRIGGER to measure, not an order → **F1 + F4**: measure on a flag, then the rank-holder decides; never obey a flag as a command.
+Trainer weaves per-role from this map.

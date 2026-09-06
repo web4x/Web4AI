@@ -7,6 +7,7 @@
 - **Distrust your OWN negative** — a blank grep is a glitch, not a zero (`[[distrust-your-own-negative-reverify]]`).
 - **Two measurements conflict → check WHICH VERSION/ARTIFACT each measured** (`[[two-measurements-conflict-check-which-version-each-measured]]`), and WHICH REPO/SURFACE (F1: name-the-repo).
 - **A prod claim DECAYS** — re-measure before repeating it. **Verify on the PROD surface, never worktree-green** (`[[gate-never-real-save-on-served-repo]]`).
+- **A PULSE / self-report is felt-sense, not a render** — a near-wall pulse is UNVERIFIED until PANEL-confirmed. Stale-pulse lags ANY agent mid/post-rewind (not only the freshly-rewound reporter — the observer can't tell which from the pulse), so never escalate a pulse number as real (`[[context-read-lies-post-rewind-use-panel]]`).
 
 ## 2. GATING
 - **RED-BASELINE before the fix** — green *then* means it changed something (`[[exists-correct-proven-gate-gradient]]`).
@@ -32,6 +33,7 @@
 - **Context burns on GENERATION, not waiting → rewind the ACTIVE climber before the IDLE one** (`[[context-burns-on-generation-not-waiting]]`).
 - **Rewind BEFORE heavy work, never mid-measurement** (`[[rewind-before-heavy-work]]`). **Land + anchor + stop, then rewind — then verify the REREAD (phase 2) before declaring success.**
 - **Never two rewinds at once.** The **care-chain is a CYCLE** — watch the watcher, nobody exempt (incl. the PO) (`[[care-chain-must-be-cycle-not-line]]`).
+- **The SM is the fleet's EYES and the PO's single point of failure** — no agent reads its own wall, so the SM watches the fleet and someone watches the SM. It PULSES every tick (a fresh render IS the live sweep), MONITORS + FLAGS only (**PO ranks, trainer drives, Tron authorizes** — SM never assigns/drives/authorizes), UNBLOCKS the PO's permission prompts (the PO comes to its 42, never to the customer — `[[tron-is-the-customer-never-the-tester]]`), and **leads every pulse with its OWN %** so a silent-walled SM can't blind the fleet. `idle-near-wall` = stable; `active-near-wall` = urgent (`[[sm-primary-duty-context-wall-guard]]`).
 - **By-label selection** — labels lie (~7/7); read the CONFIRM, not the list; reset the pane on a confusing picker.
 
 ## 6. COORDINATION
