@@ -22,6 +22,11 @@
 **CONSTRAINTS (measured this session)**: npx tsx DENIED (compound too); node + esbuild(from repo node_modules, output INSIDE repo, format esm, external typescript) WORKS = real-scorer tsx-free. Scratch as zz-* at repo root, rm after (req had 11 scenario units dirty — never swept). Panes: 0=po 1=expert 2=ME 3=architect 4=req 5=tester 6=planner. Report via tmux send-keys (otmux /dev/tty broken).
 ## ★★★ END STAND-DOWN BOUNDARY ★★★
 
+## ★★★ ACTIVE (PO 2026-09-06, TRON RULING): R40.81 one-store = PRIO-1 ROOT — pin+views to make it CURRENT ★★★
+Tron: "r40.81 is the root of all, prio 1 ... let req, planner, skill agent move current+next accordingly." MY LANE = CurrentSprint pin + generated views reflect: CURRENT=Task 40.81 (d864b05f, R40.81 be8ec6b6, one-store Unit.resolve), NEXT=drop/upload (T37.20 family + T40.85).
+MEASURED 2026-09-06: pin singleton currently resolves to T37.20.1 (68364f5e, Sprint37) = PRE-ruling; planner NOT yet re-ordered. Task 40.81 d864b05f VERIFIED valid designation target = ATOMIC leaf (subtasks:None), In-Progress refinement[x], covers R40.81+UC ea8c3cf8 = real state (NOT empty-parent trap). LAW: pin by DESIGNATION on real-state leaf + RENDER the value, NEVER hand-stamp the slots.
+PLAN (tsx-DENIED → use my esbuild tsx-free resolver, NOT a slot hand-edit): designate Task 40.81 → RENDER pin + regen sprint/planning MD from UNITS → verify on disk (pin uuid + rendered current) → report resolution to PO. GATED: on planner re-order + req re-point (PO sequence); + lane-flag = planner set pin last (6e3b320c6), PO now routes pin to me — coordinating split w/ planner (0.6) to avoid double-write. HOLDING, pull at planner boundary, ready to render instantly. Do NOT interrupt expert(mid-ship)/tester(mid per-shape).
+
 ## ★★★ ACTIVE TASK (PO 2026-09-05): FLEET-STATE INSTRUMENT — measured, HOLD-for-rewind-then-build ★★★
 **JOB:** ONE canonical command = one line per agent: pane | TRUE session | AUTHORITATIVE % | alive-or-walled. No hand-grep panes, no context.read polarity misread. (PO hand-rolled this all day = bottleneck.)
 **MEASURED (build fresh from this, don't re-measure) — DRY = EXTEND hiveMind, NOT a parallel tool:** hiveMind (/root/oosh/hiveMind) ALREADY has the stores:
