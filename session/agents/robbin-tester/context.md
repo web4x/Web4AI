@@ -1,6 +1,11 @@
 # robbin-tester — context (LEAN — full per-gate history in `git log` + `learnings.md`)
 
-## ▶ CURRENT (2026-09-06 post-phase-2-rewind, LOCAL push-freeze): R40.81 PAIR-2 DECISIVE = RED (repoint NOT transparent)
+## ▶ CURRENT (2026-09-06, LOCAL push-freeze): R40.81 PAIR-2 = GREEN (root gate closed, repoint byte-transparent)
+- **PAIR-2-on-fix GREEN (SLICE2_COMMIT=a4e2a2511 v0.8.195; closed finding scrum.pmo/R40.81-PAIR2-RED-finding.md, 0be77059c). Reported PO+architect.** Ran ONCE on the FIX (not a re-run of the RED). Matches pre-stated expectation EXACTLY: 213/213 byte-identical · mof-m1 3==3 (was 3→4) · no project:model · authoredListings identical · 0 changed. TRUSTWORTHY: flag-liveness STILL passed (PRE≠POST sentinel = flag flips = not a no-op false-green); isolation proven. Clean differential RED@4e3427949→GREEN@a4e2a2511 (scope-mof-m1-to-isModelUnit fix).
+- **BINDINGS HELD:** GREEN unblocks Slice-3 but authorizes NO deletion — relocate→verify→THEN remove; data/model-store STAYS until Slice-3 readers repoint+re-verify. Default stays model-store (Slice-3 flips it, not me). Nothing changes for Tron yet.
+- **NEXT:** r4081c-pair2-run.mjs = durable Slice-3 regression guard (re-run on the repoint commit). Awaiting PO Slice-3 sequencing. r4081 one-store apply-guard (AC-7 fail-closed) still stands. r4090+r4084 permanent per-ship.
+
+## ▶ (prior) R40.81 PAIR-2 DECISIVE = RED — RESOLVED by fix a4e2a2511
 - **PAIR-2 fired (r4081c-pair2-run.mjs, SLICE2_COMMIT=4e3427949 v0.8.194 MODEL_READ_SOURCE resolver) → RED. Finding: scrum.pmo/R40.81-PAIR2-RED-finding.md (672f3ad04). Reported PO 0.0 + architect 0.3.**
 - REAL verdict, NOT confound: flag-liveness POSITIVE CONTROL PASSED (PRE sentinel=SENTINEL-MODELSTORE != POST=SENTINEL-SCENARIOINDEX, as contracted → flag flips read); isolation proven (inode!=live nlink=1); mof-m1 non-empty 3/4 (not PAIR-1 gap); sentinel facade99 RULED OUT of the delta.
 - DELTA: 212/213 byte-identical + authoredListings identical; EXACTLY 1 changed = mof-m1 childCount 3→4. POST(scenario-index) surfaces extra top-level **project:model** that PRE(model-store) lacks (PRE=RawBin+2 test/fixtures). Non-transparent: a /model reader on scenario/index gains a node.
