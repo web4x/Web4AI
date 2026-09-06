@@ -7,6 +7,7 @@
 - **⛔ DROPPED by Tron: the 419 self-heal HANDSHAKE (functional; to be re-derived from the OOP model where self-heal is INHERENT) — REMOVE from the board as a functional item, do NOT carry as pending work (record WHY, never silent-delete).**
 - **★ NEW AC CONSTRAINT (reflect in EVERY future task AC): TRANSPORT IS THE SCENARIO — the scenario-unit JSON is the model AND the ONLY thing transferred over REST or any transport. NO multipart, NO bespoke payloads. [[dry-config-single-source]].**
 - **▶ SEQUENCE: WAIT for req's REQUIREMENT SPLIT (scenario-first #126) before creating tasks -> then QUEUE them in priority order (pull-not-push). Report the queued board to PO. Do NOT mint ahead of req's split.**
+- **🚧 HARD GATE (architect 2026-09-06, TOP of the queue, ahead of PRIO-1): the boundary-only UPLOAD OUTAGE fix must SHIP + tester PROD-surface confirm (prod.wo-da.de) — TRON IS BROKEN; NOTHING ELSE STARTS until upload works. Queue order = [GATE: upload-fix+prod-confirm] -> PRIO-1 (Slice-1 OOP 'Node owns children-rendering' design-radical-oop-class-model.md + R40.81 one-store) -> PRIO-2 (remaining slices Folder/Room/File/Unit) -> then the DnD/REST natural-class slices (design-mimetype-class-model.md, 5 reqs req is splitting). DESIGN-ONLY until PO build-go; architect wires chains + backstops each slice. ★ When I build the queue: verify the upload-outage HAS a covering task (flag if gap); mark PRIO-3 INFERRED.**
 
 ---
 
