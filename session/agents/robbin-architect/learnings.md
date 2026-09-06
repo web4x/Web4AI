@@ -477,3 +477,9 @@ Drop D1 shipped v0.8.201 "same-origin relinks via the contract" and the tester's
 3. `git status --short` — VERIFY the staged column shows ONLY my paths (nothing else rode in).
 4. Path-limited commit: `git commit -m MSG -- <my-paths>`.
 Never `git add -A` / `git add .` / broad glob. If a misattribution already committed on a shared branch, NOTE it honestly in the artifact (who-wrote-stays) — do not rewrite pushed history. [[git-add-explicit-not-all]] [[path-limited-commit-shared-index]]
+
+### COMMIT-HYGIENE LAW v2 — SUPERSEDES the reset version above (PO, URGENT)
+★ `git reset HEAD` on a SHARED tree is HARMFUL — it UNSTAGES peers' in-flight work (5 agents would wipe each other's staging). The reset step in the block above is WITHDRAWN; reset is ONLY safe in a PRIVATE tree.
+★ CORRECT recipe, BOTH repos, EVERY commit: **PATH-LIMITED COMMIT — `git commit -m MSG -- <your/paths>`**. This commits ONLY the named paths' working-tree content, IGNORES the index, and does NOT ride or disturb peers' staged work — immune to authorship-rot BY CONSTRUCTION, no reset needed. VERIFY: `git show --stat` shows ONLY your files.
+★ NEVER: `git add -A` / `git add .` / broad glob / bare `git commit` (rides staged peers) / `git reset HEAD` on a shared tree.
+Why path-limited beats reset: reset mutates the shared index (harms peers); path-limited ignores the index (touches nothing but your named paths). [[path-limited-commit-shared-index]] [[git-add-explicit-not-all]]
