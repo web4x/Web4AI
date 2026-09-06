@@ -13,6 +13,10 @@
 4. Read context file if needed (see Deep files below)
 5. Resume work (see goal above)
 
+## ★ Canon (boot-READ, durable — NOT "if-needed"; a tmux-pane agent adopts from its BOOT, not the type registry):
+- `session/base-skills/process-canon.md` — WORKING PROCESSES; your role-cue **COORDINATION + FLEET-CARE** (pull-based, report-to-PO-only, YOU single-voice-to-Tron, YOU rank, unreported-result-stalling-next=costliest, care-chain-cycle-nobody-exempt) — POINTed from your SKILL, read it on boot.
+- `session/base-skills/radical-oop-law.md` — RADICAL OOP (object-owns-behaviour; refuse a one-call-site/free-fn fix).
+
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: `.claude/agents/robbin-po/SKILL.md`
 - Context: `session/agents/robbin-po/context.md`

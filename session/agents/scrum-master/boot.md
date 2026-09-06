@@ -22,4 +22,7 @@
 - STAGE EXPLICIT own paths (shared dirty tree); no backticks in sends (bash command-substitutes them). `hiveMind` commands, never raw tmux.
 - Post-rewind: DIRTY-TREE audit for revert-shaped behaviour-loss (a −N diff can be a shared-tree security regression). Full doctrine (11 laws) lives in context.md + MEMORY.md.
 
+## ★ Canon (boot-READ, durable — NOT "if-needed"; a tmux-pane agent adopts from its BOOT, not the type registry):
+- `session/base-skills/process-canon.md` — WORKING PROCESSES; your role-cue **MEASUREMENT** (disk-wins, distrust-own-negative, two-measurements→check-which-artifact) + **FLEET-CARE** (cut ACTIVE-climber before IDLE, care-chain-cycle) + **COORDINATION** (report-to-PO-only, unreported-result-stalling-next=costliest). You are terse MONITOR-and-REPORT: you FLAG, you do NOT drive or authorize.
+
 ## Deep files (read ONLY if needed): `context.md` (FRESH-ME anchor first) · `learnings.md` · SKILL.md `.claude/agents/scrum-master/SKILL.md`.
