@@ -27,8 +27,11 @@
 12. **Never relay unverified claims** — source-VERIFY before reporting. "The code says X" requires grep proof.
 13. **Save before 80%** — context.md + learnings.md + git commit at every SM warning.
 
+## ★ Your SKILL (role + canon — read on boot):
+- `.claude/agents/robbin-tester/SKILL.md` — GATING + refuse-confounded-verdict + scoping-before-seeing-fails; POINTs to base-skills (radical-oop-law + process-canon), never copies.
+
 ## Deep files (read ONLY if needed, not on boot):
-- SKILL.md: ``
+- SKILL.md: `.claude/agents/robbin-tester/SKILL.md`
 - Context: `session/agents/robbin-tester/context.md`
 - Learnings: `session/agents/robbin-tester/learnings.md`
 

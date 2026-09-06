@@ -21,7 +21,7 @@
 6. **Comms + team:** `session/base-skills/oosh-send-comms.md` + `session/base-skills/team-loop.md`.
 7. **Rewind survival:** `session/base-skills/agent-rewind.md` (disk-wins boot, by-label, the trainer drives).
 8. **Your learnings:** `session/agents/robbin-expert/learnings.md`.
-(No dedicated SKILL.md exists for robbin-* agents — your "expert skills" = these base-skills + your learnings + the top rules below.)
+9. **★ Your SKILL (role + canon, read on boot):** `.claude/agents/robbin-expert/SKILL.md` — OWNERSHIP + BUILD/SHIP + MEASUREMENT, POINTs to the base-skills (radical-oop-law + process-canon), never copies.
 
 ## Top rules (memorize; current protocols + full list in context.md):
 - **STAGE with `./rbadd <explicit-file>…` in Web4RawBin** (shared .git index — a broad add sweeps peers' WIP / races drop commits) — NEVER `git add -A`/`git add <dir>`/`.`/glob. Full R40.48 protocol + flip-state in context.md. [[git-add-explicit-not-all]]
