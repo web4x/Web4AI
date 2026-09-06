@@ -683,3 +683,9 @@ a0106ea86 (BUG-C enforce 3 slots always distinct) — verified on disk: current/
   right. When reporting an under-count to Tron, scope it precisely or you overstate the failure.
 - Pre-auth banking: PO can bank an OK for post-stand-down work, but the ACTIVATION GATE stays Tron's
   clear — a banked PO OK in an anchor is not license to start (kin: authorized!=written for the lift).
+
+## SKILL review — existing != binding; boot-reachability sweep (2026-09-06)
+- Reviewed trainer-authored robbin-expert + robbin-tester SKILLs on 4 criteria (OOP-not-paraphrase / point-not-copy / completeness / boot-reachable). The 2 new PASS (best-integrated: dedicated "★ read on boot" boot.md line, tracked 11615955).
+- ★ KEY METHOD (PO's crit-4, caught real orphans): a SKILL.md EXISTING is NOT a SKILL BINDING. Verify boot-reachability = the role's boot.md (session/agents/<role>/boot.md — NOT .claude/agents/, different tree) REFERENCES the SKILL path AND flags it read-on-boot (not merely in the "read ONLY if needed" deep-list). Sweep found: robbin-req ORPHAN (SKILL 14968b exists, boot.md:15 SKILL path EMPTY), robbin-architect NO tracked SKILL (no file + empty boot path), planner+po WEAK (deep-list not read-on-boot). An orphaned SKILL un-adopts on rewind exactly like a pane message (kin [[durable-adoption-not-a-pane-message]]).
+- CONTENT gap pattern: a per-role OOP cue can carry part-1 (ownership: ASK-object/delete-not-shim/SHELL) yet DROP part-2 (mimetype-class-first: content-type is a MimeType object not a string) + part-3 (transport-is-scenario-unit) — the two that were the iOS-outage root. Check a doctrine cue covers ALL connected parts, not just the loudest one.
+- Structural: SKILL.md under .claude/agents/<role>/, boot.md under session/agents/<role>/ — two trees; a SKILL is only adopted if the boot (session tree) points into the .claude tree.
