@@ -1,6 +1,6 @@
 # oosh-po Context
 
-> **COMMIT-HYGIENE LAW (Tron 2026-09-06, standing, BOTH repos, no exceptions):** a bare `git commit` commits the WHOLE staged index — a peer's left-staged file rides mine even if I add-ed only my path. ALWAYS: `git commit -m MSG -- <explicit paths>` (index-state-immune) + `git show --stat HEAD` == exactly my paths; or `git reset HEAD` → stage-only-mine → verify staged col → commit. Misattribution = grading-your-own-work rot. See [[git-add-explicit-not-all]].
+> **COMMIT-HYGIENE LAW v2 (Tron 2026-09-06, standing, BOTH repos, no exceptions):** a bare `git commit` commits the WHOLE staged index — a peer's left-staged file rides mine even if I add-ed only my path. THE SOLE RECIPE: `git commit -m MSG -- <explicit paths>` (index-immune — commits only named paths, neither rides nor disturbs peers' staging) + VERIFY `git show --stat HEAD` == exactly my paths. **NEVER `git reset HEAD` on a SHARED tree** (it unstages peers' in-flight work = destroys their staging; reset only safe in a PRIVATE tree) — v2 withdrew the reset alternative. NEVER add -A/./glob/bare-commit. Misattribution = grading-your-own-work rot. See [[git-add-explicit-not-all]].
 
 **Updated**: 2026-06-28
 **Role**: oosh-po (forked from fallback-oosh-po)
