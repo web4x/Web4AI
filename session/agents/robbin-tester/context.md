@@ -1,5 +1,15 @@
 # robbin-tester — context (LEAN — full per-gate history in `git log` + `learnings.md`)
 
+## ★★ R40.106 UNMET — FIRST MEASURED EVIDENCE (2026-09-07): the app's DELETE does not delete (BOARD THIS; expert fixes next shift, I gate)
+- **REQUIREMENT R40.106 (Tron):** a DELETE "really removes from the index and removes all links". Current impl removes NEITHER. Found by USING delete (a real cleanup attempt), not by inspecting — the strongest kind of evidence.
+- **REPRODUCTION:** as SystemTester (owner ce981242) sent 30 owner `deleteRoom(roomId)` (WS DELETE_ROOM via __rawbinClient) for 30 persisted scratch rooms. AFTER: all 30 canonical `scenario/index/**/<roomId>.scenario.json` Room units STILL EXIST on disk AND resolve via `/api/ior/ior:instance:<roomId>`. (9 real rooms unchanged, delta=0 — harmless test.)
+- **FAILURE MODE 1 — no-op-when-unloaded:** `RoomManager.removeRoom()` (Room.ts:447-455) returns false when the room is not in the in-memory `this.rooms` map. A persisted-but-unloaded room → `deleteRoom` is a SILENT no-op.
+- **FAILURE MODE 2 — canonical-unit + links survive:** even when it fires, deleteRoom drops the in-memory copy + the per-user room DIR (deleteRoomHome), but NOT the canonical scenario/index Room unit (writeRoomJson canonPath) NOR the file-unit links. Room resolves via /api/ior afterward and reappears on restart-reload.
+- **EVIDENCE:** ed1d54e0 scenario unit still on disk post-delete; /api/ior resolved all 30; 0 durably removed.
+- **GATE-WHEN-FIXED (mine):** after a delete, assert (a) /api/ior returns null, (b) no room's files[]/members reference it, (c) the canonical scenario unit is gone, (d) file-unit links removed UNLESS content-shared (my sharing-pre-check: 0 shared of 54 scratch units — the 34 scratch rooms = the natural first test of a delete that actually deletes), (e) SURVIVES a restart (doesn't reappear). Failable: seed a room, delete, confirm all five.
+- Do NOT hand-delete canonical units (PO-confirmed: same op-class as the R40.107 incident). Route the durable-delete fix to robbin-expert; I gate it.
+
+
 ## ✅ SESSION 2026-09-07 (post-2-phase-rewind, prod v0.8.208→211) — ALL GATED GREEN, DELIVERY CLOSED:
 - **INC-1 verb-dispatch lint** (a99c2de93): universal-actions registry-driven, 0 verb-dispatch, FAILABLE (seeded violation flips RED). Residual flagged: model.ts=10, rb-detail-drawer.ts=2 verb-dispatch (separate surfaces, next OCP debt).
 - **INC-2 '📁 Move…' affordance** (e0f2784b8): GREEN DET-3x — resolver type-gate (file offers move, member not) + behavioural (real rb-drawer-action{verb:move} → picker folder rows → click → server re-parent via move-unit).
