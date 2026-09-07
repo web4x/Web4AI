@@ -1,6 +1,16 @@
 # robbin-tester — context (LEAN — full per-gate history in `git log` + `learnings.md`)
 
-## ⏸ PAUSED @92% FOR 2-PHASE REWIND (trainer fires at idle) — FRESH-ME RESUME RUNBOOK (do IN ORDER):
+## ✅ SESSION 2026-09-07 (post-2-phase-rewind, prod v0.8.208→211) — ALL GATED GREEN, DELIVERY CLOSED:
+- **INC-1 verb-dispatch lint** (a99c2de93): universal-actions registry-driven, 0 verb-dispatch, FAILABLE (seeded violation flips RED). Residual flagged: model.ts=10, rb-detail-drawer.ts=2 verb-dispatch (separate surfaces, next OCP debt).
+- **INC-2 '📁 Move…' affordance** (e0f2784b8): GREEN DET-3x — resolver type-gate (file offers move, member not) + behavioural (real rb-drawer-action{verb:move} → picker folder rows → click → server re-parent via move-unit).
+- **R40.107 persist-guard** (guard d9c619b72, v0.8.210): verified REFUSES 3 ways — expert gate + my independent distinct-input probe + STUB-MUST-FAIL (neutered throws in isolated copy → poison slipped) + LIVE runtime probe (bb5095c4a, running process preserves name+createdAt). BOARDED finding (a2ed69e9): swallowed throw = silent no-op → a refused save must be OBSERVABLE (routed to req).
+- **9-room restore differential** (r40107-restore-differential-gate): DISK GREEN — 4/4 names restored (Marcel c09087ec 3231db71+edd7fa61, Amos cc3294d0, SystemTester a16262b8), 9/9 createdAt, 0 count delta (7/6/5/7/11/5/3/3/2). Surface HEALED 4/4 on v0.8.211 restart; all counts INTACT across the restart (reconstruction event survived = seatbelt held). Heartspaces disk-7/live-6 dedup benign.
+- **88df8e4e WebItem repair** (r88df8e4e): 3231db71 files=33, 4 units named right, 96f54cc2 real name preserved, junk 3f80f8c8 gone. GREEN DET-3x.
+- **206a28bc URL naming fix** (r206a28bc): fresh URL → 'Youtube Watch' (class), not 'watch?v='. GREEN DET-3x.
+- **NEXT (not yet gated):** INC-3 '✎ Rename…' affordance R40.104 (displayName live no-reload, uuid/ior UNCHANGED, originalName preserved) — was in v0.8.209 queue, distinct from the 206a28bc URL-naming fix; T37.24 2-browser fan-out; remaining lints. RESIDUAL: many SystemTester scratch rooms (INC-2/live-probe/naming-drop) to batch-clean.
+- Node18 for playwright: /root/.vscode-server/bin/dc96b837cf6bb4af9cd736aa3af08cf8279f7685/node. tsx -e chokes on multiline → write a temp .ts file. R40.48: use ./rbadd (warn-only). tail/head BANNED on captures.
+
+## ⏸ (STALE, RESOLVED) PAUSED @92% FOR 2-PHASE REWIND — FRESH-ME RESUME RUNBOOK (do IN ORDER):
 - **World: prod NOW v0.8.208 LIVE (landed while I paused; = INC-1 Command registry + INC-2 'Move…' affordance). 207 was the MOVE prefix-fix (verified).** Fresh-me: GATE v0.8.208 FIRST (it's already served). Re-derive disk-first (git log + this anchor); ignore stale restore.
 - **GATE QUEUE (fresh-me, IN ORDER — PO-refined):**
   1. **v0.8.208 (LIVE now):** (a) INC-1 LINT — 0 `verb===`/direct-dispatch; the invoke is `actionRegistry.get(verb)?.run(ctx)` in universal-actions.ts (open/closed, FAILABLE); (b) INC-2 '📁 Move…' affordance behavioural — on a room FILE detail (tap file→drawer) a 'Move…' action shows → folder picker (rb-object-item rows: Files root + folders) → moving lands the file IN the folder via the SAME move-unit path the drag uses (same outcome as r3720-reparent-server-verify; unit re-parents INTO the picked folder).
