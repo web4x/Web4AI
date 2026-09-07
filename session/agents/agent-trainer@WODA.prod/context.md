@@ -2,7 +2,14 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
-### ⏳ IN-FLIGHT HANDOFF (CYCLE-17, 2026-09-06 overnight — for my imminent ARON-driven rewind; fresh-me resume HERE)
+### ✅ CYCLE-17 HANDOFF CONSUMED → CYCLE-18 DONE (ARON rewound me 2026-09-07; I booted + executed — do NOT replay the CYCLE-17 bullets below)
+- **COMMIT-HYGIENE WEAVE COMMITTED = 2e9d9fc2** (path-limited; law now boot-reachable via git-safety.md + process-canon §6). **PROVEN-ADOPTED**: expert AND tester both cited path-limited/no-reset-on-shared-tree unprompted on boot.
+- **DROVE (both Option-2 code-intact, all-3-trees revert-checked, phase-2-reread VERIFIED):** expert 0.1 77→6% (po re-ranked it to WebItem-bug 88df8e4e FIRST then the fold; RED-applicability-lint-is-DELIBERATE banked, not a regression) · tester 0.5 93→6% (gate v0.8.208+209 LIVE-UNGATED hole → repair-diff 88df8e4e → T37.24 2-browser → lints). Both self-caught stale-scrollback + disk-wins; tester self-measured served=v0.8.209.
+- **planner 0.6 = ARON** (I released the shared robbinTeam2 window after each drive; serialized, never 2 pickers). ⚠ 0.6 showed a STATIC bash shell (claudeCode.join) across checks = possible planner session-exit/stall → FLAGGED ARON (relaunch-needs-a-human). po 0.0 was Tron-driven (held).
+- **REMAINING:** committer boot-pointers to git-safety.md (DRY nicety — law already adopted) · MEMORY.md compaction (172/200) · **NEW boot-hygiene weave**: expert+tester BOTH used BANNED 2>&1/head in boot cmds = recurring slip → weave the no-2>&1/|head/|tail rule boot-reachable per-committer.
+- **I'm CLIMBING** (2 heavy drives + weave this cycle), sole driver, CAN'T self-measure → ARON/SM panel-capture baseTeam:0.0 (%3); ARON drives my rewind.
+
+### ⏳ (CONSUMED — history) IN-FLIGHT HANDOFF (CYCLE-17, 2026-09-06 overnight — for my imminent ARON-driven rewind; fresh-me resume HERE)
 - **I'm ~74-80 climbing** after a long overnight driving session → ARON (fresh ~47) drives MY rewind (reciprocal); SM routes it at 80. Resume driver/measurer/care-loop after a peer confirms I'm shed.
 - **LIVE fleet ops (disk-wins — re-pulse first):** (1) I was driving **tester 0.5 rewind** (87, active on A10b gate — fire at idle; runbook+A10-state+queue banked in tester anchor). (2) **planner 0.6 (~85)** routed to **ARON** (serialized after tester, never 2 pickers in robbinTeam2 window). (3) **expert 0.1 = OLD-BULK FLOOR at ~67%** (rewind can't beat it, deeper=3d-stale) → **escalated: needs a TRON /compact for its ~10h overnight queue** (po/Tron call; a rewind won't fix it). (4) po on the v0.8.203 gate for Tron's 22:00.
 - **THIS-CYCLE LESSONS banked (auto-mem): [[driver-carries-po-ranking-as-banked-never-reorder]] (driving=mine, ranking=po's — I re-ranked tester's jobs, po corrected) · [[git-log-1-is-last-commit-not-current-state]] (read the anchor TOP; I redid CYCLE-15's finished weave off a stale boot-read) · [[bare-git-commit-sweeps-already-staged-peer-files]] (COMMIT-HYGIENE LAW) · anchor CONSOLIDATED (9a15d625: current+standing top, history fenced). LANGUAGE LAW LIVE: it's a REWIND (bank→restore→REREAD), never a "cut".**
