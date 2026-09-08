@@ -23,12 +23,12 @@ When Tron or SM says "slow down":
 
 An agent working on Task A should NEVER be interrupted to start Task B unless:
 - **Emergency stop**: 0% context, system failure, Tron explicitly says stop
-- **Compact needed**: Context below 10% (but even then, let them commit first)
+- **Recovery needed**: Context near the wall (but even then, let them commit first). **Recovery = the 2-phase rewind (a peer/SM drives it); `/compact`+`/clear` are FORBIDDEN — see `session/base-skills/agent-rewind.md`.**
 
 **Wrong**: "Tester is on #48, but #49 is more important, reassign"
 **Right**: "Tester finishes #48, expert already on #49 in parallel"
 
-### 3. Context loss is permanent until compact
+### 3. Context loss is permanent until a preserving rewind
 
 What an agent knows right now:
 - Which test cases passed/failed
@@ -36,7 +36,7 @@ What an agent knows right now:
 - Which code paths were explored
 - What intermediate findings were discovered
 
-None of this survives interruption. Even if you "explain" the task again after interrupting, the reasoning chains and discovered-but-unrecorded state are gone.
+None of this survives interruption. Even if you "explain" the task again after interrupting, the reasoning chains and discovered-but-unrecorded state are gone. **The only context-preserving recovery is the 2-phase rewind (a peer/SM drives it); `/compact`+`/clear` are FORBIDDEN — see `session/base-skills/agent-rewind.md`.**
 
 ### 4. Stuck agents need guidance, not reassignment
 

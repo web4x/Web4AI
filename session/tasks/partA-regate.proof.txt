@@ -1,0 +1,24 @@
+### §7 PART A RE-GATE — branch 8fdf1a7 (FP-fix: wall/low anchored to status-chrome line)
+hiveMind under test: /tmp/sweep-wt/hiveMind @ 8fdf1a7
+│ Test 1: A1-IDLE -> 'IDLE' (got 'idle')
+  ✓ PASS: A1-IDLE = IDLE (branch='idle')
+│ Test 2: A2-ACTIVE -> 'ACTIVE' (got 'active')
+  ✓ PASS: A2-ACTIVE = ACTIVE (branch='active')
+│ Test 3: A3-ON-PROMPT -> 'ON-PROMPT' (got 'on-prompt')
+  ✓ PASS: A3-ON-PROMPT = ON-PROMPT (branch='on-prompt')
+│ Test 4: A4-OPEN-DRAWER -> 'OPEN-DRAWER' (got 'permission')
+  ✓ PASS: A4-OPEN-DRAWER = OPEN-DRAWER (branch='permission')
+│ Test 5: A5-ON-WALL -> 'ON-WALL' (got 'on-wall')
+  ✓ PASS: A5-ON-WALL = ON-WALL (branch='on-wall')
+│ Test 6: A6-LOW-CONTEXT -> 'LOW-CONTEXT' (got 'context-warning')
+  ✓ PASS: A6-LOW-CONTEXT = LOW-CONTEXT (branch='context-warning')
+│ Test 7: FP1-DRAWER-BODY -> must be a base state, not a body-tripped alarm (got 'idle')
+  ✓ PASS: FP1-DRAWER-BODY = base 'idle' (bottom-chrome wins, body substring ignored)
+│ Test 8: FP2-WALL-BODY -> must be a base state, not a body-tripped alarm (got 'idle')
+  ✓ PASS: FP2-WALL-BODY = base 'idle' (bottom-chrome wins, body substring ignored)
+│ Test 9: FP3-LOWCTX-BODY -> must be a base state, not a body-tripped alarm (got 'idle')
+  ✓ PASS: FP3-LOWCTX-BODY = base 'idle' (bottom-chrome wins, body substring ignored)
+  Passed:      9
+  Failed:      0
+VERDICT: 9/9 GREEN ON MERIT. A1-A6 canonical hold (no regression); FP1/FP2/FP3 all idle.
+MERIT: same '/compact to compact' phrase -> A5 (status line)=on-wall, FP2 (body line)=idle -> discriminates by POSITION.

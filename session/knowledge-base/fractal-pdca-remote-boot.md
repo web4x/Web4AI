@@ -66,7 +66,7 @@ The remote team must:
 2. Apply CMM4 principles (measurement, PDCA, weakest link)
 3. Use the knowledge base (query before solving)
 4. Follow task queue discipline (TaskCreate, not self-tasking)
-5. Manage compacts correctly (boot.md, context preservation)
+5. Recover correctly via the 2-phase rewind (boot.md, context preservation) — **`/compact`+`/clear` are FORBIDDEN; the only recovery is the peer/SM-driven 2-phase rewind — see `session/base-skills/agent-rewind.md`**
 6. Operate without Tron micromanaging
 
 ## Why This Matters

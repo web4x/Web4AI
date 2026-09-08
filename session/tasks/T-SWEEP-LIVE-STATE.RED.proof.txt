@@ -1,0 +1,25 @@
+starting: test.sweep-live-state <LOG_LEVEL=1> (RED-FIRST — expected to FAIL on current sweep)
+│ Test 1: A1-IDLE: screen → canonical 'IDLE' (got 'idle')
+  ✓ PASS: recognized as IDLE (current='idle')
+│ Test 2: A2-ACTIVE: screen → canonical 'ACTIVE' (got 'active')
+  ✓ PASS: recognized as ACTIVE (current='active')
+│ Test 3: A3-ON-PROMPT: screen → canonical 'ON-PROMPT' (got 'idle')
+  ✗ FAIL: MISCLASSIFIED: want ON-PROMPT, current sweep='idle' (RED — recognizer gap)
+│ Test 4: A4-OPEN-DRAWER: screen → canonical 'OPEN-DRAWER' (got 'idle')
+  ✗ FAIL: MISCLASSIFIED: want OPEN-DRAWER, current sweep='idle' (RED — recognizer gap)
+│ Test 5: A5-ON-WALL: screen → canonical 'ON-WALL' (got 'idle')
+  ✗ FAIL: MISCLASSIFIED: want ON-WALL, current sweep='idle' (RED — recognizer gap)
+│ Test 6: A6-LOW-CONTEXT: screen → canonical 'LOW-CONTEXT' (got 'idle')
+  ✗ FAIL: MISCLASSIFIED: want LOW-CONTEXT, current sweep='idle' (RED — recognizer gap)
+│ Test 7: B1 SINGLE-SOURCE: team.sweep role == team.context.status role per pane
+  ✗ FAIL: VIEW-DRIFT (RED): 0.1[sweep='v60211.1blu.de' vs ctx='scrum-master'] 0.5[sweep='v60211.1blu.de' vs ctx='oosh-tester-shell']
+│ Test 8: B2 REGISTRY-CURRENT: no registered role sits on a shell/dead pane
+  ✗ FAIL: STALE REGISTRY (RED): 0.1=scrum-master(NO-CLAUDE) 0.5=oosh-tester-shell(NO-CLAUDE)
+│ Test 9: B3 CONTEXT-SOURCE: live agents report a real ctx% (from.jsonl), not parse-fail/stale
+  ✗ FAIL: CONTEXT-SOURCE broken (RED): 3 parse-fail rows; sweep age='28d ' (capture-parse / stale recording, not live from.jsonl)
+│ Test 10: B4 SELF-STATE: own pane gets a real state, not a SELF blind spot
+  ✗ FAIL: SELF blind spot (RED): own pane shows 'SELF' instead of its live state+ctx
+  T-SWEEP-LIVE-STATE is RED-FIRST: failures above ARE the spec.
+  Test Cases:  10
+  Passed:      2
+  Failed:      8

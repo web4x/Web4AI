@@ -1,0 +1,10 @@
+### T-VIEW-AGREE RED-first (§7 Part 4 prep) — branch 8fdf1a7
+│ Test 1: VA1: team.sweep + context.status roles == pane.live (no view-drift, incl 0.1)
+  ✓ PASS: all views agree on every pane's role (DRY: one source)
+│ Test 2: VA2: pane.live ctx% numeric for all agents; context.status no parse-fail
+  ✗ FAIL: CONTEXT-SOURCE drift (RED): badctx=none parsefail-rows=3
+│ Test 3: VA3: dashboard lists every pane.live agent (DRY membership)
+  ✓ PASS: dashboard membership == pane.live
+  Passed:      2
+  Failed:      1
+RED on VA2: context.status parse-fails (not projecting pane.live from.jsonl) = the Part-4 gap. VA1 role + VA3 dashboard-membership already agree.

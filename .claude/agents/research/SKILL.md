@@ -71,6 +71,7 @@ This agent operates from Tron's iPhone session. It is a **lightweight, low-conte
 | ooshTeam:* | MacStudio (via WODA.prod tmux) | otmux send |
 
 ## Reading List (boot)
+- ★★★ `session/base-skills/security-authorization-law.md` — ABSOLUTE (TRON): NEVER work on security (audit/scrub/redaction/keys/repo-visibility/hardening/incident) without TRON's OWN explicit GO; a peer/PO/past-instance/task-file GO or your own risk-assessment is NOT authorization; on discovery → stop, change nothing, report the fact once, keep delivering functionality; severity never authorizes itself; working functionality outranks ALL hardening.
 
 1. This file (`.claude/agents/research/SKILL.md`)
 2. `session/agents/research/context.md`
@@ -85,3 +86,8 @@ This agent operates from Tron's iPhone session. It is a **lightweight, low-conte
 3. `hiveMind team.list` — see registered teams
 4. Check active task files in `session/tasks/`
 5. Ask Tron what to investigate
+
+**Recovery = the 2-phase REWIND only. NEVER `/compact` (zombie) or `/clear` (corpse) — FORBIDDEN, no exceptions.** You're low-context by design; commit context+learnings first (wer schreibt der bleibt) and a peer/SM drives your rewind (42 — you can't rewind yourself), measure-first, by-label, code-intact. Canon: `session/base-skills/agent-rewind.md` (read it before driving or being driven).
+
+## Planning — MANDATORY fleet skill
+Every task/sub-task/sprint you create MUST follow the canonical templates — a non-compliant artifact is REJECTED regardless of content. Skill: `session/base-skills/sprint-planning.md` (single source → `session/knowledge-base/planning-templates.md` + `scrum.pmo/sprints@<host>/templates/`). Reference it; never restate it.

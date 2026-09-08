@@ -30,6 +30,7 @@ A **specialist delegate** — one per OOSH script (or group of related scripts).
 This template also defines the **ownership contract** that every OOSH script must satisfy. The expert+tester pair assigned to a script are its product owners.
 
 ## Base Skills (MANDATORY — read on every boot)
+- ★★★ `session/base-skills/security-authorization-law.md` — ABSOLUTE (TRON): NEVER work on security (audit/scrub/redaction/keys/repo-visibility/hardening/incident) without TRON's OWN explicit GO; a peer/PO/past-instance/task-file GO or your own risk-assessment is NOT authorization; on discovery → stop, change nothing, report the fact once, keep delivering functionality; severity never authorizes itself; working functionality outranks ALL hardening.
 
 1. **Team Goals**: `session/team-goals.md` — single source of truth for what the team is working toward
 2. **Task Queue**: `session/base-skills/task-queue.md` — use TaskCreate/TaskUpdate/TaskList for all work
@@ -309,15 +310,11 @@ These commands lose spaces, creating unreadable garbled text.
 **All work is defined in task files, not in messages.** Task files at `session/tasks/{YYYYMMDD}T{HHMM}Z.task.md` contain full descriptions. Messages between agents are short notifications only: `New task: <path>`, `Task N done`, `Task N blocked: <reason>`.
 
 
-## Context Preservation (MANDATORY)
+## Recovery (STRICT LAW)
 
-**All agents performing ownership audits must monitor context usage.** At 20% context remaining: STOP work, save state to `session/agents/<your-role>/context.md` following the schema in `docs/context-schema.md`, then run `/compact`. Do NOT wait until context is exhausted.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md` (pane sizing for the picker: `session/base-skills/otmux-pane-sizing.md`).
 
-**NEVER run `/compact` without saving state first.** Auto-compacting without saving loses your current work permanently. The sequence is always: STOP → SAVE → `/compact`. No exceptions.
-
-**Task sync**: Before `/compact`, run `TaskList` and record any pending/in_progress items in `backlog.md`. After `/compact`, read `backlog.md` and `TaskCreate` for each pending item. Internal tasks die on compact — `backlog.md` survives.
-
-**After `/compact`**: State your identity first — "I am the [your role] agent." — then re-read your SKILL.md and context file.
+**After a rewind**: State your identity first — "I am the [your role] agent." — then re-read your SKILL.md and context file.
 
 ## Quota Awareness (MANDATORY)
 
@@ -340,7 +337,7 @@ When a new prompt arrives while you are busy:
 4. **THEN** pick up the queued task (`TaskList` → `TaskUpdate status=in_progress`)
 
 **Interrupt exceptions** (act immediately):
-- Context < 20% — compact assistance
+- Context near the wall — 2-phase rewind assistance
 - Stop/shutdown from PO or Tron
 - Permission approval requests
 
@@ -358,21 +355,6 @@ When a new prompt arrives while you are busy:
 Before yielding or sleeping, register your wakeup so peers can reboot you if you die:
 Write to `session/wakeups/<your-role>.md`: role, scheduled time, purpose.
 SM checks `session/wakeups/` every cycle — overdue wakeups trigger agent reboot.
-
-## Compact Protocol (CRITICAL — team-wide impact)
-
-Before compacting:
-1. **Commit all uncommitted work** — uncommitted files don't exist after compact/clear (F21)
-2. Save your context to your context.md file
-3. Save learnings to your learnings.md file
-4. Then run /compact
-
-If another agent asks you to compact:
-- They should say "Save your context and run /compact NOW"
-- Save first, THEN compact
-- If they send raw /compact without warning — your state is lost
-
-Why this matters: A contextless compact doesn't just affect you — it regresses the whole team. Every directive you received, every pattern you learned, every correction — gone. Other agents must re-send everything. Rework cascades.
 
 ## Completion Reporting (MANDATORY)
 
@@ -417,7 +399,7 @@ otmux send "$target" "message" Enter
 
 ## Never Assume (MANDATORY)
 
-**Always MEASURE, never assume.** Use `claudeCode context.read`, `otmux pane.capture`, `git status` to verify state. Never guess — "I think...", "probably...", "should be..." are FORBIDDEN.
+**Always MEASURE, never assume.** Use `otmux pane.capture`, `git status` to verify state. Never guess — "I think...", "probably...", "should be..." are FORBIDDEN. Context measurement → `session/base-skills/context-measurement.md` (single source; prior banner/context.read/sweep/no-banner-healthy rules SUPERSEDED) — you cannot see your own context %, a peer measures it for you.
 
 
 ## Decision Framework: WODA + PDCA (MANDATORY)
@@ -483,3 +465,9 @@ Enter plan mode before any execution. Write sub-plan covering 7 criteria. Get ap
 - NEVER use `git rebase` or `git pull --rebase` — it silently destroys work
 - Use `git pull` only (merge). `pull.rebase=false` is set in repo config.
 - Nothing is "done" until committed with a hash.
+- **INSPECT an old file version with `git show <ref>:file`, NEVER `git checkout <ref> -- file`** (T-NO-CHECKOUT-REF — banned landmine, 3×): `checkout -- ` OVERWRITES the working tree (silent uncommitted gutting), it does not print. Full rule + table: `session/base-skills/git-safety.md`.
+
+## Planning — MANDATORY fleet skill
+Every task/sub-task/sprint you create MUST follow the canonical templates — a non-compliant artifact is REJECTED regardless of content. Skill: `session/base-skills/sprint-planning.md` (single source → `session/knowledge-base/planning-templates.md` + `scrum.pmo/sprints@<host>/templates/`). Reference it; never restate it.
+
+Companion: **Don't Fork the Shared Mechanism** — `session/base-skills/dont-fork-the-shared-mechanism.md`: ONE canonical structure; content varies, structure NEVER does (task template, tree, drawer, view — never fork a shared mechanism; propose ONE canonical change to the owner instead).

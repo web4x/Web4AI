@@ -1,0 +1,46 @@
+### Gap B + Gap D VERIFY — TC-5 (classify-claude g.4) + TC-8 (exactly-one-Enter) on CLAUDE target via task-19 fake-claude fixture
+### clean origin/dev worktree @ fcd8e6d; OOSH_DIR=worktree (FIXED otmux: g.4=6213ad6, one-Enter=466655d/79bd3ea)
+
+===== T-SEND-MATRIX =====
+[1;37m│ Test 1: D3: send delivers the message EXACTLY ONCE (never duplicate)[0m
+[1;32m  ✓ PASS:[0m message delivered once (no duplication)
+[1;37m│ Test 2: E5: sender prefix appears EXACTLY ONCE (never doubled)[0m
+[1;32m  ✓ PASS:[0m [@…] prefix delivered exactly once
+[1;37m│ Test 3: E5-GUARD: send.smart guards against re-prefixing already-[@ text[0m
+[1;32m  ✓ PASS:[0m idempotent-prefix guard present ([[ text != [@* ]] — BUG9)
+[1;37m│ Test 4: A2/E3: shell target → non-claude path, NO prefix, delivered once[0m
+[1;32m  ✓ PASS:[0m shell send dispatched, zero [@ prefix (E3), no dup
+[1;37m│ Test 5: G3: send path issues NO pkill (never reaps — BUG6 hazard guard)[0m
+[1;32m  ✓ PASS:[0m send.smart contains zero pkill — dispatches keys only
+[1;37m│ Test 6: K6: send.raw invokes no prefix/verify/poke/queue (key ≠ message)[0m
+[1;32m  ✓ PASS:[0m send.raw is key-only — no message-contract calls
+[1;37m│ Test 7: K1: send.raw <pane> ... Enter = raw key event (no prefix, single)[0m
+[1;32m  ✓ PASS:[0m send.raw dispatched once, no prefix (key event, not a message)
+[1;37m│ Test 8: A1: direct claude (cmd=claude) → CLAUDE path (prefix applied)[0m
+[1;32m  ✓ PASS:[0m cmd=claude classified claude → prefix applied (claude protocol)
+[1;37m│ Test 9: A3: bash-parent claude (real agent Temple:0.0, cmd=bash) → CLAUDE (g.4)[0m
+[1;32m  ✓ PASS:[0m bash-parent claude found via process.running (tty-trim g.4) — classified claude, not shell
+[1;37m│ Test 10: A4: node without claude (cmd=node) → shell (g.1 M2 false-pos guard)[0m
+[1;32m  ✓ PASS:[0m node-without-claude classified NOT-claude → shell path (no Escape/poke)
+[1;37m│ Test 11: A6: isClaudeCode sources kind from claudeCode process.running (c.0/g.4)[0m
+[1;32m  ✓ PASS:[0m bash/node kind resolved via process.running (proc-args), not a naive cmd check
+[1;37m│ Test 12: ISOLATION: live sessions.env untouched by the send-matrix run[0m
+[1;32m  ✓ PASS:[0m live registry md5 unchanged — zero real-agent disturbance
+  Passed:      [1;32m12[0m
+  Failed:      [1;32m0[0m
+
+===== T-SEND-SELFHEAL =====
+[1;37m│ Test 1: V1: idle recipient — COMMITS (rc0) + EXACTLY 1 delivery[0m
+[1;32m  ✓ PASS:[0m committed (rc0) and delivered exactly once
+[1;37m│ Test 2: V2: [@-prefix autocomplete case — COMMITS + 1 delivery + prefix once[0m
+[1;32m  ✓ PASS:[0m prefixed message committed, delivered once, [@ prefix once
+[1;37m│ Test 3: V3: generating recipient NOT interrupted (no Escape while 'esc to interrupt')[0m
+[1;32m  ✓ PASS:[0m no Escape key fired to the generating pane (interrupt averted)
+[1;37m│ Test 4: V4 [S]: stage-once + ONE Enter + Escape-claude-idle-only + NO send-keys in any loop (g.8)[0m
+[1;32m  ✓ PASS:[0m staged once, exactly ONE Enter, Escape gated claude+idle, ZERO send-keys inside any loop (poke-spray impossible)
+[1;37m│ Test 5: V5 [B]: EXACTLY ONE Enter per send (shell 1E/0Esc, claude 1E/1Esc) — no poke spray[0m
+[90m  → echo shell=1E/0Esc claude=1E/1Esc[0m
+shell=1E/0Esc claude=1E/1Esc
+[1;32m  ✓ PASS:[0m shell=1 Enter/0 Escape, claude=1 Enter/1 Escape — single-Enter, zero blank-Enter spray
+  Passed:      [1;32m5[0m
+  Failed:      [1;32m0[0m

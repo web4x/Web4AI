@@ -1,0 +1,78 @@
+#!/usr/bin/env bash
+# §7 PART A GATE — recognizer fixtures on the BRANCH sweep (oosh-expert/sweep-live-recognition).
+# Verifies A1-A6 GREEN ON MERIT + the BOTTOM-CHROME-ONLY false-positive guard (FP1-FP3):
+# an agent MESSAGE-BODY line saying 'do you want'/'/compact'/'Context low' must NOT trip
+# drawer/wall/low-context — classification keys off the input chrome, not transcript text.
+level=$1; [ -z "$level" ] && level=1
+echo "starting: sweep PART-A+FP gate <LOG_LEVEL=$level>  (branch sweep under test)"
+source this
+source test.suite
+source hiveMind
+export LOG_DEVICE=/dev/null
+log.level $level
+
+FX_PREFIX="fx_"
+sweep_fixtures() { tmux list-sessions -F '#{session_name}' 2>/dev/null | grep "^${FX_PREFIX}" | while IFS= read -r s; do tmux kill-session -t "$s" 2>/dev/null; done; }
+plant() { local tag="$1"; shift; local s="${FX_PREFIX}${tag}_$$"
+  tmux kill-session -t "$s" 2>/dev/null
+  tmux new-session -d -s "$s" -x 200 -y 8 2>/dev/null || { echo ""; return 1; }
+  local scr=""; local l; for l in "$@"; do scr="${scr}${l}\n"; done
+  tmux send-keys -t "$s" "clear; printf '%b' '${scr}'; exec cat" Enter 2>/dev/null
+  sleep 0.4; echo "${s}:0.0"; }
+sweep_fixtures                 # PRE-RUN sweep (kill-safe, idempotent)
+trap sweep_fixtures EXIT
+
+detect_state() { private.hiveMind.sweep.detect "$1" | cut -d'|' -f1; }
+assert_state() {  # <name> <pane> <want> <ok-regex>
+  local name="$1" pane="$2" want="$3" okre="$4"
+  local got; got=$(detect_state "$pane")
+  test.case $level "$name -> '$want' (got '$got')" echo "$got"
+  if echo "$got" | grep -qiE "$okre"; then expect.pass "$name = $want (branch='$got')"
+  else expect.fail "$name MISCLASSIFIED: want $want, branch='$got'"; fi
+}
+# For FP cases the canonical answer is a NON-alarm base state (idle OR on-prompt) — never
+# permission/on-wall/context-warning from a transcript substring.
+assert_not_alarm() {  # <name> <pane>
+  local name="$1" pane="$2"; local got; got=$(detect_state "$pane")
+  test.case $level "$name -> must be a base state, not a body-tripped alarm (got '$got')" echo "$got"
+  if echo "$got" | grep -qiE '^(idle|on-prompt|active)$'; then expect.pass "$name = base '$got' (bottom-chrome wins, body substring ignored)"
+  else expect.fail "$name FALSE-POSITIVE: transcript body tripped '$got' (must key off bottom-chrome only)"; fi
+}
+
+TITLE='──────────────────────────── role@host ──'
+SEP='────────────────────────────────────────'
+
+echo; echo "===== PART A — 6 canonical states (A3/4/5/6 were RED on live) ====="
+P=$(plant idle "$TITLE" '❯ ' "$SEP" '  ⏵⏵ auto mode on (shift+tab to cycle) · ← for agents')
+assert_state "A1-IDLE" "$P" "IDLE" '^idle$'
+P=$(plant active "$TITLE" '❯ ' "$SEP" '  ✻ Cooking… (12s · esc to interrupt)')
+assert_state "A2-ACTIVE" "$P" "ACTIVE" '^active$'
+P=$(plant onprompt "$TITLE" '❯ read session/tasks/foo.md' "$SEP" '  ⏵⏵ auto mode on (shift+tab to cycle) · ← for agents')
+assert_state "A3-ON-PROMPT" "$P" "ON-PROMPT" '^on-?prompt$'
+P=$(plant drawer '  Do you want to proceed?' '  ❯ 1. Yes' '     2. Yes, and do not ask again' '     3. No, and tell Claude what to do differently')
+assert_state "A4-OPEN-DRAWER" "$P" "OPEN-DRAWER" '^(open-?drawer|permission|accept-edits)$'
+P=$(plant wall "$TITLE" '❯ ' "$SEP" '  Context low (0% remaining) · Run /compact to compact & continue')
+assert_state "A5-ON-WALL" "$P" "ON-WALL" '^(on-?wall|context-wall)$'
+P=$(plant lowctx "$TITLE" '❯ ' "$SEP" '  Context low (12% remaining)   ⏵⏵ auto mode on · ← for agents')
+assert_state "A6-LOW-CONTEXT" "$P" "LOW-CONTEXT" '^(low-?context|context-warning)$'
+
+echo; echo "===== BOTTOM-CHROME-ONLY false-positive guard (pulse lesson) ====="
+# FP1: transcript body literally asks 'do you want to proceed' — but NO numbered drawer +
+# idle chrome at the bottom. Must NOT be permission/OPEN-DRAWER.
+P=$(plant fpdrawer '● Sure — do you want to proceed with the deploy? Let me confirm the plan first.' "$TITLE" '❯ ' "$SEP" '  ⏵⏵ auto mode on · ← for agents')
+assert_not_alarm "FP1-DRAWER-BODY" "$P"
+# FP2: transcript body quotes '/compact to compact' (the exact wall phrase) — idle chrome below.
+# Must NOT be ON-WALL (else any agent explaining /compact trips the wall).
+P=$(plant fpwall '● To recover a walled agent you run /compact to compact & continue, then rewind.' "$TITLE" '❯ ' "$SEP" '  ⏵⏵ auto mode on · ← for agents')
+assert_not_alarm "FP2-WALL-BODY" "$P"
+# FP3: transcript body quotes 'Context low (5% remaining)' — idle chrome below.
+# Must NOT be LOW-CONTEXT from a quoted transcript line.
+P=$(plant fplow '● I noticed a peer at Context low (5% remaining) — flagged the SM to rewind it.' "$TITLE" '❯ ' "$SEP" '  ⏵⏵ auto mode on · ← for agents')
+assert_not_alarm "FP3-LOWCTX-BODY" "$P"
+
+echo
+echo "=================================================================="
+echo "  §7 PART A + FP gate complete (branch sweep)."
+echo "=================================================================="
+sweep_fixtures
+test.suite.save.results

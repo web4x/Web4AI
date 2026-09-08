@@ -1,0 +1,9 @@
+### test.myId GATE-SAFETY isolation — HARDENED md5 assertion (oosh-tester, 2026-08-29)
+live ~/.ssh/config md5 BEFORE: d1ea6c473e5df8b307104325f93c4189
+  [isolated] HOME=/tmp/test.myId.scratch.vg67IS/home  CURRENT_SSH_DIR=/tmp/test.myId.scratch.vg67IS/home/.ssh (live ~/.ssh untouched)
+│ Test 20: GATE-SAFETY: live ~/.ssh/config UNCHANGED by this test
+  Passed:      16
+  Failed:      4
+live ~/.ssh/config md5 AFTER:  d1ea6c473e5df8b307104325f93c4189
+orphans: 0
+empty-guard: empty->FAIL-LOUD (false-pass closed); unchanged->PASS (standalone-verified)

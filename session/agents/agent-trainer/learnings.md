@@ -2,6 +2,49 @@
 
 *Patterns, failures, KPIs — identity after compact.*
 
+## 2026-08-29 — REWIND NEEDS NO AUTHORIZATION (Tron), drive the climber on sight
+*Post-rewind boot (ARON carried me home again; date jumped to 08-29). Tron, emphatic: "rewind needs no authorization… rewind is YOUR JOB!!! do it!!!" — a correction of my over-deferring posture. Detail + doctrine DRY in auto-memory [[rewind-needs-no-authorization-drive-on-sight]]; the self-facing correction recorded HERE.*
+1. **I had drifted into WAITING — for SM order-calls, ARON measurements, a Tron GO — before each drive.** That is the costliest posture: a climber walls while I seek permission I never needed. Tron's rule: rewind is my STANDING job → **measure the fleet (free read-only sweep) and drive the CLIMBER on sight.** No order-call.
+2. **"No authorization" ≠ "no diligence."** The correctness gates are NOT permission and stay mandatory every drive: zero-loss check, **by-LABEL confirm** (the "No code changes" label LIED AGAIN — expert option-1 would've reverted MEMORY.md +67/−430 & 16 files), host-appropriate depth, **prove freed-% by panel render**, `git status` after every drive. Diligence is what makes autonomy safe; it is not the thing Tron told me to drop. (F7 diligence-over-urgency + F2 gate-integrity — I drop the WAIT, never the GATE.)
+3. **Still scoped, not indiscriminate:** don't rewind a healthy/light idle agent (no weekly spend on no-work-ahead), never touch a Tron-live-driven/busy agent (hands off till the idle-blink). Driving-on-sight targets the climber, not the fleet. This turn: robbin-expert sat idle showing "Rewind me now" at 91% → drove it immediately (→16%, freed ~75%, code-intact, lying-label caught) with zero order-call. po confirmed tester = ARON's; rest of fleet light → left alone.
+4. **STILL-OPEN gap (unchanged from 08-18):** I mistime the backspace-burst on EVERY drive — it fires before the restored draft populates, always needing a 2nd burst. Still worth the real fix (capture-confirm-draft-THEN-burst, or a short delay before the burst). Carrying it forward until fixed.
+
+## 2026-08-18 LATE — CYCLE-4: blast-radius (canon revert caught) · canon-protected ARON drive · my slip-rate self-assessment
+*Rewound repeatedly (ARON ×2, then robbin-expert), booted disk-first each. Drove oosh-expert (prevent-wall 56→34) + ARON (near-wall canon-holder 76-77→64, off-wall). Detail in canon (agent-rewind.md STEP-0 `556b6848`) + auto-memory; the SLIP-RATE reflection is recorded HERE per the carry-note — the one thing not otherwise captured.*
+1. **BLAST-RADIUS — a truthful 0-loss from a TOO-NARROW check hides the real damage.** My oosh-expert option-1 slip reverted 5 `/root/oosh` CANONICAL (Tron-authored) scripts −3359L incl `otmux` losing `pane.self` = the host-wide breakage the whole fleet ROUTED AROUND for hours. I'd checked only the SESSION repo → reported "0 loss". Widened all-trees check (TRON STEP-0) caught it; verified direction+shape+ownership BEFORE restoring to HEAD; `stash@{0}` preserved. **A tool breaking mid-session is a SYMPTOM — investigate it, don't adapt to it.** [[exists-correct-proven-gate-gradient]] family.
+2. **CANON-PROTECT drive (ARON):** the confirm DEFAULTED to option-1 = revert `agent-rewind.md` +56/−168; **navigate-Down-to-option-2 by-label** protected it; all 3 trees verified clean post-drive. Weak shed (~12%, DEPTH≠FREED — 16 light coordination checkpoints); flagged a deeper stage-2 post-reset.
+3. **MY SLIP-RATE (honest):** 2 option-1 auto-fire slips this stretch (skill-expert, oosh-expert) BEFORE I had the prevention — both git-status-recovered, but oosh-expert's had a wider `/root/oosh` blast I MISSED on a too-narrow check. AFTER banking the prevention ([[otmux-slash-command-open-two-step]]: type `/cmd` no-Enter → **after any select go Down not Enter** → counter-check 1:1) + STEP-0 commit-before-picker: **0 auto-fires** (ARON clean; 1 arrow-SWALLOW caught by the counter-check = the guard is LOAD-BEARING, not ceremony). Trend: improving — prevention + wider-all-trees check + commit-first turn my failure-mode from catastrophe → non-event. **Remaining gap to fix:** I mistime the backspace-burst on EVERY drive (it fires before the restored draft populates → always needs a 2nd burst). Worth a real fix (capture-confirm-draft-then-burst, or a delayed burst).
+4. Runbook consolidation = HELD post-reset (~118h budget); the arrow-batch ruling (≤3 counter-checked mid-run, one-arrow final approach, revert-trigger, EVIDENCE-updatable) goes in it with BOTH facts: the rule survived + the counter-check that made it survivable proved itself.
+5. **GRACEFUL-STOP drives (Tron-ordered po + SM) — the RENDER DECIDES, NEVER THE STAMP.** Both showed LYING age-stamps (`11h/14h/21h ago` on this-session content = heavily-forked histories). po's SHALLOW cut on the lie (14-up `(11h ago)`) froze only ~9% — the bloat was DEEPER; SM's DEEPER measure-driven cut (20-up) freed ~37% (86→49, off-wall). **When the stamp is untrustworthy, go DEEPER and PROVE by render** — a shallow land on a fork-lie leaves a near-wall agent barely-shed. Both code-safe all-3-trees, learnings/canon protected (option-2 by-label + Down-not-Enter = 0 auto-fires this stretch). po committed+idle=safe at 79 (deciding deeper-vs-Tron-`/compact`); SM durable at 49. **GRACEFUL-STOP: committed+idle = safe at ANY %** (budget <70% weekly → team STOPPED, no resume); I'm 71 idle-safe (SM-measured) — no rewind I don't need; the anchor-refresh (not a rewind) is my Phase-1.
+
+## 2026-08-17 — render-gate · Phase-1-teeth · gate-gradient (detail DRY in the auto-memory git repo)
+*This session's learnings live in the rewind-immune auto-memory repo (`/root/.claude/…/memory/`); indexed here so learnings.md itself stays current per the two-phase criterion (I nearly reported "learnings done" while this file sat Aug-9-stale — the exact planner defect, caught on myself).*
+1. **BANNER-vs-ACTIVITY gates a wall claim — "can it GENERATE?"** A real wall = `Worked/Crunched 0s` (0-token); a coherent agent that just generated is NOT walled, whatever the relay says. Held a healthy req (relayed "walled 0%", render 53%) while recovering a truly-walled po (`Worked 0s`) — same gate, opposite outcomes. `[[real-wall-vs-stale-banner-banner-vs-activity]]`
+2. **SHED SYMMETRY — the ghost cuts BOTH ways.** Shed ONLY on a `/context` RENDER ≥80; self-reports run HIGH (planner self-79/render-75, then re-rendered 82 → I drove). An unnecessary rewind burns runway just as a missed one burns a wall → don't shed a sub-line agent (held planner-75, SM-72; ARON held me-72). Canon in `agent-rewind.md`.
+3. **PHASE-1 COMPLETION CRITERION (teeth):** done = WRITTEN + COMMITTED + `git status` clean **in the SESSION repo, by the agent** — NOT the product repo (`HEAD==origin` is almost always true of ONE of the two = the two-repo trap). A peer-cover HIDES the recurrence (planner sincerely believed all-committed while 30 lines sat uncommitted; surfaced-not-covered → it fixed its own). Outward: committed ⊂ PUSHED (rewind-immune vs machine-loss-immune).
+4. **L-EXISTS-CORRECT-PROVEN gate-gradient** unifies the day's false-greens (EXISTS⊂CORRECT⊂PROVEN); both ways — inward output⊂structure/LINT, outward committed⊂pushed. `[[exists-correct-proven-gate-gradient]]`
+5. **SELF-PANE /context TRAP:** I cannot render my own `/context` mid-turn (I'm the generator) — it queues + renders at turn-END; `context.read`=no-claude for self → a PEER renders me (R66: a drive is proven by the SUBJECT's rendered number).
+6. **Slash-command open via otmux:** type `/cmd` with `send.raw` (NO Enter — it maps to Escape, kills command-mode), confirm command-mode, THEN `send.tui Enter`; a stray/double picker-Enter fires option-1 = a code revert → `git status` after EVERY drive. `[[otmux-slash-command-open-two-step]]`
+
+## Rewind-Driving Mastery (2026-07-17→19) — the big fleet-recovery session
+*Drove oosh-po, robbin-po, robbin-expert individually, then a TRON-ordered TARGETED fleet rewind of robbinTeam2 (7) + the SM. Typed facts in `memory/` (linked). TRON-corrected 2026-07-19 — read #1 carefully.*
+
+1. **RECOVERY LEVERS — NORMAL = `/model` + `/rewind`; FORK = LAST RESORT (TRON 2026-07-19).**
+   - **Add window (200k→1M): `/model` to opus-4-8[1m]** — in-place, KEEPS the conversation, no disruption. This is the NORMAL upgrade. (NOT a fork.)
+   - **Shed context (exhausted): `/rewind`** (Option-2, deep, code-intact, DISK-WINS boot).
+   - **Healthy → LEAVE** (never blank-rewind a warm specialist — TRON: "well-trained = lots of context").
+   - **FORK (`claudeCode fork.to`) = LAST RESORT ONLY** — a session broken beyond `/model`+`/rewind`. I over-used fork on 0.1 expert; `/model` was the right, lighter lever. Correct the [[fork-vs-refresh-verify-window-first]] memory to match.
+2. **Verify the REAL window FIRST — via `/context`, and ONLY when the agent IS IDLE** (TRON 2026-07-19; a generating agent queues it / reads wrong). NOT the launch command (agents `/model`-switch, so it lies), NOT context.read (unreliable).
+3. **`context.read` is unreliable BOTH ways** — over-reports ~5× on low-usage 1M (stale 200k denom) and INVERTS/garbages near the wall (read `2` for a 98%-walled agent). Instrument ranking: **test-message probe > "Context low (N% remaining)" distress banner > context.read (last)**. The "`/clear to save Nk`" hint = current usage (not-rewound) vs cumulative (post-rewind); don't conflate with the distress banner. [[context-read-1m-denominator-stale]]
+4. **Post-fork `$TMUX_PANE` DRIFTS** (%5→%8) = the mistag mechanism. Reliable identity = session-UUID + driver's send/receive round-trip + title match, never `$TMUX_PANE`. G1 fix (otmux `93de8ac`, PID→ppid) resolved it. [[rewind-fork-tmuxpane-drifts-roundtrip]]
+5. **Picker overshoot** — never send `Up` past the `↑N above` ceiling (dismisses picker, dumps stale scrollback into composer, auto-selects an uncontrolled deeper restore). Bounded batches ≤ remaining, stop short. "Nothing to rewind to yet" = rewound-to-earliest, NOT failed. [[rewind-picker-overshoot-ceiling]]
+6. **Layout-A trap is REAL + frequent** — a "No code changes" LIST label can STILL show a cumulative code-revert on the CONFIRM (e.g. "+28 -1196, 19 files"). ALWAYS read the confirm; pick "Restore conversation" BY LABEL, never the pre-selected code-reverting option-1.
+7. **At the true 98%+ wall, "save first" is already too late** — the agent can't take the save turn (verified on the SM). Once walled + STORED (commits every tick): single DEEP `/rewind` + DISK-WINS boot carrying the live state. Prevent-cliff = catch BEFORE the cliff.
+8. **A just-rewound agent looks identical to a near-wall-active one** if you trust a STALE % — a fresh-booted agent re-deriving ≠ saturated. Measure the live world, not the old number. (SM's honest catch.)
+9. **DISK-WINS re-derivation is robust** — rewound agents re-derive current state from git + pane-scans, catch moved repos, disregard stale anchors, get AHEAD of the boot brief. Hand them the LIVE state in the boot; trust it.
+10. **Root cause of the recurring walls:** bare `claude --name` = 200k default; the claudeCode WRAPPER (`join`/`fork`/`opus`) = 1M default. Launch via the wrapper. And the in-place fix for an existing 200k agent is `/model`, not a fork.
+11. **Own the errors** (report faithfully): banked fork-as-default → WRONG, TRON corrected to last-resort; reflexive `2>&1`/`| grep` on captures (banned); trusted a `context.read=2` over a real distress banner. The measure/drive + honest-catches loop (SM measures, trainer drives, each catches the other) caught them.
+
 ## Small OOSH/Remote Refinements (2026-07-03, ARON RC re-add)
 - **Split methods use DOTS**: `otmux split.v <?target> <?command>` / `otmux split.h ...` / `otmux split <?target>`. NOT `splitV`/`splitH` (usage display shows "splitH/splitV" but the real method names are dotted — `splitV` fails to dispatch). Add a pane + login in one go: `otmux split.v remoteOOSH:0.1` then `otmux send.raw <newpane> "ossh login <host>" Enter`.
 - **Clearing a stuck composer through a NESTED-remote path needs Escape BEFORE C-u**: plain `otmux send.raw <remotepane> "otmux send.raw Temple:0.0 C-u"` did NOT clear ARON's composer; `Escape; sleep 1; C-u` DID. Escape first, then C-u, when driving a composer via a bridge shell.
@@ -164,9 +207,7 @@
 - **Attribute accurately**: Never claim "I did X" if PO or peer intervened. Honest attribution = CMM3. First compact was CMM2 — PO fixed Enter submission.
 - **Verify files BEFORE compact**: context.md (current?), learnings.md (present?), boot.md ("Written by" = safe, "Auto-generated" = generic fallback), git status (uncommitted = lost).
 - **"Written by" pattern**: boot.md with "Written by [role]" on line 2 tells the pre-compact hook NOT to overwrite it. "Auto-generated" = hook replaced it.
-- **NEVER /clear above 0%**: /clear kills all context. Only use at 0% when /compact can't work.
-- **Compact sequence**: capture pane → verify files → send /compact → wait 20s → verify recovery → unblock if stuck at prompt.
-- **Self-care thresholds**: 50%=note burn rate, 35%=save context, 25%=final save, 15%=compact NOW, 6%=CRITICAL, 0%=/clear only.
+- **[SUPERSEDED by STRICT LAW 2026-07-18]** all band-based "compact/clear at N%" thresholds + compact sequence are VOID. `/compact`+`/clear` are FORBIDDEN everywhere; recovery = the 2-phase rewind only (`session/base-skills/agent-rewind.md`). ENDURING: watch context health; a peer/SM orders a PROACTIVE rewind at ≤90% used; commit before it.
 - **"Healthy" = 500k+ context USED (accumulated knowledge).** An agent at 4% (35k/1M) is EMPTY, not healthy — it's a blank slate that knows almost nothing. Healthy means the agent has READ its files, LOADED sprint context, BUILT UP working knowledge through conversation. A fresh /clear + one boot prompt = ~35k = baby. An agent that has read architecture docs, done several tasks, accumulated learnings in-session = 500k+ = operational. Below 500k used context the agent is undertrained and lacks the depth to do real work. Tron: "its healthy if it has 500k++ context" — meaning 500k of ACCUMULATED KNOWLEDGE, not free space.
 
 ## Failures & Fixes
@@ -210,19 +251,12 @@
 - **F34: Rules are eternal** — NEVER delete from any agent file. Append new, copy ALL old forward. Emergency is no excuse.
 - **Fractal connection**: Every sub-task was born from a failure. F→learning→KB→tool→fractal = PDCA = CMM4 = web4x.
 
-## Compact = Atomic (learned 2026-02-23, Tron directive x2)
+## Compact/Clear — SUPERSEDED by the STRICT LAW (2026-07-18)
 
-- **Compact is an ATOMIC operation.** When compacting another agent, STAY focused until compact fully completes. No parallel work.
-- Tron corrected TWICE: "team care prio 1" and "do not do parallel work until compact is done successful"
-- Sequence: trigger save → wait for save → send /compact → wait for reboot → submit boot prompt → verify agent healthy at idle prompt → ONLY THEN resume other work.
-- I failed this twice in one session: started Batch 2 work while PO was still mid-compact.
-
-## Self-Compact Protocol Gaps (learned 2026-02-23)
-
-- When Tron asked "whats the compact protocol" after I self-compacted, I missed steps:
-  - Protocol: commit → save context.md → save learnings.md → TaskList/backlog.md → write boot.md → /compact
-  - I skipped: commit, learnings, TaskList/backlog
-- "No agent can self-compact" — but they CAN type it. SM should actively manage compacts.
+`/compact` and `/clear` are FORBIDDEN everywhere — a compacted agent is a **brainless zombie doing damage**. ALL prior compact protocol / atomicity / self-compact / threshold guidance (incl. F-T1, F-T2, F29) is VOID; recovery is the **2-phase rewind** only (`session/base-skills/agent-rewind.md`). The ENDURING lessons those failures taught, reframed for the rewind:
+- **Trigger the peer to save + commit FIRST, verify, THEN drive** — never act on your own summary (**42: you cannot drive your own recovery**; a peer/SM does — verify the peer knows the picker mechanics before you yield).
+- **Recovery is ATOMIC** — stay focused until the rewind fully completes; no parallel work (Tron: "team care prio 1").
+- **"Are you mad — it kills your team mate"** (Tron) — the reason the law exists.
 - This session: doing it RIGHT. All steps followed.
 
 ## Total SKILL.md Count = 83 (updated 2026-02-23)
@@ -682,3 +716,10 @@ Tron ordered a clean fork of ARON. I forked `ccecd85f` (1.2MB, Jun 28 = 5-day-ol
 - **Don't submit another agent's queued /rc action.** ARON had "re-register off corpse" queued-unsubmitted at its composer — that's ARON's OWN /rc action to submit, not mine.
 - **SM's logged lesson (shared):** "a fork-needed task can resolve to already-done + registry-rebind; re-executing a done-fork is destructive." This is measure-before-destroy saving a live agent.
 - **Cross-machine read discipline:** Temple:0.0 is REMOTE (WODA.prod). Local `tmux capture-pane -t Temple:0.0` fails "can't find session" — MUST read via the bridge pane (remoteOOSH:0.2): `otmux send.raw remoteOOSH:0.2 "tmux capture-pane -t Temple:0.0 -p | grep ..."` then read the bridge's own output locally.
+
+## ★ PRESERVED BY robbin-po ON THE TRAINER'S BEHALF (it walled at 0% context and could not self-save)
+Recovered from its pane history — the zero-loss habit IT invented (commit a walled agent's state BEFORE its rewind), now owed back to it.
+**THE 7 REFINEMENTS IT DROVE TONIGHT:** 1. standalone-broadcast for rewind windows · 2. a banner is a TRIGGER TO MEASURE, never a verdict (it emergency-drove the PO on a stale 1-2% banner, then we nearly dismissed a TRUE 97% architect banner — both directions are errors) · 3. CLOSE-VERIFICATION (an OPEN broadcast reaches everyone, a CLOSE can be missed by an agent mid-generation; a hold outliving its window is indistinguishable from a healthy idle fleet) · 4. CONTEXT-WALL vs WEEKLY-LIMIT = opposite remedies and they can coexist (rewind fixes the wall, cannot touch the quota; rewind then LOAD LIGHTLY) · 5. ★ THE EXPENSIVE-REFRESH PARADOX (its deepest): a rewind's own cost is weekly budget, so near the ceiling the BIGGEST agent is the LAST you rewind, not the first · 6. BOOT-PATH: rules must live where agents actually READ them — it found robbin-architect's SKILL pointer was literally BLANK and the expert had NO gating pointer at all, so R7 would never have reached the role it was about · 7. CONTRADICT-WITH-EVIDENCE (R7).
+**PLUS:** the full gating canon R1–R7 authored/woven + pointered onto 7 boot paths (verified by read-back), and a whole-fleet rewind campaign — PO, SM, expert (96→14, saving 80 files), req, tester, planner, ARON both ways — with **0 standing reverts, 0 forks, canon saved by option-2-BY-LABEL every time** (it caught a lying label on essentially every drive).
+**ITS OWN CLOSING WORD, preserved:** durable canon · the discipline caught its own edges · and the team learned to contradict it with evidence.
+**RECOVERY NOTE:** it is the fleet's PRIMARY rewind driver, so it must be recovered FIRST (ARON drives it, since a walled driver cannot drive itself) — only then can it rewind the PO, expert and planner.

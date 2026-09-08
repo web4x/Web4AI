@@ -1,0 +1,25 @@
+=== otmux under test: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/oosh-g1/otmux @ 93de8ac ===
+contains 93de8ac: YES
+  (tester pane is ooshTeam:0.4 = %4 per session; resolver should match the live caller pane)
+
+############ (1) STATIC: zero active TMUX_PANE self-ID code (only ban-comments) ############
+  active (non-comment) $TMUX_PANE lines: <none>
+  PASS: (1) ZERO active $TMUX_PANE self-ID code (all occurrences are ban-comments)
+
+############ (3) pane.self DEFINED + resolves ############
+  PASS: (3) otmux.pane.self is DEFINED in source
+  otmux pane.self -> '%4'
+  PASS: (3) pane.self resolves to a real pane address ('%4')
+
+############ (2) POISONED TMUX_PANE=%999 -> real pane (not the poison) ############
+  clean  pane.self='%4'  current='ooshTeam:0.4'
+  poison pane.self='%4'  current='ooshTeam:0.4'  pane.get.target='ooshTeam:0.4'
+  PASS: (2) pane.self ignored poisoned TMUX_PANE (='%4')
+  PASS: (2) current ignored poisoned TMUX_PANE (='ooshTeam:0.4')
+  PASS: (2) pane.get.target ignored poisoned TMUX_PANE (='ooshTeam:0.4')
+  PASS: (2) poisoned pane.self == clean pane.self (resolver stable, env-immune)
+
+==================================================================
+  T-NO-TMUXPANE EXTENDED:  PASS=7  FAIL=0
+  ALL GREEN — G1 self-ID root fix verified on clean mcdonges.latest
+==================================================================

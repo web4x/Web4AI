@@ -1,3 +1,5 @@
+> **⚠ STRICT LAW (TRON 2026-07-18): the recovery mechanism referenced below (`/compact` / `/clear` band-recovery) is now FORBIDDEN. This incident is preserved as HISTORY / diagnosis only. Current recovery = the 2-phase rewind → `session/base-skills/agent-rewind.md`.**
+
 # Incident Report: Total Goal Loss — 2026-02-18
 
 ## What Happened

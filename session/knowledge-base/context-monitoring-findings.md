@@ -8,6 +8,8 @@
 
 **Context % is only visible in the status bar when it's LOW.** When context is healthy, no percentage is shown.
 
+> **★ Authoritative measure (2026-08-07; folds context-monitoring-validation.md).** The status-bar `Context low (X%)` is a **binary LOW-ALERT only** — it appears just below the wall and cannot distinguish 50% from 90% (validation: 0/5 agents showed % when healthy, 1/5 when the trainer hit 5%). **The authoritative context % at ANY level is the peer-injected `/context` Free-space header** — an agent CANNOT self-read its own context (42); a peer injects `/context` on its pane and reads the Free-space line. `context.read`/`context.velocity` are unreliable (invert near the wall). And the status bar's `Run /compact` is **Claude's UI suggestion — IGNORE it**: the only recovery is the 2-phase rewind ([[agent-rewind]]); `/compact` + `/clear` are FORBIDDEN.
+
 ## Text Patterns Observed
 
 When low (confirmed from live captures today):
@@ -58,8 +60,8 @@ The context % text appears **right-aligned** in the status bar (last line or sec
 ## grep Command for SM Sweep
 
 ```bash
-# Capture and check single pane
-otmux pane.capture projectTeam:$PANE 10 2>/dev/null | grep -oE 'Context low \([0-9]+% remaining\)'
+# Binary LOW-ALERT scan only; for the real % at any level, peer-inject /context (see the Authoritative-measure note above)
+otmux pane.capture <session>:$PANE 10 | grep -oE 'Context low \([0-9]+% remaining\)'
 ```
 
-Returns nothing = healthy. Returns match = extract the number.
+Returns nothing = healthy (or scrolled — use 10+ lines). Returns match = extract the number for the binary low-alert; then peer-inject `/context` for the authoritative figure.

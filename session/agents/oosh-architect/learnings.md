@@ -131,3 +131,9 @@
 ### Meta (CMM4)
 - Measure-before-fix applies to **PO steers too** — two tasks here (my D13.A, expert's D13.1) were reframed by measurement; the honest move is to surface the non-reproduction in the design (§6) rather than build to the assumption.
 - SPRINT-COMMS worked cleanly: edit story report-back → commit → push → one-line nudge. Record the commit hash in the report-back AFTER committing (two-commit pattern: content, then hash).
+
+## Team-Loop MVC + G1 identity linchpin (2026-07-17)
+- Team loop = MVC: Controller=PO, View=SM (sweep/report), Model=registry. Tools do CMM3 mechanics; PO/SM add CMM4 judgment.
+- **G1 (linchpin): `otmux current`/`pane.get.target` resolve self from stale `$TMUX_PANE`** (otmux:2683 on mcdonges.latest) → LIES after fork/move/rewind (hit live: returned baseTeam:0.1 falsely). The corrected `/proc` PID→ppid→tmux-pane walk (`pane.self`) exists only on `dev` = a LOST DUPLICATE. DRY fix = ONE corrected `otmux current` (never the env var); route ALL self-ID through it; kill the old "MUST use $TMUX_PANE" comment (otmux:1806).
+- Registry Model is ~6 stores (roles/sessions/teams/snapshot/state/queue) — file-split is fine; the DRY violation is *identity truth duplicated + disagreeing* across stores + tmux customTitle + process `--resume` args. Ground truth = process --resume uuid + corrected otmux current pane; stores = projections. Verify identity via pane footer/process args, NEVER JSONL customTitle or session.id (they lag/mis-resolve).
+- After ANY move/rewind: confirm pane via registry/pane-title, never trust `otmux current` until G1 lands. I mis-identified myself twice this era by trusting the resolver — measure against registry.

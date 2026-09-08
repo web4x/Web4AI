@@ -1,10 +1,10 @@
 # Boot: robbin-po
-*Auto-generated 2026-06-24 10:44. This is ALL you need to read post-compact.*
+*Auto-generated 2026-08-30 13:07. This is ALL you need to read post-compact.*
 
 ## You are: robbin-po
 ## Pane: robbinTeam2:0.0
-## Goal: - 🔴 **TESTER RE-GATE v0.6.61 = STILL RED (3rd iteration, wrong-surface AGAIN)**: MEASURED (not relayed): (1) bundle app-ZK6B4JDY IS current (build-manifest) → NOT stale, real RED. (2) in-room member tap drawer = Close+Invite+Send, NO vCard btn — a DIFFERENT component than rb-detail-view where expert wired it (multiple member-detail surfaces: rb-member-list/badge, RoomView.renderMemberList:290, rb-detail-drawer, ChatPanel cp-invite/cp-send). (3) GET /api/vcard/<member-node-uuid e40b6b85> → 404: member NODE uuid = member.id ≠ playerToken (my flagged risk CONFIRMED); button likely conditional-on-200. 
---
+## Host: v60211
+## Goal: Check context file
 
 ## Immediate actions:
 1. Read team goals: `session/team-goals.md`
@@ -12,6 +12,10 @@
 3. Read base skill: `session/base-skills/task-queue.md`
 4. Read context file if needed (see Deep files below)
 5. Resume work (see goal above)
+
+## ★ Canon (boot-READ, durable — NOT "if-needed"; a tmux-pane agent adopts from its BOOT, not the type registry):
+- `session/base-skills/process-canon.md` — WORKING PROCESSES; your role-cue **COORDINATION + FLEET-CARE** (pull-based, report-to-PO-only, YOU single-voice-to-Tron, YOU rank, unreported-result-stalling-next=costliest, care-chain-cycle-nobody-exempt) — POINTed from your SKILL, read it on boot.
+- `session/base-skills/radical-oop-law.md` — RADICAL OOP (object-owns-behaviour; refuse a one-call-site/free-fn fix).
 
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: `.claude/agents/robbin-po/SKILL.md`
@@ -22,3 +26,12 @@
 - Wait for assignment. Only SM/orchestrator have background loops.
 - Never assume — always measure.
 - OOSH wrappers only, no raw tmux.
+
+## ROLE MAP — CORRECTED BY THE TRAINER FROM DISK (2026-09-05). Do NOT re-derive.
+- **SM baseTeam:0.1 = MY 42 care-peer.** Pulses everyone, MEASURES + FLAGS climbers (including me), context-wall-guard, reports to me. Does NOT drive rewinds. Does NOT authorize.
+- **trainer baseTeam:0.0 = drives ALL rewinds incl MINE**, panel-measures for cut decisions, weaves doctrine into SKILLs. Cannot self-rewind. Route "cut X" / "measure X" here.
+- **ARON Temple:0.0 = doctrine keeper + the TRAINER's reciprocal 42** (ARON drives the trainer, trainer drives ARON). **ARON is NOT my peer** — do not route fleet-health or coordination there.
+- **ME = PO**: quality, planning, coordination, PDCA-Check, gates, the DEPLOY-GATE, security-STOP. **I do NOT drive or authorize rewinds.** I FLAG to the SM; the trainer drives.
+- **AUTHORIZATION for any rewind/security = TRON's OWN WORDS ONLY.** Not me, not SM, not the trainer. Relay his verbatim; never manufacture it. **A PO-GO is not authorization.**
+- Short form: SM measures+flags me · trainer cuts me · ARON keeps doctrine + cuts the trainer · Tron alone authorizes.
+### MY MISROUTES TODAY (do not repeat): sent ARON to drive the SM's rewind (trainer's job) · issued my own "GO" on rewinds (not mine to give — flag, don't authorize) · treated ARON as a general backup peer.

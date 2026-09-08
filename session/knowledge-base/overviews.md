@@ -49,12 +49,8 @@ Permissions reset on /compact (unfixed).
 
 ---
 
-### 6. Compaction and Recovery
-Context shrinks each cycle. Recovery must be deterministic. Cold start loses A first (infrastructure), compaction loses W first (prompts).
-Pre-compact: save state. Post-compact: read learnings FIRST, then context, then check peer.
-Restore peer via `claude --resume`, NOT fresh `claude`.
--> Details: [compaction-recovery.md](compaction-recovery.md)
--> Actions: [compact-peer.md](actions/compact-peer.md), [recover-after-compact.md](actions/recover-after-compact.md)
+### 6. Recovery
+**Recovery = the 2-phase rewind (a peer/SM drives it, BEFORE the wall); `/compact`+`/clear` are FORBIDDEN — see `session/base-skills/agent-rewind.md`.**
 
 ---
 
@@ -141,10 +137,7 @@ Detection: `grep -E '# <[a-zA-Z0-9]*-' scriptname`
 ---
 
 ### 17. Mass Context Exhaustion Recovery
-All 11 agents hit 0% simultaneously — 40 min chaos. Recovery order = hierarchy: SM first → orchestrator → workers.
-0% context = /clear only (/compact can't work). Max 2 large tasks in parallel. SM must monitor context %.
--> Details: [incidents/20260217-mass-context-exhaustion.md](incidents/20260217-mass-context-exhaustion.md)
--> Actions: [recover-mass-context-exhaustion.md](actions/recover-mass-context-exhaustion.md)
+**Recovery = the 2-phase rewind (a peer/SM drives it, BEFORE the wall); `/compact`+`/clear` are FORBIDDEN — see `session/base-skills/agent-rewind.md`.** Recovery order stays SM first → orchestrator → workers (#26); SM must monitor context % so no agent reaches the wall.
 
 ---
 

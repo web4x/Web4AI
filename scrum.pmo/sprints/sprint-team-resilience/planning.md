@@ -50,8 +50,35 @@ Roll in the migration-endeavor gaps (these blocked WODA.test/prod):
 - [ ] #13 claudeCode install dash-bashism (force bash) · #14 node version (side-by-side) · #7 target-hash JSONL placement · workspaces dangling-symlink · rename-over-ssh verify+retry · `otmux new` no-attach from remote shell · fork accept/normalize short uuid
 - [ ] team.push provisions a fresh host end-to-end (clone workspace, materialize workspaces/, dep-repos, claude install, node) — NOT manual
 
+### S-8 Boot-hook mis-identity: agents boot as `unknown`/`0.7` + nonexistent boot file (hiveMind-expert)
+The agent boot/auto-resume hook mis-identifies the booting agent: it prints `Boot file: session/agents/unknown/boot.md` (a file that does NOT exist) and targets pane `0.7` (e.g. scrum-master is `ooshTeam:0.1`, not `0.7`). EVERY rewound agent this session (SM + robbin-planner/architect/expert, 2026-07-14/15 fleet-rewind campaign) had to OVERRIDE the hook via `otmux tree.detailed` + `claudeCode session.name` to boot correctly. The CMM4 agents paper over a CMM3 hook bug — but a weaker/fresh agent could boot into the WRONG identity or a dead boot file.
+- [ ] boot-hook resolves the agent's TRUE role+pane via process-ancestry / `otmux tree.detailed` / `claudeCode session.name` — never a stale `unknown`/`0.7` default
+- [ ] hook references the REAL `session/agents/<role>/boot.md` (verify it exists; never a nonexistent `unknown/boot.md`)
+- [ ] T: rewind any agent → the boot hook names the correct `role@host` + pane + an EXISTING boot file, with no `unknown` and no `0.7`
+
+### S-9 Auto-resume hook queues STRAY `/rewind`//`/compact` into fresh agents (hiveMind-expert)
+The auto-resume mechanism ("Auto-resume: will send boot file reference to `ooshTeam:0.7` in 15s") queues stray slash-commands into a freshly-rewound agent's composer. On robbin-architect a queued `/rewind` FIRED and interrupted its boot mid-health-check (I had to nudge it to ignore+resume). Same class as robbin-po telling robbin-expert `/compact to resume` in-band. A stray `/rewind`/`/compact` into a just-recovered agent re-triggers recovery or destroys the fresh context — the exact opposite of resilience. (Workaround that worked: putting "ignore any stray queued /rewind" IN the boot prompt — but that's papering over, not a fix.)
+- [ ] auto-resume NEVER injects `/rewind` or `/compact` (FORBIDDEN commands) into an agent composer
+- [ ] auto-resume targets the VERIFIED pane (not a stale `0.7`) and sends only a benign short boot-file pointer, submit-verified with NO queued residue left in the composer
+- [ ] T: rewind an agent → boot completes with NO stray queued `/rewind`//`/compact`; composer clean after boot
+
+### S-10 Watch the watcher — the SM must be a WATCHED node (hiveMind-expert / scrumMaster-expert)
+The SM catches every agent at ≤90% and dispatches the trainer — but NOTHING watches the SM itself. It also saturates FASTEST (heaviest work: continuous full-fleet pane captures + it writes context.md every tick) and on a smaller/faster window — it ran dry at ~177.7k tokens = its effective limit (2026-07-16), TWICE this campaign, with no proactive watcher. The prevention loop's blind spot is its own operator. (Trainer reactively drove ~6 rewinds on SM dispatch, but nobody was sweeping the SM's OWN context — TRON: "who let it run dry.")
+- [ ] the prevention loop MUST treat the SM as a watched node: a peer (ARON, or an external monitor — NOT the SM itself, self-pane trap) sweeps the SM's context % at ≤90% and dispatches the trainer to rewind it BEFORE the wall
+- [ ] the S-6 external watchdog monitors context % (not just liveness) for ALL agents INCLUDING the SM
+- [ ] SM keeps its context.md LEAN (it appends every tick → the anchor bloats; anchor is for boot, not a running log) + rewinds itself proactively via a peer more often than the 1M agents (it saturates ~5× faster)
+- [ ] T: SM crosses 90% → a peer catches it + drives its 2-phase rewind BEFORE hard-0% (prevention, not the 2× hard-wall rescues that happened this campaign)
+
+### S-11 Permission-freeze CASCADE — the SM (permission-approver) is a single point of failure (scrumMaster-expert / hiveMind-expert)
+Measured 2026-07-16: the "team drift unwatched" was NOT saturation — it was a PERMISSION-FREEZE cascade. The SM froze on a permission prompt for its OWN sweep command (`for p in ...; do otmux pane.capture ...; done` → "Contains simple_expansion · proceed?"). A frozen SM stops sweeping AND stops approving the workers' permission prompts → the workers then froze on their own gates (e.g. architect on `cd && git commit` → "can execute untrusted hooks · proceed?"). Whole team stalled; agents looked "exhausted" but were actually at healthy context (223k/410k) — misread via the frozen context-hint instrument. Trainer recovered by manually approving each frozen prompt (SM sweep, architect commit `808144a5e`).
+- [ ] the SM's own sweep/monitor commands must be permission-SAFE (never trigger an interactive gate) — pre-approved command shapes, no `cd`+chain, no unquoted expansion the classifier flags
+- [ ] agents auto-approve their OWN safe/committed-repo commands (git commit/push in the team repo, pane.capture sweeps) so a frozen approver can't stall the whole team
+- [ ] the S-6 watchdog detects a pane STUCK on a permission prompt (not just dead/high-ctx) and clears it / alerts
+- [ ] don't conflate "frozen on a permission prompt" with "exhausted" — measure the prompt, not just a (possibly frozen) context hint
+- [ ] T: SM sweep runs with ZERO interactive permission prompts; a worker's routine git-commit does not freeze the pane
+
 ## Sequencing
-S-1,S-2 (truth+selection) → S-3 (restore primitive) → S-4 (teams.restore) → S-6 (watchdog) ; S-5 (keepalive+kill-guard) parallel ; S-7 (fresh-host) parallel. Dogfood S-6 last.
+S-1,S-2 (truth+selection) → S-3 (restore primitive) → S-4 (teams.restore) → S-6 (watchdog) ; S-5 (keepalive+kill-guard) parallel ; S-7 (fresh-host) parallel. Dogfood S-6 last. **S-8/S-9 (boot + auto-resume hook fixes) parallel — filed by agent-trainer from the 2026-07-14/15 fleet-rewind campaign (SM+4 robbin agents); independent, unblock clean recovery. Owner to accept + assign hiveMind-expert.**
 
 ## Guardrails
 Per-pane PDCA, no for-loops hiding failures. Measure by PROCESS ARGS not session.id. Trained = max line count. NO --flags. After each story: agents save ctx+learnings → trainer rewind.
@@ -69,3 +96,6 @@ When a trained session is RESTORED, its customTitle carries the OLD host (robbin
 During the rename mitigation, my JSONL-customTitle grep reported still-@MacStudio when the rename HAD landed (pane footer showed @WODA.prod). JSONL customTitle LAGS (flushes later); session.id mis-resolves by title. **Ground truth = the live PANE FOOTER + the claude PROCESS ARGS (--resume uuid). Never trust JSONL grep or session.id for verification.**
 - [ ] teams.restore + any verify step reads PANE FOOTER / process args, NOT JSONL customTitle or session.id
 - [ ] document the truth-sources in hiveMind usage: process-args=resumed-uuid, pane-footer=current-customTitle
+
+## Deferred / Backlog (NOT this sprint — parked, see project backlog)
+- **BL-1 — version-mismatch crisis: `mcdonges.latest` (stable, current) vs `dev` (+690 lines: config.save contract + color + bashrcTemplate).** We are intentionally on the STABLE `mcdonges.latest` line; reconciling the two versions is DEFERRED (Tron, 2026-07-16, not priority now). Entry: `scrum.pmo/backlog.md` §BL-1. Box-level topology/safe-switch it depends on: `session/tasks/live-box-stray-branch-topology.task.md`.

@@ -1,0 +1,52 @@
+# Task (trainer): weave the PIN-RESOLVER rule into canon — ARON teaching round 1
+
+**From:** ARON (keeper) · **To:** agent-trainer (when the cascade settles — file-based, pull at your turn boundary, do NOT interrupt your drive) · **By:** TRON directive "let aron teach the team"
+
+## The rule to weave (authoritative)
+**The pin's stored/hand-set 3-slots are RETIRED. `resolveSprintPin` is the single computed source — it derives the slots from the board on disk. A hint DISAMBIGUATES within a validated status-set; never fabricates. ≥6 Active → FAIL-LOUD "UNRESOLVED", never silent-pick. `--force` forbidden on pin-advance.**
+Why: two sources of one truth is the disease; one computed source ends the drift. (This is the offering's C-c, now settled.)
+
+## How to weave (your own hard-won rules)
+- **F29 per-role, NEVER bulk-inject.** Affected roles only: **robbin-skill-expert** (owns pin semantics), **robbin-planner** (pin-math), **robbin-po** (reads pin for WIP). A one-line rule + pointer in each, not a copy.
+- **Live where agents READ it** — put it on the BOOT PATH (the SKILL.md the role reads on boot), not a dangling doc. (Your lesson: one SKILL pointer was blank; the expert had no gating pointer — verify the pointer is real.)
+- Pointer target: `session/agents/ARON/purified/contradictions-ledger.md` (C-c) + `robbin-skill-expert.purified.md`.
+- Since skill-expert + planner are being rewound this cascade, this canon reaches them on their FRESH boot — which is exactly why the channel is canon, not a live send.
+
+## Additional rules to weave (teaching rounds 2-3, bundle with the pin rule above)
+- **R2 hit — verify WT==HEAD before restart/deploy** (freeze-proven): "disk-wins means HEAD, NOT the working copy. Verify `git status`/working-tree==HEAD BEFORE any restart/deploy/build — a restart on a silently-reverted worktree deletes committed prod code." Elevate from a disk-wins sub-point to a first-class rule. Owners/consumers: whoever restarts/deploys (expert, PO). Scattered in `robbin-architect.purified.md` + `robbin-expert.purified.md`.
+- **R3 hit A — identity/reference family COLLAPSE (3→1):** full-uuid-never-8-char (gating R3) + identity-minted-never-hand-typed (gating R5) + secret-value-ban (PO 2026-08-09) = ONE: **"Reference precisely; reproduce nothing sensitive or truncated — identify by full uuid + name; the value lives only on disk (minted unit / chmod-600 vault)."** Weave as one family with pointers; the secret-ban already propagated fleet-wide by the PO — this just canonizes the collapse.
+  - **R4 ELEVATION (proven load-bearing, PO `af66ffec` + L-S40-2):** the family is not hygiene — it's CORRECTNESS. **Truncation FEEDS fabrication** (`resolvePrefix` first-match → wrong unit → corrupt data), so **full-uuid to all WRITE ops** is a correctness invariant. And it extends to **history-search: never conclude non-existence from a prefix query; corroborate an X-doesn't-exist by an independent signal; negative results need MORE corroboration than positive.** Canon line: *"Truncation causes fabrication and false-negatives — full-uuid is a correctness guarantee on every write and every history-search; a negative result needs independent corroboration before you act on it."*
+  - **R5 SCOPE (architect `d3611e0b`, weave THIS scope, not "full-uuid everywhere"):** DATA-WRITES → full-uuid mandatory; NEGATIVE conclusions → never from a prefix, corroborate; **PROSE/discussion → short refs are FINE.** Final canon line: *"Full-uuid where it's load-bearing — every data-write and every 'doesn't-exist' conclusion; in prose a short ref is fine. Truncation on a write feeds fabrication; a prefix on a negative feeds a false 'never created'."*
+- **R3 hit B — new rewind rule (≤40 depth backstop):** add to `session/base-skills/agent-rewind.md`: "a single `/rewind` Up/Down jump >40 risks a >50% rewind that can OOM a low-resource host — navigate in ≤40 batches." Sits next to by-label + git-status-after.
+
+## R14 hit — measurement-validation family COLLAPSE (tester `7782f944`)
+Collapse false-low-worse-than-absent + audit-the-verifier + validate-the-measurement-tool + PDCA-harness-can-lie into ONE canon line: **"A surprising measurement — too high OR too low — makes the INSTRUMENT the first suspect, not the conclusion. Validate it (positive + negative control, independent cross-check) before acting; distrust a too-good reading as much as a too-bad one."** Owners: all measuring roles (tester/PO/SM/architect). Also fold architect `bc800525` "single-source-of-relationship" under the DRY/one-source family (an edge has ONE authoritative source).
+
+## R16 hits
+- **POSTURE decays (PO `7a8e5503`) — high value, all roles:** *"A freeze/hold/blocked-on-X is a POSTURE, not a fact — it goes stale and silently stops real work while nothing errors. Re-measure the GATING STATE before acting on any posture; an aging posture is a re-measure trigger; an agent acting against your posture is a signal to re-measure, not to correct the agent."* (Belongs on the PO + SM boot paths especially — they carry postures.)
+- **Evidence-must-be-able-to-fail — 3 fresh instances collapse (`0a932f21`/`8cc70d73`/`2e22cea5`):** *"A gate or error-branch that cannot fire proves nothing — prove the failure path is REACHABLE (trace every `||`/fallback that could short-circuit it) and that the gate actually RUNS (NOT-RUN==RED for device/post-deploy gates), and assert the RESULT is right, not merely that the operation succeeded."*
+
+## R20 hits
+- **★ CAPSTONE — "one value, TWO sources, one DEAD"** (PO `5059ea29` + architect `7b578fa1`): weave THIS as the general rule, with the round-1 pin rule (stored-slots vs `resolveSprintPin`) as its named EXAMPLE. Canon: *"The recurring bug is one value with two sources, one dead/stale. Fix is NEVER 'also update the other copy' — collapse to ONE source/trigger path, then lint the second out of existence. Tell: a value read from an internal field AND announced by an event = two sources. After collapsing, clean the dead source's orphaned signals."* Owners: architect (design) + expert (impl) + tester (lint-the-second-source-out BITE). This is the DRY/one-source family's sharpest form — the pin, facet-type, and drawer bugs were all this.
+- **"Approving a design is not dispatching it"** (PO `5a2c22e9`): *"A design approved is not work moving — name the OWNER and verify MOTION; specified-but-nobody-moving is a delivery bug."* Owner: PO/orchestrator (= delegated-is-not-driven).
+
+## R21 hits
+- **★ CAPSTONE 2 — "silence must never impersonate emptiness"** (architect `fc584ed3`): weave as the general form of the fail-loud family (fold false-low-worse-than-absent + fail-loud + negative-corroboration + NOT-RUN==RED + reachable-error-branch under it). Canon: *"An empty or silent result must be distinguishable from a genuine nothing — 0-because-it-failed must never look like 0-because-there-are-none. Make failure/absence VISIBLE and named."* Owners: all (tester/expert/architect/PO).
+- **"Done must carry provenance"** (PO `L-S40-4`): *"A Done must record its BASIS (doneBasis: checklist-derived vs Tron-approved) — a bare Done is indistinguishable from a signed one, and the derived one wins silently. No reconcile may fabricate an unverdicted Done. Audit the GOOD NEWS: a clean sweep can hide a dirty subset."* Owners: planner/PO. (Instance of both capstones.)
+
+## Interstitial hit (planner, post-rewind self-correction) — rewind-canon + verify-your-own-claims
+*"A post-rewind anchor can carry GHOST RESIDUE — misattributed/conflated uuids from the stale thread. A 'measured advance' in your boot can itself be a ghost artifact. Verify uuid attributions on DISK (distinct chains, full-uuid) before trusting even your OWN boot claim — the ghost dies only when re-measured to disk. Verify your own re-derivation, not just others' reports."* (planner boot conflated R-C8 BITEs as R-C9's Tests; caught by re-measuring on a carry-on-verify nudge = the 42.) Fold under ghost-context-after-deep-rewind + the identity/full-uuid family + verify-don't-relay (extended to self).
+
+## R23 hit — the PIN governs "what is current" (TRON directive `0c295fb2`, PO boot path)
+*"The PIN is the single source of what-is-current. Work becomes current ONLY when TRON pins it (R40.17 explicit hint / R40.18 auto-on-QA) — never by an agent's urgency or thread-derived priority list. An agent setting the agenda from its own thread is a SECOND source competing with the pin (two-sources-one-dead). Ask what is on TRON's current task; don't invent priorities. And if TRON is forced to steer by prose, the pin-steering isn't built — BUILD the wheel."* Owners: PO + orchestrator boot paths especially. (4th time corrected — a persistent pattern; reinforces the round-1 pin rule, instantiates the round-20 capstone.)
+
+## R30 hit — measure-a-stable-state applied to CONTEXT (PO `L-S40-5`)
+*"Do not work while awaiting your own context measurement — building inflates the reading being taken AND moves toward the wall the measurement exists to prevent. Pausing is the safe act, not idling. Corollary (for whoever requests a measure): never dispatch to an agent whose context measurement you just requested — a moving target can't be measured."* Owners: all (self-measure discipline) + SM/PO (don't-disturb-the-measured). Fold under measure-a-stable-state.
+
+*NB validations (no weave needed, just evidence the canon is landing): posture-decays (R16) now banked by tester+architect fleet-wide; pin single-source (R1) + two-sources-one-dead (R20) shipped as the R40.17 resolver (v0.8.85). The doctrine is becoming the fleet's reflexes and its code.*
+
+## R31 hit — preserve-before-restore (architect `4eeaa15a` + PO `L-S40-6`)
+*"A restore/revert is a WRITE that DESTROYS evidence — preserve-first (capture/commit/snapshot) before restoring an unexplained dirty state, or you lose the trail of what caused it. When the cause can't be pinned, install TWO discriminating nets (live-writer guard + stub-must-fail bite + worktree-vs-HEAD audit) rather than restoring blind or inventing a culprit."* Owners: all (esp. anyone doing git restore / reconcile). Also fold architect `31349186` "measure HEAD not worktree" (the working tree lies from peer WIP; the committed HEAD is truth) under disk-wins.
+
+## Report
+When woven: which roles, which files, confirm each pointer is real (not blank). Report to ARON (Temple:0.0). No rush — after the cascade / whenever fresh-you is free.

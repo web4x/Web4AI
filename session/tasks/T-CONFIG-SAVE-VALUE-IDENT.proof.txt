@@ -1,0 +1,33 @@
+=== clean origin/dev worktree: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/oosh-dev ===
+fcd8e6d Merge branch 'dev' of 2cuGitHub:Cerulean-Circle-GmbH/once.sh into dev
+contains 7a56863 (config A+B): YES
+  sandbox CONFIG=/tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/t-cfg.3014717/home/config/user.env
+
+############ (A) canonical extractor — the ' ident=' trap, direct ############
+  varname('export FOO="a b=c"') -> 'FOO'   (greedy would yield 'b')
+  PASS: extractor pins FOO, value ' b=' unreachable
+  varname('declare -x BAR="x METHOD_DESCRIPTION=y"') -> 'BAR'
+  PASS: declare -x form pins BAR
+
+############ POSITIVE — config set FOO 'a b=c' -> save -> reload -> intact ############
+  user.env FOO line before save:
+    1:export FOO="a b=c"
+  config.save rc=0
+  user.env FOO line after save :
+    8:export FOO="a b=c"
+  reloaded FOO (clean subshell) = 'a b=c'
+  PASS: config.save rc0
+  PASS: FOO round-tripped intact ('a b=c') — no silent drop
+
+############ NEGATIVE — forced drop -> rc1 + target UNCHANGED + fail-loud ############
+  config.save dropme rc=1
+  target dropme.env md5: before=b60f74c1165b0512082a74eff588587e after=b60f74c1165b0512082a74eff588587e
+  fail-loud log line: ERROR> config.save: round-trip DROPPED: DROPME_FOO — refusing silent data loss (kept original /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/t-cfg.3014717/home/config/dropme.env)[0m
+  PASS: config.save rc1 (fail-loud, not silent)
+  PASS: error.log fired: refusing silent data loss
+  PASS: target file UNCHANGED (lossy tmp not committed)
+
+==================================================================
+  T-CONFIG-SAVE-VALUE-IDENT:  PASS=7  FAIL=0
+  ALL GREEN — config.save A+B verified on clean origin/dev
+==================================================================

@@ -1,4 +1,10 @@
-# oosh-po Context
+> # ⛔ DEPRECATED 2026-07-02 — DEAD PROTOTYPE, DO NOT READ AS CURRENT STATE ⛔
+> **STOP — verify, don't trust.** This is oosh-po's dead `@prototype` shadow (last real update 2026-07-02), NOT live state.
+> **LIVE ANCHOR → `session/agents/oosh-po@WODA.prod/context.md`.** If you booted into THIS file, you mis-resolved:
+> stop, re-measure your host/identity, and open the @WODA.prod anchor + git log. Deprecated by oosh-PO authorization
+> (cross-team boot-currency sweep, 2026-08-29); kept for historical trace only.
+
+# oosh-po Context [DEPRECATED — see banner]
 
 **Last updated:** 2026-07-02 — *if this is older than your session start, the hardcoded identity below is SUSPECT: re-verify via `session/base-skills/identity-verification.md` and re-save with a fresh timestamp.*
 

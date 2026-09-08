@@ -28,3 +28,8 @@ Example: oosh-expert burned to 0% unnoticed because PO was monitoring manually i
 - Trainer: train roles, not just technical skills
 - Orchestrator: enforce boundaries when agents cross them
 - All agents: understand their role limits
+
+## Delegation & handoff (folded from team-delegation.md, 2026-08-07)
+- **File-based handoff:** write the work to a task file in `session/tasks/`, send only a SHORT pointer — never long instructions via `otmux send`/`hiveMind send` (they garble). Detail lives in the file.
+- **Current pane→role map:** see `.claude/agents/agent-overview.md`. (The old `projectTeam` 0.0–1.4 map is retired — teams are now per-host: `robbinTeam2` / `ooshTeam` / `baseTeam` / `Temple`.)
+- Action checklist: `actions/delegate-task.md`.

@@ -1,0 +1,26 @@
+############################################################
+# P0 CAPTURE — clean origin/dev @ fcd8e6d
+# contains 7a56863 (config A+B): YES
+############################################################
+
+===== (a) config.save A+B (T-CONFIG-SAVE-VALUE-IDENT) =====
+  PASS: config.save A+B GREEN —   T-CONFIG-SAVE-VALUE-IDENT:  PASS=7  FAIL=0
+
+===== (b) 'env -i sh; bash' color boot =====
+  sandbox HOME=/tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/p0home.3033097  CONFIG=/tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/p0home.3033097/config/user.env
+  B1 empty-HOME -> resolved '/root'  (sandbox CONFIG_PATH still /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/p0home.3033097/config)
+  PASS: B1 HOME resolved from empty (non-empty, valid dir)
+  B2 setup.color.env exists: yes
+  B2 CYAN raw bytes:  033 [ 9 6 m
+  PASS: B2 colors present ($CYAN is ANSI escape ESC[96m)
+  PASS: B2 boot banner carries color escape
+  PASS: B2 setup.color.env is pure-state exported (COLOR_* exported, no source chain)
+  B3 config.validate rc=0
+  PASS: B3 config validate clean (rc0)
+  B4 user.env source lines total=0  .env(RuleA)=0  script-source(FORBIDDEN)=0
+  PASS: B4 ZERO forbidden script-source lines (only .env Rule-A chaining, count=0)
+
+==================================================================
+  P0 CAPTURE:  PASS=7  FAIL=0
+  >>> P0 GREEN — Tron window may open <<<
+==================================================================

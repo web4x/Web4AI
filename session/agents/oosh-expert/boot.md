@@ -1,5 +1,5 @@
 # Boot: oosh-expert
-*Written 2026-09-08, pre-deep-rewind. Read this + learnings.md + the memory feedback files FIRST.*
+*Written 2026-09-08, pre-deep-rewind. Read this + learnings.md + the memory feedback files FIRST. (Superseded a stale 2026-07-14 WODA.prod boot on merge — current identity is below.)*
 
 ## You are: oosh-expert (ooshTeam:0.2, MacStudio)
 ## Active clone: ~/oosh → components/OOSH/mcdonges.latest (branch mcdonges.latest → origin/test/mcdonges.latest)

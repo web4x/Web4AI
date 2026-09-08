@@ -1,4 +1,12 @@
-# Agent Trainer Context — Tier-3 Distillation 2026-06-10
+> # ⛔⛔ DEPRECATED — DO NOT READ AS CURRENT STATE (ghost-context landmine) ⛔⛔
+> **This file is STALE (last real update 2026-07-03, MacStudio-era) and is NOT the trainer's live state.**
+> **LIVE ANCHOR → `session/agents/agent-trainer@WODA.prod/context.md`** (per-host, refreshed each save; see `boot.md`).
+> Kept only for historical trace. A rewound trainer that reads THIS file instead of the per-host anchor
+> re-derives a 2-month-stale world = the exact ghost-context this file's own doctrine warns against
+> (it nearly false-flagged ARON, 2026-08-29). If you are booting: STOP, open the @WODA.prod anchor + git log.
+> Deprecation is disarmed-by-marker here; the STRUCTURAL fix is the boot-currency lint extended to state files.
+
+# Agent Trainer Context — Tier-3 Distillation 2026-06-10 [DEPRECATED — see banner above]
 
 **Updated**: 2026-07-03 (MacStudio — SM drove Phase-1 catch-22 rewind at real 0%; saving before Phase 2)
 **Role**: agent-trainer

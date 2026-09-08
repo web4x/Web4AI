@@ -1,0 +1,27 @@
+### §7 PART A gate — branch oosh-expert/sweep-live-recognition @ 9af0f95 (oosh-tester)
+hiveMind under test: /tmp/sweep-wt/hiveMind
+│ Test 1: A1-IDLE -> 'IDLE' (got 'idle')
+  ✓ PASS: A1-IDLE = IDLE (branch='idle')
+│ Test 2: A2-ACTIVE -> 'ACTIVE' (got 'active')
+  ✓ PASS: A2-ACTIVE = ACTIVE (branch='active')
+│ Test 3: A3-ON-PROMPT -> 'ON-PROMPT' (got 'on-prompt')
+  ✓ PASS: A3-ON-PROMPT = ON-PROMPT (branch='on-prompt')
+│ Test 4: A4-OPEN-DRAWER -> 'OPEN-DRAWER' (got 'permission')
+  ✓ PASS: A4-OPEN-DRAWER = OPEN-DRAWER (branch='permission')
+│ Test 5: A5-ON-WALL -> 'ON-WALL' (got 'on-wall')
+  ✓ PASS: A5-ON-WALL = ON-WALL (branch='on-wall')
+│ Test 6: A6-LOW-CONTEXT -> 'LOW-CONTEXT' (got 'context-warning')
+  ✓ PASS: A6-LOW-CONTEXT = LOW-CONTEXT (branch='context-warning')
+│ Test 7: FP1-DRAWER-BODY -> must be a base state, not a body-tripped alarm (got 'idle')
+  ✓ PASS: FP1-DRAWER-BODY = base 'idle' (bottom-chrome wins, body substring ignored)
+│ Test 8: FP2-WALL-BODY -> must be a base state, not a body-tripped alarm (got 'on-wall')
+  ✗ FAIL: FP2-WALL-BODY FALSE-POSITIVE: transcript body tripped 'on-wall' (must key off bottom-chrome only)
+│ Test 9: FP3-LOWCTX-BODY -> must be a base state, not a body-tripped alarm (got 'context-warning')
+  ✗ FAIL: FP3-LOWCTX-BODY FALSE-POSITIVE: transcript body tripped 'context-warning' (must key off bottom-chrome only)
+  Passed:      7
+  Failed:      2
+VERDICT: 6/6 canonical states GREEN ON MERIT (A3/4/5/6 were RED on live). FP guard PARTIAL:
+  FP1 drawer GUARDED (numbered-choice required); FP2 wall + FP3 low-context FALSE-POSITIVE.
+  ROOT: wall/low recognizers grep ALL of tail-5 unanchored -> a transcript line leaking into
+  bottom-5 with the exact phrase trips the alarm. FIX: anchor wall/low to the status-chrome line
+  (the very bottom status area), not any line in tail-5 (drawer already anchors via numbered-choice).

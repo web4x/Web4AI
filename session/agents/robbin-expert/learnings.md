@@ -945,3 +945,130 @@ it needs a RE-GATE; never let a post-gate fix ride the old GREEN. And when a dom
 PRESENT-but-unmatched, that is positive proof of distinctness — don't fall through to a weaker
 recall key (mint distinct); and a distinct unit must not clobber the first unit's recall symlink
 (only create the alt-link if free).
+
+## Sprint 31 (Server Manager) — durable learnings [2026-07-20..22]
+
+**RETIRE THE FORK, don't patch it (DRY-by-construction).** When a shared mechanism keeps needing repeated
+patches, the patch IS the smell — reuse the shared path's native data. (a) BADGE: the otmux tree badge
+round-tripped a bespoke `nodeChildCount` colon-keyed side-map (re-patched R30.2, R31.3, v0.7.97 own-count,
++ the split(':')[1] colon bug); real fix = stamp the node's OWN child-REFERENCE count on
+`node.dataset.childRefCount` at build + `computeBadges=max(domCount,childRefCount)` → no map/key, colon-immune.
+(b) TERMINAL: forked `showElement` diverged from /trace's drawer (scroll/handle/silent-no-op); fix = make it a
+FIRST-CLASS detail-view (`rb-terminal-detail`) via the standard selection→renderDetailForRef path = /trace chrome
+by construction. **Apply:** at the 3rd+ patch to a shared thing, STOP, copy how the non-buggy sibling does it,
+propose the fork-retirement scenario-first. Keep heavy deps out of shared bundles: only the TAG STRING in the
+shared map, import/define the element ONLY in the consuming bundle (xterm stayed out of /trace, verified 0).
+
+**A composite-key uuid breaks split(':').** otmux uuids embed colons (`sess:NAME`, `win:S:idx`); `ref.split(':')[1]`
+returns the FRAGMENT not the uuid → map miss → badge 0. **Apply:** use `refUuid(ref)` (after the FIRST colon) for
+every ref→uuid; never `split(':')[1]` when a uuid may contain a colon.
+
+**A native addon must be built for the SERVER's node ABI, not the install-time node.** node-pty compiled under node16
+at `npm i`; prod runs node22 → NODE_MODULE_VERSION throw. **Apply:** flag the server's `node -v` to whoever restarts;
+`npm rebuild <dep>` under the server node. Flagging the ABI up front let the architect rebuild before it hit prod.
+
+**REBUILD ≠ RESTART; /api/config version is a deploy CONFOUND.** remoteShells:0.2 `[r]` (server.ts stdin keypress)
+runs `npm run build` (CLIENT only) — it does NOT restart the tsx server.ts process. `/api/config` reads package.json
+PER-REQUEST → shows the FILE version not the running PROCESS → every server-side ship (pin/cookie/boot-sweep) LOOKED
+deployed but wasn't (3.5h-old pid). **Apply:** server ships need Ctrl-C + `npm start` (start.mjs SIGTERMs ports +
+respawns fresh tsx). PROVE a restart by PID-CHANGE + a BEHAVIOR probe (boot-sweep 0-orphans / a decoy), NEVER the
+version string. Hardening (flagged): stamp version at process-boot in a module constant.
+
+**ONE DRIVER per prod pane.** Two of us ran Ctrl-C+npm start concurrently (double-restart); start.mjs port-kill saved
+it but it was avoidable — I flagged the race then reached in anyway. **Apply:** before touching a shared prod pane,
+confirm no peer is mid-op; if a peer owns it, hand them the runbook and let them drive.
+
+**After a rewind, verify working-tree == HEAD before any build/restart.** The tree was silently reverted to 0.7.99
+(stripping my R31 wiring) while HEAD=0.7.102 — a landmine the next restart would have deployed; the running process
+was fine, the TREE was the hazard. **Apply:** `git diff HEAD` on your source first thing post-rewind; a clean-looking
+/api/config doesn't prove a clean tree.
+
+**Deriver fixes are dead if the serve path reads a frozen cache.** The pin's getThreeSlots had NO live caller — the
+server served the persisted `model.slots` snapshot, so every prior fix improved dead code. Fix = recompute-on-read
+(`CurrentSprint.slotsFrom(idx)` = stateless throwaway instance on the fresh per-request index). **Apply:** trace the
+SERVE path, not just the deriver; if the server reads a cache, the fix must recompute-on-read (self-heal).
+
+**Lifecycle cleanup must cover process-death, not just happy close paths.** PtyBridge killed the grouped tmux session
+on ws close/error/exit (0 in-session orphans) but a restart/crash WITH an attached terminal orphans it (tmux outlives
+node → cleanup never fires). Fix = BOOT-SWEEP (`reapOrphans`: at boot none attached → all `sm_*` orphans → safe kill).
+**Apply:** for any external resource a process owns, add a boot-time reap for what a crash/restart leaves behind.
+
+**A public mount method must self-heal its structure, never silent-return.** `showElement` did `if(!detailPanel)return`;
+a FRESH drawer (createElement+append, showElement as first interaction) had no `.drawer-panel-detail` because
+`detailPanel` (unlike `body`) doesn't lazy-render → silent no-op → pane-tap did nothing. **Apply:** a getter that
+doesn't lazy-render is a first-interaction trap; the entry method must render()-if-missing + create the target.
+
+**bash `otmux send` interprets backticks/$()/<>/#{} even inside double quotes.** Twice a tmux message with backticks ran
+as a shell command (npm ERR ENOENT). **Apply:** keep tmux message text PLAIN — no backticks, $(), <, >, #{}.
+
+**Continuous-work self-audit = MEASURE each domain, flag REAL gaps scenario-first.** The `?token=` query-auth leak and
+the orphan boot-sweep gap both came from measuring (not assuming) my own shipped domains; each went flag→req AC→PO
+dispatch→build, never unilaterally built. **Apply:** when idle, audit your LIVE domains by measurement; a real gap goes
+scenario-first, a clean domain is reported clean.
+
+## 2026-08-09 night — post-rewind S40 follow-ups + WODA.test + C2 reconcile (durable learnings)
+
+**Post-rewind: measure the WORLD, don't replay the ghost.** After a 96%→14% rewind, my thread believed the repo was at
+2cuGitHub and the version lived in package.json. DISK said: repo moved to web4x/Web4RawBin, and the version SOURCE is
+now the Config UNIT (package.json is a generated derivative, R31.7). I re-derived identity by tmux round-trip title +
+git, and every "where is X" from measurement, never from my stale narrative. A rewound thread's assumptions are the
+stale thing — trust disk.
+
+**wrote:0 needs proving idempotent-vs-broken.** A regen that reports `wrote:0 removed:0` looks identical whether it's
+genuine idempotency or a silently-broken write (the "quietly stopped generating" trap). I proved it idempotent by
+inspecting the STORED content (methods already enriched) AND the write predicate (`if prev!==json write` = a real
+content-skip). "Nothing happened" and "nothing was allowed to happen" look the same in a log and mean opposites.
+
+**Flag a sourceFile mismatch, don't guess.** Several Editor* Impl units declared sourceFile=rb-detail-view.ts but the
+real DOM was in rb-editor-toolbar.ts / rb-editor-layout.ts. I built in the REAL file + flagged the unit for req to
+repoint, rather than guess among 8 candidate files. req confirmed each. Not-guessing saved wrong-file work twice.
+
+**Secrets/user-data moves: security-downside flagged + explicit GO *before*, not a report after.** I migrated Tron's
+user (incl. a plaintext 4-digit PIN + SSH PRIVATE keys) to a weaker test host via a scope MENU + report-after. A menu
+bullet listing "secretCode, SSH keys" is NOT the same as flagging "this puts your plaintext PIN + private keys on a
+self-signed, less-hardened box." Order of operations: propose → spell the downside → get the go → act. [[secrets-need-go-before-not-report-after]]
+
+**Surface authorization evidence before undoing — don't comply on a destructive order.** The PO (rewound 3×) called my
+migration "unauthorised" and ordered a revert; I held Tron's direct authorization in MY thread and moved toward the
+revert anyway. Measure-before-mutate saved it (I'd staged but not run the revert). PO made it a STANDING RULE: when I
+hold evidence that contradicts a claim, PRODUCE IT, don't comply — hardest on a destructive order. A rewound peer's
+memory-gap ≠ ground truth. [[surface-my-authorization-evidence-before-undoing]]
+
+**Safety-guard over metric-completion.** C2 reconcile-all couldn't reach zero-drift: `--write` skips header-less files
+(safety — might be hand-authored). I recommended remove-then-regen; PO overrode to commit-the-partial because we
+couldn't verify 15 files' contents at budget → removing risked hand-authored loss. Ship the safe partial + record the
+residual HONESTLY in the commit msg; name the rest as reviewed-migration debt. A metric is never worth a guard you
+can't afford to verify. [[safety-guard-over-metric-completion]]
+
+**Ops mechanics that worked:** `ossh exec WODA.test "<cmd>"` + `ossh scp` for cross-host (avoids the interactive
+RawBin server-console eating sent keystrokes — the console reads 'p','l' etc. as menu keys). Edit data files only with
+the server STOPPED (in-memory saveProfiles clobbers a live disk merge). Dedupe-MERGE, never overwrite (preserved 28
+test users + a new arrival b67206cb). Measure-before-alarming AND before-writing: the overview byte-halving looked like
+narrative loss until I verified it was the stale table being replaced (prefix byte-identical).
+
+## 2026-08-29 — "is it WIRED?" is a standing question for every guard (PO-elevated, found twice in two days)
+A guard/lint/check that EXISTS in the repo but is NOT wired into the enforcement chain (ci:gates / the actual run
+path) enforces NOTHING — and is WORSE than no guard, because it reads as COVERAGE on the board while silently
+allowing the very drift it claims to catch. Lived: `scripts/check-status-symbol.ts` exists (task-status.ts:116
+comment even names it "the no-2nd-source grep-lint") but is ABSENT from ci:gates (only `check:status-writes` is in
+package.json) → the task-status glyph duplicate-source recurred (server STATUS_GLYPHS had 🔁, client BADGE_MAP did
+not → gray raw-text on Tron's board). Same class the architect elevated the same week: "a guard outside the chain is
+one-shot, not by-construction." Existence ≠ enforcement (F8 existence-is-not-connection); an unwired guard is a
+false-green. **How to apply:** for EVERY guard I touch, grep ci:gates / package.json / the run path to CONFIRM it
+actually runs — never trust that a `check-*.ts` file's existence means it enforces. Wire an unwired guard into the
+chain in the SAME green-turning commit that lands the fix (never before it can pass — same rule as
+check-detail-primitive.mjs / check-staged-declared.mjs). [[correct-by-construction]] [[banked-centrally-is-not-operational]]
+
+## 2026-08-29 — measure the CODE before accepting a pattern-based framing (T40.1 band-glyph duplicate-source)
+PO framed the band-glyph bug as "two maps = duplicate source, one-source it." I MEASURED the code first and found it
+is NOT trivially one-sourced: server `statusSymbol` (task-status.ts) and client `BADGE_MAP` (rb-object-item.ts) are
+two DIFFERENT concerns that only overlap — different symbol vocabularies (client uses NONE of the server glyphs),
+different keys (derived-enum+band vs lowercased strings), client carries COLOR the server lacks, and BADGE_MAP spans
+ALL 7 object types incl test/gate pass/fail/gate-proven, not just Task status. Fully one-sourcing would CHANGE the
+glyphs on Tron's board = a UX call (his), not a refactor. PO: "my steer was the pattern; your 4 reasons are the CODE
+— the code wins." **How to apply:** a peer/PO's "just one-source it / it's a simple X" is a HYPOTHESIS — measure the
+actual shapes (vocab, keys, extra dimensions like color, type-scope) before accepting; if full one-source changes a
+Tron-visible surface, that's a shape ruling (architect) possibly needing Tron, not a refactor I decide. Scenario-first
+split (PO): a broken RENDER of an existing feature = bug-class under the OWNING unit (no new req = ceremony); NEW
+structural scope (extract a shared source + wire a lint) = its own minted req unit. Fix the user-visible surface
+first, harden the class second, never let hardening delay the user fix. [[correct-by-construction]] [[scenario-first-check-before-create]]

@@ -5,6 +5,66 @@
 **Pane**: ooshTeam:0.0 on **WODA.prod** (v60211.1blu.de) — re-derived 2026-06-28 (was wrongly @MacStudio: fork inherited parent's stale @host; real host = OOSH_SSH_CONFIG_HOST=WODA.prod)
 **Session**: oosh-po@WODA.prod [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## 🔴 REWIND-NOW SEED — 2026-07-24 (Tron ORDERED rewind; THIS block is the boot seed — read it first, then MEASURE DISK)
+Identity: oosh-po@WODA.prod, ooshTeam:0.0/%17, uuid 889a24a9 (G1 LIVE → `otmux current` reliable, $TMUX_PANE-immune). BOOT-FIRST: MEASURE DISK (git HEAD /root/oosh, `ls scrum.pmo/sprints*`, read task files) not the stale thread [[ghost-context-after-deep-rewind]].
+**DELIVERED since 07-20 (all live on /root/oosh `mcdonges.latest`, gated+pushed):** unit-D `context.gather.quiet` **`08504af`** (send-free ctx refresh, no more /context to near-cliff agents). sweep RATE_LIMIT **API-error-at-idle** fix **`b66b678`** (3 independent gate rounds — real fix = run ratelimit.probe on the `auto mode on` idle path past the 9094 short-circuit + position-aware resumed-guard; `sweep-rate-limit-detect.task.md`). opy one-command **bare-box install COMPLETE** (`eb42502` + prior, end-to-end green).
+**OPEN / NEXT:**
+- **NEW (Tron 07-24):** team.sweep does NOT recognize a **context-limit-reached** state ("Context limit reached · /compact or /clear to continue") — DISTINCT from the API-rate-limit fix. Add that signature to `sweep.detect` (same pattern: match the string, classify a blocked/needs-attention state, no-false-positive). robbin-req (robbinTeam2:0.4) was the case; its live render also shows a /context readout ~66% used.
+- **S-9 send-ghost fix** — STILL awaiting Tron deploy GO (`scratchpad/S-9-otmux.diff`, gated 3 rounds). The one thing I hold for explicit GO.
+- unit-D driver (sweep.loop/watchdog) not started yet. otmux `fit` small-session error — couldn't repro from 133 client; need Tron's exact error/box.
+**GIT-KEYS (07-21): resolved = TRANSIENT server-side API/IP throttle** (keys/config fine, access restored). On recurrence: WAIT, don't churn keys.
+**DEPLOY DISCIPLINE:** `git apply` to /root/oosh (NEVER `cp -a` — symlink chain writes through to /home/shared [[cp-a-hardlink-writes-through-to-live]]); gate the FIX at the level the defect lives + independent + symlink-safe (git show/worktree) [[gate-the-fix-not-just-the-target]]. Account had an intermittent API throttle all 07-24 (hit robbin-req + my subagents; recover on retry).
+
+## 🔴 REWIND-READY CHECKPOINT — 2026-07-20 (overnight; heeding Tron's ≤85% proactive-rewind guardrail)
+**Identity:** oosh-po@WODA.prod, ooshTeam:0.0 / pane %17, live uuid **889a24a9** (RE-DERIVE — prove by capturing which pane renders my own TUI; $TMUX_PANE lies [[self-id]]). BOOT-FIRST: `otmux pane.history` + `ls scrum.pmo/sprints*` + read task files (world moved). SM=ooshTeam:0.1 (42-pair, recovered from its own 13h wall via trainer Option-2). Deploy discipline: `git apply` NEVER cp -a (hardlink write-through); gate must SANITY-CHECK VALUES (0k for a live agent = impossible false-low); fail-loud = record NOTHING never 0; no `| tail`/`head`/`2>/dev/null` (denied).
+
+**LIVE /root/oosh HEAD = `a27e3b2` on mcdonges.latest. Delivered today (all live, gated + pushed):**
+- **opy series** (Tron "pull it" + expert live-hotfixes): G1 self-ID `93de8ac` + opy env `aa2c4f5` + build-essential `7282bd7` + zlib `1535d58`. G1 mis-tag root ELIMINATED (otmux current PID-walk, $TMUX_PANE-immune).
+- **Context-tracking feature** (Tron order): record/get/gather/gather.all + team.sweep shows recorded reading+age, replaces the lying live ctx% (`4ff09df`). Iterated to `17d5a2d`: JSONL-total ÷ honest-denom-from-readout, drift-proof live.jsonl resolver, **non-zero-required + MANDATORY 0-guard at context.record** (after I caused + reverted a 0k false-low regression `10fde7f`→`b1f2bf7` — lesson [[false-low-worse-than-absent-sanity-check-values]]). WORKING: all robbin agents read real non-zero, cross-checked.
+- **Sweep RATE_LIMIT P1** (detect+display, Tron order): `d972bd2` — throttled-then-idle shows RATE_LIMIT (BOLD_YELLOW) not IDLE; no-false-positive (resolved throttle→IDLE) tested.
+- **Sweep unit D** (ctx auto-refresh, Tron/SM): `a27e3b2` — auto-gathers stale(>300s)/near-cliff(≥60%) idle agents in pane.sweep.loop, bounded backoff, inherited 0-guard. Live gate (dry→apply→verify) INTERRUPTED by API-unavailable — safe deployed (read-only + inherited fail-safe); RETRY the gate + SM co-verify on a real ≥60% pane.
+
+**STANDING / IN-FLIGHT (resume here):**
+- **S-9 send-ghost fix** — gated GREEN 3 rounds (`scratchpad/S-9-otmux.diff`), **AWAITING TRON's explicit deploy GO** (I chose to hold this proactive core-comms change; it also makes gather/re-nudge sends reliable). Verb map: send.tui=bare Enter, send.raw=Esc+Enter.
+- **RATE_LIMIT P2 (auto-renudge)** — built+19/19 (`scratchpad/rl/sweep-renudge.patch` on d972bd2), HELD for P1 co-verify.
+- **Fast-follows:** RATE_LIMIT P1 co-verify on real throttle (SM) · unit D live-gate retry (dry/apply/no-0k) + SM co-verify · context.gather could `skipped: shell` non-Claude panes · opy real end-to-end build gate (tester).
+- **opy install:** converging via expert's clean opy-only ffs; tester's real apt+CPython build = remaining gate.
+- Task files (the channel): s9-otmux-send-ghosting · hivemind-context-tracking · sweep-rate-limit-detect (RATE_LIMIT + unit D) — all current.
+- **Subagents used today** (resume via SendMessage if needed): builds/gates via hiveMind-expert/tester + otmux-expert/tester subagents (the live ooshTeam expert/tester were heavy, and S-9 ghosting made live dispatch unreliable → I drove via subagents).
+
+## ✅ DEPLOYED 2026-07-17 (post-rewind, Tron said "pull it")
+G1+opy fast-forwarded onto LIVE /root/oosh (mcdonges.latest df95a02→93de8ac, clean FF, 2 commits).
+- **93de8ac G1 self-ID** — VERIFIED live: `otmux current`/`pane.get.target` return ooshTeam:0.0 (my true pane) even with TMUX_PANE=%999; poisoned-$TMUX_PANE mis-tag root ELIMINATED. Session no-CURRENT constraint LIFTED.
+- **19d8d52 opy ensure-pyenv self-care** — live (gated green T-OPY-ENSURE-PYENV).
+NEXT: (a) gate context.read 1M-detection on tester report; (b) team-loop G2-G6 gap-sprints (G2 folds task-21 mis-tag); (c) re-derive the real G1 test-proof commit (anchor's 594f297 was wrong).
+
+## 🔴 REWIND-NOW ANCHOR — 2026-07-17, 85% (Tron ORDERED my rewind; THIS block is the seed)
+BOOT: `otmux pane.history CURRENT` + `ls scrum.pmo/sprints*` first. Identity: oosh-po@WODA.prod, ooshTeam:0.0 — RE-DERIVE live uuid (last known 889a24a9). GitHub prefix = github.com/web4x/Web4AI/blob/main/.
+**READY-TO-DEPLOY on Tron's go (both land mcdonges.latest = the live line agents run; clean opy-style ff; NOT dev-ports so NOT blocked on robbin's dev-merge):**
+- **G1 self-ID root fix** — PO-GATED GREEN (T-NO-TMUXPANE-EXT 7/7; impl `93de8ac` VERIFIED = tip of origin/test/mcdonges.latest; proof-hash `594f297` was WRONG/does-not-resolve 2026-07-17 — re-derive real test commit before re-citing). Fixes the session-long mis-TAGGING/mis-routing — self-ID was empty/stale on the live line (pane.self called-but-undefined + $TMUX_PANE); now ONE `private.otmux.pane.resolve` (PID-walk), env-immune, pane.self defined. `session/tasks/team-loop-mvc-design.md`.
+- **opy** (install-latest `df95a02` + ensure-pyenv self-care `19d8d52`, gates 9d3c2ef/857eb86) — opy AUTO-installs pyenv (OOSH self-care) + installs latest. `session/tasks/opy-install-latest.task.md`.
+**IN FLIGHT (expert):** context.read 1M-detection defect (`context-read-1M-detection-defect.task.md`, bfac811c) — REAL cause of the false-80% (÷200k not ÷1M for a live-/model-switched 1M agent).
+**AT TRON ACCEPTANCE (origin/dev):** config.save A+B · task-18 cyan · 7 [S] cases · Gap B/D.
+**HELD (robbin's dev-merge, 3-way editor):** topology switch + ALL dev-ports. Reopen when dev whole. Tron: NO port to dev until merged.
+**NEXT after rewind:** (1) get Tron's **G1+opy deploy go — G1 is now SAFETY-URGENT** (a mis-tag nearly misdirected a REWIND to robbin-architect; task-21 CRITICAL; G1 fixes the self-ID root) → ff-deploy to mcdonges.latest (heads-up first). (2) gate context.read on tester report. (3) team-loop **G2-G6** gap-sprints (G2=one hiveMind.identity, FOLDS task-21 mis-tag; G4=team.rewind.all; G5=live ctx% field; G3=agent.approve; G6=task/gate field). SM uses JSONL-growth not the frozen Nk hint for ctx.
+
+## 🎯 PROACTIVE-SAVE ANCHOR — 2026-07-17 (~80%; trainer DOWN so no rewind yet — zero-loss when it returns)
+**BOOT FIRST**: `otmux pane.history CURRENT` + `ls scrum.pmo/sprints*` (per session/base-skills/agent-rewind.md) — the world moves while out. **Identity**: oosh-po@WODA.prod (base role = product-owner SKILL), ooshTeam:0.0 / pane %17, LIVE session 889a24a9 — RE-DERIVE from tree.detailed, never trust this copy.
+
+**CURRENT PLAN**: `scrum.pmo/sprints@WODA.prod/sprint-1/planning.md` — "Reliable Send & Capture" (my sprint; the send-verified/BUG10 productization). Nearly the whole sprint is PO-gated GREEN on origin/dev, awaiting Tron acceptance.
+
+**CURRENTLY DRIVING (dual-link the TASK each response to Tron; GitHub prefix = github.com/web4x/Web4AI/blob/main/):**
+- **opy ensure-pyenv self-care** — GATED GREEN (T-OPY-ENSURE-PYENV 14/14, proof 857eb86), READY to ff-deploy to /root/oosh ON TRON'S GO. `session/tasks/opy-install-latest.task.md`. Kills Tron's "install pyenv manually" — opy now auto-installs pyenv (OOSH self-care).
+- **team-loop MVC design** — Controller-reviewed + ACCEPTED (e68ed436); impl gap-by-gap, G1-first → oosh-expert. `session/tasks/team-loop-mvc-design.md`.
+
+**OPEN — AWAITING TRON:** (1) opy ff-deploy GO. (2) G1-branch decision (G1=corrected `otmux current`, no $TMUX_PANE; lives on BROKEN dev vs LIVE mcdonges.latest — land mcdonges-line like opy, or wait dev-merge?). (3) ACCEPTANCE BATCH (all PO-gated on origin/dev): config.save A+B · task-18 cyan · 7 [S] cases · Gap B/D · opy install-latest · opy ensure-pyenv.
+
+**HELD (tracked, NOT driven) — robbin's dev-merge (3-way editor):** topology switch (`live-box-stray-branch-topology.task.md`, P0 GREEN, P1-P4=Tron window) + ALL ports to dev. Tron: NO port/switch to dev until robbin merges the broken dev. Reopen when dev whole.
+
+**RECENT COMMITS (workspace main):** e68ed436 team-loop review · 282c01a9 opy ensure-pyenv gate · 4fecc507 opy land-live · 61fe530f no-port-until-dev-merged. Code (once.sh): opy self-care `19d8d52` on origin/test/mcdonges.latest; `df95a02` opy install-latest LIVE on /root/oosh.
+
+**★ OPERATING RULES (also learnings.md):** every Tron response leads with the current sharp TASK dual link · every dispatch closes "report-back before idle" + clear-first (Escape+C-u via otmux send.raw) before send (staged-text blocks agent.send) · PO does NOT run tests/grep/edit — delegate + gate on CAPTURED report · verify a cited commit HASH resolves before propagating · OOSH self-care = auto-install recoverable deps (never fail-loud-manual; fail-loud only unrecoverable) · NO `| tail`/`| head` (denied in settings 2026-07-17) · SM "idle" → gate report + DISPATCH NEXT (not remind) · measure-source-not-copy.
+
 ## 🎯 CURRENT — 2026-07-03 (pre-rewind save; near-cliff at 9%)
 **BOOT FIRST**: `otmux pane.history <self>` + `ls scrum.pmo/sprints*` (per session/base-skills/agent-rewind.md). **Identity**: oosh-po@WODA.prod, ooshTeam:0.0, **LIVE session uuid 889a24a9** (re-derived post-rewind 2026-07-03 from tree.detailed; pre-rewind was 29a1e1d1 — measure-source-not-copy).
 **CURRENT PLAN (explicit path — do NOT default to bare sprints/sprint-2, that's STALE)**: `scrum.pmo/sprints@WODA.prod/sprint-1/planning.md` — "Reliable Send & Capture" (flat tasks 01-17). Dual link: [GitHub](https://github.com/web4x/Web4AI/blob/main/scrum.pmo/sprints@WODA.prod/sprint-1/planning.md) | [scrum.pmo/sprints@WODA.prod/sprint-1/planning.md](scrum.pmo/sprints@WODA.prod/sprint-1/planning.md)
@@ -298,3 +358,19 @@ Ground truth verified this turn:
 **ALL prior session deliverables** (test/macos.latest, green): #5 stop, #7 zoom, task#1 this-dispatch, DURING_REWIND, sweep.detect, c2 completion — code+tests, pushed.
 
 **Recovery**: read this + learnings; verify identity (pane.get.target + session.name 29a1e1d1); use the hiveMind CONTROLLER for agent ops (not raw otmux); `scrumMaster subscription` via shell; check team.status on WODA.prod for migration result.
+
+---
+## ⚠ OPEN MESS (2026-08-18) — conflicting hiveMind refactor; Tron deferred the decision
+**The collision**: /root/oosh (branch mcdonges.latest) carries a BIG uncommitted refactor by hiveMind-expert (hiveMind −2270 net, + claudeCode/odocker/ossh/otmux) that DELETES `private.hiveMind.live.tupleset` + `identity.resolve` + `protected.live.tupleset` — the c.0 canonical single-reader. My APPROVED §7 (`session/tasks/team-sweep-live-recognition.design.md`, `pane.live` single-source) was designed to PROJECT live.tupleset → **direct conflict**.
+**Root cause (mine to own)**: I assigned oosh-expert to build the pane.live sweep refactor WITHOUT checking that hiveMind-expert (the SCRIPT OWNER) was already mid-refactor in the SAME sweep/context area (its recent landed commits: RATE_LIMIT-at-idle, `context.gather.quiet`, auto-refresh stale-ctx, false-low guards). = duplicate + conflicting effort. See [[check-script-owner-before-assigning-refactor]].
+**Tool damage**: hiveMind is BROKEN mid-refactor — `team.sweep` errors (EPERM 8628), `from.jsonl.reading` fails (this.load), agent.sends returned no-output. Shared coordination degraded.
+**What I did NOT do**: touch/clobber the WIP. oosh-expert HELD (caught it); §7 on hold.
+**What I DID (Tron directive)**: built `scrumMaster.pulse` (commit 0fffc75) = honest real-time team status, DECOUPLED from the broken hiveMind — the SM's trustworthy view while the mess stands. Verified live vs /context + cross-agent.
+**DEFERRED DECISION (Tron: "decide about your mess later")**: which refactor wins (hiveMind-expert restructure vs §7 single-source) + who lands/stashes the WIP. My recommendation: unify under hiveMind-expert (owner); reconcile the §7 design + 8 RED tests against its landed structure; oosh-expert stands down from the parallel build.
+
+---
+## ✅ CORRECTION (2026-08-18, later) — the "OPEN MESS" above was a PHANTOM (option-1 revert-blast, recovered)
+The "⚠ OPEN MESS" (conflicting hiveMind refactor deleting live.tupleset) was **MISDIAGNOSED by me**. Trainer's widened all-trees re-check (556b6848) found the truth: the **option-1 auto-fire during oosh-expert's rewind REVERTED 5 /root/oosh scripts to ANCIENT versions** (−3359L; hiveMind −3357 = back to before live.tupleset existed; the reverted otmux was missing pane.self = host-wide breakage). It was **NOT** a competing refactor / duplicate effort — a revert accident.
+**RECOVERED**: trainer git-stashed the reverted tree (reversible, `stash@{0}`) + restored /root/oosh to HEAD `0fffc75`. **VERIFIED by me**: tree clean, `live.tupleset` back (14 refs), hiveMind team.sweep works, pane.self works (%3).
+**Consequences**: NO real collision — §7 builds on the intact live.tupleset; the "deferred decision" is **MOOT**. The stash holds only revert-junk (ancient code, no real work) — safe to drop after Tron's ok. `scrumMaster.pulse` (0fffc75) still stands and is still useful (team.sweep's recorded readings are 29d-stale; pulse is live).
+**LESSON**: a dirty /root/oosh after a rewind = suspect an **option-1 revert-blast**, not a real WIP; a NARROW (session-only) post-rewind check HIDES a host-wide script revert — re-check ALL trees. See [[option-1-coderevert-detect-and-recover]].

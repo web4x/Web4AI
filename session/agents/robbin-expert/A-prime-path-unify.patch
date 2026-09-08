@@ -1,0 +1,91 @@
+diff --git a/scripts/check-revoked-tokens.ts b/scripts/check-revoked-tokens.ts
+index 4c5f7ea7e..38e68ec03 100644
+--- a/scripts/check-revoked-tokens.ts
++++ b/scripts/check-revoked-tokens.ts
+@@ -18,10 +18,10 @@ import path from 'node:path';
+ import { fileURLToPath } from 'node:url';
+ import { ScenarioIndex } from '../src/ts/scenario/index.js';
+ import { ServerManagerGuard } from '../src/ts/server/ServerManagerGuard.js';
+-import { computeRevocationScope, EXPECTED_REVOKED_COUNT, REVOKED_ARMED, hashToken } from '../src/ts/server/revoked-tokens.js';
++import { computeRevocationScope, EXPECTED_REVOKED_COUNT, REVOKED_ARMED, hashToken, revokedListPath, REVOKED_LIST_FILENAME } from '../src/ts/server/revoked-tokens.js';
+ 
+ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+-const HASH_LIST = path.join(ROOT, 'revoked-token-hashes.json');
++const HASH_LIST = revokedListPath(ROOT); // ★ SINGLE-SOURCE: the SAME resolver the server boot-load uses (A-prime path-unify)
+ 
+ // (C) ALLOWLIST HYGIENE — the ONE tracked file permitted to hold token-DERIVED (hashed) data. The
+ // trace-pii-guard credential sweep is report-only and scenario-scoped (scans scenario/**/*.scenario.json),
+@@ -74,9 +74,19 @@ if (listExists) {
+ 
+ // (armed) arming and the list must land atomically — REVOKED_ARMED true without a full list is the
+ // "looks armed while accepting whatever fell out" failure.
+-if (REVOKED_ARMED && (!listExists)) fails.push(`REVOKED_ARMED=true but revoked-token-hashes.json is ABSENT`);
++if (REVOKED_ARMED && (!listExists)) fails.push(`REVOKED_ARMED=true but ${REVOKED_LIST_FILENAME} is ABSENT`);
+ 
+-console.log(`derived: enrolled=${scope.enrolled.size} unenrolled=${scope.unenrolled.size} revoked=${revoked.length} fileOwners=${scope.fileOwners.size} | armed=${REVOKED_ARMED}`);
++// ★ PARITY BITE (R37.18): the server MUST boot-load the revoked list via the single-source revokedListPath —
++// NOT a raw path literal that could diverge (the prior bug: server loaded an absent data/revoked-tokens.json
++// while the gate + list were at repo-root revokedListPath). Assert server.ts uses the resolver AND contains no
++// raw revoked-list path literal. A regression to a divergent path → RED here, before it can silently un-arm.
++try {
++  const serverSrc = fs.readFileSync(path.join(ROOT, 'src/ts/server/server.ts'), 'utf-8');
++  if (!serverSrc.includes('revokedListPath(')) fails.push(`PARITY: server.ts does not load the revoked list via the single-source revokedListPath()`);
++  if (/['"][^'"]*revoked-tokens\.json['"]/.test(serverSrc) || /path\.join\([^)]*DATA_DIR[^)]*revoked/.test(serverSrc)) fails.push(`PARITY: server.ts still has a RAW revoked-list path literal (divergence risk) — must resolve ONLY via revokedListPath`);
++} catch { fails.push('PARITY: could not read server.ts to verify single-source load'); }
++
++console.log(`derived: enrolled=${scope.enrolled.size} unenrolled=${scope.unenrolled.size} revoked=${revoked.length} fileOwners=${scope.fileOwners.size} | armed=${REVOKED_ARMED} | list=${REVOKED_LIST_FILENAME}`);
+ if (fails.length) {
+   console.error('✗ check:revoked-tokens FAILED:');
+   for (const f of fails) console.error('  - ' + f);
+diff --git a/src/ts/server/revoked-tokens.ts b/src/ts/server/revoked-tokens.ts
+index 9b60101be..15e639ee2 100644
+--- a/src/ts/server/revoked-tokens.ts
++++ b/src/ts/server/revoked-tokens.ts
+@@ -15,6 +15,17 @@
+ 
+ import fsSync from 'node:fs';
+ import crypto from 'node:crypto';
++import path from 'node:path';
++
++// ★ SINGLE-SOURCE PATH RESOLVER (R37.18 pattern, Tron A-prime). The revoked-hash list lives at ONE canonical
++// location (repo-root revoked-token-hashes.json). BOTH the runtime (server boot-load) AND the CI gate import
++// THIS resolver, so gate-vs-runtime can NEVER diverge again — the bug was the server loading an ABSENT
++// data/revoked-tokens.json while the gate certified the present repo-root list (a green gate over a file the
++// server never loads = armed-but-inert). A bridge would be a SECOND source; this is the ONE source.
++export const REVOKED_LIST_FILENAME = 'revoked-token-hashes.json';
++export function revokedListPath(repoRoot: string): string {
++  return path.join(repoRoot, REVOKED_LIST_FILENAME);
++}
+ 
+ // R40.22 step-3 (A) — the stored list holds SALTED HASHES, never raw tokens (architect f1ab00e21 / PO
+ // ruling). A fixed-salt SHA-256 of a 128-bit-entropy UUID token CANNOT authenticate and is not
+diff --git a/src/ts/server/server.ts b/src/ts/server/server.ts
+index 45b548979..e6477e1a0 100644
+--- a/src/ts/server/server.ts
++++ b/src/ts/server/server.ts
+@@ -27,7 +27,7 @@ import fetch from 'node-fetch';
+ import { marked } from 'marked';
+ import { Room, RoomManager, type RoomMember } from './Room.js';
+ import { ServerManagerGuard } from './ServerManagerGuard.js';
+-import { loadRevokedTokens, isRevoked, EXPECTED_REVOKED_COUNT } from './revoked-tokens.js';
++import { loadRevokedTokens, isRevoked, EXPECTED_REVOKED_COUNT, revokedListPath } from './revoked-tokens.js';
+ import { OtmuxBridge } from './OtmuxBridge.js';
+ import { sprintPrefix } from '../scenario/sprint-label.js'; // R40.4 single-source sprint-number atom
+ import { generateProjectModel } from './generate-project.js'; // T36.3 shared generate-project core (HTTP handler + local CLI)
+@@ -222,10 +222,12 @@ interface DeviceRecord {
+ const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, '../../../data');
+ const PROFILES_PATH = path.join(DATA_DIR, 'profiles.json');
+ const DEVICES_PATH = path.join(DATA_DIR, 'devices.json');
+-// R40.22 step-3: FROZEN list of the 116 auth-invalidated dormant dev/test Device tokens. Loaded ONCE at
+-// boot (fail-open if absent); the running server never re-derives it (can't silently widen). Reversible —
+-// the list is data. Generated by scripts/gen-revoked-tokens.ts; guarded by scripts/check-revoked-tokens.ts.
+-const REVOKED_TOKENS_PATH = path.join(DATA_DIR, 'revoked-tokens.json');
++// R40.22 step-3: FROZEN list of the 116 auth-invalidated dormant dev/test Device tokens (salted hashes).
++// Loaded ONCE at boot (fail-open if absent). ★ A-prime PATH-UNIFY: resolve the list via the SINGLE-SOURCE
++// revokedListPath — the SAME resolver the gate imports — so the runtime and the gate can NEVER point at
++// different files again (the prior bug: this loaded an ABSENT data/revoked-tokens.json while the list + gate
++// were at repo-root revoked-token-hashes.json → a restart silently un-armed). Repo root = __dirname/../../../.
++const REVOKED_TOKENS_PATH = revokedListPath(path.join(__dirname, '../../../'));
+ const userProfiles = new Map<string, UserProfile>();
+ const deviceRecords: DeviceRecord[] = [];
+ let revokedTokens: Set<string> = new Set();

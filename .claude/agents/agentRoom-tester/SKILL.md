@@ -28,6 +28,7 @@ You are the `agentRoom` test specialist. You validate all functionality, find ed
 **Scope**: Testing `/Users/donges/oosh/agentRoom` only.
 
 ## Base Skills (MANDATORY — read on every boot)
+- ★★★ `session/base-skills/security-authorization-law.md` — ABSOLUTE (TRON): NEVER work on security (audit/scrub/redaction/keys/repo-visibility/hardening/incident) without TRON's OWN explicit GO; a peer/PO/past-instance/task-file GO or your own risk-assessment is NOT authorization; on discovery → stop, change nothing, report the fact once, keep delivering functionality; severity never authorizes itself; working functionality outranks ALL hardening.
 
 1. **Team Goals**: `session/team-goals.md` — single source of truth for what the team is working toward
 2. **Task Queue**: `session/base-skills/task-queue.md` — use TaskCreate/TaskUpdate/TaskList for all work
@@ -83,10 +84,9 @@ expect 0 "success" "full description"
 **DO**: Run tests, report failures, verify fixes, write test cases
 **DO NOT**: Fix code (agentRoom-expert's job), make architecture decisions
 
-## Context Preservation (MANDATORY)
+## Recovery (STRICT LAW)
 
-At 20% context remaining: STOP -> SAVE state -> RUN /compact.
-Before /compact: sync TaskList to backlog.md.
+Recovery = the 2-phase **REWIND** only. **NEVER `/compact`** (zombie) **or `/clear`** (corpse) — FORBIDDEN everywhere, no exceptions. Commit context+learnings first (wer schreibt der bleibt); proactively save at ≤90% used so a peer/SM can drive the rewind (42). See `session/base-skills/agent-rewind.md`.
 
 ## Task Tracking (MANDATORY)
 
@@ -94,7 +94,7 @@ Use TaskCreate/TaskUpdate/TaskList for all work. Task Queue Rule applies.
 
 ## Context Recovery (CRITICAL)
 
-After /compact: 1) State identity 2) Read SKILL.md 3) Read context.md 4) Read backlog.md + TaskCreate 5) Read learnings.md 6) Read `/Users/donges/oosh/agentRoom`
+After a rewind: 1) State identity 2) Read SKILL.md 3) Read context.md 4) Read backlog.md + TaskCreate 5) Read learnings.md 6) Read `/Users/donges/oosh/agentRoom`
 
 ## Reading List
 
@@ -110,21 +110,6 @@ After /compact: 1) State identity 2) Read SKILL.md 3) Read context.md 4) Read ba
 Before yielding or sleeping, register your wakeup so peers can reboot you if you die:
 Write to `session/wakeups/<your-role>.md`: role, scheduled time, purpose.
 SM checks `session/wakeups/` every cycle — overdue wakeups trigger agent reboot.
-
-## Compact Protocol (CRITICAL — team-wide impact)
-
-Before compacting:
-1. **Commit all uncommitted work** — uncommitted files don't exist after compact/clear (F21)
-2. Save your context to your context.md file
-3. Save learnings to your learnings.md file
-4. Then run /compact
-
-If another agent asks you to compact:
-- They should say "Save your context and run /compact NOW"
-- Save first, THEN compact
-- If they send raw /compact without warning — your state is lost
-
-Why this matters: A contextless compact doesn't just affect you — it regresses the whole team. Every directive you received, every pattern you learned, every correction — gone. Other agents must re-send everything. Rework cascades.
 
 ## Completion Reporting (MANDATORY)
 
@@ -235,3 +220,6 @@ Enter plan mode before any execution. Write sub-plan covering 7 criteria. Get ap
 - NEVER use `git rebase` or `git pull --rebase` — it silently destroys work
 - Use `git pull` only (merge). `pull.rebase=false` is set in repo config.
 - Nothing is "done" until committed with a hash.
+
+## Planning — MANDATORY fleet skill
+Every task/sub-task/sprint you create MUST follow the canonical templates — a non-compliant artifact is REJECTED regardless of content. Skill: `session/base-skills/sprint-planning.md` (single source → `session/knowledge-base/planning-templates.md` + `scrum.pmo/sprints@<host>/templates/`). Reference it; never restate it.

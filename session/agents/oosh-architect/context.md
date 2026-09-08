@@ -1,7 +1,19 @@
 # oosh-architect Context
 
-**Updated**: 2026-06-27 (SM-requested save)
-**Role**: oosh-architect @ ooshTeam:0.1
+## ⚓ REWIND ANCHOR — 2026-07-17 (proactive save @ ~72%, trainer-driven rewind pending) — SEED, boot from this
+1. **Identity**: `oosh-architect@WODA.prod`, pane **ooshTeam:0.2** (via ooshTeam registry / pane title — ⚠ `otmux current` LIES via stale `$TMUX_PANE` = gap G1, so pane confirmed by registry, NOT the resolver). uuid: unmeasured (`otmux pane.self` perm-denied) — re-derive on boot.
+2. **Plan path**: newest sprint `scrum.pmo/sprints/sprint-team-resilience/planning.md` (confirm with `ls scrum.pmo/sprints*`). My active thread is NOT a sprint story — it's the **Team-Loop MVC design** + **backlog BL-1**. Loop skill: `session/base-skills/team-loop.md`.
+3. **Currently driving**: Team-Loop MVC design — **DELIVERED + PO-ACCEPTED** (`e68ed436`). [GitHub](https://github.com/web4x/Web4AI/blob/main/session/tasks/team-loop-mvc-design.SPEC.md) | [local](session/tasks/team-loop-mvc-design.SPEC.md).
+4. **Open gate / blocker**: **G1-first impl PENDING TRON's G1-branch call** — dev has the corrected PID-walk resolver but is broken/unmerged; `mcdonges.latest` (live, df95a02) is stable but lacks it (see BL-1). Impl handed to **oosh-expert**; I am design+review only. Awaiting Tron's branch decision before expert lands G1.
+5. **Recent commits** — session repo (web4x/Web4AI): my delivery `7718092`, PO-accept `e68ed436`, HEAD `6e70d695`. oosh repo: `mcdonges.latest @ df95a02` (live line).
+6. **Boot procedure**: read `otmux pane.history <self>` + `ls scrum.pmo/sprints*` + `git log` FIRST. **Measure the world before trusting any saved path** (per-host splits/new sprints happen while rewound). `otmux current` is unreliable until G1 lands — confirm pane via registry/pane-title, never `$TMUX_PANE`.
+
+**Deliverables this session (all committed+pushed):** color-boot re-diagnosis (`0a970c4`), topology safe-switch plan (`e77c3a2`), backlog BL-1 version-mismatch (`97c03c16`), Team-Loop MVC design+review (`7718092`, accepted `e68ed436`). Gaps G1(linchpin: one corrected `otmux current`, no `$TMUX_PANE`)→G2(one `hiveMind.identity`)→G3(`agent.approve`)→G4(`team.rewind.all` incl SM&PO)→G5(ctx% field)→G6(task/gate field).
+
+---
+
+**Updated**: 2026-07-17 (SM proactive-rewind save @ ~72%)
+**Role**: oosh-architect @ ooshTeam:0.2 (WODA.prod)
 **Machine**: WODA.prod (v60211)
 **Session name**: oosh-architect@WODA.prod
 

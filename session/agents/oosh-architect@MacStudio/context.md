@@ -1,4 +1,12 @@
-# oosh-architect@MacStudio — Instance Context
+> # ⛔ DEPRECATED 2026-07-02 — STALE MacStudio SHADOW, DO NOT READ AS CURRENT STATE ⛔
+> **STOP — verify, don't trust.** This is the ~2mo-stale MacStudio shadow (last update 2026-07-02). MacStudio confirmed
+> inactive (no live session/bridge/registry entry, 30+ days git-silent, WODA.prod-measured 2026-08-29).
+> **LIVE ANCHOR → `session/agents/oosh-architect/context.md`** (oosh-po's live WODA.prod worker). If you booted into
+> THIS file, you mis-resolved: stop, re-measure your host/identity, open the live anchor + git log. Deprecated by oosh-PO
+> authorization (cross-team boot-currency sweep); kept for historical trace only. ⚠ If a MacStudio oosh-architect IS
+> live, this banner is wrong — flag oosh-PO to coordinate with the MacStudio PO.
+
+# oosh-architect@MacStudio — Instance Context [DEPRECATED — see banner]
 
 **Instance**: oosh-architect @ ooshTeam:0.1 on **MacStudio** · **Created**: 2026-07-02
 **Why this dir**: instance-specific to avoid cross-instance clobber — the shared `session/agents/oosh-architect/context.md` header was overwritten by a peer `oosh-architect@WODA.prod` save. Per-instance dir keeps each fork's state clean. Verify pane on boot (`otmux pane.get.target`), never assume.
