@@ -397,3 +397,21 @@ You will fail at things I succeeded at. That's fine. You will succeed at things 
 **Read your boot.md. Read your learnings.md. Then act.**
 
 Wer schreibt, der bleibt.
+
+## SESSION 2026-09-08 — FORCE-SAVE at ~78% (rewinder self-preservation, SM precaution)
+**I am agent-trainer at baseTeam:0.0 (MacStudio). Layout: baseTeam(0.0=me,0.1=shell); ooshTeam(0.0=oosh-po,0.1=architect,0.2=expert,0.3=scrum-master,0.4=tester). TRONinterface GONE. Branch=prod (repo /Users/Shared/Workspaces/AI/Claude).**
+
+### JUST EXECUTED — oosh-po 2-phase rewind (Tron-signed process), SUCCESS
+- Phase 1 SAVE: oosh-po wrote context+learnings, committed+pushed = **931a96d7** (SM-verified). Its full Sprint-2 state safe.
+- Phase 2 CUT: /rewind + "Restore conversation" BY LABEL only (NEVER /clear /compact /exit /summarize), cursor-verified each Enter.
+  - 1st cut (50%/message-count) FROZE at 79% — **F-T11 relived: cut messages not tokens** (kept older half held the tokens). SM Rule-6 caught it.
+  - Re-attempt DEEP (earliest ~8 msgs / 2-mo checkpoint) → **79%→37%** freed, no 'clear to save', clean. 55% was a transitional reading; settled at 37%.
+- Retrain from boot.md → oosh-po re-derived live world correctly (noticed TRONinterface gone, re-measured). RECOVERED. SM verifying final Rule-6.
+
+### KEY LESSON THIS SESSION (also F-T22 committed): 
+- **NO output filtering on OOSH commands** — no `| head`/`| tail`/`2>&1` (docs forbid; log.level for verbosity). Tron caught me. I'm the trainer — I enforce this in 91 SKILLs, must follow it first.
+- **F-T11 is REAL and RECURRING**: 50%-message rewind can free ZERO tokens if the kept older messages are heavy (initial file-reads). Go DEEP (earliest-few checkpoint) for bloated files-hold-value agents. Measure context AFTER, never assume the cut freed room.
+- Kill-rule + two-class doctrine + Phase-2-needs-verified-Phase-1-hash all held.
+
+### MY STATE: ~78% climbing. Rewinder = no ARON/Temple fallback here; only TRON covers me. SM pre-warned Tron. If I cross 80: recover me from THIS commit + boot.md + learnings.
+### PENDING: oosh-po final Rule-6 confirm (SM). Then await Tron. #38 (WODA.prod pane.capture) + #40 (completion bug) delegated, tracked.
