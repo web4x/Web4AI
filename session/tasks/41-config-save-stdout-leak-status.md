@@ -5,7 +5,21 @@
 
 ## Question (PO): is the #41 stdout-leak resolved, or still open? Re-applying #40 over an unfixed #41 re-introduces the revert.
 
-## Measured verdict: ROOT OPEN, specific config.save vector currently DORMANT
+## BOTH-BRANCHES VERDICT (PO asked: did #4/#6 pure-state work close it?) — 2026-09-08
+**dev = CLOSED. macos.latest = LIVE. The #4/#6/BUG5 fix was never ported to macos.latest.**
+
+| | dev (`fcd8e6d`) | macos.latest (`9c49fe0`) |
+|---|---|---|
+| `private.log.emit` (off-fd1 emit, `>&2` dup, excludes /dev/stdout — cites "BUG 5 $() capture safety") | **PRESENT** (log:56-72) | **ABSENT** (grep=0) |
+| `console.log` terminal write | delegates → `private.log.emit` (log:81) — never fd1 | raw `echo -e … >>$LOG_DEVICE` (log:94) → **fd1** when LOG_DEVICE=/dev/stdout |
+| `config.save` "config.save (CONFIG=…)" console.log | **GUARDED** behind `$silent` 3rd-arg (config:335-337) — no emit during completion | **UNGUARDED** top-level (config:258) — fires whenever config.save runs |
+
+→ On dev the leak is closed at BOTH the log layer (private.log.emit) and the call site (silent guard). On macos.latest NEITHER is present → root LIVE.
+
+### #41 fix for macos.latest (the pure-state emit you specified)
+Port dev's `private.log.emit` (log:56-72) + rewire `console.log` (and peer log fns) to delegate to it — single-source, OS-independent, keeps ALL logs off fd1 during `$()` captures. Optionally also add the `$silent` guard to config.save (belt-and-suspenders). This is the #4/#6/BUG5 class fix, NOT the reverted 5a93fe5 downstream filter (22b4894 proved that filter insufficient). Then #40b (cyan) can re-green over a clean param env.
+
+## Measured verdict (macos.latest, earlier pass): ROOT OPEN, specific config.save vector currently DORMANT
 
 ### Evidence (macos.latest, this box)
 1. **Root condition LIVE.** A fresh OOSH completion subprocess has `LOG_DEVICE=/dev/stdout`, `LOG_LEVEL=3`. `console.log` (log:~105) is `echo -e "${NO_COLOR}$*" >>$LOG_DEVICE` with **NO fd1-coercion guard** → at LOG_LEVEL>2 with LOG_DEVICE=/dev/stdout it writes to **fd1**. Any `console.log` inside a `$(...)` capture in the completion pipeline contaminates the captured value. The BUG5 coercion (log fns flip empty/stdout LOG_DEVICE→/dev/stderr) is **NOT present** in this console.log.
