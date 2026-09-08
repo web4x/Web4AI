@@ -40,3 +40,24 @@ Port dev's `private.log.emit` (log:56-72) + rewire `console.log` (and peer log f
 
 ## Follow-on once #41 root fixed
 Re-apply #40 = b73ddd1 (3-tier precedence + `<text...>`→`<text>` rename — note `PARAM_text...="addDefaultValue"` still present today, confirming the rename is currently OUT) cleanly on the #41-fixed + printf-converged base, on BOTH branches.
+
+---
+## #41 BACK-PORT LANDED — oosh-expert: macos.latest `9824746`, pushed
+Per architect root-fix note (e62f19b2): **back-ported c0e6036** (not reinvented, not a downstream filter). `git cherry-pick c0e6036` CONFLICTED (macos.latest `log` is a different lineage — raw `>>$LOG_DEVICE`, never had `private.log.device`), so **surgical port**:
+- Added `private.log.emit()` (dev c0e6036 body verbatim): `case LOG_DEVICE in ""|/dev/stdout|/dev/stderr|/proc.../dev/tty) printf '%b\n' >&2 ;; *) file-append, fd2 fallback`. fd1/stdout excluded by construction.
+- Routed the `.log` functions through it: test.console/console/silent/success/warn/important/debug/error (8 sites). `warn.log` previously had a bare `echo` (no redirect = fd1 leak) — now routed too.
+- **config.save: ZERO change** (config:258 console.log now fd1-safe automatically — maximal DRY).
+- Untouched (architect's optional residual, NOT the param-contamination vector): log:18-58 init echoes, problem/breakpoint interactive dumps (223/247, high-LOG_LEVEL only).
+**Expert self-checks (NOT the gate):** `bash -n` OK; decisive fd1-exclusion — `LOG_DEVICE=/dev/stdout console.log LEAKTEST 2>/dev/null` → **empty stdout** (routed to fd2), leak closed.
+**ng/c2 L214 `grep '^declare '`**: now belt-and-suspenders, not load-bearing (left as-is, not extended).
+**mcdonges.latest**: NOT hand-triplicated — it takes c0e6036 via its own dev-reconcile later (PO directive).
+→ Tester re-greens **T-CYAN** on macos.latest (real Tab, correct clone) → unblocks **#40b** cyan.
+
+### macos.latest disjoint+#41 set (per-task hashes)
+| task | hash | note |
+|---|---|---|
+| #39 pane.capture | `b2dd551` | CLOSED, tester `a6a98dc` |
+| B1 line.format emit | `9c49fe0` | dev 81d82bd form, body==dev |
+| #40a precedence+rename | `a68c89a` | cherry-pick b73ddd1, byte-identical, cc11daf avoided |
+| #41 private.log.emit | `9824746` | back-port c0e6036, fd1 excluded |
+| #40b cyan | HELD→**unblocked** | tester re-greens T-CYAN |
