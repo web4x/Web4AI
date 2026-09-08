@@ -5,6 +5,32 @@
 **Pane**: ooshTeam:0.0 on MacStudio.native
 **Session**: oosh-po@MacStudio [29a1e1d1-2284-4484-a95e-6b89154c7a9c]
 
+## ★★ PRE-REWIND FORCE SAVE — 2026-09-08 (78%, agent-trainer 2-phase, zero-loss)
+**BRANCH IS NOW `test/mcdonges.latest`** (the stable line Tron chose during the crisis; NOT macos.latest). `~/oosh` symlink → `components/OOSH/mcdonges.latest/`. My earlier macos.latest completion work (#37-41) is a SEPARATE branch, not in play here.
+
+**TEAM LAYOUT (measured, registry fixed this session):**
+- ooshTeam:0.0 = me (oosh-po) · 0.1 = oosh-architect@MacStudio · 0.2 = oosh-expert@MacStudio · **0.3 = scrum-master@MacStudio (my 42 pair, MOVED from baseTeam which was torn down)** · 0.4 = oosh-tester@MacStudio · 0.5 = shell.
+- baseTeam GONE. remoteShells:0.0=local, 0.1=WODA.prod (tester says 0.1 went away post-restore — use 0.5→ssh for WODA.prod).
+- SM at 0.3, pulsing lean, flags only on drift/GO.
+
+**CRISIS RESOLVED THIS SESSION (mcdonges.latest):**
+1. Machine restart killed all sessions → re-forked ooshTeam from claudeCode list latest UUIDs; @MacStudio names + /rc + pane titles.
+2. **COMPLETION cross-platform bug FIXED** (was dead on WODA.prod/Linux, worked on macOS): `def45a7` (apostrophe `'''` port) + `c453bbe` (source-safe `printf %q` — the real fix, drops FORMAT_PARSE_METHOD dependency) + `6782c6a` (T-QUOTE regression test). GREEN both platforms.
+3. **line.format self-heal** `674f38b` + WODA.prod env manually patched (FORMAT_PARSE_METHOD).
+4. **WODA.prod OOSH_DIR drift** manually fixed → `$HOME/oosh` (was resolved `.../Once.sh/dev`), persisted + fresh-shell verified.
+5. **Self-Healing Objects principle** documented in `docs/first-principles.md` (`921da82`).
+6. **CATASTROPHE root-caused + stopped:** Claude Code's default `cleanupPeriodDays:30` silently deleted ~48 historical agent JSONL (robbin team, ARON, research, ud/unit POs, fallback agents, June/July oosh gens) — UNRECOVERABLE (not in Trash). FIX APPLIED: `~/.claude/settings.json` `cleanupPeriodDays:3650`. **TODO: apply same on WODA.prod's ~/.claude/settings.json.**
+
+**SPRINT 2 (`scrum.pmo/sprints@MacStudio/sprint-2/`) — Cross-Platform Consistency + OOSH_DIR Invariant:**
+- Planning + task files written (template-conform, machine-readable status, UUID, dual links [GitHub]|[repo]).
+- **A4 CLOSED** (`eefda978`): env -i honest boot — expert `e3222de` (self-derive HOME + self-relative source this + T-ENV-I) + tester independent gate `8c90350` (11/11 both platforms). VERIFIED.
+- **HOLDING FOR TRON GO** (never self-start sprint): A1 (oo.mode→$HOME/oosh), A2 (EAMD install order), A3 (this.init OOSH_DIR self-heal guard), B1-B3 (OS-derive OOSH_SHARED_BASE darwin=/Users/Shared linux=/home/shared + de-hardcode ~8 scripts), C1 (port line.format self-heal to mcdonges), D1 (config.save greedy-varname root bug).
+- **a4.3** filed: pre-existing `./config` rc=127 when cwd≠OOSH_DIR (single-word dispatch relpath) — NOT from e3222de, separate.
+
+**DUAL LINKS convention (from ARON):** `[GitHub](full-blob-URL) | [repo-name](repo-relative-path)`. PUSH FIRST, verify resolves (raw.githubusercontent 200; blob can lag/404 on CDN), then hand over. Repos: once.sh (Cerulean-Circle-GmbH, oosh code) + Web4AI (web4x, workspace/session/sprints/mailbox). session/ is gitignored in once.sh → sprint+task files live in Web4AI.
+
+**ON RESUME:** verify identity (uname=MacStudio, pane.get.target=ooshTeam:0.0, session.name), branch=test/mcdonges.latest, check SM(0.3) health, await Tron GO on Sprint 2 A1-D1. WODA.prod cleanupPeriodDays fix still TODO.
+
 ## ★★ SESSION CHECKPOINT — 2026-07-03 (post-rewind: pane.capture + completion saga)
 Retrained after deep rewind (3-way GREEN). Big session — closed/drove a lot:
 - **#37 CLOSED** (pre-rewind, `1bd09e52`). **#39 done** (forward-port `b2dd551` pane.capture -p → macos.latest, tester `a6a98dc`). **#38 CLOSED** — WODA.prod PO measured `git merge-base --is-ancestor 7059a36 HEAD`=exit0 → 7059a36 ALREADY live on WODA (earlier dev pull); my "still-buggy" was STALE, retracted.
