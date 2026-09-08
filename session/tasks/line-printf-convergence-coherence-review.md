@@ -65,3 +65,45 @@ The durable fix is NOT 5a93fe5's downstream declare-filter (symptom — proved i
 5. **L577 `line.declare`** same-class xargs-printf hardening — anytime, in lockstep on both branches (non-blocking).
 
 **Bottom line:** "#40 after #41" is only HALF right — split it. The precedence + `<text...>` you named (#40a) is genuinely disjoint (it moved off the leaked env by design) → proceeds now. Only the **cyan** portion (#40b) is #41-gated. Don't re-apply the pinned bundle whole before #41.
+
+---
+## #41 ROOT-FIX DESIGN NOTE (oosh-architect, 2026-09-08 — gate MET: #41 confirmed still-live on macos.latest + mcdonges.latest)
+
+### TL;DR — the root fix ALREADY EXISTS on dev as `private.log.emit` (commit c0e6036). The macos.latest/mcdonges.latest fix = PORT c0e6036, not invent a primitive, not another downstream filter. `config.save` needs ZERO change.
+
+### WHERE the leak is (measured)
+Two facts compose into #41:
+1. **`this:12-15`** — subprocess bootstrap default: `if [ -z "$LOG_LEVEL" ]; then export LOG_LEVEL=3; export LOG_DEVICE=/dev/stdout; fi`. A fresh c2 completion subprocess re-bootstraps OOSH → `LOG_DEVICE=/dev/stdout` (=fd1).
+2. **`config:337`** — inside `config.save`: `console.log "config.save (CONFIG=$CONFIG)"` (also `config:561`). `console.log` writes to `LOG_DEVICE`.
+⇒ In the c2 subprocess, config.save's status line lands on **fd1/stdout**, which the completion path **captures** (`$(...)` / `source current.method.env`) → the sourced param env is contaminated with a non-`declare` line → `printf: missing format character` / empty `PARAM_` → broken cyan current-param (gate 22b4894). That is #41.
+
+### Why #4/#6 didn't cover it
+#4/#6 were **env-FILE content purity** (the persisted user.env/oosh.env are pure `export` state). #41 is a **RUNTIME emit**: a log line hitting fd1 during a live capture. Different layer entirely — file-content purity says nothing about where `console.log` writes at runtime. So a branch can have #4/#6 (pure files) and still leak #41 (runtime log→stdout). Confirmed: macos.latest/mcdonges.latest have neither `private.log.emit`.
+
+### The RIGHT shape = `private.log.emit` (the expert's instinct) — AND it already exists (dev c0e6036)
+```
+private.log.emit() { # write a log line WITHOUT the reopen-leak
+  case "${LOG_DEVICE:-}" in
+    ""|/dev/stdout|/dev/stderr|/proc/self/fd/1|/dev/fd/1|/proc/self/fd/2|/dev/fd/2|/dev/tty)
+      printf '%b\n' "$1" >&2 ;;                                   # fd2 via DUP — fd1/stdout EXCLUDED
+    *) { printf '%b\n' "$1" >>"$LOG_DEVICE"; } 2>/dev/null || printf '%b\n' "$1" >&2 ;;  # real file, fd2 fallback
+  esac
+}
+```
+Assessment — this is the correct architecture, for three reasons:
+1. **Single chokepoint (DRY):** ALL `.log` funcs (console/important/success/warn/debug/error, log:81/92/126/138/180/204/236) already route through it. Fix the emit once → every `console.log` everywhere (incl. `config:337`) is stdout-safe. **`config.save` needs no edit.**
+2. **Excludes fd1 by construction:** even when `LOG_DEVICE=/dev/stdout` (the `this:14` default we can't rely on being changed), the emit goes to **fd2 via dup**, never fd1 → `$()`-capture safe. More robust than flipping `this:14`'s default (which other code could re-set).
+3. **Kills two leak classes with one primitive:** the su- reopen-EACCES tty leak (#2) AND the fd1/$()-capture contamination (BUG 5 = #41). c0e6036's own message: *"write logs to fd2 via dup … not by reopening … Kills residual #2 … fd1/stdout stays excluded (BUG 5 — $() capture safety)."*
+⇒ **Do NOT build a new primitive and do NOT add a downstream filter** (5a93fe5 class — the gate already disproved that). The proven primitive is upstream on dev.
+
+### Implementation (hand to expert)
+- **PORT `c0e6036` to macos.latest** (authoritative for completion work): add `private.log.emit` + route the `.log` functions through it. Then flow-down to mcdonges.latest. (dev already carries it — this is a cherry-pick/port, not new design.)
+- **`config.save` (config:337/561): NO change** — its `console.log` becomes fd1-safe automatically once the primitive is present. Maximal DRY, zero per-caller work.
+- **ng/c2 L214 `grep '^declare '` chokepoint:** keep as belt-and-suspenders, but it is **no longer load-bearing** once the primitive lands — it becomes defense-in-depth, not the fix. Do not extend it.
+- **Residual (optional, NOT blocking #40b):** direct `>>$LOG_DEVICE` writes that BYPASS the primitive still hit fd1 if `LOG_DEVICE=/dev/stdout` — `log:30` init echo, `ng/c2:174/217` debug dumps. These are init/debug noise, not the #41 param-contamination vector. For completeness route them through `private.log.emit` too (or guard fd1), but this is hardening, not the unblock.
+
+### Measure-catch for the PO's flow note
+The PO said "implementation lands on macos.latest, dev gets it via flow-down." Measured: **dev ALREADY HAS the primitive (c0e6036)** — so this is not net-new on dev; it's a **back-port from dev → macos.latest → mcdonges.latest**. The completion-specific benefit lands where the primitive is absent. Net: cherry-pick c0e6036 onto the two older branches; nothing to author from scratch.
+
+### Verdict
+#41 root fix = **port dev's `private.log.emit` (c0e6036)** → fd1 excluded framework-wide → `config.save` status line no longer contaminates the captured param env → #40b cyan unblocks. Right shape confirmed (it's the expert's `private.log.emit`, already proven on dev). No config.save edit, no new filter.
