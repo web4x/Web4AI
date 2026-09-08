@@ -43,3 +43,6 @@ Commit your test as the gate. Report GREEN/RED + hash. Run on BOTH platforms (re
 
 ---
 *Sprint 2 @MacStudio*
+
+## Report-back — GREEN
+Independent gate **8c90350** (test.this T-ENV-I-3/4). MacStudio 11/11 + WODA.prod 11/11 (via 0.5→ssh; remoteShells:0.1 gone post-restore). Honest env -i (fed NOTHING) rc=0 both; CONFIG_PATH=/Users/donges/config & /root/config (never /config); regression rc=0. Different entry point (config list) + negative regression guard = real gate. **e3222de ACCEPTED.** Pre-existing ./config fail → a4.3.

@@ -35,9 +35,10 @@ Ref: [GitHub](https://github.com/web4x/Web4AI/blob/main/session/tasks/oosh-dir-i
 - [ ] **A3** `this.init()` self-heal guard: if `$HOME/oosh` is a symlink and `OOSH_DIR` differs → override
   - [ ] A3.1 expert — impl: add the guard to `this.init()`
   - [ ] A3.2 tester — verify: corrupt OOSH_DIR in env → fresh shell self-heals to `$HOME/oosh`
-- [~] **A4** env -i honest boot — constructor self-derives HOME from nothing (sibling of A3)
+- [x] **A4** env -i honest boot — constructor self-derives HOME from nothing (sibling of A3)
   - [x] A4.1 expert — DONE `e3222de`: self-derive HOME + self-relative `source this` + T-ENV-I gate (was rc=127 from empty `env -i`)
-  - [ ] A4.2 tester — independent verify e3222de (T-ENV-I-1/2 + honest manual, both platforms)
+  - [x] A4.2 tester — DONE `8c90350`: independent gate GREEN (MacStudio 11/11 + WODA.prod 11/11, different entry point + negative regression guard)
+  - [ ] A4.3 pre-existing `./config` relpath fail (rc=127 when cwd≠OOSH_DIR) — separate, not from e3222de
 
 ### Epic B: OS-Independence — derive platform paths from config, never hardcode
 - [ ] **B1** OS-derive `OOSH_SHARED_BASE` in `config.init` / `this.init`

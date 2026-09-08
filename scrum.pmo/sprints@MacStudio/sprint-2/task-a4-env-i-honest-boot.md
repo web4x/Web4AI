@@ -6,14 +6,15 @@
 ## Status
 - [x] Planned
 - [x] In Progress
-- [ ] QA Review
-- [ ] Done
+- [x] QA Review
+- [x] Done
 
 ## Traceability
 - up: [Sprint 2 Planning](./planning.md)
 - down:
+  - [A4.3 Pre-existing single-word ./config relpath fail (separate)](./task-a4.3-single-word-dispatch-relpath.md)
   - [A4.1 Expert — self-derive HOME + self-relative source (DONE e3222de)](./task-a4.1-expert-env-i-boot.md)
-  - [A4.2 Tester — env -i honest gate verify](./task-a4.2-tester-env-i-verify.md)
+  - [A4.2 Tester — env -i honest gate verify (DONE 8c90350)](./task-a4.2-tester-env-i-verify.md)
 
 ## Description
 OOSH must boot from a **literally empty `env -i`** (Tron's no-state-interference / constructor principle). Was rc=127 / `CONFIG_PATH=/config`. Sibling of A3: both are `this.init` constructor self-heals — A3 heals OOSH_DIR, A4 self-derives HOME when unset (before CONFIG_PATH), via passwd tilde-expansion (macOS+Linux, no dscl/getent branch), plus `oo.start` sources sibling `this` by BASH_SOURCE path when PATH is empty.
