@@ -31,3 +31,37 @@ Only the **emit line diverges**. `test/macos.latest:line` ~L325 is still raw `ca
 
 ## Bottom line
 Converge = safe. Real work is **one emit line** on test/macos.latest (to 81d82bd, not 73fd2c8); the self-heal port is already done; the L577 site is a same-class non-blocking follow-up to keep in lockstep. No self-heal × builtin-printf collision — dev runs both today.
+
+---
+## ADDENDUM — #40 × #41 dependency ruling (oosh-architect, 2026-09-08, measured from the diffs + tester gate)
+
+**PO question:** does #40 re-apply REQUIRE #41 (config.save LOG_DEVICE→stdout leak) resolved first, or is it disjoint?
+**RULING: #40 is NOT one unit — it SPLITS into two dependency classes. Do not re-apply the full pinned SHA-set (b73ddd1/5a93fe5/22b4894/6b1ee31) as one block before #41, or you re-introduce the exact reverted RED.**
+
+### #40a — precedence (3-tier) + `<text...>`→`<text>` + invalid-id PARAM_ guard  =  b73ddd1  →  **DISJOINT from #41. Re-apply anytime (no #41 needed).**
+Measured in b73ddd1's `ng/c2` diff — it actively DECOUPLES from #41, doesn't depend on it:
+- **firstParam now derives from the method SIGNATURE** (`grep "${class}.${method}()" "$script" | sed …`), explicitly **OFF** `$CONFIG_PATH/completion.parameter.txt` — the very file #41's stdout-leak corrupts. Its own comment: *"the signature is the reliable, sourcing-free source."* ⇒ this is a #41-RESILIENCE change, not a #41-dependency.
+- TIER1/TIER2 reorder = pure `this.functionExists` dispatch — consumes no sourced PARAM_ env.
+- The invalid-identifier guard (`case "$parameterENV" in [!A-Za-z_]* …`) HARDENS `${!parameterENV}` against bad data (the `<text...>`→`PARAM_text...` crash) — degrade-to-free-text, not depend-on-clean-env.
+- otmux `<text...>`→`<text>` = a signature-string change. Trivially independent.
+⇒ Safe to re-apply on the converged base WITHOUT #41. Cherry-pick **b73ddd1 alone** (its hunks — firstParam L346, tier dispatch L475/485, guard L498 — are separate from the cyan commits' hunks, so the split is clean).
+
+### #40b — cyan current-param highlight  =  5a93fe5 + 6b1ee31 (gate 22b4894)  →  **REQUIRES #41 root-fixed FIRST.**
+- 5a93fe5 is itself a **downstream mitigation of #41** ("config.save console leak (LOG_DEVICE→stdout) contaminated the sourced param env … no CYAN current-param; root stdout-leak = #41").
+- Gate **22b4894 proves it insufficient**: even WITH 5a93fe5's declare-filter, T-CYAN-PARAM-3 still emits `printf: missing format character` because the leak re-fires in the c2 subprocess (LOG_DEVICE resets to /dev/stdout) → PARAM_ generation yields nothing → cyan stays RED2.
+⇒ Re-applying #40b on an unresolved #41 reproduces the reverted RED. It goes **after #41**.
+
+### Why the whole set was reverted together
+8c9a368 reverted all 4 as a unit to known-good `33da219` because the BUNDLE was RED (cyan #41-blocked). The precedence part (#40a) was collateral — it is sound and #41-independent.
+
+### #41 root-fix = same pure-state-emit class as our #4/#6 (and 674f38b's precedent)
+The durable fix is NOT 5a93fe5's downstream declare-filter (symptom — proved insufficient). It is at the ROOT: **`config.save` must not emit `console.log` to `LOG_DEVICE=/dev/stdout` in a captured/sourced context** — exactly the discipline 674f38b already documents ("save-FREE by design … config save here would leak config.save's console.log into a `$(...)` capture") and the same class as #4/#6 pure-state-emit. Fix #41 there; then #40b's 5a93fe5 filter becomes belt-and-suspenders (or unneeded).
+
+### Refined order for expert (updates the earlier "re-apply #40 LAST")
+1. **B1 emit-line** (test/macos.latest → 81d82bd form) — proceeds, disjoint. ✅ cleared.
+2. **#40a** (b73ddd1: precedence + `<text...>`→`<text>` + guard) — re-apply on the converged base; **does NOT wait for #41**.
+3. **#41 root-fix** (config.save pure-state / no stdout leak; #4/#6 class).
+4. **#40b** (cyan current-param: 5a93fe5 + 6b1ee31) — re-apply AFTER #41; re-green T-CYAN-PARAM.
+5. **L577 `line.declare`** same-class xargs-printf hardening — anytime, in lockstep on both branches (non-blocking).
+
+**Bottom line:** "#40 after #41" is only HALF right — split it. The precedence + `<text...>` you named (#40a) is genuinely disjoint (it moved off the leaked env by design) → proceeds now. Only the **cyan** portion (#40b) is #41-gated. Don't re-apply the pinned bundle whole before #41.
