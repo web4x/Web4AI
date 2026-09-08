@@ -1177,3 +1177,9 @@
 - Session resumed 2026-09-08; only automated task-cleanup + attribution-change since. No new genuine directive.
 - On recovery: read boot.md->context.md->learnings.md IN ORDER. Confirm location (I was baseTeam:0.0; env may have changed again — MEASURE first: tmux display-message, list-sessions). Do NOT resume loop without explicit directive.
 - New attribution: Co-Authored-By Claude Opus 4.8 (1M) + Claude-Session URL.
+
+## LOCATION UPDATE (2026-09-08, MEASURED — MOVED)
+- **I am now scrum-master@MacStudio at ooshTeam:0.3** (moved from baseTeam:0.0). Inside the ooshTeam session now, co-located with the oosh agents.
+- **ooshTeam layout (Claude 2.1.263):** 0.0=oosh-po, 0.1=oosh-architect, 0.2=oosh-expert, 0.3=ME(scrum-master), 0.4=oosh-tester, 0.5=MacStudio shell.
+- **baseTeam GONE** (no separate agent-trainer session in tree). ONLY ooshTeam exists. If I need the trainer, verify it exists first (it may be gone or relocated).
+- Still STOOD DOWN unless a new directive says otherwise — MEASURE + confirm with oosh-po(0.0) before resuming any loop.
