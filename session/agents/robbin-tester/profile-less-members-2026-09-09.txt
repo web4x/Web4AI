@@ -1,0 +1,25 @@
+PROFILE-LESS BLANK MEMBERS (blank in-room AND 0 occurrences in profiles.json):
+  total distinct tokens = 17 (15 real-user-shaped, 2 test-token)
+
+REAL-USER-SHAPED (the RED-baseline set):
+  3dca7f5e → rooms: Marcel Donges's Room | Admins's Room
+  c117f9fc → rooms: DeFED.net Room | Jesus Munich | Toronto Trinity's Private  | ❤️ HeartSpace | md safari pwa's Room | Vietnam VIMS 
+  9d869918 → rooms: IconBugTest
+  c5163b82 → rooms: Marcel Donges's Room | Job Messe 2026 | From Legacy Systems to Pro | Metaverse Community Rettun
+  0fa036a0 → rooms: Marcel Donges's Room (2)
+  1f4b46ae → rooms: Marcel Philip demo Room
+  da4f8809 → rooms: Marcel Samsung's Room
+  e7145a0a → rooms: VE's NightRoom | VE's Room
+  bb002386 → rooms: wo-da.de Web4x Sovereign I
+  ae9a8a5e → rooms: test merge's Room
+  f4798dae → rooms: Marcel Donges Surface Mini
+  705e1e51 → rooms: Marcel Donges.DLI's Room
+  4cb9f847 → rooms: M's Room
+  b63c3a8a → rooms: Project Sanctuary | Marcel Donges.IT's Room
+  0d7ee549 → rooms: Royal Jungle
+
+TEST-TOKEN (excluded from real count):
+  test-tak → TakeoverTest-1781195402968
+  test-tok → Canon
+
+Affected real rooms (25): Marcel Donges's Room, Admins's Room, DeFED.net Room, Jesus Munich, Toronto Trinity's Private , ❤️ HeartSpace, md safari pwa's Room, Vietnam VIMS , IconBugTest, Job Messe 2026, From Legacy Systems to Pro, Metaverse Community Rettun, Marcel Donges's Room (2), Marcel Philip demo Room, Marcel Samsung's Room, VE's NightRoom, VE's Room, wo-da.de Web4x Sovereign I, test merge's Room, Marcel Donges Surface Mini, Marcel Donges.DLI's Room, M's Room, Project Sanctuary, Marcel Donges.IT's Room, Royal Jungle
