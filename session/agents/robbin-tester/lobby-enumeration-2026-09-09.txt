@@ -1,0 +1,160 @@
+TOTAL Room units on disk: 120
+
+═══ DELETE-CANDIDATES (SystemTester-owned test rooms, SystemTester-only) — 42 ═══
+  1bb8d569 | 2026-09-06T17:40 | owner=SystemTester | n=1 | "T3720 remaining"
+  ef5f89ff | 2026-09-06T18:07 | owner=SystemTester | n=1 | "T3720 remaining"
+  ae8e31cd | 2026-09-06T19:01 | owner=SystemTester | n=1 | "T3720 B (source)"
+  17316c72 | 2026-09-06T19:01 | owner=SystemTester | n=1 | "T3720 C (target)"
+  234b6adc | 2026-09-06T19:12 | owner=SystemTester | n=1 | "T3720 B (source)"
+  f09530d4 | 2026-09-06T19:12 | owner=SystemTester | n=1 | "T3720 C (target)"
+  fc50ff85 | 2026-09-06T19:13 | owner=SystemTester | n=1 | "T3720 remaining"
+  a9b956ce | 2026-09-06T19:16 | owner=SystemTester | n=1 | "T3720 remaining"
+  2ddbd6a4 | 2026-09-06T19:21 | owner=SystemTester | n=1 | "T3720 render-distinct (2)"
+  a20138d9 | 2026-09-06T21:45 | owner=SystemTester | n=1 | "T3720 folder-drop"
+  1142f91b | 2026-09-06T21:55 | owner=SystemTester | n=1 | "T3720 folder-drop"
+  9d3fb9e3 | 2026-09-06T21:56 | owner=SystemTester | n=1 | "T3720 folder-drop"
+  0c2d28b5 | 2026-09-06T22:00 | owner=SystemTester | n=1 | "T3720 reparent-verify"
+  8334fd58 | 2026-09-06T22:07 | owner=SystemTester | n=1 | "T3720 reparent-verify"
+  9b417889 | 2026-09-06T22:09 | owner=SystemTester | n=1 | "T3720 reparent-verify"
+  baba8e7e | 2026-09-06T22:44 | owner=SystemTester | n=1 | "T3720 reparent-verify"
+  27d2427c | 2026-09-06T23:02 | owner=SystemTester | n=2 | "T3720 unit-class (5)"
+  70437c07 | 2026-09-06T23:02 | owner=SystemTester | n=2 | "T3720 unit-class (2)"
+  5f55bad6 | 2026-09-07T17:07 | owner=SystemTester | n=2 | "T3720 INC2 move r1"
+  b718b409 | 2026-09-07T17:07 | owner=SystemTester | n=2 | "T3720 INC2 move r2"
+  751c64e4 | 2026-09-07T17:07 | owner=SystemTester | n=2 | "T3720 INC2 move r3"
+  d8020fdd | 2026-09-07T17:08 | owner=SystemTester | n=2 | "T3720 INC2 move r1 (2)"
+  4cc89cf2 | 2026-09-07T17:08 | owner=SystemTester | n=2 | "T3720 INC2 move r2 (2)"
+  10e64673 | 2026-09-07T17:08 | owner=SystemTester | n=2 | "T3720 INC2 move r3 (2)"
+  7dc9a919 | 2026-09-07T17:20 | owner=SystemTester | n=2 | "SEATBELT-PROBE scratch"
+  15e6ef2c | 2026-09-07T17:20 | owner=SystemTester | n=2 | "SEATBELT-PROBE scratch (2)"
+  f75f18b1 | 2026-09-07T17:21 | owner=SystemTester | n=2 | "SEATBELT-PROBE scratch (3)"
+  ed1d54e0 | 2026-09-07T17:37 | owner=SystemTester | n=1 | "B206 url-naming r1"
+  b45a2428 | 2026-09-07T17:37 | owner=SystemTester | n=1 | "B206 url-naming r2"
+  21bf5d05 | 2026-09-07T17:37 | owner=SystemTester | n=1 | "B206 url-naming r3"
+  6f541435 | 2026-09-07T17:55 | owner=SystemTester | n=1 | "INC3 rename r1"
+  32b742c9 | 2026-09-07T17:55 | owner=SystemTester | n=1 | "INC3 rename r2"
+  72d70cd9 | 2026-09-07T17:55 | owner=SystemTester | n=1 | "INC3 rename r3"
+  9614ea49 | 2026-09-07T17:57 | owner=SystemTester | n=1 | "INC3 liverender"
+  6a831918 | 2026-09-07T17:58 | owner=SystemTester | n=1 | "INC3 diag"
+  797671c7 | 2026-09-07T17:59 | owner=SystemTester | n=1 | "INC3 liverender (2)"
+  0dc91cae | 2026-09-07T18:28 | owner=SystemTester | n=1 | "T343 del r1"
+  51271e7c | 2026-09-07T18:28 | owner=SystemTester | n=1 | "T343 del r2"
+  d47890b4 | 2026-09-07T18:28 | owner=SystemTester | n=1 | "T343 del r3"
+  8c2897e1 | 2026-09-07T18:45 | owner=SystemTester | n=1 | "DnD-tail confirms"
+  b8ff0d63 | 2026-09-07T18:47 | owner=SystemTester | n=1 | "DnD-tail confirms (2)"
+  e7a67d26 | 2026-09-07T18:53 | owner=SystemTester | n=1 | "T3720 remaining"
+
+═══ AMBIGUOUS — MUST CONFIRM BEFORE ANY DELETE — 33 ═══
+  93cd6417 | 2026-07-27T12:05 | owner=SystemTester | n=1 | "SystemTester R31.12 gate"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  9cb42f6e | 2026-07-27T12:19 | owner=SystemTester | n=0 | "ST diag2"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  661f2883 | 2026-09-05T17:04 | owner=SystemTester | n=1 | "SysTester SW-upload test (temp)"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  68d0f039 | 2026-06-16T19:13 | owner=SystemTester | n=61 | "System Test Room" [members:e40b6b85,fb1538b0,10c74098,ea01a107,f77a7a91,b2c48468,72a7c670,37777853,1a2ed9a4,22250c18,bde444c3,ef7eccc3,7250b82c,7909f54f,61546d31,c3148b77,95ec1fe0,76e67063,c0717e4a,7e5c0b98,8b7c0429,a22806d8,ae9a8a5e,ff980fed,eed5ae64,5602a45b,5ab2fff1,973f40a6,cdd8983e,6ed7f628,f37d6183,9daafbc1,135f8313,914a790f,456d73d1,4e4714bc,ecfb6f0c,7f2a1d6b,ff0366a4,c7117291,da82727e,e792f671,f83be567,298c5fa7,818cee58,5619c423,5d47c672,c117f9fc,331f9810,f40aca1d,fceb16eb,c181aee7,a377a829,063c00d0,87236650,789a8162,8b5d24f4,47bd86ad,568edd20,9bb9f2a3]
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  6d42af5f | 2026-07-27T12:28 | owner=SystemTester | n=1 | "SystemTester R31.12 gate (2)"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  76cbbc46 | 2026-07-27T18:53 | owner=SystemTester | n=1 | "SystemTester R31.12f radio"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  7b7d7436 | 2026-09-06T22:21 | owner=SystemTester | n=1 | "T3741 node-drop"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  b929c836 | 2026-07-29T22:56 | owner=SystemTester | n=1 | "SystemTester R31.16 notice"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  b3e92890 | 2026-07-27T12:56 | owner=SystemTester | n=1 | "SystemTester R31.12 gate"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  b8f4c590 | 2026-09-06T22:27 | owner=SystemTester | n=1 | "T3721 revisit"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  3231db71 | 2026-09-06T11:16 | owner=8f74dfba | n=6 | "Marcel dnd test room " [members:8d9be587,05e58f81,c09087ec,41ad88c4,8f74dfba]
+      ⚠ RESTORED-9 (Marcel dnd test room) — was corrupted+restored last night
+  3ec853ea | 2026-09-05T17:07 | owner=SystemTester | n=1 | "SysTester SW-upload test (temp)"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  3ee856ac | 2026-07-29T22:36 | owner=SystemTester | n=1 | "SystemTester R31.16 notice"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  0b35cb1b | 2026-09-06T22:22 | owner=SystemTester | n=1 | "T3741 node-drop"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  0cfc88fd | 2026-09-06T23:02 | owner=SystemTester | n=3 | "T3720 render-distinct" [members:c09087ec]
+      ⚠ test-name BUT contains non-SystemTester member(s): c09087ec (e.g. c09087ec=Marcel)
+  0db80638 | 2026-09-06T22:31 | owner=SystemTester | n=1 | "T3721 revisit"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  0dd1d509 | 2026-09-07T18:48 | owner=SystemTester | n=2 | "DnD-tail confirms (3)" [members:c09087ec]
+      ⚠ test-name BUT contains non-SystemTester member(s): c09087ec (e.g. c09087ec=Marcel)
+  0a08249e | 2026-09-06T23:02 | owner=SystemTester | n=3 | "T3720 unit-class (4)" [members:c09087ec]
+      ⚠ test-name BUT contains non-SystemTester member(s): c09087ec (e.g. c09087ec=Marcel)
+  0e1b16d8 | 2026-07-27T12:17 | owner=SystemTester | n=0 | "ST R31.12 diag"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  0eea1c1d | 2026-09-05T17:07 | owner=SystemTester | n=1 | "SysTester SW-upload test (temp)"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  124e8bac | 2026-09-05T17:04 | owner=SystemTester | n=1 | "SysTester SW-upload test (temp)"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  f3e6bfbf | 2026-07-27T12:12 | owner=SystemTester | n=1 | "SystemTester R31.12 gate"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  fd7142f8 | 2026-07-27T12:51 | owner=SystemTester | n=1 | "SystemTester R31.12 gate"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  46ba6dd5 | 2026-09-06T22:42 | owner=SystemTester | n=1 | "T3741 node-drop"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  408cbacf | 2026-09-06T23:02 | owner=SystemTester | n=3 | "T3720 unit-class (3)" [members:c09087ec]
+      ⚠ test-name BUT contains non-SystemTester member(s): c09087ec (e.g. c09087ec=Marcel)
+  d683a9a5 | 2026-09-06T22:19 | owner=SystemTester | n=1 | "T3741 node-drop"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  df190fb5 | 2026-07-27T12:25 | owner=SystemTester | n=1 | "SystemTester R31.12 gate"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  a32af4f3 | 2026-07-27T12:21 | owner=SystemTester | n=0 | "ST diag3"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  a16262b8 | 2026-09-06T11:16 | owner=SystemTester | n=3 | "System Evidence — T37.21 Screenshots" [members:c09087ec]
+      ⚠ RESTORED-9 (System Evidence — T37.21) — was corrupted+restored last night
+  eb9d5c8f | 2026-07-27T12:45 | owner=SystemTester | n=1 | "SystemTester R31.12 gate"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  e3663282 | 2026-09-06T22:28 | owner=SystemTester | n=1 | "T3721 revisit"
+      ⚠ SystemTester-owned but NOT a recognized test-name — confirm before delete
+  e8fcbc64 | 2026-09-06T23:02 | owner=SystemTester | n=3 | "T3720 unit-class" [members:c09087ec]
+      ⚠ test-name BUT contains non-SystemTester member(s): c09087ec (e.g. c09087ec=Marcel)
+  edd7fa61 | 2026-09-06T11:16 | owner=c09087ec | n=2 | "Marcel Owner Test Room" [members:c09087ec,c09087ec]
+      ⚠ RESTORED-9 (Marcel Owner Test Room) — was corrupted+restored last night
+
+═══ PROTECT (real rooms / real-user-owned / the 6) — 45 ═══
+  99e6a422 | 2026-06-16T19:13 | owner=3dca7f5e | n=2 | "Marcel Donges's Room" [members:3dca7f5e,3dca7f5e]  ← real-user-owned (3dca7f5e)
+  929f02b3 | 2026-06-12T13:17 | owner=1ddb743b | n=1 | "WKFinal's Room" [members:1ddb743b]  ← real-user-owned (1ddb743b)
+  6059e332 | 2026-06-16T19:13 | owner=c117f9fc | n=2 | "DeFED.net Room" [members:c117f9fc,c117f9fc]  ← real-user-owned (c117f9fc)
+  6c04f959 | 2026-09-06T11:16 | owner=8f74dfba | n=6 | "🤍 Heartspaces ❤️" [members:2703628c,8d9be587,c09087ec,41ad88c4,05e58f81]  ← REAL-6 Heartspaces
+  6ae73093 | 2026-06-16T19:13 | owner=c117f9fc | n=2 | "Jesus Munich" [members:c117f9fc,c117f9fc]  ← real-user-owned (c117f9fc)
+  72f7c16f | 2026-06-16T19:13 | owner=9d869918 | n=3 | "IconBugTest" [members:9d869918,c117f9fc,9d869918]  ← real-user-owned (9d869918)
+  75ffe639 | 2026-07-26T10:58 | owner=c5163b82 | n=2 | "Marcel Donges's Room" [members:c5163b82,c5163b82]  ← real-user-owned (c5163b82)
+  7e374f74 | 2026-06-12T13:23 | owner=33366ee1 | n=1 | "StickyTest's Room" [members:33366ee1]  ← real-user-owned (33366ee1)
+  b3efa337 | 2026-09-06T11:16 | owner=8f74dfba | n=5 | "Semvec Hackathon" [members:4233618f,1204eb32,c09087ec,41ad88c4,8f74dfba]  ← REAL-6 Semvec Hackathon
+  bf611f0f | 2026-06-12T09:34 | owner=test-tak | n=3 | "TakeoverTest-1781195402968" [members:test-tak,test-oth,test-tak]  ← real-user-owned (test-tak)
+  bf8a9ef3 | 2026-06-16T19:13 | owner=0fa036a0 | n=2 | "Marcel Donges's Room (2)" [members:0fa036a0,0fa036a0]  ← real-user-owned (0fa036a0)
+  b2a51824 | 2026-06-12T13:04 | owner=c67370cd | n=2 | "SafariBugTest's Room" [members:c67370cd,646ca586]  ← real-user-owned (c67370cd)
+  b44bfce6 | 2026-06-12T13:14 | owner=3dce9d42 | n=1 | "WKReal2's Room" [members:3dce9d42]  ← real-user-owned (3dce9d42)
+  bc15e324 | 2026-06-16T19:13 | owner=1f4b46ae | n=3 | "Marcel Philip demo Room" [members:1f4b46ae,2aeee78a,1f4b46ae]  ← real-user-owned (1f4b46ae)
+  3b1b93af | 2026-07-26T10:58 | owner=c5163b82 | n=3 | "Job Messe 2026" [members:c8199223,c5163b82,c5163b82]  ← real-user-owned (c5163b82)
+  32567ecd | 2026-06-16T19:13 | owner=da4f8809 | n=3 | "Marcel Samsung's Room" [members:ae9a8a5e,da4f8809,da4f8809]  ← real-user-owned (da4f8809)
+  3a01b743 | 2026-06-12T13:21 | owner=2947e035 | n=1 | "PollTest's Room" [members:2947e035]  ← real-user-owned (2947e035)
+  3ec1bf6e | 2026-09-06T11:16 | owner=8f74dfba | n=4 | "GRG TREFF" [members:b4f57923,05e58f81,41ad88c4,c09087ec]  ← REAL-6 GRG TREFF
+  00265820 | 2026-07-26T10:58 | owner=c5163b82 | n=3 | "From Legacy Systems to Production-Ready Al" [members:e7145a0a,c5163b82,c5163b82]  ← real-user-owned (c5163b82)
+  04543490 | 2026-07-26T10:58 | owner=e7145a0a | n=3 | "VE's NightRoom" [members:e7145a0a,c5163b82,e7145a0a]  ← real-user-owned (e7145a0a)
+  176b28ff | 2026-06-12T13:07 | owner=6ec3eac4 | n=1 | "DropTest2's Room" [members:6ec3eac4]  ← real-user-owned (6ec3eac4)
+  17728504 | 2026-06-16T19:13 | owner=c117f9fc | n=2 | "Toronto Trinity's Private Room" [members:c117f9fc,c117f9fc]  ← real-user-owned (c117f9fc)
+  14ca031b | 2026-06-12T13:15 | owner=e150bd50 | n=1 | "WKUpload's Room" [members:e150bd50]  ← real-user-owned (e150bd50)
+  8be52aa9 | 2026-09-06T11:16 | owner=8f74dfba | n=11 | "Marcel Donges's Room" [members:2703628c,2a244a61,a398945a,e9bf96f8,4824c4ea,05e58f81,c09087ec,8d9be587,41ad88c4,8f74dfba,3effa1fc]  ← REAL-6 Marcel Donges Room
+  f9c08308 | 2026-07-26T10:58 | owner=e7145a0a | n=3 | "VE's Room" [members:e7145a0a,c5163b82,e7145a0a]  ← real-user-owned (e7145a0a)
+  f672d29b | 2026-06-16T19:13 | owner=c117f9fc | n=8 | "❤️ HeartSpace" [members:b63c3a8a,0a3dd214,da4f8809,ae9a8a5e,8a2ca68f,c117f9fc,6a72bd33,c117f9fc]  ← real-user-owned (c117f9fc)
+  fb98a84f | 2026-07-26T10:58 | owner=bb002386 | n=13 | "wo-da.de Web4x Sovereign Infrastructure " [members:bb002386,52ebb30b,a8007541,d9c13c92,a56c831e,48826f43,e7145a0a,0541891b,424e2871,3a251582,c5163b82,20b45725,bb002386]  ← real-user-owned (bb002386)
+  f0f0df54 | 2026-06-13T20:15 | owner=ae9a8a5e | n=3 | "test merge's Room" [members:ae9a8a5e,c117f9fc,ae9a8a5e]  ← real-user-owned (ae9a8a5e)
+  ff65fda6 | 2026-07-26T10:58 | owner=c5163b82 | n=4 | "Metaverse Community Rettung" [members:f35b4301,c5163b82,e7145a0a,c5163b82]  ← real-user-owned (c5163b82)
+  fe4d5664 | 2026-06-16T19:13 | owner=f4798dae | n=4 | "Marcel Donges Surface Mini's Room" [members:f4798dae,ae9a8a5e,d48617b6,f4798dae]  ← real-user-owned (f4798dae)
+  2b1921a9 | 2026-09-06T11:16 | owner=5e5471fe | n=7 | "Christine Dawood's Room" [members:44bf9b39,6852cbb0,4af41484,a420f228,c09087ec,05e58f81,8d24401a]  ← REAL-6 Christine Dawood
+  2c06c042 | 2026-06-12T13:06 | owner=8bf1a112 | n=1 | "DropTest's Room" [members:8bf1a112]  ← real-user-owned (8bf1a112)
+  408ffa39 | 2026-06-12T13:03 | owner=f4b826ee | n=1 | "WebKitTester's Room" [members:f4b826ee]  ← real-user-owned (f4b826ee)
+  48c7bd19 | 2026-06-16T19:13 | owner=705e1e51 | n=2 | "Marcel Donges.DLI's Room" [members:705e1e51,705e1e51]  ← real-user-owned (705e1e51)
+  447d69ce | 2026-06-12T13:29 | owner=7073ebaf | n=1 | "GateTest's Room" [members:7073ebaf]  ← real-user-owned (7073ebaf)
+  440ccc82 | 2026-06-16T19:13 | owner=c117f9fc | n=28 | "md safari pwa's Room" [members:366ec723,96c88f12,b2e49efe,51882885,7ed58bfc,f5f43b45,955498cf,4e5655bf,07245519,10c74098,ef7eccc3,7250b82c,7e5c0b98,4033e6c7,1f4b46ae,a728c792,da4f8809,2aeee78a,fe53c3e6,8a2ca68f,8c5bd47c,ae9a8a5e,6a72bd33,eb92a5de,b63c3a8a,c117f9fc,d48617b6,c117f9fc]  ← real-user-owned (c117f9fc)
+  cc3294d0 | 2026-09-06T11:16 | owner=8d9be587 | n=3 | "Amos Donges's Room" [members:8d9be587,c09087ec,8d9be587]  ← REAL-6 Amos Donges Room
+  ca0a640b | 2026-07-28T12:21 | owner=41ad88c4 | n=1 | "Marcel test" [members:41ad88c4]  ← real-user-owned (41ad88c4)
+  c5899b10 | 2026-06-16T19:13 | owner=3dca7f5e | n=4 | "Admins's Room" [members:3dca7f5e,a728c792,c117f9fc,3dca7f5e]  ← real-user-owned (3dca7f5e)
+  d51bace3 | 2026-06-16T19:13 | owner=4cb9f847 | n=3 | "M's Room" [members:4cb9f847,c117f9fc,4cb9f847]  ← real-user-owned (4cb9f847)
+  a004ff7b | 2026-06-16T19:13 | owner=c117f9fc | n=2 | "Vietnam VIMS " [members:c117f9fc,c117f9fc]  ← real-user-owned (c117f9fc)
+  af778ee3 | 2026-06-16T19:13 | owner=b63c3a8a | n=9 | "Project Sanctuary" [members:da4f8809,1f4b46ae,2aeee78a,ae9a8a5e,c117f9fc,3f9508c9,eb92a5de,b63c3a8a,b63c3a8a]  ← real-user-owned (b63c3a8a)
+  aaaaaaaa | 2026-06-13T20:15 | owner=test-tok | n=4 | "Canon" [members:test-tok,072429e3,c117f9fc,test-tok]  ← real-user-owned (test-tok)
+  a563a2c7 | 2026-06-16T19:13 | owner=b63c3a8a | n=2 | "Marcel Donges.IT's Room" [members:b63c3a8a,b63c3a8a]  ← real-user-owned (b63c3a8a)
+  e32a20a7 | 2026-06-16T19:13 | owner=0d7ee549 | n=9 | "Royal Jungle" [members:c117f9fc,366ec723,b63c3a8a,0d7ee549,da4f8809,ae9a8a5e,6a72bd33,d48617b6,0d7ee549]  ← real-user-owned (0d7ee549)
