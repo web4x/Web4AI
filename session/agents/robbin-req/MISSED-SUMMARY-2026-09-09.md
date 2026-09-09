@@ -89,4 +89,4 @@ The identity-consolidation redirect chain `8f74dfba → 41ad88c4 → c09087ec` (
 
 ---
 
-**Ask me anything this leaves unclear. The failure to notice your wall was mine.**
+**Ask me anything this leaves unclear.** Detecting and reporting your wall was the SM's job and it did not happen; my part was dispatching without verifying motion. Neither is on you.
