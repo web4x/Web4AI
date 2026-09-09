@@ -1,3 +1,9 @@
+# 🛑 2026-09-09 TOP OF BUILD QUEUE — TEST-ROOM GUARD (Tron third-time MANDATORY) — READ FIRST
+
+**Tron 3rd verbal correction on test-room spam ('create ONE test room, remove all test rooms!!!'). Honour system FAILED 3x => MANDATORY WORK, ranked TOP of build queue ABOVE the R40.106 link/remove/move/delete increments (PO). ✓ BOARDED Task 24284f6d (commit 9c0427a79, S37/b86b53cc, owner expert+tester): a FAILABLE guard that makes test-room CREATION IMPOSSIBLE — [[scan-the-hazard-not-the-actors]]: count room/identity CREATIONS by test code, assert ZERO outside the ONE recorded SystemTester-room uuid, stub-must-fail; + scoped-cleanup-guard (never re-persist a bystander = architect #3, the 09-07 corruption cause). Covers req 80ca8e83 (room-flood proper-fix; its 2026-05-26 data-dir approach=T100 59c964f9=the failed honour-system) -> flagged req to STRENGTHEN 80ca8e83 w/ the 4 guard ACs (project, no hand-write) + reverse-wire. RECORDED on the row: (1) OPEN DEBT = manual cleanup running AHEAD of the guard (visible, the state that bit us); (2) NO hand-delete of canonical units (#96.13); (3) CLEANUP ACCEPTANCE = re-verify 6 REAL rooms untouched (names/createdAt/members), NOT deletion count. Tester reports enumeration to PO first. ▶ AWAITING: req strengthen (locks AC strings) + PO confirm the pin re-rank (priority change on his order).**
+
+---
+
 # ⏱️ 2026-09-07 PHASE-2 BOOT (ARON walled-rescue, off the wall) — READ THIS FIRST
 
 **Was WALLED 0% -> ARON rewound to just-after-last-boot, CODE-INTACT (Option-2; +164/-1171 revert NOT taken). Wall cleared, fresh runway. Do NOT replay the stale restored 'robbin-req GO / R37.34' draft — world moved on.**
