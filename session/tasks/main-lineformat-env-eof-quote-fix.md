@@ -30,3 +30,13 @@
 ## Notes
 - Memory: MacStudio is memory-pressured (~59MB free) — keep the work focused, no extra agents/forks.
 - Report the culprit line + fix hash back in this file.
+
+---
+## REPORT-BACK — oosh-expert: fix `d3d0d9f` on origin/main, container-verified
+**CULPRIT (named, not symptom):** `FORMAT_PARSE_METHOD` (line.format constant). Its value embeds `declare -- METHOD='%s'|declare -- METHOD_PARAMETER='%s'|declare -- METHOD_DESCRIPTION='%s'\n` — i.e. literal `declare -- NAME='…'` substrings + single-quotes. Container line 5 was the correct full var; **line 6 was a corrupt truncated duplicate of its tail** (`clare -- METHOD_DESCRIPTION='%s'\n"` — "de" stripped) with a **dangling closing `"` and no opener → `unexpected EOF while looking for matching '"'`**.
+**ROOT MECHANISM:** main `config.save` (config:306) persisted via a fragile `declare -p | grep | sed` with a **greedy `\(.*\)=`** that splits/duplicates values containing embedded ` NAME=` — exactly `FORMAT_PARSE_METHOD`. main LACKED both the robust persist AND 674f38b's FORMAT_ robustness.
+**FIX (root, 2 hunks, scope = line/config persistence only):**
+1. **config.save robust persist** — replaced the greedy sed with per-line `declare -px | while read` + `sed -n` varname extraction + `case "$varname" in ${name}*)` prefix match. Can never split mid-value → no duplicate fragment. (FORMAT_PARSE_METHOD is now cleanly SKIPPED from the file rather than corrupted — it is unpersistable by design.)
+2. **line: port 674f38b** — split `private.line.format.init` → save-free `private.line.format.defaults` (exports all FORMAT_ incl. FORMAT_PARSE_METHOD in-process) + `init` calls it then saves; `line.format` `FORMAT_*)` case self-heals empty vars via `[ -z "${!format}" ] && private.line.format.defaults`. So the file-skipped FORMAT_PARSE_METHOD is always available at runtime.
+**VERIFIED (container ooshTeam:0.6, oosh_main@docker):** `git pull` → `d3d0d9f`; `rm lineFormat.env; line format.force.update` → regenerated **4 balanced lines, NO line-6 fragment**; `bash -n lineFormat.env` → **LINEFORMAT_SOURCES_CLEAN**; fresh `LOG_LEVEL=4 bash --login` → **BOOT_CLEAN_NO_EOF** (grep for "unexpected EOF"/"matching"/"lineFormat.env: line" = none). Expert self-checks (bash -n both files + isolated generation test) green — NOT the gate.
+**HASH:** `d3d0d9f` (origin/main). → PO QA the diff; **tester** independent gate = a failable regeneration test (a FORMAT_ var whose value embeds `declare -- NAME='…'` persists+sources without EOF, on main).
