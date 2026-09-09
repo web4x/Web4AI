@@ -1,6 +1,8 @@
 # robbin-tester — context (LEAN — full per-gate history in `git log` + `learnings.md`)
 
-## ⏳ ACTIVE (2026-09-09, Tron ENFORCED-constraint 'remove all test rooms, ONE fixed room'): STEP 1 ENUMERATION DONE, HOLDING FOR PO RULING — NOTHING DELETED, 6 real rooms untouched
+## 🏠 THE ONE FIXED TEST ROOM (Tron enforced-constraint, 2026-09-09): **`909f1bd6-1f97-4542-b02b-242cfcc41f5e`** ('SystemTester', SystemTester-owned). ★ THE ONLY room any gate may EVER use — reuse it, clean artifacts INSIDE it in the same run, ZERO room creation in gates. If a gate can't run without creating a room → ESCALATE to PO, do not create.
+
+## ⏳ ACTIVE (2026-09-09, Tron ENFORCED-constraint 'remove all test rooms, ONE fixed room'): PO RULED (a-d) — executing canonical removal. STEP 1 enumeration done (below).
 - Full list committed: `session/agents/robbin-tester/lobby-enumeration-2026-09-09.txt` (9bf8d365). 120 Room units.
 - **DELETE SET = ~66 SystemTester-owned (ce981242) test rooms** (T3720/SEATBELT/B206/INC3/T343/DnD-tail + R31.x gate/T3741/T3721/ST-diag/SW-upload/System Test Room 68d0f039[61 members]). ~5 carry a c09087ec=Marcel member (0cfc88fd/0dd1d509/0a08249e/408cbacf/e8fcbc64) → delete ROOM-only, ZERO profiles.
 - **★ 3 FLAGGED — DO NOT DELETE without Tron/PO ruling** (the 3 non-real-6 of the RESTORED-9, REAL-OWNED): 3231db71 'Marcel dnd test room' (owner 8f74dfba=TRON, 6 real members), edd7fa61 'Marcel Owner Test' (owner c09087ec=Marcel), a16262b8 'System Evidence' (SystemTester restored evidence). Recommendation: KEEP (restored real-owned, not lobby-spam).
