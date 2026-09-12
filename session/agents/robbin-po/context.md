@@ -1755,3 +1755,17 @@ PASS = the USER OUTCOME (right CLASS **and** renders-as-itself), never "stored" 
 - **NOT DONE:** same-uuid-not-a-copy · **Tron's drag STILL MOVES** (re-run the 0.8.214 gate against 0.8.216 — slice-4 touched that surface).
 - **R40.108 rule now live: every verdict carries the SERVED VERSION it was measured on**; no version ⇒ not accept-ready.
 ### RANK (mine, stated to Tron): R40.106 INC line OVER Sprint-37's 30-Planned bulk — INC-7 has REAL red baselines (2 live dangling units, `deleteRoom` no-op, a task accepted-Done-but-half-false). Working-system beats consistency paperwork. S37 measured today: 30 Planned / 14 QA-Review / 6 In-Progress / 2 Done. **Accept queue 24, provenance-clear, awaiting Tron.**
+
+### ★★★ #96.15 — R40.106 LINK LINE: FIX-A + FIX-B SHIPPED (2026-09-12, prod v0.8.219)
+- **v0.8.217** `8fef23f01` — **HID** the "Link here" affordance (it had NO visible effect = broken promise; offered⟺succeeds). Tester GREEN.
+- **v0.8.218** `7da5236ac` — **FIX-A edge-aware render UNION** (renders under F if in F.children[] EDGES **or** location/parent, **dedup by uuid**). +21/−0. Gates: render-shows RED→**GREEN** · remove-here≠there **STAYED RED** · no-double **count==1** · drag byte-consistent. ★ The ASYMMETRY was the proof the increment did only what it claimed.
+- **v0.8.219** `3a39fda91` — **FIX-B per-edge REMOVE** (unlink honours a CONTAINER ref — the primitive always took it, the handler truncated it) + **MOVE unlink-half targets the SOURCE edge** (byte-identical for drag: source==parent) + **location-hygiene** (unlink now CLEARS model.location). +41/−14 = net +27.
+### ★★ THE "4 STRANDS" WERE PHANTOM — REAL RISK = 0
+The differential said 4 folder-nested location-only units ⇒ we chose UNION over pure-edges to avoid disappearance. Tester's **member-filtered** read-only probe: all 4 are **NON-MEMBER removed leftovers with a stale model.location** in TEST room `909f1bd6`; **LIVE real-room strand = 0**. Root: the scan had **no membership filter**, and unlink left an **orphaned location string** (now fixed). Baseline corrected on disk **4 → 0-real** (date + served version). ★ Shipping UNION was still RIGHT (additive under an uncertain differential) — we retire it on evidence, we do not revert it.
+### ★ RANK (mine, re-ordered on that evidence — do not re-litigate)
+**(1) re-enable Link-here (own gated increment) → (2) PURE-EDGE FLIP retiring the union, BEFORE INC-5/6 → (3) INC-5/6 negative-delta collapse.** Why (2) before (3): the union guards an EMPTY set, so carrying it into the collapse means refactoring code we have already decided to delete. **CONDITION on (2): own deploy + own gate; PRECONDITION = re-run the member-filtered differential FRESH at flip-time; if ≠0, STOP** (never flip on a stale number — the "4" lesson).
+### STANDING BARS
+- **LINE DELTA is an acceptance criterion.** Additive is fine where additive is the point; **INC-5/6 MUST go NEGATIVE** (duplicated `children[]` RMW bodies DELETED, not shimmed). I measure it myself.
+- **"behaviour-identical" = the BUILDER'S word, wrong 4×.** The tester's independent gate asserts it.
+- **Gates carry RED baselines + are FAILABLE BOTH WAYS**; assert a **COUNT not a presence** (a duplicate must read 2=RED); prove on **real data** what a synthetic probe cannot construct.
+- **NO /compact, ever** (Tron-gated; recover by 2-phase REWIND). **No agent self-assesses its %** — SM renders it (today: me 39 high, expert 12 low).
