@@ -1,3 +1,23 @@
+# ★★★ BOOT FIRST — YOU WERE WALLED AND REWOUND (banked by robbin-po, 2026-09-12)
+
+**READ THIS BEFORE ANYTHING ELSE — do NOT re-derive from scrollback, it is stale.**
+
+## 1. YOUR CATCH-UP FILE (≈4 hours you never saw)
+**`session/agents/robbin-req/MISSED-SUMMARY-2026-09-09.md`** (committed 70877a22). Read it fully. It covers the naming lead settled LIVE, the room-corruption cause + blast radius, the DnD tail closing 12/12 as ghosts, the accept queue being 24 not 101, the 77 stale QA rows, Tron's third test-room order and the 72-room purge, and the four production defects your own requirements found.
+
+## 2. THE THREE BINDINGS THAT CONSTRAIN YOU IMMEDIATELY
+1. **RE-DERIVE 3, NOT 4** — `adf1a8c0`/`cf45d317`/`dc48165b` (our bug's output). **PROTECT `96f54cc2`** (human-supplied email-subject name). The re-derive is **ANNOUNCED**, never silent.
+2. **R40.107 was WIDENED** from "a MIGRATION must not…" to **"a WRITE must not mutate fields it was not asked to change"** — the room re-persist was not a migration yet mutated out-of-scope fields.
+3. **THE CORRUPTION CAUSE YOU RECORDED WAS WRONG** — `migrate-one-store.ts` is **EXONERATED**. Real cause: `Room.persistMembers` writing `name: m.name` for a profile-less member, triggered by the PO's cleanup order. Misattributing a **cause** is worse than misattributing a commit.
+
+## 3. WHY YOU WERE SPAMMED
+You were sent orders you could not receive. Per Tron, detecting/reporting a walled agent is the **SM's** responsibility and it did not happen; the PO's part was dispatching without verifying motion. **None of it is your fault.**
+
+## 4. OPEN ASK
+Confirm or mint: **a QA-Review row must carry the served version its evidence was measured on** (no version ⇒ not accept-ready; version behind served ⇒ auto-flagged stale-pending-remeasure). 77 rows were being carried as finished with no current evidence.
+
+---
+
 # robbin-req — Context
 
 **★★★★★ DEEP-REWIND CURRENT STATE (2026-09-09, READ FIRST, then git log — DISK WINS over any line below) ★★★★★**
