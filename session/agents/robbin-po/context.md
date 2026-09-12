@@ -1737,3 +1737,21 @@ PASS = the USER OUTCOME (right CLASS **and** renders-as-itself), never "stored" 
 3. **Driver-chain fragility**: trainer climbing, ARON its only driver — SM tracking; if BOTH near 80 that is the double-wall.
 
 ### NEXT (ranked): INC-4 slice-3 client link/remove Commands → slice-4 drop=link wiring → **INC-5 MOVE=unlink+link (DELETES the bespoke reparent body)** → INC-6 per-surface collapse → **INC-7 DELETE** (scan NOT reverse-index · pre-image committed FIRST · acceptance = post-delete dangling scan **0**; its RED-baselines are REAL: T34.3 accepted-Done-but-half-false, 2 live dangling units, deleteRoom no-op, + the 8 test-debris orphans).
+
+### ★★★ #96.14 — POST-REWIND, 3 RISKS CLOSED, SLICE-4 LIVE (2026-09-12, prod v0.8.216)
+**All three #96.13 open risks are RESOLVED — do NOT re-chase them.**
+1. **v0.8.213 ungated on Tron's drag path → CLOSED.** Tester independently gated the `move-unit` rewire **GREEN DET-3x** on his file-into-folder path (`ff9fbf089`, v0.8.214) — and a REAL defect was caught first (`fb1efb18a`, guard old-parent publish on `r.changed`). ★ **"behaviour-identical" has now been the BUILDER'S word and WRONG 4×** — the tester's gate asserts it, never the builder.
+2. **Did SM's number precede slice-2? → YES.** 68 pre-slice-2, 73 pre-slice-3, slice-4 expert self-rewound. Round-trip delivered-first confirmed; rule held.
+3. **Driver double-wall → CLOSED.** I ordered trainer(64,healthy)→rewind ARON(76, the fragile node = trainer's ONLY driver) as a **SEQUENCING** call, not a threshold one. Fresh ARON 39 now backs the trainer. Cycle closed.
+
+### ★ MY RULINGS THIS ARC (binding, do not re-litigate)
+- **ADDITIVE, not drag=link.** Slice-4 ships an explicit "🔗 Link here"; **DRAG STAYS MOVE**. Reason: drag A→B is a WORKING feature Tron uses (the exact path gated GREEN at 0.8.214). Changing what his gesture MEANS is HIS call. Mechanism is identical either way ⇒ flipping to drag=link is a **1-line rewire on his word**. ★ Open question surfaced to him as a one-liner, NOT a blocker.
+- **LINE DELTA IS AN ACCEPTANCE CRITERION.** Slice-2 shipped as "DRY collapse, less code" but measured **+21/−19 = NET +2** (`server.ts` grew +5/−3). Slice-4 = **+57/−4 = net +53**, additive by design. ⇒ **INC-5/INC-6 MUST show a NEGATIVE net delta** (duplicated `children[]` RMW bodies actually DELETED, not shimmed). **An increment claiming removal while the delta disagrees is RED regardless of green tests — I measure it myself.**
+- **Inverse semantic-gate pairs** are the right shape: slice-3 *remove ≠ delete* (unit SURVIVES) + slice-4 *link ≠ copy* (source SURVIVES, ONE uuid in both).
+
+### SLICE-4 GATE STATE (served v0.8.216, fresh tester resuming)
+- **(B) OCP = GREEN DONE** (link registers kind-generically, lint 0). Do not redo.
+- **(A) additive-link = INCONCLUSIVE, NOT a verdict** — probe saw F-not-in-both while `link-unit` returned **200**; tester suspected its OWN target-format instrument and refused to call a product RED. ★ **RESOLVE BY A DIFFERENT INSTRUMENT: data-side containment** (both containers list the SAME uuid via /api/ior; resolves ONCE). **If data says NOT-in-both while the call returned 200, that is a REAL RED — a 200 that does not link reports success for nothing.**
+- **NOT DONE:** same-uuid-not-a-copy · **Tron's drag STILL MOVES** (re-run the 0.8.214 gate against 0.8.216 — slice-4 touched that surface).
+- **R40.108 rule now live: every verdict carries the SERVED VERSION it was measured on**; no version ⇒ not accept-ready.
+### RANK (mine, stated to Tron): R40.106 INC line OVER Sprint-37's 30-Planned bulk — INC-7 has REAL red baselines (2 live dangling units, `deleteRoom` no-op, a task accepted-Done-but-half-false). Working-system beats consistency paperwork. S37 measured today: 30 Planned / 14 QA-Review / 6 In-Progress / 2 Done. **Accept queue 24, provenance-clear, awaiting Tron.**
