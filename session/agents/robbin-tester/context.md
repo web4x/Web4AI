@@ -2052,3 +2052,10 @@ POST-FIX 7-POINT BAR (architect, all required else INVALID-not-RED): (1) same in
 2. CLEAR OPEN-DEBRIS prod room 1bfb12e4 via the FIXED delete (its exit condition, PO): verified-GONE by no-cache /api/ior re-read AND 0 dangling in SystemTester room-list → then remove the open-risk item. First real-world exercise of the fixed delete on prod.
 3. VERIFY 6 keep-marks actually applied on disk (model.protected on the 3 rooms + 3 units).
 - Standing no-sweep order LIFTS only after 7b+marks live+verified (step 1). 45-debris stays HELD until then.
+
+
+## 🔻 v0.8.225 CLOSEOUT (2026-09-12, no-sweep NOT yet lifted — keep-set incomplete):
+- ✅ (1) OPEN-DEBRIS 1bfb12e4 CLEARED via v0.8.225 FIXED delete = FIRST real-world prod deleteRoom: /api/ior GONE (no-cache) + STAYS-gone (post-teardown settle = live proof of resurrection fix my rig bite predicted) + 0 in SystemTester room-list. Empty (contents=0, over-reach cannot bite). Open-risk item RESOLVED. Architect co-confirms.
+- 🔴 (2) KEEP-MARKS INCOMPLETE = 4/6 on prod disk (measured, PO-split proof part-a): MARKED a16262b8(Room)+b7e22e2c+f3edf45e+c3e226c5. **UNMARKED (protected=undefined): 3231db71 (Room 'Marcel dnd test room') + edd7fa61 (Room 'Marcel Owner Test Room')** — 2 of 6 MISSING. The a16262b8 class EXACTLY (shipped-6 but disk-4; PO disk-verify caught it). Reported expert (apply the 2) + PO. part-b (code-honours-marks) already PROVEN on rig (7b bite protected-contents REFUSES-naming DET-2x). no-sweep STAYS until 6/6 on disk.
+- ⏳ (3) INC-7 baseline re-gate: running on served v0.8.225.
+- ⛔ no-sweep LIFTS only when (1)done+(2)6/6+(3)clean all measured; PO lifts explicitly in writing.
