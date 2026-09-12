@@ -19,3 +19,10 @@ provenance against the committed 09-09 enumeration (lobby-enumeration-2026-09-09
 - The 45 test-debris orphans → INC-7 may clear (safe; pre-image + footprint guard = reversible floor).
 - The 3 a16262b8 evidence units → HELD for PO decision; NOT deleted with the debris.
 - Post-delete: orphans (test-debris) = 0, evidence untouched-or-re-homed, NO live member touched (membership-filter).
+
+## a16262b8 INVESTIGATION CONCLUSION (PO-escalated data-loss check) — git-proven
+- DELIBERATELY DELETED by MY OWN 09-09 cleanup commit 4270d0043 (present at 4270d0043~1, absent at 4270d0043). NOT a vanish.
+- ROOT: a16262b8 is SystemTester-owned (ce981242); the 09-09 delete SELECTION was owner-based (sweep SystemTester test rooms) → it MATCHED and was swept. KEEP was an ANNOTATION in notes, NOT a hard exclusion wired into the selection. The other 2 flagged-KEEP rooms (3231db71 owner=Tron, edd7fa61 owner=Marcel) survived only by owner-distinctness (coincidence, not KEEP-enforcement).
+- SEVERITY: RECOVERABLE — room container in git (4270d0043~1); the 3 evidence units (b7e22e2c/f3edf45e/c3e226c5) SURVIVED as orphans (on disk). Evidence content not lost.
+- RELATION TO INC-7: not deleteRoom (a no-op) — my deliberate git-rm; but deleteRoom-brokenness forced the hand-sweep where KEEP-exclusion failed. INC-7 delete must honour an ENFORCED keep-set.
+- FIX: a keep-set must be a HARD EXCLUDE-LIST checked in the delete SELECTION before any owner/type filter — never an annotation. Recommend recover a16262b8 + re-home its 3 evidence orphans.
