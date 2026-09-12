@@ -1,6 +1,7 @@
 # robbin-tester — context (LEAN — full per-gate history in `git log` + `learnings.md`)
 
 ## 🏠 THE ONE FIXED TEST ROOM (Tron enforced-constraint, 2026-09-09): **`909f1bd6-1f97-4542-b02b-242cfcc41f5e`** ('SystemTester', SystemTester-owned). ★ THE ONLY room any gate may EVER use — reuse it, clean artifacts INSIDE it in the same run, ZERO room creation in gates. If a gate can't run without creating a room → ESCALATE to PO, do not create.
+- **GUARD LINT (ded9d171f, PUSHED):** `test/visual/r-test-room-single-source-lint.mjs` scans the HAZARD (`.createRoom(` + hardcoded-foreign-identity mint in test code), asserts ZERO outside 909f1bd6 + ce981242 (both DATA in the lint = rewind-durable). RED-baseline = **32 files / 52 createRoom** (migration debt) + 0 identity-mint. Stub-fail-proven. GREEN when all 52 migrate to reuse the fixed room. ROLLOUT: report-only now (52 violations would block ci as a hard reject); migrate → flip to REJECT-at-0, or wire as REJECT-above-baseline. MIGRATION = my follow-up (start with my own recent gates).
 
 ## ✅ DONE (2026-09-09, Tron ENFORCED-constraint 'remove all test rooms, ONE fixed room'): 72 test rooms DELETED + verified null on live surface; 45-real delta=0; NO silent-drop.
 - **72 DELETED** via canonical removal (deleteRoom live + rm scenario/index unit + room dir), rooms-only ZERO profiles; verified GONE on live /api/ior (null). 18 tracked deletions committed (4270d0043); 54 untracked vanished; pre-image sha256'd in scratch. deleteRoom-alone can't do this (R40.106 no-op, boarded to req 3rd instance).
