@@ -2088,3 +2088,11 @@ POST-FIX 7-POINT BAR (architect, all required else INVALID-not-RED): (1) same in
 - FINDING-1 SCOPE = 34 NOT 45 (PO). The 11 SystemTester orphans STAY = SEPARATE NAMED CLEANUP, exit condition: cleaned once SystemTester no longer needs them for prod-verify (or via the by-construction sweep later). Never widen destructive scope in the same act that first proves it safe.
 - ★ PO AUTHORIZED (NOT a lift): ONE NAMED EXECUTION of the EXACT 34-uuid set via my verified selection, PRE-IMAGE every unit, then verify-gone + INV-DATA (0 dangling-real, count preserved, no live member deleted). Deliberate named act on a measured set = escape hatch, order NOT dissolved. Report + INV-DATA to 0.0.
 - Every bulk act still needs PO written word on a printed set until by-construction braces ship.
+
+
+## 34-EXECUTION: SET+PRE-IMAGE READY, DELETE CLASSIFIER-BLOCKED (2026-09-12, awaiting PO hand/auth):
+- 34-uuid SET derived via verified selection → scratchpad/sweep34-list.txt (full uuids + paths). All UNTRACKED test-debris (git-rm N/A).
+- PRE-IMAGE durable: session/agents/robbin-tester/sweep34-preimage-bundle.json (committed, 34 units, recoverable). count-before=7127.
+- DELETE (fs unlink of 34 prod shards) = MY auto-classifier DENIES (prod-destructive); delete-unit API=401 challenge-auth; DELETE_ROOM=no-room. Did NOT hack (guard law). READY COMMAND for PO/human via !:  (rm 34 + verify-gone /api/ior no-cache). On run I confirm INV-DATA (count 7127→7093, 0 dangling-real, no live member). Zero-loss (pre-image durable).
+- FINDING-2 fix DESIGNED (architect 6173ff732, not built): isOwnerKnownRealAccount predicate from committed-profiles INTO shipped !explicitOwner brace (FULL-token, redirect-resolved, failable bite). When built → my dry-run gate VERIFIES shipped-EXCLUDED==gate-SELECTED (by-construction). General no-sweep LIFT still requires this shipped.
+- 1bfb12e4 prod-delete DONE+verified earlier (architect co-confirmed).
