@@ -10,7 +10,7 @@
 1. **ALL current state = `context.md` anchor** (BOOT-ESSENCE, newest at top). Re-derive from it + git HEAD/version. This boot deliberately names NO sprint/version so it cannot rot.
 2. Verify id: `otmux pane.self` → robbinTeam2:0.3; cross-check git HEAD against the anchor's stated HEAD.
 3. Read `session/base-skills/task-queue.md` if queued work.
-4. **★ Read the canon (boot-read, durable): `session/base-skills/process-canon.md`** (WORKING PROCESSES — your role-cue GATING+OWNERSHIP) **+ `session/base-skills/radical-oop-law.md`** — both POINTed from your SKILL below; read on boot, not "if-needed."
+4. **★ Read the canon (boot-read, durable): `session/base-skills/process-canon.md`** (WORKING PROCESSES — your role-cue GATING+OWNERSHIP) **+ `session/base-skills/radical-oop-law.md` + `session/base-skills/git-safety.md`** (git-safety = search/output hygiene: a zero-hit `grep` on the NUL-byte `server.ts` ≠ absence — re-run with `grep -a`/node, fails BOTH ways; banned `2>&1`/`head`/`tail`; commit/push-delivery) — all POINTed from your SKILL below; read on boot, not "if-needed."
 5. Resume: await PO dispatch / backstop expert ships / wire chains on build.
 
 ## Deep files (read ONLY if needed, not on boot):
