@@ -1,3 +1,24 @@
+# robbin-skill-expert Context — Save Point 2026-09-12 (WODA.prod, HELD under Tron stand-down)
+
+## ★★★ CURRENT SAVE 2026-09-12 — READ THIS (NEWEST) BLOCK FIRST, then re-derive from disk ★★★
+**BOOT POINTER (by position, not a line-number — numbers rot):** this TOP block is the current state; every ★★★ block BELOW it is HISTORY (older-dated), read only if a detail is needed. On boot: verify id (otmux pane.self %9 -> robbinTeam2:0.2 round-trip), then re-derive world from disk (git log, the pin singleton, /api/ior) — NEVER trust a stale conversation.
+**IDENTITY**: robbin-skill-expert @ robbinTeam2:0.2, WODA.prod. Repo /var/dev/Workspaces/web4x/Web4RawBin (main) + AI/Claude session repo (my anchor). Report to robbin-po (0.0) ONLY via tmux send-keys.
+**STATUS: HELD under TRON STAND-DOWN** (idle; take NO new work/dispatch until TRON clears — PO can't self-lift). This Phase-1 self-anchor = maintenance (allowed), ahead of a trainer-driven proactive 2-phase REWIND.
+**WORLD (measured 2026-09-12)**: web4x HEAD c1aad0234, prod v0.8.223, pin = Sprint 37 / Task 37.20 (DnD drop contract) — re-ordered since my R40.81 pin work. INC-7 data-deletion incident in flight (pre-image-before-delete / single-room-constraint / DATA_DIR isolation) = NOT my lane.
+**DELIVERIES THIS SESSION (all committed; web4x = LOCAL push-hold, AI/Claude = pushed)**:
+- R40.84 Impl-hop CLOSED (label-form false-open diagnosed; expert reordered marker; drift-controlled before/after: 8693dc2b open->credited, S40 29->30 isolated +1; the CHAIN-scoreboard was under-counting, the TASK board was honest — two boards).
+- OOP-task-correction table contribution + ★ 6 CREDITED-GREEN SHELLS finding (behaviour in view/server-free-fn, no domain class owns the invariant — green hides an unowned invariant).
+- TRON CUT-BAN law: built FAILABLE lint session/tools/lint-rewind-vocabulary.mjs (scan the HAZARD, self-test RED->GREEN, whitelists idioms+named/quoted+identifiers, HISTORY_BOUNDARY exempts records); enforced canon 36->0 GREEN (Tron verbatim preserved); canonical law+WHY in base-skills/agent-rewind.md, process-canon POINTs; WARN boot-path tier 283, timebox checkpoint 09-13 / ceiling 09-20.
+- AXIS-2 born-at-parity: generate-sprint-md PROJECTS task AC from coveredRequirements (projectTaskAc, 7a5a7920c) — parity BY CONSTRUCTION (demo 17==17 +0, hand-written 3-vs-17 RED). REMAINING: mint-time STORED-field derivation + back-fill (split w/ req: req=existing rows, me=mint).
+- DRIFT-COMPLETENESS: checkAllGenerated (22f9bdf66) accounts EVERY artifact all-sprints, MISSING its own category, coverage as N/M fraction, FAILABLE --complete-bite proven; baseline 416 drift / 624 accounted (was ~38) — 416 = honest drift old metric was blind to (partly AXIS-2 not-yet-regen + pre-existing stale); REGEN gated.
+- Pin render-stale finding: /api/ior serves the pin FRESH; open-client staleness = live-push not fired on a disk-edit re-order (server-routed=live, disk-edit=reload-only; owner-gated designate 403) — NOT hand-stampable.
+**REVIEW RUBRIC (SKILL review, when asked)**: (1) OOP-correctness not paraphrase; (2) POINT-not-COPY; (3) completeness vs the caught gap; (4) BOOT-REACHABILITY (a SKILL exists != binds — boot.md must read-on-boot it; .claude/agents SKILL is SPAWN-ONLY, never a pane-agent system prompt).
+**OPEN (awaiting PO / gated)**: AXIS-2 stored-field back-fill split; regen-to-clear-416 (gated: push-hold + req rows); cut-ban anchor-tier enforcement (warn->reject); pin durable-live-push routing (architect/expert R40.17); hook-apply (session/design-notes/law-adoption-hook-spec.md fc019094). ★ RawBin HALT (SM 09-07): staged MIGRATION corruption (name-blank room 3231db71) NOT MINE — do NOT commit/reset the RawBin index until PO clears owner.
+**CONSTRAINTS**: `npx tsx` DENIED all session -> esbuild-bundle the REAL scorer/generator + plain node (output inside repo so __dirname/idx resolve; external typescript) = my tsx-free method. ★ COMMIT-HYGIENE v2 (LAW): ONLY `git commit -m MSG -- <my explicit paths>` + verify `git show --stat`=only-mine; NEVER add -A/./glob, NEVER bare commit, NEVER `git reset HEAD` on a shared tree (unstages peers). Commit only my OWN files.
+## ★★★ END CURRENT SAVE 2026-09-12 ★★★
+
+# (history below — older dated blocks, read only if needed)
+
 # robbin-skill-expert Context — Save Point 2026-06-28 POST-FORK (WODA.prod, STANDBY)
 
 ## ★★★ STAND-DOWN BOUNDARY 2026-09-05 (TRON order via PO — READ FIRST) ★★★
