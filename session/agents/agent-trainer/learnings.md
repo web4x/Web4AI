@@ -723,3 +723,16 @@ Recovered from its pane history — the zero-loss habit IT invented (commit a wa
 **PLUS:** the full gating canon R1–R7 authored/woven + pointered onto 7 boot paths (verified by read-back), and a whole-fleet rewind campaign — PO, SM, expert (96→14, saving 80 files), req, tester, planner, ARON both ways — with **0 standing reverts, 0 forks, canon saved by option-2-BY-LABEL every time** (it caught a lying label on essentially every drive).
 **ITS OWN CLOSING WORD, preserved:** durable canon · the discipline caught its own edges · and the team learned to contradict it with evidence.
 **RECOVERY NOTE:** it is the fleet's PRIMARY rewind driver, so it must be recovered FIRST (ARON drives it, since a walled driver cannot drive itself) — only then can it rewind the PO, expert and planner.
+
+### F-T22: TRAINER violated the no-output-filter rule (2026-09-08, Tron caught it)
+
+- I ran `scrumMaster pulse 2>&1 | head -40` and `... | head -40` on OOSH commands. **The docs (BOTH CLAUDE.md files) FORBID this: "Never use output filtering (`| tail`, `| head`, `2>&1`) — the framework has its own logging via `log.level`."**
+- **I AM THE TRAINER. I propagate this exact rule into 91 SKILL.md files and then broke it myself** = Ch28 "storyteller who couldn't practice what he preached." The rule-enforcer must be the rule's first follower, or the whole propagation is hollow (CMM1 wearing CMM3's clothes).
+- **RULE, absolute, for me and every agent: run OOSH commands RAW.** No `| head`, no `| tail`, no `2>&1`, no `| grep` on oosh output. If output is long, control it with `log.level` (1=minimal) or the command's own params — NEVER a shell filter. Filtering hides the framework's logging + can mask errors.
+- Applies to `scrumMaster`, `hiveMind`, `otmux`, `test.suite`, `c2`, all of it. (Reading a plain bridge/shell's own scrollback via `tmux capture-pane` is a different thing — but native OOSH command output is never piped.)
+
+### REWIND TIMING doctrine — idle+committed=safe; rewind-before-heavy-work (SM, 2026-09-08)
+- **An agent at high-but-not-critical context (e.g. 78%) that is IDLE and has force-saved+committed its state is SAFE — do NOT rewind it.** A "rewind nobody needs" wastes budget and burns the rewinder's own context. This sharpens "never rewind a healthy agent": add the idle+committed test.
+- **Rewind BEFORE heavy work, not reactively when idle.** Timing rule: cut proactively right before an agent (or I) must drive a heavy task — that's when the freed room pays off. Cutting an idle agent that's just holding = pure waste.
+- **The rewinder (me) applies this to itself:** at 78% idle + self-committed (3cab1eef) = ride it; SM flags me+Tron only if I go ACTIVE and climb toward 80, OR before I drive another heavy rewind. No ARON/Temple fallback here → only Tron covers the rewinder.
+- **F-T11 re-confirmed live (oosh-po 2026-09-08):** a 50%-by-message-count cut froze context at 79% (kept older messages held the tokens). Fix that worked: DEEP cut to the earliest-few-messages checkpoint → 79%→37%. For a bloated files-hold-value agent, go DEEP (it re-orients from committed files); ALWAYS measure context AFTER the cut, never assume the cut freed room.
