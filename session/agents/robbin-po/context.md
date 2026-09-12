@@ -1,5 +1,8 @@
-# ★★★ BOOT-ESSENCE (PHASE-1 CONSOLIDATION, 2026-08-17) — READ THIS BLOCK, THEN ONLY #75 ★★★
-**This file is now LEAN: this BOOT-ESSENCE block, a HISTORY marker, then #75 (current). Older anchors were collapsed 2026-08-17 (ARON Phase-1) — full text in git. Newest state is at the BOTTOM (#75).**
+# ★★★ BOOT-ESSENCE — READ THIS BLOCK, THEN **THE LAST BLOCK IN THIS FILE** ★★★
+**★ POINTER BY POSITION, NEVER BY NUMBER: the CURRENT state is ALWAYS the LAST `### ★★★ #…` block at the BOTTOM of this file. Read this BOOT-ESSENCE, then jump to the END and read the final block(s) upward until you have the live picture. Everything between is HISTORY.**
+**★ WHY IT IS WRITTEN THIS WAY (2026-09-12): this header used to say "then ONLY #75" — and by today that was 21 saves stale, so a fresh me would have booted into a weeks-old world and missed the entire R40.106 arc, the destructive INC-7 bar and a live incident. A pointer naming a NUMBER rots the moment you save again; a pointer naming a POSITION cannot. Three agents (architect, trainer, expert) booted from stale anchor-tops TODAY and each lost or nearly lost a cycle — this is the structural cure, not a reminder to be careful.**
+**★ NOTHING ABOVE THE HISTORY MARKER MAY CLAIM TO BE LIVE. If an older block says "THIS is the live state", it is stale by construction — strike it when you supersede it; superseding means STRIKING the old claim, not appending a newer one beside it.**
+*(File was collapsed 2026-08-17 by ARON Phase-1; pre-collapse text in git.)*
 
 ## ★★★★★ ABSOLUTE STANDING LAW — SECURITY (TRON, 2026-08-31) ★★★★★
 **TRON VERBATIM: "NEVER WORK ON SECURITY IF NOT ABSOLUTELY AUTHORIZED BY ME!!!!"**
