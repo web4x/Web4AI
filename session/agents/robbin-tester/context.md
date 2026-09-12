@@ -1,5 +1,10 @@
 # robbin-tester — context (LEAN — full per-gate history in `git log` + `learnings.md`)
 
+
+## ⛔ ACCEPTED OPEN RISK / OPEN DEBRIS (PO-ruled 2026-09-12, MANDATORY-TRACK — not clean until measured):
+- **PROD test room 1bfb12e4-ec8e-401d-acea-6bc879199aef** ('SystemTester-prod-verify'), owner=SystemTester(ce981242), EMPTY (0 fileUnits/0 children, unshared → Tron does NOT see it, blast radius ~0). Created during the PO-authorized prod create-verify (Tron-can-create-rooms proof, GREEN). NOT deletable now: delete-unit=401 challenge-auth (guard working-as-designed); DELETE_ROOM=old-no-op on v0.8.224 (no 7b) + classifier-denied; raw-rm REFUSED by PO (live server holds it in-memory → re-persist/resurrection defect being fixed). Pre-image: scratchpad/prod-room-preimage.json (+ room is LIVE on prod so trivially recoverable until deleted). **EXIT CONDITION (PO): removed via the v0.8.225 FIXED delete — becomes the FIRST real-world exercise of the fix — VERIFIED GONE by no-cache /api/ior re-read AND 0 dangling in SystemTester room-list.** Carry as ACCEPTED OPEN RISK every report until measured-gone. If Tron ever reports seeing it → remove immediately by whatever authorized path exists.
+
+
 ## ⛔⛔ STANDING ORDER (PO, 2026-09-12, survives rewind): NO owner/criteria-based SWEEP OF ANY KIND until the ENFORCED keep-set (model.protected + hard exclude-list read by the delete) is LIVE + VERIFIED (INC-7). The 45-debris sweep is HELD. Right now NOTHING is protected (no model.protected yet; Tron's 3231db71/edd7fa61 survived last sweep only by owner-coincidence; restored a16262b8 carries no mark). Individual NAMED per-unit deletes with sha256 pre-image = OK; any filter/criteria-driven sweep = FORBIDDEN → come to PO, decide unit-by-unit. WHY: a protection not READ by the acting code protects nothing (a16262b8 incident) — do not run a selection-driven delete in the window where no enforcement exists.
 
 
