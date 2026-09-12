@@ -2081,3 +2081,10 @@ POST-FIX 7-POINT BAR (architect, all required else INVALID-not-RED): (1) same in
   - FINDING-1 SCOPING: the 11 excluded are SystemTester TEST-debris; sweep target = 34 (non-ST) or 45 (incl ST's 11)? PO ruling needed.
   - FINDING-2 BRACES-NARROWER-THAN-INTENT: shipped owner-clause (ownerByToken) protects ONLY the 1-id protected-set (05e58f81)+model.protected — NOT the 26 committed profiles NOR ce981242. Real-risk in THIS set=0, BUT braces rely on the SWEEP SELECTION (my gate excludes committed-profile-owners), not the clause. RECOMMEND widen protected-set to committed-reals OR sweep-via-this-gate's-selection before trusting the clause as the net.
 - no-sweep LIFTS only after PO rules (1)+(2) + I run the actual sweep (via the ruled selection) → baseline re-gate flips GREEN. PO lifts in writing.
+
+
+## PO RULING on dry-run findings (2026-09-12):
+- FINDING-2 = CONFIRMED real (braces live in my gate CONVENTION, not shipped code = a16262b8 shape). FIX (architect DESIGN, routed): a SEPARATE is-owner-a-known-real-account predicate in the shipped bulk-delete path, derived from COMMITTED PROFILES — NOT widen the protected-identity-set (that's owner-AUTH-trust → priv-esc). General no-sweep LIFT requires this by-construction braces SHIPPED.
+- FINDING-1 SCOPE = 34 NOT 45 (PO). The 11 SystemTester orphans STAY = SEPARATE NAMED CLEANUP, exit condition: cleaned once SystemTester no longer needs them for prod-verify (or via the by-construction sweep later). Never widen destructive scope in the same act that first proves it safe.
+- ★ PO AUTHORIZED (NOT a lift): ONE NAMED EXECUTION of the EXACT 34-uuid set via my verified selection, PRE-IMAGE every unit, then verify-gone + INV-DATA (0 dangling-real, count preserved, no live member deleted). Deliberate named act on a measured set = escape hatch, order NOT dissolved. Report + INV-DATA to 0.0.
+- Every bulk act still needs PO written word on a printed set until by-construction braces ship.
