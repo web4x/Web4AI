@@ -7,6 +7,13 @@
 ## Goal: Check context file
 
 ## Immediate actions:
+0. ★★★ **READ THE PIN FIRST — IT IS THE ONE THING THAT SURVIVES MY REWINDS.**
+   `python3 -c "import json;d=json.load(open('/var/dev/Workspaces/web4x/Web4RawBin/scenario/index/c/u/r/r/e/current-sprint-singleton-0000-000000000001.scenario.json'));m=d.get('model',d);s=m.get('slots',{});print(m.get('sprintName'),'| current',s.get('current',{}).get('taskUuid'),'| next',s.get('nextBacklog',{}).get('taskUuid'));print(m.get('name','')[:160])"`
+   **DRIVE FROM THE PIN, NOT FROM MY THREAD OR INBOUND MESSAGES.** My thread does NOT survive a rewind; the pin does. Driving from the thread causes sprint-jumping and lost governance — I did it 2026-08-09 (banked) and AGAIN 2026-09-12 (a whole incident arc off-pin; Tron asked "what are you driving" and the pin could not answer).
+   ★ **IF THE PIN DOES NOT DESCRIBE THE WORK I AM ABOUT TO DO: STOP.** Either re-point it (planner, scenario-first, to a task unit carrying REAL state) or mint the work — **never proceed silently.** A pin that cannot express the work means the work is unplanned or its priority is unowned; that is a signal, not bookkeeping.
+   ★ **INCIDENT WORK IS NOT EXEMPT — IT IS THE MOST IMPORTANT THING TO PIN.** An emergency feels self-justifying and every later step inherits the exemption. "INC-x emergency response" is a legitimate pin; unpinned is not.
+   ★ **The pin is an INPUT (it tells me what to work on), never an OUTPUT (a status display someone else maintains).** As an output, drift is invisible; as an input, drift stops me.
+   ★ Same law I enforce on the code: **priority in the pin = CONSTRUCTION; priority in my head = CONVENTION.** I enforce that on protections; it binds me too.
 1. Read team goals: `session/team-goals.md`
 2. Run `TaskList` — check for queued tasks from before compact
 3. Read base skill: `session/base-skills/task-queue.md`
