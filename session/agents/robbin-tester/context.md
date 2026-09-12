@@ -2044,3 +2044,11 @@ POST-FIX 7-POINT BAR (architect, all required else INVALID-not-RED): (1) same in
 - ★ MY BITE CAUGHT THE RESURRECTION BUG the architect's code-read MISSED (room unit = writeRoomJson side-effect, teardown Room.persist re-created it); expert fixed via deleted-flag (1ca53452b). Empty-room repro was the clean falsifier.
 - On architect SIGN → expert ships v0.8.225 (7b + 6 keep-marks) → THEN the open-debris prod room 1bfb12e4 gets removed via the fixed delete (its exit condition). 
 - SHA-MATCH method for architect: clean 1ca53452b + apply patch → hash server.ts/Room.ts == mine. HEAD shows pre-image commits (restoreSha mechanism during my gate's deletes) = benign.
+
+
+## ✅ INC-7b SIGNED (architect a443d0e05, 2026-09-12) — independent sha-match reproduced (blobs matched to the char), assertions co-verified failable. Expert applies + ships v0.8.225 (7b composite + 6 keep-marks). My hardened post-teardown-settle+stays-gone bite caught AND confirmed the resurrection root.
+## ⏭ ON v0.8.225 SHIP+SERVE (my next, banked):
+1. RE-GATE INC-7 baseline (r40106-inc7-delete-baseline-gate) on served v0.8.225: dangling-real=0 + orphans(45 debris)=0 + deleteRoom VERIFIED-GONE (composite live) + NO live member deleted + KEEP-SET ENFORCED = all 6 marks excluded (rooms a16262b8/3231db71/edd7fa61 + units b7e22e2c/f3edf45e/c3e226c5, deleteRoom REFUSED on each protected) + standing-4 + link-cycle + scope-B. Version-stamp.
+2. CLEAR OPEN-DEBRIS prod room 1bfb12e4 via the FIXED delete (its exit condition, PO): verified-GONE by no-cache /api/ior re-read AND 0 dangling in SystemTester room-list → then remove the open-risk item. First real-world exercise of the fixed delete on prod.
+3. VERIFY 6 keep-marks actually applied on disk (model.protected on the 3 rooms + 3 units).
+- Standing no-sweep order LIFTS only after 7b+marks live+verified (step 1). 45-debris stays HELD until then.
