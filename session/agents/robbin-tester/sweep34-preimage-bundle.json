@@ -1,0 +1,525 @@
+{
+  "09509a3c-3a77-4ff8-a7c6-c01c50168ff0": {
+    "ior": "ior:class:Folder",
+    "ownerIor": null,
+    "model": {
+      "uuid": "09509a3c-3a77-4ff8-a7c6-c01c50168ff0",
+      "name": "Files",
+      "location": "roomcoll:0dd1d509-a274-4524-a238-1a7722650e25:files",
+      "kind": "folder",
+      "roomRef": "0dd1d509-a274-4524-a238-1a7722650e25",
+      "collectionKind": "files",
+      "virtual": true
+    }
+  },
+  "1216889f-7268-46cb-b724-9934d3eedf07": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "1216889f-7268-46cb-b724-9934d3eedf07",
+      "name": "Alpha",
+      "kind": "folder",
+      "location": "roomcoll:e3663282-c0ff-4de6-a3dd-389ef2ec4d96:files/Alpha",
+      "children": [
+        "ior:instance:7eda0b5d-f2c3-4316-9978-dc0811806d77"
+      ],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/e3663282-c0ff-4de6-a3dd-389ef2ec4d96/files/1216889f-7268-46cb-b724-9934d3eedf07.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:e3663282-c0ff-4de6-a3dd-389ef2ec4d96"
+  },
+  "14db6ad0-ce31-4b76-b204-2c94c08c0091": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "14db6ad0-ce31-4b76-b204-2c94c08c0091",
+      "name": "MoveTarget",
+      "kind": "folder",
+      "location": "roomcoll:0c2d28b5-104d-4f2f-ad22-525409cdcfe1:files/MoveTarget",
+      "children": [
+        "ior:instance:b05058e3-5299-4ba8-9a85-04195d57928b"
+      ],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/0c2d28b5-104d-4f2f-ad22-525409cdcfe1/files/14db6ad0-ce31-4b76-b204-2c94c08c0091.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:0c2d28b5-104d-4f2f-ad22-525409cdcfe1"
+  },
+  "22cdcc00-f053-4beb-990d-1b17206e30df": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "22cdcc00-f053-4beb-990d-1b17206e30df",
+      "name": "Alpha",
+      "kind": "folder",
+      "location": "roomcoll:0db80638-1bdc-4963-9e8b-33a00fdafceb:files/Alpha",
+      "children": [
+        "ior:instance:27e6087b-ba61-4bcb-9412-9021f6cdf1e1"
+      ],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/0db80638-1bdc-4963-9e8b-33a00fdafceb/files/22cdcc00-f053-4beb-990d-1b17206e30df.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:0db80638-1bdc-4963-9e8b-33a00fdafceb"
+  },
+  "23fdae93-bef4-451e-ae53-eb604c0bf1b6": {
+    "ior": "ior:class:Folder",
+    "ownerIor": null,
+    "model": {
+      "uuid": "23fdae93-bef4-451e-ae53-eb604c0bf1b6",
+      "name": "Files",
+      "location": "roomcoll:0cfc88fd-322e-4c90-a9b1-aebb9317bb9a:files",
+      "kind": "folder",
+      "roomRef": "0cfc88fd-322e-4c90-a9b1-aebb9317bb9a",
+      "collectionKind": "files",
+      "virtual": true
+    }
+  },
+  "27e6087b-ba61-4bcb-9412-9021f6cdf1e1": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "27e6087b-ba61-4bcb-9412-9021f6cdf1e1",
+      "name": "Beta",
+      "kind": "folder",
+      "location": "roomcoll:0db80638-1bdc-4963-9e8b-33a00fdafceb:files/Alpha/Beta",
+      "children": [],
+      "parent": "ior:instance:22cdcc00-f053-4beb-990d-1b17206e30df",
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/0db80638-1bdc-4963-9e8b-33a00fdafceb/files/27e6087b-ba61-4bcb-9412-9021f6cdf1e1.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:0db80638-1bdc-4963-9e8b-33a00fdafceb"
+  },
+  "38968205-7512-42f0-bd84-b1f1c4d310b9": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "38968205-7512-42f0-bd84-b1f1c4d310b9",
+      "name": "probe-persist-1",
+      "kind": "folder",
+      "location": "roomcoll:f75f18b1-b530-4f63-8a54-a64723af9c3e:files/probe-persist-1",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/f75f18b1-b530-4f63-8a54-a64723af9c3e/files/38968205-7512-42f0-bd84-b1f1c4d310b9.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:f75f18b1-b530-4f63-8a54-a64723af9c3e"
+  },
+  "3e4bc810-720c-4506-b82e-62d00568fbbf": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "3e4bc810-720c-4506-b82e-62d00568fbbf",
+      "name": "NodeTarget",
+      "kind": "folder",
+      "location": "roomcoll:46ba6dd5-2740-4d6c-ba7e-a6294b062855:files/NodeTarget",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/46ba6dd5-2740-4d6c-ba7e-a6294b062855/files/3e4bc810-720c-4506-b82e-62d00568fbbf.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:46ba6dd5-2740-4d6c-ba7e-a6294b062855"
+  },
+  "4da62689-1797-4062-b0fc-af1b5ce807a0": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "4da62689-1797-4062-b0fc-af1b5ce807a0",
+      "name": "MoveTarget",
+      "kind": "folder",
+      "location": "roomcoll:751c64e4-b175-46f5-b9cc-a53949999467:files/MoveTarget",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/751c64e4-b175-46f5-b9cc-a53949999467/files/4da62689-1797-4062-b0fc-af1b5ce807a0.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:751c64e4-b175-46f5-b9cc-a53949999467"
+  },
+  "56a27b3a-145a-4fa4-b593-b9aa7d33afcd": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "56a27b3a-145a-4fa4-b593-b9aa7d33afcd",
+      "name": "MoveTarget",
+      "kind": "folder",
+      "location": "roomcoll:8334fd58-31aa-4430-8620-20911826b8e4:files/MoveTarget",
+      "children": [
+        "ior:instance:aee74b9b-cc42-4e9f-90e8-84d6e67d396d",
+        "ior:instance:b1777e5d-7db1-4066-92d6-0a5f027ae902"
+      ],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/8334fd58-31aa-4430-8620-20911826b8e4/files/56a27b3a-145a-4fa4-b593-b9aa7d33afcd.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:8334fd58-31aa-4430-8620-20911826b8e4"
+  },
+  "6d655f31-fe73-4568-a161-0d152215d992": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "6d655f31-fe73-4568-a161-0d152215d992",
+      "name": "MoveTarget",
+      "kind": "folder",
+      "location": "roomcoll:d8020fdd-e010-443d-aaae-e2e70a1dd599:files/MoveTarget",
+      "children": [
+        "ior:instance:45bf600d-12ed-4bac-93a9-2b2c0b38ed35"
+      ],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/d8020fdd-e010-443d-aaae-e2e70a1dd599/files/6d655f31-fe73-4568-a161-0d152215d992.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:d8020fdd-e010-443d-aaae-e2e70a1dd599"
+  },
+  "705e00e8-5377-4cdd-9b39-26696d9137e3": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "705e00e8-5377-4cdd-9b39-26696d9137e3",
+      "name": "probe-persist-1",
+      "kind": "folder",
+      "location": "roomcoll:7dc9a919-dbda-4277-ab1a-f58b9a8fbae4:files/probe-persist-1",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/7dc9a919-dbda-4277-ab1a-f58b9a8fbae4/files/705e00e8-5377-4cdd-9b39-26696d9137e3.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:7dc9a919-dbda-4277-ab1a-f58b9a8fbae4"
+  },
+  "74825119-67c0-42f4-b0d7-ddad294f4809": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "74825119-67c0-42f4-b0d7-ddad294f4809",
+      "name": "DropTargetFolder",
+      "kind": "folder",
+      "location": "roomcoll:1142f91b-874f-4dc0-a05c-8369caf6e43c:files/DropTargetFolder",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/1142f91b-874f-4dc0-a05c-8369caf6e43c/files/74825119-67c0-42f4-b0d7-ddad294f4809.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:1142f91b-874f-4dc0-a05c-8369caf6e43c"
+  },
+  "7eda0b5d-f2c3-4316-9978-dc0811806d77": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "7eda0b5d-f2c3-4316-9978-dc0811806d77",
+      "name": "Beta",
+      "kind": "folder",
+      "location": "roomcoll:e3663282-c0ff-4de6-a3dd-389ef2ec4d96:files/Alpha/Beta",
+      "children": [],
+      "parent": "ior:instance:1216889f-7268-46cb-b724-9934d3eedf07",
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/e3663282-c0ff-4de6-a3dd-389ef2ec4d96/files/7eda0b5d-f2c3-4316-9978-dc0811806d77.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:e3663282-c0ff-4de6-a3dd-389ef2ec4d96"
+  },
+  "89438b96-4ce9-481c-b893-fa9145c044cd": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "89438b96-4ce9-481c-b893-fa9145c044cd",
+      "name": "DropTargetFolder",
+      "kind": "folder",
+      "location": "roomcoll:9d3fb9e3-9484-42fd-ad93-21c800e3ff69:files/DropTargetFolder",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/9d3fb9e3-9484-42fd-ad93-21c800e3ff69/files/89438b96-4ce9-481c-b893-fa9145c044cd.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:9d3fb9e3-9484-42fd-ad93-21c800e3ff69"
+  },
+  "8ac58c86-2689-4652-85a4-8261adac41c9": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "8ac58c86-2689-4652-85a4-8261adac41c9",
+      "name": "NodeTarget",
+      "kind": "folder",
+      "location": "roomcoll:7b7d7436-b90a-42ed-a28c-1714b10f1c9f:files/NodeTarget",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/7b7d7436-b90a-42ed-a28c-1714b10f1c9f/files/8ac58c86-2689-4652-85a4-8261adac41c9.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:7b7d7436-b90a-42ed-a28c-1714b10f1c9f"
+  },
+  "8b61693a-40cd-4480-ab70-0ba2ec338194": {
+    "ior": "ior:class:Folder",
+    "ownerIor": null,
+    "model": {
+      "uuid": "8b61693a-40cd-4480-ab70-0ba2ec338194",
+      "name": "Files",
+      "location": "roomcoll:b8f4c590-a938-4218-823f-06fa1f502f9e:files",
+      "kind": "folder",
+      "roomRef": "b8f4c590-a938-4218-823f-06fa1f502f9e",
+      "collectionKind": "files",
+      "virtual": true
+    }
+  },
+  "8fb9f94b-cb1d-4564-b3b4-f1585a9e352a": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "8fb9f94b-cb1d-4564-b3b4-f1585a9e352a",
+      "name": "MoveTarget",
+      "kind": "folder",
+      "location": "roomcoll:4cc89cf2-377c-4759-b638-20509d952788:files/MoveTarget",
+      "children": [
+        "ior:instance:91ee4bc6-209a-475f-8e4b-5c3bc22581ed"
+      ],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/4cc89cf2-377c-4759-b638-20509d952788/files/8fb9f94b-cb1d-4564-b3b4-f1585a9e352a.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:4cc89cf2-377c-4759-b638-20509d952788"
+  },
+  "a30f8eb1-9bf7-4617-bff8-889b17e5387d": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "a30f8eb1-9bf7-4617-bff8-889b17e5387d",
+      "name": "Alpha",
+      "kind": "folder",
+      "location": "roomcoll:b8f4c590-a938-4218-823f-06fa1f502f9e:files/Alpha",
+      "children": [
+        "ior:instance:dcd05e05-d83e-460c-b0c6-0c83da8bcf1b"
+      ],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/b8f4c590-a938-4218-823f-06fa1f502f9e/files/a30f8eb1-9bf7-4617-bff8-889b17e5387d.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:b8f4c590-a938-4218-823f-06fa1f502f9e"
+  },
+  "a4c02845-4743-4b1e-9c92-b44653d8030f": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "a4c02845-4743-4b1e-9c92-b44653d8030f",
+      "name": "MoveTarget",
+      "kind": "folder",
+      "location": "roomcoll:9b417889-b90a-4e68-b2a9-3f074412f115:files/MoveTarget",
+      "children": [
+        "ior:instance:b8c8e6f7-fabf-4425-8727-f930f89a8c97",
+        "ior:instance:8250acb4-05b5-48cd-bd32-d598edb160d3"
+      ],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/9b417889-b90a-4e68-b2a9-3f074412f115/files/a4c02845-4743-4b1e-9c92-b44653d8030f.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:9b417889-b90a-4e68-b2a9-3f074412f115"
+  },
+  "a61830c2-e6f7-4d5b-8d4b-49db80f48a71": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "a61830c2-e6f7-4d5b-8d4b-49db80f48a71",
+      "name": "New folder",
+      "kind": "folder",
+      "location": "roomcoll:0dd1d509-a274-4524-a238-1a7722650e25:files/New folder",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/0dd1d509-a274-4524-a238-1a7722650e25/files/a61830c2-e6f7-4d5b-8d4b-49db80f48a71.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:0dd1d509-a274-4524-a238-1a7722650e25"
+  },
+  "ab11d656-13ef-4c42-a877-908efba895e0": {
+    "ior": "ior:class:Folder",
+    "ownerIor": null,
+    "model": {
+      "uuid": "ab11d656-13ef-4c42-a877-908efba895e0",
+      "name": "Files",
+      "location": "roomcoll:e3663282-c0ff-4de6-a3dd-389ef2ec4d96:files",
+      "kind": "folder",
+      "roomRef": "e3663282-c0ff-4de6-a3dd-389ef2ec4d96",
+      "collectionKind": "files",
+      "virtual": true
+    }
+  },
+  "c044d969-4ef2-4f49-bb44-4284835d80df": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "c044d969-4ef2-4f49-bb44-4284835d80df",
+      "name": "MoveTarget",
+      "kind": "folder",
+      "location": "roomcoll:baba8e7e-c3e6-44c4-b68b-2b56d6c1fed1:files/MoveTarget",
+      "children": [
+        "ior:instance:ba2e26d4-42e6-4ccf-9200-5df42c3bac5c",
+        "ior:instance:90e0420e-3f1d-4365-9587-7eeacfc21f65"
+      ],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/baba8e7e-c3e6-44c4-b68b-2b56d6c1fed1/files/c044d969-4ef2-4f49-bb44-4284835d80df.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:baba8e7e-c3e6-44c4-b68b-2b56d6c1fed1"
+  },
+  "ca190db7-d3b2-42aa-bbb2-9d5c1c0bfe77": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "ca190db7-d3b2-42aa-bbb2-9d5c1c0bfe77",
+      "name": "NodeTarget",
+      "kind": "folder",
+      "location": "roomcoll:0b35cb1b-5e3c-4eab-a027-638b6405dca4:files/NodeTarget",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/0b35cb1b-5e3c-4eab-a027-638b6405dca4/files/ca190db7-d3b2-42aa-bbb2-9d5c1c0bfe77.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:0b35cb1b-5e3c-4eab-a027-638b6405dca4"
+  },
+  "dad9ae5d-73d4-4f43-80bb-13525aea7018": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "dad9ae5d-73d4-4f43-80bb-13525aea7018",
+      "name": "MoveTarget",
+      "kind": "folder",
+      "location": "roomcoll:b718b409-7b7d-46ec-a644-c21f2334d189:files/MoveTarget",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/b718b409-7b7d-46ec-a644-c21f2334d189/files/dad9ae5d-73d4-4f43-80bb-13525aea7018.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:b718b409-7b7d-46ec-a644-c21f2334d189"
+  },
+  "dcd05e05-d83e-460c-b0c6-0c83da8bcf1b": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "dcd05e05-d83e-460c-b0c6-0c83da8bcf1b",
+      "name": "Beta",
+      "kind": "folder",
+      "location": "roomcoll:b8f4c590-a938-4218-823f-06fa1f502f9e:files/Alpha/Beta",
+      "children": [],
+      "parent": "ior:instance:a30f8eb1-9bf7-4617-bff8-889b17e5387d",
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/b8f4c590-a938-4218-823f-06fa1f502f9e/files/dcd05e05-d83e-460c-b0c6-0c83da8bcf1b.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:b8f4c590-a938-4218-823f-06fa1f502f9e"
+  },
+  "e436b4da-d9df-4533-8f08-6e6856e78dca": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "e436b4da-d9df-4533-8f08-6e6856e78dca",
+      "name": "MoveTarget",
+      "kind": "folder",
+      "location": "roomcoll:10e64673-e236-44de-8f09-c5faaeba08d0:files/MoveTarget",
+      "children": [
+        "ior:instance:b71d60e5-398b-4dca-8a67-ff99b1438e0c"
+      ],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/10e64673-e236-44de-8f09-c5faaeba08d0/files/e436b4da-d9df-4533-8f08-6e6856e78dca.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:10e64673-e236-44de-8f09-c5faaeba08d0"
+  },
+  "e5bfc603-c171-458f-835f-7f7a537811fd": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "e5bfc603-c171-458f-835f-7f7a537811fd",
+      "name": "MoveTarget",
+      "kind": "folder",
+      "location": "roomcoll:5f55bad6-e310-409a-9da5-5c13035761a3:files/MoveTarget",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/5f55bad6-e310-409a-9da5-5c13035761a3/files/e5bfc603-c171-458f-835f-7f7a537811fd.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:5f55bad6-e310-409a-9da5-5c13035761a3"
+  },
+  "ee9c677c-6368-42b6-aa3b-fdbbcc69fede": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "ee9c677c-6368-42b6-aa3b-fdbbcc69fede",
+      "name": "DropTargetFolder",
+      "kind": "folder",
+      "location": "roomcoll:a20138d9-0560-4fe5-9819-fee8d8243c37:files/DropTargetFolder",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/a20138d9-0560-4fe5-9819-fee8d8243c37/files/ee9c677c-6368-42b6-aa3b-fdbbcc69fede.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:a20138d9-0560-4fe5-9819-fee8d8243c37"
+  },
+  "f1455eb7-2433-4a32-8875-0ff1215a021c": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "f1455eb7-2433-4a32-8875-0ff1215a021c",
+      "name": "probe-persist-1",
+      "kind": "folder",
+      "location": "roomcoll:15e6ef2c-52b2-4b05-8bff-c99792c7814d:files/probe-persist-1",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/15e6ef2c-52b2-4b05-8bff-c99792c7814d/files/f1455eb7-2433-4a32-8875-0ff1215a021c.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:15e6ef2c-52b2-4b05-8bff-c99792c7814d"
+  },
+  "f2f13e80-4d7e-458f-bba8-8ba55f153042": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "f2f13e80-4d7e-458f-bba8-8ba55f153042",
+      "name": "test",
+      "kind": "folder",
+      "location": "roomcoll:0cfc88fd-322e-4c90-a9b1-aebb9317bb9a:files/test",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/0cfc88fd-322e-4c90-a9b1-aebb9317bb9a/files/f2f13e80-4d7e-458f-bba8-8ba55f153042.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:0cfc88fd-322e-4c90-a9b1-aebb9317bb9a"
+  },
+  "f33e4035-b6ea-4d97-a99b-b1729b4cb8b7": {
+    "ior": "ior:class:Folder",
+    "ownerIor": null,
+    "model": {
+      "uuid": "f33e4035-b6ea-4d97-a99b-b1729b4cb8b7",
+      "name": "Files",
+      "location": "roomcoll:0db80638-1bdc-4963-9e8b-33a00fdafceb:files",
+      "kind": "folder",
+      "roomRef": "0db80638-1bdc-4963-9e8b-33a00fdafceb",
+      "collectionKind": "files",
+      "virtual": true
+    }
+  },
+  "f51f047c-0d6f-4f44-aad1-7bc7a4fb1fb3": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "f51f047c-0d6f-4f44-aad1-7bc7a4fb1fb3",
+      "name": "probe-baseline",
+      "kind": "folder",
+      "location": "roomcoll:f75f18b1-b530-4f63-8a54-a64723af9c3e:files/probe-baseline",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/f75f18b1-b530-4f63-8a54-a64723af9c3e/files/f51f047c-0d6f-4f44-aad1-7bc7a4fb1fb3.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:f75f18b1-b530-4f63-8a54-a64723af9c3e"
+  },
+  "fb979f03-133f-4125-a3d9-8b9df7dfa579": {
+    "ior": "ior:class:Folder",
+    "model": {
+      "uuid": "fb979f03-133f-4125-a3d9-8b9df7dfa579",
+      "name": "NodeTarget",
+      "kind": "folder",
+      "location": "roomcoll:d683a9a5-04b5-40b4-8bbf-430b1b05afce:files/NodeTarget",
+      "children": [],
+      "parent": null,
+      "unitLinks": [
+        "../data/users/ce981242-74fe-4d44-b5b6-43c641e224df/rooms/d683a9a5-04b5-40b4-8bbf-430b1b05afce/files/fb979f03-133f-4125-a3d9-8b9df7dfa579.scenario.json"
+      ]
+    },
+    "ownerIor": "ior:instance:d683a9a5-04b5-40b4-8bbf-430b1b05afce"
+  }
+}
