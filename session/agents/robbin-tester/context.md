@@ -2148,3 +2148,8 @@ POST-FIX 7-POINT BAR (architect, all required else INVALID-not-RED): (1) same in
 - bite-e AUTH (separate, honest-caveat): SystemTester non-owner → /api/sweep-enumerated → 403 'owner device-key challenge-authed session' = orphan-delete ONLY via authed owner op.
 - On architect diff(1-line)+a-e-green+403 → SIGN 5cc28099 w/ written caveat (auth+logic proven SEPARATELY, composition asserted-not-demonstrated). = CLOSES step-2 (PO: my bites+sign close it; step-3/34 is TRON-OPTION not lift-gating).
 - ⏭ REMAINING for PO GENERAL LIFT: v0.8.229 orphan-only TRIPWIRE lands + re-verified. Brace SIGNED (659dff5b1). 34 tracked-inert (only Tron's auth can run; pre-image durable). baseline RED-documented.
+
+
+## ✅ STEP-2 SIGNED GREEN (architect 54978124d, 2026-09-12): minimal-diff REPRODUCED by architect (git diff 5cc28099 149359c = 1 added line @5584 outside both fns → logic-tested==logic-shipped), (a)-(e) all green (incl c skip-continue-defense + e pre-image-fired), non-owner→403, honest caveat WRITTEN (auth+logic separate, composition asserted-not-demonstrated). Sanctioned sweep op VERIFIED+CLOSED.
+## ⏭ LAST GATE before PO GENERAL LIFT: v0.8.229 orphan-only TRIPWIRE (expert ships → I re-verify). Then PO's WRITTEN general no-sweep lift. Brace SIGNED(659dff5b1)+op SIGNED(54978124d). 34 tracked-inert (Tron-only auth; pre-image durable=zero-loss). baseline RED-documented. Version-watch armed for 0.8.229.
+NOTE: rig worktree has the test-only EOF export (uncommitted, scratch-worktree only, never in main tree) — harmless; revert if reusing the rig pristine.
