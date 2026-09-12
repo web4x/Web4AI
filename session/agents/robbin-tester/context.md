@@ -2153,3 +2153,10 @@ POST-FIX 7-POINT BAR (architect, all required else INVALID-not-RED): (1) same in
 ## ✅ STEP-2 SIGNED GREEN (architect 54978124d, 2026-09-12): minimal-diff REPRODUCED by architect (git diff 5cc28099 149359c = 1 added line @5584 outside both fns → logic-tested==logic-shipped), (a)-(e) all green (incl c skip-continue-defense + e pre-image-fired), non-owner→403, honest caveat WRITTEN (auth+logic separate, composition asserted-not-demonstrated). Sanctioned sweep op VERIFIED+CLOSED.
 ## ⏭ LAST GATE before PO GENERAL LIFT: v0.8.229 orphan-only TRIPWIRE (expert ships → I re-verify). Then PO's WRITTEN general no-sweep lift. Brace SIGNED(659dff5b1)+op SIGNED(54978124d). 34 tracked-inert (Tron-only auth; pre-image durable=zero-loss). baseline RED-documented. Version-watch armed for 0.8.229.
 NOTE: rig worktree has the test-only EOF export (uncommitted, scratch-worktree only, never in main tree) — harmless; revert if reusing the rig pristine.
+
+
+## ✅ v0.8.229 ORPHAN-ONLY TRIPWIRE BITES = BOTH GREEN (2026-09-12, LAST gate, awaiting architect SIGN of c061ef79):
+- harness-build blob 9f86baba8b132b0a982cacb651124ff98f91151c, diff vs c061ef79 = 1 added EOF-export line (logic==shipped). _tripwire-bites-harness.ts, in-process.
+- (a) FAILABLE REFUSAL: room-linked unit (live room.fileUnits member) in sweep list → phase-1 ABORT ok=false, refused names the room, 0 deletions, unit SURVIVES (orphan-only tripwire fires; stub=remove predicate→passes→RED).
+- (b) REGRESSION: deleteRoomComposite STILL deletes a room-linked unit (comp.ok, exclusiveDestroyed=1, unit gone) — legit path unbroken post brace+dryRun changes since 7b. (over-refusing build would fail this = the direction PO insists.)
+- On architect SIGN → PO CLOSES THE ARC. brace SIGNED + op SIGNED + tripwire bites green. 34 tracked-inert (Tron-only auth, pre-image durable). baseline RED-documented (orphans await Tron-option sanctioned run).
