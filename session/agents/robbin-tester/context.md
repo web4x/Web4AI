@@ -1,5 +1,13 @@
 # robbin-tester — context (LEAN — full per-gate history in `git log` + `learnings.md`)
 
+## 🔴 T41.1 FILE RENDER-PROOF DELIVERED (2026-09-13, served v0.8.236, gate test/visual/r41-1-file-render-proof-gate.mjs @Web4RawBin 9dd6767ab; screenshots scratchpad/r41-1-files-view.png + r41-1-390px.png). Room files view via EXISTING 909f1bd6 + SystemTester ONLY (zero pollution). Harness: seed→lobby→Join btn→drill room .oi-expand→drill Files folder .oi-expand→80 rb-object-item[type=file] render. rb-object-item structure: .oi-icon(glyph) .oi-name .oi-badge .oi-expand.
+- ✅ AC1 SVG-glyph consistent (not emoji/blank) = GREEN (pixel: orange file-page SVG 24x24 2-paths on every file node).
+- 🔴 AC2 NAME = RED FINDING: 6 File instances w/ REAL model.name (mv-1711524-1/2/3.bin, mv-1713607-1/2/3.bin, measured live /api/ior) render their UUID. uuid-fallback FIRES FOR NAMED UNITS (name dropped; label non-empty so literal never-empty holds). type=image IMG_5437.png renders ITS name → type=file/File.renderSelf-specific (name not plumbed to file render OR room-snapshot drops File name — expert root-cause). The fallback-mis-fire class PO flagged.
+- ✅ AC3 generic-mime→generic-SVG=GREEN. ✅ AC4 never-empty=GREEN. ✅ AC5 stub-must-fail=GREEN (gate PROVEN failable, AC2 actually RED + room-node discrimination control).
+- DEVICE: desktop 1200px acceptance measured; 390px (Tron viewport) OBSERVED = glyph holds + name still uuid (viewport-independent finding).
+- REPORTED PO 0.0 + screenshot to Tron. VERDICT: File GLYPH renders (glyph→QA GREEN); NAME renders uuid (AC2 RED). File→QA / Folder-unblock pends PO ruling on whether name must show + expert fix.
+
+
 
 ## ⛔ ACCEPTED OPEN RISK / OPEN DEBRIS (PO-ruled 2026-09-12, MANDATORY-TRACK — not clean until measured):
 - **PROD test room 1bfb12e4-ec8e-401d-acea-6bc879199aef** ('SystemTester-prod-verify'), owner=SystemTester(ce981242), EMPTY (0 fileUnits/0 children, unshared → Tron does NOT see it, blast radius ~0). Created during the PO-authorized prod create-verify (Tron-can-create-rooms proof, GREEN). NOT deletable now: delete-unit=401 challenge-auth (guard working-as-designed); DELETE_ROOM=old-no-op on v0.8.224 (no 7b) + classifier-denied; raw-rm REFUSED by PO (live server holds it in-memory → re-persist/resurrection defect being fixed). Pre-image: scratchpad/prod-room-preimage.json (+ room is LIVE on prod so trivially recoverable until deleted). **EXIT CONDITION (PO): removed via the v0.8.225 FIXED delete — becomes the FIRST real-world exercise of the fix — VERIFIED GONE by no-cache /api/ior re-read AND 0 dangling in SystemTester room-list.** Carry as ACCEPTED OPEN RISK every report until measured-gone. If Tron ever reports seeing it → remove immediately by whatever authorized path exists.
