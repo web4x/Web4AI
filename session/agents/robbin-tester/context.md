@@ -5,7 +5,11 @@
 - 🔴 AC2 NAME = RED FINDING: 6 File instances w/ REAL model.name (mv-1711524-1/2/3.bin, mv-1713607-1/2/3.bin, measured live /api/ior) render their UUID. uuid-fallback FIRES FOR NAMED UNITS (name dropped; label non-empty so literal never-empty holds). type=image IMG_5437.png renders ITS name → type=file/File.renderSelf-specific (name not plumbed to file render OR room-snapshot drops File name — expert root-cause). The fallback-mis-fire class PO flagged.
 - ✅ AC3 generic-mime→generic-SVG=GREEN. ✅ AC4 never-empty=GREEN. ✅ AC5 stub-must-fail=GREEN (gate PROVEN failable, AC2 actually RED + room-node discrimination control).
 - DEVICE: desktop 1200px acceptance measured; 390px (Tron viewport) OBSERVED = glyph holds + name still uuid (viewport-independent finding).
-- REPORTED PO 0.0 + screenshot to Tron. VERDICT: File GLYPH renders (glyph→QA GREEN); NAME renders uuid (AC2 RED). File→QA / Folder-unblock pends PO ruling on whether name must show + expert fix.
+- REPORTED PO 0.0 + screenshot to Tron. VERDICT: File GLYPH renders GREEN; NAME renders uuid (AC2 RED).
+- ★★ PO ruled HOLD (name in T41.1 scope, File.renderSelf owns icon AND name; never QA a lying screen). Routed: regression-or-preexisting?
+- ★★ ANSWER = REGRESSION (v0.8.236 c769536a7 broke it), proven WITHOUT rebuilding prod (current-prod DATA + committed code diff): (1) DATA measured: file nodes carry the real name in the TITLE attr (title=mv-1711524-1.bin, name-attr=null). (2) OLD code rendered it: rb-object-item.ts:228 rawName = getAttribute(name)||getAttribute(title) → =title=real name; pre-v0.8.236 rendered name=rawName. (3) v0.8.236 line 239 file-branch: new File({name: getAttribute(name)||''}) uses ONLY name-attr=null, IGNORES the title fallback → File({name:''})→renderSelf→uuid. So names rendered before; v0.8.236 dropped the title fallback = REGRESSION, urgent.
+- ★ ONE-LINE FIX (expert): rb-object-item.ts:239 → new File({uuid, name: this.getAttribute("name") || this.getAttribute("title") || ""}) (same title fallback rawName uses); glyph stays GREEN, name restores. OR keep name=rawName for file branch, swap only icon.
+- ⏭ ON FIX/REVERT LANDING: re-run r41-1-file-render-proof-gate → AC2 flips GREEN (names render) + AC1 stays GREEN → File→QA. Offered rig pixel-confirm (boot c769536a7~1) if PO wants belt-and-braces; title-attr+old-logic make it deterministic. Did NOT touch prod.
 
 
 
