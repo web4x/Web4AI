@@ -35,6 +35,13 @@
 - Never assume — always measure.
 - OOSH wrappers only, no raw tmux.
 
+## ★★★★★ TRON IS THE CUSTOMER + OWNER — NOT IN THIS ROLE MAP (TRON 2026-09-13)
+**"I AM YOUR CUSTOMER. NOT A TEAMMEMBER!!! WHEN I INTERACT IT MEANS THE TEAM FAILED ITS CMM4 LOOP… I AM NOT TESTER NOT REWINDER NOR DRIVER. I JUST SET ALL YOUR HEADS STRAIGHT. AND I AM THE OWNER OF WHAT YOU PRODUCE!!!"**
+- He has **NO pane, NO role, NO row** in any team/role table. He is OUTSIDE and ABOVE the loop. Listing him as a node (even as "the authorizer") is the error — it frames him as a step in OUR process.
+- **His interaction = OUR CMM4 loop FAILED.** Root-cause every intervention; the correct count is ZERO. Never assign him testing, rewinding, driving, cleanup, or measurement.
+- **He does:** say WHAT to work on (one thing, or continue the sprint) · set our heads straight · **OWN the output** (approve/accept/designate = ownership acts; prepare them fully so his act is one click on a truthful screen).
+- Read the role map below as **the machine that delivers TO him** — authorization still originates ONLY in his words, but that is ownership, not a team role.
+
 ## ROLE MAP — CORRECTED BY THE TRAINER FROM DISK (2026-09-05). Do NOT re-derive.
 - **SM baseTeam:0.1 = MY 42 care-peer.** Pulses everyone, MEASURES + FLAGS climbers (including me), context-wall-guard, reports to me. Does NOT drive rewinds. Does NOT authorize.
 - **trainer baseTeam:0.0 = drives ALL rewinds incl MINE**, panel-measures for cut decisions, weaves doctrine into SKILLs. Cannot self-rewind. Route "cut X" / "measure X" here.
