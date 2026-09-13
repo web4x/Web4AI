@@ -53,6 +53,12 @@
   - **R41.4 open-list CORRECTED (PO): Repository-vs-Project = PO-RULED (Repository OWN class HAS-A Project), NOT open. Only 1 OPEN for Tron: repo NAME/org/VISIBILITY (default PRIVATE, never public-on-inference).**
   - **⚠ PLANNER HOLD (PO retraction, Tron): DO NOT relay T41.3/T41.4 (or anything) to planner 0.6 — it is SCHEDULED FOR REWIND. I had NOT sent a T41.3/T41.4 handback (nothing to undo). HOLD them on disk (committed c9fb1a08/28978064); a FRESH planner picks them up from DISK, not a message queue. Relaying to a to-be-cut agent = lost or drags it deeper. Reported hold to PO.**
 
+**TASK 16 ✅ Sprint 41 chains 41.3 + 41.4 COMPLETE TO METHOD (2846325cb, PO: expert never hits a hollow chain):** folded architect notes (95b04fa02 + c990ac68e).
+  - **41.3** (added to EXISTING File/Folder classes): File.publishChange a1081953 + Folder.publishChange 623cb11a (emit per-object IOR-keyed change-event via publishUnitChanged seam = R41.3 notify; view subscribes + renderSelf existing). UC 8f464a83 wired.
+  - **41.4** (greenfield MVC kernel): Class Repository 9be9df2f (create ccf4b743/renderSelf 67981bd4/ownIor 24057be4/head de585b85/branch b6f32a0e/remote c97d56d4) + Class ModelBase 2bafcb53 (emitChange fa92bc3b) + Class ViewBase 337a7764 (subscribe 9a0df2f8/renderOnNotify 0dc0d824). UC 03008aa9 wired → Repository.renderSelf.
+  - All M1, instanceOf UmlClass ..003, ownerIor=Tron, fully-qualified IOR, methods-not-data-bags. Chains R41.3/R41.4→UC→Class→Method COMPLETE; Impl+Test=expert on build-go (Repository.create = outward gh action on Tron/PO go, NOT now). **PENDING-DELIVERY: PO + expert (Class/Method uuids).**
+  - **SPRINT 41 CHAIN STATE: all 4 tasks (41.1/41.2/41.3/41.4) now complete-to-Method scenario-first; expert builds Impl+Test on PO build-go; I mint Tests off markers.**
+
 ---
 
 # ★★★ BOOT FIRST — YOU WERE WALLED AND REWOUND (banked by robbin-po, 2026-09-12)
