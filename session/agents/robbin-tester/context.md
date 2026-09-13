@@ -2198,3 +2198,10 @@ NOTE: rig worktree has the test-only EOF export (uncommitted, scratch-worktree o
 
 
 ## ✅ R40.81 ONE-STORE RESIDUAL → CLOSED-EXHAUSTIVE at ZERO PROD COST (2026-09-12, PO proportionality): read==write for ALL units by CONSTRUCTION+local-measure, not a 7136-prod-read census (aborted mid-run on PO ruling — read-only≠free, don't burden Tron's live surface for a LOW check). Gate r40081-onestore-census.mjs (213d8813a): (a) 7136 under scenario/index (b) MODEL_STORE_SOURCE=scenario-index flip (c) old MODEL_STORE drained=0 (d) one modelDir() flag drives read(dirFor)+write → cannot diverge for any unit present/future. STRONGER than the sample. PO strikes the residual. Lesson d5ffc284.
+
+
+## ✅ T40.1 (Open-Claude-RC action) STEP-1 TESTER GUARANTEE = PASS GREEN DET-3x @v0.8.229 (2026-09-13, delivery — was parked on QA since 08-29):
+- RE-MEASURED per PO (boundary note said v0.8.130, prod=v0.8.229): resolveRcLink (Impl 45853b02, rc-link-resolver.ts:14) + /api/server-manager/rc (server.ts:2371) STILL present @HEAD → gate probes prod-live + HEAD-source = tests CURRENT bytes. Criterion did NOT decay.
+- Gate r401-rc-link-gate.mjs (test c4f8a1d6): [REAL] AC-4 403+NO-LEAK (no-token/unknown/owner-not-live/injection all→403, 0 leak; 403 in requireOwnerHttp BEFORE resolveRcLink=nothing to leak). [HARNESS] AC-3 FAIL-CLOSED (url:null never synthesised session_ URL; stub-must-fail=synth-url→RED). AC-2 client per-pane ?pane= threading. 1 prod call (proportionate).
+- OWNER-PAGE PENDING (NOT tester-automatable = Tron's approve, not my guarantee): AC-1 visible+fireable on real pane surface, AC-2 SERVER-side pane→agent isolation (OtmuxBridge owner-gated), AC-5 @390 device-gate.
+- VERDICT: automatable guarantee PASSES on shipped bytes → T40.1 genuinely near-approvable (NOT broken). Step-1 CLEAR. PO drives step-2 (CR-resolve on 5 CRs) → Tron ONE approve (covers owner-page ACs on his device). Reported PO.
