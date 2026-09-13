@@ -1,6 +1,7 @@
 # 🛑 HALT — FLEET HEALTH FIRST (Tron 'HALT!!! fleet health first!!!! wtf', 2026-09-13) — RESUME STATE, READ FIRST
 
-**HALTED mid-S41-delivery for fleet health (req 90 / architect 83 / ARON 82 near-wall unrewound). Holding STABLE-IDLE Phase-1b: no self-continue, no queue-pull, no auto-processing — resume ONLY on rewind-landing or TRON'S OWN word. Fleet-health supersedes the sprint incl. the live display-regression fix.**
+**✓ HALT LIFTED (PO 2026-09-13, condition MET: fleet rewind campaign complete + panel-proven — SM 76/expert 71/architect 77/req 80/ARON 77, Option-2 code-intact, 0 reverts, nobody near-wall). RESUMED. My rewind was NOT needed (healthy ~27%, never near-wall). I held 3x correctly on PO 'resume' until the CONDITION was met — that was right.**
+**★ UPDATE post-resume: T41.1 File ADVANCED -> QA-REVIEW (commit c83cd6c37): I RE-MEASURED r41-1 gate MYSELF on served 0.8.237 (not relay) = ALL-5 GREEN (80 nodes real-names, wrong-fallback=0). status=QA Review, waitingOn=Tron-accept, Done UNCHECKED. His accept UNBLOCKS T41.2. ⚠ c83cd6c37 PUSH STRANDED (non-fast-forward, origin at 582201a0 + not-mine deletion-set dirties tree) -> PO integrating. ⚠ r41-1 Test unit PENDING-req-mint -> flagged req to mint+wire (chain-to-Test). STANDING: fleet OLD-BULK FLOORED — small banked steps, keep pushed, flag at the band not climb through.**
 
 ## Fresh-me: NO re-derivation needed — current S41 state (all measured/committed this session)
 - **id: robbin-planner, robbinTeam2:0.6, host v60211** (round-trip, never $TMUX_PANE).
