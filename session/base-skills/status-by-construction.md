@@ -26,5 +26,14 @@ The MECHANISM already exists; this routine only makes every agent USE it in ever
 - **`scrum.pmo/skills/realtime-traceability.md`** — chain appears on `/trace` on reload with ZERO manual steps after authoring.
 Never invent a second updater or hand-stamp a literal status — a second source of truth is the DRY defect the canon forbids.
 
+## ★ THE SHARPEST FORM — INVOKE THE PRODUCT'S OWN ACTION, NEVER HAND-EDIT THE UNIT (TRON 2026-09-13: "can the action be used as a skill?")
+Perform a state change by **INVOKING THE PRODUCT'S OWN ACTION** (set-as-current, resolve-cr, approve, …) — **NEVER by hand-editing the unit/singleton.** This is the purest form of the law above: the status changes because the ACT happened.
+Why it beats a hand-edit:
+1. **ONE mechanism owns the invariants.** The action already OWNS the transition AND its side-effects (e.g. `set-as-current` demotes the previous current to NEXT per CR #86-3). A hand-edit re-implements that by convention → drifts. (`[[dont-fork-the-shared-mechanism]]`)
+2. **Status-by-construction applied to US** — the status changes BECAUSE the act happened, which is exactly this routine.
+3. **DOGFOODING** — we invoke the SAME action Tron uses, so a broken action is caught BY US first, not by him. (`resolveCr` silently not-resolving CRs survived since 2026-08-24 because we never used it.)
+4. **NO HAND-STAMPING** — the banned anti-pattern becomes structurally impossible when the action does the write.
+**Use the action where you CAN; where it is OWNER-GATED, PREPARE and TRON ACTS — never work around a gate.** `approve` / `decline` / `resolve-cr` are OWNER-GATED (Tron only — a verdict is his); `set-as-current` is AGENT-INVOKABLE. ★ The invokable-vs-owner-gated inventory + the invokable entrypoints are **MEASURED by expert/architect, never assumed.** START (the live case): set the pin via the **set-as-current action**, never a file write.
+
 ## Connections
 Process canon: `session/base-skills/process-canon.md` §8 (summary POINTs here). Kin: [[durable-adoption-not-a-pane-message]] · [[report-is-observation-not-gate]] · [[done-requires-tron-qa-and-real-deliverable]] · [[status-discriminator-is-a-unit-field]] · [[exists-correct-proven-gate-gradient]] (QA=evidenced). Doctrine: measure-never-assume, DRY-reuse-the-mechanism. **Done is TRON'S act — this routine never writes Done.**
