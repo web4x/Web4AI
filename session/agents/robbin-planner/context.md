@@ -1,3 +1,25 @@
+# 🛑 HALT — FLEET HEALTH FIRST (Tron 'HALT!!! fleet health first!!!! wtf', 2026-09-13) — RESUME STATE, READ FIRST
+
+**HALTED mid-S41-delivery for fleet health (req 90 / architect 83 / ARON 82 near-wall unrewound). Holding STABLE-IDLE Phase-1b: no self-continue, no queue-pull, no auto-processing — resume ONLY on rewind-landing or TRON'S OWN word. Fleet-health supersedes the sprint incl. the live display-regression fix.**
+
+## Fresh-me: NO re-derivation needed — current S41 state (all measured/committed this session)
+- **id: robbin-planner, robbinTeam2:0.6, host v60211** (round-trip, never $TMUX_PANE).
+- **Sprint 41 'OOP Model Consistency' (04e84ff9). ALL task names now carry 'Task 41.N:' prefix (fixed to match S40 convention — Tron caught them rendering numberless).**
+- **T41.1 a264c6a3 class File = IN-PROGRESS by-the-act** (commit 3d7689cf9): 4 increments SHIPPED+GATED, each verified as a real commit — inc-1 ownIor 245da4f9f / inc-2 renderSelf-token 5795ab068 / inc-3 moveTo eadf179a7 / inc-4a token→SVG adapter a13f6243b; architect backstopped ownIor+moveTo GREEN. **inc-4b (rb-object-item wiring + deploy) = single remaining impl piece.** checklist refinement+test-cases+implementing[x], testing[ ]. **NOT Done (Tron's gate).**
+- **T41.2 6128094d class Folder = BLOCKED-ON-TRON-QA-OF-FILE** (commit e02c74bec): Tron 'dont do folder before i assure file qa approved'; stays Planned, waitingOn field set, go WITHDRAWN, expert countermanded. Do NOT re-start until Tron QA-approves File.
+- **T41.3 c9fb1a08 (MVC live-updates) / T41.4 28978064 (Repository greenfield) = Planned**, prefix-fixed, req-wired.
+- **T41.6 43a1f664 = TRON-ORDERED CURRENT** (commit 8f6d5a351 name-prefix): 'Complete M2 metamodel of File (UML+TS+PUML consistent-by-construction, MVC) + open-diagram action on class File'; covers R41.6 b522428a; File.openDiagram 0067401b; fully req-wired (I did NOT re-board — check-before-create). 5 failable ACs.
+- **★ OWED / PENDING — MAKE-CURRENT T41.6 (owner-gated ONE-CLICK, NOT fired):** set-as-current is 403-to-agents (#96.29 + the STANDING RULE below); I did NOT hand-write the singleton. Handed PO the one-click: **set-as-current = T41.6 43a1f664** → target pin **current=T41.6 / next=T41.1 a264c6a3 (stays till Tron QA-accept) / T41.2 OFF (blocked).** Pin as of halt STILL = current a264c6a3(T41.1) / next 6128094d(T41.2-blocked) = STALE, awaiting the click. Fresh-me: verify the pin MEASURED after PO/Tron fires it; if unfired, re-flag the one-click, NEVER hand-write.
+
+## Constraints reaffirmed (do NOT relearn the hard way)
+- **file-unit.ts: LEAVE ALONE.** Zero-migration (Tron 'leave file-unit.ts allone!!!'); coexistence INTENDED, not debt. The 'collapse is a sprint concern' verdict is WITHDRAWN (PO over-extension) — do NOT board it.
+- **git push GATED for me** (classifier blocked x2). PO pushes the branch (already pushed 3d7689cf9 + e02c74bec + req's mint; 8f6d5a351 sits under architect's commits in history → goes on next branch push). Hand PO anything stranded.
+- **Large uncommitted DELETION-set on the served tree = NOT mine.** Don't touch/commit/revert it. Commit path-limited --no-verify (dirty tree; regen deferred to a clean tree; /model renders from units).
+- **NEVER hand-write the pin/singleton** to achieve an owner-gated action (STANDING RULE below). **0 Done till Tron.**
+- Measure-first repeatedly saved me this session: T41.3/4 already-boarded (no double-board), CR-note '#86-1 phantom' STALE (4babebb1 exists, ruling 452e3f6d numbers it — do NOT 'fix' the note), file-unit.ts 'collapse' withdrawn before I acted. [[distrust-your-own-negative-reverify]] [[dont-reask-settled-question-read-committed-artifact]].
+
+---
+
 # ⛔⛔ STANDING RULE (Tron+PO 2026-09-13, banked before deep-rewind @95%) — READ FIRST: AGENTS DO NOT WRITE THE PIN TO ACHIEVE AN OWNER-GATED ACTION
 
 **A UNIT-WRITE that achieves what an OWNER-GATED ACTION guards IS A GATE BYPASS — same shape as the raw-fs unlink I refused for the 34-orphan set: a right SET does not make a wrong METHOD right. Where an action is owner-gated, we PREPARE and TRON ACTS. A planner 'pin lane' is a DESIGN (the agent-delegation credential the expert named), NOT a file write.**
