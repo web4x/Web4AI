@@ -2205,3 +2205,10 @@ NOTE: rig worktree has the test-only EOF export (uncommitted, scratch-worktree o
 - Gate r401-rc-link-gate.mjs (test c4f8a1d6): [REAL] AC-4 403+NO-LEAK (no-token/unknown/owner-not-live/injection all→403, 0 leak; 403 in requireOwnerHttp BEFORE resolveRcLink=nothing to leak). [HARNESS] AC-3 FAIL-CLOSED (url:null never synthesised session_ URL; stub-must-fail=synth-url→RED). AC-2 client per-pane ?pane= threading. 1 prod call (proportionate).
 - OWNER-PAGE PENDING (NOT tester-automatable = Tron's approve, not my guarantee): AC-1 visible+fireable on real pane surface, AC-2 SERVER-side pane→agent isolation (OtmuxBridge owner-gated), AC-5 @390 device-gate.
 - VERDICT: automatable guarantee PASSES on shipped bytes → T40.1 genuinely near-approvable (NOT broken). Step-1 CLEAR. PO drives step-2 (CR-resolve on 5 CRs) → Tron ONE approve (covers owner-page ACs on his device). Reported PO.
+
+
+## ✅ T40.1 STEP-2 resolveCr FAILABLE CHECK = GREEN @v0.8.230 (2026-09-13, gate r401-resolvecr-gate.ts 452489367):
+- After resolve-cr on the QA-Review-with-open-CR task: 5 reachable CRs → RESOLVED (actor-attributed resolvedBy=ce981242) + band CLEARS (QA-Review-with-open-CR → clean 'QA Review'). 
+- FAILABLE-both-ways: STUB (flip loop removed) → CRs STAY OPEN (the PO RED); UNREACHABLE control CR STAYS OPEN (reachability-selective, blanket→RED); IDEMPOTENT (2 pre-Resolved SKIPPED not re-stamped, 3 Open flip).
+- METHOD (honest): drove the SHIPPED SEAM (UnitController.apply + task-policy FSM from scenario/*.js) with resolveCr's EXACT logic (server.ts:2254-2280, publish no-op'd) on an ISOLATED SCRATCH index of the REAL T40.1 units — PROD UNTOUCHED, 0 prod calls. NOT server.ts import (main() boots unguarded=reapOrphans/port risk), NOT the owner-gated endpoint (403 non-owner). band-gate 409 on re-run caught (matches shipped).
+- T40.1: step-1 GUARANTEE PASS + step-2 resolve-cr MECHANISM GREEN. REMAINING: expert/Tron fire the REAL owner-gated resolve-cr on prod T40.1 → 5 CRs Resolved + clean QA-Review → Tron ONE approve closes it. (Scratch worktree _resolvecr-harness.ts = disposable; main-tree gate is durable.)
