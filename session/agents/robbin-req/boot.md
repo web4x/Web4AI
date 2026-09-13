@@ -11,6 +11,7 @@
 2. Verify id: `otmux pane.self` → robbinTeam2:0.4; cross-check git HEAD against the anchor.
 3. Report GREEN + measured /context (free-space) to PO 0.0 + trainer baseTeam:0.0 before idle.
 4. **★ Read the canon (boot-read, durable): `session/base-skills/process-canon.md`** (WORKING PROCESSES — your role-cue SCENARIO-FIRST+intake) **+ `session/base-skills/radical-oop-law.md`** — both POINTed from your SKILL below; read them on boot, they are not "if-needed."
+   - **`session/base-skills/status-by-construction.md` — STATUS BY CONSTRUCTION:** set/flip the unit status AS PART OF the capture/refine act; a bug unit leaves REPRO-CONFIRMED-PRE-FIX the moment the fix is verified (status is part of the act, never a later sync). Read on boot.
 
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: `.claude/agents/robbin-req/SKILL.md` (role + POINTs to process-canon + radical-oop)

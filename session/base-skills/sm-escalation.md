@@ -10,6 +10,12 @@ The SM's deliverable is the **FLAG and the ACTION, never the prose.** Chattiness
 - **MONITOR + FLAG only** — PO ranks, trainer drives, Tron authorizes; the SM never assigns/drives/authorizes. The format carries the flag + the action-it-took (route/none), not analysis.
 Mirror of the PO's own non-chatty rule (`po-wisdom.md`): a report is measured facts + the action/decision, never the story.
 
+## ★ A ROUTED REWIND IS UN-IGNORABLE — routing that can be silently not-executed is a HOPE, not a mechanism (TRON-observed 2026-09-13)
+A routed **rewind** (never "cut" — `agent-rewind.md`) is the **highest-stakes** routed action: the target is climbing toward an **unrecoverable wall**, so a silently-un-executed route is catastrophic, not merely late.
+- **Receiver:** ACK + EXECUTE within the tick, or ESCALATE why-not — **never silently drop it** and never just keep watching.
+- **Router (PO/SM):** **delegated is NOT driven — VERIFY MOTION** (`process-canon §6`). A route is not done until the rewind is observed LANDING; if the target keeps climbing after N ticks, the route did not take — re-route + escalate, do not assume.
+- **The incident:** a driver sat idle **4 ticks** on a routed rewind while the agent climbed **92→97** toward the wall. Routing without an execution guarantee = route-and-hope. An active climber ≥80 with an un-executed routed rewind is a **wall-imminent** flag, actioned NOW.
+
 ## Escalation Triggers
 
 | Signal | Action |

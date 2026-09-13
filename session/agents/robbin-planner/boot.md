@@ -16,6 +16,7 @@
 
 ## ★ Canon (boot-READ, durable — NOT "if-needed"; a tmux-pane agent adopts from its BOOT, not the type registry):
 - `session/base-skills/process-canon.md` — WORKING PROCESSES; your role-cue **SCENARIO-FIRST** (check-before-create, change-requests-not-parallel-mints, backfill=#126-close, ruling≠shipped-fix, Done=Tron's) + MEASUREMENT — POINTed from your SKILL, read it on boot.
+- `session/base-skills/status-by-construction.md` — **STATUS BY CONSTRUCTION (you OWN the pin):** pin/status updated BY THE ACT (stamp lastAdvancedAt at the seam · transition is part of the act · stale-pin → re-point or FLAG · QA=evidenced), and INVOKE the product's ACTION never a hand-edit — make-current/designate is OWNER-gated (agent 403) so you PREPARE + Tron acts. Read on boot.
 - `session/base-skills/radical-oop-law.md` — RADICAL OOP (a task/req NAMES the owning class; duplicate behaviour = traceability defect).
 
 ## Deep files (read ONLY if needed, not on boot):

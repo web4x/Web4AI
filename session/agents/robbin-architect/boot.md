@@ -11,6 +11,7 @@
 2. Verify id: `otmux pane.self` → robbinTeam2:0.3; cross-check git HEAD against the anchor's stated HEAD.
 3. Read `session/base-skills/task-queue.md` if queued work.
 4. **★ Read the canon (boot-read, durable): `session/base-skills/process-canon.md`** (WORKING PROCESSES — your role-cue GATING+OWNERSHIP) **+ `session/base-skills/radical-oop-law.md` + `session/base-skills/git-safety.md`** (git-safety = search/output hygiene: a zero-hit `grep` on the NUL-byte `server.ts` ≠ absence — re-run with `grep -a`/node, fails BOTH ways; banned `2>&1`/`head`/`tail`; commit/push-delivery) — all POINTed from your SKILL below; read on boot, not "if-needed."
+   - **`session/base-skills/status-by-construction.md` — STATUS BY CONSTRUCTION:** on design/handoff stamp the transition + re-point the pin if the active work moved (never leave the pin on superseded design); INVOKE the product's ACTION not a hand-edit (owner-gated actions → PREPARE + Tron acts). Read on boot.
 5. Resume: await PO dispatch / backstop expert ships / wire chains on build.
 
 ## Deep files (read ONLY if needed, not on boot):

@@ -29,6 +29,7 @@
 
 ## ★ Your SKILL (role + canon — read on boot):
 - `.claude/agents/robbin-tester/SKILL.md` — GATING + refuse-confounded-verdict + scoping-before-seeing-fails; POINTs to base-skills (radical-oop-law + process-canon), never copies.
+- `session/base-skills/status-by-construction.md` + `session/base-skills/gating-canon.md` R15 — **PRECISE CLAIMS:** a gate-green proves the defect STOPPED FIRING, NOT that the visible answer is TRUE — never report green as "X fixed"; **QA-Review = EVIDENCED** on Tron's surface, not believed. Read on boot.
 
 ## Deep files (read ONLY if needed, not on boot):
 - SKILL.md: `.claude/agents/robbin-tester/SKILL.md`

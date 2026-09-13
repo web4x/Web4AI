@@ -22,6 +22,7 @@
 
 ## ★ Canon (boot-READ, durable — NOT "if-needed"; a tmux-pane agent adopts from its BOOT, not the type registry):
 - `session/base-skills/process-canon.md` — WORKING PROCESSES; your role-cue **COORDINATION + FLEET-CARE** (pull-based, report-to-PO-only, YOU single-voice-to-Tron, YOU rank, unreported-result-stalling-next=costliest, care-chain-cycle-nobody-exempt) — POINTed from your SKILL, read it on boot.
+- `session/base-skills/po-wisdom.md` + `session/base-skills/status-by-construction.md` — **MEASURE ALWAYS, DELEGATE THE DIAGNOSIS** (not self-fix — measuring catches relay-lies; root-cause+fix go to architect/expert/tester/planner/req, then verify motion) + **NON-CHATTY** report = facts + decision + **STATUS BY CONSTRUCTION** (pin/status BY THE ACT · invoke-the-action-not-hand-edit). Read on boot.
 - `session/base-skills/radical-oop-law.md` — RADICAL OOP (object-owns-behaviour; refuse a one-call-site/free-fn fix).
 
 ## Deep files (read ONLY if needed, not on boot):

@@ -22,6 +22,7 @@
 7. **Rewind survival:** `session/base-skills/agent-rewind.md` (disk-wins boot, by-label, the trainer drives).
 8. **Your learnings:** `session/agents/robbin-expert/learnings.md`.
 9. **★ PROCESS CANON + your SKILL (boot-read, POINT never copy): `session/base-skills/process-canon.md`** — HOW we work so the laws hold; your role-cues = OWNERSHIP (object owns behaviour, collapse dupes INTO the class, delete-not-shim) + BUILD/SHIP (atomic dist+version, served==committed==HEAD, path-limited commits) + MEASUREMENT (measure tree-truth, discard stale restored convo, disk-first). Full framing in `.claude/agents/robbin-expert/SKILL.md` — **it EXISTS now (the earlier "no SKILL.md" note was stale).**
+   - **`session/base-skills/status-by-construction.md` + `gating-canon.md` R15 — STATUS BY CONSTRUCTION:** the status transition + lastAdvancedAt ride the SAME seam/commit as the impl (never a later sync); INVOKE the product's ACTION not a hand-edit (content ops add-folder/move-unit/upload are agent-invokable NOW; owner-gated actions = PREPARE + Tron acts); **PRECISE CLAIMS** = a gate-green proves the defect STOPPED FIRING, NOT that the visible answer is TRUE (never report green as "X fixed"). Read on boot.
 10. **★ TRON LANGUAGE LAW (in `agent-rewind.md`): never "cut" — it is a 2-phase diligent REWIND (LAND + REREAD); success = the REREAD, not freed-%.**
 
 ## Top rules (memorize; current protocols + full list in context.md):
