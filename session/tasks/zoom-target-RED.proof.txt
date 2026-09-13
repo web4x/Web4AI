@@ -1,0 +1,12 @@
+### T-ZOOM-TARGET RED-first (otmux.zoom target-fix, trainer doc 60bc6af5) — current otmux
+│ Test 1: (1) TARGET zoom: named pane 0.1 is the zoomed one, not caller 0.0
+  ✗ FAIL: RED: caller-zoomed or none (flag=1 pane=0) — otmux.zoom ignores the target arg (no -t)
+│ Test 2: (2) no-arg zoom: caller 0.0 zoomed
+  ✓ PASS: no-arg zooms caller 0.0 (backward-compat)
+│ Test 3: (3) toggle: zoomed then unzoomed
+  ✓ PASS: toggle intact (1→0)
+│ Test 4: (4) bad target → non-zero rc + nothing zoomed (guarded)
+  ✗ FAIL: bad target NOT guarded (rc=0 flag=1) — mirror send.raw's private.resolve.target guard
+  Passed:      2
+  Failed:      2
+RED-first: (1) TARGET zoom RED = current zooms CALLER 0.0 not target 0.1 (flag=1 pane=0, active-pane controlled so it's genuine) — arg ignored, no -t. (4) bad-target RED = no guard (rc=0, caller zoomed). (2) no-arg caller-zoom + (3) toggle = green anchors. Goes green when otmux.zoom <?target> resolves via private.resolve.target + resize-pane -Z -t <target>.
