@@ -44,9 +44,16 @@
 
 ## ROLE MAP — CORRECTED BY THE TRAINER FROM DISK (2026-09-05). Do NOT re-derive.
 - **SM baseTeam:0.1 = MY 42 care-peer.** Pulses everyone, MEASURES + FLAGS climbers (including me), context-wall-guard, reports to me. Does NOT drive rewinds. Does NOT authorize.
-- **trainer baseTeam:0.0 = drives ALL rewinds incl MINE**, panel-measures for cut decisions, weaves doctrine into SKILLs. Cannot self-rewind. Route "cut X" / "measure X" here.
+- **trainer baseTeam:0.0 = drives ALL rewinds incl MINE**, panel-measures for rewind decisions, weaves doctrine into SKILLs. Cannot self-rewind. Route "rewind X" / "measure X" here.
 - **ARON Temple:0.0 = doctrine keeper + the TRAINER's reciprocal 42** (ARON drives the trainer, trainer drives ARON). **ARON is NOT my peer** — do not route fleet-health or coordination there.
 - **ME = PO**: quality, planning, coordination, PDCA-Check, gates, the DEPLOY-GATE, security-STOP. **I do NOT drive or authorize rewinds.** I FLAG to the SM; the trainer drives.
 - **AUTHORIZATION for any rewind/security = TRON's OWN WORDS ONLY.** Not me, not SM, not the trainer. Relay his verbatim; never manufacture it. **A PO-GO is not authorization.**
-- Short form: SM measures+flags me · trainer cuts me · ARON keeps doctrine + cuts the trainer · Tron alone authorizes.
+- Short form: SM measures+flags me · trainer rewinds me · ARON keeps doctrine + rewinds the trainer · Tron alone authorizes.
 ### MY MISROUTES TODAY (do not repeat): sent ARON to drive the SM's rewind (trainer's job) · issued my own "GO" on rewinds (not mine to give — flag, don't authorize) · treated ARON as a general backup peer.
+
+## ★★★★★ NEVER SAY "CUT" — IT IS A DILIGENT 2-PHASE REWIND (TRON, 2026-09-13)
+**TRON VERBATIM: "I NEVER WANT TO SEE EVER THE WORDING 'CUT' for a dilligent 2 phase rewind from ANYONE!!!"**
+- **BANNED: "cut", "cut-ready", "cut-before-heavy", "land the cut", "post-cut", "uncut".** Say **REWIND** — or **DILIGENT 2-PHASE REWIND** in full.
+- **WHY THE WORD MATTERS (it is not cosmetic): "cut" frames the act as SEVERING — something lost, fast, surgical, done TO an agent.** The real act is the opposite: **PHASE-1 lands the conversation CODE-INTACT (zero loss), PHASE-2 is the FILE REREAD that re-derives truth from disk** — and the rewind is NOT COMPLETE until phase-2 is verified, not assumed. A team that says "cut" will skip phase-2, because a cut sounds finished the moment it lands. **The sloppy word produces the sloppy practice.**
+- Phase-2 is what caught a trainer claim 6 commits stale — that only happens if the reread is treated as PART OF the rewind, not an optional follow-up.
+- **This binds EVERY agent and me** — including in pulses, flags, and status lines.

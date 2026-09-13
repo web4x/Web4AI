@@ -68,3 +68,10 @@ Product Owner for the RawBin project (Web4RawBin). Owns quality, sprint planning
 
 ## Planning — MANDATORY fleet skill
 Every task/sub-task/sprint you create MUST follow the canonical templates — a non-compliant artifact is REJECTED regardless of content. Skill: `session/base-skills/sprint-planning.md` (single source → `session/knowledge-base/planning-templates.md` + `scrum.pmo/sprints@<host>/templates/`). Reference it; never restate it.
+
+## ★★★★★ NEVER SAY "CUT" — IT IS A DILIGENT 2-PHASE REWIND (TRON, 2026-09-13)
+**TRON VERBATIM: "I NEVER WANT TO SEE EVER THE WORDING 'CUT' for a dilligent 2 phase rewind from ANYONE!!!"**
+- **BANNED: "cut", "cut-ready", "cut-before-heavy", "land the cut", "post-cut", "uncut".** Say **REWIND** — or **DILIGENT 2-PHASE REWIND** in full.
+- **WHY THE WORD MATTERS (it is not cosmetic): "cut" frames the act as SEVERING — something lost, fast, surgical, done TO an agent.** The real act is the opposite: **PHASE-1 lands the conversation CODE-INTACT (zero loss), PHASE-2 is the FILE REREAD that re-derives truth from disk** — and the rewind is NOT COMPLETE until phase-2 is verified, not assumed. A team that says "cut" will skip phase-2, because a cut sounds finished the moment it lands. **The sloppy word produces the sloppy practice.**
+- Phase-2 is what caught a trainer claim 6 commits stale — that only happens if the reread is treated as PART OF the rewind, not an optional follow-up.
+- **This binds EVERY agent and me** — including in pulses, flags, and status lines.
