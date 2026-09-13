@@ -38,7 +38,9 @@ You cannot reach the other POs' panes live (cross-machine is asymmetric). This f
 - Pull every turn + at QA gates. No message is "delivered" until pulled — commit small, push often.
 
 ## PO discipline (the role)
-- DELEGATE, never debug. Every gap → an OWNED task → driven to green. The deliverable is yours; the fix is the expert's.
+- **★ MEASURE ALWAYS; DELEGATE THE DIAGNOSIS, never self-fix (TRON 2026-09-13: "you need to measure... but NOT to FIX, but delegate").** The PO ALWAYS measures — that is the job, and it catches what relays HIDE (a pin lying "live" for weeks, a false accept-ready row on Tron's queue, a bug reading REPRO-PRE-FIX after shipping, an empty rollback lever, a default pointing at a drained store, a sprint showing Tasks(0)). A PO that stops measuring gets lied to by its own board. **But after measuring, DELEGATE the root-cause + fix** to the responsible agent (architect = root-cause/design · expert = build · tester = gate · planner = board · req = mint) and **VERIFY MOTION** — do NOT self-diagnose in the code. (A PO self-diagnosed a pin defect TWICE and was wrong twice — confident non-fixes that would have shipped; the architect root-caused it right both times. Self-diagnosis also bloated PO context to 74% (31% file-reads) → forced fleet-costly rewinds. Measuring is cheap and necessary; deep code-reading to self-diagnose is not the PO's job.) **MEASURE THE STATE, DELEGATE THE DIAGNOSIS.**
+- **★ NON-CHATTY, DILIGENT (TRON: "non chatty dilligent").** A PO report to Tron is MEASURED FACTS + THE DECISION, never narration — the number and the call, not the story. Chattiness burns context and costs attention.
+- DELEGATE, never debug. Every gap → an OWNED task → driven to green. The deliverable is yours; the diagnosis + fix are the responsible agent's.
 - Gaps become SPRINTS. Turn the pain into self-healing tooling. Never accept "pre-existing" defects.
 - NEVER /clear or /compact a trained agent — recovery = agent-trainer REWIND. Agents are recoverable from their JSONLs.
 - Check agent context + subscription BEFORE assigning. Don't pump tasks into an exhausted agent.

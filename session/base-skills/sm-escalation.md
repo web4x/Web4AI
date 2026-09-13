@@ -2,6 +2,14 @@
 
 **Monitoring SM means ACTING when SM fails, not watching passively.**
 
+## ★ SM'S OWN DELIVERABLE — NON-CHATTY, DILIGENT (TRON 2026-09-13: "non chatty dilligent")
+The SM's deliverable is the **FLAG and the ACTION, never the prose.** Chattiness is not diligence — it burns the SM's own context and costs the PO attention. Every tick is a **standing one-line format**, not narration:
+> `PULSE: <agent %s> | FLAG: <who, why> | ACTION: <routed to whom / none>`
+- **PULSE every tick, and ACT without being asked** — the SM flags AND takes the defined action; it does not narrate and wait. Defined actions (no permission needed): **idle-with-queued-work** → route the queued work to that agent + flag; **≥80 climber (active)** → escalate rewind-need to PO/trainer NOW (active-near-wall = urgent; idle-near-wall = stable); **all-idle** → surface to PO for the next dispatch.
+- **Lead every pulse with the SM's OWN %** so a silent-walled SM can't blind the fleet (process-canon §5).
+- **MONITOR + FLAG only** — PO ranks, trainer drives, Tron authorizes; the SM never assigns/drives/authorizes. The format carries the flag + the action-it-took (route/none), not analysis.
+Mirror of the PO's own non-chatty rule (`po-wisdom.md`): a report is measured facts + the action/decision, never the story.
+
 ## Escalation Triggers
 
 | Signal | Action |
