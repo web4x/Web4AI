@@ -68,6 +68,9 @@
   - **★ TRON's R41.4 answer seen on PO line (NOT yet formally relayed to me, will apply on relay): repo NAME=Web4RawBinOOP, VISIBILITY=private, org=web4x → closes R41.4's last OPEN.**
   - **PENDING-DELIVERY: PO(T40.1 measured report + 41.3/41.4 chain uuids), expert(41.3/41.4 chain uuids).**
 
+**TASK 18 ✅ R41.5 M1-node 'add Repository' action (1f2faa59d) — Tron top-down, HALT LIFTED (rewind deferred to after-S41, 'keep driving until sprint 41 is done'):** R41.5 c0acaf37 (6 failable ACs: action-visible-on-m1-node / selector-reused-no-fork-real-gh-repos / existing-project-attachable / new-project-creatable-attachable / m1-tree-shows-result / owned-by-classes-not-free-functions). 3 UCs (m1Node.addRepositoryAction 86c45bba / repoProjectSelector.chooseExistingOrNew 0296dad4 / project.createAndAttach 83b8e3a5). ★ CHECK-BEFORE-CREATE: REUSE the three-way-diff selector (diffEditor.repoTargeting 522473f3 + RepoRegistry.list 2368167a) NO 2nd picker; Repository=9be9df2f (41.4 reused); Project class MINTED eeaa43d7 (absent, 3 instances no Class like File) + create/renderSelf/ownIor; Repository.addProject f8d8aea7 (HAS-A). Architect refines action-ownership + selector wiring; task-home=T41.4 line (planner). **PENDING-DELIVERY: PO(R41.5 uuids + the still-pending T40.1 security-measure report + 41.3/41.4 chain uuids), planner(task-home T41.4), architect(refine action/selector).**
+  - ⚠ REWIND NOTE: trainer Phase-1b (hold-until-rewind) reconciled by Tron 'keep driving until sprint 41 is done' = rewind DEFERRED to after-S41, drive now. Not the drift/auto-resume the trainer warned of (explicit fresh Tron order).
+
 ---
 
 # ★★★ BOOT FIRST — YOU WERE WALLED AND REWOUND (banked by robbin-po, 2026-09-12)
