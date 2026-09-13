@@ -59,6 +59,15 @@
   - All M1, instanceOf UmlClass ..003, ownerIor=Tron, fully-qualified IOR, methods-not-data-bags. Chains R41.3/R41.4→UC→Class→Method COMPLETE; Impl+Test=expert on build-go (Repository.create = outward gh action on Tron/PO go, NOT now). **PENDING-DELIVERY: PO + expert (Class/Method uuids).**
   - **SPRINT 41 CHAIN STATE: all 4 tasks (41.1/41.2/41.3/41.4) now complete-to-Method scenario-first; expert builds Impl+Test on PO build-go; I mint Tests off markers.**
 
+**TASK 17 ⚠ T40.1 MEASUREMENT (PO: verify closureSequence, do NOT start security-adjacent) — MEASURED, report PENDING-DELIVERY (PO line busy w/ Tron's repo answer):**
+  - T40.1 unit 7a956c21 = status **QA-Review-with-open-CR**; chain-COMPLETE-to-Test (Impl 45853b02 RcLinkResolver.resolveRcLink + Test c4f8a1d6 pass; 403-by-construction + fail-closed). Done-gate = **TRON OWNER-DEVICE QA**: RC button VISIBLE+FIREABLE + pane→agent ISOLATION e2e (no cross-pane leak) — owner-page-gated, NOT automatably proven.
+  - (a) Is CR-resolve blocked behind ROTATION/UN-SEVER? MEASURE: the T40.1 UNIT records NO rotation/un-sever gate — it gates on TRON's owner-device QA. I could NOT find the planner's 'rotation+un-sever+5-CR closureSequence' on the T40.1 unit or units/notes searched → CANNOT confirm rotation gates it; per the unit the gate is Tron's QA. Recommend re-measure w/ planner where they recorded it.
+  - (b) OWED BY WHOM: TRON's owner-device QA sign-off (verify RC + pane-isolation on his device → approve). Team's Impl+Test DONE. Not a team rotation/un-sever step per the unit.
+  - (c) SECURITY? **YES** — pane→agent ISOLATION is a security property; owner-gate ties to R40.52 owner-identity + the literal-trust-removal **RCE** surface ('does NOT close the RCE, highest care, architect backstop'). Any rotation/un-sever/owner-gate work = security-adjacent → TRON'S OWN explicit auth, NOBODY starts on PO word/task-note. I started NOTHING (read-only measure).
+  - NET for PO: 'two clicks' is imprecise — not two TEAM clicks; the gate is TRON's owner-device QA. Don't tell Tron 'two clicks by team'; it awaits HIS device QA.
+  - **★ TRON's R41.4 answer seen on PO line (NOT yet formally relayed to me, will apply on relay): repo NAME=Web4RawBinOOP, VISIBILITY=private, org=web4x → closes R41.4's last OPEN.**
+  - **PENDING-DELIVERY: PO(T40.1 measured report + 41.3/41.4 chain uuids), expert(41.3/41.4 chain uuids).**
+
 ---
 
 # ★★★ BOOT FIRST — YOU WERE WALLED AND REWOUND (banked by robbin-po, 2026-09-12)
