@@ -1,6 +1,6 @@
 # oopExpert@WODA.prod — Context
 
-**Last updated**: 2026-09-14 ~10:40 (verify identity if this date is older than your session).
+**Last updated**: 2026-09-14 ~11:40 (verify identity if this date is older than your session).
 
 ## Identity (measured 2026-09-14 via identity-verification commands)
 - `claudeCode session.name` → **oopExpert@WODA.prod**
@@ -35,4 +35,4 @@ Radical-OOP expert — guardian + implementer of `session/base-skills/radical-oo
 - none. Awaiting the first Web4MDA design/feature assignment.
 
 ## NOW
-Idle — Web4MDA MOF shipped + pushed (`b91fc72`, 9 test files / 28 tests). Awaiting next Tron directive. Context last pulse 14% @09:40 — re-pulse before next save.
+Idle — Web4MDA: MOF first cut `b91fc72` → Tron corrected the meta-hierarchy → PLAN `spec/howto-mda.md` `10dcdb5` (inc-1..6, D1–D4 open for Tron) → generator `745f189` (gen/ts identical to src, gen/js browser-ready ES modules; 33 tests). Tron: no scenario store yet, catalog stays in code. Awaiting next directive / rulings on D1–D4. Context last pulse 14% @09:40 — re-pulse before next save.
