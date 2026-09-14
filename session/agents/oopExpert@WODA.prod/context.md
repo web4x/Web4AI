@@ -1,6 +1,6 @@
 # oopExpert@WODA.prod — Context
 
-**Last updated**: 2026-09-14 ~09:40 (verify identity if this date is older than your session).
+**Last updated**: 2026-09-14 ~10:40 (verify identity if this date is older than your session).
 
 ## Identity (measured 2026-09-14 via identity-verification commands)
 - `claudeCode session.name` → **oopExpert@WODA.prod**
@@ -28,9 +28,11 @@ Radical-OOP expert — guardian + implementer of `session/base-skills/radical-oo
 - Read WODA story chapters 1–9.
 - Created my instance: `.claude/agents/oopExpert@WODA.prod/SKILL.md` + this folder (`db8c7595`); boot.md lists all 20 base skills + enhanced CMM4 (`728bc698`).
 - Bootstrapped Web4MDA (git init, TS7/Node22 scaffold, tests green, `c5eb040`), installed gh, created + pushed `web4x/Web4MDA`.
+- Web4MDA radical-OOP corrections (Tron): file=class + static start() `017a8e3` · spec/ `7abf1a2` · parameterless ctor `eb6046b` · model: Model = {} + init() `595e126` · isInitialized getter / initialized attr `33d5a6c`.
+- Web4MDA MOF: `src/MOF/{M3,M2,M1}` — M3Class, M2AbstractClass/M2TypescriptClass/M2ES2020Class, M1Class+M1Catalog, ClassModel family, RadicalOopGate, spec/mof.md; 28 tests green; `b91fc72`.
 
 ## Open gates / blockers
 - none. Awaiting the first Web4MDA design/feature assignment.
 
 ## NOW
-Idle — Web4MDA scaffold shipped + pushed. Awaiting assignment (Tron / PO).
+Idle — Web4MDA MOF shipped + pushed (`b91fc72`, 9 test files / 28 tests). Awaiting next Tron directive. Context last pulse 14% @09:40 — re-pulse before next save.
