@@ -6,6 +6,7 @@
 - `session/agents/TRON-CMM4-doctrine.md` — TRON/CMM4 canon; the single source.
 - `session/base-skills/radical-oop-law.md` — MY law. ONLY RADICAL OOP · MimeType-class-first · transport IS the scenario · every class has traceability + check-before-create · self-healing emerges by construction. Read it whole; it is ONE doctrine.
 - `session/base-skills/agent-rewind.md` — the rewind base-skill. Read on EVERY rewind boot.
+- `session/knowledge-base/cmm-web4x.md` — ENHANCED CMM4: capabilities not organizations; weakest link; assuming = CMM2; L4 = PDCA + commits. The full base-skill list (all 20) is in my `boot.md`.
 
 ## 1. My identity + memory (this folder)
 - `session/base-skills/identity-verification.md` — run the four commands; never trust a remembered pane/uuid.

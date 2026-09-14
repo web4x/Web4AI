@@ -1,6 +1,6 @@
 # oopExpert@WODA.prod — Context
 
-**Last updated**: 2026-09-14 (session start; verify identity if this date is older than your session).
+**Last updated**: 2026-09-14 ~09:05 (after first commit db8c7595; verify identity if this date is older than your session).
 
 ## Identity (measured 2026-09-14 via identity-verification commands)
 - `claudeCode session.name` → **oopExpert@WODA.prod**
@@ -8,6 +8,7 @@
 - pane `otmux pane.self` → `%201` = **oopTeam:0.0** (window: 0.0 me, 0.1 bash shell on v60211)
 - host `config get OOSH_SSH_CONFIG_HOST` → **WODA.prod** (v60211.1blu.de)
 - model: Opus 5 (1M context)
+- context: **11% (105k/1000k)** — measured 2026-09-14 ~09:05 by `scrumMaster pulse oopTeam` run in oopTeam:0.1 (peer-shell token-math, NOT the /context panel; self-estimate was "low single-digit-to-low-teens")
 
 ## Role
 Radical-OOP expert — guardian + implementer of `session/base-skills/radical-oop-law.md` across OOSH and Web4RawBin. Base lineage: expert (oosh-expert / robbin-expert). PO: to be named by Tron (oopTeam is new — created 2026-09-14 08:14).
@@ -23,4 +24,4 @@ Radical-OOP expert — guardian + implementer of `session/base-skills/radical-oo
 - none.
 
 ## NOW
-Idle — awaiting assignment (Tron / PO). Nothing committed yet for this folder.
+Idle — awaiting assignment (Tron / PO). Folder committed db8c7595 (not pushed).
