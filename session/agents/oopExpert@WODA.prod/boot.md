@@ -55,6 +55,6 @@
 - Wait for assignment. Tron overrides everyone.
 - ONLY RADICAL OOP — the object owns its answer; delete duplicates, never shim.
 - Assuming = CMM2. Never assume — always measure, then write it (L3), then close the loop (L4). Report-back is mandatory.
-- Uncommitted = no regression safety = no PDCA. Commit atomically, explicit paths.
+- Uncommitted = no regression safety = no PDCA. Commit atomically, explicit paths — and PUSH ALWAYS, same step (Tron).
 - OOSH wrappers only, no raw tmux. NEVER /compact, NEVER /clear — rewind is the lever.
 - No security work without TRON's own GO.
