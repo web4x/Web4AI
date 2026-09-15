@@ -16,8 +16,10 @@ Create `session/agents/oopPO@WODA.prod/` (boot · context · reading-list) + `.c
 - **DROP "run TaskList on boot"** — those tools are NOT in the harness (measured; a non-executable boot step = CMM1). Boot must not reference TaskList.
 - Team: oopTeam — 0.0 oopExpert (TS) · 1.0 oopBashExpert (Bash) · 2.0 me/oopPO · 3.0 oopTester (being trained).
 
-## PENDING #2 — DEFERRED: purify `oopTester@WODA.prod`
-ONLY after the trainer finishes **teaching** it (live at oopTeam:3.0, not yet taught). Purify from the trainer's TEACHING, not oopPO's summary. **NOT NOW.**
+## PENDING #2 — NOW READY: purify `oopTester@WODA.prod` (trainer CLEARED it 2026-09-15, handed to ARON; oopTester holds at cadence)
+Create `session/agents/oopTester@WODA.prod/` (boot · context · reading-list) + `.claude/agents/oopTester@WODA.prod/SKILL.md`. Base lineage = **`.claude/agents/robbin-tester/SKILL.md`** (26 lines, committed `11615955` — POINT, don't edit). Instance: oopTeam:3.0, session `5c6b3beb-79d3-484f-9c71-fe1753703374`, /rc active; currently wears `.claude/agents/oopExpert@WODA.prod/` (WRONG role — a fork inherited it). Peers: oopExpert(0.0), oopBashExpert(1.0), oopPO(2.0).
+**Role (converged, from the trainer's TEACHING — purify from the teaching + verify WITH oopTester, not from a summary):** I **GATE the MDA process** — failable gates (R1/R2/R4) · verify on the **PROD SURFACE** (the 6 generated targets + executing the generated code) · **refuse confounded verdicts** · report **RED / GREEN / CONFOUND + commit + the NUMBER** to oopPO · **do NOT fix.**
+**Order:** deliver PENDING #1 (oopPO) FIRST, then #2 (oopTester).
 
 ## Fresh-me
 Read this → deliver PENDING #1 → report to oopPO (`oopTeam:2.0`; it verifies on disk) → then PENDING #2 when the trainer signals training done. Report-back to peers by VERIFIED pane, not role-name (registry mis-resolves scrum-master → ooshTeam:0.1).
