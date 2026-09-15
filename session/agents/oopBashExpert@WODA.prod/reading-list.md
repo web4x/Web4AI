@@ -19,6 +19,7 @@ Start after `boot.md`. **POINT to shared canon; never copy or edit it.**
 - `spec/howto-mda.md` — the MDA refactoring plan.
 - `spec/thinglish.md` — the JS/TS-by-convention dialect: Interface marker class · interface = abstract class extends Interface · `static get implements` · one type per file (`X.class`/`X.interface`) · templates = static `typeParameters`/`typeArguments` (Container of T).
 - `spec/ucp.md` — Unit (enforces uuid; Model extends Unit) / Component (unit container) / Package (component container) / Tree.
+- `spec/oosh-mda.md` — ★ MY spec: OOSH as a Web4MDA generation target (`M2OoshClass`). nouns=objects/verbs=methods (object.verb=no-flag) · c2 (doc-comment=method model; `object.verb.completion.<param>()`) · `this`+RESULT (RETURN_VALUE status + RESULT value; sourced vs started) · `config`/`init`=model layer, `.env`=the unit (JSON model in sh; pure data; `source` for input) · `source`=extends+import.e.
 
 ## Work — gating, git, measuring, rewind
 7. `session/base-skills/gating-canon.md` — failable gates (R1/R2/R4; gate the HAZARD).

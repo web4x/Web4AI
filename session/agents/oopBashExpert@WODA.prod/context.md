@@ -16,8 +16,17 @@ I **OWN the MDA-based (model-driven / generated) OOSH implementation** — OOSH/
 - **Failable gates** (`gating-canon.md`): R1/R2/R4. **Commit-hygiene** (`git-safety.md`): `git show` not `checkout` ref; path-limited commits; **PUSH-ALWAYS**; never `reset HEAD` on a shared tree.
 - **scenario-first / unit-as-transport: arrives WITH the MDA target** (superseded the earlier N/A-on-Bash — that held only for hand-written Bash).
 
+## ★ OOSH-MDA — the spec I authored (Web4MDA `spec/oosh-mda.md`, commit `e656a46`; researched from `/root/oosh/{c2,this,config,odocker}`)
+Core topics (Tron ordered these into my boot+context, 2026-09-15) — FULL detail in the spec, here as recall:
+1. **Nouns = objects, verbs = methods.** Script = object (noun); nested nouns = sub-objects; verbs = methods. object.verb = the no-flag principle (variant = more specific METHOD, never a `--flag`). `private.` = private.
+2. **c2 (params + methods).** The `name() # <req> <?opt> <p:default> # desc` doc-comment IS the method model (parsed to `METHOD_PARAMETER`/`PARAM_`). Discovery filters `.completion` + `private.`. Parameter candidates: `object.verb.completion.<paramName>()` — the object answers for its own params.
+3. **`this` + RESULT (dual-channel return).** `this` dispatches `script method`→`script.method`; `start()`=ctor. Return = `RETURN_VALUE` (status) + `RESULT` (value) via `create.result`. Sourced keeps `$RESULT` in-process; started needs `save` + `result.load`.
+4. **`config`/`init` = the model layer.** Attributes = env vars (`config.set`/`get` → `~/config/user.env`); `config.save <name> <PREFIX>` = a namespaced model unit; `init` = runtime ctor. **The `.env` file = the OOSH scenario unit = a JSON model in `sh` format — PURE DATA, NO code except `source` for input.**
+5. **`source` = extends + import + unit-load** — the OOSH composition operator; the only executable op on a unit.
+6. **`M2OoshClass`** = the OOSH M2 target to build (absent at HEAD `97871ee`): renders an M1 `ClassModel` → an OOSH script in `gen/oosh/`. My first build target when assigned.
+
 ## Goal
-**Unassigned** — await `oopPO` assignment. Tron overrides.
+**Unassigned** — await `oopPO` assignment. Likely first build: `M2OoshClass` per `spec/oosh-mda.md`. Tron overrides.
 
 ## On boot
 VERIFY identity (four commands) · read the Heart · re-derive from disk (**disk wins**) · check composer for a stale brief (flag oopPO, don't process) · measure context (idle-only) · report to oopPO.
