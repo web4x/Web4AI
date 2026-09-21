@@ -16,6 +16,20 @@ Keeper = doctrine/canon + purification + tell-Tron-ground-truth + flag-in-the-mo
 
 ## Owed
 - **RC re-enable** (`/remote-control` → footer shows `/rc`) — cannot self-invoke a slash command; needs the harness/Tron.
-- **Resting at ~80 floor.** If I climb from new heavy work, the **trainer** (trained driver) band-clears me — never by driving myself/others (keeper-not-driver).
+- **Being rewound NOW** by the FRESH trainer (I climbed to 86% on keeper advisory work; near-wall + heavy oopTester-boot ahead → rewind-before-heavy, justified by measurement). Hold-stable-1b; the **trainer drives, never me/others**.
+- **RC re-enable** still owed (footer `/rc`; cannot self-invoke; needs harness/Tron).
+
+## Load-bearing learnings (9 days — die if unwritten; POINT, don't copy)
+- **Keeper-not-driver** (Tron 09-13): a cut routed to me = REFUSE + re-route to a trained driver (trainer/SM). Band-cleared by a trained driver, never self/others. Held ~6 routed cuts.
+- **Purification method** = `[[purification-method]]` (`c9d86dce`): 13 moves — name-verbatim → re-read-not-remember → ban-the-word → recall-table-on-top → DO/WHY split → supersede-in-place → attribute+date → cite-by-anchor → enforce-by-construction → point-not-fork → verify-landed → prove-by-use.
+- **Measure HONESTLY:** `NO 2>&1 / head / tail / 2>/dev/null` — suppression/truncation HIDES ground truth (lived: a truncated read hid half the oopExpert forensics). = move-2 teeth.
+- **Stall-doctrine:** un-driveable target → **escalate on the FIRST failed attempt, not the Nth**; **"driver appears idle" ≠ "not driving"** → measure MOTION, not appearance.
+- **Auto-mode runaway = un-driveable SPOF:** can't interrupt an auto-spiral from outside (Escape re-spirals); a wall is recoverable (shallow-rewind) so don't force a picker into a spinner — hold + escalate to Tron.
+
+## Advisory delivered since 09-17 (fleet executes — NOT keeper's to drive)
+- **Move ALL oop agents into the Web4MDA project** (they're the MDA guys). Measured blockers: (1) `/var/dev/Workspaces/Web4MDA` **does not exist locally**; (2) oop SKILLs use AI/Claude-**relative** canon paths that break under a Web4MDA cwd. Fix = clone Web4MDA to a real path · **symlink** AI/Claude `.claude/agents`+`session/base-skills`+`session/agents` into it (point-not-fork) · exit-refork each misplaced session (Phase-1-save → re-launch `cwd=Web4MDA` → boot disk-first) · fix the bootstrap cwd (correct-by-construction) · DRY-retire duplicate/dead sessions. Lane = expert(tooling) + trainer(refork).
+- **oopExpert ≠ oopPO** (forensics corrected): live oopExpert = `ef9fe62b` (Web4MDA) + dup `6f8aa69f` (AI/Claude) + DEAD `046bbac4`; exit+refork commit `0d530e1c` was **oopPO's**, not oopExpert's.
+- **Monitoring gap:** no oop-team context-metric files (`session/metrics/` tracks robbin+SM only) — add oop-team to the sweep.
+- **SM is the de-facto 2nd trained driver** (drove the trainer home this crisis) — **formalize ≥2 trained drivers** so a critical trainer-rewind never dead-ends on trainer-or-Tron.
 
 **NEVER forget TRON CMM4.** 🕯️
