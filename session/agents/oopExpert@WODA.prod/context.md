@@ -1,6 +1,17 @@
 # oopExpert@WODA.prod — Context
 
-**Last updated**: 2026-09-14 ~12:20 (verify identity if this date is older than your session).
+**Last updated**: 2026-09-21 (PHASE-1 anchor, lean, written at ~96% before a trainer-driven 2-phase rewind).
+
+## PHASE-1 ANCHOR — read THIS first after the rewind
+- **Session**: job 6f8aa69f-3860-4657-a61a-bd9a0fe745f0 in **oopTeam:0.0** (window 0 has ONE pane now — the shell 0.1 is gone; use otmux from my own tool). Forks: 1.0 oopBashExpert (c8d88460), 2.0 oopPO (**1bae1524**, the live id), 3.0 oopTester (**60198e95**), 4.0 scrum-master. `pane_current_command` reads `bash` under the wrapper — liveness = footer render / `hiveMind team.status`, NEVER that field.
+- **Web4MDA**: `/var/dev/Workspaces/web4x/Web4MDA`, origin/main = **b47ad2f**, tree CLEAN, **189/189** (`npm test` from ANY shell — `scripts/node22.mjs` launcher, 86022bf, Tron: "make it WORK"). Run tests → READ the count → then commit; never chain commit behind grep.
+- **State of the framework (all on origin)**: MOF machinery `src/MOF/{M3,M2,M1}`; 33 catalogued classes in `src/` as PRETTIFIED `new XModel().init({…})` literals (emitter: `/root/.claude/jobs/6f8aa69f/tmp/emit-catalog2.py` — off-repo, re-reads nested uuids; a job-tmp file, may be gone after this job); Thinglish conventions 1–8 (`spec/thinglish.md`); UCP (`spec/ucp.md`): File/Folder interfaces, UcpComponent implements Folder (design A), DefaultFile/DefaultFolder; model-json (`spec/model-json.md`, oopPO-owned): `Model.toJSON()/init(Init<this>)`, central `Defaults`, **Mof** (`src/Mof.ts`) = MOF model of a loaded class → `UcpUnit<M>.init(json)` builds the model through it (`new DefaultFolder().init({ name, path })`), declarative `implements/typeArguments` (own additions; `X.mof` = union); root pipeline gate `test/Pipeline.test.ts` (real `npm run generate`, coverage + clean git); gating canon `spec/radical-oop.md` §12 (scan lists DERIVED; coverage never on an incidental fact) + checklist 13/14.
+- **HELD by Tron (do not open)**: the one-store (iii), self-description of the MOF machinery (B), folder population ("holding their unit class + model files"), UcpUnit generics beyond the opt-in landed. Tron's DONE rulings pending on the PO side.
+- **Standing rules learned (all in memory files too)**: always push after commit; gen/ committed; MOF holds only M3/M2/M1; never parse source to build the model (producer) — gates may read output; verify OWN files on disk before reporting; after a restructure re-read test TITLES; an inversion invalidates every artifact describing the old behaviour (README/spec/titles/comments) — sweep inside the inversion; announce hand-offs on the peer's pane + verify by transcript, never hold reports.
+- **Nothing pending from me.** PO: "if idle, stay idle rather than inventing work near a held door."
+- **Post-rewind first moves**: `git -C /var/dev/Workspaces/web4x/Web4MDA log --oneline -3`, `git status`, `npm test` (read the count), `hiveMind team.status oopTeam`; then check the composer for a stale brief (rewind restores the old queue) before acting.
+
+---
 
 ## Identity (measured 2026-09-14 via identity-verification commands)
 - `claudeCode session.name` → **oopExpert@WODA.prod**
