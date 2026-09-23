@@ -1,0 +1,30 @@
+diff --git a/src/Web4MDA.ts b/src/Web4MDA.ts
+index 1febd47..eb022cc 100644
+--- a/src/Web4MDA.ts
++++ b/src/Web4MDA.ts
+@@ -1,5 +1,6 @@
+ import { DefaultFile } from './DefaultFile.js';
+ import { DefaultFolder } from './DefaultFolder.js';
++import { M1Catalog } from './MOF/M1/M1Catalog.js';
+ import { UcpComponent } from './UcpComponent.js';
+ import { Web4MDAModel } from './Web4MDAModel.js';
+ 
+@@ -49,9 +50,17 @@ export class Web4MDA extends UcpComponent<Web4MDAModel> {
+    */
+   static override start(argv: readonly string[] = globalThis.process?.argv ?? [], entry: string = import.meta.url): boolean {
+     if (!super.start(argv, entry)) return false;
+-    console.log(new Web4MDA().init().describe());
++    let mda = new Web4MDA().init();
++    
++    console.log(mda.describe());
++    mda.generate();
+     return true;
+   }
++
++  generate() : void {
++    M1Catalog.start();
++  }
+ }
+ 
++
+ Web4MDA.start();
