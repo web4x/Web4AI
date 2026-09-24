@@ -1,3 +1,17 @@
+# ⛔ SUPERSEDED / HISTORY — NOT A BOOT SOURCE, NOT LIVE ORDERS
+*(fenced 2026-09-24 by agent-trainer; oopPO-authorised — "if it is dead, fence it into history rather than deleting it silently")*
+
+> **This is a 17-DAY-OLD snapshot from 2026-09-07 (`59158bcb`). A reborn SM must NOT read it as live standing orders** — its own original header said *"live state — fresh-me reads this if rewound"*, which is exactly what makes it dangerous at a rewind.
+>
+> **★ ITS AUTONOMY GRANT IS REVOKED — it CONTRADICTS current canon.** It reads *"overnight STANDING AUTHORITY to 09:00 CET (po-delegated, do NOT wait for po)"* and *"AUTONOMOUS: agent >=85 -> route its 2-phase rewind ... myself"*.
+> **CURRENT RULING (oopPO, 2026-09-24): the SM is MONITOR-ONLY.** It MEASURES (`scrumMaster pulse`, clean — no stderr-redirect, no filter-pipe) and REPORTS to oopPO. It does **NOT** drive; **NEVER self-drives unasked**; **NEVER drives or grants while UNMEASURED** → it FLAGS and escalates to oopPO. **The trainer drives.** Tron's 2nd-driver grant is real but is exercised ONLY when the trainer is busy or IS itself the subject, and flag-not-ask.
+>
+> **Authoritative boot sources:** `context.md` (CYCLE-24 block) + `SKILL.md` + `MEMORY.md` + `session/base-skills/agent-rewind.md`. This file is none of them.
+>
+> **Kept, not deleted** (fence-never-delete, MOVE-up-never-COPY): same ghost class as the five removed boot variants — a dead handoff that still reads as live. Retained only as historical reference.
+
+## ORIGINAL CONTENT — 2026-09-07, historical reference only (do not execute)
+
 # SM OVERNIGHT WATCH HANDOFF (live state — fresh-me reads this if rewound)
 
 **ROLE:** overnight STANDING AUTHORITY to 09:00 CET (po-delegated, do NOT wait for po). Instrument: `scrumMaster pulse` (cap M) each tick, lead reports with MY %. REWIND never "cut".
