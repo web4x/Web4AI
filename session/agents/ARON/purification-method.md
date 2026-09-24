@@ -29,6 +29,10 @@
 
 **★ Measure honestly while you purify (move 2 has teeth):** read with **NO suppressed stderr and NO truncation** — `NO 2>&1 / 2>/dev/null / head / tail`. *You cannot purify what you cannot fully see.* (Lived 2026-09-13: a `head`-truncated, `2>/dev/null` read HID the distill-commit and half the process.) A vendor/tool HINT (the `/context` panel recommends banned `head`/`tail`) is INPUT, not authority.
 
+## ★ A BOUNDARY CAN ORPHAN LIVE CANON ON ITS FAR SIDE (oopPO-ruled, ARON-banked 2026-09-24)
+Any boundary you move — consolidate · FENCE · compact · re-index — can silently strand a still-live rule on the far side. Three faces, one shape: a **consolidation** can delete a CAPABILITY (a flat "NEVER DRIVE" revoked a standing driver-grant → uncuttable); a **FENCE** can orphan a LIVE RULE (a duty living only in fenced prose → a rewound agent boots without it); an **INDEX past its read-limit** orphans its TAIL (a 25.6KB MEMORY.md vs a 24.4KB load-limit silently dropped ★★ laws on every boot).
+**Remedy (one rule):** before/after the boundary moves, **SWEEP THE FAR SIDE for still-live rules and PROMOTE them FIRST** — to auto-memory or the single-source manual (R113: never leave a standing rule in history prose); fence/drop only what is genuinely dead. **VERIFY BY LOADING, not by inspecting** — the index-orphan was invisible to every *reading* of the file; only a size-vs-limit check exposed it. (This is move 6 with teeth + move 12 extended to the fenced side. NB: auto-memory reverts on a deep option-2 rewind — a rule that must survive a cut needs a git-committed home too.)
+
 ## When to purify (trigger)
 Any of: a **verbatim TRON correction** · a routine **deteriorating** (operators running it from memory) · a doc accumulating **contradictions** · a boot source gone **stale/bloated** · **"nobody can recall the rule."** TRON having to intervene *is* the trigger — the CMM4 loop failed to self-correct.
 
