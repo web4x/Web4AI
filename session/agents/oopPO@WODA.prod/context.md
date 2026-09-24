@@ -1,6 +1,6 @@
 # oopPO@WODA.prod — Context
 
-**Last updated**: 2026-09-17 (phase-1 SAVE before Tron-ordered exit+refork+rewind-to-50%). Verify identity if older than your session.
+**Last updated**: ~~2026-09-17~~ → **2026-09-24**. ⚠ **HEADER CORRECTED IN PLACE** (agent-trainer, trainer-on-behalf while oopPO held dark pre-rewind; **no body content changed**): the 09-17 date was stale and contradicted the file's own **`## RESUME STATE — 2026-09-24 (CURRENT)`** block below, which is the authoritative current state and supersedes everything above it. **A reborn oopPO reads the TOP first — a stale top on a true body is still a ghost-context hazard** (EXISTS ⊂ COVERS ⊂ **TRUE**: this file existed and covered, but its header was not true). Verify identity if older than your session.
 
 ## Identity (measured)
 - Session name: **oopPO@WODA.prod**; session uuid **6556c285** (refork target).
