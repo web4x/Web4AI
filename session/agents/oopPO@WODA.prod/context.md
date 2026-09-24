@@ -33,7 +33,44 @@
   - **Web4MDA.sample()** creates M0 sample sample/readme.md (a real File in a Folder) + renders a PlantUML OBJECT diagram (M1Sample walks the model containment).
   - **Class+interface hierarchy MODELLED**: extends=generalization, implements=realization RelationshipModels in ClassModel.relationships; superclass/interfaces are DERIVED read-only getters; output byte-identical (proven 3 ways: oopExpert + me + oopTester independent git-stat = only ClassModel/RelationshipModel gen files change).
 
-## RESUME STATE — 2026-09-24 (CURRENT; saved at 86% used, trainer-measured by render)
+## RESUME STATE — 2026-09-24 LATE (CURRENT; Phase-1 banked at 75% used, PANEL-rendered by the agent-trainer, not pulse)
+
+**Identity:** oopPO@WODA.prod, pane oopTeam:2.0 (%204), session 1bae1524. Re-measure on boot; trust no sha or percent written here.
+
+**Web4MDA HEAD when saved: `9c11333`** (my spec AC8 accepted-risk clause) on origin/main, porcelain EMPTY, 212/212 green in 32 files, 38 classes. RE-MEASURE.
+
+### AWAITING TRON (nothing of mine is blocked on me)
+1. **increment-4 (ONCE) BOOT WORD** — oopExpert holds ALL code on it; my go is given, its rewind gate satisfied.
+2. **identity-vs-duplication ruling** (the one doctrinal fork) — see below.
+3. The **7 proven items** (DONE stamps) · **increment-3's** stamp · **doctrine §2** (type aliases) · **doctrine §3** (law says `private model: Model = {}`, code does `protected model: Partial<Model>`).
+4. **INFRA ASK (only Tron can do it):** resize `oopTeam:1` (80x34) and `oopTeam:3` (57x33) to ~253x63. Agents CANNOT — proven twice (trainer's pane.size.set capped, width immovable at 80; my own window.size attempt changed nothing).
+
+### INCREMENT-4 (ONCE) — my rulings, oopExpert builds from these
+- **Mechanism: single-stream linking** (amended A). Original A (per-module data: URLs) had a FATAL curve — nesting amplification 1.9x@3, 11.6x@14, 39.7x@25, **160x@32** (20 KB → 3.26 MB). Fix measured: link the closure into ONE stream module (topological order, sibling imports stripped, one export list, ONE data: URL, ONE dynamic import) = **1.07x, 3 ms**, one Mof per stream. Keeps rule 8 (one mechanism both envs), platform APIs only, and the byte path stays **STRUCTURAL** so AC10 is genuinely failable — that was my decisive reason.
+- **ONCE is a LINKER, not a loader** — all 38 gen/js modules use relative sibling imports, so a single-module load silently resolves siblings off the filesystem = "a path-import wearing a bytestream costume" (the AC10 blindness).
+- **Fork (ii) RULED BY ME: registry-only, keyed by NAME. NO globalThis** — 4.3.0 exposed globals WITH namespaces, which Tron DEFERRED; a global would smuggle the held concept in the back door. Do not invent past a held door.
+- **Fork (i) IS TRON'S, still open:** duplication vs identity. MEASURED: loaded class not identical, instanceof false across graphs, UcpComponent/Mof not shared. Does NOT dissolve with the amended mechanism (duplication is a property of loading a 2nd copy, not of specifier rewriting — oopExpert corrected my inference). **My recommendation: accept duplication — per-stream isolation is arguably a FEATURE; requiring identity forces two mechanisms and breaks rule 8. Single-stream A now, B (vm.SourceTextModule) only if identity proves to matter.**
+- **THREE GATE ARMS I RATIFIED** (oopTester builds, I verify they are real):
+  1. **AC7 asserts `type.name`, the VALUE, never a boolean** — register and attach are TWO steps; a gate assuming the module side effect passes a loader that never attaches.
+  2. **AC7/AC11 assert the IDENTITY of the attached target, never that attach returned true** — measured cross-graph FALSE SUCCESS: attach on the HOST Mof returns TRUE while targeting the HOST's class.
+  3. **Collision arm asserts the DIAGNOSTIC CONTENT (both contributing module names + the identifier)** — module scope already throws an ANONYMOUS SyntaxError, so an arm asserting only "loading failed" **would pass with the feature entirely absent**: it tests JavaScript, not ONCE. Detection must run **BEFORE the linker strips file boundaries** — that is the only moment a named diagnostic is possible. Plus: seed an unstripped sibling import → RED.
+- **AC13 scope:** scan src/ + gen/ ONLY — `spec/once.md` itself cites /var/dev/EAMD.ucp and would FALSE-RED.
+- **Scorecard:** measure-first caught THREE false-green classes + one fatal cost curve BEFORE any repo code.
+
+### FLEET DOCTRINE I ISSUED TODAY (all banked in auto-memory)
+- **A PULSE NEVER DECIDES A CUT, either direction** (measured ±40/−53/−15 vs panel). Pulse may trigger exactly ONE action: GO RENDER A PANEL. **REFINEMENT: the panel must be FRESHLY RENDERED, in this session** — a panel in RESTORED SCROLLBACK is a ghost (a 09-23 panel read 59% inside 09-24 scrollback). Woven into agent-rewind 13a.
+- **Negative-path gate law:** assert the CONTENT only the feature can produce, never a throw the platform yields anyway. Test — **would this arm still pass if the feature were DELETED?**
+- **Member (10), from MY slip:** an instrument can WRITE while you think it READS, on shared state (`otmux window.size` invoked to read, SET instead). Tell: a verb named like a NOUN (size/status/state) may be a setter with a defaulted argument. Re-measure after any measurement that COULD have written — and DISCLOSE it; a hidden write becomes the next agent's unexplained state.
+- **Cheap lever:** narrow capture (grep/head, never print whole outputs) — ~20% of my window is command output; cheaper than any rewind.
+
+### FLEET / TEAM STATE
+- **oopBashExpert HELD at 80** (its own fresh render), idle=STABLE, with §4a reader work queued. Its window is **STRUCTURALLY UNDRIVABLE** — the rewind confirm renders its five options BELOW frame, so Down moves an INVISIBLE highlight and **option-1 RESTORES CODE**; the trainer opened the picker, saw it, aborted CLEAN. Anchor `9083fbed` TRUE + on origin + covers. **REMEDY (a) Tron's resize (asked). REMEDY (b) I AUTHORISED a rebirth in a drivable window as fallback — loses nothing; GATE: prove the confirm renders there BEFORE any drive.**
+- oopExpert 52 (panel), idle-by-intent, holding inc-4 code for Tron. oopTester ~60, idle, will gate from an archive extract. ARON 59 fresh. Trainer banked CYCLE-26 Phase-1 `acbd4827` and is being cut by ARON.
+- **DRIVER ROTATION I ESTABLISHED:** two drivers (trainer + ARON) cut each other alternately; nobody drives from near their own line. **While the trainer is down there is NO trainer-driver: if I cross 80, the SM holds TRON'S STANDING 2nd-driver grant — use it, do NOT wait for a fresh trainer.** (Refusing the SM's 2nd-drive offer was my worst error of 09-24; retracted.)
+- **Landing/current numbers differ by WORK, not error** (oopExpert 44 at landing → 52 now). Not a phantom climb.
+
+
+## RESUME STATE — 2026-09-24 (SUPERSEDED by the LATE block above; saved at 86% used, trainer-measured by render)
 
 **Identity:** session 1bae1524, pane oopTeam:2.0 (%204). Re-measure on boot; trust no sha or percent written here.
 
