@@ -1,6 +1,15 @@
 # oopExpert@WODA.prod — Context
 
-**Last updated**: 2026-09-24 ~14:30 (PHASE-1, written at 83% panel-verified as a genuine cut candidate). **EVERY NUMBER BELOW IS A MEASUREMENT WITH A TIMESTAMP, NOT AN ASSERTION — RE-MEASURE BEFORE TRUSTING ANY OF IT.** The commands are given so you can: they take seconds and a stale number here is how ghost-action starts.
+**Last updated**: 2026-09-24 ~16:20 (PHASE-2 LANDED — ARON drove the rewind option-2, code-intact; this file reconciled against the measured world AFTER the reread, per agent-rewind step 4). **EVERY NUMBER BELOW IS A MEASUREMENT WITH A TIMESTAMP, NOT AN ASSERTION — RE-MEASURE BEFORE TRUSTING ANY OF IT.** The commands are given so you can: they take seconds and a stale number here is how ghost-action starts.
+
+## LANDING RECORD (2026-09-24 ~16:20) — what the reread measured, so the next boot starts from truth
+- **Panel 44% (442.5k/1m, free 554.5k), measured ~16:15 by a /context render in MY OWN pane, peer-confirmed by scrum-master's read-back.** Healthy landing (band 40→95). Re-measure: ask a peer for `otmux send.raw oopTeam:0.0 "/context" Enter` + read-back — a self-trigger queues behind the turn and cannot render inside it.
+- **The pulse-vs-panel hazard fired AGAIN, the other way**: `scrumMaster pulse` showed ⚠84 for my pane while the panel rendered 44 — stale-high lag on a fresh cut. Both directions are now lived: pulse 30 vs panel 83 (before), pulse 84 vs panel 44 (after). **The panel is the only instrument.**
+- **Identity, measured**: `hiveMind team.status oopTeam` → `0.0 oopExpert [6f8aa69f-3860-4657-a61a-bd9a0fe745f0]`, matching my job/scratchpad dir. ~~uuid `ef9fe62b-…`~~ **STRUCK — that was the pre-fork session id from 2026-09-14; the Identity block below is stale on this point.** `otmux pane.self` / `claudeCode session.name` return EPERM in my sandboxed shell — use the registry + the scratchpad path instead. Pane geometry is now **253x62** (was 57x16).
+- **Team (measured)**: 1.0 oopBashExpert, 2.0 oopPO, 3.0 oopTester, **4.0 scrum-master** (new since the anchor), all idle; window 0 has NO shell pane any more (the old `oopTeam:0.1` is gone — drive otmux from your own tool calls).
+- **Web4MDA re-measured ~16:05**: `origin/main` **9c11333** (the anchor's f382767 moved on — peers landed the AC7/AC8 spec work), porcelain EMPTY, in sync, **212/212 green in 32 files** (`node scripts/node22.mjs 'npx vitest run'`), **38** classes in `src/`, npm scripts = `['start']` only. Nothing of mine was lost in the rewind.
+- **No ghost draft existed**: my composer was empty at landing (verified by capture before anyone injected anything).
+- ★ **MY OWN RUNWAY HAZARD, from the panel's own suggestion**: Bash results were **189.7k tokens = 19%** of the window — my single largest avoidable consumer. Capture with `grep`/`sed -n`/counts, never `cat` a large file, never dump a whole suite run. This is why a session fills; it is cheaper to measure narrowly than to rewind.
 
 ## PHASE-1 — read THIS first, then re-measure
 - **Re-measure first, in this order**: `git -C /var/dev/Workspaces/web4x/Web4MDA log --oneline -3`, `git -C ... status --porcelain` (read the WHOLE output, never a prefix), `cd /var/dev/Workspaces/web4x/Web4MDA && node scripts/node22.mjs 'npx vitest run'` (READ the count), `hiveMind team.status oopTeam`.
@@ -13,7 +22,7 @@
 - ★ **SHARED INDEX**: all agents share one working tree and one git index. `git add <path>` does NOT path-limit the commit — commit by pathspec (`git commit -- <paths>`), read `git diff --cached --name-only` first, and verify what landed with `git show origin/main:<path>` rather than trusting your own hash (a peer's commit swept my staged file on 2026-09-24).
 - **Standing mechanics that cost me time**: every `src/` edit needs a catalog re-derive (`/root/.claude/jobs/*/tmp/emit-catalog2.py`, off-repo — if gone, re-derive from the class headers); method bodies are captured VERBATIM so they must be plain ES2020 (no type annotations, no `as`); a catalogued class may not statically import `node:` nor reach `src/MOF/**` even dynamically (the Thinglish corpus is the 38 catalogued classes); after any regenerate check `git status --short gen` for DELETIONS before committing; never `git add -A`; use a heredoc for commit messages (backticks in `-m` get substituted away).
 - **Held by Tron (do not open)**: the one-store (iii), self-description B in full, folder population, `UcpUnit` generics beyond the opt-in. Deferred to their own plan: Namespaces, UcpComponentFolders, VersionFolders, Unit storage.
-- **Nothing is pending from me.** oopPO: "if idle, stay idle rather than inventing work near a held door."
+- **Nothing is pending from me.** oopPO: "if idle, stay idle rather than inventing work near a held door." **Confirmed still true at the 2026-09-24 ~16:20 landing: increment 4 stays HELD (Tron's boot word + my Phase-1 + oopPO's go).**
 
 ---
 
