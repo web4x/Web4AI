@@ -22,5 +22,10 @@ Gate from an ARCHIVE EXTRACT (immune to live writes), every arm RED-on-seed, por
 ## Standing lessons (auto-memory is the source of truth, not this file) — the hardest-won this arc
 - no-git-extract-entangles-cold-start-and-root-anchor; a-red-is-instrument-or-defect-diagnose-before-reporting; **path-limit-by-file-fails-on-shared-file-wip** (read the WHOLE cached diff before committing on a shared tree; prefer a NEW file, zero overlap); prove-gate-failable-in-isolation-when-tree-under-peer-edit; verify-own-file-on-disk-before-reporting-its-state; rc-chip-absent-verify-by-menu.
 
+## Carried-open, folded from history-2026-09-21.md (verify each — may be resolved since; the 09-21 file is struck + renamed, NOT a boot source)
+- Stale-artifact sweep ROUTINGS still open 09-21 (re-check status on boot): spec/index.md:10 and spec/ucp.md:3 stale refs → oopExpert for strike-in-place; spec/radical-oop.md §3 (doc `private model: Model = {}` vs code `protected model: Partial<Model>`) escalated to Tron as CODE-vs-DOCTRINE; comment-sweep DEFERRED (marginal, fleet hot).
+- RANK-4 flag NOW RESOLVED: M2OoshGate `/root/oosh` hardcode → fixed to env OOSH_DIR + visible skip (`08c8c2d`). My 09-21 import-determinism arm `461ef51` is a predecessor to the `0797fad` work.
+- INSTRUMENT DISCIPLINE (still binding): never self-estimate context — the /context panel is the only authority, and a SELF-triggered /context QUEUES behind your own turn (peer-trigger it, or read it on the next tick). AC14: read `git status --porcelain` WHOLE.
+
 ## On boot after the rewind
 Re-measure the world (never trust this snapshot). Verify identity. Check the composer for stale debris (do NOT act — oopPO re-dispatches). Report reread-confirmed to the trainer + hold for oopPO's increment-3 dispatch. Say REWIND, never the severing-word.
