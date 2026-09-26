@@ -1,6 +1,7 @@
 # oopBashExpert@WODA.prod — Context
 
-**Last updated:** 2026-09-24 — PHASE-1 pre-rewind save by me (oopBashExpert), per oopPO. Trainer is rewinding me BEFORE the reader build (I measured 75% = high; rewind before heavy work, never mid). On rebirth: run the On-boot sequence, report reborn + a FRESH measured number to oopPO, then it ranks the build.
+**Last updated:** 2026-09-26 — TRUE Phase-1 re-bank (supersedes 9083fbed 2026-09-24 14:04; I worked since). Trainer is rewinding me BEFORE the reader build (measured high; rewind before heavy work, never mid — trainer renders me FRESH before the cut, a scrollback % cannot carry a cut decision). On rebirth: run the On-boot sequence, report reborn + a FRESH measured number to oopPO, then it ranks the build.
+**Worked since 9083fbed (all resolved, no open action for me):** routing defect — oopTester mis-addressed its inc-4 acks to my pane (1.0) instead of oopExpert (0.0, uuid 6f8aa69f); flagged oopTester + SM; SM-VERIFIED resolved, oopExpert not blind, inc-4 is oopExpert's lane + HELD on Tron (NOT mine). Identity cross-checked: me = oopTeam:1.0, uuid c8d88460. My window is now FLOOR-LOCKED 253x63 = DRIVABLE (was collapsed 80x31; otmux window.size.lock raise-only — the "structurally undrivable" verdict was a collapsed/unlocked window, never structural).
 **Identity:** oopBashExpert@WODA.prod · oopTeam:1.0 · Bash/OOSH radical-OOP expert · base lineage `oosh-expert`
 **Team:** oopTeam — 0.0 `oopExpert` (TypeScript/Web4MDA) · 1.0 me (Bash/OOSH) · 2.0 `oopPO` · 3.0 `oopTester`. Same radical-OOP law.
 **Files:** `session/agents/oopBashExpert@WODA.prod/` (boot · context · reading-list) + `.claude/agents/oopBashExpert@WODA.prod/SKILL.md`
@@ -11,7 +12,7 @@ Build **the READER**: read an OOSH `config`/`.env` **unit → a rehydrated Model
 
 ## ★ STATE (measured on disk 2026-09-24 — corrects the prior 9-day-stale false anchor)
 - **M2OoshClass EXISTS and is gated + PROVEN** (was falsely "to build; absent at 97871ee"). `src/MOF/M2/M2OoshClass.ts` — the OOSH M2 language, reads AND writes OOSH (`parse` + `sourceOf` + `generate`).
-- **HEAD = `e800f83`** (READER ACs) on top of **increment-2 `a69a464` (201/201)**; my own last full measure was 190/190. OOSH-as-target is DONE + hardened, spec truthful (§5/§6).
+- **HEAD moves with the team's inc-4/AC work — was `3b00105` (2026-09-26); VERIFY on boot, never assert a remembered sha.** My last commits: `e800f83` (reader ACs §4a) + `9083fbed`/this (anchor). Reader NOT yet built (I'm rewound before the build). OOSH-as-target is DONE + hardened, spec truthful (§5/§6).
 - Delivered + on origin: gen/oosh/odocker + oo generated top-down M3→M2→M1 (NOT hand-written; byte-reproducible); `generate:oosh` pipeline idempotent + visible-skip; **option C** deterministic uuids (class, method, param, **import**); machine-specific `/root/oosh` default REMOVED (generate requires `sourceDir`; pipeline reads `OOSH_DIR`, refuse-rather-than-guess); env-independent LOGIC gate on a checked-in synthetic unit (`test/fixtures/oosh/greeter`) + real-oosh fidelity gate (`M2OoshGate.test.ts`), all failable.
 
 ## Ownership (Tron RATIFIED 2026-09-15: *"you should own oosh implementation MDA based!"*)
@@ -35,5 +36,6 @@ I OWN the MDA-based (model-driven / generated) OOSH implementation — OOSH/Bash
 1. VERIFY identity (`echo $CLAUDE_CODE_SESSION_ID` · `claudeCode session.name` · `otmux pane.self` · `config get OOSH_SSH_CONFIG_HOST`).
 2. Read the Heart (`session/agents/TRON-CMM4-doctrine.md`), then this context + `boot.md` + `reading-list.md`; re-derive from disk (**disk wins**).
 3. **A rewind restores a STALE composer/queue** — the old store-bridge staged brief is DEAD + SUPERSEDED; do NOT process composer text as scope. Authoritative scope = this anchor + `oosh-mda.md §4a`.
+   - ★ **REWIND PICKER HAZARD (trainer, 2026-09-26):** on MY history the picker LIST reads "No code changes" while the CONFIRM reads "code restored +5 −7 in oosh-mda.md + MEMORY.md" — option-1 would REVERT MY OWN spec. Read the options **BY-LABEL**, never the list summary. (Driver's note; here so it survives.)
 4. Measure context (idle-only, e.g. `scrumMaster pulse oopTeam` token-math; tag provenance; never self-estimate).
 5. Report to oopPO: reborn · identity · FRESH context number · "ranked = the READER per §4a, store HELD" — then it ranks the build. Tron overrides everyone.
