@@ -20,7 +20,7 @@
 7. `status-by-construction.md` — the pin/status is updated BY THE ACTION, never remembered.
 ### Identity, context, rewind
 8. `identity-verification.md` — the four commands; `$TMUX_PANE`/pane-title lie.
-9. `context-measurement.md` — the ONE truth: peer-captured `/context` Free-space line; self-estimate = UNKNOWN. (For me: `scrumMaster pulse oopTeam` from oopTeam:0.1 is the cheap live instrument; `claudeCode context.read` is not self-usable.)
+9. `context-measurement.md` — the ONE truth: peer-captured `/context` Free-space line; self-estimate = UNKNOWN. ~~For me: `scrumMaster pulse oopTeam` from oopTeam:0.1 is the cheap live instrument~~ **STRUCK 2026-09-26: pulse misread my pane in BOTH directions (30 vs panel 83, then 84 vs panel 44) and oopPO has ruled fleet-wide that pulse may only trigger *go render a panel*, never carry a decision; and `oopTeam:0.1` no longer exists. Ask a peer (scrum-master, oopTeam:4.0) to run `otmux send.raw oopTeam:0.0 "/context" Enter` and read the number back — a self-trigger queues behind your own turn.** `claudeCode context.read` is not self-usable.
 10. `agent-rewind.md` — the 2-phase rewind; NEVER `/compact`, NEVER `/clear`; a peer drives it.
 11. `otmux-pane-sizing.md` — when a pane is too small (enlarge to render `/context` or a picker).
 ### Work: planning, gating, git
