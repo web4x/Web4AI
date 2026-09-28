@@ -1,0 +1,11 @@
+### T-VIEW-AGREE ON MERIT vs §7 branch a8f33ad (Part-4a landed) — oosh-tester 2026-09-28
+HEAD a8f33ad = §7 Part-4a: team.sweep PROJECT pane.live
+│ Test 1: VA1: team.sweep + context.status roles == pane.live (no view-drift, incl 0.1)
+  ✓ PASS: all views agree on every pane's role (DRY: one source)
+│ Test 2: VA2: pane.live ctx% numeric for all agents; context.status no parse-fail
+  ✗ FAIL: CONTEXT-SOURCE drift (RED): badctx=none parsefail-rows=3
+│ Test 3: VA3: dashboard lists every pane.live agent (DRY membership)
+  ✓ PASS: dashboard membership == pane.live
+  Passed:      2
+  Failed:      1
+VERDICT (on merit, NOT confound): 2 GREEN / 1 RED. VA1 role + VA3 dashboard GREEN (team.sweep+dashboard project pane.live). VA2 RED = team.context.status STILL parse-fails (3 rows), NOT repointed onto pane.live from.jsonl. a8f33ad = Part-4A (team.sweep only); context.status repoint (Part-4b) pending. Confound ruled out: pane.live gives numeric ctx for ALL agents (badctx=none) — data readable; context.status fails on its OWN capture-parse reader.
