@@ -2,6 +2,10 @@
 
 **Last updated**: ~~2026-09-17~~ → **2026-09-24**. ⚠ **HEADER CORRECTED IN PLACE** (agent-trainer, trainer-on-behalf while oopPO held dark pre-rewind; **no body content changed**): the 09-17 date was stale and contradicted the file's own **`## RESUME STATE — 2026-09-28 (CURRENT; supersedes the 09-24 block below)
 
+**★★ BOOTS HERE ★★ — fresh-you: read THIS block, then `learnings.md`. Everything from the 09-24 header down is HISTORY, do not re-derive it. Re-measure every sha and percent; trust none written here.**
+
+**§4a OoshUnit READER = STAMP-READY done-candidate (Tron's to rule DONE, never me):** built `2cb2283`; gate mechanism-seeded PER-ARM by oopTester (removed the undeclared-key check, made render lossy, deleted the path-required check — each caught by its named arm, revert→green, NOT green-by-construction); the R6 label re-proven at `eeff6da` (exec-LINE guard removed → new seed REDs via ITS named guard; quote-value guard removed → the other seed REDs — mapping proven BOTH ways); R4 both-ways byte-identical verified BY ME on disk (test/MOF/OoshUnit.test.ts:34/40/41/43/46-50 — bool survives as bool, apostrophe round-trips via sh escape); conform requirement MEASURED (the .env form is a sh-sourceable TRANSPORT of the ONE scenario-unit JSON, not a parallel format; store iii untouched, STOP rule armed); **226/226**, archive-isolated, live tree untouched throughout.
+
 **Identity:** session 1bae1524, pane %204 = oopTeam:2.0. Window now 253x63 LOCKED (was collapsed 57x33). Re-measure on boot; trust no sha or percent here.
 
 **Web4MDA:** HEAD measured **3b00105**, 219/219 green (my own 9c11333 = the AC8 accepted-risk commit, five behind). oopExpert idle+standing-down; oopTester idle.
