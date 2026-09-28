@@ -3,6 +3,9 @@
 ## ★★ SIMPLIFIED MODEL — quick-recall with EXACT OOSH commands (TRON-purified 2026-09-13; supersedes any contradicting row below, incl. `pane.size.set` → ZOOM)
 *A 2-PHASE DILIGENT REWIND, never a "cut." **Phase 1 = files-safe (the guarantee); Phase 2 = the reread (the proof).** `<t>` = target pane.*
 
+> ### ★★ "CUT" IS NOT A TERM — BANNED FLEET-WIDE (TRON 2026-09-28; why-law lives in `session/agents/TRON-CMM4-doctrine.md`)
+> Never write or say **cut / re-cut / deep-cut / pre-cut / post-cut / cut-ready / cut-queue / cut-target / self-cut** — in messages, commits, anchors, task files, learnings or SKILLs. Use **rewind / re-rewind / deep rewind / pre-rewind / post-rewind / rewind-ready / rewind-queue / rewind-target / self-rewind** (also fine: *refresh*, *carry home*). "Cut" frames preserving care as damage-needing-authorisation — the framing that let agents wall while permission was asked. **Every agent enforces this in the moment, on peers and on itself** (a canonized word nobody enforces is a ledger: 567 stale uses in 83 files). Innocent English is untouched: execute, consecutive, shortcut, cross-cutting, "honesty cuts both ways".
+
 | # | Phase | Goal | Exact OOSH commands | Guard |
 |---|-------|------|---------------------|-------|
 | 0 | Decide | rewind-worthy? driver fit? | `hiveMind team.status <team>` · measure: `otmux send.raw <t> "/context" Enter` → `otmux pane.capture <t> 44` | render NOT pulse; **active-near-wall=urgent, idle-near-wall=stable (waits)**; a SPOF driver ~75%+ **sheds first** |
