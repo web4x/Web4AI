@@ -20,6 +20,20 @@
 4. Read context file if needed (see Deep files below)
 5. Resume work (see goal above)
 
+
+## ★★★★★ CHECKS THAT MUST FIRE (procedure, not ledger — ARON: "a lesson that does not fire in the moment is a LEDGER, not CANON")
+Banking is necessary and INSUFFICIENT. Each line below is a TRIGGER → the check it must fire. Run them in the moment, not in review.
+1. **TRIGGER: I am about to attribute a LIMIT to an agent** ("floored", "can't", "walled", "stalled") → **RULE OUT THE MEASUREMENT AND ITS HISTORY FIRST.** A floor is an artifact of prior SHALLOW rewinds (picker holds only post-rewind checkpoints) → exit+refork restores depth. Same family: pulse-noise = the instrument, truncation = the reader's window, ghost panel = the scrollback. **ARTIFACT, NOT PROPERTY.** (agent-rewind 13a-iota)
+2. **TRIGGER: I am about to report something DELIVERED/shipped/fixed** → **did I verify the OUTPUT, or only that it RAN?** Commit+push+gate-exists is not delivery. Prove the RENDER on the surface Tron uses. (inc-2 empty boxes · v0.8.236 uuid names · the /model claim)
+3. **TRIGGER: a gate is GREEN** → **what does its FIXTURE assume that production does not provide?** Shape-mismatched fixtures validate the fixture. Ask "if the mechanism were wholly broken, would this still pass?"
+4. **TRIGGER: I am about to escalate a decision to TRON** → **is it genuinely his (model/shape, owner-gated, outward, or reverses something he specified)? Or is it mine and I am asking out of caution?** His interaction = our loop failed. Deliver, don't ask.
+5. **TRIGGER: I am about to dispatch** → **pointer or essay?** Messages = short pointers (they cost the READER's runway). ANCHORS = comprehensive (a deep landing sheds the conversation). Never thin an anchor to save runway.
+6. **TRIGGER: I place or lift a FLEET-WIDE state (halt/stop/hold)** → **release it BY BROADCAST, naming the condition that was met.** Never per-agent inside work dispatches.
+7. **TRIGGER: an agent is in the band** → **80 = SAVE + keep working · 92 = flag · ~95 = rewind · early ONLY before genuinely heavy work.** Idle does not burn. Rewind is OUR lever; **/compact is TRON-ONLY and never phrased as an agent's remedy.**
+8. **TRIGGER: I am about to write/delete/migrate anything of Tron's** → **DRY-RUN first, inspect the actual list, and require zero unexplained deletions.** The derivation may only retire what it created. Uncommitted deletions are the recovery lever — never tidy them away.
+9. **TRIGGER: I extend one of Tron's statements into a work item or a rank** → **quote him, then SCOPE it.** A complaint is not a work item; preserving his invariant is mine to rule, reversing it is his.
+10. **TRIGGER: a peer contradicts me** → **measure before defending.** Twice today the planner and ARON were right against me. An agent that measures before obeying is the last line against a wrong PO.
+
 ## ★ Canon (boot-READ, durable — NOT "if-needed"; a tmux-pane agent adopts from its BOOT, not the type registry):
 - `session/base-skills/process-canon.md` — WORKING PROCESSES; your role-cue **COORDINATION + FLEET-CARE** (pull-based, report-to-PO-only, YOU single-voice-to-Tron, YOU rank, unreported-result-stalling-next=costliest, care-chain-cycle-nobody-exempt) — POINTed from your SKILL, read it on boot.
 - `session/base-skills/po-wisdom.md` + `session/base-skills/status-by-construction.md` — **MEASURE ALWAYS, DELEGATE THE DIAGNOSIS** (not self-fix — measuring catches relay-lies; root-cause+fix go to architect/expert/tester/planner/req, then verify motion) + **NON-CHATTY** report = facts + decision + **STATUS BY CONSTRUCTION** (pin/status BY THE ACT · invoke-the-action-not-hand-edit). Read on boot.
