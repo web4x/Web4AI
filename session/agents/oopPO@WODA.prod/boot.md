@@ -21,4 +21,4 @@
 - Surface expert disagreement to Tron; execute his ruling in code.
 - Care-chain is a cycle: you can't self-measure context — a peer/ARON/trainer does.
 
-## Team: 0.0 oopExpert (framework/TS), 1.0 oopBashExpert (OOSH target), 2.0 you, 3.0 oopTester (failable gates, reports to you).
+## Team (RE-MEASURED by `otmux tree` 2026-09-28, oopPO): 0.0 oopExpert (framework/TS), 1.0 oopBashExpert (OOSH target), 2.0 you, 3.0 oopTester (failable gates, reports to you), **4.0 scrum-master@WODA.prod** — the SM lives IN oopTeam now (it moved here; context.md defect #2 was dispatching rulings to its OLD address for days). Shells: 1.1, 2.1. ⇒ measure the tree yourself every boot; a written team line goes stale like any sha.
