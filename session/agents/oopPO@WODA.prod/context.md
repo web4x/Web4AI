@@ -8,7 +8,7 @@
 
 **Identity:** session 1bae1524, pane %204 = oopTeam:2.0. Window now 253x63 LOCKED (was collapsed 57x33). Re-measure on boot; trust no sha or percent here.
 
-**Web4MDA:** HEAD measured **3b00105**, 219/219 green (my own 9c11333 = the AC8 accepted-risk commit, five behind). oopExpert idle+standing-down; oopTester idle.
+**Web4MDA:** **HEAD RE-MEASURED 2026-09-28 = `eeff6da`** (14:04, R6 named-guard re-proof), tree clean, in sync with origin. ~~HEAD measured 3b00105, 219/219 green~~ **STRUCK — never boot on a written sha; re-measure every time** (my own 9c11333 = the AC8 accepted-risk commit). oopExpert idle+standing-down; oopTester idle.
 
 **AWAITING TRON (the only real asks):** (1) **inc-4 DISAMBIGUATION** — he wrote "opened"; I asked whether that RELEASES increment-4 (ONCE) to oopExpert or merely means oopBashExpert opened the 4a reader. I did NOT treat it as a release. (2) the **7 proven items** (DONE stamps). (3) **doctrine 2** (type aliases permitted?). (4) **doctrine 3** — law says `private model: Model = {}`, code does `protected model: Partial<Model>`.
 ★ **"the increment-4 verbatim" was partly MY invention:** spec/once.md records NO open fork and nothing held; my own 09-24 save did NOT list inc-4 as Tron-held (only the rewind gate, now satisfied). The only evidence of a hold is oopExpert's report of a Tron boot message, never disk-verified. Do not relay a blocker you cannot articulate.
