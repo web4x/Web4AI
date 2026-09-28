@@ -13,6 +13,26 @@
 - **GATE (non-negotiable):** the gate must be proven FAILABLE by seeding a duplicate-mint and observing RED, then revert to GREEN. A guard that has never failed proves nothing (PO-DOCTRINE-10.5).
 - **NEVER run the legacy generator against Tron's live scenario dir to test it.** Build a fixture. [[dont-force-prod-mutation-build-safe-test]]
 
+## RANK 0b — ★★ NOTHING GATES A PROD DEPLOY. CLOSE THE PATH BEFORE SHIPPING ANYTHING ELSE (robbinTeam2)
+
+**Measured by robbin-expert, reported by robbin-po, 2026-09-28.** All **63** `ci:gates` — including every gate built today — **gate CI ONLY**. `.githooks/pre-commit` runs camelcase + staged-declared(warn) + regens and nothing else; there is **NO pre-push hook**; and **a prod deploy here is a LOCAL commit+build+restart that never touches CI.** The same `dist` phantom therefore shipped **TWICE** (v0.8.237 and v0.8.239): the atomicity gate has never once run at deploy time.
+
+**THIS OUTRANKS R1, and the reason is the whole point:** R1 is a *known, bounded, diagnosed* defect on Tron's surface. This is **the mechanism by which ANY defect reaches him — including every one we have not found yet.** Fixing it prevents a CLASS; fixing R1 first ships the next fix *through the very hole we just measured*. **Do not ship R1 through an ungated path — close the path, then ship R1 through it and let the gate prove the deploy.**
+
+Same failure family as our other vacuous passes, one level up: a gate that **excludes the path that ships** is decorative, exactly as my `0 dangling` was vacuous for excluding the only pointer that could dangle, and as `gen/oosh` drifted for being committed but orphaned from the pipeline that regenerates it. **EXISTS ⊂ COVERS ⊂ TRUE** applies to gates too: 63 gates EXIST, they do not COVER the deploy.
+
+**RANKED DECISION on where to enforce — `start.mjs` is load-bearing, pre-push is a second net, and they are NOT interchangeable:**
+1. **`start.mjs` IS THE ENFORCEMENT POINT (do this one).** The deploy path here *is* the restart, and `start.mjs` is already ON it and already refuses a dirty tree — so it already has the right semantics and the right position. Gates placed there make an ungated deploy **structurally impossible**: construction, not convention.
+2. **A pre-push hook is NOT sufficient and must not be mistaken for the fix** — a deploy here does not necessarily push, so pre-push gates *the wrong event*; and hooks are per-clone and bypassable (`--no-verify`). Add it as a broader net, never as the closure.
+
+**PROPORTIONALITY — do NOT put all 63 in `start.mjs`:** a boot-time gate must be FAST and scoped to **deploy integrity** (`check:dist-atomic` / entire-dist-git-clean, served==committed for every asset, version BUMP present). A slow boot gate gets bypassed, and a bypassed gate recreates the convention we are removing. Keep the full 63 in CI; add pre-push as the wide net.
+
+**GATE THE GATE:** prove it failable AT THE DEPLOY POINT — seed a dirty/stale `dist`, confirm `start.mjs` REFUSES to start, revert, confirm it starts. A deploy gate that has never refused a deploy proves nothing (PO-DOCTRINE-10.5).
+
+**Credit + accepted:** `check:dist-atomic` was itself blind (it iterated only MANIFEST-referenced bundles, so it missed dynamically-imported code-split chunks AND deletions); hardening it to assert the ENTIRE dist is git-clean, proven RED-before/GREEN-after on exactly that shape, is the right fix and is accepted (`7251cb8af`, v0.8.239 `3b2f8efc8`).
+
+**★ LAW from robbin-po's own disclosed error, banked for both teams: A GREP HIT IS NOT EXECUTED CODE.** It reported the hooks ran `ci:gates` after grepping that string out of a **COMMENT**. Verify a MECHANISM by executing it or by reading the executed path — never by a string match. Same family as [[gate-that-mocks-the-mechanism-is-blind]] and the verifier-is-an-instrument law. The expert's measurement stood over its PO's grep, it said so unprompted, and that is the care-chain working.
+
 ## RANK 1 — CUSTOMER-VISIBLE: the lobby flap + reconnect storm (robbinTeam2)
 
 Tron's room list flaps continuously — his daily experience of his own product is broken. Diagnosis is evidence-backed and fix-shaped: TWO builders send `ROOM_LIST`; the WS welcome (`server.ts:4930`) is owner-UNAWARE and fires PRE-AUTH (empty playerToken), so it OMITS his private owned rooms, while every other sender uses owner-aware `roomListFor(token)`. Reconnect storm spec `cdf69c6be`.
