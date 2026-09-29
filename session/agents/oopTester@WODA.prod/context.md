@@ -4,7 +4,7 @@
 
 - **Done + reported to oopPO:** `a6db47c` = `test/MOF/MofLayoutAC5.test.ts` (9 tests, CHECKED 9/SKIPPED 0) gating oopExpert's inc 5 `e5b8c8b`. Arms A (model set, M3Element only Package unit) · B/C/F (committed gen both ways, gen=[EAMD.ucp]) · D (Version dotted name) · E (RUNTIME lineage: M2 = M1Class metaclass or built by one to render an M1 unit + prototype closure; M3 = descends from the MOF abstract; NO static create/instantiate — removed in inc 1) · G1 (fs-read trap, child; loader reads under node_modules/ exempt — measured tsx candidateDoesntExist) · G2a (cwd/abs-root invariance) · G2b (namespace changed AFTER load, BEFORE layOut → placement follows model). All failability seeds RED at their named arm (in-test + out-of-band producer seeds on an isolated clone).
 - **Weakest literals I reported:** D-only defect unrepresentable (dotted derives from breadcrumb); arm H = MofPlainNode still green, NO count==expected-set check added.
-- **Open queue:** empty; await oopPO's next dispatch / its acceptance of inc 5. Carried: spec/index.md:10 + spec/ucp.md:3 stale refs (→ oopExpert), radical-oop.md §3 doc-vs-code (→ Tron).
+- **Open queue:** empty. Inc 5 gate ACCEPTED by oopPO (a6db47c verified on its isolated clone, 324/324); SPEC 11 COMPLETE → with Tron for DONE. Hold idle for the next plan. Carried: spec/index.md:10 + spec/ucp.md:3 stale refs (→ oopExpert), radical-oop.md §3 doc-vs-code (→ Tron).
 
 On boot: verify id (`otmux pane.self` = %207 = oopTeam:3.0), reread this + SKILL + auto-memory, check composer for stale debris (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
 
