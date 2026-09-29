@@ -4,6 +4,29 @@
 
 **★★ BOOTS HERE ★★ — fresh-you: read THIS block, then `learnings.md`. Everything from the 09-24 header down is HISTORY, do not re-derive it. Re-measure every sha and percent; trust none written here.**
 
+## RESUME STATE — 2026-09-29 ~16:00 (CURRENT; supersedes everything below) — BOOTS HERE
+**Re-measure every sha and percent; trust none written here.**
+- **Web4MDA origin = b2909d7**, 283/283 on my isolated clone. Spec 10 (EAMD.ucp layout) is COMPLETE, QA-green, durable at 8ede7d2: inc 1/1b/2(+2b, npm allowance, A+C)/3/D1. Awaiting Tron DONE.
+- **Spec 11 mof-self.md (e550313 + b5a4302 + b8bd22f)** — the self-describing MOF. Rulings were confirmed via a safe-default re-ask after the first answers were forged by agent keystrokes: one-time reader import, remove instantiate, dynamic node imports, MOF/Mx = Namespaces.
+  - **Inc 1 DONE:** factories removed (bb0656d, gen byte-identical); runtime hazard-scan gate (dc34729). Gated by oopTester.
+  - **NEXT: inc 2** (browser purity, 6 MOF classes) → **HELD**: oopExpert is at 72 and needs a rewind first; no driver has headroom.
+  - Then inc 3 reader import, inc 4 MOF diagrams (Tron wants them), inc 5 MOF/Mx layout.
+- **OPEN FOR TRON:**
+  - DONE rulings: spec 10, npm test, README gates, ARM3, spec-11 inc 1.
+  - src/ flat vs layout.
+  - The instance `language.create(classModel)` — "Not decided yet", status quo; cost recorded in spec 11.
+  - The memory-guard trigger (b90e5f5e).
+  - inc-4.
+  - **ARON's staged "push it"** — THE driver bottleneck all day.
+- **Fleet at ~16:00 (pulse/panel as reported):**
+  - me ⚠~80 (pulse) — reserved for the SM's drive once a fresh panel confirms;
+  - SM ~59; trainer 70 = at the delicate line; oopExpert 72 idle; oopTester ~? (gate work done); oopBashExpert 74; ARON frozen.
+- **Gate hygiene done today:** src+test type-checked (0f33a0e, b2909d7); the 2.5s default test budget plus sized budgets (7d73cb3, 4d06906); memory index slimmed to 23208B (the trainer).
+- **Laws banked today:**
+  - A spec-only commit runs doc gates (6a12c215).
+  - A question dialog must have a SAFE option 1 (7219225b).
+  - A long message renders collapsed, so a grep of the transcript is not a delivery check.
+
 **★★ MAIN DIRECTIVE IN FORCE (TRON VERBATIM, relayed by the SM 2026-09-28 ~18:45):** "watch the fleet. if all are idle. order rewind for the agents over 80%. tell the po so he does keep the team idle until the fleet is healthy and readz for the next task. make that the main directive." ⇒ **I dispatch NOTHING new** until every agent is <80 and fresh. The only work allowed to finish: oopTester's AC19 cold-npm-test gate + AC3 timing on 52c5ace (never cut mid-gate) → then oopTester (83) is the FIRST cut; SM (78) last, ARON drives. Health measured by fresh panel: me 46 (Tron's /context), oopExpert 47, oopBashExpert 74. **npm test = DONE-CANDIDATE, brought to Tron 2026-09-28:** built 52c5ace, AC3 budget 6edc7c5 (origin HEAD). AC19 arms a/b1/b2/c/d + failability MEASURED by oopTester on a REAL cold clone (default PATH node16, whole suite 232, exit codes distinguishable, porcelain unchanged, warm no reinstall) — **RESIDUAL disclosed: committed tests gate only the package.json script STRING (Node22.test:50, NpmPackage.test:68); the cold BEHAVIOUR is proven ONCE, not a standing gate.** ⇒ **RANK 1 after the rewinds:** a standing AC19 gate — must be recursion-safe (a suite test that runs npm test re-enters the suite) and cost-honest (network install per run; likely opt-in heavy / visible-skip like the PlantUML arm). Design = oopTester's, not mine. Main green at f68518a (232/232 x2 on my isolated clone).**
 
 **§4a OoshUnit READER = STAMP-READY done-candidate (Tron's to rule DONE, never me):** built `2cb2283`; gate mechanism-seeded PER-ARM by oopTester (removed the undeclared-key check, made render lossy, deleted the path-required check — each caught by its named arm, revert→green, NOT green-by-construction); the R6 label re-proven at `eeff6da` (exec-LINE guard removed → new seed REDs via ITS named guard; quote-value guard removed → the other seed REDs — mapping proven BOTH ways); R4 both-ways byte-identical verified BY ME on disk (test/MOF/OoshUnit.test.ts:34/40/41/43/46-50 — bool survives as bool, apostrophe round-trips via sh escape); conform requirement MEASURED (the .env form is a sh-sourceable TRANSPORT of the ONE scenario-unit JSON, not a parallel format; store iii untouched, STOP rule armed); **226/226**, archive-isolated, live tree untouched throughout.
