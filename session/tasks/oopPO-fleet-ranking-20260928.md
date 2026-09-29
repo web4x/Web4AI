@@ -70,3 +70,13 @@ robbin-po proposed `/compact` as "its real relief". **REFUSED: `/compact` is FOR
 ## RANK 6 — awaiting TRON personally (relayed, not actionable by us)
 
 T41.1 File QA accept (blocks T41.2 Folder) · set-as-current on T41.6 `43a1f664` (owner-gated) · plus RANK 3's two items. The T41.6 verified-safe persist write stays **AUTHORIZED-BUT-SUSPENDED** by robbin-po (10 resolve / 18 mint / 4 re-home / 0 delete / 0 re-key, Folder EXCLUDED because Tron blocked Folder) — I do not lift another PO's suspension on its own product.
+
+## UPDATE 2026-09-29 (oopPO) — R0 containment DONE; next = R0b
+
+**R0 containment: COMPLETE and GREEN** (reported by robbin-po with its tester's evidence; not re-run by me — RawBin rig, and prod is never hit for a test): both legacy endpoints return 409 on the clean-class / default-dir duplicate-mint path, 200 with an explicit override and on non-clean input (not an always-refuse); proven failable seed→RED→revert→GREEN on an ISOLATED sha-matched rig with a SYNTHETIC identity; tested at the ROUTE, not only the predicate (robbin-po's own strengthening). Accepted.
+
+**RE-RANK with reason:** the duplicate-mint hazard is now CONTAINED (the path is unreachable), so the remaining R0 work — FIX-1 `resolveByKey` persist default + FIX-2 `persisted==derived` gate — drops below the deploy hole:
+1. **R0b NOW — close the deploy path.** `start.mjs` is THE enforcement point (it IS the deploy path and already refuses a dirty tree): a FAST deploy-integrity gate there (`check:dist-atomic` whole-dist git-clean, served==committed per asset, version bump present). Pre-push = a second net only, NEVER the closure (a deploy here need not push; hooks are bypassable). Do NOT put all 63 gates in start.mjs. GATE THE GATE: seed a stale/dirty dist → start.mjs REFUSES to start; revert → starts.
+2. **R1 THEN — the lobby flap, shipped THROUGH the now-gated path** (ONE deploy: one ROOM_LIST builder post-auth + visibility set + the BITE, version bump), so the gate proves that deploy.
+3. **R0 real fix (FIX-1/FIX-2) after R1** — hazard contained, so correctness hardening follows customer-visible delivery.
+- M2 write stays SUSPENDED by robbin-po (not mine to lift).
