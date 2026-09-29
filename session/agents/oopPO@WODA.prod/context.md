@@ -17,7 +17,7 @@
   - The instance `language.create(classModel)` — "Not decided yet", status quo; cost recorded in spec 11.
   - The memory-guard trigger (b90e5f5e).
   - inc-4.
-  - **ARON's staged "push it"** — THE driver bottleneck all day.
+  - ~~**ARON's staged "push it"** — THE driver bottleneck all day.~~ **STRUCK 2026-09-29 (Tron: "wtf is this myth") — FALSE: the SM and the trainer drove all day (SM drove oopPO 81->62, trainer drove oopTester 73->55). ARON is ONE driver; its staged push-it is just a pending Tron word, not a bottleneck. Driver choice = whoever's FRESH panel is <=70, measured each time.**
 - **Fleet at ~16:00 (pulse/panel as reported):**
   - me ⚠~80 (pulse) — reserved for the SM's drive once a fresh panel confirms;
   - SM ~59; trainer 70 = at the delicate line; oopExpert 72 idle; oopTester ~? (gate work done); oopBashExpert 74; ARON frozen.
