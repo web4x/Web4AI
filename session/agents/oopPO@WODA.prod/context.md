@@ -4,6 +4,8 @@
 
 **★★ BOOTS HERE ★★ — fresh-you: read THIS block, then `learnings.md`. Everything from the 09-24 header down is HISTORY, do not re-derive it. Re-measure every sha and percent; trust none written here.**
 
+**★ RESCUED CUSTOMER WORD (oopPO, 2026-09-29 ~17:00): ARON's composer (Temple:0.0) held Tron's staged, never-submitted text, captured VERBATIM: `push it`.** Asked 4x (submit / clear), no answer; it blocked the only driver with headroom (ARON 41; SM + trainer ~88) needed to rewind oopExpert before spec-11 inc 3's heavy migration. Per R5's rescue precondition: captured verbatim here FIRST, relayed to its owner (Tron, in my report), THEN the composer was cleared — the word was NOT executed. If Tron wants it delivered, it is re-sent to ARON verbatim.
+
 ## RESUME STATE — 2026-09-29 ~16:00 (CURRENT; supersedes everything below) — BOOTS HERE
 **Re-measure every sha and percent; trust none written here.**
 - **Web4MDA origin = b2909d7**, 283/283 on my isolated clone. Spec 10 (EAMD.ucp layout) is COMPLETE, QA-green, durable at 8ede7d2: inc 1/1b/2(+2b, npm allowance, A+C)/3/D1. Awaiting Tron DONE.
