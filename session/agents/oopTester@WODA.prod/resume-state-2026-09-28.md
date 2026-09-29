@@ -7,7 +7,7 @@ ONE boot source (R113): this file + `.claude/agents/oopTester@WODA.prod/SKILL.md
 - Base = robbin-tester: I GATE the Web4MDA MDA process — failable gates on the PROD surface (generated output + EXECUTE it), report RED/GREEN/CONFOUND + the NUMBER to oopPO. I do NOT fix. PO = oopPO@WODA.prod (oopTeam:2.0); peers oopExpert (0.0), oopBashExpert (1.0). Address by ROLE — verify the pane title before every send; panes move.
 
 ## Web4MDA state — RE-MEASURE, a saved HEAD DECAYS
-Last durable HEAD I touched = **6edc7c5** (2026-09-28). Re-measure: `git -C /var/dev/Workspaces/web4x/Web4MDA fetch; git log -1; git status --porcelain` (read WHOLE, AC14). Main was 232/232 at f68518a on an isolated clone.
+Last durable HEAD I touched = **06cd13b** (ARM3 multiset). Measured 2026-09-29: HEAD 558b944 (spec 10 eamd-ucp.md), with PEER WIP in the tree (OoshUnit src/MOF -> src). Re-measure: `git -C /var/dev/Workspaces/web4x/Web4MDA fetch; git log -1; git status --porcelain` (read WHOLE, AC14). Main was 232/232 at f68518a on an isolated clone.
 
 ## Delivered (all on Web4MDA origin/main, test-only, path-limited commits)
 - 2026-09-21..24: increment-1 gated (bootstrap AC1-AC15; caught the dropped AC14); ES2020 oracle fix ae21a0c; bootstrap arms 0797fad (AC6 cold-half, AC5 at root); gate fixes 08c8c2d.
@@ -17,12 +17,14 @@ Last durable HEAD I touched = **6edc7c5** (2026-09-28). Re-measure: `git -C /var
 - **2026-09-28:** f7629d1 ARM4 README State table derivable from disk (built = class exists + gate test IMPORTS it both ways; specified = spec exists + artifact ABSENT) — CHECKED 6 / SKIPPED 0 / TOTAL 6, QA-green candidate. 2359a4c ARM3 green-direction arm keyed FILE+TOKEN+MARKER, not line numbers (42cfed6 false RED). f68518a ARM4 per row STATE (specified row's src path must be ABSENT). **6edc7c5 AC19 GATED**: real bare `npm test`, default PATH node16/npm8, cold `git clone --no-hardlinks`, no node_modules — (a) 232/232 == whole suite, (c) porcelain unchanged, (d) warm no-reinstall, (b1) runner non-zero, (b2) bootstrap non-zero distinguishable; seeds (vacuous run / tree mutation / forced reinstall) all caught. Plus AC3 explicit 15s (instrument: start() 3.4s isolated, 4.1s in-suite, unchanged by AC19). AC19 = QA-green candidate; Tron rules DONE.
 - CORRECTION on record: f7629d1's message claimed spec/once.md does not fix the ONCE name — FALSE (spec/once.md:21 fixes src/Once.ts); I relayed it unverified. Corrected in 2359a4c.
 
-## QUEUE (oopPO-ranked 2026-09-28, RESTORED after my anchor dropped item 2; oopPO's queue is the authority)
-HOLD STANDS: start nothing until oopPO releases me (Tron: next task only when ALL agents <80; released after the SM confirms fleet healthy).
-1. **ARM3 EXACT asserted allowance multiset** (oopPO ruling): assert the full allowance multiset keyed file+token+marker (no line numbers); RED on an ADDED or REMOVED allowance; compute on the CURRENT HEAD (npm `test` now exists, so `test [blockquote]` is no longer an allowance). Prove failable both ways; path-limited commit. Small — fits a 71% landing.
-2. **STANDING AC19 gate** (the item my 09-28 anchor DROPPED — restored per oopPO): today the cold bare `npm test` is proven ONCE by me (6edc7c5); only the script STRING is standing-gated. Build a standing gate that is RECURSION-SAFE (a suite test that runs `npm test` re-enters the suite) and COST-HONEST (a network install per run -> opt-in / visible-skip, never a silent pass). HEAVY design: start ONLY from a DEEPER landing, never at 71%.
-3. Increment-4 (ONCE) — HELD on Tron's word (oopPO withdrew one premature dispatch). Agreed arms with oopExpert: AC13 self-RED-safe (temp file), AC7-loader, cross-graph identity, closure collision naming BOTH modules, AC10 injectable byte source, AC11 start-once counter.
-4. Global runtime registration counter (AC8 residual closure) — ranked AFTER increment-4.
+## QUEUE — oopPO RULING 2026-09-29 (carried verbatim by the trainer; oopPO's queue is the authority)
+Landing ~69% ACCEPTED, no re-drive; ~31% free covers ONLY the next item, which is SMALL.
+1. **Gate spec-10 increment-1** (spec/eamd-ucp.md @558b944): OoshUnit moved to src/ + a RECURSIVE catalog gate. Start ONLY when oopExpert's sha lands (peer WIP was in the tree at 558b944 — gate the LANDED sha from an isolated clone, never the dirty tree).
+2. **STOP for EXIT+REFORK** (agent-rewind row 1c, Tron-sanctioned, full history) — AFTER the inc-1 gate, BEFORE anything heavy. R5 preconditions: phase-1 save pushed; session uuid measured LIVE; composer read + any staged words rescued.
+3. Spec-10 increment-2/3 gating.
+4. Standing AC19 gate (recursion-safe + cost-honest; heavy — only after the refork).
+Later (unchanged): increment-4 ONCE — HELD on Tron's word; global runtime registration counter — after increment-4.
+Item 1 of the previous queue (ARM3 exact allowance multiset) = DONE at 06cd13b, oopPO-accepted 233/233.
 
 ## Carried-open from 09-21/09-24 — VERIFY each on boot, may be resolved
 - Stale refs spec/index.md:10 and spec/ucp.md:3 -> routed to oopExpert for strike-in-place.
