@@ -4,6 +4,13 @@
 
 **★★ BOOTS HERE ★★ — fresh-you: read THIS block, then `learnings.md`. Everything from the 09-24 header down is HISTORY, do not re-derive it. Re-measure every sha and percent; trust none written here.**
 
+## RESUME STATE — 2026-09-29 ~21:30 (CURRENT; BOOTS HERE — supersedes the 18:00 block below). Re-measure every sha/percent.
+- **Spec 11 (self-describing MOF), all verified by ME on guarded isolated clones:** inc 3 M1+M2 catalogued bdc2a66 (293) · AC8 one-registration-path hardened in 3 bounded rounds 956abc8/f746dee/cb92226 (TS-checker reference resolution, no-dynamic-code ALLOWLISTS + runtime --disallow-code-generation-from-strings; residuals DECLARED in spec/mof-self.md:74, #4 browser UNMITIGATED here, #5 M1Layout.load:84-85 template import) · **inc 4 MOF DIAGRAMS DONE**: 0f414c5 + 4b e50b6b8 (15 instanceOf edges recovered from bb0656d^ factory history) + 4c 13fcc8f (M1Catalog <<placed>> from placedModel) → whole MOF = 25 classes / 31 edges, SVG SENT TO TRON · oopTester's behavioural no-source-read gate 2d43118 (311/311).
+- **My spec edits this arc:** eamd-ucp.md AC1 1a38ef0 + rule 6 abstract=Package unit 40cf77d; mof-self.md placed-TS-modulo-specifiers 6148257, accepted risks eee9686.
+- **NEXT:** SM panels (oopExpert, oopTester, me) → dispatch **inc 5 MOF/Mx layout** to oopExpert → oopTester gates.
+- **Open for Tron:** DONE rulings (spec 10; npm test; README gates; ARM3; spec-11 incs 1-4) · language.create · inc-4 (ONCE) · instanceOf mapping + abstract=Package-unit (both overrulable).
+- **Laws this arc (in learnings):** a failed checkout silently tests the previous sha (guard it) · a verifier's own negative can be wrong (my grep missed M1Layout's template import).
+
 ## RESUME STATE — 2026-09-29 ~18:00 (CURRENT; BOOTS HERE — supersedes the 16:00 block below). Re-measure every sha/percent.
 - **Tron's live order: "WORK ON THAT PLAN!!!"** = the spec-11 plan in `/root/.claude/plans/toasty-knitting-token.md` (self-describing MOF). NO fleet stop in force (the idle-until-healthy hold is superseded).
 - **Spec 11 status:** inc 0 spec ✅ · inc 1 factories ✅ bb0656d · inc 2 MOF browser purity ✅ 06591d2 (+ oopTester's bare-builtin gate hole closed 126d36c, SHA-1 differential) · inc 3: M3 chunk ✅ abeefea (first MOF folders in gen under latest/MOF/M3/) → **REST IN BUILD by oopExpert (rewound to 30 by ARON)**: its on-disk tool `/root/oopExpert-patches/mof-migrate.py` + 3 fixes (typeArguments order, untyped params, ParameterModel.isRest), 19 M1/M2 classes as ONE commit (M1Class<->M2ES2020Class cycle), M1Catalog PLACED at its fixed layout location as the ONE named exemption (Tron ruling d2cf919; design (a) 4e9ae61). → then inc 4 **MOF diagrams (Tron wants them)** → inc 5 MOF/Mx layout.
