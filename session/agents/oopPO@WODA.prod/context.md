@@ -4,6 +4,12 @@
 
 **★★ BOOTS HERE ★★ — fresh-you: read THIS block, then `learnings.md`. Everything from the 09-24 header down is HISTORY, do not re-derive it. Re-measure every sha and percent; trust none written here.**
 
+## RESUME STATE — 2026-09-29 ~23:00 (CURRENT; BOOTS HERE — supersedes the 21:30 block below). Re-measure every sha/percent.
+- **SPEC 11 (self-describing MOF) COMPLETE + QA-GREEN, awaiting TRON's DONE.** Web4MDA origin **a6db47c**, 324/324 on MY guarded isolated clone. inc 5 MOF/Mx layout e5b8c8b (placement already model-derived since inc 3; AC5 gate added) + oopTester's AC5 oracle a6db47c (9/0/9: model-derived expected set, both-ways, runtime-lineage Mx authority, behavioural G1 fs-trap + G2 model-varies invariance; H count not added, disclosed).
+- Pre-inc-5 rewinds in band, one pass each: oopExpert 66->49 (ARON), oopTester 75->48 (trainer). ARON's rule amendment AUTHORIZED: re-drive on freed<20 ONLY if still above the band.
+- **Drive cost depends on METHOD** (banked 897f97ce): marker-based ~2 pts, picker-browsing 18-25. Drivers: ARON 55, trainer 64. SM panel 74 (peer-rendered; on Opus 4.8), trigger panel 80.
+- **Team idle, holding for Tron's next word.** Open for Tron: DONE on spec 10, npm test, README gates, ARM3, spec 11 incs 1-5 · overrulable calls: instanceOf mapping (from bb0656d^), abstract class = Package unit (eamd-ucp rule 6) · language.create · inc-4 (ONCE).
+
 ## RESUME STATE — 2026-09-29 ~21:30 (CURRENT; BOOTS HERE — supersedes the 18:00 block below). Re-measure every sha/percent.
 - **Spec 11 (self-describing MOF), all verified by ME on guarded isolated clones:** inc 3 M1+M2 catalogued bdc2a66 (293) · AC8 one-registration-path hardened in 3 bounded rounds 956abc8/f746dee/cb92226 (TS-checker reference resolution, no-dynamic-code ALLOWLISTS + runtime --disallow-code-generation-from-strings; residuals DECLARED in spec/mof-self.md:74, #4 browser UNMITIGATED here, #5 M1Layout.load:84-85 template import) · **inc 4 MOF DIAGRAMS DONE**: 0f414c5 + 4b e50b6b8 (15 instanceOf edges recovered from bb0656d^ factory history) + 4c 13fcc8f (M1Catalog <<placed>> from placedModel) → whole MOF = 25 classes / 31 edges, SVG SENT TO TRON · oopTester's behavioural no-source-read gate 2d43118 (311/311).
 - **My spec edits this arc:** eamd-ucp.md AC1 1a38ef0 + rule 6 abstract=Package unit 40cf77d; mof-self.md placed-TS-modulo-specifiers 6148257, accepted risks eee9686.
