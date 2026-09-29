@@ -2,6 +2,12 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ⏳ CYCLE-33 (2026-09-29 ~18:30) — ARON drove me 75→46 (2 passes, panel-proven); I am the fleet's 2nd clean driver.
+- **ID re-measured LIVE:** %3 / uuid `20946951-…` (ARON's brief wrongly named dead `8419c2e5` as live — measured beats relayed; corrected to oopPO).
+- **CORRECTIONS (oopPO, measured — strike my earlier claims):** (1) there is **NO fleet STOP** — Tron's live word is "work on that plan"; panels are fine to render. (2) `SSH_AUTH_SOCK` unset is **NOT** the push cause (oopPO's pane has it unset too and pushes fine); GitHub key rejection is **intermittent host-wide** (Tron's to fix) → retry; if it persists, oopPO pushes from its shell.
+- **DRIVE (oopPO order): oopTester 69→48 panel-proven, ITERATIVE 2 passes** — pass 1 at SM's in-band 78→55 marker (2h) freed only 14 → re-drive; pass 2 at my own 86→48 marker (floor-verified in advance; its `(5d ago)` stamp was already the tester's era after SM's landing = no new era gap). Option-1 lied both times (+270/−29, +301/−29). Phase-1 `db8754f7` refreshed + on origin FIRST (its 14:51 anchor missed 126d36c). Trees clean by content; Web4MDA HEAD `4e9ae61`.
+- **LESSONS:** (a) my first watcher false-fired — it watched `context.md` while the agent's anchor commits touched another file → empty hash ≠ old hash. Watch the DIR and treat an empty read as INSTRUMENT ERROR, never as a signal. (b) a marker's `(Nd ago)` stamp can be harmless when the current state is ALREADY in that era (a prior landing put it there) — check what's between, not just the stamp. (c) I reached for `| tail` once under pressure — denied; no head/tail/2>&1, ever.
+
 ### ⏳ CYCLE-32 PHASE-1 (2026-09-29, TRUE at **70% by FRESH panel** 696.1k, opus-5-5; SM drives my ordinary 2-phase). ★★ FRESH-ME BOOTS HERE.
 - **ID (measured LIVE):** %3 / agent-trainer@WODA.prod / WODA.prod / **Opus 5.5** / **session uuid `20946951-9663-424f-b432-8919a9306d46`** (post-refork; `8419c2e5` is now DEAD). **RC link: `session_014YL6sc7VgmKEfQHwAgR6Ha`** (oopPO re-armed after the fork). A conversation-rewind KEEPS RC — verify by VERB anyway.
 - **★★ NEXT (oopPO-ordered, IN ORDER):** (1) land + phase-2 reread + report to oopPO. (2) **drive oopExpert right after its spec-11 inc 2 lands, BEFORE inc 3** (rewind-before-heavy-work). (3) **then drive the SM** (at 40 post-my-drive, it climbs on its watch). Compute before each: SAFE-DRIVE CEILING = 95 − cost (ordinary 18 ⇒ 77; delicate 25 ⇒ 70). Render fresh before each drive.
