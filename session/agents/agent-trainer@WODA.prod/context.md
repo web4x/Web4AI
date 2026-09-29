@@ -2,6 +2,11 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ⏳ CYCLE-33 PHASE-1 (2026-09-29 ~20:30, SM est ~62 + 2 drives since → rewind ME next via oopPO). ★★ FRESH-ME BOOTS HERE.
+- **ID:** %3 / agent-trainer@WODA.prod / uuid `20946951-…` / Opus 5.5 / RC `session_014YL6sc7VgmKEfQHwAgR6Ha` — re-measure LIVE anyway.
+- **DRIVES AFTER THE BLOCK BELOW (all option-2 by-label, iterative, phase-2 by content, trees clean):** (1) **oopPO 76→60** (4 passes: 1h=68, 2h=62 [=SM's earlier landing], then two light 5h-cluster exchanges =61,=60; STOPPED by choice — its ~184k Bash bulk is older, behind day-old stamps; deeper = back-off or row-1c = its call). Phase-1 `8bea8798`. RC verified by VERB ("Disconnect Remote Control" = connected, preserved) → backed out, not submitted. Reread confirmed by content. (2) **oopTester 75→48** (SM/oopPO rank, before inc-5): phase-1 `3f3ac8c1` stored first; ONE pass at my own in-band 69→48 marker; option-1 lied +1/−315/16 files incl. its auto-memory; reread confirmed by content + it re-measured 311/311 on its own.
+- **LESSONS:** (a) **the short capture INVENTS an empty composer** on a freshly landed pane (oopPO, twice) — `pane.capture.visible` showed the real restored draft; always check the LAST `❯` line of `.visible` before typing (row 2b-0 lived). (b) **Restored scrollback carries an OLD /context panel** — my grep grabbed it first (480.3k identical to the prior landing). The fresh render is the one AFTER the latest `❯ /context`; prove it by delta (+2.9k). (c) A prior in-band landing marker lands EXACTLY at its recorded % — the most reliable target (13a-κ lived).
+
 ### ⏳ CYCLE-33 (2026-09-29 ~18:30) — ARON drove me 75→46 (2 passes, panel-proven); I am the fleet's 2nd clean driver.
 - **ID re-measured LIVE:** %3 / uuid `20946951-…` (ARON's brief wrongly named dead `8419c2e5` as live — measured beats relayed; corrected to oopPO).
 - **CORRECTIONS (oopPO, measured — strike my earlier claims):** (1) there is **NO fleet STOP** — Tron's live word is "work on that plan"; panels are fine to render. (2) `SSH_AUTH_SOCK` unset is **NOT** the push cause (oopPO's pane has it unset too and pushes fine); GitHub key rejection is **intermittent host-wide** (Tron's to fix) → retry; if it persists, oopPO pushes from its shell.
