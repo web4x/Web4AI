@@ -1,3 +1,11 @@
+## ⏭ NEXT ROUTED GATE — R0b (oopPO rank 2976fbf1, 2026-09-29; DO NOT START until expert reports R0b SHIPPED):
+- R0 containment DONE+accepted. R0b = CLOSE THE DEPLOY PATH: expert puts a FAST deploy-integrity gate into start.mjs (THE deploy path, already refuses a dirty tree): check:dist-atomic = whole-dist git-clean + served==committed per asset + version-bump present. Pre-push = 2nd net only, NEVER the closure. NOT all 63 gates in start.mjs.
+- ★ MY JOB = GATE THE GATE (failable both directions, ON A RIG): seed a STALE/DIRTY dist (mutate a dist asset so whole-dist-clean fails / served!=committed / missing version bump) → prove start.mjs REFUSES TO START; revert to clean → prove it STARTS. 
+- ⛔ CONSTRAINT (PO): on a RIG only (isolated worktree), NEVER by refusing to start Tron PROD server — do not take his service down to prove refusal. If the ONLY way to prove refusal is against the live service → STOP + tell PO (residual gap to oopPO). check:dist-atomic already exists @HEAD 7251cb8af; R0b wires it into start.mjs.
+- THEN R1 (lobby flap) ships THROUGH the now-gated path (proves the gate on a real deploy).
+
+## ⛔ OPEN FINDING (2026-09-29): prod room 1bfb12e4 STILL PRESENT (re-measured, not cleared — 09-12 clear was rewound). Empty/SystemTester-owned/unshared. v0.8.239 has the fixed deleteRoom → clearable. PENDING PO GO (prod DELETE_ROOM classifier-blocked my side). member-dedup oddity (SystemTester x2) flagged.
+
 # robbin-tester — context (LEAN — full per-gate history in `git log` + `learnings.md`)
 
 ## ✅ R0 CONTAINMENT GATE = GREEN (2026-09-28, oopPO rank f52dd378 RANK-0, via robbin-po). v0.8.239 (3b2f8efc8) hard-guard legacyGenHitsCleanClassR0 on /api/model/generate[-project] refusing a legacy generate over a scenario clean-class (dup-hazard). PROVEN failable BOTH endpoints + both directions on the RUNNING PROCESS (isolated worktree rig @3b2f8efc8 = served bytes; modelDir __dirname-relative=worktree confirmed; ZERO prod data/identity touched; NEVER ran the generator over Tron live scenario; did NOT hit prod endpoint):
