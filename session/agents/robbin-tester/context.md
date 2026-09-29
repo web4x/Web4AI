@@ -1,3 +1,14 @@
+## R1 LOBBY-FLAP ARC — COMPLETE except ONE rewind-item (2026-09-29, re-derivable ZERO-conversation):
+SERVED (all via R0b gate): v0.8.240 flap-fix / v0.8.241 AC1 2-hop resolveToken / v0.8.242 visibility / v0.8.243 AC1 multi-hop.
+- AC2 non-owner-exclusion GREEN (r1-lobby-flap-gate.mjs): SystemTester never sees edd7fa61(Marcel private) 5 reconnects.
+- AC3 no-flap GREEN: 0 premature + 1 owner-aware list post-IDENTIFY + STABLE across 5 reconnects.
+- AC1 residual-1 (creatorToken MISSING on disk) CLOSED (r1-ac1-creatortoken-replica.mjs): loader re-hydrates (server.ts:5256 backfill); CREATE_ROOM never persists creatorToken.
+- AC1 residual-2 (session-token!=creatorToken) RESOLVED (r1-ac1-2hop-resolve-gate.mjs RED→GREEN): X→M→OWNER: X2 ABSENT@240→PRESENT@241; X3 3-hop ABSENT@241→PRESENT@243(multi-hop). Non-owner Z EXCLUDED ALL versions.
+- VISIBILITY BITE PROVEN (r1-reconnect-storm-bite.mjs): induce>5/min→alarm FIRES; neuter 5→9999→0 alarms(blind). Reverted.
+- Marcel chains 3effa1fc/8f74dfba/37fcb752->c09087ec resolve multi-hop; literal=Tron device-verify; single-hop=no-bug(fix hardens CLASS).
+- REMAINING (rewind-before-heavy): ORGANIC close-code root — hold REAL :4685 browser client on served prod, catch storm, read first-close code+side+rate+alarm. PARTIAL: server no-drops healthy(75s code=1000); client :4685 FIXED-2s-retry-NO-backoff=STORM AMPLIFIER(PO->oopPO). First-close ROOT not-yet-caught.
+- RIG: worktree@abc2442dc(v0.8.243) DATA_DIR=data-r1(OWNER=11111111.. room edd8b61d, r1chain-tokens.json) ports 4600/4601 ship-bytes; NODE_ENV=production->addLog file-logs. WORD=REWIND never CUT.
+
 ## ✅ R1 VISIBILITY-SET BITE PROVEN (2026-09-29, rig v0.8.242 prod-mode, synthetic token, ZERO prod). Gate r1-reconnect-storm-bite.mjs:
 - VISIBLE: induced 8 closes (code=4001) for one token in ~7s → server ws.on(close) recorded rate → ⚠ RECONNECT-STORM alarm FIRED at rate 6/7/8 (>5/min RECONNECT_ALARM_PER_MIN), naming token + last close code (data-r1/logs/, NODE_ENV=production → addLog file-logs).
 - INVISIBLE (BITE): neutered RECONNECT_ALARM_PER_MIN 5→9999 on rig → same induced storm → 0 RECONNECT-STORM alarms (isStorm(8)=false) → detector goes BLIND = LOAD-BEARING not decorative. Reverted to 5 (rig=ship). Matches expert unit-gate check:reconnect-visibility.
