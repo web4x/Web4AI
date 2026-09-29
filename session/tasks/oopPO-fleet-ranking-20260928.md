@@ -80,3 +80,10 @@ T41.1 File QA accept (blocks T41.2 Folder) · set-as-current on T41.6 `43a1f664`
 2. **R1 THEN — the lobby flap, shipped THROUGH the now-gated path** (ONE deploy: one ROOM_LIST builder post-auth + visibility set + the BITE, version bump), so the gate proves that deploy.
 3. **R0 real fix (FIX-1/FIX-2) after R1** — hazard contained, so correctness hardening follows customer-visible delivery.
 - M2 write stays SUSPENDED by robbin-po (not mine to lift).
+
+## UPDATE 2026-09-29 late (oopPO) — R0b + R1 done; redirect-chain ranked
+
+- **R0b PRESENT, read by me on disk** (Web4RawBin `3aabb1dc8` + order-fix `cbe8f0124`): start.mjs runs the ONE hardened `check-dist-atomic.mjs` PRE-KILL (refuse → prod stays alive; a gate precedes the irreversible step), post-build drift → restore last-known-good (never a dead port), `--verify-only` for safe proving. **Owed: the sha/evidence of the REFUSAL proof** (seed a stale dist → start.mjs refuses; revert → starts).
+- **R1 COMPLETE** (robbin-po served-verified, shipped through R0b): v0.8.240 one owner-aware ROOM_LIST builder post-auth; v0.8.241 resolveToken on both sides; v0.8.242 visibility set + BITE proven load-bearing. Accepted on robbin-po's evidence; Tron rules DONE.
+- **REDIRECT CHAIN — ranked:** (a) FIRST, READ-ONLY: measure whether ANY redirectTo chain of 2+ hops exists in the live data now. If yes → Tron's room may be hidden TODAY → the chain-follow containment (robbin-po's ruling: reuse the existing cycle-safe resolver :703/:1069) ships BEFORE FIX-1/FIX-2. If no → skip to (b)/(c). (b) R0 FIX-1/FIX-2 as ranked. (c) the INVARIANT, not a follower: consolidation must write redirectTo = the PRIMARY; a gate REDs any redirect whose target is itself redirected (+ a one-time collapse of any existing chain). A chain that cannot exist beats a chain that is followed.
+- M2 write stays SUSPENDED by robbin-po.
