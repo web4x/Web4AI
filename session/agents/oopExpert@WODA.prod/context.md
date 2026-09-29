@@ -3,6 +3,8 @@
 **Last updated**: 2026-09-29 (INC-3 approach banked before a rewind — see the ★ INC-3 section first). **EVERY NUMBER BELOW IS A MEASUREMENT WITH A TIMESTAMP, NOT AN ASSERTION — RE-MEASURE BEFORE TRUSTING ANY OF IT.**
 
 
+**ANCHOR (2026-09-29 ~14:00): `9c5caed` A+C addendum DONE (http/https-only URLs, folders by exact class) — 263/263 on MY isolated clone of 9c5caed; oopPO verification not yet seen by me. Next = inc-3 (read the ★ INC-3 section + spec @123857d/2d04bcb first).**
+
 ## ★ INC-3 APPROACH — BANKED 2026-09-29 BEFORE A REWIND (oopPO: HOLD, no other work; SM rendering my panel)
 **State at banking (MEASURE AGAIN — these are timestamped facts, not truths):** Web4MDA origin/main = **866af3a** (oopPO: 5 inc-2 flags accepted into spec). Mine, all pushed + oopPO-verified on isolated clones: AC19 npm test verb `52c5ace` · spec-10 inc-1 AC1 `8ff6e18` (OoshUnit to src/, recursive catalog gate) · INC-1b `6ece456` (CatalogOracle, derived oracles) · inc-2 AC2–AC4 `9c1728d` (derived path/breadcrumb, Namespace, Version) — 254/254 on the clone. Pulse 62 (triage only). **inc-4 (ONCE) HOLD unchanged.** Inc 3 is NOT started — do NOT start it before oopPO says GO after the rewind.
 **Spec — READ FIRST after the reread: `spec/eamd-ucp.md` @123857d** (oopPO fixed the import hazard I flagged as a spec defect BEFORE the rewind: new rule 8 = import specifiers DERIVED from the Folder tree, relative, never concatenated; AC7 compares src vs layout TS MODULO imports, plus an arm proving every import resolves and the layout JS executes). Earlier reference: @866af3a — layout section + rules 4–8 + AC5–AC8. Inc 3 = "Generation into the layout, replacing the flat directories and repointing every path-hardcoding test in the SAME commit".
