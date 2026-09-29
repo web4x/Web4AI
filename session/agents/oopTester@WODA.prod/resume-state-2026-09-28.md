@@ -19,11 +19,11 @@ Last durable HEAD I touched = **06cd13b** (ARM3 multiset). Measured 2026-09-29: 
 
 ## QUEUE — oopPO RULING 2026-09-29 (carried verbatim by the trainer; oopPO's queue is the authority)
 Landing ~69% ACCEPTED, no re-drive; ~31% free covers ONLY the next item, which is SMALL.
-1. **Gate spec-10 increment-1** (spec/eamd-ucp.md @558b944): OoshUnit moved to src/ + a RECURSIVE catalog gate. Start ONLY when oopExpert's sha lands (peer WIP was in the tree at 558b944 — gate the LANDED sha from an isolated clone, never the dirty tree).
+1. **Gate spec-10 increment-1** (spec/eamd-ucp.md @558b944): OoshUnit moved to src/ + a RECURSIVE catalog gate. Start ONLY when oopExpert's sha lands (peer WIP was in the tree at 558b944 — gate the LANDED sha from an isolated clone, never the dirty tree). ALSO REVIEW (oopPO, direct 2026-09-29): (a) oopExpert's ONE disclosed repoint of test/Spec.test.ts:231 (oopPO allowed it — verify it is the only one and still failable); (b) the new MethodModel.typeParameters (oopPO fork ruling A). AC1 = recursive catalog gate + OoshUnit moved AND catalogued.
 2. **STOP for EXIT+REFORK** (agent-rewind row 1c, Tron-sanctioned, full history) — AFTER the inc-1 gate, BEFORE anything heavy. R5 preconditions: phase-1 save pushed; session uuid measured LIVE; composer read + any staged words rescued.
 3. Spec-10 increment-2/3 gating.
 4. Standing AC19 gate (recursion-safe + cost-honest; heavy — only after the refork).
-Later (unchanged): increment-4 ONCE — HELD on Tron's word; global runtime registration counter — after increment-4.
+5. Increment-4 ONCE — HELD on Tron's word. 6. Global runtime registration counter — after increment-4.
 Item 1 of the previous queue (ARM3 exact allowance multiset) = DONE at 06cd13b, oopPO-accepted 233/233.
 
 ## Carried-open from 09-21/09-24 — VERIFY each on boot, may be resolved
