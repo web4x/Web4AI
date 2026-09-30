@@ -1,3 +1,12 @@
+# oopTester@WODA.prod — 5b CHUNK C (9790fd2) GATED 2026-09-30 -> 5b fully gated from my side — SUPERSEDES the blocks below
+
+- Fresh clone @9790fd2. COLD EXIT=0 467/2/469. MofLayoutAC5 unseeded 12/12.
+- catalogSanctioned == modelFiles == 74: failing-probe Received [74,74] + independent git count of 74 *Definition.ts.
+- My own mutations on isSanctionedModuleLoad: M1 scope phase-agnostic -> 3 RED (chunk-C 'outside its call site', 5a S-a, D+G1); M2 isQueryFree dropped -> RED 'cache-busted model file inside M1Catalog.load', and with that expect removed -> RED 'cache-busted closure file inside M1Layout.load' (vitest stops at first failing expect — observe each window separately). View.ts 5a seed still present+caught.
+- No findings. HOLD for oopPO.
+
+---
+
 # oopTester@WODA.prod — 5b B1(2516298)+B2(b5e5e9d) GATED 2026-09-30, reported to oopPO — SUPERSEDES the blocks below
 
 - Fresh clone of origin @b5e5e9d. COLD npm test EXIT=0 466/2/468, 58 files, 68.0s. Weakest literal: xxxClass() entry methods = 0, defined( = 0.
