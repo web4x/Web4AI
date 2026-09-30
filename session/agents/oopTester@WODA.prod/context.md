@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — inc 6 C2 (c56ef92) GATED 2026-09-30, reported to oopPO; DUE A REWIND before C3 — SUPERSEDES the blocks below
+
+- Fresh clone. COLD EXIT=0 471/2/473. P1: porcelain before==after is BLIND (home='' seed rewrote 225 Components/ files byte-identical, porcelain unchanged); mtime marker: seed 225 writes RED, unseeded full suite 0 writes anywhere GREEN. P2 dropped-start (Pipeline.test.ts:134): neutralised seed -> RED, non-vacuous. isGenerated blinded -> 20 failed across exactly 12 test files (incl Pipeline, GenReaders). Generated home mode NOT separately seeded.
+- No code defects; 1 instrument finding reported. Next: C3 gate AFTER my rewind.
+
+---
+
 # oopTester@WODA.prod — inc 6 C1 (9012b3f) GATED 2026-09-30, reported to oopPO — SUPERSEDES the blocks below
 
 - Fresh clone. COLD EXIT=0 471/2/473. From EMPTY gen: npm start EXIT=0, 460 files, 0 under src/ts (75 .ts = thinglish.ts TARGET, legit); committed gen src/ts 75 -> 0.
