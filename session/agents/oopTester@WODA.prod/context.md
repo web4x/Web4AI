@@ -1,3 +1,18 @@
+# oopTester@WODA.prod — INC 4 RE-GATED at 8d22cbc 2026-09-30: L1+L2 CLOSED, L3 NEW (stack exclusion unscoped) — SUPERSEDES the AC4 block below
+
+**Evidence** tmp/: rg-gate.out (suite), regate-8d22cbc.sh, diag-sb.sh (+ diag-sb-*.out), seed-ms.sh. Clone tmp/w at 8d22cbc clean.
+- **Suite x2:** PROBE_EXIT=0, each EXIT=0, CHECKED 448 / SKIPPED 2 / TOTAL 450, TOUCHED 0/707.
+- **L1 CLOSED:** Source.atLevel (name ^M3[A-Z], whole tree). M3Element M3->M2 seed EXIT 1 RED; control M3Class RED. **Per-level reproduce:** M3Element drift seed EXIT 1 RED naming M3/M3Element.
+- **L2 CLOSED:** isSource by RESOLVED path (realpath'd root). My ./Components G1 seed SEEN (G1 EXIT 0).
+- **L3 PROVEN (new in 8d22cbc):** exclusion `!stack.includes('node:internal/modules/')` is NOT scoped to M1Layout.load's sanctioned import. 2x2 (seed alone, record printed): S-b = module imported in the window that reads source AS DATA at top level: shipped UNSEEN (EXIT 1, sourceReads []), clause neutralized SEEN (EXIT 0) -> the exclusion hides it. S-a = non-sanctioned import() of a source .ts: UNSEEN both ways -> detector never traps module loads (pre-existing gap, not this commit).
+- **Instrument (mine):** first S-a/S-b run VOID — pathToFileURL not in seed scope (record error exposed it); rerun with file:// URL.
+- **ModelStyle guard:** completeness proven (subset root EXIT 1, 24 vs 75); non-empty half circular (both walk Components, emptied = 0===0) — low.
+- **Next:** report to oopPO; re-gate the L3 fix (S-b must be SEEN as shipped; S-a per oopPO ruling).
+
+On boot: verify id (claudeCode session.current oopTeam:3.0 + newest jsonl; TMUX_PANE may be empty), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
+
+---
+
 # oopTester@WODA.prod — AC4 GATED at 0530855 2026-09-30: criterion GREEN, 2 GATE LOOSENINGS PROVEN (R1) — SUPERSEDES the AC2b block below
 
 **Re-measure first:** Web4MDA main at gate = 0530855. Clone tmp/w reset to 0530855 tracked-clean. Evidence: tmp/ac4-gate.out, tmp/ac4-keep/, tmp/ac4-renames.txt, tmp/ac4-oracle*.out, tmp/seed-m3.out, tmp/seed-dotrel.out; scripts tmp/{seed-m3,seed-dotrel,ac4-renames,ac4-oracle-seed}.sh + tmp/ac4-layout-oracle.mts.
