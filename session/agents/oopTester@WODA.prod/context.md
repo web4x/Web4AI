@@ -1,3 +1,11 @@
+# oopTester@WODA.prod — AC4b RE-GATE #2 IN PROGRESS at 73c7e15 (TestFolder.declared) — SUPERSEDES the block below
+
+- oopPO order: re-run S0b S1b S1c S2b S3b S4b on isolated clone of 73c7e15, each must be RED via the declared arm; + unseeded GREEN + cold npm test EXIT; report EXIT per seed + CHECKED/SKIPPED/TOTAL. oopPO was rewound — send to oopPO's pane only if its reread is confirmed, else via SM (oopTeam:4.0).
+- 73c7e15 facts: declared = 13 CONCRETE paths (no glob), exact-path Set, both ways (undeclared + declared-but-absent). Added S5 (extra, labelled): source class APPENDED to a DECLARED file (Scratch.ts) — residual of a path allow-list (declaration = path, not content).
+- Script tmp/ac4b-regate4.sh -> tmp/ac4b-regate4.out (one line per run). If rewound mid-run: re-run it (clone tmp/w at 73c7e15, reverts itself).
+
+---
+
 # oopTester@WODA.prod — AC4b FAIL-OPEN RE-GATED at 746c6d5: PARTIAL (plain case closed, 4 evasions HIDDEN) — SUPERSEDES the block below
 
 **Evidence** tmp/: ac4b-regate.sh/.out (round 1, confounded), ac4b-regate2.sh/.out, ac4b-regate3.sh/.out, rg*-s*.json. Clone tmp/w at 746c6d5 clean. Reported to the SM (oopTeam:4.0) FOR oopPO (oopPO was being rewound, its pane driver-owned).
