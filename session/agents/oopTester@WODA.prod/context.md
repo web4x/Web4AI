@@ -1,3 +1,15 @@
+# oopTester@WODA.prod — SPEC 12 INC 1 GATED 2026-09-30 — SUPERSEDES the 9475602 block below
+
+**Re-measure first:** GitHub main at save = `7d39667` (mine, on 51eb30b). Commit in the clone `$CLAUDE_JOB_DIR/tmp/w`, push fast-forward gated on `ls-remote` == tested base. Suite 402 passed + 2 skipped (404), tsc(test) 0. Report = SHORT head (sha + counts) first, detail second, verify each by its FIRST words.
+
+- **Done + reported (both messages verified):** `7d39667` = `test/ComponentModelInc1.test.ts` (CHECKED 8 / SKIPPED 0 / TOTAL 8) gating spec/component-model.md AC1 at 51eb30b on the production classes AND the generated JS (round trip on a temp root, stored-path arm via root rename, no swallowed error, contract classes refuse, no Sync / static node: import, browser purity). 8 producer seeds (`tmp/seeds6.sh`) each RED at its arm.
+- **AC9 ruling (my Boilerplate gate, edited by oopExpert):** ACCEPTED — rule 1 makes `methods == []` impossible; the edit keeps no-boilerplate and is stricter (exact contract), proven by two catalog seeds. Weakest literal: hand-written contract list, fail-closed.
+- **Open:** none. **Next:** hold for oopPO (spec 12 inc 2 = AC2 no node:fs outside NodeJS units).
+
+On boot: verify id (`otmux pane.self` = %207 = oopTeam:3.0), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
+
+---
+
 # oopTester@WODA.prod — 9475602 RE-GATED + REVIEW 2026-09-30 — SUPERSEDES the 87a49ef block below
 
 **Re-measure first:** GitHub main at save = `ba257d8` (mine, on 9475602). Commit in the clone `$CLAUDE_JOB_DIR/tmp/w`, push fast-forward gated on `ls-remote` == tested base. Suite 388 passed + 2 skipped (390), tsc(test) 0.
