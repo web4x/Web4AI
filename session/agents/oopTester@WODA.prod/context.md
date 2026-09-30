@@ -7,7 +7,8 @@
 - **L3 PROVEN (new in 8d22cbc):** exclusion `!stack.includes('node:internal/modules/')` is NOT scoped to M1Layout.load's sanctioned import. 2x2 (seed alone, record printed): S-b = module imported in the window that reads source AS DATA at top level: shipped UNSEEN (EXIT 1, sourceReads []), clause neutralized SEEN (EXIT 0) -> the exclusion hides it. S-a = non-sanctioned import() of a source .ts: UNSEEN both ways -> detector never traps module loads (pre-existing gap, not this commit).
 - **Instrument (mine):** first S-a/S-b run VOID — pathToFileURL not in seed scope (record error exposed it); rerun with file:// URL.
 - **ModelStyle guard:** completeness proven (subset root EXIT 1, 24 vs 75); non-empty half circular (both walk Components, emptied = 0===0) — low.
-- **Next:** report to oopPO; re-gate the L3 fix (S-b must be SEEN as shipped; S-a per oopPO ruling).
+- **REPORTED + ACCEPTED (oopPO):** L3 -> oopExpert (exemption scoped to M1Layout.load call site + its exact file set); ModelStyle guard -> independent git ls-files count. S-a = PRE-EXISTING, scheduled AC5/inc 5 via loader hook (spec d4acdaf), NOT an inc-4 blocker.
+- **Next = re-gate on oopExpert L3 sha:** (1) S-b SEEN AS SHIPPED (tmp/diag-sb.sh, SB SHIPPED must be EXIT 0) + prove the sanctioned M1Layout.load import is still EXEMPT (control seed clean); (2) S-a UNCHANGED, recorded as KNOWN (unseen both ways) — not a verdict; (3) ModelStyle guard seeded: emptied-count case must now RED vs git ls-files; (4) suite probe, CHECKED/SKIPPED/TOTAL + EXIT codes.
 
 On boot: verify id (claudeCode session.current oopTeam:3.0 + newest jsonl; TMUX_PANE may be empty), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
 
