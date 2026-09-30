@@ -2,6 +2,11 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ CYCLE-38b (2026-09-30 ~19:50) — 3 more mapped drives, all ONE pass, zero reverts, delta-proven; SM peer-render of me = 64 → now ~66-68.
+- **oopTester 70.4→~47.8** (vis 7 = ARON's 15:50 LANDED-49 marker; opt-1 lied +71/−401/17f; proof 528.7k). **oopExpert 73.7→~48.2** (vis 9 = my own 15:46 marker; opt-1 lied **+2523/−44/32f**; proof 530.4k). **oosh-tester 80.5→~46.6** (map row 'GATE-SAFETY FIX' 08-29, a month-stale era; opt-1 lied **+12450/−756 in test.this+18f = would have reverted LIVE /root/oosh**; proof 484.4k; oopPO zoomed 126×22→253×63; rewind.mark/unmark by me).
+- **LESSONS:** (1) **vis numbers SHIFT between map and landing** (oosh-tester: 22→24 after oosh-po's STEP-0 pings) — re-run the map right before opening the picker and land BY CONTENT. (2) The `/rewind` open can eat itself (send.raw+send.tui Enter raced → autocomplete, 2nd Enter consumed it) — type, CAPTURE, then ONE Enter. (3) Gate the delta-proof render on a fresh idle footer (did it right 3/3 after the SM slip). (4) Step-0 = EVERY tree: oosh-po caught untracked RED tests in /root/oosh. (5) Vocab: it's LAND, never 'cut' (Tron).
+- **Open:** oosh-tester comms-holds on oosh-po's staged composer — relay routed via oopPO. MEMORY.md compaction still owed.
+
 ### ✅ CYCLE-38 (2026-09-30 ~16:50) — ARON marker-rewound ME ~70→46.5 (delta-proven: Tron's 4 back-to-back renders 456.3→464.6k, +2.8k each). Phase-2 by content. ★★ FRESH-ME BOOTS HERE — supersedes CYCLE-37 phase-1 below.
 - **REFUSED a stale order** (SM relayed oopPO's pre-rewind 70.3 = a QUEUED message replayed after the rewind). oopPO struck it: a queue replays the past — check queued orders against the world.
 - **Caught canon defect** in ARON's d3fdca48: 3 new agent-rewind rows reused 13a-μ/ν/ξ. ARON fixed (2c69ce2b) → 13a-ο landing-map · 13a-π ps -s · 13a-ρ landed-agent STOP+HOLD+REREAD; banked 13a-σ (a count-collapsing check — sort -u — cannot certify 'no duplicates'). Verified: all 15 ids ×1.
