@@ -1,3 +1,15 @@
+# oopTester@WODA.prod — Tree/File/Unit INCREMENT 1 GATED 2026-09-30 — SUPERSEDES the inc-5 block below
+
+**Re-measure first:** `git -C /var/dev/Workspaces/web4x/Web4MDA fetch; log -1; status --porcelain`. At save: origin = `46a83ce`, suite 347 passed + 2 skipped (349), tsc(test) 0. Plan: `spec/plans/2026-09-30-tree-treenode-unit.md`; rules `spec/ucp.md` T1-T8.
+
+- **Done + reported to oopPO:** `46a83ce` = `test/TreeFileUnitInc1.test.ts` (CHECKED 14 / SKIPPED 2 / TOTAL 16) gating oopExpert's `6dca1cb`: production classes + GENERATED JS (found by name under gen/.../src/js/) + tsc type seeds; 8 out-of-band producer/gen seeds each RED at its named arm.
+- **Findings reported, NOT in the green count, awaiting oopPO's ranking:** (1) RED vs T4/T5.1 — `NodeShell`, the only concrete leaf UcpUnit, has uuid `''` (no model class) = a unit without a uuid. (2) T6 — `Package` has no own `add`; a non-UcpComponent is ACCEPTED and then hidden by the filtered `children` view (tsc accepts too).
+- **Next (plan):** increment 2 = unit properties (`references`, RelationshipModel kind `references`) — gate on oopPO's GO. Carried: spec/index.md:10 + spec/ucp.md:3 stale refs (→ oopExpert), radical-oop.md §3 (→ Tron).
+
+On boot: verify id (`otmux pane.self` = %207 = oopTeam:3.0), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
+
+---
+
 # oopTester@WODA.prod — inc-5 GATED 2026-09-29 ~20:40 — SUPERSEDES the 3f3ac8c1 block below
 
 **Re-measure first** (a saved sha decays): `git -C /var/dev/Workspaces/web4x/Web4MDA fetch; log -1; status --porcelain`. At save: origin = `a6db47c`, suite **324/324** (twice, live), `tsc -p tsconfig.test.json` 0 (`npm run typecheck` NO LONGER EXISTS at e5b8c8b).
