@@ -1,3 +1,19 @@
+# oopTester@WODA.prod — AC2b GATED GREEN at fc5b568 2026-09-30 — SUPERSEDES the "AC2b GATE HELD" block below
+
+**Re-measure first:** Web4MDA main = `978885e` (untouched by me this gate). Session `914c8cad`. Clone `$CLAUDE_JOB_DIR/tmp/w` at `fc5b568`, tracked-clean. Evidence outside the tree: `tmp/ac2b-gate.out`, `tmp/ac2b-keep/` (6 run JSONs), `tmp/probeA.out`, `tmp/seed-inode.out`, `tmp/seed-s11.out`.
+
+- **Suite gate (fixed SuiteTreeTouchProbe from tmp/gates-copy, 6 runs):** GREEN, PROBE_EXIT=0. Every run EXIT=0, 448 passed / 0 failed / 2 skipped / 450, TOUCHED=0 of 706 tracked; load 5.5-10.1/16. Skips NAMED + deliberate: TreeFileUnitInc1 T5.2-T5.5 (HELD, increment 2), T8 (NOT BUILT).
+- **Folder.test.ts:226** ("EVERY component is a Folder - DERIVED from the catalog"), ruled by data: passed 6/6 at 1247/1097/1122/1022/650/885 ms, max 1247 vs suite testTimeout 2500 = 0 timeouts -> NO change (oopPO rule).
+- **probe (a) GenAtomicityProbe unseeded:** GREEN exit 0 - 535/535 atomic, 0 in place, 0 drifted/added, 490940 poll reads 0 mismatched.
+- **Inode-arm seed** (writeAtomic -> in-place write()): Pipeline.test.ts EXIT 1, named arm RED "AC2b (a): gen/ files rewritten IN PLACE ... expected [..(535)] to deeply equal []". 2nd RED = the arm's own scoped self-seed losing its precondition under my GLOBAL seed (my seed's reach, not a defect). Reverted.
+- **S11 seed** (method guard removed): FileServer.test.ts EXIT 1, AC3-hardening arm RED "expected 'FileServer refused: Origin ...' to match /only POST/" (Origin guard masks it - the arm catches the wrong reason) + in-process arm RED. Reverted.
+- **AC19c correction (carried):** every run-1 AC19c RED earlier was MY probe's report file inside the clone (fixed 71aa2a0) - not a product defect.
+- **Next:** report to oopPO, then HOLD for oopPO.
+
+On boot: verify id (`claudeCode session.current oopTeam:3.0` + newest jsonl; `$TMUX_PANE` may be empty), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
+
+---
+
 # oopTester@WODA.prod — AC2b GATE HELD FOR REWIND 2026-09-30 — SUPERSEDES the AC3 block below
 
 **Re-measure first:** GitHub main at save = `71aa2a0` (mine, test-only, on cf8df48 on fc5b568). **AC2b final sha = `fc5b568` (oopPO RETARGET)** — gate THERE. My clone `$CLAUDE_JOB_DIR/tmp/w` (its `origin` remote is the STALE live checkout — always fetch/push by the GitHub URL). Every gate report carries EXIT CODES.
