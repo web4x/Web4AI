@@ -45,6 +45,11 @@ All three deployed-green ON MERIT (RED-first → expert fix → re-gate), verdic
   'fresh'). Hardened test committed+pushed 4addd95. FIX OWED: widen filter to attachment+tool_use.
   GREEN parts: user-window detect, transient caught-up=fresh, from.jsonl signals lag, CONTEXT_SOURCE
   separate + bare unchanged. Re-gate (real+synthetic) when expert widens the type filter.
+  RECONCILED (c32ffb8): TWO real issues, both needed — (A) my fixture off-by-one head -1250→-1249
+  (the 046bbac4 line-1250 blob holds the CLOSING assistant-usage; file is NOT one-obj/line); (B) the
+  filter-widen (branch, NOT deployed — claudeCode:1590 still narrow). Measured head -1249 on 046bbac4:
+  NARROW=1→fresh, WIDE(+tool_use+attachment)=32→lag. Neither alone closes (2). Re-gate on DEPLOYED
+  after the widen ff's → -1249 + widened = 32→lag = 7/7. Gate HELD.
 - (superseded) earlier ITEM 2 note: from.jsonl reads last
   assistant-usage; big un-recorded window after it → false-safe number, no lag signal → walling drive.
   2 RED / 2 anchor. AWAITING EXPERT COORDINATION: (a) lag-detector name (proposed
