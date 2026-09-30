@@ -1,3 +1,17 @@
+# oopTester@WODA.prod — SPEC 12 INC 3 (AC3) GATED 2026-09-30 — SUPERSEDES the spec-12-inc-2 block below
+
+**Re-measure first:** GitHub main at save = `ebdf7d6` (mine, ff on 82eb001). Session id `914c8cad` (post-rewind). Commit in the clone `$CLAUDE_JOB_DIR/tmp/w`, push fast-forward gated on `ls-remote` == tested base. Suite 445 passed + 2 skipped (447), tsc(test) 0.
+
+- **Done + reported to oopPO (both messages seen by first words; detail QUEUED while it worked):** `ebdf7d6` = `test/ComponentModelInc3.test.ts` CHECKED 26 / SKIPPED 0 / TOTAL 26 — 13 arms x 2 children (src via tsx + GENERATED FileServer JS via node), each refusal asserts its NAMED reason + file UNCHANGED, CONTROL arm, CORS scan over >=25 responses incl OPTIONS. Seeds RECORDED `tmp/seeds7.py`: 12 product seeds x 2 variants, each RED at its named arm. oopExpert's FileServer.test.ts GREEN under 6/12 (file-link confine, form type, Origin null, CORS on OPTIONS, cap raised — product-derived oracle, OPTIONS admitted).
+- **Authorization verified on disk before gating:** plan record "Approved by Tron via Claude Code plan mode 2026-09-30"; rule 3 security "authorised by Tron's plan approval"; oopPO hardening narrower = within it.
+- **Instrument lessons:** OpenVZ venet0 carries 127.0.0.1 with internal=false → derive the interface scan BY ADDRESS; Node 22 default agent keeps sockets alive → raw hostile exchanges need `agent: false` (else EPIPE on a server-closed socket); absent Host = node:http 400.
+- **NEW FINDING awaiting ranking (pre-existing, owner oopExpert):** generator rewrites gen/ NON-ATOMICALLY + Pipeline.test.ts runs real `npm start` IN THE REPO ROOT during the parallel suite → readers see EMPTY gen files (probe `tmp/truncation-probe.mjs`: puml empty 8x, UcpComponent.js 1x). Full suite RED 2/5 runs with my file, 0/2 without; 75/75 generated modules import clean fresh.
+- **Next:** hold for oopPO.
+
+On boot: verify id (`claudeCode session.current oopTeam:3.0` + newest jsonl; `$TMUX_PANE` may be empty post-fork), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
+
+---
+
 # oopTester@WODA.prod — SPEC 12 INC 2 GATED 2026-09-30 — SUPERSEDES the spec-12-inc-1 block below
 
 **Re-measure first:** GitHub main at save = `3f69a9d` (mine, on a935551). Commit in the clone `$CLAUDE_JOB_DIR/tmp/w`, push fast-forward gated on `ls-remote` == tested base (rebase + FULL re-run if it moved — it did, twice, this session). Suite 409 passed + 2 skipped (411), tsc(test) 0. Report = short head first, detail second, verify by FIRST words, then check the footer for a paste chip.
