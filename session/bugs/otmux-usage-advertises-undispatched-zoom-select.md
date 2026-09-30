@@ -15,3 +15,6 @@ In OOSH the code IS the documentation: a usage block that lists methods which do
 ## Required
 1. `otmux zoom <target>` actually zooms (flag = 1) and a matching unzoom/toggle exists; a failable test asserts the FLAG, not the exit code.
 2. Every method listed in `otmux` usage dispatches — a test derives the list FROM the usage block and calls each (no hand-kept list).
+
+## ADDENDUM 2026-09-30 (ARON, oosh-po drive): `otmux composer.state <pane>` does NOT dispatch on WODA.prod
+Reported GREEN by oosh-expert (defect #2: empty|ghost|staged via capture-with-escapes), but on this host the call does not dispatch — **reported-green is not deployed-green** (EXISTS ⊂ PROVEN). It is exactly the instrument that would replace the drivers' fragile two-verb composer check (the same check that tonight caught a 2-week-old fork order in a restored composer). Required: prove it dispatches on the deployed `/root/oosh/otmux`, with a failable test that seeds each of empty / ghost / staged.
