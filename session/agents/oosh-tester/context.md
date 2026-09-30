@@ -35,8 +35,8 @@ All three deployed-green ON MERIT (RED-first → expert fix → re-gate), verdic
 - Verdicts: `session/tasks/{T-OTMUX-DEFECT-GATE,T-CONTEXT-OCCUPANCY}.GREEN.md`. Tests on
   test/mcdonges.latest (pushed). At ~60% ctx, runway fine.
 ## PENDING (2 items, 2026-09-30 PO order)
-- **ITEM 1 — re-gate `test.session-id-fresh`:** BLOCKED on the expert's session.id fix ff'ing (HEAD
-  still 001011d). Test stands RED (scenario in place). Re-gate green-on-merit the instant it lands.
+- **ITEM 1 — `test.session-id-fresh`: RE-GATE GREEN-on-merit @4fbb654 → CLOSED.** Planted stale cache
+  (00000000-dead-…) → session.id returned LIVE 30a47516… not the stale (deployed now live-first). 2/2.
 - **ITEM 2 — `test.jsonl-lag` RED DELIVERED** (committed+pushed 7193618): from.jsonl reads last
   assistant-usage; big un-recorded window after it → false-safe number, no lag signal → walling drive.
   2 RED / 2 anchor. AWAITING EXPERT COORDINATION: (a) lag-detector name (proposed
