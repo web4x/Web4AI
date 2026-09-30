@@ -1,3 +1,12 @@
+# oopTester@WODA.prod — spec-12 inc 5a GATED at f16c8c32 (module-load detector): conditions MET, recommend QA-green, 3 disclosed — SUPERSEDES the block below
+
+- Unsanctioned load (layer3/View.ts, OUTSIDE the 73-file closure) inside M1Layout.load -> EXIT=1 via D+G1 'S-a: NO module load ... outside M1Layout.load's sanctioned closure'. Call-site scope load-bearing: sanction made file-only -> arm RED. Guard neutered -> arm RED. Unseeded probe x2 EXIT=0 458/0/2/460; cold npm test EXIT=0 458|2 (460).
+- Disclosed: (a) all 3 committed S-a arm seeds are CLOSURE files (FileServer, NpmPackage = UcpComponents; ClassModel in import closure, measured 15->16) -> no non-closure seed in the arm; add View.ts, relabel seed 1. (b) residual: phase window + query ignored -> cache-busted 2nd instance of a closure file inside the window is sanctioned; fix = query-free URLs only / first load per path. (c) spec says 'component class files', code = component classes + static import closure (73) -> strengthen spec.
+- Lesson: my first in-window seed (FileServer) was IN the closure = false seed label; diagnosed by marker file + detector dump (sanctionedLoads delta) before any claim. Tools: tmp/inc5a-gate.sh, inc5a-r1b/c/d.sh.
+- Reported to oopPO (delivered). HOLD.
+
+---
+
 # oopTester@WODA.prod — AC4b RE-GATE #3 DONE at ce2ebba8 (pins): conditions MET, recommend QA-green — SUPERSEDES the block below
 
 - S0b/S1b/S1c/S2b/S3b/S4b RED via UNDECLARED guard; S5 RED via DRIFTED guard (named in assertion messages). S6 (append + re-pin, same diff) GREEN = declared act (agreed with oopPO; residual = review-dependent, pin hunk low-signal). Unseeded probe x2 EXIT=0 456/0/2/458, cold npm test EXIT=0 456|2 (458).
