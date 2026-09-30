@@ -179,3 +179,11 @@
 - **Re-point, don't delete, a now-vacuous arm**: "no /src/ts/ printed" had been vacuous since C1 (ts is held, never printed); it now asserts no home-language file is printed.
 - **Content-pinned test machinery (TestFolder sha256 pins) must be re-pinned in the same diff as an intentional helper change** — that is the design, not a nuisance.
 - Clean baseline first (an aborted chain gave it to me for free: 471+2 on f310e76); the finish line is "same numbers as baseline", measured on an isolated cold clone.
+
+## 2026-09-30 — spec 12 inc 6 C3+C4 (Web4MDA 8bbf43c)
+- ★ **A replayable edit SCRIPT beats hand edits for a wide change**: every edit asserts its match count, so a reset (`git checkout -- <paths>`) + replay rebuilds the whole change deterministically — it caught an escaped em dash (`—` in a Definition body vs `—` in the held TS) and a file-local class sharing a helper's name (ComponentModelInc3's own `Generated`) that a blind global replace had touched.
+- ★ **Every class edit lands TWICE: the held `src/ts` AND its `model/<Name>Definition.ts` body strings** (the reproduce gate compares them). The placed M1Catalog is the one exception (no Definition).
+- **A retired target inverts its gates, it does not delete them**: "gen/ holds only EAMD.ucp" became "gen/ does NOT exist + each target present at home"; "steps produce >400 files in gen/+home" became "produce NOTHING under gen/ + >400 at home"; a read-trap seed whose target file is gone must PUT its own target first. Never leave a gate asserting on an absent tree (vacuous).
+- **A walk that filters AFTER descending pays for everything it filters**: Source.of() walked the whole component tree per call; ~235 moved files pushed an unrelated test from ~2.3s to 2.9s vs a 2.5s budget. Prune at the DIRECTORY with the same predicate — same result, less work. A timeout that appears only under full load after your change is YOUR regression until measured otherwise.
+- **tsconfig.test.json did not cover the component tests** — the suite's SrcTypecheck gate is the real test typecheck; a clean `tsc -p tsconfig.test.json` proved nothing here.
+- `git status` after a pathspec checkout can list stat-dirty files with no content change — `git diff --stat HEAD` is the content truth.
