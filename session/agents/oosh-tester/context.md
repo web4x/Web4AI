@@ -37,7 +37,12 @@ All three deployed-green ON MERIT (RED-first → expert fix → re-gate), verdic
 ## PENDING (2 items, 2026-09-30 PO order)
 - **ITEM 1 — `test.session-id-fresh`: RE-GATE GREEN-on-merit @4fbb654 → CLOSED.** Planted stale cache
   (00000000-dead-…) → session.id returned LIVE 30a47516… not the stale (deployed now live-first). 2/2.
-- **ITEM 2 — `test.jsonl-lag`: fix 390325e is INCOMPLETE (re-gate RED on the REAL artifact — NOT closed).**
+- **ITEM 2 — `test.jsonl-lag`: DEPLOYED-GREEN 7/7 on merit @a317633 → gap(b) CLOSED.** Widened filter
+  (user|attachment|tool_result|tool_use) + my -1249 fixture: (1c) attachment/tool_use→lag + (2) real
+  046bbac4 head-1249 (32 content)→lag (both RED on narrow = differential merit); caught-up→fresh (no
+  over-trigger); bare unchanged + CONTEXT_SOURCE separate. Committed 8b3dbe9. ENTIRE claudeCode
+  rewind-safety cluster CLOSED: session.id(a/fork) + context.check false-LOW + JSONL-lag(b).
+  (history below — fix 390325e was INCOMPLETE, real-artifact gate caught it:)
   Deployed `jsonl.lag` counts only user/tool_result/tool; the REAL reboot injection (046bbac4) is
   ATTACHMENT+TOOL_USE dominated → max user/tool window=4 (never>8) so it NEVER fires; content-inclusive
   window=32 (matches the '15-52' calibration). calibration(content) != impl(user/tool); also `"tool"`
