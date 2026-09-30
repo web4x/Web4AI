@@ -1,4 +1,12 @@
-# oopTester@WODA.prod — inc 6 HONESTY chunk (d1f27af) GATED 2026-09-30: F1 GREEN, F2 RED (18 lines remain) — reported to oopPO — SUPERSEDES below
+# oopTester@WODA.prod — inc 6 FINAL (f86341f) GATED 2026-09-30: QA-GREEN, reported to oopPO — SUPERSEDES below
+
+- Clone @f86341f (on origin/main). COLD EXIT=0 60 files 473/2/475, writes 0, dirty 0.
+- (1) F2 recount, independent broad case-insensitive grep (ts/md/json/mjs/js, excl spec/) = 31 lines vs 30 allowance -> the 1 extra is GenClaims' own "regen/" negative control (not the gate token) -> claims outside the allowance = 0.
+- (2) GenClaims.test: control 2/2; my seeds RED 1f/2 each: claim comment in M1GraphDefinition.ts, claim line in README.md, allowance line (UcpComponent smuggled) removed. Weakest literal: scan is ts/md/json/mjs/js only -> a claim in a .sh file stayed GREEN (S4); today 0 tracked unscanned-ext files carry the token (unscanned = 79 svg, 79 puml, 74 mmd + 3 dotfiles). Token requires the slash.
+- (3) npm start EXIT=0, drift 0, gen/ absent; thinglish.ts copy of M2OoshClass regenerated identical; held src/ts copy is not regenerated but IS reproduce-gated to its Definition: seeded drift (SKIPPED msg, ts:318) -> 4f across M1Catalog/M2TypescriptClass/M3Class RED. Those gates are modulo comments -> checked the fixed stableUuid comment: identical in ts, thinglish.ts and Definition.
+- Next: HOLD; oopPO reports inc 6 up to Tron.
+
+# oopTester@WODA.prod — inc 6 HONESTY chunk (d1f27af) GATED 2026-09-30: F1 GREEN, F2 RED (18 lines remain) — reported to oopPO — SUPERSEDED above
 
 - Clone moved to d1f27af (on origin/main). COLD EXIT=0 471/2/473, 59 files, writes clone 0 / shared 0.
 - F1 FIXED+proven: own unknown-named seed MOF/M1/M1Qwerty/latest/src -> MofLayoutAC5 1 failed/12 via "C: extra MOF/M1/M1Qwerty"; real tree green; revert clean.
