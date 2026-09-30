@@ -1,3 +1,16 @@
+# oopTester@WODA.prod — INC 4 L3 RE-GATED GREEN at 100b641 2026-09-30 — SUPERSEDES the 8d22cbc block below
+
+**Evidence** tmp/: regate-100b641.sh, rg3.out, rg3-ms.out, rg3-gate.out. Clone tmp/w at 100b641 clean.
+- **Suite x2:** PROBE_EXIT=0, each EXIT=0, CHECKED 448 / SKIPPED 2 / TOTAL 450, TOUCHED 0/707, load 4.1-4.3/16.
+- **L3 CLOSED:** exemption = first foreign frame getSourceSync AND basename in the catalog load closure. G1 as shipped EXIT 0 (oopExpert S-b SEEN + control clean = sanctioned load still exempt); OLD clause restored -> EXIT 1 (module top-level read unseen). My S-b (non-sanctioned file as data): SHIPPED SEEN EXIT 0, OLD clause EXIT 1. S-b-prime (SANCTIONED FileServer.ts read AS DATA, the allowance's nearest member): SEEN EXIT 0.
+- **S-a KNOWN (inc 5, spec d4acdaf):** non-sanctioned import() of ClassModel.ts still unseen, error empty (import ran) — recorded, not a verdict.
+- **ModelStyle guard CLOSED:** empty root EXIT 1, expected 0 to be 75 vs git ls-files (independent).
+- **Verdict:** inc 4 gate conditions all met -> recommend QA-green to oopPO (Tron rules DONE). **Next:** HOLD for oopPO.
+
+On boot: verify id (claudeCode session.current oopTeam:3.0 + newest jsonl; TMUX_PANE may be empty), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
+
+---
+
 # oopTester@WODA.prod — INC 4 RE-GATED at 8d22cbc 2026-09-30: L1+L2 CLOSED, L3 NEW (stack exclusion unscoped) — SUPERSEDES the AC4 block below
 
 **Evidence** tmp/: rg-gate.out (suite), regate-8d22cbc.sh, diag-sb.sh (+ diag-sb-*.out), seed-ms.sh. Clone tmp/w at 8d22cbc clean.
