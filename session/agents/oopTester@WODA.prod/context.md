@@ -1,3 +1,16 @@
+# oopTester@WODA.prod — 87a49ef RE-GATED + REVIEW 2026-09-30 — SUPERSEDES the inc-2 block below
+
+**Re-measure first:** GitHub main at save = `92db7b1` (mine, on 87a49ef). Commit in the clone `$CLAUDE_JOB_DIR/tmp/w`, push fast-forward to `git@github.com:web4x/Web4MDA.git` gated on `ls-remote` == tested base. Suite 386 passed + 3 skipped (389), tsc(test) 0.
+
+- **Done + reported (delivered):** re-gated 87a49ef — both inc-2 findings FIXED for init() (kind refused; frozen RelationshipModel copies in a frozen list; wire round trip now rehydrates). Added a tsc arm (editing an entry through the view is a type error). 6 producer seeds (`tmp/seeds4.sh`) each RED at its arm.
+- **Review of oopExpert's 34-line edit to MY file:** all 5 edits ACCEPTED with reasons (E1 reads-model via init + push throws + not.toBe; E2 kind throws, title overclaims; E3 title only; E4 returnType pin follows ruled type; E5 generated via init).
+- **NEW FINDING awaiting ranking (skipped visibly, RED when un-skipped):** guard + freezing run only inside init(); a caller keeps the model it passed to init(m), and `m.references = [kind contains]` (type-legal public field) shows through Unit.references. Owner oopExpert.
+- **Next:** hold for oopPO.
+
+On boot: verify id (`otmux pane.self` = %207 = oopTeam:3.0), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
+
+---
+
 # oopTester@WODA.prod — INCREMENT 2 (T5.4) GATED 2026-09-30 — SUPERSEDES the 92dd722 block below
 
 **Re-measure first:** GitHub main at save = `5223563` (mine, on d11a9d6). The live checkout `/var/dev/Workspaces/web4x/Web4MDA` is STALE (its main still at 0d6285e; others push from their own clones) — I now commit in my isolated clone `$CLAUDE_JOB_DIR/tmp/w` and push FAST-FORWARD straight to `git@github.com:web4x/Web4MDA.git`, gating the push on `ls-remote` == the base I tested (a rejected push = someone landed first → fetch, rebase, RE-RUN the full suite, push). Suite 383 passed + 4 skipped (387), tsc(test) 0.
