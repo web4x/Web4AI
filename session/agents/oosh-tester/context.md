@@ -39,8 +39,11 @@ All three deployed-green ON MERIT (RED-first → expert fix → re-gate), verdic
   `ctx_from_jsonl` (scrumMaster:648) shares the same token-math, no content-lag guard → false-LOW
   (400000,40,1000) SIGNALS_LAG=False on a >8 attachment/tool_use reboot window (monitoring misleads
   walling). Gates the REAL extracted python; 2 PASS/1 RED; same differential as test.jsonl-lag.
-  AWAITING EXPERT: python return-shape for the lag signal (proposed: 4th lag flag or pct='lag') +
-  implements the >8 content-window guard. Lower urgency. Re-gate when it lands.
+  + (4) WALLING-SAFETY (oopPO flag, 6352d5a): a LAG agent WITH a wall-banner must NOT be downgraded to
+  IDLE — RED: pulse ON-WALL double-gate (ctx[1]<98) HIDES a real ~67%-used rebooting wall via the
+  false-LOW. Now 2 PASS/2 RED. Fix = (2) ctx_from_jsonl signals LAG + (4) gate must not downgrade on
+  lag. AWAITING EXPERT: exact 3-state sentinel (numeric|LAG|None, lag≠None) → I pin SIGNALS_LAG + the
+  (4) condition to it. Lower urgency. Re-gate on deployed-green when it lands.
 
 ## DONE (2026-09-30 PO order)
 - **ITEM 1 — `test.session-id-fresh`: RE-GATE GREEN-on-merit @4fbb654 → CLOSED.** Planted stale cache
