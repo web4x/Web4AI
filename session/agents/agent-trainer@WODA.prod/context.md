@@ -2,6 +2,8 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ CYCLE-36c (2026-09-30 ~16:00) — DROVE oopExpert 78.9→49 (SM order, before inc 3), ONE pass at ARON's prior marker; landing-map predicted 48.2, restored panel 487.6k exact. Option-1 lied (+21/−659/13 files). Delta-proof NON-INVASIVE via landing-map final ctx 504.6k; oopPO's peer panel (~510.6k incl render) CONFIRMED by a 2nd method → the jsonl read is a valid substitute for a peer /context render (no keys to the target). oopPO ff'd live tree to 57927eb, dispatched inc 3. Resting ~50.
+
 ### ✅ CYCLE-36b (2026-09-30 ~15:20) — DROVE oopPO 79.6→46 (SM order), ONE pass, by LANDING-MAP (`session/agents/agent-trainer/tools/landing-map.py <uuid>`: live jsonl parentUuid chain → exact landing % per prompt; validated final ctx 793,251 = panel 793.3k; predicted 45.9). Layout-B opt-1 'code unchanged'; trees clean; C-u cleared the multi-line draft. Awaiting oopPO's reread-by-content + own fresh panel (SM verifies). TO WEAVE with ARON: landing-map + child-process phase-1 step + agent-side STOP/HOLD/REREAD guard. GAP→claudeCode expert: make landing-map a `claudeCode` method (radical-OOP). Use `otmux composer.state` for ghost/staged, not raw `capture-pane -e` (Tron: -e flag = OOP violation).
 
 ### ⏳ CYCLE-36 (2026-09-30 ~12:10) — ARON marker-rewound me 73→46 (delta-proven). Phase-2 reread-confirmed BY CONTENT to oopPO. RESTING.
