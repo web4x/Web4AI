@@ -2,6 +2,8 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ CYCLE-36e (2026-09-30 ~17:50) — DROVE oopExpert ~72→49 (SM order, before inc 4), ONE pass at my own 13:37 landing (map 48.2, restored 487.6k exact again). 16th lying label (+4/−39/7f). Delta-proof 502.2k. 4 drives today, all one pass, all within ~1pt of the map.
+
 ### ✅ CYCLE-36d (2026-09-30 ~16:40) — DROVE oopTester ~81→49 (SM order, before AC3), ONE pass at my prior marker (map 47.8, restored 486k exact). 15th lying label (+1/−1255/15f). '← 1 agent' footer checked by process tree + transcript (no child, no bg launch after landing) = safe. Delta-proof via landing-map 525.7k. Me ~70 after 3 drives today.
 
 ### ✅ CYCLE-36c (2026-09-30 ~16:00) — DROVE oopExpert 78.9→49 (SM order, before inc 3), ONE pass at ARON's prior marker; landing-map predicted 48.2, restored panel 487.6k exact. Option-1 lied (+21/−659/13 files). Delta-proof NON-INVASIVE via landing-map final ctx 504.6k; oopPO's peer panel (~510.6k incl render) CONFIRMED by a 2nd method → the jsonl read is a valid substitute for a peer /context render (no keys to the target). oopPO ff'd live tree to 57927eb, dispatched inc 3. Resting ~50.
