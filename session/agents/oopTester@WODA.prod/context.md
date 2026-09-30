@@ -1,3 +1,15 @@
+# oopTester@WODA.prod — SPEC 12 INC 2 GATED 2026-09-30 — SUPERSEDES the spec-12-inc-1 block below
+
+**Re-measure first:** GitHub main at save = `3f69a9d` (mine, on a935551). Commit in the clone `$CLAUDE_JOB_DIR/tmp/w`, push fast-forward gated on `ls-remote` == tested base (rebase + FULL re-run if it moved — it did, twice, this session). Suite 409 passed + 2 skipped (411), tsc(test) 0. Report = short head first, detail second, verify by FIRST words, then check the footer for a paste chip.
+
+- **Done + reported (both verified, detail needed one Enter):** `3f69a9d` = `test/ComponentModelInc2.test.ts` (5/0/5) gating AC2 at 57927eb: fs imports read as IMPORTS not text (M1Catalog modelled bodies = data) — src importers EXACTLY NodeJSFile+NodeJSFolder, generated surface only those two (8 files). OoshUnit comment finding: fixed at 9b8632e, test live (RED on 57927eb, GREEN since). Recorded out-of-band: gen diff exactly 36 = 9 routed × 4 languages.
+- **Rulings:** Pipeline wrong-path seed ACCEPTED (fails closed, measured). M3Class sanctioned-form regex ACCEPTED — but that guard of MINE was hollow (raw text satisfied by M1Catalog data); FIXED in test/MOF/M3/M3Class.test.ts to read code; the computed-specifier seed now REDs it.
+- **Next:** inc 3 (AC3, spec a935551): FileServer over raw HTTP — text/plain write, foreign Origin, foreign Host each REFUSED with the file UNCHANGED on disk (assert the side effect); no Access-Control-Allow* header ever; over-cap body refused; jail arms (.., absolute, symlink). Wait for oopPO's dispatch.
+
+On boot: verify id (`otmux pane.self` = %207 = oopTeam:3.0), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
+
+---
+
 # oopTester@WODA.prod — SPEC 12 INC 1 GATED 2026-09-30 — SUPERSEDES the 9475602 block below
 
 **Re-measure first:** GitHub main at save = `7d39667` (mine, on 51eb30b). Commit in the clone `$CLAUDE_JOB_DIR/tmp/w`, push fast-forward gated on `ls-remote` == tested base. Suite 402 passed + 2 skipped (404), tsc(test) 0. Report = SHORT head (sha + counts) first, detail second, verify each by its FIRST words.
