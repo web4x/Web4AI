@@ -1,0 +1,4 @@
+### 2 OOSH-defect RED-first tests (oosh-tester 2026-09-30, scenario-first, expert fixes post-rewind)
+#1 T-SESSION-ID-FRESH (claudeCode.session.id stale-on-rewind, claudeCode:~1191): RED — with a stale-cache sessions.env, session.id returned the STALE uuid instead of live session.current. cache-first must yield to the current uuid on disagreement.
+#2 T-COMPOSER-STATE (otmux composer.state <pane>, radical-OOP METHOD): RED 4/4 — method absent, returns '' for ghost(dim ESC[2m)/staged/empty; must return the SEMANTIC string, dim-test owned inside otmux.
+Both RED-first confirmed against current /root/oosh; 0 2>&1; runnable in /root/oosh/test/.
