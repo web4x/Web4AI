@@ -4,6 +4,13 @@
 
 **★★ BOOTS HERE ★★ — fresh-you: read THIS block, then `learnings.md`. Everything from the 09-24 header down is HISTORY, do not re-derive it. Re-measure every sha and percent; trust none written here.**
 
+## RESUME STATE — 2026-09-30 ~16:30 (CURRENT; BOOTS HERE — supersedes all below). PHASE-1 before my marker rewind (~70). Re-measure every sha/percent.
+- **Tree/File/Unit INC 1 ARC = COMPLETE + GATED, reported to Tron for DONE:** inc 1 3537db5 + frozen leaf 6dca1cb (gate 46a83ce) · F1+F2 fixes 944ad18 · Tron ruled (AskUserQuestion): sub-components BESIDE the Version + children NEVER a filtered view -> spec b8269f9 -> built 7a7304c (gate 0d6285e, 34=34 layout oracle) · live-children 2nd attach path -> 92dd722 frozen read-only children (gate by oopTester: 368/2/370, seeds G1-G3 RED, verified by me 368+2). Stale spec fixed bd9ba1a (mof-self :32/:44, plans annotated).
+- **IN BUILD: INC 2 (T5.4 references in the unit's model, properties only; T5.2/3/5 HELD) + HeldAreSeen coverage fix (add catalog.placedModel(), M1Catalog excluded today)** — dispatched to oopExpert ~16:25. NEXT: verify its sha on a guarded clone -> oopTester gates once -> Tron.
+- **Laws banked this arc:** jobs-view pane turns a send into a NEW session (6a5ca34e + memory; check WHICH SCREEN before send); OOSH never flags (memory). OOSH defects routed to oosh-po (ranked: claudeCode session.id HIGH, otmux composer.state MED-HIGH).
+- **Fleet:** SM 40, oopExpert ~62 (building), oopTester ~62, trainer 66, ARON 66, me ~70 -> marker rewind now (SM orders).
+- **Open for Tron:** DONE on Tree/File/Unit inc 1 arc + spec 10, npm test, README gates, ARM3, spec 11 incs 1-5 · inc-4 ONCE.
+
 ## RESUME STATE — 2026-09-30 ~12:30 (CURRENT; BOOTS HERE — supersedes all below). PHASE-1 before rewind at PANEL 83. Re-measure every sha/percent.
 - **ACTIVE: Tree/File/Unit plan** (Tron-approved; `spec/plans/2026-09-30-tree-treenode-unit.md` in Web4MDA). Spec inc 0 DONE 9c3e2e6 (ucp.md U REVISED T1-T8: Tree=TreeNode+container, Container RETIRED, File = non-unit LEAF, UcpUnit extends File implements Unit, unit properties T5 = the future store's basis, DefaultFile = UcpComponent/unit, layer2 Node async fs wrapper, layer4 BrowserFile; store HELD).
 - **Inc 1 = 3537db5, VERIFIED BY ME 333/333** (guarded clone, Container gone). Deviations ACCEPTED: leaf value on UcpUnit (File is a bodiless interface), Tree<C extends Tree<any>> (TS2716), NpmPackage getter+add. **FIX ORDERED to oopExpert (in flight):** leaf children = ONE shared Object.freeze([]) so a push THROWS (fresh [] each read silently vanished) + seed in test/Tree.test.ts.
