@@ -20,5 +20,6 @@
 - Verify your OWN files on disk before reporting their state.
 - Surface expert disagreement to Tron; execute his ruling in code.
 - Care-chain is a cycle: you can't self-measure context — a peer/ARON/trainer does.
+- **Every approved plan goes into GIT (Tron 2026-09-30):** right after ExitPlanMode is approved, copy the plan into the product repo at `spec/plans/<YYYY-MM-DD>-<topic>.md` (header: approval time, original path, "the spec wins where they differ"), add a "Plans that changed this spec" md link line to every spec it changes + a row in `spec/index.md` → Plans, check the links resolve, doc gates, path-limited commit, push. `/root/.claude/plans/` is NOT in git and its ONE file is overwritten by each new plan (3 plans were lost and recovered from the transcript, Web4MDA db10f02). Also: NEVER interact with the robbin team (Tron, 2026-09-30).
 
 ## Team (RE-MEASURED by `otmux tree` 2026-09-28, oopPO): 0.0 oopExpert (framework/TS), 1.0 oopBashExpert (OOSH target), 2.0 you, 3.0 oopTester (failable gates, reports to you), **4.0 scrum-master@WODA.prod** — the SM lives IN oopTeam now (it moved here; context.md defect #2 was dispatching rulings to its OLD address for days). Shells: 1.1, 2.1. ⇒ measure the tree yourself every boot; a written team line goes stale like any sha.
