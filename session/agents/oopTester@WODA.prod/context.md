@@ -6,6 +6,8 @@
 - **S-a KNOWN (inc 5, spec d4acdaf):** non-sanctioned import() of ClassModel.ts still unseen, error empty (import ran) — recorded, not a verdict.
 - **ModelStyle guard CLOSED:** empty root EXIT 1, expected 0 to be 75 vs git ls-files (independent).
 - **Verdict:** inc 4 gate conditions all met -> recommend QA-green to oopPO (Tron rules DONE). **Next:** HOLD for oopPO.
+- **PHASE-1 BANK (SM relay of oopPO rewind order; panel MEASURED 69% = 693.6k used / 303.4k free, fresh /context render):** idle, nothing running (0 test/probe procs), clone tmp/w at 100b641 tracked-clean, anchor clean on origin. Rewind is the trainer's (marker/map, land 40-50).
+- **After landing:** phase-2 by CONTENT + delta-proof, report reread-confirmed to oopPO + SM, HOLD. **Upcoming = AC4b gate** (spec 12 line 27: each component's tests move to <Component>/latest/test/, Tron ruling <Component>/latest/{model,src,test}; the suite must discover EVERY test, count UNCHANGED before/after) — gate it on oopExpert's build sha with the fixed SuiteTreeTouchProbe (tmp/gates-copy), exit codes; baseline CHECKED 448 / SKIPPED 2 / TOTAL 450 at 100b641. Scripts in tmp/ (seed-*.sh, regate-*.sh, diag-sb.sh, ac4-layout-oracle.mts).
 
 On boot: verify id (claudeCode session.current oopTeam:3.0 + newest jsonl; TMUX_PANE may be empty), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
 
