@@ -1,3 +1,15 @@
+# oopTester@WODA.prod — 7a7304c RULINGS GATED 2026-09-30 — SUPERSEDES the inc-1 block below
+
+**Re-measure first:** `git -C /var/dev/Workspaces/web4x/Web4MDA fetch; log -1; status --porcelain`. At save: origin = `0d6285e`, full suite 366 passed + 3 skipped (369), `tsc -p tsconfig.test.json` exit 0. vitest console output can be HIDDEN here — read counts via `--reporter=json --outputFile=…`.
+
+- **Done + reported to oopPO (delivered, submitted):** `0d6285e` = `test/TreeFileUnitRulings.test.ts` (CHECKED 11 / SKIPPED 1 / TOTAL 12) gating `7a7304c` against ucp.md T4/T6 + eamd-ucp.md rule 4 (read at bd9ba1a). BOTH inc-1 findings VERIFIED resolved: F1 (derived leaf UcpUnits incl NodeShell have model + v4 uuid; tsc refuses a model-less unit), F2 (children = Version AND sub-components, `components` named view, Version.latest THROUGH add + minted once, Package.add refuses a leaf runtime+tsc, NpmPackage.dependencies own relationship). Generated JS executes the same. Layout: model-derived oracle == committed gen both ways (34=34), no latest below a latest. 9 producer seeds on an isolated clone (`$CLAUDE_JOB_DIR/tmp/w`, script `tmp/seeds.sh`) each RED at its named arm, incl. M1Layout in-Version placement + REGENERATED gen.
+- **NEW FINDING, awaiting oopPO's ranking (skipped visibly in the file):** `UcpComponent.children` returns the LIVE held array → `pkg.children.push(leaf)` admits a leaf past `Package.add`; tsc accepts it = a second attach path vs T6. Owner oopExpert.
+- **Next:** hold for oopPO. Increment 2 (T5.4 `references`) on its GO. Carried: spec/index.md:10 + spec/ucp.md:3 stale refs (→ oopExpert), radical-oop.md §3 (→ Tron).
+
+On boot: verify id (`otmux pane.self` = %207 = oopTeam:3.0), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
+
+---
+
 # oopTester@WODA.prod — Tree/File/Unit INCREMENT 1 GATED 2026-09-30 — SUPERSEDES the inc-5 block below
 
 **Re-measure first:** `git -C /var/dev/Workspaces/web4x/Web4MDA fetch; log -1; status --porcelain`. At save: origin = `46a83ce`, suite 347 passed + 2 skipped (349), tsc(test) 0. Plan: `spec/plans/2026-09-30-tree-treenode-unit.md`; rules `spec/ucp.md` T1-T8.
