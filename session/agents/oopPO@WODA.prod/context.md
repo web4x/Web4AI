@@ -4,6 +4,15 @@
 
 **★★ BOOTS HERE ★★ — fresh-you: read THIS block, then `learnings.md`. Everything from the 09-24 header down is HISTORY, do not re-derive it. Re-measure every sha and percent; trust none written here.**
 
+## RESUME STATE — 2026-09-30 ~12:30 (CURRENT; BOOTS HERE — supersedes all below). PHASE-1 before rewind at PANEL 83. Re-measure every sha/percent.
+- **ACTIVE: Tree/File/Unit plan** (Tron-approved; `spec/plans/2026-09-30-tree-treenode-unit.md` in Web4MDA). Spec inc 0 DONE 9c3e2e6 (ucp.md U REVISED T1-T8: Tree=TreeNode+container, Container RETIRED, File = non-unit LEAF, UcpUnit extends File implements Unit, unit properties T5 = the future store's basis, DefaultFile = UcpComponent/unit, layer2 Node async fs wrapper, layer4 BrowserFile; store HELD).
+- **Inc 1 = 3537db5, VERIFIED BY ME 333/333** (guarded clone, Container gone). Deviations ACCEPTED: leaf value on UcpUnit (File is a bodiless interface), Tree<C extends Tree<any>> (TS2716), NpmPackage getter+add. **FIX ORDERED to oopExpert (in flight):** leaf children = ONE shared Object.freeze([]) so a push THROWS (fresh [] each read silently vanished) + seed in test/Tree.test.ts.
+- **NEXT on oopExpert's fix sha:** verify (guarded isolated clone) -> GO oopTester gate inc 1 ONCE -> fold the 3 accepted deviations + frozen leaf into spec ucp.md T2/T1 -> inc 2 (references in the unit's model, RelationshipModel kind references; properties only). Open: D2 name DefaultFile vs NodeJSFile; BrowserFile + async fs wrapper later.
+- **Plans rule (Tron):** every approved plan -> spec/plans/<date>-<topic>.md + linked from its specs + index Plans table (db10f02; boot+SKILL 550237ad).
+- **NEVER interact with robbinTeam2 (Tron, verbatim 2026-09-30).** Ranking-file robbin authority STRUCK 9b44097e.
+- Spec 11 COMPLETE a6db47c (324). Open for Tron: DONE on spec 10, npm test, README gates, ARM3, spec 11 incs 1-5; overrulable: instanceOf mapping, abstract=Package unit; language.create; inc-4 ONCE.
+- **Fleet ~12:30:** oopExpert 67 (fix), oopTester 61 (gates next), SM ~60, drivers ARON 63 / trainer 60 (marker drive ~2 pts). Ghost detector: `tmux capture-pane -e -p -t PANE | grep ❯ | cat -v` -> ESC[2m = grey suggestion, typing replaces it, never submits.
+
 ## RESUME STATE — 2026-09-29 ~23:00 (CURRENT; BOOTS HERE — supersedes the 21:30 block below). Re-measure every sha/percent.
 - **SPEC 11 (self-describing MOF) COMPLETE + QA-GREEN, awaiting TRON's DONE.** Web4MDA origin **a6db47c**, 324/324 on MY guarded isolated clone. inc 5 MOF/Mx layout e5b8c8b (placement already model-derived since inc 3; AC5 gate added) + oopTester's AC5 oracle a6db47c (9/0/9: model-derived expected set, both-ways, runtime-lineage Mx authority, behavioural G1 fs-trap + G2 model-varies invariance; H count not added, disclosed).
 - Pre-inc-5 rewinds in band, one pass each: oopExpert 66->49 (ARON), oopTester 75->48 (trainer). ARON's rule amendment AUTHORIZED: re-drive on freed<20 ONLY if still above the band.
