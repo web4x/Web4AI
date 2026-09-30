@@ -1,3 +1,18 @@
+# oopTester@WODA.prod — AC4 GATED at 0530855 2026-09-30: criterion GREEN, 2 GATE LOOSENINGS PROVEN (R1) — SUPERSEDES the AC2b block below
+
+**Re-measure first:** Web4MDA main at gate = 0530855. Clone tmp/w reset to 0530855 tracked-clean. Evidence: tmp/ac4-gate.out, tmp/ac4-keep/, tmp/ac4-renames.txt, tmp/ac4-oracle*.out, tmp/seed-m3.out, tmp/seed-dotrel.out; scripts tmp/{seed-m3,seed-dotrel,ac4-renames,ac4-oracle-seed}.sh + tmp/ac4-layout-oracle.mts.
+
+- **Suite x3 (fixed SuiteTreeTouchProbe):** GREEN PROBE_EXIT=0; each EXIT=0, 448/0/2 of 450, TOUCHED 0 of 707; load 4.0-4.9/16 (lighter than AC2b).
+- **AC4 criterion MET:** git renames 978885e..0530855: 75 src ts -> 0 src -> 75 Components ts, 75 R (same basename), 0 A/D; test/ at root (67). Layout ORACLE (mine, independent of test/Source.ts: layout-derived path vs git ls-tree HEAD, placed M1Catalog included) 75/75 EXIT 0; proven FAILABLE both ways (ghost extra -> EXIT 1, dropped DefaultFile -> EXIT 1).
+- **L1 PROVEN (false GREEN):** M3->M2 import-direction gate (M3Class.test ~120) now scans Source.namesIn(MOF/M3) = 4 files; M3Element moved to Web4MDA/latest/src/ts/EAM/layer2/ -> DROPPED (was 5 incl. M3Element in src/MOF/M3). Seed type-import M3->M2: control M3Class EXIT 1 RED; probe M3Element EXIT 0 GREEN. Same namesIn narrowing drops M3Element from the per-level reproduce list (~224) — coverage elsewhere NOT measured.
+- **L2 PROVEN (false GREEN):** AC5 isSource (MofLayoutAC5 ~256) renamed src->Components in 3 of 4 clauses, kept dead ./src, no ./Components: seed fs.readFileSync(./Components/...M1Layout.ts) in G1 -> EXIT 1, sourceReads 0 (NOT SEEN). Pre-move ./src was seen.
+- **Sound (owner review):** placed M1Catalog now BYTE-IDENTICAL (tighter); Source.of exactly-one (stricter); fileOf whole-tree exactly-one; exemption = exact relative path (no basename leak); AC6/Type/Boilerplate/Spec ARM4 1:1 re-rooted, strength kept; my M1GraphNoSourceRead path-agnostic (unaffected). Pre-existing (not regression): ModelStyle Components scan has no non-empty guard.
+- **Next:** report to oopPO; owner of L1/L2 fixes = oopExpert; re-gate on the fix sha.
+
+On boot: verify id (claudeCode session.current oopTeam:3.0 + newest jsonl; TMUX_PANE may be empty), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
+
+---
+
 # oopTester@WODA.prod — AC2b GATED GREEN at fc5b568 2026-09-30 — SUPERSEDES the "AC2b GATE HELD" block below
 
 **Re-measure first:** Web4MDA main = `978885e` (untouched by me this gate). Session `914c8cad`. Clone `$CLAUDE_JOB_DIR/tmp/w` at `fc5b568`, tracked-clean. Evidence outside the tree: `tmp/ac2b-gate.out`, `tmp/ac2b-keep/` (6 run JSONs), `tmp/probeA.out`, `tmp/seed-inode.out`, `tmp/seed-s11.out`.
