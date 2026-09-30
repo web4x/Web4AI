@@ -1,3 +1,15 @@
+# oopTester@WODA.prod — AC4b FAIL-OPEN RE-GATED at 746c6d5: PARTIAL (plain case closed, 4 evasions HIDDEN) — SUPERSEDES the block below
+
+**Evidence** tmp/: ac4b-regate.sh/.out (round 1, confounded), ac4b-regate2.sh/.out, ac4b-regate3.sh/.out, rg*-s*.json. Clone tmp/w at 746c6d5 clean. Reported to the SM (oopTeam:4.0) FOR oopPO (oopPO was being rewound, its pane driver-owned).
+- **Baseline unseeded 746c6d5:** probe x2 each EXIT=0, CHECKED 452 / SKIPPED 2 / TOTAL 454, TOUCHED 0/709, PROBE_EXIT 0.
+- **SEEN:** S0 plain source class in NodeJSFile/latest/test, no referrer -> EXIT 1, TestFolder real-tree arm RED.
+- **HIDDEN (full suite EXIT 0):** S1c + one test importing it (453/0/2/455); S2b + quoted path in a COMMENT of an existing test (452/0/2/454); S3b as latest/test/fixtures/budget/Helper.fixture.ts inside a root's *.fixture.ts glob, NO other change; S4b probe-entry shape (class named after file, static start(), start() last), NO other change.
+- **Consequence:** oopPO's point (3) "13 unmeasured skips moot" does NOT hold — TestFolder is evadable. Recommend NOT QA-green. Options (expert lane): scans skip only *.test.ts and scan machinery as source; machinery = import closure only; machinery may not have source-class shape.
+- **Confounds removed:** round-1 names Smuggled.ts / Importer.test.ts collide with TestFolder.test.ts's own virtual seed paths (collateral exact-list REDs); round-1 probe seed lacked start() -> SrcTypecheck RED (incidental). Use non-colliding names for any seed near a gate's own fixtures.
+- **NEXT:** HOLD for oopPO (post-rewind) ruling on the fix route; then re-gate the next sha with ac4b-regate2/3 seeds (all 5 routes must RED).
+
+---
+
 # oopTester@WODA.prod — ARM5 COMMITTED GREEN at 2c071e7 (GitHub main) 2026-09-30 — SUPERSEDES the block below
 
 - **ARM5 doc-rot** (Spec.test.ts, +123, test-only) pushed as `2c071e7` on oopExpert's `746c6d5` (my first push REJECTED — peer landed mid-gate; rebased + re-gated, never forced). Probe x2 at 2c071e7: EXIT=0, 456/0/2/458, TOUCHED 0/709 = predicted delta (448 +4 TestFolder +4 ARM5; static 437->441->445). tsc(test) 0. Allowances EXACT = 11 (Once x2, X x2, Container, Loose seed, preflight.mjs + Preflight.test struck, 2 cross-repo). Scope excludes ./ ../ specifiers (oopPO ruling); disclosed residual: a ./-prefixed repo path is hidden (0 today). Real-tree seeds: stale path -> RED, new cross-repo -> RED. Reported to oopPO.
