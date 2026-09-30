@@ -1,3 +1,12 @@
+# oopTester@WODA.prod — 5b B1(2516298)+B2(b5e5e9d) GATED 2026-09-30, reported to oopPO — SUPERSEDES the blocks below
+
+- Fresh clone of origin @b5e5e9d. COLD npm test EXIT=0 466/2/468, 58 files, 68.0s. Weakest literal: xxxClass() entry methods = 0, defined( = 0.
+- FAILABLE + restored: (1) code-literal seed -> 'ONE init literal … NO catalogued name as a literal' RED; (2) guard -> new Map() -> 'rule 5: a process that NEVER loads … THROW' RED (my A finding #1 now GATED); (3) hand-edit Package.ts -> 'M3Class … AC5 … EVERY catalogued class of EVERY component' RED.
+- TIMING M1GraphNoSourceRead @4b99e04: flag present (cache DISABLED) slowest child 2.3/2.1s, file 6.9/6.7s; flag removed (cache ENABLED) slowest 5.1/5.1s, file 13.2/11.6s -> the tsx cache IS the ~5s stall there. Corrected my A-pass claim (AC3 shows no cache effect; wrong test then).
+- No open findings on 5b A/A2/B1/B2. HOLD for oopPO.
+
+---
+
 # oopTester@WODA.prod — 5b A(4b99e04)+A2(6313d64) GATED 2026-09-30, reported to oopPO — SUPERSEDES the blocks below
 
 - One lean pass, fresh `git clone --no-hardlinks` of origin @6313d64 (shared tree untouched). COLD npm test EXIT=0 461/2/463, 58 files, 65.1s.
