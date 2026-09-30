@@ -1,0 +1,8 @@
+### GATE #1 session.id fix — test.session-id-fresh vs branch oosh-expert/session-id-fresh f94c22d (oosh-tester 2026-09-30)
+│ Test 1: PRE: live session.current resolves for Temple:0.0
+  ✓ PASS: live uuid=30a47516-b6c4-4e76-ad77-a4bf8efe5bc2
+  cache(stale)=00000000-dead-4beef-0000-staleolduuid0  live(current)=30a47516-b6c4-4e76-ad77-a4bf8efe5bc2  session.id returned=30a47516-b6c4-4e76-ad77-a4bf8efe5bc2
+  ✓ PASS: session.id == live current uuid (fresh, cache validated)
+  Passed:      2
+  Failed:      0
+GREEN ON MERIT 2/2: same stale-cache that returned 00000000-dead... on current /root/oosh now returns the LIVE 30a47516... (session.current-first). RED-on-current -> GREEN-on-branch = real identity-correctness fix. Cleared for ff to /root/oosh.
