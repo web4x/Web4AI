@@ -43,6 +43,11 @@ All three deployed-green ON MERIT (RED-first → expert fix → re-gate), verdic
   `private.claudeCode.context.jsonl.lag` → lag|fresh); (b) STRUCTURAL threshold (content-after-last-
   assistant-usage, not a byte guess); (c) real repro jsonl (oopTeam:0.0). Contract: separate lag field,
   BARE output unchanged (pulse/views parse it), defer-to-panel, remaining-convention. Hardens pulse.
+  CONFIRMED by oosh-po: interface name ACCEPTED, threshold = ENTRY-COUNT after last assistant-usage.
+  Repro = 046bbac4-...jsonl. GATE-INTEGRITY: lag is TRANSIENT — the CURRENT repro CAUGHT UP (1 entry
+  after last usage now) → gating it as-is FALSE-PASSES. Real lag-moment IS in its history: 46-entry
+  window after line 1203 → RECONSTRUCT via truncate to line 1250 for the real-artifact re-gate. My
+  synthetic 40-entry ≈ real 46 (representative). Re-gate when expert lands the entry-count fix.
 - On new work: RED-first on DEPLOYED, gate the LIVE/prod surface with REPRESENTATIVE fixtures, prove
   green is CAUSED BY the fix (differential+functional), flag semantics don't guess.
   **FLAG oosh-po at ~88% BEFORE any heavy step** (prevent-wall rewind).
