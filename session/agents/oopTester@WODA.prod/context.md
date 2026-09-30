@@ -1,3 +1,13 @@
+# oopTester@WODA.prod — 5b A(4b99e04)+A2(6313d64) GATED 2026-09-30, reported to oopPO — SUPERSEDES the blocks below
+
+- One lean pass, fresh `git clone --no-hardlinks` of origin @6313d64 (shared tree untouched). COLD npm test EXIT=0 461/2/463, 58 files, 65.1s.
+- FAILABLE + restored GREEN: Definitions generate==src (hand-edit FileServer.ts -> 19 RED incl named reproduce guards) · Child sole owner of node:child_process (foreign import in FileServer/latest/test -> RED, scan derived) · AC1 model/ skip (remove M1Catalog.test.ts:68 -> 3 RED).
+- FINDINGS for oopPO to rank: (1) classes()-throws-unloaded PROVEN in plain tsx (EXIT 1) but UNGATED in-suite — vitest setupFiles LayoutSetup.ts loads before every file; needs a Child-spawned pre-load gate. (2) classNamed exists but 72 of 74 xxxClass() entry methods remain (only fileServer* moved to model/).
+- AC3 timing: file ~2.4s in isolation at pre-A / A2 cache off / A2 cache on -> tsx cache NOT shown to be the 5044ms; attribution UNCONFIRMED (suite contention plausible). Lesson: `tsx -e` import was BLIND (EXIT 1) — time via a .mts file + a LOADED assert.
+- HOLD for oopPO ranking.
+
+---
+
 # oopTester@WODA.prod — 5a S-a ARM FIX PUSHED 104df568 (GitHub main) -> 5a QA-green per oopPO ruling — SUPERSEDES the block below
 
 - oopPO ruled (a) BLOCKS QA-green -> I added a NON-closure seed (layer3/View.ts, plain first load) to the committed S-a arm + relabelled seed 1; pushed from ISOLATED CLONE (oopExpert mid-5b in shared tree). 104df568 = fast-forward on oopPO's spec fix 168fc4ac (landed while I gated; rebased + re-gated).
