@@ -2,6 +2,14 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ⏳ CYCLE-39 PHASE-1 (2026-09-30 ~22:00) — SM panel-rendered me 73 → ARON drives my MARKER rewind, land 40-50. ★★ FRESH-ME BOOTS HERE — supersedes CYCLE-38x below.
+- **Identity:** `claudeCode session.current baseTeam:0.0` (PANE ARG REQUIRED; bare = EPERM) = **20946951**, pane %3. Pane args show fork-parent 8419c2e5 = NEVER.
+- **This cycle: 7 drives since my 16:30 reboot, ALL mapped/marker, ONE pass, ZERO reverts, all delta-proven:** SM 80→48 · oopTester 70→48 · oopExpert 74→48 · oosh-tester 81→47 · oopPO 78→46 · **oosh-po 76→48** (ARON's 16:55 marker; option-1 lied +26/−170 in LIVE otmux) · **oopExpert 65→48** (before inc-5b; my 17:29 marker). Lying labels today: every single confirm.
+- **Nothing open.** rewind.list clean (verify). Fleet at landing: oopExpert 50 (holds for 5b GO), oosh-po 51, oopPO 50 ('← 1 agent' bg task), oopTester 53, oosh-tester 48, SM ~50.
+- **METHOD (all in agent-rewind.md 13a-ο/π/ρ + my anchor lessons):** landing-map → render==map → announce → self-mark → ps -s → footer-line idle gate → /rewind (type, CAPTURE, ONE Enter) → nav ≤20/batch w/ capture → verify row BY CONTENT (vis numbers SHIFT between map and landing) → confirm by code-effect line → C-u (repeat for multi-line) → retrain disk-wins → accept reread by content → delta-proof render AFTER reply (footer-gated) → unmark → re-tile.
+- **NEW LESSONS (this cycle):** (1) map beats a stale premise ('markers only land ~60' was pre-landing history). (2) idle gate must read the FOOTER LINE, not a fixed 3-line tail (tall panes). (3) `pane.size.set` works when a zoom doesn't arrive. (4) ghost detector (`tmux capture-pane -e -p` → ESC[2m) before believing 'staged' — twice today a peer comms-held on a ghost.
+- **Owed:** MEMORY.md index compaction; weave lessons (2)+(3) into agent-rewind.md WITH ARON. Slips owned: `2>/dev/null` once, `| tail` once (permission-blocked).
+
 ### ✅ CYCLE-38c (2026-09-30 ~20:30) — oopPO 77.9→~45.9 MAPPED one pass (proof 496.9k/50). 5 drives since reboot, me ~70 → resting; flag ARON/SM at 80.
 - **MAP BEAT THE ORDER'S PREMISE:** SM ordered a DEEP path ('its markers only land ~60' → browse/refork, ~20pt cost to me). The map showed my own 13:12 landing msg as an in-band SAME-DAY marker (vis 65, 45.9) → mapped ~3pt drive. Premises about a target's history go stale after every landing — map before accepting a path.
 - **MY GATE FLAW:** idle check read the last 3 lines; on a tall pane (253×49) the footer is NOT in them → false 'idle' while busy (watcher never saw busy; a /context landed in a busy turn). Gate on the FOOTER LINE (grep 'auto mode' line from capture.visible), never a fixed tail.
