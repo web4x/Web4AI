@@ -1,0 +1,15 @@
+### GATE #2 composer.state — my test.composer-state vs branch oosh-expert/composer-state b905d95 (oosh-tester 2026-09-30)
+HEEDED expert caveat: HOME/oosh symlinked to the branch so this:199 oosh.dir.invariant pins OOSH_DIR=branch (test-4 reads branch otmux, not live = false-3/4 defeated).
+branch otmux has composer.state: 1
+│ Test 1: GHOST: composer.state -> 'ghost' (got 'ghost')
+  ✓ PASS: GHOST = ghost (semantic return)
+│ Test 2: STAGED: composer.state -> 'staged' (got 'staged')
+  ✓ PASS: STAGED = staged (semantic return)
+│ Test 3: EMPTY: composer.state -> 'empty' (got 'empty')
+  ✓ PASS: EMPTY = empty (semantic return)
+│ Test 4: composer.state is a defined otmux method
+  ✓ PASS: otmux.composer.state() defined
+  Passed:      4
+  Failed:      0
+OOSH_DIR resolved to BRANCH: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/a43c1b23-7de6-4c75-8952-3e98b6ca43b6/scratchpad/comp-wt/otmux  (test-4 read the branch, not live — false-3/4 defeated)
+GREEN ON MERIT 4/4: ghost(dim ESC[2m)->'ghost', staged->'staged', empty->'empty', method defined. RED-on-current(all '')  -> GREEN-on-branch. Semantic returns only, caller never sees ANSI.
