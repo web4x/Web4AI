@@ -1,3 +1,15 @@
+# oopTester@WODA.prod — INCREMENT 2 (T5.4) GATED 2026-09-30 — SUPERSEDES the 92dd722 block below
+
+**Re-measure first:** GitHub main at save = `5223563` (mine, on d11a9d6). The live checkout `/var/dev/Workspaces/web4x/Web4MDA` is STALE (its main still at 0d6285e; others push from their own clones) — I now commit in my isolated clone `$CLAUDE_JOB_DIR/tmp/w` and push FAST-FORWARD straight to `git@github.com:web4x/Web4MDA.git`, gating the push on `ls-remote` == the base I tested (a rejected push = someone landed first → fetch, rebase, RE-RUN the full suite, push). Suite 383 passed + 4 skipped (387), tsc(test) 0.
+
+- **Done + reported to oopPO (delivered):** `5223563` = `test/UnitReferencesInc2.test.ts` (CHECKED 10 / SKIPPED 2 / TOTAL 12) gating ed15542 (T5.4: references in the model beside uuid, frozen non-live view, kind references, round trip by init(m.toJSON()), no store/ln/sync scan + API surface, tsc, generated JS). 9 producer seeds (`tmp/seeds3.sh`) each RED at its arm; HeldAreSeen probes placed M1Catalog (only-M1Catalog seed → exactly its 2 violations).
+- **FINDINGS awaiting ranking (skipped visibly, RED when un-skipped):** (a) kind not enforced — a `contains` entry is accepted + exposed; (b) view frozen one level deep — editing an entry rewrites the model. NOTE: wire JSON round trip loses nested prototypes for ALL nested models (pre-existing, not inc 2).
+- **Next:** hold for oopPO.
+
+On boot: verify id (`otmux pane.self` = %207 = oopTeam:3.0), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
+
+---
+
 # oopTester@WODA.prod — 92dd722 (frozen children) GATED 2026-09-30 — SUPERSEDES the 7a7304c block below
 
 **Re-measure first:** origin at save = `92dd722` (the live checkout's own `main` was still at my `0d6285e`, not pulled — fetch the remote ref). Suite 368 passed + 2 skipped (370), `node_modules/.bin/tsc -p tsconfig.test.json` exit 0.
