@@ -1,0 +1,167 @@
+diff --git a/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/src/ts/EAM/layer2/M1Catalog.ts b/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/src/ts/EAM/layer2/M1Catalog.ts
+index daff0b2..7062278 100644
+--- a/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/src/ts/EAM/layer2/M1Catalog.ts
++++ b/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/src/ts/EAM/layer2/M1Catalog.ts
+@@ -72,15 +72,17 @@ export class M1Catalog extends UcpComponent<ClassModel> {
+    * at its Folder in the EAMD.ucp layout (`…/<owner>/latest/src/<language>/EAM/<layer>/`, spec/eamd-ucp.md) plus each
+    * language's derived files (the `svg` from PlantUML). Returns the written paths.
+    */
+-  async generate(root = 'gen'): Promise<string[]> {
++  async generate(root = 'gen', home = ''): Promise<string[]> {
+     await M1Catalog.load();
+     await M1Layout.load(this);
+     const layout = this.layout(root);
++    const homeLayout = this.homeLayout(home);
+     const written: string[] = [];
+     for (const language of this.languages().filter((l) => l.directory !== this.heldLanguage.directory)) {
+-      language.within(layout);
++      const target = this.homeDirectories.includes(language.directory) ? homeLayout : layout; // spec 12 rule 6 (a): its component, or gen/ until moved
++      language.within(target);
+       for (const m1 of language.createExisting(this)) {
+-        const folder = layout.classFolder(m1.name, language.directory);
++        const folder = target.classFolder(m1.name, language.directory);
+         await new NodeJSFolder().init({
+           name: folder.path,
+         }).create();
+@@ -88,11 +90,20 @@ export class M1Catalog extends UcpComponent<ClassModel> {
+         if (path !== '') written.push(path);
+         written.push(...(await language.derived(m1, layout)));
+       }
+-      written.push(...(await this.place(language, layout)));
++      written.push(...(await this.place(language, target)));
+     }
+     return written;
+   }
+ 
++  /**
++   * The generated languages that already LIVE IN THEIR COMPONENT (spec 12 rule 6, Tron (a)): written to
++   * `<Owner>/latest/src/<language>/…` beside the TypeScript, never to gen/. inc 6 C2 moves the code languages; C3 moves
++   * the rest (diagrams, oosh, sample) and this set becomes every language — C4 then deletes gen/EAMD.ucp.
++   */
++  get homeDirectories(): string[] {
++    return ['js', 'thinglish.ts', 'thinglish.js'];
++  }
++
+   /**
+    * The model of the ONE uncatalogued MOF unit — this class itself (Tron d2cf919: it cannot catalogue itself). Held only
+    * so the layout derives its fixed location like any component's: `latest/MOF/M1/M1Catalog/latest/src/<dir>/EAM/layer2/`.
+@@ -173,6 +184,11 @@ export class M1Catalog extends UcpComponent<ClassModel> {
+     return new M1Layout().init().layOut(this, root);
+   }
+ 
++  /** The REPOSITORY's component layout (`[<base>/]Components/…`, spec 12 rule 6): where generated languages live. */
++  homeLayout(base = ''): M1Layout {
++    return new M1Layout().init().layOutHome(this, base);
++  }
++
+   /** Constructor-of-the-process: `npm run generate` → writes gen/. No-op on import. */
+   static override start(argv: readonly string[] = globalThis.process?.argv ?? [], entry: string = import.meta.url): boolean {
+     if (!super.start(argv, entry)) return false;
+diff --git a/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/model/M1LayoutDefinition.ts b/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/model/M1LayoutDefinition.ts
+index 0108b3b..49c6df6 100644
+--- a/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/model/M1LayoutDefinition.ts
++++ b/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/model/M1LayoutDefinition.ts
+@@ -160,6 +160,55 @@ export class M1LayoutDefinition {
+             "const eamd = this.plain(this.root, 'EAMD.ucp');",
+             "const components = this.plain(eamd, 'Components');",
+             "this.plain(eamd, 'Scenarios');",
++            'return this.populate(catalog, components);',
++          ],
++          visibility: 'public',
++        }),
++        new MethodModel().init({
++          uuid: '063f9354-fee5-424c-9b8c-25d0f2331e97',
++          name: 'layOutHome',
++          parameters: [
++            new ParameterModel().init({
++              uuid: 'e27ecb36-60fc-4b48-9a1d-bd5eafe6d3b9',
++              name: 'catalog',
++              type: 'M1Catalog',
++              defaultValue: '',
++            }),
++            new ParameterModel().init({
++              uuid: '94cf8443-8b60-4165-8ca1-8d9e703c4457',
++              name: 'base',
++              type: '',
++              defaultValue: "''",
++            }),
++          ],
++          returnType: 'this',
++          body: [
++            'this.root = new DefaultFolder().init({',
++            "  name: base === '' ? 'Components' : base,",
++            '});',
++            "return this.populate(catalog, base === '' ? this.root : this.plain(this.root, 'Components'));",
++          ],
++          visibility: 'public',
++        }),
++        new MethodModel().init({
++          uuid: 'a9a257dc-f396-4d60-a5ee-88c5fe439a5e',
++          name: 'populate',
++          parameters: [
++            new ParameterModel().init({
++              uuid: 'dfce9f79-7bae-4768-be78-74a093ba1577',
++              name: 'catalog',
++              type: 'M1Catalog',
++              defaultValue: '',
++            }),
++            new ParameterModel().init({
++              uuid: 'c0993314-014a-485c-a1d1-fde400455b16',
++              name: 'components',
++              type: 'UcpComponent',
++              defaultValue: '',
++            }),
++          ],
++          returnType: 'this',
++          body: [
+             'this.pkg = new Web4MDA().init();',
+             "Namespace.declare('com.ceruleanCircle', components).add(this.pkg);",
+             'this.latest = Version.latest(this.pkg);',
+@@ -174,7 +223,7 @@ export class M1LayoutDefinition {
+             'for (const owner of new Set(this.owners.values())) if (owner !== this.packageName) this.component(owner);',
+             'return this;',
+           ],
+-          visibility: 'public',
++          visibility: 'private',
+         }),
+         new MethodModel().init({
+           uuid: '9663f594-0998-4b7f-9b7a-63f83dd90e84',
+diff --git a/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/src/ts/EAM/layer2/M1Layout.ts b/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/src/ts/EAM/layer2/M1Layout.ts
+index 27dcc1d..26eca69 100644
+--- a/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/src/ts/EAM/layer2/M1Layout.ts
++++ b/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/src/ts/EAM/layer2/M1Layout.ts
+@@ -58,6 +58,23 @@ export class M1Layout extends UcpComponent<FileModel> {
+     const eamd = this.plain(this.root, 'EAMD.ucp');
+     const components = this.plain(eamd, 'Components');
+     this.plain(eamd, 'Scenarios');
++    return this.populate(catalog, components);
++  }
++
++  /**
++   * Lays out the REPOSITORY's own component tree (spec 12 rule 6, Tron (a)): `[<base>/]Components/com/ceruleanCircle/…`
++   * — where every generated language lives, beside the TypeScript. `base` '' is the repository itself; a test passes a
++   * scratch directory. The same tree as layOut(), rooted at the components instead of gen/EAMD.ucp.
++   */
++  layOutHome(catalog: M1Catalog, base = ''): this {
++    this.root = new DefaultFolder().init({
++      name: base === '' ? 'Components' : base,
++    });
++    return this.populate(catalog, base === '' ? this.root : this.plain(this.root, 'Components'));
++  }
++
++  /** Below the components folder, the same for every root: the Package, its namespaces, one folder per component. */
++  private populate(catalog: M1Catalog, components: UcpComponent): this {
+     this.pkg = new Web4MDA().init();
+     Namespace.declare('com.ceruleanCircle', components).add(this.pkg);
+     this.latest = Version.latest(this.pkg);
+diff --git a/tsconfig.json b/tsconfig.json
+index 6dfdcfc..d3f1134 100644
+--- a/tsconfig.json
++++ b/tsconfig.json
+@@ -21,5 +21,5 @@
+     "skipLibCheck": true
+   },
+   "include": ["Components/**/*.ts"],
+-  "exclude": ["node_modules", "dist", "Components/**/test/**"]
++  "exclude": ["node_modules", "dist", "Components/**/test/**", "Components/**/src/thinglish.ts/**"]
+ }
