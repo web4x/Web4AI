@@ -2,6 +2,16 @@
 
 > **COMMIT-HYGIENE LAW v2 (Tron 2026-09-06, standing, BOTH repos, no exceptions):** a bare `git commit` commits the WHOLE staged index — a peer's left-staged file rides mine even if I add-ed only my path. THE SOLE RECIPE: `git commit -m MSG -- <explicit paths>` (index-immune — commits only named paths, neither rides nor disturbs peers' staging) + VERIFY `git show --stat HEAD` == exactly my paths. **NEVER `git reset HEAD` on a SHARED tree** (it unstages peers' in-flight work = destroys their staging; reset only safe in a PRIVATE tree) — v2 withdrew the reset alternative. NEVER add -A/./glob/bare-commit. Misattribution = grading-your-own-work rot. See [[git-add-explicit-not-all]].
 
+## 🟢 CURRENT STATE — 2026-09-30 (post-2-phase-rewind; read FIRST, then MEASURE DISK)
+**Identity:** oosh-po@WODA.prod, ooshTeam:0.0, session 889a24a9 (verify: `claudeCode session.current ooshTeam:0.0` — pane-arg mandatory; NOT session.id=cache-stale). Rewound by ARON 09-30 (landed 48%); disk-first re-derivation caught a 09-15 ghost fork-order (already done) + a "remembered" zoom-fix that was NEVER deployed → DISK WINS over scrollback, always.
+**NEW WORLD (was stale in my July anchor below):** default model = claude-opus-5-5[1m]. **oopTeam** exists (Radical-OOP/MDA: oopPO oopTeam:2.0 / oopExpert 0.0 / oopBashExpert 1.0 / oopTester 3.0; OOSH-as-Web4MDA-target ratified 09-15). I am my OWN PO — NO fleet-stop, oopPO has NO ranking authority over ooshTeam.
+**DELIVERED this session (all DEPLOYED-GREEN on /root/oosh test/mcdonges.latest, gated on merit):**
+- otmux defect #1 — `zoom <target>` (resize -Z -t) + usage-dispatch parity (677abcf); #2 — composer.state NBSP (U+00A0/U+202F normalize, 56bceb6) + fixture d4b401c.
+- claudeCode context.check FALSE-LOW — context.parse keys off the `/Mm tokens` occupancy DENOMINATOR → REMAINING(100-used), dropped fragile Pattern3/4, NO blind fallback (rc1→unknown, JSONL primary) (001011d; verdict f7dd33f4).
+- Earlier: `scrumMaster rewind.mark/unmark/list` = DECLARED DURING-REWIND marker (cd25382) — my quiet-window ff gate; `scrumMaster pulse` multi-window (95205c6).
+**KEY OPERATING LESSONS (this session):** deployed-green ≫ reported-green (EXISTS⊂PROVEN); verify the DIFF not the claim (caught never-deployed / wrong-tree-hash / not-clean-ff — the last would've dropped a peer's tests); prefer JSONL over the fragile TUI-parse (context/sweep); ff only at a QUIET window (`scrumMaster rewind.list` empty) — never swap otmux under a live drive; STEP-0 = commit EVERY tree before any picker; rewind-before-heavy-work; pin the CONVENTION before asserting a test number; refuse a confounded-instrument verdict.
+**BACKLOG (my own PO):** (1) ~~otmux #1+#2~~ DONE. (2) ~~context.check false-LOW~~ DONE. (3) **§7 PART B** (team-sweep-live-recognition — artifacts are 08-29, a MONTH stale → STALENESS-CHECK before resuming; may be done/superseded). Team @~09-30: expert 47% · tester 60% · architect 53% · me 66%.
+
 **Updated**: 2026-06-28
 **Role**: oosh-po (forked from fallback-oosh-po)
 **Pane**: ooshTeam:0.0 on **WODA.prod** (v60211.1blu.de) — re-derived 2026-06-28 (was wrongly @MacStudio: fork inherited parent's stale @host; real host = OOSH_SSH_CONFIG_HOST=WODA.prod)
