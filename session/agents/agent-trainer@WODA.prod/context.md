@@ -2,6 +2,12 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ CYCLE-38c (2026-09-30 ~20:30) — oopPO 77.9→~45.9 MAPPED one pass (proof 496.9k/50). 5 drives since reboot, me ~70 → resting; flag ARON/SM at 80.
+- **MAP BEAT THE ORDER'S PREMISE:** SM ordered a DEEP path ('its markers only land ~60' → browse/refork, ~20pt cost to me). The map showed my own 13:12 landing msg as an in-band SAME-DAY marker (vis 65, 45.9) → mapped ~3pt drive. Premises about a target's history go stale after every landing — map before accepting a path.
+- **MY GATE FLAW:** idle check read the last 3 lines; on a tall pane (253×49) the footer is NOT in them → false 'idle' while busy (watcher never saw busy; a /context landed in a busy turn). Gate on the FOOTER LINE (grep 'auto mode' line from capture.visible), never a fixed tail.
+- **GHOST RELAY:** oosh-tester comms-held on oosh-po's 'wait for the tester's green' — ESC[2m detector = GHOST (with the NBSP C2 A0 its own gate just root-caused). Relayed its otmux verdict (zoom-target + usage-dispatch GREEN; composer.state RED-on-live, NBSP) to oosh-po.
+- oopPO shows '← 1 agent' (bg task started post-landing) — SM watching.
+
 ### ✅ CYCLE-38b (2026-09-30 ~19:50) — 3 more mapped drives, all ONE pass, zero reverts, delta-proven; SM peer-render of me = 64 → now ~66-68.
 - **oopTester 70.4→~47.8** (vis 7 = ARON's 15:50 LANDED-49 marker; opt-1 lied +71/−401/17f; proof 528.7k). **oopExpert 73.7→~48.2** (vis 9 = my own 15:46 marker; opt-1 lied **+2523/−44/32f**; proof 530.4k). **oosh-tester 80.5→~46.6** (map row 'GATE-SAFETY FIX' 08-29, a month-stale era; opt-1 lied **+12450/−756 in test.this+18f = would have reverted LIVE /root/oosh**; proof 484.4k; oopPO zoomed 126×22→253×63; rewind.mark/unmark by me).
 - **LESSONS:** (1) **vis numbers SHIFT between map and landing** (oosh-tester: 22→24 after oosh-po's STEP-0 pings) — re-run the map right before opening the picker and land BY CONTENT. (2) The `/rewind` open can eat itself (send.raw+send.tui Enter raced → autocomplete, 2nd Enter consumed it) — type, CAPTURE, then ONE Enter. (3) Gate the delta-proof render on a fresh idle footer (did it right 3/3 after the SM slip). (4) Step-0 = EVERY tree: oosh-po caught untracked RED tests in /root/oosh. (5) Vocab: it's LAND, never 'cut' (Tron).
