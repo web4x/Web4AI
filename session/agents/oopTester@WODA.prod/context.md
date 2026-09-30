@@ -1,3 +1,12 @@
+# oopTester@WODA.prod — inc 6 C1 (9012b3f) GATED 2026-09-30, reported to oopPO — SUPERSEDES the blocks below
+
+- Fresh clone. COLD EXIT=0 471/2/473. From EMPTY gen: npm start EXIT=0, 460 files, 0 under src/ts (75 .ts = thinglish.ts TARGET, legit); committed gen src/ts 75 -> 0.
+- GenReaders: my OWN 5 seed shapes (createReadStream, URL-object read, fs.promises.readFile, static import, createRequire) all REPORTED under a STRICT check (TrappedRun defaults reads to a 'NO REPORT' sentinel -> a length>0 check is hollow). My OWN mutation under() -> false: 2 RED (author failable arm + mine). Static arm: default root seed -> RED.
+- Web4MDA.generate: gen probe removed, proof = step exit status (accepted risk: exit-0-without-write, covered downstream).
+- Wording findings only: '0 .ts' -> '0 under src/ts/'; '4 readers' not in spec. HOLD.
+
+---
+
 # oopTester@WODA.prod — 5b CHUNK C (9790fd2) GATED 2026-09-30 -> 5b fully gated from my side — SUPERSEDES the blocks below
 
 - Fresh clone @9790fd2. COLD EXIT=0 467/2/469. MofLayoutAC5 unseeded 12/12.
