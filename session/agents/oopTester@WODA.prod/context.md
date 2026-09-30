@@ -1,3 +1,13 @@
+# oopTester@WODA.prod — AC4b GATED at 9823315 2026-09-30: criterion GREEN, skip audit = R1 FAIL-OPEN — SUPERSEDES the 100b641 block below
+
+**Evidence** tmp/: ac4b-suite.out, ac4b-skipseed.sh + .out, skipseed-control.json, skipseed-test.json, t-base/t-new.txt, c-base/c-new.txt. Clone tmp/w at 9823315 tracked-clean.
+- **Criterion GREEN:** SuiteTreeTouchProbe x2 each EXIT=0, 448 passed / 0 failed / 2 skipped / 450 = baseline exact, TOUCHED 0/707, PROBE_EXIT 0. Derived from git objects 100b641..9823315: 56 -> 56 test files, all 56 RENAMES (0 A/D), 0 in root test/, 0 outside /latest/test/; it/test lines 437 -> 437 identical per file (only delta = M1Sample.test.ts -> M1SampleObjectDiagram.test.ts, 5 = 5). oopPO quoted 438 (different counter).
+- **Skip audit R1:** 17 sites skip by DIRECTORY substring /latest/test/ (ModelStyle 66/91/126, M1Catalog 67, M1Graph 232, M1Layout 213, M3Class 72+153, Boilerplate 93, ComponentModelInc2 55, Spec 151, TreeFileUnitInc1 91, Type 364/408/419, UnitReferencesInc2 191); MofPlainNode 62 test-scoped. Seed (free fn + ctor params): in latest/src -> RED 5 failed (ModelStyle AC5/6/7, M1Catalog x2); same class in latest/test -> GREEN 448/0/2/450 = hidden. PROVEN hiding: ModelStyle 66/91/126 + M1Catalog 67. Other 13 UNMEASURED (seed unseen even in src — needs rule-tailored seeds). Flag, no verdict: that seed in src was caught by no radical-OOP rule, only catalog exact-list + ModelStyle.
+- **Reported** to oopPO (delivered, consumed): recommend NOT QA-green until the fail-open closes or oopPO accepts the risk; fix = expert/architect lane. **HOLD for oopPO ruling.**
+- **QUEUED NEXT (oopPO, after this gate):** doc-rot arm on my doc gate — every backticked repo path in README + spec/*.md must RESOLVE in the tree, DERIVED (not a hand list); ARM3 allowed forms (struck/blockquoted) stay allowed; the 6 intentional non-files become ASSERTED allowances (placeholder src/X.ts, seed Loose.ts, retired Container, unbuilt Once, struck Preflight); failable: a seeded stale path -> RED. Context: the AC4b move left 89/89 cited paths stale while Spec.test stayed green; oopPO re-derived 83 at spec 60822b7.
+
+---
+
 # oopTester@WODA.prod — INC 4 L3 RE-GATED GREEN at 100b641 2026-09-30 — SUPERSEDES the 8d22cbc block below
 
 **Evidence** tmp/: regate-100b641.sh, rg3.out, rg3-ms.out, rg3-gate.out. Clone tmp/w at 100b641 clean.
