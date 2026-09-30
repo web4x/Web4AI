@@ -37,7 +37,15 @@ All three deployed-green ON MERIT (RED-first → expert fix → re-gate), verdic
 ## PENDING (2 items, 2026-09-30 PO order)
 - **ITEM 1 — `test.session-id-fresh`: RE-GATE GREEN-on-merit @4fbb654 → CLOSED.** Planted stale cache
   (00000000-dead-…) → session.id returned LIVE 30a47516… not the stale (deployed now live-first). 2/2.
-- **ITEM 2 — `test.jsonl-lag` RED DELIVERED** (committed+pushed 7193618): from.jsonl reads last
+- **ITEM 2 — `test.jsonl-lag`: fix 390325e is INCOMPLETE (re-gate RED on the REAL artifact — NOT closed).**
+  Deployed `jsonl.lag` counts only user/tool_result/tool; the REAL reboot injection (046bbac4) is
+  ATTACHMENT+TOOL_USE dominated → max user/tool window=4 (never>8) so it NEVER fires; content-inclusive
+  window=32 (matches the '15-52' calibration). calibration(content) != impl(user/tool); also `"tool"`
+  regex ≠ `"tool_use"`. 5 PASS / 2 RED (1c synthetic attachment/tool_use-only + 2 real reboot both
+  'fresh'). Hardened test committed+pushed 4addd95. FIX OWED: widen filter to attachment+tool_use.
+  GREEN parts: user-window detect, transient caught-up=fresh, from.jsonl signals lag, CONTEXT_SOURCE
+  separate + bare unchanged. Re-gate (real+synthetic) when expert widens the type filter.
+- (superseded) earlier ITEM 2 note: from.jsonl reads last
   assistant-usage; big un-recorded window after it → false-safe number, no lag signal → walling drive.
   2 RED / 2 anchor. AWAITING EXPERT COORDINATION: (a) lag-detector name (proposed
   `private.claudeCode.context.jsonl.lag` → lag|fresh); (b) STRUCTURAL threshold (content-after-last-
