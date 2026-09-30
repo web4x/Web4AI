@@ -2,6 +2,8 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ CYCLE-36f (2026-09-30 ~18:30) — DROVE ARON ~70→46 (reciprocal, SM/oopPO order), ONE pass by landing-map at vis 17 (45.7; oopPO's render inside that very message said ~46 = 3rd confirmation). Map kept me clear of ARON's sub-40 history. 18th lying label (+89/−114/6f). Delta-proof 468.0k (ARON's own displayed 456.8k WAS the ghost). RC verified by VERB with NO Enter: the slash-command AUTOCOMPLETE line shows the verb ('Disconnect Remote Control' = connected) — new safe method. Lesson owned earlier: 'nobody typed it' ⇒ GHOST first (ESC[2m), then provenance search.
+
 ### ✅ CYCLE-36e (2026-09-30 ~17:50) — DROVE oopExpert ~72→49 (SM order, before inc 4), ONE pass at my own 13:37 landing (map 48.2, restored 487.6k exact again). 16th lying label (+4/−39/7f). Delta-proof 502.2k. 4 drives today, all one pass, all within ~1pt of the map.
 
 ### ✅ CYCLE-36d (2026-09-30 ~16:40) — DROVE oopTester ~81→49 (SM order, before AC3), ONE pass at my prior marker (map 47.8, restored 486k exact). 15th lying label (+1/−1255/15f). '← 1 agent' footer checked by process tree + transcript (no child, no bg launch after landing) = safe. Delta-proof via landing-map 525.7k. Me ~70 after 3 drives today.
