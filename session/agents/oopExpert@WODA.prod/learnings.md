@@ -161,3 +161,6 @@
 - **Moving the source to mirror the layout makes "re-pointed" assertions WRONG in the good direction**: the placed copy became byte-identical to its source → tighten the gate to equality, don't just delete the old inequality.
 - **Derived-but-expensive answers in a test helper must be memoized**: a layout rebuilt per walked file pushed a test from ~100ms to 2543ms under the 2.5s budget.
 - **"cold npm test" ≠ npm test after a cold npm start** — the test verb bootstraps itself; prove it on its OWN fresh clone.
+- ★ **An exemption must be scoped to the sanctioned CALL, never to a stack CLASS** (L3, my 8d22cbc): excusing every read under `node:internal/modules/` also excused every module's top-level evaluation. Measure the stacks first: the loader's source fetch = first foreign frame `getSourceSync`; a data read = the module's own frame first; the calling method's frame may be INVISIBLE across `import()`'s async boundary — then pin by the loader frame + the exact derived file set, and add the seed that the wide rule missed, proven RED under the old rule.
+- **A completeness guard compared walk-vs-walk is circular** — count with an independent instrument (`git ls-files`), and make the independent count refuse to be empty.
+- **Code inside a TS template literal loses single backslashes** (`\(` → `(`): a regex written for a child script needs `\\(`.
