@@ -4,6 +4,7 @@
 
 - **Done + reported (both verified, detail needed one Enter):** `3f69a9d` = `test/ComponentModelInc2.test.ts` (5/0/5) gating AC2 at 57927eb: fs imports read as IMPORTS not text (M1Catalog modelled bodies = data) — src importers EXACTLY NodeJSFile+NodeJSFolder, generated surface only those two (8 files). OoshUnit comment finding: fixed at 9b8632e, test live (RED on 57927eb, GREEN since). Recorded out-of-band: gen diff exactly 36 = 9 routed × 4 languages.
 - **Rulings:** Pipeline wrong-path seed ACCEPTED (fails closed, measured). M3Class sanctioned-form regex ACCEPTED — but that guard of MINE was hollow (raw text satisfied by M1Catalog data); FIXED in test/MOF/M3/M3Class.test.ts to read code; the computed-specifier seed now REDs it.
+- **PHASE-1 BANK (oopPO order, panel 80% = 195.2k free):** spec 12 inc 1 GATED `7d39667`, inc 2 GATED `3f69a9d`. **NEXT = gate AC3 at `82eb001`** (oopPO verified 419 + 2 skipped) incl. the a935551 hardening arms. Do NOT start it until the rewind has landed and oopPO dispatches.
 - **Next:** inc 3 (AC3, spec a935551): FileServer over raw HTTP — text/plain write, foreign Origin, foreign Host each REFUSED with the file UNCHANGED on disk (assert the side effect); no Access-Control-Allow* header ever; over-cap body refused; jail arms (.., absolute, symlink). Wait for oopPO's dispatch.
 
 On boot: verify id (`otmux pane.self` = %207 = oopTeam:3.0), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
