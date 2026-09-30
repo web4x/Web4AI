@@ -1,3 +1,17 @@
+# oopTester@WODA.prod — AC2b GATE IN PROGRESS 2026-09-30 — SUPERSEDES the AC3 block below
+
+**Re-measure first:** GitHub main at save = `71aa2a0` (mine, test-only, on cf8df48 on fc5b568). **AC2b final sha = `fc5b568` (oopPO RETARGET)** — gate THERE. My clone `$CLAUDE_JOB_DIR/tmp/w` (its `origin` remote is the STALE live checkout — always fetch/push by the GitHub URL). Every gate report carries EXIT CODES.
+
+- **AC3 QA-GREEN** (ebdf7d6, oopPO verified). **AC2b** (spec 12, from my AC3 flake finding): (a) gen via writeAtomic, (b) no test rewrites the tracked tree (inode+mtime, never git status), (c) FileServer.test arms fail under my 6 seeds.
+- **Committed gate code:** `test/gates/{ScratchClone,GenAtomicityProbe,SuiteTreeTouchProbe}.ts` (b37b822; probe reads EXIT CODE + evidence cf8df48; report OUTSIDE the tree + host load + SUITE_PROBE_KEEP 71aa2a0). Run: `SUITE_PROBE_KEEP=<dir> node_modules/.bin/tsx test/gates/SuiteTreeTouchProbe.ts <root> <runs>`.
+- **Measured so far:** RED baselines (ebdf7d6): 535/535 gen rewritten in place; suite touched 536 tracked (gen + package.json), git status 0 dirty. f785c57: probe(a) GREEN 535/535 atomic, 0/561803 mismatched; 0 touched 16/16 runs. **Self-inflicted confound found + fixed:** every run-1 AC19c RED was MY probe's `.suite-tree-touch.json` inside the clone. Remaining REDs = budget timeouts under full load (varying tests).
+- **Owner rulings done (cf8df48):** Type AC8 8000 KEPT (max 2712), MofLayoutAC5 failable 7000 KEPT (max 2748), ONE_CHILD_MS 4000 -> 11000 (tail 4367). **Open:** rule `Folder.test.ts:226` budget (2595 ms once) from the kept JSONs.
+- **Running:** 6-run gate on fc5b568 (copy of gate files in tmp/gates-copy, JSONs in tmp/keep-fc5). **Then:** S11 seed vs FileServer.test at fc5b568, probe(a) at fc5b568, oopExpert's inode arm seeded (writer back to write() -> RED), report to oopPO with exit codes + the AC19c correction. Retired: my parked TreeIntegrity (duplicate of oopExpert's TrackedTree); TrackedTree gaps reported (latent hollow nested root, <=20 files named).
+
+On boot: verify id (`claudeCode session.current oopTeam:3.0` + newest jsonl), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
+
+---
+
 # oopTester@WODA.prod — SPEC 12 INC 3 (AC3) GATED 2026-09-30 — SUPERSEDES the spec-12-inc-2 block below
 
 **Re-measure first:** GitHub main at save = `ebdf7d6` (mine, ff on 82eb001). Session id `914c8cad` (post-rewind). Commit in the clone `$CLAUDE_JOB_DIR/tmp/w`, push fast-forward gated on `ls-remote` == tested base. Suite 445 passed + 2 skipped (447), tsc(test) 0.
