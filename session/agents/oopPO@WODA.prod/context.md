@@ -4,6 +4,11 @@
 
 **★★ BOOTS HERE ★★ — fresh-you: read THIS block, then `learnings.md`. Everything from the 09-24 header down is HISTORY, do not re-derive it. Re-measure every sha and percent; trust none written here.**
 
+## TRON WORD 2026-09-30 ~17:15 (VERBATIM — the next plan; BOOTS HERE first)
+> "we will have a lot of work on the model shoetly. so keep the copz-on-init hold until we go for it. lets look at the m1Catalog. its code stzle is well with the new xyz().init(modelJSON). but each type of UcpComponent should basically own its own model code. so a UcpComponent has a src and a test folder. add a model folder, that has that caltalog like model source, that generates its src. the generator should use DefaultFile/NodeJSFile naming, BrowserFile to generate the files and folders. so plan to make the DefaultFile a usable UcpComponent that wraps the nodejs functional file api shit in radical OOP way. the catalog just calls then the models from the ucpComponents"
+- COPY-ON-INIT: **HOLD** (Tron) until the model work starts. Tree/File/Unit inc 0-2 = fully executed, awaiting DONE.
+- NEXT: plan mode for this word -> plan file -> spec/plans/<date>-<topic>.md + index Plans row (plans rule).
+
 ## RESUME STATE — 2026-09-30 ~17:00 (CURRENT; BOOTS HERE — supersedes all below). Re-measure every sha/percent.
 - **Tree/File/Unit INC 1 + INC 2 CLOSED, 0 open findings, awaiting TRON's DONE.** Inc 2 (T5.4 references in TypedModel = the UnitModel role, overrulable, spec d11a9d6): ed15542 -> gate 5223563 -> fixes 87a49ef (kind refused at init; frozen snapshot copies) -> re-gate 92db7b1 -> fix 9475602 (references non-writable once tracked) -> re-gate ba257d8 (13/0/13, generated-JS gap closed). All verified by me on guarded clones; last 388+2. oopTester reviewed + ACCEPTED every oopExpert edit to its tests.
 - **OPEN FOR TRON (doctrine, NOT built):** init(model) SHARES the model with its caller -> any field incl uuid changeable by an outside holder after birth; keep sharing (guard per field) OR adopt a COPY on init (radical-oop 3, every unit).
