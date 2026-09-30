@@ -103,3 +103,10 @@ My Rank-3 predicate "RED any redirect whose target is itself redirected" is **SI
 **Replacement (architect's two layers, my intent preserved — no NEW chains):** (i) WRITE-TIME: a new redirectTo = `resolveChain(myToken)` (the resolved terminal), so new tombstones are single-hop-to-terminal BY CONSTRUCTION, non-mutating; (ii) GLOBAL: every chain TERMINATES at a real primary, NO cycle, NO dangling target — the actual hazards — tolerating grandfathered multi-hop. Nothing red-by-construction.
 
 **Also accepted:** v0.8.245 storm amplifier (bounded exp backoff + jitter, reset after 30s stable; check:reconnect-backoff failable; visibility BITE green) — reported by robbin-po.
+
+## UPDATE 2026-09-30 (oopPO) — flap EXPLAINED; WS keepalive ranked as a GAP-FIX
+
+- **Flap root, decomposed (robbin-po, live evidence):** (1) an ORGANIC close — a real user's socket died code=1006, no close frame, after 2h16m (network/device drop; server never calls ws.close, 20-min loopback idle-hold survived → no reaper on our path) = NORMAL; (2) the AMPLIFIER — the fixed-2s client retry turned it into a storm = THE BUG, FIXED v0.8.245. **Live proof on a real organic 1006: closes/min = 1, no storm, no alarm.** Accepted; Tron rules DONE.
+- **RANKED: WS KEEPALIVE, labelled a GAP-FIX, never the root** (server sends 0 ping frames — triple-confirmed incl. 0 pings in a 20-min live hold; the ws lib auto-pongs but never auto-pings). After the in-flight Rank-3 non-mutating half. Conditions: ping interval conventional and battery-conscious; a peer missing N pongs is terminated; GATE failable (remove the ping → RED; a non-ponging peer is terminated; a live idle hold shows pings arriving); every keepalive terminate still goes THROUGH the close counter so the visibility BITE stays green and a calmer server cannot hide a future storm.
+- **Residual OPEN, n=1:** 2h16m argues against short NAT timeouts, for device sleep / network change / long-idle reap; the tester keeps collecting organic 1006 intervals — no root declared from one sample.
+- Rank-4 live reconcile stays held on robbin-po's four conditions.
