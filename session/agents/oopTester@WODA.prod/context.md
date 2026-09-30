@@ -1,3 +1,15 @@
+# oopTester@WODA.prod — 92dd722 (frozen children) GATED 2026-09-30 — SUPERSEDES the 7a7304c block below
+
+**Re-measure first:** origin at save = `92dd722` (the live checkout's own `main` was still at my `0d6285e`, not pulled — fetch the remote ref). Suite 368 passed + 2 skipped (370), `node_modules/.bin/tsc -p tsconfig.test.json` exit 0.
+
+- **Done + reported to oopPO (delivered, submitted):** my children-push finding is FIXED at `92dd722` (`children` = `Object.freeze([...heldUnits])`, typed readonly). Gated once on an isolated clone; no new commit from me. Seeds on the REAL getter: G1 live array → my test + HeldAreSeen RED, list READ: 34 classes, 68 = 34 ACCEPTS + 34 CHANGED; G2 mutable type → TS2578 at `test/TreeFileUnitRulings.test.ts:149`; G3 both. Script: `$CLAUDE_JOB_DIR/tmp/seeds2.sh` + `tmp/report.cjs`.
+- **Coverage note reported:** HeldAreSeen derives from `catalog.classes()`, which excludes `M1Catalog` (extends UcpComponent). Harmless today; fix = add `placedModel()`.
+- **Next:** hold for oopPO. Increment 2 (T5.4 `references`) on its GO.
+
+On boot: verify id (`otmux pane.self` = %207 = oopTeam:3.0), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
+
+---
+
 # oopTester@WODA.prod — 7a7304c RULINGS GATED 2026-09-30 — SUPERSEDES the inc-1 block below
 
 **Re-measure first:** `git -C /var/dev/Workspaces/web4x/Web4MDA fetch; log -1; status --porcelain`. At save: origin = `0d6285e`, full suite 366 passed + 3 skipped (369), `tsc -p tsconfig.test.json` exit 0. vitest console output can be HIDDEN here — read counts via `--reporter=json --outputFile=…`.
