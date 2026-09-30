@@ -4,6 +4,12 @@
 
 **★★ BOOTS HERE ★★ — fresh-you: read THIS block, then `learnings.md`. Everything from the 09-24 header down is HISTORY, do not re-derive it. Re-measure every sha and percent; trust none written here.**
 
+## RESUME STATE — 2026-09-30 ~17:00 (CURRENT; BOOTS HERE — supersedes all below). Re-measure every sha/percent.
+- **Tree/File/Unit INC 1 + INC 2 CLOSED, 0 open findings, awaiting TRON's DONE.** Inc 2 (T5.4 references in TypedModel = the UnitModel role, overrulable, spec d11a9d6): ed15542 -> gate 5223563 -> fixes 87a49ef (kind refused at init; frozen snapshot copies) -> re-gate 92db7b1 -> fix 9475602 (references non-writable once tracked) -> re-gate ba257d8 (13/0/13, generated-JS gap closed). All verified by me on guarded clones; last 388+2. oopTester reviewed + ACCEPTED every oopExpert edit to its tests.
+- **OPEN FOR TRON (doctrine, NOT built):** init(model) SHARES the model with its caller -> any field incl uuid changeable by an outside holder after birth; keep sharing (guard per field) OR adopt a COPY on init (radical-oop 3, every unit).
+- **Plan leftovers (need Tron's word):** D2 DefaultFile vs NodeJSFile name; BrowserFile + async fs wrapper (T8); store T5.2/3/5 HELD.
+- **Me:** ~75 by panel-ish; deep rewind (browse/refork by fresh trainer 46) at 78 — SM flags.
+
 ## RESUME STATE — 2026-09-30 ~16:30 (CURRENT; BOOTS HERE — supersedes all below). PHASE-1 before my marker rewind (~70). Re-measure every sha/percent.
 - **Tree/File/Unit INC 1 ARC = COMPLETE + GATED, reported to Tron for DONE:** inc 1 3537db5 + frozen leaf 6dca1cb (gate 46a83ce) · F1+F2 fixes 944ad18 · Tron ruled (AskUserQuestion): sub-components BESIDE the Version + children NEVER a filtered view -> spec b8269f9 -> built 7a7304c (gate 0d6285e, 34=34 layout oracle) · live-children 2nd attach path -> 92dd722 frozen read-only children (gate by oopTester: 368/2/370, seeds G1-G3 RED, verified by me 368+2). Stale spec fixed bd9ba1a (mof-self :32/:44, plans annotated).
 - **IN BUILD: INC 2 (T5.4 references in the unit's model, properties only; T5.2/3/5 HELD) + HeldAreSeen coverage fix (add catalog.placedModel(), M1Catalog excluded today)** — dispatched to oopExpert ~16:25. NEXT: verify its sha on a guarded clone -> oopTester gates once -> Tron.
