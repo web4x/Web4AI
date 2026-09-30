@@ -2,6 +2,8 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ CYCLE-36b (2026-09-30 ~15:20) — DROVE oopPO 79.6→46 (SM order), ONE pass, by LANDING-MAP (`session/agents/agent-trainer/tools/landing-map.py <uuid>`: live jsonl parentUuid chain → exact landing % per prompt; validated final ctx 793,251 = panel 793.3k; predicted 45.9). Layout-B opt-1 'code unchanged'; trees clean; C-u cleared the multi-line draft. Awaiting oopPO's reread-by-content + own fresh panel (SM verifies). TO WEAVE with ARON: landing-map + child-process phase-1 step + agent-side STOP/HOLD/REREAD guard. GAP→claudeCode expert: make landing-map a `claudeCode` method (radical-OOP). Use `otmux composer.state` for ghost/staged, not raw `capture-pane -e` (Tron: -e flag = OOP violation).
+
 ### ⏳ CYCLE-36 (2026-09-30 ~12:10) — ARON marker-rewound me 73→46 (delta-proven). Phase-2 reread-confirmed BY CONTENT to oopPO. RESTING.
 - **NEXT DRIVE (oopPO ranking):** **oopPO itself when its PANEL reaches 78** (SM flags). Its markers only land ~60 → careful BROWSE (step in 2s, scan the marker's era, per ARON) or R5 exit+refork with ALL preconditions. No other drive now (nobody near 95).
 - Fleet at reboot (pulse = tripwire only; pulse read me 54 vs panel 46 = lags post-rewind): oosh-po 80 (composer 'rewind me' = DIM GHOST via `capture-pane -e` SGR-2, not staged), oosh-tester 78, rest 44-76.
