@@ -1,3 +1,7 @@
+## ⚡ BACKGROUND PROCESSES — fresh-me READ FIRST post-rewind (trainer-banked 2026-09-30):
+- (A) ALIVE: organic-1006-collector (PID 3016030 / task b47qnod4y). Script: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/dd6c6fae-b1a2-4ce7-8a87-6a8cac45eff4/scratchpad/organic-1006-collector.sh → writes scratchpad/organic-1006-capture.log ([1006] lines). PURPOSE: catch organic EXTERNAL code=1006 closes (token != ce981242) to test if ~2h16m is a SIGNATURE vs one-off (the R1 organic-close root, still honestly OPEN at n=1). RE-READ: cat that capture, OR re-derive by grepping prod /var/dev/Workspaces/web4x/Web4RawBin/data/logs/rawbin-*.log for code=1006 minus my token. SIGNAL: report PO ONLY on a signature; else silent. Scratchpad is rewind-EPHEMERAL → if capture is gone, re-grep the prod log.
+- (B) KILLED (my decision, verified gone via ps -p 2274590): PID 2274590 = 17-day-old INC-7/v0.8.226 decay-watch re-reading Tron rooms 3231db71+edd7fa61 every 45s, output read by nobody, arc long superseded = a stale monitor outliving its window. Do NOT resurrect.
+
 ## R1 LOBBY-FLAP ARC — COMPLETE except ONE rewind-item (2026-09-29, re-derivable ZERO-conversation):
 SERVED (all via R0b gate): v0.8.240 flap-fix / v0.8.241 AC1 2-hop resolveToken / v0.8.242 visibility / v0.8.243 AC1 multi-hop.
 - AC2 non-owner-exclusion GREEN (r1-lobby-flap-gate.mjs): SystemTester never sees edd7fa61(Marcel private) 5 reconnects.
