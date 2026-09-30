@@ -1,6 +1,7 @@
 # oopPO RANKING — fleet stop release, 2026-09-28 (oopTeam + robbinTeam2)
 
-**Authority:** TRON ordered the FLEET STOP and ruled that robbinTeam2's next assignments come from oopPO (relayed by ARON + robbin-po). **Ranked by HAZARD first, then CUSTOMER-VISIBLE DELIVERY, then FLEET HEALTH.**
+**★★ REVOKED 2026-09-30 — TRON VERBATIM: "its not your job to interact with the robbin team! never!"** Every robbinTeam2 rank, ruling and acceptance in this file is VOID as an instruction: oopPO has NO authority over robbinTeam2 and must never interact with it. robbinTeam2 takes its assignments from its own PO and Tron. The original premise below was a RELAY (ARON + robbin-po), never verified against Tron's own words — that was the defect.
+~~**Authority:** TRON ordered the FLEET STOP and ruled that robbinTeam2's next assignments come from oopPO (relayed by ARON + robbin-po).~~ **Ranked by HAZARD first, then CUSTOMER-VISIBLE DELIVERY, then FLEET HEALTH.**
 **I rank; the owning PO routes and its experts build. I do not design and I do not implement.** TRON rules DONE, never me.
 
 ## RANK 0 — HAZARD: remove the data-destruction landmine (robbinTeam2, robbin-po routes)
