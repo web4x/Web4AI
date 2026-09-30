@@ -1,4 +1,4 @@
-# oopTester@WODA.prod — AC2b GATE IN PROGRESS 2026-09-30 — SUPERSEDES the AC3 block below
+# oopTester@WODA.prod — AC2b GATE HELD FOR REWIND 2026-09-30 — SUPERSEDES the AC3 block below
 
 **Re-measure first:** GitHub main at save = `71aa2a0` (mine, test-only, on cf8df48 on fc5b568). **AC2b final sha = `fc5b568` (oopPO RETARGET)** — gate THERE. My clone `$CLAUDE_JOB_DIR/tmp/w` (its `origin` remote is the STALE live checkout — always fetch/push by the GitHub URL). Every gate report carries EXIT CODES.
 
@@ -6,7 +6,7 @@
 - **Committed gate code:** `test/gates/{ScratchClone,GenAtomicityProbe,SuiteTreeTouchProbe}.ts` (b37b822; probe reads EXIT CODE + evidence cf8df48; report OUTSIDE the tree + host load + SUITE_PROBE_KEEP 71aa2a0). Run: `SUITE_PROBE_KEEP=<dir> node_modules/.bin/tsx test/gates/SuiteTreeTouchProbe.ts <root> <runs>`.
 - **Measured so far:** RED baselines (ebdf7d6): 535/535 gen rewritten in place; suite touched 536 tracked (gen + package.json), git status 0 dirty. f785c57: probe(a) GREEN 535/535 atomic, 0/561803 mismatched; 0 touched 16/16 runs. **Self-inflicted confound found + fixed:** every run-1 AC19c RED was MY probe's `.suite-tree-touch.json` inside the clone. Remaining REDs = budget timeouts under full load (varying tests).
 - **Owner rulings done (cf8df48):** Type AC8 8000 KEPT (max 2712), MofLayoutAC5 failable 7000 KEPT (max 2748), ONE_CHILD_MS 4000 -> 11000 (tail 4367). **Open:** rule `Folder.test.ts:226` budget (2595 ms once) from the kept JSONs.
-- **Running:** 6-run gate on fc5b568 (copy of gate files in tmp/gates-copy, JSONs in tmp/keep-fc5). **Then:** S11 seed vs FileServer.test at fc5b568, probe(a) at fc5b568, oopExpert's inode arm seeded (writer back to write() -> RED), report to oopPO with exit codes + the AC19c correction. Retired: my parked TreeIntegrity (duplicate of oopExpert's TrackedTree); TrackedTree gaps reported (latent hollow nested root, <=20 files named).
+- **HELD (oopPO, panel 76% = 241.4k free; gate would end at the wall):** the 6-run gate on fc5b568 was STOPPED (task b2o8nbxnm), no survivors, scratch dirs removed. **NEXT after the rewind + oopPO GO = gate AC2b at fc5b568 with exit codes** (copy of fixed gate files in tmp/gates-copy; clone tmp/w checked out at fc5b568, clean). **Then:** S11 seed vs FileServer.test at fc5b568, probe(a) at fc5b568, oopExpert's inode arm seeded (writer back to write() -> RED), report to oopPO with exit codes + the AC19c correction (every run-1 AC19c RED was MY probe's report file inside the clone — fixed 71aa2a0; not a product defect). Retired: my parked TreeIntegrity (duplicate of oopExpert's TrackedTree; patch still in $CLAUDE_JOB_DIR/tmp/ac2b-guard, NOT to be committed); TrackedTree gaps reported (latent hollow nested root, <=20 files named).
 
 On boot: verify id (`claudeCode session.current oopTeam:3.0` + newest jsonl), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
 
