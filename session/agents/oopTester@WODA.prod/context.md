@@ -1,3 +1,12 @@
+# oopTester@WODA.prod — 5a S-a ARM FIX PUSHED 104df568 (GitHub main) -> 5a QA-green per oopPO ruling — SUPERSEDES the block below
+
+- oopPO ruled (a) BLOCKS QA-green -> I added a NON-closure seed (layer3/View.ts, plain first load) to the committed S-a arm + relabelled seed 1; pushed from ISOLATED CLONE (oopExpert mid-5b in shared tree). 104df568 = fast-forward on oopPO's spec fix 168fc4ac (landed while I gated; rebased + re-gated).
+- Failable: closure-only mutant -> ORIGINAL arm GREEN (gap real), NEW arm RED on the new label (EXIT 1); restored GREEN. tsc(test) 0. Probe: 9ef06bdb x2 EXIT=0 458/0/2/460; 104df568 x1 EXIT=0 458/0/2/460, TOUCHED 0.
+- (b) query/cache-bust residual -> ranked into 5b hook-integration chunk (re-gate it there). (c) spec wording -> oopPO landed 168fc4ac.
+- Reported sha to oopPO (delivered). HOLD. Next likely: 5b gate (M1Catalog.load + XDefinition model files + AC5 generate==src).
+
+---
+
 # oopTester@WODA.prod — spec-12 inc 5a GATED at f16c8c32 (module-load detector): conditions MET, recommend QA-green, 3 disclosed — SUPERSEDES the block below
 
 - Unsanctioned load (layer3/View.ts, OUTSIDE the 73-file closure) inside M1Layout.load -> EXIT=1 via D+G1 'S-a: NO module load ... outside M1Layout.load's sanctioned closure'. Call-site scope load-bearing: sanction made file-only -> arm RED. Guard neutered -> arm RED. Unseeded probe x2 EXIT=0 458/0/2/460; cold npm test EXIT=0 458|2 (460).
