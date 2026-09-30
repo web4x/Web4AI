@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 # landing-map: exact rewind landing % per checkpoint, read from the target's LIVE transcript chain.
-# usage: landing-map.py <session-uuid>   (uuid via: claudeCode session.current <pane>)
+# usage: landing-map.py <session-uuid-or-unique-prefix>   (uuid via: claudeCode session.current <pane>)
+#   a prefix (e.g. 20946951) is expanded to the one matching transcript; ambiguous/none = exit 2.
 # Walks parentUuid from the newest entry (skips abandoned rewind branches), prints for each user
 # prompt the context size just before it = where "restore to the point before" that prompt lands.
 # Picker hides <task-notification> prompts; 'vis' = position counted among visible picker entries.
-import json, sys, os
-f = os.path.expanduser(f"~/.claude/projects/-var-dev-Workspaces-AI-Claude/{sys.argv[1]}.jsonl")
+import json, sys, os, glob
+if len(sys.argv) != 2: sys.exit("usage: landing-map.py <session-uuid-or-unique-prefix>")
+hits = glob.glob(os.path.expanduser(f"~/.claude/projects/-var-dev-Workspaces-AI-Claude/{sys.argv[1]}*.jsonl"))
+if len(hits) != 1: print(f"prefix '{sys.argv[1]}' matched {len(hits)} transcripts - give the full uuid", file=sys.stderr); sys.exit(2)
+f = hits[0]
 ents, order = {}, []
 for line in open(f):
     try: e = json.loads(line)
