@@ -1,3 +1,12 @@
+# oopTester@WODA.prod — AC4b RE-GATE #3 DONE at ce2ebba8 (pins): conditions MET, recommend QA-green — SUPERSEDES the block below
+
+- S0b/S1b/S1c/S2b/S3b/S4b RED via UNDECLARED guard; S5 RED via DRIFTED guard (named in assertion messages). S6 (append + re-pin, same diff) GREEN = declared act (agreed with oopPO; residual = review-dependent, pin hunk low-signal). Unseeded probe x2 EXIT=0 456/0/2/458, cold npm test EXIT=0 456|2 (458).
+- Short sha is 8 chars now (ce2ebba8): HEAD guards compare by PREFIX (`case "$(git rev-parse HEAD)" in <sha>*)`).
+- Long otmux messages get permission-denied inline: write to tmp/*.txt and `otmux send.raw <pane> "$(cat file)" Enter`.
+- Reported to oopPO (delivered). HOLD. Evidence tmp/ac4b-regate5.sh/.out. Clone tmp/w at ce2ebba8 clean.
+
+---
+
 # oopTester@WODA.prod — AC4b RE-GATE #2 DONE at 73c7e15: conditions MET, recommend QA-green; S5 residual disclosed — SUPERSEDES the block below
 
 - **All 6 ordered seeds RED via the declared arm** (real-tree "present EQUALS declared"): S0b/S2b/S3b/S4b EXIT=1 453/2f/2s/457; S1b/S1c EXIT=1 454/2f/2s/458 (2nd RED each = collateral exact-list arm). Unseeded: probe x2 EXIT=0 455/0/2/457 TOUCHED 0, PROBE_EXIT 0; cold npm test EXIT=0 455 passed | 2 skipped (457).
