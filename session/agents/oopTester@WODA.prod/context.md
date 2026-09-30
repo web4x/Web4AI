@@ -1,3 +1,16 @@
+# oopTester@WODA.prod — 9475602 RE-GATED + REVIEW 2026-09-30 — SUPERSEDES the 87a49ef block below
+
+**Re-measure first:** GitHub main at save = `ba257d8` (mine, on 9475602). Commit in the clone `$CLAUDE_JOB_DIR/tmp/w`, push fast-forward gated on `ls-remote` == tested base. Suite 388 passed + 2 skipped (390), tsc(test) 0.
+
+- **Done + reported (head re-sent short after the long report arrived TRUNCATED — verify by the HEAD words):** 9475602 fix verified (holder reassignment throws; Reflect.set false; shared-model re-init works; JSON keeps refs). Descriptor seeds (`tmp/seeds5.sh`): writable/enumerable/configurable all caught in src — but the GENERATED UcpUnit.js writable seed was caught by NOTHING → closed: my generated-JS arm pins the throw + descriptor, 3 gen seeds RED. My file 13/0/13.
+- **Review:** both oopExpert edits ACCEPTED (E1' reads-model staging now asserts throw + fresh model via init; E2' my finding un-skipped, stronger).
+- **Open:** none from me. Out of scope as ruled: defineProperty/Reflect rewrites; init SHARES the model (Tron's radical-oop §3 question).
+- **Next:** hold for oopPO.
+
+On boot: verify id (`otmux pane.self` = %207 = oopTeam:3.0), reread this + SKILL + auto-memory, composer check (do NOT act), report reread-confirmed, HOLD for oopPO. Say REWIND.
+
+---
+
 # oopTester@WODA.prod — 87a49ef RE-GATED + REVIEW 2026-09-30 — SUPERSEDES the inc-2 block below
 
 **Re-measure first:** GitHub main at save = `92db7b1` (mine, on 87a49ef). Commit in the clone `$CLAUDE_JOB_DIR/tmp/w`, push fast-forward to `git@github.com:web4x/Web4MDA.git` gated on `ls-remote` == tested base. Suite 386 passed + 3 skipped (389), tsc(test) 0.
