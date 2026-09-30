@@ -1,4 +1,16 @@
-# oopTester@WODA.prod — inc 6 C2 (c56ef92) GATED 2026-09-30, reported to oopPO; DUE A REWIND before C3 — SUPERSEDES the blocks below
+# oopTester@WODA.prod — inc 6 C3+C4 (8bbf43c) GATED 2026-09-30, reported to oopPO — SUPERSEDES the blocks below
+
+- Fresh `git clone --no-hardlinks` @8bbf43c (/tmp/oopTester-c3c4; evidence /tmp/oopTester-c3c4-ev, ephemeral). COLD npm test EXIT=0 471/2/473, 59 files, 61.7s; mtime writes clone 0 / shared tree 0 (channel proven: fresh npm start rewrote the 15 -> seen).
+- (1) Retargeted gates, all FAILABLE on the component tree (control 55/55 on the 7 named files): S1 gen/ resurrected -> M1Layout AC7, MofLayout, ComponentModelInc2, Pipeline RED; S2 drop 1 generated puml -> M1Layout AC6, Pipeline RED; S3 stray generated -> AC6, Pipeline; S5 ghost component (unknown name) -> MofLayout + TreeFileUnitRulings rule4 RED; S6 Components/stray -> MofLayoutAC5 F RED; S7 component INSIDE the Version -> TreeFileUnitRulings rule4 (x2) + MofLayout RED; S8b known-name extra in wrong Mx -> MofLayoutAC5 "C: extra MOF/M2/M1Layout" + MofLayout + rule4 RED; S9 dropped-start seed neutralised (identity edit, Pipeline.test.ts:136) -> its is-failable test RED (non-vacuous). CONFOUNDS (no verdict, import breakage): S4 mv component, S8 cp whole component.
+- F1 (gate weakness, not vacuous overall): MofLayoutAC5 C "EXACTLY ... nothing else" only sees folders named like a KNOWN model (line 92 filter) -> an unknown-named extra component passes C (S5); covered by MofLayout + rule4. B proven only by its in-suite copy-tree seeds (real-tree B seed breaks imports). G-A proven by its own in-suite seeded test (GenReaders.test.ts:138), not re-seeded from outside. M1Layout AC7 per-language arm = .some() (>=1 file per language).
+- (2) MOVE: 220 R100 byte-identical; 15 changed = 5 models (M1Graph M1Layout M1Sample M2OoshClass Web4MDA) x mmd/puml/svg (13 R093-097 + 2 svg as A/D). Fresh real `npm start` EXIT=0 rewrote all 15, tree drift 0 -> equal fresh pipeline output, not hand-moved. PlantUML reachable. gen/ absent after npm start.
+- (4) Source.of prune 2x2 (full suite): duplicate M1Layout.ts in src/thinglish.ts, prune intact -> 4f / 3 files (M1Layout, Pipeline, Spec catch the stray itself); prune BLINDED -> 24f / 15 files; 12 files RED ONLY when blinded = prune load-bearing.
+- (5) 0 executable gen path literals in non-test code. F2 (false claims in artifacts): Pipeline describe/it titles still say "committed gen/"; doc comments M2ES2020Class.ts:48, NodeShell.ts:35, ImportModel.ts:8 still describe gen/.
+- No code defects. F1 + F2 reported. Next: HOLD for oopPO ruling.
+
+---
+
+# oopTester@WODA.prod — inc 6 C2 (c56ef92) GATED 2026-09-30, reported to oopPO; DUE A REWIND before C3 — SUPERSEDED above
 
 - Fresh clone. COLD EXIT=0 471/2/473. P1: porcelain before==after is BLIND (home='' seed rewrote 225 Components/ files byte-identical, porcelain unchanged); mtime marker: seed 225 writes RED, unseeded full suite 0 writes anywhere GREEN. P2 dropped-start (Pipeline.test.ts:134): neutralised seed -> RED, non-vacuous. isGenerated blinded -> 20 failed across exactly 12 test files (incl Pipeline, GenReaders). Generated home mode NOT separately seeded.
 - No code defects; 1 instrument finding reported. Next: C3 gate AFTER my rewind.
