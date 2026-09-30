@@ -1,0 +1,4 @@
+### otmux DEFECT #1 — 2 FAILABLE RED tests on DEPLOYED /root/oosh/otmux (oosh-tester 2026-09-30)
+(a) T-ZOOM-TARGET (test.zoom-target.RED): RED — (1) 'otmux zoom <target>' zooms the CALLER (flag=1,pane=0) not the TARGET pane (zoom:501 bare, no -t); (4) bad-target NOT guarded. Anchors (2)no-arg-caller + (3)toggle green. Asserts #{window_zoomed_flag}, never exit code.
+(b) T-USAGE-DISPATCH (test.usage-dispatch.RED): RED — method list DERIVED from otmux usage() ( <m>); advertised-but-UNDISPATCHED: command pane.splitH pane.zoom session.new splitH (no otmux.<m>() defined). Behavioral spot-check: calling 'command' surfaces the this-dispatch 'command not found' failure. No hand-kept list.
+Both RED on deployed. Fix: zoom takes <?target> + resize-pane -Z -t + guard; define the missing dispatch targets (or remove from usage).
