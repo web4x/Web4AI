@@ -1,3 +1,11 @@
+# oopTester@WODA.prod — ARM5 COMMITTED GREEN at 2c071e7 (GitHub main) 2026-09-30 — SUPERSEDES the block below
+
+- **ARM5 doc-rot** (Spec.test.ts, +123, test-only) pushed as `2c071e7` on oopExpert's `746c6d5` (my first push REJECTED — peer landed mid-gate; rebased + re-gated, never forced). Probe x2 at 2c071e7: EXIT=0, 456/0/2/458, TOUCHED 0/709 = predicted delta (448 +4 TestFolder +4 ARM5; static 437->441->445). tsc(test) 0. Allowances EXACT = 11 (Once x2, X x2, Container, Loose seed, preflight.mjs + Preflight.test struck, 2 cross-repo). Scope excludes ./ ../ specifiers (oopPO ruling); disclosed residual: a ./-prefixed repo path is hidden (0 today). Real-tree seeds: stale path -> RED, new cross-repo -> RED. Reported to oopPO.
+- **Instrument lesson (memory a-green-must-prove-it-saw-the-change):** SuiteTreeTouchProbe gates a ScratchClone of COMMITTED HEAD — blind to uncommitted edits; gate uncommitted work with vitest on the working tree + assert the new titles/count delta.
+- **NEXT (hold for oopPO re-measure + go):** AC4b fail-open RE-GATE on `746c6d5` (TestFolder gate: latest/test/ holds only tests + DERIVED machinery). Re-run tmp/ac4b-skipseed.sh (fix HEAD check to the gated sha) — the TEST-path seed must now go RED — plus rule-tailored seeds for the 13 unmeasured skip sites; prove TestFolder failable (seed a source class under latest/test/ -> RED; its derived machinery allow-list = nearest dangerous member).
+
+---
+
 # oopTester@WODA.prod — AC4b GATED at 9823315 2026-09-30: criterion GREEN, skip audit = R1 FAIL-OPEN — SUPERSEDES the 100b641 block below
 
 **Evidence** tmp/: ac4b-suite.out, ac4b-skipseed.sh + .out, skipseed-control.json, skipseed-test.json, t-base/t-new.txt, c-base/c-new.txt. Clone tmp/w at 9823315 tracked-clean.
