@@ -34,7 +34,15 @@ All three deployed-green ON MERIT (RED-first → expert fix → re-gate), verdic
   pinned 46. Merit: output TRACKS input (54→46/80→20/12→88/53.6→46) + differential + structural.
 - Verdicts: `session/tasks/{T-OTMUX-DEFECT-GATE,T-CONTEXT-OCCUPANCY}.GREEN.md`. Tests on
   test/mcdonges.latest (pushed). At ~60% ctx, runway fine.
-## PENDING (2 items, 2026-09-30 PO order)
+## PENDING
+- **PULSE follow-up — `test.pulse-jsonl-lag` RED DELIVERED** (621ef08): scrumMaster.pulse's python
+  `ctx_from_jsonl` (scrumMaster:648) shares the same token-math, no content-lag guard → false-LOW
+  (400000,40,1000) SIGNALS_LAG=False on a >8 attachment/tool_use reboot window (monitoring misleads
+  walling). Gates the REAL extracted python; 2 PASS/1 RED; same differential as test.jsonl-lag.
+  AWAITING EXPERT: python return-shape for the lag signal (proposed: 4th lag flag or pct='lag') +
+  implements the >8 content-window guard. Lower urgency. Re-gate when it lands.
+
+## DONE (2026-09-30 PO order)
 - **ITEM 1 — `test.session-id-fresh`: RE-GATE GREEN-on-merit @4fbb654 → CLOSED.** Planted stale cache
   (00000000-dead-…) → session.id returned LIVE 30a47516… not the stale (deployed now live-first). 2/2.
 - **ITEM 2 — `test.jsonl-lag`: DEPLOYED-GREEN 7/7 on merit @a317633 → gap(b) CLOSED.** Widened filter
