@@ -4,6 +4,11 @@
 
 **★★ BOOTS HERE ★★ — fresh-you: read THIS block, then `learnings.md`. Everything from the 09-24 header down is HISTORY, do not re-derive it. Re-measure every sha and percent; trust none written here.**
 
+## RESUME STATE — 2026-09-30 ~17:45 (CURRENT; BOOTS HERE). PHASE-1 before my deep rewind (~79). Re-measure every sha/percent.
+- **ACTIVE PLAN (Tron-approved ~17:30): component-owned models + file units that do I/O** — plan record spec/plans/2026-09-30-component-model-files.md, **spec 12 = spec/component-model.md, pushed 78df48b** (Tron verbatim + 4 rulings: DefaultFile contract + NodeJSFile/NodeJSFolder subs; repo MIRRORS EAMD layout <Component>/latest/{model,src,test}; BrowserFile FULLY now incl FileServer 127.0.0.1 root-jailed; files first then models). Increments 1-6 in the spec's AC1-AC6.
+- **INC 1 DISPATCHED to oopExpert ~17:40** (DefaultFile/Folder contract, NodeJSFile/NodeJSFolder over fs/promises, writeAtomic; the 9 raw fs sites are inc 2). NEXT on its sha: verify on a guarded clone -> oopTester gates once -> inc 2. Before heavy incs 3/4/5: SM panels builder + gater (>65 -> marker rewind).
+- HOLD: copy-on-init (Tron) + the Unit/scenario store. Tree/File/Unit inc 0-2 DONE-candidate (awaiting Tron's DONE).
+
 ## TRON WORD 2026-09-30 ~17:15 (VERBATIM — the next plan; BOOTS HERE first)
 > "we will have a lot of work on the model shoetly. so keep the copz-on-init hold until we go for it. lets look at the m1Catalog. its code stzle is well with the new xyz().init(modelJSON). but each type of UcpComponent should basically own its own model code. so a UcpComponent has a src and a test folder. add a model folder, that has that caltalog like model source, that generates its src. the generator should use DefaultFile/NodeJSFile naming, BrowserFile to generate the files and folders. so plan to make the DefaultFile a usable UcpComponent that wraps the nodejs functional file api shit in radical OOP way. the catalog just calls then the models from the ucpComponents"
 - COPY-ON-INIT: **HOLD** (Tron) until the model work starts. Tree/File/Unit inc 0-2 = fully executed, awaiting DONE.
