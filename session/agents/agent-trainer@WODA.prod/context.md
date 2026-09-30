@@ -2,6 +2,10 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ⏳ CYCLE-36 (2026-09-30 ~12:10) — ARON marker-rewound me 73→46 (delta-proven). Phase-2 reread-confirmed BY CONTENT to oopPO. RESTING.
+- **NEXT DRIVE (oopPO ranking):** **oopPO itself when its PANEL reaches 78** (SM flags). Its markers only land ~60 → careful BROWSE (step in 2s, scan the marker's era, per ARON) or R5 exit+refork with ALL preconditions. No other drive now (nobody near 95).
+- Fleet at reboot (pulse = tripwire only; pulse read me 54 vs panel 46 = lags post-rewind): oosh-po 80 (composer 'rewind me' = DIM GHOST via `capture-pane -e` SGR-2, not staged), oosh-tester 78, rest 44-76.
+
 ### ⏳ CYCLE-35 PHASE-1 (2026-09-30 ~14:10) — my panel 66; oopPO ranked MY rewind FIRST (a slipping driver endangers later drives); ARON drives me to 40-50 (exit+refork per row 1c if my floor ~59). ★★ FRESH-ME BOOTS HERE — supersedes CYCLE-34 below.
 - **Identity:** live uuid = **20946951** (`$CLAUDE_CODE_SESSION_ID` + newest-mtime jsonl, VERIFIED). Pane %3. My process args show the fork PARENT `8419c2e5` (14h dead) — never use pane args as identity (13a-xi).
 - **DONE today (all Option-2, phase-2 verified BY CONTENT against disk):** robbin-expert 84→60 (marker, exact) · robbin-po 96→70 (no marker: 2 browse passes, stopped at its fork boot) · robbin-tester 88→54 (marker; it KILLED a 17-day zombie decay-watch PID reading Tron's rooms) · oopPO 84→60 (marker) · oopTester 66→49 (marker, in-band) · **oosh-expert 67→30 = MY MISS**: blind 2nd Enter fired OPTION-1 → 7 LIVE /root/oosh scripts + 8 session files reverted ~2 min; repaired to HEAD by explicit path (diffs: my scratchpad `oosh-expert-revert-130603`); oosh-po verified the repair; expert over-shed below 40 but re-derived from its current anchor.
