@@ -34,9 +34,18 @@ All three deployed-green ON MERIT (RED-first → expert fix → re-gate), verdic
   pinned 46. Merit: output TRACKS input (54→46/80→20/12→88/53.6→46) + differential + structural.
 - Verdicts: `session/tasks/{T-OTMUX-DEFECT-GATE,T-CONTEXT-OCCUPANCY}.GREEN.md`. Tests on
   test/mcdonges.latest (pushed). At ~60% ctx, runway fine.
-- **NEXT:** no assignment queued. On new work: RED-first on DEPLOYED, gate the LIVE/prod surface with
-  REPRESENTATIVE fixtures (not synthetic), prove green is CAUSED BY the fix (differential+functional),
-  flag semantics don't guess. **FLAG oosh-po at ~88% BEFORE any heavy step** (prevent-wall rewind).
+## PENDING (2 items, 2026-09-30 PO order)
+- **ITEM 1 — re-gate `test.session-id-fresh`:** BLOCKED on the expert's session.id fix ff'ing (HEAD
+  still 001011d). Test stands RED (scenario in place). Re-gate green-on-merit the instant it lands.
+- **ITEM 2 — `test.jsonl-lag` RED DELIVERED** (committed+pushed 7193618): from.jsonl reads last
+  assistant-usage; big un-recorded window after it → false-safe number, no lag signal → walling drive.
+  2 RED / 2 anchor. AWAITING EXPERT COORDINATION: (a) lag-detector name (proposed
+  `private.claudeCode.context.jsonl.lag` → lag|fresh); (b) STRUCTURAL threshold (content-after-last-
+  assistant-usage, not a byte guess); (c) real repro jsonl (oopTeam:0.0). Contract: separate lag field,
+  BARE output unchanged (pulse/views parse it), defer-to-panel, remaining-convention. Hardens pulse.
+- On new work: RED-first on DEPLOYED, gate the LIVE/prod surface with REPRESENTATIVE fixtures, prove
+  green is CAUSED BY the fix (differential+functional), flag semantics don't guess.
+  **FLAG oosh-po at ~88% BEFORE any heavy step** (prevent-wall rewind).
 - Standing flag (not mine to fix): MEMORY.md near its 24.4KB read-limit → ARON (canon owner) compaction.
 
 ## Test harnesses (committed session/tasks/*.RED): sweep-live-state, view-agree, delivery-exactly-once,
