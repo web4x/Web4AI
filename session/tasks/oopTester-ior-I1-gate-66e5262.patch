@@ -1,0 +1,179 @@
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Ior/latest/test/IorAcceptance.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Ior/latest/test/IorAcceptance.test.ts
+new file mode 100644
+index 0000000..8e74aa3
+--- /dev/null
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Ior/latest/test/IorAcceptance.test.ts
+@@ -0,0 +1,173 @@
++import fs, { readFileSync } from 'node:fs';
++import { syncBuiltinESMExports } from 'node:module';
++import { describe, expect, it } from 'vitest';
++import { Child } from '../../../latest/test/Child.js';
++import { M1Catalog } from '../../../MOF/M1/M1Catalog/latest/src/ts/EAM/layer2/M1Catalog.js';
++import { Ior } from '../src/ts/EAM/layer2/Ior.js';
++import { RepositoryId } from '../../../RepositoryId/latest/src/ts/EAM/layer2/RepositoryId.js';
++import { ObjectKey } from '../../../ObjectKey/latest/src/ts/EAM/layer2/ObjectKey.js';
++import { InternetProfile } from '../../../InternetProfile/latest/src/ts/EAM/layer2/InternetProfile.js';
++import { Namespace } from '../../../Namespace/latest/src/ts/EAM/layer2/Namespace.js';
++import { Version } from '../../../Version/latest/src/ts/EAM/layer2/Version.js';
++
++/** The canonical I1 form (spec 14 I1 = spec 13 SC4): component AND instance strings, untyped instance until I3. */
++const CANONICAL = /^ior:(component:\/\/([\w.-]+):(\d+)\/([\w.]+)\.([\w-]+)|instance:\/\/([\w.-]+):(\d+)\/([0-9a-f-]{36}))$/;
++
++/**
++ * Every IOR string of the repo's scenario JSON and spec examples — DERIVED, never a hand list: the tracked *.json and
++ * *.md files (git ls-files), struck text (~~…~~) ignored as history, trailing sentence punctuation trimmed. Strings
++ * that are not in the canonical form (placeholders, malformed examples) are OUT of IOR2's set by the spec's own rule.
++ */
++class RepoIorStrings {
++  private found: Array<{ file: string; text: string }> = [];
++  constructor() {}
++  init(): this {
++    const files = String(Child.execFileSync('git', ['ls-files', '*.json', '*.md'], { encoding: 'utf8' })).split('\n').filter((f) => f !== '');
++    for (const file of files) {
++      const body = readFileSync(file, 'utf8').replace(/~~[\s\S]*?~~/g, '');
++      for (const m of body.matchAll(/ior:(?:component|instance):\/\/[^\s`"'()<>|*,\]]+/g)) this.found.push({ file, text: m[0].replace(/[.,;:]+$/, '') });
++    }
++    return this;
++  }
++  get canonical(): Array<{ file: string; text: string }> {
++    return this.found.filter((s) => CANONICAL.test(s.text));
++  }
++  get jsonFiles(): number {
++    return new Set(this.found.filter((s) => s.file.endsWith('.json')).map((s) => s.file)).size;
++  }
++}
++
++/** An Ior built from its TYPED parts out of the canonical regex groups — independent of Ior.parse(). */
++class TypedIor {
++  constructor() {}
++  init(): this {
++    return this;
++  }
++  of(text: string): Ior {
++    const g = CANONICAL.exec(text) ?? [];
++    const instance = g[6] !== undefined;
++    const path = g[4] ?? '';
++    const cut = path.lastIndexOf('.');
++    const type = instance
++      ? undefined
++      : new RepositoryId().init({ name: path.slice(cut + 1), namespace: new Namespace().init({ name: path.slice(0, cut) }), version: new Version().init({ name: g[5] ?? '' }) });
++    const key = new ObjectKey().init({ name: '', repositoryId: type, instanceUuid: instance ? (g[8] ?? '') : '' });
++    const profile = new InternetProfile().init({ name: '', tag: 0, host: (instance ? g[6] : g[2]) ?? '', port: Number(instance ? g[7] : g[3]), objectKey: key });
++    return new Ior().init({ name: '', typeId: type, profiles: [profile] });
++  }
++}
++
++/**
++ * Every node:fs call that can change the disk, spied while a block runs — sync AND promise APIs, synced into ESM named
++ * imports (syncBuiltinESMExports), so an `import { writeFileSync } from 'node:fs'` in the code under test is caught too.
++ * Measured why not `git status`: an ignored path (.gitignore *.log) is invisible to it — a fail-open.
++ */
++class DiskWrites {
++  private calls: string[] = [];
++  constructor() {}
++  init(): this {
++    return this;
++  }
++  during(block: () => void): string[] {
++    const sync = ['writeFileSync', 'appendFileSync', 'mkdirSync', 'rmSync', 'rmdirSync', 'unlinkSync', 'renameSync', 'copyFileSync', 'cpSync', 'writeSync', 'truncateSync', 'symlinkSync', 'linkSync', 'createWriteStream', 'writeFile', 'appendFile', 'mkdir', 'rm', 'unlink', 'rename', 'copyFile'];
++    const promised = ['writeFile', 'appendFile', 'mkdir', 'rm', 'unlink', 'rename', 'copyFile'];
++    const saved: Array<[object, string, unknown]> = [];
++    const spy = (owner: object, name: string, label: string): void => {
++      const original = Reflect.get(owner, name) as ((...a: unknown[]) => unknown) | undefined;
++      if (typeof original !== 'function') return;
++      saved.push([owner, name, original]);
++      Reflect.set(owner, name, (...a: unknown[]): unknown => {
++        this.calls.push(label);
++        return original.apply(owner, a);
++      });
++    };
++    for (const n of sync) spy(fs, n, `fs.${n}`);
++    for (const n of promised) spy(fs.promises, n, `fs.promises.${n}`);
++    syncBuiltinESMExports();
++    try {
++      block();
++    } finally {
++      for (const [owner, name, original] of saved) Reflect.set(owner, name, original);
++      syncBuiltinESMExports();
++    }
++    return this.calls;
++  }
++}
++
++/** The typed graph as data, identity removed: every part mints a uuid at birth, so a literal deep-equal can never hold (measured). */
++function structure(ior: Ior): unknown {
++  return JSON.parse(JSON.stringify(Reflect.get(ior, 'model')), (k, v: unknown) => (k === 'uuid' ? undefined : v));
++}
++
++describe('Ior — spec 14 I1 acceptance (IOR1-IOR5) — oopTester gate', () => {
++  const strings = new RepoIorStrings().init();
++
++  it('IOR1 typed: the catalog IorModel holds NO attribute for host / port / namespace / version — they are relationship ends to the typed parts', () => {
++    const catalog = new M1Catalog().init();
++    const model = catalog.classes().find((c) => c.name === 'IorModel');
++    expect(model, 'IOR1: no IorModel in the catalog — a check over nothing proves nothing').toBeDefined();
++    const flat = (model?.attributes ?? []).map((a) => a.name).filter((n) => ['host', 'port', 'namespace', 'version'].includes(n));
++    expect(flat, 'IOR1: IorModel still holds a flat IOR field as an attribute').toEqual([]);
++    const ends = Object.fromEntries((model?.relationships ?? []).map((r) => [r.name, r.target]));
++    expect([ends['typeId'], ends['profiles']], 'IOR1: IorModel lost its typed ends').toEqual(['RepositoryId', 'TaggedProfile']);
++    const repo = catalog.classes().find((c) => c.name === 'RepositoryIdModel');
++    const repoEnds = Object.fromEntries((repo?.relationships ?? []).map((r) => [r.name, r.target]));
++    expect([repoEnds['namespace'], repoEnds['version']], 'IOR1: namespace / version are not typed ends of RepositoryId').toEqual(['Namespace', 'Version']);
++  });
++
++  it('IOR2 round-trip BOTH ways over EVERY canonical IOR string of the repo (derived scan) — CHECKED / SKIPPED / TOTAL, SKIPPED 0', () => {
++    const set = strings.canonical;
++    expect(set.length, `IOR2: no canonical IOR string found (scenario-JSON files carrying one: ${strings.jsonFiles})`).toBeGreaterThan(0);
++    let checked = 0;
++    for (const { file, text } of set) {
++      expect(Ior.parse(text).toString(), `IOR2: parse(s).toString() !== s for ${text} (${file})`).toBe(text);
++      const i = new TypedIor().init().of(text);
++      expect(structure(Ior.parse(i.toString())), `IOR2: parse(i.toString()) is not structurally i for ${text} (${file})`).toEqual(structure(i));
++      checked++;
++    }
++    expect({ checked, skipped: set.length - checked, total: set.length }, `IOR2 CHECKED ${checked} / SKIPPED ${set.length - checked} / TOTAL ${set.length}`).toEqual({ checked: set.length, skipped: 0, total: set.length });
++  });
++
++  it('IOR3 backward compatible: every SC4 COMPONENT and every SC4 INSTANCE string round-trips byte-identical (I1 < I3) — both kinds present', () => {
++    const components = strings.canonical.filter((s) => s.text.startsWith('ior:component://'));
++    const instances = strings.canonical.filter((s) => s.text.startsWith('ior:instance://'));
++    expect([components.length > 0, instances.length > 0], 'IOR3: the scan holds no component or no instance string — the arm would be vacuous').toEqual([true, true]);
++    for (const { file, text } of [...components, ...instances]) expect(Ior.parse(text).toString(), `IOR3: ${text} (${file}) is not byte-identical after parse`).toBe(text);
++  });
++
++  it('IOR4 the typed parts are the real classes: RepositoryId.namespace is EXACTLY a Namespace and .version EXACTLY a Version — for every canonical component string', () => {
++    const components = strings.canonical.filter((s) => s.text.startsWith('ior:component://'));
++    expect(components.length, 'IOR4: no component string to check').toBeGreaterThan(0);
++    for (const { text } of components) {
++      const type = Ior.parse(text).typeId;
++      expect(Object.getPrototypeOf(type?.namespace ?? {}), `IOR4: ${text} namespace is a ${type?.namespace?.constructor.name}, not exactly a Namespace`).toBe(Namespace.prototype);
++      expect(Object.getPrototypeOf(type?.version ?? {}), `IOR4: ${text} version is a ${type?.version?.constructor.name}, not exactly a Version`).toBe(Version.prototype);
++    }
++  });
++
++  it('IOR5 parse rejects malformed text (missing port, missing version, empty host, unknown scheme) with a NAMED error, and writes NOTHING to disk', () => {
++    const cases: Array<[string, string]> = [
++      ['ior:component://h/a.B.latest', 'missing port'],
++      ['ior:component://h:1/B', 'missing version'],
++      ['ior:component://:1/a.B.latest', 'empty host'],
++      ['ior:corba://h:1/a.B.latest', 'unknown scheme'],
++    ];
++    const errors: Array<Error | undefined> = [];
++    const writes = new DiskWrites().init().during(() => {
++      for (const [text] of cases) {
++        let caught: Error | undefined = undefined;
++        try {
++          Ior.parse(text);
++        } catch (e) {
++          caught = e as Error;
++        }
++        errors.push(caught);
++      }
++    });
++    cases.forEach(([text, defect], n) => {
++      expect(errors[n]?.name, `IOR5: ${text} did not throw an IorParseError`).toBe('IorParseError');
++      expect(errors[n]?.message, `IOR5: ${text} error does not name '${defect}'`).toContain(defect);
++    });
++    expect(writes, 'IOR5: parse of malformed text called a disk-writing node:fs API').toEqual([]);
++  });
++});

@@ -1,3 +1,9 @@
+# oopTester@WODA.prod — spec 14 I1 GATED on 66e5262 2026-10-01 — SUPERSEDES below (queue: oopPO's call on my gate patch)
+
+- DONE: verdict `verdicts/I1-66e5262.md` — QA-GREEN on I1 scope. I1 shipped with NO IOR1/IOR2-scan/IOR5-no-write guards -> I built `IorAcceptance.test.ts` (IOR1-IOR5), PATCH `session/tasks/oopTester-ior-I1-gate-66e5262.patch` (NOT pushed; oopPO decides). 6 seeds RED by name, residual 0. IOR2 scan CHECKED 6/SKIPPED 0/TOTAL 6 but only 2 distinct strings; 0 JSON IORs; IOR2 'deep-equals' impossible literally (uuids) -> structural. SC4 arms re-proven (S3 seed). Abstract hand-pin verified 17, flagged residual.
+- Whole suite: M1Layout AC6 timeout 3/3 cold runs (load 4-6). Solo base 946/892 vs I1 1047/988 ms; base full-suite AC6 1975 ms = 79% budget. INSTRUMENT (closed rule), budget kept, FLAGGED as hottest timeout risk.
+- LESSONS: git status is blind to ignored paths -> spy node:fs for no-write; test files must not reference node:child_process (use Child); catalog superclass edge is named 'extends <X>'.
+
 # oopTester@WODA.prod — NAMESPACE GATED GREEN on 950a241 2026-10-01 — SUPERSEDES below (queue EMPTY)
 
 - DONE: **950a241** (oopExpert's atomic push: code + spec 79d1d268 + my gate aee1d2ce, VERBATIM — 0 diff lines measured) QA-GREEN: cold x2 rc=0 525+2/527 (2 skips = declared holds), AC3 46/46, npm start zero diff, my 6 gate tests pass by name, 8 seeds RED by name on the SHIPPED code (residual 0). Verdict `verdicts/NS-950a241.md`. oopExpert's run-1 M3Class AC1 timeout NOT reproduced (instrument, budget kept).
