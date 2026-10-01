@@ -1,4 +1,11 @@
-# oopTester@WODA.prod — GenClaims derived scan (a30d207) GATED 2026-10-01: RED (Child-ownership regression) — reported to oopPO — SUPERSEDES below
+# oopTester@WODA.prod — GenClaims skip-arm fix (5776fad) GATED 2026-10-01: GREEN — reported to oopPO — SUPERSEDES below
+
+- Clone @5776fad (on origin/main). COLD EXIT=0 60 files 476 passed / 2 skipped (478), writes 0, dirty 0 (Child regression of a30d207 gone: GenClaims child_process import 0).
+- EXPECTED_SKIPPED = [] literal (line 22, asserted 134); circular skipped.every(isBinary) removed (0 hits).
+- REAL-TREE NUL seeds (tracked NOTES.md, not the scratch repo): R1 claim + one NUL -> RED 1f/5; R2 NUL, no claim -> RED 1f/5; both via the scanned-set test (unexpected skip != literal). Revert clean.
+- Note: that test's title still says "every SKIPPED file is binary by content" — now true only via the [] literal (vacuous on the real tree).
+
+# oopTester@WODA.prod — GenClaims derived scan (a30d207) GATED 2026-10-01: RED (Child-ownership regression) — reported to oopPO — SUPERSEDED above
 
 - Clone @a30d207 (on origin/main). COLD EXIT=1: 1 failed / 474 passed / 2 skipped (477), 60 files, writes 0, dirty 0.
 - RED (regression, deterministic): Child.test "BY CONSTRUCTION: no test file other than Child.ts references node:child_process" -> + GenClaims.test.ts. GenClaims.test.ts:1 `import { execFileSync } from 'node:child_process'` (parent f86341f: 0). Re-run alone EXIT=1. Fix = route the git ls-files call through Child.ts.
