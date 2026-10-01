@@ -1,0 +1,28 @@
+diff --git a/spec/scenario.md b/spec/scenario.md
+index a36329a..6ba1d52 100644
+--- a/spec/scenario.md
++++ b/spec/scenario.md
+@@ -79,4 +79,4 @@ S0 specs (oopPO) → S1 restore `EAMD.ucp/` (pure move, all root-relative paths
+ - **SC5 stubs are honest:** every declared stub throws the named spec-iteration error; the stub list is DERIVED from the models (seed: a stub that returns silently → RED).
+ - **SC6 no fs leak:** `node:fs` still only in NodeJSFile / NodeJSFolder (AC2, derived).
+ - **SC7 catalogued + generated:** every new class is a catalogued M1 class generated in all languages; reproduce holds; class count = 74 + the new classes.
+-- **SC8 Thinglish grammar of record:** the EBNF held by `ThinglishGrammar` equals the block in [thinglish.md](thinglish.md); every keyword maps to an M3 element (seed a divergence → RED). **AMENDED 2026-10-01 (Tron's ruling, [thinglish.md](thinglish.md) keyword table):** the version values `latest` / `prod` are not mapped to an M3 element — they are **instances of the `Version` UcpComponent**; the gate derives that set from the grammar's `version` production (never a hand list) and asserts each is an instance of `Version`. `dependency` → `M3Relationship`. `namespace` is **OPEN** until Tron rules (M3Relationship or M3Package).
++- **SC8 Thinglish grammar of record:** the EBNF held by `ThinglishGrammar` equals the block in [thinglish.md](thinglish.md); every keyword maps to an M3 element (seed a divergence → RED). **AMENDED 2026-10-01 (Tron's ruling, [thinglish.md](thinglish.md) keyword table):** the version values `latest` / `prod` are not mapped to an M3 element — they are **instances of the `Version` UcpComponent**; the gate derives that set from the grammar's `version` production (never a hand list) and asserts each is an instance of `Version`. `dependency` → `M3Relationship`. ~~`namespace` is **OPEN** until Tron rules (M3Relationship or M3Package).~~ **`namespace` → instances of the existing `Namespace` UcpComponent (Tron, "1 yes as recommended")**; no keyword is held any more, so the gate's held set must be EMPTY.
+diff --git a/spec/thinglish.md b/spec/thinglish.md
+index 2de9e89..8b5a0f5 100644
+--- a/spec/thinglish.md
++++ b/spec/thinglish.md
+@@ -124,11 +124,11 @@ param        = name , ":" , type , [ "=" , expr ] ;
+ version      = "latest" | "prod" | tag ;
+ ```
+ 
+-> **Tron, 2026-10-01 (verbatim, SC8 clause-2 fork):** "M3Relationship, latest/prod are instances of Version ucpcomponents"
++> **Tron, 2026-10-01 (verbatim, SC8 clause-2 fork):** "M3Relationship, latest/prod are instances of Version ucpcomponents" — then, asked whether that answered `dependency` or `namespace`: **"1 yes as recommended"** = it answered `dependency`; `namespace` → instances of the existing `Namespace` UcpComponent.
+ 
+ | Keyword | M3 element | M2 PIM | In a scenario ([scenario.md](scenario.md)) |
+ |---|---|---|---|
+-| `namespace` | ~~(Namespace)~~ **OPEN — asked Tron 2026-10-01:** `M3Relationship` (a class `containedBy` its package, like the ownership ruling) **or** a new `M3Package`. Not built until he rules. | `ClassModel.namespace` | part of the component IOR |
++| `namespace` | ~~(Namespace)~~ ~~**OPEN — asked Tron 2026-10-01:** `M3Relationship` or a new `M3Package`~~ **none directly — a namespace is an INSTANCE of the existing `Namespace` UcpComponent** (Tron 2026-10-01: "1 yes as recommended" — by symmetry with `Version`; his earlier "M3Relationship" answered `dependency` only; NO `M3Package` is minted — check-before-create) | `ClassModel.namespace` | part of the component IOR |
+ | `dependency` | ~~(versioned component)~~ **`M3Relationship`** (Tron 2026-10-01) | `ImportModel` | a component IOR → **compiles to an import** |
+ | `latest` / `prod` | **none directly — they are INSTANCES of the `Version` UcpComponent** (Tron 2026-10-01): values of the `version` production, whose class `Version` is an M1 UcpComponent (metaclass `M3Class`) | the version of a component IOR | the version segment of a component IOR |
+ | `class` / `interface` | M3Class | `ClassModel` (`isInterface`) | the `ior` (type) |
