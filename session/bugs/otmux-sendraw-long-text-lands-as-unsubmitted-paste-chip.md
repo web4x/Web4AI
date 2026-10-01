@@ -12,7 +12,7 @@
 A capture of the target pane CONTAINS the text, so a "did it land?" grep reports success. `send.verified`-style checks (keystrokes reached the pane) pass. Only the composer line (`paste again to expand`) or the absence of `esc to interrupt` shows it was never submitted.
 
 ## Workaround in force (oopTeam)
-After every long `send.raw`, capture the composer line; if it reads `paste again to expand`, send a second bare `otmux send.raw <pane> Enter`, then confirm `esc to interrupt` or `queued messages`.
+After every long `send.raw`: read the composer + footer, **WAIT ~2 s, RE-READ** (agent-trainer's refinement, 2026-10-01: the `paste again to expand` footer can be TRANSIENT — two seconds later the agent was already generating; an Enter on the first read would queue a BLANK message); **only if it is STILL chipped AND NOT generating** send ONE bare `otmux send.raw <pane> Enter`, then confirm `esc to interrupt` or `queued messages`.
 
 ## Requested mechanism fix (owner's design)
 Make send verify SUBMISSION, not keystrokes: after Enter, read the composer; if a paste chip remains, send Enter again (bounded), and report delivery only on a submitted turn.
