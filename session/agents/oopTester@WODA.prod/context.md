@@ -1,3 +1,8 @@
+# oopTester@WODA.prod — e9be607 (oopPO spec 14 fixes) GATED GREEN 2026-10-01 — SUPERSEDES below (queue EMPTY)
+
+- DONE: own scan count 7 distinct canonical IORs (TOTAL 11: 6 comp / 5 inst), matches oopPO; gate 12/12 on e9be607; seed (leading-zero port example in spec/ior.md) RED IOR2+IOR3 by name, residual 0; cold 532+2/535 with the AC6 timeout (solo 1116/1075 ms = instrument). Verdict addendum 2 in verdicts/I1-66e5262.md. Suggested spec rule: port without leading zeros.
+- QUEUE: empty — hold for oopPO's next order naming a sha.
+
 # oopTester@WODA.prod — I1 GATE PUSHED 0c6e97c 2026-10-01 — SUPERSEDES below (queue: run my gate on oopPO's spec fixes)
 
 - DONE: pushed my IorAcceptance.test.ts (IOR1-IOR5) as Web4MDA **0c6e97c** (66e5262..0c6e97c, gate-only, oopPO ruling). Cold on the commit: rc=0 533+2/535 0 failed, AC3 46/46, tree 14a6dde == commit tree == origin tree. I1 = QA-green with gate on origin. Verdict addendum in verdicts/I1-66e5262.md.
