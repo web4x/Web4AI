@@ -26,3 +26,20 @@
 ## Handoff
 - **Expert**: leave `send.raw` pure; upgrade `send.verified` to §contract (compose send.raw + submission-verify + bounded chip-retry); document "never route a picker through send.verified." If back-compat forbids changing `send.verified` in place, fall back to a new verb — but name it `send.submit` and deprecate the appearance-only check; prefer the in-place upgrade.
 - **Tester (scenario-first RED)**: (1) long paste-chip text → send.verified → asserts SUBMITTED (composer cleared / esc-to-interrupt), not just appeared; (2) retry bounded (≤N Enters) + honest rc on a pane that genuinely can't submit; (3) send.raw UNCHANGED — a picker-nav drive through send.raw fires NO extra Enter (picker-safety regression guard); (4) measure submission by the recipient-side signal, not keystroke count.
+
+---
+## AMENDMENT — RETRAIN-PATH COVERAGE (PO flag, 2026-10-01): decompose so the fix reaches the Phase-2 retrain
+**The gap (PO, correct):** Phase-2 RETRAIN is the rewind-safety-critical long send, and it uses `send.raw` on purpose — to AVOID the `C-u` recall hazard (agent-rewind.md row 2b: "NEVER `C-u` (recalls)") and any Escape. If the chip-submit fix lived ONLY inside `send.verified`'s full staging prelude, retrain couldn't use it → the long-retrain-chip silent-fail would REMAIN. So the fix must be usable on a raw/paste-staged composer with NO C-u/NO Escape.
+
+**Grounding (agent-rewind.md row 2b-i, lived 2026-09-28):** a long retrain is BEST delivered by letting it **collapse into a `[Pasted text]` block** — it "arrives WHOLE, no truncation (unlike long line-wrapped sends)." So the paste-chip is the RELIABLE delivery mode, NOT the bug. The ONLY defect is that the Enter AFTER the chip doesn't always submit. ⇒ the fix is **submit-VERIFY + bounded re-Enter**, applied to an already-staged chip — nothing about staging needs to change.
+
+**RULING AMENDMENT — factor a `send.submit` primitive (OTR-1 decomposition):**
+- **`send.submit <target>`** = submit-ONLY: verify the composer submitted (cleared / `esc to interrupt` / `queued`); if a paste-chip/unsubmitted draft remains, re-fire **bare `send.tui Enter`** (NO Escape, NO C-u, NO re-stage), bounded ≤N, honest rc. Text-free + idempotent → safe to repeat.
+- **`send.verified`** = stage + `send.submit` (the full verb for normal agent-to-agent orders; §contract above).
+- **Retrain path = `send.raw` (stage the long text → it collapses to the `[Pasted text]` block; capture-verify the block is staged) + `send.submit` (verify + bounded bare-Enter until submitted).** This delivers the chip-submit GUARANTEE to retrain **without** `send.verified`'s prelude — the C-u/Escape retrain avoids never runs. **Gap CLOSED, not left open.**
+- `send.submit` uses **bare `send.tui Enter`** (the picker-safe idiom) and is **composer-only, POST-picker** — never fired during nav; documented so (same discipline as send.raw purity). DRY: `send.verified`'s submit phase IS `send.submit` — one submission primitive, two compositions.
+
+**Tester RED — ADD retrain coverage (PO gates retrain-path-covered):**
+5. **Retrain path**: a LONG message via `send.raw` (paste-block stage) + `send.submit` → asserts SUBMITTED (composer cleared / esc-to-interrupt), delivered WHOLE (no truncation), bounded retry, honest rc — i.e. the fix reaches the retrain path, not only `agent.send`/`send.verified`.
+6. **No-C-u/No-Escape in send.submit**: assert `send.submit` issues only bare Enter (no `C-u`, no Escape) — so it is safe on a freshly-landed/retrain composer (the recall hazard never fires).
+7. If a long retrain chip STILL cannot be submitted by `send.raw`+`send.submit` → that is the flag-it case (long-retrain-chip stays open); RED surfaces it rather than hiding it.
