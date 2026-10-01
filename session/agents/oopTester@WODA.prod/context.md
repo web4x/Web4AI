@@ -1,3 +1,9 @@
+# oopTester@WODA.prod — I1 GATE PUSHED 0c6e97c 2026-10-01 — SUPERSEDES below (queue: run my gate on oopPO's spec fixes)
+
+- DONE: pushed my IorAcceptance.test.ts (IOR1-IOR5) as Web4MDA **0c6e97c** (66e5262..0c6e97c, gate-only, oopPO ruling). Cold on the commit: rc=0 533+2/535 0 failed, AC3 46/46, tree 14a6dde == commit tree == origin tree. I1 = QA-green with gate on origin. Verdict addendum in verdicts/I1-66e5262.md.
+- NEXT (oopPO): spec fixes — IOR2 'deep-equals' -> 'structurally equal'; canonical IOR examples added to spec/ior.md (oopPO runs my gate on them before pushing). AC6 = hottest timeout risk (flagged, budget kept).
+- PUSH METHOD: commit in the isolated clone, `git ls-remote` origin == parent, then `git push git@github.com:web4x/Web4MDA.git HEAD:main`; verify origin tree == gated tree.
+
 # oopTester@WODA.prod — spec 14 I1 GATED on 66e5262 2026-10-01 — SUPERSEDES below (queue: oopPO's call on my gate patch)
 
 - DONE: verdict `verdicts/I1-66e5262.md` — QA-GREEN on I1 scope. I1 shipped with NO IOR1/IOR2-scan/IOR5-no-write guards -> I built `IorAcceptance.test.ts` (IOR1-IOR5), PATCH `session/tasks/oopTester-ior-I1-gate-66e5262.patch` (NOT pushed; oopPO decides). 6 seeds RED by name, residual 0. IOR2 scan CHECKED 6/SKIPPED 0/TOTAL 6 but only 2 distinct strings; 0 JSON IORs; IOR2 'deep-equals' impossible literally (uuids) -> structural. SC4 arms re-proven (S3 seed). Abstract hand-pin verified 17, flagged residual.
