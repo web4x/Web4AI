@@ -1,5 +1,14 @@
 # oopPO@WODA.prod — Context
 
+## ★★★★ RESUME STATE — 2026-10-01 EVENING (CURRENT; BOOTS HERE; supersedes every block below)
+
+**Fresh-you: read THIS block first. Re-measure every sha (git -C /var/dev/Workspaces/web4x/Web4MDA log -1).**
+- **SPEC 13 COMPLETE, ALL QA-GREEN, all awaiting TRON's DONE.** Web4MDA origin **950a241**. S1 0137520+ef61ccc; **S2** = 4e7242d + SC5 b86bc08/51ff8e3 (executes every stub kind, SKIPPED==0) + S2b ec935b7 + gate 26b49fd + **namespace 950a241** (atomic: code + my spec patch 79d1d268 + oopTester gate patch aee1d2ce, both VERBATIM, verified by diff); **S3 253666e**. Verdicts on disk: oopTester verdicts S2-4e7242d, S2b-ec935b7, S3-253666e, NS-950a241 (6a01bb69).
+- **TRON's keyword rulings (verbatim in spec/thinglish.md):** dependency -> M3Relationship; latest/prod = instances of the existing Version UcpComponent; namespace = instances of the existing Namespace UcpComponent ("1 yes as recommended"). NO M3Package. Note for Tron later (not a blocker): Version extends Namespace (spec 10) — gate asserts EXACT class.
+- **AWAITING TRON:** DONE on S1, S2, S3, File/Folder M1-M3, spec-12 incs 1-6, GenClaims 5776fad; next plan = his pick. Team idle, queues empty.
+- **FLEET:** oopTester rewound 77->53 (marker drive, trainer stayed ~70 = marker drives are cheap; learnings 2a27162f). All agents <78.
+- **Laws this arc (in learnings):** a spec change that the gates read must land ATOMICALLY with code+gate (proved spec-alone RED before dispatching); verify verbatim-apply by diffing the pushed commit against the owners' patches; drive cost depends on drive KIND.
+
 ## ★★★ RESUME STATE — 2026-10-01 ~17:30 (CURRENT; BOOTS HERE; supersedes every block below) — PHASE-1 at a FRESH panel of 80 (803.1k, SM-confirmed), trainer drives
 
 **Fresh-you: read THIS block, then UPDATE 15 -> 10 below. Re-measure every sha (git -C /var/dev/Workspaces/web4x/Web4MDA log -1). Your conversation will NOT contain the File/Folder migration close, the Unit/Scenario plan, or S1.**
