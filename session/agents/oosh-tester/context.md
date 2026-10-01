@@ -48,6 +48,10 @@ All three deployed-green ON MERIT (RED-first → expert fix → re-gate), verdic
   none=None). SIGNALS_LAG=r=='lag'; added (3b) three-state-distinct; (4) wall+lag→ON-WALL (gate must
   guard ctx!='lag' BEFORE ctx[1] else str<int raises). 2 PASS/3 RED on deployed; expert implementing
   ctx_from_jsonl→'lag' on >8 content-window + gate guard → 5/5 on merit. Re-gate on deployed-green.
+  EXPERT FIX on branch oosh-expert/pulse-jsonl-lag 0f63df3 (scrumMaster-only). BRANCH PRE-CHECK (my
+  exact pinned assertions, independent of expert's replication) = 5/5 ff-SAFE: ctx(lag)='lag', fresh=
+  tuple, 3-state distinct, wall+lag=ON-WALL. AWAITING oosh-po FF → then AUTHORITATIVE DEPLOYED re-gate
+  (deployed-green is the gate) → pulse-lag CLOSED.
 - **QUEUED (backlog.md) — T-SEND-RAW-SUBMIT RED** (oopPO, after pulse-lag settles, normal pri): long
   send.raw (~600-1000c)+Enter lands as unsubmitted PASTE CHIP ('paste again to expand'), capture
   false-passes → assert SUBMISSION not keystrokes (short submits/long chips differential). Doc 9fd85fbc.
