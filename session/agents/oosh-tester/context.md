@@ -44,6 +44,13 @@ All three deployed-green ON MERIT (RED-first → expert fix → re-gate), verdic
   false-LOW. Now 2 PASS/2 RED. Fix = (2) ctx_from_jsonl signals LAG + (4) gate must not downgrade on
   lag. AWAITING EXPERT: exact 3-state sentinel (numeric|LAG|None, lag≠None) → I pin SIGNALS_LAG + the
   (4) condition to it. Lower urgency. Re-gate on deployed-green when it lands.
+  PINNED (e6cef1b): expert confirmed sentinel = exact string 'lag' (3-state fresh=tuple|lag='lag'|
+  none=None). SIGNALS_LAG=r=='lag'; added (3b) three-state-distinct; (4) wall+lag→ON-WALL (gate must
+  guard ctx!='lag' BEFORE ctx[1] else str<int raises). 2 PASS/3 RED on deployed; expert implementing
+  ctx_from_jsonl→'lag' on >8 content-window + gate guard → 5/5 on merit. Re-gate on deployed-green.
+- **QUEUED (backlog.md) — T-SEND-RAW-SUBMIT RED** (oopPO, after pulse-lag settles, normal pri): long
+  send.raw (~600-1000c)+Enter lands as unsubmitted PASTE CHIP ('paste again to expand'), capture
+  false-passes → assert SUBMISSION not keystrokes (short submits/long chips differential). Doc 9fd85fbc.
 
 ## DONE (2026-09-30 PO order)
 - **ITEM 1 — `test.session-id-fresh`: RE-GATE GREEN-on-merit @4fbb654 → CLOSED.** Planted stale cache
