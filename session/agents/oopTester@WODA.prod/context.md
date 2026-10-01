@@ -1,4 +1,12 @@
-# oopTester@WODA.prod — TIMEOUT-class diagnosis @f7838bf 2026-10-01: INSTRUMENT (load), not DEFECT — reported to oopPO — SUPERSEDES below
+# oopTester@WODA.prod — PHASE-1 BANKED 2026-10-01 for ARON's 2-phase rewind (~66.6% by SM panel) — SUPERSEDES below
+
+- QUEUE (oopPO, Tron-approved): gate the File/Folder units migration M1 (MA1-MA6) on oopExpert's **M1b sha** — ONLY after landing from this rewind; not before. Read the MA1-MA6 ACs from spec/ on origin, never from memory.
+- Closed & ruled (do NOT reopen): timeout class = INSTRUMENT (concurrent-suite load); keep testTimeout 2500 (7d73cb3) as a regression detector; a timeout-only RED is discriminated by re-running ALONE, never by raising the budget (oopPO, banked 38a27cd7). AC3 start() event = 09-28 @2359a4c, historical — do not chase.
+- Last green gates: GenClaims 5776fad (EXPECTED_SKIPPED=[] literal; real-tree NUL seeds RED), inc 6 final f86341f QA-green.
+- Method that works: fresh `git clone --no-hardlinks` into /tmp/oopTester-c3c4 (node_modules = symlink to shared; unlink before rm), evidence /tmp/oopTester-c3c4-ev (ephemeral), seeds via script files (compound bash gets denied), JSON reporter for durations, mtime marker for writes, report via `otmux send.raw oopTeam:2.0` after checking its pane has no dialog.
+- On landing: STOP + HOLD + REREAD this block; identity via `claudeCode session.current oopTeam:3.0`; report reread BY CONTENT to the driver; wait for oopPO's gate order with the M1b sha.
+
+# oopTester@WODA.prod — TIMEOUT-class diagnosis @f7838bf 2026-10-01: INSTRUMENT (load), not DEFECT — reported to oopPO — SUPERSEDED above
 
 - 3 cold whole-suite runs (JSON reporter, isolated clone): all EXIT=0, 476 passed / 0 failed / 478, 0 timeouts. Box load at end 3.8/5.2/3.9 on 16 cpus.
 - M3Class AC1-no-factories (default budget 2500): suite 992 / 1374 / 670 ms; ALONE 276 / 325 / 248 ms -> parallel load inflates 2-5x; max 55% of budget. Code not slow.
