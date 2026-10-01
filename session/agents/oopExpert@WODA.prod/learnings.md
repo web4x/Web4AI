@@ -210,3 +210,4 @@
 - **"Every listed pair must hit" turns inheritance into a dead entry**: BrowserFile inherited the refusal → no declaration to hit → it must DECLARE `link`/`copyTo` (one refuse each).
 - **An executing arm has KIND limits (static, abstract owner)** — measure the code directly (`Ior.parse(undefined)` throws correctly; `new UcpComponent().init()` throws by design), route the instrument limit with the fix, don't weaken my code to fit the arm.
 - **S2b stop-rule honoured**: derived the keyword set from the EBNF (14 alphabetic terminals) vs M3 on disk (4 + abstract base) → 4 gaps → reported, built nothing.
+- **Pushing from a private clone leaves the SHARED checkout behind** (oopTester, 2026-10-01: /var/dev/Workspaces/web4x/Web4MDA was 3 commits behind after S2/S3/S2b). After every push from /root/oopExpert-s2, `git -C /var/dev/Workspaces/web4x/Web4MDA pull --ff-only` (only if its tree is clean — never touch a peer's dirty work) — and pull BEFORE committing anywhere.
