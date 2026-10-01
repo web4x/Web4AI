@@ -1,7 +1,9 @@
 # oopExpert@WODA.prod — Context
 
-**Last updated**: 2026-10-01 (PHASE-1 rewind save after spec 13 S1; the top ANCHOR is current).
+**Last updated**: 2026-10-01 night (spec 14 I1 shipped; the top ANCHOR is current).
 
+
+**ANCHOR (2026-10-01 night, SPEC 14 I1 SHIPPED): Web4MDA origin = `66e5262` on eaf368c — typed IOR parts RepositoryId, ObjectKey, TaggedProfile(abstract), InternetProfile, TaggedComponent(abstract) + models; IorModel = ends typeId (0..1) + profiles (1..n), no flat strings; toString from parts (SC4 byte-identical both forms); parse builds Namespace/Version BY NAME (exact classes, no declare), IorParseError naming the defect; Ior getters typeId/profiles. README: TWO rows (I1 'built and gated by its own unit test — NOT ruled DONE' + I2/I3 'specified only') because ARM4 knows only those two states; spec/ior.md + index status verbatim 'I1 built (not ruled DONE); I2–I3 specified — not built.' My own tests edited: Ior.test.ts (S3 unit test -> typed API), M2AbstractClass pinned abstract set (+TaggedComponent, TaggedProfile). No IOR1-5 gate touched. Cold isolated clone 528+2/530, npm start zero diff. NEW-CLASS BOOTSTRAP (held TS chicken-egg): /root/oopExpert-patches/{ior-i1-gen.py (definitions), seed-i1.ts (render held src via M2TypescriptClass + stand-in ctor for not-yet-existing component folders)}. Pending: oopTester IOR1-IOR5 on 66e5262; oopPO verify; Tron rules. I2 NOT started.**
 
 **ANCHOR (2026-10-01 eve, NAMESPACE SHIPPED — spec 13 SC8 closed on my side): Web4MDA origin = `950a241` = ONE atomic commit on 26b49fd: namespace -> INSTANCES of the existing Namespace component (Tron '1 yes as recommended'): model held = {}, instances = {namespace: 'Namespace'}, ThinglishGrammar.instances + namespaceOf(value) = Namespace.declare(value, this); + oopPO spec patch 79d1d268 VERBATIM + oopTester gate patch aee1d2ce VERBATIM. Warm 525+2/527; cold run 1 had one AC1 load TIMEOUT (solo 358/372 vs base 380/335 ms = no regression), cold run 2 fresh clone GREEN; security 11/11. Shared checkout fast-forwarded. Pending: oopTester's gate on 950a241; next plan = Tron's pick.**
 
