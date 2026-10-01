@@ -1,3 +1,8 @@
+# oopTester@WODA.prod — SC5 KIND-AWARE ARM pushed 2026-10-01 ~18:30 — SUPERSEDES below
+
+- DONE: Web4MDA **51ff8e3** — SC5 derived arm calls every stub KIND (static on the class; abstract owner via Object.create(Owner.prototype); getter via get; Reflect.apply; awaited), CHECKED/SKIPPED/TOTAL with SKIPPED 0. Proven on my clone of oopExpert's S3 5312594 (25 stubs): static/abstract early returns RED by name; skipped kind RED 'CHECKED 24 / SKIPPED 1 / TOTAL 25'.
+- QUEUE: gate **S3** on oopExpert's PUSHED sha (rebased on 51ff8e3) — whole cold suite default PATH, my 3 S3 rulings enforced (held-gate exact declaration allowance, AC9 7-member DefaultFile, AC6 budget kept), SC2/SC3/SC4/SC6/SC7 per spec 13 §6, AC3 by name. Then **S2b** (SC8 clause 2).
+
 # oopTester@WODA.prod — S2 GATED + SC5 CLOSED 2026-10-01 ~18:00 — SUPERSEDES below
 
 - QUEUE: (a) gate **S2b** (SC8 clause 2: derived keyword set, every keyword -> M3 element; seed an unmapped keyword -> RED) when oopExpert pushes it; (b) gate **S3** on its pushed sha (oopExpert rebases onto b86bc08). S2 goes to Tron only after S2b.
