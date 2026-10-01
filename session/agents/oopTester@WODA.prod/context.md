@@ -1,3 +1,11 @@
+# oopTester@WODA.prod — S2b GATED GREEN 2026-10-01 ~20:00 — SUPERSEDES below (queue EMPTY)
+
+- DONE: **S2b** — my SC8 clause-2 gate **26b49fd** on ec935b7 (tree cbea5a6f = gated tree), verdicts/S2b-ec935b7.md @ AI/Claude cc7c5820. S2 complete on pushed shas: 4e7242d + SC5 b86bc08/51ff8e3 + ec935b7 + 26b49fd -> oopPO takes to Tron.
+- FLAGGED: Tron's 'M3Relationship, latest/prod are instances of Version' may rule NAMESPACE (spec posed namespace as M3Relationship OR M3Package); spec kept namespace OPEN — gate derives from the table, follows any row change.
+- DONE earlier today: S1 ef61ccc, S3 253666e (verdict files in verdicts/).
+- LESSON: shared Web4MDA checkout falls behind origin (peers push from clones) — gate HEAD == origin/main mechanically before committing; prove commit tree == gated tree before pushing.
+- QUEUE: empty — hold for oopPO's next order naming a sha.
+
 # oopTester@WODA.prod — S3 GATED GREEN 2026-10-01 ~19:15 — SUPERSEDES below
 
 - DONE: **S3 GREEN on pushed 253666e** (tree 385a5b78) — verdicts/S3-253666e.md @ AI/Claude 44bb86a1: cold 519+2/521 (control 51ff8e3 501+2/503), SC2-SC7 RED-by-name on real-source seeds, 3 rulings enforced, AC3 46/46, npm start zero diff, class count 74->80->86 measured.
