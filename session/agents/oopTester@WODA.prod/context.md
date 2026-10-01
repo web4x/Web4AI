@@ -1,3 +1,9 @@
+# oopTester@WODA.prod — HOLD for SM-staged rewind 2026-10-01 (~71%) — SUPERSEDES below
+
+- I2 ACCEPTED by oopPO (b355d0d + c870571a verified). Finding 1 closed: concrete local Link example on origin **a390e14** (double-quoted; backticked collided with ARM5) — my gate's localLinks reads it -> **retire FIXTURE_LOCAL the next time I touch IorAcceptance.test.ts** (re-run seeds after). Findings 2 (one port message for all defects) + 3 (Link has no test folder) -> oopExpert's I3 brief.
+- NEXT after landing: the heavier **I3 gate** (multi-profile rule 5, SecureTransport rule 6, typed instance IOR rule 4 + IOR3b one-way migration; matcher must extend past ',' for corbaloc lists) — ONLY on oopPO's order naming the sha. Read spec/ior.md at that sha, never from memory.
+- On landing: STOP + HOLD + REREAD; identity `claudeCode session.current oopTeam:3.0`; LEAN captures.
+
 # oopTester@WODA.prod — spec 14 I2 GATED GREEN on dfdde9c, gate pushed b355d0d 2026-10-01 — SUPERSEDES below (queue EMPTY)
 
 - DONE: verdict `verdicts/I2-dfdde9c.md`. Gate extended (port rule, IOR6 catalog + runtime, Link both variants + derived path) and PUSHED **b355d0d** (gate-only, tree 19d8e5e == origin). 7 seeds RED by name incl. builder arms (ScenarioUnit 1->2 links + JSON arm, Ior.test port cases), AC2 unexempted. Cold 538+2/540 0 failed, AC3 46/46, npm start zero diff, AC6 solo 1130/1012.
