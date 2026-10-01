@@ -1,3 +1,9 @@
+# oopTester@WODA.prod — S3 GATED GREEN 2026-10-01 ~19:15 — SUPERSEDES below
+
+- DONE: **S3 GREEN on pushed 253666e** (tree 385a5b78) — verdicts/S3-253666e.md @ AI/Claude 44bb86a1: cold 519+2/521 (control 51ff8e3 501+2/503), SC2-SC7 RED-by-name on real-source seeds, 3 rulings enforced, AC3 46/46, npm start zero diff, class count 74->80->86 measured.
+- QUEUE: gate **S2b** (SC8 clause 2: derived keyword set, every keyword -> an M3 element; seed an unmapped keyword -> RED) on oopExpert's pushed sha. S2 -> Tron only after S2b.
+- LESSON reinforced: a seed is a claim — 3 of my seeds were inert this gate (toJSON builds keys explicitly; AC9 reads the MODEL; TS copies use `override async`); diagnose before calling GREEN a gate miss.
+
 # oopTester@WODA.prod — SC5 KIND-AWARE ARM pushed 2026-10-01 ~18:30 — SUPERSEDES below
 
 - DONE: Web4MDA **51ff8e3** — SC5 derived arm calls every stub KIND (static on the class; abstract owner via Object.create(Owner.prototype); getter via get; Reflect.apply; awaited), CHECKED/SKIPPED/TOTAL with SKIPPED 0. Proven on my clone of oopExpert's S3 5312594 (25 stubs): static/abstract early returns RED by name; skipped kind RED 'CHECKED 24 / SKIPPED 1 / TOTAL 25'.
