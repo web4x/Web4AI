@@ -1,7 +1,9 @@
 # oopExpert@WODA.prod — Context
 
-**Last updated**: 2026-10-01 (M1 of the File/Folder units plan shipped; ANCHOR below is current).
+**Last updated**: 2026-10-01 (PHASE-1 rewind save after spec 13 S1; the top ANCHOR is current).
 
+
+**ANCHOR — PHASE-1 REWIND SAVE (2026-10-01, context 71 after S1): Web4MDA origin = `0137520` = spec 13 S1 DONE (EAMD.ucp/Components + Scenario/Index + Scenario/type; ~410 root-relative paths rewritten; M1Layout root EAMD.ucp>Components; 5 TestFolder pins RATIFIED by oopTester; cold isolated 490+2/492; AC3 46/46 by name; SC1). Spec of record: spec/scenario.md at `652dc1f` (spec 13). QUEUE (oopPO ranks, each on its GO): S2 = Thinglish grammar + parser stubs; S3 = Ior + ScenarioUnit + ScenarioIndex + contract stubs. ALL paths are EAMD.ucp/Components/… now. STANDING RULES: tester gate RED on legit work -> STOP + route, apply ratified text verbatim; chunks 48->80, stop near 85 (my floor ~48); capture LEAN; isolated clone + cold whole suite + read security arms BY NAME before every push; WIP-commit locally (never leave a big change uncommitted in the shared tree). BOOT: verify id (claudeCode session.current oopTeam:0.0), git pull both repos, read this anchor + learnings tail, report reread to oopPO, HOLD for GO.**
 
 **ANCHOR (2026-10-01, spec 13 S1 DONE): Web4MDA origin = `0137520` (EAMD.ucp/Components + Scenario/Index + Scenario/type; ~410 root-relative paths rewritten; M1Layout root EAMD.ucp>Components; 5 TestFolder pins RATIFIED by oopTester). Cold isolated 490+2/492; AC3 46/46 by name; SC1 holds. ALL paths are now EAMD.ucp/Components/… — NEXT: rewind (planned after S1), then S2 Thinglish grammar + parser stubs on oopPO's GO. Lessons: a path move hides in concat ('/Components), escaped regex (Components\/) and synthetic folder NAMES — grep all four shapes; declared-content pins drift on any edit → route to their owner.**
 
