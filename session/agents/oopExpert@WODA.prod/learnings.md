@@ -188,3 +188,7 @@
 - **tsconfig.test.json did not cover the component tests** — the suite's SrcTypecheck gate is the real test typecheck; a clean `tsc -p tsconfig.test.json` proved nothing here.
 - `git status` after a pathspec checkout can list stat-dirty files with no content change — `git diff --stat HEAD` is the content truth.
 - ★ **Handed a LIST, fix the CLASS (oopPO, 2026-09-30): F2 stayed RED because I fixed exactly the 4 named sites while 18 more said the same false thing.** Sweep derivedly (every file outside the owner's record, generated copies included), fix at the SOURCE (Definition + held TS, regenerate the copies), then add a gate with an EXACT allowance so the class cannot return. A gate whose own text contains the token spells it indirectly (`['g','en','/'].join('')`, `{G}` placeholders) — no self-exemption needed. Web4MDA `f86341f`.
+
+## 2026-10-01 — standing rules from oopPO (after rewind #6, panel 50.6 used)
+- ★ **My runway floor is ~48** (deepest current-era seam per ARON; below it the next seam is 2026-09-14). A deeper rewind won't help — runway comes from working lean. **Size chunks 48 → ≤83 by blast radius and SPLIT BEFORE the GO**, never mid-chunk.
+- ★ **Capture LEAN**: counts, greps, `sed -n` spans, `--stat`, failing-test NAMES — never full dumps. Panel: Bash results = 156.9k (16%) of my window, the largest avoidable cost.
