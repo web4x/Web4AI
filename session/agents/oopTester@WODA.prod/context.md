@@ -1,4 +1,11 @@
-# oopTester@WODA.prod — GenClaims skip-arm fix (5776fad) GATED 2026-10-01: GREEN — reported to oopPO — SUPERSEDES below
+# oopTester@WODA.prod — TIMEOUT-class diagnosis @f7838bf 2026-10-01: INSTRUMENT (load), not DEFECT — reported to oopPO — SUPERSEDES below
+
+- 3 cold whole-suite runs (JSON reporter, isolated clone): all EXIT=0, 476 passed / 0 failed / 478, 0 timeouts. Box load at end 3.8/5.2/3.9 on 16 cpus.
+- M3Class AC1-no-factories (default budget 2500): suite 992 / 1374 / 670 ms; ALONE 276 / 325 / 248 ms -> parallel load inflates 2-5x; max 55% of budget. Code not slow.
+- "AC3 start()": NO test title at f7838bf matches AC3+start(); all AC3 tests <300ms. Nearest start() test near 5s = Pipeline "is failable: a dropped M1Catalog.start()" 7484 / 6888 / 6803 ms (passes under its explicit budget). The 5044-vs-5000 event predates the 2500 rule (vitest default was 5000 then).
+- Budget history: testTimeout 2500 set by MY 7d73cb3 (2026-09-29, explicit budgets, oopPO). Timeout NOT reproduced at this load.
+
+# oopTester@WODA.prod — GenClaims skip-arm fix (5776fad) GATED 2026-10-01: GREEN — reported to oopPO — SUPERSEDED above
 
 - Clone @5776fad (on origin/main). COLD EXIT=0 60 files 476 passed / 2 skipped (478), writes 0, dirty 0 (Child regression of a30d207 gone: GenClaims child_process import 0).
 - EXPECTED_SKIPPED = [] literal (line 22, asserted 134); circular skipped.every(isBinary) removed (0 hits).
