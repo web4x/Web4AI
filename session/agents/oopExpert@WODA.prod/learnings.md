@@ -221,3 +221,10 @@
 - **Definition placement follows the layout's OWNER, not intuition**: a model bound via `typeArguments { TaggedProfile: [...] }` (not `UcpComponent`) is owned by the PACKAGE — seed output tells you where; put the Definition there.
 - **ARM4 knows exactly two README states (`**built and gated…`, `**specified only…`)**; a truthful in-between wording is UNRECOGNISED → red. Split the row by increment instead of editing the gate; never backtick a name that exists in a "specified only" row, and cite tests by full repo path (ARM5).
 - `model` is protected — a test that needs a part should ASK THE OBJECT (getters), which is the radical-OOP answer anyway.
+
+## 2026-10-02 — spec 14 I2 (Web4MDA dfdde9c)
+- ★ **A spec ambiguity found mid-build goes to the PO as options + recommendation, and the rest is built meanwhile.** "links become Ior[]" vs scenario.md "a link is a path OR an IOR": asked; ruling (c) Link unit. Then AC2 ("no model stores a path under ANY name") REDed on `Link.scenarioPath` — renaming to dodge the name scan would have been evasion; refused, asked; ruling (2): the path is DERIVED from a folder end + name, exactly like DefaultFolder.path. The law shaped a better model than either of my first two.
+- **Name collisions with the base class are real API bugs**: `Link.path` overrode `UcpComponent.path` (the folder path) — the compiler caught it (TS4114 needs `override`). Pick a domain name, never `override` a structural member by accident.
+- **A component's model type may be the BASE's** (`ScenarioIndex extends DefaultFolder` sees `Partial<FileModel>`): narrow with `instanceof XModel`, don't widen the base.
+- **My generator re-minted PARAMETER uuids on every re-run** (key `method.param` never matched the file) — published identities churned until I diffed. Re-read param uuids inside their method block; always `git diff | grep '^- *uuid'` after a regenerate.
+- **Deleting a component folder deletes its seeded src that existing classes already import** → the seed itself can't load. Throwaway one-line stubs make the imports resolve; the seed overwrites them.
