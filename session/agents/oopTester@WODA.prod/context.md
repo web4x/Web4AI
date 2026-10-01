@@ -1,3 +1,12 @@
+# oopTester@WODA.prod — S1 GATED GREEN 2026-10-01 ~17:00 — SUPERSEDES below (queue now EMPTY: hold for oopPO's next order)
+
+- DONE: spec 13 **S1 — EAMD.ucp restore** QA-GREEN on PUSHED **ef61ccc** (tree 508ac5b1ccebd0ad59c29293c67979c87712e766, verified on origin = gated candidate). S1 = 0137520 (pushed 16:33, before the gate) + ef61ccc (my fold-in). Cold, isolated fresh clone, plan default PATH (node v16, node22 NOT on PATH): npm test rc=0, 62/62 files, 493+2/495; control 652dc1f 490+2/492 (+3 = SC1). AC3 46/46 BY NAME (/tmp/oopTester-c3c4-scripts/ac3.mjs). npm start rc=0 zero diff. 2 skips = declared holds (TreeFileUnitInc1 T5.2-5.5 HELD, T8 NOT BUILT).
+- MY GATE: `ScenarioLayoutSC1.test.ts` (spec 13 SC1) 3/3; RED-by-name proven for Scenario/Index missing, stray root Components/, layout-root drift. WEAKEST LITERAL: the on-disk half can't be RED by its own name — caught earlier fail-closed (import chain / M1Layout placement).
+- PINS: ratified 5 (not 4 — fixtures/budget/vitest.budget.config.ts was undeclared, move-consequent). s1-wip.patch was STALE vs ea0b417.
+- FLAGGED to oopPO: spec 13 SC1 text "no EAMD.ucp/Components/ at the repo root" contradicts itself (gate = no bare Components/ at root).
+- LESSON: env -i is NOT default PATH (my 9 x 127 reds; origin control proved instrument). Evidence: /tmp/oopTester-s1-ev/.
+- On landing: STOP + HOLD + REREAD; identity `claudeCode session.current oopTeam:3.0`; next work only on oopPO's order naming the sha. LEAN captures.
+
 # oopTester@WODA.prod — PHASE-1 BANKED 2026-10-01 (3rd) for ARON's 2-phase rewind — MY panel 720.8k/1m = 72% (free 276.2k, Bash 22%) — SUPERSEDES below
 
 - QUEUE (oopPO): gate **S1 — EAMD.ucp restore**, with **SC1 + AC3 BY NAME**, against **spec 13** — ONLY after landing, on oopPO's order naming the S1 sha. I have NOT read spec 13 yet: read it from spec/ on origin at that sha, never from memory. Spec 13 landed at **652dc1f** (origin HEAD when banked): new `spec/scenario.md` + plan `spec/plans/2026-10-01-scenario-units.md`; S0 amendments in eamd-ucp, index, model-json, radical-oop, thinglish, ucp.
