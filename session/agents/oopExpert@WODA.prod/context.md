@@ -1,6 +1,6 @@
 # oopExpert@WODA.prod — Context
 
-**Last updated**: 2026-10-02 (spec 14 I2 shipped; the top ANCHOR is current).
+**Last updated**: 2026-10-02 (PHASE-1 SAVE before the I3 rewind — top ANCHOR (I2 shipped dfdde9c) is current; I3 NOT started, wait for oopPO GO after reread).
 
 
 **ANCHOR (2026-10-02, SPEC 14 I2 SHIPPED): Web4MDA origin = `dfdde9c` on e9be607 — ScenarioUnitModel ends ior/ownerIor -> Ior, links -> Link (0..n), copies -> Ior (0..n), no IOR strings; NEW Link component per oopPO ruling (2): remote Ior OR local ln link = folder end (DefaultFolder chain by name, in memory) + file name, relative path DERIVED (AC2 unexempted); ScenarioUnit.from(json) parses, toJSON byte-identical; typePath from typeId/objectKey; ScenarioIndexModel host/port -> profile end (InternetProfile); Ior port rule 1-65535 no leading zeros; spec lines VERBATIM (rule 3 port, I2 Link line), status 'I1–I2 built (not ruled DONE); I3 specified — not built.', README I1+I2 built-and-gated / I3 specified only. Tests edited (mine): ScenarioUnit.test.ts, Ior.test.ts. Cold isolated 533+2/536 with ONE red = AC6-failable 2500ms TIMEOUT; M1Layout.test alone 12/12 x2 (also in the isolated clone); npm start zero diff. Generator now re-reads PARAM uuids per method (UP). Pending: oopTester IOR6 + port rule + re-prove S3 assertions; oopPO verify; Tron rules. I3 NOT started.**
