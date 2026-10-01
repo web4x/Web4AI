@@ -1,0 +1,117 @@
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/ThinglishGrammar/latest/test/ThinglishGrammar.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/ThinglishGrammar/latest/test/ThinglishGrammar.test.ts
+index 4dfada6..c197177 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/ThinglishGrammar/latest/test/ThinglishGrammar.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/ThinglishGrammar/latest/test/ThinglishGrammar.test.ts
+@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest';
+ import { RadicalOopGate } from '../../../RadicalOopGate/latest/src/ts/EAM/layer2/RadicalOopGate.js';
+ import { ThinglishGrammar } from '../src/ts/EAM/layer2/ThinglishGrammar.js';
+ import { Version } from '../../../Version/latest/src/ts/EAM/layer2/Version.js';
++import { Namespace } from '../../../Namespace/latest/src/ts/EAM/layer2/Namespace.js';
+ 
+ /** The ```ebnf blocks of a spec text — derived from the document, never copied into the test. */
+ class EbnfBlocks {
+@@ -43,7 +44,9 @@ describe('ThinglishGrammar — the grammar of record (spec/thinglish.md, spec 13
+ /**
+  * The keyword table of spec/thinglish.md (Tron's ruling rows), DERIVED from the document — the rows under the
+  * `| Keyword | M3 element |` header — never copied into the test. Per row: its keywords (every backticked word of the
+- * first cell), then its ruling: OPEN (held), INSTANCES of `Version` (version values), or its first M3 element.
++ * first cell), then its ruling: OPEN (held), INSTANCES of `Version` (version values), an INSTANCE of an existing
++ * UcpComponent (a keyword whose values are instances of that M1 component — Tron 2026-10-01: `namespace` → `Namespace`),
++ * or its first M3 element.
+  * Struck text (~~…~~) is history and ignored.
+  */
+ class KeywordTable {
+@@ -60,8 +63,17 @@ class KeywordTable {
+       });
+     return this;
+   }
+-  private kind(ruling: string): 'open' | 'version' | 'element' {
+-    return /\bOPEN\b/.test(ruling) ? 'open' : /INSTANCES of the `Version`/i.test(ruling) ? 'version' : 'element';
++  private kind(ruling: string): 'open' | 'version' | 'instance' | 'element' {
++    if (/\bOPEN\b/.test(ruling)) return 'open';
++    if (/INSTANCES of the `Version`/i.test(ruling)) return 'version';
++    return /INSTANCE of the existing `[A-Z]\w*` UcpComponent/.test(ruling) ? 'instance' : 'element';
++  }
++  /** keyword → the M1 component whose instances it introduces (rows ruled INSTANCE of the existing `X` UcpComponent). */
++  get instances(): Record<string, string> {
++    const out: Record<string, string> = {};
++    for (const r of this.rows.filter((x) => this.kind(x.ruling) === 'instance'))
++      for (const k of r.keywords) out[k] = /INSTANCE of the existing `([A-Z]\w*)` UcpComponent/.exec(r.ruling)?.[1] ?? '';
++    return out;
+   }
+   get open(): string[] {
+     return this.rows.filter((r) => this.kind(r.ruling) === 'open').flatMap((r) => r.keywords).sort();
+@@ -76,6 +88,19 @@ class KeywordTable {
+   }
+ }
+ 
++/** The grammar answers instances of component X via `xOf(value)` — `versionOf` is the precedent (Version.named). */
++function ofMethod(component: string): string {
++  return `${component.charAt(0).toLowerCase()}${component.slice(1)}Of`;
++}
++
++/** The grammar's declared keyword → component map (`ThinglishGrammar.instances`); absent = none declared. */
++function declaredInstances(grammar: object): Record<string, string> {
++  return (Reflect.get(grammar, 'instances') as Record<string, string> | undefined) ?? {};
++}
++
++/** The component classes the gate can check `instanceof` against — import plumbing only; WHICH keyword → WHICH component comes from the spec table. */
++const COMPONENTS: Record<string, abstract new () => object> = { Version, Namespace };
++
+ describe('ThinglishGrammar — SC8 clause 2: every keyword maps to an M3 element (Tron 2026-10-01 ruling) — oopTester gate', () => {
+   const grammar = new ThinglishGrammar().init();
+   const table = new KeywordTable().init(readFileSync('spec/thinglish.md', 'utf8'));
+@@ -86,20 +111,25 @@ describe('ThinglishGrammar — SC8 clause 2: every keyword maps to an M3 element
+     let checked = 0;
+     for (const k of keywords) {
+       const element = grammar.elementOf(k) as { name?: string } | undefined;
+-      const states = [element === undefined ? '' : 'mapped', k in grammar.held ? 'held' : ''].filter((x) => x !== '');
+-      expect(states, `SC8 clause 2: keyword '${k}' must be EXACTLY one of mapped / held (unmapped keyword)`).toHaveLength(1);
++      const instance = k in declaredInstances(grammar);
++      const states = [element === undefined ? '' : 'mapped', k in grammar.held ? 'held' : '', instance ? 'instance' : ''].filter((x) => x !== '');
++      expect(states, `SC8 clause 2: keyword '${k}' must be EXACTLY one of mapped / held / instance-of-component (unmapped keyword)`).toHaveLength(1);
+       if (element !== undefined) expect(element.name, `SC8 clause 2: '${k}' maps to ${element.name ?? '?'}; the spec table rules ${table.elements[k] ?? 'nothing'}`).toBe(table.elements[k]);
+       checked++;
+     }
+     expect({ checked, skipped: keywords.length - checked, total: keywords.length }, `SC8 clause 2 keywords CHECKED ${checked} / SKIPPED ${keywords.length - checked} / TOTAL ${keywords.length}`).toEqual({ checked: keywords.length, skipped: 0, total: keywords.length });
+   });
+ 
++  it('SC8 clause 2: the grammar\'s declared instances == EXACTLY the spec table\'s rows ruled INSTANCE of a component (keyword → component name)', () => {
++    expect(declaredInstances(grammar), 'SC8 clause 2: ThinglishGrammar.instances differs from the INSTANCE rows of spec/thinglish.md').toEqual(table.instances);
++  });
++
+   it('SC8 clause 2: held == EXACTLY the spec table\'s OPEN rows — no keyword is parked as held without Tron\'s open row', () => {
+     expect(Object.keys(grammar.held).sort(), 'SC8 clause 2: held differs from the OPEN rows of spec/thinglish.md').toEqual(table.open);
+   });
+ 
+   it('SC8 clause 2: every derived keyword is DOCUMENTED in the spec keyword table (mapped or OPEN) — an undocumented keyword is RED', () => {
+-    for (const k of grammar.keywords) expect(k in table.elements || table.open.includes(k), `SC8 clause 2: keyword '${k}' has no row in the spec keyword table`).toBe(true);
++    for (const k of grammar.keywords) expect(k in table.elements || table.open.includes(k) || k in table.instances, `SC8 clause 2: keyword '${k}' has no row in the spec keyword table`).toBe(true);
+   });
+ 
+   it('SC8 clause 2 (AMENDED, Tron): the version values are DERIVED from the version production, equal the rows ruled INSTANCES of Version, are never keywords, and each is a Version NAMED by its value', () => {
+@@ -113,5 +143,23 @@ describe('ThinglishGrammar — SC8 clause 2: every keyword maps to an M3 element
+       expect(version.name, `SC8 clause 2: versionOf('${v}') is a Version named '${version.name}'`).toBe(v); // non-vacuous: Version.named builds a Version for ANY tag
+     }
+   });
++  it('SC8 clause 2 (AMENDED, Tron: namespace → instances of the existing Namespace UcpComponent): every keyword ruled INSTANCE of a component is a keyword, maps to NO M3 element, is not held, and the grammar answers instances of exactly that component', () => {
++    const ruled = Object.entries(table.instances);
++    expect(ruled.length, 'SC8 clause 2: the spec table rules no keyword as INSTANCE of a component — the namespace ruling is missing').toBeGreaterThan(0);
++    for (const [k, component] of ruled) {
++      expect(grammar.keywords, `SC8 clause 2: '${k}' is ruled INSTANCE of ${component} but is not a derived keyword`).toContain(k);
++      expect(grammar.elementOf(k), `SC8 clause 2: '${k}' is ruled 'none directly' (instances of ${component}) but maps to an M3 element`).toBeUndefined();
++      expect(Object.keys(grammar.held), `SC8 clause 2: '${k}' is ruled — it must not be held`).not.toContain(k);
++      const cls = COMPONENTS[component];
++      expect(cls, `SC8 clause 2: the spec rules '${k}' → ${component}, which this gate cannot check — add its import to COMPONENTS`).toBeDefined();
++      const of = Reflect.get(grammar, ofMethod(component)) as ((value: string) => { name: string }) | undefined;
++      expect(typeof of, `SC8 clause 2: ThinglishGrammar has no ${ofMethod(component)}(value) answering instances of ${component}`).toBe('function');
++      const sample = 'com.oopTester.Probe';
++      const made = (of as (value: string) => { name: string }).call(grammar, sample);
++      expect(made, `SC8 clause 2: ${ofMethod(component)}('${sample}') is not an instance of ${component}`).toBeInstanceOf(cls as abstract new () => object);
++      // EXACT class: Version extends Namespace, so instanceof alone would accept a Version for a Namespace (measured fail-open).
++      expect(Object.getPrototypeOf(made), `SC8 clause 2: ${ofMethod(component)}('${sample}') is a ${(made as object).constructor.name}, not exactly a ${component}`).toBe((cls as abstract new () => object).prototype);
++      expect(made.name, `SC8 clause 2: ${ofMethod(component)}('${sample}') built '${made.name}' — not the declared leaf`).toBe('Probe'); // non-vacuous
++    }
++  });
+ });
+-
