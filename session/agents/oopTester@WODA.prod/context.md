@@ -1,3 +1,11 @@
+# oopTester@WODA.prod — S2 GATED + SC5 CLOSED 2026-10-01 ~18:00 — SUPERSEDES below
+
+- QUEUE: (a) gate **S2b** (SC8 clause 2: derived keyword set, every keyword -> M3 element; seed an unmapped keyword -> RED) when oopExpert pushes it; (b) gate **S3** on its pushed sha (oopExpert rebases onto b86bc08). S2 goes to Tron only after S2b.
+- DONE: S2 verdict on pushed **4e7242d** (tree 0df21489) — file `verdicts/S2-4e7242d.md` (AI/Claude 0e9dc111 + update 60e5b330). SC8 clause1 GREEN both sides; clause2 NOT BUILT; suite 1/4 rc=0 501+2/503, reds = load timeouts only (oopPO: instrument, budgets KEPT, discriminate by solo run); AC3 46/46; npm start zero diff.
+- DONE: **SC5 closed by EXECUTION**, Web4MDA **b86bc08** (ThinglishParser.test.ts derived arm calls + awaits every derived stub via Source.of; seed C RED on derived arm).
+- S3 RULINGS sent to oopExpert: held gate UnitReferencesInc2 test 189 = exact DECLARATION allowance (link in ScenarioUnit/ScenarioIndex/DefaultFile/BrowserFile/NodeJSFile; sync in ScenarioUnit/ScenarioIndex) + body must be the stub or one refuse(); exact both ways. AC9 DefaultFile = {read,write,exists,remove,refuse,link,copyTo}. AC6 budget KEPT 2500 ms. S3 WIP cd73372 is NOT in the shared repo — gate only the PUSHED sha.
+- On landing: STOP + HOLD + REREAD; identity `claudeCode session.current oopTeam:3.0`; LEAN captures; default PATH = normal shell PATH without node22, never env -i.
+
 # oopTester@WODA.prod — S1 GATED GREEN 2026-10-01 ~17:00 — SUPERSEDES below (queue now EMPTY: hold for oopPO's next order)
 
 - DONE: spec 13 **S1 — EAMD.ucp restore** QA-GREEN on PUSHED **ef61ccc** (tree 508ac5b1ccebd0ad59c29293c67979c87712e766, verified on origin = gated candidate). S1 = 0137520 (pushed 16:33, before the gate) + ef61ccc (my fold-in). Cold, isolated fresh clone, plan default PATH (node v16, node22 NOT on PATH): npm test rc=0, 62/62 files, 493+2/495; control 652dc1f 490+2/492 (+3 = SC1). AC3 46/46 BY NAME (/tmp/oopTester-c3c4-scripts/ac3.mjs). npm start rc=0 zero diff. 2 skips = declared holds (TreeFileUnitInc1 T5.2-5.5 HELD, T8 NOT BUILT).
