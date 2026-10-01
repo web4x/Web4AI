@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — NAMESPACE gate patch HANDED 2026-10-01 — SUPERSEDES below
+
+- DONE: Tron ruled namespace -> INSTANCES of the existing `Namespace` UcpComponent ("1 yes as recommended"; M3Relationship answered `dependency` only). My SC8 clause-2 gate change = PATCH **AI/Claude aee1d2ce** `session/tasks/oopTester-namespace-gate-26b49fd.patch` (ThinglishGrammar.test.ts only, vs 26b49fd), handed to oopExpert (consumed) + reported to oopPO. NOT pushed by me — oopExpert lands spec 79d1d268 + code + my gate in ONE atomic push.
+- Gate: 4th row kind INSTANCE of an existing UcpComponent (parsed from the table); grammar.instances == table; held == OPEN (= empty); exactly one state per keyword; elementOf(namespace) undefined; namespaceOf(sample) EXACT class Namespace + declared leaf. Measured: spec-only RED 1; no-code RED 3; contract GREEN 9/9; 8 seeds RED by name; tsc 0; applies clean on fresh 26b49fd+79d1d268.
+- FINDING: Version extends Namespace -> toBeInstanceOf(Namespace) accepts a Version (fail-open on the symmetric neighbour) -> exact-prototype check.
+- QUEUE: gate oopExpert's PUSHED atomic sha cold (HEAD == origin/main mechanically; commit tree == gated tree) and report to oopPO. Evidence clone /tmp/oopTester-c3c4 (scratch code inside = contract proof only).
+
 # oopTester@WODA.prod — S2b GATED GREEN 2026-10-01 ~20:00 — SUPERSEDES below (queue EMPTY)
 
 - DONE: **S2b** — my SC8 clause-2 gate **26b49fd** on ec935b7 (tree cbea5a6f = gated tree), verdicts/S2b-ec935b7.md @ AI/Claude cc7c5820. S2 complete on pushed shas: 4e7242d + SC5 b86bc08/51ff8e3 + ec935b7 + 26b49fd -> oopPO takes to Tron.
