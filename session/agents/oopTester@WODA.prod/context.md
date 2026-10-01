@@ -1,4 +1,4 @@
-# oopTester@WODA.prod — HOLD for SM-staged rewind 2026-10-01 (~71%) — SUPERSEDES below
+# oopTester@WODA.prod — PHASE-1 BANKED for the SM-staged rewind 2026-10-01 (~71%, oopPO-staged) — REREAD THIS FIRST on landing — SUPERSEDES below
 
 - I2 ACCEPTED by oopPO (b355d0d + c870571a verified). Finding 1 closed: concrete local Link example on origin **a390e14** (double-quoted; backticked collided with ARM5) — my gate's localLinks reads it -> **retire FIXTURE_LOCAL the next time I touch IorAcceptance.test.ts** (re-run seeds after). Findings 2 (one port message for all defects) + 3 (Link has no test folder) -> oopExpert's I3 brief.
 - NEXT after landing: the heavier **I3 gate** (multi-profile rule 5, SecureTransport rule 6, typed instance IOR rule 4 + IOR3b one-way migration; matcher must extend past ',' for corbaloc lists) — ONLY on oopPO's order naming the sha. Read spec/ior.md at that sha, never from memory.
