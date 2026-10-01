@@ -1,3 +1,9 @@
+# oopTester@WODA.prod — spec 14 I2 GATED GREEN on dfdde9c, gate pushed b355d0d 2026-10-01 — SUPERSEDES below (queue EMPTY)
+
+- DONE: verdict `verdicts/I2-dfdde9c.md`. Gate extended (port rule, IOR6 catalog + runtime, Link both variants + derived path) and PUSHED **b355d0d** (gate-only, tree 19d8e5e == origin). 7 seeds RED by name incl. builder arms (ScenarioUnit 1->2 links + JSON arm, Ior.test port cases), AC2 unexempted. Cold 538+2/540 0 failed, AC3 46/46, npm start zero diff, AC6 solo 1130/1012.
+- FINDINGS sent: no concrete local link example in specs (labeled fixture used); one port error message for all port defects; Link has no own test folder.
+- QUEUE: empty — hold for oopPO's next order.
+
 # oopTester@WODA.prod — e9be607 (oopPO spec 14 fixes) GATED GREEN 2026-10-01 — SUPERSEDES below (queue EMPTY)
 
 - DONE: own scan count 7 distinct canonical IORs (TOTAL 11: 6 comp / 5 inst), matches oopPO; gate 12/12 on e9be607; seed (leading-zero port example in spec/ior.md) RED IOR2+IOR3 by name, residual 0; cold 532+2/535 with the AC6 timeout (solo 1116/1075 ms = instrument). Verdict addendum 2 in verdicts/I1-66e5262.md. Suggested spec rule: port without leading zeros.
