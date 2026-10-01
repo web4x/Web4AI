@@ -1,4 +1,11 @@
-# oopTester@WODA.prod — inc 6 FINAL (f86341f) GATED 2026-09-30: QA-GREEN, reported to oopPO — SUPERSEDES below
+# oopTester@WODA.prod — GenClaims derived scan (a30d207) GATED 2026-10-01: RED (Child-ownership regression) — reported to oopPO — SUPERSEDES below
+
+- Clone @a30d207 (on origin/main). COLD EXIT=1: 1 failed / 474 passed / 2 skipped (477), 60 files, writes 0, dirty 0.
+- RED (regression, deterministic): Child.test "BY CONSTRUCTION: no test file other than Child.ts references node:child_process" -> + GenClaims.test.ts. GenClaims.test.ts:1 `import { execFileSync } from 'node:child_process'` (parent f86341f: 0). Re-run alone EXIT=1. Fix = route the git ls-files call through Child.ts.
+- GenClaims itself: control 4/4; tracked seeds each RED 1f/4: his deploy.sh + .env, MY .github/workflows/ci.yml, MY claim appended to a generated .puml. Untracked claim -> GREEN (by design: committed text only).
+- WEAK: (a) "skipped = binary" (line 128) and CHECKED+SKIPPED==TOTAL are CIRCULAR (skipped is defined by isBinary, re-checked by isBinary) -> cannot fail; only real-tree number asserted is TOTAL>400. (b) Real tree: TOTAL 694, binary 0 by perl-NUL AND by git -I -> SKIPPED=0, the skip arm never runs on the real tree (exercised only in the scratch repo). (c) EVASION: a tracked text file with ONE NUL byte carrying a claim (NOTES.md) -> SKIPPED as binary -> GREEN.
+
+# oopTester@WODA.prod — inc 6 FINAL (f86341f) GATED 2026-09-30: QA-GREEN, reported to oopPO — SUPERSEDED above
 
 - Clone @f86341f (on origin/main). COLD EXIT=0 60 files 473/2/475, writes 0, dirty 0.
 - (1) F2 recount, independent broad case-insensitive grep (ts/md/json/mjs/js, excl spec/) = 31 lines vs 30 allowance -> the 1 extra is GenClaims' own "regen/" negative control (not the gate token) -> claims outside the allowance = 0.
