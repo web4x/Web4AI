@@ -1,0 +1,22 @@
+diff --git a/spec/thinglish.md b/spec/thinglish.md
+index 31bdd6a..d5f992c 100644
+--- a/spec/thinglish.md
++++ b/spec/thinglish.md
+@@ -111,7 +111,7 @@ class DemoComponent
+ unit              = namespace , { dependency } , ( class | interface ) ;
+ namespace         = "namespace" , qualifiedName ;
+ dependency        = "dependency" , qualifiedName , "." , version ;
+-class             = [ "abstract" ] , [ "entry" ] , "class" , Name , [ typeParams ] , [ "extends" , type ] , [ "implements" , type , { "," , type } ] , "{" , { member } , "}" ;
++class             = [ "abstract" ] , [ "entry" ] , "class" , Name , [ typeParams ] , [ "extends" , type ] , [ "implements" , type , { "," , type } ] , [ "containedBy" , type ] , [ "instanceOf" , type , { "," , type } ] , "{" , { member } , "}" ;
+ interface         = "interface" , Name , [ typeParams ] , [ "extends" , type , { "," , type } ] , "{" , { member } , "}" ;
+ member            = attribute | property | relationship | collection | method ;
+ attributeModifier = "static" | "private" | "protected" | "override" | "readonly" ;
+@@ -162,7 +162,7 @@ version           = "latest" | "prod" | tag ;
+ | `ItemModel.badge` | presentation (Step B F3) |
+ | `ItemModel.description` | presentation (Step B F3) |
+ 
+-**Step B rulings (oopPO, 2026-10-02, under G3 "TypeScript-shaped"; flagged to Tron):** **F1** — a type annotation is OPTIONAL (`attribute x = 0`, `param` without `: T`), exactly as TypeScript lets it be inferred: omitting it says "untyped", nothing is lost. **F2** — multiplicity's LOWER bound is TypeScript's optional marker: `relationship parent?: Tree` = `0..1`, `relationship owner: X` = `1`, `collection children?: T` = `0..n`, `collection items: T` = `1..n` — no new keyword. **Derived, not rendered** (TH3 counts them as present): `RelationshipModel.source` (= the owning class), `ClassModel.level` (from the namespace), `ImportModel.isInterface` (from the target's kind), `typeArguments` (from the `extends` type text).
++**Step B rulings (oopPO, 2026-10-02, under G3 "TypeScript-shaped"; flagged to Tron):** **F1** — a type annotation is OPTIONAL (`attribute x = 0`, `param` without `: T`), exactly as TypeScript lets it be inferred: omitting it says "untyped", nothing is lost. **F2** — multiplicity's LOWER bound is TypeScript's optional marker: `relationship parent?: Tree` = `0..1`, `relationship owner: X` = `1`, `collection children?: T` = `0..n`, `collection items: T` = `1..n` — no new keyword. **F4 / F5 (oopPO, 2026-10-02, flagged to Tron):** a role-less `containedBy` (classifier ownership — Tron's UPDATE-14 ruling: role-less, non-navigable) and an `instanceOf` metaclass link are **classifier-level** relationships, like `extends` / `implements` — rendered as **class header clauses** with the existing G4 kind keywords (`class BrowserFile extends DefaultFile containedBy DefaultFile`, `abstract class M2AbstractClass … instanceOf M3Class`), never as member lines with invented names. No new keyword. **Derived, not rendered** (TH3 counts them as present): `RelationshipModel.source` (= the owning class), `ClassModel.level` (from the namespace), `ImportModel.isInterface` (from the target's kind), `typeArguments` (from the `extends` type text).
+ 
+ 
+ ## Pure Thinglish serialization — `src/thinglish/` (Tron, 2026-10-02) — specified, not built
