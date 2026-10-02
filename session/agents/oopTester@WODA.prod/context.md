@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — I2 0f2082f RE-GATED 2026-10-02 (draft v7 `session/tasks/oopTester-I3-gate-draft-0f2082f.patch`, 930 lines, 6 files, applies clean on pristine 0f2082f) — REREAD THIS FIRST — SUPERSEDES below
+
+- oopPO RULINGS: D1+D2 → oopExpert (D2 = owner IMPLEMENTS inlined model's base, spec v6 e87a7710); listing = spec v6 DERIVED set (ScenarioIndexModel inlined; MethodModel + TaggedComponentModel interfaces). 0f2082f FIXED D1+D2 (verified: TH3 missing + TH5 green).
+- v7 = v6 + PureLayout EXTRACTED to Web4MDA/latest/test/PureLayout.ts (ONE owner of the inline/interface derivation, pinned in TestFolder.ts + self-pin recomputed) + listing patch (M1Catalog generate() + M1Layout AC6 files() & count: thinglish dir omits inlined, names by typeName/isInterfaceType) + standing D2 seed (ScenarioIndex w/o implements FileModel → RED).
+- RESULT serial: WHOLE SUITE 602 = 599 pass / 1 RED / 2 pending; seeds all green (Target 8, Grammar 2, M1Catalog 4, M1Layout 2, MofPlainNode 2, TestFolder 1). MofPlainNode + TestFolder×3 REDs on the first v7 run were MY file placement (gone after the move).
+- ONLY RED = I2 defect D3: M2ThingClass.held() still lists ItemModel.displayName/icon/badge/description on all 82 types; spec v6 STRIKES those rows (ruling 6) and ItemView.interface.thing RENDERS all four. Never evaluated before (TH3's missing-assert failed first on c75a62c).
+
 # oopTester@WODA.prod — I2 c75a62c GATED 2026-10-02 (draft v6 `session/tasks/oopTester-I3-gate-draft-c75a62c.patch`) — REREAD THIS FIRST — SUPERSEDES below
 
 - c75a62c (branch oopExpert-I2) carries spec v5 — MEASURED: spec blob 6f96aa18 == cde2bef + I1 v5 (oopExpert right, oopPO's "v4" crossed). Clone `tmp/gate` = c75a62c + draft v6.
