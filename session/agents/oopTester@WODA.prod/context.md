@@ -1,4 +1,9 @@
-# oopTester@WODA.prod — Thinglish SC8 modifier gate HELD 2026-10-02 (oopPO: Tron "always work with plans") — SUPERSEDES below
+# oopTester@WODA.prod — Step A SC8 gate RE-DERIVED on plan of record 0a5eea4, HANDED to oopExpert 2026-10-02 — SUPERSEDES below
+
+- DONE: patch `session/tasks/oopTester-stepA-sc8-0a5eea4.patch` + README (contract table for oopExpert's `modifiers`). Not pushed to Web4MDA (oopPO order). Measured: S1 spec alone RED by one-source; S3 spec+gate+correct model 13/13 GREEN, tsc 0; G1 pairs 18/0/18; held TypeAliasModel + ImportModel.isTypeOnly; 7 seeds RED by name. Finding: my old one-source non-vacuity + failable seeds were alignment-bound (fixed in the patch).
+- NEXT: gate oopExpert's ATOMIC Step A sha when oopPO orders it (verify my patch landed VERBATIM — diff against the task file); then B (target-listing test expectations = my patches) + ARM6. On landing: STOP + HOLD + REREAD; identity `claudeCode session.current oopTeam:3.0`; LEAN captures.
+
+# oopTester@WODA.prod — Thinglish SC8 modifier gate HELD 2026-10-02 (oopPO: Tron "always work with plans") — SUPERSEDED above
 
 - HELD, NOT handed over, NOT applied to Web4MDA: `held/` (patch + state script + README with the measured S0–S3c matrix and findings F1–F4). Step A claim measured TRUE: oopPO's spec patch ALONE → RED by "SC8 — ONE source".
 - QUEUE: wait for oopPO's APPROVED PLAN (spec/plans); then re-derive the gate against the plan's base, never apply the held patch blindly. On landing: STOP + HOLD + REREAD; identity `claudeCode session.current oopTeam:3.0`; LEAN captures.
