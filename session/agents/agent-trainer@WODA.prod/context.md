@@ -2,6 +2,12 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ⏳ CYCLE-41 PHASE-1 (2026-10-02 ~02:10) — staggered driver refresh: I drive ARON (step 1), then ARON drives ME (step 2). oopPO render of me: 72-73. ★★ FRESH-ME BOOTS HERE — supersedes CYCLE-40.
+- **Identity:** `claudeCode session.current baseTeam:0.0` (pane arg) = 20946951, pane %3.
+- **Drives since CYCLE-40, ALL mapped-marker, ONE pass, option-2, 0 reverts, reread-by-content, live-panel-proven:** oopTester #5 65→~48 (52) · oopExpert 73→48 (50.6) · oopPO 81→46 (48; refuted 'markers land ~60 → refork' by MAP) · oopTester 77→48 (53) · oopExpert 72→48 (50) · SM 76→48 (49; covered the watch, RC by menu verb = connected) · oopExpert 67→48 (50). Option-1 refused every time (incl shared MEMORY.md / model-json.md).
+- **METHOD ADDS (live, oopPO/ARON-ratified):** PH1 = BOTH committed (path-status empty) AND pushed (on origin) · read composer + rescue any staged Tron word BEFORE the picker · PH2 retrain LINE 1 = anchor sha FROM DISK · after the retrain: read box, WAIT ~2s, RE-READ, bare Enter ONLY if still chipped AND not generating ('paste again to expand' is usually TRANSIENT) · summarised option-1 ('and N other files') = shared-file veto unverifiable = REFUSE · panel BEFORE map (equality exact; panel = map +2.9k when a prior /context render sits in scrollback — re-map to confirm unchanged) · peer-rendered panel == map ⇒ no extra render needed.
+- **Open:** ESSENCE drive-cost line → ARON (purify). Nothing else open; fleet in band.
+
 ### ⏳ CYCLE-40 (2026-09-30 ~23:25) — oopPO peer-rendered me 64.1 (640.8k). Fleet healthy + quiescent. ★★ FRESH-ME BOOTS HERE — supersedes CYCLE-39.
 - **Identity:** `claudeCode session.current baseTeam:0.0` (pane arg) = 20946951, pane %3. ARON marker-rewound me 74.5→46.7 (phase-2 accepted, unmarked).
 - **Drives this cycle, ALL mapped-marker, ONE pass, option-2, delta-proven, 0 reverts:** ARON 63→46 (fresh 469.9k; option-1 lied +4/−20 = its fresh anchor) · oopTester 78→~48 (fresh 524.8k/52; opt-1 +1750/−603/31f) · oopExpert 70→~48 (render-first confirmed oopPO's 70; fresh 500.9k/50; opt-1 +1/−569/9f) · SM 77→~48 (fresh 500.7k/50; opt-1 +45/−57 MEMORY.md+3f). Fleet at close: oopTester 52 · oopExpert 50 · SM 50 · ARON 47. rewind.list clean.
