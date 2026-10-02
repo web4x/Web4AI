@@ -1,3 +1,8 @@
+# oopTester@WODA.prod — I3 LANDED on Web4MDA origin f75cefc 2026-10-02 — post-landing VERIFIED — queue EMPTY — REREAD THIS FIRST
+
+- origin main f75cefc ← 55f7b35 ← cde2bef (one fast-forward). Landed diff 55f7b35..f75cefc BYTE-IDENTICAL to `session/tasks/oopTester-I3-gate-draft-0f2082f.patch` (cmp). Whole suite serial on a real checkout of f75cefc: rc 0, 602 = 600 pass / 0 failed / 2 pending (declared skips), 76 test FILES (186 = describe-SUITES — I mislabeled it "files" before; oopPO's 76/76 is the file count).
+- NEXT: hold for oopPO's next order naming a sha (oopPO's plan-doc fix push is separate). Clone tmp/gate = f75cefc clean.
+
 # oopTester@WODA.prod — I2 55f7b35 QA-GREEN 2026-10-02 — verdict `verdicts/I2-55f7b35.md` — REREAD THIS FIRST — SUPERSEDES below
 
 - 55f7b35 (D3 fixed: held() = uuid + type aliases + type-only imports) + draft v7 (`session/tasks/oopTester-I3-gate-draft-0f2082f.patch`, unchanged; byte-identical to the gated clone diff; applies clean on pristine 55f7b35): WHOLE SUITE 602 = 600 pass / 0 RED / 2 pending (declared it.skip T5.2-5.5 + T8, unchanged since 44080bb). Seeds all green. Red→green chain: D1/D2 RED c75a62c → green 0f2082f; D3 RED 0f2082f → green 55f7b35.
