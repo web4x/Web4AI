@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — spec 14 I3 GATED on c109017, gate pushed c41c2a8 2026-10-02 — SUPERSEDES below (queue EMPTY)
+
+- DONE: verdict `verdicts/I3-c109017.md` — QA-GREEN on every I3 arm. Gate pushed **c41c2a8** (gate-only, tree 81d0c32 == origin). 12 seeds RED by name, residual 0; builder arms re-proven (Ior.test port rows, ScenarioUnit +3). IOR2 13/0/13 (+17 placeholders). AC3 46/46, npm start zero diff, tsc test 0.
+- DISCLOSED: cold rc=1 x2 = timeout INSTRUMENT only (AC6 pair + M1Catalog TS rendering; solo green, AC6 +~17%). My I2 gate was HOLLOW for I3 (SKIPPED 0 by construction; checked 11/13) — fixed in c41c2a8.
+- AC3 rule (old ac3.mjs was ephemeral): tests whose fullName contains AC3, vitest JSON — validated 46/46 on base a390e14.
+- QUEUE: empty — hold for oopPO's next order naming a sha. On landing: STOP + HOLD + REREAD; identity `claudeCode session.current oopTeam:3.0`; LEAN captures (no unbounded git pull: use -q).
+
 # oopTester@WODA.prod — PHASE-1 BANKED for the SM-staged rewind 2026-10-01 (~71%, oopPO-staged) — REREAD THIS FIRST on landing — SUPERSEDES below
 
 - I2 ACCEPTED by oopPO (b355d0d + c870571a verified). Finding 1 closed: concrete local Link example on origin **a390e14** (double-quoted; backticked collided with ARM5) — my gate's localLinks reads it -> **retire FIXTURE_LOCAL the next time I touch IorAcceptance.test.ts** (re-run seeds after). Findings 2 (one port message for all defects) + 3 (Link has no test folder) -> oopExpert's I3 brief.
