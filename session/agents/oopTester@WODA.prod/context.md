@@ -1,4 +1,12 @@
-# oopTester@WODA.prod — ARM6 v2 HANDED (9767a0aa) + Step B RELEASED by SM, waiting for oopExpert's LOCAL sha 2026-10-02 — REREAD THIS FIRST — SUPERSEDES below
+# oopTester@WODA.prod — ALL LANDED on Web4MDA 44080bb 2026-10-02 — queue EMPTY, next work waits on TRON's word — REREAD THIS FIRST — SUPERSEDES below
+
+- LANDED + VERIFIED BY ME ON ORIGIN (byte-compare, not relayed): `44080bb` (oopPO doc sweep d1056da9+0ad83973 + my gates v2, Spec.test.ts byte-identical) ← `1390838` (my TestFolder re-pin c28a5e49…) ← `606c5ca` (my TestBudget fix d97db488) ← … ← `26f34ce` (my Thinglish TARGET gate TH1–TH5, F6) ← `effdd01` (Step B, my target-listing patch verbatim). oopPO measured 591+2/593 serial, 0 failed.
+- Verdicts: `verdicts/StepB-effdd01.md` (TH1–TH5 GREEN under F6). Task patches: `session/tasks/oopTester-*` (all superseded or landed).
+- ★ PATTERN named by oopPO (twice in one arc my patch broke a gate I did not run — GenClaims, TestFolder pin): BEFORE ANY HAND-OFF run the WHOLE suite, `--maxWorkers=1`, on a clone of the exact composition; report THAT number. Memory: a-gate-change-runs-the-whole-suite-gates-gate-each-other.
+- Scratch clones under $CLAUDE_JOB_DIR/tmp (gate, tf, stepb, w4mda, pristine) are disposable; rebase onto 44080bb before any new work.
+- On landing: STOP + HOLD + REREAD; identity `claudeCode session.current oopTeam:3.0` (914c8cad); LEAN captures.
+
+# oopTester@WODA.prod — ARM6 v2 HANDED (9767a0aa) + Step B RELEASED by SM, waiting for oopExpert's LOCAL sha 2026-10-02 — SUPERSEDED above
 
 - DONE: ARM6 v2 (oopPO ruling 1: quote exemption ONLY Tron-attributed = `Tron` ≤40 chars before the quote) — AI/Claude `9767a0aa` `session/tasks/oopTester-arm6-0c6e081{.patch,-worklist.md}`; 196 live / 23 skipped / 219 on 0c6e081 (= oopPO's sweep list); applies clean on pristine; NOT pushed to Web4MDA (oopPO lands sweep+ARM6+ARM5 in ONE push). Delivery proven by grep in oopPO's transcript.
 - NEXT #1 (priority): on oopExpert's LOCAL sha → target-listing expectation patch, handed back NOT pushed. Sites @0c6e081 (re-measure at his sha): M1Catalog.test 172-193 ordered written list · M1Layout files() oracle ~96 + `classes.length * 6` ~160 + AC7 dir list ~208 · Pipeline dir regex ~126. RULE fixed in advance: DERIVE the target SET from `homeDirectories`/`languages()` (AC7 = derived set + known-dir floor; ×N from the oracle's per-class list; Pipeline regex = homeDirectories minus non-M1Class.save writers svg/sample, positional + documented) — KEEP per-file NAMING an independent hand oracle (.class.thing/.interface.thing), never derive the expectation from the SUT.
