@@ -1,5 +1,5 @@
 diff --git a/spec/thinglish.md b/spec/thinglish.md
-index 1bc39ce..c91cc51 100644
+index 1bc39ce..6f96aa1 100644
 --- a/spec/thinglish.md
 +++ b/spec/thinglish.md
 @@ -111,9 +111,9 @@ class DemoComponent
@@ -68,7 +68,7 @@ index 1bc39ce..c91cc51 100644
  - **TH4 only grammar keywords:** every keyword used in any `.thing` belongs to the keyword set **derived from `ThinglishGrammar`**, each mapped per SC8 (an M3 element, an instance of `Namespace`/`Version`, or an attribute of an M3 element).
  - **TH5 no invention:** a model fact the grammar cannot express is reported (the held table), never made up and never silently dropped.
 +- **TH6 member order (NEW 2026-10-02):** in every `.thing` body the member kinds appear in grammar order; seed an out-of-order member → RED.
-+- **TH7 rendering only (NEW 2026-10-02):** the change set touches only `*.thing`; every other target is byte-identical.
++- **TH7 rendering only (NEW 2026-10-02):** ~~the change set touches only `*.thing`~~ **outside the NAMED builders of this change (`M2ThingClass`, `ThinglishGrammar` — their model, source and their own generated targets), this spec and the gate itself, the change set touches only `*.thing`**: every other component's targets are byte-identical (seed: another component's model/ts/puml changed → RED by name). *Corrected 2026-10-02 (oopPO): the first wording was a false claim — the builders must change.*
  - Parsing `.thing` back (`ThinglishParser`, F6) is out of scope — these files are its input.
  
  **Increments** (plan of record): **A** = this grammar + keyword rows + held table, `ThinglishGrammar` model, oopTester's SC8 extension — ONE atomic push. **B** = `M2ThingClass` + `<Component>/latest/src/thinglish/` for every component + TH1–TH5, with the target-listing tests' expectations as oopTester's patches.
