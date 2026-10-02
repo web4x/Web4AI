@@ -1,5 +1,5 @@
 diff --git a/spec/thinglish.md b/spec/thinglish.md
-index 1bc39ce..a4bb049 100644
+index 1bc39ce..fc61680 100644
 --- a/spec/thinglish.md
 +++ b/spec/thinglish.md
 @@ -111,9 +111,9 @@ class DemoComponent
@@ -55,10 +55,10 @@ index 1bc39ce..a4bb049 100644
 +1. **No `entry` keyword** — neither on classes nor interfaces (`isEntry` is a translation fact).
 +2. **An interface is a plain `interface X`** — no `extends Interface` marker; `isAbstract` of an interface is **not a Thinglish fact** (ruling F6 below is superseded).
 +3. **Inherited** attributes, properties, relationships and collections are **not listed** — silently inherited. An **override** that changes a member (e.g. a new initializer) is the class's OWN fact and is listed (`override attribute displayName = 'Web4 MDA'`).
-+4. **A model bound by exactly ONE owner** is not its own `.thing`: its members are listed on top of the owner, whose header drops the `<XModel>` binding.
-+5. **A model shared by several owners** (`ClassModel`, `FileModel`, `RelationshipModel`, `AttributeModel` — their owners are siblings) **renders as an interface** carrying its members; each owner `implements` it.
-+6. **`ItemModel` renders as `interface ItemView extends View, Displayable`** with its attributes and properties.
-+7. **`Model`, `TypedModel` and the standalone data models** (`ImportModel`, `ParameterModel`, `TypeAliasModel`, `TaggedProfileModel`, `ScenarioIndexModel`) **render as interfaces**.
++4. **A model INLINES only when its single owner is its ONLY referrer and nothing extends it** (derived rule — oopExpert's measured stop-report, ruled by oopPO 2026-10-02 as the faithful reading of rulings 4–5, flagged to Tron): its members are listed on top of the owner, whose header drops the `<XModel>` binding. A one-owner model that other classes reference as a type (`MethodModel`) or extend / bound (`TaggedComponentModel`) is shared in substance — inlining it would leave dangling types — so it follows rule 5. A model whose inlined owner extends another model carries that base as `implements` (`SecureTransport` inlines `SecureTransportModel` and implements `TaggedComponentModel`).
++5. **A model shared by several owners or referenced beyond its owner** (`ClassModel`, `FileModel`, `RelationshipModel`, `AttributeModel` — owners are siblings; `MethodModel`, `TaggedComponentModel` — referenced) **renders as an interface** carrying its members; each owner `implements` it.
++6. **`ItemModel` renders as `interface ItemView extends View, Displayable`** with its attributes and properties — file `ItemView.interface.thing` (a file is named by its type).
++7. **`Model`, `TypedModel` and the standalone data models** (`ImportModel`, `ParameterModel`, `TypeAliasModel`, `TaggedProfileModel`) **render as interfaces**. (~~`ScenarioIndexModel`~~ — measured one-owner, only referrer `ScenarioIndex`: it inlines, rule 4. oopPO's plan miscounted it: the binding scan matched only the `extends X<XModel>` form.)
 +
 +**Member order** (grammar `body`): all `attribute` lines, then `property`, then `relationship`, then `collection`, then methods — one per line.
 +
