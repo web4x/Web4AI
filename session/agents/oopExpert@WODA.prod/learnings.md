@@ -249,3 +249,8 @@
 - **Every M2 class carries a modelled `instanceOf M3Class` edge** (INC 4b) — a Definition derived from src lacks it (no source form); add it in the wrap step.
 - **Test instruments over generated text: a body or a multi-line string can contain ANY line** (the EBNF attribute holds `class = …` and `dependency = …` at column 0) — anchor structure checks on the header shape (`… {`) and the preamble, never on a line prefix alone.
 - **Clone the LOCAL worktree for the cold run (`git clone /root/oopExpert-wt`), re-check origin, then push** — order held; serial-green + timeout-only default red = contention (oopPO Step A rule).
+
+## 2026-10-02 — timeout-class fix shipped (Web4MDA 1390838)
+- ★ **A config change can break a GATE's fixture that spreads the real config**: TestBudget's child config did `{ ...base.test, include }`; my `test.projects` rode along and each project's include overrode the fixture's → the child ran the whole suite incl. TestBudget → unbounded recursion under a timeout-less spawnSync = a hang with flat CPU. Find a hang by DIFFING files-started vs files-reported (`--reporter=verbose`, project alone) — 59/60 reported pointed at the one file. Then `vitest list --config <child config>` proved it without running anything.
+- **A gate that can hang cannot fail** (oopPO): the fix needed BOTH the cause (fixture drops inherited projects) and the class (hard spawn ceiling + exit asserted) — both in the gate owner's files, I touched neither.
+- **The owner's own patch can trip another owner gate** (content pin of the changed fixture) — run the WHOLE suite on every applied patch, not just the touched file.
