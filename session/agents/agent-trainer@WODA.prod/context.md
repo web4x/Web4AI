@@ -2,6 +2,12 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ CYCLE-42 (2026-10-02 ~18:00) — ARON carried me 76→47 (step 2 done, phase-2 by content). Then SM-ordered: oopExpert 69→~48.8 ONE pass (delta-proof 512.1k/51 after its reread). ★★ FRESH-ME BOOTS HERE — supersedes CYCLE-41.
+- **★ INSTRUMENT DEFECT CAUGHT BY THE map==panel GATE:** `claudeCode session.id oopTeam:0.0` returned a DEAD uuid (6f8aa69f, transcript ends 09-30); map said 644.5k vs panel 690.4k → STOP. Live transcript = newest-mtime jsonl written at the render (046bbac4, map 690,445 = token-exact). Rule: NEVER trust session.id alone — the map==panel equality IS the identity proof; on mismatch, find the transcript written at your own render. Reported to SM/oopPO for the claudeCode owner.
+- **Drive:** aimed BY CONTENT at its own 10-01 23:51 'ANCHOR FROM DISK' landing (15h, in-band, shallowest); opt-1 lied (+1 −20 context.md+3f); multi-line restored brief cleared with EXPLICIT `send.key C-u 20` (row 2b-C-u), empty proven by 2 verbs; trees clean; parked branch 9e94732 intact.
+- **Canon closed with ARON:** my 3 ESSENCE/row-2b citations were TRUE; ARON had grepped ITS OWN same-basename ESSENCE + a guessed line range → corrected in place 92477542 (13a-nu = verify path+scope), my ESSENCE purified (C-u actor-correct, no cached drive cost), pushed (verified ahead-0 + branch -r).
+- **Busy-footer gotcha:** the busy footer ALSO contains 'auto mode on' — an idle wait must require the footer line WITHOUT 'esc to interrupt'.
+
 ### ⏳ CYCLE-41 PHASE-1 (2026-10-02 ~02:10) — staggered driver refresh: I drive ARON (step 1), then ARON drives ME (step 2). oopPO render of me: 72-73. ★★ FRESH-ME BOOTS HERE — supersedes CYCLE-40.
 - **Identity:** `claudeCode session.current baseTeam:0.0` (pane arg) = 20946951, pane %3.
 - **Drives since CYCLE-40, ALL mapped-marker, ONE pass, option-2, 0 reverts, reread-by-content, live-panel-proven:** oopTester #5 65→~48 (52) · oopExpert 73→48 (50.6) · oopPO 81→46 (48; refuted 'markers land ~60 → refork' by MAP) · oopTester 77→48 (53) · oopExpert 72→48 (50) · SM 76→48 (49; covered the watch, RC by menu verb = connected) · oopExpert 67→48 (50). Option-1 refused every time (incl shared MEMORY.md / model-json.md).
