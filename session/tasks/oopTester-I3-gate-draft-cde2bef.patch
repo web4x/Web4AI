@@ -1,5 +1,5 @@
 diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2ThingClass/latest/test/ThinglishTarget.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2ThingClass/latest/test/ThinglishTarget.test.ts
-index d45f10c..36ebe48 100644
+index d45f10c..93fc78c 100644
 --- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2ThingClass/latest/test/ThinglishTarget.test.ts
 +++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2ThingClass/latest/test/ThinglishTarget.test.ts
 @@ -7,9 +7,10 @@ import { M2ThingClass } from '../src/ts/EAM/layer2/M2ThingClass.js';
@@ -343,7 +343,7 @@ index d45f10c..36ebe48 100644
      if (m.typeParameters.length > 0 && !l.includes(`${m.name}<${m.typeParameters.join(', ')}>(`)) out.push(`${n}.typeParameters`);
      for (const p of m.parameters) {
        const token = `${p.isRest ? '...' : ''}${p.name}${p.isOptional ? '?' : ''}`;
-@@ -213,38 +338,54 @@ class FactInventory {
+@@ -213,38 +338,55 @@ class FactInventory {
      }
      return out;
    }
@@ -370,9 +370,10 @@ index d45f10c..36ebe48 100644
  
 -describe('Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH5) — the whole catalog vs the committed .thing files', () => {
 +/**
-+ * TH7 — RENDERING ONLY (Tron): outside `src/thinglish/**` a change set may touch only spec/, tests, and the increment's
-+ * BUILDER components — the plan of record names them (I2: "Grammar model + M2ThingClass"). Any OTHER component's model, TS
-+ * or generated target changing is a violation by name: an allowance derived from "whatever changed" would be a fail-open.
++ * TH7 — RENDERING ONLY (Tron; spec/thinglish.md TH7 v5, word for word): outside the NAMED builders (M2ThingClass,
++ * ThinglishGrammar — their model, source and own generated targets; the gate files live inside them), THIS spec
++ * (spec/thinglish.md) and the gate itself, the change set touches only `*.thing`. Any OTHER component's model, TS, generated
++ * target or test, and any other spec, is a violation by name — an allowance from "whatever changed" would be a fail-open.
 + */
 +class RenderingScope {
 +  private builders: string[] = [];
@@ -383,7 +384,7 @@ index d45f10c..36ebe48 100644
 +  }
 +  violations(changed: string[]): string[] {
 +    return changed
-+      .filter((p) => !(/\/latest\/src\/thinglish\/.*\.thing$/.test(p) || p.startsWith('spec/') || /\/latest\/test\//.test(p) || this.builders.some((b) => p.startsWith(`${b}/`))))
++      .filter((p) => !(/\/latest\/src\/thinglish\/.*\.thing$/.test(p) || p === 'spec/thinglish.md' || this.builders.some((b) => p.startsWith(`${b}/`))))
 +      .sort();
 +  }
 +}
@@ -414,7 +415,7 @@ index d45f10c..36ebe48 100644
    });
    const thingOf = (c: ClassOf): string => files.text(pathOf.get(c.name) ?? '');
    const tracked = (): string[] => files.tracked();
-@@ -252,136 +393,109 @@ describe('Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH5) — the
+@@ -252,136 +394,109 @@ describe('Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH5) — the
      missing: expected.filter((p) => !have.includes(p)).sort(),
      extra: have.filter((p) => !expected.includes(p)).sort(),
    });
@@ -616,7 +617,7 @@ index d45f10c..36ebe48 100644
      const allowed = grammar.keywords;
      const offenders: string[] = [];
      const used = new Map<string, number>();
-@@ -392,22 +506,30 @@ describe('Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH5) — the
+@@ -392,22 +507,30 @@ describe('Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH5) — the
        }
      }
      console.log(`TH4: grammar keywords ${allowed.length}; used ${used.size}: ${[...used.entries()].map(([k, n]) => `${k}×${n}`).join(' ')}`);
@@ -656,7 +657,7 @@ index d45f10c..36ebe48 100644
        const got = { namespace: p.namespace.length, dependencies: p.dependencies.length, headers: p.headers.length, attributes: p.attributes.length, ends: p.ends.length, members: p.members.length };
        if (JSON.stringify(got) !== JSON.stringify(want)) off.push(`${c.name}: got ${JSON.stringify(got)} want ${JSON.stringify(want)}`);
        for (const u of p.unclassified) off.push(`${c.name}: unclassified ${u}`);
-@@ -418,10 +540,8 @@ describe('Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH5) — the
+@@ -418,10 +541,8 @@ describe('Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH5) — the
    it('TH5 is failable: an extra (invented) member line and a dropped one are RED; an INEXPRESSIBLE fact is a NAMED error, never made up or dropped', () => {
      const c = find((x) => x.attributes.length > 0, 'an attribute');
      const text = thingOf(c);
@@ -669,7 +670,7 @@ index d45f10c..36ebe48 100644
      const odd = Object.assign(Object.create(Object.getPrototypeOf(c) as object) as ClassOf, c, {
        relationships: [...c.relationships, Object.assign(Object.create(Object.getPrototypeOf(c.relationships[0] ?? {}) as object) as Rel, { kind: 'mixes', name: 'blend', target: 'X', multiplicity: '0..1', redefines: '', uuid: '' })],
      });
-@@ -429,4 +549,36 @@ describe('Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH5) — the
+@@ -429,4 +550,40 @@ describe('Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH5) — the
      thing.createExisting(catalog);
      expect(() => thing.create(odd).toSource()).toThrow(/cannot express: mixes 'blend'/);
    });
@@ -703,6 +704,10 @@ index d45f10c..36ebe48 100644
 +    const ts = `${W}/Web4MDA/latest/src/ts/EAM/layer2/Web4MDA.ts`;
 +    const model = `${W}/Web4MDA/latest/model/Web4MDADefinition.ts`;
 +    expect(scope.violations([...ok, puml, ts, model])).toEqual([model, puml, ts].sort());
++    // ...and beyond the spec's words: ANOTHER spec and ANOTHER component's test are not "this spec and the gate itself"
++    const otherSpec = 'spec/mof.md';
++    const otherTest = `${W}/latest/test/Pipeline.test.ts`;
++    expect(scope.violations([...ok, otherSpec, otherTest])).toEqual([otherTest, otherSpec].sort());
 +    expect(scope.violations([`${W}/Web4MDA/latest/src/thinglish/EAM/layer2/Web4MDA.class.ts`])).toHaveLength(1); // only *.thing under thinglish/
 +  });
  });
