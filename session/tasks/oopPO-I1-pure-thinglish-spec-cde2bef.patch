@@ -1,0 +1,74 @@
+diff --git a/spec/thinglish.md b/spec/thinglish.md
+index 1bc39ce..a4bb049 100644
+--- a/spec/thinglish.md
++++ b/spec/thinglish.md
+@@ -111,9 +111,9 @@ class DemoComponent
+ unit              = namespace , { dependency } , ( class | interface ) ;
+ namespace         = "namespace" , qualifiedName ;
+ dependency        = "dependency" , qualifiedName , "." , version ;
+-class             = [ "abstract" ] , [ "entry" ] , "class" , Name , [ typeParams ] , [ "extends" , type ] , [ "implements" , type , { "," , type } ] , [ "containedBy" , type ] , [ "instanceOf" , type , { "," , type } ] , "{" , { member } , "}" ;
+-interface         = "interface" , Name , [ typeParams ] , [ "extends" , type , { "," , type } ] , "{" , { member } , "}" ;
+-member            = attribute | property | relationship | collection | method ;
++class             = [ "abstract" ] , "class" , Name , [ typeParams ] , [ "extends" , type ] , [ "implements" , type , { "," , type } ] , [ "containedBy" , type ] , [ "instanceOf" , type , { "," , type } ] , "{" , body , "}" ;
++interface         = "interface" , Name , [ typeParams ] , [ "extends" , type , { "," , type } ] , "{" , body , "}" ;
++body              = { attribute } , { property } , { relationship } , { collection } , { method } ;
+ attributeModifier = "static" | "private" | "protected" | "override" | "readonly" ;
+ methodModifier    = "abstract" | "static" | "private" | "protected" | "override" | "async" ;
+ attribute         = { attributeModifier } , "attribute" , name , [ ":" , type ] , [ "=" , expr ] ;
+@@ -142,7 +142,7 @@ version           = "latest" | "prod" | tag ;
+ | `relationship` | M3Relationship (`0..1` / `1`) | `RelationshipModel` | ONE IOR |
+ | `collection` | M3Relationship (`0..n` / `1..n`) — *extends* relationship | `RelationshipModel` | an IOR ARRAY |
+ | method | M3Method | `MethodModel` | — |
+-| `abstract` / `entry` (class) | an ATTRIBUTE of **M3Class**: `isAbstract` / `isEntry` | `ClassModel` | — |
++| `abstract` ~~/ `entry`~~ (class) | an ATTRIBUTE of **M3Class**: `isAbstract` ~~/ `isEntry`~~ — **`entry` REMOVED (Tron, 2026-10-02 plan mode): "remove the entry keyword entirely. its not needed at all."** `isEntry` is a TS/JS translation fact | `ClassModel` | — |
+ | `abstract` / `static` / `private` / `protected` / `override` / `async` (method, property) | an ATTRIBUTE of **M3Method**: `isAbstract` / `isStatic` / `visibility` / `isOverride` / `isAsync` | `MethodModel` | — |
+ | `static` / `private` / `protected` / `override` / `readonly` (attribute) | an ATTRIBUTE of **M3Attribute**: `isStatic` / `visibility` / `isOverride` / `isReadonly` | `AttributeModel` | — |
+ | `contains` / `containedBy` / `references` / `instanceOf` | an ATTRIBUTE of **M3Relationship**: `kind` (`generalization` / `realization` are `extends` / `implements`) | `RelationshipModel` | — |
+@@ -157,10 +157,12 @@ version           = "latest" | "prod" | tag ;
+ | `TypeAliasModel` (type aliases) | no M3 element — a keyword would need one (Tron's call) |
+ | `ImportModel.isTypeOnly` (type-only imports) | a TypeScript emit concern of a type alias; held with it |
+ | `TypedModel.uuid` (every element's uuid) | the IDENTITY of the unit (its IOR / scenario unit), not PIM syntax (Step B F3, oopPO ruling) |
+-| `ItemModel.displayName` | presentation — how a unit is SHOWN, not PIM syntax (Step B F3); a grammar addition would be Tron's call |
+-| `ItemModel.icon` | presentation (Step B F3) |
+-| `ItemModel.badge` | presentation (Step B F3) |
+-| `ItemModel.description` | presentation (Step B F3) |
++| ~~`ItemModel.displayName`~~ | ~~presentation~~ **SUPERSEDED (Tron, 2026-10-02 plan mode, ruling 6): `ItemModel` renders as `interface ItemView extends View, Displayable` carrying its attributes and properties — no longer held** |
++| ~~`ItemModel.icon`~~ | ~~presentation~~ **SUPERSEDED (Tron, 2026-10-02 plan mode, ruling 6): `ItemModel` renders as `interface ItemView extends View, Displayable` carrying its attributes and properties — no longer held** |
++| ~~`ItemModel.badge`~~ | ~~presentation~~ **SUPERSEDED (Tron, 2026-10-02 plan mode, ruling 6): `ItemModel` renders as `interface ItemView extends View, Displayable` carrying its attributes and properties — no longer held** |
++| ~~`ItemModel.description`~~ | ~~presentation~~ **SUPERSEDED (Tron, 2026-10-02 plan mode, ruling 6): `ItemModel` renders as `interface ItemView extends View, Displayable` carrying its attributes and properties — no longer held** |
++
++**~~F6~~ SUPERSEDED (Tron, 2026-10-02 plan mode, ruling 2):** an interface's `isAbstract` is not a Thinglish fact at all — it is a translation fact.
+ 
+ **Step B rulings (oopPO, 2026-10-02, under G3 "TypeScript-shaped"; flagged to Tron):** **F1** — a type annotation is OPTIONAL (`attribute x = 0`, `param` without `: T`), exactly as TypeScript lets it be inferred: omitting it says "untyped", nothing is lost. **F2** — multiplicity's LOWER bound is TypeScript's optional marker: `relationship parent?: Tree` = `0..1`, `relationship owner: X` = `1`, `collection children?: T` = `0..n`, `collection items: T` = `1..n` — no new keyword. **F4 / F5 (oopPO, 2026-10-02, flagged to Tron):** a role-less `containedBy` (classifier ownership — Tron's UPDATE-14 ruling: role-less, non-navigable) and an `instanceOf` metaclass link are **classifier-level** relationships, like `extends` / `implements` — rendered as **class header clauses** with the existing G4 kind keywords (`class BrowserFile extends DefaultFile containedBy DefaultFile`, `abstract class M2AbstractClass … instanceOf M3Class`), never as member lines with invented names. No new keyword. **Derived, not rendered** (TH3 counts them as present): `RelationshipModel.source` (= the owning class), `ClassModel.level` (from the namespace), `ImportModel.isInterface` (from the target's kind), `typeArguments` (from the `extends` type text).
+ 
+@@ -169,11 +171,29 @@ version           = "latest" | "prod" | tag ;
+ 
+ Every component's `<Component>/latest/src/` gains a **`thinglish/`** folder beside `ts/`, `js/`, `thinglish.ts/`, `thinglish.js/`, `puml/`, `mmd/`: the model **serialized in pure Thinglish** (the grammar above), one type per file — **`<Component>/latest/src/thinglish/EAM/<layer>/<Name>.class.thing`** or **`<Name>.interface.thing`** — rendered from the **model** by the M2 target **`M2ThingClass`** (never parsed from source), generated and committed like every target.
+ 
+-- **TH1 one file per type, derived:** every catalogued class has exactly one `.thing` file of the right kind in its component's `<Component>/latest/src/thinglish/EAM/<layer>/`; expected set derived from the catalog (CHECKED / SKIPPED / TOTAL, SKIPPED 0); seed a missing or wrong-kind file → RED.
++### Pure Thinglish vs translation conventions (Tron, 2026-10-02 — plan of record [plans/2026-10-02-pure-thinglish-interfaces-and-inline-models.md](plans/2026-10-02-pure-thinglish-interfaces-and-inline-models.md), APPROVED in plan mode)
++
++> **Tron (verbatim):** "in pure thinglish there is no need for interfaces to be abstract classes. just if we translate it to typescript and javascript … also there is no need in thinglish to separate the attributes, properties, relationships and collections into a xyzModel, but list them on top of the class/interface in that order line by line before the methods."
++
++Pure Thinglish (`.thing`) shows the model as a modeller reads it. §1–§3 above (the `Interface` marker, interfaces as abstract classes, `static get implements()`, one type per file `X.class.*` / `X.interface.*`) and the separate `XModel` class are **translation conventions** for the TS/JS targets only. **Rendering only:** the model and every other target are byte-identical.
++
++1. **No `entry` keyword** — neither on classes nor interfaces (`isEntry` is a translation fact).
++2. **An interface is a plain `interface X`** — no `extends Interface` marker; `isAbstract` of an interface is **not a Thinglish fact** (ruling F6 below is superseded).
++3. **Inherited** attributes, properties, relationships and collections are **not listed** — silently inherited. An **override** that changes a member (e.g. a new initializer) is the class's OWN fact and is listed (`override attribute displayName = 'Web4 MDA'`).
++4. **A model bound by exactly ONE owner** is not its own `.thing`: its members are listed on top of the owner, whose header drops the `<XModel>` binding.
++5. **A model shared by several owners** (`ClassModel`, `FileModel`, `RelationshipModel`, `AttributeModel` — their owners are siblings) **renders as an interface** carrying its members; each owner `implements` it.
++6. **`ItemModel` renders as `interface ItemView extends View, Displayable`** with its attributes and properties.
++7. **`Model`, `TypedModel` and the standalone data models** (`ImportModel`, `ParameterModel`, `TypeAliasModel`, `TaggedProfileModel`, `ScenarioIndexModel`) **render as interfaces**.
++
++**Member order** (grammar `body`): all `attribute` lines, then `property`, then `relationship`, then `collection`, then methods — one per line.
++
++- **TH1 one file per type, derived:** ~~every catalogued class~~ **every catalogued class that pure Thinglish shows as a type (rulings 4–7: a 1:1 model has NO own file)** has exactly one `.thing` file of the right kind in its component's `<Component>/latest/src/thinglish/EAM/<layer>/`; expected set derived from the catalog (CHECKED / SKIPPED / TOTAL, SKIPPED 0); seed a missing or wrong-kind file → RED.
+ - **TH2 generated from the model:** `npm start` reproduces every `.thing` with zero diff; seed a hand-edit → RED.
+ - **TH3 lossless except EXACTLY the held set:** every model fact appears — namespace, dependencies, kind, type params, extends/implements, attributes (type, initializer, modifiers), properties, methods (type params, params incl. `...`/`?`/defaults, return type, modifiers, TypeScript body or `;`), relationships/collections (kind, `redefines`); seed: drop any one from the renderer → RED by name.
+ - **TH4 only grammar keywords:** every keyword used in any `.thing` belongs to the keyword set **derived from `ThinglishGrammar`**, each mapped per SC8 (an M3 element, an instance of `Namespace`/`Version`, or an attribute of an M3 element).
+ - **TH5 no invention:** a model fact the grammar cannot express is reported (the held table), never made up and never silently dropped.
++- **TH6 member order (NEW 2026-10-02):** in every `.thing` body the member kinds appear in grammar order; seed an out-of-order member → RED.
++- **TH7 rendering only (NEW 2026-10-02):** the change set touches only `*.thing`; every other target is byte-identical.
+ - Parsing `.thing` back (`ThinglishParser`, F6) is out of scope — these files are its input.
+ 
+ **Increments** (plan of record): **A** = this grammar + keyword rows + held table, `ThinglishGrammar` model, oopTester's SC8 extension — ONE atomic push. **B** = `M2ThingClass` + `<Component>/latest/src/thinglish/` for every component + TH1–TH5, with the target-listing tests' expectations as oopTester's patches.
