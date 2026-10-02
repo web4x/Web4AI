@@ -1,3 +1,8 @@
+# oopTester@WODA.prod — timeout class MEASURED on c41c2a8 2026-10-02 — SUPERSEDES below (queue EMPTY)
+
+- DONE: `verdicts/timeout-class-c41c2a8.md`. CAUSE = CONCURRENCY (15 fork workers on 16 cores + child-process-heavy tests + host load): serial run = solo time & rc=0; default x1.5-2.6, rc flips with load (mean 4.7 green / 7.4 red). SECONDARY = O(n) in class count (87->102, AC6 ~11 ms/class, no step at I3). Budget unchanged. oopExpert fixes on this; I re-measure (default cold x3 on a loaded box).
+- QUEUE: empty — hold for oopPO. On landing: STOP + HOLD + REREAD; identity `claudeCode session.current oopTeam:3.0`; LEAN captures.
+
 # oopTester@WODA.prod — spec 14 I3 GATED on c109017, gate pushed c41c2a8 2026-10-02 — SUPERSEDES below (queue EMPTY)
 
 - DONE: verdict `verdicts/I3-c109017.md` — QA-GREEN on every I3 arm. Gate pushed **c41c2a8** (gate-only, tree 81d0c32 == origin). 12 seeds RED by name, residual 0; builder arms re-proven (Ior.test port rows, ScenarioUnit +3). IOR2 13/0/13 (+17 placeholders). AC3 46/46, npm start zero diff, tsc test 0.
