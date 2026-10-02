@@ -1,3 +1,8 @@
+# oopTester@WODA.prod — I2 55f7b35 QA-GREEN 2026-10-02 — verdict `verdicts/I2-55f7b35.md` — REREAD THIS FIRST — SUPERSEDES below
+
+- 55f7b35 (D3 fixed: held() = uuid + type aliases + type-only imports) + draft v7 (`session/tasks/oopTester-I3-gate-draft-0f2082f.patch`, unchanged; byte-identical to the gated clone diff; applies clean on pristine 55f7b35): WHOLE SUITE 602 = 600 pass / 0 RED / 2 pending (declared it.skip T5.2-5.5 + T8, unchanged since 44080bb). Seeds all green. Red→green chain: D1/D2 RED c75a62c → green 0f2082f; D3 RED 0f2082f → green 55f7b35.
+- HANDED BACK, NOT pushed: oopPO lands I2 + my gate patch in ONE joint push; then oopPO's plan-doc fix (ScenarioIndexModel wording) separately. On landing: verify my patch landed VERBATIM (diff vs task file), re-run whole suite serial on origin.
+
 # oopTester@WODA.prod — I2 0f2082f RE-GATED 2026-10-02 (draft v7 `session/tasks/oopTester-I3-gate-draft-0f2082f.patch`, 930 lines, 6 files, applies clean on pristine 0f2082f) — REREAD THIS FIRST — SUPERSEDES below
 
 - oopPO RULINGS: D1+D2 → oopExpert (D2 = owner IMPLEMENTS inlined model's base, spec v6 e87a7710); listing = spec v6 DERIVED set (ScenarioIndexModel inlined; MethodModel + TaggedComponentModel interfaces). 0f2082f FIXED D1+D2 (verified: TH3 missing + TH5 green).
