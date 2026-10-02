@@ -1,3 +1,11 @@
+# oopTester@WODA.prod — I2 c75a62c GATED 2026-10-02 (draft v6 `session/tasks/oopTester-I3-gate-draft-c75a62c.patch`) — REREAD THIS FIRST — SUPERSEDES below
+
+- c75a62c (branch oopExpert-I2) carries spec v5 — MEASURED: spec blob 6f96aa18 == cde2bef + I1 v5 (oopExpert right, oopPO's "v4" crossed). Clone `tmp/gate` = c75a62c + draft v6.
+- MY ORACLE corrected (no new DERIVED row, still 10): dependencies() follows DERIVED rows 37 (interface marker import) + 39 (ItemView: View+Displayable REQUIRED); pure-interface member = BODYLESS `;` checked, no `abstract` word (Tron verbatim spec §: "no need for interfaces to be abstract classes"). New seed test RED-by-name on nearest members: body on interface member, `abstract` stripped from a CLASS member, non-marker interface dep, ItemView w/o View. TH5 now prints its list.
+- RESULT serial: Grammar 14/0 · Target 13 green / 2 RED · seeds 10/10 · WHOLE SUITE 601 = 595 pass / 4 RED / 2 pending.
+- I2 DEFECTS: D1 `dependency Model.latest` DUPLICATED in 5 files (UcpUnit, M2AbstractCollection, M2AbstractRelationship, M2ES2020Class, OoshUnit) = TH5's 5 (hazard scan agrees). D2 18 owners of an inlined model emit `dependency <base>` but no `implements` (17 ItemView + InternetProfile→TaggedProfileModel) = TH3's 18; plan rule 4 SILENT on direction → oopPO rules.
+- INSTRUMENT (my lane, NOT yet written): M1Catalog generate()-listing + M1Layout AC6 = 697 vs 717 = exactly 13 model-interfaces renamed + 20 inlined + ItemModel→ItemView. HOLD the listing patch on oopPO's ruling: ScenarioIndexModel is INLINED (1 non-model owner ScenarioIndex) though ruling 7 names it an interface; MethodModel + TaggedComponentModel become interfaces unnamed by rulings 5/7.
+
 # oopTester@WODA.prod — I3 DISPATCHED (oopPO) 2026-10-02: TH1/TH3/TH4 update + NEW TH6 order + NEW TH7 scope; gate oopExpert's I2 — REREAD THIS FIRST — SUPERSEDES below
 
 - Plan of record: Web4MDA `spec/plans/2026-10-02-pure-thinglish-interfaces-and-inline-models.md` @ `cde2bef` (APPROVED by Tron, rulings 1–7). RENDERING ONLY: only `latest/src/thinglish/**/*.thing` changes; model + every other target byte-identical.
