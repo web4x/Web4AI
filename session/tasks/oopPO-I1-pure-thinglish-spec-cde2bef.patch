@@ -1,5 +1,5 @@
 diff --git a/spec/thinglish.md b/spec/thinglish.md
-index 1bc39ce..fc61680 100644
+index 1bc39ce..74e7784 100644
 --- a/spec/thinglish.md
 +++ b/spec/thinglish.md
 @@ -111,9 +111,9 @@ class DemoComponent
@@ -20,7 +20,7 @@ index 1bc39ce..fc61680 100644
  | `collection` | M3Relationship (`0..n` / `1..n`) — *extends* relationship | `RelationshipModel` | an IOR ARRAY |
  | method | M3Method | `MethodModel` | — |
 -| `abstract` / `entry` (class) | an ATTRIBUTE of **M3Class**: `isAbstract` / `isEntry` | `ClassModel` | — |
-+| `abstract` ~~/ `entry`~~ (class) | an ATTRIBUTE of **M3Class**: `isAbstract` ~~/ `isEntry`~~ — **`entry` REMOVED (Tron, 2026-10-02 plan mode): "remove the entry keyword entirely. its not needed at all."** `isEntry` is a TS/JS translation fact | `ClassModel` | — |
++| `abstract` (class) | an ATTRIBUTE of **M3Class**: `isAbstract`. ~~`entry` (class) → `isEntry`~~ — **`entry` REMOVED (Tron, 2026-10-02 plan mode): "remove the entry keyword entirely. its not needed at all."** `isEntry` is a TS/JS translation fact | `ClassModel` | — |
  | `abstract` / `static` / `private` / `protected` / `override` / `async` (method, property) | an ATTRIBUTE of **M3Method**: `isAbstract` / `isStatic` / `visibility` / `isOverride` / `isAsync` | `MethodModel` | — |
  | `static` / `private` / `protected` / `override` / `readonly` (attribute) | an ATTRIBUTE of **M3Attribute**: `isStatic` / `visibility` / `isOverride` / `isReadonly` | `AttributeModel` | — |
  | `contains` / `containedBy` / `references` / `instanceOf` | an ATTRIBUTE of **M3Relationship**: `kind` (`generalization` / `realization` are `extends` / `implements`) | `RelationshipModel` | — |
