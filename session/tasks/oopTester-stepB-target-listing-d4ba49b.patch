@@ -1,0 +1,103 @@
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/M1Catalog.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/M1Catalog.test.ts
+index 5964e7f..711fdd5 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/M1Catalog.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/M1Catalog.test.ts
+@@ -172,22 +172,34 @@ describe('M1Catalog', () => {
+   const home = catalog.homeLayout(root); // spec 12 rule 6 (a): EVERY generated language lives in its component (<root>/Components/…)
+   const where = (name: string, directory: string): string => home.classFolder(name, directory).path;
+ 
+-  it('generate() writes every class in every language the components do NOT hold: js, thinglish.ts, thinglish.js, puml (+ derived svg), mmd — never ts (spec 12 AC6)', async () => {
++  it('generate() writes every class in every language the components do NOT hold — the set and order DERIVED from languages(), never the held one (spec 12 AC6); per-file naming an independent oracle', async () => {
+     const written = generated.map((p) => p.slice(root.length + 1));
+     const svgReachable = await new PlantUmlServerTs().init().isReachable();
+     const at = (n: string, directory: string, file: string): string => `${where(n, directory).slice(root.length + 1)}/${file}`;
+     const placed = 'M1Catalog'; // the ONE placed MOF unit (Tron d2cf919, design (a) 4e9ae61): after the catalogued classes, in every CODE language
+     expect(written.filter((p) => p.includes('/src/ts/')), 'no TypeScript is generated: the components hold it (spec 12 AC6, rule 6)').toEqual([]);
+-    const expected = [
+-      ...names.map((n) => at(n, 'js', `${n}.js`)),
+-      at(placed, 'js', `${placed}.js`),
+-      ...names.map((n) => at(n, 'thinglish.ts', `${n}.${interfaces.includes(n) ? 'interface' : 'class'}.ts`)),
+-      at(placed, 'thinglish.ts', `${placed}.class.ts`),
+-      ...names.map((n) => at(n, 'thinglish.js', `${n}.${interfaces.includes(n) ? 'interface' : 'class'}.js`)),
+-      at(placed, 'thinglish.js', `${placed}.class.js`),
+-      ...names.flatMap((n) => (svgReachable ? [at(n, 'puml', `${n}.puml`), at(n, 'svg', `${n}.svg`)] : [at(n, 'puml', `${n}.puml`)])),
+-      ...names.map((n) => at(n, 'mmd', `${n}.mmd`)),
+-    ];
++    // oopTester Step B: the TARGET SET and ORDER are DERIVED — every language of the generator, in ITS order, minus the
++    // HELD one — so a new target is covered the moment it is registered. The per-file NAMING stays an INDEPENDENT oracle
++    // written by the gate owner (never derived from the code under test); a generated language with NO naming entry is RED.
++    const kind = (n: string): string => (interfaces.includes(n) ? 'interface' : 'class');
++    const naming: Record<string, (n: string) => string> = {
++      js: (n) => `${n}.js`,
++      'thinglish.ts': (n) => `${n}.${kind(n)}.ts`,
++      'thinglish.js': (n) => `${n}.${kind(n)}.js`,
++      puml: (n) => `${n}.puml`,
++      mmd: (n) => `${n}.mmd`,
++      thinglish: (n) => `${n}.${kind(n)}.thing`,
++    };
++    const fileOf = (d: string, n: string): string => (naming[d] ?? (() => `<no naming oracle for ${d}>`))(n);
++    const held = catalog.heldLanguage.directory;
++    const order = catalog.languages().map((l) => l.directory).filter((d) => d !== held);
++    expect(order.filter((d) => naming[d] === undefined), 'a generated language with NO naming oracle — the gate owner must add it').toEqual([]);
++    expect(Object.keys(naming).filter((d) => !order.includes(d)), 'a naming entry for a language the generator does not write').toEqual([]);
++    const codeLanguages = ['js', 'thinglish.ts', 'thinglish.js']; // the placed unit is placed in the CODE languages only (measured d4ba49b: no .thing for M1Catalog)
++    const expected = order.flatMap((d) => [
++      ...names.flatMap((n) => (d === 'puml' && svgReachable ? [at(n, 'puml', fileOf('puml', n)), at(n, 'svg', `${n}.svg`)] : [at(n, d, fileOf(d, n))])),
++      ...(codeLanguages.includes(d) ? [at(placed, d, fileOf(d, placed))] : []),
++    ]);
+     expect(written).toEqual(expected);
+   });
+ 
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/test/M1Layout.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/test/M1Layout.test.ts
+index 2830162..6f0a963 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/test/M1Layout.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/test/M1Layout.test.ts
+@@ -93,7 +93,7 @@ class LayoutOracle {
+     const ns = (this.declared.get(owner)?.namespace ?? '').split('.').filter((x) => x !== '').map((x) => `${x}/`).join('');
+     const at = (dir: string, file: string): string => `${base}/${owner === 'Web4MDA' ? 'latest/' : `${ns}${owner}/latest/`}src/${dir}/EAM/${this.layer(n)}/${file}`;
+     const kind = isInterface ? 'interface' : 'class';
+-    return [at('ts', `${n}.ts`), at('js', `${n}.js`), at('thinglish.ts', `${n}.${kind}.ts`), at('thinglish.js', `${n}.${kind}.js`), at('puml', `${n}.puml`), at('svg', `${n}.svg`), at('mmd', `${n}.mmd`)];
++    return [at('ts', `${n}.ts`), at('js', `${n}.js`), at('thinglish.ts', `${n}.${kind}.ts`), at('thinglish.js', `${n}.${kind}.js`), at('puml', `${n}.puml`), at('svg', `${n}.svg`), at('mmd', `${n}.mmd`), at('thinglish', `${n}.${kind}.thing`)];
+   }
+ }
+ 
+@@ -157,7 +157,12 @@ describe('EAMD.ucp layout — increment 3 (spec/eamd-ucp.md AC5–AC7, rules 4
+     expect([...classFiles].sort()).toEqual(expected);
+     const report = { CHECKED: classFiles.length, SKIPPED: skipped.length, TOTAL: generated.length };
+     expect(report).toEqual({ CHECKED: expected.length, SKIPPED: skipped.length, TOTAL: expected.length + skipped.length });
+-    expect(expected.length, 'derived, not vacuous: every class in every generated language + the placed unit').toBe(classes.length * 6 + placed.length);
++    // oopTester Step B: the per-class count is DERIVED from the GENERATOR (its home directories minus the two that hold no
++    // class units — oosh, sample: the same two the SKIPPED rule below names) and must MATCH the independent oracle — a
++    // language added to one side only is RED (two sources, never a hand ×N).
++    const perClass = catalog.homeDirectories.filter((d) => !['oosh', 'sample'].includes(d)).length;
++    expect(oracle.files('M1Catalog', false).filter(notHeld), 'the independent oracle names one file per generated class-unit home').toHaveLength(perClass);
++    expect(expected.length, 'derived, not vacuous: every class in every generated language + the placed unit').toBe(classes.length * perClass + placed.length);
+     expect(skipped.every((f) => /\/latest\/src\/(puml|svg)\/Web4MDA-[\w-]+\.(puml|svg)$|\/latest\/src\/sample\/|\/latest\/src\/oosh\/EAM\/layer\d\/\w+$/.test(f)), skipped.join('\n')).toBe(true);
+   });
+ 
+@@ -205,7 +210,8 @@ describe('EAMD.ucp layout — increment 3 (spec/eamd-ucp.md AC5–AC7, rules 4
+ 
+   it('AC7 — retired, not doubled: gen/ does NOT exist (spec 12 inc 6 C4); every generated language lives in its component', () => {
+     expect(existsSync('gen'), 'gen/ is retired: no generator targets it').toBe(false);
+-    for (const d of ['js', 'thinglish.ts', 'thinglish.js', 'puml', 'svg', 'mmd', 'oosh', 'sample']) expect(generated.some((f) => f.includes(`/latest/src/${d}/`)), d).toBe(true); // each target present at HOME — not vacuous
++    expect(catalog.homeDirectories, 'floor: no home directory of today may silently drop out').toEqual(expect.arrayContaining(['js', 'thinglish.ts', 'thinglish.js', 'puml', 'svg', 'mmd', 'thinglish', 'oosh', 'sample']));
++    for (const d of catalog.homeDirectories) expect(generated.some((f) => f.includes(`/latest/src/${d}/`)), d).toBe(true); // each target present at HOME — not vacuous
+   });
+ 
+   it('AC7 / rule 8 — every generated import RESOLVES to an existing layout file', () => {
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Pipeline.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Pipeline.test.ts
+index bde22a4..058760b 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Pipeline.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Pipeline.test.ts
+@@ -123,7 +123,10 @@ describe('ROOT GATE — the committed generated files (every language, in its co
+       const printed = new Pipeline().init(scratch.root).run();
+       const inPlace = stamps.inPlace(printed);
+       expect(inPlace.length, 'the non-atomic writer went unseen').toBeGreaterThan(100); // every class file M1Class.save wrote
+-      expect(inPlace.every((f) => /\/src\/(ts|js|thinglish\.ts|thinglish\.js|puml|mmd|oosh)\/EAM\//.test(f)), 'only M1Class.save outputs (every language, the OOSH target included) are flagged').toBe(true);
++      // oopTester Step B: the M1Class.save writers are DERIVED — every language of the generator + the OOSH target (its own
++      // generator, M2OoshClass, not in languages()) — so a new language is covered the moment it is registered.
++      const savers = [...GENERATOR.languages().map((l) => l.directory), 'oosh'].map((d) => d.replace(/\./g, '\\.'));
++      expect(inPlace.every((f) => new RegExp(`/src/(${savers.join('|')})/EAM/`).test(f)), 'only M1Class.save outputs (every language, the OOSH target included) are flagged').toBe(true);
+       expect(inPlace).not.toContain(gen.packageFile('Web4MDA-graph.puml', 'src', 'puml')); // another writer (M1Graph) stays atomic: the check discriminates
+     } finally {
+       scratch.drop();
