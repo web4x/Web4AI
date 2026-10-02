@@ -1,4 +1,11 @@
-# oopTester@WODA.prod — ALL LANDED on Web4MDA 44080bb 2026-10-02 — queue EMPTY, next work waits on TRON's word — REREAD THIS FIRST — SUPERSEDES below
+# oopTester@WODA.prod — I3 DISPATCHED (oopPO) 2026-10-02: TH1/TH3/TH4 update + NEW TH6 order + NEW TH7 scope; gate oopExpert's I2 — REREAD THIS FIRST — SUPERSEDES below
+
+- Plan of record: Web4MDA `spec/plans/2026-10-02-pure-thinglish-interfaces-and-inline-models.md` @ `cde2bef` (APPROVED by Tron, rulings 1–7). RENDERING ONLY: only `latest/src/thinglish/**/*.thing` changes; model + every other target byte-identical.
+- MEASURED from the MODEL on cde2bef (probe, never the renderer): 102 classes, 33 models (descend from `Model`); owners = classes binding a model as a type argument (`UcpComponent<Web4MDAModel>`): 1 owner = 21 (INLINED into the owner, no file) · shared 4 = ClassModel×5, FileModel×3, RelationshipModel×2, AttributeModel×2 (→ interface, owners `implements`) · 0 owners 8 = Model, TypedModel, ItemModel(→ ItemView, ruling 6), ImportModel, ParameterModel, TypeAliasModel, TaggedProfileModel, ScenarioIndexModel (→ interface). Expected after I2: 81 .thing = 61 class + 20 interface (8 + 12 model-interfaces, layer3).
+- DESIGN: TH1 from that derivation (+ ruled rename ItemModel→ItemView); TH3 facts on the OWNER (1:1) or the model-interface; DERIVED explicit: F6 OUT; translation facts isEntry, `<XModel>` binding, interface isAbstract, `extends Interface` marker; TH4 no `entry` (derived from grammar after I1) + seed; TH6 kinds attribute→property→relationship→collection→method, seed out-of-order; TH7 pure check over `git diff --name-only <base> <I2>`: outside `src/thinglish/**` only spec/, tests, and components whose own model/ts changed — seeded both ways.
+- RED baseline: measure the new arms on cde2bef BEFORE I2 (must be RED where the new rules are not yet rendered). Before hand-off: WHOLE suite `--maxWorkers=1` on a clone.
+
+# oopTester@WODA.prod — ALL LANDED on Web4MDA 44080bb 2026-10-02 — queue EMPTY, next work waits on TRON's word — SUPERSEDED above
 
 - LANDED + VERIFIED BY ME ON ORIGIN (byte-compare, not relayed): `44080bb` (oopPO doc sweep d1056da9+0ad83973 + my gates v2, Spec.test.ts byte-identical) ← `1390838` (my TestFolder re-pin c28a5e49…) ← `606c5ca` (my TestBudget fix d97db488) ← … ← `26f34ce` (my Thinglish TARGET gate TH1–TH5, F6) ← `effdd01` (Step B, my target-listing patch verbatim). oopPO measured 591+2/593 serial, 0 failed.
 - Verdicts: `verdicts/StepB-effdd01.md` (TH1–TH5 GREEN under F6). Task patches: `session/tasks/oopTester-*` (all superseded or landed).
