@@ -1,0 +1,37 @@
+diff --git a/spec/thinglish.md b/spec/thinglish.md
+index 74834d4..31bdd6a 100644
+--- a/spec/thinglish.md
++++ b/spec/thinglish.md
+@@ -116,14 +116,14 @@ interface         = "interface" , Name , [ typeParams ] , [ "extends" , type , {
+ member            = attribute | property | relationship | collection | method ;
+ attributeModifier = "static" | "private" | "protected" | "override" | "readonly" ;
+ methodModifier    = "abstract" | "static" | "private" | "protected" | "override" | "async" ;
+-attribute         = { attributeModifier } , "attribute" , name , ":" , type , [ "=" , expr ] ;
++attribute         = { attributeModifier } , "attribute" , name , [ ":" , type ] , [ "=" , expr ] ;
+ property          = { methodModifier } , "property" , name , ":" , type , [ "get" , ( block | ";" ) ] , [ "set" , "(" , name , ")" , ( block | ";" ) ] ;
+-relationship      = "relationship" , name , ":" , type , [ kind ] , [ "redefines" , name ] ;
+-collection        = "collection" , name , ":" , type , [ kind ] , [ "redefines" , name ] ;
++relationship      = "relationship" , name , [ "?" ] , ":" , type , [ kind ] , [ "redefines" , name ] ;
++collection        = "collection" , name , [ "?" ] , ":" , type , [ kind ] , [ "redefines" , name ] ;
+ kind              = "contains" | "containedBy" | "references" | "instanceOf" ;
+ method            = { methodModifier } , name , [ typeParams ] , "(" , [ params ] , ")" , [ ":" , type ] , ( block | ";" ) ;
+ params            = param , { "," , param } ;
+-param             = [ "..." ] , name , [ "?" ] , ":" , type , [ "=" , expr ] ;
++param             = [ "..." ] , name , [ "?" ] , [ ":" , type ] , [ "=" , expr ] ;
+ block             = "{" , { TypeScriptStatement } , "}" ;
+ version           = "latest" | "prod" | tag ;
+ ```
+@@ -156,6 +156,13 @@ version           = "latest" | "prod" | tag ;
+ |---|---|
+ | `TypeAliasModel` (type aliases) | no M3 element — a keyword would need one (Tron's call) |
+ | `ImportModel.isTypeOnly` (type-only imports) | a TypeScript emit concern of a type alias; held with it |
++| `TypedModel.uuid` (every element's uuid) | the IDENTITY of the unit (its IOR / scenario unit), not PIM syntax (Step B F3, oopPO ruling) |
++| `ItemModel.displayName` | presentation — how a unit is SHOWN, not PIM syntax (Step B F3); a grammar addition would be Tron's call |
++| `ItemModel.icon` | presentation (Step B F3) |
++| `ItemModel.badge` | presentation (Step B F3) |
++| `ItemModel.description` | presentation (Step B F3) |
++
++**Step B rulings (oopPO, 2026-10-02, under G3 "TypeScript-shaped"; flagged to Tron):** **F1** — a type annotation is OPTIONAL (`attribute x = 0`, `param` without `: T`), exactly as TypeScript lets it be inferred: omitting it says "untyped", nothing is lost. **F2** — multiplicity's LOWER bound is TypeScript's optional marker: `relationship parent?: Tree` = `0..1`, `relationship owner: X` = `1`, `collection children?: T` = `0..n`, `collection items: T` = `1..n` — no new keyword. **Derived, not rendered** (TH3 counts them as present): `RelationshipModel.source` (= the owning class), `ClassModel.level` (from the namespace), `ImportModel.isInterface` (from the target's kind), `typeArguments` (from the `extends` type text).
+ 
+ 
+ ## Pure Thinglish serialization — `src/thinglish/` (Tron, 2026-10-02) — specified, not built
