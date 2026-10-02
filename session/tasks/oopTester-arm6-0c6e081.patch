@@ -1,8 +1,8 @@
 diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts
-index c5d53ab..ffe3ebd 100644
+index c5d53ab..7bacc00 100644
 --- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts
 +++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts
-@@ -109,6 +109,57 @@ class Docs {
+@@ -109,6 +109,60 @@ class Docs {
      }
      return { violations: violations.sort(), allowed: allowed.sort() };
    }
@@ -22,7 +22,10 @@ index c5d53ab..ffe3ebd 100644
 +    if (/^\s*>/.test(line)) return { violations: [], skipped: all.map((m) => `${m} [blockquote]`) };
 +    const blank = (x: string): string => ' '.repeat(x.length);
 +    const noStruck = line.replace(/~~[^~]*~~/g, blank);
-+    const live = this.topLevelMentions(noStruck.replace(/"[^"]*"|“[^”]*”/g, blank));
++    // ruling oopPO 2026-10-02: a quote is exempt ONLY when EXPLICITLY attributed to Tron — `Tron` within 40 chars before
++    // the opening quote, no other quote between (`Tron, 2026-09-21: "…"`, `Tron: “…”`). An unattributed quote is LIVE:
++    // quoting a stale path must never hide it (a generic quote exemption is an evasion hole).
++    const live = this.topLevelMentions(noStruck.replace(/(?<=\bTron\b[^"“”\n]{0,40})("[^"]*"|“[^”]*”)/g, blank));
 +    const afterStrike = this.topLevelMentions(noStruck);
 +    const pool = [...live];
 +    const take = (m: string): boolean => {
@@ -38,7 +41,7 @@ index c5d53ab..ffe3ebd 100644
 +      const i = strikePool.indexOf(m);
 +      if (i >= 0) {
 +        strikePool.splice(i, 1);
-+        skipped.push(`${m} [verbatim]`);
++        skipped.push(`${m} [tron-verbatim]`);
 +      } else skipped.push(`${m} [struck]`);
 +    }
 +    return { violations: live, skipped };
@@ -60,7 +63,7 @@ index c5d53ab..ffe3ebd 100644
  }
  
  describe('spec + README stay TRUE by construction (doc-rot gate — derived from disk, never a hard list)', () => {
-@@ -360,3 +411,45 @@ describe('ARM4 — the README State table is derivable from disk (built = class
+@@ -360,3 +414,49 @@ describe('ARM4 — the README State table is derivable from disk (built = class
      expect(r.violations).toContain('[x] test EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Graph/latest/test/M1Graph.test.ts imports no cited class');
    });
  });
@@ -68,12 +71,12 @@ index c5d53ab..ffe3ebd 100644
 +/**
 + * ARM6 (doc-rot, oopTester 2026-10-02, plan of record 2026-10-02-thinglish-target-and-spec-sweep Part 2): no LIVE-NORMATIVE
 + * mention of a top-level `gen/`, `src/` or `test/` path in README + spec/*.md — none exists since S1/AC4b, so every live
-+ * mention teaches a layout that is not there. Exempt ONLY by structure: blockquote, struck, verbatim quotation ("…"),
++ * mention teaches a layout that is not there. Exempt ONLY by structure: blockquote, struck, a quote attributed to Tron,
 + * and spec/plans/ (dated plans record history; docFiles() is non-recursive). Reported CHECKED/SKIPPED/TOTAL, every
 + * skipped mention printed so no exemption hides.
 + */
 +describe('ARM6 — no live-normative top-level gen/ src/ test/ path in README + spec/*.md', () => {
-+  it('ARM6: every top-level gen/ src/ test/ mention is struck, blockquoted or verbatim — report CHECKED/SKIPPED/TOTAL', () => {
++  it('ARM6: every top-level gen/ src/ test/ mention is struck, blockquoted or a Tron-attributed quote — report CHECKED/SKIPPED/TOTAL', () => {
 +    const r = new Docs().init().scanTopLevel();
 +    console.log(
 +      `ARM6 top-level paths: CHECKED ${r.violations.length} live / SKIPPED ${r.skipped.length} marked / TOTAL ${r.total}` +
@@ -89,12 +92,16 @@ index c5d53ab..ffe3ebd 100644
 +    expect(docs.classifyTopLevel('write gen/js/X.js, then src/ and test/Foo.test.ts').violations).toEqual(['gen/js/X.js', 'src/', 'test/Foo.test.ts']);
 +  });
 +
-+  it('ARM6 exemptions are structural and failable: blockquote, struck, verbatim are SKIPPED with their marker; component paths are not mentions', () => {
++  it('ARM6 exemptions are structural and failable: blockquote, struck, Tron-attributed quote are SKIPPED with their marker; component paths are not mentions', () => {
 +    const docs = new Docs().init();
 +    expect(docs.classifyTopLevel('> history: `gen/js/X.js`')).toEqual({ violations: [], skipped: ['gen/js/X.js [blockquote]'] });
 +    expect(docs.classifyTopLevel('the ~~`gen/js/X.js`~~ file is retired')).toEqual({ violations: [], skipped: ['gen/js/X.js [struck]'] });
-+    expect(docs.classifyTopLevel('Tron: "put it in gen/js/X.js"')).toEqual({ violations: [], skipped: ['gen/js/X.js [verbatim]'] });
-+    expect(docs.classifyTopLevel('Tron: “put it in gen/js/X.js” — and gen/js/Y.js too')).toEqual({ violations: ['gen/js/Y.js'], skipped: ['gen/js/X.js [verbatim]'] });
++    expect(docs.classifyTopLevel('Tron: "put it in gen/js/X.js"')).toEqual({ violations: [], skipped: ['gen/js/X.js [tron-verbatim]'] });
++    expect(docs.classifyTopLevel('(Tron, 2026-09-21: “put it in gen/js/X.js”) — and gen/js/Y.js too')).toEqual({ violations: ['gen/js/Y.js'], skipped: ['gen/js/X.js [tron-verbatim]'] });
++    // the evasion hole is CLOSED: an UNATTRIBUTED quote is LIVE, and so is one whose `Tron` is too far away
++    expect(docs.classifyTopLevel('the old doc said "put it in gen/js/X.js"')).toEqual({ violations: ['gen/js/X.js'], skipped: [] });
++    expect(docs.classifyTopLevel('Tron ruled this long ago, and much later in this very long sentence a note says "gen/js/Z.js"')).toEqual({ violations: ['gen/js/Z.js'], skipped: [] });
++    expect(docs.classifyTopLevel('Tron: "a" and then "gen/js/W.js"')).toEqual({ violations: ['gen/js/W.js'], skipped: [] });
 +    expect(docs.topLevelMentions('`EAMD.ucp/Components/X/latest/gen/js/X.js` `<C>/latest/src/ts/A.ts` ../test/x latest/test/ ./src/a')).toEqual([]);
 +    expect(docs.topLevelMentions('contest/ subsrc/ gen_x/ mytest/a')).toEqual([]);
 +  });

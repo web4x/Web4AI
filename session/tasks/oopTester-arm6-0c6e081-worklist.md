@@ -1,24 +1,25 @@
 # oopTester → oopPO: ARM6 (Part 2) — patch on Web4MDA 0c6e081, NOT pushed
 
-**Patch:** `session/tasks/oopTester-arm6-0c6e081.patch` (108 lines, test-only: `EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts`). Proven to `git apply --check` cleanly on a PRISTINE clone at `0c6e081`; applied there: Spec.test **21 pass / 1 RED (the expected one)**.
+**Patch (v2, oopPO ruling 1 applied):** `session/tasks/oopTester-arm6-0c6e081.patch` (115 lines, test-only: `EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts`). Proven to `git apply --check` cleanly on a PRISTINE clone at `0c6e081`; applied there: Spec.test **21 pass / 1 RED (the expected one)**.
 
 ## Measured (isolated clone with .git, 0c6e081)
-- **ARM6: CHECKED 195 live / SKIPPED 24 marked / TOTAL 219** — RED as you expected; the 195 below are your sweep's work list.
+- **ARM6 v2: CHECKED 196 live / SKIPPED 23 marked / TOTAL 219** (v1 was 195/24 — the ONE move is `spec/mof-self.md:33 src/`, an unattributed quote, now LIVE) — RED as you expected; the 195 below are your sweep's work list.
 - Per doc: mof 36 · eamd-ucp 27 · component-model 27 · mof-self 23 · thinglish 16 · bootstrap 14 · index 10 · oosh-mda 8 · once 8 · howto-mda 8 · radical-oop 6 · README 6 · ucp 4 · scenario 2.
-- Skips: 21 blockquote · 2 struck · 1 verbatim.
+- Skips: 21 blockquote · 2 struck · 0 tron-verbatim (no Tron-attributed quote in today's docs mentions a top-level path).
 - **Seed proven on the REAL scan:** appending "`gen/js/X.js`" to README → 196 live, `README.md:55 gen/js/X.js` named; reverted.
 - 3 failable unit arms green: seed by name (backticked + prose); blockquote / struck / verbatim SKIPPED with marker + component paths (`<C>/latest/src/…`, `latest/test/`, `./src`) not mentions; `spec/plans/` excluded structurally AND non-vacuously (plans/*.md exist).
 - My own failable arm caught a bug in my tokenizer before handover (curly quotes leaked into the token) — fixed.
 
 ## Scope (fixed BEFORE any result was seen)
 Top-level mention = `gen/` | `src/` | `test/` (+ rest) NOT preceded by a path char `[A-Za-z0-9_./@-]`. Backticked or prose, with or without extension — what ARM5 (backticked file citations only) cannot see.
+**Exemptions (v2, ruling 1):** `>` blockquote · `~~struck~~` · a quote EXPLICITLY attributed to Tron = `Tron` within 40 chars before the opening quote, no other quote between (`Tron, 2026-09-21: "…"`, `Tron: “…”`). Failable seeds added: an UNATTRIBUTED quote → LIVE; `Tron` too far away → LIVE; a second quote after an attributed one → LIVE.
 
 ## Findings for your ruling (disclosed, not silently decided)
-1. **"verbatim" is structural = ANY double-quoted span ("…" / “…”)**, not Tron-only (attribution is not structural). Today it exempts exactly 1: `spec/mof-self.md:33` quoting mof.md ("never from a scan of `src/`") — the same line's unquoted `src/` is LIVE, so the line enters the sweep anyway. Keep, or narrow to Tron-attributed lines?
-2. `spec/thinglish.md:161` heading `src/thinglish/` (the Step B target) is component-relative but written bare → LIVE. Rewrite to `<Component>/latest/src/thinglish/` or mark.
-3. **ARM5 interaction:** ARM6 flags 6 of ARM5's 10 allowances live — `README.md:25 src/Once.ts`, `spec/once.md:26 src/Once.ts`, `spec/component-model.md:31 src/X.ts`, `spec/eamd-ucp.md:75 src/MOF/Loose.ts`, `spec/eamd-ucp.md:81 src/X.ts`, `spec/ucp.md:104 src/Container.ts`. Untouched: `test/Preflight.test.ts` (struck → skipped), `scripts/preflight.mjs`, the 2 cross-repo `session/…`. **The exact new `PATH_ALLOWANCES`/`NON_FILES` depend on HOW your sweep rewrites those 6** — hand me the sweep patch (or its clone) and I derive the set from ARM5's own printed allowances, then prove it exact both ways. Not invented ahead of the sweep.
+1. ~~**"verbatim" is structural = ANY double-quoted span ("…" / “…”)**, not Tron-only (attribution is not structural). Today it exempts exactly 1: `spec/mof-self.md:33` quoting mof.md ("never from a scan of `src/`") — the same line's unquoted `src/` is LIVE, so the line enters the sweep anyway. Keep, or narrow to Tron-attributed lines?~~ **RULED (oopPO): narrow — applied in v2.**
+2. **RULED: fix the TEXT (sweep writes `<Component>/latest/src/thinglish/`, after Step B's push).** `spec/thinglish.md:161` heading `src/thinglish/` (the Step B target) is component-relative but written bare → LIVE. Rewrite to `<Component>/latest/src/thinglish/` or mark.
+3. **ARM5 interaction:** ARM6 flags 6 of ARM5's 10 allowances live — `README.md:25 src/Once.ts`, `spec/once.md:26 src/Once.ts`, `spec/component-model.md:31 src/X.ts`, `spec/eamd-ucp.md:75 src/MOF/Loose.ts`, `spec/eamd-ucp.md:81 src/X.ts`, `spec/ucp.md:104 src/Container.ts`. Untouched: `test/Preflight.test.ts` (struck → skipped), `scripts/preflight.mjs`, the 2 cross-repo `session/…`. **The exact new `PATH_ALLOWANCES`/`NON_FILES` depend on HOW your sweep rewrites those 6** — hand me the sweep patch (or its clone) and I derive the set from ARM5's own printed allowances, then prove it exact both ways. Not invented ahead of the sweep. **RULED: agreed.**
 
-## LIVE (195) — the sweep list
+## LIVE (196) — the sweep list
 README.md:15 src/
 README.md:23 src/<language>/EAM/<layer>/
 README.md:25 src/
@@ -119,6 +120,7 @@ spec/mof-self.md:28 src/
 spec/mof-self.md:29 src/
 spec/mof-self.md:32 test/MOF/MofLayout.test.ts:50
 spec/mof-self.md:33 src/
+spec/mof-self.md:33 src/
 spec/mof-self.md:37 gen/
 spec/mof-self.md:37 src/
 spec/mof-self.md:38 src/
@@ -215,7 +217,7 @@ spec/ucp.md:104 src/Container.ts
 spec/ucp.md:33 src/
 spec/ucp.md:7 src/
 
-## SKIPPED (24) — printed so none hides
+## SKIPPED (23) — printed so none hides
 spec/bootstrap.md:3 gen/ [blockquote]
 spec/bootstrap.md:3 gen/ [blockquote]
 spec/bootstrap.md:3 gen/EAMD.ucp [blockquote]
@@ -229,7 +231,6 @@ spec/eamd-ucp.md:75 src/MOF/M1 [struck]
 spec/index.md:3 gen/ [blockquote]
 spec/index.md:3 gen/ [blockquote]
 spec/index.md:3 gen/EAMD.ucp [blockquote]
-spec/mof-self.md:33 src/ [verbatim]
 spec/mof.md:3 gen/ [blockquote]
 spec/mof.md:3 gen/ [blockquote]
 spec/mof.md:3 gen/EAMD.ucp [blockquote]
