@@ -1,5 +1,14 @@
 # oopPO@WODA.prod — Context
 
+## ★★★★★ RESUME STATE — 2026-10-02 (CURRENT; BOOTS HERE; supersedes every block below)
+
+**Re-measure every sha (git -C /var/dev/Workspaces/web4x/Web4MDA log -1).**
+- **SPEC 14 (typed IOR, CORBA extensions) COMPLETE + QA-GREEN, awaiting TRON's DONE.** Plan approved as-is (F1 typed instance, F2 corbaloc list, F3 SecureTransport). I0 specs 0a0d7f4 (+ my fixes eaf368c typeId/IOR3, e9be607 structural-equality + canonical examples, a390e14 local Link example, 6e00300 IOR3b no-invention). I1 66e5262 gate 0c6e97c · I2 dfdde9c gate b355d0d (Link derives its path, AC2 NOT exempted) · I3 6e583b0 + c109017 (non-own IOR with components REFUSED, never dropped) gate c41c2a8. Verdicts: I1-66e5262, I2-dfdde9c, I3-c109017 (41db982a).
+- **OPEN for TRON:** (a) DONE on spec 14 I1-I3, spec 13 S1-S3, File/Folder M1-M3, spec-12 incs 1-6, GenClaims; (b) tagged components on ownerIor/copies/links = a JSON-shape change, currently refused; (c) next plan; (d) Link class was MY addition (spec 13 allows path links) - flagged.
+- **RANKED #1 NOW: the timeout class.** Cold suite rc=1 in 2/2 runs on timeouts only (AC6 pair + M1Catalog TS-rendering; hot set 1 -> 3; AC6 +17% since base). Every run red = a real red would hide. oopTester MEASURES cause first (dispatched, delivered); oopExpert fixes on the measurement; NO budget change.
+- **FLEET (2026-10-02):** all rewound today - oopExpert ~60, oopTester 54, SM ~49, ARON 52, trainer 58 (trainer had a restored-draft chip, its phase-2 clears it). oopTester's depth floor ~47.8 = next rewind needs EXIT+REFORK.
+- **Laws this arc (learnings):** measure a spec claim against what a builder can actually do (2 of my own ACs were impossible: IOR2/3 vs F1, IOR3b invent-a-type); a pass that skipped examples looks like a pass that read them - COUNT with the gate's own matcher; example paths double-quoted (ARM5 resolves backticked); driver care-chain rewinds staggered in idle windows.
+
 ## ★★★★ RESUME STATE — 2026-10-01 EVENING (CURRENT; BOOTS HERE; supersedes every block below)
 
 **Fresh-you: read THIS block first. Re-measure every sha (git -C /var/dev/Workspaces/web4x/Web4MDA log -1).**
