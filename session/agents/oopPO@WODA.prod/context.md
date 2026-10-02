@@ -1,5 +1,17 @@
 # oopPO@WODA.prod — Context
 
+## ★★★★★★ RESUME STATE — 2026-10-02 EVENING (CURRENT; BOOTS HERE; supersedes every block below) — PHASE-1 at a FRESH panel of 82 (822.9k), SM-ordered marker drive
+
+**Fresh-you: read THIS block, then learnings.md. Re-measure every sha (git -C /var/dev/Workspaces/web4x/Web4MDA log -1). Resolve every peer's LIVE session id at check time (claudeCode session.current <pane>) - the SM's changed 5f99fe94 -> 2cb2a675 and I read a dead transcript.**
+- **TRON RULES (banked in memory):** ALWAYS work with plans (plan mode -> spec/plans/ plan of record -> dispatch); subagents may use cheaper models (Sonnet/Haiku for mechanical work, I review every hunk); every dispatch hands the SM its watch AT dispatch time (Tron caught an idle chain before us).
+- **PLAN OF RECORD 2026-10-02 (approved as-is):** Web4MDA spec/plans/2026-10-02-thinglish-target-and-spec-sweep.md (0a5eea4). G1 modifier keywords per member kind -> attribute of an existing M3 element; G2 TypeScript blocks + ';'; G3 TS-shaped signatures; G4 relationship kind keywords; G5 type aliases + isTypeOnly HELD.
+- **Step A (grammar) QA-GREEN:** 0c6e081 (my spec patch eb19e1bb + oopTester SC8 22fbe36d, both verbatim by diff), verdict 499cd0d2.
+- **Step B (src/thinglish target) LANDED effdd01, being GATED TH1-TH5 by oopTester:** M2ThingClass, 102 .thing (94 class + 8 interface) in <Component>/latest/src/thinglish/EAM/<layer>/; oopTester target-listing patch 83b2428d verbatim. My rulings on oopExpert's TH5 stop-reports: F1 optional type annotation; F2 '?' = multiplicity lower bound 0 (FLAGGED to Tron - my G3 extension); F3 HELD one row per fact (TypedModel.uuid, ItemModel.displayName/icon/badge/description); F4 role-less containedBy + F5 instanceOf as CLASS HEADER clauses (FLAGGED). Patches 174f8e7c, 5a5fed87.
+- **Spec sweep (Part 2) READY, rebased on effdd01: AI/Claude 0ad83973 session/tasks/oopPO-spec-sweep-effdd01.patch.** ARM6 196 -> 5 live, all eamd-ucp.md diagram rows (correct by tree structure). oopTester: tree-aware ARM6 + DERIVED ARM5 allowances (after its TH1-TH5 verdict) -> I make ONE doc push = sweep + ARM6 v2 (9767a0aa, quote exemption narrowed to Tron-attributed) + allowances, gates run first (use --maxWorkers=1 under load). ACs/dated records are STRUCK-AND-CORRECTED, never rewritten. Follow-ups found, NOT yet fixed: scenario.md diagram doubles EAMD.ucp/; leftover plural Scenarios/ (eamd-ucp D5); ucp.md gate 5 cites retired Container.ts (now marked STALE).
+- **Part 0 timeout fix:** oopExpert's local branch 9e94732 DEADLOCKS (SM measured: sleeping, flat CPU); hang is in the pool group / solo->pool transition; oopExpert resumed the diagnosis (LOCAL, report cause before any push). Default suite reds under load = timeouts only; --maxWorkers=1 is the discriminator.
+- **OPEN FOR TRON:** DONE on spec 14 I1-I3 (gates 0c6e081-era c41c2a8), spec 13 S1-S3, File/Folder M1-M3, spec-12 incs 1-6, GenClaims; tagged components on ownerIor/copies/links (refused today); Link class (my addition); vetoes on F2 + F4/F5; next plan.
+- **FLEET:** oopExpert 64 (deadlock diag), oopTester gating TH1-TH5, SM 2cb2a675 holds the watch, drivers trainer ~60 / ARON ~54.
+
 ## ★★★★★ RESUME STATE — 2026-10-02 (CURRENT; BOOTS HERE; supersedes every block below)
 
 **Re-measure every sha (git -C /var/dev/Workspaces/web4x/Web4MDA log -1).**
