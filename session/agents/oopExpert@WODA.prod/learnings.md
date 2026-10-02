@@ -254,3 +254,11 @@
 - ★ **A config change can break a GATE's fixture that spreads the real config**: TestBudget's child config did `{ ...base.test, include }`; my `test.projects` rode along and each project's include overrode the fixture's → the child ran the whole suite incl. TestBudget → unbounded recursion under a timeout-less spawnSync = a hang with flat CPU. Find a hang by DIFFING files-started vs files-reported (`--reporter=verbose`, project alone) — 59/60 reported pointed at the one file. Then `vitest list --config <child config>` proved it without running anything.
 - **A gate that can hang cannot fail** (oopPO): the fix needed BOTH the cause (fixture drops inherited projects) and the class (hard spawn ceiling + exit asserted) — both in the gate owner's files, I touched neither.
 - **The owner's own patch can trip another owner gate** (content pin of the changed fixture) — run the WHOLE suite on every applied patch, not just the touched file.
+
+## 2026-10-02 — pure Thinglish I2 (Web4MDA local 55f7b35, joint push by oopPO)
+- ★ **Measure a plan's premises before building (stop-report S1–S3)**: the plan's 21/standalone lists missed ScenarioIndexModel (bound without the `extends X<XModel>` form) and two models referenced/extended beyond their owner (MethodModel by 8 renderers, TaggedComponentModel by a subclass + a generic bound). The fix was ONE derived rule (inline iff single NON-MODEL owner, no other importer, no subclass), adopted — never a corrected hand list.
+- **Inlining MOVES facts, it must not drop them**: the inlined model's class-level relationships (FileServerModel containedBy), its base (-> owner implements it, D2), its held facts. Ask "what did the model carry that the owner now has to?" for every field kind.
+- **Dedupe dependencies by the RENDERED unit (declaredBy), not by import name** (D1: `{ Model }` + `type { Init }`).
+- **A held/translated list is a CLAIM — when a ruling moves a fact from held to rendered, the list must move too** (D3: presentation fields rendered on ItemView but still declared held = a false claim).
+- **Generated bodies can contain grammar-shaped lines (the EBNF of an inlined ThinglishGrammarModel)** — every structure test anchors on header shape.
+- Prove "already contains vN" by content (scratch-repo apply + cmp), not by memory of having amended it.
