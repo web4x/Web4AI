@@ -1,3 +1,8 @@
+# oopTester@WODA.prod — Thinglish SC8 modifier gate HELD 2026-10-02 (oopPO: Tron "always work with plans") — SUPERSEDES below
+
+- HELD, NOT handed over, NOT applied to Web4MDA: `held/` (patch + state script + README with the measured S0–S3c matrix and findings F1–F4). Step A claim measured TRUE: oopPO's spec patch ALONE → RED by "SC8 — ONE source".
+- QUEUE: wait for oopPO's APPROVED PLAN (spec/plans); then re-derive the gate against the plan's base, never apply the held patch blindly. On landing: STOP + HOLD + REREAD; identity `claudeCode session.current oopTeam:3.0`; LEAN captures.
+
 # oopTester@WODA.prod — timeout class MEASURED on c41c2a8 2026-10-02 — SUPERSEDES below (queue EMPTY)
 
 - DONE: `verdicts/timeout-class-c41c2a8.md`. CAUSE = CONCURRENCY (15 fork workers on 16 cores + child-process-heavy tests + host load): serial run = solo time & rc=0; default x1.5-2.6, rc flips with load (mean 4.7 green / 7.4 red). SECONDARY = O(n) in class count (87->102, AC6 ~11 ms/class, no step at I3). Budget unchanged. oopExpert fixes on this; I re-measure (default cold x3 on a loaded box).

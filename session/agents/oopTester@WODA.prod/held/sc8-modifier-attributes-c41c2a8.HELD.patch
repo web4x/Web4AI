@@ -1,0 +1,156 @@
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/ThinglishGrammar/latest/test/ThinglishGrammar.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/ThinglishGrammar/latest/test/ThinglishGrammar.test.ts
+index c197177..21145ae 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/ThinglishGrammar/latest/test/ThinglishGrammar.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/ThinglishGrammar/latest/test/ThinglishGrammar.test.ts
+@@ -4,6 +4,7 @@ import { RadicalOopGate } from '../../../RadicalOopGate/latest/src/ts/EAM/layer2
+ import { ThinglishGrammar } from '../src/ts/EAM/layer2/ThinglishGrammar.js';
+ import { Version } from '../../../Version/latest/src/ts/EAM/layer2/Version.js';
+ import { Namespace } from '../../../Namespace/latest/src/ts/EAM/layer2/Namespace.js';
++import { M1Catalog } from '../../../MOF/M1/M1Catalog/latest/src/ts/EAM/layer2/M1Catalog.js';
+ 
+ /** The ```ebnf blocks of a spec text — derived from the document, never copied into the test. */
+ class EbnfBlocks {
+@@ -46,11 +47,12 @@ describe('ThinglishGrammar — the grammar of record (spec/thinglish.md, spec 13
+  * `| Keyword | M3 element |` header — never copied into the test. Per row: its keywords (every backticked word of the
+  * first cell), then its ruling: OPEN (held), INSTANCES of `Version` (version values), an INSTANCE of an existing
+  * UcpComponent (a keyword whose values are instances of that M1 component — Tron 2026-10-01: `namespace` → `Namespace`),
+- * or its first M3 element.
++ * an ATTRIBUTE of existing M3 element(s) (Tron 2026-10-02: modifiers are grammar keywords — a modifier maps to an
++ * attribute of an existing M3 element, never to a new one), or its first M3 element.
+  * Struck text (~~…~~) is history and ignored.
+  */
+ class KeywordTable {
+-  private rows: Array<{ keywords: string[]; ruling: string }> = [];
++  private rows: Array<{ keywords: string[]; ruling: string; model: string }> = [];
+   constructor() {}
+   init(spec: string): this {
+     const table = /^\| Keyword \| M3 element \|[^\n]*\n\|[-| ]+\|\n((?:\|[^\n]*\n)+)/m.exec(spec)?.[1] ?? '';
+@@ -59,12 +61,17 @@ class KeywordTable {
+       .filter((l) => l.startsWith('|'))
+       .map((l) => {
+         const cells = l.split('|');
+-        return { keywords: [...(cells[1] ?? '').matchAll(/`([a-z]+)`/g)].map((k) => k[1] ?? ''), ruling: (cells[2] ?? '').replace(/~~[\s\S]*?~~/g, '') };
++        return {
++          keywords: [...(cells[1] ?? '').matchAll(/`([a-z]+)`/g)].map((k) => k[1] ?? ''),
++          ruling: (cells[2] ?? '').replace(/~~[\s\S]*?~~/g, ''),
++          model: /`(\w+Model)`/.exec(cells[3] ?? '')?.[1] ?? '',
++        };
+       });
+     return this;
+   }
+-  private kind(ruling: string): 'open' | 'version' | 'instance' | 'element' {
++  private kind(ruling: string): 'open' | 'version' | 'instance' | 'attribute' | 'element' {
+     if (/\bOPEN\b/.test(ruling)) return 'open';
++    if (/an ATTRIBUTE of/.test(ruling)) return 'attribute';
+     if (/INSTANCES of the `Version`/i.test(ruling)) return 'version';
+     return /INSTANCE of the existing `[A-Z]\w*` UcpComponent/.test(ruling) ? 'instance' : 'element';
+   }
+@@ -81,6 +88,22 @@ class KeywordTable {
+   get versions(): string[] {
+     return this.rows.filter((r) => this.kind(r.ruling) === 'version').flatMap((r) => r.keywords).sort();
+   }
++  /** keyword → the M3 elements whose ATTRIBUTE it is (rows ruled "an ATTRIBUTE of **M3X**"), merged over rows (`abstract` sits in two). */
++  get attributes(): Record<string, string[]> {
++    const out: Record<string, string[]> = {};
++    for (const r of this.rows.filter((x) => this.kind(x.ruling) === 'attribute'))
++      for (const k of r.keywords) out[k] = [...new Set([...(out[k] ?? []), ...[...r.ruling.matchAll(/\*\*(M3[A-Za-z]+)\*\*/g)].map((m) => m[1] ?? '')])].sort();
++    return out;
++  }
++  /** M3 element → its PIM model, from the table's own ELEMENT rows (col 2 element, col 3 `XModel`) — one source, never a hand map. */
++  get models(): Record<string, string[]> {
++    const out: Record<string, string[]> = {};
++    for (const r of this.rows.filter((x) => this.kind(x.ruling) === 'element' && x.model !== '')) {
++      const element = /M3[A-Za-z]+/.exec(r.ruling)?.[0] ?? '';
++      out[element] = [...new Set([...(out[element] ?? []), r.model])];
++    }
++    return out;
++  }
+   get elements(): Record<string, string> {
+     const out: Record<string, string> = {};
+     for (const r of this.rows.filter((x) => this.kind(x.ruling) === 'element')) for (const k of r.keywords) out[k] = /M3[A-Za-z]+/.exec(r.ruling)?.[0] ?? '';
+@@ -98,6 +121,28 @@ function declaredInstances(grammar: object): Record<string, string> {
+   return (Reflect.get(grammar, 'instances') as Record<string, string> | undefined) ?? {};
+ }
+ 
++/**
++ * Which ATTRIBUTE of a catalogued model a modifier keyword sets — GROUND TRUTH from the catalog, never a hand list:
++ * an attribute named exactly the keyword (`redefines`), or `is<Keyword>` (`isAbstract`), or one whose declared type is a
++ * union literal holding the keyword (`visibility: 'public' | 'protected' | 'private'`). '' = the model cannot hold it.
++ */
++function attributeFor(keyword: string, model: string): string {
++  const cls = new M1Catalog().init().classes().find((c) => c.name === model);
++  const attributes = cls?.attributes ?? [];
++  const is = `is${keyword.charAt(0).toUpperCase()}${keyword.slice(1)}`;
++  return (
++    attributes.find((a) => a.name === keyword)?.name ??
++    attributes.find((a) => a.name === is)?.name ??
++    attributes.find((a) => new RegExp(`'${keyword}'`).test(a.type ?? ''))?.name ??
++    ''
++  );
++}
++
++/** The grammar's declared modifier map (`ThinglishGrammar.modifiers`: keyword → ['M3X.attribute', …]); absent = none declared. */
++function declaredModifiers(grammar: object): Record<string, string[]> {
++  return (Reflect.get(grammar, 'modifiers') as Record<string, string[]> | undefined) ?? {};
++}
++
+ /** The component classes the gate can check `instanceof` against — import plumbing only; WHICH keyword → WHICH component comes from the spec table. */
+ const COMPONENTS: Record<string, abstract new () => object> = { Version, Namespace };
+ 
+@@ -112,8 +157,9 @@ describe('ThinglishGrammar — SC8 clause 2: every keyword maps to an M3 element
+     for (const k of keywords) {
+       const element = grammar.elementOf(k) as { name?: string } | undefined;
+       const instance = k in declaredInstances(grammar);
+-      const states = [element === undefined ? '' : 'mapped', k in grammar.held ? 'held' : '', instance ? 'instance' : ''].filter((x) => x !== '');
+-      expect(states, `SC8 clause 2: keyword '${k}' must be EXACTLY one of mapped / held / instance-of-component (unmapped keyword)`).toHaveLength(1);
++      const modifier = k in declaredModifiers(grammar);
++      const states = [element === undefined ? '' : 'mapped', k in grammar.held ? 'held' : '', instance ? 'instance' : '', modifier ? 'modifier' : ''].filter((x) => x !== '');
++      expect(states, `SC8 clause 2: keyword '${k}' must be EXACTLY one of mapped / held / instance-of-component / modifier (unmapped keyword)`).toHaveLength(1);
+       if (element !== undefined) expect(element.name, `SC8 clause 2: '${k}' maps to ${element.name ?? '?'}; the spec table rules ${table.elements[k] ?? 'nothing'}`).toBe(table.elements[k]);
+       checked++;
+     }
+@@ -129,7 +175,7 @@ describe('ThinglishGrammar — SC8 clause 2: every keyword maps to an M3 element
+   });
+ 
+   it('SC8 clause 2: every derived keyword is DOCUMENTED in the spec keyword table (mapped or OPEN) — an undocumented keyword is RED', () => {
+-    for (const k of grammar.keywords) expect(k in table.elements || table.open.includes(k) || k in table.instances, `SC8 clause 2: keyword '${k}' has no row in the spec keyword table`).toBe(true);
++    for (const k of grammar.keywords) expect(k in table.elements || table.open.includes(k) || k in table.instances || k in table.attributes, `SC8 clause 2: keyword '${k}' has no row in the spec keyword table`).toBe(true);
+   });
+ 
+   it('SC8 clause 2 (AMENDED, Tron): the version values are DERIVED from the version production, equal the rows ruled INSTANCES of Version, are never keywords, and each is a Version NAMED by its value', () => {
+@@ -162,4 +208,35 @@ describe('ThinglishGrammar — SC8 clause 2: every keyword maps to an M3 element
+       expect(made.name, `SC8 clause 2: ${ofMethod(component)}('${sample}') built '${made.name}' — not the declared leaf`).toBe('Probe'); // non-vacuous
+     }
+   });
++
++  it('SC8 clause 2 (Tron 2026-10-02: modifiers are GRAMMAR KEYWORDS): every keyword ruled "an ATTRIBUTE of an M3 element" is a derived keyword, maps to NO M3 element (never a new one), and resolves to an attribute of the catalog model of at least one element its row names', () => {
++    const ruled = Object.entries(table.attributes);
++    expect(ruled.length, 'SC8 modifiers: the spec table rules no keyword as an ATTRIBUTE of an M3 element — the modifier rows are missing').toBeGreaterThan(0);
++    const unresolved: string[] = [];
++    for (const [k, elements] of ruled) {
++      expect(grammar.keywords, `SC8 modifiers: '${k}' is ruled an attribute of ${elements.join('/')} but is not a derived keyword of the grammar`).toContain(k);
++      expect(grammar.elementOf(k), `SC8 modifiers: '${k}' maps to an M3 ELEMENT — a modifier is an attribute of an existing element, never an element`).toBeUndefined();
++      const pairs = elements.flatMap((e) => (table.models[e] ?? []).map((m) => ({ e, m, a: attributeFor(k, m) })));
++      expect(pairs.length, `SC8 modifiers: the spec names no model for ${elements.join('/')} (element rows)`).toBeGreaterThan(0);
++      expect(pairs.some((p) => p.a !== ''), `SC8 modifiers: '${k}' is an attribute of NONE of ${pairs.map((p) => p.m).join('/')} in the catalog — it maps to nothing that exists`).toBe(true);
++      unresolved.push(...pairs.filter((p) => p.a === '').map((p) => `${k}@${p.e}(${p.m})`));
++    }
++    console.log(`SC8 modifiers: ${ruled.length} keywords · (keyword, element) pairs the model CANNOT hold — reported, not red: ${unresolved.join(', ') || 'none'}`);
++  });
++
++  it('SC8 clause 2: the grammar\'s declared modifiers == EXACTLY the derived map — keyword → [M3X.attribute] over the spec rows × the catalog models (sorted)', () => {
++    const expected: Record<string, string[]> = {};
++    for (const [k, elements] of Object.entries(table.attributes))
++      expected[k] = elements.flatMap((e) => (table.models[e] ?? []).map((m) => attributeFor(k, m)).filter((a) => a !== '').map((a) => `${e}.${a}`)).sort();
++    const declared = Object.fromEntries(Object.entries(declaredModifiers(grammar)).map(([k, v]) => [k, [...v].sort()]));
++    expect(declared, 'SC8 modifiers: ThinglishGrammar.modifiers differs from the ATTRIBUTE rows of spec/thinglish.md resolved on the catalog').toEqual(expected);
++  });
++
++  it('SC8 modifiers is failable: the catalog resolver finds NOTHING for an unknown keyword or a model without the attribute, and reaches visibility ONLY through its union literal', () => {
++    expect(attributeFor('volatile', 'MethodModel'), 'resolver invents an attribute for an unknown keyword').toBe('');
++    expect(attributeFor('async', 'AttributeModel'), 'resolver finds isAsync on a model that has none').toBe('');
++    expect([attributeFor('private', 'MethodModel'), attributeFor('protected', 'AttributeModel')], 'resolver misses the union-literal path').toEqual(['visibility', 'visibility']);
++    expect([attributeFor('redefines', 'RelationshipModel'), attributeFor('entry', 'ClassModel')], 'resolver misses the exact / is<K> paths').toEqual(['redefines', 'isEntry']);
++    expect(attributeFor('abstract', 'NoSuchModel'), 'resolver answers for a model the catalog does not hold').toBe('');
++  });
+ });
