@@ -1,0 +1,266 @@
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts
+index c5d53ab..24aedf4 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts
+@@ -3,6 +3,13 @@ import { existsSync, readFileSync, readdirSync } from 'node:fs';
+ import { dirname, relative, resolve } from 'node:path';
+ import { describe, expect, it } from 'vitest';
+ 
++/**
++ * The retired generated tree's token, spelled as {G} (oopTester, after oopPO's cross-gate catch 2026-10-02): ARM6 SCANS for it,
++ * GenClaims scans every tracked text file for it — so ARM6's own text never carries it literally, the SAME no-self-exemption
++ * rule GenClaims applies to itself. No allowance line, no path exemption: a literal claim written here is still caught.
++ */
++const G = ['g', 'en', '/'].join('');
++
+ /**
+  * The docs on disk — spec index coverage, README->index, and every npm-script named in ANY doc.
+  * All DERIVED from disk (readdirSync / readFileSync / package.json), never a hard-coded list: a forgotten
+@@ -109,6 +116,91 @@ class Docs {
+     }
+     return { violations: violations.sort(), allowed: allowed.sort() };
+   }
++  /**
++   * ARM6 scope, fixed STRUCTURALLY before any result was seen (oopTester 2026-10-02): a TOP-LEVEL path mention is
++   * `{G}`, `src/` or `test/` (and anything after it) NOT preceded by a path character — so `<C>/latest/src/ts/X.ts`
++   * is a component path and out of scope, while bare `src/`, `{G}js/` or prose "test/Foo.test.ts" are in. Backticked
++   * or not, with or without an extension: this is exactly what ARM5 (backticked file citations only) cannot see.
++   */
++  topLevelMentions(line: string): string[] {
++    return [...line.matchAll(/(?<![A-Za-z0-9_./@-])(?:gen|src|test)\/[^\s`'"“”‘’()[\]|,;*]*/g)].map((m) => m[0]);
++  }
++  /** One line -> top-level mentions that are LIVE (violations) vs SKIPPED with the structural marker that exempts them. */
++  classifyTopLevel(line: string): { violations: string[]; skipped: string[] } {
++    const all = this.topLevelMentions(line);
++    if (all.length === 0) return { violations: [], skipped: [] };
++    if (/^\s*>/.test(line)) return { violations: [], skipped: all.map((m) => `${m} [blockquote]`) };
++    const blank = (x: string): string => ' '.repeat(x.length);
++    const noStruck = line.replace(/~~[^~]*~~/g, blank);
++    // ruling oopPO 2026-10-02: a quote is exempt ONLY when EXPLICITLY attributed to Tron — `Tron` within 40 chars before
++    // the opening quote, no other quote between (`Tron, 2026-09-21: "…"`, `Tron: “…”`). An unattributed quote is LIVE:
++    // quoting a stale path must never hide it (a generic quote exemption is an evasion hole).
++    const live = this.topLevelMentions(noStruck.replace(/(?<=\bTron\b[^"“”\n]{0,40})("[^"]*"|“[^”]*”)/g, blank));
++    const afterStrike = this.topLevelMentions(noStruck);
++    const pool = [...live];
++    const take = (m: string): boolean => {
++      const i = pool.indexOf(m);
++      if (i < 0) return false;
++      pool.splice(i, 1);
++      return true;
++    };
++    const skipped: string[] = [];
++    const strikePool = [...afterStrike];
++    for (const m of all) {
++      if (take(m)) continue;
++      const i = strikePool.indexOf(m);
++      if (i >= 0) {
++        strikePool.splice(i, 1);
++        skipped.push(`${m} [tron-verbatim]`);
++      } else skipped.push(`${m} [struck]`);
++    }
++    return { violations: live, skipped };
++  }
++  /**
++   * ARM6 tree-awareness (oopPO ruling 2026-10-02 — DERIVED from structure, never a marker): inside a ``` fence, a row's
++   * depth is its leading run of spaces / box glyphs (│├└─), its ancestors are the nearest preceding rows of smaller depth,
++   * and a row NESTED under a row whose name ends in `latest/` is COMPONENT-RELATIVE (its `src/`, `test/` are the
++   * component's). Outside a fence there is no tree; the fence resets on close; the `latest/` row itself is not exempt.
++   * Returns the 0-based indices of the component-relative rows.
++   */
++  componentRelativeRows(lines: string[]): Set<number> {
++    const rows = new Set<number>();
++    let fenced = false;
++    let stack: { depth: number; name: string }[] = [];
++    lines.forEach((line, i) => {
++      if (/^\s*```/.test(line)) {
++        fenced = !fenced;
++        stack = [];
++        return;
++      }
++      if (!fenced || line.trim() === '') return;
++      const depth = (/^[\s│├└─]*/.exec(line)?.[0] ?? '').length;
++      const name = line.slice(depth).split(/\s+/)[0] ?? '';
++      while (stack.length > 0 && (stack[stack.length - 1]?.depth ?? 0) >= depth) stack.pop();
++      if (stack.some((a) => a.name.endsWith('latest/'))) rows.add(i);
++      stack.push({ depth, name });
++    });
++    return rows;
++  }
++  scanTopLevel(files = this.docFiles()): { violations: string[]; skipped: string[]; tree: string[]; total: number } {
++    const violations: string[] = [];
++    const skipped: string[] = [];
++    const tree: string[] = [];
++    for (const file of files) {
++      const lines = readFileSync(file, 'utf8').split('\n');
++      const relative = this.componentRelativeRows(lines);
++      lines.forEach((line, i) => {
++        if (relative.has(i)) {
++          for (const m of this.topLevelMentions(line)) tree.push(`${file}:${i + 1} ${m} [component-relative row]`);
++          return;
++        }
++        const c = this.classifyTopLevel(line);
++        for (const v of c.violations) violations.push(`${file}:${i + 1} ${v}`);
++        for (const k of c.skipped) skipped.push(`${file}:${i + 1} ${k}`);
++      });
++    }
++    return { violations: violations.sort(), skipped: skipped.sort(), tree: tree.sort(), total: violations.length + skipped.length };
++  }
+ }
+ 
+ describe('spec + README stay TRUE by construction (doc-rot gate — derived from disk, never a hard list)', () => {
+@@ -168,29 +260,35 @@ describe('spec + README stay TRUE by construction (doc-rot gate — derived from
+    * Unresolved citations are allowed ONLY struck/blockquoted (ARM3's markers) or as an ASSERTED intentional non-file,
+    * and the whole allowance multiset is asserted EXACT (a marker is a disclosed exemption, never a silent one).
+    */
++  // DERIVED by oopTester on the SWEPT tree (oopPO sweep d1056da9 on 0c6e081): exactly ARM5's own printed allowance set.
++  // The sweep rewrote 4 top-level paths to component paths that are still intentional non-files (reason carried over
++  // from the key each replaces) and STRUCK the rest; the struck ones are disclosed [struck] allowances.
+   const PATH_ALLOWANCES = [
+-    'README.md src/Once.ts [unbuilt]', // spec/once.md rule 1: the fixed future name, not built yet
+-    'spec/component-model.md src/X.ts [placeholder]',
+-    'spec/eamd-ucp.md src/MOF/Loose.ts [seed]', // AC1's named seed ("Seed a loose src/MOF/Loose.ts -> RED"), not a file
+-    'spec/eamd-ucp.md src/X.ts [placeholder]',
++    'README.md EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Once/latest/src/ts/EAM/layer2/Once.ts [unbuilt]', // spec/once.md rule 1: the fixed future name, not built yet (was src/Once.ts)
++    'spec/component-model.md latest/src/ts/X.ts [placeholder]', // (was src/X.ts, now struck in the text)
++    'spec/component-model.md src/X.ts [struck]',
++    'spec/eamd-ucp.md EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/Loose/latest/src/ts/EAM/layer2/Loose.ts [seed]', // AC1's named seed (was src/MOF/Loose.ts, now struck)
++    'spec/eamd-ucp.md src/MOF/Loose.ts [struck]',
++    'spec/eamd-ucp.md src/X.ts [struck]',
++    'spec/index.md session/base-skills/radical-oop-law.md [cross-repo]', // the Claude workspace, not this repo
+     'spec/mof.md scripts/preflight.mjs [struck]', // retired 86022bf, struck at f8e7e16
+     'spec/mof.md test/Preflight.test.ts [struck]', // Preflight, retired and struck in the text
+-    'spec/index.md session/base-skills/radical-oop-law.md [cross-repo]', // the Claude workspace, not this repo
++    'spec/once.md EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Once/latest/src/ts/EAM/layer2/Once.ts [unbuilt]',
+     'spec/oosh-mda.md session/base-skills/gating-canon.md [cross-repo]',
+-    'spec/once.md src/Once.ts [unbuilt]',
+-    'spec/ucp.md src/Container.ts [retired]',
++    'spec/ucp.md src/Container.ts [struck]', // retired, now struck in the text (was a NON_FILES 'retired')
+   ].sort();
+-  /** Intentional non-files that are NOT marked in the text: file + token -> reason (asserted, exact, printed). */
++  /** Intentional non-files that are NOT marked in the text: file + token -> reason (asserted, exact, printed; an unused entry is RED). */
+   const NON_FILES: Record<string, string> = {
+-    'README.md src/Once.ts': 'unbuilt',
+-    'spec/once.md src/Once.ts': 'unbuilt',
+-    'spec/component-model.md src/X.ts': 'placeholder',
+-    'spec/eamd-ucp.md src/MOF/Loose.ts': 'seed',
++    'README.md EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Once/latest/src/ts/EAM/layer2/Once.ts': 'unbuilt',
++    'spec/once.md EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Once/latest/src/ts/EAM/layer2/Once.ts': 'unbuilt',
++    'spec/component-model.md latest/src/ts/X.ts': 'placeholder',
++    'spec/eamd-ucp.md EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/Loose/latest/src/ts/EAM/layer2/Loose.ts': 'seed',
+     'spec/index.md session/base-skills/radical-oop-law.md': 'cross-repo',
+     'spec/oosh-mda.md session/base-skills/gating-canon.md': 'cross-repo',
+-    'spec/eamd-ucp.md src/X.ts': 'placeholder',
+-    'spec/ucp.md src/Container.ts': 'retired',
+   };
++  /** NON_FILES keys no unresolved citation uses — a DEAD allowance would silently excuse a future stale path (fail-open). */
++  const deadNonFiles = (violations: string[], nonFiles: Record<string, string> = NON_FILES): string[] =>
++    Object.keys(nonFiles).filter((k) => !violations.some((v) => v.replace(/:\d+ /, ' ') === k)).sort();
+   const pathVerdict = (r: { violations: string[]; allowed: string[] }): { violations: string[]; allowed: string[] } => {
+     const keyed = (s: string): string => s.replace(/:\d+ /, ' ');
+     const named = r.violations.filter((v) => NON_FILES[keyed(v)] !== undefined);
+@@ -203,11 +301,13 @@ describe('spec + README stay TRUE by construction (doc-rot gate — derived from
+   it('ARM5: every backticked repo-file citation in README + spec/*.md RESOLVES in the tree, except the EXACT asserted allowance set', () => {
+     const docs = new Docs().init();
+     const all = [...docs.docFiles()].flatMap((f) => readFileSync(f, 'utf8').split('\n').flatMap((l) => docs.fileCitations(l)));
+-    const v = pathVerdict(docs.scanPaths());
++    const raw = docs.scanPaths();
++    const v = pathVerdict(raw);
+     console.log(`doc-rot ARM5: ${all.length} repo-file citations, ${v.allowed.length} allowed (printed so none hides):\n${v.allowed.join('\n')}`);
+     expect(all.length).toBeGreaterThan(0); // not a hollow green: the scan saw real citations
+     expect(v.violations).toEqual([]);
+     expect(v.allowed).toEqual(PATH_ALLOWANCES);
++    expect(deadNonFiles(raw.violations), 'a NON_FILES entry no citation uses is a DEAD allowance').toEqual([]);
+   });
+ 
+   it('ARM5 RED direction is failable: a seeded stale path is a VIOLATION; struck, blockquoted and asserted non-files are ALLOWED', () => {
+@@ -217,10 +317,10 @@ describe('spec + README stay TRUE by construction (doc-rot gate — derived from
+     expect(docs.classifyPaths('> quote: `test/Gone.test.ts`', tracked)).toEqual({ violations: [], allowed: ['test/Gone.test.ts [blockquote]'] });
+     expect(docs.classifyPaths('the ~~`test/Gone.test.ts`~~ file is retired', tracked)).toEqual({ violations: [], allowed: ['test/Gone.test.ts [struck]'] });
+     expect(docs.classifyPaths('a directory `EAMD.ucp/Components/X/latest/src/ts` resolves', tracked)).toEqual({ violations: [], allowed: [] });
+-    expect(pathVerdict({ violations: ['spec/ucp.md:9 src/Container.ts', 'spec/ucp.md:10 src/Stale.ts'], allowed: [] })).toEqual({
+-      violations: ['spec/ucp.md:10 src/Stale.ts'],
+-      allowed: ['spec/ucp.md src/Container.ts [retired]'],
+-    });
++    expect(pathVerdict({ violations: ['spec/index.md:9 session/base-skills/radical-oop-law.md', 'spec/index.md:10 src/Stale.ts'], allowed: [] })).toEqual({
++      violations: ['spec/index.md:10 src/Stale.ts'],
++      allowed: ['spec/index.md session/base-skills/radical-oop-law.md [cross-repo]'],
++    }); // a LIVE NON_FILES key (src/Container.ts was struck by the sweep — no longer a non-file allowance)
+   });
+ 
+   it('ARM5 scope is structural: patterns, placeholders, ellipses, absolute paths, URLs, relative module specifiers and bare names are not repo-file citations', () => {
+@@ -234,6 +334,8 @@ describe('spec + README stay TRUE by construction (doc-rot gate — derived from
+     expect([...PATH_ALLOWANCES, 'spec/mof.md gen/x.puml [struck]'].sort()).not.toEqual(PATH_ALLOWANCES);
+     expect(PATH_ALLOWANCES.slice(1)).not.toEqual(PATH_ALLOWANCES);
+     expect([...PATH_ALLOWANCES, PATH_ALLOWANCES[0] ?? ''].sort()).not.toEqual(PATH_ALLOWANCES);
++    // the dead-allowance guard is failable: an entry no citation uses is reported by name, a used one is not
++    expect(deadNonFiles(['spec/x.md:3 src/Used.ts'], { 'spec/x.md src/Used.ts': 'seed', 'spec/x.md src/Gone.ts': 'seed' })).toEqual(['spec/x.md src/Gone.ts']);
+   });
+ });
+ 
+@@ -360,3 +462,66 @@ describe('ARM4 — the README State table is derivable from disk (built = class
+     expect(r.violations).toContain('[x] test EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Graph/latest/test/M1Graph.test.ts imports no cited class');
+   });
+ });
++
++/**
++ * ARM6 (doc-rot, oopTester 2026-10-02, plan of record 2026-10-02-thinglish-target-and-spec-sweep Part 2): no LIVE-NORMATIVE
++ * mention of a top-level `{G}`, `src/` or `test/` path in README + spec/*.md — none exists since S1/AC4b, so every live
++ * mention teaches a layout that is not there. Exempt ONLY by structure: blockquote, struck, a quote attributed to Tron,
++ * and spec/plans/ (dated plans record history; docFiles() is non-recursive). Reported CHECKED/SKIPPED/TOTAL, every
++ * skipped mention printed so no exemption hides.
++ */
++describe(`ARM6 — no live-normative top-level ${G} src/ test/ path in README + spec/*.md`, () => {
++  it(`ARM6: every top-level ${G} src/ test/ mention is struck, blockquoted or a Tron-attributed quote — report CHECKED/SKIPPED/TOTAL`, () => {
++    const r = new Docs().init().scanTopLevel();
++    console.log(
++      `ARM6 top-level paths: CHECKED ${r.violations.length} live / SKIPPED ${r.skipped.length} marked / TOTAL ${r.total}` +
++        ` (+ ${r.tree.length} component-relative tree rows, derived, NOT top-level)` +
++        `\nLIVE (each a violation):\n${r.violations.join('\n')}\nSKIPPED (printed so none hides):\n${r.skipped.join('\n')}` +
++        `\nTREE (printed so none hides):\n${r.tree.join('\n')}`,
++    );
++    expect(r.total).toBeGreaterThan(0); // not hollow: the scan saw real mentions
++    expect(r.violations).toEqual([]);
++  });
++
++  it(`ARM6 RED direction is failable: a seeded \`${G}js/X.js\` is a VIOLATION by name, backticked or in prose`, () => {
++    const docs = new Docs().init();
++    expect(docs.classifyTopLevel(`the browser build lands in \`${G}js/X.js\``).violations).toEqual([`${G}js/X.js`]);
++    expect(docs.classifyTopLevel(`write ${G}js/X.js, then src/ and test/Foo.test.ts`).violations).toEqual([`${G}js/X.js`, 'src/', 'test/Foo.test.ts']);
++  });
++
++  it('ARM6 exemptions are structural and failable: blockquote, struck, Tron-attributed quote are SKIPPED with their marker; component paths are not mentions', () => {
++    const docs = new Docs().init();
++    expect(docs.classifyTopLevel(`> history: \`${G}js/X.js\``)).toEqual({ violations: [], skipped: [`${G}js/X.js [blockquote]`] });
++    expect(docs.classifyTopLevel(`the ~~\`${G}js/X.js\`~~ file is retired`)).toEqual({ violations: [], skipped: [`${G}js/X.js [struck]`] });
++    expect(docs.classifyTopLevel(`Tron: "put it in ${G}js/X.js"`)).toEqual({ violations: [], skipped: [`${G}js/X.js [tron-verbatim]`] });
++    expect(docs.classifyTopLevel(`(Tron, 2026-09-21: “put it in ${G}js/X.js”) — and ${G}js/Y.js too`)).toEqual({ violations: [`${G}js/Y.js`], skipped: [`${G}js/X.js [tron-verbatim]`] });
++    // the evasion hole is CLOSED: an UNATTRIBUTED quote is LIVE, and so is one whose `Tron` is too far away
++    expect(docs.classifyTopLevel(`the old doc said "put it in ${G}js/X.js"`)).toEqual({ violations: [`${G}js/X.js`], skipped: [] });
++    expect(docs.classifyTopLevel(`Tron ruled this long ago, and much later in this very long sentence a note says "${G}js/Z.js"`)).toEqual({ violations: [`${G}js/Z.js`], skipped: [] });
++    expect(docs.classifyTopLevel(`Tron: "a" and then "${G}js/W.js"`)).toEqual({ violations: [`${G}js/W.js`], skipped: [] });
++    expect(docs.topLevelMentions(`\`EAMD.ucp/Components/X/latest/${G}js/X.js\` \`<C>/latest/src/ts/A.ts\` ../test/x latest/test/ ./src/a`)).toEqual([]);
++    expect(docs.topLevelMentions('contest/ subsrc/ gen_x/ mytest/a')).toEqual([]);
++  });
++
++  it('ARM6 tree-awareness is DERIVED and failable BOTH ways: rows nested under `latest/` in a fence are component-relative; nothing else is', () => {
++    const docs = new Docs().init();
++    const rows = (text: string): number[] => [...docs.componentRelativeRows(text.split('\n'))];
++    const fence = (body: string): string => ['```', body, '```'].join('\n');
++    // GREEN: nested under `latest/` (plain and box-glyph trees), including a description column naming src/
++    expect(rows(fence(['Pkg/', '  latest/', '    src/<lang>/', '    test/   beside src/'].join('\n')))).toEqual([3, 4]);
++    expect(rows(fence(['│ └── latest/', '│     └── src/'].join('\n')))).toEqual([2]);
++    // RED: the `latest/` row itself, a SIBLING of latest/, a row under a NON-latest/ dir
++    expect(rows(fence(['Pkg/', '  latest/', '  src/'].join('\n')))).toEqual([]);
++    expect(rows(fence(['Pkg/', '  other/', '    src/'].join('\n')))).toEqual([]);
++    // RED: no tree OUTSIDE a fence; the fence RESETS on close
++    expect(rows(['latest/', '  src/'].join('\n'))).toEqual([]);
++    expect(rows([fence(['  latest/', '    src/'].join('\n')), '    src/'].join('\n'))).toEqual([2]);
++  });
++
++  it('ARM6 scope: spec/plans/ is excluded STRUCTURALLY (non-recursive docFiles) — and the exclusion is real, not vacuous', () => {
++    const files = new Docs().init().docFiles();
++    expect(files.some((f) => f.startsWith('spec/plans/'))).toBe(false);
++    expect(readdirSync('spec/plans').filter((f) => f.endsWith('.md')).length).toBeGreaterThan(0);
++    expect(files).toContain('README.md');
++  });
++});
