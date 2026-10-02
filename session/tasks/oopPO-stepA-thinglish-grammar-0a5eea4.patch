@@ -1,0 +1,75 @@
+diff --git a/spec/thinglish.md b/spec/thinglish.md
+index 8b5a0f5..74834d4 100644
+--- a/spec/thinglish.md
++++ b/spec/thinglish.md
+@@ -108,20 +108,24 @@ class DemoComponent
+ 
+ **Grammar of record (EBNF):**
+ ```ebnf
+-unit         = namespace , { dependency } , ( class | interface ) ;
+-namespace    = "namespace" , qualifiedName ;
+-dependency   = "dependency" , qualifiedName , "." , version ;
+-class        = "class" , Name , [ typeParams ] , [ "extends" , type ] , [ "implements" , type , { "," , type } ] , "{" , { member } , "}" ;
+-interface    = "interface" , Name , [ typeParams ] , [ "extends" , type , { "," , type } ] , "{" , { member } , "}" ;
+-member       = attribute | property | relationship | collection | method ;
+-attribute    = "attribute" , name , ":" , type , [ "=" , expr ] ;
+-property     = "property" , name , ":" , type , [ "get" , block ] , [ "set" , "(" , name , ")" , block ] ;
+-relationship = "relationship" , name , ":" , type ;
+-collection   = "collection" , name , ":" , type ;
+-method       = name , "(" , [ params ] , ")" , [ ":" , type ] , block ;
+-params       = param , { "," , param } ;
+-param        = name , ":" , type , [ "=" , expr ] ;
+-version      = "latest" | "prod" | tag ;
++unit              = namespace , { dependency } , ( class | interface ) ;
++namespace         = "namespace" , qualifiedName ;
++dependency        = "dependency" , qualifiedName , "." , version ;
++class             = [ "abstract" ] , [ "entry" ] , "class" , Name , [ typeParams ] , [ "extends" , type ] , [ "implements" , type , { "," , type } ] , "{" , { member } , "}" ;
++interface         = "interface" , Name , [ typeParams ] , [ "extends" , type , { "," , type } ] , "{" , { member } , "}" ;
++member            = attribute | property | relationship | collection | method ;
++attributeModifier = "static" | "private" | "protected" | "override" | "readonly" ;
++methodModifier    = "abstract" | "static" | "private" | "protected" | "override" | "async" ;
++attribute         = { attributeModifier } , "attribute" , name , ":" , type , [ "=" , expr ] ;
++property          = { methodModifier } , "property" , name , ":" , type , [ "get" , ( block | ";" ) ] , [ "set" , "(" , name , ")" , ( block | ";" ) ] ;
++relationship      = "relationship" , name , ":" , type , [ kind ] , [ "redefines" , name ] ;
++collection        = "collection" , name , ":" , type , [ kind ] , [ "redefines" , name ] ;
++kind              = "contains" | "containedBy" | "references" | "instanceOf" ;
++method            = { methodModifier } , name , [ typeParams ] , "(" , [ params ] , ")" , [ ":" , type ] , ( block | ";" ) ;
++params            = param , { "," , param } ;
++param             = [ "..." ] , name , [ "?" ] , ":" , type , [ "=" , expr ] ;
++block             = "{" , { TypeScriptStatement } , "}" ;
++version           = "latest" | "prod" | tag ;
+ ```
+ 
+ > **Tron, 2026-10-01 (verbatim, SC8 clause-2 fork):** "M3Relationship, latest/prod are instances of Version ucpcomponents" — then, asked whether that answered `dependency` or `namespace`: **"1 yes as recommended"** = it answered `dependency`; `namespace` → instances of the existing `Namespace` UcpComponent.
+@@ -138,3 +142,31 @@ version      = "latest" | "prod" | tag ;
+ | `relationship` | M3Relationship (`0..1` / `1`) | `RelationshipModel` | ONE IOR |
+ | `collection` | M3Relationship (`0..n` / `1..n`) — *extends* relationship | `RelationshipModel` | an IOR ARRAY |
+ | method | M3Method | `MethodModel` | — |
++| `abstract` / `entry` (class) | an ATTRIBUTE of **M3Class**: `isAbstract` / `isEntry` | `ClassModel` | — |
++| `abstract` / `static` / `private` / `protected` / `override` / `async` (method, property) | an ATTRIBUTE of **M3Method**: `isAbstract` / `isStatic` / `visibility` / `isOverride` / `isAsync` | `MethodModel` | — |
++| `static` / `private` / `protected` / `override` / `readonly` (attribute) | an ATTRIBUTE of **M3Attribute**: `isStatic` / `visibility` / `isOverride` / `isReadonly` | `AttributeModel` | — |
++| `contains` / `containedBy` / `references` / `instanceOf` | an ATTRIBUTE of **M3Relationship**: `kind` (`generalization` / `realization` are `extends` / `implements`) | `RelationshipModel` | — |
++| `redefines` | an ATTRIBUTE of **M3Relationship**: `redefines` | `RelationshipModel` | — |
++
++> **Tron, 2026-10-02 (verbatim):** "add to the src also a thinglish folder and serialize the model in pure thinglish with extensions like name.interface.thing and name.class.thing" — asked: modifiers → **"Grammar keywords"**; bodies → **"typescript blocks"**; then the plan of record [plans/2026-10-02-thinglish-target-and-spec-sweep.md](plans/2026-10-02-thinglish-target-and-spec-sweep.md) **approved as-is** (G1–G5). A modifier or kind keyword maps to an **attribute of an existing M3 element, per member kind** — never a new M3 element. `...`, `?` are TypeScript-shaped punctuation (G3), not keywords.
++
++**HELD (G5) — not rendered, not invented, reported by the gate:**
++
++| Model fact | Why held |
++|---|---|
++| `TypeAliasModel` (type aliases) | no M3 element — a keyword would need one (Tron's call) |
++| `ImportModel.isTypeOnly` (type-only imports) | a TypeScript emit concern of a type alias; held with it |
++
++
++## Pure Thinglish serialization — `src/thinglish/` (Tron, 2026-10-02) — specified, not built
++
++Every component's `src/` gains a **`thinglish/`** folder beside `ts/`, `js/`, `thinglish.ts/`, `thinglish.js/`, `puml/`, `mmd/`: the model **serialized in pure Thinglish** (the grammar above), one type per file — **`src/thinglish/EAM/<layer>/<Name>.class.thing`** or **`<Name>.interface.thing`** — rendered from the **model** by the M2 target **`M2ThingClass`** (never parsed from source), generated and committed like every target.
++
++- **TH1 one file per type, derived:** every catalogued class has exactly one `.thing` file of the right kind in its component's `src/thinglish/EAM/<layer>/`; expected set derived from the catalog (CHECKED / SKIPPED / TOTAL, SKIPPED 0); seed a missing or wrong-kind file → RED.
++- **TH2 generated from the model:** `npm start` reproduces every `.thing` with zero diff; seed a hand-edit → RED.
++- **TH3 lossless except EXACTLY the held set:** every model fact appears — namespace, dependencies, kind, type params, extends/implements, attributes (type, initializer, modifiers), properties, methods (type params, params incl. `...`/`?`/defaults, return type, modifiers, TypeScript body or `;`), relationships/collections (kind, `redefines`); seed: drop any one from the renderer → RED by name.
++- **TH4 only grammar keywords:** every keyword used in any `.thing` belongs to the keyword set **derived from `ThinglishGrammar`**, each mapped per SC8 (an M3 element, an instance of `Namespace`/`Version`, or an attribute of an M3 element).
++- **TH5 no invention:** a model fact the grammar cannot express is reported (the held table), never made up and never silently dropped.
++- Parsing `.thing` back (`ThinglishParser`, F6) is out of scope — these files are its input.
++
++**Increments** (plan of record): **A** = this grammar + keyword rows + held table, `ThinglishGrammar` model, oopTester's SC8 extension — ONE atomic push. **B** = `M2ThingClass` + `src/thinglish/` for every component + TH1–TH5, with the target-listing tests' expectations as oopTester's patches.
