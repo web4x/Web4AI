@@ -1,0 +1,50 @@
+diff --git a/spec/thinglish.md b/spec/thinglish.md
+index 8b5a0f5..3df9af6 100644
+--- a/spec/thinglish.md
++++ b/spec/thinglish.md
+@@ -111,14 +111,16 @@ class DemoComponent
+ unit         = namespace , { dependency } , ( class | interface ) ;
+ namespace    = "namespace" , qualifiedName ;
+ dependency   = "dependency" , qualifiedName , "." , version ;
+-class        = "class" , Name , [ typeParams ] , [ "extends" , type ] , [ "implements" , type , { "," , type } ] , "{" , { member } , "}" ;
++class        = [ "abstract" ] , [ "entry" ] , "class" , Name , [ typeParams ] , [ "extends" , type ] , [ "implements" , type , { "," , type } ] , "{" , { member } , "}" ;
+ interface    = "interface" , Name , [ typeParams ] , [ "extends" , type , { "," , type } ] , "{" , { member } , "}" ;
+ member       = attribute | property | relationship | collection | method ;
+-attribute    = "attribute" , name , ":" , type , [ "=" , expr ] ;
+-property     = "property" , name , ":" , type , [ "get" , block ] , [ "set" , "(" , name , ")" , block ] ;
+-relationship = "relationship" , name , ":" , type ;
+-collection   = "collection" , name , ":" , type ;
+-method       = name , "(" , [ params ] , ")" , [ ":" , type ] , block ;
++modifier     = "abstract" | "static" | "private" | "protected" | "override" | "async" ;
++attribute    = { modifier } , "attribute" , name , ":" , type , [ "=" , expr ] ;
++property     = { modifier } , "property" , name , ":" , type , [ "get" , ( block | ";" ) ] , [ "set" , "(" , name , ")" , ( block | ";" ) ] ;
++relationship = "relationship" , name , ":" , type , [ "redefines" , name ] ;
++collection   = "collection" , name , ":" , type , [ "redefines" , name ] ;
++method       = { modifier } , name , "(" , [ params ] , ")" , [ ":" , type ] , ( block | ";" ) ;
++block        = "{" , { TypeScriptStatement } , "}" ;
+ params       = param , { "," , param } ;
+ param        = name , ":" , type , [ "=" , expr ] ;
+ version      = "latest" | "prod" | tag ;
+@@ -138,3 +140,22 @@ version      = "latest" | "prod" | tag ;
+ | `relationship` | M3Relationship (`0..1` / `1`) | `RelationshipModel` | ONE IOR |
+ | `collection` | M3Relationship (`0..n` / `1..n`) — *extends* relationship | `RelationshipModel` | an IOR ARRAY |
+ | method | M3Method | `MethodModel` | — |
++| `abstract` (class) / `entry` | an ATTRIBUTE of **M3Class**: `ClassModel.isAbstract` / `isEntry` (Tron 2026-10-02: modifiers are grammar keywords) | `ClassModel` | — |
++| `abstract` / `static` / `private` / `protected` / `override` / `async` (member) | an ATTRIBUTE of **M3Method** / **M3Attribute**: `isAbstract`, `isStatic`, `visibility`, `isOverride`, `isAsync` | `MethodModel` / `AttributeModel` | — |
++| `redefines` | an ATTRIBUTE of **M3Relationship**: `RelationshipModel.redefines` | `RelationshipModel` | — |
++
++> **Tron, 2026-10-02 (verbatim):** "add to the src also a thinglish folder and serialize the model in pure thinglish with extensions like name.interface.thing and name.class.thing" — and, asked: modifiers → **"Grammar keywords"**; method bodies → **"typescript blocks"**. Reading (oopPO, flagged): a `block` is TypeScript statements verbatim; an abstract or interface member ends with `;` as in TypeScript. A modifier keyword maps to an **attribute of an existing M3 element**, never a new M3 element (SC8 keeps "every keyword maps to M3").
++
++
++## Pure Thinglish serialization — `src/thinglish/` (Tron, 2026-10-02) — specified, not built
++
++Every component's `src/` gains a **`thinglish/`** folder beside `ts/`, `js/`, `thinglish.ts/`, `thinglish.js/`, `puml/`, `mmd/`: the model **serialized in pure Thinglish** — the grammar above — one type per file, **`src/thinglish/EAM/<layer>/<Name>.class.thing`** or **`<Name>.interface.thing`** (by kind, like convention 4). Rendered by a new M2 target **`M2ThingClass`** from the **model** (never parsed from source), so it is generated and committed like every target.
++
++- **TH1 one file per type, derived:** every catalogued class has exactly one `.thing` file of the right kind in its component's `src/thinglish/EAM/<layer>/`; the expected set is derived from the catalog (CHECKED / SKIPPED / TOTAL, SKIPPED 0); seed a missing or wrong-kind file → RED.
++- **TH2 generated from the model:** `npm start` reproduces every `.thing` with zero diff; seed a hand-edit → RED.
++- **TH3 lossless:** every declarative fact of the model appears — namespace, dependencies, kind, type params, extends/implements, attributes (type, initializer, modifiers), properties, methods (params, return type, modifiers, TypeScript body or `;`), relationships/collections (multiplicity by keyword, `redefines`); seed: drop any one of them from the renderer → RED by name.
++- **TH4 only grammar keywords:** every keyword used in any `.thing` belongs to the keyword set **derived from `ThinglishGrammar`**; every keyword maps per SC8 (to an M3 element, an instance of `Namespace`/`Version`, or — modifiers — an attribute of an M3 element).
++- **TH5 no invention:** a model field the grammar cannot express is **reported**, never rendered in made-up syntax and never silently dropped.
++- Parsing `.thing` back into the model (`ThinglishParser`, F6) is **not** in scope; these files are its input.
++
++**Increments:** **A (atomic, one push):** grammar amendment = this spec's EBNF + keyword rows + `ThinglishGrammar` model (EBNF of record + modifier mappings) + oopTester's SC8 extension. **B:** `M2ThingClass` + `src/thinglish/` for every component + TH1–TH5.
