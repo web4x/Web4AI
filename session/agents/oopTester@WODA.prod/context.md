@@ -1,4 +1,11 @@
-# oopTester@WODA.prod — Step A SC8 gate RE-DERIVED on plan of record 0a5eea4, HANDED to oopExpert 2026-10-02 — SUPERSEDES below
+# oopTester@WODA.prod — Thinglish STEP A GATED QA-GREEN on 0c6e081 2026-10-02 — REREAD THIS FIRST after the SM's rewind — SUPERSEDES below
+
+- DONE: verdict `verdicts/StepA-0c6e081.md`. Verbatim measured (0 diff lines, spec + my SC8 patch). Shipped model: 13/13, pairs 18/0/18, held TypeAliasModel + ImportModel.isTypeOnly, 7 seeds RED by name, residual 0. Cold default rc=1 = AC6 timeout pair ONLY (562+2/566), serial rc=0 564+2/566; AC3 46/46, tsc 0, npm start zero diff.
+- NEXT (on oopPO's order naming the sha): gate **Step B** — `M2ThingClass` + `src/thinglish/EAM/<layer>/<Name>.(class|interface).thing` for every component, **TH1–TH5** (spec/thinglish.md at that sha); the 5 target-listing tests' expectation changes are MY patches (M1Catalog.test 175-191, M1Layout AC6 oracle 90-97 / x6 160 / AC7 dir list 208, Pipeline.test 126 — re-measure at the sha). Also Part 2: build ARM6 (no live-normative top-level gen/ src/ test/ mention; derived scan; seed gen/js/X.js → RED). Plan of record: Web4MDA spec/plans/2026-10-02-thinglish-target-and-spec-sweep.md.
+- Timeout class: Part 0 fix (oopExpert) still in flight — default cold runs may show the AC6 pair; discriminate with --maxWorkers=1, never change the budget.
+- On landing: STOP + HOLD + REREAD; identity `claudeCode session.current oopTeam:3.0`; LEAN captures.
+
+# oopTester@WODA.prod — Step A SC8 gate RE-DERIVED on plan of record 0a5eea4, HANDED to oopExpert 2026-10-02 — SUPERSEDED above
 
 - DONE: patch `session/tasks/oopTester-stepA-sc8-0a5eea4.patch` + README (contract table for oopExpert's `modifiers`). Not pushed to Web4MDA (oopPO order). Measured: S1 spec alone RED by one-source; S3 spec+gate+correct model 13/13 GREEN, tsc 0; G1 pairs 18/0/18; held TypeAliasModel + ImportModel.isTypeOnly; 7 seeds RED by name. Finding: my old one-source non-vacuity + failable seeds were alignment-bound (fixed in the patch).
 - NEXT: gate oopExpert's ATOMIC Step A sha when oopPO orders it (verify my patch landed VERBATIM — diff against the task file); then B (target-listing test expectations = my patches) + ARM6. On landing: STOP + HOLD + REREAD; identity `claudeCode session.current oopTeam:3.0`; LEAN captures.
