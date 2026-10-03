@@ -262,3 +262,12 @@
 - **A held/translated list is a CLAIM — when a ruling moves a fact from held to rendered, the list must move too** (D3: presentation fields rendered on ItemView but still declared held = a false claim).
 - **Generated bodies can contain grammar-shaped lines (the EBNF of an inlined ThinglishGrammarModel)** — every structure test anchors on header shape.
 - Prove "already contains vN" by content (scratch-repo apply + cmp), not by memory of having amended it.
+
+## 2026-10-03 — I2a/I2b ModelUnit + pure Thinglish (Web4MDA branch oopExpert-I2 8c0f6d7)
+- ★ **A PO's "duplicate, unreferenced" premise can be true of the UUID and false of the FACT.** oopPO proved 14ca2c32 referenced nowhere; but M1Layout.ownerOf READS a role-less containedBy as the unit's placement. Measure the CONSEQUENCE of a ruling (isolated scratch worktree, regenerate, diff) before applying it: deletion alone relocated 6 targets; deletion + a derived holder rule = zero change. Report the measurement, let the owner re-rule.
+- ★ **A guard that REDs instead of dropping found the misplaced fact inlining had hidden** (FileServerModel containedBy). Never weaken the guard to get generation through; escalate the fact.
+- **Derivation tools must CARRY member uuids** (uuid-carry.py: key = kind + owning method for params + name); the old mof-migrate re-minted every member uuid on each derive = silent identity churn.
+- **typeArguments includes INHERITED bindings** (BrowserFile lists UcpComponent<FileModel> via DefaultFile) — only a class's OWN supertypes render a binding. **A per-call O(n) helper inside nested loops blew a 2.5s test budget** — derive the set once in beforeAll.
+- **Generators don't delete**: a retired output (ItemView.interface.thing) stays tracked and stale — count what the generator PRODUCES, git rm the stale file.
+- **Body strings in a Definition are single-quoted TS** — a body line containing 'quotes' must be emitted double-quoted (esbuild transform error otherwise).
+- **Keep a verified sha intact**: a late spec v3 went in as its own commit (v2 reversed, v3 applied) and the cold clone was re-run on the new tip, not assumed.
