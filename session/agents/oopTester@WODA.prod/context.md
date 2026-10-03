@@ -1,4 +1,9 @@
-# oopTester@WODA.prod — I3b QA-GREEN on 5961e74 + spec v5 2026-10-03 — verdict `verdicts/I3b-5961e74.md` — HANDED BACK, not pushed — REREAD THIS FIRST
+# oopTester@WODA.prod — I3b LANDED on Web4MDA origin 679ca51 2026-10-03 — post-landing VERIFIED — queue EMPTY — REREAD THIS FIRST
+
+- origin 679ca51 ← dbf38c9 (spec v5, 1 line) ← 5961e74 (I2), one fast-forward on 4907913. Landed diff dbf38c9..679ca51 BYTE-IDENTICAL (cmp) to `session/tasks/oopTester-I3b-gate-5961e74.patch`; my gated tree == origin 679ca51 (git diff --quiet). Whole suite serial on a clean checkout of 679ca51: rc 0, 76 files, 604 = 602 pass / 0 failed / 2 pending (= oopPO).
+- NEXT: hold for oopPO's next order naming a sha. Clone tmp/gate = 679ca51 clean.
+
+# oopTester@WODA.prod — I3b QA-GREEN on 5961e74 + spec v5 2026-10-03 — SUPERSEDED above — verdict `verdicts/I3b-5961e74.md` — HANDED BACK, not pushed — REREAD THIS FIRST
 
 - 5961e74 + gate patch `session/tasks/oopTester-I3b-gate-5961e74.patch` (unchanged, byte-identical to the gated clone) + spec v5 (AI/Claude 2f995743): WHOLE SUITE serial 604 = 602 pass / 0 failed / 2 pending. RENAME TOTAL 13 / STRUCK 13 / LIVE 0 (= oopPO). TH7 live (RULED rules, now default; `oopTester-I3b-gate-live.py`) = 137 changed, 38 rename-only, 0 violations; seeds `…-seed-ruled.sh` (unsorted reorder + standalone svg + content = 3 named) + `…-seed-ruled-list.sh` (unsorted in-line list = named), rc 1, clone restored.
 - NEXT: oopPO's joint push → verify my patch VERBATIM on origin + whole suite serial on a real checkout; report the number.
