@@ -9,7 +9,10 @@ usage: python3 gate-i3b-live.py <base> <sha>
 import re, subprocess, sys
 
 base, sha = sys.argv[1], sys.argv[2]
-PROPOSED = '--proposed' in sys.argv  # oopTester's PROPOSED extensions (await oopPO's ruling): rename-only MODULO ORDER; an svg FOLLOWS its puml
+# oopPO RULED 2026-10-03 (default now): (a) rename-only MODULO ORDER, ONLY where the order is SORT-DERIVED (the reordered lines sit
+# in a run sorted by the name each line is about, in BOTH versions, each in its own names; an in-line list sorted in both);
+# (b) an svg may change ONLY because its puml source changed by the rename (incl. a); TypedModel.svg -> ModelUnit.svg = the rename.
+PROPOSED = True
 
 
 def canon(text):
@@ -17,11 +20,59 @@ def canon(text):
     return sorted(re.sub(r"\[[^\]]*\]", lambda m: '[' + ','.join(sorted(re.findall(r"'[^']*'", m.group(0)))) + ']', l) for l in text.splitlines())
 
 
+def key(line):
+    # the name a line is ABOUT: its last name, a trailing ` : <Binding>` / ` {` ignored (puml: the declared class / the child)
+    t = re.sub(r'\s*(:\s*<[^>]*>|\{)\s*$', '', line).split()
+    return t[-1] if t else ''
+
+
+def line_kind(line):
+    if '<|--' in line or '<|..' in line:
+        return 'rel'
+    if re.match(r'^(abstract class|class|interface|enum) ', line):
+        return 'decl'
+    return None
+
+
+def run_sorted(lines, i):
+    k = line_kind(lines[i])
+    if k is None:
+        return False
+    lo = i
+    while lo > 0 and line_kind(lines[lo - 1]) == k:
+        lo -= 1
+    hi = i
+    while hi < len(lines) - 1 and line_kind(lines[hi + 1]) == k:
+        hi += 1
+    keys = [key(l) for l in lines[lo:hi + 1]]
+    return keys == sorted(keys)
+
+
+def lists_sorted(line):
+    return all(re.findall(r"'[^']*'", m) == sorted(re.findall(r"'[^']*'", m)) for m in re.findall(r'\[[^\]]*\]', line))
+
+
+def sort_derived(b, a):
+    # every changed line is a re-sort: its run (or its in-line list) is sorted in BOTH versions, each in its own names
+    nb = b.replace(OLD, NEW).splitlines()
+    ob, oa = b.splitlines(), a.splitlines()
+    import difflib
+    for tag, i1, i2, j1, j2 in difflib.SequenceMatcher(None, nb, oa, autojunk=False).get_opcodes():
+        if tag == 'equal':
+            continue
+        pairs = list(zip(range(i1, i2), range(j1, j2))) if tag == 'replace' and i2 - i1 == j2 - j1 else []
+        if pairs and all(canon(nb[i]) == canon(oa[j]) for i, j in [(i, j) for i, j in pairs]) and all(lists_sorted(ob[i]) and lists_sorted(oa[j]) for i, j in pairs):
+            continue
+        if not all(run_sorted(ob, i) for i in range(i1, i2)) or not all(run_sorted(oa, j) for j in range(j1, j2)):
+            return False
+    return True
+
+
 def rename_only(b, a, modulo_order):
     if b is None or a is None:
         return False
     nb = b.replace(OLD, NEW)
-    return nb == a or (modulo_order and canon(nb) == canon(a))
+    return nb == a or (modulo_order and canon(nb) == canon(a) and sort_derived(b, a))
 W = 'EAMD.ucp/Components/com/ceruleanCircle/Web4MDA'
 OLD, NEW = 'Typed' + 'Model', 'ModelUnit'
 BUILDERS = [f'{W}/MOF/M2/M2ThingClass/', f'{W}/ThinglishGrammar/']  # scope REVERSED 2026-10-03: no M1Layout, no FileServerModelDefinition
@@ -68,7 +119,7 @@ for st in status:
             continue
     viol.append(f'{kind} {path}')
 
-print(f'TH7 live {base}..{sha} ({"PROPOSED" if PROPOSED else "STRICT"}): changed {len(status)} · rename-only {renamed_ok} · gate files named {len(GATE)} · VIOLATIONS {len(viol)}')
+print(f'TH7 live {base}..{sha} (ruled 2026-10-03): changed {len(status)} · rename-only {renamed_ok} · gate files named {len(GATE)} · VIOLATIONS {len(viol)}')
 for v in viol:
     print('  VIOLATION', v)
 

@@ -1,4 +1,9 @@
-# oopTester@WODA.prod — I3b GATED on oopExpert's 5961e74 (spec v4 scope) 2026-10-03 — 1 RED = oopPO's spec text; TH7 needs oopPO's ruling — REREAD THIS FIRST
+# oopTester@WODA.prod — I3b QA-GREEN on 5961e74 + spec v5 2026-10-03 — verdict `verdicts/I3b-5961e74.md` — HANDED BACK, not pushed — REREAD THIS FIRST
+
+- 5961e74 + gate patch `session/tasks/oopTester-I3b-gate-5961e74.patch` (unchanged, byte-identical to the gated clone) + spec v5 (AI/Claude 2f995743): WHOLE SUITE serial 604 = 602 pass / 0 failed / 2 pending. RENAME TOTAL 13 / STRUCK 13 / LIVE 0 (= oopPO). TH7 live (RULED rules, now default; `oopTester-I3b-gate-live.py`) = 137 changed, 38 rename-only, 0 violations; seeds `…-seed-ruled.sh` (unsorted reorder + standalone svg + content = 3 named) + `…-seed-ruled-list.sh` (unsorted in-line list = named), rc 1, clone restored.
+- NEXT: oopPO's joint push → verify my patch VERBATIM on origin + whole suite serial on a real checkout; report the number.
+
+# oopTester@WODA.prod — I3b GATED on oopExpert's 5961e74 (spec v4 scope) 2026-10-03 — SUPERSEDED above
 
 - SCOPE REVERSED by oopPO (spec v4 AI/Claude a4ed2e96): FileServerModel KEEPS containedBy 14ca2c32, rendered as an INTERFACE header clause (rule 12); TH7 = builders M2ThingClass/ThinglishGrammar + specs + gate + rename ONLY (no M1Layout, no FileServerModelDefinition); holder seed DROPPED; NEW seed = drop the clause → TH3 RED `FileServerModel.containedBy DefaultFolder (header clause)`.
 - oopExpert branch oopExpert-I2: 7454e10 (I2a) → e544a79 (I2b) → 8c0f6d7 (spec v3) → 5961e74 (ruling v4 applied). My gate patch vs 5961e74 = `session/tasks/oopTester-I3b-gate-5961e74.patch` (593 lines, 5 files, applies clean on pristine 5961e74; conflict on 8c0f6d7 resolved = my side, the retired inlining test).
