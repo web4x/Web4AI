@@ -1,0 +1,602 @@
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/M1Catalog.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/M1Catalog.test.ts
+index 1b3f521..0c7e551 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/M1Catalog.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/M1Catalog.test.ts
+@@ -16,12 +16,11 @@ import { Child } from '../../../../../latest/test/Child.js';
+ import { PureLayout } from '../../../../../latest/test/PureLayout.js';
+ 
+ // pure Thinglish (.thing) layout: ONE owner of the derivation (oopTester's PureLayout, from the MODEL, never the renderer) —
+-// an inlined 1:1 model has NO file (spec v6 rule 4), a model renders as an interface (rules 5-7), ItemModel shows as ItemView (ruling 6)
++// plan 2026-10-03: every class its own file, every model an interface (nothing inlined, nothing renamed)
+ const pure = new PureLayout().init(new M1Catalog().init().classes());
+ const thing = (n: string, isInterface: boolean): string[] => {
+   const c = pure.named(n);
+-  if (c !== undefined && pure.isInlined(c)) return [];
+-  return [`${pure.typeName(n)}.${isInterface || (c !== undefined && pure.isInterfaceType(c)) ? 'interface' : 'class'}.thing`];
++  return [`${n}.${isInterface || (c !== undefined && pure.isInterfaceType(c)) ? 'interface' : 'class'}.thing`];
+ };
+ 
+ /** Source with comment lines and blank lines removed — what generated TS is gated against. */
+@@ -199,7 +198,7 @@ describe('M1Catalog', () => {
+       'thinglish.js': (n) => `${n}.${kind(n)}.js`,
+       puml: (n) => `${n}.puml`,
+       mmd: (n) => `${n}.mmd`,
+-      thinglish: (n) => thing(n, interfaces.includes(n))[0] ?? `<inlined ${n}: no file>`,
++      thinglish: (n) => thing(n, interfaces.includes(n))[0] ?? '',
+     };
+     const fileOf = (d: string, n: string): string => (naming[d] ?? (() => `<no naming oracle for ${d}>`))(n);
+     const held = catalog.heldLanguage.directory;
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/test/M1Layout.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/test/M1Layout.test.ts
+index b36a1d7..8dbff3e 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/test/M1Layout.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Layout/latest/test/M1Layout.test.ts
+@@ -16,12 +16,11 @@ import { Source } from '../../../../../latest/test/Source.js';
+ import { PureLayout } from '../../../../../latest/test/PureLayout.js';
+ 
+ // pure Thinglish (.thing) layout: ONE owner of the derivation (oopTester's PureLayout, from the MODEL, never the renderer) —
+-// an inlined 1:1 model has NO file (spec v6 rule 4), a model renders as an interface (rules 5-7), ItemModel shows as ItemView (ruling 6)
++// plan 2026-10-03: every class its own file, every model an interface (nothing inlined, nothing renamed)
+ const pure = new PureLayout().init(new M1Catalog().init().classes());
+ const thing = (n: string, isInterface: boolean): string[] => {
+   const c = pure.named(n);
+-  if (c !== undefined && pure.isInlined(c)) return [];
+-  return [`${pure.typeName(n)}.${isInterface || (c !== undefined && pure.isInterfaceType(c)) ? 'interface' : 'class'}.thing`];
++  return [`${n}.${isInterface || (c !== undefined && pure.isInterfaceType(c)) ? 'interface' : 'class'}.thing`];
+ };
+ 
+ type Ctor = (abstract new () => object) & { implements?: Array<typeof Interface>; typeArguments?: Record<string, Array<abstract new () => object>> };
+@@ -173,10 +172,7 @@ describe('EAMD.ucp layout — increment 3 (spec/eamd-ucp.md AC5–AC7, rules 4
+     // language added to one side only is RED (two sources, never a hand ×N).
+     const perClass = catalog.homeDirectories.filter((d) => !['oosh', 'sample'].includes(d)).length;
+     expect(oracle.files('M1Catalog', false).filter(notHeld), 'the independent oracle names one file per generated class-unit home').toHaveLength(perClass);
+-    // spec v6 rule 4: an INLINED 1:1 model has no `.thing` of its own — exactly one file fewer each (PureLayout, from the MODEL)
+-    const inlined = pure.classes.filter((c) => pure.isInlined(c)).length;
+-    expect(inlined, 'the inlined models are DERIVED and non-zero (20 at I2)').toBeGreaterThan(0);
+-    expect(expected.length, 'derived, not vacuous: every class in every generated language + the placed unit, minus one .thing per inlined model').toBe(classes.length * perClass + placed.length - inlined);
++    expect(expected.length, 'derived, not vacuous: every class in every generated language + the placed unit (nothing inlined, plan 2026-10-03)').toBe(classes.length * perClass + placed.length);
+     expect(skipped.every((f) => /\/latest\/src\/(puml|svg)\/Web4MDA-[\w-]+\.(puml|svg)$|\/latest\/src\/sample\/|\/latest\/src\/oosh\/EAM\/layer\d\/\w+$/.test(f)), skipped.join('\n')).toBe(true);
+   });
+ 
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2ThingClass/latest/test/ThinglishTarget.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2ThingClass/latest/test/ThinglishTarget.test.ts
+index c1076e2..72a26e2 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2ThingClass/latest/test/ThinglishTarget.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2ThingClass/latest/test/ThinglishTarget.test.ts
+@@ -20,9 +20,11 @@ type Rel = ClassOf['relationships'][number];
+ 
+ 
+ /**
+- * TH3's DERIVED facts — present though not rendered: derivable from what IS rendered (Step B rulings) or TS/JS TRANSLATION
+- * conventions pure Thinglish does not show (Tron's rulings 1–7, plan mode 2026-10-02). An EXPLICIT, ruled list — never an
+- * open exemption. ~~F6 (interface isAbstract derived from kind)~~ SUPERSEDED by ruling 2: not a Thinglish fact at all (item 7).
++ * TH3's DERIVED facts — present though not rendered: derivable from what IS rendered or TS/JS TRANSLATION conventions pure
++ * Thinglish does not show (plan of record 2026-10-03, Tron in plan mode; kept rulings 1–3 of 2026-10-02). An EXPLICIT, ruled
++ * list — never an open exemption. ~~F6 (interface isAbstract derived from kind)~~ SUPERSEDED by ruling 2. RETIRED 2026-10-03
++ * (inlining + ItemView gone): ~~an owner's `<XModel>` binding~~ — RENDERED again, now checked PRESENT; ~~ItemModel's TS name
++ * and superclass (ruling 6)~~ — ItemModel renders under its own name.
+  */
+ const DERIVED = [
+   'RelationshipModel.source (= the owning class)',
+@@ -30,11 +32,9 @@ const DERIVED = [
+   "ImportModel.isInterface (from the target's kind)",
+   'typeArguments (from the extends type text)',
+   'ClassModel.isEntry — translation fact (ruling 1: no `entry` keyword)',
+-  "an owner's `<XModel>` binding — translation fact (rulings 4–5: inlined into the owner, or `implements` the model interface)",
+   'ClassModel.isAbstract of an INTERFACE — translation fact (ruling 2, supersedes F6)',
+   'an interface\'s `extends Interface` marker — translation fact (ruling 2)',
+-  "a MODEL's class-ness — translation fact (rulings 4–7: inlined into its owner, or an interface)",
+-  "ItemModel's TS name and superclass — translation facts (ruling 6: `interface ItemView extends View, Displayable`)",
++  "a MODEL's class-ness — translation fact (plan 2026-10-03: every XModel renders as a Thinglish interface; its concrete, instantiable entity class is the TS/JS translation)",
+ ];
+ 
+ /** The committed `.thing` files and their text — derived from git, never a hand list. */
+@@ -51,8 +51,12 @@ class ThingFiles {
+   }
+ }
+ 
+-/** A member kind and its rank in the grammar's `body` (TH6): attribute → property → relationship → collection → method. */
+-const RANK: Record<string, number> = { attribute: 0, property: 1, relationship: 2, collection: 3, method: 4 };
++/** The member kinds of the grammar's `body` production, IN ORDER — DERIVED from ThinglishGrammar's ebnf (TH6), never a hand list. */
++const BODY_ORDER: string[] = (/^body\s*=([^;]*);/m.exec(new ThinglishGrammar().init().ebnf)?.[1] ?? '').match(/[a-z]+/g) ?? [];
++/** The plan of record's member order (2026-10-03, Tron) — the INDEPENDENT second source the derived grammar order must equal. */
++const PLAN_ORDER = ['attribute', 'relationship', 'collection', 'property', 'method'];
++/** A member kind's rank in the grammar's `body` (TH6). */
++const RANK: Record<string, number> = Object.fromEntries(BODY_ORDER.map((k, i) => [k, i]));
+ 
+ /** One `.thing` text parsed by the GRAMMAR's line shapes (G1–G4), bodies + multi-line literals skipped: what every line IS. */
+ class ThingParse {
+@@ -154,9 +158,9 @@ class FactInventory {
+     if (this.c === undefined) throw new Error('FactInventory: init(c) first');
+     return this.c;
+   }
+-  /** Classes whose MEMBERS this file carries: the type itself + every model inlined into it (rule 4). */
++  /** Classes whose MEMBERS this file carries: the type itself (inlining retired, plan 2026-10-03). */
+   carriers(): ClassOf[] {
+-    return [this.cls, ...this.layout.inlinedInto(this.cls)];
++    return [this.cls];
+   }
+   memberEnds(of: ClassOf = this.cls): Rel[] {
+     return of.relationships.filter((r) => ['contains', 'containedBy', 'references'].includes(r.kind) && r.name !== '');
+@@ -168,15 +172,13 @@ class FactInventory {
+   private modelArgs(type: string): string[] {
+     return [...(/<(.*)>/.exec(type)?.[1] ?? '').matchAll(/[A-Za-z_]\w*/g)].map((m) => m[0]).filter((a) => this.layout.isModel(this.layout.named(a)));
+   }
+-  /** The declaring classes this file must depend on (TH3/TH5): own + inlined models' imports, minus inlined models, minus itself. */
++  /** The declaring classes this file must depend on (TH3/TH5): its own imports, minus itself. */
+   dependencies(): string[] {
+     const self = new Set(this.carriers().map((x) => x.name));
+     const names = this.carriers().flatMap((x) => x.imports.map((i) => i.declaredBy));
+-    let deps = [...new Set(names)].filter((n) => !self.has(n) && !this.layout.isInlined(this.layout.named(n) ?? this.cls));
++    let deps = [...new Set(names)].filter((n) => !self.has(n));
+     // DERIVED row "an interface's `extends Interface` marker" (ruling 2): the import that marker needed goes with it — scoped to the marker only
+     if (this.layout.isInterfaceType(this.cls) && bare(this.cls.superclass) === 'Interface') deps = deps.filter((d) => d !== 'Interface');
+-    // DERIVED row "ItemModel's TS name and superclass" (ruling 6): `interface ItemView extends View, Displayable` — the supertype imports follow (STRICTER: View + Displayable required)
+-    if (this.cls.name === 'ItemModel') deps = [...new Set([...deps.filter((d) => d !== bare(this.cls.superclass)), 'View', 'Displayable'])];
+     return deps.sort();
+   }
+   /** The facts absent from `text`, each named `Class.fact` — empty = every non-held, non-derived fact present. */
+@@ -190,29 +192,19 @@ class FactInventory {
+     };
+     const header = lines.find((l) => /^(?:[a-z]+ )*(?:class|interface) \S/.test(l) && l.endsWith(' {')) ?? '';
+     const ns = lines[0] ?? '';
+-    const name = L.typeName(c.name);
++    const name = c.name;
+     const isInterface = L.isInterfaceType(c);
+     need(/^namespace \S+$/.test(ns) && (c.namespace === '' || ns.endsWith(`.${c.namespace}`)), 'namespace');
+-    for (const d of this.dependencies()) need(lines.some((l) => new RegExp(`^dependency \\S*\\.${esc(L.typeName(d))}\\.(${this.versions.map(esc).join('|')})$`).test(l)), `dependency ${d}`);
+-    for (const inl of L.inlinedInto(c)) need(!lines.some((l) => new RegExp(`^dependency \\S*\\.${esc(inl.name)}\\.`).test(l)), `no dangling dependency on the inlined ${inl.name}`);
++    for (const d of this.dependencies()) need(lines.some((l) => new RegExp(`^dependency \\S*\\.${esc(d)}\\.(${this.versions.map(esc).join('|')})$`).test(l)), `dependency ${d}`);
+     need(new RegExp(`^${isInterface ? '' : '(?:abstract )?'}${isInterface ? 'interface' : 'class'} ${esc(name)}[ <]`).test(header), `kind (${isInterface ? 'interface' : 'class'} ${name})`);
+     if (!isInterface) need(!c.isAbstract || header.startsWith('abstract '), 'isAbstract');
+     need(c.typeParameters.length === 0 || header.includes(`${name}<${c.typeParameters.join(', ')}>`), 'typeParameters');
+     const sup = bare(c.superclass);
+     const implemented = header.replace(/^[^]*?\bimplements /, ' ');
+-    if (name === 'ItemView') need(/ extends View, Displayable(?: |$)/.test(header), 'ruling 6: extends View, Displayable');
+-    else if (sup !== '' && sup !== 'Interface') need(new RegExp(` extends (?:[^{]*[ ,])?${esc(L.typeName(sup))}(?:[ ,<{]|$)`).test(header), `superclass ${L.typeName(sup)}`);
+-    for (const a of this.modelArgs(c.superclass)) {
+-      const arg = L.named(a);
+-      if (arg !== undefined && L.isInlined(arg)) need(!new RegExp(`<[^>]*\\b${esc(a)}\\b`).test(header), `binding <${a}> dropped (inlined, rule 4)`);
+-      else need(new RegExp(`\\bimplements [^{]*\\b${esc(L.typeName(a))}\\b`).test(header), `implements ${L.typeName(a)} (shared model, rule 5)`);
+-    }
+-    for (const t of c.interfaces.filter((t) => bare(t) !== 'Interface')) need(new RegExp(`[ ,]${esc(L.typeName(bare(t)))}(?:[ ,<{]|$)`).test(isInterface ? header.replace(/^[^]*?\bextends /, ' ') : implemented), `implements ${bare(t)}`);
+-    for (const inl of L.inlinedInto(c)) {
+-      const base = bare(inl.superclass);
+-      const b = L.named(base);
+-      if (b !== undefined && L.isModel(b) && !L.isInlined(b) && base !== 'Model') need(new RegExp(`\\bimplements [^{]*\\b${esc(L.typeName(base))}\\b`).test(header), `implements ${L.typeName(base)} (base of the inlined ${inl.name}, rule 4)`);
+-    }
++    if (sup !== '' && sup !== 'Interface') need(new RegExp(` extends (?:[^{]*[ ,])?${esc(sup)}(?:[ ,<{]|$)`).test(header), `superclass ${sup}`);
++    // plan 2026-10-03: the owner HOLDS its model — `extends UcpComponent<XModel>` is rendered (no inlining, no `implements`)
++    for (const a of this.modelArgs(c.superclass)) need(new RegExp(`<[^>]*\\b${esc(a)}\\b[^>]*>`).test(header), `binding <${a}> (the owner holds its model, plan 2026-10-03)`);
++    for (const t of c.interfaces.filter((t) => bare(t) !== 'Interface')) need(new RegExp(`[ ,]${esc(bare(t))}(?:[ ,<{]|$)`).test(isInterface ? header.replace(/^[^]*?\bextends /, ' ') : implemented), `implements ${bare(t)}`);
+     for (const r of this.headerClauses()) need(header.includes(` ${r.kind} `) && new RegExp(`\\b${esc(r.target)}\\b`).test(header), `${r.kind} ${r.target} (header clause)`);
+     for (const carrier of this.carriers()) {
+       for (const a of carrier.attributes) out.push(...this.attributeMissing(carrier, a, lines, text));
+@@ -244,7 +236,7 @@ class FactInventory {
+     const optional = r.multiplicity.startsWith('0'); // F2: lower bound 0 = `?`
+     if (!l.startsWith(`  ${many ? 'collection' : 'relationship'} `)) out.push(`${n}.multiplicity (relationship|collection)`);
+     if (l.includes(`${r.name}?:`) !== optional) out.push(`${n}.multiplicity (? = lower bound 0)`);
+-    if (!l.includes(`: ${this.layout.typeName(r.target)} ${r.kind}`)) out.push(`${n}.target+kind`);
++    if (!l.includes(`: ${r.target} ${r.kind}`)) out.push(`${n}.target+kind`);
+     if (r.redefines !== '' && !l.endsWith(` redefines ${r.redefines}`)) out.push(`${n}.redefines`);
+     return out;
+   }
+@@ -257,7 +249,7 @@ class FactInventory {
+     const l = lines[at] ?? '';
+     const pre = l.slice(0, l.search(m.isGetter ? /property / : new RegExp(`${esc(m.name)}(?:<|\\()`)));
+     const out: string[] = [];
+-    const abstract = m.isAbstract || (inInterface && owner.isInterface); // a TS-interface member is abstract; a model-interface keeps its bodies (G2)
++    const abstract = m.isAbstract || (inInterface && m.body.length === 0); // RULE 8 (GO 2026-10-03): abstract FOLLOWS THE MODEL — isAbstract, or a BODYLESS interface member; an interface default body is not abstract
+     if (m.typeParameters.length > 0 && !l.includes(`${m.name}<${m.typeParameters.join(', ')}>(`)) out.push(`${n}.typeParameters`);
+     for (const p of m.parameters) {
+       const token = `${p.isRest ? '...' : ''}${p.name}${p.isOptional ? '?' : ''}`;
+@@ -268,7 +260,7 @@ class FactInventory {
+     if (m.returnType !== '' && !l.includes(m.isGetter ? `${m.name}: ${m.returnType} ` : `): ${m.returnType}`)) out.push(`${n}.returnType`);
+     // Tron (spec, verbatim): "in pure thinglish there is no need for interfaces to be abstract classes" — a pure-interface member is a
+     // BODYLESS signature (`…;`, still checked); the word `abstract` is the TS translation. A CLASS's abstract member keeps `abstract`.
+-    const pureInterfaceMember = inInterface && owner.isInterface;
++    const pureInterfaceMember = inInterface; // every interface (original or model) shows abstractness as a bodyless `;`, never the word
+     if (abstract && !(l.endsWith(';') && (pureInterfaceMember || pre.includes('abstract ')))) out.push(`${n}.isAbstract (${pureInterfaceMember ? 'bodyless …;' : 'abstract …;'})`);
+     if (m.isStatic && !pre.includes('static ')) out.push(`${n}.isStatic`);
+     if (m.visibility !== 'public' && !pre.includes(`${m.visibility} `)) out.push(`${n}.visibility`);
+@@ -284,7 +276,7 @@ class FactInventory {
+   /** TH3's HELD set, re-derived from the MODEL (G5 + F3; ItemModel's presentation rows SUPERSEDED by ruling 6). */
+   held(): string[] {
+     const c = this.cls;
+-    return ['TypedModel.uuid', ...c.typeAliases.map((t) => `TypeAliasModel ${t.name}`), ...c.imports.filter((i) => i.isTypeOnly).map((i) => `ImportModel.isTypeOnly ${i.name}`)];
++    return ['ModelUnit.uuid', ...c.typeAliases.map((t) => `TypeAliasModel ${t.name}`), ...c.imports.filter((i) => i.isTypeOnly).map((i) => `ImportModel.isTypeOnly ${i.name}`)];
+   }
+   /** Held facts must be ABSENT: no element's uuid appears in the text (uuids are unique, so a hit is a leak, never a coincidence). */
+   leakedUuids(text: string): string[] {
+@@ -294,25 +286,87 @@ class FactInventory {
+ }
+ 
+ /**
+- * TH7 — RENDERING ONLY (Tron; spec/thinglish.md TH7 v5, word for word): outside the NAMED builders (M2ThingClass,
+- * ThinglishGrammar — their model, source and own generated targets; the gate files live inside them), THIS spec
+- * (spec/thinglish.md) and the gate itself, the change set touches only `*.thing`. Any OTHER component's model, TS, generated
+- * target or test, and any other spec, is a violation by name — an allowance from "whatever changed" would be a fail-open.
++ * TH7 — RENDERING ONLY (Tron; spec/thinglish.md TH7, plan of record 2026-10-03): outside the NAMED builders (M2ThingClass,
++ * ThinglishGrammar — their model, source and own generated targets; the gate files live inside them) the change set touches
++ * only `*.thing` and the specs (the I1b sweep) — PLUS the ruled model change (oopPO 2026-10-03: the duplicate `containedBy`
++ * 14ca2c32 deleted from `FileServerModelDefinition` + M1Layout's derived holder rule — M1Layout's own code and targets are a
++ * named builder, the definition a NAMED file) — PLUS files whose change the caller PROVED rename-only (I2a: content == base
++ * with the old model name → `ModelUnit`, see `Rename`). Anything else is a violation by name — an allowance from "whatever
++ * changed" would be a fail-open.
+  */
+ class RenderingScope {
+   private builders: string[] = [];
++  private renameOnly: (path: string) => boolean = () => false;
++  private named: string[] = [];
+   constructor() {}
+-  init(builders: string[]): this {
++  /** `named`: EXACT files a ruled model change may touch (oopPO 2026-10-03: FileServerModelDefinition) — never a wildcard. */
++  init(builders: string[], renameOnly: (path: string) => boolean = () => false, named: string[] = []): this {
+     this.builders = builders;
++    this.renameOnly = renameOnly;
++    this.named = named;
+     return this;
+   }
+   violations(changed: string[]): string[] {
+     return changed
+-      .filter((p) => !(/\/latest\/src\/thinglish\/.*\.thing$/.test(p) || p === 'spec/thinglish.md' || this.builders.some((b) => p.startsWith(`${b}/`))))
++      .filter((p) => !(/\/latest\/src\/thinglish\/.*\.thing$/.test(p) || /^spec\//.test(p) || this.builders.some((b) => p.startsWith(`${b}/`)) || this.named.includes(p) || this.renameOnly(p)))
+       .sort();
+   }
+ }
+ 
++/**
++ * The model-level RENAME of plan 2026-10-03 (I2a — Tron's ruling, verbatim in that plan of record: the model base becomes
++ * `ModelUnit`, "its about making models Units so unique via UUID"). The old name is BUILT, never written, so this gate never counts itself. `hits()` reads the TREE (git grep,
++ * a word STARTING with the old name: catches its `…Definition` too, never `isTyped…`/`TypedIor`). A hit is allowed ONLY inside a
++ * struck `~~…~~` span of a spec, or in a dated plan record under `spec/plans/` (exempt BY PATH — flagged to oopPO: the plan's
++ * own title names the rename). `isRenameOnly` is the per-file proof TH7 needs: after == before with old → new.
++ */
++class Rename {
++  constructor() {}
++  init(): this {
++    return this;
++  }
++  get old(): string {
++    return ['Typed', 'Model'].join('');
++  }
++  get renamed(): string {
++    return 'ModelUnit';
++  }
++  hits(): { path: string; line: number; text: string }[] {
++    let out = '';
++    try {
++      out = Child.execFileSync('git', ['grep', '-n', '-E', `(^|[^A-Za-z0-9_])${this.old}`], { encoding: 'utf8' });
++    } catch (e) {
++      if ((e as { status?: number }).status !== 1) throw e; // 1 = no match; anything else is a BLIND instrument, never silence
++    }
++    return out
++      .split('\n')
++      .filter(Boolean)
++      .map((l) => {
++        const [path = '', line = '0', ...rest] = l.split(':');
++        return { path, line: Number(line), text: rest.join(':') };
++      });
++  }
++  offenders(hits: { path: string; line: number; text: string }[]): string[] {
++    return hits
++      .filter((h) => !(h.path.startsWith('spec/plans/') || (h.path.startsWith('spec/') && !h.text.replace(/~~[^~]*~~/g, '').includes(this.old))))
++      .map((h) => `${h.path}:${h.line}`);
++  }
++  /** oopPO's ruling (2026-10-03): spec/plans/ excluded; an OCCURRENCE counts as STRUCK only inside a strike span of a spec — TOTAL / STRUCK / LIVE, per occurrence. */
++  tally(hits: { path: string; line: number; text: string }[]): { total: number; struck: number; live: number } {
++    const count = (t: string): number => (t.match(new RegExp(`(^|[^A-Za-z0-9_])${this.old}`, 'g')) ?? []).length;
++    let total = 0;
++    let live = 0;
++    for (const h of hits.filter((x) => !x.path.startsWith('spec/plans/'))) {
++      total += count(h.text);
++      live += h.path.startsWith('spec/') ? count(h.text.replace(/~~[^~]*~~/g, '')) : count(h.text);
++    }
++    return { total, struck: total - live, live };
++  }
++  isRenameOnly(before: string, after: string): boolean {
++    return before.split(this.old).join(this.renamed) === after;
++  }
++}
++
+ describe('PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) — the whole catalog vs the committed .thing files', () => {
+   const catalog = new M1Catalog().init();
+   const grammar = new ThinglishGrammar().init();
+@@ -322,7 +376,7 @@ describe('PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) 
+   const pathOf = new Map<string, string>();
+   const expectedPath = (c: ClassOf): string => {
+     if (home === undefined) throw new Error('layout not loaded');
+-    return `${home.classFolder(c.name, 'thinglish').path}/${layout.typeName(c.name)}.${layout.isInterfaceType(c) ? 'interface' : 'class'}.thing`;
++    return `${home.classFolder(c.name, 'thinglish').path}/${c.name}.${layout.isInterfaceType(c) ? 'interface' : 'class'}.thing`;
+   };
+   beforeAll(async () => {
+     await M1Catalog.load();
+@@ -348,38 +402,30 @@ describe('PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) 
+   };
+   const inv = (c: ClassOf): FactInventory => new FactInventory().init(c, grammar.versionValues, layout);
+ 
+-  it('the layout is DERIVED from model references (rule 4, owner = a non-model class): 20 inline, 13 model-interfaces, 82 shown = 21 interface + 61 class', () => {
++  it('the layout is DERIVED from the model (plan 2026-10-03): nothing inlined, EVERY model an interface, one shown type per class', () => {
+     const models = layout.classes.filter((c) => layout.isModel(c));
+-    const inlined = models.filter((m) => layout.isInlined(m));
+     const shown = layout.shown();
+     const interfaces = shown.filter((c) => layout.isInterfaceType(c));
+-    console.log(`PURE layout: models ${models.length} · inline ${inlined.length} (${inlined.map((m) => `${m.name}→${layout.ownerOf(m)?.name ?? '?'}`).join(' ')}) · model-interfaces ${models.length - inlined.length} · shown ${shown.length} = ${interfaces.length} interface + ${shown.length - interfaces.length} class`);
+-    expect([models.length, inlined.length, models.length - inlined.length]).toEqual([33, 20, 13]);
+-    expect([shown.length, interfaces.length, shown.length - interfaces.length]).toEqual([82, 21, 61]);
+-    expect(layout.ownerOf(layout.named('ScenarioIndexModel') ?? models[0]!)?.name).toBe('ScenarioIndex'); // import-only binding counts
+-    expect(layout.isInlined(layout.named('TypeAliasModel')!)).toBe(false); // its only referrer ClassModel is a MODEL → interface (v4)
++    console.log(`PURE layout: models ${models.length} (all interfaces) · shown ${shown.length} = ${interfaces.length} interface + ${shown.length - interfaces.length} class`);
++    expect(models.length, 'non-vacuous: the catalog has models').toBeGreaterThan(0);
++    expect(shown.length, 'nothing inlined — every class is shown').toBe(layout.classes.length);
++    expect(models.filter((m) => !layout.isInterfaceType(m)).map((m) => m.name), 'every XModel renders as an interface').toEqual([]);
++    expect(['Model', 'ItemModel'].filter((n) => !layout.isInterfaceType(layout.named(n)!)), 'Model and ItemModel are interfaces').toEqual([]);
+   });
+ 
+-  it('the layout rule is failable: a SECOND referrer, an extender, or a MODEL referrer each turn an inline model into an interface', () => {
+-    const m = layout.named('Web4MDAModel')!;
+-    const owner = layout.ownerOf(m)!;
+-    expect(owner.name).toBe('Web4MDA');
++  it('the layout rule is failable: it follows the SUPERCLASS chain, never a name — an owner stays a class, the same class re-parented under a model becomes an interface', () => {
++    const web = layout.named('Web4MDA')!;
++    expect([layout.isModel(web), layout.isInterfaceType(web)], 'an owner is not a model and stays a class').toEqual([false, false]);
+     // a PLAIN stand-in with exactly the fields PureLayout reads (the model itself is read-only — never mutated)
+-    const clone = (c: ClassOf, patch: Partial<Pick<ClassOf, 'name' | 'superclass' | 'interfaces' | 'typeParameters' | 'imports' | 'isInterface'>>): ClassOf =>
+-      ({ name: c.name, superclass: c.superclass, interfaces: c.interfaces, typeParameters: c.typeParameters, imports: c.imports, isInterface: c.isInterface, ...patch }) as unknown as ClassOf;
+-    const second = clone(owner, { name: 'Web4MDA2' });
+-    expect(new PureLayout().init([...layout.classes, second]).isInlined(m)).toBe(false);
+-    const extender = clone(m, { name: 'Web4MDAModel2', superclass: 'Web4MDAModel', imports: [] });
+-    expect(new PureLayout().init([...layout.classes, extender]).isInlined(m)).toBe(false);
+-    const modelRef = new PureLayout().init(layout.classes.map((c) => (c.name === 'Web4MDA' ? clone(c, { superclass: 'TypedModel' }) : c)));
+-    expect(modelRef.isInlined(m)).toBe(false);
++    const rebased = new PureLayout().init(layout.classes.map((c) => (c.name === 'Web4MDA' ? ({ name: c.name, superclass: 'ItemModel', isInterface: false } as unknown as ClassOf) : c)));
++    expect(rebased.isInterfaceType(rebased.named('Web4MDA')!), 're-parented under a model → interface').toBe(true);
+   });
+ 
+-  it('TH1 one file per SHOWN type, DERIVED (rules 4–7): CHECKED / SKIPPED 0 / TOTAL; the right kind and name; no file for an inlined model', () => {
++  it('TH1 one file per type, DERIVED (plan 2026-10-03): CHECKED / SKIPPED 0 / TOTAL; the right kind and name; every model its own .interface.thing', () => {
+     const expected = layout.shown().map((c) => pathOf.get(c.name) ?? '').sort();
+     const v = fileVerdict(expected, tracked());
+     console.log(`TH1: CHECKED ${expected.length - v.missing.length} / SKIPPED 0 / TOTAL ${expected.length}`);
+-    expect(expected.length).toBe(82);
++    expect(expected.length, 'derived: one file per class (nothing inlined)').toBe(layout.classes.length);
+     expect(v).toEqual({ missing: [], extra: [] });
+     expect(tracked().filter((p) => p.endsWith('.interface.thing')).length).toBe(layout.shown().filter((c) => layout.isInterfaceType(c)).length);
+   });
+@@ -399,7 +445,7 @@ describe('PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) 
+     expect(catalog.homeDirectories).toContain('thinglish');
+   });
+ 
+-  it('TH3 lossless except EXACTLY the held set — facts on the OWNER (inlined) or the model-interface; DERIVED explicit; held(c) exact; no uuid leak', () => {
++  it('TH3 lossless except EXACTLY the held set — facts on their OWN type (no inlining); DERIVED explicit; held(c) exact; no uuid leak', () => {
+     const thing = new M2ThingClass().init().within(catalog.homeLayout(''));
+     const missing: string[] = [];
+     const heldDiff: string[] = [];
+@@ -412,24 +458,25 @@ describe('PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) 
+     }
+     console.log(`TH3 MISSING (printed so none hides): ${missing.join(' | ')}`);
+     console.log(`TH3: ${layout.shown().length} shown types; DERIVED (${DERIVED.length}): ${DERIVED.join(' · ')}`);
+-    expect(DERIVED, 'the derived / translation facts are an EXPLICIT, ruled list — never an open exemption').toHaveLength(10);
++    expect(DERIVED, 'the derived / translation facts are an EXPLICIT, ruled list — never an open exemption').toHaveLength(8);
+     expect(missing, 'model facts absent from the committed .thing').toEqual([]);
+     expect(heldDiff, 'held(c) differs from the held set re-derived from the model').toEqual([]);
+     expect(leaks, 'a HELD uuid rendered').toEqual([]);
+   });
+ 
+-  it('TH3 is failable: a dropped inlined member, a kept <XModel> binding and a dangling dependency on an inlined model are RED by name', () => {
++  it('TH3 is failable: a dropped model attribute on its INTERFACE and a dropped <XModel> binding on its OWNER are RED by name', () => {
+     const owner = layout.named('Web4MDA')!;
+-    const text = thingOf(owner);
+     const model = layout.named('Web4MDAModel')!;
+     const [attr] = model.attributes;
+     if (attr === undefined) throw new Error('Web4MDAModel has no attribute — the seed would be vacuous');
+-    const dropped = text.split('\n').filter((l) => !new RegExp(`^ {2}(?:[a-z]+ )*attribute ${esc(attr.name)}(?::| =|$)`).test(l)).join('\n');
+-    expect(inv(owner).missing(dropped)).toContain(`Web4MDAModel.${attr.name} (attribute)`);
+-    const bound = text.replace(/^(.*class Web4MDA[^{]*?extends \w+)/m, '$1<Web4MDAModel>');
+-    expect(inv(owner).missing(bound)).toContain('Web4MDA.binding <Web4MDAModel> dropped (inlined, rule 4)');
+-    const dangling = text.replace(/^(dependency [^\n]*)$/m, '$1\ndependency com.ceruleanCircle.Web4MDA.Web4MDAModel.latest');
+-    expect(inv(owner).missing(dangling)).toContain('Web4MDA.no dangling dependency on the inlined Web4MDAModel');
++    const mtext = thingOf(model);
++    const dropped = mtext.split('\n').filter((l) => !new RegExp(`^ {2}(?:[a-z]+ )*attribute ${esc(attr.name)}(?::| =|$)`).test(l)).join('\n');
++    expect(dropped, 'seed must change the text').not.toBe(mtext);
++    expect(inv(model).missing(dropped)).toContain(`Web4MDAModel.${attr.name} (attribute)`);
++    const otext = thingOf(owner);
++    const unbound = otext.replace(/^(.*class Web4MDA[^{]*?extends \w+)<Web4MDAModel>/m, '$1');
++    expect(unbound, 'seed must change the text').not.toBe(otext);
++    expect(inv(owner).missing(unbound)).toContain('Web4MDA.binding <Web4MDAModel> (the owner holds its model, plan 2026-10-03)');
+     class DropInitializer extends M2ThingClass {
+       protected override attributeLine(a: Attr): string {
+         return super.attributeLine(a).replace(/ = .*$/, '');
+@@ -439,7 +486,7 @@ describe('PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) 
+     expect(inv(withInit).missing(seeded(new DropInitializer().init(), withInit)).some((f) => f.endsWith('.initializer'))).toBe(true);
+   });
+ 
+-  it('TH3 oracle corrections (rulings 2/6) are failable on their NEAREST dangerous member: a body on an interface member, `abstract` stripped from a CLASS member, a non-marker interface dependency, ItemView without View', () => {
++  it('TH3 oracle corrections are failable on their NEAREST dangerous member (a body on an abstract interface member, `abstract` stripped from a CLASS member, a non-marker interface dependency) + the RULE 8 standing seed (ItemModel.init default body)', () => {
+     // (1) a pure-interface member is still checked — as a BODYLESS signature
+     const disp = layout.named('Displayable')!;
+     const bodied = thingOf(disp).replace(/^( {2}property name: string get);$/m, '$1 { return \'\'; }');
+@@ -455,17 +502,37 @@ describe('PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) 
+     const iface = find((c) => layout.isInterfaceType(c) && inv(c).dependencies().length > 0, 'an interface with a non-marker dependency');
+     const [dep] = inv(iface).dependencies();
+     if (dep === undefined) throw new Error('no dependency — the seed would be vacuous');
+-    const noDep = thingOf(iface).split('\n').filter((l) => !new RegExp(`^dependency \\S*\\.${esc(layout.typeName(dep))}\\.`).test(l)).join('\n');
++    const noDep = thingOf(iface).split('\n').filter((l) => !new RegExp(`^dependency \\S*\\.${esc(dep)}\\.`).test(l)).join('\n');
+     expect(inv(iface).missing(noDep)).toContain(`${iface.name}.dependency ${dep}`);
+-    // (4) ruling 6 makes ItemView REQUIRE View (and Displayable)
++    // (4) RULE 8 standing seed (oopPO GO 2026-10-03): drop ItemModel.init's DEFAULT body in the renderer → RED by name. Seeded through
++    //     the renderer's own unitOf, proven FAITHFUL first (== the committed file) — toSource() may blank a type by design.
++    class Exposed extends M2ThingClass {
++      unitText(c: ClassOf): string {
++        return this.unitOf(c);
++      }
++    }
++    class DropDefault extends Exposed {
++      protected override methodLines(m: Meth, c: ClassOf): string[] {
++        const lines = super.methodLines(m, c);
++        if (m.name !== 'init' || c.name !== 'ItemModel') return lines;
++        const head = lines[0] ?? '';
++        return [head.endsWith(' {') ? `${head.slice(0, -2)};` : head];
++      }
++    }
++    const unitOf = (r: Exposed, c: ClassOf): string => {
++      r.within(catalog.homeLayout(''));
++      r.createExisting(catalog);
++      return r.unitText(c);
++    };
+     const item = layout.named('ItemModel')!;
+-    const noView = thingOf(item).split('\n').filter((l) => !/^dependency \S*\.View\./.test(l)).join('\n');
+-    expect(inv(item).missing(noView)).toContain('ItemModel.dependency View');
+-    // (5) spec v6 rule 4 (D2, ruled): the owner IMPLEMENTS its inlined model's base — the non-ItemView path, so the arm stays proven once D2 is green
+-    const idx = layout.named('ScenarioIndex')!;
+-    const noBase = thingOf(idx).replace(/^(class ScenarioIndex [^{]*?) implements FileModel\b/m, '$1');
+-    expect(noBase, 'seed must change the text').not.toBe(thingOf(idx));
+-    expect(inv(idx).missing(noBase)).toContain('ScenarioIndex.implements FileModel (base of the inlined ScenarioIndexModel, rule 4)');
++    expect(item.methods.some((m) => m.name === 'init' && !m.isAbstract && m.body.length > 0), 'ItemModel.init carries a default body (non-vacuous)').toBe(true);
++    const plain = unitOf(new Exposed().init(), item);
++    expect(plain, 'faithful path: unseeded unitOf == the committed ItemModel.interface.thing').toBe(thingOf(item));
++    // (5) abstract FOLLOWS THE MODEL: an interface default body is checked AS a body, never demanded bodyless (no false RED)
++    expect(inv(item).missing(plain).filter((f) => f.startsWith('ItemModel.init.')), 'an interface default body is not a false RED').toEqual([]);
++    const droppedBody = unitOf(new DropDefault().init(), item);
++    expect(droppedBody, 'seed must change the text').not.toBe(plain);
++    expect(inv(item).missing(droppedBody)).toContain('ItemModel.init.body');
+   });
+ 
+   it('TH4 only GRAMMAR keywords: every keyword-position token in every .thing belongs to the set DERIVED from ThinglishGrammar — `entry` is not one', () => {
+@@ -524,13 +591,14 @@ describe('PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) 
+     expect(() => thing.create(odd).toSource()).toThrow(/cannot express: mixes 'blend'/);
+   });
+ 
+-  it('TH6 member order: in every .thing body the member kinds run attribute → property → relationship → collection → method', () => {
++  it('TH6 member order: the grammar body order (DERIVED) == the plan (attribute → relationship → collection → property → method), and every .thing body follows it', () => {
++    expect(BODY_ORDER, 'grammar body (derived from ThinglishGrammar) == plan of record 2026-10-03 (independent)').toEqual(PLAN_ORDER);
+     const off = tracked().flatMap((p) => new ThingParse().init(files.text(p)).outOfOrder().map((o) => `${p}: ${o}`));
+     expect(off).toEqual([]);
+   });
+ 
+   it('TH6 is failable: an out-of-order member is RED by name; grammar order is GREEN', () => {
+-    const good = ['class X {', '  attribute a = 1', '  property p: T get;', '  relationship r?: Y references', '  collection c?: Z contains', '  m(): void;', '}', ''].join('\n');
++    const good = ['class X {', '  attribute a = 1', '  relationship r?: Y references', '  collection c?: Z contains', '  property p: T get;', '  m(): void;', '}', ''].join('\n');
+     expect(new ThingParse().init(good).outOfOrder()).toEqual([]);
+     const bad = ['class X {', '  m(): void;', '  attribute a = 1', '  collection c?: Z contains', '  relationship r?: Y references', '}', ''].join('\n');
+     expect(new ThingParse().init(bad).outOfOrder()).toEqual(['line 3: attribute after method', 'line 4: collection after method', 'line 5: relationship after method']);
+@@ -556,7 +624,38 @@ describe('PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) 
+     // ...and beyond the spec's words: ANOTHER spec and ANOTHER component's test are not "this spec and the gate itself"
+     const otherSpec = 'spec/mof.md';
+     const otherTest = `${W}/latest/test/Pipeline.test.ts`;
+-    expect(scope.violations([...ok, otherSpec, otherTest])).toEqual([otherTest, otherSpec].sort());
++    expect(scope.violations([...ok, otherSpec, otherTest])).toEqual([otherTest]); // the I1b sweep may touch any spec; a test is not a spec
++    // the RENAME (I2a): a file outside the builders passes ONLY when the caller PROVED its change rename-only — nearest member stays RED
++    const renamed = new RenderingScope().init([`${W}/MOF/M2/M2ThingClass`, `${W}/ThinglishGrammar`], (p) => p === ts);
++    expect(renamed.violations([...ok, puml, ts, model])).toEqual([model, puml].sort());
++    // the RULED model change: ONE named definition + M1Layout as a builder — a sibling definition stays RED (nearest member)
++    const fsDef = `${W}/DefaultFolder/latest/model/FileServerModelDefinition.ts`;
++    const sibling = `${W}/DefaultFolder/latest/model/DefaultFolderDefinition.ts`;
++    const layoutTs = `${W}/MOF/M1/M1Layout/latest/src/ts/EAM/layer2/M1Layout.ts`;
++    const ruled = new RenderingScope().init([`${W}/MOF/M2/M2ThingClass`, `${W}/ThinglishGrammar`, `${W}/MOF/M1/M1Layout`], () => false, [fsDef]);
++    expect(ruled.violations([...ok, fsDef, layoutTs, sibling])).toEqual([sibling]);
+     expect(scope.violations([`${W}/Web4MDA/latest/src/thinglish/EAM/layer2/Web4MDA.class.ts`])).toHaveLength(1); // only *.thing under thinglish/
+   });
++
++  it('RENAME complete (plan 2026-10-03 I2a): no word starting with the old model name outside struck spec history (dated plan records exempt BY PATH)', () => {
++    const rename = new Rename().init();
++    const hits = rename.hits();
++    const t = rename.tally(hits);
++    expect(rename.offenders(hits), `TOTAL ${t.total} / STRUCK ${t.struck} / LIVE ${t.live} (outside spec/plans/)`).toEqual([]);
++    expect(t.live, 'LIVE').toBe(0);
++  });
++
++  it('RENAME check is failable both ways: an unstruck hit is RED by path:line; a struck spec hit and a dated plan record are not; a strike outside spec/ does not count; rename-only is exact', () => {
++    const W = 'EAMD.ucp/Components/com/ceruleanCircle/Web4MDA';
++    const r = new Rename().init();
++    expect(r.offenders([{ path: 'spec/mof.md', line: 3, text: `the ${r.old} interface` }])).toEqual(['spec/mof.md:3']);
++    expect(r.offenders([{ path: 'spec/mof.md', line: 4, text: `~~the ${r.old} interface~~ ModelUnit` }])).toEqual([]);
++    expect(r.offenders([{ path: 'spec/mof.md', line: 5, text: `~~${r.old}~~ and ${r.old}` }])).toEqual(['spec/mof.md:5']);
++    expect(r.offenders([{ path: 'spec/plans/2026-10-03-x.md', line: 1, text: `${r.old} → ModelUnit` }])).toEqual([]);
++    expect(r.offenders([{ path: `${W}/X/latest/src/ts/EAM/layer2/X.ts`, line: 9, text: `~~${r.old}~~` }])).toEqual([`${W}/X/latest/src/ts/EAM/layer2/X.ts:9`]);
++    expect(r.tally([{ path: 'spec/plans/p.md', line: 1, text: r.old }, { path: 'spec/ucp.md', line: 2, text: `~~${r.old}~~` }, { path: 'spec/ucp.md', line: 3, text: r.old }])).toEqual({ total: 2, struck: 1, live: 1 });
++    expect(r.tally([{ path: 'spec/ucp.md', line: 4, text: `~~${r.old}~~ and ${r.old}` }]), 'per OCCURRENCE: one line, one struck + one live').toEqual({ total: 2, struck: 1, live: 1 });
++    expect(r.isRenameOnly(`a ${r.old} b ${r.old}Definition`, 'a ModelUnit b ModelUnitDefinition')).toBe(true);
++    expect(r.isRenameOnly(`a ${r.old}`, 'a ModelUnit c')).toBe(false);
++  });
+ });
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/PureLayout.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/PureLayout.ts
+index 786c167..59d67bf 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/PureLayout.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/PureLayout.ts
+@@ -9,10 +9,10 @@ export const esc = (s: string): string => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&
+ export const bare = (t: string): string => t.replace(/<.*$/, '').trim();
+ 
+ /**
+- * PURE Thinglish's type layout, DERIVED from MODEL references (spec v4 rule 4, ruled by oopPO from oopTester's measured
+- * reading): a MODEL (descends from `Model`) INLINES into its owner iff it has exactly ONE referrer (imports it / names it in
+- * superclass, interfaces or type parameters), that referrer is a NON-model class, and nothing extends it; otherwise the
+- * model renders as an INTERFACE (rules 5–7). The one hand fact is Tron's ruled RENAME (ruling 6).
++ * PURE Thinglish's type layout, DERIVED from the MODEL (plan of record 2026-10-03, Tron in plan mode): NOTHING is inlined and
++ * nothing renamed — every class shows as its own type; a MODEL (descends from `Model`) renders as an INTERFACE (its concrete,
++ * instantiable entity class is the TS/JS translation), every other class keeps its own kind. ~~2026-10-02: one-owner models
++ * inlined into their owner, shared/standalone models as interfaces, ItemModel shown as ItemView~~ RETIRED by that plan.
+  * ONE owner of this derivation (oopTester): ThinglishTarget and the target-LISTING oracles (M1Catalog, M1Layout) all ask this class.
+  */
+ export class PureLayout {
+@@ -24,10 +24,6 @@ export class PureLayout {
+     this.byName = new Map(classes.map((c) => [c.name, c]));
+     return this;
+   }
+-  /** Tron's ruling 6 — the ONLY hand fact: a model renamed in pure Thinglish. */
+-  get renames(): Record<string, string> {
+-    return { ItemModel: 'ItemView' };
+-  }
+   get classes(): ClassOf[] {
+     return this.all;
+   }
+@@ -40,34 +36,12 @@ export class PureLayout {
+     seen.add(c.name);
+     return this.isModel(this.byName.get(bare(c.superclass)), seen);
+   }
+-  referrers(m: string): ClassOf[] {
+-    const w = new RegExp(`\\b${esc(m)}\\b`);
+-    return this.all.filter((c) => c.name !== m && (c.imports.some((i) => i.name === m) || w.test(c.superclass) || c.interfaces.some((t) => w.test(t)) || c.typeParameters.some((t) => w.test(t))));
+-  }
+-  extenders(m: string): ClassOf[] {
+-    return this.all.filter((c) => bare(c.superclass) === m);
+-  }
+-  /** The owner a model inlines into — or undefined when it renders as an interface. */
+-  ownerOf(c: ClassOf): ClassOf | undefined {
+-    if (!this.isModel(c)) return undefined;
+-    const refs = this.referrers(c.name);
+-    const [only] = refs;
+-    return refs.length === 1 && only !== undefined && !this.isModel(only) && this.extenders(c.name).length === 0 ? only : undefined;
+-  }
+-  isInlined(c: ClassOf): boolean {
+-    return this.ownerOf(c) !== undefined;
+-  }
+-  inlinedInto(owner: ClassOf): ClassOf[] {
+-    return this.all.filter((m) => this.ownerOf(m)?.name === owner.name);
+-  }
+-  /** The types pure Thinglish SHOWS (one file each, TH1): every class except an inlined model. */
++  /** The types pure Thinglish SHOWS (one file each, TH1): every class — nothing inlined. */
+   shown(): ClassOf[] {
+-    return this.all.filter((c) => !this.isInlined(c));
++    return this.all;
+   }
++  /** An original interface, or a MODEL — every XModel is a Thinglish interface (plan 2026-10-03). */
+   isInterfaceType(c: ClassOf): boolean {
+-    return c.isInterface || (this.isModel(c) && !this.isInlined(c));
+-  }
+-  typeName(name: string): string {
+-    return this.renames[name] ?? name;
++    return c.isInterface || this.isModel(c);
+   }
+ }
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TestFolder.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TestFolder.ts
+index 5e0a2c6..cac2507 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TestFolder.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TestFolder.ts
+@@ -30,7 +30,7 @@ export class TestFolder {
+       'Child.ts': 'ad76fd9a5f8f5d3237f22781496ff74671c32ed84c2c0885009d113f0602d300',
+       'Generated.ts': 'e9959252c27caf497f77ef4ae856b112ecc99db4312ba892ec826b16e4041c30',
+       'LayoutSetup.ts': 'c505bcbd1c0ece1c81dc0ec7f90b057663bd291de23253001c52016648decd92',
+-      'PureLayout.ts': '8c57fb5f2cc07adc21dafe4ad58ce757c8516d2433ec051eac102d41909b7fb2',
++      'PureLayout.ts': '1a6b9ef77eea72a87f13432e9c826b15ee0764c3b149d1e9c236b895220a554a',
+       'Scratch.ts': '15a9ae4a575d31d05c197204a5abf5b6ce113e1e276b3b8b46549c5bbd87fb02',
+       'Source.ts': '25e65b68171e6dfb9d2f6f96e4a1c0d222040d8e2b892a097d4a660dce8410df',
+       'TestFolder.ts': 'c1290cf504b2aef7aaa3dc062e7bc80997d89cc46643d077fb3ad756096ec3ca',
