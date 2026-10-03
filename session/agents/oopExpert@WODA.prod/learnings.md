@@ -271,3 +271,4 @@
 - **Generators don't delete**: a retired output (ItemView.interface.thing) stays tracked and stale — count what the generator PRODUCES, git rm the stale file.
 - **Body strings in a Definition are single-quoted TS** — a body line containing 'quotes' must be emitted double-quoted (esbuild transform error otherwise).
 - **Keep a verified sha intact**: a late spec v3 went in as its own commit (v2 reversed, v3 applied) and the cold clone was re-run on the new tip, not assumed.
+- ★ **A ruling can be withdrawn when a GATE catches it — the gate is the safeguard, not churn.** oopPO's deletion of FileServerModel's containedBy contradicted Tron's approved MA3 (the model CARRIES its relationship unit); the MA3 reds I reported flagged it. Revert to the exact base bytes (`git checkout <I2a sha> -- <files>`) and prove 'identical to base' by a diff, not by memory. A Definition stores grammar text as an ESCAPED string — copy spec lines with the same escaping.
