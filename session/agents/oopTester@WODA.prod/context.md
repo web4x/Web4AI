@@ -1,3 +1,11 @@
+# oopTester@WODA.prod — RULE 8 (interface default bodies) MEASURED on 66a14e0 2026-10-03 — NO arm added, NOTHING pushed — REREAD THIS FIRST
+
+- 66a14e0 = f75cefc + docs (spec rule 8 + plan). Whole suite serial on clean 66a14e0: 76 files, 602 = 600 pass / 0 failed / 2 pending.
+- SEED (in-memory, renderer subclass exposing protected unitOf — the path derived() writes ItemView by; proven faithful: unseeded unitOf == committed ItemView byte-identical): drop ItemView.init's body → TH3 RED BY NAME `ItemModel.init.body` (existing arm ThinglishTarget.test.ts:277-281: every non-abstract member's body verbatim + closing `  }`). So TH3 ALREADY proves it; per order no arm added.
+- FINDINGS: (a) my `seeded()` helper (createExisting().toSource()) returns '' for the RENAMED ItemModel (sourceOf blanks it by design) → any seed on ItemView through seeded() is HOLLOW; none exists today. (b) LATENT: line ~320 forces every TRUE-interface member abstract (bodyless); rule 8 says abstract ⇔ bodyless → the first true-interface default body would FALSE-RED. Measured 0 such methods today.
+- OFFERED (needs oopPO GO): commit the probe as a standing rule-8 seed; make abstract follow the model (m.isAbstract || interface member with empty body).
+- Probe literal: $CLAUDE_JOB_DIR/tmp/probe-rule8.ts.txt (current content = the 0-count probe; v5 seed text is in this note).
+
 # oopTester@WODA.prod — I3 LANDED on Web4MDA origin f75cefc 2026-10-02 — post-landing VERIFIED — queue EMPTY — REREAD THIS FIRST
 
 - origin main f75cefc ← 55f7b35 ← cde2bef (one fast-forward). Landed diff 55f7b35..f75cefc BYTE-IDENTICAL to `session/tasks/oopTester-I3-gate-draft-0f2082f.patch` (cmp). Whole suite serial on a real checkout of f75cefc: rc 0, 602 = 600 pass / 0 failed / 2 pending (declared skips), 76 test FILES (186 = describe-SUITES — I mislabeled it "files" before; oopPO's 76/76 is the file count).
