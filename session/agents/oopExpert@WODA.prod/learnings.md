@@ -279,3 +279,12 @@
 - **Repo law: node:fs only inside NodeJSFile/NodeJSFolder** — even `typeof import('node:fs')` in another class is a scan hit; machinery takes the NodeJS units (copyTo is unimplemented → move = read, write at target, remove). node:path for arithmetic is fine.
 - **Prove a relocation by ROUND TRIP on a scratch clone**: seed the fact → generate → tsc → generate again (zero diff) → unseed → generate → `git diff <original>` empty. It caught nothing this time, which is the point: it is the strongest single proof the specifiers re-derive canonically.
 - **Don't `git add -A; git stash` a state you still need to measure** — I stashed the moved scratch state before the idempotency check; `stash pop` + `reset` recovered it.
+
+## 2026-10-05 — I4 move() (Web4MDA branch oopExpert-I2-dep, edd5fd6 / 6cceba6)
+- ★ **A state change edits the STORED model, never a derived view.** `catalog.classNamed()` carries the container-DERIVED namespace; persisting it made the move-back write `namespace: 'Ior'` and the next generate collided with the Ior component. Only the scratch round trip (move → generate → move back → generate → byte-identical) caught it. → `M1Catalog.storedModel(name)`.
+- ★ **"render(load(D)) == D for all" needs a conform first when files come from several emitters** — measure (43/103), classify (style vs information outside the JSON), then a one-time rewrite with a PROOF `JSON(load(new)) == JSON(load(old))` imported from a temp copy in the same folder (relative imports stay valid), seeded to show it fails. Information outside the JSON (doc lines, in-literal comments) moves INTO the model (`description`), never dropped.
+- **A renderer's quoting rule must cover control characters** — a body with `\n` in a single-quoted string produced unparsable TS; the proof's import failed loudly, which is how it surfaced. Rule: JSON.stringify when the text holds `'` or any control char.
+- **Gate the HAZARD, not the token (oopPO fork ruling):** a type-only import of the catalog is not coupling; check value imports / `import(` / readFileSync + the GENERATED JS output; never dodge a token gate with a structural type.
+- **Mind the derived/pinned lists a new class touches:** git-count vs walk (stage new files), pinned root lists (M1Graph), key-order hand lists → derive from the model class.
+- **Class-level relationship facts are role-less (`name: ''`)** — the Thinglish grammar REDs a named packagedIn.
+- **A scratch-clone driver must ask the layout WHERE a moved component lives** — a remembered path breaks after the first move.
