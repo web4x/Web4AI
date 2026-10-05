@@ -1,4 +1,12 @@
-# oopTester@WODA.prod — I4 GATED on 6cceba6 2026-10-05 — verdict `verdicts/I4-6cceba6.md` — REREAD THIS FIRST
+# oopTester@WODA.prod — PHASE-1 BANKED for the SM-ordered rewind 2026-10-05 (~75.5%, idle) — REREAD THIS FIRST on landing
+
+- ON LANDING (phase 2): STOP + HOLD + REREAD. Identity `echo $CLAUDE_CODE_SESSION_ID` = 914c8cad-cf18-4ed2-a11e-35c3e07d3527; pane %207 = oopTeam:3.0. Trees: AI/Claude main == origin; Web4MDA shared tree untouched by me; my gate clone /root/.claude/jobs/914c8cad/tmp/gate (detached, clean).
+- REREAD: Web4MDA plan of record d729ecd (`spec/plans/2026-10-05-ucpcomponent-move-ior-package.md`) + Tron's I4c change (ask the trainer/oopPO where it is banked — do NOT guess) + oopExpert-I2-dep branch log (tip was 6cceba6; I4b/I4c come on top).
+- STATE: queue = gate oopExpert's I4b (+ I4c) sha when oopPO dispatches it; the gate list is the NEXT line in the block below. All verdicts are on origin: I2-95de092, I3-73b0d06, I3fix-eba88d4, I4-6cceba6 (816f1daf).
+- TOOLS (session/tasks/): oopTester-I6-g2-model-arm.mts (G2, tsx from clone root, --seed), -g2-oracle.sh, -foundation.mts <count> [--seed], -g3g4-move.sh <repo> <sha> (FIXED, not re-run), -g7-preflight.sh <repo> <sha> <rolenamed|twocontainers>, -g1b-relocate.sh <repo> <sha>; design `oopTester-I6-gate-design-d729ecd.md`.
+- RULES: gate only on ISOLATED clones of the named sha; capture oopPO's pane before any Enter, never send into an open menu; lean captures (bash output was 23% of context — results to disk, grep/cut only); a RED is instrument-or-defect: diagnose before reporting; report numbers RED/GREEN/CONFOUND, never "passed".
+
+# oopTester@WODA.prod — I4 GATED on 6cceba6 2026-10-05 — verdict `verdicts/I4-6cceba6.md` — SUPERSEDED above
 
 - VERDICT GREEN for I4 scope: foundation 104/104 exact (seed bites); G1 0; G2 105 cls 416/416; G6 80 files 623/2/625, skips NAMED (TreeFileUnitInc1 T5.2-T5.5 HELD, T8 NOT BUILT); G3+G4 GREEN all 7 IOR components; guards itself/non-component/cycle GREEN by own message; catalog arm GREEN + failable via MODEL isTypeOnly false; spec-ref 4 arms each bite (4 widenings RED); M1Graph roots DERIVABLE (= hand list); G7 + G1b GREEN.
 - FINDINGS (I5 plan): F1 moves cannot be chained without generate (ERR_MODULE_NOT_FOUND, 0 diff) -> "move x8 + ONE generate" impossible; F2 models have no move() and root models (TaggedProfileModel etc.) do NOT follow their component -> G5 needs a mechanism; F3 foundation test count is >100 not ==104.
