@@ -15,7 +15,7 @@ repo, base, sha = sys.argv[1:4]
 def git(*a):
     return subprocess.run(['git', '-C', repo, *a], capture_output=True, text=True, check=True).stdout
 
-GEN = re.compile(r'/src/(js|thinglish\.ts|thinglish\.js|puml|svg|mmd|oosh)/')
+GEN = re.compile(r'/src/(js|thinglish|thinglish\.ts|thinglish\.js|puml|svg|mmd|oosh)/')
 IMPORT = re.compile(r"^[+-]\s*(import\s|\}\s*from\s'|export\s.*from\s')")
 NS = re.compile(r"^[+-]\s+namespace: '")
 PATHLIT = re.compile(r"^[+-].*'[^']*(Web4MDA/|\.\./)[^']*'")

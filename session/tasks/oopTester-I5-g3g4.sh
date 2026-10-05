@@ -14,7 +14,7 @@
 set -uo pipefail
 src="${1:?repo}"; sha="${2:?sha}"
 work=/root/.claude/jobs/914c8cad/tmp/g3g4-i5; nm=/var/dev/Workspaces/web4x/Web4MDA/node_modules
-MEMBERS="${MEMBERS:-RepositoryId ObjectKey InternetProfile SecureTransport UnknownTaggedComponent TaggedProfile TaggedComponent}"
+MEMBERS="${MEMBERS:-RepositoryId ObjectKey InternetProfile SecureTransport UnknownTaggedComponent}" # the 5 CONCRETE components; TaggedProfile/TaggedComponent are abstract UNITS (I5c: a non-component subject must THROW — guard below)
 cleanup() { rm -f "$work/node_modules"; rm -rf "$work"; }
 fail=0
 cleanup
@@ -90,5 +90,6 @@ guard() { # $1 label, $2 class, $3 target, $4 expected message fragment
 guard itself Ior Ior "never packaged in itself"
 guard cycle Ior UnknownTaggedComponent "is packaged in Ior — a cycle"
 guard non-component RepositoryId RepositoryIdModel "is not a component"
+guard non-component-SUBJECT TaggedProfile "" "TaggedProfile" # I5c (oopPO ruling): move() on a non-component SUBJECT throws, naming the subject (was a silent rc-0 no-op)
 cd / && cleanup
 [ $fail -eq 0 ] && { echo "G3/G4/g1b/GUARDS GREEN"; exit 0; } || { echo "G3/G4/g1b/GUARDS RED"; exit 1; }

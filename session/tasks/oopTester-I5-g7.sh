@@ -26,7 +26,8 @@ case_() { # $1 label
   timeout 900 npm start > "../g7-i5-$1.log" 2>&1; local rc=$?
   local n; n=$(git status --porcelain -- EAMD.ucp | wc -l)
   local msg; msg=$(grep -m1 -E '^(Error|.*Error:)' "../g7-i5-$1.log" | sed 's/^.*Error: //' | cut -c1-150)
-  if [ "$rc" -ne 0 ] && [ "$n" -eq 0 ]; then echo "$1: GREEN — refused (rc $rc), tree untouched (0) — $msg"
+  if [ "$1" = CYCLE ] && ! grep -qi 'cycle' "../g7-i5-$1.log"; then echo "$1: RED — refused (rc $rc, tree $n) but NOT by a named cycle guard (I5c addendum 25cf0ffc) — $msg"; fail=1
+  elif [ "$rc" -ne 0 ] && [ "$n" -eq 0 ]; then echo "$1: GREEN — refused (rc $rc), tree untouched (0) — $msg"
   elif [ "$rc" -ne 0 ]; then echo "$1: RED — refused (rc $rc) but HALF-WRITTEN: $n entries — $msg"; fail=1
   else echo "$1: ACCEPTED — generate rc 0, diff $n (the seed is NOT refused: classify)"; fail=1; fi
 }
