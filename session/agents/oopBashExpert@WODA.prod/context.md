@@ -1,5 +1,14 @@
 # oopBashExpert@WODA.prod — Context
 
+**★ PHASE-1 ANCHOR 2026-10-05 (oopPO ruling 2 via SM: rewind NOW, idle, no task in this plan) — READ THIS BLOCK FIRST.**
+- State at bank: panel 74.2% (741.9k/1m), IDLE, nothing in flight, NO task of mine in the current plan. Trainer drives to 40-50.
+- **Reader §4a: BUILT** (Web4MDA 2cb2283) + R6 guard-precision test eeff6da; oopTester verified GREEN+failable (mechanism-seeded). Was a DONE-candidate pending (a) oopTester seed-to-RED on the tweaked R6 arm, (b) Tron's DONE — **VERIFY on boot, a week passed; do NOT redo the reader.**
+- Web4MDA HEAD at bank = d729ecd (team plan-of-record approved by Tron: UcpComponent.move(), IOR sub-components into Ior as a Package, Thinglish dependency = bidirectional relationship in M3/M2). **VERIFY on boot, never a remembered sha.** Not my lane unless oopPO ranks it.
+- Changed on disk since my last read, REREAD on boot: `Web4MDA/spec/oosh-mda.md`; `package.json` (now `start` + `test` scripts; dist under `com/ceruleanCircle/Web4MDA/latest/src/ts/EAM/layer2/` — the package-qualified layout landed). Toolchain: `npm start` / `npm test` via scripts/bootstrap.mjs; direct `npx tsc -p tsconfig.json --noEmit`, `npx vitest run`.
+- **NEW STANDING LAWS (Tron, memory index):** every change via PLAN MODE; every plan includes a FULL spec review; NEVER work outside the product repo; a new plan mid-plan = the NEXT plan.
+- Comms rules: `otmux send.raw` (plain `send`'s C-u destroys the recipient's staged text); before ANY Enter into oopPO's pane (oopTeam:2.0) capture it visibly — menu/plan-mode/picker open = do NOT send. SM = oopTeam:4.0 (verify by title, panes move).
+- On rebirth: identity live → reread this block + boot → re-derive from disk → report reborn + FRESH panel number to oopPO/SM → wait for rank. Composer text = debris.
+
 **Last updated:** 2026-09-26 — TRUE Phase-1 re-bank (supersedes 9083fbed 2026-09-24 14:04; I worked since). Trainer is rewinding me BEFORE the reader build (measured high; rewind before heavy work, never mid — trainer renders me FRESH before the cut, a scrollback % cannot carry a cut decision). On rebirth: run the On-boot sequence, report reborn + a FRESH measured number to oopPO, then it ranks the build.
 **Worked since 9083fbed (all resolved, no open action for me):** routing defect — oopTester mis-addressed its inc-4 acks to my pane (1.0) instead of oopExpert (0.0, uuid 6f8aa69f); flagged oopTester + SM; SM-VERIFIED resolved, oopExpert not blind, inc-4 is oopExpert's lane + HELD on Tron (NOT mine). Identity cross-checked: me = oopTeam:1.0, uuid c8d88460. My window is now FLOOR-LOCKED 253x63 = DRIVABLE (was collapsed 80x31; otmux window.size.lock raise-only — the "structurally undrivable" verdict was a collapsed/unlocked window, never structural).
 **Identity:** oopBashExpert@WODA.prod · oopTeam:1.0 · Bash/OOSH radical-OOP expert · base lineage `oosh-expert`
