@@ -1,4 +1,10 @@
-# oopTester@WODA.prod — I3b LANDED on Web4MDA origin 679ca51 2026-10-03 — post-landing VERIFIED — queue EMPTY — REREAD THIS FIRST
+# oopTester@WODA.prod — PHASE-1 BANKED for the SM-ordered rewind 2026-10-05 (panel 91%) — REREAD THIS FIRST on landing
+
+- STATE: queue EMPTY. Last landed + verified: I3b on Web4MDA origin 679ca51 (602/604, 0 failed). NEXT order expected: plan **d729ecd** (not yet dispatched to me) — read it on Web4MDA at that sha, disk-first, before anything.
+- ON LANDING: STOP + HOLD + REREAD; identity CLAUDE_CODE_SESSION_ID (914c8cad); trees clean? (AI/Claude, Web4MDA, clone tmp/gate = 679ca51); LEAN captures (bash output was 26% of context — grep/cut always, results to disk).
+- Tools to reuse: `session/tasks/oopTester-I3b-gate-live.py <base> <sha>` (TH7, ruled rules), seeds `oopTester-I3b-gate-live-seed-ruled*.sh`; whole-tree tsc config = SrcTypecheck's (extends tsconfig.json over EAMD.ucp/Components/**/*.ts), never tsconfig.test.json.
+
+# oopTester@WODA.prod — I3b LANDED on Web4MDA origin 679ca51 2026-10-03 — post-landing VERIFIED — SUPERSEDED above
 
 - origin 679ca51 ← dbf38c9 (spec v5, 1 line) ← 5961e74 (I2), one fast-forward on 4907913. Landed diff dbf38c9..679ca51 BYTE-IDENTICAL (cmp) to `session/tasks/oopTester-I3b-gate-5961e74.patch`; my gated tree == origin 679ca51 (git diff --quiet). Whole suite serial on a clean checkout of 679ca51: rc 0, 76 files, 604 = 602 pass / 0 failed / 2 pending (= oopPO).
 - NEXT: hold for oopPO's next order naming a sha. Clone tmp/gate = 679ca51 clean.
