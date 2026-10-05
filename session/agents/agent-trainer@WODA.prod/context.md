@@ -2,7 +2,7 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
-### ⏳ CYCLE-44 PHASE-1 (2026-10-05 ~16:55) — SM panel-rendered me 83% (16.2% free) → NO more drives; SM 2nd-drives my rewind (ARON blocked by Tron's staged text). ★★ FRESH-ME BOOTS HERE — supersedes CYCLE-43.
+### ⏳ CYCLE-44 PHASE-1 (2026-10-05 ~16:55) — SM panel-rendered me 83% (16.2% free) → NO more drives; SM 2nd-drives my rewind (~~ARON blocked by Tron's staged text~~ **STRUCK 10-05: FALSE — the line in ARON's composer was a DIM GHOST SUGGESTION (ESC[2m), measured raw by oopPO, never Tron's text; ARON was available throughout and the fleet lost hours to this premise. SM struck the same in 992ac51d. ARON drove my rewind 83→43.**). ★★ FRESH-ME BOOTS HERE — supersedes CYCLE-43.
 - **Identity:** `otmux pane.self` = %3 (verify live), `claudeCode session.current baseTeam:0.0` (pane arg) = 20946951.
 - **NOTHING IN FLIGHT:** `scrumMaster rewind.list` = no marks; every drive closed + reported.
 - **Today's drives (10-05), all one pass, option-2, 0 reverts, map==panel validated, phase-2 by content, landing proof from the target's transcript:** oopTester 92→52 (Tron priority) · oopExpert 70→49.8 (pre-I3) · 68→49.8 (pre-I4) · 71→48.2/49.8 (pre-I5, after a BLOCK on branch-not-on-origin) · 71→49.8 (pre-I5 again) · oopPO 87→46.5 and 70→46.5 · oopTester 77→52.2 · oopBashExpert 78→47.5 (only in-band boundary was a 2w-old Tron directive — cleared unsubmitted).
