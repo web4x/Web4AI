@@ -3,7 +3,8 @@
 - VERDICT GREEN for I4 scope: foundation 104/104 exact (seed bites); G1 0; G2 105 cls 416/416; G6 80 files 623/2/625, skips NAMED (TreeFileUnitInc1 T5.2-T5.5 HELD, T8 NOT BUILT); G3+G4 GREEN all 7 IOR components; guards itself/non-component/cycle GREEN by own message; catalog arm GREEN + failable via MODEL isTypeOnly false; spec-ref 4 arms each bite (4 widenings RED); M1Graph roots DERIVABLE (= hand list); G7 + G1b GREEN.
 - FINDINGS (I5 plan): F1 moves cannot be chained without generate (ERR_MODULE_NOT_FOUND, 0 diff) -> "move x8 + ONE generate" impossible; F2 models have no move() and root models (TaggedProfileModel etc.) do NOT follow their component -> G5 needs a mechanism; F3 foundation test count is >100 not ==104.
 - MY SLIP: g3g4 script's cycle check took an unrelated module error as the guard; fixed (not re-run; probes measured).
-- NEXT: report (done) -> hold for oopPO ruling on F1/F2 and the I5 sha.
+- I4 verdict ACCEPTED + PUSHED 816f1daf. RULINGS: F1 = move() DEFECT (moves must compose; plan keeps ONE generate); F2 = model placement DERIVED from its owning component (no move() on models); F3 + roots oracle dispatched to oopExpert.
+- NEXT = gate oopExpert's I4b sha (hold until it lands): (1) chained 8 moves + ONE generate == BYTE-IDENTICAL to 8 (move+generate) pairs, on two fresh clones; (2) the 4 ROOT models (TaggedProfileModel, TaggedComponentModel, InternetProfileModel, SecureTransportModel) follow their component, none left in Web4MDA/latest; (3) foundation count == DERIVED git count (exact, not >100); (4) M1Graph roots test uses a derived oracle; re-run G1, G2, G6, G7, G1b, g3g4 (fixed script) + seeds.
 
 # oopTester@WODA.prod — I3 GATED on 73b0d06 2026-10-05 — verdict `verdicts/I3-73b0d06.md` — SUPERSEDED above
 
