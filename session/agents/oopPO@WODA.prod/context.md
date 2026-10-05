@@ -1,5 +1,23 @@
 # oopPO@WODA.prod — Context
 
+## ★★★★★★★★★★ RESUME STATE — 2026-10-05 LATE (CURRENT; BOOTS HERE; supersedes every block below) — PHASE-1 at fresh SM panel 65
+
+**Fresh-you: read THIS block, then learnings.md. Re-measure every sha. Identity: session 1bae1524, pane %204 = oopTeam:2.0.** Plan of record unchanged: Web4MDA `d729ecd`. Nothing of the plan pushed to origin (ONE joint push after my isolated-clone verify).
+
+**TRON RULINGS TONIGHT (verbatim, all in spec via my patches):**
+1. *"every namespace maps to a folder! some folders are UcpComponents or versions which are namespaces"* → eamd-ucp rule 2; placement DERIVED from namespace; rule 6 picks ONLY the Package segment (patch AI/Claude `55b7dbde`).
+2. *"m3xxx are the fundamental classes to spin up mof. still they should be themselves UcpComponents if possible"* → then, between my 4 options, **"4"**: concrete M3 classes are UcpComponents; ABSTRACT `M3Element` stays a Package unit at `Web4MDA/MOF/M3/latest/` (radical OOP: a UcpComponent IS its folder, an abstract class has no instance) = rule 3's ONE exception (a Version inside a plain Namespace is the home of Package units, not a component). Patch AI/Claude **`85c31c86`** (supersedes `8335dc9b`).
+
+**MY RULINGS TONIGHT:** NameUuid stays `Web4MDA`, folder follows (my I4c rule-6 acceptance REVERTED — my error); rule 4 **(b)**: a component owns its RESOLVED model only as its SOLE user (binding resolution fixed in M1Layout.boundModel); I5 (A) component move carries its owned models + (1) rule 6 over ALL USERS re-derived in the same mutation (only the Package segment); gate folder==namespace after EACH move, ZERO exemptions. **My over-reach, corrected same arc:** I ruled the layout "never instantiates" — that broke radical OOP for every component; narrowed to: folder PATH from the model, folder OBJECT stays an instance of its class.
+
+**WEB4MDA LOCAL STATE (shared repo, nothing pushed):** `da035dc` (I4c + oopTester gate, I verified 633+2) → **I4d FINAL `3b0b50f`** on `oopExpert-I4d-wip` (parent `b0bf0ca`; diff vs b0bf0ca = ONLY spec/eamd-ucp.md, VERIFIED by me; M3Element at MOF/M3/latest; NameUuid at root; rendered ids 0/495 per oopExpert). History ref `oopExpert-I4d-b-history` = 17ba9f8 (the instance-free detour, kept).
+
+**I4d GATE:** oopTester verdict **GREEN for scope** AI/Claude `87baab0f` (638 pass + 2 named skip; 6 baseline reds ALL instrument = old rule 3; seeds RED by name). OPEN, ordered by me, not yet confirmed: (1) gate commit `aa36014` lives ONLY in oopTester's job scratch `/root/.claude/jobs/914c8cad/tmp/i4d` → publish into shared repo as local ref `oopTester-I4d-gate`; (2) reconcile its "rendered per-class 2/106 changed (M3Element, NameUuid)" vs oopExpert "0/495 ids" — name the changed lines; (3) Type.test budget → 5000ms with measured basis (instrument: 2526ms under load, 787-885 isolated).
+
+**NEXT for fresh-me:** confirm the 3 → MY isolated-clone whole-suite verify of the published gate sha → **UPDATE the I5 brief base** (22e80b24 says da035dc; base is now the I4d gate sha) → dispatch I5 (oopExpert, fresh 51) → oopTester gates I5 (+ tsconfig carry on top) → my verify → bring **I4c + I4d + I5 to Tron for DONE** (I4b already stands) → joint push.
+
+**FLEET (late):** oopExpert 51 (rewound twice tonight), oopTester ~fresh (53 then gate work), SM 50, trainer ~64, ARON 66, me 65 → being rewound now.
+
 ## ★★★★★★★★★ RESUME STATE — 2026-10-05 EVENING (CURRENT; BOOTS HERE; supersedes every block below)
 
 **Fresh-you: read THIS block, then learnings.md. Re-measure every sha. Identity: session 1bae1524, pane %204 = oopTeam:2.0.** Plan of record unchanged: Web4MDA `d729ecd` (move() + IOR package).
