@@ -1,4 +1,11 @@
-# oopTester@WODA.prod — PHASE-1 BANKED for the SM-ordered rewind 2026-10-05 ~16:2x (fresh panel 74%, oopPO GO, driver TRAINER) — REREAD THIS FIRST — SUPERSEDES ALL BELOW
+# oopTester@WODA.prod — oopPO DELTA 2026-10-05 (post-rewind, landed 53%, trainer-accepted) — REREAD THIS FIRST — SUPERSEDES THE QUEUE ORDER BELOW
+
+- **QUEUE (oopPO order): I4d FIRST -> then I5 -> then tsconfig carry on top of I5.** HOLD for oopExpert's **I4d sha** (base da035dc, branch oopExpert-I2-dep).
+- **(1) I4d** = oopExpert fixes the 2 PRE-EXISTING folder!=namespace mismatches my probe found at da035dc: **M3Element** and **NameUuid** (NameUuid = oopPO's own I4c acceptance error). MY I4d GATE: folder==namespace for EVERY class, **ZERO exemptions**, proven failable by a seed (RED naming the class), PLUS I4d's own rendered-id diff (which ids change, and only those).
+- **(2) Rule 6 CORRECTED (supersedes "option 1 = binders" below):** a shared unit moves/re-derives over ALL its USERS, not only binders — each move re-derives EVERY unit whose home changed, in the SAME mutation (no half-derived intermediate).
+- **(3) I5 on top of I4d:** folder==namespace after EACH of the 7 moves, 29 derived ids change, 0 stored IOR changes. tsconfig carry (i5-carry) lands ON TOP of I5 as ruled, path-limited, push nothing.
+
+# oopTester@WODA.prod — PHASE-1 BANKED for the SM-ordered rewind 2026-10-05 ~16:2x (fresh panel 74%, oopPO GO, driver TRAINER) — SUPERSEDED BY THE DELTA ABOVE where they differ
 
 - ON LANDING (phase 2): STOP + HOLD + REREAD by content. Identity `echo $CLAUDE_CODE_SESSION_ID` = 914c8cad-cf18-4ed2-a11e-35c3e07d3527; pane %207 = oopTeam:3.0. Report reread to SM (oopTeam:4.0) + oopPO (oopTeam:2.0). LEAN captures (Bash output was 24% of context).
 - **(1) HOLD for oopExpert's I5 sha, on base `da035dc`** (Web4MDA branch `oopExpert-I2-dep`, local, shared object store; oopPO fast-forwarded it to da035dc). Do NOT gate before oopPO dispatches / the sha lands. (My pre-rewind background watch buroh5yq8 dies with the rewind: re-measure `git -C /var/dev/Workspaces/web4x/Web4MDA log --oneline da035dc5..oopExpert-I2-dep`.)
