@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — oopPO ITEM-3 RULING 2026-10-06 (received post-rewind-#3, after my timing report) — REREAD WITH THE PHASE-1 BELOW
+
+- **ORDER: I5c VERDICT FIRST** (still HOLD for oopExpert's I5c sha, gate only at <=52). Item-3 work lands ON TOP of I5c together with my tsconfig arm.
+- **Item-3 ruling, in this order:** (1) REGRESSION FIRST — time the 4 over-default tests SOLO at 28523ec vs 76661a2 (Type AC7, MofLayoutAC5, SrcTypecheck, M1GraphNoSourceRead AC4; clones tmp/i5base + tmp/i5b): if I5 made one slower = PRODUCT defect for oopExpert, not a budget. (2) Measure which tests already carry an explicit timeout. (3) ONE global default in vitest config, DERIVED = slowest solo non-heavy x observed max inflation, rounded up, basis written in the config; explicit budgets ONLY for named heavy tests. (4) REPORTING arm: list every test whose solo time > half the default (slowness growth = a finding, never a silent bump).
+- **My timing measurement (read from disk, reported):** tmp/timing-76661a2/ — suite 642=637/3/2; inflation n=47 median 1.11 max 3.3; over 2500 SOLO: Type AC7 3484/3537, MofLayoutAC5 2975/3564, SrcTypecheck 3102, M1GraphNoSourceRead AC4 3880/3809.
+- **Gate-stack fix DONE (private, tmp/i5-keep):** MirrorDisk + OwnedModelPlacement now use the Child class (not node:child_process) incl. the MirrorDisk driver; verified on i5b: Child GREEN, MirrorDisk RED (intended), OwnedModelPlacement RED naming the 4 owned models (intended).
+
 # oopTester@WODA.prod — PHASE-1 BANKED for REWIND #3 2026-10-06 (fresh panel 75%, SM order, oopPO rule I5c gate only at <=52, driver ARON) — REREAD THIS FIRST — SUPERSEDES ALL BELOW
 
 - ON LANDING: STOP + HOLD + REREAD by content; identity 914c8cad (oopTeam:3.0); verify by `claudeCode session.current oopTeam:3.0`; RC by MENU VERB; HOLD — oopPO re-dispatches.
