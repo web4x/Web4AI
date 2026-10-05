@@ -1,5 +1,26 @@
 # oopPO@WODA.prod — Context
 
+## ★★★★★★★★★ RESUME STATE — 2026-10-05 EVENING (CURRENT; BOOTS HERE; supersedes every block below)
+
+**Fresh-you: read THIS block, then learnings.md. Re-measure every sha. Identity: session 1bae1524, pane %204 = oopTeam:2.0.** Plan of record unchanged: Web4MDA `d729ecd` (move() + IOR package).
+
+**Web4MDA branch state (LOCAL, nothing pushed — ONE joint push after my isolated-clone verify):** `oopExpert-I2-dep` = `7208df6` (I4c, namespace = ONE relative location fact, packagedIn removed) → local ref `oopTester-I4bc-gate` = **`da035dc`** (oopTester's test-only gate on top). **I VERIFIED da035dc on my own isolated clone: 81/81 files, 633 passed + 2 skipped (635)** = oopTester's verdict AI/Claude `36f38024`. origin/main still `d729ecd`.
+
+**NOW (in build):** oopExpert builds **I4d FIRST** on da035dc: fix the 2 PRE-EXISTING folder≠namespace mismatches its probe found at the base — **M3Element** (stored Web4MDA.MOF.M3 vs its root owner) and **NameUuid** (stored Web4MDA but placed in MOF/M2/M2OoshClass — **MY defect: at I4c I accepted its rule-6 relocation without the namespace moving**). Then **I5 on top** (brief `22e80b24`). oopTester (rewound to 53, delta banked `6d9e5ea5`) holds for the I4d sha.
+
+**RULINGS IN FORCE (this evening):**
+- I5 fork **(A)**: a component's move() carries the model(s) it owns — move() stays the ONLY mutation path. **(1) CORRECTED:** each move() re-derives by **rule 6 over ALL USERS** (not binders) the namespace of every unit whose home changed, in the SAME mutation; a shared model moves when all its users share a package. Binding = typeArguments + type-param defaults.
+- **Gate (Guard 2):** folder == namespace-derived folder for EVERY class, after EACH of the 7 moves, **ZERO exemptions** (a new gate born with allowances is green by omission).
+- I5 expected: **29 rendered dependency ids DERIVED by the gate** (never the hand list in /root/oopExpert-patches — outside the repo), 0 stored IOR changes (48==48).
+- **README patch** (AI/Claude `e77b16b2`, my I1b) lands IN THE SAME COMMIT as I5 (ARM4 checks cited paths exist).
+- **tsconfig finding (CONFIRMED by me):** no test file was ever type-checked (test config inherited `exclude test/**`). Measured 0 errors / non-hollow (TS2322 seed RED). Ruled: oopTester lands own-exclude + a child-process tsc arm ON TOP of I5.
+
+**DONE STATUS FOR TRON:** **I4b stands** (moves compose byte-identically). **I4c DONE ask WITHDRAWN** until I4d lands (one-location-fact was not fully true: 2 mismatches). Bring I4c+I4d+I5 together after my isolated-clone verify.
+
+**I1b FULL SPEC REVIEW = DONE** (AI/Claude `e77b16b2`): hazard scan, CHECKED 16 / SKIPPED 12 dated plans / TOTAL 28, CHANGED 1 (README row 27, lands with I5). Residual (prose without scanned tokens) disclosed; cover-to-cover read = post-I5 offer to Tron.
+
+**FLEET (evening):** Tron's health hold LIFTED (all fresh <80). The "CAP" episode is CLOSED and RETRACTED: ARON's index-arithmetic method was invalid; content-navigation landed trainer 83→43, SM 91→50, oopExpert 68→52, oopTester 75→53. Ghost suggestions (ESC[2m dim) in ARON's composer caused a false "Tron staged text" blocker — struck in the SM's and trainer's anchors. ALWAYS send text+Enter in ONE send into a pane with a ghost.
+
 ## ★★★★★★★★ RESUME STATE — 2026-10-05 (CURRENT; BOOTS HERE; supersedes every block below) — PHASE-1 at a FRESH SM panel of 86 (SM-ordered, Tron asked)
 
 **Fresh-you: read THIS block, then learnings.md. Re-measure every sha. Identity: session 1bae1524, pane %204 = oopTeam:2.0.**
