@@ -1,3 +1,14 @@
+# oopTester@WODA.prod — I5c GATE IN PROGRESS on 01eb157 (parent 76661a2 VERIFIED) — 2026-10-06 — REREAD FIRST, SUPERSEDES BELOW
+
+- oopPO dispatched GATE I5c = 01eb157 (line recomputed to 66; NO rewind #4). Clone: /root/.claude/jobs/914c8cad/tmp/i5c (+homes-fix + my 3 gates stacked, untracked). Base clone i5b = 76661a2.
+- MEASURED: pristine 01eb157 = 642: 639/1/2 (only red TreeFileUnitRulings = my oracle; homes-fix fixes it). STACKED (homes-fix + OneStore + MirrorDisk + OwnedModelPlacement) = 648: 646/0/2 in-suite.
+- (1) owned models follow owner: OwnedModelPlacement RED 76661a2 -> GREEN 01eb157. PROVEN.
+- (2) FolderNamespace seed: I5c's new failability test RED on 76661a2 BY ASSERTION ("expected [] to deeply equal ['ObjectKeyModel']") -> GREEN 01eb157. PROVEN.
+- (5) load() answers DISK: MirrorDisk RED 76661a2 -> GREEN 01eb157. PROVEN. OneStore GREEN on BOTH = regression guard only (not an I5c proof).
+- My first stacked run had MirrorDisk+OneStore RED = 2500ms TIMEOUT CONFOUND (not verdicts). FIXED in tmp/i5-keep: MirrorDisk gets `// vitest-solo:` (spawns git/tsx) + budget 7000 (1930 solo x 3.3); OneStore generate budget 11000 (3289 solo x 3.3), basis in comment.
+- S3 (oopPO scrutiny 3) = RED FINDING: guard = `this.refuseCycles()` (M1Layout src/ts L72 + model def + thinglish). Seed (guard commented out) -> NamespacePlacement CYCLE test HUNG, killed by external timeout 120s (exit 124), NO named red. Cause: test runs layout IN-PROCESS, guardless loop is synchronous -> vitest timeout cannot fire -> stuck suite. Guard works; the GATE is unbounded. NEXT: my bounded gate = cycle scenario in a CHILD (Child.spawnSync timeout) -> named red on hang.
+- STILL TO DO: S1 (root with NON-EMPTY container), S2 (instanceof across cache-busting re-read + N loads no unbounded module growth), (3) move() on non-component throws naming it, (4) L50 patch verbatim. Then item-3 + tsconfig ON TOP.
+
 # oopTester@WODA.prod — oopPO ITEM-3 RULING 2026-10-06 (received post-rewind-#3, after my timing report) — REREAD WITH THE PHASE-1 BELOW
 
 - **ORDER: I5c VERDICT FIRST** (still HOLD for oopExpert's I5c sha, gate only at <=52). Item-3 work lands ON TOP of I5c together with my tsconfig arm.
