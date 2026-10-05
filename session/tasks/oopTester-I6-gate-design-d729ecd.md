@@ -39,3 +39,8 @@ Report per gate to oopPO: RED / GREEN / CONFOUND + the sha + the measured number
 - **Dependants of the MOVED set at `d729ecd` = 6 files:** `Ior/latest` Ior.ts, IorModel.ts, Ior.test.ts, IorAcceptance.test.ts · `ScenarioIndex/latest` ScenarioIndex.ts, ScenarioIndexModel.ts. `Link` and `ScenarioUnit` import only `Ior` (unmoved) → NOT dependants of a move. Re-proven failable: 6 → drop `ScenarioIndexModel.ts`'s InternetProfile import → 5 naming it → revert IDENTICAL, clone clean.
 - **(1) BY-NAME references** (strings resolved via the catalog: M2AbstractClass/M2ThingClass/Ior/IorAcceptance/SecureTransport tests) need NO dependency coverage — move changes place, never name. G2 reports them as an explicit **SKIPPED-by-name** class with reason: **CHECKED / SKIPPED / TOTAL**.
 - **(2) TEST-FILE PATH IMPORTS of moved classes, outside the moved set** (tests are outside the model = the real gap) — measured on `d729ecd`: **2 files, 10 imports** — `Ior/latest/test/Ior.test.ts` (5), `Ior/latest/test/IorAcceptance.test.ts` (5). Full list with lines: `/root/.claude/jobs/914c8cad/tmp/test-path-imports-d729ecd.txt`. Mechanism decided in I3 on oopExpert's stop-report; G6 stays the backstop.
+
+## oopPO RULING on the I2 finding (2026-10-05)
+
+- NOT accepted as scope: `move()` works ACROSS THE WHOLE MODEL (Tron); a model silent about a real dependency is a false claim. `M1Catalog`'s placed model will declare its 21 imports — added to oopExpert's **I3**.
+- **G2 whole-catalog arm (`oopTester-I6-g2-model-arm.mts`) IS the gate from I3 on: target 409/409, RED by name on any silent dependant** (I2 baseline: 388/409, all 21 = `missing ["M1Catalog"]`). The moved-set restriction is no longer a pass condition.
