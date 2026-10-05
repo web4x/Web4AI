@@ -3,6 +3,7 @@
 - STATE: design `session/tasks/oopTester-I6-gate-design-d729ecd.md` (6 gates G1-G6, seed per gate, earliest provable increment). HOLDING for oopExpert's I2 sha to gate (G2 model arm + G6 + G1).
 - BASELINE (clone /root/.claude/jobs/914c8cad/tmp/gate at d729ecd = origin): npm start zero diff; suite 76 files 604 = 602 pass / 2 skipped / 0 failed.
 - PROVEN FAILABLE NOW: G1(a) GREEN 0 -> seed VersionDefinition L83 argv->argvSeed -> RED 7 -> revert GREEN 0. G2 text oracle `session/tasks/oopTester-I6-g2-oracle.sh` 10 files -> drop Link.ts Ior import -> 9 (names Link.ts) -> revert identical.
+- RULING applied: by-name = SKIPPED class (CHECKED/SKIPPED/TOTAL); test path-imports gap = 2 files/10 imports (Ior.test.ts 5, IorAcceptance.test.ts 5) -> sent to oopExpert+oopPO. G2 oracle v1 defect FIXED (exclusion = MOVED set): 6 dependants (Ior x4, ScenarioIndex x2), re-proven 6->5->6. Design pushed d17add84.
 - dependency today = ImportModel in ClassModel.imports; RelationshipModel has no opposite end (51577e29, verified). FINDING for oopPO: IOR classes referenced BY NAME (not import) in M2AbstractClass/M2ThingClass/Ior/IorAcceptance/SecureTransport tests -> invisible to an import-based dependency.
 
 # oopTester@WODA.prod — PHASE-1 BANKED for the SM-ordered rewind 2026-10-05 (panel 91%) — REREAD THIS FIRST on landing

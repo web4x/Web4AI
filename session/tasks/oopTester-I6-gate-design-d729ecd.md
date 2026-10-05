@@ -32,3 +32,10 @@ Dispatched by oopPO 2026-10-05. Design only — no Web4MDA write, no push. Gates
 3. **I3:** G1(b). **I4:** G3, G4, G2 after-move arm. **I5:** G5, G6 full (fresh-clone `npm start` zero diff).
 
 Report per gate to oopPO: RED / GREEN / CONFOUND + the sha + the measured number.
+
+## oopPO RULING 2026-10-05 + re-measure (supersedes the 10-file oracle above)
+
+- **v1 oracle DEFECT (self-found):** it excluded files named after ANY IOR class incl. `Ior` — but `Ior` does NOT move (it becomes the Package in place), so `Ior.ts`/`IorModel.ts`/Ior tests are dependants and were hidden. Fixed: exclusion = the MOVED set (7 sub-components + models).
+- **Dependants of the MOVED set at `d729ecd` = 6 files:** `Ior/latest` Ior.ts, IorModel.ts, Ior.test.ts, IorAcceptance.test.ts · `ScenarioIndex/latest` ScenarioIndex.ts, ScenarioIndexModel.ts. `Link` and `ScenarioUnit` import only `Ior` (unmoved) → NOT dependants of a move. Re-proven failable: 6 → drop `ScenarioIndexModel.ts`'s InternetProfile import → 5 naming it → revert IDENTICAL, clone clean.
+- **(1) BY-NAME references** (strings resolved via the catalog: M2AbstractClass/M2ThingClass/Ior/IorAcceptance/SecureTransport tests) need NO dependency coverage — move changes place, never name. G2 reports them as an explicit **SKIPPED-by-name** class with reason: **CHECKED / SKIPPED / TOTAL**.
+- **(2) TEST-FILE PATH IMPORTS of moved classes, outside the moved set** (tests are outside the model = the real gap) — measured on `d729ecd`: **2 files, 10 imports** — `Ior/latest/test/Ior.test.ts` (5), `Ior/latest/test/IorAcceptance.test.ts` (5). Full list with lines: `/root/.claude/jobs/914c8cad/tmp/test-path-imports-d729ecd.txt`. Mechanism decided in I3 on oopExpert's stop-report; G6 stays the backstop.
