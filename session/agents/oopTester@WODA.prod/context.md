@@ -1,3 +1,13 @@
+# oopTester@WODA.prod — I5c GATE: S3 DONE (bounded cycle gate built + proven) — 2026-10-06 — REREAD FIRST, SUPERSEDES THE I5c BLOCK BELOW WHERE THEY DIFFER
+
+- oopPO RULING S3: I build it (gate infra = my lane); cycle scenario ONLY in a child; no unbounded variant may remain. DONE in clone tmp/i5c, banked in tmp/i5-keep/NamespacePlacement.test.ts:
+  converted oopExpert's in-process CYCLE test to class CycleChild (Child.spawnSync npx tsx <tmp>/cycle-driver.mts, timeout BOUND 20000; driver does `await M1Catalog.load()` first; .mts = ESM anywhere) + `// vitest-solo:` header + it budget 50000 (2 children x 20000 + margin). Same assertions kept (CYCLE named, RepositoryId + ObjectKey named, no RangeError; one-way nesting GREEN).
+  PROOF: guard IN = GREEN exit 0 in 6s. guard OUT (M1Layout src/ts L72 `this.refuseCycles();` commented) = NAMED red exit 1 in 23s: "layout HUNG on the placement (child spawnSync npx ETIMEDOUT after 20000ms) — the namespace-CYCLE guard is missing". BEFORE: guard out = HUNG, killed at 120s (exit 124).
+  HAZARD SCAN: only 2 test files build a cycle; UcpComponentMove's cycle case is refused by move()'s OWN check (guard out: exit 0 in 4s) = not unbounded, left as is.
+- FULL STACK on 01eb157 (homes-fix + OneStore + MirrorDisk + OwnedModelPlacement + bounded NamespacePlacement) = 648: 646/0/2 in-suite.
+- oopPO ACCEPTED my budgets 7000 / 11000 (solo x 3.3).
+- REMAINING, in oopPO's order: S1 (ownership right BY ACCIDENT at the root = empty container: seed a root case with a NON-EMPTY container), S2 (load() cache-busting re-read: models still pass instanceof across a re-read; N loads must not grow modules without bound), (3) move() on a NON-component SUBJECT throws naming it (test UcpComponentMove.test.ts L118-128, source guard UcpComponent.ts L107 — prove failable by seeding L107 out), (4) oopPO's L50 plan patch verbatim. THEN item-3 + tsconfig on top.
+
 # oopTester@WODA.prod — I5c GATE IN PROGRESS on 01eb157 (parent 76661a2 VERIFIED) — 2026-10-06 — REREAD FIRST, SUPERSEDES BELOW
 
 - oopPO dispatched GATE I5c = 01eb157 (line recomputed to 66; NO rewind #4). Clone: /root/.claude/jobs/914c8cad/tmp/i5c (+homes-fix + my 3 gates stacked, untracked). Base clone i5b = 76661a2.
