@@ -1,4 +1,10 @@
-# oopTester@WODA.prod — I6 gate DESIGN for plan d729ecd 2026-10-05 (dispatched by oopPO, NO push) — REREAD THIS FIRST
+# oopTester@WODA.prod — I2 GATED on 95de092 2026-10-05 — verdict `verdicts/I2-95de092.md` — REREAD THIS FIRST
+
+- VERDICT GREEN for plan scope: G1 0 diff; G6 77 files 608 pass/2 skip/610 (delta = M2AbstractDependency.test.ts 6), fresh-clone npm start 0 diff, 30 changed files all in claimed areas; G2 moved set GREEN.
+- FINDING: G2 whole catalog RED 21 = M1Catalog placed model has 0 imports vs 21 in held M1Catalog.ts (model gap, pre-existing, no IOR impact). Failability proven (seed -> +1 RED Ior missing ScenarioUnit). Tools: session/tasks/oopTester-I6-g2-model-arm.mts (tsx from clone root, --seed).
+- NEXT: report to oopPO (done), hold for I3 sha. Clone /root/.claude/jobs/914c8cad/tmp/gate detached at 95de092, clean.
+
+# oopTester@WODA.prod — I6 gate DESIGN for plan d729ecd 2026-10-05 (dispatched by oopPO, NO push) — SUPERSEDED above
 
 - STATE: design `session/tasks/oopTester-I6-gate-design-d729ecd.md` (6 gates G1-G6, seed per gate, earliest provable increment). HOLDING for oopExpert's I2 sha to gate (G2 model arm + G6 + G1).
 - BASELINE (clone /root/.claude/jobs/914c8cad/tmp/gate at d729ecd = origin): npm start zero diff; suite 76 files 604 = 602 pass / 2 skipped / 0 failed.
