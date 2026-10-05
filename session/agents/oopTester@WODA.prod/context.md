@@ -1,4 +1,11 @@
-# oopTester@WODA.prod — I3 GATED on 73b0d06 2026-10-05 — verdict `verdicts/I3-73b0d06.md` — REREAD THIS FIRST
+# oopTester@WODA.prod — I4 GATED on 6cceba6 2026-10-05 — verdict `verdicts/I4-6cceba6.md` — REREAD THIS FIRST
+
+- VERDICT GREEN for I4 scope: foundation 104/104 exact (seed bites); G1 0; G2 105 cls 416/416; G6 80 files 623/2/625, skips NAMED (TreeFileUnitInc1 T5.2-T5.5 HELD, T8 NOT BUILT); G3+G4 GREEN all 7 IOR components; guards itself/non-component/cycle GREEN by own message; catalog arm GREEN + failable via MODEL isTypeOnly false; spec-ref 4 arms each bite (4 widenings RED); M1Graph roots DERIVABLE (= hand list); G7 + G1b GREEN.
+- FINDINGS (I5 plan): F1 moves cannot be chained without generate (ERR_MODULE_NOT_FOUND, 0 diff) -> "move x8 + ONE generate" impossible; F2 models have no move() and root models (TaggedProfileModel etc.) do NOT follow their component -> G5 needs a mechanism; F3 foundation test count is >100 not ==104.
+- MY SLIP: g3g4 script's cycle check took an unrelated module error as the guard; fixed (not re-run; probes measured).
+- NEXT: report (done) -> hold for oopPO ruling on F1/F2 and the I5 sha.
+
+# oopTester@WODA.prod — I3 GATED on 73b0d06 2026-10-05 — verdict `verdicts/I3-73b0d06.md` — SUPERSEDED above
 
 - VERDICT GREEN: G1 0 diff; G2 whole catalog 409/409 (0 mismatched, failable re-proven); G6 78 files 613 pass/2 skip/615 (delta = PackagedIn.test.ts 5), 27-file audit clean; SC8 GREEN (oopPO's 879bb2c5 EBNF not applied on branch -> spec and model still equal; not a defect).
 - RELOCATION SEED GREEN on real model (scratch clone): role-less packagedIn Ior on UnknownTaggedComponentDefinition -> generate rc 0, 17 declared changes (10 moved, Ior re-pointed), 0 body lines / 20 import lines, tsc 403/0 errors, 2nd generate 0 diff, unseed -> byte-identical 73b0d06.
