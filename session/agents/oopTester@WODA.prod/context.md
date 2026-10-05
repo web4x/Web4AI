@@ -1,4 +1,12 @@
-# oopTester@WODA.prod — I2 GATED on 95de092 2026-10-05 — verdict `verdicts/I2-95de092.md` — REREAD THIS FIRST
+# oopTester@WODA.prod — I3 GATED on 73b0d06 2026-10-05 — verdict `verdicts/I3-73b0d06.md` — REREAD THIS FIRST
+
+- VERDICT GREEN: G1 0 diff; G2 whole catalog 409/409 (0 mismatched, failable re-proven); G6 78 files 613 pass/2 skip/615 (delta = PackagedIn.test.ts 5), 27-file audit clean; SC8 GREEN (oopPO's 879bb2c5 EBNF not applied on branch -> spec and model still equal; not a defect).
+- RELOCATION SEED GREEN on real model (scratch clone): role-less packagedIn Ior on UnknownTaggedComponentDefinition -> generate rc 0, 17 declared changes (10 moved, Ior re-pointed), 0 body lines / 20 import lines, tsc 403/0 errors, 2nd generate 0 diff, unseed -> byte-identical 73b0d06.
+- MY SLIP: first seed had a role name -> M2ThingClass guard refused (packagedIn must be role-less, L215). Observation for oopPO: generate not atomic (relocates, then can throw -> half-moved tree).
+- Whole-tree tsc config file: /root/.claude/jobs/914c8cad/tmp/tsconfig.reloc.json pattern (= SrcTypecheck WholeTreeConfig).
+- NEXT: hold for I4 sha (G3 round-trip every IOR member, G4 move() JSON-only, G2 after-move).
+
+# oopTester@WODA.prod — I2 GATED on 95de092 2026-10-05 — verdict `verdicts/I2-95de092.md` — SUPERSEDED above
 
 - VERDICT GREEN for plan scope: G1 0 diff; G6 77 files 608 pass/2 skip/610 (delta = M2AbstractDependency.test.ts 6), fresh-clone npm start 0 diff, 30 changed files all in claimed areas; G2 moved set GREEN.
 - FINDING: G2 whole catalog RED 21 = M1Catalog placed model has 0 imports vs 21 in held M1Catalog.ts (model gap, pre-existing, no IOR impact). Failability proven (seed -> +1 RED Ior missing ScenarioUnit). Tools: session/tasks/oopTester-I6-g2-model-arm.mts (tsx from clone root, --seed).
