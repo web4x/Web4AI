@@ -1,3 +1,8 @@
+# oopTester@WODA.prod — I5c GATE DONE + LANDED 2026-10-06 — REREAD FIRST, SUPERSEDES BELOW
+
+- Verdict AI/Claude verdicts/I5c-01eb157.md (3b374004 + addendum). oopPO rulings executed: S2b disclosed residual + INVERTED canary (proven both ways); stack published as shared Web4MDA LOCAL ref `oopTester-I5c-gate` = 72925dc (parent 01eb157), pushed nowhere; 650: 648/0/2.
+- NEXT (oopPO): item 3 (regression-first solo timing 28523ec vs 76661a2 for Type AC7/MofLayoutAC5/SrcTypecheck/M1GraphNoSourceRead AC4; explicit-timeout census; ONE derived global default; reporting arm solo > default/2) + tsconfig arm ON TOP of 72925dc — ONLY AFTER the SM panels me.
+
 # oopTester@WODA.prod — I5c GATE: S3 DONE (bounded cycle gate built + proven) — 2026-10-06 — REREAD FIRST, SUPERSEDES THE I5c BLOCK BELOW WHERE THEY DIFFER
 
 - oopPO RULING S3: I build it (gate infra = my lane); cycle scenario ONLY in a child; no unbounded variant may remain. DONE in clone tmp/i5c, banked in tmp/i5-keep/NamespacePlacement.test.ts:
