@@ -44,3 +44,9 @@ Report per gate to oopPO: RED / GREEN / CONFOUND + the sha + the measured number
 
 - NOT accepted as scope: `move()` works ACROSS THE WHOLE MODEL (Tron); a model silent about a real dependency is a false claim. `M1Catalog`'s placed model will declare its 21 imports — added to oopExpert's **I3**.
 - **G2 whole-catalog arm (`oopTester-I6-g2-model-arm.mts`) IS the gate from I3 on: target 409/409, RED by name on any silent dependant** (I2 baseline: 388/409, all 21 = `missing ["M1Catalog"]`). The moved-set restriction is no longer a pass condition.
+
+## G7 — generate PREFLIGHT all-or-nothing (oopPO ruling on the I3 observation, 2026-10-05)
+
+- RULING: a half-moved tree is a DEFECT. generate must validate every model / render that can throw BEFORE the first relocation.
+- GATE: `session/tasks/oopTester-I6-g7-preflight.sh <repo> <sha> <rolenamed|twocontainers>` — fresh throwaway clone, INVALID placement committed in the REAL `UnknownTaggedComponentDefinition.ts`, `npm start`; GREEN only if rc != 0 AND the error names the seed's OWN guard AND 0 diff AND no `Ior/UnknownTaggedComponent` folder. Exit 0 GREEN / 1 RED / 2 CONFOUND (seed not applied, or threw by another error). Two seeds = two named M2ThingClass guards: role-named packagedIn ("grammar cannot express"), two containers ("ONE container").
+- RED BASELINE (defect present) at `73b0d06`: BOTH seeds RED — rc 1, guard named, but 17 diff entries (10 D, 6 M, 1 new folder) = half-moved. To be gated GREEN on oopExpert's fix sha.

@@ -4,7 +4,8 @@
 - RELOCATION SEED GREEN on real model (scratch clone): role-less packagedIn Ior on UnknownTaggedComponentDefinition -> generate rc 0, 17 declared changes (10 moved, Ior re-pointed), 0 body lines / 20 import lines, tsc 403/0 errors, 2nd generate 0 diff, unseed -> byte-identical 73b0d06.
 - MY SLIP: first seed had a role name -> M2ThingClass guard refused (packagedIn must be role-less, L215). Observation for oopPO: generate not atomic (relocates, then can throw -> half-moved tree).
 - Whole-tree tsc config file: /root/.claude/jobs/914c8cad/tmp/tsconfig.reloc.json pattern (= SrcTypecheck WholeTreeConfig).
-- NEXT: hold for I4 sha (G3 round-trip every IOR member, G4 move() JSON-only, G2 after-move).
+- RULING: half-moved tree = DEFECT. G7 preflight gate session/tasks/oopTester-I6-g7-preflight.sh (rolenamed|twocontainers): RED baseline both seeds at 73b0d06 (rc 1, guard named, 17 diff). I3 verdict pushed 037a023a.
+- NEXT: gate oopExpert's preflight-fix sha with G7 (must go GREEN both seeds) + G1/G2/G6; then I4 (G3, G4, G2 after-move).
 
 # oopTester@WODA.prod — I2 GATED on 95de092 2026-10-05 — verdict `verdicts/I2-95de092.md` — SUPERSEDED above
 
