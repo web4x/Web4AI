@@ -6,7 +6,9 @@
 - Whole-tree tsc config file: /root/.claude/jobs/914c8cad/tmp/tsconfig.reloc.json pattern (= SrcTypecheck WholeTreeConfig).
 - RULING: half-moved tree = DEFECT. G7 preflight gate session/tasks/oopTester-I6-g7-preflight.sh (rolenamed|twocontainers): RED baseline both seeds at 73b0d06 (rc 1, guard named, 17 diff). I3 verdict pushed 037a023a.
 - I3 ATOMIC FIX GATED on eba88d4 (verdict `verdicts/I3fix-eba88d4.md`): GREEN. G7 RED->GREEN both seeds (my run, 0 diff), G1 0 diff, G2 409/409, G6 614 pass/2 skip/616 (delta PackagedIn 5->6), SC8 green (spec+model both packagedIn), spec = 879bb2c5 verbatim, 14-file audit clean. NEW gate script session/tasks/oopTester-I6-g1b-relocate.sh <repo> <sha> (fresh-clone npm start + valid relocation round trip): GREEN on eba88d4, RED on 95de092 (failable).
-- NEXT: I4 only on the SM's panel + GO (oopExpert holds) -> G3 round-trip EVERY IOR member, G4 move() Definition-JSON only, G2 after-move, G1b/G7 re-run.
+- Fix verdict ACCEPTED + PUSHED (b72f14cc, incl. g1b gate). I4 in build: oopExpert FOUNDATION gate first (render(load(D)) == D byte-identical, all Definitions), then move().
+- GROUND TRUTH for the foundation gate: 103 *Definition.ts at eba88d4, all under /model/ (= oopExpert's 103); list /root/.claude/jobs/914c8cad/tmp/definitions-eba88d4.txt. At gate time: the foundation gate's set must be DERIVED and equal git ls-files at the I4 sha (not a hand list), and seed one Definition -> RED.
+- NEXT: on the I4 sha: foundation gate audit + G3 round-trip EVERY IOR member, G4 move() Definition-JSON only, G2 after-move, G1b + G7 re-run, G1, G6.
 
 # oopTester@WODA.prod — I2 GATED on 95de092 2026-10-05 — verdict `verdicts/I2-95de092.md` — SUPERSEDED above
 
