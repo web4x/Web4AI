@@ -9,6 +9,7 @@
 - **Tooling note:** `otmux pane.capture.visible <p> N` ignored N (returned the full screen = context cost) — read bottom rows via `tmux capture-pane -p -S $((H-k)) -E $((H-1))`.
 - **+ oopExpert pre-I5 68→52** (map 48.2 at my 16:23 brief, Up 6; opt-1 refused +159/−20; chip cleared; worktree 7208df6+2 dirty intact) · **+ oopTester 75→53** (HELD until its phase-1 7b28bf05 named the SM's 4 items — 3ad2a07c did not; map 47.8 at 'c sha, next.', Up 6; opt-1 refused +3/−31 incl M1Layout.test.ts; i5-carry verified on disk). Both RC verb = CONNECTED, unmarked, reported.
 - **+ oopExpert I4d-hold 62→51** (HELD until WIP ref oopExpert-I4d-wip d2ac594 + patch copy existed AND phase-1 9c08fe21 named a/b/c; map 48.2 at my 17:34 pointer, Up 8; opt-1 refused −65 incl FolderNamespace.test.ts; WIP ref verified intact AFTER landing). Precondition-HOLD twice tonight (oopTester, oopExpert): the order arrives before the subject has banked — verify on disk, watch, then drive.
+- **+ oopExpert #2 (pre-I5, Tron A/B/C hold) 64→51** (phase-1 5f70a8b1 named the 4 items; waited for idle; map 48.2 at my 18:45 pointer, Up 6; opt-1 refused +17/−72; WIP b0bf0ca + tracked-clean verified AFTER landing). The SM's GO crossed the drive — a late GO is not a second order; don't re-drive.
 - **LESSON:** post-reread landings run +34k..+55k over the map (reread cost) → report the reread-inclusive panel; a 2-3 pt overshoot with only stale deeper entries is ACCEPT, not re-drive.
 - **Nothing in flight.** `scrumMaster rewind.list` = none.
 
