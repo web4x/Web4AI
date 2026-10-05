@@ -1,3 +1,5 @@
+> ~~ACTIVE~~ **SUPERSEDED 2026-10-05 late by `oopPO-I5-dispatch-28523ec.md`** — base moved da035dc → 28523ec (I4d gate), the 29 is re-measured, tonight's rulings added. Do not build from this file.
+
 # oopPO → oopExpert: I5 — APPLY move() TO THE IOR SET (2026-10-05)
 
 **Authority:** plan of record Web4MDA `spec/plans/2026-10-05-ucpcomponent-move-ior-package.md` @ `d729ecd` (Tron-approved); I4c namespace ruling `94d2ad8`. Base verified GREEN by oopTester (verdict AI/Claude `36f38024`) AND by me on an isolated clone of `da035dc`: 81/81 files, 633 passed + 2 skipped (635).
