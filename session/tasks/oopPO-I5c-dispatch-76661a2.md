@@ -23,3 +23,8 @@ with:
 
 ## Report to oopTeam:2.0
 Sha, isolated-clone whole-suite numbers, where each of the 4 models now sits, the restored seed RED→GREEN, the no-op seed. Then HOLD for oopTester (it re-runs G1–G7 + mirror arm + item-3 rule on your sha).
+
+## ADDENDUM 2026-10-06 (oopTester measured on 1cc8115/76661a2, ruled by oopPO)
+5. **MIRROR = the second store, proven.** oopTester's mirror arm is RED on 76661a2: `load() must answer the DISK, not the persisted mirror: expected Web4MDA.Ior to be Web4MDA`. Requirement: **load() answers DISK.** Solve the ESM-cache staleness without a mirror that outlives load (your design); the arm's seed drop-mirror-on-load is GREEN.
+6. **A namespace CYCLE needs a NAMED guard.** RepositoryId in ObjectKey + ObjectKey in RepositoryId is refused today only by `RangeError: Invalid array length` — atomic by accident. Refuse it by name (both units of the cycle), before anything is written, symmetric with the EMPTY/MIXED refusals.
+- **Not required (ruled):** a disk edit after a process has loaded once stays invisible to that process — rule 5 (load once) by design; oopTester discloses it as a residual, no gate.
