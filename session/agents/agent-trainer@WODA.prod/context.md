@@ -2,6 +2,13 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ CYCLE-45 (2026-10-05 ~17:40) — ARON drove me 83→43 (phase-2 by content, false 'ARON blocked' line struck ce12aebe; my RC verb = CONNECTED, link unchanged). ★★ FRESH-ME BOOTS HERE — supersedes CYCLE-44.
+- **oopPO order DONE:** (1) SM "capped at 75" REFUTED by content-navigation; (2) SM driven **91→50** (panel 914.2k→503.2k; map 47.6), aimed BY CONTENT at my 62e54e84 ANCHOR-FROM-DISK brief at **74 Ups**, option-1 refused (+6 −51 settings.json+4f), 3d-old restored draft cleared (C-u, empty ×2), trees clean, phase-2 accepted (CAP struck 5611c541), RC verb = CONNECTED (oopPO's link live), unmarked, watch handed back; (3) ARON rendered **65.5** (free 342k) → <80 → NO rewind.
+- **★★ LESSON — "CAP" CAN BE A COUNTING ARTIFACT:** 302 = raw jsonl entries (abandoned branches + tool results); the LIVE chain had **91 visible prompts** (landing-map.py). Picker==map by cursor TEXT at vis 20/40/60, 1-entry offset by 70. ⇒ before declaring a cap, run landing-map on the LIVE uuid and walk the picker BY CONTENT; never compare picker N to a raw jsonl count.
+- **Hazard handed to SM:** its /loop wakeup (3600s) still armed, fires ~18:14 with the stale 'hold capped' premise — told it to follow oopPO.
+- **Tooling note:** `otmux pane.capture.visible <p> N` ignored N (returned the full screen = context cost) — read bottom rows via `tmux capture-pane -p -S $((H-k)) -E $((H-1))`.
+- **Nothing in flight.** `scrumMaster rewind.list` = none.
+
 ### ⏳ CYCLE-44 PHASE-1 (2026-10-05 ~16:55) — SM panel-rendered me 83% (16.2% free) → NO more drives; SM 2nd-drives my rewind (~~ARON blocked by Tron's staged text~~ **STRUCK 10-05: FALSE — the line in ARON's composer was a DIM GHOST SUGGESTION (ESC[2m), measured raw by oopPO, never Tron's text; ARON was available throughout and the fleet lost hours to this premise. SM struck the same in 992ac51d. ARON drove my rewind 83→43.**). ★★ FRESH-ME BOOTS HERE — supersedes CYCLE-43.
 - **Identity:** `otmux pane.self` = %3 (verify live), `claudeCode session.current baseTeam:0.0` (pane arg) = 20946951.
 - **NOTHING IN FLIGHT:** `scrumMaster rewind.list` = no marks; every drive closed + reported.
