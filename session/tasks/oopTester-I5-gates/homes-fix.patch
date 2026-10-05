@@ -1,0 +1,16 @@
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TreeFileUnitRulings.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TreeFileUnitRulings.test.ts
+index 3476434..6561a42 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TreeFileUnitRulings.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TreeFileUnitRulings.test.ts
+@@ -60,7 +60,10 @@ class Placement {
+       return false;
+     };
+     const components = models.filter((m) => !m.isAbstract && !m.isInterface && m.name !== packageName && isComponent(m)).map((m) => `${m.sourceUnit}/latest`);
+-    return [...components, ...this.homes(models, packageName)].sort();
++    // a home whose namespace folder IS a component (e.g. Web4MDA.Ior -> Ior/latest for the abstract TaggedProfile/TaggedComponent)
++    // is that component's OWN Version (rule 4), already a placement — never a second, ruling-4 home (oopTester I5: my I4d oracle
++    // double-counted it). Ruling-4 homes are only the PLAIN-Namespace ones; derived from the components, not a hand list.
++    return [...components, ...this.homes(models, packageName).filter((h) => !components.includes(h))].sort();
+   }
+   /**
+    * Ruling 4 (Tron 2026-10-05, eamd-ucp rule 3's ONE exception): a Version inside a plain Namespace is the HOME of Package units,
