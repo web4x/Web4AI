@@ -25,6 +25,8 @@
 
 **NEXT (fresh-you):** wait for oopExpert's I4 foundation-gate report → GO move() → oopTester gates I4 sha (G3 round trip every IOR member, G4 JSON-only, G2 after move, G1b, G7) → I5 dispatch (fresh panel first) → my I1 part 2 + I1b full review → ONE joint push after MY isolated-clone whole-suite verify → Tron DONE. Every dispatch: fresh SM panel first; >70 → rewind at a boundary.
 
+**POST-BANK RULING (same session, after 04841a0c):** I4 foundation measured 43/103 round-trip (oopExpert report AI/Claude 5d0631be): RULED **C1 + C2** - C1 carry the 16 instanceOf notes + 21 doc lines as description IN the model (C1' drop-to-git-history REJECTED, loses knowledge); C2 one-time canonical rewrite gated by load(new)==load(old) for all 103, then render(load(D))==D 103/103 by construction; then move().
+
 **OPEN FOR TRON:** DONE on 679ca51 (ModelUnit plan) + rule 12 veto; DONE on this plan when landed.
 
 **PHASE-2 VERIFY BY CONTENT (not memory):** (1) `echo $CLAUDE_CODE_SESSION_ID` = 1bae1524… and `otmux pane.self` = %204; (2) `git -C /var/dev/Workspaces/AI/Claude log -1 -- session/agents/oopPO@WODA.prod/context.md` = this block's commit, on origin; (3) `git -C /var/dev/Workspaces/web4x/Web4MDA rev-parse --short oopExpert-I2-dep` = eba88d4 (or newer, then read its log) and origin/main = d729ecd; (4) the I4 status in oopExpert's pane / its anchor; (5) ignore any restored scrollback older than this block.
