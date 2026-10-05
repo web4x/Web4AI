@@ -1,5 +1,35 @@
 # oopPO@WODA.prod — Context
 
+## ★★★★★★★★ RESUME STATE — 2026-10-05 (CURRENT; BOOTS HERE; supersedes every block below) — PHASE-1 at a FRESH SM panel of 86 (SM-ordered, Tron asked)
+
+**Fresh-you: read THIS block, then learnings.md. Re-measure every sha. Identity: session 1bae1524, pane %204 = oopTeam:2.0.**
+
+**PLAN OF RECORD (Tron-approved in plan mode 2026-10-05): Web4MDA `spec/plans/2026-10-05-ucpcomponent-move-ior-package.md` @ `d729ecd`** — UcpComponent.move() (INSTANCE method, pure JSON state change of the model, realised by generate); the IOR sub-components (Ior KEEPS its folder; RepositoryId, ObjectKey, TaggedProfile, InternetProfile, TaggedComponent, SecureTransport, UnknownTaggedComponent + models; NOT Link) move into Ior, which becomes a Package beside its own version; Thinglish dependency = bidirectional relationship in M3/M2; FULL spec review. Web4MDA origin/main = `d729ecd` (nothing of this plan pushed yet — by design).
+
+**WORK BRANCH (local, shared repo /var/dev/Workspaces/web4x/Web4MDA, worktree /root/oopExpert-wt): `oopExpert-I2-dep` tip `eba88d4`** = 95de092 (I2) → 9530d47 (M1Catalog DECLARES its 21 imports) → 73b0d06 (I3) → d55a72f (my spec part 1 + grammar model, SC8 14/14) → eba88d4 (atomic generate: preflight before first relocation).
+
+| # | State | Proof |
+|---|---|---|
+| I0 plan of record | ✅ pushed d729ecd | — |
+| I1 specs part 1 (thinglish: packagedIn EBNF class+interface, keyword row, rules 13/14) | ✅ AI/Claude `879bb2c5` session/tasks/oopPO-I1-move-ior-specs-d729ecd.patch, applied verbatim in d55a72f | oopTester verified byte-equal |
+| **I1 part 2 OWED (me):** ucp.md P (component containing components = Package, beside own version, Tron verbatim), eamd-ucp rule 6 (packagedIn placement), mof.md (dependency kind + packagedIn kind, M3Relationship.opposite, M2AbstractDependency), component-model (move() = JSON state change, generate realises, option A DefinitionSource, future model/scenario/ tree) | ⏳ | — |
+| **I1b FULL SPEC REVIEW OWED (me):** every spec/*.md + README vs new understanding + the IOR NEW paths Web4MDA/Ior/<Sub>/latest/…; CHECKED/CHANGED/TOTAL; lands WITH the I5 code (ARM5) | ⏳ | — |
+| I2 dependency bidirectional (kind dependency, M3Relationship.opposite DERIVES, M2AbstractDependency extends M2AbstractCollection, dependants derived) | ✅ local 95de092 | oopTester GREEN, verdict AI/Claude 548c7a91 |
+| I3 placement packagedIn + generate relocates held sources (import lines re-derived, rule1 class / rule2 re-anchor, dependant tests by resolution) + M1Catalog 21 imports DECLARED | ✅ local 73b0d06 | oopTester GREEN 037a023a (G2 409/409, relocation round trip byte-identical, tsc 403/0) |
+| I3 atomic fix | ✅ local eba88d4 | oopTester GREEN b72f14cc (G7 both seeds RED→GREEN, G1 0 diff, G2 409/409, 614+2/616, g1b relocate gate) |
+| **I4 move()** | 🔨 oopExpert building (landed 50 after rewind): FOUNDATION GATE FIRST render(load(D)) == D for all 103 Definitions, THEN move() | design AI/Claude 51244e91; my GO on option A |
+| I5 apply move to the IOR set | queued | — |
+| I6 gates | oopTester design AI/Claude 03e7b4a5 (G1–G7 + g1b) | — |
+
+**RULINGS IN FORCE:** (Tron) packagedIn = NEW relationship kind, a UNIT, namespace DERIVED from it, Thinglish header clause `packagedIn Ior` (order extends, implements, containedBy, packagedIn, instanceOf). (me) M1Catalog's imports DECLARED in placedModel, never parsed from source; held-file import mechanism approved (only specifiers change, throw on unresolved, no-move zero diff); generate must be ATOMIC (preflight before first relocation); option A for move() (Definition rendered from ClassModel, foundation round-trip gate first); dependency facts are location-free (class names) → move() writes ZERO dependant Definitions, navigates + ASSERTS, generate re-derives dependants' import lines; by-name refs in tests = counted SKIPPED; test path imports of moved classes = 2 files (Ior.test.ts, IorAcceptance.test.ts).
+
+**NEXT (fresh-you):** wait for oopExpert's I4 foundation-gate report → GO move() → oopTester gates I4 sha (G3 round trip every IOR member, G4 JSON-only, G2 after move, G1b, G7) → I5 dispatch (fresh panel first) → my I1 part 2 + I1b full review → ONE joint push after MY isolated-clone whole-suite verify → Tron DONE. Every dispatch: fresh SM panel first; >70 → rewind at a boundary.
+
+**OPEN FOR TRON:** DONE on 679ca51 (ModelUnit plan) + rule 12 veto; DONE on this plan when landed.
+
+**PHASE-2 VERIFY BY CONTENT (not memory):** (1) `echo $CLAUDE_CODE_SESSION_ID` = 1bae1524… and `otmux pane.self` = %204; (2) `git -C /var/dev/Workspaces/AI/Claude log -1 -- session/agents/oopPO@WODA.prod/context.md` = this block's commit, on origin; (3) `git -C /var/dev/Workspaces/web4x/Web4MDA rev-parse --short oopExpert-I2-dep` = eba88d4 (or newer, then read its log) and origin/main = d729ecd; (4) the I4 status in oopExpert's pane / its anchor; (5) ignore any restored scrollback older than this block.
+
+
 ## ★★★★★★ RESUME STATE — 2026-10-02 EVENING (CURRENT; BOOTS HERE; supersedes every block below) — PHASE-1 at a FRESH panel of 82 (822.9k), SM-ordered marker drive
 
 **Fresh-you: read THIS block, then learnings.md. Re-measure every sha (git -C /var/dev/Workspaces/web4x/Web4MDA log -1). Resolve every peer's LIVE session id at check time (claudeCode session.current <pane>) - the SM's changed 5f99fe94 -> 2cb2a675 and I read a dead transcript.**
