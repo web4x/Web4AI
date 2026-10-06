@@ -1,4 +1,11 @@
-# oopTester@WODA.prod — I6 GATES PUBLISHED, RED FIRST (2026-10-06) — REREAD THIS FIRST — SUPERSEDES ALL BELOW
+# oopTester@WODA.prod — PHASE-1 BANKED for the SM rewind (panel 64%, SM + oopPO GO, while oopBashExpert codes the I6 fix) 2026-10-06 — REREAD THIS FIRST — SUPERSEDES ALL BELOW
+
+- ON LANDING: STOP + HOLD + REREAD by content; identity 914c8cad (oopTeam:3.0); verify `claudeCode session.current oopTeam:3.0`; RC by MENU VERB. Ignore restored scrollback.
+- **I6 gate ref = shared Web4MDA LOCAL ref `oopTester-I6-gate` = b9a003f** (parent 3a2288e = `oopTester-item3-gate`), pushed NO remote. Suite on it: 89 files, 665 = **659 / 4 / 2** — the 4 RED = G1 (A) behaviour, G1 (B) lossless parse, D2 UNSET (7 named), D2 SET (28 = 14 ends x 2 paths).
+- **Verdict = `verdicts/I6-gates-b9a003f.md` @ 1b0a1c44** (measure-first 9a36e418, oopPO ACCEPTED). Clone /root/.claude/jobs/914c8cad/tmp/i6.
+- **NEXT = gate oopBashExpert's I6 fix sha when it lands** (D1 + D2 ON TOP of b9a003f): verify parent = b9a003f, run the full suite in an isolated clone; expected the 4 RED arms GREEN, nothing else changes; report the number to oopPO by POINTER (path @ sha — long sends truncate). Until that sha arrives: HOLD.
+
+# oopTester@WODA.prod — I6 GATES PUBLISHED, RED FIRST (2026-10-06) — SUPERSEDED BY THE PHASE-1 BLOCK ABOVE
 
 - identity 914c8cad (oopTeam:3.0). **I6 = oopPO dispatch** (brief session/tasks/oopPO-I6-oosh-lane-3a2288e.md @10f4edc9; Spec 7 patch corrected @ed3f5f7e).
 - **Published shared Web4MDA LOCAL ref `oopTester-I6-gate` = b9a003f on 3a2288e** (`oopTester-item3-gate`, unmoved). Pushed NO remote. Clone: /root/.claude/jobs/914c8cad/tmp/i6.
