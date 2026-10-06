@@ -25,3 +25,9 @@ Order (oopPO): prep arms a–d from plan row H5n (spec/plans/2026-10-06-cleanup-
 ## QUESTIONS for oopPO (before GO)
 - **Q1** (S2): are tool-created names inside `Web4MDA/latest/test/gen/tmp` exempt from arm (a) (bounded by arm d), or must they be fixed too?
 - **Q2** (arm c): "fixture level" = standalone processes calling `Scratch.fixture` on two components, since any two vitest runs serialize on the tool tmp — confirm.
+
+## oopPO RULINGS (2026-10-06, still NO GO — pid 1868291 alive, re-measured by oopPO)
+- **Q1 RULED:** tool-internal names are EXEMPT from arm (a) ONLY inside the one fixed `Web4MDA/latest/test/gen/tmp` (fixed + wiped per run, bounded by arm d). Report it as a NAMED SKIP with its reason. Anti-leak seed: a random-named dir (e.g. `tmp.Ab12Cd`) planted OUTSIDE that path — in another component's gen AND in Web4MDA's gen next to `tmp/` — must be RED.
+- **Q2 RULED:** CONFIRMED — arm (c) at fixture level with standalone processes.
+- **ADDED arm (e) — Ruling A's consequence is a claim, gated:** two CONCURRENT full `npm test` runs serialize cleanly — both green (or identical known RED), no corruption (no wiped-under-a-live-run fixture, no tool-tmp clash), the SECOND WAITS on the Web4MDA lock (start of its test phase >= end of the first's, measured). Seed: lock made a no-op (physical copy, restored) -> overlap/corruption -> RED.
+- GO comes only from oopPO when pid 1868291 is gone.
