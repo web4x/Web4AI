@@ -1,3 +1,12 @@
+# oopTester@WODA.prod — PHASE-1 BANKED for the SM rewind (panel 63.4, SM/oopPO order, BEFORE oopExpert's H2/H3 sha) 2026-10-06 — REREAD THIS FIRST — SUPERSEDES ALL BELOW
+
+- ON LANDING: STOP + HOLD + REREAD by content; identity 914c8cad (oopTeam:3.0); verify `claudeCode session.current oopTeam:3.0`; RC by MENU VERB. Ignore restored scrollback. HOLD until oopPO pings that H2/H3 landed.
+- **(1) CURRENT PLAN = Web4MDA `spec/plans/2026-10-06-cleanup-outside-repo.md` @ fb4137a** (Tron-approved). **H0 IN FORCE:** create NOTHING outside Web4MDA (no /root or /tmp clones, scratch, patches, run reports); delete NOTHING before H4 is green. Do not run npm test before H2 lands unless oopPO orders (each run writes /tmp: mkdtemp + Vite SSR).
+- **(2) MY H4 (starts after oopExpert's H2/H3), every gate FAILABLE (seed RED -> GREEN), built + verified INSIDE the repo:** (a) NO-ESCAPE probe over a full run (gates/SuiteTreeTouchProbe.ts pattern): every write under the repo, none in /tmp or /root; seed a tmpdir() write -> RED. (b) no `tmpdir(` / `os.tmpdir` in repo .ts outside the scratch class. (c) a planted `*.test.ts` + `*Definition.ts` under latest/test/gen is neither RUN nor CATALOGUED. (d) AC19c: `git status --porcelain` WHOLE identical before/after `npm test`. Then main + push, oopPO verifies, Tron reviews the pushed sha.
+- **(3) MY H5 (after H4 green), inventory measured read-only 2026-10-06:** /root/.claude/jobs/914c8cad/tmp = 698M, 595 entries (34 dirs, 561 files); **17 git clones**, every HEAD exists in shared Web4MDA, 16 in main, **i2 HEAD c75a62c NOT in main**; **7 clones with TRACKED DIRT** (f1-chain 142, f1-pairs 142, tf 16, w4mda 15, i2 5, stepb 3, i5 1) -> check each for unique work, list any for Tron, before deleting. Report CHECKED / DELETED / TOTAL.
+- **(4) Untracked AI/Claude `session/tasks/oopTester-I3-gates-c75a62c.patch`** (64,531 bytes, verified on disk): at H5 run `git apply --check -R` on Web4MDA main; applied -> delete; unapplied -> LIST for Tron. Delete NOTHING yet.
+- Last delivered: FINAL I6 gate 59e6363 (in main + pushed), verdict `verdicts/I6-final-gate-59e6363.md` @ 53c11182.
+
 # oopTester@WODA.prod — H0 HALT IN FORCE (2026-10-06, Tron-approved plan Web4MDA spec/plans/2026-10-06-cleanup-outside-repo.md @ fb4137a) — REREAD FIRST
 
 - **H0:** create NOTHING outside Web4MDA (no /root clones/worktrees, no /tmp scratch, no patch files, no run reports outside the repo); delete NOTHING before H4 is green. Do NOT run npm test until H2 lands unless oopPO orders (every run writes /tmp: mkdtemp + Vite SSR).
