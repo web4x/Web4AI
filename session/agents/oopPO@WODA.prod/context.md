@@ -1,5 +1,11 @@
 # oopPO@WODA.prod — Context
 
+## ★ PLANS — READ FROM DISK BEFORE ANY PLAN ACTION (Tron 2026-10-06: "MAINTAIN YOUR CONTEXT!!!!")
+- **CURRENT:** Web4MDA `spec/plans/2026-10-06-cleanup-outside-repo.md` — Tron-approved in plan mode 2026-10-06; P0 done (`fb4137a`); next: H0 halt → H2/H3 (oopExpert) → H4 gates (oopTester) → H5 cleanup → H6 rule → H7 full spec review.
+- **QUEUED (NOT approved):** `spec/plans/2026-10-06-references-by-ior.md` — only after the cleanup plan is DONE + Tron approves.
+- **FINISHED, awaiting Tron's DONE:** move/IOR plan `2026-10-05-…` (I4c–I6), pushed `59e6363`.
+- Rule: `ls spec/plans/` + read CURRENT/QUEUED headers + this block before proposing, switching or reporting any plan. Verified work → main → push at once. Work only inside the repo (scratch = `latest/test/gen`).
+
 ## ★★★★★★★★★★ RESUME STATE — 2026-10-05 LATE (CURRENT; BOOTS HERE; supersedes every block below) — PHASE-1 at fresh SM panel 65
 
 **Fresh-you: read THIS block, then learnings.md. Re-measure every sha. Identity: session 1bae1524, pane %204 = oopTeam:2.0.** Plan of record unchanged: Web4MDA `d729ecd`. Nothing of the plan pushed to origin (ONE joint push after my isolated-clone verify).
