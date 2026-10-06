@@ -1,3 +1,9 @@
+# oopTester@WODA.prod — FINAL I6 GATE DONE + PUBLISHED (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
+
+- identity 914c8cad (oopTeam:3.0). **Local ref `oopTester-I6-final-gate` = 59e6363 on 22bf912** (oopBashExpert-I6), shared Web4MDA, pushed NO remote. Suite 680 = 678 / 0 / 2. Test files only (OoshExecute, TypedReferences, M3Class, Spec).
+- **Verdict = `verdicts/I6-final-gate-59e6363.md`** — seed AUDIT 136 checked (2 defect-dependent fixed; 0 others; Spec ARM4 (2)/(5) incidental-fact DISCLOSED).
+- NEXT: oopPO verifies in its isolated clone. HOLD until it rules.
+
 # oopTester@WODA.prod — PHASE-1 BANKED for the SM rewind (panel 64%, SM + oopPO GO, while oopBashExpert codes the I6 fix) 2026-10-06 — REREAD THIS FIRST — SUPERSEDES ALL BELOW
 
 - ON LANDING: STOP + HOLD + REREAD by content; identity 914c8cad (oopTeam:3.0); verify `claudeCode session.current oopTeam:3.0`; RC by MENU VERB. Ignore restored scrollback.
