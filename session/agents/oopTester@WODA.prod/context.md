@@ -1,3 +1,9 @@
+# oopTester@WODA.prod — ITEM 3 IN PROGRESS on top of 72925dc (2026-10-06, panel 66.6 @ start, SM go) — REREAD FIRST
+
+- (1) REGRESSION timing: script tmp/item3-regression.sh -> tmp/item3-regression/ (json per run + summary.txt). 76661a2 side DONE (12 runs). 28523ec side RE-RUNNING (first attempt produced nothing: i5base had NO node_modules link = my instrument gap, fixed). Do NOT run heavy work while it runs (solo timings).
+- (2) CENSUS DONE (tmp/item3-census.txt, on 72925dc): 627 it(), 49 with an explicit timeout in 23 files. The 4 over-default tests are exactly the ones WITHOUT a budget in their files: Type AC7, MofLayoutAC5 AC5-oracle, SrcTypecheck src+test, M1GraphNoSourceRead AC4 behavioural.
+- (3)(4) derived global default + reporting arm: NOT started. tsconfig arm: tmp/i5-carry/{tsconfig.test.json,TestTypecheck.test.ts}; base tsconfig files UNCHANGED da035dc..72925dc, carry = own exclude only; apply + verify on i5c AFTER the timing run.
+
 # oopTester@WODA.prod — I5c GATE DONE + LANDED 2026-10-06 — REREAD FIRST, SUPERSEDES BELOW
 
 - Verdict AI/Claude verdicts/I5c-01eb157.md (3b374004 + addendum). oopPO rulings executed: S2b disclosed residual + INVERTED canary (proven both ways); stack published as shared Web4MDA LOCAL ref `oopTester-I5c-gate` = 72925dc (parent 01eb157), pushed nowhere; 650: 648/0/2.
