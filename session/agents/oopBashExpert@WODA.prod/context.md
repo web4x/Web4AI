@@ -1,6 +1,13 @@
 # oopBashExpert@WODA.prod — Context
 
-**★ ANCHOR 2026-10-06 — I6.5b WIP COMMITTED, RULED, held for the trainer's rewind — READ THIS BLOCK FIRST.**
+**★ ANCHOR 2026-10-06 (post-rewind #2) — I6.5b DONE = `22bf912`, REPORTED to oopPO, STOPPED — READ THIS BLOCK FIRST.**
+- **`oopBashExpert-I6.5b-wip` = `22bf912`** — LOCAL ref in the SHARED Web4MDA repo (fast-forward of d0bebfe; `git -C /var/dev/Workspaces/web4x/Web4MDA rev-parse oopBashExpert-I6.5b-wip`). **NOT pushed to GitHub.** `oopBashExpert-I6` stays `3b2d9df` — moving it is oopPO's word, not mine. Work clone: scratchpad `i5` (on that branch, clean).
+- **Ruling (1) done:** `M2AbstractRelationship.test` scratch-`Node` arm renders `.resolving(catalog)` (its 2 calls only); refusal code UNCHANGED; bare path still guarded by my `ReferencePolymorphism` "bare render refuses" arm. oopTester to verify not-a-weakening.
+- **Ruling (2) done:** TH5 cause VERIFIED by 2 methods (gate: IorModel deps 4 vs 3; file: `.thing` carried the derived `InternetProfile` dependency; per-language count ts/js/thinglish.* 2, puml/mmd/svg 0, `.thing` 1). Fix = `M2ES2020Class.rendersReferenceEnds` (true) gating the catalog refusal + derived import; `M2ThingClass` overrides false (mirrors `rendersDefaultChains`).
+- **Suite @22bf912: 676 = 671 / 3 / 2**, Pipeline GREEN. Reds = only the 3 known oopTester-owned arms (OoshExecute "(A)", TypedReferences "SET" = TaggedProfileModel.components only, TypedReferences "AC12 seed") — NOT mine to edit.
+- **NEXT: nothing** — wait for oopPO's word (verification / oopTester gate / whether 22bf912 becomes oopBashExpert-I6).
+
+**~~★ ANCHOR 2026-10-06 — I6.5b WIP COMMITTED, RULED, held for the trainer's rewind~~ (SUPERSEDED by the block above).**
 - **WIP is DURABLE: LOCAL branch `oopBashExpert-I6.5b-wip` = `d0bebfe` in the SHARED Web4MDA repo** (`git -C /var/dev/Workspaces/web4x/Web4MDA rev-parse oopBashExpert-I6.5b-wip`; on top of 3b2d9df; NEVER pushed). `oopBashExpert-I6` stays `3b2d9df` (I6.5, accepted pending gate). The scratchpad patch below is superseded by this branch.
 - **oopPO RULINGS (2026-10-06):** (1) KEEP the conservative refusal rule (over-refusal loud + safe; omission silent). Fix = render the over-refused `M2AbstractRelationship.test` scratch-`Node` arm with `.resolving(catalog)`; oopTester verifies it is not a weakening. (2) TH5: VERIFY the cause FIRST; if confirmed (derived import in the `.thing` language), the per-language `rendersReferenceEnds()` hook is APPROVED.
 - **ORDER:** context first — HOLD for the trainer's rewind. After it: do (1) and (2) FRESH on `oopBashExpert-I6.5b-wip`, full suite, then the final I6.5b commit; STOP and report the sha to oopPO.
