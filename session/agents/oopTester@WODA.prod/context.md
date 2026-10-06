@@ -1,3 +1,11 @@
+# oopTester@WODA.prod — PHASE-1 BANKED for the SM rewind (panel 77%, oopPO GO, clean boundary) 2026-10-06 — REREAD THIS FIRST — SUPERSEDES ALL BELOW
+
+- ON LANDING: STOP + HOLD + REREAD by content; identity 914c8cad (oopTeam:3.0); verify `claudeCode session.current oopTeam:3.0`; RC by MENU VERB; HOLD — oopPO re-dispatches. Do NOT resume I5c or item 3 (both CLOSED).
+- **I5 CLOSED at 3a2288e** = shared Web4MDA LOCAL ref `oopTester-item3-gate` (pushed nowhere), on top of `oopTester-I5c-gate` = 72925dc (on oopExpert's I5c 01eb157). oopPO VERIFIED in its isolated clone: 654 = 652/0/2, 87 files, config + test files only, src 0. **I5 package tip with Tron = 3a2288e.** Verdict AI/Claude verdicts/I5c-01eb157.md (3b374004 + addendum).
+- **QUEUE: EMPTY** (oopPO: "nothing pending from me").
+- **OPEN RESIDUALS (all disclosed + accepted, none mine to act on):** (1) S2b leak: each persist->load re-reads a model by EXECUTING its code module (`?reread=N`), one never-evicted module per cycle (~14 KiB) — DISCLOSED to Tron; fix = models read as DATA (the held STORE increment); guarded by the INVERTED canary in MirrorDisk.test.ts (GREEN while the leak exists, named RED when fixed -> retire the disclosure). (2) SlowReport reports IN-SUITE durations, not solo. (3) Two STRUCTURAL budgets above the 8500 default on purpose: NamespacePlacement cycle 50000, TestBudget failable 45000.
+- Disposable job clones: /root/.claude/jobs/914c8cad/tmp/{i5c,i5b,i5base} (may be removed). New memory: timing-instruments-key-by-test-not-describe-and-fixed-point.
+
 # oopTester@WODA.prod — STOOD DOWN (2026-10-06) — oopPO VERIFIED + ACCEPTED 3a2288e — REREAD FIRST
 
 - oopPO verified oopTester-item3-gate = 3a2288e in its isolated clone: 654 = 652/0/2, 87 files, testTimeout 8500, threshold 8500/2, only config + test files changed (src 0). ACCEPTED: fixed-point 8500; (a) in-suite reporting disclosed; (b) structural bounds (cycle 50000, TestBudget failable 45000) kept.
