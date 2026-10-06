@@ -4,6 +4,64 @@
 
 **Method (derived, a script — `classify.py`, kept in Web4MDA's gen):** for each `*.test.ts`, every relative `import { … }` resolved to its file; a target under `<Component>/latest/src/` counts for that component; USES = word-boundary occurrences of each imported local name in the file body (import lines excluded, type positions counted). Imports of test helpers (`latest/test/*`) are listed separately as support (Scratch, TestFolder). No move made.
 
+## REVISION 2 — oopPO rulings on 820e2119 applied: SUBJECT = the component whose behaviour the ASSERTIONS check
+
+**Method (derived — `asserts.py` in Web4MDA's gen):** every `expect(…)` argument is attributed to the components it reads: imported names map to their component; locals built from them (`const c = new M1Catalog()…`, `this.x = …`) inherit it (fixpoint). Pure TOOL helpers — Scratch (fixture paths), Child (process runner), Generated, Source (file readers) — are NOT a subject unless the test is named after them (a file read from a fixture path asserts the thing generated, not Scratch). Ties -> the MORE SPECIFIC component, never the root. No src component in any assertion -> test-support (the DERIVED F3 set). Verdict counts: {'MOVE': 17, 'STAY': 29}.
+
+**F4 — measured, not as ruled:** by assertions TypedReferences is NOT tied: M1Catalog 16 vs Web4MDA 6 (OoshUnit 0 in assertions; the 11=11 tie was in MENTIONS). Verdict below follows the evidence (-> M1Catalog); oopPO to confirm or overrule.
+**F1** BootstrapScratch: assertions Scratch 24 vs M1Catalog 6 -> STAY (Scratch support), as ruled. **F2** UcpComponentMove: Ior/RepositoryId 6 vs Web4MDA 5 -> RepositoryId, as ruled; M2OoshSha1 Web4MDA 5 -> STAY (A), as ruled.
+**WEAK** rows (<=2 src assertions) are flagged: their subject is thin evidence (Pipeline: 1 PlantUmlServer assertion, the rest assert the run/tree via tools; SpecIteration: 3-way 1=1=1 tie).
+
+| Test | expects | assertion attribution (src + named test-support) | verdict | vs 820e2119 |
+|---|---|---|---|---|
+| Boilerplate | 41 | DefaultFolder=11 Web4MDA=6 MOF/M1/M1Catalog=5 | MOVE -> DefaultFolder | **CHANGED** (was A) |
+| BootstrapScratch | 53 | test-support:Scratch=24 MOF/M1/M1Catalog=6 | STAY (F1: Scratch — oopPO) | **CHANGED** (was MOVE -> Web4MDA/MOF/M1/M1Catalog) |
+| Child | 8 | test-support:Child=4 | STAY (test-support, derived) | **CHANGED** (was MOVE -> Web4MDA/MOF/M1/M1Catalog) |
+| ComponentModelInc1 | 42 | DefaultFile=5 DefaultFolder=2 | MOVE -> DefaultFile | **CHANGED** (was MOVE -> Web4MDA/DefaultFolder) |
+| ComponentModelInc2 | 21 | MOF/M1/M1Catalog=5 Web4MDA=2 | MOVE -> MOF/M1/M1Catalog |  |
+| FileUnitsMigration | 20 | MOF/M1/M1Catalog=12 | MOVE -> MOF/M1/M1Catalog |  |
+| Folder | 68 | Web4MDA=21 MOF/M1/M1Catalog=21 | MOVE -> MOF/M1/M1Catalog (tie -> specific) | **CHANGED** (was A) |
+| GarbageSweep | 20 | - | STAY (test-support, derived) |  |
+| GenClaims | 27 | - | STAY (test-support, derived) | **CHANGED** (was MOVE -> Web4MDA/MOF/M1/M1Catalog) |
+| GenReaders | 16 | Web4MDA=2 | STAY (A) | **CHANGED** (was MOVE -> Web4MDA/MOF/M1/M1Catalog) |
+| M2OoshSha1 | 6 | Web4MDA=5 | STAY (A) |  |
+| Model | 6 | Web4MDA=3 | STAY (A) |  |
+| ModelJson | 39 | Web4MDA=21 MOF/M1/M1Catalog=11 MOF/M2/M2ThinglishTypescriptClass=3 | STAY (A) |  |
+| ModelSource | 10 | Web4MDA=5 MOF/M1/M1Catalog=1 | STAY (A) |  |
+| ModelStyle | 40 | Web4MDA=25 | STAY (A) |  |
+| MofLayoutAC5 | 47 | MOF/M1/M1Catalog=13 | MOVE -> MOF/M1/M1Catalog |  |
+| MofPlainNode | 11 | MOF/M1/M1Catalog=9 | MOVE -> MOF/M1/M1Catalog |  |
+| NameUuid | 7 | Web4MDA=7 | STAY (A) |  |
+| NoTempDirOutsideScratch | 1 | MOF/M1/M1Catalog=1 | MOVE -> MOF/M1/M1Catalog · **WEAK (<=2 src assertions)** |  |
+| Node22 | 31 | other=10 | STAY (test-support, derived) |  |
+| OoshExecute | 12 | - | STAY (test-support, derived) |  |
+| Pipeline | 20 | PlantUmlServer=1 | MOVE -> PlantUmlServer · **WEAK (<=2 src assertions)** | **CHANGED** (was MOVE -> Web4MDA/MOF/M1/M1Catalog) |
+| ReferencePolymorphism | 21 | MOF/M1/M1Catalog=11 Web4MDA=10 MOF/M2/M2TypescriptClass=3 | MOVE -> MOF/M1/M1Catalog | **CHANGED** (was A) |
+| ScenarioLayoutSC1 | 6 | MOF/M1/M1Catalog=3 | MOVE -> MOF/M1/M1Catalog |  |
+| ScratchExclusion | 7 | - | STAY (test-support, derived) |  |
+| SlowReport | 5 | test-support:SlowReport=3 | STAY (test-support, derived) |  |
+| SoloGroup | 10 | MOF/M1/M1Catalog=1 | MOVE -> MOF/M1/M1Catalog · **WEAK (<=2 src assertions)** |  |
+| Spec | 62 | - | STAY (test-support, derived) | **CHANGED** (was MOVE -> Web4MDA/MOF/M1/M1Catalog) |
+| SpecIteration | 10 | RadicalOopGate=1 Web4MDA=1 MOF/M1/M1Catalog=1 | MOVE -> RadicalOopGate (tie -> specific) | **CHANGED** (was A) |
+| SrcTypecheck | 17 | - | STAY (test-support, derived) | **CHANGED** (was MOVE -> Web4MDA/MOF/M1/M1Catalog) |
+| TestBudget | 9 | - | STAY (test-support, derived) |  |
+| TestFolder | 13 | test-support:TestFolder=12 | STAY (test-support, derived) |  |
+| TestPlacement | 19 | - | STAY (test-support, derived) |  |
+| TestTypecheck | 3 | - | STAY (test-support, derived) |  |
+| TrackedTree | 4 | test-support:TrackedTree=3 | STAY (test-support, derived) |  |
+| Tree | 44 | Web4MDA=14 Package=7 DefaultFile=4 | STAY (A) |  |
+| TreeFileUnitInc1 | 58 | Web4MDA=33 DefaultFile=19 MOF/M1/M1Catalog=4 | STAY (A) |  |
+| TreeFileUnitRulings | 38 | Package=13 Web4MDA=9 NpmPackage=7 | MOVE -> Package |  |
+| Type | 38 | Web4MDA=16 | STAY (A) |  |
+| TypedReferences | 30 | MOF/M1/M1Catalog=16 Web4MDA=6 | MOVE -> MOF/M1/M1Catalog | **CHANGED** (was A) |
+| UcpComponent | 42 | DefaultFolder=20 NpmPackage=6 MOF/M1/M1Catalog=4 | MOVE -> DefaultFolder | **CHANGED** (was A) |
+| UcpComponentMove | 15 | Ior/RepositoryId=6 Web4MDA=5 MOF/M1/M1Catalog=4 | MOVE -> Ior/RepositoryId |  |
+| Unit | 33 | Web4MDA=26 | STAY (A) |  |
+| UnitReferencesInc2 | 67 | Web4MDA=55 MOF/M1/M1Catalog=3 | STAY (A) |  |
+| Web4MDA | 25 | Web4MDA=24 | STAY (A) |  |
+| WriteRecorder | 19 | - | STAY (test-support, derived) |  |
+
+## REVISION 1 (820e2119, mentions-based — SUPERSEDED by Revision 2)
 ## Totals: A 18 · C 17 · no src import 11
 
 ## C — MOVE (literal rule), target = top src component
