@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — H0 HALT IN FORCE (2026-10-06, Tron-approved plan Web4MDA spec/plans/2026-10-06-cleanup-outside-repo.md @ fb4137a) — REREAD FIRST
+
+- **H0:** create NOTHING outside Web4MDA (no /root clones/worktrees, no /tmp scratch, no patch files, no run reports outside the repo); delete NOTHING before H4 is green. Do NOT run npm test until H2 lands unless oopPO orders (every run writes /tmp: mkdtemp + Vite SSR).
+- **MY INCREMENT = H4** (after oopExpert's H2/H3): failable gates (a) no-escape probe over a full run, seed tmpdir() write -> RED; (b) no tmpdir(/os.tmpdir in repo .ts outside the scratch class; (c) planted *.test.ts + *Definition.ts under test/gen neither run nor catalogued; (d) AC19c git status --porcelain WHOLE identical before/after npm test.
+- **MY H5 garbage (measured 2026-10-06, read-only):** /root/.claude/jobs/914c8cad/tmp = 698M, 595 entries (34 dirs, 561 files); 17 git clones, all HEADs in shared repo, 16 in main, i2 on side c75a62c; TRACKED DIRT in 7 (f1-chain 142, f1-pairs 142, tf 16, w4mda 15, i2 5, stepb 3, i5 1) -> check/list each before deleting at H5.
+- I6 final gate 59e6363 is IN main + pushed (plan text).
+
 # oopTester@WODA.prod — FINAL I6 GATE DONE + PUBLISHED (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
 
 - identity 914c8cad (oopTeam:3.0). **Local ref `oopTester-I6-final-gate` = 59e6363 on 22bf912** (oopBashExpert-I6), shared Web4MDA, pushed NO remote. Suite 680 = 678 / 0 / 2. Test files only (OoshExecute, TypedReferences, M3Class, Spec).
