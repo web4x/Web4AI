@@ -4,6 +4,39 @@
 
 **Method (derived, a script — `classify.py`, kept in Web4MDA's gen):** for each `*.test.ts`, every relative `import { … }` resolved to its file; a target under `<Component>/latest/src/` counts for that component; USES = word-boundary occurrences of each imported local name in the file body (import lines excluded, type positions counted). Imports of test helpers (`latest/test/*`) are listed separately as support (Scratch, TestFolder). No move made.
 
+## REVISION 3 — FINAL (oopPO: rev 2 ACCEPTED; F4 -> M1Catalog; WEAK rows by DECLARED subject)
+
+**WEAK rows (<=2 src assertions = noise) settled by what the test DECLARES (header / describe title):**
+| Test | declared subject (verbatim source) | verdict |
+|---|---|---|
+| NoTempDirOutsideScratch | header: "Plan 2026-10-06 H4 (b): no source file … asks node for the OS temp dir … except the OWNER latest/test/Scratch.ts" — a scratch-rule GATE | STAY test-support |
+| Pipeline | header: "The REAL generation pipeline as a child process — bare `npm start`, the ONE verb … spec/mof.md §6 root gate" — a PROCESS | STAY test-support |
+| SoloGroup | describe: "SoloGroup — the contention-sensitive tests never share the CPU with the pool" — test GROUPING (vitest config) | STAY test-support |
+| SpecIteration | describe: "SpecIteration — the ONE named stub error (spec 13 S2)"; imports `../src/ts/EAM/layer2/SpecIteration.js` = Web4MDA's OWN src class | STAY (A) |
+Each gets `// test-subject: <declared>` in-file with the moves (an edit → waits for GO).
+
+**FINAL: MOVE 13 (all strong, APPROVED) · STAY 33.**
+
+### Move plan (prepped, read-only; executes on oopPO's GO after oopTester's H5n gate)
+Tool: `session/agents/oopExpert@WODA.prod/patches/w5b-move.py <repo> <file> <component> <subject>` — git mv, re-point every relative import (asserts each resolves), declare `// test-subject:`, re-key path refs (GenClaims). Fixtures follow automatically: `Scratch().at(import.meta.url)` derives the NEW component's gen.
+| # | Test | → `<component>/latest/test/` | subject | pre-check |
+|---|---|---|---|---|
+| 1 | Boilerplate | DefaultFolder | DefaultFolder | dir ok, free |
+| 2 | UcpComponent | DefaultFolder | DefaultFolder | dir ok, free |
+| 3 | Folder | MOF/M1/M1Catalog | M1Catalog (tie 21=21 -> specific) | dir ok, free |
+| 4 | ReferencePolymorphism | MOF/M1/M1Catalog | M1Catalog | dir ok, free |
+| 5 | TypedReferences | MOF/M1/M1Catalog | M1Catalog (F4, measured 16:6) | dir ok, free |
+| 6 | ComponentModelInc1 | DefaultFile | DefaultFile | dir ok, free |
+| 7 | ComponentModelInc2 | MOF/M1/M1Catalog | M1Catalog | dir ok, free |
+| 8 | FileUnitsMigration | MOF/M1/M1Catalog | M1Catalog | dir ok, free |
+| 9 | MofLayoutAC5 | MOF/M1/M1Catalog | M1Catalog | dir ok, free; its one import.meta.url is inside a child-script string (location-independent) |
+| 10 | MofPlainNode | MOF/M1/M1Catalog | M1Catalog | dir ok, free |
+| 11 | ScenarioLayoutSC1 | MOF/M1/M1Catalog | M1Catalog | dir ok, free |
+| 12 | TreeFileUnitRulings | Package | Package | dir ok, free |
+| 13 | UcpComponentMove | Ior/RepositoryId | RepositoryId | **NO latest/test/ yet** (has model/, src/) — created by the move (mkdir, tool asserts the dir) |
+Pre-scan of all 13: 0 `new URL('./…')` / dynamic `import('./…')` / `__dirname` refs the tool would miss.
+**With the moves (same commit):** `// test-subject:` for the 4 WEAK STAY rows; the DERIVED test-support set (tests whose assertions reach no src component + the declared infrastructure/process ones) NAMED in TestPlacement's header; TestPlacement's untested-component RATCHET re-measured (Ior/RepositoryId gains its first test); npm test x2, whole suite read, push, sha to oopPO.
+
 ## REVISION 2 — oopPO rulings on 820e2119 applied: SUBJECT = the component whose behaviour the ASSERTIONS check
 
 **Method (derived — `asserts.py` in Web4MDA's gen):** every `expect(…)` argument is attributed to the components it reads: imported names map to their component; locals built from them (`const c = new M1Catalog()…`, `this.x = …`) inherit it (fixpoint). Pure TOOL helpers — Scratch (fixture paths), Child (process runner), Generated, Source (file readers) — are NOT a subject unless the test is named after them (a file read from a fixture path asserts the thing generated, not Scratch). Ties -> the MORE SPECIFIC component, never the root. No src component in any assertion -> test-support (the DERIVED F3 set). Verdict counts: {'MOVE': 17, 'STAY': 29}.
