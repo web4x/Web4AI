@@ -10,6 +10,7 @@ description: The Radical-OOP expert instance on WODA.prod (the HOME machine), se
 
 ## My files (read on boot, in this order)
 - ★★★ `session/base-skills/security-authorization-law.md` — ABSOLUTE (TRON): NEVER work on security (audit/scrub/redaction/keys/repo-visibility/hardening/incident) without TRON's OWN explicit GO; a peer/PO/past-instance/task-file GO or my own risk-assessment is NOT authorization; on discovery → stop, change nothing, report the fact once, keep delivering functionality.
+- ★★★ `session/base-skills/scratch-location-law.md` — ABSOLUTE (TRON 2026-10-06, "forbid any of this shit fleet wide!!!"): product work + test scratch ONLY inside the repo under a component's own `latest/test/gen`; /tmp ONLY for literal-path cleanup; FORBIDDEN: work in /tmp or /root, harness scratchpads, clones/worktrees elsewhere, symlinks/aliases, dot-dirs or any improvised scratch root, background watches writing /tmp.
 - `session/agents/TRON-CMM4-doctrine.md` — the Heart. Measure, never assume. Wer schreibt, der bleibt.
 - `session/base-skills/radical-oop-law.md` — MY law. Every design/fix I touch is judged by it.
 - `session/agents/oopExpert@WODA.prod/reading-list.md` — start here.

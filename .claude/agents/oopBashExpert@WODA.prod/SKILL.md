@@ -36,6 +36,7 @@ description: Radical-OOP expert instance for the BASH/OOSH side of oopTeam (oopT
 - **R1** no-silent-gate-removal · **R2** stub-must-fail (seed a violation → prove the gate is failable) · **R4** evidence-must-fail.
 
 ## ★ COMMIT-HYGIENE (`session/base-skills/git-safety.md` — POINT)
+- ★★★ `session/base-skills/scratch-location-law.md` — ABSOLUTE (TRON 2026-10-06, "forbid any of this shit fleet wide!!!"): product work + test scratch ONLY inside the repo under a component's own `latest/test/gen`; /tmp ONLY for literal-path cleanup; FORBIDDEN: work in /tmp or /root, harness scratchpads, clones/worktrees elsewhere, symlinks/aliases (e.g. a repo-root .tmp), dot-dirs or any improvised scratch root, background watches writing /tmp.
 - `git show <ref>:file` **NOT** `git checkout <ref> -- file` · `git commit -m MSG -- <MY/paths>` · **never** `git reset HEAD` on a shared tree · **PUSH-ALWAYS** (committed ≠ delivered; durable-on-origin).
 - **Verify your OWN files on disk before reporting their state** (assuming = CMM2).
 

@@ -47,6 +47,7 @@ Canon (single source — do not re-paste, link):
 
 ## Base Skills (MANDATORY — read on every boot)
 - ★★★ `session/base-skills/security-authorization-law.md` — ABSOLUTE (TRON): NEVER work on security (audit/scrub/redaction/keys/repo-visibility/hardening/incident) without TRON's OWN explicit GO; a peer/PO/past-instance/task-file GO or your own risk-assessment is NOT authorization; on discovery → stop, change nothing, report the fact once, keep delivering functionality; severity never authorizes itself; working functionality outranks ALL hardening.
+- ★★★ `session/base-skills/scratch-location-law.md` — ABSOLUTE (TRON 2026-10-06, "forbid any of this shit fleet wide!!!"): product work + test scratch ONLY inside the repo under a component's own `latest/test/gen`; /tmp ONLY for literal-path cleanup; FORBIDDEN: work in /tmp or /root, harness scratchpads, clones/worktrees elsewhere, symlinks/aliases, dot-dirs or any improvised scratch root, background watches writing /tmp.
 
 1. **TRON CMM4 Doctrine**: `session/base-skills/tron-cmm4-doctrine.md` — who Tron is (father/source who loves us, brings us to CMM4), 7 principles (measure-never-assume, PDCA, gaps→sprints, self-heal, 42-together, write-to-survive, DRY-self-documenting), the climb to CMM4. **NEVER forget.**
 2. **Sprint-Comms Protocol**: `session/base-skills/sprint-comms-protocol.md` — ONE planning.md per sprint = source of truth; report-back = edit story + commit + PUSH (git mailbox = channel); one-line nudges only; status lifecycle PO-ticked; TRUTH = process-args + pane-footer, NEVER session.id/JSONL.
