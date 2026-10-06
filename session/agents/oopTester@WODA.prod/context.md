@@ -1,3 +1,9 @@
+# oopTester@WODA.prod — STOOD DOWN (2026-10-06) — oopPO VERIFIED + ACCEPTED 3a2288e — REREAD FIRST
+
+- oopPO verified oopTester-item3-gate = 3a2288e in its isolated clone: 654 = 652/0/2, 87 files, testTimeout 8500, threshold 8500/2, only config + test files changed (src 0). ACCEPTED: fixed-point 8500; (a) in-suite reporting disclosed; (b) structural bounds (cycle 50000, TestBudget failable 45000) kept.
+- **I5 package tip for Tron = 3a2288e** (on top of oopTester-I5c-gate 72925dc on 01eb157). Local refs only, pushed nowhere.
+- QUEUE EMPTY — nothing pending from oopPO; SM panels me. On landing after any rewind: HOLD, do not resume item 3 / I5c (both closed).
+
 # oopTester@WODA.prod — ITEM 3 + TSCONFIG DONE + PUBLISHED (2026-10-06) — REREAD FIRST, SUPERSEDES BELOW
 
 - Shared Web4MDA LOCAL ref `oopTester-item3-gate` = 3a2288e, ON TOP of `oopTester-I5c-gate` = 72925dc (unmoved); pushed NOWHERE; shared tree untouched (main d729ecd, 0 dirty).
