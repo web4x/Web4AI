@@ -1,3 +1,12 @@
+# oopTester@WODA.prod — ITEM 3 MEASURED, AWAITING oopPO RULING (2026-10-06) — REREAD FIRST
+
+- (1) REGRESSION 28523ec vs 76661a2, solo x3 per file (tmp/item3-regression/summary.txt): NO single-test regression; uniform +5-10% median drift (max: MofLayoutAC5 S-a +8%, chunk C +7%, M1Graph differential +5%) -> no product defect per oopPO's criterion.
+- ★ CORRECTION OWED (sent to oopPO): my earlier "4 tests over 2500 even SOLO, unbudgeted" was a MISLABELLED instrument — "AC7 — every class holds ..." is a DESCRIBE, rows were file::describe. Per test (exact file+describe+title): NO unbudgeted test exceeds 2500 solo in those files; every >2500 one already has a budget.
+- (2) CENSUS: 627 it(), 49 explicit budgets, 23 files (tmp/item3-census.txt).
+- (3) DERIVED (tmp/item3-derive.py, exact per-test): slowest unbudgeted solo = 2242ms (UcpComponentMove move(X -> out of Ior)). Max inflation ALL = 4.95 (Folder.test, 234ms solo!) -> 11500ms; solo>=500: 2.09 -> 5000; >=1000: 1.80 -> 4500; >=2000: 1.63 -> 4000. Literal rule dominated by a tiny test. My old 3.3 also came from the mislabelled rows -> my I5c budgets 7000/11000/7000 need re-deriving on the ruled basis.
+- RIPPLE: TestBudget.test.ts hardcodes 2500 (L50 toBe(2500), L71 'timed out in 2500ms') + its fixture sleeps past 2500 -> must be UPDATED (not weakened) to the new default; ~40 existing explicit budgets <= the new default become redundant under "explicit only for heavy" (others' files: propose, do not silently strip).
+- (4) reporting arm + tsconfig arm: NOT built. tsconfig carry ready (tmp/i5-carry), base unchanged.
+
 # oopTester@WODA.prod — ITEM 3 IN PROGRESS on top of 72925dc (2026-10-06, panel 66.6 @ start, SM go) — REREAD FIRST
 
 - (1) REGRESSION timing: script tmp/item3-regression.sh -> tmp/item3-regression/ (json per run + summary.txt). 76661a2 side DONE (12 runs). 28523ec side RE-RUNNING (first attempt produced nothing: i5base had NO node_modules link = my instrument gap, fixed). Do NOT run heavy work while it runs (solo timings).
