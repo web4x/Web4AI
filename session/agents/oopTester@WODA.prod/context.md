@@ -1,3 +1,11 @@
+# oopTester@WODA.prod — H5 IN PROGRESS + TRON RULE (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
+
+- ★★★ TRON (shouted, via oopPO): working in /tmp is FORBIDDEN. No cd/scripts/logs/clones/background watches/harness scratchpad there (incl. /tmp/claude-0 task outputs => NO run_in_background; incl. job dir /root/.claude/jobs/914c8cad/tmp). ONLY: one-command `git -C <clone> push` of a preserve branch, and the plan-ordered delete as ONE command. Everything else inside the repo (Web4MDA/.tmp). Disclosed: before the rule I wrote+deleted /tmp/claude-0/h5-*.diff and used background runs (outputs in /tmp/claude-0).
+- H5 GO from oopPO for MY rows (assignment AI/Claude session/tasks/oopPO-H5-assignment-20261006.md row oopTester). Stop rule: ~85 -> commit+push anchor, report what is left.
+- DONE: preserve branches on Web4MDA origin, each VERIFIED by ls-remote: preserve/oopTester-i2 1477ba7 (c75a62c + 5 dirty + PureLayout.ts), -f1-chain ea32117, -f1-pairs 70d3438, -tf 3d84e66, -w4mda b3f1ce4, -stepb fc35aa0, -i5 81a2429, -i5b 07e3ba1. 17 clones deleted (9 clean in main + 8 preserved); shared node_modules intact 37. Job tmp 701M -> 83M.
+- BEFORE sizes: handoff 16K, job tmp 701M, gen/h4-branch 45M, gen/h4d-diag 45M, .tmp/h4* 508K, 16 oopTester-*.patch ~453K, session scratch 264K+28K.
+- LEFT: job tmp non-git leftovers 83M (dirs ac2b-*, ac4-keep, gates-copy, i5-carry, i5-keep, item3-regression, keep-fc5, p0f/p49/p55/p596 ~13M each, rg-keep, rg3-keep, spec5, timing-76661a2, __pycache__ + 561 loose files 26M) = LIST, content check STOPPED by the rule (needs the go for a one-command delete); patches (check tracked/applied in repo); in-repo h4-branch, h4d-diag, .tmp/h4*, h4r-*, h5-* (copy verdicts to AI/Claude verdicts/ first); /root/oopTester-handoff; session scratch (one-command delete).
+
 # oopTester@WODA.prod — H4 (a) RULING EXECUTED, main 9364b5e PUSHED (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
 
 - identity 914c8cad (oopTeam:3.0). oopPO ruling: recorder must record old node too, verdict = escape count. DONE: WriteRecorder.mjs -> .cjs, NODE_OPTIONS=--require; probe green = BOOT>0 && 0 ESCAPE; BOOT has version. Pushed 4803f95..9364b5e.
