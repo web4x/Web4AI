@@ -33,3 +33,11 @@
 
 ## Unrelated, seen, untouched
 The shared checkout had `Web4MDA.ts` modified at 17:18 (a reformat of the generate-step list) — not mine (my scripts only ever wrote the copy); left for its owner.
+
+## Diagnosis of the 17:18 `Web4MDA.ts` change in the shared checkout (oopPO's hypothesis tested, not assumed)
+**Verdict: neither instrument nor defect of Web4MDA — an EDITOR SAVE.** VS Code server's local save history on this box (`~/.vscode-server/data/User/History/-69ce4468/`) records a save of exactly `…/Web4MDA/latest/src/ts/EAM/layer2/Web4MDA.ts` at **17:18:42**, the file's mtime to the second; the snapshot is byte-identical to the current file (sha256 `7c9c96225d24…` both). Not my clone, not the generator.
+Hypothesis "my clone's generate re-rendered the outer src" REFUTED three ways:
+1. The 4-line form is not generator output: the model (`Web4MDADefinition.ts:146`) holds the steps list on ONE line and the generator copies bodies verbatim — committed src = one line.
+2. Re-run in a fresh clone of `d97c26fc` inside a private mount namespace (outer repo READ-ONLY, only the clone — then also the outer `latest/test/gen` — writable): 0 `EROFS` on any tracked outer file; outer mtime unchanged; the clone's own `Web4MDA.ts` NOT reformatted.
+3. With the old code a nested clone's `npm start` cannot even reach generate: step 1 fails `EADDRINUSE` — the outer tsx CLI's and the step's IPC sockets truncate to the SAME 108-byte prefix.
+**By-product finding (old code):** with the outer repo read-only the nested clone's tsx CLI failed `listen EROFS` on `…/latest/test/gen/oopExpert-d` — its truncated socket lands OUTSIDE the clone, in the outer repo's scratch. Another escape of the same cause; removed by the loader change.
