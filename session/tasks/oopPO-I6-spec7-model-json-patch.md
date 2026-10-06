@@ -1,6 +1,6 @@
 # oopPO spec patch — Spec 7 (spec/model-json.md): TYPED REFERENCES (I6 D2), 2026-10-06
 
-> **⚠ CORRECTED IN PLACE 2026-10-06 (oopTester verdict `9a36e418` §5): my first wording `init(m.toJSON())` was a FALSE-GREEN — `toJSON()` returns the LIVE referenced instances, so that literal path re-attaches the same objects (measured 14/14 typed BY ACCIDENT) while the real paths decay (JSON text 0/14, OoshUnit 0/14). Every round-trip below now crosses the JSON TEXT boundary. Apply THIS version.**
+> **⚠ CORRECTED IN PLACE 2026-10-06 (oopTester verdict `9a36e418` §5; + the generation-time resolution clause, oopPO, from the I6 plan's open fork): my first wording `init(m.toJSON())` was a FALSE-GREEN — `toJSON()` returns the LIVE referenced instances, so that literal path re-attaches the same objects (measured 14/14 typed BY ACCIDENT) while the real paths decay (JSON text 0/14, OoshUnit 0/14). Every round-trip below now crosses the JSON TEXT boundary. Apply THIS version.**
 
 **Apply VERBATIM in the I6 plan commit** (on top of oopTester's I6 red gate ref). Spec is the PO's; the builder applies, never rewords. Ruled fork (ii): typed rehydration lives in the SHARED `init(json)`, so the JSON path and the OOSH `.env` path get it from ONE place (generic behaviour in the shared component).
 
@@ -19,7 +19,7 @@ with:
 ## Typed references (oopPO, 2026-10-06 — from I6 D2)
 
 A model attribute that refers to another component or unit is declared by a **relationship end** in the model's Definition (e.g. `LinkModel`: `ior → Ior 0..1`, `folder → DefaultFolder 0..1`). The shared `init(json)` is the ONE place that rehydrates it:
-- **set, 0..1** → an INSTANCE of the declared target class, resolved by NAME through the catalog (never a hand table);
+- **set, 0..1** → an INSTANCE of the declared target class, resolved by NAME through the catalog **at GENERATION time** and rendered into the XModel as `static get references()` (e.g. `{ folder: DefaultFolder, ior: Ior }`, derived from the Definition's relationship ends, never a hand table); `Model.init(json)` reads that getter — **`Model` never imports the catalog at runtime** (layering + browser purity; ruled oopPO 2026-10-06, I6 plan option A);
 - **set, 0..n** → an array of such instances;
 - **unset** → the key is OMITTED on write (`JSON.stringify` already omits `undefined`) and the attribute takes its default on read — never a throw.
 
