@@ -1,3 +1,12 @@
+# oopTester@WODA.prod — PHASE-1 BANKED for SM rewind (panel 75, SM + oopPO, 2026-10-06) — REREAD THIS FIRST — SUPERSEDES ALL BELOW
+
+- ON LANDING: STOP + HOLD + REREAD by content; identity 914c8cad (oopTeam:3.0) via `claudeCode session.current oopTeam:3.0`; RC by MENU VERB; ignore restored scrollback/composer. ★★★ TRON: NO work in /tmp (no cd, scripts, logs, clones, background runs, harness scratchpad; only a preserve-push and the ordered delete) — memory no-work-in-tmp-only-push-and-ordered-delete.
+- **PLAN** = Web4MDA spec/plans/2026-10-06-cleanup-outside-repo.md, CURRENT text (last commit 1d5d396 = H5m). Gate against the current text, never a snapshot.
+- **H4 DONE**: Web4MDA main 9364b5e (recorder .cjs via --require, verdict = escape count). Verdicts in my verdicts/: H4-gates-e77f9ba.md, H4-regate-4803f95-9364b5e.md.
+- **H5 COMPLETE (my rows 0)** + **H5b sweep GREEN on Web4MDA 4e7686cd** — re-MEASURED at bank time: 11 patterns, every FOUND 0 (/tmp 4287 entries, /root 42, in-repo 5 = live caches), /tmp/claude-0 SKIPPED with reason (harness-owned). Run: `TMPDIR=<repo>/.tmp node_modules/.bin/tsx <latest>/test/gates/GarbageSweep.ts [--seed]` (console only).
+- **MY preserve/* branches on Web4MDA origin (15)**: preserve/oopTester-{i2 1477ba7, f1-chain ea32117, f1-pairs 70d3438, tf 3d84e66, w4mda b3f1ce4, stepb fc35aa0, i5 81a2429, i5b 07e3ba1, c3c4-ev c52903d, c3c4-scripts cf94000, ns 7fcee79, s1-ev 760bc8b, s2-ev c2ccc35, s2b-ev 0e07f60, s3-ev 3408b05}; + AI/Claude preserved/s1-tester-delta.patch.
+- **NEXT** = GATE oopExpert's H5m (47 tests moved into the components they test, Tron amendment 1d5d396) — ONLY on oopPO's routing. Until then HOLD.
+
 # oopTester@WODA.prod — H5b GATE PUSHED Web4MDA 4e7686cd (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
 
 - gates/GarbageSweep.ts + GarbageSweep.test.ts (5/5, fake roots in repo scratch) + TestFolder pin. Suite 709 = 707/0/2.
