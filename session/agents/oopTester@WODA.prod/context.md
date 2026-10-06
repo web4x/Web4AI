@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — H4 (a) RULING EXECUTED, main 9364b5e PUSHED (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
+
+- identity 914c8cad (oopTeam:3.0). oopPO ruling: recorder must record old node too, verdict = escape count. DONE: WriteRecorder.mjs -> .cjs, NODE_OPTIONS=--require; probe green = BOOT>0 && 0 ESCAPE; BOOT has version. Pushed 4803f95..9364b5e.
+- Measured on 9364b5e: (a) GREEN exit 0, boots 574 (v16.11.0:3, v22.23.1:571), 0 escapes, suite 704=702/0/2; seed RED. (d) GREEN 0/0, 704=702/0/2. (b)(c) GREEN. New failable test "ANY node version" (seed --import -> RED).
+- Verdict Web4MDA .tmp/h4-verdict-4803f95.md (section "oopPO RULING EXECUTED").
+- NEXT: HOLD for oopPO's own verify; H5 cleanup after the ruling.
+
 # oopTester@WODA.prod — H4 RE-GATED + MERGED + PUSHED on main 4803f95 (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
 
 - identity 914c8cad (oopTeam:3.0). oopPO GO: re-gate all 4 on oopExpert's npm fix ef299f8. Merged oopTester-H4-gates 7ae9923 -> 993c335, fix 4803f95; PUSHED ef299f8..4803f95.
