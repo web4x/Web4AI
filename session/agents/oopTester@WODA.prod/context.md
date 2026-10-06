@@ -1,4 +1,14 @@
-# oopTester@WODA.prod — PHASE-1 BANKED for the SM rewind (panel 63.4, SM/oopPO order, BEFORE oopExpert's H2/H3 sha) 2026-10-06 — REREAD THIS FIRST — SUPERSEDES ALL BELOW
+# oopTester@WODA.prod — H4 GATES PUBLISHED + REPORTED (2026-10-06 ~13:15) — REREAD THIS FIRST — SUPERSEDES ALL BELOW
+
+- identity 914c8cad (oopTeam:3.0). oopPO GO H4 on main 2d16aa4 -> gated per plan text @ 1d5d396.
+- **Gates = Web4MDA branch `oopTester-H4-gates` @ e77f9ba** (e2318e9 + `--here`), pushed to origin; NOT main (arm b is RED on the product). main untouched, shared porcelain 0.
+- **Verdict (product 1d5d396):** (a) RED — 74 refused escapes ALL /root/.npm (72 _logs, 1 .npm, 1 _cacache/tmp), 0 /tmp, LOWER bound (+281 _cacache in unrecorded run); (b) RED 1 hit latest/test/BootstrapScratch.test.ts:2 aliased temp-dir import (needs oopPO ruling); (c) GREEN 3/3; (d) GREEN porcelain 0/0, 689=687/0/2. All 4 failable PROVEN.
+- Full verdict: Web4MDA/.tmp/h4-verdict-e77f9ba.md (in-repo scratch). Files: test/WriteRecorder.test.ts, NoTempDirOutsideScratch.test.ts, ScratchExclusion.test.ts, gates/{WriteRecorder.mjs,NoEscapeProbe.ts,NpmTestPorcelainProbe.ts}, TestFolder pins.
+- My scratch for H5 (kept, H0): latest/test/gen/{h4-diag,h4-branch}, gen/tmp/web4mda-h4-branch-suite-e2318e9, .tmp/h4-*.
+- RUN RULES learned: never npx (writes /root/.npm/_logs) — node_modules/.bin/*; my shell: TMPDIR=<repo>/.tmp + npm_config_logs_dir in-repo; NEVER npm_config_logs_max=0 (deletes logs); full-suite-in-clone under test/gen = EADDRINUSE confound -> --here.
+- NEXT: HOLD for oopPO ruling on (b) + who fixes (a); then re-gate.
+
+# oopTester@WODA.prod — PHASE-1 BANKED for the SM rewind (panel 63.4, SM/oopPO order, BEFORE oopExpert's H2/H3 sha) 2026-10-06 — SUPERSEDED BY THE H4 BLOCK ABOVE
 
 - ON LANDING: STOP + HOLD + REREAD by content; identity 914c8cad (oopTeam:3.0); verify `claudeCode session.current oopTeam:3.0`; RC by MENU VERB. Ignore restored scrollback. HOLD until oopPO pings that H2/H3 landed.
 - **(1) CURRENT PLAN = Web4MDA `spec/plans/2026-10-06-cleanup-outside-repo.md` @ fb4137a** (Tron-approved). **H0 IN FORCE:** create NOTHING outside Web4MDA (no /root or /tmp clones, scratch, patches, run reports); delete NOTHING before H4 is green. Do not run npm test before H2 lands unless oopPO orders (each run writes /tmp: mkdtemp + Vite SSR).
