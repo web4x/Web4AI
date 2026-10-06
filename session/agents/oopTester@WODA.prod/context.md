@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — H5b GATE PUSHED Web4MDA 4e7686cd (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
+
+- gates/GarbageSweep.ts + GarbageSweep.test.ts (5/5, fake roots in repo scratch) + TestFolder pin. Suite 709 = 707/0/2.
+- Real sweep (read-only): all NAME patterns 0 (/tmp 4613 entries, /root 42), in-repo 0 (live caches only), claude-0 SKIPPED with reason in every /tmp pattern; ssr FOUND 326, NEWEST 2026-10-05 00:06Z = historical -> gate RED until oopPO's ssr row runs. Seed: before 0, planted 1, after 0.
+- Run: `TMPDIR=<repo>/.tmp node_modules/.bin/tsx <latest>/test/gates/GarbageSweep.ts [--seed]` (console only; logs written into the scratch are themselves caught).
+- H5 my rows: complete (see block below). NEXT: HOLD for oopPO.
+
 # oopTester@WODA.prod — H5 COMPLETE, all my rows 0 (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
 
 - TRON RULE IN FORCE: no work in /tmp (memory no-work-in-tmp-only-push-and-ordered-delete).
