@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — W4 DONE: H5m-fix re-gate verdict 2a48a1c7 (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
+
+- identity 914c8cad (oopTeam:3.0). W4 on Web4MDA main 0142c73a (fix range d9a2ca2c..d97c26fc = e30a712a + d97c26fc): verdicts/H5m-fix-regate-0142c73a.md @ 2a48a1c7. Arms a-d GREEN + failable via PHYSICAL seeds (all removed; Web4MDA untouched by me; Tron's Web4MDA.ts reformat never staged).
+- OPEN for oopPO: lookalike false-green edge (load + discarded result + same-named non-class const -> GREEN; "use" matched by name) = the gate's own GREEN-twin shape, inside the named residual. Observation: gate (a) checks misplaced before duplicates (a duplicated TESTED class reports as misplaced).
+- Suite once 716 = 709/5/2, all 5 RED = Tron's edit. W2's package.json AC2b rewrite did NOT reproduce = intermittent.
+- NEXT: H5x = oopExpert; my H5x / H5m-2 / H5n gates only on oopPO's GO. HOLD.
+
 # oopTester@WODA.prod — W2 DONE + PUSHED Web4MDA 3d9f472e (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
 
 - identity 914c8cad (oopTeam:3.0). W2 (SM window, oopPO ruling b) = applied the committed patch, path-limited to 3 files (gates/GarbageSweep.ts tmp.* pattern + NAMED RESIDUAL, GarbageSweep.test.ts seeds, TestFolder.ts pin). Pushed d97c26fc..3d9f472e. Both patch copies DELETED (gitignored twin rm; tracked one git rm AI/Claude 6cdc16cf, pushed).
