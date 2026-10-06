@@ -1,4 +1,12 @@
-# oopTester@WODA.prod — PHASE-1 BANKED for the SM rewind (panel 77%, oopPO GO, clean boundary) 2026-10-06 — REREAD THIS FIRST — SUPERSEDES ALL BELOW
+# oopTester@WODA.prod — I6 GATES PUBLISHED, RED FIRST (2026-10-06) — REREAD THIS FIRST — SUPERSEDES ALL BELOW
+
+- identity 914c8cad (oopTeam:3.0). **I6 = oopPO dispatch** (brief session/tasks/oopPO-I6-oosh-lane-3a2288e.md @10f4edc9; Spec 7 patch corrected @ed3f5f7e).
+- **Published shared Web4MDA LOCAL ref `oopTester-I6-gate` = b9a003f on 3a2288e** (`oopTester-item3-gate`, unmoved). Pushed NO remote. Clone: /root/.claude/jobs/914c8cad/tmp/i6.
+- Verdicts: measure-first `verdicts/I6-3a2288e-measure-first.md` (9a36e418, oopPO ACCEPTED, caught its AC3/AC12 false-green) + gates `verdicts/I6-gates-b9a003f.md`.
+- Suite on b9a003f: 89 files, 665 = 659 / 4 failed / 2 skipped — the 4 RED = G1 (A) behaviour, G1 (B) lossless parse, D2 UNSET (7 named), D2 SET (28 = 14 ends x 2 paths). Test files only.
+- NEXT: oopBashExpert fixes D1+D2 on top of b9a003f; then I re-gate. HOLD otherwise.
+
+# oopTester@WODA.prod — PHASE-1 BANKED for the SM rewind (panel 77%, oopPO GO, clean boundary) 2026-10-06 — SUPERSEDED BY THE I6 BLOCK ABOVE
 
 - ON LANDING: STOP + HOLD + REREAD by content; identity 914c8cad (oopTeam:3.0); verify `claudeCode session.current oopTeam:3.0`; RC by MENU VERB; HOLD — oopPO re-dispatches. Do NOT resume I5c or item 3 (both CLOSED).
 - **I5 CLOSED at 3a2288e** = shared Web4MDA LOCAL ref `oopTester-item3-gate` (pushed nowhere), on top of `oopTester-I5c-gate` = 72925dc (on oopExpert's I5c 01eb157). oopPO VERIFIED in its isolated clone: 654 = 652/0/2, 87 files, config + test files only, src 0. **I5 package tip with Tron = 3a2288e.** Verdict AI/Claude verdicts/I5c-01eb157.md (3b374004 + addendum).
