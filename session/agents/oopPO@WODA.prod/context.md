@@ -6,6 +6,14 @@
 - **FINISHED, awaiting Tron's DONE:** move/IOR plan `2026-10-05-…` (I4c–I6), pushed `59e6363`.
 - Rule: `ls spec/plans/` + read CURRENT/QUEUED headers + this block before proposing, switching or reporting any plan. Verified work → main → push at once. Work only inside the repo (scratch = `latest/test/gen`).
 
+## ★★★ PHASE-1 — 2026-10-06 (fresh SM panel 81.6; rewind during oopExpert's H2+H3 build) — BOOTS HERE
+**Cleanup plan state (Web4MDA `spec/plans/2026-10-06-cleanup-outside-repo.md`):** P0 ✅ `fb4137a` · plan amendments: inventory `cc8124d` (every oop scratchpad; oopTester 698 MB, 17 clones, `i2` on `c75a62c` NOT in main, 7 dirty clones — check each before delete), fork A `53279df` (the ONE exclusion constant owned by PRODUCT `M1Catalog.scratchFolder`, test `Scratch` derives it), option 1 `ad22516` (tsx socket 131 > 108 chars → short in-repo `.tmp` symlink alias into `latest/test/gen/tmp`, derived from the product constant, gitignored, walker-excluded). H0 ✅ acked by oopExpert `374de167`, oopBashExpert `7927449e`, oopTester `cee6d08f`.
+**IN FLIGHT:** oopExpert (rewound 52, `2611ade6`) builds H2+H3 in the SHARED checkout on main; reported: 64/64 `tmpdir` sites gone, 18 walkers in 14 files + vitest + tsconfig + .gitignore honour the exclusion, BootstrapScratch gate 7/7. It commits + PUSHES on a green suite and reports the sha.
+**NEXT for fresh-me:** (1) verify oopExpert's H2/H3 sha INSIDE the repo (whole suite; then confirm no new `/tmp` entries from a run) → (2) SM panels oopTester (62 idle; start ≤ ~65 for a ~25 gate) → dispatch H4 (a-d) → (3) H5 by owners (each dirty clone / `c75a62c` checked first; report CHECKED/DELETED/TOTAL; H5b 0-sweep) → (4) H6 rule into bootstrap.md/eamd-ucp.md/anchors → (5) H7 FULL spec review.
+**Waiting on Tron:** DONE on the finished move/IOR plan (I4c–I6, pushed `59e6363`); QUEUED references-by-IOR needs his plan-mode approval after cleanup is DONE.
+**Laws earned today (banked in memory/learnings):** always push — DONE is QA on PUSHED work; plans live in the SPEC; MAINTAIN CONTEXT (re-read plans from disk); never ask Tron to say push; verify delivery by the COMPOSER LINE (empty or queued), never by grepping my words; read and send are separate calls; one SM line per dispatch; a spec commit runs the doc gate BEFORE push; recompute a line when its input is re-measured; driver vs subject ceilings are separate.
+**Fleet (SM, late):** trainer ~52 (fresh), ARON ~53, oopTester 62 idle, oopBashExpert standing down, SM ~50, oopExpert ~64 building.
+
 ## ★★★★★★★★★★ RESUME STATE — 2026-10-05 LATE (CURRENT; BOOTS HERE; supersedes every block below) — PHASE-1 at fresh SM panel 65
 
 **Fresh-you: read THIS block, then learnings.md. Re-measure every sha. Identity: session 1bae1524, pane %204 = oopTeam:2.0.** Plan of record unchanged: Web4MDA `d729ecd`. Nothing of the plan pushed to origin (ONE joint push after my isolated-clone verify).
