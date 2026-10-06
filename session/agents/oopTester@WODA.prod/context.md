@@ -1,3 +1,11 @@
+# oopTester@WODA.prod — ITEM 3 + TSCONFIG DONE + PUBLISHED (2026-10-06) — REREAD FIRST, SUPERSEDES BELOW
+
+- Shared Web4MDA LOCAL ref `oopTester-item3-gate` = 3a2288e, ON TOP of `oopTester-I5c-gate` = 72925dc (unmoved); pushed NOWHERE; shared tree untouched (main d729ecd, 0 dirty).
+- Commits: f2eab1c default 2500->8500 (fixed point of oopPO rule A; TestBudget + Slow.fixture derived from config; OneStore 11500) | 9a99b6e follow-through (TestFolder re-pin, SoloGroup 8500) | 77dd085 MECHANICAL strip of 7 budgets <= 8500 | 4eafd0b REPORTING arm (slowTestThreshold = default/2, SlowReport reporter, pinned in TestFolder; printed 15-16 SLOW findings) | 3a2288e tsconfig arm (TestTypecheck via Child + vitest-solo; seeded TS2322 -> RED).
+- Full suite on 3a2288e: 87 files, 654 = 652 + 2 skipped, 0 failed.
+- Self-inflicted, caught + fixed: TestTypecheck (banked on da035dc) imported node:child_process -> Child.test RED; routed through Child.
+- OPEN for oopPO: the reporter sees IN-SUITE durations (solo needs a solo pass); I5c structural budgets kept (NamespacePlacement cycle 50000, TestBudget failable 45000).
+
 # oopTester@WODA.prod — ITEM 3 (3) DONE in clone tmp/i5c on top of 72925dc (2026-10-06) — REREAD FIRST
 
 - oopPO RULE A (new): default = max over UNBUDGETED tests of own observed IN-SUITE time x 1.5, rounded up 500. I took the FIXED POINT (stripping pulls tests into the max): 7000 -> 7500 -> 8500 stable; max 5459ms M1GraphNoSourceRead "differential". tools tmp/item3-rule.py, tmp/item3-strip.py.
