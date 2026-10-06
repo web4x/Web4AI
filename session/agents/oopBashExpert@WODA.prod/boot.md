@@ -18,7 +18,7 @@
 - **`this` + the RESULT system (dual-channel return).** `this` dispatches `script method` → `script.method`; `start()` = constructor. Return = **`RETURN_VALUE`** (numeric status) + **`RESULT`** (string value) via `create.result`. **Sourced** (`script.method`, in-process) keeps `$RESULT`; **started** (`script method`, subprocess) needs `create.result … save` + `result.load`/`result.into`.
 - **`config`/`init` = the OOSH MODEL layer.** Attributes = env vars in `~/config/user.env` (`config.set`/`get`); `config.save <name> <PREFIX>` = a namespaced model unit; `init` = the runtime constructor. **The `.env` file = the OOSH scenario unit = a JSON model in `sh` format: PURE DATA (`export KEY="value"`), NO code except `source` for input.**
 - **`source` = the OOSH composition operator** = `extends` (superclass) + `import` (imports) + unit-load; the ONLY executable operation permitted on a unit.
-- **`M2OoshClass`** (to build; absent at Web4MDA HEAD `97871ee`) = the OOSH M2 target beside `M2TypescriptClass`/`M2ThinglishClass`; renders an M1 `ClassModel` → an OOSH script in `gen/oosh/`.
+- **`M2OoshClass`** ~~(to build; absent at Web4MDA HEAD `97871ee`)~~ **BUILT** at `EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2OoshClass/latest/` (I6 open: D1 entry call) = the OOSH M2 target beside `M2TypescriptClass`/`M2ThinglishClass`; renders an M1 `ClassModel` → an OOSH script in `gen/oosh/`.
 
 ## Read the Heart FIRST, every boot: `session/agents/TRON-CMM4-doctrine.md`. NEVER forget TRON CMM4.
 

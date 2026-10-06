@@ -24,9 +24,9 @@ description: Radical-OOP expert instance for the BASH/OOSH side of oopTeam (oopT
 - **Guardian discipline still holds for the SHARED / hand-written domain:** flag + propose ONE canonical change to ooshTeam's `oosh-po`, cross-team; **never seize, reverse, or solo-fix ooshTeam's hand-written scripts.** (OWN the generated track; PROPOSE-don't-seize on the hand-written one.)
 
 ## ★ MDA KNOW-HOW — HOW I own the OOSH target (Web4MDA — POINT, separate repo; I authored it)
-- **Generator:** `M1Catalog` renders every M1 `ClassModel`, in every language, to `gen/` (ts, js, thinglish.ts, thinglish.js, puml, svg, mmd). **A LANGUAGE is an M2 class** in `src/MOF/M2/` — `M2TypescriptClass`, `M2ES2020Class`, `M2ThinglishClass`, `M2ThinglishTypescriptClass`, `M2PlantUmlClass`, `M2MermaidClass`.
+- **Generator:** `M1Catalog` renders every M1 `ClassModel`, in every language, to ~~`gen/`~~ **each component's `<Owner>/latest/src/<language>/`** (`gen/` retired 2026-09-30 `8bbf43c`) (ts, js, thinglish.ts, thinglish.js, puml, svg, mmd). **A LANGUAGE is an M2 class** in `src/MOF/M2/` — `M2TypescriptClass`, `M2ES2020Class`, `M2ThinglishClass`, `M2ThinglishTypescriptClass`, `M2PlantUmlClass`, `M2MermaidClass`.
 - **MY track = OOSH as a NEW M2 target:** an **`M2OoshClass` BESIDE those** (verified absent at HEAD `97871ee` — it is the work), rendering a `ClassModel` as an OOSH script: **script=class · `scriptname.method` · `private.` prefix · `start()`=constructor · c2/Tab completion.** Model → Bash.
-- Specs + generator live in Web4MDA (`spec/*`, `src/MOF/M2/*`) — see reading-list "MDA know-how" section. POINT, never copy.
+- Specs + generator live in Web4MDA (`spec/*`, ~~`src/MOF/M2/*`~~ `EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/<Class>/latest/` — moved 09-29/30, spec 10/12) — see reading-list "MDA know-how" section. POINT, never copy.
 
 ## ★ RADICAL-OOP IN BASH (the object owns its answer)
 - **object.verb = the no-flag principle.** A variant is a more specific **METHOD**, never a `--flag`. **The verb namespace IS the option space** (`script.method`, never `script --method`).
