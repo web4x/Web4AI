@@ -6,7 +6,8 @@
 - Full verdict: Web4MDA/.tmp/h4-verdict-e77f9ba.md (in-repo scratch). Files: test/WriteRecorder.test.ts, NoTempDirOutsideScratch.test.ts, ScratchExclusion.test.ts, gates/{WriteRecorder.mjs,NoEscapeProbe.ts,NpmTestPorcelainProbe.ts}, TestFolder pins.
 - My scratch for H5 (kept, H0): latest/test/gen/{h4-diag,h4-branch}, gen/tmp/web4mda-h4-branch-suite-e2318e9, .tmp/h4-*.
 - RUN RULES learned: never npx (writes /root/.npm/_logs) — node_modules/.bin/*; my shell: TMPDIR=<repo>/.tmp + npm_config_logs_dir in-repo; NEVER npm_config_logs_max=0 (deletes logs); full-suite-in-clone under test/gen = EADDRINUSE confound -> --here.
-- NEXT: HOLD for oopPO ruling on (b) + who fixes (a); then re-gate.
+- oopPO RULED: (b) EXEMPT structurally, PROVEN not declared -> built ReadOnlyUse on branch @ 7ae9923 (644/644, owner 1, observer 1, FOUND 0, 4 misuse seeds RED). (a) = oopExpert (in flight: .npmrc, bootstrap.mjs, M1Catalog, BootstrapScratch.test in the shared tree).
+- NEXT: HOLD for oopExpert npm-cache sha -> re-gate ALL 4 on it (my branch rebased on it; (a)/(d) --here, seeds in clones) -> all GREEN -> merge gates to main + push + report sha to oopTeam:2.0.
 
 # oopTester@WODA.prod — PHASE-1 BANKED for the SM rewind (panel 63.4, SM/oopPO order, BEFORE oopExpert's H2/H3 sha) 2026-10-06 — SUPERSEDED BY THE H4 BLOCK ABOVE
 
