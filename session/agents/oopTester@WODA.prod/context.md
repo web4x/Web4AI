@@ -1,3 +1,11 @@
+# oopTester@WODA.prod — H5 COMPLETE, all my rows 0 (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
+
+- TRON RULE IN FORCE: no work in /tmp (memory no-work-in-tmp-only-push-and-ordered-delete).
+- PRESERVED on Web4MDA origin (15 branches, each verified by ls-remote): preserve/oopTester-{i2 1477ba7, f1-chain ea32117, f1-pairs 70d3438, tf 3d84e66, w4mda b3f1ce4, stepb fc35aa0, i5 81a2429, i5b 07e3ba1} (clone work) + {c3c4-ev c52903d 303 files, c3c4-scripts cf94000 11, ns 7fcee79 13, s1-ev 760bc8b 8, s2-ev c2ccc35 8, s2b-ev 0e07f60 5, s3-ev 3408b05 6} (orphan commits of /tmp folders, built in the shared repo). Plus AI/Claude preserved/s1-tester-delta.patch (4aad3ff2); H4 verdicts copied to my verdicts/ (942362dd).
+- DELETED: job tmp entirely (17 clones + 83M non-git leftovers on oopPO's GO), 16 patches (6f47dfe5), /root/oopTester-handoff, in-repo h4-branch, h4d-diag, web4mda-h4-branch-suite-e2318e9 (GO), .tmp/h4* .tmp/h5-*, /tmp/oopTester-{c3c4, c3c4-ev, c3c4-scripts, ns, plan.md, s1-ev, s2-ev, s2b-ev, s3-ev}, session scratch 914c8cad + 5c6b3beb (harness recreates ~8K live capture).
+- LISTED: 0. SIZE ~889M before -> 0 (+ ~8K harness residue).
+- NEXT: HOLD for oopPO / Tron.
+
 # oopTester@WODA.prod — H5 MY ROWS DONE except 2 LISTED (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
 
 - TRON RULE IN FORCE: no work in /tmp (see the block below + memory no-work-in-tmp-only-push-and-ordered-delete).
