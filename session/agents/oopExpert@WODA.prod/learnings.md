@@ -347,3 +347,9 @@
 - **Quote/backtick parity again (2nd time)**: a regex literal holding ONE backtick swallowed code in a whole-file string stripper (false RED). Any stripper needs regex literals as a token of the same left-to-right alternation.
 - **A relocation-invariance oracle that cuts paths at a marker (`/MOF/`) breaks when the test itself moves under that marker** — measure relative to the run's own root first.
 - **`console.log(<number>)` under FORCE_COLOR prints ANSI digits** — a child that reports a number must print a STRING.
+
+## 2026-10-07 — F2 (Web4MDA f75ab3e0)
+- ★ **Rule 9 / AC21 (Tron): NEVER work outside the repository — no worktree, clone, scratch dir or log under /root or /tmp.** Scratch lives ONLY in a component's own `latest/test/gen/` (git-ignored), fixed names. My "private worktree + isolated clone" habit (learned 09-29) is now FORBIDDEN on Web4MDA — re-read the spec rules before reusing an old working method. Logs go in `latest/test/gen/<fixed>/`, never in `latest/test/` (TestFolder's undeclared-file gate REDs it — correctly).
+- ★ **Replace a syntax gate with a MECHANISM in the owning class**: Scratch.at() checks its CALLER module (first stack frame outside Scratch.ts; vitest frames carry the real .ts path) — a foreign URL fails through ANY receiver. Seed with REAL modules (written into the test's own fixture, dynamic-imported) so the seed IS the calling module; prove failability by disabling the check (RED) and restoring byte-identical (cmp).
+- **Machinery files are pinned by sha256 in TestFolder.ts** — an intended change to Scratch.ts etc. needs a re-pin; the pin file blanks its own 64-hex values, so re-pinning doesn't drift it.
+- **`git rev-parse --short A B` fails ("Needed a single revision") and short-circuits an && chain** — the commit silently didn't run; read the output before claiming pushed.
