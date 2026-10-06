@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — W2 DONE + PUSHED Web4MDA 3d9f472e (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
+
+- identity 914c8cad (oopTeam:3.0). W2 (SM window, oopPO ruling b) = applied the committed patch, path-limited to 3 files (gates/GarbageSweep.ts tmp.* pattern + NAMED RESIDUAL, GarbageSweep.test.ts seeds, TestFolder.ts pin). Pushed d97c26fc..3d9f472e. Both patch copies DELETED (gitignored twin rm; tracked one git rm AI/Claude 6cdc16cf, pushed).
+- Suite ONCE on d97c26fc + patch WITH Tron's reformat-only edit in latest/src/ts/EAM/layer2/Web4MDA.ts (never staged/reverted — Tron decides keep/discard): 716 = 709 / 5 FAIL / 2 skip. All 5 RED name Web4MDA = his edit (Pipeline root-gate seed, M1Catalog TS==src, ModelStyle AC5-7, M3Class spec12 AC5, M2TypescriptClass). GarbageSweep green.
+- OPEN, UNATTRIBUTED: AC2b(b) "suite REWROTE package.json" (inode+mtime moved, content identical to HEAD); not my files; plausibly the Pipeline seed aborting on the Web4MDA.ts edit — re-measure once Tron's edit is resolved.
+- Reported to SM (relayed up). W3 = oopPO. NEXT for me = W4 (re-gate H5m arms a-d) ONLY on oopPO's W4 GO, taking the arm text from it. HOLD.
+
 # oopTester@WODA.prod — PHASE-1 BANKED for SM rewind (panel 69.6, SM order oopPO-approved, during the W2 hold, 2026-10-06) — REREAD THIS FIRST — SUPERSEDES ALL BELOW
 
 - ON LANDING: STOP + HOLD + REREAD by content; identity 914c8cad (oopTeam:3.0) via `claudeCode session.current oopTeam:3.0`; RC by MENU VERB; ignore restored scrollback/composer. ★★★ TRON: no work in /tmp (no run_in_background either). ★★ oopPO RULING: NO improvised roots — no repo-root worktrees (.h5*), no /tmp or scratchpad extracts; scratch ONLY under latest/test/gen; an isolated full-suite run = the SHARED checkout in an SM-coordinated no-edit window (memory prove-gate-failable-in-isolation-when-tree-under-peer-edit, rewritten).
