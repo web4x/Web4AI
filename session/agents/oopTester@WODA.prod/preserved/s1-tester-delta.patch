@@ -1,0 +1,66 @@
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/ScenarioLayoutSC1.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/ScenarioLayoutSC1.test.ts
+new file mode 100644
+index 0000000..95c4827
+--- /dev/null
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/ScenarioLayoutSC1.test.ts
+@@ -0,0 +1,36 @@
++import { existsSync, statSync } from 'node:fs';
++import { describe, expect, it } from 'vitest';
++import { M1Catalog } from '../../MOF/M1/M1Catalog/latest/src/ts/EAM/layer2/M1Catalog.js';
++
++/**
++ * spec/scenario.md §6 SC1 — the EAMD.ucp/ layout restored by S1 (oopTester gate).
++ * Every arm fails by its NAMED reason: a seed must turn RED with exactly that reason, a revert GREEN.
++ */
++const isDir = (p: string): boolean => existsSync(p) && statSync(p).isDirectory();
++
++describe('SC1 layout (spec 13 §6, S1 restore EAMD.ucp) — oopTester', () => {
++  it('SC1 folders: EAMD.ucp/Components, EAMD.ucp/Scenario/Index and EAMD.ucp/Scenario/type exist as directories', () => {
++    for (const p of ['EAMD.ucp/Components', 'EAMD.ucp/Scenario/Index', 'EAMD.ucp/Scenario/type']) {
++      expect(isDir(p), `SC1: ${p} missing`).toBe(true);
++    }
++  });
++
++  it('SC1 no stray root: there is no Components/ at the repository root (everything lives under EAMD.ucp/)', () => {
++    expect(existsSync('Components'), 'SC1: stray Components/ at the repo root').toBe(false);
++  });
++
++  it("SC1 layout == disk: M1Layout's home root is EAMD.ucp and EVERY catalogued class folder it lays out exists on disk under EAMD.ucp/Components/ (derived from the catalog)", () => {
++    const catalog = new M1Catalog().init();
++    const layout = catalog.homeLayout('');
++    const names = catalog.classes().map((c) => c.name);
++    expect(names.length, 'SC1: catalog is empty — a layout check over nothing proves nothing').toBeGreaterThan(0);
++    let checked = 0;
++    for (const name of names) {
++      const path = layout.classFolder(name, 'ts').path;
++      expect(path.startsWith('EAMD.ucp/Components/'), `SC1: layout path of ${name} not under EAMD.ucp/Components/: ${path}`).toBe(true);
++      expect(isDir(path), `SC1: layout path of ${name} not on disk: ${path}`).toBe(true);
++      checked++;
++    }
++    expect(checked, 'SC1: not every catalogued class was checked').toBe(names.length);
++  });
++});
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TestFolder.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TestFolder.ts
+index 9e1d8d6..ab20398 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TestFolder.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TestFolder.ts
+@@ -28,14 +28,14 @@ export class TestFolder {
+     return {
+       'CatalogOracle.ts': '7ad3d37108c17735c9075b8e896f7a1554714caeb4b997c0ad9b73ff371868e2',
+       'Child.ts': 'ad76fd9a5f8f5d3237f22781496ff74671c32ed84c2c0885009d113f0602d300',
+-      'Generated.ts': '5108d44fcdf34a1d8bae6c0f57694001a0152e21cda01f343bd20ab5e9bfec97',
++      'Generated.ts': 'e9959252c27caf497f77ef4ae856b112ecc99db4312ba892ec826b16e4041c30',
+       'LayoutSetup.ts': 'c505bcbd1c0ece1c81dc0ec7f90b057663bd291de23253001c52016648decd92',
+-      'Scratch.ts': '6642a59d84e85ce5838efaae0a4929b9ba868e3914ea4193d992ea76fd7babd7',
+-      'Source.ts': 'c8d93850b45b4ad5ff78765978c244fc5727760644184a85365128f34fa1e5d7',
+-      'TestFolder.ts': '78584ede2bbf622b35f673f9928eaf17ba5c66b2a677c469adf8ecfecf03a967',
++      'Scratch.ts': '15a9ae4a575d31d05c197204a5abf5b6ce113e1e276b3b8b46549c5bbd87fb02',
++      'Source.ts': '25e65b68171e6dfb9d2f6f96e4a1c0d222040d8e2b892a097d4a660dce8410df',
++      'TestFolder.ts': 'a5805302a7b06b08ab9b380a26e624ce92f0fd812c4eb68ce7c66ee535ab6c1f',
+       'TrackedTree.ts': 'b084f1c11a6cc521a4614683dec378d5b2041c7b06e72d28ac22633ddf2c83a1',
+       'fixtures/budget/Slow.fixture.ts': '63eeb9084b1997c94f653e98ef1167b4c8356e2c783148b3f7c3c74e52aa4959',
+-      'fixtures/budget/vitest.budget.config.ts': 'e4deb6cebbd62c563d2db2db12fe91b029157df0f5aadf884ee9b2bf0ab4da86',
++      'fixtures/budget/vitest.budget.config.ts': 'a7f60061844ba6ea5e4fe8fccb96a6fec75b7ed1f56dbccff213febf11a5612c',
+       'fixtures/oosh/greeter': '8efef6c3b0ed8a3ca1bd8cd0078a3a69576ecec87f7ac082d2a431a00dde69fe',
+       'gates/GenAtomicityProbe.ts': 'd17edef29d983e0092efb40dfa14894ee5193e4032763960bc7751658696d28f',
+       'gates/ScratchClone.ts': '7b26cff1c1e9cdd68393ac73569e0c8ac1641db110dd20a90b55672a1e5a8a6b',
