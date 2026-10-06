@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — H5n GATE DONE, verdict fc215f98 (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
+
+- identity 914c8cad (oopTeam:3.0). H5n gated on Web4MDA b76ad5d4: verdicts/H5n-gate-b76ad5d4.md @ fc215f98 = CHECKED 7 / UNMEASURED 1 / TOTAL 8, every seed RED. Reported to oopPO (delivered).
+- OPEN for oopPO/oopExpert: b2 false-green edge (Scratch.at trusts the caller URL; fix = static gate at(import.meta.url), BootstrapScratch positional exception); b3 recorder UNMEASURED (harness limits); e measured at run level only; 3 dead mkdtempSync imports; h5m3/ written by another agent in my window.
+- CONFOUNDED: BootstrapScratch :53/:65 (.tmp exists) = Tron's npm start pid 1868291 — clears when he restarts it.
+- RUN RULES now: FOREGROUND only (H0); never touch Tron's process or repo .tmp; detect confound per run (.tmp mtime + porcelain whole before/after + AC2b). HOLD — rewind follows.
+
 # oopTester@WODA.prod — H5n gate PREPPED, NOT RUN (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
 
 - identity 914c8cad (oopTeam:3.0). H5n landed Web4MDA b76ad5d4 (oopExpert). Prep = verdicts/H5n-gate-PREP-b76ad5d4.md @ e8787a00: arms a-d + extra, scope rules S1-S3 fixed before results, pre-run conditions.
