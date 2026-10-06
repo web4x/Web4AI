@@ -1,3 +1,9 @@
+# oopTester@WODA.prod — H5n gate PREPPED, NOT RUN (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
+
+- identity 914c8cad (oopTeam:3.0). H5n landed Web4MDA b76ad5d4 (oopExpert). Prep = verdicts/H5n-gate-PREP-b76ad5d4.md @ e8787a00: arms a-d + extra, scope rules S1-S3 fixed before results, pre-run conditions.
+- DO NOT RUN until oopPO's GO: Tron's npm start pid 1868291 (TMPDIR=repo/.tmp) confounds any run. NEVER touch his process or repo .tmp.
+- Asked oopPO (delivered, being processed): Q1 tool-created names inside Web4MDA/latest/test/gen/tmp exempt from arm (a)? Q2 arm (c) fixture level = standalone processes? HOLD.
+
 # oopTester@WODA.prod — W4 DONE: H5m-fix re-gate verdict 2a48a1c7 (2026-10-06) — REREAD FIRST, SUPERSEDES ALL BELOW
 
 - identity 914c8cad (oopTeam:3.0). W4 on Web4MDA main 0142c73a (fix range d9a2ca2c..d97c26fc = e30a712a + d97c26fc): verdicts/H5m-fix-regate-0142c73a.md @ 2a48a1c7. Arms a-d GREEN + failable via PHYSICAL seeds (all removed; Web4MDA untouched by me; Tron's Web4MDA.ts reformat never staged).
