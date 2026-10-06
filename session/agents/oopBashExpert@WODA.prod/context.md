@@ -5,7 +5,8 @@
 - **Ruling (1) done:** `M2AbstractRelationship.test` scratch-`Node` arm renders `.resolving(catalog)` (its 2 calls only); refusal code UNCHANGED; bare path still guarded by my `ReferencePolymorphism` "bare render refuses" arm. oopTester to verify not-a-weakening.
 - **Ruling (2) done:** TH5 cause VERIFIED by 2 methods (gate: IorModel deps 4 vs 3; file: `.thing` carried the derived `InternetProfile` dependency; per-language count ts/js/thinglish.* 2, puml/mmd/svg 0, `.thing` 1). Fix = `M2ES2020Class.rendersReferenceEnds` (true) gating the catalog refusal + derived import; `M2ThingClass` overrides false (mirrors `rendersDefaultChains`).
 - **Suite @22bf912: 676 = 671 / 3 / 2**, Pipeline GREEN. Reds = only the 3 known oopTester-owned arms (OoshExecute "(A)", TypedReferences "SET" = TaggedProfileModel.components only, TypedReferences "AC12 seed") — NOT mine to edit.
-- **NEXT: nothing** — wait for oopPO's word (verification / oopTester gate / whether 22bf912 becomes oopBashExpert-I6).
+- **oopPO 2026-10-06: I6.5b ACCEPTED pending gate; by its word `oopBashExpert-I6` fast-forwarded to `22bf912`** (one ref names all of I6; local shared-repo ref, GitHub has 0 oopBashExpert refs). ~~oopBashExpert-I6 stays 3b2d9df~~ superseded.
+- **NEXT: STAND DOWN** — oopTester gates 22bf912. No new work without oopPO's word.
 
 **~~★ ANCHOR 2026-10-06 — I6.5b WIP COMMITTED, RULED, held for the trainer's rewind~~ (SUPERSEDED by the block above).**
 - **WIP is DURABLE: LOCAL branch `oopBashExpert-I6.5b-wip` = `d0bebfe` in the SHARED Web4MDA repo** (`git -C /var/dev/Workspaces/web4x/Web4MDA rev-parse oopBashExpert-I6.5b-wip`; on top of 3b2d9df; NEVER pushed). `oopBashExpert-I6` stays `3b2d9df` (I6.5, accepted pending gate). The scratchpad patch below is superseded by this branch.
