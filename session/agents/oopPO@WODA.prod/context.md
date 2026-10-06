@@ -4,6 +4,7 @@
 - **CURRENT:** Web4MDA `spec/plans/2026-10-06-cleanup-outside-repo.md` — Tron-approved in plan mode 2026-10-06; P0 done (`fb4137a`); next: H0 halt → H2/H3 (oopExpert) → H4 gates (oopTester) → H5 cleanup → H6 rule → H7 full spec review.
 - **QUEUED (NOT approved):** `spec/plans/2026-10-06-references-by-ior.md` — only after the cleanup plan is DONE + Tron approves.
 - **FINISHED, awaiting Tron's DONE:** move/IOR plan `2026-10-05-…` (I4c–I6), pushed `59e6363`.
+- **ALSO ON DISK — oopBashExpert's I6 plan** `spec/plans/2026-10-06-i6-oosh-lossless-typed-references.md` (last touched `4790a530` 06:05): approved by ME (not Tron) with a **HOLD before I6.2**; status NOT yet re-measured — this block omitted it until phase-2 2026-10-06 ~19:00 found it by `ls spec/plans/`. Measure its state before any OOSH-target dispatch.
 - Rule: `ls spec/plans/` + read CURRENT/QUEUED headers + this block before proposing, switching or reporting any plan. Verified work → main → push at once. Work only inside the repo (scratch = `latest/test/gen`).
 
 ## ★★★★★ PHASE-1 — 2026-10-06 ~18:50 (CURRENT; BOOTS HERE; rewind before H6, ARON drives)
