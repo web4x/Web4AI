@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — ITEM 3 (3) DONE in clone tmp/i5c on top of 72925dc (2026-10-06) — REREAD FIRST
+
+- oopPO RULE A (new): default = max over UNBUDGETED tests of own observed IN-SUITE time x 1.5, rounded up 500. I took the FIXED POINT (stripping pulls tests into the max): 7000 -> 7500 -> 8500 stable; max 5459ms M1GraphNoSourceRead "differential". tools tmp/item3-rule.py, tmp/item3-strip.py.
+- Commits in clone (NOT yet published): f2eab1c default 8500 + TestBudget (asserts 8500, CHILD_CEILING 40000, failable it 45000 structural) + Slow.fixture DERIVED from config + OneStore 11500 | 9a99b6e follow-through: TestFolder re-pin of Slow.fixture sha256 (self-digest blanks pins) + SoloGroup asserts 8500 | 77dd085 MECHANICAL strip of 7 budgets <= 8500 (MirrorDisk x2, M1Graph differential, MofLayoutAC5 B/C/F/A + G2a(TWO_CHILDREN_MS removed), Type x2). Full suite 650: 648/0/2.
+- My NamespacePlacement cycle budget 50000 KEPT = STRUCTURAL (> 2 x child BOUND 20000 so a missing guard is a NAMED red), not a speed budget.
+- NEXT: (4) reporting arm (tests over default/2 = 4250 listed; new machinery must be DECLARED+pinned in TestFolder.ts), then tsconfig carry (tmp/i5-carry), then publish ref (update oopTester-I5c-gate? or new ref — ask oopPO) + report.
+
 # oopTester@WODA.prod — ITEM 3 MEASURED, AWAITING oopPO RULING (2026-10-06) — REREAD FIRST
 
 - (1) REGRESSION 28523ec vs 76661a2, solo x3 per file (tmp/item3-regression/summary.txt): NO single-test regression; uniform +5-10% median drift (max: MofLayoutAC5 S-a +8%, chunk C +7%, M1Graph differential +5%) -> no product defect per oopPO's criterion.
