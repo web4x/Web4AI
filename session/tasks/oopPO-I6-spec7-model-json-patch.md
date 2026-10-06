@@ -1,5 +1,7 @@
 # oopPO spec patch — Spec 7 (spec/model-json.md): TYPED REFERENCES (I6 D2), 2026-10-06
 
+> **⚠ CORRECTED IN PLACE 2026-10-06 (oopTester verdict `9a36e418` §5): my first wording `init(m.toJSON())` was a FALSE-GREEN — `toJSON()` returns the LIVE referenced instances, so that literal path re-attaches the same objects (measured 14/14 typed BY ACCIDENT) while the real paths decay (JSON text 0/14, OoshUnit 0/14). Every round-trip below now crosses the JSON TEXT boundary. Apply THIS version.**
+
 **Apply VERBATIM in the I6 plan commit** (on top of oopTester's I6 red gate ref). Spec is the PO's; the builder applies, never rewords. Ruled fork (ii): typed rehydration lives in the SHARED `init(json)`, so the JSON path and the OOSH `.env` path get it from ONE place (generic behaviour in the shared component).
 
 ## Edit 1 — AC3 is class-aware (line "AC3 — round-trip")
@@ -9,7 +11,7 @@ Replace:
 ```
 with:
 ```
-- **AC3 — round-trip** ~~deep-equals~~ **is CLASS-AWARE (tightened 2026-10-06, oopPO, from I6 D2):** `init(m.toJSON())` equals `m` on all attributes **including the class of every object-valued attribute** (a structural deep-equal is GREEN while a reference has decayed to a plain `Object` — measured by oopTester on `LinkModel.ior` / `.folder`); seed a lossy `toJSON()` → RED; seed a rehydration that returns a plain object → RED.
+- **AC3 — round-trip** ~~deep-equals~~ **is CLASS-AWARE (tightened 2026-10-06, oopPO, from I6 D2):** `init(JSON.parse(JSON.stringify(m)))` — the round-trip MUST cross the JSON TEXT boundary (the literal `init(m.toJSON())` re-attaches live instances and proves nothing) — equals `m` on all attributes **including the class of every object-valued attribute** (a structural deep-equal is GREEN while a reference has decayed to a plain `Object` — measured by oopTester on `LinkModel.ior` / `.folder`); seed a lossy `toJSON()` → RED; seed a rehydration that returns a plain object → RED.
 ```
 
 ## Edit 2 — new section, inserted before `## Ownership`
@@ -23,5 +25,5 @@ A model attribute that refers to another component or unit is declared by a **re
 
 The storage FORM is unchanged (a referenced component is stored as its JSON, BY VALUE). **Whether a reference should instead be stored BY REFERENCE (uuid / IOR) is OPEN — a Tron decision tied to the one-store law and the held store; nothing here decides it.**
 
-- **AC12 — typed references, every path**: for every concrete model class with a reference end (list DERIVED from the catalog), a set reference round-trips as `instanceof` its declared class through BOTH `init(json)` and the OOSH `.env` reader (`OoshUnit`), and an unset reference round-trips without a throw; seed a reader that returns a plain object → RED; seed `JSON.stringify(undefined).replaceAll` → RED by name.
+- **AC12 — typed references, every path**: for every concrete model class with a reference end (list DERIVED from the catalog — today 14 ends in 8 models, wider than the 7 throwers), a set reference round-trips as `instanceof` its declared class through BOTH the JSON TEXT path `init(JSON.parse(JSON.stringify(m)))` and the OOSH `.env` reader (`OoshUnit` render → parse) — never the literal `init(m.toJSON())`, and an unset reference round-trips without a throw; seed a reader that returns a plain object → RED; seed `JSON.stringify(undefined).replaceAll` → RED by name.
 ```
