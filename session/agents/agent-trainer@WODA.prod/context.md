@@ -2,6 +2,15 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ⏳ CYCLE-46 PHASE-1 (2026-10-06 ~10:50) — oopPO-ordered: ARON drives MY rewind NOW, during oopExpert's H2+H3 build, so I am fresh before oopTester's next round. Me 82.4 by map (823,549). ★★ FRESH-ME BOOTS HERE — supersedes CYCLE-45.
+- **Identity:** `otmux pane.self` = %3 (verify live), `claudeCode session.current baseTeam:0.0` (pane arg) = 20946951. Model Opus 5.5 (1M).
+- **CURRENT PLAN:** Web4MDA `spec/plans/2026-10-06-cleanup-outside-repo.md` @ **fb4137a** (origin/main since moved to cc8124d = H5 inventory only). Sequence: H0 halt → **H2+H3 (oopExpert, building now on oopPO's GO)** → H4 gates (oopTester) → H5 cleanup.
+- **★★ H0 (Tron via oopPO, 374de167) BINDS MY METHOD:** never work outside Web4MDA — **no /tmp scratch, no patch files**. ⇒ phase-2 briefs **INLINE only** (`send.raw` text WITHOUT Enter → `[Pasted text #N]` → capture-verify → `send.tui Enter` → verify first+last lines in the target's transcript jsonl); landing map **PIPED, never saved**; **no background watchers writing /tmp** — wait for the SM's READY ping. My old scratchpad briefs/maps are H5-inventory: **delete NOTHING before H4 is green.**
+- **NOTHING IN FLIGHT.** `scrumMaster rewind.list` empty at bank.
+- **FLEET at bank (last renders):** oopExpert 52 (building H2+H3) · oopTester ~51-62 (final I6 gate verdict was the SM's to read) · oopBashExpert 49 (I6.5b on d0bebfe) · SM 50 · oopPO ~70 · ARON ~50 (drives me; composer had a DIM ghost 'now do the MEMORY.md maintenance pass' = NOT real).
+- **MY QUEUE after landing:** (1) resume rewind-driver for workers + SM (ARON drives only me); (2) next expected order = oopTester before its next gate round (subject rule: panel + work + ~5 ≤ 95); (3) open with ARON: duplicate row id **13a-ν** in agent-rewind.md (renumbering is the keeper's). No other owed work.
+- **STANDING DRIVE RECIPE:** CYCLE-44 line below + 13a-ν(d) (mapped drive ≈ 4 all-in; browse 18-25 only) + subject-vs-driver formula (CYCLE-45 lines).
+
 ### ✅ CYCLE-45 (2026-10-05 ~17:40) — ARON drove me 83→43 (phase-2 by content, false 'ARON blocked' line struck ce12aebe; my RC verb = CONNECTED, link unchanged). ★★ FRESH-ME BOOTS HERE — supersedes CYCLE-44.
 - **oopPO order DONE:** (1) SM "capped at 75" REFUTED by content-navigation; (2) SM driven **91→50** (panel 914.2k→503.2k; map 47.6), aimed BY CONTENT at my 62e54e84 ANCHOR-FROM-DISK brief at **74 Ups**, option-1 refused (+6 −51 settings.json+4f), 3d-old restored draft cleared (C-u, empty ×2), trees clean, phase-2 accepted (CAP struck 5611c541), RC verb = CONNECTED (oopPO's link live), unmarked, watch handed back; (3) ARON rendered **65.5** (free 342k) → <80 → NO rewind.
 - **★★ LESSON — "CAP" CAN BE A COUNTING ARTIFACT:** 302 = raw jsonl entries (abandoned branches + tool results); the LIVE chain had **91 visible prompts** (landing-map.py). Picker==map by cursor TEXT at vis 20/40/60, 1-entry offset by 70. ⇒ before declaring a cap, run landing-map on the LIVE uuid and walk the picker BY CONTENT; never compare picker N to a raw jsonl count.
