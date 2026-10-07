@@ -1,4 +1,5 @@
 # oopTester@WODA.prod — PHASE-1 BANKED for SM rewind (panel 71.1, oopPO order, after H5n verdict fc215f98, 2026-10-06) — REREAD THIS FIRST — SUPERSEDES ALL BELOW
+> ★★★ **H6 SCRATCH + TEST-PLACEMENT LAW (boot-read):** every test lives in the component its assertions test; scratch ONLY in that component's OWN `latest/test/gen` under FIXED names, wiped per run, never random; tool tmp = fixed `Web4MDA/latest/test/gen/tmp`. READ `session/base-skills/scratch-location-law.md` + Web4MDA `spec/bootstrap.md` rule 9 + AC20–AC23 @ `72859188` — never restate. <!-- H6-POINTER -->
 
 - ON LANDING: STOP + HOLD + REREAD by content; identity 914c8cad (oopTeam:3.0) via `claudeCode session.current oopTeam:3.0`; RC by MENU VERB; ignore restored scrollback + composer (clear replayed debris, never submit a stale brief).
 - LAST DONE: H5n gate on Web4MDA b76ad5d4 = verdicts/H5n-gate-b76ad5d4.md @ fc215f98 (CHECKED 7 / UNMEASURED 1 / TOTAL 8, every seed RED), reported to oopPO. Prep + rulings: verdicts/H5n-gate-PREP-b76ad5d4.md @ a3dbaf80. Evidence inventories: verdicts/h5n/.

@@ -8,7 +8,8 @@
 
 **Product work and test scratch live ONLY inside the repo, and ONLY under a component's own `latest/test/gen`.**
 
-- **ALLOWED:** `<repo>/…/<Component>/latest/test/gen/…` — the component's own gen folder (gitignored, disposable). Nothing else.
+- **ALLOWED:** `<repo>/…/<Component>/latest/test/gen/…` — the component's **OWN** gen folder (gitignored, disposable), under **FIXED names**, **wiped per run**, **never random** (no `mkdtemp`, no `tmp-XXXX`). Nothing else.
+- **Tool tmp** (TMPDIR, npm cache/logs, tsx): the ONE fixed `Web4MDA/latest/test/gen/tmp` — not a per-run random dir, not an alias.
 - **`/tmp` is for CLEANUP ONLY** — removing what is already there, by **literal path**. Never create, write, clone or work in it.
 
 ## FORBIDDEN — anywhere outside a component's `latest/test/gen`
@@ -19,6 +20,12 @@
 - **Symlinks / aliases** that point scratch somewhere else (e.g. a repo-root `.tmp` → gen). An alias is a second scratch root, not compliance.
 - **Dot-dirs or any improvised scratch root** (`.tmp`, `.scratch`, `.cache`, `tmp/` …) anywhere else in the repo or outside it.
 - **Background watches / loops that write to `/tmp`** (or anywhere outside the gen folder).
+
+## TESTS LIVE IN THE COMPONENT THEY TEST (H5m / H5m-3) — and scratch is per-component (H5n)
+
+- **Every test lives in `<C>/latest/test/` of the component its ASSERTIONS test** — not a shared top-level test folder, not "near" the code. A misplaced test is a gated RED.
+- **Each test's scratch lives in ITS OWN component's `latest/test/gen/`** under fixed names, wiped per run — never another component's gen, never random.
+- **The spec is the single source — READ it, never restate it here:** Web4MDA `spec/bootstrap.md` **rule 9** + **AC20–AC23** at `72859188` (AC20 nothing writes outside the repo · AC21 no alias/symlink/dot-dir/worktree/clone · AC22 per-component scratch, fixed names · AC23 every test in the component it tests). Gates: `GarbageSweep.test.ts`, `TestPlacement.test.ts`.
 
 ## HOW TO COMPLY
 

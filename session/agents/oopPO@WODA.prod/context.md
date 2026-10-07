@@ -1,4 +1,5 @@
 # oopPO@WODA.prod — Context
+> ★★★ **H6 SCRATCH + TEST-PLACEMENT LAW (boot-read):** every test lives in the component its assertions test; scratch ONLY in that component's OWN `latest/test/gen` under FIXED names, wiped per run, never random; tool tmp = fixed `Web4MDA/latest/test/gen/tmp`. READ `session/base-skills/scratch-location-law.md` + Web4MDA `spec/bootstrap.md` rule 9 + AC20–AC23 @ `72859188` — never restate. <!-- H6-POINTER -->
 
 ## ★ PLANS — READ FROM DISK BEFORE ANY PLAN ACTION (Tron 2026-10-06: "MAINTAIN YOUR CONTEXT!!!!")
 - **CURRENT:** Web4MDA `spec/plans/2026-10-06-cleanup-outside-repo.md` — Tron-approved in plan mode 2026-10-06; P0 done (`fb4137a`); next: H0 halt → H2/H3 (oopExpert) → H4 gates (oopTester) → H5 cleanup → H6 rule → H7 full spec review.

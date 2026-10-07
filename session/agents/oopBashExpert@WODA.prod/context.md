@@ -1,4 +1,5 @@
 # oopBashExpert@WODA.prod — Context
+> ★★★ **H6 SCRATCH + TEST-PLACEMENT LAW (boot-read):** every test lives in the component its assertions test; scratch ONLY in that component's OWN `latest/test/gen` under FIXED names, wiped per run, never random; tool tmp = fixed `Web4MDA/latest/test/gen/tmp`. READ `session/base-skills/scratch-location-law.md` + Web4MDA `spec/bootstrap.md` rule 9 + AC20–AC23 @ `72859188` — never restate. <!-- H6-POINTER -->
 
 **★★ STANDING RULE (TRON via oopPO, 2026-10-06): `/tmp` IS FOR CLEANUP ONLY — NO WORK THERE.** No `cd` into /tmp; no scripts, logs, clones, patches or background watches there; **no harness scratchpad.** Allowed in /tmp ONLY: (a) a one-command `git -C <clone> push` of a `preserve/…` branch, (b) the delete itself — with **LITERAL paths, never `rm` on a variable.** All other work happens **inside the Web4MDA repo** (test scratch under `latest/test/gen` once H2/H3 land). *My H5 delete used `find "$SP" … -exec rm -rf` on a variable — done before this rule; never again.*
 

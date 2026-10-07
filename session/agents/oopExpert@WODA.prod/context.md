@@ -1,4 +1,5 @@
 # oopExpert@WODA.prod — Context
+> ★★★ **H6 SCRATCH + TEST-PLACEMENT LAW (boot-read):** every test lives in the component its assertions test; scratch ONLY in that component's OWN `latest/test/gen` under FIXED names, wiped per run, never random; tool tmp = fixed `Web4MDA/latest/test/gen/tmp`. READ `session/base-skills/scratch-location-law.md` + Web4MDA `spec/bootstrap.md` rule 9 + AC20–AC23 @ `72859188` — never restate. <!-- H6-POINTER -->
 
 **Last updated**: 2026-10-06 (PHASE-1 save before the post-W5b rewind — top ANCHOR is current)
 
