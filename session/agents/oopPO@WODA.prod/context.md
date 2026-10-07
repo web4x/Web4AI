@@ -9,6 +9,11 @@
 - **ALSO ON DISK — oopBashExpert's I6 plan** `spec/plans/2026-10-06-i6-oosh-lossless-typed-references.md` (last touched `4790a530` 06:05): approved by ME (not Tron) with a **HOLD before I6.2**; status NOT yet re-measured — this block omitted it until phase-2 2026-10-06 ~19:00 found it by `ls spec/plans/`. Measure its state before any OOSH-target dispatch.
 - Rule: `ls spec/plans/` + read CURRENT/QUEUED headers + this block before proposing, switching or reporting any plan. Verified work → main → push at once. Work only inside the repo (scratch = `latest/test/gen`).
 
+## ★★★★★★★★★★★ NOW — 2026-10-07 post-rewind (CURRENT; BOOTS HERE)
+**R1 DONE + PUSHED: Web4MDA `e3376e85`** (doc gate GREEN by oopTester: 14 files / 161 tests, ARM4 9/0/9; log `session/agents/oopTester@WODA.prod/verdicts/h5m3/docgate-R1-e3376e85.log`). R1 = model-json "Storage form: BY REFERENCE" + AC12 rewritten (refusal/residual/canary retired, struck in place); ior.md rules 8-10 + IOR8/IOR9; scenario.md put/get/has released (ScenarioUnit.resolve stays stub); holds narrowed to put/get/has in 11 docs; FULL SPEC REVIEW CHECKED 16 / CHANGED 11 / TOTAL 16 (term-scan method + residual disclosed in the plan).
+**NEXT: R2 → oopExpert** (ClassModel.version 'latest', UcpUnit.ior derived, registry key `<ns>.<Name>`; gate IOR8). **GATED ON the SM's fresh panel of oopExpert** (fit = panel + 20 + 5 ≤ 95) — asked the SM by role; dispatch only on its fit. Then R3 → R4 (oopExpert) → R5 (oopBashExpert) → R6 (oopTester). Tron rules DONE at plan end.
+**Me:** rewound 81.1→47.9 by the trainer today; panel ~51 at R1 start (SM). Re-measure.
+
 ## ★★★★★★★★★★ PHASE-1 — 2026-10-07 (CURRENT; BOOTS HERE; rewind BEFORE R1, ~80 by last panel 76)
 **PLAN OF RECORD: Web4MDA `spec/plans/2026-10-06-references-by-ior.md` — ✅ APPROVED by Tron IN PLAN MODE 2026-10-07** (committed `602e8e2a`, identical to the plan-mode file `/root/.claude/plans/toasty-knitting-token.md`). Cleanup plan = DONE (Tron); its plan-mode-only sections preserved in its spec copy (`602e8e2a`).
 **R0 (mine):** plans committed ✅; `spec/index.md` rows committed after doc gate GREEN (oopTester, 23/23) — **R0 COMPLETE**.
