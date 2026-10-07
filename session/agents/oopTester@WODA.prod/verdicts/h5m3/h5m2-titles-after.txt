@@ -1,0 +1,837 @@
+(A) BEHAVIOUR: each generated script, run with no arguments, prints what the real one prints, same exit code
+(A) is SATISFIABLE and FAILABLE: a COPY of the generated script equals the real run; the copy with its entry call REMOVED does not
+(B) LOSSLESS PARSE: no top-level non-comment line of the real script is dropped by generation
+(B) is FAILABLE and not over-strict: the real script against itself drops 0; with one top-level line removed it drops exactly that line
+0 FOUND hits; owner + ONE observer exempt, the observer PROVEN read-only — over a scan that provably SAW the tree
+A: the expected set comes from the MODEL — MOF classes + the placed M1Catalog; abstract classes are Package units
+AC-R1 — the input is a UNIT not a script: an executable (non-assignment) line is a LOUD, named error
+AC-R2 — read returns a rehydrated MODEL instance (the sh twin of init(json))
+AC-R3 — the mapping is DERIVED from the model, undeclared key is a LOUD, named error (never guessed)
+AC-R4 — a value containing a single quote (apostrophe) round-trips (sh escape)
+AC-R4 — round-trip BOTH directions, and TYPED (bool survives, not stringified)
+AC-R5 — no machine defaults: the unit path is a required parameter; absent → loud error
+AC-R6 — FAILABLE: seed each violation and observe it caught (a gate that cannot fail is not a gate)
+AC1 coverage (oopTester) — the production scan reaches EVERY src file, derived by an independent 
+AC1 is failable (independent tsc): MUTATING an XModel (add an attribute) makes the OLD literal RED; the updated literal GREEN
+AC1 is failable by the HAZARD: REAL TypeScript source files with each factory spelling are SEEN (seed -> RED)
+AC1 secondary — the file scan also catches the four spellings (generic, async, arrow property, generic call)
+AC1 — typed init: an exact literal type-checks; an unknown key, a wrong type, a missing attribute are tsc RED (real compiler run)
+AC10 — declarative implements/typeArguments: no getter in src/ references super.; the framework unions; removing an addition loses exactly that member
+AC11 — start() initialized the MOF model; init reads it to pick the model class; a class without a declared model does not guess
+AC12 INVERTED CANARIES (disclosed residual): a stored SUBCLASS instance comes back as the DECLARED class — GREEN while the decay exists, RED the day a discriminator lands
+AC12 seed 
+AC12 seed by INJECTION → RED BY NAME: a stub model whose serialization THROWS is reported with the model\
+AC12 seeds by INJECTION (failability of the refusal + canary predicates): fabricated wrong inputs are REJECTED, the right ones accepted
+AC16 is failable at CONTENT depth: a present-but-empty scripts.start or engines.node is MISSING, not satisfied
+AC16: write() REFUSES a broken render and touches NO file — proven in a SCRATCH root, never against the real manifest
+AC17: the rendered file carries ONLY npm keys — no uuid, displayName, icon or badge (npm would carry our metadata)
+AC2 by CONSTRUCTION: the model has no 
+AC2 is failable both ways: a THIRD script is seen, and a removed 
+AC2 name scan is failable: a seeded 
+AC2 re-parenting is failable against the REAL class: memoizing UcpUnit.prototype.path (where path lives since UcpUnit extends File) makes the check RED
+AC2 value scan is failable: a path smuggled into 
+AC2 — TWO verbs (amended 2026-09-28), both through the launcher: package.json declares exactly 
+AC2 — generated MOF JS executes under PLAIN node (spec/mof-self.md)
+AC2 — no field CARRIES a path value: every catalogued concrete model, the real sample tree and NpmPackage.of() (URL + npm manifest fields = named, counted allowances)
+AC2 — no model stores a path under ANY name: the catalog attribute scan (/path/i, anywhere in the name) is empty
+AC2 — re-parenting changes path and breadcrumb of EVERY descendant, observed BEFORE and AFTER the move
+AC2 — toJSON() == attributes: exactly the model\
+AC2b (a) is failable: ONE generator writer reverted to plain write() (M1Class.save) — exactly its files keep their inode (seed -> RED)
+AC3 escapes: 
+AC3 hardening: NO response carries an Access-Control-Allow-* header — refused, failed or served alike
+AC3 hardening: a CORS preflight (OPTIONS) and every non-POST method are REFUSED BY THE METHOD GUARD (its reason, not a later guard\
+AC3 hardening: an over-cap body is REFUSED and changes nothing; an operation outside the contract is refused
+AC3 hardening: text/plain, form-urlencoded, multipart, Origin null, a foreign Origin, a foreign Host and the localhost name are each REFUSED and leave the file UNCHANGED
+AC3 is failable: the 
+AC3 — a component version namespace is com.ceruleanCircle.Web4MDA.latest: Namespaces, the component and its Version; plain folders are not segments
+AC3 — declare is idempotent and nested: twice → one com → one ceruleanCircle; the same leaf both times
+AC3 — round trip: init(m.toJSON()) reconstructs m on every attribute, nested models included
+AC4 (spec/mof-self.md) — MOF diagrams are GENERATED from catalog ClassModels, never from src/
+AC4 behavioural — the diagrams are rendered from the MODEL: NO file is read while rendering
+AC4 is failable/derived (catalog): every *Model descends Model and NONE declares its own toJSON/init — except ItemModel\
+AC4 is failable: the 
+AC4 — a component folder holds exactly ONE 
+AC4 — generated from the model: the mechanism is ONE base method pair on Model, carried by every catalogued XModel; the base is reproduced by the generator
+AC4b R1 closed — a latest/test/ folder holds ONLY tests + machinery DECLARED by PATH and CONTENT (never inferred from usage)
+AC5 at the ROOT (outside the generated files): the atomic WRITE path produces bytes byte-identical to the committed root package.json
+AC5 is failable: a changed model value no longer matches the committed file
+AC5 root is failable: a drifted written manifest no longer matches the committed root file -> RED
+AC5 · MOF in the layout — independent model-derived oracle (oopTester, spec-11 inc 5)
+AC5 — style enforced: no attribute-assignment construction anywhere in the components\
+AC5 — the catalog IS init literals: every entry returns new ClassModel().init({ and nested units are init({ too; no helper assignments
+AC5 — the tree is the only address: no writer in src/ concatenates a flat layout string (derived scan over every src file)
+AC5: the COMMITTED package.json is byte-identical to what the model renders
+AC6 cold-half is failable: an incomplete regeneration (a lost dependency unit) does not match the full manifest -> RED
+AC6 cold-half: from the minimal SEED on a real COLD tree (no node_modules, no symlink), npm start regenerates the full committed package.json
+AC6 is failable: a class file in the WRONG layer (or the wrong component) is not in the oracle set — RED
+AC6 — layout conformance: the class files generated == the set an INDEPENDENT oracle derives from rules 4–6; CHECKED/SKIPPED/TOTAL reported
+AC6 — prettified: multi-line, one attribute per line, stable key order (uuid, name, then the class\
+AC6 — the generator reproduces the prettified style: the TS rendering of a catalog entry equals src (init literals survive the round trip)
+AC6: the SEED is a SUBSET of the full render, checked by CONTENT not by key — which is what makes AC5 and AC6 cohere
+AC7 / rule 8 is failable: a seeded WRONG specifier is reported unresolved — RED
+AC7 / rule 8 — every generated import RESOLVES to an existing layout file
+AC7 / rule 8 — every import of the components\
+AC7 — central defaults: ItemModel carries no empty placeholder; Defaults is the one place; changing it changes every model relying on it
+AC7 — every class holds a reference to its OWN ClassModel, reached through the UcpComponent.type() getter
+AC7 — one defaults site: no other src file defines a display default; a second site → RED
+AC7 — retired, not doubled: gen/ does NOT exist (spec 12 inc 6 C4); every generated language lives in its component
+AC7 — retired, not doubled: {G} does NOT exist (spec 12 inc 6 C4); every generated language lives in its component
+AC7 — the layout JS EXECUTES: every generated ES module (js + thinglish.js) imports cleanly and exports its class
+AC8 at RUNTIME: a class is NOT registered until its start() runs — start() IS the initialisation path, by behaviour
+AC8 is failable: ALL 19 register disguises RED — callee, value, alias and import shapes — each named by its method; a control is not a site
+AC8 — ONE entry point proved BEHAVIOURALLY: the initialisation primitives have exactly one call site in all of src/, whatever it is named
+AC8 — component-level typed init: new DefaultFolder().init({ … }) yields a FileModel, populated; the JSON is tsc-checked against FileModel
+AC8 — the call site is user-centric (R1): the sample and every src site pass a JSON, never a constructed model; seed the two-step call → RED
+AC9 — no boilerplate in the leaf: every default component (the classes realizing File or Folder directly, derived from the catalog) declares its model class and what it adds, nothing else
+ANY node version (oopPO ruling): an OLD node child loaded through --require BOOTs with its version, counts inside, logs + refuses outside
+ARM1 is failable: a spec the index never names is REPORTED (derived, not a hard list)
+ARM1: every spec/ file except index.md is referenced by spec/index.md
+ARM2 is failable by INJECTION: the SAME predicate reports a fabricated README that never links the index, accepts one that does
+ARM2: README points at spec/index.md, so it never duplicates a list that rots
+ARM3 (WIDENED to all docs): every npm-script named in README + every spec EXISTS in package.json, unless blockquoted or struck
+ARM3 GREEN direction on REAL disk: the allowance set is EXACT — an ADDED or a REMOVED allowance REDs (a marker is a disclosed exemption, never a silent one)
+ARM3 RED direction is failable: a plain current-tense phantom instruction is a VIOLATION, a marked one is ALLOWED
+ARM3 exact allowance set is failable BOTH ways: added, removed and duplicated allowances all differ from the asserted multiset
+ARM4 (4): a SPECIFIED-ONLY row citing its ABSENT future path is GREEN (the spec-fixed name, not yet built)
+ARM4 failable (1): a BUILT row naming a class that does not exist is RED with that reason
+ARM4 failable (2): a SPECIFIED-ONLY row whose artifact already exists is RED (built but still marked specified)
+ARM4 failable (3): a BUILT row whose cited test exists but does not import the class is RED (built is not gated)
+ARM4 failable (5): a SPECIFIED-ONLY row whose cited artifact PATH already exists is RED (built but still marked specified)
+ARM4 — the README State table is derivable from disk (built = class + linked gate exists; specified = artifact absent)
+ARM4: every State row checks out against src/, spec/ and test/ — report CHECKED/SKIPPED/TOTAL
+ARM5 RED direction is failable: a seeded stale path is a VIOLATION; struck, blockquoted and asserted non-files are ALLOWED
+ARM5 exact allowance set is failable BOTH ways: an added, removed or duplicated allowance differs from the asserted multiset
+ARM5 scope is structural: patterns, placeholders, ellipses, absolute paths, URLs, relative module specifiers and bare names are not repo-file citations
+ARM5: every backticked repo-file citation in README + spec/*.md RESOLVES in the tree, except the EXACT asserted allowance set
+ARM6 RED direction is failable: a seeded \
+ARM6 exemptions are structural and failable: blockquote, struck, Tron-attributed quote are SKIPPED with their marker; component paths are not mentions
+ARM6 scope: spec/plans/ is excluded STRUCTURALLY (non-recursive docFiles) — and the exclusion is real, not vacuous
+ARM6 tree-awareness is DERIVED and failable BOTH ways: rows nested under 
+ARM6 — no live-normative top-level ${G} src/ test/ path in README + spec/*.md
+ARM6: every top-level ${G} src/ test/ mention is struck, blockquoted or a Tron-attributed quote — report CHECKED/SKIPPED/TOTAL
+ATOMIC + failable: a REWRITTEN file whose import would resolve nowhere THROWS before anything is written — the tree stays byte-identical
+ATOMIC: a model the layout rejects (an unrooted namespace) THROWS before any relocation; a valid seed renders
+B/C/F: the committed component tree holds EXACTLY the expected components at MOF/<Mx>/<Name>/latest, nothing else
+BIDIRECTIONAL over the WHOLE catalog: the dependants end is exactly the reverse of the dependency end
+BOTH WAYS: every model-derived component sits at <ns>/<C>/latest beside the Version, and nothing else does
+BY CONSTRUCTION: no test file other than Child.ts references node:child_process (derived over every component test folder)
+C1: knowledge lives IN the model — no // comment inside any literal, and the moved notes ARE descriptions
+C: a component is a TREE NODE, a unit — and a FOLDER (Tron, design A): Component extends Tree; UcpComponent implements Folder, holding its unit class + model files
+C: before init() a component holds the empty model {} — a model with nothing yet — never a half unit
+C: the tree: Tree extends Interface; File extends Tree; Folder extends File; a component has a parent (its Package) — the Package holds it
+CATALOGUED: a fresh M1Catalog.load() over a scratch copy FINDS a walked plant, never the one under latest/test/gen
+CLASS-LEVEL relationships are header clauses (oopPO F4/F5), each target once — on an interface too: a role-less containedBy (rule 12)
+CONTAINER RETIRED is failable: a seeded realization of Container in one entry is SEEN (seed -> RED)
+CONTAINER RETIRED: no src/Container.ts, no catalog entry, no Container in any extends/implements/typeArguments/import/relationship
+CONTAINERS: Folder (UcpComponent) and Package add and NARROW children; a raw File as a UcpComponent child is refused — by type and at runtime
+CONTENT ARM — S5 (oopTester 73c7e15): a source class APPENDED to a DECLARED file is RED — in a helper, a probe, a fixture, and in TestFolder.ts itself
+CONTROL: a well-formed write CHANGES the file — the side-effect probe below can see a change
+CONTROL: a well-formed write CHANGES the file — the unchanged-on-disk probe below can see a change
+Child — the ONE owner of test child processes (spec 12 inc 5b chunk A2): every child runs with TSX_DISABLE_CACHE=1
+D + G1: the producer places every expected component with the EXACT dotted name, reading ZERO source files
+D1 — every concrete component CAN carry its own name (it has a model): probed with a DISTINCT name that must read back — none may fail
+D1 — the layout component folders ARE the real component kind (no stand-in): each is an instance of its own class, carrying its name
+D2 / Spec 7 AC12 (oopTester I6) — every model round-trips through JSON TEXT and the OOSH reader, references TYPED
+D3 — ONE source for the OOSH script list (I6.6): the input side is the OOSH target model, the gate reads the output
+DECLARED ARM — every one of oopTester\
+DefaultFile and BrowserFile REFUSE both (the contract has no I/O there)
+DefaultFile implements File and DefaultFolder implements Folder — both UcpComponents with a FileModel; implements is a SET (no duplicate Folder)
+E: every MOF class\
+EAMD.ucp layout — increment 3 (spec/eamd-ucp.md AC5–AC7, rules 4–8)
+EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/src/ts/EAM/layer3/Tree.ts is the TreeNode (Tron 2026-09-30): parent 0..1 AND children C 0..n (C = Tree), extends Interface; Container retired — reproduced from the model
+ENVIRONMENT proof: from a shell whose ambient node is < 22, bare 
+ES2020 renders an interface as its abstract class WITHOUT members (they do not survive the build); Thinglish keeps them
+EVERY UcpComponent is a Folder (Tron: 
+EVERY component is a Folder — DERIVED from the catalog (drift-proof, not a hand list): all descend from UcpComponent, which carries the Folder realization
+EVERY interface (derived from the catalog) is an abstract class extending Interface — in src/ (TypeScript), so it survives the build
+EVERY model is its OWN interface unit — nothing inlined, no empty unit (plan 4907913; derived from the catalog)
+EVERY owned model sits in its owner folder — named when it does not
+EVERY stub in the catalog (derived: a body carrying the spec-iteration comment LINE) fails through SpecIteration with ITS OWN Class.member — EXECUTED, every derived stub of every kind (static, abstract owner, getter, async), CHECKED/SKIPPED/TOTAL with SKIPPED 0 (oopTester SC5 close) — the error has ONE owner
+FINDING T5.4 kind (oopTester, measured on ed15542) — FIXED: an entry of kind 
+FINDING T5.4 one-entry-path (oopTester, measured on 87a49ef) — FIXED: once a unit tracks a model, an outside holder cannot reassign its references (non-writable at tracking time: the assignment THROWS); the unit exposes only kind references
+FINDING T5.4 read-only (oopTester, measured on ed15542) — FIXED: entries are FROZEN SNAPSHOTS; was: the view is frozen ONE level deep — 
+FINDING T6 one-path (oopTester, measured on 7a7304c) — FIXED: children is a FROZEN read-only view, so a push past Package.add THROWS and tsc refuses it; nothing lands
+FINDING spec 12 inc 2 (oopTester, recorded on 57927eb) — FIXED at 9b8632e: OoshUnit.ts no longer says LOAD/SAVE 
+File + Folder as Thinglish INTERFACES; DefaultFile / DefaultFolder as components; every UcpComponent is a Folder (Tron, design A)
+File and Folder are interfaces: File extends Tree (a LEAF, NOT a Unit — Tron 2026-09-30); Folder extends File and adds nothing but narrowed children + add
+File/Folder migration · MA3 no STRAY unit (oopTester)
+File/Folder migration · oracle: the plan Target table (oopTester)
+File/Folder-as-interfaces · re-gate FAILABILITY arms (oopTester, design A)
+FileServer + BrowserFile/BrowserFolder — spec/component-model.md rule 3, AC3 (spec 12 inc 3)
+G-A is failable: a seeded READ of gen/ (every read shape) and a seeded IMPORT from gen/ are REPORTED; a write and a metadata probe are not; the control is clean (seed -> RED)
+G-A is failable: a seeded READ of {G} (every read shape) and a seeded IMPORT from {G} are REPORTED; a write and a metadata probe are not; the control is clean (seed -> RED)
+G-A: EVERY pipeline step runs green reading NOTHING under gen/ — no fs read or listing, no module load (writes pass; metadata probes counted, disclosed)
+G-A: EVERY pipeline step runs green reading NOTHING under {G} — no fs read or listing, no module load (writes pass; metadata probes counted, disclosed)
+G1 (oopTester I6) — the generated OOSH EXECUTES like the real script, under REAL oosh
+G2a: placement is INVARIANT under relocation — another cwd + an absolute gen root yield the identical MOF placement
+G2b (+ failable): placement FOLLOWS THE MODEL FIELD — change one namespace, file untouched on disk -> the component moves with the model
+GREEN on the real source: ONE init literal (placedModel) and NO catalogued name as a literal — every per-class entry method is gone
+GREEN on the real tree: the machinery present EQUALS the declared set, byte-exact — nothing undeclared, missing or drifted; printed
+GREEN: a unit born with two references tracks FROZEN SNAPSHOTS of them — equal by value, not the caller\
+GROWTH GUARD: sweep() removes run folders of DEAD processes and keeps live ones (seed -> RED if it did not)
+GarbageSweep — the H5b sweep (plan 2026-10-06), failable on fake roots
+H2/H3 — ONE scratch root inside the repo, ONE exclusion (plan 2026-10-06; owner M1Catalog.scratchFolder, oopPO rulings A + option 1)
+H4 (b) — the OS temp dir is asked for ONLY by the scratch class, and READ-ONLY by the H2 observer (plan 2026-10-06)
+H4 (c) — a planted test + Definition under latest/test/gen are neither RUN nor CATALOGUED (plan 2026-10-06)
+H5m — every test lives in the component it tests (plan 2026-10-06, gates a + c)
+HONEST version: the nibble is a literal 4 (pure lift of M2OoshClass.hashUuid, OOSH byte-identical) — name-derived, NOT random
+I3 (plan d729ecd) + I4c: the RELATIVE namespace is the ONE location fact — a component containing components IS a Package; generate realises placement
+I4b F2 gate (oopTester, eamd-ucp rule 6): a SHARED unit lives in the SMALLEST Package enclosing every user; the exempt placed unit owns none
+I4c gate (oopTester, plan d729ecd + spec 94d2ad8): packagedIn is GONE from the MODEL; NameUuid lives at its NAMESPACE (amended I4d, rule 2)
+I4d (Tron 2026-10-05): EVERY namespace maps to a folder — placement := namespace, segment by segment (eamd-ucp rules 2 + 6)
+I6.5 — AC12 polymorphic reference ends (a64bf146), resolved at GENERATION time (75c82049)
+I6.5b BARE RENDER REFUSES LOUDLY (oopTester I6): every concrete class WITH reference ends, rendered WITHOUT the catalog, throws BY NAME (class + every end) — refused, never silently omitted; failable by INJECTION into a model copy
+INC 4b is failable: a WRONG instanceOf target in the model is RED against the oracle (seed -> RED)
+INC 4b — every M2 class is modelled instanceOf EXACTLY ONE M3 element (spec rule 2): 15 edges, each target agreeing with an INDEPENDENT oracle (the model type both bind)
+INC-1b: the catalog oracle is FAILABLE — a M2ES2020Class that drops one class is RED (output vs catalog, never output vs itself)
+INC-1b: the catalog oracle is FAILABLE — a M2MermaidClass that drops one class is RED (output vs catalog, never output vs itself)
+INC-1b: the catalog oracle is FAILABLE — a M2PlantUmlClass that drops one class is RED (output vs catalog, never output vs itself)
+INC-1b: the catalog oracle is FAILABLE — a M2TypescriptClass that drops one class is RED (output vs catalog, never output vs itself)
+INC-1b: the node oracle is FAILABLE — a graph produced from a catalog that loses one class is RED against the REAL catalog
+INC-1b: the partition law is FAILABLE — a split that drops a concrete class, or files a concrete class as abstract, is RED
+INVERTED CANARY (disclosed residual): a stored NodeJSFolder comes back as the DECLARED DefaultFolder — GREEN while the decay exists, RED the day a discriminator lands
+IOR1 typed: the catalog IorModel holds NO attribute for host / port / namespace / version — they are relationship ends to the typed parts
+IOR2 round-trip BOTH ways over EVERY concrete IOR string of the repo (derived scan, I3 canonical: typed instance + address list) — CHECKED / SKIPPED / TOTAL, SKIPPED 0
+IOR3 backward compatible: every SC4 COMPONENT and every SC4 INSTANCE string round-trips byte-identical (I1 < I3) — both kinds present
+IOR3b legacy instance IORs are NEVER typed by invention (I3, rule 4 amended): every legacy untyped instance string parses UNTYPED and round-trips byte-identical; an Ior BUILT with a type emits the typed form
+IOR4 the typed parts are the real classes: RepositoryId.namespace is EXACTLY a Namespace and .version EXACTLY a Version — for every canonical string that carries a type (components AND typed instances)
+IOR5 parse rejects malformed text (missing port, missing version, empty host, unknown scheme) with a NAMED error, and writes NOTHING to disk
+IOR6 at RUNTIME + JSON unchanged: a ScenarioUnit read from scenario JSON (built from the derived canonical + local strings) holds NO raw ior: string anywhere in its model, and toJSON() is byte-identical
+IOR6 no bare IOR string in code (I2): NO catalogued ClassModel has an attribute named like an IOR, and ScenarioUnit ior / ownerIor / links / copies are relationship ends to Ior / Link
+IOR7 CORBA extensions (I3): every derived address-list IOR keeps ALL its profiles; a SecureTransport survives the scenario-JSON round-trip as EXACTLY a SecureTransport; an UNKNOWN tag is preserved as EXACTLY an UnknownTaggedComponent — stable over two round-trips
+Ior — an IOR is a typed graph of CORBA-shaped units (spec/scenario.md §3, spec 13 S3, spec 14 I1)
+Ior — spec 14 I1+I2+I3 acceptance (IOR1-IOR7, IOR3b, port rule, Link, UnrepresentableIorError) — oopTester gate
+Ior — spec 14 I3 (CORBA extensions: typed instances, multi-profile, tagged components)
+ItemModel is ITS OWN interface (
+KIND: a unit\
+LEAF is failable: a seeded File that HOLDS a pushed child, that silently LOSES it (a fresh [] per read), or that has add(), is reported (seed -> RED)
+LEAF: a File (a plain UcpUnit and a raw file alike) holds no children, by VALUE, and has no add()
+LOCAL without a folder: a bare file name is its own relative path
+LOCAL: a relative path becomes a folder chain (in memory, by name) + the file name; the path is DERIVED, never stored
+LOGIC determinism (any box): member uuids derive from owner+name, stable across parses on the synthetic unit
+LOGIC generate is idempotent (any box): render(parse(x)) is a fixed point on the synthetic unit
+LOGIC round-trip (any box): parse(generate(parse(x))) == parse(x) WITH uuids on the synthetic unit
+LOGIC round-trip is FAILABLE (any box): a dropped method in the text yields a different model (seed -> RED)
+LOSSLESS: one dependency per declaring unit; every model a class binds stays BOUND in its header; no class implements a model
+Link
+Link (I2): BOTH variants round-trip byte-identical over the derived strings — remote = every canonical IOR, local = every spec .scenario.json path — and each is exactly one variant
+Link (I2, eamd-ucp AC2): a local link\
+M1Catalog
+M1Catalog holds NO model data and NO literal list (spec 12 inc 5b B2; oopPO: the A claim 
+M1Catalog · FAILABILITY (oopTester RANK-1): catalog-lists-EXACTLY the recursive src scan
+M1Class
+M1Graph — the class graph of the MODEL, generated top-down into the Package src/puml/Web4MDA-graph.puml (EAMD.ucp layout) (never from a source scan)
+M1Graph.focus — the interfaces relevant for Web4MDA (Tron): a FILTER on the model, generated into the Package src/puml/Web4MDA-interfaces.puml
+M1Layout has the radical-OOP shape
+M1Layout is only named in this title
+M1Layout title
+M1Sample walks the sample along the MODEL\
+M1Sample — Web4MDA creates a sample md file in a folder (Tron); rendered as an M0 object diagram from the units
+M1Sample — the M0 sample (Web4MDA.sample): a readme.md DefaultFile in a DefaultFolder, rendered from the model
+M2AbstractClass
+M2AbstractDependency — the Thinglish dependency as ONE bidirectional relationship
+M2AbstractRelationship ← M2AbstractCollection — a relationship end with multiplicity (Tron)
+M2ES2020Class
+M2ES2020Class · FAILABILITY (oopTester RANK-1): ES2020-no-types
+M2MermaidClass
+M2OoshClass — D3 BEHAVIOUR (I6.6): the script list is the model attribute 
+M2OoshClass — OOSH as a Web4MDA generation target (spec/oosh-mda.md)
+M2PlantUmlClass
+M2ThingClass — the model serialized in pure Thinglish
+M2TypescriptClass
+M3 MUST NOT depend on M2 (Tron): no file in src/MOF/M3 imports from M2
+M3Attribute
+M3Class
+M3Class contains M3Attribute, M3Method and M3Relationship — as relationships, each an M3 element with a uuid
+M3Element KEEPS Web4MDA.MOF.M3 and its folder IS MOF/M3 (the old abstract-class-to-Package-root rule is gone); NameUuid stays Web4MDA at the root
+M3Method and M3Relationship have the radical-OOP shape (spec §3) and name themselves
+M3Relationship — minimal M3: a class CONTAINS attributes and methods (Tron)
+MA1 — no separate components: no component dir named after a moved unit; its Target owner exists
+MA2 — type preserved: superclass and interfaces as the Target table states, and a UcpUnit by inheritance (from the MODEL)
+MA3 — owned FROM THE RELATIONSHIP: exactly one role-less containedBy to its Target owner, and ownerOf derives it
+MA4 — layers hold: the model layer is the Target layer, the held source sits at <owner>/latest/src/ts/EAM/layer<N>, and a layer-4 unit implements Process
+MISSING ARM — a declared file that is absent is RED (a stale declaration can never later cover a new file of that name unseen)
+MethodModel.typeParameters (eamd-ucp AC1 / OoshUnit): TypeScript + PlantUML render <…>, the JS family drops it — and it is failable
+Model
+Model
+NEVER stored twice: no model field and no catalogued relationship holds the dependants end; M3 derives it
+NO DYNAMIC CODE in src: no eval, no code built by Function — derived over every src file by the checker (they defeat any static proof)
+NO DYNAMIC CODE is failable: 11 string-to-code shapes RED (incl. oopTester round-3 escapes that never NAME eval/Function); an ALLOWLIST control of every sanctioned shape stays GREEN
+NO STORED PATH: the location is DERIVED — a unit re-parented after construction acts at its NEW place (+ seed -> RED)
+NO SWALLOWED ERROR: failures REJECT (missing file read/remove, a path below a missing folder); only exists() answers ENOENT (+ seed -> RED)
+NO SYNC FALLBACK, NO STATIC fs IMPORT in NodeJSFile/NodeJSFolder — fs/promises by dynamic import only (+ seed -> RED)
+NO response of any kind — served, refused, failed, preflight, over-cap — carried an Access-Control-Allow-* header
+NO unix socket by construction (MECHANISM, not text): a TypeScript child through the tsx LOADER adds 0 entries to the kernel socket table; the tsx CLI adds one at a libuv-TRUNCATED path (seed -> RED)
+NODE-INDEPENDENT: resolution is pure — the first candidate probing >= 22 wins, in the declared order; none → undefined (the last resort)
+NODE-INDEPENDENT: the last resort is a message with the requirement and the install hint — only when nothing resolves
+NOT A UNIT is failable: a seeded 
+NOT A UNIT: File reaches Unit neither by extends nor by implements; UcpUnit IS a File and realises Unit
+NameUuid pure SHA-1 == node:crypto SHA-1 (spec 11 inc 2 replaced node:crypto; lifted from M2OoshClass in I4b; the OOSH uuids and the packagedIn fact depend on it)
+NameUuid — the ONE owner of deterministic, name-derived identity (oopPO ruling (a), I4b)
+NameUuid: its folder is its NAMESPACE (rule 2) — its users never place it; a seeded namespace MOVES it, a seeded second user does NOT
+Namespace — a Folder per dotted segment (spec/eamd-ucp.md rule 2, AC3)
+NodeJSFile STUBS both (it stays the only node:fs user; the bodies are the following spec iteration)
+NpmPackage — package.json under unit management (spec/bootstrap.md rule 5, increment 2)
+ONE STORE (I5b): the persisted mirror never outlives the disk — load() answers the DISK
+ONE STORE (spec: one store, no second store) — an in-hand model edit reaches the stored model or dies at load
+ONE attach path is failable: a second path — a parent assignment, a heldUnits write, a push onto a children view — is SEEN (seed -> RED)
+ONE attach path: the folder tree is written only inside UcpComponent.add (derived scan over every src file)
+ONE entry path: once a unit tracks a model, an OUTSIDE holder of that model cannot reassign its references (throws); init() may re-track it
+OOSH target gate (oopTester RANK-2) — generated surface + behaviour under real oosh
+OWNED MODEL PLACEMENT (ruling A + rule 4 b): a sole-user model sits in its owner component folder
+OWNED MODEL PLACEMENT · scrutiny 1 (oopTester): ownership is NOT an accident of an empty root container
+OoshUnit — the .env scenario unit ↔ Model (spec/oosh-mda.md §4a, AC-R1..R6)
+P: a package has a PackageModel whose name is the package path
+P: a package is the COMPONENT container — a component whose children are components (it narrows children: UcpComponent[])
+PACKAGE REFUSES a non-component (oopPO ruling on oopTester finding 2): held-then-hidden was a silent loss — tsc rejects, runtime throws, nothing is held
+PACKAGE REFUSES is failable: the base UcpComponent.add (the pre-fix path) ACCEPTS the NodeShell — the refusal is load-bearing; and children never HIDE what is held (ucp.md T6, 2026-09-30)
+PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) — the whole catalog vs the committed .thing files
+PlantUmlServer
+PlantUmlServer · FAILABILITY (oopTester RANK-1): Welcome-page confound guard
+READS an OOSH script into a ClassModel: methods, params (<req>/<?opt>), private., source=import
+REMOTE: an ior: string becomes a Link holding a typed Ior (no folder), and round-trips byte-identical
+RENAME check is failable both ways: an unstruck hit is RED by path:line; a struck spec hit and a dated plan record are not; a strike outside spec/ does not count; rename-only is exact
+RENAME complete (plan 2026-10-03 I2a): no word starting with the old model name outside struck spec history (dated plan records exempt BY PATH)
+REPORTING ARM (oopPO item 3): every test slower than HALF the default is a printed FINDING
+ROOT GATE — the committed generated files (every language, in its component) == what the REAL pipeline produces (bare 
+ROUND TRIP on a temp root: create/list/file/folder/write/read/exists/writeAtomic/remove — at the DERIVED path, units held in the tree
+ROUND-TRIP: render(parse(x)) is a fixed point — parsing generated OOSH regenerates it identically
+RUN: the real config never lists the planted test — and does list this very file (the listing is not hollow)
+RUNS under bash: the generated object.verb is callable and returns via the RESULT system (create.result)
+RUNTIME BACKSTOP is failable: string-to-code in an executed MOF module THROWS under the plain-node gate, whatever the spelling (seed -> RED); plain code runs
+RadicalOopGate
+S-a boundary, measured and stated: re-import()ing a module ALREADY in the module cache loads nothing and reads nothing — neither the hook nor the fs traps fire (no source is read)
+S2b INVERTED CANARY (oopPO ruling on 3b374004): load() re-reads a persisted model by EXECUTING its code module afresh — one never-evicted module per persist->load cycle (KNOWN, DISCLOSED residual)
+SC1 folders: EAMD.ucp/Components, EAMD.ucp/Scenario/Index and EAMD.ucp/Scenario/type exist as directories
+SC1 layout (spec 13 §6, S1 restore EAMD.ucp) — oopTester
+SC1 layout == disk: M1Layout
+SC1 no stray root: there is no Components/ at the repository root (everything lives under EAMD.ucp/)
+SC2 is failable: a 4-directory path is not the shape (seed -> RED)
+SC2 — pathOf(uuid) = 5 single-hex-char directories + <uuid>.scenario.json
+SC3 is failable: links OUTSIDE model is not the shape (seed -> RED)
+SC3 — its JSON has EXACTLY ior, model, ownerIor; model.links / model.copies are arrays
+SC4 is failable: a missing port or a missing version no longer has the grammar (seed -> RED)
+SC4 — toString(): ior:component://<host>:<port>/<ns>.<Name>.<version> and ior:instance://<host>:<port>/<uuid>, rendered FROM THE PARTS
+SC5 is failable: a stub that RETURNS silently is caught (seed -> RED)
+SC5 — stubs are HONEST: every stub (DERIVED from the models: a body carrying the spec-iteration comment line) throws or rejects with the named SpecIteration error of ITS OWN Class.member
+SC8 clause 2 (AMENDED, Tron): the version values are DERIVED from the version production, equal the rows ruled INSTANCES of Version, are never keywords, and each is a Version NAMED by its value
+SC8 clause 2 (AMENDED, Tron: namespace → instances of the existing Namespace UcpComponent): every keyword ruled INSTANCE of a component is a keyword, maps to NO M3 element, is not held, and the grammar answers instances of exactly that component
+SC8 clause 2 (plan of record G1 + G4, Tron-approved 2026-10-02): every MODIFIER / KIND keyword is a derived keyword, maps to NO M3 element, and resolves to an attribute of the catalog model of EVERY element its rows name (per member kind) — CHECKED/SKIPPED/TOTAL, SKIPPED 0
+SC8 clause 2 (plan of record G5): every HELD model fact EXISTS in the catalog, is NOT a keyword row, and NO keyword or declared mapping reaches it — held, never mapped
+SC8 clause 2: EVERY derived keyword is EXACTLY one of — mapped to the M3 element the spec table rules, or held OPEN; CHECKED/SKIPPED/TOTAL, SKIPPED 0
+SC8 clause 2: NO struck span inside a keyword cell (struck history belongs in the ruling cell) — a struck keyword is RED by name, never read as live
+SC8 clause 2: every derived keyword is DOCUMENTED in the spec keyword table (mapped or OPEN) — an undocumented keyword is RED
+SC8 clause 2: held == EXACTLY the spec table\
+SC8 clause 2: the grammar\
+SC8 clause 2: the grammar\
+SC8 is failable: a DRIFT in the spec block (or in the model) no longer equals (seed -> RED)
+SC8 modifiers is failable: the catalog resolver finds NOTHING for an unknown keyword or a model without the attribute, and reaches visibility ONLY through its union literal
+SC8 — ONE source: the model attribute ebnf EQUALS the one 
+SET references (AC12 amended): exact / derived-unique ends rehydrate TYPED, an end with SEVERAL concrete subclasses REFUSES BY NAME — on the JSON TEXT path AND the OOSH reader
+ScenarioIndex — EAMD.ucp/Scenario/Index (spec/scenario.md §4, spec 13 S3)
+ScenarioUnit — one scenario.json (spec/scenario.md §2, spec 13 S3)
+ScenarioUnit.toJSON — never-drop for tagged components on a NON-own IOR (spec 14 rule 6, oopPO ruling on I3)
+SecureTransport
+SoloGroup — the contention-sensitive tests never share the CPU with the pool
+SpecIteration — the ONE named stub error (spec 13 S2)
+T1-T8 · increment 1 · production classes (oopTester)
+T1: Container is RETIRED — no src file, no catalog class, no reference in any interfaces/superclass/typeArguments, not in the graph (derived scan)
+T1: Tree is a TreeNode template — Tree<C = Tree>, an Interface, typeParameters [C]
+T2/T3/T4/T6 · increment 1 · the TYPES refuse what the runtime refuses (tsc seeds, failable both ways)
+T2/T4/T6 · increment 1 · the GENERATED JS executes the same rules (oopTester)
+T2: File is NOT a Unit — Unit is not in its chain nor its implements, and nothing in its chain defines uuid (T7: raw files carry none)
+T2: a File LEAF — children empty, FROZEN, one shared value, no add; a push is refused
+T2: path and breadcrumb are DERIVED by walking parent (move the leaf -> its path moves)
+T3: Folder is a File that contains — Folder extends File; concrete folders add and hold children
+T4 (F1): every concrete LEAF unit (UcpUnit, not UcpComponent — derived from the catalog) has its model and a v4 uuid
+T4 + T6 · 7a7304c · production classes (oopTester)
+T4 + T6 · 7a7304c · the GENERATED JS executes the same rulings (oopTester)
+T4 + T6 · 7a7304c · the TYPES refuse what the runtime refuses (tsc seeds, failable both ways)
+T4: UcpUnit extends File and realises Unit — a unit is a file that is ALSO unique
+T5.1: a unit WITH a model is unique — a v4 uuid, a different one per instance
+T5.2/3/5 HELD · ed15542 · properties ONLY: no store, no ln linking, no sync (oopTester)
+T5.4 · 87a49ef re-gate · the model FIELD is a second entry path (oopTester finding)
+T5.4 · ed15542 · a unit tracks its references in its MODEL (oopTester)
+T5.4 · ed15542 · the GENERATED JS executes it (oopTester)
+T5.4 · ed15542 · the TYPES refuse a push through the view (tsc seeds, failable both ways)
+T6 (F2): NpmPackage.dependencies is its OWN relationship — not a filter over children
+T6 (F2): ONE attach path — Version.latest attaches THROUGH add, and is minted once
+T6 (F2): Package.add REFUSES a leaf at runtime, and nothing is silently kept
+T6 (F2): a Package\
+T6: UcpComponent extends UcpUnit, implements Displayable + Component + Folder, holds UcpUnits ONLY (runtime guard)
+T7: Model extends Unit — every object with a model is a unit
+T8: DefaultFile is a UcpComponent — therefore a unit (uuid) and a folder (add)
+TH1 is failable: a MISSING file, a WRONG-KIND file and a file for an INLINED model are each RED by name
+TH1 one file per type, DERIVED (plan 2026-10-03): CHECKED / SKIPPED 0 / TOTAL; the right kind and name; every model its own .interface.thing
+TH2 generated from the model: every committed .thing is IN the real pipeline\
+TH3 is failable: a dropped model attribute on its INTERFACE and a dropped <XModel> binding on its OWNER are RED by name
+TH3 lossless except EXACTLY the held set — facts on their OWN type (no inlining); DERIVED explicit; held(c) exact; no uuid leak
+TH3 oracle corrections are failable on their NEAREST dangerous member (a body on an abstract interface member, 
+TH4 is failable: an 
+TH4 only GRAMMAR keywords: every keyword-position token in every .thing belongs to the set DERIVED from ThinglishGrammar — 
+TH5 is failable: an extra (invented) member line and a dropped one are RED; an INEXPRESSIBLE fact is a NAMED error, never made up or dropped
+TH5 no invention, no silent drop: per shown type the committed lines match the MODEL (own + inlined) one-to-one, nothing unclassified
+TH6 is failable: an out-of-order member is RED by name; grammar order is GREEN
+TH6 member order: the grammar body order (DERIVED) == the plan (attribute → relationship → collection → property → method), and every .thing body follows it
+TH7 rendering only — failable BOTH ways: outside src/thinglish/** a change may touch only spec/, tests and components whose OWN model/TS changed
+TMPDIR BY CONSTRUCTION: this worker has its RUN folder in the scratch tmp ITSELF as OS tmpdir — no alias, no symlink
+Thinglish renders NO location clause: the header names the class; the qualified namespace is the system folders + the RELATIVE namespace
+Thinglish — JavaScript extended by convention (spec/thinglish.md): thinglish.js and thinglish.ts
+ThinglishGrammar — SC8 clause 2: every keyword maps to an M3 element (Tron 2026-10-01 ruling) — oopTester gate
+ThinglishGrammar — the grammar of record (spec/thinglish.md, spec 13 S2)
+ThinglishParser — STUBS of spec 13 S2 (parse, toPIM, compile)
+TrackedTree — the AC2b (b) probe: a rewrite of a tracked file is SEEN even when git status is clean
+Tree is the TreeNode: parent + children of kind C (default Tree); a tree IS a container
+TypeScript is the only language that renders override; Mermaid maps generics to ~
+U: every model is a Unit and a unit enforces its uuid — every catalogued model class carries one at birth
+UCP · FAILABILITY (oopTester RANK-1): every-unit-has-a-uuid
+UCP — Unit · Component · Package (spec/ucp.md)
+UNIT = uuid, UNREPRESENTABLE otherwise (oopPO ruling on oopTester finding 1): a concrete UcpUnit without a model does not COMPILE; NodeShell has its model and a uuid
+UNSET references: every model round-trips on BOTH paths without a throw (failures named)
+UcpComponent — paths are DERIVED (spec/eamd-ucp.md rule 1, AC2)
+UcpComponent — the value-scan ALLOWANCES are named and failable (oopPO ruling 2026-09-29)
+UcpComponent.scenario / initFromScenario are STUBS on every component (the abstract owner, proven on a concrete one)
+UnknownTaggedComponent
+UnrepresentableIorError (I3 follow-up): tagged components on a NON-own Ior — ownerIor, a copy, a remote link — are REFUSED by toJSON with a named error naming that IOR, never silently dropped
+Version — a Namespace inside a UcpComponent folder (spec/eamd-ucp.md rule 3, AC4)
+Version.latest over an existing NON-Version child named latest is a NAMED error — one latest per component
+WRITES a ClassModel as an OOSH script: nouns=objects/verbs=methods, uuid header, source=import, no --flag
+Web4MDA
+Web4MDA-MOF: edges == every generalization / realization / instanceOf relationship the catalog models between MOF nodes (derived), each rendered
+Web4MDA-MOF: nodes == the WHOLE MOF on DISK (independent oracle) == the catalogued MOF classes + the PLACED unit (from its model)
+Web4MDA.sample() creates a Folder with a readme.md File among its children (a Folder narrows children to Files); uuids minted once
+Web4MDA.sample() is a DefaultFolder named sample with ONE child: a plain readme.md DefaultFile (not a subfolder)
+WriteRecorder — the no-escape instrument (plan 2026-10-06 H4 a), proven before it is trusted
+[spec ref] is NARROW and failable: a description citing a spec that RESOLVES is allowed; a missing spec, a source path, a mixed one, or a spec path in a non-description field is RED
+a BrowserFile/BrowserFolder round trip EQUALS the NodeJS round trip (both directions, list included)
+a BrowserFolder/BrowserFile round trip of this variant equals the disk, both directions, list included
+a DECLARED subject is verified, never trusted: a VALUE import (or a child-script module load) AND a use in code — type-only imports, comments, string titles and readFileSync-as-text are RED (M2OoshSha1 defect, re-gates 2+3)
+a Definition changed ON DISK outside persist() is what the next load() serves — never the stale mirror
+a Package is a Folder: its children are components (a component IS a UcpUnit) — the redefinition of children
+a ROOT owner\
+a STORED path string is never used: after the unit moves, I/O follows its derived path — production classes
+a SecureTransport on ownerIor, on a copy, or on a remote link is REFUSED with a named error — never silently dropped
+a body over the 16 MiB cap is REFUSED and changes nothing
+a c2 run leaves 0 CONFIG_PATH dirs behind; the former $(mktemp -d) form leaves one (seed -> RED)
+a class name held by TWO components is RED — never resolved first-wins (seed -> RED)
+a clean tree counts 0 in EVERY pattern over a non-empty TOTAL (not a hollow green); TOTAL = CHECKED + SKIPPED
+a dependant whose dependency fact NAMES A LOCATION is RED (rule 8) — location-free facts pass the same check
+a derived scan of every src file finds node:fs imported ONLY by NodeJSFile and NodeJSFolder
+a foreign Host — a rebinding name, localhost, another port — is REFUSED by FileServer; none at all by node:http; the file is UNCHANGED
+a foreign Origin — another site, 
+a missing 
+a namespace CYCLE is refused BY NAME — both units named, before any owner is derived or anything written (oopPO I5c 6); one-way nesting is GREEN
+a node: import is UNREPRESENTABLE (rule 8): an import names its declaring CLASS, so the specifier is always derived relative — never a bare module
+a path in an npm field NOT on the named list is RED; the same value on a listed field is ALLOWED and counted
+a plain folder is identified by EXACT class: a component that builds on DefaultFolder IS a namespace segment (oopTester finding C)
+a relationship is 0..1 by default (one other thing, or none); a collection is 0..n (many)
+a render of a class WITH reference ends that is not given the catalog REFUSES BY NAME (I6.5b) — it never silently omits the getter
+a stored component that HOLDS units is refused BY NAME — rehydrating it by value would drop them silently
+abstract target with EXACTLY ONE concrete subclass → that subclass: IorModel.profiles comes back as InternetProfile on both paths
+abstract target with SEVERAL concrete subclasses → init REFUSES BY NAME on both paths (never a guess); unset/empty passes
+after load and start, EVERY catalogued class answers type() with its own model — name AND uuid, asserted over the catalog
+an attribute INITIALIZER is allowed only when every path-like literal in it is a host URL — a smuggled path literal is RED
+an in-hand edit that is NOT persisted DIES at load — the catalog answers the STORED model again
+an interface: no 
+an operation outside the contract is REFUSED (no shell)
+an owner HOLDS its model: 
+an uninitialised M3Class contains nothing; init() is what establishes the M3 relationships
+answers honestly without a metaclass
+binds 127.0.0.1 ONLY — measured from the OS in the child process, not from a constant
+binds 127.0.0.1 ONLY: the OS reports 127.0.0.1/IPv4 and the port is unreachable on ::1
+binds 127.0.0.1 ONLY: the port is unreachable on every non-loopback IPv4 of this host
+bootstrap AC6 cold-half + AC5 root (oopTester)
+both dialects have the §3 shape, create themselves through M3, and file one type per file by kind
+both have the §3 shape and create themselves through M3Relationship; a collection IS a relationship
+browser purity: the CONTRACT classes (src + generated JS) name no node: module at all
+c2-discovery is FAILABLE: a generated odocker with a dropped method lists it no longer (seed -> RED)
+c2-discovery: real oosh c2.get.functions lists the generated odocker object.verbs
+carries abstract, extends, visibility, static and getters in PlantUML syntax
+carries abstract, inheritance, visibility, static and getters in Mermaid syntax
+channel alive: the child BOOTs the recorder and counts a write INSIDE its root
+claude-0 is SKIPPED with its reason in every OS-temp pattern — counted in TOTAL, garbage inside it never read
+close() leaves no listener: an in-process server stops accepting
+component vs instance is WHAT THE OBJECT KEY KEYS (rule 2) — the type itself, or an instance uuid
+convention 5 — templates: typeParameters on the template (Tree<C>), typeArguments on the binder (Package), in both dialects, at runtime
+create.result RUN is FAILABLE: a generated method that does NOT create.result yields empty $RESULT (seed -> RED)
+create.result under REAL oosh: a GENERATED greeter returns via OOSH create.result (no shim)
+creates the existing M1 classes as ES2020: no types, no visibility, no abstract
+creates the existing M1 classes of this repository
+creates the existing abstract M1 classes: the model bases, the Thinglish interfaces, UcpComponent
+defaults: CORBA tag 20, TLS required
+dependantsOfAll() is failable: a seeded import is SEEN as a new user, exactly like dependants() sees it (seed -> SEEN)
+dependantsOfAll() is the SAME opposite end as dependants(), for every unit, in one pass (rule 6 layout, I4b F2)
+dependencies are qualified by the DECLARING class — a model is a unit like any other, so a holder depends on it
+derived paths: indexPath = Scenario/Index/<pathOf(uuid)>, typePath = Scenario/type/<ns>.<Name>.<version>/<speakable>.scenario.json
+derives nothing (no Mermaid renderer on the host; GitHub renders .mmd natively)
+describes itself from its model
+design (a): the PLACED M1Catalog is the src file re-pointed — its thinglish.ts equals src/MOF/M1/M1Catalog.ts except import specifiers, JS is real JS; no TS copy (the component holds it); a drift is SEEN
+determinism is FAILABLE: a perturbed name / owner yields a different derived uuid (seed -> RED)
+determinism sub-gate (option C): member uuids derive from owner+name, stable across parses
+differential: a MODEL change moves the render — the invariance probe is live, not blind
+draws it: interfaces stereotyped, generics kept, the two implements/extends families, no machinery, no models
+each stub fails through SpecIteration with its own X.y and the message of record
+eamd-ucp AC1 is failable: a LOOSE src/MOF/Loose.ts (the OoshUnit hole) is SEEN; every meta-level file is SEEN except exactly src/MOF/M1/M1Catalog.ts — a 2nd uncatalogued MOF file REDs
+eamd-ucp.md rule 4 · 7a7304c · sub-components live BESIDE the Version (the committed component tree, model-derived oracle)
+encodes PlantUML source the way plantuml.com does (deflate + PlantUML
+escapes — 
+every M2 attribute class has the §3 shape and creates itself through M3Attribute
+every M2 class is constructed like any class — new M2X().init() — with no factory in between (AC1)
+every MIRROR of the path equals the derived one: bootstrap TMPDIR target + alias, .gitignore (folder + alias), tsconfig.test.json exclude
+every MOF component sits at Web4MDA/MOF/<Mx>/<Component>/latest/src/… and its dotted name is EXACT
+every catalogued class has a distinct, once-minted uuid (D1)
+every class with a role-less containedBy is a Target unit of exactly that owner — derived from the model, judged by the plan
+every concrete catalogued MODEL (derived: extends ModelUnit) holds references beside uuid — an own [] data field in its JSON
+every concrete catalogued MODEL class tracks references: [] by default, as a data attribute in its JSON (derived)
+every concrete catalogued UNIT (derived, the placed M1Catalog included) exposes a FROZEN, NON-LIVE view; a push throws and changes nothing
+every concrete catalogued UNIT class (derived, runtime, the placed M1Catalog included): tracks what it is born with, read-only at every depth, and REFUSES a wrong kind
+every concrete catalogued UcpComponent SHOWS everything it holds — its Version included (derived from the catalog, loaded at runtime)
+every generation step ends with its process constructor — a silent no-op pipeline is RED (mof.md §6, as amended: the chain is Web4MDA.steps, not package.json)
+every language renders a relationship end its own way; the same two ends, five renderings
+every modelled class is a node and every extends / implements the model declares is an edge — nothing more, nothing less
+every new class has the radical-OOP shape; BrowserFile/BrowserFolder are Processes (the layer-4 marker)
+every port defect names ITSELF (oopTester I2 finding 2): zero, leading zeros, out of range, not decimal — a seed proves the specific guard
+every reference end is resolved by the catalog: 14 ends in 8 models, each a CONCRETE catalog class or a refusal naming its end
+every spawn shape carries TSX_DISABLE_CACHE=1 into the child — and keeps a caller-supplied env
+every src/MOF class has committed JS in its component, and ALL of it imports, constructs and init()s under a plain-node child process
+every unit whose owner does NOT enclose all its users carries an EXPLICIT earlier rule-6 fact (role-less containedBy, or an interface with ONE realiser)
+every unit: namespace, dependencies, ONE header, members in order attributes → relationships → collections → properties → methods
+fail(
+failable (oopPO ruling): the OBSERVER loses its exemption the moment a use can reach a WRITE — each seed RED, named
+failable by CONTENT: ONE planted tmp.* holding an OOSH colour env file is FOUND 1 (the M2OoshGate mktemp leak Tron found)
+failable by CONTENT: an ssr cache referencing this repo (new or old layout) is counted; another team\
+failable by NAME: every OS-temp and home pattern counts exactly its planted entry
+failable: a scratch folder is never scanned, a sibling file is (the skip is the ONE exclusion, not a wider one)
+failable: a write OUTSIDE the root is logged as ESCAPE and refused — sync, callback, promise, stream; nothing lands
+failable: each seeded form is FOUND outside the exempt paths, OWNER-exempt at the owner; prose never matches
+failable: the FENCE inside the root counts as outside (the probe seed target); a read is never a write
+failable: with NO scratch exclusion the same planted test IS listed — it is a valid test, only the exclusion hides it
+forces every class it creates to be abstract
+gate (a) is failable: a misplaced test, a name-only test, and a declared non-class are each RED (seed -> RED)
+gate (a): EVERY test sits in its derived home component; no class name is held by two components
+gate (c) RATCHET: the components with src/ but no test EQUAL the baseline — a new gap is RED, a closed gap forces lowering it
+gates itself
+generate REALISES placement (on a copy of the repository tree)
+generate renders ONLY the store: an unpersisted in-hand namespace edit does not reach the rendered output
+generate() with no list attempts EXACTLY the declared sources — a 3rd declared script IS attempted
+generate() writes every class in every language the components do NOT hold — the set and order DERIVED from languages(), never the held one (spec 12 AC6); per-file naming an independent oracle
+generated JS is browser-ready ES module syntax: no types, no TS keywords, no node: imports, no bare process
+generated JS is semantically identical: it executes as ES modules with the same behaviour
+generated NodeJSFolder/NodeJSFile: round trip, derived path, no swallowed error
+generated NodeShell (layout js): references [] by default, frozen, non-live; tracks what its model holds
+generated Thinglish.js executes the same structure: interfaces, cumulative implements as a set, every component a Folder
+generated puml + mmd carry each class by name and uuid
+generated svg is a rendered class diagram per class (skipped when no PlantUML server is reachable)
+generated: File is not a Unit; the leaf is frozen, shared, add-less; UcpComponent refuses a non-UcpUnit
+generated: NodeShell has a v4 uuid; Package keeps Version + sub-component in children, names the view, refuses a leaf; latest once; npm deps are not children
+generation fails BY NAME when an abstract target has NO concrete subclass (seeded in hand, restored)
+getters: ior, ownerIor, identity = model.uuid, links and copies are arrays
+ground truth (2026-09-30, model): root Interface — UcpUnit extends File extends Tree; Unit <|-- Model; UcpUnit implements Unit, UcpComponent adds Displayable, Component, Folder; Container retired; 8 interfaces (Process, the layer-4 marker, spec 12 inc 3)
+has an empty, parameterless constructor (spec §3)
+has the radical-OOP shape
+has the radical-OOP shape
+has the radical-OOP shape
+has the radical-OOP shape
+has the radical-OOP shape
+has the radical-OOP shape
+has the radical-OOP shape (spec §3)
+has the radical-OOP shape (spec §3)
+has the radical-OOP shape (spec §3)
+has the radical-OOP shape (spec §3)
+has the radical-OOP shape (spec §3)
+has the radical-OOP shape (spec §3)
+has the radical-OOP shape (spec §3)
+has the radical-OOP shape (spec §3)
+has the radical-OOP shape (spec §3)
+has the radical-OOP shape (spec §3) and names itself
+has the radical-OOP shape (spec §3); a 0..n collection of kind 
+has the radical-OOP shape (spec §3); its own directory; an interface-like model is an 
+has the radical-OOP shape and IS a Folder (a DefaultFolder)
+has the radical-OOP shape and IS a Namespace (so a Folder)
+has the radical-OOP shape and IS a TaggedComponent
+has the radical-OOP shape and IS a TaggedComponent
+has the radical-OOP shape — Ior and every concrete typed part
+has the radical-OOP shape, is named Web4MDA, and reads NO source: no fs reading, no parsing in the producer
+has the radical-OOP shape; its dependencies are UNITS with uuids, not strings
+has the §3 shape, creates itself through M3Class, is the OOSH language
+held(c) names the HELD facts, translated(c) the TRANSLATION facts — none of them rendered
+holds for EVERY class of the real catalog (+ the placed M1Catalog): folder namespace == stored namespace, ALL segments, zero exemptions
+import-uuid determinism on the PROD surface: every OOSH unit that HAS imports gets a derived (deterministic) uuid — the REAL scripts plus the checked-in greeter as a guaranteed-non-empty guard (never hollow; a real script gaining imports is auto-covered)
+in a CLASS (not an interface) an end is a field: parent = undefined, children = []; an end the class implements by its OWN accessor is that accessor
+in-repo scratch: anything beyond the live caches is counted, a DEAD run-<pid> too; the live run-<pid> is not
+inc 2 gate is failable: REAL seed files with each static builtin form (node: AND bare) are SEEN; a dynamic import is not (seed -> RED, revert -> GREEN)
+inert without its environment: no log, no root -> the child is untouched (a normal run never carries it)
+init() sets the model, marks initialized, and returns this (spec §3)
+instantiates an M2 attribute with its model (generic construction, no ctor args)
+into ITSELF, into a NON-component, and into its own sub-component (a cycle) all THROW
+invariance: a SOURCE-only change (an edited MOF class declaration + a stray MOF file) leaves all three renders byte-identical
+is SHA-1(seed) laid out as a uuid — checked against node:crypto, independently
+is a Unit (spec/ucp.md): Model extends Unit extends Interface, and a unit enforces its uuid
+is abstract with a parameterless constructor; {} is the empty model before init(), typed Partial<Model> (spec §3)
+is failable (B/C/F/A): each seeded layout defect is caught by its NAMED arm, on a copy of the committed component tree
+is failable (E): a wrong-but-self-consistent namespace is caught by lineage, in every direction
+is failable (G1): a source read inside the placement window is SEEN whatever its spelling (seed -> RED)
+is failable (S-a, spec-12 AC5): a non-sanctioned MODULE LOAD of a source file is SEEN by the load hook — whatever the file, even a sanctioned one outside its call site
+is failable (spec-12 AC5, 5b chunk C): a model file loaded OUTSIDE M1Catalog.load, and a cache-busted SECOND instance INSIDE a sanctioned window, are REPORTED — each by its NAMED guard
+is failable BEYOND the old extension list: a claim seeded in a .sh and a .env is FOUND (the old list could not see them); a binary carrying the token is SKIPPED as binary; revert -> GREEN
+is failable by INJECTION: the import gate SEES a seeded /M2/ import in a scratch source, and nothing in the same source without it
+is failable through the SAME comparator: a digest that is wrong only past the 55-byte padding boundary is caught
+is failable through the SAME guard: a type error seeded into a copy of real src/ OR real test/ is RED and NAMED; restored, GREEN
+is failable through the SKIP arm: a TEXT file with ONE NUL byte carrying a claim is an UNEXPECTED skip (the claim scan cannot see it) -> RED via the skipped-set literal; revert -> GREEN
+is failable: ADDING a realization to a model produces a new <|.. edge in the graph (seed -> RED)
+is failable: DefaultFile implements File / DefaultFolder implements Folder — dropping the realization changes the rendering (seed -> RED)
+is failable: File is a Thinglish INTERFACE — seeding its model to a concrete class flips its file kind (seed -> RED)
+is failable: Package is a Folder THROUGH UcpComponent — dropping its generalization changes the rendering (seed -> RED)
+is failable: a FILTERING children getter (the pre-2026-09-30 Package/NpmPackage shape) is REPORTED (seed -> RED)
+is failable: a LIVE children getter (the 7a7304c shape: 
+is failable: a MISSING implements edge no longer renders + drifts from truth (seed -> RED)
+is failable: a MOF class DROPPED from the model, an EXTRA MOF edge, and a modelled instanceOf each change the diagram (seed -> RED)
+is failable: a MOF module that throws under plain node is SEEN and named (seed -> RED)
+is failable: a STALE view (not the model\
+is failable: a changed attribute no longer matches disk
+is failable: a class whose model was never attached answers type() undefined, and the catalog REPORTS it
+is failable: a content-IDENTICAL rewrite is invisible to git status yet caught by inode/mtime (seed -> RED)
+is failable: a drift in the JSON state, in the header, or in the text form is SEEN (seed -> RED)
+is failable: a dropped 
+is failable: a dropped EXTENDS edge with the node KEPT no longer renders (seed -> RED)
+is failable: a dropped EXTENDS edge with the node KEPT no longer renders + drifts (seed -> RED)
+is failable: a dropped NODE removes it and its edge from the focused rendering (seed -> RED)
+is failable: a dropped node or edge is missing from the rendering
+is failable: a leaf whose runtime binding names the WRONG model class builds the wrong model — the declaration IS the truth the framework reads
+is failable: a lossy toJSON (dropping a key) breaks the round trip; a JSON with a foreign key is rejected by tsc (AC1 above) not by the runtime
+is failable: a model LEFT BEHIND by its moving component (the I5 hole: ObjectKey moves OUT of Ior, ObjectKeyModel still Web4MDA.Ior) is RED
+is failable: a raw dynamic import, a static import and a bare fs import are SEEN; a modelled body string and a comment are not (seed -> RED)
+is failable: a relationship built from a foreign model is not a containment
+is failable: a sample folder with the readme.md child dropped renders WITHOUT it (seed -> RED)
+is failable: a script that writes to the WRONG path shows up as not-committed output and an orphaned committed file
+is failable: a second file and a subfolder appear as more objects and links; an emptied folder renders none
+is failable: a seeded --flag variant in generated OOSH breaks the no-flag assertion
+is failable: a seeded 1..n end renders as many and required
+is failable: a seeded CLAIM (in a source and in a generated copy) is FOUND, and a removed guard is SEEN (seed -> RED)
+is failable: a seeded interface shows up in implements (both dialects) and in the diagram
+is failable: a seeded per-class entry method, a seeded literal name list and a seeded defined() slot are each SEEN (seed -> RED)
+is failable: a shared unit whose rule-6 Package CHANGES but whose namespace keeps the old Package segment is RED (seed: ObjectKey + its model moved INTO M2OoshClass, which thereby becomes a Package — the sole user of NameUuid)
+is failable: a source read inside the render window is SEEN whatever its spelling or import path (seed -> RED)
+is failable: a stale committed generated file — the real pipeline rewrites it, so the tree is not what was committed → RED
+is failable: a step removed from the 
+is failable: a step that EXITS NON-ZERO mid-chain fails the whole pipeline (seed -> RED)
+is failable: a test file that spawns directly — in ANY spelling — is SEEN; a mention outside a test folder is not (seed -> RED)
+is failable: a wrong KIND (class rendered as interface) is caught (seed -> RED)
+is failable: attributes after methods (declared-order violation) is caught (seed -> RED)
+is failable: both scans go RED on a seeded link call, a Store type, a sync call and a linkTo member — and NOT on the doc sentence
+is failable: committed-vs-model DRIFT is detected (seed -> RED)
+is failable: committed-vs-regenerated DRIFT is detected (seed -> RED)
+is failable: committed-vs-rendered DRIFT is detected (seed -> RED)
+is failable: dropping a generalization empties the superclass getter AND the TS rendering loses extends (seed -> RED)
+is failable: dropping the Folder realization from UcpComponent removes Folder from the rendered implements; a seeded extra realization appears
+is failable: each scan goes RED on its seeded shape — a sync call, a non-promises fs import, a static node: import — and NOT on a comment
+is failable: focusing elsewhere or dropping an implements changes the closure
+is failable: lists exactly the tests vitest marked slow, named with file + duration — never a fast one
+is failable: names every violation of a bad class
+is failable: removing the ONE stored fact removes BOTH navigations (seed -> RED); a stale reverse pair is SEEN
+is failable: the OLD rule (every Package unit at the Package root) is RED for exactly the Package units with lower namespace segments — M3Element among them
+is failable: the exact-match gate catches an uncatalogued src class AND a dropped catalog entry
+is failable: the focus FILTER is real — machinery/models in the full model are EXCLUDED from the focus (not vacuous)
+is failable: the guard catches a server Welcome page, passes a real svg (server-independent)
+is failable: the import reader flags every import SHAPE of fs and nothing that is only TEXT
+is failable: the no-types check catches a TypeScript type annotation, passes clean ES2020
+is failable: the predicates go RED on a lossy JSON (references dropped) and on a live view
+is failable: the same predicates go RED on a seeded old in-Version placement and on a dropped component
+is failable: the v4-uuid gate rejects a unit stripped of its uuid, accepts a real one
+is failable: tsc (the gate instrument) FAILS on a .ts referencing an unknown type
+is failable: under the real config an unbudgeted over-default test times out, named; a budgeted one passes — and the child EXITED
+is failable: uuid/name NOT first is caught (seed -> RED)
+is failable: with the resolution seeded to find nothing, the launcher prints the last resort and exits 1 (proven on the current node)
+is not initialized after construction; its model is the empty JSON {} (spec §3)
+is the closure of Web4MDA plus the interface family: exactly 12 nodes, 15 edges, from the model (Tree = TreeNode, Container retired; File a Tree leaf; UcpUnit extends File; Process = the layer-4 marker, spec 12 inc 3)
+isScratch: exactly the folder (a descending walker prunes there; no alias exists), never a look-alike, never a path INSIDE a scratch copy
+its JSON is tag, port, TLS-required — the form the scenario unit carries next to the IOR string
+linkTo
+list(): a recursive listing that never DESCENDS into a scratch folder; a flat recursive readdir would (seed -> RED)
+lists exactly the M1 classes that exist as files in src/, RECURSIVELY, exempting only src/MOF/M1/M1Catalog.ts (measured on disk; eamd-ucp AC1, Tron d2cf919)
+mkdirSync(
+move(X -> out of Ior) changes exactly X\
+moves the held sources, removes the emptied folder, re-points moved + dependant import lines (bodies untouched); a second run is a no-move; the round trip restores every held file
+named views: Package.components = its sub-components (not its Versions); NpmPackage.dependencies is its OWN relationship, never in children
+names are unique per parent REGARDLESS of kind: a same-named non-Namespace sibling is a NAMED error, never a 2nd sibling
+no error is SWALLOWED: missing read/remove/list/write reject ENOENT, exists() rethrows ENOTDIR, a failed writeAtomic rejects and cleans its temp — production classes
+no src file (derived walk, comments + strings stripped) reaches for a link API, a shell ln, a store/synchroniser type or a sync call — EXCEPT the spec 13 §4 declarations (exact allowance, both ways)
+node22 launcher — npm run <anything> simply WORKS from a plain shell, whatever the ambient node (Tron: 
+non-vacuous: owned models exist, including the IOR ones
+non-vacuous: the mechanism EXISTS — an in-hand edit of the stored model is SEEN by a fresh catalog in-process
+nothing is skipped or re-budgeted by the grouping: the derived 8500 ms default stands (oopPO 2026-10-06)
+npm stays INSIDE (plan H4(a)): the bootstrap npmCache AND the repo-root .npmrc cache= equal M1Catalog.scratchNpmCache; both switch the update-notifier off
+only POST: GET, PUT and a CORS preflight OPTIONS are REFUSED; nothing is written
+packagedIn is not a relationship kind, not a grammar keyword, and no class carries it — read from the MODEL, never a source grep
+parses the REAL odocker + oo faithfully (skipped if /root/oosh is absent)
+passes a class with the spec §3 shape
+path and breadcrumb are derived from the parent chain; a root is its own name
+placement is DERIVED from the namespace: a sub-component hangs beside the container\
+plan d729ecd I4 FOUNDATION — every model source is a PURE FUNCTION of its JSON state: render(load(D)) == D (oopPO C1+C2)
+plan d729ecd I4 — UcpComponent.move(target): a PURE STATE CHANGE of the model JSON, realised by generate
+plan d729ecd I4 — move() guards and the rule-8 assertion are FAILABLE (seeded, in process, nothing written)
+re-emits the raw JSON it was given, byte-identical (key order included)
+render(load(D)) is BYTE-IDENTICAL to D for every Definition (counted by git, not by the walk)
+renders a class diagram to SVG on the configured server (skipped when no server is reachable)
+renders each created M1 class to the source that exists on disk (modulo comments/blank lines)
+renders every existing M1 class as a Mermaid classDiagram carrying its uuid
+renders every existing M1 class as a PlantUML class diagram carrying its uuid
+renders the folder, the md DefaultFile, and the children containment link
+reports an unreachable server as not reachable and throws on svg()
+reproduce-consistency is FAILABLE: a DROPPED or ALTERED committed file is detected (seed -> RED)
+reproduce-consistency: committed layout oosh == regenerated (closes the e822a9f drop)
+round trip (the repo contract, spec/model-json.md): init(m.toJSON()) rebuilds references as RelationshipModel; a unit rebuilt from its model keeps uuid + references
+round trip on a temp root: create / write / read / exists / writeAtomic / list / remove — production classes
+round-trip is FAILABLE: a dropped method in the text yields a different model (seed -> RED)
+round-trip: parse(generate(parse(x))) == parse(x) WITH uuids (deterministic, option C) for real odocker + oo
+rule 4 (amended): a LEGACY untyped instance string parses UNTYPED — no type invented — and round-trips byte-identical
+rule 4: a typed instance IOR carries its type (RepositoryId) AND its uuid, and round-trips byte-identical
+rule 4: an IOR CONSTRUCTED with a type emits the typed instance form
+rule 5 is failable: the NAMESPACE in the model moves the folder — a seeded Web4MDA.MOF.M9 relocates the component, the src path does not
+rule 5 — the namespace is a MODEL field: a namespace that IS the package root places the class in the package, never under MOF (I4c: never empty, so the root replaces the old empty form)
+rule 5: a process that NEVER loads gets classes() -> THROW (exit 1, the message); a loaded control exits 0 (through Child, the sanctioned spawner)
+rule 5: several profiles = one object at several endpoints — the address list round-trips, one InternetProfile each, ONE shared key
+rule 6 picks ONLY the Package segment: every Package unit\
+rule 6: tagged components serialize NEXT TO the IOR string — SecureTransport survives, an unknown tag is preserved, none = nothing emitted
+rule 8 — ImportModel carries a CLASS reference, never a stored path: no catalogued import has a path-like declaredBy
+solo runs FIRST and one file at a time; the pool runs AFTER it and excludes every solo file
+spec + README stay TRUE by construction (doc-rot gate — derived from disk, never a hard list)
+spec 12 AC1 · 51eb30b · NodeJS file units do I/O through methods on their DERIVED path (oopTester)
+spec 12 AC1 · 51eb30b · no SYNC fallback, browser purity (oopTester)
+spec 12 AC1 · 51eb30b · the GENERATED JS executes the same (oopTester)
+spec 12 AC2 · 57927eb · NO node:fs import outside NodeJSFile / NodeJSFolder (oopTester)
+spec 12 AC5 (inc 5b B2): for EVERY catalogued class of EVERY component (derived from the loaded catalog), the committed src equals the TypeScript its model source generates, modulo imports
+spec 12 AC5 .resolving(catalog) is NOT a weakening (oopTester I6, independent): a class WITHOUT reference ends renders byte-identical bare vs resolving; for EVERY model WITH resolved ends the resolving render reproduces its src and a hand-edit OR a removed getter seeded into a COPY of that src is RED
+spec 12 AC5 is failable: a HAND-EDIT seeded into a committed src (a copy — never the served tree) no longer equals its model\
+spec 12 AC6 · nothing reads gen/ (runtime, per pipeline step) — and the held TypeScript is never mirrored into it
+spec 12 AC6 · nothing reads {G} (runtime, per pipeline step) — and the held TypeScript is never mirrored into it
+spec 12 inc 6 · no text outside spec/ places output in the retired generated tree (exact allowance, derived scan)
+spec 14 I2 — the JSON is UNCHANGED: from(json).toJSON() equals the source JSON exactly, links and copies in their string form
+spec-11 inc-3 (M3, M1, M2): EVERY src/MOF/M1|M2|M3 file equals the TypeScript its catalog entry generates, modulo imports — the whole MOF is reproduced, the catalog is the source; the ONE exemption is src/MOF/M1/M1Catalog.ts (Tron d2cf919)
+spec/component-model.md AC1 (inc 1) — DefaultFile/DefaultFolder = the layer-2 contract; NodeJSFile/NodeJSFolder implement it over fs/promises
+spec/component-model.md AC2 (inc 2) — every file I/O routes through the file units: node:fs ONLY in NodeJSFile/NodeJSFolder
+spec/model-json.md AC5–AC7 — the generator enforces the init({ … }) style, prettified; defaults are central
+spec/model-json.md AC6 · key-order FAILABILITY (oopTester): the order-check catches a violation
+spec/model-json.md R1–R5 — the framework carries the boilerplate (Tron, 2026-09-21)
+spec/model-json.md · re-gate FAILABILITY arms (oopTester)
+spec/model-json.md — toJSON() + typed init() on every Model (Tron; spec owned by oopPO)
+spec/mof-self.md AC1 — no factories, by the HAZARD: every src class loaded at runtime has NO own static create/instantiate and no prototype instantiate
+spec/mof-self.md AC5 — MOF in the layout, placed by the MODEL namespace (rule 5)
+spec/mof-self.md inc 2 (bootstrap AC4 WIDENED): NO src file — MOF included — has a STATIC import of a node builtin (node:x OR bare, from module.builtinModules); node capability is a dynamic import
+spec/ucp.md T1–T6 — Tree = TreeNode, File a non-unit leaf, UcpUnit extends File (Tron 2026-09-30)
+spec/ucp.md T5.4 — a unit TRACKS its references in its MODEL; Unit exposes references (properties only: no store, no ln, no sync)
+splits abstract and concrete classes — the PARTITION LAW against the flags of every model, never a pinned list (INC-1b)
+src/ (derived walk): the files that import node:fs are EXACTLY the two NodeJS units — and M1Catalog\
+src/ AND test/ are TYPE-CHECKED — tsc --noEmit (oopTester, oopPO queue 2026-09-29 #1, widened to test/)
+start() does nothing when imported (not the entry point)
+start() passes NO list: generate is called with names undefined, so the attempt set is the model attribute (seed: a hard-coded list -> RED)
+start() runs the chain when this module is the entry point, and exposes it as Web4MDA.running — without writing the repo
+start() sets no chain running when this module is NOT the entry point (the guard is the only path)
+static parse(text) builds the typed parts and round-trips both SC4 forms both ways
+static parse(text) rejects malformed text with a NAMED error, one defect each
+static: the Generated helper has NO default root — every reader of generated output names the tree it reads (seed -> RED)
+synthetic unit is present (checked in — not hostage to /root/oosh)
+test budget — a test over the DEFAULT (8.5s) WITHOUT an explicit timeout is RED, named (the DERIVED rule, vitest.config.ts)
+the CONTRACT classes refuse every operation with a named error (DefaultFile / DefaultFolder hold no I/O)
+the CONTRACT refuses I/O loudly (a named rejection, never a silent no-op); file()/folder() are tree operations of the contract
+the DERIVED lists are non-vacuous and cover what the brief names: concrete models ⊇ the 7 throwers, reference ends span the 8 referring models
+the GENERATED JavaScript executes it: layout js NodeShell + RelationshipModel refuse a wrong kind, track frozen snapshots, serialise
+the GENERATED JavaScript executes the contract: layout js NodeJSFolder/NodeJSFile round-trip on a temp root
+the GENERATED surface (js, thinglish.ts, thinglish.js — derived walk; ts is the components\
+the Interface marker declares that it implements nothing and binds nothing (a root declaration, not super inspection)
+the M3 reproduce gate is failable: a DRIFT seeded into one M3 catalog entry no longer matches its src file (seed -> RED)
+the MOF diagram is produced from the MODEL: a MOF class present only in a catalog (not on disk) IS a node — the producer never looks at src/
+the MOF reproduce gate is failable at M1 AND M2 too: a DRIFT seeded into one method body of an M1 and an M2 entry no longer matches its src file (seed -> RED)
+the NodeJS units (src + generated JS) make NO sync fs call and import only node:fs/promises — dynamically, never statically
+the OLD in-Version placement is absent: no 
+the ORDERING is a contract rule: main() regenerates package.json BEFORE install, so the dependency UNITS are what gets installed
+the PLACED unit is ONE node marked <<placed>>, drawn from catalog.placedModel() — never from its source (a renamed placed MODEL renames the node)
+the Package folder is found (exactly one) and holds its own Version 
+the PlantUML carries every node with its kind and generics, and every edge
+the SAME attribute model renders differently in every language (same uuid, different syntax)
+the TEST code is type-checked: tsc -p tsconfig.test.json (oopTester, oopPO ruling 2026-10-05)
+the TypeScript rendering is the components\
+the URL allowance is http/https WITH A HOST ONLY: a file: URL or a host-less https:///x is a filesystem path — RED (oopTester finding A, oopPO inc-3)
+the Unit API surface (Unit, UcpUnit, ModelUnit, RelationshipModel prototypes) has 
+the attachment is complete for every COMPONENT once its code is loaded; and rule 6 holds: every component file ends with X.start();
+the browser JS gate is failable: a JS parser REDs every TS residue the M1/M2 bodies carried, and stays GREEN on the same words as data (seed -> RED)
+the catalog gate for cumulative implements/typeArguments: every declaring class with a superclass has an ancestor that declares (root Interface — UcpUnit reaches it through File → Tree)
+the committed artifacts ARE what the sample renders: puml, the md file on disk, and a real svg (visible skip)
+the committed generated oosh folder (derived) EQUALS the declared sources of M2OoshClass; a divergence either way is RED (seeded on copies)
+the committed layout puml Web4MDA-graph.puml IS what the model renders (reproduce, model-generated)
+the committed layout puml Web4MDA-interfaces.puml IS what the model renders; the full graph is untouched and separate
+the committed layout puml Web4MDA-sample.puml IS what the model renders (reproduce)
+the committed puml of BOTH diagrams IS what the model renders (reproduce), and each svg is a real rendering (skipped visibly without a server)
+the committed svg is a real rendering (skipped visibly without a PlantUML server)
+the committed svg is a real rendering of it (skipped visibly without a PlantUML server)
+the component tree holds exactly the derived MOF components per <Mx> folder, and gen/ is retired (spec 12 inc 6 C4)
+the component tree holds exactly the derived MOF components per <Mx> folder, and {G} is retired (spec 12 inc 6 C4)
+the copy skips the scratch folder; a plain recursive copy would carry it (seed -> RED)
+the coupling check is FAILABLE: a value import, a dynamic import, and catalog use inside type() are RED; a type-only import is GREEN
+the declared semantic edge — exists() tolerates ENOENT only — keeps the real caller working: NodeShell.exists answers false for a missing path, true for node_modules
+the dependency end IS the stored fact: per class, the declaring classes of its imports, each once, never itself
+the derived script list is non-vacuous and covers the scripts the brief names
+the dotted namespace is DERIVED from the breadcrumb, never stored: re-parenting under another Namespace changes it
+the exempt placed unit (M1Catalog) owns NO unit — and a unit used ONLY by M1Catalog stays in the Package (seeded in the MODEL)
+the extension slot exists and is abstract: a TaggedComponent is never constructed directly
+the file-unit contract gains link(target) / copyTo(target) (spec/scenario.md §4, spec 13 S3)
+the filesystem tree: a DefaultFolder holds DefaultFiles and sub-folders in ONE children collection
+the fixture config selects ONLY the fixture — never the suite (no child run can spawn itself again)
+the focused M2AbstractClass diagram is its superclass CHAIN to UcpComponent<ClassModel> — derived from the model, the binding shown
+the found set EQUALS the exact allowance — the guards only; every claim was fixed at its source
+the jail root IS this repository — otherwise every arm below is confounded
+the layout is DERIVED from the model (plan 2026-10-03): nothing inlined, EVERY model an interface, one shown type per class
+the layout rule is failable: it follows the SUPERCLASS chain, never a name — an owner stays a class, the same class re-parented under a model becomes an interface
+the link guard is FAILABLE, read-only (oopPO ruling condition d): with confine() seeded away the escape is no longer refused BY ITS NAMED reason; restored, it is
+the literal init(m.toJSON()) is NOT an oracle: it hands back the SAME live instance (no serialization boundary crossed)
+the measured dependants of the plan hold (d729ecd baseline): Ior <- ScenarioUnit, Link; InternetProfile <- ScenarioIndexModel
+the mirror gate is failable: a drifted bootstrap target or alias, a missing .gitignore line, a missing tsconfig exclude are each SEEN (seed -> RED)
+the model admits named siblings (a semver tag) beside latest
+the model draws the new chain — Tree <|-- File, File <|-- Folder, File <|-- UcpUnit, Unit <|.. UcpUnit, UcpUnit <|-- UcpComponent
+the model is faithful to its OUTPUT: each modelled class declaration on disk says what the model says (a gate may read the prod surface; the producer may not)
+the namespace IS the location (ONE fact): relative, rooted at the package, nested containers resolve; empty, unrooted or inconsistent is a named error
+the next generate REALISES the move; move(X -> back) + generate returns the tree BYTE-IDENTICAL (round trip)
+the npm mirror gate is failable: a drifted bootstrap npmCache, an env that drops it, a drifted or missing .npmrc cache=, a notifier left on are each SEEN (seed -> RED)
+the object diagram carries both objects with their unit fields and the containment link
+the observer\
+the package graph, the whole MOF and the M2AbstractClass chain render with EVERY fs read API trapped — zero reads
+the parsed Target table is populated and places every moved unit (never a hollow green on an empty parse)
+the pure SHA-1 equals node:crypto on every input — empty, every length 0..200 across the padding boundaries, unicode, surrogates, random
+the real catalog obeys both (positive, ground truth)
+the real config RUNS the report: SlowReport is one of its reporters
+the real pipeline runs green, PRINTS every committed generated file (every artifact is produced), and reproduces them byte for byte — in a SCRATCH copy, never the repo root (AC2b b)
+the real src/ compiles with ZERO type errors under the real tsconfig, and tsc compiled EVERY src/**/*.ts on disk (non-vacuous)
+the real test/ compiles with ZERO type errors too, and tsc compiled EVERY test/**/*.ts on disk (non-vacuous)
+the refusals happen BEFORE any fs touch and are failable in-process: every escape shape is named
+the roots oracle is failable: a NEW Definition with no generalization fact is a new root; a subclass and a file under src/ are not (seed -> SEEN)
+the rule lives in the REAL config: the default testTimeout is 8500 ms (derived, oopPO 2026-10-06)
+the same IORs WITHOUT tagged components serialize as before (the refusal is the hazard only)
+the same residual, second end (not named in the amendment, disclosed): a stored Version comes back as the declared Namespace
+the same seed is the same id, in every process; different seeds differ
+the scan walks NESTED data: a stored path inside an array of objects is SEEN (the 91 ImportModel.from hole) — RED
+the scanned set is DERIVED from ground truth: CHECKED + SKIPPED == TOTAL tracked (outside spec/); the SKIPPED set == the declared literal EXPECTED_SKIPPED; text beyond the old extension list IS checked
+the scratch root is DERIVED from the product constant and lies inside this repo: <Web4MDA>/latest/<scratchFolder>/
+the solo group is EXACTLY the marked files, and holds the measured hot ones (AC6 pair, catalog TS render)
+the spec 13 §4 allowance is failable: RED on a link/sync CALL in a body, a listed member doing real work, link in an UNLISTED class; GREEN on the declarations
+the targets are the M3 elements themselves, not literals: their names come from the elements
+the test files are IN the program (tsconfig.test.json does not inherit the base exclude of test/**) and it has 0 errors
+the three CORS-simple Content-Types — and none at all — are each REFUSED; the file is UNCHANGED
+the threshold is DERIVED in the real config: slowTestThreshold == testTimeout / 2
+the tree: parent is a relationship 0..1, children a collection 0..n — same uuid as their models, language-independent facts
+the unit\
+the view READS the model: what the model tracks is exactly what the unit exposes (a leaf unit and a component)
+thinglish.js: implements is a static getter of Interface classes, inherited; imports are values by kind
+thinglish.js: interface members throw, Interface is an empty marker, imports name the kind
+thinglish.ts · FAILABILITY (oopTester RANK-1): tsc genuinely rejects a type error
+thinglish.ts: the same files as .class.ts / .interface.ts, abstract members kept, implements typed and TYPE-CHECKED by tsc
+tsc: a model-less concrete UcpUnit does not compile (F1); Package.add rejects a leaf, accepts a component (F2)
+tsc: a valid program compiles; each seed (add on a leaf, File as a Unit, a plain File into a UcpComponent) is a type error
+tsc: model.references accepts an entry; unit.references.push is a type error
+type() consults NOTHING but the attached model, and UcpComponent has NO RUNTIME coupling to the catalog — move() may name it type-only (oopPO fork ruling, I4)
+typeArguments catalog vs runtime (the plan\
+ucp.md T6 (Tron 2026-09-30): children NEVER filtered · ONE attach path · named views
+under node 22 the launcher is a pass-through: the same artifacts, no re-exec message
+uses Helper
+uses the url of its model
+without a layout the qualified names come from the repository\
+without data, its JSON is just its tag
