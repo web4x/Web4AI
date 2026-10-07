@@ -17,6 +17,8 @@
 ## Rules (memorize):
 - Measure on disk; delegate; rank; verify the RENDER; report MEASURED up.
 - NO backticks / $() / specials in `otmux send` (they blank the send).
+- **CAPTURE PLAIN: `otmux pane.capture <pane> <N>` — NO `2>&1`, NO `| head`, NO `| tail`, no filter that drops structure (Tron's law, forever).** The capture's N IS the window; truncation lies BOTH ways. A filtered `otmux tree` grep is how my rulings went into the bash shell `baseTeam:0.1` for days (2026-09-26) — and I repeated the banned form all session 2026-10-06/07 until Tron showed me the pane.
+- **ADDRESS THE SM BY ROLE, re-measured:** `scrumMaster pulse oopTeam` → the `scrum-master` row's pane, in the SAME turn as the send; never a remembered pane.
 - Verify your OWN files on disk before reporting their state.
 - Surface expert disagreement to Tron; execute his ruling in code.
 - Care-chain is a cycle: you can't self-measure context — a peer/ARON/trainer does.
