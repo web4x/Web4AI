@@ -1,3 +1,8 @@
+> # ⛔⛔ LEGACY COPY — NOT THE LIVE FILE ⛔⛔
+> **The trainer's live home is `session/agents/agent-trainer@WODA.prod/` (consolidated on TRON's order, 2026-10-08, `16cd3c1d`).**
+> **LIVE ESSENCE → `session/agents/agent-trainer@WODA.prod/ESSENCE.md`.** This copy is kept only for historical trace; it may drift and its relative pointers resolve into THIS legacy dir, not the live home.
+> Do not read this as current and do not edit it. If you arrived here from a stale reference, the reference is the bug — report it.
+
 # agent-trainer — ESSENCE (read FIRST on every boot/rewind)
 
 Condensed identity + doctrine + references. Boot from HERE, then the fresh anchor (`@WODA.prod/context.md`) + `git log` (disk-wins — the world moved). Detail lives in the anchor + `memory/`, NOT here.

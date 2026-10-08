@@ -1,3 +1,8 @@
+> # ⛔⛔ LEGACY COPY — NOT THE LIVE BOOT ⛔⛔
+> **The trainer's live home is `session/agents/agent-trainer@WODA.prod/` (consolidated on TRON's order, 2026-10-08, `16cd3c1d`).**
+> **LIVE BOOT → `session/agents/agent-trainer@WODA.prod/boot.md`**, whose header declares the home and lists every file. This copy is kept only for historical trace, has **no pointer to the live anchor** (the gap that let a rewound trainer read the 2026-07-03 ghost), and must not be booted from.
+> Do not read this as current and do not edit it. If you arrived here from a stale reference, the reference is the bug — report it.
+
 # agent-trainer — Boot
 
 *TIMELESS boot (R113 shape: verify-identity + timeless role + anchor POINTER, zero state — all current state lives in `agent-trainer@<verified-host>/context.md`, refreshed each save). NO hardcoded pane/host/uuid — a stale value inherited across a rewind makes continuity lie. Carry the commands to verify, not the answers.*
