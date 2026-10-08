@@ -1,0 +1,22 @@
+# R3-END — s3 verify + my R3-END rewrites — Web4MDA b90189a3 → 9a6e2fa3
+
+oopTester@WODA.prod (914c8cad), 2026-10-08. Order: oopPO R3-END window (b90189a3 = origin, porcelain 0, oopExpert stopped, no other writer). Seeds/probes/flips ONLY in an isolated copy (`git archive` → `Web4MDA/latest/test/gen/r3end-iso`, node_modules symlinked, seeds restored from git objects, copy removed after; scripts `gen/r3end-seed.sh`, `gen/r3end-seed2.sh`, `gen/r3end-rewrite.py`). Shared tree written ONLY by my two test files, committed 9a6e2fa3.
+
+**CHECKED 12 / SKIPPED 0 / TOTAL 12 — 11 GREEN, 1 PARTIAL (F4: one s3 seed is RED by crash, not by name).**
+
+| # | claim | result |
+|---|---|---|
+| 1 | s3 cond (1): link set DERIVED by target class, never by end name | **GREEN** — `links = new Set(['Link', ...subclassesOf('Link')])`, classified per end by `links.has(e.target)`. |
+| 2 | s3 cond (2): ONE derivation, THREE disjoint sets; arm (c) assertions byte-identical | **GREEN** — s3 diff on ReferencesByIor: arm (c)'s only change is its two filter lines `!k.family` → `!k.family && !k.link`; no assertion line touched. |
+| 3 | s3 cond (3): new arm guards itself | **GREEN** — asserts link set non-empty, every end in exactly one of A/link/B, and A + link + B == all ends. |
+| 4 | s3 cond (4) seeds: a link stored as its unit IOR / as a non-canonical string → RED by name | **PARTIAL.** Seed A (Link.toReference → `String(this.ownIor)`, in LinkDefinition.ts + Link.class.ts + Link.ts) → A3 arm RED **naming `ScenarioUnitModel.links`** on write AND read; all other arms green. Seed B (`toString() + '/'`) → A3 arm RED but **by a thrown `IorParseError: missing uuid — '…/'` from `ScenarioUnitModel.init`**, which aborts the arm: the end is not named and the remaining link texts are not checked. **F4 (minor, oopExpert's arm):** wrap the A3 read per end like arm (b) (`decayed.push(\`${e.model}.${e.name}: ${message}\`)` — "a refusal is listed BY NAME, never aborts the arm"). Detection holds today (1 link end); naming + completeness break with several. |
+| 5 | LinkModel.folder STAYS case B | **GREEN** — probe in the copy: link = `[ScenarioUnitModel.links]`, case B = `[LinkModel.folder]`, case A = 12. |
+| 6 | s3 cond (5): A3 spec on origin with/before s3 | **GREEN** — 1d74361b is an ancestor of origin/main and precedes b90189a3. |
+| 7 | ScenarioUnit SC4 strings byte-identical | **GREEN** — A3 arm asserts write == canonical text and `String(read) === text` for a path AND an IOR; IorAcceptance IOR3 (every SC4 component + instance string round-trips byte-identical, non-vacuous) green in both full runs. |
+| 8 | R3-END rewrites POSITIVE, each RED-proven | **GREEN** — TR `init(m.toJSON()) IS an oracle now` (seed: Ior.toReference → live instance → RED); RP `every reference end is resolved by the catalog` re-asserts ALL 14 ends in 8 models, abstract ends an EXACT fail-closed list `[TaggedProfileModel.components → TaggedComponent]` (seed: referenceEnds several-subclasses branch → refusal string → RED); RP `several concrete subclasses → the EXACT subclass on both paths, never the sibling` and RP `stored Version comes back as VERSION on both paths` (seed: class tag dropped → both RED). Each seed REDs exactly its target(s), everything else green; restored (0 markers). Measured map before writing: 13 ends concrete + 1 abstract, no refusals. |
+| 9 | RP holds-units refused RETIRED as SUBSUMED | **DONE** — test removed, replaced by a comment citing ReferencesByIor arm (a) + its predicate seed (a stored `{model, initialized, heldUnits}` is RED), per oopPO's F1 ruling. |
+| 10 | COUNT 9 → 4, commit-scoped | **GREEN** — `git grep -c 'it\.fails(' 9a6e2fa3` = **4**. |
+| 11 | the 4 remaining R4-tagged it.fails each fail ON ITS ASSERTION | **GREEN** — flipped in the copy: 4 failed / 19 passed; c-read `expected ['LinkModel.folder'] to deeply equal []`, AC12 canaries `RepositoryIdModel.namespace <- Version: came back Version`, NodeJSFolder canary `declared class: expected false to be true`, SET references `did NOT refuse components`. All AssertionError. |
+| 12 | full suite TWICE, porcelain identical | **GREEN** — both runs: 98/98 files, 742 = 736 passed / 4 expected-fail / 2 skipped, exit 0; porcelain md5 a2d5f8ff before, between and after (= my 2 uncommitted files; 0 after commit). 742 = 743 at b90189a3 (s3 added the A3 arm) − 1 retired. |
+
+**it.fails trajectory (commit-scoped):** s0 4 → s1 7 → s2 9 → s3 9 → **R3-END 4** → R4 0 (c-read, TR SET references, TR AC12 canaries, RP NodeJSFolder canary).
