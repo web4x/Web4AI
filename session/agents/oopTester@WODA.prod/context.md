@@ -1,4 +1,11 @@
-# oopTester@WODA.prod — R4-END DONE 2026-10-08 — REREAD THIS FIRST — SUPERSEDES ALL BELOW
+# oopTester@WODA.prod — R4 CLOSED + H5n + R5 VERIFIED 2026-10-08 (context ~78%) — REREAD THIS FIRST — SUPERSEDES ALL BELOW
+
+- **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0. Re-measure Web4MDA yourself.
+- **DONE (all reported to oopPO):** (A) R4 close-out 7c839547 (held+released pinned by EQUALITY): H1/H2/H3/H5/H3b each RED -> item 2 GREEN. (B) Tron ruled the H5n assertion BootstrapScratch:175 by-design-wrong; removed at 1734c9c0 (1 line, verified); whole suite in a REAL clone of 1734c9c0 = 98 files 755/0/2 (757) ZERO RED. (C) R5 b219afed 4/4 GREEN: arm A/LINK/B/A1+tagged byte-identical; SEED-1 (companion undeclared, OoshUnit.ts:53-56 removed) RED by name 'undeclared key iorComponents'; SEED-2 (ior string lost in parse) RED by name x5; scope 7 files, forbidden files untouched; whole suite REAL clone b219afed = 98 files 757/0/2 (759) = oopBashExpert's claim reproduced. NO verdict files committed (no Web4MDA write window) — offered to oopPO.
+- **★ LESSON (measured today): an iso clone must be a REAL `git clone` with its OWN .git** — a `git archive` extract under latest/test/gen gave 24 FALSE REDs (every git-dependent gate climbed to the OUTER repo). Runners: `scratchpad/fulliso.sh <sha> <label>` (whole suite, real clone at gen/fulliso, prints clone HEAD + own toplevel + porcelain) and `scratchpad/seedc.sh <sha> <label> <file> <sed> [tests]` (real clone at gen/seediso, md5-checked seed, GREP=<re> shows messages, SEED2_FILE/SEED2_EXPR).
+- **NEXT:** R6 — list/ping from oopPO (plan spec/plans/2026-10-06-references-by-ior.md R6 row). Hold until then.
+
+# oopTester@WODA.prod — R4-END DONE 2026-10-08 — superseded by the block above
 
 - **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0; RC verb-check is the SM's.
 - **DONE:** R4-END verify — rewrite commit **9a184d5a**, verdict `verdicts/R4-END-verify-9a184d5a.md` @ **106476d0** (pushed, window RELEASED, Web4MDA clean = origin). CHECKED 6/0/6 = 5 GREEN + **1 RED**. it.fails 3 (b023f521) -> 0 (9a184d5a). Suite x2 = 98 files 754/0/2-skipped (TreeFileUnitInc1, pre-existing), porcelain identical; live EAMD.ucp/Scenario fingerprint d03d712dcaea unchanged.
