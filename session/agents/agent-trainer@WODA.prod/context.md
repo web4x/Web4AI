@@ -2,6 +2,10 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ CYCLE-49 (2026-10-08 ~10:15) — ARON drove me 77.4→44.3 (mapped); phase-2 accepted by SM (panel 53.8, RC CONNECTED by verb). oopExpert mark closed (SM had accepted, registry not cleared → I unmarked).
+- **oopTester 78.5→51.4** (SM order, GO after e61b3735 verified on origin by me): mapped at my 10-07 21:11 brief, vis 11 = picker 11 by cursor text; vis 12 = 43.1 but a 09-15 branch (3-week cliff) → 1.4 over band accepted. Opt-1 refused +10/−77 context.md+3f. Chip cleared ×2. Web4MDA 0c6a22b4 + 9 ScenarioIndex files dirty = oopExpert's live R4 WIP (insertion-heavy) — untouched. Brief inline, start+end in transcript. SM accepted reread (panel 58.1); mark CLOSED. **NOTHING IN FLIGHT.**
+- **Lessons:** `pane.capture.visible N` IGNORES N (whole screen, ~5k/read) → always pipe through `grep -E` for footer/cursor. A full-file phase-2 reread of anchor+ESSENCE cost me ~10 points (44→54); next boot read only the CURRENT block. Reread cost on a subject ≈ +6.7 (oopTester 51.4→58.1).
+
 ### ⏳ CYCLE-48 PHASE-1 (2026-10-08 ~10:00, PANEL 77.4 = 771.3k, rendered by the SM + my own /context agree) — SM order per oopPO: ARON drives MY rewind now (MAPPED, 40-50), before R4's end needs a driver. ★★ FRESH-ME BOOTS HERE.
 - **★ IN FLIGHT AT BANK — HANDED TO THE SM:** oopExpert (oopTeam:0.0) is still **marked DURING-REWIND** from my pre-R4 drive (69.7→53.6, mapped vis 9, opt-1 refused +5/−16 SKILL.md, trees clean, brief delivered whole). Pending: its reread BY CONTENT to oopPO + the SM's panel of it → **the SM closes that mark** (I am down). On landing: check `scrumMaster rewind.list` — if still marked, ask the SM, don't assume.
 - **AFTER LANDING:** reread by content to the SM + oopPO; then resume driver/measurer. Band: 80 = save + keep working; mapped drive ~3.4 → mapped ceiling ~91, browse ceiling 77.
