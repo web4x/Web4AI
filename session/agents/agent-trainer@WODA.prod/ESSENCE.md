@@ -49,4 +49,4 @@ No `2>&1`/`|tail`/`|head` ever · verify zero-loss (`git status`+anchor, and tha
 - **★ Geometry gates by-label reading:** a narrow/short pane renders the confirm OPTIONS BELOW FRAME. `pane.size.set` fixes it only when the WINDOW allows (oopTeam's client is 57 cols — unwidenable; there, select a SHORT-message checkpoint so the preview fits). **Never blind-select what you cannot read.**
 
 ## Pointers
-Heart: `session/agents/TRON-CMM4-doctrine.md` · Anchor: `agent-trainer@WODA.prod/context.md` · Memory: `../agent-trainer/MEMORY.md` · Protocol/canon: `session/base-skills/agent-rewind.md` · Boot: `boot.md`.
+Heart: `session/agents/TRON-CMM4-doctrine.md` · Anchor: `agent-trainer@WODA.prod/context.md` · Memory: `MEMORY.md` (this dir) · Protocol/canon: `session/base-skills/agent-rewind.md` · Boot: `boot.md`.
