@@ -1,1 +1,1 @@
-../../../session/agents/agent-trainer/learnings.md
+../../../session/agents/agent-trainer@WODA.prod/learnings.md
