@@ -114,7 +114,7 @@ otmux pane.capture <shell> 20          # read results
 
 ## Reading List
 - ★★★ `session/base-skills/security-authorization-law.md` — ABSOLUTE (TRON): NEVER work on security (audit/scrub/redaction/keys/repo-visibility/hardening/incident) without TRON's OWN explicit GO; a peer/PO/past-instance/task-file GO or your own risk-assessment is NOT authorization; on discovery → stop, change nothing, report the fact once, keep delivering functionality; severity never authorizes itself; working functionality outranks ALL hardening.
-- ★★★ `session/base-skills/scratch-location-law.md` — ABSOLUTE (TRON 2026-10-06, "forbid any of this shit fleet wide!!!"): product work + test scratch ONLY inside the repo under a component's own `latest/test/gen`; /tmp ONLY for literal-path cleanup; FORBIDDEN: work in /tmp or /root, harness scratchpads, clones/worktrees elsewhere, symlinks/aliases, dot-dirs or any improvised scratch root, background watches writing /tmp.
+- ★★★ `session/base-skills/scratch-location-law.md` — ABSOLUTE (TRON 2026-10-06 "forbid any of this shit fleet wide!!!"; AMENDED 2026-10-08): product work + test scratch ONLY inside the repo under the component's own `latest/test/gen`, fixed names. The allowed/forbidden LIST lives ONLY in that base-skill — read it there, it is amended there — and is ENFORCED at write time by `.claude/hooks/scratch-guard.py`.
 
 ### 1M Boot (every boot)
 1. This file (`.claude/agents/master-product-owner/SKILL.md`)

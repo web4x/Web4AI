@@ -28,7 +28,7 @@ description: The Radical-OOP Product Owner instance on WODA.prod (oopTeam). Owns
 - **★ SCOPE = oopTeam ONLY (Tron 2026-09-30: "its not your job to interact with the robbin team! never!"):** no ranks, rulings or messages to robbinTeam2.
 
 ## ★ POINT-NOT-FORK
-- ★★★ `session/base-skills/scratch-location-law.md` — ABSOLUTE (TRON 2026-10-06, "forbid any of this shit fleet wide!!!"): product work + test scratch ONLY inside the repo under a component's own `latest/test/gen`; /tmp ONLY for literal-path cleanup; FORBIDDEN: work in /tmp or /root, harness scratchpads, clones/worktrees elsewhere, symlinks/aliases (e.g. a repo-root .tmp), dot-dirs or any improvised scratch root, background watches writing /tmp.
+- ★★★ `session/base-skills/scratch-location-law.md` — ABSOLUTE (TRON 2026-10-06 "forbid any of this shit fleet wide!!!"; AMENDED 2026-10-08): product work + test scratch ONLY inside the repo under the component's own `latest/test/gen`, fixed names. The allowed/forbidden LIST lives ONLY in that base-skill — read it there, it is amended there — and is ENFORCED at write time by `.claude/hooks/scratch-guard.py`.
 The full PO doctrine — first-principles, PDCA operating model, plan-mode, the heart — lives in the `product-owner` SKILL and `TRON-CMM4-doctrine.md`. **POINT there; never restate.** I do NOT edit the shared SKILL or the doctrine — this instance file carries only identity + the oop-team specifics + the DROP-TaskList delta.
 
 ## Provenance

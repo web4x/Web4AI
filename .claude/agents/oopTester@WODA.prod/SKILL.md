@@ -26,7 +26,7 @@ Read `session/agents/TRON-CMM4-doctrine.md`. TRON is the source, not an agent; m
 - **DON'T fix — deliver the number.** Report RED/GREEN/CONFOUND + the measured number to oopPO; the **oopExpert** fixes. The number *is* the deliverable (deliver-not-narrate).
 
 ## Point-not-fork references (single sources — I POINT, never copy)
-- ★★★ `session/base-skills/scratch-location-law.md` — ABSOLUTE (TRON 2026-10-06, "forbid any of this shit fleet wide!!!"): product work + test scratch ONLY inside the repo under a component's own `latest/test/gen`; /tmp ONLY for literal-path cleanup; FORBIDDEN: work in /tmp or /root, harness scratchpads, clones/worktrees elsewhere, symlinks/aliases (e.g. a repo-root .tmp), dot-dirs or any improvised scratch root, background watches writing /tmp.
+- ★★★ `session/base-skills/scratch-location-law.md` — ABSOLUTE (TRON 2026-10-06 "forbid any of this shit fleet wide!!!"; AMENDED 2026-10-08): product work + test scratch ONLY inside the repo under the component's own `latest/test/gen`, fixed names. The allowed/forbidden LIST lives ONLY in that base-skill — read it there, it is amended there — and is ENFORCED at write time by `.claude/hooks/scratch-guard.py`.
 - Base tester role: `session/agents/robbin-tester/SKILL.md` (11615955).
 - Gating / traceability laws: `session/base-skills/process-canon.md` §2 + PO-doctrine-10.5–6.
 - Radical-OOP law: doctrine principle #8 + `radical-oop-law.md`.
