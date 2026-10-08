@@ -11,11 +11,13 @@
 - **ALLOWED:** `<repo>/…/<Component>/latest/test/gen/…` — the component's **OWN** gen folder (gitignored, disposable), under **FIXED names**, **wiped per run**, **never random** (no `mkdtemp`, no `tmp-XXXX`). Nothing else.
 - **Tool tmp** (TMPDIR, npm cache/logs, tsx): the ONE fixed `Web4MDA/latest/test/gen/tmp` — not a per-run random dir, not an alias.
 - **`/tmp` is for CLEANUP ONLY** — removing what is already there, by **literal path**. Never create, write, clone or work in it.
+- **★ AMENDED (TRON 2026-10-08, ruling verbatim via oopPO: "Deploy, scratchpad allowed (Recommended)"):** an agent's **OWN harness scratchpad** (`/tmp/claude-0/<project>/<session>/scratchpad/…`) is **ALLOWED** — for the agent's own working notes. Product work and test scratch still belong ONLY in the component's `latest/test/gen`.
+- **ENFORCED at the moment of writing** by the PreToolUse hook `.claude/hooks/scratch-guard.py` (registered in `.claude/settings.json`): creates under `/tmp`, `/var/tmp` or `/root` outside the allow-roots are **DENIED** with a message naming this law.
 
 ## FORBIDDEN — anywhere outside a component's `latest/test/gen`
 
 - Work in `/tmp` or `/root` (incl. `/root/.npm`, `/root/.claude/jobs/*/tmp`).
-- **Harness scratchpads** (the agent's session scratchpad directory) — for briefs, maps, patches, notes or anything else.
+- ~~**Harness scratchpads** (the agent's session scratchpad directory) — for briefs, maps, patches, notes or anything else.~~ **SUPERSEDED by TRON 2026-10-08: the agent's OWN harness scratchpad is ALLOWED (see the AMENDED line above).**
 - **Clones and worktrees** placed outside the component's gen folder.
 - **Symlinks / aliases** that point scratch somewhere else (e.g. a repo-root `.tmp` → gen). An alias is a second scratch root, not compliance.
 - **Dot-dirs or any improvised scratch root** (`.tmp`, `.scratch`, `.cache`, `tmp/` …) anywhere else in the repo or outside it.

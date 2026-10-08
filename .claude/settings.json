@@ -73,6 +73,15 @@
             "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/rewind-autonomy.py\""
           }
         ]
+      },
+      {
+        "matcher": "Write|Edit|NotebookEdit|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 \"$CLAUDE_PROJECT_DIR/.claude/hooks/scratch-guard.py\""
+          }
+        ]
       }
     ],
     "PreCompact": [

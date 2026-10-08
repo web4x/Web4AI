@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""PreToolUse hook — SCRATCH-LOCATION GUARD.  *** DRAFT FOR REVIEW — NOT REGISTERED ***
+"""PreToolUse hook — SCRATCH-LOCATION GUARD.  DEPLOYED fleet-wide on TRON's ruling
+2026-10-08 ("Deploy, scratchpad allowed (Recommended)", via oopPO).
 Fires the scratch-location law (session/base-skills/scratch-location-law.md,
 TRON 2026-10-06) at the MOMENT OF WRITING, instead of relying on recall.
-Deploying it means adding it to .claude/settings.json PreToolUse = a change for
-EVERY agent fleet-wide => needs TRON's GO (oopPO ruling 2026-10-07).
+TRON's 2026-10-08 ruling AMENDS the law: an agent's own HARNESS SCRATCHPAD
+(/tmp/claude-0/<project>/<session>/scratchpad/...) is ALLOWED.
 
 Blocks only CREATES (write, mkdir, redirect, cp/mv/ln dest, clone, worktree,
 mktemp) whose target is under /tmp, /var/tmp or /root and NOT inside an
@@ -12,7 +13,9 @@ cleanup only).  Unparseable input or unknown tool -> defer (exit 0, no opinion).
 
 Harness-owned paths (/tmp/claude-0/... task outputs, /root/.claude/jobs/...)
 are written by the HARNESS itself, not via tool calls, so this hook never sees
-them.  An AGENT writing into its harness scratchpad IS blocked: the law forbids it.
+them.  An agent writing into its OWN harness scratchpad is ALLOWED (Tron
+2026-10-08) — matched as prefix /tmp/claude-0/ AND a /scratchpad/ path segment,
+NEVER all of /tmp/claude-0/ (task-output dirs there stay blocked for agents).
 
 Bash is TOKENIZED with shlex (quotes respected), never regex-scanned: a path
 that only appears inside a quoted message (e.g. a report sent with otmux)
@@ -27,6 +30,8 @@ ALLOW_ROOTS = (
     "/root/.claude/projects/",              # auto-memory (agents write it with Write)
     "/root/.claude/plans/",                 # plan-mode files
 )
+SCRATCHPAD_PREFIX = "/tmp/claude-0/"       # + a /scratchpad/ segment, session id varies
+SCRATCHPAD_SEGMENT = "/scratchpad/"
 GUARDED = ("/tmp/", "/var/tmp/", "/root/")
 CREATE_ALL_ARGS = {"mkdir", "touch"}        # every non-option arg is created
 CREATE_LAST_ARG = {"cp", "mv", "ln", "install", "rsync"}  # destination = last arg
@@ -50,6 +55,8 @@ def forbidden(path, cwd):
     probe = p if p.endswith("/") else p + "/"
     if any(probe.startswith(a) for a in ALLOW_ROOTS):
         return None
+    if probe.startswith(SCRATCHPAD_PREFIX) and SCRATCHPAD_SEGMENT in probe:
+        return None   # the agent's own harness scratchpad (Tron 2026-10-08)
     if any(probe.startswith(g) for g in GUARDED) or probe in ("/tmp/", "/root/"):
         return p
     return None
