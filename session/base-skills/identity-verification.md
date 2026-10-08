@@ -17,3 +17,19 @@
 3. A fork's continuity lies. `role@host` format is intentional (for /remote-control) — verify it, never assume it.
 
 **Measure, never assume. Your name is what `claudeCode session.name` says, not what the pane title or your memory says.**
+
+## ★★★ VERIFYING *ANOTHER* PANE IS A DIFFERENT PROBLEM — AND THE TOOLS FABRICATE (ARON found, SM confirmed, 2026-10-08)
+Everything above verifies **YOUR OWN** identity (you read your own kernel env — it cannot lie). **Resolving SOMEONE ELSE's pane — the driver's problem — has a failure the self-check does not:**
+
+**`claudeCode session.current <pane>` returns a PLAUSIBLE-BUT-WRONG uuid for a process started without `--resume`**, instead of reporting unknown — and **`scrumMaster pulse` inherits it.** Both primary tools then agree on the *wrong* identity.
+
+**LIVED:** `diamonds:0.1` was reported as `oosh-expert`/`a43c1b23` by pulse **and** `session.current`, at numbers identical to the real one. `ps` showed `claude --model …` with **no `--resume`**; the pane CONTENT was an unrelated creative project (true uuid `3f5eb079`). A drive order naming "oosh-expert" could have rewound a non-agent session — **by-label and the landing-map cannot save you, because they run AFTER identity is resolved.**
+
+| To resolve another pane | Do | Never |
+|---|---|---|
+| **Is it a roster agent at all?** | `ps -o args=` on its claude pid — there **MUST** be `--resume <uuid>` | trust the pulse NAME |
+| **Which agent is it?** | the `--resume` uuid **AND** the pane **CONTENT** (capture it) | `session.current` alone |
+| **No `--resume`?** | **NOT a roster agent** — out of scope: never a rewind target, never counted in fleet health | "it's probably X" |
+| **Which checkout is it in?** | `readlink /proc/<claude_pid>/cwd` | assume one repo per host |
+
+**Why this is worse than a broken tool:** a dead instrument must **name** its failure (`13a-ζ`); this one **fakes the answer**. Full record: `agent-rewind.md` row `13a-τ` (amended).
