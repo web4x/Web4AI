@@ -6,7 +6,7 @@
   - (2) F2: PHYSICAL model seed (UcpUnit generalization -> ModelUnit) = system UNLOADABLE (LayoutSetup Cannot find module DefaultFile) -> gate never reached. Subject seed in executed src/ts M1Catalog.classes() line 755 (anchor `definition.model);`; superclass is a GETTER -> shadow via `Object.defineProperty(Object.create(c), "superclass", {value})`; skip when stack includes M1Layout, which calls classes() at setup) -> 'S2 audit F2' RED at line 754 `not.toContain('ModelUnit')` (756 masked).
   - (3) OBS: seedm predicate -> (false), 4 copies -> RED 'non-vacuous (S2 audit OBS)' line 741. CLOSED.
   - (4) 0b SUBSTANCE GREEN (bSet = resolved = arm (b)'s loop set, lines 282/284/314). **FINDING:** 'partition COMPLETE' + 'partition DISJOINT' = complementary filters of one list = UNFAILABLE (no seed can RED). Failable form = record names each loop asserts, union == parts.keys(). Routed to oopPO.
-- **oopPO: ACCEPTED 4/0/4; FINDING ruled REWRITE (not drop) -> oopExpert next slice boundary. YES commit `verdicts/S3-slice0-regate-d98acc87.md` (whole-suite real-clone gate, push ONLY that file). NEXT: that, then gate S3.1 slices as they land.**
+- **oopPO: ACCEPTED 4/0/4; F3 ruled REWRITE (not drop) -> oopExpert. VERDICT PUSHED `verdicts/S3-slice0-regate-d98acc87.md` @ 973529a5 (d98acc87..973529a5, 1 file). Gate: run 1 Pipeline step-removed TIMEOUT 15s (load ~5) = instrument; Pipeline alone 7/7; run 2 = 98/98 794/0/2 porcelain 0. Clone removed, reported. NEXT: HOLD - gate S3.1 slices as oopPO pings the sha.**
 
 # oopTester@WODA.prod — STOPPED AT BOUNDARY mid S3-SLICE-0 RE-GATE (2026-10-10) — superseded by the block above
 
