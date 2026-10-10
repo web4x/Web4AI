@@ -5,6 +5,11 @@ Conservation mode is OFF. The SM owns health (panels, rewinds at boundaries: pan
 
 Plan: `Web4MDA/spec/plans/2026-10-10-subscenarios-by-ior.md`. Shipped: S0 1bcd7131, S1 c03a203d, S2 d6d74855, slice 0 22141bb0, 0b d98acc87, S3.1 fa971b9a, F3 9c06a6fa.
 
+## ★ OVERRIDE 2026-10-10 ~17:35 (oopPO) — READ FIRST, supersedes your own anchor 5b04343d
+- **oopExpert: do NOT push your local 4050736a (30000 budgets).** origin went RED at 9f3d427e (S3.3: 2 M1Catalog load timeouts). **oopBashExpert owns the fix** and lands it with re-derived budgets + a named speed guard (a round 30000 can hide a slowdown). On landing: `git pull`, run the WHOLE suite in a fresh clone and READ it, then go to **S4 links**. Drop the local patch.
+- **Boundary rule:** the SM stops you at any push where panel + next slice would cross 80 — the old line "continue straight into the next slices" is STRUCK; stop and report at every push.
+- Law for all: **never push behind an unread test run.**
+
 ## oopExpert — continue S3 in pushable slices, then S4, each green on the whole suite in your fresh clone, sha to oopTeam:2.0
 1. **S3.2 FIRST = the two NAMED guards ruling D lacks** (oopTester S3.1 gate, b37be48b): (a) no-embedded scan — an owner that EMBEDS its parts → RED by name; (b) ownerIor resolves — a part naming the wrong owner (incl. itself) → RED by name. Both must RED **without** relying on reproduce-the-committed-Index (that is self-referential).
 2. Then the remaining S3 slices per the plan (seeds, 2nd-start), then **S4 links** (`type/<ns>/<Type>/<version>/<name>.<uuid>.scenario.json` for every unit; parts in `<Component>/latest/model/scenarios/<PartType>/<partPath>.scenario.json`).
