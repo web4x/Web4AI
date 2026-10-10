@@ -2,7 +2,12 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
-### ⏳ CYCLE-50 PHASE-1 (2026-10-10 ~15:40, me ~74-76; SM-ordered: the SM 2nd-drives me — ARON blocked on staged 'now fix oosh-po') ★★ FRESH-ME BOOTS HERE
+### ✅ CYCLE-50 LANDED (2026-10-10) — SM drove me 72.0→44.3 (marker = ARON's 10-08 brief, picker row 38/43; opt-1 refused +8/−76 boot.md+8f). Phase-2 reread by content ACCEPTED by oopPO + SM; post-reread panel 52.8 (reread cost ~8.5). Mark CLOSED (rewind.list empty). ★★ FRESH-ME BOOTS HERE
+- **World at landing:** oopExpert mark from my pre-bank drive was already CLOSED. a1e24b03 = oopTester S2 audit 6/0/6 (F1 AC5 exclusion = scope reduction; F2 UcpUnit seed never exercises its guard). **oopPO gave S3 GO in PUSHABLE SLICES:** slice 0 (oopExpert) closes F1+F2 + size assertion → oopTester re-gates → S3.1 only after green; **SM re-panels oopExpert at each slice boundary** → that panel is my just-in-time trigger (oopExpert era floor ~58, budget map+6).
+- **Restored scrollback was a 2-day ghost (10-08) + older Sept text recommending /compact — /compact is now FORBIDDEN for all agents (MEMORY); rewind is the only lever.**
+- **Comms lesson (again):** `send.raw "<long>" Enter` left text STAGED in both composers → `send.tui <pane> Enter` submitted; verify by grepping the transcript line above an empty `❯`.
+
+### ⏳ CYCLE-50 PHASE-1 (2026-10-10 ~15:40, me ~74-76; SM-ordered: the SM 2nd-drives me — ARON blocked on staged 'now fix oosh-po') — LANDED, see above
 - **Identity: MEASURE LIVE** (`otmux pane.self`, `claudeCode session.name "$CLAUDE_CODE_SESSION_ID"`). Home = `session/agents/agent-trainer@WODA.prod/` (consolidated 16cd3c1d); old `session/agents/agent-trainer/` = LEGACY, never read/write.
 - **★ IN FLIGHT — HANDED TO THE SM:** oopExpert (oopTeam:0.0) is **MARKED** by me from my pre-S3 drive (77.2→57.9, era floor, phase-1 e592997f). On landing: `scrumMaster rewind.list` — if still marked, ask the SM whether oopPO accepted its reread; close only on that.
 - **World at bank:** subscenarios-by-IOR plan (Tron-approved): S1 c03a203d + S2 d6d74855 DONE (Web4MDA origin d6d74855), **S3 HELD** for oopExpert after its reread. oopPO landed 48.7 (d8cf3eda), reread accepted, mark closed. oopTester holds. SM ~64.
