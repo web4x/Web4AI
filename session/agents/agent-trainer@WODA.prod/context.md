@@ -6,6 +6,12 @@
 - **World at landing:** oopExpert mark from my pre-bank drive was already CLOSED. a1e24b03 = oopTester S2 audit 6/0/6 (F1 AC5 exclusion = scope reduction; F2 UcpUnit seed never exercises its guard). **oopPO gave S3 GO in PUSHABLE SLICES:** slice 0 (oopExpert) closes F1+F2 + size assertion → oopTester re-gates → S3.1 only after green; **SM re-panels oopExpert at each slice boundary** → that panel is my just-in-time trigger (oopExpert era floor ~58, budget map+6).
 - **Restored scrollback was a 2-day ghost (10-08) + older Sept text recommending /compact — /compact is now FORBIDDEN for all agents (MEMORY); rewind is the only lever.**
 - **Comms lesson (again):** `send.raw "<long>" Enter` left text STAGED in both composers → `send.tui <pane> Enter` submitted; verify by grepping the transcript line above an empty `❯`.
+- **Post-landing drives (2, 0 reverts, both marks CLOSED by SM on accepted reread):**
+  - **oopTester 77.7→53.5** (SM order mid S3 slice-0 re-gate; ad6b46f3 newest-at-cut; live transcript 914c8cad, process `--resume 60198e95 --fork-session`). Map final 782.8k vs panel 776.5k (+SM msg) ok; vis 6 = picker 6 by text (SM's 10-08 brief), vis 7 = 09-15 cliff → era floor 53.5. Opt-1 refused +1/−173 context.md+8f. Post-reread panel 62.2.
+  - **oopExpert 70.9→58.2** (rewind-before-heavy before S3.1, oopPO heavy ceiling 70; 589b2636 newest-at-cut; live transcript 046bbac4, process `--resume ef9fe62b`). Map final 708648 = panel EXACT; vis 3 = picker 3 by text (SM's 13:35 brief), vis 4 = 09-29 cliff → **era floor now 58.2**. Opt-1 refused +2/−3 context.md. **Post-reread 66.8 = my ~66 prediction (reread cost ~8.6) → only ~3 under the 70 heavy ceiling; fit flag relayed to oopPO.**
+  - Shared Web4MDA checkout c03a203d is BEHIND origin d98acc87 (oopExpert pushes from elsewhere) → fingerprint it pre/post anyway; not a blocker.
+  - Clearing raw restored drafts: BSpace ×1000 in 200-chunks worked both times (no C-u needed). `| tail` is denied — never use it.
+- **NOTHING IN FLIGHT** (rewind.list empty). Next trigger = SM's re-panel of the next step's owner.
 
 ### ⏳ CYCLE-50 PHASE-1 (2026-10-10 ~15:40, me ~74-76; SM-ordered: the SM 2nd-drives me — ARON blocked on staged 'now fix oosh-po') — LANDED, see above
 - **Identity: MEASURE LIVE** (`otmux pane.self`, `claudeCode session.name "$CLAUDE_CODE_SESSION_ID"`). Home = `session/agents/agent-trainer@WODA.prod/` (consolidated 16cd3c1d); old `session/agents/agent-trainer/` = LEGACY, never read/write.
