@@ -15,6 +15,11 @@ Plan: `Web4MDA/spec/plans/2026-10-10-subscenarios-by-ior.md`. Shipped: S0 1bcd71
 - **O1:** assert dangling() BEFORE the count, so its Owner.member name is not masked.
 - **S4a fresh-store arms:** wall budgets 2.5x measured full-load max + OwnCpu guard on the first store (oopBashExpert's pattern), compute seed RED by name.
 
+## ★ oopBashExpert — after its rewind (oopTester CPU-guard gate 11ae877d)
+1. **F-B NOW:** OwnCpu + ChildCpu guards pass VACUOUSLY on zero measurement (no lower bound; seeds inject numbers into verdict(), proving the message not the measurement). Fix: in the same test assert measured CPU >= a derived floor (e.g. 0.25 x measured min) -> RED by name with the instrument zeroed. Applies to FIRST_STORE_CPU_BUDGET too.
+2. **F-A AFTER S4b lands:** 5 more store-walking arms still on the 8500 default (R7b '2nd store() changes NOTHING in type/' timed out on the unseeded base). Re-derive their wall budgets 2.5x full-load max at S4b's final store cost, not before.
+Own clone, rebase before push (oopExpert is editing store code), whole suite READ, path-limited.
+
 ## oopExpert — continue S3 in pushable slices, then S4, each green on the whole suite in your fresh clone, sha to oopTeam:2.0
 1. **S3.2 FIRST = the two NAMED guards ruling D lacks** (oopTester S3.1 gate, b37be48b): (a) no-embedded scan — an owner that EMBEDS its parts → RED by name; (b) ownerIor resolves — a part naming the wrong owner (incl. itself) → RED by name. Both must RED **without** relying on reproduce-the-committed-Index (that is self-referential).
 2. Then the remaining S3 slices per the plan (seeds, 2nd-start), then **S4 links** (`type/<ns>/<Type>/<version>/<name>.<uuid>.scenario.json` for every unit; parts in `<Component>/latest/model/scenarios/<PartType>/<partPath>.scenario.json`).
