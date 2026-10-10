@@ -1,4 +1,17 @@
-# oopTester@WODA.prod — PHASE-1 BANK at panel 76% (fresh): F-E'' VERDICT PUSHED a2436734; NEXT = S4b on Tron's A/B (2026-10-10) — REREAD THIS FIRST
+# oopTester@WODA.prod — NOW = gate S4b slices (Tron ruled B, spec eaf86713) as they land; then S5 (2026-10-11) — REREAD THIS FIRST
+
+- **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0 (TMUX_PANE EMPTY: `claudeCode session.id oopTeam:3.0`). Report SM oopTeam:4.0 + oopPO oopTeam:2.0 via `otmux send.raw` (dialog check first).
+- **ORDER (oopPO 2026-10-11):** Tron ruled **B**; spec **eaf86713** (Web4MDA origin/main — not in the local clone until `git fetch`; verified by content: spec/scenario.md + plan S4 row). **oopBashExpert builds S4b; I gate EACH S4b slice as it lands**, then **S5 full plan audit**. Never start a slice gate before its sha is pushed.
+- **S4(b) acceptance = my gate checklist (plan S4 row @eaf86713):**
+  1. layout `<component>/latest/model/scenarios/<Class>/<PartType>/<partPath>.scenario.json`; per-component bijection.
+  2. unique per `<Class>/<PartType>` folder, **case-FOLDED**. SEED-RED: two same-class same-type names differing only in case -> RED **naming BOTH**. **SEED-GREEN (oopPO's emphasis): the same name under two classes stays GREEN** — use the REAL measured case (e.g. `MethodModel/read` under BrowserFile + DefaultFile).
+  3. named checks (misnamed, multiLinked, ghosts, dangling) **BEFORE any count** — a RED must name, never `N to be M`.
+  4. every link relative + resolving; every unit's `model.links` lists exactly its links; 2nd start 0 changed.
+  5. seed: drop a part's (b) link -> RED by name. ((a)-link drop + uuid-less `type/` link = the (a) slice, oopExpert's.)
+  6. **REAL-DATA CONTROL:** oopExpert measured the OLD layout = 100 case-folded keys / 276 units colliding in 10 of 48 components -> under B must be **0**. Re-measure the old-layout count MYSELF first (red baseline); never take 100/276 on word.
+- Scratch ONLY in the clone + isolated extracts; gate a stable PUSHED sha, never oopBashExpert's dirty tree.
+
+# (older) oopTester@WODA.prod — PHASE-1 BANK at panel 76% (fresh): F-E'' VERDICT PUSHED a2436734; NEXT = S4b on Tron's A/B (2026-10-10) — REREAD THIS FIRST
 
 - **ON LANDING (after the trainer's rewind):** STOP + HOLD + REREAD by content (this section first); identity 914c8cad = oopTeam:3.0 (TMUX_PANE EMPTY: `claudeCode session.id oopTeam:3.0` + newest jsonl). Report reread to SM oopTeam:4.0 + oopPO oopTeam:2.0 via `otmux send.raw` (dialog check first), resume on SM panel OK.
 - **ALL F-series gates CLOSED + PUSHED today:** 8c4838d2 F-C/F-D (7b5d6ba1, 9/0/9, F-D' found) · 1c07c7f6 F-E sweep (7965f7e0, 6/0/6, F-E' + F-E'' found) · 9232ba42 F-D'+F-E' (ee14c215, 5 GREEN + F-E'' carried) · **460d45ed F-E'' (a2436734, 3/0/3 GREEN: DANGLEXTRA REDs by the 3 ghost paths via ghosts(); NOGHOST brings back `1868 to be 1865`)**. Only open finding: **F-A** (derived walls for store-walking arms).
