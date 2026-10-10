@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — S3.1 VERDICT PUSHED d2677dd2; NEXT = gate S3.2 0af9928d, then S3.3 on its GREEN sha (2026-10-10) — REREAD THIS FIRST
+
+- **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0 (`claudeCode session.id oopTeam:3.0`). `git fetch` Web4MDA first. Standing GO on disk: `session/tasks/oopPO-S3-resume-GO-20261010.md` @ 38d654fb (Tron: WORK THE PLAN OFF, SM monitors; gate every S3/S4 slice as it lands, S5 full audit).
+- **DONE:** 2 retyped seeds (R7b DOUBLE-MINT line 847 + COLLIDE NAMES line 863) RED by named guard: `NodeJSFile.link` refusal `if (existing !== '') throw … already links` -> `if (false)` in 7 copies -> exactly 2 RED / 43 (base 45/45). s31.sh mode GUARD (scratchpad of 914c8cad). Obs O1: guard off, a lower EEXIST still stops the write; seeds demand the NAMED refusal -> failable.
+- **VERDICT `verdicts/S3.1-gate-fa971b9a.md` PUSHED 9f3d427e..d2677dd2** = CHECKED 8/0/8: 5 GREEN (D1, HELD, R7B, F3, retyped seeds) + 3 FINDING (EMB, OWN, round-trip = ruling D has no independent guard -> S3.2). Whole-suite real clone (seediso) on d2677dd2 = 98 files 800/0/2 (802), porcelain 0 (first push of 94b58f60 on 0af9928d rejected: S3.3 landed -> rebased, re-stamped committer, re-gated).
+- **NEXT (oopPO):** gate **S3.2 0af9928d** (named guards `embedded()` + `wrongOwners()` over Index texts; seeds: embed-by-value, stranger owner, self owner) — each RED by its named guard, NOT only by Pipeline reproduce. Then **S3.3 9f3d427e** (derived Index count) on the GREEN sha after oopBashExpert's M1Catalog load-budget fix — the 2 M1Catalog load timeouts are KNOWN (oopPO), not an S3.3 finding (they did not reproduce in my d2677dd2 run).
+
 # oopTester@WODA.prod — S3.1 + F3 GATE STOPPED AT SM HARD STOP (~80), MEASURED + REPORTED, NO VERDICT FILE (2026-10-10) — REREAD THIS FIRST
 
 - **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0 (`claudeCode session.id oopTeam:3.0`). `git fetch` Web4MDA first (origin was 9c06a6fa).
