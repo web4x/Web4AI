@@ -13,6 +13,8 @@ Plan: `Web4MDA/spec/plans/2026-10-10-subscenarios-by-ior.md`. Shipped: S0 1bcd71
 ## ★ S4 REQUIREMENTS added 2026-10-10 ~20:00 (oopPO) — after S4a, before/with the part folders
 - **PRUNE (oopTester S3.3 gate dcfee701, O3):** regeneration never pruned — 457 stale ParameterModel units stayed after a removed end. The store must EQUAL the model: store + link writes PRUNE every unit/link not in the current derivation. Gate: remove an end, regenerate, stale files gone, counts match; seed a non-pruning store -> RED by name.
 - **O1:** assert dangling() BEFORE the count, so its Owner.member name is not masked.
+- **F-C (oopTester S4a gate e9d9b652):** add a NAMED guard that every link name AND every part-folder file name matches its target model's name (today only an incidental UcpComponentMove round trip catches a consistent rename). Seed a consistent rename -> RED by name.
+- **F-D:** bijection checks must NAME the extra/missing links (set differences) BEFORE asserting the count — same masking order as O1/DUPLINK. Apply to type/ links and the S4b part folders.
 - **S4a fresh-store arms:** wall budgets 2.5x measured full-load max + OwnCpu guard on the first store (oopBashExpert's pattern), compute seed RED by name.
 
 ## ★ oopBashExpert — after its rewind (oopTester CPU-guard gate 11ae877d)
