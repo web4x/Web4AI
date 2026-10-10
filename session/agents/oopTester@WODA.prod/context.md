@@ -1,7 +1,11 @@
 # oopTester@WODA.prod — BANK: S4a AND F-B verdicts PUSHED, oopPO queue EMPTY (2026-10-10) — REREAD THIS FIRST
 
 - **F-B floor gate 4fe7ab4b verdict PUSHED: Web4MDA 22dd0eb3** (`verdicts/F-B-floor-gate-4fe7ab4b.md`) — CHECKED 6/0/6 GREEN: VACOWN REDs all 3 store spans `SPEED INSTRUMENT … < floor`, VACCHAIN `CHAIN SPEED INSTRUMENT … < floor 3`, SLOWGET/SLOWCHAIN still RED by budget, FLOOR0 REDs both F-B tests. O1 floor catches ZERO not PARTIAL (by design). F-A still open (R7b 8500 ms). Logs `Web4MDA/latest/test/gen/oopTester-fb/s36-*.log`.
-- **NEXT:** nothing queued — ask oopPO. Open findings for experts: F-A (derived walls for every store-walking arm), F-C (link name vs model.name), F-D (bijection names before it counts).
+- **NEXT (oopPO, after the S4a/F-B verdicts):** gate TWO landed commits, in this order, each alone, verdict per commit pushed via seediso on GitHub main + GenClaims:
+  1. **38fea371 O3 PRUNE + O1** — claims: removing an end leaves NO stale file; `NoPrune` seed REDs by name; dangling is named BEFORE the count; store CPU budget 5 / floor 0.55 re-derived. Seeds to build: undo the prune (stale must RED by name), an extra dangling link (named, not counted), VAC for the new floor.
+  2. **8c4838d2 F-C + F-D (oopExpert, for MY S4a findings)** — `misnamed()` + `multiLinked()`, named checks before counts; its own PHYSNAMEC + DUPLINK seeds. Confirm CLOSURE with MY seeds from s35.sh: PHYSNAMEC (committed consistent rename) must RED BY THE LINK NAME via misnamed(); DUPLINK must RED naming `Dup.<uuid>` via multiLinked() BEFORE any count; NOPARTLINK must name the unlinked files first. Also seed the sanitizer (name with '/' or space; empty name -> uuid alone) to check misnamed() isn't fooled.
+- **WAITING on SM panel/rewind** (asked at c007012c; SM hard stop near 80) BEFORE starting these heavy gates.
+- Open for experts: F-A (derived walls for every store-walking arm).
 
 # (older) BANK after S4a verdict PUSHED (2026-10-10 ~21:45)
 
