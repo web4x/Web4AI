@@ -2,8 +2,10 @@
 > ★★★ **H6 SCRATCH + TEST-PLACEMENT LAW (boot-read):** every test lives in the component its assertions test; scratch ONLY in that component's OWN `latest/test/gen` under FIXED names, wiped per run, never random; tool tmp = fixed `Web4MDA/latest/test/gen/tmp`. READ `session/base-skills/scratch-location-law.md` + Web4MDA `spec/bootstrap.md` rule 9 + AC20–AC23 @ `72859188` — never restate. <!-- H6-POINTER -->
 ★★★ **TRIGGER — before ANY create/write (Write, mkdir, `>`, cp/mv destination, clone, worktree, mktemp): the path must start with `<Component>/latest/test/gen` — else STOP and ask oopPO.** (Agent files under `session/agents/oopExpert@WODA.prod/` and committed product/spec edits in the repo are the only other writes.) Law: `session/base-skills/scratch-location-law.md`.
 
-**Last updated**: 2026-10-08 night (F1+F2 shipped e4a0a22d — top ANCHOR is current)
+**Last updated**: 2026-10-10 (S1 shipped c03a203d — top ANCHOR is current)
 
+
+**ANCHOR (2026-10-10, S1 SHIPPED): plan spec/plans/2026-10-10-subscenarios-by-ior.md (Tron-approved; S0 oopPO 1bcd7131; S1-S4 mine; S5 oopTester). Web4MDA origin/main = `c03a203d`: VersionDefinition start(argv,entry) param uuids re-minted (f5313deb…, c365a04c…), Namespace kept ca5f0b97/e0287d2f; gate M1Catalog.test UnitUuids (whole catalog JSON walk, owner paths) distinct + seed RED naming both owners, RED-first measured. Committed tree 98/98, 790 passed, 0 red. NEXT: S2 on oopPO's go (read plan row S2 first). Keep bash captures tight.**
 
 **ANCHOR (2026-10-08 night, F1+F2 SHIPPED): Web4MDA origin/main = `e4a0a22d` (ONE commit on 6f9784a7). F1: M1Catalog.test — fresh store via the REAL put path (NodeJSFile.link spied, once per class) -> only RELATIVE type links; seed one ABSOLUTE link in that path -> RED by the link's name. F2: UnitReferencesInc2.test — HeldRow DERIVES the held list from spec/scenario.md class table (14 pairs: link5 unlink2 copyTo4 copy1 sync2); REACH sees unlink/copy/copyTo/copyFile/cp; seed each pair implemented -> RED by Owner.member, each op called -> RED by op. MEASURED: real clone, committed tree 98/98, 788 passed, 0 red, 2 pre-existing it.skip; clone removed. Scratch law: logs/scripts only under latest/test/gen (hook-enforced). NEXT: idle for oopTester verify + oopPO.**
 
