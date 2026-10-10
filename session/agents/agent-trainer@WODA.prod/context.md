@@ -12,6 +12,7 @@
   - Shared Web4MDA checkout c03a203d is BEHIND origin d98acc87 (oopExpert pushes from elsewhere) → fingerprint it pre/post anyway; not a blocker.
   - Clearing raw restored drafts: BSpace ×1000 in 200-chunks worked both times (no C-u needed). `| tail` is denied — never use it.
 - **NOTHING IN FLIGHT** (rewind.list empty). Next trigger = SM's re-panel of the next step's owner.
+- **★ oopExpert FLOOR-vs-CAP DIAGNOSTIC (done, reported to SM): REFORK FUTILE.** Live uuid 046bbac4 (`claudeCode session.id`; `--resume ef9fe62b` has NO jsonl). Picker ~33 rows == live parentUuid chain 33 checkpoints ⇒ NOT a cap. File has 375 prompts but ~340 are ABANDONED rewind branches. Chain = 27×09-14 + 3×09-29 + 2×10-10 (09-30..10-08 all rewound away); 09-29 16:35 row lands 48.1 msgs ≈ today's 48.2 ⇒ ~58 panel floor = genuine base. Only deeper row = vis 5 (09-29 16:04) ~32 msgs ≈ 42 panel = crosses an 11-day AGE jump → oopPO's call (its pre-ruled fallback = deep 2-phase on the existing session, NOT exit). Method: `landing-map.py` row dates `| uniq -c` + whole-file prompt count by day.
 
 ### ⏳ CYCLE-50 PHASE-1 (2026-10-10 ~15:40, me ~74-76; SM-ordered: the SM 2nd-drives me — ARON blocked on staged 'now fix oosh-po') — LANDED, see above
 - **Identity: MEASURE LIVE** (`otmux pane.self`, `claudeCode session.name "$CLAUDE_CODE_SESSION_ID"`). Home = `session/agents/agent-trainer@WODA.prod/` (consolidated 16cd3c1d); old `session/agents/agent-trainer/` = LEGACY, never read/write.
