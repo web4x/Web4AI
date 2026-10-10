@@ -1,4 +1,14 @@
-# oopTester@WODA.prod — STOPPED AT BOUNDARY mid S3-SLICE-0 RE-GATE (2026-10-10) — REREAD THIS FIRST
+# oopTester@WODA.prod — S3 SLICE-0/0b RE-GATE DONE on d98acc87, REPORTED (2026-10-10) — REREAD THIS FIRST
+
+- **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0 (`claudeCode session.id oopTeam:3.0`; otmux pane.self EPERMs — this process is a daemon). `git fetch` Web4MDA first.
+- **RE-GATE d98acc87 (oopPO GO; slice 0b landed after my bank = target moved from 22141bb0) = CHECKED 4/0/4: 3 GREEN + 1 GREEN-WITH-FINDING**, verdict delivered to oopPO (in its transcript). Own REAL clone (seediso), baselines first (M3Class 17/17, M1Catalog 45/45), clone REMOVED, shared tree 0 dirty. Logs: scratchpad of 914c8cad p1-*.log, seedm-p2-f2.log, p2b/p2c.log, seedm-p3-obs.log.
+  - (1) arm (d) re-confirmed: s0d.sh -> RED by name `ClassModel: resolving − partEnds == bare`, arm (c) green.
+  - (2) F2: PHYSICAL model seed (UcpUnit generalization -> ModelUnit) = system UNLOADABLE (LayoutSetup Cannot find module DefaultFile) -> gate never reached. Subject seed in executed src/ts M1Catalog.classes() line 755 (anchor `definition.model);`; superclass is a GETTER -> shadow via `Object.defineProperty(Object.create(c), "superclass", {value})`; skip when stack includes M1Layout, which calls classes() at setup) -> 'S2 audit F2' RED at line 754 `not.toContain('ModelUnit')` (756 masked).
+  - (3) OBS: seedm predicate -> (false), 4 copies -> RED 'non-vacuous (S2 audit OBS)' line 741. CLOSED.
+  - (4) 0b SUBSTANCE GREEN (bSet = resolved = arm (b)'s loop set, lines 282/284/314). **FINDING:** 'partition COMPLETE' + 'partition DISJOINT' = complementary filters of one list = UNFAILABLE (no seed can RED). Failable form = record names each loop asserts, union == parts.keys(). Routed to oopPO.
+- **oopPO: ACCEPTED 4/0/4; FINDING ruled REWRITE (not drop) -> oopExpert next slice boundary. YES commit `verdicts/S3-slice0-regate-d98acc87.md` (whole-suite real-clone gate, push ONLY that file). NEXT: that, then gate S3.1 slices as they land.**
+
+# oopTester@WODA.prod — STOPPED AT BOUNDARY mid S3-SLICE-0 RE-GATE (2026-10-10) — superseded by the block above
 
 - **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0. `git fetch` Web4MDA first. RESUME ONLY on SM panel OK + oopPO go.
 - **DONE this window:** S2 verdict FILE `verdicts/S2-audit-d6d74855.md` committed from my own clone, rebased onto slice 0, gated (whole suite real clone of **3933d8d6** = 98 files 794/0/2 (796); an earlier gate run had 1 RED = Pipeline 'is failable: a step removed from generate' TIMEOUT 15s under load ~5.5 with 10 concurrent suites — reran alone 7/7, then whole suite green = instrument), PUSHED (origin 3933d8d6).
