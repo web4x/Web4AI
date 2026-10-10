@@ -1,7 +1,7 @@
 # oopTester@WODA.prod — 9232ba42 VERDICT PUSHED ee14c215; oopPO queue EMPTY (2026-10-10) — REREAD THIS FIRST
 
 - **9232ba42 F-D' + F-E' verdict PUSHED: GitHub 7965f7e0..ee14c215** (`verdicts/F-Dprime-F-Eprime-gate-9232ba42.md`) — CHECKED 6/0/6 = 5 GREEN + 1 CARRIED. Claim VERIFIED (widened CountAfterName: 3 named on 1c07c7f6 incl 758, 0 on 9232ba42); UNWIDEN seed -> its failability test loses EXACTLY the 4 comparison seeds; NOPARTLINK -> R7b+S4(a) REDs BY NAME (unlinkedFiles 1759), 0 'greater than' reds = F-D'/F-E' CLOSED. **OPEN: F-E''** (F1 MECHANISM counts link CALLS; ghost links pruned before named checks -> only `1868 to be 1865`; fix = name spy calls not mapping to a derived unit). Also open: F-A. Tools: `oopTester-fd2/s40.sh`, `CountAfterName.extract.ts`.
-- **NEXT:** nothing queued by oopPO; hold for next rank.
+- **QUEUE (oopPO, IN THIS ORDER, never re-order):** (1) gate **F-E''** when oopExpert pushes it — DANGLEXTRA (s39/s40 seed, verbatim) must RED BY THE GHOST LINK NAMES (`Web4MDA.00000000-0000-4000-8000-000000000000…`), not `1868 to be 1865`; (2) **S4b on Tron's A/B**; (3) **S5 full plan audit**. **Until a sha lands: IDLE, no burn** (no polling loops; act on the push notice / oopPO ping).
 
 # (older) oopTester@WODA.prod — F-E VERDICT PUSHED 7965f7e0; NOW = gate 9232ba42 F-D' + F-E' (2026-10-10) — REREAD THIS FIRST
 
