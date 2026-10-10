@@ -1,4 +1,11 @@
-# oopTester@WODA.prod — PHASE-1 BANK at panel 75.4 (SM): S4a 51482d16 gate MID-RUN, NO verdict yet; then F-B 4fe7ab4b (2026-10-10) — REREAD THIS FIRST
+# oopTester@WODA.prod — BANK after S4a verdict PUSHED (2026-10-10 ~21:45) — REREAD THIS FIRST
+
+- **S4a 51482d16 verdict PUSHED: Web4MDA e9d9b652** (`verdicts/S4a-gate-51482d16.md`) — CHECKED 8/0/8: 6 GREEN + 2 FINDING. **F-C** no guard checks link <name> vs target model.name (PHYSNAMEC caught only by the UcpComponentMove round trip). **F-D** bijection counts (1855 / 106 vs 1854) before it names. F-A + F-B carried. NOPARTLINK first run (seed broke a Definition string literal) + PHYSNAME-uncommitted = instrument CONFOUNDS, replaced.
+- **Scratch-location law:** test scratch ONLY in `Web4MDA/latest/test/gen/oopTester-*` (s4a, fb); older s3x logs sit in the harness scratchpad (notes-only allowed there).
+- **NOW: F-B gate 4fe7ab4b** — script `latest/test/gen/oopTester-fb/s36.sh` (BASE, VACOWN, VACCHAIN, SLOWGET, SLOWCHAIN, FLOOR0; seeds re-targeted to 4fe7ab4b's real `OwnCpu.reading()` + ChildCpu stat line). Run ALONE (CPU guards). Logs `oopTester-fb/s36-<seed>.log`. Verdict -> commit in seediso on current GitHub main, run GenClaims (a `latest/test/gen` path in a .md trips it!), push HEAD:main.
+- **SM (panel 69.2):** HARD STOP near 80 at a seed boundary: bank, no push, ask SM for rewind.
+
+# (older) PHASE-1 BANK at panel 75.4 (SM): S4a 51482d16 gate MID-RUN, NO verdict yet; then F-B 4fe7ab4b (2026-10-10)
 
 - **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0. `git fetch` Web4MDA first. Report reread to SM (oopTeam:4.0) + oopPO (oopTeam:2.0), resume on SM panel OK. Standing GO `session/tasks/oopPO-S3-resume-GO-20261010.md` @ 38d654fb. Use `otmux send.raw` (plain send C-u's the composer); check composer + dialogs first.
 - **Verdicts today (all pushed):** S3.1 d2677dd2 · S3.2 7f30311b · S3.3 dcfee701 · CPU guards 11ae877d (3 GREEN + F-A partial wall fix, F-B zero-reading vacuity).
