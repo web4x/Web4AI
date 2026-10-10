@@ -10,6 +10,11 @@ Plan: `Web4MDA/spec/plans/2026-10-10-subscenarios-by-ior.md`. Shipped: S0 1bcd71
 - **Boundary rule:** the SM stops you at any push where panel + next slice would cross 80 — the old line "continue straight into the next slices" is STRUCK; stop and report at every push.
 - Law for all: **never push behind an unread test run.**
 
+## ★ S4 REQUIREMENTS added 2026-10-10 ~20:00 (oopPO) — after S4a, before/with the part folders
+- **PRUNE (oopTester S3.3 gate dcfee701, O3):** regeneration never pruned — 457 stale ParameterModel units stayed after a removed end. The store must EQUAL the model: store + link writes PRUNE every unit/link not in the current derivation. Gate: remove an end, regenerate, stale files gone, counts match; seed a non-pruning store -> RED by name.
+- **O1:** assert dangling() BEFORE the count, so its Owner.member name is not masked.
+- **S4a fresh-store arms:** wall budgets 2.5x measured full-load max + OwnCpu guard on the first store (oopBashExpert's pattern), compute seed RED by name.
+
 ## oopExpert — continue S3 in pushable slices, then S4, each green on the whole suite in your fresh clone, sha to oopTeam:2.0
 1. **S3.2 FIRST = the two NAMED guards ruling D lacks** (oopTester S3.1 gate, b37be48b): (a) no-embedded scan — an owner that EMBEDS its parts → RED by name; (b) ownerIor resolves — a part naming the wrong owner (incl. itself) → RED by name. Both must RED **without** relying on reproduce-the-committed-Index (that is self-referential).
 2. Then the remaining S3 slices per the plan (seeds, 2nd-start), then **S4 links** (`type/<ns>/<Type>/<version>/<name>.<uuid>.scenario.json` for every unit; parts in `<Component>/latest/model/scenarios/<PartType>/<partPath>.scenario.json`).
