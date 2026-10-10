@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — CPU-guard VERDICT PUSHED 11ae877d; NEXT = gate S4a 51482d16 (2026-10-10) — REREAD THIS FIRST
+
+- **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0. `git fetch` Web4MDA first. Standing GO `session/tasks/oopPO-S3-resume-GO-20261010.md` @ 38d654fb.
+- **Verdicts today:** S3.1 d2677dd2 · S3.2 7f30311b · S3.3 dcfee701 · **CPU guards 11ae877d** (`verdicts/CPU-speed-guards-gate-69c909e2.md`, CHECKED 6/0/6 = 3 GREEN + 3 FINDING; whole suite on 11ae877d 98 files 805/0/2).
+- **CPU guards:** slowdowns RED by name (get 7.31>5, 2nd store 6.23>2, chain 55>20 CPU-s). **F-B:** OwnCpu + ChildCpu pass on a ZERO reading (VACOWN 51/51 green; VACCHAIN guard green) — no lower bound, in-test seeds inject into verdict() -> needs a floor assert. **F-A:** only 2 of >=7 store-walking arms got derived walls; R7b 2nd-store type/ timed out 8500 on UNSEEDED base. Script s34.sh (modes BASE SLOWGET SLOWSTORE SLOWCHAIN VACOWN VACCHAIN).
+- **NEXT (oopPO):** gate **S4a 51482d16** — type/ links, 1854 links == 1854 units bijection both ways, target-uuid name check, R7b uniqueness by construction, 2 seeds; derived budgets (22000 wall, FIRST_STORE_CPU_BUDGET 4) — check NO vacuous pass on zero CPU (F-B pattern).
+
 # oopTester@WODA.prod — S3.3 VERDICT PUSHED dcfee701; NEXT = CPU speed guards 4a1d6f87+69c909e2 (2026-10-10) — REREAD THIS FIRST
 
 - **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0. `git fetch` Web4MDA first. Standing GO `session/tasks/oopPO-S3-resume-GO-20261010.md` @ 38d654fb.
