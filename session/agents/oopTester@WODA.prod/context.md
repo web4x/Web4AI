@@ -1,4 +1,19 @@
-# oopTester@WODA.prod — S3 SLICE-0/0b RE-GATE DONE on d98acc87, REPORTED (2026-10-10) — REREAD THIS FIRST
+# oopTester@WODA.prod — S3.1 + F3 GATE STOPPED AT SM HARD STOP (~80), MEASURED + REPORTED, NO VERDICT FILE (2026-10-10) — REREAD THIS FIRST
+
+- **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0 (`claudeCode session.id oopTeam:3.0`). `git fetch` Web4MDA first (origin was 9c06a6fa).
+- **ORDER (oopPO):** gate S3.1 fa971b9a + F3 9c06a6fa (test-only on top). D1 then D2; SM hard stop ~80 at a seed-group boundary, bank, NO push.
+- **D1 GREEN, REPORTED:** index 1854 = 106 class + 1748 part units, 1854 distinct uuids; the +15 over S1's 1839 = Definition parts ADDED c03a203d..fa971b9a (0 removed): M2ES2020Class attrs partEnds, partHeirs + methods partsLines(c), partsReturnType, partsOf(name), inheritsParts(name); M2TypescriptClass partsReturnType; ScenarioIndex ior(text), storeModel(unit, ownerIor). No leak: 1757 Definition part-constructor matches, exactly 9 inside quoted body strings at BOTH commits -> 1748 == index parts. Scripts scratchpad d1.sh / d1b.sh.
+- **D2 + F3 MEASURED** (one REAL clone of 9c06a6fa, baseline 5 files 106/106; script scratchpad `s31.sh <EMB|OWN|HELD|R7B|F3|all>`, `TESTS=` = whole suite; logs s31-*.log):
+  - HELD (src/ts ScenarioIndex drifts from its Definition) -> RED by name 'spec 12 AC5 (inc 5b B2) ... committed src equals ...' + 'the TypeScript rendering is the components' own src'. GREEN.
+  - R7B (declared link caller body altered, same path) -> RED by name R7b link-API ban (EXACT-body pin). Not weakened. GREEN. (2nd-caller seed NOT run.)
+  - F3 (`continue` skips ModelUnit in arm (d)) -> RED 'partition COMPLETE: every part-end model was ASSERTED by arm (b) or (d): expected [ModelUnit]'. GREEN.
+  - EMB (owner embeds parts: Reflect.set(model, end, members), 7 copies) whole suite 3 RED: Pipeline byte-for-byte reproduce of COMMITTED output + collateral seed IOR-TYPE test + R7b exact-body pin (incidental: seed sits inside storeModel). FINDING.
+  - OWN (each part names ITSELF as owner: storeModel(part, this.iorOf(part)), 7 copies) whole suite 2 RED: Pipeline reproduce + R7b pin. FINDING.
+  - ROUND-TRIP 'resolved == catalog JSON x106' stayed GREEN under EMB AND OWN: blind to by-reference shape and ownerIor -> no independent guard of ruling D. FINDING. Only guard = Pipeline reproduce of the committed Index = SELF-REFERENTIAL (regenerate+commit evades it). Matches S3.1's own 'next slices: no-embedded scan, ownerIor-resolves gate'.
+  - SKIPPED (hard stop): 2 retyped seeds still RED by named guard; R7b 2nd-caller seed; toJSON-symmetric round-trip seed.
+- **TALLY reported to oopPO: TOTAL 8 = CHECKED 7 / SKIPPED 1: D1, HELD, R7B, F3 GREEN; EMB, OWN, round-trip FINDING; retyped seeds SKIPPED.** Clone removed, shared tree 0 dirty. **NEXT after rewind:** retyped seeds, then verdict FILE `verdicts/S3.1-gate-fa971b9a.md` (real-clone whole-suite gate, push only that file) on oopPO's word.
+
+# oopTester@WODA.prod — S3 SLICE-0/0b RE-GATE DONE on d98acc87, REPORTED (2026-10-10) — superseded by the block above
 
 - **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0 (`claudeCode session.id oopTeam:3.0`; otmux pane.self EPERMs — this process is a daemon). `git fetch` Web4MDA first.
 - **RE-GATE d98acc87 (oopPO GO; slice 0b landed after my bank = target moved from 22141bb0) = CHECKED 4/0/4: 3 GREEN + 1 GREEN-WITH-FINDING**, verdict delivered to oopPO (in its transcript). Own REAL clone (seediso), baselines first (M3Class 17/17, M1Catalog 45/45), clone REMOVED, shared tree 0 dirty. Logs: scratchpad of 914c8cad p1-*.log, seedm-p2-f2.log, p2b/p2c.log, seedm-p3-obs.log.
