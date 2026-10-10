@@ -1,3 +1,17 @@
+# oopTester@WODA.prod — PHASE-1 BANK at panel 75.4 (SM): S4a 51482d16 gate MID-RUN, NO verdict yet; then F-B 4fe7ab4b (2026-10-10) — REREAD THIS FIRST
+
+- **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0. `git fetch` Web4MDA first. Report reread to SM (oopTeam:4.0) + oopPO (oopTeam:2.0), resume on SM panel OK. Standing GO `session/tasks/oopPO-S3-resume-GO-20261010.md` @ 38d654fb. Use `otmux send.raw` (plain send C-u's the composer); check composer + dialogs first.
+- **Verdicts today (all pushed):** S3.1 d2677dd2 · S3.2 7f30311b · S3.3 dcfee701 · CPU guards 11ae877d (3 GREEN + F-A partial wall fix, F-B zero-reading vacuity).
+- **S4a 51482d16 GATE IN PROGRESS** — script `s35.sh` (scratchpad of 914c8cad; pins SHA each run; clone `latest/test/gen/seediso`). MEASURED so far:
+  - BASE (M1Catalog+ScenarioUnit+UnitReferencesInc2) 84/84 GREEN.
+  - RETARGET (one part link repointed to another Index file) -> RED BY NAME `a link not named <name>.<target uuid>.scenario.json` (line 683). GREEN.
+  - DUPLINK (2nd link Dup.<uuid> to same target) -> RED by COUNT `expected 1855 to be 1854` (line 677) before the named two-way recorded check = masking order (as S3.3 O1). GREEN-obs.
+  - PHYSNAME / PHYSNAMEC (link alphabet.<uuid> -> Renamed.<uuid> + its Index record, COMMITTED, whole suite) -> 804 pass / 1 RED, ONLY `UcpComponentMove` 'next generate REALISES the move ... round trip' (its regen recreates alphabet.<uuid>) = INCIDENTAL coverage; no guard compares link <name> with the target's model.name. OBS -> fix: assert every link name == sanitized model.name + '.' + uuid. (Generator-side names ARE pinned by ScenarioUnit.test typePath tests.)
+  - Whole-suite PHYSNAME also showed store arm 'seed UNLOADED Model-class IOR' timed out 8501ms = F-A still open at S4a.
+  - **RUNNING at bank time (bg task b60aknnx0):** NOPARTLINK (owners-only links, type/ wiped, regen+commit), UUIDLESS (typePath without uuid -> COLLIDE/DOUBLE-MINT/typePath must RED by name), SLOWFIRST (FIRST store SPEED must RED by name), VACFIRST (zeroed OwnCpu + slowdown; expected green = F-B at S4a's budget). **Read results from scratchpad `s35-NOPARTLINK.log s35-UUIDLESS.log s35-SLOWFIRST.log s35-VACFIRST.log`** (`grep -aE '^ +Tests |^ +×'`, and 'timed out in 8500ms' counts). If a log is missing/partial, rerun that mode: `TESTS="M1Catalog.test.ts ScenarioUnit.test.ts UnitReferencesInc2.test.ts" bash s35.sh <MODE>`.
+- **THEN:** write `verdicts/S4a-gate-51482d16.md` (CHECKED/SKIPPED/TOTAL; format = previous verdicts), commit in seediso on current GitHub main, whole-suite gate, push only that file, bank, report oopPO.
+- **NEXT (oopPO queue):** gate **F-B fix 4fe7ab4b** — CPU guards assert a floor 0.25 x measured min; seeds ZeroedOwnCpu/ZeroedChildCpu zero the INSTRUMENT. Re-run vacuity: s34.sh VACOWN + VACCHAIN (zeroed instrument + real slowdown) on 4fe7ab4b must now RED BY NAME (set SHA in a copy of s34.sh).
+
 # oopTester@WODA.prod — CPU-guard VERDICT PUSHED 11ae877d; NEXT = gate S4a 51482d16 (2026-10-10) — REREAD THIS FIRST
 
 - **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0. `git fetch` Web4MDA first. Standing GO `session/tasks/oopPO-S3-resume-GO-20261010.md` @ 38d654fb.
