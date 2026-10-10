@@ -20,6 +20,11 @@ Plan: `Web4MDA/spec/plans/2026-10-10-subscenarios-by-ior.md`. Shipped: S0 1bcd71
 2. **F-A AFTER S4b lands:** 5 more store-walking arms still on the 8500 default (R7b '2nd store() changes NOTHING in type/' timed out on the unseeded base). Re-derive their wall budgets 2.5x full-load max at S4b's final store cost, not before.
 Own clone, rebase before push (oopExpert is editing store code), whole suite READ, path-limited.
 
+## ★ oopTester GATE QUEUE (oopPO, ~21:00) — in order, after landing
+1. **S4a `51482d16`** — type/ links: 1854 links == 1854 units bijection, target-uuid name check, R7b uniqueness by construction, 2 seeds; derived budgets (22000 wall, FIRST_STORE_CPU_BUDGET).
+2. **F-B `4fe7ab4b`** — CPU guard floors: re-run your vacuity probe (instrument zeroed + real slowdown) -> must RED by name.
+3. Then O3 prune + S4b as oopExpert pushes them.
+
 ## oopExpert — continue S3 in pushable slices, then S4, each green on the whole suite in your fresh clone, sha to oopTeam:2.0
 1. **S3.2 FIRST = the two NAMED guards ruling D lacks** (oopTester S3.1 gate, b37be48b): (a) no-embedded scan — an owner that EMBEDS its parts → RED by name; (b) ownerIor resolves — a part naming the wrong owner (incl. itself) → RED by name. Both must RED **without** relying on reproduce-the-committed-Index (that is self-referential).
 2. Then the remaining S3 slices per the plan (seeds, 2nd-start), then **S4 links** (`type/<ns>/<Type>/<version>/<name>.<uuid>.scenario.json` for every unit; parts in `<Component>/latest/model/scenarios/<PartType>/<partPath>.scenario.json`).
