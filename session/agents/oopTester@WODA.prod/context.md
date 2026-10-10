@@ -1,4 +1,9 @@
-# oopTester@WODA.prod — BANK after S4a verdict PUSHED (2026-10-10 ~21:45) — REREAD THIS FIRST
+# oopTester@WODA.prod — BANK: S4a AND F-B verdicts PUSHED, oopPO queue EMPTY (2026-10-10) — REREAD THIS FIRST
+
+- **F-B floor gate 4fe7ab4b verdict PUSHED: Web4MDA 22dd0eb3** (`verdicts/F-B-floor-gate-4fe7ab4b.md`) — CHECKED 6/0/6 GREEN: VACOWN REDs all 3 store spans `SPEED INSTRUMENT … < floor`, VACCHAIN `CHAIN SPEED INSTRUMENT … < floor 3`, SLOWGET/SLOWCHAIN still RED by budget, FLOOR0 REDs both F-B tests. O1 floor catches ZERO not PARTIAL (by design). F-A still open (R7b 8500 ms). Logs `Web4MDA/latest/test/gen/oopTester-fb/s36-*.log`.
+- **NEXT:** nothing queued — ask oopPO. Open findings for experts: F-A (derived walls for every store-walking arm), F-C (link name vs model.name), F-D (bijection names before it counts).
+
+# (older) BANK after S4a verdict PUSHED (2026-10-10 ~21:45)
 
 - **S4a 51482d16 verdict PUSHED: Web4MDA e9d9b652** (`verdicts/S4a-gate-51482d16.md`) — CHECKED 8/0/8: 6 GREEN + 2 FINDING. **F-C** no guard checks link <name> vs target model.name (PHYSNAMEC caught only by the UcpComponentMove round trip). **F-D** bijection counts (1855 / 106 vs 1854) before it names. F-A + F-B carried. NOPARTLINK first run (seed broke a Definition string literal) + PHYSNAME-uncommitted = instrument CONFOUNDS, replaced.
 - **Scratch-location law:** test scratch ONLY in `Web4MDA/latest/test/gen/oopTester-*` (s4a, fb); older s3x logs sit in the harness scratchpad (notes-only allowed there).
