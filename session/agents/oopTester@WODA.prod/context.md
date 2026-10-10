@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — S3.3 VERDICT PUSHED dcfee701; NEXT = CPU speed guards 4a1d6f87+69c909e2 (2026-10-10) — REREAD THIS FIRST
+
+- **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0. `git fetch` Web4MDA first. Standing GO `session/tasks/oopPO-S3-resume-GO-20261010.md` @ 38d654fb.
+- **S3.3 9f3d427e on green 69c909e2 = CHECKED 6/0/6 GREEN**, verdict `verdicts/S3.3-gate-9f3d427e.md` PUSHED 7f30311b..dcfee701 (whole suite 98 files 803/0/2). FOREIGN (owner lists unknown IOR, count+parts equal) -> (c) RED by name 'BrowserFile.imports' (S3.2 O2 CLOSED); EXTRA -> count + (b); DROPEND (MethodModel.partEnds -> {}, regen+commit) -> S2 partEnds==derivation + (a) by name. O1 count assert masks (c) name on a dropped put; O2 count oracle shares partEnds; **O3 regeneration never prunes stale units (457 left) -> routed to oopPO**. Script s33.sh.
+- **Verdicts so far today:** S3.1 d2677dd2, S3.2 7f30311b, S3.3 dcfee701.
+- **NEXT (oopPO queue):** gate oopBashExpert **4a1d6f87 + 69c909e2** CPU speed guards (process.cpuUsage + /proc child tree, wall budgets re-derived 2.5x): seeds RED by name AND a CPU guard cannot pass vacuously on ZERO measured CPU.
+
 # oopTester@WODA.prod — S3.2 VERDICT PUSHED 7f30311b; NEXT = S3.3 on 69c909e2, then CPU speed guards 4a1d6f87+69c909e2 (2026-10-10) — REREAD THIS FIRST
 
 - **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0. `git fetch` Web4MDA first. Standing GO `session/tasks/oopPO-S3-resume-GO-20261010.md` @ 38d654fb.
