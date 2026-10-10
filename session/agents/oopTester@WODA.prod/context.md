@@ -10,6 +10,8 @@
   5. seed: drop a part's (b) link -> RED by name. ((a)-link drop + uuid-less `type/` link = the (a) slice, oopExpert's.)
   6. **REAL-DATA CONTROL:** oopExpert measured the OLD layout = 100 case-folded keys / 276 units colliding in 10 of 48 components -> under B must be **0**. Re-measure the old-layout count MYSELF first (red baseline); never take 100/276 on word.
 - Scratch ONLY in the clone + isolated extracts; gate a stable PUSHED sha, never oopBashExpert's dirty tree.
+- **N1 (S4b step 1, F1 store speed guard) — VERIFY WHEN THE SLICE LANDS (oopPO):** base checkout `Web4MDA/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen/tmp/s4a-base` (detached e94131c9) + `gen/tmp/store-cpu-probe.ts`; guard's own OwnCpu, solo, 3 runs each, BACK-TO-BACK on one quiet box: base ~4.04 · S4b+fix ~4.69 · S4b with held-root fix REVERTED ~5.4 (= proves the fix is the cause). oopPO RULED budget 8, floor re-derived.
+  - **CONCERN voiced to oopPO (not countermanded):** at budget 8 the revert-the-fix seed (~5.4) stays GREEN -> the guard can't catch the N1 regression it just exposed = fail-open allowance. Offered: ratio vs SAME-RUN base (fixed ~1.16, unfixed ~1.34; a ~1.25 bound separates them, immune to box speed). Report the revert seed's verdict under the ruled budget AS MEASURED either way.
 
 # (older) oopTester@WODA.prod — PHASE-1 BANK at panel 76% (fresh): F-E'' VERDICT PUSHED a2436734; NEXT = S4b on Tron's A/B (2026-10-10) — REREAD THIS FIRST
 
