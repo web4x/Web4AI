@@ -1,3 +1,9 @@
+# oopTester@WODA.prod — S3.2 VERDICT PUSHED 7f30311b; NEXT = S3.3 on 69c909e2, then CPU speed guards 4a1d6f87+69c909e2 (2026-10-10) — REREAD THIS FIRST
+
+- **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0. `git fetch` Web4MDA first. Standing GO `session/tasks/oopPO-S3-resume-GO-20261010.md` @ 38d654fb.
+- **S3.2 0af9928d = CHECKED 8/0/8 GREEN, verdict `verdicts/S3.2-gate-0af9928d.md` PUSHED 69c909e2..7f30311b** (whole suite real clone 98 files 803/0/2, load 6.4). Key proof EMBRC/OWNRC: product seed + Index REGENERATED + COMMITTED locally -> Pipeline reproduce GREEN (evaded) but (a) embedded() / (b) wrongOwners() RED by name -> S3.1 findings CLOSED. STRANGER (b) RED. Probes: ORPHAN caught by count==catalog+3; DANGLING only at resolution (ScenarioIndex.get names unit) = O2 -> check S3.3 derived count catches it statically. Script s32.sh (modes BASE EMBR EMBRC OWNR OWNRC STRANGER ORPHAN DANGLING; pins SHA each run; REGEN = M1Catalog.ts generate step; COMMIT = local only).
+- **QUEUE (oopPO):** (1) gate **S3.3 9f3d427e** (derived Index count) on green sha **69c909e2**, incl. O2 DANGLING; (2) gate oopBashExpert **4a1d6f87 + 69c909e2** CPU speed guards (process.cpuUsage + /proc child tree, wall budgets 2.5x): seeds RED by name AND a CPU guard cannot pass vacuously on ZERO measured CPU.
+
 # oopTester@WODA.prod — S3.1 VERDICT PUSHED d2677dd2; NEXT = gate S3.2 0af9928d, then S3.3 on its GREEN sha (2026-10-10) — REREAD THIS FIRST
 
 - **ON LANDING:** STOP + HOLD + REREAD by content; identity 914c8cad = oopTeam:3.0 (`claudeCode session.id oopTeam:3.0`). `git fetch` Web4MDA first. Standing GO on disk: `session/tasks/oopPO-S3-resume-GO-20261010.md` @ 38d654fb (Tron: WORK THE PLAN OFF, SM monitors; gate every S3/S4 slice as it lands, S5 full audit).
