@@ -1,0 +1,31 @@
+[FSLINK-imp] seeded 1 file(s)
+[FSLINK] seeded 1 file(s)
+[FSLINK] rc=0
+[FSLINK]  Test Files  1 passed (1)
+[FSLINK]       Tests  20 passed (20)
+[DUPFOLDER] second held package folder EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/Web4MDA/latest
+[DUPFOLDER] rc=1
+[DUPFOLDER] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Package/latest/test/TreeFileUnitRulings.test.ts > eamd-ucp.md rule 4 · 7a7304c · sub-components live BESIDE the Version (the committed component tree, model-derived oracle) > the anc
+[DUPFOLDER] R3 anchors: CHECKED 1580 / SKIPPED 48 store-output folders / TOTAL 1628
+[DUPFOLDER]      ✓ the anchor search is NON-VACUOUS and reported: CHECKED held dirs / SKIPPED store-output folders / TOTAL 28ms
+[DUPFOLDER]      × the Package folder is found (exactly one) and holds its own Version `latest` as a direct child 6ms
+[DUPFOLDER]      × BOTH WAYS: every model-derived component sits at <ns>/<C>/latest beside the Version, and nothing else does 30ms
+[DUPFOLDER] AssertionError: expected [ …(2) ] to have a length of 1 but got 2
+[DUPFOLDER] AssertionError: expected [ 'DefaultFile/latest', …(48) ] to deeply equal [ 'DefaultFile/latest', …(47) ]
+[DUPFOLDER]  Test Files  1 failed (1)
+[DUPFOLDER]       Tests  2 failed | 12 passed (14)
+[FSCALLER2-imp] seeded 1 file(s)
+[FSCALLER2] seeded 1 file(s)
+[FSCALLER2] committed locally a4f87278b
+[FSCALLER2] rc=0
+[FSCALLER2]  Test Files  1 passed (1)
+[FSCALLER2]       Tests  10 passed (10)
+[R1STALE] seeded 7 file(s)
+[R1STALE] rc=1
+[R1STALE]      × S4 (b) seeds -> RED BY NAME on a real store, then ONE re-store repairs them: a DROPPED link (unlinkedParts), a MISNAMED link (misnamed), a STALE link at a derived path (misnamed; relinked); a REGULAR file is refused by name, never d
+[R1STALE] Held tree: CHECKED 332 held files / SKIPPED 48 store-output folders / TOTAL 380
+[R1STALE] AssertionError: repaired: dropped relinked, misnamed pruned, stale relinked: expected { …(2) } to deeply equal {}
+[R1STALE]  Test Files  1 failed | 2 passed (3)
+[R1STALE]       Tests  1 failed | 79 passed (80)
+
+[exited with code 0]
