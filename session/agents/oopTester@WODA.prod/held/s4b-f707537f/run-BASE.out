@@ -1,0 +1,25 @@
+HEAD f707537f7 own=yes
+[BASE] rc=0
+[BASE] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Ior/latest/test/IorAcceptance.test.ts > Ior — spec 14 I1+I2+I3 acceptance (IOR1-IOR7, IOR3b, port rule, Link, UnrepresentableIorError) — oopTester gate > IOR2 round-trip BOTH ways 
+[BASE] IOR2 CHECKED 15032 / SKIPPED 0 / TOTAL 15032 (+21 placeholders) · typed instances 15020 · address lists 1
+[BASE] AC2 value scan: CHECKED 18271 / ALLOWED 281 / TOTAL 18552 — PlantUmlServerModel.url = http://localhost:8089 [url] | NpmPackage.of().main = dist/com/ceruleanCircle/Web4MDA/latest/src/ts/EAM/layer2/Web4MDA.js [npm manifest] | NpmPackage.of(
+[BASE] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2ThingClass/latest/test/ThinglishTarget.test.ts > PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) — the whole catalog vs the committed .thing files > TH1 
+[BASE] TH1: CHECKED 106 / SKIPPED 0 / TOTAL 106
+[BASE] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/ThinglishGrammar/latest/test/ThinglishGrammar.test.ts > ThinglishGrammar — SC8 clause 2: every keyword maps to an M3 element (Tron 2026-10-01 ruling) — oopTester gate > SC8 clause 
+[BASE] SC8 modifiers: 13 keywords · (keyword, element) pairs CHECKED 18 / SKIPPED 0 / TOTAL 18
+[BASE]      ✓ IOR2 round-trip BOTH ways over EVERY concrete IOR string of the repo (derived scan, I3 canonical: typed instance + address list) — CHECKED / SKIPPED / TOTAL, SKIPPED 0 10689ms
+[BASE] H4 (b): CHECKED 655 / TOTAL 655 files; owner hits 1; observer exempt files 1 (read-only uses proven); FOUND 0
+[BASE] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts > ARM4 — the README State table is derivable from disk (built = class + linked gate exists; specified = artifact absent) > ARM4: every State row checks out a
+[BASE] ARM4 status table: CHECKED 9 / SKIPPED 0 / TOTAL 9
+[BASE] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts > ARM6 — no live-normative top-level gen/ src/ test/ path in README + spec/*.md > ARM6: every top-level gen/ src/ test/ mention is struck, blockquoted or a T
+[BASE] ARM6 top-level paths: CHECKED 0 live / SKIPPED 95 marked / TOTAL 95 (+ 5 component-relative tree rows, derived, NOT top-level)
+[BASE] SKIPPED (printed so none hides):
+[BASE] Held tree: CHECKED 332 held files / SKIPPED 48 store-output folders / TOTAL 380
+[BASE] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Package/latest/test/TreeFileUnitRulings.test.ts > eamd-ucp.md rule 4 · 7a7304c · sub-components live BESIDE the Version (the committed component tree, model-derived oracle) > the anc
+[BASE] R3 anchors: CHECKED 1578 / SKIPPED 48 store-output folders / TOTAL 1626
+[BASE]  Test Files  98 passed (98)
+[BASE]       Tests  821 passed | 2 skipped (823)
+[BASE]   10689ms  IorAcceptance.test.ts :: Ior — spec 14 I1+I2+I3 acceptance (IOR1-IOR7, IOR3b, port rule, Link, UnrepresentableIorError) — oopTester gate > IOR2 round-trip BOTH ways over EVERY concrete IOR string of the repo (derived scan, I3
+DONE
+
+[exited with code 0]

@@ -1,0 +1,10 @@
+HEAD f707537f7 own=yes
+[N1REVERT] seeded 7 file(s)
+[N1REVERT] rc=1
+[N1REVERT]      × F1 MECHANISM — a FRESH store written through the REAL put path (store -> ScenarioIndex.put -> NodeJSFile.link) yields ONLY RELATIVE type/ links, one per UNIT (S4: classes and parts), all resolving 5534ms
+[N1REVERT] AssertionError: N1 MECHANISM: ONE held root folder object per root path across every link: expected [ …(2) ] to deeply equal []
+[N1REVERT]  Test Files  1 failed (1)
+[N1REVERT]       Tests  1 failed | 64 passed (65)
+DONE
+
+[exited with code 0]

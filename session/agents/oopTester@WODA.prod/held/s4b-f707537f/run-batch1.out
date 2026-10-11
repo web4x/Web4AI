@@ -1,0 +1,76 @@
+[FSCALLER-imp] seeded 1 file(s)
+[FSCALLER] seeded 1 file(s)
+[FSCALLER] rc=0
+[FSCALLER]  Test Files  1 passed (1)
+[FSCALLER]       Tests  20 passed (20)
+[R7BODY] seeded 1 file(s)
+[R7BODY] rc=1
+[R7BODY]      × no src file (derived walk, comments + strings stripped) reaches for a link API, a shell ln, a store/synchroniser type or a sync call — EXCEPT the spec 13 §4 declarations (exact allowance, both ways) 137ms
+[R7BODY] AssertionError: expected [ …(4) ] to deeply equal []
+[R7BODY]  Test Files  1 failed (1)
+[R7BODY]       Tests  1 failed | 19 passed (20)
+[XPKG] seeded 1 file(s)
+[XPKG] rc=1
+[XPKG]      × a 2nd store() is IDEMPOTENT: 0 new files, 0 changed bytes (put addresses by the stable uuid) 620ms
+[XPKG]      × seed DROP ONE PUT -> RED by unit: a store missing one class names exactly that class 591ms
+[XPKG]      × S4 (b) seeds -> RED BY NAME on a real store, then ONE re-store repairs them: a DROPPED link (unlinkedParts), a MISNAMED link (misnamed), a STALE link at a derived path (misnamed; relinked); a REGULAR file is refused by name, never d
+[XPKG]      × R7b — a 2nd store() changes NOTHING in type/ either: same link set, same targets, 0 changed bytes 572ms
+[XPKG]      × R7b seed DROP ONE PUT -> RED by name: the dropped class has no type/ link (and the bijection still holds for the rest) 584ms
+[XPKG]      × S4 (a) seeds -> RED BY NAME on a real store: a PART whose type/ link is dropped is named by its Index file; a type/ link WITHOUT the uuid is named by its link 598ms
+[XPKG]      × F-C + F-D seeds -> RED BY NAME on a real store: a CONSISTENT rename (link AND its Index record) is named by misnamed(); a DUPLICATE link to one target is named by multiLinked() — no count involved 587ms
+[XPKG]      × F1 MECHANISM — a FRESH store written through the REAL put path (store -> ScenarioIndex.put -> NodeJSFile.link) yields ONLY RELATIVE type/ links, one per UNIT (S4: classes and parts), all resolving 1237ms
+[XPKG]      × F1 seed — an ABSOLUTE link written IN the real put path -> RED by the link's name 651ms
+[XPKG]      × R7b seed DANGLE A LINK -> RED by path: an Index file removed under its link is named by the link 719ms
+[XPKG]      × R7b seed DOUBLE-MINT (a uuid minted afresh per run) -> SEEN by name on the 2nd run: S4 names carry the uuid, so nothing collides; O3 PRUNE removes the 1st run's units — so EVERY class name is re-linked under a NEW uuid (the identi
+[XPKG]      × S4 COLLIDE NAMES (two classes, one name) -> BOTH stored, unique BY CONSTRUCTION: two type/ links <name>.<uuid> each resolving to its OWN Index file, nothing overwritten 26ms
+[XPKG]      × O3 PRUNE: regeneration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link of the removed end is GONE, the count matches, a .gitkeep survives; seed a NON-PRUNING store
+[XPKG]      × seed IOR-TYPE != MODEL CLASS -> RED by name: a stored ClassModel whose IOR names another Model class comes back as THAT class and storedClass refuses it, naming it 702ms
+[XPKG]      × seed UNLOADED Model-class IOR -> RED by name: an IOR naming a class nobody loaded is a named error, never a guessed class 672ms
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG] Error: ScenarioIndex: package 'Web4MDA' found 0 times under EAMD.ucp/Components at its shallowest depth — its folder must be unique
+[XPKG]  Test Files  1 failed (1)
+[XPKG]       Tests  15 failed | 50 passed (65)
+[LITPKG] seeded 1 file(s)
+[LITPKG] rc=0
+[LITPKG]  Test Files  1 passed (1)
+[LITPKG]       Tests  65 passed (65)
+[DERIV] seeded 1 file(s)
+[DERIV] rc=1
+[DERIV] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Package/latest/test/TreeFileUnitRulings.test.ts > eamd-ucp.md rule 4 · 7a7304c · sub-components live BESIDE the Version (the committed component tree, model-derived oracle) > the anc
+[DERIV] R3 anchors: CHECKED 2097 / SKIPPED 0 store-output folders / TOTAL 2097
+[DERIV]      × R3 seed: a derived link folder named like the Package is IGNORED; a duplicate HELD SOURCE folder is RED, naming both 7ms
+[DERIV]      × the anchor search is NON-VACUOUS and reported: CHECKED held dirs / SKIPPED store-output folders / TOTAL 35ms
+[DERIV]      × the Package folder is found (exactly one) and holds its own Version `latest` as a direct child 3ms
+[DERIV] AssertionError: the link folder is not a source: expected [ …(2) ] to deeply equal [ Array(1) ]
+[DERIV]  FAIL  |solo| EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Package/latest/test/TreeFileUnitRulings.test.ts > eamd-ucp.md rule 4 · 7a7304c · sub-components live BESIDE the Version (the committed component tree, model-derived oracle) > th
+[DERIV] AssertionError: the committed tree holds layout-B links: the skip is exercised, never vacuous: expected 0 to be greater than 0
+[DERIV]     292|     console.log(`R3 anchors: CHECKED ${checked} / SKIPPED ${skipped} s…
+[DERIV] AssertionError: expected [ …(2) ] to have a length of 1 but got 2
+[DERIV]  Test Files  1 failed (1)
+[DERIV]       Tests  3 failed | 11 passed (14)
+[DUPSRC] duplicate source -> EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/DefaultFile/latest/model/ScenarioIndexDefinition.ts
+[DUPSRC] rc=1
+[DUPSRC] Error: M1Catalog.load: two model sources define 'ScenarioIndex'
+[DUPSRC]  Test Files  1 failed (1)
+[DUPSRC]       Tests  no tests
+[ROGUE] held source hidden under latest/model/Rogue/
+[ROGUE] rc=0
+[ROGUE] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Package/latest/test/TreeFileUnitRulings.test.ts > eamd-ucp.md rule 4 · 7a7304c · sub-components live BESIDE the Version (the committed component tree, model-derived oracle) > the anc
+[ROGUE] R3 anchors: CHECKED 1578 / SKIPPED 49 store-output folders / TOTAL 1627
+[ROGUE]  Test Files  1 passed (1)
+[ROGUE]       Tests  14 passed (14)
+
+[exited with code 0]
