@@ -7,7 +7,7 @@
 **★★★★ RESUME NOTE — BANKED 2026-10-11 @ panel 73 (oopPO boundary ruling; rewind before the heavy part):**
 1. **S4b slice = LOCAL `main` `9bfd7014`** in my clone (squashed, trailers, on origin 8c0009f0) — fresh-clone run 3 READ 822 = 818/2/2, only reds = IOR2 + MofLayoutAC5 8500ms timeouts (pass solo). NOT on origin main.
 2. **(c) WIP = `36ccd6bc` on origin `preserve/oopBashExpert-s4b-a3-wip`** (child of 9bfd7014): oracle skip derived from M1Layout `<Version>/<model>` names, counted CHECKED/SKIPPED/TOTAL, SKIPPED>0 — tsc 0, UNRUN. Move it onto main as part of S4b (amend) or keep as its own commit — then A3 on top.
-3. **Full-load measurements (UNREAD — read them fresh):** `Web4MDA/latest/test/gen/tmp/fa-run1.json` + `fa-run2.json` (vitest JSON, 2 whole-suite runs on fresh clone `gen/tmp/s4b-fresh` @9bfd7014; logs fa-run{1,2}.log).
+3. **Full-load measurements DONE, UNREAD (both runs exited rc=1 = reds under load; read WHICH fresh, parse durations with a script, never cat):** `Web4MDA/latest/test/gen/tmp/fa-run1.json` + `fa-run2.json` (vitest JSON, 2 whole-suite runs on fresh clone `gen/tmp/s4b-fresh` @9bfd7014; logs fa-run{1,2}.log).
 4. **LEFT:** (a) run TreeFileUnitRulings + NamespacePlacement on the (c) change; (b) A3 = SEPARATE commit: every store-walking arm still on the 8500 default whose 2.5×full-load-max > 8500 (IOR2 + MofLayoutAC5 at least, ~5 total) gets budget = 2.5× max rounded up — REPORT each max + budget; N1 mechanism + load ratio stay the speed guard.
 5. **THEN:** whole suite on a FRESH clone of the final sha → READ, 0 red → push BOTH commits (S4b + A3) to origin main → sha to oopTeam:2.0 + oopTester (+ disclosures (a)(b)(d) accepted, (c) per condition).
 
