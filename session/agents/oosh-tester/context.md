@@ -14,7 +14,8 @@ ALL CLOSED deployed-green (on merit, differential/independent-oracle proven):
 - **(6)/(6s) INTERIM-LIFT re-gate — CLOSED GREEN 20/0 @5a058b2c** on deployed cmdline-disambig (aa2cec4b). Oracle hardened to an INDEPENDENT method (/proc/<pid>/cmdline NUL-split + pgrep -P, NOT the resolver's ps-text parse) per oopPO common-mode rule; 6o leading-space seed-proof passes (oracle ≠ common-mode). Live: 0.3→a43c1b23 (resolver==oracle), diamonds:0.1→UNIDENTIFIED (now a FRESH claudeCode-new pane, not the old ef9fe62b-resumed dup); 6s synthetic resumed/fresh distinct; parity 5 panes distinct.
 
 ## NEXT (open)
-- **Await oosh-po gate-sign on the 20/0 re-gate → address-by-pane interim LIFTS.** (Reported to oosh-po + oopPO + expert acked.)
+- **(6)/(6s) GATE-SIGN GRANTED by oosh-po (2026-10-12): PASS, #3 CLOSED** — PO disk-verified (origin 5a058b2c, cmdline.uuid live, oracle 11 /proc-refs). Address-by-pane lift is oosh-po's ruling (granted). Campaign #1/#2/#3 + (6)/(6s) ALL CLOSED deployed-green. **RESTING at 47%** (PO-released; healthy, no rewind).
+- ON STANDBY: expert's next item **send.deliver OTR-1-rc honesty** — expert will request my RED-first when oosh-po greenlights.
 - No live two-RESUMED dup exists now (diamonds went fresh) → real-collision coverage rests on the SYNTHETIC 6s + parity arms (durable, always-runnable). If a true two-resumed dup reappears, the live (6) arm re-exercises it.
 - Possible follow-ups (not blocking): pulse perf 7b DISCLOSED-OPEN (~25s >15s); T-SWEEP-LIVE-STATE (8 RED/2 anchor) handed to expert for the team.sweep reliability fix — re-gate when that lands.
 
