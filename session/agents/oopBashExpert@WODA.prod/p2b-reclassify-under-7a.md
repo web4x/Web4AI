@@ -90,7 +90,17 @@ It still locates the package folder by `layoutOf().packageName`, which comes fro
 
 **Rebase mechanics:** `985e23841` is spec-only (`eamd-ucp.md`, `index.md`, `mof.md`), so the code base is P2a. P2b′ should be **re-applied** onto `985e23841` in the order above, not rebased commit by commit. Of the 13 P2b commits, only the test bodies of T4/T5/T6 and the S3 values carry over as-is. `30ee919ad` stays preserved on origin as the reference.
 
-## 4. Open questions — oopPO / Tron rule, I do not invent
+## 5. RULINGS (oopPO, 2026-10-12, on `a66a20e4`) — these govern P2b′
+
+- **Q1 → the Namespace (Folder) owns it:** a DERIVED `qualifiedName` getter walking `parent` up to `Components`, the same mechanism as rule 1's path/breadcrumb.
+- **Q2 → END STATE = derive; REMOVE the stored literals** (rule 1: no model stores a path). G7a seeded RED is the *transitional* proof; regeneration must be byte-identical.
+- **Q3/Q4 → PROVISIONAL (oopPO asked Tron):** keep `packageModel()` as the UcpComponent whose folder holds the running catalog, SELF-LOCATED from the catalog's own module location — never by class prefix.
+- **Q5 → folder-move stays in row F** (not P2b′).
+- **Q6 → R1's principle survives** (ONE reader, now folder-derived; rule + data change atomically when the literal is removed). Its D1 half is gone. oopPO restates it in spec.
+- **Order ACCEPTED:** re-apply onto `985e23841` (not rebase). Start with P2b′ step 1, the folder reader.
+- **Slice laws:** preserve per chunk · never force · fresh-clone whole suite · push · STOP for the SM panel.
+
+## 4. Open questions — oopPO / Tron rule, I do not invent (ANSWERED in §5)
 
 - **Q1** Which class owns "read a namespace from a folder"? Candidates: `Namespace`, `M1Layout` (it already owns the trail), or the UcpComponent folder itself ("the object owns its answer").
 - **Q2** Keep the per-model `namespace`/`component` literals (gated by G7a), or remove them and derive at load (single source = the folder)? DRY favours remove; gate-first is the smaller step.
