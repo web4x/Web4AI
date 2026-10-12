@@ -1,0 +1,36 @@
+===== (0) EXISTS: session.discover.all is implemented [RED now] =====
+  ✓ PASS: session.discover.all defined
+===== shared one-pass scanner (fix target) present? [RED now] =====
+  ✓ PASS: shared one-pass scanner present
+===== (1)+(4) PARITY/SCOPE: batch discover.all == per-pane session.current, all live panes =====
+  ✓ PASS: batch==per-pane for all live panes (disambig agree-by-construction)
+===== (2) PERF: session.discover.all one-pass time — DISCLOSURE (non-ship-blocking, oosh-po AC-split) =====
+│ Test 4: 2-PERF-DISCLOSE: session.discover.all one-pass time (DISCLOSED, non-blocking)
+  discover.all one-pass elapsed=9s (target <=15s)
+  ✓ PASS: DISCLOSED: one-pass 9s (<=15s target met)
+===== (3) BYTE-IDENTICAL: per-pane session.current UNCHANGED + stable [anchor] =====
+  ✓ PASS: per-pane session.current stable (74f27969-2261-4556-9e82-dd059d7a1708)
+  ✓ PASS: test.session-id-fresh present (run as the unchanged-output regression)
+===== (5) CWD-DISAMBIG UNIT TEST [distinct-cwd same-title; NOT the interim-lift gate] =====
+  ✓ PASS: per-pane distinct (aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa / bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb)
+  ✓ PASS: discover.all distinct + matches per-pane
+  ✓ PASS: two distinct identities (no same-title collapse)
+===== (6) INTERIM-LIFT GATE [oopPO contract (a): TWO DISTINCT, ground-truth = cmdline --resume] =====
+  ooshTeam:0.3 cmdline-truth=a43c1b23-7de6-4c75-8952-3e98b6ca43b6 session.current=a43c1b23-7de6-4c75-8952-3e98b6ca43b6 | diamonds:0.1 session.current=a43c1b23-7de6-4c75-8952-3e98b6ca43b6
+  ✓ PASS: resumed pane matches cmdline ground-truth (a43c1b23-7de6-4c75-8952-3e98b6ca43b6)
+  ✗ FAIL: COLLAPSE (RED): diamonds:0.1 resolves to ooshTeam:0.3's uuid a43c1b23-7de6-4c75-8952-3e98b6ca43b6 — a live agent mis-identified as another (gates address-by-pane lift)
+  ✗ FAIL: two live panes share ONE uuid (a43c1b23-7de6-4c75-8952-3e98b6ca43b6) — never-exclude contract violated (RED)
+===== (6s) SYNTHETIC INTERIM-LIFT [ALWAYS-RUNNABLE — no dependence on a live dup; oopPO] =====
+  cmdline-truth(A)=11111111-aaaa-4aaa-8aaa-111111111111 | session.current A=11111111-aaaa-4aaa-8aaa-111111111111 B=11111111-aaaa-4aaa-8aaa-111111111111 (expect A=11111111-aaaa-4aaa-8aaa-111111111111, B!=11111111-aaaa-4aaa-8aaa-111111111111)
+  ✓ PASS: cmdline ground-truth readable (11111111-aaaa-4aaa-8aaa-111111111111)
+  ✓ PASS: paneA -> seedA
+  ✗ FAIL: COLLAPSE (RED): paneB -> seedA (11111111-aaaa-4aaa-8aaa-111111111111) — fresh pane mis-ID'd as the resumed one (interim-lift gate)
+  ✗ FAIL: COLLAPSE (RED): both panes -> 11111111-aaaa-4aaa-8aaa-111111111111
+===== (7) PART-B: scrumMaster pulse ctx for EVERY agent [correctness arm — pulse repoint to discover.all] =====
+  pulse ooshTeam: 11s, agent-ctx-readings=4, missing/err markers=none
+  ✓ PASS: pulse ctx for every agent (4 readings, no missing/err)
+  ✓ PASS: DISCLOSED: pulse 11s (<=15s)
+==================================================================
+  T-SESSION-DISCOVER-ALL  PASS=14 FAIL=4
+  SHIP (A+B correctness)=EXISTS/SCAN/PARITY/byte-identical/5a/7a ctx-every-agent + no-regression;
+==================================================================
