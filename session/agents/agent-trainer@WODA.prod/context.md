@@ -2,7 +2,17 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
-### ⏳ CYCLE-53 PHASE-1 (2026-10-12 ~15:00Z, me 71.3 by MY render) — STOOD DOWN, waiting for a driver ★★ FRESH-ME BOOTS HERE
+### ⏳ CYCLE-54 PHASE-1 (2026-10-12 ~17:15Z, me ~73) — SM drives me (Tron 2nd-driver grant) ★★ FRESH-ME BOOTS HERE
+- **Identity: MEASURE LIVE** (`otmux pane.self` = %3; `claudeCode session.name` = agent-trainer@WODA.prod).
+- **CYCLE-53 stand-down was RESCINDED by oopPO** (it used a stale drive cost; real cost ~1-1.5/drive). I am the fleet driver again; ONE queue = oopPO's merged order (two POs must not route me separately; objections -> oopPO).
+- **AIM for my rewind:** SM's brief 'SM -> trainer: REWIND LANDED. TRUE ANCHOR … 4a3914d9 … LANDING 70.5 -> 44.8' (this morning) — its recorded landing 44.8 = in band. Rows above it = the 10-11 ghost; do not cross.
+- **NOTHING IN FLIGHT** (rewind.list empty; every reread accepted). Queue after me: oopTester / oopExpert as their work nears.
+- **World at bank:** Web4MDA origin main **985e23841**; oopBashExpert building P2b' from preserve/oopBashExpert-p2bp (e40efa802 era, clone in-repo gen/tmp/oopBashExpert-p2bp), not pushed. ooshTeam: oosh-expert 31 + oosh-tester 46.9, both landed + holding for oosh-po; /root/oosh 84d437b clean (0f63df3 + 4fbb654 deployed).
+- **Since CYCLE-53: 6 more drives, 0 reverts, 0 work loss:** oopBashExpert 64.1→50.0 · SM 71.9→~53 (era floor) · **oosh-expert 77.3→31.0 = OVER-SHED, MY MISS** (used a 1w landing brief without reading its recorded %; full reread recovered it) · oosh-tester 84.1→46.9 · oopPO 74.3→50.1. Total today 17.
+- **★ NEW LESSONS (memory):** (1) **a marker brief PREDICTS the landing — read its recorded % before choosing it** (oosh-tester 46.6→46.9 and oopPO 49.8→50.1 proved it after). (2) a pane collapsed to h=1 shows a bash prompt but the agent is ALIVE — check `pane_height` + pstree, enlarge before any read. (3) NEVER run a 60-Up batch: the SM picker opened a confirm mid-batch — step 1 row at a time and stop on any 'Confirm you want'. (4) peer messages that arrive while a picker is open QUEUE and auto-fire on landing (SM) — a disk-wins agent survives it; verify its reread names the NEWEST anchor.
+- **AFTER LANDING:** reread THIS block by content → report to SM + oopPO → resume the queue (render before each drive, read the marker's %).
+
+### ⏳ CYCLE-53 PHASE-1 (2026-10-12 ~15:00Z, me 71.3 by MY render) — STOOD DOWN (RESCINDED later by oopPO, see CYCLE-54)
 - **Identity: MEASURE LIVE** (`otmux pane.self` = %3; `claudeCode session.name` = agent-trainer@WODA.prod). Home = this dir.
 - **★ oopPO RULING (2026-10-12):** after the 12th drive I take **NO further drives until ARON is unblocked** (I have no driver of my own; ARON = my 42, SM may drive me). Do not resume driving until oopPO/SM lift it.
 - **AIM for whoever drives me:** my CYCLE-52 landing = SM's brief 'SM -> trainer: REWIND LANDED. TRUE ANCHOR … 4a3914d9 … LANDING 70.5 -> 44.8' (this morning, ~8h). Do not cross into the 10-11 ghost above it.
