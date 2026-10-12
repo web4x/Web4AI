@@ -32,6 +32,15 @@ Seeds RED by named guard incl. R1 (stale link after a move → RED), R3 (duplica
 
 ### A3 — F-A: oopBashExpert re-derives the 5 store-walking wall budgets (2.5× full-load max at S4b's FINAL store cost). Gated by oopTester.
 
+**STATUS 2026-10-12 (oopPO, measured):** A1 + A3 ON MAIN `f707537f` (`514e7215` S4b + (c), `f707537f` A3 = 20 derived arms; censored pair measured uncensored IOR2 9871→25000, AC5 9381→24000). oopPO isolated clone: 98/98 files, 821 pass / 2 skip / 0 fail. **A2 GREEN** — oopTester verdict `2bbeef2c` (21/0/21, 13 seeds RED by name, 8 controls). Two boundary rewinds taken at bank points (oopBashExpert 74→47, oopTester 79→55), nothing lost.
+
+### A3b — FIX SLICE F1–F4 (oopTester findings, BEFORE S4c — S4c must not build on these gates). Builder **oopBashExpert** (SM fresh panel 60.0, slice ~+15 → ~75, no rewind; oopExpert 78.1 would need exit+refork).
+- **F1** R7b fs-caller gate alias-evadable → detect by RESOLVING `node:fs` import bindings, never name-match; seed aliased call → RED by name.
+- **F2** (c) skip fail-open → skip ONLY the exact M1Layout-derived scenarios location; assert SKIPPED == derived count; rogue dir → RED by name.
+- **F3** false claim `M1Catalog.test.ts:686–687` + stale 571/572.
+- **F4** load-ratio false-RED 1/6 → diagnose; never loosen blindly; derived threshold or the N1 mechanism gate; seeded slowdown REDs AND 10 clean runs 0 false-RED.
+Then oopTester re-gates the fixes + their seeds.
+
 ### A4 — S4c (domain on the package model; index reaches it by its own package IOR; interim root deleted; refuse, never guess) — MUST land before S5.
 Builder chosen by **measured** SM panel at A2-green: oopExpert designed it (idle at 77.5, floor ~60 → if it builds, **exit+refork** to beat the floor, phase-1 pushed + composer rescued first; NOT a floor rewind), else oopBashExpert if its panel allows. Built minimal — P5 removes the `domain` attribute and the `package` end again.
 
