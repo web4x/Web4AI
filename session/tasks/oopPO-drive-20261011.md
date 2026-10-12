@@ -28,6 +28,8 @@
 - **oopExpert keeps the design-heavy slices** (P3's map FORM per ruling 4, then P4 IOR typing + resolve), rewound to its floor AT THAT BOUNDARY (before heavy work, never mid), one slice per rewind cycle accepted.
 - **oopPO P1:** ~2 more slices to the 78 boundary (slice 1 cost ~10.6); SM panels me at every push, I stop at a slice boundary.
 
+**★ P2 RULING R1 2026-10-12 (oopPO, on oopBashExpert's measured ambiguity `session/agents/oopBashExpert@WODA.prod/p2-ambiguity-D1.md`: D1 finds 0 packages on today's data):** **R1.** P2a: every reader consumes ONE derived `packageQualifiedName()`, package identity keeps today's rule, no data change. P2b flips `packageModel()` to D1 IN THE SAME COMMIT as the data migration — rule and data change atomically, no two-branch rule at any sha. **R2 rejected:** a namespace `''` violates "never empty" (eamd-ucp rule 2 as corrected 2026-10-12, plan ruling 1), breaks P2a's no-data premise, churns a stored IOR P2b overwrites anyway. **Conditions:** (1) P2b, on its own base: D1 without data → RED "0 packages" by name; data without D1 → RED by its named guard; both → GREEN. (2) P2a: a DERIVED scan proves no reader computes the package name except via `packageQualifiedName()`.
+
 ## Laws in force for everyone (each one was paid for)
 - Gate on an **isolated clone of the exact sha** you name, never the shared live tree.
 - **Never push behind an unread test run**; never run a gate and its push in parallel calls.
