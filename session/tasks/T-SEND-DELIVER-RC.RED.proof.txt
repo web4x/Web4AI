@@ -1,0 +1,19 @@
+│ Test 1: PRECOND: mock pane isClaudeCode + composer empty at rest
+  ✓ PASS: isClaudeCode=yes, composer empty
+===== ORACLE: a WEDGED composer => send.verified rc1 + stays staged =====
+│ Test 2: ORACLE: wedged composer -> send.verified rc1 AND composer stays staged (genuine non-submit)
+  ✓ PASS: send.verified honest rc1 + staged (ground truth: NOT submitted)
+===== (a) RED: otmux send on a WEDGED claude pane MUST return rc!=0 (not Step-4-masked 0) =====
+│ Test 3: (a) otmux send -> rc!=0 when composer stays staged (honest non-submission)
+  ✗ FAIL: MASKED (RED): otmux send rc=0 but composer is 'staged' (staged=not-submitted) — Step-4 false-rc0 mask
+===== (b) ANCHOR: normal send submits -> rc0 unchanged =====
+│ Test 4: (b) normal send -> rc0 + submitted (composer not staged)
+  ✓ PASS: rc0 + submitted (empty)
+===== (c) ANCHOR: non-claude delivery preserved =====
+│ Test 5: (c) non-claude send delivers the text (behavior preserved)
+  ✓ PASS: non-claude delivery preserved (text visible, rc=0)
+  T-SEND-DELIVER-RC  PASS=4 FAIL=1
+  RED-FIRST: (a) must FAIL on current deployed (Step-4 masks send.verified rc1 -> rc0).
+  Expert FIX = propagate send.verified rc + drop Step-4 extra-Enter mask -> (a) GREEN.
+  Passed:      4
+  Failed:      1

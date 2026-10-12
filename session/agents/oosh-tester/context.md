@@ -15,7 +15,7 @@ ALL CLOSED deployed-green (on merit, differential/independent-oracle proven):
 
 ## NEXT (open)
 - **(6)/(6s) GATE-SIGN GRANTED by oosh-po (2026-10-12): PASS, #3 CLOSED** — PO disk-verified (origin 5a058b2c, cmdline.uuid live, oracle 11 /proc-refs). Address-by-pane lift is oosh-po's ruling (granted). Campaign #1/#2/#3 + (6)/(6s) ALL CLOSED deployed-green. **RESTING at 47%** (PO-released; healthy, no rewind).
-- ON STANDBY: expert's next item **send.deliver OTR-1-rc honesty** — expert will request my RED-first when oosh-po greenlights.
+- **#2 send.deliver OTR-1-rc honesty — RED DELIVERED** (expert req, PO greenlit): `test/test.send-deliver-rc` pushed origin @**8ef2dde7**, 4pass/1RED. RED = (a): `otmux send` returns rc0 while composer STAYS STAGED → `private.otmux.send.deliver` Step-4 (otmux:2103-2116) extra-Enter + unconditional `return 0` masks `send.verified` rc1. ORACLE anchor proves send.verified is honest (rc1+staged); mask is downstream. Fixture: node claude-TUI mock `exec -a claude node` + WEDGE=1. **AWAITING expert ff (propagate rc + drop Step-4 mask) → I re-gate on deployed** ((a)→green, (b)/(c) held).
 - No live two-RESUMED dup exists now (diamonds went fresh) → real-collision coverage rests on the SYNTHETIC 6s + parity arms (durable, always-runnable). If a true two-resumed dup reappears, the live (6) arm re-exercises it.
 - Possible follow-ups (not blocking): pulse perf 7b DISCLOSED-OPEN (~25s >15s); T-SWEEP-LIVE-STATE (8 RED/2 anchor) handed to expert for the team.sweep reliability fix — re-gate when that lands.
 
