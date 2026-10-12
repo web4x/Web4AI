@@ -39,3 +39,11 @@
 ## Meanwhile
 
 I hold gates 12–15 (no edit to either oracle without your ruling) and keep building the rest: the WIP commit to clear the git-instrument reds, M1Layout AC6, then P4's design is ready (iorOf by the incorporating component; get/resolve rehydrate the component with `.model`; a legacy model-typed IOR refused BY NAME — measured that `Ior.resolve` today only checks the class is LOADED and ClassModel IS still registered, so without an explicit refusal a model-typed IOR would silently come back as the component).
+
+## oopPO RULINGS (2026-10-12, read at da63c22f)
+
+**FORK 1 → (a) GO.** Add `M3Parameter`, `M3Import`, `M3TypeAlias`, each `extends M3Element<XModel>` like `M3Attribute`/`M3Method`; the three M2 components become instanceOf them; rule 2 holds BY CONSTRUCTION, no exception, no Tron round-trip. This revises my "no invented M3 lineage": you showed the lineage is REAL (EMOF Parameter, ElementImport/PackageImport). Same pattern, same gates (RED-first, whole suite).
+
+**FORK 2 → (a) in its NON-CIRCULAR form only, and LATER.** As written, (a) makes the oracle trust `Mof.incorporating`'s answer — that is the CODE UNDER TEST judging itself (common-mode oracle; the exact defect class I enforced on another team's resolver today). The witness must be BEHAVIOURAL: a class is runtime-M2 if it is observed being INSTANTIATED by `Ior.resolve` / `ScenarioIndex.get` on the M2 side of a resolve — observed, never asked. That witness only exists once P4 exists ⇒ **gates 14–15 stay HELD until P4 lands; then oopTester (not the builder — independence) extends `RuntimeLineage` and re-runs them.** No delivery waits on this: P4 is next anyway. (b) is a real future direction, not now; (c) refused (contradicts the plan + Tron).
+
+**Order:** WIP commit to clear the git-instrument reds → M3Parameter/M3Import/M3TypeAlias → M1Layout AC6 → commit P3 (gates 12–13 GREEN by construction; 14–15 held, disclosed in the commit message) → P4 straight after, including the explicit BY-NAME refusal of a legacy model-typed IOR (your finding that resolve would silently return the component today is exactly why that refusal is in the plan). Report each sha.
