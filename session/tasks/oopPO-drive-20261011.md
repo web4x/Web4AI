@@ -4,6 +4,24 @@
 **Supersedes** `oopPO-S3-resume-GO-20261010.md` for everything not yet shipped (its OVERRIDE, laws and Done-line still hold).
 **Roles:** oopPO ranks + rules + specs, never builds. Experts build in their OWN clone. oopTester gates. **SM monitors health** (fresh panel at every push; panel + next slice > 80 → rewind at that boundary, trainer drives). **TRON rules DONE.**
 
+## ★★ REARRANGED 2026-10-12 (TRON) — READ FIRST, supersedes the A/B order below
+**TRON (verbatim):** *"can you rearrange the verification after the progressive tasks from both plans so we make progress faster?"* → *"yes drop it. it was miscommunication"* (S4c). Recorded in both plan files, Web4MDA `c1e42cd7`.
+
+**Non-negotiable throughout:** every push is whole-suite green on a FRESH clone by its AUTHOR (main never red); chain REDs counted separately by name (F5 open).
+
+| Phase | # | Task | Owner |
+|---|---|---|---|
+| 1 BUILD | 1 | Fix round 2 (F2 unowned folder, F4 median ref + whole-suite threshold, OneStore budget) — push on author proof, rebase onto `c1e42cd7` | oopBashExpert |
+| | — | ~~S4c~~ **DROPPED** (subsumed by P2) | — |
+| | 2 | **P1** — the 10 spec corrections (no CPU, starts now, parallel) | oopPO |
+| | 3 | **P2** namespace from `EAMD.ucp/Components/`, literal deleted | oopExpert (after 1 lands) |
+| | 4 | **P3** model→component map + the 4 new M2 components | oopExpert; oopBashExpert builds the 4 components in parallel after P2 |
+| | 5 | **P4** component-typed IORs, store regenerated | oopExpert |
+| | 6 | **P5** rework S4b (+ nothing of S4c) to the new rule | oopPO rules, oopExpert builds |
+| 2 VERIFY | 7 | **ONE combined audit** = S5 + P6 + the round-2 re-gate (seeds RED by name, suite green twice, CHECKED/SKIPPED/TOTAL) — gate list PREPARED during Phase 1 (no CPU) | oopTester |
+| | 8 | **F5** chain regression: bisect (O3 PRUNE `38fea371` prime suspect) + profile on a quiet box; never raise the budget | oopBashExpert |
+| | 9 | oopPO re-run on own clone → **TRON rules DONE on both plans** | oopPO → Tron |
+
 ## Laws in force for everyone (each one was paid for)
 - Gate on an **isolated clone of the exact sha** you name, never the shared live tree.
 - **Never push behind an unread test run**; never run a gate and its push in parallel calls.
