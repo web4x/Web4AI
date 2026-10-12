@@ -6,7 +6,7 @@ REPO=/var/dev/Workspaces/web4x/Web4MDA
 GEN=$REPO/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen
 SP=$GEN/oopTester-s4b
 ISO=$GEN/seediso
-SHA=f707537f
+SHA=${SHA:-f707537f}   # override: SHA=0277202a bash g.sh MODE
 C=EAMD.ucp/Components/com/ceruleanCircle/Web4MDA
 want=${1:-RECON}; go() { [ "$want" = "$1" ]; }
 cd "$ISO" || exit 2
