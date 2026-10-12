@@ -1,5 +1,15 @@
 # OOSH Expert Agent Context
 
+## ★ REWIND-ANCHOR 2026-10-12 (bank before queued rewind, slot 2). oosh-expert @ ooshTeam:0.3, WODA.prod, repo /root/oosh. Measure identity UUID→tty→pane, NEVER $TMUX_PANE.
+- **Scratch-law hook SELF-CHECK PASSED (2026-10-08):** `mktemp -u`→DENIED (scratch-guard.py loaded). My scratchpad `/tmp/claude-0/<proj>/<sess>/scratchpad/`=allow-root (worktrees/verify-scripts OK there). Product/test scratch → component latest/test/gen, fixed names.
+- **4 THREADS, ALL HOLDING on inputs:**
+  1. Pulse (b) lag-guard — **DONE ff-ready `0f63df3`** (branch oosh-expert/pulse-jsonl-lag, scrumMaster). → PO quiet-window ff → tester re-gate.
+  2. session.id live-first (a/fork) — **ff-ready `4fbb654`** (branch oosh-expert/session-id-v2). → PO ff → tester re-gate.
+  3. otmux send.verified UPGRADE — architect ruled **`f5911d54`**: upgrade EXISTING send.verified (verifies appearance=bug) to OTR-1 SUBMISSION-contract + bounded paste-chip retry; send.raw stays pure; NOT a new verb. → awaiting tester scenario-first RED, then implement.
+  4. pulse PERF **session.discover.all** — architect GO'd/affirmed **`d354bf63`**, **DESIGN LOCKED**. NEXT=build: shared `private.claudeCode.session.jsonl.scan`(one-pass uuid|lastTitle|cwd|mtime)+`session.rank`(cleanTitle,cwd→identical match/rank), called by BOTH per-pane session.discover AND batch session.discover.all (agree by construction); pulse resolve_jsonl→ONE discover.all/session+dict. Branch off 0f63df3, ff-safe. ⚠ session.discover refactor is LOAD-BEARING (fleet session-resolution) → behavior byte-identical, regression test.session-id-fresh BEFORE push; self-verify discover.all uuid==session.current per live pane incl a rewound one + <15s. Tester perf-RED gates. Collision=pre-existing/orthogonal (my guarantee=batch==per-pane, not never-collides). Fleet-wide agents.discover/live.tupleset repoint=DEFERRED follow-up w/ pane.live family.
+- **DEPLOYED already (a317633 line):** jsonl-lag content-lag guard, context.check occupancy-parse, composer.state, zoom `<target>`, usage-dispatch. Last context commit before this = 29d7a321. Detail = notes below.
+
+
 **Session**: oosh-expert@WODA.prod (opus 4.8 1M)
 **Role**: oosh-expert (OOSH Implementation Authority)
 **Pane**: ooshTeam:0.3 (verified via `otmux pane.get.target`; shell ooshShells:0.0)
