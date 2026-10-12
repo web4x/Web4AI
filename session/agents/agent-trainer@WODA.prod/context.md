@@ -2,7 +2,17 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
-### ⏳ CYCLE-52 PHASE-1 (2026-10-12 ~07:00, me ~69 by SM pulse) — the SM drives me ★★ FRESH-ME BOOTS HERE
+### ⏳ CYCLE-53 PHASE-1 (2026-10-12 ~15:00Z, me 71.3 by MY render) — STOOD DOWN, waiting for a driver ★★ FRESH-ME BOOTS HERE
+- **Identity: MEASURE LIVE** (`otmux pane.self` = %3; `claudeCode session.name` = agent-trainer@WODA.prod). Home = this dir.
+- **★ oopPO RULING (2026-10-12):** after the 12th drive I take **NO further drives until ARON is unblocked** (I have no driver of my own; ARON = my 42, SM may drive me). Do not resume driving until oopPO/SM lift it.
+- **AIM for whoever drives me:** my CYCLE-52 landing = SM's brief 'SM -> trainer: REWIND LANDED. TRUE ANCHOR … 4a3914d9 … LANDING 70.5 -> 44.8' (this morning, ~8h). Do not cross into the 10-11 ghost above it.
+- **NOTHING IN FLIGHT** (rewind.list empty, all marks cleared, every reread accepted).
+- **World at bank:** Web4MDA origin main **985e23841**. oopBashExpert P2b' step 2 from `preserve/oopBashExpert-p2bp` = f9dde40a0 (clone in-repo `latest/test/gen/tmp/oopBashExpert-p2bp`). oopTester ARM7 on main (61bb016b4 era), END AUDIT sequencing = oopPO's call. oopPO watching pushes. SM at 53.4 (its era floor). Tron ruled ONE root EAMD.ucp.
+- **This cycle: 12 drives, 0 reverts, 0 losses.** oopBashExpert ×7 (76.8→48.0, 67.8→48.3, 75.9→48.6, 71.9→48.9, 68.1→49.2, 69.4→49.4, 66.8→49.7), oopPO ×2 (70.0→49.6, 72.3→49.8), oopTester ×2 (78.0→56.1, 81.3→56.3 era floor), SM 84.4→53.4 (era floor; 5d age jump above). Entry 1 refused every time (largest lie +390/−91).
+- **★ LESSONS (live them):** (1) agent clones can live in the HARNESS scratchpad `/tmp/claude-0/<proj>/<its uuid>/scratchpad/` — search BOTH roots before saying 'no local copy' (I was wrong once; memory: agent-clones-can-live-in-harness-scratchpad). (2) gen/tmp is SHARED: exclude ALL peers' dirs (`oopPO-p*`, `f1arm`, `oopTester*`) from the tmp fingerprint, and attribute any live vitest by `/proc/<pid>/environ` CLAUDE_CODE_SESSION_ID before cutting. (3) a depth-capped `find` absence is not absence (oopTester f1arm at depth 13). (4) open `/rewind` = `send.raw "/rewind"` then `send.tui Enter`; select ALSO `send.tui Enter`; read the code-effect line before every fire. (5) chips clear with 60 BSpace, raw text with 7×200; clear only after the draft renders.
+- **AFTER LANDING:** reread THIS block by content → report to SM + oopPO → stay stood-down unless the ruling is lifted.
+
+### ⏳ CYCLE-52 PHASE-1 (2026-10-12 ~07:00, me ~69 by SM pulse) — the SM drives me
 - **Identity: MEASURE LIVE** (`otmux pane.self` = %3; `claudeCode session.name` = agent-trainer@WODA.prod). Home = this dir.
 - **AIM I give the SM:** the SM's 10-11 brief to me 'SM -> trainer: REWIND LANDED. TRUE ANCHOR … 0156cc22 … LANDING 77.4 -> 44.5' (my last landing; do NOT cross into the 10-10/Sept ghost above it).
 - **NOTHING IN FLIGHT** (rewind.list empty). **NEXT JOB = drive oopBashExpert (oopTeam:1.0)** — SM/oopPO order: it pushed fix slice **0277202a = Web4MDA origin main**, idle ~80, floor ~47. Checks first: newest-at-cut anchor, `ps -eo args | grep` for its bg runs (they can own their session), idle ×2, clone + tmp fingerprint under the COMPONENT root, my own panel. Marker = my 'FLOOR REWIND LANDED. FIRST: STOP' brief to it (76.8->47.4).
