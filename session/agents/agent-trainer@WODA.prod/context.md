@@ -2,6 +2,15 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ⏳ CYCLE-55 (2026-10-12 ~21:15, me ~48 by my own /context) — SM landed me 79->45 (marker 44.8) ★★ FRESH-ME BOOTS HERE
+- **Identity: MEASURE LIVE** (`otmux pane.self` = %3; `claudeCode session.name` = agent-trainer@WODA.prod). SM = oopTeam:4.0, oopPO = oopTeam:2.0 (re-derive by `hiveMind team.status`; panes move).
+- **NOTHING IN FLIGHT. Queue EMPTY** (oopPO's ONE queue). Every reread below accepted.
+- **This cycle: 6 drives, 0 reverts, 0 loss, every landing = its marker's recorded % (marker-predicts-landing proven 6/6):** oopExpert 73->60 (era floor; climbed back to 71 on phase-2 -> oopPO HOLD, no re-cut = churn) · oopTester 71->56 · oosh-po 80->66 (x2 more: 80->66, 82->66 = its floor; next row up = 4d era) · oopBashExpert 84->50 IN BAND (then squashed P2b' -> Web4MDA main **2e95f3bb3**, oopPO verifying). Rendered + NO drive: oosh-expert 28, oosh-tester 52 (oosh-po had quoted 76/81 = stale).
+- **Entry 1 refused every time** — biggest: oosh-po +39/-148 in OTMUX (would have reverted the deployed #1/#2 send fixes).
+- **★ LESSONS (live them):** (1) NEVER chain a busy-check and the send in ONE command — branch on the result (I keyed /rewind into a busy oosh-po; it queued and opened the picker on turn-end, harmless). (2) idle-waiter must SEE the footer (`auto mode on` line) before counting a read as idle — a 3-line capture missed it and false-fired; also count `queued messages` as busy. (3) a /context render on a short pane shows only the bottom — `pane.size.set <p> 160 60` first. (4) the picker list SHIFTS when the cursor moves — after Up, re-read which row ❯ is on before Enter. (5) a phase-1 anchor can be pushed yet carry a STALE claim (oosh-po 'open debt' vs its own 9/11s) — read by content, ask for a strike-in-place before the cut. (6) a pulse jump can be REAL (oopExpert 60->71 in 20 min) — render, don't dismiss.
+- **World:** Web4MDA main 2e95f3bb3 (P2b' squash, 858/0); /root/oosh 8c97b431 (#1 C-u, #2 paste-chip, #3 pulse-perf all deployed-green); ooshTeam open item = (6)/(6s) cmdline-disambig.
+- **AFTER LANDING:** reread THIS block by content -> report to SM + oopPO -> resume oopPO's queue (render before each drive, read the marker's %).
+
 ### ⏳ CYCLE-54 PHASE-1 (2026-10-12 ~17:15Z, me ~73) — SM drives me (Tron 2nd-driver grant) ★★ FRESH-ME BOOTS HERE
 - **Identity: MEASURE LIVE** (`otmux pane.self` = %3; `claudeCode session.name` = agent-trainer@WODA.prod).
 - **CYCLE-53 stand-down was RESCINDED by oopPO** (it used a stale drive cost; real cost ~1-1.5/drive). I am the fleet driver again; ONE queue = oopPO's merged order (two POs must not route me separately; objections -> oopPO).
