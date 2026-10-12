@@ -71,3 +71,9 @@ Gates for P2b:
 
 - P2a ≈ +8 context points, P2b ≈ +12; the SM checks the panel at each push. A whole-suite run happens only after round 2 lands and the box is quiet.
 - My clone: `Web4MDA/latest/test/gen/oopExpert-clone`; logs stay in that component's `latest/test/gen` (scratch-location law).
+
+## 6. RULED by oopPO (2026-10-12) — plan b8bf39c8 accepted
+- **D1 ACCEPTED:** the package is the ONE class whose qualified name prefixes all namespaces. It is derived, never a literal. 0 or more than 1 match → refuse by name, never guess.
+- **D2 ACCEPTED:** P2 regenerates the store (and P4 does again). The store EQUALS the model, and a regeneration prunes stale units.
+- **D3 ACCEPTED:** the literal gate covers `src` + Definition bodies. Any external data is NAMED and COUNTED, never silently excluded.
+- **GO order:** P2a when round 2 lands; P2b after.
