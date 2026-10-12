@@ -1,0 +1,18 @@
+===== (a) STAGED + otmux.send → MUST REFUSE + PRESERVE + NAME (current: RED) =====
+  pre=staged  send.rc=1  post=staged  errNamesStaged=1
+  ✓ PASS: fixture staged (isClaudeCode node ❯)
+  ✓ PASS: refused (rc=1)
+  ✓ PASS: staged preserved
+  ✓ PASS: error names the preserved staged text
+===== (b) EMPTY + otmux.send → delivers (rc0) [anchor] =====
+  pre=empty  send.rc=0
+  ✓ PASS: empty→delivered (rc0)
+===== (c) send.clobber + STAGED → intentionally clears + sends (override verb; current: RED) =====
+  send.clobber defined='function'  rc=0
+  ✓ PASS: send.clobber overrode the guard + delivered
+===== (d) GHOST + otmux.send → treated safe → delivers (rc0, NOT refused) [anchor] =====
+  pre=ghost  send.rc=0
+  ✓ PASS: ghost treated safe → delivered (guard must NOT over-refuse)
+==================================================================
+  T-SEND-COMPOSER-GUARD  PASS=7 FAIL=0  (RED-first: (a)+(c) MUST be RED on current code)
+==================================================================
