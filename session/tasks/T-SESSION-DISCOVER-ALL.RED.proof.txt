@@ -2,15 +2,19 @@
   ✗ FAIL: session.discover.all ABSENT (RED — new batch verb not implemented)
 ===== shared one-pass scanner (fix target) present? [RED now] =====
   ✗ FAIL: no shared scanner (RED — per-pane N-load path still the only one)
-  live Claude panes on ooshTeam:  ooshTeam:0.0=889a24a9-a33b-41a8-931c-26867501004f ooshTeam:0.1=634999b0-f753-4d4f-9629-036eb0f763eb ooshTeam:0.2=94fe28f8-8ca4-4689-95e1-69f5b2237260 ooshTeam:0.3=a43c1b23-7de6-4c75-8952-3e98b6ca43b6 ooshTeam:0.4=74f27969-2261-4556-9e82-dd059d7a1708
 ===== (1)+(4) PARITY/SCOPE: batch discover.all == per-pane session.current, all live panes =====
   ✗ FAIL: cannot gate PARITY — session.discover.all ABSENT (RED; post-fix: batch must equal per-pane incl dup-uuid/dup-title)
-  SCOPE: dup-UUID collisions in live set: none present this run (parity still gated for any that appear)
 ===== (2) PERF: session.discover.all resolves the fleet in ONE pass / <15s [RED now] =====
   ✗ FAIL: cannot gate PERF — session.discover.all ABSENT (RED; post-fix: one-pass <15s vs per-pane N-load loop)
 ===== (3) BYTE-IDENTICAL: per-pane session.current UNCHANGED + stable [anchor] =====
   ✓ PASS: per-pane session.current stable (74f27969-2261-4556-9e82-dd059d7a1708)
   ✓ PASS: test.session-id-fresh present (run as the unchanged-output regression)
+===== (5) DISTINCT-IDENTITY [oopPO ruling — gates lifting address-by-pane] =====
+  per-pane: A=aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa B=bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb (expect aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa / bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb, distinct)
+│ Test 7: 5a-PER-PANE: same-title pair resolves distinct per-pane (A!=B, correct)
+  ✓ PASS: per-pane distinct (aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa / bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb)
+  ✗ FAIL: 5b-DISTINCT: session.discover.all ABSENT — cannot resolve the seeded pair (RED; gates address-by-pane lift)
+  ✗ FAIL: 5c-NEVER-ONE: cannot prove two-distinct while discover.all ABSENT (RED)
 ==================================================================
-  T-SESSION-DISCOVER-ALL  PASS=2 FAIL=4  (RED-first: EXISTS/SCAN/PARITY/PERF must be RED on current)
+  T-SESSION-DISCOVER-ALL  PASS=3 FAIL=6  (RED-first: EXISTS/SCAN/PARITY/PERF/DISTINCT must be RED on current)
 ==================================================================
