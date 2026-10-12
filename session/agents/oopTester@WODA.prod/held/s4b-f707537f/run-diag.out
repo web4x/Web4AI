@@ -1,0 +1,90 @@
+HEAD f707537f7 own=yes
+[FSLINKPLAIN-imp] seeded 1 file(s)
+[FSLINKPLAIN] seeded 1 file(s)
+[FSLINKPLAIN] rc=1
+[FSLINKPLAIN]      × no src file (derived walk, comments + strings stripped) reaches for a link API, a shell ln, a store/synchroniser type or a sync call — EXCEPT the spec 13 §4 declarations (exact allowance, both ways) 142ms
+[FSLINKPLAIN] AssertionError: expected [ Array(1) ] to deeply equal []
+[FSLINKPLAIN]  Test Files  1 failed (1)
+[FSLINKPLAIN]       Tests  1 failed | 19 passed (20)
+DONE
+HEAD f707537f7 own=yes
+[FSLINKALL-imp] seeded 1 file(s)
+[FSLINKALL] seeded 1 file(s)
+[FSLINKALL] rc=1
+[FSLINKALL] AC2 value scan: CHECKED 18271 / ALLOWED 281 / TOTAL 18552 — PlantUmlServerModel.url = http://localhost:8089 [url] | NpmPackage.of().main = dist/com/ceruleanCircle/Web4MDA/latest/src/ts/EAM/layer2/Web4MDA.js [npm manifest] | NpmPackage.of(
+[FSLINKALL]      × spec/mof-self.md inc 2 (bootstrap AC4 WIDENED): NO src file — MOF included — has a STATIC import of a node builtin (node:x OR bare, from module.builtinModules); node capability is a dynamic import 70ms
+[FSLINKALL]      × spec-11 inc-3 (M3, M1, M2): EVERY src/MOF/M1|M2|M3 file equals the TypeScript its catalog entry generates, modulo imports — the whole MOF is reproduced, the catalog is the source; the ONE exemption is src/MOF/M1/M1Catalog.ts (Tron
+[FSLINKALL]      × spec 12 AC5 (inc 5b B2): for EVERY catalogued class of EVERY component (derived from the loaded catalog), the committed src equals the TypeScript its model source generates, modulo imports 3456ms
+[FSLINKALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Ior/latest/test/IorAcceptance.test.ts > Ior — spec 14 I1+I2+I3 acceptance (IOR1-IOR7, IOR3b, port rule, Link, UnrepresentableIorError) — oopTester gate > IOR2 round-trip BOTH ways 
+[FSLINKALL] IOR2 CHECKED 15032 / SKIPPED 0 / TOTAL 15032 (+21 placeholders) · typed instances 15020 · address lists 1
+[FSLINKALL]      × renders each created M1 class to the source that exists on disk (modulo comments/blank lines) 1738ms
+[FSLINKALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2ThingClass/latest/test/ThinglishTarget.test.ts > PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) — the whole catalog vs the committed .thing files > TH1 
+[FSLINKALL] TH1: CHECKED 106 / SKIPPED 0 / TOTAL 106
+[FSLINKALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/ThinglishGrammar/latest/test/ThinglishGrammar.test.ts > ThinglishGrammar — SC8 clause 2: every keyword maps to an M3 element (Tron 2026-10-01 ruling) — oopTester gate > SC8 clause 
+[FSLINKALL] SC8 modifiers: 13 keywords · (keyword, element) pairs CHECKED 18 / SKIPPED 0 / TOTAL 18
+[FSLINKALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts > ARM4 — the README State table is derivable from disk (built = class + linked gate exists; specified = artifact absent) > ARM4: every State row checks out a
+[FSLINKALL] ARM4 status table: CHECKED 9 / SKIPPED 0 / TOTAL 9
+[FSLINKALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts > ARM6 — no live-normative top-level gen/ src/ test/ path in README + spec/*.md > ARM6: every top-level gen/ src/ test/ mention is struck, blockquoted or a T
+[FSLINKALL] ARM6 top-level paths: CHECKED 0 live / SKIPPED 95 marked / TOTAL 95 (+ 5 component-relative tree rows, derived, NOT top-level)
+[FSLINKALL] SKIPPED (printed so none hides):
+[FSLINKALL]      × a derived scan of every src file finds node:fs imported ONLY by NodeJSFile and NodeJSFolder 389ms
+[FSLINKALL]      ✓ IOR2 round-trip BOTH ways over EVERY concrete IOR string of the repo (derived scan, I3 canonical: typed instance + address list) — CHECKED / SKIPPED / TOTAL, SKIPPED 0 10652ms
+[FSLINKALL] H4 (b): CHECKED 655 / TOTAL 655 files; owner hits 1; observer exempt files 1 (read-only uses proven); FOUND 0
+[FSLINKALL]      × src/ (derived walk): the files that import node:fs are EXACTLY the two NodeJS units — and M1Catalog's modelled node:fs body strings are data, not imports 261ms
+[FSLINKALL]      × the TypeScript rendering is the components' own src (modulo comments/blank lines) — rendered in memory, never read back from generated output (spec 12 AC6) 1775ms
+[FSLINKALL]      × F1 MECHANISM — a FRESH store written through the REAL put path (store -> ScenarioIndex.put -> NodeJSFile.link) yields ONLY RELATIVE type/ links, one per UNIT (S4: classes and parts), all resolving 6158ms
+[FSLINKALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Package/latest/test/TreeFileUnitRulings.test.ts > eamd-ucp.md rule 4 · 7a7304c · sub-components live BESIDE the Version (the committed component tree, model-derived oracle) > the anc
+[FSLINKALL] R3 anchors: CHECKED 1578 / SKIPPED 48 store-output folders / TOTAL 1626
+[FSLINKALL] Held tree: CHECKED 332 held files / SKIPPED 48 store-output folders / TOTAL 380
+[FSLINKALL] AssertionError: M1Layout: expected 'import type { ClassModel } from \'Cla…' to be 'import { symlinkSync as seedsymlinkSy…' // Object.is equality
+[FSLINKALL] AssertionError: FIRST store coarse LOAD ratio (gross regressions only): expected [ Array(1) ] to deeply equal []
+[FSLINKALL] AssertionError: expected [ …(3) ] to deeply equal [ …(2) ]
+[FSLINKALL] AssertionError: expected [ …(3) ] to deeply equal [ …(2) ]
+[FSLINKALL] AssertionError: M1Layout: expected 'import type { ClassModel } from \'Cla…' to be 'import { symlinkSync as seedsymlinkSy…' // Object.is equality
+[FSLINKALL] AssertionError: expected [ Array(1) ] to deeply equal []
+[FSLINKALL] AssertionError: M1/M1Layout: expected 'import type { ClassModel } from \'Cla…' to be 'import { symlinkSync as seedsymlinkSy…' // Object.is equality
+[FSLINKALL] AssertionError: expected [ 'M1Layout' ] to deeply equal []
+[FSLINKALL]  Test Files  5 failed | 93 passed (98)
+[FSLINKALL]       Tests  8 failed | 813 passed | 2 skipped (823)
+[FSLINKALL]   10652ms  IorAcceptance.test.ts :: Ior — spec 14 I1+I2+I3 acceptance (IOR1-IOR7, IOR3b, port rule, Link, UnrepresentableIorError) — oopTester gate > IOR2 round-trip BOTH ways over EVERY concrete IOR string of the repo (derived scan, I3
+DONE
+HEAD f707537f7 own=yes
+[FSCALLER2ALL-imp] seeded 1 file(s)
+[FSCALLER2ALL] seeded 1 file(s)
+[FSCALLER2ALL] committed locally 0c0109d9c
+[FSCALLER2ALL] rc=1
+[FSCALLER2ALL]      × src/ (derived walk): the files that import node:fs are EXACTLY the two NodeJS units — and M1Catalog's modelled node:fs body strings are data, not imports 165ms
+[FSCALLER2ALL]      × a derived scan of every src file finds node:fs imported ONLY by NodeJSFile and NodeJSFolder 298ms
+[FSCALLER2ALL]      × renders each created M1 class to the source that exists on disk (modulo comments/blank lines) 1822ms
+[FSCALLER2ALL] AC2 value scan: CHECKED 18271 / ALLOWED 281 / TOTAL 18552 — PlantUmlServerModel.url = http://localhost:8089 [url] | NpmPackage.of().main = dist/com/ceruleanCircle/Web4MDA/latest/src/ts/EAM/layer2/Web4MDA.js [npm manifest] | NpmPackage.of(
+[FSCALLER2ALL]      × spec/mof-self.md inc 2 (bootstrap AC4 WIDENED): NO src file — MOF included — has a STATIC import of a node builtin (node:x OR bare, from module.builtinModules); node capability is a dynamic import 55ms
+[FSCALLER2ALL]      × spec-11 inc-3 (M3, M1, M2): EVERY src/MOF/M1|M2|M3 file equals the TypeScript its catalog entry generates, modulo imports — the whole MOF is reproduced, the catalog is the source; the ONE exemption is src/MOF/M1/M1Catalog.ts (Tron
+[FSCALLER2ALL]      × spec 12 AC5 (inc 5b B2): for EVERY catalogued class of EVERY component (derived from the loaded catalog), the committed src equals the TypeScript its model source generates, modulo imports 2706ms
+[FSCALLER2ALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Ior/latest/test/IorAcceptance.test.ts > Ior — spec 14 I1+I2+I3 acceptance (IOR1-IOR7, IOR3b, port rule, Link, UnrepresentableIorError) — oopTester gate > IOR2 round-trip BOTH ways 
+[FSCALLER2ALL] IOR2 CHECKED 15032 / SKIPPED 0 / TOTAL 15032 (+21 placeholders) · typed instances 15020 · address lists 1
+[FSCALLER2ALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2ThingClass/latest/test/ThinglishTarget.test.ts > PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) — the whole catalog vs the committed .thing files > TH1 
+[FSCALLER2ALL] TH1: CHECKED 106 / SKIPPED 0 / TOTAL 106
+[FSCALLER2ALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/ThinglishGrammar/latest/test/ThinglishGrammar.test.ts > ThinglishGrammar — SC8 clause 2: every keyword maps to an M3 element (Tron 2026-10-01 ruling) — oopTester gate > SC8 clause 
+[FSCALLER2ALL] SC8 modifiers: 13 keywords · (keyword, element) pairs CHECKED 18 / SKIPPED 0 / TOTAL 18
+[FSCALLER2ALL]      ✓ IOR2 round-trip BOTH ways over EVERY concrete IOR string of the repo (derived scan, I3 canonical: typed instance + address list) — CHECKED / SKIPPED / TOTAL, SKIPPED 0 9937ms
+[FSCALLER2ALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts > ARM4 — the README State table is derivable from disk (built = class + linked gate exists; specified = artifact absent) > ARM4: every State row checks out a
+[FSCALLER2ALL] ARM4 status table: CHECKED 9 / SKIPPED 0 / TOTAL 9
+[FSCALLER2ALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts > ARM6 — no live-normative top-level gen/ src/ test/ path in README + spec/*.md > ARM6: every top-level gen/ src/ test/ mention is struck, blockquoted or a T
+[FSCALLER2ALL] ARM6 top-level paths: CHECKED 0 live / SKIPPED 95 marked / TOTAL 95 (+ 5 component-relative tree rows, derived, NOT top-level)
+[FSCALLER2ALL] SKIPPED (printed so none hides):
+[FSCALLER2ALL] H4 (b): CHECKED 655 / TOTAL 655 files; owner hits 1; observer exempt files 1 (read-only uses proven); FOUND 0
+[FSCALLER2ALL]      × the TypeScript rendering is the components' own src (modulo comments/blank lines) — rendered in memory, never read back from generated output (spec 12 AC6) 1863ms
+[FSCALLER2ALL] Held tree: CHECKED 332 held files / SKIPPED 48 store-output folders / TOTAL 380
+[FSCALLER2ALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Package/latest/test/TreeFileUnitRulings.test.ts > eamd-ucp.md rule 4 · 7a7304c · sub-components live BESIDE the Version (the committed component tree, model-derived oracle) > the anc
+[FSCALLER2ALL] R3 anchors: CHECKED 1578 / SKIPPED 48 store-output folders / TOTAL 1626
+[FSCALLER2ALL] AssertionError: M1Layout: expected 'import type { ClassModel } from \'Cla…' to be 'import { readFileSync as seedreadFile…' // Object.is equality
+[FSCALLER2ALL] AssertionError: expected [ …(3) ] to deeply equal [ …(2) ]
+[FSCALLER2ALL] AssertionError: expected [ …(3) ] to deeply equal [ …(2) ]
+[FSCALLER2ALL] AssertionError: M1Layout: expected 'import type { ClassModel } from \'Cla…' to be 'import { readFileSync as seedreadFile…' // Object.is equality
+[FSCALLER2ALL] AssertionError: expected [ Array(1) ] to deeply equal []
+[FSCALLER2ALL] AssertionError: M1/M1Layout: expected 'import type { ClassModel } from \'Cla…' to be 'import { readFileSync as seedreadFile…' // Object.is equality
+[FSCALLER2ALL] AssertionError: expected [ 'M1Layout' ] to deeply equal []
+[FSCALLER2ALL]  Test Files  5 failed | 93 passed (98)
+[FSCALLER2ALL]       Tests  7 failed | 814 passed | 2 skipped (823)
+[FSCALLER2ALL]   9937ms  IorAcceptance.test.ts :: Ior — spec 14 I1+I2+I3 acceptance (IOR1-IOR7, IOR3b, port rule, Link, UnrepresentableIorError) — oopTester gate > IOR2 round-trip BOTH ways over EVERY concrete IOR string of the repo (derived scan, I3 
+DONE

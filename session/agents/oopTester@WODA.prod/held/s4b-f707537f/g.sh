@@ -67,6 +67,15 @@ import " "$LAYTS" && SEEDPY "$1" '  constructor() {' "  seedFs(): void {
   constructor() {" "$LAYTS"; }
 go FSCALLER2 && { FSSEED FSCALLER2 readFileSync "'x', 'utf8'" && COMMIT FSCALLER2 && run FSCALLER2 "$PLT"; }
 go FSLINK && { FSSEED FSLINK symlinkSync "'a', 'b'" && run FSLINK "$URT"; }
+# E1-E3 (post-rewind diagnosis of the FSLINK/FSCALLER2 GREENs): alias A/B on one instrument + whole-suite hazard scans
+FSPLAIN() { SEEDPY "$1-imp" "import " "import { $2 } from 'node:fs';
+import " "$LAYTS" && SEEDPY "$1" '  constructor() {' "  seedFs(): void {
+    $2($3);
+  }
+  constructor() {" "$LAYTS"; }
+go FSLINKPLAIN && { FSPLAIN FSLINKPLAIN symlinkSync "'a', 'b'" && run FSLINKPLAIN "$URT"; }
+go FSLINKALL && { FSSEED FSLINKALL symlinkSync "'a', 'b'" && run FSLINKALL; }
+go FSCALLER2ALL && { FSSEED FSCALLER2ALL readFileSync "'x', 'utf8'" && COMMIT FSCALLER2ALL && run FSCALLER2ALL; }
 go DUPFOLDER && { mkdir -p "$C/MOF/Web4MDA/latest" && cp "$C/latest/package.json" "$C/MOF/Web4MDA/latest/" 2>/dev/null || touch "$C/MOF/Web4MDA/latest/held.txt"; echo "[DUPFOLDER] second held package folder $C/MOF/Web4MDA/latest"; run DUPFOLDER "$TFR"; }
 PUTL='for (const c of classes) await index.put(c);'
 ratio() { for i in 1 2 3 4 5; do run "$1-$i" "$MCT" | grep -aiE "rc=|RATIO|store/ref|SPEED|Tests " ; sed "s/\x1b\[[0-9;]*m//g" "$SP/$1-$i.log" | grep -aoiE "(ratio|store/ref)[^|]{0,120}" | head -3 | sed "s/^/[$1-$i] /"; done; }
