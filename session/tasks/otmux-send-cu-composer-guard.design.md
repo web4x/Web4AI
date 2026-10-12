@@ -6,8 +6,12 @@
 - **#1 — C-u composer DESTRUCTION (active data loss, highest severity).** `otmux.send` fires a blind `C-u` (**measured otmux:2041**, `$TMUX_CMD send-keys -t "$target" C-u`) BEFORE typing on the Claude-target path → **silently erases whatever is staged in the RECEIVER's composer** (confirmed casualty: Tron's "go build increment 4" erased from oopExpert). Silent destruction of another agent's / Tron's work ranks above non-delivery.
 - **#2 — submission non-delivery (paste-chip).** The post-type Enter doesn't always submit (the d75b3f72 work). Silent NON-delivery (nothing destroyed, just not sent) — lower severity than #1, still rewind-critical.
 
-## ★ MEASUREMENT DISCREPANCY to verify (honesty-both-ways)
-Bug doc says C-u @1967 and "send.verified inherits it." I measure: the C-u is @**2041** in `otmux.send`'s dispatch; `private.otmux.sendEnter` (what `send.verified` actually calls) does NOT C-u (it's `send-keys -l "$*"` + Enter). So on the live line `send.verified` may already be C-u-FREE and only `otmux.send` (the smart path) carries the destroyer. **Expert: trace send.verified's real call path before fixing — the guard goes at the chokepoint that actually C-u's, and must protect ALL paths that could.** (Line drift 1967 vs 2041 = likely version; confirm on the branch you build from.)
+## ★ CHOKEPOINT — PINNED (PO-verified on live code, 2026-10-12; supersedes the bug doc)
+RESOLVED: the call chain is **`otmux.send` C-u's @2041 → THEN delegates to `send.verified` @2052 → which calls the C-u-FREE `sendEnter` @2076.** So:
+- **The destroyer is `otmux.send`** (the smart/DEFAULT verb — and what `hiveMind.agent.send` uses for fleet comms). **`send.verified` called DIRECTLY is already SAFE** (no C-u).
+- The 09-28 bug doc's "send.verified inherits C-u" is **BACKWARDS**, and its line (1967) is stale (live = 2041).
+- ⇒ **The COMPOSER GUARD goes at `otmux.send`'s C-u chokepoint (2041), BEFORE the C-u/delegate.** `send.verified`/`sendEnter` need no change.
+- **Expert FIRST STEP (post-rewind): REPRODUCE on a scratch pane** — `otmux.send` into a staged composer on CURRENT code → confirm the destruction live; confirm `hiveMind.agent.send`'s actual path reaches 2041. Fix the MEASURED current defect; write `T-SEND-COMPOSER-GUARD` to reproduce the ACTUAL destruction (not the stale-doc version).
 
 ## The root
 The C-u's intent — clear a stale draft before typing so the new message doesn't concatenate — is reasonable but **BLIND**: it cannot tell a discardable stale draft from a PRECIOUS staged message (Tron's directive, a human mid-typing, a peer's queued delivery). A sender must never blind-clear the receiver's composer; the composer's contents are the receiver's state.
