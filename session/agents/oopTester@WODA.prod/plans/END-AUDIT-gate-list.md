@@ -27,7 +27,30 @@ Order ruled by TRON 2026-10-12 (drive 2701d4b5, Phase 2 #7): NO gate runs until 
 - P2 namespace `Web4MDA.MOF.M3` (no Components root) → RED by class name; `com.ceruleanCircle` literal in src → RED by file; folder == layout(namespace) over all classes; `move()` diff = one value; chained moves + ONE generate == pairs; 2nd generate 0 changed.
 - P3 second binder for a model → RED by model name; model with no binder → RED by model name; map built as a string from the model name → RED.
 - P4 model-typed IOR → RED by uuid; resolve returns exactly the named component, `.model` JSON-equals catalog; legacy `Web4MDA.ClassModel.latest` IOR → named refusal; old `type/Web4MDA/` gone (stale link left → RED); 2nd store 0 changed bytes.
-- P5 **NEEDS RULING (oopPO):** the plan names no seeds. Proposed: re-introduce the S4b P1 special case / an interim root find → RED by name; `<PartType>` folder ≠ component name → RED. Also rule which S4b seeds (R1/R3/R4/DUPSRC/ROGUE) keep their meaning under the new rule.
+- P5 (**RULED by oopPO 2026-10-12**): S4b P1 special case reintroduced → RED by name · `<PartType>` folder ≠ its incorporating component's name → RED · interim root find reintroduced → RED · a package `domain` attribute or a `com.ceruleanCircle` literal reintroduced → RED.
+
+## E. S4b seeds under the new rule (oopPO ruling 2026-10-12: KEEP / RE-EXPRESS / RETIRE; never deleted silently; oopPO rules any RETIRE)
+Inventory = every mode of `held/s4b-f707537f/g.sh`. **All anchors (paths, code strings) are re-derived BY CONTENT at the audit sha**; an anchor that no longer exists prints `SEED DID NOT APPLY` → STOP and reclassify with oopPO, never skipped.
+
+| Seed | Hazard | Class | Expectation at the audit sha |
+|---|---|---|---|
+| N1REVERT | one fresh root per link (held root dropped) | KEEP | N1 mechanism gate RED (HeldRoots); if P5's interim-root removal deletes the roots cache → reclassify, oopPO rules |
+| FSCALLER / FSCALLER2 / FSCALLER2ALL | a src file calls `node:fs` directly (named import) | KEEP | R7b fs-caller scan RED by file (single test / Pipeline / whole suite) |
+| FSLINK / FSLINKPLAIN / FSLINKALL | `symlinkSync` aliased / plain / whole suite | KEEP | link-API scan RED by file (F1 closed alias evasion) |
+| DYNALIAS | dynamic aliased `node:fs` import in M1Catalog code | KEEP | link-API scan RED (nearest member of the R2 body-strings allowance) |
+| R7BODY | extra statement after the ScenarioIndex type link | KEEP | R7 body check RED |
+| R1STALE | stale link left after a move | KEEP | RED by the stale-link check (P2 `move()` + chained moves make it more central) |
+| DUPSRC | a second held source of one Definition (R3) | KEEP | TreeFileUnitRulings RED by the duplicate |
+| XPKG (= R4) | an `X/` placeholder package folder | KEEP | RED (no placeholder folder) |
+| DUPFOLDER | a second held package folder | KEEP | RED; also P2's folder == layout(namespace) |
+| LITPKG | the test hard-codes the package path instead of deriving it | RE-EXPRESS | the literal becomes the Components-rooted path P2 derives; any literal package path in the test → RED (pairs with P2's literal-in-src seed) |
+| DERIV | the rulings test's own model-folder derivation is wrong | RE-EXPRESS | P5: `<PartType>` folders = component name → seed corrupts the component-name derivation → RED |
+| ROGUE / ROGUEALL | an unowned folder under `<Version>/<model>` | RE-EXPRESS | RED **by name** (was counted CHECKED; F2 ruling) |
+| DRIFT | a part link retargeted to another component's unit | RE-EXPRESS | same hazard; paths re-derived under P5's component-named `<PartType>` folders; RED by the dangling/misnamed checks |
+| RATIOPUT3 | gross store slowdown (put ×3) | RE-EXPRESS | F4 round 2: RED by the median-of-k ratio; if F4 is demoted to a reported metric → reported, and N1REVERT carries the regression (oopPO rules) |
+| RATIOFIX | (clean arm, not a seed) | KEEP | whole-suite ×5, 0 false-RED |
+
+**RETIRE: none proposed.** No S4b hazard became unrepresentable under P2–P5 by construction; two are conditional (N1REVERT, RATIOPUT3) and come back to oopPO before any change.
 
 ## Verdict
 `verdicts/END-AUDIT-<sha>.md`: per block CHECKED/SKIPPED/TOTAL, every seed RED-name + GREEN, A1 porcelain proof, F5 separate. → oopPO; TRON rules DONE.
