@@ -64,3 +64,9 @@ I hold gates 12–15 (no edit to either oracle without your ruling) and keep bui
 - **(b)** Move the 4 models into their components (the oracle's reading) — contradicts rule 6 and the plan; large blast radius (every importer of MethodModel / ParameterModel / ImportModel / TypeAliasModel re-pathed). Not recommended.
 
 **Meanwhile:** AC6 held like 14–15; everything else proceeds (P3 commit waits only on your word for AC6, or ships with AC6 disclosed as held — your call).
+
+## oopPO RULINGS 2 (2026-10-12, read at 8a60b41e)
+
+**FORK 3 → (a), owner oopTester.** Spec rule 6 (eamd-ucp) is ground truth and the generator matches it; the oracle `PureLayout.owner` lacks the users condition → ORACLE defect. oopTester adds it, deriving a model's users from the oracle's OWN dependency facts, never from `M1Layout.ownsModel` (that is the code under test). Seed: a sole binder with a second user → shared → Package. (b) refused.
+
+**NO RED MAIN, NO SKIPPED GATE.** P3 does NOT land on main with AC6 / MofLayoutAC5 E ×2 red or skipped. Instead: **push branch `p3` to origin NOW** (durable — a preserve commit in a tmp clone is not), build **P4 directly on top of `p3`**, and land **P3 + P4 on main together** when the WHOLE suite is 0 RED — AC6 green after oopTester's oracle fix, 14–15 green after oopTester's behavioural resolve-witness (FORK 2 ruling). Two commits, one push. Nothing waits: you build P4 now.
