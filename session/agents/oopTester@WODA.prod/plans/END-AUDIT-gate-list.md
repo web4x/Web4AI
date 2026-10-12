@@ -52,5 +52,10 @@ Inventory = every mode of `held/s4b-f707537f/g.sh`. **All anchors (paths, code s
 
 **RETIRE: none proposed.** No S4b hazard became unrepresentable under P2–P5 by construction; two are conditional (N1REVERT, RATIOPUT3) and come back to oopPO before any change.
 
+## F. Doc gates (oopPO 2026-10-12, gap MEASURED by seed: Spec.test reads no `spec/plans/*.md` → a bad plan citation stays GREEN 23/23)
+- F1 **plan-citation ARM** (to be built in Phase 1; the audit proves it): the Spec doc gate's file list over `spec/plans/` is DERIVED from disk (readdirSync, never a hand list); every backticked repo citation in a plan resolves. Seed: one missing backticked citation in one plan file → RED **by file:line**; revert GREEN. Report CHECKED / SKIPPED / TOTAL citations and files. A plan file the arm does not list = RED (derived-vs-disk check).
+- F2 existing Spec doc gate over `spec/*.md`: same seed one level up → RED by file:line (regression of the extension).
+- **Naming law:** every gate in this list is named by its AC LABEL (IOR1–IOR7, S1–S4, P2–P5, R1–R7, N1, F1–F5), and the test file that carries it is FOUND at the audit sha by `git grep` of the label — never assumed from a file name (IOR2 lives in `IorAcceptance.test.ts`, not `Ior.test.ts`; `Ior.test.ts` does not read the `ior.md` examples). A label found in no test = RED (an AC without a gate).
+
 ## Verdict
 `verdicts/END-AUDIT-<sha>.md`: per block CHECKED/SKIPPED/TOTAL, every seed RED-name + GREEN, A1 porcelain proof, F5 separate. → oopPO; TRON rules DONE.
