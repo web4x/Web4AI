@@ -3,23 +3,31 @@
 ===== shared one-pass scanner (fix target) present? [RED now] =====
   ✗ FAIL: no shared scanner (RED — per-pane N-load path still the only one)
 ===== (1)+(4) PARITY/SCOPE: batch discover.all == per-pane session.current, all live panes =====
+│ Test 3: 1-PARITY: session.discover.all agrees with session.current for every live pane
   ✗ FAIL: cannot gate PARITY — session.discover.all ABSENT (RED; post-fix: batch must equal per-pane incl dup-uuid/dup-title)
 ===== (2) PERF: session.discover.all resolves the fleet in ONE pass / <15s [RED now] =====
   ✗ FAIL: cannot gate PERF — session.discover.all ABSENT (RED; post-fix: one-pass <15s vs per-pane N-load loop)
 ===== (3) BYTE-IDENTICAL: per-pane session.current UNCHANGED + stable [anchor] =====
+│ Test 5: 3-STABLE: session.current <self> non-empty + identical across calls
   ✓ PASS: per-pane session.current stable (74f27969-2261-4556-9e82-dd059d7a1708)
   ✓ PASS: test.session-id-fresh present (run as the unchanged-output regression)
 ===== (5) CWD-DISAMBIG UNIT TEST [distinct-cwd same-title; NOT the interim-lift gate] =====
-  per-pane: A=aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa B=bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb (expect aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa / bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb, distinct)
-│ Test 7: 5a-PER-PANE: same-title pair resolves distinct per-pane (A!=B, correct)
   ✓ PASS: per-pane distinct (aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa / bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb)
   ✗ FAIL: 5b-DISTINCT: session.discover.all ABSENT — cannot resolve the seeded pair (RED; gates address-by-pane lift)
   ✗ FAIL: 5c-NEVER-ONE: cannot prove two-distinct while discover.all ABSENT (RED)
 ===== (6) INTERIM-LIFT GATE [oopPO contract (a): TWO DISTINCT, ground-truth = cmdline --resume] =====
   ooshTeam:0.3 cmdline-truth=a43c1b23-7de6-4c75-8952-3e98b6ca43b6 session.current=a43c1b23-7de6-4c75-8952-3e98b6ca43b6 | diamonds:0.1 session.current=a43c1b23-7de6-4c75-8952-3e98b6ca43b6
+│ Test 8: 6a-ORACLE: ooshTeam:0.3 session.current == its cmdline --resume uuid
   ✓ PASS: resumed pane matches cmdline ground-truth (a43c1b23-7de6-4c75-8952-3e98b6ca43b6)
+│ Test 9: 6b-NEVER-COLLAPSE: diamonds:0.1 session.current != ooshTeam:0.3 identity (a43c1b23-7de6-4c75-8952-3e98b6ca43b6)
   ✗ FAIL: COLLAPSE (RED): diamonds:0.1 resolves to ooshTeam:0.3's uuid a43c1b23-7de6-4c75-8952-3e98b6ca43b6 — a live agent mis-identified as another (gates address-by-pane lift)
   ✗ FAIL: two live panes share ONE uuid (a43c1b23-7de6-4c75-8952-3e98b6ca43b6) — never-exclude contract violated (RED)
+===== (6s) SYNTHETIC INTERIM-LIFT [ALWAYS-RUNNABLE — no dependence on a live dup; oopPO] =====
+  cmdline-truth(A)=11111111-aaaa-4aaa-8aaa-111111111111 | session.current A=11111111-aaaa-4aaa-8aaa-111111111111 B=11111111-aaaa-4aaa-8aaa-111111111111 (expect A=11111111-aaaa-4aaa-8aaa-111111111111, B!=11111111-aaaa-4aaa-8aaa-111111111111)
+  ✓ PASS: cmdline ground-truth readable (11111111-aaaa-4aaa-8aaa-111111111111)
+  ✓ PASS: paneA -> seedA
+  ✗ FAIL: COLLAPSE (RED): paneB -> seedA (11111111-aaaa-4aaa-8aaa-111111111111) — fresh pane mis-ID'd as the resumed one (interim-lift gate)
+  ✗ FAIL: COLLAPSE (RED): both panes -> 11111111-aaaa-4aaa-8aaa-111111111111
 ==================================================================
-  T-SESSION-DISCOVER-ALL  PASS=4 FAIL=8  (RED-first: EXISTS/SCAN/PARITY/PERF + 6 INTERIM-LIFT must be RED on current)
+  T-SESSION-DISCOVER-ALL  PASS=6 FAIL=10  (RED-first: EXISTS/SCAN/PARITY/PERF + 6/6s INTERIM-LIFT RED on current)
 ==================================================================
