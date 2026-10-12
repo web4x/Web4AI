@@ -1,0 +1,21 @@
+===== PRECOND: isClaudeCode node fixture, composer.state oracle live =====
+  ✓ PASS: isClaudeCode node, composer empty
+===== (a) OTR-1 SUBMISSION — composer ends EMPTY; no false rc0 while staged [RED now] =====
+rc=0 st=empty
+  ✓ PASS: short submitted (composer empty)
+  long: rc=0 composer.state=empty
+  ✓ PASS: long submitted
+rc=0 st=empty
+  ✓ PASS: no false rc0 (rc=0, state=empty)
+===== (b) send.submit EXISTS + submit-only (no C-u, no Escape) [RED now] =====
+  ✓ PASS: send.submit defined
+  ✓ PASS: send.submit is submit-only (bare Enter, no C-u/Escape)
+===== (c) RETRAIN: send.raw stage 'foo' (no submit) + send.submit -> submitted [RED now] =====
+  staged=staged  send.submit.rc=0  post=empty
+  ✓ PASS: send.raw staged 'foo' (pure, no submit)
+  ✓ PASS: send.submit submitted the staged text
+===== (d) send.raw stays PURE (no submission/chip logic) [invariant anchor] =====
+  ✓ PASS: send.raw stays pure-raw
+==================================================================
+  T-SEND-SUBMIT-OTR1  PASS=9 FAIL=0  (RED-first: a2 + b + c must be RED on current code)
+==================================================================
