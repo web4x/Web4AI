@@ -59,3 +59,9 @@ Inventory = every mode of `held/s4b-f707537f/g.sh`. **All anchors (paths, code s
 
 ## Verdict
 `verdicts/END-AUDIT-<sha>.md`: per block CHECKED/SKIPPED/TOTAL, every seed RED-name + GREEN, A1 porcelain proof, F5 separate. → oopPO; TRON rules DONE.
+
+## G. Rulings + measured inputs after the 10-12 rewind (no CPU)
+- **BASE (oopPO ruling 10-12, confirming TRON drive 2701d4b5 Phase 2 #7):** the audit sha = the final Phase-1 head on origin main AFTER **P2 (a+b), P3, P4, P5** are all pushed. Not 61bb016b4, not "after P2a". Until then: run nothing, prepare only.
+- **TIMING HYGIENE (oopPO, accepted):** every timing-budget arm (OneStore 20000, F1 arm 44000, any ms budget) is sampled ONLY on a quiet box: `pgrep vitest` (any other whole suite) checked BEFORE and AFTER each sample; an overlapping sample is DISCARDED, never reported.
+- **Round-2 baseline (measured, read from oopBashExpert's `f4r2-proof-summary.txt`, sha 1195d5ea, ancestor of origin main):** 2 fresh-clone runs = passed 827 / skipped 2 / failed 0, rc=0, chainRed 0, OTHER none. F1 wall 14177 / 12984 ms (budget 44000); OneStore wall 7193 / 7069 ms (budget 20000); first-store ratio 7.80 / 8.75 (now a REPORTED metric). The "2" are SKIPS, not failures (my earlier bank misread them; struck in context).
+- **F4 DEMOTED at 1195d5ea** → the conditional in C/E applies: RATIOPUT3 = reported (not a RED seed) and N1REVERT carries the regression **— PENDING oopPO's explicit ruling** (the table says "oopPO rules"); not reclassified by me.
