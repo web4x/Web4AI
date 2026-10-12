@@ -1,0 +1,66 @@
+===== (0) EXISTS: session.discover.all is implemented [RED now] =====
+│ Test 1: 0-EXISTS: session.discover.all is a function
+  ✓ PASS: session.discover.all defined
+===== shared one-pass scanner (fix target) present? [RED now] =====
+│ Test 2: 0-SCAN: private.claudeCode.session.jsonl.scan + session.rank exist
+  ✓ PASS: shared one-pass scanner present
+  live Claude panes on ooshTeam:  ooshTeam:0.0=889a24a9-a33b-41a8-931c-26867501004f ooshTeam:0.1=634999b0-f753-4d4f-9629-036eb0f763eb ooshTeam:0.2=94fe28f8-8ca4-4689-95e1-69f5b2237260 ooshTeam:0.3=a43c1b23-7de6-4c75-8952-3e98b6ca43b6 ooshTeam:0.4=74f27969-2261-4556-9e82-dd059d7a1708
+===== (1)+(4) PARITY/SCOPE: batch discover.all == per-pane session.current, all live panes =====
+│ Test 3: 1-PARITY: session.discover.all agrees with session.current for every live pane
+  ✓ PASS: batch==per-pane for all live panes (disambig agree-by-construction)
+===== (2) PERF: session.discover.all one-pass time — DISCLOSURE (non-ship-blocking, oosh-po AC-split) =====
+│ Test 4: 2-PERF-DISCLOSE: session.discover.all one-pass time (DISCLOSED, non-blocking)
+  ✓ PASS: DISCLOSED: one-pass 11s (<=15s target met)
+===== (3) BYTE-IDENTICAL: per-pane session.current UNCHANGED + stable [anchor] =====
+│ Test 5: 3-STABLE: session.current <self> non-empty + identical across calls
+74f27969-2261-4556-9e82-dd059d7a1708/74f27969-2261-4556-9e82-dd059d7a1708
+  ✓ PASS: per-pane session.current stable (74f27969-2261-4556-9e82-dd059d7a1708)
+│ Test 6: 3-REGRESSION-PRESENT: test.session-id-fresh exists as the byte-identical guard
+  ✓ PASS: test.session-id-fresh present (run as the unchanged-output regression)
+===== (5) CWD-DISAMBIG UNIT TEST [distinct-cwd same-title; NOT the interim-lift gate] =====
+  per-pane: A=aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa B=bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb (expect aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa / bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb, distinct)
+│ Test 7: 5a-PER-PANE: same-title pair resolves distinct per-pane (A!=B, correct)
+aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa/bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb
+  ✓ PASS: per-pane distinct (aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa / bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb)
+  discover.all: A=aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa B=bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb
+│ Test 8: 5b-DISTINCT: discover.all resolves the pair == per-pane (aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa / bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb)
+aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa/bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb
+  ✓ PASS: discover.all distinct + matches per-pane
+│ Test 9: 5c-NEVER-ONE: the two panes NEVER share one uuid (no collapse)
+aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa vs bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb
+  ✓ PASS: two distinct identities (no same-title collapse)
+===== (6) INTERIM-LIFT GATE [oopPO contract (a): TWO DISTINCT, ground-truth = cmdline --resume] =====
+│ Test 10: 6o-ORACLE-INDEPENDENT: /proc oracle resolves a LEADING-SPACE argv stand-in (no ps common-mode)
+12345678-aaaa-4bbb-8ccc-1234567890ab
+  ✓ PASS: independent oracle immune to the ps leading-space bug (12345678-aaaa-4bbb-8ccc-1234567890ab)
+│ Test 11: 6a-ORACLE: ooshTeam:0.3 resolver == independent /proc cmdline oracle
+  ✓ PASS: ooshTeam:0.3 resolver matches /proc ground-truth (a43c1b23-7de6-4c75-8952-3e98b6ca43b6)
+│ Test 12: 6b-ORACLE-MATCH: diamonds:0.1 resolver == independent /proc oracle (UNIDENTIFIED ok)
+  ✓ PASS: diamonds:0.1 resolver tells the SAME truth as the independent oracle (UNIDENTIFIED) — not fabricated
+│ Test 13: 6b2-NEVER-COLLAPSE: diamonds:0.1 must NOT resolve to ooshTeam:0.3's uuid (a43c1b23-7de6-4c75-8952-3e98b6ca43b6)
+  ✓ PASS: diamonds:0.1 NOT collapsed into ooshTeam:0.3 (resolver='UNIDENTIFIED')
+│ Test 14: 6c-TWO-DISTINCT: the two live panes hold DISTINCT identities (UNIDENTIFIED≠resolved)
+  ✓ PASS: distinct (a43c1b23-7de6-4c75-8952-3e98b6ca43b6 vs UNIDENTIFIED)
+===== (6s) SYNTHETIC INTERIM-LIFT [ALWAYS-RUNNABLE — no dependence on a live dup; oopPO] =====
+  cmdline-truth(A)=11111111-aaaa-4aaa-8aaa-111111111111 | session.current A=11111111-aaaa-4aaa-8aaa-111111111111 B= (expect A=11111111-aaaa-4aaa-8aaa-111111111111, B!=11111111-aaaa-4aaa-8aaa-111111111111)
+│ Test 15: 6s-ORACLE: stand-in argv carries --resume seedA (truth==seedA)
+11111111-aaaa-4aaa-8aaa-111111111111
+  ✓ PASS: cmdline ground-truth readable (11111111-aaaa-4aaa-8aaa-111111111111)
+│ Test 16: 6s-A: resumed pane resolves to seedA
+11111111-aaaa-4aaa-8aaa-111111111111
+  ✓ PASS: paneA -> seedA
+│ Test 17: 6s-B: fresh same-role+same-cwd pane must NOT collapse to seedA
+  ✓ PASS: paneB not mis-attributed to seedA ()
+│ Test 18: 6s-DISTINCT: the two panes hold DISTINCT identities
+11111111-aaaa-4aaa-8aaa-111111111111 vs
+  ✓ PASS: distinct
+===== (7) PART-B: scrumMaster pulse ctx for EVERY agent [correctness arm — pulse repoint to discover.all] =====
+│ Test 19: 7a-CTX-EVERY-AGENT: pulse shows a live ctx% for every agent (no no-jsonl/parse-fail/never/traceback)
+  ✓ PASS: pulse ctx for every agent (4 readings, no missing/err)
+│ Test 20: 7b-PULSE-PERF: no-arg-ish pulse time (DISCLOSED, non-blocking)
+  ✓ PASS: DISCLOSED-OPEN: pulse 24s (>15s — perf follow-up, NOT ship-blocking)
+==================================================================
+  T-SESSION-DISCOVER-ALL  PASS=20 FAIL=0
+==================================================================
+  Passed:      20
+  Failed:      0

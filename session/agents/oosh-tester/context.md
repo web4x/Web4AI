@@ -1,29 +1,25 @@
-# OOSH Tester — context anchor (2026-10-12, PRE-REWIND save @~81% panel, holding for ff)
+# OOSH Tester — context anchor (2026-10-12, post-rewind@47 + re-gate CLOSED)
 
-**Identity:** oosh-tester @ WODA.prod, pane **ooshTeam:0.4**, uuid **74f27969-2261-4556-9e82-dd059d7a1708**.
-**PO = oosh-po @ ooshTeam:0.0.** Expert = oosh-expert @ ooshTeam:0.3. Ruling owner for the dup contract = oopPO @ oopTeam:2.0. Trainer = baseTeam:0.0 (flag via oopPO queue at ~80%).
-**Boot:** read this + `session/base-skills/agent-rewind.md`; re-measure by PANEL/DISK (self-measure runs LOW — oopPO panel said 81% while my context.read said ~60%). `otmux pane.self` + `git log` + `ls` before trusting any path.
+**Identity:** oosh-tester @ WODA.prod, pane **ooshTeam:0.4** (%23), uuid **74f27969-2261-4556-9e82-dd059d7a1708** (verified `otmux pane.self`, G1 lives).
+**PO = oosh-po @ ooshTeam:0.0.** Expert = oosh-expert @ ooshTeam:0.3. Dup-contract ruling owner = oopPO @ oopTeam:2.0. Trainer = baseTeam:0.0 (flag via oopPO queue ~80%).
+**Boot:** read this + `session/base-skills/agent-rewind.md`; re-measure by PANEL/DISK (self-measure runs LOW). `otmux pane.self` + `git log` + `ls` before trusting any path. DO NOT replay thread scrollback (ghost).
 
-## Repos / HEADs (verify fresh on boot — DISK WINS)
-- oosh `/root/oosh` on branch **test/mcdonges.latest**. My test commits are DURABLE on **origin @ 8c97b431** (pushed). Deployed /root/oosh was at **a79d1837** (A+B). Interim-lift fix (cmdline-disambig) = branch `2606582a`, NOT yet deployed at save time.
-- AI/Claude session `/var/dev/Workspaces/AI/Claude` @ main — proofs in `session/tasks/T-SESSION-DISCOVER-ALL.*`, `T-SEND-*`. Commit path-limited to MY paths.
+## Repos / HEADs (DISK WINS — verify fresh)
+- oosh `/root/oosh` on **test/mcdonges.latest**, deployed = **origin @ 5a058b2c** (my re-gate; pushed). Base: aa2cec4b (expert cmdline-disambig hardened) ⊃ 2606582a ⊃ 8c97b431 (A+B).
+- AI/Claude `/var/dev/Workspaces/AI/Claude` @ main — proofs in `session/tasks/T-SESSION-DISCOVER-ALL.*`, `T-SWEEP-LIVE-STATE.*`, `T-SEND-*`. Commit path-limited to MY paths, never -a.
 
-## ★ CURRENTLY DRIVING — the send-reliability + session-discover campaign
-DONE + deployed-green (all on merit, differential-proven):
-- **#1 C-u composer-guard** (test.send-composer-guard, 7/7 @056cff97) — CLOSED.
-- **#2 OTR-1 send.submit** (test.send-submit-otr1, 9/9 @0da2adeb) + **ghost-regression** (12/12 @ac4d641a, differential pre-fix rc1/4-enters) — CLOSED.
-- **#3 A+B** discover.all + pulse-repoint (test.session-discover-all, DEPLOYED-GREEN @a79d1837, 14pass/4RED): correctness arms GREEN (EXISTS/SCAN/PARITY/byte-identical/5a + (7a) pulse ctx-every-agent 4/4); PERF converted to non-blocking DISCLOSURE (discover.all 9s, pulse 11s, both <=15s this run); (6)/(6s) interim-lift RED-disclosed.
+## ★ CAMPAIGN STATUS — send-reliability + session-discover
+ALL CLOSED deployed-green (on merit, differential/independent-oracle proven):
+- **#1 C-u composer-guard** (056cff97) · **#2 OTR-1 submit + ghost-regression** (ac4d641a) · **#3 A+B discover.all+pulse** (a79d1837).
+- **(6)/(6s) INTERIM-LIFT re-gate — CLOSED GREEN 20/0 @5a058b2c** on deployed cmdline-disambig (aa2cec4b). Oracle hardened to an INDEPENDENT method (/proc/<pid>/cmdline NUL-split + pgrep -P, NOT the resolver's ps-text parse) per oopPO common-mode rule; 6o leading-space seed-proof passes (oracle ≠ common-mode). Live: 0.3→a43c1b23 (resolver==oracle), diamonds:0.1→UNIDENTIFIED (now a FRESH claudeCode-new pane, not the old ef9fe62b-resumed dup); 6s synthetic resumed/fresh distinct; parity 5 panes distinct.
 
-## NEXT (post-rewind) — the ONLY open task: re-gate (6)/(6s) interim-lift
-oopPO contract (a) = TWO DISTINCT, never exclude; ground-truth oracle = pane's claude cmdline `--resume`/`--session-id` uuid.
-**Re-gate test.session-discover-all (6)+(6s) + no-regress 0-5/session-id-fresh on DEPLOYED — CONDITIONAL on BOTH:**
-1. expert's cmdline-disambig ff (`2606582a`) LANDS deployed — verify `grep private.claudeCode.session.cmdline.uuid /root/oosh/claudeCode` = PRESENT + origin HEAD advanced.
-2. the **6s synthetic-stand-in comm-vs-cmdline risk** is RESOLVED first (verify-the-instrument): my 6s stand-in is a sleep-script named `claude` → its COMM is `sh`/`sleep`, only the cmdline PATH has `claude`. If the fix's fresh-detection keys on comm/isClaudeCode (not the cmdline token), 6s-B false-REDs → switch the stand-in to present comm=claude (`exec -a claude` / real-ish bin) so 6s exercises the TRUE fresh→UNIDENTIFIED path. Confirm with expert BEFORE calling 6s-B.
-Expected on fix: **6/6s GREEN on merit** → (6)/(6s) CLOSED → oosh-po gates → **address-by-pane interim LIFTS**.
-Key measured facts: diamonds:0.1 NOW has `--resume ef9fe62b` (resumed, resolves to its OWN session on the fix, != a43c1b23); ooshTeam:0.3 `--resume a43c1b23`. Deployed (pre-fix) collapses BOTH to a43c1b23.
+## NEXT (open)
+- **Await oosh-po gate-sign on the 20/0 re-gate → address-by-pane interim LIFTS.** (Reported to oosh-po + oopPO + expert acked.)
+- No live two-RESUMED dup exists now (diamonds went fresh) → real-collision coverage rests on the SYNTHETIC 6s + parity arms (durable, always-runnable). If a true two-resumed dup reappears, the live (6) arm re-exercises it.
+- Possible follow-ups (not blocking): pulse perf 7b DISCLOSED-OPEN (~25s >15s); T-SWEEP-LIVE-STATE (8 RED/2 anchor) handed to expert for the team.sweep reliability fix — re-gate when that lands.
 
 ## METHOD (held all session)
-RED-first on the DEPLOYED surface (deployed-green ≫ branch). Prove green is CAUSED by the fix (differential vs pre-fix sha). Gate with REPRESENTATIVE fixtures (the real dup), not synthetic edges; ALSO add an always-runnable synthetic arm so coverage survives the live dup vanishing. DISCLOSE non-ship-blocking metrics (perf), never silent-cap. MEASURE before push (caught a stale 3-ahead that would've pushed others' work); **git add EXPLICIT paths, never -a** (a stray `-am` swept claudeCode/scrumMaster once — amended out). Verify-the-instrument both ways before conceding a RED. Scratch-law: fixtures → `$OOSH_DIR/test/gen` fixed-name + pre-run sweep (EXIT trap skips SIGKILL).
+RED-first on DEPLOYED (deployed-green ≫ branch). Differential/independent-oracle: when the resolver and the oracle could share a parse, the oracle MUST use a DIFFERENT method (/proc vs ps) — common-mode = false-green. Verify-the-instrument BOTH ways before conceding OR claiming a verdict (caught the 6b false-RED by reconciling diamonds' real subtree). DISCLOSE perf, never silent-cap. MEASURE before push (git status; 0-ahead). **git add EXPLICIT paths, never -a.** Scratch-law: fixtures → `$OOSH_DIR/test/gen` fixed-name + PRE-RUN sweep (EXIT trap skips SIGKILL — pre-run kill-by-prefix is the durable guard).
 
 ## COMMS-SAFETY
-Peer send: READ `otmux composer.state <pane>` first (empty|ghost=safe to key; staged=NEVER key). Long sends land as paste chips → now auto-resubmit (my #2). `otmux send` self-heals (verify, don't resend). oopPO is cross-team at oopTeam:2.0 (ruling owner for the dup).
+Peer send: READ `otmux composer.state <pane>` first (empty|ghost=safe; staged=NEVER key). `otmux send` self-heals (verify, don't resend). Long sends → paste chips auto-resubmit (#2). oopPO cross-team @oopTeam:2.0.
