@@ -1,5 +1,13 @@
 # OOSH Expert Agent Context
 
+## ★ REWIND-ANCHOR 2026-10-12 (bank #3 RESUME-FLOW — NEWEST; supersedes the "4 THREADS" block below). oosh-expert @ ooshTeam:0.3, WODA.prod, repo /root/oosh HEAD 84d437b (test/mcdonges.latest). Identity by UUID->tty->pane, NEVER $TMUX_PANE. Scratch-law: product/test scratch -> component latest/test/gen fixed-names; own harness scratchpad OK for notes; /tmp cleanup-only; hook-enforced.
+RANKED send-reliability work (oosh-po, post-rewind) — IDLE+HOLD for PO cut:
+  #1 C-u COMPOSER-DESTRUCTION (architect design 19e0b959). DESTROYER = otmux.send:2041 (fires C-u, THEN delegates to send.verified:2052); send.verified itself is C-u-FREE (sendEnter:2076). The 09-28 doc "send.verified inherits (said 1967)" is BACKWARDS + stale. FIX = composer-guard that REFUSES + fail-loud: empty composer -> may drop blind C-u+type; non-empty -> REFUSE + NAME the staged text; add send.clobber override VERB; send.raw stays pure. ★ FIRST STEP before ANY fix = REPRODUCE on a SCRATCH pane (otmux.send into a staged composer -> confirm destruction on CURRENT code).
+  #2 paste-chip = send.submit OTR-1 decomposition (d75b3f72): guard -> stage -> submit; retrain callers = send.raw + send.submit.
+  #3 pulse-perf = claudeCode session.discover.all (ONE framework-load resolves ALL panes). SCOPED PULSE-ONLY; DEFER fleet-wide agents.discover/live.tupleset repoint. Build off deployed 0f63df3, ff-safe, LOAD-BEARING (byte-identical + regression test.session-id-fresh BEFORE push).
+  DONE/CLOSED: pulse-lag (deployed 5/5, HEAD 84d437b IS its re-gate); rewind-safety cluster (session.id live-first 4fbb654 deployed + context-check/composer/nbsp campaign 001011d/56bceb6).
+  ★ PREMISE CORRECTION to PO: my CURRENT newest anchor is 9304a9bf (2026-10-12, trainer-confirmed newest), NOT 29d7a321 (that was the PRIOR context commit). THIS bank is the fresh sha to cut on.
+
 ## ★ REWIND-ANCHOR 2026-10-12 (bank before queued rewind, slot 2). oosh-expert @ ooshTeam:0.3, WODA.prod, repo /root/oosh. Measure identity UUID→tty→pane, NEVER $TMUX_PANE.
 - **Scratch-law hook SELF-CHECK PASSED (2026-10-08):** `mktemp -u`→DENIED (scratch-guard.py loaded). My scratchpad `/tmp/claude-0/<proj>/<sess>/scratchpad/`=allow-root (worktrees/verify-scripts OK there). Product/test scratch → component latest/test/gen, fixed names.
 - **4 THREADS, ALL HOLDING on inputs:**
