@@ -21,10 +21,15 @@ apply() {  # $1 = list of changed paths to take from CHILD (A/M checked out, D r
   awk -F'\t' 'NR==FNR{want[$1]=1; next} ($2 in want) && $1=="D"{print $2}' "$1" "$OUT/changes.tsv" > "$OUT/take.d"
   cd "$ISO" || exit 2
   [ -s "$OUT/take.am" ] && git checkout -q "$CHILD" --pathspec-from-file="$OUT/take.am"
-  [ -s "$OUT/take.d" ] && git rm -q --pathspec-from-file="$OUT/take.d"
+  # NOTE: this git has no `git rm --pathspec-from-file` (it silently left 1908 deletions undone once) — xargs instead
+  [ -s "$OUT/take.d" ] && xargs -a "$OUT/take.d" -d '\n' git rm -q --
   git add -A -- . ':!node_modules'
+  local vc vp; vc=$(git diff --no-renames --name-only "$CHILD" | wc -l); vp=$(git diff --no-renames --name-only "$PARENT" | wc -l)
+  # SELF-CHECK (instrument law): the state differs from the child by EXACTLY the other half, from the parent by EXACTLY this half
+  local want=$(wc -l < "$1") other=$(( $(wc -l < "$OUT/all.list") - $(wc -l < "$1") ))
+  if [ "$vp" != "$want" ] || [ "$vc" != "$other" ]; then echo "$2 REFUSED: vsParent=$vp (want $want) vsChild=$vc (want $other) — state NOT as designed, NOT committed"; return 4; fi
   git -c user.name=oopTester-seed -c user.email=seed@local commit -qm "LOCAL STATE $2 (never pushed)"
-  echo "$2 head=$(git rev-parse --short=9 HEAD) took A/M=$(wc -l < "$OUT/take.am") D=$(wc -l < "$OUT/take.d") vsChild=$(git diff --name-only "$CHILD" HEAD | wc -l) vsParent=$(git diff --name-only "$PARENT" HEAD | wc -l) dirty=$(git status --porcelain | wc -l)"
+  echo "$2 head=$(git rev-parse --short=9 HEAD) took A/M=$(wc -l < "$OUT/take.am") D=$(wc -l < "$OUT/take.d") vsChild=$vc vsParent=$vp (as designed) dirty=$(git status --porcelain | wc -l)"
 }
 case "$1" in
   SPLIT) split ;;
