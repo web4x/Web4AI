@@ -1,0 +1,44 @@
+HEAD f707537f7 own=yes
+[ROGUEALL] held source hidden under latest/model/Rogue/ (WHOLE suite)
+[ROGUEALL] rc=1
+[ROGUEALL] AC2 value scan: CHECKED 18271 / ALLOWED 281 / TOTAL 18552 — PlantUmlServerModel.url = http://localhost:8089 [url] | NpmPackage.of().main = dist/com/ceruleanCircle/Web4MDA/latest/src/ts/EAM/layer2/Web4MDA.js [npm manifest] | NpmPackage.of(
+[ROGUEALL]      × spec/mof-self.md AC1 — no factories, by the HAZARD: every src class loaded at runtime has NO own static create/instantiate and no prototype instantiate 811ms
+[ROGUEALL]      × AC1 coverage (oopTester) — the production scan reaches EVERY src file, derived by an independent `find` (not a count), and each file contributes its class 719ms
+[ROGUEALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Ior/latest/test/IorAcceptance.test.ts > Ior — spec 14 I1+I2+I3 acceptance (IOR1-IOR7, IOR3b, port rule, Link, UnrepresentableIorError) — oopTester gate > IOR2 round-trip BOTH ways 
+[ROGUEALL] IOR2 CHECKED 15032 / SKIPPED 0 / TOTAL 15032 (+21 placeholders) · typed instances 15020 · address lists 1
+[ROGUEALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2ThingClass/latest/test/ThinglishTarget.test.ts > PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) — the whole catalog vs the committed .thing files > TH1 
+[ROGUEALL] TH1: CHECKED 106 / SKIPPED 0 / TOTAL 106
+[ROGUEALL]      × AC5 — style enforced: no attribute-assignment construction anywhere in the components' src/ (the TypeScript they hold — never mirrored, spec 12 AC6) (seed → RED) 127ms
+[ROGUEALL]      × AC5 — the catalog IS init literals: every entry returns new ClassModel().init({ and nested units are init({ too; no helper assignments 88ms
+[ROGUEALL]      × AC6 — prettified: multi-line, one attribute per line, stable key order (uuid, name, then the class's declared order); a one-line blob → RED 36ms
+[ROGUEALL]      × AC7 — one defaults site: no other src file defines a display default; a second site → RED 41ms
+[ROGUEALL]      ✓ IOR2 round-trip BOTH ways over EVERY concrete IOR string of the repo (derived scan, I3 canonical: typed instance + address list) — CHECKED / SKIPPED / TOTAL, SKIPPED 0 11398ms
+[ROGUEALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/ThinglishGrammar/latest/test/ThinglishGrammar.test.ts > ThinglishGrammar — SC8 clause 2: every keyword maps to an M3 element (Tron 2026-10-01 ruling) — oopTester gate > SC8 clause 
+[ROGUEALL] SC8 modifiers: 13 keywords · (keyword, element) pairs CHECKED 18 / SKIPPED 0 / TOTAL 18
+[ROGUEALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts > ARM4 — the README State table is derivable from disk (built = class + linked gate exists; specified = artifact absent) > ARM4: every State row checks out a
+[ROGUEALL] ARM4 status table: CHECKED 9 / SKIPPED 0 / TOTAL 9
+[ROGUEALL] H4 (b): CHECKED 656 / TOTAL 656 files; owner hits 1; observer exempt files 1 (read-only uses proven); FOUND 0
+[ROGUEALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts > ARM6 — no live-normative top-level gen/ src/ test/ path in README + spec/*.md > ARM6: every top-level gen/ src/ test/ mention is struck, blockquoted or a T
+[ROGUEALL] ARM6 top-level paths: CHECKED 0 live / SKIPPED 95 marked / TOTAL 95 (+ 5 component-relative tree rows, derived, NOT top-level)
+[ROGUEALL] SKIPPED (printed so none hides):
+[ROGUEALL] Held tree: CHECKED 332 held files / SKIPPED 49 store-output folders / TOTAL 381
+[ROGUEALL]    ❯ src/ AND test/ are TYPE-CHECKED — tsc --noEmit (oopTester, oopPO queue 2026-09-29 #1, widened to test/) (3)
+[ROGUEALL]      × the real src/ compiles with ZERO type errors under the real tsconfig, and tsc compiled EVERY src/**/*.ts on disk (non-vacuous) 404ms
+[ROGUEALL]      × the real test/ compiles with ZERO type errors too, and tsc compiled EVERY test/**/*.ts on disk (non-vacuous) 873ms
+[ROGUEALL]      × is failable through the SAME guard: a type error seeded into a copy of real src/ OR real test/ is RED and NAMED; restored, GREEN 1311ms
+[ROGUEALL]      × the test files are IN the program (tsconfig.test.json does not inherit the base exclude of test/**) and it has 0 errors 1064ms
+[ROGUEALL] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Package/latest/test/TreeFileUnitRulings.test.ts > eamd-ucp.md rule 4 · 7a7304c · sub-components live BESIDE the Version (the committed component tree, model-derived oracle) > the anc
+[ROGUEALL] R3 anchors: CHECKED 1578 / SKIPPED 49 store-output folders / TOTAL 1627
+[ROGUEALL]  FAIL  |solo| EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/SrcTypecheck.test.ts > src/ AND test/ are TYPE-CHECKED — tsc --noEmit (oopTester, oopPO queue 2026-09-29 #1, widened to test/) > the real src/ compiles with ZERO typ
+[ROGUEALL] AssertionError: expected [ …(6) ] to deeply equal []
+[ROGUEALL]  FAIL  |solo| EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/SrcTypecheck.test.ts > src/ AND test/ are TYPE-CHECKED — tsc --noEmit (oopTester, oopPO queue 2026-09-29 #1, widened to test/) > the real test/ compiles with ZERO ty
+[ROGUEALL] AssertionError: expected [ …(6) ] to deeply equal []
+[ROGUEALL]  FAIL  |solo| EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/SrcTypecheck.test.ts > src/ AND test/ are TYPE-CHECKED — tsc --noEmit (oopTester, oopPO queue 2026-09-29 #1, widened to test/) > is failable through the SAME guard: 
+[ROGUEALL] AssertionError: the copy compiles clean first — a RED below is the seed, never the harness: expected [ …(6) ] to deeply equal []
+[ROGUEALL] AssertionError: expected [ …(6) ] to deeply equal []
+[ROGUEALL] AssertionError: the Components scan is non-empty AND complete (vs git ls-files, an INDEPENDENT count): expected 214 to be 213 // Object.is equality
+[ROGUEALL] AssertionError: expected [ Array(107) ] to have a length of 106 but got 107
+[ROGUEALL] AssertionError: the Components scan is non-empty AND complete (vs git ls-files, an INDEPENDENT count): expected 214 to be 213 // Object.is equality
+[ROGUEALL] AssertionError: the Components scan is non-empty AND complete (vs git ls-files, an INDEPENDENT count): expected 211 to be 210 // Object.is equality
+[ROGUEALL] Error: Cannot find module '../../../latest/src/ts/EAM/layer3/ClassModel.js' imported from /var/dev/Workspaces/web4x/Web4MDA/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen/seediso/EAMD.ucp/Components/com/ceruleanCircle/Web4MD
+DONE

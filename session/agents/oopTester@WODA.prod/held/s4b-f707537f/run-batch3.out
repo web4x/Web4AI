@@ -1,0 +1,160 @@
+HEAD f707537f7 own=yes
+[DYNALIAS] seeded 1 file(s)
+[DYNALIAS] rc=1
+[DYNALIAS]      × src/ (derived walk): the files that import node:fs are EXACTLY the two NodeJS units — and M1Catalog's modelled node:fs body strings are data, not imports 201ms
+[DYNALIAS]      × a derived scan of every src file finds node:fs imported ONLY by NodeJSFile and NodeJSFolder 242ms
+[DYNALIAS] AC2 value scan: CHECKED 18271 / ALLOWED 281 / TOTAL 18552 — PlantUmlServerModel.url = http://localhost:8089 [url] | NpmPackage.of().main = dist/com/ceruleanCircle/Web4MDA/latest/src/ts/EAM/layer2/Web4MDA.js [npm manifest] | NpmPackage.of(
+[DYNALIAS] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Ior/latest/test/IorAcceptance.test.ts > Ior — spec 14 I1+I2+I3 acceptance (IOR1-IOR7, IOR3b, port rule, Link, UnrepresentableIorError) — oopTester gate > IOR2 round-trip BOTH ways 
+[DYNALIAS] IOR2 CHECKED 15032 / SKIPPED 0 / TOTAL 15032 (+21 placeholders) · typed instances 15020 · address lists 1
+[DYNALIAS] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2ThingClass/latest/test/ThinglishTarget.test.ts > PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) — the whole catalog vs the committed .thing files > TH1 
+[DYNALIAS] TH1: CHECKED 106 / SKIPPED 0 / TOTAL 106
+[DYNALIAS] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/ThinglishGrammar/latest/test/ThinglishGrammar.test.ts > ThinglishGrammar — SC8 clause 2: every keyword maps to an M3 element (Tron 2026-10-01 ruling) — oopTester gate > SC8 clause 
+[DYNALIAS] SC8 modifiers: 13 keywords · (keyword, element) pairs CHECKED 18 / SKIPPED 0 / TOTAL 18
+[DYNALIAS]      ✓ IOR2 round-trip BOTH ways over EVERY concrete IOR string of the repo (derived scan, I3 canonical: typed instance + address list) — CHECKED / SKIPPED / TOTAL, SKIPPED 0 10156ms
+[DYNALIAS] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts > ARM4 — the README State table is derivable from disk (built = class + linked gate exists; specified = artifact absent) > ARM4: every State row checks out a
+[DYNALIAS] ARM4 status table: CHECKED 9 / SKIPPED 0 / TOTAL 9
+[DYNALIAS] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts > ARM6 — no live-normative top-level gen/ src/ test/ path in README + spec/*.md > ARM6: every top-level gen/ src/ test/ mention is struck, blockquoted or a T
+[DYNALIAS] ARM6 top-level paths: CHECKED 0 live / SKIPPED 95 marked / TOTAL 95 (+ 5 component-relative tree rows, derived, NOT top-level)
+[DYNALIAS] SKIPPED (printed so none hides):
+[DYNALIAS] H4 (b): CHECKED 655 / TOTAL 655 files; owner hits 1; observer exempt files 1 (read-only uses proven); FOUND 0
+[DYNALIAS]      × the real pipeline runs green, PRINTS every committed generated file (every artifact is produced), and reproduces them byte for byte — in a SCRATCH copy, never the repo root (AC2b b) 19396ms
+[DYNALIAS] Held tree: CHECKED 332 held files / SKIPPED 48 store-output folders / TOTAL 380
+[DYNALIAS] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Package/latest/test/TreeFileUnitRulings.test.ts > eamd-ucp.md rule 4 · 7a7304c · sub-components live BESIDE the Version (the committed component tree, model-derived oracle) > the anc
+[DYNALIAS] R3 anchors: CHECKED 1578 / SKIPPED 48 store-output folders / TOTAL 1626
+[DYNALIAS] AssertionError: the real pipeline produced a EAMD.ucp/Components/ that differs from the committed one — commit the regenerate, or the model and the generated files drifted: expected ' .../Web4MDA/MOF/M1/M1Catalog/latest/…' to be '' // O
+[DYNALIAS] AssertionError: expected [ …(3) ] to deeply equal [ …(2) ]
+[DYNALIAS] AssertionError: expected [ …(3) ] to deeply equal [ …(2) ]
+[DYNALIAS]  Test Files  3 failed | 95 passed (98)
+[DYNALIAS]       Tests  3 failed | 818 passed | 2 skipped (823)
+[DYNALIAS]   10156ms  IorAcceptance.test.ts :: Ior — spec 14 I1+I2+I3 acceptance (IOR1-IOR7, IOR3b, port rule, Link, UnrepresentableIorError) — oopTester gate > IOR2 round-trip BOTH ways over EVERY concrete IOR string of the repo (derived scan, I3
+DONE
+HEAD f707537f7 own=yes
+[DRIFT] EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/DefaultFile/latest/model/scenarios/BrowserFile/MethodModel/read.scenario.json: ../../../../../../../../../../Scenario/Index/b/d/b/8/5/bdb85f17-513b-4433-9da0-d81010560f64.scenario.json -> ../../../../../../../../../../Scenario/Index/0/1/8/5/4/0185414e-ec5f-45b4-ac8f-2baf699cc9a8.scenario.json (resolves: yes)
+[DRIFT] committed locally baf246230
+[DRIFT] rc=1
+[DRIFT] AC2 value scan: CHECKED 18271 / ALLOWED 281 / TOTAL 18552 — PlantUmlServerModel.url = http://localhost:8089 [url] | NpmPackage.of().main = dist/com/ceruleanCircle/Web4MDA/latest/src/ts/EAM/layer2/Web4MDA.js [npm manifest] | NpmPackage.of(
+[DRIFT] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Ior/latest/test/IorAcceptance.test.ts > Ior — spec 14 I1+I2+I3 acceptance (IOR1-IOR7, IOR3b, port rule, Link, UnrepresentableIorError) — oopTester gate > IOR2 round-trip BOTH ways 
+[DRIFT] IOR2 CHECKED 15032 / SKIPPED 0 / TOTAL 15032 (+21 placeholders) · typed instances 15020 · address lists 1
+[DRIFT] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2ThingClass/latest/test/ThinglishTarget.test.ts > PURE Thinglish TARGET gate (oopTester, spec/thinglish.md TH1–TH7) — the whole catalog vs the committed .thing files > TH1 
+[DRIFT] TH1: CHECKED 106 / SKIPPED 0 / TOTAL 106
+[DRIFT] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/ThinglishGrammar/latest/test/ThinglishGrammar.test.ts > ThinglishGrammar — SC8 clause 2: every keyword maps to an M3 element (Tron 2026-10-01 ruling) — oopTester gate > SC8 clause 
+[DRIFT] SC8 modifiers: 13 keywords · (keyword, element) pairs CHECKED 18 / SKIPPED 0 / TOTAL 18
+[DRIFT]      ✓ IOR2 round-trip BOTH ways over EVERY concrete IOR string of the repo (derived scan, I3 canonical: typed instance + address list) — CHECKED / SKIPPED / TOTAL, SKIPPED 0 9745ms
+[DRIFT] H4 (b): CHECKED 655 / TOTAL 655 files; owner hits 1; observer exempt files 1 (read-only uses proven); FOUND 0
+[DRIFT] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts > ARM4 — the README State table is derivable from disk (built = class + linked gate exists; specified = artifact absent) > ARM4: every State row checks out a
+[DRIFT] ARM4 status table: CHECKED 9 / SKIPPED 0 / TOTAL 9
+[DRIFT] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/Spec.test.ts > ARM6 — no live-normative top-level gen/ src/ test/ path in README + spec/*.md > ARM6: every top-level gen/ src/ test/ mention is struck, blockquoted or a T
+[DRIFT] ARM6 top-level paths: CHECKED 0 live / SKIPPED 95 marked / TOTAL 95 (+ 5 component-relative tree rows, derived, NOT top-level)
+[DRIFT] SKIPPED (printed so none hides):
+[DRIFT]      × the next generate REALISES the move; move(X -> back) + generate returns the tree BYTE-IDENTICAL (round trip) 47457ms
+[DRIFT]      × the real pipeline runs green, PRINTS every committed generated file (every artifact is produced), and reproduces them byte for byte — in a SCRATCH copy, never the repo root (AC2b b) 19808ms
+[DRIFT]      × S4 (b) — EVERY part has ONE component link <Component>/latest/model/scenarios/<Class>/<PartType>/<partPath>.scenario.json: a SYMLINK, relative, resolving into the Index, at the path derived from its STORED chain; classes have none
+[DRIFT]      × S4 (b) RULED B — the SAME <PartType>/<partPath> under two CLASSES of one component stays GREEN (oopExpert's probe, kept: the component-wide key collided 100 keys / 276 units before the class folder) 2333ms
+[DRIFT] Held tree: CHECKED 332 held files / SKIPPED 48 store-output folders / TOTAL 380
+[DRIFT]    ✓ src/ AND test/ are TYPE-CHECKED — tsc --noEmit (oopTester, oopPO queue 2026-09-29 #1, widened to test/) (3)
+[DRIFT] stdout | EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/Package/latest/test/TreeFileUnitRulings.test.ts > eamd-ucp.md rule 4 · 7a7304c · sub-components live BESIDE the Version (the committed component tree, model-derived oracle) > the anc
+[DRIFT] R3 anchors: CHECKED 1578 / SKIPPED 48 store-output folders / TOTAL 1626
+[DRIFT] AssertionError: the real pipeline produced a EAMD.ucp/Components/ that differs from the committed one — commit the regenerate, or the model and the generated files drifted: expected ' .../latest/model/scenarios/BrowserFi…' to be '' // O
+[DRIFT] AssertionError: the named checks (notLink, dangling, absolute, outsideIndex, toClass, misnamed, multiLinked, caseFolded, unlinkedParts): expected { …(3) } to deeply equal {}
+[DRIFT] AssertionError: named before the count: expected { …(3) } to deeply equal {}
+[DRIFT] AssertionError: expected ' M EAMD.ucp/Components/com/ceruleanCi…' to be '' // Object.is equality
+[DRIFT]  Test Files  3 failed | 95 passed (98)
+[DRIFT]       Tests  4 failed | 817 passed | 2 skipped (823)
+[DRIFT]   9745ms  IorAcceptance.test.ts :: Ior — spec 14 I1+I2+I3 acceptance (IOR1-IOR7, IOR3b, port rule, Link, UnrepresentableIorError) — oopTester gate > IOR2 round-trip BOTH ways over EVERY concrete IOR string of the repo (derived scan, I3 
+[DRIFT]   4620ms  SrcTypecheck.test.ts :: src/ AND test/ are TYPE-CHECKED — tsc --noEmit (oopTester, oopPO queue 2026-09-29 #1, widened to test/) > is failable through the SAME guard: a type error seeded into a copy of real src/ OR real test/ is 
+DONE
+HEAD f707537f7 own=yes
+[RATIOFIX-1] rc=0
+[RATIOFIX-1]  Test Files  1 passed (1)
+[RATIOFIX-1]       Tests  65 passed (65)
+[RATIOFIX-1] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+[RATIOFIX-1] ration  161.53s (tests 99%, transform 1%)
+[RATIOFIX-1] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+[RATIOFIX-2] rc=0
+[RATIOFIX-2]  Test Files  1 passed (1)
+[RATIOFIX-2]       Tests  65 passed (65)
+[RATIOFIX-2] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+[RATIOFIX-2] ration  155.18s (tests 98%, transform 1%)
+[RATIOFIX-2] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+[RATIOFIX-3] rc=0
+[RATIOFIX-3]  Test Files  1 passed (1)
+[RATIOFIX-3]       Tests  65 passed (65)
+[RATIOFIX-3] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+[RATIOFIX-3] ration  155.98s (tests 99%, transform 1%)
+[RATIOFIX-3] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+[RATIOFIX-4] rc=0
+[RATIOFIX-4]  Test Files  1 passed (1)
+[RATIOFIX-4]       Tests  65 passed (65)
+[RATIOFIX-4] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+[RATIOFIX-4] ration  155.65s (tests 99%, transform 1%)
+[RATIOFIX-4] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+[RATIOFIX-5] rc=0
+[RATIOFIX-5]  Test Files  1 passed (1)
+[RATIOFIX-5]       Tests  65 passed (65)
+[RATIOFIX-5] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+[RATIOFIX-5] ration  156.53s (tests 99%, transform 1%)
+[RATIOFIX-5] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+DONE
+HEAD f707537f7 own=yes
+[PUT3] seeded 4 file(s)
+[RATIOPUT3-1] rc=1
+[RATIOPUT3-1]      × a 2nd store() is IDEMPOTENT: 0 new files, 0 changed bytes (put addresses by the stable uuid) 15156ms
+[RATIOPUT3-1]      × F1 MECHANISM — a FRESH store written through the REAL put path (store -> ScenarioIndex.put -> NodeJSFile.link) yields ONLY RELATIVE type/ links, one per UNIT (S4: classes and parts), all resolving 8421ms
+[RATIOPUT3-1]      × F1 seed — an ABSOLUTE link written IN the real put path -> RED by the link's name 3822ms
+[RATIOPUT3-1] AssertionError: expected [ Array(1) ] to deeply equal []
+[RATIOPUT3-1] AssertionError: FIRST store coarse LOAD ratio (gross regressions only): expected [ Array(1) ] to deeply equal []
+[RATIOPUT3-1] Error: NodeJSFile.link: '/var/dev/Workspaces/web4x/Web4MDA/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen/seediso/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/gen/M1Catalog.test/f1-absolute-see
+[RATIOPUT3-1]  Test Files  1 failed (1)
+[RATIOPUT3-1]       Tests  3 failed | 62 passed (65)
+[RATIOPUT3-1] ration step ends with its process constructor — a silent no-op pipeline is RED (mof.md §6, as amended: the chain is Web4MD
+[RATIOPUT3-1] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+[RATIOPUT3-1] ratio (gross regressions only): expected [ Array(1) ] to deeply equal []
+[RATIOPUT3-2] rc=1
+[RATIOPUT3-2]      × a 2nd store() is IDEMPOTENT: 0 new files, 0 changed bytes (put addresses by the stable uuid) 14460ms
+[RATIOPUT3-2]      × F1 MECHANISM — a FRESH store written through the REAL put path (store -> ScenarioIndex.put -> NodeJSFile.link) yields ONLY RELATIVE type/ links, one per UNIT (S4: classes and parts), all resolving 8152ms
+[RATIOPUT3-2]      × F1 seed — an ABSOLUTE link written IN the real put path -> RED by the link's name 3743ms
+[RATIOPUT3-2] AssertionError: expected [ Array(1) ] to deeply equal []
+[RATIOPUT3-2] AssertionError: FIRST store coarse LOAD ratio (gross regressions only): expected [ Array(1) ] to deeply equal []
+[RATIOPUT3-2] Error: NodeJSFile.link: '/var/dev/Workspaces/web4x/Web4MDA/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen/seediso/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/gen/M1Catalog.test/f1-absolute-see
+[RATIOPUT3-2]  Test Files  1 failed (1)
+[RATIOPUT3-2]       Tests  3 failed | 62 passed (65)
+[RATIOPUT3-2] ration step ends with its process constructor — a silent no-op pipeline is RED (mof.md §6, as amended: the chain is Web4MD
+[RATIOPUT3-2] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+[RATIOPUT3-2] ratio (gross regressions only): expected [ Array(1) ] to deeply equal []
+[RATIOPUT3-3] rc=1
+[RATIOPUT3-3]      × a 2nd store() is IDEMPOTENT: 0 new files, 0 changed bytes (put addresses by the stable uuid) 15307ms
+[RATIOPUT3-3]      × F1 MECHANISM — a FRESH store written through the REAL put path (store -> ScenarioIndex.put -> NodeJSFile.link) yields ONLY RELATIVE type/ links, one per UNIT (S4: classes and parts), all resolving 8015ms
+[RATIOPUT3-3]      × F1 seed — an ABSOLUTE link written IN the real put path -> RED by the link's name 3710ms
+[RATIOPUT3-3] AssertionError: expected [ Array(1) ] to deeply equal []
+[RATIOPUT3-3] AssertionError: FIRST store coarse LOAD ratio (gross regressions only): expected [ Array(1) ] to deeply equal []
+[RATIOPUT3-3] Error: NodeJSFile.link: '/var/dev/Workspaces/web4x/Web4MDA/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen/seediso/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/gen/M1Catalog.test/f1-absolute-see
+[RATIOPUT3-3]  Test Files  1 failed (1)
+[RATIOPUT3-3]       Tests  3 failed | 62 passed (65)
+[RATIOPUT3-3] ration step ends with its process constructor — a silent no-op pipeline is RED (mof.md §6, as amended: the chain is Web4MD
+[RATIOPUT3-3] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+[RATIOPUT3-3] ratio (gross regressions only): expected [ Array(1) ] to deeply equal []
+[RATIOPUT3-4] rc=1
+[RATIOPUT3-4]      × a 2nd store() is IDEMPOTENT: 0 new files, 0 changed bytes (put addresses by the stable uuid) 17551ms
+[RATIOPUT3-4]      × F1 MECHANISM — a FRESH store written through the REAL put path (store -> ScenarioIndex.put -> NodeJSFile.link) yields ONLY RELATIVE type/ links, one per UNIT (S4: classes and parts), all resolving 8125ms
+[RATIOPUT3-4]      × F1 seed — an ABSOLUTE link written IN the real put path -> RED by the link's name 3533ms
+[RATIOPUT3-4] AssertionError: expected [ Array(1) ] to deeply equal []
+[RATIOPUT3-4] AssertionError: FIRST store coarse LOAD ratio (gross regressions only): expected [ Array(1) ] to deeply equal []
+[RATIOPUT3-4] Error: NodeJSFile.link: '/var/dev/Workspaces/web4x/Web4MDA/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen/seediso/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/gen/M1Catalog.test/f1-absolute-see
+[RATIOPUT3-4]  Test Files  1 failed (1)
+[RATIOPUT3-4]       Tests  3 failed | 62 passed (65)
+[RATIOPUT3-4] ration step ends with its process constructor — a silent no-op pipeline is RED (mof.md §6, as amended: the chain is Web4MD
+[RATIOPUT3-4] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+[RATIOPUT3-4] ratio (gross regressions only): expected [ Array(1) ] to deeply equal []
+[RATIOPUT3-5] rc=1
+[RATIOPUT3-5]      × a 2nd store() is IDEMPOTENT: 0 new files, 0 changed bytes (put addresses by the stable uuid) 16741ms
+[RATIOPUT3-5]      × F1 MECHANISM — a FRESH store written through the REAL put path (store -> ScenarioIndex.put -> NodeJSFile.link) yields ONLY RELATIVE type/ links, one per UNIT (S4: classes and parts), all resolving 8030ms
+[RATIOPUT3-5]      × F1 seed — an ABSOLUTE link written IN the real put path -> RED by the link's name 3931ms
+[RATIOPUT3-5] AssertionError: expected [ Array(1) ] to deeply equal []
+[RATIOPUT3-5] AssertionError: FIRST store coarse LOAD ratio (gross regressions only): expected [ Array(1) ] to deeply equal []
+[RATIOPUT3-5] Error: NodeJSFile.link: '/var/dev/Workspaces/web4x/Web4MDA/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen/seediso/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/gen/M1Catalog.test/f1-absolute-see
+[RATIOPUT3-5]  Test Files  1 failed (1)
+[RATIOPUT3-5]       Tests  3 failed | 62 passed (65)
+[RATIOPUT3-5] ration step ends with its process constructor — a silent no-op pipeline is RED (mof.md §6, as amended: the chain is Web4MD
+[RATIOPUT3-5] ration makes the store EQUAL the derivation — remove an END (one class's methods), store again: every unit and type/ link o
+[RATIOPUT3-5] ratio (gross regressions only): expected [ Array(1) ] to deeply equal []
+DONE

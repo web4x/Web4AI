@@ -76,6 +76,15 @@ import " "$LAYTS" && SEEDPY "$1" '  constructor() {' "  seedFs(): void {
 go FSLINKPLAIN && { FSPLAIN FSLINKPLAIN symlinkSync "'a', 'b'" && run FSLINKPLAIN "$URT"; }
 go FSLINKALL && { FSSEED FSLINKALL symlinkSync "'a', 'b'" && run FSLINKALL; }
 go FSCALLER2ALL && { FSSEED FSCALLER2ALL readFileSync "'x', 'utf8'" && COMMIT FSCALLER2ALL && run FSCALLER2ALL; }
+# DYNALIAS: nearest dangerous member of the R2 "M1Catalog body strings are data" allowance + reproduce exemption: a REAL dynamic aliased node:fs call in M1Catalog.ts CODE (anchor unique @f707537f)
+CATTS=$C/MOF/M1/M1Catalog/latest/src/ts/EAM/layer2/M1Catalog.ts
+go ROGUEALL && { mkdir -p "$C/ScenarioIndex/latest/model/Rogue" && cp "$C/ScenarioIndex/latest/model/ScenarioIndexDefinition.ts" "$C/ScenarioIndex/latest/model/Rogue/" && echo "[ROGUEALL] held source hidden under latest/model/Rogue/ (WHOLE suite)" && run ROGUEALL; }
+go DYNALIAS && { SEEDPY DYNALIAS 'export class M1Catalog extends UcpComponent<ClassModel> {' "export class M1Catalog extends UcpComponent<ClassModel> {
+  async seedFs(): Promise<void> {
+    const { symlinkSync: seedLink } = await import('node:fs');
+    seedLink('a', 'b');
+  }
+" "$CATTS" && run DYNALIAS; }
 go DUPFOLDER && { mkdir -p "$C/MOF/Web4MDA/latest" && cp "$C/latest/package.json" "$C/MOF/Web4MDA/latest/" 2>/dev/null || touch "$C/MOF/Web4MDA/latest/held.txt"; echo "[DUPFOLDER] second held package folder $C/MOF/Web4MDA/latest"; run DUPFOLDER "$TFR"; }
 PUTL='for (const c of classes) await index.put(c);'
 ratio() { for i in 1 2 3 4 5; do run "$1-$i" "$MCT" | grep -aiE "rc=|RATIO|store/ref|SPEED|Tests " ; sed "s/\x1b\[[0-9;]*m//g" "$SP/$1-$i.log" | grep -aoiE "(ratio|store/ref)[^|]{0,120}" | head -3 | sed "s/^/[$1-$i] /"; done; }
