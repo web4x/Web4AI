@@ -1,0 +1,25 @@
+===== PRECOND =====
+  ✓ PASS: isClaudeCode node, composer empty
+===== (a) OTR-1 SUBMISSION (submitted = NOT staged) =====
+  ✓ PASS: short submitted (state=empty)
+  long: rc=0 state=empty
+  ✓ PASS: long submitted (state=empty)
+rc=0 st=empty
+  ✓ PASS: no false rc0 (rc=0 st=empty)
+===== (b) send.submit EXISTS + submit-only =====
+  ✓ PASS: send.submit defined
+  ✓ PASS: send.submit submit-only
+===== (c) RETRAIN: send.raw stage + send.submit -> submitted =====
+  ✓ PASS: send.raw staged (pure)
+  ✓ PASS: send.submit submitted (state=empty)
+===== (d) send.raw stays PURE =====
+  ✓ PASS: send.raw pure-raw
+===== (e) GHOST-POST-SEND regression-guard (ac4d641a): ghost => rc0, no refuse, EXACTLY 1 Enter =====
+  rc=0 post-state=ghost enters=1
+  ✓ PASS: composer ends ghost (the regression state)
+  ✓ PASS: ghost => rc0 submitted (not a false rc1)
+  ✓ PASS: no noise re-Enter (1 Enter)
+==================================================================
+  T-SEND-SUBMIT-OTR1  PASS=12 FAIL=0  (expect ALL GREEN on deployed ac4d641a incl ghost-guard)
+==================================================================
+{ differential: PRE-FIX 0da2adeb ghost=rc1/4-enters RED; FIX ac4d641a ghost=rc0/1-enter GREEN }
