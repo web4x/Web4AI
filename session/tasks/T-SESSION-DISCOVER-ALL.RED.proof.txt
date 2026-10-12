@@ -9,12 +9,17 @@
 ===== (3) BYTE-IDENTICAL: per-pane session.current UNCHANGED + stable [anchor] =====
   ✓ PASS: per-pane session.current stable (74f27969-2261-4556-9e82-dd059d7a1708)
   ✓ PASS: test.session-id-fresh present (run as the unchanged-output regression)
-===== (5) DISTINCT-IDENTITY [oopPO ruling — gates lifting address-by-pane] =====
+===== (5) CWD-DISAMBIG UNIT TEST [distinct-cwd same-title; NOT the interim-lift gate] =====
   per-pane: A=aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa B=bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb (expect aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa / bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb, distinct)
 │ Test 7: 5a-PER-PANE: same-title pair resolves distinct per-pane (A!=B, correct)
   ✓ PASS: per-pane distinct (aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa / bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb)
   ✗ FAIL: 5b-DISTINCT: session.discover.all ABSENT — cannot resolve the seeded pair (RED; gates address-by-pane lift)
   ✗ FAIL: 5c-NEVER-ONE: cannot prove two-distinct while discover.all ABSENT (RED)
+===== (6) INTERIM-LIFT GATE [oopPO contract (a): TWO DISTINCT, ground-truth = cmdline --resume] =====
+  ooshTeam:0.3 cmdline-truth=a43c1b23-7de6-4c75-8952-3e98b6ca43b6 session.current=a43c1b23-7de6-4c75-8952-3e98b6ca43b6 | diamonds:0.1 session.current=a43c1b23-7de6-4c75-8952-3e98b6ca43b6
+  ✓ PASS: resumed pane matches cmdline ground-truth (a43c1b23-7de6-4c75-8952-3e98b6ca43b6)
+  ✗ FAIL: COLLAPSE (RED): diamonds:0.1 resolves to ooshTeam:0.3's uuid a43c1b23-7de6-4c75-8952-3e98b6ca43b6 — a live agent mis-identified as another (gates address-by-pane lift)
+  ✗ FAIL: two live panes share ONE uuid (a43c1b23-7de6-4c75-8952-3e98b6ca43b6) — never-exclude contract violated (RED)
 ==================================================================
-  T-SESSION-DISCOVER-ALL  PASS=3 FAIL=6  (RED-first: EXISTS/SCAN/PARITY/PERF/DISTINCT must be RED on current)
+  T-SESSION-DISCOVER-ALL  PASS=4 FAIL=8  (RED-first: EXISTS/SCAN/PARITY/PERF + 6 INTERIM-LIFT must be RED on current)
 ==================================================================
