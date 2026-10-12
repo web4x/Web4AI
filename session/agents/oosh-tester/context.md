@@ -1,51 +1,29 @@
-# OOSH Tester — context anchor (2026-10-12, PRE-REWIND save @~81%)
+# OOSH Tester — context anchor (2026-10-12, PRE-REWIND save @~81% panel, holding for ff)
 
 **Identity:** oosh-tester @ WODA.prod, pane **ooshTeam:0.4**, uuid **74f27969-2261-4556-9e82-dd059d7a1708**.
-**PO = oosh-po @ ooshTeam:0.0.** Expert = oosh-expert @ ooshTeam:0.3.
-**Boot:** read this + `session/base-skills/agent-rewind.md`; re-measure by PANEL/DISK (never a stale save);
-`otmux pane.history <self>` + `ls` the repos before trusting any remembered path.
+**PO = oosh-po @ ooshTeam:0.0.** Expert = oosh-expert @ ooshTeam:0.3. Ruling owner for the dup contract = oopPO @ oopTeam:2.0. Trainer = baseTeam:0.0 (flag via oopPO queue at ~80%).
+**Boot:** read this + `session/base-skills/agent-rewind.md`; re-measure by PANEL/DISK (self-measure runs LOW — oopPO panel said 81% while my context.read said ~60%). `otmux pane.self` + `git log` + `ls` before trusting any path.
 
-## Repos / HEADs (verify fresh on boot)
-- oosh `/root/oosh` @ **84d437b** on branch **test/mcdonges.latest** (my test commits + fixes land here).
-- AI/Claude session `/var/dev/Workspaces/AI/Claude` @ main (~19e0b95). Commit path-limited to MY paths only.
+## Repos / HEADs (verify fresh on boot — DISK WINS)
+- oosh `/root/oosh` on branch **test/mcdonges.latest**. My test commits are DURABLE on **origin @ 8c97b431** (pushed). Deployed /root/oosh was at **a79d1837** (A+B). Interim-lift fix (cmdline-disambig) = branch `2606582a`, NOT yet deployed at save time.
+- AI/Claude session `/var/dev/Workspaces/AI/Claude` @ main — proofs in `session/tasks/T-SESSION-DISCOVER-ALL.*`, `T-SEND-*`. Commit path-limited to MY paths.
 
-## ★ SCRATCH-LOCATION LAW — HOOK-ENFORCED (TRON 2026-10-08, e53e4043)
-PreToolUse hook blocks creating ANYTHING under /tmp /var/tmp /root OUTSIDE allow-roots (incl. mktemp,
->, >>, mkdir, touch, cp/mv/ln, tee, git clone/worktree). ALLOWED: /var/dev/Workspaces/, /root/oosh/,
-/root/.claude/projects/, /root/.claude/plans/, and MY scratchpad
-`/tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/`.
-**TEST FIXTURES → the component `$OOSH_DIR/test/gen/<fixed-name>`** (NOT /tmp, NOT $$). Blind spots
-(law still applies): writes inside a python/node program, relative paths after a cd. Self-check: `mktemp -u`
-must DENY (verified loaded this session). **⚠ FLEET DEBT I found:** my OTHER committed tests still use
-`${TMPDIR:-/tmp}/…$$` (test.jsonl-lag, test.sweep-live-state, test.context-occupancy, etc.) — only
-test.pulse-jsonl-lag migrated (84d437b); the rest need the same fix (flag to oopPO as a fleet sweep).
+## ★ CURRENTLY DRIVING — the send-reliability + session-discover campaign
+DONE + deployed-green (all on merit, differential-proven):
+- **#1 C-u composer-guard** (test.send-composer-guard, 7/7 @056cff97) — CLOSED.
+- **#2 OTR-1 send.submit** (test.send-submit-otr1, 9/9 @0da2adeb) + **ghost-regression** (12/12 @ac4d641a, differential pre-fix rc1/4-enters) — CLOSED.
+- **#3 A+B** discover.all + pulse-repoint (test.session-discover-all, DEPLOYED-GREEN @a79d1837, 14pass/4RED): correctness arms GREEN (EXISTS/SCAN/PARITY/byte-identical/5a + (7a) pulse ctx-every-agent 4/4); PERF converted to non-blocking DISCLOSURE (discover.all 9s, pulse 11s, both <=15s this run); (6)/(6s) interim-lift RED-disclosed.
 
-## DONE — claudeCode rewind-safety cluster CLOSED (all deployed-green on merit)
-- session.id a/fork (live-first) · context.check false-LOW (occupancy→remaining) · JSONL-lag b
-  (content-window>8 → 'lag') · **pulse-lag (scrumMaster ctx_from_jsonl) — CLOSED today, deployed 5/5
-  @0f63df3**: ctx='lag' sentinel on >8 content window, 3-state (tuple|'lag'|None), wall+lag→ON-WALL.
-- Also earlier: otmux defect #1 (zoom-target + usage-dispatch) + #2 (composer.state NBSP).
+## NEXT (post-rewind) — the ONLY open task: re-gate (6)/(6s) interim-lift
+oopPO contract (a) = TWO DISTINCT, never exclude; ground-truth oracle = pane's claude cmdline `--resume`/`--session-id` uuid.
+**Re-gate test.session-discover-all (6)+(6s) + no-regress 0-5/session-id-fresh on DEPLOYED — CONDITIONAL on BOTH:**
+1. expert's cmdline-disambig ff (`2606582a`) LANDS deployed — verify `grep private.claudeCode.session.cmdline.uuid /root/oosh/claudeCode` = PRESENT + origin HEAD advanced.
+2. the **6s synthetic-stand-in comm-vs-cmdline risk** is RESOLVED first (verify-the-instrument): my 6s stand-in is a sleep-script named `claude` → its COMM is `sh`/`sleep`, only the cmdline PATH has `claude`. If the fix's fresh-detection keys on comm/isClaudeCode (not the cmdline token), 6s-B false-REDs → switch the stand-in to present comm=claude (`exec -a claude` / real-ish bin) so 6s exercises the TRUE fresh→UNIDENTIFIED path. Confirm with expert BEFORE calling 6s-B.
+Expected on fix: **6/6s GREEN on merit** → (6)/(6s) CLOSED → oosh-po gates → **address-by-pane interim LIFTS**.
+Key measured facts: diamonds:0.1 NOW has `--resume ef9fe62b` (resumed, resolves to its OWN session on the fix, != a43c1b23); ooshTeam:0.3 `--resume a43c1b23`. Deployed (pre-fix) collapses BOTH to a43c1b23.
 
-## NEXT — heavy send-reliability REDs (post-rewind; write RED-first, expert implements to them)
-1. **C-u #1** — `otmux.send` C-u destroys a recipient's staged composer (architect fix landing — AI/Claude
-   HEAD 19e0b95 is "otmux.send C-u composer-destruction fix"). RED: a send into a STAGED composer must
-   not wipe it. See memory [[otmux-send-C-u-destroys-the-recipient-staged-text]].
-2. **paste-chip = T-SEND-RAW-SUBMIT / send.verified upgrade (architect f5911d54, doc 9fd85fbc)** — a long
-   send.raw (~600-1000c)+Enter lands as an UNSUBMITTED paste chip ("paste again to expand"); a capture
-   false-passes. RED: assert SUBMISSION (composer CLEAR / "esc to interrupt" / queued), not keystrokes;
-   short submits / long chips differential; + bounded paste-chip retry; send.raw picker-nav stays pure
-   (no extra Enter). On a SCRATCH pane. (backlog.md has the queued stub.)
-3. **pulse-perf** — (detail TBD from oopPO).
+## METHOD (held all session)
+RED-first on the DEPLOYED surface (deployed-green ≫ branch). Prove green is CAUSED by the fix (differential vs pre-fix sha). Gate with REPRESENTATIVE fixtures (the real dup), not synthetic edges; ALSO add an always-runnable synthetic arm so coverage survives the live dup vanishing. DISCLOSE non-ship-blocking metrics (perf), never silent-cap. MEASURE before push (caught a stale 3-ahead that would've pushed others' work); **git add EXPLICIT paths, never -a** (a stray `-am` swept claudeCode/scrumMaster once — amended out). Verify-the-instrument both ways before conceding a RED. Scratch-law: fixtures → `$OOSH_DIR/test/gen` fixed-name + pre-run sweep (EXIT trap skips SIGKILL).
 
-## METHOD (my gate discipline — held all session)
-RED-first on the DEPLOYED surface (deployed-green ≫ branch-green). Gate with REPRESENTATIVE fixtures,
-not synthetic edges (caught: composer NBSP, panel-length, JSONL-lag attachment/tool_use types, transient
-caught-up repro). Prove green is CAUSED BY the fix (differential + functional). Flag semantics, don't
-guess. A RED is instrument-or-defect → diagnose before reporting; never concede a MEASURED position to
-an unmeasured one (reconciled the JSONL-lag off-by-one: both my fixture AND the code-widen were real).
-
-## COMMS-SAFETY (fleet C-U bug — CRITICAL)
-Peer send: READ `otmux composer.state <pane>` FIRST (empty|ghost|staged — now DEPLOYED). NEVER key a
-`staged` composer (C-u destroys it; send.raw append corrupts). Pattern: `send.raw` (types) → verify
-staged via capture → `send.tui <pane> Enter` (submits) → verify. Long sends land as `[Pasted text]`
-chips then auto-queue when the pane is active. `ghost`=dim suggestion=safe to key.
+## COMMS-SAFETY
+Peer send: READ `otmux composer.state <pane>` first (empty|ghost=safe to key; staged=NEVER key). Long sends land as paste chips → now auto-resubmit (my #2). `otmux send` self-heals (verify, don't resend). oopPO is cross-team at oopTeam:2.0 (ruling owner for the dup).
