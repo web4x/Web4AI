@@ -1,97 +1,51 @@
-# OOSH Tester — context anchor (2026-09-30, near-alarm insurance save @~78%)
+# OOSH Tester — context anchor (2026-10-12, PRE-REWIND save @~81%)
 
-**Identity:** oosh-tester, WODA.prod. **PO = oosh-po @ ooshTeam:0.0** (post-rewind, own-PO).
-Boot: read this + `agent-rewind.md`; re-measure fleet by PANEL; re-derive DISK-first.
+**Identity:** oosh-tester @ WODA.prod, pane **ooshTeam:0.4**, uuid **74f27969-2261-4556-9e82-dd059d7a1708**.
+**PO = oosh-po @ ooshTeam:0.0.** Expert = oosh-expert @ ooshTeam:0.3.
+**Boot:** read this + `session/base-skills/agent-rewind.md`; re-measure by PANEL/DISK (never a stale save);
+`otmux pane.history <self>` + `ls` the repos before trusting any remembered path.
 
-## Comms-safety (CRITICAL, fleet C-U bug)
-- Peer comms: **`send.raw`** (types, no C-u) → **`send.tui <t> Enter`** (submit) → verify by CAPTURE.
-- **READ `otmux pane.capture.visible <t>` FIRST**; NEVER key a pane whose composer is `staged`
-  (plain `send`/`send.verified` fire C-u = DESTROY staged text; `send.raw` append also corrupts).
-- The branch `otmux composer.state <pane>` (empty|ghost|staged) is the safe classifier.
+## Repos / HEADs (verify fresh on boot)
+- oosh `/root/oosh` @ **84d437b** on branch **test/mcdonges.latest** (my test commits + fixes land here).
+- AI/Claude session `/var/dev/Workspaces/AI/Claude` @ main (~19e0b95). Commit path-limited to MY paths only.
 
-## Commit hygiene (LAW v2, both repos)
-- ONLY `git commit -m MSG -- <my/paths>` (ignores index, no peer ride). VERIFY `git show --stat`=mine.
-- NEVER `git add -A`/`.`/glob, NEVER bare `git commit`, NEVER `git reset HEAD` on a SHARED tree.
-- New files: explicit `git add <mine>` first, then path-limited commit.
+## ★ SCRATCH-LOCATION LAW — HOOK-ENFORCED (TRON 2026-10-08, e53e4043)
+PreToolUse hook blocks creating ANYTHING under /tmp /var/tmp /root OUTSIDE allow-roots (incl. mktemp,
+>, >>, mkdir, touch, cp/mv/ln, tee, git clone/worktree). ALLOWED: /var/dev/Workspaces/, /root/oosh/,
+/root/.claude/projects/, /root/.claude/plans/, and MY scratchpad
+`/tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/`.
+**TEST FIXTURES → the component `$OOSH_DIR/test/gen/<fixed-name>`** (NOT /tmp, NOT $$). Blind spots
+(law still applies): writes inside a python/node program, relative paths after a cd. Self-check: `mktemp -u`
+must DENY (verified loaded this session). **⚠ FLEET DEBT I found:** my OTHER committed tests still use
+`${TMPDIR:-/tmp}/…$$` (test.jsonl-lag, test.sweep-live-state, test.context-occupancy, etc.) — only
+test.pulse-jsonl-lag migrated (84d437b); the rest need the same fix (flag to oopPO as a fleet sweep).
 
-## §7/§8 gate work — DONE + pushed (durable)
-- §7 PART A recognizer GREEN (8fdf1a7); Parts 2+3 pane.live parity GREEN.
-- §7 Part 4 VIEW-AGREE: 2/3 on merit vs a8f33ad (Part-4a=team.sweep only); **VA2 RED** =
-  team.context.status still parse-fails, NOT repointed (Part-4b pending). Proof dd15a5b3.
-- §8 T-DELIVERY-EXACTLY-ONCE: RED harness parked (runs green when drain wires + RECIPIENT_AGENT).
-- OOSH defect gates GREEN ON MERIT: #1 session.id LIVE-first (f94c22d, 2/2, proof 3a3752c3);
-  #2 composer.state (b905d95, 4/4, proof de771e24 — heeded this:199 OOSH_DIR-pin caveat via HOME→branch symlink).
+## DONE — claudeCode rewind-safety cluster CLOSED (all deployed-green on merit)
+- session.id a/fork (live-first) · context.check false-LOW (occupancy→remaining) · JSONL-lag b
+  (content-window>8 → 'lag') · **pulse-lag (scrumMaster ctx_from_jsonl) — CLOSED today, deployed 5/5
+  @0f63df3**: ctx='lag' sentinel on >8 content window, 3-state (tuple|'lag'|None), wall+lag→ON-WALL.
+- Also earlier: otmux defect #1 (zoom-target + usage-dispatch) + #2 (composer.state NBSP).
 
-## CURRENT STATE (2026-09-30 — CAMPAIGN COMPLETE, queue clear, awaiting next assignment)
-All three deployed-green ON MERIT (RED-first → expert fix → re-gate), verdicts committed:
-- **otmux DEFECT #1** — `test.zoom-target` 4/4 (zoom `<target>` flag on named pane) + `test.usage-dispatch`
-  4/4 (usage-derived, 0 undispatched). Deployed @677abcf.
-- **otmux DEFECT #2** — `test.composer-state` 7/7 @56bceb6. I CAUGHT a live false-green: synthetic
-  EMPTY fixture passed but a LIVE empty composer pads with NBSP (U+00A0) after ❯ → old code false
-  'staged'. Re-hardened with representative NBSP fixtures (d4b401c); differential merit proof.
-- **context.check false-LOW** (rewind-safety) — `test.context-occupancy` 4/4 @001011d. /context PANEL
-  parse grabbed Suggestions '(17%)' not occupancy → false-LOW. Semantic = REMAINING (oosh-po ruling),
-  pinned 46. Merit: output TRACKS input (54→46/80→20/12→88/53.6→46) + differential + structural.
-- Verdicts: `session/tasks/{T-OTMUX-DEFECT-GATE,T-CONTEXT-OCCUPANCY}.GREEN.md`. Tests on
-  test/mcdonges.latest (pushed). At ~60% ctx, runway fine.
-## PENDING
-- **PULSE follow-up — `test.pulse-jsonl-lag` RED DELIVERED** (621ef08): scrumMaster.pulse's python
-  `ctx_from_jsonl` (scrumMaster:648) shares the same token-math, no content-lag guard → false-LOW
-  (400000,40,1000) SIGNALS_LAG=False on a >8 attachment/tool_use reboot window (monitoring misleads
-  walling). Gates the REAL extracted python; 2 PASS/1 RED; same differential as test.jsonl-lag.
-  + (4) WALLING-SAFETY (oopPO flag, 6352d5a): a LAG agent WITH a wall-banner must NOT be downgraded to
-  IDLE — RED: pulse ON-WALL double-gate (ctx[1]<98) HIDES a real ~67%-used rebooting wall via the
-  false-LOW. Now 2 PASS/2 RED. Fix = (2) ctx_from_jsonl signals LAG + (4) gate must not downgrade on
-  lag. AWAITING EXPERT: exact 3-state sentinel (numeric|LAG|None, lag≠None) → I pin SIGNALS_LAG + the
-  (4) condition to it. Lower urgency. Re-gate on deployed-green when it lands.
-  PINNED (e6cef1b): expert confirmed sentinel = exact string 'lag' (3-state fresh=tuple|lag='lag'|
-  none=None). SIGNALS_LAG=r=='lag'; added (3b) three-state-distinct; (4) wall+lag→ON-WALL (gate must
-  guard ctx!='lag' BEFORE ctx[1] else str<int raises). 2 PASS/3 RED on deployed; expert implementing
-  ctx_from_jsonl→'lag' on >8 content-window + gate guard → 5/5 on merit. Re-gate on deployed-green.
-  EXPERT FIX on branch oosh-expert/pulse-jsonl-lag 0f63df3 (scrumMaster-only). BRANCH PRE-CHECK (my
-  exact pinned assertions, independent of expert's replication) = 5/5 ff-SAFE: ctx(lag)='lag', fresh=
-  tuple, 3-state distinct, wall+lag=ON-WALL. AWAITING oosh-po FF → then AUTHORITATIVE DEPLOYED re-gate
-  (deployed-green is the gate) → pulse-lag CLOSED.
-- **QUEUED (backlog.md) — T-SEND-RAW-SUBMIT RED** (oopPO, after pulse-lag settles, normal pri): long
-  send.raw (~600-1000c)+Enter lands as unsubmitted PASTE CHIP ('paste again to expand'), capture
-  false-passes → assert SUBMISSION not keystrokes (short submits/long chips differential). Doc 9fd85fbc.
+## NEXT — heavy send-reliability REDs (post-rewind; write RED-first, expert implements to them)
+1. **C-u #1** — `otmux.send` C-u destroys a recipient's staged composer (architect fix landing — AI/Claude
+   HEAD 19e0b95 is "otmux.send C-u composer-destruction fix"). RED: a send into a STAGED composer must
+   not wipe it. See memory [[otmux-send-C-u-destroys-the-recipient-staged-text]].
+2. **paste-chip = T-SEND-RAW-SUBMIT / send.verified upgrade (architect f5911d54, doc 9fd85fbc)** — a long
+   send.raw (~600-1000c)+Enter lands as an UNSUBMITTED paste chip ("paste again to expand"); a capture
+   false-passes. RED: assert SUBMISSION (composer CLEAR / "esc to interrupt" / queued), not keystrokes;
+   short submits / long chips differential; + bounded paste-chip retry; send.raw picker-nav stays pure
+   (no extra Enter). On a SCRATCH pane. (backlog.md has the queued stub.)
+3. **pulse-perf** — (detail TBD from oopPO).
 
-## DONE (2026-09-30 PO order)
-- **ITEM 1 — `test.session-id-fresh`: RE-GATE GREEN-on-merit @4fbb654 → CLOSED.** Planted stale cache
-  (00000000-dead-…) → session.id returned LIVE 30a47516… not the stale (deployed now live-first). 2/2.
-- **ITEM 2 — `test.jsonl-lag`: DEPLOYED-GREEN 7/7 on merit @a317633 → gap(b) CLOSED.** Widened filter
-  (user|attachment|tool_result|tool_use) + my -1249 fixture: (1c) attachment/tool_use→lag + (2) real
-  046bbac4 head-1249 (32 content)→lag (both RED on narrow = differential merit); caught-up→fresh (no
-  over-trigger); bare unchanged + CONTEXT_SOURCE separate. Committed 8b3dbe9. ENTIRE claudeCode
-  rewind-safety cluster CLOSED: session.id(a/fork) + context.check false-LOW + JSONL-lag(b).
-  (history below — fix 390325e was INCOMPLETE, real-artifact gate caught it:)
-  Deployed `jsonl.lag` counts only user/tool_result/tool; the REAL reboot injection (046bbac4) is
-  ATTACHMENT+TOOL_USE dominated → max user/tool window=4 (never>8) so it NEVER fires; content-inclusive
-  window=32 (matches the '15-52' calibration). calibration(content) != impl(user/tool); also `"tool"`
-  regex ≠ `"tool_use"`. 5 PASS / 2 RED (1c synthetic attachment/tool_use-only + 2 real reboot both
-  'fresh'). Hardened test committed+pushed 4addd95. FIX OWED: widen filter to attachment+tool_use.
-  GREEN parts: user-window detect, transient caught-up=fresh, from.jsonl signals lag, CONTEXT_SOURCE
-  separate + bare unchanged. Re-gate (real+synthetic) when expert widens the type filter.
-  RECONCILED (c32ffb8): TWO real issues, both needed — (A) my fixture off-by-one head -1250→-1249
-  (the 046bbac4 line-1250 blob holds the CLOSING assistant-usage; file is NOT one-obj/line); (B) the
-  filter-widen (branch, NOT deployed — claudeCode:1590 still narrow). Measured head -1249 on 046bbac4:
-  NARROW=1→fresh, WIDE(+tool_use+attachment)=32→lag. Neither alone closes (2). Re-gate on DEPLOYED
-  after the widen ff's → -1249 + widened = 32→lag = 7/7. Gate HELD.
-- (superseded) earlier ITEM 2 note: from.jsonl reads last
-  assistant-usage; big un-recorded window after it → false-safe number, no lag signal → walling drive.
-  2 RED / 2 anchor. AWAITING EXPERT COORDINATION: (a) lag-detector name (proposed
-  `private.claudeCode.context.jsonl.lag` → lag|fresh); (b) STRUCTURAL threshold (content-after-last-
-  assistant-usage, not a byte guess); (c) real repro jsonl (oopTeam:0.0). Contract: separate lag field,
-  BARE output unchanged (pulse/views parse it), defer-to-panel, remaining-convention. Hardens pulse.
-  CONFIRMED by oosh-po: interface name ACCEPTED, threshold = ENTRY-COUNT after last assistant-usage.
-  Repro = 046bbac4-...jsonl. GATE-INTEGRITY: lag is TRANSIENT — the CURRENT repro CAUGHT UP (1 entry
-  after last usage now) → gating it as-is FALSE-PASSES. Real lag-moment IS in its history: 46-entry
-  window after line 1203 → RECONSTRUCT via truncate to line 1250 for the real-artifact re-gate. My
-  synthetic 40-entry ≈ real 46 (representative). Re-gate when expert lands the entry-count fix.
-- On new work: RED-first on DEPLOYED, gate the LIVE/prod surface with REPRESENTATIVE fixtures, prove
-  green is CAUSED BY the fix (differential+functional), flag semantics don't guess.
-  **FLAG oosh-po at ~88% BEFORE any heavy step** (prevent-wall rewind).
-- Standing flag (not mine to fix): MEMORY.md near its 24.4KB read-limit → ARON (canon owner) compaction.
+## METHOD (my gate discipline — held all session)
+RED-first on the DEPLOYED surface (deployed-green ≫ branch-green). Gate with REPRESENTATIVE fixtures,
+not synthetic edges (caught: composer NBSP, panel-length, JSONL-lag attachment/tool_use types, transient
+caught-up repro). Prove green is CAUSED BY the fix (differential + functional). Flag semantics, don't
+guess. A RED is instrument-or-defect → diagnose before reporting; never concede a MEASURED position to
+an unmeasured one (reconciled the JSONL-lag off-by-one: both my fixture AND the code-widen were real).
 
-## Test harnesses (committed session/tasks/*.RED): sweep-live-state, view-agree, delivery-exactly-once,
-## zoom-target, session-id-fresh, composer-state. Runnable copies in /root/oosh/test/.
+## COMMS-SAFETY (fleet C-U bug — CRITICAL)
+Peer send: READ `otmux composer.state <pane>` FIRST (empty|ghost|staged — now DEPLOYED). NEVER key a
+`staged` composer (C-u destroys it; send.raw append corrupts). Pattern: `send.raw` (types) → verify
+staged via capture → `send.tui <pane> Enter` (submits) → verify. Long sends land as `[Pasted text]`
+chips then auto-queue when the pane is active. `ghost`=dim suggestion=safe to key.
