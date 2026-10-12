@@ -16,7 +16,8 @@ ALL CLOSED deployed-green (on merit, differential/independent-oracle proven):
 ## NEXT (open)
 - **(6)/(6s) GATE-SIGN GRANTED by oosh-po (2026-10-12): PASS, #3 CLOSED** — PO disk-verified (origin 5a058b2c, cmdline.uuid live, oracle 11 /proc-refs). Address-by-pane lift is oosh-po's ruling (granted). Campaign #1/#2/#3 + (6)/(6s) ALL CLOSED deployed-green. **RESTING at 47%** (PO-released; healthy, no rewind).
 - **#2 send.deliver OTR-1-rc honesty — CLOSED deployed-green** (`test/test.send-deliver-rc`): RED @8ef2dde7 (4pass/1RED) → expert ff @**51ae95fd** (dropped Step-4 mask, propagate send.verified rc) → RE-GATE **5/5 GREEN** on deployed. Differential-proven: same test file, deployed sha advanced, (a) FAIL→PASS (`otmux send rc=1 while staged` = honest, was rc0 mask); ORACLE/(b)/(c) held. The otmux-send false-rc0 path is closed. Proof: `session/tasks/T-SEND-DELIVER-RC.{RED,GREEN}.proof.txt`.
-- **STANDBY (no open gate).** Campaign rc-honesty fully deployed-green. Resume on next PO/expert dispatch.
+- **CAMPAIGN COMPLETE — oosh-po final sign-off (2026-10-12): all 4 items deployed-green, "stand down, nothing owed."** #1 C-u · #2 OTR-1 submit+ghost · #2 send.deliver-rc (51ae95fd) · #3 discover.all+cmdline-disambig (5a058b2c). #3 perf (≤15s) = **PO-DEFERRED watch-item** (deployed 9s/11s under; my one 25s run = variance) — NOT an open gate, do not re-chase; re-gate only if it regresses or PO asks.
+- **STANDBY (no open gate).** Resume on next PO/expert dispatch.
 - No live two-RESUMED dup exists now (diamonds went fresh) → real-collision coverage rests on the SYNTHETIC 6s + parity arms (durable, always-runnable). If a true two-resumed dup reappears, the live (6) arm re-exercises it.
 - Possible follow-ups (not blocking): pulse perf 7b DISCLOSED-OPEN (~25s >15s); T-SWEEP-LIVE-STATE (8 RED/2 anchor) handed to expert for the team.sweep reliability fix — re-gate when that lands.
 
