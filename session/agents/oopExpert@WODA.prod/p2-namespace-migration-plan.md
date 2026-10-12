@@ -1,5 +1,7 @@
 # P2 — Namespace migration plan (oopExpert, 2026-10-12)
 
+> **STATUS (oopPO ruling, 2026-10-12): P2a DONE = Web4MDA `cb221965f`. P2b SUPERSEDED → P2b-prime, owned by oopBashExpert. D1 below is STRUCK by Tron's ONE ROOT ruling (`985e23841`). This file is history, not a work order.**
+
 *Plan for P2 of `spec/plans/2026-10-11-namespace-root-and-component-typed-iors.md`. Measured read-only on Web4MDA `origin/main` `c1e42cd7` with `git grep` (no checkout, no CPU load). P2 starts when fix round 2 lands (oopPO drive `2701d4b5`). Nothing is built yet.*
 
 ## 1. Inventory (measured)
