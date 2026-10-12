@@ -41,6 +41,11 @@ Seeds RED by named guard incl. R1 (stale link after a move → RED), R3 (duplica
 - **F4** load-ratio false-RED 1/6 → diagnose; never loosen blindly; derived threshold or the N1 mechanism gate; seeded slowdown REDs AND 10 clean runs 0 false-RED.
 Then oopTester re-gates the fixes + their seeds.
 
+**F4 RESULT 2026-10-12 (oopBashExpert, measured):** ratio SEPARATES — clean n=11 max 10.431 / seeded n=6 min 13.152, gap 2.72 → threshold **11.8** (equal-z, 3.28 sd), ACCEPTED; old 10.5 sat 0.07 over the clean max = the false-RED. CHAIN attributed with the gate itself, interleaved ×5: pre-S4b 18.32 → S4b 19.32 (+1823 links, ~5 pct, proportional) → A3 19.47 (control ~0). **S4b is NOT the cause; the growth predates it** → chain budget HELD (never raised without attribution).
+
+### A3c — F5: CHAIN SPEED regression (own slice, AFTER A3b, BEFORE S5 — S5 needs the suite green twice; clean mean ~19.6 vs budget 20 = ~50 pct RED)
+oopBashExpert: `4a1d6f87` (guard birth, baseline 12.73–13.07) vs `8c0009f0` interleaved ×5 with the gate itself → ~13 there = bisect the 26 commits + PROFILE the culprit, fix it; ~18 there = the baseline does not reproduce → re-derive the baseline from measured runs, stated. Until fixed, every chain RED is counted SEPARATELY by name as the known open regression; any other red is real. The fix slice A3b ships without waiting for F5.
+
 ### A4 — S4c (domain on the package model; index reaches it by its own package IOR; interim root deleted; refuse, never guess) — MUST land before S5.
 Builder chosen by **measured** SM panel at A2-green: oopExpert designed it (idle at 77.5, floor ~60 → if it builds, **exit+refork** to beat the floor, phase-1 pushed + composer rescued first; NOT a floor rewind), else oopBashExpert if its panel allows. Built minimal — P5 removes the `domain` attribute and the `package` end again.
 
