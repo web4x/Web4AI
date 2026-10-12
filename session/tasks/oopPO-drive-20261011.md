@@ -22,6 +22,12 @@
 | | 8 | **F5** chain regression: bisect (O3 PRUNE `38fea371` prime suspect) + profile on a quiet box; never raise the budget | oopBashExpert |
 | | 9 | oopPO re-run on own clone → **TRON rules DONE on both plans** | oopPO → Tron |
 
+**★ CAPACITY RULING 2026-10-12 (oopPO, on the SM's fresh panels: oopExpert 73.2 with a GENUINE floor ~60 (refork futile), oopBashExpert 48.0, oopPO 60.2):**
+- **oopExpert stays READ-FREE now** — idle costs nothing; a rewind now gains only ~13 (< the 20 bar) for work it does not do next.
+- **P2 → oopBashExpert** after round 2 lands + an SM panel: P2 is a mechanical bulk migration whose design is ON DISK (oopExpert's P2 plan `b8bf39c8` + my rulings D1-D3) — the knowledge travels with the file, not the agent.
+- **oopExpert keeps the design-heavy slices** (P3's map FORM per ruling 4, then P4 IOR typing + resolve), rewound to its floor AT THAT BOUNDARY (before heavy work, never mid), one slice per rewind cycle accepted.
+- **oopPO P1:** ~2 more slices to the 78 boundary (slice 1 cost ~10.6); SM panels me at every push, I stop at a slice boundary.
+
 ## Laws in force for everyone (each one was paid for)
 - Gate on an **isolated clone of the exact sha** you name, never the shared live tree.
 - **Never push behind an unread test run**; never run a gate and its push in parallel calls.
