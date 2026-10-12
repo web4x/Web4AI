@@ -1,0 +1,21 @@
+===== PRECOND: isClaudeCode node fixture, composer.state oracle live =====
+  ✓ PASS: isClaudeCode node, composer empty
+===== (a) OTR-1 SUBMISSION — composer ends EMPTY; no false rc0 while staged [RED now] =====
+rc=1 st=empty
+  ✓ PASS: short submitted (composer empty)
+  long: rc=1 composer.state=staged
+  ✗ FAIL: long STAYED 'staged' (paste chip, never submitted) — RED
+rc=1 st=staged
+  ✓ PASS: no false rc0 (rc=1, state=staged)
+===== (b) send.submit EXISTS + submit-only (no C-u, no Escape) [RED now] =====
+  ✗ FAIL: send.submit ABSENT (RED — new verb not implemented)
+  ✗ FAIL: send.submit absent → cannot be submit-only (RED)
+===== (c) RETRAIN: send.raw stage 'foo' (no submit) + send.submit -> submitted [RED now] =====
+  staged=staged  send.submit.rc=0  post=staged
+  ✓ PASS: send.raw staged 'foo' (pure, no submit)
+  ✗ FAIL: send.submit did not submit (post=staged) — RED (verb absent/broken)
+===== (d) send.raw stays PURE (no submission/chip logic) [invariant anchor] =====
+  ✓ PASS: send.raw stays pure-raw
+==================================================================
+  T-SEND-SUBMIT-OTR1  PASS=5 FAIL=4  (RED-first: a2 + b + c must be RED on current code)
+==================================================================
