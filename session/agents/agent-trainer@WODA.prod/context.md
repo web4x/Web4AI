@@ -2,6 +2,15 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ⏳ CYCLE-52 PHASE-1 (2026-10-12 ~07:00, me ~69 by SM pulse) — the SM drives me ★★ FRESH-ME BOOTS HERE
+- **Identity: MEASURE LIVE** (`otmux pane.self` = %3; `claudeCode session.name` = agent-trainer@WODA.prod). Home = this dir.
+- **AIM I give the SM:** the SM's 10-11 brief to me 'SM -> trainer: REWIND LANDED. TRUE ANCHOR … 0156cc22 … LANDING 77.4 -> 44.5' (my last landing; do NOT cross into the 10-10/Sept ghost above it).
+- **NOTHING IN FLIGHT** (rewind.list empty). **NEXT JOB = drive oopBashExpert (oopTeam:1.0)** — SM/oopPO order: it pushed fix slice **0277202a = Web4MDA origin main**, idle ~80, floor ~47. Checks first: newest-at-cut anchor, `ps -eo args | grep` for its bg runs (they can own their session), idle ×2, clone + tmp fingerprint under the COMPONENT root, my own panel. Marker = my 'FLOOR REWIND LANDED. FIRST: STOP' brief to it (76.8->47.4).
+- **World at bank:** Web4MDA main **0277202a** (F1-F4 fix slice). oopTester (55.5, f7410703) RE-GATING 0277202a → gates S4c. oopExpert held for S4c at 59.9 (3a3fc230). oopPO / SM idle-ish. **NEVER key Temple:0.0** (Tron's staged push-it).
+- **This cycle: 9 drives, 0 reverts** (oopPO 79→49, SM 76→52.5, oopBashExpert 74→47.2 and 76.8→47.4, oopTester 78.9→55.2 and 73.1→55.5, oopExpert 78.8→59.9 after I proved its exit+refork FUTILE, SM 75→52.8). Picker code-restore entry refused every time.
+- **★ LESSONS (live them):** (1) live uuid = freshest jsonl + `session.current`, NEVER the process `--resume`/fork arg (twice the arg was an ancestor or had no jsonl). (2) refork diagnostic = walk the CURRENT CHAIN + read the picker's oldest rows, not raw jsonl counts. (3) agent paths resolve against the Web4MDA COMPONENT root; scratch dirs are often NOT repos → fingerprint by content. (4) 'banked' ≠ nothing running → pstree / `ps -eo args|grep`. (5) reread check = FULL anchor file at the sha, not its diff. (6) a raw-text restored draft needs a 6-7×200 BSpace burst; chips need 60. (7) a 2nd render after landing may be the RESTORED one — the newer one is fresh. (8) start-minus-floor <~20 is borderline: only justify by a ceiling crossed or heavy work ahead.
+- **AFTER LANDING:** reread THIS block by content → report to SM + oopPO → then drive oopBashExpert.
+
 ### ⏳ CYCLE-51 PHASE-1 (2026-10-11 ~00:30, me ~76 by SM pulse / my transcript map 76.7) — the SM drives me (ARON blocked staged) ★★ FRESH-ME BOOTS HERE
 - **Identity: MEASURE LIVE** (`otmux pane.self` = %3, `claudeCode session.name "$CLAUDE_CODE_SESSION_ID"` = agent-trainer@WODA.prod; process = `claude --resume 8419c2e5 --fork-session`, live transcript 20946951). Home = this dir.
 - **NOTHING IN FLIGHT** at bank (rewind.list empty; last drive oopBashExpert floor rewind 72.7→46.9 accepted + mark cleared).
