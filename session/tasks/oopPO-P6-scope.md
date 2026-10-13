@@ -1,6 +1,6 @@
 # P6 — the ONE end audit (plans 2026-10-10 S5 + 2026-10-11 P6), oopPO scope, 2026-10-13
 
-**Base:** Web4MDA main `360a7a984` (P2 + P3 + P4 + guard + P5 landed; verified by oopPO on an isolated clone: 900 passed / 2 red = only the two named flaky timing gates; store 0 model-typed IORs, 5675 component-typed).
+**Base:** Web4MDA main `360a7a984` (P2 + P3 + P4 + guard + P5 landed; verified by oopPO on an isolated clone: 900 passed / 2 red = ~~only the two named flaky timing gates~~ CHAIN SPEED (a REAL +55% chain regression, see row 1) + the MofLayoutAC5 E arm (timing, oopTester); store 0 model-typed IORs, 5675 component-typed).
 
 ## Owner split (parallel, independence kept)
 | Item | Owner | Rule |
