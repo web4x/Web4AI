@@ -175,13 +175,17 @@ class NamespaceLiterals {
       const own = this.byName.get(f.split(sep).pop()?.replace(/\.ts$/, '') ?? '');
       const lines = (this.extra[f] ?? readFileSync(f, 'utf8')).split('\n');
       lines.forEach((line, i) => {
-        for (const m of line.matchAll(/(['"`])([^'"`$\n]*?)\1/g)) {
+        if (/^\s*(\*|\/\*|\/\/)/.test(line)) return; // a COMMENT line is not code: a doc example is no duplicated literal
+        const code = line.replace(/\s\/\/.*$/, ''); // trailing comment stripped (needs whitespace before //, so a URL string is kept)
+        for (const m of code.matchAll(/(['"`])([^'"`$\n]*?)\1/g)) {
           const value = m[2] ?? '';
           if (!ns.has(value)) continue;
           const getter = /\bget (namespace|component)\(\)/.exec(lines.slice(Math.max(0, i - 2), i).join('\n'));
           const declared = getter !== null && /^\s*return\s/.test(line) && own !== undefined;
-          const ownValue = own === undefined ? '' : getter?.[1] === 'component' ? own.component : own.namespace;
-          out.push({ site: `${this.tree.site(f)}:${i + 1}`, value, allowed: declared && value === ownValue });
+          const ownValue = own === undefined ? '' : getter?.[1] === 'component' ? this.tree.chainOf(f) : own.namespace; // P5 (360a7a984): component is DERIVED (no model field) — the OWN component = this file's disk folder chain, read independently
+          // the PLACED unit (STRUCTURAL: no <Name>Definition.ts on disk) declares its model in code — its OWN authored namespace fact, not a duplicate
+          const modelFact = own !== undefined && /^\s*namespace:\s*['"]/.test(line) && value === own.namespace && !this.tree.all.some((p) => p.endsWith(`${sep}${own.name}Definition.ts`));
+          out.push({ site: `${this.tree.site(f)}:${i + 1}`, value, allowed: (declared && value === ownValue) || modelFact });
         }
       });
     }
