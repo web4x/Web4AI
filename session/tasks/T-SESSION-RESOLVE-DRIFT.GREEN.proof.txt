@@ -1,0 +1,21 @@
+starting: test.session-resolve-drift <LOG_LEVEL=1> (RED-FIRST — cmdline short-circuit pins LAUNCH must fail)
+ test.suite starting: test/test.session-resolve-drift <LOG_LEVEL=1>
+│ Test 1: ORACLE: live-mtime winner = FORK (independent of the --resume cmdline)
+  ✓ PASS: oracle picks FORK (newest mtime, title+cwd match) — not the LAUNCH argv
+===== (drift) RED: forked pane must resolve CURRENT(fork), not the stale LAUNCH =====
+  cmdline(argv)=aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa | session.current=bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb | oracle(live-mtime)=bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb
+│ Test 2: drift: cmdline ground-truth is the LAUNCH argv (precond)
+  ✓ PASS: argv --resume = LAUNCH (aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa)
+│ Test 3: drift-RESOLVE: session.current == oracle (FORK), NOT the stale LAUNCH
+  ✓ PASS: forked pane resolves CURRENT fork (bbbbbbbb-2222-4222-8222-bbbbbbbbbbbb) = oracle
+===== (disambig) NO-REGRESS: cmdline-is-newest resumed pane -> KEEP cmdline (20/0 invariant) =====
+│ Test 4: disambig-preserved: cmdline-is-newest resumed pane keeps cmdline uuid
+  ✓ PASS: kept cmdline (newest) = aaaaaaaa-1111-4111-8111-aaaaaaaaaaaa (no drift, 20/0 invariant holds)
+===== (byte-id) ANCHOR: lone resumed pane (single jsonl) resolves to its uuid, unchanged =====
+│ Test 5: byte-id: lone resumed pane -> its own uuid (unchanged)
+  ✓ PASS: lone resumed resolves to cccccccc-3333-4333-8333-cccccccccccc (unchanged)
+  T-SESSION-RESOLVE-DRIFT  PASS=5 FAIL=0
+  RED-FIRST: drift-RESOLVE must FAIL on deployed (short-circuit pins LAUNCH). Fix (rank + prefer
+  different+newer) -> drift GREEN; disambig/byte-id held. Then PO gates pulse==panel on a REAL fork.
+  Passed:      5
+  Failed:      0
