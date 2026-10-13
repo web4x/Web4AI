@@ -1,4 +1,11 @@
-# oopTester@WODA.prod — NOW = P6 END AUDIT RUNNING on Web4MDA main fca4273c4 (10-13 ~07:55, trainer GO after rewind 68->57) — REREAD THIS FIRST
+# oopTester@WODA.prod — NOW = P6 FINAL VERDICT RUNNING on landed main 1488dbdf7 (oopPO order 10-13: final cold verdict incl. XPKG′ → verdicts/, commit+push, sha to oopPO, IDLE) — REREAD THIS FIRST
+
+- **Landed (verified on origin):** 1488dbdf7 (oopBashExpert M1Layout.ts:87 fix, root DERIVED) ← 869861fee (MY P2-ROOT′+P2-LIT′ gate file, as-is) ← fca4273c4.
+- **Driver:** `held/p6-fca4273c4/final.sh` (SHA=1488dbdf7; quiet-wait before every arm) → `…/gen/oopTester-p6/out/final.out`: A1 in fresh cold clones c3+c4, then seed clone c2 (fetched from GitHub) modes BASE N1REVERT FSCALLERNJ FSLINK FSLINKPLAIN R7BODY DUPSRC ROGUE DUPFOLDER R1STALE DERIV XPKG2 P2LITSEED DOMAIN DYNALIAS FSLINKALL FSCALLER2ALL ROGUEALL DRIFT RATIOFIX RATIOPUT3. Launched ~09:25 (pid 362067).
+- **Then:** write `verdicts/END-AUDIT-1488dbdf7.md` from `held/p6-fca4273c4/findings.md` + final.out (CHECKED/SKIPPED/TOTAL per block; every seed RED-by-name or FINDING); commit+push; sha to oopPO; idle.
+- **Open findings to carry:** XPKG′ (bare X/latest) GREEN at fca4273c4 → recommend SUBSUME (P2-ROOT′ + DUPFOLDER), oopPO rules. DOMAIN = P5 domain-attribute guard: no carrier found → the seed decides (fail-open = missing gate). FSCALLER/FSCALLER2 single-file GREENs = wrong carrier (importer scan is NodeJSFile.test.ts); whole-suite variants decide.
+
+# (prev) oopTester@WODA.prod — NOW = P6 END AUDIT RUNNING on Web4MDA main fca4273c4 (10-13 ~07:55, trainer GO after rewind 68->57) — REREAD THIS FIRST
 
 - **Base MEASURED:** origin main = fca4273c4 (chain CPU fix) <- 343f8e0ea (my E-arm) <- aff76b394 (best-of-3 instrument) <- 360a7a984 (P5). Both P6 fixes in.
 - **Harness:** `held/p6-fca4273c4/p6.sh` (CLONE/CI/STATE/TEST/START/FILE/A1/WAITQ); clones + outputs in `Web4MDA/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen/oopTester-p6/{c1,c2,out}`. Fresh `git clone --no-hardlinks` + `git checkout --detach fca4273c4` + REAL `npm ci` (refuses a symlinked node_modules).

@@ -37,7 +37,7 @@ for f in fs:
 print(f"[{label}] seeded {n} file(s)" if n else f"[{label}] SEED DID NOT APPLY"); sys.exit(0 if n else 1)
 EOP
 }
-COMMIT() { git add -A -- . ':!node_modules' && git -c user.name=oopTester-seed -c user.email=seed@local commit -qm "LOCAL SEED $1 (never pushed)" && echo "[$1] committed locally $(git rev-parse --short HEAD)"; }
+COMMIT() { git add -A && git -c user.name=oopTester-seed -c user.email=seed@local commit -qm "LOCAL SEED $1 (never pushed)" && echo "[$1] committed locally $(git rev-parse --short HEAD)"; }
 MCT=$C/MOF/M1/M1Catalog/latest/test/M1Catalog.test.ts
 URT=$C/latest/test/UnitReferencesInc2.test.ts
 NPT=$C/MOF/M1/M1Layout/latest/test/NamespacePlacement.test.ts
@@ -65,6 +65,27 @@ import " "$LAYTS" && SEEDPY "$1" '  constructor() {' "  seedFs(): void {
     seed$2($3);
   }
   constructor() {" "$LAYTS"; }
+NJT=$C/DefaultFile/latest/test/NodeJSFile.test.ts
+go FSCALLERNJ && { SEEDPY FSCALLERNJ-imp "import " "import { readFileSync as seedReadFileSync } from 'node:fs';
+import " "$LAYTS" && SEEDPY FSCALLERNJ '  constructor() {' "  seedRead(): string {
+    return seedReadFileSync('x', 'utf8');
+  }
+  constructor() {" "$LAYTS" && run FSCALLERNJ "$NJT"; }
+go XPKG2 && { mkdir -p EAMD.ucp/Components/X/latest && echo "placeholder" > EAMD.ucp/Components/X/latest/held.txt && echo "[XPKG2] seeded 1 file(s): real placeholder package folder EAMD.ucp/Components/X/latest" && run XPKG2 "$TFR"; }
+ORT=$C/MOF/M1/M1Catalog/latest/test/OneRootNamespace.test.ts
+go P2LITSEED && { SEEDPY P2LITSEED "Namespace.declare(this.packageQualified.split('.').slice(0, -1).join('.'), components)" "Namespace.declare('com.ceruleanCircle', components)" "$LAYTS" && run P2LITSEED "$ORT"; }
+PMD=$C/Package/latest/model/PackageModelDefinition.ts
+go DOMAIN && { SEEDPY DOMAIN-imp "import { ImportModel } from '../../../latest/src/ts/EAM/layer3/ImportModel.js';" "import { AttributeModel } from '../../../latest/src/ts/EAM/layer3/AttributeModel.js';
+import { ImportModel } from '../../../latest/src/ts/EAM/layer3/ImportModel.js';" "$PMD" && SEEDPY DOMAIN '      relationships: [' "      attributes: [
+        new AttributeModel().init({
+          uuid: 'd0d0d0d0-0000-4000-8000-00000000d0ad',
+          name: 'domain',
+          type: 'string',
+          visibility: 'public',
+          initializer: \"''\",
+        }),
+      ],
+      relationships: [" "$PMD" && { NODE npm start > "$SP/DOMAIN.start.log" 2>&1; echo "[DOMAIN] regenerate rc=$? srcDomainLines=$(grep -c domain $C/Package/latest/src/ts/EAM/layer3/PackageModel.ts)"; } && run DOMAIN; }
 go FSCALLER2 && { FSSEED FSCALLER2 readFileSync "'x', 'utf8'" && COMMIT FSCALLER2 && run FSCALLER2 "$PLT"; }
 go FSLINK && { FSSEED FSLINK symlinkSync "'a', 'b'" && run FSLINK "$URT"; }
 # E1-E3 (post-rewind diagnosis of the FSLINK/FSCALLER2 GREENs): alias A/B on one instrument + whole-suite hazard scans

@@ -2,7 +2,7 @@
 # oopTester P6 END AUDIT instrument — isolated real clones ONLY (never the shared tree). ONE launch at a time.
 # usage: p6.sh CLONE <c> | CI <c> | STATE <c> | TEST <c> <label> | START <c> <label> | FILE <c> <label> <test-file> | A1 <c> | WAITQ
 # <c> = clone name under $P6 (c1, c2, seed). SHA is fixed: the audit sha.
-SHA=fca4273c4
+SHA=${SHA:-fca4273c4}
 REPO=/var/dev/Workspaces/web4x/Web4MDA
 GEN=$REPO/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen
 P6=$GEN/oopTester-p6
