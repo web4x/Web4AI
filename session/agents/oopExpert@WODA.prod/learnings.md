@@ -400,3 +400,10 @@
 - **A diagnostic `arrayContaining` guard on derived sets can fail BEFORE the assertion you want to see** — strip it when grafting the gate onto old code.
 - **Adding a named battery costs wall time** (misnamed() reads every link target): measure (9.9/11.2s) and set the wall by the file's 2.5x rule, in the comment.
 - Scratch law: clone + logs only under `Web4MDA/EAMD.ucp/.../Web4MDA/latest/test/gen/oopExpert-*` (git-ignored), never /root or /tmp.
+
+## 2026-10-13 — U1 S1 (Web4MDA preserve ff113eb16 / rebased a9ceb924c)
+- ★ **The generator RUNS src — change src by hand FIRST (bootstrap order), then regenerate; the reproduce gate proves src == model.** A renderer that throws on a new model fact (M2ThingClass on `dependency`) blocks its own regeneration.
+- ★ **Definitions have ONE canonical text: write it back with DefinitionSource().definition(model, layout.definitionPrefix(name))** (rerender.tmp.ts) instead of hand-placing blocks/imports; the import ORDER in src must equal the model's imports order.
+- **The store keys parts by NAME** — many facts named alike collide (ScenarioIndex.put). Per-target fact names (`uses X`, like `extends X`).
+- ★ **A CPU-budget gate after adding data: measure base vs change alone, then PROFILE** — Defaults.displayNameOf was 15.5% self; memoizing on the class (static Map) made S1 faster than base. Never raise the budget.
+- **Mid-run SM ruling can supersede "push if green"** — preserve branches (`preserve/<me>-<slice>[-rebased]`) keep work safe without touching main.
