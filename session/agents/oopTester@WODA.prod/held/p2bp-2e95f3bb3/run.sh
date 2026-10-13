@@ -9,7 +9,8 @@ HELD=/var/dev/Workspaces/AI/Claude/session/agents/oopTester@WODA.prod/held/p2bp-
 export PATH=/opt/node22/bin:$PATH
 mkdir -p "$OUT"
 cd "$ISO" || exit 2
-quiet() { local n; n=$(pgrep -f 'vitest' | grep -v "^$$\$" | wc -l); [ "$n" = "0" ] || { echo "NOT QUIET: $n vitest process(es) running — refusing"; exit 3; }; }
+# ONLY real node vitest processes count — `pgrep -f vitest` also matched a wrapper shell whose command line merely CONTAINS the word (self-match, 10-13)
+quiet() { local n; n=$(ps -eo args | grep -E '^[^ ]*node[^ ]* .*vitest' | grep -v grep | wc -l); [ "$n" = "0" ] || { echo "NOT QUIET: $n node vitest process(es) running — refusing"; exit 3; }; }
 case "$1" in
   STATE)
     git checkout -q -f --detach "$2" && git reset -q --hard "$2" && git clean -qfd -e node_modules
@@ -24,5 +25,10 @@ case "$1" in
     sed 's/\x1b\[[0-9;]*m//g' "$O" | grep -E '^ +(✓|×|FAIL) ' > /dev/null
     sed 's/\x1b\[[0-9;]*m//g' "$O" | grep -E '^ FAIL ' | sed -E 's/ +[0-9]+ms$//' | sort -u > "$OUT/$2.fail.txt"
     echo "TEST $2 rc=$rc $(sed 's/\x1b\[[0-9;]*m//g' "$O" | grep -E 'Test Files |Tests ' | tr -s ' ' | tr '\n' ' ') failLines=$(wc -l < "$OUT/$2.fail.txt") porcelain=$(git status --porcelain | wc -l)" ;;
-  *) echo "usage: run.sh STATE <sha> | START <label> | TEST <label>"; exit 1 ;;
+  FILE)
+    quiet; O="$OUT/$2.file.out"
+    TMPDIR=$GEN/tmp npx vitest run "$3" > "$O" 2>&1; rc=$?
+    echo "FILE $2 rc=$rc $(sed 's/\x1b\[[0-9;]*m//g' "$O" | grep -E '^ +Tests ' | tr -s ' ') timeouts=$(grep -c 'timed out' "$O")"
+    sed 's/\x1b\[[0-9;]*m//g' "$O" | grep -E '^ +× ' | cut -c1-200 ;;
+  *) echo "usage: run.sh STATE <sha> | START <label> | TEST <label> | FILE <label> <test-file>"; exit 1 ;;
 esac
