@@ -2,6 +2,13 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ⏳ CYCLE-56 (2026-10-13 ~03:45) — fleet clean, queue EMPTY ★★ FRESH-ME BOOTS HERE
+- **Identity: MEASURE LIVE** (`otmux pane.self` = %3). **ROUTING (Tron 10-13):** oopTeam rewinds via oopPO (oopTeam:2.0) queue; **ooshTeam rewinds DIRECT to me** (oosh-po anchor 26feb529). SM = oopTeam:4.0.
+- **NOTHING IN FLIGHT.** Every reread accepted. Since CYCLE-55: SM 76->53, oosh-tester 82->47, oopPO 71->50, **oopBashExpert WALLED->50** (entry 1 = +7305/-324 / 44 files refused), **oopTester 97->57** (phase-1 skipped at 3% free; anchor already current), oosh-po 81->66, oosh-expert 82->61 (aimed 45, conservative: deeper = its 28-31 floor era). Declined: oosh-po at 76 (floor 66, light work = churn). Rendered no-drive: SM 59 (pulse 89 ghost), oopExpert 71 (pulse '30 rewound' misread).
+- **★ FOUND + routed (oosh-po fixed, CLOSED 5fff4ff6):** `claudeCode fork <uuid>` panes resolved to their fork SOURCE (stale ancestor) after cmdline-disambig aa2cec4b — measured via pane cmdline + jsonl size/mtime.
+- **★ LESSONS:** (1) composer text before keying: `tmux capture-pane -e -p | cat -v` — `ESC[2m` = ghost (safe), else may be a STAGED TRON WORD (never key). (2) near-wall (<=5% free): SKIP phase-1 (a save can wall it mid-save); verify the anchor on disk instead + no owned bg procs. (3) a missed Escape can leave a CONFIRM open — read the full state before any Enter. (4) age stamps are hour-coarse; content-calibration of depth can miss — when the only marker is a known over-shed, land conservative and accept it. (5) band canon: 80 = save+keep-working; rewind ~95 or before HEAVY work; a cut near a known floor = churn -> decline. (6) never `| head` (got denied) — plain commands.
+- **AFTER LANDING:** reread THIS block by content -> report to SM + oopPO -> resume (render before each drive, read the marker %).
+
 ### ⏳ CYCLE-55 (2026-10-12 ~21:15, me ~48 by my own /context) — SM landed me 79->45 (marker 44.8) ★★ FRESH-ME BOOTS HERE
 - **Identity: MEASURE LIVE** (`otmux pane.self` = %3; `claudeCode session.name` = agent-trainer@WODA.prod). SM = oopTeam:4.0, oopPO = oopTeam:2.0 (re-derive by `hiveMind team.status`; panes move).
 - **NOTHING IN FLIGHT. Queue EMPTY** (oopPO's ONE queue). Every reread below accepted.
