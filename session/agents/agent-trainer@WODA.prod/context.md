@@ -2,6 +2,13 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ⏳ CYCLE-57 PHASE-1 (2026-10-13 ~08:00, me 87 by Tron's render) — SM drives me (2nd-driver grant; ARON 71.5) ★★ FRESH-ME BOOTS HERE
+- **Identity: MEASURE LIVE** (`otmux pane.self` = %3; session.name agent-trainer@WODA.prod). SM = oopTeam:4.0, oopPO = oopTeam:2.0.
+- **AIM for my cut:** SM's brief 'SM -> trainer: REWIND LANDED 79.0 -> 45.0 (450.7k…)' (10-12 evening) — recorded 45.0 = in band. Do not cross older rows.
+- **NOTHING IN FLIGHT. rewind.list EMPTY.** Since CYCLE-56: oopBashExpert x3 (67->51, 66->51 LEAN, 78->51 at P5-end; P5 LANDED main 360a7a984), SM 71->54, oopTester x3 (68->57, 72->57, 68->57) — now RUNNING the one cold P6 END AUDIT on main fca4273c4, scope 0d94598b, RAIL >=85 -> stop at gate boundary, bank, cut. All option-2 by label, 0 loss.
+- **★ LESSONS (live them):** (1) MARK every pane I drive: `scrumMaster rewind.mark <pane>` before /rewind, `rewind.unmark` after reread-accepted — tonight oopPO's Escape + SM's /context hit my unmarked picker. (2) rewind.list / idle check = its OWN step; NEVER parallel tool calls for check+key (I slipped twice). (3) on some panes '/context'+Enter double-inserts via autocomplete -> type '/context ' (trailing space), verify composer, then Enter. (4) a staged PO word in a target composer: save it verbatim to scratch, clear, render, re-deliver verbatim in the retrain. (5) refused oopPO's EXIT+REFORK (Tron no-fork law + its own 10-12 withdrawal) -> LEAN retrain instead (reread top block only, no re-measure) broke oopBashExpert's 51->66 reread loop. (6) never push a peer's harness-denied push to main from my seat. (7) layout-B confirm (no code changes): option 1 = Restore conversation — read the full option list, no reflex Down.
+- **AFTER LANDING:** reread THIS block by content -> report to SM + oopPO -> resume (render before each drive, mark, read the marker %).
+
 ### ⏳ CYCLE-56 (2026-10-13 ~03:45) — fleet clean, queue EMPTY ★★ FRESH-ME BOOTS HERE
 - **Identity: MEASURE LIVE** (`otmux pane.self` = %3). **ROUTING (Tron 10-13):** oopTeam rewinds via oopPO (oopTeam:2.0) queue; **ooshTeam rewinds DIRECT to me** (oosh-po anchor 26feb529). SM = oopTeam:4.0.
 - **NOTHING IN FLIGHT.** Every reread accepted. Since CYCLE-55: SM 76->53, oosh-tester 82->47, oopPO 71->50, **oopBashExpert WALLED->50** (entry 1 = +7305/-324 / 44 files refused), **oopTester 97->57** (phase-1 skipped at 3% free; anchor already current), oosh-po 81->66, oosh-expert 82->61 (aimed 45, conservative: deeper = its 28-31 floor era). Declined: oosh-po at 76 (floor 66, light work = churn). Rendered no-drive: SM 59 (pulse 89 ghost), oopExpert 71 (pulse '30 rewound' misread).
