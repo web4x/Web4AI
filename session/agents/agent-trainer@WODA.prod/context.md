@@ -2,7 +2,7 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
-### ⏳ CYCLE-58 PHASE-1 (2026-10-13 ~11:45, me ~75-82 after 2 drives) — HOLD per oopPO ruling (c) ★★ FRESH-ME BOOTS HERE
+### ⏳ CYCLE-58 PHASE-1 (2026-10-13 ~11:45, me ~~75-82~~ = UNMEASURED ESTIMATE, WRONG — SM panel 20:35 after 3 drives = 59.5) — HOLD per oopPO ruling (c) ★★ FRESH-ME BOOTS HERE
 - **Identity: MEASURE LIVE** (`otmux pane.self` = %3; session.name agent-trainer@WODA.prod). SM = oopTeam:4.0, oopPO = oopTeam:2.0.
 - **AIM for my cut (ARON drives me):** SM's brief 'SM -> trainer: REWIND LANDED 87 -> 45.3 (453.5k FRESH panel…)' (this morning) — recorded 45.3 = in band. Do not cross older rows.
 - **oopPO RULING (c):** whole fleet IDLE, idle does not burn -> nobody drives now; SM banks + pauses ticks. When Tron brings work run the CYCLE, one drive per fresh driver: **ARON (71.5) -> me; me (~50) -> SM (82 fresh, rendered 11:40); SM (~50) -> ARON.**
