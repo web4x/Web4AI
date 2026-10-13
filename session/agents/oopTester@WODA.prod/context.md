@@ -1,4 +1,10 @@
-# oopTester@WODA.prod — NOW = IDLE: P6 FINAL VERDICT DELIVERED — verdicts/END-AUDIT-1488dbdf7.md (GREEN, 0 RED; open: XPKG′→SUBSUME rec., DOMAIN cannot-measure) — sha sent to oopPO
+# oopTester@WODA.prod — NOW = IDLE, P6 CLOSED: verdict END-AUDIT-1488dbdf7 ACCEPTED by oopPO (b30bb5a8) — REREAD THIS FIRST
+
+- **Accepted:** GREEN, 0 RED at Web4MDA main 1488dbdf7; oopPO independently verified on its own isolated clone of that sha: 114/114 files, 914 passed / 2 skipped / 0 failed, 0 model-typed IORs (session/tasks/oopPO-P6-scope.md @ b30bb5a8, "FINAL RULINGS").
+- **Findings CLOSED (do NOT reopen):** XPKG′ → SUBSUMED (P2-ROOT′ by class + DUPFOLDER cover the R4 hazard). DOMAIN → RETIRED, no guard built: S4c dropped by TRON 2026-10-12 verbatim "yes drop it. it was miscommunication".
+- **Next:** TRON reviews type/com/ceruleanCircle/Web4MDA/MOF/M2/M2AbstractClass/latest/…scenario.json and rules DONE on plans 2026-10-10 + 2026-10-11 — not my lane. Hold for oopPO; no open gate work.
+
+# (prev) oopTester@WODA.prod — NOW = IDLE: P6 FINAL VERDICT DELIVERED — verdicts/END-AUDIT-1488dbdf7.md (GREEN, 0 RED; open: XPKG′→SUBSUME rec., DOMAIN cannot-measure) — sha sent to oopPO
 
 # (prev) oopTester@WODA.prod — NOW = P6 FINAL VERDICT RUNNING on landed main 1488dbdf7 (oopPO order 10-13: final cold verdict incl. XPKG′ → verdicts/, commit+push, sha to oopPO, IDLE) — REREAD THIS FIRST
 
