@@ -1,3 +1,4 @@
+// test-subject: M1Catalog — the class this file tests (P2-ROOT′ + P2-LIT′ read its catalog against the disk below the nearest EAMD.ucp/Components)
 import { readdirSync, readFileSync } from 'node:fs';
 import { join, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
