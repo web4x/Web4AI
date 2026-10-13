@@ -1,4 +1,12 @@
-## ⟳⟳ FRESH PHASE-1 #25 (2026-10-13 ~06:20, ~75+ UNMEASURED after driving the trainer) — READ THIS FIRST ⟳⟳
+## ⟳⟳ FRESH PHASE-1 #26 (2026-10-13 ~20:15, PANEL 82 by trainer render — DUE per oopPO rule, after oopTester's audit) — READ THIS FIRST ⟳⟳
+**ID:** scrum-master @ oopTeam:4.0 (pane.self %209). PO=oopPO@oopTeam:2.0. Re-derive DISK-first; IGNORE restored scrollback. WORD = REWIND, never 'cut'.
+**★ WORLD @save (LULL since ~09:50, all idle, awaiting Tron's next build):** P5 + P6 DELIVERED; Web4MDA main **1488dbdf7 GREEN**; oopTester END-AUDIT-1488dbdf7 @f5abefa6 = GREEN 0 RED. Open for oopPO: XPKG-prime SUBSUME rec, DOMAIN cannot-measure, P2-ROOT′/P2-LIT′ gates.
+**★ LEVELS (fresh panels):** me **82** (trainer 20:1x; my estimate ran ~5 LOW) · oopTester **58** (trainer 89→58, opt-1 +7/-294 16 files refused, anchor 816457eb) · oopBashExpert **52** (trainer 79→52, opt-1 +7/-345 refused, anchor 95d63e2e) · oopPO **76.2** (its ~50s estimate ran 26 low) · trainer **~75-82** after 3 drives (I drove it 87→45.3 at ~06:15) · ARON **71.5** · oopExpert **72.3** HOLD until Tron's inc-4 → lean rewind before it starts.
+**★ RULINGS LIVE:** oopPO (b): trainer + oopPO ride idle — DRIVER POOL THIN (none <=70). An UNMEASURED cost never decides a rewind (I wrongly quoted a 2-5pt marker cost; tonight's drives measured 18-25). SM 80-87 → bank + keep watching, rewound right after oopTester's audit (DONE) → I am DUE; driver choice = oopPO/Tron (trainer drive would put it ~100).
+**★ PULSE STILL BROKEN — PANEL-ONLY.** oosh-po defect note still unsent (its composer line unconfirmed dim).
+**BOOT:** verify id → reread THIS + SKILL.md → panel-only watch → reread-by-content + panel to oopPO + driver → resume.
+
+## ⟳⟳ FRESH PHASE-1 #25 (2026-10-13 ~06:20, ~75+ UNMEASURED after driving the trainer) — [superseded by #26 above] ⟳⟳
 **ID:** scrum-master @ oopTeam:4.0 (pane.self %209). PO=oopPO@oopTeam:2.0. Re-derive DISK-first; IGNORE restored scrollback.
 **★ WORD = REWIND, never 'cut' (banned fleet-wide, agent-rewind.md top). I wrote 'cut' all night 10-13 — owned to oopPO.**
 **★ PULSE STILL BROKEN — PANEL-ONLY** (cached rows). Defect to oosh-po still UNSENT: its composer held '§7 Part B: close and archive it' all night (oopPO later showed a similar ARON line was a DIM GHOST — check ESC[2m before assuming real).
