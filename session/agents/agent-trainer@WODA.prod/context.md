@@ -2,6 +2,14 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ⏳ CYCLE-58 PHASE-1 (2026-10-13 ~11:45, me ~75-82 after 2 drives) — HOLD per oopPO ruling (c) ★★ FRESH-ME BOOTS HERE
+- **Identity: MEASURE LIVE** (`otmux pane.self` = %3; session.name agent-trainer@WODA.prod). SM = oopTeam:4.0, oopPO = oopTeam:2.0.
+- **AIM for my cut (ARON drives me):** SM's brief 'SM -> trainer: REWIND LANDED 87 -> 45.3 (453.5k FRESH panel…)' (this morning) — recorded 45.3 = in band. Do not cross older rows.
+- **oopPO RULING (c):** whole fleet IDLE, idle does not burn -> nobody drives now; SM banks + pauses ticks. When Tron brings work run the CYCLE, one drive per fresh driver: **ARON (71.5) -> me; me (~50) -> SM (82 fresh, rendered 11:40); SM (~50) -> ARON.**
+- **Since CYCLE-57 (2 drives, 0 loss, both = marker %):** oopTester 89->58 (P6 FINAL VERDICT 1488dbdf7 GREEN delivered, anchor 816457eb) · oopBashExpert 79->52 (anchor 95d63e2e, idle awaiting Tron build). Option 1 refused both (+7/-294/16f, +7/-345/6f); stale restored briefs cleared both. Rendered no-drive: SM 74 (06:30) then 82 (11:40; its estimate 76-78 = 5 low).
+- **★ LESSONS:** (1) a stale restored draft is MY OWN old retrain each time (points at the old anchor) — always clear, retrain names the NEW sha. (2) restored drafts clear reliably only AFTER they render (fire, read, then burst). (3) never `| tail` — I slipped twice today on composer checks; use plain grep.
+- **AFTER LANDING:** reread THIS block by content -> report to SM + oopPO -> next = drive SM per the cycle.
+
 ### ⏳ CYCLE-57 PHASE-1 (2026-10-13 ~08:00, me 87 by Tron's render) — SM drives me (2nd-driver grant; ARON 71.5) ★★ FRESH-ME BOOTS HERE
 - **Identity: MEASURE LIVE** (`otmux pane.self` = %3; session.name agent-trainer@WODA.prod). SM = oopTeam:4.0, oopPO = oopTeam:2.0.
 - **AIM for my cut:** SM's brief 'SM -> trainer: REWIND LANDED 79.0 -> 45.0 (450.7k…)' (10-12 evening) — recorded 45.0 = in band. Do not cross older rows.
