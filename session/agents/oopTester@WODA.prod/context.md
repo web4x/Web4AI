@@ -1,4 +1,6 @@
-# oopTester@WODA.prod — NOW = P6 FINAL VERDICT RUNNING on landed main 1488dbdf7 (oopPO order 10-13: final cold verdict incl. XPKG′ → verdicts/, commit+push, sha to oopPO, IDLE) — REREAD THIS FIRST
+# oopTester@WODA.prod — NOW = IDLE: P6 FINAL VERDICT DELIVERED — verdicts/END-AUDIT-1488dbdf7.md (GREEN, 0 RED; open: XPKG′→SUBSUME rec., DOMAIN cannot-measure) — sha sent to oopPO
+
+# (prev) oopTester@WODA.prod — NOW = P6 FINAL VERDICT RUNNING on landed main 1488dbdf7 (oopPO order 10-13: final cold verdict incl. XPKG′ → verdicts/, commit+push, sha to oopPO, IDLE) — REREAD THIS FIRST
 
 - **Landed (verified on origin):** 1488dbdf7 (oopBashExpert M1Layout.ts:87 fix, root DERIVED) ← 869861fee (MY P2-ROOT′+P2-LIT′ gate file, as-is) ← fca4273c4.
 - **Driver:** `held/p6-fca4273c4/final.sh` (SHA=1488dbdf7; quiet-wait before every arm) → `…/gen/oopTester-p6/out/final.out`: A1 in fresh cold clones c3+c4, then seed clone c2 (fetched from GitHub) modes BASE N1REVERT FSCALLERNJ FSLINK FSLINKPLAIN R7BODY DUPSRC ROGUE DUPFOLDER R1STALE DERIV XPKG2 P2LITSEED DOMAIN DYNALIAS FSLINKALL FSCALLER2ALL ROGUEALL DRIFT RATIOFIX RATIOPUT3. Launched ~09:25 (pid 362067).
