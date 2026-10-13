@@ -47,7 +47,7 @@ case "$1" in
   A1)
     # one full cold arm in clone <c>: clone -> real npm ci -> whole suite -> 2nd generate (npm start) porcelain
     S="$OUT/A1-$2.summary"; : > "$S"
-    "$0" CLONE "$2" >> "$S" 2>&1 && "$0" CI "$2" >> "$S" 2>&1 && "$0" TEST "$2" "A1-$2" >> "$S" 2>&1 && "$0" START "$2" "A1-$2" >> "$S" 2>&1
+    bash "$0" CLONE "$2" >> "$S" 2>&1 && bash "$0" CI "$2" >> "$S" 2>&1 && bash "$0" TEST "$2" "A1-$2" >> "$S" 2>&1 && bash "$0" START "$2" "A1-$2" >> "$S" 2>&1
     echo "A1 $2 DONE rc=$?" >> "$S" ;;
   WAITQ) echo "nodeVitest=$(nq)" ;;
   *) echo "usage: see header"; exit 1 ;;

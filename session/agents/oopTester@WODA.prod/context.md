@@ -3,7 +3,7 @@
 - **Base MEASURED:** origin main = fca4273c4 (chain CPU fix) <- 343f8e0ea (my E-arm) <- aff76b394 (best-of-3 instrument) <- 360a7a984 (P5). Both P6 fixes in.
 - **Harness:** `held/p6-fca4273c4/p6.sh` (CLONE/CI/STATE/TEST/START/FILE/A1/WAITQ); clones + outputs in `Web4MDA/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen/oopTester-p6/{c1,c2,out}`. Fresh `git clone --no-hardlinks` + `git checkout --detach fca4273c4` + REAL `npm ci` (refuses a symlinked node_modules).
 - **Env decision (name it in the verdict):** "customer default PATH" = default PATH with the project runtime first (`PATH=/opt/node22/bin:$PATH`, `env -u CLAUDECODE -u TMPDIR`) — the bare login PATH gives /usr/bin/node v16.11.0, which cannot run the repo (Node 22). Same convention as every earlier harness of mine.
-- **Plan = `plans/END-AUDIT-gate-list.md`** (blocks A–F; LITPKG′ OUT of P6 per scope ruling). Progress: A1 c1 launched (pid 200277). Next: A1 c2, then B/C/D/E/F seeds RED-by-name -> revert GREEN, verdict `verdicts/END-AUDIT-fca4273c4.md`.
+- **Plan = `plans/END-AUDIT-gate-list.md`** (blocks A–F; LITPKG′ OUT of P6 per scope ruling). Progress: **A1 GREEN both clones (909/2/0, porcelain 0, 2nd generate 0) — findings `held/p6-fca4273c4/findings.md`**. Next: B/C/D/E/F seeds RED-by-name -> revert GREEN, verdict `verdicts/END-AUDIT-fca4273c4.md`.
 
 # (prev) oopTester@WODA.prod — NOW = P6 (scope session/tasks/oopPO-P6-scope.md @0d94598b): E-arm item LANDED by oopPO on main 343f8e0ea (cherry-pick of f011d3b84, PATCH-ID IDENTICAL verified by me; oopPO clone 903/0; budget 9500 accepted); END AUDIT HELD until CHAIN SPEED bisect+fix lands — REREAD THIS FIRST
 
