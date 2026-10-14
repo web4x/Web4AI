@@ -6,6 +6,17 @@ All measured on cold GitHub clone c1 (head f41134102, tree c37bfd9e5). Read-only
 - c1: npm ci rc0 (38 pkgs) · Test Files 117/117 · Tests 945 passed | 2 skipped (947) · 0 FAIL lines · 0 timeouts · porcelain 0 · 2nd generate (npm start) rc0 porcelain 0.
 - Skips (SM/oopPO ruled 10-14: fine, not a finding): (a) the plan's ONE named skip = in-test count M1ComponentView `CHECKED 55 / SKIPPED 1 (Web4MDA: HTTP 414 server URL limit) / TOTAL 56` — present; (b) vitest's 2 = the only 2 static `.skip` sites, TreeFileUnitInc1.test.ts L159 `T5.2-T5.5 … HELD` and L185 `T8 … NOT BUILT`, both predating the plan, visibly tagged.
 
+## C.1 Memo staleness (`Defaults.displayNameOf`) — DONE, GREEN (seed clone c2 = f41134102, SM window 10-14 #2)
+- **Read at END (c1):** `private static readonly displayNames: Map<string,string>` keyed by the class NAME (a value key); value = a PURE function of the key (`name` split into words). `ItemModel.displayName` is a STORED field set at birth / in `init()` from it — `displayNameOf` never reads a model's own `displayName`.
+- **Probe** `test/OopTesterC1Memo.test.ts` (scratch, c2 only, never committed), run alone via `u4.sh FILE`:
+  - C1a: a model's `displayName` changed after a first read -> next read returns the change; a fresh model of the same name still derives `Google Map Model`.
+  - C1b: memo value == fresh derivation for EVERY catalogued class name (>50), before AND after re-creating `M1Catalog`.
+  - C1c: two models with the same key — changing one touches neither the other nor the memo.
+  - C1d: DERIVED writer scan over EVERY component's `src` (230 `.ts`, count measured independently with `find`, node_modules + test/gen pruned): the map is written in exactly 2 places — `Web4MDA/latest/src/ts/EAM/layer2/Defaults.ts:30` and its generated twin `src/thinglish.ts/EAM/layer2/Defaults.class.ts:21`, both inside `displayNameOf`.
+- **GREEN:** `out/C1-green3` 4/4 rc 0. **Failable:** `OOPT_SEED=poison` (plants `GoogleMapModel -> POISON`) -> `out/C1-poison` 2 RED (C1a, C1b) `expected 'POISON' to be 'Google Map Model'`; C1c/C1d green as expected (do not read that key).
+- **Instrument notes (not defects):** 2 earlier REDs were MINE — an order-dependent expected list, and a guessed `>100` floor over ONE component (64 files) which also showed a one-component scan was incomplete -> widened to all components. `u4.sh` RUN now forwards `OOPT_SEED`.
+- **Verdict C.1: no finding.** A memo of a pure function keyed by its own input cannot go stale; the per-model value is a separate field. Weakest literal: C1b `toBe(fresh(n))` per name.
+
 ## C.5 maxBuffer (74f904e27) — DONE, read-only + arm A counts (c1 = f41134102)
 - **(i) RULED IN SCOPE — named with counts from cold A1-c1:** `Ior/latest/test/IorAcceptance.test.ts` ✓ 12 tests (18,942 ms); `latest/test/Pipeline.test.ts` ✓ 11 tests (135,956 ms). Both RAN and GREEN in the cold suite (no longer "not yet run").
 - **(iii) GenClaims 64 MiB FINDING → FIXED at f41134102.** GenClaims.test.ts L38 now reads `new TrackedTree().init(this.root).files` ("TrackedTree owns the buffer policy: no ceiling (was a fixed 64 M…)"); its remaining git calls (L70/79/83 init/add/rm on a scratch repo) do not scale with the tree. Re-measured tracked list at f41134102: `git ls-tree -r -z --name-only HEAD` = **891,223 B, 7,403 files** (identical to b65b75769) → 157,353 B (15.0%) under the 1 MiB (1,048,576 B) default wall.

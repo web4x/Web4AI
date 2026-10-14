@@ -8,7 +8,7 @@ GEN=$REPO/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen
 P6=$GEN/oopTester-u4
 OUT=$P6/out
 # Customer default env: default PATH with the project runtime (Node 22) first; no Claude Code env, no inherited TMPDIR.
-RUN() { env -u CLAUDECODE -u TMPDIR PATH=/opt/node22/bin:$PATH "$@"; }
+RUN() { env -u CLAUDECODE -u TMPDIR PATH=/opt/node22/bin:$PATH ${OOPT_SEED:+OOPT_SEED=$OOPT_SEED} "$@"; }
 mkdir -p "$OUT"
 # ONLY real node vitest processes count (wrapper shells whose args merely contain the word do not).
 nq() { ps -eo args | grep -E '^[^ ]*node[^ ]* .*vitest' | grep -v grep | wc -l; }
