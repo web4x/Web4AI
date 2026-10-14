@@ -1,3 +1,9 @@
+# oopTester@WODA.prod — PHASE-1 BANK (arm boundary after C.4 iii, 10-14, window granted at landing 59.5) — NOW = U4 END AUDIT f41134102: C.4 ii + iii GREEN; NEXT arm i CLEAN re-run (SM fresh panel <=70, else rewind), then B — REREAD THIS FIRST
+
+- **C.4 iii GREEN** (findings.md 'C.4 RERUN arm iii'): EXIT=1 via the seeded teardown throw ('error during close'), TOUCHED=0. failed=2 = TestFolder DRIFTED guard + S5 content arm firing on MY byte change to declared TrackedTree.ts = instrument collateral (diagnosed by reading; arm i clean re-run must show both GREEN with no seed = closes it).
+- **NEXT = C.4(i) CLEAN re-run** (its earlier 46832 ms + result = CONFOUND, C.1 probe now in held/c1-probe); report BOTH numbers. Then B. Driver c4.sh i (resets c2). ONE launch; SM grants window; bank >70.
+- **Reported:** SM (boundary). oopPO gets the full U4 report at the END with all arms.
+
 # oopTester@WODA.prod — PHASE-1 BANK (arm boundary after C.4 ii, panel 73.5 > 70, 10-14) — NOW = U4 END AUDIT f41134102: C.4 ii GREEN; NEXT arm iii, then arm i CLEAN rerun (confound), then B — REREAD THIS FIRST
 
 - **C.4 ii GREEN** (findings.md, 'C.4 RERUN arm ii'): failed=1 = exactly my seed; tracked=8203 == ls-files at 1,097,515 B (> 1 MiB) = maxBuffer proof; no confound gate tripped. Driver `held/u4-f41134102/c4b.sh ii|iii` (no new central test, no child_process).

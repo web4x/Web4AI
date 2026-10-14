@@ -1,0 +1,8 @@
+SEEDED arm iii head=4294556af lsfilesBytes=891223 tracked=7403
+PROBE arm iii rc=1
+SuiteTreeTouchProbe @ 4294556af: RED | runs=1 RED=1 | tracked=7403
+  run 1: EXIT=1 load=2.1/16 cpu passed=943 failed=2 skipped=2 total=947 TOUCHED=0 {}
+    RED EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TestFolder.test.ts :: GREEN on the real tree: the machinery present EQUALS the declared set, byte-exact — nothing undeclared, missing or drifted; printed (373 ms) :: AssertionError: DRIFTED g
+    RED EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TestFolder.test.ts :: CONTENT ARM — S5 (oopTester 73c7e15): a source class APPENDED to a DECLARED file is RED — in a helper, a probe, a fixture, and in TestFolder.ts itself (28 ms) :: Asser
+    OUT error during close Error: oopTester seeded globalSetup teardown throw
+RESET c2 head=f41134102 porcelain=0
