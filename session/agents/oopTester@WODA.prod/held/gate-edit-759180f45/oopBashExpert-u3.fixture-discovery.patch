@@ -1,0 +1,108 @@
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/TypedReferences.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/TypedReferences.test.ts
+index bdac33205..8947d56e5 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/TypedReferences.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/TypedReferences.test.ts
+@@ -111,6 +111,40 @@ const models = new Map<string, ModelCtor>();
+ const concrete = new Map<string, Ctor>();
+ const ends: End[] = [];
+ 
++/**
++ * REAL instances of every part-end target (oopPO ruling 2026-10-14: discovery predates PARTS — fix discovery, never exempt a
++ * type): DERIVED by walking the catalogued class models through their generated `partEnds` (attributes, methods, relationships,
++ * typeAliases, states → a method's parameters …), never a hand list. A part-end target has no self-initialising `init()`;
++ * the catalog already HOLDS its instances.
++ */
++class PartInstances {
++  private found: object[] = [];
++
++  constructor() {}
++
++  init(roots: readonly object[]): this {
++    const walk = (m: object): void => {
++      for (const end of Object.keys((Reflect.get(m.constructor, 'partEnds') as Record<string, string> | undefined) ?? {})) {
++        const value: unknown = Reflect.get(m, end);
++        for (const v of Array.isArray(value) ? value : [value]) {
++          if (v === null || typeof v !== 'object') continue;
++          this.found.push(v);
++          walk(v);
++        }
++      }
++    };
++    roots.forEach(walk);
++    return this;
++  }
++
++  /** The first discovered instance OF `type` (its exact class or a subclass), or undefined. */
++  of(type: Function): object | undefined {
++    return this.found.find((v) => v instanceof type);
++  }
++}
++
++const parts = new PartInstances().init(catalog.classes());
++
+ /** An instance of `target`: itself when it builds, else the first concrete catalog subclass that does (an abstract target). */
+ const build = async (target: string): Promise<{ value: unknown; type: Function }> => {
+   const type = (await live(target)) as Function;
+@@ -121,6 +155,8 @@ const build = async (target: string): Promise<{ value: unknown; type: Function }
+       // abstract or not self-initialising — try the next concrete subclass
+     }
+   }
++  const real = parts.of(type); // a PART-end target: a real instance the catalog holds (derived from partEnds)
++  if (real !== undefined) return { value: real, type };
+   throw new Error(`TypedReferences: no buildable instance of '${target}' in the catalog`);
+ };
+ 
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/ReferencesByIor.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/ReferencesByIor.test.ts
+index b063fd478..338e88944 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/ReferencesByIor.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/ReferencesByIor.test.ts
+@@ -35,6 +35,40 @@ const models = new Map<string, new () => Model>();
+ const concrete = new Map<string, Ctor>();
+ const ends: End[] = [];
+ 
++/**
++ * REAL instances of every part-end target (oopPO ruling 2026-10-14: discovery predates PARTS — fix discovery, never exempt a
++ * type): DERIVED by walking the catalogued class models through their generated `partEnds` (attributes, methods, relationships,
++ * typeAliases, states → a method's parameters …), never a hand list. A part-end target has no self-initialising `init()`;
++ * the catalog already HOLDS its instances.
++ */
++class PartInstances {
++  private found: object[] = [];
++
++  constructor() {}
++
++  init(roots: readonly object[]): this {
++    const walk = (m: object): void => {
++      for (const end of Object.keys((Reflect.get(m.constructor, 'partEnds') as Record<string, string> | undefined) ?? {})) {
++        const value: unknown = Reflect.get(m, end);
++        for (const v of Array.isArray(value) ? value : [value]) {
++          if (v === null || typeof v !== 'object') continue;
++          this.found.push(v);
++          walk(v);
++        }
++      }
++    };
++    roots.forEach(walk);
++    return this;
++  }
++
++  /** The first discovered instance OF `type` (its exact class or a subclass), or undefined. */
++  of(type: Function): object | undefined {
++    return this.found.find((v) => v instanceof type);
++  }
++}
++
++const parts = new PartInstances().init(loaded.models);
++
+ /**
+  * An initialized instance of `target` — a STRICT concrete SUBCLASS first when the catalog has one (NodeJSFolder for
+  * DefaultFolder, Version for Namespace): storing the declared class itself would survive the by-value `init` trivially and
+@@ -51,6 +85,8 @@ const build = (target: string): unknown => {
+       // not buildable without arguments — try the next concrete subclass
+     }
+   }
++  const real = parts.of(type); // a PART-end target: a real instance the catalog holds (derived from partEnds)
++  if (real !== undefined) return real;
+   throw new Error(`ReferencesByIor: no buildable instance of '${target}' in the catalog`);
+ };
+ const element = (value: unknown, many: boolean): unknown => (many && Array.isArray(value) ? value[0] : value);
