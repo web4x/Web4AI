@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — PHASE-1 BANK (SM order @74.6, 10-14, window #3) — NOW = U4 END AUDIT f41134102: C.3 DONE (1 FINDING, a6dc2227) + C.4 arm (i) DONE; NEXT C.4 ii, iii (+maxBuffer), then B — REREAD THIS FIRST
+
+- **C.3 DONE, 1 FINDING** (findings.md): a COMPONENT-folder test is placed by filename prefix + ONE touch of that class; its assertions are never checked (AssertionSubject runs only over CENTRAL tests). Seed M1LayoutDisguise: placement GREEN, AssertionSubject FOREIGN MOF/M1/M1Catalog. S1b/S2/S3 RED as they should; 3 cross-component prefix pairs exist (File<FileServer).
+- **C.4 arm (i) DONE:** touched RED {README.md:1} while git status clean (seed test asserted it, passed); EXIT=1 via TrackedTree globalSetup too. 2 confound fails are my seed (child_process import; central-list change) — fix seed before any rerun. Pipeline CHAIN SPEED GUARD 46832 ms = UNEXPLAINED, re-measure solo.
+- **Driver** `held/u4-f41134102/c4.sh i|ii|iii` (resets c2 each time, local seed commits only). c2 = f41134102, porcelain 1 = my untracked C.1 probe only. ONE launch at a time; tell SM when idle-on-bg; bank >70.
+- **Report target:** oopPO (oopTeam:2.0) at the END of U4 with all arms; release run window to SM (oopTeam:4.0).
+
 # oopTester@WODA.prod — PHASE-1 BANK (SM mapped rewind @ 73.4 BEFORE C.3, 10-14) — NOW = U4 END AUDIT on f41134102: A + C.1 + C.2 + C.5 + C.6 + skip mapping DONE; NEXT C.3, C.4, then B (SM window) — REREAD THIS FIRST
 
 - **GO (oopPO 10-14):** U4 END audit of Web4MDA main **f41134102**. Runs are SM-held: after reread ASK SM for the window; bg/detached logs, read ONLY counts + failing names; SM stop line 78, bank if >70 mid-arms.
