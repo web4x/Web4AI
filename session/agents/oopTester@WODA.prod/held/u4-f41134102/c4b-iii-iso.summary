@@ -1,1 +1,6 @@
-SEEDED arm iii-iso head=a79f508d4 lsfilesBytes=891244 tracked=7404
+SEEDED arm iii-iso head=026c71ee8 lsfilesBytes=891244 tracked=7404
+PROBE arm iii-iso rc=1
+SuiteTreeTouchProbe @ 026c71ee8: RED | runs=1 RED=1 | tracked=7404
+  run 1: EXIT=1 load=2.0/16 cpu passed=945 failed=0 skipped=2 total=947 TOUCHED=0 {}
+    OUT error during close Error: oopTester seeded globalSetup teardown throw (iii-iso)
+RESET c2 head=f41134102 porcelain=0

@@ -124,3 +124,10 @@ FINDINGS: (iv) doc omits TrackedTree; (i) TOOLS not derivable by structure (coun
 - **Instrument, not (proven) defect — measured from c2 reflog (seed commit -> reset):** i-orig 10m45s, ii 9m47s, iii 9m13s, i-clean 10m10s -> a normal arm is 9m13s–10m45s, straddling the 600 s cap (two arms already ran past it). The kill is consistent with the cap alone; it does NOT prove the seed doesn't hang. Box NOT quiet during the window: another session's vitest (scratchpad 1bae1524, Spec.test.ts) ran concurrently = load confound.
 - c2 reset by hand (the killed driver never reached its reset): head=f41134102 porcelain=0, root file gone.
 - **FIX (needs SM re-launch grant):** launch the driver DETACHED (setsid nohup … &, summary to disk) + poll a completion marker, so the 600 s cap cannot bind; check quiet at launch. Same fix is a precondition for B (B arms take the same ~10 min).
+
+## C.4 arm iii-ISOLATED RE-RUN DETACHED (10-14, SM grant, quiet check 0 vitest at launch 12:25:43, ONE launch via launch-detached.sh) — ACCEPTED: all five
+- Seeded head 026c71ee8, tracked=7404, ls-files 891,244 B. Ran DETACHED 12:25:43 -> 12:36:03 = **10m20s (> the 600 s harness cap)** = the earlier kill WAS the instrument, now confirmed.
+- Probe: `SuiteTreeTouchProbe @ 026c71ee8: RED | runs=1 RED=1 | tracked=7404`. run 1: **EXIT=1**, passed=945 **failed=0** skipped=2 total=947, **TOUCHED=0 {}**, load 2.0/16.
+- Named: `OUT error during close Error: oopTester seeded globalSetup teardown throw (iii-iso)`.
+- Five-part acceptance (oopPO/SM): failed=0 OK · TOUCHED=0 OK · EXIT non-zero OK · probe RED OK · teardown error named OK. Arithmetic: total 947 = base 945+2 exactly (this seed adds no test) -> nothing else flipped = the teardown throw is the SOLE sufficient cause -> NOT overdetermined.
+- c2 reset head=f41134102 porcelain=0. Summary: held/u4-f41134102/c4b-iii-iso.summary (killed attempt kept as c4b-iii-iso.killed-600s.summary).
