@@ -1,0 +1,56 @@
+
+// ===== oopTester U4 C.6 (iii) SEEDS — appended to a SCRATCH CLONE (c2) copy only, never the served tree =====
+// Measures the gate's OWN subject resolution in-process; every verdict is RECORDED to out/C6-seeds.json (no console reliance).
+describe('oopTester U4 C.6 seeds (scratch clone c2 only)', () => {
+  const OUTFILE = '/var/dev/Workspaces/web4x/Web4MDA/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen/oopTester-u4/out/C6-seeds.json';
+  const out: Record<string, unknown> = {};
+  const save = async (): Promise<void> => {
+    const { writeFileSync: w } = await import('node:fs');
+    w(OUTFILE, JSON.stringify(out, null, 2));
+  };
+  const as = (n: string): string => `${PACKAGE}/latest/test/${n}.test.ts`;
+  const v = (n: string, text: string): string => new AssertionSubject().init(as(n), text).verdict;
+  const three = (imp: string): string =>
+    `import { expect, it } from 'vitest';\n${imp}\nit('x', () => {\n  const catalog = new M1Catalog().init();\n  expect(catalog.classes().length).toBeGreaterThan(0);\n  expect(catalog.scratchFolder).toBe('test/gen');\n  expect(catalog.isScratch('a/latest/test/gen')).toBe(true);\n});\n`;
+  const direct = "import { M1Catalog } from '../../MOF/M1/M1Catalog/latest/src/ts/EAM/layer2/M1Catalog.js';";
+  const viaLeak = "import { M1Catalog } from './SeedLeak.js';";
+
+  it('S-a: a helper that RE-EXPORTS a src class — subject laundering, without and with TOOLS membership', async () => {
+    out['S-a control (direct src import, 3 M1Catalog asserts)'] = v('SeedForeignDirect', three(direct));
+    out['S-a1 (same asserts via re-exporting helper SeedLeak, NOT in TOOLS)'] = v('SeedViaLeak', three(viaLeak));
+    AssertionSubject.TOOLS.push('SeedLeak');
+    out['S-a2 (same, SeedLeak IN TOOLS)'] = v('SeedViaLeak', three(viaLeak));
+    AssertionSubject.TOOLS.pop();
+    out['S-a TOOLS restored'] = [...AssertionSubject.TOOLS];
+    await save();
+  });
+
+  it('S-b: remove TrackedTree from TOOLS — which real root-test verdicts change (gate fidelity: declared tests are A)', async () => {
+    const dir = `${PACKAGE}/latest/test`;
+    const tests = readdirSync(dir).filter((f) => f.endsWith('.test.ts')).sort();
+    const declares = (f: string): boolean => /^\/\/ test-subject: \w+/m.test(readFileSync(`${dir}/${f}`, 'utf8'));
+    const verdicts = (): Record<string, string> =>
+      Object.fromEntries(tests.map((f) => [f.replace(/\.test\.ts$/, ''), declares(f) ? 'A' : new AssertionSubject().init(`${dir}/${f}`).verdict]));
+    const before = verdicts();
+    const i = AssertionSubject.TOOLS.indexOf('TrackedTree');
+    AssertionSubject.TOOLS.splice(i, 1);
+    const after = verdicts();
+    AssertionSubject.TOOLS.splice(i, 0, 'TrackedTree');
+    out['S-b root tests scanned'] = tests.length;
+    out['S-b changed verdicts (TrackedTree removed)'] = Object.keys(before).filter((k) => before[k] !== after[k]).map((k) => `${k}: ${before[k]} -> ${after[k]}`);
+    out['S-b importers of TrackedTree among root tests'] = tests.filter((f) => /from '\.\/TrackedTree\.js'/.test(readFileSync(`${dir}/${f}`, 'utf8')));
+    out['S-b TOOLS restored'] = [...AssertionSubject.TOOLS];
+    await save();
+  });
+
+  it('S-c: the name test is a SUBSTRING — SourceMap / ChildProcess / MyScratchpad asserting only through the tool', async () => {
+    const t = (imp: string, expr: string): string =>
+      `import { expect, it } from 'vitest';\n${imp}\nit('x', () => {\n  expect(${expr}).toBeTruthy();\n  expect(${expr}).toBeTruthy();\n  expect(${expr}).toBeTruthy();\n});\n`;
+    out['S-c SourceMap (asserts only via Source)'] = v('SourceMap', t("import { Source } from './Source.js';", 'new Source()'));
+    out['S-c ChildProcess (asserts only via Child)'] = v('ChildProcess', t("import { Child } from './Child.js';", 'new Child()'));
+    out['S-c MyScratchpad (asserts only via Scratch)'] = v('MyScratchpad', t("import { Scratch } from './Scratch.js';", 'new Scratch()'));
+    out['S-c control Unrelated (asserts only via Source)'] = v('Unrelated', t("import { Source } from './Source.js';", 'new Source()'));
+    out['S-c control Unrelated (asserts only via non-tool LayoutSetup)'] = v('Unrelated2', t("import { LayoutSetup } from './LayoutSetup.js';", 'new LayoutSetup()'));
+    await save();
+  });
+});
