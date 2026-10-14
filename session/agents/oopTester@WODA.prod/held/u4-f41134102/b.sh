@@ -63,6 +63,64 @@ case "$1" in
     V3=$P/MOF/M1/M1ComponentView/latest/src/ts/EAM/layer2/M1ComponentView.ts
     seed "$V3" "return layout.ownerOf(c) === c.name;" "return layout.ownerOf(c) === c.name && c.name !== 'M1Catalog';"
     run u3c-remeasure "$G3" M1Catalog ;;
-  *) echo "usage: b.sh u3|u2"; exit 1 ;;
+  u1)
+    # predictions declared at 13c9fa87 (findings.md:168-172) BEFORE this run
+    G=$P/MOF/M2/M2AbstractDependency/latest/test/M2AbstractDependency.test.ts
+    GP=$P/latest/test/Pipeline.test.ts
+    V=$P/latest/model/UcpUnitDefinition.ts
+    INIT=$(cat <<'EOF'
+        new RelationshipModel().init({
+          uuid: '8eafbc05-d631-478b-9fd3-5bf17aae5288',
+          name: 'uses Init',
+          kind: 'dependency',
+          source: '',
+          target: 'Init',
+          multiplicity: '1',
+          redefines: '',
+          initializer: '',
+          isTypeOnly: true,
+        }),
+EOF
+)
+    GHOST=$(cat <<'EOF'
+          uuid: '00000000-0000-4000-8000-0000000000aa',
+          name: 'uses Ghost',
+          kind: 'dependency',
+          source: '',
+          target: 'Ghost',
+          multiplicity: '1',
+          redefines: '',
+          initializer: '',
+          isTypeOnly: true,
+        }),
+        new RelationshipModel().init({
+          uuid: '3a42c19d-30bf-4e79-8687-a861b67b2946',
+EOF
+)
+    run base-dep "$G"
+    run base-pipe "$GP"
+    seed "$V" "$INIT" ""
+    run u1a-dep "$G" "fixture: UcpUnit uses Init"
+    seed "$V" "$INIT" ""
+    run u1a-pipe "$GP" UcpUnit
+    seed "$V" "      typeParameters: ['M extends Model = Model']," "      imports: [],"$'\n'"      typeParameters: ['M extends Model = Model'],"
+    run u1b "$G" UcpUnitDefinition
+    seed "$V" "          uuid: '3a42c19d-30bf-4e79-8687-a861b67b2946'," "$GHOST"
+    run u1c "$G" Ghost ;;
+  u1s3)
+    # predictions PINNED in findings.md (U1-S3 seeds PINNED) BEFORE this run
+    G1=$P/latest/test/MofIncorporating.test.ts
+    G2=$P/MOF/M1/M1Catalog/latest/test/M1Catalog.test.ts
+    V=$P/latest/model/UcpUnitDefinition.ts
+    L=EAMD.ucp/Scenario/type/com/ceruleanCircle/Web4MDA/MOF/M2/M2AbstractClass/latest/UcpUnit.e994e082-88ea-4c95-8b53-3a149a8b1717.scenario.json
+    run base-mof "$G1"
+    run base-cat "$G2"
+    seed "$V" "import { RelationshipModel } from '../src/ts/EAM/layer3/RelationshipModel.js';" "import { RelationshipModel } from '../src/ts/EAM/layer3/RelationshipModel.js';"$'\n'"import { ImportModel } from '../src/ts/EAM/layer3/ImportModel.js';"
+    seed "$V" "      typeParameters: ['M extends Model = Model']," "      imports: [new ImportModel().init({ uuid: '00000000-0000-4000-8000-0000000000bb', name: 'Init', declaredBy: '', isInterface: false, isTypeOnly: true })],"$'\n'"      typeParameters: ['M extends Model = Model'],"
+    run s3a "$G1" ImportModel
+    [ -L "$L" ] || [ -f "$L" ] || { echo "s3b victim link missing — REFUSED"; exit 6; }
+    rm -f "$L"; echo "SEED s3b: removed $L"
+    run s3b "$G2" e994e082 ;;
+  *) echo "usage: b.sh u3|u2|u1|u1s3"; exit 1 ;;
 esac
 echo "FINAL c2 head=$(git rev-parse --short=9 HEAD) porcelain=$(git status --porcelain | wc -l)"
