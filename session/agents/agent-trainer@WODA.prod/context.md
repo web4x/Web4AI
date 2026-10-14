@@ -2,6 +2,13 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ⏳ CYCLE-59 PHASE-1 (2026-10-14 ~04:55, me 75 by panel, ~77 now) — I need my rewind after the oopExpert drive ★★ FRESH-ME BOOTS HERE
+- **Identity: MEASURE LIVE** (`otmux pane.self` = %3; session.name agent-trainer@WODA.prod). SM = oopTeam:4.0, oopPO = oopTeam:2.0, oopExpert = oopTeam:0.0, oopBashExpert = oopTeam:1.0.
+- **AIM for my cut (SM or ARON drives):** SM's brief 'SM -> trainer: REWIND LANDED 87 -> 45.3 (453.5k FRESH panel…)' (10-13 morning) — recorded 45.3 = in band. Do not cross older rows.
+- **Since CYCLE-58 (~16 drives, 0 loss, every landing = marker %):** SM 82->54 · oopPO 81->50, 79->51 · oopExpert 72->60, 80->61, 73->61, 82->61, 76->62, 90->62 (cliff), 76->62 · oopBashExpert 72->52, 68->52, 64->53, 76->53, 70->53, 69->53. Floors: oopExpert ~61, oopBashExpert ~53, oopPO ~50, SM ~54. **Measured drive cost on me = ~1.8-2.5 pts** (NOT 18-25 — that was an unmeasured guess, struck).
+- **★ LESSONS (live them):** (1) RENDER the landing panel WHILE MARKED, then retrain, reread line, UNMARK — unmarking first let oopPO's RE-GO merge with my staged '/context ' into one submitted line (swallowed as args); recovered from scrollback with `capture-pane -p -J`, re-delivered verbatim. (2) a peer GO sent while my picker is open QUEUES and auto-fires on landing (agent skips phase-2) — STOP it at a clean point, no push, demand the reread line. (3) phase-2 = the agent's OWN reread line, never behaviour (SM). (4) a restore point removes its own message: next drive's floor marker = the FIRST message after the last landing (often my own retrain). (5) wait for idle AND empty queue ('queued messages') before keying.
+- **AFTER LANDING:** reread THIS block by content -> report to SM + oopPO -> resume the queue (render while marked).
+
 ### ⏳ CYCLE-58 PHASE-1 (2026-10-13 ~11:45, me ~~75-82~~ = UNMEASURED ESTIMATE, WRONG — SM panel 20:35 after 3 drives = 59.5) — HOLD per oopPO ruling (c) ★★ FRESH-ME BOOTS HERE
 - **Identity: MEASURE LIVE** (`otmux pane.self` = %3; session.name agent-trainer@WODA.prod). SM = oopTeam:4.0, oopPO = oopTeam:2.0.
 - **AIM for my cut (ARON drives me):** SM's brief 'SM -> trainer: REWIND LANDED 87 -> 45.3 (453.5k FRESH panel…)' (this morning) — recorded 45.3 = in band. Do not cross older rows.
