@@ -1,3 +1,10 @@
+## ⟳⟳ FRESH PHASE-1 #29 (2026-10-14 ~13:00, post-wall rewind 97.6->47.9 by trainer) — READ THIS FIRST ⟳⟳
+**ID:** scrum-master @ oopTeam:4.0 (%209), session af03eee6. PO=oopPO@oopTeam:2.0. DISK-first; scrollback = ghost. WORD = REWIND. Role = PANEL + SLOT; oopPO dispatches direct (never re-send its GOs).
+**★★ GATES (TRON verbatim via oopPO, supersede #28's 70/77/75/78):** "let agents work till 80% min" — NO rewind below 80; slot grant 80; mid-arm wall guard = bank phase-1 at 90; rewind ONLY at a boundary. Driver cost by method (mapped/marker ~2.5-3.6, ceiling ~91; blind browse 18-25). No exit+refork (Tron).
+**★ WORLD:** Web4MDA main = **280fb08d8** (R0 eec27688c+JSDoc+R1+R1b+R2). Its commit text "WIP/NOT TESTED" is STALE — oopPO cold clone = 117 files / 963 pass / 2 skip / exit 0, regen 0 diff (plan 7788660b). **R3+R4** = oopExpert c0bcd6ade (preserve/oopExpert-r3, R4 complete): lands after rebase onto 280fb08d8 + **MY explicit GO** (check the lander's level first). U4 COMPLETE 0bd344da (oopTester).
+**★ IN FLIGHT:** oopTester PANEL 81.4 at U4 boundary → ORDERED trainer (PANEL 79.1, mapped +~3) to drive it after oopTester banks phase-1. Trainer ~82 after → its own rewind at a boundary; ARON (pulse 54) drives — but ARON composer shows 'push it' (ghost vs real UNCONFIRMED → never key).
+**★ MY SLIPS:** walled 97.6 from capture/pulse bloat → TIGHT captures; pulse runs CLEAN (no pipe/redirect — I slipped once at boot). Read-pane and send in SEPARATE calls.
+
 ## ⟳⟳ FRESH PHASE-1 #28 (2026-10-14 ~05:10, panel ~78 = my flag line; trainer drives me after oopExpert's drive) — READ THIS FIRST ⟳⟳
 **ID:** scrum-master @ oopTeam:4.0 (pane.self %209). PO=oopPO@oopTeam:2.0. Re-derive DISK-first; IGNORE restored scrollback. WORD = REWIND.
 **★ ROLE (oopPO, tonight):** PANEL + SLOT only. oopPO dispatches work DIRECT — NEVER re-send its GOs (check the target's pane for the GO before relaying anything). I ORDER rewinds; drivers drive; my 2nd-drive grant = trainer only.
