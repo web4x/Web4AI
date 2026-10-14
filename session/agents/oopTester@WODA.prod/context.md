@@ -1,3 +1,11 @@
+# oopTester@WODA.prod — PHASE-1 BANK (SM mapped rewind @ 73.4 BEFORE C.3, 10-14) — NOW = U4 END AUDIT on f41134102: A + C.1 + C.2 + C.5 + C.6 + skip mapping DONE; NEXT C.3, C.4, then B (SM window) — REREAD THIS FIRST
+
+- **GO (oopPO 10-14):** U4 END audit of Web4MDA main **f41134102**. Runs are SM-held: after reread ASK SM for the window; bg/detached logs, read ONLY counts + failing names; SM stop line 78, bank if >70 mid-arms.
+- **DONE this window (all in `held/u4-f41134102/findings.md`):** **C.1 GREEN** 8a158598 — `Defaults.displayNameOf` = pure-function memo keyed by name; probe `c2:test/OopTesterC1Memo.test.ts` 4/4, `OOPT_SEED=poison` RED by key; derived writer scan 230 component src files = 2 writers. **C.2 GREEN** — AC6 weakest 6806 ms (END solo) of 10 s; END vs BASE b65b75769 within noise; solo not faster than suite = no contention; base clone **c3** exists (b65b75769, npm ci done).
+- **Clones:** c1 = A, read-only, f41134102 · c2 = seed clone (porcelain NOT 0: my scratch `test/OopTesterC1Memo.test.ts` lives there; reset before C.3 seeds or keep — it is untracked) · c3 = BASE b65b75769. Harness `held/u4-f41134102/u4.sh` (RUN forwards `OOPT_SEED`); C.2 driver `c2-ac6.sh` (launch DETACHED with setsid nohup — a run_in_background job dies at 10 min).
+- **NEXT = C.3** test-subject-by-filename (seeds: file named for class A testing B; a name matching no class; a name matching two components; placed wrong without RED = FINDING), **C.4** SuiteTreeTouchProbe 3 RED channels + >1 MiB list, then **B** (U1/U1-S3/U2/U3 gates seeded RED by named guard). Open item: END check that oopBashExpert's TrackedTree JSDoc fix is COMMENT-ONLY.
+- **Lessons this window:** a seeded/run instrument must be checked for BLINDNESS on its first line (my AC6 extractor printed empty for 8 runs before I acted; the data survived only because outputs were kept). Keep raw outputs, always.
+
 # oopTester@WODA.prod — PHASE-1 BANK (SM rewind @ 81.6, 10-14) — NOW = U4 END AUDIT on f41134102: A + C.5 + C.6 + skip mapping DONE; NEXT C.1-C.4 then B (SM window pending) — REREAD THIS FIRST
 
 - **GO (oopPO 10-14):** remaining U4 arms C.5, C.1-C.4, B on Web4MDA main **f41134102** (stable target, origin verified). Runs are SM-held: after reread ASK SM for the window; bg log, counts + failing names only, stop line 78; release + report to oopPO when done.
