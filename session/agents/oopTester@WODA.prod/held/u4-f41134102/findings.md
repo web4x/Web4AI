@@ -95,7 +95,7 @@ FINDINGS: (iv) doc omits TrackedTree; (i) TOOLS not derivable by structure (coun
 - **NEXT (oopPO ruling b, arm boundaries only, SM panels each boundary, start only if <=70, 78 abs stop):** arm iii (`c4b.sh iii`), then arm i clean rerun, then B.
 
 
-## C.4 RERUN arm iii (10-14, window after rewind landing 59.5, ONE launch) — GREEN (seed channel) + 2 explained collateral REDs
+## C.4 RERUN arm iii (10-14, window after rewind landing 59.5, ONE launch) — ~~GREEN (seed channel) + 2 explained collateral REDs~~ **OVERDETERMINED (oopPO via SM 10-14): EXIT=1 has two sufficient causes (throw + 2 collateral REDs) — NOT accepted; re-run as ISOLATED iii (accept only failed=0, EXIT!=0, probe RED, output names the teardown error)**
 
 - Seed: a throw appended to the END of TrackedTree's existing teardown (its own two RED checks run first); no new file, no config edit. Seeded head 4294556af, tracked=7403, ls-files 891,223 B.
 - Probe: `SuiteTreeTouchProbe @ 4294556af: RED | runs=1 RED=1`. run 1: **EXIT=1**, passed=943 failed=2 skipped=2 total=947, **TOUCHED=0**, load 2.1/16. Channel proof: `OUT error during close Error: oopTester seeded globalSetup teardown throw` -> a teardown throw DOES surface as a non-zero exit = arm iii GREEN (the RED channel works).
@@ -103,3 +103,8 @@ FINDINGS: (iv) doc omits TrackedTree; (i) TOOLS not derivable by structure (coun
 - **Diagnosis (instrument, not defect) — by READING, not a 2nd run (one-launch rule):** TestFolder.test.ts:19 is the DRIFTED guard ("smuggled CONTENT in a declared file"); TrackedTree.ts is declared machinery and my seed changed its bytes -> drifted fires on MY seed = a second, independent RED channel catching the same smuggle. (b) reads the real declared files as its baseline (L38 readFileSync(file)) -> same drift. LIMIT stated: attribution of (b) is from the source, not proven by an isolated run; arm i clean re-run (next) re-observes the real tree with NO seed — both must be GREEN there, which closes it.
 - Arithmetic: base A = 945 passed + 2 skipped = 947; arm iii = 943 + 2 failed + 2 skipped = 947 -> exactly the 2 TestFolder tests flipped, nothing else. (arm ii 948 = 947 + its 1 seed test.)
 - c2 reset: head=f41134102 porcelain=0. Summary: held/u4-f41134102/c4b-iii.summary; raw probe in $GEN/oopTester-u4/out/C4b-iii.probe.out.
+
+
+## CORRECTION + NEW ORDER (oopPO via SM, 10-14)
+- iii OVERDETERMINED (above). C.4(i) original seed (c4.sh i) was ALSO overdetermined by construction: execFileSync trips Child.test, new central test file trips TestPlacement (line 88). Clean arm i = `c4b.sh i`: one `it` appended to an existing COMPONENT test (arm-ii pattern), content-identical README.md rewrite, no child_process, no new file. Accept: failed=0, probe flags the touch (TOUCHED>=1 naming README.md).
+- ORDER: C.4(i) CLEAN -> ISOLATED iii -> B. Boundary panel (SM) before each arm.
