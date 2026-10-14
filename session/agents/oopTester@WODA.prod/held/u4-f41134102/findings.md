@@ -131,3 +131,17 @@ FINDINGS: (iv) doc omits TrackedTree; (i) TOOLS not derivable by structure (coun
 - Named: `OUT error during close Error: oopTester seeded globalSetup teardown throw (iii-iso)`.
 - Five-part acceptance (oopPO/SM): failed=0 OK · TOUCHED=0 OK · EXIT non-zero OK · probe RED OK · teardown error named OK. Arithmetic: total 947 = base 945+2 exactly (this seed adds no test) -> nothing else flipped = the teardown throw is the SOLE sufficient cause -> NOT overdetermined.
 - c2 reset head=f41134102 porcelain=0. Summary: held/u4-f41134102/c4b-iii-iso.summary (killed attempt kept as c4b-iii-iso.killed-600s.summary).
+
+## B — GUARD MAP at f41134102 (10-14, by READING in c2, 0 runs; tester half = seed the REAL artifact, never trust a guard's own in-test failability)
+| B gate (plan sec B, spec rows U1/U2) | named guard (path under Web4MDA/) |
+|---|---|
+| U1 renders byte-identical, ALL languages | MOF/M2/M2AbstractDependency/latest/test/M2AbstractDependency.test.ts:294 (S2); own failability :307 |
+| U1 dropped dependency -> import vanishes -> RED by class; NO authored imports (Definitions AND M1Catalog, derived) | same file :206 (S3 scan) / :222 (S3 failability) |
+| U1 dependencies <-> dependants bijection, one-sided edge | same file :86; own failability :123 |
+| U1-S3 0 dangling (type links) + owner IOR arrays resolve | MOF/M1/M1Catalog/latest/test/M1Catalog.test.ts:1186 ; :1645 (S3.2 b) |
+| U1-S3 stored type count 6, removed ImportModel NAMED | latest/test/MofIncorporating.test.ts:58-60 |
+| U1-S3 rewritten import-unit tests cite the ruling + keep intent | BY READING: OwnedModelPlacement.test.ts:49, MofLayoutAC5.test.ts:439 (+ derive the full list from the S3 commit) |
+| U2 3 headers in order / member in exactly its section / getter-in-Methods RED by member / interface box attrs | MOF/M2/M2PlantUmlClass/latest/test/M2PlantUmlClass.test.ts:137 / :150 / :163 |
+| U3 one .component.puml per isComponent (derived) | MOF/M1/M1ComponentView/latest/test/M1ComponentView.test.ts:165 |
+| U3 ABOVE / LEFT / RIGHT / BELOW vs INDEPENDENT oracle; grandchild in BELOW; plain class on a side | same file :206 / :219 / :223 / :227 / :234; oracle independence :210 |
+- ORDER: U3 -> U2 -> U1 + U1-S3. Per arm: seed in c2 (scratch, never pushed), run ONLY the guard file DETACHED, record counts + the RED test name(s), reset c2.
