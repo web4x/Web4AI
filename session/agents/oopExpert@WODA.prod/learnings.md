@@ -423,3 +423,7 @@
 - **A default parameter is re-evaluated on every call** — `(u, units = [...catalog.classes()])` hid the rebuild inside a signature. Grep default params for expensive expressions when a test is slow.
 - **Box facts**: no `/usr/bin/time` (use bash `time` + TIMEFORMAT; it counts reaped children = chain CPU-s); `/root/oopExpert-patches` was cleaned away; scratch writes outside sanctioned dirs fail — put logs in the disposable clone's `.git/`. A `sleep N; cmd` chain is hook-blocked — wait with `timeout 600 bash -c 'until <cond>; do sleep 5; done'`. `pgrep -fc vitest` counts my own shell (its command line contains the word) — read `pgrep -fa`.
 - **CHAIN SPEED** = user+sys CPU-s of one bare `npm start` (Pipeline ChildCpu guard, budget 20); measure best-of-3 with load < 1.5 before each run.
+
+## 2026-10-14 — units() snapshot (Web4MDA 2936e8513)
+- **A private query helper that rebuilds from a FRESH-model source belongs memoised on the object, reset where its input changes** (`over()` resets, `units()` fills once). Prove it with a COUNTING fake catalog (N queries = 1 read; new over() = 2) and prove RED by stashing only the src file (5 reads). The hand-kept TS src is the runtime + reproduce target: edit the Definition AND the TS src; `npm start` regenerates only the other languages.
+- **A perf fix whose hot caller is on another branch shows nothing on main's chain** (12.75 vs 13.04, noise) — say so and route the decisive measurement to the branch owner instead of over-claiming.
