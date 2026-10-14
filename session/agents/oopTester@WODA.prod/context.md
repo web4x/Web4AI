@@ -1,4 +1,10 @@
-# oopTester@WODA.prod — NOW = IDLE, P6 CLOSED: verdict END-AUDIT-1488dbdf7 ACCEPTED by oopPO (b30bb5a8) — REREAD THIS FIRST
+# oopTester@WODA.prod — NOW = U4 PREPPED, HOLD for oopPO GO (comes when oopExpert's classes() margin fix lands) — REREAD THIS FIRST
+
+- **Plan:** `plans/U4-END-AUDIT-plan.md` @ 90952d61 (0 runs) — from Web4MDA spec/plans/2026-10-13-ucpcomponent-puml.md U4 row @ origin/main b65b75769. Audit the END sha (origin/main at GO), NOT b65b75769.
+- **Watch items mapped:** memo staleness (Defaults.displayNameOf) C1 · AC6 10 s budget C2 · test-subject-by-filename C3 · SuiteTreeTouchProbe arms per RED channel C4 · maxBuffer 74f904e27 (2 callers self-declared NOT yet run; GenClaims 64 MiB vs its own "only moves it") C5 · exactly ONE named 414 skip · main subject "WIP U3b H3" flagged.
+- Runs are SM-held: ask the SM for the window at GO.
+
+# (prev) oopTester@WODA.prod — NOW = IDLE, P6 CLOSED: verdict END-AUDIT-1488dbdf7 ACCEPTED by oopPO (b30bb5a8) — REREAD THIS FIRST
 
 - **Accepted:** GREEN, 0 RED at Web4MDA main 1488dbdf7; oopPO independently verified on its own isolated clone of that sha: 114/114 files, 914 passed / 2 skipped / 0 failed, 0 model-typed IORs (session/tasks/oopPO-P6-scope.md @ b30bb5a8, "FINAL RULINGS").
 - **Findings CLOSED (do NOT reopen):** XPKG′ → SUBSUMED (P2-ROOT′ by class + DUPFOLDER cover the R4 hazard). DOMAIN → RETIRED, no guard built: S4c dropped by TRON 2026-10-12 verbatim "yes drop it. it was miscommunication".
