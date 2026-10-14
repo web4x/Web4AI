@@ -14,7 +14,7 @@
 - **Direction:** tool-ness as a DECLARED TYPE (e.g. a Thinglish `Tool` role helpers implement) → membership derived by construction. Fold in: `isTool` matches by SUBSTRING (`SourceMap` shields foreign asserts) → name EQUALITY.
 
 ## RANK 3 — two STALE-FALSE skip placeholders (pre-existing, empty bodies)
-- `TreeFileUnitInc1.test.ts` L185 T8 "NOT BUILT" (false: `DefaultFile.ts` + `layer4/BrowserFile.ts` on main); L159 T5.2–5.5 "HELD (store) / increment 2" (likely delivered by the IOR + sub-scenario plans). oopTester maps each to its covering gate (placeholder → pointer) or names a GAP (server-side `BrowserFile` has no named test). Never un-skip an empty body.
+- `TreeFileUnitInc1.test.ts` L185 T8 "NOT BUILT" (false: `DefaultFile.ts` + `layer4/BrowserFile.ts` on main); L159 T5.2–5.5 "HELD (store) / increment 2" (likely delivered by the IOR + sub-scenario plans). ~~oopTester maps each to its covering gate (placeholder → pointer) or names a GAP (server-side `BrowserFile` has no named test).~~ **MAPPED by oopTester (d23c5a23): NO GAP.** T8: BrowserFile IS gated server-side (`FileServer.test.ts` L111/L123 round trip both ways == NodeJS + `FileScenarioContract` L29); the "Node fs wrapper" role moved to `NodeJSFile` (gated L101–275). T5.2–5.5: T5.4 delivered + gated (`UnitReferencesInc2` L116–210); T5.2/3/5 still held, the held state itself a failable gate (L381–452). ⇒ **cosmetic only:** replace both empty placeholders with POINTERS to those gates. Never un-skip an empty body.
 
 ## OPEN QUESTIONS FOR TRON (carried, not ours to decide)
 1. `CHAIN_CPU` in-suite ~19.1–19.8 vs budget 20 (suite noise ~±0.7 swamps code gains) — measure SOLO (oopPO recommends) / budget / accept.
