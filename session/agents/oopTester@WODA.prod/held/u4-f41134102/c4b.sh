@@ -4,7 +4,8 @@
 # 'test-support' in TestPlacement and changes the derived set, whatever its NAME) and NO node:child_process anywhere.
 #   ii  = one failing `it` APPENDED to an existing COMPONENT-folder test (M3Class.test.ts) + 800 long-named tracked files (> 1 MiB list)
 #   iii = a throw appended to the END of TrackedTree's existing teardown (its own two RED checks still run first); no new file, no config edit
-# usage: c4b.sh ii | iii
+#   i   = (CLEAN rerun, 10-14) one PASSING `it` APPENDED to M3Class.test.ts: content-identical README.md rewrite; no git, no child_process, no new file -> only effect = the touch
+# usage: c4b.sh i | ii | iii
 SHA=f41134102
 GEN=/var/dev/Workspaces/web4x/Web4MDA/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen
 C=$GEN/oopTester-u4/c2; OUT=$GEN/oopTester-u4/out; P=EAMD.ucp/Components/com/ceruleanCircle/Web4MDA; T=$P/latest/test
@@ -14,6 +15,11 @@ cd "$C" || exit 2
 git reset -q --hard "$SHA" || exit 4
 git clean -qfd >/dev/null 2>&1
 case "$1" in
+  i)  F=$P/MOF/M3/M3Class/latest/test/M3Class.test.ts
+      grep -q "^import { readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';" "$F" || { echo "seed i: node:fs import not found"; exit 5; }
+      printf "\nit('C4-i oopTester content-identical rewrite of README.md', () => {\n  const before = readFileSync('README.md');\n  writeFileSync('README.md', before);\n  expect(readFileSync('README.md').equals(before)).toBe(true);\n});\n" >> "$F"
+      grep -c "C4-i oopTester content-identical rewrite" "$F" | grep -qx 1 || { echo "seed i NOT applied exactly once"; exit 5; }
+      git add "$F" ;;
   ii) F=$P/MOF/M3/M3Class/latest/test/M3Class.test.ts
       grep -q "^import { describe, expect, it } from 'vitest';" "$F" || { echo "seed ii: vitest import not found"; exit 5; }
       printf "\nit('C4-ii oopTester seeded failure', () => {\n  expect(1).toBe(2);\n});\n" >> "$F"
@@ -24,7 +30,7 @@ case "$1" in
       sed -i "/AC19c: git status changed during the suite/a\\      throw new Error('oopTester seeded globalSetup teardown throw');" "$F"
       grep -c "oopTester seeded globalSetup teardown throw" "$F" | grep -qx 1 || { echo "seed iii NOT applied exactly once"; exit 5; }
       git add "$F" ;;
-  *) echo "usage: c4b.sh ii|iii"; exit 1 ;;
+  *) echo "usage: c4b.sh i|ii|iii"; exit 1 ;;
 esac
 git -c user.name=oopTester -c user.email=oopTester@local commit -q -m "oopTester U4 C.4 rerun arm $1 SEED (scratch, never pushed)" || exit 6
 echo "SEEDED arm $1 head=$(git rev-parse --short=9 HEAD) lsfilesBytes=$(git ls-files -z | wc -c) tracked=$(git ls-files | wc -l)"

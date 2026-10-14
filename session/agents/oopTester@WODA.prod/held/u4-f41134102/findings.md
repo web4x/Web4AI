@@ -108,3 +108,12 @@ FINDINGS: (iv) doc omits TrackedTree; (i) TOOLS not derivable by structure (coun
 ## CORRECTION + NEW ORDER (oopPO via SM, 10-14)
 - iii OVERDETERMINED (above). C.4(i) original seed (c4.sh i) was ALSO overdetermined by construction: execFileSync trips Child.test, new central test file trips TestPlacement (line 88). Clean arm i = `c4b.sh i`: one `it` appended to an existing COMPONENT test (arm-ii pattern), content-identical README.md rewrite, no child_process, no new file. Accept: failed=0, probe flags the touch (TOUCHED>=1 naming README.md).
 - ORDER: C.4(i) CLEAN -> ISOLATED iii -> B. Boundary panel (SM) before each arm.
+
+## C.4 RERUN arm i CLEAN (10-14, SM window at landing 59.8, ONE launch, driver `c4b.sh i`) — ACCEPTED: isolated, single sufficient cause
+- Seed 759b9b5d8 (scratch c2, never pushed): one PASSING `it` appended to M3Class.test.ts = content-identical README.md rewrite; no git, no child_process, no new file. tracked=7403, ls-files 891,223 B.
+- Probe: `SuiteTreeTouchProbe @ 759b9b5d8: RED | runs=1 RED=1`. run 1: **EXIT=1**, passed=946 **failed=0** skipped=2 total=948, **TOUCHED=1 {"README.md":1}**, load 2.0/16.
+- Cause named: `OUT error during close Error: AC2b (b): the suite REWROTE 1 tracked file(s) (inode/mtime moved): README.md` -> the ONLY non-zero cause is the touch (failed=0) = NOT overdetermined.
+- Arithmetic: base 945+2=947, +1 seed test = 948 (946 passed incl. seed). Original c4.sh i result (3 failed, 2 seed collateral + C.1 confound) is SUPERSEDED by this.
+- 2nd number (duration): NOT measurable from this channel — the probe prints only summary lines, no per-test duration (same blind-reporter limit as line 25). Old 46832 ms already resolved by C.4-G as per-test WALL = instrument/condition. Not invented.
+- c2 reset: head=f41134102 porcelain=0. Summary: held/u4-f41134102/c4b-i.summary; raw $GEN/oopTester-u4/out/C4b-i.probe.out.
+- NEXT: ISOLATED iii (seed whose ONLY effect is the teardown throw; accept failed=0 + EXIT!=0 + probe RED + output names the teardown error), boundary panel first; then B.

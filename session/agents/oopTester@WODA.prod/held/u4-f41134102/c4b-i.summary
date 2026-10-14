@@ -1,0 +1,9 @@
+SEEDED arm i head=759b9b5d8 lsfilesBytes=891223 tracked=7403
+PROBE arm i rc=1
+SuiteTreeTouchProbe @ 759b9b5d8: RED | runs=1 RED=1 | tracked=7403
+  run 1: EXIT=1 load=2.0/16 cpu passed=946 failed=0 skipped=2 total=948 TOUCHED=1 {"README.md":1}
+    OUT error during close Error: AC2b (b): the suite REWROTE 1 tracked file(s) (inode/mtime moved): README.md
+RESET c2 head=f41134102 porcelain=0
+driver rc=0
+
+[exited with code 0]
