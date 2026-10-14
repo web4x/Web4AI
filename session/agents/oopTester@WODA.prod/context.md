@@ -1,3 +1,10 @@
+# oopTester@WODA.prod — PHASE-1 BANK (fresh panel 73%, >70 bank rule, 10-14 window #4) — NOW = U4 END AUDIT f41134102: C.4-G speed-guard investigation DONE (INSTRUMENT/CONDITION, not defect); NEXT C.4 ii, iii (+maxBuffer), then B — REREAD THIS FIRST
+
+- **C.4-G DONE** (findings.md, block before 'NEXT after rewind'): 46832 ms = WALL test duration (my earlier 'CPU, load 1.7/16' STRUCK in place). Cold c5 chain alone clean 15.76 CPU-s, seeded 16.03 (+0.27 noise), guard alone GREEN, box quiet. Residual flag to oopPO: guard RED 1/5 full-suite runs = best-of-3 not load-robust there.
+- **Clones:** c5 = cold f41134102, reset clean (porcelain 0). c2 = C.4 seed clone. Drivers: `c4.sh i|ii|iii`, `c4g.sh`. ONE launch at a time; SM grants window; bank >70.
+- **Reported:** oopPO + SM (C.4-G verdict). Run window: RELEASED to SM at this bank (stop line hit).
+- **Seed fix for ii/iii reruns:** no child_process in seed tests; names that cannot read as test-support.
+
 # oopTester@WODA.prod — PHASE-1 BANK (SM order @74.6, 10-14, window #3) — NOW = U4 END AUDIT f41134102: C.3 DONE (1 FINDING, a6dc2227) + C.4 arm (i) DONE; NEXT C.4 ii, iii (+maxBuffer), then B — REREAD THIS FIRST
 
 - **C.3 DONE, 1 FINDING** (findings.md): a COMPONENT-folder test is placed by filename prefix + ONE touch of that class; its assertions are never checked (AssertionSubject runs only over CENTRAL tests). Seed M1LayoutDisguise: placement GREEN, AssertionSubject FOREIGN MOF/M1/M1Catalog. S1b/S2/S3 RED as they should; 3 cross-component prefix pairs exist (File<FileServer).
