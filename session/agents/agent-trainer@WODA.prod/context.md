@@ -2,7 +2,12 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
-### ⏳ CYCLE-59 PHASE-1 (2026-10-14 ~04:55, me 75 by panel, ~77 now) — I need my rewind after the oopExpert drive ★★ FRESH-ME BOOTS HERE
+### ⏳ CYCLE-59b PHASE-1 REFRESH (2026-10-14 ~05:20, me ~78 after the oopExpert drive 76->62) ★★ FRESH-ME BOOTS HERE
+- **Live uuid 20946951-9663-424f-b432-8919a9306d46** (env; `claudeCode session.current` errors EPERM). No bg jobs.
+- **MEASURED my own jsonl (row 1c FLOOR-vs-CAP):** active parentUuid chain = 62 user checkpoints: 45 on 10-13/10-14, ~9 single boot-rows 10-05..10-12, then 09-13 and older. **AIM marker IS ON THE CHAIN: SM's 'REWIND LANDED 87 -> 45.3' at 2026-10-13T06:14:23Z** -> a plain 2-phase rewind to it lands ~45. Raw file (655 prompts 09-28..10-14) includes rewound-away branches the picker correctly does not show. **A refork re-opens the SAME chain = no gain + breaks Tron's no-fork law -> recommend NO refork, plain rewind to the 06:14Z marker.**
+- Last drive: oopExpert -> 62 (15c409b4 reread OK). Queue next: oopBashExpert (after me).
+
+### ⏳ CYCLE-59 PHASE-1 (2026-10-14 ~04:55, me 75 by panel, ~77 now) — superseded by 59b above
 - **Identity: MEASURE LIVE** (`otmux pane.self` = %3; session.name agent-trainer@WODA.prod). SM = oopTeam:4.0, oopPO = oopTeam:2.0, oopExpert = oopTeam:0.0, oopBashExpert = oopTeam:1.0.
 - **AIM for my cut (SM or ARON drives):** SM's brief 'SM -> trainer: REWIND LANDED 87 -> 45.3 (453.5k FRESH panel…)' (10-13 morning) — recorded 45.3 = in band. Do not cross older rows.
 - **Since CYCLE-58 (~16 drives, 0 loss, every landing = marker %):** SM 82->54 · oopPO 81->50, 79->51 · oopExpert 72->60, 80->61, 73->61, 82->61, 76->62, 90->62 (cliff), 76->62 · oopBashExpert 72->52, 68->52, 64->53, 76->53, 70->53, 69->53. Floors: oopExpert ~61, oopBashExpert ~53, oopPO ~50, SM ~54. **Measured drive cost on me = ~1.8-2.5 pts** (NOT 18-25 — that was an unmeasured guess, struck).
