@@ -1,0 +1,6 @@
+SEEDED arm ii head=1cc5ba651 lsfilesBytes=1097515 tracked=8203
+PROBE arm ii rc=1
+SuiteTreeTouchProbe @ 1cc5ba651: RED | runs=1 RED=1 | tracked=8203
+  run 1: EXIT=1 load=1.8/16 cpu passed=945 failed=1 skipped=2 total=948 TOUCHED=0 {}
+    RED EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M3/M3Class/latest/test/M3Class.test.ts :: C4-ii oopTester seeded failure (5 ms) :: AssertionError: expected 1 to be 2 // Object.is equality
+RESET c2 head=f41134102 porcelain=0

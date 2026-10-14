@@ -1,3 +1,9 @@
+# oopTester@WODA.prod — PHASE-1 BANK (arm boundary after C.4 ii, panel 73.5 > 70, 10-14) — NOW = U4 END AUDIT f41134102: C.4 ii GREEN; NEXT arm iii, then arm i CLEAN rerun (confound), then B — REREAD THIS FIRST
+
+- **C.4 ii GREEN** (findings.md, 'C.4 RERUN arm ii'): failed=1 = exactly my seed; tracked=8203 == ls-files at 1,097,515 B (> 1 MiB) = maxBuffer proof; no confound gate tripped. Driver `held/u4-f41134102/c4b.sh ii|iii` (no new central test, no child_process).
+- **Confound:** untracked C.1 probe ran inside every earlier c2 run -> moved to held/c1-probe, c2 porcelain 0. C.4(i) + its 46832 ms = CONFOUND -> re-run arm i clean after iii (report both numbers). C.4-G CPU numbers ran in clean c5 = unaffected.
+- **oopPO ruling (b):** stop only at arm boundaries; commit+push a phase-1 line before EACH arm; SM panels at each boundary; start next arm only if <=70; >70 = phase-1, rewind, resume; 78 abs stop. Report to oopPO (oopTeam:2.0) at the END; release window to SM (oopTeam:4.0).
+
 # oopTester@WODA.prod — PHASE-1 BANK (fresh panel 73%, >70 bank rule, 10-14 window #4) — NOW = U4 END AUDIT f41134102: C.4-G speed-guard investigation DONE (INSTRUMENT/CONDITION, not defect); NEXT C.4 ii, iii (+maxBuffer), then B — REREAD THIS FIRST
 
 - **C.4-G DONE** (findings.md, block before 'NEXT after rewind'): 46832 ms = WALL test duration (my earlier 'CPU, load 1.7/16' STRUCK in place). Cold c5 chain alone clean 15.76 CPU-s, seeded 16.03 (+0.27 noise), guard alone GREEN, box quiet. Residual flag to oopPO: guard RED 1/5 full-suite runs = best-of-3 not load-robust there.
