@@ -5,7 +5,12 @@
 ## IN-SCOPE fix before DONE (not backlog)
 - **JSDoc above `AssertionSubject` lists 4 tools, `TOOLS` has 5 (`TrackedTree` missing)** — introduced by `e1047668e`. Owner oopBashExpert, one doc line, AFTER U4's remaining arms; oopTester verifies at END the diff is comment-only.
 
-## RANK 1 — RE-EXPORT LAUNDERING evades the TestPlacement gate (Tron's "tests live in their component" law)
+## RANK 1 — TestPlacement INTEGRITY: three holes in the ONE gate behind Tron's "tests live in their component" law (merged 2026-10-14 after U4 C.3)
+- **(a) C.3 finding (a6dc2227, findings.md L76): a COMPONENT-FOLDER test is placed by FILENAME PREFIX + one touch of the class; its ASSERTIONS ARE NEVER CHECKED — `AssertionSubject` runs only over CENTRAL tests.** (U4 watch item "test-subject-by-filename" — confirmed.)
+- **(b) re-export laundering** (below) · **(c) `TOOLS` hand list** (RANK 2, folded in here as part of the same gate).
+- **Direction:** ONE subject oracle for EVERY test, central and component-folder alike, derived from what its assertions actually exercise (re-exports resolved to origin; tool-ness a declared type); seeds per hole → RED by name. One plan, one owner, not three patches.
+
+### (b) RE-EXPORT LAUNDERING evades the TestPlacement gate
 - U4 C.6 finding (3): a root test asserting `M1Catalog` 3x through a helper that RE-EXPORTS it gets verdict A; H5m-3 stays GREEN with the file on disk. `AssertionSubject` credits the import owner and never opens the helper — independent of `TOOLS`. Only compensating control: TestFolder's helper SHA pin (a reviewable diff, not a RED).
 - **Direction:** resolve every re-export to its ORIGIN (derived, never by name); seed = the laundering helper → RED by name. Owner: the TestPlacement/AssertionSubject builder (H5m lineage) — assign at open.
 
