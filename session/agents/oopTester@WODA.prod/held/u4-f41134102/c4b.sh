@@ -5,7 +5,7 @@
 #   ii  = one failing `it` APPENDED to an existing COMPONENT-folder test (M3Class.test.ts) + 800 long-named tracked files (> 1 MiB list)
 #   iii = a throw appended to the END of TrackedTree's existing teardown (its own two RED checks still run first); no new file, no config edit
 #   i   = (CLEAN rerun, 10-14) one PASSING `it` APPENDED to M3Class.test.ts: content-identical README.md rewrite; no git, no child_process, no new file -> only effect = the touch
-# usage: c4b.sh i | ii | iii
+# usage: c4b.sh i | ii | iii | iii-iso
 SHA=f41134102
 GEN=/var/dev/Workspaces/web4x/Web4MDA/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/gen
 C=$GEN/oopTester-u4/c2; OUT=$GEN/oopTester-u4/out; P=EAMD.ucp/Components/com/ceruleanCircle/Web4MDA; T=$P/latest/test
@@ -30,7 +30,32 @@ case "$1" in
       sed -i "/AC19c: git status changed during the suite/a\\      throw new Error('oopTester seeded globalSetup teardown throw');" "$F"
       grep -c "oopTester seeded globalSetup teardown throw" "$F" | grep -qx 1 || { echo "seed iii NOT applied exactly once"; exit 5; }
       git add "$F" ;;
-  *) echo "usage: c4b.sh i|ii|iii"; exit 1 ;;
+  iii-iso) R=oopTesterTeardown.ts
+      # ISOLATED iii (oopPO/SM 10-14): the ONLY effect is a globalSetup TEARDOWN throw. NOT in a test folder (no declared-machinery
+      # SHA drift, nothing undeclared), NOT under EAMD.ucp/ or scripts/ (no layout/style/bootstrap scan), FIRST in globalSetup so it
+      # sees WEB4MDA_RUN before Scratch sets it: throws ONLY in the outermost run; child vitest runs inherit WEB4MDA_RUN -> silent.
+      [ ! -e "$R" ] || { echo "seed iii-iso: $R already exists"; exit 5; }
+      cat > "$R" <<'TS'
+/** oopTester C.4 iii-iso seed (scratch clone c2 only, never pushed): its ONLY effect is a globalSetup TEARDOWN throw in the OUTERMOST run. */
+export class OopTesterTeardown {
+  constructor() {}
+
+  /** vitest globalSetup: decide at setup (before Scratch marks the run) whether this is the outermost run; its teardown throws only there. */
+  static guard(): () => void {
+    const outermost = process.env['WEB4MDA_RUN'] === undefined;
+    return () => {
+      if (outermost) throw new Error('oopTester seeded globalSetup teardown throw (iii-iso)');
+    };
+  }
+}
+
+export default OopTesterTeardown.guard;
+TS
+      grep -q "globalSetup: \['EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/TrackedTree.ts'" vitest.config.ts || { echo "seed iii-iso: globalSetup anchor not found"; exit 5; }
+      sed -i "s|globalSetup: \['EAMD|globalSetup: ['oopTesterTeardown.ts', 'EAMD|" vitest.config.ts
+      grep -c "'oopTesterTeardown.ts'" vitest.config.ts | grep -qx 1 || { echo "seed iii-iso NOT applied exactly once"; exit 5; }
+      git add "$R" vitest.config.ts ;;
+  *) echo "usage: c4b.sh i|ii|iii|iii-iso"; exit 1 ;;
 esac
 git -c user.name=oopTester -c user.email=oopTester@local commit -q -m "oopTester U4 C.4 rerun arm $1 SEED (scratch, never pushed)" || exit 6
 echo "SEEDED arm $1 head=$(git rev-parse --short=9 HEAD) lsfilesBytes=$(git ls-files -z | wc -c) tracked=$(git ls-files | wc -l)"
