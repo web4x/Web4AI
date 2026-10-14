@@ -145,3 +145,22 @@ FINDINGS: (iv) doc omits TrackedTree; (i) TOOLS not derivable by structure (coun
 | U3 one .component.puml per isComponent (derived) | MOF/M1/M1ComponentView/latest/test/M1ComponentView.test.ts:165 |
 | U3 ABOVE / LEFT / RIGHT / BELOW vs INDEPENDENT oracle; grandchild in BELOW; plain class on a side | same file :206 / :219 / :223 / :227 / :234; oracle independence :210 |
 - ORDER: U3 -> U2 -> U1 + U1-S3. Per arm: seed in c2 (scratch, never pushed), run ONLY the guard file DETACHED, record counts + the RED test name(s), reset c2.
+
+## B arm U3 (10-14, detached 12:40:50, 44 s, ONE launch `b.sh u3`) — ALL SEEDS RED BY NAMED GUARD, base GREEN
+Seeds edit the REAL producer src/ts/EAM/layer2/M1ComponentView.ts in c2 (never committed); only the guard file runs. Predicted RED sets written BEFORE the run.
+- base: 10/10 GREEN (0 skipped — the Package-SVG 414 skip is handled INSIDE :177 by console, not a vitest skip; whether the server re-proved 414 is NOT measured by this instrument).
+- u3a BELOW += grandchildren -> RED :227 `DefaultFolder: BELOW == direct subclasses only` (5 vs 4) + :165 stale puml. As predicted.
+- u3b LEFT += 1 unlifted plain class -> RED :234 `DefaultFile: side node 'FileModel' is a COMPONENT` + :219 LEFT != oracle + :165. As predicted.
+- u3c isComponent drops M1Catalog -> RED :165 components != disk homes. NAME: the JSON reporter truncated it (`…(1)`, no diff) = MY instrument limit; RE-MEASURED in the U2 launch with the default reporter: `M1Catalog` present in the diff (1 line) -> RED BY NAME proven.
+- u3d ABOVE ignores realizations -> RED :206 `DefaultFile: ABOVE` (interfaces missing) + :165. As predicted.
+- c2 reset porcelain 0 after every seed.
+
+## B arm U2 (10-14, detached, ONE launch `b.sh u2` + u3c re-measure) — ALL SEEDS RED BY NAMED GUARD, base GREEN
+Seeds edit the REAL producer M2PlantUmlClass.bodyLines() (src/ts/EAM/layer2/M2PlantUmlClass.ts) in c2.
+- base: 7/7 GREEN.
+- u2a all getters rendered under Methods -> RED :137 by member (`File.path: missing from Properties`, `getter in Methods` x164 lines) + :163 (its precondition). As predicted.
+- u2b Properties header only when the class has getters -> RED :137 `BrowserFile: headers [Attributes, Methods]` (x57) + :150. As predicted.
+- u2c interface boxes drop attributes -> RED :150 ONLY (the synthetic ProbeInterface); :137 stayed GREEN, `missing from Attributes` x0 -> **MEASURED: no catalogued interface has attributes today, so the real-catalog check is VACUOUS for this property; the ONLY guard of "an interface box carries its attributes" is the synthetic probe :150** (guarded, but by synthetic coverage alone).
+- NOTE U2's own failability test :163 moves a getter line in the PUML TEXT in memory (proves the ORACLE discriminates, not the renderer path); the producer seed u2a proves the renderer path is guarded too.
+
+## INSTRUMENT LESSON (B): vitest --reporter=json keeps only the first message line and DROPS the Expected/Received diff -> a name living in an object diff is invisible; b.sh now writes json + default reporter and checks a PRE-DECLARED expected name per seed.

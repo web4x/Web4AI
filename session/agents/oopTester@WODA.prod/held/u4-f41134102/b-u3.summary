@@ -1,0 +1,23 @@
+[base] rc=0 passed=10 failed=0 skipped=0 total=10
+   reset porcelain=0
+SEED applied 1x
+[u3a] rc=1 passed=8 failed=2 skipped=0 total=10
+   RED: one .component.puml per component (the Package included) — the list derived from isComponent equals the disk o  ::  AssertionError: DefaultFolder.component.puml is the current rendering (regenerate): expected '@startuml\n\' DefaultFolder.component…' to be '@startuml\n\' DefaultFolder.component…' // Object.is equality
+   RED: BELOW == the DIRECT subclasses only — a grandchild there is RED  ::  AssertionError: DefaultFolder: BELOW == direct subclasses only: expected [ 'BrowserFolder', 'Namespace', …(3) ] to deeply equal [ 'BrowserFolder', 'Namespace', …(2) ]
+   reset porcelain=0
+SEED applied 1x
+[u3b] rc=1 passed=7 failed=3 skipped=0 total=10
+   RED: one .component.puml per component (the Package included) — the list derived from isComponent equals the disk o  ::  AssertionError: DefaultFile.component.puml is the current rendering (regenerate): expected '@startuml\n\' DefaultFile.component —…' to be '@startuml\n\' DefaultFile.component —…' // Object.is equality
+   RED: LEFT == the COMPONENTS our units depend on (lifted), never ourselves  ::  AssertionError: DefaultFile: LEFT: expected [ 'DefaultFolder', 'FileModel', …(1) ] to deeply equal [ 'DefaultFolder', 'Web4MDA' ]
+   RED: every node on the LEFT and RIGHT is a COMPONENT — a plain class there is RED by name  ::  AssertionError: DefaultFile: side node 'FileModel' is a COMPONENT: expected false to be true // Object.is equality
+   reset porcelain=0
+SEED applied 1x
+[u3c] rc=1 passed=9 failed=1 skipped=0 total=10
+   RED: one .component.puml per component (the Package included) — the list derived from isComponent equals the disk o  ::  AssertionError: components (isComponent) == components (disk homes): expected { onlyProduced: [], …(1) } to deeply equal { onlyProduced: [], onlyOnDisk: [] }
+   reset porcelain=0
+SEED applied 1x
+[u3d] rc=1 passed=8 failed=2 skipped=0 total=10
+   RED: one .component.puml per component (the Package included) — the list derived from isComponent equals the disk o  ::  AssertionError: DefaultFile.component.puml is the current rendering (regenerate): expected '@startuml\n\' DefaultFile.component —…' to be '@startuml\n\' DefaultFile.component —…' // Object.is equality
+   RED: ABOVE == the full inheritance chain to the top + every interface realised along it  ::  AssertionError: DefaultFile: ABOVE: expected [ 'File', 'Interface', 'Tree', …(2) ] to deeply equal [ 'Component', 'Displayable', …(7) ]
+   reset porcelain=0
+FINAL c2 head=f41134102 porcelain=0

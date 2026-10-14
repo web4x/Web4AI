@@ -1,0 +1,26 @@
+[base] rc=0 passed=7 failed=0 skipped=0 total=7
+   reset porcelain=0
+SEED applied 1x
+SEED applied 1x
+   NAME-IN-OUTPUT 'getter in Methods': 164 line(s) in the default-reporter output
+[u2a] rc=1 passed=5 failed=2 skipped=0 total=7
+   RED: every class and interface box has Attributes / Properties / Methods, in order, each member in exactly its sect  ::  AssertionError: every NAMED section difference (empty = green): expected 'File.path: missing from Properties\nF…' to be '' // Object.is equality
+   RED: is FAILABLE by member name: a getter seeded into Methods is RED naming that getter  ::  AssertionError: expected 'BrowserFolder.fileKind: missing from …' to be 'BrowserFolder.fileKind: missing from …' // Object.is equality
+   reset porcelain=0
+SEED applied 1x
+   NAME-IN-OUTPUT 'headers \[Attributes, Methods\]': 57 line(s) in the default-reporter output
+[u2b] rc=1 passed=5 failed=2 skipped=0 total=7
+   RED: every class and interface box has Attributes / Properties / Methods, in order, each member in exactly its sect  ::  AssertionError: every NAMED section difference (empty = green): expected 'BrowserFile: headers [Attributes, Met…' to be '' // Object.is equality
+   RED: every header is present even when its section is empty (Q2), and an interface box carries its attributes  ::  AssertionError: expected [ 'Attributes', 'Methods' ] to deeply equal [ 'Attributes', 'Properties', …(1) ]
+   reset porcelain=0
+SEED applied 1x
+   NAME-IN-OUTPUT 'missing from Attributes': 0 line(s) in the default-reporter output
+[u2c] rc=1 passed=6 failed=1 skipped=0 total=7
+   RED: every header is present even when its section is empty (Q2), and an interface box carries its attributes  ::  AssertionError: expected { Object (Attributes, Properties, ...) } to deeply equal { Attributes: [ 'probe' ], …(2) }
+   reset porcelain=0
+SEED applied 1x
+   NAME-IN-OUTPUT 'M1Catalog': 1 line(s) in the default-reporter output
+[u3c-remeasure] rc=1 passed=9 failed=1 skipped=0 total=10
+   RED: one .component.puml per component (the Package included) — the list derived from isComponent equals the disk o  ::  AssertionError: components (isComponent) == components (disk homes): expected { onlyProduced: [], …(1) } to deeply equal { onlyProduced: [], onlyOnDisk: [] }
+   reset porcelain=0
+FINAL c2 head=f41134102 porcelain=0
