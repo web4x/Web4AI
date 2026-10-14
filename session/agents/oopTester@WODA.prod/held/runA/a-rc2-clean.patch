@@ -1,0 +1,105 @@
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2AbstractClass/latest/test/M2AbstractClass.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2AbstractClass/latest/test/M2AbstractClass.test.ts
+index 3ad10f7d..0d3f1a75 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2AbstractClass/latest/test/M2AbstractClass.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M2/M2AbstractClass/latest/test/M2AbstractClass.test.ts
+@@ -6,14 +6,40 @@ import { ClassModel } from '../../../../../latest/src/ts/EAM/layer3/ClassModel.j
+ import { M2AbstractClass } from '../src/ts/EAM/layer2/M2AbstractClass.js';
+ import { Source } from '../../../../../latest/test/Source.js';
+ 
++/**
++ * The ORACLE for "the existing abstract M1 classes" — DERIVED, never a re-typed list (oopPO 2026-10-14): a catalogued class
++ * is abstract iff its committed source DECLARES `export abstract class <Name>`. Deliberately NOT `catalog.abstractClasses()`:
++ * that filter IS `createExisting` (M2AbstractClass.ts), so it would test the code with itself.
++ */
++class AbstractOnDisk {
++  private found: string[] = [];
++  constructor() {}
++  init(catalog: M1Catalog): this {
++    const source = new Source().init();
++    this.found = catalog
++      .classes()
++      .map((c) => c.name)
++      .filter((name) => new RegExp(`^export abstract class ${name}\\b`, 'm').test(readFileSync(source.of(name), 'utf8')))
++      .sort();
++    return this;
++  }
++  get names(): string[] {
++    return this.found;
++  }
++}
++
+ describe('M2AbstractClass', () => {
+   it('has the radical-OOP shape (spec §3)', () => {
+     expect(new RadicalOopGate().init().check(M2AbstractClass)).toEqual([]);
+   });
+ 
+   it('creates the existing abstract M1 classes: the model bases, the Thinglish interfaces, UcpComponent', () => {
+-    const m1s = new M2AbstractClass().init().createExisting(new M1Catalog().init());
+-    expect(m1s.map((c) => c.name).sort()).toEqual(['Authority', 'Component', 'Displayable', 'File', 'Folder', 'Interface', 'ItemModel', 'M3Element', 'Model', 'ModelUnit', 'Process', 'TaggedComponent', 'TaggedProfile', 'Tree', 'UcpComponent', 'UcpUnit', 'Unit', 'View']); // a SET: classes() order is the tree's (spec 12 rule 5); // Process: the layer-4 marker interface (spec 12 inc 3); TaggedComponent/TaggedProfile: the abstract CORBA parts (spec 14 I1)
++    const catalog = new M1Catalog().init();
++    const m1s = new M2AbstractClass().init().createExisting(catalog);
++    const abstractOnDisk = new AbstractOnDisk().init(catalog).names;
++    expect(abstractOnDisk.length, 'non-vacuous: the 18 abstract classes named at 6977cd08c are the floor').toBeGreaterThanOrEqual(18);
++    expect(abstractOnDisk, 'anchors: the model base, the Thinglish root, the component base').toEqual(expect.arrayContaining(['Interface', 'Model', 'UcpComponent']));
++    expect(m1s.map((c) => c.name).sort()).toEqual(abstractOnDisk); // a SET: classes() order is the tree's (spec 12 rule 5)
+     const source = m1s.find((c) => c.name === 'Interface')?.toSource() ?? ''; // by NAME: classes() order is the tree's (spec 12 rule 5)
+     expect(source).toContain('export abstract class Interface {\n  constructor() {}\n');
+     expect(source).toContain('  static get implements(): Array<typeof Interface> {\n    return [];\n  }');
+@@ -27,6 +53,18 @@ describe('M2AbstractClass', () => {
+     expect(model).toContain('  init(json: Init<this>): this {');
+   });
+ 
++  it('is failable: a catalog whose model flips ONE abstract class to concrete is RED against the disk oracle (seed -> RED)', () => {
++    class Flipped extends M1Catalog {
++      override classes(): ClassModel[] {
++        return super.classes().map((c) => (c.name !== 'Model' ? c : new ClassModel().init({ ...c.toJSON(), isAbstract: false } as never)));
++      }
++    }
++    const catalog = new Flipped().init();
++    const created = new M2AbstractClass().init().createExisting(catalog).map((c) => c.name).sort();
++    expect(created, 'the seeded concrete Model is no longer created').not.toContain('Model');
++    expect(created).not.toEqual(new AbstractOnDisk().init(new M1Catalog().init()).names); // the disk still declares it abstract -> the gate above would be RED
++  });
++
+   it('forces every class it creates to be abstract', () => {
+     const c = new ClassModel();
+     c.name = 'Shape';
+diff --git a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/MofIncorporating.test.ts b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/MofIncorporating.test.ts
+index cd513d88..6e8395ed 100644
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/MofIncorporating.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/latest/test/MofIncorporating.test.ts
+@@ -55,21 +55,22 @@ describe('Mof.incorporating — ONE incorporating component per stored model, fr
+     stored = new StoredTypes().init(catalog);
+   });
+ 
+-  it('the derived stored model types are exactly the 6 the store writes (7 measured 2026-10-11; U1 S3 ruling oopPO 2026-10-14 removed ImportModel — imports are DERIVED from the stored dependency units, never stored) — the set is not empty, not a guess', () => {
+-    expect(stored.all.map((c) => c.name).sort()).toEqual(['AttributeModel', 'ClassModel', 'MethodModel', 'ParameterModel', 'RelationshipModel', 'TypeAliasModel']);
+-    expect(stored.all.map((c) => c.name), 'U1 S3: the REMOVED type, named — a derived thing is never stored').not.toContain('ImportModel');
++  it('the derived stored model types are what spec/model-json.md rule C DEFINES — catalogued ModelUnits that are NOT UcpUnits — plus ClassModel; ImportModel REMOVED (U1 S3 ruling oopPO 2026-10-14) — not empty, not a guess, never a re-typed list (oopPO 2026-10-14)', () => {
++    const names = stored.all.map((c) => c.name);
++    const parent = new Map(catalog.classes().map((c) => [c.name, c.superclass.replace(/<.*>$/, '')]));
++    const chain = (name: string): string[] => (name === '' || !parent.has(name) ? [name] : [name, ...chain(parent.get(name) ?? '')]);
++    expect(names.length, 'floor: the 6 measured at U1 S3 (2026-10-14)').toBeGreaterThanOrEqual(6);
++    expect(names).toContain('ClassModel');
++    expect(names.filter((n) => !chain(n).includes('ModelUnit') || chain(n).includes('UcpUnit')), 'rule C: every stored type is a ModelUnit and never a UcpUnit').toEqual([]);
++    expect(new Set(names).size, 'each stored type once').toBe(names.length);
++    expect(names, 'U1 S3: the REMOVED type, named — a derived thing is never stored').not.toContain('ImportModel');
+   });
+ 
+   it('TOTAL + UNIQUE: every stored model type has exactly ONE incorporating component; ClassModel → M2AbstractClass (Tron, Q2 A)', () => {
+-    const map = Object.fromEntries(stored.all.map((m) => [m.name, String(Reflect.get(Mof.incorporating(m), 'name'))]));
+-    expect(map).toEqual({
+-      AttributeModel: 'M2AbstractAttribute',
+-      ClassModel: 'M2AbstractClass',
+-      MethodModel: 'M2AbstractMethod', // ImportModel → M2AbstractImport left the STORED set at U1 S3 (still its incorporating component: the NEVER-STRING-BUILT gate below)
+-      ParameterModel: 'M2AbstractParameter',
+-      RelationshipModel: 'M2AbstractRelationship',
+-      TypeAliasModel: 'M2AbstractTypeAlias',
+-    });
++    const map = Object.fromEntries(stored.all.map((m) => [m.name, String(Reflect.get(Mof.incorporating(m), 'name'))])); // ONE per type: a second binder THROWS (seed below)
++    expect(Object.keys(map).sort(), 'TOTAL over the DERIVED stored set — never a re-typed map (oopPO 2026-10-14)').toEqual(stored.all.map((m) => m.name).sort());
++    expect(Object.entries(map).filter(([, c]) => c === '' || c === 'undefined'), 'every stored type answers a NAMED component').toEqual([]);
++    expect(map['ClassModel'], 'Tron, Q2 A').toBe('M2AbstractClass'); // ImportModel → M2AbstractImport left the STORED set at U1 S3 (still its incorporating component: the NEVER-STRING-BUILT gate below)
+   });
+ 
+   it('CONSISTENT: each incorporating component binds UcpComponent<ThatModel> (directly or by inheritance) — the mark can never disagree with the binding', () => {

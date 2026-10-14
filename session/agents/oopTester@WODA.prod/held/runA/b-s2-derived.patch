@@ -1,0 +1,34 @@
+--- a/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/M1Catalog.test.ts
++++ b/EAMD.ucp/Components/com/ceruleanCircle/Web4MDA/MOF/M1/M1Catalog/latest/test/M1Catalog.test.ts
+@@ -1346,10 +1346,30 @@
+   /** S2: the part ends as `Model.member` strings — read from the catalog's derivation. */
+   const partMembers = (catalog: M1Catalog): string[] => [...catalog.partEnds()].flatMap(([model, ends]) => Object.keys(ends).map((end) => `${model}.${end}`)).sort();
+ 
++  /** The part members spec/model-json.md rule C NAMES today, read from its TEXT (`X.a/b/c` expands) - the S2 oracle; no hand list. */
++  const ruleCMembers = (specText: string): string[] => {
++    const ruleC = specText.split('\n').find((line) => line.startsWith('- **(C) containment PARTS')) ?? '';
++    const named = /today (.*?)\) is STORED/.exec(ruleC)?.[1] ?? '';
++    return [...named.matchAll(/`(\w+)\.([\w/]+)`/g)].flatMap(([, model, ends]) => (ends ?? '').split('/').map((end) => `${model}.${end}`)).sort();
++  };
++
++  it('S2 oracle is FAILABLE - a member SEEDED into the rule C text no longer equals the derivation; a spec WITHOUT rule C parses to [] (caught by the non-hollow guard)', async () => {
++    await M1Catalog.load();
++    const derived = [...partMembers(new M1Catalog().init())].sort();
++    const spec = readFileSync('spec/model-json.md', 'utf8');
++    expect(ruleCMembers(spec)).toEqual(derived);
++    const seeded = spec.replace('`MethodModel.parameters`', '`MethodModel.parameters/seededGhost`');
++    expect(seeded).not.toBe(spec);
++    expect(ruleCMembers(seeded)).not.toEqual(derived);
++    expect(ruleCMembers('no rule C here')).toEqual([]);
++  });
++
+   it('S2 — M1Catalog.partEnds() DERIVES exactly the part members spec/model-json.md rule C names today (7), each with its part class', async () => {
+     await M1Catalog.load();
+     const catalog = new M1Catalog().init();
+-    expect(partMembers(catalog)).toEqual(['ClassModel.attributes', 'ClassModel.imports', 'ClassModel.methods', 'ClassModel.relationships', 'ClassModel.typeAliases', 'MethodModel.parameters', 'ModelUnit.references']);
++    const fromSpec = ruleCMembers(readFileSync('spec/model-json.md', 'utf8'));
++    expect(fromSpec.length, 'spec/model-json.md rule C must NAME its part members (line found + parsed) - never a hollow []').toBeGreaterThan(0);
++    expect([...partMembers(catalog)].sort()).toEqual(fromSpec); // the ORACLE is the spec text, not a hand list
+     expect(catalog.partEnds().get('MethodModel')).toEqual({ parameters: 'ParameterModel' });
+     expect([...catalog.partHeirs()].sort(), 'overriding declarations (ModelUnit is their ancestor)').toEqual(['ClassModel', 'MethodModel']);
+   });
