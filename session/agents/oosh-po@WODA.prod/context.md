@@ -1,6 +1,11 @@
 # oosh-po Context
 
-## 🟢 LATEST 2026-10-12 ~20:15 (rewind QUEUED via oopPO — trainer renders FRESH + drives at my next clean point if ≥70; oopBashExpert preempts). READ THIS FIRST, then MEASURE DISK.
+## 🟢 LATEST 2026-10-19 — SWIPE PORT (Tron-approved plan, DISPATCHED, I GATE — do NOT write code). READ FIRST, MEASURE DISK.
+**Why:** Tron caught that `scrumMaster.pulse` is an embedded PYTHON PROGRAM in a bash OOSH script (+ I wrote it = 2 lane failures). FIX (approved plan `/root/.claude/plans/validated-dazzling-kitten.md`): build `scrumMaster.swipe` = PURE BASH OOSH, DEPENDENCY-FREE FROM HIVEMIND (grep swipe for 'hiveMind'==0; survives broken hiveMind), OUTPUT AS IDENTICAL AS POSSIBLE to pulse (drop-in). python3 ONLY as a JSON-parse helper in swipe.ctx. Keep pulse (mark DEPRECATED = parity oracle). Deps: tmux + claudeCode(session.discover.all, NOT hiveMind) + bash.
+**STATE:** DISPATCHED 10-19 — architect designing, tester writing test.swipe-PARITY (pulse==swipe byte-identical modulo ctx Δ<1) + test.swipe-jsonl-lag RED-first, expert queued to implement. **I GATE** (deployed-green: parity + lag + grep-hiveMind==0 + field swipe==panel on a forked agent), I do NOT write (my earlier failure). Lesson [[oosh-po-ships-oosh-not-python]]. Deploy ff at a QUIET window.
+**PRIOR CAMPAIGN (all CLOSED deployed-green):** send #1/#2(+ghost)/deliver-rc · pulse-perf(discover.all) · cmdline-disambig · #3 FORK-DRIFT (pulse==panel 4 forked agents). §7 Part B = Tron's call (pane.live never deployed; swipe+team.sweep cover it).
+
+## 🟢 (superseded) LATEST 2026-10-12 ~20:15 (rewind QUEUED via oopPO — trainer renders FRESH + drives at my next clean point if ≥70; oopBashExpert preempts). READ THIS FIRST, then MEASURE DISK.
 **Identity:** oosh-po@WODA.prod ooshTeam:0.0 session 889a24a9 (verify session.current w/ pane-arg). Pane %21.
 **SEND-RELIABILITY CAMPAIGN — the send primitive is now HONEST BOTH WAYS:**
 - **#1 C-u composer-destruction ✅ CLOSED** (deployed 056cff97, tester deployed-green 7/7 differential; staged→REFUSE+name, never blind-C-u-destroy; send.clobber override; send.raw PURE). Killed the bug that erased Tron's inc-4 word.
