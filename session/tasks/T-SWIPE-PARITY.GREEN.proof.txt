@@ -1,0 +1,16 @@
+starting: test.swipe-parity <LOG_LEVEL=1> (RED-FIRST — scrumMaster.swipe absent must fail)
+ test.suite starting: test/test.swipe-parity <LOG_LEVEL=1>
+  ✓ PASS: scrumMaster.swipe defined
+===== (1) PARITY: swipe BYTE-IDENTICAL to pulse on the frozen fixture (no masking, no tolerance) =====
+│ Test 2: PARITY: swipe output == pulse output byte-for-byte (format/colors/state/ctx/sh:N/layout)
+  ✓ PASS: swipe == pulse BYTE-IDENTICAL on the frozen fixture
+===== (2) the fixture actually exercised an AGENT row with a ctx TUPLE (gate is meaningful) =====
+│ Test 3: fixture sanity: pulse rendered an agent row with a ctx tuple + a shell row
+  ✓ PASS: fixture exercised agent(ctx tuple)+shell rows (parity is non-vacuous)
+===== (3) DEP-FREE: swipe methods contain ZERO hiveMind INVOCATIONS (roles.env data-read allowed) =====
+│ Test 4: DEP-FREE: swipe exists AND 0 hiveMind invocations
+  ✓ PASS: swipe present + ZERO hiveMind invocations (survives a broken hiveMind)
+  T-SWIPE-PARITY  PASS=4 FAIL=0
+  RED-FIRST until swipe exists byte-identical-to-pulse (frozen fixture) + hiveMind-free.
+  Passed:      4
+  Failed:      0

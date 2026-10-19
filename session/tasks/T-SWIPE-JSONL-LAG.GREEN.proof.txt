@@ -1,0 +1,16 @@
+===== swipe ctx helper exists? (RED-first precond) =====
+  ✓ PASS: swipe.ctx helper defined
+│ Test 2: A1-FRESH: fresh jsonl → tuple
+  ✓ PASS: fresh → tuple (400000|40|1000)
+│ Test 3: A2-LAG: >8-window jsonl → 'lag'
+  ✓ PASS: lag window → 'lag' sentinel (no false-low)
+│ Test 4: A3-NONE: no-usage jsonl → none (not a tuple, not lag)
+  ✓ PASS: none distinct ('')
+│ Test 5: A3-DISTINCT: fresh≠lag≠none all three distinct
+  ✓ PASS: three states distinct
+│ Test 6: B-ON-WALL: wall-chrome pane shows ON-WALL (red 91m) despite lagging ctx
+  ✓ PASS: state = ON-WALL (not downgraded by the lagging ctx)
+│ Test 7: B-CTX-LAG: the same row's ctx token is ?ctx-lag (lag surfaced, not a false number)
+  ✓ PASS: ctx shows ?ctx-lag alongside ON-WALL
+  Passed:      7
+  Failed:      0
