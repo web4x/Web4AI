@@ -1,0 +1,20 @@
+starting: test.swipe-parity <LOG_LEVEL=1> (RED-FIRST — scrumMaster.swipe absent must fail)
+ test.suite starting: test/test.swipe-parity <LOG_LEVEL=1>
+===== swipe exists? (RED-first precond) =====
+  ✗ FAIL: scrumMaster.swipe ABSENT (RED-first — not yet implemented)
+===== (1) PARITY-STRUCT: masked pulse == masked swipe (format/colors/state/layout byte-identical) =====
+│ Test 2: PARITY-STRUCT: swipe byte-identical to pulse (ctx-field masked)
+  ✗ FAIL: NOT byte-identical (RED): swipe output empty or differs from pulse — 1,7d0~< TEAM ooshTeam  4 agents · 2 shells~<   0.0   oosh-po                ACTIVE       sh:1 <CTX:tuple>~
+===== (2) PARITY-CTX-TYPE: per-agent ctx TYPE (tuple/lag/none) matches =====
+│ Test 3: PARITY-CTX-TYPE: ctx token TYPE identical per agent
+  ✗ FAIL: ctx TYPE mismatch (RED): 0.0[pulse=tuple swipe=-] 0.2[pulse=tuple swipe=-] 0.3[pulse=tuple swipe=-] 0.4[pulse=tuple swipe=-]
+===== (3) PARITY-CTX-DELTA: per-agent tuple pct within Δ<1 (live-read jitter) =====
+│ Test 4: PARITY-CTX-DELTA: tuple pct Δ<1 per agent
+  ✗ FAIL: ctx pct Δ≥1 or no swipe (RED): 0.0[no-swipe] 0.2[no-swipe] 0.3[no-swipe] 0.4[no-swipe]
+===== (4) DEP-FREE: swipe methods contain ZERO hiveMind references =====
+│ Test 5: DEP-FREE: swipe exists AND 0 hiveMind refs
+  ✗ FAIL: RED: swipe absent (no methods to grep) OR has 0 hiveMind refs — dependency-free unproven
+  T-SWIPE-PARITY  PASS=0 FAIL=5
+  RED-FIRST: all arms FAIL until scrumMaster.swipe exists byte-identical-to-pulse + hiveMind-free.
+  Passed:      
+  Failed:      5

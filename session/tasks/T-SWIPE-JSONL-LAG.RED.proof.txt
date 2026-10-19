@@ -1,0 +1,17 @@
+===== swipe ctx helper exists? (RED-first precond) =====
+  ✗ FAIL: private.scrumMaster.swipe.ctx ABSENT (RED-first)
+│ Test 2: A1-FRESH: fresh jsonl → tuple
+  ✗ FAIL: fresh not a tuple (RED): ''
+│ Test 3: A2-LAG: >8-window jsonl → 'lag'
+  ✗ FAIL: lag not signaled (RED): '' (false-low hides a wall)
+│ Test 4: A3-NONE: no-usage jsonl → none (not a tuple, not lag)
+  ✓ PASS: none distinct ('')
+│ Test 5: A3-DISTINCT: fresh≠lag≠none all three distinct
+  ✗ FAIL: states collide (RED): fresh='' lag='' none=''
+│ Test 6: B-ON-WALL: wall-chrome pane shows ON-WALL (red 91m) despite lagging ctx
+  ✗ FAIL: ON-WALL HIDDEN (RED): row lacks 91m state — a lagging ctx suppressed the wall (or swipe absent)
+│ Test 7: B-CTX-LAG: the same row's ctx token is ?ctx-lag (lag surfaced, not a false number)
+  ✗ FAIL: ctx not lag (RED): row ctx token is not ?ctx-lag (or swipe absent)
+  T-SWIPE-JSONL-LAG  PASS=1 FAIL=6
+  Passed:      1
+  Failed:      6
