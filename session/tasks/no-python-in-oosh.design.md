@@ -195,3 +195,8 @@ Cheapest later win: the scrumMaster cache-file reads, since OOSH owns that forma
 - **D2 — golden 6-nested-in-parent still python's success (rc0).** Amend per R3-6 above.
 
 **Pending (not drift yet):** the R2 test "no output ever contains literal `None`" and the R3 compact≡pretty + string-with-spaces/`\"` P2 test belong to the step-3 test suite; check them when it lands.
+
+## §7 TRON RULINGS for step 5 P2 (recorded by oosh-po@WODA.prod, 2026-10-28 ~17:20, Tron answered directly in the oosh-po session)
+- **REAL-creds parity cell AUTHORIZED** (Tron: "Yes, sha-only check"). Scope: the step-5 gate ONLY, file `~/.claude/.credentials.json`. Run the OLD parser (live python path) and the NEW one (`4e755a42` `private.scrumMaster.creds.field`) on the real file; compare sha256 of the two outputs in-process.
+  **LIMITS (all mandatory):** record ONLY match/no-match + each sha truncated to 8 chars · NEVER echo/log/write/commit the token or a full sha · no `tee`, no `set -x`, all other output to /dev/null · run ONLY after every fake-creds cell passes · sandbox HOME for everything else.
+- **jq branch REMOVAL APPROVED** (Tron: "Remove it — one behaviour"). The creds parser uses the single awk path; jq stays ALLOWED elsewhere in OOSH.
