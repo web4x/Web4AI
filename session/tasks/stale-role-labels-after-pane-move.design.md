@@ -40,6 +40,16 @@ Blast radius: `hivemind.roles.env` is read in many places (scrumMaster 547/559/1
 3. **Never deliver to a shell by name.** A name must resolve to a pane with a live claude process. This alone would have stopped today's misroute: 0.4 is a shell.
 4. **Registry reconcile = write-through, not a migration.** When `resolve` finds the title disagrees with the registry for a pane, it **rewrites that one row** (`registry.set <pane> <live-role>`) and drops rows whose pane now holds a shell. After a move, the registry heals on the next resolve or the next sweep. No bulk rewrite of the file.
 
+## Rule 3 — sender prefix self-identity (PO add, 2026-10-28): own role from OWN live title
+Third symptom: my message reached the PO headed `[@scrum-master ooshTeam:0.1]`.
+Measured `private.otmux.send.prefix` (otmux:1936): the **pane** is already right — it comes from `otmux.pane.self target` (the G1 PID-walk, never `$TMUX_PANE`). The **role** is the stale part: `grep "^${myPane}|" hivemind.roles.env`. Correct pane plus stale role is exactly the observed tag.
+**Fix:** take `myRole` from the sender's **own live pane title** (`otmux pane.get <myPane> '#{pane_title}'`), parsed with the Rule 1 `role@host` rule (strip glyph + `@host`). Fall back to the registry row only if the title doesn't have the `role@host` shape. If neither gives a role, **emit no prefix**, the same as today when nothing resolves. A missing tag is better than a wrong one.
+Stays inside otmux's MVC boundary: it reads its own pane title (View data) and the registry *file*. No hiveMind call.
+
+### Where the `role@host` parse lives
+- **One definition in otmux:** a pure string function, e.g. `private.otmux.pane.role.parse <title>` → bare role or empty. The otmux prefix (Rule 3) and `hiveMind.resolve` (Rule 2) both call it. hiveMind already depends on otmux, so this adds no new dependency.
+- **swipe/pulse keep their own copy** (Rule 1) on purpose. Tron's SM-monitor doctrine is decoupling over DRY: the watcher must not depend on the scripts it watches. To keep the copies from drifting, **one shared fixture table** of titles → expected role is run against BOTH implementations (acceptance case 9).
+
 ## Interim, until Rules 1–2 land (operational, not code)
 - **Send by pane ADDRESS, not by name** (`otmux send ooshTeam:0.3 …`), and check the live title before sending (`otmux pane.list <session>`).
 - A one-time manual reconcile of the stale rows via `hiveMind registry.set <pane> <role>` is safe **only after re-measuring live titles at that moment**. Panes may have moved again. `roles.env` is a shared file, so edit only the stale rows.
@@ -52,6 +62,8 @@ Blast radius: `hivemind.roles.env` is read in many places (scrumMaster 547/559/1
 5. **Send-by-name:** with the shifted registry, `hiveMind.resolve oosh-tester` returns the pane whose live title is `oosh-tester@…`, not the shell at the stale address. With the title removed and only a stale registry row pointing at a shell → **refuse loudly, deliver nothing** (check the shell's input line: nothing typed).
 6. **Write-through:** after one resolve on a drifted row, that registry row now holds the live role. Unrelated rows are unchanged (diff the file).
 7. **hiveMind-free:** `grep hiveMind` over the swipe methods is still 0.
+8. **Sender prefix (Rule 3):** shifted-registry fixture. Send from a pane whose live title is `oosh-architect@…`; the receiver's transcript shows `[@oosh-architect <that pane>]`, not the registry's stale role. Pane part still comes from the PID walk. Title not `role@host` → registry role. Neither → no prefix at all (never a wrong one). Include a `$TMUX_PANE`-poisoned case so the pane part stays proven.
+9. **One parse rule, two copies:** a shared fixture table (`✳ oosh-architect@WODA.prod` → `oosh-architect`, braille-spinner title, `⏵⏵` title, `Claude Code` → empty, `v60211.1blu.de` → empty, `@host` with dots) run against the otmux parse function AND the swipe/pulse copy. Both must give identical results.
 
 ## Handoff
 Expert: Rule 1 in `private.scrumMaster.swipe.role` + pulse `registry_role` (scrumMaster only). Rule 2 in `hiveMind.resolve` + write-through via `registry.set`. Two separate commits, since they're in different scripts with different blast radii. Tester writes the RED first. PO gates deployed-green.
