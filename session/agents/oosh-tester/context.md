@@ -9,7 +9,9 @@
 - DONE item 2 pulse removal: tests on oosh-tester/remove-pulse-tests @02275faf -> DEPLOYED ca2bba0f..6b4e552e; live pulse-removed 7/0, role-live 44/0, active-narrow 23/0, discover-all 16/1 (diamonds loud-skip). Proof ba3d494b7.
 - DONE item 3 test.no-python RED-first: oosh-tester/no-python-gate @f20b6877 (pushed, NOT deployed): 35 call lines/5 files; T22 inverted (deployed 49/1 -> 48/2; T20 pre-existing). LESSON: source this reloads user.env OOSH_DIR=/root/oosh — derive tree root from the test file path.
 - DONE item 4 drain guard: test.drain-guard on oosh-tester/drain-guard-test @c12ce951; deployed 6/7 -> deployed+86341c2f+e94ed866+de4dd093 13/0 (proof 3a947078c). Not covered: de4dd093 unblock->drain trigger. HOST FINDING reported: fresh config -> debug trap -> oo.cmd -> sudo apt-get update (seed OOSH_PM=false in every sandbox).
-- NEXT item 5 expert no-python step 1 @18e51a7c (scrumMaster creds.expired; gate vs goldens + expiry checked even with no python3), then step 3 P1 when it lands.
+- DONE item 5 no-python step 1: test.creds-expiry on oosh-tester/no-python-s1-test @95d28653; deployed 5/2 -> +18e51a7c 7/0; no-python scrumMaster 14->12 (proof 3fbae3e59). Deployed now 382e8500 (= my item-3 tests shipped).
+- NOW step 3 @5fba9437 (oosh-expert/no-python-s3-p1, ff onto 382e8500): goldens + test.no-python per-file (must drop vs 35) + test.jsonl-lag + PERF on biggest real session (python ~2.9s, first P1 38s).
+- WAITING: drain trigger cells (de4dd093 agent.unblock.pane -> drain) once expert's queue-delete (rm -f -> .held) SHA lands; then re-gate drain as deployed+4.
 - Worktrees in scratchpad: rp (remove-pulse-tests), np (no-python-gate).
 
 ## ★ CURRENT STATE — gate queue (PO order, 10-28) — items 1-3 below are now DONE (see PROGRESS)
