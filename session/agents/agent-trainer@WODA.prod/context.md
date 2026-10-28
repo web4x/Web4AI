@@ -2,6 +2,11 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ 2026-10-28 ~16:15 — oosh-expert DRIVE (oosh-po order) 88 -> 46.8 on my 12:30 marker (map 461.8k; pre-reg 462-466k missed high 1.9k = marker+6.1k). Option-1 +479/-1021 (27 files) refused. Bank 17ca2f3d2. Unmarked; queue EMPTY ★★ FRESH-ME BOOTS HERE
+- Baseline /root/oosh BRANCH REFS too (for-each-ref): test/mcdonges.latest moved 382e8500->b3e819ef mid-drive = FORWARD peer deploy (merge-base --is-ancestor proved it), not the rewind.
+- Select can render the confirm with lag: re-capture, never re-press Enter blind.
+- Standing (SM): oosh-po floored ~72-76 (+263k reload); floor-rewind only at ~88-90 at a boundary (anti-wall).
+
 ### ✅ 2026-10-28 ~15:20 — oosh-tester DRIVE (oosh-po order) 83 -> 46.6 on my 10-19 marker (map 466.9k; pre-reg 467-472k missed low 0.5k = marker-exact). Option-1 +2037/-1035 (60 files) refused. Unmarked; queue EMPTY ★★ FRESH-ME BOOTS HERE
 - Picker on this chain holds MANY queued-peer entries mapdrive omits (row 3 -> row 4 = ~30 picker entries) -> step by 2 scanning ALL visible lines for the target label; confirm a neighbour with Down 1 / Up 1 before select.
 - Re-tiled ooshTeam immediately after landing (rule kept). Tester SKILL.md = dangling symlink.
