@@ -1,0 +1,15 @@
+### creds decoy discrimination — goldens @ a9aec9ca (oosh-expert/no-python-goldens). Reference extractors pure bash/grep; sha256 only, no token value printed/written.
+  10-decoy-flat          golden=1f7f6f416d3a..  UNSCOPED=RED   (decoy-picked=yes)  SCOPED=GREEN
+  11-decoy-mcp-nested    golden=280a8cd65dc8..  UNSCOPED=RED   (decoy-picked=yes)  SCOPED=GREEN
+  1-valid-future         golden=5cc17013b7d5..  UNSCOPED=GREEN (decoy-picked=no)  SCOPED=GREEN
+  5-pretty-printed       golden=103b75a06758..  UNSCOPED=GREEN (decoy-picked=no)  SCOPED=GREEN
+  DECOY-DISCRIMINATION  PASS=4 FAIL=0   (decoys: unscoped RED + decoy picked + scoped GREEN; controls: scoped GREEN)
+
+### instrument (scratchpad/check-decoys.sh):
+sha(){ printf '%s' "$1" | sha256sum | cut -c1-64; }
+# join lines first: grep -o is line-based, a pretty-printed object spans lines (design R3 normalizer case)
+flat(){ tr -d '\n\r' < "$1"; }
+unscoped(){ flat "$1" | grep -o '"accessToken"[[:space:]]*:[[:space:]]*"[^"]*"' | head -1 | sed 's/.*:[[:space:]]*"//; s/"$//'; }
+scoped(){ flat "$1" | grep -o '"claudeAiOauth"[[:space:]]*:[[:space:]]*{[^{}]*}' | head -1 \
+            | grep -o '"accessToken"[[:space:]]*:[[:space:]]*"[^"]*"' | head -1 | sed 's/.*:[[:space:]]*"//; s/"$//'; }
+pass=0; fail=0
