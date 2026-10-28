@@ -1,0 +1,101 @@
+readlink /root/oosh: /var/dev/EAMD.ucp/Components/com/ceruleanCircle/EAM/1_infrastructure/Once.sh/mcdonges.latest
+################ /root/oosh
+=== tree: /root/oosh @ 382e8500 clean
+  queue file for fxdg_q:0.0: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/dgrun.791182/queue/fxdg_q_0_0.queue
+  PASS SANDBOX queue path is under the test dir (live queue untouched)
+  PASS FIXTURE title planted
+
+--- D8 enqueue to a SHELL-titled pane is refused ---
+  rc=0 entries-written=1
+  FAIL D8 rc=0, 1 entr(y/ies) queued for a SHELL pane
+
+--- D4 matching fresh entry -> dispatched EXACTLY once, then dequeued ---
+  informs=1 text='D4-msg' queue-left=0 held=0
+  PASS D4 delivered once with exact text, dequeued, nothing held
+
+--- D1 recipient changed (pane retitled) -> HELD, nothing dispatched ---
+  informs=1 held=[]
+  FAIL D1 dispatched 1x to the NEW occupant (misroute) / not held
+
+--- D2 legacy v1 entry -> HELD ---
+  informs=1 held=[]
+  FAIL D2 legacy dispatched 1x / not held
+
+--- D3 expired entry -> HELD, NOT deleted ---
+  informs=0 queue-left=0 held=[]
+  FAIL D3 expired entry DELETED (informs=0)
+
+--- D5 dispatch FAILS -> entry stays at the HEAD (dequeue only on rc0) ---
+  informs-attempted=1 queue-left=0 held=0
+  FAIL D5 left=0 (want 1) attempted=1 — failed dispatch LOST the entry
+
+--- D6 multi-line text survives the round trip ---
+  informs=1 text=[D6 line1]
+  FAIL D6 informs=1 text=[D6 line1]
+
+--- D7 remote-control older than 60s -> HELD, no keystroke ---
+  raw-keys=1 held=[]
+  FAIL D7 replayed 1 raw keystroke(s) from a 120s-old entry
+
+--- D7b anchor: FRESH remote-control (10s) IS dispatched (TTL is not a blanket refusal) ---
+  raw-keys=1 [fxdg_q:0.0 F12] held=0
+  PASS D7b fresh remote-control dispatched once
+
+  live queue sha before=3a8bde5ecb3a9f4e after=3a8bde5ecb3a9f4e
+  PASS SAFE live hivemind.queue untouched
+  host apt-lists/dpkg mtimes before=[1793198883 1789371047 ] after=[1793198883 1789371047 ]
+  PASS HOST-SAFE no apt-get update / dpkg change during the run
+
+=== T-DRAIN-GUARD: PASS=6 FAIL=7 ===
+################ /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/dg-cand
+=== tree: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/dg-cand @ 6b4e552e + local: hiveMind otmux 
+  queue file for fxdg_q:0.0: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/dgrun.793600/queue/fxdg_q_0_0.queue
+  PASS SANDBOX queue path is under the test dir (live queue untouched)
+  PASS FIXTURE title planted
+
+--- D8 enqueue to a SHELL-titled pane is refused ---
+ERROR> queue fxdg_q:0.1: REFUSING to enqueue — pane title is not an agent (role@host); a queued message could later drain into a shell
+ERROR> line 5: "return" from  returned with ERROR code: EPERM 1 Operation not permitted
+ERROR> line 5: "eval" from  returned with ERROR code: EPERM 1 Operation not permitted
+  rc=1 entries-written=0
+  PASS D8 refused rc=1, nothing written
+
+--- D4 matching fresh entry -> dispatched EXACTLY once, then dequeued ---
+  informs=1 text='D4-msg' queue-left=0 held=0
+  PASS D4 delivered once with exact text, dequeued, nothing held
+
+--- D1 recipient changed (pane retitled) -> HELD, nothing dispatched ---
+  informs=0 held=[recipient-mismatch: entry=fxdg-alpha live=fxdg-beta ]
+  PASS D1 mismatch held (recipient-mismatch), 0 dispatched
+
+--- D2 legacy v1 entry -> HELD ---
+  informs=0 held=[legacy-no-recipient ]
+  PASS D2 legacy held, 0 dispatched
+
+--- D3 expired entry -> HELD, NOT deleted ---
+  informs=0 queue-left=0 held=[expired age=4000s ttl=3600s ]
+  PASS D3 expired held (kept), 0 dispatched
+
+--- D5 dispatch FAILS -> entry stays at the HEAD (dequeue only on rc0) ---
+  informs-attempted=1 queue-left=1 held=0
+  PASS D5 attempted once, entry kept at head, not held
+
+--- D6 multi-line text survives the round trip ---
+  informs=1 text=[D6 line1~D6 line2]
+  PASS D6 both lines delivered in ONE dispatch
+
+--- D7 remote-control older than 60s -> HELD, no keystroke ---
+  raw-keys=0 held=[expired age=120s ttl=60s ]
+  PASS D7 120s remote-control held, 0 keystrokes
+
+--- D7b anchor: FRESH remote-control (10s) IS dispatched (TTL is not a blanket refusal) ---
+  raw-keys=1 [fxdg_q:0.0 F12] held=0
+  PASS D7b fresh remote-control dispatched once
+
+  live queue sha before=3a8bde5ecb3a9f4e after=3a8bde5ecb3a9f4e
+  PASS SAFE live hivemind.queue untouched
+  host apt-lists/dpkg mtimes before=[1793198883 1789371047 ] after=[1793198883 1789371047 ]
+  PASS HOST-SAFE no apt-get update / dpkg change during the run
+
+=== T-DRAIN-GUARD: PASS=13 FAIL=0 ===
+orphans: 0
