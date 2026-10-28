@@ -1,0 +1,17 @@
+DEPLOYED RE-GATES on live /root/oosh @ 6b4e552e (readlink mcdonges.latest, tree clean)
+-- T-OTMUX-OBSERVER-RC (otmux == 776aef9a == gated 191f9b06):
+=== tree: /root/oosh @ 6b4e552e clean
+  rc=3 warn=[WARNING> otmux: observer 'hiveMind protected.session.renamed obsfx_a obsfx_a2' FAILED rc=3 — the registry/role env may NOT follow this change: boom-line1]
+  rc=3 panes 1->2 warn=[WARNING> otmux: observer 'hiveMind protected.panes.shifted obsfx_s' FAILED rc=3 — the registry/role env may NOT follow this change: boom-line1]
+  rc=3 warn=[WARNING> otmux: observer 'hiveMind protected.panes.swapped obsfx_s obsfx_s:0.0 obsfx_s:0.1' FAILED rc=3 — the registry/role env may NOT follow this change: boom-line1]
+  live registry sha before=087052c684151c8a after=087052c684151c8a (/home/shared/EAMD.ucp/Scenarios/localhost/EAM/1_infrastructure/Once.sh/sharedConfig)
+=== T-OTMUX-OBSERVER-RC: PASS=19 FAIL=0 ===
+
+-- item 2 pulse removal (scrumMaster == b2c024ff, tests == 02275faf):
+readlink: /var/dev/EAMD.ucp/Components/com/ceruleanCircle/EAM/1_infrastructure/Once.sh/mcdonges.latest  HEAD: 6b4e552e  dirty: 0
+== test.pulse-removed: PASS=7 FAIL=0 19s
+== test.swipe-role-live: PASS=44 FAIL=0 57s
+== test.swipe-active-narrow: PASS=23 FAIL=0 152s
+== test.session-discover-all: PASS=16 FAIL=1 56s
+       ✗ FAIL: 6-INTERIM-LIFT: diamonds:0.1 not live this run — cannot gate the real dup (loud skip, NOT silent pass; re-run with the dup present or seed two same-role+same-cwd claude panes, one --resume one fresh)
+orphans: 0

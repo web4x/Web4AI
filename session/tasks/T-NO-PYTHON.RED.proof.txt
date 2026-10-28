@@ -1,0 +1,75 @@
+T-NO-PYTHON step-0 RED-first — tester branch oosh-tester/no-python-gate @ f20b6877 on deployed 6b4e552e
+starting: test.no-python <LOG_LEVEL=1> (RED-first burn-down — every python call site is listed)
+test.suite level=1
+ test.suite starting: test/test.no-python <LOG_LEVEL=1>
+  tree under test: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/np @ 6b4e552e
+===== N0 — instrument self-check: the scanner CAN fail (seeded call found, comment ignored) =====
+seed=3 clean=0
+  ✓ PASS: scanner detects calls, ignores comments, allows jq
+/tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/np
+  ✓ PASS: ROOT = this file's tree (/tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/np)
+===== N1 — zero python calls across tracked OOSH scripts + tests (exemptions applied) =====
+  scanned 202 tracked text files; python call lines = 35 in 5 file(s)
+  --- burn-down (per file) ---
+         14 scrumMaster
+         11 claudeCode
+          6 hiveMind
+          3 test/test.osemvec
+          1 test/test.static-defined-functions
+  --- sites ---
+    claudeCode:274:  if command -v python3 >/dev/null 2>&1; then
+    claudeCode:275:    python3 -c "
+    claudeCode:310:    error.log "Neither python3 nor jq available for JSON output"
+    claudeCode:1350:      elif command -v python3 >/dev/null 2>&1; then
+    claudeCode:1351:        name=$(echo "$raw_line" | python3 -c "import sys,json; d=json.load(sys.stdin); print(d.get('customTitle',''))" 2>/dev/null)
+    claudeCode:1373:    elif command -v python3 >/dev/null 2>&1; then
+    claudeCode:1374:      name=$(python3 -c "
+    claudeCode:1674:  observed_max=$(tail -200 "$jsonlFile" 2>/dev/null | python3 -c "
+    claudeCode:1743:  tail -50 "$jsonlFile" | MAX_TOKENS="$maxTokens" python3 -c "
+    claudeCode:2017:  MAX_TOKENS="$maxTokens" python3 -c "
+    claudeCode:2108:      info=$(JSONL_FILE="$latest" MAX_TOKENS="$maxTokens" python3 -c "
+    hiveMind:3117:  ROLE="$role" python3 << 'EOF'
+    hiveMind:3279:  picked=$(ROLE="$role" python3 << 'EOF'
+    hiveMind:7570:      if [ -f "$f" ] && [ -n "$(python3 -c "$hasNonZero" "$f" 2>/dev/null)" ]; then
+    hiveMind:7582:      | python3 -c "
+    hiveMind:7655:    obs=$(python3 -c "
+    hiveMind:7733:  out=$(DENOM_K="$denomK" python3 -c "
+    scrumMaster:616:private.scrumMaster.swipe.ctx() # <jsonl> <denomK> # echo "used|pct|denomK" | "lag" | "" — the ONLY python3 (JSON-parse + token-sum helper). Bash re-val
+    scrumMaster:620:  python3 -c '
+    scrumMaster:748:scrumMaster.swipe() # <?session> # PURE-BASH hiveMind-free team monitor (the Python pulse it replaced was removed 2026-10-28, TRON): HONEST REAL-TIME team
+    scrumMaster:1559:  if command -v python3 >/dev/null 2>&1; then
+    scrumMaster:1560:    token=$(echo "$raw_creds" | python3 -c "import sys,json; print(json.load(sys.stdin)['claudeAiOauth']['accessToken'])" 2>/dev/null)
+    scrumMaster:1561:    expires_at=$(echo "$raw_creds" | python3 -c "import sys,json; print(json.load(sys.stdin)['claudeAiOauth'].get('expiresAt',''))" 2>/dev/null)
+    scrumMaster:1566:    error.log "Neither python3 nor jq available for JSON parsing"
+    scrumMaster:1576:  if [ -n "$expires_at" ] && command -v python3 >/dev/null 2>&1; then
+    scrumMaster:1578:    expired=$(python3 -c "import time; print('yes' if time.time() > ${expires_at}/1000 else 'no')" 2>/dev/null)
+    scrumMaster:1605:  if command -v python3 >/dev/null 2>&1; then
+    scrumMaster:1606:    parsed=$(echo "$json" | python3 -c "
+    scrumMaster:1640:    error.log "Neither python3 nor jq available for JSON parsing"
+    scrumMaster:2217:  python3 -c "
+    scrumMaster:2419:    remain_min=$(python3 -c "
+    test/test.osemvec:40:if echo "$MCP" | python3 -m json.tool >/dev/null 2>&1 && echo "$MCP" | grep -q '/venv/py'; then
+    test/test.osemvec:53:if echo "$SET" | python3 -m json.tool >/dev/null 2>&1 \
+    test/test.osemvec:105:if python3 -m json.tool "$PROJ/.claude/settings.json" >/dev/null 2>&1 \
+    test/test.static-defined-functions:152:  python3 -c "
+35 in 5 files
+  ✗ FAIL: RED: 35 python call line(s) in 5 file(s) — burn-down list above
+===== N2 — exemptions are REAL (a missing exempt file means the scope silently shrank) =====
+missing=none restore=present
+  ✓ PASS: exempt set present; restore/ present
+===== N3 — osemvec guard: every interpreter resolves under OPY_VENVS, no bare python call =====
+bare=0 venvPython-under-OPY_VENVS=1
+  ✓ PASS: osemvec complies (opy-managed interpreter only)
+===== N4 — test.osemvec is NOT exempt (its json.tool checks must be ported) =====
+3
+  ✗ FAIL: RED: test.osemvec still has 3 python line(s) (ruling: port json.tool -> awk structural check)
+==================================================================
+  T-NO-PYTHON  PASS=4 FAIL=2   (RED until the burn-down reaches 0)
+==================================================================
+  Passed:      4
+  Failed:      2
+  ✗ SOME TESTS FAILED
+
+-- T22 inversion differential (test.scrumMaster.measure):
+deployed (old T22):  Passed: 49  Failed: 1   fails:   ✗ FAIL: T20: no subscription metrics file found 
+branch   (new T22):  Passed: 48  Failed: 2   fails:   ✗ FAIL: T20: no subscription metrics file found   ✗ FAIL: T22: auth still calls python (6 line(s)) — no-python law 
