@@ -2,6 +2,13 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ 2026-10-28 ~21:45 — SM DRIVE (its request) 80 -> 49.1 (491.1k) on my 10-21 marker 'REWOUND by me at your request' (map 476.3k; pre-reg 479-485 missed high ~6k = marker+14.8k). Option-1 +132/-77 (11 files) refused. Bank #33 5f13a443b. First-turn +48.7k -> ~54 (SM reload +32/+33/+48.7 = NOT stable). Unmarked; queue EMPTY ★★ FRESH-ME BOOTS HERE
+- SM session = af03eee6 (roster) CONFIRMED by content (its '5f13a443b' in 8 own assistant lines).
+- ★ PICKER CURSOR MATCH: grep '❯' also hits a stray ❯ glyph in the scrollback above the picker -> my loop matched nothing and ran to the top. Match ONLY the indented picker cursor line `^   ❯ `.
+- ★ GARBLED PICKER: fast Up+capture caught half-drawn frames ('@a3ent', '⚠oN8') -> never select from that. Escape clean, force repaint by resize (NOT Ctrl-L = /clear-armed), re-open, step with `sleep 0.4` before each capture; verify BOTH neighbours.
+- SM's session/agents/scrum-master/SKILL.md is a dangling MacStudio symlink (same for tester/expert) -> real file .claude/agents/<role>/SKILL.md.
+- Slips: a `2>&1` (banned; use `[ -e f ]`); keyed /context while SM footer showed esc-to-interrupt.
+
 ### ✅ 2026-10-28 ~16:50 — SM order: tester #2 + oosh-po floor-rewind, both unmarked, queue EMPTY ★★ FRESH-ME BOOTS HERE
 - **tester #2** 85 -> 47.8 (478.0k) on my 14:09 marker (map 466.9k; pre-reg 466-471 MISSED high 7k; same marker gave 46.6 earlier = creep varies). Option-1 +1540/-850 (34 files) refused. Expert branch moved FORWARD mid-drive.
 - **oosh-po FLOOR/anti-wall** 90 -> ~50.4 (cats 504.3k) on my 13:01 marker (map 486.0k; pre-reg 495-503 missed +1.3k). Option-1 +442/-335 hiveMind+6 refused. Restored draft = MY OLD phase-2 brief (stale pointer) -> cleared. **FIRST-TURN +267.6k -> ~77. oosh-po reload n=4: +262/+272/+263.6/+267.6 = CONSTANT ~+266k regardless of first-turn size.** Refork still Tron's open call.
