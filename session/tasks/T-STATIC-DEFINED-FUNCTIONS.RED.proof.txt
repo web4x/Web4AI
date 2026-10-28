@@ -1,0 +1,80 @@
+### T-STATIC-DEFINED-FUNCTIONS on deployed 09e2cd71
+  ✓ PASS: instrument flags exactly the 3 real classes, 0 false positives
+  ✓ PASS: academyScript clean
+  ✓ PASS: backup clean
+  ✓ PASS: c2 clean
+  ✓ PASS: certificates clean
+  ✓ PASS: check clean
+  ✓ PASS: claudeCode clean
+  ✓ PASS: claudeFlow clean
+  ✗ FAIL: RED config: 2 undefined call(s): config.list.completion x2 (L182,186); 
+  ✓ PASS: context clean
+  ✓ PASS: demo clean
+  ✓ PASS: disk clean
+  ✓ PASS: headless clean
+  ✗ FAIL: RED hiveMind: 55 undefined call(s): private.ossh.config.complete.hosts x2 (L4010,4567); this.isPipeSafe x16 (L1929,3560,3860,4029,4905,4905,4993,4993,5017,5017,5048,5088,6135,7079,7270,7335); otmux.rewind.drive x1 (L2426); this.isSessionName x13 (L1410,2560,3536,3603,3856,4025,4901,4901,4997,6135,7079,7266,7335); this.isRoleName x7 (L1925,2495,2689,3027,3546,5084,6849); this.isUuid x1 (L3551); this.isPaneTarget x8 (L2405,2768,4989,4989,5013,5013,5044,6857); private.hiveMind.agent.queue.drain x1 (L9295); private.claudeCode.complete.panes x1 (L1597); this.isSshHost x5 (L2764,4070,4473,4585,6853); 
+  ✓ PASS: index clean
+  ✓ PASS: line clean
+  ✓ PASS: loop clean
+  ✓ PASS: map clean
+  ✓ PASS: myId clean
+  ✓ PASS: myScript clean
+  ✓ PASS: mycmd clean
+  ✓ PASS: odocker clean
+  ✗ FAIL: RED oo: 1 undefined call(s): private.stage x1 (L1258); 
+  ✓ PASS: opy clean
+  ✓ PASS: os clean
+  ✗ FAIL: RED osemvec: 2 undefined call(s): this.isRoleName x1 (L337); this.isPaneTarget x1 (L418); 
+  ✓ PASS: ossh clean
+  ✓ PASS: osx clean
+  ✓ PASS: otest clean
+  ✗ FAIL: RED otmux: 6 undefined call(s): otmux.show x1 (L3403); otmux.bind x1 (L3430); otmux.unbind x1 (L3435); otmux.buffers x1 (L3203); otmux.set x1 (L3388); otmux.keys x1 (L3440); 
+  ✓ PASS: parameterTestScript clean
+  ✓ PASS: path clean
+  ✓ PASS: replace clean
+  ✓ PASS: scrumMaster clean
+  ✓ PASS: share clean
+  ✓ PASS: snet clean
+  ✗ FAIL: RED state: 3 undefined call(s): state.declaration x3 (L361,668,753); 
+  ✓ PASS: status clean
+  ✓ PASS: test.suite clean
+  ✓ PASS: this clean
+  ✗ FAIL: RED tronMonitor: 1 undefined call(s): this.isSessionName x1 (L594); 
+  ✓ PASS: tt clean
+  ✓ PASS: user clean
+  ✓ PASS: webitem clean
+  T-STATIC-DEFINED-FUNCTIONS  PASS=37 FAIL=7   undefined-calls=70
+
+### FALSIFIER (same scanner code): b745e766^ vs b745e766 — claudeCode / hiveMind / otmux
+=== pre @ f97b0e3e ===
+      5 hiveMind|this.isSshHost
+      2 hiveMind|private.ossh.config.complete.hosts
+      1 otmux|otmux.unbind
+      1 otmux|otmux.show
+      1 otmux|otmux.set
+      1 otmux|otmux.keys
+      1 otmux|otmux.buffers
+      1 otmux|otmux.bind
+      1 hiveMind|private.hiveMind.agent.queue.drain
+      1 hiveMind|private.claudeCode.complete.panes
+      1 hiveMind|otmux.rewind.drive
+=== bloat @ b745e766 ===
+     16 hiveMind|this.isPipeSafe
+     13 hiveMind|this.isSessionName
+      8 hiveMind|this.isPaneTarget
+      7 hiveMind|this.isRoleName
+      5 hiveMind|this.isSshHost
+      4 claudeCode|this.isPaneTarget
+      2 hiveMind|private.ossh.config.complete.hosts
+      2 claudeCode|this.isUuid
+      1 otmux|otmux.unbind
+      1 otmux|otmux.show
+      1 otmux|otmux.set
+      1 otmux|otmux.keys
+      1 otmux|otmux.buffers
+      1 otmux|otmux.bind
+      1 hiveMind|this.isUuid
+      1 hiveMind|private.hiveMind.agent.queue.drain
+      1 hiveMind|private.claudeCode.complete.panes
+      1 hiveMind|otmux.rewind.drive
+      1 claudeCode|this.isRoleName
