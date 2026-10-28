@@ -1,0 +1,71 @@
+# T-STATIC-DEFINED-FUNCTIONS raw per-call-site output — oosh 4a454162 (scripts identical to 8d9906b8). Format: script|undefined-name|line|source
+config|config.list.completion|182|config.list.completion "$@"
+config|config.list.completion|186|config.list.completion "$@"
+hiveMind|this.isSessionName|1410|if ! this.isSessionName "$session"; then error.log "team.host.set: invalid session '$session'"; return 1; fi
+hiveMind|private.claudeCode.complete.panes|1597|private.claudeCode.complete.panes 2>/dev/null
+hiveMind|this.isRoleName|1925|if ! this.isRoleName "$agent_id"; then
+hiveMind|this.isPipeSafe|1929|if ! this.isPipeSafe "$agent_id"; then
+hiveMind|this.isPaneTarget|2405|if [ "$resolveRc" -ne 0 ] || [ -z "$pane" ] || ! this.isPaneTarget "$pane"; then
+hiveMind|otmux.rewind.drive|2426|otmux.rewind.drive "$pane" "$option"
+hiveMind|this.isRoleName|2495|if ! this.isRoleName "$role"; then
+hiveMind|this.isSessionName|2560|if ! this.isSessionName "$session"; then
+hiveMind|this.isRoleName|2689|if ! this.isRoleName "$name"; then
+hiveMind|this.isSshHost|2764|if ! this.isSshHost "$sshHost"; then
+hiveMind|this.isPaneTarget|2768|if ! this.isPaneTarget "$pane"; then
+hiveMind|this.isRoleName|3027|if ! this.isRoleName "$role"; then
+hiveMind|this.isSessionName|3536|if ! this.isSessionName "$sess"; then
+hiveMind|this.isRoleName|3546|if [ -n "$role" ] && ! this.isRoleName "$role"; then
+hiveMind|this.isUuid|3551|if [ -n "$uuid" ] && ! this.isUuid "$uuid"; then
+hiveMind|this.isPipeSafe|3560|if [ -n "$val" ] && ! this.isPipeSafe "$val"; then
+hiveMind|this.isSessionName|3603|elif this.isSessionName "$arg" 2>/dev/null; then
+hiveMind|this.isSessionName|3856|if ! this.isSessionName "$session"; then
+hiveMind|this.isPipeSafe|3860|if ! this.isPipeSafe "$session"; then
+hiveMind|private.ossh.config.complete.hosts|4010|command -v ossh >/dev/null 2>&1 && private.ossh.config.complete.hosts 2>/dev/null
+hiveMind|this.isSessionName|4025|if ! this.isSessionName "$session"; then
+hiveMind|this.isPipeSafe|4029|if ! this.isPipeSafe "$session"; then
+hiveMind|this.isSshHost|4070|if ! this.isSshHost "$host"; then
+hiveMind|this.isSshHost|4473|if ! this.isSshHost "$host"; then
+hiveMind|private.ossh.config.complete.hosts|4567|command -v ossh >/dev/null 2>&1 && private.ossh.config.complete.hosts 2>/dev/null
+hiveMind|this.isSshHost|4585|if ! this.isSshHost "$host"; then
+hiveMind|this.isSessionName|4901|if ! this.isSessionName "$old" || ! this.isSessionName "$new"; then
+hiveMind|this.isSessionName|4901|if ! this.isSessionName "$old" || ! this.isSessionName "$new"; then
+hiveMind|this.isPipeSafe|4905|if ! this.isPipeSafe "$old" || ! this.isPipeSafe "$new"; then
+hiveMind|this.isPipeSafe|4905|if ! this.isPipeSafe "$old" || ! this.isPipeSafe "$new"; then
+hiveMind|this.isPaneTarget|4989|if ! this.isPaneTarget "$checkA" || ! this.isPaneTarget "$checkB"; then
+hiveMind|this.isPaneTarget|4989|if ! this.isPaneTarget "$checkA" || ! this.isPaneTarget "$checkB"; then
+hiveMind|this.isPipeSafe|4993|if ! this.isPipeSafe "$a" || ! this.isPipeSafe "$b"; then
+hiveMind|this.isPipeSafe|4993|if ! this.isPipeSafe "$a" || ! this.isPipeSafe "$b"; then
+hiveMind|this.isSessionName|4997|if [ -n "$session" ] && ! this.isSessionName "$session"; then
+hiveMind|this.isPaneTarget|5013|if ! this.isPaneTarget "$from" || ! this.isPaneTarget "$to"; then
+hiveMind|this.isPaneTarget|5013|if ! this.isPaneTarget "$from" || ! this.isPaneTarget "$to"; then
+hiveMind|this.isPipeSafe|5017|if ! this.isPipeSafe "$from" || ! this.isPipeSafe "$to"; then
+hiveMind|this.isPipeSafe|5017|if ! this.isPipeSafe "$from" || ! this.isPipeSafe "$to"; then
+hiveMind|this.isPaneTarget|5044|if ! this.isPaneTarget "$target"; then
+hiveMind|this.isPipeSafe|5048|if ! this.isPipeSafe "$target"; then
+hiveMind|this.isRoleName|5084|if ! this.isRoleName "$newName"; then
+hiveMind|this.isPipeSafe|5088|if ! this.isPipeSafe "$newName"; then
+hiveMind|this.isSessionName|6135|if ! this.isSessionName "$session" || ! this.isPipeSafe "$session"; then
+hiveMind|this.isPipeSafe|6135|if ! this.isSessionName "$session" || ! this.isPipeSafe "$session"; then
+hiveMind|this.isRoleName|6849|if ! this.isRoleName "$role"; then
+hiveMind|this.isSshHost|6853|if ! this.isSshHost "$host"; then
+hiveMind|this.isPaneTarget|6857|if [ -n "$remotePane" ] && ! this.isPaneTarget "$remotePane"; then
+hiveMind|this.isSessionName|7079|if ! this.isSessionName "$session" || ! this.isPipeSafe "$session"; then
+hiveMind|this.isPipeSafe|7079|if ! this.isSessionName "$session" || ! this.isPipeSafe "$session"; then
+hiveMind|this.isSessionName|7266|if ! this.isSessionName "$session"; then
+hiveMind|this.isPipeSafe|7270|if ! this.isPipeSafe "$session"; then
+hiveMind|this.isSessionName|7335|if ! this.isSessionName "$session" || ! this.isPipeSafe "$session"; then
+hiveMind|this.isPipeSafe|7335|if ! this.isSessionName "$session" || ! this.isPipeSafe "$session"; then
+hiveMind|private.hiveMind.agent.queue.drain|9295|private.hiveMind.agent.queue.drain "$target" 2>/dev/null
+oo|private.stage|1258|private.stage status
+osemvec|this.isRoleName|337|if ! this.isRoleName "$role"; then
+osemvec|this.isPaneTarget|418|if ! this.isPaneTarget "$pane"; then
+otmux|otmux.buffers|3203|otmux.buffers "$@"
+otmux|otmux.set|3388|otmux.set "$@"
+otmux|otmux.show|3403|otmux.show "$@"
+otmux|otmux.bind|3430|otmux.bind "$@"
+otmux|otmux.unbind|3435|otmux.unbind "$@"
+otmux|otmux.keys|3440|otmux.keys "$@"
+state|state.declaration|361|state.declaration
+state|state.declaration|668|state.declaration
+state|state.declaration|753|state.declaration
+tronMonitor|this.isSessionName|594|this.isSessionName "$team" || { error.log "tronMonitor.fit: invalid session name '$team'"; return 1; }

@@ -1,0 +1,28 @@
+=== DEPLOYED @ 8d9906b8  hiveMind=/root/oosh/hiveMind ===
+  T-HIVEMIND-VALIDATORS  PASS=7 FAIL=14
+     ✗ FAIL: RED: rc=1, dst='' src='fxnk-alpha' (want row moved): /root/oosh/hiveMind: line 5013: this.isPaneTarget: command not found
+     ✗ FAIL: RED: rc=1, 0.0='fxnk-alpha' 0.1='fxnk-beta' (want beta/alpha): /root/oosh/hiveMind: line 4989: this.isPaneTarget: command not found
+     ✗ FAIL: RED: rc=1, new='' old='fxnk-alpha' (want rekeyed): /root/oosh/hiveMind: line 4901: this.isSessionName: command not found
+     ✗ FAIL: RED: agent.rename fxnk-nobody fxnk-newname rejected valid input: /root/oosh/hiveMind: line 5084: this.isRoleName: command not found
+     ✗ FAIL: RED: team.switch fxhv_ghost rejected valid input: /root/oosh/hiveMind: line 7335: this.isSessionName: command not found
+     ✗ FAIL: RED: delegate fxnk-nobody rejected valid input: /root/oosh/hiveMind: line 2689: this.isRoleName: command not found
+     ✗ FAIL: RED: registry.remove fxhv_ghost:0.0 rejected valid input: /root/oosh/hiveMind: line 5044: this.isPaneTarget: command not found
+     ✗ FAIL: RED: after a real swap registry still 0.0='fxnk-alpha' 0.1='fxnk-beta' (observer rejected behind 2>/dev/null)
+     ✗ FAIL: RED: rows did not follow the swap (observer rejected) — untouched check would be vacuous
+     ✗ FAIL: RED: registry did NOT change (observer rejected/dispatched nothing) — destination check would be vacuous
+     ✗ FAIL: RED: registry did NOT change (observer rejected) — untouched check would be vacuous
+     ✗ FAIL: RED: rename did not land in the registry (row='fxnk-renamee') — injection check would be vacuous: /root/oosh/hiveMind: line 5084: this.isRoleName: command not
+     ✗ FAIL: RED: after a real rename new='' old='fxnk-alpha'
+     ✗ FAIL: RED: 16x command not found:       9 this.isPaneTarget: command not found       3 this.isRoleName: command not found       4 this.isSessionName: command not foun
+=== CTRL-e48ba430(validators,typing) @ e48ba430  hiveMind=/tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/hv-e48ba430/hiveMind ===
+  T-HIVEMIND-VALIDATORS  PASS=17 FAIL=4
+     ✗ FAIL: DESTINATION TOUCHED: typed HIVEMIND_ROLE A=1 B=1
+     ✗ FAIL: DESTINATION TOUCHED: 2 HIVEMIND_ROLE line(s) typed into fxhv_live:0.1
+     ✗ FAIL: DESTINATION TOUCHED: typed 0.0=2 0.1=3
+     ✗ FAIL: INJECTED: 4 'export HIVEMIND_ROLE' line(s) typed into fxhv_live:0.1
+=== CTRL-e5542adb(move/swap fixed,rename types) @ e5542adb  hiveMind=/tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/hv-e5542adb/hiveMind ===
+  T-HIVEMIND-VALIDATORS  PASS=20 FAIL=1
+     ✗ FAIL: INJECTED: 1 'export HIVEMIND_ROLE' line(s) typed into fxhv_live:0.1
+=== FIX-e2e8c67e @ e2e8c67e  hiveMind=/tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/hv-e2e8c67e/hiveMind ===
+  T-HIVEMIND-VALIDATORS  PASS=21 FAIL=0
+live roles.env sha: 66661d28d5f0   fxhv orphans: 0
