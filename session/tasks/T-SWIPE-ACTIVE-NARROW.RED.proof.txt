@@ -1,0 +1,73 @@
+### T-SWIPE-ACTIVE-NARROW (oosh 1088e0f3) — DEPLOYED a21b4d1b
+  ✗ FAIL: RED: swipe.classify 10a = 'IDLE', want ACTIVE
+  ✗ FAIL: RED: swipe.classify 10b = 'IDLE', want ACTIVE
+  ✗ FAIL: RED: swipe.classify 10c = 'IDLE', want ACTIVE
+  ✓ PASS: swipe.classify 11a = IDLE
+  ✓ PASS: swipe.classify 11b = IDLE
+  ✓ PASS: swipe.classify 11c1 = IDLE
+  ✓ PASS: swipe.classify 11c2 = IDLE
+  ✓ PASS: swipe.classify 12w = ACTIVE
+  ✗ FAIL: RED: swipe.classify 12n = 'IDLE', want ACTIVE
+  ✓ PASS: swipe.classify 13a = IDLE
+  ✓ PASS: chrome rendered exactly
+  ✗ FAIL: RED: swipe 10a = 'IDLE', want ACTIVE
+  ✗ FAIL: RED: pulse 10a = 'IDLE', want ACTIVE
+  ✗ FAIL: RED: swipe 10b = 'IDLE', want ACTIVE
+  ✗ FAIL: RED: pulse 10b = 'IDLE', want ACTIVE
+  ✗ FAIL: RED: swipe 10c = 'IDLE', want ACTIVE
+  ✗ FAIL: RED: pulse 10c = 'IDLE', want ACTIVE
+  ✓ PASS: swipe 11a = IDLE
+  ✓ PASS: pulse 11a = IDLE
+  ✓ PASS: swipe 11b = IDLE
+  ✓ PASS: pulse 11b = IDLE
+  ✓ PASS: swipe 11c1 = IDLE
+  ✓ PASS: pulse 11c1 = IDLE
+  ✓ PASS: swipe 11c2 = IDLE
+  ✓ PASS: pulse 11c2 = IDLE
+  ✓ PASS: swipe 12w = ACTIVE
+  ✓ PASS: pulse 12w = ACTIVE
+  ✗ FAIL: RED: swipe 12n = 'IDLE', want ACTIVE
+  ✗ FAIL: RED: pulse 12n = 'IDLE', want ACTIVE
+  ✓ PASS: swipe 13a = IDLE
+  ✓ PASS: pulse 13a = IDLE
+  ✗ FAIL: RED: swipe wide='ACTIVE' narrow='IDLE' (width-dependent)
+  ✗ FAIL: RED: pulse wide='ACTIVE' narrow='IDLE' (width-dependent)
+  ✓ PASS: copies agree on NBSP (IDLE)
+  T-SWIPE-ACTIVE-NARROW  PASS=20 FAIL=14
+
+### BRANCH 97ddf13f (preview — PO cherry-picks on this green, then deployed re-gate)
+  ✓ PASS: swipe.classify 10a = ACTIVE
+  ✓ PASS: swipe.classify 10b = ACTIVE
+  ✓ PASS: swipe.classify 10c = ACTIVE
+  ✓ PASS: swipe.classify 11a = IDLE
+  ✓ PASS: swipe.classify 11b = IDLE
+  ✓ PASS: swipe.classify 11c1 = IDLE
+  ✓ PASS: swipe.classify 11c2 = IDLE
+  ✓ PASS: swipe.classify 12w = ACTIVE
+  ✓ PASS: swipe.classify 12n = ACTIVE
+  ✓ PASS: swipe.classify 13a = IDLE
+  ✓ PASS: chrome rendered exactly
+  ✓ PASS: swipe 10a = ACTIVE
+  ✓ PASS: pulse 10a = ACTIVE
+  ✓ PASS: swipe 10b = ACTIVE
+  ✓ PASS: pulse 10b = ACTIVE
+  ✓ PASS: swipe 10c = ACTIVE
+  ✓ PASS: pulse 10c = ACTIVE
+  ✓ PASS: swipe 11a = IDLE
+  ✓ PASS: pulse 11a = IDLE
+  ✓ PASS: swipe 11b = IDLE
+  ✓ PASS: pulse 11b = IDLE
+  ✓ PASS: swipe 11c1 = IDLE
+  ✓ PASS: pulse 11c1 = IDLE
+  ✓ PASS: swipe 11c2 = IDLE
+  ✓ PASS: pulse 11c2 = IDLE
+  ✓ PASS: swipe 12w = ACTIVE
+  ✓ PASS: pulse 12w = ACTIVE
+  ✓ PASS: swipe 12n = ACTIVE
+  ✓ PASS: pulse 12n = ACTIVE
+  ✓ PASS: swipe 13a = IDLE
+  ✓ PASS: pulse 13a = IDLE
+  ✓ PASS: swipe width-independent (ACTIVE)
+  ✓ PASS: pulse width-independent (ACTIVE)
+  ✓ PASS: copies agree on NBSP (IDLE)
+  T-SWIPE-ACTIVE-NARROW  PASS=34 FAIL=0
