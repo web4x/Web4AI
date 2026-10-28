@@ -1,0 +1,36 @@
+# STEP 3 row diff — live /root/config/hivemind.roles.env sha=66661d28d5f00343 — 2026-10-28 12:51:25
+PANE                   REGISTRY_ROLE          KIND   LIVE_TITLE_ROLE        PROPOSED
+Temple:0.0             ARON                   -      <no such pane>         DROP (pane gone)
+baseTeam:0.0           agent-trainer          agent  scrum-master           RELABEL agent-trainer -> scrum-master
+ooshTeam:0.0           oosh-po                agent  oosh-po                OK
+ooshTeam:0.1           scrum-master           agent  oosh-architect         RELABEL scrum-master -> oosh-architect
+ooshTeam:0.2           oosh-architect         agent  oosh-expert            RELABEL oosh-architect -> oosh-expert
+ooshTeam:0.3           oosh-expert            agent  oosh-tester            RELABEL oosh-expert -> oosh-tester
+ooshTeam:0.4           oosh-tester            shell  <none>                 DROP (pane is a SHELL — C5b hazard row)
+ooshTeam:0.5           oosh-tester-shell      shell  <none>                 DROP (pane is a SHELL — C5b hazard row)
+robbinTeam2:0.7        v60211.1blu.de         -      <no such pane>         DROP (pane gone)
+diamonds:0.1           oosh-expert            -      <no such pane>         DROP (pane gone)
+oopTeam:0.0            oopExpert              agent  oopExpert              OK
+oopTeam:1.0            oopBashExpert          agent  oopBashExpert          OK
+oopTeam:2.0            oopPO                  agent  oopPO                  OK
+oopTeam:3.0            oopTester              agent  oopTester              OK
+robbinTeam2:0.0        robbin-po              -      <no such pane>         DROP (pane gone)
+robbinTeam2:0.1        robbin-expert          -      <no such pane>         DROP (pane gone)
+robbinTeam2:0.2        robbin-skill-expert    -      <no such pane>         DROP (pane gone)
+robbinTeam2:0.3        robbin-architect       -      <no such pane>         DROP (pane gone)
+robbinTeam2:0.4        robbin-req             -      <no such pane>         DROP (pane gone)
+robbinTeam2:0.5        robbin-tester          -      <no such pane>         DROP (pane gone)
+robbinTeam2:0.6        robbin-planner         -      <no such pane>         DROP (pane gone)
+# live Claude panes with a role@host title but NO row:
+baseTeam:1.0           <no row>               agent  agent-trainer          ADD agent-trainer
+# live file untouched by this proposal (66661d28d5f00343)
+#
+# oosh-expert notes (2026-10-28) — PROPOSAL ONLY, nothing written to the live file.
+# - Instrument: scratchpad/step3-rowdiff.sh (read-only). Role = live pane title via the Rule-3 role@host parse;
+#   KIND = Claude process in the pane subtree (claudeCode process.find).
+# - OURS, ready on your approval: 4x RELABEL (ooshTeam 0.1/0.2/0.3, baseTeam:0.0), 1x ADD (baseTeam:1.0),
+#   2x DROP of shell rows ooshTeam:0.4/0.5 (the live C5b hazard: 'oosh-tester' -> a bare shell).
+# - OTHER TEAMS, needs their POs: DROP robbinTeam2:0.0-0.7 (8 rows; session absent on this host — stopped or
+#   moved?), Temple:0.0 (ARON), diamonds:0.1. Recommend: leave until those owners confirm.
+# - Write plan once approved: per-row via private.hiveMind.registry.set / a single-row delete (grep -v ^<pane>|),
+#   re-read the file + this diff after EACH row; no bulk rewrite. Re-run this diff at write time (panes may move again).
