@@ -2,8 +2,9 @@
 
 ## ⏩ POINTER 2026-10-28 ~13:xx (rewind @81, Phase-1) — READ THIS, then the UPDATE blocks below, then MEASURE
 DEPLOYED today on /root/oosh test/mcdonges.latest (all cherry-pick-only, gated): hiveMind step1 cd904ccb..74fa844d (tester 21/0 deployed) · Rules 1+3 73be7983/a21b4d1b (my field gate PASS labels==titles both teams).
+✅ 10-28 post-rewind: RULES 1+3 DEPLOYED GATE = PASS (tester d947fa905: 48/3 on a21b4d1b, was 18/33, delta otmux+scrumMaster only; C8 prefix 4/4; swipe-parity 4/0; static clean; roles.env sha unchanged). I verified a21b4d1b = deployed tip + proof exists. HOLD: 97ddf13f until tester's Rule-4 gate (in progress); e94ed866 ships WITH drain.
 AWAITING (none needs this conversation):
-1. tester 0.3: AUTHORITATIVE deployed T-SWIPE-ROLE-LIVE (expect 48/3, only Rule-2 5a/5b/6) + swipe-parity regression + C8 prefix (my msgs should stamp [@oosh-po]); then gate Rules-branch tip = e94ed866 (otmux.pane.role) + 97ddf13f (Rule 4 narrow-pane ACTIVE) -> I cherry-pick those 2.
+1. [DONE above] tester 0.3: AUTHORITATIVE deployed T-SWIPE-ROLE-LIVE (expect 48/3, only Rule-2 5a/5b/6) + swipe-parity regression + C8 prefix (my msgs should stamp [@oosh-po]); then gate Rules-branch tip = e94ed866 (otmux.pane.role) + 97ddf13f (Rule 4 narrow-pane ACTIVE) -> I cherry-pick those 2.
 2. expert 0.2: STEP 2 sandboxed real-move arms (assert BOTH live roles.env sha unchanged AND sandbox rows changed); then STEP 3 per-row live reconcile - row diff to ME before writing. Live roles.env still the stale morning layout (expected).
 3. TRON: sanction to PARK /root/config/hivemind.queue (276 entries/16 files, other teams' too) before the drain deploy. My rec: I park (move+manifest), tell robbin-po/oopPO/ARON first.
 4. DRAIN (deploy-held): cherry-pick de4dd093+86341c2f ONLY after Rules tip shipped (needs pane.role) + drain RED->green incl rc!=0-stays-at-head + park sanction. Announce: send to busy/shell = rc1 refused.
