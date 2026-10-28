@@ -1,5 +1,14 @@
 # oosh-po Context
 
+## ⏩ POINTER 2026-10-28 ~13:xx (rewind @81, Phase-1) — READ THIS, then the UPDATE blocks below, then MEASURE
+DEPLOYED today on /root/oosh test/mcdonges.latest (all cherry-pick-only, gated): hiveMind step1 cd904ccb..74fa844d (tester 21/0 deployed) · Rules 1+3 73be7983/a21b4d1b (my field gate PASS labels==titles both teams).
+AWAITING (none needs this conversation):
+1. tester 0.3: AUTHORITATIVE deployed T-SWIPE-ROLE-LIVE (expect 48/3, only Rule-2 5a/5b/6) + swipe-parity regression + C8 prefix (my msgs should stamp [@oosh-po]); then gate Rules-branch tip = e94ed866 (otmux.pane.role) + 97ddf13f (Rule 4 narrow-pane ACTIVE) -> I cherry-pick those 2.
+2. expert 0.2: STEP 2 sandboxed real-move arms (assert BOTH live roles.env sha unchanged AND sandbox rows changed); then STEP 3 per-row live reconcile - row diff to ME before writing. Live roles.env still the stale morning layout (expected).
+3. TRON: sanction to PARK /root/config/hivemind.queue (276 entries/16 files, other teams' too) before the drain deploy. My rec: I park (move+manifest), tell robbin-po/oopPO/ARON first.
+4. DRAIN (deploy-held): cherry-pick de4dd093+86341c2f ONLY after Rules tip shipped (needs pane.role) + drain RED->green incl rc!=0-stays-at-head + park sanction. Announce: send to busy/shell = rc1 refused.
+Address agents by PANE (layout: ooshTeam 0.1 arch 0.2 exp 0.3 tester; baseTeam 0.0 SM 1.0 trainer). Law v2 commits.
+
 ## ✅ UPDATE 2026-10-28 post-rewind (dispatcher, ~50%)
 - **hiveMind STEP 1 DEPLOYED + GATED GREEN**: cherry-picked ONLY 4 hiveMind commits (cd904ccb validators / 143df440 observer no-typing / d166578a rename no-typing / 74fa844d delete dead pushRoleEnv) -> test/mcdonges.latest 4a454162..74fa844d. Tester deployed 21/0 vs RED 7/14 (differential, proof 60ee341d9); static gate hiveMind 55->5, fleet 70->20. Rules 1+3 (otmux/scrumMaster) NOT shipped - validators branch was cut off stale-role-labels, cherry-pick only. NEXT: expert STEP 2 = registry follows a REAL move (field half) -> step 3 reconcile -> step 4 Rule 2 -> step 5 observer rc.
 - **DRAIN BUG** (architect triage A, verified hiveMind:9295 calls undefined private drain): guard spec APPROVED 3d49723bb (v2 entries w/ recipient-role, deliver only role==live title + TTL, else HOLD, never delete, dequeue only rc0). DEPLOY HELD on backlog PARK (276 entries/16 files in /root/config/hivemind.queue, other teams' too) = ASKED TRON to sanction (outside agent allow-roots). My premise was wrong: public drain DELETES >1h, no months-old replay.
