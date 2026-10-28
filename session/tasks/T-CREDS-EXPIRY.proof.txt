@@ -1,0 +1,63 @@
+readlink /root/oosh: /var/dev/EAMD.ucp/Components/com/ceruleanCircle/EAM/1_infrastructure/Once.sh/mcdonges.latest
+################ /root/oosh
+=== tree: /root/oosh @ 382e8500 clean
+  PASS INSTRUMENT python3 absent from the no-python PATH
+
+--- E2 spec-table parity: creds.expired vs the OLD python expression (recorded now, from python) ---
+  FAIL E2 private.scrumMaster.creds.expired NOT DEFINED in this tree (expiry still inline python)
+
+--- E3 FIX: jq present, python3 ABSENT, EXPIRED token -> auth must REFUSE ---
+  rc=0 stdout-has-token=1 expiry-msg=n
+  FAIL E3 EXPIRED token HANDED OUT without python3 (rc=0) — expiry check skipped
+
+--- E3b anchor: python3 PRESENT, expired -> refused ---
+  PASS E3b expired refused with python3 (rc=1)
+
+--- E4 valid token (exp = now+1h), python3 ABSENT -> token returned ---
+  PASS E4 valid token returned without python3
+
+--- E5 expiresAt = null (python printed None) -> NOT expired (old behaviour kept) ---
+  PASS E5 null expiry -> token returned (no invented expiry)
+  PASS HOST-SAFE no apt/dpkg change
+
+=== T-CREDS-EXPIRY: PASS=5 FAIL=2 ===
+################ /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/s1-cand
+=== tree: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/s1-cand @ 6b4e552e + local: scrumMaster 
+  PASS INSTRUMENT python3 absent from the no-python PATH
+
+--- E2 spec-table parity: creds.expired vs the OLD python expression (recorded now, from python) ---
+  PASS E2 16/16 rows == old python verdict (ints, sci-notation, decimals, boundary-equal, huge, inf, None/garbage)
+
+--- E3 FIX: jq present, python3 ABSENT, EXPIRED token -> auth must REFUSE ---
+  rc=1 stdout-has-token=0 expiry-msg=n
+  PASS E3 expired token REFUSED without python3 (rc=1, token not handed out)
+
+--- E3b anchor: python3 PRESENT, expired -> refused ---
+  PASS E3b expired refused with python3 (rc=1)
+
+--- E4 valid token (exp = now+1h), python3 ABSENT -> token returned ---
+  PASS E4 valid token returned without python3
+
+--- E5 expiresAt = null (python printed None) -> NOT expired (old behaviour kept) ---
+  PASS E5 null expiry -> token returned (no invented expiry)
+  PASS HOST-SAFE no apt/dpkg change
+
+=== T-CREDS-EXPIRY: PASS=7 FAIL=0 ===
+
+################ E1 test.no-python burn-down (same test file on both)
+== np: scanned 202 tracked text files; python call lines = 35 in 5 file(s)
+         14 scrumMaster
+         11 claudeCode
+          6 hiveMind
+          3 test/test.osemvec
+          1 test/test.static-defined-functions
+== s1-cand: scanned 202 tracked text files; python call lines = 37 in 6 file(s)
+         12 scrumMaster
+         11 claudeCode
+          6 hiveMind
+          4 test/test.scrumMaster.measure
+          3 test/test.osemvec
+          1 test/test.static-defined-functions
+--- removed scrumMaster sites (deployed-only lines):
+<   if [ -n "$expires_at" ] && command -v python3 >/dev/null 2>&1; then
+<     expired=$(python3 -c "import time; print('yes' if time.time() > ${expires_at}/1000 else 'no')" 2>/dev/null)
