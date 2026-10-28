@@ -1,6 +1,6 @@
 # DESIGN: remove every python call from OOSH (oosh-architect, 2026-10-28)
 
-**Law (Tron, standing):** not a single python dependency in OOSH, ever. Only exception: **opy**. **No jq** either (not a base dependency). Replacement = pure Bash + awk/sed/grep.
+**Law (Tron, standing):** not a single python dependency in OOSH, ever. Only exception: **opy**. **jq: KEPT for now (Tron 2026-10-28) — see "jq — RULED"; new code still awk/sed/grep.** Replacement = pure Bash + awk/sed/grep.
 **Scope:** DESIGN ONLY. The expert implements; the tester gates. **Measured:** live `/root/oosh` (mcdonges.latest), read-only.
 **Supersedes:** the 10-19 swipe doctrine "python3 as JSON-helper only" and "keep pulse as the parity oracle". Pulse's oracle role moves to **recorded golden files** (step 0).
 
@@ -55,7 +55,7 @@ Almost every call parses a Claude Code **session JSONL** (one compact JSON objec
 
 ## 3. Tests
 - **Step-0 gate `test.no-python`**: grep for `python3`, `python -`, `python -c`, `-m json.tool` across the OOSH scripts and tests (excluding opy, and whatever §4 rules exempt) == 0. RED today with the full site list; it is the burn-down instrument.
-- `test.scrumMaster.measure` **T22 asserts python3 + jq are PRESENT**. Invert it to assert ABSENT.
+- `test.scrumMaster.measure` **T22 asserts python3 + jq are PRESENT**. Invert it to assert python3 ABSENT (jq stays allowed — see jq RULED).
 - `test.swipe-jsonl-lag`, `test.static-defined-functions:152`: replace the python oracle/helper with **committed static fixture + golden files**.
 - `test.pulse-jsonl-lag`: retire with pulse (its goldens move into the swipe test).
 - `test.osemvec` (`python3 -m json.tool` validity checks ×3): see §4. JSON *validity* can't be proven without a parser. Replace with a structural check (balanced braces + required keys present), or keep it inside the opy exception if osemvec is ruled to be there.
@@ -123,13 +123,36 @@ Almost every call parses a Claude Code **session JSONL** (one compact JSON objec
 - (a) a **spec table** of `(resetsAt, now) → expected`, hand-derived from the formulas above. Rows: future <1h, exactly 1h, 1h 05m, 23h 59m, 0 s, past, fractional-seconds+offset, naive, garbage. Run against the new helpers with `now` injected. Byte-exact.
 - (b) **one live cross-check per helper:** call old python and new bash back-to-back, capturing `date +%s` before and after. PASS if equal, or different only across a minute boundary that falls between the two reads. Record the evidence.
 
-## jq — HOLD for Tron (oosh-po asking)
-Line 3 says "no jq". The PO is confirming that with Tron. Whatever Tron rules, **deleting the jq FALLBACK branches (step 2) is right**: today each site tries python first and jq second, and once the awk primitive is primary those branches are unreachable. The ruling only changes whether jq could ever be the PRIMARY replacement. **My recommendation: no.** awk/sed/grep are base tools on every OOSH target (linux, macOS, termux, iSH); jq is not installed by default on most of them. Step 2 runs as written unless Tron rules otherwise.
+## jq — RULED (Tron, 2026-10-28): KEEP jq for now; the law is about python
+Line 3's "no jq" is **superseded**. Existing **primary jq sites stay**, out of this burn-down. **All NEW replacement code still uses awk/sed/grep, never new jq.**
+
+**Sites in this burn-down that mix jq and python (5 groups):** the python branch is replaced by the awk primitive. **The site ends with ONE parser path = the awk primitive.** That isn't a jq-removal campaign. Keeping two parsers at a site we're rewriting anyway means they can disagree, and the parity proof only covers one. Groups:
+- claudeCode:297-310 `list.json` (shrunk anyway)
+- claudeCode:1348-1351 `customTitle`. Note: **jq first, python second** today. On a host without jq it silently relied on python, so the awk path is what keeps it working there.
+- claudeCode:1366-1381 Method 2 (deleted anyway)
+- scrumMaster:1712-1716 creds
+- scrumMaster:1777-1790 usage API
+
+**Step 2 is renamed** "collapse each rewritten site to its single awk path". It runs together with that site's step, not as a standalone jq purge.
+
+**PRIMARY jq sites — KEPT, recorded as a possible LATER task (not scheduled):**
+| site | what it does | later-task difficulty |
+|---|---|---|
+| claudeCode:67-73 | list `.entries[].sessionId` from `sessions-index.json` | medium: nested array in a pretty-printed doc |
+| claudeCode:1400 | Method 3: first user-message content from the JSONL | medium-high: free-text content with escapes |
+| scrumMaster:1265-1269, 1414-1417, 1473 | read the subscription **cache file** (`session5h`, `weekly7d`, `reset5h/7d`, `timestamp`) | **low**: flat object OOSH writes itself → P2 directly |
+| scrumMaster:1284-1287, 1314-1318 | ccusage `blocks[0].*` incl. `models | join`, nested `burnRate`/`projection` | medium: array index + nested + join |
+| claudeFlow:374-379, 459-461 | `sessions-index.json` entries | medium |
+| claudeFlow:754-755 | `claude-flow … --format json` ids | medium |
+| **claudeFlow:1341-1347, 1356-1357, 1379-1396, 1422-1423** | **WRITE `settings.json`** (`del(.statusLine)`, set `.statusLine`) | **HIGH: JSON writes.** A correct in-place edit of arbitrary JSON without a parser is the unsafe case. If ever scheduled, these keep jq or get a dedicated design; never a regex rewrite |
+Cheapest later win: the scrumMaster cache-file reads, since OOSH owns that format.
+
+**Test impact:** T22 is inverted to assert **python3 ABSENT only**. jq is allowed and must not be asserted absent. `test.no-python` is unchanged.
 
 ## 6. Order — smallest risk first (each step = its own commit + its own parity proof)
 0. **Instruments:** `test.no-python` (RED), invert T22, record GOLDENS from every old python path on frozen fixtures. **Must happen before anything is removed**, or parity can't be proven.
 1. Pure arithmetic: scrumMaster:1728 expiry → `private.scrumMaster.creds.expired <ms> <?nowEpoch>` (§5b seam, spec-table parity).
-2. Delete all jq fallbacks (unreachable once awk is primary; see the jq HOLD note — runs unless Tron rules otherwise).
+2. Collapse each rewritten mixed site to its single awk path — done WITH that site's step, not as a jq purge (see jq RULED).
 3. **P1** + its own fixture suite (escaped-in-content, ephemeral keys, zero stubs, both spacings, multi-usage lines). Then swap consumers: swipe.ctx → hiveMind 7484/7569/7647/7496 → claudeCode 1674/1743. The hiveMind ones now **call** `claudeCode jsonl.usage`, which removes four duplicate copies.
 4. **P3** → scrumMaster 2367 `resets.in` + 2569 `remain.min` (extracted), both with the §5b now-seam + spec-table parity → claudeCode 2017/2108 velocity (P1 + P3).
 5. **P2** → claudeCode:1351 custom-title → scrumMaster creds (security, sha256-compared) → usage API (fail-closed parents).
