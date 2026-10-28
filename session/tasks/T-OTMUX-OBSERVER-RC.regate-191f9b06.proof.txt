@@ -1,0 +1,145 @@
+################ obs-ctl ()
+=== tree: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/obs-ctl @ cd1b0c80 clean
+    otmux sha256: 5865b2f89b15
+
+--- RENAME + failing observer ---
+  rc=3 warn=[none]
+  stdout=[hm-stdout-marker ]
+  observer call=[protected.session.renamed obsfx_a obsfx_a2]
+  PASS R0 observer invoked with verb+old+new (non-vacuous)
+  PASS R0b rename LANDED (effect)
+  PASS R1 rc passthrough = observer rc 3
+  FAIL R2 failure SILENT or incomplete (warn=[none])
+  FAIL R3 (no warn, or line2 leaked)
+  PASS R5 observer stdout NOT swallowed (reaches caller stdout)
+  FAIL R7 WARN location: stderr=n stdout=n (want stderr only)
+
+--- RENAME + healthy observer ---
+  rc=0 warn=[none]
+  PASS R4 healthy observer: rc0, NO warn, observer fired
+
+--- RENAME + hiveMind ABSENT ---
+  rc=0 warn=[none]
+  PASS R6 no hiveMind on PATH -> rc0, rename landed, no warn
+
+--- SPLIT (panes.shifted) + failing observer ---
+  rc=3 panes 1->2 warn=[none]
+  observer call=[protected.panes.shifted obsfx_s]
+  PASS S0 split LANDED (pane count +1)
+  PASS S1 shifted observer invoked with the split's session
+  FAIL S2 split observer failure SILENT
+  PASS S3 split rc = observer rc 3
+
+--- CAPTURED split -P -F '#{pane_id}' + failing observer (stdout IS data) ---
+  rc=3 stdout=[%672~hm-stdout-marker] stderr-has-warn=n
+  PASS P1 captured split -P stdout = exactly one '%N' pane id (no warning text mixed in)
+  FAIL P2 split -P: no observer FAILED on stderr
+  PASS P3 split -P rc = observer rc 3
+
+--- SWAP (panes.swapped) + failing observer ---
+  rc=3 warn=[none]
+  observer call=[protected.panes.swapped obsfx_s obsfx_s:0.0 obsfx_s:0.1]
+  PASS W1 swapped observer invoked
+  FAIL W2 swap observer failure SILENT
+
+  live registry sha before=087052c684151c8a after=087052c684151c8a (/home/shared/EAMD.ucp/Scenarios/localhost/EAM/1_infrastructure/Once.sh/sharedConfig)
+  PASS SAFE live hivemind roles/sessions/queue unchanged (non-empty hash)
+
+=== T-OTMUX-OBSERVER-RC: PASS=13 FAIL=6 ===
+################ obs-c1 ( 1 file changed, 16 insertions(+), 3 deletions(-))
+=== tree: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/obs-c1 @ cd1b0c80 + local: otmux 
+    otmux sha256: bb0683b15325
+
+--- RENAME + failing observer ---
+  rc=3 warn=[WARNING> otmux: observer 'hiveMind protected.session.renamed obsfx_a obsfx_a2' FAILED rc=3 — the registry/role env may NOT follow this change: boom-line1]
+  stdout=[hm-stdout-marker WARNING> otmux: observer 'hiveMind protected.session.renamed obsfx_a obsfx_a2' FAILED rc=3 — the registry/role env may NOT follow this change: boom-line1 ]
+  observer call=[protected.session.renamed obsfx_a obsfx_a2]
+  PASS R0 observer invoked with verb+old+new (non-vacuous)
+  PASS R0b rename LANDED (effect)
+  PASS R1 rc passthrough = observer rc 3
+  PASS R2 WARN names verb + args + rc=3 + first stderr line
+  PASS R3 only FIRST stderr line surfaced
+  PASS R5 observer stdout NOT swallowed (reaches caller stdout)
+  FAIL R7 WARN location: stderr=n stdout=y (want stderr only)
+
+--- RENAME + healthy observer ---
+  rc=0 warn=[none]
+  PASS R4 healthy observer: rc0, NO warn, observer fired
+
+--- RENAME + hiveMind ABSENT ---
+  rc=0 warn=[none]
+  PASS R6 no hiveMind on PATH -> rc0, rename landed, no warn
+
+--- SPLIT (panes.shifted) + failing observer ---
+  rc=3 panes 1->2 warn=[WARNING> otmux: observer 'hiveMind protected.panes.shifted obsfx_s' FAILED rc=3 — the registry/role env may NOT follow this change: boom-line1]
+  observer call=[protected.panes.shifted obsfx_s]
+  PASS S0 split LANDED (pane count +1)
+  PASS S1 shifted observer invoked with the split's session
+  PASS S2 SPLIT failure surfaced: WARN names panes.shifted + session + rc
+  PASS S3 split rc = observer rc 3
+
+--- CAPTURED split -P -F '#{pane_id}' + failing observer (stdout IS data) ---
+  rc=3 stdout=[%678~hm-stdout-marker~WARNING> otmux: observer 'hiveMind protected.panes.shifted obsfx_s' FAILED rc=3 — the registry/role env may NOT follow this change: boom-line1] stderr-has-warn=n
+  FAIL P1 split -P stdout polluted: [%678~WARNING> otmux: observer 'hiveMind protected.panes.shifted obsfx_s' FAILED rc=3 — the registry/role env may NOT follow this change: boom-line1]
+  FAIL P2 split -P: no observer FAILED on stderr
+  PASS P3 split -P rc = observer rc 3
+
+--- SWAP (panes.swapped) + failing observer ---
+  rc=3 warn=[WARNING> otmux: observer 'hiveMind protected.panes.swapped obsfx_s obsfx_s:0.0 obsfx_s:0.1' FAILED rc=3 — the registry/role env may NOT follow this change: boom-line1]
+  observer call=[protected.panes.swapped obsfx_s obsfx_s:0.0 obsfx_s:0.1]
+  PASS W1 swapped observer invoked
+  PASS W2 SWAP failure surfaced
+
+  live registry sha before=087052c684151c8a after=087052c684151c8a (/home/shared/EAMD.ucp/Scenarios/localhost/EAM/1_infrastructure/Once.sh/sharedConfig)
+  PASS SAFE live hivemind roles/sessions/queue unchanged (non-empty hash)
+
+=== T-OTMUX-OBSERVER-RC: PASS=16 FAIL=3 ===
+################ obs-c2 ( 1 file changed, 19 insertions(+), 3 deletions(-))
+=== tree: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/obs-c2 @ cd1b0c80 + local: otmux 
+    otmux sha256: a4a598923e0e
+
+--- RENAME + failing observer ---
+  rc=3 warn=[WARNING> otmux: observer 'hiveMind protected.session.renamed obsfx_a obsfx_a2' FAILED rc=3 — the registry/role env may NOT follow this change: boom-line1]
+  stdout=[hm-stdout-marker ]
+  observer call=[protected.session.renamed obsfx_a obsfx_a2]
+  PASS R0 observer invoked with verb+old+new (non-vacuous)
+  PASS R0b rename LANDED (effect)
+  PASS R1 rc passthrough = observer rc 3
+  PASS R2 WARN names verb + args + rc=3 + first stderr line
+  PASS R3 only FIRST stderr line surfaced
+  PASS R5 observer stdout NOT swallowed (reaches caller stdout)
+  PASS R7 WARN is on STDERR and NOT on stdout (stdout stays data)
+
+--- RENAME + healthy observer ---
+  rc=0 warn=[none]
+  PASS R4 healthy observer: rc0, NO warn, observer fired
+
+--- RENAME + hiveMind ABSENT ---
+  rc=0 warn=[none]
+  PASS R6 no hiveMind on PATH -> rc0, rename landed, no warn
+
+--- SPLIT (panes.shifted) + failing observer ---
+  rc=3 panes 1->2 warn=[WARNING> otmux: observer 'hiveMind protected.panes.shifted obsfx_s' FAILED rc=3 — the registry/role env may NOT follow this change: boom-line1]
+  observer call=[protected.panes.shifted obsfx_s]
+  PASS S0 split LANDED (pane count +1)
+  PASS S1 shifted observer invoked with the split's session
+  PASS S2 SPLIT failure surfaced: WARN names panes.shifted + session + rc
+  PASS S3 split rc = observer rc 3
+
+--- CAPTURED split -P -F '#{pane_id}' + failing observer (stdout IS data) ---
+  rc=3 stdout=[%684~hm-stdout-marker] stderr-has-warn=y
+  PASS P1 captured split -P stdout = exactly one '%N' pane id (no warning text mixed in)
+  PASS P2 split -P failure still surfaced on STDERR
+  PASS P3 split -P rc = observer rc 3
+
+--- SWAP (panes.swapped) + failing observer ---
+  rc=3 warn=[WARNING> otmux: observer 'hiveMind protected.panes.swapped obsfx_s obsfx_s:0.0 obsfx_s:0.1' FAILED rc=3 — the registry/role env may NOT follow this change: boom-line1]
+  observer call=[protected.panes.swapped obsfx_s obsfx_s:0.0 obsfx_s:0.1]
+  PASS W1 swapped observer invoked
+  PASS W2 SWAP failure surfaced
+
+  live registry sha before=087052c684151c8a after=087052c684151c8a (/home/shared/EAMD.ucp/Scenarios/localhost/EAM/1_infrastructure/Once.sh/sharedConfig)
+  PASS SAFE live hivemind roles/sessions/queue unchanged (non-empty hash)
+
+=== T-OTMUX-OBSERVER-RC: PASS=19 FAIL=0 ===
+orphans: 0

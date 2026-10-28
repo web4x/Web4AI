@@ -36,16 +36,17 @@ sweep() { tmux list-sessions -F '#{session_name}' 2>/dev/null | grep "^$PFX" | w
 sweep; trap sweep EXIT
 
 # run otmux from the tree under test; $1=with|without hiveMind on PATH; rest = otmux args
-OUT="$D/out"; LOG="$D/oosh.log"
-run() { local hm="$1"; shift; : > "$OUT"; : > "$LOG"
+OUT="$D/out"; ERR="$D/err"; LOG="$D/oosh.log"     # stdout / stderr / log-device kept SEPARATE (location cells)
+run() { local hm="$1"; shift; : > "$OUT"; : > "$ERR"; : > "$LOG"
   local P="$WT:/usr/bin:/bin"; [ "$hm" = with ] && P="$D/bin:$P"
   env -i HOME="$D/home" PATH="$P" OOSH_DIR="$WT" TMUX="$TMUX" TERM="${TERM:-xterm}" \
       LOG_DEVICE="$LOG" LOG_FILE="$LOG" FAKE_HM_MODE="$FAKE_HM_MODE" FAKE_HM_LOG="$FAKE_HM_LOG" \
-      bash --norc --noprofile "$WT/otmux" "$@" > "$OUT" 2>> "$LOG"
+      bash --norc --noprofile "$WT/otmux" "$@" > "$OUT" 2> "$ERR"
   RC=$?; }
-# warn.log may land on stdout OR the log device — search BOTH (first run false-RED'd by grepping LOG only)
-WARN() { cat "$OUT" "$LOG" 2>/dev/null | grep -i "observer" | grep -iE "warn|fail" | head -1; }
-LEAK() { cat "$OUT" "$LOG" 2>/dev/null | grep -c "$1"; }
+# PRESENCE: the warning may sit on stdout, stderr or the log device — search all (log-only grep false-RED'd run 1).
+WARN() { cat "$OUT" "$ERR" "$LOG" 2>/dev/null | grep -i "observer" | grep -iE "warn|fail" | head -1; }
+LEAK() { cat "$OUT" "$ERR" "$LOG" 2>/dev/null | grep -c "$1"; }
+ON() { grep -i "observer" "$1" 2>/dev/null | grep -qiE "fail"; }   # LOCATION: is the warning in this stream?
 
 pass=0; fail=0
 ok(){ echo "  PASS $1"; pass=$((pass+1)); }
@@ -63,6 +64,8 @@ tmux has-session -t "${PFX}a2" 2>/dev/null && ok "R0b rename LANDED (effect)" ||
   && ok "R2 WARN names verb + args + rc=3 + first stderr line" || no "R2 failure SILENT or incomplete (warn=[${W:-none}])"
 { [ -n "$W" ] && [ "$(LEAK boom-line2)" -eq 0 ]; } && ok "R3 only FIRST stderr line surfaced" || no "R3 (no warn, or line2 leaked)"
 grep -q 'hm-stdout-marker' "$OUT" && ok "R5 observer stdout NOT swallowed (reaches caller stdout)" || no "R5 observer stdout lost"
+{ ON "$ERR" && ! ON "$OUT"; } && ok "R7 WARN is on STDERR and NOT on stdout (stdout stays data)" \
+  || no "R7 WARN location: stderr=$(ON "$ERR" && echo y || echo n) stdout=$(ON "$OUT" && echo y || echo n) (want stderr only)"
 
 echo; echo "--- RENAME + healthy observer ---"
 mk "${PFX}b"; : > "$FAKE_HM_LOG"; FAKE_HM_MODE=ok
@@ -89,6 +92,19 @@ grep -qx "protected.panes.shifted ${PFX}s" "$FAKE_HM_LOG" && ok "S1 shifted obse
 { [ -n "$W" ] && echo "$W" | grep -q 'protected.panes.shifted' && echo "$W" | grep -q "${PFX}s" && echo "$W" | grep -q 'rc=3'; } \
   && ok "S2 SPLIT failure surfaced: WARN names panes.shifted + session + rc" || no "S2 split observer failure SILENT"
 [ "$RC" -eq 3 ] && ok "S3 split rc = observer rc 3" || no "S3 split rc=$RC"
+
+echo; echo "--- CAPTURED split -P -F '#{pane_id}' + failing observer (stdout IS data) ---"
+: > "$FAKE_HM_LOG"; FAKE_HM_MODE=fail
+run with split "${PFX}s:0.0" -P -F '#{pane_id}'
+SOUT="$(cat "$OUT")"
+echo "  rc=$RC stdout=[$(printf '%s' "$SOUT" | tr '\n' '~')] stderr-has-warn=$(ON "$ERR" && echo y || echo n)"
+# the observer's own stdout marker is legitimately on stdout too — the DATA contract is the pane id line
+PIDLINE="$(printf '%s\n' "$SOUT" | grep -v '^hm-stdout-marker$')"
+{ printf '%s\n' "$PIDLINE" | grep -qxE '%[0-9]+' && [ "$(printf '%s\n' "$PIDLINE" | grep -c .)" -eq 1 ]; } \
+  && ok "P1 captured split -P stdout = exactly one '%N' pane id (no warning text mixed in)" \
+  || no "P1 split -P stdout polluted: [$(printf '%s' "$PIDLINE" | tr '\n' '~')]"
+ON "$ERR" && ok "P2 split -P failure still surfaced on STDERR" || no "P2 split -P: no observer FAILED on stderr"
+[ "$RC" -eq 3 ] && ok "P3 split -P rc = observer rc 3" || no "P3 rc=$RC"
 
 echo; echo "--- SWAP (panes.swapped) + failing observer ---"
 : > "$FAKE_HM_LOG"; FAKE_HM_MODE=fail
