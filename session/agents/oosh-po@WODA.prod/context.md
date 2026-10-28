@@ -6,6 +6,9 @@
 - **swipe/pulse false-IDLE** on narrow panes (status bar truncated to '· esc …'): Rule 4 folded into stale-role design b2f9222e1, tester cells 10-12.
 - Architect dead-call triage 1b5193dbf: A drain #1; B agent.rewind loud-refuse, osemvec/tronMonitor validators, config/state; C 6 otmux forwarders re-home.
 - Expert commit-hygiene breach 0721c6555 (swept tester proof) - acked, Law v2 adopted.
+- **RULES 1+3 DEPLOYED** (stale-label bug Tron reported 10-28): cherry-picked ONLY gated 7973e14a+67c2eb5f -> 73be7983/a21b4d1b (54bc89d3..a21b4d1b, scrumMaster+otmux). Branch preview 48/3 (only Rule-2 cells) vs deployed 18/33. MY FIELD GATE PASS: swipe labels == live titles both teams. AWAIT tester authoritative deployed T-SWIPE-ROLE-LIVE (48/3) + swipe-parity regression. e94ed866 (otmux.pane.role) NOT shipped - goes with drain deploy.
+- **DRAIN GUARD coded** 86341c2f on queue-drain-repoint (12/12 sandbox, fail-closed recipient). HARD DEPLOY ORDER: Rules 1+3 first (done) -> drain (cherry-pick de4dd093+e94ed866+86341c2f, NOT the merge) only after drain RED->green incl rc!=0-stays-at-head + TRON park sanction. Announce at deploy: send to busy/shell target = rc1 refused, not queued rc0.
+- Context @80% (alarm band: bank + keep working; rewind <=95 at a boundary). Team 72-75%.
 
 ## 🔴 PHASE-1 BANK 2026-10-28 (90%, rewind due) — STALE ROLE-LABEL BUG (Tron via SM), PLAN DISPATCHED
 **Bug:** after the 10-28 pane move, `scrumMaster swipe` AND `pulse` print stale role labels (ooshTeam 0.1→scrum-master [truth architect], 0.2/0.3 shifted one slot; baseTeam 0.0→agent-trainer [truth scrum-master]). ctx% correct. **Root (measured):** label read from `~/config/hivemind.roles.env` keyed `session:idx` = pre-move layout; live pane title (otmux tree) is correct. **Blast radius PROVEN:** the same stale registry MISROUTES `hiveMind agent.send` by name (my sends landed architect→0.2, tester→0.4 shell, expert→0.3) — address by PANE until fixed.
