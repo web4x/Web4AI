@@ -50,6 +50,34 @@ Stays inside otmux's MVC boundary: it reads its own pane title (View data) and t
 - **One definition in otmux:** a pure string function, e.g. `private.otmux.pane.role.parse <title>` → bare role or empty. The otmux prefix (Rule 3) and `hiveMind.resolve` (Rule 2) both call it. hiveMind already depends on otmux, so this adds no new dependency.
 - **swipe/pulse keep their own copy** (Rule 1) on purpose. Tron's SM-monitor doctrine is decoupling over DRY: the watcher must not depend on the scripts it watches. To keep the copies from drifting, **one shared fixture table** of titles → expected role is run against BOTH implementations (acceptance case 9).
 
+## Rule 4 — ACTIVE that survives a narrow pane (PO addendum, 2026-10-28; swipe AND pulse classify)
+**Measured false IDLE:** ooshTeam:0.3 (tester) is working, but swipe reports IDLE. Its live chrome:
+```
+✻ Forging… (34m 0s · ↓ 108.8k tokens)        ← working line, 4 lines above the input box
+  ⎿  Tip: Use /clear to start fresh when …      ← Tip block + update notice push it up
+        ✔ Update installed · Restart to update
+──────────────────────── oosh-tester@WODA.prod ─
+❯
+────────────────────────────────────────────────
+  ⏵⏵ auto mode on (shift+tab to cycle) · esc …  ← bar TRUNCATED: "esc to interrupt" → "esc …"
+```
+Classify reads only the last 6 lines and matches the full `esc to int`. The bar is truncated and the working line is outside the window, so the match falls through to the auto-mode bar → IDLE. Whether this happens depends on pane width. The same classify is used in swipe and pulse.
+**Idle panes, measured for contrast** (0.2 expert, baseTeam:1.0 trainer): bar = `⏵⏵ auto mode on (shift+tab to cycle)` with **no `esc` segment**. The finished line reads `✻ Brewed for 5m 16s · done 11:32 AM` (past tense, `for`, no `…`, no `(`).
+
+**ACTIVE if ANY of these holds** (still checked first, before ON-WALL):
+1. `esc to int` anywhere in the last-6-line chrome (today's check, kept).
+2. **Truncation-proof bar:** the status-bar line (the last line containing `⏵⏵` or `auto mode`) contains a `· esc` segment: regex `·[[:space:]]*esc([[:space:]]|…|$)`. A full or truncated "esc to interrupt" only appears while the agent is working; the idle bar has no `esc` at all.
+3. **Anchored working line:** find the input box's upper separator (the `─…` line directly above the `❯` line). From there, walk UP at most 8 lines, skipping only trailer chrome: blank lines, `⎿` Tip/continuation lines, `✔`/notice lines, and indented continuation. The first non-trailer line must match the working-line shape `^<spinner-glyph>[[:space:]]+[A-Z][a-z]+…[[:space:]]+\(([0-9]+h[[:space:]]+)?([0-9]+m[[:space:]]+)?[0-9]+s`. Spinner glyphs: `· ✢ ✳ ✶ ✻ ✽ *`. The elapsed part may carry `· thinking` or `· ↓ N tokens`; don't key on those words.
+
+**Why this doesn't bring back the message-body false positive:**
+- Signal 2 is tied to the status-bar line.
+- Signal 3 is tied to the input box and only crosses trailer chrome. It stops at the first real line. A body line that says "thinking" or "Forging…" without the `glyph + Verb… + (elapsed` shape doesn't match, and neither does one sitting above real output.
+- The finished line (`Brewed for …`) fails the `…(` shape, so a done agent stays IDLE.
+
+**Capture:** keep capturing the last 15 lines (pulse already does). Only signal 3 reads above the 6-line tail, and only through the anchor. All other rules still read the 6-line tail.
+
+**Follow-up (hiveMind, not this branch):** `sweep.detect` / the `pane.live` recognizer uses the same `esc to int` check and will have the same narrow-pane false IDLE. Apply the same three signals in the hiveMind pass.
+
 ## Interim, until Rules 1–2 land (operational, not code)
 - **Send by pane ADDRESS, not by name** (`otmux send ooshTeam:0.3 …`), and check the live title before sending (`otmux pane.list <session>`).
 - A one-time manual reconcile of the stale rows via `hiveMind registry.set <pane> <role>` is safe **only after re-measuring live titles at that moment**. Panes may have moved again. `roles.env` is a shared file, so edit only the stale rows.
@@ -63,6 +91,9 @@ Stays inside otmux's MVC boundary: it reads its own pane title (View data) and t
 6. **Write-through:** after one resolve on a drifted row, that registry row now holds the live role. Unrelated rows are unchanged (diff the file).
 7. **hiveMind-free:** `grep hiveMind` over the swipe methods is still 0.
 8. **Sender prefix (Rule 3):** shifted-registry fixture. Send from a pane whose live title is `oosh-architect@…`; the receiver's transcript shows `[@oosh-architect <that pane>]`, not the registry's stale role. Pane part still comes from the PID walk. Title not `role@host` → registry role. Neither → no prefix at all (never a wrong one). Include a `$TMUX_PANE`-poisoned case so the pane part stays proven.
+10. **Narrow-pane ACTIVE (Rule 4):** frozen fixtures, each run through swipe AND pulse classify. (a) The measured 0.3 chrome (truncated `· esc …` bar, working line 4 lines up behind a Tip + notice) → ACTIVE. (b) Same, but only the working line, with a full idle bar → ACTIVE (signal 3 alone). (c) Truncated bar alone, working line scrolled off → ACTIVE (signal 2 alone).
+11. **No false ACTIVE:** (a) idle bar + finished `✻ Brewed for 5m 16s · done …` → IDLE. (b) Body text containing `thinking` / `Forging…` / `(32m 25s · thinking)` mid-message, ABOVE real output, with an idle bar → IDLE. (c) A working-line-shaped string more than 8 lines above the separator, or above a non-trailer line → IDLE.
+12. **Width independence:** the same agent state captured at two pane widths (one with the full `esc to interrupt`, one truncated) classifies the same.
 9. **One parse rule, two copies:** a shared fixture table (`✳ oosh-architect@WODA.prod` → `oosh-architect`, braille-spinner title, `⏵⏵` title, `Claude Code` → empty, `v60211.1blu.de` → empty, `@host` with dots) run against the otmux parse function AND the swipe/pulse copy. Both must give identical results.
 
 ## Handoff
