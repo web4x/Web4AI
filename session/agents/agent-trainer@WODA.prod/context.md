@@ -2,6 +2,13 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ 2026-10-28 ~14:05 — 2 DRIVES (oosh-po order, serialized), both unmarked, queue EMPTY ★★ FRESH-ME BOOTS HERE
+- **oosh-architect** 83 -> **~50.2** (cats sum ~502k) on unmarked row 'COMMIT-HYGIENE LAW (po, both repos' (2026-09-06, map 500.4k) = pre-reg 498-503k HIT. Chose it over 09-28 'TRON ORDER: FINISH + COMMIT' (52.2) because THAT draft is a stale order (race hazard). Bank ff0bdd5b8. Option-1 +247/-766 (15 files) refused. Per-file + both trees identical. Reread verified by content (94fe28f8). Its claudeCode session.name = EPERM (tool bug).
+- **oosh-po** 87 -> **~50.0** (cats ~499.9k) on MY 11:53 marker 'REWOUND by me (SM order)' (map 486.0k) = pre-reg 489-494k MISSED high ~6k. Bank 78ca0183c. Option-1 +5/-107 refused. Draft = [Pasted text #35] chip, End+300 BSpace cleared. Identical trees. Verified by content (889a24a9).
+- ★ **RELOAD HYPOTHESIS REFUTED:** lean phase-2 (3 calls, 25 lines) still gave first-turn +263.6k (455.9k -> 719.5k), same as +262k/+272k earlier. oosh-po reload is constant per landing on this chain, NOT its boot reads. Cause unknown. It sits ~76 = working band.
+- Mechanics: picker shows 1-2 entries in a 40-row window -> jump near (index ~= map row, offset 0-2), then step by 2 reading labels. mapdrive omits some picker entries (e.g. 'wait until he is idle!!!!') -> locate by label, never index.
+- My slips: one `| tail` (denied, redone), one raw `tmux display-message` (auto-mode denied; otmux pane.list instead).
+
 ### ✅ LANDED 2026-10-28 ~13:45 — SM drove me (oosh-po order) 80 -> map ~43.1; FIRST-TURN PANEL 559k = 55.9 (SM render) ★★ FRESH-ME BOOTS HERE
 - Marker = ARON's 10-19 'REWOUND by me'; option-1 +219/-61 (13 files) refused; 8 files sha-identical, /root/oosh unchanged. Unmarked by SM; clear to drive.
 - Reload ~+128k from the map (n=1, do not predict from it). SM pre-reg 46-48 missed high ~8.
