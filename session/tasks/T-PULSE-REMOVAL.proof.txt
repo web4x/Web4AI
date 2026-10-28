@@ -1,0 +1,38 @@
+T-PULSE-REMOVAL — item 2: oosh-expert/remove-pulse 6c4e3165+b2c024ff (scrumMaster only).
+Strict differential: CONTROL = tester branch oosh-tester/remove-pulse-tests on deployed 776aef9a (deployed scrumMaster);
+CANDIDATE = same commit + scrumMaster@b2c024ff (scrumMaster@97ddf13f == deployed -> clean transplant).
+
+readlink /root/oosh: /var/dev/EAMD.ucp/Components/com/ceruleanCircle/EAM/1_infrastructure/Once.sh/mcdonges.latest
+CONTROL 75c274ce local: 
+CANDIDATE 75c274ce local:  1 file changed, 25 insertions(+), 237 deletions(-)
+== test.pulse-removed @ rp: PASS=4 FAIL=3 rc=0 25s
+       ✗ FAIL: RED: pulse still runs or is not refused (refused=0 table=1 python=0)
+       ✗ FAIL: RED: scrumMaster still defines pulse (2 def(s), 2 SM_PULSE_PY ref(s))
+       ✗ FAIL: RED: 3 caller(s): scrumMaster:592:scrumMaster.pulse() # <?session> # DEPRECATED — use 'scrumMaster swipe' (pure-bash hiveMind-free drop-in; pulse KEPT as the parity oracle, zero-break). HONEST REAL-TIME team status — team.sweep OUTPUT format, but EVERY value measured LIVE at call time (never a recorded/stale reading). context% = token-math on the pane's live session JSONL; state = fresh bottom-area capture (drawer!=idle, wall/on-prompt distinct); kind = claude anywhere in the subtree. Self-contained — survives a broken/mid-refactor hiveMind.~scrumMaster:595:  echo "scrumMaster.pulse is DEPRECATED → use 'scrumMaster swipe' (pure-bash, hiveMind-free drop-in)" >&2~scrumMaster:1017:scrumMaster.pulse.completion.session() # # tmux session names~
+== test.pulse-removed @ rp-cand: PASS=7 FAIL=0 rc=0 18s
+== test.swipe-role-live @ rp: PASS=35 FAIL=9 rc=0 54s
+       ✗ FAIL: RED: swipe 0.0 shows 'fxrl-architect', want 'fxrl-architect@WODA.prod'
+       ✗ FAIL: RED: swipe 0.1 shows 'fxrl-expert', want 'fxrl-expert@WODA.prod'
+       ✗ FAIL: RED: swipe 0.2 shows 'fxrl-tester', want 'fxrl-tester@WODA.prod'
+       ✗ FAIL: RED: swipe 0.5 shows 'fxrl-kappa', want 'fxrl-kappa@my.host.example'
+       ✗ FAIL: RED: want 'oosh-architect@WODA.prod', swipe='oosh-architect'
+       ✗ FAIL: RED: want 'oosh-expert@WODA.prod', swipe='oosh-expert'
+       ✗ FAIL: RED: want 'oosh-tester@WODA.prod', swipe='oosh-tester'
+       ✗ FAIL: RED: want 'robbin-po@v60211.1blu.de', swipe='robbin-po'
+       ✗ FAIL: RED: display='fxrl-tester' (want fxrl-tester@WODA.prod) role='fxrl-tester' (want bare) resolve='fxswrl_fix:0.2' prefix='[@fxrl-architect fxswrl_snd:0.0] ' (want bare)
+== test.swipe-role-live @ rp-cand: PASS=44 FAIL=0 rc=0 56s
+== test.swipe-active-narrow @ rp: PASS=23 FAIL=0 rc=0 154s
+== test.swipe-active-narrow @ rp-cand: PASS=23 FAIL=0 rc=0 152s
+== test.session-discover-all @ rp: PASS=15 FAIL=2 rc=0 55s
+       ✗ FAIL: session.current unstable: '' vs ''
+       ✗ FAIL: 6-INTERIM-LIFT: diamonds:0.1 not live this run — cannot gate the real dup (loud skip, NOT silent pass; re-run with the dup present or seed two same-role+same-cwd claude panes, one --resume one fresh)
+== test.session-discover-all @ rp-cand: PASS=15 FAIL=2 rc=0 55s
+       ✗ FAIL: session.current unstable: '' vs ''
+       ✗ FAIL: 6-INTERIM-LIFT: diamonds:0.1 not live this run — cannot gate the real dup (loud skip, NOT silent pass; re-run with the dup present or seed two same-role+same-cwd claude panes, one --resume one fresh)
+orphans: 0
+
+--- session-discover-all after cell-3 fix (02275faf), both trees:
+control:   PASS=16 FAIL=1
+candidate: PASS=16 FAIL=1
+│ Test 5: 3-STABLE: session.current <live pane ooshTeam:0.0> non-empty + identical across calls
+  ✗ FAIL: 6-INTERIM-LIFT: diamonds:0.1 not live this run — cannot gate the real dup (loud skip, NOT silent pass; re-run with the dup present or seed two same-role+same-cwd claude panes, one --resume one fresh)
