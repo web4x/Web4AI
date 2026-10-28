@@ -1,0 +1,75 @@
+NO-PYTHON STEP 3 (oosh-expert/no-python-s3-p1 @5fba9437, ff onto deployed 382e8500) — CONTROL = 382e8500 (branch base; current deployed adds step 1 which this branch lacks), CANDIDATE = 5fba9437; delta claudeCode/hiveMind/scrumMaster only.
+
+#### GOLDENS (e60ed228 batch 2, R1/R2 applied) — replayed per-cell on ORIGINAL fixtures
+=== tree: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/s3-ctl @ 382e8500   goldens: e60ed228
+  swipe.ctx                     32/32
+  max.tokens.for.jsonl          16/16
+  context.from.jsonl            14/16
+  context.live.jsonl             4/4
+  context.denom.for.target       4/4
+  context.from.jsonl.reading     4/4
+  INFO-velocity-step4           13/16
+  --- mismatches ---
+    context.from.jsonl/02-zero-stub.out: want[25.0 rc=0] got[100.0 rc=0]
+    velocity.calculate/02-zero-stub.out: want[unknown rc=0] got[-9000060 tokens/hr | 0 current rc=0]
+    velocity.calculate/15-leading-zero-stub.out: want[240000 tokens/hr | 120001 current | ~14min until compact rc=0] got[720006 tokens/hr | 120001 current | ~4min until compact rc=0]
+    context.from.jsonl/16-lag-then-zero-stub.out: want[lag rc=1] got[100.0 rc=0]
+    velocity.calculate/16-lag-then-zero-stub.out: want[unknown rc=0] got[-240003 tokens/hr | 0 current rc=0]
+  instrument: 0 replay(s) without rc= line (source died / fn undefined)
+=== T-NP-GOLDENS step-3 scope: 74/76 ===
+=== tree: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/s3-cand @ 5fba9437   goldens: e60ed228
+  swipe.ctx                     32/32
+  max.tokens.for.jsonl          16/16
+  context.from.jsonl            16/16
+  context.live.jsonl             4/4
+  context.denom.for.target       4/4
+  context.from.jsonl.reading     4/4
+  INFO-velocity-step4           13/16
+  --- mismatches ---
+    velocity.calculate/02-zero-stub.out: want[unknown rc=0] got[-9000060 tokens/hr | 0 current rc=0]
+    velocity.calculate/15-leading-zero-stub.out: want[240000 tokens/hr | 120001 current | ~14min until compact rc=0] got[720006 tokens/hr | 120001 current | ~4min until compact rc=0]
+    velocity.calculate/16-lag-then-zero-stub.out: want[unknown rc=0] got[-240003 tokens/hr | 0 current rc=0]
+  instrument: 0 replay(s) without rc= line (source died / fn undefined)
+=== T-NP-GOLDENS step-3 scope: 76/76 ===
+
+readlink /root/oosh: /var/dev/EAMD.ucp/Components/com/ceruleanCircle/EAM/1_infrastructure/Once.sh/mcdonges.latest
+
+################ test.no-python (same test file: both trees carry 382e8500's)
+== s3-ctl: scanned 202 tracked text files; python call lines = 35 in 5 file(s)
+         14 scrumMaster
+         11 claudeCode
+          6 hiveMind
+          3 test/test.osemvec
+          1 test/test.static-defined-functions
+== s3-cand: scanned 202 tracked text files; python call lines = 26 in 5 file(s)
+         11 scrumMaster
+          9 claudeCode
+          3 test/test.osemvec
+          2 hiveMind
+          1 test/test.static-defined-functions
+--- removed sites (control-only lines):
+< claudeCode:   observed_max=$(tail -200 "$jsonlFile" 2>/dev/null | python3 -c "
+< claudeCode:   tail -50 "$jsonlFile" | MAX_TOKENS="$maxTokens" python3 -c "
+< hiveMind:       if [ -f "$f" ] && [ -n "$(python3 -c "$hasNonZero" "$f" 2>/dev/null)" ]; then
+< hiveMind:       | python3 -c "
+< hiveMind:     obs=$(python3 -c "
+< hiveMind:   out=$(DENOM_K="$denomK" python3 -c "
+< scrumMaster: private.scrumMaster.swipe.ctx() # <jsonl> <denomK> # echo "used|pct|denomK" | "lag" | "" — the ONLY python3 (JSON-parse + t
+< scrumMaster:   python3 -c '
+< scrumMaster: scrumMaster.swipe() # <?session> # PURE-BASH hiveMind-free team monitor (the Python pulse it replaced was removed 2026-10-28,
+
+################ test.jsonl-lag
+== s3-ctl:  Passed: 7  Failed: 0 
+== s3-cand:  Passed: 7  Failed: 0 
+
+################ PERF — biggest real session (read-only; numbers only)
+  file: 9991a7cc-19fb-42fc-9de6-859bf6ad68a5.jsonl  size: 589M  lines: 130871
+  -- private.scrumMaster.swipe.ctx
+     s3-ctl: times(s)=[ 2.88 2.87 2.98 ] out=[719199|72|1000 rc=0]
+     s3-cand: times(s)=[ 2.11 2.09 2.06 ] out=[719199|72|1000 rc=0]
+  -- private.claudeCode.max.tokens.for.jsonl
+     s3-ctl: times(s)=[ 0.09 0.09 0.08 ] out=[1000000 rc=0]
+     s3-cand: times(s)=[ 0.06 0.06 0.08 ] out=[1000000 rc=0]
+  -- private.claudeCode.context.from.jsonl
+     s3-ctl: times(s)=[ 0.09 0.10 0.09 ] out=[stale rc=1]
+     s3-cand: times(s)=[ 0.09 0.09 0.10 ] out=[stale rc=1]
