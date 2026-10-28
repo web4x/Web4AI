@@ -1,0 +1,71 @@
+### T-SWIPE-ROLE-LIVE on DEPLOYED a21b4d1b — was 18/33 at 54bc89d3; delta = otmux+scrumMaster only; tests unchanged; live roles.env sha 66661d28d5f0
+  ✓ PASS: both copies -> 'oosh-architect'
+  ✓ PASS: both copies -> 'oosh-expert'
+  ✓ PASS: both copies -> 'oosh-tester'
+  ✓ PASS: both copies -> ''
+  ✓ PASS: both copies -> ''
+  ✓ PASS: both copies -> 'robbin-po'
+  ✓ PASS: both copies -> ''
+  ✓ PASS: swipe.role 0.0 'fxrl-architect'
+  ✓ PASS: swipe.role 0.1 'fxrl-expert'
+  ✓ PASS: swipe.role 0.2 'fxrl-tester'
+  ✓ PASS: swipe.role 0.3 'fxrl-reg'
+  ✓ PASS: swipe.role 0.4 'fxrl-blank'
+  ✓ PASS: swipe.role 0.5 'fxrl-kappa'
+  ✓ PASS: swipe.role 0.6 '?'
+  ✓ PASS: titles planted exactly
+  ✓ PASS: swipe 0.0 'fxrl-architect'
+  ✓ PASS: swipe 0.1 'fxrl-expert'
+  ✓ PASS: swipe 0.2 'fxrl-tester'
+  ✓ PASS: swipe 0.3 'fxrl-reg'
+  ✓ PASS: swipe 0.4 'fxrl-blank'
+  ✓ PASS: swipe 0.5 'fxrl-kappa'
+  ✓ PASS: swipe 0.6 '?'
+  ✓ PASS: swipe 0.7 'shell'
+  ✓ PASS: pulse 0.0 'fxrl-architect'
+  ✓ PASS: pulse 0.1 'fxrl-expert'
+  ✓ PASS: pulse 0.2 'fxrl-tester'
+  ✓ PASS: pulse 0.3 'fxrl-reg'
+  ✓ PASS: pulse 0.4 'fxrl-blank'
+  ✓ PASS: pulse 0.5 'fxrl-kappa'
+  ✓ PASS: pulse 0.6 '?'
+  ✓ PASS: pulse 0.7 'shell'
+  ✓ PASS: 0.7 (hostname-titled shell) unlabelled in swipe+pulse
+  ✓ PASS: pulse==swipe=='oosh-architect'
+  ✓ PASS: pulse==swipe=='oosh-expert'
+  ✓ PASS: pulse==swipe=='oosh-tester'
+  ✓ PASS: pulse==swipe=='?'
+  ✓ PASS: pulse==swipe=='?'
+  ✓ PASS: pulse==swipe=='robbin-po'
+  ✓ PASS: pulse==swipe=='?'
+  ✓ PASS: pulse == swipe on fxswrl_fix
+  ✓ PASS: pulse == swipe on fxswrl_tbl
+PASS=4 FAIL=0
+  ✓ PASS: test.swipe-parity PASS=4 FAIL=0
+  ✗ FAIL: RED: resolve -> 'fxswrl_fix:0.7' (stale registry), want fxswrl_fix:0.2
+  ✗ FAIL: RED: rc=0 loud=0 — typed-into-shell=0, queued-for-later=1 (want rc!=0 + 'stale/refusing' + 0 typed + 0 queued)
+  ✗ FAIL: RED: row fxswrl_fix:0.1='fxrl-architect' (want fxrl-expert), unrelated-row diff lines=0
+  ✓ PASS: prefix '[@fxrl-architect fxswrl_snd:0.0] '
+  ✓ PASS: prefix '[@fxrl-architect fxswrl_snd:0.0] '
+  ✓ PASS: prefix '[@fxrl-regsender fxswrl_snd:0.1] '
+  ✓ PASS: prefix ''
+  ✓ PASS: swipe hiveMind-free
+  ✓ PASS: live registry untouched
+  T-SWIPE-ROLE-LIVE  PASS=48 FAIL=3
+
+### REGRESSION test.swipe-parity
+  ✓ PASS: scrumMaster.swipe defined
+  ✓ PASS: swipe == pulse BYTE-IDENTICAL on the frozen fixture
+  ✓ PASS: fixture exercised agent(ctx tuple)+shell rows (parity is non-vacuous)
+  ✓ PASS: swipe present + ZERO hiveMind invocations (survives a broken hiveMind)
+  T-SWIPE-PARITY  PASS=4 FAIL=0
+
+### STATIC gate (no new undefined calls)
+  ✗ FAIL: RED config: 2 undefined call(s): config.list.completion x2 (L182,186); 
+  ✗ FAIL: RED hiveMind: 5 undefined call(s): private.ossh.config.complete.hosts x2 (L4009,4566); otmux.rewind.drive x1 (L2425); private.hiveMind.agent.queue.drain x1 (L9253); private.claudeCode.complete.panes x1 (L1596); 
+  ✗ FAIL: RED oo: 1 undefined call(s): private.stage x1 (L1258); 
+  ✗ FAIL: RED osemvec: 2 undefined call(s): this.isRoleName x1 (L337); this.isPaneTarget x1 (L418); 
+  ✗ FAIL: RED otmux: 6 undefined call(s): otmux.show x1 (L3417); otmux.bind x1 (L3444); otmux.unbind x1 (L3449); otmux.buffers x1 (L3217); otmux.set x1 (L3402); otmux.keys x1 (L3454); 
+  ✗ FAIL: RED state: 3 undefined call(s): state.declaration x3 (L361,668,753); 
+  ✗ FAIL: RED tronMonitor: 1 undefined call(s): this.isSessionName x1 (L594); 
+  T-STATIC-DEFINED-FUNCTIONS  PASS=37 FAIL=7   undefined-calls=20
