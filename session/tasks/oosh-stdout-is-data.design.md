@@ -43,3 +43,15 @@ A banner line in any of these is parsed as a pane id / role / uuid / number → 
 ## 5. Risk / rollout
 - Behavior change: scripts or humans that read banners from stdout (e.g. `2>/dev/null` used to hide nothing; now it hides banners). Measure: grep for callers redirecting `2>/dev/null` around verbs whose warnings they rely on — expect few, list them in the fix PR.
 - Ships on the line agents run (mcdonges.latest) — ties backlog BL-1 (dev already has part of this: console.log→fd2).
+
+## 6. PO approval (c266e3752) + console.log-as-data scan (2026-10-28)
+**Approved.** `console.log` → **stderr** (matches dev bc97f63). **Condition:** before the kernel flip, every verb that RETURNS DATA via `console.log` converts its data to plain `echo`/`printf` first (else `x=$(verb)` goes empty).
+**Order:** RED-first tests (T-STDOUT-IS-DATA, T-ERR-TRAP-STDOUT, T-DATA-VERBS-CLEAN, static guard) → data-via-console.log conversions → one `private.log.emit` + fix A + retire LOG_DEVICE as stream selector (self-heal persisted `/dev/stdout`) → only then remove call-site `>&2` workarounds. **Scheduled after** the no-python + drain work.
+
+**Scan (static, live mcdonges.latest; scripts otmux, hiveMind, claudeCode, scrumMaster, config, line, this):**
+- **47 functions call `console.log`.** All are action/report verbs: loops, dashboards, team.push/recover/cycle, watchdog, git.commit, agent.send/rewind/handoff, the `otmux.send.verified` status line, `scrumMaster.subscription.status`/`dashboard`/`pdca.*`, `config.save/add`, `private.check.*` phases.
+- **82 distinct functions/verbs are captured with `$(…)`** inside those scripts.
+- **Intersection = 0.** No captured function's own body emits its data via `console.log`.
+- **`this.absolutePath` / `this.absolutePathName`** use `console.log` but already return data correctly: the `pipe` option prints `echo "$RESULT"`; `console.log "absolutePath: $RESULT"` is only the human-label branch. No conversion needed.
+
+**Limits (T-DATA-VERBS-CLEAN must close these at runtime):** one level only (a captured verb that calls a helper which console.logs its data is not caught); core scripts only (tests, other OOSH scripts, and agent/interactive `x=$(scrumMaster subscription.status)`-style uses are not scanned). **Watch list** for the runtime test: `otmux.send.verified`, `scrumMaster.subscription.status`, `scrumMaster.dashboard`, `hiveMind.dashboard` — human views today; verify no caller parses their stdout.
