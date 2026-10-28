@@ -1,0 +1,16 @@
+=== DEPLOYED (7bea03e9) claudeCode=/root/oosh/claudeCode ===
+  T-CLAUDECODE-VALIDATORS  PASS=23 FAIL=10
+     ✗ FAIL: RED: join.byID REJECTED valid 'canonical uuid' (reached=0 invalid=1 command-not-found=1): /root/oosh/claudeCode: line 353: this.isUuid: command not foundER
+     ✗ FAIL: RED: fork REJECTED valid 'canonical uuid' (reached=0 invalid=1 command-not-found=1): /root/oosh/claudeCode: line 446: this.isUuid: command not foundERROR> 
+     ✗ FAIL: RED: join.byPane REJECTED valid 'session:win.pane' (reached=0 invalid=1 command-not-found=1): /root/oosh/claudeCode: line 426: this.isPaneTarget: command n
+     ✗ FAIL: RED: join.byPane REJECTED valid 'raw %N id' (reached=0 invalid=1 command-not-found=1): /root/oosh/claudeCode: line 426: this.isPaneTarget: command not foun
+     ✗ FAIL: RED: fork.byPane REJECTED valid 'session:win.pane' (reached=0 invalid=1 command-not-found=1): /root/oosh/claudeCode: line 485: this.isPaneTarget: command n
+     ✗ FAIL: RED: fork.byPane REJECTED valid 'raw %N id' (reached=0 invalid=1 command-not-found=1): /root/oosh/claudeCode: line 485: this.isPaneTarget: command not foun
+     ✗ FAIL: RED: stop REJECTED valid 'session:win.pane' (reached=0 invalid=1 command-not-found=1): /root/oosh/claudeCode: line 990: this.isPaneTarget: command not foun
+     ✗ FAIL: RED: stop REJECTED valid 'raw %N id' (reached=0 invalid=1 command-not-found=1): /root/oosh/claudeCode: line 990: this.isPaneTarget: command not foundERROR>
+     ✗ FAIL: RED: fork.to REJECTED valid 'pane + role' (reached=0 invalid=1 command-not-found=1): /root/oosh/claudeCode: line 518: this.isPaneTarget: command not foundE
+     ✗ FAIL: RED: fork.to REJECTED valid 'pane only (role derived from title)' (reached=0 invalid=1 command-not-found=1): /root/oosh/claudeCode: line 518: this.isPaneTa
+=== CONTROL-b745e766^ (f97b0e3e) claudeCode=/tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/oosh-prebloat/claudeCode ===
+  T-CLAUDECODE-VALIDATORS  PASS=33 FAIL=0
+=== FIX-d8fe4375 (d8fe4375) claudeCode=/tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/oosh-fix/claudeCode ===
+  T-CLAUDECODE-VALIDATORS  PASS=33 FAIL=0
