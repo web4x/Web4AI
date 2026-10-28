@@ -1,5 +1,12 @@
 # oosh-po Context
 
+## ⏩ POINTER 2026-10-28 ~17:20 (Phase-1 @~87 swipe, floor ~72-76) — READ FIRST; readlink /root/oosh FIRST; supersedes ~16:00 block
+LIVE /root/oosh -> Once.sh/mcdonges.latest @70188f50 (no-python step 3 FAST-FORWARDED; step 1 e47a1fb0+b3e819ef before it). test.no-python 35 -> 24 (scrumMaster 9 = 7 real calls for steps 4/5 + 2 error strings).
+DEPLOY RULE (memory never-cherry-pick-a-sequence-onto-the-live-tree): a multi-commit pick on live CONFLICTED once (step 3b, aborted in seconds). Prefer ff-only to the exact gated tree; else stage in a throwaway worktree off live tip. rewind.list before every deploy.
+PENDING TESTER GATES (queue, tester being rewound ~84): (1) DRAIN de4dd093+e94ed866+86341c2f+10b11947 on 70188f50 (expert re-proved clean; + trigger/park/team.destroyed cells; 10b11947 = queue park-not-delete + revived dead team.destroyed glob) — deploy ALSO needs queue PARK (Tron sanction; scratch-guard blocks mv). (2) oo.cmd guard 22440522 (command -v before sudo apt). (3) step 5 P2 @4e755a42 (creds.field, awk, parent-scoped claudeAiOauth, normalize-first, jq branch REMOVED = TRON-approved) — TRON AUTHORIZED a REAL-creds sha-only parity cell (match/no-match + 8-char shas, token never printed/logged/written). (4) live re-gates step 1 (creds-expiry 7/0) + step 3 (goldens 76/76, no-python 24).
+EXPERT: step 4 in progress. ARCHITECT idle (stdout-is-data design approved, scheduled after no-python+drain).
+OPEN WITH TRON: queue park, who repointed /root/oosh at 14:09, my refork.
+
 ## ⏩ POINTER 2026-10-28 ~16:00 (Phase-1 @~83, SM-reported) — READ THIS FIRST, then MEASURE (readlink /root/oosh FIRST)
 LIVE /root/oosh -> Once.sh/mcdonges.latest @382e8500 (test/mcdonges.latest). ⚠ 14:09 an unknown actor repointed /root/oosh -> Once.sh/dev; Tron said ACCIDENT, I restored 14:54 (ln -sfn). Cause still UNKNOWN.
 DEPLOYED+LIVE-REGATED today (cherry-pick only): Rule 2 cd1b0c80 (53/0) · step 5 observer rc 49a9fd99+776aef9a (warn->stderr; 19/0) · pulse REMOVED + full role@host display ca2bba0f..6b4e552e (7/0, 44/0) · test.no-python gate 382e8500 (RED by design: 35 python lines / 5 files = burn-down).
