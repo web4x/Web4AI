@@ -99,12 +99,39 @@ Almost every call parses a Claude Code **session JSONL** (one compact JSON objec
 
 **Sequencing:** the tester's `test.no-python` goes **RED first** (step 0, with the goldens). Hand the implementation to the expert **after the expert's hiveMind step 4**, so the in-flight validator pass isn't interleaved with this.
 
+## 5b. now-injection seam (oosh-po ask, 2026-10-28) — the three wall-clock sites
+**Measured:** three sites read the wall clock inside python, so their output can't be reproduced in a test:
+- scrumMaster:2367 `private.scrumMaster.subscription.resets.in` (`datetime.now()`);
+- scrumMaster:2569 `remain_min`, **inline in the PUBLIC `scrumMaster.subscription`**;
+- **scrumMaster:1728 token expiry** (`time.time()`) — also needs it.
+(claudeCode:2017/2108 velocity use the JSONL's own timestamps only. Already deterministic.)
+
+**Seam = an optional trailing POSITIONAL `<?nowEpoch>` on PRIVATE helpers, defaulting to `$(date +%s)`.** Production never passes it; only tests do.
+- `private.scrumMaster.subscription.resets.in <resetsAtIso> <?nowEpoch>` (existing helper, gains the arg).
+- **NEW** `private.scrumMaster.subscription.remain.min <resetsAtIso> <?nowEpoch>`. Extract the inline block out of the public method. The public `scrumMaster.subscription` calls it with no `now`, and its own signature doesn't change.
+- **NEW** `private.scrumMaster.creds.expired <expiresAtMs> <?nowEpoch>` → `yes|no`. Extracted from the 1728 block.
+
+**Why a positional arg and not an env var (`OOSH_NOW=`):** an env override is global. If someone leaves it exported in a shell, every clock-reading tool in that shell silently lies, including fleet monitors. A positional arg is scoped to one call. It's a parameter, not a flag (object.verb-compatible), and it's visible at the call site.
+
+**Exact semantics to reproduce** (from the python, so the port is a translation, not a reinvention):
+- `resets.in`: `s = epoch(resetsAt) − now`; `s ≤ 0` → `now`; `h = s/3600`, `m = (s%3600)/60` → `h>0 ? "{h}h {m:02d}m" : "{m}m"`; parse failure → `unknown`.
+- `remain.min`: `max(0, s/60)` → since negative s is clamped to 0 first, bash's truncating division equals python's floor division here; parse failure → `0`.
+- `creds.expired`: `now > expiresAtMs/1000` → `yes`, else `no`; empty input → no check (as today).
+- `resetsAt` parse goes through P3 (`line iso.epoch`): fractional seconds stripped, `Z`/`±HH:MM` honored, **naive timestamp = UTC** (the python does `replace(tzinfo=utc)`).
+
+**Parity proof — these three CAN'T use recorded python goldens** (the python reads a moving clock with no seam). Instead:
+- (a) a **spec table** of `(resetsAt, now) → expected`, hand-derived from the formulas above. Rows: future <1h, exactly 1h, 1h 05m, 23h 59m, 0 s, past, fractional-seconds+offset, naive, garbage. Run against the new helpers with `now` injected. Byte-exact.
+- (b) **one live cross-check per helper:** call old python and new bash back-to-back, capturing `date +%s` before and after. PASS if equal, or different only across a minute boundary that falls between the two reads. Record the evidence.
+
+## jq — HOLD for Tron (oosh-po asking)
+Line 3 says "no jq". The PO is confirming that with Tron. Whatever Tron rules, **deleting the jq FALLBACK branches (step 2) is right**: today each site tries python first and jq second, and once the awk primitive is primary those branches are unreachable. The ruling only changes whether jq could ever be the PRIMARY replacement. **My recommendation: no.** awk/sed/grep are base tools on every OOSH target (linux, macOS, termux, iSH); jq is not installed by default on most of them. Step 2 runs as written unless Tron rules otherwise.
+
 ## 6. Order — smallest risk first (each step = its own commit + its own parity proof)
 0. **Instruments:** `test.no-python` (RED), invert T22, record GOLDENS from every old python path on frozen fixtures. **Must happen before anything is removed**, or parity can't be proven.
-1. Pure arithmetic: scrumMaster:1728 expiry.
-2. Delete all jq fallbacks.
+1. Pure arithmetic: scrumMaster:1728 expiry → `private.scrumMaster.creds.expired <ms> <?nowEpoch>` (§5b seam, spec-table parity).
+2. Delete all jq fallbacks (unreachable once awk is primary; see the jq HOLD note — runs unless Tron rules otherwise).
 3. **P1** + its own fixture suite (escaped-in-content, ephemeral keys, zero stubs, both spacings, multi-usage lines). Then swap consumers: swipe.ctx → hiveMind 7484/7569/7647/7496 → claudeCode 1674/1743. The hiveMind ones now **call** `claudeCode jsonl.usage`, which removes four duplicate copies.
-4. **P3** → scrumMaster 2367/2569 → claudeCode 2017/2108 velocity (P1 + P3).
+4. **P3** → scrumMaster 2367 `resets.in` + 2569 `remain.min` (extracted), both with the §5b now-seam + spec-table parity → claudeCode 2017/2108 velocity (P1 + P3).
 5. **P2** → claudeCode:1351 custom-title → scrumMaster creds (security, sha256-compared) → usage API (fail-closed parents).
 6. hiveMind:3031/3193 `roles.list.uuids` (largest; also removes raw tmux).
 7. Delete `pulse` + `test.pulse-jsonl-lag` once swipe is green against the pulse goldens.
