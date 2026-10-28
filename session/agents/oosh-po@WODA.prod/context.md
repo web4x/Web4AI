@@ -1,6 +1,14 @@
 # oosh-po Context
 
-## ⏩ POINTER 2026-10-28 ~12:50 (Phase-1 @~86 swipe) — READ THIS FIRST, then MEASURE
+## ⏩ POINTER 2026-10-28 ~16:00 (Phase-1 @~83, SM-reported) — READ THIS FIRST, then MEASURE (readlink /root/oosh FIRST)
+LIVE /root/oosh -> Once.sh/mcdonges.latest @382e8500 (test/mcdonges.latest). ⚠ 14:09 an unknown actor repointed /root/oosh -> Once.sh/dev; Tron said ACCIDENT, I restored 14:54 (ln -sfn). Cause still UNKNOWN.
+DEPLOYED+LIVE-REGATED today (cherry-pick only): Rule 2 cd1b0c80 (53/0) · step 5 observer rc 49a9fd99+776aef9a (warn->stderr; 19/0) · pulse REMOVED + full role@host display ca2bba0f..6b4e552e (7/0, 44/0) · test.no-python gate 382e8500 (RED by design: 35 python lines / 5 files = burn-down).
+NO-PYTHON: batch 2 goldens PASSED (architect D1+D2 closed, decoys 4/0). Expert branch: step1 18e51a7c (expiry, scrumMaster 14->12; tester gating) · step3 3a 5bbe6289 + perf 95507d59 + 3b 209f0c1c; 3c/3d next. Every step must SHRINK test.no-python on deployed.
+DRAIN: guard 13/0 on deployed+3 (de4dd093+e94ed866+86341c2f; tester c12ce951, 7 live bugs D1-D8). HELD until (1) expert queue-delete fix (rm -f -> .held), (2) tester gates de4dd093 auto-drain trigger, (3) PARK backlog (Tron sanction exists; scratch-guard hook blocks mv). NEVER range-merge expert branches: e94ed866 ships ONLY with drain.
+QUEUED: expert oo.cmd host fix (command -v before sudo apt discover) · stdout-is-data design APPROVED c266e3752/1c4d4e4fc (console.log->stderr, 0 data-via-console.log verbs) — schedule AFTER no-python+drain.
+REWINDS: tester done (83->46.6). Expert ordered ~87 (bank then trainer drives). Me: reload floors ~72-76, Tron refork open — no self-rewind ordered.
+
+## ⏩ POINTER 2026-10-28 ~12:50 (Phase-1 @~86 swipe) — superseded by the block above
 DEPLOYED today on /root/oosh test/mcdonges.latest (cherry-pick only, gated): hiveMind step1 74fa844d · Rules 1+3 a21b4d1b · RULE 4 narrow-pane ACTIVE 797a0ba7 (tester 34/0, a892bc6a2; field: working agents ACTIVE).
 REGISTRY: step 3 applied (live roles.env sha 4f9e48c054354d4d, our 6 rows == layout).
 TRON LAWS today: (a) ZERO python in OOSH ever; exceptions opy + osemvec-via-opy-venv only; otest -> port to node; jq KEPT for now (memory zero-python-in-oosh-standing-law). (b) swipe shows FULL role@host names (display only). (c) Python pulse REMOVED.
