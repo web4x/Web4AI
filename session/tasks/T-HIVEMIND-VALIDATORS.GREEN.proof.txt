@@ -1,0 +1,33 @@
+### T-HIVEMIND-VALIDATORS on DEPLOYED 74fa844d — RED 7/14 at 4a454162, only hiveMind changed 4a454162..HEAD; live roles.env sha 66661d28d5f0 before==after
+  ✓ PASS: moved: row followed :0.0 -> :0.1
+  ✓ PASS: swapped: rows exchanged
+  ✓ PASS: renamed: row rekeyed
+  ✓ PASS: rejected, registry unchanged
+  ✓ PASS: rejected, registry unchanged
+  ✓ PASS: rejected, registry unchanged
+  ✓ PASS: rejected, registry unchanged
+  ✓ PASS: rejected, registry unchanged
+  ✓ PASS: rejected, registry unchanged
+  ✓ PASS: agent.rename fxnk-nobody fxnk-newname: validator passed (stopped later: )
+  ✓ PASS: team.switch fxhv_ghost: validator passed (stopped later: )
+  ✓ PASS: delegate fxnk-nobody: validator passed (stopped later: )
+  ✓ PASS: registry.remove fxhv_ghost:0.0: validator passed (stopped later: )
+  ✓ PASS: rows followed the swap
+  ✓ PASS: rows followed AND both shells untouched
+  ✓ PASS: registry moved the row; destination shell byte-identical
+  ✓ PASS: rows swapped; both shells byte-identical
+  ✓ PASS: renamed in registry; no HIVEMIND_ROLE injection (the designed /rename send seen x1)
+  ✓ PASS: rows rekeyed on a real rename
+  ✓ PASS: no command-not-found
+  ✓ PASS: live registry untouched
+  T-HIVEMIND-VALIDATORS  PASS=21 FAIL=0
+
+### T-STATIC-DEFINED-FUNCTIONS on same deployed tree (hiveMind 55 -> 5, total 70 -> 20)
+  ✗ FAIL: RED config: 2 undefined call(s): config.list.completion x2 (L182,186); 
+  ✗ FAIL: RED hiveMind: 5 undefined call(s): private.ossh.config.complete.hosts x2 (L4009,4566); otmux.rewind.drive x1 (L2425); private.hiveMind.agent.queue.drain x1 (L9253); private.claudeCode.complete.panes x1 (L1596); 
+  ✗ FAIL: RED oo: 1 undefined call(s): private.stage x1 (L1258); 
+  ✗ FAIL: RED osemvec: 2 undefined call(s): this.isRoleName x1 (L337); this.isPaneTarget x1 (L418); 
+  ✗ FAIL: RED otmux: 6 undefined call(s): otmux.show x1 (L3403); otmux.bind x1 (L3430); otmux.unbind x1 (L3435); otmux.buffers x1 (L3203); otmux.set x1 (L3388); otmux.keys x1 (L3440); 
+  ✗ FAIL: RED state: 3 undefined call(s): state.declaration x3 (L361,668,753); 
+  ✗ FAIL: RED tronMonitor: 1 undefined call(s): this.isSessionName x1 (L594); 
+  T-STATIC-DEFINED-FUNCTIONS  PASS=37 FAIL=7   undefined-calls=20
