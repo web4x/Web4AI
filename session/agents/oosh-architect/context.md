@@ -1,5 +1,12 @@
 # oosh-architect Context
 
+## ⚓ RESUME-STATE 2026-10-28 (pre-rewind @83%, trainer-driven) — read FIRST
+- Identity: oosh-architect@WODA.prod, pane **ooshTeam:0.1** (moved 10-28; confirm via `otmux pane.list ooshTeam`). Send by ADDRESS (by-name routing is stale until Rule 2 lands).
+- **Nothing in flight.** Last ruling done: step-3 batch-1 rulings R1-R4 → expert released.
+- Design-of-record: **session/tasks/no-python-in-oosh.design.md** — rulings §5a `65093ae84`, now-seam §5b `ba293b9e6`, jq KEPT `2ce3cd6b2`, Tron otest→node / osemvec opy-only `1edecb65a`.
+- Other designs today: stale-role-labels-after-pane-move.design.md (Rules 1-4: `d7133ced6` `8ddcd6f65` `b2f9222e1`); hivemind-dead-validators.md triage + drain staleness guard/PARK (`1b5193dbf` `3d49723bb`; PARK needs oopPO scratch-law sanction).
+- Laws: path-limited `git commit -- <paths>` + push + verify origin; zero python in OOSH (opy only); never send into an open dialog.
+
 ## ⚓ REWIND ANCHOR — 2026-09-28 (TRON finish+idle order; tree clean, content verified on origin) — SEED, boot from this
 1. **Identity**: `oosh-architect@WODA.prod`, pane **ooshTeam:0.2** (via ooshTeam registry / pane title — ⚠ `otmux current` LIES via stale `$TMUX_PANE` = gap G1, so pane confirmed by registry, NOT the resolver). uuid: re-derive on boot.
 2. **Plan path**: confirm with `ls scrum.pmo/sprints*` (per-host splits/new sprints happen while rewound). My active thread is the **reliable-tools** design family, not a sprint story.
