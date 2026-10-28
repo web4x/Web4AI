@@ -99,6 +99,29 @@ Almost every call parses a Claude Code **session JSONL** (one compact JSON objec
 
 **Sequencing:** the tester's `test.no-python` goes **RED first** (step 0, with the goldens). Hand the implementation to the expert **after the expert's hiveMind step 4**, so the in-flight validator pass isn't interleaved with this.
 
+## 5a. Batch-1 rulings (oosh-po's 4 positions on the expert's findings, 2026-10-28) — the expert HOLDS step 3 on these
+**R1 — zero-stub records: ONE rule everywhere = count only records with total > 0.** This applies to every P1 mode: `last`, `max`, `firstlast`, and the `lag` reset (pending resets only on a NON-zero record, as pulse/swipe already do).
+Two old python sites violate that rule. Verified in their code: neither filters `t > 0`.
+- **claudeCode:1743 remaining %**: keeps the LAST usage record even when its total is 0 → reports **100% remaining** (false-SAFE: an agent near the wall looks empty).
+- **claudeCode:2017/2108 velocity**: zero records enter the first/last pair → a trailing stub gives a large **negative rate** (the expert's measured `-9000060`).
+**These are FIXED, not mirrored.** Each is a **documented deviation**:
+- The golden for the affected fixture cases is **amended to the correct value**, with the old python value recorded beside it, marked *known-wrong, deliberately not matched*.
+- **Each gets a RED-first test BEFORE the fix:** fixture = real usage records then a trailing zero-total stub (and, for velocity, also a leading stub). Assert remaining% = the real last non-zero value (not 100) and rate ≥ 0 computed from non-zero records. RED on the old path, GREEN on the new.
+- **Never byte-match a false-safe value.**
+
+**R2 — JSON `null` → EMPTY, not the string `None`.** Where python printed `.get(...)` of a JSON `null`, it emitted the literal `None` (e.g. usage-API `resets_at: null`). P2 returns **empty** for `null`.
+- The golden cells are **amended** (`None` → `''`), each listed as a documented deviation.
+- Consumers already treat empty as unknown: `resets.in` → `unknown`, `remain.min` → `0`, util → verdict `unknown`.
+- A test asserts no output ever contains the literal `None`.
+
+**R3 — pretty-printed input.** MEASURED 2026-10-28, shape only (counts and key names; no values read):
+- **`~/.claude/.credentials.json`:** **single-line compact** (0 newlines, 907 B, starts `{"`). `claudeAiOauth` is **flat**: 0 nested objects; keys `accessToken, refreshToken, expiresAt, refreshTokenExpiresAt, scopes, subscriptionType, rateLimitTier, subscriptionTypeSource`. **BUT the file holds other OAuth objects too** (first top-level key `mcpOAuth`; 5 `{` in total) → **P2 MUST be parent-scoped for creds.** An unscoped `accessToken` search could return a different object's token. The test includes a second object with its own `accessToken` placed *before* `claudeAiOauth`.
+- **Live usage-API response:** **NOT measured.** Measuring it needs an authenticated call with the OAuth token, and secrets need a GO first. **Ruling: make the answer irrelevant by construction.** **P2 first applies a quote-aware whitespace normalizer**: it removes whitespace OUTSIDE string literals, tracking `"` and `\` escapes (the same quote tracker that measured the creds shape above). Pretty-printed and compact input then become byte-identical before extraction. This is **not a parser** (it builds no structure). Fail-closed still holds for nested parents and `\uXXXX`.
+- **Test:** the same document in compact and pretty form (2-space indent, newlines inside objects) → identical P2 output. Plus one string value containing spaces and `\"` must survive normalization unchanged.
+- *Optional:* with a GO from oosh-po, a one-time shape-only measurement of the live response. Not blocking.
+
+**R4 — double rounding at claudeCode:1743** (`pct = round(x,1)` then `remaining = round(100 − pct, 1)`). **Mirror it for now**, two-step exactly, so parity holds. The fixture includes .x5 tie cases; where python's rounding and awk `printf` disagree, record the cell as a deviation (don't paper over it). **Listed as LATER cleanup:** compute remaining once from the raw ratio with a single rounding.
+
 ## 5b. now-injection seam (oosh-po ask, 2026-10-28) — the three wall-clock sites
 **Measured:** three sites read the wall clock inside python, so their output can't be reproduced in a test:
 - scrumMaster:2367 `private.scrumMaster.subscription.resets.in` (`datetime.now()`);
