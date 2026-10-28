@@ -2,6 +2,13 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ 2026-10-28 ~16:50 — SM order: tester #2 + oosh-po floor-rewind, both unmarked, queue EMPTY ★★ FRESH-ME BOOTS HERE
+- **tester #2** 85 -> 47.8 (478.0k) on my 14:09 marker (map 466.9k; pre-reg 466-471 MISSED high 7k; same marker gave 46.6 earlier = creep varies). Option-1 +1540/-850 (34 files) refused. Expert branch moved FORWARD mid-drive.
+- **oosh-po FLOOR/anti-wall** 90 -> ~50.4 (cats 504.3k) on my 13:01 marker (map 486.0k; pre-reg 495-503 missed +1.3k). Option-1 +442/-335 hiveMind+6 refused. Restored draft = MY OLD phase-2 brief (stale pointer) -> cleared. **FIRST-TURN +267.6k -> ~77. oosh-po reload n=4: +262/+272/+263.6/+267.6 = CONSTANT ~+266k regardless of first-turn size.** Refork still Tron's open call.
+- ★ STEP-BY-N SKIPS: stepping Up 2 skipped the exact target and the 8-line capture did not show the skipped entry -> overshot to the top. **Near a target, step by 1 and match the CURSOR line.**
+- ★ Message to a near-wall peer = a turn = climb: hold peer reports to a target that is next on the rewind queue; deliver them inside its phase-2 brief.
+- Slips: a `2>/dev/null` (banned); keyed /context while footer showed `esc…` (queued, harmless - still wrong).
+
 ### ✅ 2026-10-28 ~16:15 — oosh-expert DRIVE (oosh-po order) 88 -> 46.8 on my 12:30 marker (map 461.8k; pre-reg 462-466k missed high 1.9k = marker+6.1k). Option-1 +479/-1021 (27 files) refused. Bank 17ca2f3d2. Unmarked; queue EMPTY ★★ FRESH-ME BOOTS HERE
 - Baseline /root/oosh BRANCH REFS too (for-each-ref): test/mcdonges.latest moved 382e8500->b3e819ef mid-drive = FORWARD peer deploy (merge-base --is-ancestor proved it), not the rewind.
 - Select can render the confirm with lag: re-capture, never re-press Enter blind.
