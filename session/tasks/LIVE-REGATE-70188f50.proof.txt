@@ -1,0 +1,25 @@
+readlink: /var/dev/EAMD.ucp/Components/com/ceruleanCircle/EAM/1_infrastructure/Once.sh/mcdonges.latest  HEAD: 70188f50  dirty: 0
+== goldens
+=== tree: /var/dev/EAMD.ucp/Components/com/ceruleanCircle/EAM/1_infrastructure/Once.sh/mcdonges.latest @ 70188f50   goldens: e60ed228
+  swipe.ctx                     32/32
+  max.tokens.for.jsonl          16/16
+  context.from.jsonl            16/16
+  context.live.jsonl             4/4
+  context.denom.for.target       4/4
+  context.from.jsonl.reading     4/4
+  INFO-velocity-step4           13/16
+  instrument: 0 replay(s) without rc= line (source died / fn undefined)
+=== T-NP-GOLDENS step-3 scope: 76/76 ===
+== test.creds-expiry (deployed file)
+=== T-CREDS-EXPIRY: PASS=7 FAIL=0 ===
+== test.no-python
+  scanned 203 tracked text files; python call lines = 33 in 6 file(s)
+          9 test/test.creds-expiry
+          9 scrumMaster
+          9 claudeCode
+          3 test/test.osemvec
+          2 hiveMind
+          1 test/test.static-defined-functions
+== test.jsonl-lag
+ Passed: 7  Failed: 0 
+orphans: 0
