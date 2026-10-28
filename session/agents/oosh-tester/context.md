@@ -4,7 +4,14 @@
 **Live layout 10-28:** oosh-po 0.0 · oosh-architect 0.1 · oosh-expert 0.2 · me 0.3. Trainer = baseTeam:1.0 (moved 10-28; baseTeam:0.0 = the SM). Address agents BY ROLE — resolve via `otmux pane.list` / `otmux tree` before every send, never a remembered pane (my phase-2 report misrouted to the SM this way).
 **Boot (measure the world first):** reread this + `session/base-skills/agent-rewind.md`; `otmux pane.self` + `git -C /root/oosh log` + `ls`. Do NOT replay scrollback. **Before EVERY send: `scrumMaster rewind.list` as its OWN step, then `otmux composer.state <pane>`.**
 
-## ★ CURRENT STATE — gate queue (PO order, 10-28)
+## ★ PROGRESS since rewind (10-28 PO re-dispatch: queue IN ORDER, report each to oosh-po ooshTeam:0.0)
+- DONE item 1 step 5 observer: 4e3bb84b 15/0 (390ba2646) -> re-gate 191f9b06 19/0 3-way (df498cd35) -> DEPLOYED 49a9fd99+776aef9a, live 19/0.
+- DONE item 2 pulse removal: tests on oosh-tester/remove-pulse-tests @02275faf -> DEPLOYED ca2bba0f..6b4e552e; live pulse-removed 7/0, role-live 44/0, active-narrow 23/0, discover-all 16/1 (diamonds loud-skip). Proof ba3d494b7.
+- DONE item 3 test.no-python RED-first: oosh-tester/no-python-gate @f20b6877 (pushed, NOT deployed): 35 call lines/5 files; T22 inverted (deployed 49/1 -> 48/2; T20 pre-existing). LESSON: source this reloads user.env OOSH_DIR=/root/oosh — derive tree root from the test file path.
+- NEXT item 4 drain-guard RED->green (86341c2f), then item 5 expert no-python step 1 @18e51a7c (expiry checked even with no python3; goldens).
+- Worktrees in scratchpad: rp (remove-pulse-tests), np (no-python-gate).
+
+## ★ CURRENT STATE — gate queue (PO order, 10-28) — items 1-3 below are now DONE (see PROGRESS)
 **FIRST on every gate: `readlink -f /root/oosh` must end in `Once.sh/mcdonges.latest`** (at 14:09 it was silently repointed to Once.sh/dev = a tree with NONE of today's fixes; Tron: accident, restored). Deployed = test/mcdonges.latest @ cd1b0c80.
 1. DONE — deployed re-gates on cd1b0c80: Rule-2 T-SWIPE-ROLE-LIVE 53/0 (was 48/5) + Rule-4 T-SWIPE-ACTIVE-NARROW 34/0 (was 20/14). Proof 5f409c8db.
 2. DONE — creds decoys a9aec9ca: 4/0 (10/11 unscoped RED + decoy picked, scoped GREEN; controls 1/5 GREEN). Proof 52958b55e; instrument scratchpad/check-decoys.sh (sha256 only).
