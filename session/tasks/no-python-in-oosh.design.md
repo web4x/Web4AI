@@ -117,6 +117,7 @@ Two old python sites violate that rule. Verified in their code: neither filters 
 **R3 — pretty-printed input.** MEASURED 2026-10-28, shape only (counts and key names; no values read):
 - **`~/.claude/.credentials.json`:** **single-line compact** (0 newlines, 907 B, starts `{"`). `claudeAiOauth` is **flat**: 0 nested objects; keys `accessToken, refreshToken, expiresAt, refreshTokenExpiresAt, scopes, subscriptionType, rateLimitTier, subscriptionTypeSource`. **BUT the file holds other OAuth objects too** (first top-level key `mcpOAuth`; 5 `{` in total) → **P2 MUST be parent-scoped for creds.** An unscoped `accessToken` search could return a different object's token. The test includes a second object with its own `accessToken` placed *before* `claudeAiOauth`.
 - **Live usage-API response:** **NOT measured.** Measuring it needs an authenticated call with the OAuth token, and secrets need a GO first. **Ruling: make the answer irrelevant by construction.** **P2 first applies a quote-aware whitespace normalizer**: it removes whitespace OUTSIDE string literals, tracking `"` and `\` escapes (the same quote tracker that measured the creds shape above). Pretty-printed and compact input then become byte-identical before extraction. This is **not a parser** (it builds no structure). Fail-closed still holds for nested parents and `\uXXXX`.
+- **R3-6 (creds fixture 6, nested object inside `claudeAiOauth`) — ACCEPTED DEVIATION (2026-10-28).** Python reads the token; P2 fails closed on any nested `{` in the parent (§1 P2, §2 creds row). Designed direction: a missing token fails loudly ("failed to extract"), a wrong token fails silently. Live `claudeAiOauth` is flat, so it costs nothing today. **Golden 6 = empty, rc1**, in `amend/` with a `.ruling`, listed in KNOWN-WRONG.
 - **Test:** the same document in compact and pretty form (2-space indent, newlines inside objects) → identical P2 output. Plus one string value containing spaces and `\"` must survive normalization unchanged.
 - *Optional:* with a GO from oosh-po, a one-time shape-only measurement of the live response. Not blocking.
 
@@ -183,3 +184,14 @@ Cheapest later win: the scrumMaster cache-file reads, since OOSH owns that forma
 7. Delete `pulse` + `test.pulse-jsonl-lag` once swipe is green against the pulse goldens.
 8. Delete `restore/`.
 **Blocked on your rulings:** claudeCode `list.json` (§2 F), Method 2 delete (§2 F), otest (§4), osemvec + `test.osemvec` (§4).
+
+## 5c. Review of batch-2 goldens e60ed228 (oosh-architect, 2026-10-28, PO dispatch) — verdict DRIFT (2 items)
+**Conforms:**
+- **R1** applied mechanically (old python on the zero-stripped twin). KNOWN-WRONG lists 5 cells with old value beside new: context.from.jsonl 02 (100.0→25.0, the 1743 false-safe) and 16 (100.0→lag rc1; `lag` already exists for this site, fixture 05); velocity 02/16 (negative→unknown) and 15 (leading stub 720006→240000). swipe.ctx / max.tokens unchanged (already R1-correct). RED-first fixtures 15/16 added; the frozen-golden gate is RED against the old python by construction.
+- **R2** applied: subscription.parse d (`None`→empty) and creds 7 null token (python returned literal `None` as the bearer, rc0 → empty rc1), both in `amend/` with `.ruling`. No `None` left in any golden (only in ruling text).
+
+**DRIFT:**
+- **D1 — creds parent-scoping trap not fixtured.** R3 requires a fixture with ANOTHER object holding its own `accessToken` placed BEFORE `claudeAiOauth` (live: `mcpOAuth` first, nested). Current fixtures: 1-3/5-8 have only `claudeAiOauth`; 4 has only `otherProvider`. An UNSCOPED P2 passes all of them. Add (a) flat decoy first: `{"otherOAuth":{"accessToken":"DECOY"},"claudeAiOauth":{...}}`; (b) live-shaped: `{"mcpOAuth":{"srv":{"accessToken":"DECOY"}},"claudeAiOauth":{...}}`. Golden = sha256 of the claudeAiOauth token (python is parent-scoped, so record normally).
+- **D2 — golden 6-nested-in-parent still python's success (rc0).** Amend per R3-6 above.
+
+**Pending (not drift yet):** the R2 test "no output ever contains literal `None`" and the R3 compact≡pretty + string-with-spaces/`\"` P2 test belong to the step-3 test suite; check them when it lands.
