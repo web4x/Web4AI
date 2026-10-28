@@ -83,7 +83,18 @@ Almost every call parses a Claude Code **session JSONL** (one compact JSON objec
    - `test.claudeCode:1229` — asserts only that the function **exists**.
    **No caller reads `firstPrompt` / `messageCount` / `modified` / `gitBranch` or any field beyond the shape.** The shrink breaks nobody. Keep the test's shape assertion. Add one assertion that each element has `sessionId` + `directory`.
 2. **Delete sessions-index Method 2: APPROVED.**
-3. **otest** and 4. **osemvec** (+ `test.osemvec` json.tool checks): **Tron's call, OUT of the first burn-down.** `test.no-python` excludes `opy`, `otest`, `osemvec`, `test.osemvec` and `restore/` until he rules.
+3. **otest** and 4. **osemvec** (+ `test.osemvec` json.tool checks): **Tron's call, OUT of the first burn-down.** `test.no-python` excludes `opy`, `otest` (until its node port), `osemvec` (permanent, opy exception) and `restore/` (until deleted); `test.osemvec` is ported to awk and then covered.
+**TRON RULINGS (2026-10-28, via oosh-po):**
+- **(3) otest → PORT TO NODE.** Playwright is node-native, so the port has zero python. This is a **separate task AFTER the burn-down**, with its own design (`session/tasks/otest-node-port.design.md`, to be written when it's scheduled). It must cover:
+  - replacing `browser.py` / `run_tests.py` / `utils/test_discovery.py` with node equivalents;
+  - dropping the `apt`/`dnf`/`yum` `python3-venv` bootstrap and `private.python`;
+  - keeping the OOSH `otest.*` verbs and their outputs as the parity contract (goldens recorded first, same discipline as §3).
+  Until then otest stays excluded from `test.no-python`.
+- **(4) osemvec → INSIDE the opy exception, ONLY via opy-managed venvs, never system python.** `test.no-python` **exempts `osemvec` explicitly** (like `opy`). Measured 2026-10-28:
+  - **`osemvec` complies.** Its interpreter is always `private.osemvec.venvPython` = `${OPY_VENVS:-~/.opy/venvs}/<venv>/bin/python`, and `semvecVersion` runs the `$py` it's given.
+  - **Add a guard so it stays compliant:** `test.no-python` also asserts that every interpreter `osemvec` invokes resolves under `OPY_VENVS`, and that it contains no bare `python`/`python3` call.
+  - **`test.osemvec` VIOLATES the ruling.** Lines 40, 53 and 105 run `python3 -m json.tool` = **system python**. **Port all three to awk**, with a structural JSON check: braces/brackets balance outside strings, strings close, and the required keys are present. Not via the venv, because T1/T2 validate templates **before** any venv exists, so the test must run without one. After the port, `test.osemvec` is no longer exempt and falls under `test.no-python`.
+
 - Side note, out of scope: `test.claudeCode` does `source claudeCode`, which the never-source-scripts rule forbids. Track it separately.
 
 **Sequencing:** the tester's `test.no-python` goes **RED first** (step 0, with the goldens). Hand the implementation to the expert **after the expert's hiveMind step 4**, so the in-flight validator pass isn't interleaved with this.
