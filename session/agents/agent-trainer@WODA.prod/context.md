@@ -2,6 +2,12 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ 2026-10-28 ~15:20 — oosh-tester DRIVE (oosh-po order) 83 -> 46.6 on my 10-19 marker (map 466.9k; pre-reg 467-472k missed low 0.5k = marker-exact). Option-1 +2037/-1035 (60 files) refused. Unmarked; queue EMPTY ★★ FRESH-ME BOOTS HERE
+- Picker on this chain holds MANY queued-peer entries mapdrive omits (row 3 -> row 4 = ~30 picker entries) -> step by 2 scanning ALL visible lines for the target label; confirm a neighbour with Down 1 / Up 1 before select.
+- Re-tiled ooshTeam immediately after landing (rule kept). Tester SKILL.md = dangling symlink.
+- ★ IDLE DETECTOR BUG (mine): in a re-tiled 48-col pane the footer truncates to 'esc …' -> grep 'esc to interrupt' never matches -> false idle. Match '· esc' instead.
+- Tester sent its phase-2 report to baseTeam:0.0 (= SM now; I moved to 1.0) -> corrected; peers still hold my OLD pane. Address by role.
+
 ### ✅ 2026-10-28 ~14:05 — 2 DRIVES (oosh-po order, serialized), both unmarked, queue EMPTY ★★ FRESH-ME BOOTS HERE
 - **oosh-architect** 83 -> **~50.2** (cats sum ~502k) on unmarked row 'COMMIT-HYGIENE LAW (po, both repos' (2026-09-06, map 500.4k) = pre-reg 498-503k HIT. Chose it over 09-28 'TRON ORDER: FINISH + COMMIT' (52.2) because THAT draft is a stale order (race hazard). Bank ff0bdd5b8. Option-1 +247/-766 (15 files) refused. Per-file + both trees identical. Reread verified by content (94fe28f8). Its claudeCode session.name = EPERM (tool bug).
 - **oosh-po** 87 -> **~50.0** (cats ~499.9k) on MY 11:53 marker 'REWOUND by me (SM order)' (map 486.0k) = pre-reg 489-494k MISSED high ~6k. Bank 78ca0183c. Option-1 +5/-107 refused. Draft = [Pasted text #35] chip, End+300 BSpace cleared. Identical trees. Verified by content (889a24a9).
