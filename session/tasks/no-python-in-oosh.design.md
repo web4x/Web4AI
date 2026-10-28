@@ -76,6 +76,18 @@ Almost every call parses a Claude Code **session JSONL** (one compact JSON objec
 - They inflate every static gate.
 **Delete** (recoverable any time via `git show ab813de3:restore/<f>`). Until it's deleted, exclude `restore/` from `test.no-python` and the static-defined-functions gate.
 
+## Rulings (oosh-po, 2026-10-28) + condition evidence
+1. **`list.json` → shrink to `{sessionId, directory}`: APPROVED, condition MET.** Inventory of every reference (oosh, `.claude`, base-skills; `restore/` excluded):
+   - `claudeFlow:342/437` — `claudeFlow.list.json`, an **independent implementation in claudeFlow**; it never calls claudeCode.
+   - `test.claudeCode:733-740` — asserts only **shape** (output contains `[`, more than 5 bytes).
+   - `test.claudeCode:1229` — asserts only that the function **exists**.
+   **No caller reads `firstPrompt` / `messageCount` / `modified` / `gitBranch` or any field beyond the shape.** The shrink breaks nobody. Keep the test's shape assertion. Add one assertion that each element has `sessionId` + `directory`.
+2. **Delete sessions-index Method 2: APPROVED.**
+3. **otest** and 4. **osemvec** (+ `test.osemvec` json.tool checks): **Tron's call, OUT of the first burn-down.** `test.no-python` excludes `opy`, `otest`, `osemvec`, `test.osemvec` and `restore/` until he rules.
+- Side note, out of scope: `test.claudeCode` does `source claudeCode`, which the never-source-scripts rule forbids. Track it separately.
+
+**Sequencing:** the tester's `test.no-python` goes **RED first** (step 0, with the goldens). Hand the implementation to the expert **after the expert's hiveMind step 4**, so the in-flight validator pass isn't interleaved with this.
+
 ## 6. Order — smallest risk first (each step = its own commit + its own parity proof)
 0. **Instruments:** `test.no-python` (RED), invert T22, record GOLDENS from every old python path on frozen fixtures. **Must happen before anything is removed**, or parity can't be proven.
 1. Pure arithmetic: scrumMaster:1728 expiry.
