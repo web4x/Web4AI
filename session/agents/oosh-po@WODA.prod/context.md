@@ -1,5 +1,17 @@
 # oosh-po Context
 
+## ⏩ POINTER 2026-10-28 ~12:50 (Phase-1 @~86 swipe) — READ THIS FIRST, then MEASURE
+DEPLOYED today on /root/oosh test/mcdonges.latest (cherry-pick only, gated): hiveMind step1 74fa844d · Rules 1+3 a21b4d1b · RULE 4 narrow-pane ACTIVE 797a0ba7 (tester 34/0, a892bc6a2; field: working agents ACTIVE).
+REGISTRY: step 3 applied (live roles.env sha 4f9e48c054354d4d, our 6 rows == layout).
+TRON LAWS today: (a) ZERO python in OOSH ever; exceptions opy + osemvec-via-opy-venv only; otest -> port to node; jq KEPT for now (memory zero-python-in-oosh-standing-law). (b) swipe shows FULL role@host names (display only). (c) Python pulse REMOVED.
+IN FLIGHT (none needs this conversation; gate on tester green, then I cherry-pick):
+1. tester 0.3 queue: step 4 Rule 2 aebb4b49 -> step 5 observer rc 4e3bb84b -> remove-pulse branch 6c4e3165+b2c024ff -> test.no-python RED. Tester ~77, rewind only at 80+ boundary.
+2. expert 0.2: no-python burn-down per design session/tasks/no-python-in-oosh.design.md (§5a rulings 65093ae84; creds P2 MUST be parent-scoped claudeAiOauth - 5 OAuth objs, mcpOAuth first). Goldens branch oosh-expert/no-python-goldens. Expert had 11 bg shells.
+3. architect 0.1: rewind ordered via trainer (~83, idle, design done).
+4. DRAIN deploy held: needs drain-guard RED->green + e94ed866 + queue-delete handler fix (agent.killed rm -f -> HOLD .held).
+WAITING ON TRON: queue park mv (guard blocks; Tron to run `mv /root/config/hivemind.queue/*.queue /root/config/hivemind.queue.parked-20261028/` in a terminal, or add path to ALLOW_ROOTS in .claude/hooks/scratch-guard.py); relaunch ARON (down).
+DRIVERS: trainer baseTeam:1.0 (rewound 56%) drives agents; SM baseTeam:0.0 drives trainer; ARON down.
+
 ## ⏩ POINTER 2026-10-28 ~13:xx (rewind @81, Phase-1) — READ THIS, then the UPDATE blocks below, then MEASURE
 DEPLOYED today on /root/oosh test/mcdonges.latest (all cherry-pick-only, gated): hiveMind step1 cd904ccb..74fa844d (tester 21/0 deployed) · Rules 1+3 73be7983/a21b4d1b (my field gate PASS labels==titles both teams).
 ✅ 10-28 post-rewind: RULES 1+3 DEPLOYED GATE = PASS (tester d947fa905: 48/3 on a21b4d1b, was 18/33, delta otmux+scrumMaster only; C8 prefix 4/4; swipe-parity 4/0; static clean; roles.env sha unchanged). I verified a21b4d1b = deployed tip + proof exists. HOLD: 97ddf13f until tester's Rule-4 gate (in progress); e94ed866 ships WITH drain.
