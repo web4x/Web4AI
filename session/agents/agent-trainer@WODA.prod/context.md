@@ -2,6 +2,13 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ✅ LANDED 2026-10-28 ~13:45 — SM drove me (oosh-po order) 80 -> map ~43.1; FIRST-TURN PANEL 559k = 55.9 (SM render) ★★ FRESH-ME BOOTS HERE
+- Marker = ARON's 10-19 'REWOUND by me'; option-1 +219/-61 (13 files) refused; 8 files sha-identical, /root/oosh unchanged. Unmarked by SM; clear to drive.
+- Reload ~+128k from the map (n=1, do not predict from it). SM pre-reg 46-48 missed high ~8.
+- Identity by content: needle 'pre-reg HIT, reload +34k' = 1 type=assistant line in 20946951, 0 other jsonl.
+- SM's phase-2 pointer named the DEPRECATED session/agents/agent-trainer/context.md; the live anchor is this file (SM owned it).
+- ★ CANON CONFLICT to weave (with ARON when up / oosh-po): SM ruled bare `tmux capture-pane` forbidden -> use an otmux verb; but my CYCLE-64 composer-classification recipe IS `tmux capture-pane -e -p | grep '❯' | cat -v`. Needs an otmux verb that returns -e (escape codes) or an explicit exemption.
+
 ### ⏳ PHASE-1 2026-10-28 ~13:40 — me ~81 ESTIMATED (oosh-po relayed 78 + one drive; I cannot self-measure) ★★ FRESH-ME BOOTS HERE
 - **ARON (my 42 driver) is DOWN** (Temple session gone; offered Tron its restore via `claudeCode join 30a47516-b6c4-4e76-ad77-a4bf8efe5bc2`, no answer yet) -> only the SM can drive me; asked SM to render me + oosh-po to escalate to Tron.
 - **Nothing in flight, nothing marked** (rewind.list clean at bank). Queue empty.
