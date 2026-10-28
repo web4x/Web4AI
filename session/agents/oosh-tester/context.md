@@ -8,7 +8,8 @@
 - DONE item 1 step 5 observer: 4e3bb84b 15/0 (390ba2646) -> re-gate 191f9b06 19/0 3-way (df498cd35) -> DEPLOYED 49a9fd99+776aef9a, live 19/0.
 - DONE item 2 pulse removal: tests on oosh-tester/remove-pulse-tests @02275faf -> DEPLOYED ca2bba0f..6b4e552e; live pulse-removed 7/0, role-live 44/0, active-narrow 23/0, discover-all 16/1 (diamonds loud-skip). Proof ba3d494b7.
 - DONE item 3 test.no-python RED-first: oosh-tester/no-python-gate @f20b6877 (pushed, NOT deployed): 35 call lines/5 files; T22 inverted (deployed 49/1 -> 48/2; T20 pre-existing). LESSON: source this reloads user.env OOSH_DIR=/root/oosh — derive tree root from the test file path.
-- NEXT item 4 drain-guard RED->green (86341c2f), then item 5 expert no-python step 1 @18e51a7c (expiry checked even with no python3; goldens).
+- DONE item 4 drain guard: test.drain-guard on oosh-tester/drain-guard-test @c12ce951; deployed 6/7 -> deployed+86341c2f+e94ed866+de4dd093 13/0 (proof 3a947078c). Not covered: de4dd093 unblock->drain trigger. HOST FINDING reported: fresh config -> debug trap -> oo.cmd -> sudo apt-get update (seed OOSH_PM=false in every sandbox).
+- NEXT item 5 expert no-python step 1 @18e51a7c (scrumMaster creds.expired; gate vs goldens + expiry checked even with no python3), then step 3 P1 when it lands.
 - Worktrees in scratchpad: rp (remove-pulse-tests), np (no-python-gate).
 
 ## ★ CURRENT STATE — gate queue (PO order, 10-28) — items 1-3 below are now DONE (see PROGRESS)
