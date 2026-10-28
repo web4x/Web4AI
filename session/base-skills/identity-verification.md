@@ -1,5 +1,7 @@
 # Base Skill: Identity Verification (MANDATORY — all agents, on every boot)
 
+> **INSTRUMENT RENAME (Tron, 2026-10-28):** `scrumMaster pulse` is REMOVED; the monitor is **`scrumMaster swipe`**. References below to pulse are the historical instrument; whether swipe inherits the same `session.current` fabrication is UNMEASURED - do not trust a swipe NAME without the `ps --resume` + content check.
+
 *TRON 2026-07-02: SKILL and boot must NOT hardcode pane/host/uuid — a fork inherits stale values and conversation continuity LIES. Carry the **commands to verify**, not the answers. Context MAY hold the current hardcoded values, but only trustworthy if its `Last updated` timestamp is fresh — else re-verify with these and re-save.*
 
 ## Verify your true identity — OOSH primary, naked-tmux fallback
@@ -21,13 +23,13 @@
 ## ★★★ VERIFYING *ANOTHER* PANE IS A DIFFERENT PROBLEM — AND THE TOOLS FABRICATE (ARON found, SM confirmed, 2026-10-08)
 Everything above verifies **YOUR OWN** identity (you read your own kernel env — it cannot lie). **Resolving SOMEONE ELSE's pane — the driver's problem — has a failure the self-check does not:**
 
-**`claudeCode session.current <pane>` returns a PLAUSIBLE-BUT-WRONG uuid for a process started without `--resume`**, instead of reporting unknown — and **`scrumMaster pulse` inherits it.** Both primary tools then agree on the *wrong* identity.
+**`claudeCode session.current <pane>` returns a PLAUSIBLE-BUT-WRONG uuid for a process started without `--resume`**, instead of reporting unknown — and **`scrumMaster pulse` inherits it** (the removed pulse did; whether `swipe` does is UNMEASURED - verify). Both primary tools then agree on the *wrong* identity.
 
 **LIVED:** `diamonds:0.1` was reported as `oosh-expert`/`a43c1b23` by pulse **and** `session.current`, at numbers identical to the real one. `ps` showed `claude --model …` with **no `--resume`**; the pane CONTENT was an unrelated creative project (true uuid `3f5eb079`). A drive order naming "oosh-expert" could have rewound a non-agent session — **by-label and the landing-map cannot save you, because they run AFTER identity is resolved.**
 
 | To resolve another pane | Do | Never |
 |---|---|---|
-| **Is it a roster agent at all?** | `ps -o args=` on its claude pid — there **MUST** be `--resume <uuid>` | trust the pulse NAME |
+| **Is it a roster agent at all?** | `ps -o args=` on its claude pid — there **MUST** be `--resume <uuid>` | trust the swipe/pulse NAME |
 | **Which agent is it?** | the `--resume` uuid **AND** the pane **CONTENT** (capture it) | `session.current` alone |
 | **No `--resume`?** | **NOT a roster agent** — out of scope: never a rewind target, never counted in fleet health | "it's probably X" |
 | **Which checkout is it in?** | `readlink /proc/<claude_pid>/cwd` | assume one repo per host |
