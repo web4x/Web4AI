@@ -34,3 +34,15 @@ baseTeam:1.0           <no row>               agent  agent-trainer          ADD 
 #   moved?), Temple:0.0 (ARON), diamonds:0.1. Recommend: leave until those owners confirm.
 # - Write plan once approved: per-row via private.hiveMind.registry.set / a single-row delete (grep -v ^<pane>|),
 #   re-read the file + this diff after EACH row; no bulk rewrite. Re-run this diff at write time (panes may move again).
+#
+# ===== APPLIED 2026-10-28 by oosh-expert (PO-approved, our 7 rows only) =====
+# pre-check: diff re-run 13:23:42 = identical to this proposal, sha 66661d28d5f00343 (no drift)
+# 13:24:04 set ooshTeam:0.1 -> oosh-architect rc=0 sha 66661d28d5f00343 -> e21afef2fbdbfe8f | before='ooshTeam:0.1|scrum-master|1782659135' after='ooshTeam:0.1|oosh-architect|1793190244' | others-unchanged+row-correct: yes
+# 13:24:23 set ooshTeam:0.2 -> oosh-expert rc=0 sha e21afef2fbdbfe8f -> e2404530782baa6a | before='ooshTeam:0.2|oosh-architect|1782659135' after='ooshTeam:0.2|oosh-expert|1793190263' | others-unchanged+row-correct: yes
+# 13:24:32 set ooshTeam:0.3 -> oosh-tester rc=0 sha e2404530782baa6a -> 0887180efe2fb606 | before='ooshTeam:0.3|oosh-expert|1782659136' after='ooshTeam:0.3|oosh-tester|1793190272' | others-unchanged+row-correct: yes
+# 13:24:41 set baseTeam:0.0 -> scrum-master rc=0 sha 0887180efe2fb606 -> 27a445f49e8c87f3 | before='baseTeam:0.0|agent-trainer|1782659134' after='baseTeam:0.0|scrum-master|1793190281' | others-unchanged+row-correct: yes
+# 13:24:52 set baseTeam:1.0 -> agent-trainer rc=0 sha 27a445f49e8c87f3 -> 8f926e1f60c5c764 | before='<none>' after='baseTeam:1.0|agent-trainer|1793190292' | others-unchanged+row-correct: yes
+# 13:25:05 remove ooshTeam:0.4  rc=0 sha 8f926e1f60c5c764 -> 251673012d7e1626 | before='ooshTeam:0.4|oosh-tester|1782659136' after='<none>' | others-unchanged+row-correct: yes
+# 13:25:08 remove ooshTeam:0.5  rc=0 sha 251673012d7e1626 -> 4f9e48c054354d4d | before='ooshTeam:0.5|oosh-tester-shell|1782659136' after='<none>' | others-unchanged+row-correct: yes
+# each row: via the product verb (hiveMind registry.set/remove), diff re-run after it, all NON-target rows byte-identical before/after.
+# final sha 4f9e48c054354d4d; our 8 rows == live titles; robbinTeam2/Temple/diamonds (10 rows) untouched, owners decide.
