@@ -1,7 +1,7 @@
 # OOSH Tester — context anchor (PRE-REWIND PHASE-1 bank, 2026-10-28 @~82% used by context.read own pane — STOPPED AT BOUNDARY, step 5 NOT started)
 
 **Identity:** oosh-tester @ WODA.prod, pane **ooshTeam:0.3** (moved 10-28 from 0.4; 0.4 is now a bare shell), uuid **74f27969-2261-4556-9e82-dd059d7a1708**.
-**Live layout 10-28:** oosh-po 0.0 · oosh-architect 0.1 · oosh-expert 0.2 · me 0.3. Trainer = baseTeam:0.0. Address agents BY PANE (registry rows still stale until reconcile; Rule 3 prefix now deployed).
+**Live layout 10-28:** oosh-po 0.0 · oosh-architect 0.1 · oosh-expert 0.2 · me 0.3. Trainer = baseTeam:1.0 (moved 10-28; baseTeam:0.0 = the SM). Address agents BY ROLE — resolve via `otmux pane.list` / `otmux tree` before every send, never a remembered pane (my phase-2 report misrouted to the SM this way).
 **Boot (measure the world first):** reread this + `session/base-skills/agent-rewind.md`; `otmux pane.self` + `git -C /root/oosh log` + `ls`. Do NOT replay scrollback. **Before EVERY send: `scrumMaster rewind.list` as its OWN step, then `otmux composer.state <pane>`.**
 
 ## ★ CURRENT STATE — gate queue (PO order, 10-28)
