@@ -1,0 +1,359 @@
+starting: test.swipe-role-live <LOG_LEVEL=1> (RED-FIRST — registry-first must fail)
+test.suite level=1
+ test.suite starting: /root/oosh/test/test.swipe-role-live <LOG_LEVEL=1>
+
+===== cell 9 UNIT — otmux parse fn vs swipe copy, shared title table =====
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 1: T9.0 '✳ oosh-architect@WODA.prod' -> 'oosh-architect' (otmux='<UNDEFINED>' swipe='oosh-architect@WODA.prod')
+└──────────────────────────────────────────────────────────────────┘
+<UNDEFINED>|oosh-architect@WODA.prod
+  ✗ FAIL: RED: want 'oosh-architect', otmux parse='<UNDEFINED>', swipe copy='oosh-architect@WODA.prod'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 2: T9.1 '⠐ oosh-expert@WODA.prod' -> 'oosh-expert' (otmux='<UNDEFINED>' swipe='oosh-expert@WODA.prod')
+└──────────────────────────────────────────────────────────────────┘
+<UNDEFINED>|oosh-expert@WODA.prod
+  ✗ FAIL: RED: want 'oosh-expert', otmux parse='<UNDEFINED>', swipe copy='oosh-expert@WODA.prod'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 3: T9.2 '⏵⏵ oosh-tester@WODA.prod' -> 'oosh-tester' (otmux='<UNDEFINED>' swipe='oosh-tester@WODA.prod')
+└──────────────────────────────────────────────────────────────────┘
+<UNDEFINED>|oosh-tester@WODA.prod
+  ✗ FAIL: RED: want 'oosh-tester', otmux parse='<UNDEFINED>', swipe copy='oosh-tester@WODA.prod'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 4: T9.3 'Claude Code' -> '' (otmux='<UNDEFINED>' swipe='Code')
+└──────────────────────────────────────────────────────────────────┘
+<UNDEFINED>|Code
+  ✗ FAIL: RED: want '', otmux parse='<UNDEFINED>', swipe copy='Code'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 5: T9.4 'v60211.1blu.de' -> '' (otmux='<UNDEFINED>' swipe='v60211.1blu.de')
+└──────────────────────────────────────────────────────────────────┘
+<UNDEFINED>|v60211.1blu.de
+  ✗ FAIL: RED: want '', otmux parse='<UNDEFINED>', swipe copy='v60211.1blu.de'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 6: T9.5 '✳ robbin-po@v60211.1blu.de' -> 'robbin-po' (otmux='<UNDEFINED>' swipe='robbin-po@v60211.1blu.de')
+└──────────────────────────────────────────────────────────────────┘
+<UNDEFINED>|robbin-po@v60211.1blu.de
+  ✗ FAIL: RED: want 'robbin-po', otmux parse='<UNDEFINED>', swipe copy='robbin-po@v60211.1blu.de'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 7: T9.6 '' -> '' (otmux='<UNDEFINED>' swipe='')
+└──────────────────────────────────────────────────────────────────┘
+<UNDEFINED>|
+  ✗ FAIL: RED: want '', otmux parse='<UNDEFINED>', swipe copy=''
+
+===== cells 1/2 UNIT — private.scrumMaster.swipe.role with the shifted registry =====
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 8: U 0.0: '✳ fxrl-architect@WODA.prod' -> 'fxrl-architect'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-po
+  ✗ FAIL: RED: swipe.role 0.0 = 'fxrl-po', want 'fxrl-architect'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 9: U 0.1: '⠐ fxrl-expert@WODA.prod' -> 'fxrl-expert'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-architect
+  ✗ FAIL: RED: swipe.role 0.1 = 'fxrl-architect', want 'fxrl-expert'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 10: U 0.2: '✳ fxrl-tester@WODA.prod' -> 'fxrl-tester'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-expert
+  ✗ FAIL: RED: swipe.role 0.2 = 'fxrl-expert', want 'fxrl-tester'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 11: U 0.3: 'Claude Code' -> 'fxrl-reg'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-reg
+  ✓ PASS: swipe.role 0.3 'fxrl-reg'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 12: U 0.4: '' -> 'fxrl-blank'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-blank
+  ✓ PASS: swipe.role 0.4 'fxrl-blank'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 13: U 0.5: '⏵⏵ fxrl-kappa@my.host.example' -> 'fxrl-kappa'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-kappa@my.host.example
+  ✗ FAIL: RED: swipe.role 0.5 = 'fxrl-kappa@my.host.example', want 'fxrl-kappa'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 14: U 0.6: 'Claude Code' -> '?'
+└──────────────────────────────────────────────────────────────────┘
+Code
+  ✗ FAIL: RED: swipe.role 0.6 = 'Code', want '?'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 15: FIXTURE: every planted title reads back exactly
+└──────────────────────────────────────────────────────────────────┘
+ok
+  ✓ PASS: titles planted exactly
+  swipe fxswrl_fix:
+    TEAM fxswrl_fix  7 agents · 1 shells
+      0.0   fxrl-po                IDLE         sh:0 ?ctx-no-jsonl
+      0.1   fxrl-architect         IDLE         sh:0 ?ctx-no-jsonl
+      0.2   fxrl-expert            IDLE         sh:0 ?ctx-no-jsonl
+      0.3   fxrl-reg               IDLE         sh:0 ?ctx-no-jsonl
+      0.4   fxrl-blank             IDLE         sh:0 ?ctx-no-jsonl
+      0.5   fxrl-kappa@my.host.example IDLE         sh:0 ?ctx-no-jsonl
+      0.6   Code                   IDLE         sh:0 ?ctx-no-jsonl
+      0.7   shell                  shell
+
+===== cells 1/2/3 — swipe AND pulse print the LIVE-title role per row =====
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 16: C1-3 swipe 0.0: '✳ fxrl-architect@WODA.prod' -> 'fxrl-architect'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-po
+  ✗ FAIL: RED: swipe 0.0 shows 'fxrl-po', want 'fxrl-architect'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 17: C1-3 swipe 0.1: '⠐ fxrl-expert@WODA.prod' -> 'fxrl-expert'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-architect
+  ✗ FAIL: RED: swipe 0.1 shows 'fxrl-architect', want 'fxrl-expert'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 18: C1-3 swipe 0.2: '✳ fxrl-tester@WODA.prod' -> 'fxrl-tester'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-expert
+  ✗ FAIL: RED: swipe 0.2 shows 'fxrl-expert', want 'fxrl-tester'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 19: C1-3 swipe 0.3: 'Claude Code' -> 'fxrl-reg'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-reg
+  ✓ PASS: swipe 0.3 'fxrl-reg'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 20: C1-3 swipe 0.4: '' -> 'fxrl-blank'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-blank
+  ✓ PASS: swipe 0.4 'fxrl-blank'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 21: C1-3 swipe 0.5: '⏵⏵ fxrl-kappa@my.host.example' -> 'fxrl-kappa'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-kappa@my.host.example
+  ✗ FAIL: RED: swipe 0.5 shows 'fxrl-kappa@my.host.example', want 'fxrl-kappa'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 22: C1-3 swipe 0.6: 'Claude Code' -> '?'
+└──────────────────────────────────────────────────────────────────┘
+Code
+  ✗ FAIL: RED: swipe 0.6 shows 'Code', want '?'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 23: C1-3 swipe 0.7: 'v60211.1blu.de' -> 'shell'
+└──────────────────────────────────────────────────────────────────┘
+shell
+  ✓ PASS: swipe 0.7 'shell'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 24: C1-3 pulse 0.0: '✳ fxrl-architect@WODA.prod' -> 'fxrl-architect'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-po
+  ✗ FAIL: RED: pulse 0.0 shows 'fxrl-po', want 'fxrl-architect'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 25: C1-3 pulse 0.1: '⠐ fxrl-expert@WODA.prod' -> 'fxrl-expert'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-architect
+  ✗ FAIL: RED: pulse 0.1 shows 'fxrl-architect', want 'fxrl-expert'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 26: C1-3 pulse 0.2: '✳ fxrl-tester@WODA.prod' -> 'fxrl-tester'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-expert
+  ✗ FAIL: RED: pulse 0.2 shows 'fxrl-expert', want 'fxrl-tester'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 27: C1-3 pulse 0.3: 'Claude Code' -> 'fxrl-reg'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-reg
+  ✓ PASS: pulse 0.3 'fxrl-reg'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 28: C1-3 pulse 0.4: '' -> 'fxrl-blank'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-blank
+  ✓ PASS: pulse 0.4 'fxrl-blank'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 29: C1-3 pulse 0.5: '⏵⏵ fxrl-kappa@my.host.example' -> 'fxrl-kappa'
+└──────────────────────────────────────────────────────────────────┘
+fxrl-kappa@my.host.example
+  ✗ FAIL: RED: pulse 0.5 shows 'fxrl-kappa@my.host.example', want 'fxrl-kappa'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 30: C1-3 pulse 0.6: 'Claude Code' -> '?'
+└──────────────────────────────────────────────────────────────────┘
+Code
+  ✗ FAIL: RED: pulse 0.6 shows 'Code', want '?'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 31: C1-3 pulse 0.7: 'v60211.1blu.de' -> 'shell'
+└──────────────────────────────────────────────────────────────────┘
+shell
+  ✓ PASS: pulse 0.7 'shell'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 32: C3 shell guard: the shell row never carries a role
+└──────────────────────────────────────────────────────────────────┘
+0.7 shell shell
+  ✓ PASS: 0.7 (hostname-titled shell) unlabelled in swipe+pulse
+
+===== cell 9 — pulse copy agrees with the shared table (via the table fixture) =====
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 33: T9P.0 '✳ oosh-architect@WODA.prod' -> 'oosh-architect' (pulse='oosh-architect@WODA.prod' swipe='oosh-architect@WODA.prod')
+└──────────────────────────────────────────────────────────────────┘
+oosh-architect@WODA.prod|oosh-architect@WODA.prod
+  ✗ FAIL: RED: want 'oosh-architect', pulse='oosh-architect@WODA.prod', swipe='oosh-architect@WODA.prod'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 34: T9P.1 '⠐ oosh-expert@WODA.prod' -> 'oosh-expert' (pulse='oosh-expert@WODA.prod' swipe='oosh-expert@WODA.prod')
+└──────────────────────────────────────────────────────────────────┘
+oosh-expert@WODA.prod|oosh-expert@WODA.prod
+  ✗ FAIL: RED: want 'oosh-expert', pulse='oosh-expert@WODA.prod', swipe='oosh-expert@WODA.prod'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 35: T9P.2 '⏵⏵ oosh-tester@WODA.prod' -> 'oosh-tester' (pulse='oosh-tester@WODA.prod' swipe='oosh-tester@WODA.prod')
+└──────────────────────────────────────────────────────────────────┘
+oosh-tester@WODA.prod|oosh-tester@WODA.prod
+  ✗ FAIL: RED: want 'oosh-tester', pulse='oosh-tester@WODA.prod', swipe='oosh-tester@WODA.prod'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 36: T9P.3 'Claude Code' -> '?' (pulse='Code' swipe='Code')
+└──────────────────────────────────────────────────────────────────┘
+Code|Code
+  ✗ FAIL: RED: want '?', pulse='Code', swipe='Code'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 37: T9P.4 'v60211.1blu.de' -> '?' (pulse='v60211.1blu.de' swipe='v60211.1blu.de')
+└──────────────────────────────────────────────────────────────────┘
+v60211.1blu.de|v60211.1blu.de
+  ✗ FAIL: RED: want '?', pulse='v60211.1blu.de', swipe='v60211.1blu.de'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 38: T9P.5 '✳ robbin-po@v60211.1blu.de' -> 'robbin-po' (pulse='robbin-po@v60211.1blu.de' swipe='robbin-po@v60211.1blu.de')
+└──────────────────────────────────────────────────────────────────┘
+robbin-po@v60211.1blu.de|robbin-po@v60211.1blu.de
+  ✗ FAIL: RED: want 'robbin-po', pulse='robbin-po@v60211.1blu.de', swipe='robbin-po@v60211.1blu.de'
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 39: T9P.6 '' -> '?' (pulse='?' swipe='?')
+└──────────────────────────────────────────────────────────────────┘
+?|?
+  ✓ PASS: pulse==swipe=='?'
+
+===== cell 4 — PARITY: pulse == swipe byte-identical on both fixtures + test.swipe-parity green =====
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 40: PARITY fxswrl_fix: pulse == swipe byte-for-byte
+└──────────────────────────────────────────────────────────────────┘
+diff
+  ✓ PASS: pulse == swipe on fxswrl_fix
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 41: PARITY fxswrl_tbl: pulse == swipe byte-for-byte
+└──────────────────────────────────────────────────────────────────┘
+diff
+  ✓ PASS: pulse == swipe on fxswrl_tbl
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 42: test.swipe-parity stays green
+└──────────────────────────────────────────────────────────────────┘
+PASS=4 FAIL=0
+  ✓ PASS: test.swipe-parity PASS=4 FAIL=0
+
+===== cell 5 — send-by-name: resolve follows the LIVE title; refuses a stale row on a shell =====
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 43: C5a resolve fxrl-tester -> fxswrl_fix:0.2 (live title), not the stale shell fxswrl_fix:0.7
+└──────────────────────────────────────────────────────────────────┘
+fxswrl_fix:0.7
+  ✗ FAIL: RED: resolve -> 'fxswrl_fix:0.7' (stale registry), want fxswrl_fix:0.2
+  hiveMind send (rc=0) said:
+  canary found queued in: config/hivemind.queue/fxswrl_fix_0_7.queue 
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 44: C5b stale row on a shell: send by name refuses loudly, delivers NOTHING
+└──────────────────────────────────────────────────────────────────┘
+rc=0 typed=0 queued-files=1 loud=0
+  ✗ FAIL: RED: rc=0 loud=0 — typed-into-shell=0, queued-for-later=1 (want rc!=0 + 'stale/refusing' + 0 typed + 0 queued)
+
+===== cell 6 — write-through: one resolve rewrites ONLY the drifted row =====
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 45: C6 after resolve fxrl-expert: row fxswrl_fix:0.1 = fxrl-expert, unrelated rows unchanged
+└──────────────────────────────────────────────────────────────────┘
+row=fxrl-architect other-diff=0
+  ✗ FAIL: RED: row fxswrl_fix:0.1='fxrl-architect' (want fxrl-expert), unrelated-row diff lines=0
+
+===== cell 8 — sender prefix from OWN live title (pane part via PID walk) =====
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 46: C8 title role beats stale registry: prefix == '[@fxrl-architect fxswrl_snd:0.0] '
+└──────────────────────────────────────────────────────────────────┘
+def=function got='[@fxrl-stale fxswrl_snd:0.0] '
+  ✗ FAIL: RED: prefix '[@fxrl-stale fxswrl_snd:0.0] ', want '[@fxrl-architect fxswrl_snd:0.0] '
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 47: C8 TMUX_PANE poisoned (%999) — pane part: prefix == '[@fxrl-architect fxswrl_snd:0.0] '
+└──────────────────────────────────────────────────────────────────┘
+def=function got='[@fxrl-stale fxswrl_snd:0.0] '
+  ✗ FAIL: RED: prefix '[@fxrl-stale fxswrl_snd:0.0] ', want '[@fxrl-architect fxswrl_snd:0.0] '
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 48: C8 non role@host title -> registry role: prefix == '[@fxrl-regsender fxswrl_snd:0.1] '
+└──────────────────────────────────────────────────────────────────┘
+def=function got='[@fxrl-regsender fxswrl_snd:0.1] '
+  ✓ PASS: prefix '[@fxrl-regsender fxswrl_snd:0.1] '
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 49: C8 neither -> NO prefix (never a wrong one): prefix == ''
+└──────────────────────────────────────────────────────────────────┘
+def=function got=''
+  ✓ PASS: prefix ''
+
+===== cell 7 — hiveMind-free: zero hiveMind invocations in the swipe methods =====
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 50: C7 swipe methods present AND 0 hiveMind invocations
+└──────────────────────────────────────────────────────────────────┘
+lines=157 hm=0
+  ✓ PASS: swipe hiveMind-free
+
+===== ISOLATION — the LIVE roles.env was never touched =====
+
+┌──────────────────────────────────────────────────────────────────┐
+│ Test 51: ISOLATION: live hivemind.roles.env sha256 unchanged
+└──────────────────────────────────────────────────────────────────┘
+66661d28d5f0..66661d28d5f0
+  ✓ PASS: live registry untouched
+
+==================================================================
+  T-SWIPE-ROLE-LIVE  PASS=18 FAIL=33
+  RED-FIRST until Rules 1-3 of design 8ddcd6f65 land (swipe+pulse, resolve, prefix).
+==================================================================
+
+════════════════════════════════════════════════════════════════════
+                         TEST SUMMARY                               
+════════════════════════════════════════════════════════════════════
+
+  Test Cases:  51
+  Assertions:  51
+  Passed:      18
+  Failed:      33
+
+  ✗ SOME TESTS FAILED
+
+════════════════════════════════════════════════════════════════════
