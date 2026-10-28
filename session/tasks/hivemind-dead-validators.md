@@ -76,6 +76,33 @@ Method: my own read-only static scan (`/tmp/claude-0/-var-dev-Workspaces-AI-Clau
 
 Not dead (excluded after reading): state:262 (guarded by `this.functionExists`), config:145/501/580 (defined with the `function` keyword), oo:1258 (`private.stage` is defined), all other oo hits (state-machine step names, strings, `ossh`/`once` arguments), otmux:1110/3593 (strings), hiveMind `context.*` / `line.*` / `os.*` / `fix.path` / `path.strip` (strings, Python, or calls to another script).
 
+**Correction (tester raw f1d211aac, 2026-10-28):** oo:1258 `private.stage status` IS dead. Its only definition is `/root/oosh/init/once`, which is outside oo's load path (oo + this + what oo sources). My scan pooled definitions from every file, which produced a false "defined". **Row 14: oo:1258 · `private.stage` · oo install state machine · B · source it from `init/once` on the path that needs it, or call it via `once`.** Counts now reconcile: 70 call sites = 22 distinct (script, name). My config 1 / state 1 were per-name counts of the same findings.
+
+### #1 is GATED — drain staleness guard + backlog PARK must ship WITH the repoint (oosh-architect, 2026-10-28)
+**What a queue entry actually records** (measured, `private.hiveMind.agent.queue.enqueue` hiveMind:8796): `<epoch>|<intent>|<text>`, one line per entry, in a file keyed by the **pane address** (`private.hiveMind.agent.queue.path` :8788 sanitizes `session:win.pane`). **No recipient identity is recorded.** The only name in an entry is the sender prefix inside `<text>`, which identifies the *sender*.
+**Backlog** (`/root/config/hivemind.queue`, metadata only; message text not read): 276 entries over 312 lines, all `inform`. Oldest ≈ 122 days (≈ 2026-06-28), newest ≈ 37 min.
+**What the PUBLIC drain (:8877) does today, if #1 simply repoints to it:**
+- Entries older than `HIVEMIND_QUEUE_MAX_AGE_SEC=3600` are **DELETED** with a warning. So the months-old backlog is **silently destroyed**, not replayed.
+- Entries **younger than 1 h ARE delivered to whoever sits at that pane now**. After the 10-28 move, that's a misroute (the 37-min entry is in that window).
+- The dispatch result is **ignored**: the line is removed whether or not `agent.inform` succeeded. That breaks §8 dequeue-only-on-rc0.
+- **Multi-line texts are split across lines:** 36 continuation lines have no epoch. The drain reads `head -1` per entry, so these parse as garbage entries (non-numeric epoch).
+- `remote-control:<key>` intents replay **raw keystrokes** (`send.raw`). None are in the backlog now, but this is the most dangerous kind to replay.
+
+**Guard (drain-time), every entry, oldest first:**
+1. **Entry format v2 at enqueue:** `v2|<epoch>|<intent>|<recipient-role>|<base64(text)>`. The recipient role comes from the target pane's live title (Rule 1 `role@host` parse) at enqueue time. Base64 fixes the multi-line split. Lines without the `v2|` prefix are legacy.
+2. **Deliver ONLY if all hold:** (a) the entry is v2 with a recipient role, (b) that role == the pane's LIVE title-role right now (Rule 1 parse; not the registry), (c) age ≤ TTL (`HIVEMIND_QUEUE_MAX_AGE_SEC`, default stays 3600; `remote-control:*` gets a short TTL of 60 s), (d) the route is `inform` (existing check).
+3. **Otherwise REFUSE + KEEP:** move the entry, unchanged, to `<queuefile>.held` with a reason line (`recipient-mismatch: entry=<r> live=<r'>` / `expired age=<s>` / `legacy-no-recipient` / `unparsable`). **Never deliver, never delete.** Legacy v1 entries are always held, because their recipient can't be proven.
+4. **Dequeue only on dispatch rc0** (§8). On non-zero, stop draining that pane and keep the entry at the head.
+5. **The "drop stale" branch (:8904) and the enqueue depth-bound drop (:8815) become HOLD**, matching the PO's never-drop rule. Depth overflow refuses the NEW enqueue loudly instead of deleting the oldest.
+6. Held entries are re-delivered only by an explicit operator verb (e.g. `hiveMind agent.queue.release <pane> <n>` after a human reads them). Nothing re-delivers them automatically.
+
+**One-time backlog disposition — PARK before deploy (reversible):**
+- In a quiet window, BEFORE the #1 + guard deploy: move every `hivemind.queue/*.queue` into `hivemind.queue/parked-2026-10-28/` (subdir of the same store) with `MANIFEST.txt`: per file → original name, line count, entry count, oldest/newest epoch, sha256. Restore = move back plus a hash check.
+- The newest entries (≈37 min) may be live and legitimate. List the files whose newest entry is < 1 h in the deploy note so their senders can re-send through the guarded path.
+- ⚠ **SCRATCH-LOCATION LAW conflict:** `/root/config/…` is outside the hook's allow-roots, so an agent's `mkdir`/`mv` there will be **denied**. Per the law: **STOP and ask oopPO** to sanction the park location (or have Tron run it). Do not work around the guard.
+
+**Acceptance (tester, add to T-DELIVERY-EXACTLY-ONCE):** a v2 entry for role X at a pane now titled Y → held, nothing typed. A legacy v1 entry → held. An expired entry → held, not deleted (file diff). A matching fresh entry → delivered exactly once (recipient jsonl +1). An inform that fails → entry still at the head. A multi-line text survives a round trip. `remote-control` older than 60 s → held.
+
 **Count discrepancy vs the tester's gate:** I find config 1 (gate: 2), state 1 (gate: 3), oo 0 (gate: 1). Either the gate counts dynamic and string matches that I excluded, or it caught calls my regex misses. **Tester: please commit the raw 70-line gate output** so we can reconcile line by line; I won't guess the missing ones.
 
 **Next batch, in order:** #1 now (A, one line, and it unblocks the §8 RED), then #3-#5 together (same validator pattern as e48ba430, three scripts), then #6/#7, then #2 (refuse-loud), then #8-#13 (C, re-home). The expert stays on hiveMind steps 1-5. #1 and #2 are hiveMind, so slot them after step 5 or as a separate hiveMind commit there. Everything else is outside hiveMind and can go to any owner.
