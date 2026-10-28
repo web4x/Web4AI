@@ -8,6 +8,7 @@
 - ★ **RELOAD HYPOTHESIS REFUTED:** lean phase-2 (3 calls, 25 lines) still gave first-turn +263.6k (455.9k -> 719.5k), same as +262k/+272k earlier. oosh-po reload is constant per landing on this chain, NOT its boot reads. Cause unknown. It sits ~76 = working band.
 - Mechanics: picker shows 1-2 entries in a 40-row window -> jump near (index ~= map row, offset 0-2), then step by 2 reading labels. mapdrive omits some picker entries (e.g. 'wait until he is idle!!!!') -> locate by label, never index.
 - My slips: one `| tail` (denied, redone), one raw `tmux display-message` (auto-mode denied; otmux pane.list instead).
+- ★★ **SLIP THAT COST ~40 MIN:** I `pane.size.set` ooshTeam:0.1 + 0.0 for panels and re-tiled only baseTeam -> ooshTeam crushed (architect 1 col, expert/tester/shells 1 row) -> hiveMind blind to idle, expert's order stuck at queue pos 18, captures blind. Fixed with `otmux tiled ooshTeam:0` (NOT layout.restore - saved layout is 07-03 stale, --force may split). **RULE: every pane.size.set is paired with `otmux tiled <that window>` before I leave the drive; verify all panes' sizes.**
 
 ### ✅ LANDED 2026-10-28 ~13:45 — SM drove me (oosh-po order) 80 -> map ~43.1; FIRST-TURN PANEL 559k = 55.9 (SM render) ★★ FRESH-ME BOOTS HERE
 - Marker = ARON's 10-19 'REWOUND by me'; option-1 +219/-61 (13 files) refused; 8 files sha-identical, /root/oosh unchanged. Unmarked by SM; clear to drive.
