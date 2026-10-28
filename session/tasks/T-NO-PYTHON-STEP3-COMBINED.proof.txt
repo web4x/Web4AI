@@ -1,0 +1,68 @@
+readlink /root/oosh: /var/dev/EAMD.ucp/Components/com/ceruleanCircle/EAM/1_infrastructure/Once.sh/mcdonges.latest  live HEAD: b3e819ef
+CONTROL b3e819ef   CANDIDATE 70188f50
+candidate contains b3e819ef? yes
+net delta:  3 files changed, 118 insertions(+), 163 deletions(-)
+    claudeCode  | 130 +++++++++++++++++++++++++++++++++++++-----------------------
+    hiveMind    | 112 ++++++++++++---------------------------------------
+    scrumMaster |  39 +++++-------------
+    3 files changed, 118 insertions(+), 163 deletions(-)
+bash -n scrumMaster/claudeCode/hiveMind (candidate): ok
+conflict markers in candidate scripts: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/c-cand/scrumMaster:0 /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/c-cand/claudeCode:0 /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/c-cand/hiveMind:0 
+
+################ GOLDENS
+=== tree: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/c-ctl @ b3e819ef   goldens: e60ed228
+  swipe.ctx                     32/32
+  max.tokens.for.jsonl          16/16
+  context.from.jsonl            14/16
+  context.live.jsonl             4/4
+  context.denom.for.target       4/4
+  context.from.jsonl.reading     4/4
+  INFO-velocity-step4           13/16
+    context.from.jsonl/02-zero-stub.out: want[25.0 rc=0] got[100.0 rc=0]
+    context.from.jsonl/16-lag-then-zero-stub.out: want[lag rc=1] got[100.0 rc=0]
+  instrument: 0 replay(s) without rc= line (source died / fn undefined)
+=== T-NP-GOLDENS step-3 scope: 74/76 ===
+=== tree: /tmp/claude-0/-var-dev-Workspaces-AI-Claude/74f27969-2261-4556-9e82-dd059d7a1708/scratchpad/c-cand @ 70188f50   goldens: e60ed228
+  swipe.ctx                     32/32
+  max.tokens.for.jsonl          16/16
+  context.from.jsonl            16/16
+  context.live.jsonl             4/4
+  context.denom.for.target       4/4
+  context.from.jsonl.reading     4/4
+  INFO-velocity-step4           13/16
+  instrument: 0 replay(s) without rc= line (source died / fn undefined)
+=== T-NP-GOLDENS step-3 scope: 76/76 ===
+
+################ test.creds-expiry (FIXED test file 57554c0d, pointed at each tree)
+=== T-CREDS-EXPIRY: PASS=7 FAIL=0 ===
+=== T-CREDS-EXPIRY: PASS=7 FAIL=0 ===
+
+################ test.no-python
+== c-ctl [raw]: scanned 203 tracked text files; python call lines = 42 in 6 file(s)
+ 12 scrumMaster; 11 claudeCode; 9 test/test.creds-expiry; 6 hiveMind; 3 test/test.osemvec; 1 test/test.static-defined-functions;
+== c-ctl [fixed]: scanned 203 tracked text files; python call lines = 33 in 5 file(s)
+ 12 scrumMaster; 11 claudeCode; 6 hiveMind; 3 test/test.osemvec; 1 test/test.static-defined-functions;
+== c-cand [raw]: scanned 203 tracked text files; python call lines = 33 in 6 file(s)
+ 9 test/test.creds-expiry; 9 scrumMaster; 9 claudeCode; 3 test/test.osemvec; 2 hiveMind; 1 test/test.static-defined-functions;
+== c-cand [fixed]: scanned 203 tracked text files; python call lines = 24 in 5 file(s)
+ 9 scrumMaster; 9 claudeCode; 3 test/test.osemvec; 2 hiveMind; 1 test/test.static-defined-functions;
+   -- candidate scrumMaster sites:
+    scrumMaster:1555:  if command -v python3 >/dev/null 2>&1; then
+    scrumMaster:1556:    token=$(echo "$raw_creds" | python3 -c "import sys,json; print(json.load(sys.stdin)['claudeAiOauth']['accessToken'])" 2>/dev/null)
+    scrumMaster:1557:    expires_at=$(echo "$raw_creds" | python3 -c "import sys,json; print(json.load(sys.stdin)['claudeAiOauth'].get('expiresAt',''))" 2>/dev/null)
+    scrumMaster:1562:    error.log "Neither python3 nor jq available for JSON parsing"
+    scrumMaster:1598:  if command -v python3 >/dev/null 2>&1; then
+    scrumMaster:1599:    parsed=$(echo "$json" | python3 -c "
+    scrumMaster:1633:    error.log "Neither python3 nor jq available for JSON parsing"
+    scrumMaster:2210:  python3 -c "
+    scrumMaster:2412:    remain_min=$(python3 -c "
+
+################ test.jsonl-lag
+== c-ctl:  Passed: 7  Failed: 0 
+== c-cand:  Passed: 7  Failed: 0 
+
+################ PERF biggest real session
+  9991a7cc-19fb-42fc-9de6-859bf6ad68a5.jsonl 589M
+  c-ctl swipe.ctx: [ 2.94 2.78 2.98 ] out=[719199|72|1000 rc=0 ]
+  c-cand swipe.ctx: [ 2.03 2.17 2.05 ] out=[719199|72|1000 rc=0 ]
+orphans: 0
