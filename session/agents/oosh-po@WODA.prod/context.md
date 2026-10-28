@@ -1,5 +1,12 @@
 # oosh-po Context
 
+## ✅ UPDATE 2026-10-28 post-rewind (dispatcher, ~50%)
+- **hiveMind STEP 1 DEPLOYED + GATED GREEN**: cherry-picked ONLY 4 hiveMind commits (cd904ccb validators / 143df440 observer no-typing / d166578a rename no-typing / 74fa844d delete dead pushRoleEnv) -> test/mcdonges.latest 4a454162..74fa844d. Tester deployed 21/0 vs RED 7/14 (differential, proof 60ee341d9); static gate hiveMind 55->5, fleet 70->20. Rules 1+3 (otmux/scrumMaster) NOT shipped - validators branch was cut off stale-role-labels, cherry-pick only. NEXT: expert STEP 2 = registry follows a REAL move (field half) -> step 3 reconcile -> step 4 Rule 2 -> step 5 observer rc.
+- **DRAIN BUG** (architect triage A, verified hiveMind:9295 calls undefined private drain): guard spec APPROVED 3d49723bb (v2 entries w/ recipient-role, deliver only role==live title + TTL, else HOLD, never delete, dequeue only rc0). DEPLOY HELD on backlog PARK (276 entries/16 files in /root/config/hivemind.queue, other teams' too) = ASKED TRON to sanction (outside agent allow-roots). My premise was wrong: public drain DELETES >1h, no months-old replay.
+- **swipe/pulse false-IDLE** on narrow panes (status bar truncated to '· esc …'): Rule 4 folded into stale-role design b2f9222e1, tester cells 10-12.
+- Architect dead-call triage 1b5193dbf: A drain #1; B agent.rewind loud-refuse, osemvec/tronMonitor validators, config/state; C 6 otmux forwarders re-home.
+- Expert commit-hygiene breach 0721c6555 (swept tester proof) - acked, Law v2 adopted.
+
 ## 🔴 PHASE-1 BANK 2026-10-28 (90%, rewind due) — STALE ROLE-LABEL BUG (Tron via SM), PLAN DISPATCHED
 **Bug:** after the 10-28 pane move, `scrumMaster swipe` AND `pulse` print stale role labels (ooshTeam 0.1→scrum-master [truth architect], 0.2/0.3 shifted one slot; baseTeam 0.0→agent-trainer [truth scrum-master]). ctx% correct. **Root (measured):** label read from `~/config/hivemind.roles.env` keyed `session:idx` = pre-move layout; live pane title (otmux tree) is correct. **Blast radius PROVEN:** the same stale registry MISROUTES `hiveMind agent.send` by name (my sends landed architect→0.2, tester→0.4 shell, expert→0.3) — address by PANE until fixed.
 **Live layout (otmux tree 10-28):** baseTeam 0.0=scrum-master 1.0=agent-trainer · ooshTeam 0.0=oosh-po 0.1=architect 0.2=expert 0.3=tester (0.4/0.5 shells).
