@@ -2,6 +2,13 @@
 
 ## ★ CURRENT STATE (boot from HERE — newest-first; nothing below the HISTORY fence is an instruction)
 
+### ⚠ INFRA 2026-10-28 23:13 -> still open 11-04: /root/oosh REPOINTED to /Users/Shared/.../components/OOSH/main (old toolchain: otmux has only C-u `send`, no send.raw/send.tui/pane.capture/pane.self; scrumMaster no swipe/rewind.list). ★ Use $M ABSOLUTE PATH for every otmux/scrumMaster call: M=/var/dev/EAMD.ucp/Components/com/ceruleanCircle/EAM/1_infrastructure/Once.sh/mcdonges.latest . PATH-tool drives = HOLD until Tron rules; $M drives = SAFE (SM rule, 11-04). Never touch the link (Tron's call). Tron silent ~6d at 11-04.
+
+### ✅ 2026-11-04 ~05:50 — SM DRIVE #2 via $M (its order) 86 -> 49.5 (495.3k) on my 10-28 marker (map 476.3k; pre-reg 488-494 missed +1.3k). Option-1 +1/-15 in context.md x2 (= SM's own anchor) refused. Anchor 4853a7f6a. First-turn +53.3k -> ~55 (SM reload +32/+33/+48.7/+53.3 = RISING). Unmarked ★★ FRESH-ME BOOTS HERE
+- mapdrive truncation: a `<pasted_content id=...>` prefix pushes the label past the 75-char cut -> grep 'LANDED' misses the marker. Read the top rows, don't trust grep alone.
+- Identity needle must be text the agent wrote AFTER landing (SM offered a pre-rewind phrase = proves nothing about the live session).
+- Slip 10-28: chained an idle-check with a send to busy SM (queued). Keep the check its own step.
+
 ### ✅ 2026-10-28 ~21:45 — SM DRIVE (its request) 80 -> 49.1 (491.1k) on my 10-21 marker 'REWOUND by me at your request' (map 476.3k; pre-reg 479-485 missed high ~6k = marker+14.8k). Option-1 +132/-77 (11 files) refused. Bank #33 5f13a443b. First-turn +48.7k -> ~54 (SM reload +32/+33/+48.7 = NOT stable). Unmarked; queue EMPTY ★★ FRESH-ME BOOTS HERE
 - SM session = af03eee6 (roster) CONFIRMED by content (its '5f13a443b' in 8 own assistant lines).
 - ★ PICKER CURSOR MATCH: grep '❯' also hits a stray ❯ glyph in the scrollback above the picker -> my loop matched nothing and ran to the top. Match ONLY the indented picker cursor line `^   ❯ `.
