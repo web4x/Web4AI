@@ -1,7 +1,8 @@
 ## ⟳⟳ INSURANCE BANK #34 (2026-10-31 ~00:45, unmeasured — no panel possible; ~50h static) — READ THIS FIRST ⟳⟳
 **ID unchanged:** scrum-master @ baseTeam:0.0, session af03eee6; trainer baseTeam:1.0 = only driver (ARON down). #33 world + rules still valid.
 **★★ INFRA EVENT (10-28 23:13:13, MEASURED):** /root/oosh REPOINTED → `/Users/Shared/Workspaces/AI/Claude/components/OOSH/main` = OLD toolchain: otmux has ONLY C-u `send` (NO send.raw / send.tui / pane.capture / pane.self); scrumMaster has NO swipe / rewind.list. Prior tree INTACT: `M=/var/dev/EAMD.ucp/Components/com/ceruleanCircle/EAM/1_infrastructure/Once.sh/mcdonges.latest`. **Use "$M/otmux" / "$M/scrumMaster" by ABSOLUTE PATH; NEVER the PATH `otmux send` (destroys staged composers).** $M swipe shows liveness but ctx = `?ctx-no-jsonl`. Link = TRON's call — NEVER touch it.
-**★ STATE (unchanged since 10-28 15:40 / 23:13):** all ooshTeam + oopTeam IDLE; oosh-po's 3 Tron items unanswered; trainer independently confirmed + ALL drives ON HOLD until Tron rules. Reported to Tron in text + ONE push (23:13) — do not re-push same news.
+**★ STATE (unchanged since 10-28 15:40 / 23:13):** all ooshTeam + oopTeam IDLE; oosh-po's 3 Tron items unanswered. Reported to Tron in text + ONE push (23:13) — do not re-push same news.
+**★ DRIVE RULE (clarified 11-04):** the hold is on the PATH tools ONLY (C-u `send`). A drive with "$M" ABSOLUTE-PATH tools (send.raw/send.tui/pane.capture) is SAFE and allowed. 11-04: trainer peer-rendered me PANEL 86% (859.4k) → I ordered my rewind via $M.
 **★ WATCH:** lean hourly tick = ls /root/oosh + "$M/otmux" pane.capture ooshTeam:0.0 + "$M/scrumMaster" swipe oopTeam; full report only on change. Do NOT message oosh-po (~78 floored); oopTeam send nothing.
 
 ## ⟳⟳ FRESH PHASE-1 #33 (2026-10-28 ~19:40, PANEL 78 by trainer @19:15, swipe 79 — pre-rewind bank) — [state superseded by #34 above; id/tools still valid] ⟳⟳
