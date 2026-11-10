@@ -1,4 +1,11 @@
-## ⟳⟳ INSURANCE BANK #34 (2026-10-31 ~00:45, unmeasured — no panel possible; ~50h static) — READ THIS FIRST ⟳⟳
+## ⟳⟳ PHASE-1 #35 (2026-11-10, trainer PANEL 93% = Tron-ordered 2-phase rewind) — READ THIS FIRST, then #34 ⟳⟳
+**ID unchanged:** scrum-master @ baseTeam:0.0 (%10), session af03eee6; trainer baseTeam:1.0 = only driver.
+**★ CHANGE since #34:** /root/oosh link MOVED AGAIN 11-10 10:41 → `/Users/Shared/Workspaces/AI/Claude/components/OOSH/dev` (measured by ls; trainer says dev HAS send.raw+pane.capture — VERIFY before trusting PATH tools; until verified keep "$M" abs-path tools).
+**★ FLEET (last tick 11-10 ~09:38):** all ooshTeam + oopTeam IDLE (swipe ctx=?ctx-no-jsonl); oosh-po still awaiting Tron's 3 items (DRAIN blocker / who repointed / refork), untouched since 10-28. Tron told once (text+push 10-28) — no re-push. Nothing in flight.
+**★ ME:** hourly lean watch 11-04→11-10 (~80 quiet ticks) climbed me 55→93; reload trend rising (+32/+33/+48.7/+53.3) → each tick's swipe+capture output (~3k) is the cost; post-rewind consider leaner tick (link-ls only + capture on change).
+**★ LESSON (11-04, memory updated):** identity needle = text written AFTER landing; exact-calls list names every call incl Reads.
+
+## ⟳⟳ INSURANCE BANK #34 (2026-10-31 ~00:45, unmeasured — no panel possible; ~50h static) — [superseded by #35 above for state] ⟳⟳
 **ID unchanged:** scrum-master @ baseTeam:0.0, session af03eee6; trainer baseTeam:1.0 = only driver (ARON down). #33 world + rules still valid.
 **★★ INFRA EVENT (10-28 23:13:13, MEASURED):** /root/oosh REPOINTED → `/Users/Shared/Workspaces/AI/Claude/components/OOSH/main` = OLD toolchain: otmux has ONLY C-u `send` (NO send.raw / send.tui / pane.capture / pane.self); scrumMaster has NO swipe / rewind.list. Prior tree INTACT: `M=/var/dev/EAMD.ucp/Components/com/ceruleanCircle/EAM/1_infrastructure/Once.sh/mcdonges.latest`. **Use "$M/otmux" / "$M/scrumMaster" by ABSOLUTE PATH; NEVER the PATH `otmux send` (destroys staged composers).** $M swipe shows liveness but ctx = `?ctx-no-jsonl`. Link = TRON's call — NEVER touch it.
 **★ STATE (unchanged since 10-28 15:40 / 23:13):** all ooshTeam + oopTeam IDLE; oosh-po's 3 Tron items unanswered. Reported to Tron in text + ONE push (23:13) — do not re-push same news.
