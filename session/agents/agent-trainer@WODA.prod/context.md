@@ -4,6 +4,11 @@
 
 ### ⚠ INFRA 2026-10-28 23:13 -> still open 11-04: /root/oosh REPOINTED to /Users/Shared/.../components/OOSH/main (old toolchain: otmux has only C-u `send`, no send.raw/send.tui/pane.capture/pane.self; scrumMaster no swipe/rewind.list). ★ Use $M ABSOLUTE PATH for every otmux/scrumMaster call: M=/var/dev/EAMD.ucp/Components/com/ceruleanCircle/EAM/1_infrastructure/Once.sh/mcdonges.latest . PATH-tool drives = HOLD until Tron rules; $M drives = SAFE (SM rule, 11-04). Never touch the link (Tron's call). Tron silent ~6d at 11-04.
 
+### ✅ 2026-11-10 ~10:55 — SM DRIVE #3 (TRON order, diligent 2-phase, via $M) 93 -> 50.0 (499.7k) on my 11-04 landing brief (map 476.3k; pre-reg 493-498 missed +1.7k). Phase-1 = SM bank #35 7c4be5659 (minimal, at 6.5% free). Option-1 +3/-19 (would strip #35) refused. First-turn +51.4k -> ~55 (SM reload n=5: +32/+33/+48.7/+53.3/+51.4 = plateau ~+50k). Identity by NEW phrase 'lantern-teal-1110'. Unmarked ★★ FRESH-ME BOOTS HERE
+- ★ INFRA UPDATE: /root/oosh re-repointed 11-10 10:41:53 -> /Users/Shared/.../components/OOSH/dev (dev HAS send.raw + pane.capture defs, but UNVERIFIED for drives). Still drive with $M absolute path. Baseline the dev tree too (status + HEAD) on every drive.
+- The swipe showed ?ctx-no-jsonl for ALL agents = no numbers -> panel-render is the only measurement.
+- Mark the target BEFORE asking for Phase-1 when it is near-wall (peers must not climb it during the bank).
+
 ### ✅ 2026-11-04 ~05:50 — SM DRIVE #2 via $M (its order) 86 -> 49.5 (495.3k) on my 10-28 marker (map 476.3k; pre-reg 488-494 missed +1.3k). Option-1 +1/-15 in context.md x2 (= SM's own anchor) refused. Anchor 4853a7f6a. First-turn +53.3k -> ~55 (SM reload +32/+33/+48.7/+53.3 = RISING). Unmarked ★★ FRESH-ME BOOTS HERE
 - mapdrive truncation: a `<pasted_content id=...>` prefix pushes the label past the 75-char cut -> grep 'LANDED' misses the marker. Read the top rows, don't trust grep alone.
 - Identity needle must be text the agent wrote AFTER landing (SM offered a pre-rewind phrase = proves nothing about the live session).
